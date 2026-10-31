@@ -20973,7 +20973,7 @@
   {
    "slug": "homeschool-surge",
    "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-   "hook": "Homeschooling was supposed to be a lockdown fad. It wasn't.",
+   "hook": "Homeschooling was supposed to die when schools reopened. Parents had other plans.",
    "closing": "Reopening classrooms did not restore the earlier pattern; families kept making different choices about where children learn.",
    "question": "What matters most when choosing a school?",
    "caption": "Homeschooling spiked to 11.1% of families during COVID — then it was supposed to fall back to normal. It didn't. Years later it's still double the pre-pandemic rate, and closing in on the entire private school system. Would you ever homeschool your kids? 👇",
@@ -25693,7 +25693,7 @@
   {
    "slug": "podcasts-passed-radio-spoken-word",
    "title": "Podcasts Overtook Radio By Just 1 Percentage Point",
-   "hook": "Radio lost its spoken-word lead to podcasts by just 1 percentage point.",
+   "hook": "Radio's reign is over, and podcasts took it by a hair.",
    "closing": "A tiny lead marks a change in where people spend listening time, rather than radio disappearing.",
    "question": "What do you choose for spoken audio?",
    "caption": "Podcasts just passed AM/FM radio in spoken-word listening for the first time ever -- 40% to 39%. Radio spent a century building its audience; podcasts matched it in twenty years. Which do you listen to more? 👇",
@@ -25763,7 +25763,8 @@
    ],
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-10-20T11:24:41Z",
-   "retold": "retell/v4"
+   "retold": "retell/v4",
+   "hook_was": "Radio lost its spoken-word lead to podcasts by just 1 percentage point."
   },
   {
    "slug": "chickenpox-vaccine-collapse",
@@ -34203,7 +34204,7 @@
   {
    "slug": "dog-breed-popularity-flip",
    "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
-   "hook": "Everyone wants this dog. The dogs are the ones paying for it.",
+   "hook": "A French Bulldog is lucky to see its fifth birthday.",
    "closing": "Popularity cannot replace a hard look at a breed's health and care needs.",
    "question": "What matters when choosing a dog?",
    "caption": "For 31 years, the Labrador Retriever was America's most popular dog. In 2022, one breed finally took the crown, with registrations up over 1,000% since 2012. But that popularity comes at a real cost to the dog itself. Would you still get one? 👇",
@@ -35761,7 +35762,7 @@
   {
    "slug": "tsa-digital-id-states-growth",
    "title": "20 States Now Let You Use A Digital ID At The Airport",
-   "hook": "Your phone can now get you through airport security. Unless you live in the wrong state.",
+   "hook": "Your phone can now get you through airport security, in 20 states.",
    "closing": "Soon your phone may replace your wallet at the airport, but pack your plastic ID for now.",
    "question": "Have you tried a digital ID yet?",
    "caption": "TSA went from 11 states to 20 states accepting a digital driver's license at security in just two years. Here's how far -- and how fast -- it's spreading. Have you tried it yet? 👇",
@@ -35816,8 +35817,8 @@
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-28T01:33:41Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-31T11:34:54Z",
    "hook_was": "Your phone just became a legit airport ID in 20 states."
   },
   {
@@ -36275,8 +36276,8 @@
   {
    "slug": "maternal-mortality-pandemic-reversal",
    "title": "US Maternal Deaths Fell To 18.6 Per 100,000 In 2023",
-   "hook": "Moms are dying less. But not all moms equally.",
-   "closing": "The number is dropping. The gap behind it isn't.",
+   "hook": "The country got safer for new moms. Not for Black moms.",
+   "closing": "Fewer moms are dying, but Black mothers still face far higher risk. That gap is the real story.",
    "question": "Were you surprised by that gap?",
    "caption": "The US maternal mortality rate spiked to 32.9 per 100,000 births in 2021, then fell for two straight years to 18.6 in 2023 — below pre-pandemic levels. But Black mothers' rate barely moved. Were you surprised by that gap? 👇",
    "hashtags": [
@@ -36302,7 +36303,7 @@
      "insight_type": "trend",
      "role": "1 · THE FULL CIRCLE",
      "topic": "US maternal death rate",
-     "say": "In 2019 the rate was 20.1. COVID pushed it to 32.9 in 2021. By 2023 it fell to 18.6 — below its pre-pandemic level."
+     "say": "Maternal deaths spiked during COVID, then fell to 18.6 in 2023, lower than before the pandemic."
     },
     {
      "source": "offline",
@@ -36313,7 +36314,7 @@
      "insight_type": "trend",
      "role": "2 · THE RATE THAT DIDN'T FALL",
      "topic": "Black maternal mortality rate",
-     "say": "Black mothers' rate spiked to 69.9 in 2021, then barely moved — 49.5 in 2022, 50.3 in 2023. The national drop skipped them."
+     "say": "For Black mothers, the rate stayed stuck near 50.3 after its 2021 spike. The national drop skipped them."
     },
     {
      "source": "offline",
@@ -36324,10 +36325,14 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE 2023 GAP",
-     "topic": "maternal deaths by race",
-     "say": "In 2023, Black women died at 50.3 per 100,000 births. White women: 14.5. Hispanic women: 12.4. Asian women: 10.7 — the gap stayed huge."
+     "topic": "Maternal deaths by race",
+     "say": "Black women died at over three times the rate of any other group. White women, the next highest, were at 14.5."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-31T11:55:55Z",
+   "hook_was": "Moms are dying less. But not all moms equally."
   },
   {
    "slug": "drone-commercial-overtake",
@@ -36393,7 +36398,7 @@
   {
    "slug": "right-whale-breeding-females",
    "title": "Only 70 Breeding Right Whales Are Left On Earth",
-   "hook": "The species almost went silent in 2018.",
+   "hook": "One year, not a single right whale calf showed up.",
    "closing": "More calves mean hope, but with so few mothers, right whales still need our protection.",
    "question": "Did you know whales could go extinct?",
    "caption": "North Atlantic right whales hit a low of 358 in 2020 and have crept back to 384 — with 22 calves born this season versus zero in 2018. But fewer than 70 of them are breeding females. Did you know whales could go extinct? 👇",
@@ -36446,7 +36451,8 @@
    ],
    "retold": "retell/v4",
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-30T13:10:08Z"
+   "rewritten_at": "2026-10-30T13:10:08Z",
+   "hook_was": "The species almost went silent in 2018."
   },
   {
    "slug": "pedestrian-deaths-outlier",
@@ -36573,7 +36579,7 @@
   {
    "slug": "cruise-ship-outbreaks-climbing",
    "title": "Cruise Ship Outbreaks Jumped From 14 To 20 In Two Years",
-   "hook": "Here's why your next cruise might get you sick.",
+   "hook": "Cruise ships are turning into floating petri dishes, and it's getting worse.",
    "closing": "Bring your own hand sanitizer, and wash your hands before you eat. Seriously.",
    "question": "Would an outbreak change your cruise pick?",
    "caption": "The CDC tracked 14 cruise ship outbreaks in 2023, 18 in 2024, and 2025 had already passed 20. Most are norovirus -- and modern mega-ships now pack up to 9,950 people onto one deck. Would it change which cruise you book? 👇",
@@ -36602,7 +36608,8 @@
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
      "topic": "cruise ship outbreaks climbing",
-     "say": "Cruise ship outbreaks reported to the CDC hit 20 this year, and they keep climbing, well above two years ago."
+     "say": "Cruise ship outbreaks reported to the CDC hit 20 this year, and they keep climbing, well above two years ago.",
+     "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _cs_pt(s, B, M, S, L1, L2):\n    if s <= L1:\n        f = s / L1\n        return (B[0] + (M[0] - B[0]) * f, B[1] + (M[1] - B[1]) * f,\n                (M[0] - B[0]) / L1, (M[1] - B[1]) / L1)\n    f = clamp((s - L1) / L2)\n    return (M[0] + (S[0] - M[0]) * f, M[1] + (S[1] - M[1]) * f,\n            (S[0] - M[0]) / L2, (S[1] - M[1]) / L2)\n\n\ndef _cs_flag(cr, x, y, tx, ty, t, i, fw=42.0, fh=50.0):\n    # one square yellow Q flag, its hoist edge clipped along the line, its\n    # fly hanging below it and rippling in the sea wind\n    if tx > 0:\n        nx, ny = -ty, tx\n    else:\n        nx, ny = ty, -tx\n    if ny < 0:\n        nx, ny = -nx, -ny\n    sway = 0.16 * math.sin(t * 2.2 + i * 1.37)\n    cs, sn = math.cos(sway), math.sin(sway)\n    hx, hy = nx * cs - ny * sn, nx * sn + ny * cs\n    ax, ay = x + tx * fw, y + ty * fw\n    wave = 8.0 * math.sin(t * 4.6 + i * 1.1)\n    cx_, cy_ = ax + hx * (fh + wave), ay + hy * (fh + wave)\n    dx_, dy_ = x + hx * (fh - wave * 0.6), y + hy * (fh - wave * 0.6)\n    cr.move_to(x, y)\n    cr.line_to(ax, ay)\n    cr.line_to(cx_, cy_)\n    cr.curve_to(cx_ + (dx_ - cx_) / 3 - hx * wave, cy_ + (dy_ - cy_) / 3 - hy * wave,\n                cx_ + 2 * (dx_ - cx_) / 3 + hx * wave, cy_ + 2 * (dy_ - cy_) / 3 + hy * wave,\n                dx_, dy_)\n    cr.close_path()\n    solid(cr, (246, 206, 44))\n    for (px, py) in ((x, y), (ax, ay)):\n        cr.arc(px, py, 3.5, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((70, 70, 76)))\n        cr.fill()\n\n\ndef _cs_case(cr, x, y, w, h, rgb, lean=0.0):\n    # a travel suitcase standing on the quay: shell, ribs, corner trim, handle\n    contact_shadow(cr, x + w / 2, y + 2, w * 1.3, a=0.38)\n    box(cr, x, y, w, h, rgb, depth=w * 0.28)\n    seams(cr, x + 4, y - h + 6, x + w - 4, y - 6, rgb, n=3, axis=\"v\", a=0.45)\n    trim(cr, x, y - h, x + w, y, (60, 58, 62), w=3)\n    cr.set_source_rgba(*_c((40, 38, 42)))\n    cr.set_line_width(5)\n    cr.move_to(x + w * 0.3, y - h)\n    cr.line_to(x + w * 0.3, y - h - 14)\n    cr.line_to(x + w * 0.7, y - h - 14)\n    cr.line_to(x + w * 0.7, y - h)\n    cr.stroke()\n    for wx in (x + 8, x + w - 8):\n        disc(cr, wx, y + 2, 5, (40, 40, 44))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a docked cruise ship\n    SUBSTANCE: yellow quarantine flags\n    CAUSE: Data hauls the line hand over hand and the string of yellow quarantine flags rises up over the ship's mast, one more flag per outbreak\n    A white cruise ship at the quay at dusk. From its bow a line runs up\n    over the masthead and down to the stern, and Data, on the quay, hauls\n    it: each pull draws the string of square yellow Q flags (the sea's own\n    signal for sickness aboard) further up and over, a new flag coming up\n    off the bow with every pull — one flag per outbreak reported to the CDC,\n    14, then 18, then 20, the line full. Each flag is its own square with\n    sky between, solid yellow, rippling. THE SCALE is on the line: a notch\n    where the first year's string reached, named, so the climb reads at a\n    glance. A gangway is down and the passengers' bags wait on the quay.\n    Done by 0.56 and held; he keeps the line taut, the flags fly.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.08, 0.8))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    nv = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    if u < a0:\n        landed_to = -1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if named is None else rows[named]\n    top = max(v for _, v in rows) or 1.0\n    prog = 0.0 if u < a0 else clamp((k + slide) / max(1, n))\n\n    # the harbour at dusk\n    landscape(cr, t, \"coast\", horizon=1150, time=\"dusk\", seed=\"cruise ship\")\n    haze(cr, 900, 1160, (226, 170, 140), a=0.4)\n    vgrad(cr, [(0, (70, 96, 128)), (1, (28, 50, 78))], 1150, 1450)\n    cr.set_line_width(4)\n    for i in range(16):\n        wy = 1170 + i * 18\n        off = (t * (30 + i * 4) + i * 97) % 240\n        cr.set_source_rgba(*_c((150, 180, 206), 0.5))\n        for j in range(6):\n            wx = -240 + off + j * 240 + (i % 3) * 40\n            cr.move_to(wx, wy)\n            cr.line_to(wx + 90 + (i % 4) * 10, wy)\n        cr.stroke()\n    birds(cr, t, y0=780, n=4, rgb=(50, 44, 60))\n\n    # the ship\n    cast_shadow(cr, 160, 1010, 1360, length=220, a=0.3)\n    cr.move_to(150, 1068)\n    cr.line_to(1012, 1098)\n    cr.line_to(992, 1350)\n    cr.curve_to(700, 1366, 400, 1366, 250, 1356)\n    cr.curve_to(200, 1260, 170, 1160, 150, 1068)\n    cr.close_path()\n    solid(cr, (234, 236, 238))\n    cr.move_to(196, 1290)\n    cr.line_to(997, 1290)\n    cr.line_to(992, 1350)\n    cr.curve_to(700, 1366, 400, 1366, 250, 1356)\n    cr.curve_to(228, 1336, 210, 1312, 196, 1290)\n    cr.close_path()\n    solid(cr, (30, 44, 82))\n    # a red boot-top stripe along the waterline\n    cr.move_to(203, 1290)\n    cr.line_to(997, 1290)\n    cr.line_to(996, 1300)\n    cr.line_to(208, 1300)\n    cr.close_path()\n    solid(cr, (180, 46, 40), rim=False)\n    seams(cr, 260, 1110, 990, 1285, (234, 236, 238), n=9, axis=\"v\", a=0.3)\n    # hull rail\n    cr.set_source_rgba(*_c((150, 156, 166)))\n    cr.set_line_width(2)\n    cr.move_to(156, 1056)\n    cr.line_to(1010, 1086)\n    for j in range(30):\n        px = 170 + j * 28\n        py = 1056 + (px - 156) * 30 / 854\n        cr.move_to(px, py)\n        cr.line_to(px, py + 12)\n    cr.stroke()\n    for r_ in range(2):\n        for j in range(22):\n            px = 270 + j * 33 + r_ * 12\n            py = 1160 + r_ * 50\n            cr.arc(px, py, 6, 0, 2 * math.pi)\n            cr.set_source_rgba(*_c((52, 74, 104)))\n            cr.fill_preserve()\n            cr.set_source_rgba(*_c((150, 154, 160)))\n            cr.set_line_width(2)\n            cr.stroke()\n    # anchor in its hawse near the bow\n    disc(cr, 232, 1130, 16, (70, 74, 82), finish=\"metal\")\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(5)\n    cr.move_to(232, 1146)\n    cr.line_to(232, 1186)\n    cr.move_to(214, 1176)\n    cr.curve_to(220, 1194, 244, 1194, 250, 1176)\n    cr.stroke()\n    decks = [(290, 1095, 660, 90), (340, 1005, 560, 90), (400, 915, 440, 90)]\n    for (dx0, dy0, dw, dh) in decks:\n        box(cr, dx0, dy0, dw, dh, (240, 240, 236), depth=40)\n        nwin = int(dw // 42)\n        for j in range(nwin):\n            wx = dx0 + 12 + j * 42\n            cr.rectangle(wx, dy0 - dh + 18, 30, 40)\n            cr.set_source_rgba(*_c((54, 86, 124)))\n            cr.fill()\n            cr.rectangle(wx, dy0 - dh + 18, 30, 5)\n            cr.set_source_rgba(*_c((250, 214, 160), 0.8))\n            cr.fill()\n            cr.set_source_rgba(*_c((200, 204, 210)))\n            cr.set_line_width(2)\n            cr.rectangle(wx, dy0 - dh + 18, 30, 40)\n            cr.stroke()\n        trim(cr, dx0, dy0 - 18, dx0 + dw, dy0 - 10, (200, 204, 210), w=3)\n        cr.set_source_rgba(*_c((120, 126, 136)))\n        cr.set_line_width(2)\n        cr.move_to(dx0, dy0 - dh - 8)\n        cr.line_to(dx0 + dw, dy0 - dh - 8)\n        for j in range(0, int(dw), 28):\n            cr.move_to(dx0 + j, dy0 - dh - 8)\n            cr.line_to(dx0 + j, dy0 - dh)\n        cr.stroke()\n    # bridge wings at the front of the top deck\n    box(cr, 360, 838, 50, 26, (232, 232, 228), depth=14)\n    cr.rectangle(366, 818, 36, 10)\n    cr.set_source_rgba(*_c((54, 86, 124)))\n    cr.fill()\n    for j in range(6):\n        lx = 330 + j * 104\n        cr.save()\n        cr.translate(lx + 38, 1062)\n        cr.scale(1, 0.42)\n        cr.arc(0, 0, 40, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (234, 118, 40))\n        cr.rectangle(lx + 18, 1046, 40, 8)\n        cr.set_source_rgba(*_c((248, 246, 240)))\n        cr.fill()\n        cr.set_source_rgba(*_c((90, 94, 102)))\n        cr.set_line_width(3)\n        cr.move_to(lx + 8, 1060)\n        cr.line_to(lx + 8, 1030)\n        cr.move_to(lx + 68, 1060)\n        cr.line_to(lx + 68, 1030)\n        cr.stroke()\n    cylinder(cr, 690, 830, 100, 150, (210, 52, 44))\n    cr.rectangle(690, 712, 100, 20)\n    cr.set_source_rgba(*_c((30, 40, 70)))\n    cr.fill()\n    steam(cr, 740, 690, t, strength=0.7)\n    # a tall signal mast, its yard, a radar dome and the block at the top\n    cr.rectangle(535, 660, 10, 168)\n    solid(cr, (90, 94, 102), finish=\"metal\", rim=False)\n    cr.rectangle(510, 720, 60, 6)\n    solid(cr, (90, 94, 102), finish=\"metal\", rim=False)\n    disc(cr, 520, 752, 13, (236, 236, 232))\n    disc(cr, 540, 660, 9, (200, 200, 204), finish=\"metal\")\n    # the ship's name out by the stern, well clear of where Data walks\n    text(cr, \"OCEANA\", 980, 1252, 34, (30, 44, 82), face=\"bold\", anchor=\"right\",\n         shadow=False)\n\n    # the hoist line: bow -> over the masthead block -> stern\n    B, M, S = (150, 1068), (540, 660), (1004, 1098)\n    L1 = math.hypot(M[0] - B[0], M[1] - B[1])\n    L2 = math.hypot(S[0] - M[0], S[1] - M[1])\n    d = (L1 + L2) / top\n    fw = min(42.0, d * 0.66)\n    cr.set_source_rgba(*_c((214, 204, 184)))\n    cr.set_line_width(3)\n    cr.move_to(*B)\n    cr.line_to(*M)\n    cr.line_to(*S)\n    cr.stroke()\n    nf = int(math.ceil(nv))\n    for i in range(nf):\n        s = (nv - i - 0.5) * d - fw / 2\n        if s < 4:\n            continue\n        x, y, tx, ty = _cs_pt(min(s, L1 + L2 - fw), B, M, S, L1, L2)\n        _cs_flag(cr, x, y, tx, ty, t, i, fw=fw)\n    # THE SCALE: a notch where each landed year's string reached; the first\n    # year is named out in the open sky, clear of the funnel\n    first_s = rows[0][1] * d\n    for j in range(0, landed_to + 1):\n        s = rows[j][1] * d - 4\n        x, y, tx, ty = _cs_pt(min(s, L1 + L2 - 2), B, M, S, L1, L2)\n        ox, oy = (ty, -tx) if tx > 0 else (-ty, tx)\n        if oy > 0:\n            ox, oy = -ox, -oy\n        cr.set_source_rgba(*_c((248, 244, 232)))\n        cr.set_line_width(6)\n        cr.move_to(x - ox * 6, y - oy * 6)\n        cr.line_to(x + ox * 40, y + oy * 40)\n        cr.stroke()\n        if j == 0 and (named is None or named == 0 or rows[named][1] * d - first_s > 100):\n            lx, ly = x + ox * 120, y + oy * 120\n            text(cr, rows[0][0], lx, ly, 38, look.INK, face=\"bold\", anchor=\"center\")\n\n    # the quay, right by the camera\n    vgrad(cr, [(0, (150, 146, 138)), (1, (98, 94, 90))], 1440, H)\n    trim(cr, -10, 1440, W + 10, 1462, (176, 170, 160), w=8)\n    # paving slabs: joints running to the camera and across\n    cr.set_source_rgba(*_c((112, 108, 102), 0.6))\n    cr.set_line_width(3)\n    for i in range(9):\n        cr.move_to(540 + (i - 4) * 150, 1462)\n        cr.line_to(540 + (i - 4) * 330, H)\n    for yy in (1530, 1620, 1740, 1880):\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n    # rubber fenders hung along the quay edge\n    for i in range(6):\n        fx = 60 + i * 190\n        cr.rectangle(fx, 1440, 40, 30)\n        solid(cr, (36, 36, 40), rim=False)\n    # the gangway down from the hull, aft\n    cr.move_to(820, 1270)\n    cr.line_to(880, 1270)\n    cr.line_to(960, 1452)\n    cr.line_to(880, 1452)\n    cr.close_path()\n    solid(cr, (176, 180, 188), finish=\"metal\")\n    seams(cr, 830, 1280, 950, 1445, (176, 180, 188), n=8, axis=\"h\", a=0.5)\n    cr.set_source_rgba(*_c((80, 84, 92)))\n    cr.set_line_width(4)\n    cr.move_to(820, 1230)\n    cr.line_to(880, 1412)\n    cr.move_to(880, 1230)\n    cr.line_to(960, 1412)\n    for q in range(6):\n        cr.move_to(820 + q * 12, 1230 + q * 36 + 40)\n        cr.line_to(820 + q * 12, 1230 + q * 36)\n    cr.stroke()\n    # passengers' bags waiting at the foot of the gangway, each its own\n    _cs_case(cr, 800, 1540, 70, 96, (60, 92, 140))\n    _cs_case(cr, 884, 1556, 58, 78, (176, 64, 54))\n    _cs_case(cr, 950, 1572, 84, 110, (84, 88, 92))\n    K = (190, 1470)\n    contact_shadow(cr, K[0], K[1] + 30, 90, a=0.4)\n    cylinder(cr, K[0] - 30, K[1] + 30, 60, 50, (52, 52, 58), finish=\"metal\")\n    # a lifebuoy hung on its post by the camera\n    contact_shadow(cr, 110, 1800, 60, a=0.4)\n    cr.rectangle(102, 1640, 16, 160)\n    solid(cr, (70, 72, 80), finish=\"metal\", rim=False)\n    cr.new_path()\n    cr.arc(110, 1690, 62, 0, 2 * math.pi)\n    cr.arc_negative(110, 1690, 36, 2 * math.pi, 0)\n    solid(cr, (236, 108, 40))\n    for q in range(4):\n        a_ = q * math.pi / 2 + 0.4\n        cr.new_path()\n        cr.arc(110, 1690, 62, a_, a_ + 0.35)\n        cr.arc_negative(110, 1690, 36, a_ + 0.35, a_)\n        cr.close_path()\n        solid(cr, (246, 244, 238), rim=False)\n    foreground(cr, \"coast\", y0=1660)\n\n    # Data walks back along the quay hauling the line\n    hh = 330\n    fy = 1520\n    hx = 360 + 240 * prog\n    hand = (hx - 0.12 * hh, fy - 0.62 * hh)\n    cr.set_source_rgba(*_c((214, 204, 184)))\n    cr.set_line_width(5)\n    cr.move_to(*B)\n    cr.line_to(K[0], K[1] - 10)\n    cr.line_to(*hand)\n    cr.stroke()\n    vignette(cr, a=0.28)\n    if u < a0:\n        host(\"point\", hx, fy, hh)\n    elif u < a1 + 0.04:\n        host(\"haul\", hx, fy, hh, beat=k)\n    else:\n        host(\"strain\", hx, fy, hh)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} outbreaks\", f\"on cruise ships, reported to the CDC · {lab}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Cruise outbreaks\", f\"reported to the CDC, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -36629,7 +36636,8 @@
    ],
    "retold": "retell/v4",
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-30T13:33:21Z"
+   "rewritten_at": "2026-10-30T13:33:21Z",
+   "hook_was": "Here's why your next cruise might get you sick."
   },
   {
    "slug": "billion-dollar-disasters-record-2023",
@@ -36692,7 +36700,7 @@
   {
    "slug": "tonga-volcano-water-vapor-record",
    "title": "One Volcano Added 146 Million Tons Of Water To The Sky",
-   "hook": "This volcano didn't cool the Earth. It warmed it.",
+   "hook": "Hunga Tonga didn't just erupt. It rewired the sky above your head.",
    "closing": "Volcanoes can nudge our climate in surprising ways, and scientists are still working out how much.",
    "question": "Did you know a volcano could warm us?",
    "caption": "In January 2022, the Hunga Tonga volcano blasted 146 million metric tons of water vapor into the stratosphere -- about 10% of all the water normally up there. Its shockwave circled Earth 3 times. Unlike most big eruptions, this one is expected to warm the planet slightly, not cool it. Did you know that? 👇",
@@ -36743,12 +36751,14 @@
      "insight_type": "comparison",
      "role": "3 · THE TWIST",
      "topic": "Volcano water pools",
-     "say": "That water equals 58,400 Olympic pools, dumped skyward in hours. Water vapor traps heat, so that extra water can warm the planet."
+     "say": "That water equals 58,400 Olympic pools, dumped skyward in hours. Water vapor traps heat, so that extra water can warm the planet.",
+     "illustrated_scene": "# scene standard: 2026-10-28.1\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: an Olympic racing pool\n    SUBSTANCE: blue pool water\n    CAUSE: Data pours buckets of water into the pool and it fills to the brim\n    ONE Olympic pool, drawn whole and empty first, in its own place: an\n    outdoor 50-metre racing pool in a stadium on a clear day, the stands\n    full behind it, eight starting blocks with lane numbers on the far end,\n    backstroke flags strung across it, lane ropes lying on the tiled floor.\n    Data walks the near deck with a bucket and pours it in, bucket after\n    bucket, and the blue water climbs the far wall until the pool is full\n    to the brim and the lane ropes float up. That is ONE pool's worth of\n    water. The readout then turns it into the story's number: Hunga Tonga\n    put 58,400 of them into the sky. It lands by 0.62 and holds; he keeps\n    pouring, the water slops over the coping, the flags flutter.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    big = max(rows, key=lambda r: r[1])\n    one = min(rows, key=lambda r: r[1])\n\n    n = 5\n    a0, a1 = 0.08, 0.62\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    if u < a0:\n        h = 0.0\n    elif u >= a1:\n        h = 1.0\n    else:\n        h = (k + ease(seg(f, 0.4, 0.85))) / n\n    full = h >= 0.999\n\n    FL, FR, NL, NR = (200.0, 980.0), (880.0, 980.0), (60.0, 1470.0), (1020.0, 1470.0)\n    D = 230.0\n\n    def xl(y):\n        return FL[0] + (NL[0] - FL[0]) * (y - FL[1]) / (NL[1] - FL[1])\n\n    def xr(y):\n        return FR[0] + (NR[0] - FR[0]) * (y - FR[1]) / (NR[1] - FR[1])\n\n    def lp(p, q, g):\n        return (p[0] + (q[0] - p[0]) * g, p[1] + (q[1] - p[1]) * g)\n\n    # the stadium on a clear day\n    landscape(cr, t, \"town\", horizon=1000, time=\"day\",\n              seed=\"olympic racing pool stadium\", skyline=True)\n\n    # the grandstand behind the pool, full of people\n    cr.move_to(20, 1000)\n    cr.line_to(60, 660)\n    cr.line_to(1020, 660)\n    cr.line_to(1060, 1000)\n    cr.close_path()\n    solid(cr, (150, 150, 154), edge=False)\n    seat_cols = [(40, 90, 170), (40, 90, 170), (52, 104, 182), (36, 80, 150)]\n    shirts = [(214, 70, 60), (240, 236, 226), (236, 190, 70), (70, 130, 96),\n              (110, 90, 160), (60, 60, 70), (230, 140, 90), (90, 160, 210)]\n    skins = [(232, 190, 150), (196, 140, 100), (140, 96, 66), (244, 210, 176)]\n    for r_ in range(10):\n        ry = 980 - r_ * 32\n        x0_, x1_ = 40 + r_ * 4, 1040 - r_ * 4\n        cr.rectangle(x0_, ry - 6, x1_ - x0_, 8)\n        cr.set_source_rgba(*_c((120, 120, 126)))\n        cr.fill()\n        cx_ = x0_ + 6\n        i = 0\n        while cx_ < x1_ - 20:\n            hsh = ((r_ * 31 + i * 17) * 0.6180339) % 1.0\n            wdt = 20 + 6 * hsh\n            cr.rectangle(cx_, ry - 26, wdt - 4, 20)\n            cr.set_source_rgba(*_c(seat_cols[(i + r_) % 4]))\n            cr.fill()\n            if hsh > 0.28:\n                sh = shirts[int(hsh * 97) % len(shirts)]\n                cr.rectangle(cx_ + 2, ry - 30 - 2 * (i % 2), wdt - 8, 18)\n                cr.set_source_rgba(*_c(sh))\n                cr.fill()\n                cr.arc(cx_ + (wdt - 4) / 2, ry - 38 - 2 * (i % 2), 6 + (i % 3), 0, 2 * math.pi)\n                cr.set_source_rgba(*_c(skins[int(hsh * 53) % 4]))\n                cr.fill()\n            cx_ += wdt\n            i += 1\n    # the canopy on its columns\n    for cx_ in (80, 310, 540, 770, 1000):\n        cr.rectangle(cx_ - 7, 600, 14, 70)\n        solid(cr, (200, 202, 208), finish=\"metal\", rim=False)\n    cr.move_to(0, 560)\n    cr.line_to(W, 560)\n    cr.line_to(W - 20, 610)\n    cr.line_to(20, 610)\n    cr.close_path()\n    solid(cr, (226, 228, 234))\n    seams(cr, 20, 560, W - 20, 610, (226, 228, 234), n=18, axis=\"v\")\n    haze(cr, 540, 1000, (214, 226, 238), a=0.3)\n\n    # the deck, pale tile running to the camera\n    cr.rectangle(0, 990, W, H - 990)\n    solid(cr, (216, 208, 192), edge=False, rim=False)\n    cr.set_source_rgba(*_c((170, 162, 148), 0.55))\n    cr.set_line_width(2)\n    for i in range(19):\n        cr.move_to(540 + (i - 9) * 70, 990)\n        cr.line_to(540 + (i - 9) * 260, H)\n    for j in range(12):\n        yy = 990 + (j ** 1.6) * 22\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n\n    # the coping round the pool\n    cr.move_to(NL[0] - 34, NL[1] + 26)\n    cr.line_to(NR[0] + 34, NR[1] + 26)\n    cr.line_to(FR[0] + 24, FR[1] - 16)\n    cr.line_to(FL[0] - 24, FL[1] - 16)\n    cr.close_path()\n    solid(cr, (240, 236, 228))\n\n    # inside the pool: tiled walls, the floor, the water\n    cr.save()\n    cr.move_to(*NL)\n    cr.line_to(*NR)\n    cr.line_to(*FR)\n    cr.line_to(*FL)\n    cr.close_path()\n    cr.clip()\n    vgrad(cr, [(0, (128, 184, 198)), (1, (104, 160, 176))], FL[1], FL[1] + D)\n    seams(cr, FL[0], FL[1], FR[0], FL[1] + D, (128, 184, 198), n=24, axis=\"v\", width=1.5)\n    seams(cr, FL[0], FL[1], FR[0], FL[1] + D, (128, 184, 198), n=7, axis=\"h\", width=1.5)\n    fy0 = FL[1] + D\n    cr.move_to(xl(fy0), fy0)\n    cr.line_to(xr(fy0), fy0)\n    cr.line_to(*NR)\n    cr.line_to(*NL)\n    cr.close_path()\n    solid(cr, (168, 214, 224), rim=False, edge=False)\n    ys = FL[1] + D * (1 - h)\n    if h > 0.005:\n        vgrad(cr, [(0, (66, 156, 214)), (1, (22, 96, 176))], ys, NL[1] + 4)\n        cr.set_source_rgba(*_c((236, 248, 255), 0.85))\n        cr.set_line_width(4)\n        cr.move_to(0, ys)\n        cr.line_to(W, ys)\n        cr.stroke()\n    # the black lane lines on the floor, seen through the water\n    for i in range(8):\n        g = (i + 0.5) / 8\n        p = lp((xl(fy0), fy0), (xr(fy0), fy0), g)\n        q = lp(NL, NR, g)\n        cr.set_source_rgba(*_c((24, 40, 80), 0.6))\n        cr.set_line_width(5 + 8 * g)\n        cr.move_to(p[0], p[1] + 14)\n        cr.line_to(q[0], q[1] - 30)\n        cr.stroke()\n    # light on the surface\n    if h > 0.005:\n        cr.set_source_rgba(*_c((214, 242, 255), 0.55))\n        cr.set_line_width(3)\n        for i in range(10):\n            ry = ys + 16 + ((i * 41 + t * 22) % max(20, NL[1] - ys - 20))\n            xa, xb = xl(ry), xr(ry)\n            x0_ = xa + (xb - xa) * ((i * 0.37) % 0.8)\n            cr.move_to(x0_, ry)\n            cr.curve_to(x0_ + 30, ry - 5, x0_ + 60, ry + 5, x0_ + 100, ry)\n        cr.stroke()\n    cr.restore()\n\n    # lane ropes, on the floor when empty, floating once there is water\n    ry_far = ys if h > 0.005 else fy0\n    for i in range(1, 8):\n        g = i / 8\n        p = lp((xl(ry_far), ry_far), (xr(ry_far), ry_far), g)\n        q = lp(NL, NR, g)\n        for j in range(16):\n            gg = j / 15\n            fx, fy = lp(p, q, gg)\n            col = (206, 52, 46) if (j + i) % 3 else (242, 240, 234)\n            disc(cr, fx, fy, 4 + 6 * gg, col)\n\n    # eight starting blocks with their lane numbers\n    for i in range(8):\n        sx, sy = lp(FL, FR, (i + 0.5) / 8)\n        contact_shadow(cr, sx, sy - 18, 36, a=0.3)\n        box(cr, sx - 15, sy - 18, 30, 28, (232, 230, 224), depth=8)\n        cr.rectangle(sx - 12, sy - 50, 24, 7)\n        solid(cr, (40, 110, 190), rim=False)\n        text(cr, str(i + 1), sx, sy - 24, 16, (30, 40, 70), anchor=\"center\", shadow=False)\n\n    # the ladder on the far left wall\n    for lx in (230, 262):\n        cr.set_source_rgba(*_c((176, 182, 192)))\n        cr.set_line_width(6)\n        cr.move_to(lx, 1000)\n        cr.curve_to(lx, 960, lx + 4, 950, lx + 6, 930)\n        cr.stroke()\n\n    # backstroke flags strung across the pool\n    for fy_line, pole in ((1050.0, 120.0), (1380.0, 150.0)):\n        pxl, pxr = xl(fy_line) - 34, xr(fy_line) + 34\n        top = fy_line - pole\n        for px in (pxl, pxr):\n            contact_shadow(cr, px, fy_line, 26, a=0.3)\n            cr.rectangle(px - 4, top, 8, pole)\n            solid(cr, (196, 200, 208), finish=\"metal\", rim=False)\n        cr.set_source_rgba(*_c((60, 60, 66)))\n        cr.set_line_width(2)\n        cr.move_to(pxl, top + 4)\n        cr.line_to(pxr, top + 4)\n        cr.stroke()\n        m = 18\n        sz = 14 if fy_line < 1200 else 22\n        for i in range(m):\n            gx = pxl + (pxr - pxl) * (i + 0.5) / m\n            fl = 5 * math.sin(t * 4 + i * 0.9)\n            cr.move_to(gx - sz * 0.6, top + 4)\n            cr.line_to(gx + sz * 0.6, top + 4)\n            cr.line_to(gx + fl, top + 4 + sz * 1.6)\n            cr.close_path()\n            cr.set_source_rgba(*_c([(206, 52, 46), (242, 240, 234), (40, 90, 170)][i % 3]))\n            cr.fill()\n\n    # right by the camera: kickboards and a striped towel on the deck\n    contact_shadow(cr, 180, 1830, 260, a=0.35)\n    box(cr, 60, 1830, 220, 26, (240, 196, 60), depth=60)\n    box(cr, 70, 1800, 210, 26, (60, 140, 210), depth=58)\n    box(cr, 64, 1770, 214, 26, (214, 70, 60), depth=60)\n    contact_shadow(cr, 860, 1860, 340, a=0.3)\n    cr.move_to(700, 1860)\n    cr.line_to(1010, 1840)\n    cr.line_to(1040, 1760)\n    cr.line_to(740, 1780)\n    cr.close_path()\n    solid(cr, (236, 232, 222))\n    for s_ in range(4):\n        g0 = 0.15 + s_ * 0.22\n        cr.move_to(700 + 40 * g0 + 300 * g0, 1860 - 20 * g0 - 80 * 0)\n        cr.line_to(700 + 300 * g0 + 40, 1860 - 20 * g0)\n        cr.line_to(740 + 300 * g0 + 40, 1780 - 20 * g0)\n        cr.line_to(740 + 300 * g0, 1780 - 20 * g0)\n        cr.close_path()\n        cr.set_source_rgba(*_c((40, 110, 190)))\n        cr.fill()\n\n    # Data walks the near deck and pours bucket after bucket\n    FY, HH = 1520.0, 300.0\n    xs = [220.0, 360.0, 500.0, 640.0, 780.0]\n    if u < a0:\n        x = 150.0\n    elif u < a1:\n        prev = xs[k - 1] if k > 0 else 150.0\n        x = prev + (xs[k] - prev) * ease(seg(f, 0.0, 0.3))\n    else:\n        x = xs[-1]\n    pouring = False\n    ph = 0.0\n    if a0 <= u < a1 and 0.35 <= f <= 0.85:\n        pouring, ph = True, (f - 0.35) / 0.5\n    extra = 0\n    if u >= a1:\n        q_ = (u - a1) / 0.12\n        extra = int(q_)\n        fr_ = q_ - extra\n        if 0.3 <= fr_ <= 0.9:\n            pouring, ph = True, (fr_ - 0.3) / 0.6\n    if pouring:\n        bx_, by_ = x + 0.24 * HH, FY - 0.6 * HH\n        ex_, ey_ = x + 0.42 * HH, 1440.0\n        cr.set_source_rgba(*_c((60, 150, 220), 0.95))\n        cr.set_line_width(22)\n        cr.move_to(bx_, by_)\n        cr.curve_to(bx_ + 40, by_ + 10, ex_ - 10, ey_ - 80, ex_, ey_)\n        cr.stroke()\n        cr.set_source_rgba(*_c((220, 244, 255), 0.8))\n        cr.set_line_width(5)\n        cr.move_to(bx_ + 4, by_ - 4)\n        cr.curve_to(bx_ + 40, by_ + 4, ex_ - 16, ey_ - 84, ex_ - 6, ey_)\n        cr.stroke()\n        for r_ in range(2):\n            rp = (ph * 1.5 + r_ * 0.5) % 1.0\n            cr.save()\n            cr.translate(ex_, ey_)\n            cr.scale(1, 0.35)\n            cr.arc(0, 0, 20 + 110 * rp, 0, 2 * math.pi)\n            cr.restore()\n            cr.set_source_rgba(*_c((240, 250, 255), 0.9 * (1 - rp)))\n            cr.set_line_width(5)\n            cr.stroke()\n        if full:   # the pool is brim-full: it slops over onto the deck\n            for j in range(3):\n                sp = (ph + j / 3) % 1.0\n                cr.save()\n                cr.translate(ex_ + 60 * (j - 1), 1490 + 20 * sp)\n                cr.scale(1, 0.3)\n                cr.arc(0, 0, 30 + 70 * sp, 0, 2 * math.pi)\n                cr.restore()\n                cr.set_source_rgba(*_c((80, 160, 220), 0.7 * (1 - sp)))\n                cr.fill()\n\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", x, FY, HH)\n    else:\n        host(\"pour\", x, FY, HH, beat=k + extra)\n\n    if full:\n        fit_readout(cr, f\"{int(round(big[1])):,} pools\",\n                    \"of water Hunga Tonga blew into the sky\",\n                    80, 520, a=ease(seg(u, a1 - 0.03, a1 + 0.02)), size=130)\n    else:\n        fit_readout(cr, f\"{int(round(one[1]))} Olympic pool\", \"one pool's worth of water\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=110)\n"
     }
    ],
    "retold": "retell/v4",
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-30T13:34:55Z"
+   "rewritten_at": "2026-10-30T13:34:55Z",
+   "hook_was": "This volcano didn't cool the Earth. It warmed it."
   },
   {
    "slug": "union-membership-record-low",
@@ -36815,7 +36825,7 @@
    "slug": "autism-diagnosis-rate-rise",
    "title": "Autism Diagnoses Went From 1 In 150 To 1 In 31",
    "hook": "1 in 31 kids now gets an autism diagnosis.",
-   "closing": "More kids are being seen. Not necessarily more affected.",
+   "closing": "Better spotting means more kids get noticed. It doesn't prove more kids are affected.",
    "question": "Did your kid's school change its screening?",
    "caption": "In 2000, 1 in 150 eight-year-olds was diagnosed with autism. By 2022 it was 1 in 31 — and where you live can change your odds 5x over. Did screening change at your school? 👇",
    "hashtags": [
@@ -36844,7 +36854,7 @@
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
      "topic": "autism diagnosis rate",
-     "say": "Autism diagnoses hit 6.7 per 1,000 kids in 2000, about 1 in 150. By 2022 it's 32.2 per 1,000, about 1 in 31."
+     "say": "In 2000, only about 1 in 150 eight-year-olds had a diagnosis. Now it's roughly five times that."
     },
     {
      "source": "offline",
@@ -36855,8 +36865,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE GENDER GAP",
-     "topic": "autism rate in boys vs girls",
-     "say": "Boys get diagnosed at 49.2 per thousand, girls at 14.3, 3.4 times less. Doctors are still catching up on spotting it in girls."
+     "topic": "Autism in boys, girls",
+     "say": "Boys are diagnosed 3.4 times as often as girls. Doctors are still catching up on spotting it in girls."
     },
     {
      "source": "offline",
@@ -36867,10 +36877,13 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE LOTTERY OF WHERE YOU LIVE",
-     "topic": "autism rate by cdc tracking site",
-     "say": "One Texas site found autism in 9.7 per 1,000 kids. A California site found 52.6 per 1,000, more than 5 times higher."
+     "topic": "Autism by site",
+     "say": "A California site found over five times the autism rate of a Texas one. Where and how you look changes the answer."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-31T12:57:59Z"
   },
   {
    "slug": "elephant-poaching-decline",

@@ -1,136 +1,146 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-31T11:23:49Z",
+ "updated": "2026-10-31T12:59:20Z",
  "open": [
   {
-   "id": "peanut-allergy-guideline-flip__68c934c9_r1",
+   "id": "antarctic-sea-ice-record-low__0e8066f9",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-10-31T12:59:20Z",
+   "why": [
+    "premise: brain: Lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261031/antarctic-sea-ice-record-low__0e8066f9.request.json",
+   "answer_path": "exchange/rewrites/20261031/antarctic-sea-ice-record-low__0e8066f9.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__7726747b",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-10-31T12:59:20Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261031/measles-comeback-since-2000__7726747b.request.json",
+   "answer_path": "exchange/rewrites/20261031/measles-comeback-since-2000__7726747b.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__315fba90_r1",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague claim rather than a single, verifiable numeric fact."
+   ],
+   "request": "exchange/rewrites/20261031/astronaut-bone-loss__315fba90_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/astronaut-bone-loss__315fba90_r1.answer.json"
+  },
+  {
+   "id": "national-parks-record-then-shutdown__52d77463_r1",
+   "slug": "national-parks-record-then-shutdown",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r1.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__c9508eb6",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261031/usps-mail-volume-collapse__c9508eb6.request.json",
+   "answer_path": "exchange/rewrites/20261031/usps-mail-volume-collapse__c9508eb6.answer.json"
+  },
+  {
+   "id": "chess-online-boom__f9b7e085_r2",
+   "slug": "chess-online-boom",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
+   ],
+   "request": "exchange/rewrites/20261031/chess-online-boom__f9b7e085_r2.request.json",
+   "answer_path": "exchange/rewrites/20261031/chess-online-boom__f9b7e085_r2.answer.json"
+  },
+  {
+   "id": "drone-commercial-overtake__4ce6725d",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: Unclear reversal of viewer expectation; the premise relies on a number but does not convincingly invert a specific expectation."
+   ],
+   "request": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d.request.json",
+   "answer_path": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d.answer.json"
+  },
+  {
+   "id": "earthquake-detection-illusion__c70a68bc",
+   "slug": "earthquake-detection-illusion",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: The premise lacks a precise, verifiable number and relies on a vague time span, failing the strict numeric requirement."
+   ],
+   "request": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc.request.json",
+   "answer_path": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__49815695_r1",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261031/mangrove-forest-loss__49815695_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/mangrove-forest-loss__49815695_r1.answer.json"
+  },
+  {
+   "id": "naep-math-pandemic-drop__aa1c0224",
+   "slug": "naep-math-pandemic-drop",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number to anchor the surprising claim."
+   ],
+   "request": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224.request.json",
+   "answer_path": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__c0cc9c1a_r4",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-31T12:59:17Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261031/ai-datacenter-water__c0cc9c1a_r4.request.json",
+   "answer_path": "exchange/rewrites/20261031/ai-datacenter-water__c0cc9c1a_r4.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__68c934c9",
    "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-31T11:23:49Z",
+   "filed": "2026-10-30T16:27:02Z",
    "why": [
     "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
    ],
-   "request": "exchange/rewrites/20261031/peanut-allergy-guideline-flip__68c934c9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/peanut-allergy-guideline-flip__68c934c9_r1.answer.json"
+   "request": "exchange/rewrites/20261030/peanut-allergy-guideline-flip__68c934c9.request.json",
+   "answer_path": "exchange/rewrites/20261030/peanut-allergy-guideline-flip__68c934c9.answer.json"
   },
   {
-   "id": "drone-commercial-overtake__4ce6725d_r1",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "premise: brain: It presents a single statistic without clearly reversing a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
-   "id": "earthquake-detection-illusion__c70a68bc_r1",
-   "slug": "earthquake-detection-illusion",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "thesis: seg0 ('Earthquake stations worldwide') has no bridge to the headline (\"Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years\") — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc_r1.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__49815695_r2",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "premise: brain: It relies on two figures rather than a single consequential number and does not clearly invert a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261031/mangrove-forest-loss__49815695_r2.request.json",
-   "answer_path": "exchange/rewrites/20261031/mangrove-forest-loss__49815695_r2.answer.json"
-  },
-  {
-   "id": "measles-comeback-since-2000__7726747b_r1",
-   "slug": "measles-comeback-since-2000",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261031/measles-comeback-since-2000__7726747b_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/measles-comeback-since-2000__7726747b_r1.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__c3934ec2_r1",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
-   ],
-   "request": "exchange/rewrites/20261031/metric-system-holdouts__c3934ec2_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/metric-system-holdouts__c3934ec2_r1.answer.json"
-  },
-  {
-   "id": "naep-math-pandemic-drop__aa1c0224_r1",
-   "slug": "naep-math-pandemic-drop",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "premise: brain: The premise lacks a single, verifiable numerical claim and does not clearly reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224_r1.answer.json"
-  },
-  {
-   "id": "national-parks-record-then-shutdown__52d77463_r2",
-   "slug": "national-parks-record-then-shutdown",
-   "filed": "2026-10-31T11:23:48Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r2.request.json",
-   "answer_path": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r2.answer.json"
-  },
-  {
-   "id": "antarctic-sea-ice-record-low__0e8066f9_r1",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-10-31T11:23:47Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and lacks a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261031/antarctic-sea-ice-record-low__0e8066f9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/antarctic-sea-ice-record-low__0e8066f9_r1.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__315fba90_r2",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-31T11:23:47Z",
-   "why": [
-    "premise: brain: It does not overturn a clear viewer expectation, merely stating a known effect with a single statistic."
-   ],
-   "request": "exchange/rewrites/20261031/astronaut-bone-loss__315fba90_r2.request.json",
-   "answer_path": "exchange/rewrites/20261031/astronaut-bone-loss__315fba90_r2.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__ada5193e_r3",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-31T11:23:47Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation anchored to a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261031/california-condor-comeback__ada5193e_r3.request.json",
-   "answer_path": "exchange/rewrites/20261031/california-condor-comeback__ada5193e_r3.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r3",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-31T11:23:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261031/coldest-place-in-the-universe-is-human-made__81f94a66_r3.request.json",
-   "answer_path": "exchange/rewrites/20261031/coldest-place-in-the-universe-is-human-made__81f94a66_r3.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__d4f52a13_r1",
+   "id": "cruise-ship-outbreaks-climbing__d4f52a13",
    "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-10-31T11:23:47Z",
+   "filed": "2026-10-30T14:31:49Z",
    "why": [
     "premise: brain: It presents a simple numeric increase without overturning a viewer's expectation, failing the reversal criterion."
    ],
-   "request": "exchange/rewrites/20261031/cruise-ship-outbreaks-climbing__d4f52a13_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/cruise-ship-outbreaks-climbing__d4f52a13_r1.answer.json"
+   "request": "exchange/rewrites/20261030/cruise-ship-outbreaks-climbing__d4f52a13.request.json",
+   "answer_path": "exchange/rewrites/20261030/cruise-ship-outbreaks-climbing__d4f52a13.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__c3934ec2",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-10-30T14:31:48Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261030/metric-system-holdouts__c3934ec2.request.json",
+   "answer_path": "exchange/rewrites/20261030/metric-system-holdouts__c3934ec2.answer.json"
   },
   {
    "id": "lightning-deaths-collapsed-not-the-storms__c86366ce",
@@ -141,6 +151,66 @@
    ],
    "request": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.request.json",
    "answer_path": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.answer.json"
+  },
+  {
+   "id": "airline-pilot-shortage__6e694dae_r2",
+   "slug": "airline-pilot-shortage",
+   "filed": "2026-10-26T11:49:10Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw figure without a verifiable, surprising twist."
+   ],
+   "request": "exchange/rewrites/20261026/airline-pilot-shortage__6e694dae_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/airline-pilot-shortage__6e694dae_r2.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__ada5193e_r2",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-26T11:49:10Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation anchored to a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261026/california-condor-comeback__ada5193e_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/california-condor-comeback__ada5193e_r2.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r2",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-26T11:49:09Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261026/coldest-place-in-the-universe-is-human-made__81f94a66_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__fb2808d3",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/bat-fungus-collapse__fb2808d3.request.json",
+   "answer_path": "exchange/rewrites/20261020/bat-fungus-collapse__fb2808d3.answer.json"
+  },
+  {
+   "id": "plastic-in-your-body__cedc4bab",
+   "slug": "plastic-in-your-body",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/plastic-in-your-body__cedc4bab.request.json",
+   "answer_path": "exchange/rewrites/20261020/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "highest-point-illusion__3d90af0a",
+   "slug": "highest-point-illusion",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/highest-point-illusion__3d90af0a.request.json",
+   "answer_path": "exchange/rewrites/20261020/highest-point-illusion__3d90af0a.answer.json"
   },
   {
    "id": "unclaimed-money-states-hold__d600f81b",
@@ -283,36 +353,6 @@
    ],
    "request": "exchange/rewrites/20261019/english-internet-share-decline__21efaa68.request.json",
    "answer_path": "exchange/rewrites/20261019/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__fb2808d3",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-19T11:44:40Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/bat-fungus-collapse__fb2808d3.request.json",
-   "answer_path": "exchange/rewrites/20261019/bat-fungus-collapse__fb2808d3.answer.json"
-  },
-  {
-   "id": "highest-point-illusion__3d90af0a",
-   "slug": "highest-point-illusion",
-   "filed": "2026-10-19T11:44:40Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/highest-point-illusion__3d90af0a.request.json",
-   "answer_path": "exchange/rewrites/20261019/highest-point-illusion__3d90af0a.answer.json"
-  },
-  {
-   "id": "plastic-in-your-body__cedc4bab",
-   "slug": "plastic-in-your-body",
-   "filed": "2026-10-19T11:44:39Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/plastic-in-your-body__cedc4bab.request.json",
-   "answer_path": "exchange/rewrites/20261019/plastic-in-your-body__cedc4bab.answer.json"
   },
   {
    "id": "cryonics-client-count__57a93db8",

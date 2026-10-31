@@ -1,0 +1,151 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "chess-online-boom__f9b7e085_r2",
+ "filed": "2026-10-31T12:59:19Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "chess-online-boom",
+ "current": {
+  "title": "How A Netflix Show Turned Chess Into A 200-Million-Person Habit",
+  "hook": "Your town vanished as Netflix sparked a 200‑million chess surge",
+  "closing": "One show turned a niche game into a habit for millions, so what you watch matters.",
+  "question": "Can you play chess? Comment below",
+  "segments": [
+   {
+    "topic": "Netflix Chess",
+    "say": "Before the pandemic boom, Chess.com had just 30 million members. Now it has nearly seven times that."
+   },
+   {
+    "topic": "Netflix Spike",
+    "say": "Then the Netflix show landed, and new signups nearly tripled, to 2.8 million a month. Normal had been about a million."
+   },
+   {
+    "topic": "Netflix Share",
+    "say": "Still, Chess.com holds only a third of the world's 605 million regular players, so there's plenty of room left to grow."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Netflix Chess",
+   "say": "Before the pandemic boom, Chess.com had just 30 million members. Now it has nearly seven times that.",
+   "role": "1 · SETUP",
+   "data": {
+    "file": "chess_members_growth.json",
+    "unit": "million",
+    "title": "Chess.com registered members over time (millions)",
+    "points": [
+     {
+      "label": "Mar 2020",
+      "value": 30,
+      "period": "2020"
+     },
+     {
+      "label": "Feb 2021",
+      "value": 57,
+      "period": "2021"
+     },
+     {
+      "label": "Dec 2022",
+      "value": 100,
+      "period": "2022"
+     },
+     {
+      "label": "Oct 2023",
+      "value": 150,
+      "period": "2023"
+     },
+     {
+      "label": "Apr 2025",
+      "value": 200,
+      "period": "2025"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Netflix Spike",
+   "say": "Then the Netflix show landed, and new signups nearly tripled, to 2.8 million a month. Normal had been about a million.",
+   "role": "2 · TURN",
+   "data": {
+    "file": "chess_signups_before_after_queens_gambit.json",
+    "unit": "million",
+    "title": "New Chess.com members per month: pandemic baseline vs post-Queen's Gambit",
+    "points": [
+     {
+      "label": "Pandemic baseline (per month)",
+      "value": 1
+     },
+     {
+      "label": "November 2020 (post-release)",
+      "value": 2.8
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Netflix Share",
+   "say": "Still, Chess.com holds only a third of the world's 605 million regular players, so there's plenty of room left to grow.",
+   "role": "3 · CONSEQUENCE",
+   "data": {
+    "file": "chess_platform_vs_world_players.json",
+    "unit": "million",
+    "title": "Chess.com accounts (2025) vs estimated regular chess players worldwide (2012)",
+    "points": [
+     {
+      "label": "Chess.com accounts (2025)",
+      "value": 200
+     },
+     {
+      "label": "Est. regular players worldwide (2012 survey)",
+      "value": 605
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
+ ],
+ "reasons": [
+  "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261031/chess-online-boom__f9b7e085_r2.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
