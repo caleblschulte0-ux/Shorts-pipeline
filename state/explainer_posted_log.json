@@ -4695,11 +4695,29 @@
       "duration_s": 27.7
     },
     "earthquake-detection-illusion": {
-      "claimed_at": "2026-10-31T18:39:16.281911+00:00",
+      "url": "https://youtube.com/shorts/fsLtGGS0kkc",
       "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
+      "at": "2026-10-31T18:39:28.965895+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.74,
+      "beat_s": [
+        4.1,
+        6.74,
+        5.79,
+        5.73,
+        7.58
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 83,
+      "duration_s": 30.4
     }
   },
   "uploads": [
@@ -6005,9 +6023,10 @@
       "claimed_at": "2026-10-31T18:39:16.281911+00:00",
       "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "earthquake-detection-illusion"
+      "url": "https://youtube.com/shorts/fsLtGGS0kkc",
+      "state": "posted",
+      "slug": "earthquake-detection-illusion",
+      "at": "2026-10-31T18:39:28.965895+00:00"
     }
   ]
 }
