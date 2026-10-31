@@ -4570,8 +4570,8 @@
     }
   },
   "recent_commits": [
-    "2cd0949 2026-10-31 claim: mailbox verdicts 2026-10-31T04:47Z [skip ci]",
-    "5b6dcd2 2026-10-31 claim: mailbox verdicts 2026-10-31T03:47Z [skip ci]"
+    "c035b5d 2026-10-31 claim: mailbox verdicts 2026-10-31T10:48Z [skip ci]",
+    "fa06829 2026-10-31 explainer: posted dog-breed-popularity-flip [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4606,10 +4606,11 @@
         "2026-10-27": 1,
         "2026-10-28": 2,
         "2026-10-29": 4,
-        "2026-10-30": 4
+        "2026-10-30": 4,
+        "2026-10-31": 1
       },
-      "total_posted": 373,
-      "attempted": 373,
+      "total_posted": 374,
+      "attempted": 374,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4680,29 +4681,29 @@
       "videos": 151,
       "top_by_vph": [
         {
+          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
+          "vph": 11.84,
+          "views": 169
+        },
+        {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 8.79,
-          "views": 1675
+          "vph": 8.22,
+          "views": 1696
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 4.29,
-          "views": 103
+          "vph": 4.93,
+          "views": 196
         },
         {
-          "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
-          "vph": 3.89,
-          "views": 146
-        },
-        {
-          "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 3.23,
-          "views": 1087
+          "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Bet",
+          "vph": 3.98,
+          "views": 27
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.15,
-          "views": 1876
+          "vph": 3.11,
+          "views": 1900
         }
       ],
       "full_data": "state/analytics_third/latest.json"
