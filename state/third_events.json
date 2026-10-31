@@ -5192,6 +5192,29 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-30"
+    },
+    "xqc-doubl-repeat-2026w41": {
+      "event_id": "xqc-doubl-repeat-2026w41",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "doubl",
+        "repeat",
+        "slot",
+        "spin"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+        "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-"
+      ],
+      "published_versions": [
+        "story-0852b947ea5d8f27"
+      ],
+      "last_updated": "2026-10-31"
     }
   }
 }

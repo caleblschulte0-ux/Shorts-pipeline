@@ -17121,13 +17121,41 @@
       "director_cut": true
     },
     "clip-20261031-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/CrypticAdorableSkunkRitzMitz-mjANjEzaNXrM80Bq",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/atFuLVK30VA",
       "title": "Kaicenat: Kai Cenat Gets Hit With The Muscle Slap And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-10-31T11:35:53.799084+00:00",
+      "ts": "2026-10-31T11:35:59.884067+00:00",
+      "uploaded_at": "2026-10-31T11:35:59.884079+00:00",
+      "publish_at": "2026-10-31T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261031-kaicenat-kai-cenat-gets-hit-with-the-muscle-slap-4a1b7c99",
+        "tiktok": "queued for 2026-10-31T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CrypticAdorableSkunkRitzMitz-mjANjEzaNXrM80Bq",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "Kai gets muscle slapped \ud83d\ude02",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2315,
+      "banger": 0.68,
+      "cut": {
+        "start": 10.5,
+        "end": 27.0
+      },
+      "director_cut": true
+    },
+    "clip-20261031-3": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-0852b947ea5d8f27",
+      "streamer": "xqc",
+      "title": "Xqc goes all in on a casino slot, then blackjack hits",
+      "kind": "story",
+      "ts": "2026-10-31T11:44:01.446049+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
