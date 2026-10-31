@@ -1,0 +1,10 @@
+{
+ "id": "drone-commercial-overtake__4ce6725d",
+ "slug": "drone-commercial-overtake",
+ "settled": "2026-10-31T11:23:47Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Lead",
+  "segment 2: new named entity not in the data: Growth"
+ ]
+}

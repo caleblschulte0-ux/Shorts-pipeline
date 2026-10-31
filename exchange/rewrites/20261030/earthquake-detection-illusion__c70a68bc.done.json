@@ -1,0 +1,11 @@
+{
+ "id": "earthquake-detection-illusion__c70a68bc",
+ "slug": "earthquake-detection-illusion",
+ "settled": "2026-10-31T11:23:48Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Multiplied",
+  "segment 1: new named entity not in the data: Stable",
+  "segment 2: new named entity not in the data: Expanded"
+ ]
+}

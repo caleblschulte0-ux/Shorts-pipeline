@@ -1,0 +1,10 @@
+{
+ "id": "cruise-ship-outbreaks-climbing__d4f52a13",
+ "slug": "cruise-ship-outbreaks-climbing",
+ "settled": "2026-10-31T11:23:47Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: new named entity not in the data: Dominated",
+  "segment 2: new named entity not in the data: Amplify"
+ ]
+}

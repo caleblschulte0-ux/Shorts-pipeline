@@ -1,0 +1,10 @@
+{
+ "id": "measles-comeback-since-2000__7726747b",
+ "slug": "measles-comeback-since-2000",
+ "settled": "2026-10-31T11:23:48Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Returned",
+  "segment 2: new named entity not in the data: Cluster"
+ ]
+}
