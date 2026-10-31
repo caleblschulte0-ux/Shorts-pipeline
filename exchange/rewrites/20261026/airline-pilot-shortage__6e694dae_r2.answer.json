@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "airline-pilot-shortage__6e694dae_r2",
+  "slug": "airline-pilot-shortage",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:22:00Z",
+  "title": "Eurasia Needs More New Pilots Than North America",
+  "hook": "Eurasia needs 143,000 new pilots—more than North America.",
+  "closing": "The next aviation bottleneck may be trained people, not available airplanes.",
+  "question": "Can pilot training expand quickly enough to meet demand?",
+  "segments": [
+    {
+      "topic": "Pilot Workforce Demand",
+      "say": "Airlines will need 649,000 new pilots as global travel demand keeps expanding."
+    },
+    {
+      "topic": "Pilot Regional Demand",
+      "say": "Eurasia needs 143,000 new pilots, exceeding every other region in the comparison."
+    },
+    {
+      "topic": "Pilot Fleet Growth",
+      "say": "The global aircraft fleet could reach 48,600, intensifying competition for qualified crews."
+    }
+  ]
+}
