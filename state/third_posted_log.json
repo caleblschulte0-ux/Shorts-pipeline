@@ -17294,6 +17294,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Group sipping drinks, no clear event)",
       "ts": "2026-10-31T12:36:51.516635+00:00"
+    },
+    "rejected-incredulouspopulardinosaursaltbae-fht79sqlzwpj1jr2": {
+      "source_url": "https://www.twitch.tv/marlon/clip/IncredulousPopularDinosaurSaltBae-FHT79sqlZwpj1jR2",
+      "streamer": "marlon",
+      "title": "caught peeking at that faty lol bolth of em",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Store chatter, no visible event)",
+      "ts": "2026-10-31T12:40:50.583770+00:00"
+    },
+    "clip-20261031-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/BoredScaryWoodpeckerWOOP-LGLmZZwSEAhTHnG8",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Car Is So Loud Marlon Can't Believe It \ud83d\ude02",
+      "kind": "twitch_clip",
+      "ts": "2026-10-31T12:43:22.878789+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
