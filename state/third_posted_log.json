@@ -17305,14 +17305,32 @@
       "ts": "2026-10-31T12:40:50.583770+00:00"
     },
     "clip-20261031-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/BoredScaryWoodpeckerWOOP-LGLmZZwSEAhTHnG8",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/1a8Ci4maJyk",
       "title": "Lacy Car Is So Loud Marlon Can't Believe It \ud83d\ude02",
       "kind": "twitch_clip",
-      "ts": "2026-10-31T12:43:22.878789+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-31T12:43:32.685445+00:00",
+      "uploaded_at": "2026-10-31T12:43:32.685460+00:00",
+      "publish_at": "2026-11-01T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261031-lacy-car-is-so-loud-marlon-can-t-believe-it-adf28894",
+        "tiktok": "queued for 2026-11-01T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/BoredScaryWoodpeckerWOOP-LGLmZZwSEAhTHnG8",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Marlon is shocked how loud Lacy's car is",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1890,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 17.7
+      },
+      "director_cut": true
     }
   }
 }
