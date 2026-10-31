@@ -1,0 +1,74 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261031",
+  "written_at": "2026-10-31T11:22:30Z",
+  "by": "chatgpt",
+  "retryable": true,
+  "exact_failed_step": "Step 8: verify actual channel output against the frozen contract using accepted upload URLs.",
+  "bundle_id": "1ed9b5927ca6b74941dbfc4a1ec58600692e2ec431486acae3dff356b982682f",
+  "frozen_contract": {
+    "sports": {
+      "required": 5,
+      "format": "sports_moment",
+      "verified_posted": 0,
+      "pending": 5,
+      "accepted_urls": []
+    },
+    "twitch": {
+      "required": 6,
+      "format": "clip",
+      "verified_posted": 0,
+      "pending": 6,
+      "accepted_urls": []
+    },
+    "explainer": {
+      "required": 4,
+      "format": "data_story",
+      "verified_posted": 1,
+      "pending": 3,
+      "accepted_urls": [
+        "https://youtube.com/shorts/dcIS_Tdjubw"
+      ]
+    }
+  },
+  "attempts": [
+    "Committed and read back a valid STARTED marker before all other writes.",
+    "Completed both mandatory mailbox rounds within the per-round caps.",
+    "Committed and read back the authorized response.json, then committed DONE separately.",
+    "Inspected Phase B report: response envelope accepted; Explainer applied 2 and rejected 1; no rejection detail was recorded.",
+    "Read all three posted logs from main and deduplicated records by accepted URL and UTC posting date.",
+    "Waited for downstream claim/upload commits; none appeared after the second mailbox answers during this run."
+  ],
+  "mailbox": {
+    "reviews": {
+      "indexed_open": 0,
+      "answered": 0,
+      "reused": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "indexed_open": 30,
+      "answered_new": 0,
+      "reused_settled": 22,
+      "skipped": 8,
+      "skip_reason": "The remaining September requests require same-day or under-24-hour news; answering them on 2026-10-31 would fabricate the requested freshness."
+    },
+    "rewrites": {
+      "indexed_open": 136,
+      "answered": 19,
+      "reused": 0,
+      "skipped": 1,
+      "skip_reason": "The lightning request records a frozen-frame video defect; text-only rewriting cannot repair duplicated frames."
+    },
+    "downstream_claim_observed_after_round_two": false
+  },
+  "handoff": {
+    "started_commit": "47303dfbedbd0fbf7daab29c0ad8f44ef37382ca",
+    "response_commit": "675966b6e30dc93f8ef0b61bda353dd2502bc846",
+    "done_commit": "5beb083b0ae550a6998c18600505fb80b5f57953",
+    "phase_b_commit": "7fe5d03a6bd41833110023a9094a99df7117fcaf"
+  },
+  "no_done_retrigger": true,
+  "remaining_shortfall": 14,
+  "day_closed": false
+}
