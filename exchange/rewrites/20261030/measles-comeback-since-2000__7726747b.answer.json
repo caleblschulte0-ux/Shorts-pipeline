@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-comeback-since-2000__7726747b",
+  "slug": "measles-comeback-since-2000",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:20:00Z",
+  "title": "Measles Returned With 2,289 US Cases",
+  "hook": "Measles returned with 2,289 US cases.",
+  "closing": "Losing elimination puts a preventable infection back within reach of every classroom.",
+  "question": "Did you know measles was eliminated?",
+  "segments": [
+    {
+      "topic": "Measles Cases Returned",
+      "say": "US measles cases reached 2,289, reversing the tiny totals seen when elimination was declared."
+    },
+    {
+      "topic": "Measles Vaccination Gap",
+      "say": "Unvaccinated people made up 93% of cases, showing where the outbreak found room to spread."
+    },
+    {
+      "topic": "Measles Texas Cluster",
+      "say": "One Texas outbreak produced 702 cases, proving a concentrated gap can drive a national comeback."
+    }
+  ]
+}
