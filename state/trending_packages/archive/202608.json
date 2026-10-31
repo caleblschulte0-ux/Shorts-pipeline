@@ -1,0 +1,539 @@
+{
+  "20260801": {
+    "01_graph-internet-users-worldwide.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "graph-internet-users-worldwide",
+      "title": "Internet Users Vs World Population By Year",
+      "y_label": "People (billions)",
+      "duration": 13,
+      "source": "Sources: International Telecommunication Union (ITU) internet-user estimates; UN World Population Prospects",
+      "hashtags": [
+        "internet",
+        "technology",
+        "worldwidedata",
+        "data",
+        "chart",
+        "history",
+        "digital",
+        "growth",
+        "statistics",
+        "tech",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Internet users",
+          "color": "#3fa7ff",
+          "values": [
+            0.361,
+            1.02,
+            1.98,
+            2.95,
+            4.7,
+            5.6
+          ]
+        },
+        {
+          "name": "World population",
+          "color": "#8a8fa3",
+          "values": [
+            6.09,
+            6.51,
+            6.96,
+            7.38,
+            7.84,
+            8.02
+          ]
+        }
+      ],
+      "music_vibe": "cinematic",
+      "_reserve": {
+        "banked_at": "2026-07-31T09:17:33Z",
+        "drawn_on": "20260801",
+        "reason": "phase A found a short slate"
+      }
+    },
+    "02_reddit-gym-membership-photo.json": {
+      "version": 1,
+      "subreddit": "ProRevenge",
+      "slug": "reddit-gym-membership-photo",
+      "title": "The gym said there was no record I ever canceled",
+      "hashtags": [
+        "reddit",
+        "storytime",
+        "prorevenge",
+        "revenge",
+        "gym",
+        "membership",
+        "receipts",
+        "karma",
+        "customerservice",
+        "consumer",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "justice"
+      ],
+      "script": "They 'lost' my cancellation form? I canceled my gym membership in person, signed their form, and snapped a photo of it before I left, because a friend warned me this gym does this constantly. 2 months later they charged my card anyway and told me there was no record I'd ever canceled. I emailed the photo, timestamp and all, along with the manager's own signature on it. Support went quiet for a while, then refunded both charges, closed the account for real this time, and added a note apologizing for the 'system error.' Funny how the system only errors in one direction. So how many other members never thought to take that photo?",
+      "shots": [
+        {
+          "phrase": "lost' my cancellation form",
+          "query": "cancellation form paper",
+          "mascot_pose": "shock",
+          "pin_query": "cancellation form",
+          "pin_context": "contract document signature",
+          "news_query": "cancellation form",
+          "news_angle": "The gym lost the customer's cancellation form, despite it being signed and photographed.",
+          "image_url": "https://live.staticflickr.com/65535/48911253517_a7e19c4560_b.jpg"
+        },
+        {
+          "phrase": "canceled my gym membership in person",
+          "query": "gym front desk counter",
+          "mascot_pose": "idle",
+          "pin_query": "gym",
+          "pin_context": "fitness center membership",
+          "news_query": "gym",
+          "news_angle": "The gym failed to process a membership cancellation, resulting in unauthorized charges.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Amsterdam_-_Gymnasium_-_0591.jpg"
+        },
+        {
+          "phrase": "snapped a photo of it before I left",
+          "query": "phone camera photo document",
+          "mascot_pose": "idle",
+          "image_url": "https://images.pexels.com/photos/6282081/pexels-photo-6282081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "2 months later they charged my card anyway",
+          "query": "credit card charge statement",
+          "mascot_pose": "idle",
+          "image_url": "https://live.staticflickr.com/6098/6361168427_416dc9a2c7_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "no record I'd ever canceled",
+          "query": "customer service phone call",
+          "mascot_pose": "idle",
+          "pin_query": "I'd",
+          "pin_context": "The gym said there was no record I ever canceled",
+          "news_query": "I'd",
+          "news_angle": "The gym said there was no record I ever canceled",
+          "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+        },
+        {
+          "phrase": "emailed the photo, timestamp and all",
+          "query": "email attachment screen",
+          "mascot_pose": "idle",
+          "image_url": "https://pixabay.com/get/g05d1aeac33c5ac0376817651259a584f547da17f99d1579df644d6abd3a6d5d3423caf0077cdf9b6bb621bbe25fa4057dc9fa6bebf6879520df5a6af2eff8830_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "manager's own signature on it",
+          "query": "signature on paper",
+          "mascot_pose": "idle",
+          "pin_query": "manager",
+          "pin_context": "gym staff employee",
+          "news_query": "manager",
+          "news_angle": "The manager's signature was on the cancellation form, which was later used as proof of cancellation.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png"
+        },
+        {
+          "phrase": "went quiet for a while",
+          "query": "phone screen no reply",
+          "mascot_pose": "idle",
+          "image_url": "https://images.pexels.com/photos/33705554/pexels-photo-33705554.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "refunded both charges",
+          "query": "bank refund notification",
+          "mascot_pose": "idle",
+          "image_url": "https://images.pexels.com/photos/7821762/pexels-photo-7821762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "closed the account for real this time",
+          "query": "gym membership card",
+          "mascot_pose": "idle",
+          "image_url": "https://pixabay.com/get/g25ca7a54824273dc8cb25a2937126f5ad82cfcb461c91fd6b492eba02867618f82006622663a51ac10dd6290fb0f7aa63ea88c65b78b40396ea88284e845e509_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "apologizing for the 'system error",
+          "query": "apology email screen",
+          "mascot_pose": "idle",
+          "image_url": "https://pixabay.com/get/g26c76a25825776e346984b0bf9c7cd5fde9e599c9b56b8bcd03ad574686b47446d2d67a752610697d99a4164dfc990f700aad369554dd1a79b4f8cbbbf79b0f9_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the system only errors in one direction",
+          "query": "calculator receipt paper",
+          "mascot_pose": "think",
+          "image_url": "https://pixabay.com/get/g003fd99676d78234ac3bfd11896e7ec7f1ded29b85ff54f222b693a19d31f2f30ca8aec2739f1de8a90b8204dfe255a1b8c4db58345416636abab6a0a6d25594_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "never thought to take that photo",
+          "query": "phone camera roll",
+          "mascot_pose": "dismiss",
+          "image_url": "https://pixabay.com/get/g4e4f2f09a09b9e750129bf6344489b4dc5ccc92dd18e5390cb1a8176a4199a16da00d72bcb7f90ac5b33f6ec6962596fda3f9714f597e2059ac2ad5962725f8c_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "2 months later they charged my card anyway",
+          "text": "CHARGED AGAIN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "no record I'd ever canceled",
+          "text": "\"NO RECORD\"",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "emailed the photo, timestamp and all",
+          "text": "RECEIPTS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "refunded both charges",
+          "text": "FULL REFUND",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "closed the account for real this time",
+          "text": "ACCOUNT: CLOSED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "the system only errors in one direction",
+          "text": "FUNNY, THAT",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "dark",
+      "_reserve": {
+        "banked_at": "2026-07-31T09:17:33Z",
+        "drawn_on": "20260801",
+        "reason": "phase A found a short slate"
+      }
+    },
+    "03_graph-canada-wildfire-record.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "graph-canada-wildfire-record",
+      "title": "Canada's Wildfires: Area Burned By Year",
+      "hook": "18 million hectares. One year.",
+      "y_label": "Hectares burned (millions)",
+      "duration": 13,
+      "source": "Sources: Natural Resources Canada; Canadian Interagency Forest Fire Centre (CIFFC) national burned-area totals",
+      "hashtags": [
+        "canada",
+        "wildfire",
+        "wildfires",
+        "climate",
+        "disaster",
+        "forestfire",
+        "records",
+        "chart",
+        "data",
+        "history",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        2013,
+        2016,
+        2018,
+        2020,
+        2021,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Canada (actual)",
+          "color": "#ff6b35",
+          "icon": "CA",
+          "values": [
+            2.0,
+            1.3,
+            2.1,
+            0.3,
+            4.2,
+            18.4
+          ]
+        },
+        {
+          "name": "10-year average",
+          "color": "#8a8fa3",
+          "values": [
+            2.1,
+            2.1,
+            2.1,
+            2.1,
+            2.1,
+            2.1
+          ]
+        }
+      ],
+      "music_vibe": "cinematic"
+    },
+    "04_graph-ev-china-vs-world.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "graph-ev-china-vs-world",
+      "title": "China vs The World: Electric Car Sales",
+      "hook": "Watch China pull away",
+      "y_label": "EVs sold (millions)",
+      "duration": 13,
+      "source": "Sources: International Energy Agency (IEA), Global EV Outlook, annual editions",
+      "hashtags": [
+        "electricvehicles",
+        "ev",
+        "china",
+        "tesla",
+        "byd",
+        "cars",
+        "automotive",
+        "energy",
+        "chart",
+        "data",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        2015,
+        2018,
+        2020,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "icon": "CN",
+          "values": [
+            0.33,
+            1.1,
+            1.3,
+            6.8,
+            8.1,
+            11.0
+          ]
+        },
+        {
+          "name": "Rest of world",
+          "color": "#3fa7ff",
+          "values": [
+            0.22,
+            0.9,
+            1.8,
+            4.2,
+            5.9,
+            6.0
+          ]
+        }
+      ],
+      "music_vibe": "cinematic"
+    },
+    "05_graph-campi-flegrei-quakes.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "graph-campi-flegrei-quakes",
+      "title": "Naples' Supervolcano: Quakes Per Week",
+      "hook": "Naples hasn't stopped shaking",
+      "y_label": "Earthquakes per week",
+      "duration": 13,
+      "source": "Sources: Istituto Nazionale di Geofisica e Vulcanologia (INGV), Campi Flegrei Observatory bulletins",
+      "hashtags": [
+        "naples",
+        "italy",
+        "campiflegrei",
+        "earthquake",
+        "volcano",
+        "supervolcano",
+        "science",
+        "geology",
+        "chart",
+        "data",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        2018,
+        2020,
+        2022,
+        2023,
+        2024,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Weekly earthquakes",
+          "color": "#ff3030",
+          "values": [
+            3,
+            8,
+            20,
+            35,
+            50,
+            70
+          ]
+        },
+        {
+          "name": "Ground uplift (cm)",
+          "color": "#ffaa30",
+          "values": [
+            35,
+            55,
+            85,
+            110,
+            130,
+            150
+          ]
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "06_reddit-landlord-in-writing-only.json": {
+      "version": 1,
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-landlord-in-writing-only",
+      "title": "He Said 'In Writing Only.' I Took Him Literally",
+      "hashtags": [
+        "landlord",
+        "tenant",
+        "maliciouscompliance",
+        "reddit",
+        "storytime",
+        "propertymanagement",
+        "tenantrights",
+        "habitability",
+        "apartment",
+        "justice",
+        "karma",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "\u201cIn writing only?\u201d My landlord ignored three phone calls about my leaking water heater, then demanded every maintenance request be \u201cin writing, no exceptions.\u201d Fine. I wrote him a letter. The next day came a second letter about mold starting to grow; then a third about the drywall now sagging. A fourth, a fifth, a sixth\u2014one letter a day, every day. Each went certified mail, so he had to sign at the post office counter personally. Three weeks and eighteen signed letters later, he called me\u2014on the phone, the thing he banned\u2014screaming that the county opened a habitability case from his own paper trail. Eighteen dated, signed letters make a beautifully airtight timeline of neglect. He fixed the heater within 48 hours. So who really regretted \u201cin writing, no exceptions\u201d?",
+      "shots": [
+        {
+          "phrase": "leaking water heater",
+          "query": "water heater leak",
+          "mascot_pose": "shock",
+          "pin_query": "water heater",
+          "pin_context": "home appliance plumbing",
+          "news_query": "water heater",
+          "news_angle": "The tenant's water heater is leaking, prompting a series of written maintenance requests to the landlord.",
+          "image_url": "https://live.staticflickr.com/7518/15643625919_d0437dd34b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "in writing, no exceptions",
+          "query": "handwritten letter",
+          "mascot_pose": "idle",
+          "image_url": "https://pixabay.com/get/gd40391dbba3c466fc849cfc24c9827c2792d575d09411f30312b4c55ebcbbf66807fdf687f3f8cec00304c5dad705b690cdba897a54e583b855a04d5b9c0b70e_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "mold starting to grow",
+          "query": "mold wall damage",
+          "mascot_pose": "idle",
+          "image_url": "https://pixabay.com/get/g4bef1c0985910e356a05a3ae9e7c05ebd644adac34ee8f42aaafc1626c3a02925eeb1b36dfde38376643ceae333db2e4a88b985fae2cdea5e3a5f66a8715aa90_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "drywall now sagging",
+          "query": "damaged drywall ceiling",
+          "mascot_pose": "idle",
+          "pin_query": "drywall",
+          "pin_context": "construction building material",
+          "news_query": "drywall",
+          "news_angle": "The drywall in the tenant's home begins to sag due to the water leak, further complicating the maintenance issue.",
+          "image_url": "https://pixabay.com/get/gc9659d8a3b4152dcd2310ab0cae5eefe1a7f334dcb2341f5a0500e5f82a8dd42e75fea14ac91f507bbd4ce7ddb945eef9e78915749918c4c36ac35dcd94fcde4_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "certified mail",
+          "query": "post office counter",
+          "mascot_pose": "idle",
+          "image_url": "https://live.staticflickr.com/6227/6247381020_60b4ba307b_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "eighteen signed letters",
+          "query": "stack of letters",
+          "mascot_pose": "think",
+          "image_url": "https://pixabay.com/get/gb372236e7e1529832f82b212ea530c81769f82b118107c094ae2cc9d944ea5f5dc66cd5f4a0e7350ae28eb05351d9a2730464aa75177e8d8184602f6acd14e1b_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "habitability case",
+          "query": "angry phone call",
+          "mascot_pose": "laugh",
+          "image_url": "https://pixabay.com/get/g2f0697093e8c34d0f1a720de1597880ad5c42c3badc484b62f2256073524c05a6f141d149639ab2b4b69a560418383cb18b49fc99f2e47151f00b7b7a52222bc_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "fixed the heater within 48 hours",
+          "query": "repaired water heater",
+          "mascot_pose": "idle",
+          "image_url": "https://pixabay.com/get/gaa9d7399c4f07bc86eb720bafbba1807ba81e3032d66655df13df0e55ab266b0d4844f0d03b7e3399b4f331c9c3b147c6202b613aec64e2f314aa0729ec1cf7b_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "in writing, no exceptions",
+          "text": "IN WRITING ONLY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "eighteen signed letters",
+          "text": "18 LETTERS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "habitability case",
+          "text": "COUNTY CASE OPENED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "fixed the heater within 48 hours",
+          "text": "FIXED IN 48 HOURS",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dark",
+      "punched_up": true
+    }
+  }
+}
