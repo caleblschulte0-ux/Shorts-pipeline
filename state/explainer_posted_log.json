@@ -4670,11 +4670,29 @@
       "duration_s": 28.1
     },
     "ai-datacenter-water": {
-      "claimed_at": "2026-10-31T14:12:47.442075+00:00",
+      "url": "https://youtube.com/shorts/GW7GhgqkE0g",
       "title": "One AI Conversation Can Use 500 Milliliters Of Water",
+      "at": "2026-10-31T14:12:59.359172+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.76,
+      "beat_s": [
+        3.45,
+        5.76,
+        5.69,
+        5.0,
+        7.26
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 27.7
     }
   },
   "uploads": [
@@ -5971,9 +5989,10 @@
       "claimed_at": "2026-10-31T14:12:47.442075+00:00",
       "title": "One AI Conversation Can Use 500 Milliliters Of Water",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "ai-datacenter-water"
+      "url": "https://youtube.com/shorts/GW7GhgqkE0g",
+      "state": "posted",
+      "slug": "ai-datacenter-water",
+      "at": "2026-10-31T14:12:59.359172+00:00"
     }
   ]
 }
