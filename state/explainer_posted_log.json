@@ -4645,11 +4645,29 @@
       "duration_s": 31.8
     },
     "dog-breed-popularity-flip": {
-      "claimed_at": "2026-10-31T10:32:54.172380+00:00",
+      "url": "https://youtube.com/shorts/dcIS_Tdjubw",
       "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
+      "at": "2026-10-31T10:33:06.912871+00:00",
       "publish_at": "2026-10-31T10:56:48Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.91,
+      "beat_s": [
+        3.82,
+        5.12,
+        6.19,
+        6.91,
+        5.62
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 87,
+      "duration_s": 28.1
     }
   },
   "uploads": [
@@ -5937,9 +5955,10 @@
       "claimed_at": "2026-10-31T10:32:54.172380+00:00",
       "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
       "publish_at": "2026-10-31T10:56:48Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "dog-breed-popularity-flip"
+      "url": "https://youtube.com/shorts/dcIS_Tdjubw",
+      "state": "posted",
+      "slug": "dog-breed-popularity-flip",
+      "at": "2026-10-31T10:33:06.912871+00:00"
     }
   ]
 }
