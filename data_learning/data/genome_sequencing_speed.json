@@ -1,0 +1,19 @@
+{
+    "key": "genome_sequencing_speed",
+    "title": "Time to sequence one human genome, then vs. now (days)",
+    "unit": "days",
+    "geography": "Global",
+    "time_coverage": "1990-2003 vs today",
+    "source": {
+        "name": "The Human Genome Project",
+        "publisher": "National Human Genome Research Institute (NIH)",
+        "url": "https://www.genome.gov/human-genome-project",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "The original Human Genome Project ran 1990-2003 (~13 years, ~4,745 days) to produce the first reference genome. A modern high-throughput sequencer can sequence a human genome in about a day.",
+    "points": [
+        {"label": "Human Genome Project (1990-2003)", "value": 4745},
+        {"label": "Modern sequencer, today", "value": 1}
+    ]
+}

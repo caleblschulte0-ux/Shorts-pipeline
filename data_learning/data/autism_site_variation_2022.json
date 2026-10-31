@@ -1,0 +1,19 @@
+{
+    "key": "autism_site_variation_2022",
+    "title": "Autism prevalence range across ADDM sites, 2022 (per 1,000)",
+    "unit": "per 1,000 children",
+    "geography": "United States",
+    "time_coverage": "2022",
+    "source": {
+        "name": "Autism and Developmental Disabilities Monitoring (ADDM) Network",
+        "publisher": "Centers for Disease Control and Prevention",
+        "url": "https://www.cdc.gov/mmwr/volumes/74/ss/ss7402a1.htm",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "The 2022 ADDM report's 16 sites ranged from about 1 in 103 (Laredo, Texas, ~9.7 per 1,000) to about 1 in 19 (a California site, ~52.6 per 1,000) — the ADDM Network is explicitly not a representative national sample, so site-to-site variation reflects screening access as much as true prevalence.",
+    "points": [
+        {"label": "Laredo, TX site", "value": 9.7},
+        {"label": "California site", "value": 52.6}
+    ]
+}

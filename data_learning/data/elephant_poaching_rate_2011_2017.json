@@ -1,0 +1,19 @@
+{
+    "key": "elephant_poaching_rate_2011_2017",
+    "title": "African elephant poaching mortality rate, 2011 peak vs. 2017",
+    "unit": "percent",
+    "geography": "Africa",
+    "time_coverage": "2011 vs 2017",
+    "source": {
+        "name": "African elephant poaching rates correlate with local poverty, national corruption and global ivory price",
+        "publisher": "Hauenstein et al., Nature Communications (2019), using CITES MIKE data",
+        "url": "https://www.nature.com/articles/s41467-019-09993-2",
+        "officiality": "secondary",
+        "access_date": "2026-10-31"
+    },
+    "notes": "The study found the annual poaching mortality rate peaked above 10% in 2011 and fell below 4% by 2017. A separate 2020 analysis argues the decline was concentrated in Eastern Africa and poaching remained elevated elsewhere — noted here for balance.",
+    "points": [
+        {"label": "2011 (peak)", "value": 10.1},
+        {"label": "2017", "value": 3.9}
+    ]
+}

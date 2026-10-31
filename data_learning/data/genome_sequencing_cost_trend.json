@@ -1,0 +1,21 @@
+{
+    "key": "genome_sequencing_cost_trend",
+    "title": "Cost to sequence one human genome, by year",
+    "unit": "dollars",
+    "geography": "Global",
+    "time_coverage": "2001-2022",
+    "source": {
+        "name": "DNA Sequencing Costs: Data",
+        "publisher": "National Human Genome Research Institute (NIH)",
+        "url": "https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "NHGRI's tracked cost-per-genome at its funded sequencing centers: ~$95 million in 2001, ~$14 million by 2006, ~$750,000 by late 2008 (after next-generation sequencing arrived), and ~$525 by 2022.",
+    "points": [
+        {"label": "2001", "value": 95000000, "period": "2001"},
+        {"label": "2006", "value": 14000000, "period": "2006"},
+        {"label": "2008", "value": 750000, "period": "2008"},
+        {"label": "2022", "value": 525, "period": "2022"}
+    ]
+}
