@@ -1,0 +1,19 @@
+{
+    "key": "elephant_population_1979_2016",
+    "title": "African elephant population, 1979 vs. 2016 (millions)",
+    "unit": "million",
+    "geography": "Africa",
+    "time_coverage": "1979 vs 2016",
+    "source": {
+        "name": "African Elephant Status Report 2016",
+        "publisher": "IUCN African Elephant Specialist Group",
+        "url": "https://www.iucn.org",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "IUCN specialist-group estimates put the combined African elephant population (savanna + forest) at about 1.3 million in 1979, falling to roughly 415,000 by the time of the 2016 African Elephant Status Report.",
+    "points": [
+        {"label": "1979", "value": 1.3},
+        {"label": "2016", "value": 0.415}
+    ]
+}

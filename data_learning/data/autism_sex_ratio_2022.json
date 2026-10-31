@@ -1,0 +1,19 @@
+{
+    "key": "autism_sex_ratio_2022",
+    "title": "Autism prevalence by sex, 2022 (per 1,000 8-year-olds)",
+    "unit": "per 1,000 children",
+    "geography": "United States",
+    "time_coverage": "2022",
+    "source": {
+        "name": "Autism and Developmental Disabilities Monitoring (ADDM) Network",
+        "publisher": "Centers for Disease Control and Prevention",
+        "url": "https://www.cdc.gov/mmwr/volumes/74/ss/ss7402a1.htm",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "Boys were diagnosed at 49.2 per 1,000 vs. 14.3 per 1,000 for girls in the 2022 ADDM report — a 3.4x gap that researchers partly attribute to girls being under-identified by current screening tools.",
+    "points": [
+        {"label": "Boys", "value": 49.2},
+        {"label": "Girls", "value": 14.3}
+    ]
+}

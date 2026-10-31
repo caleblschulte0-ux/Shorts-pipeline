@@ -1,0 +1,20 @@
+{
+    "key": "elephant_decline_by_species",
+    "title": "African elephant population decline since the 1960s, by species",
+    "unit": "percent decline",
+    "geography": "Africa",
+    "time_coverage": "1964-2016",
+    "source": {
+        "name": "Continent-wide survey of large terrestrial mammal populations",
+        "publisher": "PNAS (475-site analysis)",
+        "url": "https://www.pnas.org",
+        "officiality": "secondary",
+        "access_date": "2026-10-31"
+    },
+    "notes": "A 2024 PNAS analysis of 475 sites across 37 African countries (1964-2016) found forest elephant populations fell ~90% on average and savanna elephant populations fell ~70%, for a combined average decline of ~77%.",
+    "points": [
+        {"label": "Forest elephants", "value": 90},
+        {"label": "Combined average", "value": 77},
+        {"label": "Savanna elephants", "value": 70}
+    ]
+}

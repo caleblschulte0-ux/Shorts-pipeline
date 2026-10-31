@@ -1,0 +1,19 @@
+{
+    "key": "union_members_vs_workforce",
+    "title": "Total union members, 1983 vs. 2024 (millions)",
+    "unit": "million",
+    "geography": "United States",
+    "time_coverage": "1983 vs 2024",
+    "source": {
+        "name": "Union Members Summary",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "url": "https://www.bls.gov/news.release/archives/union2_01232024.htm",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "1983 had 17.7 million union members. 2024 had about 14.2 million (7.0M public + 7.2M private) even as the overall U.S. workforce grew substantially.",
+    "points": [
+        {"label": "1983 members", "value": 17.7},
+        {"label": "2024 members", "value": 14.2}
+    ]
+}

@@ -36748,6 +36748,251 @@
    "retold": "retell/v4",
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-30T13:34:55Z"
+  },
+  {
+   "slug": "union-membership-record-low",
+   "title": "Union Membership Just Fell Below 10% For The First Time",
+   "hook": "Fewer than 1 in 10 workers belong to a union.",
+   "closing": "Workers multiplied. Unions didn't.",
+   "question": "Is your job unionized?",
+   "caption": "In 1983, 1 in 5 American workers belonged to a union. By 2024 it's under 1 in 10 — the first time ever, even as the workforce kept growing. Is your job unionized? 👇",
+   "hashtags": [
+    "unions",
+    "laborunion",
+    "workers",
+    "bls",
+    "economy",
+    "labordata",
+    "unionization",
+    "workforce",
+    "jobs",
+    "economics",
+    "data",
+    "explainer",
+    "labormarket",
+    "society"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "union_membership_rate_trend",
+     "params": {
+      "file": "union_membership_rate_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE FALL",
+     "topic": "union membership rate",
+     "say": "In 1983, 20.1 percent of workers belonged to a union. By 2024, that's 9.9 percent, the first time it's ever hit single digits."
+    },
+    {
+     "source": "offline",
+     "key": "union_membership_public_private_2024",
+     "params": {
+      "file": "union_membership_public_private_2024.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · WHERE IT BROKE",
+     "topic": "public vs private union membership",
+     "say": "Private-sector jobs lead the collapse at just 5.9 percent unionized. Government jobs still sit at 32.2 percent, more than 5 times higher."
+    },
+    {
+     "source": "offline",
+     "key": "union_members_vs_workforce",
+     "params": {
+      "file": "union_members_vs_workforce.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE HEADCOUNT",
+     "topic": "union membership headcount",
+     "say": "The raw numbers shrank too: 17.7 million workers carried a union card in 1983. In 2024, it's down to 14.2 million."
+    }
+   ]
+  },
+  {
+   "slug": "autism-diagnosis-rate-rise",
+   "title": "Autism Diagnoses Went From 1 In 150 To 1 In 31",
+   "hook": "1 in 31 kids now gets an autism diagnosis.",
+   "closing": "More kids are being seen. Not necessarily more affected.",
+   "question": "Did your kid's school change its screening?",
+   "caption": "In 2000, 1 in 150 eight-year-olds was diagnosed with autism. By 2022 it was 1 in 31 — and where you live can change your odds 5x over. Did screening change at your school? 👇",
+   "hashtags": [
+    "autism",
+    "cdc",
+    "addm",
+    "autismawareness",
+    "publichealth",
+    "parenting",
+    "childdevelopment",
+    "neurodiversity",
+    "disabilityawareness",
+    "health",
+    "statistics",
+    "data",
+    "explainer",
+    "kids"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "autism_prevalence_trend",
+     "params": {
+      "file": "autism_prevalence_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "autism diagnosis rate",
+     "say": "Autism diagnoses hit 6.7 per 1,000 kids in 2000, about 1 in 150. By 2022 it's 32.2 per 1,000, about 1 in 31."
+    },
+    {
+     "source": "offline",
+     "key": "autism_sex_ratio_2022",
+     "params": {
+      "file": "autism_sex_ratio_2022.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE GENDER GAP",
+     "topic": "autism rate in boys vs girls",
+     "say": "Boys get diagnosed at 49.2 per thousand, girls at 14.3, 3.4 times less. Doctors are still catching up on spotting it in girls."
+    },
+    {
+     "source": "offline",
+     "key": "autism_site_variation_2022",
+     "params": {
+      "file": "autism_site_variation_2022.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE LOTTERY OF WHERE YOU LIVE",
+     "topic": "autism rate by cdc tracking site",
+     "say": "One Texas site found autism in 9.7 per 1,000 kids. A California site found 52.6 per 1,000, more than 5 times higher."
+    }
+   ]
+  },
+  {
+   "slug": "elephant-poaching-decline",
+   "title": "Africa Lost 77% Of Its Elephants Since The 1960s",
+   "hook": "Africa's elephants have been vanishing for 50 years.",
+   "closing": "The ban helped. The elephants are still catching up.",
+   "question": "Should ivory be banned everywhere, no exceptions?",
+   "caption": "Africa had about 1.3 million elephants in 1979. By 2016, roughly 415,000 were left — driven largely by poaching, which peaked above 10% a year in 2011. Should ivory be banned everywhere? 👇",
+   "hashtags": [
+    "elephants",
+    "africanelephants",
+    "wildlife",
+    "conservation",
+    "poaching",
+    "ivory",
+    "iucn",
+    "cites",
+    "endangeredspecies",
+    "wildlifeconservation",
+    "nature",
+    "data",
+    "explainer",
+    "animals"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "elephant_decline_by_species",
+     "params": {
+      "file": "elephant_decline_by_species.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE SPECIES SPLIT",
+     "topic": "elephants: decline by species",
+     "say": "Since the 1960s, forest elephants fell 90 percent and savanna elephants fell 70, while Africa's elephants are down 77 percent combined."
+    },
+    {
+     "source": "offline",
+     "key": "elephant_population_1979_2016",
+     "params": {
+      "file": "elephant_population_1979_2016.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE RAW COLLAPSE",
+     "topic": "elephants: population 1979 vs 2016",
+     "say": "Africa had about 1.3 million elephants in 1979. By 2016, the IUCN's estimate had fallen to around 415,000."
+    },
+    {
+     "source": "offline",
+     "key": "elephant_poaching_rate_2011_2017",
+     "params": {
+      "file": "elephant_poaching_rate_2011_2017.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE TURN",
+     "topic": "elephants: poaching rate 2011 vs 2017",
+     "say": "Poaching peaked above 10 percent in 2011. By 2017, tighter ivory bans cut that to under 4 percent."
+    }
+   ]
+  },
+  {
+   "slug": "genome-sequencing-cost-collapse",
+   "title": "Sequencing A Human Genome Went From $95 Million To $525",
+   "hook": "Reading your entire DNA used to cost $95 million.",
+   "closing": "The hardest part isn't reading your DNA anymore. It's understanding it.",
+   "question": "Would you get your whole genome sequenced?",
+   "caption": "In 2001, sequencing one human genome cost $95 million. By 2022, it was $525 — a price collapse nothing else in history has matched. Would you get yours done? 👇",
+   "hashtags": [
+    "genome",
+    "dna",
+    "genomics",
+    "biotech",
+    "nih",
+    "nhgri",
+    "sciencefacts",
+    "personalizedmedicine",
+    "crispr",
+    "health",
+    "science",
+    "data",
+    "explainer",
+    "technology"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "genome_sequencing_cost_trend",
+     "params": {
+      "file": "genome_sequencing_cost_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE PRICE COLLAPSE",
+     "topic": "cost to sequence a human genome",
+     "say": "In 2001, sequencing one human genome cost $95 million. By 2006, $14 million. By 2008, $750,000. By 2022, just $525."
+    },
+    {
+     "source": "offline",
+     "key": "genome_cost_what_it_buys",
+     "params": {
+      "file": "genome_cost_what_it_buys.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · WHAT $95M BUYS NOW",
+     "topic": "what $95 million buys in genomes today",
+     "say": "That's not just cheaper, it's absurd: $95 million bought exactly one genome in 2001. Today, that same money buys about 181,000."
+    },
+    {
+     "source": "offline",
+     "key": "genome_sequencing_speed",
+     "params": {
+      "file": "genome_sequencing_speed.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE SPEED",
+     "topic": "genome sequencing speed then vs now",
+     "say": "The original Human Genome Project took 4,745 days to finish, that's 13 years. A modern sequencer can do it in about 1."
+    }
+   ]
   }
  ]
 }

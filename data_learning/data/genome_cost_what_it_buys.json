@@ -1,0 +1,19 @@
+{
+    "key": "genome_cost_what_it_buys",
+    "title": "How many genomes $95 million buys, 2001 vs. 2022",
+    "unit": "genomes",
+    "geography": "Global",
+    "time_coverage": "2001 vs 2022",
+    "source": {
+        "name": "DNA Sequencing Costs: Data",
+        "publisher": "National Human Genome Research Institute (NIH)",
+        "url": "https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "$95 million bought exactly 1 genome at 2001 prices (~$95,000,000/genome). At 2022's ~$525/genome, the same $95 million buys about 180,952 genomes.",
+    "points": [
+        {"label": "2001", "value": 1},
+        {"label": "2022", "value": 180952}
+    ]
+}

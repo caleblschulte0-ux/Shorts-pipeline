@@ -1,0 +1,19 @@
+{
+    "key": "union_membership_public_private_2024",
+    "title": "2024 union membership rate: private vs. public sector",
+    "unit": "percent",
+    "geography": "United States",
+    "time_coverage": "2024",
+    "source": {
+        "name": "Union Members Summary",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "url": "https://www.bls.gov/news.release/archives/union2_01232024.htm",
+        "officiality": "official",
+        "access_date": "2026-10-31"
+    },
+    "notes": "Private-sector union membership was 5.9% in 2024; public-sector was 32.2% — the collapse is almost entirely a private-sector story.",
+    "points": [
+        {"label": "Private sector", "value": 5.9},
+        {"label": "Public sector", "value": 32.2}
+    ]
+}
