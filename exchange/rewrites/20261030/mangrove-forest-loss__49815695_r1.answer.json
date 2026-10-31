@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "mangrove-forest-loss__49815695_r1",
+  "slug": "mangrove-forest-loss",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:22:00Z",
+  "title": "Annual Mangrove Loss Slowed To 102,000 Hectares",
+  "hook": "Annual mangrove loss slowed to 102,000 hectares.",
+  "closing": "The slowdown matters, but every surviving mangrove still protects a coastline.",
+  "question": "Can mangrove loss fall faster than coastlines are developed?",
+  "segments": [
+    {
+      "topic": "Mangrove Area",
+      "say": "Global mangrove area fell to 15.2 million hectares, leaving coastlines with less natural storm protection."
+    },
+    {
+      "topic": "Mangrove Regional Loss",
+      "say": "Asia lost 1.9 million hectares of mangroves, more than any region in the comparison."
+    },
+    {
+      "topic": "Mangrove Loss Rate",
+      "say": "Annual mangrove loss slowed to 102,000 hectares, proving destruction can slow even before it stops."
+    }
+  ]
+}
