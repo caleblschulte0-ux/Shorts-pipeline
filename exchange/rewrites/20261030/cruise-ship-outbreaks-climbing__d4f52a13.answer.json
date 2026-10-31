@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cruise-ship-outbreaks-climbing__d4f52a13",
+  "slug": "cruise-ship-outbreaks-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:20:00Z",
+  "title": "Most Cruise Outbreaks Came From One Virus",
+  "hook": "Norovirus caused 15 cruise outbreaks in one year.",
+  "closing": "Crowded ships turn one contagious passenger into a vacation-wide problem, making hygiene matter.",
+  "question": "Would this change your cruise plans?",
+  "segments": [
+    {
+      "topic": "Cruise Outbreaks Climbed",
+      "say": "Cruise outbreaks reached 20, showing the problem grew instead of fading after travel recovered."
+    },
+    {
+      "topic": "Cruise Norovirus Dominated",
+      "say": "Norovirus caused 15 outbreaks, making one stomach bug responsible for most reported trouble."
+    },
+    {
+      "topic": "Cruise Crowds Amplify",
+      "say": "One ship can hold 7,600 guests, giving a contagious illness thousands of nearby targets."
+    }
+  ]
+}
