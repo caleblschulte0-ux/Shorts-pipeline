@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__c3934ec2",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:20:00Z",
+  "title": "A Metric Mix-Up Left A Plane 24,600 Pounds Short",
+  "hook": "A metric mistake left a plane 24,600 pounds short.",
+  "closing": "Unit errors can destroy machines or endanger passengers, so conversion checks are safety systems.",
+  "question": "Should every country use metric?",
+  "segments": [
+    {
+      "topic": "Metric Adoption Gap",
+      "say": "Only 5% of people live where metric is not official, creating dangerous friction when systems meet."
+    },
+    {
+      "topic": "Metric Altitude Error",
+      "say": "A mixed-unit calculation dropped NASA's orbiter to 57 kilometers, costing the entire spacecraft."
+    },
+    {
+      "topic": "Metric Fuel Error",
+      "say": "The plane received 20,400 pounds of fuel, forcing a mid-flight glide after its tanks ran dry."
+    }
+  ]
+}
