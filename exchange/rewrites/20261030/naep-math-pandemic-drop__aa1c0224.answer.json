@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "naep-math-pandemic-drop__aa1c0224",
+  "slug": "naep-math-pandemic-drop",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:22:00Z",
+  "title": "US Math Scores Fell To 270 After Decades Of Gains",
+  "hook": "US math scores fell to 270 after decades of gains.",
+  "closing": "The national average slipped, but the lowest performers absorbed the deepest damage.",
+  "question": "What would it take to restore the lost math progress?",
+  "segments": [
+    {
+      "topic": "Math Score Slide",
+      "say": "The national math score reached 271, nearly erasing decades of earlier gains."
+    },
+    {
+      "topic": "Math Learning Gap",
+      "say": "The lowest-performing students lost 14 points, making an unequal setback even wider."
+    },
+    {
+      "topic": "Math Recovery Stall",
+      "say": "The score fell to 270, showing the expected recovery still has not arrived."
+    }
+  ]
+}
