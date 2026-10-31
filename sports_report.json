@@ -1,8 +1,677 @@
 {
- "date": "2026-10-30",
+ "date": "2026-10-31",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
- "slots": [],
- "already_today": 5
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Jos\u00e9 Mourinho",
+   "why": "Mourinho jokes about fans singing outside his hotel and costing him his nap, a funny press answer.",
+   "post_title": "Jos\u00e9 Mourinho: \u201cI dedicate this win to the Bar\u00e7a fans who did not let me take my nap in the hotel today. They came to the hotel and kept singing all day, I couldn't take my nap. Well, I didn't nap, bu",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xfp6er/jos\u00e9_mourinho_i_dedicate_this_win_to_the_bar\u00e7a/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xfp6er/jos\u00e9_mourinho_i_dedicate_this_win_to_the_bar\u00e7a",
+   "title": "Jos\u00e9 Mourinho Thanks The Bar\u00e7a Fans Who Kept Him Awake All Day",
+   "hook": "Mourinho thanks Bar\u00e7a fans for no nap \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is another account's watermarked edit replayed in a blurred frame. The joke sits in a Spanish caption that never changes, and nothing is cut.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is another account's watermarked edit replayed in a blurred frame. The joke sits in a Spanish caption that never changes, and nothing is cut."
+  },
+  {
+   "sub": "sports",
+   "who": "Jacob Misiorowski",
+   "why": "A young pitcher lets out raw emotion after helping clinch the World Series.",
+   "post_title": "24-yr-old Jacob Misiorowski lets out his emotion after pitching more than 5 shutout innings in the Brewers' World-Series-clinching performance",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xi95iz/24yrold_jacob_misiorowski_lets_out_his_emotion/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xi95iz/24yrold_jacob_misiorowski_lets_out_his_emotion",
+   "title": "Jacob Misiorowski Gets Emotional When Asked What The Brewers Mean To Milwaukee",
+   "hook": "Misiorowski gets choked up on live TV \ud83e\udd79",
+   "ledger": {
+    "moves": [
+     "zoom@15.14"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [
+     "Jacob Misiorowski Milwaukee Brewers@22.86"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 79,
+     "reason": "showrunner BLOCK: The moment lands, with a real teary push-in on the champion pitcher, but for the first 2.5s our hook line is unreadable because it collides with the FOX lower-third chyron."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/3u3FKRuqs6M",
+   "ok": true,
+   "publish_at": "2026-10-31T20:00:00Z",
+   "seconds": 537,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261031-jacob-misiorowski-gets-emotional-when-asked-what-42419fd6",
+    "tiktok": "queued for 2026-10-31T20:00:00Z"
+   }
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Carrick",
+   "why": "Carrick is visibly emotional at full time after a heavy defeat.",
+   "post_title": "Michael Carrick being visibly emotional at FT after Manchester United's 3-0 defeat to Bournemouth",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Yaxel Lendeborg",
+   "why": "A young player asks T-Mac, Vince and Melo for advice, a kid meeting his heroes.",
+   "post_title": "Yaxel Lendeborg asking T-Mac, Vince, and Melo for advice on his game: \u201cDo you guys have any advice like, just for me in general just to try to keep going, things I got to work on, anything that you gu",
+   "upvotes": 0,
+   "url": "https://streamable.com/0vl8x9",
+   "topic": "https://www.reddit.com/r/nba/comments/1xglkq7/yaxel_lendeborg_asking_tmac_vince_and_melo_for",
+   "skipped": "render failed: JSONDecodeError: Extra data: line 3 column 1 (char 208)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Newton",
+   "why": "Hot mic: Clay Matthews reads the play, Cam says \"watch this\" and burns him on the next snap.",
+   "post_title": "[Highlight] In 2017, Clay Matthews reads an arm signal and yells, \u201cIt\u2019s that wheel route!\u201d Cam Newton on the hot mic replies, \u201cYou\u2019ve been watching film, huh? That\u2019s cool, watch this,\u201d then hits CMC o",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm",
+   "title": "Cam Newton Tells Clay Matthews 'Watch This' On The Hot Mic",
+   "hook": "Cam answered Clay on the hot mic \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@13.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 74,
+     "reason": "showrunner BLOCK: It's a great real moment that lands with a CMC touchdown, but the hook's key quote is buried under three stacked caption layers and our line sits on the source's own burned-in subtitles."
+    },
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: A great real moment that lands: Clay calls the wheel route, Cam throws it anyway, touchdown. But our captions sit on top of the footage's own burned-in subtitles, and the cropped source line hides Cam's answer."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment lands (Clay calls the wheel route, Cam says watch this, CMC scores) but our captions are stacked on the footage's own subtitles and the punchline dialogue is never readable.",
+    "score": 74
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment lands (Clay calls the wheel route, Cam says watch this, CMC scores) but our captions are stacked on the footage's own subtitles and the punchline dialogue is never readable."
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Owen",
+   "why": "A reporter asks Owen his best Ballon d'Or finish and he deadpans that he won it.",
+   "post_title": "Reporter on the red carpet asks Michael Owen: \"What was your best standing in the Ballon d'Or when you were active?\" Owen: \"Well I won it in 2001\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xgp32f/reporter_on_the_red_carpet_asks_michael_owen_what/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xgp32f/reporter_on_the_red_carpet_asks_michael_owen_what",
+   "skipped": "too short: the post runs 7.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "Mbapp\u00e9 says his favorite meme is the one that puts his face on Mao Zedong.",
+   "post_title": "Kylian Mbapp\u00e9 on his favorite meme: \"The one where they put my face on a Chinese dictator (Mao Zedong)? That really makes me laugh, I use it with my friends all the time.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xfywef/kylian_mbapp\u00e9_on_his_favorite_meme_the_one_where/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xfywef/kylian_mbapp\u00e9_on_his_favorite_meme_the_one_where",
+   "title": "Kylian Mbapp\u00e9 Laughs At The Meme Of Himself He Sends His Friends",
+   "hook": "Mbapp\u00e9's favorite meme of himself \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: A real, likable Mbapp\u00e9 moment with the meme shown, ruined by our English captions printed over the clip's own French subtitles, so the punchline cannot be read."
+    },
+    {
+     "score": 74,
+     "reason": "showrunner BLOCK: The moment lands (the Mao meme is shown and he laughs), but our English captions are printed on top of the clip's own French captions in nearly every frame, so the words are unreadable."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment works (Mbapp\u00e9 laughing about the Mao meme, with the meme shown), but our English word captions are stacked on the footage's own French subtitles, so the text is a mess in most frames.",
+    "score": 83
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment works (Mbapp\u00e9 laughing about the Mao meme, with the meme shown), but our English word captions are stacked on the footage's own French subtitles, so the text is a mess in most frames."
+  },
+  {
+   "sub": "nba",
+   "who": "Tyrese Maxey",
+   "why": "Maxey brags about how fast he changes his baby's diaper.",
+   "post_title": "Tyrese Maxey on whether he changes his baby's diaper:\"I'm a big diaper changing guy. I take pride in the speed that I'm able to change a diaper and keep her from crying. So I'm a big diaper change guy",
+   "upvotes": 0,
+   "url": "https://streamable.com/fl5ual",
+   "topic": "https://www.reddit.com/r/nba/comments/1xi76r6/tyrese_maxey_on_whether_he_changes_his_babys",
+   "title": "Tyrese Maxey Takes Pride In His Diaper Changing Speed, Then Gets Told About LaMelo",
+   "hook": "Maxey is a big diaper guy \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      330,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/-vGKL7m6yr4",
+   "ok": true,
+   "publish_at": "2026-10-31T23:00:00Z",
+   "seconds": 162,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261031-tyrese-maxey-takes-pride-in-his-diaper-changing--2bfd34a9",
+    "tiktok": "queued for 2026-10-31T23:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Jaylen Brown tells Daniel Radcliffe he's Slytherin.",
+   "post_title": "Jaylen Brown says he's Slytherin to Daniel Radcliffe - \u201cI\u2019m Slytherin bro\u201d.",
+   "upvotes": 0,
+   "url": "https://streamable.com/yt9798",
+   "topic": "https://www.reddit.com/r/nba/comments/1xip4aa/jaylen_brown_says_hes_slytherin_to_daniel",
+   "skipped": "render failed: JSONDecodeError: Extra data: line 3 column 1 (char 156)"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Marquis Teague",
+   "why": "Teague asks Doron Lamb why he picked Kentucky and gets a wild answer about John Wall.",
+   "post_title": "[Backcourt Connection] Marquis Teague asks Doron Lamb why he committed to Kentucky: \u201cMy main goal was, if I don\u2019t get no ass on my visit, I\u2019m not coming\u2026John Wall put me on a shorty and the rest is hi",
+   "upvotes": 0,
+   "url": "https://streamable.com/nro48b",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xjmfvp/backcourt_connection_marquis_teague_asks_doron",
+   "title": "Marquis Teague Can't Believe Doron Lamb's Real Reason For Picking Kentucky",
+   "hook": "Doron Lamb's reason for picking Kentucky \ud83d\ude2d",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "split",
+     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "shots": [
+      {
+       "mode": "split",
+       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+      }
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.091,
+       0.349
+      ],
+      [
+       0.529,
+       0.963
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/xs9QMoz2X5w",
+   "ok": true,
+   "publish_at": "2026-11-01T02:00:00Z",
+   "seconds": 231,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261031-marquis-teague-can-t-believe-doron-lamb-s-real-r-992276de",
+    "tiktok": "queued for 2026-11-01T02:00:00Z"
+   }
+  },
+  {
+   "sub": "MMA",
+   "who": "Sean O'Malley",
+   "why": "O'Malley is confused that DC named Song Yadong instead of him for the title shot.",
+   "post_title": "Sean O'Malley confused by Daniel Cormier mentioning Song Yadong instead of him in post fight interview: \"DC, I don\u2019t know what he\u2019s thinking. I beat Song like 6 months ago. I should be next for the ti",
+   "upvotes": 0,
+   "url": "https://streamable.com/pmv9xl",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xfakw1/sean_omalley_confused_by_daniel_cormier",
+   "title": "Sean O'Malley Is Baffled DC Asked About Song Instead Of Him",
+   "hook": "O'Malley confused by DC's question \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@12.26"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      354,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Sean O'Malley Song Yadong@22.06"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: Real O'Malley footage that matches the line, but it is a flat 44-second talking head. Nobody sees what DC said, and it ends mid-sentence without a payoff hit."
+    },
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: A real O'Malley reaction with a nice Petr Yan layover, but the DC/Song setup is never shown, it ends mid-sentence on 'late Q1', and the photo card covers our hook line."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The reaction footage is real and the head-grab is good, but a stranger never learns what DC asked or why O'Malley thinks he should be next, and the clip ends mid-sentence.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The reaction footage is real and the head-grab is good, but a stranger never learns what DC asked or why O'Malley thinks he should be next, and the clip ends mid-sentence."
+  },
+  {
+   "sub": "MMA",
+   "who": "Israel Adesanya",
+   "why": "Adesanya rants about Pereira saying \"if I lose\" before the fight.",
+   "post_title": "Adesanya: \"I saw Pereira saying if he loses to Sergei he's going back down to 205. I don't like that. I don't like that he's putting that out there. What the fuck you mean, 'If I lose?' Why not stay a",
+   "upvotes": 0,
+   "url": "https://streamable.com/2855ea",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xgd7f5/adesanya_i_saw_pereira_saying_if_he_loses_to",
+   "title": "Israel Adesanya Fires Back At Pereira For Saying 'If I Lose' Before The Fight",
+   "hook": "Adesanya hates what Pereira just said",
+   "ledger": {
+    "moves": [
+     "whoa@10.2"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "split",
+     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "shots": [
+      {
+       "mode": "split",
+       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+      }
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.041,
+       0.313
+      ],
+      [
+       0.5,
+       0.889
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Alex Pereira@1.86"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: This is a re-crop of another show's split-screen podcast edit, not the Adesanya moment itself: an unknown webcam guest takes the middle, Pereira never appears saying the line, and the cropped source captions clash with ours."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is a re-crop of another show's split-screen podcast edit, not the Adesanya moment itself: an unknown webcam guest takes the middle, Pereira never appears saying the line, and the cropped source captions clash with ours.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is a re-crop of another show's split-screen podcast edit, not the Adesanya moment itself: an unknown webcam guest takes the middle, Pereira never appears saying the line, and the cropped source captions clash with ours."
+  },
+  {
+   "sub": "nfl",
+   "who": "Quenton Nelson",
+   "why": "Nelson jokes he can't get away from Jeffery Simmons after the trade.",
+   "post_title": "[Highlight] New Seahawks G Quenton Nelson on the Bears trading for Jeffery Simmons, whom he faced often in the AFC South and will now see Monday night: \u201cI was like, \u2018Man, can\u2019t get away from this guy.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xix4o0/highlight_new_seahawks_g_quenton_nelson_on_the/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xix4o0/highlight_new_seahawks_g_quenton_nelson_on_the",
+   "title": "Quenton Nelson Can't Escape Jeffery Simmons After Bears Trade",
+   "hook": "Nelson can't get away from Simmons \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [
+     "Quenton Nelson Jeffery Simmons@4.3"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A static, letterboxed press-conference clip of a mild quote. The first two seconds are Nelson silent at a podium, and Simmons is never clearly shown, so it gives a stranger no reason to stay.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A static, letterboxed press-conference clip of a mild quote. The first two seconds are Nelson silent at a podium, and Simmons is never clearly shown, so it gives a stranger no reason to stay."
+  },
+  {
+   "sub": "nfl",
+   "who": "Andy Reid",
+   "why": "Reid spends five uncomfortable minutes fielding questions about signing Justin Tucker.",
+   "post_title": "[Highlight] Andy Reid spends 5 minutes answering numerous questions about signing Justin Tucker, who was accused of sexual misconduct by 16 massage therapists",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xhu7pm/highlight_andy_reid_spends_5_minutes_answering/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xhu7pm/highlight_andy_reid_spends_5_minutes_answering",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nfl",
+   "who": "Wade Phillips",
+   "why": "Wade Phillips deadpans that the Eagles defense can't stop the run or the pass.",
+   "post_title": "[Highlight] Wade Phillips on the Eagles defense: \"There's only two plays that they can't stop. That's the run and the pass.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xgt8zo/highlight_wade_phillips_on_the_eagles_defense/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xgt8zo/highlight_wade_phillips_on_the_eagles_defense",
+   "title": "Wade Phillips Roasts The Eagles Defense And Digs At Peyton Manning's Teaching",
+   "hook": "Wade Phillips on the Eagles defense \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@17.7"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible",
+     "shots": [
+      {
+       "mode": "stacked",
+       "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible"
+      }
+     ],
+     "n_subjects": 3,
+     "face_bands": [
+      [
+       0.0,
+       0.292
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A ManningCast repost cropped onto Eli Manning while Wade Phillips, the subject of the line, is a thumbnail. The punchline is audio-only and the bottom 40% is blurred filler.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A ManningCast repost cropped onto Eli Manning while Wade Phillips, the subject of the line, is a thumbnail. The punchline is audio-only and the bottom 40% is blurred filler."
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron does the Key & Peele handshake with Dean Wade.",
+   "post_title": "LeBron does the Key & Peele handshake with Dean Wade",
+   "upvotes": 0,
+   "url": "https://streamable.com/h8d1t3",
+   "topic": "https://www.reddit.com/r/nba/comments/1xg7jzu/lebron_does_the_key_peele_handshake_with_dean_wade",
+   "title": "LeBron James Breaks Out The Key & Peele Handshake With Dean Wade \ud83d\ude02",
+   "hook": "LeBron does the handshake with Dean Wade \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@11.2"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The handshake the line promises is buried under 8 seconds of PA intro and backs of jerseys, and our line runs into the NBC logo."
+    },
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: The handshake the line promises is buried at ~10s after a reel of other players' intros, and our line is printed over the NBC logo and a second repost caption."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The handshake the line promises is buried at ~10s after a reel of other players' intros, and our line is printed over the NBC logo and a second repost caption.",
+    "score": 61
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The handshake the line promises is buried at ~10s after a reel of other players' intros, and our line is printed over the NBC logo and a second repost caption."
+  },
+  {
+   "sub": "hockey",
+   "who": "Michael McCarron",
+   "why": "McCarron spills a fan's beer and comes back to hand him a twenty.",
+   "post_title": "Michael McCarron accidentally knocked over this guy's beer, so he came back & handed him a 20",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xf9d32/michael_mccarron_accidentally_knocked_over_this/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xf9d32/michael_mccarron_accidentally_knocked_over_this",
+   "skipped": "too short: the post runs 11.6s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkanovski",
+   "why": "Volkanovski says he'd love a Topuria rematch before retiring.",
+   "post_title": "Alexander Volkanovski is down for an Ilia Topuria rematch before he retires: \"That would be great too. If it was going to be for a lightweight title then yeah. To get that win back would be great. I'm",
+   "upvotes": 0,
+   "url": "https://streamable.com/ic18x7",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xgf6sq/alexander_volkanovski_is_down_for_an_ilia_topuria",
+   "title": "Alexander Volkanovski Says He'd Fight Topuria Again Before He Retires",
+   "hook": "Volkanovski wants Topuria rematch before retiring",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      376,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/vjgdN5yXCSs",
+   "ok": true,
+   "publish_at": "2026-11-01T15:00:00Z",
+   "seconds": 148,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261031-alexander-volkanovski-says-he-d-fight-topuria-ag-dada4650",
+    "tiktok": "queued for 2026-11-01T15:00:00Z"
+   }
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Charlotte basketball",
+   "why": "Charlotte calls a timeout they don't have while up one and gets a technical.",
+   "post_title": "Up 1 against North Carolina, Charlotte takes a time out. They do not have any, and that's a technical foul.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xhb6nr/up_1_against_north_carolina_charlotte_takes_a/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xhb6nr/up_1_against_north_carolina_charlotte_takes_a",
+   "title": "Charlotte Basketball: Charlotte Calls A Timeout They Don't Have And It Costs Them Against North",
+   "hook": "Charlotte calls a timeout they don't have \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@7.25"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      368,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/1QLxxdf0tqI",
+   "ok": true,
+   "publish_at": "2026-11-01T18:00:00Z",
+   "seconds": 190,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261031-charlotte-basketball-charlotte-calls-a-timeout-t-86069aa3",
+    "tiktok": "queued for 2026-11-01T18:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 93,
+ "already_posted": 11,
+ "shipped": 5
 }
