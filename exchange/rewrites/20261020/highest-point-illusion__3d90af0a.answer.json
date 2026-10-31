@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "highest-point-illusion__3d90af0a",
+  "slug": "highest-point-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:22:00Z",
+  "title": "Mountain Height Changes With The Starting Point",
+  "hook": "Mauna Kea measures 10,211 meters from base to summit.",
+  "closing": "Earth's highest mountain changes when you change where the measurement begins.",
+  "question": "Which definition of mountain height makes the most sense?",
+  "segments": [
+    {
+      "topic": "Mountain Sea Level",
+      "say": "Everest stands 8,849 meters above sea level, the familiar measure behind its title."
+    },
+    {
+      "topic": "Mountain Base Height",
+      "say": "Mauna Kea reaches 10,211 meters from base to summit, overtaking Everest by another measure."
+    },
+    {
+      "topic": "Mountain Center Height",
+      "say": "Chimborazo sits 13.4 kilometers farther from Earth's center, making its summit closest to space."
+    }
+  ]
+}
