@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-31T16:44:08Z",
+ "updated": "2026-10-31T20:07:21Z",
  "open": [
+  {
+   "id": "deepfake-video-explosion__4e4e2811",
+   "slug": "deepfake-video-explosion",
+   "filed": "2026-10-31T20:07:21Z",
+   "why": [
+    "premise: brain: It presents a striking statistic but does not invert a common viewer expectation, failing the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261031/deepfake-video-explosion__4e4e2811.request.json",
+   "answer_path": "exchange/rewrites/20261031/deepfake-video-explosion__4e4e2811.answer.json"
+  },
   {
    "id": "billion-dollar-disasters-record-2023__689aac16",
    "slug": "billion-dollar-disasters-record-2023",
