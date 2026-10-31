@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ai-datacenter-water__c0cc9c1a_r4",
+  "slug": "ai-datacenter-water",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:20:00Z",
+  "title": "One AI Conversation Can Use 500 Milliliters Of Water",
+  "hook": "One AI conversation can use 500 milliliters of water.",
+  "closing": "Invisible computing still consumes shared water, making data-center growth a local resource issue.",
+  "question": "Would this change how you use AI?",
+  "segments": [
+    {
+      "topic": "AI Water Microsoft",
+      "say": "Microsoft's water use reached 6.4 million cubic meters, showing AI infrastructure has a physical footprint."
+    },
+    {
+      "topic": "AI Water Google",
+      "say": "Google used 21.2 million cubic meters, revealing how quickly large technology systems multiply demand."
+    },
+    {
+      "topic": "AI Water Conversation",
+      "say": "One AI conversation can use 500 milliliters, turning an invisible chat into a tangible bottle."
+    }
+  ]
+}
