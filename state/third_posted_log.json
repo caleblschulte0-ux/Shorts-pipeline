@@ -17241,14 +17241,59 @@
       "ts": "2026-10-31T12:31:24.972595+00:00"
     },
     "clip-20261031-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/RudeImpossiblePuffinBCouch-iHELurIb993agvM_",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/c4mh8uMX-Mw",
       "title": "Lacy Cameraman Quits His Job In The Middle Of Japan Mid-Stream",
       "kind": "twitch_clip",
-      "ts": "2026-10-31T12:34:42.013321+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-31T12:34:52.976122+00:00",
+      "uploaded_at": "2026-10-31T12:34:52.976138+00:00",
+      "publish_at": "2026-10-31T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261031-lacy-cameraman-quits-his-job-in-the-middle-of-ja-3c6e267b",
+        "tiktok": "queued for 2026-10-31T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/RudeImpossiblePuffinBCouch-iHELurIb993agvM_",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy's cameraman just quit on stream \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2354,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.4,
+        "end": 21.77
+      },
+      "director_cut": true
+    },
+    "rejected-boxycooperativescorpionpetezarolltie-v7zqbwhmpu6bapt_": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BoxyCooperativeScorpionPeteZarollTie-v7zqbwHMpU6bapt_",
+      "streamer": "jynxzi",
+      "title": "genius",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Guessing game, facepalm, no clear payoff)",
+      "ts": "2026-10-31T12:35:40.162198+00:00"
+    },
+    "rejected-enchantingdifferentcodanele-yvssx7zcvsuzoeka": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnchantingDifferentCodANELE-yVSsX7ZCvsUZoeKa",
+      "streamer": "jynxzi",
+      "title": "can\u2019t relate",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Chest opening, no clear payoff)",
+      "ts": "2026-10-31T12:36:23.316134+00:00"
+    },
+    "rejected-crispyexquisiteferretampenergycherry-krhsiboq7y4irnam": {
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/CrispyExquisiteFerretAMPEnergyCherry-KRHSIBoq7y4iRNAm",
+      "streamer": "rayasianboy",
+      "title": "ayoooo wtf \u270c\ufe0f\ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Group sipping drinks, no clear event)",
+      "ts": "2026-10-31T12:36:51.516635+00:00"
     }
   }
 }

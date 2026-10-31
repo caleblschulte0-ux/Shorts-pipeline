@@ -3,215 +3,6 @@
     {
       "date": "20261023",
       "dry_run": false,
-      "ts": "2026-10-23T12:45:17+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 120,
-        "with_curve": 14,
-        "fetched_at": "2026-10-23T11:10:42.723574+00:00"
-      },
-      "brain": {
-        "ok": 22,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261023-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261023-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "P.O box opening, mild curiosity",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Mansion walkabout, chat laughs, payoff u",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Gets Shown Something From Marlon's P.O. Box And Can't Hold It In"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The first ~5s is mostly the back of Ron's head with Marlon tiny in the background",
-                "Some frames (17.7s, 19.8s) are motion-blurred or show a bare wall, but that comes from the source footage",
-                "The hook caption sits low over the subject's body in several frames, but it doesn't cover a face"
-              ]
-            }
-          },
-          "took_s": 190.5
-        },
-        {
-          "slug": "clip-20261023-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "face_content",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "boss fight, unclear payoff, insider",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Begs 'If There's A Third One' And Then This Happens"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Face cam is cropped tight at the forehead in a few frames",
-                "Hook caption sits across the chin and neck of the face cam, though the face stays readable",
-                "Game footage in the top panel is small and dark, so the action is hard to read"
-              ]
-            }
-          },
-          "took_s": 162.6
-        },
-        {
-          "slug": "clip-20261023-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261023-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "unclear, possible shirt moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Fan wearing his shirt, mild, insider",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ohnepixel Finds Out Someone Made This Shirt Of Him In One Day"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "Hook caption overlaps the shirt print in a few frames, but it doesn't cover a face",
-                "Some frames are tightly cropped on the shirt, which fits the story",
-                "Word captions sit over the lower body or shirt area, which is acceptable"
-              ]
-            }
-          },
-          "took_s": 176.6
-        },
-        {
-          "slug": "clip-20261023-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261023",
-      "dry_run": false,
       "ts": "2026-10-23T16:38:46+00:00",
       "feedback": {
         "snapshot": true,
@@ -5728,6 +5519,414 @@
           "slug": "clip-20261030-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261031",
+      "dry_run": false,
+      "ts": "2026-10-31T12:36:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 18,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 151,
+        "with_retention": 128,
+        "with_curve": 12,
+        "fetched_at": "2026-10-31T08:46:51.589142+00:00"
+      },
+      "brain": {
+        "ok": 37,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261031-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "ref controversy, unclear visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "Referee crawls on ring floor, chat react",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Loses It Asking What The Ref Is Doing"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The hook caption sits over the lower part of the picture and slightly covers the ref's legs and the logo in a few frames",
+                "The first ~4s is a wide shot of boxers walking, with the subject fairly small. It is still readable.",
+                "A small caption fragment 'IS THE OF' appears at 6.2s. It looks like a stream's own captions, not a render defect."
+              ]
+            }
+          },
+          "took_s": 121.4
+        },
+        {
+          "slug": "clip-20261031-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.68,
+              "why": "visible slap, physical comedy",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "countdown slap challenge, visible hit re",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Gets Hit With The Muscle Slap And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": [
+                "Hook caption sits over the subject's chest/lower torso in several frames but doesn't cover any faces",
+                "Subject is cropped tight and partly out of frame at 7.6s and 15.8s, and motion-blurred at 11.7s; these look like natural"
+              ]
+            }
+          },
+          "took_s": 217.0
+        },
+        {
+          "slug": "clip-20261031-3",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 134,
+                "refused_shown": 9,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat's Minecraft marathon with IShowSpeed: Kai panics each time Speed goes down, and the run ends in game over.",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Jynxzi's Minecraft death marathon: he dies again and again across the stream, and the 11th death is the worst.",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "xQc plays the casino in GTA RP: he loses at a slot he calls dog shit, then makes an insane call at blackjack and hits fo",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "IShowSpeed keeps dying in his Minecraft stream, and each death gets a bigger reaction.",
+                    "shape": "one_stream",
+                    "n": 4
+                  }
+                ],
+                "vod_arcs": 312,
+                "moments": 40,
+                "candidates": 522,
+                "pool": 2885,
+                "pool_with_vod": 1970,
+                "arc_sizes": [
+                  2,
+                  5,
+                  6,
+                  6,
+                  2,
+                  2,
+                  2,
+                  2,
+                  4,
+                  3
+                ]
+              }
+            }
+          },
+          "took_s": 488.6
+        },
+        {
+          "slug": "clip-20261031-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 134,
+                "refused_shown": 9,
+                "scouted": [],
+                "vod_arcs": 312,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2885,
+                "pool_with_vod": 1970,
+                "arc_sizes": [
+                  2,
+                  5,
+                  6,
+                  6,
+                  2,
+                  2,
+                  2,
+                  2,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: trails 28s past the picked moment"
+                },
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
+                  "outcome": "already_refused",
+                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
+                },
+                {
+                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "lyasyaa@momentneighborlybenevolentmangonotlikethis-sdxjz7mxz",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ravshann@momentswissflaccidmagethunbeast-nri_kb14ggqhwp2g",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
+                },
+                {
+                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: the picture stands still for 2s at 0s"
+                },
+                {
+                  "cluster": "dangerlyoha@momentauspiciousfundelicatapunchtrees-sxew5fpzca",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 There is no meaningful change here and nothing a stranger would find entertaining. The popular clip is 10 seconds of the streamer in a hot tub, glancing off-camera while someone walks behind him. It h"
+                },
+                {
+                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: director judged: not a story \u2014 All three sources are silent. There is no dialogue, no argument, no challenge and no reaction. The clip and the footage around it"
+                },
+                {
+                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "@momentquaintneighborlydogdaesuppy-syv9xet0trdsph5p/bankara-",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The sources don't hold a story a stranger could follow or enjoy. The popular clip shows one streamer on webcam. He reads out a message telling him to stop taking Bankara Match (Splatoon) so seriously,"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "fun dance party, little context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Odd hazmat dance, but little changes",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Backrooms Dance Party Goes Absolutely Wild \ud83d\udd7a"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Dancers sit at the left and right edges in many frames, and the left one is partly cropped out",
+                "At 48.4s the subjects are almost out of frame, leaving mostly the blank white screen",
+                "Hook card reads 'Caseoh_' with a stray underscore",
+                "Large bright white screen dominates the picture and pulls attention from the dancers"
+              ]
+            }
+          },
+          "took_s": 267.2
+        },
+        {
+          "slug": "clip-20261031-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "hype title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Street chat in Japan, unclear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Cameraman Quits His Job In The Middle Of Japan Mid-Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": [
+                "Frame at 9.8s is an empty street with no person, but only briefly",
+                "Frames at 2.7s and 4.5s show the subject partly cropped at the edge",
+                "Hook caption sits over the lower part of the sharp picture, but it does not cover any faces"
+              ]
+            }
+          },
+          "took_s": 208.0
+        },
+        {
+          "slug": "clip-20261031-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Group sipping drinks, no clear event)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Group sipping drinks, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 28.2
         }
       ]
     }
