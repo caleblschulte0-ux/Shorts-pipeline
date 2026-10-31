@@ -2,94 +2,89 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 8,
+   "count": 7,
    "stories": {
-    "cryonics-client-count": 1,
-    "escooter-er-visits-surge": 1,
-    "sports_jake_bauers_ast_out_ball": 2,
-    "airline-pilot-shortage": 1,
-    "sports_patrick_kane__and_tribute": 1,
-    "private-moon-landings-fail-rate": 2
+    "sports_sean_o_malley_niel_cormier": 2,
+    "sports_israel_adesanya__he_loses_to": 1,
+    "sports_lebron_james_th_dean_wade": 2,
+    "ai-datacenter-water": 2
    },
    "timestamps": [
-    "2026-10-29T11:10:55+00:00",
-    "2026-10-29T12:09:04+00:00",
-    "2026-10-30T11:42:01+00:00",
-    "2026-10-30T11:57:59+00:00",
-    "2026-10-30T14:31:26+00:00",
-    "2026-10-30T16:00:16+00:00",
-    "2026-10-30T15:24:38+00:00",
-    "2026-10-30T15:55:02+00:00"
+    "2026-10-31T12:16:57+00:00",
+    "2026-10-31T12:23:09+00:00",
+    "2026-10-31T12:32:30+00:00",
+    "2026-10-31T12:40:38+00:00",
+    "2026-10-31T12:42:23+00:00",
+    "2026-10-31T13:37:02+00:00",
+    "2026-10-31T14:02:29+00:00"
    ],
    "examples": [
-    "unreadable: In seg4:start the CTA 'Would you ever sign up to be frozen?' is faded grey-on-grey and sits over the ice cubes on the floor. The fine-print subtitles in hook@0.3 ('Alcor's patients \u00b7 2023 ",
-    "unreadable: At seg2:end a tiny white 'NO HELMET' label is printed over a scooter's grey deck and a helmet. It is unreadable on a phone at arm's length.",
-    "unreadable: In hook@0.3 to mid0 our line 'Bauers gives Murphy the last out ball' sits right under the source's own blue-and-white banner 'BAUERS GIVES MURPHY THE LAST OUT BALL'. The same sentence is s"
+    "unreadable: mid4: the word caption 'CHAMPIONSHIP TITLE.' sits on top of the UFC scorebug (YAN 1:23 SONG). Our text covers the TV graphic, and the scorebug crowds the caption.",
+    "unreadable: At mid2 the Petr Yan photo card sits on top of our hook line: only 'O'Malley says he's' shows, half hidden behind the card's top edge, and 'fighting Peter next' is completely covered.",
+    "unreadable: mid2/mid3: the source's own yellow captions are cut off at the frame edges ('Everyone knows I'n', 'e knows I'm not a', 'with a disadvan'), and our word captions sit right beside them. mid1"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 2,
+   "stories": {
+    "sports_israel_adesanya__he_loses_to": 1,
+    "sports_wade_phillips_gles_defense": 1
+   },
+   "timestamps": [
+    "2026-10-31T12:32:30+00:00",
+    "2026-10-31T12:38:56+00:00"
+   ],
+   "examples": [
+    "junk_imagery: hook@0.3-mid1 and mid4-payoff are a podcast's own split-screen re-cropped, so another show's stacked layout plays inside ours: Adesanya top, a Pereira photo or a Demetrious Johnson podca",
+    "junk_imagery: hook@0.3 through payoff@-0.4: this is a re-broadcast of the ManningCast. It is a grid of webcam boxes over the game feed, and the top crop enlarges Eli Manning's webcam. Wade Phillips, t"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 4,
+   "count": 2,
    "stories": {
-    "escooter-er-visits-surge": 1,
-    "jury-trial-collapse": 1,
-    "pitch-drop-slowest-experiment": 1,
-    "airline-pilot-shortage": 1
+    "earthquake-detection-illusion": 1,
+    "tonga-volcano-water-vapor-record": 1
    },
    "timestamps": [
-    "2026-10-29T12:09:04+00:00",
-    "2026-10-29T13:10:56+00:00",
-    "2026-10-30T14:11:01+00:00",
-    "2026-10-30T14:31:26+00:00"
+    "2026-10-31T18:02:35+00:00",
+    "2026-10-31T19:26:02+00:00"
    ],
    "examples": [
-    "decorative_mascot: Data mostly stands and waves beside things that move on their own: he waves next to the pile while it grows (seg0:end, seg1:start), stands among the scooters and does nothing with t",
-    "decorative_mascot: Data holds the same pose at the jury gate from hook@0.3 through seg1:end (about 9s), while jurors vanish from the box and only one walks out past him (seg1:mid). In the plea scene h",
-    "decorative_mascot: From hook@0.3 through seg1:end (about 8.5s) Data stands at the left edge holding a magnifier in the same pose. In seg2:start to seg2:end he gives a thumbs-up and waves beside the ca"
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 1,
-   "stories": {
-    "cryonics-client-count": 1
-   },
-   "timestamps": [
-    "2026-10-29T11:10:55+00:00"
-   ],
-   "examples": [
-    "dead_air: In seg3:start and seg3:mid the block and Data look the same (no cut has happened). Then seg3:end, seg4:start, payoff@-1.8 and payoff@-0.4 all show the same finished cube and the same waving "
+    "decorative_mascot: In seg1:start/mid/end Data only points at the globe from a ladder while the pins multiply on their own. In seg2:start/mid/end he stands still beside the drum holding a hammer while ",
+    "decorative_mascot: Across seg2:start, seg2:mid and seg2:end, Data stands beside the flag mast pointing and gesturing while flags appear around him. He causes nothing, and the shockwave arc in the sky "
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
    "count": 1,
    "stories": {
-    "sports_jake_bauers_ast_out_ball": 1
+    "sports_wade_phillips_gles_defense": 1
    },
    "timestamps": [
-    "2026-10-30T11:56:33+00:00"
+    "2026-10-31T12:38:56+00:00"
    ],
    "examples": [
-    "empty_void: From mid2 to the payoff, the 16:9 broadcast fills only the middle third (mid3, mid4). The top and bottom thirds are blurred copies of the same clip, and the bottom blur shows a smeared, un"
+    "empty_void: mid0 to payoff@-0.4: the lower ~40% of the frame (y\u2248460-764) is a heavily blurred enlargement of the game feed. It is filler space that carries nothing readable."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
+   "median": 2,
    "min": 1,
    "max": 3
   },
   "data_demo": {
    "median": 3,
-   "min": 3,
+   "min": 1,
    "max": 4
   },
   "mascot": {
    "median": 4,
-   "min": 1,
+   "min": 2,
    "max": 4
   },
   "craft": {
@@ -104,35 +99,35 @@
   },
   "payoff": {
    "median": 1,
-   "min": 1,
+   "min": 0,
    "max": 2
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
   70,
-  65,
-  74,
-  83,
+  70,
+  62,
   66,
-  79,
-  70,
-  70,
-  71,
-  79,
-  70,
-  79,
+  62,
+  57,
+  53,
   66,
   61,
-  75,
   70,
+  74,
   87,
+  61,
+  75,
+  79,
   70,
-  70,
-  83
+  83,
+  83,
+  61,
+  70
  ]
 }
