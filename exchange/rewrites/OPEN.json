@@ -1,176 +1,236 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-01T12:19:48Z",
+ "updated": "2026-11-01T12:35:13Z",
  "open": [
   {
-   "id": "usps-mail-volume-collapse__c57ffab9_r1",
+   "id": "local-news-deserts-expanding__4cc454c1",
+   "slug": "local-news-deserts-expanding",
+   "filed": "2026-11-01T12:35:13Z",
+   "why": [
+    "premise: brain: It relies on two numbers instead of a single consequential, verifiable figure, violating the one-number rule."
+   ],
+   "request": "exchange/rewrites/20261101/local-news-deserts-expanding__4cc454c1.request.json",
+   "answer_path": "exchange/rewrites/20261101/local-news-deserts-expanding__4cc454c1.answer.json"
+  },
+  {
+   "id": "pedestrian-deaths-outlier__247b5fb6",
+   "slug": "pedestrian-deaths-outlier",
+   "filed": "2026-11-01T12:35:12Z",
+   "why": [
+    "premise: brain: The premise lacks a single verifiable number for the climbing death type, relying on an unspecified trend."
+   ],
+   "request": "exchange/rewrites/20261101/pedestrian-deaths-outlier__247b5fb6.request.json",
+   "answer_path": "exchange/rewrites/20261101/pedestrian-deaths-outlier__247b5fb6.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__c57ffab9",
    "slug": "usps-mail-volume-collapse",
-   "filed": "2026-11-01T12:19:48Z",
+   "filed": "2026-11-01T12:35:12Z",
    "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on an uncontextualized large number."
+    "premise: brain: The premise does not clearly reverse a viewer's expectation and relies on a vague claim rather than a verifiable, consequential number."
    ],
-   "request": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9_r1.answer.json"
+   "request": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9.request.json",
+   "answer_path": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9.answer.json"
   },
   {
-   "id": "mangrove-forest-loss__49815695_r2",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-11-01T12:19:47Z",
+   "id": "autism-diagnosis-rate-rise__3a83f544",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-01T12:35:12Z",
    "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+    "premise: brain: Uses multiple statistics rather than a single consequential number, failing the one-number requirement."
    ],
-   "request": "exchange/rewrites/20261101/mangrove-forest-loss__49815695_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/mangrove-forest-loss__49815695_r2.answer.json"
+   "request": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.request.json",
+   "answer_path": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.answer.json"
   },
   {
-   "id": "measles-comeback-since-2000__7726747b_r1",
-   "slug": "measles-comeback-since-2000",
-   "filed": "2026-11-01T12:19:47Z",
+   "id": "genome-sequencing-cost-collapse__e55ed18b",
+   "slug": "genome-sequencing-cost-collapse",
+   "filed": "2026-11-01T12:35:12Z",
+   "why": [
+    "premise: brain: The premise relies on two numbers ($95 million and $525) instead of a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261101/genome-sequencing-cost-collapse__e55ed18b.request.json",
+   "answer_path": "exchange/rewrites/20261101/genome-sequencing-cost-collapse__e55ed18b.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__815de0c3",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-01T12:35:11Z",
+   "why": [
+    "premise: brain: It does not reverse a clear viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.request.json",
+   "answer_path": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__ada5193e_r3",
+   "slug": "california-condor-comeback",
+   "filed": "2026-11-01T12:35:10Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague, unverified numbers without a single consequential fact."
+   ],
+   "request": "exchange/rewrites/20261101/california-condor-comeback__ada5193e_r3.request.json",
+   "answer_path": "exchange/rewrites/20261101/california-condor-comeback__ada5193e_r3.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r3",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-11-01T12:35:10Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261101/measles-comeback-since-2000__7726747b_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/measles-comeback-since-2000__7726747b_r1.answer.json"
+   "request": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__81f94a66_r3.request.json",
+   "answer_path": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__81f94a66_r3.answer.json"
   },
   {
-   "id": "naep-math-pandemic-drop__aa1c0224_r1",
-   "slug": "naep-math-pandemic-drop",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: Lacks a specific, verifiable number to anchor the surprising claim."
-   ],
-   "request": "exchange/rewrites/20261101/naep-math-pandemic-drop__aa1c0224_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/naep-math-pandemic-drop__aa1c0224_r1.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__c3934ec2_r2",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
-   ],
-   "request": "exchange/rewrites/20261101/metric-system-holdouts__c3934ec2_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/metric-system-holdouts__c3934ec2_r2.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__68c934c9_r2",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
-   ],
-   "request": "exchange/rewrites/20261101/peanut-allergy-guideline-flip__68c934c9_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/peanut-allergy-guideline-flip__68c934c9_r2.answer.json"
-  },
-  {
-   "id": "pedestrian-deaths-outlier__247b5fb6_r1",
-   "slug": "pedestrian-deaths-outlier",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: The hook lacks a specific, verifiable number to anchor the unexpected trend."
-   ],
-   "request": "exchange/rewrites/20261101/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
-  },
-  {
-   "id": "drone-commercial-overtake__4ce6725d_r1",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: Unclear reversal of viewer expectation; the premise relies on a number but does not convincingly invert a specific expectation."
-   ],
-   "request": "exchange/rewrites/20261101/drone-commercial-overtake__4ce6725d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a1c3f2eb_r1",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: The claim relies on a single statistic without clearly overturning a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.answer.json"
-  },
-  {
-   "id": "chess-online-boom__f9b7e085_r3",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
-   ],
-   "request": "exchange/rewrites/20261101/chess-online-boom__f9b7e085_r3.request.json",
-   "answer_path": "exchange/rewrites/20261101/chess-online-boom__f9b7e085_r3.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__815de0c3_r1",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: It presents a simple numeric increase without overturning a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3_r1.answer.json"
-  },
-  {
-   "id": "deepfake-video-explosion__4e4e2811_r1",
+   "id": "deepfake-video-explosion__4e4e2811",
    "slug": "deepfake-video-explosion",
-   "filed": "2026-11-01T12:19:46Z",
+   "filed": "2026-10-31T20:07:21Z",
    "why": [
     "premise: brain: It presents a striking statistic but does not invert a common viewer expectation, failing the required reversal criterion."
    ],
-   "request": "exchange/rewrites/20261101/deepfake-video-explosion__4e4e2811_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/deepfake-video-explosion__4e4e2811_r1.answer.json"
+   "request": "exchange/rewrites/20261031/deepfake-video-explosion__4e4e2811.request.json",
+   "answer_path": "exchange/rewrites/20261031/deepfake-video-explosion__4e4e2811.answer.json"
   },
   {
-   "id": "antarctic-sea-ice-record-low__0e8066f9_r1",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-01T12:19:45Z",
-   "why": [
-    "premise: brain: Lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261101/antarctic-sea-ice-record-low__0e8066f9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/antarctic-sea-ice-record-low__0e8066f9_r1.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__315fba90_r2",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-01T12:19:45Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague claim rather than a single, verifiable numeric fact."
-   ],
-   "request": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.answer.json"
-  },
-  {
-   "id": "billion-dollar-disasters-record-2023__689aac16_r1",
+   "id": "billion-dollar-disasters-record-2023__689aac16",
    "slug": "billion-dollar-disasters-record-2023",
-   "filed": "2026-11-01T12:19:45Z",
+   "filed": "2026-10-31T16:44:08Z",
    "why": [
     "premise: brain: Unclear reversal of a viewer's specific expectation despite a numeric claim"
    ],
-   "request": "exchange/rewrites/20261101/billion-dollar-disasters-record-2023__689aac16_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/billion-dollar-disasters-record-2023__689aac16_r1.answer.json"
+   "request": "exchange/rewrites/20261031/billion-dollar-disasters-record-2023__689aac16.request.json",
+   "answer_path": "exchange/rewrites/20261031/billion-dollar-disasters-record-2023__689aac16.answer.json"
   },
   {
-   "id": "earthquake-detection-illusion__c70a68bc_r1",
-   "slug": "earthquake-detection-illusion",
-   "filed": "2026-10-31T11:23:48Z",
+   "id": "blood-supply-three-percent__a1c3f2eb",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-10-31T16:44:06Z",
    "why": [
-    "thesis: seg0 ('Earthquake stations worldwide') has no bridge to the headline (\"Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years\") — brain: no genuine bridge to the headline"
+    "premise: brain: The claim relies on a single statistic without clearly overturning a specific viewer expectation."
    ],
-   "request": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc_r1.answer.json"
+   "request": "exchange/rewrites/20261031/blood-supply-three-percent__a1c3f2eb.request.json",
+   "answer_path": "exchange/rewrites/20261031/blood-supply-three-percent__a1c3f2eb.answer.json"
   },
   {
-   "id": "national-parks-record-then-shutdown__52d77463_r2",
-   "slug": "national-parks-record-then-shutdown",
-   "filed": "2026-10-31T11:23:48Z",
+   "id": "antarctic-sea-ice-record-low__0e8066f9",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-10-31T12:59:20Z",
+   "why": [
+    "premise: brain: Lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261031/antarctic-sea-ice-record-low__0e8066f9.request.json",
+   "answer_path": "exchange/rewrites/20261031/antarctic-sea-ice-record-low__0e8066f9.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__7726747b",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-10-31T12:59:20Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r2.request.json",
-   "answer_path": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r2.answer.json"
+   "request": "exchange/rewrites/20261031/measles-comeback-since-2000__7726747b.request.json",
+   "answer_path": "exchange/rewrites/20261031/measles-comeback-since-2000__7726747b.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__315fba90_r1",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague claim rather than a single, verifiable numeric fact."
+   ],
+   "request": "exchange/rewrites/20261031/astronaut-bone-loss__315fba90_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/astronaut-bone-loss__315fba90_r1.answer.json"
+  },
+  {
+   "id": "chess-online-boom__f9b7e085_r2",
+   "slug": "chess-online-boom",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
+   ],
+   "request": "exchange/rewrites/20261031/chess-online-boom__f9b7e085_r2.request.json",
+   "answer_path": "exchange/rewrites/20261031/chess-online-boom__f9b7e085_r2.answer.json"
+  },
+  {
+   "id": "national-parks-record-then-shutdown__52d77463_r1",
+   "slug": "national-parks-record-then-shutdown",
+   "filed": "2026-10-31T12:59:19Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/national-parks-record-then-shutdown__52d77463_r1.answer.json"
+  },
+  {
+   "id": "drone-commercial-overtake__4ce6725d",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: Unclear reversal of viewer expectation; the premise relies on a number but does not convincingly invert a specific expectation."
+   ],
+   "request": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d.request.json",
+   "answer_path": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d.answer.json"
+  },
+  {
+   "id": "earthquake-detection-illusion__c70a68bc",
+   "slug": "earthquake-detection-illusion",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: The premise lacks a precise, verifiable number and relies on a vague time span, failing the strict numeric requirement."
+   ],
+   "request": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc.request.json",
+   "answer_path": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__49815695_r1",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261031/mangrove-forest-loss__49815695_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/mangrove-forest-loss__49815695_r1.answer.json"
+  },
+  {
+   "id": "naep-math-pandemic-drop__aa1c0224",
+   "slug": "naep-math-pandemic-drop",
+   "filed": "2026-10-31T12:59:18Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number to anchor the surprising claim."
+   ],
+   "request": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224.request.json",
+   "answer_path": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__c0cc9c1a_r4",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-31T12:59:17Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261031/ai-datacenter-water__c0cc9c1a_r4.request.json",
+   "answer_path": "exchange/rewrites/20261031/ai-datacenter-water__c0cc9c1a_r4.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__68c934c9_r1",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-31T11:23:49Z",
+   "why": [
+    "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
+   ],
+   "request": "exchange/rewrites/20261031/peanut-allergy-guideline-flip__68c934c9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/peanut-allergy-guideline-flip__68c934c9_r1.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__c3934ec2_r1",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-10-31T11:23:48Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261031/metric-system-holdouts__c3934ec2_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/metric-system-holdouts__c3934ec2_r1.answer.json"
   },
   {
    "id": "lightning-deaths-collapsed-not-the-storms__c86366ce",
