@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chess-online-boom__f9b7e085_r2",
+  "slug": "chess-online-boom",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Even 200 Million Chess.com Accounts Cover Just A Third",
+  "hook": "Chess.com reached 200 million accounts, yet covers only a third.",
+  "closing": "Online chess exploded, but most regular players still exist beyond one platform.",
+  "question": "Where do you play chess?",
+  "segments": [
+    {
+      "topic": "Chess.com Account Boom",
+      "say": "Chess.com reached 200 million accounts, turning a niche website into a massive global platform."
+    },
+    {
+      "topic": "Chess.com Signup Spike",
+      "say": "Monthly signups reached 2.8 million after The Queen's Gambit, nearly tripling the baseline."
+    },
+    {
+      "topic": "Chess.com Global Share",
+      "say": "The world has 605 million regular players, so even the largest platform covers only about a third."
+    }
+  ]
+}
