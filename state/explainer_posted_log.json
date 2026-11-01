@@ -4743,6 +4743,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 32.7
+    },
+    "peanut-allergy-guideline-flip": {
+      "claimed_at": "2026-11-01T18:11:55.336969+00:00",
+      "title": "Early Peanut Eating Cut Allergies To 1.9%",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6061,6 +6068,14 @@
       "state": "posted",
       "slug": "tonga-volcano-water-vapor-record",
       "at": "2026-10-31T20:07:07.814860+00:00"
+    },
+    {
+      "claimed_at": "2026-11-01T18:11:55.336969+00:00",
+      "title": "Early Peanut Eating Cut Allergies To 1.9%",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "peanut-allergy-guideline-flip"
     }
   ]
 }
