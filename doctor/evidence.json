@@ -4590,8 +4590,8 @@
     }
   },
   "recent_commits": [
-    "8609c06 2026-11-01 claim: mailbox verdicts 2026-11-01T04:47Z [skip ci]",
-    "cc87379 2026-11-01 claim: mailbox verdicts 2026-11-01T03:48Z [skip ci]"
+    "88b68be 2026-11-01 trending: posted j_j__mccarthy_s_teammates_rush_him_after [skip ci]",
+    "3b14026 2026-11-01 trending: claim upload slot j_j__mccarthy_s_teammates_rush_him_after [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4608,10 +4608,11 @@
         "2026-10-28": 3,
         "2026-10-29": 3,
         "2026-10-30": 5,
-        "2026-10-31": 5
+        "2026-10-31": 5,
+        "2026-11-01": 1
       },
-      "total_posted": 494,
-      "attempted": 494,
+      "total_posted": 495,
+      "attempted": 495,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4698,32 +4699,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 151,
+      "videos": 152,
       "top_by_vph": [
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 13.5,
-          "views": 291
+          "vph": 10.51,
+          "views": 402
         },
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 8.0,
-          "views": 1709
+          "vph": 7.55,
+          "views": 1739
         },
         {
           "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Bet",
-          "vph": 6.26,
-          "views": 88
+          "vph": 7.28,
+          "views": 224
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 5.12,
-          "views": 241
+          "vph": 4.3,
+          "views": 274
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.09,
-          "views": 1909
+          "vph": 3.03,
+          "views": 1922
         }
       ],
       "full_data": "state/analytics_third/latest.json"
