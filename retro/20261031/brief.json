@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261031",
-  "generated_at": "2026-10-31T23:31:03Z",
+  "generated_at": "2026-11-01T00:31:13Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 37.76,
+          "days": 37.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 36.76,
+          "days": 36.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1703,10 +1703,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "35dc7b8",
-    "commits_since": "2026-10-30",
+    "head": "5da36e2",
+    "commits_since": "2026-10-31",
     "commit_count": 50,
     "commits": [
+      "5da36e2 claim: mailbox verdicts 2026-10-31T23:49Z [skip ci]",
+      "bb726c9 retro: brief + triage for 20261031 [skip ci]",
       "35dc7b8 claim: mailbox verdicts 2026-10-31T22:41Z [skip ci]",
       "3cf0afe comments: saved viewer comments [skip ci]",
       "890ef27 story forge: new real-data stories [skip ci]",
@@ -1744,9 +1746,7 @@
       "8b34036 explainer: claim upload slot ai-datacenter-water [skip ci]",
       "9f7235a claim: mailbox verdicts 2026-10-31T13:49Z [skip ci]",
       "97a5a47 claim: mailbox verdicts 2026-10-31T13:47Z [skip ci]",
-      "431c701 watchdog: chatgpt task verdicts 20261031 [skip ci]",
-      "c4a77e4 deadman: repaired 2026-10-31 [skip ci]",
-      "1f9ef8e explainer: update posted log + analytics [skip ci]"
+      "431c701 watchdog: chatgpt task verdicts 20261031 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
