@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-comeback-since-2000__7726747b",
+  "slug": "measles-comeback-since-2000",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Measles Returned After America Cut Cases To 86",
+  "hook": "America cut measles to 86 cases. Then it returned.",
+  "closing": "Elimination is not permanent when vaccination gaps let measles reach classrooms again.",
+  "question": "Did you know measles had been eliminated?",
+  "segments": [
+    {
+      "topic": "Measles Cases Returned",
+      "say": "America once recorded only 86 measles cases, showing how close elimination came to ending domestic spread."
+    },
+    {
+      "topic": "Measles Vaccine Gap",
+      "say": "Unvaccinated people made up 93% of cases, revealing where the comeback found room to spread."
+    },
+    {
+      "topic": "Measles Texas Outbreak",
+      "say": "The Texas outbreak reached 702 cases, showing how quickly one vulnerable pocket can grow."
+    }
+  ]
+}
