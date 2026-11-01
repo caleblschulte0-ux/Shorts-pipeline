@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "billion-dollar-disasters-record-2023__689aac16",
+  "slug": "billion-dollar-disasters-record-2023",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "US Disasters Now Strike 20 Times A Year",
+  "hook": "Billion-dollar US disasters now strike about 20 times a year.",
+  "closing": "More frequent disasters push higher costs onto insurers, taxpayers, and families.",
+  "question": "Has a major disaster affected you?",
+  "segments": [
+    {
+      "topic": "US Disaster Pace",
+      "say": "The US now averages 20.4 billion-dollar disasters yearly, turning rare catastrophes into recurring bills."
+    },
+    {
+      "topic": "US Disaster Record",
+      "say": "The record year brought 28 disasters, more than triple the long-term average."
+    },
+    {
+      "topic": "US Disaster Cost",
+      "say": "US billion-dollar disasters have cost 2.635 trillion dollars, spreading damage far beyond the communities directly hit."
+    }
+  ]
+}
