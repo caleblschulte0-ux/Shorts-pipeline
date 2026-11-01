@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__c3934ec2_r1",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:17:00Z",
+  "title": "Metric Mix-Ups Lost A Spacecraft And 24,600 Pounds Of Fuel",
+  "hook": "A metric mix-up left a plane 24,600 pounds short.",
+  "closing": "Unit mistakes can destroy expensive machines or endanger people, so measurement standards matter.",
+  "question": "Should every country use metric?",
+  "segments": [
+    {
+      "topic": "Metric Adoption",
+      "say": "Only 5% of people live in countries without official metric adoption, making mismatched systems unusually risky."
+    },
+    {
+      "topic": "Metric Spacecraft Loss",
+      "say": "The Mars orbiter dropped to 57 kilometers, far below its planned altitude, and was lost."
+    },
+    {
+      "topic": "Metric Fuel Shortfall",
+      "say": "The plane lacked 24,600 pounds of fuel, turning a unit mistake into an emergency glide."
+    }
+  ]
+}
