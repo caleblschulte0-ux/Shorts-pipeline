@@ -1,6 +1,17 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-01T18:50:44Z",
- "open": [],
+ "updated": "2026-11-01T19:24:31Z",
+ "open": [
+  {
+   "id": "deepfake-video-explosion__dde62f61df",
+   "channel": "explainer",
+   "slug": "deepfake-video-explosion",
+   "title": "Deepfake Videos Online Jumped Sixfold In Just 4 Years",
+   "filed": "2026-11-01T19:24:31Z",
+   "request": "exchange/reviews/20261101/deepfake-video-explosion__dde62f61df.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261101/deepfake-video-explosion__dde62f61df/sheet.jpg",
+   "answer_path": "exchange/reviews/20261101/deepfake-video-explosion__dde62f61df.verdict.json"
+  }
+ ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }

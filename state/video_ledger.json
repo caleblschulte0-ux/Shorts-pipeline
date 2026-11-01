@@ -6616,6 +6616,51 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "re-confirmed existing scenes (validate OK); no creative change"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-11-01",
+   "topic_category": "nature",
+   "hook_type": "stake",
+   "hook_text": "A deadly fungus is wiping out the bats that protect your food.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate pass); no creative change"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-11-01",
+   "topic_category": "finance",
+   "hook_type": "stake",
+   "hook_text": "Someone you know is owed money by their state and has no idea.",
+   "depictions": [
+    "illustrated:money-bag",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate pass); no creative change"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-01",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "illustrated:arm-trend",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate pass); no creative change"
   }
  ]
 }

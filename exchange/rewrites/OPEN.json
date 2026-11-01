@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-01T16:41:35Z",
+ "updated": "2026-11-01T19:34:34Z",
  "open": [
+  {
+   "id": "elephant-poaching-decline__7f81acaa",
+   "slug": "elephant-poaching-decline",
+   "filed": "2026-11-01T19:34:34Z",
+   "why": [
+    "premise: brain: The premise does not invert a common viewer expectation, merely stating a known decline despite a specific statistic."
+   ],
+   "request": "exchange/rewrites/20261101/elephant-poaching-decline__7f81acaa.request.json",
+   "answer_path": "exchange/rewrites/20261101/elephant-poaching-decline__7f81acaa.answer.json"
+  },
+  {
+   "id": "local-news-deserts-expanding__9f62ea81",
+   "slug": "local-news-deserts-expanding",
+   "filed": "2026-11-01T19:34:34Z",
+   "why": [
+    "thesis: seg2 ('Living without news') has no bridge to the headline ('US Newspapers Dropped From 7,325 To 4,490') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261101/local-news-deserts-expanding__9f62ea81.request.json",
+   "answer_path": "exchange/rewrites/20261101/local-news-deserts-expanding__9f62ea81.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__b37435d8",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-11-01T19:34:33Z",
+   "why": [
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.request.json",
+   "answer_path": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.answer.json"
+  },
+  {
+   "id": "tsa-digital-id-states-growth__1330070e",
+   "slug": "tsa-digital-id-states-growth",
+   "filed": "2026-11-01T19:34:33Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a specific viewer expectation and relies only on a generic count without a striking, verifiable twist."
+   ],
+   "request": "exchange/rewrites/20261101/tsa-digital-id-states-growth__1330070e.request.json",
+   "answer_path": "exchange/rewrites/20261101/tsa-digital-id-states-growth__1330070e.answer.json"
+  },
   {
    "id": "national-parks-record-then-shutdown__e97b7e5a",
    "slug": "national-parks-record-then-shutdown",
@@ -21,16 +61,6 @@
    ],
    "request": "exchange/rewrites/20261101/california-condor-comeback__7fd19fc0.request.json",
    "answer_path": "exchange/rewrites/20261101/california-condor-comeback__7fd19fc0.answer.json"
-  },
-  {
-   "id": "local-news-deserts-expanding__4cc454c1",
-   "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-01T12:35:13Z",
-   "why": [
-    "premise: brain: It relies on two numbers instead of a single consequential, verifiable figure, violating the one-number rule."
-   ],
-   "request": "exchange/rewrites/20261101/local-news-deserts-expanding__4cc454c1.request.json",
-   "answer_path": "exchange/rewrites/20261101/local-news-deserts-expanding__4cc454c1.answer.json"
   },
   {
    "id": "autism-diagnosis-rate-rise__3a83f544",
@@ -81,16 +111,6 @@
    ],
    "request": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.request.json",
    "answer_path": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r3",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-01T12:35:10Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__81f94a66_r3.request.json",
-   "answer_path": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__81f94a66_r3.answer.json"
   },
   {
    "id": "mangrove-forest-loss__49815695_r2",
