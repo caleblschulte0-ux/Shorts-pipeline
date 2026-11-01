@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "california-condor-comeback__ada5193e_r3",
+  "slug": "california-condor-comeback",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:17:00Z",
+  "title": "California Condors Rose From 27 To 500",
+  "hook": "California condors rose from 27 birds to 500.",
+  "closing": "The population survived, but lead poisoning still threatens every hard-won generation.",
+  "question": "Have you ever seen a condor?",
+  "segments": [
+    {
+      "topic": "California Condor Low",
+      "say": "California condors fell to 27 birds, leaving the species one disaster from extinction."
+    },
+    {
+      "topic": "California Condor Today",
+      "say": "The population reached 500, reversing a collapse once thought nearly impossible to stop."
+    },
+    {
+      "topic": "California Condor Poisoning",
+      "say": "Lead poisoning causes 50% of known deaths, keeping the species dependent on continued protection."
+    }
+  ]
+}
