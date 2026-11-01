@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cruise-ship-outbreaks-climbing__815de0c3",
+  "slug": "cruise-ship-outbreaks-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Cruise Outbreaks Rose Despite Modern Mega-Ships",
+  "hook": "Cruise outbreaks climbed to 20 in a year.",
+  "closing": "Bigger ships make hygiene matter more because one illness reaches a much larger crowd.",
+  "question": "Would an outbreak change your cruise plans?",
+  "segments": [
+    {
+      "topic": "Cruise Outbreak Rise",
+      "say": "Cruise outbreaks reached 20, showing modern ships have not eliminated gastrointestinal illness."
+    },
+    {
+      "topic": "Cruise Norovirus Cause",
+      "say": "Norovirus caused 15 outbreaks, making one preventable illness the dominant problem."
+    },
+    {
+      "topic": "Cruise Passenger Scale",
+      "say": "The largest cruise ship holds 7,600 guests, giving one contagious passenger an enormous crowd to reach."
+    }
+  ]
+}
