@@ -4745,11 +4745,39 @@
       "duration_s": 32.7
     },
     "peanut-allergy-guideline-flip": {
-      "claimed_at": "2026-11-01T18:11:55.336969+00:00",
+      "url": "https://youtube.com/shorts/YfhcpGsV-AE",
       "title": "Early Peanut Eating Cut Allergies To 1.9%",
+      "at": "2026-11-01T18:12:05.484553+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.06,
+      "beat_s": [
+        4.49,
+        6.93,
+        6.73,
+        8.06,
+        6.4
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+comparison",
+      "narrative_score": 70,
+      "duration_s": 33.1,
+      "hook": "inversion",
+      "topic_category": "health",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:peanut-rash-climb",
+        "mechanic:peanut-shield-crack-duel",
+        "viz:comparison"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -6073,9 +6101,10 @@
       "claimed_at": "2026-11-01T18:11:55.336969+00:00",
       "title": "Early Peanut Eating Cut Allergies To 1.9%",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "peanut-allergy-guideline-flip"
+      "url": "https://youtube.com/shorts/YfhcpGsV-AE",
+      "state": "posted",
+      "slug": "peanut-allergy-guideline-flip",
+      "at": "2026-11-01T18:12:05.484553+00:00"
     }
   ]
 }
