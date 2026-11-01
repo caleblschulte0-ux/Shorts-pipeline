@@ -1,0 +1,10 @@
+{
+ "id": "usps-mail-volume-collapse__c57ffab9",
+ "slug": "usps-mail-volume-collapse",
+ "settled": "2026-11-01T12:19:48Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Halved",
+  "segment 1: new named entity not in the data: Halved"
+ ]
+}
