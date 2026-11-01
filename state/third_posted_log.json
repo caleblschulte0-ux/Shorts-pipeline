@@ -17517,13 +17517,57 @@
       "director_cut": true
     },
     "clip-20261101-1": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-5eaa5cc87a9bda7a",
-      "streamer": "dangerlyoha",
+      "url": "https://youtube.com/shorts/vjdoPEx5W14",
       "title": "Dangerlyoha denies breaking Lera's leg",
       "kind": "story",
-      "ts": "2026-11-01T13:16:25.542337+00:00",
+      "ts": "2026-11-01T13:16:35.698925+00:00",
+      "uploaded_at": "2026-11-01T13:16:35.698940+00:00",
+      "publish_at": "2026-11-02T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261101-dangerlyoha-denies-breaking-lera-s-leg-e6441583",
+        "tiktok": "queued for 2026-11-02T02:00:00Z"
+      },
+      "story_key": "story-5eaa5cc87a9bda7a",
+      "member_keys": [
+        "vodmine://2913052385/13689-13929",
+        "https://www.twitch.tv/dangerlyoha/clip/AuspiciousFunDelicataPunchTrees-sXEw5fPzCaY1uLEu"
+      ],
+      "streamer": "dangerlyoha",
+      "who": [
+        "dangerlyoha"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 2,
+      "story_structure": "chronological",
+      "duration_s": 36.0,
+      "narrative_score": 0,
+      "narrative_summary": "In the pool, the group jokes about beating someone up and says Lera broke her leg. Dangerlyoha denies he did it, then repeats it to the camera in the clip.",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 0,
+      "replay_count": 0
+    },
+    "rejected-freezingfrigidshallotpanicbasket-db_ugw_x9pe5j5bf": {
+      "source_url": "https://www.twitch.tv/xqc/clip/FreezingFrigidShallotPanicBasket-DB_uGw_x9pE5J5bf",
+      "streamer": "xqc",
+      "title": "Jean Paul (xQc) completes his jett sequence.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP cooking minigame, inside baseball)",
+      "ts": "2026-11-01T13:17:27.175892+00:00"
+    },
+    "clip-20261101-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ViscousFunnyWalrusTinyFace-Bov2wn6LyQjn_UXs",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Gets Roasted By Chat: \"Your Barber Is Blind\" \ud83d\udc80",
+      "kind": "twitch_clip",
+      "ts": "2026-11-01T13:20:28.409955+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
