@@ -4805,12 +4805,30 @@
       "duration_s": 31.9
     },
     "deepfake-video-explosion": {
+      "url": "https://youtube.com/shorts/esRMIM-RL88",
       "title": "Deepfake Videos Online Jumped Sixfold In Just 4 Years",
+      "at": "2026-11-01T19:48:54Z",
       "publish_at": "2026-11-02T03:11:55Z",
-      "url": null,
-      "state": "uploading",
-      "claimed_at": "2026-11-01T19:48:47Z",
-      "via": "showrunner-rejudge"
+      "state": "posted",
+      "via": "showrunner-rejudge",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.58,
+      "beat_s": [
+        4.38,
+        5.99,
+        6.36,
+        7.58,
+        7.72
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 100,
+      "duration_s": 32.5
     }
   },
   "uploads": [
@@ -6151,11 +6169,12 @@
     {
       "title": "Deepfake Videos Online Jumped Sixfold In Just 4 Years",
       "publish_at": "2026-11-02T03:11:55Z",
-      "url": null,
-      "state": "uploading",
+      "url": "https://youtube.com/shorts/esRMIM-RL88",
+      "state": "posted",
       "claimed_at": "2026-11-01T19:48:47Z",
       "via": "showrunner-rejudge",
-      "slug": "deepfake-video-explosion"
+      "slug": "deepfake-video-explosion",
+      "at": "2026-11-01T19:48:54Z"
     }
   ]
 }
