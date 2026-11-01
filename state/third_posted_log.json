@@ -17406,13 +17406,50 @@
       "ts": "2026-11-01T12:39:08.254722+00:00"
     },
     "clip-20261101-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/clix/clip/KitschyTsundereWasabiPanicBasket-6xLiIBDdoIsUGDhD",
-      "story_key": null,
-      "streamer": "clix",
+      "url": "https://youtube.com/shorts/imOgFh-6Ors",
       "title": "Clix Gets His Subs After Winning The Game And Tops The Leaderboard",
       "kind": "twitch_clip",
-      "ts": "2026-11-01T12:43:30.730131+00:00",
+      "ts": "2026-11-01T12:43:39.945229+00:00",
+      "uploaded_at": "2026-11-01T12:43:39.945238+00:00",
+      "publish_at": "2026-11-01T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261101-clix-gets-his-subs-after-winning-the-game-and-to-a669a126",
+        "tiktok": "queued for 2026-11-01T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/clix/clip/KitschyTsundereWasabiPanicBasket-6xLiIBDdoIsUGDhD",
+      "streamer": "clix",
+      "series": "win",
+      "hook": "Clix demands his subs after the win",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3009,
+      "banger": 0.4,
+      "cut": {
+        "start": 4.5,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-difficultagitatedeggnogdoritoschip-upnno4ktb54wej8w": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/DifficultAgitatedEggnogDoritosChip-UpNNO4Ktb54WEJ8W",
+      "streamer": "sodapoppin",
+      "title": "egirl",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (character creator talk, nothing happens)",
+      "ts": "2026-11-01T12:44:20.633626+00:00"
+    },
+    "clip-20261101-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/YawningHealthyCurryItsBoshyTime-xIKXtmOOLvuq67YY",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Is So Scared After Chun Li Goons On Him",
+      "kind": "twitch_clip",
+      "ts": "2026-11-01T12:50:00.551478+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
