@@ -3,156 +3,6 @@
     {
       "date": "20261024",
       "dry_run": false,
-      "ts": "2026-10-24T12:41:05+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 119,
-        "with_curve": 14,
-        "fetched_at": "2026-10-24T08:46:07.610265+00:00"
-      },
-      "brain": {
-        "ok": 14,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261024-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "yo-yo trick, unclear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Visible yo-yo trick, funny reaction, cha",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Loses It After Her Yo-Yo Does The Unthinkable \ud83d\ude2d"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Frame at 1.2s is a close, blurry crop of a torso with no clear subject, and the frame at 20.8s is a whip-pan blur. Both ",
-                "The word captions sit right under the hook caption and nearly touch it, and some show raw asterisk bleeps.",
-                "The 28.2s frame crops a person at the right edge."
-              ]
-            }
-          },
-          "took_s": 195.0
-        },
-        {
-          "slug": "clip-20261024-2",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague reaction, unknown trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Car banter, possible beef, unclear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 21.7
-        },
-        {
-          "slug": "clip-20261024-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261024-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261024-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261024-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261024",
-      "dry_run": false,
       "ts": "2026-10-24T14:34:12+00:00",
       "feedback": {
         "snapshot": true,
@@ -5771,6 +5621,416 @@
           "slug": "clip-20261031-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261101",
+      "dry_run": false,
+      "ts": "2026-11-01T13:06:26+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 152,
+        "with_retention": 129,
+        "with_curve": 13,
+        "fetched_at": "2026-11-01T08:46:15.072482+00:00"
+      },
+      "brain": {
+        "ok": 37,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261101-1",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.3s \u2014 too short to edit",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 130,
+                "refused_shown": 9,
+                "scouted": [],
+                "vod_arcs": 297,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2892,
+                "pool_with_vod": 1947,
+                "arc_sizes": [
+                  2,
+                  5,
+                  3,
+                  6,
+                  3,
+                  2,
+                  6,
+                  3,
+                  2,
+                  6
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: trails 28s past the picked moment"
+                },
+                {
+                  "cluster": "dangerlyoha@momentauspiciousfundelicatapunchtrees-sxew5fpzca",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 There is no story here. The clip is a drunk streamer rambling in a pool at night. Its only dialogue is the fragments 'for' and 'wouldn't do it', with a stranger walking past at the edge of the frame. "
+                },
+                {
+                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "emmnasstics@momentmuddywiseicecreamnerfredblaster--0jfgnnhqx",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "emmnasstics@momentmuddywiseicecreamnerfredblaster--0jfgnnhqx",
+                  "outcome": "duration",
+                  "why": "23s outside 25-90s"
+                },
+                {
+                  "cluster": "piskulya@momententicingcallousdragonfly4head-db7hghj2gcafnsx",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
+                },
+                {
+                  "cluster": "whylollycry@momentbillowingrepleteshrewdendiface-97coj9fcstt",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 There is no meaningful change in these sources. The clip is 9 seconds of a gym group workout with a voice repeating \"don't know what to say\". The stream before it is a fragmentary, partly garbled, non"
+                },
+                {
+                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: the picture stands still for 2s at 0s"
+                },
+                {
+                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: director judged: not a story \u2014 All three sources are silent. There is no dialogue, no argument, no challenge and no reaction. The clip and the footage around it"
+                },
+                {
+                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "@momentquaintneighborlydogdaesuppy-syv9xet0trdsph5p/camera-j",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 There is no meaningful change and no entertaining moment a stranger could follow. The clip is the streamer saying, in Japanese, that people shouldn't take Bankara Match so seriously and that a game sh"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown",
+              "blind": false
+            }
+          },
+          "took_s": 11.0
+        },
+        {
+          "slug": "clip-20261101-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Visible shock reaction after sniper duel",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Can't Believe This Guy Actually Beat Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Some gameplay frames (2.1s, 3.4s, 14.4s) show only a wall or empty floor, with no clear action.",
+                "The gameplay half is cropped tight, so the stream's own captions and HUD are partly cut off at its edges."
+              ]
+            }
+          },
+          "took_s": 185.6
+        },
+        {
+          "slug": "clip-20261101-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "Garbage title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "Watching Fortnite tournament win, trophy",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Clix Gets His Subs After Winning The Game And Tops The Leaderboard"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Subject is small and far away in the 16.5s, 18.7s and 20.9s frames, and he is mostly off-frame at 20.9s",
+                "The hook caption overlaps the gameplay HUD in the opening frames",
+                "The word caption covers part of the desk at 18.7s"
+              ]
+            }
+          },
+          "took_s": 271.7
+        },
+        {
+          "slug": "clip-20261101-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, likely cosplay/goon bait",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Flirty cosplay encounter, awkward and ch",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Is So Scared After Chun Li Goons On Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Subject is partly cropped at the frame edge in a few frames (e.g. 11.1s, 30.2s, 36.6s)",
+                "The hook caption and the word captions overlap slightly at the bottom, so the text looks cluttered"
+              ]
+            }
+          },
+          "took_s": 349.9
+        },
+        {
+          "slug": "clip-20261101-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip, about one third of the 9:16 canvas, with large blurred areas above and below. It; vision: The subject is small and far away in most frames. It is hard t",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown event, big name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Creepy doll house, Jeffy reveal, unclear",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Stops Dead After Seeing This Wild Scene: \"Who Is This?\""
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip, about one third of the 9:16 canvas, with large blurred areas above and below. It",
+                "The subject is small and far away in most frames. It is hard to read on a phone and was not cropped in toward the action",
+                "The stream's chat and counter overlay and the YouTube watermark are still visible inside the strip and add clutter.",
+                "The hook card says 'freezes', but the person is moving the whole time, so the card does not match the footage."
+              ]
+            }
+          },
+          "took_s": 337.4
+        },
+        {
+          "slug": "clip-20261101-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261101-6",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "unclear, possible sumo moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "Street sumo bout, crowd, visible physica",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Gets Into A Sumo Match And Chat Goes Crazy"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Some frames (6.9s, 20.7s, 34.4s) show motion blur or no clear subject, but this comes from the source footage",
+                "The hook caption sits low over the action but doesn't cover any faces"
+              ]
+            }
+          },
+          "took_s": 502.1
         }
       ]
     }
