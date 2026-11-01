@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-supply-three-percent__a1c3f2eb",
+  "slug": "blood-supply-three-percent",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Blood Supply Depends On Just 3% Of Eligible Donors",
+  "hook": "Just 3% of eligible people donate blood each year.",
+  "closing": "Hospitals need more eligible people to become repeat donors before shortages deepen.",
+  "question": "Would you become a regular donor?",
+  "segments": [
+    {
+      "topic": "Blood Donor Gap",
+      "say": "Only 3% of eligible people donate blood, leaving hospitals dependent on a tiny volunteer pool."
+    },
+    {
+      "topic": "Blood Donor Decline",
+      "say": "Donor volume fell to an index of 60, shrinking the pool hospitals already rely on."
+    }
+  ]
+}
