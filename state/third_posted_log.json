@@ -17331,6 +17331,52 @@
         "end": 17.7
       },
       "director_cut": true
+    },
+    "rejected-poisedboxyaxesmorc-k14odt2xxzom5qvi": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PoisedBoxyAxeSMOrc-K14oDt2XXzOm5qVi",
+      "streamer": "kaicenat",
+      "title": "\ud83d\udc40... damn",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 2.1s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-11-01T12:29:45.049477+00:00"
+    },
+    "rejected-wrongdoubtfulneanderthalcurselit-iq2--szed1rybtac": {
+      "source_url": "https://www.twitch.tv/alinity/clip/WrongDoubtfulNeanderthalCurseLit-iq2--szED1RYBTAC",
+      "streamer": "alinity",
+      "title": "Alinity Can't Believe What Happens When She Pulls It On Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is only about a third of the canvas height, with large blurred bands above and below. It is a thin str; vision: Garbled, glitched pixel-stretch artifacts across the bottom of the sharp region at about 14.2s and 15.8s. This is a visi; vision: The subject is partly cropped or",
+      "ts": "2026-11-01T12:34:05.340859+00:00"
+    },
+    "rejected-boringstormypicklespipehype-dahkfvhbz3fjkj_n": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BoringStormyPicklesPipeHype-DAHKfvhbZ3fJKJ_N",
+      "streamer": "jynxzi",
+      "title": "this what",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.3s \u2014 too short to edit",
+      "ts": "2026-11-01T12:34:16.299012+00:00"
+    },
+    "rejected-excitedinterestingcamelspicyboy-uise0jj-md6ztt_3": {
+      "source_url": "https://www.twitch.tv/yugi/clip/ExcitedInterestingCamelSpicyBoy-uIsE0jj-mD6Ztt_3",
+      "streamer": "yugi",
+      "title": "???",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit; source too dark (avg luma 20/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-11-01T12:35:12.152474+00:00"
+    },
+    "clip-20261101-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LachrymoseDignifiedTroutBloodTrail-Knk12kFgO6o8z-ol",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Can't Believe This Guy Actually Beat Him",
+      "kind": "twitch_clip",
+      "ts": "2026-11-01T12:38:05.155589+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
