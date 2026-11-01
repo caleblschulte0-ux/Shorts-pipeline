@@ -1,0 +1,88 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "deepfake-video-explosion__dde62f61df",
+ "video_sha256": "dde62f61dfca99b44c27da0d10c52691d595b563f06368634560953aee8e8d4a",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-01T19:48:45Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "N/A"
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "Mascot operates a lever in seg2:mid and interacts with money in seg3:mid, actively participating in data demonstration."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "seg0:start shows '14,700 videos' on a wall of screens, not a plain card."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "longest_static_s: 0.0"
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "All frames are well-composed with detailed backgrounds and foreground elements, e.g., seg0:start shows a city skyline, a wall of screens, and a desk."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All text elements, such as '95,820 videos' (hook@0.3) and 'Deepfake fraud is exploding...' (hook@0.3), are clearly legible and high contrast."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "less dynamic demonstration",
+   "visible_evidence": "The visual of screens lighting up to represent video count is effective but less interactive and dynamic compared to the detection software and financial loss segments.",
+   "root_cause": "The chosen visual metaphor for volume, while clear, is simpler compared to the interactive or action-oriented metaphors used later in the video.",
+   "repair_goal": "Enhance the dynamism or interactivity of the deepfake video count demonstration in seg0/seg1."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Wall of screens with faces representing deepfake videos, visually demonstrating volume."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Continuation of the wall of screens, showing the growth in deepfake videos by lighting up more screens."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 3,
+    "note": "Conveyor belt machine demonstrating deepfake detection rates by passing or failing screens with faces."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Money vault demonstrating financial loss due to AI fraud, with money spilling out to show scale."
+   }
+  ],
+  "one_line": "This video effectively demonstrates the alarming growth and impact of deepfake fraud with engaging visuals and a well-integrated mascot.",
+  "problems": [
+   "The initial deepfake video count demonstration (seg0/seg1) is visually effective but less dynamic compared to the interactive detection and financial loss segments."
+  ],
+  "fixes": [
+   "Consider adding more dynamic elements or a stronger visual progression within the deepfake video count scene to match the energy of later segments."
+  ]
+ }
+}
