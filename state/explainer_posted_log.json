@@ -4803,6 +4803,14 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 83,
       "duration_s": 31.9
+    },
+    "deepfake-video-explosion": {
+      "title": "Deepfake Videos Online Jumped Sixfold In Just 4 Years",
+      "publish_at": "2026-11-02T03:11:55Z",
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-11-01T19:48:47Z",
+      "via": "showrunner-rejudge"
     }
   },
   "uploads": [
@@ -6139,6 +6147,15 @@
       "state": "posted",
       "slug": "wisdom-albatross-74",
       "at": "2026-11-01T19:00:06.165363+00:00"
+    },
+    {
+      "title": "Deepfake Videos Online Jumped Sixfold In Just 4 Years",
+      "publish_at": "2026-11-02T03:11:55Z",
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-11-01T19:48:47Z",
+      "via": "showrunner-rejudge",
+      "slug": "deepfake-video-explosion"
     }
   ]
 }
