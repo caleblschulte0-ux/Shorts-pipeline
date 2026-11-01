@@ -1,0 +1,19 @@
+{
+  "key": "craft_brewery_openings_vs_closings_2024",
+  "title": "US craft brewery openings vs closings, 2024",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "2024 brewery count reporting (Brewers Association data)",
+    "publisher": "Brewers Association",
+    "url": "https://www.brewersassociation.org",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "2024 marked the first year in roughly two decades that US craft brewery closings (399) outpaced openings (335), per Brewers Association data reported industry-wide.",
+  "points": [
+    {"label": "Closed in 2024", "value": 399},
+    {"label": "Opened in 2024", "value": 335}
+  ]
+}

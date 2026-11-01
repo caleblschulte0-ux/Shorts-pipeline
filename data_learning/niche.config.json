@@ -37035,6 +37035,234 @@
      "say": "The original Human Genome Project took 4,745 days to finish, that's 13 years. A modern sequencer can do it in about 1."
     }
    ]
+  },
+  {
+   "slug": "local-news-deserts-expanding",
+   "title": "US Newspapers Dropped From 7,325 To 4,490",
+   "hook": "Why is nobody covering your town's news anymore?",
+   "closing": "Nobody's watching city hall anymore. That should worry you.",
+   "question": "Know your local reporter's name? Comment below.",
+   "caption": "Since 2005, America has lost nearly 3,000 newspapers — down to just 4,490 left. Now 50 million Americans live somewhere with little or no local news at all. Do you still get local news? Tell me below 📰",
+   "hashtags": [
+    "localnews",
+    "newspapers",
+    "newsdeserts",
+    "journalism",
+    "media",
+    "democracy",
+    "smalltown",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "statistics",
+    "civics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "newspaper_count_trend",
+     "params": {
+      "file": "newspaper_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COLLAPSE",
+     "topic": "the number of US newspapers",
+     "say": "In 2005, America had 7,325 newspapers. Today there are just 4,490 left — nearly 3,000 gone in twenty years."
+    },
+    {
+     "source": "offline",
+     "key": "news_desert_counties",
+     "params": {
+      "file": "news_desert_counties.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE DESERTS",
+     "topic": "counties where newspapers are disappearing",
+     "say": "The number of 'news desert' counties — places with zero local news — climbed from 204 to 208 in just one year."
+    },
+    {
+     "source": "offline",
+     "key": "americans_without_local_news_share",
+     "params": {
+      "file": "americans_without_local_news_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · WHO IT HITS",
+     "topic": "Americans living without local news",
+     "say": "Roughly 15 percent of the entire country now lives somewhere with little or no local news coverage left."
+    }
+   ]
+  },
+  {
+   "slug": "robotic-surgery-doubled",
+   "title": "Robotic Surgery Procedures Doubled In 4 Years",
+   "hook": "Would you let a robotic surgeon operate on you?",
+   "closing": "The robots aren't slowing down. They're just getting started.",
+   "question": "Would you trust a robot in surgery?",
+   "caption": "Robotic surgeries have nearly doubled worldwide in just 4 years — from 1.6 million procedures in 2021 to over 3 million in 2025. It's already a $7 billion-plus industry. Would you trust a robot in the OR? Tell me below 🤖",
+   "hashtags": [
+    "roboticsurgery",
+    "surgery",
+    "medtech",
+    "hospitals",
+    "health",
+    "medicine",
+    "healthfacts",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "technology",
+    "innovation"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "davinci_procedures_trend",
+     "params": {
+      "file": "davinci_procedures_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SURGE",
+     "topic": "robotic surgery procedure volume",
+     "say": "Surgery robots performed 1.6 million operations worldwide in 2021. By 2025 that hit 3.15 million — almost double, in just 4 years."
+    },
+    {
+     "source": "offline",
+     "key": "robotic_general_surgery_share",
+     "params": {
+      "file": "robotic_general_surgery_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · NOT RARE ANYMORE",
+     "topic": "robotic surgery's growing share of operations",
+     "say": "In 2012, barely 2 percent of general surgeries used a robot. By 2018 it was 15 percent."
+    },
+    {
+     "source": "offline",
+     "key": "davinci_revenue_trend",
+     "params": {
+      "file": "davinci_revenue_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE INDUSTRY",
+     "topic": "the robotic surgery industry's revenue",
+     "say": "The company behind most of these robots made 6.2 billion dollars in 2022. By 2023, 7.1 billion."
+    }
+   ]
+  },
+  {
+   "slug": "nuclear-reactors-under-construction",
+   "title": "The World Is Quietly Building 78 Gigawatts Of Nuclear Power",
+   "hook": "Nuclear power never actually went away.",
+   "closing": "Turns out the 'dying' industry was just reloading.",
+   "question": "Would you live near a nuclear plant?",
+   "caption": "78 gigawatts of nuclear power are under construction worldwide right now, across 15 countries — and China alone is building half of it. Would you live near a nuclear plant? Tell me below ⚛️",
+   "hashtags": [
+    "nuclearpower",
+    "energy",
+    "nuclear",
+    "climate",
+    "electricity",
+    "china",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "science",
+    "geopolitics",
+    "power"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "nuclear_construction_starts",
+     "params": {
+      "file": "nuclear_construction_starts.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RESTART",
+     "topic": "new nuclear reactor construction",
+     "say": "In 2024, 9 new nuclear reactors broke ground worldwide. In 2025 it climbed to 10 — and nine of those were in China alone."
+    },
+    {
+     "source": "offline",
+     "key": "nuclear_capacity_by_country_share",
+     "params": {
+      "file": "nuclear_capacity_by_country_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHO'S BUILDING",
+     "topic": "nuclear reactor construction by country",
+     "say": "Half of all that new nuclear capacity under construction right now is in China alone."
+    },
+    {
+     "source": "offline",
+     "key": "nuclear_capacity_under_construction",
+     "params": {
+      "file": "nuclear_capacity_under_construction.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SCALE",
+     "topic": "how much nuclear capacity is under construction",
+     "say": "That's 78 gigawatts of nuclear power under construction right now — roughly the equivalent of building 78 full-size reactors at the same time."
+    }
+   ]
+  },
+  {
+   "slug": "craft-brewery-boom-and-bust",
+   "title": "US Craft Breweries Just Hit A Record 9,778",
+   "hook": "9,778 craft breweries. More closed than opened.",
+   "closing": "Is your favorite brewery thriving, or about to close?",
+   "question": "What's your go-to local brewery? Tell me below.",
+   "caption": "US craft breweries just hit a record 9,778 — but last year alone, 434 closed while only 268 opened. The boom and the bust are happening at the same time. What's your go-to local brewery? Tell me below 🍺",
+   "hashtags": [
+    "craftbeer",
+    "breweries",
+    "craftbrewery",
+    "beer",
+    "smallbusiness",
+    "localbusiness",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "statistics",
+    "beerindustry",
+    "drinkcraft"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "craft_brewery_count_trend",
+     "params": {
+      "file": "craft_brewery_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE BOOM",
+     "topic": "the number of US craft breweries",
+     "say": "In 2005 the US had barely 1,500 craft breweries. By 2025 that number hit 9,778 — a record, nearly seven times as many."
+    },
+    {
+     "source": "offline",
+     "key": "craft_brewery_openings_vs_closings_2025",
+     "params": {
+      "file": "craft_brewery_openings_vs_closings_2025.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE CATCH",
+     "topic": "craft breweries: openings versus closings",
+     "say": "In 2025, only 268 new breweries opened — but 434 closed. More are shutting down than starting up, even as the total keeps climbing."
+    },
+    {
+     "source": "offline",
+     "key": "craft_brewery_openings_vs_closings_2024",
+     "params": {
+      "file": "craft_brewery_openings_vs_closings_2024.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHEN IT FLIPPED",
+     "topic": "when craft breweries started closing faster",
+     "say": "2024 was the turning point: 399 breweries closed while only 335 opened, the first flip in 20 years."
+    }
+   ]
   }
  ]
 }

@@ -1,0 +1,19 @@
+{
+  "key": "nuclear_capacity_under_construction",
+  "title": "Nuclear capacity under construction worldwide vs one typical reactor",
+  "unit": "GW",
+  "geography": "Worldwide",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Global Energy Review 2026",
+    "publisher": "International Energy Agency (IEA)",
+    "url": "https://www.iea.org/reports/global-energy-review-2026/technology-nuclear",
+    "officiality": "official",
+    "access_date": "2026-11-01"
+  },
+  "notes": "The IEA's Global Energy Review 2026 reports 78 GW of nuclear reactor capacity under construction worldwide across 15 countries. The 'one typical reactor' baseline (~1 GW) is a standard engineering rule of thumb for a large commercial reactor's output, used here only to size the 78 GW figure, not a quoted statistic.",
+  "points": [
+    {"label": "Under construction worldwide", "value": 78}
+  ],
+  "baseline": {"label": "One typical large reactor", "value": 1}
+}

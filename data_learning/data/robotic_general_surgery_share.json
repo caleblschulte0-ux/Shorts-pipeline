@@ -1,0 +1,19 @@
+{
+  "key": "robotic_general_surgery_share",
+  "title": "Share of US general surgeries performed robotically",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2012-2018",
+  "source": {
+    "name": "Nationwide trends in the use of minimally invasive surgical techniques",
+    "publisher": "JAMA Network Open",
+    "url": "https://jamanetwork.com/journals/jamanetworkopen",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Share of all general-surgery procedures performed with robotic assistance in the United States, from a JAMA Network Open study of nationwide surgical registry data.",
+  "points": [
+    {"label": "2012", "value": 1.8, "period": "2012"},
+    {"label": "2018", "value": 15.1, "period": "2018"}
+  ]
+}

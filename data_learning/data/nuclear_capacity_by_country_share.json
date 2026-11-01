@@ -1,0 +1,19 @@
+{
+  "key": "nuclear_capacity_by_country_share",
+  "title": "Share of global nuclear capacity under construction, by country",
+  "unit": "percent",
+  "geography": "Worldwide",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Global Energy Review 2026",
+    "publisher": "International Energy Agency (IEA)",
+    "url": "https://www.iea.org/reports/global-energy-review-2026/technology-nuclear",
+    "officiality": "official",
+    "access_date": "2026-11-01"
+  },
+  "notes": "The IEA's Global Energy Review 2026 reports that half of all nuclear generating capacity currently under construction worldwide is located in China.",
+  "points": [
+    {"label": "China", "value": 50},
+    {"label": "Rest of the world", "value": 50}
+  ]
+}

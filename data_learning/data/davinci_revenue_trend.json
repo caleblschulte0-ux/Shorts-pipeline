@@ -1,0 +1,19 @@
+{
+  "key": "davinci_revenue_trend",
+  "title": "Intuitive Surgical annual revenue (billion dollars)",
+  "unit": "billion dollars",
+  "geography": "Worldwide",
+  "time_coverage": "2022-2023",
+  "source": {
+    "name": "Form 10-K, fiscal year 2023",
+    "publisher": "Intuitive Surgical, Inc. (SEC filing)",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001035267",
+    "officiality": "primary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Total annual revenue reported by Intuitive Surgical, maker of the da Vinci surgical system, in its FY2023 Form 10-K: $7.1 billion in 2023, up 14% from $6.2 billion in 2022.",
+  "points": [
+    {"label": "2022", "value": 6.2, "period": "2022"},
+    {"label": "2023", "value": 7.1, "period": "2023"}
+  ]
+}

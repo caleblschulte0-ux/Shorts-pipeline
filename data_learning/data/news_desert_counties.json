@@ -1,0 +1,19 @@
+{
+  "key": "news_desert_counties",
+  "title": "US counties with zero local news sources",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2023-2024",
+  "source": {
+    "name": "State of Local News 2024",
+    "publisher": "Medill Local News Initiative, Northwestern University",
+    "url": "https://localnewsinitiative.northwestern.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Medill defines a 'news desert' as a county with no locally based source of local news. Count rose from 204 counties in the 2023 report to 208 in the 2024 report.",
+  "points": [
+    {"label": "2023", "value": 204, "period": "2023"},
+    {"label": "2024", "value": 208, "period": "2024"}
+  ]
+}

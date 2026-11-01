@@ -1,0 +1,19 @@
+{
+  "key": "craft_brewery_openings_vs_closings_2025",
+  "title": "US craft brewery openings vs closings, 2025",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "2025 Year in Beer",
+    "publisher": "Brewers Association",
+    "url": "https://www.brewersassociation.org",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "268 small and independent US breweries opened in 2025 while 434 closed, per the Brewers Association's 2025 Year in Beer report.",
+  "points": [
+    {"label": "Closed in 2025", "value": 434},
+    {"label": "Opened in 2025", "value": 268}
+  ]
+}
