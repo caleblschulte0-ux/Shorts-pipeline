@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "deepfake-video-explosion__4e4e2811",
+  "slug": "deepfake-video-explosion",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Deepfake Detection Fails Humans At 55%",
+  "hook": "Humans detect convincing deepfakes only 55% of the time.",
+  "closing": "Seeing a video is no longer enough; verify the source before trusting it.",
+  "question": "Could you spot a deepfake?",
+  "segments": [
+    {
+      "topic": "Deepfake Video Growth",
+      "say": "Online deepfake videos reached 95,820, flooding platforms faster than people can verify them."
+    },
+    {
+      "topic": "Deepfake Human Detection",
+      "say": "Humans detect deepfakes only 55% of the time, making visual confidence dangerously unreliable."
+    },
+    {
+      "topic": "Deepfake Fraud Cost",
+      "say": "Generative-AI fraud cost the US 12.3 billion dollars, turning fake media into real financial damage."
+    }
+  ]
+}
