@@ -1,8 +1,364 @@
 {
- "date": "2026-10-31",
+ "date": "2026-11-01",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
- "slots": [],
- "already_today": 5
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Kaka",
+   "why": "Kaka breaks into tears at a San Siro standing ovation as he goes into Milan's Hall of Fame.",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Owen",
+   "why": "Owen deadpans that he won the Ballon d'Or in 2001 when a reporter asks about his best finish.",
+   "post_title": "Reporter on the red carpet asks Michael Owen: \"What was your best standing in the Ballon d'Or when you were active?\" Owen: \"Well I won it in 2001\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xgp32f/reporter_on_the_red_carpet_asks_michael_owen_what/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xgp32f/reporter_on_the_red_carpet_asks_michael_owen_what",
+   "skipped": "too short: the post runs 7.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jose Mourinho",
+   "why": "Mourinho jokes that Barca fans singing outside the hotel cost him his nap, then dedicates the win to them.",
+   "post_title": "Jos\u00e9 Mourinho: \u201cI dedicate this win to the Bar\u00e7a fans who did not let me take my nap in the hotel today. They came to the hotel and kept singing all day, I couldn't take my nap. Well, I didn't nap, bu",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xfp6er/jos\u00e9_mourinho_i_dedicate_this_win_to_the_bar\u00e7a/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xfp6er/jos\u00e9_mourinho_i_dedicate_this_win_to_the_bar\u00e7a",
+   "title": "Jose Mourinho Thanks The Bar\u00e7a Fans Who Wouldn't Let Him Nap \ud83d\ude02",
+   "hook": "Mourinho dedicates the win to fans who ruined his nap \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is a repost of another account's watermarked edit (Madrid Total): 13 seconds of a static talking head with a Spanish caption card, blur padding taking up half the frame, and no edit of our own.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is a repost of another account's watermarked edit (Madrid Total): 13 seconds of a static talking head with a Spanish caption card, blur padding taking up half the frame, and no edit of our own."
+  },
+  {
+   "sub": "nfl",
+   "who": "J.J. McCarthy",
+   "why": "Teammates mob McCarthy after his first win as the Giants' starting QB.",
+   "post_title": "[Highlight] Teammates celebrate with J.J. McCarthy after he gets his first win as starting QB of the Giants",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xfczzz/highlight_teammates_celebrate_with_jj_mccarthy/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xfczzz/highlight_teammates_celebrate_with_jj_mccarthy",
+   "title": "J.J. McCarthy's Teammates Rush Him After His First Win As The Giants' Starting QB",
+   "hook": "J.J. McCarthy gets his first win as Giants QB",
+   "ledger": {
+    "moves": [
+     "whoa@6.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/Oh2nu2LLTFM",
+   "ok": true,
+   "publish_at": "2026-11-01T21:00:00Z",
+   "seconds": 128,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261101-j-j-mccarthy-s-teammates-rush-him-after-his-firs-871272e8",
+    "tiktok": "queued for 2026-11-01T21:00:00Z"
+   }
+  },
+  {
+   "sub": "hockey",
+   "who": "Nikita Kucherov",
+   "why": "Kucherov is seen right after the video tribute for becoming the Lightning's all-time points leader.",
+   "post_title": "Footage of Nikita Kucherov yesterday, following the video tribute for becoming all-time Tampa Bay Lightning points leader",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xjxwy1/footage_of_nikita_kucherov_yesterday_following/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xjxwy1/footage_of_nikita_kucherov_yesterday_following",
+   "title": "Nikita Kucherov Couldn't Even Watch His Own Tribute After Breaking The Lightning Record",
+   "hook": "Kucherov couldn't watch his own tribute",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      360,
+      480,
+      246,
+      0
+     ]
+    },
+    "outro": {
+     "song": "legacy",
+     "grade": "clean",
+     "shots": [
+      "https://www.youtube.com/watch?v=3nKMxOwvn2o",
+      "https://www.youtube.com/watch?v=n9f5s5k0XEE",
+      "https://www.youtube.com/watch?v=GnUrVbVEJ2I",
+      "https://www.youtube.com/watch?v=byv3xT0clVY",
+      "https://www.youtube.com/watch?v=oOGmz10y2uA",
+      "https://www.youtube.com/watch?v=GnUrVbVEJ2I",
+      "https://www.youtube.com/watch?v=n9f5s5k0XEE"
+     ],
+     "secs": 16.8
+    },
+    "cut_in": [],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5",
+      "credit": "Song: AC13, KAZHI, Jessee, Cartoon - Made For The Game (ft. Kazhi)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/MadeForTheGame"
+     }
+    ]
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 87
+   },
+   "video_url": "https://youtube.com/shorts/3TLsWvHn8SU",
+   "ok": true,
+   "publish_at": "2026-11-02T00:00:00Z",
+   "seconds": 1655,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261101-nikita-kucherov-couldn-t-even-watch-his-own-trib-198ea566",
+    "tiktok": "queued for 2026-11-02T00:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Yaxel Lendeborg",
+   "why": "A rookie asks T-Mac, Vince and Melo for advice and listens to what the legends say.",
+   "post_title": "Yaxel Lendeborg asking T-Mac, Vince, and Melo for advice on his game: \u201cDo you guys have any advice like, just for me in general just to try to keep going, things I got to work on, anything that you gu",
+   "upvotes": 0,
+   "url": "https://streamable.com/0vl8x9",
+   "topic": "https://www.reddit.com/r/nba/comments/1xglkq7/yaxel_lendeborg_asking_tmac_vince_and_melo_for",
+   "title": "Yaxel Lendeborg Asks T-Mac, Vince And Melo For Advice And Gets Real Answers",
+   "hook": "Yaxel asks three legends for advice",
+   "ledger": {
+    "moves": [
+     "zoom@8.47"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: Real moment and it matches the line, but it is a small letterboxed TV feed with no punch-in on the reaction. A Popovich photo card covers our line for about 7s, and the ending is a quiet smile, not a payoff a stranger understands."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is a real and relevant moment, but it is shown as a tiny letterboxed wide shot with no captions, no punch-in and only one of the three legends visibly answering, so it never lands as 'gets real answers'.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is a real and relevant moment, but it is shown as a tiny letterboxed wide shot with no captions, no punch-in and only one of the three legends visibly answering, so it never lands as 'gets real answers'."
+  },
+  {
+   "sub": "nfl",
+   "who": "Ollie Gordon",
+   "why": "Gordon rants at bettors who text him for money after losing a parlay.",
+   "post_title": "[Highlight] Ollie Gordon: \u201cWe don\u2019t care about your parlay... texting me asking me for money because you lost don\u2019t got nothing to do with me\u2026 I don\u2019t owe you nothing. Go make your own money, go get y",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xkcys5/highlight_ollie_gordon_we_dont_care_about_your/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xkcys5/highlight_ollie_gordon_we_dont_care_about_your",
+   "title": "Ollie Gordon Tells Bettors 'I Don't Owe You Nothing' After Parlay Losses",
+   "hook": "Ollie Gordon tells bettors to stop texting him \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@12.57"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The moment is real and matches the line, but it is a small letterboxed podcast talking head: captions collide in the hook, two-thirds of the frame is blur, and no zoom or sound hit lands the punchline."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/S17Y0xJp6iE",
+   "ok": true,
+   "publish_at": "2026-11-02T03:00:00Z",
+   "seconds": 193,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261101-ollie-gordon-tells-bettors-i-don-t-owe-you-nothi-2cf4215a",
+    "tiktok": "queued for 2026-11-02T03:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Newton",
+   "why": "Newton, mic'd up, answers Clay Matthews' read with \"watch this\" and then hits CMC on the play.",
+   "post_title": "[Highlight] In 2017, Clay Matthews reads an arm signal and yells, \u201cIt\u2019s that wheel route!\u201d Cam Newton on the hot mic replies, \u201cYou\u2019ve been watching film, huh? That\u2019s cool, watch this,\u201d then hits CMC o",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm",
+   "skipped": "render failed: JSONDecodeError: Extra data: line 3 column 1 (char 317)"
+  },
+  {
+   "sub": "nba",
+   "who": "Steve Kerr",
+   "why": "Kerr jokes that Yaxel should have come out unprepared four years earlier instead of being penalized for being 23.",
+   "post_title": "Steve Kerr on Yaxel being an older rookie: \"In the NBA we penalize guys for being 23. He was his own worst enemy. He should\u2019ve just come out four years ago completely unprepared, and then he would\u2019ve ",
+   "upvotes": 0,
+   "url": "https://streamable.com/s8s4sp",
+   "topic": "https://www.reddit.com/r/nba/comments/1xk2qk1/steve_kerr_on_yaxel_being_an_older_rookie_in_the",
+   "title": "Steve Kerr Jokes Yaxel Should've Come Out Four Years Ago Unprepared \ud83d\ude02",
+   "hook": "Kerr on Yaxel being 23 \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      86,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: A real Kerr moment whose deadpan joke mostly lands, but the hook line collides with the TV nameplate for the first 3 seconds and the opening words are filler."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 87
+   },
+   "video_url": "https://youtube.com/shorts/9ThbkAHc_mo",
+   "ok": true,
+   "publish_at": "2026-11-02T15:00:00Z",
+   "seconds": 209,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261101-steve-kerr-jokes-yaxel-should-ve-come-out-four-y-5618c98c",
+    "tiktok": "queued for 2026-11-02T15:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Brown tells Daniel Radcliffe \"I'm Slytherin bro\" to his face.",
+   "post_title": "Jaylen Brown says he's Slytherin to Daniel Radcliffe - \u201cI\u2019m Slytherin bro\u201d.",
+   "upvotes": 0,
+   "url": "https://streamable.com/yt9798",
+   "topic": "https://www.reddit.com/r/nba/comments/1xip4aa/jaylen_brown_says_hes_slytherin_to_daniel",
+   "title": "Daniel Radcliffe Can't Believe Jaylen Brown Picked Slytherin",
+   "hook": "Radcliffe was not ready for Slytherin \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@8.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The moment lands at the end with Radcliffe's reaction, but our line covers the footage's own captions for the first 32 seconds and Radcliffe isn't on screen until then."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 82
+   },
+   "video_url": "https://youtube.com/shorts/7Fam3MiE01c",
+   "ok": true,
+   "publish_at": "2026-11-02T18:00:00Z",
+   "seconds": 230,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261101-daniel-radcliffe-can-t-believe-jaylen-brown-pick-08d12183",
+    "tiktok": "queued for 2026-11-02T18:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 93,
+ "already_posted": 14,
+ "shipped": 5
 }
