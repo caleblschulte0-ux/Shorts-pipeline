@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-01T19:34:34Z",
+ "updated": "2026-11-01T20:07:47Z",
  "open": [
+  {
+   "id": "lego-minifigs-outnumber-humans__161409d0_r4",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-01T20:07:47Z",
+   "why": [
+    "premise: brain: The claim hinges on an unverified figure and lacks a clear, verifiable number to substantiate the reversal of expectation."
+   ],
+   "request": "exchange/rewrites/20261101/lego-minifigs-outnumber-humans__161409d0_r4.request.json",
+   "answer_path": "exchange/rewrites/20261101/lego-minifigs-outnumber-humans__161409d0_r4.answer.json"
+  },
+  {
+   "id": "library-digital-shift__bba2e477_r1",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-01T20:07:46Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a vague claim rather than a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261101/library-digital-shift__bba2e477_r1.request.json",
+   "answer_path": "exchange/rewrites/20261101/library-digital-shift__bba2e477_r1.answer.json"
+  },
   {
    "id": "elephant-poaching-decline__7f81acaa",
    "slug": "elephant-poaching-decline",
