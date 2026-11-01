@@ -1,0 +1,19 @@
+{
+  "key": "nuclear_construction_starts",
+  "title": "New nuclear reactor construction starts worldwide per year",
+  "unit": "count",
+  "geography": "Worldwide",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "Global Energy Review 2026",
+    "publisher": "International Energy Agency (IEA)",
+    "url": "https://www.iea.org/reports/global-energy-review-2026/technology-nuclear",
+    "officiality": "official",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Number of new nuclear reactor construction starts recorded worldwide each year. 2025: 10 starts (9 in China, 1 in Russia), per the IEA's Global Energy Review 2026.",
+  "points": [
+    {"label": "2024", "value": 9, "period": "2024"},
+    {"label": "2025", "value": 10, "period": "2025"}
+  ]
+}

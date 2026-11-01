@@ -1,0 +1,19 @@
+{
+  "key": "americans_without_local_news_share",
+  "title": "Share of Americans with little or no local news coverage",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "State of Local News 2025",
+    "publisher": "Medill Local News Initiative, Northwestern University",
+    "url": "https://localnewsinitiative.northwestern.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Medill's 2025 report estimates 50 million Americans live in counties with either no local news source or just one. The percent share here is calculated against the U.S. Census Bureau's ~335 million 2024 national population estimate (50M / 335M ≈ 15%); the 50-million figure itself is the report's own number, the percent conversion is this channel's calculation.",
+  "points": [
+    {"label": "Little or no local news", "value": 15},
+    {"label": "Real local coverage", "value": 85}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "newspaper_count_trend",
+  "title": "Number of US newspapers",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2005-2025",
+  "source": {
+    "name": "State of Local News 2025",
+    "publisher": "Medill Local News Initiative, Northwestern University",
+    "url": "https://localnewsinitiative.northwestern.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Count of US newspapers (print + digital-native local outlets tracked by Medill's annual census), down from 7,325 in 2005 to 4,490 as of the 2025 report.",
+  "points": [
+    {"label": "2005", "value": 7325, "period": "2005"},
+    {"label": "2025", "value": 4490, "period": "2025"}
+  ]
+}

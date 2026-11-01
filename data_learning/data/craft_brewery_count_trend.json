@@ -1,0 +1,20 @@
+{
+  "key": "craft_brewery_count_trend",
+  "title": "Number of small and independent US craft breweries",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2005-2025",
+  "source": {
+    "name": "2025 Year in Beer / Brewers Association Brewery Census",
+    "publisher": "Brewers Association",
+    "url": "https://www.brewersassociation.org",
+    "officiality": "secondary",
+    "access_date": "2026-11-01"
+  },
+  "notes": "Brewers Association annual census of operating small and independent US breweries. 2005 figure ('fewer than 1,500') is the trade association's own rounded historical reference point; 2023 and 2025 are exact counts from its annual census.",
+  "points": [
+    {"label": "2005", "value": 1500, "period": "2005"},
+    {"label": "2023", "value": 9747, "period": "2023"},
+    {"label": "2025", "value": 9778, "period": "2025"}
+  ]
+}
