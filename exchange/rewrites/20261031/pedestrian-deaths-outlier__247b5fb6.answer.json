@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pedestrian-deaths-outlier__247b5fb6",
+  "slug": "pedestrian-deaths-outlier",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Traffic Deaths Fell While Pedestrian Deaths Rose 77%",
+  "hook": "Traffic deaths fell, but pedestrian deaths rose 77%.",
+  "closing": "Safer vehicles have not made American streets equally safe for people walking.",
+  "question": "Do your streets feel safe to walk?",
+  "segments": [
+    {
+      "topic": "Traffic Deaths Fell",
+      "say": "US traffic deaths fell to 40,990, continuing an overall decline."
+    },
+    {
+      "topic": "Traffic Pedestrian Rise",
+      "say": "Pedestrian deaths rose 77%, moving opposite the broader traffic trend."
+    },
+    {
+      "topic": "Traffic Pedestrian Share",
+      "say": "Pedestrians accounted for 7,508 deaths, showing how heavily the remaining danger falls on people walking."
+    }
+  ]
+}
