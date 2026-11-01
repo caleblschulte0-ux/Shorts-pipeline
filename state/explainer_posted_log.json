@@ -4778,6 +4778,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "wisdom-albatross-74": {
+      "claimed_at": "2026-11-01T18:59:57.029512+00:00",
+      "title": "The World's Oldest Known Wild Bird Is Still Breeding At 74",
+      "publish_at": "2026-11-02T00:11:55Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6105,6 +6112,14 @@
       "state": "posted",
       "slug": "peanut-allergy-guideline-flip",
       "at": "2026-11-01T18:12:05.484553+00:00"
+    },
+    {
+      "claimed_at": "2026-11-01T18:59:57.029512+00:00",
+      "title": "The World's Oldest Known Wild Bird Is Still Breeding At 74",
+      "publish_at": "2026-11-02T00:11:55Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "wisdom-albatross-74"
     }
   ]
 }
