@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "usps-mail-volume-collapse__c57ffab9",
+  "slug": "usps-mail-volume-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:16:00Z",
+  "title": "Mail Volume Halved While Stamp Prices Rose",
+  "hook": "Mail fell to 109 billion pieces while stamps got pricier.",
+  "closing": "Fewer letters leave postal costs spread across fewer customers, keeping prices under pressure.",
+  "question": "What do you still send by mail?",
+  "segments": [
+    {
+      "topic": "Mail Volume Halved",
+      "say": "Total mail fell to 109 billion pieces, leaving the network with nearly half its former traffic."
+    },
+    {
+      "topic": "Mail Letters Halved",
+      "say": "First-Class Mail fell to 46 billion pieces, showing letters disappeared faster than the postal network could shrink."
+    },
+    {
+      "topic": "Mail Stamp Price",
+      "say": "A stamp reached 68 cents, so falling demand did not make sending a letter cheaper."
+    }
+  ]
+}
