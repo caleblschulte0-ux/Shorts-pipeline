@@ -17443,13 +17443,59 @@
       "ts": "2026-11-01T12:44:20.633626+00:00"
     },
     "clip-20261101-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/YawningHealthyCurryItsBoshyTime-xIKXtmOOLvuq67YY",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/-aPfBDvd3IY",
       "title": "Jasontheween Is So Scared After Chun Li Goons On Him",
       "kind": "twitch_clip",
-      "ts": "2026-11-01T12:50:00.551478+00:00",
+      "ts": "2026-11-01T12:50:10.580927+00:00",
+      "uploaded_at": "2026-11-01T12:50:10.580941+00:00",
+      "publish_at": "2026-11-01T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261101-jasontheween-is-so-scared-after-chun-li-goons-on-fc2b15bc",
+        "tiktok": "queued for 2026-11-01T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jasontheween/clip/YawningHealthyCurryItsBoshyTime-xIKXtmOOLvuq67YY",
+      "streamer": "jasontheween",
+      "series": "chaos",
+      "hook": "Jasontheween is not ready for this \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2172,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.7,
+        "end": 38.9
+      },
+      "director_cut": true
+    },
+    "rejected-busyantsywerewolfdancingbanana-jaagcd_ntb9qxkxa": {
+      "source_url": "https://www.twitch.tv/agent00/clip/BusyAntsyWerewolfDancingBanana-JaaGcd_Ntb9qXKxa",
+      "streamer": "agent00",
+      "title": "Agent said \"it depends on timing\" when reacting to Emily suggesting him for Inside",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Talk about a show, no event)",
+      "ts": "2026-11-01T12:51:45.455495+00:00"
+    },
+    "rejected-dullnaiveshallotssssss-tyu2dyek9ybeq0sf": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/DullNaiveShallotSSSsss-TyU2dYEk9yBeQ0SF",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Stops Dead After Seeing This Wild Scene: \"Who Is This?\"",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about one third of the 9:16 canvas, with large blurred areas above and below. It; vision: The subject is small and far away in most frames. It is hard to read on a phone and was not cropped in toward the action; vision: The stream's chat and counter ov",
+      "ts": "2026-11-01T12:57:22.871491+00:00"
+    },
+    "clip-20261101-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/NiceLachrymoseBaconStoneLightning-pPBHHXzXAsj-FE8K",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Into A Sumo Match And Chat Goes Crazy",
+      "kind": "twitch_clip",
+      "ts": "2026-11-01T13:06:16.705319+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
