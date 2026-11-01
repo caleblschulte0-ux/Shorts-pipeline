@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "earthquake-detection-illusion__c70a68bc",
+  "slug": "earthquake-detection-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-11-01T12:17:00Z",
+  "title": "Earthquake Detection Rose 200x, But Major Quakes Did Not",
+  "hook": "Earthquake detection rose 200x, but major quakes barely changed.",
+  "closing": "More earthquake headlines reflect better monitoring, not proof that the planet became more violent.",
+  "question": "Have you ever felt an earthquake?",
+  "segments": [
+    {
+      "topic": "Earthquake Station Growth",
+      "say": "Earthquake stations reached 8,000, letting scientists hear far more shaking than early networks could detect."
+    },
+    {
+      "topic": "Earthquake Major Rate",
+      "say": "Major earthquakes average 17 yearly, barely different from the earlier rate."
+    },
+    {
+      "topic": "Earthquake Detection Boom",
+      "say": "Detected earthquakes reached 20,000 yearly, a monitoring surge rather than a sudden planetary change."
+    }
+  ]
+}
