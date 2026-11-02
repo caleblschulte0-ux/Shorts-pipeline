@@ -5,117 +5,35 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "soccer",
-   "who": "Kylian Mbapp\u00e9",
-   "why": "He comforts a kid injured by a teammate\u2019s shot, showing real compassion",
-   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "sub": "baseball",
+   "who": "Milwaukee Brewers",
+   "why": "Players parade with the Commissioner's Trophy at Lambeau Field after their historic win",
+   "post_title": "This is awesome: The Milwaukee Brewers showed up at Lambeau Field with the Commissioner\u2019s Trophy after winning the World Series last night \u2014 and some of them even did the Lambeau Leap.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "soccer",
-   "who": "Kaka",
-   "why": "Tears up after a standing ovation, a heartfelt tribute to his career",
-   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
-   "skipped": "too short: the post runs 12.7s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Victor Wembanyama",
-   "why": "He opens up about feeling judged in America, a rare personal interview",
-   "post_title": "Victor Wembanyama says one thing he likes about living in America is that people don't judge you for being ambitious. The downside, he says, is that relationships between people often feel superficial",
-   "upvotes": 0,
-   "url": "https://streamable.com/hbk6ui",
-   "topic": "https://www.reddit.com/r/nba/comments/1xknk6y/victor_wembanyama_says_one_thing_he_likes_about",
-   "title": "Victor Wembanyama: Wemby Gets REAL About American Relationships \ud83d\ude33",
-   "hook": "Wemby calls US relationships shallow \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@21.4"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "closeup",
-     "reason": "one large persistent face \u2014 the face is the content",
-     "shots": [
-      {
-       "mode": "closeup",
-       "reason": "one large persistent face \u2014 the face is the content"
-      }
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.0,
-       0.608
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 91
-   },
-   "video_url": "https://youtube.com/shorts/yVNgqINv6e4",
-   "ok": true,
-   "publish_at": "2026-11-02T21:00:00Z",
-   "seconds": 155,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261102-victor-wembanyama-wemby-gets-real-about-american-5d6777aa",
-    "tiktok": "queued for 2026-11-02T21:00:00Z"
-   }
-  },
-  {
-   "sub": "nba",
-   "who": "Yaxel Lendeborg",
-   "why": "A young player asks legends for advice, capturing a mentor moment",
-   "post_title": "Yaxel Lendeborg asking T-Mac, Vince, and Melo for advice on his game: \u201cDo you guys have any advice like, just for me in general just to try to keep going, things I got to work on, anything that you gu",
-   "upvotes": 0,
-   "url": "https://streamable.com/0vl8x9",
-   "topic": "https://www.reddit.com/r/nba/comments/1xglkq7/yaxel_lendeborg_asking_tmac_vince_and_melo_for",
+   "url": "https://www.reddit.com/r/baseball/comments/1xj1ogo/this_is_awesome_the_milwaukee_brewers_showed_up/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xj1ogo/this_is_awesome_the_milwaukee_brewers_showed_up",
    "skipped": "author: no title"
   },
   {
-   "sub": "nfl",
-   "who": "Clay Matthews",
-   "why": "Hot\u2011mic rant about film study leads to a funny on\u2011field reply",
-   "post_title": "[Highlight] In 2017, Clay Matthews reads an arm signal and yells, \u201cIt\u2019s that wheel route!\u201d Cam Newton on the hot mic replies, \u201cYou\u2019ve been watching film, huh? That\u2019s cool, watch this,\u201d then hits CMC o",
+   "sub": "baseball",
+   "who": "William Contreras",
+   "why": "He surprises a sandwich vendor with an unexpected gesture that goes viral",
+   "post_title": "[ESPN] William Contreras surprised this man selling sandwiches with a kind gesture he wasn\u2019t expecting",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm",
-   "title": "Clay Matthews Calls Out Cam Newton's Play, Gets Humbled After This",
-   "hook": "Clay Matthews called out Cam Newton's play \ud83d\ude33",
+   "url": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling",
+   "title": "William Contreras Surprises Sandwich Vendor With Unexpected Kindness",
+   "hook": "William gives a surprise to a sandwich seller \ud83d\ude33",
    "ledger": {
     "moves": [
-     "zoom@1.48"
+     "hype@0.3(silent)"
     ],
-    "mood": null,
+    "mood": "hype",
     "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      370,
-      0
-     ]
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
     },
     "outro": null,
     "cut_in": [],
@@ -124,24 +42,110 @@
    },
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: HTTP Error 4",
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many ",
     "score": null
    },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: HTTP Error 4"
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many "
   },
   {
-   "sub": "nfl",
-   "who": "Christian Watson",
-   "why": "He returns from the ambulance, showing resilience after a scary injury",
-   "post_title": "[Highlight] Christian Watson has popped back out of the ambulance after a trip to the hospital and is going to return tonight.",
+   "sub": "baseball",
+   "who": "Trevor Megill",
+   "why": "Posts a cheeky message to Brewers fans after the championship",
+   "post_title": "Trevor Megill's message to Brewers fans: \"Have fun talking sh!t to Chicago next year. We have a ring.\"",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xj3fbj/highlight_christian_watson_has_popped_back_out_of/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xj3fbj/highlight_christian_watson_has_popped_back_out_of",
-   "skipped": "too short: the post runs 6.3s (< 15s)"
+   "url": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun",
+   "skipped": "too short: the post runs 7.4s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "Shows up in a full Witcher costume for the Spurs\u2019 Halloween game",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "Has a goofy pre\u2011game moment with VJ Edgecombe before hitting the sideboard",
+   "post_title": "Lebron having fun pregame with VJ Edgecombe and then proceeds to hit the sideboard",
+   "upvotes": 0,
+   "url": "https://streamable.com/dy08hf",
+   "topic": "https://www.reddit.com/r/nba/comments/1xiblub/lebron_having_fun_pregame_with_vj_edgecombe_and",
+   "skipped": "no sound: the post has no audio track"
+  },
+  {
+   "sub": "nba",
+   "who": "Yaxel Lendeborg",
+   "why": "Seeks advice from NBA legends T\u2011Mac, Vince, and Melo in a heartfelt interview",
+   "post_title": "Yaxel Lendeborg asking T-Mac, Vince, and Melo for advice on his game: \u201cDo you guys have any advice like, just for me in general just to try to keep going, things I got to work on, anything that you gu",
+   "upvotes": 0,
+   "url": "https://streamable.com/0vl8x9",
+   "topic": "https://www.reddit.com/r/nba/comments/1xglkq7/yaxel_lendeborg_asking_tmac_vince_and_melo_for",
+   "title": "Yaxel Lendeborg Asks T\u2011Mac, Vince & Melo for Advice \u2014 Their Answers Shock Him",
+   "hook": "Yaxel asks the legends for help",
+   "ledger": {
+    "moves": [
+     "zoom@30.17"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "Performs the iconic Key & Peele handshake with Dean Wade on court",
+   "post_title": "LeBron does the Key & Peele handshake with Dean Wade",
+   "upvotes": 0,
+   "url": "https://streamable.com/h8d1t3",
+   "topic": "https://www.reddit.com/r/nba/comments/1xg7jzu/lebron_does_the_key_peele_handshake_with_dean_wade",
+   "title": "LeBron James Does Key &\u202fPeele Handshake With Dean Wade \ud83d\ude02",
+   "hook": "LeBron shares a goofy handshake",
+   "ledger": {
+    "moves": [
+     "whoa@8.66",
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge"
   }
  ],
- "already_today": 0,
- "pool": 111,
- "already_posted": 15,
- "shipped": 1
+ "already_today": 1,
+ "pool": 96,
+ "already_posted": 16,
+ "shipped": 0
 }
