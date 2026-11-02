@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-02T18:16:35Z",
+ "updated": "2026-11-02T23:21:10Z",
  "open": [
+  {
+   "id": "measles-comeback-since-2000__465990a8",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-11-02T23:21:10Z",
+   "why": [
+    "premise: brain: It presents a statistic without overturning a viewer expectation, failing the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.request.json",
+   "answer_path": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.answer.json"
+  },
   {
    "id": "cargo-ship-size-growth__7c8383c4",
    "slug": "cargo-ship-size-growth",
@@ -211,16 +221,6 @@
    ],
    "request": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9_r1.request.json",
    "answer_path": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9_r1.answer.json"
-  },
-  {
-   "id": "measles-comeback-since-2000__7726747b_r1",
-   "slug": "measles-comeback-since-2000",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261101/measles-comeback-since-2000__7726747b_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/measles-comeback-since-2000__7726747b_r1.answer.json"
   },
   {
    "id": "naep-math-pandemic-drop__aa1c0224_r1",
