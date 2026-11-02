@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-02T13:07:06Z",
+ "updated": "2026-11-02T14:00:33Z",
  "open": [
+  {
+   "id": "chess-online-boom__f9b7e085_r3",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The 200-million figure is consequential, but the premise assigns the whole surge to one show without support and offers no clean expectation reversal."
+   ],
+   "request": "exchange/rewrites/20261102/chess-online-boom__f9b7e085_r3.request.json",
+   "answer_path": "exchange/rewrites/20261102/chess-online-boom__f9b7e085_r3.answer.json"
+  },
+  {
+   "id": "elephant-poaching-decline__8a2feac3",
+   "slug": "elephant-poaching-decline",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies only on a single statistic without a consequential, verifiable context."
+   ],
+   "request": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.request.json",
+   "answer_path": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__74b0628c_r2",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
+   ],
+   "request": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.request.json",
+   "answer_path": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__fa5c1ac3",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: It presents a stark fact but does not overturn a viewer's expectation, merely stating a number without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.request.json",
+   "answer_path": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.answer.json"
+  },
   {
    "id": "national-parks-record-then-shutdown__e1e36be1",
    "slug": "national-parks-record-then-shutdown",
@@ -201,16 +241,6 @@
    ],
    "request": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.request.json",
    "answer_path": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.answer.json"
-  },
-  {
-   "id": "chess-online-boom__f9b7e085_r3",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
-   ],
-   "request": "exchange/rewrites/20261101/chess-online-boom__f9b7e085_r3.request.json",
-   "answer_path": "exchange/rewrites/20261101/chess-online-boom__f9b7e085_r3.answer.json"
   },
   {
    "id": "deepfake-video-explosion__4e4e2811_r1",
