@@ -3,198 +3,6 @@
     {
       "date": "20261026",
       "dry_run": false,
-      "ts": "2026-10-26T11:32:01+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 16,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 117,
-        "with_curve": 15,
-        "fetched_at": "2026-10-26T08:46:15.625364+00:00"
-      },
-      "brain": {
-        "ok": 7,
-        "fail": 0,
-        "limited_at": "2026-10-26T11:25:46+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261026-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.85,
-              "why": "camera hit, cameraman quits",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "Streamer reacts, camera drops to ground",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Hits Cameraman After He Quits \u2013 Streamer Fight"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 178.8
-        },
-        {
-          "slug": "clip-20261026-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.72,
-              "why": "costume reveal drama",
-              "blind": false
-            },
-            "content": {
-              "score": 0.9,
-              "why": "Streamer shocked by revealing ghost in g",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ironmouse Can't Handle This VTuber's WILD Halloween Costume \ud83d\ude33"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 203.0
-        },
-        {
-          "slug": "clip-20261026-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.9
-        },
-        {
-          "slug": "clip-20261026-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261026-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261026-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261026-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261026",
-      "dry_run": false,
       "ts": "2026-10-26T11:34:58+00:00",
       "feedback": {
         "snapshot": true,
@@ -6342,6 +6150,283 @@
             }
           },
           "took_s": 905.7
+        },
+        {
+          "slug": "clip-20261102-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20261102-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20261102-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20261102-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20261102-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20261102",
+      "dry_run": false,
+      "ts": "2026-11-02T13:45:11+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 152,
+        "with_retention": 130,
+        "with_curve": 15,
+        "fetched_at": "2026-11-02T13:14:37.597623+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4,
+        "limited_at": "2026-11-02T13:37:26+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261102-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 138,
+                "refused_shown": 8,
+                "scouted": [],
+                "vod_arcs": 292,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2929,
+                "pool_with_vod": 1986,
+                "arc_sizes": [
+                  2,
+                  6,
+                  3,
+                  3,
+                  6,
+                  2,
+                  2,
+                  4,
+                  2,
+                  5
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: trails 28s past the picked moment"
+                },
+                {
+                  "cluster": "dangerlyoha@momentauspiciousfundelicatapunchtrees-sxew5fpzca",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources consist only of disjointed rambling without a clear setup, escalation, or payoff, so no meaningful change or"
+                },
+                {
+                  "cluster": "devincaherly@momentclumsyrealhummingbirdwoop-5cudu9y4ayo5lqz",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "yololaryy@momentfrozenneighborlylousedancingbaby-vhy8q_yrabb",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
+                },
+                {
+                  "cluster": "tminnzy@momentjollyspikyfiddleheadsninjagrumpy-vv8ie8h3bsq_q",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "tminnzy@momentbrainyconcernedmulepanicvis-mi--yge28qkc7_nx",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: the picture stands still for 2s at 0s"
+                },
+                {
+                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: director judged: not a story \u2014 All three sources are silent. There is no dialogue, no argument, no challenge and no reaction. The clip and the footage around it"
+                },
+                {
+                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "berrycrepe@momentoutstandingsparklycheetahprchase-oqbni3rq4j",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources only show a continuous demonstration without a clear meaningful change, conflict, or resolution. There is no"
+                },
+                {
+                  "cluster": "dangerlyoha@momentstupidsuccessfulendivepanicbasket-ilozm5i0",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources consist only of fragmented rambling without a clear setup, escalation, or payoff. There is no meaningful cha"
+                },
+                {
+                  "cluster": "marmeladovaya@momenthonorableinexpensivetrianglekevinturtle-",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources consist of disjointed fragmented phrases with no clear setup, escalation, or payoff, and no meaningful chang"
+                },
+                {
+                  "cluster": "marlon@momentgloriouscogentgoblinthisissparta-n9i8gnyhcujitm",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources only describe a single continuous segment of Marlon's broadcast without clear preceding setup or subsequent "
+                },
+                {
+                  "cluster": "dangerlyoha@momentcreativemoldystingraybiblethump-b-z9m0fzlj",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources consist only of disjointed, fragmented statements without a clear setup, escalation, or payoff, and no meani"
+                },
+                {
+                  "cluster": "joebartolozzi@momentendearingcrackygooseargieb8-aygbfswke24a",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources only show a streamer mentioning fish oil pills without any clear setup, escalation, or payoff that constitut"
+                },
+                {
+                  "cluster": "kaicenat@momentthirstytriangularorangepanicvis-omlzvyeiz_foi",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources only contain routine greetings and introductory remarks without a clear meaningful change, conflict, or payo"
+                },
+                {
+                  "cluster": "ishowspeed@momentspinelesscoweringwheelkappawealth-xsetwnptf",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none"
+                },
+                {
+                  "cluster": "fanfan@momentspineyantsyelephantfutureman-wvq5bm_4mixzyi0d",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none"
+                },
+                {
+                  "cluster": "jynxzi@momentgrosssmellybubbleteamvgame-a-ahkjjslbajojhs",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none"
+                },
+                {
+                  "cluster": "jynxzi@momenttrappedhorriblediamondleeroyjenkins-1b7skgzdr4r",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none"
+                },
+                {
+                  "cluster": "ishowspeed@momentconfidentalluringwrentwitchrpg-cis-ldcasn5x",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none"
+                },
+                {
+                  "cluster": "@momentagilecrazylardhotpokket-oumjcpeu2filcndx",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "Rayasianboy Has The Whole Stream Reacting",
+              "raw": "\u7c3d\u4e86",
+              "kept_raw": false
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 587.5
         },
         {
           "slug": "clip-20261102-2",
