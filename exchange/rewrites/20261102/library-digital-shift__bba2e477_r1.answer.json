@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "library-digital-shift__bba2e477_r1",
+  "slug": "library-digital-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Library Visits Fell 46%, But Borrowing Moved Online",
+  "hook": "Library visits fell 46 percent, but readers moved online.",
+  "closing": "Your library did not disappear; more of it simply moved onto the phone in your pocket.",
+  "question": "How do you use your library?",
+  "segments": [
+    {
+      "topic": "Library Physical Visits",
+      "say": "Library visits fell to 671 million. The buildings emptied dramatically, but reading demand did not vanish."
+    },
+    {
+      "topic": "Library Digital Checkouts",
+      "say": "Library digital checkouts reached 739 million. Borrowing moved from front desks to apps."
+    }
+  ]
+}
