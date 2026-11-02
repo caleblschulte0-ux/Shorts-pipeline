@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "usps-mail-volume-collapse__c57ffab9",
+  "slug": "usps-mail-volume-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:18:14.994Z",
+  "title": "USPS Mail Fell To 109 Billion Pieces",
+  "hook": "USPS mail fell to 109 billion pieces.",
+  "closing": "Fewer letters spread the postal network's costs across fewer customers, keeping postage under pressure.",
+  "question": "What do you still mail?",
+  "segments": [
+    {
+      "topic": "USPS Mail Volume",
+      "say": "USPS mail fell to 109 billion pieces. The network now carries nearly half its former traffic."
+    },
+    {
+      "topic": "USPS Letter Volume",
+      "say": "USPS First-Class Mail fell to 46 billion pieces. Personal and business letters disappeared fastest."
+    },
+    {
+      "topic": "USPS Stamp Cost",
+      "say": "A USPS stamp reached 68 cents. Shrinking volume did not make sending a letter cheaper."
+    }
+  ]
+}
