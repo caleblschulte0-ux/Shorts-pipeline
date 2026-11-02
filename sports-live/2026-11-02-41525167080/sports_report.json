@@ -1,0 +1,82 @@
+{
+ "date": "2026-11-02",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "sports",
+   "why": "most upvoted",
+   "post_title": "The Brewers take home their first World Series title in franchise history!",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Bucs get the win with 0 pass completions, Tampa is the first team to win a game with no completed passes since the Bills on Sept. 29, 1974",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xle47u/highlight_bucs_get_the_win_with_0_pass/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xle47u/highlight_bucs_get_the_win_with_0_pass",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "MMA",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "Hokitt training his eyes for the Gane matchup",
+   "upvotes": 0,
+   "url": "https://streamable.com/cdl1wr",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xkpqmx/hokitt_training_his_eyes_for_the_gane_matchup",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "baseball",
+   "who": "baseball",
+   "why": "most upvoted",
+   "post_title": "A perfectly executed beer throw and chug to Jacob Misiorowski",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xjk7x8/a_perfectly_executed_beer_throw_and_chug_to_jacob/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xjk7x8/a_perfectly_executed_beer_throw_and_chug_to_jacob",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "[EDM (1) - NYR 0] McDavid goes coast to coast in the first minute of the game to extend his point streak to 15 games.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xlhfvc/edm_1_nyr_0_mcdavid_goes_coast_to_coast_in_the/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xlhfvc/edm_1_nyr_0_mcdavid_goes_coast_to_coast_in_the",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "CollegeBasketball",
+   "why": "most upvoted",
+   "post_title": "[Highlight] The College Basketball season is officially under way",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xl4lqu/highlight_the_college_basketball_season_is/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xl4lqu/highlight_the_college_basketball_season_is",
+   "skipped": "too short: the post runs 12.1s (< 15s)"
+  }
+ ],
+ "already_today": 1,
+ "pool": 97,
+ "already_posted": 16,
+ "shipped": 0
+}
