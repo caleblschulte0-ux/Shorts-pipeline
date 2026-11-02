@@ -1,0 +1,151 @@
+{
+ "date": "2026-11-02",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "baseball",
+   "who": "Milwaukee Brewers",
+   "why": "Players parade with the Commissioner's Trophy at Lambeau Field after their historic win",
+   "post_title": "This is awesome: The Milwaukee Brewers showed up at Lambeau Field with the Commissioner\u2019s Trophy after winning the World Series last night \u2014 and some of them even did the Lambeau Leap.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xj1ogo/this_is_awesome_the_milwaukee_brewers_showed_up/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xj1ogo/this_is_awesome_the_milwaukee_brewers_showed_up",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "baseball",
+   "who": "William Contreras",
+   "why": "He surprises a sandwich vendor with an unexpected gesture that goes viral",
+   "post_title": "[ESPN] William Contreras surprised this man selling sandwiches with a kind gesture he wasn\u2019t expecting",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling",
+   "title": "William Contreras Surprises Sandwich Vendor With Unexpected Kindness",
+   "hook": "William gives a surprise to a sandwich seller \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many ",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many "
+  },
+  {
+   "sub": "baseball",
+   "who": "Trevor Megill",
+   "why": "Posts a cheeky message to Brewers fans after the championship",
+   "post_title": "Trevor Megill's message to Brewers fans: \"Have fun talking sh!t to Chicago next year. We have a ring.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun",
+   "skipped": "too short: the post runs 7.4s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "Shows up in a full Witcher costume for the Spurs\u2019 Halloween game",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "Has a goofy pre\u2011game moment with VJ Edgecombe before hitting the sideboard",
+   "post_title": "Lebron having fun pregame with VJ Edgecombe and then proceeds to hit the sideboard",
+   "upvotes": 0,
+   "url": "https://streamable.com/dy08hf",
+   "topic": "https://www.reddit.com/r/nba/comments/1xiblub/lebron_having_fun_pregame_with_vj_edgecombe_and",
+   "skipped": "no sound: the post has no audio track"
+  },
+  {
+   "sub": "nba",
+   "who": "Yaxel Lendeborg",
+   "why": "Seeks advice from NBA legends T\u2011Mac, Vince, and Melo in a heartfelt interview",
+   "post_title": "Yaxel Lendeborg asking T-Mac, Vince, and Melo for advice on his game: \u201cDo you guys have any advice like, just for me in general just to try to keep going, things I got to work on, anything that you gu",
+   "upvotes": 0,
+   "url": "https://streamable.com/0vl8x9",
+   "topic": "https://www.reddit.com/r/nba/comments/1xglkq7/yaxel_lendeborg_asking_tmac_vince_and_melo_for",
+   "title": "Yaxel Lendeborg Asks T\u2011Mac, Vince & Melo for Advice \u2014 Their Answers Shock Him",
+   "hook": "Yaxel asks the legends for help",
+   "ledger": {
+    "moves": [
+     "zoom@30.17"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "Performs the iconic Key & Peele handshake with Dean Wade on court",
+   "post_title": "LeBron does the Key & Peele handshake with Dean Wade",
+   "upvotes": 0,
+   "url": "https://streamable.com/h8d1t3",
+   "topic": "https://www.reddit.com/r/nba/comments/1xg7jzu/lebron_does_the_key_peele_handshake_with_dean_wade",
+   "title": "LeBron James Does Key &\u202fPeele Handshake With Dean Wade \ud83d\ude02",
+   "hook": "LeBron shares a goofy handshake",
+   "ledger": {
+    "moves": [
+     "whoa@8.66",
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge"
+  }
+ ],
+ "already_today": 1,
+ "pool": 96,
+ "already_posted": 16,
+ "shipped": 0
+}
