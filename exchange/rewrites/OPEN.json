@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-02T14:59:23Z",
+ "updated": "2026-11-02T18:16:35Z",
  "open": [
+  {
+   "id": "cargo-ship-size-growth__7c8383c4",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-11-02T18:16:35Z",
+   "why": [
+    "premise: brain: The capacity figure is unexplained and the smaller-crew comparison does not establish a specific consequential expectation reversal."
+   ],
+   "request": "exchange/rewrites/20261102/cargo-ship-size-growth__7c8383c4.request.json",
+   "answer_path": "exchange/rewrites/20261102/cargo-ship-size-growth__7c8383c4.answer.json"
+  },
   {
    "id": "seabed-mining-rush__94b642eb_r3",
    "slug": "seabed-mining-rush",
