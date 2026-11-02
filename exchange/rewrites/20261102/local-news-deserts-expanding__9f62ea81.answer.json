@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "local-news-deserts-expanding__9f62ea81",
+  "slug": "local-news-deserts-expanding",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Local News Shrunk To 4,490 Newspapers",
+  "hook": "Local news shrank to 4,490 newspapers.",
+  "closing": "Without local reporting, decisions affecting your taxes and schools receive less scrutiny.",
+  "question": "Who still reports on your town?",
+  "segments": [
+    {
+      "topic": "Local News Count",
+      "say": "Local news shrank to 4,490 newspapers. Thousands of communities lost reporting capacity."
+    },
+    {
+      "topic": "Local News Deserts",
+      "say": "Local news deserts reached 208 counties. Those communities have no dedicated source watching local institutions."
+    },
+    {
+      "topic": "Local News Reach",
+      "say": "Local news is scarce for 15 percent of Americans. Millions now miss routine scrutiny of local decisions."
+    }
+  ]
+}
