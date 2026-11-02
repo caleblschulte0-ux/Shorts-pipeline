@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "tsa-digital-id-states-growth__1330070e",
+  "slug": "tsa-digital-id-states-growth",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:18:14.994Z",
+  "title": "Digital IDs Now Work In 20 States",
+  "hook": "Digital IDs now work in 20 states.",
+  "closing": "Phone-based identity is spreading, but most travelers still need the plastic backup.",
+  "question": "Would you trust a digital ID?",
+  "segments": [
+    {
+      "topic": "Digital ID States",
+      "say": "Digital IDs now work in 20 states. Airport identity checks are moving onto phones."
+    },
+    {
+      "topic": "Digital ID Checkpoints",
+      "say": "Digital IDs reached 250 airport checkpoints. Availability expanded from a pilot into a national network."
+    },
+    {
+      "topic": "Digital ID Coverage",
+      "say": "Digital IDs still cover only 20 states. Most of the country has not adopted them yet."
+    }
+  ]
+}
