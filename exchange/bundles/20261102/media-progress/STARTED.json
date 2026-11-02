@@ -1,0 +1,11 @@
+{
+  "schema": "chatgpt-media-started/v1",
+  "task": "daily_producer_takeover_director",
+  "worker": "chatgpt",
+  "date": "20261102",
+  "bundle": {
+    "identity": "605a84d64108d1edfb483c1b7f9131d015885b340f8687f0b29f9b3f28a8355b",
+    "path": "exchange/bundles/20261102/bundle.json"
+  },
+  "started_at": "2026-11-02T12:15:25.258Z"
+}
