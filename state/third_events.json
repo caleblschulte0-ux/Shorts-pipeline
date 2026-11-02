@@ -5305,6 +5305,50 @@
         "story-5eaa5cc87a9bda7a"
       ],
       "last_updated": "2026-11-01"
+    },
+    "dangerlyoha-asking-become-2026w44": {
+      "event_id": "dangerlyoha-asking-become-2026w44",
+      "people": [
+        "dangerlyoha"
+      ],
+      "actions": [
+        "asking",
+        "become",
+        "convers",
+        "vanya"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2913052385/13689-13929",
+        "https://www.twitch.tv/dangerlyoha/clip/AuspiciousFunDelicataPunchTrees-sXEw5fPzCaY1uLEu",
+        "vodmine://2913052385/13939-14179"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-02"
+    },
+    "dangerlyoha-about-arkash-2026w44": {
+      "event_id": "dangerlyoha-about-arkash-2026w44",
+      "people": [
+        "dangerlyoha"
+      ],
+      "actions": [
+        "about",
+        "arkash",
+        "drink",
+        "says"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2913052385/7445-7685",
+        "https://www.twitch.tv/dangerlyoha/clip/StupidSuccessfulEndivePanicBasket-IlOZm5i0UqMvy2D0",
+        "vodmine://2913052385/7695-7935"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-02"
     }
   }
 }
