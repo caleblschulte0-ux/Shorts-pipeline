@@ -5392,6 +5392,93 @@
       ],
       "published_versions": [],
       "last_updated": "2026-11-02"
+    },
+    "kennstar-nyssa-puzzle-2026w44": {
+      "event_id": "kennstar-nyssa-puzzle-2026w44",
+      "people": [
+        "kennstar"
+      ],
+      "actions": [
+        "nyssa",
+        "puzzle",
+        "sist",
+        "solve"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2911127799/5492-5732",
+        "https://www.twitch.tv/kennstar/clip/HelpfulKitschyGooseImGlitch-Fen77BHJrtS55B9B",
+        "vodmine://2911127799/5790-6030"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-02"
+    },
+    "rubius-igual-persona-2026w44": {
+      "event_id": "rubius-igual-persona-2026w44",
+      "people": [
+        "rubius"
+      ],
+      "actions": [
+        "igual",
+        "persona",
+        "playa",
+        "rubiu"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2914130484/1632-1872",
+        "https://www.twitch.tv/rubius/clip/SwissVenomousLorisFeelsBadMan-K1w94bia6xmeyADf",
+        "vodmine://2914130484/1884-2124"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-02"
+    },
+    "kopsteep-about-drink-2026w44": {
+      "event_id": "kopsteep-about-drink-2026w44",
+      "people": [
+        "kopsteep"
+      ],
+      "actions": [
+        "about",
+        "drink",
+        "queen",
+        "slay"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2913924192/530-770",
+        "https://www.twitch.tv/kopsteep/clip/KindNastyNoodleTakeNRG-fgBElR_-mh3D_758",
+        "vodmine://2913924192/777-1017"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-02"
+    },
+    "fanfan-chas-doctor-2026w44": {
+      "event_id": "fanfan-chas-doctor-2026w44",
+      "people": [
+        "fanfan"
+      ],
+      "actions": [
+        "chas",
+        "doctor",
+        "fanny",
+        "plague"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2914646081/36294-36534",
+        "https://www.twitch.tv/fanfan/clip/SpineyAntsyElephantFutureMan-Wvq5bm_4MIXzyI0D"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-02"
     }
   }
 }
