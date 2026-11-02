@@ -1,0 +1,127 @@
+"""Standalone Data reference prototype. Blender 4+: blender -b -t 4 --python build.py -- /tmp/data-preview
+No production imports or publishing side effects. Front is -Y, up is Z.
+"""
+import bpy, math, sys
+from pathlib import Path
+from mathutils import Vector
+
+OUT = Path(sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else '/tmp/data-preview')
+OUT.mkdir(parents=True, exist_ok=True)
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete(use_global=False)
+
+def material(name, color, rough=.42):
+    m=bpy.data.materials.new(name); m.diffuse_color=(*color,1); m.use_nodes=True
+    bs=m.node_tree.nodes['Principled BSDF']; bs.inputs['Base Color'].default_value=(*color,1); bs.inputs['Roughness'].default_value=rough
+    return m
+teal=material('Data / teal',(.025,.34,.25)); white=material('Coat / warm ivory',(.83,.84,.8)); black=material('Frames / charcoal',(.012,.018,.023),.3)
+eye=material('Eyes / ivory',(.95,.96,.92),.24); red=material('Tie / vermilion',(.74,.065,.025)); blue=material('Pen / blue',(.02,.34,.65)); floor=material('Stage',(.035,.043,.059),.65)
+parts=[]
+def finish(o,name,mat):
+    o.name=name; o.data.materials.append(mat)
+    if o.type=='MESH':
+        for p in o.data.polygons: p.use_smooth=True
+    parts.append(o); return o
+
+def ell(name,loc,scale,mat):
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=48,ring_count=32,location=loc)
+    o=bpy.context.object; o.scale=scale; return finish(o,name,mat)
+
+def box(name,loc,scale,mat,bevel=.08):
+    bpy.ops.mesh.primitive_cube_add(size=1,location=loc); o=bpy.context.object; o.scale=scale
+    bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
+    b=o.modifiers.new('Soft edges','BEVEL'); b.width=bevel; b.segments=5
+    return finish(o,name,mat)
+
+def line(name,pts,r,mat,closed=False):
+    c=bpy.data.curves.new(name,'CURVE'); c.dimensions='3D'; c.resolution_u=24; c.bevel_depth=r; c.bevel_resolution=5
+    s=c.splines.new('POLY'); s.points.add(len(pts)-1)
+    for p,co in zip(s.points,pts): p.co=(*co,1)
+    s.use_cyclic_u=closed; o=bpy.data.objects.new(name,c); bpy.context.collection.objects.link(o); return finish(o,name,mat)
+
+def capsule(name,a,b,r,mat):
+    o=ell(name,(Vector(a)+Vector(b))/2,(r,r,(Vector(b)-Vector(a)).length/2+r),mat)
+    o.rotation_euler=(Vector(b)-Vector(a)).to_track_quat('Z','Y').to_euler(); return o
+
+def panel(name,pts,mat,thick=.04):
+    mesh=bpy.data.meshes.new(name); mesh.from_pydata(pts,[],[list(range(len(pts)))]); mesh.update()
+    o=bpy.data.objects.new(name,mesh); bpy.context.collection.objects.link(o); finish(o,name,mat)
+    s=o.modifiers.new('Fabric thickness','SOLIDIFY'); s.thickness=thick
+    b=o.modifiers.new('Soft seam','BEVEL'); b.width=.025; b.segments=3
+    return o
+
+# The head owns the silhouette; limbs are slightly lanky, not stick thin.
+ell('Head',(0,0,3.26),(.91,.69,.87),teal)
+for x in (-.36,.36):
+    ear=ell('Ear.L' if x<0 else 'Ear.R',(x,.015,4.09),(.155,.15,.39),teal); ear.rotation_euler.y=-.12 if x<0 else .12
+ell('Neck',(0,0,2.36),(.23,.23,.22),teal)
+for x in (-.25,.25):
+    capsule('Leg', (x,0,.27),(x,.015,1.08),.155,teal)
+    ell('Shoe',(x,-.13,.18),(.245,.36,.18),teal)
+# Coat: continuous tapered shell with a flattened front, not stacked spheres.
+verts=[]; n=64
+for z,rx,ry in [( .83,.51,.31),(.88,.52,.32),(1.1,.50,.32),(1.8,.43,.29),(2.17,.34,.25),(2.30,.25,.20)]:
+    for i in range(n):
+        a=2*math.pi*i/n; verts.append((rx*math.cos(a),ry*math.sin(a),z))
+faces=[]
+for j in range(5):
+    for i in range(n): faces.append((j*n+i,j*n+(i+1)%n,(j+1)*n+(i+1)%n,(j+1)*n+i))
+faces.append(tuple(reversed(range(n)))); faces.append(tuple(5*n+i for i in range(n)))
+mesh=bpy.data.meshes.new('Coat shell'); mesh.from_pydata(verts,[],faces); mesh.update()
+o=bpy.data.objects.new('Coat / continuous tapered body',mesh); bpy.context.collection.objects.link(o); finish(o,o.name,white)
+sub=o.modifiers.new('Tailored smooth surface','SUBSURF'); sub.levels=2
+for side in (-1,1):
+    capsule('Sleeve', (side*.34,0,2.08),(side*.66,-.015,1.37),.205,white)
+    ell('Mitten',(side*.69,-.04,1.19),(.22,.22,.25),teal)
+    ell('Thumb',(side*.57,-.19,1.21),(.095,.09,.12),teal)
+# Shirt opening, tie and folded lapels live on the front surface.
+panel('Shirt opening',[(-.23,-.261,2.24),(.23,-.261,2.24),(0,-.345,1.52)],eye)
+ell('Tie knot',(0,-.316,2.15),(.09,.045,.10),red)
+panel('Tie blade',[(-.048,-.34,2.08),(.048,-.34,2.08),(.095,-.36,1.74),(0,-.37,1.55),(-.095,-.36,1.74)],red)
+for s in (-1,1):
+    panel('Lapel',[(s*.15,-.30,2.27),(s*.32,-.27,2.10),(s*.24,-.32,1.99),(s*.30,-.32,1.91),(s*.035,-.365,1.55)],white)
+line('Coat center seam',[(0,-.333,.87),(0,-.337,1.51)],.012,white)
+box('Pocket',(.29,-.315,1.39),(.23,.07,.30),white,.035)
+box('Pen',(.30,-.365,1.62),(.045,.045,.25),blue,.018)
+for z in (1.35,1.10): ell('Coat button',(.055,-.345,z),(.032,.015,.032),eye)
+# White eye pads and genuine open rounded-square frames.
+for x in (-.39,.39):
+    box('Eye white',(x,-.615,3.40),(.63,.22,.64),eye,.19)
+    pts=[]
+    for cx,cz,start in [(.20,.20,0),(-.20,.20,90),(-.20,-.20,180),(.20,-.20,270)]:
+        for i in range(13):
+            a=math.radians(start+i*90/12); pts.append((x+cx+.13*math.cos(a),-.785,3.40+cz+.13*math.sin(a)))
+    line('Glasses frame',pts,.053,black,True)
+    ell('Pupil',(x+.035,-.759,3.39),(.14,.055,.17),black)
+    ell('Eye glint',(x+.004,-.811,3.455),(.045,.016,.045),eye)
+    line('Temple',[(x+(-.34 if x<0 else .34),-.73,3.42),(x+(-.43 if x<0 else .43),-.33,3.42),(x+(-.43 if x<0 else .43),.17,3.35)],.041,black)
+    brow=[]
+    for i in range(25):
+        v=-.22+i*.44/24; z=3.85+.055*math.sin((v+.22)/.44*math.pi); xx=x+v
+        y=-.69*math.sqrt(max(.01,1-(xx/.91)**2-((z-3.26)/.87)**2))-.035
+        brow.append((xx,y,z))
+    line('Brow',brow,.044,black)
+line('Glasses bridge',[(-.06,-.785,3.43),(.06,-.785,3.43)],.045,black)
+ell('Nose',(0,-.755,3.10),(.067,.09,.083),teal)
+smile=[]
+for i in range(41):
+    x=-.33+i*.66/40; z=2.80+.16*(x/.33)**2
+    y=-.69*math.sqrt(1-(x/.91)**2-((z-3.26)/.87)**2)-.025
+    smile.append((x,y,z))
+line('Smile',smile,.022,black)
+# Group all components under a root for re-use and posing in Claude's scene.
+bpy.ops.object.empty_add(); root=bpy.context.object; root.name='DATA_ROOT'
+for o in parts: o.parent=root
+bpy.ops.mesh.primitive_plane_add(size=200); bpy.context.object.data.materials.append(floor)
+world=bpy.data.worlds.new('Studio'); world.use_nodes=True; world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.12,.16,1); world.node_tree.nodes['Background'].inputs[1].default_value=.35; bpy.context.scene.world=world
+for name,loc,power,size in [('Key',(-3,-4,7),650,4),('Fill',(4,-2,4),400,3),('Rim',(1,3,6),850,3)]:
+    bpy.ops.object.light_add(type='AREA',location=loc); o=bpy.context.object; o.name=name; o.data.energy=power; o.data.shape='DISK'; o.data.size=size; o.rotation_euler=(Vector((0,0,2.2))-o.location).to_track_quat('-Z','Y').to_euler()
+bpy.ops.object.camera_add(); cam=bpy.context.object; bpy.context.scene.camera=cam; cam.data.type='ORTHO'; cam.data.ortho_scale=5.25
+sc=bpy.context.scene; sc.render.engine='CYCLES'; sc.cycles.samples=64; sc.cycles.use_denoising=False; sc.render.resolution_x=800; sc.render.resolution_y=900; sc.render.resolution_percentage=100; sc.render.image_settings.file_format='PNG'
+sc.view_settings.view_transform='AgX'
+for name,loc in [('front',(0,-9,3.4)),('three_quarter',(5,-9,3.7)),('side',(9,0,3.4)),('back',(0,9,3.4))]:
+    cam.location=loc; cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
+    sc.render.filepath=str(OUT/(name+'.png')); bpy.ops.render.render(write_still=True)
+cam.location=(5,-9,3.7); cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
+bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'data_reference.blend'))
+print('DATA_REFERENCE_DONE',OUT)
