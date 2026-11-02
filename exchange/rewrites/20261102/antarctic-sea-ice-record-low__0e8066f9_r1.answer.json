@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "antarctic-sea-ice-record-low__0e8066f9_r1",
+  "slug": "antarctic-sea-ice-record-low",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Antarctic Sea Ice Fell To 1.79 Million Square Kilometers",
+  "hook": "Antarctic sea ice fell to 1.79 million square kilometers.",
+  "closing": "Less reflective ice leaves more heat in the ocean, affecting climate far beyond Antarctica.",
+  "question": "Did you expect this much ice loss?",
+  "segments": [
+    {
+      "topic": "Antarctic Ice Minimum",
+      "say": "Antarctic sea ice fell to 1.79 million square kilometers. That set the lowest February minimum in the data."
+    },
+    {
+      "topic": "Antarctic Ice Missing",
+      "say": "Antarctic ice was short by 1.3 million square kilometers. The missing area exceeds two major states combined."
+    },
+    {
+      "topic": "Antarctic Ice Reflection",
+      "say": "Antarctic sea ice reflects 60 percent of sunlight. Losing it lets the darker ocean absorb far more heat."
+    }
+  ]
+}
