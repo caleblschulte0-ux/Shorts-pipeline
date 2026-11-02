@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "robotic-surgery-doubled__c6fe157f",
+  "slug": "robotic-surgery-doubled",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Robotic Surgery Reached 3.153 Million Procedures",
+  "hook": "Robotic surgery reached 3.153 million procedures.",
+  "closing": "Robot assistance is becoming ordinary surgery, so patients increasingly need to understand its role.",
+  "question": "Would you choose robotic surgery?",
+  "segments": [
+    {
+      "topic": "Robotic Surgery Volume",
+      "say": "Robotic surgery reached 3.153 million procedures. A once-rare tool is becoming routine operating-room equipment."
+    },
+    {
+      "topic": "Robotic Surgery Share",
+      "say": "Robots handled 15.1 percent of general surgeries. The technology moved well beyond experimental use."
+    },
+    {
+      "topic": "Robotic Surgery Revenue",
+      "say": "Robotic surgery revenue reached 7.1 billion dollars. Hospitals are building an industry around the machines."
+    }
+  ]
+}
