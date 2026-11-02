@@ -1,27 +1,32 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261101",
-  "judged_date": "20261031",
+  "date": "20261102",
+  "judged_date": "20261101",
   "alarm": {
-    "date": "20261031",
+    "date": "20261101",
     "ok": false,
     "alarms": [
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 3/4 posted for 20261031.",
+        "detail": "explainer: 2/4 posted for 20261101.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 4/6 posted for 20261101.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (53 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (54 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "third: 9/6 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -208,1175 +213,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-29T12:03:44+00:00",
-      "slug": "sports_john_wall_mother_every",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A touching real moment in the right footage, but the first 2.5 seconds are cropped onto an empty studio with no face, so the hook loses viewers before John Wall appears.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3 to mid0: the vertical crop shows an empty Nasdaq set and only his hands at the right edge, so for the first 2.5s no one is on screen.",
-        "hook frames: our line sits over the studio's printed Nasdaq desk logo, which clutters it.",
-        "The rest is a static talking head with no punch-in or move on the emotional line ('still send my\u2026', 'keep that as\u2026'), so pace feels flat.",
-        "payoff@-0.4: the clip ends on a neutral face with no visible landing line, and the 'pays her phone bill' detail may be cut short."
-      ],
-      "fixes": [
-        "Reframe the opening segment on his face, or start on the close-up, so he is speaking from frame one.",
-        "Add a slow punch-in when he says 'keep that as' and an emotional sound hit (the sad grey move fits this story).",
-        "End on the full sentence about keeping her number or paying her bill so the payoff completes before the cut."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 105
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "wrong_crop_hook",
-        "visible_evidence": "hook@0.3, hook@1.5, hook@2.2 and mid0 show an empty Forbes/Nasdaq studio with John Wall cropped out except for his clasped hands at the far right edge. His face does not appear until mid1.",
-        "root_cause": "The 9:16 crop of the opening wide shot is centred on the empty set instead of on the speaker, so the first 2.5s show no person.",
-        "repair_goal": "Reframe the opening wide shot on John Wall, or open on the close-up of his face from mid1, so a viewer sees him speaking from frame one."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.086,
-        "effective_fps": 21.9,
-        "max_dup_run": 16,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 2.0,
-        "max_dup_at_s": 1.08,
-        "duration_s": 34.88
-      },
-      "fingerprint": "?|-|wrong_crop_hook"
-    },
-    {
-      "ts": "2026-10-29T12:11:48+00:00",
-      "slug": "sports_john_wall_mother_every",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuinely moving answer from John Wall, but the first two seconds show an empty studio and hands, and stray bee/flower stickers cheapen the line.",
-      "auto_fails": [
-        "junk_imagery: mid0 (t=2.50s): a garbled grey sticker cutout (a bee or flower blob) sits over the end of our line 'every day'. From mid2 to payoff@-0.4 a glittering bee sticker sits next to the rose emoji. It has nothing to do with the moment.",
-        "unreadable: mid4 (t=26.42s): the speech caption 'KEEP THAT AS' is printed right against and partly over the broadcast scorebug (PHI 68 / WSH 74). Our line also runs into the bee sticker in mid2 to mid5."
-      ],
-      "problems": [
-        "Hook (0-2.5s) is the interviewer's empty-set wide shot with no subject visible, so a stranger has no face and no reason to stay.",
-        "A garbled grey sticker in mid0 and a glitter bee sticker from mid2 to the end sit beside or on top of our hook line: junk overlay.",
-        "mid4: the speech caption collides with the broadcast scorebug in the game insert.",
-        "The payoff frame is just him with his mouth closed and no caption. The phone-bill reason isn't clearly landed on screen."
-      ],
-      "fixes": [
-        "Start the cut on Wall's close-up mid-answer. Keep the question as audio only or drop it.",
-        "Remove the bee and grey sticker overlays and keep only the rose emoji on the line.",
-        "Raise the speech caption above the scorebug, or crop the game insert so the TV graphic is out of the caption band.",
-        "End on his line about paying the phone bill / 'it helps me' rather than a silent hold."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 103
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_no_subject",
-        "visible_evidence": "hook@0.3 to hook@2.2 show an empty Forbes/Nasdaq studio set with only the interviewer's clasped hands at the right edge. John Wall's face first appears at mid1 (8.48s).",
-        "root_cause": "The cut opens on the interviewer's wide shot asking the question, so the subject of the line is absent for the first two seconds a stranger decides in.",
-        "repair_goal": "Open on John Wall's close-up as he answers (the mid1 to mid3 framing), with the question audio laid under it or trimmed. Remove the bee/flower sticker overlays, and move the speech caption clear of the scorebug in the game insert."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.069,
-        "effective_fps": 22.3,
-        "max_dup_run": 16,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 1.46,
-        "max_dup_at_s": 0.58,
-        "duration_s": 34.33
-      },
-      "fingerprint": "?|junk_imagery+unreadable|weak_hook_no_subject"
-    },
-    {
-      "ts": "2026-10-29T12:14:07+00:00",
-      "slug": "sports_john_wall_mother_every",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real, moving John Wall moment that the line delivers on, but the clip opens on an empty set, loses his face at 9s, and gets no grey/mood treatment on the sad turn.",
-      "auto_fails": [],
-      "problems": [
-        "The first ~0.8s is an empty Nasdaq studio wide shot with no person in it.",
-        "At mid2 (9.34s) the vertical crop shows his torso and bee pin, not his face, on the key line 'it helps me'.",
-        "The sad turn ('she can't ever respond') gets no edit move such as grey, piano or a push-in, so the emotion is told rather than felt.",
-        "The ending trails off ('you're just sitting...') with no clear final line to land on."
-      ],
-      "fixes": [
-        "Trim the opening so frame one is John Wall's face mid-sentence about the phone bill.",
-        "Re-track the crop around 8-11s to keep his face centred.",
-        "Mark the mood at 'she can't ever respond' so the grey and piano come in from there.",
-        "End the cut on a complete sentence, such as his explanation of the morning and night text, instead of mid-phrase."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 65
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3 is a wide shot of an empty Forbes/Nasdaq studio desk, with no face and only the caption 'SURE.'. John Wall does not appear until hook@1.5. mid2 (9.34s) also loses his face: the crop drifts to his shirt and bee pin while he says 'IT HELPS ME'.",
-        "root_cause": "The cut starts on the source's establishing wide shot instead of his face. The vertical crop does not follow the speaker when he leans out of frame.",
-        "repair_goal": "Start the cut on a tight shot of John Wall's face, at or just before 'I paid the phone bill', so the first frame shows the person the line names. Re-track the crop at around 9s so his face stays in frame on 'it helps me'. Add a slow emotional push-in or the grey mood on 'she can't ever respond'."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.029,
-        "effective_fps": 23.3,
-        "max_dup_run": 5,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.17,
-        "max_dup_at_s": 0.25,
-        "duration_s": 21.58
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-10-29T12:18:01+00:00",
-      "slug": "sports_yaxel_lendeborg_and_melo_for",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is real and correctly labelled, but it is a letterboxed wide studio shot with Yaxel as a small inset, no punch-ins, and a hook that is the same static desk view for two seconds.",
-      "auto_fails": [
-        "empty_void: In hook@0.3, mid0, mid2 and payoff@-0.4 the 16:9 footage fills only the middle third of the frame. The top and bottom thirds are blurred copies, so about 60% of the phone screen carries nothing, and Yaxel is a thumbnail-size box on the right of a wide studio shot."
-      ],
-      "problems": [
-        "The hook (hook@0.3 to hook@2.2) is an unchanging wide desk shot with nothing to grab a stranger",
-        "The 16:9 broadcast is letterboxed: the top and bottom thirds are blurred filler and Yaxel is a tiny box on the right (mid0, mid2, payoff@-0.4)",
-        "No zooms or sound hits on the reactions, which the format contract expects",
-        "The payoff (payoff@-1.8 and payoff@-0.4) ends on the same wide shot. The advice is never put on screen, so the moment never visibly lands",
-        "41 seconds of talk-show desk talk is too long for one question and answer"
-      ],
-      "fixes": [
-        "Reframe to vertical: crop tight on whoever is speaking (Yaxel's inset when he asks, T-Mac and Vince when they answer)",
-        "Start on Yaxel asking the question or the best line of the answer, not on the wide desk view",
-        "Punch in on the key advice line (lean on the vets) and end on it",
-        "Trim to roughly 20-25 seconds of the question and the strongest answers"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 125
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_wide_shot",
-        "visible_evidence": "From hook@0.3 to hook@2.2 the shot is the same wide studio view: four analysts as small figures at a desk and Yaxel in a small inset on the right. Nothing zooms or punches in, and no reaction is shown.",
-        "root_cause": "The broadcast's wide desk shot was letterboxed as-is into the vertical frame. Nothing was cropped or pushed in on the subject, and the opening is not the moment the advice lands.",
-        "repair_goal": "Open on a tight crop of Yaxel asking the question (or the legends' reaction), filling the vertical frame. Punch in on whoever speaks (T-Mac at mid1, Vince at mid3) instead of keeping the wide desk shot. Cut the wide-shot stretches so the strongest line of advice lands in the first seconds and again "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.389,
-        "effective_fps": 14.7,
-        "max_dup_run": 32,
-        "measured": true,
-        "frozen_ratio": 0.007,
-        "frozen_fps": 23.8,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 6.71,
-        "max_dup_at_s": 19.42,
-        "duration_s": 41.62
-      },
-      "fingerprint": "?|empty_void|weak_hook_wide_shot"
-    },
-    {
-      "ts": "2026-10-29T12:20:26+00:00",
-      "slug": "sports_yaxel_lendeborg_and_melo_for",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real, on-topic moment, but framed as a tiny wide shot inside a mostly blurred vertical canvas: the hook shows a studio, not a face, and it ends on the same wide shot with no visible payoff.",
-      "auto_fails": [
-        "empty_void: In every frame (hook@0.3, mid0, mid5, payoff@-0.4) the 16:9 footage fills only about 30% of the 9:16 frame and the rest is blurred filler. Yaxel, the subject, is a small inset box inside a wide studio shot, about 1/15 of the screen"
-      ],
-      "problems": [
-        "Hook (hook@0.3 to hook@2.2) is a wide studio shot with Yaxel in a small inset, which gives a scrolling viewer nothing to stop for",
-        "About 70% of every frame is blurred letterbox filler, which wastes the vertical canvas",
-        "No zooms or punch-ins visible on the question or the answer, unlike the repost-channel cut the format calls for",
-        "Payoff frames (mid5, payoff@-0.4) return to the same wide shot as the opening. The advice ('lean on the vets') never gets its own visual beat, so the ending does not land visually"
-      ],
-      "fixes": [
-        "Reframe the hook on Yaxel's face (crop and scale his inset) so he fills the frame while he asks",
-        "Keep T-Mac's close-up for the answer and punch in with a sound hit on the key line of advice",
-        "End on a tight reaction shot (Yaxel nodding or a panel reaction) instead of the wide studio shot",
-        "Scale the footage band larger (crop the 16:9 sides) to reduce the blurred filler"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 73
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "subject_too_small_wide_shot",
-        "visible_evidence": "From hook@0.3 to hook@2.2 the frame is a wide shot of the NBA Showtime studio. Yaxel sits in a small monitor inset on the right, the panel members are tiny, and two-thirds of the vertical frame is blurred letterbox. No punch-in or zoom is visible.",
-        "root_cause": "The 16:9 broadcast was fitted whole into a blurred 9:16 canvas without reframing on the speaker, so the person asking the question can barely be seen on a phone",
-        "repair_goal": "Punch in on Yaxel's inset so his face fills the frame width while he asks the question. Then cut or zoom to T-Mac (as framed in mid3 and mid4) for the answer. Add the punch-in with a sound hit on the turn so the first two seconds show a face, not a studio."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.527,
-        "effective_fps": 11.3,
-        "max_dup_run": 32,
-        "measured": true,
-        "frozen_ratio": 0.005,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 6.17,
-        "max_dup_at_s": 4.42,
-        "duration_s": 24.29
-      },
-      "fingerprint": "?|empty_void|subject_too_small_wide_shot"
-    },
-    {
-      "ts": "2026-10-29T12:22:40+00:00",
-      "slug": "sports_jose_mourinho_to_the_bar\u00e7a",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A repost of Madrid Total's repost: 20 seconds of one static talking head under someone else's watermark and a Spanish quote card. No English, no fans shown, and nothing lands.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through payoff@-0.4: the footage is another account's repost played inside our frame. It carries the 'MT | Madrid Total' watermark with social icons, a 'V\u00eda: Real Madrid Tv' tag, a burned-in Spanish quote card and a scrolling TV ticker, all over a blurred copy of itself. It is a video inside a video, not the moment itself.",
-        "dead_air: mid0 through payoff@-0.4: the same static head-and-shoulders shot with the same unchanging quote card for about 20s. Only the ticker scrolls, and there is no reaction, cutaway or shot of the singing fans.",
-        "unreadable: mid3: after the punch-in, our line 'Mourinho thanks fans who ruined his nap' prints directly over the source's 'V\u00eda: Real Madrid Tv' tag. The two pieces of text collide and 'who ruined' is partly obscured."
-      ],
-      "problems": [
-        "The footage is a third-party repost (MT | Madrid Total watermark, social icons, V\u00eda tag, TV ticker) played inside our frame.",
-        "An English-speaking viewer gets only a static Spanish quote card. There are no English subtitles of what he says.",
-        "The shot never changes for about 20s: no reaction, no cut to the singing fans, no beat that builds.",
-        "At mid3 our hook line collides with the source's 'V\u00eda: Real Madrid Tv' label.",
-        "The payoff (his deadpan joke) is never set up or punctuated. The clip just ends on the same frame."
-      ],
-      "fixes": [
-        "Source the clean original interview clip without third-party branding or burned-in quote cards.",
-        "Add timed English word captions of his actual line so the joke lands.",
-        "Cut in footage of the Bar\u00e7a fans singing outside the hotel if it exists, then punch in on his deadpan delivery with a sound hit.",
-        "Keep our hook line clear of every source graphic, and drop the punch-in that causes the overlap."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "restream_overlay_collision",
-        "visible_evidence": "At mid3 the punch-in pushes the source's 'V\u00eda: Real Madrid Tv' label up into our hook line, so the two texts overlap. The Madrid Total watermark, the Spanish quote card and the ticker stay on screen all the way through.",
-        "root_cause": "The source is a social repost with another outlet's branding and its own burned-in caption card. It is not clean original footage, and the punch-in moves the source's text into our text band.",
-        "repair_goal": "Use the clean original Real Madrid TV or press-conference clip without the third-party watermark and quote card. Add English subtitles timed to his speech, show the fans singing outside the hotel if any footage exists, and keep our line clear of every piece of source graphics."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.129,
-        "effective_fps": 20.9,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.112,
-        "frozen_fps": 21.3,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.068,
-        "judder_fps": 22.4,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.92
-      },
-      "fingerprint": "?|dead_air+junk_imagery+unreadable|restream_overlay_collision"
-    },
-    {
-      "ts": "2026-10-29T12:25:04+00:00",
-      "slug": "sports_kylian_mbappe_he_one_where",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real Mbapp\u00e9 laugh, but our captions are printed over the source's French subtitles, a picture-in-picture inset from another video runs underneath, and the meme he names is never shown, so the payoff does not land.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3, hook@1.5, mid0 and mid5 carry another repost's picture-in-picture inset at the bottom (a man in a stadium box, a bald man's face, a team dressing room). That is a video playing inside a video, and the meme the line promises (Mbapp\u00e9's face on Mao) is never shown.",
-        "unreadable: Our yellow-and-white English word captions sit on top of the footage's own large French captions: 'WE PUT I' over 'Celui o\u00f9 j'ai le plus rigol\u00e9' (mid2), 'THINK IT WAS' over 'vid\u00e9o d'un mec' (mid3), 'WITH MY FRIENDS' over 'Je l'utilise' (mid5), 'USE IT WELL' over 'l'utiliser' (hook@1.5). In mid1 our hook line also sits under the source's question card. On a phone the overlapping text cannot be read."
-      ],
-      "problems": [
-        "Our English word captions overlap the source's burned-in French captions in hook@1.5, mid2, mid3 and mid5.",
-        "The source is a repost with a picture-in-picture inset (stadium box, bald man, dressing room) in hook@0.3, mid0 and mid5, which is a video inside a video.",
-        "mid0 shows a split-screen seam with a stray face filling the lower half.",
-        "The Mao Zedong meme, the whole point of the clip, is never shown, so a stranger cannot see what is funny.",
-        "The English captions are fragments ('WE PUT I', 'THINK IT WAS') that do not tell the punchline."
-      ],
-      "fixes": [
-        "Detect the French burned-in captions and drop our word captions, or place them in a clear band.",
-        "Crop or mask the bottom inset and the split-screen section, or source the original Bridge interview instead of the repost.",
-        "Cut in the Mbapp\u00e9-as-Mao meme image when he names it (funnel/find_image).",
-        "Make our on-screen line carry the punchline, e.g. 'Mbapp\u00e9's favourite meme: his face on Mao \ud83d\ude02'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 60
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 3,
-        "failure_class": "unreadable",
-        "visible_evidence": "At mid2 the English caption 'WE PUT I' is stamped across the source's burned-in French caption 'Celui o\u00f9 j'ai le plus rigol\u00e9'. The punchline, his face put on Mao Zedong, is never readable on screen or shown as an image.",
-        "root_cause": "The source is already a captioned repost (The Bridge, French subtitles, picture-in-picture inset). The own-captions check did not detect the burned-in French text, so our word captions were laid on top of it, and the meme he names was never cut in.",
-        "repair_goal": "Skip our word captions where the source already has burned-in captions, or move them clear of the source's caption band. Crop out the bottom picture-in-picture inset. Cut in the actual Mao-face meme for about 2s when he names it, so a stranger sees the payoff."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.006,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.004,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.12
-      },
-      "fingerprint": "?|junk_imagery+unreadable|unreadable"
-    },
-    {
-      "ts": "2026-10-29T12:27:41+00:00",
-      "slug": "sports_kylian_mbappe_he_one_where",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The real Mbapp\u00e9 laugh is there, but our captions are stacked on the burned-in French captions in almost every beat, and the Mao meme the hook promises is never shown.",
-      "auto_fails": [
-        "unreadable: Our yellow word captions sit on top of the footage's own French captions: 'BECAUSE YOU CAN' over 'parce que' at hook@0.3, 'WE PUT I' over 'rigolo' at mid2, 'THINK IT WAS' over 'je crois' at mid3, 'WITH MY FRIENDS' over 'l'utilise' at mid4. In mid0, 'NOT TOO MUCH.' is printed over the French 'trop'. Our hook line sits on top of the burned-in 'LE M\u00c8ME QUI T'A LE PLUS FAIT RIRE' graphic at mid1."
-      ],
-      "problems": [
-        "Our English word captions are printed directly over the source's burned-in French captions (hook@0.3, mid2, mid3, mid4).",
-        "Our hook line overlaps the source's question graphic at mid1.",
-        "The Mao meme the hook and title promise is never shown, so the payoff is only described.",
-        "The video opens mid-sentence on an unrelated Thierry Henry inset and split screen (hook, mid0), which confuses a stranger.",
-        "The cut is a repost that already carries its own edit (insets, splits, captions), so our layer adds clutter instead of clarity."
-      ],
-      "fixes": [
-        "Treat this source as already captioned: turn off our word captions, or place them where they never touch the French captions.",
-        "Put the hook line where it cannot collide with the source's question graphic.",
-        "Start the cut on the question graphic (mid1) and drop the Henry inset and split at the opening.",
-        "Cut in a picture of the Mao meme (find_image) at the second Mbapp\u00e9 names it, so the joke lands visibly.",
-        "End on the laugh (payoff@-0.4) right after the meme is shown."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 58
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "unreadable_text_collision",
-        "visible_evidence": "At hook@0.3, three layers of text are stacked in the middle third: the source's large French 'Pas mal celui-l\u00e0, parce que', our yellow 'BECAUSE YOU CAN' on top of it, and our hook line just below. A Thierry Henry inset sits underneath, unrelated to Mao.",
-        "root_cause": "The source is a repost that already has burned-in French captions and meme insets. own_captions did not detect them, so the English word captions were laid on top. The cut also starts mid-sentence, on another clip's inset.",
-        "repair_goal": "Skip our word captions, or move them clear of the burned-in French captions so they never overlap. Keep the hook line clear of the source's caption band and the question graphic. Start the cut on the question 'Le m\u00e8me qui t'a le plus fait rire avec ta t\u00eate ?' (mid1), not on the Henry inset. If any f"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.006,
-        "effective_fps": 23.8,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.002,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.002,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 16.25,
-        "duration_s": 19.33
-      },
-      "fingerprint": "?|unreadable|unreadable_text_collision"
-    },
-    {
-      "ts": "2026-10-29T12:30:02+00:00",
-      "slug": "sports_kylian_mbappe_he_one_where",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The meme the title promises is never shown, our English captions are printed over the source's French captions all the way through, and this is someone else's edit with its watermark and picture-in-picture inserts left in.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 to mid0: a picture-in-picture of Thierry Henry plays inside the clip, and at mid0 the frame splits into a second video. This is a repost of The Bridge's edit (its watermark is on every frame), not the moment itself. The Mao meme the title promises never appears (mid1 to payoff@-0.4).",
-        "unreadable: hook@0.8: our burned-in 'BECAUSE YOU CAN' sits on top of the source's large French captions 'celui-l\u00e0, parce que'. hook@1.5 and mid3 to payoff@-1.8 stack 'USE IT WELL', 'WE PUT I' and 'WITH MY FRIENDS' over 'l'utiliser', 'Celui... rigolo' and 'Je l'utilise beaucoup avec mes', so both caption sets are garbled. mid1 has the source's own French question card under our hook line."
-      ],
-      "problems": [
-        "Our English captions sit on top of the source's French captions from hook@0.8 to payoff@-1.8, so neither can be read.",
-        "The Mao Zedong meme is never shown, so a stranger cannot see what he is laughing at.",
-        "This is a repost of The Bridge's edit (watermark, Henry picture-in-picture, a split screen at mid0) rather than a clean cut of the moment.",
-        "It ends at payoff@-0.4 on a laugh over the stray word 'pour', with no clear punchline.",
-        "The inset at mid5 and payoff@-1.8 shows unrelated plane-dance footage."
-      ],
-      "fixes": [
-        "Detect the source's burned-in captions and skip our word captions over them (clip_edit.own_captions should have fired).",
-        "Cut in the Mao-face meme picture via find_image at the second he names it.",
-        "Crop out the picture-in-picture inserts and the split-screen section, or find a clean source.",
-        "End the clip on his line naming the meme plus his laugh, with that line readable."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 60
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 7,
-        "failure_class": "unreadable_overlapping_captions_and_missing_payoff",
-        "visible_evidence": "At mid3 and mid4 our English captions ('WE PUT I', 'THINK IT WAS') sit directly on top of the source's French captions ('Celui... rigolo, c'est', 'vid\u00e9o d'un mec'). The Mao Zedong meme he is describing is never shown, and the clip ends at payoff@-0.4 on a laugh over the stray word 'pour'.",
-        "root_cause": "The source is an already-edited repost from The Bridge with its own burned-in French captions and picture-in-picture inserts. The editor added a second caption layer and did not detect the existing one. The punchline (naming Mao and showing the meme) gets lost under the overlapping text and is never",
-        "repair_goal": "Suppress our word captions wherever the source already has burned-in captions, or cut from a clean feed. Cut in the actual Mao-face meme (the show_it lane) at the second he names it, so a stranger sees what he is laughing at. Drop or crop the Henry picture-in-picture and the split-screen restream in"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.008,
-        "effective_fps": 23.8,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.004,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.002,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 16.75,
-        "duration_s": 19.83
-      },
-      "fingerprint": "?|junk_imagery+unreadable|unreadable_overlapping_captions_and_missing_payoff"
-    },
-    {
-      "ts": "2026-10-29T12:32:03+00:00",
-      "slug": "sports_rizvan_kuniev_v_a_cake_for",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, real sports moment: the eyes-covered surprise leads to a cake that wishes Volkov a loss, and his laugh lands it. Only the opening runs a little long.",
-      "auto_fails": [],
-      "problems": [
-        "The hook spends about 2.5s on covered eyes before the cake is shown (hook@0.3 to mid0)",
-        "The tail (mid5 to payoff@-0.4) is Volkov walking away from camera, a soft finish after the 'What a man!' laugh"
-      ],
-      "fixes": [
-        "Trim the eyes-covered opening to about 1s, or open with a flash of the '40-12' cake text",
-        "End on the laughing 'What a man!' close-up (mid4) instead of the walk-away shot"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.011,
-        "sampled": 88
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "slow_setup",
-        "visible_evidence": "hook@0.3 to mid0: about 2.5s of Volkov covering his eyes before any cake appears. The surprise is set up but the payoff object is not shown yet",
-        "root_cause": "The cut starts at the start of the surprise build-up, not on the reveal",
-        "repair_goal": "Keep the eyes-covered beat but cut it to about 1s, or open with a flash of the '40-12' cake, so the joke is promised in the first second"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.25
-      },
-      "fingerprint": "?|-|slow_setup"
-    },
-    {
-      "ts": "2026-10-29T11:10:55+00:00",
-      "slug": "cryonics-client-count",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong vault-and-tanks opening and a good crowd beat, but the cost beat stalls with Data never really cutting, and the closing holds that same static cube for about 8s.",
-      "auto_fails": [
-        "dead_air: In seg3:start and seg3:mid the block and Data look the same (no cut has happened). Then seg3:end, seg4:start, payoff@-1.8 and payoff@-0.4 all show the same finished cube and the same waving Data for about 8s, with only the captions changing. Code also measured a 27-frame duplicate run near 21.75s and 7.62s of held frames.",
-        "unreadable: In seg4:start the CTA 'Would you ever sign up to be frozen?' is faded grey-on-grey and sits over the ice cubes on the floor. The fine-print subtitles in hook@0.3 ('Alcor's patients \u00b7 2023 \u2014 the rest still alive') and seg3:end are very small and thin for a phone."
-      ],
-      "problems": [
-        "seg3: the block barely changes from start to mid, and the saw is held but no cut is shown",
-        "seg3: the label reads 'to freeze your whole-body body'",
-        "seg3 to seg4: the same finished frame is held about 8s under the closing and CTA (dead air)",
-        "seg4: the faded CTA 'Would you ever sign up to be frozen?' sits low-contrast over the floor cubes",
-        "seg2: only three ice slabs against a crowd, so 222 of 1,927 is a token count rather than a felt proportion",
-        "small thin sub-labels under the headlines are hard to read at phone size"
-      ],
-      "fixes": [
-        "Animate Data sawing the block in one wind-up and stroke, with the cut-away part falling off by about 70% of the beat",
-        "Fix the seg3 label to 'to freeze your whole body'",
-        "Give the closing its own moving scene, such as tanks humming toward a future date or a waking-up question mark, instead of holding seg3's end",
-        "Put the CTA in solid high-contrast ink, clear of the floor props",
-        "In seg2, freeze about 1 in 9 of the crowd so 222/1,927 shows as a visible proportion",
-        "Enlarge or thicken the sub-label text under each headline"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "dead_air",
-        "visible_evidence": "The $200,000 block barely changes between seg3:start and seg3:mid, and Data stands on a box holding a saw he never visibly uses. The shrunken cube and waving Data are then held through seg3:end and the whole closing (seg4, payoff@-0.4). The subtitle reads 'to freeze your whole-body body'.",
-        "root_cause": "The cut lands late and is never shown as an action, and the closing reuses the finished frame without moving. Generic ice cubes carry the price, and the label template doubled a word.",
-        "repair_goal": "Have Data saw the block down to the head-only size in one arc, landing by about 70% of the beat. Make the cut-away 60% fall off, or turn the block into a coin stack paid from a life-insurance policy. Fix the label to 'to freeze your whole body'. Give the closing its own moving shot, such as a tank l"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.311,
-        "effective_fps": 16.5,
-        "max_dup_run": 27,
-        "measured": true,
-        "frozen_ratio": 0.136,
-        "frozen_fps": 20.7,
-        "max_frozen_run": 11,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 7.62,
-        "max_dup_at_s": 21.75,
-        "duration_s": 28.17
-      },
-      "fingerprint": "?|dead_air+unreadable|dead_air",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-29T12:09:04+00:00",
-      "slug": "escooter-er-visits-surge",
-      "score": 65,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The scooter pile outside the ER is a strong, made-of-the-subject picture, but the helmet beat proves nothing, its label can't be read, and Data waves beside the action instead of causing it.",
-      "auto_fails": [
-        "decorative_mascot: Data mostly stands and waves beside things that move on their own: he waves next to the pile while it grows (seg0:end, seg1:start), stands among the scooters and does nothing with the helmets (seg2:end), and holds a stanchion pose while the queue forms by itself (seg3:end, payoff@-0.4).",
-        "unreadable: At seg2:end a tiny white 'NO HELMET' label is printed over a scooter's grey deck and a helmet. It is unreadable on a phone at arm's length."
-      ],
-      "problems": [
-        "seg2: the 67%-no-helmet claim has no visible proportion. Helmets just sit on scooters, and the 'NO HELMET' tag is tiny and printed over the art.",
-        "Mascot is decorative in every scene: he waves by the growing pile, stands idle among the scooters, and holds a stanchion while the queue forms by itself.",
-        "seg3/seg4: the queue's length is a token count, so it doesn't read as 169,300, and the closing re-shows the same queue with only text added. The payoff is soft.",
-        "The hook shows the finished 27,700 pile, but the next beat restarts at 7,700 with a small pile (seg0:start), so the first two seconds swing up and then back down."
-      ],
-      "fixes": [
-        "Redraw seg2 with injured riders, 2 of every 3 bare-headed, or have Data hand out helmets from the crate until they run out at one third. Remove the small label.",
-        "Make Data the cause: he tips scooters onto the pile or wheels them in a cart in seg1, hands out helmets in seg2, and waves riders through triage in seg3.",
-        "Give seg3's queue a scale on screen, for example a line that stretches out the door with a then_mark for the 2017-2019 part, so 169,300 reads as never fading.",
-        "Make the closing its own shot (for example Data putting a helmet on a rider) instead of the held queue."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 80
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "weak_demonstration",
-        "visible_evidence": "seg2:start/end: a row of scooters with three helmets sitting on the near ones and a tiny 'NO HELMET' tag. Nothing shows that 67% of injured riders were bare-headed. Data stands in the middle doing nothing.",
-        "root_cause": "The number is carried by a scooter row with helmets dropped on it, not by riders with and without helmets. The 2/3 split is never visible as a proportion, and the mascot is not the cause of anything.",
-        "repair_goal": "Show about 3 injured riders with only 1 wearing a helmet (2 of 3 bare-headed), or have Data hand helmets down the line from the crate and run out after a third of the riders, so the 67% reads with no label. Drop the tiny 'NO HELMET' text."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.255,
-        "effective_fps": 17.9,
-        "max_dup_run": 27,
-        "measured": true,
-        "frozen_ratio": 0.103,
-        "frozen_fps": 21.5,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 4.67,
-        "max_dup_at_s": 21.75,
-        "duration_s": 26.79
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|weak_demonstration",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-29T13:10:56+00:00",
-      "slug": "jury-trial-collapse",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 1,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The jury box emptying is a strong demonstration, but Data is parked in one pose through two scenes, and in the plea scene the crowd walks toward the courthouse, not through the plea door, which contradicts the 98%.",
-      "auto_fails": [
-        "decorative_mascot: Data holds the same pose at the jury gate from hook@0.3 through seg1:end (about 9s), while jurors vanish from the box and only one walks out past him (seg1:mid). In the plea scene he leans in the PLEA DEALS doorway unchanged from seg2:start to seg2:end, and the crowd gathers at the courthouse instead of passing through his door. His only change is a cheer in seg3."
-      ],
-      "problems": [
-        "seg2: the crowd gathers at the COURTHOUSE steps rather than streaming through the PLEA DEALS door, so the picture contradicts '98% plead guilty'.",
-        "Data holds an identical pose from hook@0.3 to seg1:end (gate) and through all of seg2 (doorway). He is not driving either change.",
-        "seg3: one file pulled out does not show 'one in five'. Nothing marks a fifth of the drawer's files as guilty pleas.",
-        "Hook readout jumps 2% \u2192 19% \u2192 6% \u2192 2% across hook and seg0, so the 'went to trial' numbers flicker before the decline story is set up.",
-        "The payoff ends on a static records room with the closing text and a comment CTA; there is no final 'whoa' image of a deal deciding someone's fate."
-      ],
-      "fixes": [
-        "seg2: route about 49 of every 50 figures through the PLEA DEALS door, with Data stamping each one through, and send one lone figure up the courthouse steps for the '2% from a jury'.",
-        "seg0/seg1: have Data swing the jury gate shut or wave jurors out on each year step, changing his pose per step, so he causes the emptying.",
-        "seg3: tag one of every five folders in the drawer with a red GUILTY tab as Data pulls them, so the 1-in-5 ratio is visible without reading it.",
-        "Closing: land on a final image (Data handing a stamped deal to a defendant in front of the empty jury box) instead of an idle records room."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 82
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg2:start to seg2:end: Data leans in the PLEA DEALS doorway in one fixed pose. The line of people grows into a crowd massed at the COURTHOUSE steps, not through his door, and one tiny figure in the courthouse doorway carries the '2% from a jury'.",
-        "root_cause": "The mascot is parked beside the plea booth as decoration rather than performing the deal, and the crowd's motion points at the courthouse. That contradicts the 98% claim that nearly everyone goes through the plea door.",
-        "repair_goal": "Make Data the plea-deal clerk who causes the 98%: he stamps or waves people one by one through the PLEA DEALS door (grip on the door, stamp in hand), so the crowd visibly streams into the booth while only a lone figure climbs the courthouse steps to the jury. His pose should change across the beat ("
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.242,
-        "effective_fps": 18.2,
-        "max_dup_run": 24,
-        "measured": true,
-        "frozen_ratio": 0.143,
-        "frozen_fps": 20.6,
-        "max_frozen_run": 24,
-        "judder_ratio": 0.009,
-        "judder_fps": 23.8,
-        "held_s": 4.79,
-        "max_dup_at_s": 21.42,
-        "duration_s": 27.38
-      },
-      "fingerprint": "?|decorative_mascot|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-29T13:48:14+00:00",
-      "slug": "jury-trial-collapse",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Three strong scenes made of the subject (an emptying jury box, the plea-deal door against the jury steps), let down by a records-room beat that never draws its 1-in-5 and a closing that reuses that scene with a blank sheet.",
-      "auto_fails": [],
-      "problems": [
-        "seg3: '1 in 5' is a headline over a single sheet. The picture never shows the proportion of cleared files that were guilty pleas.",
-        "seg3 and seg4: after pulling the drawer, Data mostly raises his arms beside the sheet instead of doing the work.",
-        "seg4/payoff: the closing reuses seg3's room and the plea sheet goes blank, so the ending has no new 'whoa' image of a deal deciding someone's fate.",
-        "hook: the flash-forward shows '2% \u00b7 2022' for half a second and then jumps to '19% \u00b7 1980' as the hook line plays, so the opening number switches before the viewer can take in the change.",
-        "seg1:start: the previous caption ('...deral criminal') ghosts faintly over the floor during the transition."
-      ],
-      "fixes": [
-        "Rebuild seg3 as rows of cleared case folders, with Data pulling and stamping every fifth one 'PLEADED GUILTY' so one in five is visible without the label.",
-        "Give the closing its own shot that pays off the line, for example a deal sheet slid across a table in place of the empty jury box. Keep the sheet's text visible through the last frame.",
-        "In the hook, settle on one opening state (the empty box at 2%) long enough to read before rewinding to 1980, or label the jump as a rewind.",
-        "Cut the previous caption cleanly at the seg1 transition so no faded text overlaps the floor."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 101
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "weak_depiction",
-        "visible_evidence": "seg3:start to seg3:end show a drawer of identical folders under the word 'Exonerated'. ONE sheet marked 'PLEA OF GUILTY / CLEARED' rises out of it, and Data raises his arms beside it. Nothing on screen shows 'one in five'. The figure appears only as the '1 in 5' headline at seg3:end. By seg4:end and",
-        "root_cause": "The scene puts a single prop where the proportion should be. The 1-in-5 share of cleared people who had pleaded guilty is never drawn as a share of the files, so the label carries the claim and the picture does not.",
-        "repair_goal": "Lay out the cleared case files as a readable set, for example five folders repeated in rows. Have Data pull every fifth one out and stamp it 'PLEADED GUILTY' so one in five visibly stands apart, then hold that finished picture into the closing. Keep the guilty-plea text on the sheet through the end "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.173,
-        "effective_fps": 19.8,
-        "max_dup_run": 26,
-        "measured": true,
-        "frozen_ratio": 0.109,
-        "frozen_fps": 21.4,
-        "max_frozen_run": 23,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 4.71,
-        "max_dup_at_s": 25.42,
-        "duration_s": 33.67
-      },
-      "fingerprint": "?|-|weak_depiction",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-30T11:34:24+00:00",
-      "slug": "sports_pat_murphy__youre_gonna",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The real moment is here (Murphy lecturing Bauers about the Yankees), but the first 10s are a hug and a ball handoff under a conflicting Spectrum caption, and the quote that makes it viral is never put on screen.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (hook@0.3 to hook@2.2) shows Murphy hugging a woman. Bauers is not with Murphy, so the 'parting words' promise is not visible.",
-        "The Spectrum News lower third 'BAUERS GIVES MURPHY THE LAST OUT BALL' sits right on top of our line until about 2.5s and competes with it.",
-        "The quote ('horse shit Yankee team... everyone playing for themselves') is not captioned anywhere. In a loud celebration a muted or noisy viewer cannot tell what was said.",
-        "From mid1 on, the camera is handheld with arms and phones (mid5, payoff) blocking the frame edges."
-      ],
-      "fixes": [
-        "Trim the opening so the video starts on Murphy turning to Bauers (around mid2).",
-        "Add burned-in speech captions for Murphy's Yankee line, timed to his delivery, and put a punch-in on 'horse shit Yankee team'.",
-        "Keep our single hook line clear of the station's lower third, either by starting after it leaves or by moving our line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 91
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_competing_graphic",
-        "visible_evidence": "hook@0.3 to hook@2.2 show Murphy hugging a woman with her back to the camera. A Spectrum News lower third about 'THE LAST OUT BALL' sits right on top of our line, and Bauers is not in the shot with Murphy until mid1.",
-        "root_cause": "The cut starts at the start of the source clip, which shows a hug and the ball handoff, instead of at the confrontation the line promises. The station's own caption tells a different story from ours for the first 2.5s.",
-        "repair_goal": "Start the cut at or just before Murphy turns to Bauers and points (about mid2, t\u224812s), or crop out or start after the Spectrum lower third. The first frame should show Murphy and Bauers face to face, and the key quote ('horse shit Yankee team... everyone playing for themselves') should be legible as"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.004,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 30.29
-      },
-      "fingerprint": "?|-|weak_hook_competing_graphic"
-    },
-    {
-      "ts": "2026-10-30T11:36:31+00:00",
-      "slug": "sports_pat_murphy__youre_gonna",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real, on-brand World Series moment with a good hook, but the Yankee jab only lives in the audio and the clip ends on a walk-off instead of landing the line.",
-      "auto_fails": [],
-      "problems": [
-        "The quote that is the whole point ('horse shit Yankee team ... everyone playing for themselves') has no on-screen captions, so sound-off viewers miss the payoff",
-        "There is no zoom or sound hit on the key line; the edit is flat footage under one static text line",
-        "The ending (payoff@-1.8 to payoff@-0.4) is Bauers walking out of frame and a crowd shot, so the moment fizzles instead of landing",
-        "The pre-roll hug from hook@0.3 to hook@1.5 delays Murphy starting to speak"
-      ],
-      "fixes": [
-        "Burn in word captions for Murphy's quote above the hook line, in the SPEECH_Y position",
-        "Punch in with a boom on 'horse shit Yankee team' and again on 'Just remember'",
-        "Trim the tail to end on Bauers' laughing reaction (around mid4) right after 'Just remember'",
-        "Start nearer the moment Murphy begins talking (around hook@2.2), so the first two seconds carry the confrontation energy"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 61
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "From mid4 to payoff@-0.4 Murphy pats Bauers' shoulder, Bauers grins and walks out of frame left, and the clip ends on the crowd and a phone recording. The quote ('horse shit Yankee team ... everyone playing for themselves') is never put on screen.",
-        "root_cause": "The punchline of the moment is only in the audio. No word captions carry the quote, there is no punch-in on the 'horse shit Yankee team' line, and the cut runs past the line into a walk-off.",
-        "repair_goal": "Add word captions above the hook line for the Yankee quote, punch in with a sound hit on 'horse shit Yankee team' / 'just remember', and end the cut on Bauers' laughing reaction right after 'Just remember' instead of on him walking away."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.004,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.002,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.25
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
-    {
-      "ts": "2026-10-30T11:39:31+00:00",
-      "slug": "sports_brewers_fan_win_i_have_a",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real, touching fan moment, but it opens on a generic crowd and never punches in on her or the dad photo, so the emotion arrives late and small.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (0-2.5s) shows a crowd and another fan, not the woman the line is about",
-        "The dad photo on her phone is shown tiny inside a letterboxed 16:9 frame and is never enlarged",
-        "No zoom or sound hit on the emotional beat (mid3), unlike the repost style the format calls for",
-        "Without the audio a stranger gets little: there are no speech captions and the photo can't be read"
-      ],
-      "fixes": [
-        "Start the cut on her holding up the phone (~mid1)",
-        "Push in on the phone photo for 1-2s so viewers can see her dad",
-        "Punch in on her face with a soft sound hit as she tears up (mid3)",
-        "Add burned-in speech captions for her line about Waukesha above our line"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 60
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "slow_hook_subject_offscreen",
-        "visible_evidence": "hook@0.3-hook@2.2 show a wide shot of a cheering crowd and a man on the mic. The woman the line is about does not get the frame until mid1 (~5.6s), and the dad photo on her phone is tiny at mid2",
-        "root_cause": "The cut starts at the start of the news segment instead of on her. It is a 16:9 frame shrunk into the middle band, with no punch-in on her face or on the photo",
-        "repair_goal": "Open on her holding up the phone, punched in so the dad photo is readable, inside the first second. Punch in on her face when her eyes well up (mid3). Cut the opening crowd shot down to under a second, or drop it"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.006,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.006,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.08
-      },
-      "fingerprint": "?|-|slow_hook_subject_offscreen"
-    },
     {
       "ts": "2026-10-30T11:42:01+00:00",
       "slug": "sports_jake_bauers_ast_out_ball",
@@ -4299,6 +3135,1102 @@
       },
       "fingerprint": "?|-|scale_not_shown",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-01T11:41:44+00:00",
+      "slug": "sports_jose_mourinho_to_the_bar\u00e7a",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "This is a repost of another account's watermarked edit (Madrid Total): 13 seconds of a static talking head with a Spanish caption card, blur padding taking up half the frame, and no edit of our own.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4: the footage is another repost account's finished edit (\"MT | Madrid Total\" watermark, social-media icon row, their own Spanish quote card, blurred letterbox padding) playing inside our frame. It is a video inside a video, not the source moment.",
+        "empty_void: In every frame, from hook@0.3 to payoff@-0.4, about 45% of the 9:16 frame is a blurred, upscaled copy of the same footage above and below the real 16:9-ish panel. That is wasted space with nothing in it."
+      ],
+      "problems": [
+        "The source is another repost channel's finished edit: an 'MT | Madrid Total' watermark and social icons are visible in every frame.",
+        "The burned-in quote card is in Spanish only, so an English viewer reading our English line cannot hear or read the joke itself.",
+        "Blurred letterbox padding fills about 45% of the frame.",
+        "There are no zooms, sound hits or punch-in on the punchline; the picture is unchanged from 0.3s to 12.9s.",
+        "The payoff never visibly lands: no laugh and no reaction shot, just a deadpan delivery inside a static frame."
+      ],
+      "fixes": [
+        "Pull the original Real Madrid TV press-conference footage instead of the Madrid Total repost.",
+        "Crop full-frame to Mourinho with no blur padding.",
+        "Add English subtitles for his actual words, placed so they do not overlap any source graphics.",
+        "Punch in, with a sound hit, on 'no me dejaban dormir la siesta' and again on 'un abrazo para ellos'.",
+        "Consider cutting to footage of Bar\u00e7a fans singing outside the hotel, if it exists, so the joke is shown and not just told."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 40
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void",
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "mid2",
+        "index": 2,
+        "failure_class": "restream_repost",
+        "visible_evidence": "mid2 (t=6.02s) is the same locked-off talking head under a static Spanish quote card and a \"MT | Madrid Total\" watermark with social icons, letterboxed in blur. Nothing has changed since hook@0.3.",
+        "root_cause": "The capture took another account's already-edited repost (with its watermark, quote card and blur padding) instead of the original Real Madrid TV press-conference footage. Our cut then added nothing: no punch-in on the joke and no sound hit.",
+        "repair_goal": "Source the clean Real Madrid TV press-conference clip with no third-party watermark or quote card, and crop it full-frame onto Mourinho. Punch in on the line 'no me dejaban dormir la siesta', and add English subtitles for what he says so a non-Spanish viewer gets the joke."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.126,
+        "effective_fps": 21.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.119,
+        "frozen_fps": 21.1,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.063,
+        "judder_fps": 22.5,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.42,
+        "duration_s": 13.29
+      },
+      "fingerprint": "?|empty_void+junk_imagery|restream_repost"
+    },
+    {
+      "ts": "2026-11-01T11:43:43+00:00",
+      "slug": "sports_j_j__mccarthy__jj_mccarthy",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The real moment is shown: McCarthy's teammates mob him after the OT walk-off, as the line promises. But the cut runs into turf and blurred sideline footage and ends on a coach instead of the celebration.",
+      "auto_fails": [],
+      "problems": [
+        "mid4 (19.86s) is a turf and cleat shot with no subject",
+        "The last ~8s (mid4 to payoff@-0.4) are motion-blurred sideline footage that loses McCarthy, so the payoff fades out instead of landing",
+        "The hook stacks three text layers (source call captions, our line, the scorebug) over the split-screen play, which is busy on a phone"
+      ],
+      "fixes": [
+        "Trim the end to roughly 16-18s, closing on the helmet grab or pile-on (mid1-mid3)",
+        "Punch in or zoom with a sound hit on the Runyan helmet grab so the emotional peak is unmistakable",
+        "Consider placing our line over the top (McCarthy) panel during the split-screen hook so it is not crammed between the source caption and the scorebug"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 79
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid4",
+        "index": 4,
+        "failure_class": "off_subject_footage",
+        "visible_evidence": "mid4 (t=19.86s) is a blurry close-up of turf and a Houston player's cleat. McCarthy and the celebration are not in frame, and the ending frames (mid5 to payoff@-0.4) drift into motion-blurred sideline shots of coaches.",
+        "root_cause": "The source clip's back half is a handheld walk-off camera that loses its subject. The cut runs its full length instead of ending on the peak of the celebration (mid1 to mid3).",
+        "repair_goal": "Trim the clip to end around 16-18s on the teammate pile-on and helmet grab (mid1-mid3). Cut the turf and cleat shot and the blurred sideline tail so the last frame is McCarthy being mobbed."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 26.21
+      },
+      "fingerprint": "?|-|off_subject_footage"
+    },
+    {
+      "ts": "2026-11-01T12:11:19+00:00",
+      "slug": "sports_nikita_kucherov_ay_following",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Real, emotional footage of Kucherov unable to watch his tribute lands the promise, but the reposted source's own captions crowd our line and a highlight montage dilutes the back third.",
+      "auto_fails": [],
+      "problems": [
+        "The source is another channel's edit with burned-in bold captions ('HE COULDN'T WATCH.', 'HE DOESN'T WANT') sitting just above our line, so there are two competing text layers.",
+        "mid4\u2013mid5 drift into archival game highlights that aren't the tribute moment.",
+        "The hook frame shows him skating to the bench, not yet the turn-away, so the opening is a little soft."
+      ],
+      "fixes": [
+        "Prefer a clean broadcast source without burned-in captions, or move our line clear of them.",
+        "Cut the montage, or label it as the tribute video he's avoiding, and stay on his face.",
+        "Open on the head-down frame (mid3) or the hand-to-face payoff as a flash-forward."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.008,
+        "sampled": 124
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid4",
+        "index": 4,
+        "failure_class": "off_moment_filler",
+        "visible_evidence": "mid4 is an archival goal-mouth scramble against Vancouver in a letterboxed band. It is not the tribute moment, and the on-screen line still promises the tribute.",
+        "root_cause": "The source repost pads the tribute reaction with a career highlight montage, so the back third drifts away from the moment the hook names.",
+        "repair_goal": "Trim the montage, or keep only highlights shown as 'the tribute video he's not watching', so the cut stays on Kucherov's reaction and ends on the hand-to-face payoff."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.028,
+        "effective_fps": 23.3,
+        "max_dup_run": 3,
+        "measured": true,
+        "frozen_ratio": 0.013,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.011,
+        "judder_fps": 23.7,
+        "held_s": 0.0,
+        "max_dup_at_s": 15.08,
+        "duration_s": 41.29
+      },
+      "fingerprint": "?|-|off_moment_filler"
+    },
+    {
+      "ts": "2026-11-01T12:22:07+00:00",
+      "slug": "sports_yaxel_lendeborg_and_melo_for",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real moment and it matches the line, but it is a small letterboxed TV feed with no punch-in on the reaction. A Popovich photo card covers our line for about 7s, and the ending is a quiet smile, not a payoff a stranger understands.",
+      "auto_fails": [
+        "unreadable: At mid2 the Gregg Popovich picture-card covers our line, so it reads only 'Yaxel asks three' and 'legends for advice' is hidden behind the card."
+      ],
+      "problems": [
+        "The hook (hook@0.3 to hook@2.2) is a static wide studio shot with a tiny inset of Yaxel, so nothing happens in the first two seconds to stop a scroll.",
+        "At mid2 the Gregg Popovich photo card covers our text line ('legends for advice' is hidden) and is held as a still for about 7s.",
+        "Popovich and the OKC game clip (mid1) are not the three named legends and are never explained, which is confusing.",
+        "The footage stays letterboxed at about 30% of the frame height throughout, and the panel is never punched in on. The advice itself is not visible as a moment.",
+        "The ending (payoff@-0.4) is Yaxel smiling in a small inset, with no clear line or reaction that lands for a stranger."
+      ],
+      "fixes": [
+        "Open on a punch-in of Yaxel asking the question, or on the strongest legend's answer, cropped to fill the vertical frame.",
+        "Move or shrink show-it cards so they never overlap the text band, cap them at about 2-3s, and drop the Popovich card unless he is named at that exact second.",
+        "Punch in on whichever of T-Mac, Vince or Melo is speaking during the advice, and on Yaxel's smile at the end, so the reaction reads on a phone.",
+        "End on the single best line of advice and Yaxel's reaction, not on a wide desk shot."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 120
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid2",
+        "index": 2,
+        "failure_class": "unreadable_overlay_collision",
+        "visible_evidence": "At mid2 a white-bordered 'Gregg Popovich' photo card is laid over the top half and cuts the on-screen line down to 'Yaxel asks three'. The card also covers Yaxel's inset. It is a still image held for about 7s (max_dup_run 164 at 11.42s).",
+        "root_cause": "The show-it layover is placed at a fixed position that overlaps the hook line band and is held as a static still far longer than SHOW_S. Popovich is also not one of the three legends named in the line, so the viewer cannot tell why he appears.",
+        "repair_goal": "Place the layover below the text band (inside the footage area) so the full line stays readable. Keep it on screen for 2-3s, not 7s. Use it only if the speaker names Popovich at that second, otherwise drop the cut-in."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.456,
+        "effective_fps": 13.0,
+        "max_dup_run": 164,
+        "measured": true,
+        "frozen_ratio": 0.031,
+        "frozen_fps": 23.2,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 12.04,
+        "max_dup_at_s": 11.42,
+        "duration_s": 40.04
+      },
+      "fingerprint": "?|unreadable|unreadable_overlay_collision"
+    },
+    {
+      "ts": "2026-11-01T12:24:03+00:00",
+      "slug": "sports_yaxel_lendeborg_and_melo_for",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "This is a real and relevant moment, but it is shown as a tiny letterboxed wide shot with no captions, no punch-in and only one of the three legends visibly answering, so it never lands as 'gets real answers'.",
+      "auto_fails": [],
+      "problems": [
+        "The hook and most of the video are a wide studio shot in a band about a third of the frame tall, with the subjects tiny (hook@0.3, mid0, mid4, mid5).",
+        "No word captions: the advice itself ('lean on your vets') never appears on screen.",
+        "Only T-Mac is shown answering close-up (mid2-mid3). Vince and Melo are never seen answering legibly, although the line promises three legends.",
+        "The video ends on the same wide shot it started on (payoff@-0.4), with no closing beat or reaction."
+      ],
+      "fixes": [
+        "Crop the 16:9 broadcast to the speaker's face and fill the vertical frame, not a letterboxed band.",
+        "Caption the question and each answer, and highlight the key advice line.",
+        "Cut to each legend as they speak, or retitle so the line matches the one answer actually shown.",
+        "End on the strongest answer with a punch-in, not the wide shot."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 73
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_tiny_subject",
+        "visible_evidence": "From hook@0.3 to mid0 the shot is a wide studio view in a thin letterbox band. Yaxel is a small inset at right and the three legends are tiny figures at the far end of the desk. Nothing zooms or punches in, and the ending (mid5, payoff@-0.4) goes back to the same wide shot.",
+        "root_cause": "The wide broadcast frame was letterboxed at full width with a blurred fill instead of being cropped to the faces. No punch-in or caption carries what is being said, so the moment depends on audio coming from a small picture.",
+        "repair_goal": "Open on a tight crop of Yaxel's face asking the question, then cut to a close crop of each legend as they answer, the way mid2-mid3 does for T-Mac. Add word captions for the advice ('lean on your vets') and put a punch-in on the key answer so the payoff lands on screen before the end."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.561,
+        "effective_fps": 10.5,
+        "max_dup_run": 32,
+        "measured": true,
+        "frozen_ratio": 0.009,
+        "frozen_fps": 23.8,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 6.58,
+        "max_dup_at_s": 4.58,
+        "duration_s": 24.17
+      },
+      "fingerprint": "?|-|weak_hook_tiny_subject"
+    },
+    {
+      "ts": "2026-11-01T12:25:46+00:00",
+      "slug": "sports_ollie_gordon_e_about_your",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment is real and matches the line, but it is a small letterboxed podcast talking head: captions collide in the hook, two-thirds of the frame is blur, and no zoom or sound hit lands the punchline.",
+      "auto_fails": [
+        "empty_void: hook@0.3\u2013payoff@-0.4: the real footage fills only a thin middle band, about 30% of frame height. The top third and bottom fifth are blurred, enlarged copies of the same footage, so most of the phone screen shows nothing.",
+        "unreadable: hook@0.3: the word caption reads 'TELLY:ALL(RIGHT', two caption layers printed over each other and garbled. mid2 'DON'T TEXT ME' is tiny and lacks the bold style of the other captions, so the footage seems to carry its own burned-in captions under or beside ours."
+      ],
+      "problems": [
+        "The footage takes up only about 30% of the frame height and the rest is blur fill (all frames).",
+        "Our word captions collide with the source's own captions: hook@0.3 'TELLY:ALL(RIGHT', and mid2 shows a second, smaller caption style.",
+        "The edit cuts to a wide two-shot (mid4, payoff@-0.4) where Ollie is tiny.",
+        "No punch-in or sound hit on the money lines; it plays as a raw podcast excerpt.",
+        "The ending trails off on 'YEAH,' in the wide shot instead of landing on the 'I don't owe you nothing' line."
+      ],
+      "fixes": [
+        "Crop to a 9:16 face crop of Ollie so the footage fills the frame, and crop the wide shots to him too.",
+        "Skip our word captions when the source already shows them burned in.",
+        "Open on 'I don't owe you nothing' or 'We don't care about your parlay' with a punch-in and a boom.",
+        "End on 'Go make your own money' or 'quit sports betting' and cut before the wide shot trails off."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 113
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "unreadable_and_small_footage",
+        "visible_evidence": "hook@0.3 shows a garbled double caption 'TELLY:ALL(RIGHT' on a small letterboxed podcast band. The opening is a seated man talking, with nothing visual to stop a scroll.",
+        "root_cause": "The source is a horizontal podcast clip that already has burned-in captions. It was letterboxed into 9:16 with a blur fill and our own word captions were added on top, so the caption layers collide and the subject is small.",
+        "repair_goal": "Crop the footage to fill the frame on Ollie's face (punch-in), detect the source's burned-in captions and drop ours wherever the clip already shows the words, and open on his sharpest line ('I don't owe you nothing') with a zoom and a sound hit."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.438,
+        "effective_fps": 13.5,
+        "max_dup_run": 23,
+        "measured": true,
+        "frozen_ratio": 0.182,
+        "frozen_fps": 19.6,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.021,
+        "judder_fps": 23.5,
+        "held_s": 11.92,
+        "max_dup_at_s": 34.25,
+        "duration_s": 37.79
+      },
+      "fingerprint": "?|empty_void+unreadable|unreadable_and_small_footage"
+    },
+    {
+      "ts": "2026-11-01T12:27:06+00:00",
+      "slug": "sports_ollie_gordon_e_about_your",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The promised quote is clearly shown and the on-screen line reads well, but the cut trails into a far wide shot after the punch line instead of ending on it.",
+      "auto_fails": [],
+      "problems": [
+        "The hook opens on the host laughing and covering his face (hook@0.3, hook@1.5), not on Ollie, so the subject is not on screen for the first 2s.",
+        "The punch line 'GET YOUR OWN' lands at mid2 (~10.7s), and the last ~8s (mid4 to payoff@-0.4) are a distant wide shot with no button.",
+        "The footage band is small, about 30% of frame height, so faces are small on a phone."
+      ],
+      "fixes": [
+        "Trim the end so the clip finishes on the 'go make your own money' line plus the host's reaction.",
+        "Open on Ollie saying 'I don't owe you nothing', or crop in tighter so the speaker fills more of the frame.",
+        "Punch in on Ollie at the punch line, with a zoom and sound hit, instead of cutting to the wide shot."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 75
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "mid5 and payoff@-0.4 end on a distant wide two-shot of the Caps Off set with no caption. The punch line 'GET YOUR OWN' landed at mid2, about 10s earlier, so the clip trails off rather than ending on a hit.",
+        "root_cause": "The cut runs past the line's peak into a wide shot of continued talk, so the last seconds give no reaction or button.",
+        "repair_goal": "End the cut on Ollie's 'go get your own money' line, or on the host's laugh reaction right after it, about 1s after the line lands. Drop the trailing wide shot, or punch in on Ollie for the final beat."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.41,
+        "effective_fps": 14.2,
+        "max_dup_run": 22,
+        "measured": true,
+        "frozen_ratio": 0.164,
+        "frozen_fps": 20.1,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.015,
+        "judder_fps": 23.6,
+        "held_s": 6.08,
+        "max_dup_at_s": 22.38,
+        "duration_s": 24.92
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-11-01T12:29:48+00:00",
+      "slug": "sports_steve_kerr_ookie_in_the",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A real Kerr moment whose deadpan joke mostly lands, but the hook line collides with the TV nameplate for the first 3 seconds and the opening words are filler.",
+      "auto_fails": [
+        "unreadable: In hook@0.3 to mid0 our line 'Kerr on why Yaxel fell in the draft' is printed directly over the broadcast's 'STEVE KERR' lower-third and the Warriors bridge logo. 'fell in the draft' overlaps 'STEVE KERR', and both are hard to read on a phone."
+      ],
+      "problems": [
+        "hook@0.3 to mid0: the hook caption overlaps the broadcast's 'STEVE KERR' lower-third, so the two texts collide and are hard to read",
+        "The opening words ('You know, once you get him and you') are mid-thought filler with no motion or reason to stay",
+        "Yaxel is never shown and never introduced, so a stranger has no picture of who 'this guy's 6\\'10\"' is",
+        "Large blurred bands at the top and bottom waste about a quarter of the frame"
+      ],
+      "fixes": [
+        "Move the hook line above the lower-third, or trim the opening until the nameplate is gone",
+        "Start the cut on 'In the NBA we penalize guys for being 23' so the first second carries the premise",
+        "Cut in a still or clip of Yaxel when Kerr says 'this guy's 6\\'10\"'",
+        "Hold the smile at the end ('in the draft.') for half a second longer so the joke breathes"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "text_over_tv_graphic",
+        "visible_evidence": "hook@0.3, hook@0.8, hook@1.5, hook@2.2 and mid0: our white two-line caption sits on top of the NBC Sports lower-third nameplate ('STEVE KERR' with the Golden Gate logo), so the two pieces of text collide. The word caption also sits on the mic flag.",
+        "root_cause": "The hook line is placed at a fixed bottom-third Y with no check for the source's own lower-third graphic, which is on screen for the first ~3s.",
+        "repair_goal": "Detect the broadcast lower-third in the opening seconds and move our hook line above it, or crop or trim past it, so the line never overlaps the nameplate. Also open on the quote's setup ('In the NBA we penalize guys for being 23') instead of 'You know, once you get him'."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.257,
+        "effective_fps": 17.8,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.004,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 2.12,
+        "max_dup_at_s": 1.42,
+        "duration_s": 28.58
+      },
+      "fingerprint": "?|unreadable|text_over_tv_graphic"
+    },
+    {
+      "ts": "2026-11-01T12:31:10+00:00",
+      "slug": "sports_steve_kerr_ookie_in_the",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean, correctly attributed press-conference moment where Kerr's deadpan joke lands with a visible grin. The opening seconds are soft and the clip has no editing moves.",
+      "auto_fails": [],
+      "problems": [
+        "The opening is a frowning, slow start ('IT'S HARD TO') rather than the punchline setup.",
+        "There are no zooms or sound hits on Kerr's grin at the payoff (mid2, payoff@-0.4), even though the repost style calls for them.",
+        "The blurred letterbox bands at the top and bottom waste some of the frame."
+      ],
+      "fixes": [
+        "Trim the start closer to the joke, or punch in on Kerr's deadpan in the first second.",
+        "Add a punch-in plus a sound hit on 'completely unprepared' and on the grin at 'in the draft'.",
+        "Crop tighter to fill the frame vertically and cut down the blurred bands."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 61
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "soft_open",
+        "visible_evidence": "In hook@0.3 Kerr is frowning, looking down, with 'IT'S HARD TO' on screen. The deadpan setup has no visual punch for the first second.",
+        "root_cause": "The cut opens on the slow start of his answer instead of near the joke, and there is no zoom or sound hit on the opening.",
+        "repair_goal": "Start the cut closer to 'he should've just come out four years ago', or add a punch-in on Kerr's deadpan face in the first second so a stranger senses the joke coming."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.209,
+        "effective_fps": 19.0,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.004,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.04,
+        "max_dup_at_s": 12.88,
+        "duration_s": 20.21
+      },
+      "fingerprint": "?|-|soft_open"
+    },
+    {
+      "ts": "2026-11-01T12:33:10+00:00",
+      "slug": "sports_jaylen_brown_in_to_daniel",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The moment lands at the end with Radcliffe's reaction, but our line covers the footage's own captions for the first 32 seconds and Radcliffe isn't on screen until then.",
+      "auto_fails": [
+        "unreadable: Our line 'Jaylen Brown says he's Slytherin' sits directly on top of the footage's own blue captions: 'THAT'S' at hook@0.3, 'KIND OF' at hook@0.8, 'DEVELOPED' at hook@2.2 and 'TO GROWTH' at mid3. Both texts collide and neither reads cleanly on a phone."
+      ],
+      "problems": [
+        "Our hook line is printed over the source's burned-in blue captions from hook@0.3 to mid3, so both are hard to read.",
+        "Radcliffe, half of the premise, does not appear until mid4 (about 32s), so the first 30 seconds are one man talking.",
+        "The hook frames show Brown mid-explanation, not the 'I'm Slytherin bro' line or Radcliffe's reaction."
+      ],
+      "fixes": [
+        "Put our line in the clear dark band at the top, or hide it while the source shows its own captions.",
+        "Open on the split-screen reaction (Radcliffe's shrug, Brown laughing), then cut back to the explanation.",
+        "Tighten the middle of the explanation (mid1 to mid3) so the reaction arrives within the first 10 to 15 seconds."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 126
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "caption_collision_and_missing_context",
+        "visible_evidence": "From hook@0.3 to mid3, our white line covers the source's burned-in blue captions. The shot is Brown alone for about 32 seconds, and Radcliffe, the other half of the premise, only appears at mid4.",
+        "root_cause": "Our caption line was placed at a fixed bottom-third position without checking for burned-in captions. The cut also starts on Brown's long explanation instead of the Slytherin reveal and Radcliffe's reaction.",
+        "repair_goal": "Move our line clear of the source captions (for example into the top dark band below the logos, around y\u224820%), or drop it while the source captions are on screen. Re-cut to open on 'I'm Slytherin bro' with Radcliffe's reaction from the split-screen section in the first two seconds, and trim the midd"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.233,
+        "effective_fps": 18.4,
+        "max_dup_run": 11,
+        "measured": true,
+        "frozen_ratio": 0.154,
+        "frozen_fps": 20.3,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.13,
+        "judder_fps": 20.9,
+        "held_s": 2.08,
+        "max_dup_at_s": 29.58,
+        "duration_s": 41.83
+      },
+      "fingerprint": "?|unreadable|caption_collision_and_missing_context"
+    },
+    {
+      "ts": "2026-11-01T12:35:04+00:00",
+      "slug": "sports_jaylen_brown_in_to_daniel",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A real, on-topic celebrity-athlete moment. The 'I'm Slytherin bro' line and Radcliffe's 'you missed the movie' reaction both land, but Brown's face is cropped off in the top panel.",
+      "auto_fails": [],
+      "problems": [
+        "mid0 to mid4: Jaylen Brown's face is cut off at the top of the upper panel, and our hook line sits over that area.",
+        "hook@0.3 opens on Radcliffe mid-sentence ('SAY IT'S'). The setup comes in a little late for a stranger."
+      ],
+      "fixes": [
+        "Reframe the upper panel, or move our line, so Brown's face is visible when he delivers the line.",
+        "Consider starting on the crest graphics or on Brown's 'I'm Slytherin bro' for a sharper first second."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 52
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 4,
+        "failure_class": "framing",
+        "visible_evidence": "mid0 to mid4: Jaylen Brown's head is cropped off the top of the upper panel, and our line sits where his face would be. You only see his torso and microphone, so the 'I'm Slytherin bro' speaker has no visible face.",
+        "root_cause": "The source split screen frames Brown low, and our caption band covers the top of his panel.",
+        "repair_goal": "Shift the top panel's crop or the caption position so Brown's face is visible when he says 'I'm Slytherin bro'."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.236,
+        "effective_fps": 18.3,
+        "max_dup_run": 10,
+        "measured": true,
+        "frozen_ratio": 0.139,
+        "frozen_fps": 20.7,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.125,
+        "judder_fps": 21.0,
+        "held_s": 1.71,
+        "max_dup_at_s": 1.29,
+        "duration_s": 17.38
+      },
+      "fingerprint": "?|-|framing"
+    },
+    {
+      "ts": "2026-11-01T17:23:11+00:00",
+      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 7.33,
+        "static_at_s": 55.33,
+        "dark_fraction": 0.026,
+        "sampled": 189
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": "longform",
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.931,
+        "effective_fps": 1.7,
+        "max_dup_run": 83,
+        "measured": true,
+        "frozen_ratio": 0.392,
+        "frozen_fps": 14.6,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 54.62,
+        "max_dup_at_s": 22.46,
+        "duration_s": 63.08
+      },
+      "fingerprint": "longform|temporal_gate|-"
+    },
+    {
+      "ts": "2026-11-01T17:32:26+00:00",
+      "slug": "peanut-allergy-guideline-flip",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The peanut balloon and the shrinking clinic line are strong and Data drives them, but the filing-cabinet beat is a self-closing drawer with Data waving beside it, and the ending reuses that same flat scene.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: the drawer closes and loses files on its own while Data only waves. He is decorative in this beat.",
+        "seg3: the dashed 'then' ghost box overlaps Data's body instead of the drawer track.",
+        "seg3: the 0.79% to 0.45% drop shows only as a slightly shorter drawer, so 'fell by over a third' is hard to see.",
+        "seg2:mid and seg2:end: Data's peanut-butter jar covers his face, and the 'avoided' label is left floating with no kid under it.",
+        "seg4: the closing adds no new image. It is the seg3 room with text on top, so the payoff is weak."
+      ],
+      "fixes": [
+        "seg3: give Data a two-hand grip on the drawer handle so he shoves it shut, or have him pull folders out into a bin, so he causes the drop.",
+        "seg3: put the ghost outline on the drawer's old extent, clear of Data, and make the drawer visibly lose about a third of its length.",
+        "seg2: hold the jar at chest height so Data's face shows, and remove or move the 'avoided' tag once its kid leaves.",
+        "seg4: end on a payoff image, such as a baby eating peanut, the clinic line now empty, or the balloon deflated, instead of reusing the cabinet."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 99
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "From seg3:start to seg3:end the cabinet drawer slides in and loses files on its own while Data stands to the left and waves, inside a dashed ghost box that overlaps his body. The drop from 0.79% to 0.45% shows only as a slightly shorter drawer. The closing (seg4) reuses the same scene without changi",
+        "root_cause": "The scene gives Data no part to play in the motion, so the drawer moves by itself. The 'then' ghost mark sits on top of Data instead of on the drawer's own track.",
+        "repair_goal": "Make Data the cause. He should grip the drawer handle with both hands and push it shut, or pull folders out and drop them in a bin, so the drawer visibly loses about a third of its files and ends clearly shorter than its old extent. Put the ghost outline on the drawer's rail, away from Data, so the "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.289,
+        "effective_fps": 17.1,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.055,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 16,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 3.04,
+        "max_dup_at_s": 0.0,
+        "duration_s": 33.08
+      },
+      "fingerprint": "?|-|decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-01T18:04:25+00:00",
+      "slug": "peanut-allergy-guideline-flip",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A strong peanut-balloon opening and a clinic queue made of the subject, but the final beat's drop is a timid file-drawer change and the closing is a recycled hold that fizzles the payoff.",
+      "auto_fails": [],
+      "problems": [
+        "seg0:end: the headline still reads 0.4% (1997) while the peanut is already past 2x, so the readout lags the picture.",
+        "seg2:mid: the 'avoided' tag is printed over a kid's head, and Data's jar partly covers the queue.",
+        "seg3: going from 0.79% to 0.45% is shown as a drawer losing a few identical folders. The over-a-third fall barely registers and has no earlier-size mark.",
+        "seg4: the closing reuses the seg3 room unchanged with Data waving. No new payoff picture, and the last frame (payoff@-0.4) is the bare room."
+      ],
+      "fixes": [
+        "Step the hook and beat-0 readout with the peanut's growth so the number and the size agree on every frame.",
+        "Move the 'avoided' tag clear of the figures, and keep Data's jar off the queue.",
+        "seg3: draw the before-stack as a ghost on the drawer and have Data pull out and bin a visibly large batch, so the drawer ends a third emptier, landed by the read time.",
+        "Give the closing its own shot (e.g. a baby handed a peanut spoon while the peanut balloon deflates) rather than holding beat 2's room."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 99
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "weak_change",
+        "visible_evidence": "From seg3:start to seg3:end the drawer of tabbed folders goes from about 14 to about 10. The drop of over a third barely registers next to the 0.79% to 0.45% readout, and the closing (seg4) then reuses this room unchanged with Data just waving.",
+        "root_cause": "The change is drawn as a small count of identical folders in a half-open drawer. The fall is a token decrease, not a visible collapse, and the closing has no scene of its own.",
+        "repair_goal": "Make the third-plus drop a big, readable change: show the earlier, larger stack as a ghost or then-mark ON the drawer while Data visibly pulls out and bins a big batch of files. The drawer should end clearly a third emptier by the land-by time. Also give the closing its own payoff shot instead of a "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.29,
+        "effective_fps": 17.0,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.055,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 16,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 3.04,
+        "max_dup_at_s": 0.0,
+        "duration_s": 33.08
+      },
+      "fingerprint": "?|-|weak_change",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-01T18:45:12+00:00",
+      "slug": "wisdom-albatross-74",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The candles and the chick line are strong and made of the subject, but the Midway share beat is proved by its label, and the closing reuses that shot instead of landing on Wisdom.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: '1 in 3' rests on the label. The flock-to-nests change does not show a third, and Data only stands beside it.",
+        "seg4: the closing reuses the seg3 colony shot. Wisdom, the star, is missing from the payoff, and the 'knees that hurt' joke has no picture.",
+        "seg1: the 1.9x claim does not mark the 40-year ring on the candles, so the doubling is read rather than seen.",
+        "The hook's on-screen line ('should be dead') differs from the script's hook ('refuses to retire')."
+      ],
+      "fixes": [
+        "seg3: split one flock into three equal groups and land one group on Midway, with Data marshalling them in or flagging each nest as it lands.",
+        "seg4: end on Wisdom on her nest, ringed by all 74 candles, with Data rubbing a creaky knee beside her.",
+        "seg1: leave a ghost ring at 40 candles inside the 74 so the near-doubling is visible on the subject itself."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 96
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "weak_proof_and_passive_mascot",
+        "visible_evidence": "seg3:start to seg3:end shows a loose oval of flying birds labelled '3M birds' that becomes '1M birds / 1 in 3' over a colony of flagged nests. A third of the birds landing never reads as a third, and Data just stands beside the nests while the label changes.",
+        "root_cause": "The share is carried by the label, not the picture. The flock ring has no whole to compare against, and Data is not the cause of the change.",
+        "repair_goal": "Show a whole flock that splits visibly into three equal parts, with one third flying down onto Midway. Have Data cause the split: he waves the flock in with marshalling paddles or plants a flag on each landing nest. The '1 in 3' should be obvious with no text. The closing (seg4) should end on Wisdom"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.123,
+        "effective_fps": 21.1,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.037,
+        "frozen_fps": 23.1,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 3.42,
+        "max_dup_at_s": 7.75,
+        "duration_s": 31.92
+      },
+      "fingerprint": "?|-|weak_proof_and_passive_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-01T19:48:45+00:00",
+      "slug": "deepfake-video-explosion",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "This video effectively demonstrates the alarming growth and impact of deepfake fraud with engaging visuals and a well-integrated mascot.",
+      "auto_fails": [],
+      "problems": [
+        "The initial deepfake video count demonstration (seg0/seg1) is visually effective but less dynamic compared to the interactive detection and financial loss segments."
+      ],
+      "fixes": [
+        "Consider adding more dynamic elements or a stronger visual progression within the deepfake video count scene to match the energy of later segments."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "less dynamic demonstration",
+        "visible_evidence": "The visual of screens lighting up to represent video count is effective but less interactive and dynamic compared to the detection software and financial loss segments.",
+        "root_cause": "The chosen visual metaphor for volume, while clear, is simpler compared to the interactive or action-oriented metaphors used later in the video.",
+        "repair_goal": "Enhance the dynamism or interactivity of the deepfake video count demonstration in seg0/seg1."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.054,
+        "effective_fps": 22.7,
+        "max_dup_run": 15,
+        "measured": true,
+        "frozen_ratio": 0.035,
+        "frozen_fps": 23.2,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 1.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 32.5
+      },
+      "fingerprint": "?|-|less dynamic demonstration"
+    },
+    {
+      "ts": "2026-11-01T21:07:42+00:00",
+      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 7.33,
+        "static_at_s": 55.33,
+        "dark_fraction": 0.026,
+        "sampled": 189
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": "longform",
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.931,
+        "effective_fps": 1.7,
+        "max_dup_run": 83,
+        "measured": true,
+        "frozen_ratio": 0.392,
+        "frozen_fps": 14.6,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 54.62,
+        "max_dup_at_s": 22.46,
+        "duration_s": 63.08
+      },
+      "fingerprint": "longform|temporal_gate|-"
     }
   ],
   "showrunner_recurrence": {
@@ -4306,21 +4238,8 @@
       "count": 6,
       "days": [
         "2026-10-30",
-        "2026-10-31"
-      ]
-    },
-    "?|-|weak_hook": {
-      "count": 3,
-      "days": [
-        "2026-10-29",
-        "2026-10-31"
-      ]
-    },
-    "?|decorative_mascot|decorative_mascot": {
-      "count": 3,
-      "days": [
-        "2026-10-29",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01"
       ]
     },
     "?|unreadable|unreadable": {
@@ -4329,11 +4248,11 @@
         "2026-10-31"
       ]
     },
-    "?|decorative_mascot+unreadable|weak_demonstration": {
+    "?|empty_void+junk_imagery|restream_repost": {
       "count": 2,
       "days": [
-        "2026-10-29",
-        "2026-10-30"
+        "2026-10-31",
+        "2026-11-01"
       ]
     },
     "?|unreadable|caption_collision": {
@@ -4342,82 +4261,22 @@
         "2026-10-31"
       ]
     },
-    "?|-|wrong_crop_hook": {
-      "count": 1,
+    "?|-|weak_hook": {
+      "count": 2,
       "days": [
-        "2026-10-29"
+        "2026-10-31"
       ]
     },
-    "?|junk_imagery+unreadable|weak_hook_no_subject": {
-      "count": 1,
+    "?|decorative_mascot|decorative_mascot": {
+      "count": 2,
       "days": [
-        "2026-10-29"
+        "2026-10-31"
       ]
     },
-    "?|empty_void|weak_hook_wide_shot": {
-      "count": 1,
+    "longform|temporal_gate|-": {
+      "count": 2,
       "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|empty_void|subject_too_small_wide_shot": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|dead_air+junk_imagery+unreadable|restream_overlay_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|junk_imagery+unreadable|unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|unreadable|unreadable_text_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|junk_imagery+unreadable|unreadable_overlapping_captions_and_missing_payoff": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|-|slow_setup": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|dead_air+unreadable|dead_air": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|-|weak_depiction": {
-      "count": 1,
-      "days": [
-        "2026-10-29"
-      ]
-    },
-    "?|-|weak_hook_competing_graphic": {
-      "count": 1,
-      "days": [
-        "2026-10-30"
-      ]
-    },
-    "?|-|slow_hook_subject_offscreen": {
-      "count": 1,
-      "days": [
-        "2026-10-30"
+        "2026-11-01"
       ]
     },
     "?|unreadable|duplicate_on_screen_text_and_buried_moment": {
@@ -4445,6 +4304,12 @@
       ]
     },
     "?|decorative_mascot|claim_picture_mismatch_and_decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|decorative_mascot+unreadable|weak_demonstration": {
       "count": 1,
       "days": [
         "2026-10-30"
@@ -4478,12 +4343,6 @@
       "count": 1,
       "days": [
         "2026-10-30"
-      ]
-    },
-    "?|empty_void+junk_imagery|restream_repost": {
-      "count": 1,
-      "days": [
-        "2026-10-31"
       ]
     },
     "?|unreadable|unreadable_text_over_broadcast_graphic": {
@@ -4587,16 +4446,93 @@
       "days": [
         "2026-10-31"
       ]
+    },
+    "?|-|off_subject_footage": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|off_moment_filler": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|unreadable|unreadable_overlay_collision": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|weak_hook_tiny_subject": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|empty_void+unreadable|unreadable_and_small_footage": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|unreadable|text_over_tv_graphic": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|soft_open": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|unreadable|caption_collision_and_missing_context": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|framing": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|weak_change": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|weak_proof_and_passive_mascot": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
+    },
+    "?|-|less dynamic demonstration": {
+      "count": 1,
+      "days": [
+        "2026-11-01"
+      ]
     }
   },
   "recent_commits": [
-    "88b68be 2026-11-01 trending: posted j_j__mccarthy_s_teammates_rush_him_after [skip ci]",
-    "3b14026 2026-11-01 trending: claim upload slot j_j__mccarthy_s_teammates_rush_him_after [skip ci]"
+    "107b03e 2026-11-02 claim: mailbox verdicts 2026-11-02T04:47Z [skip ci]",
+    "53cc5ac 2026-11-02 claim: mailbox verdicts 2026-11-02T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-18": 3,
         "2026-10-19": 2,
         "2026-10-20": 2,
         "2026-10-21": 3,
@@ -4609,15 +4545,14 @@
         "2026-10-29": 3,
         "2026-10-30": 5,
         "2026-10-31": 5,
-        "2026-11-01": 1
+        "2026-11-01": 5
       },
-      "total_posted": 495,
-      "attempted": 495,
+      "total_posted": 499,
+      "attempted": 499,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-18": 4,
         "2026-10-21": 3,
         "2026-10-22": 3,
         "2026-10-24": 4,
@@ -4628,15 +4563,15 @@
         "2026-10-29": 4,
         "2026-10-30": 4,
         "2026-10-31": 3,
-        "2026-11-01": 1
+        "2026-11-01": 2,
+        "2026-11-02": 2
       },
-      "total_posted": 377,
-      "attempted": 377,
+      "total_posted": 380,
+      "attempted": 380,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-18": 7,
         "2026-10-19": 6,
         "2026-10-20": 1,
         "2026-10-21": 4,
@@ -4650,11 +4585,12 @@
         "2026-10-29": 8,
         "2026-10-30": 5,
         "2026-10-31": 9,
-        "2026-11-01": 1
+        "2026-11-01": 4,
+        "2026-11-02": 3
       },
-      "total_posted": 498,
-      "attempted": 1218,
-      "rejected_or_pending": 720
+      "total_posted": 504,
+      "attempted": 1233,
+      "rejected_or_pending": 729
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4671,68 +4607,68 @@
       "videos": 149,
       "top_by_vph": [
         {
-          "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
-          "vph": 82.26,
-          "views": 162
-        },
-        {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 37.91,
-          "views": 1041
+          "vph": 24.77,
+          "views": 1296
         },
         {
-          "title": "One AI Conversation Can Use 500 Milliliters Of Water",
-          "vph": 35.57,
-          "views": 228
+          "title": "One Volcano Added 146 Million Tons Of Water To The Sky",
+          "vph": 23.19,
+          "views": 483
         },
         {
           "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
-          "vph": 34.42,
-          "views": 842
+          "vph": 21.35,
+          "views": 1053
         },
         {
-          "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
-          "vph": 32.98,
-          "views": 319
+          "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
+          "vph": 19.12,
+          "views": 513
+        },
+        {
+          "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+          "vph": 16.74,
+          "views": 976
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 152,
+      "videos": 151,
       "top_by_vph": [
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 10.51,
-          "views": 402
+          "vph": 8.66,
+          "views": 404
         },
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 7.55,
-          "views": 1739
+          "vph": 7.39,
+          "views": 1763
         },
         {
           "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Bet",
-          "vph": 7.28,
-          "views": 224
+          "vph": 6.21,
+          "views": 243
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 4.3,
-          "views": 274
+          "vph": 4.02,
+          "views": 290
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.03,
-          "views": 1922
+          "vph": 3.0,
+          "views": 1931
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261029/brief.json",
       "retro/20261030/brief.json",
-      "retro/20261031/brief.json"
+      "retro/20261031/brief.json",
+      "retro/20261101/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
