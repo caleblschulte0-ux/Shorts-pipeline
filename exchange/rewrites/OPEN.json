@@ -1,7 +1,117 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-01T21:29:06Z",
+ "updated": "2026-11-02T11:51:24Z",
  "open": [
+  {
+   "id": "autism-diagnosis-rate-rise__3a83f544",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-02T11:51:24Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers (1 in 150 and 1 in 31) rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261102/autism-diagnosis-rate-rise__3a83f544.request.json",
+   "answer_path": "exchange/rewrites/20261102/autism-diagnosis-rate-rise__3a83f544.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__c6fe157f",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-02T11:51:24Z",
+   "why": [
+    "premise: brain: It lacks a single concrete, verifiable number and the premise’s reversal of expectation is not clearly defined."
+   ],
+   "request": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f.request.json",
+   "answer_path": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f.answer.json"
+  },
+  {
+   "id": "antarctic-sea-ice-record-low__0e8066f9_r1",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-11-02T11:51:23Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number and does not clearly invert a viewer's expectation."
+   ],
+   "request": "exchange/rewrites/20261102/antarctic-sea-ice-record-low__0e8066f9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/antarctic-sea-ice-record-low__0e8066f9_r1.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__315fba90_r2",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-02T11:51:23Z",
+   "why": [
+    "premise: brain: The premise does not overturn a clear viewer expectation, merely stating a known effect with a single statistic."
+   ],
+   "request": "exchange/rewrites/20261102/astronaut-bone-loss__315fba90_r2.request.json",
+   "answer_path": "exchange/rewrites/20261102/astronaut-bone-loss__315fba90_r2.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__7726747b_r1",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-11-02T11:51:23Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261102/measles-comeback-since-2000__7726747b_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/measles-comeback-since-2000__7726747b_r1.answer.json"
+  },
+  {
+   "id": "local-news-deserts-expanding__9f62ea81",
+   "slug": "local-news-deserts-expanding",
+   "filed": "2026-11-02T11:51:23Z",
+   "why": [
+    "thesis: seg2 ('Living without news') has no bridge to the headline ('US Newspapers Dropped From 7,325 To 4,490') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261102/local-news-deserts-expanding__9f62ea81.request.json",
+   "answer_path": "exchange/rewrites/20261102/local-news-deserts-expanding__9f62ea81.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__49815695_r2",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-02T11:51:22Z",
+   "why": [
+    "premise: brain: It presents two figures rather than a single consequential number, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261102/mangrove-forest-loss__49815695_r2.request.json",
+   "answer_path": "exchange/rewrites/20261102/mangrove-forest-loss__49815695_r2.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__b37435d8",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-11-02T11:51:22Z",
+   "why": [
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261102/coldest-place-in-the-universe-is-human-made__b37435d8.request.json",
+   "answer_path": "exchange/rewrites/20261102/coldest-place-in-the-universe-is-human-made__b37435d8.answer.json"
+  },
+  {
+   "id": "library-digital-shift__bba2e477_r1",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-02T11:51:22Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation despite providing a single statistic."
+   ],
+   "request": "exchange/rewrites/20261102/library-digital-shift__bba2e477_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/library-digital-shift__bba2e477_r1.answer.json"
+  },
+  {
+   "id": "naep-math-pandemic-drop__aa1c0224_r1",
+   "slug": "naep-math-pandemic-drop",
+   "filed": "2026-11-02T11:51:21Z",
+   "why": [
+    "premise: brain: The premise lacks a single, clear, verifiable number and does not definitively reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261102/naep-math-pandemic-drop__aa1c0224_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/naep-math-pandemic-drop__aa1c0224_r1.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__7fd19fc0",
+   "slug": "california-condor-comeback",
+   "filed": "2026-11-02T11:51:21Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies only on a generic growth figure."
+   ],
+   "request": "exchange/rewrites/20261102/california-condor-comeback__7fd19fc0.request.json",
+   "answer_path": "exchange/rewrites/20261102/california-condor-comeback__7fd19fc0.answer.json"
+  },
   {
    "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r5",
    "slug": "chatgpt-fastest-adoption-ever",
@@ -33,16 +143,6 @@
    "answer_path": "exchange/rewrites/20261101/lego-minifigs-outnumber-humans__161409d0_r4.answer.json"
   },
   {
-   "id": "library-digital-shift__bba2e477_r1",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-01T20:07:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a vague claim rather than a single, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261101/library-digital-shift__bba2e477_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/library-digital-shift__bba2e477_r1.answer.json"
-  },
-  {
    "id": "elephant-poaching-decline__7f81acaa",
    "slug": "elephant-poaching-decline",
    "filed": "2026-11-01T19:34:34Z",
@@ -51,26 +151,6 @@
    ],
    "request": "exchange/rewrites/20261101/elephant-poaching-decline__7f81acaa.request.json",
    "answer_path": "exchange/rewrites/20261101/elephant-poaching-decline__7f81acaa.answer.json"
-  },
-  {
-   "id": "local-news-deserts-expanding__9f62ea81",
-   "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-01T19:34:34Z",
-   "why": [
-    "thesis: seg2 ('Living without news') has no bridge to the headline ('US Newspapers Dropped From 7,325 To 4,490') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261101/local-news-deserts-expanding__9f62ea81.request.json",
-   "answer_path": "exchange/rewrites/20261101/local-news-deserts-expanding__9f62ea81.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__b37435d8",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-01T19:34:33Z",
-   "why": [
-    "pace: hook is 15 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.request.json",
-   "answer_path": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.answer.json"
   },
   {
    "id": "tsa-digital-id-states-growth__1330070e",
@@ -91,26 +171,6 @@
    ],
    "request": "exchange/rewrites/20261101/national-parks-record-then-shutdown__e97b7e5a.request.json",
    "answer_path": "exchange/rewrites/20261101/national-parks-record-then-shutdown__e97b7e5a.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__7fd19fc0",
-   "slug": "california-condor-comeback",
-   "filed": "2026-11-01T16:41:34Z",
-   "why": [
-    "premise: brain: It presents a factual increase without overturning a viewer expectation, lacking the required reversal."
-   ],
-   "request": "exchange/rewrites/20261101/california-condor-comeback__7fd19fc0.request.json",
-   "answer_path": "exchange/rewrites/20261101/california-condor-comeback__7fd19fc0.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__3a83f544",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-01T12:35:12Z",
-   "why": [
-    "premise: brain: Uses multiple statistics rather than a single consequential number, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.request.json",
-   "answer_path": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.answer.json"
   },
   {
    "id": "genome-sequencing-cost-collapse__e55ed18b",
@@ -151,36 +211,6 @@
    ],
    "request": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.request.json",
    "answer_path": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__49815695_r2",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261101/mangrove-forest-loss__49815695_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/mangrove-forest-loss__49815695_r2.answer.json"
-  },
-  {
-   "id": "measles-comeback-since-2000__7726747b_r1",
-   "slug": "measles-comeback-since-2000",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261101/measles-comeback-since-2000__7726747b_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/measles-comeback-since-2000__7726747b_r1.answer.json"
-  },
-  {
-   "id": "naep-math-pandemic-drop__aa1c0224_r1",
-   "slug": "naep-math-pandemic-drop",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: Lacks a specific, verifiable number to anchor the surprising claim."
-   ],
-   "request": "exchange/rewrites/20261101/naep-math-pandemic-drop__aa1c0224_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/naep-math-pandemic-drop__aa1c0224_r1.answer.json"
   },
   {
    "id": "metric-system-holdouts__c3934ec2_r2",
@@ -241,26 +271,6 @@
    ],
    "request": "exchange/rewrites/20261101/deepfake-video-explosion__4e4e2811_r1.request.json",
    "answer_path": "exchange/rewrites/20261101/deepfake-video-explosion__4e4e2811_r1.answer.json"
-  },
-  {
-   "id": "antarctic-sea-ice-record-low__0e8066f9_r1",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-01T12:19:45Z",
-   "why": [
-    "premise: brain: Lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261101/antarctic-sea-ice-record-low__0e8066f9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/antarctic-sea-ice-record-low__0e8066f9_r1.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__315fba90_r2",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-01T12:19:45Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague claim rather than a single, verifiable numeric fact."
-   ],
-   "request": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.answer.json"
   },
   {
    "id": "billion-dollar-disasters-record-2023__689aac16_r1",
