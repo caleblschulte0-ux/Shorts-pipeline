@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "naep-math-pandemic-drop__aa1c0224_r1",
+  "slug": "naep-math-pandemic-drop",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "US Math Scores Fell To 270",
+  "hook": "US math scores fell to 270.",
+  "closing": "Students who miss foundational math face harder courses later, making this decline expensive to ignore.",
+  "question": "Did your math skills recover?",
+  "segments": [
+    {
+      "topic": "Math Score Decline",
+      "say": "US math scores fell to 271. Decades of improvement were nearly erased."
+    },
+    {
+      "topic": "Math Student Gap",
+      "say": "The weakest students lost 14 points. The decline widened the gap between struggling students and everyone else."
+    },
+    {
+      "topic": "Math Recovery Failed",
+      "say": "US math scores slipped to 270. Years later, the promised recovery still has not arrived."
+    }
+  ]
+}
