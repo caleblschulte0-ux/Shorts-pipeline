@@ -535,5 +535,931 @@
       "music_vibe": "dark",
       "punched_up": true
     }
+  },
+  "20260802": {
+    "01_graph-smartphone-users-worldwide.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "graph-smartphone-users-worldwide",
+      "title": "Smartphones Reached Half the Planet",
+      "hook": "Watch smartphones pass 50%",
+      "y_label": "Users (billions)",
+      "duration": 13,
+      "source": "Sources: International Telecommunication Union (ITU); GSMA Intelligence mobile subscriber estimates",
+      "hashtags": [
+        "smartphones",
+        "technology",
+        "mobile",
+        "tech",
+        "data",
+        "chart",
+        "history",
+        "digital",
+        "growth",
+        "statistics",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        2007,
+        2010,
+        2013,
+        2016,
+        2019,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Smartphone users",
+          "color": "#3fa7ff",
+          "values": [
+            0.12,
+            0.3,
+            1.0,
+            2.1,
+            3.2,
+            4.3
+          ]
+        },
+        {
+          "name": "World population",
+          "color": "#8a8fa3",
+          "values": [
+            6.7,
+            6.96,
+            7.21,
+            7.47,
+            7.71,
+            8.0
+          ]
+        }
+      ],
+      "music_vibe": "cinematic",
+      "_reserve": {
+        "banked_at": "2026-08-01T09:22:06Z",
+        "drawn_on": "20260802",
+        "reason": "phase A found a short slate"
+      }
+    },
+    "02_reddit-upstairs-neighbor-noise.json": {
+      "version": 1,
+      "subreddit": "pettyrevenge",
+      "slug": "reddit-upstairs-neighbor-noise",
+      "title": "He Wouldn't Stop The Music. So I Got Creative",
+      "hashtags": [
+        "neighbors",
+        "pettyrevenge",
+        "reddit",
+        "storytime",
+        "apartment",
+        "noisecomplaint",
+        "karma",
+        "landlord",
+        "propertymanagement",
+        "justice",
+        "revenge",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "My upstairs neighbor played bass-heavy music at full volume past midnight for months, and management's only advice was 'just knock on his door.' So I did something else instead. I found out he worked nights and slept during the day, then I filed a noise complaint every single afternoon between 9 a.m. and 5 p.m. for 'a barking dog,' 'a vacuum,' 'construction sounds' \u2014 anything vague enough that management had to send someone to check every time, which meant knocking on his door and waking him up, over and over, for weeks. He complained to management that people kept disturbing his sleep for no reason. Management told him, very politely, that they were simply responding to resident complaints and had no way to verify who filed them. Three weeks of interrupted sleep later, his music stopped at 9 p.m. sharp, every single night, like clockwork. Turns out nobody actually enjoys a taste of their own noise.",
+      "shots": [
+        {
+          "phrase": "played bass-heavy music",
+          "query": "speaker loud music",
+          "mascot_pose": "shock",
+          "pin_query": "bass",
+          "pin_context": "music instrument heavy sound",
+          "news_query": "bass",
+          "news_angle": "The upstairs neighbor played bass-heavy music at full volume past midnight for months.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Jimmy_Page%27s_Rig_-_1961_Danelectro_Model_3021%2C_ca.1962_Harmony_Sovereign_H1260_%28serial_no._9631111260%29%2C_2%C3%97_Marshall_1959_Super_Lead%2C_Super_Bass%2C_3%C3%97_4%C3%9712in._cab.%2C_etc._-_Play_It_Loud._MET_%282019-05-13_19.09.34_by_Eden%2C_Janine_and_Jim%29.jpg/1280px-thumbnail.jpg"
+        },
+        {
+          "phrase": "just knock on his door",
+          "query": "apartment door knock",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Id69uvwSg5Ws539iwQT1gXQBwBB6azp7",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1Id69uvwSg5Ws539iwQT1gXQBwBB6azp7",
+          "media_sha256": "8270c4e70e104d9514f44767ddcf91f4215e0baaa3b198b37414a61477817854",
+          "media_bytes": 2153879
+        },
+        {
+          "phrase": "filed a noise complaint",
+          "query": "complaint form paper",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1VcdHuHndDZHvHMT6HNnMGI5Pf1ewh52k",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1VcdHuHndDZHvHMT6HNnMGI5Pf1ewh52k",
+          "media_sha256": "b4615a48ade9b220ad52ad5cf2a190f0f3af655fca18346d8b4b11c41c74f92c",
+          "media_bytes": 2774153
+        },
+        {
+          "phrase": "waking him up, over and over",
+          "query": "person startled awake",
+          "mascot_pose": "laugh",
+          "image_url": "https://drive.google.com/uc?export=download&id=1PrdOVFFuTu1D6EZVAYTVMsxeOWUl0uvx",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1PrdOVFFuTu1D6EZVAYTVMsxeOWUl0uvx",
+          "media_sha256": "f74df14bbff913585407bcd3f4329eef507bf738cae5ab279266b56d46dd0eec",
+          "media_bytes": 2079135
+        },
+        {
+          "phrase": "no way to verify who filed them",
+          "query": "office shrug",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=184QElYEZrLzi57-NbtbvqPB2y_ZNaRxb",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "184QElYEZrLzi57-NbtbvqPB2y_ZNaRxb",
+          "media_sha256": "4c8d5583fd876ed9d6383908d91ee4a07cb406ea855bb3e73232208526011507",
+          "media_bytes": 1948868
+        },
+        {
+          "phrase": "music stopped at 9 p.m. sharp",
+          "query": "quiet apartment hallway",
+          "mascot_pose": "think",
+          "image_url": "https://drive.google.com/uc?export=download&id=1zsmkkV43gxpQBIFyKDQo0XUtWgsFAJ-g",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1zsmkkV43gxpQBIFyKDQo0XUtWgsFAJ-g",
+          "media_sha256": "19fa2ea836195aa86ae0d0d4ab2faaf3a313143687df26107a9ccae28fbea96b",
+          "media_bytes": 1735103
+        },
+        {
+          "phrase": "a taste of their own noise",
+          "query": "headphones on desk",
+          "mascot_pose": "dismiss",
+          "image_url": "https://drive.google.com/uc?export=download&id=1qVt-bnHoVmDYn1THcRC4YiUYxb9Fr8L-",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1qVt-bnHoVmDYn1THcRC4YiUYxb9Fr8L-",
+          "media_sha256": "eae3e43adf188cd9e2721e10ead6d3ef4ef1ac88faebae14a937dda6bba98915",
+          "media_bytes": 1769785
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "just knock on his door",
+          "text": "\"JUST KNOCK\"",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "filed a noise complaint",
+          "text": "DAILY COMPLAINTS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "no way to verify who filed them",
+          "text": "UNTRACEABLE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "music stopped at 9 p.m. sharp",
+          "text": "SILENCE AT LAST",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "_reserve": {
+        "banked_at": "2026-08-01T09:22:06Z",
+        "drawn_on": "20260802",
+        "reason": "phase A found a short slate"
+      }
+    },
+    "03_urban-china-vs-united-states.json": {
+      "format": "graph_race",
+      "slug": "urban-china-vs-united-states",
+      "title": "China vs U.S.: The Urban Population Crossover",
+      "hook": "China passed the U.S.",
+      "y_label": "Urban population",
+      "duration": 13,
+      "source": "World Bank, Urban population (SP.URB.TOTL), 1980\u20132023, updated 2026-07-13: https://data.worldbank.org/indicator/SP.URB.TOTL",
+      "years": [
+        1980,
+        1990,
+        2000,
+        2010,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "icon": "CN",
+          "values": [
+            190272409,
+            297369675,
+            460007123,
+            658606042,
+            896379022,
+            924440306
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#3088ff",
+          "icon": "US",
+          "values": [
+            167579811,
+            187887615,
+            223117358,
+            249667531,
+            265254034,
+            269645027
+          ]
+        }
+      ],
+      "hashtags": [
+        "data",
+        "cities",
+        "urbanization",
+        "china",
+        "usa",
+        "graphrace",
+        "shorts"
+      ],
+      "music_vibe": "driving cinematic",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "04_india-vs-us-internet-users.json": {
+      "format": "graph_race",
+      "slug": "india-vs-us-internet-users",
+      "title": "India vs U.S.: Internet Users by Year",
+      "hook": "India crossed the U.S.",
+      "y_label": "Estimated internet users",
+      "duration": 13,
+      "source": "Derived and rounded from World Bank/ITU IT.NET.USER.ZS and World Bank population totals: https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "India",
+          "color": "#ff9933",
+          "icon": "IN",
+          "values": [
+            5600000,
+            23000000,
+            93000000,
+            195000000,
+            608000000,
+            790000000
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#3088ff",
+          "icon": "US",
+          "values": [
+            124000000,
+            197000000,
+            240000000,
+            276000000,
+            312000000,
+            330000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "internet",
+        "technology",
+        "india",
+        "usa",
+        "data",
+        "graphrace",
+        "shorts"
+      ],
+      "music_vibe": "electronic momentum",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "05_mobile-subscriptions-china-india-us.json": {
+      "format": "graph_race",
+      "slug": "mobile-subscriptions-china-india-us",
+      "title": "Mobile Subscriptions: China, India, U.S.",
+      "hook": "Three mobile giants",
+      "y_label": "Mobile subscriptions",
+      "duration": 13,
+      "source": "World Bank/ITU, Mobile cellular subscriptions (IT.CEL.SETS), 2000\u20132023, updated 2026-07-13: https://data.worldbank.org/indicator/IT.CEL.SETS",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "icon": "CN",
+          "values": [
+            85260000,
+            393406000,
+            859003000,
+            1291984200,
+            1718411000,
+            1824422700
+          ]
+        },
+        {
+          "name": "India",
+          "color": "#ff9933",
+          "icon": "IN",
+          "values": [
+            3577095,
+            90140000,
+            752190000,
+            1001056000,
+            1153709832,
+            1158554883
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#3088ff",
+          "icon": "US",
+          "values": [
+            109478031,
+            203700000,
+            285118000,
+            332101000,
+            352522000,
+            386106000
+          ]
+        }
+      ],
+      "hashtags": [
+        "mobile",
+        "telecom",
+        "china",
+        "india",
+        "usa",
+        "data",
+        "graphrace"
+      ],
+      "music_vibe": "fast digital pulse",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "06_boss-wanted-every-email.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "boss-wanted-every-email",
+      "title": "My Boss Wanted Every Email. He Got Every Email.",
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "office",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "My boss wanted every email. He announced that nobody could send anything without copying him because he needed 'complete visibility'\u2014his exact phrase. Fine. I updated every automated alert, calendar notice, shared-document comment, delivery receipt, and ticket notification to include him. Nothing fake\u2014just the messages our systems already generated all day. By lunch, his inbox had hundreds. By Wednesday, he missed a client's urgent approval because it was buried between a printer alert and twelve calendar updates. Complete visibility had become complete camouflage. He called me in and asked why I had flooded him. I showed him his own written rule and the audit log proving every message was legitimate. He quietly changed the policy to 'copy me only on decisions requiring approval.' I followed that one too. His inbox recovered, the client's request got handled, and the new rule lasted. Apparently visibility works better when you can still see.",
+      "shots": [
+        {
+          "phrase": "needed 'complete visibility'",
+          "query": "manager demanding an office meeting",
+          "mascot_pose": "idle",
+          "pin_query": "Complete",
+          "pin_context": "My Boss Wanted Every Email. He Got Every Email.",
+          "news_query": "Complete",
+          "news_angle": "My Boss Wanted Every Email. He Got Every Email.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1phF7ptl2HwKCney6iR2MyKsVJyQg98Cj",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1phF7ptl2HwKCney6iR2MyKsVJyQg98Cj",
+          "media_sha256": "f1de831bd3f43dccb6b9ebb654260368972a17648f9d2496bbf143bbe79953fa",
+          "media_bytes": 2001788
+        },
+        {
+          "phrase": "every automated alert",
+          "query": "office notification overload represented by piles of envelopes and ringing desk phones",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1u_p53IsVKz3iq_SsWUCuU_8CERR1dDSr",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1u_p53IsVKz3iq_SsWUCuU_8CERR1dDSr",
+          "media_sha256": "e6519799de49353048921302c640ffc9dbb79db307cb389754e29c09a9798bbe",
+          "media_bytes": 2235892
+        },
+        {
+          "phrase": "his inbox had hundreds",
+          "query": "overwhelmed office worker surrounded by physical mail trays and paper notices",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1k1Q7K9ug5AAuh0sYm7S1Qaifu__-RVPC",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1k1Q7K9ug5AAuh0sYm7S1Qaifu__-RVPC",
+          "media_sha256": "069cc13bc38de0802a5609bf91c1b968223b251de6c14c2735f2701ff2768def",
+          "media_bytes": 2083345
+        },
+        {
+          "phrase": "buried between a printer alert and twelve calendar updates",
+          "query": "cluttered office desk with a printer warning light and an overfilled paper calendar",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1hbPQSGlqdNK4NMdVaHHvLh7k8rpwl3LA",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1hbPQSGlqdNK4NMdVaHHvLh7k8rpwl3LA",
+          "media_sha256": "5265624ddf2330c51cf3984f276ece8c658ec60dc1576ffeebce552d65433e92",
+          "media_bytes": 1916811
+        },
+        {
+          "phrase": "his own written rule",
+          "query": "employee presenting a signed office policy paper to a manager",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1JWRuuSmlu__dVSK7Fb6ZK7xlDJjwhc4G",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1JWRuuSmlu__dVSK7Fb6ZK7xlDJjwhc4G",
+          "media_sha256": "b466c3b5138b686909d608fcc52beef9a26254da856fd32560b5071fb5885cc2",
+          "media_bytes": 1864509
+        },
+        {
+          "phrase": "changed the policy",
+          "query": "relieved manager revising an office policy on paper",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1PjrudjRPPpgNs1lSQG5m2e6fcaHRv-rX",
+          "media_origin": "chatgpt_repair_20260802",
+          "media_file_id": "1PjrudjRPPpgNs1lSQG5m2e6fcaHRv-rX",
+          "media_sha256": "73b14014b6bac9a4f7ca1c82330beb1e1faa22da0976545b95324ad7f9fd1b49",
+          "media_bytes": 2154077
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "every email",
+          "text": "EVERY. EMAIL.",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "his inbox had hundreds",
+          "text": "HUNDREDS BY LUNCH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Complete visibility had become complete camouflage",
+          "text": "COMPLETE CAMOUFLAGE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "his own written rule",
+          "text": "HIS OWN RULE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "changed the policy",
+          "text": "POLICY CHANGED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "quiet tension to playful payoff",
+      "_authored_by": "chatgpt-takeover"
+    }
+  },
+  "20260803": {
+    "01_fixed-broadband-world.json": {
+      "format": "graph_race",
+      "slug": "fixed-broadband-world",
+      "title": "Broadband Passed Landlines in 20 Years",
+      "hook": "Broadband passed landlines.",
+      "y_label": "Subscriptions",
+      "duration": 13,
+      "source": "World Bank, Fixed broadband subscriptions (IT.NET.BBND) and fixed telephone subscriptions (IT.MLT.MAIN), 2005-2025; broadband values reported, landline values approximately interpolated between reported 2006/2015/2025 points: https://data.worldbank.org/indicator/IT.NET.BBND and https://data.worldbank.org/indicator/IT.MLT.MAIN",
+      "years": [
+        2005,
+        2009,
+        2013,
+        2017,
+        2021,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Fixed broadband",
+          "color": "#3088ff",
+          "icon": "World Bank",
+          "values": [
+            219600000,
+            468100000,
+            692400000,
+            1027000000,
+            1330000000,
+            1654000000
+          ]
+        },
+        {
+          "name": "Fixed telephones",
+          "color": "#ffaa30",
+          "icon": "World Bank",
+          "values": [
+            1213000000,
+            1168100000,
+            1072600000,
+            999800000,
+            907400000,
+            815000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "broadband",
+        "landline",
+        "internet",
+        "technology",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "driving electronic",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "02_landlines-peak-and-fall.json": {
+      "format": "graph_race",
+      "slug": "landlines-peak-and-fall",
+      "title": "Internet Users Outran Broadband Lines",
+      "hook": "People beat the cables.",
+      "y_label": "Per 100 people",
+      "duration": 13,
+      "source": "World Bank, Individuals using the Internet (IT.NET.USER.ZS) and fixed broadband subscriptions per 100 people (IT.NET.BBND.P2), 2005-2025: https://data.worldbank.org/indicator/IT.NET.USER.ZS and https://data.worldbank.org/indicator/IT.NET.BBND.P2",
+      "years": [
+        2005,
+        2009,
+        2013,
+        2017,
+        2021,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Internet users",
+          "color": "#50ff80",
+          "icon": "World Bank",
+          "values": [
+            15.6,
+            25.3,
+            35.3,
+            46.3,
+            63.8,
+            73.6
+          ]
+        },
+        {
+          "name": "Fixed broadband",
+          "color": "#3088ff",
+          "icon": "World Bank",
+          "values": [
+            3.4,
+            6.9,
+            9.7,
+            13.5,
+            16.7,
+            20.1
+          ]
+        }
+      ],
+      "hashtags": [
+        "internet",
+        "broadband",
+        "technology",
+        "data",
+        "worldbank",
+        "shorts"
+      ],
+      "music_vibe": "clean accelerating electronic",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "03_fgas-emissions-rise.json": {
+      "format": "graph_race",
+      "slug": "fgas-emissions-rise",
+      "title": "F-Gases Grew Faster Than Methane",
+      "hook": "One line exploded.",
+      "y_label": "Million tonnes CO2e",
+      "duration": 13,
+      "source": "World Bank, greenhouse-gas emissions by source: agricultural methane (EN.GHG.CH4.AG.MT.CE.AR5), waste methane (EN.GHG.CH4.WA.MT.CE.AR5), and industrial F-gases (EN.GHG.FGAS.IP.MT.CE.AR5), 1972-2024: https://data.worldbank.org",
+      "years": [
+        1972,
+        1982,
+        1993,
+        2003,
+        2014,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Agriculture methane",
+          "color": "#ffaa30",
+          "icon": "World Bank",
+          "values": [
+            2932,
+            3329,
+            3542,
+            3632,
+            4036,
+            4334
+          ]
+        },
+        {
+          "name": "Waste methane",
+          "color": "#50ff80",
+          "icon": "World Bank",
+          "values": [
+            903.8,
+            1058,
+            1202,
+            1288,
+            1551,
+            1652
+          ]
+        },
+        {
+          "name": "Industrial F-gases",
+          "color": "#b05cff",
+          "icon": "World Bank",
+          "values": [
+            169.8,
+            242.1,
+            397.9,
+            688.2,
+            1040,
+            1510
+          ]
+        }
+      ],
+      "hashtags": [
+        "climate",
+        "emissions",
+        "industry",
+        "data",
+        "environment",
+        "shorts"
+      ],
+      "music_vibe": "tense industrial pulse",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "04_world-fisheries-production.json": {
+      "format": "graph_race",
+      "slug": "world-fisheries-production",
+      "title": "Fish Farming Drove the Production Boom",
+      "hook": "Wild catch went flat.",
+      "y_label": "Metric tons",
+      "duration": 13,
+      "source": "World Bank, Total fisheries production (ER.FSH.PROD.MT) and capture fisheries production (ER.FSH.CAPT.MT), 1972-2024: https://data.worldbank.org/indicator/ER.FSH.PROD.MT and https://data.worldbank.org/indicator/ER.FSH.CAPT.MT",
+      "years": [
+        1972,
+        1982,
+        1993,
+        2003,
+        2014,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Total production",
+          "color": "#27d7c8",
+          "icon": "World Bank",
+          "values": [
+            56432926,
+            71055453,
+            114461514,
+            142660467,
+            193120017,
+            235811491
+          ]
+        },
+        {
+          "name": "Wild capture",
+          "color": "#3088ff",
+          "icon": "World Bank",
+          "values": [
+            51915952,
+            62548125,
+            88788151,
+            91084188,
+            93466633,
+            94403126
+          ]
+        }
+      ],
+      "hashtags": [
+        "fishing",
+        "ocean",
+        "aquaculture",
+        "data",
+        "food",
+        "shorts"
+      ],
+      "music_vibe": "steady cinematic build",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "05_bag-check-overtime.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "bag-check-overtime",
+      "title": "My Manager's Bag Checks Became Paid Overtime",
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "retail",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "Every bag, seriously? Our new manager decided employees were stealing and ordered mandatory bag checks before anyone could leave. The catch was that two supervisors had to witness each inspection, and night shift usually had one supervisor total. So we clocked out, waited by the locked office, and wrote down every minute. After payroll explained that required waiting time was still work time, we stayed clocked in instead. Ten people waiting twenty minutes each night became a very expensive little security theater. By Friday, overtime had swallowed more money than the manager claimed was missing all month. Corporate asked for his evidence. He had none\u2014just a feeling and a laminated checklist. The following Monday, bag checks became random, one witness was enough, and nobody waited off the clock. Apparently suspicion gets much more efficient when payroll starts billing by the minute.",
+      "shots": [
+        {
+          "phrase": "mandatory bag checks",
+          "query": "retail employee bag inspection",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1wQ7YUyLjQLHyLs5RZ5OFi7lbg56yvTh7",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1wQ7YUyLjQLHyLs5RZ5OFi7lbg56yvTh7",
+          "media_sha256": "bdec2822ef3f958f6a740e215531946cb79ed5a7bbe8f12d8bccc61a46df5f22",
+          "media_bytes": 1921662
+        },
+        {
+          "phrase": "two supervisors had to witness",
+          "query": "two store supervisors watching inspection",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1-yEPoGXAvXR0Gk_8b9mzrMK4gMNyJ5aT",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1-yEPoGXAvXR0Gk_8b9mzrMK4gMNyJ5aT",
+          "media_sha256": "2480246f0df78741053bd2ae14021f9c38e1dec24df06d0924fb1add6459c420",
+          "media_bytes": 1843173
+        },
+        {
+          "phrase": "waited by the locked office",
+          "query": "employees waiting outside locked office",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1i_PNdR9A0q0PbF2OyLcvC0vcn9m_L9hc",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1i_PNdR9A0q0PbF2OyLcvC0vcn9m_L9hc",
+          "media_sha256": "db4011d5e7857b453b4a9fe86f8e531f6f5fa34afb869109f44665cee75f2f4f",
+          "media_bytes": 2149054
+        },
+        {
+          "phrase": "required waiting time was still work time",
+          "query": "payroll timesheet and clock",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1o4U0d2edh08muR8c8WMEMyTtQVXzzlmc",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1o4U0d2edh08muR8c8WMEMyTtQVXzzlmc",
+          "media_sha256": "3061b279d345a68928376d20649115d16ed6a1fb5db0e94021cad62212594c4f",
+          "media_bytes": 1826156
+        },
+        {
+          "phrase": "overtime had swallowed more money",
+          "query": "manager reviewing expensive payroll report",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1VHwULZ9tW6hRfatNS5C9xCrIyDvKPA4w",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1VHwULZ9tW6hRfatNS5C9xCrIyDvKPA4w",
+          "media_sha256": "23fd071e4c3171c71ebc8d095c87bcc416c71153d44a9030b6645782d1581974",
+          "media_bytes": 1953204
+        },
+        {
+          "phrase": "a laminated checklist",
+          "query": "laminated workplace checklist on clipboard",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1eZZQq3ULA7smd-7BNygizDhuPE2qQEKo",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1eZZQq3ULA7smd-7BNygizDhuPE2qQEKo",
+          "media_sha256": "abee5d3d7c6f848e014900fd55d28403fac9d9bbe19bfdddfd7b04644f1caf6d",
+          "media_bytes": 2231868
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Every bag, seriously?",
+          "text": "EVERY BAG?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "still work time",
+          "text": "STILL PAID",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "very expensive little security theater",
+          "text": "EXPENSIVE THEATER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "He had none",
+          "text": "ZERO EVIDENCE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dry office tension into playful payoff",
+      "_authored_by": "chatgpt-takeover"
+    },
+    "06_manager-package-warehouse.json": {
+      "subreddit": "pettyrevenge",
+      "slug": "manager-package-warehouse",
+      "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+      "hashtags": [
+        "pettyrevenge",
+        "office",
+        "workplace",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "Personal packages are unprofessional! That was our office manager's announcement after one small box appeared at reception. His new rule said every personal delivery had to be addressed to the department head and stored in his office until pickup. Fine. Holiday shopping started the next week, and twenty-seven employees followed the policy exactly. His office collected dog food, paper towels, birthday balloons, a desk chair, and one heroic flat-packed bookcase. Nothing blocked an exit; it just turned his workspace into the world's least convenient warehouse. He complained that people were abusing the system. We showed HR his memo, including the sentence requiring his name and office number on every label. HR asked him whether he wanted the rule enforced or deleted. It vanished before lunch. Reception got a package shelf, employees got one delivery a week, and his office became an office again. Apparently boxes look less professional when they're all addressed to you.",
+      "shots": [
+        {
+          "phrase": "Personal packages are unprofessional!",
+          "query": "office manager making stern announcement",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1It4pk1nW9AyvBpZ4GQQWzvRIPewgwGIc",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1It4pk1nW9AyvBpZ4GQQWzvRIPewgwGIc",
+          "media_sha256": "232816b30b3c58d4eaa83725e0ee0f41ad2d9933e949c97b8538e7d95ee91c53",
+          "media_bytes": 2064848
+        },
+        {
+          "phrase": "stored in his office until pickup",
+          "query": "office beginning to fill with parcels",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1L0OmOWaQ151EbuOMc0QPG6hgQEP9Nxu1",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1L0OmOWaQ151EbuOMc0QPG6hgQEP9Nxu1",
+          "media_sha256": "5e985eea42bbba50dd55dcf3bb076bcf692a8de2cd7cf66fde5ffab180b705a8",
+          "media_bytes": 1946850
+        },
+        {
+          "phrase": "twenty-seven employees followed the policy exactly",
+          "query": "employees carrying delivery boxes through office",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1oUH-uAJaiVceeKUUBpbaUaCp5anrzRKn",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1oUH-uAJaiVceeKUUBpbaUaCp5anrzRKn",
+          "media_sha256": "85abf33a797acdcd93673461ddf71f894a7e2f6f2028ee35cefae1e6ee5c236d",
+          "media_bytes": 2162788
+        },
+        {
+          "phrase": "dog food, paper towels, birthday balloons",
+          "query": "absurd pile of mixed household deliveries",
+          "mascot_pose": "idle",
+          "pin_query": "dog food",
+          "pin_context": "pet supplies packages",
+          "news_query": "dog food",
+          "news_angle": "Dog food was among the items collected in the office manager's office due to the new rule.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1OQudDHXZvDdgL7TiD6a_hIflc_eBdsHg",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1OQudDHXZvDdgL7TiD6a_hIflc_eBdsHg",
+          "media_sha256": "f7a019e1239b79fc5c4dce16dc01d54eb6722acdc0955c6f349458a9246eb01a",
+          "media_bytes": 2231765
+        },
+        {
+          "phrase": "the world's least convenient warehouse",
+          "query": "manager trapped behind stacks of packages",
+          "mascot_pose": "idle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1HK5MNikIEuRKZfig9HyIPfb-afe8d-kA",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1HK5MNikIEuRKZfig9HyIPfb-afe8d-kA",
+          "media_sha256": "18126dfbc763db1e1960b4acb464a6d81105d0404d38c805132cc9324a9a5587",
+          "media_bytes": 1839563
+        },
+        {
+          "phrase": "We showed HR his memo",
+          "query": "employees presenting printed policy to human resources",
+          "mascot_pose": "idle",
+          "pin_query": "HR",
+          "pin_context": "human resources department company policy",
+          "news_query": "HR",
+          "news_angle": "HR asked the office manager whether he wanted the rule enforced or deleted after reviewing his memo.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1EcV3SGBw2GFTOj6ufCVdYTwNmBTfa_x_",
+          "media_origin": "chatgpt_authored",
+          "media_file_id": "1EcV3SGBw2GFTOj6ufCVdYTwNmBTfa_x_",
+          "media_sha256": "4deacd05770c4a7691990d5c15b49b759723e3dcc9e811322f4600f8ba657d02",
+          "media_bytes": 2169818
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Personal packages are unprofessional!",
+          "text": "UNPROFESSIONAL!",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "twenty-seven employees",
+          "text": "27 EMPLOYEES",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "least convenient warehouse",
+          "text": "OFFICE WAREHOUSE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "It vanished before lunch",
+          "text": "RULE DELETED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "light mischievous build",
+      "_authored_by": "chatgpt-takeover"
+    }
   }
 }
