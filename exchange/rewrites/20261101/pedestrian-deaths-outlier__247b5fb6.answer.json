@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pedestrian-deaths-outlier__247b5fb6",
+  "slug": "pedestrian-deaths-outlier",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:18:14.994Z",
+  "title": "Pedestrian Deaths Rose 77%",
+  "hook": "Pedestrian deaths rose 77 percent.",
+  "closing": "Roads improved for drivers while becoming deadlier for the people walking beside them.",
+  "question": "Do your streets feel safe?",
+  "segments": [
+    {
+      "topic": "Traffic Deaths Fell",
+      "say": "Traffic deaths fell to 40,990. Overall road safety improved for a second straight year."
+    },
+    {
+      "topic": "Pedestrian Deaths Rose",
+      "say": "Pedestrian deaths rose 77 percent. Their increase far outpaced every other traffic death."
+    },
+    {
+      "topic": "Pedestrian Death Count",
+      "say": "Pedestrian deaths reached 7,508. People on foot now carry a growing share of road danger."
+    }
+  ]
+}
