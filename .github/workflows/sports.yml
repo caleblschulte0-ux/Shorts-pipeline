@@ -14,6 +14,11 @@ name: Sports moments (Baller Bro)
 # publishAt, so the 11:00 / 15:00 / 19:00 Central slots are YouTube's to
 # keep, not this runner's. A re-run tops up only what today is still
 # missing (run_sports counts today's sports_moment uploads first).
+#
+# If Claude/Gemini cannot judge, run_sports_mailbox.py opens the existing
+# ChatGPT review mailbox. The cut is still held fail-closed in this run, but
+# its exact render + frames are preserved so ChatGPT can grade it and the
+# ordinary claim workflow can publish a code-decided ship later.
 
 on:
   workflow_dispatch:
@@ -31,7 +36,7 @@ on:
     - cron: '0 12 * * *'    # 07:00 Central summer / 06:00 winter
 
 permissions:
-  contents: write          # the posted-log claim, the verdict ledger
+  contents: write          # posted log, verdict ledger, ChatGPT review mailbox
   id-token: write          # TikTok cross-post (only if the registry turns it on)
 
 jobs:
@@ -52,17 +57,18 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 1
 
-      - name: Pre-flight — a fail-closed gate needs a judge
+      - name: Pre-flight — judges or ChatGPT mailbox
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          set -e
-          # A FAIL-CLOSED GATE WITH NO JUDGE HOLDS EVERYTHING: every cut
-          # would be rendered and none posted, green the whole way.
+          # A missing or exhausted in-run judge is no longer a reason to kill
+          # Sports before rendering. The fail-closed gate still holds every
+          # unjudged cut; the ChatGPT mailbox is the judge of last resort.
           if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
-            echo "::error::no showrunner judge available (set CLAUDE_CODE_OAUTH_TOKEN or GEMINI_API_KEY) — sports moments fail closed, so every cut would be held"
-            exit 1
+            echo "::warning::no in-run showrunner secret; Sports will render and file held cuts for the ChatGPT review mailbox"
+          else
+            echo "in-run judge configured; ChatGPT mailbox remains the quota/error fallback"
           fi
 
       - name: Pre-flight — kill switch
@@ -105,8 +111,7 @@ jobs:
         run: |
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
           if ! command -v claude >/dev/null 2>&1 && [ -z "$GEMINI_API_KEY" ]; then
-            echo "::error::no showrunner judge available (Claude CLI install failed and GEMINI_API_KEY is empty)"
-            exit 1
+            echo "::warning::Claude CLI unavailable and Gemini unset; ChatGPT review mailbox will judge held cuts"
           fi
 
       - name: Make, judge and post the sports moments
@@ -132,17 +137,40 @@ jobs:
           ARGS=""
           [ "$DRY_RUN" = "true" ] && ARGS="$ARGS --dry-run"
           [ -n "$COUNT" ] && ARGS="$ARGS --count $COUNT"
-          echo "Running: python scripts/run_sports.py $ARGS"
-          python scripts/run_sports.py $ARGS
+          echo "Running: python scripts/run_sports_mailbox.py $ARGS"
+          python scripts/run_sports_mailbox.py $ARGS
 
-      - name: Commit the posted log + verdicts
+      # A no-judge cut is useful only if the exact bytes survive this runner.
+      # claim_reviews.py later downloads this artifact and verifies its sha256
+      # before any ChatGPT-approved render can upload.
+      - name: Keep held renders for the ChatGPT mailbox judge
+        if: always() && steps.preflight.outputs.skip == ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: held-renders-${{ github.run_id }}
+          path: |
+            output/held/*.mp4
+            output/held/*.json
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Publish review frames to preview-renders
+        if: always() && steps.preflight.outputs.skip == ''
+        run: |
+          bash scripts/publish_review_media.sh output/review_media || {
+            python3 scripts/claim_reviews.py --withdraw-stage output/review_media
+            exit 1
+          }
+
+      - name: Commit the posted log + verdicts + review mailbox
         if: always() && steps.preflight.outputs.skip == ''
         env:
           CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
           bash scripts/ci_commit_state.sh \
             "sports: $(date -u +%Y-%m-%d) posted log + verdicts [skip ci]" \
-            state/posted_log.json state/showrunner_verdicts.jsonl sports_report.json
+            state/posted_log.json state/showrunner_verdicts.jsonl sports_report.json \
+            exchange/reviews exchange/OPEN.json
 
       - name: Keep the cuts (dry run)
         if: always() && inputs.dry_run && steps.preflight.outputs.skip == ''
