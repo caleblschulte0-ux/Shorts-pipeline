@@ -1,0 +1,88 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261102",
+  "written_at": "2026-11-02T12:19:28.280Z",
+  "written_by": "chatgpt",
+  "retryable": true,
+  "exact_failed_step": "Step 8: verify actual channel output against the frozen bundle contract using posted logs and accepted upload URLs",
+  "bundle": {
+    "bundle_id": "605a84d64108d1edfb483c1b7f9131d015885b340f8687f0b29f9b3f28a8355b",
+    "source_commit": "58c571ce47addd500e789c48833fbb536b2ecec1",
+    "frozen_contract": {
+      "sports": {
+        "format": "sports_moment",
+        "required": 5,
+        "verified_posted": 1,
+        "pending": 4,
+        "accepted_urls": [
+          "https://youtube.com/shorts/yVNgqINv6e4"
+        ]
+      },
+      "twitch": {
+        "format": "clip",
+        "required": 6,
+        "verified_posted": 0,
+        "pending": 6,
+        "accepted_urls": []
+      },
+      "explainer": {
+        "format": "data_story",
+        "required": 4,
+        "verified_posted": 0,
+        "pending": 4,
+        "accepted_urls": []
+      },
+      "total": {
+        "required": 15,
+        "verified_posted": 1,
+        "pending": 14
+      }
+    }
+  },
+  "attempts": [
+    "Committed media-progress/STARTED.json before every other production write.",
+    "Executed two Section 7 mailbox rounds from the three actual OPEN indexes.",
+    "Answered 28 ask keys and skipped 8 expired same-day/fresh-news requests rather than fabricating current answers.",
+    "Committed and read-back validated 20 rewrite answers using each request's actual data.",
+    "Validated response.json after GitHub read-back and committed DONE separately.",
+    "Observed Phase B with a clean envelope: 2 daily Explainer rewrites applied and 1 rejected without detailed refusal data.",
+    "Observed downstream mailbox claim commit after the second rewrite round.",
+    "Read all three posted logs from main after a downstream processing window and deduplicated same-day entries by accepted URL.",
+    "Verified the configured shorts-pipeline-drops Drive folder exists and is shared; today's bundle contains no media requests or image-bearing formats."
+  ],
+  "mailbox": {
+    "reviews": {
+      "open": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No open review requests."
+    },
+    "asks": {
+      "open_keys": 36,
+      "answered": 28,
+      "skipped": 8,
+      "reason": "The skipped requests were September same-day or fresh-news tasks whose required timeliness had expired."
+    },
+    "rewrites": {
+      "indexed": 149,
+      "answered": 20,
+      "skipped": 0,
+      "claim_commit": "fc26e985443059afe0df51d553acf3628703461b",
+      "remaining_note": "The index still contains claim-pending/rejected and cap-deferred work; the newest claimed answer disappeared while other first-round entries remained."
+    }
+  },
+  "handoff": {
+    "started_commit": "5dd8062ddab5f59eb14f85ce49be71693e258601",
+    "response_commit": "927945877688a83180145604c380f7c25a93cfd9",
+    "done_commit": "a93719246eae6b94add8b02bf6fe54fd23f8bed6",
+    "phase_b_commit": "a18524e3564580f54bfbae387f43d78ce5dd07a6",
+    "mailbox_claim_commit": "fc26e985443059afe0df51d553acf3628703461b"
+  },
+  "no_done_retrigger": true,
+  "remaining_shortfall": 14,
+  "day_closed": false,
+  "notes": [
+    "DONE is a render trigger, not proof of upload completion.",
+    "No repository code, workflow, validator, gate, test, documentation, configuration, or state file was changed."
+  ]
+}
