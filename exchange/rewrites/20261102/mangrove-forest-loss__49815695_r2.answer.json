@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "mangrove-forest-loss__49815695_r2",
+  "slug": "mangrove-forest-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Mangrove Area Fell To 15.2 Million Hectares",
+  "hook": "Mangrove area fell to 15.2 million hectares.",
+  "closing": "Slower losses show protection works, but every missing mangrove still leaves coastlines more exposed.",
+  "question": "Can mangrove protection catch up?",
+  "segments": [
+    {
+      "topic": "Mangrove Area Loss",
+      "say": "Mangrove area fell to 15.2 million hectares. Coastlines lost part of their natural storm barrier."
+    },
+    {
+      "topic": "Mangrove Asia Loss",
+      "say": "Asia lost 1.9 million hectares of mangroves. It carried the largest regional loss shown."
+    },
+    {
+      "topic": "Mangrove Loss Rate",
+      "say": "Annual mangrove loss slowed to 102 thousand hectares. Protection can reduce destruction even before it stops it."
+    }
+  ]
+}
