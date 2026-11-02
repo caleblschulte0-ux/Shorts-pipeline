@@ -5306,16 +5306,16 @@
       ],
       "last_updated": "2026-11-01"
     },
-    "dangerlyoha-asking-become-2026w44": {
-      "event_id": "dangerlyoha-asking-become-2026w44",
+    "dangerlyoha-about-deliv-2026w44": {
+      "event_id": "dangerlyoha-about-deliv-2026w44",
       "people": [
         "dangerlyoha"
       ],
       "actions": [
-        "asking",
-        "become",
-        "convers",
-        "vanya"
+        "about",
+        "deliv",
+        "disjoint",
+        "mention"
       ],
       "event_type": "storyline",
       "first_seen": "2026-11-02",
@@ -5328,15 +5328,15 @@
       "published_versions": [],
       "last_updated": "2026-11-02"
     },
-    "dangerlyoha-about-arkash-2026w44": {
-      "event_id": "dangerlyoha-about-arkash-2026w44",
+    "dangerlyoha-arkash-disjoint-2026w44": {
+      "event_id": "dangerlyoha-arkash-disjoint-2026w44",
       "people": [
         "dangerlyoha"
       ],
       "actions": [
-        "about",
         "arkash",
-        "drink",
+        "disjoint",
+        "fragment",
         "says"
       ],
       "event_type": "storyline",
