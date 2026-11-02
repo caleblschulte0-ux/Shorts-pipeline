@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "california-condor-comeback__7fd19fc0",
+  "slug": "california-condor-comeback",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:18:14.994Z",
+  "title": "California Condors Rebounded To 500",
+  "hook": "California condors rebounded to 500 birds.",
+  "closing": "The rescue worked, but lead poisoning means protection cannot stop now.",
+  "question": "Have you ever seen a condor?",
+  "segments": [
+    {
+      "topic": "California Condor Low",
+      "say": "California condors fell to 27 birds. One disaster could have erased the species."
+    },
+    {
+      "topic": "California Condor Rebound",
+      "say": "California condors rebounded to 500 birds. Captive breeding reversed a collapse once considered nearly final."
+    },
+    {
+      "topic": "California Condor Threat",
+      "say": "Lead poisoning causes 50 percent of known deaths. Recovery still depends on removing that preventable threat."
+    }
+  ]
+}
