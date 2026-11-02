@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-02T14:00:33Z",
+ "updated": "2026-11-02T14:59:23Z",
  "open": [
+  {
+   "id": "seabed-mining-rush__94b642eb_r3",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-02T14:59:23Z",
+   "why": [
+    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
+   ],
+   "request": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.request.json",
+   "answer_path": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.answer.json"
+  },
   {
    "id": "chess-online-boom__f9b7e085_r3",
    "slug": "chess-online-boom",
