@@ -1,0 +1,52 @@
+{
+ "date": "2026-11-02",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "baseball",
+   "who": "William Contreras",
+   "why": "He surprises a sandwich vendor with a heartfelt gesture after the World Series win",
+   "post_title": "[ESPN] William Contreras surprised this man selling sandwiches with a kind gesture he wasn\u2019t expecting",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "baseball",
+   "who": "Trevor Megill",
+   "why": "He delivers a cheeky, post\u2011championship message directly to Brewers fans",
+   "post_title": "Trevor Megill's message to Brewers fans: \"Have fun talking sh!t to Chicago next year. We have a ring.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun",
+   "skipped": "too short: the post runs 7.4s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "He shows up in a full Witcher costume for the Spurs\u2019 Halloween game, sparking laughs",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "He performs the viral Key &\u202fPeele handshake with rookie Dean Wade, a goofy moment fans love",
+   "post_title": "LeBron does the Key & Peele handshake with Dean Wade",
+   "upvotes": 0,
+   "url": "https://streamable.com/h8d1t3",
+   "topic": "https://www.reddit.com/r/nba/comments/1xg7jzu/lebron_does_the_key_peele_handshake_with_dean_wade",
+   "skipped": "author: no setup or no payoff in the clip"
+  }
+ ],
+ "already_today": 1,
+ "pool": 89,
+ "already_posted": 14,
+ "shipped": 0
+}
