@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "genome-sequencing-cost-collapse__e55ed18b",
+  "slug": "genome-sequencing-cost-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:18:14.994Z",
+  "title": "Genome Sequencing Now Costs Just $525",
+  "hook": "Genome sequencing now costs just 525 dollars.",
+  "closing": "Reading DNA is no longer the hard part; understanding what it means is.",
+  "question": "Would you sequence your whole genome?",
+  "segments": [
+    {
+      "topic": "Genome Sequencing Cost",
+      "say": "Genome sequencing now costs 525 dollars. A once-unreachable test is approaching routine medical pricing."
+    },
+    {
+      "topic": "Genome Sequencing Bargain",
+      "say": "The old budget now buys 180,952 genomes. Falling costs transformed one research project into population-scale testing."
+    },
+    {
+      "topic": "Genome Sequencing Speed",
+      "say": "Modern genome sequencing takes about 1 day. The bottleneck moved from reading DNA to interpreting it."
+    }
+  ]
+}
