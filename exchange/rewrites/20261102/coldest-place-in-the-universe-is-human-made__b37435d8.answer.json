@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "coldest-place-in-the-universe-is-human-made__b37435d8",
+  "slug": "coldest-place-in-the-universe-is-human-made",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "NASA Made Atoms Colder Than 1 Kelvin",
+  "hook": "NASA built the coldest known place above Earth.",
+  "closing": "Humans built nature's coldest known laboratory to expose physics hidden at ordinary temperatures.",
+  "question": "What could ultracold atoms reveal?",
+  "segments": [
+    {
+      "topic": "NASA Space Cold",
+      "say": "Deep space sits at 2.7 kelvin. Even the cosmic background is warmer than NASA's laboratory."
+    },
+    {
+      "topic": "NASA Cold Atoms",
+      "say": "NASA chilled atoms ten billion times colder than the Boomerang Nebula. Nature has no known colder place."
+    },
+    {
+      "topic": "NASA Cold Overhead",
+      "say": "NASA's cold laboratory orbits 250 miles overhead. Extreme cold is now close enough to study directly."
+    }
+  ]
+}
