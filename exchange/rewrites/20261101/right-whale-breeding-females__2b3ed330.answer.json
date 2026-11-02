@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "right-whale-breeding-females__2b3ed330",
+  "slug": "right-whale-breeding-females",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:18:14.994Z",
+  "title": "Only 70 Breeding Right Whales Remain",
+  "hook": "Only 70 breeding right whales remain.",
+  "closing": "Every surviving mother now carries an enormous share of the species' future.",
+  "question": "Can right whales still recover?",
+  "segments": [
+    {
+      "topic": "Right Whale Population",
+      "say": "Right whales number only 384. A small town still outnumbers the entire species."
+    },
+    {
+      "topic": "Right Whale Calves",
+      "say": "Right whales produced 22 calves this season. New births finally offer a fragile sign of recovery."
+    },
+    {
+      "topic": "Right Whale Mothers",
+      "say": "Only 70 right whales are breeding females. Losing even a few can slow recovery for years."
+    }
+  ]
+}
