@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-02T11:51:24Z",
+ "updated": "2026-11-02T12:18:32Z",
  "open": [
-  {
-   "id": "autism-diagnosis-rate-rise__3a83f544",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-02T11:51:24Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (1 in 150 and 1 in 31) rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261102/autism-diagnosis-rate-rise__3a83f544.request.json",
-   "answer_path": "exchange/rewrites/20261102/autism-diagnosis-rate-rise__3a83f544.answer.json"
-  },
   {
    "id": "robotic-surgery-doubled__c6fe157f",
    "slug": "robotic-surgery-doubled",
@@ -171,6 +161,16 @@
    ],
    "request": "exchange/rewrites/20261101/national-parks-record-then-shutdown__e97b7e5a.request.json",
    "answer_path": "exchange/rewrites/20261101/national-parks-record-then-shutdown__e97b7e5a.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__3a83f544",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-01T12:35:12Z",
+   "why": [
+    "premise: brain: Uses multiple statistics rather than a single consequential number, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.request.json",
+   "answer_path": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.answer.json"
   },
   {
    "id": "genome-sequencing-cost-collapse__e55ed18b",
