@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__315fba90_r2",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Astronaut Hip-Bone Loss Could Reach 30%",
+  "hook": "Astronaut hip-bone loss could reach 30 percent.",
+  "closing": "Long missions require serious bone protection, because floating can quietly weaken the body supporting you.",
+  "question": "Would this change your Mars plans?",
+  "segments": [
+    {
+      "topic": "Astronaut Bone Rate",
+      "say": "Astronaut bone density can fall 1.5 percent monthly. Weightlessness removes the loading that normally keeps bones strong."
+    },
+    {
+      "topic": "Astronaut Hip Loss",
+      "say": "Astronaut hip density can fall 2.2 percent monthly. Weight-bearing bones take the hardest hit."
+    },
+    {
+      "topic": "Astronaut Mars Risk",
+      "say": "Astronaut hip-bone loss could reach 30 percent without protection. A long mission turns bone care into survival equipment."
+    }
+  ]
+}
