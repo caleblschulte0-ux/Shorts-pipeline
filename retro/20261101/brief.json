@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261101",
-  "generated_at": "2026-11-01T23:31:17Z",
+  "generated_at": "2026-11-02T00:31:31Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 38.76,
+          "days": 38.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 37.76,
+          "days": 37.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1595,10 +1595,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "711f487",
-    "commits_since": "2026-10-31",
+    "head": "a2d6a10",
+    "commits_since": "2026-11-01",
     "commit_count": 50,
     "commits": [
+      "a2d6a10 claim: mailbox verdicts 2026-11-01T23:48Z [skip ci]",
+      "ce0b04e retro: brief + triage for 20261101 [skip ci]",
       "711f487 comments: saved viewer comments [skip ci]",
       "ec4c839 claim: mailbox verdicts 2026-11-01T22:48Z [skip ci]",
       "bdccf2f claim: mailbox verdicts 2026-11-01T21:48Z [skip ci]",
@@ -1636,9 +1638,7 @@
       "b3c5859 watchdog: chatgpt task verdicts 20261101 [skip ci]",
       "8faa100 third: analytics snapshot [skip ci]",
       "ce4e2b9 claim: mailbox verdicts 2026-11-01T14:48Z [skip ci]",
-      "74d3911 watchdog: chatgpt task verdicts 20261101 [skip ci]",
-      "fb659b3 claim: mailbox verdicts 2026-11-01T13:48Z [skip ci]",
-      "4bd6c79 watchdog: chatgpt task verdicts 20261101 [skip ci]"
+      "74d3911 watchdog: chatgpt task verdicts 20261101 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
