@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "autism-diagnosis-rate-rise__3a83f544",
+  "slug": "autism-diagnosis-rate-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-02T12:16:32.886Z",
+  "title": "Autism Diagnoses Reached 32.2 Per Thousand Children",
+  "hook": "Autism diagnoses reached 32.2 per thousand children.",
+  "closing": "Better screening finds overlooked children, so diagnosis rates measure visibility as well as prevalence.",
+  "question": "Has screening changed near you?",
+  "segments": [
+    {
+      "topic": "Autism Diagnosis Rate",
+      "say": "Autism diagnoses reached 32.2 per thousand children. Screening now identifies many more children who previously went unnoticed."
+    },
+    {
+      "topic": "Autism Gender Gap",
+      "say": "Boys reached 49.2 diagnoses per thousand children. Girls remain identified far less often."
+    },
+    {
+      "topic": "Autism Site Gap",
+      "say": "California reached 52.6 diagnoses per thousand children. Where children live still changes who gets identified."
+    }
+  ]
+}
