@@ -6,128 +6,77 @@
  "slots": [
   {
    "sub": "sports",
-   "who": "Jacob Misiorowski",
-   "why": "A perfect beer\u2011throw and chug during the Brewers championship parade captures the wild celebration vibe",
-   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "who": "sports",
+   "why": "most upvoted",
+   "post_title": "The Brewers take home their first World Series title in franchise history!",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "url": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series",
    "skipped": "author: no title"
   },
   {
-   "sub": "baseball",
-   "who": "William Contreras",
-   "why": "Contreras surprises a sandwich vendor with an unexpected gesture, turning a simple transaction into a feel\u2011good story",
-   "post_title": "[ESPN] William Contreras surprised this man selling sandwiches with a kind gesture he wasn\u2019t expecting",
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling",
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Bucs get the win with 0 pass completions, Tampa is the first team to win a game with no completed passes since the Bills on Sept. 29, 1974",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xle47u/highlight_bucs_get_the_win_with_0_pass/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xle47u/highlight_bucs_get_the_win_with_0_pass",
    "skipped": "author: no title"
-  },
-  {
-   "sub": "baseball",
-   "who": "Trevor Megill",
-   "why": "Megill delivers a cheeky post\u2011game message to rival fans, mixing humor with championship pride",
-   "post_title": "Trevor Megill's message to Brewers fans: \"Have fun talking sh!t to Chicago next year. We have a ring.\"",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun",
-   "skipped": "too short: the post runs 7.4s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "LeBron James",
-   "why": "LeBron jokes around pre\u2011game with VJ Edgecombe and then smashes a sideboard, a playful locker\u2011room moment",
-   "post_title": "Lebron having fun pregame with VJ Edgecombe and then proceeds to hit the sideboard",
-   "upvotes": 0,
-   "url": "https://streamable.com/dy08hf",
-   "topic": "https://www.reddit.com/r/nba/comments/1xiblub/lebron_having_fun_pregame_with_vj_edgecombe_and",
-   "skipped": "no sound: the post has no audio track"
-  },
-  {
-   "sub": "nba",
-   "who": "LeBron James",
-   "why": "LeBron does the Key &\u202fPeele handshake with Dean Wade, a hilarious on\u2011court celebration",
-   "post_title": "LeBron does the Key & Peele handshake with Dean Wade",
-   "upvotes": 0,
-   "url": "https://streamable.com/h8d1t3",
-   "topic": "https://www.reddit.com/r/nba/comments/1xg7jzu/lebron_does_the_key_peele_handshake_with_dean_wade",
-   "title": "LeBron James Does Key & Peele Handshake With Dean Wade \ud83d\ude02",
-   "hook": "LeBron and Dean share a goofy handshake",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many ",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many "
-  },
-  {
-   "sub": "nba",
-   "who": "VJ",
-   "why": "VJ performs the iconic \u201cLeBron Shrug,\u201d a meme\u2011worthy reaction that fans love",
-   "post_title": "[NBA] VJ Does The \"LeBron Shrug\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/zssooz",
-   "topic": "https://www.reddit.com/r/nba/comments/1xkce0x/nba_vj_does_the_lebron_shrug",
-   "skipped": "too short: the post runs 14.9s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Yaxel Lendeborg",
-   "why": "Lendeborg asks legends T\u2011Mac, Vince, and Melo for advice, creating a heartfelt mentor\u2011seeking moment",
-   "post_title": "Yaxel Lendeborg asking T-Mac, Vince, and Melo for advice on his game: \u201cDo you guys have any advice like, just for me in general just to try to keep going, things I got to work on, anything that you gu",
-   "upvotes": 0,
-   "url": "https://streamable.com/0vl8x9",
-   "topic": "https://www.reddit.com/r/nba/comments/1xglkq7/yaxel_lendeborg_asking_tmac_vince_and_melo_for",
-   "title": "Yaxel Lendeborg Asks T\u2011Mac, Vince & Melo for Game Advice",
-   "hook": "Yaxel seeks guidance from legends",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
-     "shots": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)\\n)\", 'gemini: out of budge"
   },
   {
    "sub": "MMA",
-   "who": "Alexander Volkanovski",
-   "why": "Volkanovski opens up about feeling overlooked, giving fans a rare, candid glimpse of his mindset",
-   "post_title": "Alexander Volkanovski a little upset about limited mainstream recognition: \"I\u2019m not saying they\u2019re hating on me. Maybe it\u2019s just not their sport. They don\u2019t understand it, and they don\u2019t know enough. ",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "Hokitt training his eyes for the Gane matchup",
    "upvotes": 0,
-   "url": "https://streamable.com/n634d0",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xki50e/alexander_volkanovski_a_little_upset_about",
+   "url": "https://streamable.com/cdl1wr",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xkpqmx/hokitt_training_his_eyes_for_the_gane_matchup",
    "skipped": "author: no title"
+  },
+  {
+   "sub": "baseball",
+   "who": "baseball",
+   "why": "most upvoted",
+   "post_title": "A perfectly executed beer throw and chug to Jacob Misiorowski",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xjk7x8/a_perfectly_executed_beer_throw_and_chug_to_jacob/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xjk7x8/a_perfectly_executed_beer_throw_and_chug_to_jacob",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "[EDM (1) - NYR 0] McDavid goes coast to coast in the first minute of the game to extend his point streak to 15 games.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xlhfvc/edm_1_nyr_0_mcdavid_goes_coast_to_coast_in_the/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xlhfvc/edm_1_nyr_0_mcdavid_goes_coast_to_coast_in_the",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "CollegeBasketball",
+   "why": "most upvoted",
+   "post_title": "[Highlight] The College Basketball season is officially under way",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xl4lqu/highlight_the_college_basketball_season_is/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xl4lqu/highlight_the_college_basketball_season_is",
+   "skipped": "too short: the post runs 12.1s (< 15s)"
   }
  ],
  "already_today": 1,
- "pool": 89,
- "already_posted": 14,
+ "pool": 97,
+ "already_posted": 16,
  "shipped": 0
 }
