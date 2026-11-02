@@ -1,0 +1,9 @@
+{
+ "id": "pedestrian-deaths-outlier__247b5fb6",
+ "slug": "pedestrian-deaths-outlier",
+ "settled": "2026-11-02T12:20:57Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 2: new named entity not in the data: Count"
+ ]
+}
