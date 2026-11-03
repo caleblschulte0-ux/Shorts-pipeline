@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "autism-diagnosis-rate-rise__3a83f544",
+  "slug": "autism-diagnosis-rate-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-03T12:18:17.622Z",
+  "title": "Autism Diagnosis Rate Reached 1 In 31",
+  "hook": "Autism diagnoses reached 1 in 31 children.",
+  "closing": "Better detection helps children get support, but it does not prove autism itself increased.",
+  "question": "Has screening changed near you?",
+  "segments": [
+    {
+      "topic": "Autism Rate",
+      "say": "Autism prevalence reached 32.2 per thousand children, making diagnoses far more common than two decades earlier."
+    },
+    {
+      "topic": "Autism Sex",
+      "say": "Autism diagnoses are 3.4 times more common in boys, showing girls may still be missed."
+    },
+    {
+      "topic": "Autism Sites",
+      "say": "Autism rates vary more than fivefold by site, proving where and how clinicians look changes the count."
+    }
+  ]
+}
