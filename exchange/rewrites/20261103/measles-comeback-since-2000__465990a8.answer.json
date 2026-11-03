@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-comeback-since-2000__465990a8",
+  "slug": "measles-comeback-since-2000",
+  "by": "chatgpt",
+  "written_at": "2026-11-03T12:14:35.172Z",
+  "title": "Measles Returned With 2,289 US Cases",
+  "hook": "Eliminated nationally, measles returned with 2,289 cases.",
+  "closing": "Vaccination gaps can bring a supposedly defeated disease back into classrooms.",
+  "question": "Did you think measles was gone?",
+  "segments": [
+    {
+      "topic": "Measles Return",
+      "say": "US measles cases reached 2,289, reversing the expectation that national elimination meant the disease was gone."
+    },
+    {
+      "topic": "Measles Protection",
+      "say": "Unvaccinated people made up 93% of cases, tying the comeback to gaps in protection."
+    },
+    {
+      "topic": "Measles Outbreak",
+      "say": "The Texas outbreak reached 702 cases, showing how one vulnerable pocket can drive national spread."
+    }
+  ]
+}
