@@ -1,97 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-03T12:16:47Z",
+ "updated": "2026-11-03T12:19:09Z",
  "open": [
-  {
-   "id": "pedestrian-deaths-outlier__247b5fb6_r1",
-   "slug": "pedestrian-deaths-outlier",
-   "filed": "2026-11-03T11:49:29Z",
-   "why": [
-    "premise: brain: The premise lacks a single consequential, verifiable number for the climbing death type, making it insufficient."
-   ],
-   "request": "exchange/rewrites/20261103/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
-  },
-  {
-   "id": "robotic-surgery-doubled__c6fe157f_r1",
-   "slug": "robotic-surgery-doubled",
-   "filed": "2026-11-03T11:49:29Z",
-   "why": [
-    "premise: brain: The premise lacks a single concrete, verifiable number and does not clearly invert a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261103/robotic-surgery-doubled__c6fe157f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/robotic-surgery-doubled__c6fe157f_r1.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r6",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-03T11:49:28Z",
-   "why": [
-    "premise: brain: It lacks a specific, verifiable number (e.g., time to 100 million) and does not clearly reverse a viewer expectation with that metric."
-   ],
-   "request": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__c2e9df7d_r6.request.json",
-   "answer_path": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__c2e9df7d_r6.answer.json"
-  },
-  {
-   "id": "elephant-poaching-decline__8a2feac3",
-   "slug": "elephant-poaching-decline",
-   "filed": "2026-11-03T11:49:28Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on an unverified statistic."
-   ],
-   "request": "exchange/rewrites/20261103/elephant-poaching-decline__8a2feac3.request.json",
-   "answer_path": "exchange/rewrites/20261103/elephant-poaching-decline__8a2feac3.answer.json"
-  },
-  {
-   "id": "right-whale-breeding-females__fa5c1ac3",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-03T11:49:28Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a common viewer expectation and relies only on a startling figure without contextual twist."
-   ],
-   "request": "exchange/rewrites/20261103/right-whale-breeding-females__fa5c1ac3.request.json",
-   "answer_path": "exchange/rewrites/20261103/right-whale-breeding-females__fa5c1ac3.answer.json"
-  },
-  {
-   "id": "drone-commercial-overtake__4ce6725d_r1",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-11-03T11:49:27Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw count without a consequential, verifiable twist."
-   ],
-   "request": "exchange/rewrites/20261103/drone-commercial-overtake__4ce6725d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
-   "id": "chess-online-boom__f9b7e085_r3",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-03T00:55:36Z",
-   "why": [
-    "premise: brain: The 200-million figure is consequential, but the premise assigns the whole surge to one show without support and offers no clean expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261103/chess-online-boom__f9b7e085_r3.request.json",
-   "answer_path": "exchange/rewrites/20261103/chess-online-boom__f9b7e085_r3.answer.json"
-  },
-  {
-   "id": "frog-freezes-and-revives__74b0628c_r2",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-03T00:55:36Z",
-   "why": [
-    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
-   ],
-   "request": "exchange/rewrites/20261103/frog-freezes-and-revives__74b0628c_r2.request.json",
-   "answer_path": "exchange/rewrites/20261103/frog-freezes-and-revives__74b0628c_r2.answer.json"
-  },
-  {
-   "id": "national-parks-record-then-shutdown__e1e36be1",
-   "slug": "national-parks-record-then-shutdown",
-   "filed": "2026-11-03T00:55:36Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a viewer's expectation and lacks a single consequential, verifiable number framing a surprising contrast."
-   ],
-   "request": "exchange/rewrites/20261103/national-parks-record-then-shutdown__e1e36be1.request.json",
-   "answer_path": "exchange/rewrites/20261103/national-parks-record-then-shutdown__e1e36be1.answer.json"
-  },
   {
    "id": "seabed-mining-rush__94b642eb_r3",
    "slug": "seabed-mining-rush",
@@ -143,6 +53,86 @@
    "answer_path": "exchange/rewrites/20261102/cargo-ship-size-growth__7c8383c4.answer.json"
   },
   {
+   "id": "chess-online-boom__f9b7e085_r3",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The 200-million figure is consequential, but the premise assigns the whole surge to one show without support and offers no clean expectation reversal."
+   ],
+   "request": "exchange/rewrites/20261102/chess-online-boom__f9b7e085_r3.request.json",
+   "answer_path": "exchange/rewrites/20261102/chess-online-boom__f9b7e085_r3.answer.json"
+  },
+  {
+   "id": "elephant-poaching-decline__8a2feac3",
+   "slug": "elephant-poaching-decline",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies only on a single statistic without a consequential, verifiable context."
+   ],
+   "request": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.request.json",
+   "answer_path": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__74b0628c_r2",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
+   ],
+   "request": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.request.json",
+   "answer_path": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__fa5c1ac3",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: It presents a stark fact but does not overturn a viewer's expectation, merely stating a number without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.request.json",
+   "answer_path": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.answer.json"
+  },
+  {
+   "id": "national-parks-record-then-shutdown__e1e36be1",
+   "slug": "national-parks-record-then-shutdown",
+   "filed": "2026-11-02T13:07:06Z",
+   "why": [
+    "premise: brain: It does not overturn a viewer expectation, merely states a statistic without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261102/national-parks-record-then-shutdown__e1e36be1.request.json",
+   "answer_path": "exchange/rewrites/20261102/national-parks-record-then-shutdown__e1e36be1.answer.json"
+  },
+  {
+   "id": "drone-commercial-overtake__4ce6725d_r1",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-11-02T13:07:05Z",
+   "why": [
+    "premise: brain: Unclear reversal of a specific viewer expectation despite the numeric claim"
+   ],
+   "request": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__c6fe157f_r1",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-02T12:20:58Z",
+   "why": [
+    "premise: brain: It lacks a single concrete, verifiable number and the premise’s reversal of expectation is not clearly defined."
+   ],
+   "request": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f_r1.answer.json"
+  },
+  {
+   "id": "pedestrian-deaths-outlier__247b5fb6_r1",
+   "slug": "pedestrian-deaths-outlier",
+   "filed": "2026-11-02T12:20:57Z",
+   "why": [
+    "premise: brain: The premise lacks a single verifiable number for the climbing death type, relying on an unspecified trend."
+   ],
+   "request": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
+  },
+  {
    "id": "lego-minifigs-outnumber-humans__161409d0_r5",
    "slug": "lego-minifigs-outnumber-humans",
    "filed": "2026-11-02T12:20:57Z",
@@ -161,6 +151,16 @@
    ],
    "request": "exchange/rewrites/20261102/tsa-digital-id-states-growth__1330070e_r1.request.json",
    "answer_path": "exchange/rewrites/20261102/tsa-digital-id-states-growth__1330070e_r1.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r6",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-02T12:20:56Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies on a vague, broad comparison rather than a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.request.json",
+   "answer_path": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.answer.json"
   },
   {
    "id": "library-digital-shift__bba2e477_r1",
