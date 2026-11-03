@@ -14,7 +14,7 @@ def material(name, color, rough=.42):
     m=bpy.data.materials.new(name); m.diffuse_color=(*color,1); m.use_nodes=True
     bs=m.node_tree.nodes['Principled BSDF']; bs.inputs['Base Color'].default_value=(*color,1); bs.inputs['Roughness'].default_value=rough
     return m
-teal=material('Data / teal',(.025,.34,.25)); white=material('Coat / warm ivory',(.83,.84,.8)); black=material('Frames / charcoal',(.012,.018,.023),.3)
+teal=material('Data / teal',(.018,.245,.185)); white=material('Coat / warm ivory',(.83,.84,.8)); black=material('Frames / charcoal',(.012,.018,.023),.3)
 eye=material('Eyes / ivory',(.95,.96,.92),.24); red=material('Tie / vermilion',(.74,.065,.025)); blue=material('Pen / blue',(.02,.34,.65)); floor=material('Stage',(.035,.043,.059),.65)
 parts=[]
 def finish(o,name,mat):
@@ -51,13 +51,13 @@ def panel(name,pts,mat,thick=.04):
     return o
 
 # The head owns the silhouette; limbs are slightly lanky, not stick thin.
-ell('Head',(0,0,3.26),(.91,.69,.87),teal)
+ell('Head',(0,0,3.26),(.96,.69,.82),teal)
 for x in (-.36,.36):
     ear=ell('Ear.L' if x<0 else 'Ear.R',(x,.015,4.09),(.155,.15,.39),teal); ear.rotation_euler.y=-.12 if x<0 else .12
 ell('Neck',(0,0,2.36),(.23,.23,.22),teal)
 for x in (-.25,.25):
     capsule('Leg', (x,0,.27),(x,.015,1.08),.155,teal)
-    ell('Shoe',(x,-.13,.18),(.245,.36,.18),teal)
+    box('Shoe',(x,-.13,.16),(.47,.64,.32),teal,.13)
 # Coat: continuous tapered shell with a flattened front, not stacked spheres.
 verts=[]; n=64
 for z,rx,ry in [( .83,.51,.31),(.88,.52,.32),(1.1,.50,.32),(1.8,.43,.29),(2.17,.34,.25),(2.30,.25,.20)]:
@@ -86,42 +86,47 @@ box('Pen',(.30,-.365,1.62),(.045,.045,.25),blue,.018)
 for z in (1.35,1.10): ell('Coat button',(.055,-.345,z),(.032,.015,.032),eye)
 # White eye pads and genuine open rounded-square frames.
 for x in (-.39,.39):
-    box('Eye white',(x,-.615,3.40),(.63,.22,.64),eye,.19)
+    box('Eye white',(x,-.635,3.40),(.63,.12,.64),eye,.19)
     pts=[]
-    for cx,cz,start in [(.20,.20,0),(-.20,.20,90),(-.20,-.20,180),(.20,-.20,270)]:
+    for cx,cz,start in [(.17,.17,0),(-.17,.17,90),(-.17,-.17,180),(.17,-.17,270)]:
         for i in range(13):
-            a=math.radians(start+i*90/12); pts.append((x+cx+.13*math.cos(a),-.785,3.40+cz+.13*math.sin(a)))
+            a=math.radians(start+i*90/12); pts.append((x+cx+.16*math.cos(a),-.735,3.40+cz+.16*math.sin(a)))
     line('Glasses frame',pts,.053,black,True)
-    ell('Pupil',(x+.035,-.759,3.39),(.14,.055,.17),black)
-    ell('Eye glint',(x+.004,-.811,3.455),(.045,.016,.045),eye)
+    ell('Pupil',(x+.035,-.716,3.39),(.14,.055,.17),black)
+    ell('Eye glint',(x+.004,-.768,3.455),(.045,.016,.045),eye)
     line('Temple',[(x+(-.34 if x<0 else .34),-.73,3.42),(x+(-.43 if x<0 else .43),-.33,3.42),(x+(-.43 if x<0 else .43),.17,3.35)],.041,black)
     brow=[]
     for i in range(25):
         v=-.22+i*.44/24; z=3.85+.055*math.sin((v+.22)/.44*math.pi); xx=x+v
-        y=-.69*math.sqrt(max(.01,1-(xx/.91)**2-((z-3.26)/.87)**2))-.035
+        y=-.69*math.sqrt(max(.01,1-(xx/.96)**2-((z-3.26)/.82)**2))-.035
         brow.append((xx,y,z))
     line('Brow',brow,.044,black)
-line('Glasses bridge',[(-.06,-.785,3.43),(.06,-.785,3.43)],.045,black)
+line('Glasses bridge',[(-.06,-.735,3.43),(.06,-.735,3.43)],.045,black)
 ell('Nose',(0,-.755,3.10),(.067,.09,.083),teal)
 smile=[]
 for i in range(41):
     x=-.33+i*.66/40; z=2.80+.16*(x/.33)**2
-    y=-.69*math.sqrt(1-(x/.91)**2-((z-3.26)/.87)**2)-.025
+    y=-.69*math.sqrt(1-(x/.96)**2-((z-3.26)/.82)**2)-.025
     smile.append((x,y,z))
 line('Smile',smile,.022,black)
+# Broaden the coat and stance while retaining the reference's lanky silhouette.
+for ob in parts:
+    if ob.name.startswith(('Coat', 'Sleeve', 'Mitten', 'Thumb', 'Leg', 'Shoe', 'Pocket', 'Pen', 'Lapel', 'Shirt', 'Tie')):
+        ob.location.x *= 1.10
+        ob.scale.x *= 1.10
 # Group all components under a root for re-use and posing in Claude's scene.
 bpy.ops.object.empty_add(); root=bpy.context.object; root.name='DATA_ROOT'
 for o in parts: o.parent=root
 bpy.ops.mesh.primitive_plane_add(size=200); bpy.context.object.data.materials.append(floor)
 world=bpy.data.worlds.new('Studio'); world.use_nodes=True; world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.12,.16,1); world.node_tree.nodes['Background'].inputs[1].default_value=.35; bpy.context.scene.world=world
-for name,loc,power,size in [('Key',(-3,-4,7),650,4),('Fill',(4,-2,4),400,3),('Rim',(1,3,6),850,3)]:
+for name,loc,power,size in [('Key',(-3,-4,7),430,4),('Fill',(4,-2,4),210,3),('Rim',(1,3,6),480,3)]:
     bpy.ops.object.light_add(type='AREA',location=loc); o=bpy.context.object; o.name=name; o.data.energy=power; o.data.shape='DISK'; o.data.size=size; o.rotation_euler=(Vector((0,0,2.2))-o.location).to_track_quat('-Z','Y').to_euler()
 bpy.ops.object.camera_add(); cam=bpy.context.object; bpy.context.scene.camera=cam; cam.data.type='ORTHO'; cam.data.ortho_scale=5.25
 sc=bpy.context.scene; sc.render.engine='CYCLES'; sc.cycles.samples=64; sc.cycles.use_denoising=False; sc.render.resolution_x=800; sc.render.resolution_y=900; sc.render.resolution_percentage=100; sc.render.image_settings.file_format='PNG'
-sc.view_settings.view_transform='AgX'
-for name,loc in [('front',(0,-9,3.4)),('three_quarter',(5,-9,3.7)),('side',(9,0,3.4)),('back',(0,9,3.4))]:
+sc.view_settings.view_transform='Standard'; sc.view_settings.look='Medium High Contrast' if 'Medium High Contrast' in [i.name for i in sc.view_settings.bl_rna.properties['look'].enum_items] else 'None'
+for name,loc in [('front',(0,-9,2.65)),('three_quarter',(5,-9,2.9)),('side',(9,0,2.65)),('back',(0,9,2.65))]:
     cam.location=loc; cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
     sc.render.filepath=str(OUT/(name+'.png')); bpy.ops.render.render(write_still=True)
-cam.location=(5,-9,3.7); cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'data_reference.blend'))
+cam.location=(5,-9,2.9); cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
+bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'data_reference.blend'),compress=True)
 print('DATA_REFERENCE_DONE',OUT)

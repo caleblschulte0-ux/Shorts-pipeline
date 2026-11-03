@@ -23,3 +23,7 @@ Open `preview/data_reference.blend` or run the command above. Compare the actual
 This is **look development, not an animation-ready rig**: no armature, skin weighting, facial shape keys, lip sync or production-render integration yet. Parts are named and independently adjustable; repeated limb names receive Blender numeric suffixes. Establish the neutral appearance before rigging. For expressions, move brows and pupils and replace the smile curve.
 
 The source reference is an AI illustration, not exact orthographic CAD: use silhouette and visual proportions as the guide rather than assuming every view is geometrically consistent.
+
+## Revision 2
+
+Addresses Caleb’s feedback that the first prototype did not match the reference: deeper teal material, less bleaching studio light, Standard color transform, rounder head, thinner eye pads and closer frames, rounder frame corners, wider coat and stance, flatter rounded shoes, and less elevated cameras. This remains an approximation, not an exact recreation or an animation rig.
