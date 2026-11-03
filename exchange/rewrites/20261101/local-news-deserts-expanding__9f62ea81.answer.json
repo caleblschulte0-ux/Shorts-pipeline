@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "local-news-deserts-expanding__9f62ea81",
+  "slug": "local-news-deserts-expanding",
+  "by": "chatgpt",
+  "written_at": "2026-11-03T12:18:17.622Z",
+  "title": "US Newspapers Fell 39%, Creating More Local News Deserts",
+  "hook": "US newspapers fell 39%, leaving more towns without watchdogs.",
+  "closing": "When local reporting disappears, fewer people watch decisions that shape your town.",
+  "question": "Do you know your local reporter?",
+  "segments": [
+    {
+      "topic": "Local Newspapers",
+      "say": "US newspapers fell 39%, stripping thousands of communities of regular local reporting."
+    },
+    {
+      "topic": "Local Deserts",
+      "say": "News deserts reached 208 counties, leaving every resident without a dedicated local source."
+    },
+    {
+      "topic": "Local Coverage",
+      "say": "Little or no local news affects 15% of Americans, linking newspaper collapse directly to what communities know."
+    }
+  ]
+}
