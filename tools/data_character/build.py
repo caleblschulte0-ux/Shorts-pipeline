@@ -1,7 +1,7 @@
 """Standalone Data reference prototype. Blender 4+: blender -b -t 4 --python build.py -- /tmp/data-preview
 No production imports or publishing side effects. Front is -Y, up is Z.
 """
-import bpy, math, sys
+import bpy, bmesh, math, sys
 from pathlib import Path
 from mathutils import Vector
 
@@ -82,6 +82,18 @@ for x in (-.25,.25):
     sm=bpy.data.meshes.new('Shoe last');sm.from_pydata(shoe_verts,[],shoe_faces);sm.update()
     shoe=bpy.data.objects.new('Shoe',sm);bpy.context.collection.objects.link(shoe);shoe.location.x=x
     finish(shoe,'Shoe',teal); sub=shoe.modifiers.new('Soft shoe silhouette','SUBSURF');sub.levels=2
+# Cut AFTER subdivision so smoothing cannot round the load-bearing surface again.
+for shoe in [o for o in parts if o.name.startswith('Shoe')]:
+    bpy.context.view_layer.objects.active=shoe
+    bpy.ops.object.modifier_apply(modifier='Soft shoe silhouette')
+    bm=bmesh.new();bm.from_mesh(shoe.data)
+    bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),dist=1e-6,plane_co=(0,0,.075),plane_no=(0,0,1),clear_inner=True,clear_outer=False)
+    border=[e for e in bm.edges if e.is_boundary and all(abs(v.co.z-.075)<1e-4 for v in e.verts)]
+    bmesh.ops.holes_fill(bm,edges=border,sides=0)
+    bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
+    for v in bm.verts: v.co.z-=.075
+    bm.to_mesh(shoe.data);bm.free();shoe.data.update()
+    for f in shoe.data.polygons: f.use_smooth=f.normal.z>-.99
 # Coat: continuous tapered shell with a flattened front, not stacked spheres.
 verts=[]; n=64
 for z,rx,ry in [( .83,.51,.31),(.88,.52,.32),(1.1,.50,.32),(1.8,.43,.29),(2.17,.34,.25),(2.30,.25,.20)]:
@@ -113,13 +125,13 @@ for x in (-.39,.39):
     wh=ell('Eye white',(x,-.635,3.40),(.325,.115,.325),eye)
     # A convex squircle rather than a beveled thin cube: avoids square, staring eyes.
     for v in wh.data.vertices:
-        v.co.x=math.copysign(abs(v.co.x)**.72,v.co.x)
-        v.co.z=math.copysign(abs(v.co.z)**.72,v.co.z)
+        v.co.x=math.copysign(abs(v.co.x)**.84,v.co.x)
+        v.co.z=math.copysign(abs(v.co.z)**.84,v.co.z)
     pts=[]
-    for cx,cz,start in [(.17,.17,0),(-.17,.17,90),(-.17,-.17,180),(.17,-.17,270)]:
+    for cx,cz,start in [(.11,.11,0),(-.11,.11,90),(-.11,-.11,180),(.11,-.11,270)]:
         for i in range(13):
-            a=math.radians(start+i*90/12); pts.append((x+cx+.16*math.cos(a),-.735,3.40+cz+.16*math.sin(a)))
-    line('Glasses frame',pts,.053,black,True)
+            a=math.radians(start+i*90/12); pts.append((x+cx+.22*math.cos(a),-.735,3.40+cz+.22*math.sin(a)))
+    line('Glasses frame',pts,.047,black,True)
     gaze=.055 if x<0 else .005
     ell('Pupil',(x+gaze,-.76,3.42),(.157,.025,.162),pupil_ink)
     ell('Eye glint',(x+gaze-.045,-.787,3.485),(.043,.011,.043),eye)
@@ -144,6 +156,10 @@ for i in range(41):
 mouth=line('Smile',smile,.020,black)
 mouth.data.use_fill_caps=True
 for j,pt in enumerate(mouth.data.splines[0].points): pt.radius=.55+.45*math.sin(math.pi*j/40)**.5
+# Lift lenses and bridge away from the nose while retaining eye alignment.
+for ob in parts:
+    if ob.name.startswith(('Eye','Pupil','Glasses','Temple')): ob.location.z+=.065
+    elif ob.name.startswith('Brow'): ob.location.z+=.04
 # Match the reference's broad glasses and face spacing.
 for ob in parts:
     if ob.name.startswith(('Eye','Pupil','Glasses','Brow','Temple')):
@@ -166,19 +182,28 @@ for ob in parts:
     elif not ob.name.startswith(('Leg','Shoe')):
         ob.location.z=.83+(ob.location.z-.83)*1.10
         ob.scale.z*=1.10
+# A modest increase in limb and torso length; feet retain their ground contact.
+for ob in parts:
+    if ob.name.startswith(('Head','Ear','Eye','Pupil','Glasses','Brow','Temple','Nose','Smile')):
+        ob.location.z+=.175
+    elif not ob.name.startswith('Shoe'):
+        ob.location.z=.30+(ob.location.z-.30)*1.08
+        ob.scale.z*=1.08
+        ob.location.x*=.95
+        ob.scale.x*=.95
 # Group all components under a root for re-use and posing in Claude's scene.
 bpy.ops.object.empty_add(); root=bpy.context.object; root.name='DATA_ROOT'
 for o in parts: o.parent=root
-bpy.ops.mesh.primitive_plane_add(size=200); bpy.context.object.data.materials.append(floor)
+bpy.ops.mesh.primitive_plane_add(size=2000); bpy.context.object.data.materials.append(floor)
 world=bpy.data.worlds.new('Studio'); world.use_nodes=True; world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.12,.16,1); world.node_tree.nodes['Background'].inputs[1].default_value=.35; bpy.context.scene.world=world
 for name,loc,power,size in [('Key',(-3,-5,6),650,5),('Fill',(4,-4,4),190,5),('Rim',(1,3,6),150,4)]:
     bpy.ops.object.light_add(type='AREA',location=loc); o=bpy.context.object; o.name=name; o.data.energy=power; o.data.shape='DISK'; o.data.size=size; o.rotation_euler=(Vector((0,0,2.2))-o.location).to_track_quat('-Z','Y').to_euler()
-bpy.ops.object.camera_add(); cam=bpy.context.object; bpy.context.scene.camera=cam; cam.data.type='ORTHO'; cam.data.ortho_scale=5.25
+bpy.ops.object.camera_add(); cam=bpy.context.object; bpy.context.scene.camera=cam; cam.data.type='ORTHO'; cam.data.ortho_scale=5.55
 sc=bpy.context.scene; sc.render.engine='CYCLES'; sc.cycles.samples=384; sc.cycles.use_adaptive_sampling=True; sc.cycles.adaptive_threshold=.018; sc.cycles.use_denoising=False; sc.render.resolution_x=800; sc.render.resolution_y=900; sc.render.resolution_percentage=100; sc.render.image_settings.file_format='PNG'
 sc.view_settings.view_transform='Standard'; sc.view_settings.look='None'
-for name,loc in [('front',(0,-9,2.65)),('three_quarter',(5,-9,2.9))]:
-    cam.location=loc; cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
+for name,loc in [('front',(0,-9,2.95)),('three_quarter',(5,-9,2.9)),('side',(9,0,3.05))]:
+    cam.location=loc; cam.rotation_euler=(Vector((0,0,2.40))-cam.location).to_track_quat('-Z','Y').to_euler()
     sc.render.filepath=str(OUT/(name+'.png')); bpy.ops.render.render(write_still=True)
-cam.location=(5,-9,2.9); cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
+cam.location=(5,-9,2.9); cam.rotation_euler=(Vector((0,0,2.40))-cam.location).to_track_quat('-Z','Y').to_euler()
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'data_reference.blend'),compress=True)
 print('DATA_REFERENCE_DONE',OUT)

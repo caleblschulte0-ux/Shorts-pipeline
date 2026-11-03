@@ -6,7 +6,7 @@ Caleb's supplied `reference.jpeg` is the visual target. These are unapproved loo
 blender -b -t 6 --python tools/data_character/build.py -- /tmp/data-character
 ```
 
-Current script writes front and three-quarter PNGs and a compressed editable `data_reference.blend`. Blender 4.0.2 CPU Cycles, up to 384 adaptive samples; no paid APIs or pipeline imports. No production-render or publishing changes.
+Current script writes front, three-quarter and side PNGs and a compressed editable `data_reference.blend`. Blender 4.0.2 CPU Cycles, up to 384 adaptive samples; no paid APIs or pipeline imports. No production-render or publishing changes.
 
 ## Current revision: friendlier face
 
@@ -27,3 +27,7 @@ The coat/upper body is 10% longer above the hem, and the head assembly is raised
 ## Shoe and softer-face revision
 
 Feet are now continuous lofted shoe meshes with a heel, instep, lower toe, and flattened underside, rather than ellipsoids. No separate soles were added. Teal uses reduced specular reflection and subtle subsurface scattering. Cheeks are slightly fuller, pupils flatter with a mild gaze offset, and the smile tapers at its ends. Broader lighting softens transitions. This is a look-development attempt toward the supplied animated-character reference and remains pending Caleb’s visual review.
+
+## Lankier silhouette and planar shoe bottoms
+
+Torso and limbs are 8% longer and 5% narrower while preserving head size. Shoes are cut and capped with a ground plane after subdivision; no later smoothing is allowed to round the sole. Frames have larger corner radii and a thinner rim. Lenses, pupils, bridge and temples are raised together slightly away from the nose; brows are adjusted to retain clearance. Includes a side review render and numerical checks of the actual sole contact surfaces. Pending Caleb’s visual review.
