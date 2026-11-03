@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-03",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Milwaukee Brewers",
+   "why": "Fans watch the emotional celebration of the franchise's first World Series win",
+   "post_title": "The Brewers take home their first World Series title in franchise history!",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "A star comforts a kid who was accidentally hit by a shot, showing genuine kindness",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni After Kid Gets Hit",
+   "hook": "Mbapp\u00e9 defends the kid",
+   "ledger": {
+    "moves": [
+     "zoom@1.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      330,
+      440,
+      262,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kak\u00e1",
+   "why": "Tears flow as he receives a standing ovation and Hall of Fame induction",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Clay Matthews",
+   "why": "Hot\u2011mic banter reveals the playful side of a veteran defender during a game",
+   "post_title": "[Highlight] In 2017, Clay Matthews reads an arm signal and yells, \u201cIt\u2019s that wheel route!\u201d Cam Newton on the hot mic replies, \u201cYou\u2019ve been watching film, huh? That\u2019s cool, watch this,\u201d then hits CMC o",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm",
+   "title": "Clay Matthews Calls Wheel Route, Cam Newton Fires Back with CMC Touchdown",
+   "hook": "Clay calls a wheel route \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "sports",
+   "who": "Jacob Misiorowski",
+   "why": "A perfectly timed beer\u2011throw and chug becomes a viral celebration moment",
+   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "skipped": "author: no title"
+  }
+ ],
+ "already_today": 4,
+ "pool": 102,
+ "already_posted": 17,
+ "shipped": 0
+}
