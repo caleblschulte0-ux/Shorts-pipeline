@@ -17615,6 +17615,33 @@
         "end": 15.6
       },
       "director_cut": true
+    },
+    "rejected-reliabletangiblesparrowdoritoschip-ibh1dzbuhqmkknzm": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ReliableTangibleSparrowDoritosChip-Ibh1dzbuHqMkKnzM",
+      "streamer": "caseoh_",
+      "title": "\ud83d\ude33\u2026That Was Creepy\ud83d\ude31",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 6.5s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-11-03T11:39:57.354700+00:00"
+    },
+    "rejected-dignifiedblindingdragonbudstar-coqruszkfbj1b5ti": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DignifiedBlindingDragonBudStar-cOqruszKfbJ1B5Ti",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Was SHOCKED By This AI Video",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "audio dead for 3.6s at 1.7s; audio dead for 2.9s at 5.5s; audio dead for 5.3s at 18.8s; render_qa: freeze: 3.2s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+      "ts": "2026-11-03T11:42:49.307511+00:00"
+    },
+    "rejected-frigidhappycakenotatk-oxexwvqrajxog8a1": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/FrigidHappyCakeNotATK-OxexWVqrAJxOG8a1",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Can't Believe Someone Beat The Record So Fast",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "audio dead for 6.2s at 12.8s; render_qa: freeze: 2.5s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+      "ts": "2026-11-03T11:45:31.073354+00:00"
     }
   }
 }
