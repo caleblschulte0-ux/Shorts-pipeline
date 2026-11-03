@@ -17,7 +17,15 @@ def material(name, color, rough=.58):
 teal=material('Data / teal',(.055,.36,.285)); white=material('Coat / warm ivory',(.53,.55,.53)); black=material('Frames / charcoal',(.008,.011,.014),.42)
 eye=material('Eyes / ivory',(.72,.74,.71),.32); red=material('Tie / vermilion',(.74,.065,.025)); blue=material('Pen / blue',(.02,.34,.65)); floor=material('Stage',(.065,.073,.09),.85)
 pupil_ink=material('Pupils / deep charcoal',(.003,.004,.006),.28)
-teal.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=.48
+skin=teal.node_tree.nodes['Principled BSDF']
+skin.inputs['Roughness'].default_value=.62
+skin.inputs['Specular IOR Level'].default_value=.22
+skin.inputs['Subsurface Weight'].default_value=.15
+skin.inputs['Subsurface Radius'].default_value=(.8,.6,.45)
+skin.inputs['Subsurface Scale'].default_value=.12
+eye.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=.5
+eye.node_tree.nodes['Principled BSDF'].inputs['Specular IOR Level'].default_value=.12
+pupil_ink.node_tree.nodes['Principled BSDF'].inputs['Specular IOR Level'].default_value=.12
 parts=[]
 def finish(o,name,mat):
     o.name=name; o.data.materials.append(mat)
@@ -53,14 +61,27 @@ def panel(name,pts,mat,thick=.04):
     return o
 
 # The head owns the silhouette; limbs are slightly lanky, not stick thin.
-ell('Head',(0,0,3.26),(.91,.69,.86),teal)
+head=ell('Head',(0,0,3.26),(.91,.69,.86),teal)
+for v in head.data.vertices:
+    v.co.x*=1+.035*math.exp(-((v.co.z+.28)/.32)**2)
 for x in (-.36,.36):
     ear=ell('Ear.L' if x<0 else 'Ear.R',(x,.015,4.09),(.155,.15,.39),teal); ear.rotation_euler.y=-.12 if x<0 else .12
 ell('Neck',(0,0,2.33),(.19,.19,.10),teal)
 for x in (-.25,.25):
     capsule('Leg', (x,0,.27),(x,.015,1.08),.155,teal)
-    shoe=ell('Shoe',(x,-.13,.154),(.245,.36,.195),teal)
-    for v in shoe.data.vertices: v.co.z=max(-.78,v.co.z)
+    # A single continuous shoe last: shaped heel, instep and low rounded toe.
+    shoe_verts=[]; shoe_faces=[]; steps=48
+    sections=[(.20,.025,.16,.025),(.17,.14,.18,.155),(.09,.18,.21,.20),(-.04,.215,.19,.18),(-.22,.235,.15,.13),(-.36,.21,.14,.12),(-.44,.135,.14,.095),(-.48,.018,.14,.025)]
+    for yy,rx,zc,rz in sections:
+        for k in range(steps):
+            a=2*math.pi*k/steps
+            shoe_verts.append((rx*math.copysign(abs(math.cos(a))**.8,math.cos(a)),yy,max(.008,zc+rz*math.sin(a))))
+    for j in range(len(sections)-1):
+        for k in range(steps): shoe_faces.append((j*steps+k,j*steps+(k+1)%steps,(j+1)*steps+(k+1)%steps,(j+1)*steps+k))
+    shoe_faces+=[tuple(reversed(range(steps))),tuple((len(sections)-1)*steps+k for k in range(steps))]
+    sm=bpy.data.meshes.new('Shoe last');sm.from_pydata(shoe_verts,[],shoe_faces);sm.update()
+    shoe=bpy.data.objects.new('Shoe',sm);bpy.context.collection.objects.link(shoe);shoe.location.x=x
+    finish(shoe,'Shoe',teal); sub=shoe.modifiers.new('Soft shoe silhouette','SUBSURF');sub.levels=2
 # Coat: continuous tapered shell with a flattened front, not stacked spheres.
 verts=[]; n=64
 for z,rx,ry in [( .83,.51,.31),(.88,.52,.32),(1.1,.50,.32),(1.8,.43,.29),(2.17,.34,.25),(2.30,.25,.20)]:
@@ -99,10 +120,10 @@ for x in (-.39,.39):
         for i in range(13):
             a=math.radians(start+i*90/12); pts.append((x+cx+.16*math.cos(a),-.735,3.40+cz+.16*math.sin(a)))
     line('Glasses frame',pts,.053,black,True)
-    gaze=.035 if x<0 else -.015
-    ell('Pupil',(x+gaze,-.745,3.395),(.157,.043,.162),pupil_ink)
-    ell('Eye glint',(x+gaze-.045,-.787,3.46),(.043,.011,.043),eye)
-    ell('Eye glint small',(x+gaze+.045,-.787,3.355),(.019,.009,.019),eye)
+    gaze=.055 if x<0 else .005
+    ell('Pupil',(x+gaze,-.76,3.42),(.157,.025,.162),pupil_ink)
+    ell('Eye glint',(x+gaze-.045,-.787,3.485),(.043,.011,.043),eye)
+    ell('Eye glint small',(x+gaze+.045,-.787,3.38),(.019,.009,.019),eye)
     line('Temple',[(x+(-.34 if x<0 else .34),-.73,3.42),(x+(-.43 if x<0 else .43),-.33,3.42),(x+(-.43 if x<0 else .43),.17,3.35)],.041,black)
     brow=[]
     for i in range(25):
@@ -120,7 +141,9 @@ for i in range(41):
     x=-.37+i*.74/40; z=2.80+.16*(x/.37)**2
     y=-.69*math.sqrt(1-(x/.91)**2-((z-3.26)/.86)**2)-.025
     smile.append((x,y,z))
-line('Smile',smile,.022,black)
+mouth=line('Smile',smile,.020,black)
+mouth.data.use_fill_caps=True
+for j,pt in enumerate(mouth.data.splines[0].points): pt.radius=.55+.45*math.sin(math.pi*j/40)**.5
 # Match the reference's broad glasses and face spacing.
 for ob in parts:
     if ob.name.startswith(('Eye','Pupil','Glasses','Brow','Temple')):
@@ -148,7 +171,7 @@ bpy.ops.object.empty_add(); root=bpy.context.object; root.name='DATA_ROOT'
 for o in parts: o.parent=root
 bpy.ops.mesh.primitive_plane_add(size=200); bpy.context.object.data.materials.append(floor)
 world=bpy.data.worlds.new('Studio'); world.use_nodes=True; world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.12,.16,1); world.node_tree.nodes['Background'].inputs[1].default_value=.35; bpy.context.scene.world=world
-for name,loc,power,size in [('Key',(-3,-5,6),600,4),('Fill',(4,-4,4),140,5),('Rim',(1,3,6),180,4)]:
+for name,loc,power,size in [('Key',(-3,-5,6),650,5),('Fill',(4,-4,4),190,5),('Rim',(1,3,6),150,4)]:
     bpy.ops.object.light_add(type='AREA',location=loc); o=bpy.context.object; o.name=name; o.data.energy=power; o.data.shape='DISK'; o.data.size=size; o.rotation_euler=(Vector((0,0,2.2))-o.location).to_track_quat('-Z','Y').to_euler()
 bpy.ops.object.camera_add(); cam=bpy.context.object; bpy.context.scene.camera=cam; cam.data.type='ORTHO'; cam.data.ortho_scale=5.25
 sc=bpy.context.scene; sc.render.engine='CYCLES'; sc.cycles.samples=384; sc.cycles.use_adaptive_sampling=True; sc.cycles.adaptive_threshold=.018; sc.cycles.use_denoising=False; sc.render.resolution_x=800; sc.render.resolution_y=900; sc.render.resolution_percentage=100; sc.render.image_settings.file_format='PNG'

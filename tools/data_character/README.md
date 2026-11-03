@@ -23,3 +23,7 @@ Removed the added sole objects. Head is narrower and a little taller, glasses an
 The eye whites and coat have been reduced to avoid blown-out white surfaces; pupils use a separate, darker material. Brows are fuller and the teal surface is slightly less rough. A pixel comparison of masked front-view skin regions was used as a color sanity check alongside visual review, not as a claim of an exact reference match.
 
 The coat/upper body is 10% longer above the hem, and the head assembly is raised 0.17 scene units to meet the shoulders, addressing the short-torso proportion visible in the reference comparison.
+
+## Shoe and softer-face revision
+
+Feet are now continuous lofted shoe meshes with a heel, instep, lower toe, and flattened underside, rather than ellipsoids. No separate soles were added. Teal uses reduced specular reflection and subtle subsurface scattering. Cheeks are slightly fuller, pupils flatter with a mild gaze offset, and the smile tapers at its ends. Broader lighting softens transitions. This is a look-development attempt toward the supplied animated-character reference and remains pending Caleb’s visual review.
