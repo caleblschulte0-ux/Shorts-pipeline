@@ -1,0 +1,46 @@
+{
+  "date": "20261103",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 2,
+        "rejected": 1
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "642ad43b60bf59b594d5086081effcfb3f466b70f80bb3be4e002bba7e2d7636",
+    "required": true,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": []
+}
