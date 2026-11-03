@@ -19724,6 +19724,9 @@
     "innovation",
     "future"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:20Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -19774,10 +19777,7 @@
       "code": "paying = values[0]; free = values[-1]\ntotal = paying + free\nperson = subject_image('tiny person icon')\ncoin = subject_image('gold coin stack')\ncols, rows = 10, 9\ncell = min((RX1 - RX0) // cols, 90)\ngx0 = RX0 + ((RX1 - RX0) - cell * cols) // 2\ngy0 = RTOP + 200\nshown = int(clamp(reveal) * cols * rows)\ngold_count = max(1, round(cols * rows * (paying / total)))\nfor k in range(shown):\n    r = k // cols; c = k % cols\n    x = gx0 + c * cell; y = gy0 + r * cell\n    is_gold = k < gold_count\n    if person is not None:\n        paste(person, x + 6, y + 6, cell - 14, cell - 14)\n        if is_gold:\n            d.rectangle([x, y, x + cell, y + cell], outline=rgba(HIGHLIGHT, 220), width=3)\n    else:\n        d.ellipse([x + 10, y + 10, x + cell - 10, y + cell - 10], fill=rgba(HIGHLIGHT, 220) if is_gold else rgba(TEXT, 70))\nif coin is not None:\n    paste(coin, RX0 + 20, RBOT - 140, 100, 100)\ntext(f'{int(paying)}M pay', RX0 + 140, RBOT - 120, size=36, color=HIGHLIGHT)\ntext(f'{int(free)}M ride free', RX0 + 20, RTOP + 140, size=32, color=TEXT)"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:08Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "sand-mining-crisis",
@@ -22151,6 +22151,9 @@
     "frogs",
     "survival"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:20Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -22200,10 +22203,7 @@
       "code": "cx = (RX0 + RX1) // 2\ntop_y = 220\nbot_y = 1080\nd.rounded_rectangle([cx - 140, top_y, cx + 140, bot_y], radius=30, outline=rgba(TEXT, 200), width=4)\narctic_frac = clamp(66.5 / 80)\narctic_y = bot_y - (bot_y - top_y) * arctic_frac\nd.line([cx - 160, arctic_y, cx + 160, arctic_y], fill=rgba(WARN, 220), width=5)\ntext('ARCTIC CIRCLE', cx + 170, arctic_y - 14, size=22, color=WARN)\nfor i in range(n):\n    lat = values[i]\n    frac = clamp(lat / 80.0) * reveal\n    y = bot_y - (bot_y - top_y) * frac\n    img = images.get(labels[i])\n    if img is None:\n        img = subject_image('frog')\n    w = 150\n    h = 120\n    if img is not None:\n        paste(img, cx - w // 2, int(y) - h // 2, w, h)\n    else:\n        d.ellipse([cx - w // 2, y - h // 2, cx + w // 2, y + h // 2], fill=rgba(ACCENT, 220))\n    text(labels[i], cx, int(y) + h // 2 + 24, size=24, center=True)\n    text(str(int(lat)) + ' N', cx, int(y) - h // 2 - 20, size=32, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:09Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "betelgeuse-great-dimming",
@@ -22375,6 +22375,9 @@
     "culture",
     "internet"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:20Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -22426,10 +22429,7 @@
       "code": "globe = subject_image('world globe photo')\nboard = subject_image('chess board top down photo')\ncx = (RX0 + RX1) // 2\ngy = RTOP + 200\ngd = 560\nif globe is not None:\n    paste(globe, cx - gd // 2, gy, gd, gd)\nelse:\n    d.ellipse([cx - gd // 2, gy, cx + gd // 2, gy + gd], outline=rgba(TEXT, 200), width=6)\nshare = values[0] / values[1] if n > 1 and values[1] else 0.33\nang0 = -90\nang1 = ang0 + 360 * clamp(share) * reveal\nbbox = [cx - gd // 2, gy, cx + gd // 2, gy + gd]\nd.pieslice(bbox, ang0, ang1, fill=rgba(HIGHLIGHT, 130))\nif board is not None and reveal > 0.5:\n    bw = 140\n    paste(board, cx - bw // 2, gy + gd // 2 - bw // 2, bw, bw)\ntext(f\"{values[1]:.0f}M regular players worldwide\" if n > 1 else 'players worldwide', cx, gy - 40,\n     size=24, color=TEXT, center=True)\ntext(f'{values[0]:.0f}M on Chess.com', cx, gy + gd + 50, size=32, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:08Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "volcano-country-ranking",
@@ -24340,10 +24340,10 @@
   },
   {
    "slug": "seabed-mining-rush",
-   "title": "The Race To Mine A Place No One Owns (3 Charts)",
-   "hook": "There's a gold rush happening 4 kilometers underwater.",
-   "closing": "The deep ocean belongs to everyone, so whoever digs first decides for all of us.",
-   "question": "Should anyone mine the ocean floor?",
+   "title": "Seabed Mining Claims Nearly Quadrupled To 31",
+   "hook": "Seabed mining claims nearly quadrupled to 31.",
+   "closing": "The rush is accelerating before the world agrees who should control the seabed.",
+   "question": "Should seabed mining pause?",
    "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
    "hashtags": [
     "deepseamining",
@@ -24371,8 +24371,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RUSH",
-     "topic": "Mining contracts",
-     "say": "Companies now hold four times more deep-sea mining claims than in 2001. A race for the ocean floor is on, and it's crowded.",
+     "topic": "Seabed Claims",
+     "say": "Seabed mining claims reached 31, turning a remote frontier into a crowded industrial race.",
      "scene": {
       "mechanic": "seafloor-claim-flags-plant",
       "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
@@ -24388,8 +24388,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Cobalt mining",
-     "say": "The seafloor holds four times more cobalt than every mine on land combined. That's the prize, and the stuff in your phone battery.",
+     "topic": "Seabed Cobalt",
+     "say": "Seabed nodules hold 44 million tonnes of cobalt, making the ocean floor an enormous target.",
      "scene": {
       "mechanic": "nodule-pile-vs-landpile",
       "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
@@ -24405,8 +24405,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE CATCH",
-     "topic": "Mining pause",
-     "say": "Meanwhile, the countries asking for a pause grew by more than half in a year. The world is split on whether to dig.",
+     "topic": "Seabed Pause",
+     "say": "Calls for a seabed mining pause reached 37 countries, showing opposition is growing with the rush.",
      "scene": {
       "mechanic": "world-pause-flag-spread",
       "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
@@ -24414,8 +24414,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:34:15Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:21Z",
    "retold": "retell/v3"
   },
   {
@@ -25541,8 +25541,8 @@
   {
    "slug": "coldest-place-in-the-universe-is-human-made",
    "title": "NASA Made Atoms Colder Than 1 Kelvin",
-   "hook": "Scientists built a place colder than anywhere in nature, and it's floating over your head.",
-   "closing": "The coldest known place now sits in orbit, built by people, so we can study it.",
+   "hook": "NASA built a place colder than nature, floating over your head.",
+   "closing": "Human-built extreme cold lets researchers study matter in conditions nature cannot provide nearby.",
    "question": "What can ultracold atoms reveal?",
    "caption": "The coldest known place in the universe isn't 5,000 light-years away -- it's 250 miles above your head. NASA's Cold Atom Lab chills atoms a billion times colder than deep space itself. Could you survive one second there? 👇",
    "hashtags": [
@@ -25613,8 +25613,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-01T12:49:11Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:19Z",
    "hook_was": "The coldest place in the universe is 250 miles above your head",
    "retold": "retell/v4"
   },
@@ -35707,9 +35707,9 @@
   },
   {
    "slug": "mangrove-forest-loss",
-   "title": "Mangrove Area Fell To 15.2 Million Hectares",
-   "hook": "Mangrove area fell to 15.2 million hectares.",
-   "closing": "Slower losses show protection works, but every missing mangrove still leaves coastlines more exposed.",
+   "title": "Mangrove Loss Slowed 45% Even As Forests Shrunk",
+   "hook": "Mangrove loss slowed 45%, but coastlines still lost protection.",
+   "closing": "Slower loss proves protection works, but every missing mangrove leaves coastlines more exposed.",
    "question": "Can mangrove protection catch up?",
    "caption": "The world has lost a fifth of its mangrove forests since 1980 — but the pace of loss is finally slowing down. 👇",
    "hashtags": [
@@ -35738,8 +35738,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE LOSS",
-     "topic": "Mangrove Area Loss",
-     "say": "Mangrove area fell to 15.2 million hectares. Coastlines lost part of their natural storm barrier.",
+     "topic": "Mangrove Area",
+     "say": "Mangrove area fell to 15.2 million hectares, shrinking a natural barrier against coastal storms.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _mangrove(cr, x, base, s, lean=0.0):\n    cr.save()\n    cr.translate(x, base)\n    cr.rotate(lean * 1.45)\n    # the stilt roots: dark arches stepping out of the mud, the mangrove's tell\n    cr.set_source_rgba(*_c((70, 50, 36)))\n    cr.set_line_width(9 * s)\n    for r in (-3, -2, -1, 1, 2, 3):\n        cr.move_to(r * 4 * s, -95 * s)\n        cr.curve_to(r * 18 * s, -82 * s, r * 32 * s, -36 * s, r * 40 * s, 0)\n        cr.stroke()\n    # the trunk\n    cr.move_to(-13 * s, -85 * s)\n    cr.curve_to(-11 * s, -170 * s, -8 * s, -240 * s, -9 * s, -300 * s)\n    cr.line_to(9 * s, -300 * s)\n    cr.curve_to(8 * s, -240 * s, 11 * s, -170 * s, 13 * s, -85 * s)\n    cr.close_path()\n    solid(cr, (112, 84, 58))\n    # the crown: a big dense dome of glossy green leaves\n    lobes = [(-62, -300, 60, P[\"leaf_shade\"]), (62, -294, 60, P[\"leaf_shade\"]),\n             (0, -306, 66, P[\"leaf_shade\"]), (-36, -350, 62, P[\"leaf\"]),\n             (38, -346, 60, P[\"leaf\"]), (0, -386, 58, P[\"leaf\"])]\n    for ox, oy, r, col in lobes:\n        disc(cr, ox * s, oy * s, r * s, col, finish=\"gloss\")\n    cr.restore()\n\n\ndef _seedling(cr, px, py):\n    cr.move_to(px - 4, py)\n    cr.line_to(px - 3, py - 90)\n    cr.line_to(px + 3, py - 90)\n    cr.line_to(px + 4, py)\n    cr.close_path()\n    solid(cr, (96, 120, 60))\n    disc(cr, px - 16, py - 96, 18, P[\"leaf\"])\n    disc(cr, px + 16, py - 100, 18, P[\"leaf_shade\"])\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a green mangrove forest on stilt roots\n    SUBSTANCE: the green mangrove trees\n    CAUSE: Data chops the mangrove trees down with an axe, each one falling on the strike\n    One dense wall of mangroves on the shore is the whole of the world's\n    mangroves in 1980. The share lost by 2005 is a fifth of that same wall,\n    cut at its true width: Data chops those trees with an axe and each one\n    TOPPLES across the sky on the strike and lies on the mud, leaving a wide\n    gap of open sky and bare stumps in the canopy. The old canopy stays as\n    a dashed ghost over the gap, and the hectares lost are written inside\n    that gap, clear of the readout above, so the lost fifth reads at a\n    glance. Done by 0.56 and held; the tide keeps rolling in and he keeps\n    chopping.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    share = clamp((v0 - v1) / v0)\n\n    N = 10\n    X0, X1 = 70, 880\n    BASE = 1350\n    xs = [X0 + i * (X1 - X0) / (N - 1) for i in range(N)]\n    sc = [1.62 + 0.16 * ((i * 0.618) % 1.0) for i in range(N)]\n    nl = max(1, int(round(N * share)))\n    lost = list(range(N - 1, N - 1 - nl, -1))      # rightmost first\n    first_lost = lost[-1]\n    x_cut = (xs[first_lost] + xs[first_lost - 1]) / 2 if first_lost > 0 else X0 - 60\n\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / nl\n    k = int(clamp((u - a0) / span, 0, nl - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fall = seg(f, 0.3, 0.8) ** 2                   # it FALLS, on the strike\n    done = u >= a1\n\n    # the setting: a low sun over open coastal water — no far forest, so the\n    # gap cut in the canopy opens onto bright sky\n    landscape(cr, t, \"coast\")\n    haze(cr, 900, 1220, (214, 222, 228), a=0.4)\n    vgrad(cr, [(0, (58, 104, 116)), (1, (34, 70, 84))], 1215, 1590)\n    # the mud bank the forest stands on\n    cr.move_to(0, 1304)\n    cr.curve_to(300, 1290, 700, 1294, W, 1304)\n    cr.line_to(W, 1372)\n    cr.curve_to(700, 1382, 300, 1378, 0, 1372)\n    cr.close_path()\n    solid(cr, (104, 86, 64), edge=False)\n\n    cast_shadow(cr, X0 - 60, X1 + 60, BASE, length=260, a=0.28)\n    contact_shadow(cr, (X0 + X1) / 2, BASE + 4, X1 - X0 + 180, a=0.35)\n\n    # the forest that stays\n    for i in range(N):\n        if i not in lost:\n            _mangrove(cr, xs[i], BASE, sc[i])\n    # the lost share: felled one by one, each crown sweeping down to the mud\n    for j, i in enumerate(lost):\n        if u < a0 or j > k:\n            lean = 0.0\n        elif j < k:\n            lean = 1.0\n        else:\n            lean = fall\n        if lean > 0:\n            stump(cr, xs[i], BASE, 1.0)\n        _mangrove(cr, xs[i] + 10 * lean, BASE + 8 * lean, sc[i], lean)\n\n    # THE SCALE: the lost canopy as a ghost where it stood\n    gx1 = min(X1 + 110, W - 40)\n    if done:\n        top = BASE - 440 * sc[lost[0]]\n        cr.move_to(x_cut, BASE - 100)\n        cr.line_to(x_cut, top + 90)\n        cr.curve_to(x_cut + 40, top - 20, gx1 - 50, top - 20, gx1, top + 90)\n        cr.line_to(gx1, BASE - 100)\n        ghost(cr, a=0.85 * ease(seg(u, a1, a1 + 0.06)))\n\n    # the tide rolling in toward the camera\n    for j in range(4):\n        wy = 1392 + ((t * 150 + j * 48) % 192)\n        cr.move_to(0, wy)\n        for x in range(0, W + 60, 60):\n            cr.line_to(x, wy + 8 * math.sin(x * 0.02 + t * 1.5 + j))\n        cr.set_source_rgba(*_c((226, 240, 240), 0.75))\n        cr.set_line_width(14)\n        cr.stroke()\n\n    # right by the camera: the muddy shore and young mangroves\n    vgrad(cr, [(0, (120, 100, 76)), (1, (82, 66, 50))], 1590, H)\n    for i in range(5):\n        _seedling(cr, 110 + i * 210, 1740 + (i % 2) * 90)\n    foreground(cr, \"coast\")\n    vignette(cr, a=0.28)\n\n    # Data walks in from the water's edge and fells each tree with the axe\n    spot = [xs[i] - 90 for i in lost]\n    if u < a0:\n        host(\"point\", 990, BASE, 220)\n    elif not done:\n        prev = spot[k - 1] if k > 0 else 990\n        hx = prev + (spot[k] - prev) * ease(seg(f, 0.0, 0.25))\n        host(\"chop\", hx, BASE, 220, beat=k)\n    else:\n        # the gap is cut: he keeps working the last stump\n        host(\"chop\", spot[-1], BASE, 220, beat=nl + int((u - a1) / 0.14))\n\n    if done:\n        fit_readout(cr, f\"{v1:.1f}M hectares\", f\"of mangrove forest left · {l1}\",\n                    80, 520, size=130)\n        # the loss, written in the open sky of the gap itself\n        gap_cx = clamp((x_cut + gx1) / 2, 200, W - 200)\n        text(cr, f\"-{v0 - v1:.1f}M\", gap_cx, 930, 90, look.INK, face=\"display\",\n             anchor=\"center\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{v0:.1f}M hectares\", f\"of mangrove forest · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -35751,8 +35751,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHERE",
-     "topic": "Mangrove Asia Loss",
-     "say": "Asia lost 1.9 million hectares of mangroves. It carried the largest regional loss shown.",
+     "topic": "Mangrove Region",
+     "say": "Asia lost 1.9 million hectares of mangroves, the largest regional decline shown.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _h(i, k=0):\n    return ((i * 0.6180339 + k * 0.4142136) % 1.0)\n\n\ndef _mangrove(cr, x, base, s, lean=0.0, a=1.0, i=0):\n    # the prop roots arch down into the mud; they stay when the tree goes\n    sz = s * (0.88 + 0.24 * _h(i, 3))\n    nr = 4 + int(3 * _h(i, 1))\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for pass_, (col, wd, off) in enumerate((((52, 38, 28), 7.0, 0.0), ((128, 100, 74), 2.6, -2.0))):\n        cr.set_source_rgba(*_c(col))\n        cr.set_line_width(wd * sz)\n        for r in range(nr):\n            d = (r - (nr - 1) / 2) * 16 * sz\n            cr.move_to(x + d * 0.2 + off, base - 66 * sz)\n            cr.curve_to(x + d * 0.5 + off, base - 84 * sz, x + d * 1.6 + off, base - 50 * sz,\n                        x + d * 2.0 + off, base)\n        cr.stroke()\n    if lean > 0.0:\n        cr.rectangle(x - 9 * sz, base - 80 * sz, 18 * sz, 16 * sz)\n        solid(cr, P[\"trunk\"])\n        cr.save()\n        cr.translate(x, base - 80 * sz)\n        cr.scale(1.0, 0.35)\n        cr.arc(0, 0, 9 * sz, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, P[\"stump_top\"], edge=False)\n    if a <= 0.01:\n        return\n    cr.push_group()\n    cr.translate(x, base - 74 * sz)\n    cr.rotate(lean * 1.45)\n    cr.move_to(-8 * sz, 0)\n    cr.curve_to(-6 * sz, -50 * sz, -9 * sz, -90 * sz, -5 * sz, -128 * sz)\n    cr.line_to(5 * sz, -128 * sz)\n    cr.curve_to(8 * sz, -90 * sz, 6 * sz, -50 * sz, 8 * sz, 0)\n    cr.close_path()\n    solid(cr, P[\"trunk\"])\n    # a dense, glossy, irregular crown: shade lobes behind, lit lobes over them\n    lobes = []\n    for j in range(9):\n        ang = math.pi * (0.95 + 1.1 * j / 8.0)\n        rr = 52 + 14 * _h(i + j, 2)\n        lobes.append((math.cos(ang) * 62 * (0.8 + 0.3 * _h(i, j)),\n                      -150 + math.sin(ang) * 46 * (0.8 + 0.3 * _h(j, i)), rr))\n    for cx, cy, r in lobes:\n        cr.new_path()\n        cr.arc(cx * sz, cy * sz, r * sz, 0, 2 * math.pi)\n        solid(cr, P[\"leaf_shade\"], edge=False, rim=False)\n    for cx, cy, r in lobes[2:7]:\n        cr.new_path()\n        cr.arc((cx - 8) * sz, (cy - 10) * sz, r * 0.78 * sz, 0, 2 * math.pi)\n        solid(cr, P[\"leaf\"], finish=\"gloss\")\n    cr.new_path()\n    cr.arc(-14 * sz, -196 * sz, 40 * sz, 0, 2 * math.pi)\n    solid(cr, P[\"rim_leaf\"] if \"rim_leaf\" in P else P[\"leaf\"], finish=\"gloss\")\n    cr.pop_group_to_source()\n    cr.paint_with_alpha(a)\n\n\ndef _ripples(cr, t, y0, y1, n, speed, seed):\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for i in range(n):\n        y = y0 + (y1 - y0) * (((i + seed) * 0.6180339) % 1.0)\n        v = speed * (1.0 + 0.35 * (i % 3))\n        x = ((t * v + i * 233 + seed * 97) % 1320) - 120\n        cr.set_source_rgba(*_c((226, 240, 246), 0.6))\n        cr.set_line_width(10)\n        cr.move_to(x, y)\n        cr.line_to(x + 90, y)\n        cr.stroke()\n\n\ndef _bank(cr, y, seed):\n    cr.move_to(0, y - 18)\n    for i in range(13):\n        cr.line_to(i * 90, y - 18 - 8 * math.sin(i * 1.7 + seed))\n    cr.line_to(W, y + 30)\n    cr.curve_to(700, y + 44, 300, y + 22, 0, y + 36)\n    cr.close_path()\n    solid(cr, (112, 92, 70))\n\n\ndef _drift_trunk(cr, x, y, ang, s):\n    # a felled mangrove trunk riding the tide: pale bleached wood, roots trailing\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((34, 74, 96), 0.5))\n    cr.save()\n    cr.scale(1.0, 0.25)\n    cr.arc(0, 60 * s, 240 * s, 0, 2 * math.pi)\n    cr.restore()\n    cr.fill()\n    cr.rectangle(-210 * s, -34 * s, 420 * s, 68 * s)\n    solid(cr, (198, 176, 140))\n    cr.set_source_rgba(*_c((120, 96, 70)))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for i in range(4):\n        cr.move_to(-210 * s, (-20 + 13 * i) * s)\n        cr.curve_to(-250 * s, (-40 + 26 * i) * s, -280 * s, (-10 + 20 * i) * s,\n                    -300 * s, (-30 + 30 * i) * s)\n    cr.stroke()\n    cr.restore()\n    disc(cr, x + 210 * s * math.cos(ang), y + 210 * s * math.sin(ang), 34 * s,\n         P[\"stump_top\"])\n\n\ndef _root_clump(cr, x0, y0, flip):\n    # big lit prop roots right by the camera, arching out of the water\n    sgn = -1 if flip else 1\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for col, wd, off in (((40, 30, 22), 1.0, 0), ((132, 104, 76), 0.35, -5)):\n        cr.set_source_rgba(*_c(col))\n        for i in range(4):\n            cr.set_line_width((30 - 5 * i) * wd)\n            sx = x0 + sgn * (10 + 25 * i) + off\n            cr.move_to(sx, y0 - 60 + 30 * i)\n            cr.curve_to(sx + sgn * (90 + 30 * i), y0 - 140 + 20 * i,\n                        sx + sgn * (170 + 40 * i), y0 + 60,\n                        sx + sgn * (190 + 55 * i), H + 20)\n            cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a mangrove shoreline across a tidal channel\n    SUBSTANCE: mangrove trees\n    CAUSE: Data saws through the mangrove trunks and they fall, opening a gap as wide as that region's loss\n    Two banks of one tidal channel, drawn at the same scale: a dense double\n    wall of mangroves filling the middle of the frame. On the far bank Data\n    saws into the mangroves and they topple one into the next until the gap\n    is as wide as Asia's loss; that width is then marked on the near bank's\n    mud. On the near bank he saws again for North & Central America, then\n    Africa, end to end, and the two gaps together stop short of Asia's mark:\n    Asia lost more than both combined, read straight off the shore. Done by\n    0.70 and held; he keeps sawing the felled trunk into rounds and the cut\n    trunks keep drifting out on the tide.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    (lb, vb), rest = rows[0], rows[1:]\n    rs = sum(v for _, v in rest)\n    X0 = 130.0\n    SC = min(420.0, 820.0 / max(vb, rs, 1e-6))\n    FB, NB = 1040.0, 1450.0\n    FS, NS = 1.05, 1.22\n    HH = 232\n    xs = [20 + 50 * i for i in range(22)]\n    A0, MID, A1 = 0.05, 0.30, 0.67\n\n    gaps = [(\"far\", X0, X0 + vb * SC, lb, vb, A0, MID)]\n    x, s0 = X0, MID + 0.02\n    for l, v in rest:\n        s1 = s0 + (A1 - MID - 0.02) * v / (rs or 1.0)\n        gaps.append((\"near\", x, x + v * SC, l, v, s0, s1))\n        x, s0 = x + v * SC, s1\n    trees_in = [[tx for tx in xs if g[1] <= tx <= g[2]] for g in gaps]\n\n    def state(bank, tx):\n        for gi, g in enumerate(gaps):\n            if g[0] != bank or tx not in trees_in[gi]:\n                continue\n            m = len(trees_in[gi])\n            j = trees_in[gi].index(tx)\n            f = seg(u, g[5], g[6])\n            fs = 0.2 + 0.5 * (j / max(1, m - 1)) if m > 1 else 0.2\n            fp = seg(f, fs, fs + 0.15)\n            return fp * fp, 1.0 - seg(f, fs + 0.15, fs + 0.3)\n        return 0.0, 1.0\n\n    # which gap Data is working, and where along it\n    gk = 0\n    for gi, g in enumerate(gaps):\n        if u >= g[5]:\n            gk = gi\n    g = gaps[gk]\n    tr = trees_in[gk] or [g[1] + 20]\n    f = seg(u, g[5], g[6])\n    hx = tr[0] - 55 + (tr[-1] - tr[0]) * ease(seg(f, 0.2, 0.95))\n    far = g[0] == \"far\"\n    fy = FB + 2 if far else NB + 4\n    if u < A0:\n        hx, fy, far = X0 - 50, FB + 2, True\n\n    def data():\n        if u < A0:\n            host(\"point\", hx, fy, HH)\n        elif u < A1:\n            host(\"cut\", hx, fy, HH, beat=gk)\n        else:\n            # the story is done; he keeps sawing the felled trunk into rounds\n            k2 = int((u - A1) / 0.08)\n            fk = ((u - A1) / 0.08) % 1.0\n            cr.rectangle(hx + 30, fy - 36, 210, 32)\n            solid(cr, P[\"log\"])\n            disc(cr, hx + 30, fy - 20, 17, P[\"stump_top\"])\n            rx = hx + 240\n            drop = seg(fk, 0.45, 0.9)\n            disc(cr, rx + 30 * drop, fy - 20 + 60 * drop * drop, 17, P[\"stump_top\"],\n                 a=1.0 - seg(fk, 0.8, 1.0))\n            host(\"cut\", hx, fy, HH, beat=gk + 1 + k2)\n\n    # the setting: open sea behind the far shore, the channel in front\n    landscape(cr, t, \"coast\", horizon=960)\n    haze(cr, 600, 980, (204, 216, 224), a=0.3)\n    vgrad(cr, [(0, (84, 132, 152)), (1, (34, 74, 96))], 1030, H)\n    _ripples(cr, t, 1090, 1400, 11, 60, 1)\n\n    # the far bank: a dense wall of mangroves, softened by distance\n    _bank(cr, FB, 0.3)\n    cast_shadow(cr, 20, 1070, FB, length=140, a=0.2)\n    for tx in xs:\n        lean, a = state(\"far\", tx)\n        _mangrove(cr, tx, FB, FS, lean, a, i=int(tx))\n    haze(cr, 700, FB, (214, 222, 226), a=0.12)\n    if u >= MID:\n        c = (gaps[0][1] + gaps[0][2]) / 2\n        text(cr, lb, c, 900, fit_size(cr, lb, 48, gaps[0][2] - gaps[0][1]), look.INK,\n             anchor=\"center\", alpha=ease(seg(u, MID, MID + 0.04)))\n    if far:\n        data()\n\n    # the near bank, bigger, by the camera\n    _bank(cr, NB, 1.9)\n    cast_shadow(cr, 20, 1070, NB, length=140, a=0.22)\n    for tx in xs:\n        lean, a = state(\"near\", tx)\n        _mangrove(cr, tx + 22, NB, NS, lean, a, i=int(tx) + 7)\n    if u >= MID:\n        then_mark(cr, X0, X0 + vb * SC, NB + 14, lb, a=ease(seg(u, MID, MID + 0.04)))\n    for gi, gg in enumerate(gaps[1:], 1):\n        if u >= gg[6]:\n            c = (gg[1] + gg[2]) / 2\n            text(cr, gg[3], c, NB + 70, fit_size(cr, gg[3], 34, gg[2] - gg[1] - 8),\n                 look.INK, anchor=\"center\", alpha=min(1.0, ease(seg(u, gg[6], gg[6] + 0.025))))\n\n    # right by the camera: the tide, felled trunks drifting out, big prop roots\n    _ripples(cr, t, 1560, 1900, 10, 80, 5)\n    for i in range(2):\n        px = ((t * 170 + i * 760) % 1640) - 300\n        py = 1680 + 120 * i + 8 * math.sin(t * 1.3 + i)\n        _drift_trunk(cr, px, py, 0.08 * math.sin(t * 0.9 + i) - 0.1 + 0.2 * i,\n                     1.0 + 0.2 * i)\n    _root_clump(cr, -40, 1640, False)\n    _root_clump(cr, W + 40, 1690, True)\n    foreground(cr, \"coast\", y0=1780)\n    if not far:\n        data()\n    vignette(cr, a=0.28)\n\n    if u >= MID:\n        fit_readout(cr, f\"{vb:.1f}M hectares\", f\"of mangroves lost in {lb}\", 80, 520,\n                    a=ease(seg(u, MID, MID + 0.04)), size=130)\n    else:\n        fit_readout(cr, \"Mangroves lost\", \"where the loss hit hardest\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n    if u >= A1:\n        b = min(1.0, ease(seg(u, A1, A1 + 0.025)))\n        text(cr, f\"{rs:.1f}M\", W - 80, 655, 72, look.INK, face=\"display\",\n             anchor=\"right\", alpha=b)\n        lab = \" + \".join(l for l, _ in rest) + \" combined\"\n        text(cr, lab, W - 80, 698, fit_size(cr, lab, 30, 620), look.INK,\n             anchor=\"right\", alpha=b)\n"
     },
     {
@@ -35763,13 +35763,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · A BRIGHT SPOT",
-     "topic": "Mangrove Loss Rate",
-     "say": "Annual mangrove loss slowed to 102 thousand hectares. Protection can reduce destruction even before it stops it."
+     "topic": "Mangrove Rate",
+     "say": "Annual mangrove loss slowed 45%, proving protection can reduce destruction before it stops it."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-02T12:20:58Z",
+   "rewritten_at": "2026-11-03T12:21:20Z",
    "hook_was": "Mangrove forests are quietly disappearing."
   },
   {
@@ -36437,6 +36437,10 @@
     "marinelife",
     "explainer"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:20Z",
+   "hook_was": "The species almost went silent in 2018.",
    "segments": [
     {
      "source": "offline",
@@ -36472,11 +36476,7 @@
      "topic": "Right Whale Mothers",
      "say": "Only 70 right whales are breeding females, so losing a few can stall recovery for years."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:09Z",
-   "hook_was": "The species almost went silent in 2018."
+   ]
   },
   {
    "slug": "pedestrian-deaths-outlier",
@@ -36497,6 +36497,9 @@
     "transportation",
     "explainer"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:20Z",
    "segments": [
     {
      "source": "offline",
@@ -36531,10 +36534,7 @@
      "topic": "Pedestrian Share",
      "say": "Pedestrians were about 18% of traffic deaths, making this exception a major safety problem."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:09Z"
+   ]
   },
   {
    "slug": "private-moon-landings-fail-rate",
@@ -36861,10 +36861,10 @@
   },
   {
    "slug": "autism-diagnosis-rate-rise",
-   "title": "Autism Diagnoses Went From 1 In 150 To 1 In 31",
-   "hook": "1 in 31 kids now gets an autism diagnosis.",
-   "closing": "Better spotting means more kids get noticed. It doesn't prove more kids are affected.",
-   "question": "Did your kid's school change its screening?",
+   "title": "Autism Diagnosis Rate Reached 1 In 31",
+   "hook": "Autism diagnoses reached 1 in 31 children.",
+   "closing": "Better detection helps children get support, but it does not prove autism itself increased.",
+   "question": "Has screening changed near you?",
    "caption": "In 2000, 1 in 150 eight-year-olds was diagnosed with autism. By 2022 it was 1 in 31 — and where you live can change your odds 5x over. Did screening change at your school? 👇",
    "hashtags": [
     "autism",
@@ -36891,8 +36891,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
-     "topic": "autism diagnosis rate",
-     "say": "In 2000, only about 1 in 150 eight-year-olds had a diagnosis. Now it's roughly five times that."
+     "topic": "Autism Rate",
+     "say": "Autism prevalence reached 32.2 per thousand children, making diagnoses far more common than two decades earlier."
     },
     {
      "source": "offline",
@@ -36903,8 +36903,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE GENDER GAP",
-     "topic": "Autism in boys, girls",
-     "say": "Boys are diagnosed 3.4 times as often as girls. Doctors are still catching up on spotting it in girls."
+     "topic": "Autism Sex",
+     "say": "Autism diagnoses are 3.4 times more common in boys, showing girls may still be missed."
     },
     {
      "source": "offline",
@@ -36915,13 +36915,13 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE LOTTERY OF WHERE YOU LIVE",
-     "topic": "Autism by site",
-     "say": "A California site found over five times the autism rate of a Texas one. Where and how you look changes the answer."
+     "topic": "Autism Sites",
+     "say": "Autism rates vary more than fivefold by site, proving where and how clinicians look changes the count."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-31T12:57:59Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:19Z"
   },
   {
    "slug": "elephant-poaching-decline",
@@ -36946,6 +36946,10 @@
     "explainer",
     "animals"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:20Z",
+   "hook_was": "Africa's elephants have been vanishing for 50 years.",
    "segments": [
     {
      "source": "offline",
@@ -36984,11 +36988,7 @@
      "topic": "Elephant Poaching",
      "say": "Elephant poaching fell 61% from its peak, proving protection can reverse the immediate pressure."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:09Z",
-   "hook_was": "Africa's elephants have been vanishing for 50 years."
+   ]
   },
   {
    "slug": "genome-sequencing-cost-collapse",
@@ -37056,10 +37056,10 @@
   },
   {
    "slug": "local-news-deserts-expanding",
-   "title": "US Newspapers Dropped From 7,325 To 4,490",
-   "hook": "Local newspapers are dying off, and your town may be next.",
-   "closing": "Nobody's watching city hall anymore. That should worry you.",
-   "question": "Know your local reporter's name? Comment below.",
+   "title": "US Newspapers Fell 39%, Creating More Local News Deserts",
+   "hook": "US newspapers fell 39%, leaving more towns without watchdogs.",
+   "closing": "When local reporting disappears, fewer people watch decisions that shape your town.",
+   "question": "Do you know your local reporter?",
    "caption": "Since 2005, America has lost nearly 3,000 newspapers — down to just 4,490 left. Now 50 million Americans live somewhere with little or no local news at all. Do you still get local news? Tell me below 📰",
    "hashtags": [
     "localnews",
@@ -37084,8 +37084,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "US newspapers",
-     "say": "Since 2005, the US has lost nearly 3,000 newspapers. That's about two in every five, gone in just twenty years."
+     "topic": "Local Newspapers",
+     "say": "US newspapers fell 39%, stripping thousands of communities of regular local reporting."
     },
     {
      "source": "offline",
@@ -37095,8 +37095,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE DESERTS",
-     "topic": "News desert counties",
-     "say": "A news desert is a county with no local news. One year added four more, so 208 now have none.",
+     "topic": "Local Deserts",
+     "say": "News deserts reached 208 counties, leaving every resident without a dedicated local source.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _nd_bay(cr, x0, x1, wall_h, rgb, name, c, t, i):\n    base = 1440\n    b = building(cr, x0, x1, base, wall_h, rgb, roof=\"flat\", depth=26, boards=False)\n    top = b[\"top\"]\n    lit = 1.0 - c\n    seams(cr, x0 + 4, top + 24, x1 - 4, base - 450, rgb, n=7, axis=\"h\", width=1.5, a=0.4)\n    trim(cr, x0 - 4, top - 6, x1 + 4, top + 16, (214, 204, 188), w=6)\n    # upper newsroom windows: lit while the paper is alive\n    ww = (x1 - x0 - 60) / 2.0\n    for j in range(2):\n        wx0 = x0 + 30 + j * ww + 10\n        wwid = ww - 20\n        wy0 = top + 48\n        wh = min(110.0, base - 470 - wy0)\n        if wh < 40:\n            continue\n        warm = tuple(int(a + (bb - a) * lit) for a, bb in zip((34, 32, 40), (250, 204, 128)))\n        vgrad(cr, [(0, warm), (1, tuple(int(v * 0.7) for v in warm))], wy0, wy0 + wh, wx0, wx0 + wwid)\n        if lit > 0.05:\n            glow(cr, wx0 + wwid / 2, wy0 + wh / 2, wwid * 0.7, (255, 210, 140), 0.35 * lit)\n        trim(cr, wx0, wy0, wx0 + wwid, wy0 + wh, (226, 216, 198), w=6)\n        cr.set_source_rgba(*_c((226, 216, 198)))\n        cr.set_line_width(4)\n        cr.move_to(wx0 + wwid / 2, wy0)\n        cr.line_to(wx0 + wwid / 2, wy0 + wh)\n        cr.move_to(wx0, wy0 + wh / 2)\n        cr.line_to(wx0 + wwid, wy0 + wh / 2)\n        cr.stroke()\n        box(cr, wx0 - 8, wy0 + wh + 12, wwid + 16, 10, (200, 192, 178), depth=6)\n    # the masthead sign\n    sy0, sy1 = base - 440, base - 382\n    cr.rectangle(x0 + 14, sy0, x1 - x0 - 28, sy1 - sy0)\n    solid(cr, (38, 42, 56))\n    trim(cr, x0 + 14, sy0, x1 - 14, sy1, (190, 160, 96), w=5)\n    sz = fit_size(cr, name, 34, x1 - x0 - 60)\n    text(cr, name, (x0 + x1) / 2, sy1 - 16, sz, (244, 228, 186), face=\"bold\",\n         anchor=\"center\", alpha=1.0 - 0.65 * c, shadow=False)\n    for bx in (x0 + 24, x1 - 24):\n        disc(cr, bx, sy0 + 10, 4, (120, 116, 110), finish=\"metal\")\n    # the storefront: warm office, stacks of the day's paper\n    ox0, ox1, oy0, oy1 = x0 + 22, x1 - 22, 1160, 1340\n    mid = (ox0 + ox1) / 2\n    cr.save()\n    cr.rectangle(ox0, oy0, ox1 - ox0, oy1 - oy0)\n    cr.clip()\n    warm = tuple(int(a + (bb - a) * lit) for a, bb in zip((30, 28, 34), (236, 186, 120)))\n    vgrad(cr, [(0, tuple(int(v * 0.6) for v in warm)), (1, warm)], oy0, oy1, ox0, ox1)\n    glow(cr, mid, oy1 - 40, 160, (255, 214, 150), 0.4 * lit)\n    for s in range(3):\n        px = ox0 + 14 + s * 22 if s < 2 else ox1 - 70\n        for q in range(4):\n            box(cr, px, oy1 - q * 12, 44, 11, (236, 230, 214), depth=8)\n    cr.restore()\n    # door with its knob and frame\n    cr.rectangle(mid - 34, 1190, 68, 150)\n    solid(cr, (96, 66, 44))\n    seams(cr, mid - 30, 1196, mid + 30, 1336, (96, 66, 44), n=3, axis=\"h\", width=1.5)\n    disc(cr, mid + 22, 1270, 5, (200, 170, 90), finish=\"metal\")\n    trim(cr, ox0, oy0, ox1, oy1, (222, 212, 194), w=7)\n    cr.rectangle(ox0, 1340, ox1 - ox0, 100)\n    solid(cr, (150, 140, 128))\n    seams(cr, ox0, 1340, ox1, 1440, (150, 140, 128), n=2, axis=\"h\", width=1.5)\n    # roll-down steel shutter\n    cr.rectangle(ox0 - 8, 1136, ox1 - ox0 + 16, 30)\n    solid(cr, (110, 114, 122), finish=\"metal\")\n    yb = 1168 + (1332 - 1168) * c\n    if yb > 1172:\n        cr.rectangle(ox0, 1166, ox1 - ox0, yb - 1166)\n        solid(cr, (152, 156, 164), finish=\"metal\")\n        seams(cr, ox0, 1166, ox1, yb, (152, 156, 164), n=max(1, int((yb - 1166) / 18)),\n              axis=\"h\", width=2.0, a=0.6)\n    cr.rectangle(ox0 - 4, yb - 6, ox1 - ox0 + 8, 14)\n    solid(cr, (64, 66, 72), finish=\"metal\")\n    for hx in (mid - 30, mid + 30):\n        disc(cr, hx, yb + 1, 6, (90, 92, 98), finish=\"metal\")\n    return mid, yb\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a row of small-town newspaper offices\n    SUBSTANCE: steel shutters coming down\n    CAUSE: Data grips each paper's shutter and pulls it down by hand, one more news desert each\n    Main street at dusk, a row of local papers side by side, every window\n    lit. The year's change is the number of counties that lost their last\n    paper: Data walks down the row and hauls each office's shutter down\n    with his own hands, its lights going out behind it, one per new news\n    desert. Four dark fronts are the four more counties; the readout goes\n    from the earlier count to the later one once the last shutter lands,\n    then holds while a truck drives past the dark row.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    d = int(round(v1 - v0))\n    N = max(1, min(5, abs(d)))\n    a0, a1 = 0.06, 0.60\n    span = (a1 - a0) / N\n    k = int(clamp((u - a0) / span, 0, N - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    walk = ease(seg(f, 0.0, 0.3))\n    pull = ease(seg(f, 0.3, 0.8))\n    closed = []\n    for i in range(N):\n        if u < a0 or i > k:\n            closed.append(0.0)\n        elif i < k:\n            closed.append(1.0)\n        else:\n            closed.append(pull)\n    done = u >= a0 and k == N - 1 and pull >= 0.999\n\n    landscape(cr, t, \"town\", horizon=1170, time=\"dusk\", seed=\"newspaper office row\", skyline=True)\n    haze(cr, 700, 1300, (232, 176, 146), a=0.3)\n    # sidewalk, curb, street\n    cr.rectangle(0, 1440, W, 72)\n    solid(cr, (174, 168, 158), edge=False)\n    seams(cr, 0, 1440, W, 1512, (174, 168, 158), n=11, axis=\"v\", width=1.5)\n    cr.rectangle(0, 1508, W, 16)\n    solid(cr, (140, 136, 130), edge=False)\n    vgrad(cr, [(0, (70, 68, 74)), (1, (46, 44, 50))], 1524, H)\n    cr.set_source_rgba(*_c((232, 210, 120), 0.8))\n    for j in range(6):\n        cr.rectangle(30 + j * 190, 1700, 100, 10)\n    cr.fill()\n\n    widths = [1.0, 1.08, 0.94, 1.04, 0.98][:N]\n    tw = sum(widths)\n    heights = [600, 560, 640, 580, 620]\n    cols = [(152, 72, 58), (178, 142, 112), (122, 88, 76), (170, 98, 72), (142, 122, 106)]\n    names = [\"GAZETTE\", \"HERALD\", \"COURIER\", \"TRIBUNE\", \"LEDGER\"]\n    cast_shadow(cr, 30, 1050, 1440, length=200, a=0.25)\n    bars = []\n    x = 30.0\n    for i in range(N):\n        w_ = 1000.0 * widths[i] / tw\n        bars.append(_nd_bay(cr, x, x + w_ - 6, heights[i], cols[i], names[i], closed[i], t, i))\n        x += w_\n\n    # a truck rolls past the dark row once it has landed\n    if u > 0.58:\n        tx = -420 + 1800 * seg(u, 0.58, 1.0)\n        contact_shadow(cr, tx + 120, 1640, 300, a=0.3)\n        truck(cr, tx, 1630, 1.2)\n    # right by the camera: a street lamp and an empty newspaper box\n    contact_shadow(cr, 70, 1880, 60, a=0.4)\n    cylinder(cr, 56, 1880, 28, 760, (52, 56, 62), finish=\"metal\")\n    glow(cr, 70, 1110, 70, (255, 214, 150), 0.6)\n    disc(cr, 70, 1110, 22, (255, 230, 180))\n    contact_shadow(cr, 900, 1880, 190, a=0.45)\n    for lx in (836, 950):\n        cr.rectangle(lx, 1800, 10, 80)\n        solid(cr, (60, 60, 66), finish=\"metal\")\n    box(cr, 820, 1810, 150, 200, (190, 50, 42), depth=40)\n    cr.rectangle(840, 1640, 110, 80)\n    solid(cr, (40, 44, 52), finish=\"glass\")\n    trim(cr, 840, 1640, 950, 1720, (210, 206, 200), w=5)\n    cr.rectangle(850, 1745, 90, 30)\n    solid(cr, (230, 224, 210))\n    seams(cr, 852, 1747, 938, 1773, (230, 224, 210), n=3, axis=\"h\", width=1.5)\n    disc(cr, 895, 1790, 6, (200, 200, 206), finish=\"metal\")\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks the row and pulls each shutter down by hand\n    def grip_at(i):\n        mid, yb = bars[i]\n        hands = [(mid - 30, yb + 2), (mid + 30, yb + 2)]\n        gx = stand_at(hands, 1450, 300, mid)\n        return (mid if gx is None else gx), hands\n\n    if u < a0:\n        host(\"point\", bars[0][0], 1450, 300)\n    else:\n        gx, hands = grip_at(k)\n        if f < 0.3 and not done:\n            px = grip_at(k - 1)[0] if k > 0 else gx\n            host(\"point\", px + (gx - px) * walk, 1450, 300)\n        else:\n            host(\"grip\", gx, 1450, 300, hands=hands, lower=\"follow\",\n                 expr=\"strain\" if not done else \"happy\")\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))} counties\", f\"with no local news · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"+{d}\", W - 80, 720, 90, P[\"accent2\"], face=\"display\", anchor=\"right\",\n             alpha=ease(seg(u, 0.57, 0.63)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} counties\", f\"with no local news · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -37107,13 +37107,13 @@
      },
      "insight_type": "share",
      "role": "3 · WHO IT HITS",
-     "topic": "Living without news",
-     "say": "Roughly 15 percent of the country lives with little or no local news. That's millions of people missing what their town decides."
+     "topic": "Local Coverage",
+     "say": "Little or no local news affects 15% of Americans, linking newspaper collapse directly to what communities know."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-01T12:31:56Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:19Z",
    "hook_was": "Why is nobody covering your town's news anymore?"
   },
   {
@@ -37137,6 +37137,9 @@
     "technology",
     "innovation"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-03T12:21:21Z",
    "segments": [
     {
      "source": "offline",
@@ -37171,10 +37174,7 @@
      "topic": "Robotic Revenue",
      "say": "Robotic-surgery revenue reached $7.1 billion, reflecting how quickly hospitals adopted the technology."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:19:09Z"
+   ]
   },
   {
    "slug": "nuclear-reactors-under-construction",
