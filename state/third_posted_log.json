@@ -17644,13 +17644,36 @@
       "ts": "2026-11-03T11:45:31.073354+00:00"
     },
     "clip-20261103-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/VainDiligentEggYouDontSay-iHjG-vvmSXEiCUA1",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/Kvdu3JkIAbc",
       "title": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
       "kind": "twitch_clip",
-      "ts": "2026-11-03T13:38:13.022024+00:00",
+      "ts": "2026-11-03T13:38:22.327729+00:00",
+      "uploaded_at": "2026-11-03T13:38:22.327740+00:00",
+      "publish_at": "2026-11-03T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261103-that-was-close-a7a82a56",
+        "tiktok": "queued for 2026-11-03T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/VainDiligentEggYouDontSay-iHjG-vvmSXEiCUA1",
+      "streamer": "caseoh_",
+      "series": "unknown",
+      "hook": "",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1903,
+      "banger": 0.7
+    },
+    "clip-20261103-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SillyAffluentEchidnaPhilosoraptor-GFg2BioDFba0yoC6",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "The Stableronaldo Clip Everyone's Talking About",
+      "kind": "twitch_clip",
+      "ts": "2026-11-03T13:42:27.199226+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
