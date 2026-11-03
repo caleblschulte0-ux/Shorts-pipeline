@@ -1,0 +1,123 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261103",
+  "written_at": "2026-11-03T12:20:33.194Z",
+  "written_by": "chatgpt",
+  "retryable": true,
+  "exact_failed_step": "Step 8: verify actual channel output against the frozen bundle contract using posted logs and accepted upload URLs",
+  "bundle": {
+    "bundle_id": "642ad43b60bf59b594d5086081effcfb3f466b70f80bb3be4e002bba7e2d7636",
+    "source_commit": "7127c0e8530c29514440107024d0ecc2269343f4",
+    "frozen_contract": {
+      "sports": {
+        "format": "sports_moment",
+        "required": 5,
+        "verified_posted": 4,
+        "pending": 1,
+        "accepted_urls": [
+          "https://youtube.com/shorts/X9JHBcePA3A",
+          "https://youtube.com/shorts/BVBKCqgvW4Y",
+          "https://youtube.com/shorts/HLzzgbMWXxk",
+          "https://youtube.com/shorts/9oF54-LW9WY"
+        ]
+      },
+      "twitch": {
+        "format": "clip",
+        "required": 6,
+        "verified_posted": 1,
+        "pending": 5,
+        "accepted_urls": [
+          "https://youtube.com/shorts/Ge4eZ-gfgbg"
+        ]
+      },
+      "explainer": {
+        "format": "data_story",
+        "required": 4,
+        "verified_posted": 0,
+        "pending": 4,
+        "accepted_urls": []
+      },
+      "total": {
+        "required": 15,
+        "verified_posted": 5,
+        "pending": 10
+      }
+    }
+  },
+  "attempts": [
+    "Committed media-progress/STARTED.json before every other production write.",
+    "Read the frozen bundle, registry, README, Section 7, and all three actual mailbox indexes from main.",
+    "Executed two Section 7 mailbox rounds without redoing settled answers: 40 ask keys and 20 rewrite requests answered.",
+    "Committed and read-back validated response.json, then committed DONE separately.",
+    "Verified the Drive folder shorts-pipeline-drops exists and is shared; the bundle has zero image media requests.",
+    "Observed Phase B success and commit 25fbc4973181d2dc98d88b1129e1aaa37a4ffb84; two Explainer rewrites applied and the cereal rewrite was refused because the guard reported dropped numeric claims 77.8 and 91.3.",
+    "Observed the dispatched Daily Shorts run 41634209043 complete successfully; it staged no held renders or review frames and the active sports_moment renderer correctly reported capture ownership elsewhere.",
+    "Observed mailbox claim commits 43359dfb237b532ddc8b3a7f82fc1847c8a531c8 and 87cc0e14d4f0f2b87337feb8b7babbc3303a9862.",
+    "Read all three posted logs from main after downstream completion and deduplicated same-day entries by accepted URL."
+  ],
+  "mailbox": {
+    "reviews": {
+      "open": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No open review requests in either round."
+    },
+    "asks": {
+      "open_keys": 62,
+      "answered": 40,
+      "skipped": 22,
+      "reason": "Two Section 7 rounds reached the 20-key cap; the remaining indexed keys are cap-deferred or await consumer removal."
+    },
+    "rewrites": {
+      "open": 151,
+      "answered": 20,
+      "skipped": 131,
+      "reason": "Two Section 7 rounds reached the 10-rewrite cap; settled answer files were reused and the remaining backlog is cap-deferred or claim-pending.",
+      "claim_commits": [
+        "43359dfb237b532ddc8b3a7f82fc1847c8a531c8",
+        "87cc0e14d4f0f2b87337feb8b7babbc3303a9862"
+      ]
+    }
+  },
+  "handoff": {
+    "started_commit": "a0337ae6777f811f08770bd4f692c9430a4b16ad",
+    "ask_answer_commits": [
+      "92a290f7d2575d14f66e8b31e0a9c48eab0b3d71",
+      "4382ecb79bb16dba770f190726fe7d00d6f3405e",
+      "e85bf242bb55d4cb86e17f44995b7a58ddd4dd69"
+    ],
+    "rewrite_answer_commits": [
+      "9159d9c22d34a788cb4bd7b7e156488359974e19",
+      "fc5d1a7db13d1568f97e9c7ef87a0ebc8a48acc3",
+      "dd60420e3ea6d69d5b6f4d0dc42f7600b48adc1a",
+      "5be127001208f9beae83227e7dd405bbaaf65c4c",
+      "542702e1ca33978998e35ac93894d176da7934e1",
+      "fc26b42f28e089038ddcd7ad63e5fc4c99d6e06c",
+      "672ea75718ed60eb5f48a41b04fd94dcc132eaf1",
+      "aa0078c44712fb8dab086602819b99f1e3e6574a",
+      "e99d6cc361ba670861455da7bad6eabc84e102ad",
+      "8cdfb8bf7e90acc1cad50a156e211c0e206bf9e9",
+      "18bdebb882a06f93e9be0b3e965b659cd9dc13ba",
+      "f3bc00562496e449d96714d6e5e95ee7f7a7841f",
+      "0f45288dd935941f503a0e6a7faabc5063906d11",
+      "e598436a215d80d060eced71c4773eb2b8c9df0b",
+      "761b1f826af407df201be2e95fd6ae6e49fe3e15",
+      "01a4d3716fe41b34763fa9e340faa2b4b70e17f4",
+      "6b6353bd1573ba67912a3f94933c9966eab85a83",
+      "948d2319a96159129c17340824c0a0a97f739a5d",
+      "088b172670ff0c755637ddfc0034d88edbe46e5f",
+      "5f7d399ed8625cb2fa5e5dc4670fbe2b359cb598"
+    ],
+    "response_commit": "e48ee08d15b054c9e1fe3e77605ffe021dd01769",
+    "done_commit": "bcf269e6b97606171a16a80c72a0f77c40ab5a7e",
+    "phase_b_commit": "25fbc4973181d2dc98d88b1129e1aaa37a4ffb84"
+  },
+  "no_done_retrigger": true,
+  "remaining_shortfall": 10,
+  "day_closed": false,
+  "notes": [
+    "DONE is a render trigger, not proof of upload completion.",
+    "No repository code, workflow, validator, gate, test, documentation, configuration, or state file was changed.",
+    "Transient downstream shortfalls remain enabled for their normal schedules and retries."
+  ]
+}
