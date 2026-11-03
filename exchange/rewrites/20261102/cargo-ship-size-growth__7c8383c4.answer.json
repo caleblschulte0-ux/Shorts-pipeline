@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cargo-ship-size-growth__7c8383c4",
+  "slug": "cargo-ship-size-growth",
+  "by": "chatgpt",
+  "written_at": "2026-11-03T12:18:17.622Z",
+  "title": "Cargo Capacity Grew Sixfold While Crews Shrunk",
+  "hook": "Cargo ships carry 6 times more while using smaller crews.",
+  "closing": "The goods you buy now ride on giant ships operated by remarkably small crews.",
+  "question": "Would you crew this ship?",
+  "segments": [
+    {
+      "topic": "Cargo Capacity",
+      "say": "The largest cargo ship carries 24,327 containers, turning one voyage into a moving distribution hub."
+    },
+    {
+      "topic": "Cargo Scale",
+      "say": "The largest cargo ship is 400 meters long, making today's vessels far larger than famous ocean liners."
+    },
+    {
+      "topic": "Cargo Crew",
+      "say": "A cargo crew is now just 20 people, even as the ships they operate became much larger."
+    }
+  ]
+}
