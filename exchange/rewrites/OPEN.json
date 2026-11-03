@@ -1,7 +1,77 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-03T00:55:36Z",
+ "updated": "2026-11-03T11:49:30Z",
  "open": [
+  {
+   "id": "pedestrian-deaths-outlier__247b5fb6_r1",
+   "slug": "pedestrian-deaths-outlier",
+   "filed": "2026-11-03T11:49:29Z",
+   "why": [
+    "premise: brain: The premise lacks a single consequential, verifiable number for the climbing death type, making it insufficient."
+   ],
+   "request": "exchange/rewrites/20261103/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__465990a8",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-11-03T11:49:29Z",
+   "why": [
+    "premise: brain: The premise does not overturn a viewer expectation and merely states a statistic without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261103/measles-comeback-since-2000__465990a8.request.json",
+   "answer_path": "exchange/rewrites/20261103/measles-comeback-since-2000__465990a8.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__c6fe157f_r1",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-03T11:49:29Z",
+   "why": [
+    "premise: brain: The premise lacks a single concrete, verifiable number and does not clearly invert a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261103/robotic-surgery-doubled__c6fe157f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/robotic-surgery-doubled__c6fe157f_r1.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r6",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-03T11:49:28Z",
+   "why": [
+    "premise: brain: It lacks a specific, verifiable number (e.g., time to 100 million) and does not clearly reverse a viewer expectation with that metric."
+   ],
+   "request": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__c2e9df7d_r6.request.json",
+   "answer_path": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__c2e9df7d_r6.answer.json"
+  },
+  {
+   "id": "elephant-poaching-decline__8a2feac3",
+   "slug": "elephant-poaching-decline",
+   "filed": "2026-11-03T11:49:28Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on an unverified statistic."
+   ],
+   "request": "exchange/rewrites/20261103/elephant-poaching-decline__8a2feac3.request.json",
+   "answer_path": "exchange/rewrites/20261103/elephant-poaching-decline__8a2feac3.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__fa5c1ac3",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-03T11:49:28Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a common viewer expectation and relies only on a startling figure without contextual twist."
+   ],
+   "request": "exchange/rewrites/20261103/right-whale-breeding-females__fa5c1ac3.request.json",
+   "answer_path": "exchange/rewrites/20261103/right-whale-breeding-females__fa5c1ac3.answer.json"
+  },
+  {
+   "id": "drone-commercial-overtake__4ce6725d_r1",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-11-03T11:49:27Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw count without a consequential, verifiable twist."
+   ],
+   "request": "exchange/rewrites/20261103/drone-commercial-overtake__4ce6725d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/drone-commercial-overtake__4ce6725d_r1.answer.json"
+  },
   {
    "id": "chess-online-boom__f9b7e085_r3",
    "slug": "chess-online-boom",
@@ -63,16 +133,6 @@
    "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.answer.json"
   },
   {
-   "id": "measles-comeback-since-2000__465990a8",
-   "slug": "measles-comeback-since-2000",
-   "filed": "2026-11-02T23:21:10Z",
-   "why": [
-    "premise: brain: It presents a statistic without overturning a viewer expectation, failing the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.request.json",
-   "answer_path": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.answer.json"
-  },
-  {
    "id": "cargo-ship-size-growth__7c8383c4",
    "slug": "cargo-ship-size-growth",
    "filed": "2026-11-02T18:16:35Z",
@@ -81,56 +141,6 @@
    ],
    "request": "exchange/rewrites/20261102/cargo-ship-size-growth__7c8383c4.request.json",
    "answer_path": "exchange/rewrites/20261102/cargo-ship-size-growth__7c8383c4.answer.json"
-  },
-  {
-   "id": "elephant-poaching-decline__8a2feac3",
-   "slug": "elephant-poaching-decline",
-   "filed": "2026-11-02T14:00:33Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies only on a single statistic without a consequential, verifiable context."
-   ],
-   "request": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.request.json",
-   "answer_path": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.answer.json"
-  },
-  {
-   "id": "right-whale-breeding-females__fa5c1ac3",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-02T14:00:33Z",
-   "why": [
-    "premise: brain: It presents a stark fact but does not overturn a viewer's expectation, merely stating a number without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.request.json",
-   "answer_path": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.answer.json"
-  },
-  {
-   "id": "drone-commercial-overtake__4ce6725d_r1",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-11-02T13:07:05Z",
-   "why": [
-    "premise: brain: Unclear reversal of a specific viewer expectation despite the numeric claim"
-   ],
-   "request": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
-   "id": "robotic-surgery-doubled__c6fe157f_r1",
-   "slug": "robotic-surgery-doubled",
-   "filed": "2026-11-02T12:20:58Z",
-   "why": [
-    "premise: brain: It lacks a single concrete, verifiable number and the premise’s reversal of expectation is not clearly defined."
-   ],
-   "request": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f_r1.answer.json"
-  },
-  {
-   "id": "pedestrian-deaths-outlier__247b5fb6_r1",
-   "slug": "pedestrian-deaths-outlier",
-   "filed": "2026-11-02T12:20:57Z",
-   "why": [
-    "premise: brain: The premise lacks a single verifiable number for the climbing death type, relying on an unspecified trend."
-   ],
-   "request": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
   },
   {
    "id": "lego-minifigs-outnumber-humans__161409d0_r5",
@@ -151,16 +161,6 @@
    ],
    "request": "exchange/rewrites/20261102/tsa-digital-id-states-growth__1330070e_r1.request.json",
    "answer_path": "exchange/rewrites/20261102/tsa-digital-id-states-growth__1330070e_r1.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r6",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-02T12:20:56Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies on a vague, broad comparison rather than a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.request.json",
-   "answer_path": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.answer.json"
   },
   {
    "id": "library-digital-shift__bba2e477_r1",

@@ -1,0 +1,155 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "robotic-surgery-doubled__c6fe157f_r1",
+ "filed": "2026-11-03T11:49:29Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "robotic-surgery-doubled",
+ "current": {
+  "title": "Robotic Surgery Procedures Doubled In 4 Years",
+  "hook": "Would you let a robotic surgeon operate on you?",
+  "closing": "So if you ever need surgery, a robot may well be part of it.",
+  "question": "Would you trust a robot in surgery?",
+  "segments": [
+   {
+    "topic": "Robotic Surgery Procedures",
+    "say": "Robot-assisted operations nearly doubled in just four years, reaching 3.15 million worldwide in 2025. What was once rare is now routine."
+   },
+   {
+    "topic": "Robotic Surgery Share",
+    "say": "In 2012, only about one in fifty US general surgeries used a robot. By 2018 it was about one in seven."
+   },
+   {
+    "topic": "Robotic Surgery Revenue",
+    "say": "Intuitive Surgical, the company behind most of these robots, grew by about a seventh in 2023, to 7.1 billion dollars in sales."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Robotic Surgery Procedures",
+   "say": "Robot-assisted operations nearly doubled in just four years, reaching 3.15 million worldwide in 2025. What was once rare is now routine.",
+   "role": "1 · THE SURGE",
+   "data": {
+    "file": "davinci_procedures_trend.json",
+    "unit": "million",
+    "title": "Global da Vinci robotic surgery procedures (millions)",
+    "points": [
+     {
+      "label": "2021",
+      "value": 1.594,
+      "period": "2021"
+     },
+     {
+      "label": "2022",
+      "value": 1.875,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 2.286,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 2.683,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 3.153,
+      "period": "2025"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Robotic Surgery Share",
+   "say": "In 2012, only about one in fifty US general surgeries used a robot. By 2018 it was about one in seven.",
+   "role": "2 · NOT RARE ANYMORE",
+   "data": {
+    "file": "robotic_general_surgery_share.json",
+    "unit": "percent",
+    "title": "Share of US general surgeries performed robotically",
+    "points": [
+     {
+      "label": "2012",
+      "value": 1.8,
+      "period": "2012"
+     },
+     {
+      "label": "2018",
+      "value": 15.1,
+      "period": "2018"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Robotic Surgery Revenue",
+   "say": "Intuitive Surgical, the company behind most of these robots, grew by about a seventh in 2023, to 7.1 billion dollars in sales.",
+   "role": "3 · THE INDUSTRY",
+   "data": {
+    "file": "davinci_revenue_trend.json",
+    "unit": "billion dollars",
+    "title": "Intuitive Surgical annual revenue (billion dollars)",
+    "points": [
+     {
+      "label": "2022",
+      "value": 6.2,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 7.1,
+      "period": "2023"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise lacks a single concrete, verifiable number and does not clearly invert a specific viewer expectation."
+ ],
+ "reasons": [
+  "premise: brain: The premise lacks a single concrete, verifiable number and does not clearly invert a specific viewer expectation."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261103/robotic-surgery-doubled__c6fe157f_r1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
