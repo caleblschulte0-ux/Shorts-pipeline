@@ -1,7 +1,57 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-03T12:56:15Z",
+ "updated": "2026-11-03T14:12:17Z",
  "open": [
+  {
+   "id": "cavendish-banana-monoculture__66913e65_r2",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-11-03T14:12:17Z",
+   "why": [
+    "premise: brain: The title universalizes all bananas and all taste while the hook makes an unsupported claim about the individual viewer's consumption."
+   ],
+   "request": "exchange/rewrites/20261103/cavendish-banana-monoculture__66913e65_r2.request.json",
+   "answer_path": "exchange/rewrites/20261103/cavendish-banana-monoculture__66913e65_r2.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__51f127a7_r2",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-03T14:12:17Z",
+   "why": [
+    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
+   ],
+   "request": "exchange/rewrites/20261103/muscle-loss-after-30__51f127a7_r2.request.json",
+   "answer_path": "exchange/rewrites/20261103/muscle-loss-after-30__51f127a7_r2.answer.json"
+  },
+  {
+   "id": "union-membership-record-low__05e1eaa3",
+   "slug": "union-membership-record-low",
+   "filed": "2026-11-03T14:12:17Z",
+   "why": [
+    "premise: brain: Falling below 10% continues a familiar decline rather than overturning a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261103/union-membership-record-low__05e1eaa3.request.json",
+   "answer_path": "exchange/rewrites/20261103/union-membership-record-low__05e1eaa3.answer.json"
+  },
+  {
+   "id": "billion-dollar-disasters-record-2023__b78b14a1",
+   "slug": "billion-dollar-disasters-record-2023",
+   "filed": "2026-11-03T14:12:16Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a raw statistic without a surprising twist."
+   ],
+   "request": "exchange/rewrites/20261103/billion-dollar-disasters-record-2023__b78b14a1.request.json",
+   "answer_path": "exchange/rewrites/20261103/billion-dollar-disasters-record-2023__b78b14a1.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__b37435d8_r1",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-11-03T14:12:16Z",
+   "why": [
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261103/coldest-place-in-the-universe-is-human-made__b37435d8_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/coldest-place-in-the-universe-is-human-made__b37435d8_r1.answer.json"
+  },
   {
    "id": "cargo-ship-size-growth__7c8383c4",
    "slug": "cargo-ship-size-growth",
@@ -33,34 +83,14 @@
    "answer_path": "exchange/rewrites/20261103/tsa-digital-id-states-growth__1330070e_r1.answer.json"
   },
   {
-   "id": "seabed-mining-rush__94b642eb_r3",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-11-03T00:55:36Z",
-   "why": [
-    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
-   ],
-   "request": "exchange/rewrites/20261103/seabed-mining-rush__94b642eb_r3.request.json",
-   "answer_path": "exchange/rewrites/20261103/seabed-mining-rush__94b642eb_r3.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__57c0cf06",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-11-03T00:55:35Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a single figure without a compelling contrast."
-   ],
-   "request": "exchange/rewrites/20261103/mangrove-forest-loss__57c0cf06.request.json",
-   "answer_path": "exchange/rewrites/20261103/mangrove-forest-loss__57c0cf06.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__2ae2ad6e",
+   "id": "california-condor-comeback__2ae2ad6e_r1",
    "slug": "california-condor-comeback",
-   "filed": "2026-11-03T00:55:34Z",
+   "filed": "2026-11-03T12:21:20Z",
    "why": [
     "premise: brain: The premise does not clearly overturn a common viewer expectation and relies only on an unverified count."
    ],
-   "request": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.request.json",
-   "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.answer.json"
+   "request": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e_r1.answer.json"
   },
   {
    "id": "measles-comeback-since-2000__465990a8",
@@ -71,6 +101,16 @@
    ],
    "request": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.request.json",
    "answer_path": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__94b642eb_r3",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-02T14:59:23Z",
+   "why": [
+    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
+   ],
+   "request": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.request.json",
+   "answer_path": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.answer.json"
   },
   {
    "id": "chess-online-boom__f9b7e085_r3",
@@ -133,6 +173,16 @@
    "answer_path": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.answer.json"
   },
   {
+   "id": "mangrove-forest-loss__57c0cf06",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-02T13:07:04Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer's expectation and lacks a single consequential, verifiable number framing a surprise."
+   ],
+   "request": "exchange/rewrites/20261102/mangrove-forest-loss__57c0cf06.request.json",
+   "answer_path": "exchange/rewrites/20261102/mangrove-forest-loss__57c0cf06.answer.json"
+  },
+  {
    "id": "robotic-surgery-doubled__c6fe157f_r1",
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-02T12:20:58Z",
@@ -161,46 +211,6 @@
    ],
    "request": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.request.json",
    "answer_path": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.answer.json"
-  },
-  {
-   "id": "library-digital-shift__bba2e477_r1",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-01T20:07:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a vague claim rather than a single, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261101/library-digital-shift__bba2e477_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/library-digital-shift__bba2e477_r1.answer.json"
-  },
-  {
-   "id": "local-news-deserts-expanding__9f62ea81",
-   "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-01T19:34:34Z",
-   "why": [
-    "thesis: seg2 ('Living without news') has no bridge to the headline ('US Newspapers Dropped From 7,325 To 4,490') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261101/local-news-deserts-expanding__9f62ea81.request.json",
-   "answer_path": "exchange/rewrites/20261101/local-news-deserts-expanding__9f62ea81.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__b37435d8",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-01T19:34:33Z",
-   "why": [
-    "pace: hook is 15 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.request.json",
-   "answer_path": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__3a83f544",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-01T12:35:12Z",
-   "why": [
-    "premise: brain: Uses multiple statistics rather than a single consequential number, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.request.json",
-   "answer_path": "exchange/rewrites/20261101/autism-diagnosis-rate-rise__3a83f544.answer.json"
   },
   {
    "id": "cruise-ship-outbreaks-climbing__815de0c3",
@@ -291,16 +301,6 @@
    ],
    "request": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.request.json",
    "answer_path": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.answer.json"
-  },
-  {
-   "id": "billion-dollar-disasters-record-2023__689aac16_r1",
-   "slug": "billion-dollar-disasters-record-2023",
-   "filed": "2026-11-01T12:19:45Z",
-   "why": [
-    "premise: brain: Unclear reversal of a viewer's specific expectation despite a numeric claim"
-   ],
-   "request": "exchange/rewrites/20261101/billion-dollar-disasters-record-2023__689aac16_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/billion-dollar-disasters-record-2023__689aac16_r1.answer.json"
   },
   {
    "id": "earthquake-detection-illusion__c70a68bc_r1",
