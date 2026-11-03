@@ -1,6 +1,6 @@
 {
  "schema": "shorts-ask-index/v1",
- "updated": "2026-11-03T18:14:43Z",
+ "updated": "2026-11-03T20:40:50Z",
  "open": [
   {
    "batch": "exchange/asks/20260921.json",
@@ -57,7 +57,7 @@
   {
    "batch": "exchange/asks/20261103.json",
    "answer_path": "exchange/asks/20261103.answers.json",
-   "pending": 47,
+   "pending": 48,
    "keys": [
     "fdb94c8f97464c6d",
     "5032b751fc0ad57b",
@@ -105,7 +105,8 @@
     "abdb2811cd361b91",
     "cf14eb8da2386498",
     "3a82c0240fbdf0ac",
-    "5be4d3a93d305ddd"
+    "5be4d3a93d305ddd",
+    "67097a6c06a80da3"
    ]
   }
  ],
