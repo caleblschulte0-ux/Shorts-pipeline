@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-02T23:21:10Z",
+ "updated": "2026-11-03T00:55:36Z",
  "open": [
+  {
+   "id": "chess-online-boom__f9b7e085_r3",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-03T00:55:36Z",
+   "why": [
+    "premise: brain: The 200-million figure is consequential, but the premise assigns the whole surge to one show without support and offers no clean expectation reversal."
+   ],
+   "request": "exchange/rewrites/20261103/chess-online-boom__f9b7e085_r3.request.json",
+   "answer_path": "exchange/rewrites/20261103/chess-online-boom__f9b7e085_r3.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__74b0628c_r2",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-03T00:55:36Z",
+   "why": [
+    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
+   ],
+   "request": "exchange/rewrites/20261103/frog-freezes-and-revives__74b0628c_r2.request.json",
+   "answer_path": "exchange/rewrites/20261103/frog-freezes-and-revives__74b0628c_r2.answer.json"
+  },
+  {
+   "id": "national-parks-record-then-shutdown__e1e36be1",
+   "slug": "national-parks-record-then-shutdown",
+   "filed": "2026-11-03T00:55:36Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer's expectation and lacks a single consequential, verifiable number framing a surprising contrast."
+   ],
+   "request": "exchange/rewrites/20261103/national-parks-record-then-shutdown__e1e36be1.request.json",
+   "answer_path": "exchange/rewrites/20261103/national-parks-record-then-shutdown__e1e36be1.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__94b642eb_r3",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-03T00:55:36Z",
+   "why": [
+    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
+   ],
+   "request": "exchange/rewrites/20261103/seabed-mining-rush__94b642eb_r3.request.json",
+   "answer_path": "exchange/rewrites/20261103/seabed-mining-rush__94b642eb_r3.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__57c0cf06",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-03T00:55:35Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a single figure without a compelling contrast."
+   ],
+   "request": "exchange/rewrites/20261103/mangrove-forest-loss__57c0cf06.request.json",
+   "answer_path": "exchange/rewrites/20261103/mangrove-forest-loss__57c0cf06.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__2ae2ad6e",
+   "slug": "california-condor-comeback",
+   "filed": "2026-11-03T00:55:34Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a common viewer expectation and relies only on an unverified count."
+   ],
+   "request": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.request.json",
+   "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.answer.json"
+  },
   {
    "id": "measles-comeback-since-2000__465990a8",
    "slug": "measles-comeback-since-2000",
@@ -23,26 +83,6 @@
    "answer_path": "exchange/rewrites/20261102/cargo-ship-size-growth__7c8383c4.answer.json"
   },
   {
-   "id": "seabed-mining-rush__94b642eb_r3",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-11-02T14:59:23Z",
-   "why": [
-    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
-   ],
-   "request": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.request.json",
-   "answer_path": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.answer.json"
-  },
-  {
-   "id": "chess-online-boom__f9b7e085_r3",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-02T14:00:33Z",
-   "why": [
-    "premise: brain: The 200-million figure is consequential, but the premise assigns the whole surge to one show without support and offers no clean expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261102/chess-online-boom__f9b7e085_r3.request.json",
-   "answer_path": "exchange/rewrites/20261102/chess-online-boom__f9b7e085_r3.answer.json"
-  },
-  {
    "id": "elephant-poaching-decline__8a2feac3",
    "slug": "elephant-poaching-decline",
    "filed": "2026-11-02T14:00:33Z",
@@ -51,16 +91,6 @@
    ],
    "request": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.request.json",
    "answer_path": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.answer.json"
-  },
-  {
-   "id": "frog-freezes-and-revives__74b0628c_r2",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-02T14:00:33Z",
-   "why": [
-    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
-   ],
-   "request": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.request.json",
-   "answer_path": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.answer.json"
   },
   {
    "id": "right-whale-breeding-females__fa5c1ac3",
@@ -73,16 +103,6 @@
    "answer_path": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.answer.json"
   },
   {
-   "id": "national-parks-record-then-shutdown__e1e36be1",
-   "slug": "national-parks-record-then-shutdown",
-   "filed": "2026-11-02T13:07:06Z",
-   "why": [
-    "premise: brain: It does not overturn a viewer expectation, merely states a statistic without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261102/national-parks-record-then-shutdown__e1e36be1.request.json",
-   "answer_path": "exchange/rewrites/20261102/national-parks-record-then-shutdown__e1e36be1.answer.json"
-  },
-  {
    "id": "drone-commercial-overtake__4ce6725d_r1",
    "slug": "drone-commercial-overtake",
    "filed": "2026-11-02T13:07:05Z",
@@ -91,16 +111,6 @@
    ],
    "request": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.request.json",
    "answer_path": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__57c0cf06",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-11-02T13:07:04Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a viewer's expectation and lacks a single consequential, verifiable number framing a surprise."
-   ],
-   "request": "exchange/rewrites/20261102/mangrove-forest-loss__57c0cf06.request.json",
-   "answer_path": "exchange/rewrites/20261102/mangrove-forest-loss__57c0cf06.answer.json"
   },
   {
    "id": "robotic-surgery-doubled__c6fe157f_r1",
@@ -181,16 +191,6 @@
    ],
    "request": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.request.json",
    "answer_path": "exchange/rewrites/20261101/coldest-place-in-the-universe-is-human-made__b37435d8.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__7fd19fc0",
-   "slug": "california-condor-comeback",
-   "filed": "2026-11-01T16:41:34Z",
-   "why": [
-    "premise: brain: It presents a factual increase without overturning a viewer expectation, lacking the required reversal."
-   ],
-   "request": "exchange/rewrites/20261101/california-condor-comeback__7fd19fc0.request.json",
-   "answer_path": "exchange/rewrites/20261101/california-condor-comeback__7fd19fc0.answer.json"
   },
   {
    "id": "autism-diagnosis-rate-rise__3a83f544",
