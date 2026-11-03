@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-03T11:49:30Z",
+ "updated": "2026-11-03T12:16:47Z",
  "open": [
   {
    "id": "pedestrian-deaths-outlier__247b5fb6_r1",
@@ -11,16 +11,6 @@
    ],
    "request": "exchange/rewrites/20261103/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
    "answer_path": "exchange/rewrites/20261103/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
-  },
-  {
-   "id": "measles-comeback-since-2000__465990a8",
-   "slug": "measles-comeback-since-2000",
-   "filed": "2026-11-03T11:49:29Z",
-   "why": [
-    "premise: brain: The premise does not overturn a viewer expectation and merely states a statistic without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261103/measles-comeback-since-2000__465990a8.request.json",
-   "answer_path": "exchange/rewrites/20261103/measles-comeback-since-2000__465990a8.answer.json"
   },
   {
    "id": "robotic-surgery-doubled__c6fe157f_r1",
@@ -131,6 +121,16 @@
    ],
    "request": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.request.json",
    "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__465990a8",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-11-02T23:21:10Z",
+   "why": [
+    "premise: brain: It presents a statistic without overturning a viewer expectation, failing the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.request.json",
+   "answer_path": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.answer.json"
   },
   {
    "id": "cargo-ship-size-growth__7c8383c4",

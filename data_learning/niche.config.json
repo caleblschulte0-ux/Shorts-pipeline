@@ -35902,10 +35902,10 @@
   },
   {
    "slug": "measles-comeback-since-2000",
-   "title": "US Measles Cases Reached 2,289 Again",
-   "hook": "US measles cases reached 2,289 again.",
-   "closing": "When vaccination gaps widen, measles can return to classrooms that thought it was gone.",
-   "question": "Did you know measles had returned?",
+   "title": "Measles Returned With 2,289 US Cases",
+   "hook": "Eliminated nationally, measles returned with 2,289 cases.",
+   "closing": "Vaccination gaps can bring a supposedly defeated disease back into classrooms.",
+   "question": "Did you think measles was gone?",
    "caption": "The US declared measles eliminated in 2000. In 2025, cases hit 2,289 -- the worst year since. 93% of those who got sick were unvaccinated. Did you know it was ever gone? 👇",
    "hashtags": [
     "measles",
@@ -35931,8 +35931,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COMEBACK",
-     "topic": "Measles Case Return",
-     "say": "US measles cases reached 2,289. A disease once eliminated nationally is spreading again."
+     "topic": "Measles Return",
+     "say": "US measles cases reached 2,289, reversing the expectation that national elimination meant the disease was gone."
     },
     {
      "source": "offline",
@@ -35942,8 +35942,8 @@
      },
      "insight_type": "share",
      "role": "2 · WHO GOT SICK",
-     "topic": "Measles Vaccine Gap",
-     "say": "Unvaccinated people made up 93 percent of cases. The comeback follows gaps in protection, not bad luck."
+     "topic": "Measles Protection",
+     "say": "Unvaccinated people made up 93% of cases, tying the comeback to gaps in protection."
     },
     {
      "source": "offline",
@@ -35953,13 +35953,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHERE IT SPREAD",
-     "topic": "Measles Texas Outbreak",
-     "say": "The Texas outbreak reached 702 cases. One vulnerable pocket can drive a large share of national spread."
+     "topic": "Measles Outbreak",
+     "say": "The Texas outbreak reached 702 cases, showing how one vulnerable pocket can drive national spread."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-02T12:20:58Z",
+   "rewritten_at": "2026-11-03T12:16:47Z",
    "hook_was": "We eliminated measles in 2000. Cases just hit 2,289."
   },
   {
