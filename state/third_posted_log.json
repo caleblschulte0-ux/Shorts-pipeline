@@ -17642,6 +17642,16 @@
       "rejected_by": "qa",
       "rejected_why": "audio dead for 6.2s at 12.8s; render_qa: freeze: 2.5s of frozen frames (>= 2s) \u2014 stalled render or dead source",
       "ts": "2026-11-03T11:45:31.073354+00:00"
+    },
+    "clip-20261103-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/VainDiligentEggYouDontSay-iHjG-vvmSXEiCUA1",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
+      "kind": "twitch_clip",
+      "ts": "2026-11-03T13:38:13.022024+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
