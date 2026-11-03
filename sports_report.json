@@ -6,125 +6,83 @@
  "slots": [
   {
    "sub": "sports",
-   "who": "Kylian Mbapp\u00e9",
-   "why": "He steps up to defend a kid accidentally hit by a teammate's shot",
-   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \"It's Tchouam\u00e9ni's fault. He doesn't know how to shoot.\"",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xluz84/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xluz84/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
-   "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni For THIS Awkward Moment With A Kid",
-   "hook": "Kylian Mbapp\u00e9 comforts kid hit by shot",
-   "ledger": {
-    "moves": [
-     "whoa@3.19"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "facecam_gameplay",
-     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
-     "shots": [],
-     "n_subjects": 2
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 100
-   },
-   "video_url": "https://youtube.com/shorts/X9JHBcePA3A",
-   "ok": true,
-   "publish_at": "2026-11-03T15:00:00Z",
-   "seconds": 163,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261103-kylian-mbapp-blames-tchouam-ni-for-this-awkward--b0fda730",
-    "tiktok": "queued for 2026-11-03T15:00:00Z"
-   }
-  },
-  {
-   "sub": "nba",
-   "who": "Victor Wembanyama",
-   "why": "He shows up in a full Witcher costume for the Halloween matchup",
-   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
-   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
-   "skipped": "too short: the post runs 10.9s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Russell Westbrook",
-   "why": "Sam Presti surprises him on stage with his jersey retirement announcement",
-   "post_title": "Sam Presti surprising Russell Westbrook live on stage at the Oklahoma City National Memorial & Museum luncheon with the announcement of his jersey retirement",
-   "upvotes": 0,
-   "url": "https://streamable.com/y708sg",
-   "topic": "https://www.reddit.com/r/nba/comments/1xm7w8a/sam_presti_surprising_russell_westbrook_live_on",
-   "title": "Russell Westbrook Gets SHOCKED With His Jersey Retirement Date",
-   "hook": "Russell Westbrook gets surprised on stage \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@15.13"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      370,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": [
-     {
-      "track": "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5",
-      "credit": "Song: AC13, KAZHI, Jessee, Cartoon - Made For The Game (ft. Kazhi)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/MadeForTheGame"
-     }
-    ]
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
-   },
-   "video_url": "https://youtube.com/shorts/BVBKCqgvW4Y",
-   "ok": true,
-   "publish_at": "2026-11-03T18:00:00Z",
-   "seconds": 321,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261103-russell-westbrook-gets-shocked-with-his-jersey-r-73052979",
-    "tiktok": "queued for 2026-11-03T18:00:00Z"
-   }
-  },
-  {
-   "sub": "baseball",
    "who": "Milwaukee Brewers",
-   "why": "The champions parade with the Commissioner's Trophy and a Lambeau Leap",
-   "post_title": "This is awesome: The Milwaukee Brewers showed up at Lambeau Field with the Commissioner\u2019s Trophy after winning the World Series last night \u2014 and some of them even did the Lambeau Leap.",
+   "why": "Fans watch the emotional celebration of the franchise's first World Series win",
+   "post_title": "The Brewers take home their first World Series title in franchise history!",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xj1ogo/this_is_awesome_the_milwaukee_brewers_showed_up/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xj1ogo/this_is_awesome_the_milwaukee_brewers_showed_up",
-   "title": "Milwaukee Brewers Celebrate World Series Win With A Lambeau Leap \ud83c\udfc6",
-   "hook": "Brewers bring trophy to Lambeau Field \ud83c\udfc6",
+   "url": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xi8zcy/the_brewers_take_home_their_first_world_series",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "A star comforts a kid who was accidentally hit by a shot, showing genuine kindness",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni After Kid Gets Hit",
+   "hook": "Mbapp\u00e9 defends the kid",
    "ledger": {
     "moves": [
-     "whoa@12.13"
+     "zoom@1.5"
     ],
     "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      330,
+      440,
+      262,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kak\u00e1",
+   "why": "Tears flow as he receives a standing ovation and Hall of Fame induction",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Clay Matthews",
+   "why": "Hot\u2011mic banter reveals the playful side of a veteran defender during a game",
+   "post_title": "[Highlight] In 2017, Clay Matthews reads an arm signal and yells, \u201cIt\u2019s that wheel route!\u201d Cam Newton on the hot mic replies, \u201cYou\u2019ve been watching film, huh? That\u2019s cool, watch this,\u201d then hits CMC o",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xix0u2/highlight_in_2017_clay_matthews_reads_an_arm",
+   "title": "Clay Matthews Calls Wheel Route, Cam Newton Fires Back with CMC Touchdown",
+   "hook": "Clay calls a wheel route \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
     "shot_plan": {
      "layout": "action",
      "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
@@ -145,70 +103,28 @@
     "outro": null,
     "cut_in": [],
     "shown": [],
-    "music": [
-     {
-      "track": "ncs:e107e1b8-d869-4742-a649-8a18a5027c2e",
-      "credit": "Song: Sayfro, BAYZY - On and On\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/BS_OnandOn"
-     }
-    ]
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 100
-   },
-   "video_url": "https://youtube.com/shorts/HLzzgbMWXxk",
-   "ok": true,
-   "publish_at": "2026-11-03T21:00:00Z",
-   "seconds": 292,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261103-milwaukee-brewers-celebrate-world-series-win-wit-1b6d4f64",
-    "tiktok": "queued for 2026-11-03T21:00:00Z"
-   }
-  },
-  {
-   "sub": "baseball",
-   "who": "William Contreras",
-   "why": "He gives a surprising, heartfelt gesture to a sandwich vendor",
-   "post_title": "[ESPN] William Contreras surprised this man selling sandwiches with a kind gesture he wasn\u2019t expecting",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xiqdyl/espn_william_contreras_surprised_this_man_selling",
-   "title": "William Contreras Surprises Sandwich Vendor With Unexpected Kindness",
-   "hook": "William thanks the sandwich guy",
-   "ledger": {
-    "moves": [
-     "zoom@7.75"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
     "music": []
    },
    "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 100
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
    },
-   "video_url": "https://youtube.com/shorts/9oF54-LW9WY",
-   "ok": true,
-   "publish_at": "2026-11-04T00:00:00Z",
-   "seconds": 77,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261103-william-contreras-surprises-sandwich-vendor-with-09f1e41a",
-    "tiktok": "queued for 2026-11-04T00:00:00Z"
-   }
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "sports",
+   "who": "Jacob Misiorowski",
+   "why": "A perfectly timed beer\u2011throw and chug becomes a viral celebration moment",
+   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "skipped": "author: no title"
   }
  ],
- "already_today": 0,
- "pool": 87,
- "already_posted": 13,
- "shipped": 4
+ "already_today": 4,
+ "pool": 102,
+ "already_posted": 17,
+ "shipped": 0
 }
