@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "right-whale-breeding-females__fa5c1ac3",
+  "slug": "right-whale-breeding-females",
+  "by": "chatgpt",
+  "written_at": "2026-11-03T12:14:35.172Z",
+  "title": "Right Whales Produced 22 Calves In A Fragile Rebound",
+  "hook": "A species near collapse just produced 22 calves.",
+  "closing": "The rebound is real, but every surviving mother still carries the species' future.",
+  "question": "Can right whales recover?",
+  "segments": [
+    {
+      "topic": "Right Whale Population",
+      "say": "Right whales reached 384 animals, a small rebound that still leaves the entire species dangerously limited."
+    },
+    {
+      "topic": "Right Whale Calves",
+      "say": "Right whales produced 22 calves, reversing a season when none were born."
+    },
+    {
+      "topic": "Right Whale Mothers",
+      "say": "Only 70 right whales are breeding females, so losing a few can stall recovery for years."
+    }
+  ]
+}
