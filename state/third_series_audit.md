@@ -7,7 +7,7 @@
 | wholesome | 11 | 0.08 |
 | beef | 10 | 0.045 |
 | fail | 9 | 0.06 |
-| win | 7 | 0.01 |
+| win | 7 | 0.02 |
 | argument | 6 | 0.055 |
 | rage | 5 | 0.04 |
 | extended | 5 | 0.01 |
