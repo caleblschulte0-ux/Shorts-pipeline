@@ -1,7 +1,18 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-03T14:12:17Z",
+ "updated": "2026-11-03T15:21:12Z",
  "open": [
+  {
+   "id": "local-news-deserts-expanding__9f62ea81_r1",
+   "slug": "local-news-deserts-expanding",
+   "filed": "2026-11-03T15:21:12Z",
+   "why": [
+    "thesis: seg1 ('News desert counties') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )",
+    "thesis: seg2 ('Living without news') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )"
+   ],
+   "request": "exchange/rewrites/20261103/local-news-deserts-expanding__9f62ea81_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/local-news-deserts-expanding__9f62ea81_r1.answer.json"
+  },
   {
    "id": "cavendish-banana-monoculture__66913e65_r2",
    "slug": "cavendish-banana-monoculture",

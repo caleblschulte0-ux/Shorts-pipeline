@@ -25541,8 +25541,8 @@
   {
    "slug": "coldest-place-in-the-universe-is-human-made",
    "title": "NASA Made Atoms Colder Than 1 Kelvin",
-   "hook": "Scientists built a place colder than anywhere in nature, and it's floating over your head.",
-   "closing": "The coldest known place now sits in orbit, built by people, so we can study it.",
+   "hook": "Scientists made atoms colder than nature anywhere, inside a lab orbiting overhead.",
+   "closing": "Human-built extreme cold lets researchers study matter in conditions nature cannot provide nearby.",
    "question": "What can ultracold atoms reveal?",
    "caption": "The coldest known place in the universe isn't 5,000 light-years away -- it's 250 miles above your head. NASA's Cold Atom Lab chills atoms a billion times colder than deep space itself. Could you survive one second there? 👇",
    "hashtags": [
@@ -25569,9 +25569,9 @@
      },
      "insight_type": "rank",
      "ascending": true,
-     "topic": "Colder Space Background",
+     "topic": "NASA Space Cold",
      "role": "1 · HOW COLD SPACE GETS",
-     "say": "Empty space sits at 2.7 kelvin, far colder than a room. Only the Boomerang Nebula, the coldest natural place known, goes lower.",
+     "say": "Empty space is 2.7 kelvin, but the Boomerang Nebula is colder—the natural benchmark NASA's lab beat.",
      "scene": {
       "mechanic": "cryo-ladder-frost-climb",
       "concept": "a vertical thermometer scale drops from room temperature to deep space to the Boomerang Nebula, frost rings thickening at each colder marker",
@@ -25586,9 +25586,9 @@
       "file": "cold_atom_lab_vs_nebula.json"
      },
      "insight_type": "comparison",
-     "topic": "Colder NASA Atoms",
+     "topic": "NASA Atoms",
      "role": "2 · THE UPSET",
-     "say": "NASA's Cold Atom Lab chilled atoms ten billion times colder than the Boomerang Nebula. Nothing known in nature gets that cold.",
+     "say": "NASA chilled atoms ten billion times colder than the Boomerang Nebula, reaching a temperature nature cannot match.",
      "scene": {
       "mechanic": "frost-density-duel",
       "concept": "a nebula photo lightly dusted with frost sits beside NASA's ISS lab, frost particle density on the lab panel dialed up to a billion-times-colder extreme",
@@ -25603,9 +25603,9 @@
       "file": "nebula_vs_iss_distance.json"
      },
      "insight_type": "comparison",
-     "topic": "Colder Atoms Overhead",
+     "topic": "Atoms Overhead",
      "role": "3 · THE TWIST",
-     "say": "The lab is 250 miles up on the space station. The Boomerang Nebula is quadrillions of miles away. Ultracold is now close.",
+     "say": "The lab orbits 250 miles overhead, while its natural comparison is quadrillions of miles away—extreme cold brought close.",
      "scene": {
       "mechanic": "earth-orbit-vs-deep-space-flyout",
       "concept": "the ISS orbits tight around Earth while a marker flies out toward the frame edge racking up quadrillions of miles to reach the nebula",
@@ -25613,8 +25613,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-01T12:49:11Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-03T14:31:19Z",
    "hook_was": "The coldest place in the universe is 250 miles above your head",
    "retold": "retell/v4"
   },
