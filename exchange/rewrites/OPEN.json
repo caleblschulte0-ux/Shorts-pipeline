@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-03T15:21:12Z",
+ "updated": "2026-11-03T23:07:45Z",
  "open": [
+  {
+   "id": "chatgpt-fastest-adoption-ever__32d8ae2b",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-03T23:07:45Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies on a vague growth narrative rather than a single, striking, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__32d8ae2b.request.json",
+   "answer_path": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__32d8ae2b.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__4a438973",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-03T23:07:45Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a vague number without a verifiable, consequential twist."
+   ],
+   "request": "exchange/rewrites/20261103/right-whale-breeding-females__4a438973.request.json",
+   "answer_path": "exchange/rewrites/20261103/right-whale-breeding-females__4a438973.answer.json"
+  },
   {
    "id": "local-news-deserts-expanding__9f62ea81_r1",
    "slug": "local-news-deserts-expanding",
@@ -154,16 +174,6 @@
    "answer_path": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.answer.json"
   },
   {
-   "id": "right-whale-breeding-females__fa5c1ac3",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-02T14:00:33Z",
-   "why": [
-    "premise: brain: It presents a stark fact but does not overturn a viewer's expectation, merely stating a number without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.request.json",
-   "answer_path": "exchange/rewrites/20261102/right-whale-breeding-females__fa5c1ac3.answer.json"
-  },
-  {
    "id": "national-parks-record-then-shutdown__e1e36be1",
    "slug": "national-parks-record-then-shutdown",
    "filed": "2026-11-02T13:07:06Z",
@@ -212,16 +222,6 @@
    ],
    "request": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
    "answer_path": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r6",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-02T12:20:56Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies on a vague, broad comparison rather than a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.request.json",
-   "answer_path": "exchange/rewrites/20261102/chatgpt-fastest-adoption-ever__c2e9df7d_r6.answer.json"
   },
   {
    "id": "cruise-ship-outbreaks-climbing__815de0c3",
