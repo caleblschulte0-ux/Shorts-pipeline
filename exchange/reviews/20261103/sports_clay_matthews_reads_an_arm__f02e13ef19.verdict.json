@@ -1,0 +1,67 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_clay_matthews_reads_an_arm__f02e13ef19",
+ "video_sha256": "f02e13ef192ad9c51433fc16f0f29c7abdd9fcf8be783e73fc9750303f4be8a2",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-03T13:50:02Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 4,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 0
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "The footage consists of real NFL game action."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any of the frames."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number card is used; text conveys dialogue."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The `longest_static_s` is 0.0, indicating continuous motion or text changes."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frames are filled with game footage and legible text, with no large empty areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear, high-contrast, and fully visible."
+   }
+  },
+  "weakest_scene": {
+   "id": "payoff@-0.4",
+   "index": 0,
+   "failure_class": "Payoff",
+   "visible_evidence": "The video ends with Cam Newton saying \"WATCH\" but does not show the subsequent action (the touchdown) that he refers to.",
+   "root_cause": "The video segment is cut too short, omitting the crucial concluding action of the moment.",
+   "repair_goal": "Extend the video to include the touchdown play that Cam Newton refers to, ensuring the \"WATCH\" line has a visual resolution."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "This is raw sports footage depicting an event, not a data visualization. The 'chart' kind is a forced fit as the rubric's options do not directly apply to this format."
+   }
+  ],
+  "one_line": "The video sets up an exciting verbal exchange but cuts off abruptly before the promised visual payoff.",
+  "problems": [
+   "The video ends abruptly after Cam Newton says \"WATCH\", failing to show the promised touchdown, which makes the payoff incomplete for a viewer."
+  ],
+  "fixes": [
+   "Extend the video footage to include the touchdown play that Cam Newton refers to, ensuring the \"WATCH\" line has a visual resolution and the moment lands."
+  ]
+ }
+}
