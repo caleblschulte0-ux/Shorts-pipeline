@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "library-digital-shift__bba2e477_r1",
+  "slug": "library-digital-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-03T12:18:17.622Z",
+  "title": "Library Visits Fell 46%, But Digital Borrowing More Than Doubled",
+  "hook": "Library visits fell 46%, but readers moved online.",
+  "closing": "The building emptied, but your library card became useful anywhere.",
+  "question": "When did you last use a library?",
+  "segments": [
+    {
+      "topic": "Library Visits",
+      "say": "Library visits fell 46%, showing in-person traffic never fully recovered."
+    },
+    {
+      "topic": "Library Checkouts",
+      "say": "Digital library checkouts reached 739 million, proving borrowing moved to phones instead of disappearing."
+    }
+  ]
+}
