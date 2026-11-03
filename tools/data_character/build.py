@@ -10,11 +10,11 @@ OUT.mkdir(parents=True, exist_ok=True)
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete(use_global=False)
 
-def material(name, color, rough=.42):
+def material(name, color, rough=.58):
     m=bpy.data.materials.new(name); m.diffuse_color=(*color,1); m.use_nodes=True
     bs=m.node_tree.nodes['Principled BSDF']; bs.inputs['Base Color'].default_value=(*color,1); bs.inputs['Roughness'].default_value=rough
     return m
-teal=material('Data / teal',(.018,.245,.185)); white=material('Coat / warm ivory',(.83,.84,.8)); black=material('Frames / charcoal',(.012,.018,.023),.3)
+teal=material('Data / teal',(.018,.245,.185)); white=material('Coat / warm ivory',(.67,.69,.67)); black=material('Frames / charcoal',(.012,.018,.023),.55)
 eye=material('Eyes / ivory',(.95,.96,.92),.24); red=material('Tie / vermilion',(.74,.065,.025)); blue=material('Pen / blue',(.02,.34,.65)); floor=material('Stage',(.035,.043,.059),.65)
 parts=[]
 def finish(o,name,mat):
@@ -54,10 +54,13 @@ def panel(name,pts,mat,thick=.04):
 ell('Head',(0,0,3.26),(.96,.69,.82),teal)
 for x in (-.36,.36):
     ear=ell('Ear.L' if x<0 else 'Ear.R',(x,.015,4.09),(.155,.15,.39),teal); ear.rotation_euler.y=-.12 if x<0 else .12
-ell('Neck',(0,0,2.36),(.23,.23,.22),teal)
+ell('Neck',(0,0,2.33),(.19,.19,.10),teal)
+ell('Coat collar',(0,0,2.31),(.265,.23,.075),white)
 for x in (-.25,.25):
     capsule('Leg', (x,0,.27),(x,.015,1.08),.155,teal)
-    box('Shoe',(x,-.13,.16),(.47,.64,.32),teal,.13)
+    shoe=ell('Shoe',(x,-.13,.17),(.245,.36,.20),teal)
+    for v in shoe.data.vertices: v.co.z=max(-.78,v.co.z)
+    box('Shoe sole',(x,-.13,.035),(.44,.58,.065),teal,.03)
 # Coat: continuous tapered shell with a flattened front, not stacked spheres.
 verts=[]; n=64
 for z,rx,ry in [( .83,.51,.31),(.88,.52,.32),(1.1,.50,.32),(1.8,.43,.29),(2.17,.34,.25),(2.30,.25,.20)]:
@@ -72,7 +75,7 @@ o=bpy.data.objects.new('Coat / continuous tapered body',mesh); bpy.context.colle
 sub=o.modifiers.new('Tailored smooth surface','SUBSURF'); sub.levels=2
 for side in (-1,1):
     capsule('Sleeve', (side*.34,0,2.08),(side*.66,-.015,1.37),.205,white)
-    ell('Mitten',(side*.69,-.04,1.19),(.22,.22,.25),teal)
+    ell('Mitten',(side*.69,-.04,1.19),(.195,.195,.23),teal)
     ell('Thumb',(side*.57,-.19,1.21),(.095,.09,.12),teal)
 # Shirt opening, tie and folded lapels live on the front surface.
 panel('Shirt opening',[(-.23,-.261,2.24),(.23,-.261,2.24),(0,-.345,1.52)],eye)
@@ -86,21 +89,30 @@ box('Pen',(.30,-.365,1.62),(.045,.045,.25),blue,.018)
 for z in (1.35,1.10): ell('Coat button',(.055,-.345,z),(.032,.015,.032),eye)
 # White eye pads and genuine open rounded-square frames.
 for x in (-.39,.39):
-    box('Eye white',(x,-.635,3.40),(.63,.12,.64),eye,.19)
+    wh=ell('Eye white',(x,-.635,3.40),(.325,.115,.325),eye)
+    # A convex squircle rather than a beveled thin cube: avoids square, staring eyes.
+    for v in wh.data.vertices:
+        v.co.x=math.copysign(abs(v.co.x)**.72,v.co.x)
+        v.co.z=math.copysign(abs(v.co.z)**.72,v.co.z)
     pts=[]
     for cx,cz,start in [(.17,.17,0),(-.17,.17,90),(-.17,-.17,180),(.17,-.17,270)]:
         for i in range(13):
             a=math.radians(start+i*90/12); pts.append((x+cx+.16*math.cos(a),-.735,3.40+cz+.16*math.sin(a)))
     line('Glasses frame',pts,.053,black,True)
-    ell('Pupil',(x+.035,-.716,3.39),(.14,.055,.17),black)
-    ell('Eye glint',(x+.004,-.768,3.455),(.045,.016,.045),eye)
+    gaze=.035 if x<0 else -.015
+    ell('Pupil',(x+gaze,-.745,3.395),(.157,.043,.162),black)
+    ell('Eye glint',(x+gaze-.045,-.787,3.46),(.043,.011,.043),eye)
+    ell('Eye glint small',(x+gaze+.045,-.787,3.355),(.019,.009,.019),eye)
     line('Temple',[(x+(-.34 if x<0 else .34),-.73,3.42),(x+(-.43 if x<0 else .43),-.33,3.42),(x+(-.43 if x<0 else .43),.17,3.35)],.041,black)
     brow=[]
     for i in range(25):
-        v=-.22+i*.44/24; z=3.85+.055*math.sin((v+.22)/.44*math.pi); xx=x+v
+        v=-.19+i*.38/24; z=3.84+.065*math.sin((v+.19)/.38*math.pi); xx=x+v
         y=-.69*math.sqrt(max(.01,1-(xx/.96)**2-((z-3.26)/.82)**2))-.035
         brow.append((xx,y,z))
-    line('Brow',brow,.044,black)
+    brow_ob=line('Brow',brow,.039,black)
+    # Taper and cap the brow so it reads as a soft expression, not a metal bar.
+    for j,pt in enumerate(brow_ob.data.splines[0].points): pt.radius=.35+.65*math.sin(math.pi*j/24)**.5
+    brow_ob.data.use_fill_caps=True
 line('Glasses bridge',[(-.06,-.735,3.43),(.06,-.735,3.43)],.045,black)
 ell('Nose',(0,-.755,3.10),(.067,.09,.083),teal)
 smile=[]
@@ -109,6 +121,10 @@ for i in range(41):
     y=-.69*math.sqrt(1-(x/.96)**2-((z-3.26)/.82)**2)-.025
     smile.append((x,y,z))
 line('Smile',smile,.022,black)
+# Tuck the neck into the collar and soften the overall head silhouette.
+for ob in parts:
+    if ob.name.startswith(('Head','Ear','Eye','Pupil','Glasses','Brow','Temple','Nose','Smile')):
+        ob.location.z-=.08
 # Broaden the coat and stance while retaining the reference's lanky silhouette.
 for ob in parts:
     if ob.name.startswith(('Coat', 'Sleeve', 'Mitten', 'Thumb', 'Leg', 'Shoe', 'Pocket', 'Pen', 'Lapel', 'Shirt', 'Tie')):
@@ -119,12 +135,12 @@ bpy.ops.object.empty_add(); root=bpy.context.object; root.name='DATA_ROOT'
 for o in parts: o.parent=root
 bpy.ops.mesh.primitive_plane_add(size=200); bpy.context.object.data.materials.append(floor)
 world=bpy.data.worlds.new('Studio'); world.use_nodes=True; world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.12,.16,1); world.node_tree.nodes['Background'].inputs[1].default_value=.35; bpy.context.scene.world=world
-for name,loc,power,size in [('Key',(-3,-4,7),430,4),('Fill',(4,-2,4),210,3),('Rim',(1,3,6),480,3)]:
+for name,loc,power,size in [('Key',(-3,-5,6),480,5),('Fill',(4,-4,4),320,5),('Rim',(1,3,6),180,4)]:
     bpy.ops.object.light_add(type='AREA',location=loc); o=bpy.context.object; o.name=name; o.data.energy=power; o.data.shape='DISK'; o.data.size=size; o.rotation_euler=(Vector((0,0,2.2))-o.location).to_track_quat('-Z','Y').to_euler()
 bpy.ops.object.camera_add(); cam=bpy.context.object; bpy.context.scene.camera=cam; cam.data.type='ORTHO'; cam.data.ortho_scale=5.25
-sc=bpy.context.scene; sc.render.engine='CYCLES'; sc.cycles.samples=64; sc.cycles.use_denoising=False; sc.render.resolution_x=800; sc.render.resolution_y=900; sc.render.resolution_percentage=100; sc.render.image_settings.file_format='PNG'
+sc=bpy.context.scene; sc.render.engine='CYCLES'; sc.cycles.samples=160; sc.cycles.use_denoising=False; sc.render.resolution_x=800; sc.render.resolution_y=900; sc.render.resolution_percentage=100; sc.render.image_settings.file_format='PNG'
 sc.view_settings.view_transform='Standard'; sc.view_settings.look='Medium High Contrast' if 'Medium High Contrast' in [i.name for i in sc.view_settings.bl_rna.properties['look'].enum_items] else 'None'
-for name,loc in [('front',(0,-9,2.65)),('three_quarter',(5,-9,2.9)),('side',(9,0,2.65)),('back',(0,9,2.65))]:
+for name,loc in [('front',(0,-9,2.65)),('three_quarter',(5,-9,2.9))]:
     cam.location=loc; cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()
     sc.render.filepath=str(OUT/(name+'.png')); bpy.ops.render.render(write_still=True)
 cam.location=(5,-9,2.9); cam.rotation_euler=(Vector((0,0,2.23))-cam.location).to_track_quat('-Z','Y').to_euler()

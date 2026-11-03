@@ -1,29 +1,17 @@
-# Data — Blender reference prototype
+# Data — Blender character look development
 
-Requested by Caleb on 2026-11-02, using his supplied teal professor reference. Standalone look-development asset; does not replace the production 2D host.
-
-## Run
+Caleb's supplied `reference.jpeg` is the visual target. These are unapproved look-development iterations, not an exact reconstruction or a production rig.
 
 ```sh
-blender -b -t 4 --python tools/data_character/build.py -- /tmp/data-character
+blender -b -t 6 --python tools/data_character/build.py -- /tmp/data-character
 ```
 
-Writes front, three-quarter, side and back PNGs, plus `data_reference.blend`. Verified with Blender 4.0.2 / CPU Cycles, 64 samples. No paid APIs, pipeline imports, posting, or workflow changes. Denoising is disabled because Ubuntu Blender has no OpenImageDenoiser.
+Current script writes front and three-quarter PNGs and a compressed editable `data_reference.blend`. Blender 4.0.2 CPU Cycles, 160 samples; no paid APIs or pipeline imports. No production-render or publishing changes.
 
-## Implemented
+## Current revision: friendlier face
 
-Rounded teal head, two oval ears, thick open rounded-square glasses. Separate eye pads, pupils, highlights, brows, nose and curved smile. Slightly lanky silhouette; continuous tapered coat shell, folded lapels, red tie and blue pen pocket. Rounded mitten hands. All character objects parented to `DATA_ROOT`. Four studio views with consistent lighting.
+The thin beveled cubes used for the eye whites made them unnaturally square. Replaced them with convex rounded squircle surfaces, rounder pupils with a gentle converging gaze and two catchlights, and tapered capped brows. Materials are more matte; the frontal lights are broader and the rear rim is weaker to reduce harsh highlights and dark facial shadows. Head sits closer to a new collar. Shoes have rounded toes and a flat sole; hands are smaller and the coat uses a softer ivory material. Changes build on the prior deeper teal, closer frames and wider coat.
 
-## Claude handoff
+All character objects are under `DATA_ROOT`. No armature, skin weighting, facial shape keys or lip sync yet. Do not replace the production 2D host or assume Caleb has approved this model. Review the actual front and three-quarter renders against his supplied reference first.
 
-Repository main and remote branch tips were inspected. The only committed Blender module found was `data_learning/blender_hero.py` (chart monoliths); Claude's in-progress 3D mascot was not located. This separate path avoids overwriting that work.
-
-Open `preview/data_reference.blend` or run the command above. Compare the actual renders to `reference.jpeg`. Keep the large head and glasses, modest body width, and slightly lanky torso/legs. The geometry helpers are independent of studio setup and can be reused in another model builder.
-
-This is **look development, not an animation-ready rig**: no armature, skin weighting, facial shape keys, lip sync or production-render integration yet. Parts are named and independently adjustable; repeated limb names receive Blender numeric suffixes. Establish the neutral appearance before rigging. For expressions, move brows and pupils and replace the smile curve.
-
-The source reference is an AI illustration, not exact orthographic CAD: use silhouette and visual proportions as the guide rather than assuming every view is geometrically consistent.
-
-## Revision 2
-
-Addresses Caleb’s feedback that the first prototype did not match the reference: deeper teal material, less bleaching studio light, Standard color transform, rounder head, thinner eye pads and closer frames, rounder frame corners, wider coat and stance, flatter rounded shoes, and less elevated cameras. This remains an approximation, not an exact recreation or an animation rig.
+Original committed 3D mascot work from Claude was not found during the initial repository inspection; this separate path avoids overwriting work in another workspace.
