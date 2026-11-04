@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lego-minifigs-outnumber-humans__161409d0_r5",
+  "slug": "lego-minifigs-outnumber-humans",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:19:45.181Z",
+  "title": "LEGO Has Produced 10 Billion Minifigures Since 1978",
+  "hook": "That cumulative output now exceeds today's 8.1 billion people.",
+  "closing": "The comparison measures decades of toy production, not figures that still exist.",
+  "question": "How many are in your house?",
+  "segments": [
+    {
+      "topic": "LEGO Production",
+      "say": "LEGO has produced 10 billion minifigures, versus a world population of 8.1 billion. This compares production, not surviving toys."
+    },
+    {
+      "topic": "LEGO Since 1978",
+      "say": "By 2019, LEGO had produced 8.3 billion minifigures. Four decades of output built the cumulative total."
+    },
+    {
+      "topic": "LEGO Annual Output",
+      "say": "LEGO makes 400 million minifigures yearly, nearly three times the 134 million babies born. Production keeps widening the cumulative gap."
+    }
+  ]
+}
