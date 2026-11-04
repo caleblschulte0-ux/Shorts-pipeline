@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "coldest-place-in-the-universe-is-human-made__b37435d8_r1",
+  "slug": "coldest-place-in-the-universe-is-human-made",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:19:45.181Z",
+  "title": "NASA Made Atoms Colder Than 1 Kelvin",
+  "hook": "Scientists built atoms colder than anywhere in nature, floating just overhead.",
+  "closing": "The coldest known place now sits in orbit, built by people, so we can study it.",
+  "question": "What can ultracold atoms reveal?",
+  "segments": [
+    {
+      "topic": "Colder Space Background",
+      "say": "Empty space sits at 2.7 kelvin, far colder than a room. Only the Boomerang Nebula, the coldest natural place known, goes lower."
+    },
+    {
+      "topic": "Colder NASA Atoms",
+      "say": "NASA's Cold Atom Lab chilled atoms ten billion times colder than the Boomerang Nebula. Nothing known in nature gets that cold."
+    },
+    {
+      "topic": "Colder Atoms Overhead",
+      "say": "The lab is 250 miles up on the space station. The Boomerang Nebula is quadrillions of miles away. Ultracold is now close."
+    }
+  ]
+}
