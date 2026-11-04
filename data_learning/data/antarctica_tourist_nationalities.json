@@ -1,0 +1,22 @@
+{
+  "key": "antarctica_tourist_nationalities",
+  "title": "Antarctica tourists by nationality, 2022-23 season (%)",
+  "unit": "percent",
+  "geography": "Antarctica",
+  "time_coverage": "2022-23 season",
+  "source": {
+    "name": "Antarctic tourism statistics",
+    "publisher": "International Association of Antarctica Tour Operators (IAATO)",
+    "url": "https://iaato.org",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of IAATO's published nationality breakdown for the record 2022-23 season.",
+  "points": [
+    {"label": "United States", "value": 34},
+    {"label": "Australia", "value": 12},
+    {"label": "China", "value": 9},
+    {"label": "United Kingdom", "value": 7},
+    {"label": "Germany", "value": 6}
+  ]
+}

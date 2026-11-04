@@ -1,0 +1,19 @@
+{
+  "key": "neutron_star_mass_limit",
+  "title": "Mass versus collapse limit (solar masses)",
+  "unit": "solar masses",
+  "geography": "N/A",
+  "time_coverage": "N/A (physical constants)",
+  "source": {
+    "name": "Tolman-Oppenheimer-Volkoff limit research",
+    "publisher": "NASA / astrophysics literature",
+    "url": "https://www.nasa.gov",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative. Typical neutron star mass ~1.4 solar masses; maximum stable mass before black hole collapse (TOV limit) ~2.2 solar masses.",
+  "points": [
+    {"label": "Typical Neutron Star", "value": 1.4},
+    {"label": "Collapse Limit", "value": 2.2}
+  ]
+}

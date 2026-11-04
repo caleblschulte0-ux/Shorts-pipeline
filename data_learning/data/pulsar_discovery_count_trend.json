@@ -1,0 +1,23 @@
+{
+  "key": "pulsar_discovery_count_trend",
+  "title": "Cataloged pulsars (cumulative)",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "1970-2024 (by decade)",
+  "source": {
+    "name": "ATNF Pulsar Catalogue",
+    "publisher": "CSIRO / Australia Telescope National Facility",
+    "url": "https://www.atnf.csiro.au/research/pulsar/psrcat/",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of ATNF Pulsar Catalogue growth by decade; first pulsar discovered 1967.",
+  "points": [
+    {"label": "1970s", "value": 100, "period": "1979"},
+    {"label": "1980s", "value": 330, "period": "1989"},
+    {"label": "1990s", "value": 700, "period": "1999"},
+    {"label": "2000s", "value": 1800, "period": "2009"},
+    {"label": "2010s", "value": 2600, "period": "2019"},
+    {"label": "2020s", "value": 3400, "period": "2024"}
+  ]
+}

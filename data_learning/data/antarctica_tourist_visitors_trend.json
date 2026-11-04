@@ -1,0 +1,22 @@
+{
+  "key": "antarctica_tourist_visitors_trend",
+  "title": "Antarctica tourist visitors per season (thousands)",
+  "unit": "thousand",
+  "geography": "Antarctica",
+  "time_coverage": "1993-2023 (by season)",
+  "source": {
+    "name": "Antarctic tourism statistics",
+    "publisher": "International Association of Antarctica Tour Operators (IAATO)",
+    "url": "https://iaato.org",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of IAATO's published season-by-season visitor counts; the 2022-23 season topped 100,000 for the first time.",
+  "points": [
+    {"label": "1992-93", "value": 6.5, "period": "1993"},
+    {"label": "2000-01", "value": 14, "period": "2001"},
+    {"label": "2009-10", "value": 45, "period": "2010"},
+    {"label": "2019-20", "value": 74, "period": "2020"},
+    {"label": "2022-23", "value": 104.9, "period": "2023"}
+  ]
+}

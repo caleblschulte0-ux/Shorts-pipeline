@@ -1,0 +1,22 @@
+{
+  "key": "internet_shutdowns_by_year",
+  "title": "Government-ordered internet shutdowns worldwide",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "2016-2023 (annual)",
+  "source": {
+    "name": "#KeepItOn STOP report",
+    "publisher": "Access Now",
+    "url": "https://www.accessnow.org/keepiton",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of Access Now's annually published shutdown counts; 2023 figure (283) is the highest on record.",
+  "points": [
+    {"label": "2016", "value": 75, "period": "2016"},
+    {"label": "2019", "value": 213, "period": "2019"},
+    {"label": "2021", "value": 182, "period": "2021"},
+    {"label": "2022", "value": 187, "period": "2022"},
+    {"label": "2023", "value": 283, "period": "2023"}
+  ]
+}

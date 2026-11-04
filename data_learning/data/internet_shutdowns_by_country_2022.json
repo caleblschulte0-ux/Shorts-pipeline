@@ -1,0 +1,22 @@
+{
+  "key": "internet_shutdowns_by_country_2022",
+  "title": "Internet shutdowns by country, 2022",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "2022",
+  "source": {
+    "name": "#KeepItOn STOP report",
+    "publisher": "Access Now",
+    "url": "https://www.accessnow.org/keepiton",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of Access Now's 2022 country breakdown; India accounted for the largest single share of global shutdowns that year.",
+  "points": [
+    {"label": "India", "value": 84},
+    {"label": "Ukraine", "value": 22},
+    {"label": "Iran", "value": 18},
+    {"label": "Myanmar", "value": 14},
+    {"label": "Ethiopia", "value": 8}
+  ]
+}

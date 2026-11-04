@@ -1,0 +1,19 @@
+{
+  "key": "ncaa_womens_vs_mens_final_viewers_2024",
+  "title": "2024 NCAA championship TV viewers (millions)",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "NCAA championship broadcast ratings",
+    "publisher": "ESPN / Nielsen",
+    "url": "https://www.espn.com",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of widely-reported 2024 figures: women's final (Iowa vs South Carolina) ~18.9M viewers on ABC/ESPN; men's final (UConn vs Purdue) ~14.82M viewers on CBS.",
+  "points": [
+    {"label": "Women's Final", "value": 18.9},
+    {"label": "Men's Final", "value": 14.82}
+  ]
+}

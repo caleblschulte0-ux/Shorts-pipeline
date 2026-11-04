@@ -1,0 +1,19 @@
+{
+  "key": "internet_shutdown_cost_2023",
+  "title": "Economic cost of internet shutdowns ($ billions)",
+  "unit": "billion dollars",
+  "geography": "Global",
+  "time_coverage": "2022-2023 (annual)",
+  "source": {
+    "name": "Cost of Shutdowns tracker",
+    "publisher": "Top10VPN",
+    "url": "https://www.top10vpn.com/cost-of-shutdowns/",
+    "officiality": "secondary",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of Top10VPN's annually published shutdown-cost estimates.",
+  "points": [
+    {"label": "2022", "value": 10.1},
+    {"label": "2023", "value": 9.1}
+  ]
+}
