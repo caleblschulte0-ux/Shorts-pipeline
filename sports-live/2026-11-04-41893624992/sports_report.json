@@ -1,0 +1,68 @@
+{
+ "date": "2026-11-04",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Kaka",
+   "why": "A legend breaks down in tears as San Siro stands for him on his Hall of Fame induction.",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "baseball",
+   "who": "Jake Bauers",
+   "why": "A player hands the last-out World Series ball to his manager in the middle of the celebration.",
+   "post_title": "Jake Bauers gives Pat Murphy the last out ball",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball",
+   "title": "Jake Bauers Hands Pat Murphy The Last Out Ball",
+   "hook": "Bauers gives Pat Murphy the last out ball",
+   "ledger": {
+    "moves": [
+     "zoom@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: The handoff lands in the first few seconds, then the last quarter of the clip is unrelated NLCS and news broadcast filler that fades to black under a line it never shows."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 87
+   },
+   "video_url": "https://youtube.com/shorts/uzgi2DaD8-A",
+   "ok": true,
+   "publish_at": "2026-11-05T03:00:00Z",
+   "seconds": 1041,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261104-jake-bauers-hands-pat-murphy-the-last-out-ball-374e425b",
+    "tiktok": "queued for 2026-11-05T03:00:00Z"
+   }
+  }
+ ],
+ "already_today": 4,
+ "pool": 112,
+ "already_posted": 20,
+ "shipped": 1
+}
