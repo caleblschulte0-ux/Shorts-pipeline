@@ -4831,11 +4831,37 @@
       "duration_s": 32.5
     },
     "global-remittances-record-2023": {
-      "claimed_at": "2026-11-04T16:00:28.075265+00:00",
+      "url": "https://youtube.com/shorts/w44EpNL82jw",
       "title": "Migrants Sent Home A Record $685 Billion In 2024",
+      "at": "2026-11-04T16:00:41.728115+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.11,
+      "beat_s": [
+        8.71,
+        8.08,
+        6.5,
+        8.11,
+        7.54
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 70,
+      "duration_s": 39.4,
+      "hook": "shock_stat",
+      "topic_category": "economy",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:remit-plane-vault-rise",
+        "mechanic:remit-streams-home",
+        "mechanic:paycheck-tower-vs-boardroom"
+      ]
     }
   },
   "uploads": [
@@ -6187,9 +6213,10 @@
       "claimed_at": "2026-11-04T16:00:28.075265+00:00",
       "title": "Migrants Sent Home A Record $685 Billion In 2024",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "global-remittances-record-2023"
+      "url": "https://youtube.com/shorts/w44EpNL82jw",
+      "state": "posted",
+      "slug": "global-remittances-record-2023",
+      "at": "2026-11-04T16:00:41.728115+00:00"
     }
   ]
 }
