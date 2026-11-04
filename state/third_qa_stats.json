@@ -3,58 +3,6 @@
     {
       "date": "20261028",
       "dry_run": false,
-      "ts": "2026-10-28T12:31:49+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 137,
-        "with_retention": 126,
-        "with_curve": 15,
-        "fetched_at": "2026-10-28T12:06:15.408098+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261028-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261028-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261028-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261028-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261028-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261028-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261028",
-      "dry_run": false,
       "ts": "2026-10-28T13:34:22+00:00",
       "feedback": {
         "snapshot": true,
@@ -6568,6 +6516,58 @@
             }
           },
           "took_s": 240.7
+        },
+        {
+          "slug": "clip-20261104-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261104-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261104-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261104-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261104-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261104",
+      "dry_run": false,
+      "ts": "2026-11-04T18:36:49+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 145,
+        "with_retention": 134,
+        "with_curve": 15,
+        "fetched_at": "2026-11-04T16:28:56.690118+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261104-1",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20261104-2",
