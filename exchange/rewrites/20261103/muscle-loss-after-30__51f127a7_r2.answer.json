@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "muscle-loss-after-30__51f127a7_r2",
+  "slug": "muscle-loss-after-30",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:19:45.181Z",
+  "title": "By 80, Adults Retain Only 65% Of Their Muscle",
+  "hook": "Muscle loss accelerates sharply after 70.",
+  "closing": "Strength training can protect the independence that age-related muscle loss threatens.",
+  "question": "How often do you lift?",
+  "segments": [
+    {
+      "topic": "Muscle Mass",
+      "say": "By 80, adults retain 65% of their age-30 muscle. That loss can weaken everyday movement."
+    },
+    {
+      "topic": "Muscle Loss",
+      "say": "After 70, muscle loss reaches 18% per decade, so decline accelerates when independence matters most."
+    },
+    {
+      "topic": "Muscle Training",
+      "say": "After 12 weeks of lifting, clinical muscle loss fell to 0% in one study. Training can reverse the slide."
+    }
+  ]
+}
