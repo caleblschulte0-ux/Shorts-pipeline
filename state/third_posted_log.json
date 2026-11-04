@@ -17911,14 +17911,32 @@
       "ts": "2026-11-04T13:07:42.522684+00:00"
     },
     "clip-20261104-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/CredulousDoubtfulChipmunkBIRB-FZoLtR17DoEFTGM0",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/6CA1KtGVN6U",
       "title": "Kaicenat: Kai Cenat Shuts Down Rakai After He Invites Him To A Halloween Party",
       "kind": "twitch_clip",
-      "ts": "2026-11-04T13:11:34.156265+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-04T13:11:43.254208+00:00",
+      "uploaded_at": "2026-11-04T13:11:43.254224+00:00",
+      "publish_at": "2026-11-05T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261104-kaicenat-kai-cenat-shuts-down-rakai-after-he-inv-8e57ab45",
+        "tiktok": "queued for 2026-11-05T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CredulousDoubtfulChipmunkBIRB-FZoLtR17DoEFTGM0",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "Rakai invites Kai to a Halloween party",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2737,
+      "banger": 0.6,
+      "cut": {
+        "start": 18.0,
+        "end": 30.8
+      },
+      "director_cut": true
     }
   }
 }
