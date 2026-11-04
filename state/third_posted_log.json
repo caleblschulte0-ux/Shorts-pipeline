@@ -17688,6 +17688,34 @@
       "self_healed": false,
       "source_views": 3117,
       "banger": 0.5
+    },
+    "rejected-funinspiringdotterelssssss-n-xrk_xa5dft9joa": {
+      "source_url": "https://www.twitch.tv/atrioc/clip/FunInspiringDotterelSSSsss-n-XRK_xA5dft9JOa",
+      "streamer": "atrioc",
+      "title": "Atrioc Can't Believe What He Just Watched Live",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 2.5s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: Sharp picture is a thin strip, about a quarter of the canvas height. The blurred padding fills the rest, far short of th; vision: Atrioc's face is a tiny thumbnail in the top-right corner of the strip. It is no",
+      "ts": "2026-11-04T11:38:59.115698+00:00"
+    },
+    "rejected-suspiciouscaringlardwoofer-qjby2myp6zgcvf-f": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SuspiciousCaringLardWoofer-QJby2mYp6zgCVf-F",
+      "streamer": "kaicenat",
+      "title": "the clip",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Static text reading, unclear event)",
+      "ts": "2026-11-04T11:40:29.418626+00:00"
+    },
+    "clip-20261104-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CrazySmilingWombatShadyLulu-sGU_BNbvx9qpOLRo",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Realizes He's The Farm Master",
+      "kind": "twitch_clip",
+      "ts": "2026-11-04T11:44:12.683046+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
