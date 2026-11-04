@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "elephant-poaching-decline__8a2feac3",
+  "slug": "elephant-poaching-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:23:21.925Z",
+  "title": "Elephant Poaching Fell 61%, But Herds Remain 77% Smaller",
+  "hook": "Elephant poaching plunged, but the population collapse remains.",
+  "closing": "Lower poaching helps, but rebuilding elephant herds requires protection that lasts for generations.",
+  "question": "Should ivory sales stay banned?",
+  "segments": [
+    {
+      "topic": "Elephant Herd Loss",
+      "say": "African elephant numbers fell 77%. More than three quarters disappeared despite their iconic status."
+    },
+    {
+      "topic": "Elephant Population",
+      "say": "African elephants fell from 1.3 million to 0.415 million. The surviving population remains a fraction of its former size."
+    },
+    {
+      "topic": "Elephant Poaching",
+      "say": "Elephant poaching fell from 10.1% to 3.9% yearly. Stronger ivory controls sharply reduced the killing rate."
+    }
+  ]
+}
