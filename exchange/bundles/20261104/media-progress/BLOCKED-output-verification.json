@@ -1,0 +1,105 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261104",
+  "status": "blocked",
+  "day_closed": false,
+  "step": "8 - verify actual channel output against the frozen contract",
+  "observed_at": "2026-11-04T12:25:39.869Z",
+  "frozen_contract": {
+    "trending": {
+      "format": "sports_moment",
+      "required": 5,
+      "verified_posted": 1,
+      "pending": 4,
+      "accepted_urls": [
+        "https://youtube.com/shorts/FPx-CVGP960"
+      ]
+    },
+    "third": {
+      "format": "clip",
+      "required": 6,
+      "verified_posted": 1,
+      "pending": 5,
+      "accepted_urls": [
+        "https://youtube.com/shorts/laZnDe3WSXk"
+      ]
+    },
+    "explainer": {
+      "format": "data_story",
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "accepted_urls": []
+    }
+  },
+  "remaining_shortfall": 13,
+  "attempts": [
+    "Committed and read back STARTED before all other repository writes.",
+    "Completed two mailbox rounds within section 7 caps: 0 reviews, 40 ask keys, 20 rewrites.",
+    "Committed response.json, read it back, parsed it, and verified all requested Explainer pacing limits.",
+    "Committed DONE separately.",
+    "Phase B succeeded: 3 Explainer rewrites applied, 0 rejected; media 0 requested, 0 unfilled.",
+    "Phase B explicitly dispatched Daily Shorts and GitHub accepted the dispatch with HTTP 204.",
+    "The explicit Daily Shorts dispatch was cancelled by the repository concurrency guard; the workflow_run fallback remains pending.",
+    "Read all three posted logs and counted only unique YouTube Shorts URLs with same-day accepted upload timestamps."
+  ],
+  "mailbox": {
+    "reviews": {
+      "open_at_round_start": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": null
+    },
+    "asks": {
+      "open_at_round_start": 66,
+      "answered": 40,
+      "skipped": 26,
+      "reason": "Two required rounds reached the 20-key per-round cap; older keys remain queued."
+    },
+    "rewrites": {
+      "open_at_round_start": 152,
+      "answered": 20,
+      "skipped": 132,
+      "latest_open_index": 151,
+      "reason": "Two required rounds reached the 10-rewrite per-round cap; the claim workflow is still consuming answer files."
+    }
+  },
+  "downstream": {
+    "phase_b": {
+      "conclusion": "success",
+      "commit": "3c6da39f0f201886a3d331e2d30df72baab3ac3b",
+      "explainer_applied": 3,
+      "explainer_rejected": 0
+    },
+    "daily_explicit": {
+      "run_id": 41828512799,
+      "conclusion": "cancelled"
+    },
+    "daily_fallback": {
+      "run_id": 41828527679,
+      "status": "pending"
+    },
+    "sports_worker": {
+      "run_id": 41821562301,
+      "status": "in_progress"
+    },
+    "third_worker": {
+      "run_id": 41821531906,
+      "status": "in_progress"
+    },
+    "explainer_worker": {
+      "run_id": 41810645071,
+      "status": "in_progress"
+    },
+    "claim_workflow": {
+      "status": "in_progress_or_pending"
+    }
+  },
+  "pending_evidence": [
+    "state/third_posted_log.json contains clip-20261104-3 as pending with no accepted URL; it is not counted.",
+    "No 2026-11-04 accepted upload URL exists in state/explainer_posted_log.json."
+  ],
+  "retryable": true,
+  "no_done_retrigger": true,
+  "note": "Active or pending workflows are not completed production. Leave transient workers enabled and reuse the existing DONE."
+}
