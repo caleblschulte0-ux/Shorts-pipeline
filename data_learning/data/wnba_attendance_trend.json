@@ -1,0 +1,21 @@
+{
+  "key": "wnba_attendance_trend",
+  "title": "WNBA total season attendance (millions)",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2019-2024 (annual)",
+  "source": {
+    "name": "WNBA season attendance figures",
+    "publisher": "WNBA / Associated Press",
+    "url": "https://www.wnba.com",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of reported WNBA attendance, including a 2021 pandemic-era dip and a 2024 record high.",
+  "points": [
+    {"label": "2019", "value": 1.6, "period": "2019"},
+    {"label": "2021", "value": 1.1, "period": "2021"},
+    {"label": "2023", "value": 1.5, "period": "2023"},
+    {"label": "2024", "value": 2.37, "period": "2024"}
+  ]
+}

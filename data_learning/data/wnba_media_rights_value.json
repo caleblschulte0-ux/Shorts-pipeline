@@ -1,0 +1,19 @@
+{
+  "key": "wnba_media_rights_value",
+  "title": "WNBA annual media rights value ($ millions)",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "WNBA media rights deal (ESPN/Disney/Amazon/NBC, 2025-2036)",
+    "publisher": "WNBA / sports business press",
+    "url": "https://www.wnba.com",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative approximation of reported figures: prior WNBA media rights deal ~$60M/year, new 11-year deal starting 2025 reported at ~$200M/year.",
+  "points": [
+    {"label": "Previous Deal", "value": 60},
+    {"label": "New Deal (2025-2036)", "value": 200}
+  ]
+}

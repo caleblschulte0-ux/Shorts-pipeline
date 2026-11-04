@@ -1,0 +1,19 @@
+{
+  "key": "neutron_star_vs_manhattan_size",
+  "title": "Diameter comparison (km)",
+  "unit": "km",
+  "geography": "N/A",
+  "time_coverage": "N/A (physical constants)",
+  "source": {
+    "name": "Neutron star size estimates; NYC geography",
+    "publisher": "NASA / New York City Department of City Planning",
+    "url": "https://www.nasa.gov",
+    "officiality": "official",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative. Typical neutron star diameter ~20 km per NASA; Manhattan Island length ~21.6 km per NYC geography records.",
+  "points": [
+    {"label": "Neutron Star", "value": 20},
+    {"label": "Manhattan Island", "value": 21.6}
+  ]
+}

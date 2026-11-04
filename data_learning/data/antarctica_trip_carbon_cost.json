@@ -1,0 +1,19 @@
+{
+  "key": "antarctica_trip_carbon_cost",
+  "title": "Carbon footprint comparison (tons CO2)",
+  "unit": "tons",
+  "geography": "N/A",
+  "time_coverage": "2022 study",
+  "source": {
+    "name": "Carbon footprint of Antarctic tourism study",
+    "publisher": "University of Leeds / Journal of Sustainable Tourism",
+    "url": "https://www.tandfonline.com/journals/rsus20",
+    "officiality": "primary",
+    "access_date": "2026-11-04"
+  },
+  "notes": "Illustrative. The 2022 study estimated an average Antarctic tourist trip generates about 4.1 tons of CO2; a typical American's monthly footprint from a ~16 ton/year average is about 1.3 tons.",
+  "points": [
+    {"label": "One Antarctica Trip", "value": 4.1},
+    {"label": "Avg. Monthly Footprint (US)", "value": 1.3}
+  ]
+}
