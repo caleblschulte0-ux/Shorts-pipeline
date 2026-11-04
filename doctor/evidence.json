@@ -1,44 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261103",
-  "judged_date": "20261102",
+  "date": "20261104",
+  "judged_date": "20261103",
   "alarm": {
-    "date": "20261102",
+    "date": "20261103",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
+        "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261102 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261102.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
-        "code": "short_slate_explainer",
-        "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20261102.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+        "detail": "explainer: ZERO videos posted for 20261103 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20261103. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20261102.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "short_slate_trending",
-        "severity": "warning",
-        "detail": "trending: 1/5 posted for 20261102.",
+        "detail": "third: 3/6 posted for 20261103.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (55 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (56 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present"
+      "chatgpt finalizer: artifact present",
+      "trending: 5/5 posted"
     ],
     "deferred": false
   },
@@ -224,78 +213,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-30T14:11:01+00:00",
-      "slug": "pitch-drop-slowest-experiment",
-      "score": 66,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The pitch scenes are well made and the barrel tip lands, but for the first two-thirds Data only watches, and the Dublin beat shows a Queensland cabinet that never pictures its 69 years.",
-      "auto_fails": [
-        "decorative_mascot: From hook@0.3 through seg1:end (about 8.5s) Data stands at the left edge holding a magnifier in the same pose. In seg2:start to seg2:end he gives a thumbs-up and waves beside the cabinet. In both scenes the pitch falls without him doing anything. Only seg3, where he shoves the barrel, and seg4, where he holds the tap, are real bits, and they are the last ~9s."
-      ],
-      "problems": [
-        "seg2: the narration and headline say Dublin 69 years, but the cabinet is labelled 'Queensland' and opens on '10 years Queensland' (seg2:start). The claim and the picture disagree.",
-        "seg2: the 69-year wait exists only as text; nothing in the picture shows that length of time.",
-        "hook through seg1 (about 8.5s): Data holds a magnifier in one static pose at the frame edge and causes nothing.",
-        "seg2: Data waves and gives a thumbs-up beside the case, which is decorative.",
-        "seg0:end shows the '4 drops 1930-1962' label over a beaker holding 9 blobs; the count contradicts the picture.",
-        "seg1: the 9 drops have already landed before the beat starts, so the beat mostly holds a finished frame with only the pendulum moving."
-      ],
-      "fixes": [
-        "Redraw seg2 as Dublin and make 69 years physical on the subject (Data ages, calendar pages pile up, one drop necks and falls at the payoff), with no Queensland label.",
-        "Give Data agency in the hook and seg1: let him be the one who tips the funnel or sets up the beaker, or have him visibly age or doze between drops so the long wait is his bit, not a static magnifier hold.",
-        "Rebuild seg1 so the drops land in sync with the count during the beat (one per beat-tick, ending at 9 by land_by), and keep any label in step with the number of blobs shown.",
-        "Separate the closing line from the seg4 headline: drop the headline under the closing line, or let the closing line replace it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 73
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "claim_picture_mismatch_and_decorative_mascot",
-        "visible_evidence": "The narration and the seg2:end headline say 'Dublin's wait 69 years', but the cabinet's only marker reads 'Queensland' and the scene opens on '10 years Queensland's wait between drops' (seg2:start). Data stands beside the case giving a thumbs-up and waving (seg2:mid, seg2:end). Nothing on screen sho",
-        "root_cause": "A Queensland scene was reused for a Dublin beat, and the headline was swapped mid-beat instead of drawing the claim. The mascot was placed as a bystander rather than as the one doing the waiting.",
-        "repair_goal": "Redraw seg2 as the Dublin experiment, labelled Dublin, and make the 69 years visible on the subject itself. For example, Data ages beside the funnel (calendar pages tearing, a beard growing, a chair wearing out) while one drop slowly necks and finally falls at the payoff, with '69 years' landing by "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.204,
-        "effective_fps": 19.1,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.098,
-        "frozen_fps": 21.7,
-        "max_frozen_run": 16,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 3.33,
-        "max_dup_at_s": 0.0,
-        "duration_s": 24.33
-      },
-      "fingerprint": "?|decorative_mascot|claim_picture_mismatch_and_decorative_mascot",
-      "style_arm": "illustrated"
-    },
     {
       "ts": "2026-10-30T14:31:26+00:00",
       "slug": "airline-pilot-shortage",
@@ -4194,6 +4111,65 @@
         "duration_s": 12.75
       },
       "fingerprint": "?|-|clarity"
+    },
+    {
+      "ts": "2026-11-03T13:50:02+00:00",
+      "slug": "sports_clay_matthews_reads_an_arm",
+      "score": 88,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The video sets up an exciting verbal exchange but cuts off abruptly before the promised visual payoff.",
+      "auto_fails": [],
+      "problems": [
+        "The video ends abruptly after Cam Newton says \"WATCH\", failing to show the promised touchdown, which makes the payoff incomplete for a viewer."
+      ],
+      "fixes": [
+        "Extend the video footage to include the touchdown play that Cam Newton refers to, ensuring the \"WATCH\" line has a visual resolution and the moment lands."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 9
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff@-0.4",
+        "index": 0,
+        "failure_class": "Payoff",
+        "visible_evidence": "The video ends with Cam Newton saying \"WATCH\" but does not show the subsequent action (the touchdown) that he refers to.",
+        "root_cause": "The video segment is cut too short, omitting the crucial concluding action of the moment.",
+        "repair_goal": "Extend the video to include the touchdown play that Cam Newton refers to, ensuring the \"WATCH\" line has a visual resolution."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 3.0
+      },
+      "fingerprint": "?|-|Payoff"
     }
   ],
   "showrunner_recurrence": {
@@ -4246,12 +4222,6 @@
       "count": 2,
       "days": [
         "2026-11-03"
-      ]
-    },
-    "?|decorative_mascot|claim_picture_mismatch_and_decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-30"
       ]
     },
     "?|decorative_mascot+unreadable|weak_demonstration": {
@@ -4487,16 +4457,21 @@
       "days": [
         "2026-11-03"
       ]
+    },
+    "?|-|Payoff": {
+      "count": 1,
+      "days": [
+        "2026-11-03"
+      ]
     }
   },
   "recent_commits": [
-    "806f75c 2026-11-03 sports: 2026-11-03 posted log + verdicts [skip ci]",
-    "1cf0090 2026-11-03 watchdog: chatgpt task verdicts 20261103 [skip ci]"
+    "8c336d4 2026-11-04 claim: mailbox verdicts 2026-11-04T04:48Z [skip ci]",
+    "cfc60f1 2026-11-04 claim: mailbox verdicts 2026-11-04T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-20": 2,
         "2026-10-21": 3,
         "2026-10-22": 2,
         "2026-10-23": 3,
@@ -4509,10 +4484,10 @@
         "2026-10-31": 5,
         "2026-11-01": 5,
         "2026-11-02": 1,
-        "2026-11-03": 4
+        "2026-11-03": 5
       },
-      "total_posted": 504,
-      "attempted": 504,
+      "total_posted": 505,
+      "attempted": 505,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4536,7 +4511,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-20": 1,
         "2026-10-21": 4,
         "2026-10-22": 7,
         "2026-10-23": 3,
@@ -4550,10 +4524,10 @@
         "2026-10-31": 9,
         "2026-11-01": 4,
         "2026-11-02": 3,
-        "2026-11-03": 1
+        "2026-11-03": 3
       },
-      "total_posted": 505,
-      "attempted": 1237,
+      "total_posted": 507,
+      "attempted": 1239,
       "rejected_or_pending": 732
     },
     "analytics_curiosity": {
@@ -4568,31 +4542,31 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 147,
+      "videos": 145,
       "top_by_vph": [
         {
           "title": "The World's Oldest Known Wild Bird Is Still Breeding At 74",
-          "vph": 19.85,
-          "views": 707
+          "vph": 15.56,
+          "views": 730
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 15.02,
-          "views": 1362
+          "vph": 13.38,
+          "views": 1364
         },
         {
           "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
-          "vph": 12.1,
+          "vph": 10.72,
           "views": 1061
         },
         {
           "title": "Humpback Whales Went From 450 To 25,000 In One Region",
-          "vph": 10.29,
+          "vph": 9.22,
           "views": 995
         },
         {
           "title": "One Volcano Added 146 Million Tons Of Water To The Sky",
-          "vph": 10.14,
+          "vph": 8.51,
           "views": 600
         }
       ],
@@ -4603,36 +4577,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 6.47,
-          "views": 1824
+          "vph": 6.34,
+          "views": 1825
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 4.48,
+          "vph": 4.2,
           "views": 403
         },
         {
           "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Bet",
-          "vph": 3.24,
-          "views": 267
+          "vph": 3.03,
+          "views": 268
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.9,
-          "views": 1990
+          "vph": 2.88,
+          "views": 1997
         },
         {
-          "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 2.63,
-          "views": 304
+          "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
+          "vph": 2.51,
+          "views": 1087
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261031/brief.json",
       "retro/20261101/brief.json",
-      "retro/20261102/brief.json"
+      "retro/20261102/brief.json",
+      "retro/20261103/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
