@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chess-online-boom__f9b7e085_r3",
+  "slug": "chess-online-boom",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:23:21.925Z",
+  "title": "Online Chess Reached 200 Million Beyond One TV Show",
+  "hook": "Online chess kept growing long after one show sparked signups.",
+  "closing": "The spike became a lasting habit, changing where millions learn and play.",
+  "question": "Do you play online chess?",
+  "segments": [
+    {
+      "topic": "Online Chess Growth",
+      "say": "Online chess reached 200 million members, nearly seven times its earlier base. The boom outlasted one release."
+    },
+    {
+      "topic": "Online Chess Spike",
+      "say": "Online chess signups hit 2.8 million monthly after the show, nearly triple the baseline."
+    },
+    {
+      "topic": "Online Chess Reach",
+      "say": "Online chess accounts represent about a third of 605 million regular players. Growth still has room."
+    }
+  ]
+}
