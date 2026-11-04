@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "billion-dollar-disasters-record-2023__b78b14a1",
+  "slug": "billion-dollar-disasters-record-2023",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:19:45.181Z",
+  "title": "Billion-Dollar US Disasters Now Hit Every 18 Days",
+  "hook": "Billion-dollar US disasters are no longer rare events.",
+  "closing": "More frequent disasters raise the insurance and tax costs that households ultimately carry.",
+  "question": "Has one reached your town?",
+  "segments": [
+    {
+      "topic": "US Disasters",
+      "say": "Billion-dollar US disasters now average 20.4 yearly, turning exceptional events into a near-monthly burden."
+    },
+    {
+      "topic": "US Disaster Record",
+      "say": "The US recorded 28 disasters in 2023, more than three times the long-run yearly average."
+    },
+    {
+      "topic": "US Disaster Cost",
+      "say": "Since 1980, US disasters cost $2,635.1 billion. Insurers, taxpayers, and households ultimately absorb that bill."
+    }
+  ]
+}
