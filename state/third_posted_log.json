@@ -17828,13 +17828,59 @@
       "ts": "2026-11-04T12:47:50.210834+00:00"
     },
     "clip-20261104-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/LazyLitigiousFerretShadyLulu-OeZSvuF1_TYredSC",
-      "story_key": null,
-      "streamer": "joe_bartolozzi",
+      "url": "https://youtube.com/shorts/5btSp5fN0SA",
       "title": "Joe Joe_Bartolozzi Can't Believe What Just Happened On Stream",
       "kind": "twitch_clip",
-      "ts": "2026-11-04T12:49:59.271466+00:00",
+      "ts": "2026-11-04T12:50:07.590794+00:00",
+      "uploaded_at": "2026-11-04T12:50:07.590806+00:00",
+      "publish_at": "2026-11-04T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261104-joe-joe-bartolozzi-can-t-believe-what-just-happe-e040a530",
+        "tiktok": "queued for 2026-11-04T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/LazyLitigiousFerretShadyLulu-OeZSvuF1_TYredSC",
+      "streamer": "joe_bartolozzi",
+      "series": "chaos",
+      "hook": "Joe thought it was a ball",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3925,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.7,
+        "end": 11.6
+      },
+      "director_cut": true
+    },
+    "rejected-concernedgloriousswallowallenhuhu-x-pniowxypfizswg": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/ConcernedGloriousSwallowAllenHuhu-X-pnioWxypfiZSwG",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Catches A Monster Stealing A Lady's Purse And Loses It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is only a thin strip, about a third of the canvas height and not the roughly three quarters expected. ; vision: The subject is small and hard to read on a phone in several frames. At 3.2s and 7.4s the people are tiny and lost in the; vision: Most of the frame is blurred pad",
+      "ts": "2026-11-04T12:56:16.543725+00:00"
+    },
+    "rejected-sincerelivelynewtshazbotstix-hqsenr5a-lcpq7ph": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/SincereLivelyNewtShazBotstix-HqSeNr5A-LCPq7pH",
+      "streamer": "valkyrae",
+      "title": "VALID CRASHOUT",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Routine gameplay, rambling talk, no even)",
+      "ts": "2026-11-04T12:57:27.595713+00:00"
+    },
+    "clip-20261104-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/NimbleKitschyOilVoteYea-0iefvHJHha43PyXG",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Breaks Down Saying 'Nobody Ever Asks Me What I Want'",
+      "kind": "twitch_clip",
+      "ts": "2026-11-04T13:02:13.227876+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
