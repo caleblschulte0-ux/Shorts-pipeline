@@ -5,28 +5,65 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "baseball",
-   "who": "Trevor Megill",
-   "why": "A closer's mic'd-up message to Chicago fans, trash talk with a ring on his finger.",
-   "post_title": "Trevor Megill's message to Brewers fans: \"Have fun talking sh!t to Chicago next year. We have a ring.\"",
+   "sub": "soccer",
+   "who": "Kaka",
+   "why": "Kaka breaks into tears under a standing ovation at the San Siro as he joins Milan's Hall of Fame.",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun",
-   "skipped": "too short: the post runs 7.4s (< 15s)"
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Yan Diomande",
+   "why": "A whole stadium gives him a standing ovation after he hands his jersey to a ball boy.",
+   "post_title": "Yan Diomande receiving a standing ovation from the Racing Santander stadium after he gives his jersey to a ball boy",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from",
+   "title": "Yan Diomande Gets A Standing Ovation After Giving His Jersey To A Ball Boy",
+   "hook": "Yan Diomande gives his jersey to a ball boy",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: Real moment, but the opening is a letterboxed repost with someone else's unrelated captions, and the promised stadium ovation is never clearly shown."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: Real moment, but the opening is a letterboxed repost with someone else's unrelated captions, and the promised stadium ovation is never clearly shown.",
+    "score": 75
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: Real moment, but the opening is a letterboxed repost with someone else's unrelated captions, and the promised stadium ovation is never clearly shown."
   },
   {
    "sub": "baseball",
    "who": "Jake Bauers",
-   "why": "A player hands the manager the last-out ball from the clinching World Series win, a tender moment between the two.",
+   "why": "Bauers gives manager Pat Murphy the last-out ball after the Brewers' first championship.",
    "post_title": "Jake Bauers gives Pat Murphy the last out ball",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball/",
    "topic": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball",
-   "title": "Jake Bauers Gives Pat Murphy The Last Out Ball \ud83e\udd79",
-   "hook": "Bauers gives Murphy the last out ball \ud83e\udd79",
+   "title": "Jake Bauers Hands Pat Murphy The Last Out Ball",
+   "hook": "Bauers hands Murphy the last out ball",
    "ledger": {
     "moves": [
-     "zoom@7.0"
+     "zoom@1.5"
     ],
     "mood": null,
     "shot_plan": {
@@ -42,342 +79,56 @@
       "https://www.youtube.com/watch?v=cccoz4dpYxg",
       "https://www.youtube.com/watch?v=cccoz4dpYxg",
       "https://www.youtube.com/watch?v=cccoz4dpYxg",
-      "https://www.youtube.com/watch?v=nd_668RMMRo",
       "https://www.youtube.com/watch?v=cccoz4dpYxg",
       "https://www.youtube.com/watch?v=cccoz4dpYxg",
-      "https://www.youtube.com/watch?v=cccoz4dpYxg"
+      "https://v.redd.it/g4xshfcivxuh1"
      ],
-     "secs": 20.8
+     "secs": 17.4
     },
     "cut_in": [],
     "shown": [],
     "music": [
      {
-      "track": "ncs:018563ec-10f8-44ab-b46c-e05b7cb20749",
-      "credit": "Song: Tatsunoshin, fawlin - Sunrise (feat. fawlin)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/TS_sunrise"
+      "track": "ncs:da612e5c-1614-49be-9988-b7c2c6c64bf3",
+      "credit": "Song: Pasha, Carlos Ukareda, VALLO, NCT, Cartoon - Around Us (ft. Pasha & Carlos Ukareda)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/AroundUs"
      }
     ]
    },
    "repairs": [
     {
-     "score": 66,
-     "reason": "showrunner BLOCK: The first ~20s show a genuinely sweet handoff, but the cut then wanders into a locker-room shot and NLCS footage, so the final 17s never show the last-out ball the line promises and the ending fizzles."
-    },
-    {
-     "score": 74,
-     "reason": "showrunner BLOCK: It's a warm, clear World Series moment (ball hand-off, hug, smiles), but about 1.5s of the hook is a reporter's jacket blocking both men."
+     "score": 71,
+     "reason": "showrunner BLOCK: The real ball handoff lands in the first second, but the clip then drifts into archival footage and a letterboxed clubhouse speech that never returns to the ball, so it ends nowhere near the moment its line promises."
     }
    ],
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner BLOCK: The handoff and hug land in the first two seconds, but the second half is an unrelated, letterboxed clubhouse speech under the same ball caption, so the video ends on footage that has nothing to do with its promise.",
-    "score": 71
+    "reason": "showrunner BLOCK:",
+    "score": 53
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The handoff and hug land in the first two seconds, but the second half is an unrelated, letterboxed clubhouse speech under the same ball caption, so the video ends on footage that has nothing to do with its promise."
+   "skipped": "showrunner_block: showrunner BLOCK:"
   },
   {
    "sub": "baseball",
-   "who": "Alex Rodriguez",
-   "why": "A. Rod's raw, funny admission that he has no life outside baseball.",
-   "post_title": "Alex Rodriguez after Game 4- \"I have no life, I love baseball\"",
+   "who": "Trevor Megill",
+   "why": "A Brewers closer grabs the mic and tells Chicago fans to enjoy talking trash next year, because Milwaukee has a ring.",
+   "post_title": "Trevor Megill's message to Brewers fans: \"Have fun talking sh!t to Chicago next year. We have a ring.\"",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xhsv7v/alex_rodriguez_after_game_4_i_have_no_life_i_love/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xhsv7v/alex_rodriguez_after_game_4_i_have_no_life_i_love",
-   "title": "Alex Rodriguez Hears He's Skipping The Gym And Says He Has No Life",
-   "hook": "A-Rod: I have no life, I love baseball",
-   "ledger": {
-    "moves": [
-     "zoom@18.57"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "8 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 1.73,
-       "reason": "the framer: A-Rod in the maroon suit at the desk, talking into the mic, with his face around columns 4-5",
-       "crop": [
-        404,
-        720,
-        374,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 1.73,
-       "t1": 3.63,
-       "reason": "the framer: Close-up of Jeter laughing; the whole face and mic sit in columns 5-7",
-       "crop": [
-        404,
-        720,
-        630,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 3.63,
-       "t1": 5.33,
-       "reason": "the framer: A-Rod in profile in the maroon suit, speaking with the mic, in columns 1-3",
-       "crop": [
-        404,
-        720,
-        118,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 5.33,
-       "t1": 9.73,
-       "reason": "the framer: Close-up of A-Rod talking while holding a can; his face is in columns 4-5 and the can in column 3-4",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 9.73,
-       "t1": 11.37,
-       "reason": "the framer: Close-up of Jeter smiling, with his full face in columns 5-7",
-       "crop": [
-        404,
-        720,
-        630,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 11.37,
-       "t1": 15.03,
-       "reason": "the framer: A-Rod laughing and talking at far left (face in columns 1-2), with Ortiz beside him",
-       "crop": [
-        540,
-        720,
-        0,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 15.03,
-       "t1": 21.6,
-       "reason": "the framer: A-Rod with his face in column 4 and Ortiz (face in column 6) in the middle of the desk",
-       "crop": [
-        404,
-        720,
-        502,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 21.6,
-       "t1": 23.23,
-       "reason": "the framer: Close-up of A-Rod speaking to camera, with his full face in columns 4-5",
-       "crop": [
-        404,
-        720,
-        502,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.278,
-      0.276,
-      0.278,
-      0.277,
-      0.278
-     ],
-     "n_subjects": 0,
-     "face_bands": [
-      [
-       0.0,
-       0.805
-      ],
-      [
-       0.002,
-       0.669
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 74
-   },
-   "video_url": "https://youtube.com/shorts/FPx-CVGP960",
-   "ok": true,
-   "publish_at": "2026-11-04T15:00:00Z",
-   "seconds": 193,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261104-alex-rodriguez-hears-he-s-skipping-the-gym-and-s-cafd8ae5",
-    "tiktok": "queued for 2026-11-04T15:00:00Z"
-   }
+   "url": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiay7h/trevor_megills_message_to_brewers_fans_have_fun",
+   "skipped": "too short: the post runs 7.4s (< 15s)"
   },
   {
-   "sub": "nfl",
-   "who": "Quenton Nelson",
-   "why": "A guard's funny, candid reaction to being unable to escape a rival lineman he keeps facing.",
-   "post_title": "[Highlight] New Seahawks G Quenton Nelson on the Bears trading for Jeffery Simmons, whom he faced often in the AFC South and will now see Monday night: \u201cI was like, \u2018Man, can\u2019t get away from this guy.",
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "Mbapp\u00e9 jokes with the kid hit by a Tchouam\u00e9ni shot, blaming Tchouam\u00e9ni for not knowing how to shoot.",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xix4o0/highlight_new_seahawks_g_quenton_nelson_on_the/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xix4o0/highlight_new_seahawks_g_quenton_nelson_on_the",
-   "title": "Quenton Nelson Can't Escape Jeffery Simmons Even After The Trade",
-   "hook": "Quenton Nelson can't get away from this guy \ud83d\ude2d",
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "title": "Kylian Mbapp\u00e9 Tells The Kid Hit By A Tchouam\u00e9ni Shot Whose Fault It Was",
+   "hook": "Mbapp\u00e9 blames Tchouam\u00e9ni for the shot that hit a kid \ud83d\ude02",
    "ledger": {
     "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
-     "shots": [],
-     "subtitle_spans": [
-      0.939,
-      0.902,
-      0.937,
-      0.938,
-      0.922
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A press conference that never shows or names 'this guy': a stranger sees a lineman at a podium in a small strip for 21s and never learns who Jeffery Simmons is or hears the quote land.",
-    "score": 49
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A press conference that never shows or names 'this guy': a stranger sees a lineman at a podium in a small strip for 21s and never learns who Jeffery Simmons is or hears the quote land."
-  },
-  {
-   "sub": "MMA",
-   "who": "Conor McGregor",
-   "why": "Conor cracking up as Raul Rosas submits Colby Covington, with his reaction as the whole moment.",
-   "post_title": "Conor McGregor was dying laughing after Raul Rosas subbed Colby Covington \ud83d\udc80",
-   "upvotes": 0,
-   "url": "https://streamable.com/ukm369",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xnamv2/conor_mcgregor_was_dying_laughing_after_raul",
-   "skipped": "too short: the post runs 4.7s (< 15s)"
-  },
-  {
-   "sub": "MMA",
-   "who": "Alexander Volkanovski",
-   "why": "A champion openly venting about getting no mainstream respect.",
-   "post_title": "Alexander Volkanovski a little upset about limited mainstream recognition: \"I\u2019m not saying they\u2019re hating on me. Maybe it\u2019s just not their sport. They don\u2019t understand it, and they don\u2019t know enough. ",
-   "upvotes": 0,
-   "url": "https://streamable.com/n634d0",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xki50e/alexander_volkanovski_a_little_upset_about",
-   "title": "Alexander Volkanovski Admits It Upsets Him How Little Mainstream Media Shows His Sport",
-   "hook": "Volkanovski upset about mainstream recognition",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "facecam_gameplay",
-     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
-     "shots": [],
-     "subtitle_spans": [
-      0.059,
-      0.045,
-      0.059,
-      0.059,
-      0.482
-     ],
-     "n_subjects": 2
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A 30-second webcam talking head in a small box next to an unrelated carbon-tax newspaper photo, with blurred fill over two-thirds of the frame. There is no moment and nothing to stop a scroll.",
-    "score": 57
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A 30-second webcam talking head in a small box next to an unrelated carbon-tax newspaper photo, with blurred fill over two-thirds of the frame. There is no moment and nothing to stop a scroll."
-  },
-  {
-   "sub": "MMA",
-   "who": "Carlos Prates",
-   "why": "A fighter goes off on Islam Makhachev with real heat and trash talk.",
-   "post_title": "Carlos Prates goes off on Islam Makhachev: \"He chickened out... UFC was pissed. If you don't want to fight, vacate your belt. But instead you act like an asshole. Just stay quiet, fake an injury or so",
-   "upvotes": 0,
-   "url": "https://streamable.com/hwx7uq",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xme0di/carlos_prates_goes_off_on_islam_makhachev_he",
-   "title": "Carlos Prates Rips Makhachev: If You Won't Fight, Vacate Your Belt",
-   "hook": "Prates calls out Makhachev \ud83d\udc80",
-   "ledger": {
-    "moves": [
-     "whoa@10.8",
-     "zoom@25.3"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
-     "shots": [],
-     "subtitle_spans": [
-      0.491,
-      0.768,
-      0.755,
-      0.5,
-      0.528
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: The rant is real and it lands ('vacate your belt'), but it plays in a thin letterboxed split-screen with a frozen photo taking half the band and blur filling two-thirds of the screen, so a phone viewer sees a small talking head that barely changes for 31s."
-    },
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: This is a letterboxed repost of someone else's split-screen edit: a frozen Makhachev still, a small band of Prates talking, and a title claiming 'to his face' that the footage never shows."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The callout is real and easy to follow, but it plays as a postage-stamp split-screen inside two thirds of blur, with no zooms or hits, and it ends on a flat line rather than the 'vacate your belt' peak.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The callout is real and easy to follow, but it plays as a postage-stamp split-screen inside two thirds of blur, with no zooms or hits, and it ends on a flat line rather than the 'vacate your belt' peak."
-  },
-  {
-   "sub": "nba",
-   "who": "Victor Wembanyama",
-   "why": "Wemby delivers a pointed, unexpected take on the choices athletes make off the court.",
-   "post_title": "[Highlight] Victor Wembanyama: Everything is a choice. You can choose to be an influencer, a philanthropist, or to promote gambling and alcohol off the court",
-   "upvotes": 0,
-   "url": "https://streamable.com/35ntwv",
-   "topic": "https://www.reddit.com/r/nba/comments/1xm0n9s/highlight_victor_wembanyama_everything_is_a",
-   "title": "Victor Wembanyama Says Even NBA Stars Choose Who They Become Off The Court",
-   "hook": "Wemby on the choices stars make off court",
-   "ledger": {
-    "moves": [
-     "whoa@16.9"
-    ],
     "mood": null,
     "shot_plan": {
      "layout": "cameras",
@@ -386,38 +137,23 @@
       {
        "mode": "camera",
        "t0": 0.0,
-       "t1": 6.08,
-       "reason": "the framer: Wembanyama, the speaker, is seated in columns 2-4. His head is in columns 2-3 and his torso in 1-4. The blurred person at the right edge is left out.",
-       "crop": [
-        368,
-        492,
-        80,
-        0
-       ]
+       "t1": 15.43,
+       "reason": "the framer: The kid in a green jersey (cols 1-2), the smiling man holding him (2-4) and Mbapp\u00e9 facing them (5-7) are too far apart to crop. (whole frame)",
+       "crop": null
       },
       {
        "mode": "camera",
-       "t0": 6.08,
-       "t1": 9.38,
-       "reason": "the framer: The interviewer's face is in columns 6-8, with his shoulders reaching into 5 and 9. The blurred hand at left is left out.",
-       "crop": [
-        368,
-        492,
-        436,
-        0
-       ]
+       "t0": 15.43,
+       "t1": 22.53,
+       "reason": "the framer: The kid and the man holding him (cols 2-4) and Mbapp\u00e9 (5-7) make a wide exchange that a tall crop would split. (whole frame)",
+       "crop": null
       },
       {
        "mode": "camera",
-       "t0": 9.38,
-       "t1": 25.45,
-       "reason": "the framer: Close-up of Wembanyama's face in columns 3-5, with his collar in 2-5.",
-       "crop": [
-        368,
-        492,
-        170,
-        0
-       ]
+       "t0": 22.53,
+       "t1": 26.9,
+       "reason": "the framer: The kid's face (cols 3-5) and the smiling man holding him (5-6); the rest is empty wall. (whole frame)",
+       "crop": null
       }
      ],
      "subtitle_spans": [
@@ -427,169 +163,6 @@
       0.0,
       0.0
      ],
-     "n_subjects": 1,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "repairs": [
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: The moment is real but sits on the speaker poorly: the close-up crop cuts Wembanyama's face at the right edge and the clip ends mid-thought on 'SO IT'S REALLY'."
-    }
-   ],
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 70
-   },
-   "video_url": "https://youtube.com/shorts/AyVF9IWqcjE",
-   "ok": true,
-   "publish_at": "2026-11-04T18:00:00Z",
-   "seconds": 280,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261104-victor-wembanyama-says-even-nba-stars-choose-who-e23a7f6d",
-    "tiktok": "queued for 2026-11-04T18:00:00Z"
-   }
-  },
-  {
-   "sub": "sports",
-   "who": "Jacob Misiorowski",
-   "why": "A fan catches a perfect beer throw, then Misiorowski chugs it at the Brewers parade.",
-   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
-   "title": "Jacob Misiorowski Catches The Beer Throw And Chugs It At The Brewers Parade",
-   "hook": "Misiorowski chugs a beer at the parade \ud83c\udf7a",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: Right event and a good crowd countdown, but the catch and chug the line promises happen as tiny specks on a far-off bus and are never shown up close, and the clip ends on a wide building shot."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: Right event and a good crowd countdown, but the catch and chug the line promises happen as tiny specks on a far-off bus and are never shown up close, and the clip ends on a wide building shot.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: Right event and a good crowd countdown, but the catch and chug the line promises happen as tiny specks on a far-off bus and are never shown up close, and the clip ends on a wide building shot."
-  },
-  {
-   "sub": "nba",
-   "who": "Victor Wembanyama",
-   "why": "Wemby juggles the ball with his feet and the ref plays along.",
-   "post_title": "[HIGHLIGHT] Wemby Casually Juggles Ball with Feet and Passes to Ref who Reciprocates",
-   "upvotes": 0,
-   "url": "https://streamable.com/j6qyn1",
-   "topic": "https://www.reddit.com/r/nba/comments/1xmiiev/highlight_wemby_casually_juggles_ball_with_feet",
-   "skipped": "too short: the post runs 6.9s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "LeBron James",
-   "why": "LeBron joking around pregame with VJ Edgecombe, then nailing a shot off the sideboard.",
-   "post_title": "Lebron having fun pregame with VJ Edgecombe and then proceeds to hit the sideboard",
-   "upvotes": 0,
-   "url": "https://streamable.com/dy08hf",
-   "topic": "https://www.reddit.com/r/nba/comments/1xiblub/lebron_having_fun_pregame_with_vj_edgecombe_and",
-   "skipped": "no sound: the post has no audio track"
-  },
-  {
-   "sub": "nba",
-   "who": "VJ Edgecombe",
-   "why": "A rookie does LeBron's signature shrug right in front of him.",
-   "post_title": "[NBA] VJ Does The \"LeBron Shrug\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/zssooz",
-   "topic": "https://www.reddit.com/r/nba/comments/1xkce0x/nba_vj_does_the_lebron_shrug",
-   "skipped": "too short: the post runs 14.9s (< 15s)"
-  },
-  {
-   "sub": "baseball",
-   "who": "Jacob Misiorowski",
-   "why": "A pitcher walks off to a standing ovation from the crowd as cramps end his night.",
-   "post_title": "Jacob Misiorowski receives a standing ovation at Tropicana Field as he exits the game due to cramps",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xi7t95/jacob_misiorowski_receives_a_standing_ovation_at/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xi7t95/jacob_misiorowski_receives_a_standing_ovation_at",
-   "title": "Jacob Misiorowski Exits To A Standing Ovation After Cramps Cut His Game Five Short",
-   "hook": "Misiorowski gets a standing ovation \ud83d\udc4f",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "4 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 1.87,
-       "reason": "the framer: Brewers players Ashby and Romero (33) seen from behind, watching the field from the dugout rail",
-       "crop": [
-        404,
-        718,
-        502,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 1.87,
-       "t1": 13.37,
-       "reason": "the framer: Misiorowski (32) with the manager and trainer around him, and the umpire at the mound as he is pulled",
-       "crop": [
-        538,
-        718,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 13.37,
-       "t1": 15.33,
-       "reason": "the framer: Misiorowski walking off the field with the manager and trainer, a small figure in the wide shot",
-       "crop": [
-        404,
-        718,
-        246,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 15.33,
-       "t1": 17.57,
-       "reason": "the framer: Crowd standing and applauding with towels, with faces spread across the whole frame and no single focal point (whole frame)",
-       "crop": null
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.093,
-      0.102,
-      0.0,
-      0.093
-     ],
      "n_subjects": 0,
      "face_bands": []
     },
@@ -599,70 +172,15 @@
     "music": []
    },
    "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 78
+    "blocked": true,
+    "reason": "showrunner BLOCK: The promised joke, Mbapp\u00e9 blaming Tchouam\u00e9ni, is never shown on screen: his words have no captions, and the footage is a small letterboxed strip with garbled captions in the hook.",
+    "score": 57
    },
-   "video_url": "https://youtube.com/shorts/nHDvhMXkX6A",
-   "ok": true,
-   "publish_at": "2026-11-04T21:00:00Z",
-   "seconds": 155,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261104-jacob-misiorowski-exits-to-a-standing-ovation-af-377a091c",
-    "tiktok": "queued for 2026-11-04T21:00:00Z"
-   }
-  },
-  {
-   "sub": "CollegeBasketball",
-   "who": "Northern Kentucky",
-   "why": "A whole team gets rescued after 40+ minutes stuck in a broken elevator.",
-   "post_title": "The Northern Kentucky team has been saved after being stuck for 40+ minutes in a broken elevator",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xlmcvp/the_northern_kentucky_team_has_been_saved_after/",
-   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xlmcvp/the_northern_kentucky_team_has_been_saved_after",
-   "title": "Northern Kentucky Team Finally Freed After 40+ Minutes Stuck In A Broken Elevator",
-   "hook": "Northern Kentucky stuck in an elevator \ud83d\ude2d",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
-   },
-   "video_url": "https://youtube.com/shorts/b580p4O0MRE",
-   "ok": true,
-   "publish_at": "2026-11-05T00:00:00Z",
-   "seconds": 111,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261104-northern-kentucky-team-finally-freed-after-40-mi-4716759d",
-    "tiktok": "queued for 2026-11-05T00:00:00Z"
-   }
-  },
-  {
-   "sub": "sports",
-   "who": "Newlands office workers",
-   "why": "Two office workers get caught watching the Test from their desk overlooking the stadium.",
-   "post_title": "Two office workers were caught enjoying the third Test between South Africa and Australia from their desks overlooking the Newlands Stadium in Cape Town",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xhmpa8/two_office_workers_were_caught_enjoying_the_third/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xhmpa8/two_office_workers_were_caught_enjoying_the_third",
-   "skipped": "author: no setup or no payoff in the clip"
+   "skipped": "showrunner_block: showrunner BLOCK: The promised joke, Mbapp\u00e9 blaming Tchouam\u00e9ni, is never shown on screen: his words have no captions, and the footage is a small letterboxed strip with garbled captions in the hook."
   }
  ],
- "already_today": 0,
- "pool": 95,
- "already_posted": 19,
- "shipped": 4
+ "already_today": 4,
+ "pool": 110,
+ "already_posted": 23,
+ "shipped": 0
 }
