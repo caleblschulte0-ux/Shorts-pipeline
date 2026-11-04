@@ -17745,13 +17745,50 @@
       "ts": "2026-11-04T11:45:37.952827+00:00"
     },
     "clip-20261104-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/HungryColorfulPlumageGOWSkull-kjWZUfORkthzykBU",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/-GPZZ33S5T4",
       "title": "Kaicenat: Kai Cenat Can't Believe Who Walks In As A Sexy Nun",
       "kind": "twitch_clip",
-      "ts": "2026-11-04T11:49:14.787189+00:00",
+      "ts": "2026-11-04T11:49:23.906931+00:00",
+      "uploaded_at": "2026-11-04T11:49:23.906944+00:00",
+      "publish_at": "2026-11-04T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261104-kaicenat-kai-cenat-can-t-believe-who-walks-in-as-21139d16",
+        "tiktok": "queued for 2026-11-04T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/HungryColorfulPlumageGOWSkull-kjWZUfORkthzykBU",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "Kai meets sexy nun Ash \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3436,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.8,
+        "end": 25.5
+      },
+      "director_cut": true
+    },
+    "rejected-charminginexpensiveaardvarkleeroyjenkins-kit7oksw_albru5m": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CharmingInexpensiveAardvarkLeeroyJenkins-KIt7Oksw_ALBrU5m",
+      "streamer": "jasontheween",
+      "title": "w goons",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Cosplay chat, slur, no clear event)",
+      "ts": "2026-11-04T12:39:13.780559+00:00"
+    },
+    "clip-20261104-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/PeacefulKawaiiBeePeteZarollTie-PUJXg2mT0yXIBNYk",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Snaps At Another Driver After This, No License",
+      "kind": "twitch_clip",
+      "ts": "2026-11-04T12:45:29.702365+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
