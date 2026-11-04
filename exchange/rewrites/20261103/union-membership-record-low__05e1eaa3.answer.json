@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "union-membership-record-low__05e1eaa3",
+  "slug": "union-membership-record-low",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:19:45.181Z",
+  "title": "Union Membership Fell Below 10% As Private Unions Collapsed",
+  "hook": "Private union membership fell to 5.9%, not the whole workforce equally.",
+  "closing": "Fewer union workers means less collective leverage when pay and conditions are decided.",
+  "question": "Is your job unionized?",
+  "segments": [
+    {
+      "topic": "Union Membership",
+      "say": "Union membership fell to 9.9%, less than half its earlier rate and the first single-digit reading."
+    },
+    {
+      "topic": "Private Unions",
+      "say": "Private union membership is just 5.9%, far below government workers. Private jobs drive the national decline."
+    },
+    {
+      "topic": "Union Headcount",
+      "say": "Only 14.2 million workers remain union members, even as the overall workforce kept growing."
+    }
+  ]
+}
