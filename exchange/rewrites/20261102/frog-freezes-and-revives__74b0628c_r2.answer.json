@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "frog-freezes-and-revives__74b0628c_r2",
+  "slug": "frog-freezes-and-revives",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:23:21.925Z",
+  "title": "Wood Frogs Survive With 65% Of Body Water Frozen",
+  "hook": "Wood frogs survive ice levels that kill most vertebrates.",
+  "closing": "Their biology shows how life can endure extreme cold without exaggerating what freezes.",
+  "question": "Would you survive that winter?",
+  "segments": [
+    {
+      "topic": "Wood Frog Water",
+      "say": "Wood frogs survive with 65% of body water frozen. Most vertebrates die at far lower levels."
+    },
+    {
+      "topic": "Wood Frog Cold",
+      "say": "Wood frogs survive 16 degrees below freezing, far colder than a typical frog can tolerate."
+    },
+    {
+      "topic": "Wood Frog Range",
+      "say": "Wood frogs reach 68 degrees latitude in Alaska. Freeze tolerance lets them live far beyond most frogs."
+    }
+  ]
+}
