@@ -284,3 +284,85 @@ def moment(data) -> dict | None:
         if out["end"] <= out["begin"]:
             return None
     return out
+
+
+_FRAME = """You are FRAMING footage for a tall phone video (9:16) titled: \
+{title}
+
+Each image below is one camera shot of a widescreen source, with numbered \
+columns 0-9 drawn across it. READ every image with the Read tool.
+
+{shots}
+
+For each shot, name the columns that hold what a viewer must SEE: the \
+person talking, the people the moment is about, the play itself. A tall \
+crop keeps about three columns. The crop must keep every face that \
+matters WHOLE (never half a face at the edge, never the empty set or \
+backdrop beside the people, never a shoulder where the speaker should \
+be). When what matters runs wider than about four columns (two people \
+far apart, a wide play), say whole=true and the shot is shown uncropped.
+
+Return ONLY a JSON object, no prose:
+{{"shots": [{{"index": <shot number>, "first": <column>, "last": <column>, \
+"whole": <true|false>, "why": "<one line: who or what is in those \
+columns>"}}]}}
+"""
+
+
+def frame_shots(images: list[tuple[int, Path]], title: str = "",
+                model: str | None = None) -> dict[int, dict] | None:
+    """Where to crop each camera shot, read by the headless brain off a
+    frame with numbered columns: {shot: {"cols": (first, last)} or
+    {"whole": True}, plus "why"}, or None when it could not answer.
+    Operator, 2026-11-03, of a Wembanyama interview cropped to half his
+    face and a Westbrook stage clip cropped to the empty backdrop: "make
+    sure it's picking better and doing better"."""
+    if not images or not shutil.which("claude"):
+        return None
+    prompt = _FRAME.format(
+        title=title or "(untitled)",
+        shots="\n".join(f"- shot {i}: image {p}" for i, p in images))
+    model = model or os.environ.get("SHOT_RELEVANCE_MODEL",
+                                    os.environ.get("SHOWRUNNER_MODEL", "sonnet"))
+    try:
+        proc = subprocess.run(
+            ["claude", "-p", prompt, "--model", model,
+             "--allowedTools", "Read", "--output-format", "text"],
+            capture_output=True, text=True, timeout=TIMEOUT_S)
+    except Exception:  # noqa: BLE001
+        return None
+    if proc.returncode != 0:
+        return None
+    try:
+        from scripts.showrunner_review import parse_judge_json
+        data = parse_judge_json(proc.stdout or "")
+    except Exception:  # noqa: BLE001
+        return None
+    return framing(data, [i for i, _ in images])
+
+
+def framing(data, want: list[int]) -> dict[int, dict] | None:
+    """A framer's answer, validated; None unless EVERY shot is answered
+    (a half-framed clip would mix the brain's crops with guesses)."""
+    rows = data.get("shots") if isinstance(data, dict) else None
+    if not isinstance(rows, list):
+        return None
+    out: dict[int, dict] = {}
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        try:
+            i = int(r.get("index"))
+        except Exception:  # noqa: BLE001
+            continue
+        why = str(r.get("why") or "")[:200]
+        if r.get("whole") is True:
+            out[i] = {"whole": True, "why": why}
+            continue
+        try:
+            a, b = int(r["first"]), int(r["last"])
+        except Exception:  # noqa: BLE001
+            continue
+        if 0 <= a <= b <= 9:
+            out[i] = {"cols": (a, b), "why": why}
+    return out if set(want) <= set(out) else None

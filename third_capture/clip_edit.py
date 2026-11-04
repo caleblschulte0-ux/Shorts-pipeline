@@ -1542,7 +1542,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 # a full cv2 decode plus a Haar pass, 15-45s, twice per
                 # render, ~10 renders a run.
                 reframed, sp_summary = spn.build(program, tmp, analyze_on=cut,
-                                                 an=_cut_an)
+                                                 an=_cut_an, title=hook)
                 ledger_ae["shot_plan"] = sp_summary
             except Exception:  # noqa: BLE001
                 reframed = None

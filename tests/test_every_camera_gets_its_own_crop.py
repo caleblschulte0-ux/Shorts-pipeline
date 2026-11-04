@@ -184,3 +184,67 @@ class ItRendersEveryShot(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SomethingLooksBeforeItCrops(unittest.TestCase):
+    """Operator, 2026-11-03: "make sure it's picking better and doing
+    better, because some of these are trash". A Westbrook stage clip was
+    cropped to the empty backdrop while Presti and Westbrook sat small at
+    the right: no face was big enough to find and the camera shook, so the
+    motion said nothing. A brain looks at each shot and names the columns
+    that hold who matters."""
+
+    def test_three_columns_are_a_tall_crop_on_them(self):
+        w, h, x, _ = sp.crop_from_cols(SW, SH, 6, 8)
+        self.assertAlmostEqual(w / h, 9 / 16, places=2)
+        self.assertTrue(x <= 6 * SW / 10 and 9 * SW / 10 <= x + w + 2)
+
+    def test_four_columns_are_the_wider_window(self):
+        w, h, x, _ = sp.crop_from_cols(SW, SH, 2, 5)
+        self.assertAlmostEqual(w / h, 3 / 4, places=2)
+
+    def test_wider_than_that_is_the_whole_frame(self):
+        self.assertIsNone(sp.crop_from_cols(SW, SH, 1, 8))
+
+    def test_an_answer_must_cover_every_shot(self):
+        from shared.shot_relevance import framing
+        got = {"shots": [{"index": 0, "first": 6, "last": 8, "why": "them"}]}
+        self.assertIsNone(framing(got, [0, 1]))
+        got["shots"].append({"index": 1, "whole": True})
+        f = framing(got, [0, 1])
+        self.assertEqual(f[0]["cols"], (6, 8))
+        self.assertTrue(f[1]["whole"])
+
+    def test_nonsense_columns_are_no_answer(self):
+        from shared.shot_relevance import framing
+        self.assertIsNone(framing({"shots": [{"index": 0, "first": 7,
+                                              "last": 3}]}, [0]))
+
+    def test_the_look_comes_before_the_guesses(self):
+        from unittest import mock
+        an = _an([5.0], [(0, 5, 1400, 420, "front"),
+                         (5, 10, 300, 480, "profile")])
+        looked = [{"t0": 0.0, "t1": 10.0, "crop": (608, 1080, 1200, 0),
+                   "why": "the framer: them"}]
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(sp, "burned_subtitles", return_value=False), \
+                mock.patch.object(sp, "_probe_wh_dur",
+                                  return_value=(SW, SH, 10.0)), \
+                mock.patch.object(sp, "framed", return_value=looked), \
+                mock.patch.object(sp, "_render_cameras",
+                                  return_value=Path(d) / "o.mp4") as r:
+            path, summ = sp.build(Path("x.mp4"), Path(d), an=an, title="t")
+        self.assertEqual(summ["layout"], "cameras")
+        self.assertEqual(r.call_args[0][1], looked)
+        self.assertIn("look", summ["reason"])
+
+    def test_no_brain_no_look(self):
+        from unittest import mock
+        with mock.patch.dict("os.environ", {"SHOT_RELEVANCE": "off"}):
+            self.assertIsNone(sp.framed(_an([5.0], []), Path("x.mp4"),
+                                        Path(".")))
+
+    def test_the_clip_editor_tells_the_framer_what_it_is(self):
+        src = (Path(__file__).resolve().parents[1] / "third_capture"
+               / "clip_edit.py").read_text()
+        self.assertIn("an=_cut_an, title=hook)", src)

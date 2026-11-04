@@ -195,6 +195,93 @@ def _shot_face(an: dict, t0: float, t1: float) -> dict | None:
     return best
 
 
+COLS = 10             # the framer's numbered columns
+MAX_FRAMED_SHOTS = 8  # more shots than this: one look at each is too many
+
+
+def crop_from_cols(sw: int, sh: int, a: int, b: int) -> tuple | None:
+    """The window that keeps columns a..b: a 9:16 crop when they fit one,
+    the 3:4 action window when they fit that, else None (the whole frame)."""
+    cx = (a + b + 1) / 2 * sw / COLS
+    span = (b - a + 1) * sw / COLS
+    for aw, ah in ((9, 16), ACTION_CROP_ASPECT):
+        w = int(round(sh * aw / ah))
+        w -= w % 2
+        if w >= sw:
+            return None
+        if span <= w * 1.02:
+            x = int(min(max(cx - w / 2, 0), sw - w))
+            return (w, sh - sh % 2, x - x % 2, 0)
+    return None
+
+
+def _column_frame(video: Path, t: float, sw: int, sh: int,
+                  out: Path) -> Path | None:
+    """One frame at `t` with COLS numbered columns drawn over it."""
+    try:
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}",
+                        "-i", str(video), "-frames:v", "1", "-vf",
+                        "scale=960:-2", str(out)],
+                       check=True, timeout=60, capture_output=True)
+        from PIL import Image, ImageDraw
+        with Image.open(out) as im:
+            im = im.convert("RGB")
+            d = ImageDraw.Draw(im)
+            try:
+                from PIL import ImageFont
+                font = ImageFont.load_default(size=22)
+            except Exception:  # noqa: BLE001 — an old Pillow
+                font = None
+            cw = im.width / COLS
+            for k in range(COLS):
+                x = int(k * cw)
+                if k:
+                    d.line([(x, 0), (x, im.height)], fill=(255, 230, 0),
+                           width=2)
+                d.rectangle([x + 3, 3, x + 31, 33], fill=(0, 0, 0))
+                d.text((x + 10, 6), str(k), fill=(255, 230, 0), font=font)
+            im.save(out)
+        return out
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def framed(an: dict, video: Path, work: Path, title: str = "") -> list | None:
+    """Per-shot crops a BRAIN chose by looking — [{"t0","t1","crop","why"}]
+    — or None (no brain, no answer, too many shots): then the face and
+    motion heuristics frame it as before."""
+    from shared import shot_relevance
+    sw, sh = int(an.get("sw") or 0), int(an.get("sh") or 0)
+    if sw <= sh or not shot_relevance.enabled():
+        return None
+    shots = shots_of(an)
+    if not shots or len(shots) > MAX_FRAMED_SHOTS:
+        return None
+    work.mkdir(parents=True, exist_ok=True)
+    imgs = []
+    for i, (t0, t1) in enumerate(shots):
+        p = _column_frame(video, (t0 + t1) / 2, sw, sh,
+                          work / f"frame_cols{i}.png")
+        if p is None:
+            return None
+        imgs.append((i, p))
+    got = shot_relevance.frame_shots(imgs, title=title)
+    if not got:
+        return None
+    out = []
+    for i, (t0, t1) in enumerate(shots):
+        g = got[i]
+        crop = None if g.get("whole") else crop_from_cols(sw, sh, *g["cols"])
+        f = _shot_face(an, t0, t1)
+        if f is not None and (crop is None or not (
+                crop[2] <= f["cx"] <= crop[2] + crop[0])):
+            f = None                     # a band only for a face it shows
+        out.append({"t0": t0, "t1": t1, "crop": crop, "face": f,
+                    "why": "the framer: " + (g.get("why") or "")
+                    + (" (whole frame)" if crop is None else "")})
+    return out
+
+
 def _window(an: dict, layout: str, subs: list, reason: str) -> tuple | None:
     """The crop the one-crop plan would use for the whole clip."""
     if layout == "wide":
@@ -678,7 +765,8 @@ def _camera_bands(cams: list, an: dict) -> list:
     bands = []
     for c in cams:
         f = c.get("face")
-        if f:
+        if f and c.get("crop") and abs(c["crop"][0] / c["crop"][1]
+                                       - 9 / 16) < 0.01:
             band = [round(max(0.0, (f["cy"] - f["h"]) / sh), 3),
                     round(min(1.0, (f["cy"] + f["h"]) / sh), 3)]
             if band not in bands:
@@ -804,7 +892,7 @@ LAST_SPANS: list = []     # the last burned_subtitles() read, for the ledger
 
 def build(video: Path, work: Path,
           analyze_on: Path | None = None,
-          an: dict | None = None) -> tuple[Path | None, dict]:
+          an: dict | None = None, title: str = "") -> tuple[Path | None, dict]:
     """Analyze → classify → plan → render. (path|None, summary). NEVER
     raises; None → caller's blur-fill whole-frame fallback.
 
@@ -861,13 +949,18 @@ def build(video: Path, work: Path,
                     return rendered, summary
         # EVERY CAMERA GETS ITS OWN FRAMING when one crop would cut a
         # shot's face off; otherwise the one-crop plans below, unchanged
-        cams = None if analyze_on is not None and abs(
-            _probe_wh_dur(video)[2] - float(an.get("dur") or 0)) > 0.25 \
-            else cameras(an, layout, subs, reason)
+        same = analyze_on is None or abs(
+            _probe_wh_dur(video)[2] - float(an.get("dur") or 0)) <= 0.25
+        looked = framed(an, video, work, title) if same and layout in (
+            "closeup", "two_shot", "wide") else None
+        cams = looked or (cameras(an, layout, subs, reason) if same
+                          else None)
         if cams:
             rendered = _render_cameras(video, cams, an, work / "shotplan.mp4")
             if rendered is not None:
-                why = (f"{len(cams)} camera shots, each framed on its own — "
+                why = (f"{len(cams)} camera shot(s), each framed by a look "
+                       "at it" if looked else
+                       f"{len(cams)} camera shots, each framed on its own — "
                        f"one crop ({layout}) cut a face off")
                 summary.update(
                     layout="cameras", reason=why,
