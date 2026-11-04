@@ -1,97 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-04T12:22:07Z",
+ "updated": "2026-11-04T12:24:39Z",
  "open": [
   {
-   "id": "right-whale-breeding-females__4a438973",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-03T23:07:45Z",
+   "id": "muscle-loss-after-30__51f127a7_r3",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-04T12:24:39Z",
    "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a vague number without a verifiable, consequential twist."
+    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
    ],
-   "request": "exchange/rewrites/20261103/right-whale-breeding-females__4a438973.request.json",
-   "answer_path": "exchange/rewrites/20261103/right-whale-breeding-females__4a438973.answer.json"
+   "request": "exchange/rewrites/20261104/muscle-loss-after-30__51f127a7_r3.request.json",
+   "answer_path": "exchange/rewrites/20261104/muscle-loss-after-30__51f127a7_r3.answer.json"
   },
   {
-   "id": "local-news-deserts-expanding__9f62ea81_r1",
+   "id": "lego-minifigs-outnumber-humans__161409d0_r6",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-04T12:24:38Z",
+   "why": [
+    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
+   ],
+   "request": "exchange/rewrites/20261104/lego-minifigs-outnumber-humans__161409d0_r6.request.json",
+   "answer_path": "exchange/rewrites/20261104/lego-minifigs-outnumber-humans__161409d0_r6.answer.json"
+  },
+  {
+   "id": "billion-dollar-disasters-record-2023__b78b14a1_r1",
+   "slug": "billion-dollar-disasters-record-2023",
+   "filed": "2026-11-04T12:24:38Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a raw statistic without a surprising twist."
+   ],
+   "request": "exchange/rewrites/20261104/billion-dollar-disasters-record-2023__b78b14a1_r1.request.json",
+   "answer_path": "exchange/rewrites/20261104/billion-dollar-disasters-record-2023__b78b14a1_r1.answer.json"
+  },
+  {
+   "id": "local-news-deserts-expanding__9f62ea81_r2",
    "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-03T15:21:12Z",
+   "filed": "2026-11-04T12:24:38Z",
    "why": [
     "thesis: seg1 ('News desert counties') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )",
     "thesis: seg2 ('Living without news') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )"
    ],
-   "request": "exchange/rewrites/20261103/local-news-deserts-expanding__9f62ea81_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/local-news-deserts-expanding__9f62ea81_r1.answer.json"
-  },
-  {
-   "id": "cavendish-banana-monoculture__66913e65_r2",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-11-03T14:12:17Z",
-   "why": [
-    "premise: brain: The title universalizes all bananas and all taste while the hook makes an unsupported claim about the individual viewer's consumption."
-   ],
-   "request": "exchange/rewrites/20261103/cavendish-banana-monoculture__66913e65_r2.request.json",
-   "answer_path": "exchange/rewrites/20261103/cavendish-banana-monoculture__66913e65_r2.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__51f127a7_r2",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-03T14:12:17Z",
-   "why": [
-    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
-   ],
-   "request": "exchange/rewrites/20261103/muscle-loss-after-30__51f127a7_r2.request.json",
-   "answer_path": "exchange/rewrites/20261103/muscle-loss-after-30__51f127a7_r2.answer.json"
-  },
-  {
-   "id": "union-membership-record-low__05e1eaa3",
-   "slug": "union-membership-record-low",
-   "filed": "2026-11-03T14:12:17Z",
-   "why": [
-    "premise: brain: Falling below 10% continues a familiar decline rather than overturning a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261103/union-membership-record-low__05e1eaa3.request.json",
-   "answer_path": "exchange/rewrites/20261103/union-membership-record-low__05e1eaa3.answer.json"
-  },
-  {
-   "id": "billion-dollar-disasters-record-2023__b78b14a1",
-   "slug": "billion-dollar-disasters-record-2023",
-   "filed": "2026-11-03T14:12:16Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a raw statistic without a surprising twist."
-   ],
-   "request": "exchange/rewrites/20261103/billion-dollar-disasters-record-2023__b78b14a1.request.json",
-   "answer_path": "exchange/rewrites/20261103/billion-dollar-disasters-record-2023__b78b14a1.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__b37435d8_r1",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-03T14:12:16Z",
-   "why": [
-    "pace: hook is 15 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261103/coldest-place-in-the-universe-is-human-made__b37435d8_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/coldest-place-in-the-universe-is-human-made__b37435d8_r1.answer.json"
-  },
-  {
-   "id": "cargo-ship-size-growth__7c8383c4",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-11-03T12:56:15Z",
-   "why": [
-    "premise: brain: The capacity figure is unexplained and the smaller-crew comparison does not establish a specific consequential expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4.request.json",
-   "answer_path": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4.answer.json"
-  },
-  {
-   "id": "lego-minifigs-outnumber-humans__161409d0_r5",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-03T12:56:14Z",
-   "why": [
-    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
-   ],
-   "request": "exchange/rewrites/20261103/lego-minifigs-outnumber-humans__161409d0_r5.request.json",
-   "answer_path": "exchange/rewrites/20261103/lego-minifigs-outnumber-humans__161409d0_r5.answer.json"
+   "request": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.request.json",
+   "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.answer.json"
   },
   {
    "id": "tsa-digital-id-states-growth__1330070e_r1",
@@ -112,6 +62,16 @@
    ],
    "request": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e_r1.request.json",
    "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e_r1.answer.json"
+  },
+  {
+   "id": "cargo-ship-size-growth__7c8383c4_r1",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-11-03T12:21:20Z",
+   "why": [
+    "premise: brain: The capacity figure is unexplained and the smaller-crew comparison does not establish a specific consequential expectation reversal."
+   ],
+   "request": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.answer.json"
   },
   {
    "id": "measles-comeback-since-2000__465990a8",
