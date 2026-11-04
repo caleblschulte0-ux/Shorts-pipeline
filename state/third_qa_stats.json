@@ -3,347 +3,6 @@
     {
       "date": "20261028",
       "dry_run": false,
-      "ts": "2026-10-28T12:06:04+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 137,
-        "with_retention": 126,
-        "with_curve": 15,
-        "fetched_at": "2026-10-28T08:46:16.375455+00:00"
-      },
-      "brain": {
-        "ok": 44,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:sypherpk": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261028-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "confusion moment, unclear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Bowling game, strike lands, low stakes",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Valkyrae Can't Believe She Finally Got A Strike After This"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Hook caption sits over the game UI hints in a few frames (minor)",
-                "The picture is game footage only, with no streamer visible, but the framing is consistent and readable"
-              ]
-            }
-          },
-          "took_s": 295.1
-        },
-        {
-          "slug": "clip-20261028-2",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 123,
-                "refused_shown": 11,
-                "scouted": [],
-                "vod_arcs": 303,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 2881,
-                "pool_with_vod": 1998,
-                "arc_sizes": [
-                  2,
-                  6,
-                  6,
-                  6,
-                  2,
-                  3,
-                  6,
-                  4,
-                  4,
-                  5
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
-                  "outcome": "already_refused",
-                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
-                },
-                {
-                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "joebartolozzi@momentadventuroussmellyciderresidentsleeper-7g",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "gilticus@momentbombasticpeppyclamstinkycheese-ighll2zb2u7cdc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "press conference, possible beef, unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.42,
-              "why": "Backstage hangout, nothing clear happens",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 33.6
-        },
-        {
-          "slug": "clip-20261028-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "big streamer, vague title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Excited street meetup, big hug, unclear ",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Loses It When He Finds Out Who Did It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "The first frame (0.4s) is motion-blurred with no clear subject, but it is brief.",
-                "Captions sit near the chest and lower body, not over faces.",
-                "The frame at 6.2s is a close-up hug that is partly obscured, but it matches the action."
-              ]
-            }
-          },
-          "took_s": 155.9
-        },
-        {
-          "slug": "clip-20261028-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Title 'W' uninformative; unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "street IRL hug, unclear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Some frames (e.g. 4.7s, 5.6s) have Ray at the edge or partly out of frame, and the framing drifts between shots",
-                "The caption sits over the lower torso and does not cover any faces",
-                "The captions are profane ('WHY YOU BITCH'), which is a mild monetization risk and not a visual defect"
-              ]
-            }
-          },
-          "took_s": 147.4
-        },
-        {
-          "slug": "clip-20261028-5",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (static dialogue screen, nothing visibly )",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.2,
-              "why": "static dialogue screen, nothing visibly ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 27.9
-        },
-        {
-          "slug": "clip-20261028-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, unclear event, insider name",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Face-off standoff, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Tries To Get Her To Say Something And She Stays Silent"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": []
-            }
-          },
-          "took_s": 172.4
-        }
-      ]
-    },
-    {
-      "date": "20261028",
-      "dry_run": false,
       "ts": "2026-10-28T12:28:44+00:00",
       "feedback": {
         "snapshot": true,
@@ -6637,6 +6296,406 @@
           "slug": "clip-20261103-6",
           "ok": false,
           "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20261104",
+      "dry_run": false,
+      "ts": "2026-11-04T13:02:23+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 145,
+        "with_retention": 134,
+        "with_curve": 15,
+        "fetched_at": "2026-11-04T08:46:20.310376+00:00"
+      },
+      "brain": {
+        "ok": 47,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261104-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 2.5s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: Sharp picture is a thin strip, about a quarter of the canvas height. The blurred padding fills the rest, far s",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, high velocity",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Live election lead flip, shown but uncle",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Atrioc Can't Believe What He Just Watched Live"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 2.5s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.82,
+              "problems": [
+                "Sharp picture is a thin strip, about a quarter of the canvas height. The blurred padding fills the rest, far short of th",
+                "Atrioc's face is a tiny thumbnail in the top-right corner of the strip. It is not readable on a phone.",
+                "The main content is an unreadable NYT election results page shown at small scale. The renderer did not crop toward the a",
+                "Framing looks like a repost of a screen-share, not an edited clip."
+              ]
+            }
+          },
+          "took_s": 202.7
+        },
+        {
+          "slug": "clip-20261104-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "shock reaction to reveal",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Absurd fart-master boss fight, little re",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Realizes He's The Farm Master"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Hook caption sits over the lower face (mouth and beard) in the top facecam panel",
+                "Gameplay panel is a small strip and the subject is tiny",
+                "Facecam appears twice, as the top crop and as the inset in the gameplay",
+                "Face is cropped at the top of the frame at 1.1s"
+              ]
+            }
+          },
+          "took_s": 233.3
+        },
+        {
+          "slug": "clip-20261104-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "costume gag, thirst appeal",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Halloween party flirt, shaky, unclear pa",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Can't Believe Who Walks In As A Sexy Nun"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "last frame (23.7s) is dark and motion-blurred, with chat overlay visible",
+                "hook caption sits low over the subject's torso in several frames but never covers a face",
+                "some frames show the subject from behind (3.1s, 5.1s, 7.2s)"
+              ]
+            }
+          },
+          "took_s": 226.0
+        },
+        {
+          "slug": "clip-20261104-4",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 135,
+                "refused_shown": 7,
+                "scouted": [
+                  {
+                    "premise": "IShowSpeed keeps dying in his Minecraft hardcore run, and Kai Cenat can't believe it when Speed goes down on his stream ",
+                    "shape": "multi_streamer",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Jynxzi's Minecraft marathon piles up deaths through day 3 and reaches the 11th death. He still reaches 7M subs at the en",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Kai Cenat's Minecraft hardcore week goes from a game over and his worst death so far to him getting the Warden down.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 311,
+                "moments": 40,
+                "candidates": 510,
+                "pool": 2918,
+                "pool_with_vod": 1993,
+                "arc_sizes": [
+                  6,
+                  3,
+                  2,
+                  2,
+                  2,
+                  5,
+                  6,
+                  2,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:xqc/xqc-along-caught-2026w40",
+                  "outcome": "qa_failed",
+                  "why": "vision: For the first ~20s there is no person or clear subject: only empty game-world POV footage (docks, barriers, water, dark ; vision: No"
+                },
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-menu-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "dangerlyoha@momentauspiciousfundelicatapunchtrees-sxew5fpzca",
+                  "outcome": "already_refused",
+                  "why": "2026-11-02: director judged: not a story \u2014 The provided sources consist only of disjointed rambling without a clear setup, escalation, or payoff, so no meaningful change or"
+                },
+                {
+                  "cluster": "dangerlyoha@vod2913052385/dangerlyoha-around-blue-2026w44",
+                  "outcome": "narrative_failed",
+                  "why": "scores [70, 58, 66] after 2 revision(s) \u2014 @6s confusing: The jump plays first and the 'you ready to jump, Arkash?' line second, so it is unclear whether Arkash is the man who fell. Add a context_overlay such as 'Earlier' on the setup clip, or put the questi; @6s pacing: The first clip's transcript e"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "dark night scooter ride, chaotic banter",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Snaps At Another Driver After This, No License"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture fills only about a third of the canvas height (standard 16:9 letterbox), less than the ~75% target",
+                "Footage is very dark, though faces stay readable",
+                "Face is slightly cropped at the strip edge in a couple of frames (13.5s, 16.0s)"
+              ]
+            }
+          },
+          "took_s": 341.1
+        },
+        {
+          "slug": "clip-20261104-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261104-5",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Fall Guys last-second qualify, real reac",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Joe Joe_Bartolozzi Can't Believe What Just Happened On Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The game footage is a fairly short strip, so the action is small",
+                "Burned-in stream captions sit close to the added word captions and look slightly cluttered",
+                "The hook 'Joe thought it was a ball' is not clearly supported by what the frames show"
+              ]
+            }
+          },
+          "took_s": 137.4
+        },
+        {
+          "slug": "clip-20261104-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "vague quote, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Spider-Man bit, street chatter, no clear",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Breaks Down Saying 'Nobody Ever Asks Me What I Want'"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture fills only about a third of the canvas height (uncropped 16:9 letterbox), so framing is looser than the ta",
+                "Small burned-in source captions sit at the bottom of the strip and are tiny on a phone"
+              ]
+            }
+          },
+          "took_s": 295.5
         }
       ]
     }
