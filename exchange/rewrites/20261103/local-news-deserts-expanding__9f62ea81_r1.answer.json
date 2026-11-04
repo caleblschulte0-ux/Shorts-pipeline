@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "local-news-deserts-expanding__9f62ea81_r1",
+  "slug": "local-news-deserts-expanding",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:19:45.181Z",
+  "title": "US Newspapers Dropped From 7,325 To 4,490",
+  "hook": "Thousands of US newspapers vanished, and local accountability went with them.",
+  "closing": "Without local newspapers, decisions affecting your town face less scrutiny.",
+  "question": "Who covers your town?",
+  "segments": [
+    {
+      "topic": "US Newspapers",
+      "say": "Since 2005, the US lost nearly 3,000 newspapers—about two in five in twenty years. Local accountability vanished with them."
+    },
+    {
+      "topic": "Newspaper Deserts",
+      "say": "In one year, four more counties lost all local news, bringing newspaper deserts to 208. Decisions there now get less scrutiny."
+    },
+    {
+      "topic": "Newspaper Coverage",
+      "say": "Fifteen percent of the country has little or no newspaper coverage, leaving millions without regular reporting on local power."
+    }
+  ]
+}
