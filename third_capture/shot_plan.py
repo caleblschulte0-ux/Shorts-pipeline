@@ -767,15 +767,11 @@ def _text_span(img: Path) -> float:
     return (max(xs) - min(xs)) / width if xs and width else 0.0
 
 
-def burned_subtitles(video: Path, dur: float, samples: int = 5) -> bool:
-    """Does a landscape source carry subtitles burned into its bottom,
-    running wider than any 9:16 crop could keep? Cropping them cuts every
-    line off at both ends (Yaxel Lendeborg on Luka, posted 2026-10-23:
-    a press conference whose own subtitles read "atching all the whining
-    ar..."), so such a source is shown whole. Never raises."""
+def subtitle_spans(video: Path, dur: float, samples: int = 5) -> list:
+    """How wide the words in the bottom band run, per sampled frame (0..1)."""
     import subprocess as _sp
     import tempfile as _tf
-    hits = 0
+    spans = []
     try:
         with _tf.TemporaryDirectory() as td:
             for k in range(samples):
@@ -786,11 +782,24 @@ def burned_subtitles(video: Path, dur: float, samples: int = 5) -> bool:
                          f"crop=iw:ih*{SUB_BAND}:0:ih*{1 - SUB_BAND},"
                          "scale=iw*2:-2,format=gray", str(fr)],
                         check=True, timeout=60, capture_output=True)
-                if _text_span(fr) >= SUB_SPAN:
-                    hits += 1
+                spans.append(round(_text_span(fr), 3))
     except Exception:  # noqa: BLE001
-        return False
-    return hits >= SUB_FRAMES
+        return spans
+    return spans
+
+
+def burned_subtitles(video: Path, dur: float, samples: int = 5) -> bool:
+    """Does a landscape source carry subtitles burned into its bottom,
+    running wider than any 9:16 crop could keep? Cropping them cuts every
+    line off at both ends (Yaxel Lendeborg on Luka, posted 2026-10-23:
+    a press conference whose own subtitles read "atching all the whining
+    ar..."), so such a source is shown whole. Never raises."""
+    spans = subtitle_spans(video, dur, samples)
+    LAST_SPANS[:] = spans
+    return sum(1 for x in spans if x >= SUB_SPAN) >= SUB_FRAMES
+
+
+LAST_SPANS: list = []     # the last burned_subtitles() read, for the ledger
 
 
 def build(video: Path, work: Path,
@@ -818,8 +827,11 @@ def build(video: Path, work: Path,
         # NOT A CROP THAT CUTS THE FOOTAGE'S OWN SUBTITLES OFF: the whole
         # frame instead (operator, 2026-10-28: "we won't play clips that
         # don't make sense")
-        if an["sw"] > an["sh"] and burned_subtitles(
-                analyze_on or video, _probe_wh_dur(analyze_on or video)[2]):
+        subbed = an["sw"] > an["sh"] and burned_subtitles(
+            analyze_on or video, _probe_wh_dur(analyze_on or video)[2])
+        if an["sw"] > an["sh"]:
+            summary["subtitle_spans"] = list(LAST_SPANS)
+        if subbed:
             summary["reason"] = ("the footage has its own subtitles across "
                                  "the frame — shown whole, not cropped")
             return None, summary
