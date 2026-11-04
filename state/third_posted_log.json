@@ -17708,13 +17708,50 @@
       "ts": "2026-11-04T11:40:29.418626+00:00"
     },
     "clip-20261104-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/CrazySmilingWombatShadyLulu-sGU_BNbvx9qpOLRo",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/laZnDe3WSXk",
       "title": "Caseoh Realizes He's The Farm Master",
       "kind": "twitch_clip",
-      "ts": "2026-11-04T11:44:12.683046+00:00",
+      "ts": "2026-11-04T11:44:22.706698+00:00",
+      "uploaded_at": "2026-11-04T11:44:22.706709+00:00",
+      "publish_at": "2026-11-04T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261104-caseoh-realizes-he-s-the-farm-master-fa67e345",
+        "tiktok": "queued for 2026-11-04T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CrazySmilingWombatShadyLulu-sGU_BNbvx9qpOLRo",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "hook": "CaseOh finds out he's the master \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4083,
+      "banger": 0.55,
+      "cut": {
+        "start": 5.0,
+        "end": 31.0
+      },
+      "director_cut": true
+    },
+    "rejected-gracefulblazinglettucewoop-nab5nyrzgisrvkz_": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/GracefulBlazingLettuceWOOP-NAb5nyrZGiSrVKz_",
+      "streamer": "joe_bartolozzi",
+      "title": "sure",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.8s \u2014 too short to edit",
+      "ts": "2026-11-04T11:45:37.952827+00:00"
+    },
+    "clip-20261104-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/HungryColorfulPlumageGOWSkull-kjWZUfORkthzykBU",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe Who Walks In As A Sexy Nun",
+      "kind": "twitch_clip",
+      "ts": "2026-11-04T11:49:14.787189+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
