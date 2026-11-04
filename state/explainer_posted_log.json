@@ -4864,11 +4864,29 @@
       ]
     },
     "national-parks-record-then-shutdown": {
-      "claimed_at": "2026-11-04T22:01:59.431317+00:00",
+      "url": "https://youtube.com/shorts/Uv3zn46tS_I",
       "title": "National Park Visits Set A Record, Then Fell 8.9 Million",
+      "at": "2026-11-04T22:02:09.795612+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.62,
+      "beat_s": [
+        3.85,
+        5.62,
+        5.25,
+        5.42,
+        7.28
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 27.9
     }
   },
   "uploads": [
@@ -6229,9 +6247,10 @@
       "claimed_at": "2026-11-04T22:01:59.431317+00:00",
       "title": "National Park Visits Set A Record, Then Fell 8.9 Million",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "national-parks-record-then-shutdown"
+      "url": "https://youtube.com/shorts/Uv3zn46tS_I",
+      "state": "posted",
+      "slug": "national-parks-record-then-shutdown",
+      "at": "2026-11-04T22:02:09.795612+00:00"
     }
   ]
 }
