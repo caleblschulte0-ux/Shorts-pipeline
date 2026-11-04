@@ -17900,6 +17900,25 @@
         "end": 27.5
       },
       "director_cut": true
+    },
+    "rejected-racybluebilllitfam-1dvf2jaeptzyhh24": {
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/RacyBlueBillLitFam-1dVf2JaePtzyHH24",
+      "streamer": "rayasianboy",
+      "title": "\u7c3d\u4e86",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Dinner talk, no visible event)",
+      "ts": "2026-11-04T13:07:42.522684+00:00"
+    },
+    "clip-20261104-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CredulousDoubtfulChipmunkBIRB-FZoLtR17DoEFTGM0",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Shuts Down Rakai After He Invites Him To A Halloween Party",
+      "kind": "twitch_clip",
+      "ts": "2026-11-04T13:11:34.156265+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
