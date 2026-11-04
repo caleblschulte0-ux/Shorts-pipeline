@@ -19705,10 +19705,10 @@
   },
   {
    "slug": "chatgpt-fastest-adoption-ever",
-   "title": "ChatGPT Reached 100 Million Users In 2 Months",
-   "hook": "ChatGPT reached 100 million users in just 2 months.",
-   "closing": "That adoption speed gives one company unusual influence over how millions use AI.",
-   "question": "When did you first try ChatGPT?",
+   "title": "ChatGPT Reached 100 Million Users Before TikTok Did",
+   "hook": "ChatGPT hit 100 million in 2 months; TikTok needed 9.",
+   "closing": "That speed concentrated global AI habits around one service before rivals could respond.",
+   "question": "Was that growth too fast?",
    "caption": "ChatGPT hit 100 million users within 2 months of launch. TikTok took 9 months. Instagram took two and a half years. Here's the full curve 👇",
    "hashtags": [
     "chatgpt",
@@ -19734,7 +19734,7 @@
      "insight_type": "trend",
      "role": "1 · THE ROCKET",
      "topic": "ChatGPT Users",
-     "say": "ChatGPT reached 900 million active users, showing the initial rush became a lasting global habit.",
+     "say": "ChatGPT reached 900 million active users, turning an early rush into a lasting global habit.",
      "scene": {
       "mechanic": "rocket-altitude-climb",
       "concept": "a rocket climbs an altitude scale marked by each user-count checkpoint, flame flickering as it rises toward 900 million weekly users",
@@ -19751,7 +19751,7 @@
      "ascending": true,
      "role": "2 · THE OLD GUARD",
      "topic": "ChatGPT Speed",
-     "say": "ChatGPT took 2 months to reach its milestone, crushing the old app-adoption timeline.",
+     "say": "ChatGPT needed 2 months to reach its milestone, collapsing the old app-adoption timeline.",
      "scene": {
       "mechanic": "speed-race-track",
       "concept": "three lanes race toward a '100 million users' finish line, each app's marker positioned by how few months it took - ChatGPT nearly there instantly",
@@ -19767,7 +19767,7 @@
      "insight_type": "share",
      "role": "3 · THE CATCH",
      "topic": "ChatGPT Free",
-     "say": "ChatGPT has 850 million free users, making mass adoption expensive to sustain.",
+     "say": "ChatGPT serves 850 million free users, making mass adoption expensive to sustain.",
      "scene": {
       "mechanic": "wallet-crowd-fill",
       "concept": "a 90-icon crowd grid stands for every weekly user; only the true, tiny gold-colored sliver actually pays",
@@ -19776,7 +19776,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-03T12:26:09Z",
+   "rewritten_at": "2026-11-04T12:22:07Z",
    "retold": "retell/v4"
   },
   {
@@ -37294,279 +37294,279 @@
    "words_by": "claude-retell",
    "rewritten_at": "2026-11-01T12:34:57Z"
   },
- {
-  "slug": "neutron-star-manhattan-size",
-  "title": "A Neutron Star Could Fit Inside Manhattan",
-  "hook": "20 kilometers wide. Heavier than the Sun.",
-  "closing": "3,400 and counting. The universe keeps finding more monsters.",
-  "question": "Which blows your mind: size or mass?",
-  "caption": "A neutron star packs more mass than the Sun into a ball about 20 km wide, roughly the length of Manhattan. Which number is wilder to you, the size or the weight? 👇",
-  "hashtags": [
-   "space",
-   "neutronstar",
-   "astronomy",
-   "universe",
-   "nasa",
-   "science",
-   "pulsar",
-   "stars",
-   "cosmos",
-   "didyouknow",
-   "mindblown",
-   "astrophysics",
-   "sciencefacts",
-   "outerspace"
-  ],
-  "segments": [
-   {
-    "source": "offline",
-    "key": "neutron_star_vs_manhattan_size",
-    "params": {
-     "file": "neutron_star_vs_manhattan_size.json"
+  {
+   "slug": "neutron-star-manhattan-size",
+   "title": "A Neutron Star Could Fit Inside Manhattan",
+   "hook": "20 kilometers wide. Heavier than the Sun.",
+   "closing": "3,400 and counting. The universe keeps finding more monsters.",
+   "question": "Which blows your mind: size or mass?",
+   "caption": "A neutron star packs more mass than the Sun into a ball about 20 km wide, roughly the length of Manhattan. Which number is wilder to you, the size or the weight? 👇",
+   "hashtags": [
+    "space",
+    "neutronstar",
+    "astronomy",
+    "universe",
+    "nasa",
+    "science",
+    "pulsar",
+    "stars",
+    "cosmos",
+    "didyouknow",
+    "mindblown",
+    "astrophysics",
+    "sciencefacts",
+    "outerspace"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "neutron_star_vs_manhattan_size",
+     "params": {
+      "file": "neutron_star_vs_manhattan_size.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · SIZE",
+     "topic": "neutron star size vs Manhattan",
+     "say": "A neutron star packs more mass than our Sun into a sphere about 20 kilometers across, roughly the length of Manhattan Island."
     },
-    "insight_type": "comparison",
-    "role": "1 · SIZE",
-    "topic": "neutron star size vs Manhattan",
-    "say": "A neutron star packs more mass than our Sun into a sphere about 20 kilometers across, roughly the length of Manhattan Island."
-   },
-   {
-    "source": "offline",
-    "key": "neutron_star_mass_limit",
-    "params": {
-     "file": "neutron_star_mass_limit.json"
+    {
+     "source": "offline",
+     "key": "neutron_star_mass_limit",
+     "params": {
+      "file": "neutron_star_mass_limit.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE LIMIT",
+     "topic": "neutron star mass vs collapse limit",
+     "say": "Pack in more than 2.2 times the Sun's mass and gravity wins, crushing it into a black hole. Most neutron stars sit near 1.4."
     },
-    "insight_type": "comparison",
-    "role": "2 · THE LIMIT",
-    "topic": "neutron star mass vs collapse limit",
-    "say": "Pack in more than 2.2 times the Sun's mass and gravity wins, crushing it into a black hole. Most neutron stars sit near 1.4."
-   },
-   {
-    "source": "offline",
-    "key": "pulsar_discovery_count_trend",
-    "params": {
-     "file": "pulsar_discovery_count_trend.json"
-    },
-    "insight_type": "trend",
-    "role": "3 · HOW MANY",
-    "topic": "neutron star discoveries since 1967",
-    "say": "Since the first one turned up in 1967, astronomers have catalogued over 3,400 collapsed stars, and telescopes keep finding more every year.",
-    "scene": {
-     "title": true,
-     "elements": [
-      {
-       "type": "timeline_axis",
-       "region": "full"
-      }
-     ]
+    {
+     "source": "offline",
+     "key": "pulsar_discovery_count_trend",
+     "params": {
+      "file": "pulsar_discovery_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · HOW MANY",
+     "topic": "neutron star discoveries since 1967",
+     "say": "Since the first one turned up in 1967, astronomers have catalogued over 3,400 collapsed stars, and telescopes keep finding more every year.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
     }
-   }
-  ]
- },
- {
-  "slug": "womens-college-hoops-out-rates-men",
-  "title": "Women's College Basketball Out-Rated The Men's Game",
-  "hook": "18.9 million watched. More than the men's final.",
-  "closing": "Networks finally noticed: women's sports make money too.",
-  "question": "Did you watch a women's sports game?",
-  "caption": "18.9 million people watched the 2024 women's college basketball final, more than the men's. The money followed: WNBA attendance and TV deals are both breaking records. Did you watch one of these games? 👇",
-  "hashtags": [
-   "womenssports",
-   "wnba",
-   "ncaa",
-   "marchmadness",
-   "basketball",
-   "sportsbusiness",
-   "tvratings",
-   "sportsdata",
-   "caitlinclark",
-   "genderequity",
-   "sportsnews",
-   "mediadeals",
-   "collegesports",
-   "didyouknow"
-  ],
-  "segments": [
-   {
-    "source": "offline",
-    "key": "ncaa_womens_vs_mens_final_viewers_2024",
-    "params": {
-     "file": "ncaa_womens_vs_mens_final_viewers_2024.json"
+   ]
+  },
+  {
+   "slug": "womens-college-hoops-out-rates-men",
+   "title": "Women's College Basketball Out-Rated The Men's Game",
+   "hook": "18.9 million watched. More than the men's final.",
+   "closing": "Networks finally noticed: women's sports make money too.",
+   "question": "Did you watch a women's sports game?",
+   "caption": "18.9 million people watched the 2024 women's college basketball final, more than the men's. The money followed: WNBA attendance and TV deals are both breaking records. Did you watch one of these games? 👇",
+   "hashtags": [
+    "womenssports",
+    "wnba",
+    "ncaa",
+    "marchmadness",
+    "basketball",
+    "sportsbusiness",
+    "tvratings",
+    "sportsdata",
+    "caitlinclark",
+    "genderequity",
+    "sportsnews",
+    "mediadeals",
+    "collegesports",
+    "didyouknow"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ncaa_womens_vs_mens_final_viewers_2024",
+     "params": {
+      "file": "ncaa_womens_vs_mens_final_viewers_2024.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE RATINGS",
+     "topic": "women's vs men's NCAA final viewers",
+     "say": "In 2024, 18.9 million people watched the women's college basketball final, more than the 14.8 million who watched the men's final that same year."
     },
-    "insight_type": "comparison",
-    "role": "1 · THE RATINGS",
-    "topic": "women's vs men's NCAA final viewers",
-    "say": "In 2024, 18.9 million people watched the women's college basketball final, more than the 14.8 million who watched the men's final that same year."
-   },
-   {
-    "source": "offline",
-    "key": "wnba_attendance_trend",
-    "params": {
-     "file": "wnba_attendance_trend.json"
+    {
+     "source": "offline",
+     "key": "wnba_attendance_trend",
+     "params": {
+      "file": "wnba_attendance_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE CROWDS",
+     "topic": "women's basketball attendance growth",
+     "say": "WNBA attendance hit a record 2.37 million fans in 2024, after sitting near 1.5 million just two years earlier.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
     },
-    "insight_type": "trend",
-    "role": "2 · THE CROWDS",
-    "topic": "women's basketball attendance growth",
-    "say": "WNBA attendance hit a record 2.37 million fans in 2024, after sitting near 1.5 million just two years earlier.",
-    "scene": {
-     "title": true,
-     "elements": [
-      {
-       "type": "timeline_axis",
-       "region": "full"
-      }
-     ]
+    {
+     "source": "offline",
+     "key": "wnba_media_rights_value",
+     "params": {
+      "file": "wnba_media_rights_value.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE MONEY",
+     "topic": "women's basketball media rights value",
+     "say": "The league's new TV deal pays 200 million dollars a year, more than triple the 60 million dollars it got before."
     }
-   },
-   {
-    "source": "offline",
-    "key": "wnba_media_rights_value",
-    "params": {
-     "file": "wnba_media_rights_value.json"
+   ]
+  },
+  {
+   "slug": "government-internet-shutdowns-record",
+   "title": "Governments Shut Down The Internet 283 Times Last Year",
+   "hook": "No warning. No internet. Just gone.",
+   "closing": "Most of the world never even hears about it.",
+   "question": "Would you notice if your internet vanished?",
+   "caption": "Governments ordered internet shutdowns at least 283 times in 2023, the most ever recorded, and it cost over $9 billion. Most of these blackouts never make international news. Would you notice if yours went dark? 👇",
+   "hashtags": [
+    "internet",
+    "digitalrights",
+    "censorship",
+    "humanrights",
+    "geopolitics",
+    "worlddata",
+    "didyouknow",
+    "globalnews",
+    "technology",
+    "freespeech",
+    "internetshutdown",
+    "worldevents",
+    "dataviz",
+    "society"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "internet_shutdowns_by_year",
+     "params": {
+      "file": "internet_shutdowns_by_year.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RECORD",
+     "topic": "government internet shutdowns per year",
+     "say": "In 2023 alone, governments ordered internet shutdowns at least 283 times, the most ever recorded, up from under 100 just eight years earlier.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
     },
-    "insight_type": "comparison",
-    "role": "3 · THE MONEY",
-    "topic": "women's basketball media rights value",
-    "say": "The league's new TV deal pays 200 million dollars a year, more than triple the 60 million dollars it got before."
-   }
-  ]
- },
- {
-  "slug": "government-internet-shutdowns-record",
-  "title": "Governments Shut Down The Internet 283 Times Last Year",
-  "hook": "No warning. No internet. Just gone.",
-  "closing": "Most of the world never even hears about it.",
-  "question": "Would you notice if your internet vanished?",
-  "caption": "Governments ordered internet shutdowns at least 283 times in 2023, the most ever recorded, and it cost over $9 billion. Most of these blackouts never make international news. Would you notice if yours went dark? 👇",
-  "hashtags": [
-   "internet",
-   "digitalrights",
-   "censorship",
-   "humanrights",
-   "geopolitics",
-   "worlddata",
-   "didyouknow",
-   "globalnews",
-   "technology",
-   "freespeech",
-   "internetshutdown",
-   "worldevents",
-   "dataviz",
-   "society"
-  ],
-  "segments": [
-   {
-    "source": "offline",
-    "key": "internet_shutdowns_by_year",
-    "params": {
-     "file": "internet_shutdowns_by_year.json"
+    {
+     "source": "offline",
+     "key": "internet_shutdowns_by_country_2022",
+     "params": {
+      "file": "internet_shutdowns_by_country_2022.json"
+     },
+     "insight_type": "rank",
+     "role": "2 · WHO DOES IT MOST",
+     "topic": "countries behind the most internet shutdowns",
+     "ascending": false,
+     "say": "India accounts for more of these shutdowns than any other country, year after year, usually timed around protests, exams, or elections."
     },
-    "insight_type": "trend",
-    "role": "1 · THE RECORD",
-    "topic": "government internet shutdowns per year",
-    "say": "In 2023 alone, governments ordered internet shutdowns at least 283 times, the most ever recorded, up from under 100 just eight years earlier.",
-    "scene": {
-     "title": true,
-     "elements": [
-      {
-       "type": "timeline_axis",
-       "region": "full"
-      }
-     ]
+    {
+     "source": "offline",
+     "key": "internet_shutdown_cost_2023",
+     "params": {
+      "file": "internet_shutdown_cost_2023.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE PRICE",
+     "topic": "cost of internet shutdowns",
+     "say": "Those blackouts aren't free. One tracker put the economic cost of 2023's shutdowns at over 9 billion dollars in lost business alone."
     }
-   },
-   {
-    "source": "offline",
-    "key": "internet_shutdowns_by_country_2022",
-    "params": {
-     "file": "internet_shutdowns_by_country_2022.json"
+   ]
+  },
+  {
+   "slug": "antarctica-tourist-boom",
+   "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
+   "hook": "You'd expect Antarctica to be empty. It's not.",
+   "closing": "So is \"untouched wilderness\" still the right way to describe Antarctica?",
+   "question": "Would you ever pay to visit Antarctica?",
+   "caption": "Antarctica just logged its busiest tourist season ever: over 104,000 visitors, up from a few thousand in the 1990s. Each trip there costs the planet roughly 4 tons of carbon. Would you go? 👇",
+   "hashtags": [
+    "antarctica",
+    "travel",
+    "tourism",
+    "climatechange",
+    "carbonfootprint",
+    "geography",
+    "didyouknow",
+    "sustainabletravel",
+    "worlddata",
+    "environment",
+    "exploration",
+    "bucketlist",
+    "globaltravel",
+    "climatedata"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "antarctica_tourist_visitors_trend",
+     "params": {
+      "file": "antarctica_tourist_visitors_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE BOOM",
+     "topic": "Antarctica tourist visitors over time",
+     "say": "Antarctica tourism was almost nothing in the 1990s, just a few thousand visitors a year. Last season, more than 104,000 tourists showed up.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
     },
-    "insight_type": "rank",
-    "role": "2 · WHO DOES IT MOST",
-    "topic": "countries behind the most internet shutdowns",
-    "ascending": false,
-    "say": "India accounts for more of these shutdowns than any other country, year after year, usually timed around protests, exams, or elections."
-   },
-   {
-    "source": "offline",
-    "key": "internet_shutdown_cost_2023",
-    "params": {
-     "file": "internet_shutdown_cost_2023.json"
+    {
+     "source": "offline",
+     "key": "antarctica_tourist_nationalities",
+     "params": {
+      "file": "antarctica_tourist_nationalities.json"
+     },
+     "insight_type": "rank",
+     "role": "2 · WHO'S GOING",
+     "topic": "where Antarctica's tourists come from",
+     "ascending": false,
+     "say": "About a third of them are American. Add Australia, China, the UK, and Germany, and that's most of the ships."
     },
-    "insight_type": "comparison",
-    "role": "3 · THE PRICE",
-    "topic": "cost of internet shutdowns",
-    "say": "Those blackouts aren't free. One tracker put the economic cost of 2023's shutdowns at over 9 billion dollars in lost business alone."
-   }
-  ]
- },
- {
-  "slug": "antarctica-tourist-boom",
-  "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-  "hook": "You'd expect Antarctica to be empty. It's not.",
-  "closing": "So is \"untouched wilderness\" still the right way to describe Antarctica?",
-  "question": "Would you ever pay to visit Antarctica?",
-  "caption": "Antarctica just logged its busiest tourist season ever: over 104,000 visitors, up from a few thousand in the 1990s. Each trip there costs the planet roughly 4 tons of carbon. Would you go? 👇",
-  "hashtags": [
-   "antarctica",
-   "travel",
-   "tourism",
-   "climatechange",
-   "carbonfootprint",
-   "geography",
-   "didyouknow",
-   "sustainabletravel",
-   "worlddata",
-   "environment",
-   "exploration",
-   "bucketlist",
-   "globaltravel",
-   "climatedata"
-  ],
-  "segments": [
-   {
-    "source": "offline",
-    "key": "antarctica_tourist_visitors_trend",
-    "params": {
-     "file": "antarctica_tourist_visitors_trend.json"
-    },
-    "insight_type": "trend",
-    "role": "1 · THE BOOM",
-    "topic": "Antarctica tourist visitors over time",
-    "say": "Antarctica tourism was almost nothing in the 1990s, just a few thousand visitors a year. Last season, more than 104,000 tourists showed up.",
-    "scene": {
-     "title": true,
-     "elements": [
-      {
-       "type": "timeline_axis",
-       "region": "full"
-      }
-     ]
+    {
+     "source": "offline",
+     "key": "antarctica_trip_carbon_cost",
+     "params": {
+      "file": "antarctica_trip_carbon_cost.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "carbon cost of an Antarctica trip",
+     "say": "One study found the average Antarctica trip produces about 4.1 tons of carbon, more than most people emit in months."
     }
-   },
-   {
-    "source": "offline",
-    "key": "antarctica_tourist_nationalities",
-    "params": {
-     "file": "antarctica_tourist_nationalities.json"
-    },
-    "insight_type": "rank",
-    "role": "2 · WHO'S GOING",
-    "topic": "where Antarctica's tourists come from",
-    "ascending": false,
-    "say": "About a third of them are American. Add Australia, China, the UK, and Germany, and that's most of the ships."
-   },
-   {
-    "source": "offline",
-    "key": "antarctica_trip_carbon_cost",
-    "params": {
-     "file": "antarctica_trip_carbon_cost.json"
-    },
-    "insight_type": "comparison",
-    "role": "3 · THE COST",
-    "topic": "carbon cost of an Antarctica trip",
-    "say": "One study found the average Antarctica trip produces about 4.1 tons of carbon, more than most people emit in months."
-   }
-  ]
- }
+   ]
+  }
  ]
 }
