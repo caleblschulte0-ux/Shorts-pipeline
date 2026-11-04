@@ -17782,13 +17782,59 @@
       "ts": "2026-11-04T12:39:13.780559+00:00"
     },
     "clip-20261104-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/PeacefulKawaiiBeePeteZarollTie-PUJXg2mT0yXIBNYk",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/e-NoeQ82ivQ",
       "title": "Jasontheween Snaps At Another Driver After This, No License",
       "kind": "twitch_clip",
-      "ts": "2026-11-04T12:45:29.702365+00:00",
+      "ts": "2026-11-04T12:45:39.177057+00:00",
+      "uploaded_at": "2026-11-04T12:45:39.177076+00:00",
+      "publish_at": "2026-11-04T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261104-jasontheween-snaps-at-another-driver-after-this--7e0ae696",
+        "tiktok": "queued for 2026-11-04T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jasontheween/clip/PeacefulKawaiiBeePeteZarollTie-PUJXg2mT0yXIBNYk",
+      "streamer": "jasontheween",
+      "series": "rage",
+      "hook": "Jason snaps while driving \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 6100,
+      "banger": 0.45,
+      "cut": {
+        "start": 15.5,
+        "end": 45.0
+      },
+      "director_cut": true
+    },
+    "rejected-mistyjollyiguanamikehogu-5rhzfly-dxgjkesq": {
+      "source_url": "https://www.twitch.tv/alinity/clip/MistyJollyIguanaMikeHogu-5rHzfLy-dXgjkEsq",
+      "streamer": "alinity",
+      "title": "gyat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Kitchen chores, no clear event, thirst-b)",
+      "ts": "2026-11-04T12:46:57.376048+00:00"
+    },
+    "rejected-refinedreliabletarsierpetezaroll-p_krhe0bokx6d2vx": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/RefinedReliableTarsierPeteZaroll-p_krhE0bokx6D2VX",
+      "streamer": "ohnepixel",
+      "title": "ohne cat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Streamer talking, chat scrolling, no eve)",
+      "ts": "2026-11-04T12:47:50.210834+00:00"
+    },
+    "clip-20261104-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/LazyLitigiousFerretShadyLulu-OeZSvuF1_TYredSC",
+      "story_key": null,
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Can't Believe What Just Happened On Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-11-04T12:49:59.271466+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
