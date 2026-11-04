@@ -1,77 +1,216 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-04T12:27:00Z",
+ "updated": "2026-11-04T14:02:41Z",
  "open": [
   {
-   "id": "tsa-digital-id-states-growth__1330070e_r2",
-   "slug": "tsa-digital-id-states-growth",
-   "filed": "2026-11-04T12:27:00Z",
-   "why": [
-    "premise: brain: The premise offers a simple count without reversing a strong viewer expectation or hinging on a consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261104/tsa-digital-id-states-growth__1330070e_r2.request.json",
-   "answer_path": "exchange/rewrites/20261104/tsa-digital-id-states-growth__1330070e_r2.answer.json"
-  },
-  {
-   "id": "local-news-deserts-expanding__9f62ea81_r2",
+   "id": "local-news-deserts-expanding__9f62ea81_r1",
    "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-04T12:27:00Z",
+   "filed": "2026-11-04T14:02:40Z",
    "why": [
-    "thesis: seg1 ('News desert counties') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )",
-    "thesis: seg2 ('Living without news') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )"
+    "premise: brain: It relies on two figures rather than a single consequential, verifiable number, failing the one-number requirement."
    ],
-   "request": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.request.json",
-   "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.answer.json"
+   "request": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r1.request.json",
+   "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r1.answer.json"
   },
   {
-   "id": "muscle-loss-after-30__51f127a7_r3",
+   "id": "chess-online-boom__848c4c3e",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-04T14:02:40Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation, making it insufficient for approval."
+   ],
+   "request": "exchange/rewrites/20261104/chess-online-boom__848c4c3e.request.json",
+   "answer_path": "exchange/rewrites/20261104/chess-online-boom__848c4c3e.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__efdf1e6c",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-04T14:02:40Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies only on a single growth statistic without contextual surprise."
+   ],
+   "request": "exchange/rewrites/20261104/robotic-surgery-doubled__efdf1e6c.request.json",
+   "answer_path": "exchange/rewrites/20261104/robotic-surgery-doubled__efdf1e6c.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__32d8ae2b",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-03T23:07:45Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies on a vague growth narrative rather than a single, striking, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__32d8ae2b.request.json",
+   "answer_path": "exchange/rewrites/20261103/chatgpt-fastest-adoption-ever__32d8ae2b.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__4a438973",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-03T23:07:45Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a vague number without a verifiable, consequential twist."
+   ],
+   "request": "exchange/rewrites/20261103/right-whale-breeding-females__4a438973.request.json",
+   "answer_path": "exchange/rewrites/20261103/right-whale-breeding-females__4a438973.answer.json"
+  },
+  {
+   "id": "cavendish-banana-monoculture__66913e65_r2",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-11-03T14:12:17Z",
+   "why": [
+    "premise: brain: The title universalizes all bananas and all taste while the hook makes an unsupported claim about the individual viewer's consumption."
+   ],
+   "request": "exchange/rewrites/20261103/cavendish-banana-monoculture__66913e65_r2.request.json",
+   "answer_path": "exchange/rewrites/20261103/cavendish-banana-monoculture__66913e65_r2.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__51f127a7_r2",
    "slug": "muscle-loss-after-30",
-   "filed": "2026-11-04T12:27:00Z",
+   "filed": "2026-11-03T14:12:17Z",
    "why": [
     "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
    ],
-   "request": "exchange/rewrites/20261104/muscle-loss-after-30__51f127a7_r3.request.json",
-   "answer_path": "exchange/rewrites/20261104/muscle-loss-after-30__51f127a7_r3.answer.json"
+   "request": "exchange/rewrites/20261103/muscle-loss-after-30__51f127a7_r2.request.json",
+   "answer_path": "exchange/rewrites/20261103/muscle-loss-after-30__51f127a7_r2.answer.json"
   },
   {
-   "id": "lego-minifigs-outnumber-humans__161409d0_r6",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-04T12:26:59Z",
+   "id": "union-membership-record-low__05e1eaa3",
+   "slug": "union-membership-record-low",
+   "filed": "2026-11-03T14:12:17Z",
    "why": [
-    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
+    "premise: brain: Falling below 10% continues a familiar decline rather than overturning a specific viewer expectation."
    ],
-   "request": "exchange/rewrites/20261104/lego-minifigs-outnumber-humans__161409d0_r6.request.json",
-   "answer_path": "exchange/rewrites/20261104/lego-minifigs-outnumber-humans__161409d0_r6.answer.json"
+   "request": "exchange/rewrites/20261103/union-membership-record-low__05e1eaa3.request.json",
+   "answer_path": "exchange/rewrites/20261103/union-membership-record-low__05e1eaa3.answer.json"
   },
   {
-   "id": "billion-dollar-disasters-record-2023__b78b14a1_r1",
+   "id": "billion-dollar-disasters-record-2023__b78b14a1",
    "slug": "billion-dollar-disasters-record-2023",
-   "filed": "2026-11-04T12:26:59Z",
+   "filed": "2026-11-03T14:12:16Z",
    "why": [
     "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a raw statistic without a surprising twist."
    ],
-   "request": "exchange/rewrites/20261104/billion-dollar-disasters-record-2023__b78b14a1_r1.request.json",
-   "answer_path": "exchange/rewrites/20261104/billion-dollar-disasters-record-2023__b78b14a1_r1.answer.json"
+   "request": "exchange/rewrites/20261103/billion-dollar-disasters-record-2023__b78b14a1.request.json",
+   "answer_path": "exchange/rewrites/20261103/billion-dollar-disasters-record-2023__b78b14a1.answer.json"
   },
   {
-   "id": "cargo-ship-size-growth__7c8383c4_r1",
+   "id": "coldest-place-in-the-universe-is-human-made__b37435d8_r1",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-11-03T14:12:16Z",
+   "why": [
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261103/coldest-place-in-the-universe-is-human-made__b37435d8_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/coldest-place-in-the-universe-is-human-made__b37435d8_r1.answer.json"
+  },
+  {
+   "id": "cargo-ship-size-growth__7c8383c4",
    "slug": "cargo-ship-size-growth",
-   "filed": "2026-11-03T12:21:20Z",
+   "filed": "2026-11-03T12:56:15Z",
    "why": [
     "premise: brain: The capacity figure is unexplained and the smaller-crew comparison does not establish a specific consequential expectation reversal."
    ],
-   "request": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.answer.json"
+   "request": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4.request.json",
+   "answer_path": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4.answer.json"
   },
   {
-   "id": "robotic-surgery-doubled__c6fe157f_r1",
-   "slug": "robotic-surgery-doubled",
-   "filed": "2026-11-02T12:20:58Z",
+   "id": "lego-minifigs-outnumber-humans__161409d0_r5",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-03T12:56:14Z",
    "why": [
-    "premise: brain: It lacks a single concrete, verifiable number and the premise’s reversal of expectation is not clearly defined."
+    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
    ],
-   "request": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261102/robotic-surgery-doubled__c6fe157f_r1.answer.json"
+   "request": "exchange/rewrites/20261103/lego-minifigs-outnumber-humans__161409d0_r5.request.json",
+   "answer_path": "exchange/rewrites/20261103/lego-minifigs-outnumber-humans__161409d0_r5.answer.json"
+  },
+  {
+   "id": "tsa-digital-id-states-growth__1330070e_r1",
+   "slug": "tsa-digital-id-states-growth",
+   "filed": "2026-11-03T12:56:13Z",
+   "why": [
+    "premise: brain: The premise offers a simple count without reversing a strong viewer expectation or hinging on a consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261103/tsa-digital-id-states-growth__1330070e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/tsa-digital-id-states-growth__1330070e_r1.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__2ae2ad6e_r1",
+   "slug": "california-condor-comeback",
+   "filed": "2026-11-03T12:21:20Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a common viewer expectation and relies only on an unverified count."
+   ],
+   "request": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261103/california-condor-comeback__2ae2ad6e_r1.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__465990a8",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-11-02T23:21:10Z",
+   "why": [
+    "premise: brain: It presents a statistic without overturning a viewer expectation, failing the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.request.json",
+   "answer_path": "exchange/rewrites/20261102/measles-comeback-since-2000__465990a8.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__94b642eb_r3",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-02T14:59:23Z",
+   "why": [
+    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
+   ],
+   "request": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.request.json",
+   "answer_path": "exchange/rewrites/20261102/seabed-mining-rush__94b642eb_r3.answer.json"
+  },
+  {
+   "id": "elephant-poaching-decline__8a2feac3",
+   "slug": "elephant-poaching-decline",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies only on a single statistic without a consequential, verifiable context."
+   ],
+   "request": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.request.json",
+   "answer_path": "exchange/rewrites/20261102/elephant-poaching-decline__8a2feac3.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__74b0628c_r2",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-02T14:00:33Z",
+   "why": [
+    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
+   ],
+   "request": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.request.json",
+   "answer_path": "exchange/rewrites/20261102/frog-freezes-and-revives__74b0628c_r2.answer.json"
+  },
+  {
+   "id": "national-parks-record-then-shutdown__e1e36be1",
+   "slug": "national-parks-record-then-shutdown",
+   "filed": "2026-11-02T13:07:06Z",
+   "why": [
+    "premise: brain: It does not overturn a viewer expectation, merely states a statistic without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261102/national-parks-record-then-shutdown__e1e36be1.request.json",
+   "answer_path": "exchange/rewrites/20261102/national-parks-record-then-shutdown__e1e36be1.answer.json"
+  },
+  {
+   "id": "drone-commercial-overtake__4ce6725d_r1",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-11-02T13:07:05Z",
+   "why": [
+    "premise: brain: Unclear reversal of a specific viewer expectation despite the numeric claim"
+   ],
+   "request": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261102/drone-commercial-overtake__4ce6725d_r1.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__57c0cf06",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-02T13:07:04Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer's expectation and lacks a single consequential, verifiable number framing a surprise."
+   ],
+   "request": "exchange/rewrites/20261102/mangrove-forest-loss__57c0cf06.request.json",
+   "answer_path": "exchange/rewrites/20261102/mangrove-forest-loss__57c0cf06.answer.json"
   },
   {
    "id": "pedestrian-deaths-outlier__247b5fb6_r1",
@@ -134,16 +273,6 @@
    "answer_path": "exchange/rewrites/20261101/peanut-allergy-guideline-flip__68c934c9_r2.answer.json"
   },
   {
-   "id": "drone-commercial-overtake__4ce6725d_r1",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: Unclear reversal of viewer expectation; the premise relies on a number but does not convincingly invert a specific expectation."
-   ],
-   "request": "exchange/rewrites/20261101/drone-commercial-overtake__4ce6725d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
    "id": "blood-supply-three-percent__a1c3f2eb_r1",
    "slug": "blood-supply-three-percent",
    "filed": "2026-11-01T12:19:46Z",
@@ -152,16 +281,6 @@
    ],
    "request": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.request.json",
    "answer_path": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.answer.json"
-  },
-  {
-   "id": "chess-online-boom__f9b7e085_r3",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverified claim."
-   ],
-   "request": "exchange/rewrites/20261101/chess-online-boom__f9b7e085_r3.request.json",
-   "answer_path": "exchange/rewrites/20261101/chess-online-boom__f9b7e085_r3.answer.json"
   },
   {
    "id": "deepfake-video-explosion__4e4e2811_r1",
