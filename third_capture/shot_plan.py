@@ -93,6 +93,151 @@ class Shot:
     crop: tuple | None = None  # (w, h, x, y) for single-crop modes
 
 
+# ONE CROP FOR A MULTI-CAMERA SOURCE CUTS SOMEBODY OFF (operator,
+# 2026-11-03, of Wembanyama's sit-down interview: "The cutting sucks").
+# The interviewer sat front-on right of centre; Wembanyama was shot in
+# profile at the left edge. Every frontal face fell on the interviewer, so
+# the one crop for the whole clip was his, and every shot of Wembanyama
+# showed half a face, a jacket, then empty background. A camera cut is a
+# new picture and gets its own framing, and a face in profile is a face.
+try:
+    import cv2 as _cv2
+    PROFILE_CASCADE = str(Path(_cv2.data.haarcascades)
+                          / "haarcascade_profileface.xml")
+except Exception:  # noqa: BLE001
+    PROFILE_CASCADE = ""
+CUT_HIST = 0.30       # Bhattacharyya distance between frames = a new camera
+CUT_DIFF = 8.0        # ...or a mean grey change on a 64x36 thumbnail this
+CUT_RATIO = 5.0       # big AND this many times the clip's usual change
+                      # (a dim sit-down cuts at 10-22 against a usual 0.5;
+                      # a panning broadcast changes 10+ every frame)
+MIN_SHOT_S = 0.6      # a "shot" shorter than this joins its neighbour
+SHOT_PRESENCE = 0.4   # a face in this share of a shot's samples frames it
+SHOT_FACE_H = 0.16    # ...and at least this tall (a party, not a player)
+
+
+def _is_cut(a, b, usual: list | None = None) -> bool:
+    """Is thumbnail `b` a different camera from thumbnail `a`? `usual`
+    holds recent frame changes (this call appends to it)."""
+    import cv2
+    import numpy as np
+    ha = cv2.calcHist([a], [0], None, [32], [0, 256])
+    hb = cv2.calcHist([b], [0], None, [32], [0, 256])
+    cv2.normalize(ha, ha)
+    cv2.normalize(hb, hb)
+    d = cv2.compareHist(ha, hb, cv2.HISTCMP_BHATTACHARYYA)
+    diff = float(np.abs(a.astype(np.int16) - b.astype(np.int16)).mean())
+    base = sorted(usual)[len(usual) // 2] if usual else 0.0
+    if usual is not None:
+        usual.append(diff)
+        del usual[:-30]
+    # the ratio needs a clip's usual change to compare with; the first
+    # frames only ever cut on a clear histogram change
+    known = usual is not None and len(usual) > 5
+    return d > CUT_HIST or (known and diff > CUT_DIFF
+                            and diff > CUT_RATIO * max(base, 0.5))
+
+
+def _profiles(cc, gray, sw: int, sh: int, t: float) -> list[tuple]:
+    """Faces in profile, looking either way: (t, cx, cy, h, "profile").
+    Run at half size (a profile face worth framing is a big one)."""
+    import cv2
+    half = cv2.resize(gray, (sw // 2, sh // 2))
+    out = []
+    for flip in (False, True):
+        img = cv2.flip(half, 1) if flip else half
+        for (fx, fy, fw, fh) in cc.detectMultiScale(
+                img, 1.15, 6, minSize=(sh // 16, sh // 16)):
+            cx = fx + fw / 2.0
+            if flip:
+                cx = sw / 2 - cx
+            out.append((round(t, 3), cx * 2, (fy + fh / 2.0) * 2,
+                        float(fh) * 2, "profile"))
+    return out
+
+
+def shots_of(an: dict) -> list[tuple]:
+    """The source's camera shots as (t0, t1) seconds."""
+    dur = float(an.get("dur") or 0)
+    edges = [0.0] + [float(c) for c in an.get("cuts") or []
+                     if MIN_SHOT_S <= c <= dur - MIN_SHOT_S] + [dur]
+    return [(a, b) for a, b in zip(edges, edges[1:]) if b > a]
+
+
+def _shot_face(an: dict, t0: float, t1: float) -> dict | None:
+    """The face that frames shot [t0, t1): the most present big one."""
+    sw, sh = an["sw"], an["sh"]
+    n = sum(1 for t in an.get("ts") or [] if t0 <= t < t1)
+    if not n:
+        return None
+    groups: list[dict] = []
+    for (t, cx, cy, h, _k) in an.get("dets") or []:
+        if not (t0 <= t < t1):
+            continue
+        g = next((g for g in groups if abs(g["cx"] - cx) < sw * 0.12), None)
+        if g is None:
+            g = {"cx": cx, "cy": cy, "hs": [], "times": set()}
+            groups.append(g)
+        k = len(g["hs"])
+        g["cx"] = (g["cx"] * k + cx) / (k + 1)
+        g["cy"] = (g["cy"] * k + cy) / (k + 1)
+        g["hs"].append(h)
+        g["times"].add(t)
+    best = None
+    for g in groups:
+        hs = sorted(g["hs"])
+        g["h"] = hs[len(hs) // 2]
+        g["presence"] = len(g["times"]) / n
+        if g["presence"] >= SHOT_PRESENCE and g["h"] >= SHOT_FACE_H * sh \
+                and (best is None or len(g["times"]) * g["h"]
+                     > len(best["times"]) * best["h"]):
+            best = g
+    return best
+
+
+def _window(an: dict, layout: str, subs: list, reason: str) -> tuple | None:
+    """The crop the one-crop plan would use for the whole clip."""
+    if layout == "wide":
+        return action_window(an)
+    if layout in ("closeup", "two_shot"):
+        got = plan(an, layout, subs, reason)
+        if got and got[0].crop:
+            return got[0].crop
+    return None
+
+
+def cameras(an: dict, layout: str, subs: list, reason: str) -> list | None:
+    """A framing PER CAMERA SHOT — [{"t0","t1","crop","why"}] — when the
+    one crop of `layout` cuts a shot's own face off; None when one crop
+    serves every shot (then nothing changes). A shot's crop is a 9:16
+    window on its face; a shot with no big face keeps the one-crop window,
+    or the whole frame when there is none."""
+    sw, sh = int(an.get("sw") or 0), int(an.get("sh") or 0)
+    if sw <= sh or layout not in ("closeup", "two_shot", "wide"):
+        return None
+    shots = shots_of(an)
+    if len(shots) < 2:
+        return None
+    crop_w = int(round(sh * 9 / 16))
+    crop_w -= crop_w % 2
+    win = _window(an, layout, subs, reason)
+    out, broken = [], False
+    for (t0, t1) in shots:
+        f = _shot_face(an, t0, t1)
+        if f is None:
+            out.append({"t0": t0, "t1": t1, "crop": win,
+                        "why": "no face to frame — the clip's own window"
+                        if win else "no face to frame — the whole frame"})
+            continue
+        if win is None or not (win[2] + win[0] * 0.08 <= f["cx"]
+                               <= win[2] + win[0] * 0.92):
+            broken = True
+        x = int(min(max(f["cx"] - crop_w / 2, 0), sw - crop_w))
+        out.append({"t0": t0, "t1": t1, "crop": (crop_w, sh, x - x % 2, 0),
+                    "why": "framed on this shot's face", "face": f})
+    return out if broken else None
+
+
 def _probe_wh_dur(video: Path) -> tuple[int, int, float]:
     import json
     out = subprocess.check_output(
@@ -125,6 +270,18 @@ def analyze(video: Path) -> dict | None:
         step = max(1, int(round(fps / 6)))
         subjects: list[Subject] = []
         prev_gray, idx, samples = None, 0, 0
+        # EVERY CAMERA, not one average of them: per-frame cut detection and
+        # per-sample faces (front-on AND in profile) with their times, so
+        # `cameras()` can frame each shot of a multi-camera source on its
+        # own. The tracks above stay frontal-only, exactly as they were.
+        prof = cv2.CascadeClassifier(PROFILE_CASCADE) \
+            if Path(PROFILE_CASCADE).exists() else None
+        if prof is not None and prof.empty():
+            prof = None
+        cuts: list[float] = []
+        dets: list[tuple] = []
+        ts: list[float] = []
+        prev_small, usual = None, []
         col_energy = np.zeros(sw, dtype=np.float64)
         row_energy = np.zeros(sh, dtype=np.float64)
         col_detail = np.zeros(sw, dtype=np.float64)
@@ -132,11 +289,25 @@ def analyze(video: Path) -> dict | None:
             ok, frame = cap.read()
             if not ok:
                 break
+            small = cv2.resize(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY),
+                               (64, 36), interpolation=cv2.INTER_AREA)
+            if prev_small is not None and _is_cut(prev_small, small, usual):
+                t = idx / fps
+                if not cuts or t - cuts[-1] >= MIN_SHOT_S:
+                    cuts.append(round(t, 3))
+            prev_small = small
             if idx % step == 0:
                 samples += 1
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                t = idx / fps
+                ts.append(round(t, 3))
                 faces = cc.detectMultiScale(gray, 1.15, 5,
                                             minSize=(sh // 12, sh // 12))
+                for (fx, fy, fw, fh) in faces:
+                    dets.append((round(t, 3), fx + fw / 2.0, fy + fh / 2.0,
+                                 float(fh), "front"))
+                if prof is not None:
+                    dets += _profiles(prof, gray, sw, sh, t)
                 for (fx, fy, fw, fh) in faces:
                     cxf, cyf = fx + fw / 2.0, fy + fh / 2.0
                     m = 0.0
@@ -188,7 +359,8 @@ def analyze(video: Path) -> dict | None:
         for s in subjects:
             s.presence = s.n / samples  # type: ignore[attr-defined]
         return {"sw": sw, "sh": sh, "samples": samples,
-                "subjects": subjects,
+                "subjects": subjects, "fps": fps,
+                "dur": idx / fps, "cuts": cuts, "dets": dets, "ts": ts,
                 "col_energy": col_energy.tolist(),
                 "row_energy": row_energy.tolist(),
                 "col_detail": col_detail.tolist()}
@@ -470,6 +642,50 @@ def _render_stacked(video: Path, shot: Shot, an: dict,
     return _ff_complex(video, fc, out)
 
 
+def _render_cameras(video: Path, cams: list, an: dict,
+                    out: Path) -> Path | None:
+    """Each camera shot cut out and framed on its own, joined back in
+    order. A 9:16 crop fills the canvas; any other window (the action crop,
+    or the whole frame) is blur-filled the way _render_action_crop does."""
+    sw, sh = an["sw"], an["sh"]
+    k = len(cams)
+    parts = [f"[0:v]split={k}" + "".join(f"[v{i}]" for i in range(k))]
+    for i, c in enumerate(cams):
+        end = "" if i == k - 1 else f":end={c['t1']:.3f}"
+        head = (f"[v{i}]trim=start={c['t0']:.3f}{end},setpts=PTS-STARTPTS")
+        w, h, x, y = c["crop"] or (sw - sw % 2, sh - sh % 2, 0, 0)
+        if abs(w / h - 9 / 16) < 0.01:
+            parts.append(f"{head},crop={w}:{h}:{x}:{y},"
+                         f"scale={CANVAS_W}:{CANVAS_H},setsar=1[s{i}]")
+        else:
+            parts.append(
+                f"{head},crop={w}:{h}:{x}:{y},split=2[b{i}][f{i}];"
+                f"[b{i}]crop=iw:ih*{BG_TOP}:0:0,scale={CANVAS_W}:{CANVAS_H}:"
+                f"force_original_aspect_ratio=increase,"
+                f"crop={CANVAS_W}:{CANVAS_H},gblur=sigma=28,"
+                f"eq=brightness=-0.03[g{i}];"
+                f"[f{i}]scale={CANVAS_W}:{CANVAS_H}:"
+                f"force_original_aspect_ratio=decrease[h{i}];"
+                f"[g{i}][h{i}]overlay=(W-w)/2:(H-h)/2,setsar=1[s{i}]")
+    parts.append("".join(f"[s{i}]" for i in range(k))
+                 + f"concat=n={k}:v=1:a=0[vout]")
+    return _ff_complex(video, ";".join(parts), out)
+
+
+def _camera_bands(cams: list, an: dict) -> list:
+    """Face bands of every framed shot (the overlay layer avoids them all)."""
+    sh = an["sh"]
+    bands = []
+    for c in cams:
+        f = c.get("face")
+        if f:
+            band = [round(max(0.0, (f["cy"] - f["h"]) / sh), 3),
+                    round(min(1.0, (f["cy"] + f["h"]) / sh), 3)]
+            if band not in bands:
+                bands.append(band)
+    return bands
+
+
 def _face_bands(shot: Shot, an: dict) -> list:
     """Vertical [y0, y1] bands (fractions of the 1920 output height) that
     contain faces — the overlay layer must not place graphics there (§15).
@@ -631,6 +847,24 @@ def build(video: Path, work: Path,
                                            "reason": why}],
                                    face_bands=[[0.5, 1.0]])
                     return rendered, summary
+        # EVERY CAMERA GETS ITS OWN FRAMING when one crop would cut a
+        # shot's face off; otherwise the one-crop plans below, unchanged
+        cams = None if analyze_on is not None and abs(
+            _probe_wh_dur(video)[2] - float(an.get("dur") or 0)) > 0.25 \
+            else cameras(an, layout, subs, reason)
+        if cams:
+            rendered = _render_cameras(video, cams, an, work / "shotplan.mp4")
+            if rendered is not None:
+                why = (f"{len(cams)} camera shots, each framed on its own — "
+                       f"one crop ({layout}) cut a face off")
+                summary.update(
+                    layout="cameras", reason=why,
+                    shots=[{"mode": "camera", "t0": round(c["t0"], 2),
+                            "t1": round(c["t1"], 2), "reason": c["why"],
+                            "crop": list(c["crop"]) if c["crop"] else None}
+                           for c in cams],
+                    face_bands=_camera_bands(cams, an))
+                return rendered, summary
         if layout == "wide":
             # NO TRACKABLE FACE IS NOT A REASON TO GIVE UP ON FRAMING.
             # This returned None, and the caller then blur-filled the whole
