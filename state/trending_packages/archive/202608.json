@@ -1461,5 +1461,495 @@
       "music_vibe": "light mischievous build",
       "_authored_by": "chatgpt-takeover"
     }
+  },
+  "20260805": {
+    "01_graph-billion-dollar-disasters.json": {
+      "format": "graph_race",
+      "slug": "graph-billion-dollar-disasters",
+      "title": "US Disaster Costs Are Exploding",
+      "hook": "28 disasters. One billion each.",
+      "y_label": "Disaster cost that year ($ billions)",
+      "duration": 13,
+      "source": "Sources: NOAA National Centers for Environmental Information (NCEI), U.S. Billion-Dollar Weather and Climate Disasters database (ncei.noaa.gov/access/billions); annual totals for 2005, 2017, 2019, 2020 and 2024 and the 1980s per-year average ($22B) per NOAA Climate.gov year-end reporting.",
+      "hashtags": [
+        "disaster",
+        "noaa",
+        "climate",
+        "wildfire",
+        "hurricane",
+        "weather",
+        "billiondollar",
+        "data",
+        "chart",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        1985,
+        2005,
+        2017,
+        2019,
+        2020,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Disaster cost that year",
+          "color": "#ff3030",
+          "values": [
+            22,
+            268.5,
+            395.9,
+            45.0,
+            95.0,
+            182.7
+          ]
+        },
+        {
+          "name": "1980s average ($22B/yr)",
+          "color": "#8a8fa3",
+          "values": [
+            22,
+            22,
+            22,
+            22,
+            22,
+            22
+          ]
+        }
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-bald-eagle-comeback.json": {
+      "format": "graph_race",
+      "slug": "graph-bald-eagle-comeback",
+      "title": "Bald Eagles Went From 417 Pairs To 71,000",
+      "hook": "From 417 pairs to 71,000.",
+      "y_label": "Nesting pairs (lower 48 states)",
+      "duration": 13,
+      "source": "Sources: U.S. Fish & Wildlife Service bald eagle population surveys, nesting-pair counts for the lower 48 states (1963 all-time low of 417 pairs; 1982, 1997, 2007, 2009 and 2020 counts per USFWS, American Eagle Foundation and 2021 DOI/USFWS announcement reporting).",
+      "hashtags": [
+        "baldeagle",
+        "wildlife",
+        "conservation",
+        "endangeredspecies",
+        "usfws",
+        "nature",
+        "animals",
+        "comeback",
+        "data",
+        "chart",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "trending"
+      ],
+      "years": [
+        1963,
+        1982,
+        1997,
+        2007,
+        2009,
+        2020
+      ],
+      "series": [
+        {
+          "name": "Bald eagle nesting pairs",
+          "color": "#3088ff",
+          "values": [
+            417,
+            1482,
+            7066,
+            11040,
+            30548,
+            71467
+          ]
+        },
+        {
+          "name": "1963 low point",
+          "color": "#8a8fa3",
+          "values": [
+            417,
+            417,
+            417,
+            417,
+            417,
+            417
+          ]
+        }
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-cocoa-price-spike.json": {
+      "format": "graph_race",
+      "slug": "graph-cocoa-price-spike",
+      "title": "Why Chocolate Got So Expensive (Then Didn't)",
+      "hook": "Cocoa tripled. Then it crashed.",
+      "y_label": "Cocoa price ($ per tonne)",
+      "duration": 13,
+      "source": "Sources: ICCO / World Bank global cocoa price data as tracked by FRED (Global Price of Cocoa, series PCOCOUSDA/PCOCOUSDQ) and Macrotrends; 2018/2020 approximate pre-crisis baseline (cocoa held near $2,300-2,600/tonne for years), 2022-2025 reported annual averages, 2026 Q2 value.",
+      "hashtags": [
+        "chocolate",
+        "cocoa",
+        "prices",
+        "inflation",
+        "food",
+        "economy",
+        "westafrica",
+        "consumer",
+        "data",
+        "chart",
+        "didyouknow",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "years": [
+        2018,
+        2020,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Global cocoa price",
+          "color": "#8b4513",
+          "values": [
+            2500,
+            2400,
+            2369,
+            3258,
+            7391,
+            7788,
+            3977
+          ]
+        },
+        {
+          "name": "2018-2022 average",
+          "color": "#c9a27a",
+          "values": [
+            2423,
+            2423,
+            2423,
+            2423,
+            2423,
+            2423,
+            2423
+          ]
+        }
+      ],
+      "music_vibe": "hiphop"
+    },
+    "04_graph-dow-record-climb.json": {
+      "format": "graph_race",
+      "slug": "graph-dow-record-climb",
+      "title": "The Dow Just Hit 54,000 For The First Time",
+      "hook": "The Dow just broke 54,000.",
+      "y_label": "Index close (points)",
+      "duration": 13,
+      "source": "Sources: Dow Jones Industrial Average and S&P 500 year-end closes 2013-2022 (S&P Dow Jones Indices, widely reported historical data); August 4, 2026 record closes of Dow 54,215.07 and S&P 500 7,737 per CNBC/CNN Business market reporting.",
+      "hashtags": [
+        "dowjones",
+        "sp500",
+        "stockmarket",
+        "wallstreet",
+        "records",
+        "investing",
+        "economy",
+        "finance",
+        "markets",
+        "data",
+        "chart",
+        "didyouknow",
+        "fyp",
+        "shorts"
+      ],
+      "years": [
+        2013,
+        2016,
+        2018,
+        2020,
+        2022,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Dow Jones close",
+          "color": "#50ff80",
+          "values": [
+            16577,
+            19763,
+            23327,
+            30606,
+            33147,
+            54215
+          ]
+        },
+        {
+          "name": "S&P 500 close",
+          "color": "#ffaa30",
+          "values": [
+            1848,
+            2239,
+            2507,
+            3756,
+            3839,
+            7737
+          ]
+        }
+      ],
+      "music_vibe": "driving electronic"
+    },
+    "05_reddit-hardware-store-mistaken-staff.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "title": "The Customer Insisted I Worked There. Fine.",
+      "hashtags": [
+        "idontworkherelady",
+        "reddit",
+        "storytime",
+        "retail",
+        "hardwarestore",
+        "pettyrevenge",
+        "customerservice",
+        "karma",
+        "funny",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "Fourth time that hour, a stranger grabbed my arm demanding to know where the drywall screws were. I don't work at this hardware store, I just wear a lot of orange. She cut off my \"I don't work here\" with \"don't play games, I need help now.\" Fine. I walked her confidently to aisle twelve, pointed past the pool noodles, and told her drywall screws come in bulk boxes near the register, technically true since I'd seen a promo bin there that morning. She marched off triumphant. Ten minutes later an actual employee found her arguing with a cashier about being sent to buy pool floats for a bathroom renovation. Store security pulled the aisle camera and the whole break room had a good laugh at customer service's expense. I finished my paint run in total peace. Nobody has grabbed my arm at that store since. I stopped wearing orange there entirely.",
+      "shots": [
+        {
+          "phrase": "grabbed my arm demanding",
+          "query": "person grabbing arm store aisle",
+          "mascot_pose": "shock",
+          "image_url": "https://images.pexels.com/photos/11608887/pexels-photo-11608887.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "I don't work at this hardware store",
+          "query": "hardware store aisle shelves",
+          "mascot_pose": "idle",
+          "pin_query": "hardware store",
+          "pin_context": "retail building supplies",
+          "news_query": "hardware store",
+          "news_angle": "The narrator was mistaken for an employee at the hardware store.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Hagebau.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "don't play games, I need help now",
+          "query": "frustrated customer talking",
+          "mascot_pose": "idle",
+          "image_url": "https://images.pexels.com/photos/5700201/pexels-photo-5700201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "drywall screws come in bulk boxes",
+          "query": "box of screws hardware",
+          "mascot_pose": "idle",
+          "pin_query": "drywall screws",
+          "pin_context": "hardware store building materials",
+          "news_query": "drywall screws",
+          "news_angle": "The customer insisted on finding drywall screws in the hardware store.",
+          "image_url": "https://live.staticflickr.com/3742/9419150700_26acdf146d_b.jpg"
+        },
+        {
+          "phrase": "pool noodles",
+          "query": "pool noodles floats display",
+          "mascot_pose": "idle",
+          "pin_query": "pool noodles",
+          "pin_context": "swimming pool toys",
+          "news_query": "pool noodles",
+          "news_angle": "The narrator pointed past the pool noodles to direct the customer to the drywall screws.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Noodle_%282780523440%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "arguing with a cashier",
+          "query": "cashier checkout counter",
+          "mascot_pose": "laugh",
+          "pin_query": "cashier",
+          "pin_context": "store employee checkout",
+          "news_query": "cashier",
+          "news_angle": "The customer argued with a cashier about being sent to buy pool floats for a bathroom renovation.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "pulled the aisle camera",
+          "query": "security camera footage screen",
+          "mascot_pose": "idle",
+          "pin_query": "aisle camera",
+          "pin_context": "retail security surveillance",
+          "news_query": "aisle camera",
+          "news_angle": "The aisle camera footage was used to investigate the customer's complaint.",
+          "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg"
+        },
+        {
+          "phrase": "stopped wearing orange there entirely",
+          "query": "orange work vest hanging",
+          "mascot_pose": "dismiss",
+          "pin_query": "orange",
+          "pin_context": "clothing color",
+          "news_query": "orange",
+          "news_angle": "The narrator wore a lot of orange, which led customers to mistake them for a store employee.",
+          "image_url": "https://live.staticflickr.com/181/484275757_91cdc2eb39.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "grabbed my arm demanding",
+          "text": "NOT STAFF",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "technically true",
+          "text": "TECHNICALLY TRUE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "arguing with a cashier",
+          "text": "WRONG AISLE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a good laugh at customer service's expense",
+          "text": "CAUGHT ON CAMERA",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "playful"
+    },
+    "06_reddit-driveway-parking-trash-cans.json": {
+      "subreddit": "pettyrevenge",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "title": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+      "hashtags": [
+        "pettyrevenge",
+        "reddit",
+        "storytime",
+        "neighbors",
+        "parking",
+        "karma",
+        "justice",
+        "funny",
+        "truestory",
+        "satisfying",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "He parked across our shared driveway every morning, blocking my car in for \"just five minutes\" that stretched to forty. I asked nicely three times. He shrugged and said the city never tickets there anyway. So I started paying attention to exactly when parking enforcement swept our block, turns out it's eight fourteen a.m. sharp, right when his car was always sitting there. I didn't call anyone. I didn't need to. I just stopped moving my trash cans out of the second spot at eight like I used to, so the officer had a clean sightline to his bumper instead of mine. Three tickets in eight days, then a boot on the fourth. He knocked on my door convinced I had reported him. I told him, truthfully, I hadn't dialed a single number. He moved his car onto his own driveway the very next morning, and it has been there every day since.",
+      "shots": [
+        {
+          "phrase": "parked across our shared driveway",
+          "query": "car blocking driveway entrance",
+          "mascot_pose": "idle",
+          "image_url": "https://live.staticflickr.com/7001/6575749763_2165ed1ecc_b.jpg",
+          "media_origin": "self_fill",
+          "pin_query": "driveway",
+          "pin_context": "shared residential parking",
+          "news_query": "driveway",
+          "news_angle": "The neighbor parks across the shared driveway, blocking the narrator's car."
+        },
+        {
+          "phrase": "blocking my car in",
+          "query": "car boxed in driveway",
+          "mascot_pose": "shock",
+          "image_url": "https://images.pexels.com/photos/26626348/pexels-photo-26626348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "asked nicely three times",
+          "query": "neighbor conversation doorstep",
+          "mascot_pose": "idle",
+          "image_url": "https://live.staticflickr.com/2529/3860946744_1f9d3a1397_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "parking enforcement swept our block",
+          "query": "parking enforcement officer street",
+          "mascot_pose": "idle",
+          "image_url": "https://images.pexels.com/photos/15794745/pexels-photo-15794745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill",
+          "pin_query": "parking enforcement",
+          "pin_context": "traffic police urban regulation",
+          "news_query": "parking enforcement",
+          "news_angle": "Parking enforcement sweeps the block at 8:14 a.m. sharp every day."
+        },
+        {
+          "phrase": "moving my trash cans out of the second spot",
+          "query": "trash cans curb street",
+          "mascot_pose": "think",
+          "image_url": "https://images.pexels.com/photos/32799389/pexels-photo-32799389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill",
+          "pin_query": "trash cans",
+          "pin_context": "waste management outdoor bins",
+          "news_query": "trash cans",
+          "news_angle": "Trash cans left unmoved to allow parking enforcement a clear sightline to the blocking car"
+        },
+        {
+          "phrase": "Three tickets in eight days",
+          "query": "parking ticket on windshield",
+          "mascot_pose": "idle",
+          "image_url": "https://images.pexels.com/photos/12641792/pexels-photo-12641792.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "a boot on the fourth",
+          "query": "wheel boot car tire",
+          "mascot_pose": "laugh",
+          "image_url": "https://images.pexels.com/photos/6110081/pexels-photo-6110081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill",
+          "pin_query": "boot",
+          "pin_context": "parking enforcement vehicle immobilizer",
+          "news_query": "boot",
+          "news_angle": "A boot is placed on the neighbor's car after multiple tickets."
+        },
+        {
+          "phrase": "moved his car onto his own driveway",
+          "query": "car parked in driveway",
+          "mascot_pose": "idle",
+          "image_url": "https://live.staticflickr.com/2022/3781645377_4bf3e12b70_b.jpg",
+          "media_origin": "self_fill",
+          "pin_query": "car",
+          "pin_context": "parked vehicle",
+          "news_query": "car",
+          "news_angle": "The neighbor's car is parked across the shared driveway and gets ticketed."
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "blocking my car in",
+          "text": "BLOCKED IN",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Three tickets in eight days",
+          "text": "3 TICKETS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a boot on the fourth",
+          "text": "THEN A BOOT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "hadn't dialed a single number",
+          "text": "NEVER CALLED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dry office tension into playful payoff"
+    }
   }
 }
