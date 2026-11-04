@@ -138,6 +138,16 @@ class ACutIsSeen(unittest.TestCase):
                         "a face in profile is a face")
 
 
+class TheGateRefusesABadCrop(unittest.TestCase):
+
+    def test_a_speaker_cut_off_by_the_frame_is_junk(self):
+        # the shipped Wembanyama cut passed at 91: the judge must look
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "sports_moment"})
+        self.assertIn("CROP cuts off who matters", text)
+        self.assertIn("half out of frame", text)
+
+
 @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg")
 class ItRendersEveryShot(unittest.TestCase):
 
