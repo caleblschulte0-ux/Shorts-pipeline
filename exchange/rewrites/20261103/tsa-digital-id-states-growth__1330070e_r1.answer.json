@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "tsa-digital-id-states-growth__1330070e_r1",
+  "slug": "tsa-digital-id-states-growth",
+  "by": "chatgpt",
+  "written_at": "2026-11-04T12:23:21.925Z",
+  "title": "TSA Digital ID Checkpoints Grew Nearly 10x",
+  "hook": "Only 20 states participate, but checkpoints jumped from 27 to 250.",
+  "closing": "Digital ID is spreading fast, but travelers still need physical backup.",
+  "question": "Would you use phone ID?",
+  "segments": [
+    {
+      "topic": "TSA ID States",
+      "say": "TSA digital ID reached 20 states, nearly double the earlier 11. The rollout is broadening, but remains limited."
+    },
+    {
+      "topic": "TSA ID Checkpoints",
+      "say": "TSA digital ID checkpoints grew to 250, nearly ten times the earlier count. Access expanded much faster than state participation."
+    },
+    {
+      "topic": "TSA ID Coverage",
+      "say": "Only 20 of 50 states accept TSA digital ID. Most travelers still need physical identification."
+    }
+  ]
+}
