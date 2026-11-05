@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-05T04:05:20Z",
+ "updated": "2026-11-05T12:25:32Z",
  "open": [
   {
    "id": "neutron-star-manhattan-size__4e02853c",
@@ -51,16 +51,6 @@
    ],
    "request": "exchange/rewrites/20261105/mangrove-forest-loss__81cb3e05.request.json",
    "answer_path": "exchange/rewrites/20261105/mangrove-forest-loss__81cb3e05.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__c5cb229c",
-   "slug": "california-condor-comeback",
-   "filed": "2026-11-04T18:26:39Z",
-   "why": [
-    "premise: brain: Uses multiple numbers and lacks a single verifiable figure to anchor the reversed expectation."
-   ],
-   "request": "exchange/rewrites/20261104/california-condor-comeback__c5cb229c.request.json",
-   "answer_path": "exchange/rewrites/20261104/california-condor-comeback__c5cb229c.answer.json"
   },
   {
    "id": "chess-online-boom__848c4c3e",
