@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "naep-math-pandemic-drop__aa1c0224_r1",
+  "slug": "naep-math-pandemic-drop",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "The Weakest Math Students Lost 14 Points",
+  "hook": "The math gap widened most where students already struggled.",
+  "closing": "Falling math scores can compound into fewer options for students later.",
+  "question": "Did your math skills recover?",
+  "segments": [
+    {
+      "topic": "Math Score Trend",
+      "say": "Math scores fell to 271, nearly erasing decades of gains for thirteen-year-olds."
+    },
+    {
+      "topic": "Math Student Loss",
+      "say": "The weakest math students lost 14 points, widening the gap between them and stronger classmates."
+    },
+    {
+      "topic": "Math Recovery Check",
+      "say": "Math scores slipped again to 270, showing the lost ground still has not returned."
+    }
+  ]
+}
