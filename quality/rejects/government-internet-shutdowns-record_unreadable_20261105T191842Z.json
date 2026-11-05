@@ -1,0 +1,16 @@
+{
+ "slug": "government-internet-shutdowns-record",
+ "ts": "20261105T191842Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start and seg1:mid the 'Ukraine 22' tag on the rack is tiny and sits among coloured cables, so it is illegible on a phone. The small grey '2016' ghost mark (seg0:mid) is also hard to read.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "weak_agency_and_scale",
+  "visible_evidence": "seg2:start to seg2:end: the shutters on GROCER, PHONES and CAFE close while Data stands beside them pointing. '$9.1 billion' appears only as a headline (seg2:end), and three shops shutting gives no sense of how big that sum is.",
+  "root_cause": "Data is placed next to the shutters, not gripping them, and the picture has no unit that turns $9.1B into something you can see at a glance. It reads as 'shops closed', not 'nine billion lost'.",
+  "repair_goal": "Have Data grab and pull each shutter down with both hands (a grip act on the shutter handles). Put the scale on the street itself, e.g. a long row of shops going dark into the distance, or a till readout draining, so the size of $9.1B reads without the label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
