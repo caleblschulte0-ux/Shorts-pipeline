@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261104",
-  "generated_at": "2026-11-04T23:31:12Z",
+  "generated_at": "2026-11-05T00:31:17Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 41.76,
+          "days": 41.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 40.76,
+          "days": 40.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1639,10 +1639,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "8137510",
-    "commits_since": "2026-11-03",
+    "head": "8c4c3ca",
+    "commits_since": "2026-11-04",
     "commit_count": 50,
     "commits": [
+      "8c4c3ca story forge: new real-data stories [skip ci]",
+      "8d95b3a claim: mailbox verdicts 2026-11-04T23:48Z [skip ci]",
+      "2e7c8a9 retro: brief + triage for 20261104 [skip ci]",
       "8137510 explainer: update posted log + analytics [skip ci]",
       "3bcae82 claim: mailbox verdicts 2026-11-04T22:49Z [skip ci]",
       "27b0ee8 claim: mailbox verdicts 2026-11-04T22:11Z [skip ci]",
@@ -1679,10 +1682,7 @@
       "bcf3526 explainer: update posted log + analytics [skip ci]",
       "15f36d9 sports: 2026-11-04 posted log + verdicts [skip ci]",
       "db9f6c7 claim: mailbox verdicts 2026-11-04T13:48Z [skip ci]",
-      "283de31 watchdog: chatgpt task verdicts 20261104 [skip ci]",
-      "afab4c6 sports: 2026-11-04 posted log + verdicts [skip ci]",
-      "3b21c3c third: analytics [skip ci]",
-      "5d9e350 third: update posted log + analytics [skip ci]"
+      "283de31 watchdog: chatgpt task verdicts 20261104 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
