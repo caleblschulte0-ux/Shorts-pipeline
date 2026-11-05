@@ -1,0 +1,25 @@
+{
+ "key": "cohabitation_vs_marriage_young_adults",
+ "title": "18-24 year olds: living with an unmarried partner vs a spouse (percent)",
+ "unit": "percent",
+ "geography": "United States",
+ "time_coverage": "2018",
+ "source": {
+  "name": "Census Bureau data reported via Bloomberg: Modern Love: Cohabitation on the Rise",
+  "publisher": "U.S. Census Bureau (American Community Survey, reported by Bloomberg)",
+  "url": "https://www.bloomberg.com/news/articles/2018-11-17/modern-love-cohabitation-on-rise-in-u-s-demographic-trends",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Among adults aged 18-24, Census data show 9% living with an unmarried partner versus 7% living with a spouse -- the first time cohabitation has outnumbered marriage for this age group.",
+ "points": [
+  {
+   "label": "Living with unmarried partner",
+   "value": 9
+  },
+  {
+   "label": "Living with a spouse",
+   "value": 7
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "key": "lake_mead_distance_to_power_shutoff",
+ "title": "Lake Mead 2022 elevation vs Hoover Dam power-generation cutoff (feet)",
+ "unit": "feet",
+ "geography": "Lake Mead / Hoover Dam",
+ "time_coverage": "2022",
+ "source": {
+  "name": "Storage Capacity of Lake Mead",
+  "publisher": "National Park Service",
+  "url": "https://www.nps.gov/lake/learn/nature/storage-capacity-of-lake-mead.htm",
+  "officiality": "official",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Hoover Dam needs a water elevation of about 950 ft (about 8% of live capacity) to keep generating power. In June 2022 the reservoir sat at about 1,046.53 ft, leaving roughly a 97 ft margin.",
+ "points": [
+  {
+   "label": "2022 level",
+   "value": 1047
+  },
+  {
+   "label": "Power shutoff point",
+   "value": 950
+  }
+ ]
+}

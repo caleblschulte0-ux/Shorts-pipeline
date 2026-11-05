@@ -1,0 +1,27 @@
+{
+ "key": "lake_mead_elevation_2000_2022",
+ "title": "Lake Mead water surface elevation, 2000 vs 2022 (feet above sea level)",
+ "unit": "feet",
+ "geography": "Lake Mead, Nevada/Arizona",
+ "time_coverage": "2000-2022",
+ "source": {
+  "name": "Lake Mead Keeps Dropping",
+  "publisher": "NASA Earth Observatory",
+  "url": "https://earthobservatory.nasa.gov/images/150111/lake-mead-keeps-dropping",
+  "officiality": "official",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Full pool is about 1,220 ft. End of July 2000 elevation was about 1,199.97 ft (essentially full). By early June 2022 elevation had fallen to about 1,046.53 ft, the lowest since the reservoir was filled in the 1930s.",
+ "points": [
+  {
+   "label": "2000",
+   "value": 1200,
+   "period": "2000"
+  },
+  {
+   "label": "2022",
+   "value": 1047,
+   "period": "2022"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "key": "sperm_total_vs_concentration_decline",
+ "title": "Decline in sperm concentration vs total sperm count, 1973-2018 (percent)",
+ "unit": "percent",
+ "geography": "Global",
+ "time_coverage": "1973-2018",
+ "source": {
+  "name": "Temporal trends in sperm count (Levine et al., meta-analysis)",
+  "publisher": "Human Reproduction Update",
+  "url": "https://academic.oup.com/humupd/article/29/2/157/6932384",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Sperm concentration fell about 51.6% from 1973-2018; total sperm count (concentration times semen volume) fell further, about 62.3%, over the same period.",
+ "points": [
+  {
+   "label": "Concentration",
+   "value": 52
+  },
+  {
+   "label": "Total sperm count",
+   "value": 62
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "key": "sperm_concentration_decline_1973_2018",
+ "title": "Average sperm concentration, 1973 vs 2018 (million per mL)",
+ "unit": "count",
+ "geography": "Global (pooled, men not known to be infertile)",
+ "time_coverage": "1973-2018",
+ "source": {
+  "name": "Temporal trends in sperm count (Levine et al., meta-analysis of 223 studies)",
+  "publisher": "Human Reproduction Update",
+  "url": "https://academic.oup.com/humupd/article/29/2/157/6932384",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Meta-analysis of 223 studies, 53 countries, 1973-2018. Average sperm concentration fell from about 101 million per mL to about 49 million per mL, a decline of roughly 52%.",
+ "points": [
+  {
+   "label": "1973",
+   "value": 101,
+   "period": "1973"
+  },
+  {
+   "label": "2018",
+   "value": 49,
+   "period": "2018"
+  }
+ ]
+}

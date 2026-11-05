@@ -1,0 +1,25 @@
+{
+ "key": "sperm_decline_rate_accelerating",
+ "title": "Annual rate of sperm count decline, before vs after 2000 (percent per year)",
+ "unit": "percent",
+ "geography": "Global",
+ "time_coverage": "1973-2018",
+ "source": {
+  "name": "Temporal trends in sperm count (Levine et al., meta-analysis)",
+  "publisher": "Human Reproduction Update",
+  "url": "https://academic.oup.com/humupd/article/29/2/157/6932384",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "The same meta-analysis found the annual rate of decline roughly doubled after 2000: about 1.16% a year from 1973-2000, accelerating to about 2.64% a year from 2000-2018.",
+ "points": [
+  {
+   "label": "Before 2000 (%/yr)",
+   "value": 1.16
+  },
+  {
+   "label": "After 2000 (%/yr)",
+   "value": 2.64
+  }
+ ]
+}

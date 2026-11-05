@@ -37598,6 +37598,279 @@
     }
    ],
    "hook_was": "You'd expect Antarctica to be empty. It's not."
+  },
+  {
+   "slug": "sperm-counts-cut-in-half",
+   "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
+   "hook": "Men today have about half the sperm their grandfathers did.",
+   "closing": "And the decline isn't slowing down — it's speeding up.",
+   "question": "Did you know sperm counts dropped?",
+   "caption": "In 1973, the average man had about double the sperm count he does today. Scientists still don't fully know why — but the decline just keeps accelerating. Did you know this was happening? 👇",
+   "hashtags": [
+    "spermcount",
+    "fertility",
+    "malehealth",
+    "reproductivehealth",
+    "menshealth",
+    "biology",
+    "science",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "healthfacts",
+    "humanbiology"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "sperm_concentration_decline_1973_2018",
+     "params": {
+      "file": "sperm_concentration_decline_1973_2018.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DROP",
+     "topic": "sperm count decline",
+     "say": "In 1973, the average sperm concentration was 101 per milliliter. By 2018, it had fallen to 49.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "sperm_decline_rate_accelerating",
+     "params": {
+      "file": "sperm_decline_rate_accelerating.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · SPEEDING UP",
+     "topic": "how fast sperm counts are dropping",
+     "say": "Before 2000, counts were falling about 1% a year. After 2000, that rate jumped to 2.6%."
+    },
+    {
+     "source": "offline",
+     "key": "sperm_total_vs_concentration_decline",
+     "params": {
+      "file": "sperm_total_vs_concentration_decline.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE BIGGER DROP",
+     "topic": "total sperm count vs concentration decline",
+     "say": "Sperm concentration fell 52%. Total sperm count — concentration times volume — fell even further, down 62%."
+    }
+   ]
+  },
+  {
+   "slug": "lake-mead-water-crisis",
+   "title": "Lake Mead Dropped To Just 27% Full",
+   "hook": "America's biggest reservoir is disappearing in plain sight.",
+   "closing": "Hoover Dam only has so much room to keep dropping before the power goes out.",
+   "question": "Did you know Lake Mead dropped this low?",
+   "caption": "Lake Mead used to be nearly full. Now it's sitting at just 27% capacity — the lowest since the Hoover Dam was built. If it drops much further, the dam can't even generate power. Scary, right?",
+   "hashtags": [
+    "lakemead",
+    "coloradoriver",
+    "drought",
+    "water",
+    "watercrisis",
+    "climatechange",
+    "reservoir",
+    "hooverdam",
+    "nevada",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "climatedata"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "lake_mead_elevation_2000_2022",
+     "params": {
+      "file": "lake_mead_elevation_2000_2022.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DROP",
+     "topic": "lake mead water level",
+     "say": "In 2000, Lake Mead was nearly full at 1,200 feet. By 2022, it had dropped to about 1,047.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "lake_mead_percent_full_trend",
+     "params": {
+      "file": "lake_mead_percent_full_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · HOW FULL",
+     "topic": "lake mead percent full",
+     "say": "By 2016, the reservoir was down to 37% full. By 2022, that fell again to just 27%.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "lake_mead_distance_to_power_shutoff",
+     "params": {
+      "file": "lake_mead_distance_to_power_shutoff.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · HOW CLOSE",
+     "topic": "lake mead distance from power shutoff",
+     "say": "At 1,047 feet, Lake Mead sat barely 97 feet above the elevation where Hoover Dam can't make power anymore."
+    }
+   ]
+  },
+  {
+   "slug": "frog-fungus-mass-extinction",
+   "title": "One Fungus Wiped Out 90 Species Of Frogs",
+   "hook": "Something killed off frog species before scientists even knew it existed.",
+   "closing": "A \"rare\" amphibian extinction isn't rare anymore — this fungus made it routine.",
+   "question": "Ever held a frog? Think about this.",
+   "caption": "One fungus has quietly pushed 90 amphibian species to extinction and put hundreds more at risk — including 40 species in Australia alone. Ever held a frog? What do you think?",
+   "hashtags": [
+    "frogs",
+    "chytridfungus",
+    "chytrid",
+    "amphibians",
+    "froglife",
+    "herpetology",
+    "fungaldisease",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "sciencefacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "chytrid_fungus_species_toll",
+     "params": {
+      "file": "chytrid_fungus_species_toll.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE TOLL",
+     "topic": "frog species wiped out by the fungus",
+     "say": "This one fungus has driven declines in 501 amphibian species — and pushed 90 of them to extinction."
+    },
+    {
+     "source": "offline",
+     "key": "chytrid_recovery_status",
+     "params": {
+      "file": "chytrid_recovery_status.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHO'S RECOVERING",
+     "topic": "which frog species are recovering from the fungus",
+     "say": "Of the species it hit, 39% are still getting worse. Only 12% show any real sign of recovering."
+    },
+    {
+     "source": "offline",
+     "key": "chytrid_australia_toll",
+     "params": {
+      "file": "chytrid_australia_toll.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · ONE COUNTRY'S TOLL",
+     "topic": "Australian frog species hit by the fungus",
+     "say": "In Australia alone, 40 of the country's 240 frog species have already been hit by this fungus."
+    }
+   ]
+  },
+  {
+   "slug": "cohabitation-overtakes-marriage",
+   "title": "More Young Adults Live Together Than Get Married",
+   "hook": "9% of young adults live with a partner — not a spouse.",
+   "closing": "So if living together already beats marriage for the young, what happens to marriage next?",
+   "question": "Would you live together before marrying?",
+   "caption": "Among 18-to-24-year-olds, more now live with an unmarried partner than with a spouse. Fifty years ago that was almost unthinkable. Would you live together before marrying? Let me know.",
+   "hashtags": [
+    "cohabitation",
+    "cohabiting",
+    "unmarriedpartner",
+    "livingtogether",
+    "datingtrends",
+    "modernlove",
+    "genz",
+    "relationships",
+    "society",
+    "didyouknow",
+    "dataviz",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cohabitation_vs_marriage_young_adults",
+     "params": {
+      "file": "cohabitation_vs_marriage_young_adults.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE CROSSOVER",
+     "topic": "young adults living together vs married",
+     "say": "For today's youngest adults, 9% now live with an unmarried partner. Only 7% still live with a spouse."
+    },
+    {
+     "source": "offline",
+     "key": "marriage_share_25_34_decline",
+     "params": {
+      "file": "marriage_share_25_34_decline.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE OLDER GROUP",
+     "topic": "25 to 34 year olds getting married less",
+     "say": "Back in 1968, 82% of 25-to-34-year-olds lived with a spouse. By 2018, that had fallen to just 40%.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "cohabiting_50plus_quadrupled",
+     "params": {
+      "file": "cohabiting_50plus_quadrupled.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · EVEN OLDER ADULTS",
+     "topic": "older adults living together unmarried",
+     "say": "Even among adults 50 and older, the number living together unmarried went from 1.2 million in 2000 to 4.2 million by 2022.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    }
+   ]
   }
  ]
 }

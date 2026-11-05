@@ -1,0 +1,25 @@
+{
+ "key": "chytrid_fungus_species_toll",
+ "title": "Amphibian species affected by chytrid fungus: extinct vs still around (count)",
+ "unit": "count",
+ "geography": "Global",
+ "time_coverage": "~1965-2015 (declines), reported 2019",
+ "source": {
+  "name": "Amphibian fungal panzootic causes catastrophic and ongoing loss of biodiversity (Scheele et al. 2019)",
+  "publisher": "Science",
+  "url": "https://doi.org/10.1126/science.aav0379",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Scheele et al. 2019 (Science) attribute declines in at least 501 amphibian species over roughly 50 years to chytridiomycosis, including 90 presumed extinctions. 501 - 90 = 411 declined-but-not-extinct.",
+ "points": [
+  {
+   "label": "Still around (declining)",
+   "value": 411
+  },
+  {
+   "label": "Extinct",
+   "value": 90
+  }
+ ]
+}
