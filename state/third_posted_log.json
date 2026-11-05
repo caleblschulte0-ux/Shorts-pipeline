@@ -17939,13 +17939,50 @@
       "director_cut": true
     },
     "clip-20261105-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/AntediluvianCloudyLlamaAMPTropPunch-ONu1fdq2JImYhrDF",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/OZSGoigwoEg",
       "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment",
       "kind": "twitch_clip",
-      "ts": "2026-11-05T11:39:39.926311+00:00",
+      "ts": "2026-11-05T11:39:50.677964+00:00",
+      "uploaded_at": "2026-11-05T11:39:50.677978+00:00",
+      "publish_at": "2026-11-05T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261105-xqc-screams-i-m-in-a-car-during-the-missile-mome-59c77ef7",
+        "tiktok": "queued for 2026-11-05T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/xqc/clip/AntediluvianCloudyLlamaAMPTropPunch-ONu1fdq2JImYhrDF",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "xQc yells he's in a car \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6237,
+      "banger": 0.5,
+      "cut": {
+        "start": 28.0,
+        "end": 40.7
+      },
+      "director_cut": true
+    },
+    "rejected-ironicmoralciderdoublerainbow-wrsquqquvjbo3jvp": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/IronicMoralCiderDoubleRainbow-WRsQUQquvjBo3JVp",
+      "streamer": "hasanabi",
+      "title": "....",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Interview setup talk, no event)",
+      "ts": "2026-11-05T12:48:28.909023+00:00"
+    },
+    "clip-20261105-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnticingSingleHyenaEagleEye-KbhIfVI52vCP1-ci",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Gets Punched And Doesn't Even Survive Six Seconds",
+      "kind": "twitch_clip",
+      "ts": "2026-11-05T12:51:31.624170+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
