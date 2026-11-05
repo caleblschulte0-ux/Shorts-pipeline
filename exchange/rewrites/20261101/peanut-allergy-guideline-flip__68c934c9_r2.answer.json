@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__68c934c9_r2",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "Avoiding Peanuts Raised Allergy Risk To 13.7%",
+  "hook": "The old peanut advice produced the worse result.",
+  "closing": "Medical advice should change when evidence shows a safer path for families.",
+  "question": "Would you introduce peanut early?",
+  "segments": [
+    {
+      "topic": "Peanut Allergy Rise",
+      "say": "Peanut allergy reached 1.4% among US children while parents were advised to keep babies away from peanuts."
+    },
+    {
+      "topic": "Peanut Avoidance Risk",
+      "say": "Peanut avoidance led to 13.7% allergy risk, while early eating produced a far lower rate."
+    },
+    {
+      "topic": "Peanut Guideline Result",
+      "say": "After early-peanut guidelines, diagnoses fell to 0.45%, an encouraging shift for young children."
+    }
+  ]
+}
