@@ -1,87 +1,99 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "junk_imagery": {
-   "count": 8,
+  "other": {
+   "count": 9,
    "stories": {
-    "sports_carlos_prates_makhachev_he": 1,
-    "sports_victor_wembanyama_rything_is_a": 1,
-    "sports_yan_diomande_ovation_from": 1,
-    "sports_jake_bauers_ast_out_ball": 5
+    "sports_brewers_fan__spoiled_the": 1,
+    "sports_alexander_volkanovski__upset_abou": 1,
+    "sports_robert_lewandowski_r_played_for": 1,
+    "sports_brewers_fan_watching_his": 3,
+    "sports_milwaukee_brewers_watching_his": 1,
+    "union-membership-record-low": 1,
+    "government-internet-shutdowns-record": 1
    },
    "timestamps": [
-    "2026-11-04T12:21:49+00:00",
-    "2026-11-04T12:26:25+00:00",
-    "2026-11-04T12:52:13+00:00",
-    "2026-11-04T13:11:39+00:00",
-    "2026-11-04T13:25:28+00:00",
-    "2026-11-04T13:49:27+00:00",
-    "2026-11-04T13:59:53+00:00",
-    "2026-11-04T19:30:51+00:00"
+    "2026-11-05T12:12:18+00:00",
+    "2026-11-05T12:24:26+00:00",
+    "2026-11-05T12:26:36+00:00",
+    "2026-11-05T12:39:05+00:00",
+    "2026-11-05T12:42:13+00:00",
+    "2026-11-05T12:45:08+00:00",
+    "2026-11-05T13:05:58+00:00",
+    "2026-11-05T14:45:28+00:00",
+    "2026-11-05T19:03:54+00:00"
    ],
    "examples": [
-    "junk_imagery: The title says Prates calls Makhachev a loser 'To His Face', but every frame (hook@0.3 to payoff@-0.4) shows a recycled split-screen: a static still of Makhachev on the left and Prates f",
-    "junk_imagery: The crop drifts off the speaker. In mid2 (10.9s) and mid4 (19.3s) Wembanyama's face is pushed against the right edge, with his right cheek, ear and eye cut off while blurred background f",
-    "junk_imagery: hook@0.8-mid1: the opening is someone else's edit, letterboxed, with its own burned-in captions ('THE REALITY IS', 'A INTER- IT', 'BARCELONA IT IS'). That commentary is about something e"
+    "unreadable: Our line is readable, but the panel labels (e.g. 'AMERICAN FAMILY FIELD' in mid0) are tiny and unreadable on a phone. The whole story depends on picking out one fan inside a quarter of a t",
+    "unreadable: mid1: the burned-in word caption 'THEY DON'T UNDERSTAND' is printed over a second caption ('THEIR SPORT' shows through underneath), so both are garbled on a phone. The word captions also s",
+    "unreadable: mid1, mid3 and mid4: our word captions ('BRING YOU THAT', 'SO LONG,', 'WE'LL HAVE LUCK') sit right on top of the footage's own burned-in captions ('RL9: \"You wouldn't have had to wait so l"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 4,
+   "stories": {
+    "sports_brewers_fan__spoiled_the": 1,
+    "sports_alexander_volkanovski__upset_abou": 1,
+    "sports_robert_lewandowski_r_played_for": 1,
+    "sports_jacob_fowler_after_the_54": 1
+   },
+   "timestamps": [
+    "2026-11-05T12:12:18+00:00",
+    "2026-11-05T12:24:26+00:00",
+    "2026-11-05T12:26:36+00:00",
+    "2026-11-05T12:35:29+00:00"
+   ],
+   "examples": [
+    "junk_imagery: hook@0.3 through payoff@-0.4: the whole clip is a FOX6 four-panel split-screen news graphic (American Family Field / South Milwaukee / Deer District / West Allis) letterboxed over a blur",
+    "junk_imagery: hook@0.3 through payoff@-0.4: the right half of the footage is a frozen stock photo of Australian newspapers headlined 'CARBON TAX SPECIAL EDITION' / 'THE CARBON PLAN'. It sits there for",
+    "junk_imagery: mid1 (t=4.85s): during Lewandowski's key line 'But I wanted to win some titles' the frame is the interviewer's back and a desk, and Lewandowski is not in shot. hook@0.3: Lewandowski is c"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 7,
+   "count": 3,
    "stories": {
-    "sports_carlos_prates_makhachev_he": 2,
-    "sports_yan_diomande_ovation_from": 1,
-    "sports_jake_bauers_ast_out_ball": 3,
-    "sports_kylian_mbapp\u00e9_accidentally": 1
+    "sports_brewers_fan__spoiled_the": 1,
+    "sports_carlos_prates_makhachev_he": 1,
+    "sports_alexander_volkanovski__upset_abou": 1
    },
    "timestamps": [
-    "2026-11-04T12:21:49+00:00",
-    "2026-11-04T12:24:07+00:00",
-    "2026-11-04T12:52:13+00:00",
-    "2026-11-04T13:11:39+00:00",
-    "2026-11-04T13:28:28+00:00",
-    "2026-11-04T13:49:27+00:00",
-    "2026-11-04T19:30:51+00:00"
+    "2026-11-05T12:12:18+00:00",
+    "2026-11-05T12:15:37+00:00",
+    "2026-11-05T12:24:26+00:00"
    ],
    "examples": [
-    "empty_void: In every frame (mid0, mid3, payoff@-0.4) the real footage is a thin band about 30% of frame height, roughly y=260-500. The top and bottom thirds are blurred, enlarged copies of the same fo",
-    "empty_void: hook@0.3 to payoff@-0.4: the real footage is a band about 240px tall in the middle of a 764px frame. The top and bottom thirds are a blurred copy of the same footage, and the left half of ",
-    "empty_void: hook@0.3 to mid1: the broadcast clip fills only the middle third (y~220-460). Black bars cover more than half the frame for the first ~7s."
+    "empty_void: In every frame from hook@0.3 to payoff@-0.4, the top ~32% and bottom ~33% of the frame are a blurred duplicate. Only the middle third carries footage, and that is split into four small pan",
+    "empty_void: hook@0.3 to payoff@-0.4: the real footage is a 16:9 strip about 240px tall in the middle of the frame. The top quarter and bottom third are a blurred copy of it, so about 65% of the vertic",
+    "empty_void: In every frame (hook@0.3, mid2, payoff@-0.4) the top ~35% and bottom ~35% are a blurred, zoomed copy of the same newspaper still. Only the middle band holds content, and half of that band "
    ],
    "recurred_after_fix": false
   },
-  "other": {
-   "count": 5,
+  "decorative_mascot": {
+   "count": 1,
    "stories": {
-    "sports_yan_diomande_ovation_from": 1,
-    "sports_jake_bauers_ast_out_ball": 2,
-    "sports_kylian_mbapp\u00e9_accidentally": 2
+    "union-membership-record-low": 1
    },
    "timestamps": [
-    "2026-11-04T12:52:13+00:00",
-    "2026-11-04T13:25:28+00:00",
-    "2026-11-04T13:28:28+00:00",
-    "2026-11-04T13:40:54+00:00",
-    "2026-11-04T13:50:57+00:00"
+    "2026-11-05T14:45:28+00:00"
    ],
    "examples": [
-    "unreadable: hook@0.8 to mid1: the source's bold caption ('A INTER- IT', 'BARCELONA IT IS') is printed right above our line and competes with it. From mid2 on, our line sits over busy crowd footage wit",
-    "unreadable: hook@0.3-mid0: our line 'Bauers hands Murphy the last out ball' sits right under the footage's own burned-in caption box 'BAUERS GIVES MURPHY THE LAST OUT BALL'. That is the same sentence ",
-    "unreadable: At hook@1.5 our word caption collides with itself and reads 'ENDDAY.THE', with two captions printed on top of each other. In hook@0.3 to hook@0.8 the word captions sit right on the footage"
+    "decorative_mascot: Data stands while the hard hats drop into the bin on their own (hook@0.8, seg0:start). In seg1:start to seg1:end he waves beside the fence while picket signs fall. In seg2:mid and s"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 3,
    "min": 1,
-   "max": 3
+   "max": 4
   },
   "data_demo": {
    "median": 3,
-   "min": 2,
-   "max": 4
+   "min": 0,
+   "max": 5
   },
   "mascot": {
    "median": 4,
@@ -94,7 +106,7 @@
    "max": 3
   },
   "pace": {
-   "median": 1,
+   "median": 2,
    "min": 1,
    "max": 2
   },
@@ -105,30 +117,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
-  62,
+  57,
+  79,
+  79,
+  44,
   66,
-  62,
-  70,
-  66,
-  78,
   87,
-  75,
-  71,
   53,
+  70,
+  74,
   57,
   53,
-  62,
-  79,
-  62,
+  83,
+  83,
+  83,
+  83,
+  96,
+  66,
+  74,
   70,
-  62,
-  87,
-  70,
-  74
+  79
  ]
 }
