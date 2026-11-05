@@ -1,0 +1,10 @@
+{
+ "id": "cruise-ship-outbreaks-climbing__815de0c3",
+ "slug": "cruise-ship-outbreaks-climbing",
+ "settled": "2026-11-05T12:58:00Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Trend",
+  "segment 1: new named entity not in the data: Virus"
+ ]
+}

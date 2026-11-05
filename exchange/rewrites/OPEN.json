@@ -1,21 +1,11 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-05T12:55:40Z",
+ "updated": "2026-11-05T12:58:03Z",
  "open": [
-  {
-   "id": "neutron-star-manhattan-size__4e02853c_r1",
-   "slug": "neutron-star-manhattan-size",
-   "filed": "2026-11-05T12:55:40Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c_r1.request.json",
-   "answer_path": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c_r1.answer.json"
-  },
   {
    "id": "chatgpt-fastest-adoption-ever__5df55128_r1",
    "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-05T12:55:39Z",
+   "filed": "2026-11-05T12:58:03Z",
    "why": [
     "premise: brain: It relies on multiple numbers (growth timeframes) rather than a single consequential, verifiable figure."
    ],
@@ -23,14 +13,64 @@
    "answer_path": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128_r1.answer.json"
   },
   {
+   "id": "neutron-star-manhattan-size__4e02853c_r1",
+   "slug": "neutron-star-manhattan-size",
+   "filed": "2026-11-05T12:58:03Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c_r1.request.json",
+   "answer_path": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c_r1.answer.json"
+  },
+  {
    "id": "muscle-loss-after-30__51f127a7_r4",
    "slug": "muscle-loss-after-30",
-   "filed": "2026-11-05T12:55:39Z",
+   "filed": "2026-11-05T12:58:02Z",
    "why": [
     "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
    ],
    "request": "exchange/rewrites/20261105/muscle-loss-after-30__51f127a7_r4.request.json",
    "answer_path": "exchange/rewrites/20261105/muscle-loss-after-30__51f127a7_r4.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__68c934c9_r3",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-11-05T12:58:02Z",
+   "why": [
+    "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
+   ],
+   "request": "exchange/rewrites/20261105/peanut-allergy-guideline-flip__68c934c9_r3.request.json",
+   "answer_path": "exchange/rewrites/20261105/peanut-allergy-guideline-flip__68c934c9_r3.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__815de0c3_r1",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-05T12:58:01Z",
+   "why": [
+    "premise: brain: It does not reverse a clear viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261105/cruise-ship-outbreaks-climbing__815de0c3_r1.request.json",
+   "answer_path": "exchange/rewrites/20261105/cruise-ship-outbreaks-climbing__815de0c3_r1.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__c3934ec2_r3",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-11-05T12:58:01Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261105/metric-system-holdouts__c3934ec2_r3.request.json",
+   "answer_path": "exchange/rewrites/20261105/metric-system-holdouts__c3934ec2_r3.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__a1c3f2eb_r2",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-05T12:58:00Z",
+   "why": [
+    "premise: brain: The claim relies on a single statistic without clearly overturning a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261105/blood-supply-three-percent__a1c3f2eb_r2.request.json",
+   "answer_path": "exchange/rewrites/20261105/blood-supply-three-percent__a1c3f2eb_r2.answer.json"
   },
   {
    "id": "mangrove-forest-loss__81cb3e05",
@@ -74,26 +114,6 @@
    "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.answer.json"
   },
   {
-   "id": "billion-dollar-disasters-record-2023__b78b14a1_r1",
-   "slug": "billion-dollar-disasters-record-2023",
-   "filed": "2026-11-04T12:26:59Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a raw statistic without a surprising twist."
-   ],
-   "request": "exchange/rewrites/20261104/billion-dollar-disasters-record-2023__b78b14a1_r1.request.json",
-   "answer_path": "exchange/rewrites/20261104/billion-dollar-disasters-record-2023__b78b14a1_r1.answer.json"
-  },
-  {
-   "id": "cargo-ship-size-growth__7c8383c4_r1",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-11-03T12:21:20Z",
-   "why": [
-    "premise: brain: The capacity figure is unexplained and the smaller-crew comparison does not establish a specific consequential expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.request.json",
-   "answer_path": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.answer.json"
-  },
-  {
    "id": "lego-minifigs-outnumber-humans__161409d0_r6",
    "slug": "lego-minifigs-outnumber-humans",
    "filed": "2026-11-03T12:21:20Z",
@@ -106,82 +126,12 @@
   {
    "id": "pedestrian-deaths-outlier__247b5fb6_r1",
    "slug": "pedestrian-deaths-outlier",
-   "filed": "2026-11-02T12:20:57Z",
-   "why": [
-    "premise: brain: The premise lacks a single verifiable number for the climbing death type, relying on an unspecified trend."
-   ],
-   "request": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261102/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__815de0c3",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-01T12:35:11Z",
-   "why": [
-    "premise: brain: It does not reverse a clear viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.request.json",
-   "answer_path": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__c57ffab9_r1",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-11-01T12:19:48Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on an uncontextualized large number."
-   ],
-   "request": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/usps-mail-volume-collapse__c57ffab9_r1.answer.json"
-  },
-  {
-   "id": "naep-math-pandemic-drop__aa1c0224_r1",
-   "slug": "naep-math-pandemic-drop",
    "filed": "2026-11-01T12:19:47Z",
    "why": [
-    "premise: brain: Lacks a specific, verifiable number to anchor the surprising claim."
+    "premise: brain: The hook lacks a specific, verifiable number to anchor the unexpected trend."
    ],
-   "request": "exchange/rewrites/20261101/naep-math-pandemic-drop__aa1c0224_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/naep-math-pandemic-drop__aa1c0224_r1.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__c3934ec2_r2",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
-   ],
-   "request": "exchange/rewrites/20261101/metric-system-holdouts__c3934ec2_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/metric-system-holdouts__c3934ec2_r2.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__68c934c9_r2",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-11-01T12:19:47Z",
-   "why": [
-    "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
-   ],
-   "request": "exchange/rewrites/20261101/peanut-allergy-guideline-flip__68c934c9_r2.request.json",
-   "answer_path": "exchange/rewrites/20261101/peanut-allergy-guideline-flip__68c934c9_r2.answer.json"
-  },
-  {
-   "id": "drone-commercial-overtake__4ce6725d_r1",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: Unclear reversal of viewer expectation; the premise relies on a number but does not convincingly invert a specific expectation."
-   ],
-   "request": "exchange/rewrites/20261101/drone-commercial-overtake__4ce6725d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/drone-commercial-overtake__4ce6725d_r1.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a1c3f2eb_r1",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-01T12:19:46Z",
-   "why": [
-    "premise: brain: The claim relies on a single statistic without clearly overturning a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.request.json",
-   "answer_path": "exchange/rewrites/20261101/blood-supply-three-percent__a1c3f2eb_r1.answer.json"
+   "request": "exchange/rewrites/20261101/pedestrian-deaths-outlier__247b5fb6_r1.request.json",
+   "answer_path": "exchange/rewrites/20261101/pedestrian-deaths-outlier__247b5fb6_r1.answer.json"
   },
   {
    "id": "deepfake-video-explosion__4e4e2811_r1",
@@ -214,6 +164,16 @@
    "answer_path": "exchange/rewrites/20261101/astronaut-bone-loss__315fba90_r2.answer.json"
   },
   {
+   "id": "drone-commercial-overtake__4ce6725d_r1",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-10-31T11:23:48Z",
+   "why": [
+    "premise: brain: It presents a single statistic without clearly reversing a common viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/drone-commercial-overtake__4ce6725d_r1.answer.json"
+  },
+  {
    "id": "earthquake-detection-illusion__c70a68bc_r1",
    "slug": "earthquake-detection-illusion",
    "filed": "2026-10-31T11:23:48Z",
@@ -222,6 +182,16 @@
    ],
    "request": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc_r1.request.json",
    "answer_path": "exchange/rewrites/20261031/earthquake-detection-illusion__c70a68bc_r1.answer.json"
+  },
+  {
+   "id": "naep-math-pandemic-drop__aa1c0224_r1",
+   "slug": "naep-math-pandemic-drop",
+   "filed": "2026-10-31T11:23:48Z",
+   "why": [
+    "premise: brain: The premise lacks a single, verifiable numerical claim and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224_r1.request.json",
+   "answer_path": "exchange/rewrites/20261031/naep-math-pandemic-drop__aa1c0224_r1.answer.json"
   },
   {
    "id": "lightning-deaths-collapsed-not-the-storms__c86366ce",

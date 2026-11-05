@@ -22375,6 +22375,9 @@
     "culture",
     "internet"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-05T12:58:02Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -22426,10 +22429,7 @@
       "code": "globe = subject_image('world globe photo')\nboard = subject_image('chess board top down photo')\ncx = (RX0 + RX1) // 2\ngy = RTOP + 200\ngd = 560\nif globe is not None:\n    paste(globe, cx - gd // 2, gy, gd, gd)\nelse:\n    d.ellipse([cx - gd // 2, gy, cx + gd // 2, gy + gd], outline=rgba(TEXT, 200), width=6)\nshare = values[0] / values[1] if n > 1 and values[1] else 0.33\nang0 = -90\nang1 = ang0 + 360 * clamp(share) * reveal\nbbox = [cx - gd // 2, gy, cx + gd // 2, gy + gd]\nd.pieslice(bbox, ang0, ang1, fill=rgba(HIGHLIGHT, 130))\nif board is not None and reveal > 0.5:\n    bw = 140\n    paste(board, cx - bw // 2, gy + gd // 2 - bw // 2, bw, bw)\ntext(f\"{values[1]:.0f}M regular players worldwide\" if n > 1 else 'players worldwide', cx, gy - 40,\n     size=24, color=TEXT, center=True)\ntext(f'{values[0]:.0f}M on Chess.com', cx, gy + gd + 50, size=32, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-05T12:55:39Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "volcano-country-ranking",
@@ -35737,6 +35737,10 @@
     "biodiversity",
     "coastalhabitat"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-05T12:58:03Z",
+   "hook_was": "Mangrove forests are quietly disappearing.",
    "segments": [
     {
      "source": "offline",
@@ -35774,11 +35778,7 @@
      "topic": "Mangrove Forest Loss",
      "say": "Annual mangrove loss slowed to 102 thousand hectares. Protection can reduce destruction before it fully stops."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-05T12:55:39Z",
-   "hook_was": "Mangrove forests are quietly disappearing."
+   ]
   },
   {
    "slug": "tsa-digital-id-states-growth",
@@ -37091,6 +37091,10 @@
     "statistics",
     "civics"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-05T12:58:02Z",
+   "hook_was": "Why is nobody covering your town's news anymore?",
    "segments": [
     {
      "source": "offline",
@@ -37127,11 +37131,7 @@
      "topic": "US Newspapers Coverage",
      "say": "About 15% of Americans have little or no local news, missing information that shapes their communities."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-05T12:55:39Z",
-   "hook_was": "Why is nobody covering your town's news anymore?"
+   ]
   },
   {
    "slug": "robotic-surgery-doubled",
