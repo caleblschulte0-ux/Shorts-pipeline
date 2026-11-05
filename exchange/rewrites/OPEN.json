@@ -1,96 +1,77 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-05T12:25:32Z",
+ "updated": "2026-11-05T12:55:40Z",
  "open": [
   {
-   "id": "neutron-star-manhattan-size__4e02853c",
+   "id": "neutron-star-manhattan-size__4e02853c_r1",
    "slug": "neutron-star-manhattan-size",
-   "filed": "2026-11-05T04:05:20Z",
+   "filed": "2026-11-05T12:55:40Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c.request.json",
-   "answer_path": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c.answer.json"
+   "request": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c_r1.request.json",
+   "answer_path": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c_r1.answer.json"
   },
   {
-   "id": "robotic-surgery-doubled__efdf1e6c",
-   "slug": "robotic-surgery-doubled",
-   "filed": "2026-11-05T04:05:19Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and hinges only on a vague percentage."
-   ],
-   "request": "exchange/rewrites/20261105/robotic-surgery-doubled__efdf1e6c.request.json",
-   "answer_path": "exchange/rewrites/20261105/robotic-surgery-doubled__efdf1e6c.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__5df55128",
+   "id": "chatgpt-fastest-adoption-ever__5df55128_r1",
    "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-05T04:05:19Z",
+   "filed": "2026-11-05T12:55:39Z",
    "why": [
     "premise: brain: It relies on multiple numbers (growth timeframes) rather than a single consequential, verifiable figure."
    ],
-   "request": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128.request.json",
-   "answer_path": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128.answer.json"
+   "request": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128_r1.request.json",
+   "answer_path": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128_r1.answer.json"
   },
   {
-   "id": "tsa-digital-id-states-growth__1330070e_r2",
-   "slug": "tsa-digital-id-states-growth",
-   "filed": "2026-11-05T04:05:17Z",
+   "id": "muscle-loss-after-30__51f127a7_r4",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-05T12:55:39Z",
    "why": [
-    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies only on a vague count without a striking, verifiable reversal."
+    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
    ],
-   "request": "exchange/rewrites/20261105/tsa-digital-id-states-growth__1330070e_r2.request.json",
-   "answer_path": "exchange/rewrites/20261105/tsa-digital-id-states-growth__1330070e_r2.answer.json"
+   "request": "exchange/rewrites/20261105/muscle-loss-after-30__51f127a7_r4.request.json",
+   "answer_path": "exchange/rewrites/20261105/muscle-loss-after-30__51f127a7_r4.answer.json"
   },
   {
    "id": "mangrove-forest-loss__81cb3e05",
    "slug": "mangrove-forest-loss",
-   "filed": "2026-11-05T04:05:17Z",
+   "filed": "2026-11-04T18:26:40Z",
    "why": [
-    "premise: brain: It presents two key figures (45% slowdown and 3.6 million ha loss) instead of hinging on a single consequential number, failing the one‑number rule."
+    "premise: brain: The premise relies on multiple numbers (45% and 3.6 million hectares) instead of a single consequential, verifiable figure."
    ],
-   "request": "exchange/rewrites/20261105/mangrove-forest-loss__81cb3e05.request.json",
-   "answer_path": "exchange/rewrites/20261105/mangrove-forest-loss__81cb3e05.answer.json"
+   "request": "exchange/rewrites/20261104/mangrove-forest-loss__81cb3e05.request.json",
+   "answer_path": "exchange/rewrites/20261104/mangrove-forest-loss__81cb3e05.answer.json"
   },
   {
-   "id": "chess-online-boom__848c4c3e",
-   "slug": "chess-online-boom",
+   "id": "robotic-surgery-doubled__efdf1e6c",
+   "slug": "robotic-surgery-doubled",
    "filed": "2026-11-04T14:02:40Z",
    "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation, making it insufficient for approval."
+    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies only on a single growth statistic without contextual surprise."
    ],
-   "request": "exchange/rewrites/20261104/chess-online-boom__848c4c3e.request.json",
-   "answer_path": "exchange/rewrites/20261104/chess-online-boom__848c4c3e.answer.json"
+   "request": "exchange/rewrites/20261104/robotic-surgery-doubled__efdf1e6c.request.json",
+   "answer_path": "exchange/rewrites/20261104/robotic-surgery-doubled__efdf1e6c.answer.json"
   },
   {
-   "id": "local-news-deserts-expanding__9f62ea81_r1",
-   "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-04T14:02:40Z",
-   "why": [
-    "premise: brain: It relies on two figures rather than a single consequential, verifiable number, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r1.request.json",
-   "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r1.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__51f127a7_r3",
-   "slug": "muscle-loss-after-30",
+   "id": "tsa-digital-id-states-growth__1330070e_r2",
+   "slug": "tsa-digital-id-states-growth",
    "filed": "2026-11-04T12:27:00Z",
    "why": [
-    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
+    "premise: brain: The premise offers a simple count without reversing a strong viewer expectation or hinging on a consequential, verifiable figure."
    ],
-   "request": "exchange/rewrites/20261104/muscle-loss-after-30__51f127a7_r3.request.json",
-   "answer_path": "exchange/rewrites/20261104/muscle-loss-after-30__51f127a7_r3.answer.json"
+   "request": "exchange/rewrites/20261104/tsa-digital-id-states-growth__1330070e_r2.request.json",
+   "answer_path": "exchange/rewrites/20261104/tsa-digital-id-states-growth__1330070e_r2.answer.json"
   },
   {
-   "id": "lego-minifigs-outnumber-humans__161409d0_r6",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-04T12:26:59Z",
+   "id": "local-news-deserts-expanding__9f62ea81_r2",
+   "slug": "local-news-deserts-expanding",
+   "filed": "2026-11-04T12:27:00Z",
    "why": [
-    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
+    "thesis: seg1 ('News desert counties') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )",
+    "thesis: seg2 ('Living without news') shares no keyword with the headline ('US Newspapers Dropped From 7,325 To 4,490') — and the semantic judge is unavailable (every configured LLM backend failed — groq: HTTPError: HTTP )"
    ],
-   "request": "exchange/rewrites/20261104/lego-minifigs-outnumber-humans__161409d0_r6.request.json",
-   "answer_path": "exchange/rewrites/20261104/lego-minifigs-outnumber-humans__161409d0_r6.answer.json"
+   "request": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.request.json",
+   "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r2.answer.json"
   },
   {
    "id": "billion-dollar-disasters-record-2023__b78b14a1_r1",
@@ -111,6 +92,16 @@
    ],
    "request": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.request.json",
    "answer_path": "exchange/rewrites/20261103/cargo-ship-size-growth__7c8383c4_r1.answer.json"
+  },
+  {
+   "id": "lego-minifigs-outnumber-humans__161409d0_r6",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-03T12:21:20Z",
+   "why": [
+    "premise: brain: The claim hinges on an unverified figure and lacks a clear, verifiable number to substantiate the reversal of expectation."
+   ],
+   "request": "exchange/rewrites/20261103/lego-minifigs-outnumber-humans__161409d0_r6.request.json",
+   "answer_path": "exchange/rewrites/20261103/lego-minifigs-outnumber-humans__161409d0_r6.answer.json"
   },
   {
    "id": "pedestrian-deaths-outlier__247b5fb6_r1",
