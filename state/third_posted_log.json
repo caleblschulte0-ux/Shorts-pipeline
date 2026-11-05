@@ -18113,13 +18113,50 @@
       "ts": "2026-11-05T13:06:43.904811+00:00"
     },
     "clip-20261105-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/EnjoyableRelievedBaguetteTBTacoLeft-4ZkKEtMyQH50sgqE",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/utFr3VsIMmM",
       "title": "Rayasianboy Dances With Girl Group \u5e7b\u85cd\u5c0f\u718a And Can't Stop Running",
       "kind": "twitch_clip",
-      "ts": "2026-11-05T13:11:40.989258+00:00",
+      "ts": "2026-11-05T13:11:52.856387+00:00",
+      "uploaded_at": "2026-11-05T13:11:52.856401+00:00",
+      "publish_at": "2026-11-06T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261105-rayasianboy-dances-with-girl-group-and-can-t-sto-2286646a",
+        "tiktok": "queued for 2026-11-06T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/EnjoyableRelievedBaguetteTBTacoLeft-4ZkKEtMyQH50sgqE",
+      "streamer": "rayasianboy",
+      "series": "chaos",
+      "hook": "Ray dances with a girl group \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2182,
+      "banger": 0.45,
+      "cut": {
+        "start": 4.5,
+        "end": 34.5
+      },
+      "director_cut": true
+    },
+    "rejected-jollyswissoxtwitchraid-xctez3unstbc2gqr": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/JollySwissOxTwitchRaid-XctEz3uNsTBC2GQR",
+      "streamer": "jynxzi",
+      "title": "shouted me out",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Operator select screen, talking, no even)",
+      "ts": "2026-11-05T13:13:13.003692+00:00"
+    },
+    "clip-20261105-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/TentativeMotionlessOrcaCmonBruh-xxvJQmrstWucfDCo",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Reacts As A Fan Says She's His Favorite Streamer And Promises To Meet Her",
+      "kind": "twitch_clip",
+      "ts": "2026-11-05T13:16:07.455382+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
