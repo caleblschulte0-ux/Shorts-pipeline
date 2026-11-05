@@ -1,16 +1,56 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-04T18:26:40Z",
+ "updated": "2026-11-05T04:05:20Z",
  "open": [
+  {
+   "id": "neutron-star-manhattan-size__4e02853c",
+   "slug": "neutron-star-manhattan-size",
+   "filed": "2026-11-05T04:05:20Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c.request.json",
+   "answer_path": "exchange/rewrites/20261105/neutron-star-manhattan-size__4e02853c.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__efdf1e6c",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-05T04:05:19Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and hinges only on a vague percentage."
+   ],
+   "request": "exchange/rewrites/20261105/robotic-surgery-doubled__efdf1e6c.request.json",
+   "answer_path": "exchange/rewrites/20261105/robotic-surgery-doubled__efdf1e6c.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__5df55128",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-05T04:05:19Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers (growth timeframes) rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128.request.json",
+   "answer_path": "exchange/rewrites/20261105/chatgpt-fastest-adoption-ever__5df55128.answer.json"
+  },
+  {
+   "id": "tsa-digital-id-states-growth__1330070e_r2",
+   "slug": "tsa-digital-id-states-growth",
+   "filed": "2026-11-05T04:05:17Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies only on a vague count without a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261105/tsa-digital-id-states-growth__1330070e_r2.request.json",
+   "answer_path": "exchange/rewrites/20261105/tsa-digital-id-states-growth__1330070e_r2.answer.json"
+  },
   {
    "id": "mangrove-forest-loss__81cb3e05",
    "slug": "mangrove-forest-loss",
-   "filed": "2026-11-04T18:26:40Z",
+   "filed": "2026-11-05T04:05:17Z",
    "why": [
-    "premise: brain: The premise relies on multiple numbers (45% and 3.6 million hectares) instead of a single consequential, verifiable figure."
+    "premise: brain: It presents two key figures (45% slowdown and 3.6 million ha loss) instead of hinging on a single consequential number, failing the one‑number rule."
    ],
-   "request": "exchange/rewrites/20261104/mangrove-forest-loss__81cb3e05.request.json",
-   "answer_path": "exchange/rewrites/20261104/mangrove-forest-loss__81cb3e05.answer.json"
+   "request": "exchange/rewrites/20261105/mangrove-forest-loss__81cb3e05.request.json",
+   "answer_path": "exchange/rewrites/20261105/mangrove-forest-loss__81cb3e05.answer.json"
   },
   {
    "id": "california-condor-comeback__c5cb229c",
@@ -41,26 +81,6 @@
    ],
    "request": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r1.request.json",
    "answer_path": "exchange/rewrites/20261104/local-news-deserts-expanding__9f62ea81_r1.answer.json"
-  },
-  {
-   "id": "robotic-surgery-doubled__efdf1e6c",
-   "slug": "robotic-surgery-doubled",
-   "filed": "2026-11-04T14:02:40Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies only on a single growth statistic without contextual surprise."
-   ],
-   "request": "exchange/rewrites/20261104/robotic-surgery-doubled__efdf1e6c.request.json",
-   "answer_path": "exchange/rewrites/20261104/robotic-surgery-doubled__efdf1e6c.answer.json"
-  },
-  {
-   "id": "tsa-digital-id-states-growth__1330070e_r2",
-   "slug": "tsa-digital-id-states-growth",
-   "filed": "2026-11-04T12:27:00Z",
-   "why": [
-    "premise: brain: The premise offers a simple count without reversing a strong viewer expectation or hinging on a consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261104/tsa-digital-id-states-growth__1330070e_r2.request.json",
-   "answer_path": "exchange/rewrites/20261104/tsa-digital-id-states-growth__1330070e_r2.answer.json"
   },
   {
    "id": "muscle-loss-after-30__51f127a7_r3",
