@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cargo-ship-size-growth__7c8383c4_r1",
+  "slug": "cargo-ship-size-growth",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "Cargo Ships Carry 24,327 Boxes With Smaller Crews",
+  "hook": "Cargo ships got enormous while their crews shrank.",
+  "closing": "Your purchases now cross oceans on giant ships run by remarkably small crews.",
+  "question": "Would you crew one?",
+  "segments": [
+    {
+      "topic": "Cargo Ship Capacity",
+      "say": "The largest cargo ship carries 24,327 boxes, moving consumer goods at a scale earlier ships could not match."
+    },
+    {
+      "topic": "Cargo Ship Length",
+      "say": "The largest cargo ship is 400 meters long, making its physical scale difficult for ports and people to ignore."
+    },
+    {
+      "topic": "Cargo Ship Crew",
+      "say": "A cargo ship crew can be just 20 people, even as the vessels and their economic stakes grew far larger."
+    }
+  ]
+}
