@@ -17976,13 +17976,113 @@
       "ts": "2026-11-05T12:48:28.909023+00:00"
     },
     "clip-20261105-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/EnticingSingleHyenaEagleEye-KbhIfVI52vCP1-ci",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/kjya12mov0A",
       "title": "Jynxzi Gets Punched And Doesn't Even Survive Six Seconds",
       "kind": "twitch_clip",
-      "ts": "2026-11-05T12:51:31.624170+00:00",
+      "ts": "2026-11-05T12:51:43.747964+00:00",
+      "uploaded_at": "2026-11-05T12:51:43.747982+00:00",
+      "publish_at": "2026-11-05T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261105-jynxzi-gets-punched-and-doesn-t-even-survive-six-48c71646",
+        "tiktok": "queued for 2026-11-05T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnticingSingleHyenaEagleEye-KbhIfVI52vCP1-ci",
+      "streamer": "jynxzi",
+      "series": "fail",
+      "hook": "Jynxzi got punched \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3045,
+      "banger": 0.65,
+      "cut": {
+        "start": 7.0,
+        "end": 24.8
+      },
+      "director_cut": true
+    },
+    "rejected-enjoyableboringcocoafailfish-klybj8crljavq6xk": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/EnjoyableBoringCocoaFailFish-kLYBJ8CRlJaVq6xk",
+      "streamer": "ironmouse",
+      "title": "horror movie scream",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Minecraft, no horror movie or scream vis)",
+      "ts": "2026-11-05T12:52:19.873044+00:00"
+    },
+    "rejected-wrongsecretivepresidentpanicbasket-ixhjhcbdmvslg9e3": {
+      "source_url": "https://www.twitch.tv/shroud/clip/WrongSecretivePresidentPanicBasket-IXhjhCBdmvsLG9E3",
+      "streamer": "shroud",
+      "title": "Forever retired",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Talking only, no visible event)",
+      "ts": "2026-11-05T12:53:22.063654+00:00"
+    },
+    "rejected-boringfancygooseprchase-_njn8tpj-u0b_ilm": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/BoringFancyGoosePRChase-_NJN8TpJ-U0b_ilM",
+      "streamer": "kaicenat",
+      "title": "THIS IS CRAZY\ud83e\udd23",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-11-05T12:53:50.567482+00:00"
+    },
+    "rejected-frozenathleticanacondawoop-szqjj_lhvbvsyyuv": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/FrozenAthleticAnacondaWOOP-sZqjJ_lhVbVSyYUV",
+      "streamer": "jasontheween",
+      "title": "W DEFENCE",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Casual kebab chat, no visible event)",
+      "ts": "2026-11-05T12:54:47.453798+00:00"
+    },
+    "rejected-tawdryspeedyvampirehotpokket-llbsijcqkukl5azw": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/TawdrySpeedyVampireHotPokket-lLbSIJcqKUkL5Azw",
+      "streamer": "erobb221",
+      "title": "wrong wife",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP driving, no clear event)",
+      "ts": "2026-11-05T12:55:51.752980+00:00"
+    },
+    "rejected-charmingdeterminedmallardheygirl-7c0aoiiqlvhtfos-": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CharmingDeterminedMallardHeyGirl-7C0aoIiqlvHtFoS-",
+      "streamer": "caseoh_",
+      "title": "W DEVS W MARKIPLIER CAMEO\ud83d\udd25\ud83d\udd25\ud83d\udd25",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Dark game, still drawing, no event)",
+      "ts": "2026-11-05T12:56:46.719451+00:00"
+    },
+    "rejected-sincerethoughtfulclipsdadbcwarrior-8vpyhhdp4u3n2sj_": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/SincereThoughtfulClipsdadBCWarrior-8vpYHHdP4U3n2sJ_",
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Gets Mad At Yusuf",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Static menu screen, vague inside chatter)",
+      "ts": "2026-11-05T12:57:28.501790+00:00"
+    },
+    "rejected-stupidtentativesnooddududu-k4dt4pvdi9qcwn9l": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/StupidTentativeSnoodDuDudu-K4Dt4PVdI9QCwN9L",
+      "streamer": "erobb221",
+      "title": "why",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Political tweet, then static settings me)",
+      "ts": "2026-11-05T12:58:06.154368+00:00"
+    },
+    "clip-20261105-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/MistyDeliciousPheasantKlappa-GsyLYjpLUO_2OwjM",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Shuts Down Man Who Touched Miles: \"I've Run New York\"",
+      "kind": "twitch_clip",
+      "ts": "2026-11-05T13:02:22.025820+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
