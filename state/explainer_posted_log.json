@@ -4936,6 +4936,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 29.4
+    },
+    "billion-dollar-disasters-record-2023": {
+      "claimed_at": "2026-11-05T17:43:27.570439+00:00",
+      "title": "The US Hit A Record 28 Billion-Dollar Disasters In 2023",
+      "publish_at": "2026-11-05T17:58:27Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6318,6 +6325,14 @@
       "state": "posted",
       "slug": "union-membership-record-low",
       "at": "2026-11-05T14:56:04.824848+00:00"
+    },
+    {
+      "claimed_at": "2026-11-05T17:43:27.570439+00:00",
+      "title": "The US Hit A Record 28 Billion-Dollar Disasters In 2023",
+      "publish_at": "2026-11-05T17:58:27Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "billion-dollar-disasters-record-2023"
     }
   ]
 }
