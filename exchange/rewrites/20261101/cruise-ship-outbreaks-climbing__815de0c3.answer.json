@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cruise-ship-outbreaks-climbing__815de0c3",
+  "slug": "cruise-ship-outbreaks-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "One Virus Caused 15 Cruise Ship Outbreaks",
+  "hook": "One stomach virus drove nearly every cruise outbreak.",
+  "closing": "Crowded ships let one illness spread fast, so hygiene still shapes your trip.",
+  "question": "Would an outbreak change your cruise?",
+  "segments": [
+    {
+      "topic": "Cruise Outbreak Trend",
+      "say": "Cruise outbreaks reached 20, continuing a climb that makes onboard illness harder to dismiss as rare."
+    },
+    {
+      "topic": "Cruise Virus Outbreaks",
+      "say": "Norovirus caused 15 cruise outbreaks, showing one stomach bug drives most of the problem."
+    },
+    {
+      "topic": "Cruise Ship Crowds",
+      "say": "Icon of the Seas holds 7,600 guests, giving one sick passenger a huge crowd to reach."
+    }
+  ]
+}
