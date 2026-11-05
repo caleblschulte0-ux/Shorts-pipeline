@@ -1,0 +1,25 @@
+{
+ "key": "chytrid_recovery_status",
+ "title": "Chytrid-affected amphibian species: still declining vs showing recovery (percent)",
+ "unit": "percent",
+ "geography": "Global",
+ "time_coverage": "reported 2019",
+ "source": {
+  "name": "Amphibian fungal panzootic causes catastrophic and ongoing loss of biodiversity (Scheele et al. 2019)",
+  "publisher": "Science",
+  "url": "https://doi.org/10.1126/science.aav0379",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Of the amphibian species affected by chytridiomycosis, the study found 39% are still experiencing ongoing decline, while only 12% show signs of recovery.",
+ "points": [
+  {
+   "label": "Still declining",
+   "value": 39
+  },
+  {
+   "label": "Showing recovery",
+   "value": 12
+  }
+ ]
+}

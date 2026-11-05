@@ -1,0 +1,27 @@
+{
+ "key": "lake_mead_percent_full_trend",
+ "title": "Lake Mead, share of total capacity, 2016 vs 2022 (percent)",
+ "unit": "percent",
+ "geography": "Lake Mead, Nevada/Arizona",
+ "time_coverage": "2016-2022",
+ "source": {
+  "name": "Lake Mead levels to drop to lowest capacity since the 1930s",
+  "publisher": "Associated Press (via ABC15/local news)",
+  "url": "https://www.abc15.com/news/national/lake-mead-levels-to-drop-to-lowest-capacity-since-the-1930s",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Lake Mead hit a record low of about 1,074.03 ft on May 25, 2016 (about 37% of capacity). By July 2022 it had fallen to about 27% of capacity.",
+ "points": [
+  {
+   "label": "2016",
+   "value": 37,
+   "period": "2016"
+  },
+  {
+   "label": "2022",
+   "value": 27,
+   "period": "2022"
+  }
+ ]
+}

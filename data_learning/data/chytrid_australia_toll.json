@@ -1,0 +1,25 @@
+{
+ "key": "chytrid_australia_toll",
+ "title": "Australian frog species hit by chytrid fungus vs untouched (count)",
+ "unit": "count",
+ "geography": "Australia",
+ "time_coverage": "reported 2019",
+ "source": {
+  "name": "Amphibian fungal panzootic causes catastrophic and ongoing loss of biodiversity (Scheele et al. 2019)",
+  "publisher": "Science",
+  "url": "https://doi.org/10.1126/science.aav0379",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Of Australia's roughly 240 native amphibian species, 40 are believed to have suffered declines from chytrid fungus, 7 of those presumed extinct. 240 - 40 = 200 not known to be affected.",
+ "points": [
+  {
+   "label": "Hit by the fungus",
+   "value": 40
+  },
+  {
+   "label": "Untouched",
+   "value": 200
+  }
+ ]
+}

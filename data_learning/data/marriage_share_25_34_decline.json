@@ -1,0 +1,27 @@
+{
+ "key": "marriage_share_25_34_decline",
+ "title": "25-34 year olds living with a spouse, 1968 vs 2018 (percent)",
+ "unit": "percent",
+ "geography": "United States",
+ "time_coverage": "1968-2018",
+ "source": {
+  "name": "America's Families and Living Arrangements (Census figures, compiled historical comparison)",
+  "publisher": "U.S. Census Bureau",
+  "url": "https://www.census.gov/topics/families/families-and-households.html",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Share of 25-34 year olds living with a spouse fell from about 81.5% in 1968 to about 40.3% in 2018, while the share living with an unmarried partner rose from about 0.2% to 14.8% over the same period.",
+ "points": [
+  {
+   "label": "1968",
+   "value": 82,
+   "period": "1968"
+  },
+  {
+   "label": "2018",
+   "value": 40,
+   "period": "2018"
+  }
+ ]
+}

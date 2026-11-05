@@ -1,0 +1,27 @@
+{
+ "key": "cohabiting_50plus_quadrupled",
+ "title": "Cohabiting adults aged 50+, 2000 vs 2022 (count)",
+ "unit": "count",
+ "geography": "United States",
+ "time_coverage": "2000-2022",
+ "source": {
+  "name": "Cohabitation in Middle and Later Life, 2022 (Family Profile FP-24-14)",
+  "publisher": "Bowling Green State University, National Center for Family & Marriage Research (using Census/ACS data)",
+  "url": "https://www.bgsu.edu/ncfmr/resources/data/family-profiles/FP-24-14.html",
+  "officiality": "secondary",
+  "access_date": "2026-11-05"
+ },
+ "notes": "Among adults aged 50 and older, the number cohabiting (unmarried, living with a partner) rose from about 1.2 million in 2000 to about 4,205,505 in 2022 -- almost a fourfold increase.",
+ "points": [
+  {
+   "label": "2000",
+   "value": 1200000,
+   "period": "2000"
+  },
+  {
+   "label": "2022",
+   "value": 4205505,
+   "period": "2022"
+  }
+ ]
+}
