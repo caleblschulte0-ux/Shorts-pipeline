@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "billion-dollar-disasters-record-2023__b78b14a1_r1",
+  "slug": "billion-dollar-disasters-record-2023",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "Disaster Records Are Becoming Routine: 28 In 2023",
+  "hook": "America's disaster records are becoming ordinary.",
+  "closing": "Repeated billion-dollar disasters push higher costs onto insurers, taxpayers, and households.",
+  "question": "Have you lived through one?",
+  "segments": [
+    {
+      "topic": "Disaster Frequency",
+      "say": "Billion-dollar disasters now average 20.4 yearly, turning rare catastrophes into events that arrive every few weeks."
+    },
+    {
+      "topic": "Disaster Record",
+      "say": "The US recorded 28 billion-dollar disasters in 2023, making an exceptional year feel increasingly routine."
+    },
+    {
+      "topic": "Disaster Cost",
+      "say": "Billion-dollar disasters have cost about $2.6 trillion, spreading the bill across insurers, taxpayers, and households."
+    }
+  ]
+}
