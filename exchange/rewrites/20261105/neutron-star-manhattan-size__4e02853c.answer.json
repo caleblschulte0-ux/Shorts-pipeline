@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "neutron-star-manhattan-size__4e02853c",
+  "slug": "neutron-star-manhattan-size",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:23:19.170Z",
+  "title": "A Neutron Star Is Just 20 Kilometers Wide",
+  "hook": "A dead star can compress sunlike mass into 20 kilometers.",
+  "closing": "That density shows how violently gravity can reshape matter.",
+  "question": "Which is stranger: size or mass?",
+  "segments": [
+    {
+      "topic": "Neutron Star Size",
+      "say": "A neutron star spans just 20 kilometers, roughly Manhattan's length. Gravity compresses a dead star into a city-sized object."
+    },
+    {
+      "topic": "Neutron Star Limit",
+      "say": "At 2.2 solar masses, a neutron star collapses into a black hole. Even dense matter has a limit."
+    },
+    {
+      "topic": "Neutron Star Count",
+      "say": "Astronomers have catalogued over 3,400 neutron stars. Each discovery reveals another extreme laboratory for gravity."
+    }
+  ]
+}
