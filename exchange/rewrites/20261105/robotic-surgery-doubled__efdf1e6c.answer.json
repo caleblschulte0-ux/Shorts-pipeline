@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "robotic-surgery-doubled__efdf1e6c",
+  "slug": "robotic-surgery-doubled",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:23:19.170Z",
+  "title": "Robotic Surgery Is No Longer Rare At 15.1%",
+  "hook": "Robotic surgery escaped the niche and nearly doubled in four years.",
+  "closing": "Robotic surgery is becoming routine, changing what patients encounter in operating rooms.",
+  "question": "Would you trust robotic surgery?",
+  "segments": [
+    {
+      "topic": "Robotic Surgery Growth",
+      "say": "Robotic procedures rose 98%, turning a specialized tool into a mainstream surgical option."
+    },
+    {
+      "topic": "Robotic Surgery Share",
+      "say": "Robots handled 15.1% of general surgeries, proving the technology was no longer rare."
+    },
+    {
+      "topic": "Robotic Surgery Revenue",
+      "say": "Robotic-surgery revenue reached $7.1 billion, reflecting how quickly hospitals invested in the technology."
+    }
+  ]
+}
