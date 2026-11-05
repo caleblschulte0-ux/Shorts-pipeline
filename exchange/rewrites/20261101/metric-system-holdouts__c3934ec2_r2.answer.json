@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__c3934ec2_r2",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "A Metric Mix-Up Left A Plane 24,600 Pounds Short",
+  "hook": "One unit mistake left a plane without enough fuel.",
+  "closing": "A wrong unit can destroy machinery or endanger people, so conversions deserve real attention.",
+  "question": "Should everyone use metric?",
+  "segments": [
+    {
+      "topic": "Metric Adoption Gap",
+      "say": "Only 5% of people live where metric is not official, making cross-system mistakes unusually concentrated."
+    },
+    {
+      "topic": "Metric Altitude Error",
+      "say": "Mixed units dropped NASA's Mars orbiter to 57 kilometers, sending the spacecraft dangerously below its planned path."
+    },
+    {
+      "topic": "Metric Fuel Error",
+      "say": "The jet received just 20,400 pounds of fuel, then ran dry mid-flight and had to glide down."
+    }
+  ]
+}
