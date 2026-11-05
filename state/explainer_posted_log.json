@@ -4887,6 +4887,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 27.9
+    },
+    "craft-brewery-boom-and-bust": {
+      "claimed_at": "2026-11-05T02:18:48.752302+00:00",
+      "title": "US Craft Breweries Just Hit A Record 9,778",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6251,6 +6258,14 @@
       "state": "posted",
       "slug": "national-parks-record-then-shutdown",
       "at": "2026-11-04T22:02:09.795612+00:00"
+    },
+    {
+      "claimed_at": "2026-11-05T02:18:48.752302+00:00",
+      "title": "US Craft Breweries Just Hit A Record 9,778",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "craft-brewery-boom-and-bust"
     }
   ]
 }
