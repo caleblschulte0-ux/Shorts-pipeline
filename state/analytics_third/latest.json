@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-05T16:40:17.174947+00:00",
+  "fetched_at": "2026-11-05T18:42:50.026745+00:00",
   "videos": [
     {
       "video_id": "Hnj4zFNzRTc",
@@ -28,14 +28,14 @@
       "scene_changes_before_5s": null,
       "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
       "published_at": "2026-10-22T18:30:06Z",
-      "age_hours": 334.2,
+      "age_hours": 336.2,
       "views": 1848,
       "engaged_views": 838,
       "likes": 3,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 5.53,
+      "views_per_hour": 5.5,
       "average_view_percentage": 72.2,
       "average_view_duration_s": 18.0,
       "estimated_minutes_watched": 277.0,
@@ -572,14 +572,14 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
       "published_at": "2026-10-30T18:30:39Z",
-      "age_hours": 142.2,
+      "age_hours": 144.2,
       "views": 407,
       "engaged_views": 158,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.86,
+      "views_per_hour": 2.82,
       "average_view_percentage": 135.2,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 38.0,
@@ -1116,14 +1116,14 @@
       "scene_changes_before_5s": null,
       "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
       "published_at": "2026-10-16T17:00:12Z",
-      "age_hours": 479.7,
+      "age_hours": 481.7,
       "views": 1087,
       "engaged_views": 374,
       "likes": 4,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.27,
+      "views_per_hour": 2.26,
       "average_view_percentage": 46.2,
       "average_view_duration_s": 22.0,
       "estimated_minutes_watched": 156.0,
@@ -1660,14 +1660,14 @@
       "scene_changes_before_5s": null,
       "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Better",
       "published_at": "2026-10-31T02:00:04Z",
-      "age_hours": 134.7,
+      "age_hours": 136.7,
       "views": 273,
       "engaged_views": 103,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.03,
+      "views_per_hour": 2.0,
       "average_view_percentage": 69.8,
       "average_view_duration_s": 8.0,
       "estimated_minutes_watched": 17.0,
@@ -2204,14 +2204,14 @@
       "scene_changes_before_5s": null,
       "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
       "published_at": "2026-10-29T17:00:29Z",
-      "age_hours": 167.7,
+      "age_hours": 169.7,
       "views": 316,
       "engaged_views": 201,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.88,
+      "views_per_hour": 1.86,
       "average_view_percentage": 64.3,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 55.0,
@@ -2748,7 +2748,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
       "published_at": "2026-10-10T17:00:28Z",
-      "age_hours": 623.7,
+      "age_hours": 625.7,
       "views": 905,
       "engaged_views": 346,
       "likes": 2,
@@ -3266,6 +3266,42 @@
       "early_retention": 0.724
     },
     {
+      "video_id": "OZSGoigwoEg",
+      "url": "https://youtube.com/shorts/OZSGoigwoEg",
+      "catalog_id": "clip-20261105-1",
+      "streamer": "xqc",
+      "series": "chaos",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "xQc yells he's in a car \ud83d\udc80",
+      "source_views": 6237,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment",
+      "published_at": "2026-11-05T17:00:01Z",
+      "age_hours": 1.7,
+      "views": 2,
+      "engaged_views": 2,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 1.17
+    },
+    {
       "video_id": "5btSp5fN0SA",
       "url": "https://youtube.com/shorts/5btSp5fN0SA",
       "catalog_id": "clip-20261104-5",
@@ -3292,14 +3328,14 @@
       "scene_changes_before_5s": null,
       "title": "Joe Joe_Bartolozzi Can't Believe What Just Happened On Stream",
       "published_at": "2026-11-04T23:00:11Z",
-      "age_hours": 17.7,
+      "age_hours": 19.7,
       "views": 18,
       "engaged_views": 18,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 1.02
+      "views_per_hour": 0.91
     },
     {
       "video_id": "AL-D88r4vcA",
@@ -3328,14 +3364,14 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
       "published_at": "2026-10-29T03:30:34Z",
-      "age_hours": 181.2,
+      "age_hours": 183.2,
       "views": 152,
       "engaged_views": 56,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.84,
+      "views_per_hour": 0.83,
       "average_view_percentage": 105.4,
       "average_view_duration_s": 11.0,
       "estimated_minutes_watched": 12.0,
@@ -3872,14 +3908,14 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
       "published_at": "2026-10-26T02:00:03Z",
-      "age_hours": 254.7,
+      "age_hours": 256.7,
       "views": 163,
       "engaged_views": 74,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.64,
+      "views_per_hour": 0.63,
       "average_view_percentage": 86.2,
       "average_view_duration_s": 15.0,
       "estimated_minutes_watched": 20.0,
@@ -4416,14 +4452,14 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Breaks His Opponent's Ankles And Can't Believe It",
       "published_at": "2026-10-28T21:30:08Z",
-      "age_hours": 187.2,
+      "age_hours": 189.2,
       "views": 119,
       "engaged_views": 54,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.64,
+      "views_per_hour": 0.63,
       "average_view_percentage": 111.1,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 15.0,
@@ -4934,6 +4970,42 @@
       "early_retention": 0.804
     },
     {
+      "video_id": "6CA1KtGVN6U",
+      "url": "https://youtube.com/shorts/6CA1KtGVN6U",
+      "catalog_id": "clip-20261104-1",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "simple_fallback",
+      "hook": "Rakai invites Kai to a Halloween party",
+      "source_views": 2737,
+      "banger": 0.6,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Kaicenat: Kai Cenat Shuts Down Rakai After He Invites Him To A Halloween Party",
+      "published_at": "2026-11-05T02:00:22Z",
+      "age_hours": 16.7,
+      "views": 9,
+      "engaged_views": 9,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.54
+    },
+    {
       "video_id": "Ge4eZ-gfgbg",
       "url": "https://youtube.com/shorts/Ge4eZ-gfgbg",
       "catalog_id": "clip-20261103-1",
@@ -4960,14 +5032,14 @@
       "scene_changes_before_5s": null,
       "title": "Forsen talks beef and drops a weird holiday idea \ud83d\ude33",
       "published_at": "2026-11-03T17:00:36Z",
-      "age_hours": 47.7,
+      "age_hours": 49.7,
       "views": 23,
       "engaged_views": 23,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.48
+      "views_per_hour": 0.46
     },
     {
       "video_id": "7L2yw__BdBs",
@@ -4996,14 +5068,14 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Can't Believe This Guy Actually Beat Him",
       "published_at": "2026-11-01T18:30:23Z",
-      "age_hours": 94.2,
+      "age_hours": 96.2,
       "views": 29,
       "engaged_views": 9,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.31,
+      "views_per_hour": 0.3,
       "average_view_percentage": 59.3,
       "average_view_duration_s": 10.0,
       "estimated_minutes_watched": 1.0,
@@ -5038,7 +5110,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Hits Cameraman After He Quits \u2013 Streamer Fight",
       "published_at": "2026-10-26T17:00:00Z",
-      "age_hours": 239.7,
+      "age_hours": 241.7,
       "views": 70,
       "engaged_views": 36,
       "likes": 2,
@@ -5079,56 +5151,20 @@
       "scene_changes_before_5s": null,
       "title": "Silky Finally Pulls Up To NMS Boxing And This Happens",
       "published_at": "2026-10-31T05:00:32Z",
-      "age_hours": 131.7,
+      "age_hours": 133.7,
       "views": 38,
       "engaged_views": 18,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.29,
+      "views_per_hour": 0.28,
       "average_view_percentage": 84.3,
       "average_view_duration_s": 12.0,
       "estimated_minutes_watched": 4.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
-    },
-    {
-      "video_id": "6CA1KtGVN6U",
-      "url": "https://youtube.com/shorts/6CA1KtGVN6U",
-      "catalog_id": "clip-20261104-1",
-      "streamer": "kaicenat",
-      "series": "argument",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "simple_fallback",
-      "hook": "Rakai invites Kai to a Halloween party",
-      "source_views": 2737,
-      "banger": 0.6,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Kaicenat: Kai Cenat Shuts Down Rakai After He Invites Him To A Halloween Party",
-      "published_at": "2026-11-05T02:00:22Z",
-      "age_hours": 14.7,
-      "views": 4,
-      "engaged_views": 4,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.27
     },
     {
       "video_id": "5kGBPoooNW0",
@@ -5157,7 +5193,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Scene Turns Ugly After John Bobby Shoots Kalita Dub",
       "published_at": "2026-10-12T17:00:29Z",
-      "age_hours": 575.7,
+      "age_hours": 577.7,
       "views": 152,
       "engaged_views": 56,
       "likes": 1,
@@ -5701,7 +5737,7 @@
       "scene_changes_before_5s": null,
       "title": "Jinnytty Can't Stop Watching Kicky And Says She's So Cute",
       "published_at": "2026-10-08T00:30:19Z",
-      "age_hours": 688.2,
+      "age_hours": 690.2,
       "views": 163,
       "engaged_views": 75,
       "likes": 11,
@@ -6245,7 +6281,7 @@
       "scene_changes_before_5s": null,
       "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
       "published_at": "2026-10-08T20:00:27Z",
-      "age_hours": 668.7,
+      "age_hours": 670.7,
       "views": 140,
       "engaged_views": 67,
       "likes": 1,
@@ -6789,564 +6825,20 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Car Is So Loud Marlon Can't Believe It \ud83d\ude02",
       "published_at": "2026-11-01T00:30:24Z",
-      "age_hours": 112.2,
+      "age_hours": 114.2,
       "views": 23,
       "engaged_views": 8,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.21,
+      "views_per_hour": 0.2,
       "average_view_percentage": 109.0,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 2.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
-    },
-    {
-      "video_id": "y6Bmba84xDA",
-      "url": "https://youtube.com/shorts/y6Bmba84xDA",
-      "catalog_id": "clip-20261006-1",
-      "streamer": "cinna",
-      "series": "argument",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "HOW IS HE BLAMING ME?",
-      "source_views": 5359,
-      "banger": 0.68,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car",
-      "published_at": "2026-10-06T17:00:26Z",
-      "age_hours": 719.7,
-      "views": 138,
-      "engaged_views": 81,
-      "likes": 2,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 0.19,
-      "average_view_percentage": 39.6,
-      "average_view_duration_s": 15.0,
-      "estimated_minutes_watched": 22.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_curve": [
-        [
-          0.01,
-          1.192,
-          0.565
-        ],
-        [
-          0.02,
-          1.218,
-          0.537
-        ],
-        [
-          0.03,
-          1.192,
-          0.509
-        ],
-        [
-          0.04,
-          1.167,
-          0.484
-        ],
-        [
-          0.05,
-          1.141,
-          0.462
-        ],
-        [
-          0.06,
-          1.103,
-          0.444
-        ],
-        [
-          0.07,
-          1.115,
-          0.43
-        ],
-        [
-          0.08,
-          1.09,
-          0.417
-        ],
-        [
-          0.09,
-          1.051,
-          0.405
-        ],
-        [
-          0.1,
-          1.013,
-          0.392
-        ],
-        [
-          0.11,
-          0.936,
-          0.378
-        ],
-        [
-          0.12,
-          0.885,
-          0.362
-        ],
-        [
-          0.13,
-          0.859,
-          0.345
-        ],
-        [
-          0.14,
-          0.782,
-          0.325
-        ],
-        [
-          0.15,
-          0.718,
-          0.305
-        ],
-        [
-          0.16,
-          0.679,
-          0.283
-        ],
-        [
-          0.17,
-          0.615,
-          0.261
-        ],
-        [
-          0.18,
-          0.59,
-          0.24
-        ],
-        [
-          0.19,
-          0.551,
-          0.22
-        ],
-        [
-          0.2,
-          0.526,
-          0.201
-        ],
-        [
-          0.21,
-          0.513,
-          0.185
-        ],
-        [
-          0.22,
-          0.474,
-          0.171
-        ],
-        [
-          0.23,
-          0.474,
-          0.159
-        ],
-        [
-          0.24,
-          0.474,
-          0.148
-        ],
-        [
-          0.25,
-          0.474,
-          0.14
-        ],
-        [
-          0.26,
-          0.449,
-          0.134
-        ],
-        [
-          0.27,
-          0.41,
-          0.128
-        ],
-        [
-          0.28,
-          0.41,
-          0.124
-        ],
-        [
-          0.29,
-          0.41,
-          0.121
-        ],
-        [
-          0.3,
-          0.41,
-          0.119
-        ],
-        [
-          0.31,
-          0.41,
-          0.118
-        ],
-        [
-          0.32,
-          0.41,
-          0.118
-        ],
-        [
-          0.33,
-          0.41,
-          0.118
-        ],
-        [
-          0.34,
-          0.423,
-          0.119
-        ],
-        [
-          0.35,
-          0.423,
-          0.121
-        ],
-        [
-          0.36,
-          0.449,
-          0.123
-        ],
-        [
-          0.37,
-          0.449,
-          0.125
-        ],
-        [
-          0.38,
-          0.436,
-          0.127
-        ],
-        [
-          0.39,
-          0.436,
-          0.129
-        ],
-        [
-          0.4,
-          0.423,
-          0.132
-        ],
-        [
-          0.41,
-          0.423,
-          0.134
-        ],
-        [
-          0.42,
-          0.423,
-          0.136
-        ],
-        [
-          0.43,
-          0.423,
-          0.139
-        ],
-        [
-          0.44,
-          0.423,
-          0.141
-        ],
-        [
-          0.45,
-          0.41,
-          0.144
-        ],
-        [
-          0.46,
-          0.41,
-          0.147
-        ],
-        [
-          0.47,
-          0.41,
-          0.149
-        ],
-        [
-          0.48,
-          0.41,
-          0.152
-        ],
-        [
-          0.49,
-          0.397,
-          0.154
-        ],
-        [
-          0.5,
-          0.397,
-          0.155
-        ],
-        [
-          0.51,
-          0.397,
-          0.156
-        ],
-        [
-          0.52,
-          0.385,
-          0.156
-        ],
-        [
-          0.53,
-          0.359,
-          0.155
-        ],
-        [
-          0.54,
-          0.346,
-          0.153
-        ],
-        [
-          0.55,
-          0.333,
-          0.151
-        ],
-        [
-          0.56,
-          0.32,
-          0.148
-        ],
-        [
-          0.57,
-          0.32,
-          0.144
-        ],
-        [
-          0.58,
-          0.32,
-          0.141
-        ],
-        [
-          0.59,
-          0.295,
-          0.137
-        ],
-        [
-          0.6,
-          0.295,
-          0.134
-        ],
-        [
-          0.61,
-          0.282,
-          0.13
-        ],
-        [
-          0.62,
-          0.282,
-          0.127
-        ],
-        [
-          0.63,
-          0.282,
-          0.125
-        ],
-        [
-          0.64,
-          0.282,
-          0.122
-        ],
-        [
-          0.65,
-          0.282,
-          0.121
-        ],
-        [
-          0.66,
-          0.282,
-          0.12
-        ],
-        [
-          0.67,
-          0.269,
-          0.12
-        ],
-        [
-          0.68,
-          0.269,
-          0.122
-        ],
-        [
-          0.69,
-          0.269,
-          0.124
-        ],
-        [
-          0.7,
-          0.269,
-          0.128
-        ],
-        [
-          0.71,
-          0.256,
-          0.133
-        ],
-        [
-          0.72,
-          0.244,
-          0.139
-        ],
-        [
-          0.73,
-          0.244,
-          0.147
-        ],
-        [
-          0.74,
-          0.244,
-          0.157
-        ],
-        [
-          0.75,
-          0.231,
-          0.167
-        ],
-        [
-          0.76,
-          0.192,
-          0.179
-        ],
-        [
-          0.77,
-          0.192,
-          0.191
-        ],
-        [
-          0.78,
-          0.179,
-          0.204
-        ],
-        [
-          0.79,
-          0.179,
-          0.217
-        ],
-        [
-          0.8,
-          0.179,
-          0.229
-        ],
-        [
-          0.81,
-          0.192,
-          0.241
-        ],
-        [
-          0.82,
-          0.167,
-          0.251
-        ],
-        [
-          0.83,
-          0.167,
-          0.26
-        ],
-        [
-          0.84,
-          0.167,
-          0.267
-        ],
-        [
-          0.85,
-          0.154,
-          0.274
-        ],
-        [
-          0.86,
-          0.141,
-          0.278
-        ],
-        [
-          0.87,
-          0.128,
-          0.282
-        ],
-        [
-          0.88,
-          0.128,
-          0.285
-        ],
-        [
-          0.89,
-          0.128,
-          0.287
-        ],
-        [
-          0.9,
-          0.128,
-          0.288
-        ],
-        [
-          0.91,
-          0.128,
-          0.289
-        ],
-        [
-          0.92,
-          0.128,
-          0.29
-        ],
-        [
-          0.93,
-          0.128,
-          0.29
-        ],
-        [
-          0.94,
-          0.128,
-          0.291
-        ],
-        [
-          0.95,
-          0.128,
-          0.292
-        ],
-        [
-          0.96,
-          0.128,
-          0.294
-        ],
-        [
-          0.97,
-          0.128,
-          0.295
-        ],
-        [
-          0.98,
-          0.115,
-          0.297
-        ],
-        [
-          0.99,
-          0.115,
-          0.298
-        ],
-        [
-          1.0,
-          0.115,
-          0.3
-        ]
-      ],
-      "early_retention": 0.742
     },
     {
       "video_id": "zsysPb1NdrA",
@@ -7375,7 +6867,7 @@
       "scene_changes_before_5s": null,
       "title": "The Forsen Clip Everyone's Talking About",
       "published_at": "2026-10-13T17:00:10Z",
-      "age_hours": 551.7,
+      "age_hours": 553.7,
       "views": 98,
       "engaged_views": 32,
       "likes": 0,
@@ -7919,7 +7411,7 @@
       "scene_changes_before_5s": null,
       "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
       "published_at": "2026-10-15T21:30:20Z",
-      "age_hours": 499.2,
+      "age_hours": 501.2,
       "views": 87,
       "engaged_views": 51,
       "likes": 0,
@@ -8437,48 +7929,6 @@
       "early_retention": 0.773
     },
     {
-      "video_id": "Q_76gXxh7mA",
-      "url": "https://youtube.com/shorts/Q_76gXxh7mA",
-      "catalog_id": "clip-20261029-5",
-      "streamer": "ishowspeed",
-      "series": "chaos",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Speed sees Maguire land it \ud83d\ude33",
-      "source_views": 8380,
-      "banger": 0.55,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Ishowspeed Can't Believe Harry Maguire Just Did This",
-      "published_at": "2026-10-30T03:30:07Z",
-      "age_hours": 157.2,
-      "views": 26,
-      "engaged_views": 14,
-      "likes": 1,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.17,
-      "average_view_percentage": 103.5,
-      "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 2.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
       "video_id": "6ZK9pPziPfY",
       "url": "https://youtube.com/shorts/6ZK9pPziPfY",
       "catalog_id": "clip-20261029-6",
@@ -8505,7 +7955,7 @@
       "scene_changes_before_5s": null,
       "title": "Emiru Cowgirl Outfit Has Her Mod Fully Hiding From Stream",
       "published_at": "2026-10-30T00:30:31Z",
-      "age_hours": 160.2,
+      "age_hours": 162.2,
       "views": 26,
       "engaged_views": 10,
       "likes": 0,
@@ -8516,6 +7966,48 @@
       "average_view_percentage": 39.2,
       "average_view_duration_s": 9.0,
       "estimated_minutes_watched": 1.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "Q_76gXxh7mA",
+      "url": "https://youtube.com/shorts/Q_76gXxh7mA",
+      "catalog_id": "clip-20261029-5",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "Speed sees Maguire land it \ud83d\ude33",
+      "source_views": 8380,
+      "banger": 0.55,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Ishowspeed Can't Believe Harry Maguire Just Did This",
+      "published_at": "2026-10-30T03:30:07Z",
+      "age_hours": 159.2,
+      "views": 26,
+      "engaged_views": 14,
+      "likes": 1,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.16,
+      "average_view_percentage": 103.5,
+      "average_view_duration_s": 9.0,
+      "estimated_minutes_watched": 2.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -8547,7 +8039,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Tries To Get Her To Say Something And She Stays Silent",
       "published_at": "2026-10-29T06:30:01Z",
-      "age_hours": 178.2,
+      "age_hours": 180.2,
       "views": 27,
       "engaged_views": 12,
       "likes": 0,
@@ -8558,6 +8050,48 @@
       "average_view_percentage": 78.5,
       "average_view_duration_s": 14.0,
       "estimated_minutes_watched": 2.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "G58pNmajFB0",
+      "url": "https://youtube.com/shorts/G58pNmajFB0",
+      "catalog_id": "clip-20261027-3",
+      "streamer": "atrioc",
+      "series": "drama",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "Atrioc asks for a second chance",
+      "source_views": 106199,
+      "banger": 0.62,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Atrioc Says Some People Should Let Him Play A Game Again",
+      "published_at": "2026-10-28T18:30:10Z",
+      "age_hours": 192.2,
+      "views": 26,
+      "engaged_views": 12,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.14,
+      "average_view_percentage": 61.8,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 3.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -8589,14 +8123,14 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Can't Believe Somebody Actually Found Him",
       "published_at": "2026-10-31T00:30:14Z",
-      "age_hours": 136.2,
+      "age_hours": 138.2,
       "views": 20,
       "engaged_views": 8,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.15,
+      "views_per_hour": 0.14,
       "average_view_percentage": 77.0,
       "average_view_duration_s": 17.0,
       "estimated_minutes_watched": 2.0,
@@ -8631,7 +8165,7 @@
       "scene_changes_before_5s": null,
       "title": "Plaqueboymax Gets Told Nobody In Australia Has Ever Seen Anyone Like Him",
       "published_at": "2026-10-21T18:30:12Z",
-      "age_hours": 358.2,
+      "age_hours": 360.2,
       "views": 46,
       "engaged_views": 20,
       "likes": 0,
@@ -8642,48 +8176,6 @@
       "average_view_percentage": 70.1,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 4.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "G58pNmajFB0",
-      "url": "https://youtube.com/shorts/G58pNmajFB0",
-      "catalog_id": "clip-20261027-3",
-      "streamer": "atrioc",
-      "series": "drama",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Atrioc asks for a second chance",
-      "source_views": 106199,
-      "banger": 0.62,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Atrioc Says Some People Should Let Him Play A Game Again",
-      "published_at": "2026-10-28T18:30:10Z",
-      "age_hours": 190.2,
-      "views": 25,
-      "engaged_views": 12,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.13,
-      "average_view_percentage": 61.8,
-      "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 3.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -8715,7 +8207,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Accused",
       "published_at": "2026-10-09T00:30:37Z",
-      "age_hours": 664.2,
+      "age_hours": 666.2,
       "views": 77,
       "engaged_views": 47,
       "likes": 0,
@@ -8727,7 +8219,510 @@
       "average_view_duration_s": 9.0,
       "estimated_minutes_watched": 7.0,
       "shares": 0,
-      "subscribers_gained": 0
+      "subscribers_gained": 0,
+      "retention_curve": [
+        [
+          0.01,
+          1.4,
+          0.61
+        ],
+        [
+          0.02,
+          1.4,
+          0.605
+        ],
+        [
+          0.03,
+          1.378,
+          0.6
+        ],
+        [
+          0.04,
+          1.378,
+          0.594
+        ],
+        [
+          0.05,
+          1.378,
+          0.589
+        ],
+        [
+          0.06,
+          1.356,
+          0.583
+        ],
+        [
+          0.07,
+          1.311,
+          0.577
+        ],
+        [
+          0.08,
+          1.289,
+          0.572
+        ],
+        [
+          0.09,
+          1.244,
+          0.566
+        ],
+        [
+          0.1,
+          1.244,
+          0.561
+        ],
+        [
+          0.11,
+          1.156,
+          0.556
+        ],
+        [
+          0.12,
+          1.133,
+          0.551
+        ],
+        [
+          0.13,
+          1.156,
+          0.546
+        ],
+        [
+          0.14,
+          1.111,
+          0.541
+        ],
+        [
+          0.15,
+          1.067,
+          0.536
+        ],
+        [
+          0.16,
+          1.067,
+          0.531
+        ],
+        [
+          0.17,
+          1.044,
+          0.527
+        ],
+        [
+          0.18,
+          1.0,
+          0.523
+        ],
+        [
+          0.19,
+          0.978,
+          0.519
+        ],
+        [
+          0.2,
+          0.978,
+          0.515
+        ],
+        [
+          0.21,
+          0.978,
+          0.511
+        ],
+        [
+          0.22,
+          0.956,
+          0.507
+        ],
+        [
+          0.23,
+          0.956,
+          0.504
+        ],
+        [
+          0.24,
+          0.956,
+          0.5
+        ],
+        [
+          0.25,
+          0.956,
+          0.497
+        ],
+        [
+          0.26,
+          0.933,
+          0.494
+        ],
+        [
+          0.27,
+          0.933,
+          0.491
+        ],
+        [
+          0.28,
+          0.933,
+          0.488
+        ],
+        [
+          0.29,
+          0.933,
+          0.485
+        ],
+        [
+          0.3,
+          0.933,
+          0.482
+        ],
+        [
+          0.31,
+          0.956,
+          0.48
+        ],
+        [
+          0.32,
+          0.956,
+          0.478
+        ],
+        [
+          0.33,
+          0.933,
+          0.475
+        ],
+        [
+          0.34,
+          0.911,
+          0.473
+        ],
+        [
+          0.35,
+          0.911,
+          0.471
+        ],
+        [
+          0.36,
+          0.889,
+          0.469
+        ],
+        [
+          0.37,
+          0.889,
+          0.467
+        ],
+        [
+          0.38,
+          0.867,
+          0.465
+        ],
+        [
+          0.39,
+          0.867,
+          0.464
+        ],
+        [
+          0.4,
+          0.889,
+          0.462
+        ],
+        [
+          0.41,
+          0.889,
+          0.461
+        ],
+        [
+          0.42,
+          0.889,
+          0.459
+        ],
+        [
+          0.43,
+          0.889,
+          0.458
+        ],
+        [
+          0.44,
+          0.889,
+          0.456
+        ],
+        [
+          0.45,
+          0.867,
+          0.455
+        ],
+        [
+          0.46,
+          0.867,
+          0.454
+        ],
+        [
+          0.47,
+          0.867,
+          0.453
+        ],
+        [
+          0.48,
+          0.867,
+          0.452
+        ],
+        [
+          0.49,
+          0.844,
+          0.451
+        ],
+        [
+          0.5,
+          0.844,
+          0.45
+        ],
+        [
+          0.51,
+          0.844,
+          0.449
+        ],
+        [
+          0.52,
+          0.844,
+          0.448
+        ],
+        [
+          0.53,
+          0.844,
+          0.447
+        ],
+        [
+          0.54,
+          0.844,
+          0.447
+        ],
+        [
+          0.55,
+          0.844,
+          0.446
+        ],
+        [
+          0.56,
+          0.844,
+          0.445
+        ],
+        [
+          0.57,
+          0.822,
+          0.445
+        ],
+        [
+          0.58,
+          0.822,
+          0.444
+        ],
+        [
+          0.59,
+          0.822,
+          0.444
+        ],
+        [
+          0.6,
+          0.822,
+          0.443
+        ],
+        [
+          0.61,
+          0.8,
+          0.443
+        ],
+        [
+          0.62,
+          0.8,
+          0.443
+        ],
+        [
+          0.63,
+          0.8,
+          0.443
+        ],
+        [
+          0.64,
+          0.778,
+          0.442
+        ],
+        [
+          0.65,
+          0.756,
+          0.442
+        ],
+        [
+          0.66,
+          0.756,
+          0.442
+        ],
+        [
+          0.67,
+          0.756,
+          0.442
+        ],
+        [
+          0.68,
+          0.733,
+          0.442
+        ],
+        [
+          0.69,
+          0.711,
+          0.442
+        ],
+        [
+          0.7,
+          0.711,
+          0.442
+        ],
+        [
+          0.71,
+          0.689,
+          0.443
+        ],
+        [
+          0.72,
+          0.667,
+          0.443
+        ],
+        [
+          0.73,
+          0.644,
+          0.443
+        ],
+        [
+          0.74,
+          0.6,
+          0.443
+        ],
+        [
+          0.75,
+          0.6,
+          0.444
+        ],
+        [
+          0.76,
+          0.578,
+          0.444
+        ],
+        [
+          0.77,
+          0.578,
+          0.444
+        ],
+        [
+          0.78,
+          0.578,
+          0.445
+        ],
+        [
+          0.79,
+          0.578,
+          0.445
+        ],
+        [
+          0.8,
+          0.578,
+          0.445
+        ],
+        [
+          0.81,
+          0.578,
+          0.446
+        ],
+        [
+          0.82,
+          0.578,
+          0.446
+        ],
+        [
+          0.83,
+          0.578,
+          0.447
+        ],
+        [
+          0.84,
+          0.556,
+          0.447
+        ],
+        [
+          0.85,
+          0.533,
+          0.447
+        ],
+        [
+          0.86,
+          0.533,
+          0.448
+        ],
+        [
+          0.87,
+          0.533,
+          0.448
+        ],
+        [
+          0.88,
+          0.533,
+          0.449
+        ],
+        [
+          0.89,
+          0.533,
+          0.449
+        ],
+        [
+          0.9,
+          0.489,
+          0.449
+        ],
+        [
+          0.91,
+          0.444,
+          0.449
+        ],
+        [
+          0.92,
+          0.422,
+          0.45
+        ],
+        [
+          0.93,
+          0.289,
+          0.45
+        ],
+        [
+          0.94,
+          0.289,
+          0.45
+        ],
+        [
+          0.95,
+          0.289,
+          0.45
+        ],
+        [
+          0.96,
+          0.289,
+          0.45
+        ],
+        [
+          0.97,
+          0.289,
+          0.45
+        ],
+        [
+          0.98,
+          0.289,
+          0.45
+        ],
+        [
+          0.99,
+          0.289,
+          0.451
+        ],
+        [
+          1.0,
+          0.267,
+          0.451
+        ]
+      ],
+      "early_retention": 0.809
     },
     {
       "video_id": "s6PIxtfXxy4",
@@ -8756,7 +8751,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Calls Out An EF4 Tornado And Then Realizes He Got It Wrong",
       "published_at": "2026-10-09T23:00:26Z",
-      "age_hours": 641.7,
+      "age_hours": 643.7,
       "views": 77,
       "engaged_views": 26,
       "likes": 1,
@@ -8797,7 +8792,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Keeps Dying In TTT T\u2011UNIT \u2013 What Triggers The Chaos?",
       "published_at": "2026-10-15T06:30:29Z",
-      "age_hours": 514.2,
+      "age_hours": 516.2,
       "views": 59,
       "engaged_views": 22,
       "likes": 1,
@@ -8810,48 +8805,6 @@
       "estimated_minutes_watched": 7.0,
       "shares": 0,
       "subscribers_gained": 0
-    },
-    {
-      "video_id": "zdQnA-sD5vY",
-      "url": "https://youtube.com/shorts/zdQnA-sD5vY",
-      "catalog_id": "clip-20261101-5",
-      "streamer": "jynxzi",
-      "series": "chaos",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Chat calls out Jynxzi's barber \ud83d\udc80",
-      "source_views": 2385,
-      "banger": 0.45,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Jynxzi Gets Roasted By Chat: \"Your Barber Is Blind\" \ud83d\udc80",
-      "published_at": "2026-11-02T03:30:25Z",
-      "age_hours": 85.2,
-      "views": 9,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.11,
-      "average_view_percentage": 94.5,
-      "average_view_duration_s": 25.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
     },
     {
       "video_id": "5N0ltRXHv_4",
@@ -8880,7 +8833,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Gets Kicked Out Of The Stadium At The Rams Vs Bills Game After Trying To Go Back In",
       "published_at": "2026-10-18T02:00:16Z",
-      "age_hours": 446.7,
+      "age_hours": 448.7,
       "views": 45,
       "engaged_views": 28,
       "likes": 1,
@@ -8922,7 +8875,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Finally Beats Rellana And Loses It",
       "published_at": "2026-10-22T21:30:06Z",
-      "age_hours": 331.2,
+      "age_hours": 333.2,
       "views": 33,
       "engaged_views": 15,
       "likes": 0,
@@ -8964,7 +8917,7 @@
       "scene_changes_before_5s": null,
       "title": "Valkyrae Can't Believe She Finally Got A Strike After This",
       "published_at": "2026-10-28T23:00:27Z",
-      "age_hours": 185.7,
+      "age_hours": 187.7,
       "views": 18,
       "engaged_views": 5,
       "likes": 0,
@@ -9006,7 +8959,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Backrooms Dance Party Goes Absolutely Wild \ud83d\udd7a",
       "published_at": "2026-10-31T21:30:08Z",
-      "age_hours": 115.2,
+      "age_hours": 117.2,
       "views": 12,
       "engaged_views": 5,
       "likes": 1,
@@ -9017,6 +8970,48 @@
       "average_view_percentage": 104.2,
       "average_view_duration_s": 53.0,
       "estimated_minutes_watched": 4.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "zdQnA-sD5vY",
+      "url": "https://youtube.com/shorts/zdQnA-sD5vY",
+      "catalog_id": "clip-20261101-5",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "Chat calls out Jynxzi's barber \ud83d\udc80",
+      "source_views": 2385,
+      "banger": 0.45,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Jynxzi Gets Roasted By Chat: \"Your Barber Is Blind\" \ud83d\udc80",
+      "published_at": "2026-11-02T03:30:25Z",
+      "age_hours": 87.2,
+      "views": 9,
+      "engaged_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.1,
+      "average_view_percentage": 94.5,
+      "average_view_duration_s": 25.0,
+      "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9048,7 +9043,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna: Kalita UNLEASHES On Dean and Larry After This Accusation",
       "published_at": "2026-10-19T18:30:05Z",
-      "age_hours": 406.2,
+      "age_hours": 408.2,
       "views": 35,
       "engaged_views": 15,
       "likes": 1,
@@ -9059,48 +9054,6 @@
       "average_view_percentage": 43.5,
       "average_view_duration_s": 9.0,
       "estimated_minutes_watched": 3.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "bQ8SUcQ9fJg",
-      "url": "https://youtube.com/shorts/bQ8SUcQ9fJg",
-      "catalog_id": "clip-20261023-6",
-      "streamer": "kyedae",
-      "series": "drama",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Kyedae addresses the breakup rumors",
-      "source_views": 2601,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Kyedae Says Her Name Is Being Dragged Through The Mud After The Tyson Breakup",
-      "published_at": "2026-10-24T00:30:35Z",
-      "age_hours": 304.2,
-      "views": 26,
-      "engaged_views": 12,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.09,
-      "average_view_percentage": 117.9,
-      "average_view_duration_s": 35.0,
-      "estimated_minutes_watched": 7.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9132,7 +9085,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Gets CAUGHT After Pointing At Something On Stream \ud83d\ude33",
       "published_at": "2026-10-25T20:00:04Z",
-      "age_hours": 260.7,
+      "age_hours": 262.7,
       "views": 23,
       "engaged_views": 10,
       "likes": 0,
@@ -9174,7 +9127,7 @@
       "scene_changes_before_5s": null,
       "title": "Plaqueboymax Shows His Stitched Chin After A Rough Week And Roasts Chat",
       "published_at": "2026-10-13T00:30:38Z",
-      "age_hours": 568.2,
+      "age_hours": 570.2,
       "views": 48,
       "engaged_views": 24,
       "likes": 0,
@@ -9185,6 +9138,48 @@
       "average_view_percentage": 62.8,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 8.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "bQ8SUcQ9fJg",
+      "url": "https://youtube.com/shorts/bQ8SUcQ9fJg",
+      "catalog_id": "clip-20261023-6",
+      "streamer": "kyedae",
+      "series": "drama",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "Kyedae addresses the breakup rumors",
+      "source_views": 2601,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Kyedae Says Her Name Is Being Dragged Through The Mud After The Tyson Breakup",
+      "published_at": "2026-10-24T00:30:35Z",
+      "age_hours": 306.2,
+      "views": 26,
+      "engaged_views": 12,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.08,
+      "average_view_percentage": 117.9,
+      "average_view_duration_s": 35.0,
+      "estimated_minutes_watched": 7.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9216,7 +9211,7 @@
       "scene_changes_before_5s": null,
       "title": "Extraemily: Emily Gives Emmy Halloween Cookies And Asks For A Review",
       "published_at": "2026-10-25T03:30:09Z",
-      "age_hours": 277.2,
+      "age_hours": 279.2,
       "views": 23,
       "engaged_views": 10,
       "likes": 0,
@@ -9230,6 +9225,42 @@
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
+    },
+    {
+      "video_id": "laZnDe3WSXk",
+      "url": "https://youtube.com/shorts/laZnDe3WSXk",
+      "catalog_id": "clip-20261104-2",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "CaseOh finds out he's the master \ud83d\ude33",
+      "source_views": 4083,
+      "banger": 0.55,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Caseoh Realizes He's The Farm Master",
+      "published_at": "2026-11-04T18:30:03Z",
+      "age_hours": 24.2,
+      "views": 2,
+      "engaged_views": 2,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.08
     },
     {
       "video_id": "DDupylwoI8o",
@@ -9258,7 +9289,7 @@
       "scene_changes_before_5s": null,
       "title": "Joe Joe_Bartolozzi Begs Chop NOOOO After Seeing This On His Weapon Wheel",
       "published_at": "2026-10-18T00:30:18Z",
-      "age_hours": 448.2,
+      "age_hours": 450.2,
       "views": 32,
       "engaged_views": 12,
       "likes": 1,
@@ -9300,7 +9331,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Says \"That's Beef\" After This Chat Moment Goes Wrong",
       "published_at": "2026-10-18T03:30:16Z",
-      "age_hours": 445.2,
+      "age_hours": 447.2,
       "views": 32,
       "engaged_views": 11,
       "likes": 0,
@@ -9342,7 +9373,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Finds Out Someone Made This Shirt Of Him In One Day",
       "published_at": "2026-10-24T05:00:39Z",
-      "age_hours": 299.7,
+      "age_hours": 301.7,
       "views": 20,
       "engaged_views": 8,
       "likes": 0,
@@ -9384,7 +9415,7 @@
       "scene_changes_before_5s": null,
       "title": "Joe Joe_Bartolozzi Asks Jimmy To Turn The Cameras Off For 10 Minutes",
       "published_at": "2026-10-10T00:30:31Z",
-      "age_hours": 640.2,
+      "age_hours": 642.2,
       "views": 40,
       "engaged_views": 14,
       "likes": 0,
@@ -9426,7 +9457,7 @@
       "scene_changes_before_5s": null,
       "title": "Alinity Says She\u2019s About To Take Care Of Something",
       "published_at": "2026-10-15T08:00:24Z",
-      "age_hours": 512.7,
+      "age_hours": 514.7,
       "views": 31,
       "engaged_views": 14,
       "likes": 0,
@@ -9468,7 +9499,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Can't Believe What He Just Saw On Stream",
       "published_at": "2026-10-25T17:00:39Z",
-      "age_hours": 263.7,
+      "age_hours": 265.7,
       "views": 16,
       "engaged_views": 9,
       "likes": 0,
@@ -9510,7 +9541,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed begs for one more walkout in FC 27",
       "published_at": "2026-10-26T00:30:20Z",
-      "age_hours": 256.2,
+      "age_hours": 258.2,
       "views": 16,
       "engaged_views": 7,
       "likes": 0,
@@ -9552,7 +9583,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Eats Shit And Can't Believe How He Fell",
       "published_at": "2026-10-29T08:00:34Z",
-      "age_hours": 176.7,
+      "age_hours": 178.7,
       "views": 11,
       "engaged_views": 6,
       "likes": 0,
@@ -9594,7 +9625,7 @@
       "scene_changes_before_5s": null,
       "title": "Dangerlyoha denies breaking Lera's leg",
       "published_at": "2026-11-02T02:00:29Z",
-      "age_hours": 86.7,
+      "age_hours": 88.7,
       "views": 5,
       "engaged_views": 0,
       "likes": 0,
@@ -9608,42 +9639,6 @@
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
-    },
-    {
-      "video_id": "SwXfGYZXnBY",
-      "url": "https://youtube.com/shorts/SwXfGYZXnBY",
-      "catalog_id": "clip-20261104-6",
-      "streamer": "ishowspeed",
-      "series": "drama",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Speed: nobody asks what I want \ud83d\ude2d",
-      "source_views": 3872,
-      "banger": 0.3,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Ishowspeed Breaks Down Saying 'Nobody Ever Asks Me What I Want'",
-      "published_at": "2026-11-05T00:30:15Z",
-      "age_hours": 16.2,
-      "views": 1,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.06
     },
     {
       "video_id": "SDWtHgPrO3w",
@@ -9672,7 +9667,7 @@
       "scene_changes_before_5s": null,
       "title": "Erobb221 Can't Stop Laughing After Emmy's Reaction",
       "published_at": "2026-10-09T17:00:21Z",
-      "age_hours": 647.7,
+      "age_hours": 649.7,
       "views": 31,
       "engaged_views": 13,
       "likes": 0,
@@ -9714,7 +9709,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Can't Believe What Just Happened After His 11th Death",
       "published_at": "2026-10-09T21:30:22Z",
-      "age_hours": 643.2,
+      "age_hours": 645.2,
       "views": 35,
       "engaged_views": 11,
       "likes": 0,
@@ -9756,7 +9751,7 @@
       "scene_changes_before_5s": null,
       "title": "Squeex Asks What Sybau Means And Gets Shut Down Instantly",
       "published_at": "2026-10-10T23:00:32Z",
-      "age_hours": 617.7,
+      "age_hours": 619.7,
       "views": 33,
       "engaged_views": 12,
       "likes": 0,
@@ -9798,7 +9793,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Gets Begged For Help By Tiffy As She Breaks Down \ud83d\ude2d",
       "published_at": "2026-10-16T23:00:38Z",
-      "age_hours": 473.7,
+      "age_hours": 475.7,
       "views": 24,
       "engaged_views": 10,
       "likes": 0,
@@ -9840,7 +9835,7 @@
       "scene_changes_before_5s": null,
       "title": "Marlon says he could pet a lion. Then it charged.",
       "published_at": "2026-10-22T20:00:03Z",
-      "age_hours": 332.7,
+      "age_hours": 334.7,
       "views": 17,
       "engaged_views": 8,
       "likes": 0,
@@ -9882,7 +9877,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Begs 'If There's A Third One' And Then This Happens",
       "published_at": "2026-10-24T03:30:05Z",
-      "age_hours": 301.2,
+      "age_hours": 303.2,
       "views": 15,
       "engaged_views": 3,
       "likes": 0,
@@ -9924,7 +9919,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Screams As He Watches Someone Try To Flash And Actually Pull It Off",
       "published_at": "2026-10-29T20:00:12Z",
-      "age_hours": 164.7,
+      "age_hours": 166.7,
       "views": 8,
       "engaged_views": 0,
       "likes": 0,
@@ -9940,19 +9935,19 @@
       "retention_insufficient_data": true
     },
     {
-      "video_id": "laZnDe3WSXk",
-      "url": "https://youtube.com/shorts/laZnDe3WSXk",
-      "catalog_id": "clip-20261104-2",
-      "streamer": "caseoh_",
-      "series": "chaos",
+      "video_id": "SwXfGYZXnBY",
+      "url": "https://youtube.com/shorts/SwXfGYZXnBY",
+      "catalog_id": "clip-20261104-6",
+      "streamer": "ishowspeed",
+      "series": "drama",
       "format": null,
       "songs": [],
       "blocked_in": [],
       "experiment_arm": "clip",
       "actual_structure": "clip",
-      "hook": "CaseOh finds out he's the master \ud83d\ude33",
-      "source_views": 4083,
-      "banger": 0.55,
+      "hook": "Speed: nobody asks what I want \ud83d\ude2d",
+      "source_views": 3872,
+      "banger": 0.3,
       "story_structure": null,
       "narrative_score": null,
       "revision_count": null,
@@ -9964,9 +9959,9 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Caseoh Realizes He's The Farm Master",
-      "published_at": "2026-11-04T18:30:03Z",
-      "age_hours": 22.2,
+      "title": "Ishowspeed Breaks Down Saying 'Nobody Ever Asks Me What I Want'",
+      "published_at": "2026-11-05T00:30:15Z",
+      "age_hours": 18.2,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10002,7 +9997,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Panics After Realizing He's Dead In Day 3 Of Death 2",
       "published_at": "2026-10-08T23:00:28Z",
-      "age_hours": 665.7,
+      "age_hours": 667.7,
       "views": 29,
       "engaged_views": 13,
       "likes": 0,
@@ -10044,7 +10039,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Loses It: \"Don't Mess With Steve\" After Trying To Turn Something Off",
       "published_at": "2026-10-09T03:30:08Z",
-      "age_hours": 661.2,
+      "age_hours": 663.2,
       "views": 25,
       "engaged_views": 9,
       "likes": 0,
@@ -10086,7 +10081,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Can't Believe Jynxzi Just Messed Up The Run Of A Lifetime",
       "published_at": "2026-10-11T00:30:09Z",
-      "age_hours": 616.2,
+      "age_hours": 618.2,
       "views": 27,
       "engaged_views": 11,
       "likes": 0,
@@ -10128,7 +10123,7 @@
       "scene_changes_before_5s": null,
       "title": "Erobb221 Can't Believe How Big This Thing Is And Asks If It's Real",
       "published_at": "2026-10-11T23:00:36Z",
-      "age_hours": 593.7,
+      "age_hours": 595.7,
       "views": 21,
       "engaged_views": 10,
       "likes": 0,
@@ -10170,7 +10165,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh sings like an angel \ud83c\udfa4",
       "published_at": "2026-10-20T17:00:09Z",
-      "age_hours": 383.7,
+      "age_hours": 385.7,
       "views": 16,
       "engaged_views": 6,
       "likes": 0,
@@ -10212,7 +10207,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Is Told Her Restaurant Bill Already Passed 500,000 Yen",
       "published_at": "2026-10-29T18:30:03Z",
-      "age_hours": 166.2,
+      "age_hours": 168.2,
       "views": 6,
       "engaged_views": 2,
       "likes": 0,
@@ -10254,7 +10249,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Can't Believe What Marlin Just Showed Her In Nook Town",
       "published_at": "2026-10-31T03:30:17Z",
-      "age_hours": 133.2,
+      "age_hours": 135.2,
       "views": 5,
       "engaged_views": 3,
       "likes": 0,
@@ -10296,7 +10291,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Cameraman Quits His Job In The Middle Of Japan Mid-Stream",
       "published_at": "2026-10-31T23:00:01Z",
-      "age_hours": 113.7,
+      "age_hours": 115.7,
       "views": 5,
       "engaged_views": 1,
       "likes": 0,
@@ -10338,7 +10333,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Is So Scared After Chun Li Goons On Him",
       "published_at": "2026-11-01T21:30:09Z",
-      "age_hours": 91.2,
+      "age_hours": 93.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -10380,7 +10375,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Hears The Verdict On The Murder Charge And Can't Believe It",
       "published_at": "2026-10-14T20:00:11Z",
-      "age_hours": 524.7,
+      "age_hours": 526.7,
       "views": 15,
       "engaged_views": 3,
       "likes": 0,
@@ -10422,7 +10417,7 @@
       "scene_changes_before_5s": null,
       "title": "Agent00 Can't Believe Tesla's Flying Car Is Just Infinite Downforce",
       "published_at": "2026-10-16T18:30:05Z",
-      "age_hours": 478.2,
+      "age_hours": 480.2,
       "views": 14,
       "engaged_views": 3,
       "likes": 0,
@@ -10464,7 +10459,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Pulls Off Ron Magic And Chat Can't Believe It",
       "published_at": "2026-10-17T00:30:19Z",
-      "age_hours": 472.2,
+      "age_hours": 474.2,
       "views": 15,
       "engaged_views": 7,
       "likes": 0,
@@ -10506,7 +10501,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Lost His LAMBO And Is Caught Driving This",
       "published_at": "2026-10-19T20:00:31Z",
-      "age_hours": 404.7,
+      "age_hours": 406.7,
       "views": 12,
       "engaged_views": 4,
       "likes": 0,
@@ -10548,7 +10543,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Asks Who Wins This Fight And Picks His Girlfriend Amanda \ud83d\ude33",
       "published_at": "2026-10-21T23:00:06Z",
-      "age_hours": 353.7,
+      "age_hours": 355.7,
       "views": 10,
       "engaged_views": 3,
       "likes": 0,
@@ -10590,7 +10585,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Gets Shown Something From Marlon's P.O. Box And Can't Hold It In",
       "published_at": "2026-10-24T02:00:22Z",
-      "age_hours": 302.7,
+      "age_hours": 304.7,
       "views": 9,
       "engaged_views": 3,
       "likes": 0,
@@ -10632,7 +10627,7 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Girl Breaks Down And Is Left Stunned On Stream",
       "published_at": "2026-10-26T03:30:24Z",
-      "age_hours": 253.2,
+      "age_hours": 255.2,
       "views": 7,
       "engaged_views": 2,
       "likes": 0,
@@ -10674,7 +10669,7 @@
       "scene_changes_before_5s": null,
       "title": "Joe Joe_Bartolozzi Can't Keep Watching This And Has To Turn It Off",
       "published_at": "2026-10-26T05:00:03Z",
-      "age_hours": 251.7,
+      "age_hours": 253.7,
       "views": 7,
       "engaged_views": 4,
       "likes": 0,
@@ -10716,7 +10711,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy",
       "published_at": "2026-10-28T17:00:36Z",
-      "age_hours": 191.7,
+      "age_hours": 193.7,
       "views": 5,
       "engaged_views": 4,
       "likes": 0,
@@ -10725,48 +10720,6 @@
       "usable_for_retention": false,
       "views_per_hour": 0.03,
       "average_view_percentage": 47.9,
-      "average_view_duration_s": 7.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "dgndVGePi_I",
-      "url": "https://youtube.com/shorts/dgndVGePi_I",
-      "catalog_id": "clip-20261031-1",
-      "streamer": "stableronaldo",
-      "series": "rage",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Stableronaldo can't believe the ref \ud83d\ude2d",
-      "source_views": 2430,
-      "banger": 0.55,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Stableronaldo Loses It Asking What The Ref Is Doing",
-      "published_at": "2026-10-31T17:00:14Z",
-      "age_hours": 119.7,
-      "views": 3,
-      "engaged_views": 2,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.03,
-      "average_view_percentage": 74.1,
       "average_view_duration_s": 7.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
@@ -10800,7 +10753,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Hit With The Muscle Slap And Can't Believe It",
       "published_at": "2026-10-31T18:30:33Z",
-      "age_hours": 118.2,
+      "age_hours": 120.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -10842,7 +10795,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Cameraman Gets Manipulated And Reggie Says He'll Kill Kai",
       "published_at": "2026-10-07T18:30:23Z",
-      "age_hours": 694.2,
+      "age_hours": 696.2,
       "views": 14,
       "engaged_views": 10,
       "likes": 0,
@@ -10884,7 +10837,7 @@
       "scene_changes_before_5s": null,
       "title": "Erobb221 Girlfriend Brings Him A Steak And Beer Mid-Game And It Goes Wrong",
       "published_at": "2026-10-10T18:30:28Z",
-      "age_hours": 622.2,
+      "age_hours": 624.2,
       "views": 14,
       "engaged_views": 5,
       "likes": 0,
@@ -10926,7 +10879,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Has To Make A Burger For Sadie After They Run Out Of Chicken \ud83d\ude02",
       "published_at": "2026-10-11T17:00:16Z",
-      "age_hours": 599.7,
+      "age_hours": 601.7,
       "views": 13,
       "engaged_views": 5,
       "likes": 0,
@@ -10937,48 +10890,6 @@
       "average_view_percentage": 84.9,
       "average_view_duration_s": 23.0,
       "estimated_minutes_watched": 2.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "wVfbLGpCToI",
-      "url": "https://youtube.com/shorts/wVfbLGpCToI",
-      "catalog_id": "clip-20261011-2",
-      "streamer": "alinity",
-      "series": "chaos",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "Alinity needs a second \ud83d\ude33",
-      "source_views": 23749,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Alinity Screams 'Holy WHAT?!' And Needs A Second After This",
-      "published_at": "2026-10-11T18:30:05Z",
-      "age_hours": 598.2,
-      "views": 9,
-      "engaged_views": 6,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.02,
-      "average_view_percentage": 111.2,
-      "average_view_duration_s": 14.0,
-      "estimated_minutes_watched": 1.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -11010,7 +10921,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Hears A Thunder Clap And Tiffy Needs Help Right Now",
       "published_at": "2026-10-11T20:00:04Z",
-      "age_hours": 596.7,
+      "age_hours": 598.7,
       "views": 10,
       "engaged_views": 6,
       "likes": 0,
@@ -11052,7 +10963,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Gets Pushed By Cops After Telling Them She Just Had Surgery",
       "published_at": "2026-10-15T02:00:26Z",
-      "age_hours": 518.7,
+      "age_hours": 520.7,
       "views": 9,
       "engaged_views": 3,
       "likes": 0,
@@ -11094,7 +11005,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Throws Together A Base After Things Get Out Of Hand",
       "published_at": "2026-10-15T03:30:06Z",
-      "age_hours": 517.2,
+      "age_hours": 519.2,
       "views": 8,
       "engaged_views": 3,
       "likes": 0,
@@ -11136,7 +11047,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed John Bobby Rookie Cop Raid Goes Totally Wrong",
       "published_at": "2026-10-15T18:30:09Z",
-      "age_hours": 502.2,
+      "age_hours": 504.2,
       "views": 11,
       "engaged_views": 3,
       "likes": 0,
@@ -11178,7 +11089,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Screams For Martin's Help In Total Chaos",
       "published_at": "2026-10-16T03:30:11Z",
-      "age_hours": 493.2,
+      "age_hours": 495.2,
       "views": 8,
       "engaged_views": 6,
       "likes": 0,
@@ -11220,7 +11131,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Can't Believe How Good This Guy Is",
       "published_at": "2026-10-16T21:30:29Z",
-      "age_hours": 475.2,
+      "age_hours": 477.2,
       "views": 8,
       "engaged_views": 2,
       "likes": 0,
@@ -11262,7 +11173,7 @@
       "scene_changes_before_5s": null,
       "title": "Joe Joe_Bartolozzi Asks Chat If He Really Has A Bald Spot \ud83d\ude2d",
       "published_at": "2026-10-18T05:00:13Z",
-      "age_hours": 443.7,
+      "age_hours": 445.7,
       "views": 7,
       "engaged_views": 2,
       "likes": 0,
@@ -11304,7 +11215,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Loses It After OSCs Y'all Got Mail",
       "published_at": "2026-10-19T00:30:34Z",
-      "age_hours": 424.2,
+      "age_hours": 426.2,
       "views": 10,
       "engaged_views": 3,
       "likes": 0,
@@ -11346,7 +11257,7 @@
       "scene_changes_before_5s": null,
       "title": "Sodapoppin Gets SMOKED After This Crit",
       "published_at": "2026-10-19T17:00:36Z",
-      "age_hours": 407.7,
+      "age_hours": 409.7,
       "views": 10,
       "engaged_views": 5,
       "likes": 0,
@@ -11388,7 +11299,7 @@
       "scene_changes_before_5s": null,
       "title": "Valkyrae Gets Told She'll Need A Parachute And Loses It",
       "published_at": "2026-10-21T21:30:27Z",
-      "age_hours": 355.2,
+      "age_hours": 357.2,
       "views": 6,
       "engaged_views": 2,
       "likes": 0,
@@ -11430,7 +11341,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Can't Believe What He Just Watched On Stream",
       "published_at": "2026-10-22T02:00:21Z",
-      "age_hours": 350.7,
+      "age_hours": 352.7,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -11472,7 +11383,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Chaos As Chat Screams 'Where's The Key' During A Brickbois Heist",
       "published_at": "2026-10-22T17:00:36Z",
-      "age_hours": 335.7,
+      "age_hours": 337.7,
       "views": 6,
       "engaged_views": 1,
       "likes": 0,
@@ -11514,7 +11425,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Opens Her iPhone Duo On Stream And Can't Believe What's Inside",
       "published_at": "2026-10-30T17:00:37Z",
-      "age_hours": 143.7,
+      "age_hours": 145.7,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -11530,19 +11441,19 @@
       "retention_insufficient_data": true
     },
     {
-      "video_id": "TYdbdgeyKQE",
-      "url": "https://youtube.com/shorts/TYdbdgeyKQE",
-      "catalog_id": "clip-20261006-2",
-      "streamer": "erobb221",
-      "series": "chaos",
+      "video_id": "dgndVGePi_I",
+      "url": "https://youtube.com/shorts/dgndVGePi_I",
+      "catalog_id": "clip-20261031-1",
+      "streamer": "stableronaldo",
+      "series": "rage",
       "format": null,
       "songs": [],
       "blocked_in": [],
       "experiment_arm": "clip",
       "actual_structure": "clip",
-      "hook": "HE WON THEN GOT MUGGED",
-      "source_views": 5178,
-      "banger": 0.4,
+      "hook": "Stableronaldo can't believe the ref \ud83d\ude2d",
+      "source_views": 2430,
+      "banger": 0.55,
       "story_structure": null,
       "narrative_score": null,
       "revision_count": null,
@@ -11554,18 +11465,18 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Erobb221 Wins The Match And Gets Mugged Right After",
-      "published_at": "2026-10-06T18:30:38Z",
-      "age_hours": 718.2,
-      "views": 4,
-      "engaged_views": 1,
+      "title": "Stableronaldo Loses It Asking What The Ref Is Doing",
+      "published_at": "2026-10-31T17:00:14Z",
+      "age_hours": 121.7,
+      "views": 3,
+      "engaged_views": 2,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 46.5,
-      "average_view_duration_s": 19.0,
+      "views_per_hour": 0.02,
+      "average_view_percentage": 74.1,
+      "average_view_duration_s": 7.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -11598,7 +11509,7 @@
       "scene_changes_before_5s": null,
       "title": "Lospollostv Can't Believe Jixi Is Messing With Them In The Lobby",
       "published_at": "2026-10-08T02:00:38Z",
-      "age_hours": 686.7,
+      "age_hours": 688.7,
       "views": 5,
       "engaged_views": 1,
       "likes": 0,
@@ -11609,6 +11520,48 @@
       "average_view_percentage": 84.2,
       "average_view_duration_s": 23.0,
       "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "wVfbLGpCToI",
+      "url": "https://youtube.com/shorts/wVfbLGpCToI",
+      "catalog_id": "clip-20261011-2",
+      "streamer": "alinity",
+      "series": "chaos",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "Alinity needs a second \ud83d\ude33",
+      "source_views": 23749,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Alinity Screams 'Holy WHAT?!' And Needs A Second After This",
+      "published_at": "2026-10-11T18:30:05Z",
+      "age_hours": 600.2,
+      "views": 9,
+      "engaged_views": 6,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 111.2,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 1.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -11640,7 +11593,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Told 'Part Two'",
       "published_at": "2026-10-11T21:30:11Z",
-      "age_hours": 595.2,
+      "age_hours": 597.2,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -11682,7 +11635,7 @@
       "scene_changes_before_5s": null,
       "title": "Emiru Says Hello To Shutter And Gets The Cutest Meow Back",
       "published_at": "2026-10-12T21:30:21Z",
-      "age_hours": 571.2,
+      "age_hours": 573.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -11724,7 +11677,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Demands His Money Back From The Casino After These Poker Hands",
       "published_at": "2026-10-13T02:00:23Z",
-      "age_hours": 566.7,
+      "age_hours": 568.7,
       "views": 7,
       "engaged_views": 4,
       "likes": 0,
@@ -11766,7 +11719,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Does A Magic Trick At His Talent Show And Almost Forgets The Ending",
       "published_at": "2026-10-13T03:30:33Z",
-      "age_hours": 565.2,
+      "age_hours": 567.2,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -11808,7 +11761,7 @@
       "scene_changes_before_5s": null,
       "title": "Ludwig Crashes Out After Losing To A 8,000-Hour Player In An Influencer Tournament",
       "published_at": "2026-10-15T17:00:04Z",
-      "age_hours": 503.7,
+      "age_hours": 505.7,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -11850,7 +11803,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Swears He's Not Scared Of Outlast, Then Says He'll Be The First To Play It",
       "published_at": "2026-10-17T20:00:21Z",
-      "age_hours": 452.7,
+      "age_hours": 454.7,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -11892,7 +11845,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Crew Goes Off On Lang And Carlitos Over Kalita",
       "published_at": "2026-10-18T18:30:12Z",
-      "age_hours": 430.2,
+      "age_hours": 432.2,
       "views": 6,
       "engaged_views": 5,
       "likes": 0,
@@ -11934,7 +11887,7 @@
       "scene_changes_before_5s": null,
       "title": "Adinross Faceoff Gets Heated When Jani Is Told Her Mouth Is Too Big",
       "published_at": "2026-10-18T21:30:35Z",
-      "age_hours": 427.2,
+      "age_hours": 429.2,
       "views": 4,
       "engaged_views": 0,
       "likes": 0,
@@ -11976,7 +11929,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Struggles Through Pain And Keeps Pushing",
       "published_at": "2026-10-19T21:30:37Z",
-      "age_hours": 403.2,
+      "age_hours": 405.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -12018,7 +11971,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Spams Like Crazy Then Gets Told To Stop... Does It Work?",
       "published_at": "2026-10-21T20:00:13Z",
-      "age_hours": 356.7,
+      "age_hours": 358.7,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -12060,7 +12013,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Freaks Out After Something Grabs Him Mid-Stream",
       "published_at": "2026-10-22T03:30:16Z",
-      "age_hours": 349.2,
+      "age_hours": 351.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -12102,7 +12055,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Goes Wild When The Money Stuck In The Ceiling Finally Comes Down",
       "published_at": "2026-10-23T00:30:13Z",
-      "age_hours": 328.2,
+      "age_hours": 330.2,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -12144,7 +12097,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Calls A Robot Over And Tries To Give It A Death Note",
       "published_at": "2026-10-23T17:00:15Z",
-      "age_hours": 311.7,
+      "age_hours": 313.7,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -12186,7 +12139,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Called Into Action And Goes Full Samurai On Stream",
       "published_at": "2026-10-24T20:00:34Z",
-      "age_hours": 284.7,
+      "age_hours": 286.7,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12228,7 +12181,7 @@
       "scene_changes_before_5s": null,
       "title": "Morphe_Ya Party: Lera's Pool Plunge",
       "published_at": "2026-10-24T21:30:34Z",
-      "age_hours": 283.2,
+      "age_hours": 285.2,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -12270,7 +12223,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Finally Did It After 4 Hours Of Putrescent Knight",
       "published_at": "2026-10-24T23:00:06Z",
-      "age_hours": 281.7,
+      "age_hours": 283.7,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12312,7 +12265,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Loses It After Her Yo-Yo Does The Unthinkable \ud83d\ude2d",
       "published_at": "2026-10-25T02:00:00Z",
-      "age_hours": 278.7,
+      "age_hours": 280.7,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12354,7 +12307,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc on Ethan Klein: \"cheater lol, move on\"",
       "published_at": "2026-10-28T20:00:00Z",
-      "age_hours": 188.7,
+      "age_hours": 190.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -12396,7 +12349,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Loses It When He Finds Out Who Did It",
       "published_at": "2026-10-29T02:00:06Z",
-      "age_hours": 182.7,
+      "age_hours": 184.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -12438,7 +12391,7 @@
       "scene_changes_before_5s": null,
       "title": "Agent00 Finally Reveals His Brand New R34 GTR After Wanting It His Whole Life",
       "published_at": "2026-10-29T09:30:06Z",
-      "age_hours": 175.2,
+      "age_hours": 177.2,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -12480,7 +12433,7 @@
       "scene_changes_before_5s": null,
       "title": "Clix Gets His Subs After Winning The Game And Tops The Leaderboard",
       "published_at": "2026-11-01T20:00:00Z",
-      "age_hours": 92.7,
+      "age_hours": 94.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -12522,7 +12475,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Into A Sumo Match And Chat Goes Crazy",
       "published_at": "2026-11-02T00:30:08Z",
-      "age_hours": 88.2,
+      "age_hours": 90.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -12564,7 +12517,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Calls Out Netflix Mistake And Gets Weird Reaction",
       "published_at": "2026-10-06T20:00:00Z",
-      "age_hours": 716.7,
+      "age_hours": 718.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -12606,7 +12559,7 @@
       "scene_changes_before_5s": null,
       "title": "Emiru Shows Off Her Bandaged Head And Thanks Chat After Lights Mishap",
       "published_at": "2026-10-07T23:00:29Z",
-      "age_hours": 689.7,
+      "age_hours": 691.7,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -12648,7 +12601,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Says Stuff Is Getting Sad In The Stream",
       "published_at": "2026-10-08T03:30:33Z",
-      "age_hours": 685.2,
+      "age_hours": 687.2,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12690,7 +12643,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha 5 Second Getaway Is Wild To Watch",
       "published_at": "2026-10-08T21:30:14Z",
-      "age_hours": 667.2,
+      "age_hours": 669.2,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -12732,7 +12685,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Threatens To Sue Someone For Playing With His Name",
       "published_at": "2026-10-09T18:30:09Z",
-      "age_hours": 646.2,
+      "age_hours": 648.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12768,7 +12721,7 @@
       "scene_changes_before_5s": null,
       "title": "Zackrawrr Asks \"Do You Remember?\" 25 Times Over The Lindsay Clancy Debate",
       "published_at": "2026-10-10T02:00:31Z",
-      "age_hours": 638.7,
+      "age_hours": 640.7,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -12810,7 +12763,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Can't Believe What Just Happened After This Crazy Escape",
       "published_at": "2026-10-10T21:30:26Z",
-      "age_hours": 619.2,
+      "age_hours": 621.2,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -12852,7 +12805,7 @@
       "scene_changes_before_5s": null,
       "title": "Zackrawrr Asks If God Just Anointed The Olympus Meeting After This Happens",
       "published_at": "2026-10-12T20:00:26Z",
-      "age_hours": 572.7,
+      "age_hours": 574.7,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -12894,7 +12847,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Can't Believe What Rukah Just Said About High School",
       "published_at": "2026-10-15T05:00:04Z",
-      "age_hours": 515.7,
+      "age_hours": 517.7,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12936,7 +12889,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Gets Called Out In Front Of Everyone And Can't Believe It",
       "published_at": "2026-10-16T00:30:09Z",
-      "age_hours": 496.2,
+      "age_hours": 498.2,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12978,7 +12931,7 @@
       "scene_changes_before_5s": null,
       "title": "Adinross: Adin Ross Tells Amanda's Guy \"It's Cap\" And Demands To Know Why He Thinks So",
       "published_at": "2026-10-16T02:00:09Z",
-      "age_hours": 494.7,
+      "age_hours": 496.7,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -13020,7 +12973,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat's Wifi Man Goes Off On Captain Ray Over A Ponytail",
       "published_at": "2026-10-16T20:00:30Z",
-      "age_hours": 476.7,
+      "age_hours": 478.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13062,7 +13015,7 @@
       "scene_changes_before_5s": null,
       "title": "Clix Says He's Done Fighting And Shows Kids How To Get In",
       "published_at": "2026-10-17T21:30:17Z",
-      "age_hours": 451.2,
+      "age_hours": 453.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13098,7 +13051,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Screams 'You're Gonna Die' And Then Everything Goes Wrong \ud83d\ude33",
       "published_at": "2026-10-18T23:00:30Z",
-      "age_hours": 425.7,
+      "age_hours": 427.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13134,7 +13087,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Shows Off His Fake Gun And Swears It's Not Real",
       "published_at": "2026-10-19T02:00:37Z",
-      "age_hours": 422.7,
+      "age_hours": 424.7,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -13176,7 +13129,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat's Fans Block A Blind Woman's Path And Chat Panics",
       "published_at": "2026-10-22T23:00:22Z",
-      "age_hours": 329.7,
+      "age_hours": 331.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -13218,7 +13171,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Gets Blocked By A Lil Kid And Can't Believe It",
       "published_at": "2026-10-23T21:30:02Z",
-      "age_hours": 307.2,
+      "age_hours": 309.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -13260,7 +13213,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Conquers Midra And Can't Hold Back After This",
       "published_at": "2026-10-25T00:30:28Z",
-      "age_hours": 280.2,
+      "age_hours": 282.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -13302,7 +13255,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Destroys Two iPhones To See If They Still Work",
       "published_at": "2026-10-27T17:00:26Z",
-      "age_hours": 215.7,
+      "age_hours": 217.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13338,7 +13291,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Landed In Iceland And Fans Were Already Waiting",
       "published_at": "2026-10-30T02:00:25Z",
-      "age_hours": 158.7,
+      "age_hours": 160.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13374,7 +13327,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc goes all in on a casino slot, then blackjack hits",
       "published_at": "2026-10-31T20:00:02Z",
-      "age_hours": 116.7,
+      "age_hours": 118.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13410,7 +13363,7 @@
       "scene_changes_before_5s": null,
       "title": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
       "published_at": "2026-11-03T18:30:19Z",
-      "age_hours": 46.2,
+      "age_hours": 48.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13446,7 +13399,7 @@
       "scene_changes_before_5s": null,
       "title": "The Stableronaldo Clip Everyone's Talking About",
       "published_at": "2026-11-03T20:00:17Z",
-      "age_hours": 44.7,
+      "age_hours": 46.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13482,7 +13435,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Can't Believe Who Walks In As A Sexy Nun",
       "published_at": "2026-11-04T20:00:37Z",
-      "age_hours": 20.7,
+      "age_hours": 22.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13518,7 +13471,43 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Snaps At Another Driver After This, No License",
       "published_at": "2026-11-04T21:30:05Z",
-      "age_hours": 19.2,
+      "age_hours": 21.2,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "kjya12mov0A",
+      "url": "https://youtube.com/shorts/kjya12mov0A",
+      "catalog_id": "clip-20261105-2",
+      "streamer": "jynxzi",
+      "series": "fail",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "Jynxzi got punched \ud83d\ude2d",
+      "source_views": 3045,
+      "banger": 0.65,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Jynxzi Gets Punched And Doesn't Even Survive Six Seconds",
+      "published_at": "2026-11-05T18:30:18Z",
+      "age_hours": 0.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13546,22 +13535,6 @@
       "url": "https://youtube.com/shorts/qm9B_sfraso",
       "reason": "not_in_api",
       "streamer": "ironmouse"
-    },
-    {
-      "video_id": "OZSGoigwoEg",
-      "url": "https://youtube.com/shorts/OZSGoigwoEg",
-      "streamer": "xqc",
-      "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-05T17:00:00Z",
-      "experiment_arm": "clip"
-    },
-    {
-      "video_id": "kjya12mov0A",
-      "url": "https://youtube.com/shorts/kjya12mov0A",
-      "streamer": "jynxzi",
-      "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-05T18:30:00Z",
-      "experiment_arm": "clip"
     },
     {
       "video_id": "ro12xo7_qIE",
@@ -13598,91 +13571,91 @@
   ],
   "summary": {
     "total_videos": 145,
-    "total_views": 7776,
-    "avg_views_per_video": 53.6,
+    "total_views": 7643,
+    "avg_views_per_video": 52.7,
     "median_views_per_hour": 0.03,
     "top_5_by_vph": [
       {
         "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-        "views_per_hour": 5.53,
+        "views_per_hour": 5.5,
         "views": 1848,
-        "age_hours": 334.2,
+        "age_hours": 336.2,
         "url": "https://youtube.com/shorts/Hnj4zFNzRTc"
       },
       {
         "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-        "views_per_hour": 2.86,
+        "views_per_hour": 2.82,
         "views": 407,
-        "age_hours": 142.2,
+        "age_hours": 144.2,
         "url": "https://youtube.com/shorts/4ORQm-EO5tg"
       },
       {
         "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
-        "views_per_hour": 2.27,
+        "views_per_hour": 2.26,
         "views": 1087,
-        "age_hours": 479.7,
+        "age_hours": 481.7,
         "url": "https://youtube.com/shorts/8GQQg-O1Bx8"
       },
       {
         "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Better",
-        "views_per_hour": 2.03,
+        "views_per_hour": 2.0,
         "views": 273,
-        "age_hours": 134.7,
+        "age_hours": 136.7,
         "url": "https://youtube.com/shorts/66iVuw0JsPI"
       },
       {
         "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-        "views_per_hour": 1.88,
+        "views_per_hour": 1.86,
         "views": 316,
-        "age_hours": 167.7,
+        "age_hours": 169.7,
         "url": "https://youtube.com/shorts/v4Kl3iX7A1I"
       }
     ],
     "bottom_5_by_vph": [
       {
+        "title": "Jynxzi Gets Punched And Doesn't Even Survive Six Seconds",
+        "views_per_hour": 0.0,
+        "views": 0,
+        "age_hours": 0.2,
+        "url": "https://youtube.com/shorts/kjya12mov0A"
+      },
+      {
         "title": "Jasontheween Snaps At Another Driver After This, No License",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 19.2,
+        "age_hours": 21.2,
         "url": "https://youtube.com/shorts/e-NoeQ82ivQ"
       },
       {
         "title": "Kaicenat: Kai Cenat Can't Believe Who Walks In As A Sexy Nun",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 20.7,
+        "age_hours": 22.7,
         "url": "https://youtube.com/shorts/-GPZZ33S5T4"
       },
       {
         "title": "The Stableronaldo Clip Everyone's Talking About",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 44.7,
+        "age_hours": 46.7,
         "url": "https://youtube.com/shorts/5CEAfnzCBo4"
       },
       {
         "title": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 46.2,
+        "age_hours": 48.2,
         "url": "https://youtube.com/shorts/Kvdu3JkIAbc"
-      },
-      {
-        "title": "Xqc goes all in on a casino slot, then blackjack hits",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 116.7,
-        "url": "https://youtube.com/shorts/S0FdKRJMsxw"
       }
     ],
     "opening": {
-      "median_early_retention": 0.773,
+      "median_early_retention": 0.804,
       "videos_with_curve": 15,
       "worst": 0.406,
       "best": 0.99
     },
-    "videos_with_retention": 19,
-    "avg_view_percentage": 74.5,
+    "videos_with_retention": 18,
+    "avg_view_percentage": 76.4,
     "top_5_by_retention": [
       {
         "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
@@ -13729,13 +13702,6 @@
         "url": "https://youtube.com/shorts/5kGBPoooNW0"
       },
       {
-        "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car",
-        "average_view_percentage": 39.6,
-        "average_view_duration_s": 15.0,
-        "views": 138,
-        "url": "https://youtube.com/shorts/y6Bmba84xDA"
-      },
-      {
         "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
         "average_view_percentage": 46.2,
         "average_view_duration_s": 22.0,
@@ -13755,6 +13721,13 @@
         "average_view_duration_s": 28.0,
         "views": 140,
         "url": "https://youtube.com/shorts/Ifcbbv1-BdA"
+      },
+      {
+        "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
+        "average_view_percentage": 60.6,
+        "average_view_duration_s": 17.0,
+        "views": 87,
+        "url": "https://youtube.com/shorts/iNRIovZU324"
       }
     ],
     "ab_experiment": {
@@ -13763,9 +13736,9 @@
       },
       "clip": {
         "n": 132,
-        "n_mature_24h": 128,
+        "n_mature_24h": 127,
         "median_vph": 0.03,
-        "avg_views": 44.2,
+        "avg_views": 43.2,
         "enough_data": true
       },
       "story": {
@@ -13779,7 +13752,7 @@
         "n": 6,
         "n_mature_24h": 4,
         "median_vph": 0.06,
-        "avg_views": 315.8,
+        "avg_views": 316.7,
         "enough_data": false
       },
       "note": "compare only when each arm's n_mature_24h >= 25"
@@ -13796,7 +13769,7 @@
       "n_mature_total": 1,
       "enough_data": false
     },
-    "pending_scheduled": 9,
+    "pending_scheduled": 7,
     "format_coverage": {
       "with_format": 0,
       "total": 145,
