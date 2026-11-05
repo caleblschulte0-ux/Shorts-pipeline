@@ -18102,6 +18102,25 @@
         "end": 22.5
       },
       "director_cut": true
+    },
+    "rejected-abstrusewildwasppermasmug-5gv9kt0tgrcumivd": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AbstruseWildWaspPermaSmug-5Gv9KT0tgRcumIVd",
+      "streamer": "caseoh_",
+      "title": "\ud83d\ude2dCrazy Viewer\ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Minecraft and chat screen, no clear even)",
+      "ts": "2026-11-05T13:06:43.904811+00:00"
+    },
+    "clip-20261105-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/EnjoyableRelievedBaguetteTBTacoLeft-4ZkKEtMyQH50sgqE",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Dances With Girl Group \u5e7b\u85cd\u5c0f\u718a And Can't Stop Running",
+      "kind": "twitch_clip",
+      "ts": "2026-11-05T13:11:40.989258+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
