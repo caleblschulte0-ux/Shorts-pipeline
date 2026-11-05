@@ -4963,11 +4963,29 @@
       "duration_s": 29.4
     },
     "government-internet-shutdowns-record": {
-      "claimed_at": "2026-11-05T19:18:05.345486+00:00",
+      "url": "https://youtube.com/shorts/dKek6PWoiBk",
       "title": "Governments Shut Down The Internet 283 Times Last Year",
+      "at": "2026-11-05T19:18:17.449730+00:00",
       "publish_at": "2026-11-05T23:58:27Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.54,
+      "beat_s": [
+        9.52,
+        7.17,
+        7.54,
+        5.55,
+        7.84
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 38.1
     }
   },
   "uploads": [
@@ -6364,9 +6382,10 @@
       "claimed_at": "2026-11-05T19:18:05.345486+00:00",
       "title": "Governments Shut Down The Internet 283 Times Last Year",
       "publish_at": "2026-11-05T23:58:27Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "government-internet-shutdowns-record"
+      "url": "https://youtube.com/shorts/dKek6PWoiBk",
+      "state": "posted",
+      "slug": "government-internet-shutdowns-record",
+      "at": "2026-11-05T19:18:17.449730+00:00"
     }
   ]
 }
