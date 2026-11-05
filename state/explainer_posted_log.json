@@ -4911,6 +4911,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 23.8
+    },
+    "union-membership-record-low": {
+      "claimed_at": "2026-11-05T14:55:51.610914+00:00",
+      "title": "Union Membership Fell Below 10% As Private Unions Collapsed",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6284,6 +6291,14 @@
       "state": "posted",
       "slug": "craft-brewery-boom-and-bust",
       "at": "2026-11-05T02:18:58.584563+00:00"
+    },
+    {
+      "claimed_at": "2026-11-05T14:55:51.610914+00:00",
+      "title": "Union Membership Fell Below 10% As Private Unions Collapsed",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "union-membership-record-low"
     }
   ]
 }
