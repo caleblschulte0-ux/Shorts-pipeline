@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "drone-commercial-overtake__4ce6725d_r1",
+  "slug": "drone-commercial-overtake",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "Commercial Drones Now Outnumber Hobby Drones",
+  "hook": "The drone hobby quietly became an industry.",
+  "closing": "Commercial drones now dominate registrations, putting more working aircraft in shared airspace.",
+  "question": "Have you flown a drone?",
+  "segments": [
+    {
+      "topic": "Commercial Drones",
+      "say": "Commercial drones reached 453,635 registrations, overtaking recreational models and turning a toy craze into an industry."
+    },
+    {
+      "topic": "Registered Drones",
+      "say": "Registered drones climbed to 837,513, putting more aircraft than ever into shared airspace."
+    },
+    {
+      "topic": "New Drone Registrations",
+      "say": "New drone registrations slowed to 10,500 monthly, showing the boom is cooling even as the fleet grows."
+    }
+  ]
+}
