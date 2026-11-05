@@ -18196,14 +18196,32 @@
       "ts": "2026-11-05T13:18:08.997528+00:00"
     },
     "clip-20261105-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/yugi/clip/FriendlyDullSnakeOhMyDog-6SHsaL2MFyEhBpbV",
-      "story_key": null,
-      "streamer": "yugi",
+      "url": "https://youtube.com/shorts/QcyZJYynRRA",
       "title": "Yugi Gets Hit With THE PURSE And Can't Stop Saying He's Awesome",
       "kind": "twitch_clip",
-      "ts": "2026-11-05T13:21:36.497609+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-05T13:21:44.608801+00:00",
+      "uploaded_at": "2026-11-05T13:21:44.608816+00:00",
+      "publish_at": "2026-11-06T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261105-yugi-gets-hit-with-the-purse-and-can-t-stop-sayi-017c92c7",
+        "tiktok": "queued for 2026-11-06T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/yugi/clip/FriendlyDullSnakeOhMyDog-6SHsaL2MFyEhBpbV",
+      "streamer": "yugi",
+      "series": "chaos",
+      "hook": "Yugi and the purse \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2735,
+      "banger": 0.45,
+      "cut": {
+        "start": 5.8,
+        "end": 28.0
+      },
+      "director_cut": true
     }
   }
 }
