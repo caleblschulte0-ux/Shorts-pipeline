@@ -4961,6 +4961,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 29.4
+    },
+    "government-internet-shutdowns-record": {
+      "claimed_at": "2026-11-05T19:18:05.345486+00:00",
+      "title": "Governments Shut Down The Internet 283 Times Last Year",
+      "publish_at": "2026-11-05T23:58:27Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6352,6 +6359,14 @@
       "state": "posted",
       "slug": "billion-dollar-disasters-record-2023",
       "at": "2026-11-05T17:43:38.957523+00:00"
+    },
+    {
+      "claimed_at": "2026-11-05T19:18:05.345486+00:00",
+      "title": "Governments Shut Down The Internet 283 Times Last Year",
+      "publish_at": "2026-11-05T23:58:27Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "government-internet-shutdowns-record"
     }
   ]
 }
