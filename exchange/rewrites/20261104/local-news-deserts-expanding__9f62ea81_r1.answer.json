@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "local-news-deserts-expanding__9f62ea81_r1",
+  "slug": "local-news-deserts-expanding",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:23:19.170Z",
+  "title": "US Newspapers Have Fallen To Just 4,490",
+  "hook": "Local newspapers never rebounded, leaving more communities without watchdogs.",
+  "closing": "Fewer newspapers mean fewer people watching decisions that shape your town.",
+  "question": "Do you know your local reporter?",
+  "segments": [
+    {
+      "topic": "US Newspapers Lost",
+      "say": "US newspapers fell by 2,835, removing local watchdogs from communities across the country."
+    },
+    {
+      "topic": "US Newspapers Deserts",
+      "say": "Now 208 counties have no local news source, leaving public decisions with less scrutiny."
+    },
+    {
+      "topic": "US Newspapers Coverage",
+      "say": "About 15% of Americans have little or no local news, missing information that shapes their communities."
+    }
+  ]
+}
