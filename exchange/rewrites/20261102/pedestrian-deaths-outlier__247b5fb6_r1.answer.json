@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pedestrian-deaths-outlier__247b5fb6_r1",
+  "slug": "pedestrian-deaths-outlier",
+  "by": "chatgpt",
+  "written_at": "2026-11-05T12:28:33.123Z",
+  "title": "Pedestrian Deaths Rose 77% While Traffic Deaths Fell",
+  "hook": "Roads got safer overall—but not for people walking.",
+  "closing": "Overall traffic safety gains mean less when walking keeps getting deadlier.",
+  "question": "Do you feel safe walking?",
+  "segments": [
+    {
+      "topic": "Pedestrian Traffic Total",
+      "say": "US traffic deaths fell to 40,990, but the improvement did not reach everyone using the road."
+    },
+    {
+      "topic": "Pedestrian Traffic Rise",
+      "say": "Pedestrian deaths jumped 77%, roughly three times the growth of other traffic deaths."
+    },
+    {
+      "topic": "Pedestrian Traffic Share",
+      "say": "Pedestrians accounted for about one in six traffic deaths, making walking a growing share of road danger."
+    }
+  ]
+}
