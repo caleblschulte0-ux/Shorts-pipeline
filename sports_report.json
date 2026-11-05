@@ -1,5 +1,5 @@
 {
- "date": "2026-11-04",
+ "date": "2026-11-05",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
@@ -7,7 +7,7 @@
   {
    "sub": "soccer",
    "who": "Kaka",
-   "why": "A legend breaks down in tears as San Siro stands for him on his Hall of Fame induction.",
+   "why": "A legend breaks down in tears as the whole San Siro stands for him.",
    "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
@@ -16,18 +16,16 @@
   },
   {
    "sub": "baseball",
-   "who": "Jake Bauers",
-   "why": "A player hands the last-out World Series ball to his manager in the middle of the celebration.",
-   "post_title": "Jake Bauers gives Pat Murphy the last out ball",
+   "who": "World Series midterm kid",
+   "why": "A kid rattles off every World Series winner for a perfect score, which is funny and impressive.",
+   "post_title": "Kid Names EVERY WORLD SERIES WINNER For a 100% on the Midterm",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball",
-   "title": "Jake Bauers Hands Pat Murphy The Last Out Ball",
-   "hook": "Bauers gives Pat Murphy the last out ball",
+   "url": "https://www.reddit.com/r/baseball/comments/1xm7v2k/kid_names_every_world_series_winner_for_a_100_on/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xm7v2k/kid_names_every_world_series_winner_for_a_100_on",
+   "title": "World Series midterm kid Names Every Winner And The Whole Class Applauds",
+   "hook": "Kid recites every World Series winner",
    "ledger": {
-    "moves": [
-     "zoom@2.0"
-    ],
+    "moves": [],
     "mood": null,
     "shot_plan": {
      "layout": "wide",
@@ -42,27 +40,695 @@
    },
    "repairs": [
     {
-     "score": 62,
-     "reason": "showrunner BLOCK: The handoff lands in the first few seconds, then the last quarter of the clip is unrelated NLCS and news broadcast filler that fades to black under a line it never shows."
+     "score": 83,
+     "reason": "showrunner BLOCK: The moment is great and lands on the class applauding at 1903, but our hook line is printed over the clip's own burned-in captions for the whole video."
+    },
+    {
+     "score": 79,
+     "reason": "showrunner BLOCK: A great real moment (full recitation down to 1903, then applause) is spoiled by our caption sitting on top of the source's own burned-in title for the whole video."
     }
    ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A great real moment (full recitation down to 1903, then applause) is spoiled by our caption sitting on top of the source's own burned-in title for the whole video.",
+    "score": 79
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A great real moment (full recitation down to 1903, then applause) is spoiled by our caption sitting on top of the source's own burned-in title for the whole video."
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "Mbapp\u00e9 jokes with the kid who got hit by the shot and blames his teammate's aim.",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "title": "Kylian Mbapp\u00e9 Tells The Kid Hit By A Tchouam\u00e9ni Shot Whose Fault It Was",
+   "hook": "Mbapp\u00e9 to the kid hit by the shot \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "3 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 15.43,
+       "reason": "the framer: Kid, the man holding him, and Mbapp\u00e9's face are spread across columns 1-6, which is wider than a tall crop holds, so it stays uncropped. (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 15.43,
+       "t1": 22.53,
+       "reason": "the framer: Kid in columns 2-3, the man behind him in 3-4, and Mbapp\u00e9's face in 5-7; the three are too far apart for one crop. (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 22.53,
+       "t1": 26.9,
+       "reason": "the framer: Kid's face at columns 3-5 and the man holding him at 5-6, with the kid's green jersey kept in frame. (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment is real, but the punchline Mbapp\u00e9 says is never subtitled, the hook opens on the dad's interview with garbled overlapping captions, and the footage fills only a thin strip of the frame.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment is real, but the punchline Mbapp\u00e9 says is never subtitled, the hook opens on the dad's interview with garbled overlapping captions, and the footage fills only a thin strip of the frame."
+  },
+  {
+   "sub": "soccer",
+   "who": "Yan Diomande",
+   "why": "He gives his jersey to a ball boy and the whole stadium stands to applaud.",
+   "post_title": "Yan Diomande receiving a standing ovation from the Racing Santander stadium after he gives his jersey to a ball boy",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from",
+   "title": "Yan Diomande Gives His Jersey To A Ball Boy And The Whole Stadium Stands Up",
+   "hook": "Diomande gives his jersey to a ball boy \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 71,
+     "reason": "showrunner BLOCK: The moment is real and shown, but the opening is a small letterboxed strip with nonsense 'BARCELONA IT IS' captions, and the ovation never peaks."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment is real and shown, but the opening is a small letterboxed strip with nonsense 'BARCELONA IT IS' captions, and the ovation never peaks.",
+    "score": 71
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment is real and shown, but the opening is a small letterboxed strip with nonsense 'BARCELONA IT IS' captions, and the ovation never peaks."
+  },
+  {
+   "sub": "baseball",
+   "who": "Christian Yelich",
+   "why": "Yelich spots a fan dressed as Aaron Ashby, so Ashby walks over to meet him.",
+   "post_title": "Christian Yelich spotted Aaron Ashby's look-alike in full uniform at the parade so Ashby came over to show him love",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xjn3m2/christian_yelich_spotted_aaron_ashbys_lookalike/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xjn3m2/christian_yelich_spotted_aaron_ashbys_lookalike",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Quenton Nelson",
+   "why": "He jokes about not being able to get away from Jeffery Simmons, who is now on the Bears.",
+   "post_title": "[Highlight] New Seahawks G Quenton Nelson on the Bears trading for Jeffery Simmons, whom he faced often in the AFC South and will now see Monday night: \u201cI was like, \u2018Man, can\u2019t get away from this guy.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xix4o0/highlight_new_seahawks_g_quenton_nelson_on_the/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xix4o0/highlight_new_seahawks_g_quenton_nelson_on_the",
+   "title": "Quenton Nelson Can't BELIEVE He Has To Face Jeffery Simmons Again",
+   "hook": "Nelson can't escape Simmons \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "whoa@14.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.939,
+      0.902,
+      0.937,
+      0.938,
+      0.922
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Quenton Nelson Jeffery Simmons@4.3"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is a real and correctly identified Nelson presser, but it is almost 21 seconds of one wide, letterboxed podium shot with no zooms, no clear look at Simmons and a flat hook, so the 'can't escape him' joke never lands visually.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is a real and correctly identified Nelson presser, but it is almost 21 seconds of one wide, letterboxed podium shot with no zooms, no clear look at Simmons and a flat hook, so the 'can't escape him' joke never lands visually."
+  },
+  {
+   "sub": "nfl",
+   "who": "Russell Wilson",
+   "why": "Wilson tells Sean Payton he's picking the Broncos over the Chiefs.",
+   "post_title": "[Highlight] Russell Wilson Picks the Broncos Over Chiefs: \"Sean Payton, you may like me, you may not, but I'm picking you\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xl7sc1/highlight_russell_wilson_picks_the_broncos_over/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xl7sc1/highlight_russell_wilson_picks_the_broncos_over",
+   "title": "Russell Wilson Picks Broncos Over Chiefs And Calls Out Sean Payton On Air",
+   "hook": "Russell Wilson picks the Broncos over Mahomes",
+   "ledger": {
+    "moves": [
+     "zoom@26.65"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 33.17,
+       "reason": "the framer: The man in the maroon jacket holding a football, face whole at columns 4-5. The second man at the right edge is only partly in frame and is left out.",
+       "crop": [
+        404,
+        720,
+        438,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 33.17,
+       "t1": 37.4,
+       "reason": "the framer: A blurry pan across empty stadium seats. The only people are a small group of staff at columns 6-8, so the crop keeps them.",
+       "crop": [
+        404,
+        720,
+        758,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.464,
+      0.48,
+      0.761,
+      0.297,
+      0.377
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.196,
+       0.518
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/UBylkyVFa8A",
+   "ok": true,
+   "publish_at": "2026-11-05T15:00:00Z",
+   "seconds": 510,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261105-russell-wilson-picks-broncos-over-chiefs-and-cal-df4dc236",
+    "tiktok": "queued for 2026-11-05T15:00:00Z"
+   }
+  },
+  {
+   "sub": "sports",
+   "who": "Nathan Lyon",
+   "why": "A South Africa fan offers him sandpaper, which is cheeky trash talk from the crowd.",
+   "post_title": "A South Africa fan offering sandpaper to Nathan Lyon, a teammate of Steven Smith, who was caught ball-tampering in the same ground eight years ago",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xkkq6s/a_south_africa_fan_offering_sandpaper_to_nathan/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xkkq6s/a_south_africa_fan_offering_sandpaper_to_nathan",
+   "title": "Nathan Lyon Gets Offered Sandpaper By A Fan And You Can Guess Why",
+   "hook": "Fan offers Nathan Lyon sandpaper \ud83d\udc80",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/11ARfiB-x5o",
+   "ok": true,
+   "publish_at": "2026-11-05T18:00:00Z",
+   "seconds": 137,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261105-nathan-lyon-gets-offered-sandpaper-by-a-fan-and--75828013",
+    "tiktok": "queued for 2026-11-05T18:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Brewers fan",
+   "why": "A fan listening to the radio feed spoils the final out for everyone around him.",
+   "post_title": "A fan in American Family Field spoiled the Brewers\u2019 final out as he was listening to the radio feed",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xiq6mg/a_fan_in_american_family_field_spoiled_the/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiq6mg/a_fan_in_american_family_field_spoiled_the",
+   "title": "Brewers Fan Spoils The Final Out Listening To The Radio At American Family Field",
+   "hook": "Brewers fan ruins the final out \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.776,
+      0.776,
+      0.795,
+      0.677,
+      0.775
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A tiny four-panel local-news split screen of fans celebrating: the fan who 'spoiled the final out' on the radio is never shown, so the premise never lands.",
+    "score": 44
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A tiny four-panel local-news split screen of fans celebrating: the fan who 'spoiled the final out' on the radio is never shown, so the premise never lands."
+  },
+  {
+   "sub": "MMA",
+   "who": "Conor McGregor",
+   "why": "McGregor can't stop laughing as Raul Rosas submits Colby Covington.",
+   "post_title": "Conor McGregor was dying laughing after Raul Rosas subbed Colby Covington \ud83d\udc80",
+   "upvotes": 0,
+   "url": "https://streamable.com/ukm369",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xnamv2/conor_mcgregor_was_dying_laughing_after_raul",
+   "skipped": "too short: the post runs 4.7s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Carlos Prates",
+   "why": "Prates goes off on Makhachev and says he chickened out of the fight.",
+   "post_title": "Carlos Prates goes off on Islam Makhachev: \"He chickened out... UFC was pissed. If you don't want to fight, vacate your belt. But instead you act like an asshole. Just stay quiet, fake an injury or so",
+   "upvotes": 0,
+   "url": "https://streamable.com/hwx7uq",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xme0di/carlos_prates_goes_off_on_islam_makhachev_he",
+   "title": "Carlos Prates Goes Off On Islam Makhachev: \"Vacate Your Belt\"",
+   "hook": "Prates tells Makhachev to vacate his belt",
+   "ledger": {
+    "moves": [
+     "whoa@10.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.491,
+      0.768,
+      0.755,
+      0.5,
+      0.528
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The promised line is really in the clip ('vacate your belt and that's it' at mid4), but it's a small letterboxed repost: about 65% of the frame is blurred filler, half the picture is a still photo, the hook opens on a weak lead-in and the clip ends mid-thought."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The promised line is really in the clip ('vacate your belt and that's it' at mid4), but it's a small letterboxed repost: about 65% of the frame is blurred filler, half the picture is a still photo, the hook opens on a weak lead-in and the clip ends mid-thought.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The promised line is really in the clip ('vacate your belt and that's it' at mid4), but it's a small letterboxed repost: about 65% of the frame is blurred filler, half the picture is a still photo, the hook opens on a weak lead-in and the clip ends mid-thought."
+  },
+  {
+   "sub": "nfl",
+   "who": "Jaquan Brisker",
+   "why": "He goes off on the refs and Deshaun Watson after a roughing call.",
+   "post_title": "[Highlight] Steelers safety Jaquan Brisker, on being flagged for roughing the passer, criticizes both the referees and Browns QB Deshaun Watson: \"Babying the quarterback. He\u2019s laying there, crying or ",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlhbuo/highlight_steelers_safety_jaquan_brisker_on_being/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlhbuo/highlight_steelers_safety_jaquan_brisker_on_being",
+   "title": "Jaquan Brisker Says Browns QB Got 'Babied' After Roughing Flag And Expects To Be Fired",
+   "hook": "Brisker says the QB got babied \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@14.2"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 17.93,
+       "reason": "the framer: Brisker, the speaker, has his face centered in columns 4-6 with his shoulders and jacket. The hand gesture at the left edge and the microphone at the right are left out.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.07,
+      0.006,
+      0.017,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       0.585
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
    "showrunner": {
     "blocked": false,
     "reason": "",
     "score": 87
    },
-   "video_url": "https://youtube.com/shorts/uzgi2DaD8-A",
+   "video_url": "https://youtube.com/shorts/C-9crvPw-Oc",
    "ok": true,
-   "publish_at": "2026-11-05T03:00:00Z",
-   "seconds": 1041,
+   "publish_at": "2026-11-05T21:00:00Z",
+   "seconds": 363,
    "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261104-jake-bauers-hands-pat-murphy-the-last-out-ball-374e425b",
-    "tiktok": "queued for 2026-11-05T03:00:00Z"
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261105-jaquan-brisker-says-browns-qb-got-babied-after-r-6a776d67",
+    "tiktok": "queued for 2026-11-05T21:00:00Z"
    }
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkanovski",
+   "why": "He says openly that he's annoyed his sport gets so little mainstream recognition.",
+   "post_title": "Alexander Volkanovski a little upset about limited mainstream recognition: \"I\u2019m not saying they\u2019re hating on me. Maybe it\u2019s just not their sport. They don\u2019t understand it, and they don\u2019t know enough. ",
+   "upvotes": 0,
+   "url": "https://streamable.com/n634d0",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xki50e/alexander_volkanovski_a_little_upset_about",
+   "title": "Alexander Volkanovski Admits It Upsets Him How Little Recognition He Gets",
+   "hook": "Volkanovski feels the mainstream ignores him \ud83d\ude24",
+   "ledger": {
+    "moves": [
+     "zoom@14.06"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
+     "shots": [],
+     "subtitle_spans": [
+      0.059,
+      0.045,
+      0.059,
+      0.059,
+      0.482
+     ],
+     "n_subjects": 2
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A 30-second webcam talking head in which half the picture is a frozen carbon-tax newspaper stock photo and most of the frame is blur. The 'ignored by the mainstream' moment never lands visually.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A 30-second webcam talking head in which half the picture is a frozen carbon-tax newspaper stock photo and most of the frame is blur. The 'ignored by the mainstream' moment never lands visually."
+  },
+  {
+   "sub": "soccer",
+   "who": "Robert Lewandowski",
+   "why": "He gives a blunt answer on why he never joined Arsenal.",
+   "post_title": "Robert Lewandowski on why he never played for Arsenal: \u201cI wanted to win some titles.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xillke/robert_lewandowski_on_why_he_never_played_for/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xillke/robert_lewandowski_on_why_he_never_played_for",
+   "title": "Robert Lewandowski Gets Asked Again Why He Never Joined Arsenal \ud83d\ude33",
+   "hook": "Lewandowski asked about Arsenal again \ud83d\ude2d",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: Fun real Lewandowski moment, but our captions are stacked on the clip's own burned-in captions, and the crop loses him during his key 'win some titles' line."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: Fun real Lewandowski moment, but our captions are stacked on the clip's own burned-in captions, and the crop loses him during his key 'win some titles' line.",
+    "score": 70
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: Fun real Lewandowski moment, but our captions are stacked on the clip's own burned-in captions, and the crop loses him during his key 'win some titles' line."
+  },
+  {
+   "sub": "nfl",
+   "who": "Matthew Golden",
+   "why": "The refs hold hands with Golden and run with him while lecturing him, which is funny.",
+   "post_title": "[Highlight] Refs and Matthew Golden run together, holding hands, as the refs lecture Golden",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xj2bg3/highlight_refs_and_matthew_golden_run_together/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xj2bg3/highlight_refs_and_matthew_golden_run_together",
+   "title": "Matthew Golden Gets Lectured By Refs While Holding Hands And Nobody Expected It",
+   "hook": "Refs run with Matthew Golden holding hands \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@5.05"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 26.5,
+       "reason": "the framer: The ref (cols 2-4) and Matthew Golden in the #0 Packers jersey and helmet (cols 4-6) stand side by side. Their faces and the hand-holding moment are all in these columns. The cameraman at the right ed (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/7xpazU4MJGA",
+   "ok": true,
+   "publish_at": "2026-11-06T00:00:00Z",
+   "seconds": 251,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261105-matthew-golden-gets-lectured-by-refs-while-holdi-dadd9c69",
+    "tiktok": "queued for 2026-11-06T00:00:00Z"
+   }
+  },
+  {
+   "sub": "sports",
+   "who": "Jacob Misiorowski",
+   "why": "He catches a beer thrown from the crowd and chugs it during the parade.",
+   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "title": "Jacob Misiorowski Throws A Beer And Chugs It At The Brewers Parade \ud83c\udf7a",
+   "hook": "Misiorowski at the Brewers parade \ud83c\udf7a",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The beer throw and chug is the whole point, and it happens too small and too far away to see. Viewers get a building, a bus and the back of a fan's arm.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The beer throw and chug is the whole point, and it happens too small and too far away to see. Viewers get a building, a bus and the back of a fan's arm."
+  },
+  {
+   "sub": "hockey",
+   "who": "Jacob Fowler",
+   "why": "The goalie skates off visibly furious after the overtime loss.",
+   "post_title": "MTL\u2019s Jacob Fowler coming off the ice after the 5-4 OT loss, looking super pissed",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xng4z5/mtls_jacob_fowler_coming_off_the_ice_after_the_54/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xng4z5/mtls_jacob_fowler_coming_off_the_ice_after_the_54",
+   "title": "Jacob Fowler Is Absolutely Furious Coming Off The Ice After This OT Loss",
+   "hook": "Fowler is fuming after the OT loss \ud83d\ude24",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The line promises a fuming Fowler, but he is a masked figure for two seconds and the clip spends its second half and its ending on the backup goalie #75.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The line promises a fuming Fowler, but he is a masked figure for two seconds and the clip spends its second half and its ending on the backup goalie #75."
+  },
+  {
+   "sub": "hockey",
+   "who": "Nikita Kucherov",
+   "why": "Kucherov explains his trade request and says it was about respect, not money.",
+   "post_title": "[Encina] Nikita Kucherov said that his trade request was a result of \u201cpoor communication and respect.\u201d \u201cIt was never about the money for me.\u201d Said that JBB had just two conversions with him during the",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xm3b95/encina_nikita_kucherov_said_that_his_trade/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xm3b95/encina_nikita_kucherov_said_that_his_trade",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "baseball",
+   "who": "Brewers fan",
+   "why": "A young fan cries tears of joy as his team wins its first World Series.",
+   "post_title": "Young Brewers fan in tears after watching his team win its first World Series",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xj97o8/young_brewers_fan_in_tears_after_watching_his/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xj97o8/young_brewers_fan_in_tears_after_watching_his",
+   "title": "Young Brewers Fan Sobs Happy Tears After Watching Them Win It All",
+   "hook": "Young Brewers fan cries happy tears",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: The moment is real and lands: a crying kid saying it's the happiest day of his life. But our caption is printed over the footage's own subtitles for the whole video."
+    },
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: The moment itself is strong and well cropped, but our only line of text stops mid-word at 'win its f' and is printed over the clip's own captions for the whole video."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: Genuine, sweet moment that lands, but our caption is stamped directly over the clip's own burned-in subtitles in the opening seconds, so both are hard to read.",
+    "score": 83
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: Genuine, sweet moment that lands, but our caption is stamped directly over the clip's own burned-in subtitles in the opening seconds, so both are hard to read."
   }
  ],
- "already_today": 4,
- "pool": 112,
- "already_posted": 20,
- "shipped": 1
+ "already_today": 0,
+ "pool": 84,
+ "already_posted": 8,
+ "shipped": 4
 }
