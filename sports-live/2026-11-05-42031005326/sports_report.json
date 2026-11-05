@@ -1,0 +1,68 @@
+{
+ "date": "2026-11-05",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Kaka",
+   "why": "Kaka breaks into tears at a San Siro standing ovation as he's inducted into Milan's Hall of Fame, a farewell-style tribute to a legend.",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "baseball",
+   "who": "Milwaukee Brewers",
+   "why": "A young fan cries as his team wins its first World Series, a pure emotional human moment.",
+   "post_title": "Young Brewers fan in tears after watching his team win its first World Series",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xj97o8/young_brewers_fan_in_tears_after_watching_his/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xj97o8/young_brewers_fan_in_tears_after_watching_his",
+   "title": "Young Milwaukee Brewers Fan Cries Happy Tears After His Team Wins The World Series",
+   "hook": "Brewers fan can't stop crying \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@1.19"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: The moment is real and lands, but our line is printed straight over the footage's own subtitles for the whole clip, so both texts can't be read."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 96
+   },
+   "video_url": "https://youtube.com/shorts/2NGCEZ9FwN0",
+   "ok": true,
+   "publish_at": "2026-11-06T03:00:00Z",
+   "seconds": 347,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261105-young-milwaukee-brewers-fan-cries-happy-tears-af-77297d29",
+    "tiktok": "queued for 2026-11-06T03:00:00Z"
+   }
+  }
+ ],
+ "already_today": 4,
+ "pool": 112,
+ "already_posted": 18,
+ "shipped": 1
+}
