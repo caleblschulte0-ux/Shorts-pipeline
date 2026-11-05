@@ -145,6 +145,51 @@
       "answer": "{\"hook\":\"Scientists made atoms colder than nature anywhere, inside a lab orbiting overhead.\",\"closing\":\"Human-built extreme cold lets researchers study matter in conditions nature cannot provide nearby.\",\"question\":\"What can ultracold atoms reveal?\",\"segments\":[{\"topic\":\"NASA Space Cold\",\"say\":\"Empty space is 2.7 kelvin, but the Boomerang Nebula is colder—the natural benchmark NASA's lab beat.\"},{\"topic\":\"NASA Atoms\",\"say\":\"NASA chilled atoms ten billion times colder than the Boomerang Nebula, reaching a temperature nature cannot match.\"},{\"topic\":\"Atoms Overhead\",\"say\":\"The lab orbits 250 miles overhead, while its natural comparison is quadrillions of miles away—extreme cold brought close.\"}]}",
       "by": "chatgpt",
       "at": "2026-11-03T12:17:37.489Z"
+    },
+    "3012292868b5d209": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 3% figure is consequential but the premise does not overturn a specific expectation about eligible donors.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "ba9bf80fc21bbde1": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "d54968d44c2634fe": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The newspaper decline is consequential but confirms the familiar expectation that local print outlets are shrinking.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "cea6cdca3cd4217e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "c0deb4151384b78d": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The $525 price sharply reverses the expectation that whole-genome sequencing remains prohibitively expensive.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "271d02886edca683": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "6d69cc792980e228": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A record 9,778 breweries paired with closures outpacing openings reverses the expectation that a record count means continued growth.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "2dd1e3cc708c846c": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
+    },
+    "48bc425f50296c21": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-05T12:27:33.733Z"
     }
   }
 }
