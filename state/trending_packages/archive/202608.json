@@ -1951,5 +1951,445 @@
       ],
       "music_vibe": "dry office tension into playful payoff"
     }
+  },
+  "20260806": {
+    "01_graph-nvidia-overtakes-intel.json": {
+      "format": "graph_race",
+      "slug": "graph-nvidia-overtakes-intel",
+      "title": "Nvidia Just Overtook Intel in Revenue",
+      "hook": "The chip king lost his crown.",
+      "y_label": "Annual revenue (USD)",
+      "duration": 13,
+      "source": "Sources: NVIDIA Corp SEC filings and investor press releases (fiscal-year total revenue, FY2020-FY2025; NVIDIA's fiscal year ends in late January); Intel Corp SEC filings and quarterly/annual earnings releases (calendar-year total revenue, 2020-2025).",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Nvidia",
+          "color": "#76b900",
+          "icon": "Nvidia",
+          "values": [
+            10920000000,
+            16680000000,
+            26914000000,
+            26974000000,
+            60922000000,
+            130497000000
+          ]
+        },
+        {
+          "name": "Intel",
+          "color": "#0071c5",
+          "icon": "Intel",
+          "values": [
+            77867000000,
+            79024000000,
+            63054000000,
+            54228000000,
+            53100000000,
+            52900000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "nvidia",
+        "intel",
+        "aichips",
+        "semiconductors",
+        "techwars",
+        "stockmarket",
+        "datacenter",
+        "aiboom",
+        "siliconvalley",
+        "chips",
+        "wallstreet",
+        "bigtech",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark"
+    },
+    "02_graph-us-renewables-pass-coal.json": {
+      "format": "graph_race",
+      "slug": "graph-us-renewables-pass-coal",
+      "title": "Renewables Just Beat Coal in the US",
+      "hook": "The power grid quietly flipped.",
+      "y_label": "Electricity generated (billion kWh/year)",
+      "duration": 13,
+      "unit_scale": 1,
+      "source": "Sources: U.S. Energy Information Administration (EIA), Electric Power Annual and Today in Energy (annual net U.S. electricity generation by fuel source); 2020, 2022 and 2024 figures as reported by EIA; 2010, 2015 and 2018 approximate from EIA's published generation-mix shares for those years.",
+      "years": [
+        2010,
+        2015,
+        2018,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Coal",
+          "color": "#5a5a5a",
+          "values": [
+            1850,
+            1320,
+            1150,
+            774,
+            830,
+            653
+          ]
+        },
+        {
+          "name": "Renewables",
+          "color": "#2ecc71",
+          "values": [
+            425,
+            539,
+            742,
+            834,
+            910,
+            971
+          ]
+        }
+      ],
+      "hashtags": [
+        "renewableenergy",
+        "coal",
+        "solarpower",
+        "windenergy",
+        "climatechange",
+        "energy",
+        "cleanenergy",
+        "powergrid",
+        "eia",
+        "electricity",
+        "climate",
+        "greenenergy",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-china-vs-hollywood-box-office.json": {
+      "format": "graph_race",
+      "slug": "graph-china-vs-hollywood-box-office",
+      "title": "China vs Hollywood: The Box Office War",
+      "hook": "Who really wins at the movies?",
+      "y_label": "Box office revenue (USD)",
+      "duration": 13,
+      "source": "Sources: China Film Administration annual box office totals, 2019-2024 (via Variety, SCMP and China Daily reporting, yuan converted to USD); Comscore / MPA North America annual box office totals, 2019-2024 (via Statista and Variety reporting).",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#e74c3c",
+          "icon": "CN",
+          "values": [
+            9200000000,
+            3120000000,
+            7440000000,
+            4330000000,
+            7730000000,
+            5910000000
+          ]
+        },
+        {
+          "name": "North America",
+          "color": "#4a90e2",
+          "values": [
+            11400000000,
+            2200000000,
+            4650000000,
+            7500000000,
+            8600000000,
+            8600000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "boxoffice",
+        "hollywood",
+        "china",
+        "movies",
+        "film",
+        "entertainment",
+        "cinema",
+        "moviestats",
+        "filmindustry",
+        "data",
+        "boxofficewar",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "04_graph-ev-race-china-europe-us.json": {
+      "format": "graph_race",
+      "slug": "graph-ev-race-china-europe-us",
+      "title": "The Global EV Race: China vs Europe vs US",
+      "hook": "One country lapped the field.",
+      "y_label": "Share of new car sales (%)",
+      "duration": 13,
+      "source": "Sources: IEA Global EV Outlook 2023-2026 (annual electric-car sales share by market: China, Europe, United States); 2024 figures as reported by IEA; 2018-2022 approximate from IEA's published year-over-year trend data.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#e74c3c",
+          "icon": "CN",
+          "values": [
+            4.2,
+            4.7,
+            5.4,
+            15.0,
+            29.0,
+            35.0,
+            45.0
+          ]
+        },
+        {
+          "name": "Europe",
+          "color": "#4a90e2",
+          "values": [
+            2.0,
+            3.0,
+            10.0,
+            17.0,
+            21.0,
+            21.0,
+            20.0
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#f5c518",
+          "icon": "US",
+          "values": [
+            1.0,
+            1.9,
+            2.0,
+            4.5,
+            7.6,
+            9.5,
+            10.0
+          ]
+        }
+      ],
+      "hashtags": [
+        "electricvehicles",
+        "ev",
+        "china",
+        "europe",
+        "unitedstates",
+        "evsales",
+        "climatetech",
+        "autoindustry",
+        "cars",
+        "data",
+        "cleanenergy",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "05_reddit-return-policy-maximum-effort.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-return-policy-maximum-effort",
+      "title": "She Demanded I Follow the Return Policy. I Did.",
+      "hashtags": [
+        "maliciouscompliance",
+        "reddit",
+        "storytime",
+        "retail",
+        "customerservice",
+        "returnpolicy",
+        "pettyrevenge",
+        "karma",
+        "funny",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "She slid a blender across the counter with no receipt and said corporate policy required me to accept any return regardless of proof of purchase. I don't argue with retail rules, I follow them, so I pulled up the actual policy on the register screen and read it out loud: returns without a receipt require a valid government ID, store credit only, and a mandatory fifteen minute manager verification call. She said fine, and handed over her license. Fine. I called the verification line, which put us on hold for twenty-two minutes while she stood there tapping her foot. When the rep finally picked up, the blender's serial number came back registered to a different store four states away, purchased in 2019. Store credit only, expired promotions excluded, prorated for five years of use: total refund, four dollars and twelve cents. She said that wasn't what she meant by the policy. I told her it was exactly what she asked for. She left without the four dollars.",
+      "shots": [
+        {
+          "phrase": "slid a blender across the counter",
+          "query": "blender countertop store",
+          "pin_query": "blender",
+          "pin_context": "kitchen appliance counter",
+          "news_query": "blender",
+          "news_angle": "The customer tries to return a blender without a receipt.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Vitamix_Blender.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "corporate policy required me to accept any return",
+          "query": "customer service counter"
+        },
+        {
+          "phrase": "valid government ID, store credit only",
+          "query": "drivers license id card",
+          "pin_query": "government ID",
+          "pin_context": "license identification card",
+          "news_query": "government ID",
+          "news_angle": "The customer hands over her government ID for the return process.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Biometric_Argentine_DNI_for_Citizens-Foreigners_Falkland_Islands_Seal.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "verification line",
+          "query": "office phone call hold",
+          "pin_query": "verification line",
+          "pin_context": "customer service phone",
+          "news_query": "verification line",
+          "news_angle": "The store employee calls the verification line for a return verification.",
+          "image_url": "https://live.staticflickr.com/2326/2046228644_05507000b3.jpg"
+        },
+        {
+          "phrase": "twenty-two minutes while she stood there tapping her foot",
+          "query": "impatient customer waiting"
+        },
+        {
+          "phrase": "registered to a different store four states away",
+          "query": "cash register receipt printer"
+        },
+        {
+          "phrase": "four dollars and twelve cents",
+          "query": "cash register coins"
+        },
+        {
+          "phrase": "left without the four dollars",
+          "query": "empty store checkout"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no receipt",
+          "text": "NO RECEIPT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "twenty-two minutes",
+          "text": "22 MIN HOLD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "four dollars and twelve cents",
+          "text": "$4.12",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "left without the four dollars",
+          "text": "POLICY WON",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop"
+    },
+    "06_reddit-birthday-party-refund-demand.json": {
+      "subreddit": "entitledparents",
+      "slug": "reddit-birthday-party-refund-demand",
+      "title": "She Wanted a Refund for Kids Who Never Showed Up",
+      "hashtags": [
+        "entitledparents",
+        "reddit",
+        "storytime",
+        "pettyrevenge",
+        "smallbusiness",
+        "partyrental",
+        "karma",
+        "receipts",
+        "funny",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "I run a small bounce house party rental out of my garage, cash deposit required, no refunds within 48 hours, printed right on the contract she signed. The morning after the party she calls, furious, demanding money back because only six of the twelve kids she invited showed up to her son's party. Not my fault, not my policy, I told her the inflatable ran the full four hours regardless of headcount. She said she'd leave a one star review unless I refunded the difference per absent kid. Fine. I told her to send screenshots of the RSVPs proving exactly six kids were confirmed, per my terms for partial refunds on no-shows. She sent them. Every single RSVP said yes. All twelve. She'd double invited half the guest list and blamed me for her own group chat. I posted the screenshots in my reply to her review instead of refunding a cent. The review came down within the hour.",
+      "shots": [
+        {
+          "phrase": "bounce house party rental",
+          "query": "bounce house inflatable backyard",
+          "pin_query": "bounce house",
+          "pin_context": "inflatable party rental",
+          "news_query": "bounce house",
+          "news_angle": "The bounce house party rental was the center of a dispute over refunds for no-show kids.",
+          "image_url": "https://live.staticflickr.com/7209/6921182127_9a994104b6.jpg"
+        },
+        {
+          "phrase": "no refunds within 48 hours",
+          "query": "rental contract paperwork"
+        },
+        {
+          "phrase": "only six of the twelve kids she invited showed up",
+          "query": "empty birthday party table"
+        },
+        {
+          "phrase": "ran the full four hours regardless of headcount",
+          "query": "kids bounce house playing"
+        },
+        {
+          "phrase": "leave a one star review",
+          "query": "phone one star review"
+        },
+        {
+          "phrase": "screenshots of the RSVPs",
+          "query": "phone screenshot text messages"
+        },
+        {
+          "phrase": "double invited half the guest list",
+          "query": "group chat phone messages"
+        },
+        {
+          "phrase": "review came down within the hour",
+          "query": "laptop review page"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no refunds within 48 hours",
+          "text": "IN THE CONTRACT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "leave a one star review",
+          "text": "THREATENED REVIEW",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Every single RSVP said yes",
+          "text": "ALL 12 CONFIRMED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "review came down within the hour",
+          "text": "RECEIPTS WIN",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "cinematic"
+    }
   }
 }
