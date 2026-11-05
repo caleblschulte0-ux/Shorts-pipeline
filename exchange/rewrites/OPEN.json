@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-05T12:58:03Z",
+ "updated": "2026-11-05T16:07:07Z",
  "open": [
+  {
+   "id": "frog-fungus-mass-extinction__df2fc6d4",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-05T16:07:07Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a viewer expectation and relies on a vague number rather than a single, consequential verifiable fact."
+   ],
+   "request": "exchange/rewrites/20261105/frog-fungus-mass-extinction__df2fc6d4.request.json",
+   "answer_path": "exchange/rewrites/20261105/frog-fungus-mass-extinction__df2fc6d4.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__3a83f544_r1",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-05T16:07:06Z",
+   "why": [
+    "premise: brain: It relies on multiple statistics rather than a single consequential number, failing the required premise format."
+   ],
+   "request": "exchange/rewrites/20261105/autism-diagnosis-rate-rise__3a83f544_r1.request.json",
+   "answer_path": "exchange/rewrites/20261105/autism-diagnosis-rate-rise__3a83f544_r1.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__2d426d60",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-05T16:07:05Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a factual statistic."
+   ],
+   "request": "exchange/rewrites/20261105/mangrove-forest-loss__2d426d60.request.json",
+   "answer_path": "exchange/rewrites/20261105/mangrove-forest-loss__2d426d60.answer.json"
+  },
   {
    "id": "chatgpt-fastest-adoption-ever__5df55128_r1",
    "slug": "chatgpt-fastest-adoption-ever",
@@ -71,16 +101,6 @@
    ],
    "request": "exchange/rewrites/20261105/blood-supply-three-percent__a1c3f2eb_r2.request.json",
    "answer_path": "exchange/rewrites/20261105/blood-supply-three-percent__a1c3f2eb_r2.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__81cb3e05",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-11-04T18:26:40Z",
-   "why": [
-    "premise: brain: The premise relies on multiple numbers (45% and 3.6 million hectares) instead of a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261104/mangrove-forest-loss__81cb3e05.request.json",
-   "answer_path": "exchange/rewrites/20261104/mangrove-forest-loss__81cb3e05.answer.json"
   },
   {
    "id": "robotic-surgery-doubled__efdf1e6c",

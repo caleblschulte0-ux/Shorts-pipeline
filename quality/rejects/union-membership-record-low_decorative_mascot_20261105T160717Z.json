@@ -1,0 +1,16 @@
+{
+ "slug": "union-membership-record-low",
+ "ts": "20261105T160717Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands while the hard hats drop into the bin on their own (hook@0.8, seg0:start). In seg1:start to seg1:end he waves beside the fence while picket signs fall. In seg2:mid and seg2:end he poses with a banner. Only in seg3 does he do the work, folding chairs as members leave.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "From seg2:start to seg2:end, city hall and the warehouse stand side by side and do not change while the label flips from 32.2% to 5.9%. Data just poses with a UNION banner. Nothing in the picture shows the public sector at 32% against private at 6%.",
+  "root_cause": "The scene is a static two-building backdrop. The comparison exists only in the text label, and the mascot has no act that causes the difference.",
+  "repair_goal": "Make the 32% vs 6% gap visible on the two buildings, for example a crowd of union-vested workers at city hall's steps and about a sixth as many at the warehouse door. Have Data cause the change by pulling down the warehouse's union banner or rolling its shutter closed as the private number lands. Move the small comparison label clear of the flagpole."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -6709,6 +6709,60 @@
       "ending_type": "inversion",
       "franchise": "",
       "notes": "re-confirmed existing scenes (validate pass); no creative change"
+    },
+    {
+      "slug": "bat-fungus-collapse",
+      "directed_at": "2026-11-05",
+      "topic_category": "nature",
+      "hook_type": "stake",
+      "hook_text": "A deadly fungus is wiping out the bats that protect your food.",
+      "depictions": [
+        "illustrated:us-fungus-flags"
+      ],
+      "ending_type": "consequence",
+      "franchise": "",
+      "notes": "re-confirmed existing scenes (validate pass); no creative change: map of states with fungus creeping, Data planting flags"
+    },
+    {
+      "slug": "unclaimed-money-states-hold",
+      "directed_at": "2026-11-05",
+      "topic_category": "money",
+      "hook_type": "shock_stat",
+      "hook_text": "Someone you know is owed money by their state and has no idea.",
+      "depictions": [
+        "illustrated:vault-door"
+      ],
+      "ending_type": "consequence",
+      "franchise": "",
+      "notes": "re-confirmed existing scenes (validate pass); no creative change: Data drags open a capitol vault on forgotten cash"
+    },
+    {
+      "slug": "tattoo-mainstream-shift",
+      "directed_at": "2026-11-05",
+      "topic_category": "culture",
+      "hook_type": "inversion",
+      "hook_text": "Once you get one tattoo, you almost never stop at one.",
+      "depictions": [
+        "illustrated:arm-trend"
+      ],
+      "ending_type": "inversion",
+      "franchise": "",
+      "notes": "re-confirmed existing scenes (validate pass); no creative change: tattoo machine inking an arm as share grows"
+    },
+    {
+      "slug": "back-to-sleep-campaign-cut-sids",
+      "directed_at": "2026-11-05",
+      "topic_category": "health",
+      "hook_type": "stake",
+      "hook_text": "For years, the way we put babies to bed was killing them.",
+      "depictions": [
+        "mechanic:crib-night-lights",
+        "illustrated:baby-flip (validator reports viz:trend)",
+        "mechanic:crib-census"
+      ],
+      "ending_type": "consequence",
+      "franchise": "",
+      "notes": "re-confirmed existing scenes (validate pass); no creative change: Data flips face-down baby onto its back"
     }
   ]
 }
