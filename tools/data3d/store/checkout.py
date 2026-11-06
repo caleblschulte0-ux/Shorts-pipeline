@@ -35,6 +35,7 @@ try:
 except Exception as e:  # noqa
     print("character.py not usable (%s); using stand-in" % e); import standin as CH; data = CH.load(sc); WHO = "standin"
 data.place(X0, 0.0, 90)          # facing +x
+data.expression("neutral", 0.0)  # pin the resting face from frame 1: without a key the mouth cavity held an OPEN scale and read as a dark blob in profile
 
 # ---------------------------------------------------------------- the push, straight arm every frame
 f0, f1 = acts.push(data, cart, (X1, 0.0), T_PUSH0, T_PUSH1)
