@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "local-news-deserts-expanding__9f62ea81_r2",
+  "slug": "local-news-deserts-expanding",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "Local News Lost 2,835 US Newspapers",
+  "hook": "Local news lost 2,835 newspapers, leaving towns without watchdogs.",
+  "closing": "Without local reporting, fewer people see what their town decides.",
+  "question": "Do you know your local reporter?",
+  "segments": [
+    {
+      "topic": "Local News Newspapers",
+      "say": "Local news lost 2,835 US newspapers. Roughly two in five outlets vanished, leaving fewer reporters watching public decisions."
+    },
+    {
+      "topic": "Local News Deserts",
+      "say": "Local news disappeared entirely in 208 counties. Those communities now lack even one dedicated source."
+    },
+    {
+      "topic": "Local News Coverage",
+      "say": "Local news is scarce for 15% of Americans. Millions can miss decisions made close to home."
+    }
+  ]
+}
