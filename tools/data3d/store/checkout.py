@@ -19,7 +19,7 @@ PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
 T_PUSH0, T_PUSH1, T_END = 0.5, 6.6, 10.0
 X0, X1 = -0.72, 2.3
 TRIG_AHEAD = 0.9         # the lane converts in the camera's LEAD space, right of the cart, not behind Data
-CAM_BASE = Vector((-0.55, -2.0, 0.58)); CAM_LOOK = Vector((0.45, 0.35, 0.42)); LOOK_AHEAD = 0.25; PUSH_IN = 0.8
+CAM_BASE = Vector((-0.55, -2.0, 0.6)); CAM_LOOK = Vector((0.45, 0.35, 0.8)); LOOK_AHEAD = 0.25; PUSH_IN = 0.8   # tilted up: feet near 85% of the frame, the ceiling in shot
 BACK_Y = K.BACK_Y - 0.1
 
 sc = bpy.context.scene
@@ -95,19 +95,19 @@ for i, ln in enumerate(store["lanes"]):
         sc.frame_set(f); l = Vector(cash.location); l.z = 0.012 * abs(math.sin((f - F(t1)) * 0.55)); cash.location = l; cash.keyframe_insert("location", frame=f)
     hide_from(cash, t3 + 0.05)
     # counter: a lurch, then down through the floor; kiosk rises in its place
-    ts = t_go + 0.7; cl = Vector(counter.location)
+    ts = t_go + 0.5; cl = Vector(counter.location)
     key_loc(counter, ts, cl); key_rot(counter, ts, (0, 0, 0))
     key_loc(counter, ts + 0.18, cl + Vector((0, 0, -0.06))); key_rot(counter, ts + 0.18, (0.06, 0, 0))
     key_loc(counter, ts + 0.3, cl + Vector((0, 0, -0.04))); key_rot(counter, ts + 0.3, (0.02, 0, 0))
     key_loc(counter, ts + 0.55, cl + Vector((0, 0, -h - 0.35))); key_rot(counter, ts + 0.55, (0.0, 0, 0))   # the drop is a six-frame PLUNGE: a register corner poking through the floor reads as a stub, not a sink
     hide_from(counter, ts + 0.57)
-    kr = kk["root"]; kh = kk["h"]; t_up0, t_up1 = ts + 0.6, ts + 1.4
+    kr = kk["root"]; kh = kk["h"]; t_up0, t_up1 = ts + 0.5, ts + 1.0
     for f in range(F(t_up0), F(t_up1) + 1):
         u = (f - F(t_up0)) / (F(t_up1) - F(t_up0)); z = lerp(-kh - 0.05, 0.0, ease_out_back(u))
         kr.location = (kr.location.x, kr.location.y, z); kr.keyframe_insert("location", frame=f)
     # the screen lights up as it arrives
     em = kk["screen_mat"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
-    for t, v in ((t_up1 - 0.1, 0.0), (t_up1 + 0.25, 1.8)):
+    for t, v in ((t_up0 + 0.3, 0.0), (t_up1, 0.9)):   # lights as it rises, blue
         em.default_value = v; em.keyframe_insert("default_value", frame=F(t))
 
 for ln in store["extra"]:
@@ -140,7 +140,7 @@ for f in range(1, F(T_END) + 1):
     loc = Vector((CAM_BASE.x + (px - X0) + LOOK_AHEAD * min(1, max(0, (t - T_PUSH0) / 0.6)) * (1 - u_in), CAM_BASE.y, CAM_BASE.z))
     look = Vector((px + LOOK_AHEAD, CAM_LOOK.y, CAM_LOOK.z))
     if u_in > 0:
-        tgt = Vector((px, 0.0, 0.56)); look = look.lerp(tgt, u_in)
+        tgt = Vector((px, 0.0, 0.6)); look = look.lerp(tgt, u_in)
         loc = loc + (tgt - loc).normalized() * PUSH_IN * u_in
     cam.location = loc; cam.keyframe_insert("location", frame=f)
     cam.rotation_euler = (look - loc).to_track_quat('-Z', 'Y').to_euler(); cam.keyframe_insert("rotation_euler", frame=f)

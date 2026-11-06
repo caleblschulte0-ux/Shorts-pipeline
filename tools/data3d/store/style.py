@@ -75,8 +75,7 @@ def restyle():
             nt, b = _nodes(m)
             if b:
                 b.inputs["Roughness"].default_value = 0.06; b.inputs["Coat Weight"].default_value = 1.0; b.inputs["Coat Roughness"].default_value = 0.03
-                b.inputs["Emission Color"].default_value = (0.55, 0.78, 1.0, 1)
-                if m.name == "reg screen": b.inputs["Emission Strength"].default_value = 1.0   # kiosk screens are KEYED by the stager
+                if m.name == "reg screen": b.inputs["Emission Color"].default_value = (0.55, 0.78, 1.0, 1); b.inputs["Emission Strength"].default_value = 1.0   # kiosk screens are KEYED by the stager
     for name in ("paper bag", "bag"):
         m = _get(name)
         if m:

@@ -129,7 +129,16 @@ def walls():
     """back wall with trim and base board, the orange band with its text, a side return at the far end"""
     wall = mat("wall", rough=0.7); band = mat("wall band", rough=0.55); trim = mat("trim", rough=0.6); base = mat("base board", rough=0.7)
     box("back wall", (0.5, BACK_Y + 0.1, WALL_H / 2), (18, 0.2, WALL_H), wall, bev=0)
-    box("ceiling", (0.5, 1.3, WALL_H + 0.02), (18, 3.4, 0.04), mat("ceiling", "#EDEBE6", rough=0.9), bev=0)
+    cm = mat("ceiling", "#E9E7E2", rough=0.9)
+    nt = cm.node_tree; b = nt.nodes["Principled BSDF"]
+    br = nt.nodes.new("ShaderNodeTexBrick"); br.inputs["Scale"].default_value = 1 / 0.6; br.inputs["Mortar Size"].default_value = 0.012 / 0.6
+    br.inputs["Color1"].default_value = (*lin("#E9E7E2"), 1); br.inputs["Color2"].default_value = (*lin("#E4E2DD"), 1); br.inputs["Mortar"].default_value = (*lin("#C9C7C2"), 1)
+    br.offset = 0.0; br.squash = 1.0; tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], br.inputs["Vector"]); nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
+    box("ceiling", (0.5, 0.2, WALL_H + 0.02), (18, 5.6, 0.04), cm, bev=0)
+    for x in range(-4, 6):
+        for y in (0.0, 1.0):   # recessed light panels: a dark frame and a bright diffuser, lit by the real area lights below them
+            box("light frame", (x * 1.2 + 0.3, y, WALL_H - 0.012), (1.22, 0.42, 0.02), mat("light frame", "#9A9C9E", rough=0.5), bev=0.003)
+            box("light diffuser", (x * 1.2 + 0.3, y, WALL_H - 0.01), (1.16, 0.36, 0.01), mat("light diffuser", "#FFFFFF", rough=0.3, emit=3.0), bev=0.002)
     box("wall band", (0.5, BACK_Y - 0.012, 3.45 * U), (18, 0.024, 0.5 * U), band, bev=0.004)
     box("trim line", (0.5, BACK_Y - 0.012, 1.42), (18, 0.024, 0.035), trim, bev=0.004)
     box("base board", (0.5, BACK_Y - 0.012, 0.045), (18, 0.024, 0.09), base, bev=0.004)
@@ -213,57 +222,76 @@ PEOPLE = [("crop", "#3A2A20", "#E8B48E", 1.0, 1.0), ("bob", "#1E1A18", "#C68B62"
 _N = [0]
 
 
+def capsule(name, a, b, r, m, parent=None, seg=24, ra=None, rb=None):
+    """a smooth capsule from a to b (world), radius r (ra/rb taper the two ends); one mesh, smooth shaded, no seam"""
+    a = Vector(a); b = Vector(b); d = b - a; h = max(1e-4, d.length); ra = ra or r; rb = rb or r
+    bm = bmesh.new()
+    res = bmesh.ops.create_cone(bm, cap_ends=False, segments=seg, radius1=ra, radius2=rb, depth=h)
+    bmesh.ops.translate(bm, verts=res["verts"], vec=(0, 0, h / 2))
+    for z, rr, keep in ((0.0, ra, lambda c: c.z <= 1e-6), (h, rb, lambda c: c.z >= -1e-6)):
+        sp = bmesh.ops.create_uvsphere(bm, u_segments=seg, v_segments=12, radius=rr)
+        bmesh.ops.translate(bm, verts=sp["verts"], vec=(0, 0, z))
+        kill = [v for v in sp["verts"] if not keep(Vector((v.co.x, v.co.y, v.co.z - z)))]
+        bmesh.ops.delete(bm, geom=kill, context='VERTS')
+    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new(name, me); me.materials.append(m)
+    o.location = a; o.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
+    _smooth(o); return _link(o, parent)
+
+
 def cashier(name, loc, yaw=0.0):
-    """a stylised person: shoes, legs, hips, polo torso with collar and placket, apron on straps, name tag, neck, head
-    with hair (crop / bob / bun), ears, eyes with pupils, brows, mouth, arms with elbows and hands with a thumb.
+    """a stylised person in the same register as Data: smooth capsules, no seams. Rounded head with a hair cap and a
+    simple face (eyes, brows, mouth), neck, a torso with sloped rounded shoulders, an apron with a name tag, arms as
+    joined capsules (upper arm, forearm, mitten) bending only at the elbow, legs as joined capsules with shoes.
     Every part is a DIRECT child of the root (the stager hides root.children). Front is -Y; yaw turns it."""
     i = _N[0] % len(PEOPLE); _N[0] += 1
     style, hair_c, skin_c, hs, ws = PEOPLE[i]
     root = empty(name, loc); L = Vector(loc)
-    skin = mat(f"skin{i}", skin_c, rough=0.55); hair = mat(f"hair{i}", hair_c, rough=0.75)
-    polo = mat("uniform", rough=0.7); apron = mat("apron", rough=0.75); pants = mat("pants", rough=0.75); shoe = mat("shoe", rough=0.5)
+    skin = mat(f"skin{i}", skin_c, rough=0.5); hair = mat(f"hair{i}", hair_c, rough=0.7)
+    polo = mat("uniform", rough=0.7); apron = mat("apron", rough=0.75); pants = mat("pants", rough=0.75); shoe = mat("shoe", rough=0.45)
     tag = mat("name tag", rough=0.5); white = mat("eye white", rough=0.2); dark = mat("pupil", rough=0.3); lip = mat("lip", rough=0.6)
     H = 1.65 * U * hs; s = H / 0.924
-    P = lambda ox, oy, oz: (L.x + ox * ws, L.y + oy, L.z + oz * s)
+    P = lambda ox, oy, oz: Vector((L.x + ox * ws, L.y + oy, L.z + oz * s))
+    # legs: hip -> knee -> ankle, joined at the knee (same radius, the capsule ends overlap), shoes
     for sg in (-1, 1):
-        box("shoe", P(sg * 0.055, -0.02, 0.02), (0.07 * ws, 0.14, 0.04 * s), shoe, bev=0.012, parent=root)
-        cyl("leg", P(sg * 0.055, 0, 0.24), 0.046 * ws, 0.4 * s, pants, parent=root)
-    box("hips", P(0, 0, 0.45), (0.27 * ws, 0.17, 0.11 * s), pants, bev=0.035, parent=root)
-    box("torso", P(0, 0, 0.64), (0.31 * ws, 0.19, 0.30 * s), polo, bev=0.045, parent=root)
+        hip = P(sg * 0.06, 0.0, 0.47); knee = P(sg * 0.06, -0.01, 0.26); ank = P(sg * 0.06, 0.0, 0.05)
+        capsule("thigh", hip, knee, 0.052 * ws, pants, parent=root); capsule("shin", knee, ank, 0.046 * ws, pants, parent=root, ra=0.05 * ws, rb=0.04 * ws)
+        capsule("shoe", P(sg * 0.06, 0.02, 0.028), P(sg * 0.06, -0.11, 0.028), 0.03, shoe, parent=root, ra=0.035, rb=0.028)
+    # hips and torso: one tapered capsule hips->chest, a wide flattened cap for the sloped shoulders
+    capsule("hips", P(0, 0, 0.44), P(0, 0, 0.56), 0.13 * ws, pants, parent=root, ra=0.125 * ws, rb=0.135 * ws).scale = (1.0, 0.68, 1.0)
+    t = capsule("torso", P(0, 0, 0.55), P(0, 0, 0.77), 0.15 * ws, polo, parent=root, ra=0.135 * ws, rb=0.155 * ws); t.scale = (1.0, 0.66, 1.0)
+    sh_ = sph("shoulders", P(0, 0, 0.77), 0.155 * ws, polo, scale=(1.0, 0.66, 0.5), parent=root)
+    box("apron", P(0, -0.104, 0.585), (0.2 * ws, 0.012, 0.3 * s), apron, bev=0.03, parent=root)
+    box("apron bib", P(0, -0.104, 0.75), (0.1 * ws, 0.012, 0.08 * s), apron, bev=0.02, parent=root)
     for sg in (-1, 1):
-        c = box("collar", P(sg * 0.045, -0.085, 0.775), (0.07 * ws, 0.02, 0.035 * s), polo, bev=0.005, parent=root); c.rotation_euler = (0, 0, sg * 0.4)
-    box("placket", P(0, -0.096, 0.73), (0.03 * ws, 0.004, 0.07 * s), polo, bev=0.002, parent=root)
-    box("apron", P(0, -0.102, 0.49), (0.23 * ws, 0.014, 0.38 * s), apron, bev=0.006, parent=root)
-    box("apron pocket", P(0, -0.11, 0.43), (0.16 * ws, 0.006, 0.09 * s), apron, bev=0.003, parent=root)
-    for sg in (-1, 1):
-        st = cyl("strap", P(sg * 0.06, -0.07, 0.73), 0.008, 0.16 * s, apron, parent=root); st.rotation_euler = (math.radians(-18), sg * 0.25, 0)
-    box("name tag", P(0.085, -0.104, 0.70), (0.05 * ws, 0.006, 0.02 * s), tag, bev=0.002, parent=root)
-    cyl("neck", P(0, 0, 0.805), 0.034 * ws, 0.06 * s, skin, parent=root)
-    sph("head", P(0, 0, 0.90), 0.095, skin, scale=(ws, 1.0, 1.08 * s), parent=root)
-    for sg in (-1, 1): sph("ear", P(sg * 0.094, 0.005, 0.895), 0.02, skin, scale=(0.5, 0.8, 1.0), parent=root)
-    sph("hair", P(0, 0.012, 0.93), 0.1, hair, scale=(1.03 * ws, 1.03, 0.78 * s), parent=root)
+        capsule("strap", P(sg * 0.04, -0.1, 0.78), P(sg * 0.09, 0.0, 0.8), 0.008, apron, parent=root)
+    box("name tag", P(0.08, -0.115, 0.70), (0.05 * ws, 0.005, 0.02 * s), tag, bev=0.002, parent=root)
+    # neck and head
+    capsule("neck", P(0, 0, 0.77), P(0, 0, 0.84), 0.034 * ws, skin, parent=root)
+    sph("head", P(0, 0, 0.905), 0.095, skin, scale=(ws, 0.98, 1.08 * s), parent=root)
+    for sg in (-1, 1): sph("ear", P(sg * 0.093, 0.0, 0.9), 0.02, skin, scale=(0.5, 0.8, 1.0), parent=root)
+    sph("hair cap", P(0, 0.012, 0.935), 0.1, hair, scale=(1.03 * ws, 1.03, 0.8 * s), parent=root)
     if style == "bob":
-        for sg in (-1, 1): box("hair side", P(sg * 0.088, 0.01, 0.86), (0.035, 0.14, 0.14 * s), hair, bev=0.014, parent=root)
-        box("fringe", P(0, -0.083, 0.965), (0.14 * ws, 0.035, 0.04 * s), hair, bev=0.012, parent=root)
+        for sg in (-1, 1): capsule("hair side", P(sg * 0.09, 0.01, 0.94), P(sg * 0.092, 0.015, 0.8), 0.028, hair, parent=root)
+        capsule("fringe", P(-0.07, -0.085, 0.965), P(0.07, -0.085, 0.965), 0.022, hair, parent=root)
     elif style == "bun":
-        sph("bun", P(0, 0.095, 0.95), 0.045, hair, parent=root)
-        box("fringe", P(0.03, -0.085, 0.97), (0.11 * ws, 0.03, 0.03 * s), hair, bev=0.01, parent=root)
+        sph("bun", P(0, 0.095, 0.955), 0.045, hair, parent=root)
+        capsule("fringe", P(-0.02, -0.088, 0.97), P(0.08, -0.08, 0.96), 0.018, hair, parent=root)
     else:
-        for sg in (-1, 1): box("sideburn", P(sg * 0.093, -0.03, 0.885), (0.012, 0.03, 0.05 * s), hair, bev=0.004, parent=root)
+        for sg in (-1, 1): capsule("sideburn", P(sg * 0.092, -0.03, 0.91), P(sg * 0.092, -0.03, 0.86), 0.01, hair, parent=root)
     for sg in (-1, 1):
-        sph("eye", P(sg * 0.036, -0.082, 0.905), 0.014, white, parent=root)
-        sph("pupil", P(sg * 0.036, -0.094, 0.905), 0.007, dark, parent=root)
-        b = box("brow", P(sg * 0.037, -0.088, 0.93), (0.034 * ws, 0.006, 0.007), hair, bev=0.002, parent=root); b.rotation_euler = (0, 0, sg * 0.12)
-    m = box("mouth", P(0, -0.091, 0.862), (0.032 * ws, 0.005, 0.006), lip, bev=0.002, parent=root); m.rotation_euler = (0.2, 0, 0)
+        sph("eye", P(sg * 0.036, -0.082, 0.91), 0.014, white, parent=root)
+        sph("pupil", P(sg * 0.036, -0.094, 0.91), 0.007, dark, parent=root)
+        capsule("brow", P(sg * 0.02, -0.088, 0.937), P(sg * 0.054, -0.086, 0.941), 0.004, hair, parent=root)
+    capsule("mouth", P(-0.016, -0.093, 0.865), P(0.016, -0.093, 0.865), 0.0035, lip, parent=root)
+    # arms: shoulder -> elbow -> wrist, joined at the elbow, bend only there; a mitten hand
     for sg in (-1, 1):
-        sh = Vector(P(sg * 0.175, 0, 0.745))
-        cyl("sleeve", (sh.x, sh.y, sh.z - 0.055 * s), 0.046 * ws, 0.13 * s, polo, parent=root)
-        up = cyl("upper arm", (sh.x + sg * 0.012, sh.y - 0.005, sh.z - 0.15 * s), 0.036 * ws, 0.2 * s, skin, parent=root); up.rotation_euler = (0.04, sg * 0.08, 0)
-        el = Vector((sh.x + sg * 0.025, sh.y - 0.012, sh.z - 0.25 * s)); sph("elbow", el, 0.036 * ws, skin, parent=root)
-        fo = cyl("forearm", (el.x + sg * 0.008, el.y - 0.03, el.z - 0.11 * s), 0.031 * ws, 0.2 * s, skin, parent=root); fo.rotation_euler = (0.28, sg * 0.04, 0)
-        wr = Vector((el.x + sg * 0.014, el.y - 0.062, el.z - 0.215 * s))
-        h = box("hand", (wr.x, wr.y - 0.01, wr.z - 0.045), (0.055 * ws, 0.028, 0.09), skin, bev=0.012, parent=root); h.rotation_euler = (0.25, 0, sg * 0.1)
-        t = cyl("thumb", (wr.x - sg * 0.03, wr.y - 0.015, wr.z - 0.03), 0.011, 0.045, skin, parent=root); t.rotation_euler = (0.3, sg * 0.5, 0)
+        sh = P(sg * 0.16, 0.0, 0.75); el = P(sg * 0.185, -0.03, 0.56); wr = P(sg * 0.17, -0.14, 0.45)
+        capsule("sleeve", sh, sh + (el - sh) * 0.42, 0.05 * ws, polo, parent=root, ra=0.052 * ws, rb=0.045 * ws)
+        capsule("upper arm", sh + (el - sh) * 0.3, el, 0.038 * ws, skin, parent=root)
+        capsule("forearm", el, wr, 0.038 * ws, skin, parent=root, ra=0.038 * ws, rb=0.032 * ws)
+        sph("mitten", wr + Vector((0, -0.02, -0.02)), 0.04 * ws, skin, scale=(0.8, 0.8, 1.1), parent=root)
     root.rotation_euler = (0, 0, yaw)
     return root
 
@@ -334,7 +362,8 @@ def kiosk(name, spot, counter_h=0.9 * U):
     body = mat("kiosk body", "#2E3136", rough=0.45); dark = mat("kiosk dark", "#1B1D21", rough=0.5)
     accent = mat("kiosk accent", "#C8643A", rough=0.5); ivory = mat("sign ivory", rough=0.5); navy = mat("sign navy", rough=0.5)
     scr = mat(f"kiosk screen {name}", "#DDEEFF", rough=0.08, emit=0.0)
-    scr.node_tree.nodes["Principled BSDF"].inputs["Emission Color"].default_value = (0.55, 0.78, 1.0, 1)
+    scr.node_tree.nodes["Principled BSDF"].inputs["Emission Color"].default_value = (0.12, 0.42, 1.0, 1)
+    scr.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.03, 0.1, 0.3, 1)
     H = counter_h * 1.3                                   # 0.655
     box("kiosk base", (spot.x, spot.y, 0.03), (0.4, 0.36, 0.06), dark, bev=0.006, parent=root)
     box("kiosk body", (spot.x, spot.y, H / 2 + 0.03), (0.32, 0.3, H - 0.06), body, bev=0.012, parent=root)
@@ -343,6 +372,8 @@ def kiosk(name, spot, counter_h=0.9 * U):
     zc = H + 0.17
     f = box("kiosk screen frame", (spot.x, spot.y - 0.04, zc), (0.34, 0.035, 0.3), dark, bev=0.006, parent=root); f.rotation_euler = (math.radians(18), 0, 0)
     s_ = box("kiosk screen", (spot.x, spot.y - 0.06, zc), (0.3, 0.006, 0.26), scr, bev=0.002, parent=root); s_.rotation_euler = (math.radians(18), 0, 0)
+    ui = box("kiosk ui button", (spot.x, spot.y - 0.064, zc - 0.03), (0.16, 0.003, 0.05), mat("kiosk ui", "#FFFFFF", rough=0.3, emit=0.0), bev=0.004, parent=root); ui.rotation_euler = (math.radians(18), 0, 0)
+    tt = text("kiosk ui text", "START", (spot.x, spot.y - 0.067, zc - 0.045), 0.03, (math.radians(72), 0, 0), navy, extrude=0.001, parent=root)
     box("kiosk screen neck", (spot.x, spot.y + 0.02, H + 0.03), (0.08, 0.08, 0.08), dark, bev=0.006, parent=root)
     # the lit sign on top
     cyl("kiosk sign post", (spot.x, spot.y + 0.06, H + 0.42), 0.01, 0.3, dark, parent=root)
@@ -450,7 +481,7 @@ def dressing():
     box("endcap sign", (-1.3, 0.72, 0.45), (0.3, 0.01, 0.12), ivory, bev=0.002)
     text("endcap text", "SALE", (-1.3, 0.712, 0.45), 0.08, (math.radians(90), 0, 0), mat("sale red", "#C6392B", rough=0.5), extrude=0.002)
     red = mat("basket red", rough=0.45); handle = mat("basket handle", "#2B2F36", rough=0.5)
-    bx, by = float(os.environ.get("FG_X", "-1.3")), float(os.environ.get("FG_Y", "-1.45"))
+    bx, by = float(os.environ.get("FG_X", "2.95")), float(os.environ.get("FG_Y", "-0.55"))   # right frame edge as he arrives, never over him
     for k in range(5):
         z = 0.05 + k * 0.055
         box("basket", (bx, by, z + 0.08), (0.42, 0.3, 0.16), red, bev=0.01)
@@ -461,6 +492,25 @@ def dressing():
     for s in (-1, 1):
         p = box("wet sign", (cx + s * 0.05, cy, 0.21), (0.01, 0.22, 0.42), yellow, bev=0.003); p.rotation_euler = (0, s * math.radians(14), 0)
     text("wet text", "WET\nFLOOR", (cx - 0.105, cy, 0.23), 0.052, (math.radians(90), 0, math.radians(-90)), ink, extrude=0.001)
+    # painted floor decal he walks along: SELF CHECKOUT with chevrons, matte paint in the near aisle (y = -0.55)
+    paint = mat("floor paint", "#1F3B63", rough=0.85); paint2 = mat("floor paint 2", "#C8643A", rough=0.85)
+    text("floor decal", "SELF CHECKOUT", (0.55, -0.62, 0.0015), 0.17, (0, 0, 0), paint, extrude=0.0005)
+    for k in range(5):
+        for sg in (-1, 1):
+            c = box("chevron", (1.75 + k * 0.33 + sg * 0.0, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0)
+            c.rotation_euler = (0, 0, sg * math.radians(40))
+    for k in range(3):
+        for sg in (-1, 1):
+            c = box("chevron", (-1.1 + k * 0.33, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0); c.rotation_euler = (0, 0, sg * math.radians(40))
+    # a low dump bin at the left frame edge for the first second, passing in the foreground
+    dx, dy = float(os.environ.get("BIN_X", "-0.95")), float(os.environ.get("BIN_Y", "-0.6"))
+    binm = mat("dump bin", "#3A3D42", rough=0.55); binr = mat("dump bin rim", "#C8643A", rough=0.5)
+    box("dump bin", (dx, dy, 0.2), (0.46, 0.46, 0.4), binm, bev=0.02)
+    box("dump bin rim", (dx, dy, 0.405), (0.48, 0.48, 0.02), binr, bev=0.006)
+    for k in range(9):
+        sph("bin ball", (dx + (k % 3 - 1) * 0.13, dy + (k // 3 - 1) * 0.13, 0.41 + (k % 2) * 0.03), 0.07, mat(f"ball{k % 4}", PRODUCTS[k % len(PRODUCTS)], rough=0.4))
+    box("bin sign", (dx, dy - 0.245, 0.3), (0.2, 0.006, 0.1), mat("sale red", rough=0.5), bev=0.003)
+    text("bin sign text", "2 FOR 1", (dx, dy - 0.25, 0.3), 0.05, (math.radians(90), 0, 0), mat("sign ivory"), extrude=0.001)
 
 
 def camera(loc, target, lens=30, fstop=8.0):
