@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "deepfake-video-explosion__4e4e2811_r1",
+  "slug": "deepfake-video-explosion",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "Humans Spot Deepfakes Only 55% Of The Time",
+  "hook": "Humans catch deepfakes only 55% of the time.",
+  "closing": "Seeing a video is no longer enough; verify before you trust or share it.",
+  "question": "Could you spot a deepfake?",
+  "segments": [
+    {
+      "topic": "Deepfake Video Count",
+      "say": "Online deepfake videos reached 95,820. The flood grew more than sixfold, overwhelming human review."
+    },
+    {
+      "topic": "Deepfake Detection Rate",
+      "say": "Humans detect deepfakes only 55% of the time. A convincing fake is barely easier to spot than chance."
+    },
+    {
+      "topic": "Deepfake Fraud Cost",
+      "say": "Deepfake-enabled fraud cost the US $12.3 billion. Synthetic video now carries a real financial price."
+    }
+  ]
+}
