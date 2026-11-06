@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "muscle-loss-after-30__51f127a7_r4",
+  "slug": "muscle-loss-after-30",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:18:19.582Z",
+  "title": "Your Muscle Can Shrink 35% Across Adulthood",
+  "hook": "Adults can lose 35% of their muscle mass.",
+  "closing": "Resistance training can reverse serious muscle loss, so starting sooner protects independence.",
+  "question": "How often do you strength train?",
+  "segments": [
+    {
+      "topic": "Muscle Mass Decline",
+      "say": "Muscle mass can fall 35% across adulthood. That loss can quietly reduce strength and independence."
+    },
+    {
+      "topic": "Muscle Loss Rate",
+      "say": "After 70, muscle loss reaches 18% per decade. Waiting makes the decline much harder to recover from."
+    },
+    {
+      "topic": "Muscle Training Recovery",
+      "say": "After training, clinical muscle loss fell to zero. Resistance work can reverse the condition, not just slow it."
+    }
+  ]
+}
