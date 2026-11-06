@@ -4988,11 +4988,39 @@
       "duration_s": 38.1
     },
     "homeschool-surge": {
-      "claimed_at": "2026-11-06T11:34:13.510678+00:00",
+      "url": "https://youtube.com/shorts/pxq9pSNwgSQ",
       "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
+      "at": "2026-11-06T11:34:22.887313+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 9.67,
+      "beat_s": [
+        3.99,
+        7.66,
+        9.67,
+        5.96,
+        7.16
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 83,
+      "duration_s": 34.9,
+      "hook": "inversion",
+      "topic_category": "society",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:empty-desk-swap",
+        "mechanic:concern-flag-row",
+        "mechanic:house-vs-school-growth"
+      ],
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -6398,9 +6426,10 @@
       "claimed_at": "2026-11-06T11:34:13.510678+00:00",
       "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "homeschool-surge"
+      "url": "https://youtube.com/shorts/pxq9pSNwgSQ",
+      "state": "posted",
+      "slug": "homeschool-surge",
+      "at": "2026-11-06T11:34:22.887313+00:00"
     }
   ]
 }
