@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__68c934c9_r3",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:18:19.582Z",
+  "title": "Early Peanut Eating Cut Allergy Risk 86%",
+  "hook": "Early peanut eating cut allergy risk 86%.",
+  "closing": "Medical advice should change when stronger evidence overturns the old rule.",
+  "question": "Would you introduce peanut early?",
+  "segments": [
+    {
+      "topic": "Peanut Allergy Rise",
+      "say": "Peanut allergy reached 1.4% of US children. Avoidance advice did not stop the increase."
+    },
+    {
+      "topic": "Peanut Eating Result",
+      "say": "Early peanut eating cut allergy risk 86%. The advice to avoid peanuts had the result backward."
+    },
+    {
+      "topic": "Peanut Allergy Drop",
+      "say": "Peanut diagnoses later fell 43% in young children. The guideline reversal is changing outcomes."
+    }
+  ]
+}
