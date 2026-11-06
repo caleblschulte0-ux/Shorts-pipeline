@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "antarctic-sea-ice-record-low__0e8066f9_r1",
+  "slug": "antarctic-sea-ice-record-low",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "Antarctic Sea Ice Fell 42% Below Its Old Average",
+  "hook": "Antarctic sea ice fell 42% below its old average.",
+  "closing": "Less reflective ice means more absorbed heat, reinforcing the warming everyone shares.",
+  "question": "Did Antarctica's drop surprise you?",
+  "segments": [
+    {
+      "topic": "Antarctic Ice Minimum",
+      "say": "Antarctic sea ice fell 42% below its old average. The frozen continent set a record low."
+    },
+    {
+      "topic": "Antarctic Ice Missing",
+      "say": "Antarctic sea ice was short by 1.3 million square kilometers. The missing area exceeded two huge states combined."
+    },
+    {
+      "topic": "Antarctic Ice Reflection",
+      "say": "Antarctic sea ice reflects 60% of sunlight. Replacing it with dark ocean means more heat stays behind."
+    }
+  ]
+}
