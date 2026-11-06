@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lego-minifigs-outnumber-humans__161409d0_r6",
+  "slug": "lego-minifigs-outnumber-humans",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "LEGO Made 10 Billion Minifigures—More Than Humanity",
+  "hook": "LEGO made 10 billion minifigures, more than the human population.",
+  "closing": "A toy population now outnumbers humanity, and it keeps growing faster.",
+  "question": "How many minifigures live with you?",
+  "segments": [
+    {
+      "topic": "LEGO Minifigures Total",
+      "say": "LEGO made 10 billion minifigures. The plastic population now exceeds the number of people alive."
+    },
+    {
+      "topic": "LEGO Minifigures Growth",
+      "say": "LEGO minifigures reached 8.3 billion by 2019. The toy population outgrew humanity within four decades."
+    },
+    {
+      "topic": "LEGO Minifigures Pace",
+      "say": "LEGO makes 400 million minifigures yearly. New figures arrive almost three times faster than babies."
+    }
+  ]
+}
