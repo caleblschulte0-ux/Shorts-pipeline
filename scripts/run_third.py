@@ -909,6 +909,54 @@ def _deadline_passed() -> bool:
 
 
 _SWEEP_CACHE: dict = {}
+_PROVEN_POOL: list | None = None
+
+
+def _proven_pool(clip_edit, spec: dict) -> list:
+    """Moments the internet already PROVED, from any streamer — ONCE a run.
+
+    Operator, 2026-11-05, after Baller Bro went from ~3 views a video to a
+    446 median on the week's most upvoted sports posts while this channel
+    sat at 9: "what are we not doing here?" The answer in the numbers:
+    Baller Bro gets ~90% of its views from the Shorts FEED, this channel
+    ~1% (404 of 30 days' views), because it posted each followed
+    streamer's own top clip of the day — what a fan clipped, not what
+    strangers loved. r/LivestreamFail's most upvoted clips are the
+    strangers' pick (the same thing Baller Bro starts from), and Twitch's
+    category charts are the most watched moments of the week from anyone.
+    Cached: Reddit's RSS answers once and refuses the second read."""
+    global _PROVEN_POOL
+    if _PROVEN_POOL is not None:
+        return list(_PROVEN_POOL)
+    out: list = []
+    try:
+        from funnel import hot_clips
+        hot: dict = {}
+        for period in ("week", "month"):     # the story arm's reads too
+            for h in hot_clips.livestreamfail(period):
+                hot.setdefault(h["slug"], h)
+        for c in clip_edit.helix_clips(list(hot)[:100]):
+            h = hot.get(c.get("slug")) or {}
+            c["internet"] = {"upvotes": h.get("upvotes", 0),
+                             "post_title": h.get("post_title", ""),
+                             "permalink": h.get("permalink", "")}
+            c["proven_by"] = "r/LivestreamFail"
+            out.append(c)
+        n_lsf = len(out)
+        have = {c["url"] for c in out}
+        for c in clip_edit.top_by_category(
+                spec.get("story_categories"),
+                days=2, top=int(spec.get("proven_category_n", 20))):
+            if c["url"] not in have:
+                c["proven_by"] = "Twitch category chart"
+                out.append(c)
+        print(f"[proven] {n_lsf} r/LivestreamFail clip(s) + "
+              f"{len(out) - n_lsf} category-chart clip(s)", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[proven] pool failed ({type(e).__name__}: {e})",
+              flush=True)
+    _PROVEN_POOL = out
+    return list(out)
 # Clips judged decent-but-not-great this run: {clip_key: content_score}.
 # NOT the blocklist — these are eligible again tomorrow, and eligible again
 # on this run's final attempt. Banning a 0.55 clip forever is how one thin
@@ -2860,6 +2908,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                           f"postable clip(s) (<{min_pool}) — widening",
                           flush=True)
                 cands = best
+                # THE INTERNET'S PICKS JOIN THE POOL, any streamer
+                # (`_proven_pool`). Same never-repeat and variety rules; no
+                # view floor (a clip strangers upvoted has proved more than
+                # a view count can).
+                if spec.get("proven_pool", True):
+                    _have = {c["url"] for c in cands}
+                    for c in _proven_pool(clip_edit, spec):
+                        if (c["url"] not in _have
+                                and _clip_key(c["url"]) not in posted_keys
+                                and streamer_counts[c["channel"]]
+                                < per_streamer
+                                and not _same_event(c["title"])):
+                            cands.append(c)
+                            _have.add(c["url"])
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
@@ -2919,20 +2981,28 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 non_core = float(spec.get("non_core_penalty", 0.75))
                 age_probe = int(spec.get("age_probe", 20))
 
-                def _fit(ch):
+                # a moment the internet upvoted goes ahead of one a fan
+                # clipped: the feed rewards what strangers already loved
+                proven_boost = float(spec.get("proven_boost", 4.0))
+
+                def _fit(ch, c=None):
+                    if c is not None and c.get("proven_by"):
+                        return (proven_boost
+                                if c["proven_by"] == "r/LivestreamFail"
+                                else 1.0)
                     return 1.0 if not core or ch in core else non_core
                 for c in cands[:age_probe]:
                     # helix candidates carry exact age; yt-dlp ones probe
                     age = c.get("age_h") or clip_edit.fetch_age_hours(c["url"])
                     c["vph"] = c["views"] / max(age, 0.5) if age else \
                         c["views"] / 24.0
-                    c["score"] = c["vph"] * _fit(c["channel"])
+                    c["score"] = c["vph"] * _fit(c["channel"], c)
                 # candidates past the probe window keep a raw-view proxy (age
                 # unknown -> assume ~24h) so a thin day can still surface them,
                 # but a measured fast-climber always outranks the proxy.
                 for c in cands[age_probe:]:
                     c["vph"] = c["views"] / 24.0
-                    c["score"] = c["vph"] * _fit(c["channel"])
+                    c["score"] = c["vph"] * _fit(c["channel"], c)
                 cands.sort(key=lambda c: -c["score"])
                 shortlist = cands[:8]
                 # BANGER PRE-SCORER (playbook §banger): velocity says a clip

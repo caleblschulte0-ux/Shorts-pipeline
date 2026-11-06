@@ -381,12 +381,15 @@ def test_livestreamfail_yields_twitch_clips_best_first():
         {"data": {"url": "https://youtube.com/watch?v=1", "ups": 9999}},
         {"data": {"url": "https://clips.twitch.tv/Nsfw-x", "ups": 7000,
                   "over_18": True}}]}}
+    hot_clips._LSF_CACHE.clear()    # one read per run is remembered
     with mock.patch.object(hot_clips, "_listing", return_value=listing):
         got = hot_clips.livestreamfail()
+    hot_clips._LSF_CACHE.clear()
     assert [g["slug"] for g in got] == ["SlugTwo-def", "SlugOne-abc"]
     assert got[0]["post_title"] == "Kai's mom walks in"
     with mock.patch.object(hot_clips, "_listing", return_value=None):
         assert hot_clips.livestreamfail() == []
+    hot_clips._LSF_CACHE.clear()
 
 
 
@@ -507,6 +510,7 @@ def test_reddit_refusing_the_api_still_reaches_the_posts():
     with mock.patch.object(hot_clips, "_get", return_value=None), \
             mock.patch.object(hot_clips, "_pullpush", return_value=pp), \
             mock.patch.object(hot_clips, "_rss") as rss:
+        hot_clips._LSF_CACHE.clear()
         got = hot_clips.livestreamfail()
     assert got[0]["slug"] == "HotClip-1" and got[0]["upvotes"] == 70
     rss.assert_not_called()
