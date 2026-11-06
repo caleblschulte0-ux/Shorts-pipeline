@@ -1,0 +1,13 @@
+{
+  "schema": "chatgpt-media-started/v1",
+  "date": "20261106",
+  "bundle": {
+    "identity": "55e3e47f11d8c4397edb22a8ddbae0c15e1e9582bdef3bd1d5ed1779253f5e1a",
+    "path": "exchange/bundles/20261106/bundle.json"
+  },
+  "worker": "chatgpt-takeover-director",
+  "status": "started",
+  "started_at": "2026-11-06T12:15:49.761Z",
+  "requests_total": 0,
+  "note": "Fresh bundle read from main; verified checkpoints and existing closure artifacts will be reused."
+}
