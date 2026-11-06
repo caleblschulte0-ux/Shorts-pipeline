@@ -9,7 +9,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import bpy
 from mathutils import Vector
-import scene_kit as K, acts, style
+import scene_kit as K, acts
+if K.DS: import style_DS as style   # LOOK=DS: the design-studio preset (set dressing switched in scene_kit)
+else: import style
 from acts import F, FPS, ease, ease_out, ease_in, ease_out_back, lerp
 
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/checkout"
