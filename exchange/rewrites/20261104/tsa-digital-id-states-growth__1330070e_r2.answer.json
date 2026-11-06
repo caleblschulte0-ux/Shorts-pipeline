@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "tsa-digital-id-states-growth__1330070e_r2",
+  "slug": "tsa-digital-id-states-growth",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "Digital IDs Reached 250 Checkpoints While Most States Lagged",
+  "hook": "Digital IDs reached 250 airport checkpoints, but most states still lag.",
+  "closing": "Your phone is replacing airport plastic slowly, so carry both for now.",
+  "question": "Have you tried a digital ID?",
+  "segments": [
+    {
+      "topic": "Digital ID States",
+      "say": "Digital ID acceptance reached 20 states. The rollout nearly doubled, but still misses most of the country."
+    },
+    {
+      "topic": "Digital ID Checkpoints",
+      "say": "Digital IDs reached 250 checkpoints. Airport acceptance expanded almost tenfold in one year."
+    },
+    {
+      "topic": "Digital ID Coverage",
+      "say": "Only 20 states accept digital IDs. Most travelers still cannot rely on a phone alone."
+    }
+  ]
+}
