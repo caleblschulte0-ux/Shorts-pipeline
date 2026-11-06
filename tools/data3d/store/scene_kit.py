@@ -470,7 +470,7 @@ def contact_shadow(name, loc, rx, ry, parent=None, alpha=0.7):
 
 
 def dressing():
-    """floor mat, end-cap pallet with a SALE sign, a basket stack and a WET FLOOR sign in the foreground"""
+    """floor mat, end-cap pallet with a SALE sign, the floor decal and a dump bin at the left edge (nothing in the foreground may ever cross him or the cart)"""
     box("floor mat", (-1.25, -0.05, 0.004), (0.95, 0.6, 0.008), mat("mat rubber", rough=0.9), bev=0.004)
     box("mat edge", (-1.25, -0.05, 0.0035), (1.0, 0.65, 0.006), mat("mat edge", "#55585E", rough=0.9), bev=0.003)
     ivory = mat("sign ivory"); pal = ["#C6392B", "#E0A62A", "#2F6FB0", "#3F8F5A"]
@@ -480,18 +480,7 @@ def dressing():
             box("endcap box", (-1.5 + c * 0.19, 0.95, 0.06 + 0.09 + r * 0.19), (0.17, 0.3, 0.18), mat(f"endcap {r}{c}", pal[(r + c) % 4], rough=0.55), bev=0.003)
     box("endcap sign", (-1.3, 0.72, 0.45), (0.3, 0.01, 0.12), ivory, bev=0.002)
     text("endcap text", "SALE", (-1.3, 0.712, 0.45), 0.08, (math.radians(90), 0, 0), mat("sale red", "#C6392B", rough=0.5), extrude=0.002)
-    red = mat("basket red", rough=0.45); handle = mat("basket handle", "#2B2F36", rough=0.5)
-    bx, by = float(os.environ.get("FG_X", "3.38")), float(os.environ.get("FG_Y", "-0.5"))   # peeks at the right frame edge as he arrives, never over him or the cart
-    for k in range(5):
-        z = 0.05 + k * 0.055
-        box("basket", (bx, by, z + 0.08), (0.42, 0.3, 0.16), red, bev=0.01)
-        box("basket rim", (bx, by, z + 0.165), (0.44, 0.32, 0.012), red, bev=0.004)
-        cyl("basket handle", (bx, by, z + 0.17), 0.008, 0.36, handle, rot=(0, math.radians(90), 0), v=12, bev=0)
-    yellow = mat("cone yellow", rough=0.4); ink = mat("wet ink", "#1A1A1A", rough=0.5)
-    cx, cy = float(os.environ.get("CONE_X", "3.35")), float(os.environ.get("CONE_Y", "-0.8"))   # past the end of his walk, never in front of him
-    for s in (-1, 1):
-        p = box("wet sign", (cx + s * 0.05, cy, 0.21), (0.01, 0.22, 0.42), yellow, bev=0.003); p.rotation_euler = (0, s * math.radians(14), 0)
-    text("wet text", "WET\nFLOOR", (cx - 0.105, cy, 0.23), 0.052, (math.radians(90), 0, math.radians(-90)), ink, extrude=0.001)
+    # (the foreground basket stack is GONE: it crossed the cart for two and a half seconds; no prop may ever cover him or the cart)
     # painted floor decal he walks along: SELF CHECKOUT with chevrons, matte paint in the near aisle (y = -0.55)
     paint = mat("floor paint", "#1F3B63", rough=0.85); paint2 = mat("floor paint 2", "#C8643A", rough=0.85)
     text("floor decal", "SELF CHECKOUT", (0.55, -0.62, 0.0015), 0.17, (0, 0, 0), paint, extrude=0.0005)
