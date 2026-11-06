@@ -39,15 +39,26 @@ def restyle():
     if m:
         nt, b = _nodes(m)
         if b:
-            b.inputs["Roughness"].default_value = 0.3; b.inputs["Specular IOR Level"].default_value = 0.5
+            b.inputs["Roughness"].default_value = 0.18; b.inputs["Specular IOR Level"].default_value = 0.6; b.inputs["Coat Weight"].default_value = 0.35; b.inputs["Coat Roughness"].default_value = 0.12   # polished vinyl: the ceiling lights lie in it
             spk = _tex_noise(nt, 90, 3, 0.6); tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], spk.inputs["Vector"])
             sharp = _ramp(nt, spk.outputs["Fac"], -1.2, 2.2)      # noise Fac sits near 0.5: stretch it so the speckle shows
             cl = nt.nodes.new("ShaderNodeClamp"); nt.links.new(sharp, cl.inputs["Value"])
             _mix_col(nt, b, cl.outputs["Result"], (0.42, 0.41, 0.4, 1), 0.45)
             scuff = _tex_noise(nt, 0.6, 3, 0.7); nt.links.new(tc.outputs["Object"], scuff.inputs["Vector"])
-            rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.18; rr.inputs[2].default_value = 0.22
+            rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.2; rr.inputs[2].default_value = 0.1
             nt.links.new(scuff.outputs["Fac"], rr.inputs[0]); nt.links.new(rr.outputs[0], b.inputs["Roughness"])
-            _bump(nt, b, spk.outputs["Fac"], 0.04, 0.0005)
+            # grout is recessed: the brick node's Fac is 1 in the mortar; invert it into a bump with the speckle on top
+            brk = next((n for n in nt.nodes if n.type == 'TEX_BRICK'), None)
+            if brk is not None:
+                inv = nt.nodes.new("ShaderNodeMath"); inv.operation = 'MULTIPLY_ADD'; inv.inputs[1].default_value = -1.0; inv.inputs[2].default_value = 1.0
+                nt.links.new(brk.outputs["Fac"], inv.inputs[0])
+                ad = nt.nodes.new("ShaderNodeMath"); ad.operation = 'MULTIPLY_ADD'; ad.inputs[1].default_value = 0.08
+                nt.links.new(spk.outputs["Fac"], ad.inputs[0]); nt.links.new(inv.outputs[0], ad.inputs[2])
+                _bump(nt, b, ad.outputs[0], 0.5, 0.004)
+                # the mortar is matt
+                mr = nt.nodes.new("ShaderNodeMath"); mr.operation = 'MULTIPLY_ADD'; mr.inputs[1].default_value = 0.6
+                nt.links.new(brk.outputs["Fac"], mr.inputs[0]); nt.links.new(rr.outputs[0], mr.inputs[2]); nt.links.new(mr.outputs[0], b.inputs["Roughness"])
+            else: _bump(nt, b, spk.outputs["Fac"], 0.04, 0.0005)
     for name in ("counter", "laminate", "counter edge"):
         m = _get(name)
         if m:
@@ -56,7 +67,19 @@ def restyle():
                 b.inputs["Roughness"].default_value = 0.38
                 g = _tex_noise(nt, 18, 6, 0.8); g2 = nt.nodes.new("ShaderNodeMapping"); 
                 _mix_col(nt, b, g.outputs["Fac"], (0.6, 0.55, 0.48, 1), 0.12); _bump(nt, b, g.outputs["Fac"], 0.03, 0.0004)
-    for name in ("cart metal", "belt rail", "rail", "pole", "basket metal"):
+    for name in ("shelf", "plank", "rack", "rack shelf", "aisle shelf", "kiosk body", "register", "counter edge", "light frame"):
+        m = _get(name)
+        if m:
+            nt, b = _nodes(m)
+            if b:
+                b.inputs["Roughness"].default_value = 0.42; b.inputs["Specular IOR Level"].default_value = 0.5
+                geo = nt.nodes.new("ShaderNodeNewGeometry"); pt = _ramp(nt, geo.outputs["Pointiness"], 0.0, 1.0)
+                mr = nt.nodes.new("ShaderNodeMapRange"); mr.inputs["From Min"].default_value = 0.52; mr.inputs["From Max"].default_value = 0.6; nt.links.new(geo.outputs["Pointiness"], mr.inputs["Value"])
+                _mix_col(nt, b, mr.outputs["Result"], (0.75, 0.75, 0.75, 1), 0.35)        # edges catch the light: paint worn to the primer
+                n = _tex_noise(nt, 60, 3, 0.6); rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.2; rr.inputs[2].default_value = 0.32
+                nt.links.new(n.outputs["Fac"], rr.inputs[0]); nt.links.new(rr.outputs[0], b.inputs["Roughness"])
+                _bump(nt, b, n.outputs["Fac"], 0.02, 0.0003)
+    for name in ("cart metal", "belt rail", "rail", "pole", "basket metal", "hub"):
         m = _get(name)
         if m:
             nt, b = _nodes(m)
@@ -69,7 +92,13 @@ def restyle():
     m = _get("belt")
     if m:
         nt, b = _nodes(m)
-        if b: b.inputs["Roughness"].default_value = 0.72; b.inputs["Base Color"].default_value = (0.05, 0.05, 0.055, 1)
+        if b:
+            b.inputs["Roughness"].default_value = 0.62; b.inputs["Base Color"].default_value = (0.05, 0.05, 0.055, 1)
+            wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = 'BANDS'; wv.bands_direction = 'Y'; wv.inputs["Scale"].default_value = 160; wv.inputs["Distortion"].default_value = 0.3
+            tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], wv.inputs["Vector"])
+            _bump(nt, b, wv.outputs["Fac"], 0.25, 0.001)   # the ribs across a checkout belt
+            n = _tex_noise(nt, 50, 3, 0.6); rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.2; rr.inputs[2].default_value = 0.52
+            nt.links.new(n.outputs["Fac"], rr.inputs[0]); nt.links.new(rr.outputs[0], b.inputs["Roughness"])
     for m in bpy.data.materials:
         if m.name == "reg screen" or m.name.startswith("kiosk screen"):
             nt, b = _nodes(m)
@@ -82,6 +111,19 @@ def restyle():
             nt, b = _nodes(m)
             if b:
                 b.inputs["Roughness"].default_value = 0.85; n = _tex_noise(nt, 120, 3, 0.6); _bump(nt, b, n.outputs["Fac"], 0.1, 0.001)
+    for name in ("uniform", "apron", "pants", "lanyard"):
+        m = _get(name)
+        if m:
+            nt, b = _nodes(m)
+            if b:
+                b.inputs["Roughness"].default_value = 0.85; b.inputs["Sheen Weight"].default_value = 0.4; b.inputs["Sheen Roughness"].default_value = 0.5; b.inputs["Specular IOR Level"].default_value = 0.2
+                wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = 'BANDS'; wv.inputs["Scale"].default_value = 900; wv.inputs["Distortion"].default_value = 1.5
+                tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], wv.inputs["Vector"])
+                _bump(nt, b, wv.outputs["Fac"], 0.06, 0.0002)   # a weave
+    m = _get("counter")
+    if m:   # laminate with a faint speckle and a satin
+        nt, b = _nodes(m)
+        if b: b.inputs["Coat Weight"].default_value = 0.3; b.inputs["Coat Roughness"].default_value = 0.25
     m = _get("wall")
     if m:
         nt, b = _nodes(m)
@@ -140,7 +182,9 @@ def lights(sc, data_follow=None):
     key = area("hero key", (0, -1, 1), 0.9, 22, (1.0, 0.93, 0.85), aim=(0, 0, 0.6))
     w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
     bg = w.node_tree.nodes.get("Background")
-    if bg: bg.inputs["Color"].default_value = (0.6, 0.65, 0.75, 1); bg.inputs["Strength"].default_value = 0.05
+    if bg:
+        sky = w.node_tree.nodes.new("ShaderNodeTexSky"); sky.sky_type = 'SINGLE_SCATTERING'; sky.sun_elevation = math.radians(42); sky.sun_rotation = math.radians(200); sky.sun_intensity = 0.0; sky.altitude = 50
+        w.node_tree.links.new(sky.outputs["Color"], bg.inputs["Color"]); bg.inputs["Strength"].default_value = 0.02   # the open shopfront lets a little sky in; the sun itself is the SUN lamp
     return key
 
 
@@ -162,6 +206,6 @@ def render_settings(sc, spp=24, pct=60, out=None):
     sc.render.use_motion_blur = True; sc.render.motion_blur_shutter = 0.5
     sc.render.resolution_x = 1080; sc.render.resolution_y = 1920; sc.render.resolution_percentage = pct; sc.render.fps = 24
     sc.render.film_transparent = False
-    sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'AgX - Medium High Contrast'; sc.view_settings.exposure = -1.3
+    sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'AgX - Medium High Contrast'; sc.view_settings.exposure = float(os.environ.get('EXPOSURE', '-0.4'))
     sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGB'
     if out: sc.render.filepath = out
