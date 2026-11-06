@@ -5072,6 +5072,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 27.7
+    },
+    "antarctica-tourist-boom": {
+      "claimed_at": "2026-11-06T18:33:56.981552+00:00",
+      "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
+      "publish_at": "2026-11-07T04:57:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6499,6 +6506,14 @@
       "state": "posted",
       "slug": "measles-comeback-since-2000",
       "at": "2026-11-06T17:32:00.226493+00:00"
+    },
+    {
+      "claimed_at": "2026-11-06T18:33:56.981552+00:00",
+      "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
+      "publish_at": "2026-11-07T04:57:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "antarctica-tourist-boom"
     }
   ]
 }
