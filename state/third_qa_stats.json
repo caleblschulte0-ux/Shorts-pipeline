@@ -1,254 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261029",
-      "dry_run": false,
-      "ts": "2026-10-29T18:33:25+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 127,
-        "with_curve": 15,
-        "fetched_at": "2026-10-29T15:25:49.746779+00:00"
-      },
-      "brain": {
-        "ok": 8,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:sypherpk": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261029-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261029-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261029-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261029-4",
-          "ok": true,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 131,
-                "refused_shown": 9,
-                "scouted": [],
-                "vod_arcs": 326,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 2924,
-                "pool_with_vod": 2028,
-                "arc_sizes": [
-                  2,
-                  6,
-                  6,
-                  6,
-                  2,
-                  2,
-                  2,
-                  4,
-                  5,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
-                  "outcome": "already_refused",
-                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p/poki",
-                  "outcome": "structure_failed",
-                  "why": "trails 28s past the picked moment"
-                },
-                {
-                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
-                  "outcome": "already_refused",
-                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
-                },
-                {
-                  "cluster": "gilticus@momentbombasticpeppyclamstinkycheese-ighll2zb2u7cdc",
-                  "outcome": "already_refused",
-                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
-                  "outcome": "already_refused",
-                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "joebartolozzi@momentadventuroussmellyciderresidentsleeper-7g",
-                  "outcome": "already_refused",
-                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
-                  "outcome": "already_refused",
-                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
-                },
-                {
-                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: extended clip failed its checks: the picture stands still for 2s at 0s"
-                },
-                {
-                  "cluster": "helydia@momentrockyfunnyllamahassanchop-3iorkuk2_r5rs0up",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: director judged: not a story \u2014 All three sources are silent. There is no dialogue, no argument, no challenge and no reaction. The clip and the footage around it"
-                },
-                {
-                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "hellokiko@momenttenderspikysparrowpastathat-9dx229vfizuvhcyf",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@momentthirstytriangularorangepanicvis-omlzvyeiz_foi",
-                  "outcome": "structure_ok",
-                  "why": "kept"
-                }
-              ]
-            }
-          },
-          "took_s": 3818.6
-        },
-        {
-          "slug": "clip-20261029-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261029-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "Speed reaction, football, likely funny",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Ballon d'Or crowd, Speed reacting, uncle",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ishowspeed Can't Believe Harry Maguire Just Did This"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.68,
-              "problems": [
-                "The picture is a stacked split-screen. It has a streamer facecam on top and a small stream-in-stream event feed below, s",
-                "Captions sit in the blurred padding, below the sharp picture, and don't cover any faces or the main action.",
-                "The sharp region fills roughly 60-65% of the canvas, which is a bit below the ideal three quarters.",
-                "The 8.3s frame looks slightly misaligned or shifted, a minor glitch."
-              ]
-            }
-          },
-          "took_s": 114.5
-        },
-        {
-          "slug": "clip-20261029-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261030",
       "dry_run": false,
       "ts": "2026-10-30T12:48:05+00:00",
@@ -6576,6 +6328,241 @@
             }
           },
           "took_s": 234.3
+        }
+      ]
+    },
+    {
+      "date": "20261106",
+      "dry_run": false,
+      "ts": "2026-11-06T13:59:07+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 148,
+        "with_retention": 128,
+        "with_curve": 15,
+        "fetched_at": "2026-11-06T08:46:25.601244+00:00"
+      },
+      "brain": {
+        "ok": 14,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261106-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261106-2",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 137,
+                "refused_shown": 7,
+                "scouted": [],
+                "vod_arcs": 325,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2945,
+                "pool_with_vod": 2039,
+                "arc_sizes": [
+                  2,
+                  2,
+                  2,
+                  6,
+                  6,
+                  2,
+                  3,
+                  2,
+                  3,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "ravshann@momentunusualshinycheetahgrammarking-qtynhkvanr5hmj",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "shishki@momentcrepuscularhorribletrayopieop-1a-6zc84kuyynvke",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is a streamer rating the Fate/stay night route he just finished. He says the second route is interesting, comments on the time-travel idea in the ending, and says he wants to know more. Nothi"
+                },
+                {
+                  "cluster": "pokimane@momentfaintbrainydonutvotenay-yqjuck9sq4d4zcc1",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.3s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "@momentdelightfuldirtylaptopdoublerainbow-s4seaynhnpzsh4ka",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@momentcleanstronglardwow-ijljc8q0mjowps0r/kaicenat-",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "kaicenat@momentcleanstronglardwow-ijljc8q0mjowps0r/kaicenat-",
+                  "outcome": "qa_failed",
+                  "why": "vision: In the 1.6s\u201311.3s and 33.8s\u201337.0s frames the sharp picture is a thin strip, about 30% of the canvas, and Kai is tiny and; vision: Th"
+                },
+                {
+                  "cluster": "emjayplayss@momentrelentlessblazingpistachioarsonnosexy-vais",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 2493.7
+        },
+        {
+          "slug": "clip-20261106-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261106-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "cute wolfdog, stranger-friendly",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Wolfdog visible, mild, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Maya Explains Why Wolf Dogs Like Roxy Can Never Be Real Pets"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The woman is cropped at the right edge in some frames, though she is still clear.",
+                "The wolf dog is sometimes cut off at the left edge, though it stays visible.",
+                "The word captions sit over her torso rather than her face, and the hook card stays up the whole time. Neither blocks the"
+              ]
+            }
+          },
+          "took_s": 526.5
+        },
+        {
+          "slug": "clip-20261106-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261106-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "speedrun record, niche, funny Mario impr",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Speedrun world record, real celebration",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Niftski Hits 454.2 After Saying He's Not Even Nervous"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Mario is small in some frames, e.g. the underwater section",
+                "The crop cuts off the left edge of the game HUD (\"750\", \"ORLD\")",
+                "The hook caption overlaps the piranha plant and fireball area at about 18.8s",
+                "A word caption at about 3.8s is split and partly hidden (\"I get last ... nervous\")"
+              ]
+            }
+          },
+          "took_s": 198.9
         }
       ]
     }

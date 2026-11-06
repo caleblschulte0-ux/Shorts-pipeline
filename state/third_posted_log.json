@@ -18453,14 +18453,32 @@
       "director_cut": true
     },
     "clip-20261106-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/niftski/clip/BraveRepleteMageKappaPride-ftXXncNPxg4rT6AP",
-      "story_key": null,
-      "streamer": "niftski",
+      "url": "https://youtube.com/shorts/3_mNJy6uMSk",
       "title": "Niftski Hits 454.2 After Saying He's Not Even Nervous",
       "kind": "twitch_clip",
-      "ts": "2026-11-06T13:59:01.129059+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-06T13:59:07.466846+00:00",
+      "uploaded_at": "2026-11-06T13:59:07.466861+00:00",
+      "publish_at": "2026-11-07T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261106-niftski-hits-454-2-after-saying-he-s-not-even-ne-80aa91a6",
+        "tiktok": "queued for 2026-11-07T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/niftski/clip/BraveRepleteMageKappaPride-ftXXncNPxg4rT6AP",
+      "streamer": "niftski",
+      "series": "win",
+      "hook": "Niftski goes for world record pace",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 13019,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
