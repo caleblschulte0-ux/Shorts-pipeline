@@ -2391,5 +2391,485 @@
       ],
       "music_vibe": "cinematic"
     }
+  },
+  "20260807": {
+    "01_graph-nvidia-apple-trillion-crown.json": {
+      "format": "graph_race",
+      "slug": "graph-nvidia-apple-trillion-crown",
+      "title": "Who's Actually Worth More: Nvidia or Apple?",
+      "hook": "The crown keeps changing hands.",
+      "y_label": "Market capitalization (USD)",
+      "duration": 13,
+      "source": "Sources: public market-capitalization data reported by CNBC, Forbes and companiesmarketcap.com; year-end snapshots 2019-2025, 2026 figure as of early August 2026.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Apple",
+          "color": "#a2aaad",
+          "icon": "Apple",
+          "values": [
+            1300000000000,
+            2300000000000,
+            2900000000000,
+            2070000000000,
+            3000000000000,
+            3800000000000,
+            4200000000000,
+            4700000000000
+          ]
+        },
+        {
+          "name": "Nvidia",
+          "color": "#76b900",
+          "icon": "Nvidia",
+          "values": [
+            144000000000,
+            323000000000,
+            735000000000,
+            360000000000,
+            1220000000000,
+            3400000000000,
+            4500000000000,
+            5300000000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "nvidia",
+        "apple",
+        "stockmarket",
+        "bigtech",
+        "aiboom",
+        "wallstreet",
+        "techwars",
+        "marketcap",
+        "trilliondollar",
+        "siliconvalley",
+        "chips",
+        "iphone",
+        "investing",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-spacex-vs-rest-of-world-launches.json": {
+      "format": "graph_race",
+      "slug": "graph-spacex-vs-rest-of-world-launches",
+      "title": "SpaceX Now Out-Launches the Entire Planet",
+      "hook": "One company beat the world.",
+      "y_label": "Orbital launches per year",
+      "duration": 13,
+      "source": "Sources: annual orbital launch-attempt tallies reported by SpaceNews and Jonathan McDowell's Space Launch Report; SpaceX Falcon 9/Heavy missions vs. every other provider worldwide combined, 2019-2025.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Rest of World",
+          "color": "#999999",
+          "icon": "",
+          "values": [
+            89,
+            88,
+            115,
+            125,
+            127,
+            125,
+            164
+          ]
+        },
+        {
+          "name": "SpaceX",
+          "color": "#005288",
+          "icon": "SpaceX",
+          "values": [
+            13,
+            26,
+            31,
+            61,
+            96,
+            134,
+            165
+          ]
+        }
+      ],
+      "hashtags": [
+        "spacex",
+        "rocketlaunch",
+        "elonmusk",
+        "nasa",
+        "falcon9",
+        "spacerace",
+        "rocketscience",
+        "aerospace",
+        "china",
+        "spaceindustry",
+        "satellites",
+        "space",
+        "shorts",
+        "trending",
+        "launch"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-bitcoin-vs-gold-price.json": {
+      "format": "graph_race",
+      "slug": "graph-bitcoin-vs-gold-price",
+      "title": "Bitcoin vs. Gold: Which One Actually Wins?",
+      "hook": "One of these keeps crashing.",
+      "y_label": "Price per unit (USD)",
+      "duration": 13,
+      "source": "Sources: year-end closing prices \u2014 Bitcoin (BTC-USD via Yahoo Finance); gold (troy ounce spot via goldprice.org / tradingeconomics.com); 2026 figures as of early August.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Gold (1 oz)",
+          "color": "#d4af37",
+          "icon": "",
+          "values": [
+            1517,
+            1895,
+            1828,
+            1824,
+            2063,
+            2624,
+            4100,
+            4255
+          ]
+        },
+        {
+          "name": "Bitcoin (1 BTC)",
+          "color": "#f7931a",
+          "icon": "Bitcoin",
+          "values": [
+            7200,
+            29000,
+            46266,
+            16536,
+            42233,
+            106000,
+            87000,
+            62000
+          ]
+        }
+      ],
+      "hashtags": [
+        "bitcoin",
+        "gold",
+        "crypto",
+        "btc",
+        "investing",
+        "storeofvalue",
+        "cryptocurrency",
+        "preciousmetals",
+        "stockmarket",
+        "wallstreet",
+        "digitalgold",
+        "finance",
+        "shorts",
+        "trending",
+        "money"
+      ],
+      "music_vibe": "dark"
+    },
+    "04_graph-sports-betting-vs-vegas-strip.json": {
+      "format": "graph_race",
+      "slug": "graph-sports-betting-vs-vegas-strip",
+      "title": "Sports Betting Just Beat the Las Vegas Strip",
+      "hook": "Vegas didn't see this coming.",
+      "y_label": "Annual gaming revenue (USD)",
+      "duration": 13,
+      "source": "Sources: American Gaming Association Commercial Gaming Revenue Tracker (nationwide sports-betting revenue) and Nevada Gaming Control Board / UNLV Center for Gaming Research (Las Vegas Strip gaming win), 2019-2024.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Las Vegas Strip",
+          "color": "#e74c3c",
+          "icon": "",
+          "values": [
+            6600000000,
+            6500000000,
+            7100000000,
+            8300000000,
+            8900000000,
+            7670000000
+          ]
+        },
+        {
+          "name": "Sports Betting (US)",
+          "color": "#2ecc71",
+          "icon": "",
+          "values": [
+            1100000000,
+            1500000000,
+            4300000000,
+            7500000000,
+            10920000000,
+            13710000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "sportsbetting",
+        "lasvegas",
+        "gambling",
+        "vegas",
+        "draftkings",
+        "fanduel",
+        "casino",
+        "nevada",
+        "moneymoves",
+        "bettingapps",
+        "sportsbook",
+        "money",
+        "shorts",
+        "trending",
+        "sports"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "05_reddit-entitled-parent-starting-lineup.json": {
+      "subreddit": "entitledparents",
+      "slug": "reddit-entitled-parent-starting-lineup",
+      "title": "She Wanted Her Son Starting Every Game. I Read Her The Rule.",
+      "hashtags": [
+        "entitledparents",
+        "maliciouscompliance",
+        "youthsports",
+        "soccer",
+        "coachlife",
+        "karma",
+        "recleague",
+        "pettyrevenge",
+        "reddit",
+        "storytime",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "script": "She cornered me at halftime, arms crossed, demanding her son start every single game because they paid the same registration fee as everyone else. I run the rec league schedule, so I pulled up the bylaw on my phone and read it out loud: guaranteed EQUAL PLAYING TIME, not equal starts. She said fine, make him a starter then. So the next game, I did exactly that. Her son started. Ninety seconds later, right on the rotation clock, I subbed him out like every other kid on the roster. He started the next five games too, for ninety seconds each, technically undefeated as a starter. She showed up furious, waving the same rule she'd quoted at me. I handed her the printed schedule with her own words highlighted in yellow. By the final game, the other parents were timing his starts on their phones and cheering when the whistle blew. Her son quietly asked to just play normal minutes like everybody else.",
+      "shots": [
+        {
+          "phrase": "cornered me at halftime",
+          "query": "youth soccer sideline",
+          "image_url": "https://live.staticflickr.com/3763/10586043946_f159539418_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "pulled up the bylaw on my phone",
+          "query": "phone reading document",
+          "pin_query": "bylaw",
+          "pin_context": "youth sports rules",
+          "news_query": "bylaw",
+          "news_angle": "The narrator reads the bylaw to the mother regarding equal playing time.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Sign_in_a_car_park_in_Ripon%2C_North_Yorkshire.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+        },
+        {
+          "phrase": "He started the next five games too",
+          "query": "kids soccer bench",
+          "image_url": "https://images.pexels.com/photos/12887245/pexels-photo-12887245.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "waving the same rule she'd quoted at me",
+          "query": "angry parent argument",
+          "image_url": "https://pixabay.com/get/g26332490cd2f9ca316d2e3dc119a4bdfde3bf8f1fc9222faa52e7a9334711b12cd0fdcb78353ceb00db66aba5b648c3f9abb458be21aed826592d2c639e1411d_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "printed schedule with her own words highlighted in yellow",
+          "query": "highlighted paper document",
+          "pin_query": "schedule",
+          "pin_context": "youth sports game plan",
+          "news_query": "schedule",
+          "news_angle": "The narrator hands the mother the printed schedule with her own words highlighted.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Wikimania2007_everythings_a_wiki.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "timing his starts on their phones",
+          "query": "parents phone stopwatch",
+          "image_url": "https://images.pexels.com/photos/4114789/pexels-photo-4114789.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "cheering when the whistle blew",
+          "query": "referee whistle blow",
+          "image_url": "https://images.pexels.com/photos/29582086/pexels-photo-29582086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "quietly asked to just play normal minutes",
+          "query": "kid soccer field walking",
+          "image_url": "https://pixabay.com/get/gc1c04a07fcb998f3d0f2817b0ba664db6c137e32d105b289d533f02fd711dd5f6dd2277a881333aed21143d0838239ef_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the same registration fee",
+          "text": "SAME FEE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Ninety seconds later",
+          "text": "90 SECONDS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "technically undefeated as a starter",
+          "text": "UNDEFEATED*",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "highlighted in yellow",
+          "text": "RECEIPTS",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop"
+    },
+    "06_reddit-price-match-bluff-print-shop.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-price-match-bluff-print-shop",
+      "title": "He Demanded A Price Match. We Called To Confirm It.",
+      "hashtags": [
+        "talesfromthecustomer",
+        "customerservice",
+        "retail",
+        "pettyrevenge",
+        "karma",
+        "printshop",
+        "maliciouscompliance",
+        "reddit",
+        "storytime",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "retailstories"
+      ],
+      "script": "He slapped a crumpled flyer on my counter and said the print shop across town charged half what we did, so I'd better match it or he was calling corporate. I told him our policy requires a verified quote, so I'd happily call them right now, on speaker, with him standing right there. He said fine, sure, go ahead, clearly expecting me to back down first. I dialed. A very confused employee on the other end read us their current price for the same order, and it was actually higher than ours, because the flyer in his hand was two years old, printed before their last rate increase. He stood there listening to his own bluff fall apart in real time, mumbled something about a special promotion, and pushed his card across the counter without another word. I rang up the full price, stapled the outdated flyer to the receipt, and wrote PRICE MATCH: DENIED BY THE COMPETITOR right across the top in red marker.",
+      "shots": [
+        {
+          "phrase": "slapped a crumpled flyer on my counter",
+          "query": "crumpled paper flyer counter",
+          "pin_query": "flyer",
+          "pin_context": "paper advertisement with prices",
+          "news_query": "flyer",
+          "news_angle": "The customer presents a crumpled flyer as proof of a lower price at the print shop across town.",
+          "image_url": "https://live.staticflickr.com/1187/5151820112_80bd340452.jpg"
+        },
+        {
+          "phrase": "our policy requires a verified quote",
+          "query": "store policy sign",
+          "image_url": "https://images.pexels.com/photos/27946928/pexels-photo-27946928.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "on speaker, with him standing right there",
+          "query": "speakerphone office desk",
+          "pin_query": "speaker",
+          "pin_context": "phone speakerphone",
+          "news_query": "speaker",
+          "news_angle": "The employee calls the competitor on speaker to verify the quote.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/HuddleCamHD_Speaker_Phone.jpg/1280px-HuddleCamHD_Speaker_Phone.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+        },
+        {
+          "phrase": "A very confused employee on the other end",
+          "query": "phone call customer service",
+          "image_url": "https://pixabay.com/get/g982f356e58a38c301bb0c98baecae5ce5c10eeca57a7eeff2dc53af1515810046440c73619e5478023591433439ac440c8114c79d922a5ff4c63a484c943f12c_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "printed before their last rate increase",
+          "query": "old printed paper faded",
+          "image_url": "https://pixabay.com/get/g58c608e849fb40b28914e7a9a7717506d49b1ffd59966d863ab8a22bc60ec413b12d74ae75c4cb6e5ab1ef4dbaec1f62e70d767d6d0d78c0d842c5fcf7f0e008_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "pushed his card across the counter",
+          "query": "credit card counter payment",
+          "pin_query": "card",
+          "pin_context": "payment credit card",
+          "news_query": "card",
+          "news_angle": "The customer pushes his card across the counter to pay for the order.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+        },
+        {
+          "phrase": "stapled the outdated flyer to the",
+          "query": "receipt printer stapler",
+          "image_url": "https://pixabay.com/get/gc736bf0f0d71a1e47962daba386454fbb3a98c9f715407192c243d4e13e2954cd12c4466de59b2c130f43c328b92e878bbf207bc07ece7336cbf5eff84c4d522_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "wrote PRICE MATCH: DENIED BY THE COMPETITOR",
+          "query": "red marker writing note",
+          "image_url": "https://images.pexels.com/photos/15543033/pexels-photo-15543033.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill",
+          "pin_query": "PRICE MATCH",
+          "pin_context": "He Demanded A Price Match. We Called To Confirm It.",
+          "news_query": "PRICE MATCH",
+          "news_angle": "He Demanded A Price Match. We Called To Confirm It."
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "half what we did",
+          "text": "HALF PRICE?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "it was actually higher than ours",
+          "text": "HIGHER PRICE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "his own bluff fall apart",
+          "text": "BLUFF CALLED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "PRICE MATCH: DENIED BY THE COMPETITOR",
+          "text": "DENIED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop"
+    }
   }
 }
