@@ -5023,11 +5023,30 @@
       "scene_changes_before_5s": 2
     },
     "tsa-digital-id-states-growth": {
-      "claimed_at": "2026-11-06T16:57:36.136117+00:00",
+      "url": "https://youtube.com/shorts/7Zd2kuA7guE",
       "title": "20 States Now Let You Use A Digital ID At The Airport",
+      "at": "2026-11-06T16:57:50.173209+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "a line came out at 0.5 words/s",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.65,
+      "beat_s": [
+        3.5,
+        5.27,
+        5.65,
+        5.12,
+        5.25
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 25.3
     }
   },
   "uploads": [
@@ -6442,9 +6461,10 @@
       "claimed_at": "2026-11-06T16:57:36.136117+00:00",
       "title": "20 States Now Let You Use A Digital ID At The Airport",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "tsa-digital-id-states-growth"
+      "url": "https://youtube.com/shorts/7Zd2kuA7guE",
+      "state": "posted",
+      "slug": "tsa-digital-id-states-growth",
+      "at": "2026-11-06T16:57:50.173209+00:00"
     }
   ]
 }
