@@ -74,6 +74,22 @@ class TheInternetsPicksJoinThePool(unittest.TestCase):
         self.assertEqual(SRC.count('_fit(c["channel"], c)'), 2)
 
 
+class AnUpvotedClipIsNotPunishedForItsAge(unittest.TestCase):
+    """11-06, the first run: 22 upvoted clips in the pool, none in the top
+    five, because views per hour divided a month-old clip by its month."""
+
+    def test_its_age_is_capped_at_a_day(self):
+        i = SRC.index("for c in cands[:age_probe]:")
+        block = SRC[i:i + 900]
+        self.assertIn('c.get("proven_by") == "r/LivestreamFail"', block)
+        self.assertIn("age = min(age or 24.0, 24.0)", block)
+        self.assertLess(block.index("age = min("), block.index('c["vph"]'))
+
+    def test_the_pick_line_says_where_it_came_from(self):
+        i = SRC.index('print(f"[pick]')
+        self.assertIn("proven_by", SRC[i:i + 500])
+
+
 class TheRankerLooksForNoContextMoments(unittest.TestCase):
     def test_it_is_told(self):
         self.assertIn("NO CONTEXT NEEDED", author._RANK_SYSTEM)
