@@ -481,7 +481,7 @@ def dressing():
     box("endcap sign", (-1.3, 0.72, 0.45), (0.3, 0.01, 0.12), ivory, bev=0.002)
     text("endcap text", "SALE", (-1.3, 0.712, 0.45), 0.08, (math.radians(90), 0, 0), mat("sale red", "#C6392B", rough=0.5), extrude=0.002)
     red = mat("basket red", rough=0.45); handle = mat("basket handle", "#2B2F36", rough=0.5)
-    bx, by = float(os.environ.get("FG_X", "2.95")), float(os.environ.get("FG_Y", "-0.55"))   # right frame edge as he arrives, never over him
+    bx, by = float(os.environ.get("FG_X", "3.38")), float(os.environ.get("FG_Y", "-0.5"))   # peeks at the right frame edge as he arrives, never over him or the cart
     for k in range(5):
         z = 0.05 + k * 0.055
         box("basket", (bx, by, z + 0.08), (0.42, 0.3, 0.16), red, bev=0.01)
@@ -498,12 +498,12 @@ def dressing():
     for k in range(5):
         for sg in (-1, 1):
             c = box("chevron", (1.75 + k * 0.33 + sg * 0.0, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0)
-            c.rotation_euler = (0, 0, sg * math.radians(40))
+            c.rotation_euler = (0, 0, -sg * math.radians(40))   # chevrons point the way he walks (+x)
     for k in range(3):
         for sg in (-1, 1):
-            c = box("chevron", (-1.1 + k * 0.33, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0); c.rotation_euler = (0, 0, sg * math.radians(40))
+            c = box("chevron", (-1.1 + k * 0.33, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0); c.rotation_euler = (0, 0, -sg * math.radians(40))   # chevrons point the way he walks (+x)
     # a low dump bin at the left frame edge for the first second, passing in the foreground
-    dx, dy = float(os.environ.get("BIN_X", "-0.95")), float(os.environ.get("BIN_Y", "-0.6"))
+    dx, dy = float(os.environ.get("BIN_X", "-1.12")), float(os.environ.get("BIN_Y", "-0.6"))   # a sliver at the left edge in the first half second, never over him
     binm = mat("dump bin", "#3A3D42", rough=0.55); binr = mat("dump bin rim", "#C8643A", rough=0.5)
     box("dump bin", (dx, dy, 0.2), (0.46, 0.46, 0.4), binm, bev=0.02)
     box("dump bin rim", (dx, dy, 0.405), (0.48, 0.48, 0.02), binr, bev=0.006)
