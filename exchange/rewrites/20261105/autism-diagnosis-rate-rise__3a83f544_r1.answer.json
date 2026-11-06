@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "autism-diagnosis-rate-rise__3a83f544_r1",
+  "slug": "autism-diagnosis-rate-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:18:19.582Z",
+  "title": "Autism Diagnoses Reached 32.2 Per 1,000 Children",
+  "hook": "Autism diagnoses reached 32.2 per 1,000 children.",
+  "closing": "Diagnosis rates reflect who gets noticed, not a simple count of who exists.",
+  "question": "Who still gets missed?",
+  "segments": [
+    {
+      "topic": "Autism Diagnosis Rise",
+      "say": "The autism diagnosis rate reached 32.2 per 1,000 children. Screening now identifies far more children than before."
+    },
+    {
+      "topic": "Autism Diagnosis Gap",
+      "say": "Boys' autism diagnosis rate is 3.4 times girls'. That gap means girls can be easier to miss."
+    },
+    {
+      "topic": "Autism Diagnosis Sites",
+      "say": "California's autism diagnosis rate is over five times Laredo, TX. Where children are screened changes who gets identified."
+    }
+  ]
+}
