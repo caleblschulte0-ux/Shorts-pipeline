@@ -18233,13 +18233,68 @@
       "ts": "2026-11-06T12:37:02.783200+00:00"
     },
     "clip-20261106-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jakenbakelive/clip/TrustworthyCourageousKuduTriHard--24Epl4YnIGu_Oiw",
-      "story_key": null,
-      "streamer": "jakenbakelive",
+      "url": "https://youtube.com/shorts/ONjpp_sf9Sw",
       "title": "Jakenbakelive: Jake Gets Beer Thrown On Him And Chat Swears It Smells Like Something Else",
       "kind": "twitch_clip",
-      "ts": "2026-11-06T12:40:53.041939+00:00",
+      "ts": "2026-11-06T12:41:04.165609+00:00",
+      "uploaded_at": "2026-11-06T12:41:04.165626+00:00",
+      "publish_at": "2026-11-06T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261106-jakenbakelive-jake-gets-beer-thrown-on-him-and-c-d896bcab",
+        "tiktok": "queued for 2026-11-06T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jakenbakelive/clip/TrustworthyCourageousKuduTriHard--24Epl4YnIGu_Oiw",
+      "streamer": "jakenbakelive",
+      "series": "chaos",
+      "hook": "Guy throws drink at Jake \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 55575,
+      "banger": 0.85,
+      "cut": {
+        "start": 9.0,
+        "end": 34.0
+      },
+      "director_cut": true
+    },
+    "rejected-smokypeacefulwebwow-qbqeq3ty8sdcov5q": {
+      "source_url": "https://www.twitch.tv/zoil/clip/SmokyPeacefulWebWow-qBQEQ3ty8SDCOV5q",
+      "streamer": "zoil",
+      "title": "BIG IN JAPAN",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Street wandering, no clear event)",
+      "ts": "2026-11-06T12:43:21.382322+00:00"
+    },
+    "rejected-strongfrozendogewoofer-gntx-wabrvxomfrz": {
+      "source_url": "https://www.twitch.tv/caedrel/clip/StrongFrozenDogeWoofer-gNTX-wABRvXOMFrz",
+      "streamer": "caedrel",
+      "title": ".l.",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-11-06T12:43:52.933020+00:00"
+    },
+    "rejected-smellyslipperyeggnogdbstyle-ykzwoj2rr3ivcuor": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SmellySlipperyEggnogDBstyle-YKZwOj2rR3IVcuor",
+      "streamer": "caseoh_",
+      "title": "EGBERT HAS AURA!!",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 4.3s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-11-06T12:44:52.427365+00:00"
+    },
+    "clip-20261106-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/deepins02/clip/TalentedAlluringSoymilkShadyLulu-a4TnYLt20IAgwYXx",
+      "story_key": null,
+      "streamer": "deepins02",
+      "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
+      "kind": "twitch_clip",
+      "ts": "2026-11-06T12:49:41.496827+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
