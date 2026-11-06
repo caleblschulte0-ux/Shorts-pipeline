@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__315fba90_r2",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "A Mars Mission Could Cost Astronauts 30% Of Hip Bone",
+  "hook": "A Mars mission could cost astronauts 30% of hip bone density.",
+  "closing": "Long missions need bone protection because floating removes the loading that keeps skeletons strong.",
+  "question": "Would this change your Mars plans?",
+  "segments": [
+    {
+      "topic": "Astronaut Bone Loss",
+      "say": "Astronaut bone density can fall 1.5% monthly. Space removes the everyday loading that keeps skeletons strong."
+    },
+    {
+      "topic": "Astronaut Bone Hip",
+      "say": "Astronaut hip density can drop 2.2% monthly. Weight-bearing bone pays the highest price in these data."
+    },
+    {
+      "topic": "Astronaut Bone Mars",
+      "say": "A Mars mission could cost 30% of hip bone density without protection. Countermeasures become part of survival."
+    }
+  ]
+}
