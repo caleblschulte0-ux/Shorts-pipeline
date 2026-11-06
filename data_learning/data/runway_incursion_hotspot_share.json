@@ -1,0 +1,25 @@
+{
+ "key": "runway_incursion_hotspot_share",
+ "title": "Share of the worst US runway incursions at just 8 airports",
+ "unit": "percent",
+ "geography": "United States",
+ "time_coverage": "recent years",
+ "source": {
+  "name": "Study Finds Runway Incursion Hotspots at U.S. Airports",
+  "publisher": "AVweb analysis of FAA data",
+  "url": "https://avweb.com/aviation-news/us-runway-incursion-hotspots/",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "Eight airports, including Boston Logan and Chicago Midway, account for nearly a third of the nation's most serious, high-risk runway incursions.",
+ "points": [
+  {
+   "label": "8 hotspot airports",
+   "value": 33
+  },
+  {
+   "label": "All other airports",
+   "value": 67
+  }
+ ]
+}

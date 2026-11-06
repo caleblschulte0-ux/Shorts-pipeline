@@ -1,0 +1,29 @@
+{
+ "key": "fiber_intake_rank",
+ "title": "Daily fiber intake: Hadza vs US guideline vs average American",
+ "unit": "grams",
+ "geography": "Tanzania vs United States",
+ "time_coverage": "current",
+ "source": {
+  "name": "Hadza diet fiber intake; USDA Dietary Guidelines for Americans; NHANES average intake",
+  "publisher": "Stanford/Science (Smits et al. 2017); U.S. Department of Agriculture",
+  "url": "https://www.scientificamerican.com/article/modern-hunter-gatherers-have-thriving-gut-microbiome-compared-with-californians",
+  "officiality": "official",
+  "access_date": "2026-11-06"
+ },
+ "notes": "Hadza fiber intake (~150g/day) is reported as roughly 10x the US average (~15g/day); USDA Dietary Guidelines recommend 25-38g/day (midpoint ~30g used here).",
+ "points": [
+  {
+   "label": "Hadza",
+   "value": 150
+  },
+  {
+   "label": "USDA recommended",
+   "value": 30
+  },
+  {
+   "label": "Average American",
+   "value": 15
+  }
+ ]
+}

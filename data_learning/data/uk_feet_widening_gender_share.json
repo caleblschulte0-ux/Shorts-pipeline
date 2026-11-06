@@ -1,0 +1,25 @@
+{
+ "key": "uk_feet_widening_gender_share",
+ "title": "Share of UK adults who say their feet widened in adulthood",
+ "unit": "percent",
+ "geography": "United Kingdom",
+ "time_coverage": "2014 survey",
+ "source": {
+  "name": "College of Podiatry foot-size survey",
+  "publisher": "The College of Podiatry (UK)",
+  "url": "https://www.buckbootz.com/news/british-feet-get-two-sizes-bigger-in-40-years",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "Two-thirds of women (67%) and 61% of men surveyed said their feet had widened in adult life.",
+ "points": [
+  {
+   "label": "Women",
+   "value": 67
+  },
+  {
+   "label": "Men",
+   "value": 61
+  }
+ ]
+}

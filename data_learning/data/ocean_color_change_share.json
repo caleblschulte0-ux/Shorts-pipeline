@@ -1,0 +1,25 @@
+{
+ "key": "ocean_color_change_share",
+ "title": "Share of ocean surface that changed color (2002-2022)",
+ "unit": "percent",
+ "geography": "Global oceans",
+ "time_coverage": "2002-2022",
+ "source": {
+  "name": "Global climate-change trends detected in indicators of ocean ecology",
+  "publisher": "Nature / MIT (B.B. Cael et al.)",
+  "url": "https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "NASA MODIS-Aqua satellite data across 7 visible wavelengths, 2002-2022; 56% of the ocean's surface showed a statistically significant color shift.",
+ "points": [
+  {
+   "label": "Changed",
+   "value": 56
+  },
+  {
+   "label": "Unchanged",
+   "value": 44
+  }
+ ]
+}

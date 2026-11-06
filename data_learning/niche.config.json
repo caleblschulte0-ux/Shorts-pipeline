@@ -37888,6 +37888,242 @@
      }
     }
    ]
+  },
+  {
+   "slug": "ocean-is-changing-color",
+   "title": "56% Of The Ocean Has Changed Color",
+   "hook": "The ocean is quietly changing color.",
+   "closing": "And nobody's sure yet what it means for what lives down there.",
+   "question": "Have you noticed the ocean looking different?",
+   "caption": "NASA satellites tracked the ocean's color for 20 years — and more than half of it has visibly shifted. A climate model predicted this back in 2019, and now the data backs it up. Have you noticed the ocean looking different? 👇",
+   "hashtags": [
+    "oceancolor",
+    "climatechange",
+    "nasa",
+    "satellite",
+    "phytoplankton",
+    "ocean",
+    "climatescience",
+    "marinebiology",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "science"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ocean_color_change_share",
+     "params": {
+      "file": "ocean_color_change_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE SHIFT",
+     "topic": "how much of the ocean changed color",
+     "say": "Scientists tracked ocean color with NASA satellites for 20 years. 56% of the ocean's surface has measurably changed."
+    },
+    {
+     "source": "offline",
+     "key": "ocean_color_model_vs_observed",
+     "params": {
+      "file": "ocean_color_model_vs_observed.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE PREDICTION",
+     "topic": "predicting the ocean's color change",
+     "say": "A climate model predicted this back in 2019 — it expected about 50% of the ocean to shift. Real satellite data found 56%."
+    },
+    {
+     "source": "offline",
+     "key": "ocean_color_change_area_vs_land",
+     "params": {
+      "file": "ocean_color_change_area_vs_land.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SCALE",
+     "topic": "how big the changed area of ocean really is",
+     "say": "That's about 200 million square kilometers of ocean — bigger than every continent on Earth combined."
+    }
+   ]
+  },
+  {
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "title": "This Tribe Has 730 Species Of Gut Bacteria",
+   "hook": "Modern life might be starving your gut.",
+   "closing": "Civilization made our food safer and our guts emptier.",
+   "question": "How much fiber did you eat today?",
+   "caption": "A tribe in Tanzania carries nearly 3x the gut bacteria species of the average American — and modern antibiotics might be part of why. 255.9 million prescriptions were filled in the US in 2024 alone, a third of them unnecessary. How much fiber did you eat today? 👇",
+   "hashtags": [
+    "gutbacteria",
+    "microbiome",
+    "guthealth",
+    "hadza",
+    "fiber",
+    "antibiotics",
+    "nutrition",
+    "science",
+    "didyouknow",
+    "dataviz",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "hadza_vs_american_gut_species",
+     "params": {
+      "file": "hadza_vs_american_gut_species.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE GAP",
+     "topic": "gut bacteria species count",
+     "say": "The Hadza of Tanzania carry about 730 species of gut bacteria. The average American carries just 277."
+    },
+    {
+     "source": "offline",
+     "key": "fiber_intake_rank",
+     "params": {
+      "file": "fiber_intake_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · THE REASON",
+     "topic": "feeding the gut bacteria",
+     "say": "The secret is fiber. Guidelines recommend about 30 grams a day. Americans eat about 15. The Hadza eat 150."
+    },
+    {
+     "source": "offline",
+     "key": "antibiotic_necessity_share",
+     "params": {
+      "file": "antibiotic_necessity_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · WHAT'S KILLING IT OFF",
+     "topic": "what's killing off gut bacteria",
+     "say": "The CDC says 34% of US antibiotic prescriptions aren't even necessary — and each one can wipe out gut diversity."
+    }
+   ]
+  },
+  {
+   "slug": "runway-near-misses-climbing",
+   "title": "The FAA Logged 23 Serious Runway Near-Misses In One Year",
+   "hook": "Are planes getting too close on the ground?",
+   "closing": "More flights, more close calls, same runways.",
+   "question": "Does this make you nervous to fly?",
+   "caption": "Serious runway near-misses hit a level not seen in years — and they're not spread evenly across airports. A handful of hubs account for nearly a third of the worst ones. Does this make you nervous to fly? 👇",
+   "hashtags": [
+    "aviation",
+    "aviationsafety",
+    "faa",
+    "runway",
+    "airtravel",
+    "flying",
+    "airports",
+    "ntsb",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "planespotting"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "runway_incursions_serious_trend",
+     "params": {
+      "file": "runway_incursions_serious_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "runway near-misses over time",
+     "say": "A decade ago, the US saw 11 serious runway near-misses a year. By 2022 it was 16. In 2023, 23.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "runway_incursions_cause_share",
+     "params": {
+      "file": "runway_incursions_cause_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE CAUSE",
+     "topic": "what causes most runway incursions",
+     "say": "Out of 1,756 total runway incursions that year, about 60% were people or vehicles wandering onto the runway by mistake."
+    },
+    {
+     "source": "offline",
+     "key": "runway_incursion_hotspot_share",
+     "params": {
+      "file": "runway_incursion_hotspot_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHERE IT CLUSTERS",
+     "topic": "where runway near-misses cluster",
+     "say": "And it's not spread evenly — just 8 airports, including Boston and Chicago Midway, account for almost a third of the worst ones."
+    }
+   ]
+  },
+  {
+   "slug": "feet-are-getting-bigger",
+   "title": "British Feet Grew Two Shoe Sizes In 40 Years",
+   "hook": "Your feet are bigger than your grandparents'.",
+   "closing": "So are shoes changing — or are we?",
+   "question": "What shoe size do you wear?",
+   "caption": "The average British foot has grown two full shoe sizes since the 1970s — and it's not just length, feet are getting wider too. Podiatrists point to one simple cause. What shoe size do you wear? 👇",
+   "hashtags": [
+    "shoesize",
+    "feet",
+    "podiatry",
+    "bodytrends",
+    "obesity",
+    "health",
+    "uk",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "sneakers"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "uk_mens_shoe_size_1970_today",
+     "params": {
+      "file": "uk_mens_shoe_size_1970_today.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE GROWTH",
+     "topic": "how much british feet grew",
+     "say": "In the 1970s, the average British man wore a size 8 shoe. Today it's a size 10."
+    },
+    {
+     "source": "offline",
+     "key": "uk_feet_widening_gender_share",
+     "params": {
+      "file": "uk_feet_widening_gender_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · NOT JUST LENGTH",
+     "topic": "whose feet got wider",
+     "say": "It's not just length — two-thirds of women and 61% of men say their feet got wider as adults too."
+    },
+    {
+     "source": "offline",
+     "key": "england_overweight_obesity_share_2024",
+     "params": {
+      "file": "england_overweight_obesity_share_2024.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE WHY",
+     "topic": "why british feet keep growing",
+     "say": "Podiatrists blame body size — 66% of adults in England are now overweight or living with obesity, and extra weight spreads the foot."
+    }
+   ]
   }
  ]
 }

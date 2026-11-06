@@ -1,0 +1,25 @@
+{
+ "key": "ocean_color_change_area_vs_land",
+ "title": "Area of ocean that changed color vs all land on Earth",
+ "unit": "million square kilometers",
+ "geography": "Global",
+ "time_coverage": "2002-2022",
+ "source": {
+  "name": "Global climate-change trends detected in indicators of ocean ecology",
+  "publisher": "Nature / MIT (B.B. Cael et al.)",
+  "url": "https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "Illustrative; MIT's release describes the changed area as larger than Earth's total land area. Absolute figures computed here from the reported 56% share (total ocean ~361.9M km²) against Earth's standard total land area (~148.9M km²), rounded.",
+ "points": [
+  {
+   "label": "Ocean area that changed color",
+   "value": 203
+  },
+  {
+   "label": "Earth's total land area",
+   "value": 149
+  }
+ ]
+}

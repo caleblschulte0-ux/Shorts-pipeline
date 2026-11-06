@@ -1,0 +1,32 @@
+{
+ "key": "runway_incursions_serious_trend",
+ "title": "Serious (Category A/B) US runway incursions per year",
+ "unit": "index",
+ "geography": "United States",
+ "time_coverage": "~2013-2023",
+ "source": {
+  "name": "FAA Air Traffic Organization testimony on runway safety",
+  "publisher": "Federal Aviation Administration / U.S. Senate Commerce Committee",
+  "url": "https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8",
+  "officiality": "official",
+  "access_date": "2026-11-06"
+ },
+ "notes": "FAA testimony-cited figures: 11 serious runway incursions about a decade before 2023, 16 in 2022, 23 in 2023 — the most in seven years.",
+ "points": [
+  {
+   "label": "~2013",
+   "value": 11,
+   "period": "2013"
+  },
+  {
+   "label": "2022",
+   "value": 16,
+   "period": "2022"
+  },
+  {
+   "label": "2023",
+   "value": 23,
+   "period": "2023"
+  }
+ ]
+}

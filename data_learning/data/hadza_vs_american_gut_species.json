@@ -1,0 +1,25 @@
+{
+ "key": "hadza_vs_american_gut_species",
+ "title": "Gut bacteria species count, Hadza vs average American",
+ "unit": "species",
+ "geography": "Tanzania (Hadza) vs United States",
+ "time_coverage": "2017 sampling",
+ "source": {
+  "name": "Hadza hunter-gatherer gut microbiome is seasonally dynamic",
+  "publisher": "Stanford University / Science (Smits et al. 2017)",
+  "url": "https://www.scientificamerican.com/article/modern-hunter-gatherers-have-thriving-gut-microbiome-compared-with-californians",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "Stanford-led comparison found Hadza hunter-gatherers carried an average of ~730 gut bacterial species per person vs ~277 for average Californians.",
+ "points": [
+  {
+   "label": "Hadza (Tanzania)",
+   "value": 730
+  },
+  {
+   "label": "Average American",
+   "value": 277
+  }
+ ]
+}

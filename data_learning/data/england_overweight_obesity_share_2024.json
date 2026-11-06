@@ -1,0 +1,25 @@
+{
+ "key": "england_overweight_obesity_share_2024",
+ "title": "Share of adults in England overweight or living with obesity (2024)",
+ "unit": "percent",
+ "geography": "England",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Health Survey for England",
+  "publisher": "NHS England",
+  "url": "https://nhsd-proxy.openprescribing.net/data-and-information/publications/statistical/health-survey-for-england/2021/overweight-and-obesity-in-adults",
+  "officiality": "official",
+  "access_date": "2026-11-06"
+ },
+ "notes": "2024 Health Survey for England found 66% of adults overweight or living with obesity.",
+ "points": [
+  {
+   "label": "Overweight or obese",
+   "value": 66
+  },
+  {
+   "label": "Healthy weight",
+   "value": 34
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "key": "ocean_color_model_vs_observed",
+ "title": "Predicted vs observed share of ocean that would change color",
+ "unit": "percent",
+ "geography": "Global oceans",
+ "time_coverage": "2019 model vs 2002-2022 observed",
+ "source": {
+  "name": "Global climate-change trends detected in indicators of ocean ecology",
+  "publisher": "Nature / MIT (B.B. Cael et al.); model by Stephanie Dutkiewicz (2019)",
+  "url": "https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "A 2019 greenhouse-gas climate model predicted roughly 50% of the ocean's surface would shift color; 2023 satellite analysis of real MODIS data found 56%.",
+ "points": [
+  {
+   "label": "Model predicted (2019)",
+   "value": 50
+  },
+  {
+   "label": "Satellites observed (2023)",
+   "value": 56
+  }
+ ]
+}
