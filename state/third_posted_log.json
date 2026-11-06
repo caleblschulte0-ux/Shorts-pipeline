@@ -18222,6 +18222,25 @@
         "end": 28.0
       },
       "director_cut": true
+    },
+    "rejected-crepuscularsmokypickleselegiggle-d3eb6uxxrtdsvaw0": {
+      "source_url": "https://www.twitch.tv/robcdee/clip/CrepuscularSmokyPicklesEleGiggle-d3eb6uXxRTDsvaW0",
+      "streamer": "robcdee",
+      "title": "Robcdee Karaoke Costume Takes Over Osaka Halloween \ud83c\udfa4",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about one third of the 9:16 canvas, where it should be about three quarters. The; vision: The subject is small and far away in a wide crowd shot, so faces are hard to read on a phone.; vision: In several frames (12.5s, 27.5s, 37.5s, 42.5s, 52.5s) the k",
+      "ts": "2026-11-06T12:37:02.783200+00:00"
+    },
+    "clip-20261106-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jakenbakelive/clip/TrustworthyCourageousKuduTriHard--24Epl4YnIGu_Oiw",
+      "story_key": null,
+      "streamer": "jakenbakelive",
+      "title": "Jakenbakelive: Jake Gets Beer Thrown On Him And Chat Swears It Smells Like Something Else",
+      "kind": "twitch_clip",
+      "ts": "2026-11-06T12:40:53.041939+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
