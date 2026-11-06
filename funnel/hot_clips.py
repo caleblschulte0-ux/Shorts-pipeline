@@ -230,9 +230,23 @@ def _search(query: str, period: str, limit: int) -> dict | None:
                   query, period, limit)
 
 
+_LSF_CACHE: dict = {}
+
+
 def livestreamfail(period: str = "week", limit: int = 100) -> list[dict]:
     """r/LivestreamFail's top Twitch clips for `period`, most upvoted
-    first. [] when Reddit cannot be reached."""
+    first. [] when Reddit cannot be reached. Remembered for the run: the
+    RSS fallback answers once and refuses a second read, and the Twitch
+    channel's story and clip arms both ask."""
+    if (period, limit) in _LSF_CACHE:
+        return [dict(c) for c in _LSF_CACHE[(period, limit)]]
+    out = _livestreamfail(period, limit)
+    if out:
+        _LSF_CACHE[(period, limit)] = out
+    return [dict(c) for c in out]
+
+
+def _livestreamfail(period: str, limit: int) -> list[dict]:
     data = _listing(period, limit) or {}
     out, seen = [], set()
     for ch in ((data.get("data") or {}).get("children") or []):

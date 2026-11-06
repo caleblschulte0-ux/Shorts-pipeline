@@ -1124,6 +1124,17 @@ anger / crying / laughter; a challenge or bet with a visible win or failure; a
 wholesome moment that feels real; or a live event people are searching NOW.
 Gameplay mechanics and inside-baseball rarely travel.
 
+NO CONTEXT NEEDED (operator, 2026-11-05: Baller Bro reached hundreds of
+views a video on moments like a fan showing a photo of her late dad, while
+this channel's clips that need you to know the streamer sat at single
+digits; its best were a streamer crying and one thanking chat for letting
+her cry). Score up what a stranger feels in the first second with no idea
+who anyone is: crying, rage, terror, a heartwarming moment, a shocking
+reveal, something huge going right or wrong. Score down what only lands if
+you already know the streamer, their friends or the running joke. A line
+with `internet_says` was upvoted by strangers on r/LivestreamFail: that
+post title is what they saw in it.
+
 SEX SELLS, WITH DIGNITY (operator, 2026-10-09: "the internet is gooners so
 we have the green light to goonbait not to much let's keep our dignity but
 sex sells"). Flirting, rizz, a thirsty chat, a date going well or badly, a
@@ -1340,6 +1351,10 @@ def rank_clips(clips: list[dict]) -> dict:
                 f"title={str(c.get('title',''))[:90]!r}")
         if c.get("snip"):
             line += f" snip={str(c['snip'])[:160]!r}"
+        net = c.get("internet") or {}
+        if net.get("post_title"):
+            line += (f" internet_says={str(net['post_title'])[:120]!r}"
+                     f" upvotes={net.get('upvotes', 0)}")
         lines.append(line)
     user = "Candidates:\n" + "\n".join(lines)
     out = None

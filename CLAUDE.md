@@ -874,6 +874,15 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   one scale. `tests/test_third_streamer_prior.py` includes a direction check
   against the committed analytics — if it fails, the prior disagrees with
   the channel's own view counts.
+- **It picks what STRANGERS already loved** (operator, 2026-11-05, "Switch
+  it": Baller Bro, built on the week's most upvoted sports posts, reached a
+  446-view median with ~90% of views from the Shorts feed; this channel sat
+  at 9 with ~1% from the feed). `run_third._proven_pool` adds
+  r/LivestreamFail's most upvoted clips and Twitch's category charts, from
+  ANY streamer, to the clip arm under the same never-repeat and variety
+  rules; an upvoted clip's score is multiplied by `proven_boost`; the
+  ranker is told NO CONTEXT NEEDED and sees what the Reddit post said.
+  `tests/test_the_twitch_channel_picks_what_strangers_loved.py`.
 - **The channel is a SEARCH channel** — ~89% of views are YouTube search.
   `_search_guidance` hands the title author the real queries for that
   streamer ("lang buddha", "jasontheween news"), with an honesty rule and
