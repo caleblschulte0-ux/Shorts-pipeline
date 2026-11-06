@@ -342,7 +342,7 @@ def kiosk(name, spot):
 
 
 # ------------------------------------------------------------------ props
-def cart(name, loc, W=0.22, top=0.32, L=0.34, D=0.2, over=0.02):
+def cart(name, loc, W=0.22, top=0.32, L=0.42, D=0.24, over=0.10):
     """Data's cart: a wire basket (slats fattened so they don't shimmer), four legs, four wheels, two handle posts and a
     bar barely longer than the basket so his hands grip the ENDS (handle_L at +y, handle_R at -y, both on the bar axis).
     The cart rolls along its +X. Returns dict(root, handle_L, handle_R, wheels, wheel_r, L, W, top, nose)."""
@@ -369,10 +369,16 @@ def cart(name, loc, W=0.22, top=0.32, L=0.34, D=0.2, over=0.02):
         for xx in (x0 + 0.06, x0 + L - 0.06):
             box("leg", (xx, y0 + s * (W / 2 - 0.01), (bot) / 2), (0.014, 0.014, bot), met, bev=0, parent=root)
             cyl("wheel", (xx, y0 + s * (W / 2 + 0.012), wheel_r), wheel_r, 0.018, wheel, rot=(math.radians(90), 0, 0), parent=root)
-    hz = top + 0.03          # the posts rise 3 cm above the basket rim so the bar READS under the mittens
+    hz = top + 0.05          # the posts rise 5 cm above the basket rim so the bar READS clearly above it
     for s in (-1, 1):
         box("post", (x0 - 0.025, y0 + s * (W / 2 - 0.01), (hz + bot) / 2), (0.014, 0.014, hz - bot), met, bev=0, parent=root)
     cyl("handle bar", (x0 - 0.03, y0, hz), 0.014, W + over, plas, rot=(math.radians(90), 0, 0), parent=root)
+    for s in (-1, 1):   # rubber end caps, fat enough to read as the rod's end under the mitten when seen end-on
+        cyl("bar cap", (x0 - 0.03, y0 + s * (W + over) / 2 - s * 0.012, hz), 0.019, 0.024, plas, rot=(math.radians(90), 0, 0), v=20, parent=root)
+        # the handle frame: a tube from the basket rim up to the bar on each side, so side-on the handle has a STRUCTURE
+        a = Vector((x0 + 0.10, y0 + s * (W / 2 - 0.01), top)); b = Vector((x0 - 0.03, y0 + s * (W / 2 - 0.01), hz))
+        d = b - a; c = cyl("handle strut", ((a + b) / 2), 0.007, d.length, met, v=12, bev=0, parent=root)
+        c.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
     hL = empty(name + " handle_L", (x0 - 0.03, y0 + W / 2, hz), parent=root)
     hR = empty(name + " handle_R", (x0 - 0.03, y0 - W / 2, hz), parent=root)
     nose = empty(name + " nose", (x0 + L, y0, top), parent=root)
@@ -393,7 +399,7 @@ def cart(name, loc, W=0.22, top=0.32, L=0.34, D=0.2, over=0.02):
     return {"root": root, "handle_L": hL, "handle_R": hR, "wheels": wheels, "wheel_r": wheel_r, "L": L, "W": W, "top": top, "nose": nose}
 
 
-def contact_shadow(name, loc, rx, ry, parent=None, alpha=0.55):
+def contact_shadow(name, loc, rx, ry, parent=None, alpha=0.7):
     m = bpy.data.materials.get("contact shadow")
     if m is None:
         m = bpy.data.materials.new("contact shadow"); m.use_nodes = True; nt = m.node_tree

@@ -125,11 +125,11 @@ def lights(sc, data_follow=None):
     # ceiling panels: a row over the lanes, a row behind
     for x in (-1.6, -0.4, 0.8, 2.0, 3.2):
         for y in (-0.9, 0.6):
-            area(f"panel {x}_{y}", (x, y, 2.45), 1.1, 24, (1.0, 0.97, 0.92), shape='RECTANGLE', size_y=0.3, aim=(x, y, 0))
+            area(f"panel {x}_{y}", (x, y, 2.45), 1.1, 15, (1.0, 0.97, 0.92), shape='RECTANGLE', size_y=0.3, aim=(x, y, 0))
     # shopfront daylight
-    sd = bpy.data.lights.new("daylight", 'SUN'); sd.energy = 9.0; sd.angle = math.radians(3); sd.color = (1.0, 0.96, 0.9)
+    sd = bpy.data.lights.new("daylight", 'SUN'); sd.energy = 10.0; sd.angle = math.radians(3); sd.color = (1.0, 0.96, 0.9)
     so = bpy.data.objects.new("daylight", sd); bpy.context.collection.objects.link(so)
-    so.rotation_euler = Vector((0.45, 0.7, -0.42)).to_track_quat('-Z', 'Y').to_euler()   # low shopfront sun, in under the ceiling
+    so.rotation_euler = Vector((0.75, 0.25, -0.6)).to_track_quat('-Z', 'Y').to_euler()   # from camera-left-front and above: his shadow falls to camera-right where it is SEEN
     # window: big soft area from camera-left-front, half strength
     area("window", (-2.4, -3.2, 1.6), 2.2, 60, (0.92, 0.95, 1.0), shape='RECTANGLE', size_y=1.6, aim=(0.5, 0.3, 0.6))
     # cool fill from the right

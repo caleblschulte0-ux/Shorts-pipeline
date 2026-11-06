@@ -18,8 +18,8 @@ PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
 
 T_PUSH0, T_PUSH1, T_END = 0.5, 6.6, 10.0
 X0, X1 = -0.72, 2.3
-TRIG_AHEAD = 0.9
-CAM_BASE = Vector((-0.55, -2.6, 0.72)); CAM_LOOK = Vector((0.45, 0.35, 0.42)); LOOK_AHEAD = 0.25; PUSH_IN = 1.5
+TRIG_AHEAD = 0.6         # the view is two lanes wide; the sink has to happen inside it
+CAM_BASE = Vector((-0.55, -2.0, 0.58)); CAM_LOOK = Vector((0.45, 0.35, 0.42)); LOOK_AHEAD = 0.25; PUSH_IN = 0.8
 BACK_Y = K.BACK_Y - 0.1
 
 sc = bpy.context.scene
@@ -99,11 +99,11 @@ for i, ln in enumerate(store["lanes"]):
     key_loc(counter, ts, cl); key_rot(counter, ts, (0, 0, 0))
     key_loc(counter, ts + 0.18, cl + Vector((0, 0, -0.06))); key_rot(counter, ts + 0.18, (0.06, 0, 0))
     key_loc(counter, ts + 0.3, cl + Vector((0, 0, -0.04))); key_rot(counter, ts + 0.3, (0.02, 0, 0))
-    key_loc(counter, ts + 1.1, cl + Vector((0, 0, -h - 0.35))); key_rot(counter, ts + 1.1, (0.0, 0, 0))
-    hide_from(counter, ts + 1.15)
+    key_loc(counter, ts + 0.72, cl + Vector((0, 0, -h - 0.35))); key_rot(counter, ts + 0.72, (0.0, 0, 0))   # the drop is FAST: a register corner poking through the floor reads as junk, not a sink
+    hide_from(counter, ts + 0.74)
     kr = kk["root"]; kh = kk["h"]
-    for f in range(F(ts + 0.9), F(ts + 1.9) + 1):
-        u = (f - F(ts + 0.9)) / (F(ts + 1.9) - F(ts + 0.9)); z = lerp(-kh - 0.05, 0.0, ease_out_back(u))
+    for f in range(F(ts + 0.6), F(ts + 1.6) + 1):
+        u = (f - F(ts + 0.6)) / (F(ts + 1.6) - F(ts + 0.6)); z = lerp(-kh - 0.05, 0.0, ease_out_back(u))
         kr.location = (kr.location.x, kr.location.y, z); kr.keyframe_insert("location", frame=f)
 
 for ln in store["extra"]:
@@ -136,7 +136,7 @@ for f in range(1, F(T_END) + 1):
     loc = Vector((CAM_BASE.x + (px - X0) + LOOK_AHEAD * min(1, max(0, (t - T_PUSH0) / 0.6)) * (1 - u_in), CAM_BASE.y, CAM_BASE.z))
     look = Vector((px + LOOK_AHEAD, CAM_LOOK.y, CAM_LOOK.z))
     if u_in > 0:
-        tgt = Vector((px, 0.0, 0.66)); look = look.lerp(tgt, u_in)
+        tgt = Vector((px, 0.0, 0.56)); look = look.lerp(tgt, u_in)
         loc = loc + (tgt - loc).normalized() * PUSH_IN * u_in
     cam.location = loc; cam.keyframe_insert("location", frame=f)
     cam.rotation_euler = (look - loc).to_track_quat('-Z', 'Y').to_euler(); cam.keyframe_insert("rotation_euler", frame=f)
