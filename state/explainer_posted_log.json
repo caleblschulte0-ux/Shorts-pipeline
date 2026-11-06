@@ -5049,11 +5049,29 @@
       "duration_s": 25.3
     },
     "measles-comeback-since-2000": {
-      "claimed_at": "2026-11-06T17:31:46.863616+00:00",
+      "url": "https://youtube.com/shorts/yOGL4YgUQZQ",
       "title": "Measles Returned With 2,289 US Cases",
+      "at": "2026-11-06T17:32:00.226493+00:00",
       "publish_at": "2026-11-06T22:57:36Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.91,
+      "beat_s": [
+        4.17,
+        6.91,
+        4.75,
+        5.58,
+        5.79
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 27.7
     }
   },
   "uploads": [
@@ -6477,9 +6495,10 @@
       "claimed_at": "2026-11-06T17:31:46.863616+00:00",
       "title": "Measles Returned With 2,289 US Cases",
       "publish_at": "2026-11-06T22:57:36Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "measles-comeback-since-2000"
+      "url": "https://youtube.com/shorts/yOGL4YgUQZQ",
+      "state": "posted",
+      "slug": "measles-comeback-since-2000",
+      "at": "2026-11-06T17:32:00.226493+00:00"
     }
   ]
 }
