@@ -147,7 +147,7 @@ class Data:
         for o in P['Sleeve'] + P['Leg']: bpy.data.objects.remove(o)
         self.J = {}            # joints in rig units
         for s, sg in (('L', -1), ('R', 1)):
-            sh = Vector((sg * 0.37, 0.0, 2.42)); el = Vector((sg * 0.52, -0.01, 1.95)); wr = Vector((sg * 0.66, -0.01, 1.49))
+            sh = Vector((sg * 0.37, 0.0, 2.42)); el = Vector((sg * 0.52, -0.01, 1.95)); wr = el + (el - sh) * 0.95   # collinear at rest: 0 deg
             hip = Vector((sg * 0.261, 0.007, 1.25)); kn = Vector((sg * 0.261, 0.007, 0.72)); an = Vector((sg * 0.261, 0.007, 0.26))
             self.J[s] = dict(sh=sh, el=el, wr=wr, hip=hip, kn=kn, an=an)
             P.setdefault('Upper arm', []).append(_capsule(f'Upper arm.{s}', sh, el, 0.214, ivory))
@@ -159,19 +159,19 @@ class Data:
         self.R_EYE = 0.30; self.EYE = {}
         for s, sg in (('L', -1), ('R', 1)):
             ex, ez = sg * 0.411, 3.73
-            ys = head_surface_y(ex, ez); protrude = 0.13
+            ys = head_surface_y(ex, ez); protrude = 0.07
             c = Vector((ex, ys - protrude + self.R_EYE, ez))
             self.EYE[s] = c
             ball = _sphere(f'Eye ball.{s}', c, self.R_EYE, eye)
             gaze = bpy.data.objects.new(f'Gaze.{s}', None); bpy.context.collection.objects.link(gaze); gaze.location = c
             bpy.context.view_layer.update()
-            pup = _sphere(f'Pupil.{s}', c + Vector((0, -self.R_EYE - 0.004, 0)), 0.15, pupil, (0.155, 0.03, 0.15))
+            pup = _cap(f'Pupil.{s}', c, self.R_EYE + 0.005, pupil, lambda n: -n.y > math.cos(math.radians(31)))   # a cap ON the sphere: under a closed lid everywhere
             g1 = _sphere(f'Eye glint.{s}', c + (self.R_EYE + 0.004) * Vector((-0.17, -0.97, 0.18)).normalized(), 0.04, eye, (0.045, 0.012, 0.043))
             g2 = _sphere(f'Eye glint small.{s}', c + (self.R_EYE + 0.004) * Vector((0.17, -0.97, -0.12)).normalized(), 0.02, eye, (0.02, 0.009, 0.019))
             for o in (pup, g1, g2): o.parent = gaze; o.matrix_parent_inverse = gaze.matrix_world.inverted()
             gaze.rotation_euler = (0, 0, math.radians(-4 * sg))        # a slight convergence, like the base model's gaze
-            up = _cap(f'Lid upper.{s}', c, self.R_EYE + 0.012, teal, lambda n: -n.y > math.cos(math.radians(88)) and n.z > -0.001)
-            lo = _cap(f'Lid lower.{s}', c, self.R_EYE + 0.012, teal, lambda n: -n.y > math.cos(math.radians(88)) and n.z < 0.001)
+            up = _cap(f'Lid upper.{s}', c, self.R_EYE + 0.025, teal, lambda n: -n.y > math.cos(math.radians(88)) and n.z > -0.001)
+            lo = _cap(f'Lid lower.{s}', c, self.R_EYE + 0.025, teal, lambda n: -n.y > math.cos(math.radians(88)) and n.z < 0.001)
             pu = bpy.data.objects.new(f'Lid pivot upper.{s}', None); pl = bpy.data.objects.new(f'Lid pivot lower.{s}', None)
             for e in (pu, pl): bpy.context.collection.objects.link(e); e.location = c
             bpy.context.view_layer.update()
@@ -350,9 +350,11 @@ class Data:
             self._k(f'arm.{s}', t, rot=(0, 0, 0)); self._k(f'fore.{s}', t, rot=(0, 0, 0)); self._k(f'hand.{s}', t, rot=(0, 0, 0))
 
     # ---------------------------------------------------------------- head and face
-    def look_at(self, target, t, max_yaw=40, max_pitch=22):
-        self.sc.frame_set(F(t)); M = self.arm.matrix_world
-        hb = self.pb['head']; head = M @ hb.head
+    def look_at(self, target, t, max_yaw=40, max_pitch=22, blend=0.3):
+        hb = self.pb['head']
+        if not self._has_keys(self.arm, 'pose.bones["head"].rotation_euler'):      # the first look: hold the rest pose until it starts
+            self.sc.frame_set(F(max(0.0, t - blend))); hb.rotation_euler = (0, 0, 0); hb.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))
+        self.sc.frame_set(F(t)); M = self.arm.matrix_world; head = M @ hb.head
         d = Vector(target) - head - Vector((0, 0, 0.12))
         yaw_body = self.arm.rotation_euler.z
         fw = self.forward(yaw_body); right = Vector((math.cos(yaw_body), math.sin(yaw_body), 0))
@@ -361,6 +363,11 @@ class Data:
         # bone Y is up; yaw about world Z, pitch tilts the top of the head toward the target
         Rw = Matrix.Rotation(yaw_body - math.radians(yaw), 3, 'Z') @ Matrix.Rotation(math.radians(-pitch * 0.6), 3, 'X') @ self._rest['head'].to_3x3()
         self._set_bone(hb, head, M.to_3x3().normalized() @ Rw, t)
+
+    def _has_keys(self, obj, data_path):
+        ad = obj.animation_data
+        if not ad or not ad.action: return False
+        return any(fc.data_path == data_path for fc in _fcurves(ad.action))
 
     def _key_val(self, obj, path, t, value, index=-1):
         if index >= 0: getattr(obj, path)[index] = value
@@ -373,8 +380,8 @@ class Data:
             kb[name].value = v; kb[name].keyframe_insert('value', frame=F(t))
         sc = Vector((0.26, 0.06, 0.16)) * open + Vector((0.12, 0.06, 0.12)) * oh
         self.cavity.scale = tuple(max(0.001, v) for v in sc); self.cavity.keyframe_insert('scale', frame=F(t))
-        for b in self.brows:
-            b.location.z = 0.305 + brow; b.keyframe_insert('location', frame=F(t), index=2)
+        for b in self.brows:                                   # the brow rides UP the head surface, so it goes back as it rises
+            b.location.z = 0.305 + brow * 0.5; b.location.y = brow * 0.45; b.keyframe_insert('location', frame=F(t))
         for s in 'LR':
             self.EYE[s + 'up'].rotation_euler.x = math.radians(-100 + 100 * lid); self.EYE[s + 'up'].keyframe_insert('rotation_euler', frame=F(t), index=0)
             self.EYE[s + 'lo'].rotation_euler.x = math.radians(100 - 100 * lid * 0.6); self.EYE[s + 'lo'].keyframe_insert('rotation_euler', frame=F(t), index=0)
@@ -390,7 +397,7 @@ class Data:
 
     def _face_state(self):
         kb = self.lips.data.shape_keys.key_blocks
-        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, brow=self.brows[0].location.z - 0.305,
+        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, brow=(self.brows[0].location.z - 0.305) * 2,
                     lid=(math.degrees(self.EYE['Lup'].rotation_euler.x) + 100) / 100)
 
     def say(self, keys, key='open'):
@@ -398,18 +405,20 @@ class Data:
 
     def blink(self, t, dur=0.2):
         for s in 'LR':
-            for tt, v in ((t - dur / 2, None), (t, 1.0), (t + dur / 2, None)):
-                if v is None:
-                    self.sc.frame_set(F(tt)); up = self.EYE[s + 'up'].rotation_euler.x; lo = self.EYE[s + 'lo'].rotation_euler.x
-                    self.EYE[s + 'up'].rotation_euler.x = up; self.EYE[s + 'lo'].rotation_euler.x = lo
-                else:
-                    self.EYE[s + 'up'].rotation_euler.x = 0.0; self.EYE[s + 'lo'].rotation_euler.x = math.radians(20)
-                self.EYE[s + 'up'].keyframe_insert('rotation_euler', frame=F(tt), index=0); self.EYE[s + 'lo'].keyframe_insert('rotation_euler', frame=F(tt), index=0)
+            up, lo = self.EYE[s + 'up'], self.EYE[s + 'lo']
+            self.sc.frame_set(F(t - dur / 2)); u0, l0 = up.rotation_euler.x, lo.rotation_euler.x         # the lids as they were
+            for tt, (uu, ll) in ((t - dur / 2, (u0, l0)), (t, (math.radians(25), math.radians(-10))), (t + dur / 2, (u0, l0))):   # the lids overlap at the centre: shut
+                up.rotation_euler.x = uu; lo.rotation_euler.x = ll
+                up.keyframe_insert('rotation_euler', frame=F(tt), index=0); lo.keyframe_insert('rotation_euler', frame=F(tt), index=0)
         self._end = max(self._end, t + dur)
 
-    def gaze(self, t, dx, dz):
+    def gaze(self, t, dx, dz, blend=0.15):
+        """the pupils turn dx degrees (positive = his right) and dz up, on their spheres"""
         for s in 'LR':
-            g = self.EYE[s + 'gaze']; g.rotation_euler = (math.radians(dz), 0, math.radians(dx)); g.keyframe_insert('rotation_euler', frame=F(t))
+            g = self.EYE[s + 'gaze']
+            if not self._has_keys(g, 'rotation_euler'): g.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))   # hold the rest gaze until now
+            g.rotation_euler = (math.radians(dz), 0, math.radians(dx)); g.keyframe_insert('rotation_euler', frame=F(t))
+        self._end = max(self._end, t)
 
     def breathe(self, t0, t1, amp=1.5, period=3.2):
         f0, f1 = F(t0), F(t1)
@@ -520,8 +529,8 @@ class Data:
             s = side; sg = 1 if s == 'R' else -1
             p = sh[s] + fw * 0.17 + right * sg * 0.02 + Vector((0, 0, -0.02))
             self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t0, 0.3); self._k(f'hand.{s}', t0, rot=(0, 0, 0))
-            self._arm_ik(s, p, t1, 0.4); self._k(f'hand.{s}', t1, rot=(0, sg * 90, 0))
-            self._arm_ik(s, p, t2, 0.4); self._k(f'hand.{s}', t2, rot=(0, sg * 90, 0))
+            self._arm_ik(s, p, t1, 0.4); self._k(f'hand.{s}', t1, rot=(-85, 0, sg * 15))     # the fist turns so the thumb points UP
+            self._arm_ik(s, p, t2, 0.4); self._k(f'hand.{s}', t2, rot=(-85, 0, sg * 15))
             self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t3, 0.3); self._k(f'hand.{s}', t3, rot=(0, 0, 0))
             self.expression('happy', t0, t2)
         else:

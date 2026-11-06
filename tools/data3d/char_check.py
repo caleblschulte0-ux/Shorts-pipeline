@@ -11,7 +11,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from mathutils import Vector
 
 ap = argparse.ArgumentParser(); ap.add_argument('--out', default=os.environ.get('CHAR_OUT', '/tmp/char')); ap.add_argument('--spp', type=int, default=16)
-ap.add_argument('--only', default='turn,walk')
+ap.add_argument('--only', default='turn,walk,face,acts')
 args = ap.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else sys.argv[1:])
 os.makedirs(args.out, exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -99,3 +99,40 @@ if 'walk' in args.only:
         sc.frame_set(f); x = data.arm.matrix_world.translation.x; aim((x, -2.6, 0.62), (x, 0, 0.48))   # the camera tracks him
         p = os.path.join(args.out, f'walk_{f:03d}.png'); shot(p); paths.append(p)
     sheet(paths, os.path.join(args.out, 'walk.jpg'), cols=5)
+
+if 'face' in args.only:
+    for o in list(bpy.data.actions): bpy.data.actions.remove(o)
+    data.place(0, 0, 0); data._plant_feet_here(0.0); data.release(0.0)
+    data.expression('neutral', 0.0); data.expression('happy', 0.5, 1.0); data.expression('surprised', 1.5, 2.0)
+    data.blink(2.6); data.look_at(Vector((1.2, -1.0, 0.9)), 3.0); data.look_at(Vector((-1.2, -1.0, 0.3)), 3.5)
+    data.say([(4.0, 0.0), (4.15, 0.6), (4.3, 0.1), (4.45, 0.7), (4.6, 0.0)]); data.gaze(5.0, 18, 8); data.gaze(5.5, -18, -6)
+    n = data.finish(); paths = []
+    cam_d.lens = 85
+    for name, t in (('neutral', 0.0), ('happy', 0.75), ('surprised', 1.75), ('blink', 2.6), ('look_r', 3.0), ('look_l', 3.5), ('say', 4.15), ('gaze_r', 5.0), ('gaze_l', 5.5), ('profile_blink', 2.6)):
+        sc.frame_set(character.F(t))
+        if name == 'profile_blink': aim((-0.95, 0.0, 0.75), (0, 0, 0.705))
+        else: aim((0.0, -0.95, 0.75), (0, 0, 0.705))
+        p = os.path.join(args.out, f'face_{name}.png'); shot(p); paths.append(p)
+    sheet(paths, os.path.join(args.out, 'face.jpg'), cols=5); cam_d.lens = 50
+    sc.frame_set(character.F(2.6))
+    for s in 'LR':
+        lid = bpy.data.objects[f'Lid upper.{s}']; ys = [(lid.matrix_world @ Vector(v)).y for v in lid.bound_box]
+        ball = bpy.data.objects[f'Eye ball.{s}']; by = min((ball.matrix_world @ Vector(v)).y for v in ball.bound_box)
+        pu = bpy.data.objects[f'Pupil.{s}']; py = min((pu.matrix_world @ Vector(v)).y for v in pu.bound_box)
+        print(f'blink {s}: lid front y={min(ys):.4f} m, eyeball front y={by:.4f} m, pupil front y={py:.4f} m (lid proud of eye by {(by - min(ys)) * 1000:.1f} mm, of pupil by {(py - min(ys)) * 1000:.1f} mm)')
+
+if 'acts' in args.only:
+    for o in list(bpy.data.actions): bpy.data.actions.remove(o)
+    data.place(0, 0, 0); data._plant_feet_here(0.0); data.release(0.0); data.expression('neutral', 0.0)
+    t = data.act('shrug', 0.5, dur=0.3, hold=0.6); t = data.act('wave', t + 0.3, dur=0.3, hold=0.9); t = data.act('thumbs_up', t + 0.3, dur=0.3, hold=0.6)
+    data.release(t + 0.4)
+    # a straight-arm hold: the hand on a point at full reach, measured every frame
+    sh = data.arm.matrix_world @ data.J['R']['sh']; far = sh + Vector((0.0, -1.0, 0.0)) * (data.U + data.Fo) * 1.3
+    data._arm_ik('R', far, t + 1.0, 0.5); data._arm_ik('R', far, t + 2.0, 0.5)
+    n = data.finish()
+    print('acts: frames', n, 'straight hold elbow (max, mean) over its frames:', character.arm_bend(data, character.F(t + 1.0), character.F(t + 2.0), 1))
+    paths = []
+    for name, tt in (('shrug', 1.1), ('wave', 2.3), ('wave2', 2.6), ('thumbs', 3.9), ('rest', t + 0.4), ('reach', t + 1.5)):
+        sc.frame_set(character.F(tt)); aim((0.5, -2.3, 0.75), (0, 0, 0.55)); p = os.path.join(args.out, f'act_{name}.png'); shot(p); paths.append(p)
+    sc.frame_set(character.F(t + 1.5)); aim((2.4, 0.0, 0.62), (0, 0, 0.55)); p = os.path.join(args.out, 'act_reach_side.png'); shot(p); paths.append(p)
+    sheet(paths, os.path.join(args.out, 'acts.jpg'), cols=7)
