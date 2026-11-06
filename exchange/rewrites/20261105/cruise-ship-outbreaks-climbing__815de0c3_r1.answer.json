@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cruise-ship-outbreaks-climbing__815de0c3_r1",
+  "slug": "cruise-ship-outbreaks-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:18:19.582Z",
+  "title": "Norovirus Caused 83% Of Cruise Outbreaks",
+  "hook": "One illness caused 83% of cruise outbreaks.",
+  "closing": "On crowded ships, basic handwashing protects more people than it seems.",
+  "question": "Would an outbreak change your cruise?",
+  "segments": [
+    {
+      "topic": "Cruise Outbreak Count",
+      "say": "Cruise outbreaks reached 20 in a year. The recent climb makes prevention harder to ignore."
+    },
+    {
+      "topic": "Cruise Norovirus Share",
+      "say": "Norovirus caused 83% of cruise outbreaks. One contagious illness drives most of the problem."
+    },
+    {
+      "topic": "Cruise Guest Capacity",
+      "say": "The largest cruise ship holds 7,600 guests. One outbreak can reach a floating city."
+    }
+  ]
+}
