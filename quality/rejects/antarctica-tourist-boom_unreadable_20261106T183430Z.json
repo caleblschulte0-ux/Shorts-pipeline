@@ -1,0 +1,16 @@
+{
+ "slug": "antarctica-tourist-boom",
+ "ts": "20261106T183430Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:end: the small 'GER' label is pale grey on pale ice and Data stands over the CHINA/UK flags and labels. seg1:start: the caption 'the 1990s, just' is dark-on-dark over a penguin and barely visible.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_labels_and_weak_proof",
+  "visible_evidence": "seg2:end: the country labels USA/AUS/CHINA/UK/GER sit tiny under faint cyan lines, and GER is pale grey, almost invisible. Data stands in front of the CHINA/UK flags, covering them. The groups behind each flag are all about the same size, so 34% American does not read as a third.",
+  "root_cause": "The groups are drawn as one even crowd with flags stuck in front. The share is not carried by group size, and the label layout ignores where Data stands.",
+  "repair_goal": "Split the crowd off the gangway into five clearly separate groups sized to their shares, so the US group is visibly a third of everyone. Put a flag over each group with an ink label at full contrast, and keep Data out of the label row. Have Data wave the US group down the gangway so he causes the split."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261106T183430Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg3:end, '250 miles' and '29,400,000,000,000,000 miles to the Boomerang Nebula' are stacked text over a rocket lifting off a beach. Nothing in the picture shows near versus quadrillions of miles away, so the text carries the whole comparison.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end shows a generic rocket launching from a beach beside a gantry. The near-versus-far claim exists only as the text '250 miles' and a 17-digit '29,400,000,000,000,000' overlaid on the rocket. Nothing shows the Cold Atom Lab in orbit or the nebula's distance.",
+  "root_cause": "The scene draws a launch, which is an event, not the distance relationship. The narration's claim ('extreme cold brought close') has no physical form, so a raw digit string carries it.",
+  "repair_goal": "Show the distance itself. The ISS with the Cold Atom Lab glowing sits just overhead in a frame Data can reach (he hauls it into view or lifts a scope to it). The camera then pulls back across the sky toward the far-off Boomerang Nebula until it is a speck, or a ruler of 250-mile ticks runs out past the edge of the frame. Show one headline number and say 'quadrillions' in words, not 17 digits."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

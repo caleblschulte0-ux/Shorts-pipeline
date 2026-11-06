@@ -1,0 +1,16 @@
+{
+ "slug": "measles-comeback-since-2000",
+ "ts": "20261106T183430Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:end the '7% outside' label is tiny grey text on a grey floor, partly behind Data's legs. On a phone at arm's length it disappears.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_not_shown",
+  "visible_evidence": "From seg2:start to seg2:end there are five near-identical hospital beds with bandaged patients. The headline changes to '93%', and a tiny '7% outside' sits beyond a red rope that Data is holding. Nothing in the picture separates the unvaccinated from the vaccinated or shows 93 against 7.",
+  "root_cause": "The scene puts the share in a caption and a barely visible label instead of in the beds themselves. The rope barrier never sorts anyone, so the picture claims nothing the headline does not already say.",
+  "repair_goal": "Make the 93/7 split visible in the beds. Show a row of roughly 14 beds in which 13 patients have no vaccination mark and one has a clear vaccine-card or bandage marker, or have the rope physically divide a long row of beds from a single one. Data should do the sorting himself, for example wheeling each patient to their side of the rope as the count lands. Make the 7% label large text in ink colour, clear of Data."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
