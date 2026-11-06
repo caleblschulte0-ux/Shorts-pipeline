@@ -1,0 +1,150 @@
+name: ORI manual upload
+
+# Uploads ONE finished long-form video to OpenRangeInteractive, by hand only.
+# The operator approves each video in the project thread; Claude then runs
+# this with the media branch that holds it. No schedule: nothing here can
+# post on its own (tests/test_disabled_channels_stay_off.py).
+#
+# The media branch carries <slug>/video.mp4, thumb.jpg, meta.json and
+# SHA256SUMS under ori/. It is never merged: media does not belong in main.
+# The upload is CLAIMED on main (state/ori_manual_posted_log.json) before the
+# API call, so a re-run can never post the same video twice.
+
+on:
+  workflow_dispatch:
+    inputs:
+      media_branch:
+        description: 'branch holding ori/<slug>/ (video.mp4, thumb.jpg, meta.json, SHA256SUMS)'
+        required: true
+      slug:
+        description: 'folder under ori/ on that branch'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ori-manual-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Fetch the approved media
+        env:
+          BRANCH: ${{ inputs.media_branch }}
+          SLUG: ${{ inputs.slug }}
+        run: |
+          set -euo pipefail
+          git fetch --depth 1 origin "$BRANCH"
+          mkdir -p /tmp/media
+          for f in video.mp4 thumb.jpg meta.json SHA256SUMS; do
+            git show "FETCH_HEAD:ori/$SLUG/$f" > "/tmp/media/$f"
+          done
+          cd /tmp/media
+          sed "s#ori/$SLUG/##" SHA256SUMS | sha256sum -c -
+          ls -la /tmp/media
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install --quiet google-api-python-client google-auth google-auth-oauthlib
+
+      - name: Confirm the channel before claiming
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from shared.uploaders import YouTubeUploader
+          meta = json.load(open('/tmp/media/meta.json'))
+          os.environ['YOUTUBE_EXPECTED_CHANNEL'] = meta['expected_channel']
+          up = YouTubeUploader('curiosity')
+          up._guard_channel(up._service())
+          print('channel confirmed')
+          PY
+
+      - name: Claim on main (refuses a second upload)
+        env:
+          SLUG: ${{ inputs.slug }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python - <<'PY'
+          import json, os, sys, datetime
+          p = 'state/ori_manual_posted_log.json'
+          key = json.load(open('/tmp/media/meta.json'))['claim_key']
+          log = json.load(open(p)) if os.path.exists(p) else []
+          if any(e['claim_key'] == key for e in log):
+              print(f'::error::{key} is already claimed: refusing a second upload'); sys.exit(1)
+          log.append({'claim_key': key, 'slug': os.environ['SLUG'], 'status': 'claimed',
+                      'claimed_at': datetime.datetime.now(datetime.timezone.utc).isoformat()})
+          json.dump(log, open(p, 'w'), indent=1)
+          PY
+            git add state/ori_manual_posted_log.json
+            git commit -qm "ori: claim $SLUG before upload [skip ci]"
+            git push -q origin HEAD:main && { echo "claimed"; exit 0; }
+            sleep $((i * 3))
+          done
+          echo "::error::claim did not reach main: refusing to upload"; exit 1
+
+      - name: Upload
+        id: up
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from shared.uploaders import YouTubeUploader
+          m = json.load(open('/tmp/media/meta.json'))
+          os.environ['YOUTUBE_EXPECTED_CHANNEL'] = m['expected_channel']
+          res = YouTubeUploader('curiosity').upload(
+              '/tmp/media/video.mp4', title=m['title'], description=m['description'],
+              tags=m.get('tags'), thumbnail='/tmp/media/thumb.jpg', category=m.get('category', '28'),
+              localizations={})
+          vid = getattr(res, 'url', str(res)).replace('/shorts/', '/watch?v=')
+          print('uploaded', vid)
+          open(os.environ['GITHUB_OUTPUT'], 'a').write(f'video={vid}\n')
+          PY
+
+      - name: Record the video id
+        if: always() && steps.up.outcome != 'skipped'
+        env:
+          SLUG: ${{ inputs.slug }}
+          VID: ${{ steps.up.outputs.video }}
+          OUTCOME: ${{ steps.up.outcome }}
+        run: |
+          set -euo pipefail
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python - <<'PY'
+          import json, os
+          p = 'state/ori_manual_posted_log.json'
+          log = json.load(open(p))
+          for e in log:
+              if e['slug'] == os.environ['SLUG'] and e['status'] == 'claimed':
+                  e['status'] = 'uploaded' if os.environ['OUTCOME'] == 'success' else 'upload_failed'
+                  e['video'] = os.environ.get('VID', '')
+          json.dump(log, open(p, 'w'), indent=1)
+          PY
+            git add state/ori_manual_posted_log.json
+            git commit -qm "ori: record $SLUG upload [skip ci]" || exit 0
+            git push -q origin HEAD:main && exit 0
+            sleep $((i * 3))
+          done
