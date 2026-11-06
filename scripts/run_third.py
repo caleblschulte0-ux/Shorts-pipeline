@@ -2994,6 +2994,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 for c in cands[:age_probe]:
                     # helix candidates carry exact age; yt-dlp ones probe
                     age = c.get("age_h") or clip_edit.fetch_age_hours(c["url"])
+                    if c.get("proven_by") == "r/LivestreamFail":
+                        # an upvoted clip is days or weeks old by the time
+                        # Reddit has voted on it; dividing its views by that
+                        # age buried every one of them under today's chart
+                        # (11-06: 22 in the pool, none in the top 5). Its
+                        # proof is the vote, so it is measured as if a day old
+                        age = min(age or 24.0, 24.0)
                     c["vph"] = c["views"] / max(age, 0.5) if age else \
                         c["views"] / 24.0
                     c["score"] = c["vph"] * _fit(c["channel"], c)
@@ -3054,7 +3061,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     print(f"[pick] {c['channel']:>14} {c['views']:>7}v "
                           f"{c['vph']:>8.0f}v/h b={c['banger']:.2f} "
                           f"p={c['prior']:.2f} score={c['score']:>7.0f} "
-                          f"{c['title'][:38]!r} {c.get('banger_why','')!r}",
+                          f"{c['title'][:38]!r} {c.get('banger_why','')!r}"
+                          f"{' [' + c['proven_by'] + ']' if c.get('proven_by') else ''}",
                           flush=True)
                 # QUALITY FLOOR (post fewer > post duds): the banger scorer
                 # explicitly buckets giveaway / subathon / sponsor / insider /
