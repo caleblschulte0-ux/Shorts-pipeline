@@ -121,10 +121,10 @@ data.turn_to(-90, T_REL + 0.2, T_REL + 0.9)          # face -x: back along the l
 data.look_at((0.9, 0.6, 0.6), T_REL + 0.9)
 data.expression("surprised", T_REL + 0.8, T_REL + 2.2)
 data.look_at((-0.2, 0.6, 0.6), T_REL + 1.6)
-data.turn_to(180, T_REL + 2.0, T_REL + 2.6)          # face -y: camera
-data.look_at((CAM_BASE.x + 1.0, CAM_BASE.y + 1.2, 0.8), T_REL + 2.6)
-data.act("shrug", T_REL + 2.7, dur=0.35, hold=0.6)
-data.expression("happy", T_REL + 2.7, T_END)
+data.turn_to(180, T_REL + 1.7, T_REL + 2.2)          # face -y: camera
+data.look_at((CAM_BASE.x + 1.0, CAM_BASE.y + 1.2, 0.8), T_REL + 2.2)
+data.act("shrug", T_REL + 2.3, dur=0.3, hold=0.45)   # ends inside the 10 s
+data.expression("happy", T_REL + 2.3, T_END)
 data.finish()
 
 # ---------------------------------------------------------------- camera: leads him, pushes in at the turn
@@ -132,7 +132,7 @@ cam = K.camera(CAM_BASE, CAM_LOOK, lens=30, fstop=8)
 for f in range(1, F(T_END) + 1):
     sc.frame_set(f); t = (f - 1) / FPS
     px = Vector(data.arm.location).x
-    u_in = ease((t - (T_REL + 1.9)) / 1.2)
+    u_in = ease((t - (T_REL + 1.6)) / 1.2)
     loc = Vector((CAM_BASE.x + (px - X0) + LOOK_AHEAD * min(1, max(0, (t - T_PUSH0) / 0.6)) * (1 - u_in), CAM_BASE.y, CAM_BASE.z))
     look = Vector((px + LOOK_AHEAD, CAM_LOOK.y, CAM_LOOK.z))
     if u_in > 0:

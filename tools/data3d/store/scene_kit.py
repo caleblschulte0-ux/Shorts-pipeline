@@ -434,10 +434,10 @@ def dressing():
         box("basket rim", (bx, by, z + 0.165), (0.44, 0.32, 0.012), red, bev=0.004)
         cyl("basket handle", (bx, by, z + 0.17), 0.008, 0.36, handle, rot=(0, math.radians(90), 0), v=12, bev=0)
     yellow = mat("cone yellow", rough=0.4); ink = mat("wet ink", "#1A1A1A", rough=0.5)
-    cx, cy = float(os.environ.get("CONE_X", "2.35")), float(os.environ.get("CONE_Y", "-0.55"))
+    cx, cy = float(os.environ.get("CONE_X", "3.35")), float(os.environ.get("CONE_Y", "-0.8"))   # past the end of his walk, never in front of him
     for s in (-1, 1):
-        p = box("wet sign", (cx + s * 0.07, cy, 0.3), (0.012, 0.3, 0.6), yellow, bev=0.003); p.rotation_euler = (0, s * math.radians(14), 0)
-    text("wet text", "WET\nFLOOR", (cx - 0.145, cy, 0.33), 0.075, (math.radians(90), 0, math.radians(-90)), ink, extrude=0.001)
+        p = box("wet sign", (cx + s * 0.05, cy, 0.21), (0.01, 0.22, 0.42), yellow, bev=0.003); p.rotation_euler = (0, s * math.radians(14), 0)
+    text("wet text", "WET\nFLOOR", (cx - 0.105, cy, 0.23), 0.052, (math.radians(90), 0, math.radians(-90)), ink, extrude=0.001)
 
 
 def camera(loc, target, lens=30, fstop=8.0):
