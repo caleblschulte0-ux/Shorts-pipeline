@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "neutron-star-manhattan-size__4e02853c_r1",
+  "slug": "neutron-star-manhattan-size",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:18:19.582Z",
+  "title": "A Neutron Star Is Only 20 Kilometers Wide",
+  "hook": "A neutron star packs stellar mass into 20 kilometers.",
+  "closing": "Neutron stars show how brutally gravity can compress ordinary matter.",
+  "question": "Which is wilder: size or mass?",
+  "segments": [
+    {
+      "topic": "Neutron Star Size",
+      "say": "A neutron star can be only 20 kilometers wide. Stellar mass fits inside a city-sized sphere."
+    },
+    {
+      "topic": "Neutron Star Limit",
+      "say": "At 2.2 solar masses, a neutron star reaches its collapse limit. Beyond that, gravity wins."
+    },
+    {
+      "topic": "Neutron Star Count",
+      "say": "Astronomers have catalogued 3,400 neutron stars. The population keeps growing as searches improve."
+    }
+  ]
+}
