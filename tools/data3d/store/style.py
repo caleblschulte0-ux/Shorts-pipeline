@@ -39,13 +39,13 @@ def restyle():
     if m:
         nt, b = _nodes(m)
         if b:
-            b.inputs["Roughness"].default_value = 0.24; b.inputs["Specular IOR Level"].default_value = 0.5
+            b.inputs["Roughness"].default_value = 0.3; b.inputs["Specular IOR Level"].default_value = 0.5
             spk = _tex_noise(nt, 90, 3, 0.6); tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], spk.inputs["Vector"])
             sharp = _ramp(nt, spk.outputs["Fac"], -1.2, 2.2)      # noise Fac sits near 0.5: stretch it so the speckle shows
             cl = nt.nodes.new("ShaderNodeClamp"); nt.links.new(sharp, cl.inputs["Value"])
             _mix_col(nt, b, cl.outputs["Result"], (0.42, 0.41, 0.4, 1), 0.45)
             scuff = _tex_noise(nt, 0.6, 3, 0.7); nt.links.new(tc.outputs["Object"], scuff.inputs["Vector"])
-            rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.22; rr.inputs[2].default_value = 0.16
+            rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.18; rr.inputs[2].default_value = 0.22
             nt.links.new(scuff.outputs["Fac"], rr.inputs[0]); nt.links.new(rr.outputs[0], b.inputs["Roughness"])
             _bump(nt, b, spk.outputs["Fac"], 0.04, 0.0005)
     for name in ("counter", "laminate", "counter edge"):
@@ -61,10 +61,10 @@ def restyle():
         if m:
             nt, b = _nodes(m)
             if b:
-                b.inputs["Metallic"].default_value = 1.0; b.inputs["Roughness"].default_value = 0.34
-                b.inputs["Base Color"].default_value = (0.72, 0.73, 0.75, 1)
+                b.inputs["Metallic"].default_value = 1.0; b.inputs["Roughness"].default_value = 0.42; b.inputs["Anisotropic"].default_value = 0.6   # brushed, not chrome
+                b.inputs["Base Color"].default_value = (0.66, 0.67, 0.69, 1)
                 n = _tex_noise(nt, 400, 2, 0.5); 
-                rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.12; rr.inputs[2].default_value = 0.28
+                rr = nt.nodes.new("ShaderNodeMath"); rr.operation = 'MULTIPLY_ADD'; rr.inputs[1].default_value = 0.1; rr.inputs[2].default_value = 0.38
                 nt.links.new(n.outputs["Fac"], rr.inputs[0]); nt.links.new(rr.outputs[0], b.inputs["Roughness"])
     m = _get("belt")
     if m:
@@ -91,14 +91,14 @@ def restyle():
     if m:
         nt, b = _nodes(m)
         if b:
-            b.inputs["Roughness"].default_value = 0.34; b.inputs["Specular IOR Level"].default_value = 0.5
-            b.inputs["Subsurface Weight"].default_value = 0.08; b.inputs["Subsurface Radius"].default_value = (0.02, 0.01, 0.008)
-            b.inputs["Coat Weight"].default_value = 0.3; b.inputs["Coat Roughness"].default_value = 0.14
+            b.inputs["Roughness"].default_value = 0.45; b.inputs["Specular IOR Level"].default_value = 0.3   # soft, no plastic hotspot
+            b.inputs["Subsurface Weight"].default_value = 0.12; b.inputs["Subsurface Radius"].default_value = (0.02, 0.012, 0.01)
+            b.inputs["Coat Weight"].default_value = 0.0
     m = _get("Coat / warm ivory")
     if m:
         nt, b = _nodes(m)
         if b:
-            b.inputs["Roughness"].default_value = 0.82; b.inputs["Sheen Weight"].default_value = 0.9; b.inputs["Sheen Roughness"].default_value = 0.5
+            b.inputs["Roughness"].default_value = 0.8; b.inputs["Sheen Weight"].default_value = 0.3; b.inputs["Sheen Roughness"].default_value = 0.6; b.inputs["Specular IOR Level"].default_value = 0.2   # fabric
             n = _tex_noise(nt, 300, 2, 0.5); _bump(nt, b, n.outputs["Fac"], 0.05, 0.0004)
     m = _get("Frames / charcoal")
     if m:
@@ -124,17 +124,20 @@ def lights(sc, data_follow=None):
     # ceiling panels: a row over the lanes, a row behind
     for x in (-1.6, -0.4, 0.8, 2.0, 3.2):
         for y in (-0.9, 0.6):
-            area(f"panel {x}_{y}", (x, y, 2.45), 1.1, 15, (1.0, 0.97, 0.92), shape='RECTANGLE', size_y=0.3, aim=(x, y, 0))
+            area(f"panel {x}_{y}", (x, y, 2.45), 1.1, 12, (1.0, 0.97, 0.92), shape='RECTANGLE', size_y=0.3, aim=(x, y, 0))
+    for x in (-3.4, -1.0, 1.4, 3.8, 6.2):   # the far store is lit too: rows of panels going off into the distance
+        for y in (2.4, 3.8, 5.2, 6.6, 8.0):
+            area(f"far panel {x}_{y}", (x, y, 2.45), 2.2, 30, (1.0, 0.97, 0.92), shape='RECTANGLE', size_y=0.6, aim=(x, y, 0))
     # shopfront daylight
-    sd = bpy.data.lights.new("daylight", 'SUN'); sd.energy = 10.0; sd.angle = math.radians(3); sd.color = (1.0, 0.96, 0.9)
+    sd = bpy.data.lights.new("daylight", 'SUN'); sd.energy = 2.5; sd.angle = math.radians(8); sd.color = (1.0, 0.96, 0.9)
     so = bpy.data.objects.new("daylight", sd); bpy.context.collection.objects.link(so)
     so.rotation_euler = Vector((0.75, 0.25, -0.6)).to_track_quat('-Z', 'Y').to_euler()   # from camera-left-front and above: his shadow falls to camera-right where it is SEEN
     # window: big soft area from camera-left-front, half strength
-    area("window", (-2.4, -3.2, 1.6), 2.2, 60, (0.92, 0.95, 1.0), shape='RECTANGLE', size_y=1.6, aim=(0.5, 0.3, 0.6))
+    area("window", (-2.8, -2.6, 1.8), 3.2, 240, (0.95, 0.96, 1.0), shape='RECTANGLE', size_y=2.6, aim=(0.6, 0.3, 0.6))   # the big soft key: daylight through the shopfront side
     # cool fill from the right
-    area("fill", (3.0, -2.6, 1.4), 1.6, 9, (0.85, 0.9, 1.0), aim=(0.8, 0.3, 0.5))
+    area("fill", (3.2, -2.6, 1.4), 2.0, 7, (0.85, 0.9, 1.0), aim=(0.8, 0.3, 0.5))
     # warm hero key following Data
-    key = area("hero key", (0, -1, 1), 0.42, 52, (1.0, 0.93, 0.85), aim=(0, 0, 0.6))
+    key = area("hero key", (0, -1, 1), 0.9, 22, (1.0, 0.93, 0.85), aim=(0, 0, 0.6))
     w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
     bg = w.node_tree.nodes.get("Background")
     if bg: bg.inputs["Color"].default_value = (0.6, 0.65, 0.75, 1); bg.inputs["Strength"].default_value = 0.05
@@ -156,6 +159,7 @@ def render_settings(sc, spp=24, pct=60, out=None):
     cy.use_denoising = True; cy.denoising_input_passes = 'RGB_ALBEDO_NORMAL'; cy.seed = 7; cy.use_animated_seed = False
     cy.max_bounces = 6; cy.diffuse_bounces = 3; cy.glossy_bounces = 3; cy.transparent_max_bounces = 6; cy.caustics_reflective = False; cy.caustics_refractive = False
     cy.filter_width = 1.05
+    sc.render.use_motion_blur = True; sc.render.motion_blur_shutter = 0.5
     sc.render.resolution_x = 1080; sc.render.resolution_y = 1920; sc.render.resolution_percentage = pct; sc.render.fps = 24
     sc.render.film_transparent = False
     sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'AgX - Medium High Contrast'; sc.view_settings.exposure = -1.3

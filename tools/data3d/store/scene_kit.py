@@ -13,12 +13,13 @@ BACK_Y = 2.4 * U          # 1.344
 WALL_H = 4.6 * U          # 2.576
 LANE_X = [0.0, 0.62, 1.24, 1.86]
 FAR_X = [3.05, 3.67]
+FAR_Y = BACK_Y + 7.0        # the far wall: the store goes on behind the lanes
 FPS = 24
 
 # natural supermarket colours; one brand accent (the orange band) and the blue of the screens
 PAL = {
     "wall": "#E6E1D8", "wall band": "#C8643A", "floor": "#B9BDC1", "grout": "#A9ADB2", "counter": "#E9E6E0",
-    "counter edge": "#8F8A82", "kiosk body": "#EDEEF0", "kiosk dark": "#2B2F36", "kiosk screen": "#2F7FE0",
+    "counter edge": "#6E6961", "kiosk body": "#EDEEF0", "kiosk dark": "#2B2F36", "kiosk screen": "#2F7FE0",
     "register": "#2B2F36", "reg screen": "#BFD8F0", "card reader": "#2B2F36", "keypad": "#3A3F47", "uniform": "#1F5F8B",
     "apron": "#2B2F36", "belt": "#1C1E22", "belt well": "#8A8F96", "rail": "#C9CDD2", "sign pole": "#AEB3B9",
     "lane sign": "#F6F2E8", "sign frame": "#2B2F36", "rack": "#4A4F57", "rack shelf": "#AEB3B9", "paper bag": "#C9A97E",
@@ -128,23 +129,60 @@ def floor(size=(16, 10), tile=0.9):
 def walls():
     """back wall with trim and base board, the orange band with its text, a side return at the far end"""
     wall = mat("wall", rough=0.7); band = mat("wall band", rough=0.55); trim = mat("trim", rough=0.6); base = mat("base board", rough=0.7)
-    box("back wall", (0.5, BACK_Y + 0.1, WALL_H / 2), (18, 0.2, WALL_H), wall, bev=0)
+    box("back wall", (0.5, FAR_Y + 0.1, WALL_H / 2), (26, 0.2, WALL_H), wall, bev=0)
     cm = mat("ceiling", "#E9E7E2", rough=0.9)
     nt = cm.node_tree; b = nt.nodes["Principled BSDF"]
     br = nt.nodes.new("ShaderNodeTexBrick"); br.inputs["Scale"].default_value = 1 / 0.6; br.inputs["Mortar Size"].default_value = 0.012 / 0.6
     br.inputs["Color1"].default_value = (*lin("#E9E7E2"), 1); br.inputs["Color2"].default_value = (*lin("#E4E2DD"), 1); br.inputs["Mortar"].default_value = (*lin("#C9C7C2"), 1)
     br.offset = 0.0; br.squash = 1.0; tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], br.inputs["Vector"]); nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
-    box("ceiling", (0.5, 0.2, WALL_H + 0.02), (18, 5.6, 0.04), cm, bev=0)
-    for x in range(-4, 6):
-        for y in (0.0, 1.0):   # recessed light panels: a dark frame and a bright diffuser, lit by the real area lights below them
+    box("ceiling", (0.5, 3.2, WALL_H + 0.02), (26, 11.6, 0.04), cm, bev=0)
+    for x in range(-5, 7):
+        for y in [0.0, 1.0] + [2.4 + 1.4 * k for k in range(5)]:   # recessed light panels: a dark frame and a bright diffuser, lit by the real area lights below them
             box("light frame", (x * 1.2 + 0.3, y, WALL_H - 0.012), (1.22, 0.42, 0.02), mat("light frame", "#9A9C9E", rough=0.5), bev=0.003)
-            box("light diffuser", (x * 1.2 + 0.3, y, WALL_H - 0.01), (1.16, 0.36, 0.01), mat("light diffuser", "#FFFFFF", rough=0.3, emit=3.0), bev=0.002)
-    box("wall band", (0.5, BACK_Y - 0.012, 3.45 * U), (18, 0.024, 0.5 * U), band, bev=0.004)
-    box("trim line", (0.5, BACK_Y - 0.012, 1.42), (18, 0.024, 0.035), trim, bev=0.004)
-    box("base board", (0.5, BACK_Y - 0.012, 0.045), (18, 0.024, 0.09), base, bev=0.004)
+            box("light diffuser", (x * 1.2 + 0.3, y, WALL_H - 0.01), (1.16, 0.36, 0.01), mat("light diffuser", "#FFFFFF", rough=0.3, emit=7.0), bev=0.002)
+    box("wall band", (0.5, FAR_Y - 0.012, 3.45 * U), (26, 0.024, 0.6 * U), band, bev=0.004)
+    box("trim line", (0.5, FAR_Y - 0.012, 1.42), (26, 0.024, 0.035), trim, bev=0.004)
+    box("base board", (0.5, FAR_Y - 0.012, 0.045), (26, 0.024, 0.09), base, bev=0.004)
     ivory = mat("sign ivory", rough=0.5)
-    text("band sign", "SELF CHECKOUT  →", (1.75, BACK_Y - 0.034, 3.45 * U - 0.07), 0.15, (math.radians(90), 0, 0), ivory, extrude=0.006)
-    text("band sign 2", "LANES 1-4", (-1.6, BACK_Y - 0.034, 3.45 * U - 0.06), 0.13, (math.radians(90), 0, 0), ivory, extrude=0.006)
+    text("band sign", "SELF CHECKOUT  →", (2.4, FAR_Y - 0.034, 3.45 * U - 0.1), 0.24, (math.radians(90), 0, 0), ivory, extrude=0.008)
+    text("band sign 2", "LANES 1-4", (-2.6, FAR_Y - 0.034, 3.45 * U - 0.09), 0.2, (math.radians(90), 0, 0), ivory, extrude=0.008)
+    # the near overhead header over the lane line (the far band is soft and mostly behind the aisles)
+    box("header band", (1.2, BACK_Y - 0.03, 2.1), (7.0, 0.05, 0.3), band, bev=0.006)
+    text("header sign", "SELF CHECKOUT  →", (1.75, BACK_Y - 0.06, 2.1 - 0.07), 0.17, (math.radians(90), 0, 0), ivory, extrude=0.006)
+    text("header sign 2", "LANES 1-4", (-1.4, BACK_Y - 0.06, 2.1 - 0.06), 0.14, (math.radians(90), 0, 0), ivory, extrude=0.006)
+    for x in (-2.0, 0.4, 2.8, 4.4):
+        cyl("header rod", (x, BACK_Y - 0.03, (2.25 + WALL_H) / 2), 0.006, WALL_H - 2.25, mat("sign pole", rough=0.4, metal=0.6), bev=0)
+
+
+def aisles(y0=2.3, y1=7.6, xs=(-3.2, -1.8, -0.4, 1.0, 2.4, 3.8, 5.2), seed=5):
+    """aisles of shelving receding away from camera behind the near gondola: each a double-sided unit running along
+    +y with four planks of product runs on both faces and an end cap, under the ceiling light rows"""
+    r = random.Random(seed); root = empty("aisles", (0, 0, 0))
+    shelf = mat("shelf", rough=0.5); plank = mat("plank", rough=0.45); strip = mat("price strip", rough=0.6)
+    L = y1 - y0; yc = (y0 + y1) / 2; H = 1.7; W = 0.9
+    for x in xs:
+        box("aisle spine", (x, yc, H / 2), (0.05, L, H), shelf, bev=0.003, parent=root)
+        box("aisle base", (x, yc, 0.06), (W, L, 0.12), shelf, bev=0.004, parent=root)
+        box("aisle cap", (x, y0 - 0.02, H / 2), (W, 0.04, H), shelf, bev=0.004, parent=root)
+        for z in (0.3, 0.72, 1.14, 1.56):
+            box("aisle plank", (x, yc, z), (W, L, 0.03), plank, bev=0.003, parent=root)
+            for sg in (-1, 1):
+                box("aisle strip", (x + sg * W / 2, yc, z - 0.002), (0.006, L, 0.025), strip, bev=0.001, parent=root)
+                y = y0 + 0.08
+                while y < y1 - 0.2:
+                    col = r.choice(PRODUCTS); n = r.randint(3, 7); w = r.choice((0.1, 0.13, 0.16)); h = r.choice((0.16, 0.2, 0.26)); d = r.choice((0.07, 0.09))
+                    pm = mat(f"prod {col}", col, rough=0.5)
+                    for k in range(n):
+                        if y + w > y1 - 0.1: break
+                        box("aisle prod", (x + sg * (W / 2 - 0.1), y + w / 2, z + 0.015 + h / 2), (d * 2, w - 0.01, h), pm, bev=0.004, parent=root)
+                        y += w
+                    y += 0.05
+        # end-cap product block facing camera
+        col = r.choice(PRODUCTS); pm = mat(f"prod {col}", col, rough=0.5)
+        for zz in (0.35, 0.8, 1.25):
+            for k in range(3):
+                box("cap prod", (x - 0.28 + k * 0.28, y0 - 0.1, zz), (0.22, 0.12, 0.3), pm, bev=0.004, parent=root)
+    return root
 
 
 def ceiling_signs():
@@ -166,7 +204,7 @@ def gondola(x0=-3.5, x1=4.8, door_x=None, seed=3):
     shelf = mat("shelf", rough=0.5); plank = mat("plank", rough=0.45); strip = mat("price strip", rough=0.6)
     lid = mat("can lid", rough=0.35, metal=0.9); dark = mat("brand dark", "#1E2430", rough=0.5); light = mat("brand light", "#FBFAF5", rough=0.5)
     root = empty("gondola", (0, 0, 0)); depth = 0.26; y_back = BACK_Y - 0.02
-    box("shelf back", ((x0 + x1) / 2, y_back - 0.01, 0.78), (x1 - x0, 0.02, 1.5), shelf, bev=0.003, parent=root)
+    box("shelf back", ((x0 + x1) / 2, y_back - 0.01, 0.64), (x1 - x0, 0.02, 1.28), shelf, bev=0.003, parent=root)   # low enough to see the aisles over it
     for z in (0.22, 0.66, 1.1):
         box("shelf plank", ((x0 + x1) / 2, y_back - depth / 2, z), (x1 - x0, depth, 0.03), plank, bev=0.004, parent=root)
         yf = y_back - depth
@@ -376,10 +414,9 @@ def kiosk(name, spot, counter_h=0.9 * U):
     tt = text("kiosk ui text", "START", (spot.x, spot.y - 0.067, zc - 0.045), 0.03, (math.radians(72), 0, 0), navy, extrude=0.001, parent=root)
     box("kiosk screen neck", (spot.x, spot.y + 0.02, H + 0.03), (0.08, 0.08, 0.08), dark, bev=0.006, parent=root)
     # the lit sign on top
-    cyl("kiosk sign post", (spot.x, spot.y + 0.06, H + 0.42), 0.01, 0.3, dark, parent=root)
-    box("kiosk sign", (spot.x, spot.y + 0.06, H + 0.62), (0.34, 0.03, 0.12), navy, bev=0.006, parent=root)
-    box("kiosk sign face", (spot.x, spot.y + 0.043, H + 0.62), (0.31, 0.004, 0.09), mat("lane sign", rough=0.4, emit=1.0), bev=0.002, parent=root)
-    text("kiosk sign text", "SELF CHECKOUT", (spot.x, spot.y + 0.039, H + 0.62), 0.036, (math.radians(90), 0, 0), navy, extrude=0.002, parent=root)
+    box("kiosk sign", (spot.x, spot.y + 0.1, H + 0.38), (0.3, 0.03, 0.09), navy, bev=0.006, parent=root)   # a small lit sign on the machine, no pole
+    box("kiosk sign face", (spot.x, spot.y + 0.083, H + 0.38), (0.27, 0.004, 0.065), mat("lane sign", rough=0.4, emit=1.0), bev=0.002, parent=root)
+    text("kiosk sign text", "SELF CHECKOUT", (spot.x, spot.y + 0.079, H + 0.38), 0.03, (math.radians(90), 0, 0), navy, extrude=0.002, parent=root)
     # card reader on the near face, bagging shelf with a scale to the +x side
     box("kiosk reader", (spot.x - 0.11, spot.y - 0.17, H - 0.08), (0.07, 0.06, 0.1), dark, bev=0.006, parent=root)
     box("kiosk reader pad", (spot.x - 0.11, spot.y - 0.202, H - 0.07), (0.05, 0.004, 0.04), mat("keypad"), bev=0.001, parent=root)
@@ -484,13 +521,7 @@ def dressing():
     # painted floor decal he walks along: SELF CHECKOUT with chevrons, matte paint in the near aisle (y = -0.55)
     paint = mat("floor paint", "#1F3B63", rough=0.85); paint2 = mat("floor paint 2", "#C8643A", rough=0.85)
     text("floor decal", "SELF CHECKOUT", (0.55, -0.62, 0.0015), 0.17, (0, 0, 0), paint, extrude=0.0005)
-    for k in range(5):
-        for sg in (-1, 1):
-            c = box("chevron", (1.75 + k * 0.33 + sg * 0.0, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0)
-            c.rotation_euler = (0, 0, -sg * math.radians(40))   # chevrons point the way he walks (+x)
-    for k in range(3):
-        for sg in (-1, 1):
-            c = box("chevron", (-1.1 + k * 0.33, -0.58 + sg * 0.06, 0.0015), (0.16, 0.035, 0.001), paint2, bev=0); c.rotation_euler = (0, 0, -sg * math.radians(40))   # chevrons point the way he walks (+x)
+    # (no chevrons: one decal is enough; the floor was loud)
     # a low dump bin at the left frame edge for the first second, passing in the foreground
     dx, dy = float(os.environ.get("BIN_X", "-1.12")), float(os.environ.get("BIN_Y", "-0.6"))   # a sliver at the left edge in the first half second, never over him
     binm = mat("dump bin", "#3A3D42", rough=0.55); binr = mat("dump bin rim", "#C8643A", rough=0.5)
@@ -513,7 +544,7 @@ def camera(loc, target, lens=30, fstop=8.0):
 
 def build_store(set3=True):
     """the whole set; returns dict(lanes, kiosks, extra, cart)"""
-    floor(); walls(); ceiling_signs(); gondola()
+    floor(); walls(); ceiling_signs(); gondola(); aisles()
     lanes = [checkout_lane(f"lane{i + 1}", x, number=i + 1) for i, x in enumerate(LANE_X)]
     extra = [checkout_lane("lane_far", FAR_X[0], number=5), checkout_lane("lane_far2", FAR_X[1], number=6)]
     kiosks = [kiosk(f"kiosk{i + 1}", ln["kiosk_spot"], ln["h"]) for i, ln in enumerate(lanes)]

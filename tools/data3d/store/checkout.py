@@ -19,7 +19,7 @@ PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
 T_PUSH0, T_PUSH1, T_END = 0.5, 6.6, 10.0
 X0, X1 = -0.72, 2.3
 TRIG_AHEAD = 0.9         # the lane converts in the camera's LEAD space, right of the cart, not behind Data
-CAM_BASE = Vector((-0.55, -2.0, 0.6)); CAM_LOOK = Vector((0.45, 0.35, 0.8)); LOOK_AHEAD = 0.25; PUSH_IN = 0.8   # tilted up: feet near 85% of the frame, the ceiling in shot
+CAM_BASE = Vector((-0.55, -2.67, 0.6)); CAM_LOOK = Vector((0.45, 0.35, 0.8)); LOOK_AHEAD = 0.25; PUSH_IN = 1.05; LENS = 40; FSTOP = 2.8   # tilted up: feet near 85% of the frame, the ceiling in shot
 BACK_Y = K.BACK_Y - 0.1
 
 sc = bpy.context.scene
@@ -132,7 +132,7 @@ data.expression("happy", T_REL + 2.3, T_END)
 data.finish()
 
 # ---------------------------------------------------------------- camera: leads him, pushes in at the turn
-cam = K.camera(CAM_BASE, CAM_LOOK, lens=30, fstop=8)
+cam = K.camera(CAM_BASE, CAM_LOOK, lens=LENS, fstop=FSTOP)
 for f in range(1, F(T_END) + 1):
     sc.frame_set(f); t = (f - 1) / FPS
     px = Vector(data.arm.location).x

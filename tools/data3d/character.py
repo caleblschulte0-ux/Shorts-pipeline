@@ -106,8 +106,10 @@ def _mouth_paths(n=24):
             a = math.pi - 2 * math.pi * i / (2 * n)          # start at the left corner, over the top, back under
             pts.append(on_head(cx + rx * math.cos(a), cz + rz * math.sin(a)))
         return pts
-    rest = two_rows(lambda x: 3.10, -0.30, 0.30, 0.012)
-    smile = two_rows(lambda x: 3.065 + 0.16 * (x / 0.37) ** 2, -0.37, 0.37, 0.012)
+    # REST is a still, closed smile: a thin line with the corners turned up (operator, 2026-11-06: from the side the flat
+    # dark slab read as a moustache). 'smile' is the bigger version; talking keys still move freely over it.
+    rest = two_rows(lambda x: 3.085 + 0.07 * (x / 0.30) ** 2, -0.30, 0.30, 0.005)
+    smile = two_rows(lambda x: 3.065 + 0.16 * (x / 0.37) ** 2, -0.37, 0.37, 0.009)
     opn = ellipse(0.0, 3.10, 0.27, 0.17)
     oh = ellipse(0.0, 3.08, 0.13, 0.13)
     return {'rest': rest, 'smile': smile, 'open': opn, 'oh': oh}
@@ -181,13 +183,18 @@ class Data:
             self.EYE[s + 'gaze'] = gaze; self.EYE[s + 'up'] = pu; self.EYE[s + 'lo'] = pl
             P.setdefault('face', []).extend([ball, gaze, pu, pl])
         paths = _mouth_paths()
-        verts, faces = _tube(paths['rest'])
+        LIP_R = 0.009                                        # a thin line, not a slab
+        verts, faces = _tube(paths['rest'], r=LIP_R)
         me = bpy.data.meshes.new('Lips'); me.from_pydata([tuple(v) for v in verts], [], faces); me.update()
-        lips = bpy.data.objects.new('Lips', me); bpy.context.collection.objects.link(lips); lips.data.materials.append(black)
+        # the lip is a slightly darker tint of his own skin, never dark brown: nothing in profile reads as facial hair
+        lip_m = bpy.data.materials.new('Mouth / lip'); lip_m.use_nodes = True
+        lb = lip_m.node_tree.nodes['Principled BSDF']; tb = teal.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value
+        lb.inputs['Base Color'].default_value = (tb[0] * 0.55, tb[1] * 0.6, tb[2] * 0.6, 1); lb.inputs['Roughness'].default_value = 0.5
+        lips = bpy.data.objects.new('Lips', me); bpy.context.collection.objects.link(lips); lips.data.materials.append(lip_m)
         for p in me.polygons: p.use_smooth = True
         lips.shape_key_add(name='Basis')
         for key in ('smile', 'open', 'oh'):
-            v2, _ = _tube(paths[key]); sk = lips.shape_key_add(name=key)
+            v2, _ = _tube(paths[key], r=LIP_R); sk = lips.shape_key_add(name=key)
             for i, v in enumerate(v2): sk.data[i].co = v
         cav_m = bpy.data.materials.new('Mouth / cavity'); cav_m.use_nodes = True
         b = cav_m.node_tree.nodes['Principled BSDF']; b.inputs['Base Color'].default_value = (0.02, 0.005, 0.006, 1); b.inputs['Roughness'].default_value = 0.6
