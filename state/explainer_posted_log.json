@@ -5047,6 +5047,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 25.3
+    },
+    "measles-comeback-since-2000": {
+      "claimed_at": "2026-11-06T17:31:46.863616+00:00",
+      "title": "Measles Returned With 2,289 US Cases",
+      "publish_at": "2026-11-06T22:57:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6465,6 +6472,14 @@
       "state": "posted",
       "slug": "tsa-digital-id-states-growth",
       "at": "2026-11-06T16:57:50.173209+00:00"
+    },
+    {
+      "claimed_at": "2026-11-06T17:31:46.863616+00:00",
+      "title": "Measles Returned With 2,289 US Cases",
+      "publish_at": "2026-11-06T22:57:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "measles-comeback-since-2000"
     }
   ]
 }
