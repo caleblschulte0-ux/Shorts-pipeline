@@ -18378,6 +18378,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin letterboxed strip, about 1/3 of the canvas height. The rest is blurred padding, so the frami; vision: The streamer's face cam is tiny, in the corner of the strip. His reaction is hard to read on a phone.; vision: From about 11s to 24s the frame is a static Geometr",
       "ts": "2026-11-06T13:00:02.433742+00:00"
+    },
+    "clip-20261106-2": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-8941dda568d3ff86",
+      "streamer": "emjayplayss",
+      "title": "Emjayplayss goes full spooky costume for papi queso homage",
+      "kind": "story",
+      "ts": "2026-11-06T13:43:55.951896+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }

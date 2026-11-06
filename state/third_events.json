@@ -5479,6 +5479,74 @@
       ],
       "published_versions": [],
       "last_updated": "2026-11-02"
+    },
+    "shishki-about-anime-2026w44": {
+      "event_id": "shishki-about-anime-2026w44",
+      "people": [
+        "shishki"
+      ],
+      "actions": [
+        "about",
+        "anime",
+        "fate",
+        "shishki"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2915626413/29206-29446",
+        "https://www.twitch.tv/shishki/clip/CrepuscularHorribleTrayOpieOP-1a-6ZC84kuyynvke",
+        "vodmine://2915626413/29499-29739"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-06"
+    },
+    "kaicenat-camera-cenat-2026w44": {
+      "event_id": "kaicenat-camera-cenat-2026w44",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "camera",
+        "cenat",
+        "thumbnail",
+        "werewolf"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2915383492/708-948",
+        "https://www.twitch.tv/kaicenat/clip/CleanStrongLardWow-ijljc8q0MJOwps0R",
+        "vodmine://2915383492/978-1218"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-06"
+    },
+    "emjayplayss-about-beard-2026w44": {
+      "event_id": "emjayplayss-about-beard-2026w44",
+      "people": [
+        "emjayplayss"
+      ],
+      "actions": [
+        "about",
+        "beard",
+        "case",
+        "hoodie"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2915285618/0-131",
+        "https://www.twitch.tv/emjayplayss/clip/RelentlessBlazingPistachioArsonNoSexy-VaISaLmWgZt6TO_h",
+        "vodmine://2915285618/139-379"
+      ],
+      "published_versions": [
+        "story-8941dda568d3ff86"
+      ],
+      "last_updated": "2026-11-06"
     }
   }
 }
