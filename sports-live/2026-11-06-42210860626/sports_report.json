@@ -1,0 +1,464 @@
+{
+ "date": "2026-11-06",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Kak\u00e1",
+   "why": "A legend breaks into tears as the whole San Siro stands for him.",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "baseball",
+   "who": "Bob Uecker",
+   "why": "The Brewers' late voice is remembered watching over the championship parade he never got to see.",
+   "post_title": "Bob Uecker watching over the Parade of Champions",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xjit8p/bob_uecker_watching_over_the_parade_of_champions/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xjit8p/bob_uecker_watching_over_the_parade_of_champions",
+   "skipped": "too short: the post runs 4.9s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Cristiano Ronaldo",
+   "why": "Ronaldo announces his retirement from international football, a farewell to his Portugal career.",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xofgqs/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xofgqs/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "baseball",
+   "who": "Jacob Misiorowski",
+   "why": "Pure, unfiltered joy from the Brewers' breakout star.",
+   "post_title": "Pure joy from Jacob Misiorowski!",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xjjj3g/pure_joy_from_jacob_misiorowski/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xjjj3g/pure_joy_from_jacob_misiorowski",
+   "skipped": "too short: the post runs 9.1s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Yan Diomande",
+   "why": "A player gives his jersey to a ball boy and the stadium rises to applaud.",
+   "post_title": "Yan Diomande receiving a standing ovation from the Racing Santander stadium after he gives his jersey to a ball boy",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "baseball",
+   "who": "Sal Frelick",
+   "why": "Mic'd-up Brewers players hunt for the cheerleaders and it's hilarious.",
+   "post_title": "Jake Bauers: Let's go hi-five the cheerleaders. Sal Frelick: YEAH, WHERE THEY AT?",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xkat96/jake_bauers_lets_go_hifive_the_cheerleaders_sal/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xkat96/jake_bauers_lets_go_hifive_the_cheerleaders_sal",
+   "title": "Sal Frelick And Jake Bauers Soak In The Moment With Fans After This",
+   "hook": "Sal Frelick is soaked and the city is losing it",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 23.83,
+       "reason": "the framer: Man in the cream Champions hoodie and cap (cols 3-4) with his arm around the shirtless bearded man in a cap (cols 5-6); both faces are whole in this span. (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/NtcyyUYM4YI",
+   "ok": true,
+   "publish_at": "2026-11-06T15:00:00Z",
+   "seconds": 190,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261106-sal-frelick-and-jake-bauers-soak-in-the-moment-w-908db52a",
+    "tiktok": "queued for 2026-11-06T15:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Christian Yelich",
+   "why": "Aaron Ashby meets his look-alike in full uniform at the parade.",
+   "post_title": "Christian Yelich spotted Aaron Ashby's look-alike in full uniform at the parade so Ashby came over to show him love",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xjn3m2/christian_yelich_spotted_aaron_ashbys_lookalike/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xjn3m2/christian_yelich_spotted_aaron_ashbys_lookalike",
+   "title": "Christian Yelich Spots Aaron Ashby's Look-Alike At The Parade, Then Ashby Shows Up",
+   "hook": "Yelich finds Ashby's look-alike \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 4.43,
+       "reason": "the framer: Pointing man in the varsity jacket (cols 4-5), the man in the white hoodie beside him (col 5-6), and the man in the number-24 jersey (col 6-7) on the bus rail",
+       "crop": [
+        540,
+        720,
+        498,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A 4-second distant parade clip that never shows the look-alike or Ashby showing up, so the promised moment is missing.",
+    "score": 44
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A 4-second distant parade clip that never shows the look-alike or Ashby showing up, so the promised moment is missing."
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "Mbapp\u00e9 jokes with the kid hit by a stray shot, and blames Tchouam\u00e9ni.",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "title": "Kylian Mbapp\u00e9 Tells The Kid Hit By A Tchouam\u00e9ni Shot Whose Fault It Was",
+   "hook": "Mbapp\u00e9 blames Tchouam\u00e9ni after his shot hit a kid \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "3 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 15.43,
+       "reason": "the framer: Kid, the man holding him and Mbapp\u00e9 face to face span columns 1-6, wider than a tall crop, so the shot stays uncropped (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 15.43,
+       "t1": 22.53,
+       "reason": "the framer: Kid and man at columns 2-4 and Mbapp\u00e9's face at columns 5-6 are too far apart for one crop, so the shot stays uncropped (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 22.53,
+       "t1": 26.9,
+       "reason": "the framer: Kid's face (column 4) and the smiling man holding him (columns 5-6) are the whole moment (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK:",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK:"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "A Sixers fan deadpans about throwing out the cup LeBron drank from.",
+   "post_title": "Sixers Fan Says He Didn't Keep The Cup That LeBron Drank From Despite Being Told He Should Never Wash The Cup: \"I mean at the end of the day. He another man like me. I threw that cup in the trash.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/1lh0cp",
+   "topic": "https://www.reddit.com/r/nba/comments/1xnv7cs/sixers_fan_says_he_didnt_keep_the_cup_that_lebron",
+   "title": "Lebron James: Sixers Fan Says He Threw LeBron's Cup In The Trash \ud83d\ude2d",
+   "hook": "Fan threw LeBron's cup in the trash \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@13.4"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 87
+   },
+   "video_url": "https://youtube.com/shorts/hixNtCS7PW8",
+   "ok": true,
+   "publish_at": "2026-11-06T18:00:00Z",
+   "seconds": 137,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261106-lebron-james-sixers-fan-says-he-threw-lebron-s-c-b21d1a45",
+    "tiktok": "queued for 2026-11-06T18:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Charles Barkley",
+   "why": "Barkley threatens to call Kash Patel after Shaq challenges him to a fight.",
+   "post_title": "Charles Barkley threatens to call Kash Patel after Shaq challenges him to a fight",
+   "upvotes": 0,
+   "url": "https://streamable.com/xhrq0i",
+   "topic": "https://www.reddit.com/r/nba/comments/1xo5svv/charles_barkley_threatens_to_call_kash_patel",
+   "title": "Charles Barkley Threatens To Call Kash Patel After Shaq Challenges Him To A Fight",
+   "hook": "Barkley threatens to call Kash Patel on Shaq",
+   "ledger": {
+    "moves": [
+     "zoom@7.9"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 9.59,
+       "reason": "the framer: Barkley's face and the phone at his ear fill columns 4-6. He is the speaker.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       0.662
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [
+     "Kash Patel@8.04"
+    ],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/sBknTg8g-QU",
+   "ok": true,
+   "publish_at": "2026-11-06T21:00:00Z",
+   "seconds": 142,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261106-charles-barkley-threatens-to-call-kash-patel-aft-313669a2",
+    "tiktok": "queued for 2026-11-06T21:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Mike Tomlin",
+   "why": "Tomlin tells the Cowboys to \"cut your eyelids off\" in a savage press conference line.",
+   "post_title": "[Highlight] Mike Tomlin says the Cowboys have a bunch of \u201cblinkers\u201d and no one on offense or defense who \u201cwanted to grab the bull by the horns to win the game.\u201d His advice: \u201cCut your eyelids off.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlmfnt/highlight_mike_tomlin_says_the_cowboys_have_a/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlmfnt/highlight_mike_tomlin_says_the_cowboys_have_a",
+   "skipped": "render failed: JSONDecodeError: Extra data: line 3 column 1 (char 283)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Budda Baker",
+   "why": "He answers serious trade deadline questions in a full Halloween costume.",
+   "post_title": "[Highlight] Budda Baker fields trade deadline questions in a full halloween costume",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xjnqlr/highlight_budda_baker_fields_trade_deadline/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xjnqlr/highlight_budda_baker_fields_trade_deadline",
+   "title": "Budda Baker Answers Trade Deadline Questions In A Full Halloween Costume",
+   "hook": "Budda Baker faces trade talk in costume \ud83c\udf83",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
+     "shots": [],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 75
+   },
+   "video_url": "https://youtube.com/shorts/9jz60Cme9-Y",
+   "ok": true,
+   "publish_at": "2026-11-07T00:00:00Z",
+   "seconds": 99,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261106-budda-baker-answers-trade-deadline-questions-in--2e1193df",
+    "tiktok": "queued for 2026-11-07T00:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron takes a sip of a fan's drink courtside in the middle of a game.",
+   "post_title": "[Highlight] LeBron James casually takes a sip of a fan's drink courtside mid-game",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0bh6w",
+   "topic": "https://www.reddit.com/r/nba/comments/1xmgtc4/highlight_lebron_james_casually_takes_a_sip_of_a",
+   "skipped": "too short: the post runs 9.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "Wemby juggles the ball with his feet and passes it to a ref, who passes it back.",
+   "post_title": "[HIGHLIGHT] Wemby Casually Juggles Ball with Feet and Passes to Ref who Reciprocates",
+   "upvotes": 0,
+   "url": "https://streamable.com/j6qyn1",
+   "topic": "https://www.reddit.com/r/nba/comments/1xmiiev/highlight_wemby_casually_juggles_ball_with_feet",
+   "skipped": "too short: the post runs 6.9s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Conor McGregor",
+   "why": "McGregor can't stop laughing as Raul Rosas submits Colby Covington.",
+   "post_title": "Conor McGregor was dying laughing after Raul Rosas subbed Colby Covington \ud83d\udc80",
+   "upvotes": 0,
+   "url": "https://streamable.com/ukm369",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xnamv2/conor_mcgregor_was_dying_laughing_after_raul",
+   "skipped": "too short: the post runs 4.7s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkanovski",
+   "why": "A champion openly vents that he doesn't get mainstream recognition.",
+   "post_title": "Alexander Volkanovski a little upset about limited mainstream recognition: \"I\u2019m not saying they\u2019re hating on me. Maybe it\u2019s just not their sport. They don\u2019t understand it, and they don\u2019t know enough. ",
+   "upvotes": 0,
+   "url": "https://streamable.com/n634d0",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xki50e/alexander_volkanovski_a_little_upset_about",
+   "title": "Alexander Volkanovski Admits It Hurts That The Mainstream Won't Show This",
+   "hook": "Volkanovski says the mainstream ignores his sport",
+   "ledger": {
+    "moves": [
+     "zoom@14.06"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
+     "shots": [],
+     "subtitle_spans": [
+      0.059,
+      0.045,
+      0.059,
+      0.059,
+      0.482
+     ],
+     "n_subjects": 2
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A 30-second unchanging repost layout: a small Volkanovski webcam beside a stock newspaper still in a blurred frame. There is no moment, no reaction and no payoff, and the captions collide.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A 30-second unchanging repost layout: a small Volkanovski webcam beside a stock newspaper still in a blurred frame. There is no moment, no reaction and no payoff, and the captions collide."
+  }
+ ],
+ "already_today": 0,
+ "pool": 112,
+ "already_posted": 12,
+ "shipped": 4
+}
