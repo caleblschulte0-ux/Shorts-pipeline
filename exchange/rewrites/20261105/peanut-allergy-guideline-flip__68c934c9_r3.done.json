@@ -1,0 +1,10 @@
+{
+ "id": "peanut-allergy-guideline-flip__68c934c9_r3",
+ "slug": "peanut-allergy-guideline-flip",
+ "settled": "2026-11-06T12:52:58Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Rise",
+  "segment 2: new named entity not in the data: Drop"
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "id": "autism-diagnosis-rate-rise__3a83f544_r1",
+ "slug": "autism-diagnosis-rate-rise",
+ "settled": "2026-11-06T12:52:57Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: number(s) not derivable from this beat's data: 1,000",
+  "segment 0: new named entity not in the data: Rise",
+  "title: number(s) not derivable from any beat's data: 1,000",
+  "hook: number(s) not derivable from any beat's data: 1,000"
+ ]
+}
