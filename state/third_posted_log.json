@@ -18380,13 +18380,58 @@
       "ts": "2026-11-06T13:00:02.433742+00:00"
     },
     "clip-20261106-2": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-8941dda568d3ff86",
-      "streamer": "emjayplayss",
+      "url": "https://youtube.com/shorts/QaBttnDa8k0",
       "title": "Emjayplayss goes full spooky costume for papi queso homage",
       "kind": "story",
-      "ts": "2026-11-06T13:43:55.951896+00:00",
+      "ts": "2026-11-06T13:44:07.924531+00:00",
+      "uploaded_at": "2026-11-06T13:44:07.924546+00:00",
+      "publish_at": "2026-11-07T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261106-emjayplayss-goes-full-spooky-costume-for-papi-qu-c9ca1b8d",
+        "tiktok": "queued for 2026-11-07T00:30:00Z"
+      },
+      "story_key": "story-8941dda568d3ff86",
+      "member_keys": [
+        "vodmine://2915285618/0-131",
+        "https://www.twitch.tv/emjayplayss/clip/RelentlessBlazingPistachioArsonNoSexy-VaISaLmWgZt6TO_h",
+        "vodmine://2915285618/139-379"
+      ],
+      "streamer": "emjayplayss",
+      "who": [
+        "emjayplayss"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 25.7,
+      "narrative_score": 0,
+      "narrative_summary": "On her SPOOKY TIME Halloween stream, emjayplayss shows up in a wig and fake beard, pays homage to 'papi queso', and then decides she is a hot guy in the costume.",
+      "revision_count": 1,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 0,
+      "replay_count": 0
+    },
+    "rejected-antediluviansleepyshinglecoolstorybob-zdzkmup-qvh352bg": {
+      "source_url": "https://www.twitch.tv/vinesauce/clip/AntediluvianSleepyShingleCoolStoryBob-zDzkmUP-QVh352BG",
+      "streamer": "vinesauce",
+      "title": "glorp ocarina",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine gameplay, ocarina playing, insid)",
+      "ts": "2026-11-06T13:46:04.452088+00:00"
+    },
+    "clip-20261106-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/maya/clip/TallSpunkyHedgehogWutFace-902rSeqSMEDdSxHk",
+      "story_key": null,
+      "streamer": "maya",
+      "title": "Maya Explains Why Wolf Dogs Like Roxy Can Never Be Real Pets",
+      "kind": "twitch_clip",
+      "ts": "2026-11-06T13:54:37.367562+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
