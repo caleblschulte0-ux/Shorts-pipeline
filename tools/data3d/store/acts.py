@@ -16,7 +16,7 @@ def ease_out_back(u, s=1.2):
 def lerp(a, b, u): return a + (b - a) * u
 
 HAND_PITCH = -30.0     # degrees: the mitten sits OVER the bar
-WRIST_UP = 0.045       # the wrist target sits a little above the bar axis (hand wraps down onto it)
+WRIST_UP = 0.012       # the wrist target sits just above the bar axis: the mitten wraps OVER the bar, hand ON it
 REACH_K = 0.998
 
 
@@ -98,6 +98,16 @@ def spin_wheels(cart, t0, t1):
         prev = p
         for w in cart["wheels"]:
             w.rotation_euler = (math.radians(90), -ang, 0); w.keyframe_insert("rotation_euler", frame=f)
+
+
+def arm_slope(data, f0, f1, side="L"):
+    """degrees BELOW horizontal of the straight line shoulder -> wrist over [f0,f1]; returns (min, mean, max)"""
+    sc = data.sc; vals = []
+    for f in range(f0, f1 + 1):
+        sc.frame_set(f); M = data.arm.matrix_world
+        d = (M @ data.pb[f"hand.{side}"].head) - (M @ data.pb[f"arm.{side}"].head)
+        vals.append(-math.degrees(math.atan2(d.z, Vector((d.x, d.y, 0)).length)))
+    return min(vals), sum(vals) / len(vals), max(vals)
 
 
 def arm_bend(data, f0, f1, side="L"):

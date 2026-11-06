@@ -152,8 +152,10 @@ style.render_settings(sc, SPP, PCT)
 side = acts.near_side(data, cam) if True else "L"
 mx, mean = acts.arm_bend(data, f0, f1, side)
 mxo, meano = acts.arm_bend(data, f0, f1, "R" if side == "L" else "L")
+sl = acts.arm_slope(data, f0, f1, side)
 sc.frame_set(F(3.0)); d_on = acts.hand_on_bar(data, cart, side)
-print(f"DATA={WHO} near_side={side} arm_bend near max={mx:.2f} mean={mean:.2f} | far max={mxo:.2f} mean={meano:.2f} | hand->bar@3s={d_on*1000:.1f}mm")
+print(f"DATA={WHO} near_side={side} arm_bend near max={mx:.2f} mean={mean:.2f} | far max={mxo:.2f} mean={meano:.2f} | wrist->bar end@3s={d_on*1000:.1f}mm | arm below horizontal min/mean/max={sl[0]:.1f}/{sl[1]:.1f}/{sl[2]:.1f} deg")
+c3 = bpy.data.objects["lane3 cashier"]; print(f"lane3 cashier @3s at {tuple(round(v,3) for v in c3.matrix_world.translation)} (counter line y=0.32)")
 for i in range(4): print(f"lane{i+1} trigger t={lane_trigger(i):.2f}s")
 
 # ---------------------------------------------------------------- render

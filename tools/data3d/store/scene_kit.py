@@ -342,12 +342,12 @@ def kiosk(name, spot):
 
 
 # ------------------------------------------------------------------ props
-def cart(name, loc, W=0.22, top=0.37, L=0.34, D=0.2, over=0.02):
+def cart(name, loc, W=0.22, top=0.32, L=0.34, D=0.2, over=0.02):
     """Data's cart: a wire basket (slats fattened so they don't shimmer), four legs, four wheels, two handle posts and a
     bar barely longer than the basket so his hands grip the ENDS (handle_L at +y, handle_R at -y, both on the bar axis).
     The cart rolls along its +X. Returns dict(root, handle_L, handle_R, wheels, wheel_r, L, W, top, nose)."""
     root = empty(name, loc)
-    met = mat("cart metal", rough=0.36, metal=1.0); plas = mat("cart plastic", rough=0.5); wheel = mat("wheel", rough=0.5)
+    met = mat("cart metal", rough=0.36, metal=1.0); plas = mat("cart grip", "#2A2B2E", rough=0.45); wheel = mat("wheel", rough=0.5)
     wheel_r = 0.035; bot = top - D; x0 = loc.x; y0 = loc.y
     t = 0.0085
     # floor of the basket and slats
@@ -369,10 +369,10 @@ def cart(name, loc, W=0.22, top=0.37, L=0.34, D=0.2, over=0.02):
         for xx in (x0 + 0.06, x0 + L - 0.06):
             box("leg", (xx, y0 + s * (W / 2 - 0.01), (bot) / 2), (0.014, 0.014, bot), met, bev=0, parent=root)
             cyl("wheel", (xx, y0 + s * (W / 2 + 0.012), wheel_r), wheel_r, 0.018, wheel, rot=(math.radians(90), 0, 0), parent=root)
-    hz = top + 0.02
+    hz = top + 0.03          # the posts rise 3 cm above the basket rim so the bar READS under the mittens
     for s in (-1, 1):
-        box("post", (x0 - 0.02, y0 + s * (W / 2 - 0.01), (hz + bot) / 2), (0.012, 0.012, hz - bot), met, bev=0, parent=root)
-    cyl("handle bar", (x0 - 0.03, y0, hz), 0.016, W + over, plas, rot=(math.radians(90), 0, 0), parent=root)
+        box("post", (x0 - 0.025, y0 + s * (W / 2 - 0.01), (hz + bot) / 2), (0.014, 0.014, hz - bot), met, bev=0, parent=root)
+    cyl("handle bar", (x0 - 0.03, y0, hz), 0.014, W + over, plas, rot=(math.radians(90), 0, 0), parent=root)
     hL = empty(name + " handle_L", (x0 - 0.03, y0 + W / 2, hz), parent=root)
     hR = empty(name + " handle_R", (x0 - 0.03, y0 - W / 2, hz), parent=root)
     nose = empty(name + " nose", (x0 + L, y0, top), parent=root)
