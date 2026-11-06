@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "earthquake-detection-illusion__c70a68bc_r1",
+  "slug": "earthquake-detection-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-11-06T12:21:16.776Z",
+  "title": "Magnitude 7+ Earthquakes Still Average 17 A Year",
+  "hook": "More earthquake reports do not mean more big earthquakes.",
+  "closing": "More quake headlines reflect better detection, not a more dangerous planet.",
+  "question": "Have you ever felt an earthquake?",
+  "segments": [
+    {
+      "topic": "Earthquake Stations",
+      "say": "Earthquake monitoring expanded to 8,000 stations. Better instruments now catch shaking that older networks missed."
+    },
+    {
+      "topic": "Earthquake Magnitude Rate",
+      "say": "Magnitude 7+ earthquakes average 17 yearly. The biggest events remain close to their century-old rate."
+    },
+    {
+      "topic": "Earthquake Detection Count",
+      "say": "Earthquake catalogs now locate 20,000 events yearly. More sensors created more reports, not more shaking."
+    }
+  ]
+}
