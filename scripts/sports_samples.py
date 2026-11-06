@@ -307,10 +307,52 @@ def discover(period: str) -> list[dict]:
     return pool
 
 
+#: The channel's own numbers (operator, 2026-11-05, after the first
+#: month's analytics: "we should start leaning towards the clips that we
+#: know work"). The picker is shown which of OUR posts the feed carried and
+#: which it dropped, so it leans toward the kind that works. Only posts old
+#: enough to judge count; a lean, never a filter.
+ANALYTICS = ROOT / "state" / "analytics" / "latest.json"
+JUDGE_AGE_H = 48
+SHOW_N = 8
+#: Only the newest judged posts: a channel the feed has just started
+#: carrying would otherwise call every post from before that a flop.
+RECENT_N = 40
+
+
+def track_record(path: Path = ANALYTICS) -> str:
+    """Our best and worst sports moments by views, for the picker, or ''."""
+    try:
+        vids = json.loads(path.read_text()).get("videos") or []
+    except (OSError, ValueError, AttributeError):
+        return ""
+    ours = [v for v in vids if v.get("format") == "sports_moment"
+            and float(v.get("age_hours") or 0) >= JUDGE_AGE_H
+            and v.get("title")]
+    ours = sorted(ours, key=lambda v: str(v.get("published_at") or ""))
+    ours = ours[-RECENT_N:]
+    if len(ours) < 2 * SHOW_N:
+        return ""
+    ours.sort(key=lambda v: -int(v.get("views") or 0))
+    row = lambda v: f"  {int(v.get('views') or 0):>6} views  {v['title']}"
+    return ("\n\nWHAT THIS CHANNEL'S VIEWERS WATCHED (our own posts, "
+            "older than two days, newest only). Most watched:\n"
+            + "\n".join(row(v) for v in ours[:SHOW_N])
+            + "\nLeast watched:\n"
+            + "\n".join(row(v) for v in ours[-SHOW_N:])
+            + "\nLean toward posts like the most watched: a moment a "
+            "stranger feels in the first seconds with no backstory "
+            "(a fan, a family, a player choked up, a joke that lands), "
+            "and a team or city everyone is talking about this week. "
+            "Lean away from the kind that flopped. This is a lean, not a "
+            "rule: every rule above still holds.")
+
+
 def pick(pool: list[dict], n: int) -> list[dict]:
     lines = [f"[{i}] r/{c['sub']} {c['upvotes']} {c['platform']} "
              f"{c['post_title']}" for i, c in enumerate(pool)]
-    got = _brain(f"N = {n}\n\n" + "\n".join(lines), PICK_SYSTEM) or {}
+    got = _brain(f"N = {n}\n\n" + "\n".join(lines),
+                 PICK_SYSTEM + track_record()) or {}
     out, per = [], {}
     for p in got.get("picks") or []:
         try:
