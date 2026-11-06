@@ -1,0 +1,25 @@
+{
+ "key": "uk_mens_shoe_size_1970_today",
+ "title": "Average UK men's shoe size, 1970s vs today",
+ "unit": "UK shoe size",
+ "geography": "United Kingdom",
+ "time_coverage": "1970s vs 2014",
+ "source": {
+  "name": "College of Podiatry foot-size survey",
+  "publisher": "The College of Podiatry (UK)",
+  "url": "https://www.buckbootz.com/news/british-feet-get-two-sizes-bigger-in-40-years",
+  "officiality": "secondary",
+  "access_date": "2026-11-06"
+ },
+ "notes": "Survey of 2,000 UK adults found the average British foot grew two shoe sizes in 40 years: men from a size 8 to a size 10, women from a size 4 to a size 6.",
+ "points": [
+  {
+   "label": "1970s",
+   "value": 8
+  },
+  {
+   "label": "Today",
+   "value": 10
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "key": "antibiotic_necessity_share",
+ "title": "Share of US outpatient antibiotic prescriptions that were unnecessary (2024)",
+ "unit": "percent",
+ "geography": "United States",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Outpatient Antibiotic Prescriptions — United States",
+  "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+  "url": "https://www.cdc.gov/antibiotic-use/media/pdfs/2024-Annual-Report-508.pdf",
+  "officiality": "official",
+  "access_date": "2026-11-06"
+ },
+ "notes": "CDC's 2024 annual report counted 255.9 million outpatient oral antibiotic prescriptions; a CDC-linked estimate puts roughly 1 in 3 outpatient antibiotic prescriptions as unnecessary. Necessary/unnecessary split rounded from that ratio.",
+ "points": [
+  {
+   "label": "Likely necessary",
+   "value": 66
+  },
+  {
+   "label": "Likely unnecessary",
+   "value": 34
+  }
+ ]
+}

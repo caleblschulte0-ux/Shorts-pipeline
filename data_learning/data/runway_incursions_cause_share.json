@@ -1,0 +1,25 @@
+{
+ "key": "runway_incursions_cause_share",
+ "title": "What caused FY2023's 1,756 US runway incursions",
+ "unit": "percent",
+ "geography": "United States",
+ "time_coverage": "FY2023",
+ "source": {
+  "name": "FAA Air Traffic Organization testimony on runway safety",
+  "publisher": "Federal Aviation Administration",
+  "url": "https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8",
+  "officiality": "official",
+  "access_date": "2026-11-06"
+ },
+ "notes": "FY2023: 1,756 total runway incursions across ~54.4 million takeoffs/landings; approximately 60% were pedestrian/vehicle deviations.",
+ "points": [
+  {
+   "label": "Pedestrian/vehicle deviation",
+   "value": 60
+  },
+  {
+   "label": "Other categories",
+   "value": 40
+  }
+ ]
+}
