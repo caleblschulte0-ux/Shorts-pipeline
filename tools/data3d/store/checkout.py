@@ -18,7 +18,7 @@ PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
 
 T_PUSH0, T_PUSH1, T_END = 0.5, 6.6, 10.0
 X0, X1 = -0.72, 2.3
-TRIG_AHEAD = 0.6         # the view is two lanes wide; the sink has to happen inside it
+TRIG_AHEAD = 0.9         # the lane converts in the camera's LEAD space, right of the cart, not behind Data
 CAM_BASE = Vector((-0.55, -2.0, 0.58)); CAM_LOOK = Vector((0.45, 0.35, 0.42)); LOOK_AHEAD = 0.25; PUSH_IN = 0.8
 BACK_Y = K.BACK_Y - 0.1
 
@@ -99,12 +99,16 @@ for i, ln in enumerate(store["lanes"]):
     key_loc(counter, ts, cl); key_rot(counter, ts, (0, 0, 0))
     key_loc(counter, ts + 0.18, cl + Vector((0, 0, -0.06))); key_rot(counter, ts + 0.18, (0.06, 0, 0))
     key_loc(counter, ts + 0.3, cl + Vector((0, 0, -0.04))); key_rot(counter, ts + 0.3, (0.02, 0, 0))
-    key_loc(counter, ts + 0.72, cl + Vector((0, 0, -h - 0.35))); key_rot(counter, ts + 0.72, (0.0, 0, 0))   # the drop is FAST: a register corner poking through the floor reads as junk, not a sink
-    hide_from(counter, ts + 0.74)
-    kr = kk["root"]; kh = kk["h"]
-    for f in range(F(ts + 0.6), F(ts + 1.6) + 1):
-        u = (f - F(ts + 0.6)) / (F(ts + 1.6) - F(ts + 0.6)); z = lerp(-kh - 0.05, 0.0, ease_out_back(u))
+    key_loc(counter, ts + 0.55, cl + Vector((0, 0, -h - 0.35))); key_rot(counter, ts + 0.55, (0.0, 0, 0))   # the drop is a six-frame PLUNGE: a register corner poking through the floor reads as a stub, not a sink
+    hide_from(counter, ts + 0.57)
+    kr = kk["root"]; kh = kk["h"]; t_up0, t_up1 = ts + 0.6, ts + 1.4
+    for f in range(F(t_up0), F(t_up1) + 1):
+        u = (f - F(t_up0)) / (F(t_up1) - F(t_up0)); z = lerp(-kh - 0.05, 0.0, ease_out_back(u))
         kr.location = (kr.location.x, kr.location.y, z); kr.keyframe_insert("location", frame=f)
+    # the screen lights up as it arrives
+    em = kk["screen_mat"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
+    for t, v in ((t_up1 - 0.1, 0.0), (t_up1 + 0.25, 1.8)):
+        em.default_value = v; em.keyframe_insert("default_value", frame=F(t))
 
 for ln in store["extra"]:
     cashier_idle(ln["cashier"], 0.0, T_END, ln["cashier"].rotation_euler.z, amp=2.5, period=2.9)

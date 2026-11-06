@@ -325,23 +325,40 @@ def checkout_lane(name, x, number=1, y0=0.32, length=1.5 * U, counter_h=0.9 * U,
     return {"root": root, "counter": counter, "cashier": cash, "x": x, "kiosk_spot": Vector((x, y0 + length * 0.42, 0)), "h": counter_h, "number": number}
 
 
-def kiosk(name, spot):
-    """a self-checkout kiosk: body, angled screen (emissive), a bagging scale shelf, a card reader; built with its base
-    at z = 0 so the stager can start it below the floor and raise it"""
+def kiosk(name, spot, counter_h=0.9 * U):
+    """a self-checkout kiosk that is UNMISTAKABLY not a counter at phone size: a tall charcoal machine (1.3x the
+    counter), a big bright screen at Data's eye level angled to camera, a lit SELF CHECKOUT sign on top, a card
+    reader and a bagging shelf. Built with its base at z = 0 so the stager can start it below the floor and raise it.
+    Returns dict(root, h, screen_mat): the screen's emission is keyed by the stager so it lights up as it arrives."""
     root = empty(name, (spot.x, spot.y, 0))
-    body = mat("kiosk body", rough=0.4); dark = mat("kiosk dark", rough=0.5); scr = mat("kiosk screen", rough=0.12, emit=1.6)
-    h = 0.62
-    box("kiosk body", (spot.x, spot.y, h / 2), (0.34, 0.3, h), body, bev=0.012, parent=root)
-    box("kiosk base", (spot.x, spot.y, 0.025), (0.38, 0.34, 0.05), dark, bev=0.006, parent=root)
-    f = box("kiosk screen frame", (spot.x, spot.y - 0.17, h + 0.16), (0.3, 0.03, 0.24), dark, bev=0.006, parent=root); f.rotation_euler = (math.radians(-18), 0, 0)
-    s = box("kiosk screen", (spot.x, spot.y - 0.186, h + 0.165), (0.26, 0.006, 0.2), scr, bev=0.002, parent=root); s.rotation_euler = (math.radians(-18), 0, 0)
-    box("kiosk shelf", (spot.x + 0.3, spot.y, h - 0.02), (0.26, 0.3, 0.025), body, bev=0.006, parent=root)
-    box("kiosk scale", (spot.x + 0.3, spot.y, h), (0.2, 0.22, 0.012), dark, bev=0.003, parent=root)
-    box("kiosk reader", (spot.x - 0.2, spot.y - 0.1, h + 0.05), (0.07, 0.1, 0.09), dark, bev=0.006, parent=root)
-    return {"root": root, "h": h + 0.3}
+    body = mat("kiosk body", "#2E3136", rough=0.45); dark = mat("kiosk dark", "#1B1D21", rough=0.5)
+    accent = mat("kiosk accent", "#C8643A", rough=0.5); ivory = mat("sign ivory", rough=0.5); navy = mat("sign navy", rough=0.5)
+    scr = mat(f"kiosk screen {name}", "#DDEEFF", rough=0.08, emit=0.0)
+    scr.node_tree.nodes["Principled BSDF"].inputs["Emission Color"].default_value = (0.55, 0.78, 1.0, 1)
+    H = counter_h * 1.3                                   # 0.655
+    box("kiosk base", (spot.x, spot.y, 0.03), (0.4, 0.36, 0.06), dark, bev=0.006, parent=root)
+    box("kiosk body", (spot.x, spot.y, H / 2 + 0.03), (0.32, 0.3, H - 0.06), body, bev=0.012, parent=root)
+    box("kiosk stripe", (spot.x, spot.y - 0.151, H * 0.5), (0.26, 0.004, 0.03), accent, bev=0.001, parent=root)
+    # the screen: big, on top, facing camera (-y), tilted back 18 degrees, centre at about Data's eye level
+    zc = H + 0.17
+    f = box("kiosk screen frame", (spot.x, spot.y - 0.04, zc), (0.34, 0.035, 0.3), dark, bev=0.006, parent=root); f.rotation_euler = (math.radians(18), 0, 0)
+    s_ = box("kiosk screen", (spot.x, spot.y - 0.06, zc), (0.3, 0.006, 0.26), scr, bev=0.002, parent=root); s_.rotation_euler = (math.radians(18), 0, 0)
+    box("kiosk screen neck", (spot.x, spot.y + 0.02, H + 0.03), (0.08, 0.08, 0.08), dark, bev=0.006, parent=root)
+    # the lit sign on top
+    cyl("kiosk sign post", (spot.x, spot.y + 0.06, H + 0.42), 0.01, 0.3, dark, parent=root)
+    box("kiosk sign", (spot.x, spot.y + 0.06, H + 0.62), (0.34, 0.03, 0.12), navy, bev=0.006, parent=root)
+    box("kiosk sign face", (spot.x, spot.y + 0.043, H + 0.62), (0.31, 0.004, 0.09), mat("lane sign", rough=0.4, emit=1.0), bev=0.002, parent=root)
+    text("kiosk sign text", "SELF CHECKOUT", (spot.x, spot.y + 0.039, H + 0.62), 0.036, (math.radians(90), 0, 0), navy, extrude=0.002, parent=root)
+    # card reader on the near face, bagging shelf with a scale to the +x side
+    box("kiosk reader", (spot.x - 0.11, spot.y - 0.17, H - 0.08), (0.07, 0.06, 0.1), dark, bev=0.006, parent=root)
+    box("kiosk reader pad", (spot.x - 0.11, spot.y - 0.202, H - 0.07), (0.05, 0.004, 0.04), mat("keypad"), bev=0.001, parent=root)
+    box("kiosk shelf", (spot.x + 0.3, spot.y, counter_h - 0.02), (0.3, 0.32, 0.025), body, bev=0.006, parent=root)
+    box("kiosk shelf leg", (spot.x + 0.42, spot.y, counter_h / 2 - 0.02), (0.03, 0.03, counter_h - 0.04), dark, bev=0, parent=root)
+    box("kiosk scale", (spot.x + 0.3, spot.y, counter_h - 0.0), (0.24, 0.24, 0.012), dark, bev=0.003, parent=root)
+    box("kiosk bag", (spot.x + 0.3, spot.y + 0.02, counter_h + 0.08), (0.1, 0.07, 0.16), mat("paper bag"), bev=0.006, parent=root)
+    return {"root": root, "h": H + 0.7, "screen_mat": scr}
 
 
-# ------------------------------------------------------------------ props
 def cart(name, loc, W=0.22, top=0.32, L=0.42, D=0.24, over=0.10):
     """Data's cart: a wire basket (slats fattened so they don't shimmer), four legs, four wheels, two handle posts and a
     bar barely longer than the basket so his hands grip the ENDS (handle_L at +y, handle_R at -y, both on the bar axis).
@@ -460,7 +477,7 @@ def build_store(set3=True):
     floor(); walls(); ceiling_signs(); gondola()
     lanes = [checkout_lane(f"lane{i + 1}", x, number=i + 1) for i, x in enumerate(LANE_X)]
     extra = [checkout_lane("lane_far", FAR_X[0], number=5), checkout_lane("lane_far2", FAR_X[1], number=6)]
-    kiosks = [kiosk(f"kiosk{i + 1}", ln["kiosk_spot"]) for i, ln in enumerate(lanes)]
+    kiosks = [kiosk(f"kiosk{i + 1}", ln["kiosk_spot"], ln["h"]) for i, ln in enumerate(lanes)]
     for kk in kiosks: kk["root"].location.z = -kk["h"] - 0.05
     ct = cart("cart", Vector((-0.6, 0.0, 0)))
     for ln in lanes + extra:

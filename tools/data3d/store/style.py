@@ -70,13 +70,13 @@ def restyle():
     if m:
         nt, b = _nodes(m)
         if b: b.inputs["Roughness"].default_value = 0.72; b.inputs["Base Color"].default_value = (0.05, 0.05, 0.055, 1)
-    for name in ("reg screen", "kiosk screen"):
-        m = _get(name)
-        if m:
+    for m in bpy.data.materials:
+        if m.name == "reg screen" or m.name.startswith("kiosk screen"):
             nt, b = _nodes(m)
             if b:
                 b.inputs["Roughness"].default_value = 0.06; b.inputs["Coat Weight"].default_value = 1.0; b.inputs["Coat Roughness"].default_value = 0.03
-                b.inputs["Emission Color"].default_value = (0.55, 0.75, 0.95, 1); b.inputs["Emission Strength"].default_value = 1.4 if name == "kiosk screen" else 1.0
+                b.inputs["Emission Color"].default_value = (0.55, 0.78, 1.0, 1)
+                if m.name == "reg screen": b.inputs["Emission Strength"].default_value = 1.0   # kiosk screens are KEYED by the stager
     for name in ("paper bag", "bag"):
         m = _get(name)
         if m:
