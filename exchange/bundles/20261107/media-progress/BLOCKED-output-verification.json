@@ -1,0 +1,63 @@
+{
+  "schema": "chatgpt-output-blocker/v1",
+  "date": "20261107",
+  "recorded_at": "2026-11-07T12:30:00Z",
+  "status": "blocked_pending_downstream",
+  "failed_step": "Step 8: verify actual channel output against the frozen contract using accepted upload URLs",
+  "attempts": [
+    "Read frozen contract from exchange/bundles/20261107/bundle.json.",
+    "Committed STARTED before mailbox or response writes.",
+    "Completed two capped mailbox rounds; review verdict and 20 settled ask answers were submitted, and 20 rewrite answers were validated/applied.",
+    "Committed and read back response.json, then committed DONE separately.",
+    "Verified Phase B run 42372024527 completed successfully and accepted all 3 authored Explainer rewrites with zero rejections.",
+    "Re-read all three posted logs after repeated bounded waits."
+  ],
+  "required": {
+    "trending_sports_moment": 5,
+    "third_clip": 6,
+    "explainer_data_story": 4
+  },
+  "verified_posted": {
+    "trending_sports_moment": 4,
+    "third_clip": 4,
+    "explainer_data_story": 1
+  },
+  "remaining_shortfall": {
+    "trending_sports_moment": 1,
+    "third_clip": 2,
+    "explainer_data_story": 3
+  },
+  "active_downstream": [
+    {
+      "workflow": "Sports moments (Baller Bro)",
+      "run_id": 42371701136,
+      "status": "in_progress",
+      "step": "Make, judge and post the sports moments"
+    },
+    {
+      "workflow": "Daily Shorts",
+      "run_id": 42372048222,
+      "status": "pending",
+      "note": "queued after successful Phase B handoff"
+    }
+  ],
+  "mailboxes": {
+    "reviews": {
+      "open": 0,
+      "answered_this_run": 1
+    },
+    "asks": {
+      "open_batches": 6,
+      "pending_keys": 66,
+      "answered_or_reused_this_run": 20,
+      "note": "index remains unchanged; selected keys already had answer objects and were re-submitted intact"
+    },
+    "rewrites": {
+      "open": 119,
+      "answered_this_run": 20,
+      "skipped": 119,
+      "reason": "per-round cap reached in both mandatory rounds"
+    }
+  },
+  "note": "DONE is present and Phase B succeeded, but the day is not closed until the remaining accepted upload URLs appear. Active jobs were left enabled."
+}
