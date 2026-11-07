@@ -5099,12 +5099,30 @@
       "duration_s": 35.0
     },
     "california-condor-comeback": {
+      "url": "https://youtube.com/shorts/0xACp2wcCNw",
       "title": "California Condors Rebounded From Just 27 Birds",
+      "at": "2026-11-07T13:49:08Z",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "claimed_at": "2026-11-07T13:49:03Z",
-      "via": "showrunner-rejudge"
+      "state": "posted",
+      "via": "showrunner-rejudge",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.55,
+      "beat_s": [
+        4.01,
+        5.18,
+        6.55,
+        5.92,
+        7.48
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 100,
+      "duration_s": 29.6
     }
   },
   "uploads": [
@@ -6545,11 +6563,12 @@
     {
       "title": "California Condors Rebounded From Just 27 Birds",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
+      "url": "https://youtube.com/shorts/0xACp2wcCNw",
+      "state": "posted",
       "claimed_at": "2026-11-07T13:49:03Z",
       "via": "showrunner-rejudge",
-      "slug": "california-condor-comeback"
+      "slug": "california-condor-comeback",
+      "at": "2026-11-07T13:49:08Z"
     }
   ]
 }
