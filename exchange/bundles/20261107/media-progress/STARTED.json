@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-started/v1",
+  "date": "20261107",
+  "bundle": {
+    "identity": "08fab4331932a5514a27860f33a44f70b780b8119068e75181ca69ae54d3b409",
+    "path": "exchange/bundles/20261107/bundle.json"
+  },
+  "worker": "chatgpt-takeover-director",
+  "status": "started",
+  "started_at": "2026-11-07T12:11:59Z",
+  "requests_total": 0,
+  "verified_checkpoints_reused": 0,
+  "note": "Frozen bundle has no ChatGPT-supplied image requests; mailbox, editorial, production-supervision, and output-verification work remains."
+}
