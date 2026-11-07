@@ -170,14 +170,14 @@ def _carrier_bag(name, base, m, inside, parent, bar):
     loops running up to the rack bar"""
     bx, by, bz = base; Wb, Db, Hb = 0.17, 0.1, 0.2
     o = K.box(name, (bx, by, bz + Hb / 2), (Wb, Db, Hb), m, bev=0.02, parent=parent)
-    sd = o.modifiers.new("taper", "SIMPLE_DEFORM"); sd.deform_method = 'TAPER'; sd.factor = 0.25; sd.deform_axis = 'Z'
+    sd = o.modifiers.new("taper", "SIMPLE_DEFORM"); sd.deform_method = 'TAPER'; sd.factor = -0.35; sd.deform_axis = 'Z'
     ss = o.modifiers.new("soft", "SUBSURF"); ss.levels = 2; ss.render_levels = 2
-    tx = bpy.data.textures.get("bag rumple") or bpy.data.textures.new("bag rumple", 'CLOUDS'); tx.noise_scale = 0.05; tx.noise_depth = 2
-    md = o.modifiers.new("rumple", "DISPLACE"); md.texture = tx; md.strength = 0.012; md.mid_level = 0.5; md.texture_coords = 'GLOBAL'
+    tx = bpy.data.textures.get("bag rumple") or bpy.data.textures.new("bag rumple", 'CLOUDS'); tx.noise_scale = 0.035; tx.noise_depth = 3
+    md = o.modifiers.new("rumple", "DISPLACE"); md.texture = tx; md.strength = 0.03; md.mid_level = 0.5; md.texture_coords = 'GLOBAL'
     K.box(name + " mouth", (bx, by, bz + Hb - 0.004), (Wb * 0.86, Db * 0.7, 0.004), inside, bev=0.01, parent=parent)
     for dx in (-0.05, 0.05):   # a handle from each side seam up over the bar
         a = Vector((bx + dx, by, bz + Hb)); b = Vector((bar[0] + dx * 1.2, bar[1], bar[2])); mid = (a + b) / 2; L = (b - a).length
-        h = K.cyl(name + " handle", tuple(mid), 0.006, L, m, v=8, bev=0, parent=parent)
+        h = K.cyl(name + " handle", tuple(mid), 0.009, L, m, v=8, bev=0, parent=parent)
         h.rotation_euler = (b - a).to_track_quat('Z', 'Y').to_euler()
 
 
