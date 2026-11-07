@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "frog-fungus-mass-extinction__df2fc6d4_r1",
+  "slug": "frog-fungus-mass-extinction",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:32:00Z",
+  "title": "One Fungus Erased 90 Frog Species",
+  "hook": "Extinction was rare—then one fungus erased 90 frog species.",
+  "closing": "One disease changed amphibian survival worldwide, and recovery remains uncommon.",
+  "question": "Which frog species would you save?",
+  "segments": [
+    {
+      "topic": "fungus species affected",
+      "say": "The fungus affected 501 frog and salamander species, turning one pathogen into a global amphibian crisis."
+    },
+    {
+      "topic": "fungus species declining",
+      "say": "Still-declining species make up 39 percent of those affected, so the damage continues after detection."
+    },
+    {
+      "topic": "fungus frog impact",
+      "say": "The fungus hit 40 Australian frog species, proving even isolated ecosystems were not protected."
+    }
+  ]
+}

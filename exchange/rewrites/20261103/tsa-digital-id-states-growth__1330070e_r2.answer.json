@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "tsa-digital-id-states-growth__1330070e_r2",
+  "slug": "tsa-digital-id-states-growth",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:32:00Z",
+  "title": "Your Phone Replaces ID In 20 States—But Not Most",
+  "hook": "Only 20 states accept phone IDs at airport security.",
+  "closing": "Digital IDs are spreading, but travelers still need plastic backup across most states.",
+  "question": "Have you tried a digital ID?",
+  "segments": [
+    {
+      "topic": "states accepting ID",
+      "say": "Airport security accepts phone IDs from 20 states, nearly doubling earlier coverage."
+    },
+    {
+      "topic": "airport ID checkpoints",
+      "say": "Digital-ID checkpoints reached 250, making phone verification available in far more airport lines."
+    },
+    {
+      "topic": "states without ID",
+      "say": "Digital IDs work in 20 states, so most travelers still need plastic identification."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lightning-deaths-collapsed-not-the-storms__c86366ce",
+  "slug": "lightning-deaths-collapsed-not-the-storms",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:32:00Z",
+  "title": "Lightning Became 40 Times Less Deadly Per Person",
+  "hook": "Lightning became 40 times less deadly, but water remains dangerous.",
+  "closing": "Safety gains cut deaths dramatically, yet thunder still means every viewer should move indoors.",
+  "question": "Where do you shelter during storms?",
+  "segments": [
+    {
+      "topic": "lightning deaths",
+      "say": "Lightning killed 18 people in the latest year, showing safety gains reduced deaths without eliminating the danger entirely."
+    },
+    {
+      "topic": "lightning risk",
+      "say": "Per person, lightning is 40 times less deadly than before, evidence that warnings and shelter save lives."
+    },
+    {
+      "topic": "lightning fishing",
+      "say": "Fishing accounts for 10 percent of recent lightning deaths, so open water remains the activity most worth avoiding during storms."
+    }
+  ]
+}

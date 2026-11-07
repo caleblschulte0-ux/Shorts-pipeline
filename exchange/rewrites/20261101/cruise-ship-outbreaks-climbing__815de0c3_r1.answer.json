@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cruise-ship-outbreaks-climbing__815de0c3_r1",
+  "slug": "cruise-ship-outbreaks-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:32:00Z",
+  "title": "Modern Cruise Ships Still Cannot Stop Outbreaks",
+  "hook": "Modern ships still logged 20 cruise outbreaks.",
+  "closing": "Newer ships cannot replace basic hygiene when thousands share tight spaces.",
+  "question": "Would outbreaks change your cruise pick?",
+  "segments": [
+    {
+      "topic": "cruise outbreaks",
+      "say": "Cruise outbreaks reached 20, so newer ships have not made group illness disappear."
+    },
+    {
+      "topic": "cruise norovirus",
+      "say": "Norovirus caused 15 cruise outbreaks, making one familiar stomach bug the main problem."
+    },
+    {
+      "topic": "cruise crowds",
+      "say": "A cruise ship can carry 7,600 guests, giving infection thousands of close contacts."
+    }
+  ]
+}

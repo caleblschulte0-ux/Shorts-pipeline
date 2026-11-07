@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__315fba90_r2",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:32:00Z",
+  "title": "Weightlessness Can Cost 30% Of Hip Bone Density",
+  "hook": "An unprotected Mars mission could cost 30% of hip density.",
+  "closing": "Floating removes everyday loading, making bone protection essential for surviving long missions.",
+  "question": "Would this change your Mars plans?",
+  "segments": [
+    {
+      "topic": "astronaut bone loss",
+      "say": "Astronaut bone density can fall 1.5 percent monthly, weakening structure even though the bone does not disappear."
+    },
+    {
+      "topic": "astronaut hip loss",
+      "say": "Hip density can fall 2.2 percent monthly, showing weight-bearing bones suffer most without gravity."
+    },
+    {
+      "topic": "astronaut Mars loss",
+      "say": "Unprotected Mars travel projects 30 percent hip-density loss, making prevention part of mission survival."
+    }
+  ]
+}
