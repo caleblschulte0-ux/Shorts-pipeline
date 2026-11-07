@@ -5097,6 +5097,14 @@
       "story_structure": "scene+auto+auto",
       "narrative_score": 79,
       "duration_s": 35.0
+    },
+    "california-condor-comeback": {
+      "title": "California Condors Rebounded From Just 27 Birds",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-11-07T13:49:03Z",
+      "via": "showrunner-rejudge"
     }
   },
   "uploads": [
@@ -6533,6 +6541,15 @@
       "state": "posted",
       "slug": "antarctica-tourist-boom",
       "at": "2026-11-06T18:34:07.069760+00:00"
+    },
+    {
+      "title": "California Condors Rebounded From Just 27 Birds",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-11-07T13:49:03Z",
+      "via": "showrunner-rejudge",
+      "slug": "california-condor-comeback"
     }
   ]
 }
