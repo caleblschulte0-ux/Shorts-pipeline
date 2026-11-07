@@ -1,17 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-07T11:50:23Z",
- "open": [
-  {
-   "id": "sports_kylian_mbappé_accidentally__41e6b4a462",
-   "channel": "trending",
-   "slug": "sports_kylian_mbappé_accidentally",
-   "title": "Kylian Mbappé Blames Tchouaméni For Hitting A Kid!",
-   "filed": "2026-11-07T11:50:23Z",
-   "request": "exchange/reviews/20261107/sports_kylian_mbappé_accidentally__41e6b4a462.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_kylian_mbappé_accidentally__41e6b4a462/sheet.jpg",
-   "answer_path": "exchange/reviews/20261107/sports_kylian_mbappé_accidentally__41e6b4a462.verdict.json"
-  }
- ],
+ "updated": "2026-11-07T12:17:42Z",
+ "open": [],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }
