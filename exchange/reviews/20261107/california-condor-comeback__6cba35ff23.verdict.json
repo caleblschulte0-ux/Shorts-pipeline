@@ -1,0 +1,95 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "california-condor-comeback__6cba35ff23",
+ "video_sha256": "6cba35ff23b4aa1619a8ffa5b761066e0ccb509a5b8702c810e7566c6e30b0f1",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-07T13:49:02Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery appears custom-made for the animation."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "The mascot actively participates in scenes, such as interacting with birds on a tree (seg0) and digging into a carcass (seg3)."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "All numbers are presented with dynamic visual demonstrations, not just text on a background."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static stretch is 0.0s, and the maximum held duration is 1.25s, well below the 4s threshold."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are well-composed with no large, unused dark or empty spaces."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All text is clear, legible, and not obscured or cut off."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg4",
+   "index": 4,
+   "failure_class": "data_demonstration",
+   "visible_evidence": "The '50%' statistic in seg4 is primarily presented as text, reiterating the point from seg3 without a fresh visual metaphor for the proportion, focusing more on the source (bullets) than the percentage itself.",
+   "root_cause": "Redundancy in the visual presentation of the same numerical statistic across segments.",
+   "repair_goal": "Introduce a new and distinct visual metaphor for the '50%' statistic in seg4 that directly integrates with the bullet imagery, rather than just stating the number again."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The changing number of birds on a tree directly illustrates population fluctuation."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Condors flying out of a canyon visually represent population growth from a low point."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Birds in and around a cage, then flying out, effectively demonstrate the success of a captive breeding program."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "A deer carcass visually divided to show lead fragments clearly demonstrates the 50% proportion of deaths due to lead poisoning."
+   },
+   {
+    "id": "seg4",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "Bullets represent the source of lead poisoning, but the '50%' is primarily text-based rather than a new visual demonstration of the proportion."
+   }
+  ],
+  "one_line": "A compelling story of condor recovery, effectively demonstrated with bespoke visuals and an active mascot.",
+  "problems": [
+   "Segment 4 reiterates the 50% lead poisoning statistic without a fresh visual demonstration of the proportion, relying mostly on text and a visual of the source."
+  ],
+  "fixes": [
+   "In segment 4, create a new visual metaphor for the '50%' related to the bullets, rather than just stating the number again. For example, visually show half the bullets as 'poisoned' or half the condors affected by a bullet-related visual."
+  ]
+ }
+}

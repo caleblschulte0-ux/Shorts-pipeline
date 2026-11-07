@@ -1,0 +1,88 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "pedestrian-deaths-outlier__833dff5019",
+ "video_sha256": "833dff501973cada91f65b0e5717504de15e99b99a1682e6add0e4398ed27149",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-07T13:48:43Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 4,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery appears to be custom animation."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "The mascot actively changes numbers on a billboard (hook@0.3), adds crosses to a memorial (seg2:start), and paints a crosswalk (seg3:start)."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Numbers are presented on a billboard that the mascot interacts with (hook@0.3), or as percentages next to visual elements like crosses (seg2:end), or as a painted stripe on a crosswalk (seg3:end)."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static stretch is 0.0s, and the maximum frozen run is 0.7s, well below the 4s threshold."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frames are well-composed with backgrounds and foreground elements, no large dead black spaces."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All text is clear, high contrast, and not cut off or obscured."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "lack of innovation",
+   "visible_evidence": "The data demonstration for traffic deaths uses a billboard mechanic, which is clear but a somewhat generic way to show changing numbers.",
+   "root_cause": "The visual metaphor for showing year-over-year totals is functional but not highly unique.",
+   "repair_goal": "Develop a more bespoke and surprising visual metaphor for demonstrating changing traffic death totals over time."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "Mascot updates numbers on a billboard, a clear but somewhat generic mechanic for showing changing totals."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "Continues the billboard mechanic from seg0, emphasizing the pedestrian outlier."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Mascot adds crosses to a memorial, directly representing pedestrian deaths and visually conveying the rise before numbers appear."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Mascot paints a red stripe on a crosswalk, using the crosswalk itself as a direct visual metaphor for the percentage of pedestrian deaths."
+   }
+  ],
+  "one_line": "The video effectively demonstrates the disproportionate rise in pedestrian deaths with engaging visual metaphors and mascot interaction.",
+  "problems": [
+   "The billboard mechanic used in the first two segments, while effective, is a relatively common visual for displaying changing numbers and could be more innovative."
+  ],
+  "fixes": [
+   "Explore more unique and bespoke visual metaphors for showing year-over-year data changes, especially for the initial presentation of overall traffic deaths."
+  ]
+ }
+}
