@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-07T17:27:37Z",
+ "updated": "2026-11-07T17:48:24Z",
  "open": [
   {
    "id": "sports_kylian_mbappé_accidentally__ca24d773b2",
@@ -41,16 +41,6 @@
    "request": "exchange/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853/sheet.jpg",
    "answer_path": "exchange/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853.verdict.json"
-  },
-  {
-   "id": "sports_jacob_misiorowski_g_with_jacob__fc92a7cca5",
-   "channel": "trending",
-   "slug": "sports_jacob_misiorowski_g_with_jacob",
-   "title": "Jacob Misiorowski's Beer Chug Has Everyone Saying 'NO!'",
-   "filed": "2026-11-07T12:44:40Z",
-   "request": "exchange/reviews/20261107/sports_jacob_misiorowski_g_with_jacob__fc92a7cca5.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_jacob_misiorowski_g_with_jacob__fc92a7cca5/sheet.jpg",
-   "answer_path": "exchange/reviews/20261107/sports_jacob_misiorowski_g_with_jacob__fc92a7cca5.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
