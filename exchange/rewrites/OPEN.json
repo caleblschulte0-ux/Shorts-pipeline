@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-07T13:34:09Z",
+ "updated": "2026-11-07T17:48:29Z",
  "open": [
+  {
+   "id": "astronaut-bone-loss__50d1c981",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-07T17:48:29Z",
+   "why": [
+    "premise: brain: The claim does not clearly reverse a common viewer expectation and relies on a vague, unverifiable metric rather than a single, concrete, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261107/astronaut-bone-loss__50d1c981.request.json",
+   "answer_path": "exchange/rewrites/20261107/astronaut-bone-loss__50d1c981.answer.json"
+  },
   {
    "id": "elephant-poaching-decline__41f85b1d",
    "slug": "elephant-poaching-decline",
