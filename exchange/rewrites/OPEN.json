@@ -1,106 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-06T18:34:19Z",
+ "updated": "2026-11-07T12:21:13Z",
  "open": [
   {
-   "id": "coldest-place-in-the-universe-is-human-made__4c8e8241",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-06T18:34:19Z",
-   "why": [
-    "judge: Only the cold-atom chamber is a real picture of the story. The hook opens on a dish and 'room temperature', and the distance beat is a rocket with a 17-digit number pasted over it."
-   ],
-   "request": "exchange/rewrites/20261106/coldest-place-in-the-universe-is-human-made__4c8e8241.request.json",
-   "answer_path": "exchange/rewrites/20261106/coldest-place-in-the-universe-is-human-made__4c8e8241.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__815de0c3_r1",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-06T13:48:11Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies only on a simple numeric increase."
-   ],
-   "request": "exchange/rewrites/20261106/cruise-ship-outbreaks-climbing__815de0c3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261106/cruise-ship-outbreaks-climbing__815de0c3_r1.answer.json"
-  },
-  {
-   "id": "neutron-star-manhattan-size__4e02853c_r1",
-   "slug": "neutron-star-manhattan-size",
-   "filed": "2026-11-06T13:48:11Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261106/neutron-star-manhattan-size__4e02853c_r1.request.json",
-   "answer_path": "exchange/rewrites/20261106/neutron-star-manhattan-size__4e02853c_r1.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__2d426d60",
+   "id": "mangrove-forest-loss__2d426d60_r1",
    "slug": "mangrove-forest-loss",
-   "filed": "2026-11-06T13:48:10Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a broad claim rather than a single, pivotal verifiable number."
-   ],
-   "request": "exchange/rewrites/20261106/mangrove-forest-loss__2d426d60.request.json",
-   "answer_path": "exchange/rewrites/20261106/mangrove-forest-loss__2d426d60.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__51f127a7_r5",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-06T12:52:58Z",
-   "why": [
-    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
-   ],
-   "request": "exchange/rewrites/20261106/muscle-loss-after-30__51f127a7_r5.request.json",
-   "answer_path": "exchange/rewrites/20261106/muscle-loss-after-30__51f127a7_r5.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__68c934c9_r4",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-11-06T12:52:58Z",
-   "why": [
-    "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
-   ],
-   "request": "exchange/rewrites/20261106/peanut-allergy-guideline-flip__68c934c9_r4.request.json",
-   "answer_path": "exchange/rewrites/20261106/peanut-allergy-guideline-flip__68c934c9_r4.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__3a83f544_r2",
-   "slug": "autism-diagnosis-rate-rise",
    "filed": "2026-11-06T12:52:57Z",
    "why": [
-    "premise: brain: It relies on multiple statistics rather than a single consequential number, failing the required premise format."
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a factual statistic."
    ],
-   "request": "exchange/rewrites/20261106/autism-diagnosis-rate-rise__3a83f544_r2.request.json",
-   "answer_path": "exchange/rewrites/20261106/autism-diagnosis-rate-rise__3a83f544_r2.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a1c3f2eb_r3",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-06T12:52:57Z",
-   "why": [
-    "premise: brain: The claim relies on a single statistic without clearly overturning a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261106/blood-supply-three-percent__a1c3f2eb_r3.request.json",
-   "answer_path": "exchange/rewrites/20261106/blood-supply-three-percent__a1c3f2eb_r3.answer.json"
-  },
-  {
-   "id": "deepfake-video-explosion__4e4e2811_r2",
-   "slug": "deepfake-video-explosion",
-   "filed": "2026-11-06T12:52:57Z",
-   "why": [
-    "premise: brain: It presents a striking statistic but does not invert a common viewer expectation, failing the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261106/deepfake-video-explosion__4e4e2811_r2.request.json",
-   "answer_path": "exchange/rewrites/20261106/deepfake-video-explosion__4e4e2811_r2.answer.json"
-  },
-  {
-   "id": "lego-minifigs-outnumber-humans__161409d0_r7",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-06T12:52:57Z",
-   "why": [
-    "premise: brain: The claim hinges on an unverified figure and lacks a clear, verifiable number to substantiate the reversal of expectation."
-   ],
-   "request": "exchange/rewrites/20261106/lego-minifigs-outnumber-humans__161409d0_r7.request.json",
-   "answer_path": "exchange/rewrites/20261106/lego-minifigs-outnumber-humans__161409d0_r7.answer.json"
+   "request": "exchange/rewrites/20261106/mangrove-forest-loss__2d426d60_r1.request.json",
+   "answer_path": "exchange/rewrites/20261106/mangrove-forest-loss__2d426d60_r1.answer.json"
   },
   {
    "id": "robotic-surgery-doubled__efdf1e6c_r1",
@@ -141,6 +51,16 @@
    ],
    "request": "exchange/rewrites/20261103/tsa-digital-id-states-growth__1330070e_r2.request.json",
    "answer_path": "exchange/rewrites/20261103/tsa-digital-id-states-growth__1330070e_r2.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__815de0c3_r1",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-01T12:19:46Z",
+   "why": [
+    "premise: brain: It presents a simple numeric increase without overturning a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3_r1.request.json",
+   "answer_path": "exchange/rewrites/20261101/cruise-ship-outbreaks-climbing__815de0c3_r1.answer.json"
   },
   {
    "id": "naep-math-pandemic-drop__aa1c0224_r1",
