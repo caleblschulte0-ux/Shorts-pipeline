@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-07T17:48:29Z",
+ "updated": "2026-11-07T21:24:38Z",
  "open": [
+  {
+   "id": "autism-diagnosis-rate-rise__0f60a36a",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-07T21:24:38Z",
+   "why": [
+    "premise: brain: It relies on multiple figures (32.2 per thousand and a vague fivefold increase) instead of a single, clear, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261107/autism-diagnosis-rate-rise__0f60a36a.request.json",
+   "answer_path": "exchange/rewrites/20261107/autism-diagnosis-rate-rise__0f60a36a.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__84c11eb6",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-07T21:24:38Z",
+   "why": [
+    "premise: brain: The claim relies on a vague expectation reversal and a non-specific 98% figure without a clear, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261107/robotic-surgery-doubled__84c11eb6.request.json",
+   "answer_path": "exchange/rewrites/20261107/robotic-surgery-doubled__84c11eb6.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__daaf7c87",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-11-07T21:24:37Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a specific, verifiable numeric twist."
+   ],
+   "request": "exchange/rewrites/20261107/metric-system-holdouts__daaf7c87.request.json",
+   "answer_path": "exchange/rewrites/20261107/metric-system-holdouts__daaf7c87.answer.json"
+  },
+  {
+   "id": "maternal-mortality-pandemic-reversal__18a634a0",
+   "slug": "maternal-mortality-pandemic-reversal",
+   "filed": "2026-11-07T21:24:36Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a single viewer expectation based solely on one verifiable number."
+   ],
+   "request": "exchange/rewrites/20261107/maternal-mortality-pandemic-reversal__18a634a0.request.json",
+   "answer_path": "exchange/rewrites/20261107/maternal-mortality-pandemic-reversal__18a634a0.answer.json"
+  },
   {
    "id": "astronaut-bone-loss__50d1c981",
    "slug": "astronaut-bone-loss",
