@@ -18481,14 +18481,32 @@
       "director_cut": true
     },
     "clip-20261107-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jinnytty/clip/NaiveRamshackleTrufflePMSTwin-JXm48ImpENlKS0rC",
-      "story_key": null,
-      "streamer": "jinnytty",
+      "url": "https://youtube.com/shorts/5DFZerOrGA4",
       "title": "Jinnytty Stalker Showed Up At Her Birthday Stream \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-11-07T11:41:03.029107+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-07T11:41:17.924263+00:00",
+      "uploaded_at": "2026-11-07T11:41:17.924277+00:00",
+      "publish_at": "2026-11-07T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261107-jinnytty-stalker-showed-up-at-her-birthday-strea-f204f04d",
+        "tiktok": "queued for 2026-11-07T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jinnytty/clip/NaiveRamshackleTrufflePMSTwin-JXm48ImpENlKS0rC",
+      "streamer": "jinnytty",
+      "series": "drama",
+      "hook": "Jinnytty's stalker showed up \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 27963,
+      "banger": 0.7,
+      "cut": {
+        "start": 0.2,
+        "end": 60.0
+      },
+      "director_cut": true
     }
   }
 }
