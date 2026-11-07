@@ -1,8 +1,424 @@
 {
- "date": "2026-11-06",
+ "date": "2026-11-07",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
- "slots": [],
- "already_today": 5
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Cristiano Ronaldo",
+   "why": "He announces his international retirement in a heartfelt video",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kaka",
+   "why": "He breaks down in tears after a standing ovation and Hall of Fame induction",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "sports",
+   "who": "Jacob Misiorowski",
+   "why": "He leads a wild beer\u2011throw celebration during the Brewers championship parade",
+   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "title": "Jacob Misiorowski Perfectly Executes This Beer Throw And Chug At The Parade",
+   "hook": "Jacob Misiorowski's perfect parade chug",
+   "ledger": {
+    "moves": [
+     "shake@2.0",
+     "whoa@7.5",
+     "zoom@10.0",
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:d2c42c8f-a942-4b26-8a98-7c54e9094f4b",
+      "credit": "Song: ROY KNOX - The Other Side\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/RKC_TOS"
+     }
+    ]
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: The video fails to show Jacob Misiorowski performing the chug as claimed by the on-screen text."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The video fails to show Jacob Misiorowski performing the chug as claimed by the on-screen text.",
+    "score": 70
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The video fails to show Jacob Misiorowski performing the chug as claimed by the on-screen text."
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "He comforts a young fan who was hit by a stray shot",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni For Hitting A Kid!",
+   "hook": "Mbapp\u00e9 defends a kid from Tchouam\u00e9ni",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shots, each framed on its own \u2014 one crop (wide) cut a face off",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 10.47,
+       "reason": "framed on this shot's face",
+       "crop": [
+        248,
+        440,
+        164,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 10.47,
+       "t1": 15.03,
+       "reason": "framed on this shot's face",
+       "crop": [
+        248,
+        440,
+        158,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.255,
+       0.7
+      ],
+      [
+       0.275,
+       0.729
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:928ead61-48d1-499e-acbf-399121904034",
+      "credit": "Song: Shiah Maisel, Clarx - Gotta Leave\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/GottaLeave"
+     }
+    ]
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: HTTP Error ",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: HTTP Error "
+  },
+  {
+   "sub": "soccer",
+   "who": "Yan Diomande",
+   "why": "He receives a standing ovation after giving his jersey to a ball boy",
+   "post_title": "Yan Diomande receiving a standing ovation from the Racing Santander stadium after he gives his jersey to a ball boy",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "He gets an emotional reaction while receiving the game ball for his 16,000th field goal",
+   "post_title": "\"1, 2, 3, old as shit!\" Sixers tease an emotional Lebron James as he receives the game ball for scoring his 16,000th field goal",
+   "upvotes": 0,
+   "url": "https://streamable.com/dua2p7",
+   "topic": "https://www.reddit.com/r/nba/comments/1xp2p35/1_2_3_old_as_shit_sixers_tease_an_emotional",
+   "title": "LeBron James Gets Teased By Sixers After His HUGE Milestone",
+   "hook": "LeBron gets roasted for his 16,000th field goal \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "whoa@5.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:018563ec-10f8-44ab-b46c-e05b7cb20749",
+      "credit": "Song: Tatsunoshin, fawlin - Sunrise (feat. fawlin)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/TS_sunrise"
+     }
+    ]
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 100
+   },
+   "video_url": "https://youtube.com/shorts/uzsUAg0YBII",
+   "ok": true,
+   "publish_at": "2026-11-07T15:00:00Z",
+   "seconds": 400,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261107-lebron-james-gets-teased-by-sixers-after-his-hug-dc58af82",
+    "tiktok": "queued for 2026-11-07T15:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Dan Campbell",
+   "why": "He delivers an emotional locker\u2011room speech about LB Jack Campbell",
+   "post_title": "[Highlight] Emotional scene in the Lions locker room as HC Dan Campbell addresses the team about LB Jack Campbell before a team prayer.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "sports",
+   "who": "Minnesota Vikings",
+   "why": "Two teams exchange 60\u2011yard field goals in the final 24 seconds, a crazy finish",
+   "post_title": "Minnesota and Indiana exchange 60-yard field goals in the final 24 seconds of regulation",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xkoa2l/minnesota_and_indiana_exchange_60yard_field_goals/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xkoa2l/minnesota_and_indiana_exchange_60yard_field_goals",
+   "title": "Minnesota Vikings: Luke Grzewicki and Patty McIntyre Trade INSANE 60-Yard Field Goals",
+   "hook": "Two kickers trade 60-yard field goals",
+   "ledger": {
+    "moves": [
+     "whoa@2.49",
+     "zoom@26.69",
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "11 camera shots, each framed on its own \u2014 one crop (wide) cut a face off",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 3.23,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 3.23,
+       "t1": 4.8,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 4.8,
+       "t1": 6.83,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 6.83,
+       "t1": 8.37,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 8.37,
+       "t1": 9.53,
+       "reason": "framed on this shot's face",
+       "crop": [
+        404,
+        720,
+        626,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 9.53,
+       "t1": 12.07,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 12.07,
+       "t1": 14.87,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 14.87,
+       "t1": 16.37,
+       "reason": "framed on this shot's face",
+       "crop": [
+        404,
+        720,
+        136,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 16.37,
+       "t1": 25.67,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 25.67,
+       "t1": 31.53,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 31.53,
+       "t1": 36.8,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.477,
+      0.0,
+      0.062,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.008,
+       0.397
+      ],
+      [
+       0.0,
+       0.616
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 91
+   },
+   "video_url": "https://youtube.com/shorts/wDi9jeB4TKk",
+   "ok": true,
+   "publish_at": "2026-11-07T18:00:00Z",
+   "seconds": 159,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261107-minnesota-vikings-luke-grzewicki-and-patty-mcint-27812798",
+    "tiktok": "queued for 2026-11-07T18:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "He shows up dressed as The Witcher for a Halloween matchup, sparking laughs",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  }
+ ],
+ "already_today": 0,
+ "pool": 114,
+ "already_posted": 13,
+ "shipped": 2
 }

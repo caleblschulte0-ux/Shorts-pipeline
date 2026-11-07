@@ -1,10 +1,10 @@
 {
  "schema": "shorts-exchange-index/v1",
- "updated": "2026-11-07T11:48:47Z",
- "open_total": 143,
+ "updated": "2026-11-07T11:50:23Z",
+ "open_total": 144,
  "mailboxes": {
   "reviews": {
-   "open": 0,
+   "open": 1,
    "index": "exchange/reviews/OPEN.json"
   },
   "asks": {
