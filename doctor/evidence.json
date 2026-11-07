@@ -1,33 +1,27 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261106",
-  "judged_date": "20261105",
+  "date": "20261107",
+  "judged_date": "20261106",
   "alarm": {
-    "date": "20261105",
+    "date": "20261106",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261105 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261105.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
-        "code": "short_slate_third",
+        "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "third: 5/6 posted for 20261105.",
+        "detail": "explainer: 3/4 posted for 20261106.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (58 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (59 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "explainer: 4/4 posted",
+      "third: 6/6 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -214,488 +208,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-04T11:53:26+00:00",
-      "slug": "sports_jake_bauers_ast_out_ball",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The first ~20s show a genuinely sweet handoff, but the cut then wanders into a locker-room shot and NLCS footage, so the final 17s never show the last-out ball the line promises and the ending fizzles.",
-      "auto_fails": [
-        "junk_imagery: hook@1.5 is almost all the back of a bystander's plaid jacket, with Bauers small and blurred at left, right as the handoff happens. From mid4 (32.8s) to the end the footage is a locker-room trophy shot and NLCS Game 1 broadcast of Murphy on the field. None of it shows the last-out ball the line promises."
-      ],
-      "problems": [
-        "hook@0.8 and hook@1.5: a bystander's plaid jacket fills most of the frame during the handoff itself, so the ball is barely seen.",
-        "mid4: a locker-room trophy clip has nothing to do with the last-out ball.",
-        "mid5 to payoff@-0.4: NLCS Game 1 footage of Murphy fades to dark. The video ends on unrelated footage, with no payoff.",
-        "There is no zoom or sound hit on the reaction; the emotional beat in mid1 gets no emphasis.",
-        "The source carries Spectrum News and FOX watermarks, so it is a repost of a repost."
-      ],
-      "fixes": [
-        "End the cut around 25s on the side-by-side smile in mid2.",
-        "Cut every frame where the jacket blocks the view; open on the hand-to-hand frame (hook@0.3/mid0) with a punch-in on the ball.",
-        "Add a punch-in on Murphy's face as he speaks to Bauers (mid1).",
-        "Remove the locker-room and NLCS B-roll entirely."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.008,
-        "sampled": 127
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid4",
-        "index": 4,
-        "failure_class": "off_topic_footage",
-        "visible_evidence": "From mid4 on, the cut leaves the field handoff. It shows a letterboxed locker-room shot with the trophy (mid4), then an NLCS Game 1 broadcast clip of Murphy waving (mid5, payoff@-1.8), which fades to dark (payoff@-0.4). The final ~10s are a playoff game unrelated to the last-out ball.",
-        "root_cause": "The source is a repost compilation that pads the 15-20s handoff moment with B-roll from other games. The cut kept the whole post instead of ending on the moment, and the opening handheld shot is blocked by a bystander's jacket.",
-        "repair_goal": "Trim to roughly 0-25s so the video ends on the field exchange (mid1/mid2: Bauers and Murphy face to face, smiling). Drop the locker-room and NLCS B-roll. Start the hook at the frame where the ball is visibly in hand (hook@0.3), not on the jacket-occluded stretch."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.028,
-        "effective_fps": 23.3,
-        "max_dup_run": 5,
-        "measured": true,
-        "frozen_ratio": 0.004,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 0.17,
-        "max_dup_at_s": 32.38,
-        "duration_s": 42.42
-      },
-      "fingerprint": "?|junk_imagery|off_topic_footage"
-    },
-    {
-      "ts": "2026-11-04T11:54:58+00:00",
-      "slug": "sports_jake_bauers_ast_out_ball",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "It's a warm, clear World Series moment (ball hand-off, hug, smiles), but about 1.5s of the hook is a reporter's jacket blocking both men.",
-      "auto_fails": [
-        "junk_imagery: hook@0.8 and hook@1.5: a reporter's purple plaid jacket shoulder and the back of his head fill about 70% of the frame. Bauers is pushed to the left edge and Murphy is out of shot, so the crop sits on a bystander's shoulder during the hand-off the line promises."
-      ],
-      "problems": [
-        "hook@0.8 and hook@1.5: a reporter's purple plaid shoulder covers most of the frame and Murphy is out of shot during the key hand-off",
-        "The ball itself is only clearly visible in hook@0.3, mid0 and mid1, so the hand-off is easy to miss",
-        "There are no zooms or sound hits on the reaction, so the cut is plain phone footage with one line of text"
-      ],
-      "fixes": [
-        "Cut out the jacket-blocked stretch from about 0.6s to 2.0s and open on hook@0.3, then jump to mid0",
-        "Push in on the ball as Murphy raises it (mid0) so the 'last out ball' payoff reads on a phone",
-        "Add a soft swell or hit on the hug at mid1 to land the emotion"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 59
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "bad_crop_occlusion",
-        "visible_evidence": "At hook@0.8 and hook@1.5 a purple plaid jacket shoulder and a reporter's head cover most of the frame. Bauers is cut off on the left and Murphy is not visible, right when the ball should be changing hands. Hook@0.3 shows the ball between their hands for one frame only.",
-        "root_cause": "The cut starts on the raw phone footage, where a reporter steps in front of the camera, and the 9:16 crop does not reframe or skip around him.",
-        "repair_goal": "Open on the clear hand-off in hook@0.3 (ball held between Bauers and Murphy), then cut straight to mid0/mid1 (ball in Murphy's hand, then the hug). Trim or jump past the roughly 0.6 to 2.0s stretch where the jacket blocks the shot, so both men stay in frame for the first two seconds."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.004,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.004,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.002,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 19.5
-      },
-      "fingerprint": "?|junk_imagery|bad_crop_occlusion"
-    },
-    {
-      "ts": "2026-11-04T12:06:36+00:00",
-      "slug": "sports_jake_bauers_ast_out_ball",
-      "score": 71,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The handoff and hug land in the first two seconds, but the second half is an unrelated, letterboxed clubhouse speech under the same ball caption, so the video ends on footage that has nothing to do with its promise.",
-      "auto_fails": [
-        "empty_void: From mid3 (t=24.58s) to payoff@-0.4 the clubhouse footage is a thin horizontal band in the middle third. A blurred, darkened copy fills the top and bottom, so about two-thirds of the vertical frame is wasted for nearly half the video."
-      ],
-      "problems": [
-        "The moment the line promises plays out by about 10s. From 24.6s to the end the video is an unrelated FOX clubhouse speech.",
-        "The clubhouse clip is letterboxed into the middle third with blurred fill above and below, wasting about two-thirds of the vertical frame (mid3 to payoff).",
-        "The ball caption stays on screen over footage that shows no ball and no Bauers.",
-        "The payoff fades out on Murphy talking to the room instead of on the emotional beat between the two men."
-      ],
-      "fixes": [
-        "Trim the cut to the field footage (0 to about 24s) and end on the hug or the shared laugh.",
-        "If the clubhouse clip stays, crop it to vertical on Murphy's face, show it full frame, and give it its own line saying what he is saying.",
-        "Put a zoom and a sound hit on the ball handoff at about 0.3-1.5s so the moment hits harder."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.016,
-        "sampled": 124
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "off_story_tail_letterboxed",
-        "visible_evidence": "From mid3 to payoff@-0.4 (t=24.6-41s) the video shows a FOX clubhouse clip of Murphy speaking with the trophy, squeezed into a small band between blurred fill. The ball handoff and the hug finish by mid1, and the caption still says 'gives Murphy the last out ball' over footage that has nothing to do",
-        "root_cause": "A second, unrelated horizontal broadcast clip was added after the moment had already landed. It was letterboxed rather than cropped, so the second half both drops the promised moment and wastes most of the vertical frame.",
-        "repair_goal": "End the cut once the field handoff and hug have played out, at about 20-24s and ending on the hug or the reaction in mid1/mid2. Alternatively, crop the clubhouse clip to vertical on Murphy's face and give it its own line. Never leave the ball caption over unrelated footage."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.052,
-        "effective_fps": 22.8,
-        "max_dup_run": 8,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 0.29,
-        "max_dup_at_s": 30.25,
-        "duration_s": 41.29
-      },
-      "fingerprint": "?|empty_void|off_story_tail_letterboxed"
-    },
-    {
-      "ts": "2026-11-04T12:09:38+00:00",
-      "slug": "sports_alex_rodriguez__life_i_love",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a real and funny roast of A-Rod by the FOX crew, but the opening is a slow wide setup and the promised 'I have no life, I love baseball' line is not clearly what the clip ends on.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0-2.2s) is a wide desk shot with setup captions, so nothing gives a stranger a reason to stay.",
-        "Hook frames crop the left panelist down to a hand, and the bottom half of the frame is broadcast graphics.",
-        "The ending trails off on 'LATER TOMORROW.' and the title's line does not visibly land as the punchline.",
-        "In mid4 and mid5, A-Rod, the subject, is pushed against the left edge of the two-shot."
-      ],
-      "fixes": [
-        "Open on the 'GET A LIFE!' roast or a tight shot of A-Rod laughing, then cut back to the setup.",
-        "End on A-Rod saying 'I have no life, I love baseball', with a punch-in on his face.",
-        "Reframe the two-shots in mid4 and mid5 so A-Rod's whole face is centered, or so that whoever is speaking is."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 70
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3 to hook@2.2 is a static wide desk shot. The left panelist is cut to a hand, A-Rod is small in the center, and the bottom half is the World Series graphic and the score bug. The captions are setup ('WHAT DO YOU', 'SOMETHING TO REACT'), not the roast or the reaction.",
-        "root_cause": "The cut opens on the start of the source clip, a slow wide setup, instead of the funniest beat: the 'GET A LIFE!' roast at mid3 or A-Rod's laughing reaction at payoff@-0.4.",
-        "repair_goal": "Open on a tight crop of A-Rod laughing, or on the 'GET A LIFE!' line, flash-forwarded into the first second. Make sure 'I have no life, I love baseball' is heard clearly and on screen before the clip ends, instead of trailing out on 'LATER TOMORROW.'"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.066,
-        "effective_fps": 22.4,
-        "max_dup_run": 8,
-        "measured": true,
-        "frozen_ratio": 0.002,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.29,
-        "max_dup_at_s": 0.92,
-        "duration_s": 23.25
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-11-04T12:15:29+00:00",
-      "slug": "sports_quenton_nelson_elson_on_the",
-      "score": 49,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A press conference that never shows or names 'this guy': a stranger sees a lineman at a podium in a small strip for 21s and never learns who Jeffery Simmons is or hears the quote land.",
-      "auto_fails": [
-        "empty_void: Every frame (hook@0.3, mid2, payoff@-0.4) shows a small 16:9 strip across the middle third. The top and bottom thirds are a blurred, enlarged copy of the same shot, so about 65% of the vertical frame carries no information."
-      ],
-      "problems": [
-        "The footage is a small letterboxed strip with a blurred fill taking about two-thirds of the frame (every frame).",
-        "Jeffery Simmons, the trade and the Monday-night matchup never appear on screen. 'This guy' is never resolved, so the payoff is lost.",
-        "No speech captions of the quote, no zoom and no sound-hit emphasis. It is one locked-off shot from hook@0.3 to payoff@-0.4.",
-        "The source is choppy (effective 3fps, 87% duplicate frames), so it reads as almost frozen.",
-        "The hook frame is the same as the rest of the video, so nothing makes a stranger stop scrolling."
-      ],
-      "fixes": [
-        "Crop and punch in to fill the vertical frame on Nelson.",
-        "Burn in captions of the quote, especially 'Man, can't get away from this guy.'",
-        "Cut in a Jeffery Simmons image or clip, with a second text line naming him and the Bears trade.",
-        "Add a zoom and sound hit on the punchline, and trim the clip to the quote."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 4.67,
-        "dark_fraction": 0.0,
-        "sampled": 64
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "no_context_static_talking_head",
-        "visible_evidence": "mid0 to mid5 are almost the same frame: a lineman standing still at a podium in a small letterboxed strip. Nothing on screen shows or names Jeffery Simmons or the trade, and no speech captions appear. The quote 'can't get away from this guy' is never shown as text.",
-        "root_cause": "The cut is one locked-off press-conference shot with no punch-in, no caption of the actual quote and no cut-in of Simmons or the Bears trade. The 'this guy' setup is never resolved on screen, and the low-fps source (effective 3fps) makes it feel frozen.",
-        "repair_goal": "Punch in to fill the vertical frame on Nelson's face. Burn in word captions of the quote. Cut in a picture or clip of Jeffery Simmons (Titans, now a Bear) when 'this guy' is said, and add a second line naming him so a stranger knows who it is. Zoom with a sound hit on the 'can't get away from this g"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.874,
-        "effective_fps": 3.0,
-        "max_dup_run": 80,
-        "measured": true,
-        "frozen_ratio": 0.371,
-        "frozen_fps": 15.1,
-        "max_frozen_run": 12,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 16.92,
-        "max_dup_at_s": 3.58,
-        "duration_s": 21.25
-      },
-      "fingerprint": "?|empty_void|no_context_static_talking_head"
-    },
-    {
-      "ts": "2026-11-04T12:17:18+00:00",
-      "slug": "sports_alexander_volkanovski__upset_abou",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A 30-second webcam talking head in a small box next to an unrelated carbon-tax newspaper photo, with blurred fill over two-thirds of the frame. There is no moment and nothing to stop a scroll.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through payoff@-0.4: half of the clip is a stock photo of Australian newspapers that never changes. Its headlines are about a carbon tax, have nothing to do with MMA, and sit beside a small webcam box. The source is a news-style composite played inside our video, not the moment itself.",
-        "empty_void: In every frame (hook@0.3 to payoff@-0.4), the top ~35% and bottom ~35% of the frame are a blurred, zoomed copy of the newspaper photo. Only the middle band holds real footage, so about two-thirds of the vertical frame is wasted."
-      ],
-      "problems": [
-        "Half the footage is a static stock photo of carbon-tax newspapers, unrelated to MMA, on screen for all 30 seconds (hook@0.3 to payoff@-0.4).",
-        "About two-thirds of the vertical frame is blurred fill; the real content is a thin middle band.",
-        "Volkanovski's face is small, in a corner box, and never cropped or zoomed.",
-        "There are no zooms, sound hits or reaction beats, just flat interview audio. The hook is a mild talking head with no reason to stay.",
-        "The ending trails off mid-thought (payoff@-1.8 'THANKFUL FOR THE', payoff@-0.4 has no caption) with no landing line."
-      ],
-      "fixes": [
-        "Crop the source to Volkanovski's webcam only and fill the 9:16 frame with him.",
-        "Remove the newspaper photo entirely.",
-        "Open on his strongest line ('they don't understand it, they don't know enough') with a punch-in.",
-        "Add punch-ins on 'but I do' and the closing thanks, and end on a complete sentence.",
-        "If the source only exists as a split-screen with a stock photo, skip this post; it is a restream composite, not the moment."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "hook@0.3: a small webcam box of Volkanovski sits left of a static, unrelated carbon-tax newspaper photo in a thin middle band, with blurred fill above and below. Nothing moves except his mouth.",
-        "root_cause": "The source was the media outlet's own split-screen composite with a stock newspaper photo. It was letterboxed into 9:16 with blur fill and never cropped to the speaker.",
-        "repair_goal": "Crop to Volkanovski's webcam alone so his face fills the vertical frame, drop the newspaper half and the blur fill, and open on his most pointed line ('they don't understand it') with a punch-in."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.478,
-        "effective_fps": 12.5,
-        "max_dup_run": 32,
-        "measured": true,
-        "frozen_ratio": 0.053,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 7.08,
-        "max_dup_at_s": 3.08,
-        "duration_s": 30.0
-      },
-      "fingerprint": "?|empty_void+junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-11-04T12:19:22+00:00",
-      "slug": "sports_carlos_prates_makhachev_he",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The rant is real and it lands ('vacate your belt'), but it plays in a thin letterboxed split-screen with a frozen photo taking half the band and blur filling two-thirds of the screen, so a phone viewer sees a small talking head that barely changes for 31s.",
-      "auto_fails": [
-        "empty_void: In hook@0.3 to payoff@-0.4 the real footage is a band about 240px tall in the middle of a 764px frame. Roughly two-thirds of the screen is blurred copies of the same footage, and the left half of the band is a frozen photo of Makhachev, so very little of the frame shows anything moving."
-      ],
-      "problems": [
-        "Real footage fills only about a third of the frame height. The rest is blurred duplicate fill (hook@0.3 to payoff@-0.4).",
-        "The left half of the footage band is a static photo of Makhachev that never changes, which halves the useful picture.",
-        "The video adds no zooms, punch-ins or sound hits on the strongest lines ('vacate your belt', 'asshole shit'), so the delivery is flat.",
-        "The hook opens mid-sentence on 'everybody was pretty pissed off' with no visual jolt.",
-        "It ends on 'we had already agreed on it' (payoff@-0.4), which is weaker than the vacate-the-belt line in mid4."
-      ],
-      "fixes": [
-        "Crop to Prates' half of the source and scale it to fill the vertical frame.",
-        "Punch in on Prates at 'vacate your belt' and 'asshole shit', with a sound hit.",
-        "Open on the strongest line ('If you don't want to fight, vacate your belt') or cut the opening so the first two seconds are the insult.",
-        "End the cut on the vacate-the-belt line or the 'asshole' line, not on 'we had already talked about it'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 94
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "letterboxed_split_screen",
-        "visible_evidence": "In mid2 and every other frame the speaker fills only about a sixth of the screen (the right half of a thin middle band). A still photo of Makhachev takes the left half, and blurred fill takes the top and bottom thirds.",
-        "root_cause": "The source is a reposted landscape split-screen edit (a still photo next to a talking head). It was dropped into the 9:16 frame with blurred padding and never re-cropped onto the speaker.",
-        "repair_goal": "Crop to Prates' half of the source and scale it to fill most of the vertical frame, so his face is large and centred. Keep the Makhachev still only as a brief cut-in where Prates names him, and keep our hook line above the footage's own subtitles."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.246,
-        "effective_fps": 18.1,
-        "max_dup_run": 8,
-        "measured": true,
-        "frozen_ratio": 0.024,
-        "frozen_fps": 23.4,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.013,
-        "judder_fps": 23.7,
-        "held_s": 1.92,
-        "max_dup_at_s": 16.92,
-        "duration_s": 31.42
-      },
-      "fingerprint": "?|empty_void|letterboxed_split_screen"
-    },
     {
       "ts": "2026-11-04T12:21:49+00:00",
       "slug": "sports_carlos_prates_makhachev_he",
@@ -4267,11 +3779,498 @@
         "duration_s": 19.08
       },
       "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-11-06T10:38:38+00:00",
+      "slug": "homeschool-surge",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 2,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong, subject-made demonstrations (the kids migrating, the bubbles of safety worries), but the closing fizzles into a thumbs-up and a corner label instead of landing the rivalry.",
+      "auto_fails": [],
+      "problems": [
+        "seg4 closing: Data only gives a thumbs-up, and the private vs homeschool comparison is a small corner label, not a picture (payoff@-1.8, payoff@-0.4).",
+        "Closing text crowds into the 5.4% headline at payoff@-1.8.",
+        "seg1: Data gestures beside the kids walking to the house instead of being the cause of the movement (seg1:mid, seg1:end).",
+        "The hook opens on 5.4%/1.9x, then immediately shows 2.8% (hook@0.3 to hook@0.8), which reads as the number going backwards."
+      ],
+      "fixes": [
+        "Redraw seg4 so Data opens the homeschool door and the kids split between the two buildings at a 5.4 : 9.6 ratio.",
+        "Give the closing line its own band, clear of the headline number.",
+        "In seg1, have Data lead or escort the kids from the bus to the house (a crossing-guard sign or held hand) so he causes the shift.",
+        "Keep the hook's flash-forward on the finished 5.4% frame longer, or label the 2.8% state clearly as '2019' so the opening doesn't read as a drop."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 106
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "At payoff@-1.8 and payoff@-0.4 the closing shows the academy doors opening with kids queuing and Data giving a thumbs-up in the doorway. '5.4% still homeschooled \u00b7 private school 9.6%' is a small corner label, and the closing text block is jammed against the 5.4%.",
+        "root_cause": "The closing picture shows that schools reopened, but not the turn of the story: families stayed home. The homeschool house is a small cutaway at the right edge, and nothing in the picture compares 5.4% with 9.6%. Data has no action.",
+        "repair_goal": "End on a split where Data swings open the homeschool door. Kids from the queue peel off toward the house until it holds just over half as many as file into the academy, so 5.4% vs 9.6% lands as a picture. Give the closing line its own band with clear space from the headline number."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.153,
+        "effective_fps": 20.3,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.088,
+        "frozen_fps": 21.9,
+        "max_frozen_run": 18,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 3.83,
+        "max_dup_at_s": 0.0,
+        "duration_s": 35.17
+      },
+      "fingerprint": "?|-|weak_payoff",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-06T11:10:49+00:00",
+      "slug": "homeschool-surge",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real illustrated world where kids walk between school and home carries the story well. The survey beat parks Data as a presenter, and the closing just repeats the numbers instead of landing a payoff.",
+      "auto_fails": [],
+      "problems": [
+        "seg2: Data stands and points or holds a clipboard while the bubbles appear on their own, so he is not the cause.",
+        "seg2: the 83% headline only appears at the end of the window.",
+        "seg3: the flagpole comparison is a generic height machine with icons on the flags.",
+        "seg4: the closing restates 9.6% vs 5.4% from seg3 with no new turn, so the payoff is flat.",
+        "The hook's caption line ('pandemic fad. It wasn't.') differs from the scripted hook, though both say the same thing."
+      ],
+      "fixes": [
+        "seg2: have Data walk the row polling each parent, with each warning bubble popping as he reaches them; show 83% by the middle of the beat.",
+        "seg3: replace the flags with something made of the subject, such as Data carrying kids' desks into the home until its classroom fills to just over half of the academy's.",
+        "seg4: end on a turn, such as the home crowd visibly gaining on the school crowd, instead of repeating the two numbers."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 105
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "seg2:start to seg2:end: thought bubbles pop up over six seated parents while Data stands in front of the rug and points, then holds a clipboard. He causes nothing. The 83% headline only appears at seg2:end, after most of the window has gone.",
+        "root_cause": "In the survey machine Data is a presenter beside the data instead of the cause of it. The headline number arrives late in the beat.",
+        "repair_goal": "Make Data the surveyor who causes the change. He walks the row with his clipboard, and each parent's bubble pops into a school-with-warning as he reaches them, five of six. Put the 83% on screen by the middle of the beat so it is readable before the cut."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.136,
+        "effective_fps": 20.7,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.086,
+        "frozen_fps": 21.9,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.007,
+        "judder_fps": 23.8,
+        "held_s": 3.67,
+        "max_dup_at_s": 0.0,
+        "duration_s": 34.92
+      },
+      "fingerprint": "?|-|decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-06T11:34:11+00:00",
+      "slug": "homeschool-surge",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A well-crafted, lit, on-subject story whose survey beat leaves Data as a bystander and whose ending recaps instead of landing a 'whoa'.",
+      "auto_fails": [],
+      "problems": [
+        "seg2: Data waves a clipboard beside the parents while the bubbles pop on their own, so he is not the cause.",
+        "seg0/seg1: four different percentages (5.4, 2.8, 11.1, 5.4) flash past in about 6 seconds, which reads as a number readout.",
+        "seg4: the payoff is a static side-by-side of two numbers already shown, plus a comment prompt; there is no punchline moment.",
+        "Spoken hook ('pandemic fad. It wasn't.') differs from the scripted hook about private schools looking over their shoulders, so the rival angle only arrives in seg3."
+      ],
+      "fixes": [
+        "seg2: have Data walk the row handing out survey cards so each bubble pops as he reaches a parent, and land a clear 5-of-6 tally.",
+        "seg0/seg1: show only the 2019 \u2192 2023 change as kids in the house versus the bus line, and drop the 11.1% label flash or make it a ghost mark.",
+        "seg4: end on the home flag rising toward the private flag line, or the house line visibly growing against the academy's, so the 'real rival' lands as motion.",
+        "Align the hook with the private-school rivalry so the opening sets up the seg3 payoff."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 105
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "weak_mascot_agency",
+        "visible_evidence": "seg2:start-end Data stands at the lower left, then the lower right, waving a clipboard while thought bubbles pop over the seated parents by themselves. He causes nothing, and the 83% is told through 5 of 6 bubbles with no clear count.",
+        "root_cause": "The survey machine fills the thought bubbles on its own, so Data is placed beside the moving part instead of driving it.",
+        "repair_goal": "Make Data the surveyor causing the reveal. He walks the row and hands each parent a survey card, or holds the clipboard to each one, and the safety-worry bubble pops as he reaches them. Land a clear tally (about 5 of 6 parents lit) so 83% reads as 'almost everyone' without reading the label."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.136,
+        "effective_fps": 20.7,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.086,
+        "frozen_fps": 21.9,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.007,
+        "judder_fps": 23.8,
+        "held_s": 3.67,
+        "max_dup_at_s": 0.0,
+        "duration_s": 34.92
+      },
+      "fingerprint": "?|-|weak_mascot_agency",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-06T16:06:21+00:00",
+      "slug": "coldest-place-in-the-universe-is-human-made",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Only the cold-atom chamber is a real picture of the story. The hook opens on a dish and 'room temperature', and the distance beat is a rocket with a 17-digit number pasted over it.",
+      "auto_fails": [
+        "decorative_mascot: In seg2:start through seg2:end, Data stands beside the bell jar with a hand on his chin or raised while the atoms condense. The lever next to him is never pulled, so nothing he does causes the cooling, and that is the story's main beat. He does turn the dish wheel (seg1) and press the launch button (seg3).",
+        "bare_number_card: In seg3:end, '250 miles' and '29,400,000,000,000,000 miles to the Boomerang Nebula' are stacked text over a rocket lifting off a beach. Nothing in the picture shows near versus quadrillions of miles away, so the text carries the whole comparison."
+      ],
+      "problems": [
+        "The hook (hook@0.3 to seg0:end) cycles 1 K, then 293 K, then 2.7 K over a turning radio dish. It never shows the shock (atoms 10 billion times colder than nature), so the first two seconds read as room temperature.",
+        "seg0 and seg1 are the same dish scene for about 9 seconds, and the dish says nothing about temperature.",
+        "In seg2, Data stands beside the chamber with his hand on his chin. The lever next to him is never pulled, so he is decoration in the key beat.",
+        "In seg3, a rocket launching from a beach is not the Cold Atom Lab in orbit, and '29,400,000,000,000,000' is an unreadable-in-meaning digit string carrying the whole claim.",
+        "The closing (seg4) reuses the seg3 rocket frame behind a wall of text. There is no visual payoff."
+      ],
+      "fixes": [
+        "Open the hook on the payoff frame of the atom chamber: a frozen cluster with one huge 'colder than nature' readout. Drop 293 K from the hook.",
+        "Replace the dish scenes with one shot where temperature is physical. For example, a thermometer or cold scale Data cranks down past empty space (2.7 K) and the nebula (1 K), plunging off the bottom.",
+        "Have Data pull the chamber lever in seg2 so the atoms condense because he does it.",
+        "Redraw seg3 as a distance shot: the ISS just overhead, then pull back toward a far-off nebula speck. Say 'quadrillions of miles' in words.",
+        "Give the closing its own finished picture, such as the glowing lab in orbit with Data aboard, instead of a reused launch frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 93
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "bare_number_card",
+        "visible_evidence": "seg3:start to seg3:end shows a generic rocket launching from a beach beside a gantry. The near-versus-far claim exists only as the text '250 miles' and a 17-digit '29,400,000,000,000,000' overlaid on the rocket. Nothing shows the Cold Atom Lab in orbit or the nebula's distance.",
+        "root_cause": "The scene draws a launch, which is an event, not the distance relationship. The narration's claim ('extreme cold brought close') has no physical form, so a raw digit string carries it.",
+        "repair_goal": "Show the distance itself. The ISS with the Cold Atom Lab glowing sits just overhead in a frame Data can reach (he hauls it into view or lifts a scope to it). The camera then pulls back across the sky toward the far-off Boomerang Nebula until it is a speck, or a ruler of 250-mile ticks runs out past "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.306,
+        "effective_fps": 16.7,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.133,
+        "frozen_fps": 20.8,
+        "max_frozen_run": 18,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 5.71,
+        "max_dup_at_s": 22.88,
+        "duration_s": 30.83
+      },
+      "fingerprint": "?|bare_number_card+decorative_mascot|bare_number_card",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-06T16:48:00+00:00",
+      "slug": "tsa-digital-id-states-growth",
+      "score": 66,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The first two beats show the data well (lanes turning green, a terminal lighting up), but the final claim, '20 of 50 is less than half', gets a boarding crowd that shows the opposite, so the payoff falls flat.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: the picture shows almost everyone boarding with phone IDs, which contradicts 'most travelers still need their plastic ID'. Less than half is never shown.",
+        "seg3/seg4: Data only waves on the airstairs. He does nothing that is tied to the claim.",
+        "seg2: the headline reads '27 checkpoints \u00b7 2024' while the terminal is already fully lit (seg2:mid), then jumps to 250 with '9x more', which disagrees with the narration's 'about tenfold'.",
+        "hook: Data stands or dances in the middle of the aisle and does not cause the lane split.",
+        "seg4: the closing is a near-static hold on the reused seg3 scene, so the ending has no 'whoa' moment.",
+        "The script's hook line ('Where you live decides...') is not the hook caption on screen ('The airport ID check is going digital...')."
+      ],
+      "fixes": [
+        "Redraw seg3 as a visible 20-vs-30 split: a short phone-ID boarding line beside a long plastic-ID line, or a 50-slot gate board with 20 lit. Have Data move the divider so 'less than half' can be seen.",
+        "seg2: count the headline up in step with the windows lighting, and make the multiplier tag agree with the narration (say 'about 9x' or show ~10x).",
+        "Hook: give Data an action that causes the split, for example waving the phone line through the scanner.",
+        "Closing: end on the seg3 split with the plastic line still long, so 'pack your plastic ID' lands visually."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 76
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "picture_contradicts_claim",
+        "visible_evidence": "seg3:start\u2013end: Data waves on the airstairs while a crowd of travellers, almost all holding glowing phones, boards a jet. The headline '20 of 50' sits over the scene, but nothing in the picture shows 'less than half' or that 'most travellers still need plastic'.",
+        "root_cause": "The scene shows people boarding with digital IDs, which illustrates the topic instead of the beat's claim (a minority, with most still on plastic). Data has no causal role and is posed beside the action.",
+        "repair_goal": "Show 20 out of 50 so it can be seen at a glance: for example, two boarding lines at the gate, a short phone line (20 states lit) next to a long plastic-ID line (30 states). Data makes the split happen, for example by walking the rope stanchion that divides the 20 from the 30, so 'less than half' rea"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.364,
+        "effective_fps": 15.3,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.045,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.0,
+        "max_dup_at_s": 8.08,
+        "duration_s": 25.25
+      },
+      "fingerprint": "?|-|picture_contradicts_claim",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-06T17:22:58+00:00",
+      "slug": "measles-comeback-since-2000",
+      "score": 61,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong illustrated settings and a good spread map, but Data mostly gestures beside the action, the 93% ward never shows the split, and the kids' slash-mark spots look like crossed-out faces.",
+      "auto_fails": [
+        "decorative_mascot: Data waves beside the bus while the sick children walk aboard on their own (hook@0.8 to seg0:end). He points at the map while the outbreak circles spread without him (seg3:mid to seg3:end). In seg4 he only waves. At most he holds the quilt edge in seg1 and the barrier rope in seg2:end, and neither is clearly what makes the number appear.",
+        "unreadable: In seg2:end the '7% outside' label is tiny grey text on a grey floor, partly behind Data's legs. On a phone at arm's length it disappears."
+      ],
+      "problems": [
+        "seg2 hospital ward: the beds are identical, so 93% unvaccinated is only a caption and the '7% outside' label can't be read.",
+        "Hook/seg0: the measles spots are drawn as red slashes over the children's faces, so the faces look scribbled out, not spotty.",
+        "Data waves beside the bus (seg0) and points at the map (seg3/seg4) while the scene acts on its own. He does not cause the change.",
+        "seg4 closing holds the finished seg3 map for about 4.8s with only a wave, so the ending sags.",
+        "The seg1 rash-timeline is labelled with small '2000'/'2019' ticks, so the comeback reads as a line chart drawn on a body."
+      ],
+      "fixes": [
+        "seg2: show the split in the beds themselves: 13 of 14 beds with no vaccination marker against 1 with one, or the rope dividing a long row from a single bed. Data sorts the patients. Make the 7% label large ink-coloured text away from him.",
+        "Redraw the measles rash as round red spots scattered over face and arms, never as diagonal slashes over the face.",
+        "seg3: Data should push the outbreak out of Texas himself, for example sticking each pin into the map or pulling the red string out to each new state as it lights up.",
+        "Hook: Data should do something that sets the spread going, such as waving the sick child aboard the bus or opening its door, rather than waving at the camera.",
+        "Closing: give the last few seconds one new move that lands the classroom line, for example the map's red reaching a school icon."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "claim_not_shown",
+        "visible_evidence": "From seg2:start to seg2:end there are five near-identical hospital beds with bandaged patients. The headline changes to '93%', and a tiny '7% outside' sits beyond a red rope that Data is holding. Nothing in the picture separates the unvaccinated from the vaccinated or shows 93 against 7.",
+        "root_cause": "The scene puts the share in a caption and a barely visible label instead of in the beds themselves. The rope barrier never sorts anyone, so the picture claims nothing the headline does not already say.",
+        "repair_goal": "Make the 93/7 split visible in the beds. Show a row of roughly 14 beds in which 13 patients have no vaccination mark and one has a clear vaccine-card or bandage marker, or have the rope physically divide a long row of beds from a single one. Data should do the sorting himself, for example wheeling e"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.06,
+        "effective_fps": 22.6,
+        "max_dup_run": 14,
+        "measured": true,
+        "frozen_ratio": 0.041,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.12,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.67
+      },
+      "fingerprint": "?|decorative_mascot+unreadable|claim_not_shown",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-06T18:26:31+00:00",
+      "slug": "antarctica-tourist-boom",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A well-crafted, subject-made tourism story with Data causing the motion. The country-share scene is the weak link: its labels are illegible and the share is not visible.",
+      "auto_fails": [
+        "unreadable: seg2:end: the small 'GER' label is pale grey on pale ice and Data stands over the CHINA/UK flags and labels. seg1:start: the caption 'the 1990s, just' is dark-on-dark over a penguin and barely visible."
+      ],
+      "problems": [
+        "seg2: the country labels are tiny, and GER is pale grey and nearly invisible",
+        "seg2: Data covers the CHINA/UK flags and labels",
+        "seg2: the flag groups are about equal in size, so 34% American is not shown",
+        "seg3: the 'a month at home' line is small, and the 4.1 tons vs about 1.3 tons/month comparison does not land visually as about 3 months",
+        "seg4: the closing reuses the seg3 frame, so the payoff is a question with no visual punch",
+        "seg1:start: the caption over a penguin is low-contrast"
+      ],
+      "fixes": [
+        "Size the seg2 flag groups to their shares, with the US group clearly the biggest third, and give the labels full-contrast ink",
+        "Keep Data out of the label row in seg2 and have him direct the US group down the gangway",
+        "In seg3, draw three stacked 'month' marks the smoke climbs past so 4.1 tons reads as about three months",
+        "Give the closing its own shot (e.g. footprints and litter across the once-empty ice) instead of reusing seg3",
+        "Put a shaded band behind the captions over the penguins"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 105
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "unreadable_labels_and_weak_proof",
+        "visible_evidence": "seg2:end: the country labels USA/AUS/CHINA/UK/GER sit tiny under faint cyan lines, and GER is pale grey, almost invisible. Data stands in front of the CHINA/UK flags, covering them. The groups behind each flag are all about the same size, so 34% American does not read as a third.",
+        "root_cause": "The groups are drawn as one even crowd with flags stuck in front. The share is not carried by group size, and the label layout ignores where Data stands.",
+        "repair_goal": "Split the crowd off the gangway into five clearly separate groups sized to their shares, so the US group is visibly a third of everyone. Put a flag over each group with an ink label at full contrast, and keep Data out of the label row. Have Data wave the US group down the gangway so he causes the sp"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.204,
+        "effective_fps": 19.1,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.048,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 1.88,
+        "max_dup_at_s": 0.0,
+        "duration_s": 35.0
+      },
+      "fingerprint": "?|unreadable|unreadable_labels_and_weak_proof",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
     "?|-|weak_payoff": {
-      "count": 5,
+      "count": 6,
       "days": [
         "2026-11-05",
         "2026-11-06"
@@ -4284,17 +4283,11 @@
         "2026-11-05"
       ]
     },
-    "?|junk_imagery|off_topic_footage": {
-      "count": 2,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|-|weak_hook": {
+    "?|-|decorative_mascot": {
       "count": 2,
       "days": [
         "2026-11-04",
-        "2026-11-05"
+        "2026-11-06"
       ]
     },
     "?|empty_void+junk_imagery+unreadable|claim_not_shown": {
@@ -4308,36 +4301,6 @@
       "count": 2,
       "days": [
         "2026-11-05"
-      ]
-    },
-    "?|junk_imagery|bad_crop_occlusion": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void|off_story_tail_letterboxed": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void|no_context_static_talking_head": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void+junk_imagery|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void|letterboxed_split_screen": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
       ]
     },
     "?|empty_void+junk_imagery|restream_letterbox": {
@@ -4418,6 +4381,12 @@
         "2026-11-04"
       ]
     },
+    "?|junk_imagery|off_topic_footage": {
+      "count": 1,
+      "days": [
+        "2026-11-04"
+      ]
+    },
     "?|-|misleading_label_and_passive_mascot": {
       "count": 1,
       "days": [
@@ -4437,12 +4406,6 @@
       ]
     },
     "?|-|claim_not_demonstrated": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|-|decorative_mascot": {
       "count": 1,
       "days": [
         "2026-11-04"
@@ -4491,6 +4454,12 @@
       ]
     },
     "?|junk_imagery+unreadable|unreadable": {
+      "count": 1,
+      "days": [
+        "2026-11-05"
+      ]
+    },
+    "?|-|weak_hook": {
       "count": 1,
       "days": [
         "2026-11-05"
@@ -4573,16 +4542,45 @@
       "days": [
         "2026-11-06"
       ]
+    },
+    "?|-|weak_mascot_agency": {
+      "count": 1,
+      "days": [
+        "2026-11-06"
+      ]
+    },
+    "?|bare_number_card+decorative_mascot|bare_number_card": {
+      "count": 1,
+      "days": [
+        "2026-11-06"
+      ]
+    },
+    "?|-|picture_contradicts_claim": {
+      "count": 1,
+      "days": [
+        "2026-11-06"
+      ]
+    },
+    "?|decorative_mascot+unreadable|claim_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-11-06"
+      ]
+    },
+    "?|unreadable|unreadable_labels_and_weak_proof": {
+      "count": 1,
+      "days": [
+        "2026-11-06"
+      ]
     }
   },
   "recent_commits": [
-    "412d6b5 2026-11-06 claim: 4 ChatGPT rewrite(s) applied 2026-11-06T12:53Z",
-    "c9d57d7 2026-11-06 third: checkpoint posted log (claim upload slot) [skip ci]"
+    "2416f6c 2026-11-07 claim: mailbox verdicts 2026-11-07T04:47Z [skip ci]",
+    "f7eff9d 2026-11-07 claim: mailbox verdicts 2026-11-07T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-23": 3,
         "2026-10-24": 3,
         "2026-10-25": 3,
         "2026-10-26": 3,
@@ -4615,15 +4613,15 @@
         "2026-11-02": 2,
         "2026-11-04": 2,
         "2026-11-05": 4,
-        "2026-11-06": 1
+        "2026-11-06": 3,
+        "2026-11-07": 1
       },
-      "total_posted": 387,
-      "attempted": 387,
+      "total_posted": 390,
+      "attempted": 390,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-23": 3,
         "2026-10-24": 7,
         "2026-10-25": 5,
         "2026-10-26": 6,
@@ -4637,11 +4635,12 @@
         "2026-11-03": 3,
         "2026-11-04": 4,
         "2026-11-05": 5,
-        "2026-11-06": 4
+        "2026-11-06": 6,
+        "2026-11-07": 3
       },
-      "total_posted": 520,
-      "attempted": 1279,
-      "rejected_or_pending": 759
+      "total_posted": 525,
+      "attempted": 1288,
+      "rejected_or_pending": 763
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4655,71 +4654,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 144,
+      "videos": 147,
       "top_by_vph": [
         {
-          "title": "The US Hit A Record 28 Billion-Dollar Disasters In 2023",
-          "vph": 21.81,
-          "views": 109
+          "title": "20 States Now Let You Use A Digital ID At The Airport",
+          "vph": 72.28,
+          "views": 392
+        },
+        {
+          "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
+          "vph": 29.23,
+          "views": 316
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 9.14,
-          "views": 1369
+          "vph": 7.93,
+          "views": 1373
         },
         {
-          "title": "US Craft Breweries Just Hit A Record 9,778",
-          "vph": 8.23,
-          "views": 170
+          "title": "The US Hit A Record 28 Billion-Dollar Disasters In 2023",
+          "vph": 6.58,
+          "views": 187
         },
         {
           "title": "The World's Oldest Known Wild Bird Is Still Breeding At 74",
-          "vph": 7.97,
-          "views": 755
-        },
-        {
-          "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
-          "vph": 7.23,
-          "views": 1061
+          "vph": 6.4,
+          "views": 756
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 148,
+      "videos": 149,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 5.3,
-          "views": 1856
-        },
-        {
-          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 2.57,
-          "views": 407
+          "vph": 5.17,
+          "views": 1857
         },
         {
           "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment",
-          "vph": 2.35,
-          "views": 37
+          "vph": 2.89,
+          "views": 72
+        },
+        {
+          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
+          "vph": 2.43,
+          "views": 407
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 2.19,
+          "vph": 2.15,
           "views": 1087
         },
         {
           "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Bet",
-          "vph": 1.81,
+          "vph": 1.71,
           "views": 273
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261103/brief.json",
       "retro/20261104/brief.json",
-      "retro/20261105/brief.json"
+      "retro/20261105/brief.json",
+      "retro/20261106/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
