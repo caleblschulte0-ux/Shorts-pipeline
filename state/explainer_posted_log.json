@@ -5123,6 +5123,14 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 100,
       "duration_s": 29.6
+    },
+    "pedestrian-deaths-outlier": {
+      "title": "Pedestrian Deaths Rose 77% While Traffic Deaths Fell",
+      "publish_at": "2026-11-07T16:49:08Z",
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-11-07T13:49:15Z",
+      "via": "showrunner-rejudge"
     }
   },
   "uploads": [
@@ -6569,6 +6577,15 @@
       "via": "showrunner-rejudge",
       "slug": "california-condor-comeback",
       "at": "2026-11-07T13:49:08Z"
+    },
+    {
+      "title": "Pedestrian Deaths Rose 77% While Traffic Deaths Fell",
+      "publish_at": "2026-11-07T16:49:08Z",
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-11-07T13:49:15Z",
+      "via": "showrunner-rejudge",
+      "slug": "pedestrian-deaths-outlier"
     }
   ]
 }
