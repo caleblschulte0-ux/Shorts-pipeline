@@ -16,7 +16,8 @@ from mathutils import Vector
 import scene_kit as K
 
 CLUTTER = ("header", "band sign", "hanging sign", "sign rod", "ceiling signs", "lane sign", "lane number", "sign pole",
-           "kiosk sign", "floor decal", "dump bin", "bin ball", "bin sign", "light frame", "light diffuser", "ceiling")
+           "kiosk sign", "floor decal", "dump bin", "bin ball", "bin sign", "light frame", "light diffuser", "ceiling",
+           "endcap", "pallet", "floor mat", "mat edge")   # the SALE pallet: four primary-coloured blank boxes read as toys
 
 
 def _mat(name, hexc, rough=0.6, metal=0.0, emit=0.0):
@@ -278,7 +279,7 @@ def surfaces():
             mot = nt.nodes.new("ShaderNodeTexNoise"); mot.inputs["Scale"].default_value = 1.6; mot.inputs["Detail"].default_value = 10; mot.inputs["Roughness"].default_value = 0.65
             tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], mot.inputs["Vector"])
             mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'; mx.blend_type = 'OVERLAY'; mx.inputs["Factor"].default_value = 0.8
-            nt.links.new(br.outputs["Color"], mx.inputs["A"]); nt.links.new(mot.outputs["Color"], mx.inputs["B"])
+            nt.links.new(br.outputs["Color"], mx.inputs["A"]); nt.links.new(mot.outputs["Fac"], mx.inputs["B"])   # Fac, not Color: colour noise tinted the concrete in rainbow blotches
             b = nt.nodes["Principled BSDF"]; nt.links.new(mx.outputs["Result"], b.inputs["Base Color"])
     edge = bpy.data.materials.get("counter edge")
     if edge:   # oak laminate top: grain along the counter
