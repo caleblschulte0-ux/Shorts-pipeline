@@ -1,0 +1,61 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261107",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "8a95e95ba94c6105d510c4e18f2fdd5ea80b66c686943dc4e079be03ce289006",
+    "source_commit": "e32b1f3ba5eb0efe1f93017662da7c16a8b108f3",
+    "production_date": "20261107",
+    "bundle_sha256": "08fab4331932a5514a27860f33a44f70b780b8119068e75181ca69ae54d3b409"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s warned of food shortages; cereal production rose 1.5x instead.",
+      "says": [
+        "In 1985, secondary-school progression was 77.8. By 2017, it reached 91.3—1.2 times higher, widening access beyond primary school.",
+        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 million in 2024—1.5 times higher, feeding a larger world.",
+        "China leads with 5.2 million square kilometers of farmland; the United States has 4.2, Australia 3.6, Brazil 2.4, and Russia 2.2."
+      ],
+      "closing": "Higher output changed how many people the world can feed, even though shortages remain.",
+      "question": "Which surprised you: school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, waste-based energy tripled—without being solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste supplied 10.2 % of energy. By 2024, 30.1 %—3.0 times higher, turning waste into major fuel.",
+        "Electricity access rose from 73.2 % in 1998 to 91.9 % by 2024—1.3 times higher, bringing power to far more people.",
+        "Waste methane emissions climbed from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e by 2024—1.8 times higher, raising the climate cost."
+      ],
+      "closing": "Waste supplies nearly a third of energy, but rising methane keeps the climate bill open.",
+      "question": "Which surprised you: fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was meant to keep accelerating. It fell 54% instead.",
+      "says": [
+        "Rural population fell from 63.1 % in 1972 to 42.2 % in 2025—down to 67 percent of that, as people moved toward cities.",
+        "Largest-city population barely changed: 18.2 % of urban population in 1972 versus 16.2 % in 2025, spreading growth beyond one center.",
+        "Population growth fell from 2 annual % in 1972 to 0.91 annual % in 2025—down to 46 percent of that, reshaping future demand."
+      ],
+      "closing": "Slower growth changes how communities plan schools, homes, jobs, and care.",
+      "question": "Which surprised you: rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "The frozen 20261107 contract requires 5 sports_moment, 6 clip, and 4 data_story uploads; these are production targets, not completion claims.",
+    "The bundle contains zero media requests and every active format is footage- or data-rendered, so image generation, upload, readback, hashing, decoding, and media checkpoints were not applicable.",
+    "The configured Drive folder shorts-pipeline-drops was found with id 1WRCkr9dfGa042LYb_vitXVfv9Q43poA5 and is shared.",
+    "All three requested Explainer rewrites preserve segment count and order plus every supplied number, year, country, and named entity.",
+    "Mailbox round one committed one evidence-based sports verdict, reused the newest 20 settled ask answers, and committed 10 rewrite repairs.",
+    "DONE only triggers downstream rendering; actual accepted upload URLs still require verification."
+  ]
+}
