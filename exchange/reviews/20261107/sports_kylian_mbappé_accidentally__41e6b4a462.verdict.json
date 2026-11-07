@@ -1,0 +1,69 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_kylian_mbappé_accidentally__41e6b4a462",
+  "video_sha256": "41e6b4a462b70bc3e1874d410048b93f30e020c6cfad16d7fe3a4c54b99ed874",
+  "by": "chatgpt",
+  "graded_at": "2026-11-07T12:21:00Z",
+  "grades": {
+    "dimensions": {
+      "hook": 2,
+      "data_demo": 1,
+      "mascot": 4,
+      "craft": 2,
+      "pace": 1,
+      "payoff": 0
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": true,
+        "evidence": "hook@0.3 through payoff@-0.4 show a child and the same unidentified adult; Mbappé and the promised blame moment are never visually established."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No Data mascot appears in hook@0.3 or any mid/payoff frame, which is correct channel separation."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "mid0 through mid5 remain live-action footage with no number card."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "Motion telemetry reports longest_static_s 0.0, and the people change pose across mid0 through mid5."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "hook@0.3 and payoff@-0.4 use the full vertical frame with people and background; dark_fraction is 0.0."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The single caption remains centered, high-contrast, and fully inside the frame from hook@0.3 through payoff@-0.4."
+      }
+    },
+    "weakest_scene": {
+      "id": "hook",
+      "index": -1,
+      "failure_class": "claim-footage mismatch",
+      "visible_evidence": "hook@0.3, hook@0.8, hook@1.5, and hook@2.2 never show Mbappé or a clearly attributable exchange.",
+      "root_cause": "The selected crop does not establish the named speaker or the claimed blame line.",
+      "repair_goal": "Use footage that visibly identifies Mbappé and includes the actual exchange or reaction promised by the caption."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "machine",
+        "bespoke": 0,
+        "proves_claim": 0,
+        "note": "Continuous repost footage shows interaction but does not visually prove the named exchange."
+      }
+    ],
+    "one_line": "Readable and active, but the footage never proves the Mbappé/Tchouaméni moment the line promises.",
+    "problems": [
+      "The named speaker is not visible or identifiable in any labelled frame.",
+      "The ending remains the same interaction shot, so a stranger cannot infer the promised blame line."
+    ],
+    "fixes": [
+      "Replace the crop with the actual Mbappé exchange and reaction.",
+      "Make the final frames land on the identifiable speaker or child's response to the line."
+    ]
+  }
+}
