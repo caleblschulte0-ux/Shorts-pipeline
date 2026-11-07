@@ -1,0 +1,138 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "hadza-gut-bacteria-vs-americans__726dba8c",
+ "filed": "2026-11-07T13:00:45Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "hadza-gut-bacteria-vs-americans",
+ "current": {
+  "title": "This Tribe Has 730 Species Of Gut Bacteria",
+  "hook": "Your gut is starving, and your diet is the reason.",
+  "closing": "Civilization made our food safer and our guts emptier.",
+  "question": "How much fiber did you eat today?",
+  "segments": [
+   {
+    "topic": "gut bacteria species",
+    "say": "The Hadza of Tanzania carry about 730 gut bacteria species. The average American has fewer than half that."
+   },
+   {
+    "topic": "feeding the gut",
+    "say": "The secret is fiber. The Hadza eat 150 grams a day, ten times the average American."
+   },
+   {
+    "topic": "gut bacteria killers",
+    "say": "The CDC says a third of US antibiotic prescriptions aren't even necessary, and each one can wipe out gut diversity."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "gut bacteria species",
+   "say": "The Hadza of Tanzania carry about 730 gut bacteria species. The average American has fewer than half that.",
+   "role": "1 · THE GAP",
+   "data": {
+    "file": "hadza_vs_american_gut_species.json",
+    "unit": "species",
+    "title": "Gut bacteria species count, Hadza vs average American",
+    "points": [
+     {
+      "label": "Hadza (Tanzania)",
+      "value": 730
+     },
+     {
+      "label": "Average American",
+      "value": 277
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "feeding the gut",
+   "say": "The secret is fiber. The Hadza eat 150 grams a day, ten times the average American.",
+   "role": "2 · THE REASON",
+   "data": {
+    "file": "fiber_intake_rank.json",
+    "unit": "grams",
+    "title": "Daily fiber intake: Hadza vs US guideline vs average American",
+    "points": [
+     {
+      "label": "Hadza",
+      "value": 150
+     },
+     {
+      "label": "USDA recommended",
+      "value": 30
+     },
+     {
+      "label": "Average American",
+      "value": 15
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "gut bacteria killers",
+   "say": "The CDC says a third of US antibiotic prescriptions aren't even necessary, and each one can wipe out gut diversity.",
+   "role": "3 · WHAT'S KILLING IT OFF",
+   "data": {
+    "file": "antibiotic_necessity_share.json",
+    "unit": "percent",
+    "title": "Share of US outpatient antibiotic prescriptions that were unnecessary (2024)",
+    "points": [
+     {
+      "label": "Likely necessary",
+      "value": 66
+     },
+     {
+      "label": "Likely unnecessary",
+      "value": 34
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a generic numeric claim without a strong, surprising reversal."
+ ],
+ "reasons": [
+  "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a generic numeric claim without a strong, surprising reversal."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261107/hadza-gut-bacteria-vs-americans__726dba8c.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
