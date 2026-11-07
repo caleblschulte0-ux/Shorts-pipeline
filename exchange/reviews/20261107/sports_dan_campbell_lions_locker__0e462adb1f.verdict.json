@@ -1,0 +1,91 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_dan_campbell_lions_locker__0e462adb1f",
+ "video_sha256": "0e462adb1fa265a978fe8c2669cb065bed310d871fdea1d78bcdf4bfd914c086",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-07T14:48:45Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": ""
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": ""
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": ""
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Temporal data shows longest_static_s is 0.0."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames show a well-composed shot of the coach and players in a locker room."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear and legible against the background."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg1",
+   "index": 1,
+   "failure_class": "minor text repetition",
+   "visible_evidence": "The text 'WE'RE GONNA TAKE A KNEE.' remains on screen for approximately 2.2 seconds (from hook@2.2 to mid1), which is the longest single text display.",
+   "root_cause": "Slightly prolonged display of a single line of text.",
+   "repair_goal": "Introduce more dynamic text changes or visual elements during this segment to maintain engagement."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Live footage directly depicts the moment described by the text."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Live footage directly depicts the moment described by the text."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Live footage directly depicts the moment described by the text."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Live footage directly depicts the moment described by the text."
+   },
+   {
+    "id": "seg4",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Live footage directly depicts the moment described by the text."
+   }
+  ],
+  "one_line": "A powerful and well-executed sports moment, clearly conveying the emotional address from Coach Campbell.",
+  "problems": [],
+  "fixes": []
+ }
+}

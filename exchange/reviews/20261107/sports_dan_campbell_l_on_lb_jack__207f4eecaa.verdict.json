@@ -1,0 +1,55 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_dan_campbell_l_on_lb_jack__207f4eecaa",
+ "video_sha256": "207f4eecaabab4b25c60b5a69c3864174fe7a742afa784b6c99164485805818f",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-07T14:48:26Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All frames show real footage of Dan Campbell at a press conference, matching the on-screen text."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is visible in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "The video is a sports moment, not a data demonstration with a bare number card."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static stretch is 0.33s, well below the 4s threshold."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is well-composed, with the subject centered and no large dead black areas; blurred areas are consistent with vertical video adaptation."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear and readable against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid0",
+   "index": 4,
+   "failure_class": "Visual monotony",
+   "visible_evidence": "The camera angle and framing remain largely identical throughout the extended middle section of the video.",
+   "root_cause": "Reliance on a single, static camera shot for the entire duration of the quote.",
+   "repair_goal": "Introduce subtle variations in framing or zoom, or incorporate a B-roll shot if available, to break visual monotony."
+  },
+  "depictions": [],
+  "one_line": "Dan Campbell expresses gratitude to fans for their prayers regarding Jack Campbell's recovery.",
+  "problems": [],
+  "fixes": []
+ }
+}
