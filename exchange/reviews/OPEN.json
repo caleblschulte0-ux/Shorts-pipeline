@@ -1,7 +1,47 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-07T12:48:06Z",
+ "updated": "2026-11-07T12:50:23Z",
  "open": [
+  {
+   "id": "sports_golden_state_valkyries_hampions_t__2bc5354853",
+   "channel": "trending",
+   "slug": "sports_golden_state_valkyries_hampions_t",
+   "title": "Golden State Valkyries Celebrate First Asian‑American WNBA Champion",
+   "filed": "2026-11-07T12:50:23Z",
+   "request": "exchange/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853.verdict.json"
+  },
+  {
+   "id": "sports_dan_campbell_lions_locker__2adcae913a",
+   "channel": "trending",
+   "slug": "sports_dan_campbell_lions_locker",
+   "title": "Dan Campbell Addresses Jack Campbell’s Situation, Inspires the Lions",
+   "filed": "2026-11-07T12:48:43Z",
+   "request": "exchange/reviews/20261107/sports_dan_campbell_lions_locker__2adcae913a.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_dan_campbell_lions_locker__2adcae913a/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/sports_dan_campbell_lions_locker__2adcae913a.verdict.json"
+  },
+  {
+   "id": "sports_yan_diomande_ovation_from__686bb0744a",
+   "channel": "trending",
+   "slug": "sports_yan_diomande_ovation_from",
+   "title": "Yan Diomande Gets Standing Ovation After Giving Jersey to Ball Boy",
+   "filed": "2026-11-07T12:47:30Z",
+   "request": "exchange/reviews/20261107/sports_yan_diomande_ovation_from__686bb0744a.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_yan_diomande_ovation_from__686bb0744a/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/sports_yan_diomande_ovation_from__686bb0744a.verdict.json"
+  },
+  {
+   "id": "sports_jacob_misiorowski_g_with_jacob__fc92a7cca5",
+   "channel": "trending",
+   "slug": "sports_jacob_misiorowski_g_with_jacob",
+   "title": "Jacob Misiorowski's Beer Chug Has Everyone Saying 'NO!'",
+   "filed": "2026-11-07T12:44:40Z",
+   "request": "exchange/reviews/20261107/sports_jacob_misiorowski_g_with_jacob__fc92a7cca5.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_jacob_misiorowski_g_with_jacob__fc92a7cca5/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/sports_jacob_misiorowski_g_with_jacob__fc92a7cca5.verdict.json"
+  },
   {
    "id": "sports_dan_campbell_lions_locker__e0edb55a60",
    "channel": "trending",
