@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "neutron-star-manhattan-size__4e02853c_r1",
+  "slug": "neutron-star-manhattan-size",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:27:00Z",
+  "title": "A 20-Kilometer Neutron Star Outweighs The Sun",
+  "hook": "A 20-kilometer star can outweigh the Sun.",
+  "closing": "Neutron stars show how violently gravity can compress ordinary matter.",
+  "question": "Which shocks you more: size or mass?",
+  "segments": [
+    {
+      "topic": "neutron star size",
+      "say": "A neutron star spans about 20 kilometers, squeezing stellar mass into a city-sized sphere."
+    },
+    {
+      "topic": "neutron star limit",
+      "say": "At 2.2 solar masses, a neutron star crosses the collapse limit toward a black hole."
+    },
+    {
+      "topic": "neutron star count",
+      "say": "Astronomers have cataloged 3,400 neutron stars, so these extreme objects are no longer rare discoveries."
+    }
+  ]
+}

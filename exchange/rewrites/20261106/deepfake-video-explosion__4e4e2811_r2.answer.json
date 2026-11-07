@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "deepfake-video-explosion__4e4e2811_r2",
+  "slug": "deepfake-video-explosion",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:27:00Z",
+  "title": "Humans Spot Only 55% Of Deepfake Videos",
+  "hook": "Seeing a video is no longer strong proof.",
+  "closing": "Verification now matters because convincing video can be both fake and expensive.",
+  "question": "Could you spot a deepfake?",
+  "segments": [
+    {
+      "topic": "deepfake videos",
+      "say": "Deepfake videos reached 95,820 online, turning a niche trick into mass-produced deception."
+    },
+    {
+      "topic": "deepfake detection",
+      "say": "People identify deepfakes correctly only 55 percent of the time, so seeing a video is weak proof."
+    },
+    {
+      "topic": "deepfake fraud",
+      "say": "Deepfake-enabled fraud losses reached 12.3 billion dollars, making verification a financial safeguard."
+    }
+  ]
+}

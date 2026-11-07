@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lego-minifigs-outnumber-humans__161409d0_r7",
+  "slug": "lego-minifigs-outnumber-humans",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:27:00Z",
+  "title": "10 Billion LEGO Minifigures Now Outnumber Humans",
+  "hook": "10 billion minifigures means LEGO already outnumbered humanity.",
+  "closing": "A toy population now exceeds ours, and its lead keeps growing.",
+  "question": "How many minifigures are in your house?",
+  "segments": [
+    {
+      "topic": "LEGO minifigures",
+      "say": "LEGO has made 10 billion minifigures, enough to outnumber the world's living population."
+    },
+    {
+      "topic": "LEGO minifigures trend",
+      "say": "Cumulative LEGO minifigures reached 8.3 billion, crossing a population-scale threshold before the latest total."
+    },
+    {
+      "topic": "LEGO minifigures yearly",
+      "say": "LEGO produces 400 million minifigures yearly, so the toy population keeps growing faster than humanity."
+    }
+  ]
+}

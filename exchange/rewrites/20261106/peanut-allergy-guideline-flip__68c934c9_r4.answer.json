@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__68c934c9_r4",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:27:00Z",
+  "title": "Avoiding Peanuts Led To A 13.7% Allergy Rate",
+  "hook": "Early peanut eating cut allergy rates to 1.9%.",
+  "closing": "Better evidence reversed old advice, so parents should discuss timing with their doctor.",
+  "question": "Would you introduce peanut early?",
+  "segments": [
+    {
+      "topic": "peanut allergy trend",
+      "say": "Peanut allergy reached 1.4 percent of US children, after earlier avoidance advice became common."
+    },
+    {
+      "topic": "peanut allergy trial",
+      "say": "Early peanut eaters had a 1.9 percent allergy rate, overturning advice to avoid exposure."
+    },
+    {
+      "topic": "peanut allergy diagnoses",
+      "say": "Diagnoses fell to 0.45 percent after early-introduction guidance, an encouraging shift rather than proof of cause."
+    }
+  ]
+}

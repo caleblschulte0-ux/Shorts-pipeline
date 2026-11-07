@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "muscle-loss-after-30__51f127a7_r5",
+  "slug": "muscle-loss-after-30",
+  "by": "chatgpt",
+  "written_at": "2026-11-07T12:27:00Z",
+  "title": "Muscle Loss Jumps From 4% To 18% Per Decade",
+  "hook": "Muscle loss jumps from 4% to 18% per decade.",
+  "closing": "Strength training matters because later muscle loss accelerates instead of staying steady.",
+  "question": "How often do you strength train?",
+  "segments": [
+    {
+      "topic": "muscle mass loss",
+      "say": "Muscle mass can fall to 65 percent of its starting level, making everyday strength harder to preserve."
+    },
+    {
+      "topic": "muscle loss rate",
+      "say": "Muscle loss rises to 18 percent per decade later in life, so delaying strength work becomes more costly."
+    },
+    {
+      "topic": "muscle training",
+      "say": "Resistance training drove measured sarcopenia to zero in the study, showing muscle decline is not automatically irreversible."
+    }
+  ]
+}
