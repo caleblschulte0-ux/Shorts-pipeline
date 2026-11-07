@@ -1,0 +1,260 @@
+{
+ "date": "2026-11-07",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Cristiano Ronaldo",
+   "why": "He announces his international retirement in a heartfelt video",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "sports",
+   "who": "Jacob Misiorowski",
+   "why": "Fans see his epic beer\u2011throw celebration during the Brewers parade",
+   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "title": "Jacob Misiorowski's Beer Chug Has Everyone Saying 'NO!'",
+   "hook": "Misiorowski's chug gets a loud 'NO!'",
+   "ledger": {
+    "moves": [
+     "shake@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+  },
+  {
+   "sub": "sports",
+   "who": "Mark Bowman",
+   "why": "A freshman TE makes a jaw\u2011dropping 70\u2011yard hurdle over a defender",
+   "post_title": "USC freshman TE Mark Bowman hurdled a defender and broke multiple tackles on this 70-yard gain",
+   "upvotes": 0,
+   "url": "https://streamable.com/vjb5dy",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl8vap/usc_freshman_te_mark_bowman_hurdled_a_defender",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "sports",
+   "who": "Tonga",
+   "why": "The dramatic Sipi\u202fTau face\u2011off against Samoa at the RLWC grabs attention",
+   "post_title": "Tonga's Sipi Tau face off against Samoa's Siva Tau at the Rugby League World Cup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xl3uub/tongas_sipi_tau_face_off_against_samoas_siva_tau/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl3uub/tongas_sipi_tau_face_off_against_samoas_siva_tau",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kylian Mbapp\u00e9",
+   "why": "He comforts a kid hit by a stray shot, showing his softer side",
+   "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "soccer",
+   "who": "Kaka",
+   "why": "Tears flow as he receives a standing ovation and Hall\u2011of\u2011Fame honor",
+   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
+   "skipped": "too short: the post runs 12.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Yan Diomande",
+   "why": "He gifts his jersey to a ball boy and gets a stadium ovation",
+   "post_title": "Yan Diomande receiving a standing ovation from the Racing Santander stadium after he gives his jersey to a ball boy",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xlu00m/yan_diomande_receiving_a_standing_ovation_from",
+   "title": "Yan Diomande Gets Standing Ovation After Giving Jersey to Ball Boy",
+   "hook": "Yan gifts his jersey, stadium erupts",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nfl",
+   "who": "Dan Campbell",
+   "why": "The Lions\u2019 locker\u2011room prayer scene after Jack Campbell\u2019s injury",
+   "post_title": "[Highlight] Emotional scene in the Lions locker room as HC Dan Campbell addresses the team about LB Jack Campbell before a team prayer.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker",
+   "title": "Dan Campbell Addresses Jack Campbell\u2019s Situation, Inspires the Lions",
+   "hook": "Dan Campbell rallies the Lions \ud83e\udd81",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nba",
+   "who": "Golden State Valkyries",
+   "why": "The Warriors welcome the 2026 WNBA champions on court",
+   "post_title": "The Warriors welcome the 2026 WNBA champions, the Golden State Valkyries, on the court in Chase Center",
+   "upvotes": 0,
+   "url": "https://streamable.com/kzifsd",
+   "topic": "https://www.reddit.com/r/nba/comments/1xll9vl/the_warriors_welcome_the_2026_wnba_champions_the",
+   "title": "Golden State Valkyries Celebrate First Asian\u2011American WNBA Champion",
+   "hook": "Valkyries honored on Warriors court",
+   "ledger": {
+    "moves": [
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible",
+     "shots": [
+      {
+       "mode": "stacked",
+       "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       0.292
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "He arrives in full Witcher costume for the Spurs\u2019 Halloween game",
+   "post_title": "[All-Access] Wemby arrives dressed as The Witcher ahead of the Spurs\u2019 Halloween matchup",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xkms0u/allaccess_wemby_arrives_dressed_as_the_witcher",
+   "skipped": "too short: the post runs 10.9s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Conor McGregor",
+   "why": "McGregor bursts out laughing after a surprise substitution",
+   "post_title": "Conor McGregor was dying laughing after Raul Rosas subbed Colby Covington \ud83d\udc80",
+   "upvotes": 0,
+   "url": "https://streamable.com/ukm369",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xnamv2/conor_mcgregor_was_dying_laughing_after_raul",
+   "skipped": "too short: the post runs 4.7s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Justin Jefferson",
+   "why": "An insane, leaping touchdown catch that leaves everyone stunned",
+   "post_title": "[Highlight] Justin Jefferson makes an insane touchdown catch",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlb04e/highlight_justin_jefferson_makes_an_insane/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlb04e/highlight_justin_jefferson_makes_an_insane",
+   "skipped": "too short: the post runs 11.7s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Don\u010di\u0107",
+   "why": "He nails a full\u2011court bank shot to close the first half",
+   "post_title": "[Highlight] Luka banks it in from full court to end the first half",
+   "upvotes": 0,
+   "url": "https://streamable.com/9msbej",
+   "topic": "https://www.reddit.com/r/nba/comments/1xpxcx4/highlight_luka_banks_it_in_from_full_court_to_end",
+   "skipped": "too short: the post runs 5.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Steph Curry",
+   "why": "Curry points at Klay in a playful pose that instantly clicks",
+   "post_title": "Steph Curry poses to the camera near Klay Thompson and points at him",
+   "upvotes": 0,
+   "url": "https://streamable.com/eov65i",
+   "topic": "https://www.reddit.com/r/nba/comments/1xp4sfp/steph_curry_poses_to_the_camera_near_klay",
+   "skipped": "too short: the post runs 6.2s (< 15s)"
+  }
+ ],
+ "already_today": 2,
+ "pool": 114,
+ "already_posted": 15,
+ "shipped": 0
+}
