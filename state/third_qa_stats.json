@@ -3,150 +3,6 @@
     {
       "date": "20261031",
       "dry_run": false,
-      "ts": "2026-10-31T12:43:32+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 18,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 151,
-        "with_retention": 128,
-        "with_curve": 12,
-        "fetched_at": "2026-10-31T08:46:51.589142+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:sypherpk": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261031-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261031-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261031-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261031-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261031-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261031-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.62,
-              "why": "visible shock reaction, mild stakes",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Visible shocked reaction beside loud Lam",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Car Is So Loud Marlon Can't Believe It \ud83d\ude02"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "Marlon is partly cropped at the left edge in frames 9.6s to 15.5s",
-                "The hook caption sits over the car in several frames but doesn't cover any faces",
-                "The sharp region fills most of the canvas, but the bottom padding is a bit heavy"
-              ]
-            }
-          },
-          "took_s": 162.1
-        }
-      ]
-    },
-    {
-      "date": "20261031",
-      "dry_run": false,
       "ts": "2026-10-31T16:03:48+00:00",
       "feedback": {
         "snapshot": true,
@@ -5872,6 +5728,159 @@
             }
           },
           "took_s": 19.7
+        },
+        {
+          "slug": "clip-20261107-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261107-3",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261107-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261107-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261107-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261107-6",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261107",
+      "dry_run": false,
+      "ts": "2026-11-07T12:43:19+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 149,
+        "with_retention": 126,
+        "with_curve": 14,
+        "fetched_at": "2026-11-07T12:37:05.657396+00:00"
+      },
+      "brain": {
+        "ok": 1,
+        "fail": 0,
+        "limited_at": "2026-11-07T12:43:18+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261107-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261107-2",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 17.4
         },
         {
           "slug": "clip-20261107-3",
