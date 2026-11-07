@@ -1,46 +1,26 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-07T13:05:14Z",
+ "updated": "2026-11-07T13:26:31Z",
  "open": [
   {
-   "id": "sports_dan_campbell_l_on_lb_jack__207f4eecaa",
-   "channel": "trending",
-   "slug": "sports_dan_campbell_l_on_lb_jack",
-   "title": "Dan Campbell Praises Jack Campbell’s Recovery — Prayers Working?",
-   "filed": "2026-11-07T13:05:14Z",
-   "request": "exchange/reviews/20261107/sports_dan_campbell_l_on_lb_jack__207f4eecaa.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_dan_campbell_l_on_lb_jack__207f4eecaa/sheet.jpg",
-   "answer_path": "exchange/reviews/20261107/sports_dan_campbell_l_on_lb_jack__207f4eecaa.verdict.json"
+   "id": "pedestrian-deaths-outlier__833dff5019",
+   "channel": "explainer",
+   "slug": "pedestrian-deaths-outlier",
+   "title": "Pedestrian Deaths Rose 77% While Traffic Deaths Fell",
+   "filed": "2026-11-07T13:26:31Z",
+   "request": "exchange/reviews/20261107/pedestrian-deaths-outlier__833dff5019.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/pedestrian-deaths-outlier__833dff5019/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/pedestrian-deaths-outlier__833dff5019.verdict.json"
   },
   {
-   "id": "sports_dan_campbell_lions_locker__0e462adb1f",
-   "channel": "trending",
-   "slug": "sports_dan_campbell_lions_locker",
-   "title": "Dan Campbell Addresses Jack Campbell Before Team Prayer 😢",
-   "filed": "2026-11-07T13:04:23Z",
-   "request": "exchange/reviews/20261107/sports_dan_campbell_lions_locker__0e462adb1f.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_dan_campbell_lions_locker__0e462adb1f/sheet.jpg",
-   "answer_path": "exchange/reviews/20261107/sports_dan_campbell_lions_locker__0e462adb1f.verdict.json"
-  },
-  {
-   "id": "sports_yan_diomande_ovation_from__34130b62a4",
-   "channel": "trending",
-   "slug": "sports_yan_diomande_ovation_from",
-   "title": "Yan Diomande Gets Standing Ovation After Giving Jersey to Ball Boy",
-   "filed": "2026-11-07T13:03:46Z",
-   "request": "exchange/reviews/20261107/sports_yan_diomande_ovation_from__34130b62a4.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_yan_diomande_ovation_from__34130b62a4/sheet.jpg",
-   "answer_path": "exchange/reviews/20261107/sports_yan_diomande_ovation_from__34130b62a4.verdict.json"
-  },
-  {
-   "id": "sports_kylian_mbappé_accidentally__c48553b180",
-   "channel": "trending",
-   "slug": "sports_kylian_mbappé_accidentally",
-   "title": "Kylian Mbappé Blames Tchouaméni After Kid Gets Hit",
-   "filed": "2026-11-07T13:02:46Z",
-   "request": "exchange/reviews/20261107/sports_kylian_mbappé_accidentally__c48553b180.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_kylian_mbappé_accidentally__c48553b180/sheet.jpg",
-   "answer_path": "exchange/reviews/20261107/sports_kylian_mbappé_accidentally__c48553b180.verdict.json"
+   "id": "california-condor-comeback__6cba35ff23",
+   "channel": "explainer",
+   "slug": "california-condor-comeback",
+   "title": "California Condors Rebounded From Just 27 Birds",
+   "filed": "2026-11-07T13:20:57Z",
+   "request": "exchange/reviews/20261107/california-condor-comeback__6cba35ff23.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/california-condor-comeback__6cba35ff23/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/california-condor-comeback__6cba35ff23.verdict.json"
   },
   {
    "id": "sports_golden_state_valkyries_hampions_t__2bc5354853",
@@ -51,6 +31,16 @@
    "request": "exchange/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853/sheet.jpg",
    "answer_path": "exchange/reviews/20261107/sports_golden_state_valkyries_hampions_t__2bc5354853.verdict.json"
+  },
+  {
+   "id": "pedestrian-deaths-outlier__36fd92bcd4",
+   "channel": "explainer",
+   "slug": "pedestrian-deaths-outlier",
+   "title": "Pedestrian Deaths Rose 77% While Traffic Deaths Fell",
+   "filed": "2026-11-07T12:49:53Z",
+   "request": "exchange/reviews/20261107/pedestrian-deaths-outlier__36fd92bcd4.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261107/pedestrian-deaths-outlier__36fd92bcd4/sheet.jpg",
+   "answer_path": "exchange/reviews/20261107/pedestrian-deaths-outlier__36fd92bcd4.verdict.json"
   },
   {
    "id": "sports_dan_campbell_lions_locker__2adcae913a",

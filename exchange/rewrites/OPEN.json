@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-07T13:00:46Z",
+ "updated": "2026-11-07T13:34:09Z",
  "open": [
+  {
+   "id": "elephant-poaching-decline__41f85b1d",
+   "slug": "elephant-poaching-decline",
+   "filed": "2026-11-07T13:34:09Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a common viewer expectation and relies only on a generic percentage without a compelling, verifiable hook."
+   ],
+   "request": "exchange/rewrites/20261107/elephant-poaching-decline__41f85b1d.request.json",
+   "answer_path": "exchange/rewrites/20261107/elephant-poaching-decline__41f85b1d.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__3ec757df",
+   "slug": "california-condor-comeback",
+   "filed": "2026-11-07T13:34:08Z",
+   "why": [
+    "judge: blocked by the showrunner"
+   ],
+   "request": "exchange/rewrites/20261107/california-condor-comeback__3ec757df.request.json",
+   "answer_path": "exchange/rewrites/20261107/california-condor-comeback__3ec757df.answer.json"
+  },
   {
    "id": "antarctic-sea-ice-record-low__8258efc0",
    "slug": "antarctic-sea-ice-record-low",
