@@ -61,17 +61,17 @@ def strip():
 
 
 def ceiling():
-    """an OPEN ceiling, as modern stores build them: a dark corrugated deck, steel bar joists, a round galvanised duct,
+    """an OPEN ceiling, as modern stores build them: a corrugated deck painted light grey (a dark one ate the top third of the frame), steel bar joists, a round galvanised duct,
     conduit, and linear pendant fixtures hung on cables (each one sits on a lamp style.py already placed)"""
     z0 = K.WALL_H + 0.55
     deck = bpy.data.materials.get("deck") or bpy.data.materials.new("deck"); deck.use_nodes = True
-    nt = deck.node_tree; b = nt.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value = (*K.lin("#25272A"), 1); b.inputs["Roughness"].default_value = 0.7
+    nt = deck.node_tree; b = nt.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value = (*K.lin("#B9BBBC"), 1); b.inputs["Roughness"].default_value = 0.8
     wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = 'BANDS'; wv.bands_direction = 'X'; wv.wave_profile = 'SAW'; wv.inputs["Scale"].default_value = 2.0
     tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], wv.inputs["Vector"])
     bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.6; bp.inputs["Distance"].default_value = 0.02
     nt.links.new(wv.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
     K.box("deck", (1.0, (K.FAR_Y - 3.5) / 2, z0 + 0.02), (16, K.FAR_Y + 3.5, 0.04), deck, bev=0)
-    steel = _mat("joist steel", "#2E3134", rough=0.5, metal=0.6)
+    steel = _mat("joist steel", "#A4A8AC", rough=0.55, metal=0.2)
     for k in range(int((K.FAR_Y + 3.0) / 0.9)):
         y = -3.0 + k * 0.9
         K.box("joist top", (1.0, y, z0 - 0.02), (16, 0.025, 0.02), steel, bev=0)
@@ -135,26 +135,120 @@ def counter_parts(lanes):
         K.box("divider bar", (x, y0 + 0.62, h + 0.05), (w * 0.5, 0.025, 0.025), div, bev=0.008, parent=c)
 
 
+OLD_KIOSK = ("kiosk base", "kiosk body", "kiosk stripe", "kiosk reader", "kiosk screen neck", "kiosk shelf", "kiosk scale", "kiosk bag")
+
+
+def _brushed(name, hexc, rough=0.32):
+    """brushed steel: metallic, anisotropic along x, a fine streak in the roughness"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = K.mat(name, hexc, rough=rough, metal=0.9); nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    try: b.inputs["Anisotropic"].default_value = 0.6
+    except KeyError: pass
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (2, 300, 300)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 4; nt.links.new(mp.outputs["Vector"], nz.inputs["Vector"])
+    mr = nt.nodes.new("ShaderNodeMapRange"); mr.inputs["To Min"].default_value = rough - 0.08; mr.inputs["To Max"].default_value = rough + 0.08
+    nt.links.new(nz.outputs["Fac"], mr.inputs["Value"]); nt.links.new(mr.outputs["Result"], b.inputs["Roughness"])
+    return m
+
+
+def _painted(name, hexc, rough=0.42):
+    """powder-coated sheet metal: a faint orange-peel bump and a little roughness variation"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = K.mat(name, hexc, rough=rough); nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    tc = nt.nodes.new("ShaderNodeTexCoord"); nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 180
+    nt.links.new(tc.outputs["Object"], nz.inputs["Vector"])
+    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.08; bp.inputs["Distance"].default_value = 0.001
+    nt.links.new(nz.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
+    return m
+
+
+def _carrier_bag(name, base, m, inside, parent, bar):
+    """a plastic carrier bag standing open on the scale: a rumpled tapered sack (not a ball), a dark mouth, two handle
+    loops running up to the rack bar"""
+    bx, by, bz = base; Wb, Db, Hb = 0.17, 0.1, 0.2
+    o = K.box(name, (bx, by, bz + Hb / 2), (Wb, Db, Hb), m, bev=0.02, parent=parent)
+    sd = o.modifiers.new("taper", "SIMPLE_DEFORM"); sd.deform_method = 'TAPER'; sd.factor = 0.25; sd.deform_axis = 'Z'
+    ss = o.modifiers.new("soft", "SUBSURF"); ss.levels = 2; ss.render_levels = 2
+    tx = bpy.data.textures.get("bag rumple") or bpy.data.textures.new("bag rumple", 'CLOUDS'); tx.noise_scale = 0.05; tx.noise_depth = 2
+    md = o.modifiers.new("rumple", "DISPLACE"); md.texture = tx; md.strength = 0.012; md.mid_level = 0.5; md.texture_coords = 'GLOBAL'
+    K.box(name + " mouth", (bx, by, bz + Hb - 0.004), (Wb * 0.86, Db * 0.7, 0.004), inside, bev=0.01, parent=parent)
+    for dx in (-0.05, 0.05):   # a handle from each side seam up over the bar
+        a = Vector((bx + dx, by, bz + Hb)); b = Vector((bar[0] + dx * 1.2, bar[1], bar[2])); mid = (a + b) / 2; L = (b - a).length
+        h = K.cyl(name + " handle", tuple(mid), 0.006, L, m, v=8, bev=0, parent=parent)
+        h.rotation_euler = (b - a).to_track_quat('Z', 'Y').to_euler()
+
+
 def kiosk_parts(kiosks):
-    dark = _mat("kiosk dark", "#1B1D21", rough=0.5)
-    glass = _mat("scanner glass", "#14181C", rough=0.05)
-    red = _mat("scanner red", "#FF2A1A", rough=0.3, emit=3.0)
-    slot = _mat("slot", "#08090A", rough=0.6)
-    chrome = _mat("bezel steel", "#9EA3A8", rough=0.3, metal=0.9)
-    green = _mat("status green", "#3BD16F", rough=0.3, emit=4.0)
+    """each kiosk rebuilt as a real self-checkout station (it read as a black filing cabinet): a pedestal cabinet with a
+    service door and a vent, a scanner housing on top with a glass bed and a bioptic window, brushed trim, the screen on
+    a post-and-bracket arm, a card terminal on a stalk, a bagging platform on a tube frame with a bag rack and a hanging
+    carrier bag, and a light pole with the lane lamp on top. Built at the kiosk's rest pose, parented to its root, so
+    the stager's rise carries all of it."""
+    body = _painted("station body", "#5B6067"); panel = _painted("station panel", "#4A4F56", rough=0.5)
+    trim = _brushed("station trim", "#B3B7BB"); tube = _brushed("station tube", "#9EA3A8", rough=0.38)
+    dark = _mat("station dark", "#202226", rough=0.55); rubber = _mat("station rubber", "#18191B", rough=0.8)
+    glass = _mat("scanner glass", "#14181C", rough=0.05); red = _mat("scanner red", "#FF2A1A", rough=0.3, emit=3.0)
+    slot = _mat("slot", "#08090A", rough=0.6); keypad = bpy.data.materials.get("keypad") or _mat("keypad", "#3A3D42", rough=0.5)
+    tscreen = _mat("terminal screen", "#9FD0FF", rough=0.1, emit=1.2); lamp = _mat("lane lamp", "#3BD16F", rough=0.3, emit=4.0)
+    bagm = _mat("carrier bag", "#ECEBE6", rough=0.55)
+    try: bagm.node_tree.nodes["Principled BSDF"].inputs["Transmission Weight"].default_value = 0.25
+    except KeyError: pass
     for kk in kiosks:
-        root = kk["root"]; x, y = root.location.x, root.location.y; H = (kk["h"] - 0.7)
-        K.box("deck", (x, y - 0.06, H + 0.004), (0.3, 0.16, 0.008), dark, bev=0.003, parent=root)
-        K.box("deck glass", (x - 0.06, y - 0.08, H + 0.009), (0.12, 0.09, 0.003), glass, bev=0.001, parent=root)
-        K.box("deck line", (x - 0.06, y - 0.08, H + 0.0108), (0.09, 0.003, 0.001), red, bev=0, parent=root)
-        K.box("receipt slot", (x + 0.06, y - 0.152, H - 0.06), (0.08, 0.004, 0.008), slot, bev=0, parent=root)
-        K.box("receipt bezel", (x + 0.06, y - 0.151, H - 0.06), (0.1, 0.003, 0.024), chrome, bev=0.001, parent=root)
-        K.box("cash slot", (x + 0.06, y - 0.152, H - 0.15), (0.07, 0.004, 0.006), slot, bev=0, parent=root)
-        K.box("cash bezel", (x + 0.06, y - 0.151, H - 0.15), (0.09, 0.003, 0.03), chrome, bev=0.001, parent=root)
-        K.box("coin cup", (x + 0.06, y - 0.16, H - 0.33), (0.08, 0.02, 0.04), dark, bev=0.006, parent=root)
-        K.box("scanner gun", (x - 0.15, y - 0.1, H + 0.05), (0.03, 0.05, 0.08), dark, bev=0.008, parent=root)
-        K.cyl("status pole", (x + 0.13, y + 0.1, H + 0.2), 0.006, 0.4, chrome, v=12, bev=0, parent=root)
-        K.cyl("status light", (x + 0.13, y + 0.1, H + 0.42), 0.018, 0.04, green, v=16, bev=0.002, parent=root)
+        root = kk["root"]
+        for c in list(root.children_recursive):
+            if c.name.startswith(OLD_KIOSK) and c.name in bpy.data.objects: bpy.data.objects.remove(c, do_unlink=True)
+        x, y, z0 = root.location; H = kk["h"] - 0.7; ch = H / 1.3       # H: the old body top (0.655); ch: counter height
+        P = lambda *a, **k: K.box(*a, parent=root, **k)
+        zc = z0                                                          # the root is at rest (z = 0) when this runs
+        hp = H * 0.66                                                    # pedestal height
+        P("plinth", (x, y, zc + 0.02), (0.36, 0.34, 0.04), rubber, bev=0.008)
+        P("pedestal", (x, y + 0.01, zc + 0.04 + hp / 2), (0.28, 0.26, hp), body, bev=0.014)
+        P("door", (x, y - 0.121, zc + 0.05 + hp * 0.52), (0.22, 0.004, hp * 0.78), panel, bev=0.004)
+        P("door trim", (x, y - 0.124, zc + 0.05 + hp * 0.52), (0.232, 0.002, hp * 0.80), trim, bev=0.001)
+        P("door lock", (x + 0.085, y - 0.127, zc + 0.05 + hp * 0.7), (0.012, 0.004, 0.012), trim, bev=0.002)
+        for k in range(6): P("vent slat", (x, y - 0.127, zc + 0.08 + k * 0.016), (0.16, 0.004, 0.006), dark, bev=0.001)
+        # the scanner housing: wider than the pedestal, overhanging toward the customer, brushed band round its lip
+        zt = zc + 0.04 + hp; th = H - (0.04 + hp) + 0.01
+        P("scanner housing", (x, y - 0.02, zt + th / 2), (0.36, 0.32, th), body, bev=0.03)
+        P("housing trim", (x, y - 0.02, zt + th - 0.008), (0.368, 0.328, 0.012), trim, bev=0.004)
+        P("bed glass", (x - 0.02, y - 0.06, zt + th + 0.002), (0.18, 0.14, 0.004), glass, bev=0.002)
+        P("bed line", (x - 0.02, y - 0.06, zt + th + 0.0045), (0.13, 0.003, 0.001), red, bev=0)
+        P("bed frame", (x - 0.02, y - 0.06, zt + th + 0.001), (0.196, 0.156, 0.003), trim, bev=0.001)
+        P("bioptic tower", (x - 0.02, y + 0.07, zt + th + 0.05), (0.2, 0.05, 0.1), body, bev=0.012)
+        P("bioptic window", (x - 0.02, y + 0.044, zt + th + 0.05), (0.15, 0.003, 0.07), glass, bev=0.001)
+        P("fascia", (x, y - 0.181, zt + th * 0.5), (0.3, 0.003, th * 0.62), panel, bev=0.002)
+        P("fascia trim", (x, y - 0.1825, zt + th * 0.5 - th * 0.31), (0.3, 0.002, 0.006), trim, bev=0.001)
+        for k in range(5): P("speaker hole", (x - 0.1 + k * 0.012, y - 0.183, zt + th * 0.62), (0.006, 0.002, 0.006), slot, bev=0)
+        P("receipt slot", (x + 0.12, y - 0.181, zt + th * 0.45), (0.07, 0.004, 0.006), slot, bev=0)
+        P("receipt bezel", (x + 0.12, y - 0.180, zt + th * 0.45), (0.09, 0.003, 0.02), trim, bev=0.001)
+        # the screen's post and bracket (the screen and its frame stay where kiosk() put them, keyed by the stager)
+        zs = H + 0.17
+        K.cyl("screen post", (x, y + 0.11, (zt + th + zs) / 2), 0.016, zs - (zt + th), tube, v=20, bev=0.002, parent=root)
+        P("screen bracket", (x, y + 0.05, zs - 0.02), (0.08, 0.12, 0.03), dark, bev=0.008)
+        # card terminal on a stalk, to the customer's left, tilted up to him
+        K.cyl("terminal stalk", (x - 0.21, y - 0.08, zt + th * 0.5 + 0.07), 0.008, 0.16, tube, v=12, bev=0, parent=root)
+        P("terminal arm", (x - 0.19, y - 0.08, zt + th * 0.5 - 0.005), (0.06, 0.014, 0.014), tube, bev=0.003)
+        t = P("terminal", (x - 0.21, y - 0.08, zt + th * 0.5 + 0.16), (0.06, 0.03, 0.09), dark, bev=0.008); t.rotation_euler = (math.radians(-25), 0, 0)
+        ts = P("terminal screen", (x - 0.21, y - 0.097, zt + th * 0.5 + 0.18), (0.044, 0.002, 0.026), tscreen, bev=0.001); ts.rotation_euler = (math.radians(-25), 0, 0)
+        tk = P("terminal keys", (x - 0.21, y - 0.091, zt + th * 0.5 + 0.143), (0.044, 0.002, 0.03), keypad, bev=0.001); tk.rotation_euler = (math.radians(-25), 0, 0)
+        # bagging area on a tube frame to +x: a brushed scale plate, a bag rack with a carrier bag hanging open
+        bx = x + 0.34; zb = zc + ch * 0.88
+        for dx in (-0.13, 0.13):
+            for dy in (-0.12, 0.12):
+                K.cyl("bag leg", (bx + dx, y + dy, zc + zb / 2), 0.009, zb, tube, v=12, bev=0, parent=root)
+        P("bag frame", (bx, y, zb - 0.012), (0.29, 0.27, 0.02), tube, bev=0.004)
+        P("bag scale", (bx, y, zb + 0.006), (0.27, 0.25, 0.012), trim, bev=0.003)
+        P("bag shelf low", (bx, y, zc + 0.12), (0.27, 0.25, 0.012), panel, bev=0.003)
+        for dx in (-0.12, 0.12): K.cyl("rack post", (bx + dx, y + 0.1, zb + 0.15), 0.007, 0.3, tube, v=12, bev=0, parent=root)
+        K.cyl("rack bar", (bx, y + 0.1, zb + 0.3), 0.007, 0.25, tube, rot=(0, math.radians(90), 0), v=12, bev=0, parent=root)
+        _carrier_bag(f"carrier bag {kiosks.index(kk)}", (bx, y + 0.04, zb + 0.012), bagm, dark, root, (bx, y + 0.1, zb + 0.3))
+        # the lane light pole on the back corner, its lamp lit
+        K.cyl("light pole", (x + 0.15, y + 0.12, (zt + th + H + 0.62) / 2), 0.01, (H + 0.62) - (zt + th), tube, v=12, bev=0, parent=root)
+        K.cyl("lane lamp", (x + 0.15, y + 0.12, H + 0.64), 0.03, 0.06, lamp, v=24, bev=0.004, parent=root)
+        K.cyl("lamp cap", (x + 0.15, y + 0.12, H + 0.675), 0.033, 0.01, dark, v=24, bev=0.002, parent=root)
 
 
 def palette():
@@ -250,8 +344,17 @@ def relight():
                 if n.type == 'MIX' and n.data_type == 'RGBA' and not n.inputs['B'].is_linked: n.inputs['B'].default_value = (*K.lin('#4A4E54'), 1)
 
 
+def piers():
+    """brick piers carrying the roof just behind the shelf run: the far brick wall sits seven metres back, soft and dark
+    behind the aisles, so the brick that makes the room read as BUILT has to stand where the camera actually looks"""
+    br = brick_mat("brick wall"); cap = _mat("pier cap", "#8A8580", rough=0.7)
+    for x in (-1.45, 1.55, 4.3):
+        K.box("brick pier", (x, K.BACK_Y + 0.22, K.WALL_H / 2 + 0.28), (0.42, 0.36, K.WALL_H + 0.56), br, bev=0.004)
+        K.box("pier base", (x, K.BACK_Y + 0.22, 0.05), (0.45, 0.39, 0.1), cap, bev=0.006)
+
+
 def apply(sc, store, f_rest_kiosk):
-    strip(); palette(); surfaces()
+    strip(); palette(); surfaces(); piers()
     sc.frame_set(1); ceiling(); gondola_parts(); counter_parts(store["lanes"] + store["extra"])
     sc.frame_set(f_rest_kiosk); bpy.context.view_layer.update(); kiosk_parts(store["kiosks"])
     sc.frame_set(1)
