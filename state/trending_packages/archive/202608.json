@@ -2871,5 +2871,519 @@
       ],
       "music_vibe": "hiphop"
     }
+  },
+  "20260808": {
+    "01_graph-netflix-vs-disney-plus-subscribers.json": {
+      "format": "graph_race",
+      "slug": "graph-netflix-vs-disney-plus-subscribers",
+      "title": "Disney+ Almost Caught Netflix. Then It Didn't.",
+      "hook": "The streaming crown never moved.",
+      "y_label": "Global subscribers",
+      "duration": 13,
+      "source": "Sources: Netflix and Disney quarterly investor reports as compiled by Business of Apps and Demandsage; year-end subscriber counts 2019-2026. Disney+ 2024-2026 figures reflect Disney's 2024 sale of its majority stake in Star India/Hotstar, which removed those subscribers from the reported total.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Netflix",
+          "color": "#E50914",
+          "icon": "Netflix",
+          "values": [
+            167000000,
+            204000000,
+            222000000,
+            231000000,
+            260000000,
+            302000000,
+            316000000,
+            325000000
+          ]
+        },
+        {
+          "name": "Disney+",
+          "color": "#113CCF",
+          "icon": "Disney",
+          "values": [
+            24000000,
+            87000000,
+            118000000,
+            164000000,
+            150000000,
+            125000000,
+            128000000,
+            132000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "netflix",
+        "disneyplus",
+        "streamingwars",
+        "streaming",
+        "hbomax",
+        "subscribers",
+        "entertainment",
+        "cordcutting",
+        "hollywood",
+        "media",
+        "tvindustry",
+        "bingewatch",
+        "shorts",
+        "trending",
+        "fyp"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-threads-vs-bluesky-users.json": {
+      "format": "graph_race",
+      "slug": "graph-threads-vs-bluesky-users",
+      "title": "Threads Went From Zero to Beating X",
+      "hook": "Meta's app quietly won.",
+      "y_label": "Reported users",
+      "duration": 13,
+      "source": "Sources: Meta investor disclosures and reporting by TechCrunch, Social Media Today and eMarketer on Threads MAU (130M end of 2023, 275M Q4 2024, 400M Aug 2025, and passing X in daily mobile users by Jan 2026); Bluesky's own published user-count updates (41.4M by Dec 2025). 2026 values are conservative extrapolations since neither platform has published a full 2026 total.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Threads",
+          "color": "#4A4A4A",
+          "icon": "Threads",
+          "values": [
+            0,
+            0,
+            130000000,
+            275000000,
+            400000000,
+            440000000
+          ]
+        },
+        {
+          "name": "Bluesky",
+          "color": "#1185FE",
+          "icon": "Bluesky",
+          "values": [
+            0,
+            0,
+            3000000,
+            25000000,
+            41000000,
+            43000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "threads",
+        "bluesky",
+        "socialmedia",
+        "twitter",
+        "elonmusk",
+        "zuckerberg",
+        "app",
+        "socialmediawar",
+        "tech",
+        "instagram",
+        "xapp",
+        "newapp",
+        "shorts",
+        "trending",
+        "fyp"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "03_graph-ps5-vs-nintendo-switch-sales.json": {
+      "format": "graph_race",
+      "slug": "graph-ps5-vs-nintendo-switch-sales",
+      "title": "The Switch Buried the PS5 in Sales",
+      "hook": "It wasn't close.",
+      "y_label": "Cumulative units sold",
+      "duration": 13,
+      "source": "Sources: Nintendo and Sony official investor earnings releases, cumulative hardware shipments as of each fiscal year-end (Nintendo and Sony both close their fiscal year in March). 2026 Switch figure combines the original Switch (~153M as of June 2025) with Switch 2 (19.86M shipped by March 2026); PS5 total is as of June 2026 per Sony's Q1 FY26 report.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Nintendo Switch",
+          "color": "#E60012",
+          "icon": "Nintendo",
+          "values": [
+            34740000,
+            55770000,
+            84590000,
+            107650000,
+            125620000,
+            139360000,
+            150830000,
+            175000000
+          ]
+        },
+        {
+          "name": "PlayStation 5",
+          "color": "#003791",
+          "icon": "PlayStation",
+          "values": [
+            0,
+            0,
+            7800000,
+            19300000,
+            32100000,
+            59300000,
+            77800000,
+            93700000
+          ]
+        }
+      ],
+      "hashtags": [
+        "nintendoswitch",
+        "ps5",
+        "playstation",
+        "xbox",
+        "gaming",
+        "videogames",
+        "consolewars",
+        "nintendo",
+        "sony",
+        "gamer",
+        "tech",
+        "gamingnews",
+        "shorts",
+        "trending",
+        "fyp"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "04_graph-vinyl-vs-cd-revenue.json": {
+      "format": "graph_race",
+      "slug": "graph-vinyl-vs-cd-revenue",
+      "title": "Vinyl Beat CDs. Nobody Saw It Coming.",
+      "hook": "The comeback nobody predicted.",
+      "y_label": "U.S. recorded music revenue",
+      "duration": 13,
+      "source": "Sources: RIAA Year-End Music Industry Revenue Reports, 2018-2025 (U.S. physical-format revenue, CD albums vs vinyl LP/EP). Vinyl overtook CD revenue in 2020 for the first time since 1986 and has kept extending its lead since.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "CD",
+          "color": "#999999",
+          "icon": "",
+          "values": [
+            698300000,
+            615000000,
+            483300000,
+            584000000,
+            483000000,
+            537000000,
+            541100000,
+            312400000
+          ]
+        },
+        {
+          "name": "Vinyl",
+          "color": "#C9A227",
+          "icon": "",
+          "values": [
+            268400000,
+            321600000,
+            626200000,
+            679400000,
+            799800000,
+            906200000,
+            954400000,
+            1040000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "vinyl",
+        "cds",
+        "music",
+        "recordstore",
+        "riaa",
+        "musicindustry",
+        "nostalgia",
+        "records",
+        "cdcollection",
+        "turntable",
+        "physicalmedia",
+        "musichistory",
+        "shorts",
+        "trending",
+        "fyp"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "05_reddit-unpaid-driveway-lien.json": {
+      "subreddit": "ProRevenge",
+      "slug": "reddit-unpaid-driveway-lien",
+      "title": "He Sat On My Invoice For Two Months. I Sat On His Closing.",
+      "hashtags": [
+        "prorevenge",
+        "maliciouscompliance",
+        "contractor",
+        "smallbusiness",
+        "karma",
+        "payup",
+        "construction",
+        "reddit",
+        "storytime",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "pettyrevenge"
+      ],
+      "script": "Who froze the closing? I paved a driveway for a general contractor on net-30. Then he went silent for two months while selling that exact property for eight hundred grand. Emails ignored. Calls ignored. He forgot that I still had the signed work order, and state law let unpaid subcontractors file a mechanic's lien against the property, something most GCs forget. So I filed it three days before closing. The title company found it in escrow and froze the whole sale. His buyer's lawyer started screaming, and an invoice ignored for two months got paid in full within four hours, plus statutory penalty interest. He called it a misunderstanding. I called it pending. The lien release left only after the wire cleared. It took nine minutes. Would you ignore the driveway invoice again?",
+      "shots": [
+        {
+          "phrase": "paved a driveway for a general contractor",
+          "query": "driveway paving construction",
+          "image_url": "https://drive.google.com/uc?export=download&id=1eR0hmBChz0s5U2WGfgr3PWmrUgJorz52",
+          "media_origin": "chatgpt",
+          "media_file_id": "1eR0hmBChz0s5U2WGfgr3PWmrUgJorz52",
+          "media_sha256": "e2a75b3485297d3d0d48a5a8ef9ab5d9460c3d6a1a98b13ee081926d2a6df524",
+          "media_bytes": 2593776
+        },
+        {
+          "phrase": "went quiet for two months",
+          "query": "phone silence ignored calls",
+          "image_url": "https://drive.google.com/uc?export=download&id=18y9kQOGp1nOED65bdCFY1iAZK5GfxtTp",
+          "media_origin": "chatgpt",
+          "media_file_id": "18y9kQOGp1nOED65bdCFY1iAZK5GfxtTp",
+          "media_sha256": "4c8e93ad2b6b0f14409a7b3f1c0910c1c9c427fda7beb658e8a9c6a8b3781e23",
+          "media_bytes": 1666281
+        },
+        {
+          "phrase": "signed work order",
+          "query": "construction contract paperwork",
+          "image_url": "https://drive.google.com/uc?export=download&id=196YkNa6N1p6-FmwhZ7vofprx1Tt2EMfj",
+          "media_origin": "chatgpt",
+          "media_file_id": "196YkNa6N1p6-FmwhZ7vofprx1Tt2EMfj",
+          "media_sha256": "71b393e8492d33d9215a2fc093f7326899176096d5654d6823355475006b0b01",
+          "media_bytes": 2062759
+        },
+        {
+          "phrase": "file a mechanic's lien directly against the property",
+          "query": "legal document filing office",
+          "image_url": "https://drive.google.com/uc?export=download&id=1YnjQieGkGHT7e9Fo9TXJzfzO8ZdlEJQP",
+          "media_origin": "chatgpt",
+          "media_file_id": "1YnjQieGkGHT7e9Fo9TXJzfzO8ZdlEJQP",
+          "media_sha256": "da442ec073ba273de38f315184d2cbbe766d5e476fda0aa355508f9c56443c6f",
+          "media_bytes": 2186818
+        },
+        {
+          "phrase": "filed it three days before closing",
+          "query": "courthouse filing clerk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1NKgj_0xFGzy1EmSCsxeQIJFARxv4jRnd",
+          "media_origin": "chatgpt",
+          "media_file_id": "1NKgj_0xFGzy1EmSCsxeQIJFARxv4jRnd",
+          "media_sha256": "69eb5c2dafa97a507eda722741f6ce39b6c1a72f18cc6ba26a05073e078cf120",
+          "media_bytes": 2036352
+        },
+        {
+          "phrase": "found it in escrow and froze the whole sale",
+          "query": "real estate closing frozen",
+          "image_url": "https://drive.google.com/uc?export=download&id=1jcdd3pCp3wecnol7GmQ7P6zJuy2RaEjX",
+          "media_origin": "chatgpt",
+          "media_file_id": "1jcdd3pCp3wecnol7GmQ7P6zJuy2RaEjX",
+          "media_sha256": "c90d28493bfe92441413085da168a786fbd1d8d5363f9ce2f43d17682f782f2c",
+          "media_bytes": 2588531
+        },
+        {
+          "phrase": "buyer's lawyer called him screaming",
+          "query": "angry phone call office",
+          "image_url": "https://drive.google.com/uc?export=download&id=1lSYQHLsZ0iGi0z1Vxk8s_Sk6Jv2b8jze",
+          "media_origin": "chatgpt",
+          "media_file_id": "1lSYQHLsZ0iGi0z1Vxk8s_Sk6Jv2b8jze",
+          "media_sha256": "c4e854ac9f540f42970754fdc89f28e75b3bbe72f79cef9ef75e5fe6e0aafab1",
+          "media_bytes": 1913065
+        },
+        {
+          "phrase": "paid in full within four hours",
+          "query": "bank wire transfer",
+          "image_url": "https://drive.google.com/uc?export=download&id=10dod_2WhOvFXDEkMAhpedK-itYEegAkd",
+          "media_origin": "chatgpt",
+          "media_file_id": "10dod_2WhOvFXDEkMAhpedK-itYEegAkd",
+          "media_sha256": "28a5007b99b25236d91a0c39354d0722c1ebec02d5ae9a9f23cd759fec1dbd65",
+          "media_bytes": 2287767
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "eight hundred grand",
+          "text": "$800K SALE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "file a mechanic's lien",
+          "text": "LIEN FILED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "paid in full within four hours",
+          "text": "PAID IN 4 HOURS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "It cleared in nine minutes",
+          "text": "9 MINUTES",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dark",
+      "punched_up": true
+    },
+    "06_reddit-pharmacy-coupon-not-an-employee.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-pharmacy-coupon-not-an-employee",
+      "title": "She Was Sure I Worked There. I Let Her Believe It.",
+      "hashtags": [
+        "idontworkherelady",
+        "entitled",
+        "pharmacy",
+        "customerservice",
+        "karma",
+        "pettyrevenge",
+        "reddit",
+        "storytime",
+        "truestory",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "retail",
+        "funny"
+      ],
+      "script": "A badge means employee? A woman cornered me by the pharmacy counter with a crumpled coupon and demanded I ring her up because my badge clearly meant I worked there. I didn't. The lanyard was from a 5k that morning; I was picking up my own prescription. She kept talking over me, so I radioed my invisible manager and escorted her to the actual register. I told the real cashier she'd been waiting and handed her off like my shift depended on it. The cashier played along, then discovered the coupon had expired two years earlier. On her way out, I admitted I didn't work there; I just had a helpful face. She froze for ten seconds, spotted a real employee in the same color shirt, and chased him instead. Pharmacy lanyard: proof of employment?",
+      "shots": [
+        {
+          "phrase": "cornered me by the pharmacy counter",
+          "query": "pharmacy store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1rP-LNlPniqobGBqc4cBWywXKjksqbzpU",
+          "media_origin": "chatgpt",
+          "media_file_id": "1rP-LNlPniqobGBqc4cBWywXKjksqbzpU",
+          "media_sha256": "9609f129b1e82149d25651aa9a3d1dfe01397b61ab9b1b643431e29a7e23504d",
+          "media_bytes": 2437008
+        },
+        {
+          "phrase": "holding a crumpled coupon",
+          "query": "hand holding coupon",
+          "image_url": "https://drive.google.com/uc?export=download&id=11R9fF2bGsv2UMBQBsRTOJLacgFfKtZYG",
+          "media_origin": "chatgpt",
+          "media_file_id": "11R9fF2bGsv2UMBQBsRTOJLacgFfKtZYG",
+          "media_sha256": "0b9fc021eb913d6c7792c9b4e4839443b1b82550fc6acae521e05e7f3d2644d5",
+          "media_bytes": 2311517
+        },
+        {
+          "phrase": "picking up my own prescription",
+          "query": "pharmacy counter customer",
+          "image_url": "https://drive.google.com/uc?export=download&id=1GMgk7UtF9Vd1rlEF7amF8JpycRlIecS3",
+          "media_origin": "chatgpt",
+          "media_file_id": "1GMgk7UtF9Vd1rlEF7amF8JpycRlIecS3",
+          "media_sha256": "7fb9cc45c26c0cbd9a7f0e8f37f13a9a02bf3b18220d3b975c5f203eda3bd13a",
+          "media_bytes": 2627299
+        },
+        {
+          "phrase": "radioed my invisible manager",
+          "query": "phone pretend call",
+          "image_url": "https://drive.google.com/uc?export=download&id=1nm5if3SUbxW6LMrpIFi5PphnKv4R2hxa",
+          "media_origin": "chatgpt",
+          "media_file_id": "1nm5if3SUbxW6LMrpIFi5PphnKv4R2hxa",
+          "media_sha256": "cbaaad9ab38455bf0bbdf95a81e8035d5f702b7c2874fcaf8b3065cce66d0a65",
+          "media_bytes": 2142574
+        },
+        {
+          "phrase": "walked her to the actual register",
+          "query": "store checkout register",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ZBKygULBJ6q6QtH-kGmE6WqKS6BIJN2f",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ZBKygULBJ6q6QtH-kGmE6WqKS6BIJN2f",
+          "media_sha256": "ec7619b1aa3085048d49b7eaece3aa9449a8070dd2c53ee6c75e82b9d0c558fb",
+          "media_bytes": 1705906
+        },
+        {
+          "phrase": "rang up the coupon that had expired two years earlier",
+          "query": "cash register receipt",
+          "image_url": "https://drive.google.com/uc?export=download&id=1DvTSHNwbMWhv1OeXW74C7unFoJlA8AZl",
+          "media_origin": "chatgpt",
+          "media_file_id": "1DvTSHNwbMWhv1OeXW74C7unFoJlA8AZl",
+          "media_sha256": "f9e774e3bb8b14583ad79819c130df207c8fabc3eab26226d78772e8fd699434",
+          "media_bytes": 1610777
+        },
+        {
+          "phrase": "stood frozen for a solid ten seconds",
+          "query": "confused person standing",
+          "image_url": "https://drive.google.com/uc?export=download&id=1nhE4rL-CtpWEIPN4kWWdG3WnoQMHwKyt",
+          "media_origin": "chatgpt",
+          "media_file_id": "1nhE4rL-CtpWEIPN4kWWdG3WnoQMHwKyt",
+          "media_sha256": "455d6fdd67cd6b5639c5a46e429000fd425827c09bf7b7dc1efb37f25ab1a99f",
+          "media_bytes": 1713858
+        },
+        {
+          "phrase": "chased him down instead",
+          "query": "store employee walking",
+          "image_url": "https://drive.google.com/uc?export=download&id=1MkFRRwpjkK0UXNq4-cnlaSEZtr9nhPte",
+          "media_origin": "chatgpt",
+          "media_file_id": "1MkFRRwpjkK0UXNq4-cnlaSEZtr9nhPte",
+          "media_sha256": "1051fffe0846887624e3738e65dca78aee854408065f10d8ea27d1fe0bf6fc26",
+          "media_bytes": 2360330
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "I don't work there",
+          "text": "NOT AN EMPLOYEE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "radioed my invisible manager",
+          "text": "FAKE RADIO CALL",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "expired two years earlier",
+          "text": "EXPIRED COUPON",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "chased him down instead",
+          "text": "WRONG GUY",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "punched_up": true
+    }
   }
 }

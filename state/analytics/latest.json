@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-06T12:32:24.458509+00:00",
+  "fetched_at": "2026-11-07T12:34:07.387911+00:00",
   "videos": [
     {
       "video_id": "UZIEC39RwNI",
@@ -28,17 +28,17 @@
       "scene_changes_before_5s": null,
       "title": "Wisconsin Brewers fan Shows Photo Of Her Dad She Couldn't Get Home To After Brewers Win",
       "published_at": "2026-10-30T20:00:26Z",
-      "age_hours": 160.5,
-      "views": 23223,
-      "engaged_views": 13196,
+      "age_hours": 184.6,
+      "views": 23239,
+      "engaged_views": 13218,
       "likes": 266,
       "comments": 16,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 144.66,
-      "average_view_percentage": 89.9,
+      "views_per_hour": 125.91,
+      "average_view_percentage": 89.8,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 4236.0,
+      "estimated_minutes_watched": 4244.0,
       "shares": 8,
       "subscribers_gained": 2,
       "retention_curve": [
@@ -54,8 +54,8 @@
         ],
         [
           0.03,
-          1.558,
-          0.678
+          1.557,
+          0.677
         ],
         [
           0.04,
@@ -75,7 +75,7 @@
         [
           0.07,
           1.348,
-          0.65
+          0.649
         ],
         [
           0.08,
@@ -85,7 +85,7 @@
         [
           0.09,
           1.302,
-          0.637
+          0.636
         ],
         [
           0.1,
@@ -129,7 +129,7 @@
         ],
         [
           0.18,
-          1.197,
+          1.198,
           0.585
         ],
         [
@@ -139,7 +139,7 @@
         ],
         [
           0.2,
-          1.184,
+          1.185,
           0.576
         ],
         [
@@ -185,7 +185,7 @@
         [
           0.29,
           1.054,
-          0.556
+          0.555
         ],
         [
           0.3,
@@ -199,7 +199,7 @@
         ],
         [
           0.32,
-          1.027,
+          1.028,
           0.557
         ],
         [
@@ -209,7 +209,7 @@
         ],
         [
           0.34,
-          1.009,
+          1.01,
           0.561
         ],
         [
@@ -230,7 +230,7 @@
         [
           0.38,
           0.972,
-          0.573
+          0.572
         ],
         [
           0.39,
@@ -245,7 +245,7 @@
         [
           0.41,
           0.946,
-          0.585
+          0.584
         ],
         [
           0.42,
@@ -255,7 +255,7 @@
         [
           0.43,
           0.935,
-          0.594
+          0.593
         ],
         [
           0.44,
@@ -270,7 +270,7 @@
         [
           0.46,
           0.914,
-          0.608
+          0.607
         ],
         [
           0.47,
@@ -299,7 +299,7 @@
         ],
         [
           0.52,
-          0.876,
+          0.875,
           0.634
         ],
         [
@@ -319,12 +319,12 @@
         ],
         [
           0.56,
-          0.852,
+          0.851,
           0.65
         ],
         [
           0.57,
-          0.843,
+          0.842,
           0.654
         ],
         [
@@ -334,7 +334,7 @@
         ],
         [
           0.59,
-          0.82,
+          0.819,
           0.661
         ],
         [
@@ -354,13 +354,13 @@
         ],
         [
           0.63,
-          0.79,
+          0.789,
           0.674
         ],
         [
           0.64,
           0.786,
-          0.678
+          0.677
         ],
         [
           0.65,
@@ -419,7 +419,7 @@
         ],
         [
           0.76,
-          0.718,
+          0.717,
           0.711
         ],
         [
@@ -434,7 +434,7 @@
         ],
         [
           0.79,
-          0.711,
+          0.71,
           0.72
         ],
         [
@@ -444,7 +444,7 @@
         ],
         [
           0.81,
-          0.708,
+          0.707,
           0.726
         ],
         [
@@ -495,7 +495,7 @@
         [
           0.91,
           0.662,
-          0.78
+          0.781
         ],
         [
           0.92,
@@ -519,7 +519,7 @@
         ],
         [
           0.96,
-          0.629,
+          0.628,
           0.818
         ],
         [
@@ -529,7 +529,7 @@
         ],
         [
           0.98,
-          0.627,
+          0.626,
           0.831
         ],
         [
@@ -544,6 +544,150 @@
         ]
       ],
       "early_retention": 0.779
+    },
+    {
+      "video_id": "1IJ9cIcpWvk",
+      "url": "https://youtube.com/shorts/1IJ9cIcpWvk",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Steve Kerr Admits He Already Spent The $5,000 Check He Never Got",
+      "published_at": "2026-11-07T03:00:25Z",
+      "age_hours": 9.6,
+      "views": 958,
+      "engaged_views": 958,
+      "likes": 7,
+      "comments": 1,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 100.19
+    },
+    {
+      "video_id": "sBknTg8g-QU",
+      "url": "https://youtube.com/shorts/sBknTg8g-QU",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Charles Barkley Threatens To Call Kash Patel After Shaq Challenges Him To A Fight",
+      "published_at": "2026-11-06T21:00:39Z",
+      "age_hours": 15.6,
+      "views": 1317,
+      "engaged_views": 1317,
+      "likes": 8,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 84.65
+    },
+    {
+      "video_id": "NtcyyUYM4YI",
+      "url": "https://youtube.com/shorts/NtcyyUYM4YI",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Sal Frelick And Jake Bauers Soak In The Moment With Fans After This",
+      "published_at": "2026-11-06T15:00:16Z",
+      "age_hours": 21.6,
+      "views": 1440,
+      "engaged_views": 1440,
+      "likes": 20,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 66.78
+    },
+    {
+      "video_id": "hixNtCS7PW8",
+      "url": "https://youtube.com/shorts/hixNtCS7PW8",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Lebron James: Sixers Fan Says He Threw LeBron's Cup In The Trash \ud83d\ude2d",
+      "published_at": "2026-11-06T18:00:03Z",
+      "age_hours": 18.6,
+      "views": 1152,
+      "engaged_views": 1152,
+      "likes": 15,
+      "comments": 1,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 62.04
     },
     {
       "video_id": "2NGCEZ9FwN0",
@@ -572,14 +716,14 @@
       "scene_changes_before_5s": null,
       "title": "Young Milwaukee Brewers Fan Cries Happy Tears After His Team Wins The World Series",
       "published_at": "2026-11-06T03:00:06Z",
-      "age_hours": 9.5,
-      "views": 1124,
-      "engaged_views": 1124,
+      "age_hours": 33.6,
+      "views": 1149,
+      "engaged_views": 1149,
       "likes": 31,
       "comments": 1,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 117.84
+      "views_per_hour": 34.23
     },
     {
       "video_id": "7xpazU4MJGA",
@@ -608,50 +752,14 @@
       "scene_changes_before_5s": null,
       "title": "Matthew Golden Gets Lectured By Refs While Holding Hands And Nobody Expected It",
       "published_at": "2026-11-06T00:00:18Z",
-      "age_hours": 12.5,
-      "views": 977,
-      "engaged_views": 977,
-      "likes": 11,
+      "age_hours": 36.6,
+      "views": 1052,
+      "engaged_views": 1052,
+      "likes": 12,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 77.94
-    },
-    {
-      "video_id": "UBylkyVFa8A",
-      "url": "https://youtube.com/shorts/UBylkyVFa8A",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Russell Wilson Picks Broncos Over Chiefs And Calls Out Sean Payton On Air",
-      "published_at": "2026-11-05T15:00:17Z",
-      "age_hours": 21.5,
-      "views": 1153,
-      "engaged_views": 1153,
-      "likes": 33,
-      "comments": 2,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 53.54
+      "views_per_hour": 28.77
     },
     {
       "video_id": "FPx-CVGP960",
@@ -680,50 +788,522 @@
       "scene_changes_before_5s": null,
       "title": "Alex Rodriguez Hears He's Skipping The Gym And Says He Has No Life",
       "published_at": "2026-11-04T15:00:05Z",
-      "age_hours": 45.5,
-      "views": 1874,
-      "engaged_views": 1874,
+      "age_hours": 69.6,
+      "views": 1912,
+      "engaged_views": 851,
       "likes": 49,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 41.15
-    },
-    {
-      "video_id": "uzgi2DaD8-A",
-      "url": "https://youtube.com/shorts/uzgi2DaD8-A",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Jake Bauers Hands Pat Murphy The Last Out Ball",
-      "published_at": "2026-11-05T03:00:05Z",
-      "age_hours": 33.5,
-      "views": 1084,
-      "engaged_views": 1084,
-      "likes": 13,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 32.32
+      "views_per_hour": 27.48,
+      "average_view_percentage": 95.9,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 342.0,
+      "shares": 1,
+      "subscribers_gained": 0,
+      "retention_curve": [
+        [
+          0.01,
+          1.552,
+          0.68
+        ],
+        [
+          0.02,
+          1.539,
+          0.673
+        ],
+        [
+          0.03,
+          1.502,
+          0.665
+        ],
+        [
+          0.04,
+          1.451,
+          0.658
+        ],
+        [
+          0.05,
+          1.403,
+          0.65
+        ],
+        [
+          0.06,
+          1.382,
+          0.644
+        ],
+        [
+          0.07,
+          1.363,
+          0.638
+        ],
+        [
+          0.08,
+          1.342,
+          0.633
+        ],
+        [
+          0.09,
+          1.335,
+          0.628
+        ],
+        [
+          0.1,
+          1.328,
+          0.624
+        ],
+        [
+          0.11,
+          1.321,
+          0.621
+        ],
+        [
+          0.12,
+          1.32,
+          0.617
+        ],
+        [
+          0.13,
+          1.313,
+          0.615
+        ],
+        [
+          0.14,
+          1.304,
+          0.612
+        ],
+        [
+          0.15,
+          1.297,
+          0.61
+        ],
+        [
+          0.16,
+          1.295,
+          0.609
+        ],
+        [
+          0.17,
+          1.291,
+          0.607
+        ],
+        [
+          0.18,
+          1.281,
+          0.606
+        ],
+        [
+          0.19,
+          1.262,
+          0.605
+        ],
+        [
+          0.2,
+          1.248,
+          0.605
+        ],
+        [
+          0.21,
+          1.229,
+          0.604
+        ],
+        [
+          0.22,
+          1.209,
+          0.604
+        ],
+        [
+          0.23,
+          1.188,
+          0.604
+        ],
+        [
+          0.24,
+          1.167,
+          0.604
+        ],
+        [
+          0.25,
+          1.156,
+          0.605
+        ],
+        [
+          0.26,
+          1.153,
+          0.606
+        ],
+        [
+          0.27,
+          1.14,
+          0.607
+        ],
+        [
+          0.28,
+          1.132,
+          0.608
+        ],
+        [
+          0.29,
+          1.121,
+          0.609
+        ],
+        [
+          0.3,
+          1.115,
+          0.611
+        ],
+        [
+          0.31,
+          1.109,
+          0.613
+        ],
+        [
+          0.32,
+          1.106,
+          0.615
+        ],
+        [
+          0.33,
+          1.101,
+          0.617
+        ],
+        [
+          0.34,
+          1.093,
+          0.619
+        ],
+        [
+          0.35,
+          1.083,
+          0.622
+        ],
+        [
+          0.36,
+          1.075,
+          0.625
+        ],
+        [
+          0.37,
+          1.061,
+          0.628
+        ],
+        [
+          0.38,
+          1.053,
+          0.632
+        ],
+        [
+          0.39,
+          1.045,
+          0.635
+        ],
+        [
+          0.4,
+          1.034,
+          0.639
+        ],
+        [
+          0.41,
+          1.031,
+          0.644
+        ],
+        [
+          0.42,
+          1.028,
+          0.648
+        ],
+        [
+          0.43,
+          1.023,
+          0.653
+        ],
+        [
+          0.44,
+          1.021,
+          0.657
+        ],
+        [
+          0.45,
+          1.019,
+          0.662
+        ],
+        [
+          0.46,
+          1.019,
+          0.667
+        ],
+        [
+          0.47,
+          1.014,
+          0.672
+        ],
+        [
+          0.48,
+          1.011,
+          0.677
+        ],
+        [
+          0.49,
+          1.009,
+          0.682
+        ],
+        [
+          0.5,
+          1.006,
+          0.687
+        ],
+        [
+          0.51,
+          1.001,
+          0.692
+        ],
+        [
+          0.52,
+          0.997,
+          0.697
+        ],
+        [
+          0.53,
+          0.991,
+          0.701
+        ],
+        [
+          0.54,
+          0.971,
+          0.705
+        ],
+        [
+          0.55,
+          0.954,
+          0.709
+        ],
+        [
+          0.56,
+          0.945,
+          0.713
+        ],
+        [
+          0.57,
+          0.939,
+          0.717
+        ],
+        [
+          0.58,
+          0.932,
+          0.72
+        ],
+        [
+          0.59,
+          0.922,
+          0.723
+        ],
+        [
+          0.6,
+          0.92,
+          0.726
+        ],
+        [
+          0.61,
+          0.914,
+          0.729
+        ],
+        [
+          0.62,
+          0.912,
+          0.732
+        ],
+        [
+          0.63,
+          0.897,
+          0.734
+        ],
+        [
+          0.64,
+          0.88,
+          0.736
+        ],
+        [
+          0.65,
+          0.871,
+          0.739
+        ],
+        [
+          0.66,
+          0.861,
+          0.741
+        ],
+        [
+          0.67,
+          0.857,
+          0.743
+        ],
+        [
+          0.68,
+          0.846,
+          0.745
+        ],
+        [
+          0.69,
+          0.839,
+          0.747
+        ],
+        [
+          0.7,
+          0.833,
+          0.749
+        ],
+        [
+          0.71,
+          0.824,
+          0.75
+        ],
+        [
+          0.72,
+          0.816,
+          0.752
+        ],
+        [
+          0.73,
+          0.806,
+          0.754
+        ],
+        [
+          0.74,
+          0.795,
+          0.756
+        ],
+        [
+          0.75,
+          0.793,
+          0.757
+        ],
+        [
+          0.76,
+          0.788,
+          0.759
+        ],
+        [
+          0.77,
+          0.783,
+          0.761
+        ],
+        [
+          0.78,
+          0.779,
+          0.763
+        ],
+        [
+          0.79,
+          0.771,
+          0.765
+        ],
+        [
+          0.8,
+          0.768,
+          0.767
+        ],
+        [
+          0.81,
+          0.766,
+          0.769
+        ],
+        [
+          0.82,
+          0.764,
+          0.772
+        ],
+        [
+          0.83,
+          0.759,
+          0.774
+        ],
+        [
+          0.84,
+          0.744,
+          0.777
+        ],
+        [
+          0.85,
+          0.736,
+          0.78
+        ],
+        [
+          0.86,
+          0.717,
+          0.784
+        ],
+        [
+          0.87,
+          0.703,
+          0.787
+        ],
+        [
+          0.88,
+          0.692,
+          0.791
+        ],
+        [
+          0.89,
+          0.672,
+          0.795
+        ],
+        [
+          0.9,
+          0.655,
+          0.799
+        ],
+        [
+          0.91,
+          0.638,
+          0.803
+        ],
+        [
+          0.92,
+          0.624,
+          0.807
+        ],
+        [
+          0.93,
+          0.612,
+          0.811
+        ],
+        [
+          0.94,
+          0.6,
+          0.816
+        ],
+        [
+          0.95,
+          0.589,
+          0.82
+        ],
+        [
+          0.96,
+          0.584,
+          0.823
+        ],
+        [
+          0.97,
+          0.568,
+          0.827
+        ],
+        [
+          0.98,
+          0.568,
+          0.83
+        ],
+        [
+          0.99,
+          0.564,
+          0.833
+        ],
+        [
+          1.0,
+          0.563,
+          0.835
+        ]
+      ],
+      "early_retention": 0.851
     },
     {
       "video_id": "3u3FKRuqs6M",
@@ -752,14 +1332,14 @@
       "scene_changes_before_5s": null,
       "title": "Jacob Misiorowski Gets Emotional When Asked What The Brewers Mean To Milwaukee",
       "published_at": "2026-10-31T20:00:35Z",
-      "age_hours": 136.5,
-      "views": 4155,
+      "age_hours": 160.6,
+      "views": 4156,
       "engaged_views": 2187,
       "likes": 147,
       "comments": 1,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 30.43,
+      "views_per_hour": 25.88,
       "average_view_percentage": 80.1,
       "average_view_duration_s": 22.0,
       "estimated_minutes_watched": 853.0,
@@ -1270,8 +1850,8 @@
       "early_retention": 0.817
     },
     {
-      "video_id": "nHDvhMXkX6A",
-      "url": "https://youtube.com/shorts/nHDvhMXkX6A",
+      "video_id": "UBylkyVFa8A",
+      "url": "https://youtube.com/shorts/UBylkyVFa8A",
       "catalog_id": null,
       "streamer": null,
       "series": null,
@@ -1294,16 +1874,16 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Jacob Misiorowski Exits To A Standing Ovation After Cramps Cut His Game Five Short",
-      "published_at": "2026-11-04T21:00:30Z",
-      "age_hours": 39.5,
-      "views": 1178,
-      "engaged_views": 1178,
-      "likes": 19,
-      "comments": 0,
+      "title": "Russell Wilson Picks Broncos Over Chiefs And Calls Out Sean Payton On Air",
+      "published_at": "2026-11-05T15:00:17Z",
+      "age_hours": 45.6,
+      "views": 1172,
+      "engaged_views": 1172,
+      "likes": 33,
+      "comments": 2,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 29.8
+      "views_per_hour": 25.72
     },
     {
       "video_id": "9ThbkAHc_mo",
@@ -1332,264 +1912,264 @@
       "scene_changes_before_5s": null,
       "title": "Steve Kerr Jokes Yaxel Should've Come Out Four Years Ago Unprepared \ud83d\ude02",
       "published_at": "2026-11-02T15:00:22Z",
-      "age_hours": 93.5,
-      "views": 2505,
-      "engaged_views": 1110,
+      "age_hours": 117.6,
+      "views": 2524,
+      "engaged_views": 1152,
       "likes": 42,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 26.78,
-      "average_view_percentage": 106.4,
+      "views_per_hour": 21.47,
+      "average_view_percentage": 106.3,
       "average_view_duration_s": 22.0,
-      "estimated_minutes_watched": 429.0,
+      "estimated_minutes_watched": 445.0,
       "shares": 1,
       "subscribers_gained": 1,
       "retention_curve": [
         [
           0.01,
-          1.758,
-          0.709
+          1.754,
+          0.71
         ],
         [
           0.02,
-          1.742,
+          1.739,
           0.707
         ],
         [
           0.03,
-          1.71,
-          0.704
+          1.708,
+          0.705
         ],
         [
           0.04,
-          1.659,
+          1.658,
           0.702
         ],
         [
           0.05,
-          1.619,
-          0.699
+          1.618,
+          0.7
         ],
         [
           0.06,
-          1.58,
-          0.697
+          1.579,
+          0.698
         ],
         [
           0.07,
-          1.552,
+          1.551,
           0.696
         ],
         [
           0.08,
           1.526,
-          0.694
+          0.695
         ],
         [
           0.09,
-          1.508,
-          0.693
+          1.507,
+          0.694
         ],
         [
           0.1,
           1.49,
-          0.692
+          0.693
         ],
         [
           0.11,
           1.476,
-          0.691
+          0.692
         ],
         [
           0.12,
-          1.466,
-          0.69
+          1.467,
+          0.691
         ],
         [
           0.13,
-          1.453,
-          0.69
+          1.454,
+          0.691
         ],
         [
           0.14,
-          1.446,
-          0.689
+          1.445,
+          0.69
         ],
         [
           0.15,
-          1.43,
-          0.689
+          1.429,
+          0.69
         ],
         [
           0.16,
-          1.415,
-          0.688
+          1.414,
+          0.689
         ],
         [
           0.17,
-          1.404,
-          0.688
+          1.402,
+          0.689
         ],
         [
           0.18,
-          1.394,
-          0.688
+          1.391,
+          0.689
         ],
         [
           0.19,
-          1.387,
+          1.383,
           0.689
         ],
         [
           0.2,
-          1.376,
-          0.689
-        ],
-        [
-          0.21,
-          1.355,
+          1.373,
           0.69
         ],
         [
-          0.22,
-          1.332,
+          0.21,
+          1.353,
           0.691
         ],
         [
-          0.23,
-          1.308,
+          0.22,
+          1.329,
           0.692
         ],
         [
+          0.23,
+          1.307,
+          0.693
+        ],
+        [
           0.24,
-          1.289,
+          1.288,
           0.694
         ],
         [
           0.25,
           1.271,
-          0.695
+          0.696
         ],
         [
           0.26,
           1.261,
-          0.697
+          0.698
         ],
         [
           0.27,
-          1.25,
-          0.7
+          1.249,
+          0.701
         ],
         [
           0.28,
-          1.246,
+          1.244,
           0.703
         ],
         [
           0.29,
-          1.232,
+          1.231,
           0.706
         ],
         [
           0.3,
-          1.221,
-          0.709
+          1.219,
+          0.71
         ],
         [
           0.31,
-          1.214,
+          1.212,
           0.713
         ],
         [
           0.32,
-          1.205,
-          0.716
+          1.203,
+          0.717
         ],
         [
           0.33,
-          1.195,
+          1.193,
           0.721
         ],
         [
           0.34,
-          1.187,
-          0.725
+          1.184,
+          0.726
         ],
         [
           0.35,
-          1.176,
-          0.73
+          1.174,
+          0.731
         ],
         [
           0.36,
-          1.17,
+          1.168,
           0.735
         ],
         [
           0.37,
-          1.165,
-          0.74
+          1.163,
+          0.741
         ],
         [
           0.38,
-          1.16,
-          0.745
+          1.159,
+          0.746
         ],
         [
           0.39,
-          1.155,
-          0.75
+          1.153,
+          0.751
         ],
         [
           0.4,
-          1.145,
+          1.143,
           0.756
         ],
         [
           0.41,
-          1.141,
-          0.761
+          1.138,
+          0.762
         ],
         [
           0.42,
-          1.133,
+          1.131,
           0.767
         ],
         [
           0.43,
-          1.126,
-          0.772
+          1.124,
+          0.773
         ],
         [
           0.44,
-          1.116,
+          1.114,
           0.778
         ],
         [
           0.45,
-          1.107,
+          1.105,
           0.783
         ],
         [
           0.46,
-          1.096,
+          1.095,
           0.788
         ],
         [
           0.47,
-          1.09,
+          1.088,
           0.793
         ],
         [
           0.48,
-          1.082,
+          1.08,
           0.798
         ],
         [
           0.49,
-          1.066,
-          0.802
+          1.065,
+          0.803
         ],
         [
           0.5,
@@ -1599,86 +2179,86 @@
         [
           0.51,
           1.056,
-          0.811
+          0.812
         ],
         [
           0.52,
           1.052,
-          0.815
+          0.816
         ],
         [
           0.53,
-          1.045,
-          0.819
+          1.044,
+          0.82
         ],
         [
           0.54,
           1.029,
-          0.823
+          0.824
         ],
         [
           0.55,
-          1.014,
+          1.015,
           0.827
         ],
         [
           0.56,
-          0.995,
-          0.83
+          0.997,
+          0.831
         ],
         [
           0.57,
-          0.986,
+          0.987,
           0.834
         ],
         [
           0.58,
-          0.975,
+          0.976,
           0.837
         ],
         [
           0.59,
-          0.968,
+          0.969,
           0.84
         ],
         [
           0.6,
-          0.959,
+          0.96,
           0.843
         ],
         [
           0.61,
-          0.953,
+          0.954,
           0.846
         ],
         [
           0.62,
-          0.944,
-          0.848
+          0.945,
+          0.849
         ],
         [
           0.63,
-          0.94,
+          0.941,
           0.851
         ],
         [
           0.64,
-          0.937,
-          0.853
+          0.938,
+          0.854
         ],
         [
           0.65,
-          0.932,
+          0.933,
           0.856
         ],
         [
           0.66,
-          0.927,
+          0.928,
           0.858
         ],
         [
           0.67,
-          0.925,
+          0.926,
           0.86
         ],
         [
@@ -1688,7 +2268,7 @@
         ],
         [
           0.69,
-          0.922,
+          0.923,
           0.864
         ],
         [
@@ -1703,12 +2283,12 @@
         ],
         [
           0.72,
-          0.913,
+          0.912,
           0.87
         ],
         [
           0.73,
-          0.911,
+          0.91,
           0.872
         ],
         [
@@ -1718,12 +2298,12 @@
         ],
         [
           0.75,
-          0.906,
+          0.905,
           0.875
         ],
         [
           0.76,
-          0.899,
+          0.898,
           0.877
         ],
         [
@@ -1733,7 +2313,7 @@
         ],
         [
           0.78,
-          0.893,
+          0.892,
           0.881
         ],
         [
@@ -1744,7 +2324,7 @@
         [
           0.8,
           0.88,
-          0.885
+          0.884
         ],
         [
           0.81,
@@ -1753,27 +2333,27 @@
         ],
         [
           0.82,
-          0.86,
-          0.889
+          0.861,
+          0.888
         ],
         [
           0.83,
-          0.855,
+          0.856,
           0.891
         ],
         [
           0.84,
-          0.85,
+          0.849,
           0.893
         ],
         [
           0.85,
-          0.847,
+          0.846,
           0.896
         ],
         [
           0.86,
-          0.84,
+          0.839,
           0.898
         ],
         [
@@ -1783,7 +2363,7 @@
         ],
         [
           0.88,
-          0.824,
+          0.825,
           0.904
         ],
         [
@@ -1813,7 +2393,7 @@
         ],
         [
           0.94,
-          0.797,
+          0.798,
           0.924
         ],
         [
@@ -1838,20 +2418,20 @@
         ],
         [
           0.99,
-          0.782,
+          0.783,
           0.936
         ],
         [
           1.0,
-          0.779,
-          0.937
+          0.78,
+          0.938
         ]
       ],
-      "early_retention": 0.834
+      "early_retention": 0.836
     },
     {
-      "video_id": "aDdxq2hsiiI",
-      "url": "https://youtube.com/shorts/aDdxq2hsiiI",
+      "video_id": "nHDvhMXkX6A",
+      "url": "https://youtube.com/shorts/nHDvhMXkX6A",
       "catalog_id": null,
       "streamer": null,
       "series": null,
@@ -1874,25 +2454,25 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Clay Matthews Calls Wheel Route, Cam Newton Fires Back with CMC Touchdown",
-      "published_at": "2026-11-04T03:00:27Z",
-      "age_hours": 57.5,
-      "views": 1016,
-      "engaged_views": 286,
-      "likes": 7,
+      "title": "Jacob Misiorowski Exits To A Standing Ovation After Cramps Cut His Game Five Short",
+      "published_at": "2026-11-04T21:00:30Z",
+      "age_hours": 63.6,
+      "views": 1220,
+      "engaged_views": 555,
+      "likes": 19,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 17.66,
-      "average_view_percentage": 162.7,
-      "average_view_duration_s": 6.0,
-      "estimated_minutes_watched": 37.0,
+      "views_per_hour": 19.19,
+      "average_view_percentage": 76.6,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 138.0,
       "shares": 0,
-      "subscribers_gained": 0
+      "subscribers_gained": 1
     },
     {
-      "video_id": "X9JHBcePA3A",
-      "url": "https://youtube.com/shorts/X9JHBcePA3A",
+      "video_id": "uzgi2DaD8-A",
+      "url": "https://youtube.com/shorts/uzgi2DaD8-A",
       "catalog_id": null,
       "streamer": null,
       "series": null,
@@ -1915,32 +2495,30 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni For THIS Awkward Moment With A Kid",
-      "published_at": "2026-11-03T15:00:27Z",
-      "age_hours": 69.5,
-      "views": 1189,
-      "engaged_views": 450,
-      "likes": 5,
+      "title": "Jake Bauers Hands Pat Murphy The Last Out Ball",
+      "published_at": "2026-11-05T03:00:05Z",
+      "age_hours": 57.6,
+      "views": 1101,
+      "engaged_views": 485,
+      "likes": 13,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 17.1,
-      "average_view_percentage": 152.4,
-      "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 78.0,
+      "views_per_hour": 19.13,
+      "average_view_percentage": 190.9,
+      "average_view_duration_s": 30.0,
+      "estimated_minutes_watched": 261.0,
       "shares": 0,
       "subscribers_gained": 0
     },
     {
-      "video_id": "HLzzgbMWXxk",
-      "url": "https://youtube.com/shorts/HLzzgbMWXxk",
+      "video_id": "9jz60Cme9-Y",
+      "url": "https://youtube.com/shorts/9jz60Cme9-Y",
       "catalog_id": null,
       "streamer": null,
       "series": null,
       "format": "sports_moment",
-      "songs": [
-        "ncs:e107e1b8-d869-4742-a649-8a18a5027c2e"
-      ],
+      "songs": [],
       "blocked_in": [],
       "experiment_arm": null,
       "actual_structure": null,
@@ -1958,21 +2536,16 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Milwaukee Brewers Celebrate World Series Win With A Lambeau Leap \ud83c\udfc6",
-      "published_at": "2026-11-03T21:00:14Z",
-      "age_hours": 63.5,
-      "views": 1053,
-      "engaged_views": 278,
-      "likes": 31,
+      "title": "Budda Baker Answers Trade Deadline Questions In A Full Halloween Costume",
+      "published_at": "2026-11-07T00:00:22Z",
+      "age_hours": 12.6,
+      "views": 181,
+      "engaged_views": 181,
+      "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 16.57,
-      "average_view_percentage": 119.1,
-      "average_view_duration_s": 21.0,
-      "estimated_minutes_watched": 107.0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "views_per_hour": 14.41
     },
     {
       "video_id": "2oy1G8Hdk_A",
@@ -2001,14 +2574,14 @@
       "scene_changes_before_5s": null,
       "title": "Cam Skattebo Says He'll Play For Free If The NFL Keeps Fining Him",
       "published_at": "2026-10-29T00:00:04Z",
-      "age_hours": 204.5,
-      "views": 3269,
-      "engaged_views": 1790,
+      "age_hours": 228.6,
+      "views": 3270,
+      "engaged_views": 1791,
       "likes": 73,
       "comments": 9,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 15.98,
+      "views_per_hour": 14.31,
       "average_view_percentage": 83.9,
       "average_view_duration_s": 26.0,
       "estimated_minutes_watched": 824.0,
@@ -2022,7 +2595,7 @@
         ],
         [
           0.02,
-          1.478,
+          1.477,
           0.67
         ],
         [
@@ -2042,7 +2615,7 @@
         ],
         [
           0.06,
-          1.275,
+          1.274,
           0.627
         ],
         [
@@ -2053,7 +2626,7 @@
         [
           0.08,
           1.249,
-          0.608
+          0.609
         ],
         [
           0.09,
@@ -2067,7 +2640,7 @@
         ],
         [
           0.11,
-          1.218,
+          1.217,
           0.584
         ],
         [
@@ -2098,7 +2671,7 @@
         [
           0.17,
           1.109,
-          0.544
+          0.545
         ],
         [
           0.18,
@@ -2107,7 +2680,7 @@
         ],
         [
           0.19,
-          1.085,
+          1.084,
           0.535
         ],
         [
@@ -2203,7 +2776,7 @@
         [
           0.38,
           0.922,
-          0.5
+          0.501
         ],
         [
           0.39,
@@ -2313,7 +2886,7 @@
         [
           0.6,
           0.776,
-          0.582
+          0.581
         ],
         [
           0.61,
@@ -2357,7 +2930,7 @@
         ],
         [
           0.69,
-          0.744,
+          0.745,
           0.675
         ],
         [
@@ -2388,7 +2961,7 @@
         [
           0.75,
           0.696,
-          0.711
+          0.71
         ],
         [
           0.76,
@@ -2403,7 +2976,7 @@
         [
           0.78,
           0.663,
-          0.723
+          0.722
         ],
         [
           0.79,
@@ -2412,7 +2985,7 @@
         ],
         [
           0.8,
-          0.644,
+          0.645,
           0.729
         ],
         [
@@ -2438,7 +3011,7 @@
         [
           0.85,
           0.591,
-          0.745
+          0.744
         ],
         [
           0.86,
@@ -2458,7 +3031,7 @@
         [
           0.89,
           0.576,
-          0.762
+          0.761
         ],
         [
           0.9,
@@ -2467,18 +3040,18 @@
         ],
         [
           0.91,
-          0.568,
+          0.569,
           0.774
         ],
         [
           0.92,
-          0.56,
+          0.561,
           0.781
         ],
         [
           0.93,
           0.556,
-          0.79
+          0.789
         ],
         [
           0.94,
@@ -2492,22 +3065,22 @@
         ],
         [
           0.96,
-          0.526,
+          0.525,
           0.816
         ],
         [
           0.97,
           0.521,
-          0.825
+          0.824
         ],
         [
           0.98,
-          0.505,
-          0.833
+          0.504,
+          0.832
         ],
         [
           0.99,
-          0.505,
+          0.504,
           0.839
         ],
         [
@@ -2519,14 +3092,96 @@
       "early_retention": 0.802
     },
     {
-      "video_id": "BVBKCqgvW4Y",
-      "url": "https://youtube.com/shorts/BVBKCqgvW4Y",
+      "video_id": "X9JHBcePA3A",
+      "url": "https://youtube.com/shorts/X9JHBcePA3A",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni For THIS Awkward Moment With A Kid",
+      "published_at": "2026-11-03T15:00:27Z",
+      "age_hours": 93.6,
+      "views": 1224,
+      "engaged_views": 453,
+      "likes": 5,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 13.08,
+      "average_view_percentage": 152.4,
+      "average_view_duration_s": 9.0,
+      "estimated_minutes_watched": 79.0,
+      "shares": 0,
+      "subscribers_gained": 0
+    },
+    {
+      "video_id": "aDdxq2hsiiI",
+      "url": "https://youtube.com/shorts/aDdxq2hsiiI",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Clay Matthews Calls Wheel Route, Cam Newton Fires Back with CMC Touchdown",
+      "published_at": "2026-11-04T03:00:27Z",
+      "age_hours": 81.6,
+      "views": 1022,
+      "engaged_views": 299,
+      "likes": 7,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 12.53,
+      "average_view_percentage": 162.9,
+      "average_view_duration_s": 6.0,
+      "estimated_minutes_watched": 39.0,
+      "shares": 0,
+      "subscribers_gained": 0
+    },
+    {
+      "video_id": "HLzzgbMWXxk",
+      "url": "https://youtube.com/shorts/HLzzgbMWXxk",
       "catalog_id": null,
       "streamer": null,
       "series": null,
       "format": "sports_moment",
       "songs": [
-        "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5"
+        "ncs:e107e1b8-d869-4742-a649-8a18a5027c2e"
       ],
       "blocked_in": [],
       "experiment_arm": null,
@@ -2545,19 +3200,19 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Russell Westbrook Gets SHOCKED With His Jersey Retirement Date",
-      "published_at": "2026-11-03T18:00:28Z",
-      "age_hours": 66.5,
-      "views": 1028,
-      "engaged_views": 272,
-      "likes": 20,
-      "comments": 1,
+      "title": "Milwaukee Brewers Celebrate World Series Win With A Lambeau Leap \ud83c\udfc6",
+      "published_at": "2026-11-03T21:00:14Z",
+      "age_hours": 87.6,
+      "views": 1060,
+      "engaged_views": 411,
+      "likes": 31,
+      "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 15.45,
-      "average_view_percentage": 90.5,
-      "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 81.0,
+      "views_per_hour": 12.11,
+      "average_view_percentage": 106.8,
+      "average_view_duration_s": 19.0,
+      "estimated_minutes_watched": 142.0,
       "shares": 0,
       "subscribers_gained": 0
     },
@@ -2588,289 +3243,289 @@
       "scene_changes_before_5s": null,
       "title": "Daniel Radcliffe Can't Believe Jaylen Brown Picked Slytherin",
       "published_at": "2026-11-02T18:00:12Z",
-      "age_hours": 90.5,
-      "views": 1299,
-      "engaged_views": 581,
+      "age_hours": 114.6,
+      "views": 1318,
+      "engaged_views": 586,
       "likes": 18,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 14.35,
-      "average_view_percentage": 104.1,
+      "views_per_hour": 11.5,
+      "average_view_percentage": 104.2,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 192.0,
+      "estimated_minutes_watched": 194.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_curve": [
         [
           0.01,
-          1.707,
-          0.773
+          1.709,
+          0.774
         ],
         [
           0.02,
-          1.699,
-          0.778
+          1.701,
+          0.779
         ],
         [
           0.03,
-          1.668,
-          0.782
+          1.67,
+          0.783
         ],
         [
           0.04,
-          1.63,
-          0.786
+          1.634,
+          0.787
         ],
         [
           0.05,
-          1.58,
-          0.79
+          1.585,
+          0.791
         ],
         [
           0.06,
-          1.537,
-          0.793
+          1.542,
+          0.795
         ],
         [
           0.07,
-          1.503,
-          0.797
+          1.508,
+          0.798
         ],
         [
           0.08,
-          1.482,
-          0.8
+          1.486,
+          0.802
         ],
         [
           0.09,
-          1.46,
-          0.803
+          1.463,
+          0.804
         ],
         [
           0.1,
-          1.446,
-          0.805
-        ],
-        [
-          0.11,
-          1.432,
+          1.448,
           0.807
         ],
         [
-          0.12,
-          1.422,
+          0.11,
+          1.434,
           0.809
         ],
         [
+          0.12,
+          1.424,
+          0.811
+        ],
+        [
           0.13,
-          1.417,
-          0.81
+          1.419,
+          0.812
         ],
         [
           0.14,
-          1.404,
-          0.811
+          1.405,
+          0.813
         ],
         [
           0.15,
           1.398,
-          0.812
+          0.814
         ],
         [
           0.16,
-          1.394,
-          0.812
+          1.395,
+          0.814
         ],
         [
           0.17,
           1.386,
-          0.812
+          0.814
         ],
         [
           0.18,
           1.379,
-          0.812
+          0.814
         ],
         [
           0.19,
-          1.377,
-          0.812
+          1.378,
+          0.814
         ],
         [
           0.2,
-          1.373,
-          0.811
+          1.374,
+          0.813
         ],
         [
           0.21,
-          1.37,
-          0.81
+          1.371,
+          0.812
         ],
         [
           0.22,
-          1.365,
-          0.809
+          1.366,
+          0.811
         ],
         [
           0.23,
-          1.361,
-          0.808
+          1.362,
+          0.81
         ],
         [
           0.24,
-          1.341,
-          0.807
+          1.342,
+          0.809
         ],
         [
           0.25,
-          1.327,
-          0.805
+          1.328,
+          0.807
         ],
         [
           0.26,
-          1.301,
-          0.804
+          1.303,
+          0.806
         ],
         [
           0.27,
-          1.289,
-          0.803
+          1.291,
+          0.805
         ],
         [
           0.28,
-          1.279,
-          0.801
+          1.28,
+          0.803
         ],
         [
           0.29,
-          1.256,
-          0.8
+          1.258,
+          0.802
         ],
         [
           0.3,
-          1.234,
-          0.798
+          1.236,
+          0.8
         ],
         [
           0.31,
-          1.213,
-          0.797
+          1.214,
+          0.799
         ],
         [
           0.32,
           1.208,
-          0.796
+          0.797
         ],
         [
           0.33,
           1.188,
-          0.794
+          0.796
         ],
         [
           0.34,
-          1.172,
-          0.793
+          1.173,
+          0.794
         ],
         [
           0.35,
           1.162,
-          0.792
+          0.793
         ],
         [
           0.36,
-          1.15,
-          0.79
+          1.149,
+          0.792
         ],
         [
           0.37,
-          1.139,
-          0.789
+          1.138,
+          0.791
         ],
         [
           0.38,
-          1.136,
-          0.788
+          1.135,
+          0.789
         ],
         [
           0.39,
-          1.124,
-          0.787
+          1.123,
+          0.788
         ],
         [
           0.4,
-          1.114,
-          0.786
+          1.113,
+          0.787
         ],
         [
           0.41,
-          1.102,
-          0.785
+          1.101,
+          0.786
         ],
         [
           0.42,
-          1.09,
-          0.784
+          1.089,
+          0.785
         ],
         [
           0.43,
           1.084,
-          0.783
+          0.784
         ],
         [
           0.44,
           1.084,
-          0.782
+          0.783
         ],
         [
           0.45,
           1.079,
-          0.781
+          0.782
         ],
         [
           0.46,
           1.077,
-          0.78
+          0.781
         ],
         [
           0.47,
-          1.074,
-          0.779
+          1.073,
+          0.781
         ],
         [
           0.48,
-          1.069,
-          0.779
+          1.068,
+          0.78
         ],
         [
           0.49,
-          1.064,
-          0.778
+          1.063,
+          0.779
         ],
         [
           0.5,
           1.053,
-          0.778
+          0.779
         ],
         [
           0.51,
           1.036,
-          0.777
+          0.778
         ],
         [
           0.52,
-          1.028,
-          0.777
+          1.027,
+          0.778
         ],
         [
           0.53,
           1.022,
-          0.777
+          0.778
         ],
         [
           0.54,
           1.012,
-          0.777
+          0.778
         ],
         [
           0.55,
@@ -2890,37 +3545,37 @@
         [
           0.58,
           0.974,
-          0.777
+          0.778
         ],
         [
           0.59,
           0.959,
-          0.777
+          0.778
         ],
         [
           0.6,
-          0.936,
-          0.777
+          0.937,
+          0.778
         ],
         [
           0.61,
-          0.924,
-          0.778
+          0.925,
+          0.779
         ],
         [
           0.62,
           0.914,
-          0.778
+          0.779
         ],
         [
           0.63,
           0.909,
-          0.779
+          0.78
         ],
         [
           0.64,
-          0.905,
-          0.78
+          0.906,
+          0.781
         ],
         [
           0.65,
@@ -2929,18 +3584,18 @@
         ],
         [
           0.66,
-          0.895,
+          0.896,
           0.782
         ],
         [
           0.67,
-          0.888,
-          0.783
+          0.889,
+          0.784
         ],
         [
           0.68,
-          0.881,
-          0.784
+          0.882,
+          0.785
         ],
         [
           0.69,
@@ -2949,161 +3604,204 @@
         ],
         [
           0.7,
-          0.874,
-          0.787
+          0.875,
+          0.788
         ],
         [
           0.71,
-          0.864,
+          0.865,
           0.789
         ],
         [
           0.72,
-          0.857,
-          0.79
+          0.858,
+          0.791
         ],
         [
           0.73,
-          0.855,
-          0.792
+          0.856,
+          0.793
         ],
         [
           0.74,
-          0.85,
-          0.794
+          0.851,
+          0.795
         ],
         [
           0.75,
-          0.85,
-          0.796
+          0.851,
+          0.797
         ],
         [
           0.76,
-          0.848,
-          0.798
+          0.85,
+          0.799
         ],
         [
           0.77,
-          0.845,
+          0.846,
           0.801
         ],
         [
           0.78,
-          0.843,
+          0.844,
           0.803
         ],
         [
           0.79,
-          0.84,
-          0.805
+          0.841,
+          0.806
         ],
         [
           0.8,
-          0.837,
+          0.838,
           0.808
         ],
         [
           0.81,
-          0.835,
-          0.81
+          0.836,
+          0.811
         ],
         [
           0.82,
-          0.833,
+          0.834,
           0.813
         ],
         [
           0.83,
-          0.833,
+          0.834,
           0.816
         ],
         [
           0.84,
-          0.83,
-          0.818
+          0.831,
+          0.819
         ],
         [
           0.85,
-          0.826,
+          0.827,
           0.821
         ],
         [
           0.86,
-          0.826,
+          0.827,
           0.824
         ],
         [
           0.87,
-          0.824,
-          0.826
+          0.826,
+          0.827
         ],
         [
           0.88,
-          0.821,
+          0.822,
           0.829
         ],
         [
           0.89,
-          0.818,
-          0.831
+          0.819,
+          0.832
         ],
         [
           0.9,
-          0.816,
-          0.834
+          0.817,
+          0.835
         ],
         [
           0.91,
-          0.816,
-          0.836
+          0.817,
+          0.837
         ],
         [
           0.92,
-          0.816,
+          0.817,
           0.839
         ],
         [
           0.93,
-          0.809,
-          0.841
+          0.81,
+          0.842
         ],
         [
           0.94,
-          0.805,
-          0.843
+          0.807,
+          0.844
         ],
         [
           0.95,
-          0.793,
-          0.845
+          0.795,
+          0.846
         ],
         [
           0.96,
-          0.788,
-          0.847
+          0.79,
+          0.848
         ],
         [
           0.97,
-          0.785,
-          0.849
+          0.786,
+          0.85
         ],
         [
           0.98,
-          0.783,
-          0.851
+          0.785,
+          0.852
         ],
         [
           0.99,
-          0.781,
-          0.853
+          0.783,
+          0.854
         ],
         [
           1.0,
-          0.775,
-          0.854
+          0.776,
+          0.855
         ]
       ],
       "early_retention": 0.833
+    },
+    {
+      "video_id": "BVBKCqgvW4Y",
+      "url": "https://youtube.com/shorts/BVBKCqgvW4Y",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [
+        "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5"
+      ],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Russell Westbrook Gets SHOCKED With His Jersey Retirement Date",
+      "published_at": "2026-11-03T18:00:28Z",
+      "age_hours": 90.6,
+      "views": 1033,
+      "engaged_views": 376,
+      "likes": 20,
+      "comments": 1,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 11.41,
+      "average_view_percentage": 89.0,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 110.0,
+      "shares": 0,
+      "subscribers_gained": 0
     },
     {
       "video_id": "yVNgqINv6e4",
@@ -3132,17 +3830,17 @@
       "scene_changes_before_5s": null,
       "title": "Victor Wembanyama: Wemby Gets REAL About American Relationships \ud83d\ude33",
       "published_at": "2026-11-02T21:00:38Z",
-      "age_hours": 87.5,
-      "views": 1228,
-      "engaged_views": 627,
+      "age_hours": 111.6,
+      "views": 1240,
+      "engaged_views": 637,
       "likes": 20,
       "comments": 1,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 14.03,
+      "views_per_hour": 11.12,
       "average_view_percentage": 76.2,
       "average_view_duration_s": 20.0,
-      "estimated_minutes_watched": 224.0,
+      "estimated_minutes_watched": 227.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_curve": [
@@ -3158,33 +3856,33 @@
         ],
         [
           0.03,
-          1.349,
+          1.347,
           0.57
         ],
         [
           0.04,
-          1.314,
+          1.312,
           0.553
         ],
         [
           0.05,
-          1.279,
+          1.277,
           0.537
         ],
         [
           0.06,
-          1.254,
+          1.252,
           0.522
         ],
         [
           0.07,
-          1.247,
-          0.508
+          1.246,
+          0.509
         ],
         [
           0.08,
-          1.231,
-          0.496
+          1.232,
+          0.497
         ],
         [
           0.09,
@@ -3193,237 +3891,237 @@
         ],
         [
           0.1,
-          1.218,
-          0.476
+          1.219,
+          0.477
         ],
         [
           0.11,
           1.209,
-          0.468
+          0.469
         ],
         [
           0.12,
-          1.198,
+          1.195,
           0.461
         ],
         [
           0.13,
-          1.19,
-          0.454
+          1.187,
+          0.455
         ],
         [
           0.14,
-          1.182,
-          0.448
+          1.179,
+          0.449
         ],
         [
           0.15,
-          1.175,
-          0.443
+          1.173,
+          0.444
         ],
         [
           0.16,
-          1.156,
-          0.438
+          1.154,
+          0.439
         ],
         [
           0.17,
-          1.12,
-          0.433
+          1.118,
+          0.434
         ],
         [
           0.18,
-          1.099,
-          0.429
+          1.098,
+          0.43
         ],
         [
           0.19,
-          1.064,
-          0.425
+          1.063,
+          0.427
         ],
         [
           0.2,
-          1.042,
-          0.422
+          1.041,
+          0.423
         ],
         [
           0.21,
-          1.003,
-          0.419
+          1.002,
+          0.42
         ],
         [
           0.22,
-          0.989,
-          0.416
+          0.987,
+          0.418
         ],
         [
           0.23,
-          0.975,
-          0.414
+          0.973,
+          0.415
         ],
         [
           0.24,
-          0.96,
-          0.412
+          0.959,
+          0.414
         ],
         [
           0.25,
-          0.954,
-          0.41
+          0.953,
+          0.412
         ],
         [
           0.26,
-          0.938,
-          0.409
+          0.937,
+          0.411
         ],
         [
           0.27,
-          0.925,
-          0.408
+          0.924,
+          0.41
         ],
         [
           0.28,
-          0.914,
-          0.408
+          0.913,
+          0.41
         ],
         [
           0.29,
-          0.906,
-          0.408
+          0.905,
+          0.41
         ],
         [
           0.3,
           0.876,
-          0.408
+          0.41
         ],
         [
           0.31,
           0.841,
-          0.409
-        ],
-        [
-          0.32,
-          0.817,
-          0.41
-        ],
-        [
-          0.33,
-          0.804,
           0.411
         ],
         [
-          0.34,
-          0.797,
+          0.32,
+          0.819,
+          0.411
+        ],
+        [
+          0.33,
+          0.806,
           0.413
         ],
         [
+          0.34,
+          0.8,
+          0.414
+        ],
+        [
           0.35,
-          0.794,
-          0.415
+          0.795,
+          0.416
         ],
         [
           0.36,
-          0.789,
-          0.417
+          0.791,
+          0.419
         ],
         [
           0.37,
-          0.775,
-          0.42
+          0.776,
+          0.421
         ],
         [
           0.38,
-          0.769,
-          0.423
+          0.77,
+          0.425
         ],
         [
           0.39,
-          0.769,
-          0.427
+          0.77,
+          0.428
         ],
         [
           0.4,
           0.762,
-          0.43
+          0.432
         ],
         [
           0.41,
           0.761,
-          0.435
+          0.436
         ],
         [
           0.42,
           0.756,
-          0.44
+          0.441
         ],
         [
           0.43,
-          0.746,
-          0.445
+          0.747,
+          0.446
         ],
         [
           0.44,
           0.74,
-          0.451
+          0.452
         ],
         [
           0.45,
           0.737,
-          0.457
+          0.458
         ],
         [
           0.46,
           0.729,
-          0.464
+          0.465
         ],
         [
           0.47,
-          0.716,
-          0.471
+          0.717,
+          0.472
         ],
         [
           0.48,
-          0.708,
-          0.479
+          0.71,
+          0.48
         ],
         [
           0.49,
-          0.702,
-          0.487
+          0.704,
+          0.488
         ],
         [
           0.5,
-          0.702,
-          0.496
+          0.704,
+          0.497
         ],
         [
           0.51,
-          0.697,
-          0.505
+          0.699,
+          0.506
         ],
         [
           0.52,
-          0.687,
-          0.514
+          0.69,
+          0.515
         ],
         [
           0.53,
-          0.681,
-          0.524
+          0.683,
+          0.525
         ],
         [
           0.54,
-          0.668,
-          0.534
+          0.669,
+          0.535
         ],
         [
           0.55,
-          0.66,
-          0.544
+          0.661,
+          0.545
         ],
         [
           0.56,
-          0.662,
+          0.663,
           0.555
         ],
         [
@@ -3433,7 +4131,7 @@
         ],
         [
           0.58,
-          0.651,
+          0.65,
           0.575
         ],
         [
@@ -3444,287 +4142,210 @@
         [
           0.6,
           0.641,
-          0.595
+          0.594
         ],
         [
           0.61,
-          0.632,
-          0.604
+          0.631,
+          0.603
         ],
         [
           0.62,
           0.63,
-          0.613
+          0.612
         ],
         [
           0.63,
           0.628,
-          0.622
+          0.621
         ],
         [
           0.64,
           0.627,
-          0.63
+          0.629
         ],
         [
           0.65,
           0.627,
-          0.638
+          0.637
         ],
         [
           0.66,
           0.625,
-          0.646
+          0.645
         ],
         [
           0.67,
           0.625,
-          0.653
+          0.652
         ],
         [
           0.68,
           0.622,
-          0.66
+          0.659
         ],
         [
           0.69,
           0.619,
-          0.667
+          0.666
         ],
         [
           0.7,
           0.619,
-          0.674
+          0.672
         ],
         [
           0.71,
-          0.617,
-          0.68
+          0.616,
+          0.678
         ],
         [
           0.72,
-          0.617,
-          0.686
+          0.616,
+          0.684
         ],
         [
           0.73,
-          0.612,
-          0.691
+          0.611,
+          0.69
         ],
         [
           0.74,
-          0.611,
-          0.697
+          0.609,
+          0.695
         ],
         [
           0.75,
-          0.611,
-          0.702
+          0.609,
+          0.701
         ],
         [
           0.76,
-          0.609,
-          0.707
+          0.608,
+          0.706
         ],
         [
           0.77,
-          0.606,
-          0.713
+          0.605,
+          0.711
         ],
         [
           0.78,
-          0.598,
-          0.718
+          0.597,
+          0.716
         ],
         [
           0.79,
-          0.597,
-          0.723
+          0.595,
+          0.721
         ],
         [
           0.8,
-          0.593,
-          0.728
+          0.592,
+          0.726
         ],
         [
           0.81,
-          0.59,
-          0.733
+          0.589,
+          0.732
         ],
         [
           0.82,
-          0.59,
-          0.738
+          0.589,
+          0.737
         ],
         [
           0.83,
-          0.589,
-          0.744
+          0.587,
+          0.742
         ],
         [
           0.84,
-          0.584,
-          0.749
+          0.583,
+          0.748
         ],
         [
           0.85,
-          0.571,
-          0.755
+          0.57,
+          0.753
         ],
         [
           0.86,
-          0.547,
-          0.761
+          0.546,
+          0.759
         ],
         [
           0.87,
-          0.533,
-          0.766
+          0.531,
+          0.765
         ],
         [
           0.88,
-          0.525,
-          0.772
+          0.523,
+          0.771
         ],
         [
           0.89,
-          0.515,
-          0.778
+          0.513,
+          0.777
         ],
         [
           0.9,
-          0.504,
-          0.785
+          0.502,
+          0.783
         ],
         [
           0.91,
-          0.498,
-          0.791
+          0.496,
+          0.789
         ],
         [
           0.92,
-          0.49,
-          0.797
+          0.488,
+          0.795
         ],
         [
           0.93,
-          0.475,
-          0.803
+          0.474,
+          0.801
         ],
         [
           0.94,
-          0.467,
-          0.808
+          0.466,
+          0.807
         ],
         [
           0.95,
-          0.466,
-          0.814
+          0.465,
+          0.813
         ],
         [
           0.96,
-          0.458,
-          0.819
+          0.457,
+          0.818
         ],
         [
           0.97,
-          0.451,
-          0.824
+          0.45,
+          0.823
         ],
         [
           0.98,
-          0.451,
-          0.828
+          0.45,
+          0.827
         ],
         [
           0.99,
-          0.451,
-          0.832
+          0.45,
+          0.831
         ],
         [
           1.0,
-          0.45,
-          0.835
+          0.449,
+          0.834
         ]
       ],
-      "early_retention": 0.841
-    },
-    {
-      "video_id": "b580p4O0MRE",
-      "url": "https://youtube.com/shorts/b580p4O0MRE",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Northern Kentucky Team Finally Freed After 40+ Minutes Stuck In A Broken Elevator",
-      "published_at": "2026-11-05T00:00:26Z",
-      "age_hours": 36.5,
-      "views": 461,
-      "engaged_views": 461,
-      "likes": 4,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 12.62
-    },
-    {
-      "video_id": "9oF54-LW9WY",
-      "url": "https://youtube.com/shorts/9oF54-LW9WY",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "William Contreras Surprises Sandwich Vendor With Unexpected Kindness",
-      "published_at": "2026-11-04T00:00:37Z",
-      "age_hours": 60.5,
-      "views": 689,
-      "engaged_views": 68,
-      "likes": 12,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 11.38,
-      "average_view_percentage": 87.0,
-      "average_view_duration_s": 11.0,
-      "estimated_minutes_watched": 17.0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "early_retention": 0.839
     },
     {
       "video_id": "ApExYC-09oo",
@@ -3757,14 +4378,14 @@
       "scene_changes_before_5s": null,
       "title": "Ernie Johnson Hears Chuck Say What He Means To Everyone After Retiring",
       "published_at": "2026-10-29T16:00:12Z",
-      "age_hours": 188.5,
-      "views": 2083,
+      "age_hours": 212.6,
+      "views": 2084,
       "engaged_views": 1045,
       "likes": 63,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 11.05,
+      "views_per_hour": 9.8,
       "average_view_percentage": 73.6,
       "average_view_duration_s": 27.0,
       "estimated_minutes_watched": 510.0,
@@ -4275,6 +4896,47 @@
       "early_retention": 0.851
     },
     {
+      "video_id": "b580p4O0MRE",
+      "url": "https://youtube.com/shorts/b580p4O0MRE",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Northern Kentucky Team Finally Freed After 40+ Minutes Stuck In A Broken Elevator",
+      "published_at": "2026-11-05T00:00:26Z",
+      "age_hours": 60.6,
+      "views": 582,
+      "engaged_views": 145,
+      "likes": 6,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 9.61,
+      "average_view_percentage": 49.5,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 35.0,
+      "shares": 0,
+      "subscribers_gained": 0
+    },
+    {
       "video_id": "1QLxxdf0tqI",
       "url": "https://youtube.com/shorts/1QLxxdf0tqI",
       "catalog_id": null,
@@ -4301,28 +4963,28 @@
       "scene_changes_before_5s": null,
       "title": "Charlotte Basketball: Charlotte Calls A Timeout They Don't Have And It Costs Them Against North",
       "published_at": "2026-11-01T18:00:27Z",
-      "age_hours": 114.5,
-      "views": 1242,
-      "engaged_views": 617,
+      "age_hours": 138.6,
+      "views": 1248,
+      "engaged_views": 622,
       "likes": 12,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 10.84,
-      "average_view_percentage": 82.5,
+      "views_per_hour": 9.01,
+      "average_view_percentage": 82.7,
       "average_view_duration_s": 21.0,
-      "estimated_minutes_watched": 230.0,
+      "estimated_minutes_watched": 232.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_curve": [
         [
           0.01,
-          1.511,
+          1.51,
           0.624
         ],
         [
           0.02,
-          1.499,
+          1.498,
           0.608
         ],
         [
@@ -4332,7 +4994,7 @@
         ],
         [
           0.04,
-          1.404,
+          1.403,
           0.576
         ],
         [
@@ -4357,22 +5019,22 @@
         ],
         [
           0.09,
-          1.295,
+          1.296,
           0.516
         ],
         [
           0.1,
-          1.29,
+          1.289,
           0.508
         ],
         [
           0.11,
-          1.282,
+          1.281,
           0.502
         ],
         [
           0.12,
-          1.276,
+          1.275,
           0.496
         ],
         [
@@ -4382,12 +5044,12 @@
         ],
         [
           0.14,
-          1.261,
+          1.26,
           0.487
         ],
         [
           0.15,
-          1.258,
+          1.257,
           0.483
         ],
         [
@@ -4418,56 +5080,56 @@
         [
           0.21,
           1.135,
-          0.466
+          0.465
         ],
         [
           0.22,
-          1.126,
+          1.127,
           0.463
         ],
         [
           0.23,
-          1.115,
+          1.116,
           0.462
         ],
         [
           0.24,
-          1.096,
+          1.097,
           0.46
         ],
         [
           0.25,
-          1.075,
-          0.459
+          1.076,
+          0.458
         ],
         [
           0.26,
-          1.053,
+          1.055,
           0.457
         ],
         [
           0.27,
-          1.034,
+          1.035,
           0.456
         ],
         [
           0.28,
-          1.013,
+          1.014,
           0.455
         ],
         [
           0.29,
-          1.002,
+          1.003,
           0.454
         ],
         [
           0.3,
-          0.977,
+          0.979,
           0.454
         ],
         [
           0.31,
-          0.968,
+          0.97,
           0.453
         ],
         [
@@ -4478,7 +5140,7 @@
         [
           0.33,
           0.947,
-          0.453
+          0.452
         ],
         [
           0.34,
@@ -4487,340 +5149,340 @@
         ],
         [
           0.35,
-          0.927,
+          0.928,
           0.452
         ],
         [
           0.36,
-          0.919,
-          0.453
+          0.92,
+          0.452
         ],
         [
           0.37,
-          0.912,
-          0.453
+          0.913,
+          0.452
         ],
         [
           0.38,
-          0.906,
-          0.453
+          0.907,
+          0.452
         ],
         [
           0.39,
-          0.893,
+          0.894,
           0.453
         ],
         [
           0.4,
-          0.88,
-          0.454
+          0.881,
+          0.453
         ],
         [
           0.41,
-          0.872,
+          0.873,
           0.454
         ],
         [
           0.42,
-          0.853,
-          0.455
+          0.85,
+          0.454
         ],
         [
           0.43,
-          0.827,
-          0.456
+          0.825,
+          0.455
         ],
         [
           0.44,
-          0.822,
-          0.457
+          0.82,
+          0.456
         ],
         [
           0.45,
-          0.805,
-          0.459
+          0.804,
+          0.457
         ],
         [
           0.46,
-          0.797,
-          0.46
+          0.796,
+          0.459
         ],
         [
           0.47,
-          0.783,
-          0.462
+          0.781,
+          0.46
         ],
         [
           0.48,
-          0.775,
-          0.464
+          0.773,
+          0.462
         ],
         [
           0.49,
-          0.768,
-          0.466
+          0.767,
+          0.464
         ],
         [
           0.5,
-          0.763,
-          0.468
+          0.762,
+          0.467
         ],
         [
           0.51,
-          0.76,
-          0.471
+          0.759,
+          0.469
         ],
         [
           0.52,
-          0.755,
-          0.474
+          0.754,
+          0.472
         ],
         [
           0.53,
-          0.752,
-          0.477
+          0.751,
+          0.475
         ],
         [
           0.54,
-          0.752,
-          0.481
+          0.751,
+          0.479
         ],
         [
           0.55,
-          0.747,
-          0.484
+          0.746,
+          0.483
         ],
         [
           0.56,
-          0.739,
-          0.489
+          0.738,
+          0.487
         ],
         [
           0.57,
-          0.728,
-          0.493
+          0.727,
+          0.491
         ],
         [
           0.58,
-          0.72,
-          0.498
+          0.719,
+          0.496
         ],
         [
           0.59,
-          0.716,
-          0.503
+          0.715,
+          0.501
         ],
         [
           0.6,
-          0.716,
-          0.508
+          0.715,
+          0.506
         ],
         [
           0.61,
-          0.718,
-          0.514
+          0.717,
+          0.512
         ],
         [
           0.62,
-          0.715,
-          0.519
+          0.714,
+          0.517
         ],
         [
           0.63,
-          0.707,
-          0.525
+          0.706,
+          0.523
         ],
         [
           0.64,
           0.703,
-          0.531
+          0.529
         ],
         [
           0.65,
-          0.697,
-          0.537
+          0.696,
+          0.535
         ],
         [
           0.66,
-          0.692,
-          0.544
+          0.691,
+          0.541
         ],
         [
           0.67,
-          0.679,
-          0.55
+          0.678,
+          0.547
         ],
         [
           0.68,
           0.674,
-          0.556
+          0.553
         ],
         [
           0.69,
-          0.671,
-          0.561
+          0.67,
+          0.559
         ],
         [
           0.7,
-          0.668,
-          0.567
+          0.667,
+          0.565
         ],
         [
           0.71,
-          0.663,
-          0.573
+          0.662,
+          0.57
         ],
         [
           0.72,
           0.653,
-          0.578
+          0.576
         ],
         [
           0.73,
           0.65,
-          0.583
+          0.581
         ],
         [
           0.74,
           0.645,
-          0.588
+          0.585
         ],
         [
           0.75,
-          0.634,
-          0.592
+          0.633,
+          0.59
         ],
         [
           0.76,
           0.627,
-          0.597
+          0.594
         ],
         [
           0.77,
           0.621,
-          0.601
+          0.599
         ],
         [
           0.78,
           0.611,
-          0.605
+          0.603
         ],
         [
           0.79,
           0.608,
-          0.609
+          0.607
         ],
         [
           0.8,
           0.606,
-          0.612
+          0.61
         ],
         [
           0.81,
           0.605,
-          0.616
+          0.614
         ],
         [
           0.82,
           0.603,
-          0.62
+          0.617
         ],
         [
           0.83,
-          0.596,
-          0.623
+          0.597,
+          0.621
         ],
         [
           0.84,
           0.592,
-          0.627
+          0.625
         ],
         [
           0.85,
           0.585,
-          0.63
+          0.628
         ],
         [
           0.86,
-          0.575,
-          0.633
+          0.576,
+          0.631
         ],
         [
           0.87,
           0.572,
-          0.637
+          0.635
         ],
         [
           0.88,
-          0.567,
-          0.64
+          0.568,
+          0.638
         ],
         [
           0.89,
           0.564,
-          0.643
+          0.642
         ],
         [
           0.9,
-          0.557,
-          0.647
+          0.558,
+          0.645
         ],
         [
           0.91,
-          0.553,
-          0.65
+          0.551,
+          0.648
         ],
         [
           0.92,
-          0.551,
-          0.653
+          0.55,
+          0.651
         ],
         [
           0.93,
-          0.541,
-          0.655
+          0.54,
+          0.654
         ],
         [
           0.94,
-          0.54,
-          0.658
+          0.539,
+          0.656
         ],
         [
           0.95,
-          0.536,
-          0.66
+          0.535,
+          0.659
         ],
         [
           0.96,
-          0.527,
-          0.662
+          0.526,
+          0.661
         ],
         [
           0.97,
-          0.277,
-          0.664
+          0.276,
+          0.662
         ],
         [
           0.98,
-          0.272,
-          0.665
+          0.27,
+          0.664
         ],
         [
           0.99,
-          0.272,
-          0.666
+          0.27,
+          0.665
         ],
         [
           1.0,
-          0.272,
-          0.667
+          0.27,
+          0.666
         ]
       ],
       "early_retention": 0.844
     },
     {
-      "video_id": "vjgdN5yXCSs",
-      "url": "https://youtube.com/shorts/vjgdN5yXCSs",
+      "video_id": "9oF54-LW9WY",
+      "url": "https://youtube.com/shorts/9oF54-LW9WY",
       "catalog_id": null,
       "streamer": null,
       "series": null,
@@ -4843,19 +5505,19 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Alexander Volkanovski Says He'd Fight Topuria Again Before He Retires",
-      "published_at": "2026-11-01T15:00:13Z",
-      "age_hours": 117.5,
-      "views": 1149,
-      "engaged_views": 489,
-      "likes": 15,
+      "title": "William Contreras Surprises Sandwich Vendor With Unexpected Kindness",
+      "published_at": "2026-11-04T00:00:37Z",
+      "age_hours": 84.6,
+      "views": 706,
+      "engaged_views": 156,
+      "likes": 12,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 9.78,
-      "average_view_percentage": 184.9,
-      "average_view_duration_s": 35.0,
-      "estimated_minutes_watched": 303.0,
+      "views_per_hour": 8.35,
+      "average_view_percentage": 94.9,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 39.0,
       "shares": 0,
       "subscribers_gained": 0
     },
@@ -4886,526 +5548,526 @@
       "scene_changes_before_5s": null,
       "title": "Tyrese Maxey Takes Pride In His Diaper Changing Speed, Then Gets Told About LaMelo",
       "published_at": "2026-10-31T23:00:03Z",
-      "age_hours": 133.5,
-      "views": 1272,
-      "engaged_views": 640,
+      "age_hours": 157.6,
+      "views": 1285,
+      "engaged_views": 652,
       "likes": 21,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 9.53,
-      "average_view_percentage": 60.5,
+      "views_per_hour": 8.16,
+      "average_view_percentage": 60.9,
       "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 187.0,
-      "shares": 0,
+      "estimated_minutes_watched": 191.0,
+      "shares": 2,
       "subscribers_gained": 0,
       "retention_curve": [
         [
           0.01,
-          1.286,
-          0.541
+          1.296,
+          0.546
         ],
         [
           0.02,
-          1.278,
-          0.519
+          1.289,
+          0.524
         ],
         [
           0.03,
-          1.242,
-          0.498
+          1.25,
+          0.503
         ],
         [
           0.04,
-          1.209,
-          0.476
+          1.217,
+          0.482
         ],
         [
           0.05,
-          1.188,
-          0.456
+          1.192,
+          0.461
         ],
         [
           0.06,
-          1.163,
-          0.437
+          1.166,
+          0.442
         ],
         [
           0.07,
-          1.159,
-          0.419
+          1.163,
+          0.425
         ],
         [
           0.08,
-          1.141,
-          0.404
+          1.144,
+          0.409
         ],
         [
           0.09,
-          1.13,
-          0.389
+          1.132,
+          0.395
         ],
         [
           0.1,
-          1.128,
-          0.377
+          1.131,
+          0.383
         ],
         [
           0.11,
-          1.116,
-          0.366
+          1.118,
+          0.372
         ],
         [
           0.12,
-          1.108,
-          0.355
+          1.107,
+          0.362
         ],
         [
           0.13,
-          1.102,
-          0.346
+          1.1,
+          0.353
         ],
         [
           0.14,
-          1.097,
-          0.337
+          1.095,
+          0.344
         ],
         [
           0.15,
-          1.083,
-          0.33
+          1.081,
+          0.336
         ],
         [
           0.16,
-          1.075,
-          0.322
+          1.074,
+          0.329
         ],
         [
           0.17,
-          1.036,
-          0.316
+          1.035,
+          0.323
         ],
         [
           0.18,
           1.023,
-          0.309
+          0.317
         ],
         [
           0.19,
           1.002,
-          0.304
+          0.311
         ],
         [
           0.2,
-          0.953,
-          0.299
+          0.954,
+          0.306
         ],
         [
           0.21,
-          0.92,
-          0.294
+          0.922,
+          0.302
         ],
         [
           0.22,
           0.891,
-          0.29
+          0.298
         ],
         [
           0.23,
           0.85,
-          0.286
+          0.294
         ],
         [
           0.24,
           0.82,
-          0.283
+          0.291
         ],
         [
           0.25,
-          0.812,
-          0.281
+          0.813,
+          0.289
         ],
         [
           0.26,
           0.808,
-          0.279
+          0.287
         ],
         [
           0.27,
-          0.787,
-          0.277
+          0.788,
+          0.285
         ],
         [
           0.28,
-          0.775,
-          0.276
+          0.777,
+          0.284
         ],
         [
           0.29,
-          0.744,
-          0.275
-        ],
-        [
-          0.3,
-          0.72,
-          0.274
-        ],
-        [
-          0.31,
-          0.709,
-          0.274
-        ],
-        [
-          0.32,
-          0.708,
-          0.274
-        ],
-        [
-          0.33,
-          0.702,
-          0.274
-        ],
-        [
-          0.34,
-          0.692,
-          0.274
-        ],
-        [
-          0.35,
-          0.68,
-          0.275
-        ],
-        [
-          0.36,
-          0.67,
-          0.276
-        ],
-        [
-          0.37,
-          0.662,
-          0.277
-        ],
-        [
-          0.38,
-          0.652,
-          0.278
-        ],
-        [
-          0.39,
-          0.636,
-          0.28
-        ],
-        [
-          0.4,
-          0.622,
-          0.282
-        ],
-        [
-          0.41,
-          0.611,
+          0.747,
           0.283
         ],
         [
-          0.42,
-          0.603,
+          0.3,
+          0.723,
+          0.282
+        ],
+        [
+          0.31,
+          0.713,
+          0.282
+        ],
+        [
+          0.32,
+          0.71,
+          0.282
+        ],
+        [
+          0.33,
+          0.703,
+          0.282
+        ],
+        [
+          0.34,
+          0.694,
+          0.282
+        ],
+        [
+          0.35,
+          0.682,
+          0.283
+        ],
+        [
+          0.36,
+          0.673,
+          0.284
+        ],
+        [
+          0.37,
+          0.665,
+          0.285
+        ],
+        [
+          0.38,
+          0.654,
           0.286
         ],
         [
-          0.43,
-          0.598,
+          0.39,
+          0.637,
           0.288
         ],
         [
-          0.44,
-          0.586,
+          0.4,
+          0.624,
+          0.289
+        ],
+        [
+          0.41,
+          0.613,
           0.291
         ],
         [
-          0.45,
-          0.578,
+          0.42,
+          0.605,
           0.293
         ],
         [
-          0.46,
-          0.57,
+          0.43,
+          0.601,
           0.296
         ],
         [
+          0.44,
+          0.588,
+          0.298
+        ],
+        [
+          0.45,
+          0.581,
+          0.301
+        ],
+        [
+          0.46,
+          0.573,
+          0.304
+        ],
+        [
           0.47,
-          0.558,
-          0.3
+          0.561,
+          0.308
         ],
         [
           0.48,
-          0.552,
-          0.303
-        ],
-        [
-          0.49,
-          0.534,
-          0.307
-        ],
-        [
-          0.5,
-          0.528,
+          0.554,
           0.311
         ],
         [
-          0.51,
-          0.512,
+          0.49,
+          0.538,
           0.315
         ],
         [
-          0.52,
-          0.502,
+          0.5,
+          0.531,
           0.319
         ],
         [
+          0.51,
+          0.516,
+          0.323
+        ],
+        [
+          0.52,
+          0.505,
+          0.328
+        ],
+        [
           0.53,
-          0.492,
-          0.324
+          0.496,
+          0.333
         ],
         [
           0.54,
-          0.489,
-          0.33
+          0.493,
+          0.339
         ],
         [
           0.55,
-          0.48,
-          0.335
+          0.484,
+          0.345
         ],
         [
           0.56,
-          0.473,
-          0.342
+          0.478,
+          0.351
         ],
         [
           0.57,
-          0.458,
-          0.349
+          0.462,
+          0.358
         ],
         [
           0.58,
-          0.45,
-          0.356
+          0.455,
+          0.366
         ],
         [
           0.59,
-          0.441,
-          0.364
+          0.445,
+          0.375
         ],
         [
           0.6,
-          0.431,
-          0.373
+          0.436,
+          0.384
         ],
         [
           0.61,
-          0.43,
-          0.382
+          0.435,
+          0.394
         ],
         [
           0.62,
-          0.427,
-          0.392
+          0.432,
+          0.404
         ],
         [
           0.63,
-          0.422,
-          0.403
+          0.427,
+          0.415
         ],
         [
           0.64,
-          0.419,
-          0.414
+          0.424,
+          0.426
         ],
         [
           0.65,
-          0.409,
-          0.425
-        ],
-        [
-          0.66,
-          0.402,
+          0.415,
           0.437
         ],
         [
-          0.67,
-          0.392,
+          0.66,
+          0.407,
           0.448
         ],
         [
-          0.68,
-          0.391,
+          0.67,
+          0.398,
           0.46
         ],
         [
-          0.69,
-          0.386,
+          0.68,
+          0.396,
           0.471
         ],
         [
-          0.7,
-          0.383,
+          0.69,
+          0.392,
           0.482
         ],
         [
-          0.71,
-          0.381,
+          0.7,
+          0.389,
           0.493
         ],
         [
-          0.72,
-          0.38,
+          0.71,
+          0.387,
           0.504
         ],
         [
-          0.73,
-          0.372,
+          0.72,
+          0.386,
           0.514
         ],
         [
-          0.74,
-          0.369,
+          0.73,
+          0.376,
           0.524
         ],
         [
-          0.75,
-          0.367,
+          0.74,
+          0.373,
           0.533
         ],
         [
-          0.76,
-          0.362,
-          0.543
+          0.75,
+          0.372,
+          0.542
         ],
         [
-          0.77,
-          0.356,
+          0.76,
+          0.367,
           0.552
         ],
         [
+          0.77,
+          0.361,
+          0.56
+        ],
+        [
           0.78,
-          0.35,
-          0.561
+          0.355,
+          0.569
         ],
         [
           0.79,
-          0.347,
-          0.57
+          0.352,
+          0.578
         ],
         [
           0.8,
-          0.342,
-          0.579
+          0.347,
+          0.587
         ],
         [
           0.81,
-          0.338,
-          0.588
+          0.343,
+          0.596
         ],
         [
           0.82,
-          0.338,
-          0.597
+          0.343,
+          0.605
         ],
         [
           0.83,
-          0.334,
-          0.607
+          0.34,
+          0.614
         ],
         [
           0.84,
-          0.333,
-          0.616
+          0.338,
+          0.623
         ],
         [
           0.85,
-          0.33,
-          0.626
+          0.335,
+          0.633
         ],
         [
           0.86,
-          0.33,
-          0.636
+          0.335,
+          0.642
         ],
         [
           0.87,
-          0.327,
-          0.646
+          0.332,
+          0.652
         ],
         [
           0.88,
-          0.325,
-          0.656
+          0.33,
+          0.662
         ],
         [
           0.89,
-          0.325,
-          0.666
+          0.33,
+          0.672
         ],
         [
           0.9,
-          0.322,
-          0.676
+          0.327,
+          0.683
         ],
         [
           0.91,
-          0.319,
-          0.687
+          0.324,
+          0.693
         ],
         [
           0.92,
-          0.314,
-          0.697
+          0.32,
+          0.703
         ],
         [
           0.93,
-          0.308,
-          0.707
+          0.313,
+          0.713
         ],
         [
           0.94,
-          0.302,
-          0.716
+          0.307,
+          0.723
         ],
         [
           0.95,
-          0.295,
-          0.726
+          0.301,
+          0.732
         ],
         [
           0.96,
-          0.295,
-          0.734
+          0.301,
+          0.741
         ],
         [
           0.97,
-          0.292,
-          0.742
-        ],
-        [
-          0.98,
-          0.294,
+          0.298,
           0.749
         ],
         [
-          0.99,
-          0.294,
+          0.98,
+          0.299,
           0.756
         ],
         [
+          0.99,
+          0.299,
+          0.762
+        ],
+        [
           1.0,
-          0.294,
-          0.761
+          0.299,
+          0.767
         ]
       ],
-      "early_retention": 0.862
+      "early_retention": 0.854
     },
     {
-      "video_id": "S17Y0xJp6iE",
-      "url": "https://youtube.com/shorts/S17Y0xJp6iE",
+      "video_id": "vjgdN5yXCSs",
+      "url": "https://youtube.com/shorts/vjgdN5yXCSs",
       "catalog_id": null,
       "streamer": null,
       "series": null,
@@ -5428,63 +6090,19 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Ollie Gordon Tells Bettors 'I Don't Owe You Nothing' After Parlay Losses",
-      "published_at": "2026-11-02T03:00:16Z",
-      "age_hours": 105.5,
-      "views": 1000,
-      "engaged_views": 530,
-      "likes": 19,
-      "comments": 1,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 9.48,
-      "average_view_percentage": 74.1,
-      "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 172.0,
-      "shares": 1,
-      "subscribers_gained": 0
-    },
-    {
-      "video_id": "3TLsWvHn8SU",
-      "url": "https://youtube.com/shorts/3TLsWvHn8SU",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [
-        "legacy",
-        "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5"
-      ],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Nikita Kucherov Couldn't Even Watch His Own Tribute After Breaking The Lightning Record",
-      "published_at": "2026-11-02T00:00:38Z",
-      "age_hours": 108.5,
-      "views": 1016,
-      "engaged_views": 670,
-      "likes": 17,
+      "title": "Alexander Volkanovski Says He'd Fight Topuria Again Before He Retires",
+      "published_at": "2026-11-01T15:00:13Z",
+      "age_hours": 141.6,
+      "views": 1150,
+      "engaged_views": 489,
+      "likes": 15,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 9.36,
-      "average_view_percentage": 57.1,
-      "average_view_duration_s": 23.0,
-      "estimated_minutes_watched": 275.0,
+      "views_per_hour": 8.12,
+      "average_view_percentage": 70.6,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 303.0,
       "shares": 0,
       "subscribers_gained": 0
     },
@@ -5515,14 +6133,14 @@
       "scene_changes_before_5s": null,
       "title": "Ernie Johnson Announces His Final Season Hosting Inside The NBA After 37 Years",
       "published_at": "2026-10-31T00:00:34Z",
-      "age_hours": 156.5,
+      "age_hours": 180.6,
       "views": 1455,
       "engaged_views": 689,
       "likes": 38,
       "comments": 4,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 9.3,
+      "views_per_hour": 8.06,
       "average_view_percentage": 62.3,
       "average_view_duration_s": 24.0,
       "estimated_minutes_watched": 302.0,
@@ -6033,6 +6651,91 @@
       "early_retention": 0.785
     },
     {
+      "video_id": "S17Y0xJp6iE",
+      "url": "https://youtube.com/shorts/S17Y0xJp6iE",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Ollie Gordon Tells Bettors 'I Don't Owe You Nothing' After Parlay Losses",
+      "published_at": "2026-11-02T03:00:16Z",
+      "age_hours": 129.6,
+      "views": 1001,
+      "engaged_views": 532,
+      "likes": 19,
+      "comments": 1,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 7.73,
+      "average_view_percentage": 74.0,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 173.0,
+      "shares": 1,
+      "subscribers_gained": 0
+    },
+    {
+      "video_id": "3TLsWvHn8SU",
+      "url": "https://youtube.com/shorts/3TLsWvHn8SU",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [
+        "legacy",
+        "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5"
+      ],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Nikita Kucherov Couldn't Even Watch His Own Tribute After Breaking The Lightning Record",
+      "published_at": "2026-11-02T00:00:38Z",
+      "age_hours": 132.6,
+      "views": 1020,
+      "engaged_views": 679,
+      "likes": 17,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 7.69,
+      "average_view_percentage": 56.9,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 278.0,
+      "shares": 0,
+      "subscribers_gained": 0
+    },
+    {
       "video_id": "Oh2nu2LLTFM",
       "url": "https://youtube.com/shorts/Oh2nu2LLTFM",
       "catalog_id": null,
@@ -6059,17 +6762,17 @@
       "scene_changes_before_5s": null,
       "title": "J.J. McCarthy's Teammates Rush Him After His First Win As The Giants' Starting QB",
       "published_at": "2026-11-01T21:00:22Z",
-      "age_hours": 111.5,
+      "age_hours": 135.6,
       "views": 1034,
-      "engaged_views": 630,
+      "engaged_views": 634,
       "likes": 18,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 9.27,
-      "average_view_percentage": 59.7,
+      "views_per_hour": 7.63,
+      "average_view_percentage": 59.9,
       "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 177.0,
+      "estimated_minutes_watched": 179.0,
       "shares": 0,
       "subscribers_gained": 0
     },
@@ -6100,55 +6803,19 @@
       "scene_changes_before_5s": null,
       "title": "Patrick Kane Gets A Standing Ovation In Detroit And The Crowd Won't Stop",
       "published_at": "2026-10-31T17:00:09Z",
-      "age_hours": 139.5,
-      "views": 1148,
-      "engaged_views": 380,
+      "age_hours": 163.6,
+      "views": 1152,
+      "engaged_views": 382,
       "likes": 11,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 8.23,
-      "average_view_percentage": 130.3,
+      "views_per_hour": 7.04,
+      "average_view_percentage": 130.2,
       "average_view_duration_s": 10.0,
-      "estimated_minutes_watched": 76.0,
+      "estimated_minutes_watched": 77.0,
       "shares": 0,
       "subscribers_gained": 1
-    },
-    {
-      "video_id": "11ARfiB-x5o",
-      "url": "https://youtube.com/shorts/11ARfiB-x5o",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Nathan Lyon Gets Offered Sandpaper By A Fan And You Can Guess Why",
-      "published_at": "2026-11-05T18:00:02Z",
-      "age_hours": 18.5,
-      "views": 140,
-      "engaged_views": 140,
-      "likes": 1,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 7.55
     },
     {
       "video_id": "cOfcFe84NMA",
@@ -6177,522 +6844,19 @@
       "scene_changes_before_5s": null,
       "title": "Pat Murphy Tells Jake Bauers What To Remember About The Yankees",
       "published_at": "2026-10-30T16:00:23Z",
-      "age_hours": 164.5,
+      "age_hours": 188.6,
       "views": 1221,
-      "engaged_views": 480,
+      "engaged_views": 482,
       "likes": 10,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 7.42,
-      "average_view_percentage": 68.7,
+      "views_per_hour": 6.48,
+      "average_view_percentage": 68.6,
       "average_view_duration_s": 14.0,
-      "estimated_minutes_watched": 135.0,
+      "estimated_minutes_watched": 136.0,
       "shares": 1,
-      "subscribers_gained": 0,
-      "retention_curve": [
-        [
-          0.01,
-          1.304,
-          0.565
-        ],
-        [
-          0.02,
-          1.296,
-          0.546
-        ],
-        [
-          0.03,
-          1.283,
-          0.526
-        ],
-        [
-          0.04,
-          1.26,
-          0.507
-        ],
-        [
-          0.05,
-          1.24,
-          0.49
-        ],
-        [
-          0.06,
-          1.238,
-          0.474
-        ],
-        [
-          0.07,
-          1.227,
-          0.46
-        ],
-        [
-          0.08,
-          1.221,
-          0.448
-        ],
-        [
-          0.09,
-          1.21,
-          0.439
-        ],
-        [
-          0.1,
-          1.204,
-          0.431
-        ],
-        [
-          0.11,
-          1.198,
-          0.424
-        ],
-        [
-          0.12,
-          1.196,
-          0.419
-        ],
-        [
-          0.13,
-          1.192,
-          0.414
-        ],
-        [
-          0.14,
-          1.185,
-          0.411
-        ],
-        [
-          0.15,
-          1.185,
-          0.408
-        ],
-        [
-          0.16,
-          1.181,
-          0.406
-        ],
-        [
-          0.17,
-          1.175,
-          0.404
-        ],
-        [
-          0.18,
-          1.175,
-          0.403
-        ],
-        [
-          0.19,
-          1.173,
-          0.402
-        ],
-        [
-          0.2,
-          1.173,
-          0.401
-        ],
-        [
-          0.21,
-          1.123,
-          0.4
-        ],
-        [
-          0.22,
-          1.096,
-          0.4
-        ],
-        [
-          0.23,
-          1.069,
-          0.4
-        ],
-        [
-          0.24,
-          1.044,
-          0.4
-        ],
-        [
-          0.25,
-          1.002,
-          0.401
-        ],
-        [
-          0.26,
-          0.988,
-          0.402
-        ],
-        [
-          0.27,
-          0.967,
-          0.402
-        ],
-        [
-          0.28,
-          0.942,
-          0.403
-        ],
-        [
-          0.29,
-          0.925,
-          0.404
-        ],
-        [
-          0.3,
-          0.896,
-          0.405
-        ],
-        [
-          0.31,
-          0.89,
-          0.406
-        ],
-        [
-          0.32,
-          0.877,
-          0.407
-        ],
-        [
-          0.33,
-          0.846,
-          0.409
-        ],
-        [
-          0.34,
-          0.838,
-          0.41
-        ],
-        [
-          0.35,
-          0.812,
-          0.411
-        ],
-        [
-          0.36,
-          0.804,
-          0.412
-        ],
-        [
-          0.37,
-          0.796,
-          0.414
-        ],
-        [
-          0.38,
-          0.787,
-          0.415
-        ],
-        [
-          0.39,
-          0.769,
-          0.416
-        ],
-        [
-          0.4,
-          0.75,
-          0.418
-        ],
-        [
-          0.41,
-          0.725,
-          0.419
-        ],
-        [
-          0.42,
-          0.713,
-          0.42
-        ],
-        [
-          0.43,
-          0.696,
-          0.422
-        ],
-        [
-          0.44,
-          0.681,
-          0.423
-        ],
-        [
-          0.45,
-          0.667,
-          0.425
-        ],
-        [
-          0.46,
-          0.658,
-          0.426
-        ],
-        [
-          0.47,
-          0.65,
-          0.428
-        ],
-        [
-          0.48,
-          0.642,
-          0.43
-        ],
-        [
-          0.49,
-          0.631,
-          0.432
-        ],
-        [
-          0.5,
-          0.627,
-          0.434
-        ],
-        [
-          0.51,
-          0.613,
-          0.437
-        ],
-        [
-          0.52,
-          0.606,
-          0.439
-        ],
-        [
-          0.53,
-          0.592,
-          0.442
-        ],
-        [
-          0.54,
-          0.59,
-          0.446
-        ],
-        [
-          0.55,
-          0.581,
-          0.449
-        ],
-        [
-          0.56,
-          0.569,
-          0.453
-        ],
-        [
-          0.57,
-          0.552,
-          0.458
-        ],
-        [
-          0.58,
-          0.542,
-          0.462
-        ],
-        [
-          0.59,
-          0.531,
-          0.468
-        ],
-        [
-          0.6,
-          0.523,
-          0.474
-        ],
-        [
-          0.61,
-          0.508,
-          0.48
-        ],
-        [
-          0.62,
-          0.492,
-          0.487
-        ],
-        [
-          0.63,
-          0.49,
-          0.495
-        ],
-        [
-          0.64,
-          0.481,
-          0.503
-        ],
-        [
-          0.65,
-          0.469,
-          0.512
-        ],
-        [
-          0.66,
-          0.46,
-          0.521
-        ],
-        [
-          0.67,
-          0.456,
-          0.531
-        ],
-        [
-          0.68,
-          0.452,
-          0.54
-        ],
-        [
-          0.69,
-          0.446,
-          0.55
-        ],
-        [
-          0.7,
-          0.442,
-          0.56
-        ],
-        [
-          0.71,
-          0.435,
-          0.57
-        ],
-        [
-          0.72,
-          0.427,
-          0.58
-        ],
-        [
-          0.73,
-          0.419,
-          0.59
-        ],
-        [
-          0.74,
-          0.41,
-          0.599
-        ],
-        [
-          0.75,
-          0.41,
-          0.608
-        ],
-        [
-          0.76,
-          0.41,
-          0.616
-        ],
-        [
-          0.77,
-          0.402,
-          0.625
-        ],
-        [
-          0.78,
-          0.396,
-          0.633
-        ],
-        [
-          0.79,
-          0.388,
-          0.64
-        ],
-        [
-          0.8,
-          0.385,
-          0.648
-        ],
-        [
-          0.81,
-          0.377,
-          0.656
-        ],
-        [
-          0.82,
-          0.373,
-          0.663
-        ],
-        [
-          0.83,
-          0.369,
-          0.67
-        ],
-        [
-          0.84,
-          0.365,
-          0.677
-        ],
-        [
-          0.85,
-          0.362,
-          0.685
-        ],
-        [
-          0.86,
-          0.36,
-          0.692
-        ],
-        [
-          0.87,
-          0.358,
-          0.699
-        ],
-        [
-          0.88,
-          0.356,
-          0.705
-        ],
-        [
-          0.89,
-          0.352,
-          0.712
-        ],
-        [
-          0.9,
-          0.346,
-          0.719
-        ],
-        [
-          0.91,
-          0.342,
-          0.725
-        ],
-        [
-          0.92,
-          0.34,
-          0.731
-        ],
-        [
-          0.93,
-          0.34,
-          0.736
-        ],
-        [
-          0.94,
-          0.338,
-          0.741
-        ],
-        [
-          0.95,
-          0.333,
-          0.746
-        ],
-        [
-          0.96,
-          0.329,
-          0.75
-        ],
-        [
-          0.97,
-          0.327,
-          0.754
-        ],
-        [
-          0.98,
-          0.327,
-          0.757
-        ],
-        [
-          0.99,
-          0.325,
-          0.76
-        ],
-        [
-          1.0,
-          0.325,
-          0.762
-        ]
-      ],
-      "early_retention": 0.917
+      "subscribers_gained": 0
     },
     {
       "video_id": "1TQv6dNQJEc",
@@ -6721,14 +6885,14 @@
       "scene_changes_before_5s": null,
       "title": "John Wall Still Pays His Late Mother's Phone Bill So He Can Text Her",
       "published_at": "2026-10-29T20:00:08Z",
-      "age_hours": 184.5,
-      "views": 1276,
+      "age_hours": 208.6,
+      "views": 1277,
       "engaged_views": 610,
       "likes": 33,
       "comments": 2,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 6.91,
+      "views_per_hour": 6.12,
       "average_view_percentage": 117.0,
       "average_view_duration_s": 25.0,
       "estimated_minutes_watched": 272.0,
@@ -7239,42 +7403,6 @@
       "early_retention": 0.906
     },
     {
-      "video_id": "C-9crvPw-Oc",
-      "url": "https://youtube.com/shorts/C-9crvPw-Oc",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Jaquan Brisker Says Browns QB Got 'Babied' After Roughing Flag And Expects To Be Fired",
-      "published_at": "2026-11-05T21:00:35Z",
-      "age_hours": 15.5,
-      "views": 107,
-      "engaged_views": 107,
-      "likes": 1,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 6.89
-    },
-    {
       "video_id": "0FOsYi6C1sU",
       "url": "https://youtube.com/shorts/0FOsYi6C1sU",
       "catalog_id": null,
@@ -7301,15 +7429,15 @@
       "scene_changes_before_5s": null,
       "title": "Tom Brady Can't Believe The Call On This Goff Throw",
       "published_at": "2026-10-28T20:00:01Z",
-      "age_hours": 208.5,
+      "age_hours": 232.6,
       "views": 1345,
-      "engaged_views": 645,
+      "engaged_views": 646,
       "likes": 11,
       "comments": 1,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 6.45,
-      "average_view_percentage": 90.6,
+      "views_per_hour": 5.78,
+      "average_view_percentage": 90.4,
       "average_view_duration_s": 17.0,
       "estimated_minutes_watched": 196.0,
       "shares": 0,
@@ -7845,18 +7973,18 @@
       "scene_changes_before_5s": null,
       "title": "Marquis Teague Can't Believe Doron Lamb's Real Reason For Picking Kentucky",
       "published_at": "2026-11-01T02:00:39Z",
-      "age_hours": 130.5,
-      "views": 795,
-      "engaged_views": 319,
+      "age_hours": 154.6,
+      "views": 820,
+      "engaged_views": 367,
       "likes": 11,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 6.09,
-      "average_view_percentage": 77.0,
-      "average_view_duration_s": 31.0,
-      "estimated_minutes_watched": 173.0,
-      "shares": 6,
+      "views_per_hour": 5.31,
+      "average_view_percentage": 80.8,
+      "average_view_duration_s": 33.0,
+      "estimated_minutes_watched": 209.0,
+      "shares": 9,
       "subscribers_gained": 0
     },
     {
@@ -7886,19 +8014,55 @@
       "scene_changes_before_5s": null,
       "title": "Rizvan Kuniev Gives Alexander Volkov A Birthday Cake Before Their Title Fights",
       "published_at": "2026-10-30T00:00:38Z",
-      "age_hours": 180.5,
-      "views": 1057,
+      "age_hours": 204.6,
+      "views": 1058,
       "engaged_views": 486,
       "likes": 10,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 5.85,
+      "views_per_hour": 5.17,
       "average_view_percentage": 52.3,
       "average_view_duration_s": 15.0,
       "estimated_minutes_watched": 144.0,
       "shares": 0,
       "subscribers_gained": 0
+    },
+    {
+      "video_id": "C-9crvPw-Oc",
+      "url": "https://youtube.com/shorts/C-9crvPw-Oc",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Jaquan Brisker Says Browns QB Got 'Babied' After Roughing Flag And Expects To Be Fired",
+      "published_at": "2026-11-05T21:00:35Z",
+      "age_hours": 39.6,
+      "views": 199,
+      "engaged_views": 199,
+      "likes": 1,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 5.03
     },
     {
       "video_id": "vqt7WsBYxE8",
@@ -7927,19 +8091,55 @@
       "scene_changes_before_5s": null,
       "title": "Jaylen Brown Says \"No Beef\" With Tatum, Then Adds A Little Lamb Chops And Gravy",
       "published_at": "2026-10-28T16:00:08Z",
-      "age_hours": 212.5,
+      "age_hours": 236.6,
       "views": 1066,
       "engaged_views": 422,
       "likes": 19,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 5.02,
+      "views_per_hour": 4.51,
       "average_view_percentage": 77.3,
       "average_view_duration_s": 18.0,
       "estimated_minutes_watched": 142.0,
       "shares": 0,
       "subscribers_gained": 1
+    },
+    {
+      "video_id": "11ARfiB-x5o",
+      "url": "https://youtube.com/shorts/11ARfiB-x5o",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Nathan Lyon Gets Offered Sandpaper By A Fan And You Can Guess Why",
+      "published_at": "2026-11-05T18:00:02Z",
+      "age_hours": 42.6,
+      "views": 180,
+      "engaged_views": 180,
+      "likes": 1,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 4.23
     },
     {
       "video_id": "BasWgi77d84",
@@ -7968,14 +8168,14 @@
       "scene_changes_before_5s": null,
       "title": "LeBron James Gets Heated With Knicks Fan Over Midwest Claim",
       "published_at": "2026-10-26T16:00:05Z",
-      "age_hours": 260.5,
+      "age_hours": 284.6,
       "views": 1179,
       "engaged_views": 456,
       "likes": 8,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 4.53,
+      "views_per_hour": 4.14,
       "average_view_percentage": 268.2,
       "average_view_duration_s": 56.0,
       "estimated_minutes_watched": 443.0,
@@ -8012,14 +8212,14 @@
       "scene_changes_before_5s": null,
       "title": "Shai Gilgeous\u2011Alexander fights back tears after Jalen Williams' injury",
       "published_at": "2026-10-27T00:00:12Z",
-      "age_hours": 252.5,
+      "age_hours": 276.6,
       "views": 1094,
       "engaged_views": 608,
       "likes": 26,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 4.33,
+      "views_per_hour": 3.96,
       "average_view_percentage": 48.4,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 212.0,
@@ -8053,522 +8253,19 @@
       "scene_changes_before_5s": null,
       "title": "Mario Ferraro Reads The Lineup And Instantly Messes Up His Own Name Spot \ud83d\ude02",
       "published_at": "2026-10-25T16:00:19Z",
-      "age_hours": 284.5,
+      "age_hours": 308.6,
       "views": 1194,
-      "engaged_views": 537,
+      "engaged_views": 538,
       "likes": 13,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 4.2,
+      "views_per_hour": 3.87,
       "average_view_percentage": 79.2,
       "average_view_duration_s": 22.0,
       "estimated_minutes_watched": 210.0,
       "shares": 4,
-      "subscribers_gained": 0,
-      "retention_curve": [
-        [
-          0.01,
-          1.535,
-          0.632
-        ],
-        [
-          0.02,
-          1.515,
-          0.617
-        ],
-        [
-          0.03,
-          1.453,
-          0.601
-        ],
-        [
-          0.04,
-          1.377,
-          0.586
-        ],
-        [
-          0.05,
-          1.317,
-          0.572
-        ],
-        [
-          0.06,
-          1.274,
-          0.558
-        ],
-        [
-          0.07,
-          1.239,
-          0.545
-        ],
-        [
-          0.08,
-          1.22,
-          0.534
-        ],
-        [
-          0.09,
-          1.209,
-          0.523
-        ],
-        [
-          0.1,
-          1.202,
-          0.514
-        ],
-        [
-          0.11,
-          1.198,
-          0.505
-        ],
-        [
-          0.12,
-          1.188,
-          0.498
-        ],
-        [
-          0.13,
-          1.183,
-          0.49
-        ],
-        [
-          0.14,
-          1.177,
-          0.484
-        ],
-        [
-          0.15,
-          1.17,
-          0.478
-        ],
-        [
-          0.16,
-          1.127,
-          0.473
-        ],
-        [
-          0.17,
-          1.095,
-          0.468
-        ],
-        [
-          0.18,
-          1.073,
-          0.464
-        ],
-        [
-          0.19,
-          1.039,
-          0.46
-        ],
-        [
-          0.2,
-          1.013,
-          0.457
-        ],
-        [
-          0.21,
-          0.981,
-          0.454
-        ],
-        [
-          0.22,
-          0.953,
-          0.452
-        ],
-        [
-          0.23,
-          0.931,
-          0.451
-        ],
-        [
-          0.24,
-          0.91,
-          0.45
-        ],
-        [
-          0.25,
-          0.895,
-          0.45
-        ],
-        [
-          0.26,
-          0.879,
-          0.45
-        ],
-        [
-          0.27,
-          0.871,
-          0.45
-        ],
-        [
-          0.28,
-          0.866,
-          0.451
-        ],
-        [
-          0.29,
-          0.851,
-          0.452
-        ],
-        [
-          0.3,
-          0.849,
-          0.453
-        ],
-        [
-          0.31,
-          0.841,
-          0.455
-        ],
-        [
-          0.32,
-          0.836,
-          0.457
-        ],
-        [
-          0.33,
-          0.834,
-          0.459
-        ],
-        [
-          0.34,
-          0.827,
-          0.461
-        ],
-        [
-          0.35,
-          0.823,
-          0.464
-        ],
-        [
-          0.36,
-          0.819,
-          0.467
-        ],
-        [
-          0.37,
-          0.821,
-          0.469
-        ],
-        [
-          0.38,
-          0.815,
-          0.472
-        ],
-        [
-          0.39,
-          0.812,
-          0.475
-        ],
-        [
-          0.4,
-          0.812,
-          0.478
-        ],
-        [
-          0.41,
-          0.812,
-          0.481
-        ],
-        [
-          0.42,
-          0.808,
-          0.484
-        ],
-        [
-          0.43,
-          0.808,
-          0.487
-        ],
-        [
-          0.44,
-          0.806,
-          0.491
-        ],
-        [
-          0.45,
-          0.806,
-          0.494
-        ],
-        [
-          0.46,
-          0.798,
-          0.497
-        ],
-        [
-          0.47,
-          0.797,
-          0.501
-        ],
-        [
-          0.48,
-          0.787,
-          0.504
-        ],
-        [
-          0.49,
-          0.778,
-          0.507
-        ],
-        [
-          0.5,
-          0.774,
-          0.511
-        ],
-        [
-          0.51,
-          0.769,
-          0.514
-        ],
-        [
-          0.52,
-          0.757,
-          0.517
-        ],
-        [
-          0.53,
-          0.75,
-          0.521
-        ],
-        [
-          0.54,
-          0.743,
-          0.524
-        ],
-        [
-          0.55,
-          0.737,
-          0.527
-        ],
-        [
-          0.56,
-          0.731,
-          0.53
-        ],
-        [
-          0.57,
-          0.724,
-          0.533
-        ],
-        [
-          0.58,
-          0.72,
-          0.536
-        ],
-        [
-          0.59,
-          0.713,
-          0.539
-        ],
-        [
-          0.6,
-          0.709,
-          0.541
-        ],
-        [
-          0.61,
-          0.705,
-          0.543
-        ],
-        [
-          0.62,
-          0.703,
-          0.545
-        ],
-        [
-          0.63,
-          0.703,
-          0.547
-        ],
-        [
-          0.64,
-          0.698,
-          0.549
-        ],
-        [
-          0.65,
-          0.694,
-          0.551
-        ],
-        [
-          0.66,
-          0.688,
-          0.552
-        ],
-        [
-          0.67,
-          0.683,
-          0.554
-        ],
-        [
-          0.68,
-          0.677,
-          0.555
-        ],
-        [
-          0.69,
-          0.666,
-          0.556
-        ],
-        [
-          0.7,
-          0.659,
-          0.557
-        ],
-        [
-          0.71,
-          0.659,
-          0.558
-        ],
-        [
-          0.72,
-          0.651,
-          0.559
-        ],
-        [
-          0.73,
-          0.645,
-          0.56
-        ],
-        [
-          0.74,
-          0.644,
-          0.561
-        ],
-        [
-          0.75,
-          0.638,
-          0.562
-        ],
-        [
-          0.76,
-          0.634,
-          0.563
-        ],
-        [
-          0.77,
-          0.634,
-          0.565
-        ],
-        [
-          0.78,
-          0.632,
-          0.566
-        ],
-        [
-          0.79,
-          0.631,
-          0.567
-        ],
-        [
-          0.8,
-          0.631,
-          0.569
-        ],
-        [
-          0.81,
-          0.631,
-          0.57
-        ],
-        [
-          0.82,
-          0.629,
-          0.572
-        ],
-        [
-          0.83,
-          0.625,
-          0.574
-        ],
-        [
-          0.84,
-          0.625,
-          0.576
-        ],
-        [
-          0.85,
-          0.623,
-          0.578
-        ],
-        [
-          0.86,
-          0.621,
-          0.58
-        ],
-        [
-          0.87,
-          0.619,
-          0.583
-        ],
-        [
-          0.88,
-          0.619,
-          0.585
-        ],
-        [
-          0.89,
-          0.616,
-          0.588
-        ],
-        [
-          0.9,
-          0.612,
-          0.591
-        ],
-        [
-          0.91,
-          0.612,
-          0.594
-        ],
-        [
-          0.92,
-          0.605,
-          0.597
-        ],
-        [
-          0.93,
-          0.605,
-          0.6
-        ],
-        [
-          0.94,
-          0.603,
-          0.603
-        ],
-        [
-          0.95,
-          0.593,
-          0.606
-        ],
-        [
-          0.96,
-          0.586,
-          0.609
-        ],
-        [
-          0.97,
-          0.554,
-          0.611
-        ],
-        [
-          0.98,
-          0.278,
-          0.614
-        ],
-        [
-          0.99,
-          0.276,
-          0.616
-        ],
-        [
-          1.0,
-          0.271,
-          0.618
-        ]
-      ],
-      "early_retention": 0.774
+      "subscribers_gained": 0
     },
     {
       "video_id": "8yY_PMgZdns",
@@ -8597,14 +8294,14 @@
       "scene_changes_before_5s": null,
       "title": "Christian Yelich Invites Two WWII Veterans To Game 1 And Their Seats Are Unreal",
       "published_at": "2026-10-26T00:00:34Z",
-      "age_hours": 276.5,
+      "age_hours": 300.6,
       "views": 954,
       "engaged_views": 326,
       "likes": 18,
       "comments": 1,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.45,
+      "views_per_hour": 3.17,
       "average_view_percentage": 51.9,
       "average_view_duration_s": 17.0,
       "estimated_minutes_watched": 111.0,
@@ -8641,14 +8338,14 @@
       "scene_changes_before_5s": null,
       "title": "Robin Yount Walks Out For The World Series First Pitch In A Bob Uecker Jersey",
       "published_at": "2026-10-24T20:00:30Z",
-      "age_hours": 304.5,
-      "views": 1004,
+      "age_hours": 328.6,
+      "views": 1005,
       "engaged_views": 588,
       "likes": 14,
       "comments": 1,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.3,
+      "views_per_hour": 3.06,
       "average_view_percentage": 53.6,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 204.0,
@@ -8682,14 +8379,14 @@
       "scene_changes_before_5s": null,
       "title": "Kenneth Walker Tells Jalen Hurts To Stay Positive After His Blood Clots",
       "published_at": "2026-10-25T20:00:27Z",
-      "age_hours": 280.5,
-      "views": 920,
+      "age_hours": 304.6,
+      "views": 922,
       "engaged_views": 461,
       "likes": 7,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.28,
+      "views_per_hour": 3.03,
       "average_view_percentage": 65.5,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 117.0,
@@ -8723,17 +8420,17 @@
       "scene_changes_before_5s": null,
       "title": "Pat Murphy Says His Team Is 'A Bunch Of Gamers' After Sweeping The Dodgers",
       "published_at": "2026-10-17T16:00:24Z",
-      "age_hours": 476.5,
-      "views": 424,
-      "engaged_views": 182,
+      "age_hours": 500.6,
+      "views": 429,
+      "engaged_views": 185,
       "likes": 3,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.89,
-      "average_view_percentage": 116.4,
+      "views_per_hour": 0.86,
+      "average_view_percentage": 115.6,
       "average_view_duration_s": 26.0,
-      "estimated_minutes_watched": 84.0,
+      "estimated_minutes_watched": 85.0,
       "shares": 7,
       "subscribers_gained": 0
     },
@@ -8764,14 +8461,14 @@
       "scene_changes_before_5s": null,
       "title": "Alvin Kamara Gets Asked About A Rare NFL Record And Jokes About Cam",
       "published_at": "2026-10-25T00:00:09Z",
-      "age_hours": 300.5,
+      "age_hours": 324.6,
       "views": 189,
       "engaged_views": 95,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.63,
+      "views_per_hour": 0.58,
       "average_view_percentage": 93.3,
       "average_view_duration_s": 18.0,
       "estimated_minutes_watched": 30.0,
@@ -8805,14 +8502,14 @@
       "scene_changes_before_5s": null,
       "title": "Darnell Nurse Shuts Down Reporter Mark Spector With A Savage 'Low IQ' Line",
       "published_at": "2026-10-15T16:00:18Z",
-      "age_hours": 524.5,
-      "views": 240,
+      "age_hours": 548.6,
+      "views": 243,
       "engaged_views": 90,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.46,
+      "views_per_hour": 0.44,
       "average_view_percentage": 91.6,
       "average_view_duration_s": 18.0,
       "estimated_minutes_watched": 30.0,
@@ -8846,14 +8543,14 @@
       "scene_changes_before_5s": null,
       "title": "Brady Tkachuk Gets Booed By Ottawa Right After His Video Tribute",
       "published_at": "2026-10-24T16:00:22Z",
-      "age_hours": 308.5,
+      "age_hours": 332.6,
       "views": 114,
       "engaged_views": 58,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.37,
+      "views_per_hour": 0.34,
       "average_view_percentage": 68.9,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 19.0,
@@ -8887,16 +8584,16 @@
       "scene_changes_before_5s": null,
       "title": "Pat Murphy On Tarik Skubal: \"I Just Want To Step On His Throat\"",
       "published_at": "2026-10-16T00:00:19Z",
-      "age_hours": 516.5,
-      "views": 169,
-      "engaged_views": 70,
+      "age_hours": 540.6,
+      "views": 170,
+      "engaged_views": 72,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.33,
-      "average_view_percentage": 77.2,
-      "average_view_duration_s": 16.0,
+      "views_per_hour": 0.31,
+      "average_view_percentage": 76.2,
+      "average_view_duration_s": 15.0,
       "estimated_minutes_watched": 20.0,
       "shares": 1,
       "subscribers_gained": 0
@@ -8928,17 +8625,17 @@
       "scene_changes_before_5s": null,
       "title": "Kevin Garnett Is HYPED After Timberwolves Retire His Jersey",
       "published_at": "2026-10-19T16:00:28Z",
-      "age_hours": 428.5,
-      "views": 85,
-      "engaged_views": 38,
+      "age_hours": 452.6,
+      "views": 87,
+      "engaged_views": 41,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.2,
-      "average_view_percentage": 68.3,
-      "average_view_duration_s": 23.0,
-      "estimated_minutes_watched": 15.0,
+      "views_per_hour": 0.19,
+      "average_view_percentage": 70.3,
+      "average_view_duration_s": 24.0,
+      "estimated_minutes_watched": 17.0,
       "shares": 0,
       "subscribers_gained": 0
     },
@@ -8969,8 +8666,8 @@
       "scene_changes_before_5s": null,
       "title": "Marlon Humphrey Reveals Kyle Hamilton KNEW He'd Intercept Tua",
       "published_at": "2026-10-19T20:00:34Z",
-      "age_hours": 424.5,
-      "views": 65,
+      "age_hours": 448.6,
+      "views": 66,
       "engaged_views": 24,
       "likes": 0,
       "comments": 0,
@@ -9010,14 +8707,14 @@
       "scene_changes_before_5s": null,
       "title": "Ryan Fitzpatrick Says Bo Nix Is 'Disrespecting' The QB Position",
       "published_at": "2026-10-17T20:00:13Z",
-      "age_hours": 472.5,
+      "age_hours": 496.6,
       "views": 64,
       "engaged_views": 17,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.14,
+      "views_per_hour": 0.13,
       "average_view_percentage": 54.3,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 5.0,
@@ -9051,59 +8748,17 @@
       "scene_changes_before_5s": null,
       "title": "Tank Dell Can't Wait To Get Tackled After Nearly Two Years Away",
       "published_at": "2026-10-23T16:00:23Z",
-      "age_hours": 332.5,
+      "age_hours": 356.6,
       "views": 45,
       "engaged_views": 22,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.14,
+      "views_per_hour": 0.13,
       "average_view_percentage": 52.5,
       "average_view_duration_s": 17.0,
       "estimated_minutes_watched": 7.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "GcagQ2ajkdY",
-      "url": "https://youtube.com/shorts/GcagQ2ajkdY",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "VJ Edgecombe Can't Believe LeBron Is Old Enough To Be His Dad",
-      "published_at": "2026-10-21T20:00:26Z",
-      "age_hours": 376.5,
-      "views": 38,
-      "engaged_views": 19,
-      "likes": 2,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.1,
-      "average_view_percentage": 105.2,
-      "average_view_duration_s": 42.0,
-      "estimated_minutes_watched": 13.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9135,7 +8790,7 @@
       "scene_changes_before_5s": null,
       "title": "Mike Evans Had No Idea Who He Was Talking Trash To Until He Looked",
       "published_at": "2026-10-16T16:00:29Z",
-      "age_hours": 500.5,
+      "age_hours": 524.6,
       "views": 45,
       "engaged_views": 13,
       "likes": 1,
@@ -9146,6 +8801,48 @@
       "average_view_percentage": 112.7,
       "average_view_duration_s": 55.0,
       "estimated_minutes_watched": 12.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "GcagQ2ajkdY",
+      "url": "https://youtube.com/shorts/GcagQ2ajkdY",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "VJ Edgecombe Can't Believe LeBron Is Old Enough To Be His Dad",
+      "published_at": "2026-10-21T20:00:26Z",
+      "age_hours": 400.6,
+      "views": 38,
+      "engaged_views": 19,
+      "likes": 2,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.09,
+      "average_view_percentage": 105.2,
+      "average_view_duration_s": 42.0,
+      "estimated_minutes_watched": 13.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9177,7 +8874,7 @@
       "scene_changes_before_5s": null,
       "title": "Kevin Durant Reacts To Russell Westbrook Stepping Away And Says He Was Sad About It",
       "published_at": "2026-10-17T00:00:31Z",
-      "age_hours": 492.5,
+      "age_hours": 516.6,
       "views": 35,
       "engaged_views": 13,
       "likes": 0,
@@ -9219,7 +8916,7 @@
       "scene_changes_before_5s": null,
       "title": "MrBeast Just Passed T-Series On YouTube",
       "published_at": "2026-10-11T16:00:07Z",
-      "age_hours": 620.5,
+      "age_hours": 644.6,
       "views": 40,
       "engaged_views": 17,
       "likes": 1,
@@ -9229,48 +8926,6 @@
       "views_per_hour": 0.06,
       "average_view_percentage": 73.4,
       "average_view_duration_s": 11.0,
-      "estimated_minutes_watched": 3.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "-cQLlCpwhuI",
-      "url": "https://youtube.com/shorts/-cQLlCpwhuI",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Blake Griffin Tells NBA Stars They're Just Playing A Game Kids Made Up",
-      "published_at": "2026-10-18T00:00:07Z",
-      "age_hours": 468.5,
-      "views": 27,
-      "engaged_views": 10,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.06,
-      "average_view_percentage": 26.2,
-      "average_view_duration_s": 18.0,
       "estimated_minutes_watched": 3.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -9303,7 +8958,7 @@
       "scene_changes_before_5s": null,
       "title": "Steve Kerr Can't Believe The Look-Alike Sitting Right Behind Him",
       "published_at": "2026-10-19T00:00:10Z",
-      "age_hours": 444.5,
+      "age_hours": 468.6,
       "views": 28,
       "engaged_views": 16,
       "likes": 0,
@@ -9345,7 +9000,7 @@
       "scene_changes_before_5s": null,
       "title": "Jaylen Brown Hires A Harpist To Play While His Chef Cooks Dinner",
       "published_at": "2026-10-21T16:00:15Z",
-      "age_hours": 380.5,
+      "age_hours": 404.6,
       "views": 24,
       "engaged_views": 9,
       "likes": 0,
@@ -9387,10 +9042,10 @@
       "scene_changes_before_5s": null,
       "title": "Anne Hathaway Nails OG Anunoby's Name And Saves Her Friends Mid-Game",
       "published_at": "2026-10-14T16:00:33Z",
-      "age_hours": 548.5,
-      "views": 27,
+      "age_hours": 572.6,
+      "views": 29,
       "engaged_views": 14,
-      "likes": 0,
+      "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
@@ -9403,8 +9058,8 @@
       "retention_insufficient_data": true
     },
     {
-      "video_id": "XYOB-5lV9Ns",
-      "url": "https://youtube.com/shorts/XYOB-5lV9Ns",
+      "video_id": "-cQLlCpwhuI",
+      "url": "https://youtube.com/shorts/-cQLlCpwhuI",
       "catalog_id": null,
       "streamer": null,
       "series": null,
@@ -9427,19 +9082,19 @@
       "depictions": null,
       "words_first_10s": null,
       "scene_changes_before_5s": null,
-      "title": "Tom Brady Jokes With Mike Evans About His 600th TD Ball. What Did He Say?",
-      "published_at": "2026-10-20T20:00:06Z",
-      "age_hours": 400.5,
-      "views": 19,
-      "engaged_views": 7,
+      "title": "Blake Griffin Tells NBA Stars They're Just Playing A Game Kids Made Up",
+      "published_at": "2026-10-18T00:00:07Z",
+      "age_hours": 492.6,
+      "views": 27,
+      "engaged_views": 10,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
       "views_per_hour": 0.05,
-      "average_view_percentage": 74.5,
-      "average_view_duration_s": 15.0,
-      "estimated_minutes_watched": 2.0,
+      "average_view_percentage": 26.2,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 3.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9471,7 +9126,7 @@
       "scene_changes_before_5s": null,
       "title": "Temu Passed Amazon In App Downloads",
       "published_at": "2026-10-10T14:30:02Z",
-      "age_hours": 646.0,
+      "age_hours": 670.1,
       "views": 26,
       "engaged_views": 6,
       "likes": 0,
@@ -9513,7 +9168,7 @@
       "scene_changes_before_5s": null,
       "title": "Dan Campbell Chokes Up Giving His Game Ball To Dan Miller After His Wife's Passing",
       "published_at": "2026-10-13T00:00:23Z",
-      "age_hours": 588.5,
+      "age_hours": 612.6,
       "views": 23,
       "engaged_views": 9,
       "likes": 0,
@@ -9555,7 +9210,7 @@
       "scene_changes_before_5s": null,
       "title": "Joaquin Buckley Refuses Dana White's Handshake And Stays Silent For Every Question",
       "published_at": "2026-10-18T20:00:12Z",
-      "age_hours": 448.5,
+      "age_hours": 472.6,
       "views": 19,
       "engaged_views": 5,
       "likes": 0,
@@ -9566,6 +9221,48 @@
       "average_view_percentage": 42.8,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 1.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "XYOB-5lV9Ns",
+      "url": "https://youtube.com/shorts/XYOB-5lV9Ns",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Tom Brady Jokes With Mike Evans About His 600th TD Ball. What Did He Say?",
+      "published_at": "2026-10-20T20:00:06Z",
+      "age_hours": 424.6,
+      "views": 19,
+      "engaged_views": 7,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.04,
+      "average_view_percentage": 74.5,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 2.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9597,7 +9294,7 @@
       "scene_changes_before_5s": null,
       "title": "Steven Gerrard: Gerrard Fires Back At City Fans Who Say 'You Can't Take Our Moments'",
       "published_at": "2026-10-14T20:00:27Z",
-      "age_hours": 544.5,
+      "age_hours": 568.6,
       "views": 16,
       "engaged_views": 5,
       "likes": 0,
@@ -9639,7 +9336,7 @@
       "scene_changes_before_5s": null,
       "title": "Jalon Daniels And His Mom Celebrate His First Career Win As A QB",
       "published_at": "2026-10-15T20:00:10Z",
-      "age_hours": 520.5,
+      "age_hours": 544.6,
       "views": 14,
       "engaged_views": 6,
       "likes": 0,
@@ -9681,16 +9378,16 @@
       "scene_changes_before_5s": null,
       "title": "Carmelo Anthony Reveals LeBron James Saved His Life In The Bahamas",
       "published_at": "2026-10-20T16:00:25Z",
-      "age_hours": 404.5,
+      "age_hours": 428.6,
       "views": 14,
-      "engaged_views": 4,
+      "engaged_views": 5,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
       "views_per_hour": 0.03,
-      "average_view_percentage": 64.2,
-      "average_view_duration_s": 19.0,
+      "average_view_percentage": 55.5,
+      "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 1.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -9723,7 +9420,7 @@
       "scene_changes_before_5s": null,
       "title": "TSMC Just Passed Intel In Chip Revenue",
       "published_at": "2026-10-11T14:30:08Z",
-      "age_hours": 622.0,
+      "age_hours": 646.1,
       "views": 15,
       "engaged_views": 6,
       "likes": 0,
@@ -9765,7 +9462,7 @@
       "scene_changes_before_5s": null,
       "title": "Dustin Poirier Reveals The Wildest Thing He Did To Help A Friend Make Weight",
       "published_at": "2026-10-12T16:00:17Z",
-      "age_hours": 596.5,
+      "age_hours": 620.6,
       "views": 12,
       "engaged_views": 7,
       "likes": 0,
@@ -9807,7 +9504,7 @@
       "scene_changes_before_5s": null,
       "title": "Cam Little Doesn't Even Watch His Kick, Sprints Off To Do The Bellingham Pose In London",
       "published_at": "2026-10-16T20:00:20Z",
-      "age_hours": 496.5,
+      "age_hours": 520.6,
       "views": 10,
       "engaged_views": 3,
       "likes": 0,
@@ -9849,7 +9546,7 @@
       "scene_changes_before_5s": null,
       "title": "Drew Brees Asks Justin Jefferson For A Jersey Swap, And The Reason Is For His Son",
       "published_at": "2026-10-18T16:00:32Z",
-      "age_hours": 452.5,
+      "age_hours": 476.6,
       "views": 9,
       "engaged_views": 7,
       "likes": 0,
@@ -9860,6 +9557,345 @@
       "average_view_percentage": 72.3,
       "average_view_duration_s": 33.0,
       "estimated_minutes_watched": 3.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "PkacE2udK0o",
+      "url": "https://youtube.com/shorts/PkacE2udK0o",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "LeBron James Answers Trump's Shots With One Line",
+      "published_at": "2026-10-23T20:00:40Z",
+      "age_hours": 352.6,
+      "views": 6,
+      "engaged_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.02,
+      "average_view_percentage": 204.8,
+      "average_view_duration_s": 38.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "-KKZ1gO0U_M",
+      "url": "https://youtube.com/shorts/-KKZ1gO0U_M",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "graph_race",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "India Just Passed China. First Time Ever.",
+      "published_at": "2026-10-09T13:00:28Z",
+      "age_hours": 695.6,
+      "views": 5,
+      "engaged_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 97.1,
+      "average_view_duration_s": 8.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "xEVt9kRquYk",
+      "url": "https://youtube.com/shorts/xEVt9kRquYk",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "graph_race",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "The World Flipped From Rural To Urban",
+      "published_at": "2026-10-09T17:30:06Z",
+      "age_hours": 691.1,
+      "views": 5,
+      "engaged_views": 2,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 53.9,
+      "average_view_duration_s": 4.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "ybTwxHJp3N8",
+      "url": "https://youtube.com/shorts/ybTwxHJp3N8",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "graph_race",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Duolingo Passed Rosetta Stone In Revenue",
+      "published_at": "2026-10-10T13:00:16Z",
+      "age_hours": 671.6,
+      "views": 7,
+      "engaged_views": 4,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 97.5,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 1.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "R5mrdc32XL0",
+      "url": "https://youtube.com/shorts/R5mrdc32XL0",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Mike Ditka Belts Out Take Me Out to the Ball Game And Commits Fully",
+      "published_at": "2026-10-12T20:00:20Z",
+      "age_hours": 616.6,
+      "views": 5,
+      "engaged_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 31.6,
+      "average_view_duration_s": 9.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "r-6THe4vfpY",
+      "url": "https://youtube.com/shorts/r-6THe4vfpY",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Alex Ovechkin: Ovechkin's Sons Introduce Their Dad For His Final Home Opener",
+      "published_at": "2026-10-15T00:00:12Z",
+      "age_hours": 564.6,
+      "views": 8,
+      "engaged_views": 5,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 30.8,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 1.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "Fe7o1xqEXdE",
+      "url": "https://youtube.com/shorts/Fe7o1xqEXdE",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [
+        "BY",
+        "RU"
+      ],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Tyrese Haliburton Gets Emotional Saying What Being Back Means To Him",
+      "published_at": "2026-10-22T16:00:06Z",
+      "age_hours": 380.6,
+      "views": 5,
+      "engaged_views": 3,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 38.1,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "FeV7kZsW6qo",
+      "url": "https://youtube.com/shorts/FeV7kZsW6qo",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "format": "sports_moment",
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Yaxel Lenderborg Says He Told Luka He Can't Score On Him After His NBA Debut",
+      "published_at": "2026-10-24T00:00:10Z",
+      "age_hours": 348.6,
+      "views": 3,
+      "engaged_views": 2,
+      "likes": 1,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 38.9,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -10141,349 +10177,10 @@
       "scene_changes_before_5s": null,
       "title": "Shadab Khan Is Out After Review Sparks Chaos",
       "published_at": "2026-10-26T20:00:34Z",
-      "age_hours": 256.5,
+      "age_hours": 280.6,
       "views": 4,
       "engaged_views": 2,
       "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.02,
-      "average_view_percentage": 38.9,
-      "average_view_duration_s": 15.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "-KKZ1gO0U_M",
-      "url": "https://youtube.com/shorts/-KKZ1gO0U_M",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "graph_race",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "India Just Passed China. First Time Ever.",
-      "published_at": "2026-10-09T13:00:28Z",
-      "age_hours": 671.5,
-      "views": 5,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 97.1,
-      "average_view_duration_s": 8.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "xEVt9kRquYk",
-      "url": "https://youtube.com/shorts/xEVt9kRquYk",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "graph_race",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "The World Flipped From Rural To Urban",
-      "published_at": "2026-10-09T17:30:06Z",
-      "age_hours": 667.0,
-      "views": 5,
-      "engaged_views": 2,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 53.9,
-      "average_view_duration_s": 4.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "ybTwxHJp3N8",
-      "url": "https://youtube.com/shorts/ybTwxHJp3N8",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "graph_race",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Duolingo Passed Rosetta Stone In Revenue",
-      "published_at": "2026-10-10T13:00:16Z",
-      "age_hours": 647.5,
-      "views": 7,
-      "engaged_views": 4,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 97.5,
-      "average_view_duration_s": 14.0,
-      "estimated_minutes_watched": 1.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "R5mrdc32XL0",
-      "url": "https://youtube.com/shorts/R5mrdc32XL0",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Mike Ditka Belts Out Take Me Out to the Ball Game And Commits Fully",
-      "published_at": "2026-10-12T20:00:20Z",
-      "age_hours": 592.5,
-      "views": 5,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 31.6,
-      "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "r-6THe4vfpY",
-      "url": "https://youtube.com/shorts/r-6THe4vfpY",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Alex Ovechkin: Ovechkin's Sons Introduce Their Dad For His Final Home Opener",
-      "published_at": "2026-10-15T00:00:12Z",
-      "age_hours": 540.5,
-      "views": 8,
-      "engaged_views": 4,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 36.6,
-      "average_view_duration_s": 20.0,
-      "estimated_minutes_watched": 1.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "Fe7o1xqEXdE",
-      "url": "https://youtube.com/shorts/Fe7o1xqEXdE",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [
-        "BY",
-        "RU"
-      ],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Tyrese Haliburton Gets Emotional Saying What Being Back Means To Him",
-      "published_at": "2026-10-22T16:00:06Z",
-      "age_hours": 356.5,
-      "views": 5,
-      "engaged_views": 3,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 38.1,
-      "average_view_duration_s": 12.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "PkacE2udK0o",
-      "url": "https://youtube.com/shorts/PkacE2udK0o",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "LeBron James Answers Trump's Shots With One Line",
-      "published_at": "2026-10-23T20:00:40Z",
-      "age_hours": 328.5,
-      "views": 4,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 204.8,
-      "average_view_duration_s": 38.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "FeV7kZsW6qo",
-      "url": "https://youtube.com/shorts/FeV7kZsW6qo",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "sports_moment",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Yaxel Lenderborg Says He Told Luka He Can't Score On Him After His NBA Debut",
-      "published_at": "2026-10-24T00:00:10Z",
-      "age_hours": 324.5,
-      "views": 3,
-      "engaged_views": 2,
-      "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
@@ -10494,42 +10191,6 @@
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
-    },
-    {
-      "video_id": "OobgSEUIl8E",
-      "url": "https://youtube.com/shorts/OobgSEUIl8E",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "format": "graph_race",
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "US National Debt Passed The Economy Itself",
-      "published_at": "2026-10-08T13:00:24Z",
-      "age_hours": 695.5,
-      "views": 0,
-      "engaged_views": 0,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.0
     },
     {
       "video_id": "DGXKeIw5i0I",
@@ -10558,7 +10219,7 @@
       "scene_changes_before_5s": null,
       "title": "Solar Quietly Passed Nuclear Power",
       "published_at": "2026-10-09T14:30:34Z",
-      "age_hours": 670.0,
+      "age_hours": 694.1,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10594,7 +10255,7 @@
       "scene_changes_before_5s": null,
       "title": "The Year Phones Beat Computers For Good",
       "published_at": "2026-10-09T16:00:16Z",
-      "age_hours": 668.5,
+      "age_hours": 692.6,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10636,7 +10297,7 @@
       "scene_changes_before_5s": null,
       "title": "My coffee shop turned a entitled rant into a five\u2011star win",
       "published_at": "2026-10-09T14:30:00Z",
-      "age_hours": 670.0,
+      "age_hours": 694.1,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10678,7 +10339,7 @@
       "scene_changes_before_5s": null,
       "title": "Shein Is Now Bigger Than H&M",
       "published_at": "2026-10-10T16:00:26Z",
-      "age_hours": 644.5,
+      "age_hours": 668.6,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -10720,7 +10381,7 @@
       "scene_changes_before_5s": null,
       "title": "Netflix's Revenue Just Beat All Of Hollywood's Theaters",
       "published_at": "2026-10-10T17:30:19Z",
-      "age_hours": 643.0,
+      "age_hours": 667.1,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10762,7 +10423,7 @@
       "scene_changes_before_5s": null,
       "title": "The Gym Auto-Renewed My Contract. Paragraph Nine Ended It.",
       "published_at": "2026-10-10T19:00:31Z",
-      "age_hours": 641.5,
+      "age_hours": 665.6,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10798,7 +10459,7 @@
       "scene_changes_before_5s": null,
       "title": "Lab-Grown Diamonds Just Passed Mined Diamonds",
       "published_at": "2026-10-11T13:00:24Z",
-      "age_hours": 623.5,
+      "age_hours": 647.6,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10840,7 +10501,7 @@
       "scene_changes_before_5s": null,
       "title": "Digital Ad Spending Buried TV Advertising",
       "published_at": "2026-10-11T17:30:08Z",
-      "age_hours": 619.0,
+      "age_hours": 643.1,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10882,7 +10543,7 @@
       "scene_changes_before_5s": null,
       "title": "She Demanded I Find Her A Discount. I Don't Work There.",
       "published_at": "2026-10-11T19:00:31Z",
-      "age_hours": 617.5,
+      "age_hours": 641.6,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10918,7 +10579,7 @@
       "scene_changes_before_5s": null,
       "title": "LeBron James Names Every Starter From His First Game, Then Gets Caught Off Guard",
       "published_at": "2026-10-22T00:00:38Z",
-      "age_hours": 372.5,
+      "age_hours": 396.6,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11210,7 +10871,7 @@
       "scene_changes_before_5s": null,
       "title": "Yaxel Lendeborg Says He Lost All Respect For Luka Doncic After This",
       "published_at": "2026-10-22T20:00:09Z",
-      "age_hours": 352.5,
+      "age_hours": 376.6,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11240,86 +10901,62 @@
       "streamer": null
     },
     {
-      "video_id": "NtcyyUYM4YI",
-      "url": "https://youtube.com/shorts/NtcyyUYM4YI",
+      "video_id": "uzsUAg0YBII",
+      "url": "https://youtube.com/shorts/uzsUAg0YBII",
       "streamer": null,
       "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-06T15:00:00Z",
+      "scheduled_publish_at": "2026-11-07T15:00:00Z",
       "experiment_arm": null
     },
     {
-      "video_id": "hixNtCS7PW8",
-      "url": "https://youtube.com/shorts/hixNtCS7PW8",
+      "video_id": "wDi9jeB4TKk",
+      "url": "https://youtube.com/shorts/wDi9jeB4TKk",
       "streamer": null,
       "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-06T18:00:00Z",
-      "experiment_arm": null
-    },
-    {
-      "video_id": "sBknTg8g-QU",
-      "url": "https://youtube.com/shorts/sBknTg8g-QU",
-      "streamer": null,
-      "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-06T21:00:00Z",
-      "experiment_arm": null
-    },
-    {
-      "video_id": "9jz60Cme9-Y",
-      "url": "https://youtube.com/shorts/9jz60Cme9-Y",
-      "streamer": null,
-      "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-07T00:00:00Z",
-      "experiment_arm": null
-    },
-    {
-      "video_id": "1IJ9cIcpWvk",
-      "url": "https://youtube.com/shorts/1IJ9cIcpWvk",
-      "streamer": null,
-      "privacy_status": "private",
-      "scheduled_publish_at": "2026-11-07T03:00:00Z",
+      "scheduled_publish_at": "2026-11-07T18:00:00Z",
       "experiment_arm": null
     }
   ],
   "summary": {
-    "total_videos": 90,
-    "total_views": 75150,
-    "avg_views_per_video": 835.0,
-    "median_views_per_hour": 0.37,
+    "total_videos": 94,
+    "total_views": 80881,
+    "avg_views_per_video": 860.4,
+    "median_views_per_hour": 0.86,
     "top_5_by_vph": [
       {
         "title": "Wisconsin Brewers fan Shows Photo Of Her Dad She Couldn't Get Home To After Brewers Win",
-        "views_per_hour": 144.66,
-        "views": 23223,
-        "age_hours": 160.5,
+        "views_per_hour": 125.91,
+        "views": 23239,
+        "age_hours": 184.6,
         "url": "https://youtube.com/shorts/UZIEC39RwNI"
       },
       {
-        "title": "Young Milwaukee Brewers Fan Cries Happy Tears After His Team Wins The World Series",
-        "views_per_hour": 117.84,
-        "views": 1124,
-        "age_hours": 9.5,
-        "url": "https://youtube.com/shorts/2NGCEZ9FwN0"
+        "title": "Steve Kerr Admits He Already Spent The $5,000 Check He Never Got",
+        "views_per_hour": 100.19,
+        "views": 958,
+        "age_hours": 9.6,
+        "url": "https://youtube.com/shorts/1IJ9cIcpWvk"
       },
       {
-        "title": "Matthew Golden Gets Lectured By Refs While Holding Hands And Nobody Expected It",
-        "views_per_hour": 77.94,
-        "views": 977,
-        "age_hours": 12.5,
-        "url": "https://youtube.com/shorts/7xpazU4MJGA"
+        "title": "Charles Barkley Threatens To Call Kash Patel After Shaq Challenges Him To A Fight",
+        "views_per_hour": 84.65,
+        "views": 1317,
+        "age_hours": 15.6,
+        "url": "https://youtube.com/shorts/sBknTg8g-QU"
       },
       {
-        "title": "Russell Wilson Picks Broncos Over Chiefs And Calls Out Sean Payton On Air",
-        "views_per_hour": 53.54,
-        "views": 1153,
-        "age_hours": 21.5,
-        "url": "https://youtube.com/shorts/UBylkyVFa8A"
+        "title": "Sal Frelick And Jake Bauers Soak In The Moment With Fans After This",
+        "views_per_hour": 66.78,
+        "views": 1440,
+        "age_hours": 21.6,
+        "url": "https://youtube.com/shorts/NtcyyUYM4YI"
       },
       {
-        "title": "Alex Rodriguez Hears He's Skipping The Gym And Says He Has No Life",
-        "views_per_hour": 41.15,
-        "views": 1874,
-        "age_hours": 45.5,
-        "url": "https://youtube.com/shorts/FPx-CVGP960"
+        "title": "Lebron James: Sixers Fan Says He Threw LeBron's Cup In The Trash \ud83d\ude2d",
+        "views_per_hour": 62.04,
+        "views": 1152,
+        "age_hours": 18.6,
+        "url": "https://youtube.com/shorts/hixNtCS7PW8"
       }
     ],
     "bottom_5_by_vph": [
@@ -11327,46 +10964,46 @@
         "title": "Yaxel Lendeborg Says He Lost All Respect For Luka Doncic After This",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 352.5,
+        "age_hours": 376.6,
         "url": "https://youtube.com/shorts/PP1-LrvC_uY"
       },
       {
         "title": "LeBron James Names Every Starter From His First Game, Then Gets Caught Off Guard",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 372.5,
+        "age_hours": 396.6,
         "url": "https://youtube.com/shorts/yk63StuVDzQ"
       },
       {
         "title": "She Demanded I Find Her A Discount. I Don't Work There.",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 617.5,
+        "age_hours": 641.6,
         "url": "https://youtube.com/shorts/XGG7WmMG4Zk"
       },
       {
         "title": "Digital Ad Spending Buried TV Advertising",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 619.0,
+        "age_hours": 643.1,
         "url": "https://youtube.com/shorts/mqlwA6482og"
       },
       {
         "title": "Lab-Grown Diamonds Just Passed Mined Diamonds",
         "views_per_hour": 0.0,
         "views": 2,
-        "age_hours": 623.5,
+        "age_hours": 647.6,
         "url": "https://youtube.com/shorts/BjlF60OneSA"
       }
     ],
     "opening": {
-      "median_early_retention": 0.841,
-      "videos_with_curve": 14,
-      "worst": 0.774,
-      "best": 0.917
+      "median_early_retention": 0.839,
+      "videos_with_curve": 13,
+      "worst": 0.779,
+      "best": 0.906
     },
-    "videos_with_retention": 40,
-    "avg_view_percentage": 90.1,
+    "videos_with_retention": 44,
+    "avg_view_percentage": 88.6,
     "top_5_by_retention": [
       {
         "title": "LeBron James Gets Heated With Knicks Fan Over Midwest Claim",
@@ -11376,31 +11013,31 @@
         "url": "https://youtube.com/shorts/BasWgi77d84"
       },
       {
-        "title": "Alexander Volkanovski Says He'd Fight Topuria Again Before He Retires",
-        "average_view_percentage": 184.9,
-        "average_view_duration_s": 35.0,
-        "views": 1149,
-        "url": "https://youtube.com/shorts/vjgdN5yXCSs"
+        "title": "Jake Bauers Hands Pat Murphy The Last Out Ball",
+        "average_view_percentage": 190.9,
+        "average_view_duration_s": 30.0,
+        "views": 1101,
+        "url": "https://youtube.com/shorts/uzgi2DaD8-A"
       },
       {
         "title": "Clay Matthews Calls Wheel Route, Cam Newton Fires Back with CMC Touchdown",
-        "average_view_percentage": 162.7,
+        "average_view_percentage": 162.9,
         "average_view_duration_s": 6.0,
-        "views": 1016,
+        "views": 1022,
         "url": "https://youtube.com/shorts/aDdxq2hsiiI"
       },
       {
         "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni For THIS Awkward Moment With A Kid",
         "average_view_percentage": 152.4,
         "average_view_duration_s": 9.0,
-        "views": 1189,
+        "views": 1224,
         "url": "https://youtube.com/shorts/X9JHBcePA3A"
       },
       {
         "title": "Patrick Kane Gets A Standing Ovation In Detroit And The Crowd Won't Stop",
-        "average_view_percentage": 130.3,
+        "average_view_percentage": 130.2,
         "average_view_duration_s": 10.0,
-        "views": 1148,
+        "views": 1152,
         "url": "https://youtube.com/shorts/bCd2mxP4qXI"
       }
     ],
@@ -11409,7 +11046,7 @@
         "title": "Marlon Humphrey Reveals Kyle Hamilton KNEW He'd Intercept Tua",
         "average_view_percentage": 46.6,
         "average_view_duration_s": 13.0,
-        "views": 65,
+        "views": 66,
         "url": "https://youtube.com/shorts/olvsc2MwnhA"
       },
       {
@@ -11418,6 +11055,13 @@
         "average_view_duration_s": 19.0,
         "views": 1094,
         "url": "https://youtube.com/shorts/J0uoqHCpRbM"
+      },
+      {
+        "title": "Northern Kentucky Team Finally Freed After 40+ Minutes Stuck In A Broken Elevator",
+        "average_view_percentage": 49.5,
+        "average_view_duration_s": 13.0,
+        "views": 582,
+        "url": "https://youtube.com/shorts/b580p4O0MRE"
       },
       {
         "title": "Christian Yelich Invites Two WWII Veterans To Game 1 And Their Seats Are Unreal",
@@ -11430,15 +11074,8 @@
         "title": "Rizvan Kuniev Gives Alexander Volkov A Birthday Cake Before Their Title Fights",
         "average_view_percentage": 52.3,
         "average_view_duration_s": 15.0,
-        "views": 1057,
+        "views": 1058,
         "url": "https://youtube.com/shorts/jVwOv0kTwME"
-      },
-      {
-        "title": "Robin Yount Walks Out For The World Series First Pitch In A Bob Uecker Jersey",
-        "average_view_percentage": 53.6,
-        "average_view_duration_s": 19.0,
-        "views": 1004,
-        "url": "https://youtube.com/shorts/xcbyPwhsQZk"
       }
     ],
     "ab_experiment": {
@@ -11461,25 +11098,25 @@
       "n_mature_total": 0,
       "enough_data": false
     },
-    "pending_scheduled": 7,
+    "pending_scheduled": 4,
     "format_coverage": {
-      "with_format": 89,
-      "total": 90,
+      "with_format": 93,
+      "total": 94,
       "fraction": 0.989
     }
   },
   "traffic_sources": {
-    "SHORTS": 60614,
-    "YT_SEARCH": 4426,
-    "YT_OTHER_PAGE": 634,
-    "SUBSCRIBER": 188,
-    "YT_CHANNEL": 113,
-    "EXT_URL": 74,
-    "NO_LINK_OTHER": 28,
-    "HASHTAGS": 28,
-    "NOTIFICATION": 13,
+    "SHORTS": 65434,
+    "YT_SEARCH": 4867,
+    "YT_OTHER_PAGE": 678,
+    "SUBSCRIBER": 244,
+    "YT_CHANNEL": 124,
+    "EXT_URL": 96,
+    "HASHTAGS": 30,
+    "NO_LINK_OTHER": 17,
+    "NOTIFICATION": 14,
     "PLAYLIST": 7,
-    "SOUND_PAGE": 4
+    "SOUND_PAGE": 5
   },
   "search_terms": [
     {
@@ -11493,6 +11130,10 @@
     {
       "term": "robin yount first pitch",
       "views": 33
+    },
+    {
+      "term": "doron lamb",
+      "views": 29
     },
     {
       "term": "detroit red wings",
@@ -11511,7 +11152,11 @@
       "views": 24
     },
     {
-      "term": "doron lamb",
+      "term": "jacob misiorowski",
+      "views": 20
+    },
+    {
+      "term": "jaylen brown daniel radcliffe",
       "views": 20
     },
     {
@@ -11523,16 +11168,12 @@
       "views": 20
     },
     {
-      "term": "jacob misiorowski",
-      "views": 19
+      "term": "marquis teague doron lamb",
+      "views": 18
     },
     {
       "term": "tarik skubal",
       "views": 18
-    },
-    {
-      "term": "jaylen brown daniel radcliffe",
-      "views": 17
     },
     {
       "term": "steve kerr",
@@ -11551,6 +11192,10 @@
       "views": 13
     },
     {
+      "term": "pat murphy",
+      "views": 13
+    },
+    {
       "term": "darnell nurse spec",
       "views": 12
     },
@@ -11559,27 +11204,19 @@
       "views": 12
     },
     {
+      "term": "\uc70c\ub9ac\uc5c4 \ucf58\ud2b8\ub808\ub77c\uc2a4 \uc0cc\ub4dc\uc704\uce58",
+      "views": 12
+    },
+    {
+      "term": "alex rodriguez",
+      "views": 11
+    },
+    {
       "term": "cam skattebo",
       "views": 11
     },
     {
-      "term": "pat murphy",
-      "views": 11
-    },
-    {
       "term": "alvin kamara",
-      "views": 10
-    },
-    {
-      "term": "cameron skattebo",
-      "views": 10
-    },
-    {
-      "term": "ernie johnson retirement",
-      "views": 10
-    },
-    {
-      "term": "v. j. edgecombe",
       "views": 10
     }
   ]
