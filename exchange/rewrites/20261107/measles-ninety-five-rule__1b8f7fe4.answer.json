@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-ninety-five-rule__1b8f7fe4",
+  "slug": "measles-ninety-five-rule",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:36:00Z",
+  "title": "Measles Needs 95% Protection Because One Case Spreads Fast",
+  "hook": "A tiny immunity gap is enough. Measles needs 95% protection.",
+  "closing": "Even a few unprotected kids can reopen the door, so every vaccine keeps your town safe.",
+  "question": "Did you get both measles shots?",
+  "segments": [
+    {
+      "topic": "measles case spread",
+      "say": "One measles case infects about fifteen people, far more than flu. So it spreads fast the moment protection slips."
+    },
+    {
+      "topic": "measles protection needed",
+      "say": "Measles is only stopped when ninety-five percent of kids are protected. Kindergartners fall just short, and the virus finds every gap."
+    },
+    {
+      "topic": "measles cases surge",
+      "say": "US measles cases grew about nine times recently. A small protection gap let each outbreak snowball."
+    }
+  ]
+}
