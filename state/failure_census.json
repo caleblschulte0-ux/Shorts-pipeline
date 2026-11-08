@@ -2,84 +2,38 @@
  "n_verdicts": 20,
  "classes": {
   "junk_imagery": {
-   "count": 6,
+   "count": 5,
    "stories": {
-    "sports_jacob_misiorowski_g_with_jacob": 1,
-    "sports_kylian_mbapp\u00e9_accidentally": 3,
-    "sports_yan_diomande_ovation_from": 1,
-    "sports_dan_campbell_lions_locker": 1
+    "sports_golden_state_valkyries_hampions_t": 1,
+    "sports_jack_campbell_pbell_of_the": 2,
+    "sports_rosario_central_ebrate_their": 2
    },
    "timestamps": [
-    "2026-11-07T11:46:05+00:00",
-    "2026-11-07T12:17:42+00:00",
-    "2026-11-07T12:21:21+00:00",
-    "2026-11-07T12:25:11+00:00",
-    "2026-11-07T12:29:12+00:00",
-    "2026-11-07T14:48:59+00:00"
+    "2026-11-08T12:23:22+00:00",
+    "2026-11-08T12:39:29+00:00",
+    "2026-11-08T12:41:35+00:00",
+    "2026-11-08T12:42:00+00:00",
+    "2026-11-08T12:44:11+00:00"
    ],
    "examples": [
-    "junk_imagery: The video claims to show 'Jacob Misiorowski's perfect parade chug', but the footage shows a person in the foreground throwing a can, and Jacob Misiorowski is on the bus, not performing t",
-    "junk_imagery: hook@0.3 through payoff@-0.4 show a child and the same unidentified adult; Mbapp\u00e9 and the promised blame moment are never visually established.",
-    "junk_imagery: hook@0.3 through payoff@-0.4 show a child and the same unidentified adult; Mbapp\u00e9 and the promised blame moment are never visually established."
+    "junk_imagery: hook@0.3 through payoff@-0.4 show a Valkyries court interview and trophy, but nothing visible establishes the title\u2019s \u201cFirst Asian-American WNBA Champion\u201d claim.",
+    "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears.",
+    "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears."
    ],
    "recurred_after_fix": false
   },
-  "decorative_mascot": {
-   "count": 4,
+  "temporal_gate": {
+   "count": 2,
    "stories": {
-    "coldest-place-in-the-universe-is-human-made": 1,
-    "measles-comeback-since-2000": 1,
-    "sports_yan_diomande_ovation_from": 1,
-    "sports_dan_campbell_lions_locker": 1
+    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
    },
    "timestamps": [
-    "2026-11-06T16:06:21+00:00",
-    "2026-11-06T17:22:58+00:00",
-    "2026-11-07T12:29:12+00:00",
-    "2026-11-07T14:48:59+00:00"
+    "2026-11-08T17:26:14+00:00",
+    "2026-11-08T21:06:31+00:00"
    ],
    "examples": [
-    "decorative_mascot: In seg2:start through seg2:end, Data stands beside the bell jar with a hand on his chin or raised while the atoms condense. The lever next to him is never pulled, so nothing he does",
-    "decorative_mascot: Data waves beside the bus while the sick children walk aboard on their own (hook@0.8 to seg0:end). He points at the map while the outbreak circles spread without him (seg3:mid to se",
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty"
-   ],
-   "recurred_after_fix": false
-  },
-  "bare_number": {
-   "count": 3,
-   "stories": {
-    "coldest-place-in-the-universe-is-human-made": 1,
-    "sports_yan_diomande_ovation_from": 1,
-    "sports_dan_campbell_lions_locker": 1
-   },
-   "timestamps": [
-    "2026-11-06T16:06:21+00:00",
-    "2026-11-07T12:29:12+00:00",
-    "2026-11-07T14:48:59+00:00"
-   ],
-   "examples": [
-    "bare_number_card: In seg3:end, '250 miles' and '29,400,000,000,000,000 miles to the Boomerang Nebula' are stacked text over a rocket lifting off a beach. Nothing in the picture shows near versus quadr",
-    "malformed_judge_response: checks.bare_number_card.evidence missing or empty",
-    "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 3,
-   "stories": {
-    "measles-comeback-since-2000": 1,
-    "antarctica-tourist-boom": 1,
-    "sports_yan_diomande_ovation_from": 1
-   },
-   "timestamps": [
-    "2026-11-06T17:22:58+00:00",
-    "2026-11-06T18:26:31+00:00",
-    "2026-11-07T12:29:12+00:00"
-   ],
-   "examples": [
-    "unreadable: In seg2:end the '7% outside' label is tiny grey text on a grey floor, partly behind Data's legs. On a phone at arm's length it disappears.",
-    "unreadable: seg2:end: the small 'GER' label is pale grey on pale ice and Data stands over the CHINA/UK flags and labels. seg1:start: the caption 'the 1990s, just' is dark-on-dark over a penguin and ba",
-    "malformed_judge_response: checks.unreadable.evidence missing or empty"
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
    ],
    "recurred_after_fix": false
   }
@@ -91,7 +45,7 @@
    "max": 4
   },
   "data_demo": {
-   "median": 4,
+   "median": 5,
    "min": 0,
    "max": 5
   },
@@ -101,7 +55,7 @@
    "max": 4
   },
   "craft": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 3
   },
@@ -111,36 +65,36 @@
    "max": 2
   },
   "payoff": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
-  83,
-  78,
-  83,
-  83,
-  52,
-  66,
-  61,
-  79,
-  70,
   100,
+  100,
+  100,
+  92,
+  95,
+  74,
+  92,
   91,
-  57,
-  57,
-  57,
-  14,
+  75,
+  75,
+  96,
+  84,
+  66,
+  96,
+  84,
+  66,
   100,
   96,
-  100,
   14,
-  100
+  14
  ]
 }
