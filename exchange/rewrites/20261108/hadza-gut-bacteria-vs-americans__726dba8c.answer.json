@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hadza-gut-bacteria-vs-americans__726dba8c",
+  "slug": "hadza-gut-bacteria-vs-americans",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:30:00Z",
+  "title": "The Hadza Carry About 730 Gut Bacteria Species",
+  "hook": "Modern diets look advanced. The Hadza carry about 730 gut bacteria species.",
+  "closing": "Civilization made our food safer and our guts emptier.",
+  "question": "How much fiber did you eat today?",
+  "segments": [
+    {
+      "topic": "bacteria species",
+      "say": "The Hadza of Tanzania carry about 730 gut bacteria species. The average American has fewer than half that."
+    },
+    {
+      "topic": "feeding the gut",
+      "say": "The secret is fiber. The Hadza eat 150 grams a day, ten times the average American."
+    },
+    {
+      "topic": "bacteria killers",
+      "say": "The CDC says a third of US antibiotic prescriptions aren't even necessary, and each one can wipe out gut diversity."
+    }
+  ]
+}
