@@ -1,96 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-08T12:28:05Z",
+ "updated": "2026-11-08T12:30:18Z",
  "open": [
   {
-   "id": "autism-diagnosis-rate-rise__0f60a36a",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-07T21:24:38Z",
-   "why": [
-    "premise: brain: It relies on multiple figures (32.2 per thousand and a vague fivefold increase) instead of a single, clear, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261107/autism-diagnosis-rate-rise__0f60a36a.request.json",
-   "answer_path": "exchange/rewrites/20261107/autism-diagnosis-rate-rise__0f60a36a.answer.json"
-  },
-  {
-   "id": "elephant-poaching-decline__41f85b1d",
-   "slug": "elephant-poaching-decline",
-   "filed": "2026-11-07T13:34:09Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a common viewer expectation and relies only on a generic percentage without a compelling, verifiable hook."
-   ],
-   "request": "exchange/rewrites/20261107/elephant-poaching-decline__41f85b1d.request.json",
-   "answer_path": "exchange/rewrites/20261107/elephant-poaching-decline__41f85b1d.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__3ec757df",
-   "slug": "california-condor-comeback",
-   "filed": "2026-11-07T13:34:08Z",
-   "why": [
-    "judge: blocked by the showrunner"
-   ],
-   "request": "exchange/rewrites/20261107/california-condor-comeback__3ec757df.request.json",
-   "answer_path": "exchange/rewrites/20261107/california-condor-comeback__3ec757df.answer.json"
-  },
-  {
-   "id": "antarctic-sea-ice-record-low__8258efc0",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-07T13:00:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague comparative phrase rather than a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261107/antarctic-sea-ice-record-low__8258efc0.request.json",
-   "answer_path": "exchange/rewrites/20261107/antarctic-sea-ice-record-low__8258efc0.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__12289b6b",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-07T13:00:45Z",
-   "why": [
-    "premise: brain: It relies on two statistics (38% qualify and 3% donate) instead of a single consequential number."
-   ],
-   "request": "exchange/rewrites/20261107/blood-supply-three-percent__12289b6b.request.json",
-   "answer_path": "exchange/rewrites/20261107/blood-supply-three-percent__12289b6b.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__726dba8c",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-07T13:00:45Z",
-   "why": [
-    "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a generic numeric claim without a strong, surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261107/hadza-gut-bacteria-vs-americans__726dba8c.request.json",
-   "answer_path": "exchange/rewrites/20261107/hadza-gut-bacteria-vs-americans__726dba8c.answer.json"
-  },
-  {
-   "id": "local-news-deserts-expanding__f8e285b2",
+   "id": "local-news-deserts-expanding__f8e285b2_r1",
    "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-07T13:00:45Z",
+   "filed": "2026-11-08T12:30:17Z",
    "why": [
     "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on multiple numbers rather than a single, pivotal, verifiable figure."
    ],
-   "request": "exchange/rewrites/20261107/local-news-deserts-expanding__f8e285b2.request.json",
-   "answer_path": "exchange/rewrites/20261107/local-news-deserts-expanding__f8e285b2.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__794aea0b",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-07T13:00:45Z",
-   "why": [
-    "premise: brain: The premise does not overturn a clear viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261107/muscle-loss-after-30__794aea0b.request.json",
-   "answer_path": "exchange/rewrites/20261107/muscle-loss-after-30__794aea0b.answer.json"
-  },
-  {
-   "id": "measles-ninety-five-rule__1b8f7fe4",
-   "slug": "measles-ninety-five-rule",
-   "filed": "2026-11-07T13:00:44Z",
-   "why": [
-    "premise: brain: It does not clearly reverse a specific viewer expectation, merely stating a known high threshold."
-   ],
-   "request": "exchange/rewrites/20261107/measles-ninety-five-rule__1b8f7fe4.request.json",
-   "answer_path": "exchange/rewrites/20261107/measles-ninety-five-rule__1b8f7fe4.answer.json"
+   "request": "exchange/rewrites/20261108/local-news-deserts-expanding__f8e285b2_r1.request.json",
+   "answer_path": "exchange/rewrites/20261108/local-news-deserts-expanding__f8e285b2_r1.answer.json"
   },
   {
    "id": "naep-math-pandemic-drop__77b779d1",
