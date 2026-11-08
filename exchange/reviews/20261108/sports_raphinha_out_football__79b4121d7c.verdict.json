@@ -1,0 +1,76 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_raphinha_out_football__79b4121d7c",
+  "video_sha256": "79b4121d7c13ecd0d250b8a176c0e59548bb1e8c4b0c316f8b3ac04d4e86ec45",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:38:15.383Z",
+  "grades": {
+    "dimensions": {
+      "hook": 3,
+      "data_demo": 5,
+      "mascot": 4,
+      "craft": 2,
+      "pace": 1,
+      "payoff": 1
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": false,
+        "evidence": "hook@0.3 through payoff@-0.4 consistently show Raphinha in the interview, with source captions naming Jesus and his family."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No mascot appears in any sampled frame."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "All sampled frames remain the live interview."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "Raphinha is visibly speaking throughout and the measured longest static stretch is 0.0 seconds."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "Raphinha and the sponsor wall fill the composition from hook@0.3 through payoff@-0.4."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The creator line 'Raphinha honors Jesus de Miguel' remains legible at hook@0.3, mid2, and payoff@-0.4."
+      }
+    },
+    "weakest_scene": {
+      "id": "seg1",
+      "index": 1,
+      "failure_class": "soft_ending",
+      "visible_evidence": "mid5 and payoff@-1.8 display incomplete source-caption phrases ('AND TODAY I'M', 'NOT GOING TO'), while payoff@-0.4 has no concluding caption or reaction.",
+      "root_cause": "The clip ends after the tribute's substance but not on a self-contained final sentence or emotional beat.",
+      "repair_goal": "Trim the ending to the completed tribute line or hold briefly on Raphinha after the full final sentence lands."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 3,
+        "note": "The named player visibly delivers the tribute, with captions identifying Jesus and his family."
+      },
+      {
+        "id": "seg1",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 2,
+        "note": "The same interview sustains the emotion, though the final sampled caption is incomplete."
+      }
+    ],
+    "one_line": "The authentic interview clearly delivers Raphinha's tribute, but the long talking-head cut ends on a soft, incomplete beat.",
+    "problems": [
+      "The nearly forty-second single-angle interview has limited visual variety.",
+      "The ending captions do not present a clean final sentence."
+    ],
+    "fixes": [
+      "Tighten the clip around the tribute to Jesus de Miguel's family.",
+      "End immediately after a complete sentence or a clear reflective pause."
+    ]
+  }
+}
