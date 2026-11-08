@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261107",
-  "generated_at": "2026-11-07T23:31:12Z",
+  "generated_at": "2026-11-08T00:31:05Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 44.76,
+          "days": 44.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 43.76,
+          "days": 43.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1718,10 +1718,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "b4bb4ed",
-    "commits_since": "2026-11-06",
+    "head": "cafba49",
+    "commits_since": "2026-11-07",
     "commit_count": 50,
     "commits": [
+      "cafba49 claim: mailbox verdicts 2026-11-07T23:50Z [skip ci]",
+      "88ba922 claim: mailbox verdicts 2026-11-07T23:48Z [skip ci]",
+      "b16277a retro: brief + triage for 20261107 [skip ci]",
       "b4bb4ed claim: mailbox verdicts 2026-11-07T22:48Z [skip ci]",
       "767267a comments: saved viewer comments [skip ci]",
       "3d883d5 claim: mailbox verdicts 2026-11-07T21:48Z [skip ci]",
@@ -1758,10 +1761,7 @@
       "63056a3 explainer: update posted log + analytics [skip ci]",
       "33faaed claim: mailbox verdicts 2026-11-07T13:49Z [skip ci]",
       "4b7df7b explainer: posted pedestrian-deaths-outlier [skip ci]",
-      "9b7329d explainer: claim upload slot (mailbox) pedestrian-deaths-outlier [skip ci]",
-      "e7b5e8c explainer: posted california-condor-comeback [skip ci]",
-      "6a78acf explainer: claim upload slot (mailbox) california-condor-comeback [skip ci]",
-      "32e097e explainer: update posted log + analytics [skip ci]"
+      "9b7329d explainer: claim upload slot (mailbox) pedestrian-deaths-outlier [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
