@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "maternal-mortality-pandemic-reversal__18a634a0",
+  "slug": "maternal-mortality-pandemic-reversal",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:30:00Z",
+  "title": "Black Maternal Deaths Stayed Near 50.3",
+  "hook": "The national rate fell. Black maternal deaths stayed near 50.3.",
+  "closing": "Fewer moms are dying, but Black mothers still face far higher risk. That gap is the real story.",
+  "question": "Were you surprised by that gap?",
+  "segments": [
+    {
+      "topic": "maternal death rate",
+      "say": "Maternal deaths spiked during COVID, then fell to 18.6 in 2023, lower than before the pandemic."
+    },
+    {
+      "topic": "Black maternal mortality",
+      "say": "For Black mothers, the rate stayed stuck near 50.3 after its spike. The national drop skipped them."
+    },
+    {
+      "topic": "deaths by race",
+      "say": "White women, the next highest group, were at 14.5. Black women died at over three times that rate."
+    }
+  ]
+}
