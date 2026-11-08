@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "robotic-surgery-doubled__84c11eb6",
+  "slug": "robotic-surgery-doubled",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:30:00Z",
+  "title": "Robots Now Handle 15.1% Of General Surgeries",
+  "hook": "Robotic surgery isn't rare anymore: robots handle 15.1% of general surgeries.",
+  "closing": "Robots moved from operating-room novelty toward routine care patients increasingly encounter.",
+  "question": "Would you trust robotic surgery?",
+  "segments": [
+    {
+      "topic": "robotic procedures",
+      "say": "Robotic procedures rose 98 percent, turning a specialized tool into mainstream surgery."
+    },
+    {
+      "topic": "robotic surgery share",
+      "say": "Robots handled 15.1 percent of general surgeries, showing the method was no longer rare."
+    },
+    {
+      "topic": "robotic revenue",
+      "say": "Robotic-surgery revenue reached 7.1 billion dollars, reflecting how quickly hospitals adopted the technology."
+    }
+  ]
+}
