@@ -1,28 +1,38 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261107",
-  "judged_date": "20261106",
+  "date": "20261108",
+  "judged_date": "20261107",
   "alarm": {
-    "date": "20261106",
+    "date": "20261107",
     "ok": false,
     "alarms": [
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 3/4 posted for 20261106.",
+        "detail": "explainer: 3/4 posted for 20261107.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 4/6 posted for 20261107.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_trending",
+        "severity": "warning",
+        "detail": "trending: 4/5 posted for 20261107.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (59 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (60 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "third: 6/6 posted",
-      "trending: 5/5 posted"
+      "chatgpt finalizer: artifact present"
     ],
     "deferred": false
   },
@@ -208,821 +218,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-04T12:21:49+00:00",
-      "slug": "sports_carlos_prates_makhachev_he",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a letterboxed repost of someone else's split-screen edit: a frozen Makhachev still, a small band of Prates talking, and a title claiming 'to his face' that the footage never shows.",
-      "auto_fails": [
-        "junk_imagery: The title says Prates calls Makhachev a loser 'To His Face', but every frame (hook@0.3 to payoff@-0.4) shows a recycled split-screen: a static still of Makhachev on the left and Prates filming a selfie video on a balcony on the right. They are never face to face, and the line 'you're a loser' never appears in the sampled subtitles. This is someone else's finished edit reposted inside our frame.",
-        "empty_void: In every frame (mid0, mid3, payoff@-0.4) the real footage is a thin band about 30% of frame height, roughly y=260-500. The top and bottom thirds are blurred, enlarged copies of the same footage with nothing in them. Half of the video band is also a still photo that never moves."
-      ],
-      "problems": [
-        "The title claims Prates said it 'To His Face'. The footage is Prates alone in a selfie video, with Makhachev only as a static still.",
-        "'You're a loser' never appears in the sampled subtitles, so the title's quote is unproven.",
-        "The footage occupies only about 30% of the frame height, and the rest is blurred fill.",
-        "Half of the footage band is a frozen photo that never moves.",
-        "No zoom or punch-in on the strongest lines ('vacate your belt', 'asshole shit'). The cut is one flat take.",
-        "The clip ends mid-rant ('we had already agreed on it'), with no button on the payoff."
-      ],
-      "fixes": [
-        "Crop to Prates full-height in 9:16 and remove the Makhachev still and the blurred fill.",
-        "Retitle to match what is shown, e.g. 'Carlos Prates Rips Makhachev: If You Won't Fight, Vacate Your Belt'.",
-        "Punch in, with a sound hit, on 'vacate your belt' and 'that's some asshole shit'.",
-        "End the cut on a complete line, the 'vacate your belt' line or 'fake an injury', instead of mid-sentence."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 78
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "restream_letterbox",
-        "visible_evidence": "From mid0 to mid5 the cut is a reposted split-screen. Prates is a small half-band on the right and Makhachev is a frozen stock still on the left. The source's burned-in subtitles carry all the content, and two thirds of the 9:16 frame is blurred fill.",
-        "root_cause": "The source was another channel's finished edit, a split-screen with subtitles already burned in. It was letterboxed whole into the vertical frame, not cropped to the person speaking, and the title promises a face-to-face confrontation the footage does not contain.",
-        "repair_goal": "Crop to Prates alone, filling the vertical frame (he is the only moving subject), and drop the static Makhachev still. Retitle to what is shown, for example 'Carlos Prates Rips Islam Makhachev: Vacate Your Belt'. Or find the original Prates interview footage and use that instead of the repost."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.223,
-        "effective_fps": 18.7,
-        "max_dup_run": 11,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 2.12,
-        "max_dup_at_s": 11.29,
-        "duration_s": 25.88
-      },
-      "fingerprint": "?|empty_void+junk_imagery|restream_letterbox"
-    },
-    {
-      "ts": "2026-11-04T12:24:07+00:00",
-      "slug": "sports_carlos_prates_makhachev_he",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The callout is real and easy to follow, but it plays as a postage-stamp split-screen inside two thirds of blur, with no zooms or hits, and it ends on a flat line rather than the 'vacate your belt' peak.",
-      "auto_fails": [
-        "empty_void: hook@0.3 to payoff@-0.4: the real footage is a band about 240px tall in the middle of a 764px frame. The top and bottom thirds are a blurred copy of the same footage, and the left half of that band is a still photo of Makhachev that never changes, so only about a sixth of the frame shows moving footage."
-      ],
-      "problems": [
-        "About 2/3 of the frame is blurred fill and the left half of the footage is a frozen still, so very little of the screen moves (all frames).",
-        "No zooms, punch-ins or sound hits on the strongest lines ('vacate your belt' at mid3, 'asshole shit' at mid4).",
-        "Ends on 'We had already agreed on it' (payoff@-0.4), a flat explanation, not the punchline.",
-        "The hook opens mid-sentence on 'everybody was pretty pissed off', with a static picture and no immediate punch."
-      ],
-      "fixes": [
-        "Re-crop to Prates full-frame, and cut to the Makhachev still only as a brief insert when he is named.",
-        "Add a punch-in with a hit on 'vacate your belt' and on 'fake an injury'.",
-        "Reorder or trim so the clip opens on 'If you don't want to fight, vacate your belt' or ends on it.",
-        "Cut the trailing explanation after the peak line so the payoff lands at the end."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 94
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 1,
-        "failure_class": "empty_void",
-        "visible_evidence": "mid0-mid4: a small letterboxed split-screen (a still photo of Makhachev on the left, Prates on the right) sits between two big blurred fill bars. About 2/3 of the phone screen is blur.",
-        "root_cause": "The source is someone else's pre-made split-screen repost. It was placed whole with a blur fill instead of being re-cropped, so the person actually speaking takes up a tiny part of the screen.",
-        "repair_goal": "Crop to Prates' half and scale him to fill most of the 9:16 frame, face in the upper-middle. Show the Makhachev still only briefly as a cut-in when he is named, and keep our line and the source's subtitles readable without the blur bars."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.235,
-        "effective_fps": 18.4,
-        "max_dup_run": 8,
-        "measured": true,
-        "frozen_ratio": 0.024,
-        "frozen_fps": 23.4,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.013,
-        "judder_fps": 23.7,
-        "held_s": 1.92,
-        "max_dup_at_s": 16.92,
-        "duration_s": 31.42
-      },
-      "fingerprint": "?|empty_void|empty_void"
-    },
-    {
-      "ts": "2026-11-04T12:26:25+00:00",
-      "slug": "sports_victor_wembanyama_rything_is_a",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is real but sits on the speaker poorly: the close-up crop cuts Wembanyama's face at the right edge and the clip ends mid-thought on 'SO IT'S REALLY'.",
-      "auto_fails": [
-        "junk_imagery: The crop drifts off the speaker. In mid2 (10.9s) and mid4 (19.3s) Wembanyama's face is pushed against the right edge, with his right cheek, ear and eye cut off while blurred background fills the left half. In mid1 (6.7s) the frame cuts to the interviewer while 'OF COURSE,' is captioned."
-      ],
-      "problems": [
-        "mid2 and mid4: the close-up crop cuts the right side of Wembanyama's face at the frame edge, with dead blurred background on the left.",
-        "mid1: cuts to the interviewer's face during the answer.",
-        "The payoff ends mid-sentence ('SO IT'S REALLY'). The headline line (influencer / philanthropist / gambling and alcohol) never visibly lands as a finish.",
-        "Hook frames are a calm sit-down with no hit or zoom on a reaction, so there is little reason to stop scrolling.",
-        "The '60 MINUTES' logo is cut off at the left edge in the hook frames."
-      ],
-      "fixes": [
-        "Track his face in the 9:16 crop on every shot, centred, whole head visible.",
-        "Trim so the clip ends right after he finishes the 'influencer, philanthropist, or gambling and alcohol' line, and land on that.",
-        "Open on his strongest line ('Everything is a choice') with a punch-in so the first two seconds carry the claim.",
-        "Drop or shorten the interviewer cutaway."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "bad_crop",
-        "visible_evidence": "mid4 (19.3s) is a close-up with Wembanyama's face jammed into the right third. His right eye, cheek and ear run off the frame edge while the left half of the frame is blurred background. mid2 (10.9s) has the same crop.",
-        "root_cause": "The 9:16 crop window over the close-up shots is fixed or left-biased and does not follow his face. On the tight shots he drifts out of frame to the right.",
-        "repair_goal": "Re-crop the close-up shots (around 9-25s) so the crop follows his face, centred with his whole head in frame. Keep the crop on the speaker and do not cut away to the interviewer while his line is being captioned."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.178,
-        "effective_fps": 19.7,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.028,
-        "frozen_fps": 23.3,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.33,
-        "max_dup_at_s": 6.12,
-        "duration_s": 25.5
-      },
-      "fingerprint": "?|junk_imagery|bad_crop"
-    },
-    {
-      "ts": "2026-11-04T12:28:37+00:00",
-      "slug": "sports_victor_wembanyama_rything_is_a",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is the right person and real footage, but it is a talking head with no visible punch. The crop is pushed right and clips his face, and the promised gambling and alcohol line never clearly lands.",
-      "auto_fails": [],
-      "problems": [
-        "The close-ups from mid2 to payoff@-0.4 sit off-centre and clip his right cheek and ear at the frame edge.",
-        "The hook (hook@0.3 to 2.2) is a slow lead-in, 'If you're amongst also the stars', with no hit to make a stranger stay.",
-        "The frames we sampled never show the promised payoff line (influencer, philanthropist, gambling and alcohol), and the end frames carry no caption.",
-        "Black bars at the top and bottom waste about a quarter of the frame.",
-        "There are no zooms or sound hits on a reaction; the cut is flat."
-      ],
-      "fixes": [
-        "Re-centre the crop on Wembanyama's face and fill the frame vertically, removing the black bars.",
-        "Open on the strongest line, 'You can choose ... to promote gambling and alcohol', then cut back to the setup.",
-        "Put a punch-in and a sound hit on 'gambling and alcohol', and end the clip within a second of it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "weak_payoff_and_tight_crop",
-        "visible_evidence": "From mid3 to payoff@-0.4 the frame is a tight close-up pushed right, clipping his right cheek and ear at the edge. The frames we sampled never show the promised list on screen (influencer, philanthropist, gambling and alcohol): mid4 and payoff@-0.4 show no caption line at all, and mid5 reads 'SO IT'",
-        "root_cause": "The punch-in crop is centred left of his face. The cut also seems to end on wrap-up talk rather than on the gambling and alcohol line the title promises.",
-        "repair_goal": "Re-centre the crop on his face with margin on both sides. Trim the clip so it lands on 'promote gambling and alcohol', with a zoom or sound hit on that line, and end right after it."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.178,
-        "effective_fps": 19.7,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.031,
-        "frozen_fps": 23.3,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.33,
-        "max_dup_at_s": 6.12,
-        "duration_s": 25.5
-      },
-      "fingerprint": "?|-|weak_payoff_and_tight_crop"
-    },
-    {
-      "ts": "2026-11-04T12:30:28+00:00",
-      "slug": "sports_jacob_misiorowski_g_with_jacob",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Right event and a good crowd countdown, but the catch and chug the line promises happen as tiny specks on a far-off bus and are never shown up close, and the clip ends on a wide building shot.",
-      "auto_fails": [],
-      "problems": [
-        "The catch-and-chug, the whole point of the title, is never readable: the player is about 60px tall on the bus in mid2 and is never zoomed in on.",
-        "mid4 through payoff@-0.4 sit on a wide shot of the building and crowd, with the players as specks on the bus, so the clip ends without a payoff.",
-        "A stranger cannot tell which figure is Misiorowski at any point."
-      ],
-      "fixes": [
-        "Crop and zoom on the bus player from the throw to the end of the chug (t\u22482.5-8s), with a punch-in on the catch.",
-        "End the clip on the chug finishing and the fan's YEAH reaction (mid3), and cut the wide building shot.",
-        "Keep the countdown hook. It works as a reason to stay."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 45
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "subject_too_small",
-        "visible_evidence": "In mid2 (t=6.74s) the player raising the caught can is a figure about 60px tall on top of the bus, far from the camera. In mid4-payoff@-0.4 the camera is on a crowd and a building, and the players are specks on the bus. The chug itself is never readable at phone size.",
-        "root_cause": "The source is a wide phone video shot from the street. The cut keeps the full wide frame, so the catch and chug the title promises are a few pixels across. The last stretch ('NO!') shows the crowd and a fan's can in the foreground instead.",
-        "repair_goal": "Punch in (crop and zoom about 2.5x) on the player on the bus from the throw through the catch and chug (about t=2.5-8s), then hold on the chug. End on the chug landing and the crowd reaction instead of the wide building shot from mid4 on."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.003,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 15.08
-      },
-      "fingerprint": "?|-|subject_too_small"
-    },
-    {
-      "ts": "2026-11-04T12:33:06+00:00",
-      "slug": "sports_jacob_misiorowski_g_ovation_at",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The real moment lands (Misiorowski walks off and the crowd rises) but the first 2.5s are teammates' backs through a net, so the hook does not show who the ovation is for.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3-hook@2.5: fan-filmed through the netting at umpires and teammates' backs. The subject is not in frame and nothing tells a stranger to stay.",
-        "mid5/payoff: the crowd shot is letterboxed into a small middle band with heavy blur fill, which wastes nearly half the vertical frame.",
-        "The word caption 'SCORELESS INNINGS IN' at mid5 runs right up to the broadcast scorebug."
-      ],
-      "fixes": [
-        "Open on the broadcast walk-off shot of #32 (mid2-mid3) or the standing crowd, and trim or move the net-filmed dugout clip after the first beat.",
-        "Punch in on the crowd shot to fill more of the vertical frame instead of a thin letterbox band.",
-        "Raise or shift the word captions when a scorebug sits at that height."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 53
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_subject_offscreen",
-        "visible_evidence": "hook@0.3-hook@2.2 is a fan phone shot through the backstop net of umpires and the backs of teammates (ASHBY 26, RO..). Misiorowski is not visible and no one is visibly applauding yet.",
-        "root_cause": "The cut opens on the fan-filmed dugout angle instead of the broadcast shot of the pitcher walking off or the crowd on its feet, so the first two seconds do not show what the line promises.",
-        "repair_goal": "Open on the broadcast shot of #32 walking off with the trainer (the mid2/mid3 shot) or the crowd standing (the mid5 shot) within the first 0.5s. Move or drop the fan-net footage so a stranger sees the ovation subject at frame one."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.017,
-        "effective_fps": 23.6,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.007,
-        "frozen_fps": 23.8,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 2.58,
-        "duration_s": 17.54
-      },
-      "fingerprint": "?|-|weak_hook_subject_offscreen"
-    },
-    {
-      "ts": "2026-11-04T12:35:03+00:00",
-      "slug": "sports_northern_kentucky__saved_after",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clear, likeable real moment (doors pried, team emerges, group photo), but a frozen \"YES WE PLAY\" caption sits on screen for 25 seconds and makes the edit look broken.",
-      "auto_fails": [],
-      "problems": [
-        "The \"YES WE PLAY\" word caption is frozen from hook@0.3 to mid5 and never matches who is speaking (mid3, mid4), so it reads like a bug.",
-        "The hook opens on the backs of firefighters at the door (hook@0.3 to hook@2.2). The team is not visible until mid0, so the first two seconds are a little slow.",
-        "Nothing on screen shows how long they were stuck (40+ minutes), which takes some sting out of the payoff."
-      ],
-      "fixes": [
-        "Drop the frozen word caption or sync it to the speech, and keep only our one line.",
-        "Open on the doors parting and the team visible (around mid0) or cut in a punch-in there, so the payoff is set up within the first second.",
-        "Let line 2 at the reveal say \"40+ minutes later...\" so the wait is felt."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 82
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "stale_caption",
-        "visible_evidence": "The word caption \"YES WE PLAY\" stays frozen on screen for about 25s (hook@0.3 through mid5) and never changes, even while different players speak (mid3, mid4).",
-        "root_cause": "A single word-caption chunk was never cleared or advanced, so one transcript fragment stays on screen for the whole clip. It may also be a burned-in caption from the source that the cut keeps.",
-        "repair_goal": "Remove the frozen \"YES WE PLAY\" caption, or advance it in sync with the speech, so the only fixed text is our one line."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.05,
-        "effective_fps": 22.8,
-        "max_dup_run": 18,
-        "measured": true,
-        "frozen_ratio": 0.026,
-        "frozen_fps": 23.4,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.92,
-        "max_dup_at_s": 26.67,
-        "duration_s": 27.42
-      },
-      "fingerprint": "?|-|stale_caption"
-    },
-    {
-      "ts": "2026-11-04T12:52:13+00:00",
-      "slug": "sports_yan_diomande_ovation_from",
-      "score": 75,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real moment, but the opening is a letterboxed repost with someone else's unrelated captions, and the promised stadium ovation is never clearly shown.",
-      "auto_fails": [
-        "junk_imagery: hook@0.8-mid1: the opening is someone else's edit, letterboxed, with its own burned-in captions ('THE REALITY IS', 'A INTER- IT', 'BARCELONA IT IS'). That commentary is about something else and contradicts our line.",
-        "empty_void: hook@0.3 to mid1: the broadcast clip fills only the middle third (y~220-460). Black bars cover more than half the frame for the first ~7s.",
-        "unreadable: hook@0.8 to mid1: the source's bold caption ('A INTER- IT', 'BARCELONA IT IS') is printed right above our line and competes with it. From mid2 on, our line sits over busy crowd footage with no backing."
-      ],
-      "problems": [
-        "hook to mid1: a repost of another edit whose burned-in captions ('BARCELONA IT IS') have nothing to do with the jersey story",
-        "hook to mid1: the footage fills only a strip in the middle of a black 9:16 frame",
-        "mid2 to payoff: the standing ovation is not visible. The fan-cam mostly shows Diomande walking with a few hands raised.",
-        "Our line is stacked against the source's caption and becomes cluttered"
-      ],
-      "fixes": [
-        "Get a clean broadcast source of the handoff with no burned-in captions, and crop it full frame on Diomande and the ball boy",
-        "End on a wide crowd shot where the whole stand is visibly on its feet clapping, with a zoom or sound hit there",
-        "If no clean source exists, start on the fan-cam footage and drop the letterboxed repost"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 67
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "restream_with_foreign_captions",
-        "visible_evidence": "hook@0.8-mid1: a letterboxed repost of another edit with its own garbled captions ('A INTER- IT', 'BARCELONA IT IS') stacked above our line. The footage fills a strip in the middle of the frame.",
-        "root_cause": "The source was a repost edit that already had burned-in commentary captions. It was letterboxed into 9:16 instead of being cropped or swapped for a clean broadcast source.",
-        "repair_goal": "Use a clean broadcast cut of the jersey handoff, cropped to fill the frame on Diomande and the ball boy, with no foreign captions. Then cut to the fan-cam ovation, making sure the standing crowd is visible and the clapping is audible."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.019,
-        "effective_fps": 23.5,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.015,
-        "frozen_fps": 23.6,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 22.25
-      },
-      "fingerprint": "?|empty_void+junk_imagery+unreadable|restream_with_foreign_captions"
-    },
-    {
-      "ts": "2026-11-04T13:11:39+00:00",
-      "slug": "sports_jake_bauers_ast_out_ball",
-      "score": 71,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The real ball handoff lands in the first second, but the clip then drifts into archival footage and a letterboxed clubhouse speech that never returns to the ball, so it ends nowhere near the moment its line promises.",
-      "auto_fails": [
-        "junk_imagery: hook@1.5: a bystander's purple plaid jacket and the back of his head fill most of the frame, and Bauers is pushed to a blurred sliver at the left during the handoff the line promises",
-        "empty_void: mid4, mid5, payoff@-1.8 and payoff@-0.4: the 16:9 clubhouse feed sits in a thin middle band, and blurred or near-black letterbox fills about 60% of the frame for the last ~10s"
-      ],
-      "problems": [
-        "hook@1.5: a bystander's plaid jacket blocks the handoff, and Bauers is a blurred sliver at the edge",
-        "The ball handoff is only visible around 0.3-2.5s; the remaining ~43s never show the ball again",
-        "mid3: archival Notre Dame footage of young Murphy sits under 'Bauers gives Murphy the last out ball', so the line no longer matches the picture",
-        "mid4 to payoff: the 16:9 FOX clubhouse feed is letterboxed with ~60% blurred or black fill, wasting the vertical frame",
-        "The payoff fades out on a clubhouse speech, not on the gift, so the clip does not land the moment it is titled for"
-      ],
-      "fixes": [
-        "Trim to the field sequence (about 0-25s) and end on Murphy's reaction or the hug after he gets the ball",
-        "Cut or punch past the hook@1.5 obstruction so both men stay in frame",
-        "Drop the archival Notre Dame segment and the letterboxed clubhouse tail; if the speech stays, crop it full-frame on Murphy instead of blur-filling",
-        "Add a punch-in and sound hit as the ball changes hands so the reaction lands"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.007,
-        "sampled": 137
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "payoff",
-        "index": 7,
-        "failure_class": "weak_payoff_and_letterbox_void",
-        "visible_evidence": "From mid3 on, the clip leaves the ball moment. It cuts to archival Notre Dame footage of a young Murphy (mid3), then to a letterboxed FOX clubhouse speech with the trophy (mid4 to payoff@-0.4). Those last frames are about 60% blurred fill, and the ball is never seen again",
-        "root_cause": "The source is a news package. The cut ran its whole length instead of ending on the handoff and Murphy's reaction, and the 16:9 broadcast segment was dropped onto a blurred background instead of being cropped to the speaker",
-        "repair_goal": "End the cut on the field moment: the ball handed over at around 0-3s, then Murphy's emotional reaction and the hug at mid1/mid2 (about 0-25s). Drop the archival footage and the letterboxed clubhouse tail, or crop that tail full-frame on Murphy. Re-crop hook@1.5 so Bauers and Murphy are in frame and "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.048,
-        "effective_fps": 22.8,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 24.92,
-        "duration_s": 45.79
-      },
-      "fingerprint": "?|empty_void+junk_imagery|weak_payoff_and_letterbox_void"
-    },
-    {
-      "ts": "2026-11-04T13:25:28+00:00",
-      "slug": "sports_jake_bauers_ast_out_ball",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "",
-      "auto_fails": [
-        "junk_imagery: mid3/mid4 (t=23-30s) cut to a clubhouse champagne speech and mid5/payoff (t=37-39s) to an NLCS Game 1 broadcast clip of Murphy gesturing on the field. Neither shows Bauers or the last-out ball the line promises, so the back half is unrelated footage. The hook frames (0.3-2.2s) are also a Spectrum News repost, and Murphy's face is blocked by a woman's hair while Bauers is not identifiable.",
-        "unreadable: hook@0.3-mid0: our line 'Bauers hands Murphy the last out ball' sits right under the footage's own burned-in caption box 'BAUERS GIVES MURPHY THE LAST OUT BALL'. That is the same sentence twice, stacked over the source's caption graphic, in breach of the rule about printing over the footage's own captions."
-      ],
-      "problems": [],
-      "fixes": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.008,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "wrong_footage_payoff",
-        "visible_evidence": "mid5/payoff@-1.8/payoff@-0.4 show an NLCS Game 1 broadcast shot (FOX NLCS bug, score 1-0 LAD) of Murphy waving on the field, fading to dark. It has nothing to do with the ball handoff, and the video ends on it.",
-        "root_cause": "The source compilation keeps going past the moment into unrelated montage clips (clubhouse speech, a playoff game), and the cut used the whole thing instead of trimming to the handoff.",
-        "repair_goal": "Trim the clip to roughly 2-18s so it ends on the ball handoff and the Bauers/Murphy laugh in mid1-mid2. Start the hook on the ball handoff (mid0, around 2.5s), not on the woman's hug. Drop or replace our text line so it doesn't duplicate the source's burned-in caption."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.025,
-        "effective_fps": 23.4,
-        "max_dup_run": 5,
-        "measured": true,
-        "frozen_ratio": 0.004,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 0.17,
-        "max_dup_at_s": 29.38,
-        "duration_s": 39.42
-      },
-      "fingerprint": "?|junk_imagery+unreadable|wrong_footage_payoff"
-    },
-    {
-      "ts": "2026-11-04T13:28:28+00:00",
-      "slug": "sports_kylian_mbapp\u00e9_accidentally",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The promised joke, Mbapp\u00e9 blaming Tchouam\u00e9ni, is never shown on screen: his words have no captions, and the footage is a small letterboxed strip with garbled captions in the hook.",
-      "auto_fails": [
-        "empty_void: In every frame, from hook@0.3 to payoff@-0.4, the 16:9 footage sits in a thin band of about 28% of the frame height. The rest is a blurred copy of the same footage, so Mbapp\u00e9's face takes up only a few percent of a phone screen.",
-        "unreadable: At hook@1.5 our word caption collides with itself and reads 'ENDDAY.THE', with two captions printed on top of each other. In hook@0.3 to hook@0.8 the word captions sit right on the footage's bottom edge, over the kid and the mic."
-      ],
-      "problems": [
-        "Mbapp\u00e9's quote, which is the whole premise, has no translation or caption, so a stranger cannot tell what he says.",
-        "Word captions collide at hook@1.5 ('ENDDAY.THE') and disappear after the hook.",
-        "The footage is letterboxed into about 28% of the frame with a blurred fill, so faces are tiny on a phone.",
-        "The video never shows or says that the kid was hit, so the setup is missing.",
-        "The opening seconds show the interviewer and the kid playing, not Mbapp\u00e9, so the hook is slow to reach the star."
-      ],
-      "fixes": [
-        "Caption Mbapp\u00e9's line in English ('It's Tchouam\u00e9ni's fault. He doesn't know how to shoot.') timed to when he speaks.",
-        "Fix the caption grouper so two words never overprint, or drop the interviewer captions from the hook.",
-        "Crop or zoom the 16:9 source so the people fill the vertical frame, with a punch-in on Mbapp\u00e9 when he delivers the line.",
-        "Open on or near Mbapp\u00e9 arriving (around t=2.2s), or add the shot of the ball hitting the kid if the source has it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 81
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 1,
-        "failure_class": "payoff_not_delivered",
-        "visible_evidence": "At mid1 and mid2 Mbapp\u00e9 leans in and talks to the kid, but nothing on screen shows what he says. The word captions vanish after the hook, so the joke 'It's Tchouam\u00e9ni's fault, he doesn't know how to shoot' is never shown, and nothing shows the kid being hit.",
-        "root_cause": "Mbapp\u00e9's line is foreign-language speech with no translated caption. The only words captioned are the interviewer's opening, and those collide. The video relies on the hook line to carry a punchline the footage never shows.",
-        "repair_goal": "Burn an English caption of Mbapp\u00e9's exact quote at the second he says it, around 7-12s. Remove or fix the colliding interviewer captions in the hook. Scale the footage up, for example a punch-in crop on Mbapp\u00e9 and the kid, so it fills much more of the vertical frame."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.219,
-        "effective_fps": 18.8,
-        "max_dup_run": 5,
-        "measured": true,
-        "frozen_ratio": 0.178,
-        "frozen_fps": 19.7,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.11,
-        "judder_fps": 21.4,
-        "held_s": 0.17,
-        "max_dup_at_s": 14.75,
-        "duration_s": 26.92
-      },
-      "fingerprint": "?|empty_void+unreadable|payoff_not_delivered"
-    },
-    {
-      "ts": "2026-11-04T13:40:54+00:00",
-      "slug": "sports_kylian_mbapp\u00e9_accidentally",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "The moment the line promises, Mbapp\u00e9 blaming Tchouam\u00e9ni, is never made understandable. There are no subtitles for the joke, the opening captions are garbled, and the clip sits in a thin band of a mostly blurred frame.",
-      "auto_fails": [
-        "unreadable: At hook@1.5 our word captions are printed over each other and read 'ENDDAY.THE' as garbage. At hook@0.3 and hook@0.8 'WE ENJOY THE' is a fragment that does not match the moment, and it sits right on the footage's bottom edge."
-      ],
-      "problems": [
-        "Mbapp\u00e9's punchline about Tchouam\u00e9ni has no subtitle or translation (mid1-mid3), so a stranger cannot hear or read the joke.",
-        "The word captions in the hook overlap and are garbled ('ENDDAY.THE' at hook@1.5), and 'WE ENJOY THE' at hook@0.3 is a fragment that doesn't match the moment.",
-        "The clip never shows the kid being hit or any sign of the shot, so the setup is missing.",
-        "The first 2s stay on the interviewer and the kid. Mbapp\u00e9 only enters at hook@2.2.",
-        "The 16:9 footage is small in a 9:16 frame, with about 70% of the frame blurred filler.",
-        "The last 2s (mid5 to payoff) are the kid holding a gift after Mbapp\u00e9 has gone. The ending trails off rather than landing."
-      ],
-      "fixes": [
-        "Subtitle Mbapp\u00e9's exact line in English, in large readable text, at the second he says it, and add a punch-in or sound hit on 'he doesn't know how to shoot'.",
-        "Drop or fix the garbled interviewer captions in the hook so that only clean, non-overlapping text appears.",
-        "Open on Mbapp\u00e9 arriving or speaking, and trim the first ~2s of the interviewer.",
-        "Scale up or crop the footage so the people fill more of the vertical frame.",
-        "End on Mbapp\u00e9's punchline or the high-five reaction instead of the post-moment gift shot."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 81
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 5,
-        "failure_class": "payoff_not_understandable",
-        "visible_evidence": "From mid1 to mid3 Mbapp\u00e9 leans in and talks to the boy, then high-fives him, but no subtitle or translation of his words appears on screen. Once the hook ends, the only text is the fixed line 'Mbapp\u00e9 blames Tchouam\u00e9ni after kid gets hit'. The punchline, 'It's Tchouam\u00e9ni's fault, he doesn't know how ",
-        "root_cause": "The word captions run only over the interviewer's opening lines, and they are garbled there. Nothing transcribes or translates the joke itself, and the clip never shows the kid getting hit. So a stranger sees a nice meet-and-greet, not the moment the line promises.",
-        "repair_goal": "Add a clean, readable English subtitle of Mbapp\u00e9's exact line ('It's Tchouam\u00e9ni's fault. He doesn't know how to shoot.') at the second he says it, from about 6 to 14s, and put a punch-in or sound hit on it. Remove the garbled interviewer captions from the hook. If possible, open on Mbapp\u00e9 arriving ("
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.219,
-        "effective_fps": 18.8,
-        "max_dup_run": 5,
-        "measured": true,
-        "frozen_ratio": 0.178,
-        "frozen_fps": 19.7,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.105,
-        "judder_fps": 21.5,
-        "held_s": 0.17,
-        "max_dup_at_s": 14.75,
-        "duration_s": 26.92
-      },
-      "fingerprint": "?|unreadable|payoff_not_understandable"
-    },
     {
       "ts": "2026-11-04T13:49:27+00:00",
       "slug": "sports_jake_bauers_ast_out_ball",
@@ -4266,6 +3461,735 @@
       },
       "fingerprint": "?|unreadable|unreadable_labels_and_weak_proof",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-07T11:46:05+00:00",
+      "slug": "sports_jacob_misiorowski_g_with_jacob",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 0,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The video fails to show Jacob Misiorowski performing the chug as claimed by the on-screen text.",
+      "auto_fails": [
+        "junk_imagery: The video claims to show 'Jacob Misiorowski's perfect parade chug', but the footage shows a person in the foreground throwing a can, and Jacob Misiorowski is on the bus, not performing the chug."
+      ],
+      "problems": [
+        "The video's on-screen text claims 'Jacob Misiorowski's perfect parade chug', but the footage does not show Jacob Misiorowski performing this action. Instead, a person in the foreground throws a can, and Jacob is seen celebrating on a bus."
+      ],
+      "fixes": [
+        "Replace the footage with a clip that clearly shows Jacob Misiorowski performing the chug, or revise the on-screen text to accurately describe the action shown in the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "junk_imagery",
+        "visible_evidence": "The text claims 'Jacob Misiorowski's perfect parade chug', but the foreground shows a different person throwing a can, and Jacob Misiorowski is on the bus, not performing the chug.",
+        "root_cause": "Mismatch between on-screen text claim and visual footage.",
+        "repair_goal": "Ensure the footage clearly shows Jacob Misiorowski performing the chug as stated in the text, or adjust the text to match the actual footage."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 15.04
+      },
+      "fingerprint": "?|junk_imagery|junk_imagery"
+    },
+    {
+      "ts": "2026-11-07T11:57:23+00:00",
+      "slug": "sports_lebron_james_an_emotional",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "LeBron James reacts to being teased by the Sixers after his 16,000th field goal milestone.",
+      "auto_fails": [],
+      "problems": [
+        "The video implies the 'roasting' or 'teasing' but does not explicitly show the interaction, only LeBron's reaction to it."
+      ],
+      "fixes": [
+        "Source footage that includes the actual teasing interaction from the Sixers players.",
+        "Alternatively, adjust the hook text to accurately reflect what is shown, e.g., 'LeBron's reaction to being roasted...'"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.03,
+        "sampled": 67
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 1,
+        "failure_class": "Incomplete demonstration",
+        "visible_evidence": "The video shows LeBron's reaction (laughing, saying \"I appreciate it\") but does not explicitly show the \"roasting\" or \"teasing\" from the Sixers players, which is promised in the hook.",
+        "root_cause": "Footage selection did not include the actual \"roasting\" interaction, only the aftermath/reaction.",
+        "repair_goal": "Include footage that explicitly shows the Sixers players teasing LeBron, or adjust the hook to better match the available footage (e.g., \"LeBron reacts to being teased...\")."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.29,
+        "duration_s": 22.25
+      },
+      "fingerprint": "?|-|Incomplete demonstration"
+    },
+    {
+      "ts": "2026-11-07T12:01:03+00:00",
+      "slug": "sports_minnesota_vikings__field_goals",
+      "score": 91,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video shows a spectacular 60-yard field goal, but the text implies two kickers trading them, which isn't fully depicted.",
+      "auto_fails": [],
+      "problems": [
+        "The video's on-screen text claims 'Two kickers trade 60-yard field goals', but the footage only explicitly shows one successful 60-yard field goal, not the 'trade' or the second kicker."
+      ],
+      "fixes": [
+        "Either include footage of both 60-yard field goals and the 'trade' context, or revise the on-screen text to accurately reflect the single field goal shown."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 110
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid3",
+        "index": 3,
+        "failure_class": "data_demo",
+        "visible_evidence": "The on-screen text states 'Two kickers trade 60-yard field goals', but the footage from this point onward only shows one successful 60-yard field goal, not the implied 'trade' or the second kicker.",
+        "root_cause": "The video content does not fully align with the specific claim made in the on-screen text regarding the number of field goals and the 'trade' aspect.",
+        "repair_goal": "Either add footage depicting the second 60-yard field goal and the 'trade', or modify the on-screen text to accurately describe the single field goal shown."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.138,
+        "effective_fps": 20.7,
+        "max_dup_run": 33,
+        "measured": true,
+        "frozen_ratio": 0.009,
+        "frozen_fps": 23.8,
+        "max_frozen_run": 5,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 3.83,
+        "max_dup_at_s": 22.71,
+        "duration_s": 36.79
+      },
+      "fingerprint": "?|-|data_demo"
+    },
+    {
+      "ts": "2026-11-07T12:17:42+00:00",
+      "slug": "sports_kylian_mbapp\u00e9_accidentally",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "Readable and active, but the footage never proves the Mbapp\u00e9/Tchouam\u00e9ni moment the line promises.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4 show a child and the same unidentified adult; Mbapp\u00e9 and the promised blame moment are never visually established."
+      ],
+      "problems": [
+        "The named speaker is not visible or identifiable in any labelled frame.",
+        "The ending remains the same interaction shot, so a stranger cannot infer the promised blame line."
+      ],
+      "fixes": [
+        "Replace the crop with the actual Mbapp\u00e9 exchange and reaction.",
+        "Make the final frames land on the identifiable speaker or child's response to the line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "chatgpt-mailbox",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": -1,
+        "failure_class": "claim-footage mismatch",
+        "visible_evidence": "hook@0.3, hook@0.8, hook@1.5, and hook@2.2 never show Mbapp\u00e9 or a clearly attributable exchange.",
+        "root_cause": "The selected crop does not establish the named speaker or the claimed blame line.",
+        "repair_goal": "Use footage that visibly identifies Mbapp\u00e9 and includes the actual exchange or reaction promised by the caption."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.265,
+        "effective_fps": 17.6,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.081,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.039,
+        "judder_fps": 23.1,
+        "held_s": 0.5,
+        "max_dup_at_s": 5.92,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|junk_imagery|claim-footage mismatch"
+    },
+    {
+      "ts": "2026-11-07T12:21:21+00:00",
+      "slug": "sports_kylian_mbapp\u00e9_accidentally",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "Readable and active, but the footage never proves the Mbapp\u00e9/Tchouam\u00e9ni moment the line promises.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4 show a child and the same unidentified adult; Mbapp\u00e9 and the promised blame moment are never visually established."
+      ],
+      "problems": [
+        "The named speaker is not visible or identifiable in any labelled frame.",
+        "The ending remains the same interaction shot, so a stranger cannot infer the promised blame line."
+      ],
+      "fixes": [
+        "Replace the crop with the actual Mbapp\u00e9 exchange and reaction.",
+        "Make the final frames land on the identifiable speaker or child's response to the line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "chatgpt-mailbox",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": -1,
+        "failure_class": "claim-footage mismatch",
+        "visible_evidence": "hook@0.3, hook@0.8, hook@1.5, and hook@2.2 never show Mbapp\u00e9 or a clearly attributable exchange.",
+        "root_cause": "The selected crop does not establish the named speaker or the claimed blame line.",
+        "repair_goal": "Use footage that visibly identifies Mbapp\u00e9 and includes the actual exchange or reaction promised by the caption."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.265,
+        "effective_fps": 17.6,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.081,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.039,
+        "judder_fps": 23.1,
+        "held_s": 0.5,
+        "max_dup_at_s": 5.92,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|junk_imagery|claim-footage mismatch"
+    },
+    {
+      "ts": "2026-11-07T12:25:11+00:00",
+      "slug": "sports_kylian_mbapp\u00e9_accidentally",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "Readable and active, but the footage never proves the Mbapp\u00e9/Tchouam\u00e9ni moment the line promises.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4 show a child and the same unidentified adult; Mbapp\u00e9 and the promised blame moment are never visually established."
+      ],
+      "problems": [
+        "The named speaker is not visible or identifiable in any labelled frame.",
+        "The ending remains the same interaction shot, so a stranger cannot infer the promised blame line."
+      ],
+      "fixes": [
+        "Replace the crop with the actual Mbapp\u00e9 exchange and reaction.",
+        "Make the final frames land on the identifiable speaker or child's response to the line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "chatgpt-mailbox",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": -1,
+        "failure_class": "claim-footage mismatch",
+        "visible_evidence": "hook@0.3, hook@0.8, hook@1.5, and hook@2.2 never show Mbapp\u00e9 or a clearly attributable exchange.",
+        "root_cause": "The selected crop does not establish the named speaker or the claimed blame line.",
+        "repair_goal": "Use footage that visibly identifies Mbapp\u00e9 and includes the actual exchange or reaction promised by the caption."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.265,
+        "effective_fps": 17.6,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.081,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.039,
+        "judder_fps": 23.1,
+        "held_s": 0.5,
+        "max_dup_at_s": 5.92,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|junk_imagery|claim-footage mismatch"
+    },
+    {
+      "ts": "2026-11-07T12:29:12+00:00",
+      "slug": "sports_yan_diomande_ovation_from",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked: judge response failed schema validation",
+      "auto_fails": [
+        "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+        "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+        "malformed_judge_response: checks.bare_number_card.evidence missing or empty",
+        "malformed_judge_response: checks.unreadable.evidence missing or empty"
+      ],
+      "problems": [
+        "checks.junk_imagery.evidence missing or empty",
+        "checks.decorative_mascot.evidence missing or empty",
+        "checks.bare_number_card.evidence missing or empty",
+        "checks.unreadable.evidence missing or empty"
+      ],
+      "fixes": [
+        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "malformed_judge_response"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.008,
+        "effective_fps": 23.8,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.008,
+        "frozen_fps": 23.8,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|malformed_judge_response|-"
+    },
+    {
+      "ts": "2026-11-07T13:49:02+00:00",
+      "slug": "california-condor-comeback",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A compelling story of condor recovery, effectively demonstrated with bespoke visuals and an active mascot.",
+      "auto_fails": [],
+      "problems": [
+        "Segment 4 reiterates the 50% lead poisoning statistic without a fresh visual demonstration of the proportion, relying mostly on text and a visual of the source."
+      ],
+      "fixes": [
+        "In segment 4, create a new visual metaphor for the '50%' related to the bullets, rather than just stating the number again. For example, visually show half the bullets as 'poisoned' or half the condors affected by a bullet-related visual."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 89
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "data_demonstration",
+        "visible_evidence": "The '50%' statistic in seg4 is primarily presented as text, reiterating the point from seg3 without a fresh visual metaphor for the proportion, focusing more on the source (bullets) than the percentage itself.",
+        "root_cause": "Redundancy in the visual presentation of the same numerical statistic across segments.",
+        "repair_goal": "Introduce a new and distinct visual metaphor for the '50%' statistic in seg4 that directly integrates with the bullet imagery, rather than just stating the number again."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.115,
+        "effective_fps": 21.2,
+        "max_dup_run": 17,
+        "measured": true,
+        "frozen_ratio": 0.041,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 1.25,
+        "max_dup_at_s": 0.0,
+        "duration_s": 29.62
+      },
+      "fingerprint": "?|-|data_demonstration"
+    },
+    {
+      "ts": "2026-11-07T13:49:15+00:00",
+      "slug": "pedestrian-deaths-outlier",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively demonstrates the disproportionate rise in pedestrian deaths with engaging visual metaphors and mascot interaction.",
+      "auto_fails": [],
+      "problems": [
+        "The billboard mechanic used in the first two segments, while effective, is a relatively common visual for displaying changing numbers and could be more innovative."
+      ],
+      "fixes": [
+        "Explore more unique and bespoke visual metaphors for showing year-over-year data changes, especially for the initial presentation of overall traffic deaths."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 80
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "lack of innovation",
+        "visible_evidence": "The data demonstration for traffic deaths uses a billboard mechanic, which is clear but a somewhat generic way to show changing numbers.",
+        "root_cause": "The visual metaphor for showing year-over-year totals is functional but not highly unique.",
+        "repair_goal": "Develop a more bespoke and surprising visual metaphor for demonstrating changing traffic death totals over time."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.045,
+        "effective_fps": 22.9,
+        "max_dup_run": 17,
+        "measured": true,
+        "frozen_ratio": 0.044,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 1.08,
+        "max_dup_at_s": 0.0,
+        "duration_s": 26.67
+      },
+      "fingerprint": "?|-|lack of innovation"
+    },
+    {
+      "ts": "2026-11-07T14:48:45+00:00",
+      "slug": "sports_dan_campbell_l_on_lb_jack",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Dan Campbell expresses gratitude to fans for their prayers regarding Jack Campbell's recovery.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 20.0,
+        "dark_fraction": 0.0,
+        "sampled": 68
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 4,
+        "failure_class": "Visual monotony",
+        "visible_evidence": "The camera angle and framing remain largely identical throughout the extended middle section of the video.",
+        "root_cause": "Reliance on a single, static camera shot for the entire duration of the quote.",
+        "repair_goal": "Introduce subtle variations in framing or zoom, or incorporate a B-roll shot if available, to break visual monotony."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.646,
+        "effective_fps": 8.5,
+        "max_dup_run": 40,
+        "measured": true,
+        "frozen_ratio": 0.157,
+        "frozen_fps": 20.2,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 12.04,
+        "max_dup_at_s": 17.58,
+        "duration_s": 22.54
+      },
+      "fingerprint": "?|-|Visual monotony"
+    },
+    {
+      "ts": "2026-11-07T14:48:59+00:00",
+      "slug": "sports_dan_campbell_lions_locker",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked: judge response failed schema validation",
+      "auto_fails": [
+        "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+        "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+        "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
+      ],
+      "problems": [
+        "checks.junk_imagery.evidence missing or empty",
+        "checks.decorative_mascot.evidence missing or empty",
+        "checks.bare_number_card.evidence missing or empty"
+      ],
+      "fixes": [
+        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 27
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "malformed_judge_response"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.005,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 5.67,
+        "duration_s": 9.0
+      },
+      "fingerprint": "?|malformed_judge_response|-"
+    },
+    {
+      "ts": "2026-11-07T15:49:03+00:00",
+      "slug": "sports_yan_diomande_ovation_from",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Yan Diomande gifts his jersey to a fan, sparking joy.",
+      "auto_fails": [],
+      "problems": [
+        "The text overlay \"A INTER- IT\" is grammatically awkward and unclear."
+      ],
+      "fixes": [
+        "Correct the text overlay \"A INTER- IT\" to be clear and grammatically correct, e.g., \"AN INTER FAN\"."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 67
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 4,
+        "failure_class": "Clarity/Text",
+        "visible_evidence": "The text overlay \"A INTER- IT\" is grammatically awkward and unclear.",
+        "root_cause": "Unclear or incomplete text overlay.",
+        "repair_goal": "Clarify the text overlay to be grammatically correct and easily understandable, e.g., \"AN INTER FAN\"."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.019,
+        "effective_fps": 23.5,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.013,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.011,
+        "judder_fps": 23.7,
+        "held_s": 0.0,
+        "max_dup_at_s": 2.58,
+        "duration_s": 22.21
+      },
+      "fingerprint": "?|-|Clarity/Text"
     }
   ],
   "showrunner_recurrence": {
@@ -4276,11 +4200,10 @@
         "2026-11-06"
       ]
     },
-    "?|empty_void|empty_void": {
+    "?|junk_imagery|claim-footage mismatch": {
       "count": 3,
       "days": [
-        "2026-11-04",
-        "2026-11-05"
+        "2026-11-07"
       ]
     },
     "?|-|decorative_mascot": {
@@ -4288,6 +4211,12 @@
       "days": [
         "2026-11-04",
         "2026-11-06"
+      ]
+    },
+    "?|empty_void|empty_void": {
+      "count": 2,
+      "days": [
+        "2026-11-05"
       ]
     },
     "?|empty_void+junk_imagery+unreadable|claim_not_shown": {
@@ -4303,70 +4232,10 @@
         "2026-11-05"
       ]
     },
-    "?|empty_void+junk_imagery|restream_letterbox": {
-      "count": 1,
+    "?|malformed_judge_response|-": {
+      "count": 2,
       "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|junk_imagery|bad_crop": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|-|weak_payoff_and_tight_crop": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|-|subject_too_small": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|-|weak_hook_subject_offscreen": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|-|stale_caption": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void+junk_imagery+unreadable|restream_with_foreign_captions": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void+junk_imagery|weak_payoff_and_letterbox_void": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|junk_imagery+unreadable|wrong_footage_payoff": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|empty_void+unreadable|payoff_not_delivered": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
-      ]
-    },
-    "?|unreadable|payoff_not_understandable": {
-      "count": 1,
-      "days": [
-        "2026-11-04"
+        "2026-11-07"
       ]
     },
     "?|empty_void+junk_imagery|off_promise_restream": {
@@ -4572,16 +4441,57 @@
       "days": [
         "2026-11-06"
       ]
+    },
+    "?|junk_imagery|junk_imagery": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
+    },
+    "?|-|Incomplete demonstration": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
+    },
+    "?|-|data_demo": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
+    },
+    "?|-|data_demonstration": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
+    },
+    "?|-|lack of innovation": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
+    },
+    "?|-|Visual monotony": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
+    },
+    "?|-|Clarity/Text": {
+      "count": 1,
+      "days": [
+        "2026-11-07"
+      ]
     }
   },
   "recent_commits": [
-    "5fa98aa 2026-11-07 deadman: repaired 2026-11-07 [skip ci]",
-    "d48ab31 2026-11-07 watchdog: phase A readiness 20261107 [skip ci]"
+    "667098f 2026-11-08 claim: mailbox verdicts 2026-11-08T04:47Z [skip ci]",
+    "bd8f02f 2026-11-08 claim: mailbox verdicts 2026-11-08T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-24": 3,
         "2026-10-25": 3,
         "2026-10-26": 3,
         "2026-10-28": 3,
@@ -4593,15 +4503,15 @@
         "2026-11-03": 5,
         "2026-11-04": 5,
         "2026-11-05": 5,
-        "2026-11-06": 5
+        "2026-11-06": 5,
+        "2026-11-07": 4
       },
-      "total_posted": 520,
-      "attempted": 520,
+      "total_posted": 524,
+      "attempted": 524,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-24": 4,
         "2026-10-25": 3,
         "2026-10-26": 4,
         "2026-10-27": 1,
@@ -4614,15 +4524,14 @@
         "2026-11-04": 2,
         "2026-11-05": 4,
         "2026-11-06": 3,
-        "2026-11-07": 1
+        "2026-11-07": 3
       },
-      "total_posted": 390,
-      "attempted": 390,
+      "total_posted": 392,
+      "attempted": 392,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-24": 7,
         "2026-10-25": 5,
         "2026-10-26": 6,
         "2026-10-27": 1,
@@ -4636,10 +4545,10 @@
         "2026-11-04": 4,
         "2026-11-05": 5,
         "2026-11-06": 6,
-        "2026-11-07": 3
+        "2026-11-07": 4
       },
-      "total_posted": 525,
-      "attempted": 1288,
+      "total_posted": 526,
+      "attempted": 1289,
       "rejected_or_pending": 763
     },
     "analytics_curiosity": {
@@ -4654,32 +4563,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 147,
+      "videos": 149,
       "top_by_vph": [
         {
+          "title": "California Condors Rebounded From Just 27 Birds",
+          "vph": 114.87,
+          "views": 872
+        },
+        {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 72.28,
-          "views": 392
+          "vph": 32.45,
+          "views": 923
+        },
+        {
+          "title": "Pedestrian Deaths Rose 77% While Traffic Deaths Fell",
+          "vph": 20.94,
+          "views": 96
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 29.23,
-          "views": 316
+          "vph": 16.73,
+          "views": 566
         },
         {
-          "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 7.93,
-          "views": 1373
-        },
-        {
-          "title": "The US Hit A Record 28 Billion-Dollar Disasters In 2023",
-          "vph": 6.58,
-          "views": 187
-        },
-        {
-          "title": "The World's Oldest Known Wild Bird Is Still Breeding At 74",
-          "vph": 6.4,
-          "views": 756
+          "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
+          "vph": 14.89,
+          "views": 245
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4689,36 +4598,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 4.98,
-          "views": 1864
+          "vph": 4.91,
+          "views": 1878
         },
         {
           "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment",
-          "vph": 2.56,
-          "views": 102
+          "vph": 2.26,
+          "views": 108
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 2.24,
-          "views": 408
+          "vph": 2.16,
+          "views": 411
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 2.09,
+          "vph": 2.06,
           "views": 1087
         },
         {
-          "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Bet",
-          "vph": 1.56,
-          "views": 273
+          "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
+          "vph": 1.92,
+          "views": 40
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261104/brief.json",
       "retro/20261105/brief.json",
-      "retro/20261106/brief.json"
+      "retro/20261106/brief.json",
+      "retro/20261107/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
