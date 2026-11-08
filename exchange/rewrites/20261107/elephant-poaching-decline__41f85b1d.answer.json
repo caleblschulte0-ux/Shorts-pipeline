@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "elephant-poaching-decline__41f85b1d",
+  "slug": "elephant-poaching-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:36:00Z",
+  "title": "Elephant Poaching Fell 61%, But Herds Haven't Recovered",
+  "hook": "Poaching fell 61%. Elephant populations still carry the damage.",
+  "closing": "Lower poaching helps, but rebuilding elephant populations takes far longer than destroying them.",
+  "question": "Can elephant herds fully recover?",
+  "segments": [
+    {
+      "topic": "elephant decline",
+      "say": "African elephants fell 77%, showing why a poaching slowdown does not erase decades of loss."
+    },
+    {
+      "topic": "elephant population",
+      "say": "Only 415,000 elephants remained, leaving the population far below its earlier scale."
+    },
+    {
+      "topic": "elephant poaching",
+      "say": "Elephant poaching fell 61% from its peak, proving protection can reverse the immediate pressure."
+    }
+  ]
+}
