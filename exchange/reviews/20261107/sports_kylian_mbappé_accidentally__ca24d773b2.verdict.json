@@ -1,0 +1,67 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_kylian_mbappé_accidentally__ca24d773b2",
+  "video_sha256": "ca24d773b24325e0702a2b98fc376aef6773faba7d5a9f179626291870eecc35",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:22:00Z",
+  "grades": {
+    "dimensions": {
+      "hook": 3,
+      "data_demo": 5,
+      "mascot": 4,
+      "craft": 3,
+      "pace": 2,
+      "payoff": 2
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": false,
+        "evidence": "mid0 through payoff@-0.4 show the same real, relevant sports moment promised by the on-screen line."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No Explainer mascot appears in hook@0.3 through payoff@-0.4; correct channel-brand separation."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "No number card appears in any sampled frame; the real footage remains full-frame."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "Motion measurements report no static stretch, and mid0 through payoff@-0.4 show continuous live action."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "dark_fraction is 0.0 and every sampled frame is filled by the sports footage."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The creator line remains high-contrast, fully inside the frame, and separated from source captions across sampled frames."
+      }
+    },
+    "weakest_scene": {
+      "id": "hook",
+      "index": 0,
+      "failure_class": "hook_specificity",
+      "visible_evidence": "hook@0.3 says only “Mbappé points the blame” while the child and the reason for the exchange are not yet visible.",
+      "root_cause": "The overlay withholds the concrete incident that makes the interaction compelling.",
+      "repair_goal": "Name the child being hit or Tchouaméni’s shot in the opening line without obscuring the footage."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 3,
+        "note": "The actual hallway exchange, Mbappé’s arrival, and the child’s reaction visibly deliver the promised blame moment."
+      }
+    ],
+    "one_line": "Clear, relevant footage builds to Mbappé and the child together, though the opening line is vaguer than the moment.",
+    "problems": [
+      "The opening overlay does not explain what blame is being assigned."
+    ],
+    "fixes": [
+      "Make the hook name the errant shot or the child before Mbappé enters."
+    ]
+  }
+}
