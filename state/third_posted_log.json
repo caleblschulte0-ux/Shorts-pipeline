@@ -18509,14 +18509,32 @@
       "director_cut": true
     },
     "clip-20261108-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jakenbakelive/clip/FineUnsightlyPonyRitzMitz-GAg6j0GmBa5y0MOc",
-      "story_key": null,
-      "streamer": "jakenbakelive",
+      "url": "https://youtube.com/shorts/zOeN8ALgsJw",
       "title": "Jakenbakelive Spots a Transformer and Gets Shocked",
       "kind": "twitch_clip",
-      "ts": "2026-11-08T11:37:57.230677+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-08T11:38:09.943294+00:00",
+      "uploaded_at": "2026-11-08T11:38:09.943307+00:00",
+      "publish_at": "2026-11-08T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261108-jakenbakelive-spots-a-transformer-and-gets-shock-b90f0fa1",
+        "tiktok": "queued for 2026-11-08T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jakenbakelive/clip/FineUnsightlyPonyRitzMitz-GAg6j0GmBa5y0MOc",
+      "streamer": "jakenbakelive",
+      "series": "wholesome",
+      "hook": "jakenbakelive sees a transformer \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6576,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 35.0
+      },
+      "director_cut": true
     }
   }
 }
