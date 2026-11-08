@@ -18535,6 +18535,15 @@
         "end": 35.0
       },
       "director_cut": true
+    },
+    "rejected-opentempereddragonfruitminglee-cfuqn5mvshdr8gfq": {
+      "source_url": "https://www.twitch.tv/austinshow/clip/OpenTemperedDragonfruitMingLee-cfUQN5mVSHDR8gFQ",
+      "streamer": "austinshow",
+      "title": "PayMoneyWubby learns how to fly from AustinShow",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Routine flight sim gameplay, technical t)",
+      "ts": "2026-11-08T11:42:01.585911+00:00"
     }
   }
 }
