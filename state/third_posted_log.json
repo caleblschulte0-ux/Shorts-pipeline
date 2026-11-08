@@ -18555,14 +18555,32 @@
       "ts": "2026-11-08T12:47:34.171532+00:00"
     },
     "clip-20261108-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/BumblingKitschyFlamingoAliens-IzMZHtykx_-kiEWH",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/g_5glkC-B7s",
       "title": "Stableronaldo Shouts WE DID IT After Epic Win",
       "kind": "twitch_clip",
-      "ts": "2026-11-08T17:08:02.404614+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-08T17:08:11.243075+00:00",
+      "uploaded_at": "2026-11-08T17:08:11.243092+00:00",
+      "publish_at": "2026-11-08T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261108-stableronaldo-shouts-we-did-it-after-epic-win-e375eac0",
+        "tiktok": "queued for 2026-11-08T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/BumblingKitschyFlamingoAliens-IzMZHtykx_-kiEWH",
+      "streamer": "stableronaldo",
+      "series": "win",
+      "hook": "Stableronaldo goes wild \ud83d\ude31",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 17837,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 15.0
+      },
+      "director_cut": true
     }
   }
 }
