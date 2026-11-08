@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "divorce-rate-quiet-decline__d6b27d36",
+  "slug": "divorce-rate-quiet-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:40:30.680Z",
+  "title": "US Divorce Fell to 2.4 per Thousand Annually",
+  "hook": "US divorce fell to 2.4 people per thousand.",
+  "closing": "Later marriage tracks with fewer breakups, so the old divorce scare is outdated.",
+  "question": "How old were your parents when married?",
+  "segments": [
+    {
+      "topic": "US divorce rate",
+      "say": "US divorce fell to 2.4 people per thousand, nearly halving as later marriage became more common."
+    },
+    {
+      "topic": "Later marriage divorce",
+      "say": "Women now first marry at a median age of 28.6, and later marriage tracks with fewer breakups."
+    }
+  ]
+}
