@@ -1,0 +1,67 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_jacob_misiorowski_g_with_jacob__fff7bb1c96",
+  "video_sha256": "fff7bb1c968690ef6294bec913138ee3d3f2b2d65f1a8e538688b6d61de00317",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:22:00Z",
+  "grades": {
+    "dimensions": {
+      "hook": 3,
+      "data_demo": 5,
+      "mascot": 4,
+      "craft": 2,
+      "pace": 2,
+      "payoff": 2
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": false,
+        "evidence": "mid0 through payoff@-0.4 show the same real, relevant sports moment promised by the on-screen line."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No Explainer mascot appears in hook@0.3 through payoff@-0.4; correct channel-brand separation."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "No number card appears in any sampled frame; the real footage remains full-frame."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "Motion measurements report no static stretch, and mid0 through payoff@-0.4 show continuous live action."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "dark_fraction is 0.0 and every sampled frame is filled by the sports footage."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The creator line remains high-contrast, fully inside the frame, and separated from source captions across sampled frames."
+      }
+    },
+    "weakest_scene": {
+      "id": "hook",
+      "index": 0,
+      "failure_class": "subject_visibility",
+      "visible_evidence": "hook@0.3 and hook@0.8 are partly dominated by a spectator’s raised can and phones while Misiorowski is small on the parade platform.",
+      "root_cause": "The initial crop favors foreground spectators over the athlete performing the promised action.",
+      "repair_goal": "Start tighter on Misiorowski and the incoming beer while retaining the throw-to-chug setup."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 3,
+        "note": "The real throw, catch, chug, and crowd reaction visibly complete the promised celebration."
+      }
+    ],
+    "one_line": "The beer throw and chug land cleanly, but the first second makes the athlete too small behind foreground clutter.",
+    "problems": [
+      "Foreground hands and a can weaken immediate subject clarity in hook@0.3–0.8."
+    ],
+    "fixes": [
+      "Crop the opening tighter around Misiorowski and the beer trajectory."
+    ]
+  }
+}
