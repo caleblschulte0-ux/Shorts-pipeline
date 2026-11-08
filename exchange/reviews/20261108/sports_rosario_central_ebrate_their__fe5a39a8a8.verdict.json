@@ -1,0 +1,76 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_rosario_central_ebrate_their__fe5a39a8a8",
+  "video_sha256": "fe5a39a8a80dacf295dc4ee6fcf54941c151bf5774dea2d22c577ff2737b5ae5",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:37:51.963Z",
+  "grades": {
+    "dimensions": {
+      "hook": 3,
+      "data_demo": 2,
+      "mascot": 4,
+      "craft": 2,
+      "pace": 2,
+      "payoff": 0
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": true,
+        "evidence": "hook@0.3 through payoff@-0.4 show Rosario supporters and players, but no frame visibly establishes that Boca won or captures the promised discovery."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No mascot appears in hook@0.3 through payoff@-0.4."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "All sampled frames are live football footage."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "The edit changes subjects and angles from hook@0.3 through payoff@-0.4; measured longest static stretch is 0.0 seconds."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "Crowds, players, or the stadium fill every sampled frame."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The creator line 'Rosario Central thinks they’re champs' remains readable at hook@0.3, mid3, and payoff@-0.4."
+      }
+    },
+    "weakest_scene": {
+      "id": "seg1",
+      "index": 1,
+      "failure_class": "missing_payoff",
+      "visible_evidence": "mid5, payoff@-1.8, and payoff@-0.4 show continued crowd activity and a wide stadium shot, not a recognizable realization that Boca won.",
+      "root_cause": "The edit contains general Rosario footage without the decisive scoreboard, announcement, or reaction beat that proves the twist.",
+      "repair_goal": "End on an unmistakable Boca-winning update followed by Rosario players or supporters visibly processing it."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 2,
+        "note": "Real Rosario footage shows animated supporters and players consistent with celebration."
+      },
+      {
+        "id": "seg1",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 0,
+        "note": "No visual demonstrates that Boca took the title or that Rosario discovered the reversal."
+      }
+    ],
+    "one_line": "The setup looks authentic, but the supposed Boca-title discovery never becomes visible, so the promised twist has no payoff.",
+    "problems": [
+      "The edit never visually proves that Boca won the title.",
+      "The final stadium-wide shot does not communicate a reversal or discovery."
+    ],
+    "fixes": [
+      "Insert a scoreboard, broadcast announcement, or phone-screen update that clearly establishes Boca's win.",
+      "Follow that proof with a readable Rosario reaction before ending."
+    ]
+  }
+}
