@@ -1,0 +1,11 @@
+{
+ "id": "insect-planet__3c4a491b",
+ "slug": "insect-planet",
+ "settled": "2026-11-08T12:44:02Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 2: new named entity not in the data: Earth's",
+  "title: number(s) not derivable from any beat's data: 8, 10",
+  "hook: number(s) not derivable from any beat's data: 8, 10"
+ ]
+}

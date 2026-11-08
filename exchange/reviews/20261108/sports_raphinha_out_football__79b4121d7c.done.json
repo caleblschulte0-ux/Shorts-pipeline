@@ -1,9 +1,9 @@
 {
  "id": "sports_raphinha_out_football__79b4121d7c",
- "settled": "2026-11-08T12:42:00Z",
+ "settled": "2026-11-08T12:44:11Z",
  "decision": "ship",
- "published": true,
- "url": "https://youtube.com/shorts/Tqpx2XBbMS0",
+ "published": false,
  "score": 84,
- "judge": "chatgpt-mailbox"
+ "judge": "chatgpt-mailbox",
+ "error": "DuplicateUpload: already posted 2026-11-08T12:41:56Z -> https://youtube.com/shorts/Tqpx2XBbMS0 — refusing to upload it again"
 }
