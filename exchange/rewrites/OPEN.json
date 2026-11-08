@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-08T12:30:18Z",
+ "updated": "2026-11-08T12:33:22Z",
  "open": [
-  {
-   "id": "local-news-deserts-expanding__f8e285b2_r1",
-   "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-08T12:30:17Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on multiple numbers rather than a single, pivotal, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261108/local-news-deserts-expanding__f8e285b2_r1.request.json",
-   "answer_path": "exchange/rewrites/20261108/local-news-deserts-expanding__f8e285b2_r1.answer.json"
-  },
   {
    "id": "naep-math-pandemic-drop__77b779d1",
    "slug": "naep-math-pandemic-drop",
