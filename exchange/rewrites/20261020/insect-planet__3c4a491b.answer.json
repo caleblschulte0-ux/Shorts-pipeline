@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "insect-planet__3c4a491b",
+  "slug": "insect-planet",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:39:55.367Z",
+  "title": "8 in 10 Animal Species Are Insects",
+  "hook": "8 in 10 animal species are insects.",
+  "closing": "Most insect species remain unnamed, so we barely know our planet's dominant animals.",
+  "question": "What's the weirdest bug you've seen?",
+  "segments": [
+    {
+      "topic": "Insect species share",
+      "say": "Roughly eight in ten animal species are insects, making bugs the animal kingdom's overwhelming majority."
+    },
+    {
+      "topic": "Beetle species count",
+      "say": "Beetles alone have about 1.5 million species, dwarfing mammals and birds combined."
+    },
+    {
+      "topic": "Unnamed insect species",
+      "say": "We have named about one in five insect species, leaving most of Earth's bugs unidentified."
+    }
+  ]
+}
