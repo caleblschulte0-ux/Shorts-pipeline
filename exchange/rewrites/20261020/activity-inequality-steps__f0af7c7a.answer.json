@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "activity-inequality-steps__f0af7c7a",
+  "slug": "activity-inequality-steps",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:39:55.367Z",
+  "title": "Unequal Walking Nearly Triples Obesity Risk",
+  "hook": "Unequal walking tracks nearly 3 times the obesity risk.",
+  "closing": "The step gap matters because unequal activity predicts unequal health.",
+  "question": "How many steps do you walk daily?",
+  "segments": [
+    {
+      "topic": "Walking levels",
+      "say": "In Hong Kong, people average 6,880 daily steps, showing how widely walking differs between countries."
+    },
+    {
+      "topic": "Walking inequality",
+      "say": "Countries with the most unequal walking are nearly three times as likely to be obese."
+    },
+    {
+      "topic": "Walking gender gap",
+      "say": "Women walking less explains 43 percent of the activity gap, showing inequality inside countries too."
+    }
+  ]
+}
