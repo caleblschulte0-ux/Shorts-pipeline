@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-08T12:23:17Z",
+ "updated": "2026-11-08T12:28:05Z",
  "open": [
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__830f32cc_r1",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-08T12:23:17Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified extreme temperature and lacks a clear, verifiable numeric record to substantiate the reversal of expectation."
-   ],
-   "request": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__830f32cc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__830f32cc_r1.answer.json"
-  },
   {
    "id": "autism-diagnosis-rate-rise__0f60a36a",
    "slug": "autism-diagnosis-rate-rise",

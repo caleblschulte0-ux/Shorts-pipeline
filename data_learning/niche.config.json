@@ -25543,7 +25543,7 @@
   },
   {
    "slug": "coldest-place-in-the-universe-is-human-made",
-   "title": "NASA Beat Nature's 1-Kelvin Cold Record",
+   "title": "NASA's Cold Record Is Only 250 Miles Away",
    "hook": "NASA reached 0.0000000001 kelvin—colder than nature.",
    "closing": "Human-made cold opens experiments the nearby universe cannot provide.",
    "question": "What could ultracold atoms reveal?",
@@ -25606,9 +25606,9 @@
       "file": "nebula_vs_iss_distance.json"
      },
      "insight_type": "comparison",
-     "topic": "cold brought close",
+     "topic": "cold experiment distance",
      "role": "3 · THE TWIST",
-     "say": "The lab is only 250 miles overhead, turning unreachable natural cold into a nearby experiment.",
+     "say": "The cold experiment is only 250 miles overhead, turning unreachable natural cold into nearby science.",
      "scene": {
       "mechanic": "earth-orbit-vs-deep-space-flyout",
       "concept": "the ISS orbits tight around Earth while a marker flies out toward the frame edge racking up quadrillions of miles to reach the nebula",
@@ -25618,7 +25618,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-07T12:21:12Z",
+   "rewritten_at": "2026-11-08T12:28:05Z",
    "hook_was": "The coldest place in the universe is 250 miles above your head",
    "retold": "retell/v4"
   },
