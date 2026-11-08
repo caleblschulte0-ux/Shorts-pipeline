@@ -18553,6 +18553,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable event)",
       "ts": "2026-11-08T12:47:34.171532+00:00"
+    },
+    "clip-20261108-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/BumblingKitschyFlamingoAliens-IzMZHtykx_-kiEWH",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Shouts WE DID IT After Epic Win",
+      "kind": "twitch_clip",
+      "ts": "2026-11-08T17:08:02.404614+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
