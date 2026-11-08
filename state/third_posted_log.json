@@ -18544,6 +18544,15 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (Routine flight sim gameplay, technical t)",
       "ts": "2026-11-08T11:42:01.585911+00:00"
+    },
+    "rejected-blithecautiouspotatotf2john-gdhc7vcmvdj77zgx": {
+      "source_url": "https://www.twitch.tv/fanfan/clip/BlitheCautiousPotatoTF2John-gdhc7VCmVDj77ZGx",
+      "streamer": "fanfan",
+      "title": "no context",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-11-08T12:47:34.171532+00:00"
     }
   }
 }

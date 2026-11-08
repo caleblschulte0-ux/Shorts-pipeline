@@ -3,244 +3,6 @@
     {
       "date": "20261102",
       "dry_run": false,
-      "ts": "2026-11-02T12:04:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 152,
-        "with_retention": 130,
-        "with_curve": 15,
-        "fetched_at": "2026-11-02T08:47:31.318918+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-02T11:55:29+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 4, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261102-1",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 128,
-                "refused_shown": 8,
-                "scouted": [],
-                "vod_arcs": 297,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 2930,
-                "pool_with_vod": 1985,
-                "arc_sizes": [
-                  2,
-                  6,
-                  3,
-                  3,
-                  6,
-                  2,
-                  2,
-                  4,
-                  2,
-                  5
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: extended clip failed its checks: trails 28s past the picked moment"
-                },
-                {
-                  "cluster": "dangerlyoha@momentauspiciousfundelicatapunchtrees-sxew5fpzca",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The provided sources consist only of disjointed rambling without a clear setup, escalation, or payoff, so no meaningful change or entertaining story can be extracted."
-                },
-                {
-                  "cluster": "devincaherly@momentclumsyrealhummingbirdwoop-5cudu9y4ayo5lqz",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
-                  "outcome": "already_refused",
-                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "yololaryy@momentfrozenneighborlylousedancingbaby-vhy8q_yrabb",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
-                },
-                {
-                  "cluster": "tminnzy@momentjollyspikyfiddleheadsninjagrumpy-vv8ie8h3bsq_q",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "tminnzy@momentbrainyconcernedmulepanicvis-mi--yge28qkc7_nx",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: extended clip failed its checks: the picture stands still for 2s at 0s"
-                },
-                {
-                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: director judged: not a story \u2014 All three sources are silent. There is no dialogue, no argument, no challenge and no reaction. The clip and the footage around it"
-                },
-                {
-                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
-                  "outcome": "already_refused",
-                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "dangerlyoha@momentstupidsuccessfulendivepanicbasket-ilozm5i0",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The provided sources consist only of fragmented rambling without a clear setup, escalation, or payoff. There is no meaningful change or resolution that can form an entertaining story."
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 630.3
-        },
-        {
-          "slug": "clip-20261102-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261102-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261102-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261102-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261102-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261102-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261102",
-      "dry_run": false,
       "ts": "2026-11-02T13:14:25+00:00",
       "feedback": {
         "snapshot": true,
@@ -5813,6 +5575,182 @@
             }
           },
           "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261108-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261108-4",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261108-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261108-5",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261108-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261108",
+      "dry_run": false,
+      "ts": "2026-11-08T12:50:37+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 145,
+        "with_retention": 126,
+        "with_curve": 14,
+        "fetched_at": "2026-11-08T12:40:47.620294+00:00"
+      },
+      "brain": {
+        "ok": 3,
+        "fail": 6,
+        "limited_at": "2026-11-08T12:46:25+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261108-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261108-2",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "TEAM Jokerd world first 60 WoW Forever",
+              "raw": "TEAM Jokerd world first 60 WoW Forever",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 182.4
+        },
+        {
+          "slug": "clip-20261108-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.8
         },
         {
           "slug": "clip-20261108-4",
