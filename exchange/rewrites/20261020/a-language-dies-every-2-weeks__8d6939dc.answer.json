@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "a-language-dies-every-2-weeks__8d6939dc",
+  "slug": "a-language-dies-every-2-weeks",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:40:30.680Z",
+  "title": "A Language Goes Extinct Every 2 Weeks",
+  "hook": "Every 2 weeks, another language disappears.",
+  "closing": "When a language dies, a unique way of understanding the world disappears with it.",
+  "question": "Do you speak more than one language?",
+  "segments": [
+    {
+      "topic": "Language danger",
+      "say": "About four in ten languages are endangered, putting their last fluent speakers and entire worldviews at risk."
+    },
+    {
+      "topic": "Language disappearance",
+      "say": "A language disappears about every 2 weeks as children stop learning it."
+    },
+    {
+      "topic": "Language loss",
+      "say": "Half of today's languages could vanish by 2100, taking unique knowledge with them."
+    }
+  ]
+}
