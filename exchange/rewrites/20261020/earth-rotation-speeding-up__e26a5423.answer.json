@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "earth-rotation-speeding-up__e26a5423",
+  "slug": "earth-rotation-speeding-up",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:40:30.680Z",
+  "title": "Earth's Day Was 1.66 Milliseconds Shorter",
+  "hook": "Earth just recorded a day 1.66 milliseconds shorter.",
+  "closing": "Even tiny changes can force the clocks that coordinate your world to adjust.",
+  "question": "Do your days feel shorter?",
+  "segments": [
+    {
+      "topic": "Earth day record",
+      "say": "A recent day was 1.66 milliseconds shorter than normal, proving Earth's rotation is speeding up."
+    },
+    {
+      "topic": "Earth leap seconds",
+      "say": "Timekeepers added 27 leap seconds as Earth's rotation shifted, but have never removed one."
+    },
+    {
+      "topic": "Earth time forecast",
+      "say": "Experts put the chance of a negative leap second at 40 percent, a first for modern timekeeping."
+    }
+  ]
+}
