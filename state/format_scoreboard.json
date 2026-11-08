@@ -2,12 +2,12 @@
   "formats": [
     {
       "format": "graph_race",
-      "videos": 12,
-      "views": 107,
-      "views_per_video": 8.9,
-      "avg_views_per_hour": 0.01,
-      "engaged_views": 40,
-      "avg_view_pct": 78.6,
+      "videos": 8,
+      "views": 95,
+      "views_per_video": 11.9,
+      "avg_views_per_hour": 0.02,
+      "engaged_views": 36,
+      "avg_view_pct": 80.4,
       "likes": 1,
       "shares": 0,
       "subs_gained": 0
@@ -25,6 +25,6 @@
       "subs_gained": 0
     }
   ],
-  "matched": 14,
-  "unmatched": 80
+  "matched": 10,
+  "unmatched": 83
 }
