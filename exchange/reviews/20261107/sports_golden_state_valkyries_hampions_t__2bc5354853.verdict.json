@@ -1,0 +1,68 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_golden_state_valkyries_hampions_t__2bc5354853",
+  "video_sha256": "2bc535485393fd15f987a601a4c4c165242a13e1c289200500a04e0551fb86b5",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:22:00Z",
+  "grades": {
+    "dimensions": {
+      "hook": 2,
+      "data_demo": 2,
+      "mascot": 4,
+      "craft": 3,
+      "pace": 2,
+      "payoff": 1
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": true,
+        "evidence": "hook@0.3 through payoff@-0.4 show a Valkyries court interview and trophy, but nothing visible establishes the title’s “First Asian-American WNBA Champion” claim."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No Explainer mascot appears in hook@0.3 through payoff@-0.4; correct channel-brand separation."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "No number card appears in any sampled frame; the real footage remains full-frame."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "Motion measurements report no static stretch, and mid0 through payoff@-0.4 show continuous live action."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "dark_fraction is 0.0 and every sampled frame is filled by the sports footage."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The creator line remains high-contrast, fully inside the frame, and separated from source captions across sampled frames."
+      }
+    },
+    "weakest_scene": {
+      "id": "seg0",
+      "index": 0,
+      "failure_class": "claim_mismatch",
+      "visible_evidence": "mid0 through payoff@-0.4 show a generic court interview; no frame identifies the claimed first Asian-American champion or states that milestone.",
+      "root_cause": "The selected excerpt supports a Warriors-court honor but not the specific title claim.",
+      "repair_goal": "Use footage and on-screen wording that visibly identify the champion and the first Asian-American milestone, or retitle to the honor actually shown."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 2,
+        "proves_claim": 1,
+        "note": "The real ceremony proves a court honor, but not the specific historic milestone in the title."
+      }
+    ],
+    "one_line": "Polished ceremony footage cannot substantiate the video’s specific historic title claim.",
+    "problems": [
+      "The footage and creator line never identify the first Asian-American WNBA champion.",
+      "The payoff is an interview reaction unrelated to the title’s milestone."
+    ],
+    "fixes": [
+      "Match the title to the court-honor footage or select an excerpt that names and shows the claimed champion."
+    ]
+  }
+}
