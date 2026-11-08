@@ -1,0 +1,76 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_jack_campbell_pbell_of_the__7ef07bd677",
+  "video_sha256": "7ef07bd67717dbe8dea5b05348cfd3732da6cbafa6b96c3a1a4367f5f242ff9d",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:37:04.299Z",
+  "grades": {
+    "dimensions": {
+      "hook": 4,
+      "data_demo": 2,
+      "mascot": 4,
+      "craft": 2,
+      "pace": 2,
+      "payoff": 0
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": true,
+        "evidence": "payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "hook@0.3 through payoff@-0.4 contain only sports footage and graphics; no mascot appears."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "mid0 through mid5 remain live-action football footage, not a number card."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "mid0 through mid5 change shots and subjects; measured longest static stretch is 0.0 seconds."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "hook@0.3 through payoff@-1.8 use the full vertical frame with game or sideline footage."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The persistent line 'Jack Campbell taken off the field' is legible at hook@0.3, mid3, and payoff@-1.8."
+      }
+    },
+    "weakest_scene": {
+      "id": "seg1",
+      "index": 1,
+      "failure_class": "claim_mismatch",
+      "visible_evidence": "mid5 and payoff@-1.8 cut to a player reaction, then payoff@-0.4 ends on a logo without showing Campbell placed on or moved by a cart.",
+      "root_cause": "The edit stops before the visual event promised by the title and on-screen line.",
+      "repair_goal": "Extend or replace the ending with the actual cart entering, Campbell being loaded, or the cart leaving the field."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 2,
+        "note": "Real game footage clearly shows the injured player down and being attended."
+      },
+      {
+        "id": "seg1",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 0,
+        "note": "Reaction footage does not show the claimed carting-off action."
+      }
+    ],
+    "one_line": "The injury is clear immediately, but the edit never delivers the carting-off payoff promised by its title.",
+    "problems": [
+      "The decisive carting-off event is absent from every sampled frame.",
+      "The ending substitutes a sideline reaction and logo for the promised payoff."
+    ],
+    "fixes": [
+      "Use footage that visibly shows Campbell being loaded onto or transported by the cart.",
+      "Let the actual carting-off moment land before the end card."
+    ]
+  }
+}
