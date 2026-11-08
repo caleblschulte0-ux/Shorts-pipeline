@@ -1,0 +1,74 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "sports_mike_tomlin_wboys_have_a__eb2010de8f",
+  "video_sha256": "eb2010de8fd3f6b770b9df06c5a9ca31f22d204e6b067fe806800b1802f95b89",
+  "by": "chatgpt",
+  "graded_at": "2026-11-08T12:37:27.920Z",
+  "grades": {
+    "dimensions": {
+      "hook": 4,
+      "data_demo": 5,
+      "mascot": 4,
+      "craft": 2,
+      "pace": 2,
+      "payoff": 2
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": false,
+        "evidence": "hook@0.3 through payoff@-0.4 consistently show Mike Tomlin speaking the promised lines on camera."
+      },
+      "decorative_mascot": {
+        "present": false,
+        "evidence": "No mascot appears in hook@0.3 through payoff@-0.4."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "Every sampled frame is the live interview, not a number card."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "The three-second clip continuously advances Tomlin's delivery; measured longest static stretch is 0.0 seconds."
+      },
+      "empty_void": {
+        "present": false,
+        "evidence": "Tomlin fills the vertical composition throughout hook@0.3 to payoff@-0.4."
+      },
+      "unreadable": {
+        "present": false,
+        "evidence": "The top line 'Mike Tomlin slams the Cowboys’ lack of fire' remains readable and separate from the source captions in hook@0.3, mid3, and payoff@-0.4."
+      }
+    },
+    "weakest_scene": {
+      "id": "seg0",
+      "index": 0,
+      "failure_class": "visual_clutter",
+      "visible_evidence": "hook@0.3 and mid0 contain the creator headline, source captions, and a television score/ticker at the same time.",
+      "root_cause": "The source broadcast graphics were retained beneath two added text layers.",
+      "repair_goal": "Tighten the vertical crop or mask the lower ticker while preserving Tomlin and the spoken-word captions."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 3,
+        "note": "The named speaker visibly delivers the promised 'blinkers' and 'cut their eyelids' lines."
+      },
+      {
+        "id": "seg1",
+        "kind": "bespoke",
+        "bespoke": 3,
+        "proves_claim": 3,
+        "note": "The same uninterrupted interview footage lands the quoted advice directly."
+      }
+    ],
+    "one_line": "A fast, direct clip that shows Tomlin delivering both promised phrases, with only minor broadcast-graphic clutter.",
+    "problems": [
+      "The lower broadcast ticker and score make the frame busier than necessary."
+    ],
+    "fixes": [
+      "Crop or mask the lower broadcast graphics while keeping Tomlin's face, the headline, and source captions clear."
+    ]
+  }
+}
