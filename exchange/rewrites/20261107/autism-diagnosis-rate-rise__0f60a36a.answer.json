@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "autism-diagnosis-rate-rise__0f60a36a",
+  "slug": "autism-diagnosis-rate-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:36:00Z",
+  "title": "Autism Diagnoses Now Reach 32.2 Per Thousand",
+  "hook": "Autism once seemed rare. Diagnoses now reach 32.2 per thousand.",
+  "closing": "Broader screening changes who gets counted, so rising diagnoses need careful interpretation.",
+  "question": "Has screening changed near you?",
+  "segments": [
+    {
+      "topic": "autism diagnosis trend",
+      "say": "Autism prevalence reached 32.2 per thousand children, reflecting much broader identification than before."
+    },
+    {
+      "topic": "autism diagnoses sex",
+      "say": "Boys' measured prevalence was 49.2 per thousand, showing diagnosis patterns remain sharply uneven."
+    },
+    {
+      "topic": "autism diagnoses site",
+      "say": "One site measured 52.6 per thousand, showing location and screening practices can change the reported rate."
+    }
+  ]
+}
