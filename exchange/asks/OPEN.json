@@ -1,6 +1,6 @@
 {
  "schema": "shorts-ask-index/v1",
- "updated": "2026-11-07T21:14:15Z",
+ "updated": "2026-11-08T11:47:45Z",
  "open": [
   {
    "batch": "exchange/asks/20260921.json",
@@ -87,6 +87,14 @@
     "d9066410f969ccb2",
     "6180601583eb5ff4",
     "1dfd1a7ca285b12c"
+   ]
+  },
+  {
+   "batch": "exchange/asks/20261108.json",
+   "answer_path": "exchange/asks/20261108.answers.json",
+   "pending": 1,
+   "keys": [
+    "6180601583eb5ff4"
    ]
   }
  ],
