@@ -1,0 +1,132 @@
+{
+ "date": "2026-11-08",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Cristiano Ronaldo",
+   "why": "He posts an emotional video announcing his international retirement",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "sports",
+   "who": "Jack Campbell",
+   "why": "Teammates take a knee while Campbell is carted off the field",
+   "post_title": "Players take a knee as Jack Campbell of the Detroit Lions stays down after the play and is carted off the field.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xlpaf6/players_take_a_knee_as_jack_campbell_of_the/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xlpaf6/players_take_a_knee_as_jack_campbell_of_the",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "sports",
+   "who": "Milwaukee Brewers",
+   "why": "A massive parade and rally celebrates the Brewers championship",
+   "post_title": "Montage of the Brewers Championship parade and rally in Milwaukee to a rousing--record attendance of 750,000 (est) fans",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xll54d/montage_of_the_brewers_championship_parade_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xll54d/montage_of_the_brewers_championship_parade_and",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "sports",
+   "who": "Jes\u00fas de Miguel",
+   "why": "The match pauses for a minute\u2019s applause honoring the late referee",
+   "post_title": "The referee stops Valencia vs Real Madrid in the 9th minute for a minute's applause in tribute to Jes\u00fas de Miguel",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xqgcnu/the_referee_stops_valencia_vs_real_madrid_in_the/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xqgcnu/the_referee_stops_valencia_vs_real_madrid_in_the",
+   "title": "Jes\u00fas de Miguel Receives Minute Applause After Ref Stops Game",
+   "hook": "Jes\u00fas de Miguel honored with a minute\u2019s applause",
+   "ledger": {
+    "moves": [
+     "sad@0.3(silent)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.811,
+      0.8,
+      0.8,
+      0.8,
+      0.0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 100
+   },
+   "video_url": "https://youtube.com/shorts/ydo-KYXXdAk",
+   "ok": true,
+   "publish_at": "2026-11-09T15:00:00Z",
+   "seconds": 141,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261108-jes-s-de-miguel-receives-minute-applause-after-r-bdf5227a",
+    "tiktok": "queued for 2026-11-09T15:00:00Z"
+   }
+  },
+  {
+   "sub": "MMA",
+   "who": "Ilia Topuria",
+   "why": "He credits his brother for saving his vision and career",
+   "post_title": "Ilia Topuria credits his brother Aleksandre with potentially saving his vision and career: \u201cIf he hadn't stopped me from fighting, I probably wouldn't have been able to fight again in my life. I'm so ",
+   "upvotes": 0,
+   "url": "https://streamable.com/ks95na",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xph7dc/ilia_topuria_credits_his_brother_aleksandre_with",
+   "title": "Ilia Topuria Credits Brother Aleksandre With Saving His Vision \u2014 Could He Have Lost His Career?",
+   "hook": "Ilia thanks his brother for saving his career \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@22.0",
+     "whoa@24.0",
+     "sad@22.0(silent)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [
+     "Aleksandre Topuria@5.0"
+    ],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 96
+   },
+   "video_url": "https://youtube.com/shorts/xddbRMOy6hQ",
+   "ok": true,
+   "publish_at": "2026-11-09T18:00:00Z",
+   "seconds": 90,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261108-ilia-topuria-credits-brother-aleksandre-with-sav-4cad8b86",
+    "tiktok": "queued for 2026-11-09T18:00:00Z"
+   }
+  }
+ ],
+ "already_today": 3,
+ "pool": 100,
+ "already_posted": 13,
+ "shipped": 2
+}
