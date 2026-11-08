@@ -1,0 +1,106 @@
+{
+  "schema": "shorts-output-blocker/v1",
+  "date": "20261108",
+  "status": "blocked",
+  "recorded_at": "2026-11-08T12:53:37.531Z",
+  "exact_failed_step": "Step 8: verify actual channel output against the frozen 20261108 contract using accepted upload URLs.",
+  "frozen_contract": {
+    "trending_sports": {
+      "required": 5,
+      "verified_posted": 5,
+      "pending": 0
+    },
+    "third_clips": {
+      "required": 6,
+      "verified_posted": 1,
+      "pending": 5
+    },
+    "explainer_data_stories": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4
+    }
+  },
+  "verified_urls": {
+    "trending_sports": [
+      "https://youtube.com/shorts/IKjoElYBHu8",
+      "https://youtube.com/shorts/RTrVsnKCMcs",
+      "https://youtube.com/shorts/UbxXYwpMfPA",
+      "https://youtube.com/shorts/jo0ZInvY0Co",
+      "https://youtube.com/shorts/Tqpx2XBbMS0"
+    ],
+    "third_clips": [
+      "https://youtube.com/shorts/zOeN8ALgsJw"
+    ],
+    "explainer_data_stories": []
+  },
+  "attempts": [
+    {
+      "step": "Producer response and render trigger",
+      "result": "response.json validated and DONE committed separately",
+      "response_commit": "79761e1b481407569d8bcbf7c6aa9f4c9b6c5004",
+      "done_commit": "8e43a5614ff709a390d0e7a89fb6340c30ee1959"
+    },
+    {
+      "step": "Phase B consume",
+      "run_id": 42480024154,
+      "result": "success; three authored explainer rewrites applied and zero media requests were present"
+    },
+    {
+      "step": "Daily render",
+      "run_id": 42480061210,
+      "result": "success; trending package renderer had nothing to do because sports are handled by the sports workflow"
+    },
+    {
+      "step": "Sports mailbox review and publish",
+      "run_id": 42481189756,
+      "result": "success; five accepted sports uploads are now recorded"
+    },
+    {
+      "step": "Third-channel retry",
+      "run_id": 42481399446,
+      "result": "success but produced no additional accepted upload; candidate was rejected by the content gate"
+    },
+    {
+      "step": "Explainer render",
+      "run_id": 42481142089,
+      "result": "still in progress at the 'Claude invents the depictions (the brain)' step; no accepted 20261108 upload URL exists"
+    },
+    {
+      "step": "Queued explainer retry",
+      "run_id": 42481397473,
+      "result": "pending behind the active explainer run"
+    }
+  ],
+  "mailbox_snapshot": {
+    "reviews": {
+      "open": 0,
+      "answered_this_run": 8,
+      "reused_or_skipped": 4,
+      "reason": "Four previously settled review entries were reused; all current review requests are settled."
+    },
+    "asks": {
+      "index_pending_keys": 53,
+      "answered_this_run": 20,
+      "skipped_this_run": 33,
+      "reason": "Per-round cap reached; the index still lists answered/stale keys pending downstream reconciliation."
+    },
+    "rewrites": {
+      "index_open_entries": 119,
+      "answered_this_run": 30,
+      "latest_round_applied": 6,
+      "latest_round_rejected": 4,
+      "reason": "Per-round cap reached; four latest answers were refused by exact numeric/entity guards and were not overridden."
+    }
+  },
+  "media_requests": {
+    "count": 0,
+    "result": "No bundle media requests existed, so Drive generation, upload, hash, decode, and sharing checks were not applicable."
+  },
+  "remaining_shortfall": {
+    "trending_sports": 0,
+    "third_clips": 5,
+    "explainer_data_stories": 4
+  },
+  "day_closed": false
+}
