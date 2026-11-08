@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "religious-nones-rise__677be75f",
+  "slug": "religious-nones-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:40:30.680Z",
+  "title": "1 in 4 Americans Now Reports No Religion",
+  "hook": "Now 1 in 4 Americans reports no religion.",
+  "closing": "The religious map around you is changing fastest among younger Americans.",
+  "question": "Do you consider yourself religious?",
+  "segments": [
+    {
+      "topic": "Americans without religion",
+      "say": "Only 8 percent of US adults had no religion, before the share more than tripled."
+    },
+    {
+      "topic": "Religion by generation",
+      "say": "Among millennials, 36 percent have no religion, making the shift strongest in younger generations."
+    },
+    {
+      "topic": "Religion today",
+      "say": "Today, 28 percent report no religion, passing Catholics and leaving only Protestants ahead."
+    }
+  ]
+}
