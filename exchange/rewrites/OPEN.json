@@ -1,106 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-08T11:48:14Z",
+ "updated": "2026-11-08T12:23:17Z",
  "open": [
   {
-   "id": "antarctic-sea-ice-record-low__8258efc0",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-08T11:48:14Z",
+   "id": "coldest-place-in-the-universe-is-human-made__830f32cc_r1",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-11-08T12:23:17Z",
    "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on multiple figures rather than a single consequential, verifiable number."
+    "premise: brain: The claim relies on an unverified extreme temperature and lacks a clear, verifiable numeric record to substantiate the reversal of expectation."
    ],
-   "request": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__8258efc0.request.json",
-   "answer_path": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__8258efc0.answer.json"
+   "request": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__830f32cc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__830f32cc_r1.answer.json"
   },
   {
    "id": "autism-diagnosis-rate-rise__0f60a36a",
    "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-08T11:48:14Z",
-   "why": [
-    "premise: brain: The claim does not clearly invert a common viewer expectation and relies on a vague statistic rather than a striking, singular verifiable number."
-   ],
-   "request": "exchange/rewrites/20261108/autism-diagnosis-rate-rise__0f60a36a.request.json",
-   "answer_path": "exchange/rewrites/20261108/autism-diagnosis-rate-rise__0f60a36a.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__726dba8c",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-08T11:48:14Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a common viewer expectation and relies only on an isolated number without a verifiable, consequential contrast."
-   ],
-   "request": "exchange/rewrites/20261108/hadza-gut-bacteria-vs-americans__726dba8c.request.json",
-   "answer_path": "exchange/rewrites/20261108/hadza-gut-bacteria-vs-americans__726dba8c.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__794aea0b",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-08T11:48:14Z",
-   "why": [
-    "premise: brain: It presents two percentages rather than a single consequential number and does not clearly overturn a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261108/muscle-loss-after-30__794aea0b.request.json",
-   "answer_path": "exchange/rewrites/20261108/muscle-loss-after-30__794aea0b.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__830f32cc",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-08T11:48:14Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified extreme temperature and lacks a clear, verifiable numeric record to substantiate the reversal of expectation."
-   ],
-   "request": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__830f32cc.request.json",
-   "answer_path": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__830f32cc.answer.json"
-  },
-  {
-   "id": "local-news-deserts-expanding__f8e285b2",
-   "slug": "local-news-deserts-expanding",
-   "filed": "2026-11-08T11:48:13Z",
-   "why": [
-    "premise: brain: It presents multiple numbers rather than a single consequential figure, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261108/local-news-deserts-expanding__f8e285b2.request.json",
-   "answer_path": "exchange/rewrites/20261108/local-news-deserts-expanding__f8e285b2.answer.json"
-  },
-  {
-   "id": "robotic-surgery-doubled__84c11eb6",
-   "slug": "robotic-surgery-doubled",
    "filed": "2026-11-07T21:24:38Z",
    "why": [
-    "premise: brain: The claim relies on a vague expectation reversal and a non-specific 98% figure without a clear, verifiable consequential number."
+    "premise: brain: It relies on multiple figures (32.2 per thousand and a vague fivefold increase) instead of a single, clear, verifiable number."
    ],
-   "request": "exchange/rewrites/20261107/robotic-surgery-doubled__84c11eb6.request.json",
-   "answer_path": "exchange/rewrites/20261107/robotic-surgery-doubled__84c11eb6.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__daaf7c87",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-07T21:24:37Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a specific, verifiable numeric twist."
-   ],
-   "request": "exchange/rewrites/20261107/metric-system-holdouts__daaf7c87.request.json",
-   "answer_path": "exchange/rewrites/20261107/metric-system-holdouts__daaf7c87.answer.json"
-  },
-  {
-   "id": "maternal-mortality-pandemic-reversal__18a634a0",
-   "slug": "maternal-mortality-pandemic-reversal",
-   "filed": "2026-11-07T21:24:36Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a single viewer expectation based solely on one verifiable number."
-   ],
-   "request": "exchange/rewrites/20261107/maternal-mortality-pandemic-reversal__18a634a0.request.json",
-   "answer_path": "exchange/rewrites/20261107/maternal-mortality-pandemic-reversal__18a634a0.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__50d1c981",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-07T17:48:29Z",
-   "why": [
-    "premise: brain: The claim does not clearly reverse a common viewer expectation and relies on a vague, unverifiable metric rather than a single, concrete, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261107/astronaut-bone-loss__50d1c981.request.json",
-   "answer_path": "exchange/rewrites/20261107/astronaut-bone-loss__50d1c981.answer.json"
+   "request": "exchange/rewrites/20261107/autism-diagnosis-rate-rise__0f60a36a.request.json",
+   "answer_path": "exchange/rewrites/20261107/autism-diagnosis-rate-rise__0f60a36a.answer.json"
   },
   {
    "id": "elephant-poaching-decline__41f85b1d",
@@ -123,6 +43,16 @@
    "answer_path": "exchange/rewrites/20261107/california-condor-comeback__3ec757df.answer.json"
   },
   {
+   "id": "antarctic-sea-ice-record-low__8258efc0",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-11-07T13:00:46Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague comparative phrase rather than a single, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20261107/antarctic-sea-ice-record-low__8258efc0.request.json",
+   "answer_path": "exchange/rewrites/20261107/antarctic-sea-ice-record-low__8258efc0.answer.json"
+  },
+  {
    "id": "blood-supply-three-percent__12289b6b",
    "slug": "blood-supply-three-percent",
    "filed": "2026-11-07T13:00:45Z",
@@ -131,6 +61,36 @@
    ],
    "request": "exchange/rewrites/20261107/blood-supply-three-percent__12289b6b.request.json",
    "answer_path": "exchange/rewrites/20261107/blood-supply-three-percent__12289b6b.answer.json"
+  },
+  {
+   "id": "hadza-gut-bacteria-vs-americans__726dba8c",
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "filed": "2026-11-07T13:00:45Z",
+   "why": [
+    "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a generic numeric claim without a strong, surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261107/hadza-gut-bacteria-vs-americans__726dba8c.request.json",
+   "answer_path": "exchange/rewrites/20261107/hadza-gut-bacteria-vs-americans__726dba8c.answer.json"
+  },
+  {
+   "id": "local-news-deserts-expanding__f8e285b2",
+   "slug": "local-news-deserts-expanding",
+   "filed": "2026-11-07T13:00:45Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on multiple numbers rather than a single, pivotal, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261107/local-news-deserts-expanding__f8e285b2.request.json",
+   "answer_path": "exchange/rewrites/20261107/local-news-deserts-expanding__f8e285b2.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__794aea0b",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-07T13:00:45Z",
+   "why": [
+    "premise: brain: The premise does not overturn a clear viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261107/muscle-loss-after-30__794aea0b.request.json",
+   "answer_path": "exchange/rewrites/20261107/muscle-loss-after-30__794aea0b.answer.json"
   },
   {
    "id": "measles-ninety-five-rule__1b8f7fe4",

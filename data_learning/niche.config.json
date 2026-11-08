@@ -20731,8 +20731,8 @@
   },
   {
    "slug": "astronaut-bone-loss",
-   "title": "A Mars Mission Could Cost Astronauts 30% Of Hip Bone",
-   "hook": "A Mars mission could cost astronauts 30% of hip bone density.",
+   "title": "A Mars Mission Could Cost 30% Of Hip Bone Density",
+   "hook": "Mars sounds like adventure. It could cost 30% of hip bone density.",
    "closing": "Long missions need bone protection because floating removes the loading that keeps skeletons strong.",
    "question": "Would this change your Mars plans?",
    "caption": "Astronauts lose 1.5% of their bone density every single month in zero gravity — faster than a severe osteoporosis patient loses in a whole year. It's why NASA has them exercising 2.5 hours a day, and why a Mars mission might be the scariest part of getting there. Would you handle a Mars mission knowing the cost? 👇",
@@ -20763,7 +20763,7 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "1 · THE RATE",
-     "topic": "Astronaut Bone Loss",
+     "topic": "astronaut bone loss",
      "say": "Astronaut bone density can fall 1.5% monthly. Space removes the everyday loading that keeps skeletons strong.",
      "scene": {
       "mechanic": "bone-erosion-duel",
@@ -20780,7 +20780,7 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "Astronaut Bone Hip",
+     "topic": "astronaut hip loss",
      "say": "Astronaut hip density can drop 2.2% monthly. Weight-bearing bone pays the highest price in these data.",
      "scene": {
       "mechanic": "region-erosion-columns",
@@ -20797,7 +20797,7 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE MARS PROBLEM",
-     "topic": "Astronaut Bone Mars",
+     "topic": "Mars bone cost",
      "say": "A Mars mission could cost 30% of hip bone density without protection. Countermeasures become part of survival.",
      "scene": {
       "mechanic": "mission-bone-gauge",
@@ -20807,7 +20807,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-06T12:52:57Z",
+   "rewritten_at": "2026-11-08T12:23:16Z",
    "retold": "retell/v4"
   },
   {
@@ -21832,8 +21832,8 @@
   },
   {
    "slug": "muscle-loss-after-30",
-   "title": "Muscle Loss Jumps From 4% To 18% Per Decade",
-   "hook": "Muscle loss jumps from 4% to 18% per decade.",
+   "title": "Muscle Loss Can Reach 18% Per Decade",
+   "hook": "You don't lose muscle steadily. Later loss can reach 18% per decade.",
    "closing": "Strength training matters because later muscle loss accelerates instead of staying steady.",
    "question": "How often do you strength train?",
    "caption": "After age 30, you lose 3 to 5 percent of your muscle mass every decade -- and after 70, that jumps to as much as 24 percent a decade. It's called sarcopenia and almost nobody talks about it until it's already happened. Here's the good news: one study reversed it in 12 weeks. 👇",
@@ -21906,7 +21906,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-07T12:21:12Z",
+   "rewritten_at": "2026-11-08T12:23:17Z",
    "retold": "retell/v4"
   },
   {
@@ -26955,8 +26955,8 @@
   },
   {
    "slug": "metric-system-holdouts",
-   "title": "A Metric Error Left A Plane 55% Short On Fuel",
-   "hook": "One metric error left a plane 55% short on fuel.",
+   "title": "One Conversion Left A Plane 55% Short On Fuel",
+   "hook": "The units looked routine. The plane was 55% short on fuel.",
    "closing": "Unit checks feel tedious until one missed conversion puts lives at risk.",
    "question": "Should everyone use metric?",
    "caption": "Only three countries have never officially adopted the metric system: the US, Liberia, and Myanmar -- about 5% of the planet's population. Mixing up units isn't just confusing, it's cost real money and nearly cost real lives: a $327.6 million Mars orbiter in 1999, and a passenger jet that ran out of fuel mid-flight in 1983. Should the US finally switch?",
@@ -26986,7 +26986,7 @@
      },
      "insight_type": "share",
      "role": "1 · THE HOLDOUTS",
-     "topic": "Metric Adoption",
+     "topic": "metric adoption",
      "say": "Only 5% of people live in non-metric countries. A small holdout still creates dangerous conversion points.",
      "scene": {
       "mechanic": "world-crowd-holdouts",
@@ -27002,7 +27002,7 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE $327 MILLION MISTAKE",
-     "topic": "Metric Altitude",
+     "topic": "metric altitude",
      "say": "A metric mix-up dropped the Mars orbiter to 57 kilometers. The spacecraft flew far below its planned path.",
      "scene": {
       "mechanic": "orbiter-skims-the-ground",
@@ -27018,7 +27018,7 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE PLANE THAT RAN DRY",
-     "topic": "Metric Fuel",
+     "topic": "metric fuel",
      "say": "A metric error left the plane 55% short on fuel. It ran dry and had to glide down.",
      "scene": {
       "mechanic": "half-empty-jet-tank",
@@ -27029,7 +27029,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v4",
-   "rewritten_at": "2026-11-06T12:52:58Z"
+   "rewritten_at": "2026-11-08T12:23:16Z"
   },
   {
    "slug": "lab-grown-diamond-price-collapse",
@@ -36260,8 +36260,8 @@
   },
   {
    "slug": "antarctic-sea-ice-record-low",
-   "title": "Antarctic Ice Fell 42% Below Its Old Normal",
-   "hook": "Antarctic sea ice shrank to 1.79 million square kilometers.",
+   "title": "Antarctica Lost 1.3 Million Square Kilometers Of Sea Ice",
+   "hook": "The record isn't abstract: 1.3 million square kilometers of sea ice went missing.",
    "closing": "Less reflective ice leaves more heat in the ocean, affecting everyone beyond Antarctica.",
    "question": "Does this record change your climate view?",
    "caption": "Antarctic sea ice hit its lowest level on record in 2023 — after decades of staying surprisingly stable while Arctic ice declined. Here's the physics behind why that matters. Surprised Antarctica keeps ice records too? Say below. 👇",
@@ -36291,7 +36291,7 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RECORD",
-     "topic": "antarctic ice extent",
+     "topic": "ice extent",
      "say": "Antarctic sea ice fell to 1.79 million square kilometers, breaking below its long-term range."
     },
     {
@@ -36302,7 +36302,7 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE SCALE",
-     "topic": "antarctic ice missing",
+     "topic": "ice missing",
      "say": "Missing sea ice covered 1.3 million square kilometers, turning an abstract record into a continent-scale gap."
     },
     {
@@ -36313,18 +36313,18 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHY IT MATTERS",
-     "topic": "antarctic ice sunlight",
+     "topic": "ice sunlight",
      "say": "Sea ice reflects 60 percent of sunlight, so losing it lets the darker ocean absorb more heat."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-07T12:25:06Z"
+   "rewritten_at": "2026-11-08T12:23:16Z"
   },
   {
    "slug": "maternal-mortality-pandemic-reversal",
-   "title": "US Maternal Deaths Fell To 18.6 Per 100,000 In 2023",
-   "hook": "The maternal death scare is over, unless you're a Black mother.",
+   "title": "Black Maternal Deaths Stayed Near 50.3",
+   "hook": "The national rate fell. Black maternal deaths stayed near 50.3.",
    "closing": "Fewer moms are dying, but Black mothers still face far higher risk. That gap is the real story.",
    "question": "Were you surprised by that gap?",
    "caption": "The US maternal mortality rate spiked to 32.9 per 100,000 births in 2021, then fell for two straight years to 18.6 in 2023 — below pre-pandemic levels. But Black mothers' rate barely moved. Were you surprised by that gap? 👇",
@@ -36350,7 +36350,7 @@
      },
      "insight_type": "trend",
      "role": "1 · THE FULL CIRCLE",
-     "topic": "US maternal death rate",
+     "topic": "maternal death rate",
      "say": "Maternal deaths spiked during COVID, then fell to 18.6 in 2023, lower than before the pandemic.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _mm_window(cr, x, y, w, h, lit, i):\n    cr.rectangle(x, y, w, h)\n    solid(cr, lit, finish=\"glass\", rim=False)\n    # blinds drawn to different heights, so no two windows match\n    drop = (0.15 + 0.55 * ((i * 0.618) % 1.0)) * h\n    cr.rectangle(x + 3, y + 3, w - 6, drop)\n    solid(cr, (214, 206, 186), rim=False, edge=False)\n    seams(cr, x + 3, y + 3, x + w - 3, y + 3 + drop, (214, 206, 186), n=4, axis='h', width=1.5)\n    cr.set_source_rgba(*_c((70, 74, 82)))\n    cr.set_line_width(3)\n    cr.move_to(x + w / 2, y)\n    cr.line_to(x + w / 2, y + h)\n    cr.stroke()\n    trim(cr, x - 6, y - 6, x + w + 6, y + h + 6, (238, 234, 224), w=6)\n    cr.rectangle(x - 10, y + h + 4, w + 20, 9)\n    solid(cr, (200, 196, 186), rim=False)\n\n\ndef _mm_pram(cr, x, y, s):\n    contact_shadow(cr, x, y + 4, 170 * s, a=0.4)\n    for wx in (x - 55 * s, x + 50 * s):\n        disc(cr, wx, y - 20 * s, 20 * s, (40, 40, 46), finish=\"metal\")\n        disc(cr, wx, y - 20 * s, 7 * s, (170, 172, 180), finish=\"metal\")\n    cr.set_source_rgba(*_c((60, 60, 66)))\n    cr.set_line_width(5 * s)\n    cr.move_to(x - 55 * s, y - 20 * s)\n    cr.line_to(x, y - 60 * s)\n    cr.line_to(x + 50 * s, y - 20 * s)\n    cr.move_to(x + 60 * s, y - 80 * s)\n    cr.line_to(x + 105 * s, y - 150 * s)\n    cr.line_to(x + 130 * s, y - 150 * s)\n    cr.stroke()\n    cr.move_to(x - 75 * s, y - 95 * s)\n    cr.curve_to(x - 75 * s, y - 40 * s, x + 75 * s, y - 40 * s, x + 75 * s, y - 95 * s)\n    cr.close_path()\n    solid(cr, (92, 120, 150))\n    cr.move_to(x - 75 * s, y - 95 * s)\n    cr.curve_to(x - 75 * s, y - 175 * s, x + 5 * s, y - 175 * s, x + 5 * s, y - 95 * s)\n    cr.close_path()\n    solid(cr, (72, 96, 124))\n    seams(cr, x - 70 * s, y - 165 * s, x, y - 98 * s, (72, 96, 124), n=4, axis='v')\n    trim(cr, x - 78 * s, y - 100 * s, x + 78 * s, y - 92 * s, (230, 226, 216), w=4 * s)\n\n\ndef _mm_ambulance(cr, x, y, s):\n    \"\"\"An ambulance parked by the far wing, nose to the left: (x, y) its\n    rear wheel line, right end.\"\"\"\n    contact_shadow(cr, x - 100 * s, y + 4, 240 * s, a=0.4)\n    box(cr, x - 170 * s, y - 14 * s, 150 * s, 120 * s, (240, 238, 232), depth=34 * s)\n    seams(cr, x - 168 * s, y - 132 * s, x - 22 * s, y - 16 * s, (240, 238, 232), n=2, axis='v')\n    cr.rectangle(x - 170 * s, y - 70 * s, 150 * s, 12 * s)\n    solid(cr, (200, 50, 48), rim=False, edge=False)\n    cr.rectangle(x - 112 * s, y - 118 * s, 10 * s, 34 * s)\n    cr.rectangle(x - 124 * s, y - 106 * s, 34 * s, 10 * s)\n    solid(cr, (200, 50, 48), rim=False)\n    # the cab\n    cr.move_to(x - 170 * s, y - 14 * s)\n    cr.line_to(x - 170 * s, y - 100 * s)\n    cr.line_to(x - 205 * s, y - 100 * s)\n    cr.line_to(x - 230 * s, y - 60 * s)\n    cr.line_to(x - 232 * s, y - 14 * s)\n    cr.close_path()\n    solid(cr, (232, 230, 224))\n    cr.move_to(x - 176 * s, y - 64 * s)\n    cr.line_to(x - 176 * s, y - 94 * s)\n    cr.line_to(x - 202 * s, y - 94 * s)\n    cr.line_to(x - 220 * s, y - 64 * s)\n    cr.close_path()\n    solid(cr, (120, 150, 172), finish=\"glass\", rim=False)\n    trim(cr, x - 236 * s, y - 30 * s, x - 226 * s, y - 18 * s, (230, 200, 120), w=3 * s)\n    box(cr, x - 160 * s, y - 132 * s, 40 * s, 10 * s, (60, 120, 200), depth=8 * s)\n    for wx in (x - 200 * s, x - 60 * s):\n        disc(cr, wx, y - 6 * s, 17 * s, (36, 36, 40), finish=\"metal\")\n        disc(cr, wx, y - 6 * s, 6 * s, (170, 172, 180), finish=\"metal\")\n\n\ndef _mm_flag(cr, x, y, w, h, t):\n    stripes = 13\n    sh = h / stripes\n    cols = 30\n    cw = w / cols\n\n    def wave(px):\n        return 9 * math.sin(t * 2.2 - px / w * 5.0) * (px / w)\n\n    for c in range(cols):\n        px = c * cw\n        dy0, dy1 = wave(px), wave(px + cw)\n        shade = 0.82 + 0.18 * math.cos(t * 2.2 - px / w * 5.0)\n        for r in range(stripes):\n            base = (178, 34, 52) if r % 2 == 0 else (240, 238, 232)\n            if px < w * 0.4 and r < 7:\n                base = (44, 52, 108)\n            col = tuple(int(v * shade) for v in base)\n            cr.move_to(x + px, y + r * sh + dy0)\n            cr.line_to(x + px + cw + 0.6, y + r * sh + dy1)\n            cr.line_to(x + px + cw + 0.6, y + (r + 1) * sh + dy1 + 0.6)\n            cr.line_to(x + px, y + (r + 1) * sh + dy0 + 0.6)\n            cr.close_path()\n            cr.set_source_rgba(*_c(col))\n            cr.fill()\n    for i in range(9):\n        for j in range(6 if i % 2 == 0 else 5):\n            sx = 10 + j * (w * 0.4 - 20) / 5 + (0 if i % 2 == 0 else (w * 0.4 - 20) / 10)\n            sy = 7 * sh * (i + 0.6) / 9.6\n            cr.arc(x + sx, y + sy + wave(sx), 2.6, 0, 2 * math.pi)\n            cr.set_source_rgba(*_c((246, 244, 238)))\n            cr.fill()\n    cr.move_to(x, y + wave(0))\n    for c in range(cols + 1):\n        cr.line_to(x + c * cw, y + wave(c * cw))\n    for c in range(cols, -1, -1):\n        cr.line_to(x + c * cw, y + h + wave(c * cw))\n    cr.close_path()\n    edge(cr, (40, 30, 34), width=2.5)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a hospital's flag on its pole\n    SUBSTANCE: the American flag\n    CAUSE: Data hauls the flagpole rope, lowering the flag as deaths rise and raising it as they fall\n    A maternity hospital at dawn, its flag out front on a lawn, an\n    ambulance parked by the wing. The flag hangs lower the higher that\n    year's maternal death rate: Data lowers it hand over hand through 2020\n    and 2021, then hauls it back up past where it hung in 2019 to 2023's\n    level. 2019's height stays marked on the pole, so a glance shows the\n    flag ends higher than before the pandemic. The rope runs into his hand.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    vmax = max(v for _, v in rows) or 1.0\n    a0, a1 = 0.14, 0.66\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.1, 0.75))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    val = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n\n    PX, GY = 680, 1470\n    TOP = 640\n    Y0, SPAN = 680, 470\n\n    def fy(v):\n        return Y0 + SPAN * v / vmax\n\n    flag_y = fy(val)\n\n    landscape(cr, t, \"town\", time=\"dawn\", seed=\"a hospital's flag on its pole\", skyline=True)\n    # the far wing, under haze\n    building(cr, 600, 1040, 1330, 330, (204, 200, 192), roof=\"flat\", boards=False)\n    haze(cr, 900, 1340, (236, 206, 184), a=0.35)\n\n    # the hospital lawn, a paved path up to the doors\n    cr.move_to(0, 1440)\n    cr.line_to(W, 1380)\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    solid(cr, (104, 140, 80), edge=False, rim=False)\n\n    # the maternity hospital\n    cast_shadow(cr, 40, 560, 1450, length=280, a=0.28)\n    b = building(cr, 40, 560, 1450, 640, (228, 224, 214), roof=\"flat\", boards=False)\n    seams(cr, b[\"x0\"], b[\"top\"], b[\"x1\"], b[\"base\"], (228, 224, 214), n=5, axis='h', width=1.5, a=0.3)\n    i = 0\n    for r in range(5):\n        for c in range(4):\n            wx = b[\"x0\"] + 36 + c * 120\n            wy = b[\"top\"] + 40 + r * 92\n            lit = (250, 222, 160) if (r * 3 + c) % 4 else (150, 176, 196)\n            _mm_window(cr, wx, wy, 76, 58, lit, i)\n            i += 1\n    ex = (b[\"x0\"] + b[\"x1\"]) / 2\n    cr.rectangle(ex - 90, b[\"base\"] - 150, 180, 150)\n    solid(cr, (120, 150, 168), finish=\"glass\")\n    seams(cr, ex - 90, b[\"base\"] - 150, ex + 90, b[\"base\"], (120, 150, 168), n=3, axis='v')\n    box(cr, ex - 150, b[\"base\"] - 150, 300, 30, (196, 60, 58), depth=40)\n    # the path from the doors to the camera\n    cr.move_to(ex - 80, 1450)\n    cr.curve_to(ex - 100, 1600, ex - 220, 1760, ex - 300, H)\n    cr.line_to(ex + 200, H)\n    cr.curve_to(ex + 140, 1760, ex + 90, 1600, ex + 80, 1450)\n    cr.close_path()\n    solid(cr, (196, 188, 172), edge=False)\n    seams(cr, ex - 140, 1500, ex + 120, H, (196, 188, 172), n=7, axis='h', width=2, a=0.35)\n    # a clipped hedge along the front, either side of the doors\n    for j in range(14):\n        hx_ = 46 + j * 36 + (j * 7) % 11\n        if ex - 160 < hx_ < ex + 160:\n            continue\n        disc(cr, hx_, 1430 - (j % 3) * 6, 26 + (j % 4) * 3,\n             [(70, 110, 62), (82, 124, 70), (64, 100, 58)][j % 3])\n    # the MATERNITY sign on the roof, high above Data\n    sx0 = ex - 110\n    for lx in (sx0 + 30, sx0 + 230):\n        cr.rectangle(lx - 4, b[\"top\"] - 14, 8, 14)\n        solid(cr, (90, 92, 100), finish=\"metal\", rim=False)\n    box(cr, sx0, b[\"top\"] - 12, 240, 48, (196, 60, 58), depth=20)\n    trim(cr, sx0, b[\"top\"] - 60, sx0 + 240, b[\"top\"] - 12, (238, 234, 224), w=4)\n    text(cr, \"MATERNITY\", sx0 + 120, b[\"top\"] - 26, 26, (250, 246, 236), face=\"bold\",\n         anchor=\"center\", shadow=False)\n    cx_, cy_ = b[\"x0\"] + 70, b[\"top\"] - 60\n    cr.rectangle(cx_ - 14, cy_ - 42, 28, 84)\n    cr.rectangle(cx_ - 42, cy_ - 14, 84, 28)\n    solid(cr, (204, 44, 44))\n    trim(cr, cx_ - 50, cy_ - 50, cx_ + 50, cy_ + 50, (238, 234, 224), w=5)\n\n    # an ambulance parked by the far wing\n    _mm_ambulance(cr, 1060, 1360, 0.9)\n\n    # the flagpole on its plinth, flowerbed round it\n    cast_shadow(cr, PX - 60, PX + 60, GY, length=420, a=0.3)\n    contact_shadow(cr, PX, GY + 6, 200, a=0.45)\n    box(cr, PX - 70, GY + 6, 140, 34, (170, 164, 152), depth=40)\n    seams(cr, PX - 70, GY - 28, PX + 70, GY + 6, (170, 164, 152), n=3, axis='v')\n    for j in range(9):\n        disc(cr, PX - 95 + j * 24, GY + 14 - (j % 2) * 8, 11 + (j % 3) * 2,\n             [(214, 80, 96), (236, 196, 80), (240, 236, 228)][j % 3])\n    cylinder(cr, PX - 9, GY - 28, 18, GY - 28 - TOP, (206, 208, 214), finish=\"metal\")\n    disc(cr, PX, TOP - 12, 14, (214, 180, 90), finish=\"metal\")\n    disc(cr, PX, TOP + 14, 6, (90, 92, 100), finish=\"metal\")\n    # a cleat on the pole for the rope\n    box(cr, PX - 22, GY - 150, 14, 30, (80, 82, 90), depth=6, finish=\"metal\")\n    for j in range(n):\n        if u < a0 or j > k or (j == k and slide < 0.999):\n            break\n        ny = fy(rows[j][1])\n        cr.set_source_rgba(*_c((60, 60, 66)))\n        cr.set_line_width(4)\n        cr.move_to(PX - 16, ny)\n        cr.line_to(PX + 16, ny)\n        cr.stroke()\n\n    # the flag\n    _mm_flag(cr, PX + 10, flag_y, 300, 180, t)\n    cr.set_source_rgba(*_c((40, 36, 32)))\n    cr.set_line_width(3)\n    cr.move_to(PX + 6, TOP + 14)\n    cr.line_to(PX + 10, flag_y)\n    cr.move_to(PX + 10, flag_y + 180)\n    cr.line_to(PX + 6, GY - 40)\n    cr.stroke()\n    # the scale on the pole: where 2019's flag hung, its label left of the pole\n    if u >= a0 and (k > 0 or slide >= 0.999):\n        then_mark(cr, PX - 250, PX - 30, fy(rows[0][1]), rows[0][0])\n\n    # Data hauls the halyard: nearer the pole as it pays out, back as it rises\n    drop = val / vmax\n    hx = PX - 360 + 200 * drop\n    hh = 300\n    hand = (hx + 55, GY - 0.6 * hh)\n    cr.set_source_rgba(*_c((60, 48, 36)))\n    cr.set_line_width(5)\n    cr.move_to(PX - 6, TOP + 14)\n    cr.line_to(*hand)\n    cr.stroke()\n\n    if u < a0:\n        host(\"point\", hx, GY, hh)\n    elif u < 0.93:\n        host(\"haul\", hx, GY, hh, beat=min(k, n - 1))\n    else:\n        host(\"cheer\", hx, GY, hh)\n\n    # the rope's tail falls from his hand, coiled at his feet (over him)\n    cr.set_source_rgba(*_c((60, 48, 36)))\n    cr.set_line_width(5)\n    cr.move_to(*hand)\n    cr.curve_to(hand[0] + 10, hand[1] + 60, hand[0] + 40, GY - 20, hand[0] + 70, GY - 6)\n    cr.stroke()\n\n    # by the camera: a pram on the path\n    _mm_pram(cr, 880, 1740, 1.5)\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    shown = landed(rows, k, slide) if u >= a0 else None\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{v:.1f}\", f\"US maternal deaths per hundred thousand births · {lab}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Maternal deaths\", \"in the US, per hundred thousand births\",\n                    80, 520, a=ease(seg(u, 0.0, 0.04)), size=130)\n"
     },
@@ -36362,7 +36362,7 @@
      },
      "insight_type": "trend",
      "role": "2 · THE RATE THAT DIDN'T FALL",
-     "topic": "Black maternal mortality rate",
+     "topic": "Black maternal mortality",
      "say": "For Black mothers, the rate stayed stuck near 50.3 after its spike. The national drop skipped them."
     },
     {
@@ -36374,14 +36374,14 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE 2023 GAP",
-     "topic": "Maternal deaths by race",
+     "topic": "deaths by race",
      "say": "White women, the next highest group, were at 14.5. Black women died at over three times that rate.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _mm_weight(cr, x, yb, v, lab, a=1.0):\n    s = 42.0 * math.sqrt(max(v, 0.5) / 5.0)\n    w, h = s * 1.05, s * 0.85\n    contact_shadow(cr, x, yb + 2, w * 1.1, a=0.35 * a)\n    cylinder(cr, x - w / 2, yb, w, h, (196, 156, 74), finish=\"metal\", a=a)\n    cr.rectangle(x - w / 2 + 2, yb - h * 0.28, w - 4, 5)\n    cr.set_source_rgba(*_c((110, 80, 34), 0.6 * a))\n    cr.fill()\n    cr.rectangle(x - w / 2 + 2, yb - h * 0.74, w - 4, 4)\n    cr.set_source_rgba(*_c((236, 206, 130), 0.6 * a))\n    cr.fill()\n    cr.rectangle(x - w / 2 + 2, yb - h * 0.52, w - 4, 3)\n    cr.set_source_rgba(*_c((120, 88, 40), 0.5 * a))\n    cr.fill()\n    cylinder(cr, x - w * 0.16, yb - h, w * 0.32, h * 0.2, (176, 138, 62), finish=\"metal\", a=a)\n    disc(cr, x, yb - h - h * 0.32, w * 0.13, (186, 148, 66), finish=\"metal\", a=a)\n    return w\n\n\ndef _mm_gurney(cr, x, y):\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1.4, 1.4)\n    contact_shadow(cr, 170, 6, 380, a=0.4)\n    for lx in (34, 300):\n        cr.rectangle(lx, -128, 8, 100)\n        solid(cr, (150, 156, 162), finish=\"metal\", rim=False)\n    for wx in (38, 304):\n        disc(cr, wx, -20, 20, (40, 42, 46), finish=\"metal\")\n        disc(cr, wx, -20, 7, (150, 154, 160), finish=\"metal\")\n    box(cr, 0, -128, 340, 20, (170, 176, 182), finish=\"metal\", depth=40)\n    box(cr, 8, -148, 324, 26, (222, 232, 238), depth=38)\n    seams(cr, 8, -174, 332, -148, (222, 232, 238), n=4, axis=\"v\")\n    box(cr, 230, -174, 90, 22, (240, 244, 246), depth=30)\n    cr.set_source_rgba(*_c((120, 126, 132)))\n    cr.set_line_width(5)\n    cr.move_to(20, -176)\n    cr.line_to(200, -176)\n    for px in (20, 80, 140, 200):\n        cr.move_to(px, -176)\n        cr.line_to(px, -148)\n    cr.stroke()\n    cylinder(cr, 4, -148, 8, 250, (160, 166, 172), finish=\"metal\")\n    cr.rectangle(-18, -400, 40, 60)\n    solid(cr, (210, 228, 236), finish=\"glass\")\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a brass balance scale\n    SUBSTANCE: brass weights\n    CAUSE: Data places each group's brass weight on the pans and the heavy side sinks\n    A hospital's labour-and-delivery lobby at night. Each group's death rate\n    is a brass weight, its size in proportion to the rate. Data sets the Black\n    women's weight on the left pan and it slams down; then he loads White,\n    Hispanic and Asian women on the right pan, one weight at a time, and\n    even all three together cannot lift it. Done by 0.62 and held while a\n    gurney rolls through the lobby.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    lb, vb = rows[0]\n    rest = rows[1:4]\n    top = vb or 1.0\n    a0 = 0.08\n    steps = [(0.08, 0.26)] + [(0.26 + 0.12 * i, 0.38 + 0.12 * i) for i in range(len(rest))]\n    allw = [rows[0]] + rest\n    drops, masses = [], []\n    for j, (s0, s1) in enumerate(steps):\n        f = seg(u, s0, s1)\n        drops.append(ease(seg(f, 0.3, 0.7)) if u >= s0 else -1.0)\n        masses.append(allw[j][1] * ease(seg(f, 0.55, 0.85)) if u >= s0 else 0.0)\n    Lm = masses[0]\n    Rm = sum(masses[1:])\n    theta = 0.34 * clamp((Lm - Rm) / top, -1.0, 1.0)\n    k = max([j for j, (s0, _) in enumerate(steps) if u >= s0], default=0)\n    CX, PY, A, CH, PW = 540, 800, 350, 300, 232\n    FY, HH = 1450, 320\n\n    # the lobby: night sky through the window, the ward sign, the rail\n    vgrad(cr, [(0, (34, 44, 54)), (0.55, (88, 108, 116)), (1, (128, 146, 148))], 0, 1170)\n    for i in range(5):\n        lx = 50 + i * 205\n        glow(cr, lx + 80, 120, 150, (240, 246, 236), 0.25)\n        box(cr, lx, 120, 160, 18, (236, 240, 234), depth=28)\n    WX0, WX1, WY0, WY1 = 60, 1020, 300, 740\n    cr.save()\n    cr.rectangle(WX0, WY0, WX1 - WX0, WY1 - WY0)\n    cr.clip()\n    vgrad(cr, [(0, (14, 20, 42)), (1, (46, 52, 80))], WY0, WY1, WX0, WX1)\n    for i in range(12):\n        bx = WX0 + i * 82 - 10\n        bh = 150 + ((i * 97) % 5) * 45\n        bw = 70 + (i % 3) * 8\n        cr.rectangle(bx, WY1 - bh, bw, bh)\n        cr.set_source_rgba(*_c((26 + (i % 3) * 6, 30, 46)))\n        cr.fill()\n        for r_ in range(int(bh // 34)):\n            for c_ in range(3):\n                if (i * 7 + r_ * 3 + c_) % 4 == 0:\n                    cr.rectangle(bx + 8 + c_ * 22, WY1 - bh + 12 + r_ * 34, 12, 16)\n                    cr.set_source_rgba(*_c((250, 214, 140), 0.85))\n                    cr.fill()\n    cr.restore()\n    haze(cr, WY0, WY1, (60, 76, 96), a=0.3)\n    for mx in (300, 540, 780):\n        cr.rectangle(mx - 7, WY0, 14, WY1 - WY0)\n        solid(cr, (196, 202, 200), finish=\"metal\", rim=False)\n    trim(cr, WX0, WY0, WX1, WY1, (200, 206, 204), w=14)\n    box(cr, WX0 - 20, WY1 + 22, WX1 - WX0 + 40, 20, (206, 210, 206), depth=24)\n    box(cr, 330, 270, 420, 60, (40, 90, 150), depth=18)\n    text(cr, \"LABOR & DELIVERY\", CX, 252, 34, (244, 246, 250), face=\"bold\",\n         anchor=\"center\", shadow=False)\n    cr.rectangle(0, 900, W, 260)\n    solid(cr, (116, 146, 146), rim=False, edge=False)\n    seams(cr, 0, 900, W, 1160, (116, 146, 146), n=14, axis=\"v\")\n    cr.rectangle(0, 952, W, 14)\n    solid(cr, (190, 196, 200), finish=\"metal\")\n    for bx in range(60, W, 160):\n        disc(cr, bx, 966, 8, (150, 156, 160), finish=\"metal\")\n    # the floor\n    vgrad(cr, [(0, (176, 180, 174)), (1, (116, 122, 120))], 1160, H)\n    cr.rectangle(0, 1150, W, 20)\n    solid(cr, (70, 80, 84), rim=False)\n    cr.save()\n    cr.rectangle(0, 1170, W, H - 1170)\n    cr.clip()\n    cr.set_source_rgba(*_c((90, 96, 94), 0.35))\n    cr.set_line_width(3)\n    for i in range(15):\n        cr.move_to(CX, 860)\n        cr.line_to(-1100 + i * 235, H)\n    gy = 1190.0\n    while gy < H:\n        cr.move_to(0, gy)\n        cr.line_to(W, gy)\n        gy += 30 + (gy - 1170) * 0.35\n    cr.stroke()\n    cr.restore()\n    # waiting chairs along the wall, each a little different\n    for i, (cx_, col) in enumerate([(40, (92, 120, 150)), (150, (104, 128, 152)),\n                                    (860, (96, 116, 146)), (968, (88, 124, 148))]):\n        contact_shadow(cr, cx_ + 40, 1176, 100, a=0.3)\n        box(cr, cx_ + 2 * (i % 2), 1170, 84, 16, (130, 134, 138), finish=\"metal\", depth=20)\n        box(cr, cx_, 1150, 84, 20, col, depth=22)\n        box(cr, cx_, 1132, 84, 70, col, depth=10)\n    glow(cr, CX, 1350, 520, (240, 240, 226), 0.16)\n\n    # THE SCALE\n    cast_shadow(cr, CX - 120, CX + 120, FY, length=260, a=0.22)\n    contact_shadow(cr, CX, FY + 2, 320, a=0.45)\n    box(cr, CX - 125, FY, 250, 50, (92, 64, 44), depth=50)\n    seams(cr, CX - 125, FY - 50, CX + 125, FY, (92, 64, 44), n=5, axis=\"v\")\n    box(cr, CX - 70, FY - 50, 140, 40, (190, 150, 70), finish=\"metal\", depth=36)\n    cylinder(cr, CX - 20, FY - 90, 40, FY - 90 - PY + 6, (196, 158, 76), finish=\"metal\")\n    # the dial behind the needle\n    cr.arc(CX, PY, 170, math.pi / 2 - 0.55, math.pi / 2 + 0.55)\n    cr.arc_negative(CX, PY, 120, math.pi / 2 + 0.55, math.pi / 2 - 0.55)\n    cr.close_path()\n    solid(cr, (234, 226, 204))\n    cr.set_source_rgba(*_c((70, 56, 36)))\n    cr.set_line_width(3)\n    for i in range(11):\n        ang = math.pi / 2 - 0.5 + i * 0.1\n        r0 = 150 if i % 5 else 136\n        cr.move_to(CX + r0 * math.cos(ang), PY + r0 * math.sin(ang))\n        cr.line_to(CX + 168 * math.cos(ang), PY + 168 * math.sin(ang))\n    cr.stroke()\n    cr.set_source_rgba(*_c((150, 36, 32)))\n    cr.set_line_width(6)\n    cr.move_to(CX, PY)\n    cr.line_to(CX + 160 * math.sin(theta), PY + 160 * math.cos(theta))\n    cr.stroke()\n    # the beam\n    cr.save()\n    cr.translate(CX, PY)\n    cr.rotate(-theta)\n    cr.rectangle(-A - 16, -14, 2 * A + 32, 28)\n    cr.restore()\n    solid(cr, (200, 162, 80), finish=\"metal\")\n    ends = [(CX - A * math.cos(theta), PY + A * math.sin(theta)),\n            (CX + A * math.cos(theta), PY - A * math.sin(theta))]\n    for ex, ey in ends:\n        disc(cr, ex, ey, 16, (186, 148, 66), finish=\"metal\")\n    disc(cr, CX, PY, 26, (176, 138, 60), finish=\"metal\")\n    disc(cr, CX, PY, 8, (90, 70, 40), finish=\"metal\")\n    pans = []\n    for ex, ey in ends:\n        ry = ey + CH\n        cr.set_source_rgba(*_c((150, 126, 70)))\n        cr.set_line_width(4)\n        for dx in (-PW / 2 + 12, 0, PW / 2 - 12):\n            cr.move_to(ex, ey + 14)\n            cr.line_to(ex + dx, ry)\n        cr.stroke()\n        for q in range(1, 6):\n            disc(cr, ex, ey + 14 + q * (CH - 14) / 6.0, 4, (170, 140, 76), finish=\"metal\")\n        cr.save()\n        cr.translate(ex, ry)\n        cr.scale(1, 0.34)\n        cr.arc(0, 0, PW / 2, 0, math.pi)\n        cr.restore()\n        cr.close_path()\n        solid(cr, (190, 150, 70), finish=\"metal\")\n        cr.save()\n        cr.translate(ex, ry)\n        cr.scale(1, 0.12)\n        cr.arc(0, 0, PW / 2, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (222, 186, 104), finish=\"metal\")\n        pans.append((ex, ry))\n\n    # where each weight sits on its pan\n    rw = [42.0 * math.sqrt(max(v, 0.5) / 5.0) * 1.05 for _, v in rest]\n    tot_w = sum(rw) + 4 * max(0, len(rw) - 1)\n    slots = [(pans[0][0], pans[0][1] + 6)]\n    xx = pans[1][0] - tot_w / 2\n    for w_ in rw:\n        slots.append((xx + w_ / 2, pans[1][1] + 6))\n        xx += w_ + 4\n    mv = ease(seg(u, 0.25, 0.31))\n    hx = 360 + 360 * mv\n    flying = []\n    for j, (lab, v) in enumerate(allw):\n        d = drops[j]\n        if d < 0:\n            continue\n        if d >= 0.999:\n            _mm_weight(cr, slots[j][0], slots[j][1], v, lab)\n        else:\n            flying.append(j)\n\n    # by the camera: a gurney rolling through the lobby\n    _mm_gurney(cr, -520 + ((t * 170) % 2100), 1880)\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", 360, FY, HH)\n    elif u < 0.66:\n        host(\"place\", hx, FY, HH, beat=k)\n    elif u < 0.9:\n        host(\"hold_up\", hx, FY, HH)\n    else:\n        host(\"shock\", hx, FY, HH)\n\n    for j in flying:\n        lab, v = allw[j]\n        s0, s1 = steps[j]\n        f = seg(u, s0, s1)\n        d = drops[j]\n        sx, sy = hx + 50, FY - 0.62 * HH\n        ex, ey = slots[j]\n        bx = sx + (ex - sx) * d\n        by = sy + (ey - sy) * d - 120 * math.sin(math.pi * d)\n        _mm_weight(cr, bx, by, v, lab, a=ease(seg(f, 0.0, 0.12)))\n\n    if drops[0] >= 0.999:\n        fit_readout(cr, f\"{vb:.1f}\", f\"{lb}, deaths per hundred thousand births\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Maternal deaths\", \"the death rate, by race\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n    if rest and drops[1] >= 0.999:\n        l2, v2 = rest[0]\n        a2 = ease(seg(u, steps[1][1], steps[1][1] + 0.04))\n        text(cr, f\"{v2:.1f}\", 80, 712, 76, look.INK, face=\"display\", alpha=a2)\n        sub = f\"{l2}, the next highest\"\n        text(cr, sub, 80, 760, fit_size(cr, sub, 32, 420), look.INK, alpha=a2)\n"
     }
    ],
    "retold": "retell/v4",
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-11-04T22:02:34Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-08T12:23:16Z",
    "hook_was": "Moms are dying less. But not all moms equally."
   },
   {
@@ -37157,8 +37157,8 @@
   },
   {
    "slug": "robotic-surgery-doubled",
-   "title": "Robotic Surgery Doubled Before Most Patients Noticed",
-   "hook": "Robotic procedures rose 98% while surgery still looked traditional.",
+   "title": "Robots Now Handle 15.1% Of General Surgeries",
+   "hook": "Robotic surgery isn't rare anymore: robots handle 15.1% of general surgeries.",
    "closing": "Robots moved from operating-room novelty toward routine care patients increasingly encounter.",
    "question": "Would you trust robotic surgery?",
    "caption": "Robotic surgeries have nearly doubled worldwide in just 4 years — from 1.6 million procedures in 2021 to over 3 million in 2025. It's already a $7 billion-plus industry. Would you trust a robot in the OR? Tell me below 🤖",
@@ -37185,7 +37185,7 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SURGE",
-     "topic": "robotic surgery procedures",
+     "topic": "robotic procedures",
      "say": "Robotic procedures rose 98 percent, turning a specialized tool into mainstream surgery."
     },
     {
@@ -37207,13 +37207,13 @@
      },
      "insight_type": "trend",
      "role": "3 · THE INDUSTRY",
-     "topic": "robotic surgery revenue",
+     "topic": "robotic revenue",
      "say": "Robotic-surgery revenue reached 7.1 billion dollars, reflecting how quickly hospitals adopted the technology."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-07T12:25:07Z"
+   "rewritten_at": "2026-11-08T12:23:16Z"
   },
   {
    "slug": "nuclear-reactors-under-construction",
@@ -37967,8 +37967,8 @@
   },
   {
    "slug": "hadza-gut-bacteria-vs-americans",
-   "title": "This Tribe Has 730 Species Of Gut Bacteria",
-   "hook": "Your gut is starving, and your diet is the reason.",
+   "title": "The Hadza Carry About 730 Gut Bacteria Species",
+   "hook": "Modern diets look advanced. The Hadza carry about 730 gut bacteria species.",
    "closing": "Civilization made our food safer and our guts emptier.",
    "question": "How much fiber did you eat today?",
    "caption": "A tribe in Tanzania carries nearly 3x the gut bacteria species of the average American — and modern antibiotics might be part of why. 255.9 million prescriptions were filled in the US in 2024 alone, a third of them unnecessary. How much fiber did you eat today? 👇",
@@ -37994,7 +37994,7 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GAP",
-     "topic": "gut bacteria species",
+     "topic": "bacteria species",
      "say": "The Hadza of Tanzania carry about 730 gut bacteria species. The average American has fewer than half that.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _gb_ell(cr, cx, cy, rx, ry):\n    cr.save()\n    cr.translate(cx, cy)\n    cr.scale(1.0, ry / max(1.0, rx))\n    cr.new_sub_path()\n    cr.arc(0, 0, rx, 0, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n\n\n_GB_COL = [(238, 226, 196), (246, 206, 96), (232, 150, 70), (214, 120, 140),\n           (250, 246, 236), (190, 160, 120), (160, 110, 170), (226, 190, 150),\n           (200, 90, 70), (140, 170, 110), (240, 180, 120), (120, 140, 180)]\n\n\ndef _gb_colony(cr, x, y, r, rgb, squash, s=1.0):\n    if s <= 0.01:\n        return\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(s, squash * s)\n    disc(cr, 0, 0, r, rgb)\n    cr.set_source_rgba(*_c(tuple(max(0, c - 50) for c in rgb), 0.7))\n    cr.set_line_width(2.0)\n    cr.arc(0, 0, r * 0.55, 0, 2 * math.pi)\n    cr.stroke()\n    cr.restore()\n\n\ndef _gb_bench(cr, t):\n    \"\"\"A close-up on a lab bench at night: everything at the plate's own\n    scale, so the culture tubes behind it tower and the far lab is soft.\"\"\"\n    vgrad(cr, [(0, (30, 38, 50)), (0.7, (64, 74, 88)), (1, (82, 92, 104))], 0, 1060)\n    for i in range(3):\n        glow(cr, 160 + i * 380, 200, 280, (226, 236, 246), 0.22)\n    # far reagent bottles, out of focus\n    for i, (bx, bw, bh, col) in enumerate(((20, 230, 560, (150, 110, 70)),\n                                           (300, 180, 420, (110, 140, 150)),\n                                           (760, 260, 620, (120, 130, 160)))):\n        contact_shadow(cr, bx + bw / 2, 1000, bw + 20, a=0.3)\n        cylinder(cr, bx, 1000, bw, bh, col, finish=\"glass\")\n        cylinder(cr, bx + bw * 0.3, 1000 - bh, bw * 0.4, 70, (60, 64, 72), finish=\"metal\")\n    haze(cr, 0, 1010, (70, 82, 96), a=0.6)\n    # the culture tubes in their rack, right behind the plate\n    broth = [(214, 170, 86), (196, 140, 70), (226, 190, 110), (180, 130, 80),\n             (210, 160, 96), (232, 200, 120), (190, 150, 90)]\n    for i in range(7):\n        x = 60 + i * 140 + 6 * math.sin(i * 1.7)\n        cylinder(cr, x, 1000, 100, 720, (214, 226, 232), finish=\"glass\", a=0.6)\n        lvl = 300 + 40 * ((i * 0.37) % 1.0)\n        cr.rectangle(x + 10, 1000 - lvl, 80, lvl - 10)\n        solid(cr, broth[i], a=0.8, edge=False)\n        cylinder(cr, x - 6, 280, 112, 70,\n                 [(200, 60, 60), (70, 110, 180), (240, 190, 70), (90, 160, 110)][i % 4])\n        seams(cr, x - 6, 214, x + 106, 280, (120, 120, 130), n=6, axis=\"v\", a=0.5)\n    box(cr, 20, 1050, 1040, 190, (64, 110, 176), depth=50)\n    for i in range(7):\n        cr.rectangle(60 + i * 140 + 20, 900, 60, 40)\n        solid(cr, (40, 72, 120), rim=False)\n    seams(cr, 20, 870, 1060, 1050, (64, 110, 176), n=2, axis=\"h\", a=0.4)\n    haze(cr, 0, 1060, (76, 88, 102), a=0.3)\n    # the bench top, running to the camera\n    vgrad(cr, [(0, (56, 62, 70)), (1, (92, 100, 110))], 1050, H)\n    cr.rectangle(0, 1050, W, 10)\n    solid(cr, (110, 116, 124), rim=False)\n    glow(cr, 540, 1250, 620, (255, 236, 200), 0.16)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a petri dish of gut bacteria\n    SUBSTANCE: bacteria colonies\n    CAUSE: Data pours the gut culture from a bucket onto the dish and colonies bloom where it lands\n    A close-up on a lab bench at night, everything at its real size: the\n    plate, the culture tubes in their rack towering behind it, the ruled\n    notebook and pen by the camera. Data pours the gut culture onto the\n    plate and colonies bloom out from the centre, each a different species\n    colour: first to the average American's count, which stays as a dashed\n    ring with its name, then on past it to the Hadza's, the plate's area\n    being the species count, so the full plate reads as about two and a half\n    rings' worth. Done by 0.62 and held; he keeps pouring.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    (llo, vlo) = min(rows, key=lambda r: r[1])\n    (lhi, vhi) = max(rows, key=lambda r: r[1])\n    vhi = vhi or 1.0\n    vlo = vlo or 1.0\n    ratio = vhi / vlo\n    a0, a1, b0, b1 = 0.06, 0.30, 0.38, 0.62\n    g1 = ease(seg(u, a0, a1))\n    g2 = ease(seg(u, b0, b1))\n    val = vlo * g1 + (vhi - vlo) * g2\n    NMAX = 150\n    cnt = int(NMAX * val / vhi)\n\n    _gb_bench(cr, t)\n\n    # the dish\n    CX, CY, RX, RY = 560, 1230, 400, 160\n    SQ = RY / RX\n    cast_shadow(cr, CX - RX, CX + RX, CY + RY + 30, length=240, a=0.25)\n    contact_shadow(cr, CX, CY + RY + 34, 2 * RX + 40, a=0.45)\n    _gb_ell(cr, CX, CY + 34, RX + 14, RY + 6)\n    solid(cr, (190, 206, 214), finish=\"glass\", a=0.7)\n    cr.rectangle(CX - RX - 14, CY, 2 * RX + 28, 34)\n    solid(cr, (200, 216, 222), finish=\"glass\", a=0.5, edge=False)\n    # masking-tape label on the dish wall, as a lab marks it\n    cr.rectangle(CX + 110, CY + RY - 4, 210, 34)\n    solid(cr, (232, 218, 176), rim=False)\n    text(cr, lhi, CX + 215, CY + RY + 22, 22, (60, 50, 40), face=\"bold\",\n         anchor=\"center\", shadow=False)\n    _gb_ell(cr, CX, CY, RX, RY)\n    solid(cr, (206, 164, 96))\n    cr.save()\n    _gb_ell(cr, CX, CY, RX - 6, RY - 3)\n    cr.clip()\n    newest = (CX, CY)\n    for i in range(cnt):\n        rr = math.sqrt((i + 0.5) / NMAX) * 0.93\n        ang = i * 2.39996\n        x = CX + RX * rr * math.cos(ang)\n        y = CY + RY * rr * math.sin(ang)\n        r = 10 + 8 * ((i * 0.618) % 1.0)\n        grow = clamp((NMAX * val / vhi - i) / 3.0)\n        _gb_colony(cr, x, y, r, _GB_COL[(i * 7) % len(_GB_COL)], SQ, pop(grow))\n        newest = (x, y)\n    cr.restore()\n    _gb_ell(cr, CX, CY, RX + 14, RY + 6)\n    cr.set_source_rgba(*_c((230, 240, 246), 0.8))\n    cr.set_line_width(5)\n    cr.stroke()\n    # the American gut's count, left on the plate as a ring\n    if u >= a1:\n        rr0 = math.sqrt(vlo / vhi) * 0.93\n        _gb_ell(cr, CX, CY, RX * rr0, RY * rr0)\n        ghost(cr, a=0.9)\n        text(cr, llo, CX + 40, CY - RY * rr0 - 14, 30, look.INK, anchor=\"center\")\n\n    # by the camera: the lab notebook, ruled, and a pen across it\n    cr.move_to(-40, 1640)\n    cr.line_to(700, 1600)\n    cr.line_to(760, H + 20)\n    cr.line_to(-40, H + 20)\n    cr.close_path()\n    solid(cr, (238, 234, 222))\n    cr.save()\n    cr.move_to(-40, 1640)\n    cr.line_to(700, 1600)\n    cr.line_to(760, H + 20)\n    cr.line_to(-40, H + 20)\n    cr.close_path()\n    cr.clip()\n    cr.set_source_rgba(*_c((120, 150, 200), 0.6))\n    cr.set_line_width(3)\n    for k in range(6):\n        yy = 1690 + k * 60\n        cr.move_to(-40, yy + 4)\n        cr.line_to(760, yy - 40)\n    cr.stroke()\n    cr.set_source_rgba(*_c((200, 90, 90), 0.6))\n    cr.move_to(90, 1630)\n    cr.line_to(100, H)\n    cr.stroke()\n    cr.set_source_rgba(*_c((50, 60, 90), 0.7))\n    cr.set_line_width(4)\n    for k in range(4):\n        yy = 1680 + k * 60\n        x0 = 130\n        cr.move_to(x0, yy)\n        for s_ in range(14):\n            cr.line_to(x0 + s_ * 26, yy - 2 - 1.8 * s_ * 0.6 + 8 * math.sin(s_ * 2.1 + k))\n    cr.stroke()\n    cr.restore()\n    contact_shadow(cr, 860, 1800, 380, a=0.35)\n    cr.move_to(640, 1890)\n    cr.line_to(1060, 1700)\n    cr.line_to(1090, 1756)\n    cr.line_to(670, 1946)\n    cr.close_path()\n    solid(cr, (40, 60, 120))\n    cr.move_to(1060, 1700)\n    cr.line_to(1120, 1680)\n    cr.line_to(1090, 1756)\n    cr.close_path()\n    solid(cr, (200, 202, 208), finish=\"metal\")\n    trim(cr, 760, 1800, 800, 1860, (200, 202, 208), w=6)\n    vignette(cr, a=0.28)\n\n    # Data pours the culture, then walks round to pour more\n    hh = 300\n    fy = 1480\n    hx = 190 + 240 * ease(seg(u, a1, b0 + 0.04))\n    sub = int(u / 0.12)\n    ph = (u / 0.12) % 1.0\n    if u < a0:\n        host(\"point\", hx, fy, hh)\n    elif a1 <= u < b0:\n        host(\"hold_up\", hx, fy, hh)\n    elif u < 0.92:\n        host(\"pour\", hx, fy, hh, beat=sub)\n        if 0.25 < ph < 0.9:\n            sx, sy = hx + 0.32 * hh, fy - 0.78 * hh\n            ex, ey = newest\n            cr.set_source_rgba(*_c((228, 200, 140), 0.92))\n            cr.set_line_width(14)\n            cr.move_to(sx, sy)\n            cr.curve_to(sx + 60, sy - 40, ex, ey - 120, ex, ey)\n            cr.stroke()\n    else:\n        host(\"cheer\", hx, fy, hh)\n\n    if u >= b1:\n        fit_readout(cr, f\"{int(round(vhi))} species\", f\"of gut bacteria · {lhi}\",\n                    80, 520, size=130)\n        text(cr, f\"{ratio:.1f}x\", W - 80, 680, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, b1, b1 + 0.04)))\n    elif u >= a1:\n        fit_readout(cr, f\"{int(round(vlo))} species\", f\"of gut bacteria · {llo}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Gut bacteria\", f\"species in one gut · {llo} vs {lhi}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -38018,13 +38018,13 @@
      },
      "insight_type": "share",
      "role": "3 · WHAT'S KILLING IT OFF",
-     "topic": "gut bacteria killers",
+     "topic": "bacteria killers",
      "say": "The CDC says a third of US antibiotic prescriptions aren't even necessary, and each one can wipe out gut diversity."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-06T13:25:39Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-08T12:23:17Z",
    "hook_was": "Modern life might be starving your gut."
   },
   {
