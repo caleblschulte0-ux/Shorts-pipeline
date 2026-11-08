@@ -1,42 +1,22 @@
 {
- "date": "2026-11-07",
+ "date": "2026-11-08",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
  "slots": [
   {
    "sub": "sports",
-   "who": "Cristiano Ronaldo",
-   "why": "He announces his international retirement in a heartfelt video",
-   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "who": "Jacob Misiorowski",
+   "why": "Fans watch the wild beer\u2011chug celebration after the Brewers win",
+   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
-   "skipped": "download failed"
-  },
-  {
-   "sub": "soccer",
-   "who": "Kaka",
-   "why": "He breaks down in tears after a standing ovation and Hall of Fame induction",
-   "post_title": "Kaka was in tears after receiving a standing ovation at the San Siro. He has been added into Milan's Hall of Fame.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1xkvnwx/kaka_was_in_tears_after_receiving_a_standing",
-   "skipped": "too short: the post runs 12.7s (< 15s)"
-  },
-  {
-   "sub": "nfl",
-   "who": "Dan Campbell",
-   "why": "Emotional locker\u2011room speech for injured Jack Campbell before a team prayer",
-   "post_title": "[Highlight] Emotional scene in the Lions locker room as HC Dan Campbell addresses the team about LB Jack Campbell before a team prayer.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker",
-   "title": "Dan Campbell Gets Emotional Over Jack Campbell's Injury Update \ud83d\ude2d",
-   "hook": "Dan Campbell's emotional update on Jack Campbell \ud83d\ude2d",
+   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
+   "title": "Jacob Misiorowski's PERFECT Beer Chug During Brewers Parade",
+   "hook": "Jacob Misiorowski's perfect beer chug",
    "ledger": {
     "moves": [
-     "zoom@3.16"
+     "whoa@8.0"
     ],
     "mood": null,
     "shot_plan": {
@@ -50,88 +30,66 @@
     "shown": [],
     "music": [
      {
-      "track": "ncs:4b84ca5a-4b1e-4778-aa04-8f47b1784f5a",
-      "credit": "Song: Clarx, Shiah Maisel - Help Me Help You\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/HMHY"
+      "track": "ncs:d6743800-eca9-4f66-a4f0-c3bd51e77587",
+      "credit": "Song: NOYSE - Dreamin'\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/dreamin"
      }
     ]
    },
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
-    "score": null
+    "blocked": false,
+    "reason": "",
+    "score": 100
    },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+   "video_url": "https://youtube.com/shorts/IKjoElYBHu8",
+   "ok": true,
+   "publish_at": "2026-11-08T15:00:00Z",
+   "seconds": 303,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261108-jacob-misiorowski-s-perfect-beer-chug-during-bre-6f67e3b8",
+    "tiktok": "queued for 2026-11-08T15:00:00Z"
+   }
   },
   {
    "sub": "sports",
-   "who": "Jacob Misiorowski",
-   "why": "He leads a perfectly timed beer\u2011throw and chug during the Brewers championship parade",
-   "post_title": "Perfectly executed beer throw and chug with Jacob Misiorowski during the Brewers championship parade",
+   "who": "Cristiano Ronaldo",
+   "why": "Ronaldo\u2019s emotional video announcing his international retirement",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xl6dz9/perfectly_executed_beer_throw_and_chug_with_jacob",
-   "title": "Jacob Misiorowski's WILD Beer Chug At Brewers Parade \ud83c\udf7b",
-   "hook": "Misiorowski celebrates with a beer chug",
-   "ledger": {
-    "moves": [
-     "whoa@2.0",
-     "zoom@4.0"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
   },
   {
    "sub": "soccer",
    "who": "Kylian Mbapp\u00e9",
-   "why": "He comforts a kid hit by a Tchouam\u00e9ni shot, turning a mishap into a sweet moment",
+   "why": "Mbapp\u00e9 comforts a kid who was hit by a stray shot",
    "post_title": "Kylian Mbapp\u00e9 to the kid who was hit accidentally by a Tchouam\u00e9ni shot: \u201cIt\u2019s Tchouam\u00e9ni\u2019s fault. He doesn\u2019t know how to shoot.\u201d",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally/",
    "topic": "https://www.reddit.com/r/soccer/comments/1xlbo0b/kylian_mbapp\u00e9_to_the_kid_who_was_hit_accidentally",
-   "title": "Kylian Mbapp\u00e9 Blames Tchouam\u00e9ni After Kid Gets Hit",
-   "hook": "Mbapp\u00e9 points the blame \ud83d\ude33",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Dan Campbell",
+   "why": "Heart\u2011felt locker\u2011room speech for Jack Campbell after his injury",
+   "post_title": "[Highlight] Emotional scene in the Lions locker room as HC Dan Campbell addresses the team about LB Jack Campbell before a team prayer.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlkrtv/highlight_emotional_scene_in_the_lions_locker",
+   "title": "Dan Campbell Gets Emotional About Jack Campbell's Unknown Status",
+   "hook": "Dan Campbell prays for Jack Campbell \ud83e\udd40",
    "ledger": {
-    "moves": [],
+    "moves": [
+     "whoa@3.16",
+     "zoom@7.56"
+    ],
     "mood": null,
     "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "crop": [
-      330,
-      440,
-      262,
-      0
-     ]
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
     },
     "outro": null,
     "cut_in": [],
@@ -139,15 +97,52 @@
     "music": []
    },
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
-    "score": null
+    "blocked": false,
+    "reason": "",
+    "score": 100
    },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+   "video_url": "https://youtube.com/shorts/RTrVsnKCMcs",
+   "ok": true,
+   "publish_at": "2026-11-08T18:00:00Z",
+   "seconds": 94,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261108-dan-campbell-gets-emotional-about-jack-campbell--8e92bb96",
+    "tiktok": "queued for 2026-11-08T18:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron casually sips a fan\u2019s drink courtside, catching everyone off guard",
+   "post_title": "[Highlight] LeBron James casually takes a sip of a fan's drink courtside mid-game",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0bh6w",
+   "topic": "https://www.reddit.com/r/nba/comments/1xmgtc4/highlight_lebron_james_casually_takes_a_sip_of_a",
+   "skipped": "too short: the post runs 9.2s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Jerry Jones",
+   "why": "Cowboys owner explodes in profanity after a heartbreaking overtime loss",
+   "post_title": "[Highlight] Cowboys owner Jerry Jones reacts with frustration, and an expletive, to his team losing 33-30 to the Cardinals in overtime: \"Shit!\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xlggzf/highlight_cowboys_owner_jerry_jones_reacts_with/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xlggzf/highlight_cowboys_owner_jerry_jones_reacts_with",
+   "skipped": "too short: the post runs 4.3s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Young Racing Santander fan",
+   "why": "A teen gets a head\u2011shot from a Tchouam\u00e9ni strike and the crowd erupts",
+   "post_title": "Young Racing Santander fan takes a headshot from a Tchouameni strike",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xl7hto/young_racing_santander_fan_takes_a_headshot_from/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xl7hto/young_racing_santander_fan_takes_a_headshot_from",
+   "skipped": "too short: the post runs 13.1s (< 15s)"
   }
  ],
- "already_today": 4,
- "pool": 102,
- "already_posted": 15,
- "shipped": 0
+ "already_today": 0,
+ "pool": 99,
+ "already_posted": 12,
+ "shipped": 2
 }
