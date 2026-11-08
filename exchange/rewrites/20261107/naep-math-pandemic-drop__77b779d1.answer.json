@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "naep-math-pandemic-drop__77b779d1",
+  "slug": "naep-math-pandemic-drop",
+  "by": "chatgpt",
+  "written_at": "2026-11-08T12:39:55.367Z",
+  "title": "Schools Reopened, but Math Scores Still Fell to 270",
+  "hook": "Schools reopened, but math scores still fell to 270.",
+  "closing": "Reopening classrooms was not enough; the students furthest behind need targeted recovery.",
+  "question": "Did your math skills bounce back?",
+  "segments": [
+    {
+      "topic": "Math scores fall",
+      "say": "Math scores fell to 271, nearly erasing decades of gains instead of rebounding with reopened schools."
+    },
+    {
+      "topic": "Math scores gap",
+      "say": "The weakest students lost 14 points, widening the gap rather than sharing the decline evenly."
+    },
+    {
+      "topic": "Math scores recovery",
+      "say": "Math scores slipped again to 270, showing reopening alone did not restore lost learning."
+    }
+  ]
+}
