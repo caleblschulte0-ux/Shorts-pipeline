@@ -1,8 +1,217 @@
 {
- "date": "2026-11-08",
+ "date": "2026-11-09",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
- "slots": [],
- "already_today": 7
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Cristiano Ronaldo",
+   "why": "Announces his international retirement, an emotional farewell",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nfl",
+   "who": "Travis Hunter",
+   "why": "Mic'd up after his first interception, makes sure teammate gets the ball",
+   "post_title": "[Mic'd Up] Travis Hunter made sure to get the ball for Branson Combs after his first career interception",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball",
+   "title": "Travis Hunter REFUSED To Let Branson Combs Lose His First Interception Ball",
+   "hook": "Travis Hunter made sure he got the ball \ud83e\udd1d",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:d2c42c8f-a942-4b26-8a98-7c54e9094f4b",
+      "credit": "Song: ROY KNOX - The Other Side\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/RKC_TOS"
+     }
+    ]
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The video fails to show the promised sports moment, instead displaying static sideline footage with repetitive, sometimes unreadable text.",
+    "score": 27
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The video fails to show the promised sports moment, instead displaying static sideline footage with repetitive, sometimes unreadable text."
+  },
+  {
+   "sub": "nfl",
+   "who": "Ben Johnson",
+   "why": "Delivers a goofy \"Good, Better, Best\" speech in the Bears locker room",
+   "post_title": "[Highlight] Ben Johnson delivers \"Good, Better, Best\" victory speech, breaks into the stanky leg in Bears locker room",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xmlcsa/highlight_ben_johnson_delivers_good_better_best/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xmlcsa/highlight_ben_johnson_delivers_good_better_best",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "sports",
+   "who": "Glenn Maxwell",
+   "why": "Announces retirement from international cricket, reflecting on his career",
+   "post_title": "Glenn Maxwell Retires from International Cricket: Breakdown of his most legendary feat",
+   "upvotes": 0,
+   "url": "https://www.youtube.com/watch?v=Ug2Cxv1SI50",
+   "topic": "https://www.reddit.com/r/sports/comments/1xm8z3a/glenn_maxwell_retires_from_international_cricket",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "Wheelchair fan",
+   "why": "Invades the pitch to celebrate Gebzespor's last\u2011minute winner, a heart\u2011warming moment",
+   "post_title": "Fan in a wheelchair invades the pitch to celebrate Gebzespor\u2019s last-minute winner against \u0130neg\u00f6l Kafkasspor",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xr7gnh/fan_in_a_wheelchair_invades_the_pitch_to/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xr7gnh/fan_in_a_wheelchair_invades_the_pitch_to",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "soccer",
+   "who": "Rosario Central fans",
+   "why": "Celebrate thinking they won the title, only to learn Boca actually clinched it",
+   "post_title": "Rosario Central fans and players celebrate their 2nd championship in a row not knowing Boca Juniors actually won the title with a last minute goal",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xqj1cm/rosario_central_fans_and_players_celebrate_their/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xqj1cm/rosario_central_fans_and_players_celebrate_their",
+   "title": "Rosario Central Fans Go WILD For A Title They Didn't Win \ud83d\ude2d",
+   "hook": "Rosario Central fans celebrate wrong title \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@10.3",
+     "shake@17.3",
+     "whoa@22.5",
+     "line2@22.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "5 camera shots, each framed on its own \u2014 one crop (wide) cut a face off",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 10.87,
+       "reason": "framed on this shot's face",
+       "crop": [
+        404,
+        720,
+        0,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 10.87,
+       "t1": 13.3,
+       "reason": "framed on this shot's face",
+       "crop": [
+        404,
+        720,
+        184,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 13.3,
+       "t1": 22.63,
+       "reason": "framed on this shot's face",
+       "crop": [
+        404,
+        720,
+        12,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 22.63,
+       "t1": 32.33,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 32.33,
+       "t1": 43.33,
+       "reason": "framed on this shot's face",
+       "crop": [
+        404,
+        720,
+        322,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.154,
+      0.032,
+      0.08,
+      0.034,
+      0.778
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.294,
+       0.749
+      ],
+      [
+       0.153,
+       0.503
+      ],
+      [
+       0.207,
+       0.679
+      ],
+      [
+       0.195,
+       0.526
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 96
+   },
+   "video_url": "https://youtube.com/shorts/tB2fgixHWyA",
+   "ok": true,
+   "publish_at": "2026-11-09T21:00:00Z",
+   "seconds": 333,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261109-rosario-central-fans-go-wild-for-a-title-they-di-476b5240",
+    "tiktok": "queued for 2026-11-09T21:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 103,
+ "already_posted": 11,
+ "shipped": 1
 }
