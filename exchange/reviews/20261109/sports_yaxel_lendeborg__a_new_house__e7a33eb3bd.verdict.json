@@ -1,0 +1,59 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_yaxel_lendeborg__a_new_house__e7a33eb3bd",
+ "video_sha256": "e7a33eb3bdf3a37bf3a4123811176c029e30e3f9d2619da6a194111a254a8cd4",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-09T23:48:28Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage is real video of Yaxel and his mom, consistent with the event."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in the video."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present; the video focuses on a moment."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The `longest_static_s` is 0.0, indicating no significant dead air."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The split-screen layout effectively uses the frame without large empty voids."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly legible and well-contrasted against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "hook",
+   "index": 0,
+   "failure_class": "pacing",
+   "visible_evidence": "The sequential display of text overlays 'ON BEHALF OF', 'EVERYBODY THAT CAME', 'TO SHOW UP,' in the bottom panel, without significant new visual information, slightly slows the initial reveal.",
+   "root_cause": "Overly verbose text introduction for the hook.",
+   "repair_goal": "Streamline the introductory text in the hook to deliver the core surprise premise more concisely."
+  },
+  "depictions": [],
+  "one_line": "The video effectively captures and presents an emotional surprise moment of Yaxel surprising his mom with a new house.",
+  "problems": [
+   "The initial text overlays in the hook segment are slightly drawn out before the main reveal."
+  ],
+  "fixes": [
+   "Condense the introductory text in the hook to enhance pacing and get to the core surprise more quickly."
+  ]
+ }
+}
