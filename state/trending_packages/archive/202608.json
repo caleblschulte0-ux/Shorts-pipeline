@@ -3837,5 +3837,463 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260810": {
+    "01_graph-pickleball-vs-tennis.json": {
+      "format": "graph_race",
+      "slug": "graph-pickleball-vs-tennis",
+      "title": "Pickleball Is Catching Tennis. For Real.",
+      "hook": "America's fastest sport is closing in.",
+      "y_label": "US participants (millions)",
+      "duration": 13,
+      "source": "Source: Sports & Fitness Industry Association (SFIA) Topline Participation Reports, 2021-2026 editions; annual US participant counts, tennis and pickleball, ages 6+.",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Tennis",
+          "color": "#1F77B4",
+          "icon": "Tennis",
+          "values": [
+            21600000,
+            22500000,
+            23600000,
+            23800000,
+            25700000,
+            27300000
+          ]
+        },
+        {
+          "name": "Pickleball",
+          "color": "#f5c518",
+          "icon": "Pickleball",
+          "values": [
+            4200000,
+            4800000,
+            8900000,
+            13600000,
+            19800000,
+            24300000
+          ]
+        }
+      ],
+      "hashtags": [
+        "pickleball",
+        "tennis",
+        "sports",
+        "fastestgrowingsport",
+        "fitness",
+        "recreation",
+        "usta",
+        "sfia",
+        "sportsdata",
+        "trending",
+        "shorts",
+        "viral",
+        "fyp",
+        "activelifestyle",
+        "racketsports"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-byd-vs-tesla.json": {
+      "format": "graph_race",
+      "slug": "graph-byd-vs-tesla",
+      "title": "BYD Just Passed Tesla in EV Sales",
+      "hook": "The world's top EV maker isn't American anymore.",
+      "y_label": "Battery-electric vehicles sold (annual)",
+      "duration": 13,
+      "source": "Source: Tesla quarterly delivery reports (2020-2025); BYD full-year BEV sales as reported by BYD/CnEVPost/CleanTechnica/Statista (2020 figure approximate industry estimate, all other years as company-reported).",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Tesla",
+          "color": "#e74c3c",
+          "icon": "Tesla",
+          "values": [
+            499550,
+            936222,
+            1313851,
+            1808581,
+            1789226,
+            1636129
+          ]
+        },
+        {
+          "name": "BYD",
+          "color": "#2ecc71",
+          "icon": "BYD",
+          "values": [
+            100000,
+            320810,
+            911140,
+            1574822,
+            1760000,
+            2256714
+          ]
+        }
+      ],
+      "hashtags": [
+        "byd",
+        "tesla",
+        "electricvehicles",
+        "ev",
+        "china",
+        "elonmusk",
+        "automotive",
+        "stockmarket",
+        "manufacturing",
+        "trending",
+        "shorts",
+        "viral",
+        "fyp",
+        "tech",
+        "cars"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-canada-vs-us-wildfires.json": {
+      "format": "graph_race",
+      "slug": "graph-canada-vs-us-wildfires",
+      "title": "Canada's Wildfires Dwarfed America's in 2023",
+      "hook": "One year, one country, one insane spike.",
+      "y_label": "Hectares burned (millions)",
+      "duration": 13,
+      "source": "Source: Natural Resources Canada annual wildfire statistics; US National Interagency Fire Center (NIFC) annual acres burned, converted to hectares (1 acre = 0.4047 ha).",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "USA",
+          "color": "#4a90e2",
+          "icon": "US",
+          "values": [
+            1.9,
+            4.09,
+            2.87,
+            3.08,
+            1.09,
+            3.6
+          ]
+        },
+        {
+          "name": "Canada",
+          "color": "#e74c3c",
+          "icon": "CA",
+          "values": [
+            0.8,
+            0.605,
+            1.0,
+            1.8,
+            18.5,
+            5.4
+          ]
+        }
+      ],
+      "hashtags": [
+        "wildfire",
+        "canada",
+        "wildfires2023",
+        "climate",
+        "naturaldisaster",
+        "smoke",
+        "environment",
+        "weather",
+        "northamerica",
+        "trending",
+        "shorts",
+        "viral",
+        "fyp",
+        "climatechange",
+        "disaster"
+      ],
+      "music_vibe": "dark"
+    },
+    "04_graph-solar-vs-wind.json": {
+      "format": "graph_race",
+      "slug": "graph-solar-vs-wind",
+      "title": "Solar Just Overtook Wind Power Worldwide",
+      "hook": "One of these was supposed to lose.",
+      "y_label": "Global installed capacity (GW)",
+      "duration": 13,
+      "source": "Source: IRENA Renewable Capacity Statistics, annual editions 2016-2026; global cumulative installed capacity, year-end gigawatts (2025 wind figure estimated from IRENA's reported growth trend).",
+      "years": [
+        2015,
+        2018,
+        2020,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Wind",
+          "color": "#1F77B4",
+          "icon": "Wind",
+          "values": [
+            433,
+            591,
+            743,
+            899,
+            1021,
+            1136,
+            1270
+          ]
+        },
+        {
+          "name": "Solar",
+          "color": "#f5c518",
+          "icon": "Solar",
+          "values": [
+            227,
+            509,
+            760,
+            1053,
+            1419,
+            1873,
+            2383
+          ]
+        }
+      ],
+      "hashtags": [
+        "solar",
+        "windpower",
+        "renewableenergy",
+        "cleanenergy",
+        "climate",
+        "energy",
+        "irena",
+        "sustainability",
+        "solarpower",
+        "trending",
+        "shorts",
+        "viral",
+        "fyp",
+        "greenenergy",
+        "electricity"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "05_reddit-karen-cup-review.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-karen-cup-review",
+      "title": "She Threatened A Bad Review Over Free Coffee. So I Let Her Have It.",
+      "script": "A regular tried to pay with a gift card from a store we don't even carry, then got furious when it wouldn't scan. She demanded a free drink for the inconvenience and said she'd leave a one star review if I refused. Fine. I made her drink and wrote her order under her actual name on the cup, exactly as she gave it, nothing extra. That night she posted the review anyway, bragging with a photo of the cup, proof she'd gotten free coffee by threatening a teenager. Corporate saw it within the hour. They didn't just delete the review, they pulled her loyalty account number off every location in the chain and replied to the post explaining exactly why. She showed up the next morning demanding to know why her app wouldn't load. I pointed at the conduct policy taped to the register and let her read it herself.",
+      "shots": [
+        {
+          "phrase": "tried to pay with a gift card",
+          "query": "coffee shop counter",
+          "pin_query": "gift card",
+          "pin_context": "store payment method",
+          "news_query": "gift card",
+          "news_angle": "A customer tried to pay with a gift card from a store we don't even carry.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/OSH_gift_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "furious when it wouldn't scan",
+          "query": "frustrated customer register",
+          "image_url": "https://pixabay.com/get/gac277cd84c95854b79b6025ae852b0de15af02e03708cd74cf8936b7bee49f50a241ddfaf88f49aa1b41dea22441872a4095a756889275a4a054e562392e0ff4_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "demanded a free drink",
+          "query": "barista making coffee",
+          "image_url": "https://pixabay.com/get/g91e416240d38a5c6aa624d9f487d14584c1b2325522ea81f9689fb49f8741d3aa541dec831432fc64572541b4ae637316de66075edd18e3aa6e227319386ee9c_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "posted the review anyway",
+          "query": "phone typing review app",
+          "image_url": "https://pixabay.com/get/g121a799219ebc3c7c166f09b2d4578600667c73811e39261306edef1421572290d7f6773b84f1c3b9b444989ddb90000f5179151d49af328062dd0f0216ac6b3_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Corporate saw it within the hour",
+          "query": "corporate office computer",
+          "image_url": "https://pixabay.com/get/g41ac3372f0466e78f3c534ea22e19c8a8f60837008c3706552098448a68b5fbfadaf48e67d2a3cc66af51119626789ed79c18be3bc5a7c35a528b3e086fd4be7_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "pulled her loyalty account number",
+          "query": "customer database screen",
+          "pin_query": "loyalty account",
+          "pin_context": "customer rewards program",
+          "news_query": "loyalty account",
+          "news_angle": "Corporate pulled her loyalty account number off every location in the chain after she posted a bad review.",
+          "image_url": "https://live.staticflickr.com/2669/4061897394_5b42aa3056_m.jpg"
+        },
+        {
+          "phrase": "showed up the next morning",
+          "query": "coffee shop morning storefront",
+          "image_url": "https://live.staticflickr.com/49/178191328_06343bb15a.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "pointed at the conduct policy",
+          "query": "policy sign wall",
+          "pin_query": "conduct policy",
+          "pin_context": "store rules and regulations",
+          "news_query": "conduct policy",
+          "news_angle": "The customer was shown the conduct policy after she demanded to know why her app wouldn't load.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Community_Insights_2024_User_conduct_policy_sentiments.png"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "one star review",
+          "text": "1-STAR THREAT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "proof she'd gotten free coffee by threatening",
+          "text": "POSTED THE PROOF HERSELF",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "pulled her loyalty account number off every location",
+          "text": "BANNED CHAINWIDE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "why her app wouldn't load",
+          "text": "APP: DENIED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "talesfromthecustomer",
+        "customerservice",
+        "karma",
+        "retail",
+        "coffeeshop",
+        "entitled",
+        "workplace",
+        "reddit",
+        "storytime",
+        "truestory",
+        "pettyrevenge",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "06_reddit-mistaken-employee-raise.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-mistaken-employee-raise",
+      "title": "She Wouldn't Stop Ordering Me Around. So I Started Doing The Job.",
+      "script": "A woman at the hardware store kept mistaking me for staff, shoving paint cans into my hands and barking aisle numbers like I worked there. Third time it happened in ten minutes I gave up correcting her and just started answering, mostly to see how far it would go. I pointed her to the right bolts, mixed a paint color from memory, even walked her to the checkout. The actual manager watched the whole thing from the office window, and when the woman finally left happy, he came over and asked how long I'd been working there. I told him about four minutes. He laughed, then asked if I wanted to make it official, because I'd just outperformed two people on his actual payroll. I filled out the application in the break room I definitely wasn't supposed to be in, and started training the following Monday.",
+      "shots": [
+        {
+          "phrase": "kept mistaking me for staff",
+          "query": "hardware store aisle customer",
+          "image_url": "https://pixabay.com/get/g5812b591771d670f791ff5dce8858cdc77f669a515494010a8fbd2fd4a2755f7805fbf1339e86d56234751021d24048bf4eaff6ada4e2eda44062522b228fb7b_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "shoving paint cans into my hands",
+          "query": "paint cans shelf",
+          "image_url": "https://pixabay.com/get/gf52e91ea3e01d648fe12fb037c6303b322679fd58da7bc6d278c62838a3edf4557d2ec40fbf1d582d4289a200579d67760d771099868d1f1366d9fc42334f5c6_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "barking aisle numbers",
+          "query": "hardware store aisle sign",
+          "image_url": "https://pixabay.com/get/g57cbd97e095c960b130dd348a7b4aacd6c2d8462a533e06c150a2fab6e8ea264a567ea1900dd1b50c76b9a9b600ee0a0e5d873dfa20ac99470ccb053c28b5626_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "mixed a paint color from memory",
+          "query": "paint mixing machine",
+          "image_url": "https://pixabay.com/get/g5b4aa0d0b1a0e82258fee123c9c39ae8831078a6b9e7852302fbf26e78d231f7908f43904728dca837db5f69918f0caaebff9304fa2cc3f4958a4f560c5cf221_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "walked her to the checkout",
+          "query": "store checkout counter",
+          "image_url": "https://pixabay.com/get/gd778cfa7411de206857d60d0c4668906df0f308f8b0f43fb279ef5ce803460b88cda3df398b9e8eecc2f9d922e1f140a045a44b32c13a0d402060c7a364dc22e_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "watched the whole thing from the office window",
+          "query": "manager office window",
+          "image_url": "https://pixabay.com/get/gba6d5246c899862e76e6e79e90dcc00e8585a2996ac495db5c48133eeb3962706963290f77305e7a653a9e3cd52ccaee27b40c5ff364d4712ef4a68fdd3befbe_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "outperformed two people on his actual payroll",
+          "query": "employee name tag",
+          "image_url": "https://pixabay.com/get/gfe6623be843dd502ed3b8a1ffc689edb1f8aaa68673788b5007405e00af0af30ffb25d050e9b3f8e5abdb10639b4f7b5_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "started training the following Monday",
+          "query": "new employee training",
+          "image_url": "https://pixabay.com/get/g568fcb32bc4f3637893d4f62f6614b75dd05d2bf3d16972f8d4e595bd46aed4ebbb6aea36a2795db251f8f65fc64cdbd9ec8da84fc0e2295772519ebf74a50f8_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Third time it happened in ten minutes",
+          "text": "3RD TIME, 10 MIN",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "about four minutes",
+          "text": "4 MINUTES ON THE JOB",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "outperformed two people on his actual payroll",
+          "text": "BEAT 2 REAL EMPLOYEES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "started training the following Monday",
+          "text": "HIRED MONDAY",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "idontworkherelady",
+        "retail",
+        "hardwarestore",
+        "karma",
+        "pettyrevenge",
+        "customerservice",
+        "workplace",
+        "reddit",
+        "storytime",
+        "truestory",
+        "jobinterview",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending"
+      ],
+      "music_vibe": "hiphop"
+    }
   }
 }
