@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-09T11:59:36Z",
+ "updated": "2026-11-09T14:03:43Z",
  "open": [
+  {
+   "id": "antarctic-sea-ice-record-low__80962613",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-11-09T14:03:43Z",
+   "why": [
+    "premise: brain: Unclear reversal of a specific viewer expectation despite the number"
+   ],
+   "request": "exchange/rewrites/20261109/antarctic-sea-ice-record-low__80962613.request.json",
+   "answer_path": "exchange/rewrites/20261109/antarctic-sea-ice-record-low__80962613.answer.json"
+  },
+  {
+   "id": "maternal-mortality-pandemic-reversal__12037ae3",
+   "slug": "maternal-mortality-pandemic-reversal",
+   "filed": "2026-11-09T14:03:42Z",
+   "why": [
+    "premise: brain: It merely contrasts a national decline with a static figure, lacking a clear reversal of viewer expectation and relying on more than one premise."
+   ],
+   "request": "exchange/rewrites/20261109/maternal-mortality-pandemic-reversal__12037ae3.request.json",
+   "answer_path": "exchange/rewrites/20261109/maternal-mortality-pandemic-reversal__12037ae3.answer.json"
+  },
   {
    "id": "unclaimed-money-states-hold__c8be9d11",
    "slug": "unclaimed-money-states-hold",
@@ -41,16 +61,6 @@
    ],
    "request": "exchange/rewrites/20261108/measles-ninety-five-rule__ff2f3b08.request.json",
    "answer_path": "exchange/rewrites/20261108/measles-ninety-five-rule__ff2f3b08.answer.json"
-  },
-  {
-   "id": "antarctic-sea-ice-record-low__80962613",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-08T13:02:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a generic claim rather than a striking, verifiable number tied to an expectation flip."
-   ],
-   "request": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__80962613.request.json",
-   "answer_path": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__80962613.answer.json"
   },
   {
    "id": "metric-system-holdouts__b68d2add",
