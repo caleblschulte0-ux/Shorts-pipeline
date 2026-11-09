@@ -1,0 +1,141 @@
+{
+ "date": "2026-11-09",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Cristiano Ronaldo",
+   "why": "He posts an emotional video announcing his international retirement",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "sports",
+   "who": "Glenn Maxwell",
+   "why": "He announces his retirement from international cricket in a personal video",
+   "post_title": "Glenn Maxwell Retires from International Cricket: Breakdown of his most legendary feat",
+   "upvotes": 0,
+   "url": "https://www.youtube.com/watch?v=Ug2Cxv1SI50",
+   "topic": "https://www.reddit.com/r/sports/comments/1xm8z3a/glenn_maxwell_retires_from_international_cricket",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "He casually sips a fan's drink courtside, catching everyone off guard",
+   "post_title": "[Highlight] LeBron James casually takes a sip of a fan's drink courtside mid-game",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0bh6w",
+   "topic": "https://www.reddit.com/r/nba/comments/1xmgtc4/highlight_lebron_james_casually_takes_a_sip_of_a",
+   "skipped": "too short: the post runs 9.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Steph Curry",
+   "why": "He strikes a playful pose pointing at Klay Thompson, creating a meme\u2011worthy moment",
+   "post_title": "Steph Curry poses to the camera near Klay Thompson and points at him",
+   "upvotes": 0,
+   "url": "https://streamable.com/eov65i",
+   "topic": "https://www.reddit.com/r/nba/comments/1xp4sfp/steph_curry_poses_to_the_camera_near_klay",
+   "skipped": "too short: the post runs 6.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Jake Tapper",
+   "why": "He delivers a witty line about a tax while discussing the Sixers\u2011Knicks rivalry",
+   "post_title": "Jake Tapper: \u201cThe Sixers have beaten the Knicks twice this season.\u201d Mayor Mamdani: \u201cWell, the pied-\u00e0-terre tax is coming anyway.\u201d",
+   "upvotes": 0,
+   "url": "https://streamable.com/a2htn8",
+   "topic": "https://www.reddit.com/r/nba/comments/1xoyicp/jake_tapper_the_sixers_have_beaten_the_knicks",
+   "skipped": "too short: the post runs 9.0s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Conor McGregor",
+   "why": "He bursts out laughing after a dramatic finish, pure comedy gold",
+   "post_title": "Conor McGregor was dying laughing after Raul Rosas subbed Colby Covington \ud83d\udc80",
+   "upvotes": 0,
+   "url": "https://streamable.com/ukm369",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xnamv2/conor_mcgregor_was_dying_laughing_after_raul",
+   "skipped": "too short: the post runs 4.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "wheelchair fan",
+   "why": "A fan in a wheelchair storms the pitch to celebrate a last\u2011minute winner",
+   "post_title": "Fan in a wheelchair invades the pitch to celebrate Gebzespor\u2019s last-minute winner against \u0130neg\u00f6l Kafkasspor",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xr7gnh/fan_in_a_wheelchair_invades_the_pitch_to/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xr7gnh/fan_in_a_wheelchair_invades_the_pitch_to",
+   "title": "Wheelchair Fan Invades Pitch After Gebzespor\u2019s Last\u2011Minute Winner",
+   "hook": "Wheelchair fan storms the field \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+  },
+  {
+   "sub": "soccer",
+   "who": "Nico Paz",
+   "why": "He celebrates his goal with a heartfelt tribute to teammate Jes\u00fas Miguel",
+   "post_title": "Nico Paz celebrating his goal with a tribute to Jes\u00fas Miguel",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xo1js1/nico_paz_celebrating_his_goal_with_a_tribute_to/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xo1js1/nico_paz_celebrating_his_goal_with_a_tribute_to",
+   "skipped": "no sound: the post has no audio track"
+  },
+  {
+   "sub": "soccer",
+   "who": "Bruno Fernandes",
+   "why": "He gives a candid interview about being benched and the team's needs",
+   "post_title": "Bruno Fernandes:\"We don't need to 'save' anyone's job. The club needed that win... The manager put me on the bench because I wasn't performing and that's fair. People felt it was a punishment for my w",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xn7xh2/bruno_fernandeswe_dont_need_to_save_anyones_job/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xn7xh2/bruno_fernandeswe_dont_need_to_save_anyones_job",
+   "skipped": "download failed"
+  }
+ ],
+ "already_today": 2,
+ "pool": 87,
+ "already_posted": 10,
+ "shipped": 0
+}
