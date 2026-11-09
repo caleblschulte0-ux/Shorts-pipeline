@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-09T14:39:17Z",
+ "updated": "2026-11-09T18:15:04Z",
  "open": [
+  {
+   "id": "mangrove-forest-loss__bd8a4411",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-09T18:15:04Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a broad claim rather than a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261109/mangrove-forest-loss__bd8a4411.request.json",
+   "answer_path": "exchange/rewrites/20261109/mangrove-forest-loss__bd8a4411.answer.json"
+  },
   {
    "id": "metric-system-holdouts__b68d2add",
    "slug": "metric-system-holdouts",
