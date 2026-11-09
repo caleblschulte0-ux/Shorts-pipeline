@@ -1,7 +1,27 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-09T18:01:53Z",
+ "updated": "2026-11-09T22:08:08Z",
  "open": [
+  {
+   "id": "sports_winnipeg_jets_est_fourgoal__9e20ea5c1c",
+   "channel": "trending",
+   "slug": "sports_winnipeg_jets_est_fourgoal",
+   "title": "Winnipeg Jets Pull Off Historic Four‑Goal Comeback in Final Minutes",
+   "filed": "2026-11-09T22:08:08Z",
+   "request": "exchange/reviews/20261109/sports_winnipeg_jets_est_fourgoal__9e20ea5c1c.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_winnipeg_jets_est_fourgoal__9e20ea5c1c/sheet.jpg",
+   "answer_path": "exchange/reviews/20261109/sports_winnipeg_jets_est_fourgoal__9e20ea5c1c.verdict.json"
+  },
+  {
+   "id": "sports_yaxel_lendeborg__a_new_house__e7a33eb3bd",
+   "channel": "trending",
+   "slug": "sports_yaxel_lendeborg__a_new_house",
+   "title": "Yaxel Lendeborg Surprises His Mom With A NEW House She Didn't Expect",
+   "filed": "2026-11-09T22:02:50Z",
+   "request": "exchange/reviews/20261109/sports_yaxel_lendeborg__a_new_house__e7a33eb3bd.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_yaxel_lendeborg__a_new_house__e7a33eb3bd/sheet.jpg",
+   "answer_path": "exchange/reviews/20261109/sports_yaxel_lendeborg__a_new_house__e7a33eb3bd.verdict.json"
+  },
   {
    "id": "sports_wheelchair_fan_the_pitch_to__eb96a750b8",
    "channel": "trending",
