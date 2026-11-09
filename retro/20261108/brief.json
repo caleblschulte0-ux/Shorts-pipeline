@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261108",
-  "generated_at": "2026-11-08T23:31:03Z",
+  "generated_at": "2026-11-09T00:31:03Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 45.76,
+          "days": 45.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 44.76,
+          "days": 44.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1522,10 +1522,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "a167b1a",
-    "commits_since": "2026-11-07",
+    "head": "e89ab1d",
+    "commits_since": "2026-11-08",
     "commit_count": 50,
     "commits": [
+      "e89ab1d claim: mailbox verdicts 2026-11-08T23:48Z [skip ci]",
+      "c031f94 retro: brief + triage for 20261108 [skip ci]",
       "a167b1a claim: mailbox verdicts 2026-11-08T23:01Z [skip ci]",
       "e731b5b comments: saved viewer comments [skip ci]",
       "621feb3 claim: mailbox verdicts 2026-11-08T22:48Z [skip ci]",
@@ -1563,9 +1565,7 @@
       "456f796 watchdog: chatgpt task verdicts 20261108 [skip ci]",
       "012486b explainer: update posted log + analytics [skip ci]",
       "686a0c3 sports: 2026-11-08 posted log + verdicts [skip ci]",
-      "0114022 Record 20261108 output verification blocker",
-      "ed6e043 sports: 2026-11-08 posted log + verdicts [skip ci]",
-      "f8d8bda trending: posted ilia_topuria_credits_brother_aleksandre_ [skip ci]"
+      "0114022 Record 20261108 output verification blocker"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
