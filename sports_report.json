@@ -7,7 +7,7 @@
   {
    "sub": "sports",
    "who": "Cristiano Ronaldo",
-   "why": "He posts a heartfelt video announcing his international retirement",
+   "why": "He announces his international retirement in a heartfelt video",
    "post_title": "Cristiano Ronaldo's message to announce his international retirement",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
@@ -17,7 +17,7 @@
   {
    "sub": "sports",
    "who": "Glenn Maxwell",
-   "why": "Maxwell shares a personal interview reflecting on ending his international cricket career",
+   "why": "Maxwell shares an emotional breakdown of his international retirement",
    "post_title": "Glenn Maxwell Retires from International Cricket: Breakdown of his most legendary feat",
    "upvotes": 0,
    "url": "https://www.youtube.com/watch?v=Ug2Cxv1SI50",
@@ -26,68 +26,40 @@
   },
   {
    "sub": "nfl",
-   "who": "Ben Johnson",
-   "why": "He delivers an unexpected, dance\u2011filled victory speech in the Bears locker room",
-   "post_title": "[Highlight] Ben Johnson delivers \"Good, Better, Best\" victory speech, breaks into the stanky leg in Bears locker room",
+   "who": "Travis Hunter",
+   "why": "Mic\u2011up capture of Hunter hustling to secure the ball after his first interception",
+   "post_title": "[Mic'd Up] Travis Hunter made sure to get the ball for Branson Combs after his first career interception",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xmlcsa/highlight_ben_johnson_delivers_good_better_best/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xmlcsa/highlight_ben_johnson_delivers_good_better_best",
-   "title": "Ben Johnson Gives Emotional Victory Speech And Breaks Into The Stanky Leg",
-   "hook": "Ben Johnson\u2019s locker room speech",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      90,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 74
-   },
-   "video_url": "https://youtube.com/shorts/crAxLsK0E90",
-   "ok": true,
-   "publish_at": "2026-11-10T00:00:00Z",
-   "seconds": 198,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261109-ben-johnson-gives-emotional-victory-speech-and-b-69730b44",
-    "tiktok": "queued for 2026-11-10T00:00:00Z"
-   }
+   "url": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball",
+   "skipped": "author: no setup or no payoff in the clip"
   },
   {
    "sub": "soccer",
-   "who": "Fan in wheelchair",
-   "why": "A wheelchair\u2011bound fan runs onto the pitch to celebrate a last\u2011minute winner",
+   "who": "Wheelchair fan",
+   "why": "A fan in a wheelchair storms the pitch to celebrate a last\u2011minute winner",
    "post_title": "Fan in a wheelchair invades the pitch to celebrate Gebzespor\u2019s last-minute winner against \u0130neg\u00f6l Kafkasspor",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/soccer/comments/1xr7gnh/fan_in_a_wheelchair_invades_the_pitch_to/",
    "topic": "https://www.reddit.com/r/soccer/comments/1xr7gnh/fan_in_a_wheelchair_invades_the_pitch_to",
-   "title": "Fan in Wheelchair Celebrates Gebzespor\u2019s Last\u2011Minute Winner",
-   "hook": "Fan in wheelchair rushes the pitch \ud83d\ude2e",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "soccer",
+   "who": "Matheus Cunha",
+   "why": "Cunha runs into the stands to celebrate his goal after a comeback",
+   "post_title": "Matheus Cunha dives into the stands to celebrate his second goal after coming back from 0-2 down",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xn6a15/matheus_cunha_dives_into_the_stands_to_celebrate/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xn6a15/matheus_cunha_dives_into_the_stands_to_celebrate",
+   "title": "Matheus Cunha dives into the stands after his second goal in the comeback",
+   "hook": "Cunha\u2019s wild celebration \ud83d\ude33",
    "ledger": {
     "moves": [
-     "zoom@3.5"
+     "zoom@4.83",
+     "hype@0.3(silent)"
     ],
-    "mood": null,
+    "mood": "hype",
     "shot_plan": {
      "layout": "action",
      "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
@@ -100,7 +72,7 @@
      "subtitle_spans": [
       0.0,
       0.0,
-      0.0,
+      0.095,
       0.0,
       0.0
      ],
@@ -117,32 +89,153 @@
     "shown": [],
     "music": []
    },
-   "repairs": [
-    {
-     "score": 65,
-     "reason": "showrunner BLOCK: The video's claim of a 'fan in a wheelchair' is directly contradicted by the visual evidence of an able-bodied fan."
-    }
-   ],
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner BLOCK: The video's claim of a 'fan in a wheelchair' is directly contradicted by the visual evidence of an able-bodied fan.",
-    "score": 65
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
+    "score": null
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The video's claim of a 'fan in a wheelchair' is directly contradicted by the visual evidence of an able-bodied fan."
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+  },
+  {
+   "sub": "soccer",
+   "who": "Nico Paz",
+   "why": "Paz celebrates his goal with a touching tribute to teammate Jes\u00fas Miguel",
+   "post_title": "Nico Paz celebrating his goal with a tribute to Jes\u00fas Miguel",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xo1js1/nico_paz_celebrating_his_goal_with_a_tribute_to/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xo1js1/nico_paz_celebrating_his_goal_with_a_tribute_to",
+   "skipped": "no sound: the post has no audio track"
   },
   {
    "sub": "nfl",
-   "who": "Travis Hunter",
-   "why": "Mic\u2011ed up, he makes a crucial pass after his first career interception",
-   "post_title": "[Mic'd Up] Travis Hunter made sure to get the ball for Branson Combs after his first career interception",
+   "who": "Tampa Bay Buccaneers",
+   "why": "Players are handed cups of dirt and worms after winning a mud\u2011bowl",
+   "post_title": "[Highlight] The Buccaneers gave their players cups of Dirt and Worms after they won a mud bowl against the Falcons",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball",
-   "skipped": "author: no title"
+   "url": "https://www.reddit.com/r/nfl/comments/1xozi7y/highlight_the_buccaneers_gave_their_players_cups/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xozi7y/highlight_the_buccaneers_gave_their_players_cups",
+   "title": "Tampa Bay Buccaneers Celebrate Mud Bowl Win With Dirt & Worm Cups \ud83d\ude33",
+   "hook": "Buccaneers get weird victory treats",
+   "ledger": {
+    "moves": [
+     "zoom@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron casually sips a fan\u2019s drink courtside, sparking laughs",
+   "post_title": "[Highlight] LeBron James casually takes a sip of a fan's drink courtside mid-game",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0bh6w",
+   "topic": "https://www.reddit.com/r/nba/comments/1xmgtc4/highlight_lebron_james_casually_takes_a_sip_of_a",
+   "skipped": "too short: the post runs 9.2s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Bruno Fernandes",
+   "why": "Fernandes gives a candid interview about being benched and the club\u2019s decision",
+   "post_title": "Bruno Fernandes:\"We don't need to 'save' anyone's job. The club needed that win... The manager put me on the bench because I wasn't performing and that's fair. People felt it was a punishment for my w",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xn7xh2/bruno_fernandeswe_dont_need_to_save_anyones_job/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xn7xh2/bruno_fernandeswe_dont_need_to_save_anyones_job",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nfl",
+   "who": "Corgi mascot",
+   "why": "The team\u2019s Corgi goes rogue at halftime, stealing the spotlight",
+   "post_title": "[Highlight] Corgi goes rogue at halftime of Panthers game",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xr7f3j/highlight_corgi_goes_rogue_at_halftime_of/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xr7f3j/highlight_corgi_goes_rogue_at_halftime_of",
+   "title": "Corgi Mascot Goes Rogue At Halftime Of Panthers Game",
+   "hook": "Corgi mascot runs wild at halftime",
+   "ledger": {
+    "moves": [
+     "whoa@2.0",
+     "hype@0.3(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nba",
+   "who": "Victor Wembanyama",
+   "why": "Wemby juggles the ball with his feet and passes to the referee in a goofy moment",
+   "post_title": "[HIGHLIGHT] Wemby Casually Juggles Ball with Feet and Passes to Ref who Reciprocates",
+   "upvotes": 0,
+   "url": "https://streamable.com/j6qyn1",
+   "topic": "https://www.reddit.com/r/nba/comments/1xmiiev/highlight_wemby_casually_juggles_ball_with_feet",
+   "skipped": "too short: the post runs 6.9s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Steph Curry",
+   "why": "Curry points at Klay in a playful pose that instantly went viral",
+   "post_title": "Steph Curry poses to the camera near Klay Thompson and points at him",
+   "upvotes": 0,
+   "url": "https://streamable.com/eov65i",
+   "topic": "https://www.reddit.com/r/nba/comments/1xp4sfp/steph_curry_poses_to_the_camera_near_klay",
+   "skipped": "too short: the post runs 6.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Don\u010di\u0107",
+   "why": "Don\u010di\u0107 launches a full\u2011court buzzer\u2011beater to close the half",
+   "post_title": "[Highlight] Luka banks it in from full court to end the first half",
+   "upvotes": 0,
+   "url": "https://streamable.com/9msbej",
+   "topic": "https://www.reddit.com/r/nba/comments/1xpxcx4/highlight_luka_banks_it_in_from_full_court_to_end",
+   "skipped": "too short: the post runs 5.0s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Baker Mayfield",
+   "why": "Mayfield blocks Jessie Bates III in a surprising on\u2011field scramble",
+   "post_title": "[Highlight] Baker Mayfield blocks Jessie Bates III off the screen",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xm2olk/highlight_baker_mayfield_blocks_jessie_bates_iii/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xm2olk/highlight_baker_mayfield_blocks_jessie_bates_iii",
+   "skipped": "too short: the post runs 13.6s (< 15s)"
   }
  ],
- "already_today": 1,
+ "already_today": 2,
  "pool": 102,
- "already_posted": 11,
- "shipped": 1
+ "already_posted": 12,
+ "shipped": 0
 }
