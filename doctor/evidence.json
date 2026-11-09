@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261108 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261108.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "no_posts_explainer",
         "severity": "critical",
         "detail": "explainer: ZERO videos posted for 20261108 (registry wants 4).",
@@ -213,280 +219,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-05T12:24:26+00:00",
-      "slug": "sports_alexander_volkanovski__upset_abou",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A 30-second webcam talking head in which half the picture is a frozen carbon-tax newspaper stock photo and most of the frame is blur. The 'ignored by the mainstream' moment never lands visually.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through payoff@-0.4: the right half of the footage is a frozen stock photo of Australian newspapers headlined 'CARBON TAX SPECIAL EDITION' / 'THE CARBON PLAN'. It sits there for the whole 30s and has nothing to do with MMA or Volkanovski. Volkanovski himself is a small webcam tile in a video-inside-a-video layout.",
-        "empty_void: In every frame (hook@0.3, mid2, payoff@-0.4) the top ~35% and bottom ~35% are a blurred, zoomed copy of the same newspaper still. Only the middle band holds content, and half of that band is the static still, so the speaker fills about a sixth of the frame.",
-        "unreadable: mid1: the burned-in word caption 'THEY DON'T UNDERSTAND' is printed over a second caption ('THEIR SPORT' shows through underneath), so both are garbled on a phone. The word captions also sit on the seam between the footage and the newspaper photo."
-      ],
-      "problems": [
-        "The right half of the footage is an unrelated stock photo of carbon-tax newspapers for the entire video.",
-        "Blurred duplicate fill takes up about 70% of the frame, so the speaker is tiny on a phone.",
-        "mid1: the word captions overlap a second caption layer and are garbled.",
-        "The layout and shot never change in 30s: no punch-in, no reaction, no zoom on the key line.",
-        "There is no clear payoff. The clip just trails off on 'but I'm very' and a hand gesture."
-      ],
-      "fixes": [
-        "Crop to the webcam only, full-frame vertical on Volkanovski's face.",
-        "Remove the newspaper still and its blurred background fill.",
-        "Draw one clean caption layer that does not stack on another, kept off the footage seam.",
-        "Punch in on 'They don't understand' and end on the line where he says he is thankful, so the clip lands."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "From hook@0.3 to payoff@-0.4 the frame is a tiny webcam tile of Volkanovski beside a frozen carbon-tax newspaper stock photo, with blurred copies of that photo filling the top and bottom of the frame. Nothing about the layout changes in 30 seconds.",
-        "root_cause": "The source was a repost composite (webcam plus an unrelated stock still) and it was letterboxed whole into 9:16, not cropped to the speaker. The blur fill copies the irrelevant still.",
-        "repair_goal": "Crop to Volkanovski's webcam alone and fill the 9:16 frame with his face and upper body. Drop the newspaper still entirely, keep one caption layer that never overlaps a second one, and punch in on his strongest line ('they don't understand')."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.472,
-        "effective_fps": 12.7,
-        "max_dup_run": 32,
-        "measured": true,
-        "frozen_ratio": 0.052,
-        "frozen_fps": 22.8,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 6.67,
-        "max_dup_at_s": 3.08,
-        "duration_s": 29.96
-      },
-      "fingerprint": "?|empty_void+junk_imagery+unreadable|junk_imagery"
-    },
-    {
-      "ts": "2026-11-05T12:26:36+00:00",
-      "slug": "sports_robert_lewandowski_r_played_for",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Fun real Lewandowski moment, but our captions are stacked on the clip's own burned-in captions, and the crop loses him during his key 'win some titles' line.",
-      "auto_fails": [
-        "junk_imagery: mid1 (t=4.85s): during Lewandowski's key line 'But I wanted to win some titles' the frame is the interviewer's back and a desk, and Lewandowski is not in shot. hook@0.3: Lewandowski is cut in half at the left edge.",
-        "unreadable: mid1, mid3 and mid4: our word captions ('BRING YOU THAT', 'SO LONG,', 'WE'LL HAVE LUCK') sit right on top of the footage's own burned-in captions ('RL9: \"You wouldn't have had to wait so long\"'). Two caption tracks stack and clash, and at mid4 the burned-in caption shows through behind ours."
-      ],
-      "problems": [
-        "Our word captions overlap the source's burned-in 'RL9:' captions at mid1, mid3 and mid4, so a viewer gets two competing text tracks.",
-        "mid1 is cropped to the interviewer's back while Lewandowski says the line the title promises.",
-        "hook@0.3 has Lewandowski cut in half at the left edge, and the first frame is mostly the interviewer and a bystander.",
-        "The payoff ends on Lewandowski walking out of frame at the edge (payoff@-0.4), so the punchline does not land on his face."
-      ],
-      "fixes": [
-        "Detect the source's burned-in captions and skip our word captions on this clip.",
-        "At the reverse-angle cut (around t=4-6s), re-crop so the speaker is in frame.",
-        "Open on the wide shot of Lewandowski laughing (as at hook@1.5) instead of the off-centre first frame.",
-        "End on Lewandowski's reaction before he walks out of frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 49
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "unreadable",
-        "visible_evidence": "mid1 (t=4.85s) and mid4 (t=11.92s): our yellow and white word captions are drawn just above the source's own gold 'RL9: ...' captions, so two different texts compete in the same band. At mid1 the speaker is out of frame.",
-        "root_cause": "The own-captions check did not detect the source's burned-in serif captions, so word captions were added over them. The crop followed the interviewer when the shot cut to a reverse angle.",
-        "repair_goal": "Drop our word captions for this clip, because the source already captions every line. Re-crop mid1 to the wide shot (or keep Lewandowski in frame) so he is visible when he says 'I wanted to win some titles'."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.003,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 16.17,
-        "duration_s": 16.25
-      },
-      "fingerprint": "?|junk_imagery+unreadable|unreadable"
-    },
-    {
-      "ts": "2026-11-05T12:30:54+00:00",
-      "slug": "sports_matthew_golden_run_together",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The real moment is shown clearly and the lecture lands, but the hook spends its first 2s on the wide setup play instead of the hand-holding run, and the ending fades out on a sideline hug.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0-2.2s) is a wide shot of the earlier play, not the hand-holding the line promises",
-        "The hand-holding run is shown only briefly at about 2.5s and is never zoomed",
-        "The letterboxed footage uses about 1/3 of the frame",
-        "The payoff is a sideline hug seen from behind (payoff@-0.4) with no punch"
-      ],
-      "fixes": [
-        "Start the cut on the ref grabbing Golden's hand mid-run, with a punch-in and a sound hit",
-        "Crop the footage tighter or larger so the faces fill more of the frame",
-        "End on the lecture's best line or on the announcers' reaction rather than the hug from behind"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 80
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3-2.2 show a wide shot of the earlier play (Golden and a Panthers DB tangling) under 'AND WILSON AND' / 'WILSON GOT CALLED'. The hand-holding run the line promises is only briefly visible at mid0 (2.5s) and is never zoomed in on",
-        "root_cause": "The cut opens on the setup play from far away instead of the funny part (the ref grabbing Golden's hand and jogging him off), and the footage sits small inside a letterbox",
-        "repair_goal": "Open on the ref taking Golden's hand and running with him, punched in, with a sound hit. Then cut back to the lecture close-up. Crop the footage larger so the faces fill more of the frame"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.003,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.79,
-        "duration_s": 26.5
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-11-05T12:33:13+00:00",
-      "slug": "sports_jacob_misiorowski_g_with_jacob",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The beer throw and chug is the whole point, and it happens too small and too far away to see. Viewers get a building, a bus and the back of a fan's arm.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (hook@0.3 to hook@2.2) is mostly office building and a fan's arm; Misiorowski is a tiny figure and nothing reads as a moment in the first two seconds.",
-        "The throw/catch/chug is never legible: mid1 shows a raised can at thumbnail scale and the chug itself is not discernible.",
-        "The ending (mid4 to payoff@-0.4) is a wide shot of the bus moving on, so the payoff does not land at the end.",
-        "There is no zoom or punch-in on the reaction, although the format calls for zooms on the reaction."
-      ],
-      "fixes": [
-        "Crop and zoom onto the bus deck around Misiorowski for the throw, catch and chug.",
-        "Start the cut at the catch, not on the building pan.",
-        "Put the fan's scream (mid2) right after the chug as the reaction beat, and trim the wide bus-departure tail.",
-        "If the source cannot resolve him at a readable size, drop this clip rather than ship a speck."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 45
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "moment_not_visible",
-        "visible_evidence": "In hook@0.3 to mid0 the players are about 40px figures on a distant bus under a huge office building, while a fan's raised arm and can fill the right edge. In mid1 the throw/catch is a speck. Nowhere in mid0 to mid5 is the chug readable.",
-        "root_cause": "The source is a far-away crowd phone shot, and the render keeps the full wide frame instead of punching in on Misiorowski. The promised throw-and-chug happens at thumbnail scale, and the cut ends on a generic wide shot of the bus driving off (mid4 to payoff@-0.4).",
-        "repair_goal": "Punch in tight on Misiorowski on the bus deck for the throw, the catch and the chug, so he fills at least a third of the frame. Open on the catch itself rather than the building, and end on the chug/crowd roar (the mid2 fan scream) instead of the bus pulling away."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.003,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 15.08
-      },
-      "fingerprint": "?|-|moment_not_visible"
-    },
     {
       "ts": "2026-11-05T12:35:29+00:00",
       "slug": "sports_jacob_fowler_after_the_54",
@@ -4041,6 +3773,254 @@
         "duration_s": 63.08
       },
       "fingerprint": "longform|temporal_gate|-"
+    },
+    {
+      "ts": "2026-11-09T11:44:18+00:00",
+      "slug": "sports_travis_hunter_get_the_ball",
+      "score": 27,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 4,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The video fails to show the promised sports moment, instead displaying static sideline footage with repetitive, sometimes unreadable text.",
+      "auto_fails": [
+        "junk_imagery: The video shows a player on the sideline, but not the specific moment of Travis Hunter securing the ball for Branson Combs' first interception, which is the core claim of the text.",
+        "unreadable: The on-screen text is frequently overlaid on top of other text or graphics, making it difficult to read, as seen in `hook@1.5` (\"get\" is obscured) and `hook@2.2` (\"I threw it on the\" is obscured)."
+      ],
+      "problems": [
+        "The core sports moment described by the text (Travis Hunter securing the ball for a teammate's first interception) is not shown in the footage.",
+        "The on-screen text is frequently overlaid on other text or graphics, making it unreadable.",
+        "The visual content is largely static and lacks dynamic action for a \"sports moment\" video."
+      ],
+      "fixes": [
+        "Acquire and use footage that clearly depicts Travis Hunter getting the ball for Branson Combs, or Branson Combs' reaction to receiving the ball.",
+        "Ensure all on-screen text is clearly readable, with sufficient contrast and no overlapping elements.",
+        "Incorporate more dynamic cuts, zooms, or relevant action to enhance the pace and engagement of the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 39
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "footage_mismatch",
+        "visible_evidence": "The video shows a player on the sideline, but the promised moment of Travis Hunter securing the ball for Branson Combs' first interception is not shown.",
+        "root_cause": "Incorrect or irrelevant footage used for the claimed sports moment.",
+        "repair_goal": "Replace the footage with actual clips showing Travis Hunter getting the ball for Branson Combs' interception, or Branson Combs' reaction to receiving the ball."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.253,
+        "effective_fps": 17.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.253,
+        "frozen_fps": 17.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.24,
+        "judder_fps": 18.2,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 13.04
+      },
+      "fingerprint": "?|junk_imagery+unreadable|footage_mismatch"
+    },
+    {
+      "ts": "2026-11-09T11:51:26+00:00",
+      "slug": "sports_rosario_central_fans_ebrate_their",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Rosario Central fans celebrate a championship they didn't win.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 130
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 1,
+        "failure_class": "engagement",
+        "visible_evidence": "The segment from mid0 to mid2 holds on a single girl's face with minimal action or change in composition for an extended period (approx. 15 seconds).",
+        "root_cause": "Prolonged static shot of a single subject without sufficient dynamic elements.",
+        "repair_goal": "Incorporate more diverse shots or subtle camera movements within the initial mood-setting segment to maintain visual interest and vary composition."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.047,
+        "effective_fps": 22.9,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.029,
+        "frozen_fps": 23.3,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.019,
+        "judder_fps": 23.5,
+        "held_s": 0.0,
+        "max_dup_at_s": 27.58,
+        "duration_s": 43.25
+      },
+      "fingerprint": "?|-|engagement"
+    },
+    {
+      "ts": "2026-11-09T12:28:34+00:00",
+      "slug": "sports_ben_johnson__better_best",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The video's hook promises Ben Johnson's speech, but the content shifts focus to a player's reaction, creating a mismatch.",
+      "auto_fails": [],
+      "problems": [
+        "The video's hook text promises Ben Johnson's locker room speech, but the majority of the video focuses on a different player's reaction and speech.",
+        "The specific actions mentioned in the script, such as Ben Johnson breaking into the 'stanky leg', are not shown in the video."
+      ],
+      "fixes": [
+        "Ensure the video content consistently aligns with the hook's promise by showing more of Ben Johnson's speech and the 'stanky leg' moment.",
+        "Alternatively, adjust the hook text to accurately reflect the content, focusing on the player's reaction if that is the primary subject."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 101
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 1,
+        "failure_class": "data_demo",
+        "visible_evidence": "The video's hook promises \"Ben Johnson's locker room speech\", but from mid1 onwards, the focus shifts to a different player's reaction and speech, failing to fully deliver on the initial promise.",
+        "root_cause": "Mismatch between the video's hook/title and the actual content shown; the video focuses on a different aspect of the event than initially promised.",
+        "repair_goal": "Ensure the video content consistently delivers on the promise of the hook, either by showing Ben Johnson's full speech and reaction, or by adjusting the hook to reflect the player's moment."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.177,
+        "effective_fps": 19.7,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.149,
+        "frozen_fps": 20.4,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.138,
+        "judder_fps": 20.7,
+        "held_s": 0.0,
+        "max_dup_at_s": 1.0,
+        "duration_s": 33.67
+      },
+      "fingerprint": "?|-|data_demo"
+    },
+    {
+      "ts": "2026-11-09T12:30:48+00:00",
+      "slug": "sports_fan_in_wheelchair_the_pitch_to",
+      "score": 65,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 0,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The video's claim of a 'fan in a wheelchair' is directly contradicted by the visual evidence of an able-bodied fan.",
+      "auto_fails": [
+        "junk_imagery: The video claims 'Fan in wheelchair rushes the pitch' but the fan shown running onto the pitch (mid4, payoff@-1.8, payoff@-0.4) is clearly able-bodied and not in a wheelchair."
+      ],
+      "problems": [
+        "The on-screen text 'Fan in wheelchair rushes the pitch' is inaccurate as the fan shown in the video is not in a wheelchair."
+      ],
+      "fixes": [
+        "Replace the footage of the fan with a fan in a wheelchair, or correct the on-screen text to match the actual footage."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 44
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "payoff@-1.8",
+        "index": 12,
+        "failure_class": "Content Mismatch",
+        "visible_evidence": "The on-screen text claims 'Fan in wheelchair rushes the pitch', but the fan shown running onto the field is clearly able-bodied and not in a wheelchair.",
+        "root_cause": "Incorrect footage used for the stated claim, or the claim itself is inaccurate for the provided footage.",
+        "repair_goal": "Replace the footage of the fan with actual footage of a fan in a wheelchair rushing the pitch, or update the on-screen text to accurately describe the fan shown."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.11,
+        "effective_fps": 21.4,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.072,
+        "frozen_fps": 22.3,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.052,
+        "judder_fps": 22.8,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.75,
+        "duration_s": 14.5
+      },
+      "fingerprint": "?|junk_imagery|Content Mismatch"
     }
   ],
   "showrunner_recurrence": {
@@ -4066,6 +4046,13 @@
       "count": 2,
       "days": [
         "2026-11-05"
+      ]
+    },
+    "?|-|data_demo": {
+      "count": 2,
+      "days": [
+        "2026-11-07",
+        "2026-11-09"
       ]
     },
     "?|malformed_judge_response|-": {
@@ -4102,30 +4089,6 @@
       "count": 2,
       "days": [
         "2026-11-08"
-      ]
-    },
-    "?|empty_void+junk_imagery+unreadable|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|junk_imagery+unreadable|unreadable": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|-|weak_hook": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|-|moment_not_visible": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
       ]
     },
     "?|junk_imagery|wrong_subject_crop": {
@@ -4254,12 +4217,6 @@
         "2026-11-07"
       ]
     },
-    "?|-|data_demo": {
-      "count": 1,
-      "days": [
-        "2026-11-07"
-      ]
-    },
     "?|-|data_demonstration": {
       "count": 1,
       "days": [
@@ -4319,11 +4276,29 @@
       "days": [
         "2026-11-08"
       ]
+    },
+    "?|junk_imagery+unreadable|footage_mismatch": {
+      "count": 1,
+      "days": [
+        "2026-11-09"
+      ]
+    },
+    "?|-|engagement": {
+      "count": 1,
+      "days": [
+        "2026-11-09"
+      ]
+    },
+    "?|junk_imagery|Content Mismatch": {
+      "count": 1,
+      "days": [
+        "2026-11-09"
+      ]
     }
   },
   "recent_commits": [
-    "b631355 2026-11-09 claim: mailbox verdicts 2026-11-09T04:47Z [skip ci]",
-    "6f366e3 2026-11-09 claim: mailbox verdicts 2026-11-09T03:48Z [skip ci]"
+    "aa8bdd4 2026-11-09 sports: 2026-11-09 posted log + verdicts [skip ci]",
+    "7465b7d 2026-11-09 claim: mailbox verdicts 2026-11-09T13:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4340,10 +4315,11 @@
         "2026-11-05": 5,
         "2026-11-06": 5,
         "2026-11-07": 4,
-        "2026-11-08": 7
+        "2026-11-08": 7,
+        "2026-11-09": 2
       },
-      "total_posted": 531,
-      "attempted": 531,
+      "total_posted": 533,
+      "attempted": 533,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4398,63 +4374,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 147,
+      "videos": 144,
       "top_by_vph": [
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 28.55,
-          "views": 917
+          "vph": 21.85,
+          "views": 1009
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 21.33,
-          "views": 1130
+          "vph": 16.89,
+          "views": 1132
         },
         {
           "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-          "vph": 13.23,
-          "views": 542
+          "vph": 11.54,
+          "views": 635
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 12.13,
-          "views": 708
+          "vph": 9.8,
+          "views": 710
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 6.23,
-          "views": 1376
+          "vph": 5.86,
+          "views": 1377
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 145,
+      "videos": 141,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 4.63,
-          "views": 1883
-        },
-        {
-          "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
-          "vph": 2.13,
-          "views": 96
+          "vph": 4.44,
+          "views": 1895
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.97,
+          "vph": 1.9,
           "views": 1087
         },
         {
-          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.93,
-          "views": 415
+          "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
+          "vph": 1.86,
+          "views": 122
         },
         {
-          "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment",
-          "vph": 1.5,
-          "views": 108
+          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
+          "vph": 1.77,
+          "views": 417
+        },
+        {
+          "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
+          "vph": 1.26,
+          "views": 905
         }
       ],
       "full_data": "state/analytics_third/latest.json"
