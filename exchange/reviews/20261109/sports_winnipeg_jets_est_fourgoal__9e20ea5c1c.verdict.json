@@ -1,0 +1,84 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_winnipeg_jets_est_fourgoal__9e20ea5c1c",
+ "video_sha256": "9e20ea5c1c4022ace01890425e35c6a1b1f6de4063fd4a16947f2c3b97be4fd9",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-09T22:38:32Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage is real hockey game footage relevant to the claim."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in the video."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Numbers like '4-0' are part of descriptive text overlays, not bare number cards."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Motion facts indicate 0.0s longest static, so no dead air."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are full of hockey action; dark_fraction is 0.061, indicating no empty voids."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly legible, well-contrasted, and not cut off."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid2",
+   "index": 2,
+   "failure_class": "data_demo",
+   "visible_evidence": "The text 'IT AT FOUR!' appears with a shot of the goalie, implying the score, but the actual tying goal is not explicitly shown.",
+   "root_cause": "Lack of direct visual evidence for the specific goal being referenced by the text.",
+   "repair_goal": "Ensure all key moments mentioned in text overlays are directly depicted with corresponding visual action."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Direct footage of a goal being scored, proving the 'SCORES!' claim."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 1,
+    "note": "Shows goalie reaction, implying the score, but not the goal itself, making the claim less directly proven visually."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Direct footage of another goal being scored, proving the 'AND SCORES!' claim."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Direct footage of the team celebrating the win, proving the 'UNBELIEVABLE WIN' claim."
+   }
+  ],
+  "one_line": "Winnipeg Jets complete a historic 4-goal comeback to win.",
+  "problems": [],
+  "fixes": []
+ }
+}
