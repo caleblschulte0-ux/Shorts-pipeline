@@ -2,23 +2,25 @@
  "n_verdicts": 20,
  "classes": {
   "junk_imagery": {
-   "count": 5,
+   "count": 6,
    "stories": {
-    "sports_golden_state_valkyries_hampions_t": 1,
     "sports_jack_campbell_pbell_of_the": 2,
-    "sports_rosario_central_ebrate_their": 2
+    "sports_rosario_central_ebrate_their": 2,
+    "sports_travis_hunter_get_the_ball": 1,
+    "sports_fan_in_wheelchair_the_pitch_to": 1
    },
    "timestamps": [
-    "2026-11-08T12:23:22+00:00",
     "2026-11-08T12:39:29+00:00",
     "2026-11-08T12:41:35+00:00",
     "2026-11-08T12:42:00+00:00",
-    "2026-11-08T12:44:11+00:00"
+    "2026-11-08T12:44:11+00:00",
+    "2026-11-09T11:44:18+00:00",
+    "2026-11-09T12:30:48+00:00"
    ],
    "examples": [
-    "junk_imagery: hook@0.3 through payoff@-0.4 show a Valkyries court interview and trophy, but nothing visible establishes the title\u2019s \u201cFirst Asian-American WNBA Champion\u201d claim.",
     "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears.",
-    "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears."
+    "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears.",
+    "junk_imagery: hook@0.3 through payoff@-0.4 show Rosario supporters and players, but no frame visibly establishes that Boca won or captures the promised discovery."
    ],
    "recurred_after_fix": false
   },
@@ -36,11 +38,24 @@
     "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
    ],
    "recurred_after_fix": false
+  },
+  "other": {
+   "count": 1,
+   "stories": {
+    "sports_travis_hunter_get_the_ball": 1
+   },
+   "timestamps": [
+    "2026-11-09T11:44:18+00:00"
+   ],
+   "examples": [
+    "unreadable: The on-screen text is frequently overlaid on top of other text or graphics, making it difficult to read, as seen in `hook@1.5` (\"get\" is obscured) and `hook@2.2` (\"I threw it on the\" is ob"
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
+   "median": 4,
    "min": 0,
    "max": 4
   },
@@ -65,7 +80,7 @@
    "max": 2
   },
   "payoff": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -76,12 +91,6 @@
   }
  },
  "scores": [
-  100,
-  100,
-  100,
-  92,
-  95,
-  74,
   92,
   91,
   75,
@@ -95,6 +104,12 @@
   100,
   96,
   14,
-  14
+  14,
+  27,
+  96,
+  74,
+  65,
+  100,
+  100
  ]
 }
