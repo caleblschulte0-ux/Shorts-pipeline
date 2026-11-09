@@ -1,7 +1,17 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-09T14:48:52Z",
+ "updated": "2026-11-09T15:43:59Z",
  "open": [
+  {
+   "id": "sports_wheelchair_fan_the_pitch_to__eb96a750b8",
+   "channel": "trending",
+   "slug": "sports_wheelchair_fan_the_pitch_to",
+   "title": "Wheelchair Fan Invades Pitch After Gebzespor’s Last‑Minute Winner",
+   "filed": "2026-11-09T15:43:59Z",
+   "request": "exchange/reviews/20261109/sports_wheelchair_fan_the_pitch_to__eb96a750b8.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_wheelchair_fan_the_pitch_to__eb96a750b8/sheet.jpg",
+   "answer_path": "exchange/reviews/20261109/sports_wheelchair_fan_the_pitch_to__eb96a750b8.verdict.json"
+  },
   {
    "id": "sports_corgi_mascot__halftime_of__e9116450aa",
    "channel": "trending",
