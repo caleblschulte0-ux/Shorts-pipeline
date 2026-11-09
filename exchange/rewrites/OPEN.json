@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-09T14:03:43Z",
+ "updated": "2026-11-09T14:39:17Z",
  "open": [
+  {
+   "id": "metric-system-holdouts__b68d2add",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-11-09T14:39:17Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261109/metric-system-holdouts__b68d2add.request.json",
+   "answer_path": "exchange/rewrites/20261109/metric-system-holdouts__b68d2add.answer.json"
+  },
   {
    "id": "antarctic-sea-ice-record-low__80962613",
    "slug": "antarctic-sea-ice-record-low",
@@ -61,16 +71,6 @@
    ],
    "request": "exchange/rewrites/20261108/measles-ninety-five-rule__ff2f3b08.request.json",
    "answer_path": "exchange/rewrites/20261108/measles-ninety-five-rule__ff2f3b08.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__b68d2add",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-08T13:02:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague scenario rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261108/metric-system-holdouts__b68d2add.request.json",
-   "answer_path": "exchange/rewrites/20261108/metric-system-holdouts__b68d2add.answer.json"
   },
   {
    "id": "volcano-country-ranking__692a9e46",
