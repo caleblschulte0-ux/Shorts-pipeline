@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "unclaimed-money-states-hold__c8be9d11",
+  "slug": "unclaimed-money-states-hold",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:34:00Z",
+  "title": "States Hold Forgotten Money For 1 In 7 Americans",
+  "hook": "Your forgotten money may still exist: 1 in 7 has some waiting.",
+  "closing": "Search your state database for free, because the missing money could be yours.",
+  "question": "Have you checked your state database?",
+  "segments": [
+    {
+      "topic": "State Money Held",
+      "say": "California holds 15 billion dollars in unclaimed money. That cash still belongs to ordinary people."
+    },
+    {
+      "topic": "State Money Returned",
+      "say": "States returned 4.49 billion dollars last year. Most unclaimed money still waits for its owners."
+    },
+    {
+      "topic": "State Money Waiting",
+      "say": "About 1 in 7 Americans has unclaimed money waiting. A free state search could pay off."
+    }
+  ]
+}
