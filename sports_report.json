@@ -5,9 +5,19 @@
  "dry_run": false,
  "slots": [
   {
+   "sub": "sports",
+   "who": "Cristiano Ronaldo",
+   "why": "He announces his international retirement in a heartfelt video",
+   "post_title": "Cristiano Ronaldo's message to announce his international retirement",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xofquc/cristiano_ronaldos_message_to_announce_his",
+   "skipped": "download failed"
+  },
+  {
    "sub": "nfl",
    "who": "Travis Hunter",
-   "why": "Mic\u2019d\u2011up hustle as he grabs the ball after an interception",
+   "why": "Mic'd up as he ensures his teammate gets the ball after a game\u2011changing interception",
    "post_title": "[Mic'd Up] Travis Hunter made sure to get the ball for Branson Combs after his first career interception",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/nfl/comments/1xmxpc0/micd_up_travis_hunter_made_sure_to_get_the_ball/",
@@ -15,161 +25,34 @@
    "skipped": "author: no title"
   },
   {
-   "sub": "nfl",
-   "who": "Josh Allen",
-   "why": "He slams his helmet to the ground in a dramatic frustration release",
-   "post_title": "[Highlight] A frustrated Josh Allen slams his helmet to the ground, launching it into the air before catching it.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his",
-   "skipped": "too short: the post runs 7.6s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "A fan hurls a ball at the referee and Luka\u2019s shocked reaction goes viral",
-   "post_title": "[Lowlight] Courtside fan throws the ball hard at the ref when she isn't looking and gets ejected for his trouble. Luka Doncic: \"What the fuck are you doing?\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/3rg8sx",
-   "topic": "https://www.reddit.com/r/nba/comments/1xoaezg/lowlight_courtside_fan_throws_the_ball_hard_at",
-   "title": "Luka Doncic Confronts Fan Who Threw the Ball at the Ref",
-   "hook": "Luka shouts at the fan \ud83d\ude21",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.07,
-      0.0,
-      0.026,
-      0.0
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      350,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
-  },
-  {
    "sub": "nba",
    "who": "Dirk Nowitzki",
-   "why": "He gives a candid, humorous first\u2011impression of Jalen\u202fBrunson on camera",
+   "why": "He shares candid first\u2011impression thoughts on Jalen Brunson\u2019s game",
    "post_title": "Dirk Nowitzki on his first impressions of Jalen Brunson: \"I was like this isn't gonna work. His body... the head's too big. How is he not falling forward the whole time?\"",
    "upvotes": 0,
    "url": "https://streamable.com/eej84b",
    "topic": "https://www.reddit.com/r/nba/comments/1xs5qbw/dirk_nowitzki_on_his_first_impressions_of_jalen",
-   "title": "Dirk Nowitzki doubts Jalen Brunson\u2019s size \u2014 will he survive?",
-   "hook": "Dirk questions Brunson\u2019s build",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "face_content",
-     "reason": "face on the right beside what it is showing \u2014 that on top, the face below",
-     "shots": [
-      {
-       "mode": "face_content",
-       "reason": "face on the right beside what it is showing \u2014 that on top, the face below"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.5,
-       1.0
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+   "skipped": "author: no title"
   },
   {
    "sub": "nba",
    "who": "Cooper Flagg",
-   "why": "His goofy PB&J sandwich answer shows his personality off the court",
+   "why": "He humorously answers a reporter about eating a PB&J between games",
    "post_title": "Cooper Flagg when asked about being spotted 2 straight games eating a PB&J sandwich: \"I wanna give a shoutout to our strength staff, our medical staff. They\u2019re the best in the business and I\u2019m trying ",
    "upvotes": 0,
    "url": "https://streamable.com/vilhsm",
    "topic": "https://www.reddit.com/r/nba/comments/1xrxhm1/cooper_flagg_when_asked_about_being_spotted_2",
-   "title": "Cooper Flagg Gives Shoutout to Staff While Eating PB&J",
-   "hook": "Cooper thanks the medical staff \ud83d\ude0c",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.062,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 2,
-     "crop": [
-      540,
-      720,
-      370,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Don\u010di\u0107",
+   "why": "He reacts to a fan hurling a ball at the referee with disbelief",
+   "post_title": "[Lowlight] Courtside fan throws the ball hard at the ref when she isn't looking and gets ejected for his trouble. Luka Doncic: \"What the fuck are you doing?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/3rg8sx",
+   "topic": "https://www.reddit.com/r/nba/comments/1xoaezg/lowlight_courtside_fan_throws_the_ball_hard_at",
+   "skipped": "author: no title"
   }
  ],
  "already_today": 4,
