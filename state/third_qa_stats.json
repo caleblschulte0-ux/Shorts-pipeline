@@ -3,274 +3,6 @@
     {
       "date": "20261103",
       "dry_run": false,
-      "ts": "2026-11-03T13:51:58+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 18,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 147,
-        "with_retention": 131,
-        "with_curve": 15,
-        "fetched_at": "2026-11-03T12:23:15.487552+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 19,
-        "limited_at": "2026-11-03T13:34:29+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261103-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261103-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "Implies visible close call and reaction",
-              "blind": false
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
-              "raw": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 241.5
-        },
-        {
-          "slug": "clip-20261103-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Vague title, unclear observable event",
-              "blind": false
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "The Stableronaldo Clip Everyone's Talking About",
-              "raw": "L STREAMERS",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 252.1
-        },
-        {
-          "slug": "clip-20261103-4",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "HOLD UP- \ud83d\udde3\ufe0fCaseoh W Freestyle \ud83d\udde3\ufe0f\ud83c\udfa4\ud83d\udd25",
-              "raw": "HOLD UP- \ud83d\udde3\ufe0fCaseoh W Freestyle \ud83d\udde3\ufe0f\ud83c\udfa4\ud83d\udd25",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 199.2
-        },
-        {
-          "slug": "clip-20261103-5",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261103-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "HOLD UP- \ud83d\udde3\ufe0fCaseoh W Freestyle \ud83d\udde3\ufe0f\ud83c\udfa4\ud83d\udd25",
-              "raw": "HOLD UP- \ud83d\udde3\ufe0fCaseoh W Freestyle \ud83d\udde3\ufe0f\ud83c\udfa4\ud83d\udd25",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 182.9
-        },
-        {
-          "slug": "clip-20261103-6",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261103-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "HOLD UP- \ud83d\udde3\ufe0fCaseoh W Freestyle \ud83d\udde3\ufe0f\ud83c\udfa4\ud83d\udd25",
-              "raw": "HOLD UP- \ud83d\udde3\ufe0fCaseoh W Freestyle \ud83d\udde3\ufe0f\ud83c\udfa4\ud83d\udd25",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 182.3
-        }
-      ]
-    },
-    {
-      "date": "20261103",
-      "dry_run": false,
       "ts": "2026-11-03T18:27:24+00:00",
       "feedback": {
         "snapshot": true,
@@ -5368,6 +5100,127 @@
             }
           },
           "took_s": 17.2
+        },
+        {
+          "slug": "clip-20261110-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261110-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261110",
+      "dry_run": false,
+      "ts": "2026-11-10T12:54:25+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 136,
+        "with_retention": 124,
+        "with_curve": 15,
+        "fetched_at": "2026-11-10T11:57:22.137026+00:00"
+      },
+      "brain": {
+        "ok": 1,
+        "fail": 0,
+        "limited_at": "2026-11-10T12:54:25+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261110-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261110-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261110-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261110-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 16.0
         },
         {
           "slug": "clip-20261110-5",
