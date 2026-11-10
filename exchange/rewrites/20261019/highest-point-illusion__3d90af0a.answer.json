@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "highest-point-illusion__3d90af0a",
+  "slug": "highest-point-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+  "hook": "At 10,211 meters, the tallest mountain is not Everest.",
+  "closing": "Every record depends on where measurement begins, so check the starting point.",
+  "question": "Which mountain wins for you?",
+  "segments": [
+    {
+      "topic": "Highest sea level",
+      "say": "Everest reaches 8,849 meters above sea level, which is why most lists call it highest."
+    },
+    {
+      "topic": "Highest from base",
+      "say": "Mauna Kea measures 10,211 meters from its base, but most of that mountain is underwater."
+    },
+    {
+      "topic": "Highest from center",
+      "say": "Chimborazo extends 13.4 kilometers beyond a round Earth, placing its summit farthest from Earth's center."
+    }
+  ]
+}
