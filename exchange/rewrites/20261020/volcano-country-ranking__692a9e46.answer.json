@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "volcano-country-ranking__692a9e46",
+  "slug": "volcano-country-ranking",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "Why 165 Volcanoes Put America Ahead of Indonesia",
+  "hook": "America has 165 volcanoes, beating the country everyone expects.",
+  "closing": "Fame can distort scale, so the count matters more than reputation.",
+  "question": "Which country would you have guessed?",
+  "segments": [
+    {
+      "topic": "Volcano country count",
+      "say": "The United States leads with 165 volcanoes, while famous Indonesia ranks behind it."
+    },
+    {
+      "topic": "Volcano Alaska share",
+      "say": "Alaska alone has 130 volcanoes, making one state larger than Indonesia's entire count."
+    },
+    {
+      "topic": "Volcano Ring share",
+      "say": "The Ring of Fire holds 75 percent of active volcanoes, linking Alaska, Japan, and Indonesia."
+    }
+  ]
+}
