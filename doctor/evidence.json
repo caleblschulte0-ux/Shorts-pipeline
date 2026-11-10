@@ -1,39 +1,38 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261109",
-  "judged_date": "20261108",
+  "date": "20261110",
+  "judged_date": "20261109",
   "alarm": {
-    "date": "20261108",
+    "date": "20261109",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
+        "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261108 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261108.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261109 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20261109/response.json, exchange/bundles/20261109/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261108 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20261108. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20261109 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20261109. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
-        "code": "short_slate_third",
-        "severity": "warning",
-        "detail": "third: 2/6 posted for 20261108.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+        "code": "no_posts_third",
+        "severity": "critical",
+        "detail": "third: ZERO videos posted for 20261109 (registry wants 6).",
+        "fix": "Check the third workflow run for 20261109. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (61 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (62 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "trending: 7/5 posted"
+      "trending: 5/5 posted"
     ],
     "deferred": false
   },
@@ -219,480 +218,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-05T12:35:29+00:00",
-      "slug": "sports_jacob_fowler_after_the_54",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The line promises a fuming Fowler, but he is a masked figure for two seconds and the clip spends its second half and its ending on the backup goalie #75.",
-      "auto_fails": [
-        "junk_imagery: From mid4 to payoff@-0.4 the frame sits on #75, the backup goalie in a cap, not Fowler (#32). In hook@0.3 a fan's head fills the bottom half and Fowler is pushed to the edge. From mid2 to mid3 the shot is a wide bench view where Fowler cannot be picked out."
-      ],
-      "problems": [
-        "The payoff frames (mid4 to payoff@-0.4) show #75, not Fowler #32, so the clip names the wrong person at its ending.",
-        "Fowler is masked throughout and the 'fuming' is carried only by the swearing in the captions. No visible reaction lands.",
-        "In hook@0.3 a fan's head blocks half the frame.",
-        "mid2 and mid3 are wide fan-cam shots where no subject can be identified."
-      ],
-      "fixes": [
-        "Trim to the hook through mid1 window, where Fowler (#32) is on screen, and punch in on him at the swearing.",
-        "Drop the #75 tail entirely, or refuse the clip if no visible Fowler reaction exists.",
-        "Reframe hook@0.3 so it centres on Fowler rather than the fan's head."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 46
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid4",
-        "index": 4,
-        "failure_class": "wrong_subject_crop",
-        "visible_evidence": "From mid4 through payoff@-0.4 the crop holds on #75, a goalie in a red cap, while the line says Fowler. Fowler (#32, masked) was last seen in mid1, sitting small in a wide shot. The clip ends on someone else.",
-        "root_cause": "The crop follows the biggest figure near the camera instead of the named player. The fan's footage drifts to the bench and the backup goalie, and the masked Fowler never shows a readable 'fuming' reaction.",
-        "repair_goal": "Cut the clip so it ends on Fowler. Keep only the stretch from hook to mid1, where #32 is in frame and audibly yelling, punch in on him at the swear, and drop the #75 tail. If no Fowler reaction is visible beyond a mask, refuse the clip."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 15.42
-      },
-      "fingerprint": "?|junk_imagery|wrong_subject_crop"
-    },
-    {
-      "ts": "2026-11-05T12:39:05+00:00",
-      "slug": "sports_brewers_fan_watching_his",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is real and lands: a crying kid saying it's the happiest day of his life. But our caption is printed over the footage's own subtitles for the whole video.",
-      "auto_fails": [
-        "unreadable: Our line \"Brewers fan can't stop crying\" sits directly on top of the footage's own subtitles. In hook@0.3 it covers the bottom half of \"day of my life.\", in mid4 it covers \"Forever and ever.\", and at payoff@-0.4 \"No probably not.\" is half hidden under it. The source's TikTok @nbcnewyork watermark also sits right next to our line."
-      ],
-      "problems": [
-        "Our line \"Brewers fan can't stop crying\" overlaps the burned-in source subtitles in every frame (hook@0.3, mid4, payoff@-0.4), so both lines of text become hard to read.",
-        "The source is a TikTok repost with the @nbcnewyork TikTok watermark visible beside our line, which looks second-hand."
-      ],
-      "fixes": [
-        "Move our line to a band that doesn't overlap the source subtitles (top third, under the location chyron), or drop it while the source captions are on screen.",
-        "Crop or cover the TikTok watermark if a cleaner source isn't available."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "caption_collision",
-        "visible_evidence": "In hook@0.3 to hook@2.2 our white outlined line sits on the source's italic subtitle \"This is the happiest day of my life.\", and the two lines of text overlap. The same collision repeats in every mid frame and in the payoff.",
-        "root_cause": "Our caption was placed in the bottom third without checking where the footage's own captions sit. The footage already has subtitles burned in at about 70% of the frame height, right where our line goes.",
-        "repair_goal": "Move our line clear of the burned-in subtitles, for example into the top band below the NBC/WMTV chyron or above the boy's cap. Or detect the source's own captions and place our line so the two never overlap. Keep the source's subtitles readable, because they carry the payoff (\"happiest day of my li"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 39.25
-      },
-      "fingerprint": "?|unreadable|caption_collision"
-    },
-    {
-      "ts": "2026-11-05T12:42:13+00:00",
-      "slug": "sports_brewers_fan_watching_his",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment itself is strong and well cropped, but our only line of text stops mid-word at 'win its f' and is printed over the clip's own captions for the whole video.",
-      "auto_fails": [
-        "unreadable: hook@0.3 to payoff@-0.4: our line is cut off mid-word and reads 'after watching his team win its f'. It sits on top of the footage's own burned-in captions ('This is the happiest day of my life.' at hook@0.3, 'Forever and ever.' at mid3, 'No probably not.' at payoff@-0.4) and runs into the TikTok/@nbcnewyork watermark"
-      ],
-      "problems": [
-        "Our on-screen line is truncated mid-word: 'after watching his team win its f'",
-        "Our line overlaps the source's own burned-in subtitles ('This is the happiest day of my life.', 'Forever and ever.') in every frame",
-        "Our line runs into the TikTok and @nbcnewyork watermark on the right",
-        "This is a re-upload of an NBC TikTok with its watermarks still visible, which looks second-hand"
-      ],
-      "fixes": [
-        "Write a complete line of 6 words or fewer instead of cutting the Reddit title to a character limit",
-        "Move our line to the upper third, below the NBC/WMTV bug, so it never covers the source's subtitles",
-        "Crop or mask the TikTok/@nbcnewyork watermark, or use a cleaner source of the WMTV footage"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "unreadable_overlay",
-        "visible_evidence": "From hook@0.3 to the end, our caption reads 'Young Brewers fan in tears after watching his team win its f'. It is cut off mid-word and sits over the source's own subtitles and the TikTok watermark",
-        "root_cause": "The on-screen line was cut to a character limit ('...win its f') rather than written as a complete short line. It was also placed in the band where the source already burns in its captions",
-        "repair_goal": "Write a complete short line (e.g. 'Brewers kid's happiest day ever \ud83d\ude2d') and place it in the upper third, clear of the source's burned-in captions and the TikTok/NBC watermark. Or crop and cover the source's subtitles and watermark so they don't collide with our line"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 39.25
-      },
-      "fingerprint": "?|unreadable|unreadable_overlay"
-    },
-    {
-      "ts": "2026-11-05T12:45:08+00:00",
-      "slug": "sports_brewers_fan_watching_his",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "Genuine, sweet moment that lands, but our caption is stamped directly over the clip's own burned-in subtitles in the opening seconds, so both are hard to read.",
-      "auto_fails": [
-        "unreadable: In hook@0.3, hook@1.5 and mid0, our line 'Young Brewers fan cries happy tears' is printed on top of the footage's own burned-in caption 'This is the happiest day of my life.' The second line of that caption collides with ours. It happens again at mid3 ('Forever and ever') and payoff@-0.4 ('No probably not'). Our line also runs into the TikTok/@nbcnewyork watermark at mid2."
-      ],
-      "problems": [
-        "From hook@0.3 to mid0, our line 'Young Brewers fan cries happy tears' overlaps the source's burned-in caption 'This is the happiest day of my life', and the opening's best quote turns into overlapping text.",
-        "At mid3 and payoff@-0.4, the source captions ('Forever and ever', 'No probably not') are again partly hidden behind our line.",
-        "At mid2, our line runs into the TikTok/@nbcnewyork watermark.",
-        "The clip is a repost of an NBC TikTok with watermarks and lower-third text, which looks second-hand."
-      ],
-      "fixes": [
-        "Detect the source's burned-in subtitle band with OCR and move our line out of it, either to the top third under the location tag or lower in the frame.",
-        "Or crop or mask the TikTok watermark and place our line where it does not collide with any source text.",
-        "Keep the kid's opening quote fully readable in the first 2s; it is the hook."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "text_over_source_captions",
-        "visible_evidence": "From hook@0.3 to mid0, our white outlined line sits right on top of the source's burned-in subtitle 'This is the happiest day of my life.' The two blocks of white text overlap and neither reads cleanly at phone size.",
-        "root_cause": "The source is an NBC/TikTok repost with its own burned-in captions just above the lower third. Our line was placed at the fixed caption_line Y without checking where the footage's own text already sits (own_captions/OCR avoidance).",
-        "repair_goal": "Use OCR to find where the source's burned-in subtitle sits and move our line away from it, either to the top third under the NBC location tag or below the subtitle band so it is clear of the TikTok watermark. The kid's quote 'This is the happiest day of my life' must stay fully readable in the openi"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 39.25
-      },
-      "fingerprint": "?|unreadable|text_over_source_captions"
-    },
-    {
-      "ts": "2026-11-05T13:05:58+00:00",
-      "slug": "sports_milwaukee_brewers_watching_his",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is real and lands, but our line is printed straight over the footage's own subtitles for the whole clip, so both texts can't be read.",
-      "auto_fails": [
-        "unreadable: Our line 'Young Brewers fan in tears after the win' is printed straight over the footage's own burned-in captions in every frame. In hook@0.3 it covers 'Who's your favorite brewer?', in mid0 'Oh, William Contreras', in mid2 'Sadly.' and in payoff@-0.4 'No probably not'. Both texts collide and the source captions can't be read. The TikTok @nbcnewyork watermark also sits right against the end of our line."
-      ],
-      "problems": [
-        "The hook line overlaps the source's burned-in captions in every frame (hook@0.3, mid0, mid2, payoff@-0.4), so neither can be read on a phone.",
-        "The TikTok @nbcnewyork watermark sits beside our line and makes the bottom third cluttered.",
-        "The dialogue that carries the payoff (favorite player, going to school) is hidden by the text collision, which weakens the ending."
-      ],
-      "fixes": [
-        "Move the hook line to the upper third, below the 'MILWAUKEE, WISCONSIN' bug, or detect the source caption band and place the line above it.",
-        "Alternatively, crop or zoom so the source subtitle band and the TikTok watermark are out of frame and keep our line alone in the lower third.",
-        "Add a punch-in on the boy's face at the 'happiest day' line for a reaction hit."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 102
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "text_over_source_captions",
-        "visible_evidence": "Across hook@0.3, mid0, mid1, mid2 and payoff@-0.4, our white outlined hook line sits at about y=575-605. That is the same band as the clip's burned-in interview captions at about y=530-560, so the two overlap and the reporter's questions and the boy's answers are hidden.",
-        "root_cause": "The caption line is placed at a fixed lower-third spot without checking where the source's own captions are. This clip is an NBC/TikTok repost that already carries burned-in subtitles.",
-        "repair_goal": "Move our hook line clear of the source captions, for example to the upper third under the WMTV location bug at about y=120-200, or crop the subtitle band out. Neither text may overlap the other in any frame, and the line must stay clear of the TikTok watermark."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 34.08
-      },
-      "fingerprint": "?|unreadable|text_over_source_captions"
-    },
-    {
-      "ts": "2026-11-05T13:08:49+00:00",
-      "slug": "sports_milwaukee_brewers_watching_his",
-      "score": 96,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 4,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A real, well-cropped moment that delivers what the line promises: a crying kid saying it's the happiest day of his life, ending on a laugh. The repost watermarks are the main blemish.",
-      "auto_fails": [],
-      "problems": [
-        "The TikTok '@nbcnewyork' watermark and NBC branding are on screen in nearly every frame (mid1-payoff@-0.4), which signals a repost of a repost.",
-        "The hook frames (hook@1.5, mid0) are a tighter crop than the body (mid1 onward), so the framing jumps visibly.",
-        "The payoff is gentle: the clip ends on 'No probably not' with no punch-in or sound hit on the laugh."
-      ],
-      "fixes": [
-        "Use the original WMTV clip, or crop or blur the TikTok watermark in the lower right.",
-        "Keep the framing consistent from the hook into the body, or make the change a deliberate punch-in on the tears.",
-        "Add a small punch-in or sound hit on his final laugh so the ending lands harder."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "source_watermarks",
-        "visible_evidence": "A TikTok '@nbcnewyork' watermark at the right edge and the NBC peacock with the 'Courtesy: WMTV' tag stay on screen in mid1-mid5 and payoff@-0.4. The hook frames hook@1.5 and mid0 are a tighter crop with the watermark half cut off ('Tik', '@ nbcne').",
-        "root_cause": "The clip was taken from a TikTok repost of an NBC re-air rather than from the original WMTV footage, so it carries third-party branding layers, and the crop changes between the hook and the body.",
-        "repair_goal": "Get the cleanest available source, or crop and blur out the TikTok watermark. Keep one consistent framing on the kid's face and mic throughout, and end on his laughing 'No probably not' beat."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 39.25
-      },
-      "fingerprint": "?|-|source_watermarks"
-    },
-    {
-      "ts": "2026-11-05T14:45:28+00:00",
-      "slug": "union-membership-record-low",
-      "score": 66,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The scenes are drawn well and fit the subject (the hat shelf and the chair-stacking hall work), but Data is decoration in three of five scenes and the public-vs-private contrast, the story's key claim, is never shown.",
-      "auto_fails": [
-        "decorative_mascot: Data stands while the hard hats drop into the bin on their own (hook@0.8, seg0:start). In seg1:start to seg1:end he waves beside the fence while picket signs fall. In seg2:mid and seg2:end he poses with a banner. Only in seg3 does he do the work, folding chairs as members leave.",
-        "unreadable: In seg2:end the small 'public sector: 32.2%' label sits under the city-hall flagpole, which runs straight through the text. In seg4:start, 'Is your job unionized?' fades in low-contrast over the toolbox."
-      ],
-      "problems": [
-        "Hook and seg0: the hard hats fall into the bin with no one causing it while Data stands and gestures.",
-        "seg1: Data waves beside the fence while picket signs fall; the picket barely thins, so 'less than half' does not read.",
-        "seg2: two static buildings and a label flip; the 32.2% vs 5.9% gap is never pictured, and Data only holds a banner.",
-        "seg2:end: the 'public sector: 32.2%' label is crossed by the flagpole.",
-        "seg4: the closing reuses the hall unchanged; the 'less leverage' payoff has no picture, and 'Is your job unionized?' fades in low-contrast over the toolbox.",
-        "The payoff is flat: the video ends on the same hall it has already shown."
-      ],
-      "fixes": [
-        "seg2: draw the gap as crowds of union workers at each building (about 32% vs 6%), with Data closing the warehouse shutter or pulling its banner down as the 5.9% lands.",
-        "Hook: have Data toss the hats into the bin himself, one per drop of the rate.",
-        "seg1: thin the picket to under half, with Data collecting the dropped signs into a cart.",
-        "Move every secondary label onto clear ground away from the flagpole and other marks.",
-        "Closing: show the leverage loss in the picture, such as a bargaining table where the union side's chairs are empty."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 88
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "From seg2:start to seg2:end, city hall and the warehouse stand side by side and do not change while the label flips from 32.2% to 5.9%. Data just poses with a UNION banner. Nothing in the picture shows the public sector at 32% against private at 6%.",
-        "root_cause": "The scene is a static two-building backdrop. The comparison exists only in the text label, and the mascot has no act that causes the difference.",
-        "repair_goal": "Make the 32% vs 6% gap visible on the two buildings, for example a crowd of union-vested workers at city hall's steps and about a sixth as many at the warehouse door. Have Data cause the change by pulling down the warehouse's union banner or rolling its shutter closed as the private number lands. Mo"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.298,
-        "effective_fps": 16.8,
-        "max_dup_run": 24,
-        "measured": true,
-        "frozen_ratio": 0.132,
-        "frozen_fps": 20.8,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.014,
-        "judder_fps": 23.7,
-        "held_s": 5.88,
-        "max_dup_at_s": 23.25,
-        "duration_s": 29.38
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|decorative_mascot",
-      "style_arm": "illustrated"
-    },
     {
       "ts": "2026-11-05T17:27:24+00:00",
       "slug": "billion-dollar-disasters-record-2023",
@@ -4021,6 +3546,399 @@
         "duration_s": 14.5
       },
       "fingerprint": "?|junk_imagery|Content Mismatch"
+    },
+    {
+      "ts": "2026-11-09T22:00:40+00:00",
+      "slug": "sports_jonathan_taylor_aylor_gave_a",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Jonathan Taylor delivers an emotional farewell to Colts fans, captured directly and clearly.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 72
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 4,
+        "failure_class": "visual_craft",
+        "visible_evidence": "The visual composition remains largely static across mid-segments, showing the speaker's face with minimal camera movement.",
+        "root_cause": "Lack of varied camera angles or dynamic visual elements during the continuous speech.",
+        "repair_goal": "Introduce subtle zooms, pans, or alternate close-ups to enhance visual engagement during continuous speech segments."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 24.08
+      },
+      "fingerprint": "?|-|visual_craft"
+    },
+    {
+      "ts": "2026-11-09T22:38:35+00:00",
+      "slug": "sports_winnipeg_jets_est_fourgoal",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Winnipeg Jets complete a historic 4-goal comeback to win.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.061,
+        "sampled": 82
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid2",
+        "index": 2,
+        "failure_class": "data_demo",
+        "visible_evidence": "The text 'IT AT FOUR!' appears with a shot of the goalie, implying the score, but the actual tying goal is not explicitly shown.",
+        "root_cause": "Lack of direct visual evidence for the specific goal being referenced by the text.",
+        "repair_goal": "Ensure all key moments mentioned in text overlays are directly depicted with corresponding visual action."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.25
+      },
+      "fingerprint": "?|-|data_demo"
+    },
+    {
+      "ts": "2026-11-09T23:48:30+00:00",
+      "slug": "sports_yaxel_lendeborg__a_new_house",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively captures and presents an emotional surprise moment of Yaxel surprising his mom with a new house.",
+      "auto_fails": [],
+      "problems": [
+        "The initial text overlays in the hook segment are slightly drawn out before the main reveal."
+      ],
+      "fixes": [
+        "Condense the introductory text in the hook to enhance pacing and get to the core surprise more quickly."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 101
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "pacing",
+        "visible_evidence": "The sequential display of text overlays 'ON BEHALF OF', 'EVERYBODY THAT CAME', 'TO SHOW UP,' in the bottom panel, without significant new visual information, slightly slows the initial reveal.",
+        "root_cause": "Overly verbose text introduction for the hook.",
+        "repair_goal": "Streamline the introductory text in the hook to deliver the core surprise premise more concisely."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.038,
+        "effective_fps": 23.1,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.026,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.02,
+        "judder_fps": 23.5,
+        "held_s": 0.0,
+        "max_dup_at_s": 20.25,
+        "duration_s": 33.75
+      },
+      "fingerprint": "?|-|pacing"
+    },
+    {
+      "ts": "2026-11-10T00:49:06+00:00",
+      "slug": "sports_corgi_mascot__halftime_of",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A corgi mascot's wild run at halftime is captured with engaging footage and a clear narrative.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 93
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "minor textual anomaly",
+        "visible_evidence": "The text 'THANK YOU.' appears briefly at the start of the hook, which is unrelated to the main narrative.",
+        "root_cause": "Unnecessary overlay text from source material or an editing artifact.",
+        "repair_goal": "Remove the extraneous text 'THANK YOU.' from the hook segment."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 30.83
+      },
+      "fingerprint": "?|-|minor textual anomaly"
+    },
+    {
+      "ts": "2026-11-10T00:49:16+00:00",
+      "slug": "sports_wheelchair_fan_the_pitch_to",
+      "score": 95,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A heartwarming moment of a fan in a wheelchair celebrating a goal on the field with players.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 71
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "less impactful moment",
+        "visible_evidence": "Frame shows a general crowd shot, briefly losing direct focus on the fan or players on the field.",
+        "root_cause": "Brief deviation from the core subject of the video.",
+        "repair_goal": "Maintain direct focus on the fan and players on the field throughout the celebration sequence."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.135,
+        "effective_fps": 20.8,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.098,
+        "frozen_fps": 21.6,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.079,
+        "judder_fps": 22.1,
+        "held_s": 0.0,
+        "max_dup_at_s": 1.17,
+        "duration_s": 23.79
+      },
+      "fingerprint": "?|-|less impactful moment"
+    },
+    {
+      "ts": "2026-11-10T02:49:11+00:00",
+      "slug": "sports_matheus_cunha_to_celebrate",
+      "score": 95,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A compelling sports moment showing a player's wild celebration with fans, effectively demonstrating the hook.",
+      "auto_fails": [],
+      "problems": [
+        "The on-screen text 'CUNHA WITH A' is an incomplete sentence, which is a minor craft issue."
+      ],
+      "fixes": [
+        "Ensure all on-screen text is grammatically complete and conveys a full message."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 38
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "craft",
+        "visible_evidence": "The on-screen text 'CUNHA WITH A' is an incomplete sentence, ending abruptly.",
+        "root_cause": "Poor text editing or truncation, leading to an unfinished thought.",
+        "repair_goal": "Complete the sentence or rephrase the text to be a full, meaningful statement."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.111,
+        "effective_fps": 21.3,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.108,
+        "frozen_fps": 21.4,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.098,
+        "judder_fps": 21.6,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 12.75
+      },
+      "fingerprint": "?|-|craft"
+    },
+    {
+      "ts": "2026-11-10T02:49:23+00:00",
+      "slug": "sports_tampa_bay_buccaneers_players_cups",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked: judge response failed schema validation",
+      "auto_fails": [
+        "malformed_judge_response: checks.junk_imagery.evidence missing or empty"
+      ],
+      "problems": [
+        "checks.junk_imagery.evidence missing or empty"
+      ],
+      "fixes": [
+        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 54
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "malformed_judge_response"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 18.0
+      },
+      "fingerprint": "?|malformed_judge_response|-"
     }
   ],
   "showrunner_recurrence": {
@@ -4030,35 +3948,30 @@
         "2026-11-06"
       ]
     },
+    "?|-|data_demo": {
+      "count": 3,
+      "days": [
+        "2026-11-07",
+        "2026-11-09"
+      ]
+    },
     "?|junk_imagery|claim-footage mismatch": {
       "count": 3,
       "days": [
         "2026-11-07"
       ]
     },
+    "?|malformed_judge_response|-": {
+      "count": 3,
+      "days": [
+        "2026-11-07",
+        "2026-11-10"
+      ]
+    },
     "?|junk_imagery|claim_mismatch": {
       "count": 3,
       "days": [
         "2026-11-08"
-      ]
-    },
-    "?|unreadable|text_over_source_captions": {
-      "count": 2,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|-|data_demo": {
-      "count": 2,
-      "days": [
-        "2026-11-07",
-        "2026-11-09"
-      ]
-    },
-    "?|malformed_judge_response|-": {
-      "count": 2,
-      "days": [
-        "2026-11-07"
       ]
     },
     "?|-|subject_visibility": {
@@ -4089,36 +4002,6 @@
       "count": 2,
       "days": [
         "2026-11-08"
-      ]
-    },
-    "?|junk_imagery|wrong_subject_crop": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|unreadable|caption_collision": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|unreadable|unreadable_overlay": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|-|source_watermarks": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|decorative_mascot+unreadable|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
       ]
     },
     "?|-|weak_metaphor_illegible_scale": {
@@ -4294,16 +4177,45 @@
       "days": [
         "2026-11-09"
       ]
+    },
+    "?|-|visual_craft": {
+      "count": 1,
+      "days": [
+        "2026-11-09"
+      ]
+    },
+    "?|-|pacing": {
+      "count": 1,
+      "days": [
+        "2026-11-09"
+      ]
+    },
+    "?|-|minor textual anomaly": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
+    },
+    "?|-|less impactful moment": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
+    },
+    "?|-|craft": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
     }
   },
   "recent_commits": [
-    "aa8bdd4 2026-11-09 sports: 2026-11-09 posted log + verdicts [skip ci]",
-    "7465b7d 2026-11-09 claim: mailbox verdicts 2026-11-09T13:48Z [skip ci]"
+    "6916b92 2026-11-10 claim: mailbox verdicts 2026-11-10T04:49Z [skip ci]",
+    "7a1f293 2026-11-10 claim: mailbox verdicts 2026-11-10T03:49Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-26": 3,
         "2026-10-28": 3,
         "2026-10-29": 3,
         "2026-10-30": 5,
@@ -4316,15 +4228,15 @@
         "2026-11-06": 5,
         "2026-11-07": 4,
         "2026-11-08": 7,
-        "2026-11-09": 2
+        "2026-11-09": 5,
+        "2026-11-10": 3
       },
-      "total_posted": 533,
-      "attempted": 533,
+      "total_posted": 539,
+      "attempted": 539,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-26": 4,
         "2026-10-27": 1,
         "2026-10-28": 2,
         "2026-10-29": 4,
@@ -4343,7 +4255,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-26": 6,
         "2026-10-27": 1,
         "2026-10-28": 5,
         "2026-10-29": 8,
@@ -4374,71 +4285,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 144,
+      "videos": 142,
       "top_by_vph": [
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 21.85,
-          "views": 1009
+          "vph": 16.87,
+          "views": 1016
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 16.89,
+          "vph": 13.96,
           "views": 1132
         },
         {
           "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-          "vph": 11.54,
-          "views": 635
+          "vph": 9.24,
+          "views": 638
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 9.8,
+          "vph": 8.21,
           "views": 710
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 5.86,
+          "vph": 5.53,
           "views": 1377
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 141,
+      "videos": 139,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 4.44,
+          "vph": 4.36,
           "views": 1895
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.9,
+          "vph": 1.87,
           "views": 1087
         },
         {
-          "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
-          "vph": 1.86,
-          "views": 122
-        },
-        {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.77,
-          "views": 417
+          "vph": 1.72,
+          "views": 419
         },
         {
-          "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 1.26,
-          "views": 905
+          "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
+          "vph": 1.68,
+          "views": 123
+        },
+        {
+          "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
+          "vph": 1.21,
+          "views": 325
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261106/brief.json",
       "retro/20261107/brief.json",
-      "retro/20261108/brief.json"
+      "retro/20261108/brief.json",
+      "retro/20261109/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
