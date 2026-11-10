@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__21efaa68",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "English Fell from 75% of Web Pages—and Never Recovered",
+  "hook": "English once filled 75% of web pages, then the world logged on.",
+  "closing": "Searching only in English means seeing a narrower version of the internet.",
+  "question": "Which language do you browse in?",
+  "segments": [
+    {
+      "topic": "English page share",
+      "say": "English filled 75 percent of web pages, before more of the world came online."
+    },
+    {
+      "topic": "English content growth",
+      "say": "Arabic content grew 2,501 percent, showing how quickly the web expanded beyond English."
+    },
+    {
+      "topic": "English website share",
+      "say": "English now leads with 55 percent of websites, leaving nearly half in other languages."
+    }
+  ]
+}
