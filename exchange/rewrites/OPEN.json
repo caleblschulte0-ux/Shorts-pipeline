@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T00:13:47Z",
+ "updated": "2026-11-10T02:01:47Z",
  "open": [
+  {
+   "id": "metric-system-holdouts__b68d2add",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-11-10T02:01:47Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a vague numeric claim without a verifiable, consequential twist."
+   ],
+   "request": "exchange/rewrites/20261110/metric-system-holdouts__b68d2add.request.json",
+   "answer_path": "exchange/rewrites/20261110/metric-system-holdouts__b68d2add.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__5604e5fe",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-10T02:01:47Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverifiable claim rather than a single, concrete, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261110/astronaut-bone-loss__5604e5fe.request.json",
+   "answer_path": "exchange/rewrites/20261110/astronaut-bone-loss__5604e5fe.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__97e920de",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-10T02:01:47Z",
+   "why": [
+    "premise: brain: The claim relies on an unverifiable adoption timeline and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261110/chatgpt-fastest-adoption-ever__97e920de.request.json",
+   "answer_path": "exchange/rewrites/20261110/chatgpt-fastest-adoption-ever__97e920de.answer.json"
+  },
   {
    "id": "antarctic-sea-ice-record-low__80962613",
    "slug": "antarctic-sea-ice-record-low",
@@ -61,16 +91,6 @@
    ],
    "request": "exchange/rewrites/20261109/mangrove-forest-loss__bd8a4411.request.json",
    "answer_path": "exchange/rewrites/20261109/mangrove-forest-loss__bd8a4411.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__b68d2add",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-09T14:39:17Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261109/metric-system-holdouts__b68d2add.request.json",
-   "answer_path": "exchange/rewrites/20261109/metric-system-holdouts__b68d2add.answer.json"
   },
   {
    "id": "maternal-mortality-pandemic-reversal__12037ae3",
