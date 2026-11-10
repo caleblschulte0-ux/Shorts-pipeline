@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "bat-fungus-collapse__fb2808d3",
+  "slug": "bat-fungus-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "A Fungus Erased 97% of These Bats",
+  "hook": "A fungus erased 97% of bats that quietly protect farms.",
+  "closing": "Losing bats means more crop pests and higher costs for everyone.",
+  "question": "Have you seen bats nearby?",
+  "segments": [
+    {
+      "topic": "Bats fungus spread",
+      "say": "The fungus has reached 35 states, turning one cave outbreak into a national threat."
+    },
+    {
+      "topic": "Bats population loss",
+      "say": "Northern long-eared bats declined 97 percent, leaving almost none of a once-common species."
+    },
+    {
+      "topic": "Bats farm value",
+      "say": "Bat pest control is worth up to 53 billion dollars yearly, so their collapse carries a real price."
+    }
+  ]
+}
