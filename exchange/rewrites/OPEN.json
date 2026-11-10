@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T02:01:47Z",
+ "updated": "2026-11-10T11:53:45Z",
  "open": [
+  {
+   "id": "library-digital-shift__723877f7",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-10T11:53:45Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on multiple ideas rather than a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261110/library-digital-shift__723877f7.request.json",
+   "answer_path": "exchange/rewrites/20261110/library-digital-shift__723877f7.answer.json"
+  },
   {
    "id": "metric-system-holdouts__b68d2add",
    "slug": "metric-system-holdouts",
