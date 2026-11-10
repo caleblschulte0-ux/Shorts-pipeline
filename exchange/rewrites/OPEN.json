@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T21:43:01Z",
+ "updated": "2026-11-10T23:29:41Z",
  "open": [
+  {
+   "id": "english-internet-share-decline__a6bd11c9",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-11-10T23:29:41Z",
+   "why": [
+    "premise: brain: The claim hinges on an unverifiable, likely inaccurate 75% figure, failing the requirement for a concrete, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261110/english-internet-share-decline__a6bd11c9.request.json",
+   "answer_path": "exchange/rewrites/20261110/english-internet-share-decline__a6bd11c9.answer.json"
+  },
   {
    "id": "library-digital-shift__4fea1593",
    "slug": "library-digital-shift",
@@ -463,16 +473,6 @@
    ],
    "request": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.request.json",
    "answer_path": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.answer.json"
-  },
-  {
-   "id": "english-internet-share-decline__21efaa68",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/english-internet-share-decline__21efaa68.request.json",
-   "answer_path": "exchange/rewrites/20261018/english-internet-share-decline__21efaa68.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
