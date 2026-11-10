@@ -1,0 +1,164 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "measles-ninety-five-rule__ff2f3b08",
+ "filed": "2026-11-10T00:13:46Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "measles-ninety-five-rule",
+ "current": {
+  "title": "Measles Needs 95% Protection Because One Case Spreads Fast",
+  "hook": "A tiny immunity gap is enough. Measles needs 95% protection.",
+  "closing": "Even a few unprotected kids can reopen the door, so every vaccine keeps your town safe.",
+  "question": "Did you get both measles shots?",
+  "segments": [
+   {
+    "topic": "measles case spread",
+    "say": "One measles case infects about fifteen people, far more than flu. So it spreads fast the moment protection slips."
+   },
+   {
+    "topic": "measles protection needed",
+    "say": "Measles is only stopped when ninety-five percent of kids are protected. Kindergartners fall just short, and the virus finds every gap."
+   },
+   {
+    "topic": "measles cases surge",
+    "say": "US measles cases grew about nine times recently. A small protection gap let each outbreak snowball."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "measles case spread",
+   "say": "One measles case infects about fifteen people, far more than flu. So it spreads fast the moment protection slips.",
+   "role": "1 · HOW FAST IT SPREADS",
+   "data": {
+    "file": "disease_contagiousness_r0.json",
+    "unit": "people infected per case",
+    "title": "People one sick person infects in an unprotected crowd (R0)",
+    "points": [
+     {
+      "label": "Measles",
+      "value": 15
+     },
+     {
+      "label": "Chickenpox",
+      "value": 11
+     },
+     {
+      "label": "Polio",
+      "value": 6
+     },
+     {
+      "label": "Seasonal flu",
+      "value": 1.3
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "measles protection needed",
+   "say": "Measles is only stopped when ninety-five percent of kids are protected. Kindergartners fall just short, and the virus finds every gap.",
+   "role": "2 · THE 95 PERCENT RULE",
+   "data": {
+    "file": "measles_immunity_needed_vs_actual.json",
+    "unit": "percent",
+    "title": "Measles immunity: what's needed vs what we have (percent)",
+    "points": [
+     {
+      "label": "Immunity needed to stop measles",
+      "value": 95.0
+     },
+     {
+      "label": "US kindergarten MMR coverage",
+      "value": 92.5
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "measles cases surge",
+   "say": "US measles cases grew about nine times recently. A small protection gap let each outbreak snowball.",
+   "role": "3 · WHAT 2.5 POINTS COSTS",
+   "data": {
+    "file": "us_measles_cases_by_year.json",
+    "unit": "cases",
+    "title": "Confirmed measles cases in the United States (cases per year)",
+    "points": [
+     {
+      "label": "2021",
+      "value": 49,
+      "period": "2021"
+     },
+     {
+      "label": "2022",
+      "value": 121,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 59,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 285,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 2289,
+      "period": "2025"
+     },
+     {
+      "label": "2026 so far",
+      "value": 2566,
+      "period": "2026"
+     }
+    ],
+    "n_points": 6
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise does not overturn a viewer expectation and relies only on a known statistic without a surprising reversal."
+ ],
+ "reasons": [
+  "premise: brain: The premise does not overturn a viewer expectation and relies only on a known statistic without a surprising reversal."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261110/measles-ninety-five-rule__ff2f3b08.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
