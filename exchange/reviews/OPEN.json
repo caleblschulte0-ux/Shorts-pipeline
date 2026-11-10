@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-10T12:45:43Z",
+ "updated": "2026-11-10T13:41:45Z",
  "open": [
   {
    "id": "sports_cooper_flagg_ng_spotted_2__89aa32deea",
@@ -31,16 +31,6 @@
    "request": "exchange/reviews/20261110/sports_luka_doncic_ball_hard_at__a93fbfecd1.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261110/sports_luka_doncic_ball_hard_at__a93fbfecd1/sheet.jpg",
    "answer_path": "exchange/reviews/20261110/sports_luka_doncic_ball_hard_at__a93fbfecd1.verdict.json"
-  },
-  {
-   "id": "sports_dirk_nowitzki_ons_of_jalen__2d72ce42cd",
-   "channel": "trending",
-   "slug": "sports_dirk_nowitzki_ons_of_jalen",
-   "title": "Dirk Nowitzki Thought Jalen Brunson's Head Was Too Big For The NBA... Then He Saw THIS",
-   "filed": "2026-11-10T12:11:32Z",
-   "request": "exchange/reviews/20261110/sports_dirk_nowitzki_ons_of_jalen__2d72ce42cd.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261110/sports_dirk_nowitzki_ons_of_jalen__2d72ce42cd/sheet.jpg",
-   "answer_path": "exchange/reviews/20261110/sports_dirk_nowitzki_ons_of_jalen__2d72ce42cd.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
