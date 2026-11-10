@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261109",
-  "generated_at": "2026-11-09T23:29:18Z",
+  "generated_at": "2026-11-10T00:31:07Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 46.76,
+          "days": 46.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 45.76,
+          "days": 45.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -490,63 +490,63 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-11-09T18:15:13.156321+00:00",
+      "fetched_at": "2026-11-10T00:13:56.544748+00:00",
       "today": [],
       "last_7d": {
         "videos": 12,
-        "total_views": 4395,
-        "median_views": 199.0,
-        "median_vph": 2.0991,
+        "total_views": 4398,
+        "median_views": 200.0,
+        "median_vph": 1.9831,
         "best": "California Condors Rebounded From Just 27 Birds",
         "worst": "Governments Shut Down The Internet 283 Times Last Year"
       },
       "last_30d": {
-        "videos": 74,
-        "total_views": 26260,
+        "videos": 72,
+        "total_views": 25478,
         "median_views": 171.5,
-        "median_vph": 0.5171,
+        "median_vph": 0.51,
         "best": "California Condors Rebounded From Just 27 Birds",
         "worst": "Early Peanut Eating Cut Allergies To 1.9%"
       },
       "all_time_summary": {
-        "total_videos": 144,
-        "total_views": 35074,
-        "avg_views_per_video": 243.6,
+        "total_videos": 143,
+        "total_views": 35050,
+        "avg_views_per_video": 245.1,
         "median_views_per_hour": 0.13,
         "top_5_by_vph": [
           {
             "title": "California Condors Rebounded From Just 27 Birds",
-            "views_per_hour": 19.34,
-            "views": 1014,
-            "age_hours": 52.4,
+            "views_per_hour": 17.38,
+            "views": 1015,
+            "age_hours": 58.4,
             "url": "https://youtube.com/shorts/0xACp2wcCNw"
           },
           {
             "title": "20 States Now Let You Use A Digital ID At The Airport",
-            "views_per_hour": 15.45,
+            "views_per_hour": 14.28,
             "views": 1132,
-            "age_hours": 73.3,
+            "age_hours": 79.3,
             "url": "https://youtube.com/shorts/7Zd2kuA7guE"
           },
           {
             "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-            "views_per_hour": 10.41,
+            "views_per_hour": 9.48,
             "views": 638,
-            "age_hours": 61.3,
+            "age_hours": 67.3,
             "url": "https://youtube.com/shorts/PDGU3Lj5kwM"
           },
           {
             "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-            "views_per_hour": 9.02,
+            "views_per_hour": 8.39,
             "views": 710,
-            "age_hours": 78.7,
+            "age_hours": 84.7,
             "url": "https://youtube.com/shorts/pxq9pSNwgSQ"
           },
           {
             "title": "9 Pitch Drops Took 84 Years To Fall",
-            "views_per_hour": 5.71,
+            "views_per_hour": 5.57,
             "views": 1377,
-            "age_hours": 241.1,
+            "age_hours": 247.1,
             "url": "https://youtube.com/shorts/CpenBcYEUHU"
           }
         ],
@@ -555,46 +555,46 @@
             "title": "Early Peanut Eating Cut Allergies To 1.9%",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 192.0,
+            "age_hours": 198.0,
             "url": "https://youtube.com/shorts/YfhcpGsV-AE"
           },
           {
             "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 258.8,
+            "age_hours": 264.8,
             "url": "https://youtube.com/shorts/qERI9Ut_q-U"
           },
           {
             "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 765.5,
+            "age_hours": 771.4,
             "url": "https://youtube.com/shorts/aCtti_E5Nqo"
           },
           {
             "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 956.9,
+            "age_hours": 962.8,
             "url": "https://youtube.com/shorts/cY4-tgGIir4"
           },
           {
             "title": "Why Is There A Vault Built For The End Of The World?",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 1225.3,
+            "age_hours": 1231.3,
             "url": "https://youtube.com/shorts/kkODTt8nWuQ"
           }
         ],
         "opening": {
-          "median_early_retention": 0.932,
-          "videos_with_curve": 14,
+          "median_early_retention": 0.924,
+          "videos_with_curve": 15,
           "worst": 0.859,
-          "best": 0.974
+          "best": 0.973
         },
-        "videos_with_retention": 86,
-        "avg_view_percentage": 60.2,
+        "videos_with_retention": 88,
+        "avg_view_percentage": 59.9,
         "top_5_by_retention": [
           {
             "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
@@ -605,8 +605,8 @@
           },
           {
             "title": "20 States Now Let You Use A Digital ID At The Airport",
-            "average_view_percentage": 148.3,
-            "average_view_duration_s": 38.0,
+            "average_view_percentage": 136.3,
+            "average_view_duration_s": 35.0,
             "views": 1132,
             "url": "https://youtube.com/shorts/7Zd2kuA7guE"
           },
@@ -635,8 +635,8 @@
         "bottom_5_by_retention": [
           {
             "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
-            "average_view_percentage": 17.4,
-            "average_view_duration_s": 8.0,
+            "average_view_percentage": 11.9,
+            "average_view_duration_s": 5.0,
             "views": 124,
             "url": "https://youtube.com/shorts/Vu_ZQg8xcec"
           },
@@ -692,15 +692,15 @@
         "pending_scheduled": 6,
         "format_coverage": {
           "with_format": 0,
-          "total": 144,
+          "total": 143,
           "fraction": 0.0
         }
       },
       "band_sample_sizes": {
-        "1-3d": 4,
+        "1-3d": 3,
         "1-4w": 57,
-        "3-7d": 8,
-        "4w+": 75
+        "3-7d": 9,
+        "4w+": 74
       },
       "thin_bands": [
         "1-3d"
@@ -728,20 +728,20 @@
         },
         "72h": {
           "all_formats": {
-            "n": 4,
-            "median_vph": 9.7147,
-            "median_views": 674.0,
+            "n": 3,
+            "median_vph": 9.4799,
+            "median_views": 638.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/4",
+            "view_pct_reported_for": "0/3",
             "enough_to_judge": false
           },
           "by_format": {
             "other_topic": {
-              "n": 4,
-              "median_vph": 9.7147,
-              "median_views": 674.0,
+              "n": 3,
+              "median_vph": 9.4799,
+              "median_views": 638.0,
               "median_view_pct": null,
-              "view_pct_reported_for": "0/4",
+              "view_pct_reported_for": "0/3",
               "enough_to_judge": false
             },
             "superlative_topic": {
@@ -756,29 +756,25 @@
         },
         "7d": {
           "all_formats": {
-            "n": 2,
-            "median_vph": 2.7852,
-            "median_views": 516.0,
+            "n": 1,
+            "median_vph": 1.4603,
+            "median_views": 276.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/2",
+            "view_pct_reported_for": "0/1",
             "enough_to_judge": false
           },
           "by_format": {
             "other_topic": {
               "n": 1,
-              "median_vph": 1.5082,
+              "median_vph": 1.4603,
               "median_views": 276.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/1",
               "enough_to_judge": false
             },
             "superlative_topic": {
-              "n": 1,
-              "median_vph": 4.0623,
-              "median_views": 756.0,
-              "median_view_pct": null,
-              "view_pct_reported_for": "0/1",
-              "enough_to_judge": false
+              "n": 0,
+              "note": "no videos in this age window"
             },
             "unknown": {
               "n": 0,
@@ -790,33 +786,33 @@
       "mature_enough_to_judge": [
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 19.3511,
+          "vph": 17.3801,
           "fmt": "other_topic",
-          "age_hours": 52.4
+          "age_hours": 58.4
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 15.4434,
+          "vph": 14.2749,
           "fmt": "other_topic",
-          "age_hours": 73.3
+          "age_hours": 79.3
         },
         {
           "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-          "vph": 10.4078,
+          "vph": 9.4799,
           "fmt": "other_topic",
-          "age_hours": 61.3
+          "age_hours": 67.3
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 9.0216,
+          "vph": 8.3825,
           "fmt": "other_topic",
-          "age_hours": 78.7
+          "age_hours": 84.7
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 5.7113,
+          "vph": 5.5726,
           "fmt": "other_topic",
-          "age_hours": 241.1
+          "age_hours": 247.1
         }
       ],
       "worst_mature": [
@@ -824,31 +820,31 @@
           "title": "Early Peanut Eating Cut Allergies To 1.9%",
           "vph": 0.0,
           "fmt": "other_topic",
-          "age_hours": 192.0
+          "age_hours": 198.0
         },
         {
           "title": "Why Is There A Vault Built For The End Of The World?",
           "vph": 0.0008,
           "fmt": "unknown",
-          "age_hours": 1225.3
+          "age_hours": 1231.3
         },
         {
           "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
           "vph": 0.0013,
           "fmt": "other_topic",
-          "age_hours": 765.5
+          "age_hours": 771.4
         },
         {
           "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
           "vph": 0.0021,
           "fmt": "other_topic",
-          "age_hours": 956.9
+          "age_hours": 962.8
         },
         {
           "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
-          "vph": 0.0039,
+          "vph": 0.0038,
           "fmt": "other_topic",
-          "age_hours": 258.8
+          "age_hours": 264.8
         }
       ]
     },
@@ -1376,7 +1372,7 @@
     "showrunner": {
       "recent": 40,
       "blocks": 15,
-      "avg_score": 75.8
+      "avg_score": 76.7
     },
     "failure_census": {
       "n_verdicts": 20,
@@ -1471,7 +1467,6 @@
         }
       },
       "scores": [
-        92,
         91,
         75,
         75,
@@ -1490,6 +1485,7 @@
         74,
         65,
         100,
+        100,
         100
       ]
     }
@@ -1497,7 +1493,7 @@
   "depictions": {
     "note": "best judge `bespoke` grade per video vs views-per-hour at >= 24h",
     "buckets": {},
-    "ungraded": 144,
+    "ungraded": 143,
     "thin": []
   },
   "style_arms": {
@@ -1505,12 +1501,12 @@
     "arms": {
       "current": {
         "n": 22,
-        "median_percentile": 36.0,
+        "median_percentile": 35.1,
         "thin": true
       },
       "illustrated": {
-        "n": 98,
-        "median_percentile": 54.6,
+        "n": 99,
+        "median_percentile": 53.5,
         "thin": false
       }
     },
@@ -1525,10 +1521,16 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "11d1be3",
-    "commits_since": "2026-11-08",
+    "head": "5d6afc0",
+    "commits_since": "2026-11-09",
     "commit_count": 50,
     "commits": [
+      "5d6afc0 explainer: update posted log + analytics [skip ci]",
+      "8453dbf claim: mailbox verdicts 2026-11-09T23:48Z [skip ci]",
+      "9dad121 trending: posted yaxel_lendeborg_surprises_his_mom_with_a [skip ci]",
+      "2a9a8e2 trending: claim upload slot yaxel_lendeborg_surprises_his_mom_with_a [skip ci]",
+      "bb702c0 watchdog: chatgpt task verdicts 20261109 [skip ci]",
+      "fbfd19f retro: brief + triage for 20261109 [skip ci]",
       "11d1be3 comments: saved viewer comments [skip ci]",
       "9118a54 watchdog: chatgpt task verdicts 20261109 [skip ci]",
       "a6b98aa watchdog: chatgpt task verdicts 20261109 [skip ci]",
@@ -1562,13 +1564,7 @@
       "ca08be3 watchdog: chatgpt task verdicts 20261109 [skip ci]",
       "6049f6c explainer: update posted log + analytics [skip ci]",
       "6f6b132 daily: 2026-11-09 report + state [skip ci]",
-      "d9fda1c doctor: evidence pack + backlog 2026-11-09 [skip ci]",
-      "aa8bdd4 sports: 2026-11-09 posted log + verdicts [skip ci]",
-      "7465b7d claim: mailbox verdicts 2026-11-09T13:48Z [skip ci]",
-      "eb484d4 third: analytics [skip ci]",
-      "7d62219 third: update posted log + analytics [skip ci]",
-      "9457f1e deadman: repaired 2026-11-09 [skip ci]",
-      "f3f3748 watchdog: chatgpt task verdicts 20261109 [skip ci]"
+      "d9fda1c doctor: evidence pack + backlog 2026-11-09 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
