@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__5604e5fe",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:34:00Z",
+  "title": "A Mars Mission Could Cost 30% Of Hip Bone Density",
+  "hook": "Mars sounds thrilling until 30% of hip bone density disappears.",
+  "closing": "Reaching Mars matters only if astronauts return with bodies strong enough to live.",
+  "question": "Would this change your Mars plans?",
+  "segments": [
+    {
+      "topic": "Mars Bone Rate",
+      "say": "Astronaut bone density can fall 1.5% monthly. Without gravity's loading, the skeleton starts shedding strength."
+    },
+    {
+      "topic": "Mars Hip Loss",
+      "say": "Astronaut hip density can drop 2.2% monthly. Weight-bearing bone takes the hardest hit."
+    },
+    {
+      "topic": "Mars Bone Cost",
+      "say": "A Mars mission could cost 30% of hip bone density without protection. Countermeasures become part of survival."
+    }
+  ]
+}
