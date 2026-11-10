@@ -1,0 +1,21 @@
+{
+ "checked_at": "2026-11-10T12:31:13+00:00",
+ "date": "20261110",
+ "deadline_central": 7,
+ "deadline_passed": false,
+ "expected": [
+  "exchange/bundles/20261110/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json"
+ ],
+ "headline": "media: not_required",
+ "ok": true,
+ "required": false,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "not_required",
+ "task": "media",
+ "why_required": "the bundle asks for 0 images"
+}
