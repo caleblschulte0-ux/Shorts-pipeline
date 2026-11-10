@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "library-digital-shift__723877f7",
+  "slug": "library-digital-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:34:00Z",
+  "title": "Libraries Looked Emptier As Digital Borrowing Hit 739 Million",
+  "hook": "Libraries looked emptier while digital checkouts reached 739 million.",
+  "closing": "Libraries did not lose readers; they became reachable wherever readers carry a phone.",
+  "question": "How do you borrow library books?",
+  "segments": [
+    {
+      "topic": "Library Visits",
+      "say": "Library visits fell to 671 million. The building got quieter, but demand for books did not."
+    },
+    {
+      "topic": "Library Digital",
+      "say": "Since 2019, digital checkouts more than doubled to 739 million. Borrowing simply moved into an app."
+    }
+  ]
+}
