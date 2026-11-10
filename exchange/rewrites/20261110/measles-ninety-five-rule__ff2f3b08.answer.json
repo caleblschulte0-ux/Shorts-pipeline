@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-ninety-five-rule__ff2f3b08",
+  "slug": "measles-ninety-five-rule",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:34:00Z",
+  "title": "A Small Immunity Gap Can Restart Measles At 95% Protection",
+  "hook": "Measles needs 95% protection. Kindergartens are already below it.",
+  "closing": "A small protection gap can reopen outbreaks, so every vaccine helps shield your town.",
+  "question": "Did you get both measles shots?",
+  "segments": [
+    {
+      "topic": "Measles Case Spread",
+      "say": "One measles case infects about fifteen people. The virus races through a crowd the moment protection slips."
+    },
+    {
+      "topic": "Measles Protection",
+      "say": "Measles is stopped when ninety-five percent of kids are protected. Kindergartners fall just short, and the virus finds every gap."
+    },
+    {
+      "topic": "Measles Case Surge",
+      "say": "US measles cases grew about nine times recently. A small protection gap let each outbreak snowball."
+    }
+  ]
+}
