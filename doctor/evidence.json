@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261109 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261109.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
         "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261109 (a bundle exists for this date).",
@@ -218,277 +224,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-05T17:27:24+00:00",
-      "slug": "billion-dollar-disasters-record-2023",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 3,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The boarded-up building opening is strong and on-subject, but the record-year helicopter beat hides its 3x contrast in tiny stickers and the vault ending sits still on a cash pile.",
-      "auto_fails": [],
-      "problems": [
-        "seg2: the 28 vs a usual 8.5 is drawn as tiny bolt stickers on the helicopter tail, illegible as a comparison on a phone.",
-        "seg2: the headline 'Every one a mission' carries no claim, and Data stands with a stamp and barely performs.",
-        "seg3/seg4: the vault pile is static from seg3:mid to the end, Data holds one pointing pose, and $2.6 trillion has no sense of scale.",
-        "seg0: the subtitle '1980s\u20132019-2023' is awkward and reads like a typo.",
-        "seg1:end: the caption fades over the brown road props and goes faint."
-      ],
-      "fixes": [
-        "Redraw seg2 so the record is a big, full-frame change, e.g. 28 rescue helicopters launched by Data against a ghosted row of about 8 for a usual year.",
-        "Give seg3 motion and scale: Data wheels pallets into the vault until it overflows, with a yardstick for $2.6T (per household), and stop holding the finished pile through the closing.",
-        "Fix the seg0 subtitle to read '1980s vs 2019\u20132023'.",
-        "Give the closing its own beat of action, e.g. Data stamping an itemized bill on the pile, instead of repeating the seg3 frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 88
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "weak_metaphor_illegible_scale",
-        "visible_evidence": "seg2:start to seg2:end: the record of 28 disasters against a usual 8.5 is drawn as a strip of tiny lightning-bolt stickers on the helicopter's tail band. At phone size they read as a decorative stripe, and the 'usual year' marker is a thin line with small white text over a grey hangar. The headline ",
-        "root_cause": "The comparison (3.3x a usual year) sits in a small tally inside a large prop. The helicopter is a static set piece and the number never becomes a big physical change the viewer can see.",
-        "repair_goal": "Make 2023's 28 visibly crowd out a usual year at full-frame scale, e.g. Data dispatching 28 rescue helicopters onto a row of pads where only about 8 normally fly, with the 8-pad 'usual year' ghost drawn on the ground. Data should launch each one, with a clear arc from wind-up to the craft lifting of"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.244,
-        "effective_fps": 18.1,
-        "max_dup_run": 27,
-        "measured": true,
-        "frozen_ratio": 0.085,
-        "frozen_fps": 22.0,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 4.08,
-        "max_dup_at_s": 25.25,
-        "duration_s": 29.38
-      },
-      "fingerprint": "?|-|weak_metaphor_illegible_scale",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-05T18:27:10+00:00",
-      "slug": "government-internet-shutdowns-record",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The server-rack unplugging is a real tier-1 picture, but the tower beat shows a near-quadrupling only as a changing label on a scene that reuses the hook, and the ending is a static text card over the previous shot.",
-      "auto_fails": [],
-      "problems": [
-        "The hook and beat 0 (seg1) share one tower composition for about 12s. 75 to 182 to 283 is carried by the headline, and the picture does not change in proportion.",
-        "An orphan '2016' tick floats beside Data in seg1 with no axis or partner, so it reads as a leftover.",
-        "The spoken hook ('The internet blackout is now a weapon...') does not match the scripted hook ('Exams, protests, elections...'), so the opening line has drifted from the script.",
-        "seg3 shows $9.1 billion as three shutters. There is no scale on screen, so the picture could stand for any amount.",
-        "The closing (seg4) is a static text card over the reused shuttered street. The shop signs go blank between seg3 and seg4 (continuity slip), and the ending (Data's shrug, then a CTA) has no new payoff.",
-        "The 'Ukraine 22' runner-up comparison in seg2 is a small tag on the plug rows, not a visible second quantity."
-      ],
-      "fixes": [
-        "Give beat 0 its own build. Each time Data throws the switch, more of the skyline goes dark, from a few blocks in 2016 to most of the city in 2023, with the 2016 state ghosted on the same skyline. Remove the '2016' tick.",
-        "In seg2, show Ukraine's 22 as a second, much smaller rack (or a section marked off on the same rack) so 'nearly four times' can be seen.",
-        "In seg3, put the scale in the shot: shutters dropping down a long receding street, with a 'then' count, so $9.1B reads as a whole economy closing.",
-        "Keep the shop signs' names in the closing, and give the closing a final image that pays off 'the world rarely hears', e.g. the last lit window going dark.",
-        "Re-sync the spoken hook to the scripted hook line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 103
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "static_build_label_carries_number",
-        "visible_evidence": "From seg1:start to seg1:end the tower, the fence, Data at the lever and the four people with phones look the same as in the hook. Only the headline changes from 182 to 283 and a '3.8x' tag appears. A lone '2016' tick floats beside Data with no axis.",
-        "root_cause": "The hook and beat 0 reuse one scene. Nothing in the picture grows with the count, so the label carries the 3.8x and the image does not.",
-        "repair_goal": "Make the count physical, with Data causing it. Each time he throws the switch, another tower or district on the skyline goes dark, so 2016's few dark blocks become 2023's nearly blacked-out city. Show the 2016 state as a ghost on the same skyline so the near-quadrupling can be read at a glance, and "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.21,
-        "effective_fps": 19.0,
-        "max_dup_run": 17,
-        "measured": true,
-        "frozen_ratio": 0.052,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 17,
-        "judder_ratio": 0.002,
-        "judder_fps": 23.9,
-        "held_s": 4.04,
-        "max_dup_at_s": 0.0,
-        "duration_s": 34.21
-      },
-      "fingerprint": "?|-|static_build_label_carries_number",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-05T19:03:54+00:00",
-      "slug": "government-internet-shutdowns-record",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 3,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong bespoke metaphors (towers going dark, ports unplugged, shutters down), but the $9.1B scene lacks scale and agency and the closing is a long static text hold.",
-      "auto_fails": [
-        "unreadable: In seg1:start and seg1:mid the 'Ukraine 22' tag on the rack is tiny and sits among coloured cables, so it is illegible on a phone. The small grey '2016' ghost mark (seg0:mid) is also hard to read."
-      ],
-      "problems": [
-        "seg1: the 'Ukraine 22' comparison tag is tiny and buried in cables, so the 3.8x comparison does not read on a phone",
-        "seg2: Data points at the shutters instead of pulling them down, and three shops do not show the scale of $9.1 billion",
-        "seg3/seg4: about 6s of a still storefront with a wall of white text while Data idles, so the payoff is a sentence, not a visual",
-        "Hook: the flash-forward to 283 and 3.8x lasts under 0.5s before cutting back to 75 in 2016, so the jump confuses more than it shocks"
-      ],
-      "fixes": [
-        "Enlarge the Ukraine marker to a bold row bracket ('Ukraine: 22') or dim the rest of the rack so 22 vs 84 is visible at a glance",
-        "Give Data a two-hand grip on each shutter handle (host 'grip') so he is the one closing the shops; add a receding street of shops going dark to show the size of $9.1B",
-        "Keep the closing scene moving: lights in the upper windows going out one by one, or the street dimming, under a shorter line",
-        "Hold the hook's finished 283 frame long enough to read before the build restarts"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 114
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "weak_agency_and_scale",
-        "visible_evidence": "seg2:start to seg2:end: the shutters on GROCER, PHONES and CAFE close while Data stands beside them pointing. '$9.1 billion' appears only as a headline (seg2:end), and three shops shutting gives no sense of how big that sum is.",
-        "root_cause": "Data is placed next to the shutters, not gripping them, and the picture has no unit that turns $9.1B into something you can see at a glance. It reads as 'shops closed', not 'nine billion lost'.",
-        "repair_goal": "Have Data grab and pull each shutter down with both hands (a grip act on the shutter handles). Put the scale on the street itself, e.g. a long row of shops going dark into the distance, or a till readout draining, so the size of $9.1B reads without the label."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.209,
-        "effective_fps": 19.0,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.047,
-        "frozen_fps": 22.9,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 4.12,
-        "max_dup_at_s": 0.0,
-        "duration_s": 38.08
-      },
-      "fingerprint": "?|unreadable|weak_agency_and_scale",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-06T11:43:47+00:00",
-      "slug": "sports_sal_frelick_rleaders_sal",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Charming real celebration interview, but the line promises 'soaked' and the title promises a cheerleader hi-five, and the clip shows neither before it ends.",
-      "auto_fails": [],
-      "problems": [
-        "The hook line says Sal is 'soaked', but he is in a dry hoodie in every frame (mid0-mid4).",
-        "The title's cheerleader hi-five is never shown. The clip ends on the pair walking away (payoff@-0.4).",
-        "The footage is a small letterboxed band with about 60% of the frame as blurred fill, which weakens impact on a phone.",
-        "There are no zooms or sound hits on the reaction moments ('OH MY GOD' at mid0, 'WE WIN!' at payoff), which the format calls for."
-      ],
-      "fixes": [
-        "Rewrite the on-screen line to match what is shown, e.g. 'Brewers champs tell Milwaukee what this title means'.",
-        "Extend or recut to include the cheerleader/fan hi-five if the source has it, and end on it.",
-        "Punch-crop the footage to fill more of the vertical frame, keeping both players' faces in.",
-        "Add a punch-in with a sound hit on 'OH MY GOD' and on 'WE WIN!'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "payoff@-1.8 and payoff@-0.4 show the pair turning away toward motorcycles and the crowd, 'WE WIN!', with Bauers' shoulder filling the left half. The cheerleader hi-five the title promises is never shown, and Sal is in a dry hoodie, not visibly soaked (mid4).",
-        "root_cause": "The cut ends on a walk-off before the promised moment. The hook line claims 'soaked', which the footage never shows.",
-        "repair_goal": "End on the hi-five or crowd-greeting moment if the source has it. Otherwise rewrite the line to match what is shown, e.g. 'Sal Frelick and Jake Bauers tell the city what this title means'. Punch in on Bauers' 'WE WIN!' as a payoff beat."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.033,
-        "effective_fps": 23.2,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.033,
-        "frozen_fps": 23.2,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.03,
-        "judder_fps": 23.3,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.33,
-        "duration_s": 23.83
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
     {
       "ts": "2026-11-06T11:45:29+00:00",
       "slug": "sports_christian_yelich_ys_lookalike",
@@ -3939,20 +3674,276 @@
         "duration_s": 18.0
       },
       "fingerprint": "?|malformed_judge_response|-"
+    },
+    {
+      "ts": "2026-11-10T11:50:53+00:00",
+      "slug": "sports_travis_hunter_get_the_ball",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The video tells a story through text over largely static footage of a player on the bench, lacking visual demonstration of the described event.",
+      "auto_fails": [],
+      "problems": [
+        "The visual content is largely static and does not actively demonstrate the story described in the text, making the 'data demonstration' weak.",
+        "The pace is slow due to the lack of meaningful movement or visual progression in the footage.",
+        "The video lacks a clear visual payoff or punchline at the end."
+      ],
+      "fixes": [
+        "Use more dynamic footage that visually shows the actual event (Travis Hunter getting the ball, or Branson Combs receiving it) or a more animated reaction/interview from Hunter.",
+        "Incorporate camera movements, zooms, or cuts that enhance the narrative and visual engagement throughout the video.",
+        "Ensure the ending provides a visual resolution or impactful moment that aligns with the story's conclusion."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 39
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "data_demo",
+        "visible_evidence": "The initial frames show Travis Hunter sitting on the bench, but the visual content does not immediately demonstrate the promised action of getting the ball for Branson Combs, relying on text to convey the story.",
+        "root_cause": "The chosen footage is passive and does not actively illustrate the core narrative or provide a compelling visual hook for the story.",
+        "repair_goal": "Replace the initial static footage with a more dynamic visual that either shows the actual moment of getting the ball, a more animated reaction from Hunter, or a visual representation of the ball being secured for Combs."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.247,
+        "effective_fps": 18.1,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.247,
+        "frozen_fps": 18.1,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.228,
+        "judder_fps": 18.5,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 13.04
+      },
+      "fingerprint": "?|-|data_demo"
+    },
+    {
+      "ts": "2026-11-10T11:52:50+00:00",
+      "slug": "sports_sean_payton_s_conference",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A well-executed sports moment clip that clearly depicts the coach's humorous mistake with engaging text overlays.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 26
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "minor improvement",
+        "visible_evidence": "The initial text reveal 'CAN WE NOT' and 'SMOKE IN HERE?' is clear but could have slightly more dynamic animation to immediately grab attention.",
+        "root_cause": "Standard text animation choice for the opening.",
+        "repair_goal": "Implement a more engaging or stylized text animation for the hook to enhance initial viewer retention."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.317,
+        "effective_fps": 16.4,
+        "max_dup_run": 22,
+        "measured": true,
+        "frozen_ratio": 0.043,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 2.29,
+        "max_dup_at_s": 2.92,
+        "duration_s": 8.71
+      },
+      "fingerprint": "?|-|minor improvement"
+    },
+    {
+      "ts": "2026-11-10T12:36:03+00:00",
+      "slug": "sports_dirk_nowitzki_ons_of_jalen",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The quote is clear and readable, but the edit never shows the Jalen Brunson payoff promised by the title.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4 still shows the podcast interview rather than Jalen Brunson or the promised realization/moment."
+      ],
+      "problems": [
+        "The last frames repeat the podcast setup instead of revealing the promised 'THIS'.",
+        "The split-screen crop is repetitive and adds little visual information across the 23.75-second clip."
+      ],
+      "fixes": [
+        "Cut to Jalen Brunson game or training footage at the reversal.",
+        "Use one clean interview crop for the setup, then shift visual context for the payoff."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 71
+      },
+      "judge": "chatgpt-mailbox",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "missing_payoff",
+        "visible_evidence": "payoff@-1.8 and payoff@-0.4 never cut to Jalen Brunson or any moment that demonstrates Dirk changing his mind.",
+        "root_cause": "The edit uses one interview excerpt as both setup and ending, so the title's promised 'Then He Saw THIS' is never shown.",
+        "repair_goal": "End on clear Jalen Brunson footage or a concrete reaction beat that visually delivers Dirk's reversal."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.304,
+        "effective_fps": 16.7,
+        "max_dup_run": 23,
+        "measured": true,
+        "frozen_ratio": 0.062,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 7,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.75,
+        "max_dup_at_s": 5.92,
+        "duration_s": 23.75
+      },
+      "fingerprint": "?|junk_imagery|missing_payoff"
+    },
+    {
+      "ts": "2026-11-10T12:38:25+00:00",
+      "slug": "sports_dirk_nowitzki_ons_of_jalen",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The quote is clear and readable, but the edit never shows the Jalen Brunson payoff promised by the title.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4 still shows the podcast interview rather than Jalen Brunson or the promised realization/moment."
+      ],
+      "problems": [
+        "The last frames repeat the podcast setup instead of revealing the promised 'THIS'.",
+        "The split-screen crop is repetitive and adds little visual information across the 23.75-second clip."
+      ],
+      "fixes": [
+        "Cut to Jalen Brunson game or training footage at the reversal.",
+        "Use one clean interview crop for the setup, then shift visual context for the payoff."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 71
+      },
+      "judge": "chatgpt-mailbox",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "missing_payoff",
+        "visible_evidence": "payoff@-1.8 and payoff@-0.4 never cut to Jalen Brunson or any moment that demonstrates Dirk changing his mind.",
+        "root_cause": "The edit uses one interview excerpt as both setup and ending, so the title's promised 'Then He Saw THIS' is never shown.",
+        "repair_goal": "End on clear Jalen Brunson footage or a concrete reaction beat that visually delivers Dirk's reversal."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.304,
+        "effective_fps": 16.7,
+        "max_dup_run": 23,
+        "measured": true,
+        "frozen_ratio": 0.062,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 7,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.75,
+        "max_dup_at_s": 5.92,
+        "duration_s": 23.75
+      },
+      "fingerprint": "?|junk_imagery|missing_payoff"
     }
   ],
   "showrunner_recurrence": {
-    "?|-|weak_payoff": {
+    "?|-|data_demo": {
       "count": 4,
       "days": [
-        "2026-11-06"
+        "2026-11-07",
+        "2026-11-09",
+        "2026-11-10"
       ]
     },
-    "?|-|data_demo": {
+    "?|junk_imagery|missing_payoff": {
+      "count": 4,
+      "days": [
+        "2026-11-08",
+        "2026-11-10"
+      ]
+    },
+    "?|-|weak_payoff": {
       "count": 3,
       "days": [
-        "2026-11-07",
-        "2026-11-09"
+        "2026-11-06"
       ]
     },
     "?|junk_imagery|claim-footage mismatch": {
@@ -3992,34 +3983,10 @@
         "2026-11-08"
       ]
     },
-    "?|junk_imagery|missing_payoff": {
-      "count": 2,
-      "days": [
-        "2026-11-08"
-      ]
-    },
     "longform|temporal_gate|-": {
       "count": 2,
       "days": [
         "2026-11-08"
-      ]
-    },
-    "?|-|weak_metaphor_illegible_scale": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|-|static_build_label_carries_number": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
-      ]
-    },
-    "?|unreadable|weak_agency_and_scale": {
-      "count": 1,
-      "days": [
-        "2026-11-05"
       ]
     },
     "?|empty_void+junk_imagery+unreadable|claim_not_shown": {
@@ -4207,11 +4174,17 @@
       "days": [
         "2026-11-10"
       ]
+    },
+    "?|-|minor improvement": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
     }
   },
   "recent_commits": [
-    "6916b92 2026-11-10 claim: mailbox verdicts 2026-11-10T04:49Z [skip ci]",
-    "7a1f293 2026-11-10 claim: mailbox verdicts 2026-11-10T03:49Z [skip ci]"
+    "6821f63 2026-11-10 sports: 2026-11-10 posted log + verdicts [skip ci]",
+    "4e58969 2026-11-10 third: analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4229,10 +4202,10 @@
         "2026-11-07": 4,
         "2026-11-08": 7,
         "2026-11-09": 5,
-        "2026-11-10": 3
+        "2026-11-10": 4
       },
-      "total_posted": 539,
-      "attempted": 539,
+      "total_posted": 540,
+      "attempted": 540,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4267,11 +4240,12 @@
         "2026-11-05": 5,
         "2026-11-06": 6,
         "2026-11-07": 4,
-        "2026-11-08": 2
+        "2026-11-08": 2,
+        "2026-11-10": 3
       },
-      "total_posted": 528,
-      "attempted": 1293,
-      "rejected_or_pending": 765
+      "total_posted": 531,
+      "attempted": 1299,
+      "rejected_or_pending": 768
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4285,62 +4259,62 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 142,
+      "videos": 141,
       "top_by_vph": [
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 16.87,
-          "views": 1016
+          "vph": 14.51,
+          "views": 1017
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 13.96,
+          "vph": 12.45,
           "views": 1132
         },
         {
           "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-          "vph": 9.24,
+          "vph": 8.08,
           "views": 638
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 8.21,
-          "views": 710
+          "vph": 7.38,
+          "views": 711
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 5.53,
+          "vph": 5.32,
           "views": 1377
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 139,
+      "videos": 136,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 4.36,
-          "views": 1895
+          "vph": 4.21,
+          "views": 1897
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.87,
+          "vph": 1.82,
           "views": 1087
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.72,
-          "views": 419
+          "vph": 1.73,
+          "views": 447
         },
         {
           "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
-          "vph": 1.68,
-          "views": 123
+          "vph": 1.48,
+          "views": 132
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 1.21,
+          "vph": 1.14,
           "views": 325
         }
       ],
