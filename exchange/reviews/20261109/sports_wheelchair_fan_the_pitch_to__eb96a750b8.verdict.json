@@ -1,0 +1,112 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_wheelchair_fan_the_pitch_to__eb96a750b8",
+ "video_sha256": "eb96a750b8b58787cb95b99b3c714662f452a8e10d2b3ad70b7ed6bfa486ede9",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T00:48:45Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage is relevant to the sports moment described."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are used; the video shows a sports moment."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The video has continuous motion and no static frames for more than 4 seconds (longest_static_s: 0.0)."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are filled with relevant sports action and stadium background."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear, high-contrast, and fully visible."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid5",
+   "index": 5,
+   "failure_class": "less impactful moment",
+   "visible_evidence": "Frame shows a general crowd shot, briefly losing direct focus on the fan or players on the field.",
+   "root_cause": "Brief deviation from the core subject of the video.",
+   "repair_goal": "Maintain direct focus on the fan and players on the field throughout the celebration sequence."
+  },
+  "depictions": [
+   {
+    "id": "mid0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "mid1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "mid2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "mid3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "mid4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "mid5",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "payoff@-1.8",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   },
+   {
+    "id": "payoff@-0.4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Raw footage of a sports moment, not a data visualization."
+   }
+  ],
+  "one_line": "A heartwarming moment of a fan in a wheelchair celebrating a goal on the field with players.",
+  "problems": [],
+  "fixes": []
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_corgi_mascot__halftime_of__e9116450aa",
+ "video_sha256": "e9116450aa3bd06a25fe2bfca8a2c3afb5b948e3ef157b6e377af1fbdedf72a8",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T00:49:06Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All frames show real footage of a corgi on a football field, matching the video's title and description."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "The corgi is the central subject of the video's narrative, not a decorative channel mascot."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present in any frame."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Motion facts indicate `longest_static_s` is 0.0s, confirming continuous motion throughout the video."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Motion facts indicate `dark_fraction` is 0.0, and frames are well-composed with no wasted space."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly visible and readable against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "hook",
+   "index": 0,
+   "failure_class": "minor textual anomaly",
+   "visible_evidence": "The text 'THANK YOU.' appears briefly at the start of the hook, which is unrelated to the main narrative.",
+   "root_cause": "Unnecessary overlay text from source material or an editing artifact.",
+   "repair_goal": "Remove the extraneous text 'THANK YOU.' from the hook segment."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The footage directly demonstrates the corgi running wild on the field, embodying the claim."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The footage shows the corgi being successfully caught and held, providing a clear resolution to the event."
+   }
+  ],
+  "one_line": "A corgi mascot's wild run at halftime is captured with engaging footage and a clear narrative.",
+  "problems": [],
+  "fixes": []
+ }
+}

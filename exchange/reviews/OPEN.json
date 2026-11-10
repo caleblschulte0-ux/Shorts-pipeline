@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-09T23:48:40Z",
+ "updated": "2026-11-10T00:49:25Z",
  "open": [
-  {
-   "id": "sports_wheelchair_fan_the_pitch_to__eb96a750b8",
-   "channel": "trending",
-   "slug": "sports_wheelchair_fan_the_pitch_to",
-   "title": "Wheelchair Fan Invades Pitch After Gebzespor’s Last‑Minute Winner",
-   "filed": "2026-11-09T15:43:59Z",
-   "request": "exchange/reviews/20261109/sports_wheelchair_fan_the_pitch_to__eb96a750b8.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_wheelchair_fan_the_pitch_to__eb96a750b8/sheet.jpg",
-   "answer_path": "exchange/reviews/20261109/sports_wheelchair_fan_the_pitch_to__eb96a750b8.verdict.json"
-  },
-  {
-   "id": "sports_corgi_mascot__halftime_of__e9116450aa",
-   "channel": "trending",
-   "slug": "sports_corgi_mascot__halftime_of",
-   "title": "Corgi Mascot Goes Rogue At Halftime Of Panthers Game",
-   "filed": "2026-11-09T13:47:37Z",
-   "request": "exchange/reviews/20261109/sports_corgi_mascot__halftime_of__e9116450aa.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_corgi_mascot__halftime_of__e9116450aa/sheet.jpg",
-   "answer_path": "exchange/reviews/20261109/sports_corgi_mascot__halftime_of__e9116450aa.verdict.json"
-  },
   {
    "id": "sports_tampa_bay_buccaneers_players_cups__7ed4d988fa",
    "channel": "trending",
