@@ -18655,14 +18655,41 @@
       "ts": "2026-11-10T11:45:05.058483+00:00"
     },
     "clip-20261110-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caedrel/clip/TawdryCulturedEagleTF2John-kK4nOlCG6COqgExc",
-      "story_key": null,
-      "streamer": "caedrel",
+      "url": "https://youtube.com/shorts/29YEFLVmlaw",
       "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-11-10T11:49:24.897032+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-10T11:49:31.150684+00:00",
+      "uploaded_at": "2026-11-10T11:49:31.150702+00:00",
+      "publish_at": "2026-11-10T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261110-caedrel-is-speechless-after-t1-s-unbelievable-5v-9fb29b00",
+        "tiktok": "queued for 2026-11-10T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caedrel/clip/TawdryCulturedEagleTF2John-kK4nOlCG6COqgExc",
+      "streamer": "caedrel",
+      "series": "fail",
+      "hook": "T1 throws a 5v4 against BLG \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8297,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.7,
+        "end": 28.7
+      },
+      "director_cut": true
+    },
+    "rejected-faithfulscrumptiousvelociraptorprimeme-tx8hq4-v_qjry0bj": {
+      "source_url": "https://www.twitch.tv/pikabooirl/clip/FaithfulScrumptiousVelociraptorPrimeMe-TX8hq4-V_QjrY0Bj",
+      "streamer": "pikabooirl",
+      "title": "Pika kills higher level Skull Shaman",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Rant, no observable event)",
+      "ts": "2026-11-10T11:50:11.246321+00:00"
     }
   }
 }

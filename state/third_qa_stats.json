@@ -3,159 +3,6 @@
     {
       "date": "20261103",
       "dry_run": false,
-      "ts": "2026-11-03T12:19:24+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 18,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 147,
-        "with_retention": 131,
-        "with_curve": 15,
-        "fetched_at": "2026-11-03T11:45:47.789754+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-03T12:19:23+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261103-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261103-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 9.7
-        },
-        {
-          "slug": "clip-20261103-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261103-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261103-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261103-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261103-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261103-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261103",
-      "dry_run": false,
       "ts": "2026-11-03T12:23:04+00:00",
       "feedback": {
         "snapshot": true,
@@ -5297,6 +5144,277 @@
         },
         {
           "slug": "clip-20261109-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261110",
+      "dry_run": false,
+      "ts": "2026-11-10T11:54:25+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 136,
+        "with_retention": 124,
+        "with_curve": 15,
+        "fetched_at": "2026-11-10T08:46:21.265158+00:00"
+      },
+      "brain": {
+        "ok": 13,
+        "fail": 6,
+        "limited_at": "2026-11-10T11:34:20+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261110-1",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 128,
+                "refused_shown": 7,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat's public dispute with his former friend Reggie escalates from accusations of lying to threats of manipulation,",
+                    "shape": "multi_streamer",
+                    "n": 6
+                  },
+                  {
+                    "premise": "Kai Cenat's confident declaration of not being scared of Outlast is quickly undermined by repeated jump scares and inten",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jynxzi experiences a series of quick and frustrating deaths and failures across different games.",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Caseoh experiences a range of chaotic and funny moments while playing Minecraft, from crazy timing to realizing his mast",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Stableronaldo's streams are punctuated by moments of intense frustration, rage, and physical pain in games.",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Lacy's IRL streams are filled with unexpected and chaotic moments, from traffic incidents and police encounters to perso",
+                    "shape": "multi_stream",
+                    "n": 6
+                  }
+                ],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 541,
+                "pool": 2920,
+                "pool_with_vod": 2063,
+                "arc_sizes": [
+                  3,
+                  3,
+                  2,
+                  3,
+                  2,
+                  2,
+                  6,
+                  6,
+                  3,
+                  2
+                ]
+              }
+            }
+          },
+          "took_s": 488.6
+        },
+        {
+          "slug": "clip-20261110-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible achievement moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.9,
+              "why": "Streamer hits max level, celebrates with",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jokerdtv Achieves World\u2011First 60 WoW Run"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 179.6
+        },
+        {
+          "slug": "clip-20261110-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261110-3",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.75,
+              "why": "comeback in match",
+              "blind": false
+            },
+            "content": {
+              "score": 0.8,
+              "why": "Streamer shocked by incredible game turn",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 266.1
+        },
+        {
+          "slug": "clip-20261110-4",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "vs instagram - \"that's it\" pt4 (\ud83c\uddf0\ud83c\uddf7 Buyeo)",
+              "raw": "vs instagram - \"that's it\" pt4 (\ud83c\uddf0\ud83c\uddf7 Buyeo)",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 253.4
+        },
+        {
+          "slug": "clip-20261110-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.4
+        },
+        {
+          "slug": "clip-20261110-6",
           "ok": false,
           "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
           "judges": {
