@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "maternal-mortality-pandemic-reversal__12037ae3",
+  "slug": "maternal-mortality-pandemic-reversal",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "Why Black Maternal Deaths Stayed at 50.3 as Others Fell",
+  "hook": "Black maternal deaths stayed at 50.3 while the national rate fell.",
+  "closing": "A falling national average can hide who is still being left behind.",
+  "question": "Did that gap surprise you?",
+  "segments": [
+    {
+      "topic": "Maternal national rate",
+      "say": "The national maternal death rate fell to 18.6, dropping below its pre-pandemic level."
+    },
+    {
+      "topic": "Black maternal rate",
+      "say": "Black maternal deaths stayed at 50.3, so the national recovery did not reach everyone."
+    },
+    {
+      "topic": "Maternal race gap",
+      "say": "White women were at 14.5, revealing how much higher the risk remained for Black mothers."
+    }
+  ]
+}
