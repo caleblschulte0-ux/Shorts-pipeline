@@ -2,7 +2,5 @@
 
 | format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
 |---|---|---|---|---|---|---|---|---|
-| graph_race | 4 | 58 | 14.5 | 0.02 | 88.0 | 1 | 0 | 0 |
-| reddit_story | 1 | 0 | 0.0 | 0.0 | — | 0 | 0 | 0 |
 
-matched 5 videos to packages, 88 unmatched (pre-A/B/C uploads)
+matched 0 videos to packages, 93 unmatched (pre-A/B/C uploads)

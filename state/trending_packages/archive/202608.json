@@ -4295,5 +4295,500 @@
       ],
       "music_vibe": "hiphop"
     }
+  },
+  "20260811": {
+    "01_graph-waymo-vs-cruise-robotaxi.json": {
+      "format": "graph_race",
+      "slug": "graph-waymo-vs-cruise-robotaxi",
+      "title": "Waymo Won The Robotaxi War. Cruise Didn't.",
+      "hook": "One shut down. One took over.",
+      "y_label": "Weekly paid robotaxi rides (thousands)",
+      "duration": 13,
+      "source": "Source: Waymo weekly paid-ride disclosures as reported by TechCrunch, CNBC, Forbes and Axios (2021-2026); Cruise weekly ride volume approximated from company and media reporting prior to its October 2023 California permit suspension and General Motors' December 2024 shutdown of the robotaxi program. Figures approximate.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Waymo",
+          "color": "#4a90e2",
+          "icon": "Waymo",
+          "values": [
+            1,
+            4,
+            10,
+            100,
+            450,
+            500
+          ]
+        },
+        {
+          "name": "Cruise",
+          "color": "#e74c3c",
+          "icon": "Cruise",
+          "values": [
+            1,
+            5,
+            10,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "hashtags": [
+        "waymo",
+        "robotaxi",
+        "selfdrivingcars",
+        "cruise",
+        "gm",
+        "autonomousvehicles",
+        "ai",
+        "tech",
+        "futuretech",
+        "sanfrancisco",
+        "alphabet",
+        "google",
+        "innovation",
+        "electricvehicles"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-suez-vs-cape-good-hope.json": {
+      "format": "graph_race",
+      "slug": "graph-suez-vs-cape-good-hope",
+      "title": "The Detour That Broke The Suez Canal",
+      "hook": "War rerouted the world's ships.",
+      "y_label": "Monthly container ship transits (est.)",
+      "duration": 13,
+      "source": "Source: Suez Canal Authority transit counts and Cape of Good Hope diversion tracking as reported by Reuters, Lloyd's List, the Kiel Institute for the World Economy (Kiel Trade Indicator) and IMF PortWatch, 2019-2025; Red Sea/Suez traffic collapsed after Houthi attacks began in November 2023. Figures are approximate monthly averages.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Suez Canal",
+          "color": "#f5c518",
+          "values": [
+            1900,
+            1700,
+            1900,
+            2000,
+            2068,
+            877,
+            850
+          ]
+        },
+        {
+          "name": "Cape of Good Hope",
+          "color": "#2ecc71",
+          "values": [
+            180,
+            200,
+            220,
+            250,
+            300,
+            1600,
+            1500
+          ]
+        }
+      ],
+      "hashtags": [
+        "suezcanal",
+        "redsea",
+        "shipping",
+        "globaltrade",
+        "houthi",
+        "logistics",
+        "supplychain",
+        "capeofgoodhope",
+        "egypt",
+        "geopolitics",
+        "containerships",
+        "economy",
+        "worldnews",
+        "trade"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-measles-vs-whooping-cough.json": {
+      "format": "graph_race",
+      "slug": "graph-measles-vs-whooping-cough",
+      "title": "Vaccine-Preventable Diseases Are Roaring Back",
+      "hook": "The diseases we beat are back.",
+      "y_label": "US cases reported per year",
+      "duration": 13,
+      "source": "Source: CDC National Notifiable Diseases Surveillance System annual case counts for measles and pertussis (whooping cough), 2019-2024, as published by CDC and reported by NBC News, ABC News and CIDRAP. Most recent year figures are provisional.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Measles",
+          "color": "#e74c3c",
+          "values": [
+            1274,
+            13,
+            49,
+            121,
+            59,
+            285
+          ]
+        },
+        {
+          "name": "Whooping Cough",
+          "color": "#9b59b6",
+          "values": [
+            18617,
+            6124,
+            2116,
+            3044,
+            7063,
+            35435
+          ]
+        }
+      ],
+      "hashtags": [
+        "measles",
+        "whoopingcough",
+        "pertussis",
+        "publichealth",
+        "vaccines",
+        "cdc",
+        "outbreak",
+        "health",
+        "immunization",
+        "disease",
+        "epidemiology",
+        "medicine",
+        "science",
+        "kids"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "04_graph-eggs-vs-milk-prices.json": {
+      "format": "graph_race",
+      "slug": "graph-eggs-vs-milk-prices",
+      "title": "Eggs Now Cost More Than Milk. Seriously.",
+      "hook": "Eggs just passed milk in price.",
+      "y_label": "US average retail price (cents)",
+      "duration": 13,
+      "source": "Source: U.S. Bureau of Labor Statistics CPI Average Price Data, Eggs (Grade A, large, per dozen) and Milk (fresh, whole, fortified, per gallon), U.S. city average, 2019-2025; egg price spikes tied to avian-influenza outbreaks in commercial flocks per USDA APHIS reporting. 2025 figure is a partial-year average. Values shown in cents for both units.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Eggs (per dozen)",
+          "color": "#f5c518",
+          "values": [
+            140,
+            146,
+            179,
+            359,
+            285,
+            365,
+            590
+          ]
+        },
+        {
+          "name": "Milk (per gallon)",
+          "color": "#4a90e2",
+          "values": [
+            319,
+            324,
+            354,
+            419,
+            409,
+            405,
+            410
+          ]
+        }
+      ],
+      "hashtags": [
+        "eggprices",
+        "grocery",
+        "birdflu",
+        "inflation",
+        "milk",
+        "costofliving",
+        "economy",
+        "shopping",
+        "food",
+        "avianflu",
+        "cpi",
+        "groceryprices",
+        "consumer",
+        "money"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "05_reddit-hoa-garden-gnome-bylaws.json": {
+      "subreddit": "pettyrevenge",
+      "slug": "reddit-hoa-garden-gnome-bylaws",
+      "title": "She Fined Me Over A Garden Gnome. So I Read Every Bylaw.",
+      "script": "Our HOA president left a $150 fine on my door for unapproved yard decor, meaning one ceramic gnome my grandmother gave me. The bylaws never mention gnomes, so I actually read all forty pages that night. Turns out half the street was already in violation of something: unregistered trailers, a trampoline over the height limit, a shed built without a permit, and one parked boat sitting in her own driveway for three years. I filed one formal complaint per violation, cited the exact clause each time, and copied the whole board. The next meeting ran four hours. Neighbors who'd never spoken to each other suddenly had opinions about setback rules. By the time the dust settled, the board voted to grandfather in most of it, my fine got dropped for lack of a written decor policy, and the gnome stayed exactly where it was, now with a tiny sign that says approved.",
+      "shots": [
+        {
+          "phrase": "left a $150 fine on my door",
+          "query": "notice on front door",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Z8KoHHS_Ivqc5s6VWOvnUjhCOKluq0CT",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Z8KoHHS_Ivqc5s6VWOvnUjhCOKluq0CT",
+          "media_sha256": "2408ca18a34abff89c7d4fde675b49dfd4538d44c208b92e3cbcc466791c739c",
+          "media_bytes": 2108153
+        },
+        {
+          "phrase": "one ceramic gnome my grandmother gave me",
+          "query": "garden gnome lawn",
+          "pin_query": "garden gnome",
+          "pin_context": "ceramic yard decor statue",
+          "news_query": "garden gnome",
+          "news_angle": "A garden gnome sparked a dispute between a homeowner and the HOA president over yard decor policies.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/ML-W%C3%A4chter_%28cropped%29.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "read all forty pages that night",
+          "query": "reading documents at night",
+          "image_url": "https://drive.google.com/uc?export=download&id=1i_g4zcWMaP2KENsDX3TxYRqM4HBULZE1",
+          "media_origin": "chatgpt",
+          "media_file_id": "1i_g4zcWMaP2KENsDX3TxYRqM4HBULZE1",
+          "media_sha256": "dfb3f57e8719afb1edc249cb7439fd406f400d76c55b611a86cc79001cddf32b",
+          "media_bytes": 1746607
+        },
+        {
+          "phrase": "unregistered trailers",
+          "query": "trailer parked driveway",
+          "image_url": "https://drive.google.com/uc?export=download&id=1EKuZ8KGuIM95N32va6iznVHgEuf-fsIQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1EKuZ8KGuIM95N32va6iznVHgEuf-fsIQ",
+          "media_sha256": "1d657e24002917ca87de52615b2231fb5394f6fcb6c496ae6e550873e7d0806a",
+          "media_bytes": 2395017
+        },
+        {
+          "phrase": "a trampoline over the height limit",
+          "query": "backyard trampoline",
+          "image_url": "https://drive.google.com/uc?export=download&id=1CePWA4uWjVtzCnf0-2n4qPQ4PWprrGz-",
+          "media_origin": "chatgpt",
+          "media_file_id": "1CePWA4uWjVtzCnf0-2n4qPQ4PWprrGz-",
+          "media_sha256": "098f6a0a2125bf605c91ebe6c7a7cb8eccdb1eac7d7a733be2fefb5c4d300a65",
+          "media_bytes": 2209034
+        },
+        {
+          "phrase": "a shed built without a permit",
+          "query": "backyard storage shed",
+          "image_url": "https://drive.google.com/uc?export=download&id=1wqa1arIqTgQ7CQyUBfwEe6YlP-uG-JE5",
+          "media_origin": "chatgpt",
+          "media_file_id": "1wqa1arIqTgQ7CQyUBfwEe6YlP-uG-JE5",
+          "media_sha256": "e29548321de41a686df6cc3576359d87da8dfb024e1b5f88992f64fb976b8832",
+          "media_bytes": 2705325
+        },
+        {
+          "phrase": "one parked boat sitting in her own driveway",
+          "query": "boat parked driveway",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Fx3CE__uNomPPSj-Gu48z_8fLoGAG8mK",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Fx3CE__uNomPPSj-Gu48z_8fLoGAG8mK",
+          "media_sha256": "032325485e98f19c1eb83a6acc8f6189067f5fba8388b52fc6a08a491aeb3e6f",
+          "media_bytes": 2207293
+        },
+        {
+          "phrase": "The next meeting ran four hours",
+          "query": "community meeting room",
+          "image_url": "https://drive.google.com/uc?export=download&id=1diq-atfqbljYt6A0EkBvtjvbzpeo3Wj0",
+          "media_origin": "chatgpt",
+          "media_file_id": "1diq-atfqbljYt6A0EkBvtjvbzpeo3Wj0",
+          "media_sha256": "7e795ea9589a7c47316b715eb0dcbb408d591a0bc2b35a31998c9bbb9cd47828",
+          "media_bytes": 2248231
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "$150 fine",
+          "text": "$150 FINE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "forty pages",
+          "text": "40 PAGES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "three years",
+          "text": "3 YEARS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "four hours",
+          "text": "4 HOURS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "fine got dropped",
+          "text": "FINE DROPPED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "hoa",
+        "hoafine",
+        "gardengnome",
+        "pettyrevenge",
+        "neighborhood",
+        "bylaws",
+        "communityassociation",
+        "homeownersassociation",
+        "karma",
+        "maliciouscompliance",
+        "suburbs",
+        "reddit",
+        "revenge",
+        "neighbors"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-wrong-store-coupon.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-wrong-store-coupon",
+      "title": "She Waved A Rival Store's Coupon At Me. I Just Called The Number.",
+      "script": "A woman shoved a coupon across the counter insisting our system was glitching because it wouldn't scan her forty percent off code. She got loud fast, said she'd been a loyal customer for ten years, and demanded I override it manually. Store policy says I can call the printed number on any coupon to verify it live, so I did, right there on speaker so she could hear too. The automated line that picked up was not ours. It was a rival chain two blocks over, reading back its own return policy in a cheerful robotic voice. She'd grabbed the wrong flyer off her kitchen counter that morning and never noticed the logo. I offered her our actual weekly discount instead, ten percent, no drama. She took it without a word, and the coupon stayed folded on the counter until the next customer used it as a napkin.",
+      "shots": [
+        {
+          "phrase": "shoved a coupon across the counter",
+          "query": "coupon on store counter",
+          "image_url": "https://drive.google.com/uc?export=download&id=13MNTxQpnVDjrAi49aTTPjKcVuWbveiup",
+          "media_origin": "chatgpt",
+          "media_file_id": "13MNTxQpnVDjrAi49aTTPjKcVuWbveiup",
+          "media_sha256": "32b1d12d5b4e71bf5aaa800839268a289eba69da4935667579b6c0c73f9f67b6",
+          "media_bytes": 2075466
+        },
+        {
+          "phrase": "forty percent off code",
+          "query": "discount coupon percent off",
+          "image_url": "https://drive.google.com/uc?export=download&id=1urzden9yVU9AHCsUTTDfnrKnN1ck1ELw",
+          "media_origin": "chatgpt",
+          "media_file_id": "1urzden9yVU9AHCsUTTDfnrKnN1ck1ELw",
+          "media_sha256": "4b78890e1d86bbf41c108a81f77951598f62ff7d2b0ce9ca170254c699dec8e6",
+          "media_bytes": 2431852
+        },
+        {
+          "phrase": "loyal customer for ten years",
+          "query": "customer at checkout counter",
+          "image_url": "https://drive.google.com/uc?export=download&id=1TC_lG-S8k3rrX4GQWZ0J709Au6ncpZW0",
+          "media_origin": "chatgpt",
+          "media_file_id": "1TC_lG-S8k3rrX4GQWZ0J709Au6ncpZW0",
+          "media_sha256": "5b380f482403ba869e3090b1782eeb534df9ecf517f74dd17f467fb111ef49c9",
+          "media_bytes": 2742575
+        },
+        {
+          "phrase": "call the printed number on any coupon",
+          "query": "phone call at register",
+          "image_url": "https://drive.google.com/uc?export=download&id=1pieErB9BZFPiG_fLbfHklwSSa3zNUrRx",
+          "media_origin": "chatgpt",
+          "media_file_id": "1pieErB9BZFPiG_fLbfHklwSSa3zNUrRx",
+          "media_sha256": "2774510e054f9bf58eba2c1a0859dac0aed79069bae761e11a92f22dc9dc072d",
+          "media_bytes": 2241554
+        },
+        {
+          "phrase": "right there on speaker",
+          "query": "smartphone speaker counter",
+          "image_url": "https://drive.google.com/uc?export=download&id=1spJsveuHl_PVuu2Guxx4kimdQCYJ5keQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1spJsveuHl_PVuu2Guxx4kimdQCYJ5keQ",
+          "media_sha256": "ad90f15c12781886e9aed30275085e636302ee872df6a365c36126900ce8b338",
+          "media_bytes": 1655792
+        },
+        {
+          "phrase": "a rival chain two blocks over",
+          "query": "retail storefront street",
+          "image_url": "https://drive.google.com/uc?export=download&id=1_10pCIg9oIyKr9GhgpJ-XFLGyo961M_d",
+          "media_origin": "chatgpt",
+          "media_file_id": "1_10pCIg9oIyKr9GhgpJ-XFLGyo961M_d",
+          "media_sha256": "eabfcf53ea09192d08e7b7fd872a6e0fcee4d3bcffb79240db942a801507f2b4",
+          "media_bytes": 2298372
+        },
+        {
+          "phrase": "her kitchen counter that morning",
+          "query": "kitchen counter paper",
+          "image_url": "https://drive.google.com/uc?export=download&id=1lcX63MAt5KMHwTVI7D3Ugj1fQr6NActd",
+          "media_origin": "chatgpt",
+          "media_file_id": "1lcX63MAt5KMHwTVI7D3Ugj1fQr6NActd",
+          "media_sha256": "e85f3ac4d3fc39d61a9765e9fd9b3cf112cd9862b2d6e2bc0748c63d84b61499",
+          "media_bytes": 2092935
+        },
+        {
+          "phrase": "the coupon stayed folded on the counter",
+          "query": "folded paper counter",
+          "image_url": "https://drive.google.com/uc?export=download&id=1uJ4rM_18hnk2-30dMmxoGao3hBZBhbfr",
+          "media_origin": "chatgpt",
+          "media_file_id": "1uJ4rM_18hnk2-30dMmxoGao3hBZBhbfr",
+          "media_sha256": "8f9551ad8402c2e23c5e9539d46d2ce691ecf58ffd3bd1cd9e7a31fe194d8b5a",
+          "media_bytes": 2279559
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "forty percent off",
+          "text": "40% OFF",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "ten years",
+          "text": "10 YEARS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "not ours",
+          "text": "NOT OURS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "ten percent",
+          "text": "10% OFF",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "talesfromthecustomer",
+        "customerservice",
+        "retail",
+        "coupon",
+        "karma",
+        "pettyrevenge",
+        "reddit",
+        "viral",
+        "customer",
+        "retailworker",
+        "funnystory",
+        "revenge",
+        "shopping",
+        "cashier"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
