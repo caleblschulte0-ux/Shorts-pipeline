@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__b68d2add",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:34:00Z",
+  "title": "The 5% Outside Metric Still Creates Dangerous Conversion Traps",
+  "hook": "Only 5% live outside metric, but one conversion emptied a plane.",
+  "closing": "Unit checks feel tedious until one conversion turns ordinary work into an emergency.",
+  "question": "Should every country use metric?",
+  "segments": [
+    {
+      "topic": "Metric Holdouts",
+      "say": "Only 5% live in non-metric countries. A tiny holdout still creates dangerous conversion points."
+    },
+    {
+      "topic": "Metric Altitude",
+      "say": "A metric mix-up dropped the Mars orbiter to 57 kilometers. The spacecraft flew far below its planned path."
+    },
+    {
+      "topic": "Metric Fuel",
+      "say": "A metric error left the plane 55% short on fuel. It ran dry and had to glide down."
+    }
+  ]
+}
