@@ -2,25 +2,24 @@
  "n_verdicts": 20,
  "classes": {
   "junk_imagery": {
-   "count": 6,
+   "count": 5,
    "stories": {
-    "sports_jack_campbell_pbell_of_the": 2,
-    "sports_rosario_central_ebrate_their": 2,
     "sports_travis_hunter_get_the_ball": 1,
-    "sports_fan_in_wheelchair_the_pitch_to": 1
+    "sports_fan_in_wheelchair_the_pitch_to": 1,
+    "sports_tampa_bay_buccaneers_players_cups": 1,
+    "sports_dirk_nowitzki_ons_of_jalen": 2
    },
    "timestamps": [
-    "2026-11-08T12:39:29+00:00",
-    "2026-11-08T12:41:35+00:00",
-    "2026-11-08T12:42:00+00:00",
-    "2026-11-08T12:44:11+00:00",
     "2026-11-09T11:44:18+00:00",
-    "2026-11-09T12:30:48+00:00"
+    "2026-11-09T12:30:48+00:00",
+    "2026-11-10T02:49:23+00:00",
+    "2026-11-10T12:36:03+00:00",
+    "2026-11-10T12:38:25+00:00"
    ],
    "examples": [
-    "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears.",
-    "junk_imagery: payoff@-1.8 and payoff@-0.4 show a sideline close-up and end card; the promised carting-off moment never appears.",
-    "junk_imagery: hook@0.3 through payoff@-0.4 show Rosario supporters and players, but no frame visibly establishes that Boca won or captures the promised discovery."
+    "junk_imagery: The video shows a player on the sideline, but not the specific moment of Travis Hunter securing the ball for Branson Combs' first interception, which is the core claim of the text.",
+    "junk_imagery: The video claims 'Fan in wheelchair rushes the pitch' but the fan shown running onto the pitch (mid4, payoff@-1.8, payoff@-0.4) is clearly able-bodied and not in a wheelchair.",
+    "malformed_judge_response: checks.junk_imagery.evidence missing or empty"
    ],
    "recurred_after_fix": false
   },
@@ -51,6 +50,19 @@
     "unreadable: The on-screen text is frequently overlaid on top of other text or graphics, making it difficult to read, as seen in `hook@1.5` (\"get\" is obscured) and `hook@2.2` (\"I threw it on the\" is ob"
    ],
    "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "sports_dirk_nowitzki_ons_of_jalen": 1
+   },
+   "timestamps": [
+    "2026-11-10T15:49:23+00:00"
+   ],
+   "examples": [
+    "dead_air: The top half of the split screen remains static for the entire video duration (41.75s), and the 'held_s' is 11.92s, indicating significant periods of stillness."
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
@@ -60,7 +72,7 @@
    "max": 4
   },
   "data_demo": {
-   "median": 5,
+   "median": 4,
    "min": 0,
    "max": 5
   },
@@ -70,7 +82,7 @@
    "max": 4
   },
   "craft": {
-   "median": 2,
+   "median": 3,
    "min": 0,
    "max": 3
   },
@@ -80,7 +92,7 @@
    "max": 2
   },
   "payoff": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -91,17 +103,6 @@
   }
  },
  "scores": [
-  91,
-  75,
-  75,
-  96,
-  84,
-  66,
-  96,
-  84,
-  66,
-  100,
-  96,
   14,
   14,
   27,
@@ -110,6 +111,17 @@
   65,
   100,
   100,
-  100
+  100,
+  100,
+  95,
+  95,
+  14,
+  62,
+  100,
+  66,
+  66,
+  74,
+  75,
+  96
  ]
 }
