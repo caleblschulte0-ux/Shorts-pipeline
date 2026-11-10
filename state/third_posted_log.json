@@ -18583,13 +18583,48 @@
       "director_cut": true
     },
     "clip-20261110-1": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-1e339195f675c929",
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/Ew4z2lSrnP4",
       "title": "Xqc vs the NoPixel cops",
       "kind": "story",
-      "ts": "2026-11-10T11:41:17.623645+00:00",
+      "ts": "2026-11-10T11:41:28.084402+00:00",
+      "uploaded_at": "2026-11-10T11:41:28.084417+00:00",
+      "publish_at": "2026-11-10T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261110-xqc-vs-the-nopixel-cops-79f01f1f",
+        "tiktok": "queued for 2026-11-10T17:00:00Z"
+      },
+      "story_key": "story-1e339195f675c929",
+      "member_keys": [
+        "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw",
+        "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR"
+      ],
+      "streamer": "xqc",
+      "who": [
+        "xqc"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 2,
+      "story_structure": "chronological",
+      "duration_s": 32.0,
+      "narrative_score": 85,
+      "narrative_summary": "xQc gets into two separate confrontations with NoPixel cops on the same stream: first, a foot chase along a dock that ends with both him and the cop falling into the water, and later, a traffic stop where the cop informs him his car's licen",
+      "revision_count": 0,
+      "used_vod_expansion": false,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "clip-20261110-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jokerdtv/clip/SleepyPlayfulSpindlePoooound-YDpolNoCNZfpvIzT",
+      "story_key": null,
+      "streamer": "jokerdtv",
+      "title": "Jokerdtv Achieves World\u2011First 60 WoW Run",
+      "kind": "twitch_clip",
+      "ts": "2026-11-10T11:44:22.255258+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
