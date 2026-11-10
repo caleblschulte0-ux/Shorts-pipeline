@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "helium-supply-squeeze__067a945d",
+  "slug": "helium-supply-squeeze",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "Why Helium's 4x Price Spike Could Happen Again",
+  "hook": "Helium prices jumped 4x once, and demand is climbing again.",
+  "closing": "A concentrated supply makes hospitals and manufacturers vulnerable when demand surges.",
+  "question": "Should helium balloons cost more?",
+  "segments": [
+    {
+      "topic": "Helium reserve supply",
+      "say": "Qatar holds 10.1 billion cubic meters of helium, concentrating global supply in a few countries."
+    },
+    {
+      "topic": "Helium demand growth",
+      "say": "Projected demand reaches 190 on the index, putting far more pressure on limited supplies."
+    },
+    {
+      "topic": "Helium price spike",
+      "say": "Helium prices jumped 4 times during the supply crunch, showing how quickly shortages hit buyers."
+    }
+  ]
+}
