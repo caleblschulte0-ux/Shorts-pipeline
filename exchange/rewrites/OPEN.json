@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T15:42:00Z",
+ "updated": "2026-11-10T18:39:25Z",
  "open": [
+  {
+   "id": "third-interstellar-visitor__e29fbdf1",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-11-10T18:39:25Z",
+   "why": [
+    "premise: brain: The claim hinges on a single number but does not clearly overturn a specific viewer expectation, making it too weak."
+   ],
+   "request": "exchange/rewrites/20261110/third-interstellar-visitor__e29fbdf1.request.json",
+   "answer_path": "exchange/rewrites/20261110/third-interstellar-visitor__e29fbdf1.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__89ea0d88",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-10T18:39:24Z",
+   "why": [
+    "premise: brain: The premise does not invert a viewer's expectation and lacks a single consequential, verifiable number that challenges a preconceived belief."
+   ],
+   "request": "exchange/rewrites/20261110/mangrove-forest-loss__89ea0d88.request.json",
+   "answer_path": "exchange/rewrites/20261110/mangrove-forest-loss__89ea0d88.answer.json"
+  },
   {
    "id": "unclaimed-money-states-hold__74041609",
    "slug": "unclaimed-money-states-hold",
@@ -193,16 +213,6 @@
    ],
    "request": "exchange/rewrites/20261019/volcano-country-ranking__692a9e46.request.json",
    "answer_path": "exchange/rewrites/20261019/volcano-country-ranking__692a9e46.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__c92abc0a",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-10-19T11:44:38Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/third-interstellar-visitor__c92abc0a.request.json",
-   "answer_path": "exchange/rewrites/20261019/third-interstellar-visitor__c92abc0a.answer.json"
   },
   {
    "id": "pentagon-ufo-reports-surge__e166beb3",
