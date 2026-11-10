@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "activity-inequality-steps__f0af7c7a",
+  "slug": "activity-inequality-steps",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:33:00Z",
+  "title": "Why a 43% Gender Gap Predicts Activity Inequality",
+  "hook": "A 43% gender gap helps explain activity inequality worldwide.",
+  "closing": "Health depends not just on average movement, but on who gets left behind.",
+  "question": "Who gets fewer walking opportunities?",
+  "segments": [
+    {
+      "topic": "Activity step count",
+      "say": "Hong Kong averages 6,880 daily steps, showing how widely movement differs between countries."
+    },
+    {
+      "topic": "Activity obesity risk",
+      "say": "High-inequality countries reach 297 on the obesity index, nearly tripling the low-inequality baseline."
+    },
+    {
+      "topic": "Activity gender gap",
+      "say": "The gender step gap explains 43 percent of activity inequality, revealing who is most often left behind."
+    }
+  ]
+}
