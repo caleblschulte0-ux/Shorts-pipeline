@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "coldest-place-in-the-universe-is-human-made__f9462970",
+  "slug": "coldest-place-in-the-universe-is-human-made",
+  "by": "chatgpt",
+  "written_at": "2026-11-10T12:34:00Z",
+  "title": "NASA Made 0.0000000001 Kelvin Cold, Beating Nature",
+  "hook": "Nature lost the cold record to 0.0000000001 kelvin.",
+  "closing": "Human-made cold opens experiments the nearby universe cannot provide.",
+  "question": "What could ultracold atoms reveal?",
+  "segments": [
+    {
+      "topic": "Cold Space",
+      "say": "Deep space sits at 2.7 kelvin. Even emptiness cannot match the coldest natural place shown."
+    },
+    {
+      "topic": "Cold Atoms",
+      "say": "NASA's Cold Atom Lab reached 0.0000000001 kelvin. Humans pushed matter beyond nature's coldest known setting."
+    },
+    {
+      "topic": "Cold Nearby",
+      "say": "The cold experiment is only 250 miles overhead. Unreachable natural cold became nearby science."
+    }
+  ]
+}
