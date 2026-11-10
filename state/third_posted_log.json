@@ -18618,13 +18618,50 @@
       "replay_count": 0
     },
     "clip-20261110-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jokerdtv/clip/SleepyPlayfulSpindlePoooound-YDpolNoCNZfpvIzT",
-      "story_key": null,
-      "streamer": "jokerdtv",
+      "url": "https://youtube.com/shorts/kC4Oul2UkZo",
       "title": "Jokerdtv Achieves World\u2011First 60 WoW Run",
       "kind": "twitch_clip",
-      "ts": "2026-11-10T11:44:22.255258+00:00",
+      "ts": "2026-11-10T11:44:27.718520+00:00",
+      "uploaded_at": "2026-11-10T11:44:27.718540+00:00",
+      "publish_at": "2026-11-10T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261110-jokerdtv-achieves-world-first-60-wow-run-0badec40",
+        "tiktok": "queued for 2026-11-10T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jokerdtv/clip/SleepyPlayfulSpindlePoooound-YDpolNoCNZfpvIzT",
+      "streamer": "jokerdtv",
+      "series": "win",
+      "hook": "World\u2011first 60 WoW achieved",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 22679,
+      "banger": 0.65,
+      "cut": {
+        "start": 35.0,
+        "end": 53.0
+      },
+      "director_cut": true
+    },
+    "rejected-brightgoldenpigimglitch-jnlah3ujayxytz7k": {
+      "source_url": "https://www.twitch.tv/justketh/clip/BrightGoldenPigImGlitch-jnlah3UJaYxytZ7K",
+      "streamer": "justketh",
+      "title": "KIDS SEE THEY'RE LIVE",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (No observable event)",
+      "ts": "2026-11-10T11:45:05.058483+00:00"
+    },
+    "clip-20261110-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caedrel/clip/TawdryCulturedEagleTF2John-kK4nOlCG6COqgExc",
+      "story_key": null,
+      "streamer": "caedrel",
+      "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-11-10T11:49:24.897032+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
