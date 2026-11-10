@@ -1,0 +1,63 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_tampa_bay_buccaneers_players_cups__7ed4d988fa",
+ "video_sha256": "7ed4d988faacafe95d464bb6de2da63aac1a7cfce37d1d0d29e665af1ce522b5",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T02:48:54Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": ""
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in the video frames."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static stretch is 0.0 seconds."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frames are well-composed with subjects filling the space."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly readable and not obstructed."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid1",
+   "index": 2,
+   "failure_class": "engagement",
+   "visible_evidence": "The coach is explaining, but the visual action is less dynamic than the initial reveal or the final eating.",
+   "root_cause": "Focus on verbal explanation rather than active demonstration in this specific moment.",
+   "repair_goal": "Incorporate more dynamic gestures or a closer shot of the cup during the explanation to maintain visual interest."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The video directly shows the actual 'dirt and worm' cups and player reactions, fulfilling the promise of 'weird victory treats'."
+   }
+  ],
+  "one_line": "Engaging sports moment showing players reacting to 'dirt and worm' victory treats.",
+  "problems": [],
+  "fixes": []
+ }
+}

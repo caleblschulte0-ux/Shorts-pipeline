@@ -1,0 +1,67 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_matheus_cunha_to_celebrate__9c22d5e4ec",
+ "video_sha256": "9c22d5e4ec5ec79f7ab83ba684661d8e7a0226722d92bef9fdf71864861f73ee",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T02:49:11Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery consists of real sports footage."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in the video."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are used in the video."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static stretch is 0.0 seconds, indicating continuous motion."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frames are filled with action and people; dark_fraction is 0.0."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is legible and not cut off by the frame edge."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid5",
+   "index": 5,
+   "failure_class": "craft",
+   "visible_evidence": "The on-screen text 'CUNHA WITH A' is an incomplete sentence, ending abruptly.",
+   "root_cause": "Poor text editing or truncation, leading to an unfinished thought.",
+   "repair_goal": "Complete the sentence or rephrase the text to be a full, meaningful statement."
+  },
+  "depictions": [
+   {
+    "id": "hook",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Real footage of the player's celebration directly and uniquely depicts the claim of a 'wild celebration'."
+   }
+  ],
+  "one_line": "A compelling sports moment showing a player's wild celebration with fans, effectively demonstrating the hook.",
+  "problems": [
+   "The on-screen text 'CUNHA WITH A' is an incomplete sentence, which is a minor craft issue."
+  ],
+  "fixes": [
+   "Ensure all on-screen text is grammatically complete and conveys a full message."
+  ]
+ }
+}

@@ -1,27 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-10T01:49:58Z",
- "open": [
-  {
-   "id": "sports_tampa_bay_buccaneers_players_cups__7ed4d988fa",
-   "channel": "trending",
-   "slug": "sports_tampa_bay_buccaneers_players_cups",
-   "title": "Tampa Bay Buccaneers Celebrate Mud Bowl Win With Dirt & Worm Cups 😳",
-   "filed": "2026-11-09T13:45:27Z",
-   "request": "exchange/reviews/20261109/sports_tampa_bay_buccaneers_players_cups__7ed4d988fa.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_tampa_bay_buccaneers_players_cups__7ed4d988fa/sheet.jpg",
-   "answer_path": "exchange/reviews/20261109/sports_tampa_bay_buccaneers_players_cups__7ed4d988fa.verdict.json"
-  },
-  {
-   "id": "sports_matheus_cunha_to_celebrate__9c22d5e4ec",
-   "channel": "trending",
-   "slug": "sports_matheus_cunha_to_celebrate",
-   "title": "Matheus Cunha dives into the stands after his second goal in the comeback",
-   "filed": "2026-11-09T13:43:58Z",
-   "request": "exchange/reviews/20261109/sports_matheus_cunha_to_celebrate__9c22d5e4ec.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261109/sports_matheus_cunha_to_celebrate__9c22d5e4ec/sheet.jpg",
-   "answer_path": "exchange/reviews/20261109/sports_matheus_cunha_to_celebrate__9c22d5e4ec.verdict.json"
-  }
- ],
+ "updated": "2026-11-10T02:49:23Z",
+ "open": [],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }
