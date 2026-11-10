@@ -1,0 +1,69 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_cooper_flagg_ng_spotted_2__89aa32deea",
+ "video_sha256": "89aa32deeae87eaaa94947165db3adf9a9208244b384c90110d2076efbf9ede6",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T15:48:48Z",
+ "grades": {
+  "dimensions": {
+   "hook": 3,
+   "data_demo": 0,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage is real interview footage of a press conference."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in the video."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present; the video shows an interview."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The speaker is continuously moving and speaking; longest_static_s is 0.0."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is well-composed with interview subjects and a branded background, no large empty spaces."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear and legible against a dark background."
+   }
+  },
+  "weakest_scene": {
+   "id": "hook",
+   "index": 0,
+   "failure_class": "data_demo_mismatch",
+   "visible_evidence": "The persistent on-screen text 'Cooper thanks the medical staff \ud83d\ude0c' is introduced at the hook, but the video content immediately (and throughout) focuses on his comments about PB&J, not an explicit thank you.",
+   "root_cause": "The on-screen text (hook) does not align with the actual 'moment' being presented in the video, leading to a misleading premise.",
+   "repair_goal": "Change the hook and persistent on-screen text to accurately reflect the PB&J discussion, or provide footage that clearly shows him thanking the staff if that is the intended focus."
+  },
+  "depictions": [
+   {
+    "id": "video_content",
+    "kind": "bespoke",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "The video is real interview footage, not an invented data visualization. The visual content does not directly prove the on-screen caption's claim."
+   }
+  ],
+  "one_line": "The video shows a player discussing his eating habits, but the persistent on-screen text focuses on a different, unproven claim.",
+  "problems": [
+   "The persistent on-screen text 'Cooper thanks the medical staff \ud83d\ude0c' does not accurately reflect the primary content of the video, which shifts to a discussion about PB&J sandwiches.",
+   "The promised 'moment' of Cooper thanking the staff is not clearly demonstrated or landed; the video focuses on a different 'moment'."
+  ],
+  "fixes": [
+   "Change the on-screen text to match the actual content of the video (e.g., 'Cooper Flagg on his PB&J habit').",
+   "Alternatively, edit the video to specifically highlight and land the moment he thanks the medical staff, if that is the intended focus, and remove the PB&J discussion."
+  ]
+ }
+}

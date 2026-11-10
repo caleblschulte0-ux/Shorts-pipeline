@@ -1,0 +1,71 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_dirk_nowitzki_ons_of_jalen__9b07863371",
+ "video_sha256": "9b0786337148d0726dce57d64ff0c7a0fc20fcf398ac6fcc3a439bc27ffb31bb",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T15:49:12Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 4,
+   "mascot": 4,
+   "craft": 2,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage appears to be real interview footage."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "The top half of the split screen remains static for the entire video duration (41.75s), and the 'held_s' is 11.92s, indicating significant periods of stillness."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is filled with content, though the top half is static."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly readable."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid0",
+   "index": 4,
+   "failure_class": "dead_air",
+   "visible_evidence": "The top half of the split screen shows a static image of a table with a football for the entire video duration, contributing no dynamic visual interest.",
+   "root_cause": "Ineffective use of split-screen composition with a completely static and unengaging upper panel.",
+   "repair_goal": "Replace the static top panel with dynamic, relevant footage or remove it to create a full-screen, more engaging shot of the speaker."
+  },
+  "depictions": [
+   {
+    "id": "mid0",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 3,
+    "note": "Interview footage of Dirk speaking, presented in a split screen with a static top panel."
+   }
+  ],
+  "one_line": "The video features Dirk Nowitzki discussing Jalen Brunson's physical build in an interview, but suffers from a static top screen and lacks a strong visual payoff.",
+  "problems": [
+   "The top half of the split screen is completely static throughout the video, leading to dead air.",
+   "The video lacks a clear visual payoff or dynamic conclusion.",
+   "The overall pace is slow due to static elements in the composition."
+  ],
+  "fixes": [
+   "Replace the static top panel with dynamic footage or remove it entirely to focus on the speaker.",
+   "Add visual cues or a more impactful edit to create a stronger payoff at the end.",
+   "Incorporate more dynamic camera work or reaction shots to improve pace."
+  ]
+ }
+}

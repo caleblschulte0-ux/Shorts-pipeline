@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-10T14:48:38Z",
+ "updated": "2026-11-10T15:49:23Z",
  "open": [
-  {
-   "id": "sports_cooper_flagg_ng_spotted_2__89aa32deea",
-   "channel": "trending",
-   "slug": "sports_cooper_flagg_ng_spotted_2",
-   "title": "Cooper Flagg Gives Shoutout to Staff While Eating PB&J",
-   "filed": "2026-11-10T12:45:43Z",
-   "request": "exchange/reviews/20261110/sports_cooper_flagg_ng_spotted_2__89aa32deea.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261110/sports_cooper_flagg_ng_spotted_2__89aa32deea/sheet.jpg",
-   "answer_path": "exchange/reviews/20261110/sports_cooper_flagg_ng_spotted_2__89aa32deea.verdict.json"
-  },
-  {
-   "id": "sports_dirk_nowitzki_ons_of_jalen__9b07863371",
-   "channel": "trending",
-   "slug": "sports_dirk_nowitzki_ons_of_jalen",
-   "title": "Dirk Nowitzki doubts Jalen Brunson’s size — will he survive?",
-   "filed": "2026-11-10T12:43:29Z",
-   "request": "exchange/reviews/20261110/sports_dirk_nowitzki_ons_of_jalen__9b07863371.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261110/sports_dirk_nowitzki_ons_of_jalen__9b07863371/sheet.jpg",
-   "answer_path": "exchange/reviews/20261110/sports_dirk_nowitzki_ons_of_jalen__9b07863371.verdict.json"
-  },
   {
    "id": "sports_luka_doncic_ball_hard_at__a93fbfecd1",
    "channel": "trending",
