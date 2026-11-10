@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T14:30:31Z",
+ "updated": "2026-11-10T15:42:00Z",
  "open": [
+  {
+   "id": "unclaimed-money-states-hold__74041609",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-11-10T15:42:00Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague statistic without a verifiable, consequential number."
+   ],
+   "request": "exchange/rewrites/20261110/unclaimed-money-states-hold__74041609.request.json",
+   "answer_path": "exchange/rewrites/20261110/unclaimed-money-states-hold__74041609.answer.json"
+  },
   {
    "id": "activity-inequality-steps__d58cd2b4",
    "slug": "activity-inequality-steps",
@@ -51,16 +61,6 @@
    ],
    "request": "exchange/rewrites/20261109/antarctic-sea-ice-record-low__80962613.request.json",
    "answer_path": "exchange/rewrites/20261109/antarctic-sea-ice-record-low__80962613.answer.json"
-  },
-  {
-   "id": "unclaimed-money-states-hold__c8be9d11",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-11-09T11:59:36Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a generic statistic."
-   ],
-   "request": "exchange/rewrites/20261109/unclaimed-money-states-hold__c8be9d11.request.json",
-   "answer_path": "exchange/rewrites/20261109/unclaimed-money-states-hold__c8be9d11.answer.json"
   },
   {
    "id": "coldest-place-in-the-universe-is-human-made__f9462970",
