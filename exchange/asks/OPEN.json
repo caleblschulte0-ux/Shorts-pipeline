@@ -1,6 +1,6 @@
 {
  "schema": "shorts-ask-index/v1",
- "updated": "2026-11-10T11:53:19Z",
+ "updated": "2026-11-10T14:30:08Z",
  "open": [
   {
    "batch": "exchange/asks/20260921.json",
@@ -72,7 +72,7 @@
   {
    "batch": "exchange/asks/20261108.json",
    "answer_path": "exchange/asks/20261108.answers.json",
-   "pending": 26,
+   "pending": 23,
    "keys": [
     "5ad8452e79820ea2",
     "564dd04cbc1f9559",
@@ -96,72 +96,37 @@
     "832e79ac98c1b4a2",
     "7080aa3b85a11f5b",
     "49e37d0b98c06e45",
-    "9c71389d48ba7c52",
-    "5db84eff68bb607f",
-    "99c8874659089aa3",
-    "309e9e0ccc9dba97"
+    "9c71389d48ba7c52"
    ]
   },
   {
    "batch": "exchange/asks/20261109.json",
    "answer_path": "exchange/asks/20261109.answers.json",
-   "pending": 30,
+   "pending": 7,
    "keys": [
-    "99c8874659089aa3",
-    "309e9e0ccc9dba97",
-    "5db84eff68bb607f",
-    "dd5c0935c67c1a7b",
-    "b5c260391fe44d84",
-    "02a81b7948be1eab",
-    "954fbd00787cfcec",
-    "d542c25e0d8a81c7",
-    "b5bf774c964576f4",
-    "f760c701858df4bb",
-    "7b27c5807ff7fd6c",
-    "5a5fbb5e3d0e325f",
-    "690f43705a1a2d88",
-    "50ae0714057285c8",
-    "277339944eecfd50",
-    "a633a17f898025e0",
-    "65fcee7f9ee09f25",
-    "3322ff4cda14fc22",
-    "c95f2f4fcbb6e929",
-    "97566874fb8e5cd4",
-    "bd38c680371b0d98",
-    "665e8beecc432b2b",
     "79c350e95ac0a12a",
     "ec55d207f0ff6718",
     "55102da6fa3afc48",
     "1a49c83ab360561d",
     "1dd097e9578b148c",
     "67eb18420440831e",
-    "2b4051dc71c761b5",
-    "74c1a434babaa8ee"
+    "2b4051dc71c761b5"
    ]
   },
   {
    "batch": "exchange/asks/20261110.json",
    "answer_path": "exchange/asks/20261110.answers.json",
-   "pending": 18,
+   "pending": 9,
    "keys": [
-    "1ea1640d1dcd5317",
-    "464713a1b16aff40",
-    "e3279e5caaea47d2",
-    "7fae90d049f70a71",
-    "22305b514c4d36ae",
-    "4f55233f035db3b7",
-    "02bcb655150229af",
-    "c6de62920755320f",
-    "23b63b892d7985e9",
-    "fdbeb41f886e94c5",
-    "f468ca3896522b7f",
-    "74c1a434babaa8ee",
-    "7a302cbab0d349f4",
-    "1774015db16bc2e1",
-    "c90be9a6f562b29f",
-    "9b48242ebc46444a",
-    "7eb8ea03b849aa07",
-    "ac9e08b0f3e379f7"
+    "9e76516d118f6be4",
+    "ea0ef90f3ca00c2e",
+    "437aed7e35d41c6f",
+    "ec352c39672a0192",
+    "2ab2537079096115",
+    "af7de089c3c09e37",
+    "af49356c5d47b5cc",
+    "7d8c579efc6003be",
+    "2134cd633107b400"
    ]
   }
  ],

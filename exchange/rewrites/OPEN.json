@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T12:38:20Z",
+ "updated": "2026-11-10T14:30:31Z",
  "open": [
+  {
+   "id": "activity-inequality-steps__d58cd2b4",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-11-10T14:30:30Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261110/activity-inequality-steps__d58cd2b4.request.json",
+   "answer_path": "exchange/rewrites/20261110/activity-inequality-steps__d58cd2b4.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__6ba75d18",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-11-10T14:30:30Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague claim rather than a single, verifiable quantitative fact."
+   ],
+   "request": "exchange/rewrites/20261110/bat-fungus-collapse__6ba75d18.request.json",
+   "answer_path": "exchange/rewrites/20261110/bat-fungus-collapse__6ba75d18.answer.json"
+  },
   {
    "id": "astronaut-bone-loss__5604e5fe_r1",
    "slug": "astronaut-bone-loss",
@@ -433,26 +453,6 @@
    ],
    "request": "exchange/rewrites/20261018/english-internet-share-decline__21efaa68.request.json",
    "answer_path": "exchange/rewrites/20261018/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__f0af7c7a",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/activity-inequality-steps__f0af7c7a.request.json",
-   "answer_path": "exchange/rewrites/20261018/activity-inequality-steps__f0af7c7a.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__fb2808d3",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/bat-fungus-collapse__fb2808d3.request.json",
-   "answer_path": "exchange/rewrites/20261018/bat-fungus-collapse__fb2808d3.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
