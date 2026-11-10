@@ -1,0 +1,78 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261110",
+  "written_at": "2026-11-10T12:34:00Z",
+  "status": "partial",
+  "exact_failed_step": "Verify actual channel output against the frozen bundle contract using accepted upload URLs.",
+  "bundle_identity": "a1fc5d9f5f1a721cd64240313097478624c07ca340c070a3f14c6cfe499f5e6e",
+  "attempts": [
+    "Read state/posted_log.json, state/third_posted_log.json, and state/explainer_posted_log.json from main.",
+    "Counted only accepted YouTube upload URLs recorded for the 20261110 production day; workflow success and DONE were not counted as uploads.",
+    "Confirmed Phase B accepted all 3 requested Explainer rewrites with zero envelope or contract refusals.",
+    "Completed two ChatGPT mailbox rounds within the per-round caps and read back every written answer.",
+    "Rechecked downstream workflow jobs after a 30-second consumption window."
+  ],
+  "channel_shortfall": {
+    "sports_moment": {
+      "required": 5,
+      "verified_posted": 4,
+      "pending": 1,
+      "posted_urls": [
+        "https://youtube.com/shorts/t6Tk4mIY2XU",
+        "https://youtube.com/shorts/Tlyz9Z_0dUs",
+        "https://youtube.com/shorts/frEWbTzOvZw",
+        "https://youtube.com/shorts/Cl1p9ohqVmM"
+      ]
+    },
+    "clip": {
+      "required": 6,
+      "verified_posted": 3,
+      "pending": 3,
+      "posted_urls": [
+        "https://youtube.com/shorts/Ew4z2lSrnP4",
+        "https://youtube.com/shorts/kC4Oul2UkZo",
+        "https://youtube.com/shorts/29YEFLVmlaw"
+      ]
+    },
+    "data_story": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "posted_urls": []
+    }
+  },
+  "downstream": {
+    "sports_workflow_run": 42814289542,
+    "sports_status": "in_progress",
+    "sports_active_step": "Make, judge and post the sports moments",
+    "daily_workflow_run": 42815754580,
+    "daily_status": "pending",
+    "note": "DONE triggered rendering but is not proof of upload completion."
+  },
+  "mailbox": {
+    "indexes_last_updated": {
+      "reviews": "2026-11-10T12:11:32Z",
+      "asks": "2026-11-10T11:53:19Z",
+      "rewrites": "2026-11-10T11:53:45Z"
+    },
+    "index_pending_counts": {
+      "reviews": 1,
+      "ask_keys": 106,
+      "rewrites": 128
+    },
+    "answered_this_run": {
+      "reviews": 1,
+      "ask_keys": 40,
+      "rewrites": 19
+    },
+    "skipped_this_run": {
+      "rewrites": 1
+    },
+    "skipped_reason": "rubiks-cube-record-vs-robot is held for a 48-frame frozen stretch; text cannot repair duplicated rendered frames.",
+    "note": "Indexes predate the committed answers and remain stale until the claim/apply workflow refreshes them."
+  },
+  "response_commit": "c14adc9e07a9e8932ee2966527be2c8cb4db14cd",
+  "done_commit": "b3f446439d4439b28d8a1af2c5ca662dededabeb",
+  "phase_b_commit": "3e9fcc7d089930605083f6060b818d0c852e961e",
+  "day_closed": false
+}
