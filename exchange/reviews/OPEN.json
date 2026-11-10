@@ -1,17 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-10T16:48:59Z",
- "open": [
-  {
-   "id": "sports_luka_doncic_ball_hard_at__a93fbfecd1",
-   "channel": "trending",
-   "slug": "sports_luka_doncic_ball_hard_at",
-   "title": "Luka Doncic Confronts Fan Who Threw the Ball at the Ref",
-   "filed": "2026-11-10T12:41:20Z",
-   "request": "exchange/reviews/20261110/sports_luka_doncic_ball_hard_at__a93fbfecd1.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261110/sports_luka_doncic_ball_hard_at__a93fbfecd1/sheet.jpg",
-   "answer_path": "exchange/reviews/20261110/sports_luka_doncic_ball_hard_at__a93fbfecd1.verdict.json"
-  }
- ],
+ "updated": "2026-11-10T17:48:45Z",
+ "open": [],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }

@@ -1,0 +1,63 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_luka_doncic_ball_hard_at__a93fbfecd1",
+ "video_sha256": "a93fbfecd13c6b14bdcd949933553fbff921d037c39c36b86c1a88a1676168d2",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-10T17:48:33Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 4,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage is real basketball game footage, relevant to the topic."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number card is present; the text describes an event."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "longest_static_s is 0.0, indicating no static stretches of 4+ seconds."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is filled with the basketball court, players, and crowd; no large dead black areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear, high-contrast, and fully visible."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid",
+   "index": 1,
+   "failure_class": "demonstration_gap",
+   "visible_evidence": "The video shows Luka reacting and referees discussing, but does not explicitly show the fan throwing the ball or Luka shouting at the fan. The text carries the full narrative.",
+   "root_cause": "The available footage might not have captured the precise moment of the fan's action or Luka's direct verbal confrontation. The edit focuses on the aftermath and official response.",
+   "repair_goal": "If possible, find footage that more directly shows the fan's action or Luka's explicit shouting, or use a tighter zoom on Luka's face if his expression conveys the \"shouting\" aspect."
+  },
+  "depictions": [
+   {
+    "id": "mid",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 2,
+    "note": "Live footage of the event, with text providing context for the unseen actions of throwing and shouting."
+   }
+  ],
+  "one_line": "A clear sports moment showing the aftermath of a fan interaction, well-explained by text.",
+  "problems": [],
+  "fixes": []
+ }
+}
