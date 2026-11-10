@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-10T18:39:25Z",
+ "updated": "2026-11-10T21:43:01Z",
  "open": [
+  {
+   "id": "library-digital-shift__4fea1593",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-10T21:43:01Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation despite citing a single number."
+   ],
+   "request": "exchange/rewrites/20261110/library-digital-shift__4fea1593.request.json",
+   "answer_path": "exchange/rewrites/20261110/library-digital-shift__4fea1593.answer.json"
+  },
   {
    "id": "third-interstellar-visitor__e29fbdf1",
    "slug": "third-interstellar-visitor",
