@@ -150,6 +150,13 @@ MIN_WORDS = 8
 #: Whisper's English probability, averaged over the clip's windows, that
 #: counts as English.
 EN_MIN = 0.5
+#: Below this it is not English whatever the words say. Between EN_GREY and
+#: EN_MIN a short clip is a coin toss for the detector (the 2026-11-11 audit:
+#: an English LeBron clip of 12 words scored 0.49), so the transcript's own
+#: function words decide.
+EN_GREY = 0.3
+#: In the grey zone, the share of English function words that counts.
+EN_WORDS_MIN = 0.25
 
 _EN = set("the a an and but or so to of in on at for with is are was were "
           "it this that i you he she we they my your his her our their me "
@@ -212,9 +219,13 @@ def not_english(video: Path, words: list[dict]) -> str:
     if len(words or []) < MIN_WORDS:
         return ""
     p = english_probability(video, words)
-    if p is not None:
-        return "" if p >= EN_MIN else f"not English (English p={p:.2f})"
     en, other = _function_words(words)
+    if p is not None:
+        if p >= EN_MIN:
+            return ""
+        if p >= EN_GREY and en >= EN_WORDS_MIN and en > other:
+            return ""
+        return f"not English (English p={p:.2f}, {en:.0%} English words)"
     if other >= 0.12 and other > en:
         return (f"not English ({other:.0%} of its words are Spanish, "
                 f"Portuguese, French, Turkish, German or Italian)")
