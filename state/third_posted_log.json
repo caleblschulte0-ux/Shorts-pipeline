@@ -19080,6 +19080,33 @@
       "rejected_by": "content gate",
       "rejected_why": "0.10 < 0.35 (static menu, singing, no event)",
       "ts": "2026-11-11T13:07:54.974942+00:00"
+    },
+    "rejected-moraltacitmangetoutdoritoschip-rhwyusvskggrvins": {
+      "source_url": "https://www.twitch.tv/buster/clip/MoralTacitMangetoutDoritosChip-rhWyUsVSkggrvINS",
+      "streamer": "buster",
+      "title": "09.11.26 - 110 \u041a\u0413 \ud83d\udc80",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (shirt-off weigh-in, unclear, age-restric)",
+      "ts": "2026-11-11T13:11:27.721170+00:00"
+    },
+    "rejected-endearingfaintpeanutfungineer-5ziwgxu9uzfieqpf": {
+      "source_url": "https://www.twitch.tv/crystalst/clip/EndearingFaintPeanutFUNgineer-5ziWGxu9uZFiEQpf",
+      "streamer": "crystalst",
+      "title": "Tony (AnthonyZ) jukes cops at white garage",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark GTA RP driving, no visible event)",
+      "ts": "2026-11-11T13:12:10.612326+00:00"
+    },
+    "rejected-spunkycharmingmarrowsquadgoals-ql6i6nkeabzgc3jp": {
+      "source_url": "https://www.twitch.tv/forsen/clip/SpunkyCharmingMarrowSquadGoals-QL6i6NKeABzgc3JP",
+      "streamer": "forsen",
+      "title": "Forsen's take on the last drama",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Swimwear runway video, title mismatch, n)",
+      "ts": "2026-11-11T13:12:51.870987+00:00"
     }
   }
 }

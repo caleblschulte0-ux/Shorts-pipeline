@@ -3,363 +3,6 @@
     {
       "date": "20261106",
       "dry_run": false,
-      "ts": "2026-11-06T13:00:02+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 148,
-        "with_retention": 128,
-        "with_curve": 15,
-        "fetched_at": "2026-11-06T08:46:25.601244+00:00"
-      },
-      "brain": {
-        "ok": 39,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261106-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 137,
-                "refused_shown": 7,
-                "scouted": [
-                  {
-                    "premise": "Jynxzi's Minecraft marathon Day 3 piles up death after death, ending with the 11th death in the End when a teammate is s",
-                    "shape": "one_stream",
-                    "n": 4
-                  },
-                  {
-                    "premise": "Kai Cenat's Minecraft marathon goes from Jamal breaking his chair to Kai finally getting the Warden down and a closing '",
-                    "shape": "one_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Kai Cenat's Minecraft Day 3 is a string of deaths, from the 'worst death so far' to Speed dying and Kai crashing out.",
-                    "shape": "one_stream",
-                    "n": 4
-                  }
-                ],
-                "vod_arcs": 325,
-                "moments": 40,
-                "candidates": 529,
-                "pool": 2938,
-                "pool_with_vod": 2036,
-                "arc_sizes": [
-                  2,
-                  2,
-                  2,
-                  6,
-                  2,
-                  6,
-                  3,
-                  2,
-                  3,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:xqc/xqc-along-caught-2026w40",
-                  "outcome": "qa_failed",
-                  "why": "vision: For the first ~20s there is no person or cops on screen, only empty GTA scenery, barriers and a dock. Nothing in the fra; vision: Th"
-                },
-                {
-                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
-                  "outcome": "duration",
-                  "why": "21s outside 25-90s"
-                },
-                {
-                  "cluster": "scout:jynxzi/jynxzi-death-dies-2026w41",
-                  "outcome": "qa_failed",
-                  "why": "vision: The gameplay half is nearly static for most of the 58s: a dark Nether view, then the same tree-covered hillside across ~; vision: Th"
-                },
-                {
-                  "cluster": "deepins02@momenttalentedalluringsoymilkshadylulu-a4tnylt20ia",
-                  "outcome": "narrative_failed",
-                  "why": "scores [79, 79, 79] after 2 revision(s) \u2014 @28s pacing: The last line is garbled ('the first network That's it, guys, make a clip'). Trim the start of the final clip so it opens cleanly on 'That's it, guys, make a clip' and ends on a complete sentence.; @8s missing_context: The sign clip has no speec"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.85,
-              "why": "Drink thrown at streamer, visible shock",
-              "blind": false
-            },
-            "content": {
-              "score": 0.68,
-              "why": "Drink thrown at him, calm reaction",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jakenbakelive: Jake Gets Beer Thrown On Him And Chat Swears It Smells Like Something Else"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Word captions are clipped at the right edge in several frames (e.g. 'stupid dude Nov', 'It's alright Yeah', 'or somethin",
-                "Face is tight to the top edge or partly cropped in a few frames (5.2s, 17.7s, 19.8s)",
-                "Handheld framing is a little unstable, but the subject stays visible throughout"
-              ]
-            }
-          },
-          "took_s": 241.4
-        },
-        {
-          "slug": "clip-20261106-2",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261106-2",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.72,
-              "why": "Visible rivalry gesture after Worlds win",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Esports win hugs; needs League context",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 31.6
-        },
-        {
-          "slug": "clip-20261106-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.3,
-              "why": "Vague title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Huge synchronized dance crowd, signs; un",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "The footage is a choir dance performance and Jynxzi or deepins02 never clearly appears. The hook card and title may not ",
-                "The frame at 22.7s is an extreme close-up of a face, which is a bit jarring but brief.",
-                "The hook card stays on screen the whole time and sits just below the word captions. It covers no faces."
-              ]
-            }
-          },
-          "took_s": 296.6
-        },
-        {
-          "slug": "clip-20261106-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (RuneScape inside joke, needs context)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "Hardcore death, crude, unclear visuals",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "RuneScape inside joke, needs context",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 30.3
-        },
-        {
-          "slug": "clip-20261106-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Halloween costume, vague, mild visual",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Blue-face cosplay, chat reacts, no clear",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Divvity Dyes His Tongue Blue With Food Coloring But It Won't Stay"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Head or leaf is slightly clipped at the top of the frame in a few shots (6.3s, 17.1s)",
-                "The word captions sit close to the chin and neck in some frames, but they don't cover the face"
-              ]
-            }
-          },
-          "took_s": 173.3
-        },
-        {
-          "slug": "clip-20261106-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin letterboxed strip, about 1/3 of the canvas height. The rest is blurred padding, so the frami; vision: The streamer's face cam is tiny, in the corner of the strip. H",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Niche Geometry Dash milestone, needs con",
-              "blind": false
-            },
-            "content": {
-              "score": 0.78,
-              "why": "Extreme demon first-attempt completion, ",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Wpopoff Loses It In Total Shock After This Happens, Grief 100%"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.72,
-              "problems": [
-                "The sharp picture is a thin letterboxed strip, about 1/3 of the canvas height. The rest is blurred padding, so the frami",
-                "The streamer's face cam is tiny, in the corner of the strip. His reaction is hard to read on a phone.",
-                "From about 11s to 24s the frame is a static Geometry Dash menu screen with no action, so the clip is dull for its last h",
-                "The hook card sits over the blurred bottom padding and stays for the whole video. The strip also carries the 'GOD OH MY'",
-                "The first 1-2s of the sharp picture is mostly black with little to see."
-              ]
-            }
-          },
-          "took_s": 234.3
-        }
-      ]
-    },
-    {
-      "date": "20261106",
-      "dry_run": false,
       "ts": "2026-11-06T13:59:07+00:00",
       "feedback": {
         "snapshot": true,
@@ -5229,6 +4872,130 @@
             }
           },
           "took_s": 64.5
+        },
+        {
+          "slug": "clip-20261111-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261111-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261111-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261111-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261111",
+      "dry_run": false,
+      "ts": "2026-11-11T13:12:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 121,
+        "with_curve": 15,
+        "fetched_at": "2026-11-11T12:57:20.347921+00:00"
+      },
+      "brain": {
+        "ok": 9,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261111-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261111-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (Swimwear runway video, title mismatch, n)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "needs drama context, talking",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "Swimwear runway video, title mismatch, n",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 41.3
         },
         {
           "slug": "clip-20261111-3",
