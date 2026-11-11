@@ -7,10 +7,22 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261110 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261110.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
+        "code": "credential_dead_groq",
+        "severity": "critical",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-11T09:13:26+00:00).",
+        "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
+      },
+      {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261110 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20261110. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20261110 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
+        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261110. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
@@ -4160,8 +4172,8 @@
     }
   },
   "recent_commits": [
-    "ee7a388 2026-11-11 claim: mailbox verdicts 2026-11-11T04:48Z [skip ci]",
-    "7cf9bf3 2026-11-11 claim: mailbox verdicts 2026-11-11T03:48Z [skip ci]"
+    "c3ceaef 2026-11-11 trending: posted roger_mcqueen_calls_beckett_sennecke__ma [skip ci]",
+    "b19fb05 2026-11-11 trending: claim upload slot roger_mcqueen_calls_beckett_sennecke__ma [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4179,10 +4191,11 @@
         "2026-11-07": 4,
         "2026-11-08": 7,
         "2026-11-09": 5,
-        "2026-11-10": 6
+        "2026-11-10": 6,
+        "2026-11-11": 4
       },
-      "total_posted": 542,
-      "attempted": 542,
+      "total_posted": 546,
+      "attempted": 546,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4216,11 +4229,13 @@
         "2026-11-06": 6,
         "2026-11-07": 4,
         "2026-11-08": 2,
-        "2026-11-10": 3
+        "2026-11-10": 3,
+        "2026-11-11": 2,
+        "2026-11-12": 1
       },
-      "total_posted": 531,
-      "attempted": 1299,
-      "rejected_or_pending": 768
+      "total_posted": 534,
+      "attempted": 1310,
+      "rejected_or_pending": 776
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4265,32 +4280,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 136,
+      "videos": 134,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 4.16,
+          "vph": 4.0,
           "views": 1897
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.81,
-          "views": 1087
+          "vph": 1.76,
+          "views": 1088
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.73,
-          "views": 456
+          "vph": 1.66,
+          "views": 469
         },
         {
           "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
-          "vph": 1.39,
-          "views": 132
+          "vph": 1.19,
+          "views": 134
         },
         {
-          "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 1.12,
-          "views": 325
+          "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
+          "vph": 1.09,
+          "views": 18
         }
       ],
       "full_data": "state/analytics_third/latest.json"
