@@ -5149,6 +5149,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 96,
       "duration_s": 26.7
+    },
+    "coldest-place-in-the-universe-is-human-made": {
+      "claimed_at": "2026-11-11T18:17:12.150137+00:00",
+      "title": "NASA Made 0.0000000001 Kelvin Cold, Beating Nature",
+      "publish_at": "2026-11-11T18:42:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6605,6 +6612,14 @@
       "via": "showrunner-rejudge",
       "slug": "pedestrian-deaths-outlier",
       "at": "2026-11-07T13:49:20Z"
+    },
+    {
+      "claimed_at": "2026-11-11T18:17:12.150137+00:00",
+      "title": "NASA Made 0.0000000001 Kelvin Cold, Beating Nature",
+      "publish_at": "2026-11-11T18:42:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "coldest-place-in-the-universe-is-human-made"
     }
   ]
 }
