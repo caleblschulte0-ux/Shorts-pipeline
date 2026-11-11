@@ -40,8 +40,11 @@ sys.path.insert(0, str(ROOT))
 from funnel import hot_clips, reddit_video  # noqa: E402
 from third_capture import author, clip_edit  # noqa: E402
 
-SUBS = ("sports", "nba", "nfl", "soccer", "MMA", "baseball", "hockey",
-        "CollegeBasketball")
+from shared import sports_scope  # noqa: E402
+
+#: The subreddits read: the registry's scope (operator, 2026-11-11: American
+#: sports plus soccer). shared/sports_scope holds the rest of that rule.
+SUBS = tuple(sports_scope.policy()["sources"])
 PER_SUB = 4
 MAX_SOURCE_S = 180
 #: The shortest post worth cutting. Operator, 2026-10-12, of four samples
@@ -87,6 +90,14 @@ captaincy or an award, the subject is who RECEIVES it: Thornton naming
 Celebrini captain is "Celebrini playing", never Thornton). Moments with no
 story (a fan doing something wild, a funny quote) come after, `story`
 "".
+
+ONLY AMERICAN SPORTS AND SOCCER, IN ENGLISH (operator, 2026-11-11: "no
+more videos that aren't English, and no more weird-ass sports ... No
+sports from other countries, besides soccer"): the NFL, NBA, WNBA, MLB,
+NHL, college sports, UFC, golf, NASCAR and the like, plus soccer from
+anywhere when the people in it speak English. Skip cricket, rugby, sumo,
+Formula 1 and every other sport from another country, and any clip where
+the people talk in another language. Code refuses these too.
 
 Skip: a plain highlight of a play with no human moment in it (a goal,
 a dunk, a catch on its own), anything a viewer needs the game's context
@@ -348,7 +359,30 @@ def track_record(path: Path = ANALYTICS) -> str:
             "rule: every rule above still holds.")
 
 
+def in_scope(pool: list[dict]) -> list[dict]:
+    """The posts that are Baller Bro's kind of sport (shared/sports_scope:
+    American sports plus soccer), with each refusal printed. Code, not a
+    brain: it holds whichever model is running."""
+    out = []
+    for c in pool:
+        why = sports_scope.out_of_scope(c.get("sub"), c.get("post_title"))
+        if why:
+            print(f"[sports] out of scope: r/{c.get('sub')} "
+                  f"{str(c.get('post_title'))[:60]!r}: {why}", flush=True)
+        else:
+            out.append(c)
+    return out
+
+
+def not_english(info: dict) -> str:
+    """Why a downloaded post's speech is not English, or '' (operator,
+    2026-11-11: "no more videos that aren't English")."""
+    raw = Path(info["path"])
+    return sports_scope.not_english(raw, clip_edit.transcribe_words(raw))
+
+
 def pick(pool: list[dict], n: int) -> list[dict]:
+    pool = in_scope(pool)
     lines = [f"[{i}] r/{c['sub']} {c['upvotes']} {c['platform']} "
              f"{c['post_title']}" for i, c in enumerate(pool)]
     got = _brain(f"N = {n}\n\n" + "\n".join(lines),
@@ -628,6 +662,52 @@ def whole_thought(c: dict, edit: dict, words: list[dict], dur: float) -> dict:
     return edit
 
 
+def hold_length(edit: dict, words: list[dict], dur: float,
+                min_s: float | None = None) -> dict:
+    """The cut runs at least the registry's `min_cut_s` (operator,
+    2026-11-11: "some clips were like 2 seconds long. Some clips cut out
+    the best part"). A fallback model picked Tomlin's 1.9 seconds out of a
+    44-second answer and nothing in code said no. Whatever window the
+    author and the whole-thought pass chose, a short one is widened: its
+    start moves back to earlier sentence starts (the setup), then its end
+    forward (never past a broadcast card), until it is long enough. The
+    end the brain chose stays inside the cut, so a payoff is never lost."""
+    floor = float(sports_scope.policy().get("min_cut_s") or 0) \
+        if min_s is None else float(min_s)
+    cut = edit.get("cut") or {"start": 0.0, "end": dur}
+    lo = float(cut.get("start") or 0.0)
+    hi = float(cut.get("end") or dur)
+    # never open mid-sentence: a start inside a sentence moves back to the
+    # start of that sentence (Brisker opened on "baby in the quarterback",
+    # Dan Campbell on "we don't know anything else")
+    for sent in sentences(words):
+        if sent["s"] + 0.2 < lo < sent["e"]:
+            lo = max(0.0, sent["s"] - 0.25)
+            print(f"[cut] opened mid-sentence — moved back to {lo:.1f}s",
+                  flush=True)
+            edit["cut"] = cut = {"start": round(lo, 2), "end": round(hi, 2)}
+            break
+    if hi - lo >= floor or dur <= 0:
+        return edit
+    cap = min(dur, float(edit.get("card_at") or dur))
+    for sent in reversed(sentences(words)):
+        if hi - lo >= floor:
+            break
+        if sent["s"] < lo - 0.1:
+            lo = max(0.0, sent["s"] - 0.25)
+    if hi - lo < floor:
+        lo = max(0.0, hi - floor)
+    if hi - lo < floor:
+        later = [x["e"] for x in sentences(words)
+                 if x["e"] > hi and x["e"] + 0.6 <= cap
+                 and x["e"] + 0.6 - lo >= floor]
+        hi = min(cap, later[0] + 0.6) if later else min(cap, lo + floor)
+    print(f"[cut] too short ({float(cut.get('end') or dur) - float(cut.get('start') or 0):.1f}s)"
+          f" — widened to {lo:.1f}-{hi:.1f}s", flush=True)
+    edit["cut"] = {"start": round(lo, 2), "end": round(hi, 2)}
+    return edit
+
+
 TAIL_S = 8.0              # how far back from the end to look for a card
 CARD_LOOK = ("the moment itself: people, players, coaches, a broadcast "
              "studio, the crowd, the game. NOT a network logo, a show's "
@@ -685,6 +765,7 @@ def end_card(raw: Path, edit: dict, work: Path) -> dict:
                   f"({got[i].get('why', '')[:80]}) — it ends there",
                   flush=True)
             edit["cut"] = {"start": round(lo, 2), "end": round(a - 0.05, 2)}
+            edit["card_at"] = round(a, 2)
             break
     return edit
 
@@ -718,6 +799,7 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
         broll(c, words, dur, meta["edit"], raw,
               out_mp4.parent / "work" / out_mp4.stem)
         end_card(raw, meta["edit"], out_mp4.parent / "work" / out_mp4.stem)
+        hold_length(meta["edit"], words, dur)
         # NO MUSIC UNDER THE CLIP (operator, 2026-10-28: "It played loud
         # music over the guy talking the whole time ... so annoying"). A
         # sports clip is someone talking; the sad song or hype beat the
@@ -788,7 +870,7 @@ def main() -> int:
             row["skipped"] = "download failed"
             index.append(row)
             continue
-        why = unfit(info) or too_short(info)
+        why = unfit(info) or too_short(info) or not_english(info)
         if why:
             row["skipped"] = why
             index.append(row)

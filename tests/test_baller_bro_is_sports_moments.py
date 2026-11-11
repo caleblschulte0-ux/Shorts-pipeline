@@ -256,6 +256,7 @@ class ARefusedCutIsRepaired(unittest.TestCase):
                                   return_value={"path": "x.mp4"}), \
                 mock.patch.object(rs.ss, "unfit", return_value=""), \
                 mock.patch.object(rs.ss, "too_short", return_value=""), \
+                mock.patch.object(rs.ss, "not_english", return_value=""), \
                 mock.patch.object(rs.ss, "make", side_effect=make), \
                 mock.patch.object(rs, "judge",
                                   side_effect=lambda *a, **k: next(g)), \

@@ -101,7 +101,14 @@
           },
           "chatgpt_roles": [
             "production_supervisor"
-          ]
+          ],
+          "scope": {
+            "language": "en",
+            "min_cut_s": 15,
+            "sources": ["nfl", "nba", "baseball", "hockey", "CollegeBasketball", "CFB", "MMA", "soccer", "sports"],
+            "foreign_ok": ["soccer"],
+            "ruled": "Operator, 2026-11-11: 'no more videos that aren't English, and no more weird-ass sports ... No sports from other countries, besides soccer.' American mainstream and mainstream-adjacent sports, plus soccer, every spoken line in English, and no cut shorter than min_cut_s. Held in code by shared/sports_scope.py, which needs no model, so it holds whichever model is running."
+          }
         },
         "graph_race": {
           "state": "retired",

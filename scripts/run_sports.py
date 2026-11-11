@@ -41,6 +41,7 @@ sys.path.insert(0, str(ROOT))
 from scripts import run_trending_daily as rt  # noqa: E402
 from scripts import sports_samples as ss  # noqa: E402
 from shared import channel_registry as reg  # noqa: E402
+from shared import sports_scope  # noqa: E402
 
 CHANNEL = "trending"
 FORMAT = "sports_moment"
@@ -60,6 +61,15 @@ TRIES_PER_SLOT = 5
 # REPAIRS times. Below REPAIR_MIN there is no moment worth repairing.
 REPAIR_MIN = 60
 REPAIRS = 2
+
+def clip_edit_words(info: dict) -> list[dict]:
+    """The downloaded post's transcript (cached by clip_edit)."""
+    from third_capture import clip_edit
+    try:
+        return clip_edit.transcribe_words(Path(info["path"]))
+    except Exception:  # noqa: BLE001
+        return []
+
 
 def permalink_key(c: dict) -> str:
     """The post's identity: its Reddit permalink, else its video URL."""
@@ -226,7 +236,7 @@ def main() -> int:
         if not info:
             row["skipped"] = "download failed"
             continue
-        short = ss.unfit(info) or ss.too_short(info)
+        short = ss.unfit(info) or ss.too_short(info) or ss.not_english(info)
         if short:
             row["skipped"] = short
             continue
@@ -248,6 +258,18 @@ def main() -> int:
             continue
         row.update(title=meta["title"], hook=made.get("hook"),
                    ledger=made.get("ledger"))
+        made_up = sports_scope.invented(
+            meta["title"], c.get("post_title"),
+            " ".join(w["w"] for w in clip_edit_words(info)))
+        if made_up:
+            row["skipped"] = f"author: {made_up}"
+            continue
+        # A length floor in code, ahead of any judge (operator, 2026-11-11:
+        # a three-second Tomlin cut posted on a fallback judge's pass)
+        brief = sports_scope.too_short(ss._dur(mp4))
+        if brief:
+            row["skipped"] = brief
+            continue
 
         gate = judge(mp4, c, meta, made.get("hook") or "",
                      will_upload=not a.dry_run)
@@ -273,6 +295,10 @@ def main() -> int:
                        ledger=made.get("ledger"))
             gate = judge(mp4, c, meta, made.get("hook") or "",
                          will_upload=not a.dry_run)
+        brief = sports_scope.too_short(ss._dur(mp4))
+        if brief:                     # a repair re-cut it short
+            row["skipped"] = brief
+            continue
         row["showrunner"] = {"blocked": gate["blocked"],
                              "reason": gate.get("reason"),
                              "score": (gate.get("verdict") or {})

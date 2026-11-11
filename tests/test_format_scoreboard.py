@@ -94,12 +94,35 @@ class TestTheRealInvocationImportsCleanly(unittest.TestCase):
     survives it."""
 
     def test_the_script_finds_reddit_story_when_run_directly(self):
-        out = subprocess.run(
+        # Built from its own package, not the live analytics: reddit_story
+        # was retired 2026-10-11 and aged out of the real scoreboard, which
+        # turned this into a test of last month's data (red on main
+        # 2026-11-11). The path question it guards is unchanged: scripts/
+        # is sys.path[0] and the repo root is not.
+        with tempfile.TemporaryDirectory() as tmp:
+            day = Path(tmp) / "2026-01-01"
+            day.mkdir()
+            (day / "a.json").write_text(json.dumps(
+                {"title": "My roommate ate my lunch", "subreddit": "AITA",
+                 "story": "x"}))
+            code = ("import sys, json; from pathlib import Path; "
+                    "assert not any(Path(p or '.').resolve() == Path(%r) "
+                    "for p in sys.path); "
+                    "import format_scoreboard as sb; sb.PKG_ROOT = Path(%r); "
+                    "print(json.dumps(sb.package_formats()))"
+                    % (str(ROOT), tmp))
+            out = subprocess.run(
+                [sys.executable, "-c", code], cwd=ROOT / "scripts",
+                capture_output=True, text=True, timeout=60)
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        self.assertEqual(json.loads(out.stdout),
+                         {"my roommate ate my lunch": "reddit_story"},
+                         out.stdout)
+        # and the real invocation still runs clean
+        real = subprocess.run(
             [sys.executable, "scripts/format_scoreboard.py"],
             cwd=ROOT, capture_output=True, text=True, timeout=60)
-        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
-        self.assertIn("reddit_story", out.stdout, out.stdout)
-
+        self.assertEqual(real.returncode, 0, real.stdout + real.stderr)
 
 if __name__ == "__main__":
     unittest.main()
