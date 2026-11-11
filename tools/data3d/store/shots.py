@@ -61,6 +61,21 @@ def hide_from(root, t, show=False):
         o.hide_render = not show; o.keyframe_insert("hide_render", frame=F(t))
 
 
+def person(name, loc, yaw=0.0):
+    """the people of this world are MINIMAL (caaleb, 2026-11-11: "the less the better"): a faceless rounded figure, a
+    head, a body in the staff blue, two legs. No face, hair, hands, badges. Every part is a DIRECT child of the root.
+    Front is -Y; yaw turns it."""
+    root = K.empty(name, loc); L = Vector(loc); s = 1.65 * K.U / 0.924
+    body = K.mat("person body", "#2F6FA6", rough=0.6); head = K.mat("person head", "#E2D6CA", rough=0.55); leg = K.mat("person legs", "#33363C", rough=0.6)
+    P = lambda ox, oy, oz: Vector((L.x + ox, L.y + oy, L.z + oz * s))
+    for sg in (-1, 1):
+        K.capsule("leg", P(sg * 0.055, 0, 0.44), P(sg * 0.055, 0, 0.05), 0.05, leg, parent=root)
+    t = K.capsule("body", P(0, 0, 0.47), P(0, 0, 0.74), 0.15, body, parent=root, ra=0.13, rb=0.15); t.scale = (1.0, 0.72, 1.0)
+    K.sph("head", P(0, 0, 0.9), 0.1, head, scale=(1.0, 1.0, 1.08), parent=root)
+    root.rotation_euler = (0, 0, yaw)
+    return root
+
+
 def build_set(xs, kiosk_lanes, staffed=()):
     """the approved store (floor, walls, back shelf, aisles) with a lane at each x. kiosk_lanes: indices that get a
     kiosk (built below the floor; raise() brings it up). staffed: indices whose register gets a clerk."""
@@ -72,7 +87,7 @@ def build_set(xs, kiosk_lanes, staffed=()):
     clerks = {}
     for i in staffed:
         ln = lanes[i]; w = 0.52 * K.U
-        clerks[i] = K.cashier(f"clerk {i + 1}", (ln["x"] - w * 0.78, 0.32 + 1.5 * K.U * 0.45, 0), yaw=math.radians(90))
+        clerks[i] = person(f"clerk {i + 1}", (ln["x"] - w * 0.78, 0.32 + 1.5 * K.U * 0.45, 0), yaw=math.radians(90))
     for ln in lanes:
         K.contact_shadow(ln["counter"].name + " shadow", (ln["x"], 0.32 + 1.5 * K.U / 2), rx=0.52 * K.U / 2 + 0.08, ry=1.5 * K.U / 2 + 0.08, parent=ln["counter"])
     for c in clerks.values(): K.contact_shadow(c.name + " shadow", c.location, rx=0.17, ry=0.12, parent=c)
@@ -313,7 +328,7 @@ def shot3():
     # the cashiers: a line of them in aprons walk from the lanes, along the front, and out through the door
     yl = (DY0 + DY1) / 2; n = 7; speed = 0.62; gap = 0.42
     for k in range(n):
-        c = K.cashier(f"staff {k}", (0, 0, 0), yaw=0)
+        c = person(f"staff {k}", (0, 0, 0), yaw=0)
         x_start = WX - 0.4 - 0.9 - k * gap - 0.2
         t_go = 0.0; x_end = WX + 0.9
         for f in range(1, NF + 1):
