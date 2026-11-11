@@ -164,6 +164,52 @@ def shots_of(an: dict) -> list[tuple]:
     return [(a, b) for a, b in zip(edges, edges[1:]) if b > a]
 
 
+def _shot_faces(an: dict, t0: float, t1: float) -> list[dict]:
+    """Every big face that holds shot [t0, t1) (presence >= SHOT_PRESENCE,
+    height >= SHOT_FACE_H of the frame), most present first."""
+    sw, sh = an["sw"], an["sh"]
+    n = sum(1 for t in an.get("ts") or [] if t0 <= t < t1)
+    if not n:
+        return []
+    groups: list[dict] = []
+    for (t, cx, cy, h, _k) in an.get("dets") or []:
+        if not (t0 <= t < t1):
+            continue
+        g = next((g for g in groups if abs(g["cx"] - cx) < sw * 0.12), None)
+        if g is None:
+            g = {"cx": cx, "cy": cy, "hs": [], "times": set()}
+            groups.append(g)
+        k = len(g["hs"])
+        g["cx"] = (g["cx"] * k + cx) / (k + 1)
+        g["cy"] = (g["cy"] * k + cy) / (k + 1)
+        g["hs"].append(h)
+        g["times"].add(t)
+    out = []
+    for g in groups:
+        hs = sorted(g["hs"])
+        g["h"] = hs[len(hs) // 2]
+        g["presence"] = len(g["times"]) / n
+        if g["presence"] >= SHOT_PRESENCE and g["h"] >= SHOT_FACE_H * sh:
+            out.append(g)
+    return sorted(out, key=lambda g: -len(g["times"]) * g["h"])
+
+
+def _faces_crop(an: dict, faces: list[dict]) -> tuple | None:
+    """A 9:16 crop holding every face in `faces`, or None when they are
+    too far apart for one."""
+    sw, sh = an["sw"], an["sh"]
+    w = int(round(sh * 9 / 16))
+    w -= w % 2
+    if not faces or w >= sw:
+        return None
+    lo = min(f["cx"] - f["h"] / 2 for f in faces)
+    hi = max(f["cx"] + f["h"] / 2 for f in faces)
+    if hi - lo > w * 0.92:
+        return None
+    x = int(min(max((lo + hi) / 2 - w / 2, 0), sw - w))
+    return (w, sh - sh % 2, x - x % 2, 0)
+
+
 def _shot_face(an: dict, t0: float, t1: float) -> dict | None:
     """The face that frames shot [t0, t1): the most present big one."""
     sw, sh = an["sw"], an["sh"]
@@ -272,6 +318,19 @@ def framed(an: dict, video: Path, work: Path, title: str = "") -> list | None:
     for i, (t0, t1) in enumerate(shots):
         g = got[i]
         crop = None if g.get("whole") else crop_from_cols(sw, sh, *g["cols"])
+        # CODE CHECKS THE LOOK (operator, 2026-11-11: "I'm going to have
+        # this run on a local model"): a framer that answers "whole frame"
+        # when every face in the shot fits one tall crop, or names columns
+        # that leave the shot's main face out, is overruled by the faces.
+        # Whole frame stays only for faces too far apart, or no face.
+        faces = _shot_faces(an, t0, t1)
+        held = _faces_crop(an, faces)
+        main = faces[0] if faces else None
+        if held and (crop is None or not (
+                crop[2] <= main["cx"] <= crop[2] + crop[0])):
+            g = dict(g, why=(g.get("why") or "") + " — overruled: every face "
+                     "in the shot fits a tall crop on them")
+            crop = held
         f = _shot_face(an, t0, t1)
         if f is not None and (crop is None or not (
                 crop[2] <= f["cx"] <= crop[2] + crop[0])):

@@ -159,3 +159,49 @@ class TheMailboxCannotPostThemEither(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CodeChecksTheFramersLook(unittest.TestCase):
+    """A weak framer that says "whole frame" for a podium shot leaves the
+    speaker a thumbnail in a blurred band (Golden, Frelick, Nov 2026)."""
+
+    def _an(self, faces):
+        from third_capture import shot_plan as sp  # noqa: F401
+        ts = [round(i / 6, 3) for i in range(60)]
+        dets = [(t, cx, 540.0, float(h), "frontal")
+                for (cx, h) in faces for t in ts]
+        return {"sw": 1920, "sh": 1080, "dur": 10.0, "fps": 30.0,
+                "cuts": [], "ts": ts, "dets": dets, "samples": len(ts),
+                "subjects": [], "col_energy": [1.0] * 1920,
+                "col_detail": [1.0] * 1920}
+
+    def _framed(self, an, answer):
+        from third_capture import shot_plan as sp
+        with mock.patch("shared.shot_relevance.enabled", return_value=True), \
+                mock.patch("shared.shot_relevance.frame_shots",
+                           return_value={0: answer}), \
+                mock.patch.object(sp, "_column_frame",
+                                  return_value=Path("f.png")):
+            return sp.framed(an, Path("x.mp4"), Path("/tmp"), "t")
+
+    def test_whole_frame_on_one_speaker_is_overruled(self):
+        out = self._framed(self._an([(1500, 300)]),
+                           {"whole": True, "why": "a press room"})
+        w, _h, x, _y = out[0]["crop"]
+        self.assertTrue(x <= 1500 <= x + w)
+        self.assertIn("overruled", out[0]["why"])
+
+    def test_columns_that_miss_the_speaker_are_overruled(self):
+        out = self._framed(self._an([(1500, 300)]),
+                           {"cols": (0, 2), "why": "the backdrop"})
+        w, _h, x, _y = out[0]["crop"]
+        self.assertTrue(x <= 1500 <= x + w)
+
+    def test_two_faces_far_apart_stay_whole(self):
+        out = self._framed(self._an([(300, 250), (1650, 250)]),
+                           {"whole": True, "why": "too far apart"})
+        self.assertIsNone(out[0]["crop"])
+
+    def test_no_face_trusts_the_look(self):
+        out = self._framed(self._an([]), {"whole": True, "why": "a crowd"})
+        self.assertIsNone(out[0]["crop"])
