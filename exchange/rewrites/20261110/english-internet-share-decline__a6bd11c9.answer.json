@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__a6bd11c9",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:25:00Z",
+  "title": "English Lost 30 Points as the Internet Globalized",
+  "hook": "English lost 30 points when the rest of the world logged on.",
+  "closing": "Searching only in English now hides almost half of the internet.",
+  "question": "Which language do you browse in?",
+  "segments": [
+    {
+      "topic": "English page fall",
+      "say": "English fell 30 percentage points as the web expanded beyond its early users."
+    },
+    {
+      "topic": "English growth rival",
+      "say": "Arabic content grew 2,501 percent, showing how quickly other languages built their own internet."
+    },
+    {
+      "topic": "English website share",
+      "say": "English still leads at 55 percent, but nearly half of websites now use other languages."
+    }
+  ]
+}
