@@ -1,0 +1,62 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261111",
+  "status": "blocked_output_verification",
+  "failed_step": "Verify actual accepted upload URLs against the frozen 5 sports_moment / 6 clip / 4 data_story contract after response.json, DONE, and Phase B.",
+  "observed_at": "2026-11-11T12:33:00Z",
+  "attempts": [
+    "Committed and read back media-progress/STARTED.json.",
+    "Completed two mailbox rounds: 0 reviews, 40 ask keys, and 20 rewrite answers committed and read back.",
+    "Committed response.json and validated schema, frozen contract identity, three Explainer rewrites, and all pacing limits.",
+    "Committed DONE separately; Phase B applied all 3 authored Explainer rewrites with 0 rejections.",
+    "Polled posted logs repeatedly after Phase B and accepted downstream uploads only when a YouTube Shorts URL was present."
+  ],
+  "channels": {
+    "trending": {
+      "required": 5,
+      "verified_posted": 5,
+      "pending": 0,
+      "note": "At least five accepted YouTube Shorts URLs are scheduled for the 20261111 production day."
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 3,
+      "pending": 3,
+      "note": "Three accepted YouTube Shorts URLs are present; the remaining three required clips have no accepted URL."
+    },
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "note": "Phase B accepted the authored words, but the Explainer posted log contains no 20261111 accepted upload URL."
+    }
+  },
+  "mailboxes": {
+    "reviews": {
+      "index_open": 0,
+      "answered_this_run": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "index_open_reported": 97,
+      "answered_this_run": 40,
+      "skipped_due_to_per_round_cap": 57,
+      "index_note": "OPEN.json was stale after answers; answer files were read back successfully."
+    },
+    "rewrites": {
+      "index_open_reported": 118,
+      "answered_this_run": 20,
+      "index_note": "OPEN.json still includes answered paths while claim/apply jobs reconcile; no unsupported repair was attempted."
+    }
+  },
+  "commits": {
+    "started": "116a5d77c2abe3d199c35dbac921c182140b174a",
+    "response": "15f3302b700c04f60ed6bdd03e41735439659e4c",
+    "done": "93297cec9588835c356a65a368741e78137e9e8a",
+    "phase_b": "7a7d9acadf21598b7100b48174cc94619ce31163"
+  },
+  "remaining_shortfall": 7,
+  "retryable": true,
+  "automation_action": "left_enabled",
+  "reason": "The content handoff succeeded, but actual production is not closed until three more third-channel URLs and four Explainer URLs are verified."
+}
