@@ -35,8 +35,10 @@ for (a0, a1), line in list(zip(win, lines))[1:]:
         a = a0 + speak * acc / tot; acc += len(" ".join(c)) + 1; b = a0 + speak * acc / tot
         ass.append(f"Dialogue: 0,{ts(a)},{ts(b)},Cap,,0,0,0,,{' '.join(c).upper()}")
 (work / "caps.ass").write_text("\n".join(ass) + "\n")
-vf = (f"scale=2160:3840:flags=lanczos,zoompan=z='1+0.06*on/{n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=2160x3840:fps=24,"
-      f"scale=1080:1920:flags=lanczos,curves=all='0/0 0.25/0.235 0.8/0.81 1/1',eq=saturation=0.96,unsharp=5:5:0.4,ass={work / 'caps.ass'},format=yuv420p")
+# atadenoise: a temporal average that follows motion, the last guard against frame-to-frame grain ("the Dr. Katz
+# effect", caaleb 2026-11-11); the shots carry their own camera moves, so there is no global zoom over the cuts
+vf = (f"atadenoise=0a=0.04:0b=0.08:1a=0.04:1b=0.08:2a=0.04:2b=0.08:s=7,scale=1080:1920:flags=lanczos,"
+      f"curves=all='0/0 0.25/0.235 0.8/0.81 1/1',eq=saturation=0.96,unsharp=5:5:0.4,ass={work / 'caps.ass'},format=yuv420p")
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", "24", "-pattern_type", "glob", "-i", str(frames / "f*.png"),
                 "-i", str(mix), "-vf", vf, "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-r", "24",
                 "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", str(out)], check=True)
