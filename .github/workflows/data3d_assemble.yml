@@ -1,0 +1,67 @@
+name: Data 3D short - re-assemble (frames of an earlier run; no upload)
+
+# Re-runs only the assembly (captions, music, mix) over the frames another
+# data3d_render run already made: frames_run= in .github/triggers/data3d_assemble.
+on:
+  push:
+    branches: ['claude/3d-data']
+    paths: ['.github/triggers/data3d_assemble']
+
+permissions:
+  contents: write   # preview-renders only
+  actions: read     # artifacts of the earlier runs
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {fetch-depth: 1, path: branch}
+      - id: cfg
+        run: echo "run=$(sed -n 's/^frames_run=//p' branch/.github/triggers/data3d_assemble)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {ref: main, fetch-depth: 1, path: main}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: {path: art, pattern: 'frames-*', run-id: '${{ steps.cfg.outputs.run }}', github-token: '${{ github.token }}'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: {name: narration, path: art/narration, run-id: '43028751371', github-token: '${{ github.token }}'}
+      - name: Deps
+        run: |
+          (timeout 600 sudo apt-get install -y -q ffmpeg libcairo2-dev pkg-config fonts-dejavu-core) || (timeout 600 sudo apt-get update -qq; timeout 600 sudo apt-get install -y -q ffmpeg libcairo2-dev pkg-config fonts-dejavu-core)
+          pip install -q -r main/data_learning/requirements.txt soundfile
+      - name: Cache music library
+        id: cache-music
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: main/data_learning/music/
+          key: music-kmcl-${{ hashFiles('main/scripts/fetch_music.py') }}
+          restore-keys: |
+            music-kmcl-
+      - name: Fetch music if missing
+        if: steps.cache-music.outputs.cache-hit != 'true'
+        working-directory: main
+        run: python3 scripts/fetch_music.py || true
+      - name: Assemble
+        run: |
+          mkdir -p frames out
+          cp art/frames-*/*.png frames/
+          ls frames | wc -l
+          python3 branch/tools/data3d/story/assemble.py frames art/narration main out/data3d_short.mp4
+          python3 branch/tools/data3d/store/sheet.py frames out/data3d_short_2fps.jpg 8 12
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: short
+          path: out/*
+      - name: Push to preview-renders/data3d
+        run: |
+          cd branch
+          git config user.name "github-actions[bot]"; git config user.email "github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4; do
+            git fetch -q --depth 1 origin preview-renders && git checkout -q -B pr FETCH_HEAD || { git checkout -q --orphan pr; git rm -rqf . ; }
+            mkdir -p data3d && cp ../out/* data3d/ && cp ../art/narration/narration.json data3d/
+            git add -f data3d && git commit -qm "data3d short $(date -u +%FT%TZ)" && git push -q origin pr:preview-renders && break
+            sleep $((i*3))
+          done
