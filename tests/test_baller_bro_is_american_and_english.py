@@ -167,9 +167,6 @@ class TheMailboxCannotPostThemEither(unittest.TestCase):
         settle.assert_called_once()
 
 
-if __name__ == "__main__":
-    unittest.main()
-
 
 class CodeChecksTheFramersLook(unittest.TestCase):
     """A weak framer that says "whole frame" for a podium shot leaves the
@@ -215,3 +212,39 @@ class CodeChecksTheFramersLook(unittest.TestCase):
     def test_no_face_trusts_the_look(self):
         out = self._framed(self._an([]), {"whole": True, "why": "a crowd"})
         self.assertIsNone(out[0]["crop"])
+
+
+class TheDetectorIsNotTheLastWordOnAShortClip(unittest.TestCase):
+    """2026-11-11 audit of the week's posts: an English LeBron clip of 12
+    words scored English p=0.49 and would have been refused."""
+
+    def _words(self, text):
+        return [{"w": w, "s": i * 0.4, "e": i * 0.4 + 0.3}
+                for i, w in enumerate(text.split())]
+
+    def test_grey_zone_english_words_pass(self):
+        from unittest import mock
+        w = self._words("oh my god you are not gonna do that to him man come on")
+        with mock.patch.object(sc, "english_probability",
+                               return_value=0.49):
+            self.assertEqual(sc.not_english(Path("x.mp4"), w), "")
+
+    def test_grey_zone_without_english_words_refuses(self):
+        from unittest import mock
+        w = self._words("vamos hermano que golazo para todos los fans muy bien")
+        with mock.patch.object(sc, "english_probability",
+                               return_value=0.45):
+            self.assertIn("not English",
+                          sc.not_english(Path("x.mp4"), w))
+
+    def test_clearly_foreign_refuses_whatever_the_words(self):
+        from unittest import mock
+        w = self._words("oh my god you are not gonna do that to him man")
+        with mock.patch.object(sc, "english_probability",
+                               return_value=0.06):
+            self.assertIn("not English",
+                          sc.not_english(Path("x.mp4"), w))
+
+
+if __name__ == "__main__":
+    unittest.main()
