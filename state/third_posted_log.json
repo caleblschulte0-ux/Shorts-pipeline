@@ -18772,13 +18772,77 @@
       "ts": "2026-11-11T12:06:10.404911+00:00"
     },
     "clip-20261111-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/AntsyEasyCheeseKappa-1eL_t3Ex7AA7Gms3",
-      "story_key": null,
-      "streamer": "avoidingthepuddle",
+      "url": "https://youtube.com/shorts/DQsj7ASe0QI",
       "title": "Avoidingthepuddle Plays Epona's Song And The Whole Moment Takes Over",
       "kind": "twitch_clip",
-      "ts": "2026-11-11T12:11:36.608016+00:00",
+      "ts": "2026-11-11T12:11:43.732195+00:00",
+      "uploaded_at": "2026-11-11T12:11:43.732211+00:00",
+      "publish_at": "2026-11-11T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261111-avoidingthepuddle-plays-epona-s-song-and-the-who-8264b2f5",
+        "tiktok": "queued for 2026-11-11T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/AntsyEasyCheeseKappa-1eL_t3Ex7AA7Gms3",
+      "streamer": "avoidingthepuddle",
+      "series": "wholesome",
+      "hook": "Puddle plays Epona's song \ud83e\udd40",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 15746,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
+      },
+      "director_cut": true
+    },
+    "rejected-smoothfitadminswiftrage-9wn3altekjvscqao": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/SmoothFitAdminSwiftRage-9wn3aLtEkJVSCQaO",
+      "streamer": "sodapoppin",
+      "title": "average mitch stream",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Giveaway/gifted-sub alert, insider WoW c)",
+      "ts": "2026-11-11T12:12:24.585672+00:00"
+    },
+    "rejected-manlyinexpensiveporpoisecorgiderp-q3m6_oigbdhjmi9q": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/ManlyInexpensivePorpoiseCorgiDerp-q3M6_oIGBDHjmi9Q",
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin gets camped by his managers in WoW forever",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW gameplay, needs context, no visible )",
+      "ts": "2026-11-11T12:13:37.806120+00:00"
+    },
+    "rejected-sillynaivemonkeykeyboardcat-mxrpazpslwzvw2-t": {
+      "source_url": "https://www.twitch.tv/maya/clip/SillyNaiveMonkeyKeyboardCat-mXRPAzpSLWzvW2-t",
+      "streamer": "maya",
+      "title": "second verse gets a bit too freaky",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Singing on couch, nothing visibly happen)",
+      "ts": "2026-11-11T12:14:12.862483+00:00"
+    },
+    "rejected-considerateslipperybeegingerpower-wpqwqcngyxk9z-fd": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ConsiderateSlipperyBeeGingerPower-wpQwqCngYXK9z-FD",
+      "streamer": "forsen",
+      "title": "Forsen World First",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (WoW menus, talking, nothing observable h)",
+      "ts": "2026-11-11T12:26:17.696763+00:00"
+    },
+    "clip-20261111-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jinnytty/clip/ChillyTenuousCrabAllenHuhu-hNYUilEC5_RMj8eL",
+      "story_key": null,
+      "streamer": "jinnytty",
+      "title": "Jinnytty Has To Feed The Capybara And Chat Can't Handle It",
+      "kind": "twitch_clip",
+      "ts": "2026-11-11T12:29:22.801178+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
