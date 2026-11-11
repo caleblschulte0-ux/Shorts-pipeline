@@ -1,46 +1,208 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-11T12:32:08Z",
+ "updated": "2026-11-11T13:26:47Z",
  "open": [
   {
-   "id": "coldest-place-in-the-universe-is-human-made__f9462970",
+   "id": "library-digital-shift__4fea1593",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-11T13:26:47Z",
+   "why": [
+    "premise: brain: The premise does not clearly invert a specific viewer expectation and relies on a vague numeric claim without a decisive, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261111/library-digital-shift__4fea1593.request.json",
+   "answer_path": "exchange/rewrites/20261111/library-digital-shift__4fea1593.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__80d498eb",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-11-11T13:26:46Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261111/activity-inequality-steps__80d498eb.request.json",
+   "answer_path": "exchange/rewrites/20261111/activity-inequality-steps__80d498eb.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__0fb55a9a",
    "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-08T18:12:38Z",
+   "filed": "2026-11-11T13:26:46Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on an implausible, unverifiable extreme temperature claim."
+    "premise: brain: The claim flips expectations but relies on an implausible, unverifiable temperature figure, making it a weak premise."
    ],
-   "request": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__f9462970.request.json",
-   "answer_path": "exchange/rewrites/20261108/coldest-place-in-the-universe-is-human-made__f9462970.answer.json"
+   "request": "exchange/rewrites/20261111/coldest-place-in-the-universe-is-human-made__0fb55a9a.request.json",
+   "answer_path": "exchange/rewrites/20261111/coldest-place-in-the-universe-is-human-made__0fb55a9a.answer.json"
   },
   {
-   "id": "left-brain-right-brain-myth__4d837340",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-11-08T14:45:28Z",
+   "id": "english-internet-share-decline__a6bd11c9",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-11-10T23:29:41Z",
    "why": [
-    "premise: brain: It offers a factual claim without overturning a viewer expectation and relies on a single number that isn’t a surprising reversal."
+    "premise: brain: The claim hinges on an unverifiable, likely inaccurate 75% figure, failing the requirement for a concrete, verifiable number."
    ],
-   "request": "exchange/rewrites/20261108/left-brain-right-brain-myth__4d837340.request.json",
-   "answer_path": "exchange/rewrites/20261108/left-brain-right-brain-myth__4d837340.answer.json"
+   "request": "exchange/rewrites/20261110/english-internet-share-decline__a6bd11c9.request.json",
+   "answer_path": "exchange/rewrites/20261110/english-internet-share-decline__a6bd11c9.answer.json"
   },
   {
-   "id": "antarctic-sea-ice-record-low__80962613",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-08T13:02:20Z",
+   "id": "third-interstellar-visitor__e29fbdf1",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-11-10T18:39:25Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a generic claim rather than a striking, verifiable number tied to an expectation flip."
+    "premise: brain: The claim hinges on a single number but does not clearly overturn a specific viewer expectation, making it too weak."
    ],
-   "request": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__80962613.request.json",
-   "answer_path": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__80962613.answer.json"
+   "request": "exchange/rewrites/20261110/third-interstellar-visitor__e29fbdf1.request.json",
+   "answer_path": "exchange/rewrites/20261110/third-interstellar-visitor__e29fbdf1.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__89ea0d88",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-11-10T18:39:24Z",
+   "why": [
+    "premise: brain: The premise does not invert a viewer's expectation and lacks a single consequential, verifiable number that challenges a preconceived belief."
+   ],
+   "request": "exchange/rewrites/20261110/mangrove-forest-loss__89ea0d88.request.json",
+   "answer_path": "exchange/rewrites/20261110/mangrove-forest-loss__89ea0d88.answer.json"
+  },
+  {
+   "id": "unclaimed-money-states-hold__74041609",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-11-10T15:42:00Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague statistic without a verifiable, consequential number."
+   ],
+   "request": "exchange/rewrites/20261110/unclaimed-money-states-hold__74041609.request.json",
+   "answer_path": "exchange/rewrites/20261110/unclaimed-money-states-hold__74041609.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__6ba75d18",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-11-10T14:30:30Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague claim rather than a single, verifiable quantitative fact."
+   ],
+   "request": "exchange/rewrites/20261110/bat-fungus-collapse__6ba75d18.request.json",
+   "answer_path": "exchange/rewrites/20261110/bat-fungus-collapse__6ba75d18.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__5604e5fe_r1",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-10T12:38:20Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague, unverifiable claim rather than a single, concrete, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261110/astronaut-bone-loss__5604e5fe_r1.request.json",
+   "answer_path": "exchange/rewrites/20261110/astronaut-bone-loss__5604e5fe_r1.answer.json"
   },
   {
    "id": "metric-system-holdouts__b68d2add",
    "slug": "metric-system-holdouts",
-   "filed": "2026-11-08T13:02:20Z",
+   "filed": "2026-11-09T14:39:17Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague scenario rather than a single, verifiable consequential number."
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
    ],
-   "request": "exchange/rewrites/20261108/metric-system-holdouts__b68d2add.request.json",
-   "answer_path": "exchange/rewrites/20261108/metric-system-holdouts__b68d2add.answer.json"
+   "request": "exchange/rewrites/20261109/metric-system-holdouts__b68d2add.request.json",
+   "answer_path": "exchange/rewrites/20261109/metric-system-holdouts__b68d2add.answer.json"
+  },
+  {
+   "id": "antarctic-sea-ice-record-low__80962613",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-11-09T14:03:43Z",
+   "why": [
+    "premise: brain: Unclear reversal of a specific viewer expectation despite the number"
+   ],
+   "request": "exchange/rewrites/20261109/antarctic-sea-ice-record-low__80962613.request.json",
+   "answer_path": "exchange/rewrites/20261109/antarctic-sea-ice-record-low__80962613.answer.json"
+  },
+  {
+   "id": "left-brain-right-brain-myth__4d837340",
+   "slug": "left-brain-right-brain-myth",
+   "filed": "2026-11-09T11:59:35Z",
+   "why": [
+    "premise: brain: The claim does not clearly invert a common viewer expectation and relies on a vague, unverified figure."
+   ],
+   "request": "exchange/rewrites/20261109/left-brain-right-brain-myth__4d837340.request.json",
+   "answer_path": "exchange/rewrites/20261109/left-brain-right-brain-myth__4d837340.answer.json"
+  },
+  {
+   "id": "measles-ninety-five-rule__ff2f3b08",
+   "slug": "measles-ninety-five-rule",
+   "filed": "2026-11-08T19:01:09Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a generic statistic rather than a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261108/measles-ninety-five-rule__ff2f3b08.request.json",
+   "answer_path": "exchange/rewrites/20261108/measles-ninety-five-rule__ff2f3b08.answer.json"
+  },
+  {
+   "id": "rubiks-cube-record-vs-robot__5d087bf9",
+   "slug": "rubiks-cube-record-vs-robot",
+   "filed": "2026-10-19T12:10:10Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.request.json",
+   "answer_path": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
+  },
+  {
+   "id": "insect-planet__3c4a491b",
+   "slug": "insect-planet",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/insect-planet__3c4a491b.request.json",
+   "answer_path": "exchange/rewrites/20261019/insect-planet__3c4a491b.answer.json"
+  },
+  {
+   "id": "plastic-in-your-body__cedc4bab",
+   "slug": "plastic-in-your-body",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/plastic-in-your-body__cedc4bab.request.json",
+   "answer_path": "exchange/rewrites/20261019/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "a-language-dies-every-2-weeks__8d6939dc",
+   "slug": "a-language-dies-every-2-weeks",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "thesis: seg0 ('Languages in danger') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg1 ('Why languages vanish') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg2 ('Languages lost by 2100') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261019/a-language-dies-every-2-weeks__8d6939dc.request.json",
+   "answer_path": "exchange/rewrites/20261019/a-language-dies-every-2-weeks__8d6939dc.answer.json"
+  },
+  {
+   "id": "cryonics-client-count__57a93db8",
+   "slug": "cryonics-client-count",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague number without a verifiable consequential claim."
+   ],
+   "request": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.request.json",
+   "answer_path": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.answer.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__e26a5423",
+   "slug": "earth-rotation-speeding-up",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/earth-rotation-speeding-up__e26a5423.request.json",
+   "answer_path": "exchange/rewrites/20261019/earth-rotation-speeding-up__e26a5423.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__d6b27d36",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/divorce-rate-quiet-decline__d6b27d36.request.json",
+   "answer_path": "exchange/rewrites/20261019/divorce-rate-quiet-decline__d6b27d36.answer.json"
   },
   {
    "id": "helium-supply-squeeze__067a945d",
@@ -193,16 +355,6 @@
    "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
   },
   {
-   "id": "a-language-dies-every-2-weeks__8d6939dc",
-   "slug": "a-language-dies-every-2-weeks",
-   "filed": "2026-10-18T14:23:07Z",
-   "why": [
-    "premise: brain: The claim offers a single numeric claim but does not clearly overturn a well‑known viewer expectation in a compelling, verifiable way."
-   ],
-   "request": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.request.json",
-   "answer_path": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.answer.json"
-  },
-  {
    "id": "highest-point-illusion__3d90af0a",
    "slug": "highest-point-illusion",
    "filed": "2026-10-18T14:23:07Z",
@@ -323,26 +475,6 @@
    "answer_path": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.answer.json"
   },
   {
-   "id": "insect-planet__3c4a491b",
-   "slug": "insect-planet",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/insect-planet__3c4a491b.request.json",
-   "answer_path": "exchange/rewrites/20261018/insect-planet__3c4a491b.answer.json"
-  },
-  {
-   "id": "plastic-in-your-body__cedc4bab",
-   "slug": "plastic-in-your-body",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/plastic-in-your-body__cedc4bab.request.json",
-   "answer_path": "exchange/rewrites/20261018/plastic-in-your-body__cedc4bab.answer.json"
-  },
-  {
    "id": "nobel-prize-discovery-age__3e12dc3c",
    "slug": "nobel-prize-discovery-age",
    "filed": "2026-10-18T11:46:45Z",
@@ -351,26 +483,6 @@
    ],
    "request": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.request.json",
    "answer_path": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.answer.json"
-  },
-  {
-   "id": "earth-rotation-speeding-up__e26a5423",
-   "slug": "earth-rotation-speeding-up",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/earth-rotation-speeding-up__e26a5423.request.json",
-   "answer_path": "exchange/rewrites/20261018/earth-rotation-speeding-up__e26a5423.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261018/divorce-rate-quiet-decline__d6b27d36.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
