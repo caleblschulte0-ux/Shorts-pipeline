@@ -18728,13 +18728,57 @@
       "ts": "2026-11-11T11:45:58.101557+00:00"
     },
     "clip-20261111-3": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-4a5b4bb08f7d4f84",
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/joV3Idavizw",
       "title": "Sodapoppin checks on Mitch Jones and can't believe it",
       "kind": "story",
-      "ts": "2026-11-11T12:05:47.546119+00:00",
+      "ts": "2026-11-11T12:05:59.877626+00:00",
+      "uploaded_at": "2026-11-11T12:05:59.877643+00:00",
+      "publish_at": "2026-11-11T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261111-sodapoppin-checks-on-mitch-jones-and-can-t-belie-c19a2ba9",
+        "tiktok": "queued for 2026-11-11T20:00:00Z"
+      },
+      "story_key": "story-4a5b4bb08f7d4f84",
+      "member_keys": [
+        "vodmine://2923569706/3656-3896",
+        "https://www.twitch.tv/sodapoppin/clip/SmoothFitAdminSwiftRage-9wn3aLtEkJVSCQaO"
+      ],
+      "streamer": "sodapoppin",
+      "who": [
+        "sodapoppin"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 2,
+      "story_structure": "chronological",
+      "duration_s": 50.1,
+      "narrative_score": 0,
+      "narrative_summary": "Sodapoppin says even Mitch Jones now follows the leveling guide arrow in his gamble streams, then checks Mitch's stream and finds him still stuck in Stormwind doing a giveaway.",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 0,
+      "replay_count": 0
+    },
+    "rejected-creativefragilemonitorbcouch-xgmpp665jbbv-mrb": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/CreativeFragileMonitorBCouch-XgmpP665JbBV-MRb",
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin on living in a gated comunity",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-11-11T12:06:10.404911+00:00"
+    },
+    "clip-20261111-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/AntsyEasyCheeseKappa-1eL_t3Ex7AA7Gms3",
+      "story_key": null,
+      "streamer": "avoidingthepuddle",
+      "title": "Avoidingthepuddle Plays Epona's Song And The Whole Moment Takes Over",
+      "kind": "twitch_clip",
+      "ts": "2026-11-11T12:11:36.608016+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
