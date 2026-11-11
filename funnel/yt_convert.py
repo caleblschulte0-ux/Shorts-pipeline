@@ -24,7 +24,10 @@ file of the video and saves it to `out`:
 
 Instances come from each project's public instance list, with a few known
 hosts behind it. Every one is a stranger's server that can be down, so a
-host that fails is skipped for the rest of the run (`_DEAD`), the whole
+host that fails `DEAD_AFTER` times running is skipped for the rest of the
+run (`_DEAD`) — one blip is not enough (2026-11-11: loader.to's page
+fetched eight videos, one HTTP/2 reset marked it dead, and the 27
+downloads after it all failed, so the day's montages came back empty) — the whole
 search has a time budget, and the file is only accepted once ffprobe reads
 a real video with sound from it. Returns the clip's meta like
 `clip_edit.download`, or None — never raises.
@@ -65,6 +68,21 @@ COBALT_LIST = "https://instances.cobalt.best/api/instances.json"
 _ID = re.compile(r"(?:[?&]v=|youtu\.be/|/shorts/|/embed/|/live/)"
                  r"([A-Za-z0-9_-]{11})")
 _DEAD: set[str] = set()
+#: Failures in a row before a converter host is given up on for the run.
+DEAD_AFTER = 3
+_FAILS: dict[str, int] = {}
+
+
+def _failed(host: str, err: Exception | None = None) -> None:
+    """Count a failure; give the host up after `DEAD_AFTER` in a row, or at
+    once when it does not exist or refuses this runner outright."""
+    _FAILS[host] = _FAILS.get(host, 0) + 1
+    text = str(err or "")
+    final = (getattr(err, "code", None) in (401, 403, 404)
+             or "Name or service not known" in text
+             or "No address associated" in text)
+    if final or _FAILS[host] >= DEAD_AFTER:
+        _DEAD.add(host)
 _HOSTS: dict[str, list[str]] = {}
 
 
@@ -500,6 +518,7 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
                     return None
                 if not meta.get("title"):
                     meta = {**_api_meta(vid), **{k: v for k, v in meta.items() if v}}
+                _FAILS.pop(host, None)
                 print(f"[yt_convert] {vid}: fetched by {kind} {host} "
                       f"({real:.0f}s)", flush=True)
                 return {"path": out, "clip_id": vid,
@@ -508,7 +527,7 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
                         "views": int(meta.get("views") or 0),
                         "duration": real, "url": url, "via": kind}
             except Exception as e:  # noqa: BLE001
-                _DEAD.add(host)
+                _failed(host, e)
                 print(f"::warning::[yt_convert] {kind} {host}: "
                       f"{type(e).__name__} {str(e)[:120]}", flush=True)
     print(f"::warning::[yt_convert] {vid}: no converter answered", flush=True)
