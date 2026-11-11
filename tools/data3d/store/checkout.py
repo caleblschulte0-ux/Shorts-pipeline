@@ -136,10 +136,12 @@ for f in range(F(T_REL), F(T_END) + 1):     # cart rolls on a touch then stops
 cart_end = Vector(cart["root"].location); cart_rot = cart["root"].rotation_euler.z
 for t, dx in ((T_PUSH1, 0.0), (T_PUSH1 + 0.9, 0.22)):
     cart["root"].location = cart_end + Vector((dx, 0, 0)); cart["root"].keyframe_insert("location", frame=F(t))
-data.turn_to(-88, T_REL + 0.2, T_REL + 0.9)  # -88, not -90: from +90 an exact half turn went the long way, through his back to the lens          # face -x: back along the lanes
-data.look_at((0.9, -1.1, 0.7), T_REL + 0.9)    # back along the lanes, face cheated toward the lens (upstage targets turned it to the back of his head)
+data.turn_to(-45, T_REL + 0.2, T_REL + 0.9)   # half way: body three-quarter to the lens, the HEAD does the looking back (a full -88 turn left him dead profile, a featureless ball)
+sc.frame_set(F(T_REL + 0.9)); _pb = data.pos()
+_back = (_pb.x - 0.85, _pb.y - 1.81, 0.72)   # 25 degrees round from the lens toward the lanes: a three-quarter face looking back (65 read as dead profile)
+data.look_at(_back, T_REL + 0.9, max_yaw=45)
 data.expression("surprised", T_REL + 0.8, T_REL + 2.2)
-data.look_at((-0.2, -1.1, 0.7), T_REL + 1.6)
+data.look_at(_back, T_REL + 1.45, max_yaw=45)   # HOLD it: one key let the head drift
 data.turn_to(0, T_REL + 1.7, T_REL + 2.2)            # face -y: the camera (rot 0; 180 faces AWAY: forward = (sin, -cos))
 sc.frame_set(F(T_REL + 2.2)); _px = data.pos().x
 data.look_at((_px + (CAM_BASE.x - X0), CAM_BASE.y + PUSH_IN, 0.72), T_REL + 2.2)   # into the lens: the camera rides at px + (CAM_BASE.x - X0); a fixed world point turned his head 40 degrees off it
