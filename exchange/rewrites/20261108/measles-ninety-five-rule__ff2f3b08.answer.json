@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-ninety-five-rule__ff2f3b08",
+  "slug": "measles-ninety-five-rule",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:31:00Z",
+  "title": "One Measles Case Can Infect 15 People",
+  "hook": "One measles case can infect 15 people when protection slips.",
+  "closing": "Small immunity gaps become community outbreaks, so every vaccination protects more than one child.",
+  "question": "Did you get both measles shots?",
+  "segments": [
+    {
+      "topic": "Measles case spread",
+      "say": "One measles case infects about 15 people, so even a small protection gap spreads quickly."
+    },
+    {
+      "topic": "Measles protection needed",
+      "say": "Measles needs 95 percent protection, and falling just short gives the virus room."
+    },
+    {
+      "topic": "Measles cases surge",
+      "say": "US measles cases grew about 9 times recently, showing how quickly a small gap snowballs."
+    }
+  ]
+}
