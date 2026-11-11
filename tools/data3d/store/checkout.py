@@ -19,6 +19,14 @@ SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
 PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
 
 T_PUSH0, T_PUSH1, T_END = 0.5, 6.6, 10.0
+T_CLOSE = None           # when he turns to the lens; default T_REL + 1.7 (the 10 s cut)
+NARR = os.environ.get("NARR")   # narration.json from data3d_narrate.yml: the shot is timed to the voice
+if NARR:
+    import json as _j
+    _w = _j.load(open(NARR))["windows"]          # [hook, beat 1, beat 2, beat 3, closing]
+    T_PUSH0 = 0.3; T_PUSH1 = _w[3][0] - 0.1      # he pushes through the hook and the first two beats
+    T_CLOSE = _w[4][0] - 0.25                    # turns to the lens as the closing line starts
+    T_END = _w[4][1] + 0.6
 X0, X1 = -0.72, 2.3
 TRIG_AHEAD = 0.9         # the lane converts in the camera's LEAD space, right of the cart, not behind Data
 CAM_BASE = Vector((-0.55, -2.67, 0.6)); CAM_LOOK = Vector((0.45, 0.35, 0.8)); LOOK_AHEAD = 0.25; PUSH_IN = 1.05; LENS = 40; FSTOP = 2.8   # tilted up: feet near 85% of the frame, the ceiling in shot
@@ -127,9 +135,11 @@ for ln in store["extra"]:
 
 # ---------------------------------------------------------------- the ending: let go, turn back, take it in, turn to camera, shrug
 T_REL = T_PUSH1 + 0.1
+if T_CLOSE is None: T_CLOSE = T_REL + 1.7
 data.release(T_REL)
 data.idle(T_REL + 0.45, T_END)
 data.blink(T_REL + 1.65); data.blink(T_END - 0.6)
+for _tb in range(int(T_REL + 3.2), int(T_CLOSE - 0.6), 3): data.blink(_tb + 0.1)   # a long look back still blinks
 data.gaze(T_REL + 0.9, 0, 0)
 for f in range(F(T_REL), F(T_END) + 1):     # cart rolls on a touch then stops
     sc.frame_set(F(T_PUSH1))
@@ -140,13 +150,13 @@ data.turn_to(-45, T_REL + 0.2, T_REL + 0.9)   # half way: body three-quarter to 
 sc.frame_set(F(T_REL + 0.9)); _pb = data.pos()
 _back = (_pb.x - 0.85, _pb.y - 1.81, 0.72)   # 25 degrees round from the lens toward the lanes: a three-quarter face looking back (65 read as dead profile)
 data.look_at(_back, T_REL + 0.9, max_yaw=45)
-data.expression("surprised", T_REL + 0.8, T_REL + 2.2)
-data.look_at(_back, T_REL + 1.45, max_yaw=45)   # HOLD it: one key let the head drift
-data.turn_to(0, T_REL + 1.7, T_REL + 2.2)            # face -y: the camera (rot 0; 180 faces AWAY: forward = (sin, -cos))
-sc.frame_set(F(T_REL + 2.2)); _px = data.pos().x
-data.look_at((_px + (CAM_BASE.x - X0), CAM_BASE.y + PUSH_IN, 0.72), T_REL + 2.2)   # into the lens: the camera rides at px + (CAM_BASE.x - X0); a fixed world point turned his head 40 degrees off it
-data.act("shrug", T_REL + 2.25, dur=0.25, hold=0.4)   # back to the hang at 9.85 s: the old timing ended at 10.05, so the clip cut out mid-return
-data.expression("happy", T_REL + 2.3, T_END)
+data.expression("surprised", T_REL + 0.8, T_CLOSE + 0.5)
+data.look_at(_back, T_CLOSE - 0.25, max_yaw=45)   # HOLD it: one key let the head drift
+data.turn_to(0, T_CLOSE, T_CLOSE + 0.5)            # face -y: the camera (rot 0; 180 faces AWAY: forward = (sin, -cos))
+sc.frame_set(F(T_CLOSE + 0.5)); _px = data.pos().x
+data.look_at((_px + (CAM_BASE.x - X0), CAM_BASE.y + PUSH_IN, 0.72), T_CLOSE + 0.5)   # into the lens: the camera rides at px + (CAM_BASE.x - X0); a fixed world point turned his head 40 degrees off it
+data.act("shrug", T_CLOSE + 0.55, dur=0.25, hold=0.4)   # back to the hang at 9.85 s: the old timing ended at 10.05, so the clip cut out mid-return
+data.expression("happy", T_CLOSE + 0.6, T_END)
 data.finish()
 
 # ---------------------------------------------------------------- camera: leads him, pushes in at the turn
@@ -154,7 +164,7 @@ cam = K.camera(CAM_BASE, CAM_LOOK, lens=LENS, fstop=FSTOP)
 for f in range(1, F(T_END) + 1):
     sc.frame_set(f); t = (f - 1) / FPS
     px = Vector(data.arm.location).x
-    u_in = ease((t - (T_REL + 1.6)) / 1.2)
+    u_in = ease((t - (T_CLOSE - 0.1)) / 1.2)
     loc = Vector((CAM_BASE.x + (px - X0) + LOOK_AHEAD * min(1, max(0, (t - T_PUSH0) / 0.6)) * (1 - u_in), CAM_BASE.y, CAM_BASE.z))
     look = Vector((px + LOOK_AHEAD, CAM_LOOK.y, CAM_LOOK.z))
     if u_in > 0:
@@ -171,6 +181,17 @@ if NYC:
 style.restyle()
 key = style.lights(sc)
 if NYC: built.relight(); built.feet_shadow(data)
+# beat 3 (losses at self-checkout): while he looks back, every self-checkout's lane lamp goes from green to a blinking red
+_lamp = bpy.data.materials.get("lane lamp")
+if NARR and _lamp:
+    _b = _lamp.node_tree.nodes["Principled BSDF"]
+    _cols = [_b.inputs["Base Color"], _b.inputs["Emission Color"] if "Emission Color" in _b.inputs else _b.inputs["Emission"]]
+    _green = tuple(_cols[1].default_value); _red = (1.0, 0.08, 0.05, 1.0)
+    for _f in range(1, F(T_END) + 1):
+        _t = (_f - 1) / FPS
+        on = T_REL + 0.9 <= _t < T_CLOSE + 0.3
+        c = (_red if (int((_t - T_REL) * 2.5) % 2 == 0) else (0.25, 0.02, 0.01, 1.0)) if on else _green
+        for i in _cols: i.default_value = c; i.keyframe_insert("default_value", frame=_f)
 style.follow_key(key, data, 1, F(T_END))
 style.render_settings(sc, SPP, PCT)
 
