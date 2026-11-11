@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "activity-inequality-steps__d58cd2b4",
+  "slug": "activity-inequality-steps",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:25:00Z",
+  "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
+  "hook": "Unequal activity nearly triples obesity risk, even beyond average steps.",
+  "closing": "Public health improves when more people can move, not just when averages rise.",
+  "question": "Who gets fewer walking opportunities?",
+  "segments": [
+    {
+      "topic": "Activity step averages",
+      "say": "Hong Kong averages 6,880 daily steps, but a national average cannot show who gets left behind."
+    },
+    {
+      "topic": "Activity obesity risk",
+      "say": "High-inequality countries reach 297 on the obesity index, nearly tripling the low-inequality baseline."
+    },
+    {
+      "topic": "Activity gender gap",
+      "say": "The gender step gap explains 43 percent of activity inequality, revealing who loses movement opportunities."
+    }
+  ]
+}
