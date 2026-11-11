@@ -620,10 +620,11 @@ class Data:
         t1, t2 = t0 + dur, t0 + dur + hold; t3 = t2 + dur
         if name == 'shrug':
             for s, sg in (('L', -1), ('R', 1)):
-                p = sh[s] + right * sg * 0.14 + fw * 0.10 + Vector((0, 0, -0.08))
-                self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t0, 0.3)
-                self._arm_ik(s, p, t1, 0.9); self._arm_ik(s, p, t2, 0.9)
-                self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t3, 0.3)
+                p = sh[s] + right * sg * 0.085 + fw * 0.10 + Vector((0, 0, -0.12))   # hands out at the waist, elbows in: a shrug, not a T-pose
+                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN: an IK 'rest' key here swung the arms out wide on the way
+                self._arm_ik(s, p, t1, 0.35); self._arm_ik(s, p + Vector((0, 0, 0.012)), t2, 0.35)
+                self._k(f'hand.{s}', t1, rot=(0, sg * -35, 0)); self._k(f'hand.{s}', t2, rot=(0, sg * -35, 0)); self._k(f'hand.{s}', t3, rot=(0, 0, 0))
+                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t3 + 0.15, rot=self.RELAXED[bn])
                 self._k(f'clav.{s}', t0, rot=(0, 0, 0)); self._k(f'clav.{s}', t1, rot=(0, 0, sg * -14)); self._k(f'clav.{s}', t2, rot=(0, 0, sg * -14)); self._k(f'clav.{s}', t3, rot=(0, 0, 0))
             self.expression('worried', t0, t2)
         elif name == 'wave':

@@ -136,6 +136,10 @@ def restyle():
             b.inputs["Roughness"].default_value = 0.45; b.inputs["Specular IOR Level"].default_value = 0.3   # soft, no plastic hotspot
             b.inputs["Subsurface Weight"].default_value = 0.12; b.inputs["Subsurface Radius"].default_value = (0.02, 0.012, 0.01)
             b.inputs["Coat Weight"].default_value = 0.0
+            if os.environ.get("DATA_SKIN", "1") == "1":   # a real surface, not a CG ball: faint mottling and micro-bump, a touch rougher
+                b.inputs["Roughness"].default_value = 0.55
+                n = _tex_noise(nt, 90, 6, 0.65); _bump(nt, b, n.outputs["Fac"], 0.04, 0.0006)
+                n2 = _tex_noise(nt, 6, 3, 0.5); _mix_col(nt, b, n2.outputs["Fac"], (0.05, 0.16, 0.13, 1), 0.12)
     m = _get("Coat / warm ivory")
     if m:
         nt, b = _nodes(m)
@@ -179,7 +183,7 @@ def lights(sc, data_follow=None):
     # cool fill from the right
     area("fill", (3.2, -2.6, 1.4), 2.0, 7, (0.85, 0.9, 1.0), aim=(0.8, 0.3, 0.5))
     # warm hero key following Data
-    key = area("hero key", (0, -1, 1), 0.9, 22, (1.0, 0.93, 0.85), aim=(0, 0, 0.6))
+    key = area("hero key", (0, -1, 1), 0.9, float(os.environ.get("HERO_KEY", "9")), (1.0, 0.93, 0.85), aim=(0, 0, 0.6))
     w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
     bg = w.node_tree.nodes.get("Background")
     if bg:
