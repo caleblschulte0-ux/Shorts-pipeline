@@ -18836,14 +18836,32 @@
       "ts": "2026-11-11T12:26:17.696763+00:00"
     },
     "clip-20261111-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jinnytty/clip/ChillyTenuousCrabAllenHuhu-hNYUilEC5_RMj8eL",
-      "story_key": null,
-      "streamer": "jinnytty",
+      "url": "https://youtube.com/shorts/Ia8n7cgqQ54",
       "title": "Jinnytty Has To Feed The Capybara And Chat Can't Handle It",
       "kind": "twitch_clip",
-      "ts": "2026-11-11T12:29:22.801178+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-11T12:29:33.108895+00:00",
+      "uploaded_at": "2026-11-11T12:29:33.108908+00:00",
+      "publish_at": "2026-11-12T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261111-jinnytty-has-to-feed-the-capybara-and-chat-can-t-a0f8c4e4",
+        "tiktok": "queued for 2026-11-12T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jinnytty/clip/ChillyTenuousCrabAllenHuhu-hNYUilEC5_RMj8eL",
+      "streamer": "jinnytty",
+      "series": "wholesome",
+      "hook": "Jinnytty meets a capybara \ud83e\udd79",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6240,
+      "banger": 0.55,
+      "cut": {
+        "start": 3.5,
+        "end": 19.5
+      },
+      "director_cut": true
     }
   }
 }

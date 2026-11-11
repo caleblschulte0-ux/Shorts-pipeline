@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261104",
-      "dry_run": false,
-      "ts": "2026-11-04T18:36:49+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 134,
-        "with_curve": 15,
-        "fetched_at": "2026-11-04T16:28:56.690118+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261104-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261104-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261104-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261104-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261104-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261104-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261105",
       "dry_run": false,
       "ts": "2026-11-05T13:02:34+00:00",
@@ -4955,6 +4903,434 @@
             }
           },
           "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261111",
+      "dry_run": false,
+      "ts": "2026-11-11T12:29:33+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 121,
+        "with_curve": 15,
+        "fetched_at": "2026-11-11T08:46:21.890921+00:00"
+      },
+      "brain": {
+        "ok": 38,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:silky": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:moistcr1tikal": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tpain": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:pokimane": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261111-1",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "drive-thru accusation, shocking exchange",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Drive-thru shock reaction, murky accusat",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 34.2
+        },
+        {
+          "slug": "clip-20261111-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin horizontal strip, about a third of the canvas height. It should fill roughly three quarters,; vision: From about 5s to the end, the clip is a zoomed-out overhead ga",
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "AI twins kick creator, funny",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Needs Neuro/BG3 context; little visible ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Vedal987 Gets Kicked Out Of The Party By Neuro And Her Evil Twin"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin horizontal strip, about a third of the canvas height. It should fill roughly three quarters,",
+                "From about 5s to the end, the clip is a zoomed-out overhead game view. The characters are tiny dots and unreadable on a ",
+                "The framing is small and lost, not small and clear. Only the first frame, with the close-up of the white-haired characte",
+                "The in-video captions are small and sit against the game UI, and the streamer webcam overlay is tiny. The clip looks rep"
+              ]
+            }
+          },
+          "took_s": 464.2
+        },
+        {
+          "slug": "clip-20261111-3",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 132,
+                "refused_shown": 7,
+                "scouted": [],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2946,
+                "pool_with_vod": 2072,
+                "arc_sizes": [
+                  3,
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  3,
+                  6,
+                  3,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr/s",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 There is no meaningful change and no payoff. The clip is steel scrolling a 55 m\u00b2 office rental listing, saying 'good luck, bro, 100,000' about the price, then opening Google. The stream before it is h"
+                },
+                {
+                  "cluster": "rayasianboy@momentspoopyspeedyeyeballbabyrage-llmux-2vtyowb_",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.7s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "sodapoppin@momentcreativefragilemonitorbcouch-xgmpp665jbbv-m",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinarinrin@momentspotlessdepressedbeanpjsugar-qiilck9qaaanh",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.7s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "sodapoppin@momentsmoothfitadminswiftrage-9wn3altekjvscqao/so",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1201.8
+        },
+        {
+          "slug": "clip-20261111-4",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "beautiful singing, real moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Zelda ocarina play; nostalgic, needs con",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Avoidingthepuddle Plays Epona's Song And The Whole Moment Takes Over"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is only about a third of the 9:16 canvas, well short of the roughly three quarters expected. Most of t",
+                "Characters are fairly small on a phone. The game's own UI box covers the lower part of the picture, though it doesn't co",
+                "The hook caption sits in the blurred area and covers no faces or action, so it is fine."
+              ]
+            }
+          },
+          "took_s": 292.9
+        },
+        {
+          "slug": "clip-20261111-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Singing on couch, nothing visibly happen)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague karaoke, awkward moment, unclear v",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Singing on couch, nothing visibly happen",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 35.1
+        },
+        {
+          "slug": "clip-20261111-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 136,
+                "refused_shown": 7,
+                "scouted": [
+                  {
+                    "premise": "Zxcursed comes back to Twitch after five years away and his first stream plays out clip by clip.",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "One Kai Cenat Just Chatting stream escalates from a tense question to Nikki to chat mixing up Nat and Emily, then to the",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Ohnepixel's VALORANT watch stream: he jokes about Demon1, learns someone made a shirt of him in a day, then asks 'Do you",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "xQc spends a stream reacting to a dog owner who won't let the dog inside.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Cinna's GTA RP crew turns on Lang and Carlitos over Kalita, then Kalita unleashes on Dean and Larry after an accusation.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "A stranger's message for Jynxzi on Deepins02's stream builds to the Deepins02-and-Jynxzi moment that left chat losing it",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 533,
+                "pool": 2946,
+                "pool_with_vod": 2072,
+                "arc_sizes": [
+                  3,
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  3,
+                  6,
+                  3,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:zxcursed/zxcursed-dark-dota-2026w46",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The scout's premise is a comeback stream told clip by clip, but the footage doesn't show that. All four clips are static Dota 2 menu screens with a small dim facecam, and none has a payoff or a reacti"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "cute capybara feeding, no drama",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "cute toddler feeding capybara, mild",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jinnytty Has To Feed The Capybara And Chat Can't Handle It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip, about a third of the canvas instead of roughly three quarters. The renderer did ",
+                "The capybara and the child are small on a phone, but they stay identifiable in every frame.",
+                "The Twitch chat and UI overlay is visible in the bottom-left of the sharp strip.",
+                "The hook caption sits on the blurred top padding and does not cover the action."
+              ]
+            }
+          },
+          "took_s": 195.4
         }
       ]
     }
