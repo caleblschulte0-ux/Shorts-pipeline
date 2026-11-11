@@ -63,7 +63,7 @@ jobs:
           c = json.load(open('data_learning/niche.config.json'))
           s = next(x for x in c['stories'] if x['slug'] == os.environ['SLUG'])
           lines = [s['hook']] + [g['say'] for g in s['segments']] + [s['closing']]
-          wd = Path('out'); nar, win = sr.synth_narration(lines, wd, 'am_fenrir')
+          wd = Path('out').resolve(); nar, win = sr.synth_narration(lines, wd, 'am_fenrir')
           json.dump({'slug': s['slug'], 'lines': lines, 'windows': win, 'tts': sr.TTS_USED,
                      'title': s['title']}, open('out/narration.json', 'w'), indent=1)
           print(json.dumps(sr.TTS_USED), win)
