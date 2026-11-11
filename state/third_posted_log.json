@@ -19109,14 +19109,32 @@
       "ts": "2026-11-11T13:12:51.870987+00:00"
     },
     "clip-20261111-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/emilycc/clip/OnerousElatedSpindleFrankerZ-2r714aKWvk42wXHK",
-      "story_key": null,
-      "streamer": "emilycc",
+      "url": "https://youtube.com/shorts/eKeJVcLHvcA",
       "title": "Emilycc Can't Believe Her Beautiful Computer Actually Worked After This",
       "kind": "twitch_clip",
-      "ts": "2026-11-11T18:56:12.043799+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-11T18:56:22.299267+00:00",
+      "uploaded_at": "2026-11-11T18:56:22.299281+00:00",
+      "publish_at": "2026-11-12T08:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261111-emilycc-can-t-believe-her-beautiful-computer-act-858b478b",
+        "tiktok": "queued for 2026-11-12T08:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/emilycc/clip/OnerousElatedSpindleFrankerZ-2r714aKWvk42wXHK",
+      "streamer": "emilycc",
+      "series": "wholesome",
+      "hook": "Emily prays her computer works \ud83e\udd40",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 3796,
+      "banger": 0.68,
+      "cut": {
+        "start": 1.4,
+        "end": 19.7
+      },
+      "director_cut": true
     }
   }
 }
