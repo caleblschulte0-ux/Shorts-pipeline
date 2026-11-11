@@ -1,0 +1,27 @@
+{
+  "key": "kids_walk_to_school_trend",
+  "title": "Share of US kids who walked or biked to school",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1969 vs 2009",
+  "source": {
+    "name": "National Household Travel Survey, school-travel comparison",
+    "publisher": "Safe Routes to School National Partnership / FHWA NHTS",
+    "url": "https://www.saferoutespartnership.org/sites/default/files/pdf/NHTS-SRTS-Press-Release-04082010.pdf",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "NHTS-based analysis found that the share of US children ages 5-14 who usually walked or biked to school fell from about 48% in 1969 to 13% in 2009, the most recent year with a directly comparable national figure. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "1969",
+      "value": 48,
+      "period": "1969"
+    },
+    {
+      "label": "2009",
+      "value": 13,
+      "period": "2009"
+    }
+  ]
+}

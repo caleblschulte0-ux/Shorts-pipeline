@@ -1,0 +1,25 @@
+{
+  "key": "kids_near_school_walk_share",
+  "title": "Share of kids who walk to school, among those living within a quarter mile",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2017",
+  "source": {
+    "name": "Children's Travel to School brief",
+    "publisher": "Federal Highway Administration (FHWA), 2017 National Household Travel Survey",
+    "url": "https://nhts.ornl.gov/assets/FHWA_NHTS_%20Brief_Traveltoschool_032519.pdf",
+    "officiality": "official",
+    "access_date": "2026-11-11"
+  },
+  "notes": "FHWA's analysis of the 2017 NHTS found that 80.9% of children living a quarter mile or less from school usually walk there -- walking essentially only survives where school is already close by. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "Walk (within a quarter mile)",
+      "value": 81
+    },
+    {
+      "label": "Still driven that short distance",
+      "value": 19
+    }
+  ]
+}

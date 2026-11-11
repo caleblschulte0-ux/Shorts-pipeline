@@ -1,0 +1,25 @@
+{
+  "key": "volunteer_firefighters_comparison",
+  "title": "US volunteer firefighters, 2015 vs. 2023",
+  "unit": "thousand",
+  "geography": "United States",
+  "time_coverage": "2015 vs 2023",
+  "source": {
+    "name": "US Fire Department Profile",
+    "publisher": "National Fire Protection Association (NFPA)",
+    "url": "https://firefighternow.com/volunteer-firefighter-statistics/",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "NFPA's periodic fire department profile put the volunteer firefighter count at about 814,850 (roughly 70% of all US firefighters) in 2015, falling to about 635,100 (about 65%) by 2023. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "2015",
+      "value": 814.85
+    },
+    {
+      "label": "2023",
+      "value": 635.1
+    }
+  ]
+}

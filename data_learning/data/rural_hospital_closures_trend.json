@@ -1,0 +1,32 @@
+{
+  "key": "rural_hospital_closures_trend",
+  "title": "Cumulative rural hospital closures and conversions since 2005",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2005-2025",
+  "source": {
+    "name": "Rural Hospital Closures tracker",
+    "publisher": "Cecil G. Sheps Center for Health Services Research, UNC Chapel Hill",
+    "url": "https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "The Sheps Center's running tracker counts 196 rural hospitals that have either closed completely (108) or converted away from full inpatient care (88) since January 2005, with 153 of those occurring since 2010 alone. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "2005",
+      "value": 0,
+      "period": "2005"
+    },
+    {
+      "label": "2010",
+      "value": 43,
+      "period": "2010"
+    },
+    {
+      "label": "2025",
+      "value": 196,
+      "period": "2025"
+    }
+  ]
+}

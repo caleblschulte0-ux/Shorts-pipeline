@@ -1,0 +1,25 @@
+{
+  "key": "rural_hospital_closure_risk_share",
+  "title": "Share of US rural hospitals considered vulnerable to closure",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Rural Health Safety Net report, 2025 edition",
+    "publisher": "Chartis Center for Rural Health",
+    "url": "https://www.fiercehealthcare.com/providers/46-rural-hospitals-red-432-vulnerable-closure-report-finds",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "Chartis's 2025 rural health report counted 432 rural hospitals -- roughly 1 in 5 of the nation's rural hospitals -- as vulnerable to closure, up from 418 the year before, with 46% of all rural hospitals operating at a financial loss. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "At risk of closing",
+      "value": 20
+    },
+    {
+      "label": "Not currently at risk",
+      "value": 80
+    }
+  ]
+}

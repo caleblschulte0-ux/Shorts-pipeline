@@ -1,0 +1,25 @@
+{
+  "key": "volunteer_firefighter_share",
+  "title": "Share of all US firefighters who are volunteers",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "US Fire Department Profile",
+    "publisher": "National Fire Protection Association (NFPA), via National Volunteer Fire Council",
+    "url": "https://www.nvfc.org/wp-content/uploads/2026/02/volunteer-fire-service-fact-sheet.pdf",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "NFPA and NVFC data put volunteers at about 65% of all US firefighters as of the most recent count, protecting most of the country's land area and many of the small and rural communities with the fastest-growing call volumes. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "Volunteer",
+      "value": 65
+    },
+    {
+      "label": "Career/paid",
+      "value": 35
+    }
+  ]
+}

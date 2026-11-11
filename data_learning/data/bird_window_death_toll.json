@@ -1,0 +1,27 @@
+{
+  "key": "bird_window_death_toll",
+  "title": "Estimated US bird deaths from window and building collisions per year",
+  "unit": "billion",
+  "geography": "United States",
+  "time_coverage": "2014 estimate vs 2024 revised estimate",
+  "source": {
+    "name": "Bird-window collision mortality estimates (Loss et al. 2014; Kornreich et al. 2024)",
+    "publisher": "American Bird Conservancy / PLOS ONE",
+    "url": "https://abcbirds.org/threat/bird-building-collisions/",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "Loss et al. (2014, The Condor) first put US window/building-collision deaths at 365-988 million a year (median ~599 million). A 2024 PLOS ONE study (Kornreich et al.), tracking injured birds through wildlife rehabilitators, found about 60% of collision victims ultimately die -- pushing the real toll to well over 1 billion birds a year. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "2014 estimate",
+      "value": 0.6,
+      "period": "2014"
+    },
+    {
+      "label": "2024 revised estimate",
+      "value": 1.03,
+      "period": "2024"
+    }
+  ]
+}
