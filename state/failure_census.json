@@ -4,50 +4,34 @@
   "junk_imagery": {
    "count": 5,
    "stories": {
-    "sports_travis_hunter_get_the_ball": 1,
-    "sports_fan_in_wheelchair_the_pitch_to": 1,
-    "sports_tampa_bay_buccaneers_players_cups": 1,
+    "sports_dirk_nowitzki_ons_of_jalen": 5
+   },
+   "timestamps": [
+    "2026-11-10T12:36:03+00:00",
+    "2026-11-10T12:38:25+00:00",
+    "2026-11-11T11:51:02+00:00",
+    "2026-11-11T11:54:12+00:00",
+    "2026-11-11T12:25:55+00:00"
+   ],
+   "examples": [
+    "junk_imagery: payoff@-0.4 still shows the podcast interview rather than Jalen Brunson or the promised realization/moment.",
+    "junk_imagery: payoff@-0.4 still shows the podcast interview rather than Jalen Brunson or the promised realization/moment.",
+    "junk_imagery: The crop cuts off the people who matter. In hook@0.3 through mid0 the top half is a side table, a football and a stranger's hand. At mid1, mid4, mid5 and payoff@-0.4 the bottom half is a"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 2,
+   "stories": {
     "sports_dirk_nowitzki_ons_of_jalen": 2
    },
    "timestamps": [
-    "2026-11-09T11:44:18+00:00",
-    "2026-11-09T12:30:48+00:00",
-    "2026-11-10T02:49:23+00:00",
-    "2026-11-10T12:36:03+00:00",
-    "2026-11-10T12:38:25+00:00"
+    "2026-11-11T11:51:02+00:00",
+    "2026-11-11T12:25:55+00:00"
    ],
    "examples": [
-    "junk_imagery: The video shows a player on the sideline, but not the specific moment of Travis Hunter securing the ball for Branson Combs' first interception, which is the core claim of the text.",
-    "junk_imagery: The video claims 'Fan in wheelchair rushes the pitch' but the fan shown running onto the pitch (mid4, payoff@-1.8, payoff@-0.4) is clearly able-bodied and not in a wheelchair.",
-    "malformed_judge_response: checks.junk_imagery.evidence missing or empty"
-   ],
-   "recurred_after_fix": false
-  },
-  "temporal_gate": {
-   "count": 2,
-   "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
-   },
-   "timestamps": [
-    "2026-11-08T17:26:14+00:00",
-    "2026-11-08T21:06:31+00:00"
-   ],
-   "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 1,
-   "stories": {
-    "sports_travis_hunter_get_the_ball": 1
-   },
-   "timestamps": [
-    "2026-11-09T11:44:18+00:00"
-   ],
-   "examples": [
-    "unreadable: The on-screen text is frequently overlaid on top of other text or graphics, making it difficult to read, as seen in `hook@1.5` (\"get\" is obscured) and `hook@2.2` (\"I threw it on the\" is ob"
+    "empty_void: Half the frame is wasted. In hook@0.3\u2013mid0 and mid3\u2013mid4 the whole top half is an empty table and a hand. In mid4\u2013payoff@-0.4 the bottom half is an empty wall with the speaker's head cut o",
+    "empty_void: The table/hand top half (hook@0.3 to payoff@-0.4) and the near-empty brick-wall bottom half in mid3/mid4 waste about half the frame for most of the video."
    ],
    "recurred_after_fix": false
   },
@@ -63,12 +47,25 @@
     "dead_air: The top half of the split screen remains static for the entire video duration (41.75s), and the 'held_s' is 11.92s, indicating significant periods of stillness."
    ],
    "recurred_after_fix": false
+  },
+  "other": {
+   "count": 1,
+   "stories": {
+    "coldest-place-in-the-universe-is-human-made": 1
+   },
+   "timestamps": [
+    "2026-11-11T18:08:09+00:00"
+   ],
+   "examples": [
+    "unreadable: In seg3:end the 17-digit '29,400,000,000,000,000' sits across the rocket body, and the rocket fin covers 'Nebula' in the caption below it. A phone viewer cannot parse it at a glance."
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 4,
-   "min": 0,
+   "median": 3,
+   "min": 2,
    "max": 4
   },
   "data_demo": {
@@ -78,50 +75,50 @@
   },
   "mascot": {
    "median": 4,
-   "min": 0,
+   "min": 2,
    "max": 4
   },
   "craft": {
-   "median": 3,
-   "min": 0,
+   "median": 2,
+   "min": 1,
    "max": 3
   },
   "pace": {
    "median": 2,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "payoff": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
-  14,
-  14,
-  27,
-  96,
-  74,
-  65,
-  100,
-  100,
-  100,
-  100,
-  95,
-  95,
-  14,
-  62,
   100,
   66,
   66,
   74,
   75,
-  96
+  96,
+  62,
+  70,
+  62,
+  66,
+  83,
+  83,
+  83,
+  74,
+  83,
+  70,
+  70,
+  83,
+  87,
+  83
  ]
 }
