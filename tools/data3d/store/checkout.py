@@ -45,6 +45,8 @@ f0, f1 = acts.push(data, cart, (X1, 0.0), T_PUSH0, T_PUSH1)
 # dome and a floating brow; turned 30 degrees it reads as his face (eye, smile, nose) - pose for the one camera
 sc.frame_set(F(T_PUSH0)); _p = data.pos()
 data.look_at((_p.x + 0.55, _p.y - 1.0, 0.66), T_PUSH0, max_yaw=52)   # a real three-quarter face for the lens: dead side-on his head is a featureless ball with the glasses edge-on
+sc.frame_set(F(T_PUSH1)); _p = data.pos()
+data.look_at((_p.x + 0.55, _p.y - 1.0, 0.66), T_PUSH1, max_yaw=52)   # HOLD the three-quarter face the whole push: with one key the head drifted back to profile toward the ending's look
 data.gaze(T_PUSH0, 9, 0)   # +dx is his right: toward the lens
 for tb in (1.6, 4.3, 6.0): data.blink(tb)
 # before the push: standing with hands on the bar
