@@ -46,7 +46,7 @@ def push(data, cart, target, t0, t1, hold_until=None, near="L"):
     """Data walks from where he stands at t0 to `target` by t1 pushing the cart; per frame the cart is placed where a
     STRAIGHT near arm (shoulder -> bar end) reaches the handle. Returns the frame range pushed."""
     sc = data.sc
-    data.walk_to(target, t0, t1)
+    data.walk_to(target, t0, t1, pushing=True)
     tend = hold_until if hold_until is not None else t1
     dirn = None; reach = (data.U + data.Fo) * REACH_K   # U, Fo are in METRES already (character.py bakes SCALE in)
     hz_local = (cart["root"].matrix_world.inverted() @ world(cart["handle_L"])).z
@@ -69,6 +69,8 @@ def push(data, cart, target, t0, t1, hold_until=None, near="L"):
         c, s_ = math.cos(rot), math.sin(rot)
         off = Vector((c * bar_mid_local.x - s_ * bar_mid_local.y, s_ * bar_mid_local.x + c * bar_mid_local.y, 0))
         root0 = bar_mid_world - off
+        if dirn is None: dirn = Vector(fw); lat0 = root0 - dirn * root0.dot(dirn)   # the cart runs on ONE line: the hips' turn never rocks it sideways
+        root0 = lat0 + dirn * root0.dot(dirn); root0.z = 0
         _key_cart(cart, t, root0, rot)
         # refine: the NEAR arm's own anchor must sit exactly `reach` from ITS shoulder (lateral offset and the lean
         # make the mean-shoulder estimate short by a few cm, and a few cm of slack is a bent elbow)

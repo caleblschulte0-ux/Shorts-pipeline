@@ -44,7 +44,9 @@ f0, f1 = acts.push(data, cart, (X1, 0.0), T_PUSH0, T_PUSH1)
 # a three-quarter face for the lens while he pushes: dead side-on, the camera saw the back of a ball with one eye-white
 # dome and a floating brow; turned 30 degrees it reads as his face (eye, smile, nose) - pose for the one camera
 sc.frame_set(F(T_PUSH0)); _p = data.pos()
-data.look_at((_p.x + 1.0, _p.y - 0.58, 0.68), T_PUSH0)
+data.look_at((_p.x + 0.55, _p.y - 1.0, 0.66), T_PUSH0, max_yaw=52)   # a real three-quarter face for the lens: dead side-on his head is a featureless ball with the glasses edge-on
+data.gaze(T_PUSH0, 9, 0)   # +dx is his right: toward the lens
+for tb in (1.6, 4.3, 6.0): data.blink(tb)
 # before the push: standing with hands on the bar
 for f in range(1, f0):
     sc.frame_set(f)
@@ -123,6 +125,9 @@ for ln in store["extra"]:
 # ---------------------------------------------------------------- the ending: let go, turn back, take it in, turn to camera, shrug
 T_REL = T_PUSH1 + 0.1
 data.release(T_REL)
+data.idle(T_REL + 0.45, T_END)
+data.blink(T_REL + 1.65); data.blink(T_END - 0.6)
+data.gaze(T_REL + 0.9, 0, 0)
 for f in range(F(T_REL), F(T_END) + 1):     # cart rolls on a touch then stops
     sc.frame_set(F(T_PUSH1))
 cart_end = Vector(cart["root"].location); cart_rot = cart["root"].rotation_euler.z

@@ -339,23 +339,63 @@ class Data:
         if over: print(f'hold: {s} hand out of reach, clamped')
         self._k(f'hand.{s}', t, rot=(0, 0, 0))
 
-    def _leg_ik(self, s, target, t):
+    def _leg_ik(self, s, target, t, pitch=0.0):
+        """pitch: degrees, toe UP positive, about the body's right axis (heel strike / toe-off roll)"""
         L, Sh = self.pb[f'leg.{s}'], self.pb[f'shin.{s}']
         knee_dir = self.forward()                               # the knee bends forward
         over = self._two_bone(L, Sh, target, -knee_dir, t, self.LEG[0] * SCALE, self.LEG[1] * SCALE, straight_at=0.995)
         # the foot stays LEVEL in the world whatever the shin does (else the shoe pivots about the ankle: a slide)
         fb = self.pb[f'foot.{s}']; M = self.arm.matrix_world
-        self._set_bone(fb, M @ Sh.tail, M.to_3x3().normalized() @ self._rest[f'foot.{s}'].to_3x3(), t)
+        R0 = M.to_3x3().normalized() @ self._rest[f'foot.{s}'].to_3x3()
+        if pitch:
+            yaw = self.arm.rotation_euler.z; right = Vector((math.cos(yaw), math.sin(yaw), 0))
+            R0 = Matrix.Rotation(math.radians(-pitch), 3, right) @ R0
+        self._set_bone(fb, M @ Sh.tail, R0, t)
         return over
+
+    # the shoe, in metres from the ankle: heel contact behind, ball of the foot ahead, both on the sole
+    HEEL = (-0.033, -0.052); BALL = (0.090, -0.052)   # the ends of the flat sole: the shoe is rigid, so it rolls on its edges
+
+    def _foot_ankle(self, ground_pt_ankle, fw, pitch):
+        """ankle position for a foot rolled `pitch` degrees about its heel (toe up, pitch>0) or its ball (heel up,
+        pitch<0), given where the ankle would sit if the foot were flat. Returns the rolled ankle."""
+        if abs(pitch) < 1e-6: return ground_pt_ankle
+        piv = self.HEEL if pitch > 0 else self.BALL
+        P = ground_pt_ankle + fw * piv[0] + Vector((0, 0, piv[1]))
+        axis = Vector((fw.y, -fw.x, 0)).normalized()           # right of travel: +angle about it lifts the toe
+        R = Matrix.Rotation(math.radians(pitch), 3, axis)
+        return P + R @ (ground_pt_ankle - P)
 
     def hold(self, pL, pR, t0, t1=None, elbow_out=0.6):
         self._arm_ik('L', Vector(pL), t0, elbow_out); self._arm_ik('R', Vector(pR), t0, elbow_out)
         if t1 is not None:
             self._arm_ik('L', Vector(pL), t1, elbow_out); self._arm_ik('R', Vector(pR), t1, elbow_out)
 
-    def release(self, t):
-        for s in 'LR':
-            self._k(f'arm.{s}', t, rot=(0, 0, 0)); self._k(f'fore.{s}', t, rot=(0, 0, 0)); self._k(f'hand.{s}', t, rot=(0, 0, 0))
+    RELAXED = {'arm.L': (-4, 0, 5), 'arm.R': (-4, 0, -5), 'fore.L': (-22, 0, 0), 'fore.R': (-22, 0, 0), 'hand.L': (0, 0, 0), 'hand.R': (0, 0, 0)}
+
+    def _pose_now(self, bone, t):
+        self.sc.frame_set(F(t)); return tuple(math.degrees(v) for v in self.pb[bone].rotation_euler)
+
+    def release(self, t, dur=0.45):
+        """let go: the arms hold where they are at t, then fall to a RELAXED hang (elbows soft, never dead straight)
+        over `dur` with a little overshoot, instead of snapping to the rest pose in three frames"""
+        bones = list(self.RELAXED)
+        now = {b: self._pose_now(b, t) for b in bones}
+        for b in bones: self._k(b, t, rot=now[b])
+        for b in bones:
+            r = self.RELAXED[b]
+            over = tuple(v * 1.18 for v in r) if b.startswith('fore') else r
+            self._k(b, t + dur * 0.7, rot=over); self._k(b, t + dur, rot=r)
+
+    def idle(self, t0, t1, seed=3):
+        """standing life: breath in the chest, a slow weight shift in the hips, a little sway in the relaxed arms"""
+        import random
+        rnd = random.Random(seed); ph = rnd.random() * 6.28
+        for f in range(F(t0), F(t1) + 1, 3):
+            t = (f - 1) / FPS; u = t - t0; w = min(1.0, u / 0.4)
+            br = math.sin(2 * math.pi * u / 3.0 + ph)
+            self._k('chest', t, rot=(-1.4 * br * w, 0, 0)); self._k('spine', t, rot=(0.6 * br * w, 0, 1.2 * math.sin(2 * math.pi * u / 4.6 + ph) * w))
+            self._k('neck', t, rot=(0.8 * br * w, 0, 0))
 
     # ---------------------------------------------------------------- head and face
     def look_at(self, target, t, max_yaw=40, max_pitch=22, blend=0.3):
@@ -437,15 +477,42 @@ class Data:
             self._k('chest', t, rot=(-a * 0.6, 0, 0)); self._k('spine', t, rot=(a * 0.3, 0, 0))
 
     # ---------------------------------------------------------------- locomotion
-    def turn_to(self, rot_deg, t0, t1):
-        _, y0 = self._obj_loc(t0); y1 = math.radians(rot_deg)
+    def turn_to(self, rot_deg, t0, t1, lift=0.022):
+        """turn on the spot by STEPPING: each foot holds its spot, lifts, and is put down under the new facing (the
+        farther foot first, the other overlapping it), the body easing round and dipping a little as it shifts"""
+        p, y0 = self._obj_loc(t0); y1 = math.radians(rot_deg)
         while y1 - y0 > math.pi: y1 -= 2 * math.pi
         while y1 - y0 < -math.pi: y1 += 2 * math.pi
-        self._kobj(t0, rot=y0); self._kobj(t1, rot=y1)
-        p, _ = self._obj_loc(t0)
-        for f in range(F(t0), F(t1) + 1, 2):
-            t = (f - 1) / FPS; self.sc.frame_set(f)
-            self._plant_feet_here(t)
+        z0 = p.z
+        self.sc.frame_set(F(t0)); M = self.arm.matrix_world
+        start = {s: M @ self.pb[f'shin.{s}'].tail for s in 'LR'}
+        def under(yaw, s):
+            c, sn = math.cos(yaw), math.sin(yaw); j = self.J[s]['an'] * SCALE
+            return Vector((p.x + c * j.x - sn * j.y, p.y + sn * j.x + c * j.y, j.z))
+        end = {s: under(y1, s) for s in 'LR'}
+        first = max('LR', key=lambda s: (start[s] - end[s]).length)
+        win = {first: (0.0, 0.6), ('R' if first == 'L' else 'L'): (0.4, 1.0)}
+        legL = sum(self.LEG) * SCALE; hipz = self.J['L']['hip'].z * SCALE
+        for f in range(F(t0), F(t1) + 1):
+            t = (f - 1) / FPS; u = (t - t0) / max(1e-6, t1 - t0)
+            yaw = y0 + (y1 - y0) * ease(u)
+            feet = {}
+            for s in 'LR':
+                a, b = win[s]; v = min(1.0, max(0.0, (u - a) / (b - a)))
+                pos = start[s].lerp(end[s], ease(v)); pos.z = start[s].z + (end[s].z - start[s].z) * v + lift * math.sin(math.pi * v)
+                feet[s] = pos
+            loc = Vector((p.x, p.y, z0 + (-0.003 - z0) * ease(u) - 0.006 * math.sin(math.pi * u)))
+            c, sn = math.cos(yaw), math.sin(yaw)
+            for s in 'LR':
+                h = self.J[s]['hip'] * SCALE; hip = Vector((p.x + c * h.x - sn * h.y, p.y + sn * h.x + c * h.y, loc.z + hipz))
+                horiz = (Vector((feet[s].x, feet[s].y, 0)) - Vector((hip.x, hip.y, 0))).length
+                need = feet[s].z + math.sqrt(max(0.0, (0.985 * legL) ** 2 - horiz ** 2)) - hipz
+                if need < loc.z: loc.z = need
+            self.arm.location = loc; self.arm.rotation_euler.z = yaw
+            self.arm.keyframe_insert('location', frame=f); self.arm.keyframe_insert('rotation_euler', frame=f)
+            self._end = max(self._end, t)
+            bpy.context.view_layer.update()
+            for s in 'LR': self._leg_ik(s, feet[s], t)
 
     def _plant_feet_here(self, t, lift=(0.0, 0.0)):
         """both feet under the body at the current pose (standing)"""
@@ -454,50 +521,86 @@ class Data:
             an = M @ self.J[s]['an']; an.z = self.J[s]['an'].z * SCALE + lf
             self._leg_ik(s, an, t)
 
-    def walk_to(self, target, t0, t1, cadence=2.4, bob=0.012, lift=0.05):
-        """procedural walk: planted feet (stance 50%), swing with a lift arc, knees via IK, a hip bob, the arms swing"""
+    def walk_to(self, target, t0, t1, step=None, bob=0.008, lift=0.03, lean=5.0, stance=0.6, ramp=0.35, pushing=False):
+        """procedural walk for a short-legged character: SHORT QUICK steps (no lunge, no crouch), a 60% stance with
+        heel strike and toe-off roll, the hip high at mid-stance, the pelvis turning with the leg and the shoulders
+        held square against it (square when pushing), a lean into the travel, and an eased start and stop."""
         p0, yaw0 = self._obj_loc(t0)
         tgt = Vector((target[0], target[1], 0)); d = tgt - p0; dist = d.length
         if dist < 1e-4: return t1
         dirn = d.normalized(); yaw = math.atan2(dirn.x, -dirn.y)
-        self._kobj(t0, loc=p0, rot=yaw0); self._kobj(t0 + 0.2, rot=yaw)
-        v = dist / (t1 - t0)
-        L = max(0.10, min(0.21, v / cadence)); fstep = v / L                 # metres per step, steps per second
+        self._kobj(t0, loc=p0, rot=yaw0)
+        legL = sum(self.LEG) * SCALE
+        L = step if step else 0.62 * legL                   # metres per step: ~0.62 leg length reads as a brisk little walk
+        T = t1 - t0; ra = min(ramp, T / 3)
+        vmax = dist / (T - ra)                              # trapezoid speed: ramps of `ra` at both ends
+        def s_of(t):
+            u = t - t0
+            if u <= 0: return 0.0
+            if u < ra: return vmax * u * u / (2 * ra)
+            if u < T - ra: return vmax * (ra / 2 + (u - ra))
+            if u < T: w = T - u; return dist - vmax * w * w / (2 * ra)
+            return dist
         right = Vector((math.cos(yaw), math.sin(yaw), 0)); hipz = self.J['L']['hip'].z * SCALE
-        def body(ph): return p0 + dirn * min(dist, max(0.0, ph * L))
-        self.walk_slide = []; reach = sum(self.LEG) * SCALE; self.walk_drop = 0.0
+        anz = self.J['L']['an'].z * SCALE
+        self.walk_slide = []; self.walk_drop = 0.0
+        # the gait starts at L's mid-stance with R passing it (feet side by side at rest) and ends in double support:
+        # dist = (k + 0.5) steps, so the last foot lands as the body stops
+        k = max(1, round(dist / L - 0.5)); L = dist / (k + 0.5)
+        def planted(o, jj):
+            return p0 + dirn * ((2 * jj - o) * L)
         for f in range(F(t0), F(t1) + 1):
-            t = (f - 1) / FPS; ph = (t - t0) * fstep
-            loc = body(ph); loc.z = -bob * (1 - abs(math.sin(math.pi * ph)))
-            feet = {}
+            t = (f - 1) / FPS; sdist = s_of(t); ph = sdist / L + stance
+            yaw_now = yaw0 + (yaw - yaw0) * ease((t - t0) / 0.2) if t - t0 < 0.2 else yaw
+            loc = p0 + dirn * sdist
+            moving = 0.0 if sdist >= dist - 1e-4 or sdist <= 1e-4 else min(1.0, (t - t0) / ra, max(0.0, (t1 - t) / ra))
+            started = min(1.0, sdist / (0.25 * L))
+            loc.z = -bob * moving * (1 - abs(math.sin(math.pi * (ph - (stance - 0.5)))))
+            feet = {}; sway = 0.0
             for s, o in (('L', 0.0), ('R', 1.0)):
                 php = ph + o; j = math.floor(php / 2); psi = php / 2 - j
                 lat = right * self.J[s]['hip'].x * SCALE
-                def planted(jj):
-                    dd = (2 * jj + 0.5) * L - o * L; dd = min(dist, max(0.0, dd))
-                    return p0 + dirn * dd + lat
-                if psi < 0.5:
-                    foot = planted(j); fz = 0.0
+                if psi < stance:
+                    base = planted(o, j) + lat; fz = 0.0; u = psi / stance
+                    # heel strike settles flat by 15% of stance; heel peels off from 70%
+                    pitch = 12 * (1 - ease(u / 0.15)) if u < 0.15 else (-16 * ease((u - 0.7) / 0.3) if u > 0.7 else 0.0)
+                    if psi < 0.5: sway += (1 if s == 'R' else -1)
                 else:
-                    u = ease((psi - 0.5) / 0.5); a, b = planted(j), planted(j + 1)
-                    foot = a.lerp(b, u); fz = lift * math.sin(math.pi * u) * (1 if (b - a).length > 1e-3 else 0)
-                feet[s] = (Vector((foot.x, foot.y, self.J[s]['an'].z * SCALE + fz)), psi < 0.5, foot)
-                # the hip drops so a planted foot is always within 99% of the leg's reach: no clamp, no slide
-                hip = loc + lat + Vector((0, 0, hipz)); horiz = (Vector((foot.x, foot.y, 0)) - Vector((hip.x, hip.y, 0))).length
-                need = feet[s][0].z + math.sqrt(max(0.0, (0.985 * reach) ** 2 - horiz ** 2)) - hipz
+                    u = (psi - stance) / (1 - stance); a, b = planted(o, j) + lat, planted(o, j + 1) + lat
+                    travel = (b - a).length > 1e-3
+                    base = a.lerp(b, ease(u)); fz = lift * started * math.sin(math.pi * u) * (1 if travel else 0)
+                    pitch = (-16 * (1 - ease(u / 0.5)) + 12 * ease((u - 0.5) / 0.5)) if travel else 0.0
+                pitch *= moving if moving > 0 else 0.0
+                ankle = self._foot_ankle(Vector((base.x, base.y, anz + fz)), dirn, pitch)
+                feet[s] = (ankle, psi < stance, base, pitch)
+            # the hip drops only as much as a reaching leg truly needs (short steps: rarely)
+            for s in 'LR':
+                lat = right * self.J[s]['hip'].x * SCALE
+                hip = loc + lat + Vector((0, 0, hipz)); ank = feet[s][0]
+                horiz = (Vector((ank.x, ank.y, 0)) - Vector((hip.x, hip.y, 0))).length
+                need = ank.z + math.sqrt(max(0.0, (0.985 * legL) ** 2 - horiz ** 2)) - hipz
                 if need < loc.z: self.walk_drop = max(self.walk_drop, loc.z - need); loc.z = need
-            self.arm.location = loc; self.arm.rotation_euler.z = yaw
+            cyc = math.cos(math.pi * ph)                    # +1 at the left heel strike: the left leg is forward
+            self.arm.location = loc; self.arm.rotation_euler.z = yaw_now
             self.arm.keyframe_insert('location', frame=f); self.arm.keyframe_insert('rotation_euler', frame=f)
+            # pelvis turns with the forward leg and rolls toward the swing side; spine and chest undo the turn so the
+            # shoulders stay square (they hold the cart); the lean rises with the speed
+            pel = 6.0 * cyc * moving; roll = 2.5 * math.sin(math.pi * ph) * moving
+            lean_now = lean * moving
+            self._k('root', t, rot=(0, pel, roll))
+            sq = 1.0 if pushing else 0.7
+            self._k('spine', t, rot=(lean_now * 0.6, -pel * 0.5 * sq, -roll * 0.6))
+            self._k('chest', t, rot=(lean_now * 0.4, -pel * 0.5 * sq, -roll * 0.4))
             bpy.context.view_layer.update()
             for s in 'LR':
-                ankle, stance, foot = feet[s]
-                self._leg_ik(s, ankle, t)
-                self.walk_slide.append((f, s, stance, tuple(foot)))
-            # arms swing opposite the legs, hands beside the coat (unless a grip keys them afterwards)
-            a = 14 * math.sin(math.pi * ph)
-            self._k('arm.L', t, rot=(a, 0, 0)); self._k('arm.R', t, rot=(-a, 0, 0))
-            self._k('fore.L', t, rot=(-8, 0, 0)); self._k('fore.R', t, rot=(-8, 0, 0))
-            self._k('spine', t, rot=(2.5, 0, 2.0 * math.sin(math.pi * ph)))
+                ankle, st, base, pitch = feet[s]
+                self._leg_ik(s, ankle, t, pitch)
+                self.walk_slide.append((f, s, st, tuple(base)))
+            # arms swing opposite the legs (a grip keys them afterwards when pushing); the head lags the bob
+            a = 16 * cyc * moving
+            self._k('arm.L', t, rot=(a, 0, 0)); self._k('arm.R', t, rot=(-a, 0, 0))   # +X swings an arm BACK: the arm opposite the forward leg leads
+            self._k('fore.L', t, rot=(-14, 0, 0)); self._k('fore.R', t, rot=(-14, 0, 0))
+            self._k('neck', t, rot=(-lean_now * 0.7 + 1.6 * moving * math.cos(2 * math.pi * (ph - (stance - 0.5))), 0, 0))
         self._end = max(self._end, t1)
         return t1
 
