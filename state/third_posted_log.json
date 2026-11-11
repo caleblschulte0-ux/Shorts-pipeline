@@ -19107,6 +19107,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.35 (Swimwear runway video, title mismatch, n)",
       "ts": "2026-11-11T13:12:51.870987+00:00"
+    },
+    "clip-20261111-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/emilycc/clip/OnerousElatedSpindleFrankerZ-2r714aKWvk42wXHK",
+      "story_key": null,
+      "streamer": "emilycc",
+      "title": "Emilycc Can't Believe Her Beautiful Computer Actually Worked After This",
+      "kind": "twitch_clip",
+      "ts": "2026-11-11T18:56:12.043799+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
