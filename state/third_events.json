@@ -5549,6 +5549,52 @@
         "story-8941dda568d3ff86"
       ],
       "last_updated": "2026-11-06"
+    },
+    "steel-brows-google-2026w45": {
+      "event_id": "steel-brows-google-2026w45",
+      "people": [
+        "steel"
+      ],
+      "actions": [
+        "brows",
+        "google",
+        "list",
+        "page"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-11",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2914729767/332-572",
+        "https://www.twitch.tv/steel/clip/VibrantRepleteSharkPunchTrees-i8qSwCqs3Bm84qCr",
+        "vodmine://2914729767/617-857"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-11"
+    },
+    "sodapoppin-about-average-2026w45": {
+      "event_id": "sodapoppin-about-average-2026w45",
+      "people": [
+        "sodapoppin"
+      ],
+      "actions": [
+        "about",
+        "average",
+        "mitch",
+        "screen"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-11",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2923569706/3656-3896",
+        "https://www.twitch.tv/sodapoppin/clip/SmoothFitAdminSwiftRage-9wn3aLtEkJVSCQaO",
+        "vodmine://2923569706/3926-4166"
+      ],
+      "published_versions": [
+        "story-4a5b4bb08f7d4f84"
+      ],
+      "last_updated": "2026-11-11"
     }
   }
 }
