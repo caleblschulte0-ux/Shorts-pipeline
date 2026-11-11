@@ -5175,6 +5175,13 @@
       "story_structure": "scene+scene+scene",
       "narrative_score": 70,
       "duration_s": 27.8
+    },
+    "pentagon-ufo-reports-surge": {
+      "claimed_at": "2026-11-11T19:34:51.317810+00:00",
+      "title": "Why 757 Pentagon UFO Reports Still Don't Mean Aliens",
+      "publish_at": "2026-11-12T00:42:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6640,6 +6647,14 @@
       "state": "posted",
       "slug": "coldest-place-in-the-universe-is-human-made",
       "at": "2026-11-11T18:17:23.727493+00:00"
+    },
+    {
+      "claimed_at": "2026-11-11T19:34:51.317810+00:00",
+      "title": "Why 757 Pentagon UFO Reports Still Don't Mean Aliens",
+      "publish_at": "2026-11-12T00:42:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "pentagon-ufo-reports-surge"
     }
   ]
 }
