@@ -5151,11 +5151,30 @@
       "duration_s": 26.7
     },
     "coldest-place-in-the-universe-is-human-made": {
-      "claimed_at": "2026-11-11T18:17:12.150137+00:00",
+      "url": "https://youtube.com/shorts/OZKuGNCayx0",
       "title": "NASA Made 0.0000000001 Kelvin Cold, Beating Nature",
+      "at": "2026-11-11T18:17:23.727493+00:00",
       "publish_at": "2026-11-11T18:42:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "the take would not come out right: line 2 not heard (15/26 words)",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.39,
+      "beat_s": [
+        3.24,
+        4.85,
+        8.39,
+        5.33,
+        5.51
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 70,
+      "duration_s": 27.8
     }
   },
   "uploads": [
@@ -6617,9 +6636,10 @@
       "claimed_at": "2026-11-11T18:17:12.150137+00:00",
       "title": "NASA Made 0.0000000001 Kelvin Cold, Beating Nature",
       "publish_at": "2026-11-11T18:42:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "coldest-place-in-the-universe-is-human-made"
+      "url": "https://youtube.com/shorts/OZKuGNCayx0",
+      "state": "posted",
+      "slug": "coldest-place-in-the-universe-is-human-made",
+      "at": "2026-11-11T18:17:23.727493+00:00"
     }
   ]
 }
