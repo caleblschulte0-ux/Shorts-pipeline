@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "divorce-rate-quiet-decline__d6b27d36",
+  "slug": "divorce-rate-quiet-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:31:00Z",
+  "title": "US Divorce Fell To 2.4 Per Thousand",
+  "hook": "US divorce fell to 2.4 people per thousand.",
+  "closing": "Later marriage and lower divorce mean the old scary statistic no longer fits today's couples.",
+  "question": "Did you think divorce was rising?",
+  "segments": [
+    {
+      "topic": "Divorce rate decline",
+      "say": "Over three decades, divorce nearly halved to 2.4 people per thousand each year, and it is still falling."
+    },
+    {
+      "topic": "Divorce marriage age",
+      "say": "Women first marry at 28.6, almost five years later than before, while fewer marriages end."
+    }
+  ]
+}
