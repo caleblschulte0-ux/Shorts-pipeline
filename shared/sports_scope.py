@@ -221,6 +221,22 @@ def not_english(video: Path, words: list[dict]) -> str:
     return ""
 
 
+_TEAM = _rx(TEAMS)
+
+
+def invented(title: str, *sources: str) -> str:
+    """A team our title names that neither the Reddit post nor
+    what is said in the clip names, or '' (2026-11-07: a fallback author
+    called the Minnesota GOPHERS' field goals "Minnesota Vikings")."""
+    known = " ".join(str(x or "") for x in sources).lower()
+    for m in _TEAM.finditer(str(title or "")):
+        name = m.group(1).lower()
+        if not re.search(r"(?<![a-z0-9])" + re.escape(name) + r"(?![a-z0-9])",
+                         known):
+            return f"the title names {m.group(1)!r}, which the post never does"
+    return ""
+
+
 def too_short(seconds: float, reg=None) -> str:
     """Why a cut is too short to post, or ''."""
     floor = float(policy(reg).get("min_cut_s") or 0)

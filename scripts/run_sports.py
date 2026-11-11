@@ -62,6 +62,15 @@ TRIES_PER_SLOT = 5
 REPAIR_MIN = 60
 REPAIRS = 2
 
+def clip_edit_words(info: dict) -> list[dict]:
+    """The downloaded post's transcript (cached by clip_edit)."""
+    from third_capture import clip_edit
+    try:
+        return clip_edit.transcribe_words(Path(info["path"]))
+    except Exception:  # noqa: BLE001
+        return []
+
+
 def permalink_key(c: dict) -> str:
     """The post's identity: its Reddit permalink, else its video URL."""
     p = (c.get("permalink") or "").strip()
@@ -249,6 +258,12 @@ def main() -> int:
             continue
         row.update(title=meta["title"], hook=made.get("hook"),
                    ledger=made.get("ledger"))
+        made_up = sports_scope.invented(
+            meta["title"], c.get("post_title"),
+            " ".join(w["w"] for w in clip_edit_words(info)))
+        if made_up:
+            row["skipped"] = f"author: {made_up}"
+            continue
         # A length floor in code, ahead of any judge (operator, 2026-11-11:
         # a three-second Tomlin cut posted on a fallback judge's pass)
         brief = sports_scope.too_short(ss._dur(mp4))

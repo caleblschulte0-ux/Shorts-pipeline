@@ -88,6 +88,16 @@ class OnlyEnglish(unittest.TestCase):
             self.assertEqual(sc.not_english(Path("x"), _words("goal goal")), "")
 
 
+class TheTitleNamesOnlyWhatThePostDoes(unittest.TestCase):
+    def test_an_invented_team_is_caught(self):
+        self.assertIn("Vikings", sc.invented(
+            "Minnesota Vikings: Grzewicki and McIntyre trade 60-yard field goals",
+            "Minnesota and Indiana trade 60 yard field goals", "what a kick"))
+        self.assertEqual(sc.invented(
+            "Mike Tomlin calls the Cowboys blinkers",
+            "Mike Tomlin says the Cowboys have a blinker problem", ""), "")
+
+
 class NeverTooShort(unittest.TestCase):
     def test_tomlins_two_seconds_are_widened_back_to_the_setup(self):
         words = (_words("We had a great week of practice.", 20)
