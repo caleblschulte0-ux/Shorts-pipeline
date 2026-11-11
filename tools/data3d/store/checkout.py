@@ -145,7 +145,7 @@ data.look_at(_back, T_REL + 1.45, max_yaw=45)   # HOLD it: one key let the head 
 data.turn_to(0, T_REL + 1.7, T_REL + 2.2)            # face -y: the camera (rot 0; 180 faces AWAY: forward = (sin, -cos))
 sc.frame_set(F(T_REL + 2.2)); _px = data.pos().x
 data.look_at((_px + (CAM_BASE.x - X0), CAM_BASE.y + PUSH_IN, 0.72), T_REL + 2.2)   # into the lens: the camera rides at px + (CAM_BASE.x - X0); a fixed world point turned his head 40 degrees off it
-data.act("shrug", T_REL + 2.3, dur=0.3, hold=0.45)   # ends inside the 10 s
+data.act("shrug", T_REL + 2.25, dur=0.25, hold=0.4)   # back to the hang at 9.85 s: the old timing ended at 10.05, so the clip cut out mid-return
 data.expression("happy", T_REL + 2.3, T_END)
 data.finish()
 

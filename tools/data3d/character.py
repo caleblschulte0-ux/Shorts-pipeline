@@ -620,11 +620,15 @@ class Data:
         t1, t2 = t0 + dur, t0 + dur + hold; t3 = t2 + dur
         if name == 'shrug':
             for s, sg in (('L', -1), ('R', 1)):
-                p = sh[s] + right * sg * 0.085 + fw * 0.10 + Vector((0, 0, -0.12))   # hands out at the waist, elbows in: a shrug, not a T-pose
-                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN: an IK 'rest' key here swung the arms out wide on the way
-                self._arm_ik(s, p, t1, 0.35); self._arm_ik(s, p + Vector((0, 0, 0.012)), t2, 0.35)
+                # FK, not IK: the IK solve came back as Euler triples like (66, -103, -52) and the way back to the
+                # relaxed hang interpolated through all of it -- the arms flailed out wide at the end of the clip
+                arm = (-12, -sg * 40, -sg * 16); fore = (-78, -sg * 50, 0)   # MEASURED: hands 0.36+ m apart at the waist, palms up (+sg on Y clasped them, Z barely spreads)
+                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN
+                self._k(f'arm.{s}', t1, rot=arm); self._k(f'fore.{s}', t1, rot=fore)
+                self._k(f'arm.{s}', t2, rot=(arm[0] - 2, arm[1] * 1.08, arm[2] * 1.1)); self._k(f'fore.{s}', t2, rot=(fore[0] - 4, fore[1] * 1.1, 0))
+                self._k(f'hand.{s}', t0, rot=self._pose_now(f'hand.{s}', t0))
                 self._k(f'hand.{s}', t1, rot=(0, sg * -35, 0)); self._k(f'hand.{s}', t2, rot=(0, sg * -35, 0)); self._k(f'hand.{s}', t3, rot=(0, 0, 0))
-                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t3 + 0.15, rot=self.RELAXED[bn])
+                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t3, rot=self.RELAXED[bn])
                 self._k(f'clav.{s}', t0, rot=(0, 0, 0)); self._k(f'clav.{s}', t1, rot=(0, 0, sg * -14)); self._k(f'clav.{s}', t2, rot=(0, 0, sg * -14)); self._k(f'clav.{s}', t3, rot=(0, 0, 0))
             self.expression('worried', t0, t2)
         elif name == 'wave':
