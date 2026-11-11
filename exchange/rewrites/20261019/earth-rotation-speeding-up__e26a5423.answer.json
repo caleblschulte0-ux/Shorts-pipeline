@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "earth-rotation-speeding-up__e26a5423",
+  "slug": "earth-rotation-speeding-up",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:31:00Z",
+  "title": "Earth's Day Was 1.66 Milliseconds Shorter",
+  "hook": "Earth recorded a day 1.66 milliseconds shorter than normal.",
+  "closing": "Tiny timing shifts matter because global systems depend on clocks matching Earth's rotation.",
+  "question": "Could you notice a shorter day?",
+  "segments": [
+    {
+      "topic": "Earth day record",
+      "say": "A 2024 day ran 1.66 milliseconds short, setting Earth's latest timing record."
+    },
+    {
+      "topic": "Earth leap history",
+      "say": "Since 1972, clocks added 27 leap seconds and removed none, because Earth usually lagged."
+    },
+    {
+      "topic": "Earth negative leap",
+      "say": "By 2035, a negative leap second has a 40 percent chance, reversing the old correction."
+    }
+  ]
+}
