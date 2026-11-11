@@ -5201,6 +5201,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 87,
       "duration_s": 23.0
+    },
+    "elephant-poaching-decline": {
+      "claimed_at": "2026-11-11T21:11:14.801292+00:00",
+      "title": "Elephant Poaching Fell 61%, But Herds Haven't Recovered",
+      "publish_at": "2026-11-12T06:42:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6675,6 +6682,14 @@
       "state": "posted",
       "slug": "pentagon-ufo-reports-surge",
       "at": "2026-11-11T19:35:04.685348+00:00"
+    },
+    {
+      "claimed_at": "2026-11-11T21:11:14.801292+00:00",
+      "title": "Elephant Poaching Fell 61%, But Herds Haven't Recovered",
+      "publish_at": "2026-11-12T06:42:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "elephant-poaching-decline"
     }
   ]
 }
