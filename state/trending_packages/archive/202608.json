@@ -4790,5 +4790,459 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260812": {
+    "01_graph-lilly-overtakes-novo-glp1.json": {
+      "format": "graph_race",
+      "slug": "graph-lilly-overtakes-novo-glp1",
+      "title": "Lilly Just Overtook Novo In The Weight-Loss Drug War",
+      "hook": "The chart just flipped.",
+      "y_label": "GLP-1 drug sales ($ billions)",
+      "duration": 13,
+      "source": "Combined annual sales of Novo Nordisk's Ozempic + Wegovy and Eli Lilly's Mounjaro + Zepbound, approximated from company quarterly earnings reports as reported by Reuters, CNBC, BioSpace and Fierce Pharma (2021-2026); 2025-2026 figures partly annualized from quarterly run-rates. Figures approximate.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Novo Nordisk",
+          "color": "#c8102e",
+          "icon": "Novo Nordisk",
+          "values": [
+            3.0,
+            6.1,
+            18.4,
+            26.0,
+            29.0,
+            27.0
+          ]
+        },
+        {
+          "name": "Eli Lilly",
+          "color": "#ff8c00",
+          "icon": "Eli Lilly",
+          "values": [
+            0.0,
+            0.5,
+            5.34,
+            16.47,
+            33.0,
+            42.0
+          ]
+        }
+      ],
+      "hashtags": [
+        "ozempic",
+        "wegovy",
+        "zepbound",
+        "mounjaro",
+        "novonordisk",
+        "elililly",
+        "weightlossdrug",
+        "glp1",
+        "pharma",
+        "bigpharma",
+        "obesitydrug",
+        "stockmarket",
+        "healthnews",
+        "pharmaceuticals"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-chatgpt-vs-gemini-billion-users.json": {
+      "format": "graph_race",
+      "slug": "graph-chatgpt-vs-gemini-billion-users",
+      "title": "The Race To A Billion AI Users",
+      "hook": "Who gets there first?",
+      "y_label": "Active users (millions)",
+      "duration": 13,
+      "source": "ChatGPT figures are OpenAI-reported weekly active users; Gemini figures are Google-reported monthly active users \u2014 different cadences, same order of magnitude, both from each company's own disclosures as reported by Reuters, TechCrunch and Android Headlines (2021-2026). Figures approximate, especially 2022-2024 which are estimated from public growth milestones.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "ChatGPT",
+          "color": "#10a37f",
+          "icon": "ChatGPT",
+          "values": [
+            0,
+            5,
+            100,
+            300,
+            900,
+            1000
+          ]
+        },
+        {
+          "name": "Gemini",
+          "color": "#4285f4",
+          "icon": "Gemini",
+          "values": [
+            0,
+            0,
+            0,
+            100,
+            650,
+            1000
+          ]
+        }
+      ],
+      "hashtags": [
+        "chatgpt",
+        "geminiai",
+        "googleai",
+        "openai",
+        "artificialintelligence",
+        "ai",
+        "bigtech",
+        "aiassistant",
+        "chatbot",
+        "googlegemini",
+        "techtrends",
+        "siliconvalley",
+        "technews"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-yellowstone-wolves-vs-elk.json": {
+      "format": "graph_race",
+      "slug": "graph-yellowstone-wolves-vs-elk",
+      "title": "Wolves Came Back. The Elk Paid For It.",
+      "hook": "One predator changed a park.",
+      "y_label": "Population (count)",
+      "duration": 13,
+      "source": "Yellowstone gray wolf population = interior-park wolf count from the National Park Service Yellowstone Wolf Project annual reports; northern-range elk herd count from NPS / Wyoming Game & Fish aerial survey data (1995 reintroduction to 2026). Figures approximate, especially 2026 which reflects the most recently published survey trend.",
+      "years": [
+        1995,
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Gray wolves",
+          "color": "#5a5a5a",
+          "icon": "Gray Wolf",
+          "values": [
+            14,
+            119,
+            118,
+            97,
+            99,
+            94,
+            108
+          ]
+        },
+        {
+          "name": "Northern range elk",
+          "color": "#8b5a2b",
+          "icon": "Elk",
+          "values": [
+            19000,
+            13400,
+            9500,
+            6000,
+            4900,
+            4200,
+            3500
+          ]
+        }
+      ],
+      "hashtags": [
+        "yellowstone",
+        "graywolf",
+        "wolves",
+        "elk",
+        "wildlife",
+        "nationalpark",
+        "conservation",
+        "trophiccascade",
+        "ecology",
+        "nature",
+        "wolfreintroduction",
+        "wildlifecomeback",
+        "animals"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "04_graph-us-debt-vs-gdp.json": {
+      "format": "graph_race",
+      "slug": "graph-us-debt-vs-gdp",
+      "title": "The Year US Debt Beat The Whole Economy",
+      "hook": "Debt just passed the economy.",
+      "y_label": "US dollars (trillions)",
+      "duration": 13,
+      "source": "US federal debt (total public debt outstanding) vs US nominal GDP \u2014 US Treasury and Bureau of Economic Analysis data as commonly reported (FRED, Treasury.gov); 2025 figures extrapolated from early-2024 debt levels and recent GDP growth trends. Figures approximate.",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2025
+      ],
+      "series": [
+        {
+          "name": "US National Debt",
+          "color": "#b22222",
+          "values": [
+            5.6,
+            7.9,
+            13.6,
+            18.2,
+            26.9,
+            36.2
+          ]
+        },
+        {
+          "name": "US GDP",
+          "color": "#2e8b57",
+          "values": [
+            10.25,
+            13.04,
+            15.0,
+            18.2,
+            21.06,
+            30.3
+          ]
+        }
+      ],
+      "hashtags": [
+        "nationaldebt",
+        "usdebt",
+        "economy",
+        "gdp",
+        "usdollar",
+        "treasury",
+        "federalbudget",
+        "macroeconomics",
+        "finance",
+        "moneytalk",
+        "useconomy",
+        "debtceiling",
+        "financialliteracy",
+        "economics"
+      ],
+      "music_vibe": "dark"
+    },
+    "05_reddit-clock-in-exactly-on-time.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-clock-in-exactly-on-time",
+      "title": "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
+      "script": "My new manager posted a memo: no clocking in early, not even sixty seconds, because unpaid labor is unpaid labor, clearly aimed at the two of us who always started fifteen minutes early to prep the queue. Fine. I set an alarm and clocked in at exactly nine o'clock every single day, and refused to answer a message before that second. Turns out those fifteen minutes were the only reason his nine-fifteen report ever went out on time. The first week, it was late. The second week, it was late and wrong, because nobody had pre-sorted the queue. By the third week he was standing at my desk at eight fifty-nine, watching the clock like it owed him money. He pulled me into his office, said the policy was more of a guideline, and asked if I would consider coming back fifteen minutes early, paid this time, and backdated to the memo. I said I would think about it. I clocked in at exactly nine o'clock the next morning too.",
+      "shots": [
+        {
+          "phrase": "posted a memo",
+          "query": "office bulletin board memo",
+          "pin_query": "memo",
+          "pin_context": "office document policy",
+          "news_query": "memo",
+          "news_angle": "The manager posted a memo banning early clock-ins.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+        },
+        {
+          "phrase": "clocked in at exactly nine o'clock every",
+          "query": "time clock punch card",
+          "pin_query": "clock",
+          "pin_context": "timekeeping device",
+          "news_query": "clock",
+          "news_angle": "The manager was anxiously watching the clock as the employee refused to work before nine o'clock.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "refused to answer a message",
+          "query": "phone screen unread messages",
+          "image_url": "https://pixabay.com/get/gea4d33c1beaaa0b7228fdd9ec9c7c919e9550fd27329ebfab8d43cbd688d3c34e4fe775971976745a4e6296fdadb8a219135ebc229cf3d93a7016d1965301b2a_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "his nine-fifteen report ever went out",
+          "query": "office desk report printout",
+          "pin_query": "report",
+          "pin_context": "office document deadline",
+          "news_query": "report",
+          "news_angle": "The nine-fifteen report was late and wrong due to the lack of pre-sorting.",
+          "image_url": "https://pixabay.com/get/gcd8174bed62c09402f030f82c0581a31acf8b66b82eef7ef30aa80b9a0d463fc3a65ed5e7a99960cf8fed9fc176cf13783168d4a644359b34fd00cab5abf7ecb_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "nobody had pre-sorted the queue",
+          "query": "messy inbox paperwork stack",
+          "pin_query": "queue",
+          "pin_context": "office workflow task",
+          "news_query": "queue",
+          "news_angle": "The queue was not pre-sorted due to the new clock-in policy.",
+          "image_url": "https://live.staticflickr.com/5301/5557256203_2e8f8bfdc0_b.jpg"
+        },
+        {
+          "phrase": "standing at my desk at eight fifty-nine",
+          "query": "manager standing hallway office",
+          "image_url": "https://pixabay.com/get/gfd87492e1cfd532582b041ecf8675619162bd530707721da686ef2f25f379690fd5dcb3421caf9643dd1c2cce5a9e7e465703658e20ee825b503644648f576d4_1280.jpg",
+          "media_origin": "self_fill",
+          "pin_query": "desk",
+          "pin_context": "workplace furniture",
+          "news_query": "desk",
+          "news_angle": "The manager stood at the narrator's desk to discuss the policy change."
+        },
+        {
+          "phrase": "more of a guideline",
+          "query": "manager talking office door",
+          "image_url": "https://pixabay.com/get/g2c4a9a2ae1fb9eab4b69ebb2c81de660aeb75dae4e8847b1b5bf7a0de025600ba35a3394d55fad412f380ab2ccde66136064996ae9d26e20b5ef3ca43e953916_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "backdated to the memo",
+          "query": "paycheck stub closeup",
+          "image_url": "https://pixabay.com/get/gb5bb0124d2e9927b0ac9f5eb88d45e46600ddb30f8c673854d2ee84e50f41c1949b07a507133d524d0075951b98317036b772b37db27a9e237135e092c262fb6_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no clocking in early",
+          "text": "NEW RULE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "it was late and wrong",
+          "text": "LATE. AGAIN.",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "more of a guideline",
+          "text": "\"A GUIDELINE\"",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "paid this time, and backdated",
+          "text": "BACKDATED PAY",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "9to5",
+        "corporatelife",
+        "reddit",
+        "worklife",
+        "management",
+        "9to5life",
+        "boss",
+        "karma",
+        "workplacestories",
+        "officelife"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-gym-arbitration-clause.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-gym-arbitration-clause",
+      "title": "My Gym Wouldn't Let Me Cancel. So I Read The Contract.",
+      "script": "My gym's cancellation policy was one sentence in twelve-point font: cancel in person, in writing, thirty days out, notarized. I work night shift and the gym closes at nine, so I mailed a certified letter instead. They never received it three separate times and kept charging my card forty-nine ninety-nine a month for a gym I had not stepped into since March. So I pulled the contract and found their own arbitration clause, the one meant to stop customers from suing them, required THEM to pay a nineteen hundred dollar filing fee just to respond to any dispute. I filed one. The gym's corporate office called within four days, offered a full refund for every month since March, and asked, very politely, if I would be willing to withdraw the claim. I said I would think about it, cashed the refund check, and let the filing fee clock run out anyway.",
+      "shots": [
+        {
+          "phrase": "one sentence in twelve-point font",
+          "query": "fine print contract closeup",
+          "image_url": "https://pixabay.com/get/g68c8ed797e8120cd03c8cf7754ff7bce086b6c1cfc81092e634e819ef918582d338ff6a27f275000fdfe4fe6ed6e8870bce858feef299cd5ce999cb903d91168_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "mailed a certified letter instead",
+          "query": "certified mail envelope post office",
+          "image_url": "https://pixabay.com/get/g8b2303315b9b5370aa0997976c6d1008c8f97f282c7bae8cd86c8a8412fbb50b08cfa5b26ad0ae048616278bd73cd0acb81eb09f09f7e455a76a58eb69ee4f05_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "never received it three separate times",
+          "query": "customer service phone call frustrated",
+          "image_url": "https://images.pexels.com/photos/4333575/pexels-photo-4333575.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "kept charging my card forty-nine ninety-nine",
+          "query": "credit card statement charge",
+          "image_url": "https://pixabay.com/get/gb4b019d9aae1bea4ae51b350b2df2635e11ea8207c27fafd903c0c41e52c33ba7c34d1d4ba83f512af677c2692fb8251d64ed56d83bee3e8ab8a022be36ff31c_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "pulled the contract and found their own arbitration clause",
+          "query": "reading legal document highlighter",
+          "image_url": "https://pixabay.com/get/g7ec50cc63a9a13ea2f09565f321a1f254838d932a6fb77a15d69e808fd2163d11ffb8d55b57755407bf147b805fb4549f01ba470fba8d7f8434343abdc8cd6f3_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "nineteen hundred dollar filing fee",
+          "query": "filing fee invoice paperwork",
+          "image_url": "https://pixabay.com/get/g31beb08cbfafd4041bd28ef1da4b4593a9a5bb8e69f7c8c84fc8a7ce179fb968fbaf5bda2fae15334fcba42ea8eab3efb8d96a26fc590cabc3cfe819a8cbd402_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "corporate office called within four days",
+          "query": "office phone ringing desk",
+          "image_url": "https://pixabay.com/get/g2793b10b04ec4a64638dd6ca3f3971b39609bb52df6a7cf8ab05a60eca18b72a36c733b1d1543f5d35b7a3c7f604ece1e94cb491cd6f62dcf73682d07918429b_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "cashed the refund check",
+          "query": "bank check deposit closeup",
+          "image_url": "https://images.pexels.com/photos/4200744/pexels-photo-4200744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "thirty days out, notarized",
+          "text": "NOTARIZED?!",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "forty-nine ninety-nine a month",
+          "text": "$49.99/MO",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "nineteen hundred dollar filing fee",
+          "text": "$1,900 FEE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "full refund for every month since",
+          "text": "FULL REFUND",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "talesfromthecustomer",
+        "gym",
+        "consumerrights",
+        "customerservice",
+        "reddit",
+        "contractloophole",
+        "karma",
+        "arbitration",
+        "refund",
+        "gymlife",
+        "consumerprotection",
+        "pettyrevenge"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
