@@ -19007,6 +19007,34 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Eating chicken; no clear event)",
       "ts": "2026-11-11T12:57:08.516864+00:00"
+    },
+    "rejected-spineytalentedstinkbugbigbrother-un8trouz_skfmh73": {
+      "source_url": "https://www.twitch.tv/zxcursed/clip/SpineyTalentedStinkbugBigBrother-Un8tROUz_SkFmH73",
+      "streamer": "zxcursed",
+      "title": "\u043f\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0435",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.05 < 0.35 (static menu screen, greeting talk)",
+      "ts": "2026-11-11T13:00:47.097646+00:00"
+    },
+    "rejected-nastypolitestaplewoop-an9qervs51mhynug": {
+      "source_url": "https://www.twitch.tv/zxcursed/clip/NastyPoliteStapleWOOP-an9qERVS51MhYNuG",
+      "streamer": "zxcursed",
+      "title": "\u0449\u0430 \u0442\u0430\u043f\u043e\u0447\u043a\u0438 \u043d\u0430\u0434\u0435\u043d\u0435\u0442",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (static Dota menu, talk only)",
+      "ts": "2026-11-11T13:01:19.272944+00:00"
+    },
+    "clip-20261111-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/deadblossomjesse/clip/CaringBrainyPigeonDoggo-OttFaCaAJql5dVAn",
+      "story_key": null,
+      "streamer": "deadblossomjesse",
+      "title": "Deadblossomjesse Jumps Up And Down Screaming \"I'm Dumping\" And Gets Weird",
+      "kind": "twitch_clip",
+      "ts": "2026-11-11T13:05:02.349827+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
