@@ -2,7 +2,7 @@
 THE ARM RULE: side-on, Data's near arm is ONE STRAIGHT LINE shoulder -> handle end. So the cart is placed EVERY FRAME
 where a straight arm reaches the bar from the CURRENT shoulder (the walk leans the torso; a lead fixed at t0 leaves slack
 and the elbow bends). Each hand takes the handle end on ITS OWN side. `arm_bend` MEASURES it; never eyeball it."""
-import bpy, math
+import bpy, math, os
 from mathutils import Vector
 
 FPS = 24
@@ -18,6 +18,7 @@ def lerp(a, b, u): return a + (b - a) * u
 HAND_PITCH = -30.0     # degrees: the mitten sits OVER the bar
 WRIST_UP = 0.012       # the wrist target sits just above the bar axis: the mitten wraps OVER the bar, hand ON it
 REACH_K = 0.998
+LEAN_PUSH = float(os.environ.get("LEAN_PUSH", "11"))   # degrees: a person pushing a loaded cart leans into it; 5 read as standing bolt upright
 
 
 def world(o):
@@ -46,7 +47,7 @@ def push(data, cart, target, t0, t1, hold_until=None, near="L"):
     """Data walks from where he stands at t0 to `target` by t1 pushing the cart; per frame the cart is placed where a
     STRAIGHT near arm (shoulder -> bar end) reaches the handle. Returns the frame range pushed."""
     sc = data.sc
-    data.walk_to(target, t0, t1, pushing=True)
+    data.walk_to(target, t0, t1, pushing=True, lean=LEAN_PUSH)
     tend = hold_until if hold_until is not None else t1
     dirn = None; reach = (data.U + data.Fo) * REACH_K   # U, Fo are in METRES already (character.py bakes SCALE in)
     hz_local = (cart["root"].matrix_world.inverted() @ world(cart["handle_L"])).z

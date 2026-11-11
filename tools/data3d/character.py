@@ -23,6 +23,8 @@ from mathutils import Vector, Matrix, Euler
 
 FPS = 24
 SCALE = 0.2
+SOFT_Z = -0.0006   # metres the body settles when standing: a 0.198 m leg bends ~9 deg at the knee (-0.003 had him in a 20 deg squat all the time)
+LEG_USE = 0.993     # the most of a leg the body ever stands on: 0.985 kept every planted knee bent 20-26 deg (a squat); 0.993 is ~13 deg, under the IK straight_at 0.995
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROFILE_FIX = os.environ.get('PROFILE_FIX', '1') == '1'
 EYE_CAP_DEG = 50     # the eyeball is a cap this many degrees off its front; its rim sits ~3 cm inside the head
@@ -342,8 +344,8 @@ class Data:
     def _leg_ik(self, s, target, t, pitch=0.0):
         """pitch: degrees, toe UP positive, about the body's right axis (heel strike / toe-off roll)"""
         L, Sh = self.pb[f'leg.{s}'], self.pb[f'shin.{s}']
-        knee_dir = self.forward()                               # the knee bends forward
-        over = self._two_bone(L, Sh, target, -knee_dir, t, self.LEG[0] * SCALE, self.LEG[1] * SCALE, straight_at=0.995)
+        knee_dir = self.forward()                               # the knee bends FORWARD: _two_bone bends toward `pole` (the arm passes -pole so the ELBOW goes back; the leg had copied that and walked on bird knees, measured knee_fwd < 0 every frame)
+        over = self._two_bone(L, Sh, target, knee_dir, t, self.LEG[0] * SCALE, self.LEG[1] * SCALE, straight_at=0.995)
         # the foot stays LEVEL in the world whatever the shin does (else the shoe pivots about the ankle: a slide)
         fb = self.pb[f'foot.{s}']; M = self.arm.matrix_world
         R0 = M.to_3x3().normalized() @ self._rest[f'foot.{s}'].to_3x3()
@@ -501,12 +503,12 @@ class Data:
                 a, b = win[s]; v = min(1.0, max(0.0, (u - a) / (b - a)))
                 pos = start[s].lerp(end[s], ease(v)); pos.z = start[s].z + (end[s].z - start[s].z) * v + lift * math.sin(math.pi * v)
                 feet[s] = pos
-            loc = Vector((p.x, p.y, z0 + (-0.003 - z0) * ease(u) - 0.006 * math.sin(math.pi * u)))
+            loc = Vector((p.x, p.y, z0 + (SOFT_Z - z0) * ease(u) - 0.006 * math.sin(math.pi * u)))
             c, sn = math.cos(yaw), math.sin(yaw)
             for s in 'LR':
                 h = self.J[s]['hip'] * SCALE; hip = Vector((p.x + c * h.x - sn * h.y, p.y + sn * h.x + c * h.y, loc.z + hipz))
                 horiz = (Vector((feet[s].x, feet[s].y, 0)) - Vector((hip.x, hip.y, 0))).length
-                need = feet[s].z + math.sqrt(max(0.0, (0.985 * legL) ** 2 - horiz ** 2)) - hipz
+                need = feet[s].z + math.sqrt(max(0.0, (LEG_USE * legL) ** 2 - horiz ** 2)) - hipz
                 if need < loc.z: loc.z = need
             self.arm.location = loc; self.arm.rotation_euler.z = yaw
             self.arm.keyframe_insert('location', frame=f); self.arm.keyframe_insert('rotation_euler', frame=f)
@@ -521,7 +523,7 @@ class Data:
             an = M @ self.J[s]['an']; an.z = self.J[s]['an'].z * SCALE + lf
             self._leg_ik(s, an, t)
 
-    def walk_to(self, target, t0, t1, step=None, bob=0.008, lift=0.03, lean=5.0, stance=0.6, ramp=0.35, pushing=False):
+    def walk_to(self, target, t0, t1, step=None, bob=0.005, lift=0.015, lean=5.0, stance=0.6, ramp=0.35, pushing=False):
         """procedural walk for a short-legged character: SHORT QUICK steps (no lunge, no crouch), a 60% stance with
         heel strike and toe-off roll, the hip high at mid-stance, the pelvis turning with the leg and the shoulders
         held square against it (square when pushing), a lean into the travel, and an eased start and stop."""
@@ -531,7 +533,7 @@ class Data:
         dirn = d.normalized(); yaw = math.atan2(dirn.x, -dirn.y)
         self._kobj(t0, loc=p0, rot=yaw0)
         legL = sum(self.LEG) * SCALE
-        L = step if step else 0.62 * legL                   # metres per step: ~0.62 leg length reads as a brisk little walk
+        L = step if step else 0.75 * legL                   # metres per step: 0.62 leg length with a 3 cm lift read as a high-knee scurry; 0.75 with 1.5 cm is a walk
         T = t1 - t0; ra = min(ramp, T / 3)
         vmax = dist / (T - ra)                              # trapezoid speed: ramps of `ra` at both ends
         def s_of(t):
@@ -578,7 +580,7 @@ class Data:
                 lat = right * self.J[s]['hip'].x * SCALE
                 hip = loc + lat + Vector((0, 0, hipz)); ank = feet[s][0]
                 horiz = (Vector((ank.x, ank.y, 0)) - Vector((hip.x, hip.y, 0))).length
-                need = ank.z + math.sqrt(max(0.0, (0.985 * legL) ** 2 - horiz ** 2)) - hipz
+                need = ank.z + math.sqrt(max(0.0, (LEG_USE * legL) ** 2 - horiz ** 2)) - hipz
                 if need < loc.z: self.walk_drop = max(self.walk_drop, loc.z - need); loc.z = need
             cyc = math.cos(math.pi * ph)                    # +1 at the left heel strike: the left leg is forward
             self.arm.location = loc; self.arm.rotation_euler.z = yaw_now
