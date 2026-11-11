@@ -1,44 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261110",
-  "judged_date": "20261109",
+  "date": "20261111",
+  "judged_date": "20261110",
   "alarm": {
-    "date": "20261109",
+    "date": "20261110",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261109 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261109.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
-        "code": "chatgpt_task_failed_finalizer",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261109 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20261109/response.json, exchange/bundles/20261109/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261109 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20261109. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20261110 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20261110. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
-        "code": "no_posts_third",
-        "severity": "critical",
-        "detail": "third: ZERO videos posted for 20261109 (registry wants 6).",
-        "fix": "Check the third workflow run for 20261109. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 3/6 posted for 20261110.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (62 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (63 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "trending: 5/5 posted"
+      "chatgpt finalizer: artifact present",
+      "trending: 6/5 posted"
     ],
     "deferred": false
   },
@@ -224,201 +213,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-06T11:45:29+00:00",
-      "slug": "sports_christian_yelich_ys_lookalike",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A 4-second distant parade clip that never shows the look-alike or Ashby showing up, so the promised moment is missing.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through payoff@-0.4: a distant, wobbly fan-phone shot of players on a parade bus roof. No look-alike in uniform is ever identifiable and no Ashby walks over, so the footage does not show what the line and title claim.",
-        "empty_void: hook@0.3 and mid0: the top ~12% and bottom ~12% are blurred letterbox bands, and a grey overpass fills the upper third. The players are small figures in the middle band.",
-        "unreadable: hook@1.5 and mid0: the footage's own burned-in caption 'THAT WAS AWESOME.' sits directly above our line 'Yelich finds Ashby's look-alike', so two caption systems are stacked on top of each other."
-      ],
-      "problems": [
-        "The promised moment (look-alike spotted, real Ashby comes over) is never visible in any frame.",
-        "At 4.4s the clip is too short to set up and land a payoff.",
-        "The footage is distant phone video: players are small and the overpass and blurred letterbox bars waste about half the frame.",
-        "The source's burned-in captions ('THAT WAS AWESOME.') stack directly on top of our line."
-      ],
-      "fixes": [
-        "Pull the full source clip and cut from the look-alike sighting through Ashby's arrival and their interaction.",
-        "Punch in or crop to the bus-roof interaction so the people involved fill the frame.",
-        "Move our line away from the source's captions, or pick a source without burned-in captions.",
-        "If no part of the source shows the look-alike, refuse the post instead of shipping a mismatched line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 13
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "payoff",
-        "index": 1,
-        "failure_class": "claim_not_shown",
-        "visible_evidence": "payoff@-0.4: the camera pulls wide to the bus and crowd. A man in a white hoodie raises a fist, but no look-alike and no Ashby meeting is visible, and the clip ends at 4.4s.",
-        "root_cause": "The capture cut only a 4.4s fragment of the source post. The look-alike reveal and Ashby's arrival are not in the cut, and the source is far-away phone footage with its own captions.",
-        "repair_goal": "Cut a window long enough to include the look-alike in uniform and the real Ashby coming over and embracing him. Crop tight on that interaction, and drop or reposition our line so it does not stack under the source's burned-in captions. If the source does not contain the reveal, reject the post."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.01,
-        "effective_fps": 23.8,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.01,
-        "frozen_fps": 23.8,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 4.42
-      },
-      "fingerprint": "?|empty_void+junk_imagery+unreadable|claim_not_shown"
-    },
-    {
-      "ts": "2026-11-06T11:47:34+00:00",
-      "slug": "sports_kylian_mbapp\u00e9_accidentally",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "",
-      "auto_fails": [
-        "empty_void: In every frame (hook@0.3 to payoff@-0.4) the 16:9 footage sits in a band from about y=270 to y=490. Roughly 70% of the 9:16 frame is blurred copies of the same footage with nothing in it, which wastes the phone screen and shrinks the faces.",
-        "unreadable: The word captions overlap each other in the hook: hook@1.5 reads \"ENDDAY.THE\" and hook@0.3 reads \"WE ENJOY THE\", which a viewer cannot parse. After that, the only line on screen is the hook, so Mbapp\u00e9's actual joke is never captioned."
-      ],
-      "problems": [],
-      "fixes": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 81
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_and_garbled_captions",
-        "visible_evidence": "hook@0.3 to hook@1.5 show only the interviewer and the kid, small inside a letterboxed band, with overlapping word captions (\"ENDDAY.THE\"). Mbapp\u00e9 first shows up at the right edge at hook@2.2.",
-        "root_cause": "The cut starts on the interviewer's lead-in instead of Mbapp\u00e9's line. The word-caption track collides with itself, and the footage was letterboxed rather than cropped, so the faces are tiny on a phone.",
-        "repair_goal": "Open on Mbapp\u00e9 talking to the kid (around mid1/mid2) and crop to a 9:16 that holds Mbapp\u00e9 and the kid at full height. Fix the caption grouping so one clean caption shows at a time, and caption Mbapp\u00e9's line (\"It's Tchouam\u00e9ni's fault. He doesn't know how to shoot.\") in English so a stranger gets the "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.219,
-        "effective_fps": 18.8,
-        "max_dup_run": 5,
-        "measured": true,
-        "frozen_ratio": 0.178,
-        "frozen_fps": 19.7,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.107,
-        "judder_fps": 21.4,
-        "held_s": 0.17,
-        "max_dup_at_s": 14.75,
-        "duration_s": 26.92
-      },
-      "fingerprint": "?|empty_void+unreadable|weak_hook_and_garbled_captions"
-    },
-    {
-      "ts": "2026-11-06T11:49:39+00:00",
-      "slug": "sports_lebron_james__that_lebron",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The cup sip and the fan's 'he another man like me' line both land on screen. It is a clean split-screen sports moment, but our line repeats the source's own burned-in quote box and caption.",
-      "auto_fails": [],
-      "problems": [
-        "Three stacked text layers (our hook line, the source's red quote and the source's white caption) say the same thing, which looks like a repost of a repost",
-        "The lower panel wanders into unrelated game action (mid1, mid5) and a dark transition (mid2) between the cup shots"
-      ],
-      "fixes": [
-        "Keep our single line and crop or trim so the cup sip (hook@1.5) and the fan's trash line carry the clip",
-        "Drop or shorten the dark transition at about 7.8s and the unrelated game-action cut-ins so the lower panel stays on the cup moment"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 53
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "dark_transition",
-        "visible_evidence": "At mid2 (7.83s) the bottom half of the split screen is a near-black crowd shot, and the cup moment is not visible.",
-        "root_cause": "The source repost's own cut between game clips leaves a dim stretch in the lower panel, so the frame stacks three text layers (our line, their red quote, their white caption) over one live panel.",
-        "repair_goal": "Cut or shorten the dark transition in the lower panel so the cup sip and the crowd reaction stay on screen. Don't add a third text layer that repeats the burned-in quote."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.031,
-        "effective_fps": 23.3,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 7.75,
-        "duration_s": 17.79
-      },
-      "fingerprint": "?|-|dark_transition"
-    },
     {
       "ts": "2026-11-06T11:52:04+00:00",
       "slug": "sports_charles_barkley_l_kash_patel",
@@ -3922,6 +3716,189 @@
         "duration_s": 23.75
       },
       "fingerprint": "?|junk_imagery|missing_payoff"
+    },
+    {
+      "ts": "2026-11-10T15:49:12+00:00",
+      "slug": "sports_cooper_flagg_ng_spotted_2",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 0,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video shows a player discussing his eating habits, but the persistent on-screen text focuses on a different, unproven claim.",
+      "auto_fails": [],
+      "problems": [
+        "The persistent on-screen text 'Cooper thanks the medical staff \ud83d\ude0c' does not accurately reflect the primary content of the video, which shifts to a discussion about PB&J sandwiches.",
+        "The promised 'moment' of Cooper thanking the staff is not clearly demonstrated or landed; the video focuses on a different 'moment'."
+      ],
+      "fixes": [
+        "Change the on-screen text to match the actual content of the video (e.g., 'Cooper Flagg on his PB&J habit').",
+        "Alternatively, edit the video to specifically highlight and land the moment he thanks the medical staff, if that is the intended focus, and remove the PB&J discussion."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 99
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "data_demo_mismatch",
+        "visible_evidence": "The persistent on-screen text 'Cooper thanks the medical staff \ud83d\ude0c' is introduced at the hook, but the video content immediately (and throughout) focuses on his comments about PB&J, not an explicit thank you.",
+        "root_cause": "The on-screen text (hook) does not align with the actual 'moment' being presented in the video, leading to a misleading premise.",
+        "repair_goal": "Change the hook and persistent on-screen text to accurately reflect the PB&J discussion, or provide footage that clearly shows him thanking the staff if that is the intended focus."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.26,
+        "effective_fps": 17.8,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.019,
+        "frozen_fps": 23.5,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.5,
+        "max_dup_at_s": 6.92,
+        "duration_s": 33.04
+      },
+      "fingerprint": "?|-|data_demo_mismatch"
+    },
+    {
+      "ts": "2026-11-10T15:49:23+00:00",
+      "slug": "sports_dirk_nowitzki_ons_of_jalen",
+      "score": 75,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The video features Dirk Nowitzki discussing Jalen Brunson's physical build in an interview, but suffers from a static top screen and lacks a strong visual payoff.",
+      "auto_fails": [
+        "dead_air: The top half of the split screen remains static for the entire video duration (41.75s), and the 'held_s' is 11.92s, indicating significant periods of stillness."
+      ],
+      "problems": [
+        "The top half of the split screen is completely static throughout the video, leading to dead air.",
+        "The video lacks a clear visual payoff or dynamic conclusion.",
+        "The overall pace is slow due to static elements in the composition."
+      ],
+      "fixes": [
+        "Replace the static top panel with dynamic footage or remove it entirely to focus on the speaker.",
+        "Add visual cues or a more impactful edit to create a stronger payoff at the end.",
+        "Incorporate more dynamic camera work or reaction shots to improve pace."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 125
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 4,
+        "failure_class": "dead_air",
+        "visible_evidence": "The top half of the split screen shows a static image of a table with a football for the entire video duration, contributing no dynamic visual interest.",
+        "root_cause": "Ineffective use of split-screen composition with a completely static and unengaging upper panel.",
+        "repair_goal": "Replace the static top panel with dynamic, relevant footage or remove it to create a full-screen, more engaging shot of the speaker."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.367,
+        "effective_fps": 15.2,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.11,
+        "frozen_fps": 21.4,
+        "max_frozen_run": 7,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 11.92,
+        "max_dup_at_s": 31.25,
+        "duration_s": 41.75
+      },
+      "fingerprint": "?|dead_air|dead_air"
+    },
+    {
+      "ts": "2026-11-10T17:48:33+00:00",
+      "slug": "sports_luka_doncic_ball_hard_at",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear sports moment showing the aftermath of a fan interaction, well-explained by text.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 26
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid",
+        "index": 1,
+        "failure_class": "demonstration_gap",
+        "visible_evidence": "The video shows Luka reacting and referees discussing, but does not explicitly show the fan throwing the ball or Luka shouting at the fan. The text carries the full narrative.",
+        "root_cause": "The available footage might not have captured the precise moment of the fan's action or Luka's direct verbal confrontation. The edit focuses on the aftermath and official response.",
+        "repair_goal": "If possible, find footage that more directly shows the fan's action or Luka's explicit shouting, or use a tighter zoom on Luka's face if his expression conveys the \"shouting\" aspect."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.043,
+        "effective_fps": 23.0,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.42,
+        "duration_s": 8.67
+      },
+      "fingerprint": "?|-|demonstration_gap"
     }
   ],
   "showrunner_recurrence": {
@@ -3987,24 +3964,6 @@
       "count": 2,
       "days": [
         "2026-11-08"
-      ]
-    },
-    "?|empty_void+junk_imagery+unreadable|claim_not_shown": {
-      "count": 1,
-      "days": [
-        "2026-11-06"
-      ]
-    },
-    "?|empty_void+unreadable|weak_hook_and_garbled_captions": {
-      "count": 1,
-      "days": [
-        "2026-11-06"
-      ]
-    },
-    "?|-|dark_transition": {
-      "count": 1,
-      "days": [
-        "2026-11-06"
       ]
     },
     "?|-|static_framing_no_payoff": {
@@ -4180,11 +4139,29 @@
       "days": [
         "2026-11-10"
       ]
+    },
+    "?|-|data_demo_mismatch": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
+    },
+    "?|dead_air|dead_air": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
+    },
+    "?|-|demonstration_gap": {
+      "count": 1,
+      "days": [
+        "2026-11-10"
+      ]
     }
   },
   "recent_commits": [
-    "6821f63 2026-11-10 sports: 2026-11-10 posted log + verdicts [skip ci]",
-    "4e58969 2026-11-10 third: analytics [skip ci]"
+    "ee7a388 2026-11-11 claim: mailbox verdicts 2026-11-11T04:48Z [skip ci]",
+    "7cf9bf3 2026-11-11 claim: mailbox verdicts 2026-11-11T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4202,15 +4179,14 @@
         "2026-11-07": 4,
         "2026-11-08": 7,
         "2026-11-09": 5,
-        "2026-11-10": 4
+        "2026-11-10": 6
       },
-      "total_posted": 540,
-      "attempted": 540,
+      "total_posted": 542,
+      "attempted": 542,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-27": 1,
         "2026-10-28": 2,
         "2026-10-29": 4,
         "2026-10-30": 4,
@@ -4228,7 +4204,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-27": 1,
         "2026-10-28": 5,
         "2026-10-29": 8,
         "2026-10-30": 5,
@@ -4259,31 +4234,31 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 141,
+      "videos": 140,
       "top_by_vph": [
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 14.51,
-          "views": 1017
+          "vph": 12.53,
+          "views": 1023
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 12.45,
+          "vph": 11.04,
           "views": 1132
         },
         {
           "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-          "vph": 8.08,
-          "views": 638
+          "vph": 7.09,
+          "views": 642
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 7.38,
+          "vph": 6.59,
           "views": 711
         },
         {
           "title": "9 Pitch Drops Took 84 Years To Fall",
-          "vph": 5.32,
+          "vph": 5.09,
           "views": 1377
         }
       ],
@@ -4294,36 +4269,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 4.21,
+          "vph": 4.16,
           "views": 1897
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.82,
+          "vph": 1.81,
           "views": 1087
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
           "vph": 1.73,
-          "views": 447
+          "views": 456
         },
         {
           "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
-          "vph": 1.48,
+          "vph": 1.39,
           "views": 132
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 1.14,
+          "vph": 1.12,
           "views": 325
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261107/brief.json",
       "retro/20261108/brief.json",
-      "retro/20261109/brief.json"
+      "retro/20261109/brief.json",
+      "retro/20261110/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
