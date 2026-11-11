@@ -5203,11 +5203,30 @@
       "duration_s": 23.0
     },
     "elephant-poaching-decline": {
-      "claimed_at": "2026-11-11T21:11:14.801292+00:00",
+      "url": "https://youtube.com/shorts/Uiwodr1ny6s",
       "title": "Elephant Poaching Fell 61%, But Herds Haven't Recovered",
+      "at": "2026-11-11T21:11:25.902709+00:00",
       "publish_at": "2026-11-12T06:42:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "a line came out at 1.1 words/s",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.41,
+      "beat_s": [
+        2.2,
+        5.41,
+        5.11,
+        4.52,
+        5.89
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 83,
+      "duration_s": 23.6
     }
   },
   "uploads": [
@@ -6687,9 +6706,10 @@
       "claimed_at": "2026-11-11T21:11:14.801292+00:00",
       "title": "Elephant Poaching Fell 61%, But Herds Haven't Recovered",
       "publish_at": "2026-11-12T06:42:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "elephant-poaching-decline"
+      "url": "https://youtube.com/shorts/Uiwodr1ny6s",
+      "state": "posted",
+      "slug": "elephant-poaching-decline",
+      "at": "2026-11-11T21:11:25.902709+00:00"
     }
   ]
 }
