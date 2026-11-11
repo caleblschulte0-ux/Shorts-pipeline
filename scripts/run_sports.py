@@ -41,6 +41,7 @@ sys.path.insert(0, str(ROOT))
 from scripts import run_trending_daily as rt  # noqa: E402
 from scripts import sports_samples as ss  # noqa: E402
 from shared import channel_registry as reg  # noqa: E402
+from shared import sports_scope  # noqa: E402
 
 CHANNEL = "trending"
 FORMAT = "sports_moment"
@@ -226,7 +227,7 @@ def main() -> int:
         if not info:
             row["skipped"] = "download failed"
             continue
-        short = ss.unfit(info) or ss.too_short(info)
+        short = ss.unfit(info) or ss.too_short(info) or ss.not_english(info)
         if short:
             row["skipped"] = short
             continue
@@ -248,6 +249,12 @@ def main() -> int:
             continue
         row.update(title=meta["title"], hook=made.get("hook"),
                    ledger=made.get("ledger"))
+        # A length floor in code, ahead of any judge (operator, 2026-11-11:
+        # a three-second Tomlin cut posted on a fallback judge's pass)
+        brief = sports_scope.too_short(ss._dur(mp4))
+        if brief:
+            row["skipped"] = brief
+            continue
 
         gate = judge(mp4, c, meta, made.get("hook") or "",
                      will_upload=not a.dry_run)
@@ -273,6 +280,10 @@ def main() -> int:
                        ledger=made.get("ledger"))
             gate = judge(mp4, c, meta, made.get("hook") or "",
                          will_upload=not a.dry_run)
+        brief = sports_scope.too_short(ss._dur(mp4))
+        if brief:                     # a repair re-cut it short
+            row["skipped"] = brief
+            continue
         row["showrunner"] = {"blocked": gate["blocked"],
                              "reason": gate.get("reason"),
                              "score": (gate.get("verdict") or {})

@@ -1,0 +1,45 @@
+name: Language audit
+
+# Runs Baller Bro's English check (scripts/audit_language.py) over the
+# videos the channel posted since a date, from their GitHub release copies.
+# Read only: it posts, deletes and commits nothing.
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'First day to audit, YYYYMMDD'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          pip install -q -r requirements.txt
+          pip install -q openai-whisper
+      - name: Download the posted videos
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SINCE: ${{ inputs.since }}
+        run: |
+          mkdir -p posted
+          gh api "repos/${{ github.repository }}/releases?per_page=100" --paginate \
+            --jq '.[] | select(.tag_name | startswith("video-trending-")) | .tag_name as $t | .assets[] | select(.name | endswith(".mp4")) | "\($t) \(.id) \(.name)"' |
+          while read -r tag id name; do
+            day="${tag#video-trending-}"; day="${day:0:8}"
+            [ "$day" \< "$SINCE" ] && continue
+            gh api -H "Accept: application/octet-stream" \
+              "repos/${{ github.repository }}/releases/assets/$id" > "posted/$name"
+          done
+          ls posted | wc -l
+      - name: Hear each one
+        run: python scripts/audit_language.py posted/*.mp4

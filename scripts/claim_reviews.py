@@ -48,6 +48,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import re
 import os
 import sys
 import tempfile
@@ -250,6 +251,16 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
     if grades is None:
         return {"id": req["id"], "state": "open", "why": why}
     judge = rm.grader_of(rm.verdict_by(req))
+    if req.get("channel") == "trending":
+        # code floors before any grade counts: no grader can post a cut
+        # too short or out of the channel's scope (operator, 2026-11-11)
+        why = unpublishable(req)
+        if why:
+            out = {"decision": "hold", "reason": f"code floor: {why}",
+                   "score": None, "judge": judge}
+            rm.settle(req, out)
+            print(f"[claim] {req['id']}: held by code: {why}", flush=True)
+            return {"id": req["id"], "state": "settled", **out}
     verdict, gate = decide_request(req, grades, judge)
     gate_mod.log(gate, req["slug"])
     try:
@@ -299,7 +310,15 @@ def unpublishable(req: dict) -> str | None:
         pkg = (req.get("ctx") or {}).get("package")
         if not pkg or not (REPO / pkg).exists():
             return f"its trending package {pkg!r} is gone"
-        return None
+        # Baller Bro's code floors hold here too (operator, 2026-11-11):
+        # a mailbox grade never posts a cut too short or out of scope
+        from shared import sports_scope
+        dur = float((req.get("temporal") or {}).get("duration_s") or 0)
+        topic = str((req.get("ctx") or {}).get("topic") or "")
+        sub = re.search(r"/r/([^/]+)/", topic)
+        return (sports_scope.too_short(dur)
+                or (sports_scope.out_of_scope(sub.group(1), req.get("title"))
+                    if sub else "") or None)
     from scripts import post_stories as ps
     try:
         cfg = json.loads(ps.CONFIG.read_text())
