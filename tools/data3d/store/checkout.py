@@ -138,7 +138,7 @@ T_REL = T_PUSH1 + 0.1
 if T_CLOSE is None: T_CLOSE = T_REL + 1.7
 data.release(T_REL)
 data.idle(T_REL + 0.45, T_END)
-data.blink(T_REL + 1.65); data.blink(T_END - 0.6)
+data.blink(T_REL + 1.65); data.blink(T_END - (2.9 if NARR else 0.6))   # never a half-shut eye on the last frame
 for _tb in range(int(T_REL + 3.2), int(T_CLOSE - 0.6), 3): data.blink(_tb + 0.1)   # a long look back still blinks
 data.gaze(T_REL + 0.9, 0, 0)
 for f in range(F(T_REL), F(T_END) + 1):     # cart rolls on a touch then stops
@@ -157,6 +157,7 @@ sc.frame_set(F(T_CLOSE + 0.5)); _px = data.pos().x
 data.look_at((_px + (CAM_BASE.x - X0), CAM_BASE.y + PUSH_IN, 0.72), T_CLOSE + 0.5)   # into the lens: the camera rides at px + (CAM_BASE.x - X0); a fixed world point turned his head 40 degrees off it
 data.act("shrug", T_CLOSE + 0.55, dur=0.25, hold=0.4)   # back to the hang at 9.85 s: the old timing ended at 10.05, so the clip cut out mid-return
 data.expression("happy", T_CLOSE + 0.6, T_END)
+if NARR and T_END - T_CLOSE > 4.0: data.act("wave", T_END - 2.4, dur=0.3, hold=1.2)   # a long closing signs off with a wave, not 5 s of standing still
 data.finish()
 
 # ---------------------------------------------------------------- camera: leads him, pushes in at the turn
