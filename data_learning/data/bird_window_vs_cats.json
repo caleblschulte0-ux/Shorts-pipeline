@@ -1,0 +1,25 @@
+{
+  "key": "bird_window_vs_cats",
+  "title": "Birds killed per year: outdoor cats vs. window collisions",
+  "unit": "billion",
+  "geography": "United States",
+  "time_coverage": "current estimates",
+  "source": {
+    "name": "Free-ranging cat predation vs. window-collision mortality estimates",
+    "publisher": "U.S. Fish and Wildlife Service (cats); PLOS ONE 2024 (windows)",
+    "url": "https://www.scrippsnews.com/science-and-tech/animals-and-insects/the-number-of-birds-that-die-after-striking-buildings-in-the-u-s-is-likely-higher-than-we-thought",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "USFWS-cited estimates put outdoor/feral cat predation at roughly 2.4 billion US birds a year, still the single largest human-linked cause. The revised 2024 window-collision estimate of just over 1 billion puts windows within range of becoming the second-largest cause, well ahead of vehicles, power lines, or wind turbines. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "Outdoor cats",
+      "value": 2.4
+    },
+    {
+      "label": "Windows",
+      "value": 1.03
+    }
+  ]
+}

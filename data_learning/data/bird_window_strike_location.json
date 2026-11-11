@@ -1,0 +1,29 @@
+{
+  "key": "bird_window_strike_location",
+  "title": "Where fatal bird-window collisions happen",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "nationwide estimate",
+  "source": {
+    "name": "Bird-building collisions in the United States (Loss, Will & Loss, 2014, The Condor)",
+    "publisher": "The Condor / American Bird Conservancy",
+    "url": "https://abcbirds.org/threat/bird-building-collisions/",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "The 2014 Condor study estimated about 56% of fatal collisions happen at low-rise buildings, 43% at houses/residences, and under 1% at skyscrapers -- skyscrapers are rare enough (about 21,000 nationwide, versus 122.9 million houses) that they account for almost none of the total despite getting most of the public blame. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "Low-rise buildings",
+      "value": 56
+    },
+    {
+      "label": "Houses",
+      "value": 43
+    },
+    {
+      "label": "Skyscrapers",
+      "value": 1
+    }
+  ]
+}

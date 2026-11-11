@@ -1,0 +1,25 @@
+{
+  "key": "kids_walk_vs_drive_2009",
+  "title": "How US kids got to school in 2009: walking/biking vs. being driven",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2009",
+  "source": {
+    "name": "National Household Travel Survey, school-travel comparison",
+    "publisher": "Safe Routes to School National Partnership / FHWA NHTS",
+    "url": "https://www.saferoutespartnership.org/sites/default/files/pdf/NHTS-SRTS-Press-Release-04082010.pdf",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "In the same NHTS comparison, private-vehicle drop-offs rose from 12% of school trips in 1969 to 44% in 2009, overtaking walking and biking as the dominant way US kids get to school. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "Walked or biked",
+      "value": 13
+    },
+    {
+      "label": "Driven by car",
+      "value": 44
+    }
+  ]
+}

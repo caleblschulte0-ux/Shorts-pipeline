@@ -1,0 +1,25 @@
+{
+  "key": "rural_hospital_maternity_care_gap",
+  "title": "US counties with vs. without a hospital that delivers babies",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Maternity care deserts report, 2022",
+    "publisher": "March of Dimes",
+    "url": "https://www.npr.org/2022/10/12/1128335563/maternity-care-deserts-march-of-dimes-report",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "March of Dimes' 2022 report found 52% of US counties have no hospital offering obstetric care at all; about two-thirds of the counties it classifies as full maternity care deserts are rural, and rural hospital closures are a leading driver of the gap. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "No hospital delivers babies",
+      "value": 52
+    },
+    {
+      "label": "Has a hospital that does",
+      "value": 48
+    }
+  ]
+}

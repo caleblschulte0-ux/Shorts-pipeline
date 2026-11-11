@@ -38152,6 +38152,234 @@
      "say": "Podiatrists blame body size — 66% of adults in England are now overweight or living with obesity, and extra weight spreads the foot."
     }
    ]
+  },
+  {
+   "slug": "bird-window-strikes",
+   "title": "Ordinary Windows Kill Over 1 Billion Birds A Year",
+   "hook": "Skyscrapers aren't the bird killer you think they are.",
+   "closing": "The skyscraper isn't the problem. Your house might be.",
+   "question": "Ever found a bird by your window?",
+   "caption": "Scientists once put the toll at 599 million birds a year from window strikes. The real number is now over 1 billion -- and it's not the glass skyscrapers you'd expect. Ever found one by your own window? 👇",
+   "hashtags": [
+    "birdcollisions",
+    "windowstrikes",
+    "birdconservation",
+    "wildlife",
+    "birds",
+    "conservation",
+    "nature",
+    "science",
+    "ecology",
+    "biology",
+    "environment",
+    "animals"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "bird_window_death_toll",
+     "params": {
+      "file": "bird_window_death_toll.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE TOLL",
+     "topic": "windows killing birds",
+     "say": "The estimated toll for birds hitting windows just jumped past 1 billion a year."
+    },
+    {
+     "source": "offline",
+     "key": "bird_window_strike_location",
+     "params": {
+      "file": "bird_window_strike_location.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHERE",
+     "topic": "where windows kill birds",
+     "say": "56% of those deaths happen at ordinary low-rise buildings, not skyscrapers."
+    },
+    {
+     "source": "offline",
+     "key": "bird_window_vs_cats",
+     "params": {
+      "file": "bird_window_vs_cats.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SCALE",
+     "topic": "windows vs cats killing birds",
+     "say": "Cats still kill about 2.4 billion birds a year -- more than windows, but not by much anymore."
+    }
+   ]
+  },
+  {
+   "slug": "rural-hospital-closures",
+   "title": "432 Rural Hospitals Are One Bad Year From Closing",
+   "hook": "Your hospital might not survive the decade.",
+   "closing": "When the hospital goes, the maternity ward goes with it.",
+   "question": "Is your nearest hospital an hour away?",
+   "caption": "196 rural hospitals have already closed or cut back since 2005. Chartis now counts 432 more -- roughly 1 in 5 -- as vulnerable to closing next, and losing one often means losing the maternity ward too. Is your nearest hospital more than an hour away? 👇",
+   "hashtags": [
+    "ruralhealthcare",
+    "hospitalclosures",
+    "ruralhospitals",
+    "healthcare",
+    "maternitycare",
+    "publichealth",
+    "healthpolicy",
+    "ruralamerica",
+    "medicaldeserts",
+    "hospitals",
+    "data",
+    "usa"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "rural_hospital_closures_trend",
+     "params": {
+      "file": "rural_hospital_closures_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · CLOSING",
+     "topic": "rural hospitals closing",
+     "say": "Rural hospitals have been closing since 2005 -- 196 so far."
+    },
+    {
+     "source": "offline",
+     "key": "rural_hospital_closure_risk_share",
+     "params": {
+      "file": "rural_hospital_closure_risk_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · AT RISK",
+     "topic": "rural hospitals at risk",
+     "say": "20% of rural hospitals are now considered at risk of closing."
+    },
+    {
+     "source": "offline",
+     "key": "rural_hospital_maternity_care_gap",
+     "params": {
+      "file": "rural_hospital_maternity_care_gap.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "losing a rural hospital",
+     "say": "52% of U.S. counties now have no hospital that delivers babies at all."
+    }
+   ]
+  },
+  {
+   "slug": "kids-walking-to-school-decline",
+   "title": "Only 13% Of Kids Still Walk To School",
+   "hook": "Walking to school basically disappeared in one generation.",
+   "closing": "And the farther school moved, the less anyone could walk there.",
+   "question": "Did you walk to school as a kid?",
+   "caption": "In 1969, almost half of American kids walked or biked to school. Today it's 13%, replaced almost entirely by the drop-off line. Did you walk to school as a kid? 👇",
+   "hashtags": [
+    "walktoschool",
+    "activetransportation",
+    "kidshealth",
+    "childhood",
+    "parenting",
+    "urbanplanning",
+    "schoolbus",
+    "transportation",
+    "suburbs",
+    "data",
+    "usa",
+    "society"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "kids_walk_to_school_trend",
+     "params": {
+      "file": "kids_walk_to_school_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THEN",
+     "topic": "kids walking to school",
+     "say": "In 1969, 48% of kids walked or biked to school every day."
+    },
+    {
+     "source": "offline",
+     "key": "kids_walk_vs_drive_2009",
+     "params": {
+      "file": "kids_walk_vs_drive_2009.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · NOW",
+     "topic": "driving kids to school",
+     "say": "By 2009, 44% of kids were driven to school instead of walking."
+    },
+    {
+     "source": "offline",
+     "key": "kids_near_school_walk_share",
+     "params": {
+      "file": "kids_near_school_walk_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · WHY",
+     "topic": "kids who still walk to school",
+     "say": "81% of kids who live within a quarter mile still walk there today."
+    }
+   ]
+  },
+  {
+   "slug": "volunteer-firefighters-decline",
+   "title": "Fire Calls Tripled To 36 Million A Year",
+   "hook": "Calls tripled. The people answering them didn't.",
+   "closing": "So who's left to answer the next call?",
+   "question": "Does your town still rely on volunteer firefighters?",
+   "caption": "US fire departments now answer 36.6 million calls a year, more than triple 1980's total. The volunteers who answer most of them dropped from 814,850 to 635,100 in under a decade. Does your town still rely on volunteer firefighters? 👇",
+   "hashtags": [
+    "volunteerfirefighters",
+    "firefighters",
+    "firedepartment",
+    "emergencyservices",
+    "ruralamerica",
+    "firstresponders",
+    "ems",
+    "publicsafety",
+    "civics",
+    "data",
+    "usa",
+    "society"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "fire_calls_trend",
+     "params": {
+      "file": "fire_calls_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CALLS",
+     "topic": "fire calls",
+     "say": "US fire departments answered 10.8 million calls back in 1980."
+    },
+    {
+     "source": "offline",
+     "key": "volunteer_firefighters_comparison",
+     "params": {
+      "file": "volunteer_firefighters_comparison.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE VOLUNTEERS",
+     "topic": "volunteer firefighters and fire calls",
+     "say": "By 2023, the volunteer ranks had shrunk to 635,100."
+    },
+    {
+     "source": "offline",
+     "key": "volunteer_firefighter_share",
+     "params": {
+      "file": "volunteer_firefighter_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE GAP",
+     "topic": "fewer volunteers, same fire calls",
+     "say": "Volunteers still make up 65% of all US firefighters, just fewer of them."
+    }
+   ]
   }
  ]
 }

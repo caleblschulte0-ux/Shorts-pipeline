@@ -1,0 +1,27 @@
+{
+  "key": "fire_calls_trend",
+  "title": "Total US fire department responses per year",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "1980-2021",
+  "source": {
+    "name": "US fire department call-volume data",
+    "publisher": "National Fire Protection Association (NFPA)",
+    "url": "https://tylertech.com/resources/blog-articles/firefighting-over-the-decades-medical-vs-fire-calls",
+    "officiality": "secondary",
+    "access_date": "2026-11-11"
+  },
+  "notes": "NFPA figures show total US fire department responses rising from about 10.8 million in 1980 to about 36.6 million in 2021 -- more than tripling -- driven mostly by medical/EMS calls, which grew from about 5 million to roughly 26.3 million over the same span while fire calls themselves fell. Verified live via web search 2026-11-11.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 10.8,
+      "period": "1980"
+    },
+    {
+      "label": "2021",
+      "value": 36.6,
+      "period": "2021"
+    }
+  ]
+}
