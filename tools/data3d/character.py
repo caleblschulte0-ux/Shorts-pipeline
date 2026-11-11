@@ -25,6 +25,7 @@ FPS = 24
 SCALE = 0.2
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROFILE_FIX = os.environ.get('PROFILE_FIX', '1') == '1'
+EYE_CAP_DEG = 50     # the eyeball is a cap this many degrees off its front; its rim sits ~3 cm inside the head
 
 
 def F(t):
@@ -164,7 +165,7 @@ class Data:
             ys = head_surface_y(ex, ez); protrude = 0.07
             c = Vector((ex, ys - protrude + self.R_EYE, ez))
             self.EYE[s] = c
-            ball = _sphere(f'Eye ball.{s}', c, self.R_EYE, eye)
+            ball = _cap(f'Eye ball.{s}', c, self.R_EYE, eye, lambda n: -n.y > math.cos(math.radians(EYE_CAP_DEG)))   # only the front dome: a whole sphere showed its white outside the lens in three-quarter view
             gaze = bpy.data.objects.new(f'Gaze.{s}', None); bpy.context.collection.objects.link(gaze); gaze.location = c
             bpy.context.view_layer.update()
             pup = _cap(f'Pupil.{s}', c, self.R_EYE + 0.005, pupil, lambda n: -n.y > math.cos(math.radians(31)))   # a cap ON the sphere: under a closed lid everywhere
