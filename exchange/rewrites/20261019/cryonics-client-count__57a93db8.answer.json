@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cryonics-client-count__57a93db8",
+  "slug": "cryonics-client-count",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:31:00Z",
+  "title": "Only 222 People Have Actually Been Frozen",
+  "hook": "Nearly 1,927 signed up, but only 222 are frozen.",
+  "closing": "Members are paying today for a future revival science still cannot deliver.",
+  "question": "Would you pay for cryonics?",
+  "segments": [
+    {
+      "topic": "Frozen patient count",
+      "say": "Alcor has frozen 222 people so far, and that group grows only after members die."
+    },
+    {
+      "topic": "Frozen waiting list",
+      "say": "About 1,927 people signed up, but most remain alive and waiting rather than frozen."
+    },
+    {
+      "topic": "Frozen body cost",
+      "say": "Freezing a whole body costs $200,000, so many members fund the bet through life insurance."
+    }
+  ]
+}
