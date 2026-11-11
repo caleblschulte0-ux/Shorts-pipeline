@@ -3,318 +3,6 @@
     {
       "date": "20261105",
       "dry_run": false,
-      "ts": "2026-11-05T13:02:34+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 16,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 130,
-        "with_curve": 15,
-        "fetched_at": "2026-11-05T08:46:32.466140+00:00"
-      },
-      "brain": {
-        "ok": 42,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261105-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, high velocity",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "GTA RP chase, unclear stakes, insider",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "At 11.1s the game's own caption ('I' CAR. A) appears garbled next to the word caption, a minor overlap",
-                "The hook card and word captions sit over the character's body in several frames but never cover a face"
-              ]
-            }
-          },
-          "took_s": 233.7
-        },
-        {
-          "slug": "clip-20261105-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 135,
-                "refused_shown": 7,
-                "scouted": [
-                  {
-                    "premise": "IShowSpeed keeps dying in his Minecraft death run, and by the end even Kai Cenat can't believe it.",
-                    "shape": "multi_streamer",
-                    "n": 4
-                  },
-                  {
-                    "premise": "Jynxzi's Minecraft marathon pile-up of deaths on day 3, ending on his 11th death and what comes after it.",
-                    "shape": "one_stream",
-                    "n": 4
-                  },
-                  {
-                    "premise": "xQc's night on The Choicer Voicer, from reading the roast texts to losing it at the results.",
-                    "shape": "one_stream",
-                    "n": 4
-                  }
-                ],
-                "vod_arcs": 320,
-                "moments": 40,
-                "candidates": 514,
-                "pool": 2957,
-                "pool_with_vod": 2042,
-                "arc_sizes": [
-                  2,
-                  2,
-                  6,
-                  2,
-                  3,
-                  2,
-                  2,
-                  2,
-                  3,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:xqc/xqc-along-audio-2026w40",
-                  "outcome": "qa_failed",
-                  "why": "vision: For the first ~20s (frames 1.3s\u201320s) the picture is empty gameplay: road, barriers, water and a dark scene. No cops and ; vision: Th"
-                },
-                {
-                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
-                  "outcome": "duration",
-                  "why": "21s outside 25-90s"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569/ohnepixel-face-hand-2026w41",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 66, 52] after 2 revision(s) \u2014 @4s missing_context: Say what the Dragon Lore is and why it matters to him (a gift, a drop, a huge price, a giveaway) with a context_overlay or a clip that shows how he got it. Right now a stranger can't tell why he is cr; @19s weak_payoff: The last 6s hold "
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.65,
-              "why": "visible punch, physical conflict",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Fortnite elimination, unclear 'punch'; g",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Gets Punched And Doesn't Even Survive Six Seconds"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.55,
-              "problems": [
-                "The facecam subject is cropped badly in several frames: at 14.1s only a chin and neck show, and at 11.1s the face is cut",
-                "The top half of the frame is mostly meaningless game footage (blank wall, sky, floor) with no visible action or punch, s",
-                "The framing is inconsistent: the facecam shifts position and zoom between frames, which looks unintentional",
-                "Stream HUD remnants show at the top and the in-game text is garbled (the '7,070' counter, a partly cropped 'BATTLE ROYAL",
-                "The hook caption sits over the subject's neck and chest, and at 14.1s it covers the only visible part of the subject"
-              ]
-            }
-          },
-          "took_s": 194.8
-        },
-        {
-          "slug": "clip-20261105-3",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, big views",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Halloween party, unclear event, chaotic ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 28.5
-        },
-        {
-          "slug": "clip-20261105-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (Dark game, still drawing, no event)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "Cameo hype, unclear what happens",
-              "blind": false
-            },
-            "content": {
-              "score": 0.2,
-              "why": "Dark game, still drawing, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 55.0
-        },
-        {
-          "slug": "clip-20261105-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261105-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "Unclear context, vague quote",
-              "blind": false
-            },
-            "content": {
-              "score": 0.78,
-              "why": "Street confrontation, man knocked down, ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ishowspeed Shuts Down Man Who Touched Miles: \"I've Run New York\""
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "First ~5s is a thin sharp strip (about a third of the canvas height) with small subjects, and the rest of the clip is fu",
-                "The hook caption sits over the man's face and chin at 17.6s",
-                "Word captions are close to the hook text and crowd the lower third"
-              ]
-            }
-          },
-          "took_s": 268.3
-        },
-        {
-          "slug": "clip-20261105-6",
-          "ok": false,
-          "skipped": "run budget reached"
-        }
-      ]
-    },
-    {
-      "date": "20261105",
-      "dry_run": false,
       "ts": "2026-11-05T13:21:44+00:00",
       "feedback": {
         "snapshot": true,
@@ -5331,6 +5019,192 @@
             }
           },
           "took_s": 195.4
+        }
+      ]
+    },
+    {
+      "date": "20261111",
+      "dry_run": false,
+      "ts": "2026-11-11T12:44:42+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 121,
+        "with_curve": 15,
+        "fetched_at": "2026-11-11T08:46:21.890921+00:00"
+      },
+      "brain": {
+        "ok": 26,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261111-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (donation TTS, static game screen)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "Inside joke, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "donation TTS, static game screen",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 107.8
+        },
+        {
+          "slug": "clip-20261111-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (scenic IRL walk, no event)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "Scenic irl, nothing happens",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "scenic IRL walk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 69.1
+        },
+        {
+          "slug": "clip-20261111-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261111-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261111-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "Title mismatch, routine gameplay",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Funny crotch-hit reaction, small facecam",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Pikabooirl Hits His Nuts After His Headset Cord Spooks Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.55,
+              "problems": [
+                "The word caption 'SPASTIC.' at about 20s is an ableist slur. It sits in large text on screen, which is a demonetization ",
+                "The top half is empty sand and scenery for the whole clip. The action is all on the facecam, so the sharp picture reads ",
+                "The facecam is small, and the persistent hook caption sits over his chin and lower face in several frames.",
+                "The framing is a consistent two-pane split with no broken, black or garbled frames. The slur is the only clear blocker."
+              ]
+            }
+          },
+          "took_s": 184.1
+        },
+        {
+          "slug": "clip-20261111-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }

@@ -18927,14 +18927,32 @@
       "ts": "2026-11-11T12:41:38.537944+00:00"
     },
     "clip-20261111-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/pikabooirl/clip/FaithfulFragileWaffleMcaT-GZ7mNjLARaSy-QBO",
-      "story_key": null,
-      "streamer": "pikabooirl",
+      "url": "https://youtube.com/shorts/6sxJGoayIdI",
       "title": "Pikabooirl Hits His Nuts After His Headset Cord Spooks Him",
       "kind": "twitch_clip",
-      "ts": "2026-11-11T12:44:32.308285+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-11T12:44:42.637834+00:00",
+      "uploaded_at": "2026-11-11T12:44:42.637848+00:00",
+      "publish_at": "2026-11-12T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261111-pikabooirl-hits-his-nuts-after-his-headset-cord--a1801ff0",
+        "tiktok": "queued for 2026-11-12T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/pikabooirl/clip/FaithfulFragileWaffleMcaT-GZ7mNjLARaSy-QBO",
+      "streamer": "pikabooirl",
+      "series": "fail",
+      "hook": "Pikabooirl thought something was crawling on him \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4727,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 21.29
+      },
+      "director_cut": true
     }
   }
 }
