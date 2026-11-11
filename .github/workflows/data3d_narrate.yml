@@ -1,0 +1,58 @@
+name: Data 3D narration (voice one story, no render, no upload)
+
+# Voices ONE queued explainer story with the explainer's own narrator
+# (studio_render.synth_narration: Gemini first, then the same fallbacks), at
+# main's code and the registry's tempo, so a 3D cut is timed to the exact
+# audio the channel ships. Output is a workflow artifact only.
+on:
+  push:
+    branches: ['claude/3d-data']
+    paths: ['.github/triggers/data3d_narrate']
+  workflow_dispatch:
+    inputs:
+      slug: {description: 'story slug', required: false, default: 'self-checkout-cashier-jobs'}
+
+permissions:
+  contents: read
+
+jobs:
+  narrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {ref: main, fetch-depth: 1}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - name: Deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -q ffmpeg libcairo2-dev pkg-config
+          grep -v -i whisper requirements.txt > /tmp/req.txt
+          pip install -q -r /tmp/req.txt -r data_learning/requirements.txt
+      - name: Voice the story
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_TTS_VOICE: ${{ vars.GEMINI_TTS_VOICE || 'Charon' }}
+          SLUG: ${{ inputs.slug || 'self-checkout-cashier-jobs' }}
+        run: |
+          mkdir -p out
+          python - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          sys.path.insert(0, '.'); sys.path.insert(0, 'data_learning')
+          import studio_render as sr
+          c = json.load(open('data_learning/niche.config.json'))
+          s = next(x for x in c['stories'] if x['slug'] == os.environ['SLUG'])
+          lines = [s['hook']] + [g['say'] for g in s['segments']] + [s['closing']]
+          wd = Path('out'); nar, win = sr.synth_narration(lines, wd, 'am_fenrir')
+          json.dump({'slug': s['slug'], 'lines': lines, 'windows': win, 'tts': sr.TTS_USED,
+                     'title': s['title']}, open('out/narration.json', 'w'), indent=1)
+          print(json.dumps(sr.TTS_USED), win)
+          PY
+          ls -la out
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: data3d-narration
+          path: |
+            out/narration.wav
+            out/narration.json
