@@ -64,7 +64,7 @@ def hide_from(root, t, show=False):
 def person(name, loc, yaw=0.0):
     """the people of this world are MINIMAL (caaleb, 2026-11-11: "the less the better"): a faceless rounded figure, a
     head, a body in the staff blue, two legs. No face, hair, hands, badges. Every part is a DIRECT child of the root.
-    Front is -Y; yaw turns it."""
+    Front is -Y; yaw turns it. 20:24Z: "they can have arms" -- plain tubes, no hands."""
     root = K.empty(name, loc); L = Vector(loc); s = 1.65 * K.U / 0.924
     body = K.mat("person body", "#2F6FA6", rough=0.6); head = K.mat("person head", "#E2D6CA", rough=0.55); leg = K.mat("person legs", "#33363C", rough=0.6)
     P = lambda ox, oy, oz: Vector((L.x + ox, L.y + oy, L.z + oz * s))
@@ -72,6 +72,8 @@ def person(name, loc, yaw=0.0):
         K.capsule("leg", P(sg * 0.055, 0, 0.44), P(sg * 0.055, 0, 0.05), 0.05, leg, parent=root)
     t = K.capsule("body", P(0, 0, 0.47), P(0, 0, 0.74), 0.15, body, parent=root, ra=0.13, rb=0.15); t.scale = (1.0, 0.72, 1.0)
     K.sph("head", P(0, 0, 0.9), 0.1, head, scale=(1.0, 1.0, 1.08), parent=root)
+    for sg in (-1, 1):   # plain arms: one rounded tube each, hanging a little off the body, no hands
+        K.capsule("arm", P(sg * 0.15, 0, 0.72), P(sg * 0.175, -0.015, 0.45), 0.038, body, parent=root)
     root.rotation_euler = (0, 0, yaw)
     return root
 
