@@ -176,7 +176,7 @@ def shot1():
     screens_on(kiosks)
     kk = kiosks[1]; kx, ky = lanes[1]["kiosk_spot"].x, lanes[1]["kiosk_spot"].y
     data = load_data()
-    data.place(kx - 0.36, ky - 0.42, 62)                 # beside the machine, three-quarter to the lens
+    data.place(kx - 0.36, ky - 0.42, 28)                 # beside the machine, his face to the lens from frame one (62 was a profile)
     data.expression("surprised", 0.0, DUR)
     sc.frame_set(1); p = data.pos()
     # recoiling, hands up by his face, then a step back as the money keeps coming
