@@ -182,16 +182,37 @@ style.restyle()
 key = style.lights(sc)
 if NYC: built.relight(); built.feet_shadow(data)
 # beat 3 (losses at self-checkout): while he looks back, every self-checkout's lane lamp goes from green to a blinking red
-_lamp = bpy.data.materials.get("lane lamp")
-if NARR and _lamp:
-    _b = _lamp.node_tree.nodes["Principled BSDF"]
-    _cols = [_b.inputs["Base Color"], _b.inputs["Emission Color"] if "Emission Color" in _b.inputs else _b.inputs["Emission"]]
-    _green = tuple(_cols[1].default_value); _red = (1.0, 0.08, 0.05, 1.0)
+# and the kiosk terminal screens flash the same red (the lamps alone sit at the top edge of the frame)
+for _name, _red, _dim in (("lane lamp", (1.0, 0.08, 0.05, 1.0), (0.25, 0.02, 0.01, 1.0)), ("terminal screen", (1.0, 0.25, 0.2, 1.0), (0.55, 0.12, 0.1, 1.0))):
+    _m = bpy.data.materials.get(_name)
+    if not (NARR and _m and _m.use_nodes): continue
+    _b = _m.node_tree.nodes.get("Principled BSDF")
+    if not _b: continue
+    _cols = [i for i in (_b.inputs.get("Base Color"), _b.inputs.get("Emission Color")) if i is not None and not i.is_linked]
+    _rest = [tuple(i.default_value) for i in _cols]
     for _f in range(1, F(T_END) + 1):
         _t = (_f - 1) / FPS
         on = T_REL + 0.9 <= _t < T_CLOSE + 0.3
-        c = (_red if (int((_t - T_REL) * 2.5) % 2 == 0) else (0.25, 0.02, 0.01, 1.0)) if on else _green
-        for i in _cols: i.default_value = c; i.keyframe_insert("default_value", frame=_f)
+        for i, r in zip(_cols, _rest):
+            i.default_value = ((_red if int((_t - T_REL) * 2.5) % 2 == 0 else _dim) if on else r); i.keyframe_insert("default_value", frame=_f)
+    print("BLINK", _name, len(_cols))
+# the self-checkout SCREENS (an image texture) take a red wash through a mix node keyed on/off with the lamps
+for _sm in {id(k["screen_mat"]): k["screen_mat"] for k in store["kiosks"]}.values():
+    if not (NARR and _sm and _sm.use_nodes): continue
+    nt = _sm.node_tree; _b = nt.nodes.get("Principled BSDF")
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = 'RGBA'; mix.blend_type = 'MIX'
+    mix.inputs[7].default_value = (1.0, 0.1, 0.07, 1.0)          # B (colour)
+    n = 0
+    for inp in (_b.inputs.get("Emission Color"), _b.inputs.get("Base Color")):
+        if inp is None or not inp.is_linked: continue
+        src = inp.links[0].from_socket
+        if n == 0: nt.links.new(src, mix.inputs[6])               # A (colour)
+        nt.links.new(mix.outputs[2], inp); n += 1
+    fac = mix.inputs[0]
+    for _f in range(1, F(T_END) + 1):
+        _t = (_f - 1) / FPS; on = T_REL + 0.9 <= _t < T_CLOSE + 0.3
+        fac.default_value = (0.85 if int((_t - T_REL) * 2.5) % 2 == 0 else 0.55) if on else 0.0; fac.keyframe_insert("default_value", frame=_f)
+    print("BLINK screen", _sm.name, n)
 style.follow_key(key, data, 1, F(T_END))
 style.render_settings(sc, SPP, PCT)
 
