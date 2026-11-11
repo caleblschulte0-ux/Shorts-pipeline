@@ -41,6 +41,10 @@ data.expression("neutral", 0.0)  # pin the resting face from frame 1: without a 
 
 # ---------------------------------------------------------------- the push, straight arm every frame
 f0, f1 = acts.push(data, cart, (X1, 0.0), T_PUSH0, T_PUSH1)
+# a three-quarter face for the lens while he pushes: dead side-on, the camera saw the back of a ball with one eye-white
+# dome and a floating brow; turned 30 degrees it reads as his face (eye, smile, nose) - pose for the one camera
+sc.frame_set(F(T_PUSH0)); _p = data.pos()
+data.look_at((_p.x + 1.0, _p.y - 0.58, 0.68), T_PUSH0)
 # before the push: standing with hands on the bar
 for f in range(1, f0):
     sc.frame_set(f)
@@ -128,8 +132,9 @@ data.turn_to(-90, T_REL + 0.2, T_REL + 0.9)          # face -x: back along the l
 data.look_at((0.9, 0.6, 0.6), T_REL + 0.9)
 data.expression("surprised", T_REL + 0.8, T_REL + 2.2)
 data.look_at((-0.2, 0.6, 0.6), T_REL + 1.6)
-data.turn_to(180, T_REL + 1.7, T_REL + 2.2)          # face -y: camera
-data.look_at((CAM_BASE.x + 1.0, CAM_BASE.y + 1.2, 0.8), T_REL + 2.2)
+data.turn_to(0, T_REL + 1.7, T_REL + 2.2)            # face -y: the camera (rot 0; 180 faces AWAY: forward = (sin, -cos))
+sc.frame_set(F(T_REL + 2.2)); _px = data.pos().x
+data.look_at((_px + (CAM_BASE.x - X0), CAM_BASE.y + PUSH_IN, 0.72), T_REL + 2.2)   # into the lens: the camera rides at px + (CAM_BASE.x - X0); a fixed world point turned his head 40 degrees off it
 data.act("shrug", T_REL + 2.3, dur=0.3, hold=0.45)   # ends inside the 10 s
 data.expression("happy", T_REL + 2.3, T_END)
 data.finish()
@@ -160,7 +165,7 @@ style.follow_key(key, data, 1, F(T_END))
 style.render_settings(sc, SPP, PCT)
 
 # ---------------------------------------------------------------- measure
-side = acts.near_side(data, cam) if True else "L"
+sc.frame_set(F(3.0)); side = acts.near_side(data, cam)   # measured mid-push: at the last frame he faces the lens and the shoulders tie
 mx, mean = acts.arm_bend(data, f0, f1, side)
 mxo, meano = acts.arm_bend(data, f0, f1, "R" if side == "L" else "L")
 sl = acts.arm_slope(data, f0, f1, side)

@@ -363,13 +363,15 @@ class Data:
             self.sc.frame_set(F(max(0.0, t - blend))); hb.rotation_euler = (0, 0, 0); hb.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))
         self.sc.frame_set(F(t)); M = self.arm.matrix_world; head = M @ hb.head
         d = Vector(target) - head - Vector((0, 0, 0.12))
-        yaw_body = self.arm.rotation_euler.z
-        fw = self.forward(yaw_body); right = Vector((math.cos(yaw_body), math.sin(yaw_body), 0))
-        yaw = math.degrees(math.atan2(d.dot(right), d.dot(fw))); yaw = max(-max_yaw, min(max_yaw, yaw))
-        pitch = math.degrees(math.atan2(d.z, Vector((d.x, d.y, 0)).length)); pitch = max(-max_pitch, min(max_pitch, pitch))
-        # bone Y is up; yaw about world Z, pitch tilts the top of the head toward the target
-        Rw = Matrix.Rotation(yaw_body - math.radians(yaw), 3, 'Z') @ Matrix.Rotation(math.radians(-pitch * 0.6), 3, 'X') @ self._rest['head'].to_3x3()
-        self._set_bone(hb, head, M.to_3x3().normalized() @ Rw, t)
+        # in the ARMATURE's own frame (rest face is -Y): the body's yaw is already in M, so it must not be added again.
+        # (it was: every look_at after a turn twisted the head by the body's yaw, so at 180 he faced away with his head screwed round)
+        dl = M.to_3x3().normalized().inverted() @ d
+        yaw = math.degrees(math.atan2(dl.y, dl.x) + math.pi / 2)
+        yaw = (yaw + 180) % 360 - 180; yaw = max(-max_yaw, min(max_yaw, yaw))
+        pitch = math.degrees(math.atan2(dl.z, Vector((dl.x, dl.y, 0)).length)); pitch = max(-max_pitch, min(max_pitch, pitch))
+        # bone Y is up; yaw about the armature's Z, pitch tilts the top of the head toward the target
+        Rl = Matrix.Rotation(math.radians(yaw), 3, 'Z') @ Matrix.Rotation(math.radians(-pitch * 0.6), 3, 'X') @ self._rest['head'].to_3x3()
+        self._set_bone(hb, head, M.to_3x3().normalized() @ Rl, t)
 
     def _has_keys(self, obj, data_path):
         ad = obj.animation_data
