@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261012",
+  "updated": "20261111",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -676,13 +676,18 @@
     },
     "aaeb12de3ebd": {
       "verdict": "in_progress",
-      "date": "20260824",
-      "because": "The delivery restoration is built and merging: PR #294 fixed the run-completion cascade (cutout circuit breaker), PR #305 fixed what the showrunner blocks (mascot anchoring clamp, geo scene as a real demonstration, churn joints: 48h rotation window, persisted scene_plans, ledger problems/fixes, showrunner_starving_the_slate alarm), PR #306 wires the exemplar/reject library and failure census into production. A proving render of the most-blocked slug is running now; the topic-test readout stays frozen until the channel posts on cadence again.",
+      "date": "20261111",
+      "because": "Triage 2026-11-11. Delivery WAS restored (explainer 4/4 on 10-29, 10-30, 10-31, 11-05, 11-06) and is dark again since 11-08 for a cause the finding predicted could not be localized: every text brain died at once \u2014 Groq key refused (HTTP 403, state/credentials.json 11-10), Claude subscription at its weekly limit, Gemini 429 by the second story \u2014 so no scene could be drawn or verified and the gate held everything; all five explainer runs on 11-09/11-10 ended red at '0 videos reached the channel' with no cause named. The instrumentation half is built today: daily_alarm reads the credential heartbeat, raises credential_dead_<name>/credential_limited_<name> with the exact secret to replace, and no_posts_<channel> cites the dead brain (tests/test_daily_alarm.py TestADeadBrainSaysSo); credential_check now classifies a weekly limit as LIMITED not DEAD. Stays in_progress until the operator replaces GROQ_API_KEY and the channel posts 4/4 again; the topic-test readout stays frozen until then.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260821",
           "because": "Verified against doctor/evidence.json channel_performance.explainer: posted_by_day_14d shows only 1 (08-13), 2 (08-14), 1 (08-20) against a registry target of 4/day -- meaning zero posts on 08-15 through 08-19, and no explainer entry exists in production_runs to localize the stage. This matches CLAUDE.md's own description of explainer as the load-bearing, fail-closed channel, so a silent multi-day delivery collapse there is serious. Accepted: hold interpretation of the topic experiment and build production-outcome instrumentation (attempted/showrunner-held/render-failed/upload-failed/uploaded) for explainer mirroring trending's, before touching the mix. Queued behind today's critical bug fix -- this needs its own session to diagnose root cause properly, not a rushed same-session patch."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260824",
+          "because": "The delivery restoration is built and merging: PR #294 fixed the run-completion cascade (cutout circuit breaker), PR #305 fixed what the showrunner blocks (mascot anchoring clamp, geo scene as a real demonstration, churn joints: 48h rotation window, persisted scene_plans, ledger problems/fixes, showrunner_starving_the_slate alarm), PR #306 wires the exemplar/reject library and failure census into production. A proving render of the most-blocked slug is running now; the topic-test readout stays frozen until the channel posts on cadence again."
         }
       ]
     },

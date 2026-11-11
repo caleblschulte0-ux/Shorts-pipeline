@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import sys
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -199,3 +200,40 @@ class TheWorkflowMatchesTheScript(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AWeeklyLimitIsASpentWindowNotADeadToken(unittest.TestCase):
+    """2026-11-10: the claude CLI said "You've hit your weekly limit · resets
+    12am (UTC)" and the probe recorded the subscription as DEAD — "REPLACE
+    THIS ONE" — for a token that was fine and coming back on its own. The
+    probe only knew "usage limit" and "rate limit". Every limit the CLI can
+    name is a spent window, and the detail keeps the CLI's words so the
+    reset time reaches the alarm."""
+
+    def _cli(self, text, rc=1):
+        class P:
+            returncode = rc
+            stdout = text
+            stderr = ""
+        with mock.patch.object(cc.shutil, "which", return_value="/usr/bin/claude"), \
+                mock.patch.object(cc.subprocess, "run", return_value=P()):
+            return cc.probe_claude_cli("tok")
+
+    def test_the_weekly_limit_is_LIMITED_and_keeps_the_reset_time(self):
+        status, detail = self._cli(
+            "You've hit your weekly limit · resets 12am (UTC)")
+        self.assertEqual(status, cc.LIMITED)
+        self.assertIn("resets 12am (utc)", detail)
+
+    def test_every_limit_the_cli_names_is_a_window(self):
+        for said in ("usage limit reached", "rate limit exceeded",
+                     "You've hit your 5-hour limit · resets 3pm",
+                     "session limit reached · resets in 2 hours"):
+            self.assertEqual(self._cli(said)[0], cc.LIMITED, said)
+
+    def test_a_refusal_is_still_DEAD(self):
+        status, _ = self._cli("Invalid authentication credentials", rc=1)
+        self.assertEqual(status, cc.DEAD)
+
+    def test_an_answer_is_still_OK(self):
+        self.assertEqual(self._cli("ok", rc=0)[0], cc.OK)

@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -173,11 +174,24 @@ def probe_claude_cli(_token: str) -> tuple[str, str]:
     except subprocess.TimeoutExpired:
         return UNREACHABLE, "the CLI did not answer within 120s"
     out = ((proc.stdout or "") + (proc.stderr or "")).lower()
-    if "usage limit" in out or "rate limit" in out:
-        return LIMITED, "the subscription window is spent"
+    # 2026-11-10: the CLI said "You've hit your weekly limit · resets 12am
+    # (UTC)" and this read it as DEAD — "REPLACE THIS ONE" — for a token that
+    # was fine and three days from coming back on its own. Any "<kind> limit"
+    # the CLI names, or a "resets ..." clause, is a spent window; the detail
+    # keeps the CLI's own words so the reset time reaches the alarm.
+    if SPENT_WINDOW.search(out):
+        said = " ".join(out.split())[:120]
+        return LIMITED, f"the subscription window is spent: {said}"
     if proc.returncode == 0 and out.strip():
         return OK, "the CLI answered"
     return DEAD, f"rc={proc.returncode} {out.strip()[:120]}"
+
+
+#: What the claude CLI prints when the subscription window is spent — every
+#: form seen so far, plus the "resets <when>" clause that follows them all.
+SPENT_WINDOW = re.compile(
+    r"\b(usage|rate|weekly|daily|session|5-hour|five-hour) limit\b"
+    r"|\bresets? (at|in|\d)")
 
 
 # name -> (env var, probe). Anything absent from the environment is UNSET and
