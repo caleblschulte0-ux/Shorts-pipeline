@@ -20731,9 +20731,9 @@
   },
   {
    "slug": "astronaut-bone-loss",
-   "title": "A Mars Mission Could Cost 30% Of Hip Bone Density",
-   "hook": "Mars sounds like adventure. It could cost 30% of hip bone density.",
-   "closing": "Long missions need bone protection because floating removes the loading that keeps skeletons strong.",
+   "title": "A Mars Trip Could Strip 30% of Hip Bone Density",
+   "hook": "Mars sounds adventurous until it costs 30% of hip bone density.",
+   "closing": "Long missions need protection because floating removes the loading that keeps skeletons strong.",
    "question": "Would this change your Mars plans?",
    "caption": "Astronauts lose 1.5% of their bone density every single month in zero gravity — faster than a severe osteoporosis patient loses in a whole year. It's why NASA has them exercising 2.5 hours a day, and why a Mars mission might be the scariest part of getting there. Would you handle a Mars mission knowing the cost? 👇",
    "hashtags": [
@@ -20763,8 +20763,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "1 · THE RATE",
-     "topic": "astronaut bone loss",
-     "say": "Astronaut bone density can fall 1.5% monthly. Space removes the everyday loading that keeps skeletons strong.",
+     "topic": "Mars bone loss",
+     "say": "Astronaut bone density can fall 1.5 percent monthly because space removes normal skeletal loading.",
      "scene": {
       "mechanic": "bone-erosion-duel",
       "concept": "two bone x-rays, astronaut on top and an osteoporosis patient below, each eaten away from both ends by a dark erosion mask that grows with reveal - the astronaut's bone erodes visibly faster",
@@ -20780,8 +20780,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "astronaut hip loss",
-     "say": "Astronaut hip density can drop 2.2% monthly. Weight-bearing bone pays the highest price in these data.",
+     "topic": "Mars hip loss",
+     "say": "Astronaut hip density can drop 2.2 percent monthly, making weight-bearing bone especially vulnerable.",
      "scene": {
       "mechanic": "region-erosion-columns",
       "concept": "four bone x-ray columns (hip, spine, pelvis, forearm) each filled from the bottom with a red erosion overlay to its monthly loss rate - the weight-bearing hip erodes tallest, the forearm barely at all",
@@ -20798,7 +20798,7 @@
      "use_baseline": true,
      "role": "3 · THE MARS PROBLEM",
      "topic": "Mars bone cost",
-     "say": "A Mars mission could cost 30% of hip bone density without protection. Countermeasures become part of survival.",
+     "say": "A Mars mission could cost 30 percent of hip bone density without protection, turning countermeasures into survival equipment.",
      "scene": {
       "mechanic": "mission-bone-gauge",
       "concept": "two vertical capsule gauges topped with an astronaut suit, each filling red upward to the total bone percentage lost on that mission - ISS short, Mars nearly to the top",
@@ -20807,7 +20807,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-08T12:23:16Z",
+   "rewritten_at": "2026-11-11T12:27:36Z",
    "retold": "retell/v4"
   },
   {
@@ -20889,9 +20889,9 @@
   },
   {
    "slug": "activity-inequality-steps",
-   "title": "Why a 43% Gender Gap Predicts Activity Inequality",
-   "hook": "A 43% gender gap helps explain activity inequality worldwide.",
-   "closing": "Health depends not just on average movement, but on who gets left behind.",
+   "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
+   "hook": "Unequal activity nearly triples obesity risk, even beyond average steps.",
+   "closing": "Public health improves when more people can move, not just when averages rise.",
    "question": "Who gets fewer walking opportunities?",
    "caption": "Hong Kong walks 6,880 steps a day. Indonesia walks 3,513. But the real predictor of obesity isn't the average — it's the GAP between a country's most and least active people, and it makes obesity almost 200% more likely. How many steps do you actually walk a day? 👇",
    "hashtags": [
@@ -20922,8 +20922,8 @@
      "ascending": false,
      "use_baseline": true,
      "role": "1 · THE STEPS",
-     "topic": "Activity step count",
-     "say": "Hong Kong averages 6,880 daily steps, showing how widely movement differs between countries.",
+     "topic": "Activity step averages",
+     "say": "Hong Kong averages 6,880 daily steps, but a national average cannot show who gets left behind.",
      "scene": {
       "mechanic": "footprint-trail-row",
       "concept": "a dotted footprint trail walks out from each country's name, longer trails for higher daily step counts, Hong Kong's trail nearly crossing the frame while Indonesia's stops short",
@@ -20957,7 +20957,7 @@
      "insight_type": "share",
      "role": "3 · WHY THE GAP",
      "topic": "Activity gender gap",
-     "say": "The gender step gap explains 43 percent of activity inequality, revealing who is most often left behind.",
+     "say": "The gender step gap explains 43 percent of activity inequality, revealing who loses movement opportunities.",
      "scene": {
       "mechanic": "step-gap-scale",
       "concept": "a male and female walking-silhouette pair stand side by side, a red band rising up both figures to the 43% line that marks how much of the activity gap the gender difference alone explains",
@@ -20966,7 +20966,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-10T12:38:19Z",
+   "rewritten_at": "2026-11-11T12:27:36Z",
    "hook_was": "Your steps won't stop obesity; this gap makes it almost 200 percent likelier.",
    "retold": "retell/v1"
   },
@@ -25134,9 +25134,9 @@
   },
   {
    "slug": "third-interstellar-visitor",
-   "title": "Only 3 Interstellar Visitors Have Ever Reached Us",
-   "hook": "Only 3 interstellar visitors have ever crossed our solar system.",
-   "closing": "Each rare visitor gives us a physical sample of another star system.",
+   "title": "3 Interstellar Visitors Turned a Fluke Into a Pattern",
+   "hook": "Three interstellar visitors mean the first one was not a fluke.",
+   "closing": "A repeatable pattern gives scientists another chance to study material from other stars.",
    "question": "Will we ever catch one?",
    "caption": "Only 3 objects have ever been confirmed passing through our solar system from interstellar space -- 'Oumuamua in 2017, Borisov in 2019, and 3I/ATLAS in 2025. Each one found has been bigger and faster than the last, and this one is the biggest yet: up to 5.6 km wide, moving at 246,000 km/h. Do you think we'll ever catch up to one? 👇",
    "hashtags": [
@@ -25166,7 +25166,7 @@
      "insight_type": "trend",
      "role": "1 · THE COUNT",
      "topic": "Interstellar visitor count",
-     "say": "Only 3 interstellar visitors have been confirmed, making every arrival a rare scientific opportunity.",
+     "say": "Three interstellar visitors have been confirmed, turning a once-in-history surprise into a pattern.",
      "scene": {
       "mechanic": "portal-comet-count",
       "concept": "a glowing wormhole portal at the frame edge fires real comet cutouts across the sky one by one as the confirmed count climbs 1->3",
@@ -25212,15 +25212,15 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-10T12:38:19Z",
+   "rewritten_at": "2026-11-11T12:27:36Z",
    "retold": "retell/v3",
    "hook_was": "Something from deep space just blasted past your planet at 246,000 kilometers an hour."
   },
   {
    "slug": "bat-fungus-collapse",
-   "title": "A Fungus Erased 97% of These Bats",
-   "hook": "A fungus erased 97% of bats that quietly protect farms.",
-   "closing": "Losing bats means more crop pests and higher costs for everyone.",
+   "title": "Losing Bats Threatens $53 Billion in Free Farm Protection",
+   "hook": "Bat collapse threatens $53 billion in free pest control.",
+   "closing": "Losing bats means more crop pests and higher food costs for everyone.",
    "question": "Have you seen bats nearby?",
    "caption": "Since 2006, a cold-loving fungus called white-nose syndrome has spread from a single New York cave to 35 states, killing over 90% of three major bat species. Bats aren't just creepy -- they save US farmers an estimated $3.7 billion a year eating crop pests. Ever seen a bat near your home? 👇",
    "hashtags": [
@@ -25249,7 +25249,7 @@
      "insight_type": "trend",
      "role": "1 · THE SPREAD",
      "topic": "Bats fungus spread",
-     "say": "The fungus has reached 35 states, turning one cave outbreak into a national threat.",
+     "say": "The fungus reached 35 states, turning one cave outbreak into a national threat.",
      "viz": "geo_us",
      "illustrated_scene": "# scene standard: 2026-10-16.1\ndef _bat_fly(cr, x, y, s, flap):\n    up = 0.55 * math.sin(flap)\n    cr.move_to(x, y)\n    cr.curve_to(x - 30 * s, y - (20 + 30 * up) * s, x - 60 * s, y - (30 + 40 * up) * s,\n                x - 90 * s, y - (18 + 50 * up) * s)\n    cr.curve_to(x - 70 * s, y + 4 * s, x - 50 * s, y - 6 * s, x - 34 * s, y + 8 * s)\n    cr.line_to(x - 12 * s, y + 12 * s)\n    cr.line_to(x, y + 22 * s)\n    cr.line_to(x + 12 * s, y + 12 * s)\n    cr.line_to(x + 34 * s, y + 8 * s)\n    cr.curve_to(x + 50 * s, y - 6 * s, x + 70 * s, y + 4 * s, x + 90 * s, y - (18 + 50 * up) * s)\n    cr.curve_to(x + 60 * s, y - (30 + 40 * up) * s, x + 30 * s, y - (20 + 30 * up) * s, x, y)\n    cr.close_path()\n    solid(cr, (40, 32, 44), rim=False)\n    disc(cr, x, y + 6 * s, 9 * s, (58, 44, 50))\n\n\ndef _bat_perched(cr, x, y, s):\n    # a hibernating little brown bat clinging to the rock, white fungus on its muzzle\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(s, s)\n    cr.move_to(-34, -10)\n    cr.curve_to(-40, 40, -20, 80, 0, 90)\n    cr.curve_to(20, 80, 40, 40, 34, -10)\n    cr.curve_to(20, -30, -20, -30, -34, -10)\n    cr.close_path()\n    solid(cr, (112, 80, 58))\n    cr.move_to(-26, -60)\n    cr.line_to(-36, -100)\n    cr.line_to(-8, -72)\n    cr.close_path()\n    solid(cr, (92, 64, 48))\n    cr.move_to(26, -60)\n    cr.line_to(36, -100)\n    cr.line_to(8, -72)\n    cr.close_path()\n    solid(cr, (92, 64, 48))\n    disc(cr, 0, -44, 32, (124, 90, 66))\n    for i in range(9):\n        ang = i * 0.7\n        disc(cr, 6 * math.cos(ang) * (i % 3), -30 + 4 * math.sin(ang * 2), 9 + (i % 3) * 2,\n             (240, 240, 234))\n    disc(cr, -12, -52, 5, (20, 16, 18), finish=\"gloss\")\n    disc(cr, 12, -52, 5, (20, 16, 18), finish=\"gloss\")\n    cr.restore()\n\n\ndef _us_pts():\n    return [(0.02, 0.05), (0.18, 0.05), (0.45, 0.08), (0.62, 0.10), (0.70, 0.18),\n            (0.76, 0.14), (0.82, 0.10), (0.90, 0.03), (0.97, 0.08), (0.93, 0.20),\n            (0.88, 0.30), (0.86, 0.42), (0.84, 0.55), (0.80, 0.68), (0.85, 0.85),\n            (0.82, 0.98), (0.76, 0.80), (0.66, 0.76), (0.56, 0.80), (0.48, 0.96),\n            (0.40, 0.78), (0.30, 0.72), (0.20, 0.70), (0.12, 0.62), (0.06, 0.48),\n            (0.02, 0.30), (0.00, 0.15)]\n\n\ndef _map_xy(x, y, dy=0.0):\n    return (540 + (x - 0.5) * 980 * (0.82 + 0.18 * y), 900 + 520 * y + dy)\n\n\ndef _map_path(cr, dy=0.0):\n    ps = _us_pts()\n    cr.move_to(*_map_xy(ps[0][0], ps[0][1], dy))\n    for x, y in ps[1:]:\n        cr.line_to(*_map_xy(x, y, dy))\n    cr.close_path()\n\n\ndef _fuzz_path(cr, nx, ny, R, t):\n    for i in range(49):\n        a = i / 48.0 * 2 * math.pi\n        r = R * (1 + 0.07 * math.sin(5 * a + 0.4 * t) + 0.04 * math.sin(11 * a))\n        px, py = nx + r * math.cos(a), ny + 0.55 * r * math.sin(a)\n        if i == 0:\n            cr.move_to(px, py)\n        else:\n            cr.line_to(px, py)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a map of the United States\n    SUBSTANCE: white bat-killing fungus\n    CAUSE: Data plants a white flag at each state the fungus has reached as it creeps west from New York\n    The country lies on the ground as a lit relief model. White-nose fungus\n    starts at one New York cave and spreads out over the land; its reach is\n    the count of states. Each year it lands on, Data plants a flag at the new\n    edge, so how far it went in a few years shows on the map itself. Data\n    works along the map's south side, below the flags, so no year label is\n    ever behind him; the labels are drawn after him. The last edge is in by\n    0.56 and holds while bats keep flying overhead.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    top = max(v for _, v in rows) or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.7))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    val = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    if u < a0:\n        landed_to = -1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if named is None else rows[named]\n\n    def reach(v):\n        return 0.0 if v <= 0 else 30 + 600 * v / top\n\n    NX, NY = _map_xy(0.86, 0.22)\n    R = reach(val)\n\n    landscape(cr, t, \"field\", horizon=860)\n    # bats streaming across the dusk sky\n    for i in range(4):\n        bx = -160 + ((t * 150 + i * 340) % 1420)\n        by = 700 + 50 * math.sin(t * 0.8 + i * 1.9) + (i % 2) * 60\n        _bat_fly(cr, bx, by, 0.9 + 0.25 * (i % 2), t * 9 + i)\n\n    # the country, a relief model on the ground\n    cast_shadow(cr, 80, 1000, 1420, length=280, a=0.28)\n    contact_shadow(cr, 540, 1420, 980, a=0.4)\n    _map_path(cr, dy=36)\n    solid(cr, (88, 76, 58), rim=False)\n    _map_path(cr)\n    solid(cr, (150, 170, 108))\n    cr.save()\n    _map_path(cr)\n    cr.clip()\n    cr.set_source_rgba(*_c((110, 128, 80), 0.7))\n    cr.set_line_width(3)\n    for x_ in (0.18, 0.32, 0.46, 0.60, 0.72):\n        cr.move_to(*_map_xy(x_, 0.0))\n        cr.curve_to(*_map_xy(x_ + 0.02, 0.35), *_map_xy(x_ - 0.03, 0.65), *_map_xy(x_ + 0.01, 1.0))\n    for y_ in (0.3, 0.55):\n        cr.move_to(*_map_xy(0.0, y_))\n        cr.curve_to(*_map_xy(0.35, y_ + 0.03), *_map_xy(0.65, y_ - 0.03), *_map_xy(1.0, y_))\n    cr.stroke()\n    # the fungus, white fuzz spreading out of the New York cave\n    if R > 0:\n        _fuzz_path(cr, NX, NY, R, t)\n        solid(cr, (238, 238, 232), edge=False)\n        cr.save()\n        _fuzz_path(cr, NX, NY, R, t)\n        cr.clip()\n        for i in range(70):\n            a = i * 2.39996\n            rr = R * math.sqrt(((i * 0.618) % 1.0))\n            cr.set_source_rgba(*_c((255, 255, 252), 0.8))\n            cr.arc(NX + rr * math.cos(a), NY + 0.55 * rr * math.sin(a), 6 + (i % 4) * 3, 0, 2 * math.pi)\n            cr.fill()\n        cr.restore()\n        _fuzz_path(cr, NX, NY, R, t)\n        edge(cr, (170, 170, 164))\n    cr.restore()\n    _map_path(cr)\n    edge(cr, (40, 46, 34))\n    # the cave it began in\n    cr.save()\n    cr.translate(NX, NY + 6)\n    cr.scale(1, 0.7)\n    cr.arc(0, 0, 22, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (34, 28, 26), rim=False)\n\n    # THE SCALE on the map: the edge it had reached before, as a ghost\n    if named is not None and named >= 1:\n        _fuzz_path(cr, NX, NY, reach(rows[named - 1][1]), 0.0)\n        ghost(cr, a=0.8)\n\n    # flags Data has planted at each landed edge (their year labels come later,\n    # after Data, and sit well above his head)\n    flag_tops = []\n    for j in range(0, landed_to + 1):\n        Rj = reach(rows[j][1])\n        fx, fy = NX - Rj * 0.95, NY + 70\n        cr.set_source_rgba(*_c((60, 50, 44)))\n        cr.set_line_width(5)\n        cr.move_to(fx, fy)\n        cr.line_to(fx, fy - 90)\n        cr.stroke()\n        cr.move_to(fx, fy - 90)\n        cr.line_to(fx + 46, fy - 76)\n        cr.line_to(fx, fy - 62)\n        cr.close_path()\n        solid(cr, (244, 242, 236))\n        if j == named or j == 0:\n            flag_tops.append((rows[j][0], fx, fy - 102))\n\n    # right by the camera: a rock with a sick bat clinging to it\n    contact_shadow(cr, 200, 1760, 360, a=0.4)\n    heap_path(cr, 200, 1760, 200, 190)\n    solid(cr, (116, 110, 104))\n    _bat_perched(cr, 220, 1650, 1.1)\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    # Data works along the south side of the flag line, his head below the labels\n    hx = max(170.0, NX - max(R, 30) * 0.85)\n    hy = NY + 250\n    if u < a0:\n        host(\"point\", NX - 40, hy, 200)\n    elif u < a1 + 0.04:\n        host(\"place\", hx, hy, 200, beat=k)\n    else:\n        host(\"hold_up\", hx, hy, 200)\n\n    for lab_, fx, ty in flag_tops:\n        text(cr, lab_, fx, ty, 30, look.INK, face=\"bold\", anchor=\"center\")\n\n    if shown is not None:\n        lab, v = shown\n        c = int(round(v))\n        fit_readout(cr, f\"{c} state\" + (\"\" if c == 1 else \"s\"),\n                    f\"with the bat-killing fungus · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"White-nose\", f\"one New York cave, {rows[0][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -25281,7 +25281,7 @@
      "use_baseline": false,
      "role": "3 · WHAT WE LOSE",
      "topic": "Bats farm value",
-     "say": "Bat pest control is worth up to 53 billion dollars yearly, so their collapse carries a real price.",
+     "say": "Bat pest control is worth 53 billion dollars yearly, so their disappearance carries a real price.",
      "scene": {
       "mechanic": "farmland-value-gauge",
       "concept": "a bat cutout sweeps like a gauge needle over a farmland photo from the low to the high dollar estimate, crop icons filling in behind it as the value climbs",
@@ -25291,7 +25291,7 @@
    ],
    "hook_was": "One fungus, one New York cave, 35 states of dead bats.",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-10T12:38:19Z"
+   "rewritten_at": "2026-11-11T12:27:36Z"
   },
   {
    "slug": "cremation-overtakes-burial",
@@ -25391,10 +25391,10 @@
   },
   {
    "slug": "unclaimed-money-states-hold",
-   "title": "States Hold Forgotten Money For 1 In 7 Americans",
-   "hook": "Your forgotten money may still exist: 1 in 7 has some waiting.",
-   "closing": "Search your state database for free, because the missing money could be yours.",
-   "question": "Have you checked your state database?",
+   "title": "14.3% of Americans Have Money States Must Return",
+   "hook": "States hold money that belongs to 14.3% of Americans.",
+   "closing": "A free state search can return money you did not know was missing.",
+   "question": "Have you checked your state?",
    "caption": "US states are collectively holding about $70 billion in unclaimed money -- old paychecks, forgotten accounts, insurance payouts -- owed to 1 in 7 Americans. States only handed back $4.49 billion of it last year. Have you ever checked if you're owed money? 👇",
    "hashtags": [
     "unclaimedmoney",
@@ -25421,8 +25421,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "1 · IT'S EVERYWHERE",
-     "topic": "State Money Held",
-     "say": "California holds 15 billion dollars in unclaimed money. That cash still belongs to ordinary people.",
+     "topic": "Money states hold",
+     "say": "California holds 15 billion dollars in unclaimed money that still belongs to ordinary people.",
      "viz": "geo_us",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _ufd_dollar(cr, x, cy, s, rgb):\n    \"\"\"A dollar sign cut into the bag, drawn as strokes so nothing reads as a label.\"\"\"\n    cr.set_source_rgba(*_c(rgb))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.move_to(x + 13 * s, cy - 13 * s)\n    cr.curve_to(x + 6 * s, cy - 22 * s, x - 16 * s, cy - 21 * s, x - 14 * s, cy - 8 * s)\n    cr.curve_to(x - 12 * s, cy + 2 * s, x + 14 * s, cy - 2 * s, x + 14 * s, cy + 10 * s)\n    cr.curve_to(x + 14 * s, cy + 22 * s, x - 8 * s, cy + 24 * s, x - 15 * s, cy + 14 * s)\n    cr.move_to(x, cy - 27 * s)\n    cr.line_to(x, cy + 27 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n\n\ndef _ufd_bag(cr, x, y, s):\n    contact_shadow(cr, x, y, 110 * s, a=0.4)\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.curve_to(x - 70 * s, y - 64 * s, x - 62 * s, y, x, y)\n    cr.curve_to(x + 62 * s, y, x + 70 * s, y - 64 * s, x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (204, 178, 124))\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.line_to(x - 26 * s, y - 104 * s)\n    cr.line_to(x + 26 * s, y - 104 * s)\n    cr.line_to(x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (184, 156, 104))\n    cr.rectangle(x - 20 * s, y - 90 * s, 40 * s, 9 * s)\n    solid(cr, (110, 80, 46), rim=False)\n    _ufd_dollar(cr, x, y - 38 * s, 0.9 * s, (64, 110, 62))\n\n\ndef _ufd_bundle(cr, x, y):\n    box(cr, x, y, 50, 22, (92, 146, 92), depth=12)\n    cr.rectangle(x + 20, y - 22, 10, 22)\n    solid(cr, (234, 224, 192), edge=False, rim=False)\n\n\ndef _ufd_car(cr, x, y, s):\n    contact_shadow(cr, x + 195 * s, y + 4, 400 * s, a=0.45)\n    cr.move_to(x + 4 * s, y - 30 * s)\n    cr.line_to(x, y - 66 * s)\n    cr.curve_to(x + 8 * s, y - 88 * s, x + 50 * s, y - 92 * s, x + 96 * s, y - 96 * s)\n    cr.line_to(x + 140 * s, y - 142 * s)\n    cr.curve_to(x + 190 * s, y - 150 * s, x + 236 * s, y - 150 * s, x + 262 * s, y - 140 * s)\n    cr.line_to(x + 306 * s, y - 96 * s)\n    cr.curve_to(x + 360 * s, y - 92 * s, x + 390 * s, y - 80 * s, x + 392 * s, y - 52 * s)\n    cr.line_to(x + 388 * s, y - 30 * s)\n    cr.close_path()\n    solid(cr, (58, 96, 150), finish=\"gloss\")\n    cr.move_to(x + 112 * s, y - 98 * s)\n    cr.line_to(x + 148 * s, y - 134 * s)\n    cr.line_to(x + 194 * s, y - 138 * s)\n    cr.line_to(x + 194 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    cr.move_to(x + 206 * s, y - 98 * s)\n    cr.line_to(x + 206 * s, y - 138 * s)\n    cr.line_to(x + 254 * s, y - 132 * s)\n    cr.line_to(x + 288 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    disc(cr, x + 380 * s, y - 64 * s, 8 * s, (255, 236, 180), finish=\"gloss\")\n    for wx in (x + 84 * s, x + 312 * s):\n        disc(cr, wx, y - 24 * s, 34 * s, (34, 34, 38), finish=\"matte\")\n        disc(cr, wx, y - 24 * s, 14 * s, (176, 178, 184), finish=\"metal\")\n\n\ndef _ufd_person(cr, x, y, s, t, i, coat, hair, walking):\n    \"\"\"A regular person seen from behind, walking up to the vault.\"\"\"\n    contact_shadow(cr, x, y, 80 * s, a=0.35)\n    sw = (math.sin(t * 6 + i * 1.7) * 14 * s) if walking else 0.0\n    cr.set_source_rgba(*_c((44, 46, 60)))\n    cr.set_line_width(16 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for d in (-1, 1):\n        cr.move_to(x + d * 10 * s, y - 70 * s)\n        cr.line_to(x + d * 10 * s + d * sw, y - 4 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n    cr.move_to(x - 28 * s, y - 70 * s)\n    cr.curve_to(x - 34 * s, y - 120 * s, x - 34 * s, y - 150 * s, x - 18 * s, y - 158 * s)\n    cr.line_to(x + 18 * s, y - 158 * s)\n    cr.curve_to(x + 34 * s, y - 150 * s, x + 34 * s, y - 120 * s, x + 28 * s, y - 70 * s)\n    cr.close_path()\n    solid(cr, coat)\n    disc(cr, x, y - 178 * s, 21 * s, (214, 170, 136))\n    cr.arc(x, y - 180 * s, 22 * s, math.pi * 0.95, math.pi * 2.05)\n    cr.close_path()\n    solid(cr, hair, rim=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: the state treasury's unclaimed-money vault\n    SUBSTANCE: forgotten cash in the vault\n    CAUSE: Data grips the giant vault door and drags it open with his own hands, exposing the money held inside\n    A domed state capitol with a columned portico and steps on a plaza;\n    regular people walk up to it by the camera while a car goes by. In the\n    capitol's base is the UNCLAIMED PROPERTY vault, its steel door shut on\n    shelves of cash and money bags. Data grabs the door's handle and hauls\n    it aside, state by state: the door opens as far as that state's\n    forgotten money, Ohio's, then Texas's, then California's 15 billion\n    throws it fully open. Each state leaves a notch on the door's track,\n    named on the stone above, so a glance shows California's stash is about\n    three times Ohio's. Landed by 0.56 and held, the vault light spilling\n    onto the steps while the flag waves and cars pass.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    n = len(rows)\n    top = rows[-1][1] or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.7))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    frac = 0.0 if u < a0 else (prev + (rows[k][1] - prev) * slide) / top\n    landed_to = k if slide >= 0.999 else k - 1\n    shown = None if (u < a0 or landed_to < 0) else rows[landed_to]\n\n    landscape(cr, t, \"town\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n\n    BASE = 1440\n    STONE = (230, 224, 210)\n    COL = (238, 233, 222)\n    cast_shadow(cr, 60, 1010, BASE, length=340, a=0.3)\n    contact_shadow(cr, 535, BASE + 4, 1000, a=0.4)\n    b = building(cr, 60, 1010, BASE, 560, STONE, roof_rgb=(150, 146, 138),\n                 roof=\"flat\", boards=False)\n    rx = (b[\"x0\"] + b[\"x1\"]) / 2\n    ty = b[\"top\"]\n\n    # the capitol dome: a colonnaded drum, a gilded ribbed dome, lantern, flag\n    cylinder(cr, rx - 160, ty, 320, 80, COL)\n    cr.set_source_rgba(*_c((170, 164, 150)))\n    cr.set_line_width(5)\n    for i in range(9):\n        cx_ = rx - 140 + i * 35\n        cr.move_to(cx_, ty - 8)\n        cr.line_to(cx_, ty - 64)\n    cr.stroke()\n    DR, DK = 150, 0.66\n    cr.save()\n    cr.translate(rx, ty - 80)\n    cr.scale(1, DK)\n    cr.arc(0, 0, DR, math.pi, 2 * math.pi)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (214, 184, 106), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 120, 60), 0.7))\n    cr.set_line_width(4)\n    for i in range(1, 6):\n        ang = math.pi + i * math.pi / 6\n        cr.move_to(rx + DR * math.cos(ang), ty - 80)\n        cr.curve_to(rx + DR * math.cos(ang), ty - 80 + DR * DK * math.sin(ang) * 0.7,\n                    rx + DR * 0.4 * math.cos(ang), ty - 80 - DR * DK,\n                    rx, ty - 80 - DR * DK)\n    cr.stroke()\n    lt = ty - 80 - DR * DK + 4\n    cylinder(cr, rx - 20, lt, 40, 40, COL)\n    pole_top = lt - 40 - 40\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(5)\n    cr.move_to(rx, lt - 40)\n    cr.line_to(rx, pole_top)\n    cr.stroke()\n    fl = []\n    for i in range(13):\n        fx = rx + i * 9\n        fl.append((fx, pole_top + 7 * math.sin(t * 3.2 - i * 0.5) * (i / 12)))\n    cr.move_to(*fl[0])\n    for p_ in fl[1:]:\n        cr.line_to(*p_)\n    for p_ in reversed(fl):\n        cr.line_to(p_[0], p_[1] + 46)\n    cr.close_path()\n    solid(cr, (64, 92, 150), rim=False)\n\n    # the portico: pediment, entablature, columns\n    cr.move_to(50, 962)\n    cr.line_to(rx, 892)\n    cr.line_to(1020, 962)\n    cr.close_path()\n    solid(cr, (224, 218, 204))\n    box(cr, 50, 1000, 970, 40, (222, 216, 202), depth=20)\n    for cx in (78, 600, 680, 760, 840, 920):\n        cylinder(cr, cx, BASE, 36, 440, COL)\n\n    # the vault: shelves of cash and money bags behind the doorway\n    DX0, DX1, DY, GY = 130, 530, 1040, BASE\n    dw = DX1 - DX0\n    cr.save()\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.clip()\n    vgrad(cr, [(0, (52, 42, 30)), (1, (120, 92, 56))], DY, GY, DX0, DX1)\n    glow(cr, (DX0 + DX1) / 2, 1240, 300, (255, 214, 140), 0.25 + 0.35 * frac)\n    for sy in (1150, 1270):\n        cr.rectangle(DX0, sy, dw, 12)\n        solid(cr, (122, 92, 58), rim=False)\n        for j in range(7):\n            _ufd_bundle(cr, DX0 + 10 + j * 56, sy)\n        for j in range(6):\n            _ufd_bundle(cr, DX0 + 38 + j * 56, sy - 24)\n    for i, bx in enumerate((180, 280, 380, 480)):\n        _ufd_bag(cr, bx, GY - 4, 0.95 + 0.15 * (i % 2))\n    cr.restore()\n    cr.set_source_rgba(*_c((70, 72, 80)))\n    cr.set_line_width(14)\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.stroke()\n\n    # the steps up to the vault, its light spilling down them as it opens\n    box(cr, 30, 1474, 1010, 30, (214, 208, 194), depth=16)\n    box(cr, 0, 1508, 1080, 32, (204, 198, 184), depth=16)\n    if frac > 0:\n        glow(cr, DX0 + dw * frac / 2, GY + 40, 140 + 280 * frac,\n             (255, 214, 140), 0.5 * frac)\n\n    # the track, the door sliding along it\n    cr.set_source_rgba(*_c((46, 44, 48)))\n    cr.set_line_width(10)\n    cr.move_to(DX0 - 20, DY - 20)\n    cr.line_to(DX1 + dw + 30, DY - 20)\n    cr.stroke()\n    dx = DX0 + dw * frac\n    cr.rectangle(dx, DY - 8, dw, GY - DY + 8)\n    solid(cr, (128, 134, 144), finish=\"metal\")\n    cr.set_source_rgba(*_c((84, 88, 98)))\n    cr.set_line_width(6)\n    cr.rectangle(dx + 18, DY + 10, dw - 36, GY - DY - 28)\n    cr.stroke()\n    for i in range(6):\n        disc(cr, dx + 30 + i * (dw - 60) / 5, DY + 30, 7, (176, 180, 188), finish=\"metal\")\n        disc(cr, dx + 30 + i * (dw - 60) / 5, GY - 30, 7, (176, 180, 188), finish=\"metal\")\n    wx, wy = dx + dw / 2, 1250\n    disc(cr, wx, wy, 84, (150, 156, 166), finish=\"metal\")\n    rot = frac * 7.0\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(14)\n    for i in range(3):\n        ang = rot + i * math.pi / 3\n        cr.move_to(wx - 74 * math.cos(ang), wy - 74 * math.sin(ang))\n        cr.line_to(wx + 74 * math.cos(ang), wy + 74 * math.sin(ang))\n    cr.stroke()\n    disc(cr, wx, wy, 24, (180, 184, 192), finish=\"metal\")\n    box(cr, dx + 50, 1112, dw - 100, 40, (232, 214, 150), depth=6, finish=\"metal\")\n    text(cr, \"UNCLAIMED PROPERTY\", dx + dw / 2, 1102, 26, (50, 44, 36),\n         face=\"bold\", anchor=\"center\", shadow=False)\n    cr.rectangle(dx + dw - 40, 1280, 16, 110)\n    solid(cr, (60, 62, 70), finish=\"metal\")\n    for hx_ in (dx + 40, dx + dw - 40):\n        disc(cr, hx_, DY - 20, 11, (70, 70, 76), finish=\"metal\")\n\n    # THE SCALE on the track: a notch where each state's money opened it to,\n    # its name cut into the stone above, staggered so none collide\n    if u >= a0:\n        for j in range(0, landed_to + 1):\n            nx = DX0 + dw * rows[j][1] / top\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(nx, DY - 40)\n            cr.line_to(nx, DY - 4)\n            cr.stroke()\n            ly = DY - 50 if j % 2 == 0 else DY - 86\n            text(cr, rows[j][0], nx, ly, 30, look.INK, face=\"bold\", anchor=\"center\")\n\n    # right by the camera: regular people walking up to claim it, a car by\n    crowd = [(150, 1720, (176, 60, 52), (60, 40, 30)),\n             (320, 1700, (70, 120, 96), (30, 26, 24)),\n             (480, 1735, (214, 160, 60), (120, 80, 44))]\n    for i, (px, py, coat, hair) in enumerate(crowd):\n        g = ease(seg(u, 0.05 + 0.08 * i, 0.45 + 0.08 * i))\n        walking = 0.0 < g < 1.0\n        _ufd_person(cr, px - 360 * (1 - g), py, 1.3, t, i, coat, hair, walking)\n    cx = -480 + ((t * 230) % 2040)\n    _ufd_car(cr, cx, 1880, 1.15)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    edge_x = dx + dw\n    hx = edge_x + 40\n    hands = [(edge_x - 32, 1306), (edge_x - 32, 1366)]\n    if u < a0:\n        host(\"point\", DX1 + 60, 1450, 240)\n    elif u < 0.9:\n        host(\"grip\", hx, 1450, 240, hands=hands, lower=\"brace\",\n             expr=\"strain\" if u < a1 + 0.04 else \"happy\")\n    else:\n        host(\"cheer\", hx, 1450, 240)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"${v:g} billion\", f\"forgotten money held by {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Forgotten money\", \"the state is holding it for you\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -25435,8 +25435,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · BARELY RECLAIMED",
-     "topic": "State Money Returned",
-     "say": "States returned 4.49 billion dollars last year. Most unclaimed money still waits for its owners.",
+     "topic": "Money states returned",
+     "say": "States returned 4.49 billion dollars last year, while most unclaimed money kept waiting.",
      "scene": {
       "mechanic": "vault-drain-trickle",
       "concept": "a bank vault photo fills to the brim with cash representing the total held, then only a thin trickle drains out the door to represent what actually got returned",
@@ -25451,8 +25451,8 @@
      },
      "insight_type": "share",
      "role": "3 · IS IT YOURS?",
-     "topic": "State Money Waiting",
-     "say": "About 1 in 7 Americans has unclaimed money waiting. A free state search could pay off.",
+     "topic": "Money states owe",
+     "say": "Unclaimed money waits for 14.3 percent of Americans, so a free search can genuinely pay off.",
      "scene": {
       "mechanic": "crowd-glow-share",
       "concept": "a grid of real person silhouettes stands dim, and exactly 1-in-7 light up gold holding a dollar bill as the share reveals",
@@ -25461,7 +25461,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-10T12:38:20Z",
+   "rewritten_at": "2026-11-11T12:27:36Z",
    "retold": "retell/v3",
    "hook_was": "States are quietly holding 70 billion dollars of your money."
   },
@@ -27507,10 +27507,10 @@
   },
   {
    "slug": "library-digital-shift",
-   "title": "Libraries Looked Emptier As Digital Borrowing Hit 739 Million",
-   "hook": "Libraries looked emptier while digital checkouts reached 739 million.",
-   "closing": "Libraries did not lose readers; they became reachable wherever readers carry a phone.",
-   "question": "How do you borrow library books?",
+   "title": "Libraries Looked Emptier While Digital Borrowing Hit 739 Million",
+   "hook": "Library visits fell, but digital borrowing hit 739 million.",
+   "closing": "Readers did not disappear; libraries followed them onto their phones.",
+   "question": "How do you borrow books?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
     "libraries",
@@ -27533,8 +27533,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "Library Visits",
-     "say": "Library visits fell to 671 million. The building got quieter, but demand for books did not.",
+     "topic": "Library physical visits",
+     "say": "Library visits fell to 671 million, making buildings look quieter even while demand survived.",
      "scene": {
       "mechanic": "library-turnstile-thinning",
       "concept": "a library photo with a row of visitors per year; the row of people thins from 1.25 billion to 671 million as figures keep filing through the door",
@@ -27549,8 +27549,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "Library Digital",
-     "say": "Since 2019, digital checkouts more than doubled to 739 million. Borrowing simply moved into an app.",
+     "topic": "Library digital borrowing",
+     "say": "Digital checkouts reached 739 million, proving library use moved online instead of disappearing.",
      "scene": {
       "mechanic": "phone-fills-with-books",
       "concept": "stacks of ebooks rise inside a phone for each year as books fly from the library building into the phone on a loop",
@@ -27559,7 +27559,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-10T12:38:20Z",
+   "rewritten_at": "2026-11-11T12:27:36Z",
    "retold": "retell/v4"
   },
   {
@@ -28030,6 +28030,10 @@
     "statistics",
     "shorts"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-11T12:27:36Z",
+   "retold": "retell/v3",
+   "hook_was": "English once ran 75 percent of the web. Not anymore.",
    "segments": [
     {
      "source": "offline",
@@ -28082,11 +28086,7 @@
       "code": "globe = subject_image('earth globe')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 640\nR = 330\nd.ellipse([cx - R - 30, cy - R - 30, cx + R + 30, cy + R + 30], outline=rgba(REST, 140), width=6)\nif globe is not None:\n    paste(globe, cx - R, cy - R, 2 * R, 2 * R)\n    fill_image(globe, values[0] / 100.0 * clamp(reveal * 1.1), cx - R, cy - R, 2 * R, 2 * R, direction='up', color=HIGHLIGHT)\nelse:\n    d.ellipse([cx - R, cy - R, cx + R, cy + R], fill=rgba(REST, 120))\nother = int(round(values[1]))\nfor k in range(other):\n    a = (k / float(other)) * 2 * math.pi + reveal * 2 * math.pi * 2.0\n    rr = R + 90 + 14 * math.sin(a * 3)\n    x = cx + rr * math.cos(a)\n    y = cy + rr * math.sin(a)\n    d.ellipse([x - 16, y - 16, x + 16, y + 16], fill=rgba(WARN if k % 2 else TEXT, 230))\ntext(str(int(values[0] * clamp(reveal * 1.1))) + '% ENGLISH', cx, RTOP + 20, size=80, color=HIGHLIGHT, center=True)\ntext('45% IS EVERYONE ELSE', cx, RBOT - 30, size=54, color=WARN, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-11T12:25:30Z",
-   "retold": "retell/v3",
-   "hook_was": "English once ran 75 percent of the web. Not anymore."
+   ]
   },
   {
    "slug": "cash-payments-decade-decline",
@@ -35726,10 +35726,10 @@
   },
   {
    "slug": "mangrove-forest-loss",
-   "title": "Mangrove Loss Slowed 45%, But The Damage Remains",
-   "hook": "Mangrove loss slowed 45%, after decades of destruction.",
-   "closing": "Slower loss matters because every surviving mangrove still shields a coastline.",
-   "question": "Can protection catch up?",
+   "title": "Mangrove Loss Fell 45% Before the Destruction Stopped",
+   "hook": "Mangrove destruction is not accelerating: annual loss fell 45%.",
+   "closing": "Slowing destruction proves protection can work, but coastlines still need the remaining forests.",
+   "question": "Can protection finish the job?",
    "caption": "The world has lost a fifth of its mangrove forests since 1980 — but the pace of loss is finally slowing down. 👇",
    "hashtags": [
     "mangroves",
@@ -35757,8 +35757,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE LOSS",
-     "topic": "Mangrove Area Loss",
-     "say": "Mangrove area lost 3.6 million hectares. A natural barrier that shields coastlines shrank away.",
+     "topic": "Mangrove area loss",
+     "say": "Mangrove forests lost 3.6 million hectares, shrinking a natural barrier that protects coastlines.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _mangrove(cr, x, base, s, lean=0.0):\n    cr.save()\n    cr.translate(x, base)\n    cr.rotate(lean * 1.45)\n    # the stilt roots: dark arches stepping out of the mud, the mangrove's tell\n    cr.set_source_rgba(*_c((70, 50, 36)))\n    cr.set_line_width(9 * s)\n    for r in (-3, -2, -1, 1, 2, 3):\n        cr.move_to(r * 4 * s, -95 * s)\n        cr.curve_to(r * 18 * s, -82 * s, r * 32 * s, -36 * s, r * 40 * s, 0)\n        cr.stroke()\n    # the trunk\n    cr.move_to(-13 * s, -85 * s)\n    cr.curve_to(-11 * s, -170 * s, -8 * s, -240 * s, -9 * s, -300 * s)\n    cr.line_to(9 * s, -300 * s)\n    cr.curve_to(8 * s, -240 * s, 11 * s, -170 * s, 13 * s, -85 * s)\n    cr.close_path()\n    solid(cr, (112, 84, 58))\n    # the crown: a big dense dome of glossy green leaves\n    lobes = [(-62, -300, 60, P[\"leaf_shade\"]), (62, -294, 60, P[\"leaf_shade\"]),\n             (0, -306, 66, P[\"leaf_shade\"]), (-36, -350, 62, P[\"leaf\"]),\n             (38, -346, 60, P[\"leaf\"]), (0, -386, 58, P[\"leaf\"])]\n    for ox, oy, r, col in lobes:\n        disc(cr, ox * s, oy * s, r * s, col, finish=\"gloss\")\n    cr.restore()\n\n\ndef _seedling(cr, px, py):\n    cr.move_to(px - 4, py)\n    cr.line_to(px - 3, py - 90)\n    cr.line_to(px + 3, py - 90)\n    cr.line_to(px + 4, py)\n    cr.close_path()\n    solid(cr, (96, 120, 60))\n    disc(cr, px - 16, py - 96, 18, P[\"leaf\"])\n    disc(cr, px + 16, py - 100, 18, P[\"leaf_shade\"])\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a green mangrove forest on stilt roots\n    SUBSTANCE: the green mangrove trees\n    CAUSE: Data chops the mangrove trees down with an axe, each one falling on the strike\n    One dense wall of mangroves on the shore is the whole of the world's\n    mangroves in 1980. The share lost by 2005 is a fifth of that same wall,\n    cut at its true width: Data chops those trees with an axe and each one\n    TOPPLES across the sky on the strike and lies on the mud, leaving a wide\n    gap of open sky and bare stumps in the canopy. The old canopy stays as\n    a dashed ghost over the gap, and the hectares lost are written inside\n    that gap, clear of the readout above, so the lost fifth reads at a\n    glance. Done by 0.56 and held; the tide keeps rolling in and he keeps\n    chopping.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    share = clamp((v0 - v1) / v0)\n\n    N = 10\n    X0, X1 = 70, 880\n    BASE = 1350\n    xs = [X0 + i * (X1 - X0) / (N - 1) for i in range(N)]\n    sc = [1.62 + 0.16 * ((i * 0.618) % 1.0) for i in range(N)]\n    nl = max(1, int(round(N * share)))\n    lost = list(range(N - 1, N - 1 - nl, -1))      # rightmost first\n    first_lost = lost[-1]\n    x_cut = (xs[first_lost] + xs[first_lost - 1]) / 2 if first_lost > 0 else X0 - 60\n\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / nl\n    k = int(clamp((u - a0) / span, 0, nl - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fall = seg(f, 0.3, 0.8) ** 2                   # it FALLS, on the strike\n    done = u >= a1\n\n    # the setting: a low sun over open coastal water — no far forest, so the\n    # gap cut in the canopy opens onto bright sky\n    landscape(cr, t, \"coast\")\n    haze(cr, 900, 1220, (214, 222, 228), a=0.4)\n    vgrad(cr, [(0, (58, 104, 116)), (1, (34, 70, 84))], 1215, 1590)\n    # the mud bank the forest stands on\n    cr.move_to(0, 1304)\n    cr.curve_to(300, 1290, 700, 1294, W, 1304)\n    cr.line_to(W, 1372)\n    cr.curve_to(700, 1382, 300, 1378, 0, 1372)\n    cr.close_path()\n    solid(cr, (104, 86, 64), edge=False)\n\n    cast_shadow(cr, X0 - 60, X1 + 60, BASE, length=260, a=0.28)\n    contact_shadow(cr, (X0 + X1) / 2, BASE + 4, X1 - X0 + 180, a=0.35)\n\n    # the forest that stays\n    for i in range(N):\n        if i not in lost:\n            _mangrove(cr, xs[i], BASE, sc[i])\n    # the lost share: felled one by one, each crown sweeping down to the mud\n    for j, i in enumerate(lost):\n        if u < a0 or j > k:\n            lean = 0.0\n        elif j < k:\n            lean = 1.0\n        else:\n            lean = fall\n        if lean > 0:\n            stump(cr, xs[i], BASE, 1.0)\n        _mangrove(cr, xs[i] + 10 * lean, BASE + 8 * lean, sc[i], lean)\n\n    # THE SCALE: the lost canopy as a ghost where it stood\n    gx1 = min(X1 + 110, W - 40)\n    if done:\n        top = BASE - 440 * sc[lost[0]]\n        cr.move_to(x_cut, BASE - 100)\n        cr.line_to(x_cut, top + 90)\n        cr.curve_to(x_cut + 40, top - 20, gx1 - 50, top - 20, gx1, top + 90)\n        cr.line_to(gx1, BASE - 100)\n        ghost(cr, a=0.85 * ease(seg(u, a1, a1 + 0.06)))\n\n    # the tide rolling in toward the camera\n    for j in range(4):\n        wy = 1392 + ((t * 150 + j * 48) % 192)\n        cr.move_to(0, wy)\n        for x in range(0, W + 60, 60):\n            cr.line_to(x, wy + 8 * math.sin(x * 0.02 + t * 1.5 + j))\n        cr.set_source_rgba(*_c((226, 240, 240), 0.75))\n        cr.set_line_width(14)\n        cr.stroke()\n\n    # right by the camera: the muddy shore and young mangroves\n    vgrad(cr, [(0, (120, 100, 76)), (1, (82, 66, 50))], 1590, H)\n    for i in range(5):\n        _seedling(cr, 110 + i * 210, 1740 + (i % 2) * 90)\n    foreground(cr, \"coast\")\n    vignette(cr, a=0.28)\n\n    # Data walks in from the water's edge and fells each tree with the axe\n    spot = [xs[i] - 90 for i in lost]\n    if u < a0:\n        host(\"point\", 990, BASE, 220)\n    elif not done:\n        prev = spot[k - 1] if k > 0 else 990\n        hx = prev + (spot[k] - prev) * ease(seg(f, 0.0, 0.25))\n        host(\"chop\", hx, BASE, 220, beat=k)\n    else:\n        # the gap is cut: he keeps working the last stump\n        host(\"chop\", spot[-1], BASE, 220, beat=nl + int((u - a1) / 0.14))\n\n    if done:\n        fit_readout(cr, f\"{v1:.1f}M hectares\", f\"of mangrove forest left · {l1}\",\n                    80, 520, size=130)\n        # the loss, written in the open sky of the gap itself\n        gap_cx = clamp((x_cut + gx1) / 2, 200, W - 200)\n        text(cr, f\"-{v0 - v1:.1f}M\", gap_cx, 930, 90, look.INK, face=\"display\",\n             anchor=\"center\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{v0:.1f}M hectares\", f\"of mangrove forest · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -35770,8 +35770,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHERE",
-     "topic": "Mangrove Loss Asia",
-     "say": "Asia lost 1.9 million hectares of mangroves, the largest regional decline shown.",
+     "topic": "Mangrove loss Asia",
+     "say": "Asia lost 1.9 million hectares, the largest regional decline shown.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _h(i, k=0):\n    return ((i * 0.6180339 + k * 0.4142136) % 1.0)\n\n\ndef _mangrove(cr, x, base, s, lean=0.0, a=1.0, i=0):\n    # the prop roots arch down into the mud; they stay when the tree goes\n    sz = s * (0.88 + 0.24 * _h(i, 3))\n    nr = 4 + int(3 * _h(i, 1))\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for pass_, (col, wd, off) in enumerate((((52, 38, 28), 7.0, 0.0), ((128, 100, 74), 2.6, -2.0))):\n        cr.set_source_rgba(*_c(col))\n        cr.set_line_width(wd * sz)\n        for r in range(nr):\n            d = (r - (nr - 1) / 2) * 16 * sz\n            cr.move_to(x + d * 0.2 + off, base - 66 * sz)\n            cr.curve_to(x + d * 0.5 + off, base - 84 * sz, x + d * 1.6 + off, base - 50 * sz,\n                        x + d * 2.0 + off, base)\n        cr.stroke()\n    if lean > 0.0:\n        cr.rectangle(x - 9 * sz, base - 80 * sz, 18 * sz, 16 * sz)\n        solid(cr, P[\"trunk\"])\n        cr.save()\n        cr.translate(x, base - 80 * sz)\n        cr.scale(1.0, 0.35)\n        cr.arc(0, 0, 9 * sz, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, P[\"stump_top\"], edge=False)\n    if a <= 0.01:\n        return\n    cr.push_group()\n    cr.translate(x, base - 74 * sz)\n    cr.rotate(lean * 1.45)\n    cr.move_to(-8 * sz, 0)\n    cr.curve_to(-6 * sz, -50 * sz, -9 * sz, -90 * sz, -5 * sz, -128 * sz)\n    cr.line_to(5 * sz, -128 * sz)\n    cr.curve_to(8 * sz, -90 * sz, 6 * sz, -50 * sz, 8 * sz, 0)\n    cr.close_path()\n    solid(cr, P[\"trunk\"])\n    # a dense, glossy, irregular crown: shade lobes behind, lit lobes over them\n    lobes = []\n    for j in range(9):\n        ang = math.pi * (0.95 + 1.1 * j / 8.0)\n        rr = 52 + 14 * _h(i + j, 2)\n        lobes.append((math.cos(ang) * 62 * (0.8 + 0.3 * _h(i, j)),\n                      -150 + math.sin(ang) * 46 * (0.8 + 0.3 * _h(j, i)), rr))\n    for cx, cy, r in lobes:\n        cr.new_path()\n        cr.arc(cx * sz, cy * sz, r * sz, 0, 2 * math.pi)\n        solid(cr, P[\"leaf_shade\"], edge=False, rim=False)\n    for cx, cy, r in lobes[2:7]:\n        cr.new_path()\n        cr.arc((cx - 8) * sz, (cy - 10) * sz, r * 0.78 * sz, 0, 2 * math.pi)\n        solid(cr, P[\"leaf\"], finish=\"gloss\")\n    cr.new_path()\n    cr.arc(-14 * sz, -196 * sz, 40 * sz, 0, 2 * math.pi)\n    solid(cr, P[\"rim_leaf\"] if \"rim_leaf\" in P else P[\"leaf\"], finish=\"gloss\")\n    cr.pop_group_to_source()\n    cr.paint_with_alpha(a)\n\n\ndef _ripples(cr, t, y0, y1, n, speed, seed):\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for i in range(n):\n        y = y0 + (y1 - y0) * (((i + seed) * 0.6180339) % 1.0)\n        v = speed * (1.0 + 0.35 * (i % 3))\n        x = ((t * v + i * 233 + seed * 97) % 1320) - 120\n        cr.set_source_rgba(*_c((226, 240, 246), 0.6))\n        cr.set_line_width(10)\n        cr.move_to(x, y)\n        cr.line_to(x + 90, y)\n        cr.stroke()\n\n\ndef _bank(cr, y, seed):\n    cr.move_to(0, y - 18)\n    for i in range(13):\n        cr.line_to(i * 90, y - 18 - 8 * math.sin(i * 1.7 + seed))\n    cr.line_to(W, y + 30)\n    cr.curve_to(700, y + 44, 300, y + 22, 0, y + 36)\n    cr.close_path()\n    solid(cr, (112, 92, 70))\n\n\ndef _drift_trunk(cr, x, y, ang, s):\n    # a felled mangrove trunk riding the tide: pale bleached wood, roots trailing\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((34, 74, 96), 0.5))\n    cr.save()\n    cr.scale(1.0, 0.25)\n    cr.arc(0, 60 * s, 240 * s, 0, 2 * math.pi)\n    cr.restore()\n    cr.fill()\n    cr.rectangle(-210 * s, -34 * s, 420 * s, 68 * s)\n    solid(cr, (198, 176, 140))\n    cr.set_source_rgba(*_c((120, 96, 70)))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for i in range(4):\n        cr.move_to(-210 * s, (-20 + 13 * i) * s)\n        cr.curve_to(-250 * s, (-40 + 26 * i) * s, -280 * s, (-10 + 20 * i) * s,\n                    -300 * s, (-30 + 30 * i) * s)\n    cr.stroke()\n    cr.restore()\n    disc(cr, x + 210 * s * math.cos(ang), y + 210 * s * math.sin(ang), 34 * s,\n         P[\"stump_top\"])\n\n\ndef _root_clump(cr, x0, y0, flip):\n    # big lit prop roots right by the camera, arching out of the water\n    sgn = -1 if flip else 1\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for col, wd, off in (((40, 30, 22), 1.0, 0), ((132, 104, 76), 0.35, -5)):\n        cr.set_source_rgba(*_c(col))\n        for i in range(4):\n            cr.set_line_width((30 - 5 * i) * wd)\n            sx = x0 + sgn * (10 + 25 * i) + off\n            cr.move_to(sx, y0 - 60 + 30 * i)\n            cr.curve_to(sx + sgn * (90 + 30 * i), y0 - 140 + 20 * i,\n                        sx + sgn * (170 + 40 * i), y0 + 60,\n                        sx + sgn * (190 + 55 * i), H + 20)\n            cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a mangrove shoreline across a tidal channel\n    SUBSTANCE: mangrove trees\n    CAUSE: Data saws through the mangrove trunks and they fall, opening a gap as wide as that region's loss\n    Two banks of one tidal channel, drawn at the same scale: a dense double\n    wall of mangroves filling the middle of the frame. On the far bank Data\n    saws into the mangroves and they topple one into the next until the gap\n    is as wide as Asia's loss; that width is then marked on the near bank's\n    mud. On the near bank he saws again for North & Central America, then\n    Africa, end to end, and the two gaps together stop short of Asia's mark:\n    Asia lost more than both combined, read straight off the shore. Done by\n    0.70 and held; he keeps sawing the felled trunk into rounds and the cut\n    trunks keep drifting out on the tide.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    (lb, vb), rest = rows[0], rows[1:]\n    rs = sum(v for _, v in rest)\n    X0 = 130.0\n    SC = min(420.0, 820.0 / max(vb, rs, 1e-6))\n    FB, NB = 1040.0, 1450.0\n    FS, NS = 1.05, 1.22\n    HH = 232\n    xs = [20 + 50 * i for i in range(22)]\n    A0, MID, A1 = 0.05, 0.30, 0.67\n\n    gaps = [(\"far\", X0, X0 + vb * SC, lb, vb, A0, MID)]\n    x, s0 = X0, MID + 0.02\n    for l, v in rest:\n        s1 = s0 + (A1 - MID - 0.02) * v / (rs or 1.0)\n        gaps.append((\"near\", x, x + v * SC, l, v, s0, s1))\n        x, s0 = x + v * SC, s1\n    trees_in = [[tx for tx in xs if g[1] <= tx <= g[2]] for g in gaps]\n\n    def state(bank, tx):\n        for gi, g in enumerate(gaps):\n            if g[0] != bank or tx not in trees_in[gi]:\n                continue\n            m = len(trees_in[gi])\n            j = trees_in[gi].index(tx)\n            f = seg(u, g[5], g[6])\n            fs = 0.2 + 0.5 * (j / max(1, m - 1)) if m > 1 else 0.2\n            fp = seg(f, fs, fs + 0.15)\n            return fp * fp, 1.0 - seg(f, fs + 0.15, fs + 0.3)\n        return 0.0, 1.0\n\n    # which gap Data is working, and where along it\n    gk = 0\n    for gi, g in enumerate(gaps):\n        if u >= g[5]:\n            gk = gi\n    g = gaps[gk]\n    tr = trees_in[gk] or [g[1] + 20]\n    f = seg(u, g[5], g[6])\n    hx = tr[0] - 55 + (tr[-1] - tr[0]) * ease(seg(f, 0.2, 0.95))\n    far = g[0] == \"far\"\n    fy = FB + 2 if far else NB + 4\n    if u < A0:\n        hx, fy, far = X0 - 50, FB + 2, True\n\n    def data():\n        if u < A0:\n            host(\"point\", hx, fy, HH)\n        elif u < A1:\n            host(\"cut\", hx, fy, HH, beat=gk)\n        else:\n            # the story is done; he keeps sawing the felled trunk into rounds\n            k2 = int((u - A1) / 0.08)\n            fk = ((u - A1) / 0.08) % 1.0\n            cr.rectangle(hx + 30, fy - 36, 210, 32)\n            solid(cr, P[\"log\"])\n            disc(cr, hx + 30, fy - 20, 17, P[\"stump_top\"])\n            rx = hx + 240\n            drop = seg(fk, 0.45, 0.9)\n            disc(cr, rx + 30 * drop, fy - 20 + 60 * drop * drop, 17, P[\"stump_top\"],\n                 a=1.0 - seg(fk, 0.8, 1.0))\n            host(\"cut\", hx, fy, HH, beat=gk + 1 + k2)\n\n    # the setting: open sea behind the far shore, the channel in front\n    landscape(cr, t, \"coast\", horizon=960)\n    haze(cr, 600, 980, (204, 216, 224), a=0.3)\n    vgrad(cr, [(0, (84, 132, 152)), (1, (34, 74, 96))], 1030, H)\n    _ripples(cr, t, 1090, 1400, 11, 60, 1)\n\n    # the far bank: a dense wall of mangroves, softened by distance\n    _bank(cr, FB, 0.3)\n    cast_shadow(cr, 20, 1070, FB, length=140, a=0.2)\n    for tx in xs:\n        lean, a = state(\"far\", tx)\n        _mangrove(cr, tx, FB, FS, lean, a, i=int(tx))\n    haze(cr, 700, FB, (214, 222, 226), a=0.12)\n    if u >= MID:\n        c = (gaps[0][1] + gaps[0][2]) / 2\n        text(cr, lb, c, 900, fit_size(cr, lb, 48, gaps[0][2] - gaps[0][1]), look.INK,\n             anchor=\"center\", alpha=ease(seg(u, MID, MID + 0.04)))\n    if far:\n        data()\n\n    # the near bank, bigger, by the camera\n    _bank(cr, NB, 1.9)\n    cast_shadow(cr, 20, 1070, NB, length=140, a=0.22)\n    for tx in xs:\n        lean, a = state(\"near\", tx)\n        _mangrove(cr, tx + 22, NB, NS, lean, a, i=int(tx) + 7)\n    if u >= MID:\n        then_mark(cr, X0, X0 + vb * SC, NB + 14, lb, a=ease(seg(u, MID, MID + 0.04)))\n    for gi, gg in enumerate(gaps[1:], 1):\n        if u >= gg[6]:\n            c = (gg[1] + gg[2]) / 2\n            text(cr, gg[3], c, NB + 70, fit_size(cr, gg[3], 34, gg[2] - gg[1] - 8),\n                 look.INK, anchor=\"center\", alpha=min(1.0, ease(seg(u, gg[6], gg[6] + 0.025))))\n\n    # right by the camera: the tide, felled trunks drifting out, big prop roots\n    _ripples(cr, t, 1560, 1900, 10, 80, 5)\n    for i in range(2):\n        px = ((t * 170 + i * 760) % 1640) - 300\n        py = 1680 + 120 * i + 8 * math.sin(t * 1.3 + i)\n        _drift_trunk(cr, px, py, 0.08 * math.sin(t * 0.9 + i) - 0.1 + 0.2 * i,\n                     1.0 + 0.2 * i)\n    _root_clump(cr, -40, 1640, False)\n    _root_clump(cr, W + 40, 1690, True)\n    foreground(cr, \"coast\", y0=1780)\n    if not far:\n        data()\n    vignette(cr, a=0.28)\n\n    if u >= MID:\n        fit_readout(cr, f\"{vb:.1f}M hectares\", f\"of mangroves lost in {lb}\", 80, 520,\n                    a=ease(seg(u, MID, MID + 0.04)), size=130)\n    else:\n        fit_readout(cr, \"Mangroves lost\", \"where the loss hit hardest\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n    if u >= A1:\n        b = min(1.0, ease(seg(u, A1, A1 + 0.025)))\n        text(cr, f\"{rs:.1f}M\", W - 80, 655, 72, look.INK, face=\"display\",\n             anchor=\"right\", alpha=b)\n        lab = \" + \".join(l for l, _ in rest) + \" combined\"\n        text(cr, lab, W - 80, 698, fit_size(cr, lab, 30, 620), look.INK,\n             anchor=\"right\", alpha=b)\n"
     },
     {
@@ -35782,13 +35782,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · A BRIGHT SPOT",
-     "topic": "Mangrove Loss Slowed",
-     "say": "Annual mangrove loss slowed to 102 thousand hectares. Protection can reduce destruction before it stops."
+     "topic": "Mangrove loss slowed",
+     "say": "Annual mangrove loss slowed to 102 thousand hectares, showing destruction can be reduced before it stops."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-10T12:38:20Z",
+   "rewritten_at": "2026-11-11T12:27:36Z",
    "hook_was": "Mangrove forests are quietly disappearing."
   },
   {
