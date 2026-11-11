@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "unclaimed-money-states-hold__74041609",
+  "slug": "unclaimed-money-states-hold",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:25:00Z",
+  "title": "14.3% of Americans Have Money States Must Return",
+  "hook": "States hold money that belongs to 14.3% of Americans.",
+  "closing": "A free state search can return money you did not know was missing.",
+  "question": "Have you checked your state?",
+  "segments": [
+    {
+      "topic": "Money states hold",
+      "say": "California holds 15 billion dollars in unclaimed money that still belongs to ordinary people."
+    },
+    {
+      "topic": "Money states returned",
+      "say": "States returned 4.49 billion dollars last year, while most unclaimed money kept waiting."
+    },
+    {
+      "topic": "Money states owe",
+      "say": "Unclaimed money waits for 14.3 percent of Americans, so a free search can genuinely pay off."
+    }
+  ]
+}
