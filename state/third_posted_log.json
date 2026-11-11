@@ -19027,14 +19027,59 @@
       "ts": "2026-11-11T13:01:19.272944+00:00"
     },
     "clip-20261111-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/deadblossomjesse/clip/CaringBrainyPigeonDoggo-OttFaCaAJql5dVAn",
-      "story_key": null,
-      "streamer": "deadblossomjesse",
+      "url": "https://youtube.com/shorts/eWvH8_CYN2Y",
       "title": "Deadblossomjesse Jumps Up And Down Screaming \"I'm Dumping\" And Gets Weird",
       "kind": "twitch_clip",
-      "ts": "2026-11-11T13:05:02.349827+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-11T13:05:16.415960+00:00",
+      "uploaded_at": "2026-11-11T13:05:16.415978+00:00",
+      "publish_at": "2026-11-12T06:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261111-deadblossomjesse-jumps-up-and-down-screaming-i-m-bcd32064",
+        "tiktok": "queued for 2026-11-12T06:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/deadblossomjesse/clip/CaringBrainyPigeonDoggo-OttFaCaAJql5dVAn",
+      "streamer": "deadblossomjesse",
+      "series": "chaos",
+      "hook": "Jesse starts screaming I'm dumping \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2207,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 22.0
+      },
+      "director_cut": true
+    },
+    "rejected-thoughtfulendearingcoffeepipehype-etpf7ywwiwhpjcaj": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ThoughtfulEndearingCoffeePipeHype-EtPf7yWwiWHpJCaj",
+      "streamer": "jynxzi",
+      "title": "stfu",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Routine Fortnite drop, calm face, no eve)",
+      "ts": "2026-11-11T13:06:10.360785+00:00"
+    },
+    "rejected-dullyummycarabeefgiveplz-i2rkwnlm5fs6diyb": {
+      "source_url": "https://www.twitch.tv/clix/clip/DullYummyCarabeefGivePLZ-i2rKWNlm5fS6dIyb",
+      "streamer": "clix",
+      "title": "cmonbruh",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Drinks, asks 'is it moving'; unclear pay)",
+      "ts": "2026-11-11T13:06:50.496970+00:00"
+    },
+    "rejected-litigiouscutesoymilknotlikethis-qxanxp-pqog0opna": {
+      "source_url": "https://www.twitch.tv/zxcursed/clip/LitigiousCuteSoymilkNotLikeThis-QXaNXp-pqoG0OPnA",
+      "streamer": "zxcursed",
+      "title": "\u042f \u0422\u0415\u0411\u042f \u041f\u041e\u041a\u041e\u0420\u042e by zxcursed",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (static menu, singing, no event)",
+      "ts": "2026-11-11T13:07:54.974942+00:00"
     }
   }
 }
