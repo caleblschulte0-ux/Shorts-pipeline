@@ -18862,6 +18862,79 @@
         "end": 19.5
       },
       "director_cut": true
+    },
+    "rejected-furrytenuousgoldfishoptimizeprime-g99b4b4he-1ok1ll": {
+      "source_url": "https://www.twitch.tv/tminnzy/clip/FurryTenuousGoldfishOptimizePrime-G99b4B4HE-1Ok1Ll",
+      "streamer": "tminnzy",
+      "title": "I JUST MADE $200 TRADING, BRO! \ud83d\udcc8",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Static trading chart, tiny face, insider)",
+      "ts": "2026-11-11T12:33:48.726010+00:00"
+    },
+    "rejected-slipperyenchantingfriespipehype-n9z9h2vpthsf9kvd": {
+      "source_url": "https://www.twitch.tv/yuggie_tv/clip/SlipperyEnchantingFriesPipeHype-N9z9H2vPTHSf9KvD",
+      "streamer": "yuggie_tv",
+      "title": "vs instagram - \"that's it\" pt4 (\ud83c\uddf0\ud83c\uddf7 Buyeo)",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static pagoda, crowd, talking, no event)",
+      "ts": "2026-11-11T12:34:25.464898+00:00"
+    },
+    "rejected-colorfulhungrypancakeheygirl-1lg33lmwd_onsa1t": {
+      "source_url": "https://www.twitch.tv/sips_/clip/ColorfulHungryPancakeHeyGirl-1LG33lmwd_onSa1T",
+      "streamer": "sips_",
+      "title": "P I L K",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (donation TTS, static game screen)",
+      "ts": "2026-11-11T12:36:13.301527+00:00"
+    },
+    "rejected-roughattractivetofuuwot-s7gbmduiajmjzeo1": {
+      "source_url": "https://www.twitch.tv/pikabooirl/clip/RoughAttractiveTofuUWot-s7GBMDuiAJMjZeo1",
+      "streamer": "pikabooirl",
+      "title": "gf larp",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.22 < 0.35 (Static WoW gameplay, talking, no visible)",
+      "ts": "2026-11-11T12:37:28.887708+00:00"
+    },
+    "rejected-betterkathishwerewolfthething-mj4uiyipzlqq097-": {
+      "source_url": "https://www.twitch.tv/hitch/clip/BetterKathishWerewolfTheThing-mJ4UiyIPzLQQ097-",
+      "streamer": "hitch",
+      "title": "Going 75+ In Blinding Rain",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Foggy rain drive, no clear event)",
+      "ts": "2026-11-11T12:38:36.324495+00:00"
+    },
+    "rejected-fancyarbitrarylegkappa-6motjy7qqnjfobvi": {
+      "source_url": "https://www.twitch.tv/robcdee/clip/FancyArbitraryLegKappa-6MoTJy7qqnJFOBVi",
+      "streamer": "robcdee",
+      "title": "Shiraito Falls Karuizawa",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (scenic IRL walk, no event)",
+      "ts": "2026-11-11T12:39:45.473814+00:00"
+    },
+    "rejected-victoriousshinyalmondsmoocherz-otn1e_0g-6bzacaw": {
+      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/VictoriousShinyAlmondSmoocherZ-OtN1E_0g-6bzacaW",
+      "streamer": "avoidingthepuddle",
+      "title": "the avengers assembled",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static lobby UI, inside joke)",
+      "ts": "2026-11-11T12:41:38.537944+00:00"
+    },
+    "clip-20261111-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/pikabooirl/clip/FaithfulFragileWaffleMcaT-GZ7mNjLARaSy-QBO",
+      "story_key": null,
+      "streamer": "pikabooirl",
+      "title": "Pikabooirl Hits His Nuts After His Headset Cord Spooks Him",
+      "kind": "twitch_clip",
+      "ts": "2026-11-11T12:44:32.308285+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
