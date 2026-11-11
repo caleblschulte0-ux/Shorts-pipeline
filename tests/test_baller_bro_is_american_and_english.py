@@ -101,6 +101,13 @@ class NeverTooShort(unittest.TestCase):
         self.assertEqual(hi, 44.6)          # the payoff the brain chose stays
         self.assertLess(lo, 41.4)
 
+    def test_never_opens_mid_sentence(self):
+        words = _words("We don't know anything else about Jack yet.", 10.0)
+        edit = {"cut": {"start": 11.0, "end": 40.0}}
+        ss.hold_length(edit, words, 45.0, min_s=15)
+        self.assertLessEqual(edit["cut"]["start"], 10.0)
+        self.assertEqual(edit["cut"]["end"], 40.0)
+
     def test_never_past_a_broadcast_card(self):
         edit = {"cut": {"start": 0.0, "end": 8.0}, "card_at": 12.0}
         ss.hold_length(edit, _words("a b c", 1), 60.0, min_s=15)

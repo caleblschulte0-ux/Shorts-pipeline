@@ -677,6 +677,16 @@ def hold_length(edit: dict, words: list[dict], dur: float,
     cut = edit.get("cut") or {"start": 0.0, "end": dur}
     lo = float(cut.get("start") or 0.0)
     hi = float(cut.get("end") or dur)
+    # never open mid-sentence: a start inside a sentence moves back to the
+    # start of that sentence (Brisker opened on "baby in the quarterback",
+    # Dan Campbell on "we don't know anything else")
+    for sent in sentences(words):
+        if sent["s"] + 0.2 < lo < sent["e"]:
+            lo = max(0.0, sent["s"] - 0.25)
+            print(f"[cut] opened mid-sentence — moved back to {lo:.1f}s",
+                  flush=True)
+            edit["cut"] = cut = {"start": round(lo, 2), "end": round(hi, 2)}
+            break
     if hi - lo >= floor or dur <= 0:
         return edit
     cap = min(dur, float(edit.get("card_at") or dur))
