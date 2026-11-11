@@ -189,8 +189,9 @@ def shot1():
             wob = 0.015 * math.sin(t * 9 + (0 if s_ == "L" else 2))
             return sh + Vector((0, 0, 0.1 + wob)) + fw_ * 0.08 + out * 0.09
         grip_follow(data, s_, up, 0.0, DUR, elbow_out=1.2)
-    data.look_at((kx, ky - 0.1, 0.75), 0.0, max_yaw=50, blend=0.0)
-    data.look_at((kx, ky - 0.1, 0.75), 1.3, max_yaw=50)
+    money = (kx - 0.25, ky - 0.75, 0.7)                     # the cloud of bills between him and the lens: his face reads from frame one
+    data.look_at(money, 0.0, max_yaw=60, blend=0.0)
+    data.look_at(money, 1.3, max_yaw=60)
     data.look_at((-0.15, -1.6, 0.7), 1.8, max_yaw=55)       # to the lens: can you believe this
     data.look_at((-0.15, -1.6, 0.7), DUR, max_yaw=55)
     for tb in (1.5, 3.4): data.blink(tb)
@@ -459,7 +460,7 @@ def shot5():
     data.look_at((0, -3, 0.75), 0.0, max_yaw=40, blend=0.0)
     data.act("shrug", 0.5, dur=0.28, hold=0.6)
     data.expression("happy", 2.0, DUR)
-    if DUR > 4.0: data.act("wave", DUR - 2.4, dur=0.3, hold=1.2)
+    if DUR > 4.0: data.act("wave", 2.4, dur=0.3, hold=1.2)    # while he is still big in frame; the pull-back then reveals the row
     data.idle(0.0, DUR)
     for tb in (1.9, DUR - 2.9): data.blink(tb)
     data.finish()
