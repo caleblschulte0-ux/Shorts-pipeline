@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "mangrove-forest-loss__89ea0d88",
+  "slug": "mangrove-forest-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:25:00Z",
+  "title": "Mangrove Loss Fell 45% Before the Destruction Stopped",
+  "hook": "Mangrove destruction is not accelerating: annual loss fell 45%.",
+  "closing": "Slowing destruction proves protection can work, but coastlines still need the remaining forests.",
+  "question": "Can protection finish the job?",
+  "segments": [
+    {
+      "topic": "Mangrove area loss",
+      "say": "Mangrove forests lost 3.6 million hectares, shrinking a natural barrier that protects coastlines."
+    },
+    {
+      "topic": "Mangrove loss Asia",
+      "say": "Asia lost 1.9 million hectares, the largest regional decline shown."
+    },
+    {
+      "topic": "Mangrove loss slowed",
+      "say": "Annual mangrove loss slowed to 102 thousand hectares, showing destruction can be reduced before it stops."
+    }
+  ]
+}
