@@ -173,6 +173,70 @@ def _report_row_date(row: dict) -> str:
     return ""
 
 
+
+# The credentials a video needs a TEXT brain from, in `credential_check`'s
+# names. A dead one is the cause of every dark data channel that day: the
+# explainer draws and verifies its scenes with a brain, and the showrunner
+# judges with one (fail-closed, so no judge means nothing ships).
+TEXT_BRAINS = frozenset({"groq", "gemini", "anthropic", "claude-subscription"})
+
+#: What to do about each dead credential, by name. `env` is the secret.
+_CREDENTIAL_FIXES = {
+    "groq": ("Mint a new key at console.groq.com/keys and replace the "
+             "GROQ_API_KEY repository secret. Groq is the FIRST text brain in "
+             "`_call_llm`; with it refused every call falls through to "
+             "Gemini's free quota, which one run exhausts."),
+    "gemini": ("Replace the GEMINI_API_KEY repository secret "
+               "(aistudio.google.com/apikey). It is the showrunner's fallback "
+               "judge and the TTS voice."),
+    "anthropic": "Replace the ANTHROPIC_API_KEY repository secret.",
+    "claude-subscription": (
+        "If the detail names a limit or a reset, there is nothing to rotate: "
+        "the subscription comes back on its own at that reset. Until then the "
+        "explainer has no brain to draw or verify a scene and the showrunner "
+        "has no judge, so the channel ships nothing — the gate is right to "
+        "hold. Same-day options are the operator's call: a funded text brain "
+        "(ANTHROPIC_API_KEY, or Gemini on a paid tier). Anything else: run "
+        "`claude setup-token` and replace CLAUDE_CODE_OAUTH_TOKEN."),
+}
+
+
+def _code(name: str) -> str:
+    """`youtube:explainer` -> `youtube_explainer` — an alarm code is a word."""
+    return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
+
+
+def _credential_fix(row: dict) -> str:
+    name = row.get("name", "")
+    if name in _CREDENTIAL_FIXES:
+        return _CREDENTIAL_FIXES[name]
+    env = row.get("env") or "<its secret>"
+    if name.startswith("youtube:"):
+        return (f"Re-authorise that channel and replace the `{env}` "
+                f"repository secret (verify_token.yml checks it). A dead "
+                f"YouTube token does not degrade the day, it ends it: the "
+                f"video renders, passes every gate, and has nowhere to go.")
+    return f"Replace the `{env}` repository secret."
+
+
+def _dead_credentials() -> list[dict]:
+    """Every credential the heartbeat found DEAD or LIMITED, newest record
+    only, each row carrying the probe time. Missing or junk record: nothing
+    — the heartbeat's absence is not evidence about any key."""
+    rec = _load(ROOT / "state" / "credentials.json")
+    if not isinstance(rec, dict):
+        return []
+    out = []
+    for row in rec.get("credentials") or []:
+        if not isinstance(row, dict):
+            continue
+        if row.get("status") in ("dead", "limited") and row.get("name"):
+            r = dict(row)
+            r["checked_at"] = rec.get("checked_at", "")
+            out.append(r)
+    return out
+
+
 def _too_early(date: str, now=None) -> bool:
     """Is it still plausibly mid-day for this production date?"""
     try:
@@ -286,6 +350,33 @@ def check(date: str, now=None) -> dict:
                      f"{date} — publishing checks deferred, everything else "
                      f"still checked")
 
+    # ---- 0. ARE THE BRAINS ALIVE? ---------------------------------------
+    # 2026-11-08..10: the explainer posted nothing for three days. The Groq
+    # key was REFUSED (HTTP 403), the Claude subscription had hit its weekly
+    # limit, and Gemini's free quota was 429 by the second story — so no scene
+    # could be drawn or verified, the showrunner had no judge, and the gate
+    # correctly held everything. `state/credentials.json` (the credential
+    # heartbeat, `scripts/credential_check.py`) had the whole diagnosis
+    # written down and nothing read it: the alarm said `no_posts_explainer`
+    # each morning — true, and useless, exactly the 08-03 auto-pause shape.
+    # A dead credential explains every dark channel downstream of it, so it
+    # is read first and the no_posts_* it explains cite it by name.
+    brains_out = _dead_credentials()
+    for row in brains_out:
+        name, status = row["name"], row["status"]
+        if status == "dead":
+            alarm(f"credential_dead_{_code(name)}", "critical",
+                  f"the `{name}` credential is DEAD ({row.get('detail') or '?'}; "
+                  f"probed {row.get('checked_at') or '?'}).",
+                  _credential_fix(row))
+        else:
+            alarm(f"credential_limited_{_code(name)}", "warning",
+                  f"the `{name}` credential is SPENT, not broken "
+                  f"({row.get('detail') or '?'}; probed "
+                  f"{row.get('checked_at') or '?'}).",
+                  _credential_fix(row))
+    brains_text = [r for r in brains_out if r["name"] in TEXT_BRAINS]
+
     # ---- 1. did each channel ship what the registry asked for? ----------
     for cid in reg.channel_ids(registry):
         paths = reg.paths(cid, registry)
@@ -297,12 +388,25 @@ def check(date: str, now=None) -> dict:
         if early:
             continue
         if not posted:
+            cause = [r for r in brains_out
+                     if r["name"] in TEXT_BRAINS or r["name"] == f"youtube:{cid}"]
+            why = ""
+            fix_first = ""
+            if cause:
+                why = (" The last credential probe found "
+                       + ", ".join(f"{r['name']} {r['status'].upper()} "
+                                   f"({r.get('detail') or '?'})" for r in cause)
+                       + " — see the credential_* alarm(s) above.")
+                fix_first = ("Fix the credential FIRST: a run with no brain "
+                             "draws and verifies nothing, the judge cannot "
+                             "watch, and the gate holds the rest — that is "
+                             "the gate working, not the fault. Then: ")
             alarm(f"no_posts_{cid}", "critical",
                   f"{cid}: ZERO videos posted for {date} (registry wants "
-                  f"{target}).",
-                  f"Check the {cid} workflow run for {date}. A day that "
-                  f"ships nothing has never once turned a check red — that "
-                  f"is why this alarm exists.")
+                  f"{target}).{why}",
+                  f"{fix_first}Check the {cid} workflow run for {date}. A day "
+                  f"that ships nothing has never once turned a check red — "
+                  f"that is why this alarm exists.")
         elif len(posted) < target:
             alarm(f"short_slate_{cid}", "warning",
                   f"{cid}: {len(posted)}/{target} posted for {date}.",

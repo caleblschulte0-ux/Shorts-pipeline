@@ -469,3 +469,113 @@ class TestTheAlarmIsActuallyScheduled(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestADeadBrainSaysSo(AlarmCase):
+    """2026-11-08..10: the explainer posted nothing for three days. The Groq
+    key was refused (HTTP 403), the Claude subscription had hit its weekly
+    limit, Gemini was 429 by the second story — no scene could be drawn or
+    verified, the judge could not watch, the gate held everything. The
+    credential heartbeat had all of it in `state/credentials.json`, and the
+    alarm said `no_posts_explainer` every morning without reading it.
+
+    A dead credential explains every dark channel downstream of it, so the
+    alarm names it, says what to replace, and the no_posts it explains cite
+    it — the 08-03 auto-pause lesson, applied one layer up."""
+
+    def _creds(self, *rows, checked_at="2999-12-15T13:10:00+00:00"):
+        base = {"groq": "GROQ_API_KEY", "gemini": "GEMINI_API_KEY",
+                "anthropic": "ANTHROPIC_API_KEY",
+                "claude-subscription": "CLAUDE_CODE_OAUTH_TOKEN",
+                "youtube:explainer": "YOUTUBE_TOKEN_JSON_EXPLAINER"}
+        got = {r["name"]: r for r in rows}
+        creds = []
+        for name, env in base.items():
+            r = got.get(name, {"name": name, "status": "ok", "detail": "HTTP 200"})
+            creds.append({"name": name, "env": env, **r})
+        (self.tmp / "state" / "credentials.json").write_text(json.dumps(
+            {"checked_at": checked_at, "credentials": creds, "newly_dead": []}))
+
+    def _dark(self):
+        for cid in reg.channel_ids():
+            log = reg.paths(cid).get("posted_log")
+            if log:
+                self._write_log(log, 0)
+
+    def test_a_dead_key_is_CRITICAL_and_says_which_secret(self):
+        self._creds({"name": "groq", "status": "dead",
+                     "detail": "HTTP 403 — the credential was refused"})
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("credential_dead_groq", self.criticals(r))
+        a = next(x for x in r["alarms"] if x["code"] == "credential_dead_groq")
+        self.assertIn("GROQ_API_KEY", a["fix"])
+        self.assertIn("HTTP 403", a["detail"])
+
+    def test_a_dark_channel_names_the_dead_brains(self):
+        self._dark()
+        self._creds({"name": "groq", "status": "dead",
+                     "detail": "HTTP 403 — the credential was refused"},
+                    {"name": "claude-subscription", "status": "limited",
+                     "detail": "the subscription window is spent: you've hit "
+                               "your weekly limit · resets 12am (utc)"})
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"] if x["code"] == "no_posts_explainer")
+        self.assertIn("groq DEAD", a["detail"])
+        self.assertIn("claude-subscription LIMITED", a["detail"])
+        self.assertIn("resets 12am", a["detail"])
+        self.assertTrue(a["fix"].startswith("Fix the credential FIRST"))
+
+    def test_a_spent_window_is_a_warning_that_asks_for_no_rotation(self):
+        self._creds({"name": "claude-subscription", "status": "limited",
+                     "detail": "the subscription window is spent: weekly limit"})
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("credential_limited_claude_subscription", self.codes(r))
+        self.assertNotIn("credential_limited_claude_subscription",
+                         self.criticals(r))
+        a = next(x for x in r["alarms"]
+                 if x["code"] == "credential_limited_claude_subscription")
+        self.assertIn("nothing to rotate", a["fix"])
+
+    def test_a_dead_upload_token_is_cited_only_by_its_own_channel(self):
+        self._dark()
+        self._creds({"name": "youtube:explainer", "status": "dead",
+                     "detail": "HTTP 401 — the credential was refused"})
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("credential_dead_youtube_explainer", self.criticals(r))
+        ex = next(x for x in r["alarms"] if x["code"] == "no_posts_explainer")
+        tr = next(x for x in r["alarms"] if x["code"] == "no_posts_trending")
+        self.assertIn("youtube:explainer DEAD", ex["detail"])
+        self.assertNotIn("youtube:explainer", tr["detail"])
+        self.assertIn("YOUTUBE_TOKEN_JSON_EXPLAINER",
+                      next(x for x in r["alarms"]
+                           if x["code"] == "credential_dead_youtube_explainer")["fix"])
+
+    def test_a_healthy_probe_raises_nothing_and_blames_nothing(self):
+        self._dark()
+        self._creds()
+        r = alarm.check(DATE, now=LATE)
+        self.assertFalse({c for c in self.codes(r) if c.startswith("credential_")})
+        a = next(x for x in r["alarms"] if x["code"] == "no_posts_explainer")
+        self.assertNotIn("credential probe", a["detail"])
+        self.assertFalse(a["fix"].startswith("Fix the credential"))
+
+    def test_no_record_or_a_junk_record_is_not_evidence(self):
+        self._dark()
+        r = alarm.check(DATE, now=LATE)
+        self.assertFalse({c for c in self.codes(r) if c.startswith("credential_")})
+        (self.tmp / "state" / "credentials.json").write_text("{not json")
+        r = alarm.check(DATE, now=LATE)
+        self.assertFalse({c for c in self.codes(r) if c.startswith("credential_")})
+        (self.tmp / "state" / "credentials.json").write_text(
+            json.dumps({"credentials": ["junk", {"status": "dead"},
+                                        {"name": "groq", "status": "dead"}]}))
+        r = alarm.check(DATE, now=LATE)          # must not raise
+        self.assertIn("credential_dead_groq", self.codes(r))
+
+    def test_every_text_brain_has_a_fix_that_names_its_secret(self):
+        for name in alarm.TEXT_BRAINS:
+            self.assertIn(name, alarm._CREDENTIAL_FIXES, name)
+        self.assertIn("GROQ_API_KEY", alarm._CREDENTIAL_FIXES["groq"])
+        self.assertIn("GEMINI_API_KEY", alarm._CREDENTIAL_FIXES["gemini"])
+        self.assertIn("CLAUDE_CODE_OAUTH_TOKEN",
+                      alarm._CREDENTIAL_FIXES["claude-subscription"])
