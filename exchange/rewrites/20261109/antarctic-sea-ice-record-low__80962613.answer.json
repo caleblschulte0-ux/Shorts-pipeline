@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "antarctic-sea-ice-record-low__80962613",
+  "slug": "antarctic-sea-ice-record-low",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:25:00Z",
+  "title": "Antarctica Looked Untouchable—Then 1.3 Million km² Vanished",
+  "hook": "Antarctica lost 1.3 million square kilometers against its normal baseline.",
+  "closing": "Less reflective ice leaves more heat in the ocean, affecting people far beyond Antarctica.",
+  "question": "Does this change your climate view?",
+  "segments": [
+    {
+      "topic": "Antarctic ice extent",
+      "say": "Antarctic sea ice fell to 1.79 million square kilometers, breaking below its long-term range."
+    },
+    {
+      "topic": "Antarctic ice gap",
+      "say": "Missing sea ice covered 1.3 million square kilometers, turning an abstract record into a continent-scale gap."
+    },
+    {
+      "topic": "Antarctic ice reflection",
+      "say": "Sea ice reflects 60 percent of sunlight, so losing it lets the darker ocean absorb more heat."
+    }
+  ]
+}
