@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "bat-fungus-collapse__6ba75d18",
+  "slug": "bat-fungus-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-11T12:25:00Z",
+  "title": "Losing Bats Threatens $53 Billion in Free Farm Protection",
+  "hook": "Bat collapse threatens $53 billion in free pest control.",
+  "closing": "Losing bats means more crop pests and higher food costs for everyone.",
+  "question": "Have you seen bats nearby?",
+  "segments": [
+    {
+      "topic": "Bats fungus spread",
+      "say": "The fungus reached 35 states, turning one cave outbreak into a national threat."
+    },
+    {
+      "topic": "Bats population loss",
+      "say": "Northern long-eared bats declined 97 percent, leaving almost none of a once-common species."
+    },
+    {
+      "topic": "Bats farm value",
+      "say": "Bat pest control is worth 53 billion dollars yearly, so their disappearance carries a real price."
+    }
+  ]
+}
