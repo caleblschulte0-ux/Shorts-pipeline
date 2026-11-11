@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261111T223131Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end the 17-digit '29,400,000,000,000,000' sits across the rocket body, and the rocket fin covers 'Nebula' in the caption below it. A phone viewer cannot parse it at a glance.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_overlay_and_two_headlines",
+  "visible_evidence": "seg3:end stacks two big numbers ('250 miles' and '29,400,000,000,000,000') on the rocket, with the fin cutting through 'Boomerang Nebula'. The picture is a ground launch, not the ISS 250 miles up, so the near-vs-far claim is never drawn.",
+  "root_cause": "The scene shows the distance as typed readouts layered over a generic rocket launch. It does not draw the space station's closeness against the nebula's remoteness.",
+  "repair_goal": "Use one headline only ('250 miles'), placed clear of the rocket. Show the scale in the picture: Data drives a rocket that docks at the ISS, close above Earth, while the Boomerang Nebula is a faint dot far off. No 17-digit number."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
