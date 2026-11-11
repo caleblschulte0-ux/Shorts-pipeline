@@ -5177,11 +5177,30 @@
       "duration_s": 27.8
     },
     "pentagon-ufo-reports-surge": {
-      "claimed_at": "2026-11-11T19:34:51.317810+00:00",
+      "url": "https://youtube.com/shorts/C7a3MljvEt0",
       "title": "Why 757 Pentagon UFO Reports Still Don't Mean Aliens",
+      "at": "2026-11-11T19:35:04.685348+00:00",
       "publish_at": "2026-11-12T00:42:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "a line came out at 1.1 words/s",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 4.98,
+      "beat_s": [
+        4.12,
+        4.71,
+        4.98,
+        3.8,
+        4.95
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 87,
+      "duration_s": 23.0
     }
   },
   "uploads": [
@@ -6652,9 +6671,10 @@
       "claimed_at": "2026-11-11T19:34:51.317810+00:00",
       "title": "Why 757 Pentagon UFO Reports Still Don't Mean Aliens",
       "publish_at": "2026-11-12T00:42:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "pentagon-ufo-reports-surge"
+      "url": "https://youtube.com/shorts/C7a3MljvEt0",
+      "state": "posted",
+      "slug": "pentagon-ufo-reports-surge",
+      "at": "2026-11-11T19:35:04.685348+00:00"
     }
   ]
 }
