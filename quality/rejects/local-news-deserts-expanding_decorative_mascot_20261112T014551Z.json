@@ -1,0 +1,16 @@
+{
+ "slug": "local-news-deserts-expanding",
+ "ts": "20261112T014551Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg2:start through seg2:end Data stands in front of the shutters with his hands clasped while they close by themselves. In seg3:start, seg3:mid and seg4 he stands holding his head or waving next to the board. He never pulls a shutter or takes a paper off the stand. Nothing he d",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "In seg2:start through seg2:end four office shutters (Gazette, Herald, Courier, Tribune) roll down by themselves while Data stands with his hands clasped. The count goes from 204 to 208 and shows only as a small '+4' in the corner. All four offices end up shut, which suggests every paper closed, not 208 counties.",
+  "root_cause": "Nothing in the scene performs the act: the shutters close on their own and Data is placed beside them. The number is held in the label, not in the picture. Four shutters closing completely cannot represent 208 out of about 3,100 counties.",
+  "repair_goal": "Have Data grip and pull each shutter down himself (a grip act with his hands on the shutter handle), or nail a CLOSED board across each door. Change the picture so a few of many offices go dark, so the size of the change is visible without reading the label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
