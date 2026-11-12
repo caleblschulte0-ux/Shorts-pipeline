@@ -1,0 +1,123 @@
+{
+  "shots": [
+    {
+      "shot": 1,
+      "score": 71,
+      "scores": [
+        64,
+        71,
+        72
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "You can't see the cash slot that fires the money. From frame 1 the bills seem to come in from low on the left edge, beside the kiosk, so the machine reads as nearby rather than as the thing shooting cash.",
+        "The ERROR kiosk is small and pushed into the top-left corner, and Data in the middle takes over the frame. The cause is weaker than the reaction.",
+        "The duck in frames 14-18 squashes his head down into the coat collar. It reads more like his neck collapsing than a duck.",
+        "The flinch and hop back in frames 2-4 are small. His face stays mild and close to neutral for most of the shot."
+      ],
+      "better": [
+        "Push in or reframe so the kiosk, its red ERROR screen and the cash slot fill the left third. The bills should visibly leave the slot in the first few frames.",
+        "Make the flinch big: a fast recoil with wide eyes and open mouth, then the hop back. The duck should bend his knees and torso rather than sinking his head.",
+        "Frames 23-30 hold a passive shrug while the bills keep falling. Cut sooner or give him a final reaction such as a look at camera or a grab at the money.",
+        "Spread the bill pile toward his feet so the floor pile reads as cash pouring out of the machine."
+      ],
+      "pass": true
+    },
+    {
+      "shot": 2,
+      "score": 73,
+      "scores": [
+        72,
+        73,
+        74
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The second camera is not over his shoulder as briefed. It is a high front three-quarter view with Data small in the bottom right, facing the camera, so the link between the lever and the row is weak.",
+        "The 0/10 to 9/10 board and the SELF signs are small in the wide. They read, but only just, on a phone.",
+        "After the lever impact Data stands still for the whole count (frames 7-30) with no reaction while the lanes change.",
+        "In frames 1-4 his arm reaches the lever at full horizontal stretch and the grip on the handle is unclear."
+      ],
+      "better": [
+        "Put the camera behind and above his shoulder so the lever, Data and the row going away from him are in one line. Then his action visibly sweeps down the row.",
+        "Bring the counter board closer or make it bigger in the wide, and pop it a little on each step.",
+        "Give Data a beat in the wide: watching each lane flip with a small head turn per lane, then a reaction at 9/10 toward the CASHIER lane that is left.",
+        "Make the hand plant clear on the lever ball before the pull, and add a little anticipation and follow-through to the haul."
+      ],
+      "pass": true
+    },
+    {
+      "shot": 3,
+      "score": 76,
+      "scores": [
+        74,
+        76,
+        78
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "Data's arm points out straight at the calendar and his hand never visibly grips or tears a page. The pages fall away by themselves next to his hand (frames 4-6, 9-11, 19-21).",
+        "The team photos that fall are tiny. They read as blue specks and do not land as 'a person gone' on a phone screen.",
+        "Data keeps a mild smile while jobs disappear, which works against the tone of the beat."
+      ],
+      "better": [
+        "Animate a real grab-and-rip: fingers close on the page corner, a tug, the tear, then a toss toward the pile.",
+        "Make the falling photo the second accent of each beat: a bigger card, a short tumble, and a readable face/blue-shirt silhouette on the floor.",
+        "Give Data an expression shift, from businesslike to uneasy, as the board empties and the counter reaches 500,000.",
+        "End on a short hold with Data looking at the half-empty board and the pile."
+      ],
+      "pass": true
+    },
+    {
+      "shot": 4,
+      "score": 68,
+      "scores": [
+        68,
+        68,
+        70
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The 'SELF-CHECKOUT' jar label is tiny white text that runs past its black sign and into the shelf. On a phone the second label, which carries the comparison, can barely be read.",
+        "Both jars sit in front of dark kiosks, so they read as murky dark glass and the coin level is hard to judge. The CASHIER jar is pressed against the left frame edge.",
+        "Frame 14: a dark red-black smear inside the right jar as the sack moves across. It reads as a glitch.",
+        "Data's head partly covers the 2X and the right sign in the closing frames."
+      ],
+      "better": [
+        "Make the jar labels big and readable, sized to fit their signs, and frame the shot tighter so the two jars and their fill levels dominate.",
+        "Light the jars or put a clean background behind them so the gold coin level pops against the glass.",
+        "Add fill-level tick marks or a side-by-side height cue so 'over twice' reads at a glance, and land the 2X with a beat.",
+        "Have Data react to the overflowing jar (a double-take) rather than standing neutral."
+      ],
+      "pass": false
+    },
+    {
+      "shot": 5,
+      "score": 72,
+      "scores": [
+        71,
+        72,
+        74
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The red screens hold steady on the sheet. No blinking reads, so the 'every lane is failing' alarm is weaker than described.",
+        "The shrug (frames 4-8) and the wave (frames 13-19) are small, with low arm height and little body involvement.",
+        "The crane mostly pulls back with little rise. The last ~12 frames have Data small and dead-centre while the ERROR text becomes illegible."
+      ],
+      "better": [
+        "Make the red pulse visibly, on/off or bright/dim, staggered down the row, so the wide end frame is alive.",
+        "Exaggerate the shrug: shoulders up, palms out, head tilt. Make the wave big, overhead and side to side.",
+        "Add more rise to the crane so the end frame looks down the whole row of flashing kiosks, and end the move a beat sooner instead of creeping on.",
+        "Consider offsetting Data so the row reads as the subject of the final frame."
+      ],
+      "pass": true
+    }
+  ],
+  "panel": 3
+}
