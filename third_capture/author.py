@@ -235,7 +235,13 @@ Rules:
     broadcaster's decades in the booth). A moment that is complete on
     screen is a CLIP, outro null, it just plays: a daughter running out
     to her dad, a QB in tears at the podium, a celebration, a speech
-    that lands, a funny answer. When in doubt it is a clip. To show
+    that lands, a funny answer. But someone TALKING about another player,
+    a rival, a past game, a career or a record points beyond the screen:
+    that is a story, and its outro shows what they talk about (Dirk on
+    first seeing Jalen Brunson -> Brunson becoming a star). The montage is
+    what makes the channel (operator, 2026-11-12: "our clips by
+    themselves aren't too bad, but like what makes us is like
+    intercutting, montages"). To show
     something a clip TALKS about, use broll (the footage plays over his
     voice, then cuts back to him), never an outro.
     When it is a story whose subject cannot be shown (no footage would

@@ -80,8 +80,13 @@ not a story (operator, 2026-10-22, of Verlander's daughter walking him
 off and Josh Allen in tears: "that doesn't need to be a story. That's
 just a singular clip"): `story` "" for those, they just play. A story
 points at something bigger the clip never shows (a teammate who is gone,
-a player who died, a broadcaster's decades in the booth). When in doubt,
-it is a clip. For each STORY, `story` names what the ending shows:
+a player who died, a broadcaster's decades in the booth). Anyone TALKING
+about another player, a rival, a past game, a career or a record is a
+STORY: show what they talk about (Dirk on first seeing Jalen Brunson ->
+Brunson becoming a star). The montage is what makes this channel
+(operator, 2026-11-12: "our clips by themselves aren't too bad, but like
+what makes us is like intercutting, montages"). Only the moment that is
+complete on screen and points at nothing else is a clip. For each STORY, `story` names what the ending shows:
 the story's SUBJECT, the person or thing the moment is about, who is
 often not the person on camera (Campbell giving the game ball to the
 Lions' radio voice: "Dan Miller's famous Lions radio calls", never Lions
@@ -251,6 +256,16 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
     clip: Skattebo talked about the fines and the plays never appeared.
     A clip of someone talking, with no cut-in, gets one question of its
     own."""
+    lo, hi = _window(edit, dur)
+    for key in ("broll", "show"):
+        # the author's own picks too: one outside the cut is a cut-in the
+        # render drops without a word
+        if isinstance(edit.get(key), list):
+            edit[key] = [r for r in edit[key] if isinstance(r, dict)
+                         and _isnum(r.get("at"))
+                         and lo <= float(r["at"]) <= hi - 1.0] or None
+            if not edit[key]:
+                edit.pop(key)
     if (edit.get("broll") and edit.get("show")) or not words:
         return edit
     if raw is not None and not talking(raw, edit, dur,
@@ -259,16 +274,27 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
               flush=True)
         return edit
     from third_capture import cut_in, show_it
+    # ONLY what plays (2026-11-12 samples: Flagg's cut ran 13.7-44.2s and
+    # the brain, shown the whole transcript, put its cut-in at 0.8s; Dirk's
+    # ran 0.1-37.5s and got one at 40.5s; both dropped, and the clip
+    # shipped with none)
+    said = [w for w in words if lo - 0.05 <= float(w["s"]) <= hi]
+    if not said:
+        return edit
     user = (f"Who: {c.get('who')}\nThe post: {c.get('post_title')}\n"
+            f"The clip plays {lo:.1f}-{hi:.1f}s. Every cut-in and picture "
+            f"must land inside it.\n"
             f"Transcript, each line with the second it starts:\n"
-            f"{_fine_stamps(words)[:3000]}")
+            f"{_fine_stamps(said)[:3000]}")
     try:
         ans = _brain(user, BROLL_SYSTEM) or {}
-        got = cut_in.parse(ans.get("broll"), dur)
+        got = [g for g in cut_in.parse(ans.get("broll"), dur)
+               if lo <= float(g["at"]) <= hi - 1.0]
         # a picture lands on the word that names it, like a cut-in
         shows = show_it.parse(cut_in.snap(
             [dict(r, who=r.get("thing")) for r in ans.get("show") or []
-             if isinstance(r, dict) and _isnum(r.get("at"))], words), dur)
+             if isinstance(r, dict) and _isnum(r.get("at"))
+             and lo <= float(r["at"]) <= hi - 1.0], words), dur)
     except Exception as e:  # noqa: BLE001
         print(f"[cut-in] no answer on what to show ({e})", flush=True)
         got, shows = [], []
@@ -281,6 +307,20 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
     if shows and not edit.get("show"):
         edit["show"] = shows
     return edit
+
+
+def _window(edit: dict, dur: float) -> tuple[float, float]:
+    """The seconds of the source the cut plays (`whole_thought`'s
+    `edit["cut"]`), or the whole clip."""
+    cut = edit.get("cut") if isinstance(edit.get("cut"), dict) else {}
+    try:
+        lo = float(cut.get("start") or 0.0)
+        hi = float(cut.get("end") or dur or 0.0)
+    except (TypeError, ValueError):
+        lo, hi = 0.0, float(dur or 0.0)
+    if hi <= lo:
+        lo, hi = 0.0, float(dur or 0.0)
+    return lo, hi
 
 
 def _isnum(v) -> bool:
