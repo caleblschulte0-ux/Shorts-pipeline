@@ -20,7 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE); sys.path.insert(0, os.path.dirname(HERE))
 import bpy
 from mathutils import Vector, Matrix
-import scene_kit as K, acts, style, built
+import scene_kit as K, acts, style, built, props
 from acts import FPS, ease, ease_out, ease_in, ease_out_back, lerp
 
 SHOT = int(os.environ.get("SHOT", "2"))
@@ -198,17 +198,13 @@ def shot1():
     sc.frame_set(1); p = data.pos()
     # recoiling, hands up by his face, then a step back as the money keeps coming
     fw = data.forward(); rt = Vector((math.cos(data.arm.rotation_euler.z), math.sin(data.arm.rotation_euler.z), 0))
-    data.walk_to((p.x - 0.12, p.y - 0.14), 0.7, 1.4)
-    for s_ in "LR":
-        def up(t, s_=s_):
-            sc.frame_set(F(t)); bpy.context.view_layer.update(); sh = acts._shoulder(data, s_); fw_ = data.forward()
-            out = (sh - data.pos()); out.z = 0; out = out.normalized() if out.length > 1e-4 else Vector((0, 0, 0))
-            wob = 0.015 * math.sin(t * 9 + (0 if s_ == "L" else 2))
-            return sh + Vector((0, 0, 0.1 + wob)) + fw_ * 0.08 + out * 0.09
-        grip_follow(data, s_, up, 0.0, DUR, elbow_out=1.2)
+    # the open-handed WHOA: elbows bent, forearms down and out, palms to us (the shared gesture, character.act); the
+    # old hands-up-by-the-face grip read as "very weird" (caaleb 2026-11-12). In it from frame one: the hook's first
+    # frame is the shock.
+    data.act("whoa", -0.4, dur=0.3, hold=DUR - 0.2)
     money = (kx - 0.25, ky - 0.75, 0.7)                     # the cloud of bills between him and the lens: his face reads from frame one
-    data.look_at(money, 0.0, max_yaw=60, blend=0.0)
-    data.look_at(money, 1.3, max_yaw=60)
+    data.look_at(money, 0.0, max_yaw=32, blend=0.0)        # eyes on the money, face still to us
+    data.look_at(money, 1.3, max_yaw=32)
     data.look_at((-0.15, -1.6, 0.7), 1.8, max_yaw=55)       # to the lens: can you believe this
     data.look_at((-0.15, -1.6, 0.7), DUR, max_yaw=55)
     for tb in (1.5, 3.4): data.blink(tb)
@@ -246,34 +242,67 @@ def shot2():
     T_PULL0, T_PULL1 = 0.45, 0.95
     for k, i in enumerate(range(1, 10)): convert(lanes[i], kiosks[i], 1.05 + 0.27 * k)
     data = load_data()
-    # the lever stands at the front of the row, Data beside it facing the lens
-    lx, ly = ROW10[0] - 0.3, -0.42
-    ped = K.mat("lever body", "#2E3136", rough=0.45); red = K.mat("lever knob", "#C6392B", rough=0.35)
-    steel = K.mat("lever steel", "#B3B7BB", rough=0.3, metal=0.9); plate = K.mat("lever plate", "#C8643A", rough=0.5)
-    K.box("lever base", (lx, ly, 0.03), (0.22, 0.18, 0.06), ped, bev=0.01)
-    K.box("lever post", (lx, ly, 0.22), (0.12, 0.1, 0.36), ped, bev=0.012)
-    K.box("lever plate", (lx, ly - 0.052, 0.3), (0.09, 0.004, 0.12), plate, bev=0.002)
-    piv = Vector((lx, ly, 0.42)); arm = K.empty("lever pivot", tuple(piv))
-    K.cyl("lever hub", tuple(piv), 0.035, 0.13, steel, rot=(0, math.radians(90), 0), v=24, parent=arm)
-    LL = 0.24
-    K.cyl("lever rod", (lx, ly, 0.42 + LL / 2), 0.014, LL, steel, v=16, parent=arm)
-    K.sph("lever ball", (lx, ly, 0.42 + LL), 0.04, red, parent=arm)
-    A0, A1 = math.radians(-35), math.radians(55)            # about x: up and back, thrown forward and down toward the lens
+    # THE MASTER SWITCH. caaleb 2026-11-12: the row flipping 9 of 10 was "the best Data visual in the whole show ... he
+    # felt so out of place in it". He was a big figure in the near corner, seen from above, beside a little post, and
+    # looked at the lens while the row changed behind him. Now: he stands IN the store at the head of the row, the
+    # switch box in front of him, facing us; he hauls the handle down toward himself with both hands and leans into it,
+    # then turns to watch the row go, then looks back to us. The camera is at the height of a person, so he is part
+    # of the world the row is in, not laid over it.
+    from mathutils import Matrix
+    P = Vector((ROW10[0] + 0.31, -0.8, 0))                  # where he stands: AT the head of the row, between lanes 1 and 2
+    CA = Vector((ROW10[0] - 1.15, -1.6, 1.5))               # the camera: the ultra-wide down the row that showed 9 of 10
+    to_cam = Vector((CA.x - P.x, CA.y - P.y, 0)).normalized()
+    right = Vector((to_cam.y, -to_cam.x, 0)) * -1           # screen right, seen from the camera
+    box_c = P + right * 0.2                                  # the switch box at his side: his whole body and the switch both read
+    ped = K.mat("switch body", "#3A3E44", rough=0.45); red = K.mat("lever knob", "#C6392B", rough=0.35)
+    steel = K.mat("lever steel", "#B3B7BB", rough=0.3, metal=0.9); hz = K.mat("hazard", "#E2B33C", rough=0.5)
+    yaw_box = math.atan2(to_cam.x, -to_cam.y)
+    bx = K.box("switch box", (box_c.x, box_c.y, 0.16), (0.2, 0.16, 0.32), ped, bev=0.012); bx.rotation_euler = (0, 0, yaw_box)
+    K.box("switch band", (box_c.x, box_c.y, 0.29), (0.205, 0.165, 0.03), hz, bev=0.004).rotation_euler = (0, 0, yaw_box)
+    K.box("switch plinth", (box_c.x, box_c.y, 0.015), (0.3, 0.22, 0.03), ped, bev=0.006).rotation_euler = (0, 0, yaw_box)
+    # the cable: from the box along the floor to the first lane, so the switch is wired INTO the row
+    l0 = lanes[0]["kiosk_spot"] if "kiosk_spot" in lanes[0] else Vector((ROW10[0], -0.2, 0))
+    run = Vector((l0.x, l0.y - 0.35, 0)) - Vector((box_c.x, box_c.y, 0))
+    cab = K.box("switch cable", ((box_c.x + l0.x) / 2, (box_c.y + l0.y - 0.35) / 2, 0.012), (run.length, 0.045, 0.024), K.mat("cable", "#202226", rough=0.6), bev=0.008)
+    cab.rotation_euler = (0, 0, math.atan2(run.y, run.x))
+    to_me = -to_cam; ax = Vector((0, 0, 1)).cross(to_cam).normalized()    # turning +z about this throws it toward us
+    piv = Vector((box_c.x, box_c.y, 0.33))
+    arm = K.empty("lever pivot", tuple(piv))
+    LL = 0.22
+    K.cyl("lever hub", tuple(piv), 0.03, 0.1, steel, rot=Matrix.Rotation(math.radians(90), 3, ax.cross(Vector((0, 0, 1)))).to_euler(), v=24, parent=arm)
+    K.cyl("lever rod", (piv.x, piv.y, piv.z + LL / 2), 0.013, LL, steel, v=16, parent=arm)
+    tb = K.cyl("lever bar", (piv.x, piv.y, piv.z + LL), 0.02, 0.13, red, v=20, parent=arm)      # a T-handle for two hands
+    tb.rotation_euler = Matrix.Rotation(math.radians(90), 3, to_me).to_euler()
+    A0, A1 = math.radians(-22), math.radians(68)            # up and back; thrown down toward us
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = ease((t - T_PULL0) / (T_PULL1 - T_PULL0))
-        arm.rotation_euler = (lerp(A0, A1, u), 0, 0); arm.keyframe_insert("rotation_euler", frame=f)
-    knob = lambda t: (sc.frame_set(F(t)), bpy.context.view_layer.update(), arm.matrix_world @ Vector((0, 0, LL)))[2]
-    data.place(lx - 0.02, ly - 0.24, -50)                 # to the lever's right (screen right), facing the lens
+        arm.rotation_euler = Matrix.Rotation(lerp(A0, A1, u), 3, ax).to_euler(); arm.keyframe_insert("rotation_euler", frame=f)
+    bar_side = to_me.cross(Vector((0, 0, 1))).normalized()
+    def grip_pt(t, sg):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        return arm.matrix_world @ Vector((0, 0, LL)) + (arm.matrix_world.to_3x3() @ (Matrix.Rotation(0, 3, 'Z') @ Vector((0, 0, 0)))) + bar_side * sg * 0.045
+    face = (to_cam + (box_c - P).normalized() * 1.1).normalized()
+    yaw_me = math.degrees(math.atan2(face.x, -face.y))
+    data.place(P.x, P.y, yaw_me)                            # three-quarters to us, turned to the switch at his side
     data.expression("happy", 0.0, 1.0)
-    side = near_hand(data, knob(0.0))
-    grip_follow(data, side, knob, 0.0, T_PULL1 + 0.12, elbow_out=0.4)
+    sc.frame_set(1); bpy.context.view_layer.update()
+    sA = near_hand(data, grip_pt(0.0, 1)); sB = "R" if sA == "L" else "L"
+    grip_follow(data, sA, lambda t: grip_pt(t, 1), 0.0, T_PULL1 + 0.12, elbow_out=0.5)
+    grip_follow(data, sB, lambda t: grip_pt(t, -1), 0.0, T_PULL1 + 0.12, elbow_out=0.5)
+    # he leans into the haul: the body dips and rocks back with the handle
+    for f in range(1, F(T_PULL1 + 0.15) + 1):
+        t = (f - 1) / FPS; u = ease((t - T_PULL0) / (T_PULL1 + 0.15 - T_PULL0)); back = math.sin(math.pi * u) * 0.025
+        data.arm.location = (P.x - to_cam.x * back, P.y - to_cam.y * back, -0.012 * math.sin(math.pi * u))
+        data.arm.keyframe_insert("location", frame=f)
     data.release(T_PULL1 + 0.15)
-    data.look_at((-0.2, -2.6, 0.6), 0.0, max_yaw=40, blend=0.0)
-    data.look_at((ROW10[5], 0.8, 0.5), 1.2, max_yaw=60)    # watching the row go
-    data.look_at((ROW10[8], 0.8, 0.5), 3.0, max_yaw=60)
-    data.expression("surprised", 1.4, 3.6)
-    data.look_at((-1.0, -4.0, 1.3), 3.9, max_yaw=45)       # then to us
-    data.expression("happy", 3.8, DUR)
+    data.look_at(tuple(CA), 0.0, max_yaw=40, blend=0.0)    # to us: watch this
+    data.look_at(tuple(piv), T_PULL0, max_yaw=40)
+    # he watches the row go with his HEAD only, his body and face kept to us (a turned body showed us his back)
+    data.look_at((ROW10[3], 0.4, 0.5), T_PULL1 + 0.3, max_yaw=42)
+    data.look_at((ROW10[7], 0.4, 0.5), 2.3, max_yaw=42)
+    data.expression("surprised", 1.4, 3.0)
+    data.look_at(tuple(CA), 2.75, max_yaw=42)              # then back to us
+    data.expression("happy", 2.9, DUR)
     data.idle(T_PULL1 + 0.6, DUR)
     for tb in (0.3, 2.4, 4.3): data.blink(tb)
     data.finish()
@@ -289,9 +318,9 @@ def shot2():
         ld = bpy.data.lights.new(f"end wash {y}", 'AREA'); ld.energy = 60; ld.size = 1.2; ld.color = (1.0, 0.95, 0.88)
         o = bpy.data.objects.new(f"end wash {y}", ld); o.location = (ex - 1.2, y, 2.2); bpy.context.collection.objects.link(o)
         o.rotation_euler = (Vector((ex, y, 0.9)) - o.location).to_track_quat('-Z', 'Y').to_euler()
-    CA, LA = Vector((ROW10[0] - 1.25, -1.15, 1.45)), Vector((ROW10[6], 1.25, 0.15))
+    LA = Vector((ROW10[3], 0.6, 0.0))
     cam = K.camera(tuple(CA), tuple(LA), lens=16, fstop=8.0)
-    camera_path(cam, lambda t: (CA + Vector((0.1, 0.12, 0)) * (t / DUR), LA + Vector((0.08, 0, 0)) * (t / DUR), (ROW10[2], 0.6, 0.3)))
+    camera_path(cam, lambda t: (CA + Vector((0.12, 0.1, 0)) * (t / DUR), LA + Vector((0.1, 0, 0)) * (t / DUR), (P.x, P.y, 0.5)))
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=NF)
 
 
@@ -315,18 +344,22 @@ def shot3():
     bo = bpy.data.objects.new("backroom", ld); bo.location = (WX + 0.8, (DY0 + DY1) / 2, 1.0); bpy.context.collection.objects.link(bo)
     bo.rotation_euler = Vector((-1, 0, -0.3)).to_track_quat('-Z', 'Y').to_euler()
     K.box("backroom floor", (WX + 1.5, 0, -0.005), (3, 4, 0.01), K.mat("backroom floor", "#6A6660", rough=0.8), bev=0)
-    # the calendar on the wall beside the door, at Data's height: he tears off a year as each one walks out
-    cy = DY0 - 0.78; cz = 0.66
-    K.box("calendar back", (WX - 0.008, cy, cz), (0.012, 0.3, 0.36), K.mat("calendar paper", "#F4F1EA", rough=0.8), bev=0.003)
-    K.box("calendar band", (WX - 0.016, cy, cz + 0.15), (0.004, 0.3, 0.07), K.mat("sale red", "#C6392B", rough=0.5), bev=0.001)
-    years = list(range(2014, 2025)); tY0, tY1 = 0.5, DUR - 0.9
-    flips = []
+    # the calendar on the wall beside the door, at Data's height: a tear-off pad, one page a year. As each one walks
+    # out he pulls a page off from the bottom; it rips at the top and flutters down to the floor, where it stays: the
+    # years pile up at his feet (caaleb 2026-11-12: "pull them off like a piece of paper and fall to the floor")
+    cy = DY0 - 0.78; cz = 0.6; PH = 0.27; PW = 0.27
+    paper = K.mat("calendar paper", "#F4F1EA", rough=0.8); ink = K.mat("sign navy")
+    K.box("calendar back", (WX - 0.008, cy, cz), (0.012, PW + 0.03, PH + 0.1), K.mat("calendar board", "#3A3D42", rough=0.6), bev=0.003)
+    K.box("calendar band", (WX - 0.02, cy, cz + PH / 2 + 0.02), (0.012, PW + 0.03, 0.05), K.mat("sale red", "#C6392B", rough=0.5), bev=0.002)
+    years = list(range(2014, 2025, 2)); tY0, tY1 = 0.75, DUR - 0.75
+    flips = [tY0 + (tY1 - tY0) * k / (len(years) - 2) for k in range(len(years) - 1)]
+    top = cz + PH / 2 - 0.006; grabs = []
     for k, yr in enumerate(years):
-        o = K.text(f"year {yr}", str(yr), (WX - 0.017, cy, cz - 0.03), 0.1, (math.radians(90), 0, math.radians(-90)), K.mat("sign navy"), extrude=0.002)
-        ta = tY0 + (tY1 - tY0) * k / (len(years) - 1); tb = tY0 + (tY1 - tY0) * (k + 1) / (len(years) - 1) if k < len(years) - 1 else DUR + 1
-        o.hide_render = k > 0; o.keyframe_insert("hide_render", frame=1)
-        if k > 0: o.hide_render = False; o.keyframe_insert("hide_render", frame=F(ta)); flips.append(ta)
-        o.hide_render = True; o.keyframe_insert("hide_render", frame=F(tb))
+        x = WX - 0.016 - 0.0012 * (len(years) - k)          # the first year in front
+        piv = K.empty(f"page {yr}", (x, cy, top))
+        K.box(f"page sheet {yr}", (x, cy, top - PH / 2), (0.0015, PW, PH), paper, bev=0, parent=piv)
+        K.text(f"year {yr}", str(yr), (x - 0.0012, cy, top - PH / 2 - 0.01), 0.085, (math.radians(90), 0, math.radians(-90)), ink, extrude=0.0015, parent=piv)
+        if k < len(flips): grabs.append((flips[k], props.tear_off(piv, NF, flips[k], (-1, 0, 0), floor_z=0.0, seed=k + 3, page_h=PH)))
     # the cashiers: a line of them in aprons walk from the lanes, along the front, and out through the door
     yl = (DY0 + DY1) / 2; n = 7; speed = 0.62; gap = 0.42
     for k in range(n):
@@ -345,29 +378,41 @@ def shot3():
             c.hide_render = hidden; c.keyframe_insert("hide_render", frame=f)
             for ch in c.children_recursive: ch.hide_render = hidden; ch.keyframe_insert("hide_render", frame=f)
         K.contact_shadow(c.name + " shadow", (0, 0), rx=0.17, ry=0.12, parent=c)
-    # Data stands at the calendar and tears a year off as each one goes
+    # Data stands at the calendar's side, his body open to the lens (never his back), and pulls each year off with the
+    # hand nearer the wall; the walkers pass behind him to the door
     data = load_data()
-    data.place(WX - 0.3, cy + 0.26, 105)
-    page = Vector((WX - 0.03, cy, cz + 0.02))
-    side = near_hand(data, page)
+    cam_at = Vector((WX - 1.55, cy - 1.6, 0.78)); here = Vector((WX - 0.14, cy + 0.13, 0))
+    to_cam = (cam_at - here); yaw_cam = math.degrees(math.atan2(to_cam.x, -to_cam.y))
+    data.place(here.x, here.y, yaw_cam + 32)              # three-quarters to us, turned a little toward the pad
+    sc.frame_set(1); bpy.context.view_layer.update()
+    side = near_hand(data, Vector((WX - 0.02, cy, top - PH)))
     rest = lambda t: (sc.frame_set(F(t)), acts._shoulder(data, side) + Vector((0, 0, -0.2)) - data.forward() * 0.02)[1]
-    data._arm_ik(side, rest(0.0), 0.0, 0.3)
-    for ta in flips:
-        data._arm_ik(side, page + Vector((0, 0, 0.08)), ta - 0.12, 0.5)
-        data._arm_ik(side, page + Vector((-0.02, -0.03, -0.1)), ta + 0.08, 0.5)
-        data._arm_ik(side, page + Vector((-0.06, -0.02, -0.04)), ta + 0.2, 0.5)
-    data._arm_ik(side, rest(DUR), DUR, 0.3)
-    data.look_at((WX - 0.8, yl, 0.75), 0.0, max_yaw=70, blend=0.0)
-    data.look_at((WX - 0.8, yl, 0.75), 1.5, max_yaw=70)
+    def pull(t):
+        """the hand on the bottom of the page it is pulling; between pages it slides to the next one's corner"""
+        for k, (ta, g) in enumerate(grabs):
+            if t <= ta + 0.04:
+                p = g(t)
+                if k > 0 and t < grabs[k - 1][0] + 0.2:            # just let go of the last one: ease across
+                    u = ease((t - grabs[k - 1][0] - 0.04) / 0.16); return grabs[k - 1][1](grabs[k - 1][0]).lerp(p, u)
+                if k == 0 and t < ta - 0.45:
+                    u = ease((t - (ta - 0.75)) / 0.3); return rest(t).lerp(p, u)
+                return p
+        u = ease((t - grabs[-1][0] - 0.04) / 0.4); return grabs[-1][1](grabs[-1][0]).lerp(rest(t), u)
+    grip_follow(data, side, pull, 0.0, DUR, elbow_out=0.5)
+    padc = (WX - 0.02, cy, cz - 0.05)
+    data.look_at(padc, 0.0, max_yaw=70, blend=0.0)
+    data.look_at(padc, 1.2, max_yaw=70)
     data.expression("worried", 0.8, DUR)
-    data.look_at((0.6, -2.4, 0.8), 2.4, max_yaw=70)     # a look to us: they're all going
-    data.look_at((0.6, -2.4, 0.8), 3.5, max_yaw=70)
-    data.look_at((WX - 0.5, yl, 0.75), 4.2, max_yaw=70)
-    data.look_at((WX - 0.5, yl, 0.75), DUR, max_yaw=70)
+    data.look_at(tuple(cam_at), 1.6, max_yaw=70)          # to us while he keeps tearing: another year, another bunch gone
+    data.look_at(tuple(cam_at), 3.4, max_yaw=70)
+    data.look_at(padc, 3.8, max_yaw=70)
+    data.look_at(padc, DUR, max_yaw=70)
     for tb in (1.0, 3.0, 4.6): data.blink(tb)
     data.finish()
-    cam = K.camera((0.65, -2.75, 0.8), (1.9, -0.8, 0.55), lens=24, fstop=4.0)
-    camera_path(cam, lambda t: ((0.65 + 0.08 * t / DUR, -2.75, 0.8), (1.9, -0.8, 0.55), (WX - 0.3, cy, 0.6)))
+    # the camera faces the wall at an angle: the pad reads, the door and the line of walkers sit behind his shoulder
+    look_at_c = Vector((WX - 0.25, cy + 0.3, 0.48))
+    cam = K.camera(tuple(cam_at), tuple(look_at_c), lens=31, fstop=4.0)
+    camera_path(cam, lambda t: (cam_at + Vector((0.05, 0.06, 0)) * (t / DUR), look_at_c, (here.x, here.y, 0.5)))
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1)
 
 
@@ -386,10 +431,10 @@ def shot4():
     geo = nt.nodes.new("ShaderNodeNewGeometry"); nt.links.new(geo.outputs["Position"], wv.inputs["Vector"])   # world space: the bands keep their size as the fill grows
     bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.6; nt.links.new(wv.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], gb.inputs["Normal"])
     lid = K.mat("jar lid", "#2E3136", rough=0.5)
-    JY = -0.34; JR = 0.1; JH = 0.48
+    JY = -0.34; JR = 0.1; JH = 0.36      # low enough that the sack is held ABOVE the mouth and the coins are seen falling in
     jars = {}
     for i, x in enumerate(xs):
-        jx = -0.3 if i == 0 else 0.3          # in front of its own lane, close enough either side of Data to pour into
+        jx = -0.27 if i == 0 else 0.27        # either side of Data: he turns to each one to pour
         K.cyl(f"jar {i}", (jx, JY, JH / 2 + 0.01), JR, JH, glass, v=48, bev=0.01)
         K.cyl(f"jar base {i}", (jx, JY, 0.006), JR + 0.01, 0.012, lid, v=48, bev=0.003)
         K.box(f"jar label {i}", (jx, JY - JR - 0.002, JH - 0.05), (0.17, 0.003, 0.06), K.mat("sign ivory"), bev=0.001)
@@ -400,10 +445,10 @@ def shot4():
         jars[i] = (Vector((jx, JY, 0)), fill)
     K.contact_shadow("jar shadows", ((xs[0] + xs[1]) / 2, JY), rx=0.6, ry=0.12)
     # fills: the cashier jar to H_LO, the self-checkout jar to more than twice that
-    H_LO, H_HI = 0.13, 0.33
-    P0a, P0b = 0.5, 1.7            # pour into the cashier jar
-    WALK0, WALK1 = 1.9, 2.4           # (no walk: he turns the sack from one jar to the other)
-    P1a, P1b = 2.4, DUR - 1.2      # pour into the self-checkout jar
+    H_LO, H_HI = 0.1, 0.25
+    P0a, P0b = 0.45, 1.6           # pour into the cashier jar
+    WALK0, WALK1 = 1.85, 2.4          # he turns, stepping, from one jar to the other
+    P1a, P1b = 2.55, DUR - 1.1     # pour into the self-checkout jar
     for i, (h, a, b_) in enumerate(((H_LO, P0a + 0.15, P0b), (H_HI, P1a + 0.15, P1b))):
         fill = jars[i][1]
         for f in range(1, NF + 1):
@@ -411,27 +456,33 @@ def shot4():
     # the sack: Data carries it in both hands and tips it over each jar
     sack_m = K.mat("sack", "#B08A58", rough=0.85); tie = K.mat("sack tie", "#5B4630", rough=0.8)
     sack = K.empty("sack", (0, 0, 0))
-    K.sph("sack body", (0, 0, 0), 0.085, sack_m, scale=(1.0, 0.9, 1.05), parent=sack)
-    K.cyl("sack neck", (0, 0, 0.1), 0.035, 0.05, sack_m, v=20, parent=sack)
-    K.cyl("sack tie", (0, 0, 0.085), 0.039, 0.014, tie, v=20, parent=sack)
-    K.text("sack sign", "$", (0, -0.078, 0.0), 0.08, (math.radians(90), 0, 0), K.mat("sack ink", "#3A2A1A", rough=0.8), extrude=0.003, parent=sack)
+    K.sph("sack body", (0, 0, 0), 0.065, sack_m, scale=(1.0, 0.9, 1.05), parent=sack)
+    K.cyl("sack neck", (0, 0, 0.078), 0.028, 0.04, sack_m, v=20, parent=sack)
+    K.cyl("sack tie", (0, 0, 0.066), 0.031, 0.012, tie, v=20, parent=sack)
+    K.text("sack sign", "$", (0, -0.06, 0.0), 0.065, (math.radians(90), 0, 0), K.mat("sack ink", "#3A2A1A", rough=0.8), extrude=0.003, parent=sack)
     data = load_data()
     ya = jars[0][0]; yb = jars[1][0]
-    data.place(0.0, JY + 0.2, 0)                         # between the jars, facing the lens
+    # between the jars, three-quarters to the lens and turned to the jar he is filling; between pours he steps round
+    # to the other one (a filmmaker's staging: his face reads the whole time, the pour happens toward the camera)
+    TURN = 36
+    data.place(0.0, JY + 0.22, -TURN)
+    data.turn_to(TURN, WALK0, WALK1)
     sc.frame_set(1); bpy.context.view_layer.update()
     def sack_at(t):
-        hold = Vector((0.0, JY + 0.02, 0.5))
+        sc.frame_set(F(t)); bpy.context.view_layer.update(); here = data.pos(); fw = data.forward()
+        hold = Vector((here.x, here.y, 0)) + fw * 0.15 + Vector((0, 0, 0.42))
         if t < WALK0: j, pa, pb, sg = ya, P0a, P0b, -1
         else: j, pa, pb, sg = yb, P1a, P1b, 1
         u = ease((t - (pa - 0.35)) / 0.35) * (1 - ease((t - pb) / 0.35))
-        over = Vector((j.x - sg * 0.07, JY + 0.0, JH + 0.14))
-        return hold.lerp(over, u), sg * math.radians(110) * u
+        to_me = Vector((here.x - j.x, here.y - j.y, 0)).normalized()
+        over = Vector((j.x, j.y, JH + 0.13)) + to_me * 0.035
+        return hold.lerp(over, u), sg * math.radians(115) * u
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; loc, tip = sack_at(t)
         sack.location = loc; sack.keyframe_insert("location", frame=f); sack.rotation_euler = (0, tip, 0); sack.keyframe_insert("rotation_euler", frame=f)
     def hands(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update(); M = sack.matrix_world
-        return M @ Vector((-0.07, 0.0, 0.05)), M @ Vector((0.07, 0.0, 0.05))
+        return M @ Vector((-0.055, 0.0, 0.035)), M @ Vector((0.055, 0.0, 0.035))
     sc.frame_set(1); bpy.context.view_layer.update()
     sL = near_hand(data, hands(0)[0]); sR = "R" if sL == "L" else "L"
     grip_follow(data, sL, lambda t: hands(t)[0], 0.0, DUR, elbow_out=0.6)
@@ -442,27 +493,31 @@ def shot4():
     data.look_at((yb.x, JY, 0.4), P1b - 0.6, max_yaw=55)
     data.look_at((0.0, -2.2, 0.6), P1b, max_yaw=55)
     data.idle(0.0, DUR)        # to us, as the second jar tops out
+    data.expression("happy", 0.0, P1b - 0.3)                # mouth closed while he works: an open mouth in three-quarter reads as a dark smudge
     data.expression("surprised", P1b - 0.3, DUR)
     for tb in (1.2, 2.9, DUR - 0.5): data.blink(tb)
     data.finish()
-    # the coin stream from the sack mouth into the jar while pouring
-    coin_m = gold; rnd = random.Random(4)
-    for k in range(46):
-        pa, pb, j = (P0a, P0b, ya) if k < 16 else (P1a, P1b, yb)
-        ts = rnd.uniform(pa, pb - 0.2); c = K.cyl(f"coin {k}", (0, 0, 0), 0.016, 0.004, coin_m, v=20, bev=0.001)
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; u = t - ts
-            if u < 0 or u > 0.5: c.scale = (0, 0, 0); c.keyframe_insert("scale", frame=f); continue
-            top = JY  # unused
-            z0 = JH + 0.12; z = z0 - 4.9 * u * u
-            c.location = (j.x + rnd.uniform(-0.01, 0.01) * 0 + 0.01 * math.sin(k), JY + 0.01 * math.cos(k), z); c.keyframe_insert("location", frame=f)
-            c.rotation_euler = (u * 12 + k, u * 7, 0); c.keyframe_insert("rotation_euler", frame=f)
-            c.scale = (1, 1, 1) if z > 0.05 else (0, 0, 0); c.keyframe_insert("scale", frame=f)
+    # the coins: real coins leave the sack's mouth while it is tipped, fall into the jar and land on the pile, which
+    # rises past them (caaleb 2026-11-12: "there should be coins falling into the jar")
+    fills = ((H_LO, P0a + 0.15, P0b), (H_HI, P1a + 0.15, P1b))
+    fill_top = lambda i, t: 0.013 + max(0.0005, fills[i][0] * ease((t - fills[i][1]) / (fills[i][2] - fills[i][1])))
+    def land(x, y, t):
+        for i, (c_, _) in jars.items():
+            if (Vector((x, y, 0)) - Vector((c_.x, c_.y, 0))).length < JR - 0.012: return fill_top(i, t)
+        return 0.004                                                  # a stray one lands on the floor
+    def which(p): return min(jars, key=lambda i: (Vector((p.x, p.y, 0)) - Vector((jars[i][0].x, jars[i][0].y, 0))).length)
+    mouth = lambda t: (sc.frame_set(F(t)), bpy.context.view_layer.update(), sack.matrix_world @ Vector((0, 0, 0.1)))[2]
+    rnd = random.Random(4); sched = []
+    for (a_, b_, n_) in ((P0a + 0.2, P0b - 0.05, 30), (P1a + 0.2, P1b - 0.05, 80)):
+        sched += sorted(rnd.uniform(a_, b_) for _ in range(n_))
+    coins = [K.cyl(f"coin {k}", (0, 0, 0), 0.025, 0.006, gold, v=24, bev=0.0012) for k in range(len(sched))]
+    props.pour(coins, NF, sched, mouth, land, kick_fn=lambda t: Vector((0, 0, -0.35)), seed=9,
+               hide_below=lambda p, t: fill_top(which(p), t) > p.z + 0.012 if p.z > 0.01 else False)
     c0 = clerks[0]
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS; c0.rotation_euler = (0, 0, math.radians(90 + 4 * math.sin(t * 2.3))); c0.keyframe_insert("rotation_euler", frame=f)
-    cam = K.camera((0.0, -2.0, 0.66), (0.0, 0.0, 0.48), lens=24, fstop=4.0)
-    camera_path(cam, lambda t: ((-0.06 + 0.12 * t / DUR, -2.0 + 0.12 * ease(t / DUR), 0.66), (0.0, 0.0, 0.48), (0.0, JY, 0.35)))
+    cam = K.camera((0.0, -1.6, 0.56), (0.0, 0.0, 0.42), lens=25, fstop=4.0)
+    camera_path(cam, lambda t: ((-0.05 + 0.1 * t / DUR, -1.6 + 0.1 * ease(t / DUR), 0.56), (0.0, 0.0, 0.42), (0.0, JY, 0.35)))
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1)
 
 
@@ -510,6 +565,9 @@ style.render_settings(sc, SPP, PCT)
 if os.environ.get("TEMPORAL_SAFE", "1") == "1":
     cy = sc.cycles; cy.adaptive_threshold = 0.01; cy.denoising_prefilter = 'ACCURATE'
 
+import staging    # the filmmaker's check: his face to the lens, big enough to read, MEASURED before a frame renders
+if not staging.check(data, sc.camera, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails staging: restage it (his back to the lens, or too small to read)")
 os.makedirs(OUT, exist_ok=True)
 if os.environ.get("DIAG"): exec(open(os.environ["DIAG"]).read()); sys.exit(0)
 still = os.environ.get("STILL"); step = int(os.environ.get("STEP", "1")); fr = os.environ.get("FRAMES")

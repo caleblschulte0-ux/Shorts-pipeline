@@ -620,19 +620,22 @@ class Data:
         M = self.arm.matrix_world; fw = self.forward(); right = Vector((math.cos(self.arm.rotation_euler.z), math.sin(self.arm.rotation_euler.z), 0))
         sh = {s: M @ self.J[s]['sh'] for s in 'LR'}
         t1, t2 = t0 + dur, t0 + dur + hold; t3 = t2 + dur
-        if name == 'shrug':
+        if name in ('shrug', 'whoa'):
+            # caaleb 2026-11-12, of a shrug that held the hands up by the shoulders: "inverted ... a normal person
+            # would ... their arms would be bent downwards at a 45-ish degree angle ... hands pointed outwards".
+            # FK SOLVED to directions (tools/data3d/pose_dirs in the commit): upper arm down and a little out, forearm
+            # out to the side, a little forward, 45 degrees BELOW horizontal; palms up for a shrug, open toward the
+            # lens for a whoa. FK, not IK: IK Euler triples like (66, -103, -52) flail on the way back to the hang.
             for s, sg in (('L', -1), ('R', 1)):
-                # FK, not IK: the IK solve came back as Euler triples like (66, -103, -52) and the way back to the
-                # relaxed hang interpolated through all of it -- the arms flailed out wide at the end of the clip
-                arm = (-12, -sg * 40, -sg * 16); fore = (-78, -sg * 50, 0)   # MEASURED: hands 0.36+ m apart at the waist, palms up (+sg on Y clasped them, Z barely spreads)
-                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN
-                self._k(f'arm.{s}', t1, rot=arm); self._k(f'fore.{s}', t1, rot=fore)
-                self._k(f'arm.{s}', t2, rot=(arm[0] - 2, arm[1] * 1.08, arm[2] * 1.1)); self._k(f'fore.{s}', t2, rot=(fore[0] - 4, fore[1] * 1.1, 0))
-                self._k(f'hand.{s}', t0, rot=self._pose_now(f'hand.{s}', t0))
-                self._k(f'hand.{s}', t1, rot=(0, sg * -35, 0)); self._k(f'hand.{s}', t2, rot=(0, sg * -35, 0)); self._k(f'hand.{s}', t3, rot=(0, 0, 0))
-                for bn in (f'arm.{s}', f'fore.{s}'): self._k(bn, t3, rot=self.RELAXED[bn])
-                self._k(f'clav.{s}', t0, rot=(0, 0, 0)); self._k(f'clav.{s}', t1, rot=(0, 0, sg * -14)); self._k(f'clav.{s}', t2, rot=(0, 0, sg * -14)); self._k(f'clav.{s}', t3, rot=(0, 0, 0))
-            self.expression('worried', t0, t2)
+                if name == 'shrug': arm = (-10, 0, -sg * 15); fore = (-5, 0, -sg * 45); hand = (0, sg * -75, 0)
+                else:               arm = (-16, 0, -sg * 18); fore = (-20, 0, -sg * 40); hand = (-15, sg * -20, -sg * 25)
+                for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN
+                self._k(f'arm.{s}', t1, rot=arm); self._k(f'fore.{s}', t1, rot=fore); self._k(f'hand.{s}', t1, rot=hand)
+                self._k(f'arm.{s}', t2, rot=(arm[0] - 2, 0, arm[2] * 1.15)); self._k(f'fore.{s}', t2, rot=(fore[0] - 3, 0, fore[2] * 1.1)); self._k(f'hand.{s}', t2, rot=hand)
+                for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t3, rot=self.RELAXED[bn])
+                lift = -14 if name == 'shrug' else -6
+                self._k(f'clav.{s}', t0, rot=(0, 0, 0)); self._k(f'clav.{s}', t1, rot=(0, 0, sg * lift)); self._k(f'clav.{s}', t2, rot=(0, 0, sg * lift)); self._k(f'clav.{s}', t3, rot=(0, 0, 0))
+            self.expression('worried' if name == 'shrug' else 'surprised', t0, t2)
         elif name == 'wave':
             s = side; sg = 1 if s == 'R' else -1
             up = sh[s] + right * sg * 0.12 + fw * 0.06 + Vector((0, 0, 0.16))

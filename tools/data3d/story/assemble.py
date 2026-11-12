@@ -7,10 +7,40 @@ frames, narr, main, out = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]
 sys.path.insert(0, str(main)); sys.path.insert(0, str(main / "data_learning"))
 import studio_render as sr
 meta = json.load(open(narr / "narration.json")); lines, win = meta["lines"], meta["windows"]
-n = len(list(frames.glob("f*.png"))); total = n / 24
 work = out.parent / "work"; work.mkdir(parents=True, exist_ok=True)
+
+
+def speech_end(wav):
+    """Where the last real word ends. A TTS take can end on a short isolated burst of noise (a breath or a clipped
+    syllable); the 3D short of 2026-11-11 cut into one at its last frame and caaleb heard "that weird sound at the
+    end". A trailing sound shorter than BURST_S after a gap is that, not speech."""
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(wav), "-af", "silencedetect=n=-38dB:d=0.12", "-f", "null", "-"],
+                       capture_output=True, text=True).stderr
+    dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(wav)],
+                               capture_output=True, text=True).stdout)
+    starts = [float(x.split("silence_start: ")[1].split()[0]) for x in r.splitlines() if "silence_start" in x]
+    ends = [float(x.split("silence_end: ")[1].split()[0]) for x in r.splitlines() if "silence_end" in x]
+    sounds, t = [], 0.0                      # the non-silent stretches
+    for a, b in zip(starts, ends + [dur]):
+        if a > t: sounds.append((t, a))
+        t = b
+    if t < dur - 0.01: sounds.append((t, dur))
+    while len(sounds) > 1 and sounds[-1][1] - sounds[-1][0] < BURST_S: sounds.pop()
+    return sounds[-1][1] if sounds else dur
+
+
+BURST_S, TAIL_S, FADE_S = 0.3, 0.9, 0.7      # trailing noise; music after the last word; the fade out at the end
+n = len(list(frames.glob("f*.png"))); said = speech_end(narr / "narration.wav")
+total = max(n / 24, said + TAIL_S)           # never end on the voice: the picture holds its last frame if it must
+clean = work / "narration_clean.wav"         # the voice up to its last word, then silence to the end
+subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(narr / "narration.wav"), "-af",
+                f"atrim=0:{said + 0.06:.3f},afade=t=out:st={said - 0.02:.3f}:d=0.08,apad=whole_dur={total:.3f}", str(clean)],
+               check=True)
 vibe = json.load(open(main / "data_learning/niche.config.json")).get("music_vibe", "calm")
-mix = sr._build_soundtrack(narr / "narration.wav", [tuple(w) for w in win], [], total, vibe, work, slug=meta.get("slug", ""))
+mix0 = sr._build_soundtrack(clean, [tuple(w) for w in win], [], total, vibe, work, slug=meta.get("slug", ""))
+mix = work / "soundtrack_faded.wav"
+subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mix0), "-af",
+                f"atrim=0:{total:.3f},afade=t=out:st={total - FADE_S:.3f}:d={FADE_S}", str(mix)], check=True)
 
 def ts(t):
     h = int(t // 3600); m = int(t % 3600 // 60); s = t % 60
@@ -37,9 +67,11 @@ for (a0, a1), line in list(zip(win, lines))[1:]:
 (work / "caps.ass").write_text("\n".join(ass) + "\n")
 # atadenoise: a temporal average that follows motion, the last guard against frame-to-frame grain ("the Dr. Katz
 # effect", caaleb 2026-11-11); the shots carry their own camera moves, so there is no global zoom over the cuts
+hold = max(0.0, total - n / 24)
 vf = (f"atadenoise=0a=0.04:0b=0.08:1a=0.04:1b=0.08:2a=0.04:2b=0.08:s=7,scale=1080:1920:flags=lanczos,"
-      f"curves=all='0/0 0.25/0.235 0.8/0.81 1/1',eq=saturation=0.96,unsharp=5:5:0.4,ass={work / 'caps.ass'},format=yuv420p")
+      f"curves=all='0/0 0.25/0.235 0.8/0.81 1/1',eq=saturation=0.96,unsharp=5:5:0.4,ass={work / 'caps.ass'},format=yuv420p"
+      + (f",tpad=stop_mode=clone:stop_duration={hold:.3f}" if hold > 0.01 else ""))
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", "24", "-pattern_type", "glob", "-i", str(frames / "f*.png"),
                 "-i", str(mix), "-vf", vf, "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-r", "24",
-                "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", str(out)], check=True)
-print("ASSEMBLED", out, f"{total:.2f}s", meta.get("tts"))
+                "-c:a", "aac", "-b:a", "160k", "-t", f"{total:.3f}", "-movflags", "+faststart", str(out)], check=True)
+print("ASSEMBLED", out, f"{total:.2f}s", f"last word {said:.2f}s", meta.get("tts"))
