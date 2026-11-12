@@ -5253,6 +5253,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 23.9
+    },
+    "bat-fungus-collapse": {
+      "claimed_at": "2026-11-12T16:51:45.393636+00:00",
+      "title": "Losing Bats Threatens $53 Billion in Free Farm Protection",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6745,6 +6752,14 @@
       "state": "posted",
       "slug": "local-news-deserts-expanding",
       "at": "2026-11-12T01:45:29.605155+00:00"
+    },
+    {
+      "claimed_at": "2026-11-12T16:51:45.393636+00:00",
+      "title": "Losing Bats Threatens $53 Billion in Free Farm Protection",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "bat-fungus-collapse"
     }
   ]
 }
