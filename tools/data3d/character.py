@@ -128,7 +128,7 @@ class Data:
         'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=-0.02, lid=0.1),
         'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.14, lid=0.0, frown=0.45),
         'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.06, lid=0.2, frown=1.0),
-        'alarmed': dict(smile=0.0, open=0.0, oh=0.0, brow=0.16, lid=0.0, frown=1.0),      # brows high, eyes wide, the mouth turned down: shock without the mouth hole
+        'alarmed': dict(smile=0.0, open=0.0, oh=0.0, brow=0.22, lid=0.0, frown=0.7),      # brows high, eyes wide, the mouth turned down: shock without the mouth hole
         'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.0, lid=0.0),
         'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.15),     # "what can you do": brows up, a half smile
     }

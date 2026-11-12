@@ -171,8 +171,11 @@ jobs:
           retention-days: 7
 
   frames:
-    needs: [cfg, proof]      # renders WHILE the judge watches (caaleb 2026-11-12: a night lost waiting on the judge); the judge still gates the video
-    if: always() && needs.proof.result == 'success'
+    # the judge GATES the render (caaleb 2026-11-12 21:46Z: "we just need to make sure we are not wasting a bunch of time
+    # on somthing the judge will reject"): no full render starts on a proof the panel failed. Run the panel on a local
+    # proof (tools/data3d/store/judge3d.py) BEFORE pushing a trigger, so this gate passes the first time.
+    needs: [cfg, proof, judge]
+    if: always() && needs.proof.result == 'success' && needs.judge.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 300
     strategy:
