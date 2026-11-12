@@ -1,0 +1,25 @@
+{
+ "key": "body_temp_drop_by_sex",
+ "title": "Body temperature decline by sex, 1800s to today",
+ "unit": "degrees F",
+ "geography": "United States",
+ "time_coverage": "early 1800s-1990s (birth cohorts)",
+ "source": {
+  "name": "Decreasing human body temperature in the United States since the industrial revolution (Protsiv et al., eLife 2020)",
+  "publisher": "Stanford Medicine",
+  "url": "https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html",
+  "officiality": "secondary",
+  "access_date": "2026-11-12"
+ },
+ "notes": "Protsiv et al. (eLife, 2020): women's average body temperature fell about 0.58F and men's fell about 1.06F, comparing birth cohorts roughly two centuries apart.",
+ "points": [
+  {
+   "label": "women's average drop",
+   "value": 0.58
+  },
+  {
+   "label": "men's average drop",
+   "value": 1.06
+  }
+ ]
+}

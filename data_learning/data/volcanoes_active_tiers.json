@@ -1,0 +1,29 @@
+{
+ "key": "volcanoes_active_tiers",
+ "title": "How many of Earth's volcanoes are active, by definition",
+ "unit": "volcanoes",
+ "geography": "Earth",
+ "time_coverage": "current",
+ "source": {
+  "name": "Global Volcanism Program database",
+  "publisher": "Smithsonian Institution",
+  "url": "https://volcano.si.edu",
+  "officiality": "official",
+  "access_date": "2026-11-12"
+ },
+ "notes": "GVP's Holocene-active count has ranged roughly 1,350-1,426 across recent database versions; rounded here to 1,400. About 550 volcanoes have documented eruptions within recorded history. Roughly 40-50 volcanoes are typically in some state of eruption at any given time; rounded here to 45.",
+ "points": [
+  {
+   "label": "considered active in the Holocene (~11,700 yrs)",
+   "value": 1400
+  },
+  {
+   "label": "have erupted within recorded history",
+   "value": 550
+  },
+  {
+   "label": "erupting right now",
+   "value": 45
+  }
+ ]
+}

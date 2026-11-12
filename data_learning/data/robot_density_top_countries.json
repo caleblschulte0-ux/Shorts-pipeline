@@ -1,0 +1,37 @@
+{
+ "key": "robot_density_top_countries",
+ "title": "Industrial robots per 10,000 manufacturing workers, top countries",
+ "unit": "robots per 10,000 workers",
+ "geography": "World",
+ "time_coverage": "2024 (World Robotics 2025 report)",
+ "source": {
+  "name": "World Robotics 2025 report (robot density by country)",
+  "publisher": "International Federation of Robotics (IFR), via Supply Chain 247",
+  "url": "https://www.supplychain247.com/article/robot-density-rises-global-manufacturing-ifr-report/automation",
+  "officiality": "secondary",
+  "access_date": "2026-11-12"
+ },
+ "notes": "IFR World Robotics 2025: South Korea leads the world in robot density at 1,220 per 10,000 manufacturing workers, followed by Singapore (818), Germany (449) and Japan (446). Global average cited around 132.",
+ "points": [
+  {
+   "label": "South Korea",
+   "value": 1220
+  },
+  {
+   "label": "Singapore",
+   "value": 818
+  },
+  {
+   "label": "Germany",
+   "value": 449
+  },
+  {
+   "label": "Japan",
+   "value": 446
+  }
+ ],
+ "baseline": {
+  "label": "global average",
+  "value": 132
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "key": "volcanoes_ring_of_fire_share",
+ "title": "Share of Earth's active volcanoes on the Pacific Ring of Fire",
+ "unit": "percent",
+ "geography": "Earth",
+ "time_coverage": "current",
+ "source": {
+  "name": "Ring of Fire / Decade Volcanoes program summaries",
+  "publisher": "U.S. Geological Survey (USGS)",
+  "url": "https://www.usgs.gov",
+  "officiality": "official",
+  "access_date": "2026-11-12"
+ },
+ "notes": "USGS describes roughly 75% of the world's active and dormant volcanoes as lying along the Pacific Ring of Fire.",
+ "points": [
+  {
+   "label": "Pacific Ring of Fire",
+   "value": 75
+  },
+  {
+   "label": "everywhere else",
+   "value": 25
+  }
+ ]
+}

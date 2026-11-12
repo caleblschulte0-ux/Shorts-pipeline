@@ -38158,6 +38158,233 @@
      "say": "Podiatrists blame body size — 66% of adults in England are now overweight or living with obesity, and extra weight spreads the foot."
     }
    ]
+  },
+  {
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "title": "The Great Barrier Reef Has Now Bleached 7 Times Since 1998",
+   "hook": "Mass bleaching used to be rare. Not anymore.",
+   "closing": "The reef isn't just struggling. It's running out of time to recover between hits.",
+   "question": "Could the reef keep up with this?",
+   "hashtags": [
+    "greatbarrierreef",
+    "coralbleaching",
+    "climatechange",
+    "ocean",
+    "reef",
+    "aims",
+    "marinebiology",
+    "australia",
+    "coral",
+    "oceanscience",
+    "didyouknow",
+    "globalwarming"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "gbr_bleaching_by_decade",
+     "params": {
+      "file": "gbr_bleaching_by_decade.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · HOW OFTEN",
+     "topic": "how often the reef bleaches",
+     "say": "In the 1990s and 2000s, the reef bleached just once each decade — rare and newsworthy. The 2020s alone already have 3 events."
+    },
+    {
+     "source": "offline",
+     "key": "gbr_bleaching_gap_shrinking",
+     "params": {
+      "file": "gbr_bleaching_gap_shrinking.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE GAP CLOSING",
+     "topic": "the gap between reef bleaching events",
+     "say": "The gap from the first event to the second ran a full 14 years. Now the reef barely gets 2 before it happens again."
+    },
+    {
+     "source": "offline",
+     "key": "gbr_bleaching_vs_recovery_time",
+     "params": {
+      "file": "gbr_bleaching_vs_recovery_time.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · NOT ENOUGH TIME",
+     "topic": "recovery time the reef doesn't get",
+     "say": "Scientists say a reef typically needs about 10 years of calm water to fully heal. It's now only getting about 2."
+    }
+   ]
+  },
+  {
+   "slug": "normal-body-temperature-has-shifted",
+   "title": "98.6°F Isn't 'Normal' Body Temperature Anymore",
+   "hook": "The number everyone learned in school? It's wrong now.",
+   "closing": "Normal was never fixed. It's been quietly drifting for two centuries.",
+   "question": "What's your actual resting temperature right now?",
+   "hashtags": [
+    "bodytemperature",
+    "health",
+    "sciencefacts",
+    "didyouknow",
+    "humanbody",
+    "medicine",
+    "biology",
+    "stanford",
+    "healthfacts",
+    "medtech",
+    "wellness",
+    "science"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "body_temp_decline_by_era",
+     "params": {
+      "file": "body_temp_decline_by_era.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DRIFT",
+     "topic": "body temperature by birth era",
+     "say": "Stanford researchers compared body temperatures by birth year. Men born in the early 1800s averaged 98.6. Men born in the 1990s average about 97.5."
+    },
+    {
+     "source": "offline",
+     "key": "body_temp_drop_by_sex",
+     "params": {
+      "file": "body_temp_drop_by_sex.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WOMEN VS MEN",
+     "topic": "the temperature drop, women vs men",
+     "say": "Women's average fell about 0.58 degrees over two centuries. Men's fell nearly double that, 1.06 degrees — scientists think slowing metabolism is why."
+    },
+    {
+     "source": "offline",
+     "key": "body_temp_original_measurement_error",
+     "params": {
+      "file": "body_temp_original_measurement_error.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE NUMBER ITSELF",
+     "topic": "the original temperature reading",
+     "say": "A 1992 study found Wunderlich's original thermometers were miscalibrated. His true average was probably closer to 98.2, not 98.6."
+    }
+   ]
+  },
+  {
+   "slug": "volcanoes-erupting-right-now",
+   "title": "About 45 Volcanoes Are Erupting On Earth Right Now",
+   "hook": "Earth never actually stops erupting. It just moves around.",
+   "closing": "Something, somewhere, is always on fire under your feet.",
+   "question": "Did you know one was erupting today?",
+   "hashtags": [
+    "volcanoes",
+    "geology",
+    "earthscience",
+    "smithsonian",
+    "ringoffire",
+    "volcano",
+    "naturaldisasters",
+    "sciencefacts",
+    "didyouknow",
+    "earthfacts",
+    "nature",
+    "usgs"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "volcanoes_active_tiers",
+     "params": {
+      "file": "volcanoes_active_tiers.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · HOW MANY ARE ACTIVE",
+     "topic": "how many volcanoes are active",
+     "say": "Earth has about 1,400 volcanoes considered potentially active. Right now, only about 45 of them are actually erupting."
+    },
+    {
+     "source": "offline",
+     "key": "volcanoes_ring_of_fire_share",
+     "params": {
+      "file": "volcanoes_ring_of_fire_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHERE THEY SIT",
+     "topic": "where most of earth's volcanoes sit",
+     "say": "Three-quarters of them sit along one line — the Pacific Ring of Fire circling the ocean."
+    },
+    {
+     "source": "offline",
+     "key": "volcanoes_decade_volcanoes",
+     "params": {
+      "file": "volcanoes_decade_volcanoes.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE MOST DANGEROUS",
+     "topic": "the most dangerous volcanoes",
+     "say": "Of all of them, only 16 are officially named 'Decade Volcanoes' — the ones considered most dangerous to the people living nearby."
+    }
+   ]
+  },
+  {
+   "slug": "south-korea-robot-density-record",
+   "title": "South Korea Has 1,220 Robots For Every 10,000 Factory Workers",
+   "hook": "One country now has way more robot coworkers than people.",
+   "closing": "More robots than people, at least on that factory floor.",
+   "question": "Would a robot coworker worry you?",
+   "hashtags": [
+    "robots",
+    "automation",
+    "southkorea",
+    "manufacturing",
+    "technology",
+    "factoryfloor",
+    "robotics",
+    "ifr",
+    "industrialrobots",
+    "futureofwork",
+    "innovation",
+    "didyouknow"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "robot_density_top_countries",
+     "params": {
+      "file": "robot_density_top_countries.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "1 · THE WORLD LEADER",
+     "topic": "robots per factory worker, by country",
+     "say": "South Korea has 1,220 robots for every 10,000 factory workers — the most of any country. Singapore is a distant second, at 818."
+    },
+    {
+     "source": "offline",
+     "key": "robot_density_korea_vs_us",
+     "params": {
+      "file": "robot_density_korea_vs_us.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · VS THE US",
+     "topic": "robot density, korea vs the us",
+     "say": "The US ranks eighth worldwide with 307 robots per 10,000 workers. Korea has nearly 4 times that many."
+    },
+    {
+     "source": "offline",
+     "key": "robot_density_installs_vs_density",
+     "params": {
+      "file": "robot_density_installs_vs_density.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · DENSITY VS VOLUME",
+     "topic": "robot density vs robot installs",
+     "say": "China installs more robots than anyone but ranks only 22nd in density, at 166. Density is what really changes a factory floor."
+    }
+   ]
   }
  ]
 }

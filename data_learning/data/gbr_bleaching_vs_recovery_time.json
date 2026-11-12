@@ -1,0 +1,25 @@
+{
+ "key": "gbr_bleaching_vs_recovery_time",
+ "title": "Coral recovery time vs time actually between bleaching events",
+ "unit": "years",
+ "geography": "Great Barrier Reef, Australia",
+ "time_coverage": "2020s",
+ "source": {
+  "name": "Coral reef recovery timelines after mass bleaching",
+  "publisher": "Australian Institute of Marine Science (AIMS) / NOAA Coral Reef Watch",
+  "url": "https://aims.gov.au",
+  "officiality": "official",
+  "access_date": "2026-11-12"
+ },
+ "notes": "AIMS and NOAA Coral Reef Watch describe full coral recovery after a severe mass bleaching event as typically requiring a decade or more of undisturbed growth; recent mass bleaching events have been arriving roughly every 2 years.",
+ "points": [
+  {
+   "label": "years a reef typically needs to recover",
+   "value": 10
+  },
+  {
+   "label": "years it's actually getting now",
+   "value": 2
+  }
+ ]
+}

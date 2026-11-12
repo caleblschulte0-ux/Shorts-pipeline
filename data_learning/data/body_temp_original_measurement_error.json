@@ -1,0 +1,25 @@
+{
+ "key": "body_temp_original_measurement_error",
+ "title": "Wunderlich's original 98.6F figure vs its 1992 recalculation",
+ "unit": "degrees F",
+ "geography": "Germany/United States",
+ "time_coverage": "1868 vs 1992",
+ "source": {
+  "name": "A Critical Appraisal of 98.6 Degrees F (Mackowiak, Wasserman & Levine, JAMA 1992)",
+  "publisher": "JAMA (Journal of the American Medical Association)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Mackowiak+critical+appraisal+98.6",
+  "officiality": "secondary",
+  "access_date": "2026-11-12"
+ },
+ "notes": "Carl Wunderlich's 1868 compilation (from roughly 25,000 patients) produced the 98.6F figure. A 1992 JAMA reanalysis of his surviving thermometers found they ran hot/were miscalibrated, estimating his true population mean was closer to 98.2F.",
+ "points": [
+  {
+   "label": "Wunderlich's original 1868 figure",
+   "value": 98.6
+  },
+  {
+   "label": "1992 recalculation from his own thermometers",
+   "value": 98.2
+  }
+ ]
+}

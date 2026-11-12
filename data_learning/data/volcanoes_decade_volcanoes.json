@@ -1,0 +1,25 @@
+{
+ "key": "volcanoes_decade_volcanoes",
+ "title": "All active volcanoes vs officially designated 'Decade Volcanoes'",
+ "unit": "volcanoes",
+ "geography": "Earth",
+ "time_coverage": "current",
+ "source": {
+  "name": "Ring of Fire / Decade Volcanoes program summaries",
+  "publisher": "U.S. Geological Survey (USGS)",
+  "url": "https://www.usgs.gov",
+  "officiality": "official",
+  "access_date": "2026-11-12"
+ },
+ "notes": "Of the roughly 1,400 volcanoes considered active, only 16 are officially designated 'Decade Volcanoes' by IAVCEI/the UN's International Decade for Natural Disaster Reduction, chosen for their history of destructive eruptions and proximity to populated areas.",
+ "points": [
+  {
+   "label": "all volcanoes considered active",
+   "value": 1400
+  },
+  {
+   "label": "officially designated 'Decade Volcanoes'",
+   "value": 16
+  }
+ ]
+}
