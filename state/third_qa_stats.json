@@ -3,159 +3,6 @@
     {
       "date": "20261107",
       "dry_run": false,
-      "ts": "2026-11-07T11:44:20+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 149,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-07T08:46:15.791399+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-07T11:44:20+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261107-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261107-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 17.3
-        },
-        {
-          "slug": "clip-20261107-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261107-3",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261107-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261107",
-      "dry_run": false,
       "ts": "2026-11-07T12:36:54+00:00",
       "feedback": {
         "snapshot": true,
@@ -5410,6 +5257,286 @@
             }
           },
           "took_s": 137.8
+        }
+      ]
+    },
+    {
+      "date": "20261112",
+      "dry_run": false,
+      "ts": "2026-11-12T15:45:50+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 115,
+        "with_curve": 15,
+        "fetched_at": "2026-11-12T12:55:03.408868+00:00"
+      },
+      "brain": {
+        "ok": 25,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261112-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261112-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height. The League gameplay is tiny and the Faker ac; vision: Frames at 1.3s and 2.1s show a red Geometry Dash level, which ",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Faker searched name, play unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Streamer watches Faker multitask; niche,",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Can't Believe What Faker Just Did In This Iconic Play"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip, about a third of the canvas height. The League gameplay is tiny and the Faker ac",
+                "Frames at 1.3s and 2.1s show a red Geometry Dash level, which doesn't match the Faker/League hook and title. It looks li",
+                "The streamer facecam is a small inset in the corner of the strip, so reactions are hard to read.",
+                "Captions sit on the bottom of the game strip and cover part of the minimap/HUD area. This is minor next to the framing p"
+              ]
+            }
+          },
+          "took_s": 169.8
+        },
+        {
+          "slug": "clip-20261112-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261112-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261112-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.22 < 0.35 (WoW walking; only audio laughing, no eve)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 134,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Marlon's stream goes from 'progresss' to Marlon and Ron kissing, a running joke payoff on the same stream.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Joe Bartolozzi and Stableronaldo both hit the Fortnite pirate token moment, then Ron shouts WE DID IT after an epic win.",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Deepins02's stream has a moment aimed at Jynxzi, and Jynxzi's own stream is the other half of that exchange.",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Sodapoppin's WoW stream gets camped by his managers, with his gated-community take and an 'average Mitch stream' as the ",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Pikaboo's WoW run goes from ganking a higher-level shaman, to the gf larp, to being dumped for a Horde player.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 321,
+                "moments": 40,
+                "candidates": 541,
+                "pool": 2944,
+                "pool_with_vod": 2095,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  4,
+                  3,
+                  3,
+                  2,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:marlon/marlon-about-friend-2026w45",
+                  "outcome": "narrative_failed",
+                  "why": "scores [76, 79, 76] after 2 revision(s) \u2014 @41s missing_context: The 'token' is never explained. Add a short context_overlay such as 'Finish the run, earn your token' before the car clip, or hold the line 'you're getting the token' on screen so the ending lands.; @1s confusing: The opening transcript"
+                },
+                {
+                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr",
+                  "outcome": "already_refused",
+                  "why": "2026-11-12: director judged: not a story \u2014 The clip is steel looking at a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. The before and after so"
+                },
+                {
+                  "cluster": "kaicenat@vod2849957264/kaicenat-call-cenat-2026w34",
+                  "outcome": "narrative_failed",
+                  "why": "scores [62, 71, 70] after 2 revision(s) \u2014 @30s missing_context: A stranger can't tell why Kai wants to hang up calls or kick people out. Add a line or overlay that links this to the TikTok Live, such as 'Kai is about to go live and doesn't know how it works', or o; @33s pacing: The hang-up question "
+                },
+                {
+                  "cluster": "scout:joebartolozzi+stableronaldo/joebartolozzi-stableronald",
+                  "outcome": "narrative_failed",
+                  "why": "scores [58, 72, 58] after 2 revision(s) \u2014 @8s missing_context: The jump from the token banner to the launch is confusing. A stranger cannot tell what launched him: the frames show a Sentinel Pump Shotgun kill feed and a sideways, tumbling camera. Add a short over; @5s confusing: The first clip is mo"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "vague joke, insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.22,
+              "why": "WoW walking; only audio laughing, no eve",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 78.0
+        },
+        {
+          "slug": "clip-20261112-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "wholesome art, niche audience",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Searchable name, but calm sketchbook sho",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ironmouse Finds Her Original Design And It's Not What You Expect"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "After about 10s the sharp picture is only about a third of the canvas height (wide strip with large blurred padding), we",
+                "At 8.4s the big word 'THAT I DREW' sits directly over Ironmouse's eyes",
+                "Framing switches from a full-frame face close-up (first ~10s) to a letterboxed side-by-side, which is inconsistent",
+                "Word captions overlap the character's chest/bow in the strip, and the hook text stays on the whole video"
+              ]
+            }
+          },
+          "took_s": 214.6
         }
       ]
     }
