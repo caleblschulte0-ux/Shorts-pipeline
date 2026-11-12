@@ -54,5 +54,37 @@ class DownloadsRunSideBySide(unittest.TestCase):
         self.assertLessEqual(len(calls), 2)
 
 
+class AVideoIsFetchedOncePerRun(unittest.TestCase):
+    def test_the_same_url_is_not_fetched_twice(self):
+        import tempfile
+        calls = []
+        with tempfile.TemporaryDirectory() as tmp:
+            f = Path(tmp) / "a.mp4"
+            f.write_bytes(b"x")
+
+            def fake(url, out):
+                calls.append(url)
+                return f
+
+            with mock.patch.object(ff, "_download", fake), \
+                 mock.patch.dict(ff._GOT, clear=True):
+                self.assertEqual(ff.download("u", Path(tmp) / "b.mp4"), f)
+                self.assertEqual(ff.download("u", Path(tmp) / "c.mp4"), f)
+        self.assertEqual(calls, ["u"])
+
+    def test_a_failed_fetch_is_tried_again(self):
+        calls = []
+
+        def fake(url, out):
+            calls.append(url)
+            return None
+
+        with mock.patch.object(ff, "_download", fake), \
+             mock.patch.dict(ff._GOT, clear=True):
+            ff.download("u", Path("x"))
+            ff.download("u", Path("y"))
+        self.assertEqual(calls, ["u", "u"])
+
+
 if __name__ == "__main__":
     unittest.main()
