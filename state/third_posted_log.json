@@ -19200,14 +19200,68 @@
       "ts": "2026-11-12T12:40:43.491496+00:00"
     },
     "clip-20261112-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/geezgiselle/clip/HungryPerfectPlumageCharlieBitMe-Sn2HHpyvE9Jtt36h",
-      "story_key": null,
-      "streamer": "geezgiselle",
+      "url": "https://youtube.com/shorts/EYzIF055KCQ",
       "title": "Geezgiselle Gets Hit Hard In Wild Streamer Fight Moment",
       "kind": "twitch_clip",
-      "ts": "2026-11-12T12:42:41.033043+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-12T12:42:52.288729+00:00",
+      "uploaded_at": "2026-11-12T12:42:52.288745+00:00",
+      "publish_at": "2026-11-12T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261112-geezgiselle-gets-hit-hard-in-wild-streamer-fight-82266b7a",
+        "tiktok": "queued for 2026-11-12T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/geezgiselle/clip/HungryPerfectPlumageCharlieBitMe-Sn2HHpyvE9Jtt36h",
+      "streamer": "geezgiselle",
+      "series": "fail",
+      "hook": "Giselle takes a hard hit \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2172,
+      "banger": 0.3,
+      "cut": {
+        "start": 3.5,
+        "end": 9.5
+      },
+      "director_cut": true
+    },
+    "rejected-delightfulendearingvelociraptorprimeme-x6nicqqpb4na_t8s": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DelightfulEndearingVelociraptorPrimeMe-x6nicQqPB4nA_t8s",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Reacts To Ron Getting Token And Loses It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 2.6s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height. The rest is blurred padding, so the clip rea; vision: The subject is small on a phone screen. The facecam and the Fortnite action are ",
+      "ts": "2026-11-12T12:47:07.884972+00:00"
+    },
+    "rejected-gracefulcrispyjackalfrankerz-fdhaeesry9_k0mro": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/GracefulCrispyJackalFrankerZ-FDhaEESRY9_K0MrO",
+      "streamer": "joe_bartolozzi",
+      "title": "pirate token in 3 2 1...",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Fortnite gameplay, insider, no visible p)",
+      "ts": "2026-11-12T12:47:49.713664+00:00"
+    },
+    "rejected-gorgeousinexpensivegrasshopperargieb8-9v4jy1kxz8er1h5y": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/GorgeousInexpensiveGrasshopperArgieB8-9v4jy1KxZ8ER1h5y",
+      "streamer": "jasontheween",
+      "title": "EWW",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Unclear disgust, no visible event)",
+      "ts": "2026-11-12T12:48:30.330898+00:00"
+    },
+    "rejected-hilarioussparklingcrocodilejebaited-jdupjaxr6elcf_xs": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/HilariousSparklingCrocodileJebaited-JDupJaXr6eLCF_Xs",
+      "streamer": "loltyler1",
+      "title": "Loltyler1 Hits Zed And The Crowd Goes Off After This",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is only about a third of the 9:16 canvas, a thin strip across the middle, well short of the roughly th; vision: In the first ~16s the gameplay is a wide, zoomed-out game view with tiny champions and unreadable HUD. The action is sma; vision: In the reaction frames the strea",
+      "ts": "2026-11-12T12:54:51.830979+00:00"
     }
   }
 }

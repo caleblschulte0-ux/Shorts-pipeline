@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261106",
-      "dry_run": false,
-      "ts": "2026-11-06T17:55:13+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 148,
-        "with_retention": 128,
-        "with_curve": 15,
-        "fetched_at": "2026-11-06T16:07:57.046173+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261106-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261106-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261106-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261106-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261106-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261106-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261107",
       "dry_run": false,
       "ts": "2026-11-07T11:41:18+00:00",
@@ -4920,6 +4868,369 @@
           "slug": "clip-20261111-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261112",
+      "dry_run": false,
+      "ts": "2026-11-12T12:54:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 115,
+        "with_curve": 15,
+        "fetched_at": "2026-11-12T08:46:23.237278+00:00"
+      },
+      "brain": {
+        "ok": 46,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261112-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip (about 25% of canvas height) in the middle of mostly black and blurred padding, not th; vision: The subject, Hasan, is a small webcam inset in the bottom-righ",
+          "judges": {
+            "banger": {
+              "score": 0.82,
+              "why": "Searched name, arrest shock",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Famous name, but static talk; likely jok",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Hasanabi: Hasan Piker Says He Was Arrested Last Night And Calls It A 'Misunderstanding'"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip (about 25% of canvas height) in the middle of mostly black and blurred padding, not th",
+                "The subject, Hasan, is a small webcam inset in the bottom-right corner. His face is tiny and unreadable on a phone, and ",
+                "Word captions sit on top of the webcam and the bottom of the strip, and a second hook line sits below the strip. This ov",
+                "The framing looks like an uncropped screen-share repost, not an intentional edit."
+              ]
+            }
+          },
+          "took_s": 121.2
+        },
+        {
+          "slug": "clip-20261112-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Routine game fail, half static menu)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Famous streamer, routine game rant",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Routine game fail, half static menu",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 27.4
+        },
+        {
+          "slug": "clip-20261112-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Animated talking, no clear event)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 135,
+                "refused_shown": 7,
+                "scouted": [],
+                "vod_arcs": 319,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2936,
+                "pool_with_vod": 2084,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  4,
+                  2,
+                  3,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr/s",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is the streamer scrolling a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. That is a mild, sarcastic aside with no turn, no reveal and no reaction a stranger would"
+                },
+                {
+                  "cluster": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "tminnzy@momentassiduouscrispywallabyderp-qpp_b8busa7wh7rc/tm",
+                  "outcome": "structure_failed",
+                  "why": "the picture stands still for 2s at 4s"
+                },
+                {
+                  "cluster": "joebartolozzi@momentgracefulcrispyjackalfrankerz-fdhaeesry9_",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "joebartolozzi@momentgracefulcrispyjackalfrankerz-fdhaeesry9_",
+                  "outcome": "duration",
+                  "why": "22s outside 25-90s"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "Vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Animated talking, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 49.4
+        },
+        {
+          "slug": "clip-20261112-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "Gameplay inside joke, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Monkey King staff twirl, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Geezgiselle Gets Hit Hard In Wild Streamer Fight Moment"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The 'HIT MY FIST' and 'HARD!' word overlays sit on the torso. They stay clear of the face but are a little cluttered.",
+                "A cropped fragment of the source's on-screen text ('00/$100.00') shows at the bottom-left in every frame.",
+                "The footage is a person in a Monkey King costume, not an obvious streamer fight. The visuals are clean, but the title ma"
+              ]
+            }
+          },
+          "took_s": 128.8
+        },
+        {
+          "slug": "clip-20261112-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 2.6s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height. The rest is blurred padding, so th",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261112-5",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "Needs context, reaction to unseen",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Fortnite chaos, insider, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Reacts To Ron Getting Token And Loses It"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 2.6s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip, about a third of the canvas height. The rest is blurred padding, so the clip rea",
+                "The subject is small on a phone screen. The facecam and the Fortnite action are both tiny, and the in-game text and HUD ",
+                "The framing was not cropped toward the facecam or the action, so it fails the roughly three-quarters fill target.",
+                "No overlay covers a face and no frame is broken; the hook card sits in the blurred padding."
+              ]
+            }
+          },
+          "took_s": 157.0
+        },
+        {
+          "slug": "clip-20261112-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is only about a third of the 9:16 canvas, a thin strip across the middle, well short of the roughly th; vision: In the first ~16s the gameplay is a wide, zoomed-out game view",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "Vague title, likely gameplay",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Esports finals win, reactions, niche con",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Loltyler1 Hits Zed And The Crowd Goes Off After This"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is only about a third of the 9:16 canvas, a thin strip across the middle, well short of the roughly th",
+                "In the first ~16s the gameplay is a wide, zoomed-out game view with tiny champions and unreadable HUD. The action is sma",
+                "In the reaction frames the streamer is small within the strip, with a bodyguard and a lot of dead space around him. The ",
+                "The framing looks like a plain repost, with no crop toward the action."
+              ]
+            }
+          },
+          "took_s": 381.5
         }
       ]
     }
