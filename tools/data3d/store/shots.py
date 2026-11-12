@@ -220,11 +220,17 @@ _story = os.path.join(STORY_DIR, "shots.py")
 exec(compile(open(_story).read(), _story, "exec"), globals())   # the story's acts, in this namespace
 S = SHOTS[SHOT]()
 data = S["data"]; sc.frame_start = 1; sc.frame_end = NF
-store = {"lanes": S["lanes"], "extra": [], "kiosks": S["kiosks"]}
-built.apply(sc, store, S["rest"])
-style.restyle()
-key = style.lights(sc); more_panels()
-built.relight(); built.feet_shadow(data)
+if "sets" in SCRIPT and S.get("place", "store") != SCRIPT["sets"][SHOT - 1]:
+    raise SystemExit(f"shot {SHOT} is set in {S.get('place', 'store')!r} but the script puts this beat in {SCRIPT['sets'][SHOT - 1]!r}")
+if S.get("place", "store") == "store":     # the approved supermarket and its lamps
+    store = {"lanes": S["lanes"], "extra": [], "kiosks": S["kiosks"]}
+    built.apply(sc, store, S["rest"])
+    style.restyle()
+    key = style.lights(sc); more_panels()
+    built.relight()
+else:                                      # a place of its own (store/locations.py): it brings its own light
+    key = S["light"]()
+built.feet_shadow(data)
 if S.get("open_roof"):   # the camera is up in the roof: take the deck, joists, ducts and pendants out of its way
     bpy.context.view_layer.update()
     for o in bpy.data.objects:

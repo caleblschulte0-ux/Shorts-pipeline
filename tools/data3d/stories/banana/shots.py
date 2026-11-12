@@ -31,6 +31,14 @@ def produce_set(lanes_x=(2.4, 3.0)):
     return lanes, kiosks
 
 
+import locations as LOC
+
+
+def place(name):
+    """build one of the places in store/locations.py; returns the fields a shot hands the harness"""
+    return dict(lanes=[], kiosks=[], place=name, light=LOC.PLACES[name]())
+
+
 def soft_key(name, at, aim, energy=30, size=26, color=(1.0, 0.95, 0.86)):
     """a SPOT on a prop from the camera side: it lifts the fruit off the busy store without washing his teal pale"""
     ld = bpy.data.lights.new(name, 'SPOT'); ld.energy = energy; ld.spot_size = math.radians(size); ld.spot_blend = 0.6
@@ -179,7 +187,7 @@ def shot2():
     each with the same blue sticker. He pushes the nearest one and every bunch swings in turn, the SAME swing passed
     down the row (a row of copies moves as one). On "what kills one can kill them all" a brown blight starts on the
     first and runs down the row, bunch by bunch."""
-    lanes, kiosks = produce_set()
+    where = place("warehouse")
     T_PUSH, T_BLIGHT = 1.05, DUR * 0.55
     mats = [PR.skin_mat(f"rail {k}") for k in range(N_HOOK)]
     rows = rail_row(lambda k: mats[k])
@@ -211,7 +219,7 @@ def shot2():
     cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.5)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, rows[1][0]))
     swingers = [r[2] for r in rows]
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("rail bunch 0",),
+    return dict(**where, data=data, rest=1, grips=("rail bunch 0",),
                 conseq=[("every bunch swings in turn", lambda: meshes(swingers), T_PUSH, T_PUSH + 1.6),
                         ("the blight runs down the row", lambda: meshes(swingers), T_BLIGHT, DUR)])
 
@@ -221,7 +229,7 @@ def shot3():
     """THE GROS MICHEL. An old wooden crate on the table, GROS MICHEL / 1950 stencilled on it. He lifts its lid off and
     drops it aside: the fruit inside is fat and yellow for a beat, then goes black. He pushes the crate over on its
     side and the dead fruit spills out across the table."""
-    lanes, kiosks = produce_set()
+    where = place("plantation")
     PR.table("produce table", (0.0, -0.42, 0.0), w=1.0, d=0.5, h=TABLE_H)
     TOP = TABLE_H + 0.034
     CX, CY = 0.06, -0.36; cz = TABLE_H + 0.03; CW, CD, CH = 0.38, 0.26, 0.17
@@ -274,7 +282,7 @@ def shot3():
     C0, C1 = Vector((0.2, -1.45, 0.66)), Vector((0.2, -1.33, 0.62)); LK = Vector((0.2, -0.3, 0.46))   # centred between him and where the crate lands, so the spill is in frame
     cam = K.camera(tuple(C0), tuple(LK), lens=30, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (CX, CY, cz + 0.1)))
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("old crate", "gros bunch"),
+    return dict(**where, data=data, rest=1, grips=("old crate", "gros bunch"),
                 conseq=[("the lid comes off and drops", lambda: meshes([lid]), T_LID0, T_LID1 + 0.6),
                         ("the fruit goes black", inside, T_ROT0, T_ROT1),
                         ("the crate goes over and the dead fruit spills", lambda: meshes([root]), T_TIP0 + 0.2, DUR)])
@@ -285,15 +293,16 @@ def shot4():
     """NO CURE, IN THE SOIL FOR DECADES. A young banana plant in a planter on the floor beside him. The rot climbs its
     stem out of the soil and its leaves droop and brown one after another. He takes hold of a drooping leaf and lifts it
     back up; he lets go and it flops down, dead."""
-    lanes, kiosks = produce_set()
+    where = place("field")
     PX, PY = -0.06, -0.42
-    pl = PR.planter("planter", (PX, PY, 0.0), w=0.32, d=0.26, h=0.2)
-    pt = PR.plant("young plant", (PX, PY, pl["top_z"] - 0.02), height=0.36, seed=8, angles=(8, 172, 38, 142, 70, 110))   # to the sides and back, none at the lens
+    soil = LOC._noise_mat("field soil", "#5A4430", "#47362A")
+    K.sph("young plant mound", (PX, PY, -0.03), 1.0, soil, scale=(0.15, 0.13, 0.07))   # planted in the field's own soil
+    pt = PR.plant("young plant", (PX, PY, 0.02), height=0.45, seed=8, angles=(8, 172, 38, 142, 70, 110))   # to the sides and back, none at the lens
     T_CLIMB0, T_CLIMB1 = 0.2, DUR * 0.7
     PR.rot(pt["stem_mat"], T_CLIMB0, T_CLIMB1, to=0.95)
     # the leaf that points at him is the one he lifts; the others wilt in turn
     data = load_data()
-    DP = Vector((0.31, -0.32, 0)); data.place(DP.x, DP.y, -22)
+    DP = Vector((0.36, -0.32, 0)); data.place(DP.x, DP.y, -22)
     sc.frame_set(1); bpy.context.view_layer.update()
     to_him = math.atan2(DP.y - PY, DP.x - PX)
     lifted = min(range(len(pt["leaves"])), key=lambda k: abs(((pt["leaves"][k][0].rotation_euler.z - to_him) + math.pi) % (2 * math.pi) - math.pi))
@@ -327,11 +336,11 @@ def shot4():
     data.blink(0.8); data.blink(T_G1 + 0.2); data.blink(DUR - 0.4)
     data.finish()
     soft_key("plant key", (-0.75, -1.3, 1.0), (PX, PY, 0.45), energy=45, size=28)
-    C0, C1 = Vector((0.07, -1.55, 0.52)), Vector((0.07, -1.46, 0.5)); LK = Vector((0.07, -0.35, 0.42))   # plant and him both whole in frame
+    C0, C1 = Vector((0.07, -1.55, 0.5)), Vector((0.07, -1.46, 0.48)); LK = Vector((0.07, -0.35, 0.38))   # plant and him both whole in frame
     cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (PX, PY, 0.45)))
     leaves = [o for h_, _ in pt["leaves"] for o in h_.children]
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("young plant",),
+    return dict(**where, data=data, rest=1, grips=("young plant",),
                 conseq=[("the rot climbs the stem", [pt["stem"]], T_CLIMB0, T_CLIMB1),
                         ("the leaves droop", leaves, 0.5, DUR),
                         ("the lifted leaf flops down", list(hz.children), T_LET, DUR)])
@@ -342,7 +351,7 @@ def shot5():
     """THE PAYOFF. The rail again, an ECUADOR banana box under its far end. The rot starts at the bunch over the box
     and comes down the row toward him; each bunch goes black and drops off its hook to the floor. He lifts the LAST
     yellow bunch off its hook and hugs it to his chest, looking at us, the camera pushing in to him. It ends there."""
-    lanes, kiosks = produce_set()
+    where = place("dock")
     mats = [PR.skin_mat(f"rail {k}") for k in range(N_HOOK)]
     rows = rail_row(lambda k: mats[k])
     R = Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z')
@@ -400,7 +409,7 @@ def shot5():
     cam = K.camera(tuple(C0), tuple(LKF), lens=26, fstop=3.5)
     camera_path(cam, lambda t: (C0.lerp(C1, ease((t - T_REACH + 0.6) / 2.2)), look(t), far.lerp(DP + Vector((0, 0, 0.5)), ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))))
     fallen = [r[2] for r in rows[1:]]
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, T_PAN1 - 0.3),
+    return dict(**where, data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, T_PAN1 - 0.3),
                 conseq=[("the bunches go black and fall, toward him", lambda: meshes(fallen), T0_, T_REACH + 0.6),
                         ("he holds the last yellow bunch", lambda: meshes([lroot]), T_HUG, DUR)])
 

@@ -42,6 +42,15 @@ def test_every_story_folder_is_complete():
         if st.name != "checkout":     # the first short predates the folder; every story after it carries all of it
             assert len(s["storyboard"]) == n
             assert s["sources"] and all(x["url"].startswith("https://") and x["says"] for x in s["sources"])
+            # every beat happens SOMEWHERE OF ITS OWN (caaleb 2026-11-12, of five beats in one store aisle: "way too
+            # similar to be the whole 4 different beats"): no two beats in a row share a place, and a short has three
+            # places at least. The harness refuses a shot built somewhere other than its script says.
+            sets = s["sets"]
+            assert len(sets) == n, f"{st.name}: a place per beat"
+            assert all(a != b for a, b in zip(sets, sets[1:])), f"{st.name}: two beats in a row in one place"
+            assert len(set(sets)) >= 3, f"{st.name}: a short needs three places at least"
+            known = set(re.findall(r'^PLACES = \{(.*)\}$', (D3 / "store" / "locations.py").read_text(), re.M)[0].replace('"', "").replace(" ", "").split(","))
+            assert {x for x in sets if x != "store"} <= {k.split(":")[0] for k in known}, f"{st.name}: a place store/locations.py does not build"
 
 
 def test_a_new_story_fits_the_explainers_pacing():
