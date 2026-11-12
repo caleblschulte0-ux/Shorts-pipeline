@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "genz-drinking-decline__8e6f5b2d",
+  "slug": "genz-drinking-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:27:00Z",
+  "title": "Only 50% Of Gen Z-Age Adults Still Drink",
+  "hook": "Drinking once felt automatic. Now only 50% of young adults drink.",
+  "closing": "Gen Z made skipping alcohol as normal as ordering it.",
+  "question": "Do you drink less than your parents?",
+  "segments": [
+    {
+      "topic": "Gen Z decline",
+      "say": "Only 50 percent of young adults now drink. Skipping alcohol is as common as ordering it."
+    },
+    {
+      "topic": "Gen Z youngest",
+      "say": "Drinking among the youngest adults fell to 35 percent. The old default broke fastest there."
+    },
+    {
+      "topic": "Gen Z weekly",
+      "say": "Only 61 percent of young drinkers drank in the past week. Even drinkers are cutting back."
+    }
+  ]
+}
