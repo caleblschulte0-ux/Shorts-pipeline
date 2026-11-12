@@ -23,9 +23,11 @@ def face_dir(data):
     return (data.arm.matrix_world.to_3x3() @ delta.to_3x3() @ Vector((0, -1, 0))).normalized()
 
 
-def check(data, cam, nf, step=2, name="shot"):
+def check(data, cam, nf, step=2, name="shot", cutaway=None):
+    """cutaway=(t0, t1): a cut to a shot that is not on Data (the row from above); his staging is judged off it"""
     sc = bpy.context.scene; back_run = 0; worst = 0.0; worst_run = 0; small = 0; n = 0; hs = []
     for f in range(1, nf + 1, step):
+        if cutaway and cutaway[0] <= (f - 1) / FPS < cutaway[1]: back_run = 0; continue
         sc.frame_set(f); bpy.context.view_layer.update()
         head = data.arm.matrix_world @ data.pb["head"].head
         to_cam = (cam.matrix_world.translation - head); to_cam.z = 0

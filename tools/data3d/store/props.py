@@ -26,20 +26,22 @@ def _key(o, f, loc=None, rot=None, scale=None, hide=None):
         for x in [o] + list(o.children_recursive): x.hide_render = hide; x.keyframe_insert("hide_render", frame=f)
 
 
-def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.3):
+def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.3, side_drift=(-0.1, 0.1), layer=None):
     """pivot: an EMPTY at the middle of the page's TOP edge with no rotation; the page hangs below it as its children,
     its face toward `out` (the unit vector pointing away from the wall). From t_tear - peel_s the bottom is pulled out
     (the page bends out about its top edge); at t_tear the top rips and it falls: drag holds it near a paper's
     terminal speed, it swings side to side as a leaf does, tips toward flat, lands and LIES on the floor, face up,
-    where it came down. Returns grab(t): the world point of the page's bottom middle (where the hand pulls)."""
+    where it came down. side_drift: how far it drifts along the wall (the hinge axis) as it falls; give it one sign
+    to keep the pages off someone standing beside the pad. layer: its height in the pile (pass the tear order, so
+    the latest page lands ON TOP; 11-12 judge: later years vanished under earlier ones). Returns grab(t): the world point of the page's bottom middle (where the hand pulls)."""
     from mathutils import Matrix
     rnd = random.Random(seed); out = Vector(out).normalized(); down = Vector((0, 0, -1))
     hinge = down.cross(out).normalized()         # turning about this swings the hanging page's bottom OUT
     side = hinge
     top0 = pivot.location.copy()
-    vt = rnd.uniform(0.7, 0.9)                    # terminal fall speed, m/s: paper, not a brick
-    swing = rnd.uniform(0.1, 0.18) * (1 if rnd.random() < 0.5 else -1); fr = rnd.uniform(3.2, 4.2)
-    drift = out * rnd.uniform(0.12, 0.22) + side * rnd.uniform(-0.1, 0.1)
+    vt = rnd.uniform(1.1, 1.35)                   # terminal fall speed, m/s: a stiff calendar page drops; slower read as floating (11-12 judge)
+    swing = rnd.uniform(0.05, 0.1) * (1 if rnd.random() < 0.5 else -1); fr = rnd.uniform(3.2, 4.2)
+    drift = out * rnd.uniform(0.28, 0.4) + side * rnd.uniform(*side_drift)   # well clear of the pad: a falling page never ghosts over the next one (11-12 judge)
     spin = rnd.uniform(-1.2, 1.2); PEEL = math.radians(40)
 
     def state(t):
@@ -60,7 +62,7 @@ def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.
             loc, bend, yaw = state(t)
             low = loc.z - page_h * max(0.0, math.cos(bend))          # the page's lowest edge
             if t >= t_tear and min(loc.z, low) <= floor_z + 0.004:
-                landed = (Vector((loc.x, loc.y, floor_z + 0.004)), yaw)
+                landed = (Vector((loc.x, loc.y, floor_z + 0.004 + 0.0022 * (seed % 11 if layer is None else layer))), yaw)   # each page its own layer: no z-fighting in the pile
         if landed is not None: loc, rot = landed[0], R(math.radians(90), landed[1])
         else: rot = R(bend, yaw)
         _key(pivot, f, loc=loc, rot=rot.to_euler())
@@ -95,3 +97,37 @@ def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_belo
                     r = spin * u; _key(o, f, loc=p, rot=(r.x, r.y, r.z), scale=(1, 1, 1)); continue
             hidden = bool(hide_below and hide_below(rest[0], t))
             _key(o, f, loc=rest[0], rot=(rest[1], rest[2], rest[3]), scale=(0, 0, 0) if hidden else (1, 1, 1))
+
+
+def bill_mesh(name="bill", w=0.1, h=0.045, res=(256, 116)):
+    """ONE banknote mesh, shared by every bill (linked copies render fast): a printed note, not a green card (11-12
+    judge: "flat green cards with no denomination or print ... toy-like paper squares"). The print is painted here
+    in pixels: a pale green paper, a dark engraved border, a portrait oval, rosettes and the denomination in the
+    corners, so at phone size it reads as MONEY."""
+    import bpy, numpy as np
+    W, H = res; yy, xx = np.mgrid[0:H, 0:W]; u = xx / (W - 1); v = yy / (H - 1)
+    paper = np.array([0.72, 0.80, 0.64]); ink = np.array([0.10, 0.27, 0.16]); mid = np.array([0.42, 0.58, 0.40])
+    img = np.ones((H, W, 3)) * paper
+    img[(u + v * 0.7) % 0.04 < 0.012] = img[(u + v * 0.7) % 0.04 < 0.012] * 0.93          # fine guilloche hatching
+    edge = (u < 0.035) | (u > 0.965) | (v < 0.07) | (v > 0.93)
+    inner = ((u > 0.055) & (u < 0.945) & (np.abs(v - 0.1) < 0.012)) | ((u > 0.055) & (u < 0.945) & (np.abs(v - 0.9) < 0.012))
+    img[edge] = ink; img[inner] = mid
+    ov = ((u - 0.5) / 0.15) ** 2 + ((v - 0.5) / 0.36) ** 2
+    img[ov < 1.0] = mid; img[(ov < 1.0) & (ov > 0.78)] = ink
+    head = ((u - 0.5) / 0.065) ** 2 + ((v - 0.58) / 0.14) ** 2 < 1.0; body = ((u - 0.5) / 0.11) ** 2 + ((v - 0.2) / 0.16) ** 2 < 1.0
+    img[(head | body) & (ov < 0.9)] = ink * 1.4
+    for cx, cy in ((0.14, 0.27), (0.86, 0.73), (0.14, 0.73), (0.86, 0.27)):
+        r = np.sqrt(((u - cx) * W / H) ** 2 + (v - cy) ** 2)
+        img[(r < 0.15) & (r > 0.11)] = ink; img[r < 0.07] = ink
+    for cx in (0.25, 0.75):                                   # seals: a ring each side of the portrait
+        r = np.sqrt(((u - cx) * W / H) ** 2 + (v - 0.5) ** 2); img[(r < 0.13) & (r > 0.1)] = mid
+    im = bpy.data.images.new(name + " print", W, H); px = np.ones((H, W, 4)); px[..., :3] = np.clip(img, 0, 1) ** 2.2
+    im.pixels.foreach_set(px.astype(np.float32).ravel()); im.pack()
+    m = bpy.data.materials.new(name + " print"); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    tx = nt.nodes.new("ShaderNodeTexImage"); tx.image = im; nt.links.new(tx.outputs["Color"], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.7
+    me = bpy.data.meshes.new(name)
+    me.from_pydata([(-w / 2, -h / 2, 0), (w / 2, -h / 2, 0), (w / 2, h / 2, 0), (-w / 2, h / 2, 0)], [], [(0, 1, 2, 3)])
+    uv = me.uv_layers.new(); [setattr(uv.data[i], "uv", c) for i, c in enumerate(((0, 0), (1, 0), (1, 1), (0, 1)))]
+    me.materials.append(m); me.update()
+    return me

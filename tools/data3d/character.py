@@ -126,11 +126,16 @@ class Data:
         'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.14, lid=0.0),
         'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.06, lid=0.2),
         'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.0, lid=0.0),
+        'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.15),     # "what can you do": brows up, a half smile
     }
 
     def __init__(self, sc):
         self.sc = sc; self._end = 0.0
         self._build()
+        # the RESTING face is keyed on frame one. Unkeyed, every shape key and the mouth cavity sat at full value, and the
+        # first expression() keyed that "current" state as its start: a shot whose first expression came late opened on
+        # a wide dark mouth hole (11-12 judge, shot 3: "a large dark open-mouth slab ... the first thing seen").
+        self._face(0.0, **self.EXPRESSIONS['neutral'])
 
     # ---------------------------------------------------------------- build
     def _build(self):
@@ -627,24 +632,30 @@ class Data:
             # out to the side, a little forward, 45 degrees BELOW horizontal; palms up for a shrug, open toward the
             # lens for a whoa. FK, not IK: IK Euler triples like (66, -103, -52) flail on the way back to the hang.
             for s, sg in (('L', -1), ('R', 1)):
-                if name == 'shrug': arm = (-10, 0, -sg * 15); fore = (-5, 0, -sg * 45); hand = (0, sg * -75, 0)
+                # 11-12 judge: the first shrug (forearms out sideways) read at phone size as "arms held straight out,
+                # palms down, a T-pose spread". A shrug tucks the elbows and brings the forearms FORWARD and out.
+                if name == 'shrug': arm = (-4, 0, -sg * 20); fore = (-18, 0, -sg * 48); hand = (-10, sg * -95, 0)
                 else:               arm = (-16, 0, -sg * 18); fore = (-20, 0, -sg * 40); hand = (-15, sg * -20, -sg * 25)
                 for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN
                 self._k(f'arm.{s}', t1, rot=arm); self._k(f'fore.{s}', t1, rot=fore); self._k(f'hand.{s}', t1, rot=hand)
                 self._k(f'arm.{s}', t2, rot=(arm[0] - 2, 0, arm[2] * 1.15)); self._k(f'fore.{s}', t2, rot=(fore[0] - 3, 0, fore[2] * 1.1)); self._k(f'hand.{s}', t2, rot=hand)
                 for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t3, rot=self.RELAXED[bn])
-                lift = -14 if name == 'shrug' else -6
+                lift = -30 if name == 'shrug' else -6
                 self._k(f'clav.{s}', t0, rot=(0, 0, 0)); self._k(f'clav.{s}', t1, rot=(0, 0, sg * lift)); self._k(f'clav.{s}', t2, rot=(0, 0, sg * lift)); self._k(f'clav.{s}', t3, rot=(0, 0, 0))
-            self.expression('worried' if name == 'shrug' else 'surprised', t0, t2)
+            self.expression('wry' if name == 'shrug' else 'surprised', t0, t2)
+            if name == 'shrug':      # the head goes with it: tipped to one side and a little down
+                self._k('neck', t0, rot=self._pose_now('neck', t0)); self._k('neck', t1, rot=(6, 9, 0)); self._k('neck', t2, rot=(6, 9, 0)); self._k('neck', t3, rot=(0, 0, 0))
         elif name == 'wave':
             s = side; sg = 1 if s == 'R' else -1
-            up = sh[s] + right * sg * 0.12 + fw * 0.06 + Vector((0, 0, 0.16))
+            # 11-12 judge: a wave at shoulder height "doesn't read". The hand goes up BESIDE THE HEAD, palm to the lens,
+            # the elbow still bent, and it swings wide enough to see on a phone.
+            up = sh[s] + right * sg * 0.15 + fw * 0.05 + Vector((0, 0, 0.25))
             self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t0, 0.3)
             self._arm_ik(s, up, t1, 1.2)
             n = max(2, int(hold / 0.3)); self._k(f'hand.{s}', t1, rot=(0, 0, 0))
             for i in range(n):
                 tt = t1 + (i + 0.5) * hold / n
-                self._arm_ik(s, up + right * sg * (0.03 if i % 2 else -0.03), tt, 1.2); self._k(f'hand.{s}', tt, rot=(0, 0, sg * (25 if i % 2 else -25)))
+                self._arm_ik(s, up + right * sg * (0.05 if i % 2 else -0.05), tt, 1.2); self._k(f'hand.{s}', tt, rot=(0, 0, sg * (40 if i % 2 else -40)))
             self._arm_ik(s, up, t2, 1.2); self._k(f'hand.{s}', t2, rot=(0, 0, 0))
             self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t3, 0.3)
             self.expression('happy', t0, t2)

@@ -73,7 +73,72 @@ jobs:
             narr/narration.wav
             narr/narration.json
 
+  # THE JUDGE GATES THE RENDER (caaleb 2026-11-12: "I can't come back to you for every prop we ever make and tell
+  # you that it's bad one time before it's good"). A quick proof pass of every shot is rendered and a headless Claude
+  # watches it against tools/data3d/store/judge3d.py's bar; the 32-machine render only starts if every shot passes.
+  # No token, no judge, no render: it fails closed.
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shot: [1, 2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: {name: narration, path: narr, run-id: '43028751371', github-token: '${{ github.token }}'}
+      - name: Deps
+        run: |
+          timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
+            || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
+          pip install -q bpy==5.0.0 numpy==1.26.4 pillow
+      - name: Proof pass (every 6th frame, the staging, consequence and body checks first)
+        env: {LOOK: NYC, SHOT: '${{ matrix.shot }}', STEP: '4'}
+        run: |
+          cd tools/data3d/store
+          NARR="$GITHUB_WORKSPACE/narr/narration.json" python -I shots.py "$GITHUB_WORKSPACE/proof/s$SHOT" 10 35 2>&1 | grep -v "^Fra:"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: proof-${{ matrix.shot }}
+          path: proof/
+          retention-days: 3
+
+  judge:
+    needs: proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: {path: proof, pattern: 'proof-*', merge-multiple: true}
+      - name: Install the judge
+        run: |
+          pip install -q pillow
+          command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude CLI install failed"
+      - name: The judge watches every shot
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ] || { echo "::error::CLAUDE_CODE_OAUTH_TOKEN is not set: no judge, no render"; exit 1; }
+          python tools/data3d/store/judge3d.py proof proof/verdict.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: proof-verdict
+          path: |
+            proof/verdict.json
+            proof/sheet_s*.jpg
+          retention-days: 7
+
   frames:
+    needs: judge
     runs-on: ubuntu-latest
     timeout-minutes: 200
     strategy:

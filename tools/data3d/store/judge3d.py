@@ -16,31 +16,47 @@ from pathlib import Path
 from PIL import Image
 
 BRIEFS = {
-    1: "HOOK. A self-checkout machine spews money while Data reacts in shock. Must read in the first second.",
-    2: "9 OUT OF 10. Data throws a master switch at the head of a row of ten checkout lanes; nine of them turn into "
-       "self-checkout kiosks one after another, one staffed lane stays. The row and the 9-of-10 must be readable.",
-    3: "HALF A MILLION JOBS IN TEN YEARS. Cashiers walk out through a staff door while Data tears years off a wall "
-       "calendar; each torn page must visibly fall and pile on the floor.",
-    4: "TWICE THE LOSSES. Data pours coins from a sack into two LOSSES jars; the coins must be seen falling in, and "
-       "the self-checkout jar must end over twice as full.",
-    5: "CLOSING. Every lane is self-checkout and blinking red; Data shrugs then waves as the camera pulls back.",
+    1: "HOOK. A self-checkout machine with ERROR on a red screen fires banknotes out of its cash slot while Data "
+       "flinches, hops back and ducks. Must read in the first second.",
+    2: "9 OUT OF 10. Two shots cut together: Data hauls down a MASTER switch at the head of a row of checkout lanes; "
+       "CUT to the whole row of ten from above, the frame turned so the row runs top to bottom, nine lanes turning "
+       "into self-checkout kiosks one after another and the one staffed lane (a cashier at the till) staying.",
+    3: "HALF A MILLION JOBS IN TEN YEARS. Cashiers walk single file out through the STAFF ONLY door, which shuts "
+       "behind the last; Data tears a year off a big wall calendar (2014 to 2024) as they go; every torn page "
+       "visibly falls and piles on the floor.",
+    4: "TWICE THE LOSSES. Two LOSSES jars, labelled CASHIER and SELF CHECKOUT; Data pours coins from a sack into each; "
+       "the coins must be seen falling in, and the self-checkout jar must end over twice as full.",
+    5: "CLOSING. Every lane is self-checkout and blinking red; Data shrugs, then waves, then the camera cranes up and "
+       "back to the whole red-flashing row.",
 }
 
 BAR = """You are the director of a 3D animated YouTube Short starring Data, a small teal cartoon scientist in a lab
-coat and glasses. Grade each shot as a demanding animation director would. The bar is a professional studio short:
-the operator will not accept anything they would have to point out themselves. Look for, and FAIL a shot on, any of:
-- BODY: a limb bent the way no body bends, a twisted wrist, an arm through the body, a stiff mannequin pose, hands
-  floating instead of gripping what they hold, feet sliding or sunk.
-- EMPHASIS: an action whose RESULT is not shown clearly and big enough to read on a phone (things falling, pouring,
-  breaking, flipping must be SEEN happen, landing somewhere); a key moment happening off-frame or behind something.
-- STAGING: Data's back or the back of his head to the camera for more than a glance; Data out of place, pasted over
-  the set, wrong scale, not touching the world; the point of the shot not readable at a glance; awkward framing,
-  cropped subjects, big empty areas with nothing in them.
-- CRAFT: anything that looks broken, glitchy, toy-like or cheap; text that is cut off or unreadable.
-Then add what would make it BETTER, beyond the minimum, even when it passes.
+coat and glasses. The bar is a professional studio short: the operator will not accept anything they would have to
+point out themselves. Grade each shot in two tiers.
 
-Return ONLY JSON: {"shots": [{"shot": N, "score": 0-100, "pass": true|false, "problems": ["..."],
-"better": ["..."]}]}. pass is false whenever any FAIL item above is visible, whatever the score."""
+HARD DEFECTS (the operator's bare minimums). A shot with ANY of these FAILS, whatever else is good. Name the frame(s):
+- BODY: a limb bent the way no body bends, a twisted or snapped wrist, an arm through the body, a hand that should hold
+  something visibly not on it, feet sunk in the floor.
+- CONSEQUENCE: the shot's action happens but its RESULT is not seen (the money never seen coming out, pages not seen
+  falling and landing, coins not seen going into a jar, lanes not seen changing), or it happens off-frame/behind Data.
+- BACK TO CAMERA: Data's back, or the back of his head, to the camera for longer than a quick glance.
+- BROKEN: a glitch, a pop, an object appearing from nowhere, a subject cut by the frame edge for most of the shot,
+  the text that carries the shot's point unreadable on a phone.
+- NOT THE POINT: someone seeing only this shot could not say what it shows (the FOR line below).
+
+NOTES: everything else a demanding director would improve (composition, emphasis, acting, timing, polish). List them
+in "better", most important first. They lower the score; they do not fail the shot on their own.
+
+How to read the sheets: each is every 4th frame of a 24 fps shot (about six frames a second), so a held pose shows on
+a few frames and a fast move may carry motion blur, which is normal. Background people are deliberately minimal
+faceless figures (operator ruling), and the store set, its floor and lighting, and Data's design are approved: never
+grade those.
+
+score: 0-100 for the shot as a finished piece. pass: true only when there is NO hard defect AND score >= 70.
+Return ONLY JSON: {"shots": [{"shot": N, "score": 0-100, "pass": true|false, "hard": ["defect, frames"],
+"problems": ["..."], "better": ["..."]}]}"""
+
+PASS_SCORE = 70
 
 
 def strip(frames, out, h=540, cols=8):
@@ -53,11 +69,12 @@ def strip(frames, out, h=540, cols=8):
 
 
 def main():
-    proof, out = Path(sys.argv[1]), Path(sys.argv[2])
+    proof, out = Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve()   # the judge Reads absolute paths
     if not shutil.which("claude"):
         print("JUDGE3D: no claude CLI: no judge, no pass"); return 1
     sheets = []
-    for n in sorted(BRIEFS):
+    only = [int(x) for x in os.environ.get("SHOTS", "").split()] or sorted(BRIEFS)   # re-judge just the shots that were sent back
+    for n in only:
         fr = sorted((proof / f"s{n}").glob("f*.png"))
         if not fr: print(f"JUDGE3D: shot {n} has no proof frames"); return 1
         sheets.append((n, strip(fr, proof / f"sheet_s{n}.jpg"), len(fr)))
@@ -73,9 +90,13 @@ def main():
     from showrunner_review import parse_judge_json
     v = parse_judge_json(proc.stdout)
     out.write_text(json.dumps(v, indent=2))
+    for s in v.get("shots", []):          # code holds the rule, whatever the judge wrote in "pass"
+        s["pass"] = bool(s.get("pass")) and not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
+    out.write_text(json.dumps(v, indent=2))
     fails = [s for s in v.get("shots", []) if not s.get("pass")]
     for s in v.get("shots", []):
         print(f"JUDGE3D shot {s.get('shot')}: {s.get('score')} {'PASS' if s.get('pass') else 'FAIL'}")
+        for p in s.get("hard", []): print(f"   HARD: {p}")
         for p in s.get("problems", []): print(f"   problem: {p}")
         for b in s.get("better", []): print(f"   better: {b}")
     return 2 if fails else 0
