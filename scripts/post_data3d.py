@@ -51,9 +51,20 @@ def main() -> int:
            "style_arm": "3d"}
     gate = showrunner_gate.run(mp4, slug=slug, context=ctx, will_upload=True)
     showrunner_gate.log(gate, slug)
+    # THE OPERATOR'S OWN WORD is above the showrunner for a video they WATCHED (operator, 2026-11-12, after the gate
+    # held this video at 66: "it's our own system I refuse to be held hostage by my own system if I say post it it
+    # post the quality checks are for when I'm not here to watch it"). Never a default, never automatic: it takes
+    # the operator's words, verbatim, typed into the dispatch, and they ride on the posted-log entry beside the
+    # verdict they overruled. Every unattended path still fails closed on a block.
+    overruled = None
     if gate["blocked"]:
-        print(f"::error::the showrunner held {slug}: {gate.get('reason')}")
-        return 2
+        said = (os.environ.get("OPERATOR_SAID") or "").strip()
+        if not said:
+            print(f"::error::the showrunner held {slug}: {gate.get('reason')}")
+            return 2
+        overruled = {"operator_said": said, "score": (gate.get("verdict") or {}).get("score"),
+                     "reason": gate.get("reason")}
+        print(f"::warning::the showrunner held {slug} ({gate.get('reason')}); the operator watched it and overruled: {said!r}")
     from shared import post_spacing
     # The operator may say to post it NOW (2026-11-12: "Bypass the 3 hour rule"):
     # only the go-live time changes; the gate above and the claim below do not.
@@ -80,7 +91,8 @@ def main() -> int:
     log["posted"][slug] = {"url": url, "title": meta["title"],
                            "at": datetime.now(timezone.utc).isoformat(),
                            "publish_at": publish_at, "state": "posted",
-                           "style_arm": "3d", "duration_s": meta.get("duration_s")}
+                           "style_arm": "3d", "duration_s": meta.get("duration_s"),
+                           **({"operator_overruled_showrunner": overruled} if overruled else {})}
     for u in reversed(log.get("uploads") or []):
         if u.get("slug") == slug and u.get("url") is None:
             u.update(url=url, state="posted", at=log["posted"][slug]["at"])
