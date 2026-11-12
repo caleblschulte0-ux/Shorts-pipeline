@@ -3,189 +3,6 @@
     {
       "date": "20261107",
       "dry_run": false,
-      "ts": "2026-11-07T11:41:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 149,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-07T08:46:15.791399+00:00"
-      },
-      "brain": {
-        "ok": 4,
-        "fail": 0,
-        "limited_at": "2026-11-07T11:33:48+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261107-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "split",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "stalker confrontation visible",
-              "blind": false
-            },
-            "content": {
-              "score": 0.85,
-              "why": "Visible shock and concern discussing sta",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jinnytty Stalker Showed Up At Her Birthday Stream \ud83d\ude33"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 466.4
-        },
-        {
-          "slug": "clip-20261107-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.7
-        },
-        {
-          "slug": "clip-20261107-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261107-3",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261107-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261107",
-      "dry_run": false,
       "ts": "2026-11-07T11:44:20+00:00",
       "feedback": {
         "snapshot": true,
@@ -5231,6 +5048,368 @@
             }
           },
           "took_s": 381.5
+        }
+      ]
+    },
+    {
+      "date": "20261112",
+      "dry_run": false,
+      "ts": "2026-11-12T14:04:56+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 115,
+        "with_curve": 15,
+        "fetched_at": "2026-11-12T08:46:23.237278+00:00"
+      },
+      "brain": {
+        "ok": 33,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261112-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "muted mic, likely routine",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Unclear event, mostly talking, needs con",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The first 4 seconds show a man in sunglasses at a door, which doesn't match the 'Allstars muted tyler1's mic' hook until",
+                "At 1.8s the frame is mostly the back of someone's head.",
+                "The hook caption sits low and slightly overlaps the chest and mic area, but it doesn't cover a face.",
+                "The word caption 'It's a joke' appears only once, so captioning is inconsistent."
+              ]
+            }
+          },
+          "took_s": 123.3
+        },
+        {
+          "slug": "clip-20261112-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the 9:16 canvas, not the roughly three quarters expected. Most of th; vision: In the first and last frames (0.2s, 4.8-5.8s) the subject is t",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "Vague title, searchable name, unclear ev",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Advice quip, needs context, antisemitic-",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Plaqueboymax Tells Streamer Saying Fuck The Labels They're Listening \ud83d\ude2d"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the 9:16 canvas, not the roughly three quarters expected. Most of th",
+                "In the first and last frames (0.2s, 4.8-5.8s) the subject is tiny and far away on a wide stage shot. He is barely readab",
+                "The burned-in caption 'THE JEWS LISTENING' (2.8-3.8s) is out of context, and the hook card and title don't explain it. T",
+                "The chat overlay and stream UI are visible in the sharp region, which adds clutter to the small picture."
+              ]
+            }
+          },
+          "took_s": 95.9
+        },
+        {
+          "slug": "clip-20261112-3",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 135,
+                "refused_shown": 7,
+                "scouted": [],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2929,
+                "pool_with_vod": 2080,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  4,
+                  3,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr/s",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is steel looking at a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. The before and after sources don't build or pay that off. Before the clip he loses a stream el"
+                },
+                {
+                  "cluster": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "tminnzy@momentassiduouscrispywallabyderp-qpp_b8busa7wh7rc/tm",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1056.1
+        },
+        {
+          "slug": "clip-20261112-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261112-5",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 136,
+                "refused_shown": 7,
+                "scouted": [
+                  {
+                    "premise": "Deepins02 sends a message to Jynxzi on his own stream, then the Jynxzi moment has chat losing it.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Pikaboo's WoW run: he jokes about his girlfriend, kills a higher-level shaman, then gets dumped for a Horde player.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "One Kai Cenat Just Chatting stream with Nikki: the dad cancer question, chat deciding Nat is Emily, then the LEEKED mome",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Forsen's night in Hellraiser: Revival, from the first scare to the 'GOTY' reaction.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Caseoh panics when he finds it everywhere on his setup, then gets his phone wet and says his career is over.",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 536,
+                "pool": 2929,
+                "pool_with_vod": 2080,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  4,
+                  3,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:deepins02/deepins02-close-deepin-2026w45",
+                  "outcome": "narrative_failed",
+                  "why": "scores [72] after 0 revision(s) \u2014 @37s confusing: The ending ('Last was the best') doesn't say what 'last' refers to or whether Jynxzi answers. End on the clearest chant or crowd-reaction beat, or add a context_overlay such as 'Final take' so the lin; @2s missing_context: The overlay 'calls Jynxz' i"
+                },
+                {
+                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr",
+                  "outcome": "already_refused",
+                  "why": "2026-11-12: director judged: not a story \u2014 The clip is steel looking at a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. The before and after so"
+                },
+                {
+                  "cluster": "kaicenat@vod2849957264/kaicenat-cenat-from-2026w34",
+                  "outcome": "narrative_failed",
+                  "why": "scores [76, 78, 74] after 2 revision(s) \u2014 @25s confusing: The jump from the Australia call to the TikTok Live is not bridged. The overlay says 'Kai's first TikTok Live' for only 2.5s and then the caption goes back to 'Kai video-calls strangers from Australia; @57s missing_context: The payoff clip ne"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "crypto token reaction, insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Fortnite win, chat hyped, little visible",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 26.3
+        },
+        {
+          "slug": "clip-20261112-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 2.3s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about 25% of the canvas height, with large blurred padding above and below.",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "Vague gameplay; known streamer, unclear ",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Game dialogue UI, title misleading, litt",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Loltyler1: Tyler1 Refuses To Fall For This Manipulation And Hangs Up"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 2.3s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about 25% of the canvas height, with large blurred padding above and below. It should",
+                "The game UI, the call window and the streamer's facecam are tiny and unreadable on a phone. The subject is small and los",
+                "The crop was not moved toward the action. The full desktop screen is shown wide instead of the facecam or call window.",
+                "The word captions sit over the bottom edge of the strip and cover the facecam corner."
+              ]
+            }
+          },
+          "took_s": 137.8
         }
       ]
     }

@@ -19328,14 +19328,67 @@
       "ts": "2026-11-12T13:14:25.328545+00:00"
     },
     "clip-20261112-3": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-53b65ef6562543c6",
-      "streamer": "tminnzy",
+      "url": "https://youtube.com/shorts/qoc8EtCzOjU",
       "title": "Silent Hill 2's Laura trolled Tminnzy at the door",
       "kind": "story",
-      "ts": "2026-11-12T13:31:54.946078+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-12T13:32:01.403345+00:00",
+      "uploaded_at": "2026-11-12T13:32:01.403358+00:00",
+      "publish_at": "2026-11-13T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261112-silent-hill-2-s-laura-trolled-tminnzy-at-the-doo-3a5bc097",
+        "tiktok": "queued for 2026-11-13T02:00:00Z"
+      },
+      "story_key": "story-53b65ef6562543c6",
+      "member_keys": [
+        "vodmine://2924432520/9472-9712",
+        "https://www.twitch.tv/tminnzy/clip/AssiduousCrispyWallabyDerp-qpP_b8BUSa7wh7rc",
+        "vodmine://2924432520/9767-10007"
+      ],
+      "streamer": "tminnzy",
+      "who": [
+        "tminnzy"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 55.5,
+      "narrative_score": 0,
+      "narrative_summary": "Silent Hill 2's Laura says she hid Mary's letter behind a locked door, then refuses to open it and mocks tminnzy while he begs, and something in the room turns out to be a monster.",
+      "revision_count": 2,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-concernedenticingnarwhalsquadgoals-y5shuumqcdvxv8hc": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ConcernedEnticingNarwhalSquadGoals-Y5shuUMqcdVxV8hc",
+      "streamer": "stableronaldo",
+      "title": "PIRATE TOKENNNNNNNNN",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-11-12T14:01:03.050516+00:00"
+    },
+    "rejected-awkwardfancynewtnerfblueblaster-lduuirromzfi5tp4": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AwkwardFancyNewtNerfBlueBlaster-lDUuirRomZFI5tp4",
+      "streamer": "ishowspeed",
+      "title": "Speed was STUNNED by the gyatt",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Title promise absent; static Fortnite ga)",
+      "ts": "2026-11-12T14:01:40.922264+00:00"
+    },
+    "rejected-darlinglongcocoaheyguys-n33un8yibngn7cdv": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/DarlingLongCocoaHeyGuys-N33un8YibnGN7CDV",
+      "streamer": "loltyler1",
+      "title": "Loltyler1: Tyler1 Refuses To Fall For This Manipulation And Hangs Up",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 2.3s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about 25% of the canvas height, with large blurred padding above and below. It should; vision: The game UI, the call window and the streamer's facecam are tiny and unreadable ",
+      "ts": "2026-11-12T14:04:56.267060+00:00"
     }
   }
 }
