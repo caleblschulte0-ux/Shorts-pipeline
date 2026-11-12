@@ -18,9 +18,10 @@ from PIL import Image
 BRIEFS = {
     1: "HOOK. A self-checkout machine with ERROR on a red screen fires banknotes out of its cash slot while Data "
        "flinches, hops back and ducks. Must read in the first second.",
-    2: "9 OUT OF 10. Two shots cut together: Data hauls down a MASTER switch at the head of a row of checkout lanes; "
-       "CUT to the whole row of ten from above, the frame turned so the row runs top to bottom, nine lanes turning "
-       "into self-checkout kiosks one after another and the one staffed lane (a cashier at the till) staying.",
+    2: "9 OUT OF 10. Two shots cut together: Data hauls down a MASTER switch at the head of a row of ten checkout "
+       "lanes; CUT on the impact to a high view over his shoulder down the row: nine lanes turn into self-checkout "
+       "kiosks one after another while a board over the row counts them, 0 / 10 to 9 / 10, and the one staffed lane "
+       "(CASHIER sign, a cashier at the till) stays.",
     3: "HALF A MILLION JOBS IN TEN YEARS. Cashiers walk single file out through the STAFF ONLY door, which shuts "
        "behind the last; Data tears a year off a big wall calendar (2014 to 2024) as they go; every torn page "
        "visibly falls and piles on the floor.",

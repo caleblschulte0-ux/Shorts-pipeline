@@ -311,9 +311,10 @@ def shot1():
 # ================================================================ SHOT 2: 9 of 10, the ultra-wide
 def shot2():
     lanes, kiosks, clerks = build_set(ROW10, range(1, 10), staffed=(0,))
-    T_PULL0, T_PULL1 = 0.15, 0.7                            # hands on it from frame one: no dead air
+    T_PULL0, T_PULL1 = 0.35, 0.9                            # a beat on his grip, then the haul
     T_CUT = T_PULL1 + 0.04                                  # CUT on the impact to the whole row from above
-    for k, i in enumerate(range(1, 10)): convert(lanes[i], kiosks[i], T_CUT + 0.2 + 0.24 * k)   # a ripple you can count, all of it on the row shot
+    for k, i in enumerate(range(1, 10)): convert(lanes[i], kiosks[i], T_CUT + 0.02 + 0.26 * k)   # a ripple you can count, all of it on the row shot
+    conv_t = [T_CUT + 0.02 + 0.26 * k + 0.75 for k in range(9)]          # when each kiosk is up
     data = load_data()
     # THE MASTER SWITCH. caaleb 2026-11-12: the row flipping 9 of 10 was "the best Data visual in the whole show ... he
     # felt so out of place in it". 11-12 judge: the switch read as a toolbox, its throw swung toward the lens (so it had
@@ -322,8 +323,8 @@ def shot2():
     # picture plane) in one big arc; Data beside it, big in the foreground, hauls it down with both hands, looking at
     # us; the row runs from him up the frame to the back wall, each lane lighting as it flips, the one staffed lane
     # nearest him lit warm.
-    P = Vector((ROW10[0] + 0.62, -1.6, 0))                 # at the head of the row, by the staffed lane, out in the aisle (off the top shot)
-    CA = Vector((ROW10[0] - 0.16, -2.33, 0.85))              # the THROW: low and close, Data and the switch big
+    P = Vector((ROW10[0] + 0.62, -0.95, 0))                 # at the head of the row, by the staffed lane, out in the aisle (off the top shot)
+    CA = Vector((ROW10[0] - 0.16, -1.68, 0.85))              # the THROW: low and close, Data and the switch big
     if os.environ.get("CAM2"): CA = Vector(map(float, os.environ["CAM2"].split(";")[0].split(",")))
     to_cam = Vector((CA.x - P.x, CA.y - P.y, 0)).normalized()
     right = Vector((-to_cam.y, to_cam.x, 0))                # screen right, seen from the camera, at his position
@@ -378,13 +379,28 @@ def shot2():
     row_mid = (ROW10[5], 0.3, 0.6)                          # he turns his head to WATCH the row flip (11-12 judge), then back to us
     data.look_at(tuple(CA), 2.85, max_yaw=40)              # then back to us
     data.expression("happy", 2.95, DUR)
-    data.idle(T_PULL1 + 0.6, DUR)
+    data.idle(T_PULL1 + 0.6, conv_t[-1] - 0.05)
+    for tt, nd in ((conv_t[-1] - 0.05, 0), (conv_t[-1] + 0.15, 14), (conv_t[-1] + 0.4, -2), (conv_t[-1] + 0.6, 0)):   # a small nod as the board lands on 9 / 10
+        data._k('neck', tt, rot=(nd, 0, 0))
     for tb in (0.3, 2.4, 4.3): data.blink(tb)
     data.finish()
     screens_on({})
     c = clerks[0]
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS; c.rotation_euler = (0, 0, math.radians(60 + 5 * math.sin(t * 2.6))); c.keyframe_insert("rotation_euler", frame=f)
+    # THE TALLY (11-12 judge, six passes: from no angle can a phone count ten lanes in perspective). A board hung over
+    # the row counts the self-checkouts as they arrive, 0 / 10 to 9 / 10: the number is IN the shot, on the store.
+    bc = Vector((ROW10[0] + 2.6, 0.75, 1.62)); CBv = Vector((-3.95, -1.1, 2.3))
+    tb = Vector((CBv.x - bc.x, CBv.y - bc.y, 0)).normalized(); yaw_b = math.atan2(tb.x, -tb.y)
+    K.box("tally board", tuple(bc), (1.3, 0.03, 0.72), K.mat("tally board", "#20242A", rough=0.5), bev=0.01).rotation_euler = (0, 0, math.atan2(-tb.x, tb.y))
+    K.text("tally head", "SELF-CHECKOUT", tuple(bc + tb * 0.02 + Vector((0, 0, 0.23))), 0.12, (math.radians(90), 0, yaw_b), K.mat("tally head", "#FFFFFF", rough=0.4, emit=1.2), extrude=0.002)
+    for n in range(10):
+        o = K.text(f"tally {n}", f"{n} / 10", tuple(bc + tb * 0.02 + Vector((0, 0, -0.08))), 0.32, (math.radians(90), 0, yaw_b), K.mat("tally digits", "#FF5A3C", rough=0.3, emit=3.0), extrude=0.003)
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; k = sum(1 for c in conv_t if t >= c)
+            o.hide_render = k != n; o.keyframe_insert("hide_render", frame=f)
+    for cbl in (0, 1):                                                    # it hangs on two cables
+        K.cyl("tally cable", tuple(bc + Vector((0, 0, 0.36 + 0.4))), 0.005, 0.8, K.mat("lever steel"), v=8).location.x += (-0.35 if cbl else 0.35) * abs(tb.y)
     # the one lane that stays is lit warm and SIGNED (11-12 judge: "the staffed lane is not marked")
     sy = 0.15; to_c = Vector((CA.x - ROW10[0], CA.y - sy, 0)).normalized(); yaw_c = math.atan2(to_c.x, -to_c.y)
     K.box("cashier sign", (ROW10[0], sy, 1.3), (0.5, 0.02, 0.14), K.mat("cashier sign", "#F2C46B", rough=0.4, emit=1.6), bev=0.01).rotation_euler = (0, 0, math.atan2(-to_c.x, to_c.y))
@@ -400,11 +416,11 @@ def shot2():
         ld = bpy.data.lights.new(f"end wash {y}", 'AREA'); ld.energy = 60; ld.size = 1.2; ld.color = (1.0, 0.95, 0.88)
         o = bpy.data.objects.new(f"end wash {y}", ld); o.location = (ex - 1.2, y, 2.2); bpy.context.collection.objects.link(o)
         o.rotation_euler = (Vector((ex, y, 0.9)) - o.location).to_track_quat('-Z', 'Y').to_euler()
-    LA = Vector((ROW10[0] + 1.59, -0.38, 0.6)); LENS2 = 17
+    LA = Vector((ROW10[0] + 1.59, 0.27, 0.6)); LENS2 = 17
     # 11-12 judge, five passes running: from any angle at floor level the ten lanes are a thin perspective strip you
     # cannot count. So the beat is TWO shots, as a film would cut it: the throw on Data, then the RESULT from above,
     # the frame turned so the row of ten runs top to bottom of the phone, each lane flipping where you can count it.
-    CB, LB, LENS_B, ROLL_B = Vector((-0.2, -0.1, 4.1)), Vector((-0.2, 0.9, 0.0)), 17.5, -90   # from above, turned: all ten lanes top to bottom, the staffed one at the bottom
+    CB, LB, LENS_B, ROLL_B = Vector((-3.95, -1.1, 2.3)), Vector((-0.5, 0.95, 0.12)), 17, 0   # high over Data's shoulder: the switch, the staffed lane and its cashier, the row running away
     if os.environ.get("CAMB"):
         c_, l_, n_ = os.environ["CAMB"].split(";"); CB = Vector(map(float, c_.split(","))); LB = Vector(map(float, l_.split(","))); LENS_B = float(n_)
         ROLL_B = float(os.environ.get("ROLLB", ROLL_B))
@@ -426,7 +442,7 @@ def shot2():
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=NF,
                 conseq=[("the switch is thrown", lambda: meshes([bpy.data.objects["lever pivot"]]), T_PULL0, T_PULL1),
                         ("nine lanes become kiosks", lambda: meshes([bpy.data.objects[f"kiosk{i + 1}"] for i in range(1, 10)]), T_CUT + 0.2, DUR)],
-                cutaway=(T_CUT, DUR), open_roof=(T_CUT, DUR + 1), no_blur=True)
+                cutaway=(T_CUT, DUR), no_blur=True)
 
 
 # ================================================================ SHOT 3: the jobs walk out
