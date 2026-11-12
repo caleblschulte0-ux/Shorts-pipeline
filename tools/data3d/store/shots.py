@@ -175,6 +175,15 @@ def grip_follow(data, side, point_fn, t0, t1, elbow_out=0.5):
         t = (f - 1) / FPS; sc.frame_set(f); data._arm_ik(side, Vector(point_fn(t)), t, elbow_out)
 
 
+def meshes(objs):
+    """the visible parts of these things (an empty's children), for the consequence check"""
+    out = []
+    for o in objs:
+        o = o["root"] if isinstance(o, dict) else o
+        out += [x for x in [o] + list(o.children_recursive) if x.type in ('MESH', 'FONT')]
+    return out
+
+
 def near_hand(data, p):
     """the rig names its bones from the viewer's side: decide the hand by geometry"""
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -233,7 +242,8 @@ def shot1():
             b.rotation_euler = (r.x, r.y, r.z); b.keyframe_insert("rotation_euler", frame=f)
     cam = K.camera((kx - 0.95, -1.55, 0.62), (kx - 0.12, ky - 0.15, 0.55), lens=34, fstop=2.8)
     camera_path(cam, lambda t: ((kx - 0.95 + 0.06 * t, -1.55 + 0.1 * ease(t / DUR), 0.62), (kx - 0.12, ky - 0.15, 0.55), (kx - 0.3, ky - 0.4, 0.5)))
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1)
+    bills = [o for o in bpy.data.objects if o.name.startswith("bill ") and not o.name.startswith("bill band")]
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("money bursts out of the machine", bills, 0.3, DUR)])
 
 
 # ================================================================ SHOT 2: 9 of 10, the ultra-wide
@@ -268,10 +278,10 @@ def shot2():
     to_me = -to_cam; ax = Vector((0, 0, 1)).cross(to_cam).normalized()    # turning +z about this throws it toward us
     piv = Vector((box_c.x, box_c.y, 0.33))
     arm = K.empty("lever pivot", tuple(piv))
-    LL = 0.22
+    LL = 0.3                                                # big enough to read in the wide: the throw IS the beat
     K.cyl("lever hub", tuple(piv), 0.03, 0.1, steel, rot=Matrix.Rotation(math.radians(90), 3, ax.cross(Vector((0, 0, 1)))).to_euler(), v=24, parent=arm)
-    K.cyl("lever rod", (piv.x, piv.y, piv.z + LL / 2), 0.013, LL, steel, v=16, parent=arm)
-    tb = K.cyl("lever bar", (piv.x, piv.y, piv.z + LL), 0.02, 0.13, red, v=20, parent=arm)      # a T-handle for two hands
+    K.cyl("lever rod", (piv.x, piv.y, piv.z + LL / 2), 0.017, LL, steel, v=16, parent=arm)
+    tb = K.cyl("lever bar", (piv.x, piv.y, piv.z + LL), 0.026, 0.16, red, v=20, parent=arm)      # a T-handle for two hands
     tb.rotation_euler = Matrix.Rotation(math.radians(90), 3, to_me).to_euler()
     A0, A1 = math.radians(-22), math.radians(68)            # up and back; thrown down toward us
     for f in range(1, NF + 1):
@@ -321,7 +331,9 @@ def shot2():
     LA = Vector((ROW10[3], 0.6, 0.0))
     cam = K.camera(tuple(CA), tuple(LA), lens=16, fstop=8.0)
     camera_path(cam, lambda t: (CA + Vector((0.12, 0.1, 0)) * (t / DUR), LA + Vector((0.1, 0, 0)) * (t / DUR), (P.x, P.y, 0.5)))
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=NF)
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=NF,
+                conseq=[("the switch is thrown", lambda: meshes([bpy.data.objects["lever pivot"]]), T_PULL0, T_PULL1),
+                        ("nine lanes become kiosks", lambda: meshes([bpy.data.objects[f"kiosk{i + 1}"] for i in range(1, 10)]), 1.05, DUR)])
 
 
 # ================================================================ SHOT 3: the jobs walk out
@@ -417,7 +429,8 @@ def shot3():
     look_at_c = Vector((WX - 0.25, cy + 0.3, 0.48))
     cam = K.camera(tuple(cam_at), tuple(look_at_c), lens=31, fstop=4.0)
     camera_path(cam, lambda t: (cam_at + Vector((0.05, 0.06, 0)) * (t / DUR), look_at_c, (here.x, here.y, 0.5)))
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1)
+    sheets = [o for o in bpy.data.objects if o.name.startswith("page sheet ")]
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("torn pages fall to the floor", sheets, flips[0], DUR)])
 
 
 # ================================================================ SHOT 4: twice the losses
@@ -522,7 +535,7 @@ def shot4():
         t = (f - 1) / FPS; c0.rotation_euler = (0, 0, math.radians(90 + 4 * math.sin(t * 2.3))); c0.keyframe_insert("rotation_euler", frame=f)
     cam = K.camera((0.0, -1.6, 0.56), (0.0, 0.0, 0.42), lens=25, fstop=4.0)
     camera_path(cam, lambda t: ((-0.05 + 0.1 * t / DUR, -1.6 + 0.1 * ease(t / DUR), 0.56), (0.0, 0.0, 0.42), (0.0, JY, 0.35)))
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1)
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("coins fall into the first jar", coins[:30], P0a + 0.2, P0b), ("coins fall into the second jar", coins[30:], P1a + 0.2, P1b)])
 
 
 # ================================================================ SHOT 5: the closing, the whole row
@@ -548,7 +561,7 @@ def shot5():
         cam.data.lens = lerp(26, 17, u); cam.data.keyframe_insert("lens", frame=F(t))
         return loc, look, (0, -0.55, 0.5)
     camera_path(cam, path)
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1)
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("every lane blinks red", lambda: meshes([bpy.data.objects[f"kiosk{i + 1}"] for i in range(10)]), 0.3, DUR)])
 
 
 S = {1: shot1, 2: shot2, 3: shot3, 4: shot4, 5: shot5}[SHOT]()
@@ -572,6 +585,8 @@ if os.environ.get("TEMPORAL_SAFE", "1") == "1":
 import staging    # the filmmaker's check: his face to the lens, big enough to read, MEASURED before a frame renders
 if not staging.check(data, sc.camera, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails staging: restage it (his back to the lens, or too small to read)")
+if not staging.consequence(sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the consequence check: what Data does is not shown happening")
 import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
 if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")
