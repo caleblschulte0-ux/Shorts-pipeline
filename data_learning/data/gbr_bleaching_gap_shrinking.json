@@ -1,0 +1,25 @@
+{
+ "key": "gbr_bleaching_gap_shrinking",
+ "title": "Years between Great Barrier Reef mass bleaching events",
+ "unit": "years",
+ "geography": "Great Barrier Reef, Australia",
+ "time_coverage": "1998-2024",
+ "source": {
+  "name": "Aerial surveys of coral bleaching on the Great Barrier Reef",
+  "publisher": "Australian Institute of Marine Science (AIMS)",
+  "url": "https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf",
+  "officiality": "official",
+  "access_date": "2026-11-12"
+ },
+ "notes": "The gap from the 1998 to the 2002 event was 4 years; from 2002 to 2016 was 14 years, the longest gap on record. Since 2020, mass bleaching events (2020, 2022, 2024) have averaged about 2 years apart.",
+ "points": [
+  {
+   "label": "longest gap on record (2002-2016)",
+   "value": 14
+  },
+  {
+   "label": "average gap since 2020",
+   "value": 2
+  }
+ ]
+}

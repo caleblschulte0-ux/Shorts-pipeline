@@ -1,0 +1,37 @@
+{
+ "key": "gbr_bleaching_by_decade",
+ "title": "Great Barrier Reef mass bleaching events per decade",
+ "unit": "events",
+ "geography": "Great Barrier Reef, Australia",
+ "time_coverage": "1990s-2020s",
+ "source": {
+  "name": "Aerial surveys of coral bleaching on the Great Barrier Reef",
+  "publisher": "Australian Institute of Marine Science (AIMS)",
+  "url": "https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf",
+  "officiality": "official",
+  "access_date": "2026-11-12"
+ },
+ "notes": "AIMS counts the 2024 event as the 7th mass bleaching event on the Great Barrier Reef since 1998 (1998, 2002, 2016, 2017, 2020, 2022, 2024). Grouped here by the decade each event began; the 2020s figure covers 2020-2024 only (the decade is not yet complete).",
+ "points": [
+  {
+   "label": "1990s",
+   "value": 1,
+   "period": "1990s"
+  },
+  {
+   "label": "2000s",
+   "value": 1,
+   "period": "2000s"
+  },
+  {
+   "label": "2010s",
+   "value": 2,
+   "period": "2010s"
+  },
+  {
+   "label": "2020s so far",
+   "value": 3,
+   "period": "2020s"
+  }
+ ]
+}

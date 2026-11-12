@@ -1,0 +1,25 @@
+{
+ "key": "robot_density_installs_vs_density",
+ "title": "Most robots installed vs highest robot density",
+ "unit": "robots per 10,000 workers",
+ "geography": "China / South Korea",
+ "time_coverage": "2024 (World Robotics 2025 report)",
+ "source": {
+  "name": "World Robotics 2025 report (robot density by country)",
+  "publisher": "International Federation of Robotics (IFR), via Supply Chain 247",
+  "url": "https://www.supplychain247.com/article/robot-density-rises-global-manufacturing-ifr-report/automation",
+  "officiality": "secondary",
+  "access_date": "2026-11-12"
+ },
+ "notes": "IFR World Robotics 2025: China installs more industrial robots in total than any other country, but ranks only 22nd in density at 166 per 10,000 workers (density up 17% year over year). South Korea ranks 1st in density at 1,220.",
+ "points": [
+  {
+   "label": "China (most robots installed, ranks 22nd in density)",
+   "value": 166
+  },
+  {
+   "label": "South Korea (highest density)",
+   "value": 1220
+  }
+ ]
+}
