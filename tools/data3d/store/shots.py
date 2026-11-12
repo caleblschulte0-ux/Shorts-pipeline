@@ -641,7 +641,7 @@ def shot4():
     kiosk_up(kiosks[1], lanes[1]); screens_on(kiosks)
     glass = K.mat("jar glass", "#E8F0F4", rough=0.03)
     try:
-        b = glass.node_tree.nodes["Principled BSDF"]; b.inputs["Transmission Weight"].default_value = 1.0; b.inputs["IOR"].default_value = 1.45
+        b = glass.node_tree.nodes["Principled BSDF"]; b.inputs["Transmission Weight"].default_value = 1.0; b.inputs["IOR"].default_value = 1.15   # 11-12 panel: at 1.45 the thick glass bent the dark machines and the red line into murk
     except KeyError: pass
     gold = K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12)     # 11-12 CI judge: full metal read as brown sludge in this light
     core_m = K.mat("coin core", "#D2A63C", rough=0.35, metal=0.6, emit=0.08)
@@ -657,20 +657,33 @@ def shot4():
         # the jar SAYS whose losses it holds: a band near the top, the name big, LOSSES under it (11-12 judge, third
         # pass: a sign in front of the glass hid the fill it was labelling)
         band_c = "#2F6FA6" if i == 0 else "#2E3136"      # 11-12 judge: LOSSES is the point, so it is the BIG word; whose, under it
-        SX = jx + (0.14 if jx > 0 else -0.14); SY, SZ = JY + JR + 0.02, JH + 0.33            # 11-12 CI judge: a band on the glass hid the fill and the pour; the sign stands BEHIND the jar, above its rim
+        SX = jx + (0.18 if jx > 0 else -0.18)   # 11-12 panel: clear of his head
+        SY, SZ = JY + JR + 0.02, JH + 0.33            # 11-12 CI judge: a band on the glass hid the fill and the pour; the sign stands BEHIND the jar, above its rim
         # 11-12 panel: through clear glass each jar "held" the dark machine behind it. A pale board behind each jar
         # (11-12 panel, second look: a pale board behind them turned the jars into frosted bins. Clear glass it is.)
         K.cyl(f"jar sign post {i}", (SX, SY + 0.012, (JH + SZ) / 2 - 0.02), 0.008, SZ - JH + 0.04, lid, v=12)
-        K.box(f"jar label {i}", (SX, SY, SZ), (0.38, 0.004, 0.2), K.mat(f"jar band {i}", band_c, rough=0.5), bev=0.002)
+        K.box(f"jar label {i}", (SX, SY, SZ), (0.46, 0.004, 0.2), K.mat(f"jar band {i}", band_c, rough=0.5), bev=0.002)
         K.text(f"jar losses {i}", "LOSSES", (SX, SY - 0.004, SZ + 0.052), 0.058, (math.radians(90), 0, 0), K.mat("placard ink", "#FFFFFF", rough=0.4, emit=0.4), extrude=0.0015)
         who = "CASHIER" if i == 0 else "SELF-CHECKOUT"
-        K.text(f"jar text {i}0", who, (SX, SY - 0.004, SZ - 0.035), 0.078 if i == 0 else 0.052,   # 11-12 CI judge: WHOSE is the big word, readable on a phone
+        wt = K.text(f"jar text {i}0", who, (SX, SY - 0.004, SZ - 0.035), 0.078,   # 11-12 CI judge: WHOSE is the big word, readable on a phone
                 (math.radians(90), 0, 0), K.mat("placard ink"), extrude=0.0015)
+        bpy.context.view_layer.update()       # 11-12 panel: SELF-CHECKOUT ran off its sign. MEASURED to fit the sign, never guessed
+        if wt.dimensions.x > 0.42: wt.data.size *= 0.42 / wt.dimensions.x; bpy.context.view_layer.update()
+        print(f"jar sign {i}: {who} {wt.dimensions.x:.3f} wide on a 0.46 sign")
         core = K.cyl(f"coin core {i}", (jx, JY, 0.0), JR - 0.035, 1.0, core_m, v=32, bev=0.0)
         for v in core.data.vertices: v.co.z += 0.5            # origin at the bottom: scale z = height
         core.location.z = 0.013
         jars[i] = (Vector((jx, JY, 0)), core)
     K.contact_shadow("jar shadows", (0, JY), rx=0.62, ry=0.14)
+    # 11-12 panel: in front of dark kiosks the jars read as murky glass and the coin level was hard to judge. A soft
+    # key on each jar from the camera side, low, so the gold pops
+    for i in range(2):
+        jx = -JX if i == 0 else JX
+        ld = bpy.data.lights.new(f"jar key {i}", 'SPOT'); ld.energy = 22; ld.spot_size = math.radians(26); ld.spot_blend = 0.6
+        ld.shadow_soft_size = 0.15; ld.color = (1.0, 0.95, 0.85)        # a SPOT, so none of it spills onto him (an area key washed his teal pale)
+        lo = bpy.data.objects.new(f"jar key {i}", ld); bpy.context.collection.objects.link(lo)
+        lo.location = (jx * 1.7, JY - 0.8, 0.85)
+        lo.rotation_euler = (Vector((jx, JY, 0.12)) - Vector(lo.location)).to_track_quat('-Z', 'Y').to_euler()
     # fills: the cashier jar to H_LO, the self-checkout jar to more than twice that
     H_LO, H_HI = 0.085, 0.27          # 11-12 CI judge: 'only about twice' -> plainly over twice at a glance
     P0a, P0b = 0.4, 1.6            # pour into the cashier jar
@@ -795,8 +808,10 @@ def shot4():
     # fill, and a big 2X that lands on it the moment the coins pass the line
     lvl = 0.013 + 2 * H_LO
     ring = K.cyl("twice line", (JX, JY, lvl), JR + 0.004, 0.004, K.mat("twice red", "#FF4A36", rough=0.4, emit=0.7), v=48)
-    tw = K.text("twice mark", "2X", (JX - 0.02, JY + JR + 0.015, JH + 0.58), 0.22, (math.radians(90), 0, 0), K.mat("twice red"), extrude=0.004)
+    tw = K.text("twice mark", "2X", (JX + 0.06, JY + JR + 0.015, JH + 0.6), 0.22, (math.radians(90), 0, 0), K.mat("twice red"), extrude=0.004)
     t2 = next(((f - 1) / FPS for f in range(1, NF + 1) if fill_top(1, (f - 1) / FPS) >= lvl), DUR)
+    for f in range(1, NF + 1):   # 11-12 panel: through the empty jar the red line read as a smear as the sack crossed it
+        ring.hide_render = (f - 1) / FPS < P1a + 0.4; ring.keyframe_insert("hide_render", frame=f)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; tw.hide_render = t < t2; tw.keyframe_insert("hide_render", frame=f)
         k_ = 1.0 + 0.35 * max(0.0, 1 - (t - t2) / 0.25) if t >= t2 else 1.0; tw.scale = (k_,) * 3; tw.keyframe_insert("scale", frame=f)
