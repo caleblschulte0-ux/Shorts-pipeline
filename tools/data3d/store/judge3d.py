@@ -83,22 +83,44 @@ def main():
     listing = "\n".join(f"- shot {n}: {p} ({k} frames in time order, left to right, top to bottom). FOR: {BRIEFS[n]}"
                         for n, p, k in sheets)
     prompt = (BAR + "\n\nThe shots, each a contact sheet image you must READ with the Read tool:\n" + listing)
-    proc = subprocess.run(["claude", "-p", prompt, "--model", os.environ.get("JUDGE3D_MODEL", "opus"),
-                           "--allowedTools", "Read", "--output-format", "text"],
-                          capture_output=True, text=True, timeout=int(os.environ.get("JUDGE3D_TIMEOUT", "900")))
-    if proc.returncode != 0:
-        print("JUDGE3D: judge failed:", (proc.stderr or proc.stdout)[:300]); return 1
+    # A PANEL, not one roll (2026-11-12: the same unchanged shot scored 73, then 60, then 80 on three runs, so one
+    # judge failed a different shot every time and the video never rendered). N judges watch independently and in
+    # parallel; a shot's score is their MEDIAN and a hard defect counts when a majority name one. The bar is the same.
+    n = max(1, int(os.environ.get("JUDGE3D_N", "3")))
+    cmd = ["claude", "-p", prompt, "--model", os.environ.get("JUDGE3D_MODEL", "opus"), "--allowedTools", "Read", "--output-format", "text"]
+    procs = [subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) for _ in range(n)]
     sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
     from showrunner_review import parse_judge_json
-    v = parse_judge_json(proc.stdout)
-    out.write_text(json.dumps(v, indent=2))
-    for s in v.get("shots", []):          # code holds the rule, whatever the judge wrote in "pass"
-        s["pass"] = bool(s.get("pass")) and not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
+    panel = []
+    for p in procs:
+        try:
+            so, se = p.communicate(timeout=int(os.environ.get("JUDGE3D_TIMEOUT", "900")))
+        except subprocess.TimeoutExpired:
+            p.kill(); continue
+        if p.returncode != 0: print("JUDGE3D: a judge failed:", (se or so)[:300]); continue
+        try: panel.append({s["shot"]: s for s in parse_judge_json(so).get("shots", [])})
+        except Exception as e: print("JUDGE3D: unreadable verdict:", e)
+    if len(panel) < (n // 2 + 1):
+        print(f"JUDGE3D: only {len(panel)} of {n} judges answered: no pass"); return 1
+    v = {"shots": [], "panel": len(panel)}
+    for n_, _, _ in sheets:
+        votes = [j[n_] for j in panel if n_ in j]
+        if not votes: v["shots"].append({"shot": n_, "score": 0, "pass": False, "hard": ["no judge graded this shot"]}); continue
+        sc_ = sorted((x.get("score") or 0) for x in votes); med = sc_[len(sc_) // 2]
+        hard_votes = [x for x in votes if x.get("hard")]
+        hard = [h for x in hard_votes for h in x["hard"]] if len(hard_votes) * 2 > len(votes) else []
+        best = min(votes, key=lambda x: abs((x.get("score") or 0) - med))      # the notes of the median judge
+        v["shots"].append({"shot": n_, "score": med, "scores": sc_, "hard": hard,
+                           "minority_hard": [h for x in hard_votes for h in x["hard"]] if not hard else [],
+                           "problems": best.get("problems", []), "better": best.get("better", [])})
+    for s in v["shots"]:                  # code holds the rule
+        s["pass"] = not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
     out.write_text(json.dumps(v, indent=2))
     fails = [s for s in v.get("shots", []) if not s.get("pass")]
     for s in v.get("shots", []):
-        print(f"JUDGE3D shot {s.get('shot')}: {s.get('score')} {'PASS' if s.get('pass') else 'FAIL'}")
+        print(f"JUDGE3D shot {s.get('shot')}: {s.get('score')} {s.get('scores', '')} {'PASS' if s.get('pass') else 'FAIL'}")
         for p in s.get("hard", []): print(f"   HARD: {p}")
+        for p in s.get("minority_hard", []): print(f"   hard (one judge only): {p}")
         for p in s.get("problems", []): print(f"   problem: {p}")
         for b in s.get("better", []): print(f"   better: {b}")
     return 2 if fails else 0

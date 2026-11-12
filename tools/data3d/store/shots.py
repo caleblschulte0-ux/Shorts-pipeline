@@ -633,10 +633,10 @@ def shot4():
     try:
         b = glass.node_tree.nodes["Principled BSDF"]; b.inputs["Transmission Weight"].default_value = 1.0; b.inputs["IOR"].default_value = 1.45
     except KeyError: pass
-    gold = K.mat("coins", "#E9BE45", rough=0.18, metal=1.0)
-    core_m = K.mat("coin core", "#B08A2E", rough=0.35, metal=1.0)
+    gold = K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12)     # 11-12 CI judge: full metal read as brown sludge in this light
+    core_m = K.mat("coin core", "#D2A63C", rough=0.35, metal=0.6, emit=0.08)
     lid = K.mat("jar lid", "#2E3136", rough=0.5)
-    JY = -0.4; JR = 0.16; JH = 0.48; JX = 0.37   # 11-12 CI judge: wider apart, so the sack he tips over the far jar is clear of his face
+    JY = -0.4; JR = 0.16; JH = 0.48; JX = 0.35   # 11-12 CI judge: wider apart, so the sack he tips over the far jar is clear of his face
     CR = 0.024                                   # a coin's radius
     jars = {}
     labels = (("CASHIER",), ("SELF", "CHECKOUT"))
@@ -647,10 +647,12 @@ def shot4():
         # the jar SAYS whose losses it holds: a band near the top, the name big, LOSSES under it (11-12 judge, third
         # pass: a sign in front of the glass hid the fill it was labelling)
         band_c = "#2F6FA6" if i == 0 else "#2E3136"      # 11-12 judge: LOSSES is the point, so it is the BIG word; whose, under it
-        K.box(f"jar label {i}", (jx, JY - JR - 0.003, JH - 0.075), (0.36, 0.004, 0.16), K.mat(f"jar band {i}", band_c, rough=0.5), bev=0.002)
-        K.text(f"jar losses {i}", "LOSSES", (jx, JY - JR - 0.007, JH - 0.032), 0.046, (math.radians(90), 0, 0), K.mat("placard ink", "#FFFFFF", rough=0.4, emit=0.4), extrude=0.0015)
+        SX = jx + (0.08 if jx > 0 else -0.08); SY, SZ = JY + JR + 0.02, JH + 0.27            # 11-12 CI judge: a band on the glass hid the fill and the pour; the sign stands BEHIND the jar, above its rim
+        K.cyl(f"jar sign post {i}", (SX, SY + 0.012, (JH + SZ) / 2 - 0.02), 0.008, SZ - JH + 0.04, lid, v=12)
+        K.box(f"jar label {i}", (SX, SY, SZ), (0.38, 0.004, 0.2), K.mat(f"jar band {i}", band_c, rough=0.5), bev=0.002)
+        K.text(f"jar losses {i}", "LOSSES", (SX, SY - 0.004, SZ + 0.052), 0.058, (math.radians(90), 0, 0), K.mat("placard ink", "#FFFFFF", rough=0.4, emit=0.4), extrude=0.0015)
         who = "CASHIER" if i == 0 else "SELF-CHECKOUT"
-        K.text(f"jar text {i}0", who, (jx, JY - JR - 0.007, JH - 0.1), 0.062 if i == 0 else 0.046,   # 11-12 CI judge: WHOSE is the big word, readable on a phone
+        K.text(f"jar text {i}0", who, (SX, SY - 0.004, SZ - 0.035), 0.078 if i == 0 else 0.052,   # 11-12 CI judge: WHOSE is the big word, readable on a phone
                 (math.radians(90), 0, 0), K.mat("placard ink"), extrude=0.0015)
         core = K.cyl(f"coin core {i}", (jx, JY, 0.0), JR - 0.035, 1.0, core_m, v=32, bev=0.0)
         for v in core.data.vertices: v.co.z += 0.5            # origin at the bottom: scale z = height
