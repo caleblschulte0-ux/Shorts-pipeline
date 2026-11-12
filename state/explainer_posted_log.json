@@ -5286,6 +5286,13 @@
         "mechanic:bat-colony-collapse-columns",
         "mechanic:farmland-value-gauge"
       ]
+    },
+    "maternal-mortality-pandemic-reversal": {
+      "claimed_at": "2026-11-12T18:11:07.346362+00:00",
+      "title": "Why Black Maternal Deaths Stayed at 50.3 as Others Fell",
+      "publish_at": "2026-11-12T22:51:45Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6787,6 +6794,14 @@
       "state": "posted",
       "slug": "bat-fungus-collapse",
       "at": "2026-11-12T16:51:56.403130+00:00"
+    },
+    {
+      "claimed_at": "2026-11-12T18:11:07.346362+00:00",
+      "title": "Why Black Maternal Deaths Stayed at 50.3 as Others Fell",
+      "publish_at": "2026-11-12T22:51:45Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "maternal-mortality-pandemic-reversal"
     }
   ]
 }
