@@ -69,6 +69,11 @@ def reach(data, side, fn, t0, t1, lead=0.4, back=0.45, elbow_out=0.45):
 
 
 def drop(obj, t_drop, floor_z, kick=(0, -0.25, 0.25), spin=(5, 2, 7), bounce=0.25):
+    """floor_z: a height, or fn(x, y) -> the height of what is under that point (a table top, then the floor past its edge)"""
+    return _drop(obj, t_drop, floor_z if callable(floor_z) else (lambda x, y, z0=floor_z: z0), kick, spin, bounce)
+
+
+def _drop(obj, t_drop, floor_at, kick, spin, bounce):
     """an object that is part of something lets go at t_drop: from its world pose it falls under gravity, lands on
     floor_z, bounces once and comes to rest lying down. Its parent link is cut so it keeps the world pose."""
     sc.frame_set(F(t_drop)); bpy.context.view_layer.update()
@@ -84,8 +89,9 @@ def drop(obj, t_drop, floor_z, kick=(0, -0.25, 0.25), spin=(5, 2, 7), bounce=0.2
         dt = 1 / FPS; t += dt
         if landed < 2:
             v.z -= g * dt; p += v * dt
-            if p.z <= floor_z + 0.012:
-                p.z = floor_z + 0.012; landed += 1; v = Vector((v.x * 0.5, v.y * 0.5, -v.z * bounce)); w *= 0.4
+            fz = floor_at(p.x, p.y)
+            if p.z <= fz + 0.012:
+                p.z = fz + 0.012; landed += 1; v = Vector((v.x * 0.5, v.y * 0.5, -v.z * bounce)); w *= 0.4
                 if landed == 2: v = Vector((0, 0, 0))
             r = Vector((r0.x, r0.y, r0.z)) + w * (t - t_drop)
             if landed == 2: r.x = math.radians(90) * round(r.x / math.radians(90)); r.y = 0      # it settles lying on the board
@@ -112,7 +118,7 @@ def shot1():
     sh = {s_: acts._shoulder(data, s_) for s_ in "LR"}
     mid = (sh["L"] + sh["R"]) / 2
     # the crown in both hands just below the chin, a little to his left so the fingers rise beside his face, not over it
-    near = mid + Vector((0.1, -0.17, 0.04)); far = mid + Vector((0.16, -0.27, 0.03))   # held up at chest height, clear of the table
+    near = mid + Vector((0.1, -0.17, 0.04)); far = mid + Vector((0.2, -0.3, 0.02))   # held up at chest height, clear of the table
     T_ROT1, T_DROP, T_RECOIL = 1.9, 1.4, 2.0
     at = lambda t: near.lerp(far, ease((t - T_RECOIL) / 0.35))
     # fingers out to his side and up, the fan spread flat to the lens so every finger is its own shape (fingers stood
@@ -125,17 +131,17 @@ def shot1():
         for s_ in "LR":
             sx = -1 if sh[s_].x < mid.x else 1
             data._arm_ik(s_, c + Vector((sx * 0.05 - 0.01, 0.02, -0.04 if sx > 0 else -0.01)), t, 0.4)
-    data._k("spine", 0.0, rot=(0, 0, 0)); data._k("spine", T_RECOIL, rot=(0, 0, 0)); data._k("spine", T_RECOIL + 0.3, rot=(-8, 0, -5)); data._k("spine", DUR, rot=(-7, 0, -4))
+    data._k("spine", 0.0, rot=(0, 0, 0)); data._k("spine", T_RECOIL, rot=(0, 0, 0)); data._k("spine", T_RECOIL + 0.3, rot=(-14, 0, -8)); data._k("spine", DUR, rot=(-12, 0, -7))   # he leans right back from it
     look = lambda t: at(t) + Vector((0.0, 0.0, 0.12))
     data.look_at(look(0.0), 0.0, max_yaw=30, blend=0.0)
     data.look_at(look(T_DROP), T_DROP + 0.1, max_yaw=30)
     data.look_at(far + Vector((0, 0, 0.1)), T_RECOIL + 0.35, max_yaw=30)
     data.look_at((0.0, -2.0, 0.7), DUR - 0.45, max_yaw=30)          # then to us
     data.expression("worried", 0.0, T_RECOIL - 0.25)
-    data.expression("surprised", T_RECOIL - 0.1, DUR)
+    data.expression("alarmed", T_RECOIL - 0.1, DUR)
     data.blink(0.85); data.blink(DUR - 0.3)
     data.finish()
-    drop(fingers[0], T_DROP, TABLE_H + 0.034, kick=(0.22, -0.12, 0.2), spin=(3, 1, 5))   # one finger lets go: it lands on the table
+    drop(fingers[0], T_DROP, TABLE_H + 0.034, kick=(0.22, -0.12, 0.55), spin=(3, 1, 5))   # it pops up off the bunch first, so its fall is seen   # one finger lets go: it lands on the table
     soft_key("bunch key", (0.5, -1.0, 0.9), tuple(near), energy=24, size=22)
     C0, C1, LK = Vector((0.08, -1.0, 0.68)), Vector((0.05, -0.9, 0.66)), Vector((0.03, -0.1, 0.55))
     cam = K.camera(tuple(C0), tuple(LK), lens=32, fstop=3.2)
@@ -153,7 +159,7 @@ RAIL0, RAIL_YAW, RAIL_LEN, N_HOOK = (-0.2, -0.8), 40, 1.0, 6      # it runs from
 # behind his shoulder and nothing on it ever hangs between his face and the lens (the first layout stood him behind
 # the rail with a bunch over his face for the whole beat: staging.face_hidden now refuses that)
 RAIL_DP, RAIL_DROT = Vector((-0.38, -0.8, 0)), 20
-RAIL_C0, RAIL_LK = Vector((-0.12, -1.8, 0.56)), Vector((-0.18, -0.6, 0.42))   # the row seen at 45 deg, every bunch its own shape, running on out of frame   # him on the left third, the row receding past his shoulder to the right
+RAIL_C0, RAIL_LK = Vector((-0.16, -1.72, 0.6)), Vector((-0.22, -0.6, 0.47))   # Data's whole head in frame, the rail running off to the right   # the row seen at 45 deg, every bunch its own shape, running on out of frame   # him on the left third, the row receding past his shoulder to the right
 
 
 def rail_row(m_of, sticker=True):
@@ -166,7 +172,7 @@ def rail_row(m_of, sticker=True):
         root, fingers = PR.hang_bunch(f"rail bunch {k}", sw, m_of(k), seed=40 + (k % 2), L=0.16)   # two seeds only: the bunches are COPIES
         if sticker:
             f0 = fingers[2]; bpy.context.view_layer.update()
-            st = K.cyl(f"sticker {k}", (0, 0, 0), 0.014, 0.002, blue, v=20, bev=0)
+            st = K.cyl(f"sticker {k}", (0, 0, 0), 0.022, 0.002, blue, v=20, bev=0)
             st.parent = f0; st.matrix_parent_inverse = Matrix.Identity(4); st.location = (0.075 * 0.16 / 0.13, 0, 0.0); st.rotation_euler = (math.radians(90), 0, 0)
             st.location.z += 0.02 * 0.16 / 0.13
         rows.append((p, sw, root, fingers))
@@ -201,14 +207,14 @@ def shot2():
     # his hand goes to the first bunch, pushes it down the rail, comes back
     def bunch_side(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return rows[0][2].matrix_world.translation + Vector((0, 0, -0.11)) + Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z') @ Vector((-0.06, 0, 0))
-    reach(data, side, lambda t: bunch_side(max(t, T_PUSH - 0.05)), T_PUSH - 0.2, T_PUSH + 0.18, lead=0.45, elbow_out=0.4)
-    data.look_at(rows[0][0] + Vector((0, 0, -0.1)), 0.4, max_yaw=40)
-    data.look_at(rows[3][0], T_PUSH + 0.6, max_yaw=40)            # he follows the swing down the row
-    data.look_at(rows[5][0], T_PUSH + 1.1, max_yaw=40)
-    data.look_at((DP.x - 0.25, -2.4, 0.75), T_BLIGHT - 0.3, max_yaw=40)   # to us: same plant
-    data.look_at(rows[0][0] + Vector((0, 0, -0.1)), T_BLIGHT + 0.3, max_yaw=40)   # the blight starts
-    data.look_at(rows[4][0], DUR - 0.2, max_yaw=40)
+        return rows[0][2].matrix_world.translation + Vector((0, 0, -0.1)) + Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z') @ Vector((-0.05, -0.04, 0))
+    reach(data, side, lambda t: bunch_side(max(t, T_PUSH - 0.05)), T_PUSH - 0.45, T_PUSH + 0.35, lead=0.4, elbow_out=0.4)   # his hand ON the bunch, long enough to read
+    # his eyes go to the row and come BACK to us each time: a head turned to the row for seconds shows the lens his back
+    data.look_at(rows[0][0] + Vector((0, 0, -0.1)), 0.4, max_yaw=25)
+    data.look_at(rows[3][0], T_PUSH + 0.6, max_yaw=25)            # he follows the swing down the row
+    data.look_at((DP.x - 0.25, -2.4, 0.75), T_PUSH + 1.4, max_yaw=25)   # to us: same plant
+    data.look_at(rows[1][0] + Vector((0, 0, -0.1)), T_BLIGHT + 0.3, max_yaw=25)   # the blight starts
+    data.look_at((DP.x - 0.25, -2.4, 0.75), DUR - 0.9, max_yaw=25)   # and to us again: all of them
     data.idle(0.0, DUR)
     data.expression("happy", 0.3, T_BLIGHT)
     data.expression("worried", T_BLIGHT + 0.2, DUR)
@@ -234,7 +240,7 @@ def shot3():
     TOP = TABLE_H + 0.034
     CX, CY = 0.06, -0.36; cz = TABLE_H + 0.03; CW, CD, CH = 0.38, 0.26, 0.17
     cr = PR.crate("old crate", (CX, CY, cz), w=CW, d=CD, h=CH)
-    piv = K.empty("crate tip", (CX + CW / 2, CY, cz)); root = cr["root"]          # it goes over on its RIGHT bottom edge, away from his face
+    piv = K.empty("crate tip", (CX, CY - CD / 2, cz)); root = cr["root"]          # it goes over FORWARD on its front bottom edge: its open top turns to the lens and the dead fruit pours out toward us (tipped sideways, the fruit fell inside the upright crate and vanished)
     root.parent = piv; root.matrix_parent_inverse = piv.matrix_basis.inverted()
     lid = cr["lid"]; lid_m = lid.matrix_world.copy(); lid.parent = None; lid.matrix_world = lid_m   # the lid comes OFF
     gm = PR.skin_mat("gros michel", base="#E9C640", neck="#A9B23A")
@@ -250,10 +256,12 @@ def shot3():
     drop(lid, T_LID1 + 0.03, TOP - 0.02, kick=(-0.45, -0.08, 0.05), spin=(0.5, -3.0, 0.3), bounce=0.15)   # he lets go: it clatters down
     PR.rot(gm, T_ROT0, T_ROT1, to=1.0)
     for t, a_ in ((0.0, 0), (T_TIP0, 0), (T_TIP0 + 0.15, 6), (T_TIP1, 88), (T_TIP1 + 0.12, 84), (DUR, 86)):
-        piv.rotation_euler = (0, math.radians(a_), 0); piv.keyframe_insert("rotation_euler", frame=F(t))
+        piv.rotation_euler = (math.radians(a_), 0, 0); piv.keyframe_insert("rotation_euler", frame=F(t))
     rnd = random.Random(5)
-    for i, fo in enumerate(inside):   # the dead fruit slides out of the open top and lands across the table
-        drop(fo, T_TIP0 + 0.62 + 0.04 * i, TOP, kick=(rnd.uniform(0.3, 0.55), rnd.uniform(-0.18, 0.0), 0.08), spin=(rnd.uniform(-5, 5), 2, rnd.uniform(-5, 5)), bounce=0.2)
+    EDGE_Y = -0.42 - 0.25                       # the table's front edge: past it the fruit falls to the floor
+    under = lambda x, y: TOP if y > EDGE_Y else 0.0
+    for i, fo in enumerate(inside):   # the dead fruit pours out of the open top, over the table's front edge, onto the floor
+        drop(fo, T_TIP0 + 0.62 + 0.05 * i, under, kick=(rnd.uniform(-0.2, 0.2), rnd.uniform(-1.0, -0.75), 0.3), spin=(rnd.uniform(-5, 5), 2, rnd.uniform(-5, 5)), bounce=0.2)
     data = load_data()
     DP = Vector((-0.04, -0.05, 0)); data.place(DP.x, DP.y, 0)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -262,30 +270,30 @@ def shot3():
     def lid_end(t, sx):           # the lid's two short ends, where his hands take it
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         return lid.matrix_world @ lid_inv @ Vector((CX + sx * (CW / 2 - 0.03), CY, cz + CH + 0.02))
-    def push_pt(t, dz):           # the crate's right top edge, where he pushes it over
+    def push_pt(t, dx):           # the crate's BACK top edge, his side: he shoves it forward, away from himself
         sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return piv.matrix_world @ (root.matrix_parent_inverse @ Vector((CX - CW / 2 - 0.01, CY + dz, cz + CH - 0.02)))
+        return piv.matrix_world @ (root.matrix_parent_inverse @ Vector((CX + dx, CY + CD / 2 + 0.01, cz + CH - 0.02)))
     for s_ in "LR":
         sx = -1 if sh[s_].x < DP.x else 1
         reach(data, s_, lambda t, sx=sx: lid_end(t, sx), T_LID0, T_LID1, elbow_out=0.5)
-        reach(data, s_, lambda t, sx=sx: push_pt(t, 0.06 * sx), T_TIP0, T_TIP0 + 0.3, back=0.6, elbow_out=0.8)   # a shove, then it goes over on its own: following the edge up brings his arms into his face
+        reach(data, s_, lambda t, sx=sx: push_pt(t, 0.1 * sx), T_TIP0, T_TIP0 + 0.4, back=0.6, elbow_out=0.6)   # a shove, then it goes over on its own: following the edge up brings his arms into his face
     data.look_at((CX, CY, cz + 0.2), 0.15, max_yaw=30)
     data.look_at((CX, CY, cz), T_ROT0 + 0.3, max_yaw=30)
     data.look_at((0.0, -2.2, 0.7), T_ROT1 + 0.1, max_yaw=30)        # to us: see?
-    data.look_at((CX + 0.35, CY - 0.15, TOP), T_TIP1 + 0.15, max_yaw=30)   # the fruit across the table
+    data.look_at((CX, -0.8, 0.1), T_TIP1 + 0.15, max_yaw=30)   # down at the dead fruit on the floor in front
     data.idle(0.0, DUR)
     data.expression("happy", 0.2, T_ROT0)
     data.expression("worried", T_ROT0 + 0.3, DUR)
     data.blink(1.1); data.blink(T_ROT1 + 0.4); data.blink(DUR - 0.4)
     data.finish()
     soft_key("crate key", (0.55, -1.25, 0.95), (CX, CY, cz + 0.08), energy=30, size=26)
-    C0, C1 = Vector((0.2, -1.45, 0.66)), Vector((0.2, -1.33, 0.62)); LK = Vector((0.2, -0.3, 0.46))   # centred between him and where the crate lands, so the spill is in frame
+    C0, C1 = Vector((0.04, -1.5, 0.7)), Vector((0.04, -1.38, 0.66)); LK = Vector((0.04, -0.45, 0.38))   # a little above: the fruit blackening inside the crate reads, and the spill to the floor is in frame
     cam = K.camera(tuple(C0), tuple(LK), lens=30, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (CX, CY, cz + 0.1)))
     return dict(**where, data=data, rest=1, grips=("old crate", "gros bunch"),
                 conseq=[("the lid comes off and drops", lambda: meshes([lid]), T_LID0, T_LID1 + 0.6),
                         ("the fruit goes black", inside, T_ROT0, T_ROT1),
-                        ("the crate goes over and the dead fruit spills", lambda: meshes([root]), T_TIP0 + 0.2, DUR)])
+                        ("the crate goes over and the dead fruit spills", lambda: meshes([root] + inside), T_TIP0 + 0.2, DUR)])
 
 
 # ================================================================ SHOT 4: the new strain
@@ -302,7 +310,7 @@ def shot4():
     PR.rot(pt["stem_mat"], T_CLIMB0, T_CLIMB1, to=0.95)
     # the leaf that points at him is the one he lifts; the others wilt in turn
     data = load_data()
-    DP = Vector((0.36, -0.32, 0)); data.place(DP.x, DP.y, -22)
+    DP = Vector((0.36, -0.32, 0)); data.place(DP.x, DP.y, -12)
     sc.frame_set(1); bpy.context.view_layer.update()
     to_him = math.atan2(DP.y - PY, DP.x - PX)
     lifted = min(range(len(pt["leaves"])), key=lambda k: abs(((pt["leaves"][k][0].rotation_euler.z - to_him) + math.pi) % (2 * math.pi) - math.pi))
@@ -326,17 +334,17 @@ def shot4():
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         return hz.matrix_world @ Vector((0.21, 0, 0.03))
     reach(data, side, tip, T_G0, T_LET, lead=0.45, back=0.5, elbow_out=0.4)
-    data.look_at((PX, PY, 0.35), 0.3, max_yaw=40)
-    data.look_at((PX, PY, 0.5), T_G0, max_yaw=40)
-    data.look_at((PX, PY, 0.3), T_LET + 0.3, max_yaw=40)
-    data.look_at((DP.x - 0.3, -2.2, 0.7), DUR - 0.3, max_yaw=40)
+    data.look_at((PX, PY, 0.35), 0.3, max_yaw=25)
+    data.look_at((PX, PY, 0.5), T_G0, max_yaw=25)
+    data.look_at((PX, PY, 0.3), T_LET + 0.3, max_yaw=25)
+    data.look_at((DP.x - 0.3, -2.2, 0.7), DUR - 0.3, max_yaw=25)
     data.idle(0.0, DUR)
     data.expression("worried", 0.2, T_LET)
     data.expression("surprised", T_LET + 0.1, DUR)
     data.blink(0.8); data.blink(T_G1 + 0.2); data.blink(DUR - 0.4)
     data.finish()
     soft_key("plant key", (-0.75, -1.3, 1.0), (PX, PY, 0.45), energy=45, size=28)
-    C0, C1 = Vector((0.07, -1.55, 0.5)), Vector((0.07, -1.46, 0.48)); LK = Vector((0.07, -0.35, 0.38))   # plant and him both whole in frame
+    C0, C1 = Vector((0.2, -1.3, 0.5)), Vector((0.2, -1.2, 0.48)); LK = Vector((0.2, -0.35, 0.4))   # a medium shot: his face and hands read on a phone   # plant and him both whole in frame
     cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (PX, PY, 0.45)))
     leaves = [o for h_, _ in pt["leaves"] for o in h_.children]
@@ -387,11 +395,11 @@ def shot5():
     for s_ in "LR":
         sx = -1 if sh[s_].x < mid.x else 1
         reach(data, s_, lambda t, sx=sx: bpos(t) + Vector((sx * 0.055, 0, -0.04)), T_LIFT, DUR, lead=T_LIFT - T_REACH, elbow_out=0.5)
-    data.look_at(rows[N_HOOK - 1][0], 0.1, max_yaw=45)
-    data.look_at(rows[3][0], T0_ + STEP * 2, max_yaw=45)
-    data.look_at(rows[1][0], T0_ + STEP * 4 - 0.1, max_yaw=45)
-    data.look_at(last[0], T_REACH, max_yaw=45)
-    data.look_at((DP.x, -2.4, 0.75), T_HUG + 0.25, max_yaw=45)          # hugging it, to us
+    data.look_at(rows[N_HOOK - 1][0], 0.1, max_yaw=30)
+    data.look_at(rows[3][0], T0_ + STEP * 2, max_yaw=30)
+    data.look_at(rows[1][0], T0_ + STEP * 4 - 0.1, max_yaw=30)
+    data.look_at(last[0], T_REACH, max_yaw=30)
+    data.look_at((DP.x, -2.4, 0.75), T_HUG + 0.25, max_yaw=30)          # hugging it, to us
     data.idle(0.0, DUR)
     data.expression("worried", 0.2, DUR)
     data.blink(0.9); data.blink(T_HUG + 0.6)
@@ -400,16 +408,16 @@ def shot5():
     soft_key("hug key", (-0.5, -1.6, 0.9), tuple(chest), energy=18, size=18)
     # it OPENS on the far end, the ECUADOR box and the first bunch going black over it, and pans with the rot down
     # the row to him (that opening is a cutaway: he is not in it), then pushes in on the hug
-    C0, LKF, LK0 = RAIL_C0, Vector((far.x - 0.1, far.y - 0.05, 0.42)), RAIL_LK
+    C0, LKF, LK0 = RAIL_C0, Vector((far.x - 0.1, far.y - 0.05, 0.42)), RAIL_LK + Vector((-0.04, 0, 0))
     C1, LK1 = Vector((DP.x + 0.05, DP.y - 0.85, 0.68)), Vector((DP.x + 0.02, DP.y, 0.58))
-    T_PAN0, T_PAN1 = 0.55, 1.7
+    T_PAN0, T_PAN1 = 0.3, 1.05   # Data on screen inside a second
     def look(t):
         a = LKF.lerp(LK0, ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))
         return a.lerp(LK1, ease((t - T_REACH + 0.6) / 2.2))
     cam = K.camera(tuple(C0), tuple(LKF), lens=26, fstop=3.5)
     camera_path(cam, lambda t: (C0.lerp(C1, ease((t - T_REACH + 0.6) / 2.2)), look(t), far.lerp(DP + Vector((0, 0, 0.5)), ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))))
     fallen = [r[2] for r in rows[1:]]
-    return dict(**where, data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, T_PAN1 - 0.3),
+    return dict(**where, data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, T_PAN1),
                 conseq=[("the bunches go black and fall, toward him", lambda: meshes(fallen), T0_, T_REACH + 0.6),
                         ("he holds the last yellow bunch", lambda: meshes([lroot]), T_HUG, DUR)])
 
