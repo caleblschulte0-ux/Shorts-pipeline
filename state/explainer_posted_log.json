@@ -5229,11 +5229,30 @@
       "duration_s": 23.6
     },
     "local-news-deserts-expanding": {
-      "claimed_at": "2026-11-12T01:45:18.906000+00:00",
+      "url": "https://youtube.com/shorts/vPm8tP_5TGk",
       "title": "Only 4,490 US Newspapers Remain",
+      "at": "2026-11-12T01:45:29.605155+00:00",
       "publish_at": "2026-11-12T03:42:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "gemini-3.8-flash-lite-tts: HTTP 429 {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.52,
+      "beat_s": [
+        4.16,
+        5.52,
+        4.38,
+        5.09,
+        4.3
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 23.9
     }
   },
   "uploads": [
@@ -6722,9 +6741,10 @@
       "claimed_at": "2026-11-12T01:45:18.906000+00:00",
       "title": "Only 4,490 US Newspapers Remain",
       "publish_at": "2026-11-12T03:42:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "local-news-deserts-expanding"
+      "url": "https://youtube.com/shorts/vPm8tP_5TGk",
+      "state": "posted",
+      "slug": "local-news-deserts-expanding",
+      "at": "2026-11-12T01:45:29.605155+00:00"
     }
   ]
 }
