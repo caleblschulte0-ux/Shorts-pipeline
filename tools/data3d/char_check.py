@@ -16,12 +16,13 @@ args = ap.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv els
 os.makedirs(args.out, exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 import character
+from clock import FPS
 from PIL import Image
 
 sc = bpy.context.scene
 sc.render.engine = 'CYCLES'; sc.cycles.device = 'CPU'; sc.cycles.samples = args.spp; sc.cycles.use_denoising = True
 sc.render.resolution_x, sc.render.resolution_y = 480, 720; sc.render.image_settings.file_format = 'PNG'
-sc.render.fps = 24
+sc.render.fps = FPS
 sc.view_settings.view_transform = 'Filmic' if 'Filmic' in [i.identifier for i in sc.view_settings.bl_rna.properties['view_transform'].enum_items] else 'Standard'
 
 # ---- stage

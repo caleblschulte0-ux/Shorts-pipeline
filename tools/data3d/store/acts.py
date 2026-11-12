@@ -5,7 +5,7 @@ and the elbow bends). Each hand takes the handle end on ITS OWN side. `arm_bend`
 import bpy, math, os
 from mathutils import Vector
 
-FPS = 24
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__)))); from clock import FPS   # the one clock (tools/data3d/clock.py)
 F = lambda t: int(round(t * FPS)) + 1
 
 def ease(u): u = max(0.0, min(1.0, u)); return u * u * (3 - 2 * u)

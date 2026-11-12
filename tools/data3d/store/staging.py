@@ -11,10 +11,13 @@ import bpy
 from mathutils import Vector
 from bpy_extras.object_utils import world_to_camera_view
 
-FPS = 24
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__)))); from clock import FPS   # the one clock (tools/data3d/clock.py)
 BACK_DEG = 105      # face this far from the lens is the back of his head
 BACK_S = 0.35       # a glance away is fine; a held back is not
-MIN_H = 0.14        # of the frame height
+MIN_H = 0.28        # of the frame height, head to feet: a MEDIUM shot or closer (2026-11-12 brief: "Avoid wide shots
+                    # where Data becomes tiny ... use medium shots and close-ups"; the first 3D short ran at 0.14 and
+                    # its judges called him tiny at 6-9 s and 24-26 s). Cropped by a close-up he measures over 1.
+SMALL_OK = 0.15     # of the shot he may be smaller than that (an establishing beat, a cutaway)
 
 
 def face_dir(data):
@@ -23,8 +26,9 @@ def face_dir(data):
     return (data.arm.matrix_world.to_3x3() @ delta.to_3x3() @ Vector((0, -1, 0))).normalized()
 
 
-def check(data, cam, nf, step=2, name="shot", cutaway=None):
+def check(data, cam, nf, step=2, name="shot", cutaway=None, min_h=None):
     """cutaway=(t0, t1): a cut to a shot that is not on Data (the row from above); his staging is judged off it"""
+    min_h = MIN_H if min_h is None else min_h
     sc = bpy.context.scene; back_run = 0; worst = 0.0; worst_run = 0; small = 0; n = 0; hs = []
     for f in range(1, nf + 1, step):
         if cutaway and cutaway[0] <= (f - 1) / FPS < cutaway[1]: back_run = 0; continue
@@ -37,12 +41,12 @@ def check(data, cam, nf, step=2, name="shot", cutaway=None):
         back_run = back_run + step if ang > BACK_DEG else 0; worst_run = max(worst_run, back_run)
         top = data.arm.matrix_world @ data.pb["head"].tail; foot = data.arm.matrix_world.translation
         a = world_to_camera_view(sc, cam, top); b = world_to_camera_view(sc, cam, foot)
-        h = abs(a.y - b.y); hs.append(h); small += h < MIN_H; n += 1
+        h = abs(a.y - b.y); hs.append(h); small += h < min_h; n += 1
     back_s = worst_run / FPS
     hs.sort(); med = hs[len(hs) // 2] if hs else 0
-    ok = back_s <= BACK_S and small <= n * 0.5
+    ok = back_s <= BACK_S and small <= n * SMALL_OK
     print(f"STAGING {name}: face-to-lens worst {worst:.0f} deg, back turned for {back_s:.2f}s (max {BACK_S}), "
-          f"height in frame median {med:.2f} (min {MIN_H}) -> {'OK' if ok else 'FAIL'}", flush=True)
+          f"height in frame median {med:.2f}, under {min_h} on {small / max(1, n):.0%} of frames (max {SMALL_OK:.0%}) -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok
 
 
@@ -73,3 +77,25 @@ def consequence(cam, nf, items, name="shot"):
         frac = seen / max(1, n); good = frac >= CONSEQ_SEEN; ok_all &= good
         print(f"CONSEQUENCE {name}: {label}: on screen and big enough {frac:.0%} of its window (min {CONSEQ_SEEN:.0%}) -> {'OK' if good else 'FAIL'}", flush=True)
     return ok_all
+
+
+END_S = 1.0           # the last second of the video
+PULL_BACK = 1.15      # the camera may end at most this much farther from him than it was mid-shot
+
+
+def ending(data, cam, nf, items, name="shot"):
+    """THE VIDEO ENDS ON ITS PAYOFF (2026-11-12 brief: "Create a satisfying visual payoff at the end instead of
+    zooming out"; the first 3D short's showrunner hold: "the last 6 seconds are Data standing idle with no payoff").
+    Run on the LAST shot only. Two things are measured: at least one declared consequence is still happening in the
+    final END_S, and the camera does not pull back: its distance to his head at the last frame is at most PULL_BACK
+    times what it was halfway through the shot."""
+    sc = bpy.context.scene; dur = (nf - 1) / FPS
+    live = [lab for lab, _, t0, t1 in items if t1 >= dur - END_S + 1e-3 and t0 <= dur - END_S * 0.5]
+    def dist(f):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        return (cam.matrix_world.translation - data.arm.matrix_world @ data.pb["head"].head).length
+    mid, end = dist(max(1, nf // 2)), dist(nf)
+    ok = bool(live) and end <= mid * PULL_BACK
+    print(f"ENDING {name}: payoff still on screen in the last {END_S:.0f}s: {live or 'NOTHING'}; camera ends {end:.2f} m from him "
+          f"vs {mid:.2f} m mid-shot (max x{PULL_BACK}) -> {'OK' if ok else 'FAIL'}", flush=True)
+    return ok

@@ -58,6 +58,19 @@ score: 0-100 for the shot as a finished piece. pass: true only when there is NO 
 Return ONLY JSON: {"shots": [{"shot": N, "score": 0-100, "pass": true|false, "hard": ["defect, frames"],
 "problems": ["..."], "better": ["..."]}]}"""
 
+# a story folder carries its own briefs: stories/<STORY>/script.json "storyboard", one line per shot ("1 hook: ...")
+_story = Path(__file__).resolve().parents[1] / "stories" / os.environ.get("STORY", "checkout") / "script.json"
+if os.environ.get("STORY", "checkout") != "checkout" and _story.exists():
+    import re as _re
+    BRIEFS = {i + 1: _re.sub(r"^\d+\s*", "", line) for i, line in enumerate(json.load(open(_story))["storyboard"])}
+sys.path.insert(0, str(Path(__file__).resolve().parents[1])); from clock import FPS   # the one clock
+BAR = BAR.replace("every 4th frame of a 24 fps shot (about six frames a second)", f"every 4th frame of a {FPS} fps shot (about {FPS // 4} frames a second)")
+# the second story's brief (2026-11-12) adds the bars the first one was missed on
+BAR = BAR.replace("NOTES: everything else", """- TINY DATA: Data so small in the frame (a wide shot) that his face and hands cannot be read on a phone for most of
+  the shot. Medium shots and close-ups only.
+- NO PAYOFF (last shot only): the video ends on a zoom-out, a pose or nothing happening instead of a visual payoff.
+
+NOTES: everything else""")
 PASS_SCORE = 70
 
 

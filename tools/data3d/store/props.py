@@ -13,7 +13,7 @@ exactly the same motion as the whole clip.
 import math, random
 from mathutils import Vector
 
-FPS = 24
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__)))); from clock import FPS   # the one clock (tools/data3d/clock.py)
 F = lambda t: int(round(t * FPS)) + 1
 G = 9.8
 

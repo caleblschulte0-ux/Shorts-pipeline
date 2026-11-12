@@ -6,7 +6,7 @@ thigh + shin with a KNEE, the eye pads become sunk eye SPHERES with lids, pupils
 becomes a lip tube with shape keys (rest flat line, smile, open, oh), and a deforming armature drives it all.
 
 Units: the model is in rig units (0.2 m per unit); the armature object is scaled 0.2 so the world is in metres and
-Data is 0.95 m tall. Rest facing is -Y. 24 fps; every time is seconds; frame F(t) = round(t*24) + 1.
+Data is 0.95 m tall. Rest facing is -Y. clock.FPS (30) fps; every time is seconds; frame F(t) = round(t*FPS) + 1.
 
     from character import load
     data = load(bpy.context.scene)
@@ -21,7 +21,7 @@ Data is 0.95 m tall. Rest facing is -Y. 24 fps; every time is seconds; frame F(t
 import bpy, bmesh, math, os, sys
 from mathutils import Vector, Matrix, Euler
 
-FPS = 24
+from clock import FPS   # the one clock (clock.py)
 SCALE = 0.2
 SOFT_Z = -0.0006   # metres the body settles when standing: a 0.198 m leg bends ~9 deg at the knee (-0.003 had him in a 20 deg squat all the time)
 LEG_USE = 0.993     # the most of a leg the body ever stands on: 0.985 kept every planted knee bent 20-26 deg (a squat); 0.993 is ~13 deg, under the IK straight_at 0.995

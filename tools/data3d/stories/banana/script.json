@@ -1,0 +1,30 @@
+{
+ "slug": "cavendish-banana-clone-3d",
+ "title": "Every Banana You Eat Is a Clone, and It's Dying",
+ "voice": "am_fenrir",
+ "note": "The queued story cavendish-banana-monoculture, made as the second 3D short. One number at most per beat, said in words; the closing says why you care. Every claim is in 'sources' with the source's own wording.",
+ "lines": [
+  "Nearly every banana here is a clone, and a fungus is coming for it.",
+  "They're all Cavendish, copies of one plant grown from its offshoots, with no seeds. So what kills one can kill them all.",
+  "It's happened before. In the 1950s a soil fungus wiped out the banana America ate, the Gros Michel, so growers switched to Cavendish.",
+  "Now a new strain is killing Cavendish. There's no cure, and it can sit in the soil for decades.",
+  "Now it's in Ecuador, the biggest exporter of all, and this time there's no banana to switch to."
+ ],
+ "draft_windows": [[0, 3.9], [3.9, 10.6], [10.6, 17.4], [17.4, 22.4], [22.4, 27.6]],
+ "sources": [
+  {"claim": "Nearly every banana (in a US store / traded) is Cavendish", "says": "Almost all bananas traded worldwide are Cavendish; Cavendish is around half of global supply and almost all of the bananas exported.", "url": "https://www.fao.org/3/ca7474en/ca7474en.pdf", "publisher": "FAO", "year": 2020},
+  {"claim": "They are clones, seedless, grown from offshoots; what kills one can kill them all", "says": "Cavendish bananas lack any diversity ... they too are all clones ... lack seeds ... suckers, the offshoots of adult plants. 'As clones, every single plant is as vulnerable as all its neighbor' (Gert Kema, Wageningen).", "url": "https://www.snexplores.org/article/banana-threat-attack-clones", "publisher": "Science News Explores", "year": 2015},
+  {"claim": "In the 1950s a soil fungus (Panama disease, Race 1) wiped out the Gros Michel and growers switched to Cavendish", "says": "The transition from Gros Michel to Cavendish started in the mid-1900s; by about 1962 the export industry had switched. 30,000 ha were lost in Honduras' Ulua Valley, 1940-1960.", "url": "https://www.apsnet.org/edcenter/apsnetfeatures/Documents/2005/PanamaDisease1.pdf", "publisher": "APS (R. Ploetz)", "year": 2005},
+  {"claim": "A new strain (Tropical Race 4) kills Cavendish and has no cure", "says": "Currently there are no effective cures for TR4. Cavendish is susceptible.", "url": "https://www.fao.org/3/ca7474en/ca7474en.pdf", "publisher": "FAO", "year": 2020},
+  {"claim": "It can stay in the soil for decades", "says": "spores can remain dormant in the soil for decades; can survive for more than 40 years in abandoned fields", "url": "https://assets.ippc.int/static/media/files/publication/en/2025/07/Fusarium_wilt_TR4.pdf", "publisher": "FAO / IPPC", "year": 2025},
+  {"claim": "It is now in Ecuador, the biggest exporter", "says": "Ecuador's plant health agency Agrocalidad confirmed TR4 on 18 December 2025; a second case followed in July 2026. Ecuador is the world's top banana exporter.", "url": "https://www.itfnet.org/v1/2026/01/ecuador-presence-of-fusarium-tr4-confirmed/", "publisher": "ITFNet", "year": 2026},
+  {"claim": "This time there's no banana to switch to", "says": "INFERRED from the sources, said as the story's meaning: there is no Cavendish-scale resistant variety in export production today (the 1950s switch had one ready). Stated as a judgement, not a number.", "url": "https://www.fao.org/3/ca7474en/ca7474en.pdf", "publisher": "FAO", "year": 2020}
+ ],
+ "storyboard": [
+  "1 hook: a MEDIUM CLOSE on Data at the produce table holding a bright bunch; black wilt creeps over it in his hands, a banana drops off and hits the table; he recoils.",
+  "2 clones: a rail of identical bunches on hooks; Data pushes the first, and every bunch swings the same way in turn, a row of identical copies; one sticker, the same on each.",
+  "3 Gros Michel: an old wooden crate stenciled GROS MICHEL 1950; Data lifts the lid, the bananas inside blacken and slump; he tips it and the dead fruit spills onto the floor.",
+  "4 TR4: Data plants a young banana plant in a planter of soil; dark fungus creeps up from the soil and the leaves yellow and droop while he waters it in vain.",
+  "5 payoff: the rail again, the bunches blacken one after another toward him; he snatches the LAST yellow bunch off its hook and hugs it, the camera pushing in to him."
+ ]
+}

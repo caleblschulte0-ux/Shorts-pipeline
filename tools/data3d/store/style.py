@@ -1,5 +1,6 @@
 """The LOOK: 'kinda real, clean, professional' - not clay, not toon, not chrome. One place for materials, lights and
 render settings. Materials are looked up by NAME from scene_kit's cache and restyled here."""
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__)))); from clock import FPS   # the one clock
 import bpy, math, os
 from mathutils import Vector
 import scene_kit as K
@@ -208,7 +209,7 @@ def render_settings(sc, spp=24, pct=60, out=None):
     cy.max_bounces = 6; cy.diffuse_bounces = 3; cy.glossy_bounces = 3; cy.transparent_max_bounces = 6; cy.caustics_reflective = False; cy.caustics_refractive = False
     cy.filter_width = 1.05
     sc.render.use_motion_blur = True; sc.render.motion_blur_shutter = 0.5
-    sc.render.resolution_x = 1080; sc.render.resolution_y = 1920; sc.render.resolution_percentage = pct; sc.render.fps = 24
+    sc.render.resolution_x = 1080; sc.render.resolution_y = 1920; sc.render.resolution_percentage = pct; sc.render.fps = FPS
     sc.render.film_transparent = False
     sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'AgX - Medium High Contrast'; sc.view_settings.exposure = float(os.environ.get('EXPOSURE', '-0.4'))
     sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGB'

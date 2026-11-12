@@ -7,7 +7,7 @@ name: Data 3D short - re-assemble (frames of an earlier run, one shot re-rendere
 # other four were fine, so only it is rendered again). shot= empty: assembly only.
 on:
   push:
-    branches: ['claude/3d-data']
+    branches: ['claude/3d-data', 'claude/data3d-video2']
     paths: ['.github/triggers/data3d_assemble']
 
 permissions:
@@ -17,7 +17,7 @@ permissions:
 jobs:
   cfg:
     runs-on: ubuntu-latest
-    outputs: {run: '${{ steps.c.outputs.run }}', shot: '${{ steps.c.outputs.shot }}'}
+    outputs: {run: '${{ steps.c.outputs.run }}', shot: '${{ steps.c.outputs.shot }}', story: '${{ steps.c.outputs.story }}', narr: '${{ steps.c.outputs.narr }}'}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: {fetch-depth: 1}
@@ -25,6 +25,9 @@ jobs:
         run: |
           echo "run=$(sed -n 's/^frames_run=//p' .github/triggers/data3d_assemble)" >> "$GITHUB_OUTPUT"
           echo "shot=$(sed -n 's/^shot=//p' .github/triggers/data3d_assemble)" >> "$GITHUB_OUTPUT"
+          story=$(sed -n 's/^story=//p' .github/triggers/data3d_render); echo "story=${story:-checkout}" >> "$GITHUB_OUTPUT"
+          narr=$(sed -n 's/^narration_run=//p' .github/triggers/data3d_render)          # the voice lives in the run that made it
+          echo "narr=${narr:-$(sed -n 's/^frames_run=//p' .github/triggers/data3d_assemble)}" >> "$GITHUB_OUTPUT"
 
   reshoot:
     needs: cfg
@@ -41,25 +44,22 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with: {python-version: '3.11'}
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with: {name: narration, path: narr, run-id: '43028751371', github-token: '${{ github.token }}'}
+        with: {name: narration, path: narr, run-id: '${{ needs.cfg.outputs.narr }}', github-token: '${{ github.token }}'}
       - name: Deps
         run: |
           timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
             || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
           pip install -q bpy==5.0.0 numpy==1.26.4 pillow
       - name: Render this shard of the shot
-        env: {LOOK: NYC, SHOT: '${{ needs.cfg.outputs.shot }}', SHARD: '${{ matrix.shard }}', SHARDS: '20'}
+        env: {LOOK: NYC, SHOT: '${{ needs.cfg.outputs.shot }}', SHARD: '${{ matrix.shard }}', SHARDS: '20', STORY: '${{ needs.cfg.outputs.story }}'}
         run: |
           cfg=.github/triggers/data3d_render
           SPP=$(sed -n 's/^spp=//p' $cfg); PCT=$(sed -n 's/^pct=//p' $cfg)
-          NF=$(python3 -c "
-          import json; w=json.load(open('narr/narration.json'))['windows']; s=$SHOT; F=24
-          t0=0.0 if s==1 else w[s-1][0]; t1=w[s][0] if s<5 else w[4][1]+0.6
-          g=int(round(t0*F)); print(int(round(t1*F))-g+(1 if s==5 else 0))")
+          NF=$(python3 -c "import json,sys;sys.path.insert(0,'tools/data3d');import clock;print(clock.span(json.load(open('narr/narration.json'))['windows'],$SHOT)[3])")
           A=$(( SHARD * NF / SHARDS + 1 )); B=$(( (SHARD + 1) * NF / SHARDS ))
           echo "shot $SHOT local frames $A-$B of $NF at ${SPP}spp ${PCT}%"
           cd tools/data3d/store
-          NARR="$GITHUB_WORKSPACE/narr/narration.json" FRAMES="$A-$B" python -I shots.py "$GITHUB_WORKSPACE/frames" "${SPP:-48}" "${PCT:-80}" 2>&1 | grep -v "^Fra:"
+          NARR="$GITHUB_WORKSPACE/narr/narration.json" FRAMES="$A-$B" python -I shots.py "$GITHUB_WORKSPACE/frames" "${SPP:-48}" "${PCT:-100}" 2>&1 | grep -v "^Fra:"
           ls "$GITHUB_WORKSPACE/frames" | wc -l
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -93,7 +93,7 @@ jobs:
         if: needs.cfg.outputs.shot != ''
         with: {path: re, pattern: 'reshoot-*'}
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with: {name: narration, path: art/narration, run-id: '43028751371', github-token: '${{ github.token }}'}
+        with: {name: narration, path: art/narration, run-id: '${{ needs.cfg.outputs.narr }}', github-token: '${{ github.token }}'}
       - name: Deps
         run: |
           for i in 1 2 3; do
@@ -127,7 +127,7 @@ jobs:
           ls frames | wc -l
           if [ -d re ]; then echo "re-shot frames laid over: $(ls re/*/*.png | wc -l)"; cp -f re/*/*.png frames/; fi
           python3 branch/tools/data3d/story/assemble.py frames art/narration main out/data3d_short.mp4
-          python3 branch/tools/data3d/store/sheet.py frames out/data3d_short_2fps.jpg 8 12
+          python3 branch/tools/data3d/store/sheet.py frames out/data3d_short_2fps.jpg 8 15
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: short
@@ -138,7 +138,7 @@ jobs:
           git config user.name "github-actions[bot]"; git config user.email "github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch -q --depth 1 origin preview-renders && git checkout -q -B pr FETCH_HEAD || { git checkout -q --orphan pr; git rm -rqf . ; }
-            mkdir -p data3d && cp ../out/* data3d/ && cp ../art/narration/narration.json data3d/
-            git add -f data3d && git commit -qm "data3d short $(date -u +%FT%TZ)" && git push -q origin pr:preview-renders && break
+            d=data3d/${{ needs.cfg.outputs.story }}; mkdir -p $d && cp ../out/* $d/ && cp ../art/narration/narration.json $d/
+            git add -f data3d && git commit -qm "data3d short ${{ needs.cfg.outputs.story }} $(date -u +%FT%TZ)" && git push -q origin pr:preview-renders && break
             sleep $((i*3))
           done

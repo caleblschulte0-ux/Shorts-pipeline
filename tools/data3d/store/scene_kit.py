@@ -14,7 +14,7 @@ WALL_H = 4.6 * U          # 2.576
 LANE_X = [0.0, 0.62, 1.24, 1.86]
 FAR_X = [3.05, 3.67]
 FAR_Y = BACK_Y + 7.0        # the far wall: the store goes on behind the lanes
-FPS = 24
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__)))); from clock import FPS   # the one clock (tools/data3d/clock.py)
 
 # natural supermarket colours; one brand accent (the orange band) and the blue of the screens
 PAL = {
