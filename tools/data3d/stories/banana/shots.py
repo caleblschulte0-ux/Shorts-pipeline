@@ -159,7 +159,12 @@ RAIL_DP, RAIL_DROT = Vector((-0.38, -0.8, 0)), 20
 RAIL_C0, RAIL_LK = Vector((-0.16, -1.72, 0.6)), Vector((-0.22, -0.6, 0.47))   # Data's whole head in frame, the rail running off to the right   # the row seen at 45 deg, every bunch its own shape, running on out of frame   # him on the left third, the row receding past his shoulder to the right
 
 
-# shot 2's own rail: from his right hand, out toward the lens on frame left
+# shot 2's own rail (take 4): the judge, take 3: "the rail is cut by the left frame edge in every frame", "his hands
+# stay at his sides", "TINY DATA". Now the row starts AT his left hand, centre frame, and runs back and to the right at
+# 38 deg to the lens, so all six bunches fit in the frame, getting smaller toward the far post. Data stands at its near
+# end, frame left, turned to us, his arm out to the first bunch. The near post sits 9 cm clear of his arm.
+S2_YAW = 52                                       # rail direction (0.616, 0.788): back and to the right
+S2_HOOK0 = Vector((0.17, -0.55, 0))               # the first hook, just off his left hand
 S2_R0, S2_YAW = (0.12, -0.62), 242
 S2_DP, S2_DROT = Vector((0.3, -0.5, 0)), -14
 S2_C0, S2_LK = Vector((0.04, -2.05, 0.6)), Vector((0.1, -0.8, 0.44))
@@ -304,15 +309,34 @@ def shot4():
     stem out of the soil and its leaves droop and brown one after another. He takes hold of a drooping leaf and lifts it
     back up; he lets go and it flops down, dead."""
     where = place("field")
-    PX, PY = -0.06, -0.42
+    # take 2 (judge, 50): "the plant is cut by the left frame edge in all 24 frames", "his hand only brushes the leaf
+    # tips", "the leaves go dark and spotted rather than yellow", "at the end he just stands facing the camera". Now the
+    # plant and its mound sit left of centre, Data close beside it, and the camera pulls back so BOTH are whole with
+    # room; the leaves fan back and to the sides (nothing wide to the left to be cut); the leaves go YELLOW, then brown;
+    # the lift is a big, slow move (sagged far down -> raised above level, held) and the drop has its own second; he
+    # ends with his shoulders sagging and a sad look to us.
+    PX, PY = -0.14, -0.42
     soil = LOC._noise_mat("field soil", "#5A4430", "#47362A")
-    K.sph("young plant mound", (PX, PY, -0.03), 1.0, soil, scale=(0.15, 0.13, 0.07))   # planted in the field's own soil
-    pt = PR.plant("young plant", (PX, PY, 0.02), height=0.45, seed=8, angles=(8, 172, 38, 142, 70, 110))   # to the sides and back, none at the lens
-    T_CLIMB0, T_CLIMB1 = 0.2, DUR * 0.7
+    K.sph("young plant mound", (PX, PY, -0.03), 1.0, soil, scale=(0.17, 0.15, 0.08))   # planted in the field's own soil
+    pt = PR.plant("young plant", (PX, PY, 0.02), height=0.45, seed=8, angles=(8, 150, 50, 128, 72, 104))   # to the side and back, none at the lens, none far out left
+    T_CLIMB0, T_CLIMB1 = 0.2, DUR * 0.62
     PR.rot(pt["stem_mat"], T_CLIMB0, T_CLIMB1, to=0.95)
+    YEL, YEL_NECK = "#D9C23F", "#BDB43C"           # straw-yellow: a dying banana leaf yellows before it browns
+
+    def yellow(m, t0, t1):
+        """key the leaf's own colour ramp from green to straw-yellow over t0..t1"""
+        try:
+            ramp = next(n for n in m.node_tree.nodes if n.type == 'VALTORGB')
+            els = ramp.color_ramp.elements
+            for el in els:
+                if el.position > 0.97: continue                         # the leaf's dark tip stays as it is
+                el.keyframe_insert("color", frame=1); el.keyframe_insert("color", frame=max(1, F(t0)))
+                el.color = (*K.lin(YEL_NECK if el.position < 0.1 else YEL), 1); el.keyframe_insert("color", frame=max(2, F(t1)))
+        except (StopIteration, TypeError, AttributeError, RuntimeError):
+            pass
     # the leaf that points at him is the one he lifts; the others wilt in turn
     data = load_data()
-    DP = Vector((0.36, -0.32, 0)); data.place(DP.x, DP.y, -12)
+    DP = Vector((0.22, -0.34, 0)); data.place(DP.x, DP.y, -12)
     sc.frame_set(1); bpy.context.view_layer.update()
     to_him = math.atan2(DP.y - PY, DP.x - PX)
     lifted = min(range(len(pt["leaves"])), key=lambda k: abs(((pt["leaves"][k][0].rotation_euler.z - to_him) + math.pi) % (2 * math.pi) - math.pi))
@@ -320,33 +344,43 @@ def shot4():
     hz.rotation_euler = (0, math.radians(-5), to_him)
     others = [k for k in range(len(pt["leaves"])) if k != lifted]
     for i, k in enumerate(others):
-        h_, m_ = pt["leaves"][k]; PR.wilt(h_, m_, 0.5 + 0.45 * i, 1.6 + 0.45 * i, droop_deg=36, to=0.5)   # yellowed and mottled, not black: dark drooped leaves closed into one brown shape; splayed down and out, a collapsed umbrella: hung straight down they closed round the stem into a brown pod
-    T_G0, T_G1, T_LET = 1.6, 2.6, 3.5          # he takes the leaf, lifts it, lets go
+        h_, m_ = pt["leaves"][k]; w0 = 0.35 + 0.3 * i
+        yellow(m_, w0, w0 + 0.7)
+        PR.wilt(h_, m_, w0 + 0.3, w0 + 1.2, droop_deg=40, to=0.42)   # yellow first, then brown spots as it sags: splayed down and out, a collapsed umbrella
+    T_SAG, T_G0, T_G1, T_LET = 0.4, 1.15, 1.95, 2.55   # it sags; he takes it from underneath; lifts it high; holds; lets go
+    UP = -14                                           # held a little ABOVE level: the lift reads (higher took his arm into his face)
     def pitch(t):
-        if t < 0.9: return -5
-        if t < T_G0: return -5 + 35 * ease((t - 0.9) / (T_G0 - 0.9))      # it sags toward him
-        if t < T_G1: return 30 - 30 * ease((t - T_G0) / (T_G1 - T_G0))     # he lifts it back up, level (higher took his arm into his face)
-        if t < T_LET: return 0
-        u = t - T_LET; return 62 - 62 * math.exp(-u / 0.12) * math.cos(u * 14) if u < 1.2 else 62   # it flops down and bounces once
+        if t < T_SAG: return -5
+        if t < T_G0: return -5 + 50 * ease((t - T_SAG) / (T_G0 - T_SAG))      # it sags far down toward him
+        if t < T_G1: return 45 - (45 - UP) * ease((t - T_G0) / (T_G1 - T_G0))  # he lifts it right back up
+        if t < T_LET: return UP
+        u = t - T_LET; return 64 - (64 - UP) * math.exp(-u / 0.13) * math.cos(u * 13) if u < 1.2 else 64   # it flops down limp and bounces once
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; hz.rotation_euler = (0, math.radians(pitch(t)), to_him); hz.keyframe_insert("rotation_euler", frame=f)
-    PR.rot(hm, T_G0, T_LET + 0.6, to=0.75)
+    yellow(hm, T_SAG, T_G0 + 0.3)
+    PR.rot(hm, T_LET - 0.1, T_LET + 0.5, to=0.6)      # dead in his hand: it browns as it drops
     side = near_hand(data, Vector((PX, PY, 0.5)))
-    def tip(t):
+    def under_leaf(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return hz.matrix_world @ Vector((0.21, 0, 0.03))
-    reach(data, side, tip, T_G0, T_LET, lead=0.45, back=0.5, elbow_out=0.4)
-    data.look_at((PX, PY, 0.35), 0.3, max_yaw=25)
-    data.look_at((PX, PY, 0.5), T_G0, max_yaw=25)
-    data.look_at((PX, PY, 0.3), T_LET + 0.3, max_yaw=25)
-    data.look_at((DP.x - 0.3, -2.2, 0.7), DUR - 0.3, max_yaw=25)
+        return hz.matrix_world @ Vector((0.17, 0, 0.0))    # his fingers UNDER the blade, mid-leaf, not brushing the tip
+    reach(data, side, under_leaf, T_G0, T_LET, lead=0.4, back=0.55, elbow_out=0.4)
+    US = (0.03, -2.4, 0.6)
+    data.look_at((PX, PY, 0.3), 0.0, max_yaw=25, blend=0.0)  # the rot climbing out of the soil
+    data.look_at((PX, PY, 0.45), T_SAG + 0.2, max_yaw=25)     # the leaf sagging
+    data.look_at((PX + 0.12, PY, 0.5), T_G1 - 0.2, max_yaw=25)  # the leaf held up: come on
+    data.look_at((PX + 0.1, PY, 0.25), T_LET + 0.15, max_yaw=25)  # his eyes drop with it
+    data.look_at(US, T_LET + 1.0, max_yaw=25)                  # then to us: it's gone
     data.idle(0.0, DUR)
-    data.expression("worried", 0.2, T_LET)
-    data.expression("surprised", T_LET + 0.1, DUR)
-    data.blink(0.8); data.blink(T_G1 + 0.2); data.blink(DUR - 0.4)
+    # the reaction: his shoulders and head sag as the leaf lands, held to the end (keyed after idle)
+    T_SLUMP = T_LET + 0.55
+    data._k("spine", T_SLUMP - 0.1, rot=(0, 0, 0)); data._k("spine", T_SLUMP + 0.35, rot=(8, 0, 0)); data._k("spine", DUR, rot=(7, 0, 0))
+    data.expression("worried", 0.2, DUR)
+    data._face(T_SLUMP + 0.3, brow=0.12, lid=0.3, frown=1.0); data._face(DUR, brow=0.12, lid=0.3, frown=1.0)
+    data.blink(0.9); data.blink(T_G1 + 0.25)
     data.finish()
-    soft_key("plant key", (-0.75, -1.3, 1.0), (PX, PY, 0.45), energy=45, size=28)
-    C0, C1 = Vector((0.2, -1.3, 0.5)), Vector((0.2, -1.2, 0.48)); LK = Vector((0.2, -0.35, 0.4))   # a medium shot: his face and hands read on a phone   # plant and him both whole in frame
+    soft_key("plant key", (-0.75, -1.4, 1.0), (PX, PY, 0.4), energy=50, size=30)
+    # plant and mound left of centre, Data beside it: both whole, his head clear of the top edge on every frame
+    C0, C1 = Vector((0.03, -1.78, 0.46)), Vector((0.03, -1.68, 0.45)); LK = Vector((0.03, -0.38, 0.32))
     cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (PX, PY, 0.45)))
     leaves = [o for h_, _ in pt["leaves"] for o in h_.children]
@@ -357,70 +391,110 @@ def shot4():
 
 
 # ================================================================ SHOT 5: no banana to switch to
+# shot 5's own rail: it recedes almost straight away from the lens at his right hand, so the rot comes TOWARD the
+# camera and him, and the whole row, the box under its far end and Data fit one frame (no pan)
+S5_YAW = 62
+S5_R0 = (0.0, -0.78)
+S5_DP, S5_DROT = Vector((-0.22, -0.74, 0)), 15
+S5_C0, S5_LK0 = Vector((0.0, -1.95, 0.64)), Vector((0.0, -0.2, 0.40))
+
+
 def shot5():
     """THE PAYOFF. The rail again, an ECUADOR banana box under its far end. The rot starts at the bunch over the box
-    and comes down the row toward him; each bunch goes black and drops off its hook to the floor. He lifts the LAST
+    and comes down the row toward him; each bunch goes black on its hook, one after another. He snatches the LAST
     yellow bunch off its hook and hugs it to his chest, looking at us, the camera pushing in to him. It ends there."""
+    # take 2 (judge, 63): "Data enters as a blurred head cut by the left edge that lurches into frame", "the rot runs
+    # on the right and partly behind Data, the rail cut by the right edge", "the bunches drop off rather than blackening
+    # on them", "the snatch happens in two frames, behind his own body", "a ghosted eye on a blink", "the bunch is small,
+    # held low, pinned under one hand; its blue caps look like pins". Now: NO PAN. The rail recedes straight away from
+    # the lens beside him (62 deg), the ECUADOR box under its far end; one frame holds the box, the whole row and Data
+    # whole on the left from frame one, and the FOCUS racks from the box down the row with the rot to him. The bunches
+    # go black ON their hooks and stay there, shivering. He winds up (hand cocked at the shoulder), snatches the last
+    # one off its hook with a fast strike, yanks it to his chest and wraps both arms round its middle, squeezes, and
+    # looks to us relieved as the camera pushes in. No stickers, no blinks.
     where = place("dock")
     mats = [PR.skin_mat(f"rail {k}") for k in range(N_HOOK)]
-    rows = rail_row(lambda k: mats[k])
-    R = Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z')
-    far = Vector((RAIL0[0], RAIL0[1], 0)) + R @ Vector((RAIL_LEN + 0.12, 0.16, 0))
-    PR.produce_box("ecuador box", (far.x, far.y, 0.0), yaw=math.radians(RAIL_YAW - 90))
-    T0_, STEP = 0.25, 0.5
-    for i, k in enumerate(range(N_HOOK - 1, 0, -1)):        # from the far end toward him; the last one (k = 0) never rots
-        tb = T0_ + STEP * i
-        PR.rot(mats[k], tb, tb + 0.55, to=1.0, frm=0.1)
-        p, sw, root, fingers = rows[k]
-        PR.swing(sw, tb + 0.35, amp_deg=6, period=0.5, tau=0.3, nf=F(tb + 0.65))
-        drop(root, tb + 0.65, 0.04, kick=(0.0, -0.08, 0.05), spin=(1.5, 0.5, 2.0), bounce=0.15)   # it lets go of the hook and lands
-    T_REACH, T_LIFT, T_HUG = T0_ + STEP * (N_HOOK - 1) - 0.15, None, None
-    T_LIFT = T_REACH + 0.45; T_HUG = T_LIFT + 0.5
+    rows = rail_row(lambda k: mats[k], sticker=False, r0=S5_R0, yaw=S5_YAW)
+    R = Matrix.Rotation(math.radians(S5_YAW), 3, 'Z')
+    s0 = Vector((S5_R0[0], S5_R0[1], 0))
+    box = s0 + R @ Vector((RAIL_LEN + 0.15, 0.1, 0))             # past the far end, just behind it: the far bunch hangs over it
+    to_cam = S5_C0 - box
+    PR.produce_box("ecuador box", (box.x, box.y, 0.0), yaw=math.atan2(to_cam.x, -to_cam.y))   # its printed face to the lens
+    T0_, STEP, ROT_S = 0.3, 0.42, 0.45
+    order = list(range(N_HOOK - 1, 0, -1))                       # from the far end toward him; the last one (k = 0) never rots
+    tb_of = {k: T0_ + STEP * i for i, k in enumerate(order)}
+    for k, tb in tb_of.items():
+        PR.rot(mats[k], tb, tb + ROT_S, to=1.0, frm=0.1)         # it goes black ON its hook, and stays there
+        PR.swing(rows[k][1], tb + ROT_S - 0.1, amp_deg=5, period=0.6, tau=0.35, nf=F(tb + ROT_S + 1.0))   # a dead shiver
+    T_W = tb_of[1] + 0.22                    # the one beside it is turning: he cocks his hand
+    T_STRIKE = T_W + 0.25; T_GRAB = T_STRIKE + 0.17; T_HUG = T_GRAB + 0.3; T_SQ = T_HUG + 0.55
     data = load_data()
-    DP = RAIL_DP; data.place(DP.x, DP.y, RAIL_DROT)
+    DP = S5_DP; data.place(DP.x, DP.y, S5_DROT)
     sc.frame_set(1); bpy.context.view_layer.update()
-    last = rows[0]; lroot = last[2]
+    last = rows[0]; lroot, lfing = last[2], last[3]
     sh = {s_: acts._shoulder(data, s_) for s_ in "LR"}; mid = (sh["L"] + sh["R"]) / 2
-    sc.frame_set(1); bpy.context.view_layer.update(); hook_pose = lroot.matrix_world.copy()
-    chest = mid + data.forward() * 0.17 + Vector((0, 0, -0.09))   # held to his chest, below the chin: his arms stay clear of his face and body
-    # the last bunch leaves its hook in his hands and ends hugged to his chest (its own path, keyed every frame)
-    M0 = hook_pose; lroot.parent = None; lroot.matrix_world = M0
-    q0 = M0.to_quaternion(); from mathutils import Quaternion
+    fwd = data.forward(); lat = Vector((math.cos(math.radians(S5_DROT)), math.sin(math.radians(S5_DROT)), 0))
+    M0 = lroot.matrix_world.copy()
+    c0 = sum((fo.matrix_world.translation for fo in lfing), Vector()) / len(lfing)    # the bunch's MIDDLE, not its stem
+    from mathutils import Quaternion
+    q0 = M0.to_quaternion(); off_l = q0.inverted() @ (c0 - M0.translation)
     q1 = Quaternion((0, 0, 1), math.radians(14)) @ Quaternion((0, 1, 0), math.radians(-90)) @ Quaternion((1, 0, 0), math.radians(-12))
-    lroot.rotation_mode = 'QUATERNION'
-    def bpos(t):
-        u = ease((t - T_LIFT) / (T_HUG - T_LIFT)); return M0.translation.lerp(chest, u)
+    chest = mid + fwd * 0.16 + Vector((0, 0, -0.04))             # high on his chest, under the chin: big in the close-up
+    u_of = lambda t: ease((t - T_GRAB) / (T_HUG - T_GRAB))
+    sq = lambda t: ease((t - T_SQ) / 0.3)                         # the protective squeeze
+    def center(t):
+        u = u_of(t)
+        return c0.lerp(chest, u) + Vector((0, 0, 0.06 * math.sin(math.pi * u))) - fwd * 0.015 * sq(t)
+    lroot.parent = None; lroot.matrix_world = M0; lroot.rotation_mode = 'QUATERNION'
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS; u = ease((t - T_LIFT) / (T_HUG - T_LIFT))
-        lroot.location = bpos(t); lroot.keyframe_insert("location", frame=f)
-        lroot.rotation_quaternion = q0.slerp(q1, u); lroot.keyframe_insert("rotation_quaternion", frame=f)
-    for s_ in "LR":
-        sx = -1 if sh[s_].x < mid.x else 1
-        reach(data, s_, lambda t, sx=sx: bpos(t) + Vector((sx * 0.055, 0, -0.04)), T_LIFT, DUR, lead=T_LIFT - T_REACH, elbow_out=0.5)
-    data.look_at(rows[N_HOOK - 1][0], 0.1, max_yaw=30)
-    data.look_at(rows[3][0], T0_ + STEP * 2, max_yaw=30)
-    data.look_at(rows[1][0], T0_ + STEP * 4 - 0.1, max_yaw=30)
-    data.look_at(last[0], T_REACH, max_yaw=30)
-    data.look_at((DP.x, -2.4, 0.75), T_HUG + 0.25, max_yaw=30)          # hugging it, to us
+        t = (f - 1) / FPS; q = q0.slerp(q1, u_of(t))
+        lroot.rotation_quaternion = q; lroot.keyframe_insert("rotation_quaternion", frame=f)
+        lroot.location = center(t) - q @ off_l; lroot.keyframe_insert("location", frame=f)
+    grab = near_hand(data, c0); hold = "L" if grab == "R" else "R"
+    sx = {s_: (1 if (sh[s_] - mid).dot(lat) > 0 else -1) for s_ in "LR"}
+    hug_off = lambda s_, t: lat * sx[s_] * (0.07 - 0.015 * sq(t)) + fwd * 0.02    # both arms round its middle
+    wind = sh[grab] + lat * sx[grab] * 0.09 - fwd * 0.05 + Vector((0, 0, 0.04))   # the wind-up: hand cocked up by his shoulder
+    g_off = (sh[grab] - c0).normalized() * 0.05                                   # the grab: on the bunch's near side
+    def grab_pt(t):
+        if t < T_STRIKE: return wind
+        if t < T_GRAB: return wind.lerp(c0 + g_off, ease((t - T_STRIKE) / (T_GRAB - T_STRIKE)))
+        return center(t) + g_off.lerp(hug_off(grab, t), u_of(t))
+    reach(data, grab, grab_pt, T_W, DUR, lead=0.3, elbow_out=0.45)
+    reach(data, hold, lambda t: center(t) + hug_off(hold, t), T_GRAB + 0.1, DUR, lead=0.35, elbow_out=0.5)
+    C1, LK1 = Vector((DP.x + 0.06, DP.y - 0.70, 0.60)), Vector((DP.x + 0.04, DP.y, 0.50))
+    US = tuple(C1)
+    # his eyes ride the rot down the row toward him, land on the last yellow one, follow it to his chest, then to us
+    data.look_at(rows[N_HOOK - 1][0], 0.0, max_yaw=30, blend=0.0)
+    for k in order[1:]:
+        data.look_at(rows[k][0], tb_of[k] + 0.2, max_yaw=30)
+    data.look_at(c0, T_W - 0.05, max_yaw=30)
+    data.look_at(chest + Vector((0, 0, 0.03)), T_HUG + 0.05, max_yaw=30)
+    data.look_at(US, T_HUG + 0.6, max_yaw=30)
     data.idle(0.0, DUR)
-    data.expression("worried", 0.2, DUR)
-    data.blink(0.9); data.blink(T_HUG + 0.6)
-    data.finish()
-    soft_key("rail key", (0.9, -1.7, 1.1), (0.25, -0.62, 0.62), energy=40, size=34)
+    data.expression("worried", 0.2, T_W - 0.1)
+    data.expression("alarmed", T_W - 0.1, T_HUG + 0.15)
+    data.expression("happy", T_HUG + 0.45)        # relief, held to the end (no end time: no fade to neutral on the payoff)
+    data.finish()                                 # no blinks: a closing lid ghosted inside the lens (take 1, frame 22)
+    soft_key("rail key", (0.9, -1.5, 1.1), (0.25, -0.35, 0.42), energy=40, size=36)
+    soft_key("box key", (0.9, -0.9, 0.8), (box.x, box.y, 0.1), energy=22, size=20)
     soft_key("hug key", (-0.5, -1.6, 0.9), tuple(chest), energy=18, size=18)
-    # it OPENS on the far end, the ECUADOR box and the first bunch going black over it, and pans with the rot down
-    # the row to him (that opening is a cutaway: he is not in it), then pushes in on the hug
-    C0, LKF, LK0 = RAIL_C0, Vector((far.x - 0.1, far.y - 0.05, 0.42)), RAIL_LK + Vector((-0.04, 0, 0))
-    C1, LK1 = Vector((DP.x + 0.05, DP.y - 0.85, 0.68)), Vector((DP.x + 0.02, DP.y, 0.58))
-    T_PAN0, T_PAN1 = 0.3, 1.05   # Data on screen inside a second
-    def look(t):
-        a = LKF.lerp(LK0, ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))
-        return a.lerp(LK1, ease((t - T_REACH + 0.6) / 2.2))
-    cam = K.camera(tuple(C0), tuple(LKF), lens=26, fstop=3.5)
-    camera_path(cam, lambda t: (C0.lerp(C1, ease((t - T_REACH + 0.6) / 2.2)), look(t), far.lerp(DP + Vector((0, 0, 0.5)), ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))))
+    # ONE frame from the first: box, row and Data whole; a slow creep, then the push-in on the hug (and a longer lens)
+    C0, LK0 = S5_C0, S5_LK0
+    w = lambda t: 0.12 * ease(t / T_GRAB) + 0.88 * ease((t - T_GRAB) / (DUR - 0.2 - T_GRAB))
+    foc_end = Vector((DP.x + 0.02, DP.y - 0.12, 0.5))
+    fk = [(0.0, box + Vector((0, 0, 0.12))), (0.5, rows[N_HOOK - 1][0] - Vector((0, 0, 0.1)))]
+    fk += [(tb_of[k] + 0.2, rows[k][0] - Vector((0, 0, 0.1))) for k in order[1:]] + [(T_W, foc_end)]
+    def focus(t):
+        for (ta, pa), (tz, pz) in zip(fk, fk[1:]):
+            if t < tz: return pa.lerp(pz, ease((t - ta) / (tz - ta)))
+        return foc_end
+    cam = K.camera(tuple(C0), tuple(LK0), lens=24, fstop=4.0)
+    camera_path(cam, lambda t: (C0.lerp(C1, w(t)), LK0.lerp(LK1, w(t)), focus(t)))
+    cam.data.lens = 24; cam.data.keyframe_insert("lens", frame=F(T_GRAB))
+    cam.data.lens = 30; cam.data.keyframe_insert("lens", frame=F(DUR - 0.2))
     fallen = [r[2] for r in rows[1:]]
-    return dict(**where, data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, T_PAN1),
-                conseq=[("the bunches go black and fall, toward him", lambda: meshes(fallen), T0_, T_REACH + 0.6),
+    return dict(**where, data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, 0.0),
+                conseq=[("the bunches go black one after another, toward him", lambda: meshes(fallen), T0_, T_GRAB),
                         ("he holds the last yellow bunch", lambda: meshes([lroot]), T_HUG, DUR)])
 
 
