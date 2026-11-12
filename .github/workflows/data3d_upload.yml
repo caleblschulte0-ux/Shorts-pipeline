@@ -1,0 +1,70 @@
+name: Data 3D short - post (by hand only)
+
+# Posts ONE finished 3D Data short to the explainer channel once the operator
+# has watched it in the project thread and said to post it. No schedule:
+# nothing here posts on its own. The video is pinned on preview-renders by
+# commit and sha256; the shared showrunner gate watches it first (a block
+# is final); scripts/post_data3d.py then claims the slot on main before
+# the upload, takes the registry's spacing, records the URL and cross-posts.
+
+on:
+  workflow_dispatch:
+    inputs:
+      media_ref:
+        description: 'preview-renders commit holding data3d/post/<slug>/ (video.mp4, meta.json, SHA256SUMS)'
+        required: true
+      slug:
+        description: 'folder under data3d/post/'
+        required: true
+      public_now:
+        description: 'operator said to post it now: skip the spacing wait (the showrunner still judges it)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write   # TikTok cross-post token
+
+concurrency:
+  group: explainer-posted-log
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {ref: main, fetch-depth: 1}
+      - name: Fetch the approved video
+        env: {REF: '${{ inputs.media_ref }}', SLUG: '${{ inputs.slug }}'}
+        run: |
+          set -euo pipefail
+          git fetch -q --depth 1 origin "$REF"
+          mkdir -p /tmp/media
+          for f in video.mp4 meta.json SHA256SUMS thumb.jpg; do git show "FETCH_HEAD:data3d/post/$SLUG/$f" > "/tmp/media/$f"; done
+          cd /tmp/media && sha256sum -c SHA256SUMS
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - name: Deps
+        run: pip install -q -r requirements.txt
+      - name: Judge tools (ffmpeg, the headless showrunner)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -q ffmpeg
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 && echo "claude CLI installed" || echo "::warning::claude CLI install failed: the showrunner falls back to Gemini"
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no judge (CLAUDE_CODE_OAUTH_TOKEN or GEMINI_API_KEY): the gate fails closed"; exit 1
+          fi
+        env: {CLAUDE_CODE_OAUTH_TOKEN: '${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}', GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}'}
+      - name: Judge, then post
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_EXPECTED_CHANNEL: short_explainer67
+          PUBLIC_NOW: ${{ inputs.public_now }}
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "github-actions[bot]@users.noreply.github.com"
+          python scripts/post_data3d.py /tmp/media
