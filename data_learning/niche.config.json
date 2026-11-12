@@ -26275,10 +26275,10 @@
   },
   {
    "slug": "religious-nones-rise",
-   "title": "One In Four Americans Now Has No Religion",
-   "hook": "Americans with no religion now outnumber Catholics.",
-   "closing": "One in four now says none, so the religious map around you is quietly being redrawn.",
-   "question": "Do you consider yourself religious? Tell me below.",
+   "title": "28% Of Americans Now Claim No Religion",
+   "hook": "No religion now describes 28% of Americans, passing Catholics.",
+   "closing": "No religion is reshaping communities as younger generations replace older ones.",
+   "question": "Do you consider yourself religious?",
    "caption": "Only 8% of Americans had no religion in 1990. Today it's 29% -- and it's not random, it's generational: only 10% of the oldest Americans are unaffiliated, versus about a third of Gen Z. 'No religion' is now closing in on becoming the country's single biggest group. Do you consider yourself religious? 👇",
    "hashtags": [
     "religion",
@@ -26304,8 +26304,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RISE",
-     "topic": "Americans with no religion",
-     "say": "In 1990, only 8 percent of US adults had no religion. Today that has more than tripled, so faith's hold is loosening fast.",
+     "topic": "Religion decline",
+     "say": "No religion described just 8 percent of US adults. That share has more than tripled.",
      "scene": {
       "mechanic": "empty-pew-exodus",
       "concept": "a hundred-person congregation under a church photo; as the years tick 1990 to 2021, people at the pews drop out of colour and walk off until 29 of 100 are gone",
@@ -26321,8 +26321,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "No religion by generation",
-     "say": "36 percent of millennials have no religion, more than triple the oldest generation. So the shift is built into who is growing up.",
+     "topic": "Religion generations",
+     "say": "No religion describes 36 percent of millennials, making the shift strongest among younger adults.",
      "scene": {
       "mechanic": "generation-pew-seats",
       "concept": "five rows of pews, one per generation, 20 seats each; seats empty out from the right as each generation's no-religion share sweeps in, oldest barely touched, youngest a third vacant",
@@ -26338,8 +26338,8 @@
      },
      "insight_type": "share",
      "role": "3 · THE NEW MAP",
-     "topic": "No religion today",
-     "say": "Today 28 percent say none, passing Catholics. Only Protestants are still ahead, and the gap is closing.",
+     "topic": "Religion today",
+     "say": "No religion now describes 28 percent of Americans, passing Catholics and trailing only Protestants.",
      "scene": {
       "mechanic": "people-stack-overtake",
       "concept": "each affiliation is a column of stacked people; the Unaffiliated column climbs past the Catholic one and stops just under Protestants",
@@ -26348,8 +26348,8 @@
      "illustrated_scene": "# scene standard: 2026-10-11\ndef _rail(cr, y, s):\n    # the bed of ballast, lit, then the sleepers and the steel rail on it\n    cr.rectangle(0, y - 4 * s, W, 26 * s)\n    solid(cr, (150, 138, 118), edge=False, rim=False)\n    step = int(56 * s)\n    for x in range(-20, W + 40, step):\n        cr.rectangle(x, y - 8 * s, 22 * s, 14 * s)\n        cr.set_source_rgba(*_c((96, 70, 48)))\n        cr.fill()\n    cr.rectangle(0, y - 12 * s, W, 6 * s)\n    solid(cr, (120, 122, 130), finish=\"metal\", rim=False)\n\n\ndef _handcar(cr, x, y, s, rgb, label, t, rock, flap):\n    # a railway handcar on its rail at (x, y): wheels, a lit deck, the pump\n    # post and its rocking beam, and the group's flag streaming behind it\n    contact_shadow(cr, x, y + 4, 190 * s, a=0.4)\n    cast_shadow(cr, x - 85 * s, x + 85 * s, y, length=160 * s, a=0.22)\n    px = x - 72 * s\n    top = y - 232 * s\n    cr.rectangle(px - 3 * s, top, 6 * s, 200 * s)\n    solid(cr, (70, 72, 80), finish=\"metal\", rim=False)\n    fw, fh = 170 * s, 48 * s\n    cr.move_to(px, top)\n    for i in range(1, 9):\n        xx = px - fw * i / 8\n        cr.line_to(xx, top + flap * 7 * s * math.sin(t * 5 + i * 0.9) * i / 8)\n    for i in reversed(range(0, 9)):\n        xx = px - fw * i / 8\n        cr.line_to(xx, top + fh + flap * 7 * s * math.sin(t * 5 + i * 0.9) * i / 8)\n    cr.close_path()\n    solid(cr, rgb)\n    text(cr, label, px - fw / 2, top + fh * 0.7, int(22 * s), look.INK,\n         anchor=\"center\", shadow=False)\n    for wx in (x - 50 * s, x + 50 * s):\n        disc(cr, wx, y - 22 * s, 22 * s, (62, 62, 68), finish=\"metal\")\n    box(cr, x - 85 * s, y - 36 * s, 170 * s, 26 * s, rgb, depth=34 * s)\n    cylinder(cr, x - 7 * s, y - 60 * s, 14 * s, 60 * s, (84, 86, 94), finish=\"metal\")\n    cr.save()\n    cr.translate(x, y - 122 * s)\n    cr.rotate(rock)\n    cr.rectangle(-72 * s, -6 * s, 144 * s, 12 * s)\n    cr.restore()\n    solid(cr, (96, 74, 52))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: three railway handcars racing\n    SUBSTANCE: the rolling handcars\n    CAUSE: Data cranks the no-religion handcar down the rails, past the Catholic car, chasing the Protestant one\n    Three handcars on three rails, each group's share of Americans is how far\n    down the line its car gets. Protestants roll out in front, Catholics\n    behind them, and Data cranks the no-religion car from the start line\n    past the parked Catholic car — its old place stays as a ghost on his\n    rail — and pulls up chasing the leader, the gap to it dashed on the\n    shot. Landed by 0.62, then held while flags stream and he keeps at it.\n    The readout prints only the no-religion share, under a line that names\n    no other group, so its number is never read as anyone else's.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n\n    def val(key, i):\n        for l, v in rows:\n            if key in l.lower():\n                return l, v\n        return rows[min(i, len(rows) - 1)]\n\n    lp, vp = val(\"protest\", 0)\n    lu, vu = val(\"unaff\", 1)\n    lc, vc = val(\"catholic\", 2)\n    top = max(vp, vu, vc) or 1.0\n\n    def X(v):\n        return 140 + v / top * 760\n\n    pP = seg(u, 0.06, 0.44)\n    pC = seg(u, 0.08, 0.40)\n    pU = seg(u, 0.10, 0.62)\n    xP = 140 + (X(vp) - 140) * ease(pP)\n    xC = 140 + (X(vc) - 140) * ease(pC)\n    xU = 140 + (X(vu) - 140) * ease(pU)\n\n    landscape(cr, t, \"field\", horizon=920)\n    birds(cr, t, y0=720, n=5, rgb=(50, 50, 60))\n\n    rails = [(1070, 0.9), (1260, 1.15), (1450, 1.5)]\n    for y, s in rails:\n        _rail(cr, y, s)\n\n    neutral, neutral2 = (150, 152, 158), (122, 126, 134)\n    rk = lambda p, ph: 0.28 * math.sin(t * 7 + ph) if 0 < p < 1 else 0.0\n    _handcar(cr, xP, 1070, 0.9, neutral2, lp.upper(), t, rk(pP, 0), 1.0)\n    _handcar(cr, xC, 1260, 1.15, neutral, lc.upper(), t, rk(pC, 1), 1.0)\n\n    # THE SCALE on the near rail: where the Catholic car stands, as a ghost\n    passed = xU > X(vc) + 40\n    if passed:\n        gs = 1.5\n        gx = X(vc)\n        cr.rectangle(gx - 85 * gs, 1450 - 36 * gs, 170 * gs, 26 * gs)\n        ghost(cr, a=0.85)\n        text(cr, f\"{lc} {int(round(vc))}%\", gx, 1450 + 50, 28, look.INK,\n             anchor=\"center\")\n\n    _handcar(cr, xU, 1450, 1.5, P[\"accent2\"], \"NO RELIGION\", t, rk(pU, 2), 1.0)\n\n    # the gap still to close, dashed from his car to the leader\n    if u >= 0.62:\n        then_mark(cr, xU + 110, X(vp), 1120, f\"{lp} {int(round(vp))}%\",\n                  a=ease(seg(u, 0.62, 0.66)))\n\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    hx, hy = xU + 22, 1450 - 62 * 1.5\n    if u < 0.06:\n        host(\"point\", hx, hy, 220)\n    elif u < 0.88:\n        host(\"crank\", hx, hy, 220, beat=int((u - 0.06) / 0.1))\n    else:\n        host(\"cheer\", hx, hy, 220)\n\n    if u >= 0.62:\n        fit_readout(cr, f\"{int(round(vu))}%\", \"of Americans have no religion · today\",\n                    80, 520, a=ease(seg(u, 0.62, 0.66)), size=130)\n    else:\n        fit_readout(cr, \"No religion\", \"America's faiths, racing down the line\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T00:20:17Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-12T12:22:39Z",
    "retold": "retell/v3",
    "hook_was": "Americans with no religion now outnumber Catholics, at 28 percent."
   },

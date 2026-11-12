@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-12T12:19:38Z",
+ "updated": "2026-11-12T12:22:39Z",
  "open": [
-  {
-   "id": "religious-nones-rise__677be75f",
-   "slug": "religious-nones-rise",
-   "filed": "2026-10-19T11:44:38Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/religious-nones-rise__677be75f.request.json",
-   "answer_path": "exchange/rewrites/20261019/religious-nones-rise__677be75f.answer.json"
-  },
   {
    "id": "volcano-country-ranking__692a9e46",
    "slug": "volcano-country-ranking",
@@ -301,6 +291,16 @@
    ],
    "request": "exchange/rewrites/20261018/plastic-in-your-body__cedc4bab.request.json",
    "answer_path": "exchange/rewrites/20261018/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "religious-nones-rise__677be75f",
+   "slug": "religious-nones-rise",
+   "filed": "2026-10-18T11:46:45Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/religious-nones-rise__677be75f.request.json",
+   "answer_path": "exchange/rewrites/20261018/religious-nones-rise__677be75f.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
