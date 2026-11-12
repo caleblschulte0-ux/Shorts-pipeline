@@ -431,7 +431,11 @@ class Data:
         else: setattr(obj, path, value)
         obj.keyframe_insert(path, frame=F(t), index=index)
 
+    OH_MAX = 0.0    # caaleb 11-04 and 11-12 ("data's mouth looked weird"): never an open 'o' / mouth hole, in ANY shot.
+                    # Shock is the brows, the eyes and the body. Held here, where every expression is keyed, so no shot can ask for one.
+
     def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0):
+        oh = min(oh, self.OH_MAX)
         kb = self.lips.data.shape_keys.key_blocks
         for name, v in (('smile', smile), ('open', open), ('oh', oh)):
             kb[name].value = v; kb[name].keyframe_insert('value', frame=F(t))
