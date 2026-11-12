@@ -11,6 +11,7 @@ name: Data 3D short (narrate, render shards, assemble; no upload)
 #
 # .github/triggers/data3d_render:  story=<folder>  spp=<n>  pct=100
 #   narration_run=<run id>   reuse that run's voice (omit to voice it here)
+#   mode=narrate             voice the lines and stop (time the shots to the real read first)
 on:
   push:
     branches: ['claude/3d-data', 'claude/data3d-video2']
@@ -31,6 +32,7 @@ jobs:
       story: ${{ steps.c.outputs.story }}
       shots: ${{ steps.c.outputs.shots }}
       narr_run: ${{ steps.c.outputs.narr_run }}
+      mode: ${{ steps.c.outputs.mode }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: {fetch-depth: 1}
@@ -43,6 +45,7 @@ jobs:
           echo "shots=$(python3 -c "import json;print(json.dumps(list(range(1,len(json.load(open('tools/data3d/stories/$story/script.json'))['lines'])+1))))")" >> $GITHUB_OUTPUT
           run=$(sed -n 's/^narration_run=//p' $cfg)
           echo "narr_run=${run:-${{ github.run_id }}}" >> $GITHUB_OUTPUT
+          echo "mode=$(sed -n 's/^mode=//p' $cfg)" >> $GITHUB_OUTPUT     # mode=narrate: voice the lines and stop, so the shots can be timed to the real read
           echo "story $story, voice from run ${run:-this one}"
 
   narrate:
@@ -105,7 +108,7 @@ jobs:
   # No token, no judge, no render: it fails closed.
   proof:
     needs: [cfg, narrate]
-    if: always() && needs.cfg.result == 'success' && needs.narrate.result != 'failure'
+    if: always() && needs.cfg.result == 'success' && needs.narrate.result != 'failure' && needs.cfg.outputs.mode != 'narrate'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
