@@ -5288,11 +5288,29 @@
       ]
     },
     "maternal-mortality-pandemic-reversal": {
-      "claimed_at": "2026-11-12T18:11:07.346362+00:00",
+      "url": "https://youtube.com/shorts/-ozB-RuISIk",
       "title": "Why Black Maternal Deaths Stayed at 50.3 as Others Fell",
+      "at": "2026-11-12T18:11:21.922037+00:00",
       "publish_at": "2026-11-12T22:51:45Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.36,
+      "beat_s": [
+        5.67,
+        4.31,
+        5.36,
+        4.28,
+        5.37
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 25.5
     }
   },
   "uploads": [
@@ -6799,9 +6817,10 @@
       "claimed_at": "2026-11-12T18:11:07.346362+00:00",
       "title": "Why Black Maternal Deaths Stayed at 50.3 as Others Fell",
       "publish_at": "2026-11-12T22:51:45Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "maternal-mortality-pandemic-reversal"
+      "url": "https://youtube.com/shorts/-ozB-RuISIk",
+      "state": "posted",
+      "slug": "maternal-mortality-pandemic-reversal",
+      "at": "2026-11-12T18:11:21.922037+00:00"
     }
   ]
 }
