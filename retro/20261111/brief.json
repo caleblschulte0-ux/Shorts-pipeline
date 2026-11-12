@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261111",
-  "generated_at": "2026-11-11T23:47:25Z",
+  "generated_at": "2026-11-12T00:31:10Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 48.77,
+          "days": 48.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 47.77,
+          "days": 47.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1522,10 +1522,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "78f1148",
-    "commits_since": "2026-11-10",
+    "head": "d42b9c4",
+    "commits_since": "2026-11-11",
     "commit_count": 50,
     "commits": [
+      "d42b9c4 retro: brief + triage for 20261111 [skip ci]",
+      "b9b0862 claim: mailbox verdicts 2026-11-11T23:47Z [skip ci]",
       "78f1148 claim: mailbox verdicts 2026-11-11T23:44Z [skip ci]",
       "45743d9 explainer: update posted log + analytics [skip ci]",
       "46354c6 claim: mailbox verdicts 2026-11-11T22:19Z [skip ci]",
@@ -1563,9 +1565,7 @@
       "3b51254 third: update posted log + analytics [skip ci]",
       "f28be0b third: checkpoint posted log (claim upload slot) [skip ci]",
       "cced203 deadman: repaired 2026-11-11 [skip ci]",
-      "d316e7a third: analytics [skip ci]",
-      "f62c95e third: update posted log + analytics [skip ci]",
-      "3d2b8d5 deadman: repaired 2026-11-11 [skip ci]"
+      "d316e7a third: analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
