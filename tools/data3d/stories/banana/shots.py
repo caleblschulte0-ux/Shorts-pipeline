@@ -104,13 +104,14 @@ def shot1():
     sh = {s_: acts._shoulder(data, s_) for s_ in "LR"}
     mid = (sh["L"] + sh["R"]) / 2
     # the crown in both hands just below the chin, a little to his left so the fingers rise beside his face, not over it
-    near = mid + Vector((0.1, -0.17, -0.02)); far = mid + Vector((0.16, -0.27, -0.04))
+    near = mid + Vector((0.1, -0.17, 0.04)); far = mid + Vector((0.16, -0.27, 0.03))   # held up at chest height, clear of the table
     T_ROT1, T_DROP, T_RECOIL = 1.9, 1.4, 2.0
     at = lambda t: near.lerp(far, ease((t - T_RECOIL) / 0.35))
-    # fingers UP, curving toward the lens, fanned across the frame, leaning out to his side
-    tilt = lambda t: (0, math.radians(-90 + 22 + 10 * ease((t - T_RECOIL) / 0.35)), math.radians(90))
+    # fingers out to his side and up, the fan spread flat to the lens so every finger is its own shape (fingers stood
+    # up and curving at the lens fanned into one blob; once black it read as a glove or a boot)
+    tilt = lambda t: (math.radians(90), math.radians(-38 - 10 * ease((t - T_RECOIL) / 0.35)), 0)   # the fan FACES the lens: five fingers spread like a hand
     follow(hero, at, 0.0, DUR, rot_fn=tilt)
-    PR.rot(hm, 0.0, T_ROT1, to=0.8, frm=0.1)               # already freckled on frame one: the threat is there at once
+    PR.rot(hm, 0.0, T_ROT1, to=0.8, frm=0.1)   # black-brown with its spots still showing: fully black lost every finger's shape               # already freckled on frame one: the threat is there at once
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; c = at(t)
         for s_ in "LR":
@@ -137,7 +138,14 @@ def shot1():
 
 
 # ================================================================ the rail (shots 2 and 5)
-RAIL0, RAIL_YAW, RAIL_LEN, N_HOOK = (-0.2, -0.8), 22, 1.0, 6      # it runs from just in front of him to the right and back: diagonal to the lens, and he faces us over it
+RAIL0, RAIL_YAW, RAIL_LEN, N_HOOK = (-0.2, -0.8), 55, 1.0, 6      # it runs from just in front of him to the right and back: diagonal to the lens, and he faces us over it
+
+
+# where he stands for the rail beats: BESIDE the rail's near end, level with it, turned a little to it, so the row runs away
+# behind his shoulder and nothing on it ever hangs between his face and the lens (the first layout stood him behind
+# the rail with a bunch over his face for the whole beat: staging.face_hidden now refuses that)
+RAIL_DP, RAIL_DROT = Vector((-0.38, -0.8, 0)), 20
+RAIL_C0, RAIL_LK = Vector((-0.2, -1.85, 0.62)), Vector((-0.12, -0.6, 0.5))   # him on the left third, the row receding past his shoulder to the right
 
 
 def rail_row(m_of, sticker=True):
@@ -147,12 +155,12 @@ def rail_row(m_of, sticker=True):
     blue = K.mat("sticker", "#1F5FA8", rough=0.4); ink = K.mat("sticker ink", "#FFFFFF", rough=0.4)
     rows = []
     for k, (p, sw) in enumerate(hooks):
-        root, fingers = PR.hang_bunch(f"rail bunch {k}", sw, m_of(k), seed=40 + (k % 2), L=0.15)   # two seeds only: the bunches are COPIES
+        root, fingers = PR.hang_bunch(f"rail bunch {k}", sw, m_of(k), seed=40 + (k % 2), L=0.2)   # big enough to read beside his head   # two seeds only: the bunches are COPIES
         if sticker:
             f0 = fingers[2]; bpy.context.view_layer.update()
             st = K.cyl(f"sticker {k}", (0, 0, 0), 0.014, 0.002, blue, v=20, bev=0)
-            st.parent = f0; st.matrix_parent_inverse = Matrix.Identity(4); st.location = (0.075 * 0.15 / 0.13, 0, 0.0); st.rotation_euler = (math.radians(90), 0, 0)
-            st.location.z += 0.02 * 0.15 / 0.13
+            st.parent = f0; st.matrix_parent_inverse = Matrix.Identity(4); st.location = (0.075 * 0.2 / 0.13, 0, 0.0); st.rotation_euler = (math.radians(90), 0, 0)
+            st.location.z += 0.02 * 0.2 / 0.13
         rows.append((p, sw, root, fingers))
     sign = K.box("rail sign", (0, 0, 0), (0.44, 0.012, 0.11), K.mat("rail sign board", "#F4EFE4", rough=0.5), bev=0.004)
     R = Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z'); mid = Vector((RAIL0[0], RAIL0[1], 0)) + R @ Vector((RAIL_LEN * 0.5, 0, 0))
@@ -179,7 +187,7 @@ def shot2():
         PR.swing(sw, T_PUSH + 0.18 * k, amp_deg=20, period=0.95, tau=1.6, nf=NF)
         PR.rot(mats[k], T_BLIGHT + 0.22 * k, T_BLIGHT + 0.22 * k + 0.9, to=0.62)
     data = load_data()
-    DP = Vector((-0.14, -0.53, 0)); data.place(DP.x, DP.y, 0)
+    DP = RAIL_DP; data.place(DP.x, DP.y, RAIL_DROT)
     sc.frame_set(1); bpy.context.view_layer.update()
     side = near_hand(data, rows[0][0])
     # his hand goes to the first bunch, pushes it down the rail, comes back
@@ -199,8 +207,8 @@ def shot2():
     data.blink(0.6); data.blink(T_BLIGHT - 0.1); data.blink(DUR - 0.5)
     data.finish()
     soft_key("rail key", (0.9, -1.7, 1.1), (0.25, -0.62, 0.62), energy=40, size=34)
-    C0, C1 = Vector((-0.12, -2.0, 0.74)), Vector((-0.08, -1.85, 0.72)); LK = Vector((0.16, -0.62, 0.55))
-    cam = K.camera(tuple(C0), tuple(LK), lens=28, fstop=4.5)
+    C0, C1 = RAIL_C0, RAIL_C0 + Vector((0.04, 0.15, -0.02)); LK = RAIL_LK
+    cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.5)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, rows[1][0]))
     swingers = [r[2] for r in rows]
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("rail bunch 0",),
@@ -237,7 +245,7 @@ def shot3():
         piv.rotation_euler = (0, math.radians(a_), 0); piv.keyframe_insert("rotation_euler", frame=F(t))
     rnd = random.Random(5)
     for i, fo in enumerate(inside):   # the dead fruit slides out of the open top and lands across the table
-        drop(fo, T_TIP0 + 0.45 + 0.035 * i, TOP, kick=(rnd.uniform(0.2, 0.45), rnd.uniform(-0.2, 0.02), 0.05), spin=(rnd.uniform(-5, 5), 2, rnd.uniform(-5, 5)), bounce=0.2)
+        drop(fo, T_TIP0 + 0.62 + 0.04 * i, TOP, kick=(rnd.uniform(0.3, 0.55), rnd.uniform(-0.18, 0.0), 0.08), spin=(rnd.uniform(-5, 5), 2, rnd.uniform(-5, 5)), bounce=0.2)
     data = load_data()
     DP = Vector((-0.04, -0.05, 0)); data.place(DP.x, DP.y, 0)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -252,7 +260,7 @@ def shot3():
     for s_ in "LR":
         sx = -1 if sh[s_].x < DP.x else 1
         reach(data, s_, lambda t, sx=sx: lid_end(t, sx), T_LID0, T_LID1, elbow_out=0.5)
-        reach(data, s_, lambda t, sx=sx: push_pt(t, 0.06 * sx), T_TIP0, T_TIP1 - 0.25, elbow_out=0.5)
+        reach(data, s_, lambda t, sx=sx: push_pt(t, 0.06 * sx), T_TIP0, T_TIP0 + 0.3, back=0.6, elbow_out=0.8)   # a shove, then it goes over on its own: following the edge up brings his arms into his face
     data.look_at((CX, CY, cz + 0.2), 0.15, max_yaw=30)
     data.look_at((CX, CY, cz), T_ROT0 + 0.3, max_yaw=30)
     data.look_at((0.0, -2.2, 0.7), T_ROT1 + 0.1, max_yaw=30)        # to us: see?
@@ -263,7 +271,7 @@ def shot3():
     data.blink(1.1); data.blink(T_ROT1 + 0.4); data.blink(DUR - 0.4)
     data.finish()
     soft_key("crate key", (0.55, -1.25, 0.95), (CX, CY, cz + 0.08), energy=30, size=26)
-    C0, C1 = Vector((0.08, -1.45, 0.66)), Vector((0.08, -1.33, 0.62)); LK = Vector((0.08, -0.3, 0.46))
+    C0, C1 = Vector((0.2, -1.45, 0.66)), Vector((0.2, -1.33, 0.62)); LK = Vector((0.2, -0.3, 0.46))   # centred between him and where the crate lands, so the spill is in frame
     cam = K.camera(tuple(C0), tuple(LK), lens=30, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (CX, CY, cz + 0.1)))
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("old crate", "gros bunch"),
@@ -278,14 +286,14 @@ def shot4():
     stem out of the soil and its leaves droop and brown one after another. He takes hold of a drooping leaf and lifts it
     back up; he lets go and it flops down, dead."""
     lanes, kiosks = produce_set()
-    PX, PY = -0.1, -0.42
+    PX, PY = -0.06, -0.42
     pl = PR.planter("planter", (PX, PY, 0.0), w=0.32, d=0.26, h=0.2)
-    pt = PR.plant("young plant", (PX, PY, pl["top_z"] - 0.02), height=0.3, n_leaves=6, seed=8)
+    pt = PR.plant("young plant", (PX, PY, pl["top_z"] - 0.02), height=0.36, n_leaves=5, seed=8)
     T_CLIMB0, T_CLIMB1 = 0.2, DUR * 0.7
     PR.rot(pt["stem_mat"], T_CLIMB0, T_CLIMB1, to=0.95)
     # the leaf that points at him is the one he lifts; the others wilt in turn
     data = load_data()
-    DP = Vector((0.37, -0.3, 0)); data.place(DP.x, DP.y, -22)
+    DP = Vector((0.31, -0.32, 0)); data.place(DP.x, DP.y, -22)
     sc.frame_set(1); bpy.context.view_layer.update()
     to_him = math.atan2(DP.y - PY, DP.x - PX)
     lifted = min(range(len(pt["leaves"])), key=lambda k: abs(((pt["leaves"][k][0].rotation_euler.z - to_him) + math.pi) % (2 * math.pi) - math.pi))
@@ -293,7 +301,7 @@ def shot4():
     hz.rotation_euler = (0, math.radians(-5), to_him)
     others = [k for k in range(len(pt["leaves"])) if k != lifted]
     for i, k in enumerate(others):
-        h_, m_ = pt["leaves"][k]; PR.wilt(h_, m_, 0.5 + 0.45 * i, 1.6 + 0.45 * i, droop_deg=55)
+        h_, m_ = pt["leaves"][k]; PR.wilt(h_, m_, 0.5 + 0.45 * i, 1.6 + 0.45 * i, droop_deg=36, to=0.5)   # yellowed and mottled, not black: dark drooped leaves closed into one brown shape; splayed down and out, a collapsed umbrella: hung straight down they closed round the stem into a brown pod
     T_G0, T_G1, T_LET = 1.6, 2.6, 3.5          # he takes the leaf, lifts it, lets go
     def pitch(t):
         if t < 0.9: return -5
@@ -319,8 +327,8 @@ def shot4():
     data.blink(0.8); data.blink(T_G1 + 0.2); data.blink(DUR - 0.4)
     data.finish()
     soft_key("plant key", (-0.75, -1.3, 1.0), (PX, PY, 0.45), energy=45, size=28)
-    C0, C1 = Vector((0.13, -1.55, 0.52)), Vector((0.13, -1.4, 0.5)); LK = Vector((0.14, -0.35, 0.42))
-    cam = K.camera(tuple(C0), tuple(LK), lens=30, fstop=4.0)
+    C0, C1 = Vector((0.12, -1.68, 0.54)), Vector((0.12, -1.56, 0.52)); LK = Vector((0.12, -0.35, 0.42))   # plant and him both whole in frame
+    cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (PX, PY, 0.45)))
     leaves = [o for h_, _ in pt["leaves"] for o in h_.children]
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("young plant",),
@@ -350,7 +358,7 @@ def shot5():
     T_REACH, T_LIFT, T_HUG = T0_ + STEP * (N_HOOK - 1) - 0.15, None, None
     T_LIFT = T_REACH + 0.45; T_HUG = T_LIFT + 0.5
     data = load_data()
-    DP = Vector((-0.14, -0.53, 0)); data.place(DP.x, DP.y, 0)
+    DP = RAIL_DP; data.place(DP.x, DP.y, RAIL_DROT)
     sc.frame_set(1); bpy.context.view_layer.update()
     last = rows[0]; lroot = last[2]
     sh = {s_: acts._shoulder(data, s_) for s_ in "LR"}; mid = (sh["L"] + sh["R"]) / 2
@@ -381,9 +389,9 @@ def shot5():
     data.finish()
     soft_key("rail key", (0.9, -1.7, 1.1), (0.25, -0.62, 0.62), energy=40, size=34)
     soft_key("hug key", (-0.5, -1.6, 0.9), tuple(chest), energy=18, size=18)
-    C0, LK0 = Vector((-0.12, -2.0, 0.74)), Vector((0.16, -0.62, 0.55))
-    C1, LK1 = Vector((-0.12, -1.45, 0.68)), Vector((DP.x + 0.02, DP.y, 0.58))
-    cam = K.camera(tuple(C0), tuple(LK0), lens=30, fstop=3.5)
+    C0, LK0 = RAIL_C0, RAIL_LK
+    C1, LK1 = Vector((DP.x + 0.05, DP.y - 0.85, 0.68)), Vector((DP.x + 0.02, DP.y, 0.58))
+    cam = K.camera(tuple(C0), tuple(LK0), lens=26, fstop=3.5)
     camera_path(cam, lambda t: (C0.lerp(C1, ease((t - T_REACH + 0.6) / 2.2)), LK0.lerp(LK1, ease((t - T_REACH + 0.6) / 2.2)), DP + Vector((0, 0, 0.5))))
     fallen = [r[2] for r in rows[1:]]
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("rail bunch 0",),

@@ -18,6 +18,35 @@ MIN_H = 0.28        # of the frame height, head to feet: a MEDIUM shot or closer
                     # where Data becomes tiny ... use medium shots and close-ups"; the first 3D short ran at 0.14 and
                     # its judges called him tiny at 6-9 s and 24-26 s). Cropped by a close-up he measures over 1.
 SMALL_OK = 0.15     # of the shot he may be smaller than that (an establishing beat, a cutaway)
+EDGE = 0.12         # his head's centre stays this far inside the frame's sides (a phone crops the edges of a Short, and a
+                    # face cut by the frame edge is not a shot: the banana short's restaged rail put him half out of frame)
+TOP_CUT = 0.985     # the crown of his head (the head bone's tail, under his ears) stays inside the top of the frame
+HIDDEN_S = 0.3      # his FACE may be behind something (a prop swinging past) this long at a stretch, no longer. The banana
+                    # short's first rail had a bunch hanging in front of his face for the whole beat, facing the lens,
+                    # big in frame, and every number above passed it; this is the ray that sees it.
+
+
+def _his(data):
+    out, todo = set(), [data.arm]
+    while todo:
+        o = todo.pop(); out.add(o.name); todo.extend(o.children)
+    return out
+
+
+def face_hidden(data, cam, fd):
+    """is his face behind something? Five rays from the lens to his face (centre, left, right, brow, chin); hidden when
+    three or more stop on something that is not him."""
+    sc = bpy.context.scene; dg = bpy.context.evaluated_depsgraph_get()
+    h0 = data.arm.matrix_world @ data.pb["head"].head; h1 = data.arm.matrix_world @ data.pb["head"].tail
+    r = (h1 - h0).length * 0.45; c = h0.lerp(h1, 0.5) + fd * r * 0.8
+    side = fd.cross(Vector((0, 0, 1))); side = side.normalized() if side.length > 1e-4 else Vector((1, 0, 0))
+    o = cam.matrix_world.translation; mine = _his(data); blocked = 0
+    for p in (c, c + side * r * 0.5, c - side * r * 0.5, c + Vector((0, 0, r * 0.4)), c - Vector((0, 0, r * 0.4))):
+        d = p - o; L = d.length
+        hit, loc, _n, _i, ob, _m = sc.ray_cast(dg, o, d.normalized(), distance=L - 0.02)
+        if hit and ob is not None and ob.name not in mine and ob.original.name not in mine:
+            blocked += 1
+    return blocked >= 3
 
 
 def face_dir(data):
@@ -29,23 +58,29 @@ def face_dir(data):
 def check(data, cam, nf, step=2, name="shot", cutaway=None, min_h=None):
     """cutaway=(t0, t1): a cut to a shot that is not on Data (the row from above); his staging is judged off it"""
     min_h = MIN_H if min_h is None else min_h
-    sc = bpy.context.scene; back_run = 0; worst = 0.0; worst_run = 0; small = 0; n = 0; hs = []
+    sc = bpy.context.scene; back_run = 0; worst = 0.0; worst_run = 0; small = 0; n = 0; hs = []; hid_run = 0; hid_worst = 0; cut = 0
     for f in range(1, nf + 1, step):
         if cutaway and cutaway[0] <= (f - 1) / FPS < cutaway[1]: back_run = 0; continue
         sc.frame_set(f); bpy.context.view_layer.update()
         head = data.arm.matrix_world @ data.pb["head"].head
         to_cam = (cam.matrix_world.translation - head); to_cam.z = 0
-        fd = face_dir(data); fd.z = 0
+        fd = face_dir(data)
+        hid_run = hid_run + step if face_hidden(data, cam, fd) else 0; hid_worst = max(hid_worst, hid_run)
+        fd.z = 0
         ang = math.degrees(fd.angle(to_cam)) if fd.length > 1e-4 and to_cam.length > 1e-4 else 0.0
         worst = max(worst, ang)
         back_run = back_run + step if ang > BACK_DEG else 0; worst_run = max(worst_run, back_run)
         top = data.arm.matrix_world @ data.pb["head"].tail; foot = data.arm.matrix_world.translation
         a = world_to_camera_view(sc, cam, top); b = world_to_camera_view(sc, cam, foot)
         h = abs(a.y - b.y); hs.append(h); small += h < min_h; n += 1
+        c = world_to_camera_view(sc, cam, (data.arm.matrix_world @ data.pb["head"].head).lerp(top, 0.5))
+        cut += not (EDGE <= c.x <= 1 - EDGE and EDGE * 0.5 <= c.y <= 1 - EDGE * 0.5) or a.y > TOP_CUT   # the top of his head off the frame
     back_s = worst_run / FPS
     hs.sort(); med = hs[len(hs) // 2] if hs else 0
-    ok = back_s <= BACK_S and small <= n * SMALL_OK
+    hid_s = hid_worst / FPS
+    ok = back_s <= BACK_S and small <= n * SMALL_OK and hid_s <= HIDDEN_S and cut <= n * SMALL_OK
     print(f"STAGING {name}: face-to-lens worst {worst:.0f} deg, back turned for {back_s:.2f}s (max {BACK_S}), "
+          f"face behind something for {hid_s:.2f}s (max {HIDDEN_S}), head at the frame edge on {cut / max(1, n):.0%} of frames (max {SMALL_OK:.0%}), "
           f"height in frame median {med:.2f}, under {min_h} on {small / max(1, n):.0%} of frames (max {SMALL_OK:.0%}) -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok
 

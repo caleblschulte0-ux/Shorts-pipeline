@@ -115,7 +115,10 @@ def _mouth_paths(n=24):
     smile = two_rows(lambda x: 3.065 + 0.16 * (x / 0.37) ** 2, -0.37, 0.37, 0.009)
     opn = ellipse(0.0, 3.10, 0.27, 0.17)
     oh = ellipse(0.0, 3.08, 0.13, 0.13)
-    return {'rest': rest, 'smile': smile, 'open': opn, 'oh': oh}
+    # FROWN: the same thin closed line with its corners turned DOWN (2026-11-12, the second 3D short: every face he had
+    # was some amount of smile, so "worried" over a rotting banana still read as pleased). Closed, never a hole.
+    frown = two_rows(lambda x: 3.10 - 0.055 * (x / 0.26) ** 2, -0.26, 0.26, 0.005)
+    return {'rest': rest, 'smile': smile, 'open': opn, 'oh': oh, 'frown': frown}
 
 
 # ------------------------------------------------------------------------------------------------ the character
@@ -123,8 +126,8 @@ class Data:
     EXPRESSIONS = {
         'neutral': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0),
         'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=-0.02, lid=0.1),
-        'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.14, lid=0.0),
-        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.06, lid=0.2),
+        'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.14, lid=0.0, frown=0.45),
+        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.06, lid=0.2, frown=1.0),
         'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.0, lid=0.0),
         'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.15),     # "what can you do": brows up, a half smile
     }
@@ -201,7 +204,7 @@ class Data:
         lips = bpy.data.objects.new('Lips', me); bpy.context.collection.objects.link(lips); lips.data.materials.append(lip_m)
         for p in me.polygons: p.use_smooth = True
         lips.shape_key_add(name='Basis')
-        for key in ('smile', 'open', 'oh'):
+        for key in ('smile', 'open', 'oh', 'frown'):
             v2, _ = _tube(paths[key], r=LIP_R); sk = lips.shape_key_add(name=key)
             for i, v in enumerate(v2): sk.data[i].co = v
         cav_m = bpy.data.materials.new('Mouth / cavity'); cav_m.use_nodes = True
@@ -434,10 +437,10 @@ class Data:
     OH_MAX = 0.0    # caaleb 11-04 and 11-12 ("data's mouth looked weird"): never an open 'o' / mouth hole, in ANY shot.
                     # Shock is the brows, the eyes and the body. Held here, where every expression is keyed, so no shot can ask for one.
 
-    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0):
+    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0, frown=0.0):
         oh = min(oh, self.OH_MAX)
         kb = self.lips.data.shape_keys.key_blocks
-        for name, v in (('smile', smile), ('open', open), ('oh', oh)):
+        for name, v in (('smile', smile), ('open', open), ('oh', oh), ('frown', frown)):
             kb[name].value = v; kb[name].keyframe_insert('value', frame=F(t))
         sc = Vector((0.26, 0.06, 0.16)) * open + Vector((0.12, 0.06, 0.12)) * oh
         self.cavity.scale = tuple(max(0.001, v) for v in sc); self.cavity.keyframe_insert('scale', frame=F(t))
@@ -458,7 +461,7 @@ class Data:
 
     def _face_state(self):
         kb = self.lips.data.shape_keys.key_blocks
-        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, brow=(self.brows[0].location.z - 0.305) * 2,
+        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, frown=kb['frown'].value, brow=(self.brows[0].location.z - 0.305) * 2,
                     lid=(math.degrees(self.EYE['Lup'].rotation_euler.x) + 100) / 100)
 
     def say(self, keys, key='open'):

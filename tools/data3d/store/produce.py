@@ -17,7 +17,7 @@ from clock import FPS
 U = K.U
 F = lambda t: int(round(t * FPS)) + 1
 
-YELLOW, GREENISH, TIP, BROWN, BLACK = "#F0C93A", "#B8B640", "#2A2116", "#6A4520", "#1A140E"
+YELLOW, GREENISH, TIP, BROWN, BLACK = "#F0C93A", "#B8B640", "#2A2116", "#4A3018", "#140F0A"   # a dead skin is black-brown: the old milk-chocolate brown read as a paper bag
 
 
 # ------------------------------------------------------------------ materials that can rot
@@ -48,7 +48,7 @@ def skin_mat(name, base=YELLOW, neck=GREENISH, rough=0.42, climb=False):
     nt.links.new(nz.outputs["Fac"], spot.inputs[0]); nt.links.new(thr.outputs[0], spot.inputs[1])
     mix1 = nt.nodes.new("ShaderNodeMix"); mix1.data_type = 'RGBA'; mix1.inputs["B"].default_value = (*K.lin(BROWN), 1)
     nt.links.new(spot.outputs[0], mix1.inputs["Factor"]); nt.links.new(ramp.outputs["Color"], mix1.inputs["A"])
-    dark = nt.nodes.new("ShaderNodeMapRange"); dark.inputs["From Min"].default_value = 0.45; dark.inputs["From Max"].default_value = 1.0
+    dark = nt.nodes.new("ShaderNodeMapRange"); dark.inputs["From Min"].default_value = 0.3; dark.inputs["From Max"].default_value = 0.85
     nt.links.new(rot.outputs[0], dark.inputs["Value"])
     mix2 = nt.nodes.new("ShaderNodeMix"); mix2.data_type = 'RGBA'; mix2.inputs["B"].default_value = (*K.lin(BLACK), 1)
     fac_spot, fac_dark = spot.outputs[0], dark.outputs["Result"]
@@ -244,14 +244,14 @@ def plant(name, base, height=0.42, n_leaves=6, seed=0, parent=None):
     return dict(root=root, stem=stem, leaves=leaves, stem_mat=stem_m)
 
 
-def wilt(hinge, mat, t0, t1, droop_deg=70):
+def wilt(hinge, mat, t0, t1, droop_deg=70, to=0.75):
     """a leaf sags on its hinge by droop_deg and goes from green to straw-brown (its rot) over t0..t1"""
     r0 = tuple(hinge.rotation_euler)
     hinge.rotation_euler = r0; hinge.keyframe_insert("rotation_euler", frame=1); hinge.keyframe_insert("rotation_euler", frame=max(1, F(t0)))
     for i in range(1, 9):
         u = i / 8; e = u * u * (3 - 2 * u)
         hinge.rotation_euler = (r0[0], r0[1] + math.radians(droop_deg) * e, r0[2]); hinge.keyframe_insert("rotation_euler", frame=F(t0 + (t1 - t0) * u))
-    rot(mat, t0, t1, to=0.75)
+    rot(mat, t0, t1, to=to)
 
 
 def rail_at(name, start, yaw_deg, length, z, n_hooks, parent=None):
