@@ -16,6 +16,10 @@ on:
       slug:
         description: 'folder under data3d/post/'
         required: true
+      operator_said:
+        description: "ONLY when the operator watched it and said to post it although the showrunner held it: their words, verbatim (recorded with the upload)"
+        required: false
+        default: ''
       public_now:
         description: 'operator said to post it now: skip the spacing wait (the showrunner still judges it)'
         type: boolean
@@ -65,6 +69,7 @@ jobs:
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           YOUTUBE_EXPECTED_CHANNEL: short_explainer67
           PUBLIC_NOW: ${{ inputs.public_now }}
+          OPERATOR_SAID: ${{ inputs.operator_said }}
         run: |
           git config user.name "github-actions[bot]"; git config user.email "github-actions[bot]@users.noreply.github.com"
           python scripts/post_data3d.py /tmp/media
