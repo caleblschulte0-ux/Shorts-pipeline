@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lab-grown-diamond-price-collapse__d179596a",
+  "slug": "lab-grown-diamond-price-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:25:30Z",
+  "title": "A $4,200 Lab-Grown Diamond Now Costs Just $380",
+  "hook": "The same lab-grown diamond fell from $4,200 to $380.",
+  "closing": "Lab-grown diamonds made size cheaper, but their resale value collapsed too.",
+  "question": "Natural or lab-grown: which would you pick?",
+  "segments": [
+    {
+      "topic": "Diamond price collapse",
+      "say": "A lab-grown diamond that cost $4,200 now sells for a fraction of that. Luxury pricing collapsed."
+    },
+    {
+      "topic": "Diamond price gap",
+      "say": "A lab-grown diamond costs $380, making its natural twin thousands more expensive."
+    },
+    {
+      "topic": "Diamond ring share",
+      "say": "Lab-grown diamonds now appear in 47 percent of engagement rings. Buyers followed the lower price."
+    }
+  ]
+}
