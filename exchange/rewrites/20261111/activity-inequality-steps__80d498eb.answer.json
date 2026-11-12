@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "activity-inequality-steps__80d498eb",
+  "slug": "activity-inequality-steps",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:20:00Z",
+  "title": "Walking More Won't Fix The 43% Activity Gender Gap",
+  "hook": "A 43% gender gap explains nearly half of activity inequality.",
+  "closing": "Activity health depends on who gets opportunities to move, not only total steps.",
+  "question": "Who gets fewer walking opportunities?",
+  "segments": [
+    {
+      "topic": "Activity steps",
+      "say": "Hong Kong averages 6,880 steps daily, nearly double Indonesia. Where you live shapes how much you move."
+    },
+    {
+      "topic": "Activity obesity",
+      "say": "Where activity is most unequal, the obesity risk index reaches 297. Uneven movement has a measurable cost."
+    },
+    {
+      "topic": "Activity gender gap",
+      "say": "The gender step gap explains 43 percent of activity inequality. Nearly half the problem sits inside one divide."
+    }
+  ]
+}
