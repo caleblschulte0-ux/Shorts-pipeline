@@ -19462,6 +19462,25 @@
         "end": 42.3
       },
       "director_cut": true
+    },
+    "rejected-inexpensiveinnocentlettucestrawbeary-yr4vcqr9klq9mfdk": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/InexpensiveInnocentLettuceStrawBeary-yr4VCQR9KLq9MFDk",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets A Reaction Nobody Saw Coming On Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is only a thin landscape strip, about a third of the 9:16 canvas. The renderer did not crop toward the; vision: The subject (the GTA character, and the streamer's facecam in the corner) is tiny and hard to read on a phone.; vision: The hook card 'Kai gets a crowd reaction' ",
+      "ts": "2026-11-12T18:56:54.514515+00:00"
+    },
+    "clip-20261112-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/burn/clip/RelievedHomelyAlligatorPraiseIt-oNkQYxus-EGgAeeI",
+      "story_key": null,
+      "streamer": "burn",
+      "title": "Burn Goes Off In L.A And The Whole Crowd Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-11-12T19:48:59.360388+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
