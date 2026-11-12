@@ -5227,6 +5227,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 83,
       "duration_s": 23.6
+    },
+    "local-news-deserts-expanding": {
+      "claimed_at": "2026-11-12T01:45:18.906000+00:00",
+      "title": "Only 4,490 US Newspapers Remain",
+      "publish_at": "2026-11-12T03:42:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6710,6 +6717,14 @@
       "state": "posted",
       "slug": "elephant-poaching-decline",
       "at": "2026-11-11T21:11:25.902709+00:00"
+    },
+    {
+      "claimed_at": "2026-11-12T01:45:18.906000+00:00",
+      "title": "Only 4,490 US Newspapers Remain",
+      "publish_at": "2026-11-12T03:42:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "local-news-deserts-expanding"
     }
   ]
 }
