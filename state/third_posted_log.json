@@ -19473,14 +19473,31 @@
       "ts": "2026-11-12T18:56:54.514515+00:00"
     },
     "clip-20261112-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/burn/clip/RelievedHomelyAlligatorPraiseIt-oNkQYxus-EGgAeeI",
-      "story_key": null,
-      "streamer": "burn",
+      "url": "https://youtube.com/shorts/F8ts_chgzc4",
       "title": "Burn Goes Off In L.A And The Whole Crowd Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-11-12T19:48:59.360388+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-12T19:49:12.038102+00:00",
+      "uploaded_at": "2026-11-12T19:49:12.038125+00:00",
+      "publish_at": "2026-11-13T09:30:00Z",
+      "crossposts": {
+        "tiktok": "https://www.tiktok.com/@me/video/v_pub_file~v2-1.7707374241338902558"
+      },
+      "source_url": "https://www.twitch.tv/burn/clip/RelievedHomelyAlligatorPraiseIt-oNkQYxus-EGgAeeI",
+      "streamer": "burn",
+      "series": "chaos",
+      "hook": "Burn in L.A gets the crowd going \ud83d\udd25",
+      "experiment_arm": "clip",
+      "title_arm": "control",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4900,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 17.85
+      },
+      "director_cut": true
     }
   }
 }
