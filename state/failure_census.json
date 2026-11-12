@@ -1,63 +1,77 @@
 {
  "n_verdicts": 20,
  "classes": {
+  "other": {
+   "count": 6,
+   "stories": {
+    "sports_cris_cyborg_amanda_nunes": 1,
+    "sports_tyler_shough_barion_brown": 3,
+    "sports_elly_de_la_cruz_rds_with_his": 1,
+    "maternal-mortality-pandemic-reversal": 1
+   },
+   "timestamps": [
+    "2026-11-12T11:54:39+00:00",
+    "2026-11-12T12:11:41+00:00",
+    "2026-11-12T12:16:15+00:00",
+    "2026-11-12T12:20:41+00:00",
+    "2026-11-12T12:38:17+00:00",
+    "2026-11-12T17:58:28+00:00"
+   ],
+   "examples": [
+    "unreadable: In mid1/mid2 the tweet text in the inset is far too small to read on a phone, and it is the context the clip relies on. The on-screen line itself is readable, but by payoff@-0.4 it sits di",
+    "unreadable: In mid4 and mid5 our two-line hook sits right on top of the footage's own burned-in captions. 'Brown after fumble' touches 'But right now,' / 'who cares.', and on a phone the two blocks re",
+    "unreadable: hook@0.3 to mid0: our line 'Shough to Brown / after his fumble' sits right on top of the footage's own burned-in captions ('And now Brown lost the football.', 'And Cleveland has it.'). The"
+   ],
+   "recurred_after_fix": false
+  },
   "junk_imagery": {
    "count": 5,
    "stories": {
-    "sports_dirk_nowitzki_ons_of_jalen": 5
+    "sports_cris_cyborg_amanda_nunes": 1,
+    "sports_andrei_arlovski_thony_rumble": 1,
+    "sports_luka_doncic__tonight_you": 2,
+    "sports_kirk_cousins_ns_leads_the": 1
    },
    "timestamps": [
-    "2026-11-10T12:36:03+00:00",
-    "2026-11-10T12:38:25+00:00",
-    "2026-11-11T11:51:02+00:00",
-    "2026-11-11T11:54:12+00:00",
-    "2026-11-11T12:25:55+00:00"
+    "2026-11-12T11:54:39+00:00",
+    "2026-11-12T12:07:06+00:00",
+    "2026-11-12T12:31:03+00:00",
+    "2026-11-12T12:33:21+00:00",
+    "2026-11-12T12:47:19+00:00"
    ],
    "examples": [
-    "junk_imagery: payoff@-0.4 still shows the podcast interview rather than Jalen Brunson or the promised realization/moment.",
-    "junk_imagery: payoff@-0.4 still shows the podcast interview rather than Jalen Brunson or the promised realization/moment.",
-    "junk_imagery: The crop cuts off the people who matter. In hook@0.3 through mid0 the top half is a side table, a football and a stranger's hand. At mid1, mid4, mid5 and payoff@-0.4 the bottom half is a"
+    "junk_imagery: mid1/mid2 are a screenshot of Cyborg's tweet beside a small inset of fight footage, which is a reposted post with a video inside a video. mid3, mid5 and payoff@-0.4 show Cyborg winning o",
+    "junk_imagery: mid3-payoff@-0.4 show a greyscale Rumble Johnson knockout highlight reel against other opponents. mid4 has a bald fighter who is not Arlovski, and payoff@-0.4 has a fighter laid out flat",
+    "junk_imagery: mid3 (12.24s): the crop leaves Luka half out of frame at the left edge, his face sliced off, while the frame is mostly empty crowd and floor. mid1 (5.75s): the letterbox band cuts across"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
    "count": 2,
    "stories": {
-    "sports_dirk_nowitzki_ons_of_jalen": 2
+    "sports_cris_cyborg_amanda_nunes": 1,
+    "sports_andrei_arlovski_thony_rumble": 1
    },
    "timestamps": [
-    "2026-11-11T11:51:02+00:00",
-    "2026-11-11T12:25:55+00:00"
+    "2026-11-12T11:54:39+00:00",
+    "2026-11-12T12:07:06+00:00"
    ],
    "examples": [
-    "empty_void: Half the frame is wasted. In hook@0.3\u2013mid0 and mid3\u2013mid4 the whole top half is an empty table and a hand. In mid4\u2013payoff@-0.4 the bottom half is an empty wall with the speaker's head cut o",
-    "empty_void: The table/hand top half (hook@0.3 to payoff@-0.4) and the near-empty brick-wall bottom half in mid3/mid4 waste about half the frame for most of the video."
+    "empty_void: In mid1 through payoff@-0.4 the footage is a small letterboxed strip in the middle third, with blurred or darkened copies filling the top and bottom thirds. In mid1/mid2 the bottom 40% is ",
+    "empty_void: mid3-payoff@-0.4: the footage is a letterbox strip in the middle third with large blurred, darkened bands above and below. payoff@-0.4 is mostly near-black."
    ],
    "recurred_after_fix": false
   },
-  "dead_air": {
+  "decorative_mascot": {
    "count": 1,
    "stories": {
-    "sports_dirk_nowitzki_ons_of_jalen": 1
+    "bat-fungus-collapse": 1
    },
    "timestamps": [
-    "2026-11-10T15:49:23+00:00"
+    "2026-11-12T16:42:08+00:00"
    ],
    "examples": [
-    "dead_air: The top half of the split screen remains static for the entire video duration (41.75s), and the 'held_s' is 11.92s, indicating significant periods of stillness."
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 1,
-   "stories": {
-    "coldest-place-in-the-universe-is-human-made": 1
-   },
-   "timestamps": [
-    "2026-11-11T18:08:09+00:00"
-   ],
-   "examples": [
-    "unreadable: In seg3:end the 17-digit '29,400,000,000,000,000' sits across the rocket body, and the rocket fin covers 'Nebula' in the caption below it. A phone viewer cannot parse it at a glance."
+    "decorative_mascot: Only seg1 has Data doing the action, stamping fungus onto map bats (seg1:mid). In seg2:start through seg2:end he stands on the ladder with his hands up while the bats vanish without"
    ],
    "recurred_after_fix": false
   }
@@ -65,13 +79,13 @@
  "weak_dims": {
   "hook": {
    "median": 3,
-   "min": 2,
-   "max": 4
+   "min": 1,
+   "max": 3
   },
   "data_demo": {
-   "median": 4,
-   "min": 0,
-   "max": 5
+   "median": 3,
+   "min": 1,
+   "max": 4
   },
   "mascot": {
    "median": 4,
@@ -81,7 +95,7 @@
   "craft": {
    "median": 2,
    "min": 1,
-   "max": 3
+   "max": 2
   },
   "pace": {
    "median": 2,
@@ -95,30 +109,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
-  100,
-  66,
-  66,
+  58,
+  57,
   74,
-  75,
-  96,
-  62,
+  82,
   70,
-  62,
+  70,
   66,
-  83,
-  83,
-  83,
-  74,
-  83,
-  70,
-  70,
-  83,
+  66,
+  57,
+  79,
   87,
-  83
+  70,
+  74,
+  87,
+  66,
+  66,
+  70,
+  74,
+  70,
+  74
  ]
 }
