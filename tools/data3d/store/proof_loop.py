@@ -44,21 +44,31 @@ def judge(story, out, shots):
     env = dict(os.environ, STORY=story, SHOTS=" ".join(map(str, shots)))
     p = subprocess.run([sys.executable, str(HERE / "judge3d.py"), str(out), str(out / "verdict.json")], env=env,
                        capture_output=True, text=True)
-    print(p.stdout[-4000:])
+    print(p.stdout)
     if not (out / "verdict.json").exists():
         return None
     return {s["shot"]: s for s in json.loads((out / "verdict.json").read_text())["shots"]}
 
 
+def _span(src, n):
+    return re.search(rf"^def shot{n}\(\):.*?(?=^def |^# =+|\Z)", src, re.S | re.M)
+
+
 def shot_source(src, n):
-    m = re.search(rf"^def shot{n}\(\):.*?(?=^def |^# =+|\Z)", src, re.S | re.M)
+    m = _span(src, n)
     return m.group(0) if m else ""
 
 
+def put_shot(path, n, body):
+    src = path.read_text(); m = _span(src, n)
+    path.write_text(src[:m.start()] + body.rstrip("\n") + "\n\n\n" + src[m.end():].lstrip("\n"))
+
+
 REVISER = """You are the 3D director of a YouTube Short starring Data, a small teal cartoon scientist. Shot {n} of the
-story "{story}" just FAILED the judge panel. Fix it by editing ONLY the function shot{n}() in {path}
-(and, if the shot truly needs it, constants that ONLY shot{n} uses). Never touch another shot, Data's body or design
-(character.py), or the judge.
+story "{story}" just FAILED the judge panel. Fix it by editing ONLY the file {work}, which
+holds the function shot{n}() alone and is spliced back into {path} (Read that file for the helpers and the other
+shots; never edit it). Any new constant goes INSIDE the function. Never touch Data's body or design (character.py) or
+the judge.
 
 What the shot is FOR (the storyboard line the judge grades against): {brief}
 
@@ -71,6 +81,7 @@ size in frame; consequence = the result of the action is on screen; anatomy; cli
 
 The proof's contact sheet (every few frames, left to right, top to bottom) is {sheet}: READ it first.
 
+{history}
 Fix the CAUSE the judge names, the way a film director would: stage for this one camera, make the action and its
 result big and clear in frame, keep Data's face to the lens, give him acting (a pose, a reaction) rather than a
 held stare. Prefer moving the camera, Data's place, timing and props over new machinery. Keep every check above
@@ -78,22 +89,28 @@ passing. Keep the function's return dict the same shape. Make the edit, then rep
 changed."""
 
 
-def revise(story, out, n, v):
+def revise(story, out, n, v, history):
     path = STORIES / story / "shots.py"
+    work = out / "rev" / f"shot{n}.py"; work.parent.mkdir(exist_ok=True)
+    work.write_text(shot_source(path.read_text(), n))
     script = json.loads((STORIES / story / "script.json").read_text())
     brief = re.sub(r"^\d+\s*", "", script["storyboard"][n - 1])
     verdict = json.dumps({k: v.get(k) for k in ("score", "scores", "hard", "problems", "better")}, indent=1)
     checks = (out / f"s{n}.checks.txt").read_text() if (out / f"s{n}.checks.txt").exists() else "(none)"
     prompt = REVISER.format(n=n, story=story, path=path, brief=brief, score=v.get("score"), verdict=verdict,
-                            checks=checks, sheet=out / f"sheet_s{n}.jpg")
-    before = shot_source(path.read_text(), n)
+                            checks=checks, sheet=out / f"sheet_s{n}.jpg", work=work,
+                            history=("Earlier attempts at this shot, and what the judge gave them (the best one is "
+                                     "what you are editing now; do not repeat what scored lower):\n" + "\n".join(history) + "\n")
+                            if history else "")
+    before = work.read_text()
     p = subprocess.run(["claude", "-p", prompt, "--model", os.environ.get("REVISER_MODEL", "opus"),
                         "--allowedTools", "Read,Edit", "--output-format", "text"],
                        capture_output=True, text=True, timeout=int(os.environ.get("REVISER_TIMEOUT", "1200")))
-    after = shot_source(path.read_text(), n)
-    changed = after != before
-    print(f"REVISE shot {n}: {'changed' if changed else 'NO CHANGE'}: {(p.stdout or p.stderr).strip()[-300:]}")
-    return changed
+    after = work.read_text()
+    changed = after != before and after.lstrip().startswith(f"def shot{n}(")
+    note = (p.stdout or p.stderr).strip()[-400:]
+    print(f"REVISE shot {n}: {'changed' if changed else 'NO CHANGE'}: {note}", flush=True)
+    return (after if changed else None), note
 
 
 def main():
@@ -111,6 +128,8 @@ def main():
     n_shots = len(json.loads((STORIES / a.story / "script.json").read_text())["storyboard"])
     todo = a.shots or list(range(1, n_shots + 1))
     log, passed = [], {}
+    path = STORIES / a.story / "shots.py"
+    best, history, pending = {}, {n: [] for n in todo}, {}       # best[n] = (score, source, verdict); pending[n] = what was tried
     for rnd in range(1, a.rounds + 1):
         t0 = time.time()
         print(f"=== round {rnd}: proof of shots {todo}", flush=True)
@@ -128,15 +147,25 @@ def main():
         log.append({"round": rnd, "secs": round(time.time() - t0), "verdict": verdict})
         (out / "loop.json").write_text(json.dumps(log, indent=1, default=str))
         for n in todo:
+            sc = verdict[n].get("score") or 0; src = shot_source(path.read_text(), n)
+            if n in pending: history[n].append(f"- {pending.pop(n)} -> scored {sc}")
             if verdict[n].get("pass"): passed[n] = verdict[n]
+            if n not in best or sc > best[n][0]:
+                best[n] = (sc, src, verdict[n])
+            else:                                  # a revision that scored no better is undone: the loop never walks backwards
+                put_shot(path, n, best[n][1]); verdict[n] = best[n][2]
+                if history[n]: history[n][-1] += f" (no better than the best, {best[n][0]}: undone)"
         todo = [n for n in todo if not verdict[n].get("pass")]
         print(f"=== round {rnd}: passed {sorted(passed)}  failing {todo}", flush=True)
         if not todo:
             print("PROOF LOOP: every shot passes: the full render is worth starting"); return 0
         if a.no_revise:
             return 2
-        for n in todo:
-            revise(a.story, out, n, verdict[n])
+        with ThreadPoolExecutor(len(todo)) as ex:       # each brain edits its own copy of its own shot, in parallel
+            outs = list(ex.map(lambda n: (n, revise(a.story, out, n, verdict[n], history[n])), todo))
+        for n, (body, note) in outs:
+            if body:
+                put_shot(path, n, body); pending[n] = note.replace("\n", " ")[:300]
     print(f"PROOF LOOP: still failing after {a.rounds} rounds: {todo}"); return 2
 
 
