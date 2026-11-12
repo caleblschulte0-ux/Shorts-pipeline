@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pentagon-ufo-reports-surge__e166beb3",
+  "slug": "pentagon-ufo-reports-surge",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:25:00Z",
+  "title": "757 UFO Reports Reached The Pentagon In One Year",
+  "hook": "The Pentagon received 757 UFO reports, mostly from government observers.",
+  "closing": "More UFO reports can mean better reporting, not more alien visitors.",
+  "question": "Have you ever seen something unexplained?",
+  "segments": [
+    {
+      "topic": "UFO report surge",
+      "say": "The Pentagon's UFO office received 757 new reports, nearly tripling the previous count."
+    },
+    {
+      "topic": "UFO report sources",
+      "say": "Government air traffic controllers filed 392 UFO reports, more than every other source combined."
+    },
+    {
+      "topic": "UFO unexplained",
+      "say": "Only 21 UFO reports remained genuinely unexplained, separating mystery from the much larger pile."
+    }
+  ]
+}
