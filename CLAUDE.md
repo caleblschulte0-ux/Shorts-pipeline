@@ -882,7 +882,10 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   ANY streamer, to the clip arm under the same never-repeat and variety
   rules; an upvoted clip's score is multiplied by `proven_boost`; the
   ranker is told NO CONTEXT NEEDED and sees what the Reddit post said.
-  `tests/test_the_twitch_channel_picks_what_strangers_loved.py`.
+  `tests/test_the_twitch_channel_picks_what_strangers_loved.py`. But a
+  chart clip only adds a streamer we FOLLOW (operator, 2026-11-12, "fix
+  it", after a week of unknown chart streamers at 0-3 views), and the
+  ranker scores up drama that names someone people search for.
 - **The channel is a SEARCH channel** — ~89% of views are YouTube search.
   `_search_guidance` hands the title author the real queries for that
   streamer ("lang buddha", "jasontheween news"), with an honesty rule and

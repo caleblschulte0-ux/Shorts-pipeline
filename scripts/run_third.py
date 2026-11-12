@@ -2914,7 +2914,17 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # a view count can).
                 if spec.get("proven_pool", True):
                     _have = {c["url"] for c in cands}
+                    # a chart clip from a streamer nobody searches for is
+                    # dead on a SEARCH channel (11-06..11-10: Divvity,
+                    # Maya, Jakenbake, Stableronaldo 0-3 views each), so a
+                    # category chart only adds streamers we follow
+                    _followed = {str(h).lower() for hs in sources.values()
+                                 for h in (hs or [])}
                     for c in _proven_pool(clip_edit, spec):
+                        if (c.get("proven_by") != "r/LivestreamFail"
+                                and str(c["channel"]).lower()
+                                not in _followed):
+                            continue
                         if (c["url"] not in _have
                                 and _clip_key(c["url"]) not in posted_keys
                                 and streamer_counts[c["channel"]]
@@ -2987,9 +2997,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
 
                 def _fit(ch, c=None):
                     if c is not None and c.get("proven_by"):
-                        return (proven_boost
-                                if c["proven_by"] == "r/LivestreamFail"
-                                else 1.0)
+                        if c["proven_by"] == "r/LivestreamFail":
+                            return proven_boost
                     return 1.0 if not core or ch in core else non_core
                 for c in cands[:age_probe]:
                     # helix candidates carry exact age; yt-dlp ones probe
