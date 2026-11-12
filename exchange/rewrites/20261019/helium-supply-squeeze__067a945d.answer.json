@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "helium-supply-squeeze__067a945d",
+  "slug": "helium-supply-squeeze",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:22:30Z",
+  "title": "Helium Seems Common, But Its Price Once Jumped 4x",
+  "hook": "A helium supply crunch once drove prices up 4x.",
+  "closing": "Limited supply and rising demand can make an everyday gas suddenly expensive.",
+  "question": "Would helium prices change balloon traditions?",
+  "segments": [
+    {
+      "topic": "Helium reserves",
+      "say": "Qatar holds 10.1 billion cubic meters of helium reserves, concentrating a major share of supply in one country."
+    },
+    {
+      "topic": "Helium demand",
+      "say": "Projected helium demand reaches an index of 190. More buyers will chase a limited supply."
+    },
+    {
+      "topic": "Helium prices",
+      "say": "Helium's price index reached 400 during a supply crunch. Tight supply can make prices jump fast."
+    }
+  ]
+}
