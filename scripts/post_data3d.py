@@ -55,7 +55,9 @@ def main() -> int:
         print(f"::error::the showrunner held {slug}: {gate.get('reason')}")
         return 2
     from shared import post_spacing
-    publish_at = post_spacing.schedule("explainer", log)
+    # The operator may say to post it NOW (2026-11-12: "Bypass the 3 hour rule"):
+    # only the go-live time changes; the gate above and the claim below do not.
+    publish_at = None if os.environ.get("PUBLIC_NOW") == "true" else post_spacing.schedule("explainer", log)
     claim = {"claimed_at": datetime.now(timezone.utc).isoformat(),
              "title": meta["title"], "publish_at": publish_at,
              "url": None, "state": "uploading", "style_arm": "3d"}

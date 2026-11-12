@@ -16,6 +16,10 @@ on:
       slug:
         description: 'folder under data3d/post/'
         required: true
+      public_now:
+        description: 'operator said to post it now: skip the spacing wait (the showrunner still judges it)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -60,6 +64,7 @@ jobs:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           YOUTUBE_EXPECTED_CHANNEL: short_explainer67
+          PUBLIC_NOW: ${{ inputs.public_now }}
         run: |
           git config user.name "github-actions[bot]"; git config user.email "github-actions[bot]@users.noreply.github.com"
           python scripts/post_data3d.py /tmp/media
