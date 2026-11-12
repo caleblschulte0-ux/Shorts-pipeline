@@ -312,9 +312,10 @@ def shot1():
 # ================================================================ SHOT 2: 9 of 10, the ultra-wide
 def shot2():
     lanes, kiosks, clerks = build_set(ROW10, range(1, 10), staffed=(0,))
-    T_PULL0, T_PULL1 = 0.35, 0.9                            # a beat on his grip, then the haul
+    T_PULL0, T_PULL1 = 0.25, 0.65                            # a beat on his grip, then the haul
     T_CUT = T_PULL1 + 0.04                                  # CUT on the impact to the whole row from above
-    GAP = (DUR - 0.6 - (T_CUT + 0.02 + 0.75)) / 8            # 11-12 CI judge: 9 / 10 sat still at the end; the ripple now fills the shot
+    GAP = 0.15             # 11-12 showrunner: the board reached 9 / 10 long after the voice said it. The ripple is quick and the
+                           # board HOLDS 9 / 10 from about two seconds in (the number on screen as it is said, then kept there)
     for k, i in enumerate(range(1, 10)): convert(lanes[i], kiosks[i], T_CUT + 0.02 + GAP * k)   # a ripple you can count, all of it on the row shot
     conv_t = [T_CUT + 0.02 + GAP * k + 0.75 for k in range(9)]          # when each kiosk is up
     data = load_data()
@@ -390,7 +391,7 @@ def shot2():
     data.look_at((ROW10[5], 0.3, 0.6), T_PULL1 + 0.75, max_yaw=40)
     data.look_at((ROW10[5], 0.3, 0.6), conv_t[-1] - 0.6, max_yaw=40)
     data.look_at((ROW10[8], 0.3, 0.6), DUR, max_yaw=40)     # 11-12 panel: he watches the row he changed, to the end
-    data.expression("happy", 2.95, DUR)
+    data.expression("happy", conv_t[-1] - 0.3, DUR)
     t_w = T_PULL1 + 1.25                                    # released: hands open, WHOA, as the row starts to go
     data.act("whoa", t_w, dur=0.3, hold=0.7)
     data.idle(t_w + 1.4, DUR)
@@ -539,7 +540,7 @@ def shot3():
     K.box("calendar back", (WX - 0.008, cy, cz), (0.012, PW + 0.04, PH + 0.12), K.mat("calendar board", "#3A3D42", rough=0.6), bev=0.003)
     K.box("calendar band", (WX - 0.02, cy, cz + PH / 2 + 0.025), (0.012, PW + 0.04, 0.06), K.mat("sale red", "#C6392B", rough=0.5), bev=0.002)
     # 11-12 CI judge: ten tears in three seconds left no time to hold a page; every other year, each one carried away
-    years = list(range(2014, 2025, 2)); tY0, tY1 = 0.55, DUR - 1.3     # the last page lands and settles before the cut
+    years = list(range(2014, 2025, 2)); tY0, tY1 = 0.4, 0.66 * DUR     # 11-12 showrunner: 500,000 must land by ~72% of the beat, then hold
     flips = [tY0 + (tY1 - tY0) * k / (len(years) - 2) for k in range(len(years) - 1)]
     top = cz + PH / 2 - 0.006; grabs = []
     for k, yr in enumerate(years):
@@ -685,7 +686,7 @@ def shot4():
         lo.location = (jx * 1.7, JY - 0.8, 0.85)
         lo.rotation_euler = (Vector((jx, JY, 0.12)) - Vector(lo.location)).to_track_quat('-Z', 'Y').to_euler()
     # fills: the cashier jar to H_LO, the self-checkout jar to more than twice that
-    H_LO, H_HI = 0.085, 0.27          # 11-12 CI judge: 'only about twice' -> plainly over twice at a glance
+    H_LO, H_HI = 0.07, 0.3   # 11-12 showrunner: 'make it visibly over 2:1'.          # 11-12 CI judge: 'only about twice' -> plainly over twice at a glance
     P0a, P0b = 0.4, 1.6            # pour into the cashier jar
     WALK0, WALK1 = 1.8, 2.35       # he turns from one jar to the other
     P1a, P1b = 2.45, DUR - 0.85    # pour into the self-checkout jar: longer and heavier (11-12 panel)
@@ -826,17 +827,85 @@ def shot5():
     screens_on(kiosks); blink_red(kiosks, 0.0, DUR + 1, alarm=True)      # red from the first frame (judge: blue, then red, read as a cut)
     data = load_data()
     data.place(-0.32, -0.55, 8)                       # on a third, a little turned: not a mannequin dead centre
-    T_SH, T_WV, T_CR = 0.25, 1.75, 2.85
-    data.look_at((0, -3, 0.75), 0.0, max_yaw=40, blend=0.0)
+    # 11-12 SHOWRUNNER (held the video at 66): "the last 6 seconds are Data standing idle with no payoff. Rebuild the
+    # closing as an act." The line is "it's still losing the money": he pours one more sack into the self-checkout
+    # LOSSES jar, which is already full, and the money spills over its rim onto the floor while the row blinks red.
+    # THEN the shrug, and only then the crane.
+    T_P0, T_P1, T_SH, T_CR = 0.15, 1.75, 2.0, 2.85
+    JX5, JY5, JR5, JH5 = 0.06, -0.55, 0.16, 0.48
+    glass = K.mat("jar glass", "#E8F0F4", rough=0.03)
+    try:
+        b_ = glass.node_tree.nodes["Principled BSDF"]; b_.inputs["Transmission Weight"].default_value = 1.0; b_.inputs["IOR"].default_value = 1.15
+    except KeyError: pass
+    gold = K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12); lid = K.mat("jar lid", "#2E3136", rough=0.5)
+    K.cyl("loss jar", (JX5, JY5, JH5 / 2 + 0.01), JR5, JH5, glass, v=48, bev=0.01)
+    K.cyl("loss jar base", (JX5, JY5, 0.006), JR5 + 0.01, 0.012, lid, v=48, bev=0.003)
+    K.cyl("loss jar coins", (JX5, JY5, (JH5 - 0.01) / 2 + 0.013), JR5 - 0.035, JH5 - 0.01, K.mat("coin core", "#D2A63C", rough=0.35, metal=0.6, emit=0.08), v=32)
+    proto = K.cyl("coin proto5", (0, 0, -5), 0.026, 0.006, gold, v=24, bev=0.0012)
+    rnd = random.Random(5)
+    z_ = 0.02                                         # loose coins against the glass, top to bottom: a jar of COINS, not a gold can
+    while z_ < JH5:
+        ph0 = rnd.uniform(0, 6.28)
+        for k in range(6):
+            o = proto.copy(); bpy.context.collection.objects.link(o); a_ = ph0 + k * math.pi / 3; r_ = JR5 - 0.034 - rnd.uniform(0, 0.01)
+            o.location = (JX5 + r_ * math.cos(a_), JY5 + r_ * math.sin(a_), z_ + rnd.uniform(-0.003, 0.003))
+            o.rotation_euler = (rnd.uniform(-0.45, 0.45), rnd.uniform(-0.45, 0.45), rnd.uniform(0, 6.28))
+        z_ += 0.011
+    for k in range(70):                               # the heap crowns ABOVE the rim: already more than it can hold
+        o = proto.copy(); bpy.context.collection.objects.link(o); r_ = rnd.uniform(0, JR5 - 0.03); a_ = rnd.uniform(0, 6.28)
+        o.location = (JX5 + r_ * math.cos(a_), JY5 + r_ * math.sin(a_), JH5 + 0.004 + 0.035 * (1 - r_ / JR5) + rnd.uniform(0, 0.01))
+        o.rotation_euler = (rnd.uniform(-0.5, 0.5), rnd.uniform(-0.5, 0.5), rnd.uniform(0, 6.28))
+    SX5 = JX5 + 0.1                                   # inside the frame, over the jar's far shoulder
+    K.cyl("loss sign post", (SX5, JY5 + JR5 + 0.03, (JH5 + 0.78) / 2), 0.008, 0.78 - JH5 + 0.04, lid, v=12)
+    K.box("loss sign", (SX5, JY5 + JR5 + 0.02, 0.8), (0.46, 0.004, 0.2), K.mat("loss sign m", "#2E3136", rough=0.5), bev=0.002)
+    ink = K.mat("placard ink", "#FFFFFF", rough=0.4, emit=0.4)
+    K.text("loss sign t1", "LOSSES", (SX5, JY5 + JR5 + 0.016, 0.852), 0.058, (math.radians(90), 0, 0), ink, extrude=0.0015)
+    wt = K.text("loss sign t2", "SELF-CHECKOUT", (SX5, JY5 + JR5 + 0.016, 0.765), 0.078, (math.radians(90), 0, 0), ink, extrude=0.0015)
+    bpy.context.view_layer.update()
+    if wt.dimensions.x > 0.42: wt.data.size *= 0.42 / wt.dimensions.x
+    K.contact_shadow("loss jar shadow", (JX5, JY5), rx=0.24, ry=0.14)
+    # the sack: hung from his near hand by its neck, swung out over the jar and turned over
+    sack_m = K.mat("sack", "#B08A58", rough=0.85)
+    sk = K.empty("sack c", (0, 0, 0))
+    K.sph("sack c body", (0, 0, -0.12), 0.09, sack_m, scale=(1.0, 0.9, 1.08), parent=sk)
+    K.cyl("sack c neck", (0, 0, -0.015), 0.036, 0.04, sack_m, v=20, parent=sk)
+    K.text("sack c sign", "$", (0, -0.081, -0.12), 0.09, (math.radians(90), 0, 0), K.mat("sack ink", "#3A2A1A", rough=0.8), extrude=0.003, parent=sk)
+    side = near_hand(data, (JX5, JY5, 0.5))
+    def hand5(t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update(); sh = acts._shoulder(data, side)
+        hang = sh + Vector((0.045, 0, -0.185)); over = Vector((JX5 - 0.04, JY5, JH5 + 0.1))
+        u = ease((t - T_P0) / 0.35) * (1 - ease((t - T_P1) / 0.3))
+        return hang.lerp(over, u), ease((t - (T_P0 + 0.15)) / 0.4) * (1 - ease((t - (T_P1 - 0.05)) / 0.4))
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; p_, flip = hand5(t)
+        sk.location = p_ + Vector((0, 0, -0.012)); sk.keyframe_insert("location", frame=f)
+        sk.rotation_euler = (0, -math.radians(150) * flip, 0); sk.keyframe_insert("rotation_euler", frame=f)
+        e_ = ease((t - T_P0) / (T_P1 - T_P0)); sk.scale = (1 - 0.25 * e_, 1 - 0.25 * e_, 1 - 0.45 * e_); sk.keyframe_insert("scale", frame=f)
+    grip_follow(data, side, lambda t: hand5(t)[0], 0.0, T_SH, elbow_out=0.35)
+    data.release(T_SH, dur=0.3)
+    # the stream lands on the crown; the SPILL goes over the rim and rests on the floor, more of it the longer he pours
+    sproto = K.cyl("stream coin5", (0, 0, -5), 0.03, 0.007, gold, v=24, bev=0.0014)
+    mouth = lambda t: (sc.frame_set(F(t)), bpy.context.view_layer.update(), sk.matrix_world @ Vector((0, 0, 0.01)))[2]
+    on_jar = lambda x, y, t: JH5 + 0.03 if (Vector((x - JX5, y - JY5, 0))).length < JR5 else 0.004
+    stream = []; spill = []
+    for k in range(45):
+        o = sproto.copy(); bpy.context.collection.objects.link(o); stream.append(o)
+    props.pour(stream, NF, [T_P0 + 0.35 + (T_P1 - T_P0 - 0.45) * k / 45 for k in range(45)], mouth, on_jar,
+               kick_fn=lambda t: Vector((0, 0, -0.25)), seed=51, hide_below=lambda p, t: p.z > JH5)   # buried in the crown
+    for k in range(60):
+        o = sproto.copy(); bpy.context.collection.objects.link(o); spill.append(o)
+    ang = [rnd.uniform(-1.9, 0.4) for _ in spill]          # over the front and the side away from him, toward the lens
+    props.pour(spill, NF, [T_P0 + 0.6 + (DUR - T_P0 - 1.2) * k / 60 for k in range(60)],
+               lambda t, it=iter(ang): (lambda a: Vector((JX5 + (JR5 - 0.01) * math.cos(a), JY5 + (JR5 - 0.01) * math.sin(a), JH5 + 0.03)))(next(it, -0.8)),
+               lambda x, y, t: None if (Vector((x - JX5, y - JY5, 0))).length < JR5 + 0.02 else 0.004,
+               kick_fn=lambda t: Vector((0.18, -0.32, 0.12)), seed=52)
+    data.look_at((JX5, JY5, 0.5), 0.0, max_yaw=35, blend=0.0)       # he watches the pour, three-quarter to us
+    data.look_at((0, -3, 0.75), T_P1 + 0.1, max_yaw=40)               # then to us, for the shrug
     data.expression("happy", 0.0, T_SH)
-    # 11-12 judge: the shrug and the wave both happened while the camera was already pulling away, so on a phone he
-    # was a few pixels tall. Now the camera HOLDS on him for both; only then does it crane up and back off the floor
-    # until the whole row of red-flashing machines fills the frame. The static tail is gone.
     data.act("shrug", T_SH, dur=0.3, hold=0.85)
-    data.expression("happy", T_WV - 0.1, DUR)
-    data.act("wave", T_WV, dur=0.28, hold=0.9)
-    data.idle(0.0, T_SH); data.idle(T_SH + 1.5, DUR)       # alive from frame one; the shrug owns the neck while it plays
-    for tb in (1.6, DUR - 2.0): data.blink(tb)
+    data.expression("wry", T_SH + 1.2, DUR)
+    data.idle(T_SH + 1.5, DUR)
+    for tb in (1.0, DUR - 2.0): data.blink(tb)
     # 11-12 judge: the crane ended looking DOWN on ~45% floor with a thin red strip, and it moved in a jump. Now it
     # pulls up and back to a near-level view so the red row fills the middle of the frame, slowly, to the last frame.
     A, B = Vector((-0.15, -1.9, 0.62)), Vector((0, -3.0, 1.85))
@@ -853,7 +922,8 @@ def shot5():
         return loc, look, Vector((0, -0.55, 0.5)).lerp(Vector((0, 0.5, 0.4)), u)
     camera_path(cam, path)
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1,
-                conseq=[("every lane blinks red", lambda: meshes([bpy.data.objects[f"kiosk{i + 1}"] for i in range(10)]), 0.3, DUR)])
+                conseq=[("every lane blinks red", lambda: meshes([bpy.data.objects[f"kiosk{i + 1}"] for i in range(10)]), 0.3, DUR),
+                        ("the money spills over the full jar", spill, T_P0 + 1.0, DUR)])
 
 
 S = {1: shot1, 2: shot2, 3: shot3, 4: shot4, 5: shot5}[SHOT]()
