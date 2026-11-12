@@ -5313,12 +5313,18 @@
       "duration_s": 25.5
     },
     "self-checkout-3d": {
-      "claimed_at": "2026-11-12T19:01:13.411033+00:00",
+      "url": "https://youtube.com/shorts/zSRsQzIl4bk",
       "title": "Self-Checkout Is Secretly Losing Stores a Fortune",
+      "at": "2026-11-12T19:01:21.786318+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "style_arm": "3d"
+      "state": "posted",
+      "style_arm": "3d",
+      "duration_s": 26.2,
+      "operator_overruled_showrunner": {
+        "operator_said": "it's our own system I refuse to be held hostage by my own system if I say post it it post the quality checks are for when I'm not here to watch it (caaleb, 2026-11-12 18:16Z)",
+        "score": 62,
+        "reason": "showrunner BLOCK: Strong hook (cash spewing from an ERROR kiosk) and a nice coin-bin bit, but the numbers never land on screen (2/10, 200,000) and the video ends on Data standing still in front of ERROR screens, with no payoff for the twist."
+      }
     }
   },
   "uploads": [
@@ -6834,10 +6840,11 @@
       "claimed_at": "2026-11-12T19:01:13.411033+00:00",
       "title": "Self-Checkout Is Secretly Losing Stores a Fortune",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
+      "url": "https://youtube.com/shorts/zSRsQzIl4bk",
+      "state": "posted",
       "style_arm": "3d",
-      "slug": "self-checkout-3d"
+      "slug": "self-checkout-3d",
+      "at": "2026-11-12T19:01:21.786318+00:00"
     }
   ]
 }
