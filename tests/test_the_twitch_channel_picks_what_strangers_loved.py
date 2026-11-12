@@ -64,7 +64,7 @@ class TheInternetsPicksJoinThePool(unittest.TestCase):
 
     def test_the_clip_arm_takes_them_under_the_same_rules(self):
         i = SRC.index("for c in _proven_pool(clip_edit, spec):")
-        block = SRC[i:i + 500]
+        block = SRC[i:i + 800]
         for rule in ("posted_keys", "per_streamer", "_same_event"):
             self.assertIn(rule, block)
 
@@ -88,6 +88,26 @@ class AnUpvotedClipIsNotPunishedForItsAge(unittest.TestCase):
     def test_the_pick_line_says_where_it_came_from(self):
         i = SRC.index('print(f"[pick]')
         self.assertIn("proven_by", SRC[i:i + 500])
+
+
+class ASearchChannelPostsNamesPeopleSearch(unittest.TestCase):
+    """11-06..11-10: chart clips from unknown streamers got 0-3 views; the
+    channel's hits were drama about names people search."""
+
+    def test_a_chart_clip_needs_a_followed_streamer(self):
+        i = SRC.index("for c in _proven_pool(clip_edit, spec):")
+        block = SRC[i - 600:i + 400]
+        self.assertIn("_followed", block)
+        self.assertIn('!= "r/LivestreamFail"', block)
+
+    def test_a_chart_clip_gets_no_free_pass_on_the_core_penalty(self):
+        i = SRC.index("def _fit(ch, c=None):")
+        block = SRC[i:i + 400]
+        self.assertNotIn("else 1.0)", block)
+
+    def test_the_ranker_is_told_about_search(self):
+        from third_capture import author
+        self.assertIn("SEARCHED NAMES", author._RANK_SYSTEM)
 
 
 class TheRankerLooksForNoContextMoments(unittest.TestCase):

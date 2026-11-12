@@ -1135,6 +1135,15 @@ you already know the streamer, their friends or the running joke. A line
 with `internet_says` was upvoted by strangers on r/LivestreamFail: that
 post title is what they saw in it.
 
+SEARCHED NAMES (operator, 2026-11-12: "fix it"). About 90% of this
+channel's views come from YouTube SEARCH. The hits are drama about people
+viewers already type into the search bar: Atrioc calling out Fuslie and
+Emiru for showing up late (1,897 views), Adin Ross's boxing match (1,087),
+Pokimane. A streamer nobody searches for gets 0-3 views however good the
+moment. Score up a callout, feud, exposure, apology, breakup or reaction
+that NAMES a well-known streamer or celebrity; score down a moment whose
+only people are unknown.
+
 SEX SELLS, WITH DIGNITY (operator, 2026-10-09: "the internet is gooners so
 we have the green light to goonbait not to much let's keep our dignity but
 sex sells"). Flirting, rizz, a thirsty chat, a date going well or badly, a
