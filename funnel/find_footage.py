@@ -22,6 +22,8 @@ use"*); the cut is seconds long and carries none of the source's sound.
 """
 from __future__ import annotations
 
+from typing import Iterator
+
 import re
 import subprocess
 from pathlib import Path
@@ -146,6 +148,38 @@ def download(url: str, out: Path) -> Path | None:
         print(f"::warning::[footage] convert failed ({type(e).__name__})",
               flush=True)
         return None
+
+
+#: Downloads kept in flight at once. The converter that answers from
+#: GitHub's runners (loader.to's page) takes minutes a video, so one at a
+#: time spent a montage's whole budget on two or three candidates and the
+#: montage came back empty (2026-11-11).
+PARALLEL = 3
+
+
+def _downloads(cands: list[dict], path_of) -> "Iterator[tuple[int, dict, Path | None]]":
+    """(k, candidate, downloaded path or None) in candidate ORDER, with up
+    to `PARALLEL` downloads running ahead of the one being judged. Stop
+    iterating and the ones not yet started are never started."""
+    from concurrent.futures import ThreadPoolExecutor
+    pool = ThreadPoolExecutor(max_workers=max(1, PARALLEL))
+    futs: dict[int, object] = {}
+    nxt = 0
+    try:
+        for k, v in enumerate(cands):
+            while nxt < len(cands) and nxt < k + max(1, PARALLEL):
+                futs[nxt] = pool.submit(download, cands[nxt]["url"],
+                                        path_of(nxt))
+                nxt += 1
+            try:
+                video = futs.pop(k).result()
+            except Exception:  # noqa: BLE001
+                video = None
+            yield k, v, video
+    finally:
+        for f in futs.values():
+            f.cancel()
+        pool.shutdown(wait=False, cancel_futures=True)
 
 
 def _frame(video: Path, at: float, out: Path, width: int = 640
@@ -290,8 +324,9 @@ def find(who: str, look: str = "", *, secs: float = MAX_MOMENT,
                 if v["url"] not in seen and not is_talk(v.get("title")):
                     seen.add(v["url"])
                     cands.append(v)
-        for n, v in enumerate(cands[:CANDIDATES]):
-            video = download(v["url"], work / f"foot_{tag}_{n}.mp4")
+        for n, v, video in _downloads(
+                cands[:CANDIDATES],
+                lambda i: work / f"foot_{tag}_{i}.mp4"):
             if not video:
                 continue
             dur = _seconds(video)
@@ -501,10 +536,11 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         print(f"[footage] {(query or look)[:50]!r}: {len(cands)} "
               "candidate(s)",
               flush=True)
-        for k, v in enumerate(cands[:MANY_CANDIDATES * 2]):
+        for k, v, video in _downloads(
+                cands[:MANY_CANDIDATES * 2],
+                lambda i: work / f"many_{tag}_{i}.mp4"):
             if len(got) >= n:
                 break
-            video = download(v["url"], work / f"many_{tag}_{k}.mp4")
             if not video:
                 continue
             dur = _seconds(video)
