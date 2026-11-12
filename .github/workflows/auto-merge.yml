@@ -129,7 +129,12 @@ jobs:
     # minutes), and PR #615's run was cancelled at 34.5 with its own
     # tests passing in seconds locally. The same too-tight timeout,
     # a third time.
-    timeout-minutes: 50
+    #
+    # 50 -> 75 (2026-11-12): green runs now take ~39 minutes (PR 736's
+    # last head: 02:05 -> 02:35 plus setup), and PRs 740 and 741 were both
+    # cancelled at exactly 50:15 on 2026-11-11, then sat unmerged for
+    # twelve hours, because a cancellation wakes nobody. A fourth time.
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
