@@ -26,14 +26,20 @@ def _key(o, f, loc=None, rot=None, scale=None, hide=None):
         for x in [o] + list(o.children_recursive): x.hide_render = hide; x.keyframe_insert("hide_render", frame=f)
 
 
-def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.3, side_drift=(-0.1, 0.1), layer=None):
+def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.3, side_drift=(-0.1, 0.1), layer=None,
+             hold_s=0.3, carry=(0.16, 0.0, 0.24), out_drift=(0.28, 0.4)):
     """pivot: an EMPTY at the middle of the page's TOP edge with no rotation; the page hangs below it as its children,
     its face toward `out` (the unit vector pointing away from the wall). From t_tear - peel_s the bottom is pulled out
     (the page bends out about its top edge); at t_tear the top rips and it falls: drag holds it near a paper's
     terminal speed, it swings side to side as a leaf does, tips toward flat, lands and LIES on the floor, face up,
     where it came down. side_drift: how far it drifts along the wall (the hinge axis) as it falls; give it one sign
     to keep the pages off someone standing beside the pad. layer: its height in the pile (pass the tear order, so
-    the latest page lands ON TOP; 11-12 judge: later years vanished under earlier ones). Returns grab(t): the world point of the page's bottom middle (where the hand pulls)."""
+    the latest page lands ON TOP; 11-12 judge: later years vanished under earlier ones).
+    hold_s, carry: once it rips the page stays IN THE HAND for hold_s while the hand carries it down and away
+    (carry = metres out from the wall, along the hinge axis, and down), and only then is let go (11-12 CI judge: the
+    page flipped up over the pad and flew off while his hand stayed on the wall: "his hand is not on the page he
+    tears"). Returns grab(t): the world point of the page's bottom middle (where the hand pulls), followed through
+    the carry."""
     from mathutils import Matrix
     rnd = random.Random(seed); out = Vector(out).normalized(); down = Vector((0, 0, -1))
     hinge = down.cross(out).normalized()         # turning about this swings the hanging page's bottom OUT
@@ -41,17 +47,21 @@ def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.
     top0 = pivot.location.copy()
     vt = rnd.uniform(1.1, 1.35)                   # terminal fall speed, m/s: a stiff calendar page drops; slower read as floating (11-12 judge)
     swing = rnd.uniform(0.05, 0.1) * (1 if rnd.random() < 0.5 else -1); fr = rnd.uniform(3.2, 4.2)
-    drift = out * rnd.uniform(0.28, 0.4) + side * rnd.uniform(*side_drift)   # well clear of the pad: a falling page never ghosts over the next one (11-12 judge)
-    spin = rnd.uniform(-1.2, 1.2); PEEL = math.radians(40)
+    drift = out * rnd.uniform(*out_drift) + side * rnd.uniform(*side_drift)   # well clear of the pad: a falling page never ghosts over the next one (11-12 judge)
+    spin = rnd.uniform(-1.2, 1.2); PEEL = math.radians(40); CARRY_BEND = math.radians(20)
+    carried = lambda e: top0 + (out * carry[0] + side * carry[1] + Vector((0, 0, -carry[2]))) * e
 
     def state(t):
         if t < t_tear - peel_s: return top0.copy(), 0.0, 0.0
         if t < t_tear:
             u = (t - (t_tear - peel_s)) / peel_s; return top0.copy(), PEEL * u * u, 0.0
-        u = t - t_tear
+        if t < t_tear + hold_s:                   # in his hand: carried down and away, the page hanging from his pinch
+            e = (t - t_tear) / hold_s; e = e * e * (3 - 2 * e)
+            return carried(e), PEEL + (CARRY_BEND - PEEL) * e, 0.0
+        u = t - t_tear - hold_s; c0 = carried(1.0)
         z = vt * (u - (1 - math.exp(-5 * u)) / 5)
-        loc = top0 + drift * (1 - math.exp(-1.6 * u)) + side * swing * math.sin(fr * u) + Vector((0, 0, -z))
-        bend = PEEL + (math.radians(90) - PEEL) * (1 - math.exp(-1.8 * u)) + math.radians(22) * math.sin(fr * u + 1.0) * math.exp(-0.8 * u)
+        loc = c0 + drift * (1 - math.exp(-1.6 * u)) + side * swing * math.sin(fr * u) + Vector((0, 0, -z))
+        bend = CARRY_BEND + (math.radians(90) - CARRY_BEND) * (1 - math.exp(-1.8 * u)) + math.radians(22) * math.sin(fr * u + 1.0) * math.exp(-0.8 * u)
         return loc, bend, spin * u
 
     def R(bend, yaw): return Matrix.Rotation(yaw, 3, 'Z') @ Matrix.Rotation(bend, 3, hinge)
@@ -68,7 +78,7 @@ def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.
         _key(pivot, f, loc=loc, rot=rot.to_euler())
 
     def grab(t):
-        loc, bend, yaw = state(min(t, t_tear))
+        loc, bend, yaw = state(min(t, t_tear + hold_s))
         return loc + (R(bend, yaw) @ down) * page_h * 0.92
     return grab
 

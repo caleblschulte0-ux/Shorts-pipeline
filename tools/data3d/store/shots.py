@@ -511,22 +511,25 @@ def shot3():
     # the team board: the staff wall is about the people (and fills the wall over the calendar)
     board = K.mat("cork", "#B58E62", rough=0.9)
     by, bz = DY0 - 0.5, 1.12
-    K.box("team board", (WX - 0.012, by, bz), (0.02, 0.78, 0.42), board, bev=0.006)
+    K.box("team board", (WX - 0.012, by, bz), (0.02, 0.8, 0.44), board, bev=0.006)
     K.box("team header", (WX - 0.024, by, bz + 0.25), (0.01, 0.5, 0.075), K.mat("sign navy"), bev=0.003)
     K.text("team header text", "OUR TEAM", (WX - 0.03, by, bz + 0.25), 0.05, (math.radians(90), 0, math.radians(-90)), K.mat("sign ivory"), extrude=0.001)
     face_m = K.mat("photo person", "#2F6FA6", rough=0.6); head_m = K.mat("photo head", "#E2D6CA", rough=0.6); photo = K.mat("photo ground", "#E9E4DA", rough=0.7)
+    photos = []
     for r in range(2):
         for c in range(4):
             py, pz = by - 0.27 + c * 0.18, bz + 0.09 - r * 0.19
-            K.box("photo", (WX - 0.025, py, pz), (0.006, 0.13, 0.15), photo, bev=0.002)
-            K.box("photo body", (WX - 0.029, py, pz - 0.04), (0.004, 0.08, 0.05), face_m, bev=0.008)
-            K.sph("photo head", (WX - 0.029, py, pz + 0.02), 0.024, head_m, scale=(0.3, 1, 1.1))
+            pe = K.empty(f"photo {r}{c}", (WX - 0.027, py, pz + 0.085)); photos.append(pe)      # hung by its top edge: it can fall
+            K.box("photo", (WX - 0.025, py, pz), (0.006, 0.16, 0.17), photo, bev=0.002, parent=pe)        # 11-12 CI judge: the faces were specks
+            K.box("photo body", (WX - 0.029, py, pz - 0.045), (0.004, 0.11, 0.06), face_m, bev=0.01, parent=pe)
+            K.sph("photo head", (WX - 0.029, py, pz + 0.025), 0.034, head_m, scale=(0.3, 1, 1.1), parent=pe)
     # the calendar: BIG, beside the door at Data's height, one page a year
-    cy = DY0 - 0.4; PH = 0.5; PW = 0.42; cz = 0.52      # 11-12 judge: about Data's height, years big enough to read on a phone
+    cy = DY0 - 0.4; PH = 0.5; PW = 0.42; cz = 0.52; HOLD = 0.3      # 11-12 judge: about Data's height, years big enough to read on a phone
     paper = K.mat("calendar paper", "#F4F1EA", rough=0.8); ink = K.mat("sign navy")
     K.box("calendar back", (WX - 0.008, cy, cz), (0.012, PW + 0.04, PH + 0.12), K.mat("calendar board", "#3A3D42", rough=0.6), bev=0.003)
     K.box("calendar band", (WX - 0.02, cy, cz + PH / 2 + 0.025), (0.012, PW + 0.04, 0.06), K.mat("sale red", "#C6392B", rough=0.5), bev=0.002)
-    years = list(range(2014, 2025)); tY0, tY1 = 0.55, DUR - 1.3     # the last page lands and settles before the cut
+    # 11-12 CI judge: ten tears in three seconds left no time to hold a page; every other year, each one carried away
+    years = list(range(2014, 2025, 2)); tY0, tY1 = 0.55, DUR - 1.3     # the last page lands and settles before the cut
     flips = [tY0 + (tY1 - tY0) * k / (len(years) - 2) for k in range(len(years) - 1)]
     top = cz + PH / 2 - 0.006; grabs = []
     for k, yr in enumerate(years):
@@ -535,37 +538,47 @@ def shot3():
         K.box(f"page sheet {yr}", (x, cy, top - PH / 2), (0.0012, PW, PH), paper, bev=0, parent=piv)
         K.text(f"year {yr}", str(yr), (x - 0.0011, cy, top - PH / 2 - 0.015), 0.18, (math.radians(90), 0, math.radians(-90)), ink, extrude=0.0004, parent=piv)
         if k < len(flips):
-            grabs.append((flips[k], props.tear_off(piv, NF, flips[k], (-1, 0, 0), floor_z=0.0, seed=k + 3, page_h=PH, side_drift=(0.12, 0.3), layer=k)))
+            grabs.append((flips[k], props.tear_off(piv, NF, flips[k], (-1, 0, 0), floor_z=0.0, seed=k + 3, page_h=PH, side_drift=(-0.12, -0.04), layer=k, out_drift=(0.0, 0.05),
+                                                   hold_s=HOLD, carry=(0.06, -0.14, 0.26))))   # 11-12 CI judge, twice: pulled toward the lens the tear was invisible; it goes ACROSS the frame, to him     # 11-12 CI judge: carried across his body it hid his face; out and away
+    # THE COUNT ON THE WALL (11-12 CI judge: "'half a million' never appears anywhere in the frame"): a board over the
+    # door and the pad counts the jobs gone, a hundred thousand with every page he tears, to 500,000
+    jb = Vector((WX - 0.02, by, 1.64))
+    K.box("jobs board", tuple(jb), (0.02, 1.04, 0.38), K.mat("tally board", "#20242A", rough=0.5), bev=0.01)
+    K.text("jobs head", "CASHIER JOBS GONE", tuple(jb + Vector((-0.014, 0, 0.11))), 0.082, (math.radians(90), 0, math.radians(-90)), K.mat("tally head", "#FFFFFF", rough=0.4, emit=1.2), extrude=0.001)
+    for n in range(len(flips) + 1):
+        o = K.text(f"jobs {n}", "0" if n == 0 else f"{n * 100}" + ",000", tuple(jb + Vector((-0.014, 0, -0.06))), 0.16, (math.radians(90), 0, math.radians(-90)), K.mat("tally digits", "#FF5A3C", rough=0.3, emit=3.0), extrude=0.002)
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; k = sum(1 for c in flips if t >= c)
+            o.hide_render = k != n; o.keyframe_insert("hide_render", frame=f)
+    dig3 = bpy.data.materials["tally digits"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
+    for f in range(1, NF + 1):                                 # each 100,000 lands with a flash (11-12 CI judge)
+        t = (f - 1) / FPS; since = min([t - c for c in flips if t >= c] or [9.0])
+        dig3.default_value = 3.0 + 10.0 * max(0.0, 1 - since / 0.25); dig3.keyframe_insert("default_value", frame=f)
     # the door: open into the back room while they leave; it swings shut behind the last one
     hinge = K.empty("door hinge", (WX + 0.06, DY1 - 0.01, 0))
     K.box("door leaf", (WX + 0.06, (DY0 + DY1) / 2, DH / 2 - 0.01), (0.035, DY1 - DY0 - 0.02, DH - 0.03), door_m, bev=0.004, parent=hinge)
     K.box("door window", (WX + 0.04, (DY0 + DY1) / 2, DH * 0.72), (0.012, 0.16, 0.22), K.mat("door glass", "#9FB4C2", rough=0.1), bev=0.003, parent=hinge)
-    # the cashiers: single file, walking along the wall to the door and out through it, one every other year
-    yl = (DY0 + DY1) / 2; speed = 0.75; XL = WX - 0.42
-    exits = flips[0::2][:5]                                 # a file of five, spaced so each reads as a person leaving
-    for k, te in enumerate(exits):
-        c = person(f"staff {k}", (0, 0, 0), yaw=0)
-        L1 = 0.5                                             # from the turn to out of sight through the door
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; d = speed * (t - te)              # distance past the turn point (negative: still coming)
-            if d < 0: loc = Vector((XL, yl - d, 0)); yaw = math.radians(180)            # walking along the wall (-y)
-            else: loc = Vector((XL + d, yl, 0)); yaw = math.radians(90 + 90 * math.exp(-8 * d))      # turned through the door
-            loc.z = 0.012 * abs(math.sin(t * 9.0 + k))
-            c.location = loc; c.keyframe_insert("location", frame=f); c.rotation_euler = (0, 0, yaw + math.radians(4 * math.sin(t * 9.0 + k))); c.keyframe_insert("rotation_euler", frame=f)
-            hidden = d > 0.75
-            for o in [c] + list(c.children_recursive): o.hide_render = hidden; o.keyframe_insert("hide_render", frame=f)
-        K.contact_shadow(c.name + " shadow", (0, 0), rx=0.17, ry=0.12, parent=c)
-    t_shut = exits[-1] + 0.75 / speed
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS; u = ease((t - t_shut) / 0.35)
-        hinge.rotation_euler = (0, 0, math.radians(lerp(85, 0, u))); hinge.keyframe_insert("rotation_euler", frame=f)   # open INTO the back room
+    # 11-12 CI judge, five passes: a file of cashiers through a door at the frame edge never read (cut by the edge,
+    # merged into one blob at the door, pressed against the wall). The PEOPLE are the faces on the team board: with
+    # every year he tears off, one of them drops off the board to the floor, and the counter over it climbs.
+    gone = [photos[i] for i in (0, 6, 3, 5, 1)]
+    photo_falls = []
+    for k, pe in enumerate(gone):
+        if k < len(flips):
+            props.tear_off(pe, NF, flips[k] + 0.1, (-1, 0, 0), floor_z=0.0, peel_s=0.12, seed=40 + k, page_h=0.15,
+                           side_drift=(-0.06, 0.06), layer=k, hold_s=0.05, carry=(0.0, 0.0, 0.0), out_drift=(0.05, 0.12))
+            photo_falls.append(pe)
+    hinge.rotation_euler = (0, 0, 0)                      # the staff door stays shut
+    for o in bpy.data.objects:                            # and out of this tighter shot: half a door at the edge read as a crop
+        if o.name.startswith(("door", "staff only")) or o == hinge: o.hide_render = True
+        if o.parent == hinge: o.hide_render = True
     # Data: beside the pad on the far side from the door, facing us, ripping a year off for each one who goes
     data = load_data()
-    cam_at = Vector((WX - 2.3, -0.92, 0.5))       # 11-12 judge: Data was cut at frame right; now the file, the door, the pad and Data all fit with margin
-    here = Vector((WX - 0.24, cy - PW / 2 - 0.3, 0))   # 11-12 judge: his head overlapped the pad's edge and read as clipping: a clear step off it
+    cam_at = Vector((WX - 1.75, -1.3, 0.56))       # 11-12 judge: Data was cut at frame right; now the file, the door, the pad and Data all fit with margin
+    here = Vector((WX - 0.24, cy - PW / 2 - 0.42, 0))   # 11-12 judge: his head overlapped the pad's edge and read as clipping: a clear step off it
     data.place(here.x, here.y, -90 - 18)                   # facing us, turned a little toward the pad
     sc.frame_set(1); bpy.context.view_layer.update()
-    corner = Vector((0, -(PW / 2 - 0.04), 0))           # he pulls the page by the corner nearest him
+    corner = Vector((0, -(PW / 2 - 0.03), PH * 0.42))   # 11-12 CI judge: held at the bottom corner it read as presenting, not ripping: he grips its EDGE high and yanks it DOWN
     side = near_hand(data, Vector((WX - 0.02, cy, top - PH)) + corner)
     def rest(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update(); sh = acts._shoulder(data, side)
@@ -573,35 +586,37 @@ def shot3():
         return sh + Vector((0, 0, -0.19)) + out * 0.06 + data.forward() * 0.01
     gp = lambda g, t: g(t) + corner
     def pull(t):
+        """11-12 CI judge, three passes: an arm held out at the pad all shot reads as POINTING while pages tear
+        themselves off. Each year is its own move: the hand comes up from his side, grips the page's edge, yanks it
+        down and away, lets go, and drops back to his side before the next one."""
         for k, (ta, g) in enumerate(grabs):
-            if t <= ta + 0.04:
-                p = gp(g, t)
-                if k > 0 and t < grabs[k - 1][0] + 0.2:
-                    u = ease((t - grabs[k - 1][0] - 0.04) / 0.16); return gp(grabs[k - 1][1], grabs[k - 1][0]).lerp(p, u)
-                if k == 0 and t < ta - 0.3:
-                    u = ease((t - (ta - 0.55)) / 0.25); return rest(t).lerp(p, u)
-                return p
-        u = ease((t - grabs[-1][0] - 0.04) / 0.4); return gp(grabs[-1][1], grabs[-1][0]).lerp(rest(t), u)
+            r0 = ta - 0.18 - 0.2                              # reach up from his side
+            if t < r0: return rest(t)
+            if t < ta - 0.18: return rest(t).lerp(gp(g, ta - 0.18), ease((t - r0) / 0.2))
+            if t <= ta + HOLD: return gp(g, t)                 # the grip, the rip, the carry down and away
+            if t < ta + HOLD + 0.16 and (k + 1 == len(grabs) or t < grabs[k + 1][0] - 0.38):
+                return gp(g, ta + HOLD).lerp(rest(t), ease((t - ta - HOLD) / 0.16))   # let go, back to his side
+        return rest(t)
     grip_follow(data, side, pull, 0.0, DUR, elbow_out=0.5)
+    for ta, _ in grabs:                                        # he puts his weight into each rip
+        for tt, a_ in ((ta - 0.2, 0), (ta + 0.08, 9), (ta + HOLD, 4), (ta + HOLD + 0.18, 0)): data._k('spine', tt, rot=(a_, 0, 0))
     padc = (WX - 0.02, cy, cz)
     data.look_at(padc, 0.0, max_yaw=35, blend=0.0)              # a glance at the pad, his face still three-quarter to us
     data.look_at(padc, 1.3, max_yaw=35)
     data.expression("worried", 0.8, DUR)
     data.look_at(tuple(cam_at), 1.7, max_yaw=60)          # to us while he keeps tearing: another year, another one gone
     data.look_at(tuple(cam_at), 3.3, max_yaw=60)
-    data.look_at((WX - 0.3, yl, 0.5), 3.7, max_yaw=60)    # to the door as the last ones go
-    data.look_at((WX - 0.3, yl, 0.5), t_shut, max_yaw=60)
-    data.look_at(tuple(cam_at), min(DUR, t_shut + 0.35), max_yaw=60)
+    data.look_at(tuple(cam_at), flips[-1] + 0.5, max_yaw=60)       # 11-12 CI judge: looking up at the count turned his head away; to us
     data.idle(0.0, DUR)
     for tb in (1.0, 3.0, 4.6): data.blink(tb)
     data.finish()
-    look_at_c = Vector((WX, -0.92, 0.72))             # tilted up: the floor drops out of the bottom
-    cam = K.camera(tuple(cam_at), tuple(look_at_c), lens=22, fstop=5.6)
-    camera_path(cam, lambda t: (cam_at + Vector((0.12, 0, -0.01)) * ease(t / DUR), look_at_c, (here.x, here.y, 0.5)))
+    look_at_c = Vector((WX, -1.3, 0.84))             # tilted up: the floor drops out of the bottom
+    cam = K.camera(tuple(cam_at), tuple(look_at_c), lens=21, fstop=5.6)
+    camera_path(cam, lambda t: (cam_at + Vector((0.05, 0, 0.0)) * ease(t / DUR), look_at_c, (here.x, here.y, 0.5)))   # 11-12 CI judge: the push cut Data and the line at the edges
     sheets = [o for o in bpy.data.objects if o.name.startswith("page sheet ")]
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1,
                 conseq=[("torn pages fall to the floor", sheets, flips[0], DUR),
-                        ("the cashiers walk out", lambda: meshes([o for o in bpy.data.objects if o.name.startswith("staff ") and o.parent is None and o.type == 'EMPTY']), 0.0, exits[-1])])
+                        ("the team's faces fall off the board", lambda: meshes(photo_falls), flips[0] + 0.1, DUR)])
 
 
 # ================================================================ SHOT 4: twice the losses

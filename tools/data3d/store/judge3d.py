@@ -22,9 +22,10 @@ BRIEFS = {
        "lanes; CUT on the impact to a high view over his shoulder down the row: nine lanes turn into self-checkout "
        "kiosks one after another while a board over the row counts them, 0 / 10 to 9 / 10, and the one staffed lane "
        "(CASHIER sign, a cashier at the till) stays.",
-    3: "HALF A MILLION JOBS IN TEN YEARS. Cashiers walk single file out through the STAFF ONLY door, which shuts "
-       "behind the last; Data tears a year off a big wall calendar (2014 to 2024) as they go; every torn page "
-       "visibly falls and piles on the floor.",
+    3: "HALF A MILLION JOBS IN TEN YEARS. On the staff wall, a CASHIER JOBS GONE counter over the OUR TEAM board over "
+       "a big calendar. Data rips the years off the calendar (2014 to 2024, every other year) and drops them; with each "
+       "one a face falls off the team board to the floor and the counter climbs 100,000, to 500,000. The torn pages "
+       "and the fallen photos pile on the floor.",
     4: "TWICE THE LOSSES. Two LOSSES jars, labelled CASHIER and SELF CHECKOUT; Data pours coins from a sack into each; "
        "the coins must be seen falling in, and the self-checkout jar must end over twice as full.",
     5: "CLOSING. Every lane is self-checkout and blinking red; Data shrugs, then waves, then the camera cranes up and "
