@@ -40,7 +40,14 @@ def _solid(o, ws):
         for poly in ws[1]:
             for i in range(len(poly)):
                 e = tuple(sorted((poly[i], poly[(i + 1) % len(poly)]))); edges[e] = edges.get(e, 0) + 1
-        _SOLID[key] = not thin and bool(edges) and all(c == 2 for c in edges.values())
+        closed = bool(edges) and all(c == 2 for c in edges.values())
+        shell = False
+        if closed and not thin:   # a closed SHELL (a leaf or a sheet given a few mm by Solidify) is still a sheet: it
+            vs, ps = ws          # has no inside a body could be in, only two faces a point is always 'behind' one of
+            vol = abs(sum(vs[p[0]].dot(vs[p[i]].cross(vs[p[i + 1]])) for p in ps for i in range(1, len(p) - 1))) / 6
+            box = [max(v[i] for v in vs) - min(v[i] for v in vs) for i in range(3)]
+            shell = vol < 0.05 * max(1e-9, box[0] * box[1] * box[2])
+        _SOLID[key] = not thin and closed and not shell
     return _SOLID[key]
 
 

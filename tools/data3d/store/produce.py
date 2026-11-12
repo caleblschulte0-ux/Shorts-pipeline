@@ -42,8 +42,8 @@ def skin_mat(name, base=YELLOW, neck=GREENISH, rough=0.42, climb=False):
     rot = nt.nodes.new("ShaderNodeValue"); rot.name = "rot"; rot.label = "rot"; rot.outputs[0].default_value = 0.0
     tc = nt.nodes.new("ShaderNodeTexCoord"); nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 38.0
     nz.inputs["Detail"].default_value = 3.0; nt.links.new(tc.outputs["Object"], nz.inputs["Vector"])
-    thr = nt.nodes.new("ShaderNodeMath"); thr.operation = 'MULTIPLY_ADD'; thr.inputs[1].default_value = -0.9; thr.inputs[2].default_value = 0.82
-    nt.links.new(rot.outputs[0], thr.inputs[0])                                   # threshold = 0.82 - 0.9 * rot
+    thr = nt.nodes.new("ShaderNodeMath"); thr.operation = "MULTIPLY_ADD"; thr.inputs[1].default_value = -0.98; thr.inputs[2].default_value = 0.9
+    nt.links.new(rot.outputs[0], thr.inputs[0])                                   # threshold = 0.9 - 0.98 * rot
     spot = nt.nodes.new("ShaderNodeMath"); spot.operation = 'GREATER_THAN'
     nt.links.new(nz.outputs["Fac"], spot.inputs[0]); nt.links.new(thr.outputs[0], spot.inputs[1])
     mix1 = nt.nodes.new("ShaderNodeMix"); mix1.data_type = 'RGBA'; mix1.inputs["B"].default_value = (*K.lin(BROWN), 1)
@@ -226,9 +226,9 @@ def plant(name, base, height=0.42, n_leaves=6, seed=0, parent=None):
         hinge = K.empty(f"{name} leaf hinge {k}", (bx, by, hz), parent=root)
         hinge.rotation_euler = (0, 0, a)
         # the blade: a strip along +X from the hinge, rising then arching, 0.32 long, 0.09 wide
-        bm = bmesh.new(); uvl = bm.loops.layers.uv.new("UVMap"); Lb, Wb, n = 0.32, 0.09, 14; rows = []
+        bm = bmesh.new(); uvl = bm.loops.layers.uv.new("UVMap"); Lb, Wb, n = 0.28, 0.11, 14; rows = []
         for i in range(n + 1):
-            u = i / n; xx = Lb * u; zz = 0.16 * math.sin(u * math.pi * 0.8) - 0.05 * u * u
+            u = i / n; xx = Lb * u; zz = 0.075 * math.sin(u * math.pi * 0.85) - 0.05 * u * u     # a paddle arching OUT, not a cup
             ww = Wb * (0.25 + 0.75 * math.sin(min(1.0, u * 1.25) * math.pi * 0.5)) * (1 - 0.6 * max(0, u - 0.8) / 0.2)
             rows.append([bm.verts.new((xx, s * ww / 2, zz - abs(s) * 0.012)) for s in (-1, 0, 1)])
         for i in range(n):
@@ -239,7 +239,7 @@ def plant(name, base, height=0.42, n_leaves=6, seed=0, parent=None):
         for p in me.polygons: p.use_smooth = True
         lo = bpy.data.objects.new(f"{name} leaf {k}", me); bpy.context.collection.objects.link(lo); lo.parent = hinge
         sol = lo.modifiers.new("thick", "SOLIDIFY"); sol.thickness = 0.003
-        hinge.rotation_euler = (0, math.radians(-15 - 10 * (k % 2)), a)   # up and out
+        hinge.rotation_euler = (0, math.radians(4 + 8 * (k % 2)), a)   # out, arching over
         leaves.append((hinge, lm))
     return dict(root=root, stem=stem, leaves=leaves, stem_mat=stem_m)
 
