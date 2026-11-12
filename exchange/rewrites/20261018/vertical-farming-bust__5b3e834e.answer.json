@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "vertical-farming-bust__5b3e834e",
+  "slug": "vertical-farming-bust",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:28:30Z",
+  "title": "Vertical Farms Raised $8 Billion, Then Funding Collapsed",
+  "hook": "Vertical farms raised $8 billion. Then investors fled.",
+  "closing": "Vertical farms proved hype cannot substitute for sustainable economics.",
+  "question": "Would you eat vertical-farmed greens?",
+  "segments": [
+    {
+      "topic": "Vertical farm investment",
+      "say": "Vertical farms raised $8 billion. The next funding period brought only a fraction as much."
+    },
+    {
+      "topic": "Vertical farm collapse",
+      "say": "One vertical farming company reached a $2.3 billion valuation, then shut down."
+    },
+    {
+      "topic": "Vertical farm funding",
+      "say": "Vertical farm funding fell 91 percent after its peak. Investor enthusiasm vanished almost overnight."
+    }
+  ]
+}
