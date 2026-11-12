@@ -153,7 +153,7 @@ def blink_red(kiosks, t_on, t_off, rate=2.5, alarm=False):
         nt = sm.node_tree; b = nt.nodes.get("Principled BSDF")
         es = b.inputs["Emission Strength"]                       # a hard pulse between two REDS: bright, then dim
         for f in range(1, NF + 1):
-            t = (f - 1) / FPS; es.default_value = (2.4 if ph(t) else 0.9) if on(t) else 0.9; es.keyframe_insert("default_value", frame=f)
+            t = (f - 1) / FPS; es.default_value = (2.8 if ph(t) else 0.2) if on(t) else 0.9   # 11-12 panel: 2.4/0.9 read as a steady red; ON, then nearly OFF; es.keyframe_insert("default_value", frame=f)
         for kp in (fc for fc in (nt.animation_data.action.fcurves if nt.animation_data and hasattr(nt.animation_data.action, "fcurves") else [])):
             for k_ in kp.keyframe_points: k_.interpolation = 'CONSTANT'
 
@@ -247,21 +247,22 @@ def shot1():
     for s_ in "LR":
         sh_ = acts._shoulder(data, s_); side_ = (sh_ - data.pos()); side_.z = 0; side_ = side_.normalized()
         hang = sh_ + side_ * 0.04 + Vector((0, 0, -0.17))
-        cover = crown + duck_off + side_ * 0.09 + data.forward() * 0.15 + Vector((0, 0, -0.03))   # over the FRONT of his head
+        cover = crown + duck_off + side_ * 0.09 + data.forward() * 0.21 + Vector((0, 0, -0.05))   # over the FRONT of his head
         data._arm_ik(s_, hang, 1.95, 0.4)
         for tt in (2.2, 2.8): data._arm_ik(s_, cover, tt, 0.6)
-        data._arm_ik(s_, sh_ + duck_off + side_ * 0.06 + data.forward() * 0.16 + Vector((0, 0, -0.04)), 3.02, 0.5)   # down in front, not round the back
+        data._arm_ik(s_, sh_ + duck_off + side_ * 0.06 + data.forward() * 0.22 + Vector((0, 0, -0.06)), 3.02, 0.5)   # down in front, not round the back
         data._arm_ik(s_, hang, 3.25, 0.4)
-    data._k('neck', 1.95, rot=(0, 0, 0)); data._k('neck', 2.2, rot=(18, 0, 0)); data._k('neck', 2.8, rot=(18, 0, 0)); data._k('neck', 3.15, rot=(0, 0, 0))
+    data._k('neck', 1.95, rot=(0, 0, 0)); data._k('neck', 2.2, rot=(26, 0, 0)); data._k('neck', 2.8, rot=(26, 0, 0)); data._k('neck', 3.15, rot=(0, 0, 0))
     data.act("whoa", 3.3, dur=0.25, hold=DUR - 3.6)
     away = Vector((0.06, 0.16, 0))                    # straight BACK from the machine: he stays in frame
     for t, off, z in ((0.0, Vector(), 0.0), (0.18, Vector(), -0.035), (0.3, away * 0.5, 0.17), (0.5, away * 0.85, 0.15), (0.6, away, 0.0), (0.64, away, -0.025), (0.8, away, 0.0),
-                      (1.95, away, 0.0), (2.15, away + Vector((0.03, 0.03, 0)), -0.06), (2.75, away + Vector((0.03, 0.03, 0)), -0.055), (3.05, away, 0.0)):
+                      (1.95, away, 0.0), (2.15, away + Vector((0.03, 0.03, 0)), -0.1), (2.75, away + Vector((0.03, 0.03, 0)), -0.095), (3.05, away, 0.0)):
         data.arm.location = (DP.x + off.x, DP.y + off.y, z); data.arm.keyframe_insert("location", frame=F(t))
-    for t, b_ in ((0.0, 0), (0.18, 10), (0.38, -8), (0.6, 0), (1.95, 0), (2.15, 20), (2.75, 18), (3.05, 0)):   # crouch, spring, and the duck
+    for t, b_ in ((0.0, 0), (0.18, 14), (0.38, -10), (0.6, 0), (1.95, 0), (2.15, 32), (2.75, 30), (3.05, 0)):   # crouch, spring, and the duck (11-12 panel: too small to read)
         data._k('spine', t, rot=(b_, 0, 0))
     data.idle(3.4, DUR)
-    for tt in [i * 0.2 for i in range(int(DUR / 0.2) + 2)]: data._face(tt, **data.EXPRESSIONS['surprised'])   # shocked the whole way: never a smile mid-spew
+    shock = dict(data.EXPRESSIONS['surprised'], oh=0.35, brow=0.17)     # shocked the whole way, but a small 'o', never the open mouth hole (caaleb 11-04)
+    for tt in [i * 0.2 for i in range(int(DUR / 0.2) + 2)]: data._face(tt, **shock)   # never a smile mid-spew
     money = (kx + 0.05, ky - 0.6, 0.6)
     data.look_at(money, 0.0, max_yaw=25, blend=0.0)
     data.look_at(money, 1.2, max_yaw=25)
@@ -278,10 +279,10 @@ def shot1():
     bills = []
     for n in range(120):
         burst = n < 70
-        if burst: ts = 0.6 * n / 40 if n < 40 else rnd.uniform(0.6, 1.7)      # frame one: the jet is LEAVING the slot
+        if burst: ts = -0.45 + 1.05 * n / 40 if n < 40 else rnd.uniform(0.6, 1.7)   # 11-12 panel: frame one already has money in the air
         else: ts = rnd.uniform(2.0, 2.9) if n < 105 else rnd.uniform(3.0, DUR - 0.4)
-        lens_shot = n % 9 == 0                                       # a few tumble right past the lens
-        v = (Vector((rnd.uniform(-0.1, 0.2), rnd.uniform(-2.2, -1.6), rnd.uniform(0.3, 0.6))) if lens_shot else
+        lens_shot = n % 4 == 0                                       # many fly past his head at the lens (11-12 panel)
+        v = (Vector((rnd.uniform(0.15, 0.55), rnd.uniform(-2.2, -1.6), rnd.uniform(0.6, 0.95))) if lens_shot else
              Vector((rnd.uniform(0.3, 1.0), rnd.uniform(-1.2, -0.5), rnd.uniform(0.4, 1.0))))   # a fan at him and the lens
         spin = Vector((rnd.uniform(-10, 10), rnd.uniform(-10, 10), rnd.uniform(-6, 6)))
         b = bpy.data.objects.new(f"bill {n}", me); bpy.context.collection.objects.link(b); bills.append(b)
@@ -302,8 +303,8 @@ def shot1():
             b.scale = (sc_, sc_, sc_); b.keyframe_insert("scale", frame=f)
     # the camera: three-quarters on the machine, low, pushing in on the burst
     A, B = Vector((kx + 0.12, ky - 1.95, 0.5)), Vector((kx + 0.14, ky - 1.8, 0.5))
-    LA = Vector((kx + 0.3, ky - 0.4, 0.6))         # tilted up: the floor drops out, machine and Data fill the frame
-    cam = K.camera(tuple(A), tuple(LA), lens=22, fstop=4.0)
+    LA = Vector((kx + 0.3, ky - 0.4, 0.5))         # 11-12 panel: the upper third was ceiling; level, tighter, the money and its pile in frame
+    cam = K.camera(tuple(A), tuple(LA), lens=25, fstop=4.0)
     camera_path(cam, lambda t: (A.lerp(B, ease(t / DUR)), LA, (DP.x, DP.y, 0.5)))
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("money bursts out of the machine", bills, 0.0, DUR)])
 
@@ -348,9 +349,15 @@ def shot2():
     ax = to_cam.copy()                                      # it swings in the picture plane: the whole arc reads
     A0, A1 = math.radians(4), math.radians(140)              # from straight up to well DOWN: a haul, not a swing            # from up to DOWN past level, over and down at his side
     sgn = 1 if (Matrix.Rotation(0.3, 3, ax) @ Vector((0, 0, 1))).dot(right) > 0 else -1
+    AW = math.radians(-14)                                   # 11-12 panel: "frames 1-4 hold the same pose, no wind-up"
+    def lever_a(t):                                          # it is eased BACK first (the wind-up), then hauled down hard
+        if t < T_PULL0: return lerp(A0, AW, ease(t / T_PULL0))  # and bounces once on its stop (the follow-through)
+        u = min(1.0, (t - T_PULL0) / (T_PULL1 - T_PULL0)); a = lerp(AW, A1, u * u * (3 - 2 * u) if u < 0.5 else 1 - 0.5 * (1 - u) ** 2 * 4 * 0.5 - (1 - u) ** 2)
+        if t > T_PULL1: a = A1 - math.radians(9) * math.exp(-7 * (t - T_PULL1)) * abs(math.sin(14 * (t - T_PULL1)))
+        return a
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS; u = ease((t - T_PULL0) / (T_PULL1 - T_PULL0))
-        arm.rotation_euler = Matrix.Rotation(sgn * lerp(A0, A1, u), 3, ax).to_euler(); arm.keyframe_insert("rotation_euler", frame=f)
+        t = (f - 1) / FPS
+        arm.rotation_euler = Matrix.Rotation(sgn * lever_a(t), 3, ax).to_euler(); arm.keyframe_insert("rotation_euler", frame=f)
     def grip_pt(t, k):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         return arm.matrix_world @ Vector((0, 0, LL - (0.0 if k == 0 else 0.065))) + to_cam * 0.025
@@ -382,7 +389,7 @@ def shot2():
     data.expression("surprised", 1.4, 3.0)
     data.look_at((ROW10[5], 0.3, 0.6), T_PULL1 + 0.75, max_yaw=40)
     data.look_at((ROW10[5], 0.3, 0.6), conv_t[-1] - 0.6, max_yaw=40)
-    data.look_at(tuple(CBp), conv_t[-1] - 0.35, max_yaw=40)
+    data.look_at((ROW10[8], 0.3, 0.6), DUR, max_yaw=40)     # 11-12 panel: he watches the row he changed, to the end
     data.expression("happy", 2.95, DUR)
     t_w = T_PULL1 + 1.25                                    # released: hands open, WHOA, as the row starts to go
     data.act("whoa", t_w, dur=0.3, hold=0.7)
@@ -422,8 +429,8 @@ def shot2():
     selfg = bpy.data.materials["self sign"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
     def lane_sign(i, nm, mat_, word, ink):
         to_c = Vector((CB.x - ROW10[i], CB.y - sy, 0)).normalized(); yaw_c = math.atan2(to_c.x, -to_c.y)
-        bx = K.box(f"{nm} {i}", (ROW10[i], sy, 1.3), (0.54, 0.02, 0.17), mat_, bev=0.01); bx.rotation_euler = (0, 0, math.atan2(-to_c.x, to_c.y))
-        tx = K.text(f"{nm} text {i}", word, tuple(Vector((ROW10[i], sy, 1.3)) + to_c * 0.013), 0.1, (math.radians(90), 0, yaw_c), K.mat(ink), extrude=0.001)
+        bx = K.box(f"{nm} {i}", (ROW10[i], sy, 1.3), (0.7, 0.02, 0.26), mat_, bev=0.012); bx.rotation_euler = (0, 0, math.atan2(-to_c.x, to_c.y))   # 11-12 panel: each sign was ~1% of the frame
+        tx = K.text(f"{nm} text {i}", word, tuple(Vector((ROW10[i], sy, 1.3)) + to_c * 0.013), 0.16, (math.radians(90), 0, yaw_c), K.mat(ink), extrude=0.001)
         return (bx, tx)
     for i in range(10):
         old = lane_sign(i, "cashier sign", warm, "CASHIER", "sign navy")
@@ -443,6 +450,9 @@ def shot2():
     ld = bpy.data.lights.new("staffed warm", 'SPOT'); ld.energy = 220; ld.color = (1.0, 0.78, 0.5); ld.spot_size = math.radians(55); ld.spot_blend = 0.6
     o = bpy.data.objects.new("staffed warm", ld); o.location = (ROW10[0], 0.55, 2.2); bpy.context.collection.objects.link(o)
     o.rotation_euler = Vector((0, 0, -1)).to_track_quat('-Z', 'Y').to_euler()
+    for f in range(1, NF + 1):                                # 11-12 panel: the one lane left must STAND OUT at the end
+        t = (f - 1) / FPS; ld.energy = 220 + 680 * ease((t - conv_t[-1]) / 0.4); ld.keyframe_insert("energy", frame=f)
+    # (no per-lane flash lights: on the glossy floor they read as glitch blobs, 11-12 panel)
     # the camera: high in the front-left corner, the row receding diagonally; a slow drift for life
     ex = ROW10[-1] + 1.15   # the store's end wall closes the far side of the shot
     br = built.brick_mat("end brick"); K.box("end wall", (ex + 0.1, 1.0, K.WALL_H / 2 + 0.3), (0.2, 9.0, K.WALL_H + 0.6), br, bev=0)
@@ -455,7 +465,7 @@ def shot2():
     # 11-12 judge, five passes running: from any angle at floor level the ten lanes are a thin perspective strip you
     # cannot count. So the beat is TWO shots, as a film would cut it: the throw on Data, then the RESULT from above,
     # the frame turned so the row of ten runs top to bottom of the phone, each lane flipping where you can count it.
-    CB, LB, LENS_B, ROLL_B = Vector((-4.4, -0.7, 2.3)), Vector((-0.95, 0.72, 0.45)), 17, 0   # 11-12 CI judge: the cashier was cut by the frame edge   # high over Data's shoulder: the switch, the staffed lane and its cashier, the row running away
+    CB, LB, LENS_B, ROLL_B = Vector((-3.9, -1.7, 2.1)), Vector((-0.7, 0.9, 0.55)), 16, 0   # 11-12 panel: lower and behind Data, under the ducts: the kiosks themselves are seen rising under their signs, the cashier, board and Data all in   # 11-12 CI judge: the cashier was cut by the frame edge   # high over Data's shoulder: the switch, the staffed lane and its cashier, the row running away
     if os.environ.get("CAMB"):
         c_, l_, n_ = os.environ["CAMB"].split(";"); CB = Vector(map(float, c_.split(","))); LB = Vector(map(float, l_.split(","))); LENS_B = float(n_)
         ROLL_B = float(os.environ.get("ROLLB", ROLL_B))
@@ -647,7 +657,9 @@ def shot4():
         # the jar SAYS whose losses it holds: a band near the top, the name big, LOSSES under it (11-12 judge, third
         # pass: a sign in front of the glass hid the fill it was labelling)
         band_c = "#2F6FA6" if i == 0 else "#2E3136"      # 11-12 judge: LOSSES is the point, so it is the BIG word; whose, under it
-        SX = jx + (0.08 if jx > 0 else -0.08); SY, SZ = JY + JR + 0.02, JH + 0.27            # 11-12 CI judge: a band on the glass hid the fill and the pour; the sign stands BEHIND the jar, above its rim
+        SX = jx + (0.14 if jx > 0 else -0.14); SY, SZ = JY + JR + 0.02, JH + 0.33            # 11-12 CI judge: a band on the glass hid the fill and the pour; the sign stands BEHIND the jar, above its rim
+        # 11-12 panel: through clear glass each jar "held" the dark machine behind it. A pale board behind each jar
+        # (11-12 panel, second look: a pale board behind them turned the jars into frosted bins. Clear glass it is.)
         K.cyl(f"jar sign post {i}", (SX, SY + 0.012, (JH + SZ) / 2 - 0.02), 0.008, SZ - JH + 0.04, lid, v=12)
         K.box(f"jar label {i}", (SX, SY, SZ), (0.38, 0.004, 0.2), K.mat(f"jar band {i}", band_c, rough=0.5), bev=0.002)
         K.text(f"jar losses {i}", "LOSSES", (SX, SY - 0.004, SZ + 0.052), 0.058, (math.radians(90), 0, 0), K.mat("placard ink", "#FFFFFF", rough=0.4, emit=0.4), extrude=0.0015)
@@ -663,7 +675,7 @@ def shot4():
     H_LO, H_HI = 0.085, 0.27          # 11-12 CI judge: 'only about twice' -> plainly over twice at a glance
     P0a, P0b = 0.4, 1.6            # pour into the cashier jar
     WALK0, WALK1 = 1.8, 2.35       # he turns from one jar to the other
-    P1a, P1b = 2.45, DUR - 1.0     # pour into the self-checkout jar
+    P1a, P1b = 2.45, DUR - 0.85    # pour into the self-checkout jar: longer and heavier (11-12 panel)
     fills = ((H_LO, P0a + 0.15, P0b), (H_HI, P1a + 0.15, P1b))
     fill_top = lambda i, t: 0.013 + max(0.0005, fills[i][0] * ease((t - fills[i][1]) / (fills[i][2] - fills[i][1])))
     for i in range(2):
@@ -712,7 +724,7 @@ def shot4():
         K.cyl(name + " tie", (0, 0, -0.03), 0.03 * r / 0.065, 0.012, tie, v=20, parent=o)
         K.text(name + " sign", "$", (0, -r * 0.9, -r - 0.03), r, (math.radians(90), 0, 0), ink_, extrude=0.003, parent=o)
         return o
-    sacks = {0: make_sack("sack a", 0.06), 1: make_sack("sack b", 0.08)}
+    sacks = {0: make_sack("sack a", 0.075), 1: make_sack("sack b", 0.09)}   # 11-12 panel: the small sack vanished in his raised fist
     ya = jars[0][0]; yb = jars[1][0]
     data = load_data()
     DP = Vector((0.0, JY, 0))
@@ -727,7 +739,7 @@ def shot4():
         hang = sh + side * 0.045 + Vector((0, 0, -0.185))
         over = Vector((jars[i][0].x, jars[i][0].y, 0.53))
         pa, pb = windows[i]; u = ease((t - (pa - 0.32)) / 0.32) * (1 - ease((t - pb) / 0.32))
-        flip = ease((t - (pa - 0.18)) / 0.25) * (1 - ease((t - (pb - 0.05)) / 0.25))
+        flip = ease((t - (pa - 0.3)) / 0.42) * (1 - ease((t - (pb - 0.05)) / 0.42))   # slow enough not to smear into a blob (11-12 panel)
         return hang.lerp(over, u), flip
     for i in range(2):
         sk = sacks[i]; side = 1 if jars[i][0].x > DP.x else -1
@@ -739,12 +751,18 @@ def shot4():
             pa_, pb_ = windows[i]; empty = ease((t - pa_) / max(0.1, pb_ - pa_))      # it EMPTIES as it pours: a slack sack after
             sk.scale = (1.0 - 0.25 * empty, 1.0 - 0.25 * empty, 1.0 - 0.45 * empty); sk.keyframe_insert("scale", frame=f)
         grip_follow(data, hand_of[i], lambda t, i=i: hand_at(i, t)[0], 0.0, DUR, elbow_out=0.35)
-    data.look_at((ya.x, JY - 0.25, 0.35), 0.0, max_yaw=30, blend=0.0)
-    data.look_at((ya.x, JY - 0.25, 0.35), P0b - 0.1, max_yaw=30)
+    # 11-12 panel: "he smiles at the camera while pouring and never looks at what he is doing". He WATCHES each pour,
+    # then compares the two jars, then looks to us.
+    # he WATCHES each pour, his face still to the lens (a full turn to the jar showed the back of his head: 11-12 panel)
+    wa, wb = (ya.x * 0.6, -1.4, 0.3), (yb.x * 0.6, -1.4, 0.3)
+    data.look_at(wa, 0.0, max_yaw=35, blend=0.0)
+    data.look_at(wa, P0b - 0.1, max_yaw=35)
     data.look_at((0.0, -2.0, 0.6), P0b + 0.2, max_yaw=45)            # a look to us between jars
-    data.look_at((yb.x, JY - 0.25, 0.35), P1a, max_yaw=30)
-    data.look_at((yb.x, JY - 0.25, 0.35), P1b - 0.45, max_yaw=30)
-    data.look_at((0.0, -2.0, 0.6), P1b, max_yaw=45)
+    data.look_at(wb, P1a, max_yaw=35)
+    data.look_at(wb, P1b, max_yaw=35)
+    data.look_at(wa, P1b + 0.25, max_yaw=35)      # that one ...
+    data.look_at(wb, P1b + 0.5, max_yaw=35)       # ... and this one
+    data.look_at((0.0, -2.0, 0.6), DUR - 0.1, max_yaw=45)
     data.idle(0.0, DUR)
     data.expression("happy", 0.0, DUR)                 # 11-12 CI judge: no open-mouth 'o' to end on (operator ruling)
     for tb in (1.2, 2.9, DUR - 0.5): data.blink(tb)
@@ -758,7 +776,7 @@ def shot4():
     mouths = {i: (lambda t, i=i: (sc.frame_set(F(t)), bpy.context.view_layer.update(), sacks[i].matrix_world @ Vector((0, 0, 0.01)))[2]) for i in range(2)}
     coins = []; groups = []
     sproto = K.cyl("stream coin", (0, 0, -5), 0.03, 0.007, gold, v=24, bev=0.0014)   # bigger and fewer: separate coins with air between them, never a gold ribbon
-    for i, (a_, b_, n_) in enumerate(((P0a + 0.1, P0b - 0.05, 34), (P1a + 0.1, P1b - 0.05, 80))):
+    for i, (a_, b_, n_) in enumerate(((P0a + 0.1, P0b - 0.05, 34), (P1a + 0.1, P1b - 0.05, 110))):
         sched = [a_ + (b_ - a_) * (k + rnd.uniform(-0.3, 0.3)) / n_ for k in range(n_)]; grp = []
         for k in range(n_):
             o = sproto.copy(); bpy.context.collection.objects.link(o); o.name = f"coin {i}.{k}"; grp.append(o)
@@ -769,9 +787,21 @@ def shot4():
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS; c0.rotation_euler = (0, 0, math.radians(90 + 4 * math.sin(t * 2.3))); c0.keyframe_insert("rotation_euler", frame=f)
     # the camera: low in front, pushing in as the second jar tops out
-    cam = K.camera((0.0, -1.7, 0.42), (0.0, 0.0, 0.72), lens=17, fstop=4.0)      # tilted UP: the floor drops out of the bottom; wide enough for both jars and their labels
-    camera_path(cam, lambda t: (Vector((0.0, -1.6, 0.3)).lerp(Vector((0.0, -1.53, 0.3)), ease(t / DUR)), (0.0, 0.0, 0.72), (0.0, JY, 0.35)))
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("coins fall into the first jar", groups[0], P0a + 0.2, P0b), ("coins fall into the second jar", groups[1], P1a + 0.2, P1b)])
+    # 11-12 panel: "half the frame is empty ceiling and floor". Closer and lower, the jars big in the lower half
+    CZ = float(os.environ.get("CAM4Z", "0.3")); CY = float(os.environ.get("CAM4Y", "-1.6")); LZ = float(os.environ.get("CAM4L", "0.72"))
+    cam = K.camera((0.0, CY, CZ), (0.0, 0.0, LZ), lens=17, fstop=4.0)
+    camera_path(cam, lambda t: (Vector((0.0, CY, CZ)).lerp(Vector((0.0, CY + 0.07, CZ)), ease(t / DUR)), (0.0, 0.0, LZ), (0.0, JY, 0.35)))
+    # MORE THAN TWICE, at a glance (11-12 panel): a level line on the self-checkout jar at twice the cashier jar's
+    # fill, and a big 2X that lands on it the moment the coins pass the line
+    lvl = 0.013 + 2 * H_LO
+    ring = K.cyl("twice line", (JX, JY, lvl), JR + 0.004, 0.004, K.mat("twice red", "#FF4A36", rough=0.4, emit=0.7), v=48)
+    tw = K.text("twice mark", "2X", (JX - 0.02, JY + JR + 0.015, JH + 0.58), 0.22, (math.radians(90), 0, 0), K.mat("twice red"), extrude=0.004)
+    t2 = next(((f - 1) / FPS for f in range(1, NF + 1) if fill_top(1, (f - 1) / FPS) >= lvl), DUR)
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; tw.hide_render = t < t2; tw.keyframe_insert("hide_render", frame=f)
+        k_ = 1.0 + 0.35 * max(0.0, 1 - (t - t2) / 0.25) if t >= t2 else 1.0; tw.scale = (k_,) * 3; tw.keyframe_insert("scale", frame=f)
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, conseq=[("coins fall into the first jar", groups[0], P0a + 0.2, P0b), ("coins fall into the second jar", groups[1], P1a + 0.2, P1b),
+                                                                                  ("twice: the 2X lands", [tw], t2, DUR)])
 
 
 # ================================================================ SHOT 5: the closing, the whole row
