@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pickleball-fastest-growing-sport__598b7568",
+  "slug": "pickleball-fastest-growing-sport",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:26:30Z",
+  "title": "Pickleball Injuries Cost $400 Million As Participation Boomed",
+  "hook": "Pickleball looks harmless. Its injuries cost an estimated $400 million.",
+  "closing": "A booming social sport still carries a real physical and financial cost.",
+  "question": "Have you played pickleball yet?",
+  "segments": [
+    {
+      "topic": "Pickleball player boom",
+      "say": "Pickleball reached 13.6 million American players, turning a niche pastime into a mainstream sport."
+    },
+    {
+      "topic": "Pickleball versus tennis",
+      "say": "Pickleball already has 13.6 million players, more than halfway to tennis."
+    },
+    {
+      "topic": "Pickleball injury cost",
+      "say": "Pickleball injuries cost an estimated $400 million. The easygoing sport carries an expensive downside."
+    }
+  ]
+}
