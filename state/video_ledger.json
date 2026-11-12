@@ -7012,6 +7012,66 @@
    "ending_type": "inversion",
    "franchise": "who-really-owns",
    "notes": "100 tiles flip to index colour year by year; towers fill with owner share; ballots for the vote. Other 3 slugs already directed, kept."
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-11-12",
+   "topic_category": "money",
+   "hook_type": "stake",
+   "hook_text": "Forgotten money is piling up in state vaults, and it may be yours.",
+   "depictions": [
+    "viz:geo_us+illustrated",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing varied scenes; vault trickle is the signature"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-12",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "illustrated:tattoo-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "kept existing scenes; ink stamping grid is the signature"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-12",
+   "topic_category": "body",
+   "hook_type": "shock_stat",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; baby flip is the signature"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-12",
+   "topic_category": "tech",
+   "hook_type": "stake",
+   "hook_text": "Index funds quietly bought over half the market, and three firms hold the keys.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "illustrated:ballots"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "kept existing scenes; tile flip is the signature"
   }
  ]
 }
