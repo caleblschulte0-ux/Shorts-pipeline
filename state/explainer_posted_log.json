@@ -5311,6 +5311,14 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 25.5
+    },
+    "self-checkout-3d": {
+      "claimed_at": "2026-11-12T19:01:13.411033+00:00",
+      "title": "Self-Checkout Is Secretly Losing Stores a Fortune",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d"
     }
   },
   "uploads": [
@@ -6821,6 +6829,15 @@
       "state": "posted",
       "slug": "maternal-mortality-pandemic-reversal",
       "at": "2026-11-12T18:11:21.922037+00:00"
+    },
+    {
+      "claimed_at": "2026-11-12T19:01:13.411033+00:00",
+      "title": "Self-Checkout Is Secretly Losing Stores a Fortune",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d",
+      "slug": "self-checkout-3d"
     }
   ]
 }
