@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hearing-aids-otc-price-drop__b159cfe2",
+  "slug": "hearing-aids-otc-price-drop",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:27:30Z",
+  "title": "Hearing Aids Fell From $4,700 To $300 Over The Counter",
+  "hook": "Hearing aids that cost $4,700 can now start near $300.",
+  "closing": "Cheaper hearing aids remove one barrier between hearing loss and everyday connection.",
+  "question": "Who could benefit from cheaper hearing aids?",
+  "segments": [
+    {
+      "topic": "Hearing aid prices",
+      "say": "Prescription hearing aids cost $4,700 per pair. Over-the-counter competition broke that old price barrier."
+    },
+    {
+      "topic": "Hearing aid use",
+      "say": "Only 20 percent of people with hearing loss use hearing aids. Price and access kept most away."
+    },
+    {
+      "topic": "Hearing aid access",
+      "say": "Shoppers can now choose from more than 80 hearing aid models without a prescription."
+    }
+  ]
+}
