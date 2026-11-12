@@ -19389,6 +19389,61 @@
       "rejected_by": "qa",
       "rejected_why": "render_qa: freeze: 2.3s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about 25% of the canvas height, with large blurred padding above and below. It should; vision: The game UI, the call window and the streamer's facecam are tiny and unreadable ",
       "ts": "2026-11-12T14:04:56.267060+00:00"
+    },
+    "rejected-resourcefulblazingkumquatpraiseit-dbnc1orvhizpi3bp": {
+      "source_url": "https://www.twitch.tv/xqc/clip/ResourcefulBlazingKumquatPraiseIt-dbnC1oRVhIZpi3Bp",
+      "streamer": "xqc",
+      "title": "Raia the Brick Boi",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Dark driving, inventory talk, no event)",
+      "ts": "2026-11-12T14:49:36.461413+00:00"
+    },
+    "rejected-smilingannoyingmonkeythething-jfyg2outuargcew9": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/SmilingAnnoyingMonkeyTheThing-jFyg2OUTUARGCEw9",
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Can't Believe What Faker Just Did In This Iconic Play",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height. The League gameplay is tiny and the Faker ac; vision: Frames at 1.3s and 2.1s show a red Geometry Dash level, which doesn't match the Faker/League hook and title. It looks li; vision: The streamer facecam is a small ",
+      "ts": "2026-11-12T14:52:26.254718+00:00"
+    },
+    "rejected-darkshortporpoisewow-6smw6kjkznhm8j2o": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/DarkShortPorpoiseWow-6SMw6kJkzNhm8J2o",
+      "streamer": "caseoh_",
+      "title": "LOL Ayooo\ud83d\ude02\ud83e\udd23",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Minecraft Nether begging, no visible pay)",
+      "ts": "2026-11-12T15:38:32.536288+00:00"
+    },
+    "rejected-agitatedagreeablemagpieplanking-smzlnxok8q2b2ux-": {
+      "source_url": "https://www.twitch.tv/lacy/clip/AgitatedAgreeableMagpiePlanking-smzLNXOK8q2b2ux-",
+      "streamer": "lacy",
+      "title": "a",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (announcement talk, no visible event, ins)",
+      "ts": "2026-11-12T15:39:26.779978+00:00"
+    },
+    "rejected-strongplumpwalrusgowskull-mlhyvtnzfm1-gwvh": {
+      "source_url": "https://www.twitch.tv/timthetatman/clip/StrongPlumpWalrusGOWSkull-MlhYvtNzfm1-GwvH",
+      "streamer": "timthetatman",
+      "title": "average couragejd viewer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.22 < 0.35 (WoW walking; only audio laughing, no eve)",
+      "ts": "2026-11-12T15:40:44.731339+00:00"
+    },
+    "clip-20261112-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ironmouse/clip/CharmingAthleticMomSSSsss-RP0-7qHxTJ_nard2",
+      "story_key": null,
+      "streamer": "ironmouse",
+      "title": "Ironmouse Finds Her Original Design And It's Not What You Expect",
+      "kind": "twitch_clip",
+      "ts": "2026-11-12T15:45:39.483031+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
