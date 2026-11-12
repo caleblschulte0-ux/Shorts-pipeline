@@ -3,7 +3,7 @@
 | series | n | median VPH |
 |---|---|---|
 | chaos | 51 | 0.02 |
-| drama | 20 | 0.06 |
+| drama | 20 | 0.055 |
 | wholesome | 9 | 0.04 |
 | win | 9 | 0.02 |
 | beef | 7 | 0.04 |
@@ -18,5 +18,5 @@ Excluded from the content-mix comparison (unclassified / non-series structure):
 
 | label | n | median VPH |
 |---|---|---|
-| unknown | 3 | 0.0 |
+| unknown | 2 | 0.0 |
 | story | 1 | 0.0 |
