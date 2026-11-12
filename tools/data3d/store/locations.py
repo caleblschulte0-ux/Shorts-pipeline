@@ -193,7 +193,7 @@ def warehouse():
     def light():
         sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
         bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.35, 0.37, 0.4, 1); bg.inputs["Strength"].default_value = 0.15
-        _area("dock door", (-3.0, -3.0, 1.6), 3.0, 150, (0.92, 0.95, 1.0), aim=(0.0, 0.0, 0.6), shape='RECTANGLE', size_y=2.2)   # daylight from the open loading door, camera-left-front
+        _area("dock door", (-3.0, -3.0, 1.6), 3.0, 90, (0.92, 0.95, 1.0), aim=(0.0, 0.0, 0.6), shape='RECTANGLE', size_y=2.2)   # daylight from the open loading door, camera-left-front
         _area("fill", (3.0, -2.5, 1.3), 2.0, 25, (0.85, 0.9, 1.0), aim=(0.4, 0.3, 0.5))
         return _hero_key()
     return light
