@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__b68d2add",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:22:00Z",
+  "title": "A Metric Conversion Left A Plane 55% Short On Fuel",
+  "hook": "One metric conversion left a plane 55% short on fuel.",
+  "closing": "Metric checks feel tedious until one missed conversion puts lives at risk.",
+  "question": "Should everyone use metric?",
+  "segments": [
+    {
+      "topic": "Metric adoption",
+      "say": "Only 5% of people live in non-metric countries. A small holdout still creates dangerous conversion points."
+    },
+    {
+      "topic": "Metric altitude",
+      "say": "A metric mix-up dropped the Mars orbiter to 57 kilometers. The spacecraft flew far below its planned path."
+    },
+    {
+      "topic": "Metric fuel",
+      "say": "A metric error left the plane 55% short on fuel. It ran dry and had to glide down."
+    }
+  ]
+}
