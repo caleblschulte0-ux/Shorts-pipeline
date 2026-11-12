@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "moon-drifting-away__904b95b2",
+  "slug": "moon-drifting-away",
+  "by": "chatgpt",
+  "written_at": "2026-11-12T12:26:00Z",
+  "title": "The Moon's Escape Ends Total Eclipses In 600 Million Years",
+  "hook": "The Moon is leaving, ending total eclipses in 600 million years.",
+  "closing": "Perfect eclipses exist only while the Moon appears exactly large enough.",
+  "question": "Would you travel for a total eclipse?",
+  "segments": [
+    {
+      "topic": "Moon drifting away",
+      "say": "The Moon moved 2.17 meters farther away within living memory. Its escape is already measurable."
+    },
+    {
+      "topic": "Moon distance",
+      "say": "The Moon now sits 384,400 kilometers away. Tides keep pushing it farther outward."
+    },
+    {
+      "topic": "Moon eclipse deadline",
+      "say": "In 600 million years, the Moon will look too small to create total eclipses."
+    }
+  ]
+}
