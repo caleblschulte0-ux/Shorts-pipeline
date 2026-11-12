@@ -1,0 +1,16 @@
+{
+ "slug": "maternal-mortality-pandemic-reversal",
+ "ts": "20261112T194817Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:mid shows a ghosted \"14.5\" printed under the \"Black women...\" subtitle against the night windows. In seg3:end the small \"White women, the next highest\" label sits on the window sill line and is cramped and hard to read on a phone.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:mid shows a faint, half-drawn \"14.5\" behind the 50.3 subtitle on a dark busy window. In seg3:end the \"White women, the next highest\" caption is tiny and collides with the window sill, and the two-number stack is crammed into the window band.",
+  "root_cause": "The second readout (14.5) fades in at the same spot as the first headline's subtitle, over a high-detail night-city background. Its label is set at small size right on the sill edge, so neither text has clear space or contrast.",
+  "repair_goal": "Give the 14.5 a clean place of its own: put it ON the right pan (or a tag hanging from it) in INK at readable size. Keep 50.3 as the only big headline, with nothing faded in underneath it. Move or remove the 'next highest' caption so no text touches the window frame. Let the scale's tip stay the thing that says 'about three and a half times'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

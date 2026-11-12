@@ -1,0 +1,25 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261112T194817Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Only seg1 has Data doing the action, stamping fungus onto map bats (seg1:mid). In seg2:start through seg2:end he stands on the ladder with his hands up while the bats vanish without him. In seg3:start through seg4:end, about 11s, he only waves beside the bat box while bats and the",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end: Data stands beside the bat box with one hand up, waving, while bats pour into the sky and the headline goes from $3.7B to $53B. A $3.7B sign stays planted in the field while the headline says $53B, so two money figures compete. The picture shows bats multiplying while the narration says losing them sends the bill to farmers.",
+  "root_cause": "The scene draws bats arriving instead of the loss and its cost. Data has no job in the scene (he does not release, count or pay anything), and the low estimate gets a sign of its own beside the headline.",
+  "repair_goal": "Make Data the cause of the cost: as the bats vanish he weighs the moths that come back onto a farm scale, or carries a rising grocery bill, and a single $53B lands on that object. Drop the second $3.7B number so the frame has one headline, and have the picture show the bats leaving and pests taking over, matching the narration."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
