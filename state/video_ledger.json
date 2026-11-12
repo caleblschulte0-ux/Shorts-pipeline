@@ -6997,6 +6997,21 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "re-confirmed existing scenes; no creative change"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-12",
+   "topic_category": "finance",
+   "hook_type": "shock_stat",
+   "hook_text": "Index funds quietly bought over half the market, and three firms hold the keys.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "scene:ballot-vote"
+   ],
+   "ending_type": "inversion",
+   "franchise": "who-really-owns",
+   "notes": "100 tiles flip to index colour year by year; towers fill with owner share; ballots for the vote. Other 3 slugs already directed, kept."
   }
  ]
 }
