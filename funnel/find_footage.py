@@ -121,9 +121,27 @@ def _has_video(path: Path) -> bool:
         return False
 
 
+#: Every video this run already downloaded, by url. A montage searches
+#: three or four ways for one player and the same highlight reels come
+#: back each time: on 2026-11-12 one reel was fetched five times, minutes
+#: through the converter each.
+_GOT: dict[str, Path] = {}
+
+
 def download(url: str, out: Path) -> Path | None:
     """The video at `url` as an mp4, or None. yt-dlp first; YouTube
-    refuses it from GitHub's runners, so the converters next."""
+    refuses it from GitHub's runners, so the converters next. A url this
+    run already fetched is handed back from disk."""
+    have = _GOT.get(url)
+    if have is not None and have.exists():
+        return have
+    got = _download(url, out)
+    if got is not None:
+        _GOT[url] = got
+    return got
+
+
+def _download(url: str, out: Path) -> Path | None:
     out.parent.mkdir(parents=True, exist_ok=True)
     if "v.redd.it" in str(url).lower():
         from funnel import reddit_video
