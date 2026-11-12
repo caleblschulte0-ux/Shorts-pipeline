@@ -5244,5 +5244,470 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260813": {
+    "01_graph-china-passed-japan-car-exports.json": {
+      "format": "graph_race",
+      "slug": "graph-china-passed-japan-car-exports",
+      "title": "China Just Passed Japan In Car Exports",
+      "hook": "The chart just flipped.",
+      "y_label": "Vehicle exports (millions of units)",
+      "duration": 13,
+      "source": "Annual vehicle export volumes: China Association of Automobile Manufacturers (CAAM) for China 2020-2024 figures; Japan Automobile Manufacturers Association (JAMA) reporting via Reuters/Nikkei for Japan; 2018-2019 figures approximate from industry trend data. Figures approximate.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Japan",
+          "color": "#bc002d",
+          "icon": "JP",
+          "values": [
+            4.87,
+            4.82,
+            3.75,
+            3.82,
+            3.81,
+            4.42,
+            4.2
+          ]
+        },
+        {
+          "name": "China",
+          "color": "#de2910",
+          "icon": "CN",
+          "values": [
+            1.04,
+            1.02,
+            0.995,
+            2.015,
+            3.11,
+            4.91,
+            5.86
+          ]
+        }
+      ],
+      "hashtags": [
+        "china",
+        "japan",
+        "carexports",
+        "automotive",
+        "byd",
+        "manufacturing",
+        "globaltrade",
+        "evexports",
+        "tradewar",
+        "carindustry"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "02_graph-streaming-beat-cable-broadcast.json": {
+      "format": "graph_race",
+      "slug": "graph-streaming-beat-cable-broadcast",
+      "title": "Streaming Just Beat Cable AND Broadcast",
+      "hook": "TV quietly flipped for good.",
+      "y_label": "Share of total TV viewing (%)",
+      "duration": 13,
+      "source": "Nielsen 'The Gauge' monthly TV-viewing share reports (May measurement each year); interim years approximate between reported milestones. Figures approximate.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Streaming",
+          "color": "#50ff80",
+          "icon": "Netflix",
+          "values": [
+            26.2,
+            30.5,
+            35.8,
+            40.3,
+            44.8
+          ]
+        },
+        {
+          "name": "Cable + Broadcast",
+          "color": "#3060c0",
+          "icon": "TV",
+          "values": [
+            64.0,
+            58.0,
+            51.5,
+            47.8,
+            44.2
+          ]
+        }
+      ],
+      "hashtags": [
+        "streaming",
+        "cabletv",
+        "netflix",
+        "cordcutting",
+        "nielsen",
+        "broadcast",
+        "tvratings",
+        "streamingwars",
+        "hulu",
+        "disneyplus"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "03_graph-airport-that-beat-atlanta.json": {
+      "format": "graph_race",
+      "slug": "graph-airport-that-beat-atlanta",
+      "title": "The Airport That Knocked Atlanta Off The Map",
+      "hook": "For one year, it wasn't Atlanta.",
+      "y_label": "Annual passengers (millions)",
+      "duration": 13,
+      "source": "Airports Council International (ACI World) annual passenger rankings; Hartsfield-Jackson Atlanta figures from airport/ACI reporting; Guangzhou Baiyun figures from ACI World rankings and Chinese aviation authority reports. 2022-2023 Guangzhou figures approximate (exact totals not fully published; derived from ACI global-rank position). Figures approximate.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Atlanta",
+          "color": "#c8102e",
+          "icon": "US",
+          "values": [
+            107.4,
+            110.5,
+            42.9,
+            75.7,
+            93.7,
+            104.65
+          ]
+        },
+        {
+          "name": "Guangzhou",
+          "color": "#de2910",
+          "icon": "CN",
+          "values": [
+            69.7,
+            73.3,
+            43.7,
+            40.25,
+            27.0,
+            50.0
+          ]
+        }
+      ],
+      "hashtags": [
+        "airport",
+        "atlanta",
+        "aviation",
+        "guangzhou",
+        "travel",
+        "airtravel",
+        "covid",
+        "busiestairport",
+        "china",
+        "hartsfieldjackson"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "04_graph-vinyl-outselling-cd-again.json": {
+      "format": "graph_race",
+      "slug": "graph-vinyl-outselling-cd-again",
+      "title": "Vinyl Is Outselling CDs Again",
+      "hook": "The comeback nobody saw coming.",
+      "y_label": "US revenue ($ millions)",
+      "duration": 13,
+      "source": "RIAA U.S. year-end music industry revenue reports (vinyl LP and CD album revenue). 2018-2019 figures approximate from RIAA year-end trend data. Figures approximate.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "CDs",
+          "color": "#3060c0",
+          "icon": "CD",
+          "values": [
+            873,
+            615,
+            483.3,
+            589,
+            483,
+            537
+          ]
+        },
+        {
+          "name": "Vinyl",
+          "color": "#ffaa30",
+          "icon": "Vinyl",
+          "values": [
+            419,
+            504,
+            626,
+            1000,
+            1263,
+            1400
+          ]
+        }
+      ],
+      "hashtags": [
+        "vinyl",
+        "cds",
+        "music",
+        "riaa",
+        "recordstore",
+        "physicalmedia",
+        "musicindustry",
+        "records",
+        "nostalgia",
+        "albumsales"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "05_reddit-email-everything.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-email-everything",
+      "title": "He Said Email Everything. So I Did.",
+      "script": "My new supervisor hated 'wasting time' on hallway questions, so he posted a memo: every request goes through email, no exceptions, effective immediately. Fine by me \u2014 I stopped answering anyone who just walked up to my desk, no matter how small the ask. Day one, seven emails piled into his inbox before lunch, every one a two-line question he used to wave off verbally in ten seconds. By day four he had ninety-one unread messages and a folder titled 'URGENT' with fourteen items in it, half of them from himself asking where things were. Day five he called an all-staff meeting to announce that verbal requests were, actually, fine again, small ones especially, and could everyone please stop CC'ing him on literally everything. I printed his original memo, framed it, and hung it directly above my monitor. He walked past it every single day and never once said a word about taking it down.",
+      "shots": [
+        {
+          "phrase": "posted a memo",
+          "query": "office memo bulletin board",
+          "pin_query": "memo",
+          "pin_context": "office document paper",
+          "news_query": "memo",
+          "news_angle": "The supervisor posted a memo requiring all requests to go through email.",
+          "image_url": "https://live.staticflickr.com/5/8559258_93307987d7.jpg"
+        },
+        {
+          "phrase": "answering anyone who just walked up",
+          "query": "office cubicle desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+          "media_origin": "chatgpt",
+          "media_file_id": "19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+          "media_sha256": "43ac74e4aaf055d41197f21da9ea6b5de766f15a465a71c968075d2521b26fce",
+          "media_bytes": 853693
+        },
+        {
+          "phrase": "seven emails piled into his inbox",
+          "query": "email inbox overflow",
+          "pin_query": "inbox",
+          "pin_context": "email digital messages",
+          "news_query": "inbox",
+          "news_angle": "The supervisor's inbox was flooded with emails from employees.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "ninety-one unread messages",
+          "query": "computer screen inbox",
+          "image_url": "https://drive.google.com/uc?export=download&id=16CfPDwDY6fj0gFlnA-DwOQZZEgqg1cDD",
+          "media_origin": "chatgpt",
+          "media_file_id": "16CfPDwDY6fj0gFlnA-DwOQZZEgqg1cDD",
+          "media_sha256": "d6bfd689458ae251d2dd92635ddb1ab433c668524eb64a74d95dcaf64b7f65ae",
+          "media_bytes": 1369166
+        },
+        {
+          "phrase": "an all-staff meeting",
+          "query": "office meeting room",
+          "pin_query": "all-staff meeting",
+          "pin_context": "office conference gathering",
+          "news_query": "all-staff meeting",
+          "news_angle": "The supervisor called an all-staff meeting to announce a change in email policy.",
+          "image_url": "https://live.staticflickr.com/3834/9821525314_f5d4bf4d15_b.jpg"
+        },
+        {
+          "phrase": "verbal requests were, actually, fine again",
+          "query": "manager talking employees",
+          "image_url": "https://drive.google.com/uc?export=download&id=10PKrrcbkxHz3W1_MaRmgQULxEXhltI23",
+          "media_origin": "chatgpt",
+          "media_file_id": "10PKrrcbkxHz3W1_MaRmgQULxEXhltI23",
+          "media_sha256": "d1474c2ae0fe957ae6fe16bfe58b5bf4b4fd470ab4d7dcf2ec1f493ce486a029",
+          "media_bytes": 1335763
+        },
+        {
+          "phrase": "framed it",
+          "query": "framed paper wall",
+          "image_url": "https://drive.google.com/uc?export=download&id=17OTJ3AWNZbiWd7L-tFCijcShl43opH8L",
+          "media_origin": "chatgpt",
+          "media_file_id": "17OTJ3AWNZbiWd7L-tFCijcShl43opH8L",
+          "media_sha256": "7eeb96c3ec1ce8abea03628224374e0acb30ff3542a4eca5685ed20e5cd83ecd",
+          "media_bytes": 1572860
+        },
+        {
+          "phrase": "never once said a word",
+          "query": "office hallway walking",
+          "image_url": "https://drive.google.com/uc?export=download&id=1AEVf9DLGYLgh1WUcFTbaLCBMS0Bt5MdQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1AEVf9DLGYLgh1WUcFTbaLCBMS0Bt5MdQ",
+          "media_sha256": "d876cd4fb9f7c887732a8f014a02009c3937bb15def4e51ff27e1151e8afb6bc",
+          "media_bytes": 1029192
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no exceptions",
+          "text": "NO EXCEPTIONS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "ninety-one unread messages",
+          "text": "91 UNREAD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "verbal requests were, actually, fine again",
+          "text": "POLICY REVERSED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "9to5",
+        "corporatelife",
+        "reddit",
+        "worklife",
+        "management",
+        "office",
+        "boss",
+        "karma",
+        "workplacestories",
+        "officelife"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-dont-work-here.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-dont-work-here",
+      "title": "She Wouldn't Believe I Don't Work Here. So I Helped.",
+      "script": "I was standing in the paint aisle for four minutes, in street clothes, holding my own basket, when a woman marched up demanding to know why nobody had restocked the drop cloths. I told her, twice, I didn't work there. She said 'don't play dumb' and pointed at a shelf, so I stopped arguing and became the single most confident employee that store never hired. I told her the drop cloths were discontinued, the good ones were two aisles over by the pet food, and the industrial size was 'in the back, by returns.' She thanked me and marched off toward dog treats. Ninety seconds later an actual employee in a red vest walked past, and she flagged him down demanding to know why his coworker sent her to the wrong aisle on purpose. He had no idea what she was talking about. I was already checking out.",
+      "shots": [
+        {
+          "phrase": "the paint aisle",
+          "query": "hardware store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1BRturVkq-tXB7-CaUNgY5z2w8S4s7dC7",
+          "media_origin": "chatgpt",
+          "media_file_id": "1BRturVkq-tXB7-CaUNgY5z2w8S4s7dC7",
+          "media_sha256": "3e77bc1c92722294c241bc056688331c6b13bda2079f36dcc51d5cc8fe4615bf",
+          "media_bytes": 1546468
+        },
+        {
+          "phrase": "in street clothes, holding my own basket",
+          "query": "shopping basket person",
+          "image_url": "https://drive.google.com/uc?export=download&id=1_8Is3SawhmcbM85intJVm6ZwmhdLyTB4",
+          "media_origin": "chatgpt",
+          "media_file_id": "1_8Is3SawhmcbM85intJVm6ZwmhdLyTB4",
+          "media_sha256": "50cc18aa71d70307b7f0168df679609d30d683268c173bdd5041048c58b9683f",
+          "media_bytes": 1377320
+        },
+        {
+          "phrase": "don't play dumb",
+          "query": "woman pointing shelf",
+          "image_url": "https://drive.google.com/uc?export=download&id=1gSgQuF_eRL5SyRnp3Dr40ZwsePx-i_-N",
+          "media_origin": "chatgpt",
+          "media_file_id": "1gSgQuF_eRL5SyRnp3Dr40ZwsePx-i_-N",
+          "media_sha256": "199f8b4af61df995b4f3dd9fc0cc7c58ebc9d8875033c736246205f651d371ad",
+          "media_bytes": 1150264
+        },
+        {
+          "phrase": "the drop cloths were discontinued",
+          "query": "canvas drop cloth",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ND0ScAzkNet2qoQ-_oWMzyQGsbxHsWpo",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ND0ScAzkNet2qoQ-_oWMzyQGsbxHsWpo",
+          "media_sha256": "2ae654cfe6b8dae95c455efc26fb4cbd8072bdcc7ec00805a262997c8e6bc8b3",
+          "media_bytes": 1406489
+        },
+        {
+          "phrase": "two aisles over by the pet food",
+          "query": "pet food aisle store",
+          "image_url": "https://drive.google.com/uc?export=download&id=1CFkbKSRRT5nc4Knt71sTTKiS85EjKhPh",
+          "media_origin": "chatgpt",
+          "media_file_id": "1CFkbKSRRT5nc4Knt71sTTKiS85EjKhPh",
+          "media_sha256": "5f3b4726822c60c2a775ef140d38bc51c195ed878b9ee05d38fe5aecc6536b22",
+          "media_bytes": 1498414
+        },
+        {
+          "phrase": "marched off toward dog treats",
+          "query": "dog treats shelf",
+          "image_url": "https://drive.google.com/uc?export=download&id=16t0oF8Gyf66eVUIzpI3f8fru9SMgz__2",
+          "media_origin": "chatgpt",
+          "media_file_id": "16t0oF8Gyf66eVUIzpI3f8fru9SMgz__2",
+          "media_sha256": "738f60698af8eaa3eedd3de09958a59da70f27693626ca89ef79e2719651a287",
+          "media_bytes": 1605181
+        },
+        {
+          "phrase": "an actual employee in a red vest",
+          "query": "retail employee red vest",
+          "image_url": "https://drive.google.com/uc?export=download&id=180JGvmlq22YhhvgW95TDoNgpDz9hwGkQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "180JGvmlq22YhhvgW95TDoNgpDz9hwGkQ",
+          "media_sha256": "edcd4d3f02a77a815b3304abeee8ef88f52a5071b4004c381c2fb002282310f2",
+          "media_bytes": 1350086
+        },
+        {
+          "phrase": "I was already checking out",
+          "query": "checkout register store",
+          "image_url": "https://drive.google.com/uc?export=download&id=18SZz4PUPvXdYuEYjIh9LlWBG5PRNXwfF",
+          "media_origin": "chatgpt",
+          "media_file_id": "18SZz4PUPvXdYuEYjIh9LlWBG5PRNXwfF",
+          "media_sha256": "d7d5a9307c86c0618e8bbbd9a04061b248b00b649f9c8be425d45d3bd7676b1a",
+          "media_bytes": 1429159
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "don't play dumb",
+          "text": "\"DON'T PLAY DUMB\"",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "the drop cloths were discontinued",
+          "text": "DISCONTINUED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "in the back, by returns",
+          "text": "\"BY RETURNS\"",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "had no idea what she was talking about",
+          "text": "NO IDEA",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "idontworkhere",
+        "retail",
+        "reddit",
+        "pettyrevenge",
+        "storystory",
+        "funnystory",
+        "customerservice",
+        "shopping",
+        "karma",
+        "hardwarestore",
+        "retailproblems",
+        "storetime"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
