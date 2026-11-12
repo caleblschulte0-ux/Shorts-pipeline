@@ -209,18 +209,19 @@ def planter(name, loc, w=0.34, d=0.26, h=0.2, parent=None):
     return dict(root=root, soil=soil, top_z=z + h)
 
 
-def plant(name, base, height=0.42, n_leaves=6, seed=0, parent=None):
+def plant(name, base, height=0.42, n_leaves=6, seed=0, parent=None, angles=None):
     """a young banana plant: a green pseudostem rising from `base`, n long paddle leaves on hinges near its top, each a
     curved blade with a midrib. Every leaf has its own material so it can wilt on its own. Returns dict(root, stem,
-    leaves=[(hinge, mat)], stem_mat)."""
+    leaves=[(hinge, mat)], stem_mat). angles (degrees, 0 = +X): where the leaves point, for a plant staged to the lens
+    (leaves to the sides read as a plant when they droop; leaves all round it closed into a pod)."""
     rnd = random.Random(seed); root = K.empty(name, base, parent=parent); bx, by, bz = base
     stem_m = skin_mat(f"{name} stem", base="#6E9A3E", neck="#86A84A", rough=0.55, climb=True)
     stem = K.cyl(f"{name} pseudostem", (bx, by, bz + height / 2), 0.03, height, stem_m, v=20, parent=root)
     for v in stem.data.vertices:     # tapering, and the UV-less cylinder gets its 'along' from object Z via the rot noise only
         k = 1.0 - 0.35 * (v.co.z / height + 0.5); v.co.x *= k; v.co.y *= k
     leaves = []
-    for k in range(n_leaves):
-        a = k * 2 * math.pi / n_leaves + rnd.uniform(-0.25, 0.25)
+    for k in range(len(angles) if angles else n_leaves):
+        a = math.radians(angles[k]) if angles else k * 2 * math.pi / n_leaves + rnd.uniform(-0.25, 0.25)
         lm = skin_mat(f"{name} leaf {k}", base="#4F8A35", neck="#5E9A3C", rough=0.5)
         hz = bz + height * (0.78 + 0.05 * (k % 3))
         hinge = K.empty(f"{name} leaf hinge {k}", (bx, by, hz), parent=root)

@@ -21,7 +21,7 @@ import produce as PR
 
 TABLE = Vector((0.0, -0.3, 0.0))      # the produce table, centre of its footprint
 TABLE_H = 0.3                          # a low produce table: its top sits below his chest, in frame under the bunch
-RAIL_Y, RAIL_Z = -0.22, 0.78           # the hanging rail (shots 2 and 5)
+RAIL_Y, RAIL_Z = -0.22, 0.52           # the hanging rail (shots 2 and 5)
 
 
 def produce_set(lanes_x=(2.4, 3.0)):
@@ -138,14 +138,14 @@ def shot1():
 
 
 # ================================================================ the rail (shots 2 and 5)
-RAIL0, RAIL_YAW, RAIL_LEN, N_HOOK = (-0.2, -0.8), 55, 1.0, 6      # it runs from just in front of him to the right and back: diagonal to the lens, and he faces us over it
+RAIL0, RAIL_YAW, RAIL_LEN, N_HOOK = (-0.2, -0.8), 40, 1.0, 6      # it runs from just in front of him to the right and back: diagonal to the lens, and he faces us over it
 
 
 # where he stands for the rail beats: BESIDE the rail's near end, level with it, turned a little to it, so the row runs away
 # behind his shoulder and nothing on it ever hangs between his face and the lens (the first layout stood him behind
 # the rail with a bunch over his face for the whole beat: staging.face_hidden now refuses that)
 RAIL_DP, RAIL_DROT = Vector((-0.38, -0.8, 0)), 20
-RAIL_C0, RAIL_LK = Vector((-0.2, -1.85, 0.62)), Vector((-0.12, -0.6, 0.5))   # him on the left third, the row receding past his shoulder to the right
+RAIL_C0, RAIL_LK = Vector((-0.12, -1.8, 0.56)), Vector((-0.18, -0.6, 0.42))   # the row seen at 45 deg, every bunch its own shape, running on out of frame   # him on the left third, the row receding past his shoulder to the right
 
 
 def rail_row(m_of, sticker=True):
@@ -155,12 +155,12 @@ def rail_row(m_of, sticker=True):
     blue = K.mat("sticker", "#1F5FA8", rough=0.4); ink = K.mat("sticker ink", "#FFFFFF", rough=0.4)
     rows = []
     for k, (p, sw) in enumerate(hooks):
-        root, fingers = PR.hang_bunch(f"rail bunch {k}", sw, m_of(k), seed=40 + (k % 2), L=0.2)   # big enough to read beside his head   # two seeds only: the bunches are COPIES
+        root, fingers = PR.hang_bunch(f"rail bunch {k}", sw, m_of(k), seed=40 + (k % 2), L=0.16)   # two seeds only: the bunches are COPIES
         if sticker:
             f0 = fingers[2]; bpy.context.view_layer.update()
             st = K.cyl(f"sticker {k}", (0, 0, 0), 0.014, 0.002, blue, v=20, bev=0)
-            st.parent = f0; st.matrix_parent_inverse = Matrix.Identity(4); st.location = (0.075 * 0.2 / 0.13, 0, 0.0); st.rotation_euler = (math.radians(90), 0, 0)
-            st.location.z += 0.02 * 0.2 / 0.13
+            st.parent = f0; st.matrix_parent_inverse = Matrix.Identity(4); st.location = (0.075 * 0.16 / 0.13, 0, 0.0); st.rotation_euler = (math.radians(90), 0, 0)
+            st.location.z += 0.02 * 0.16 / 0.13
         rows.append((p, sw, root, fingers))
     sign = K.box("rail sign", (0, 0, 0), (0.44, 0.012, 0.11), K.mat("rail sign board", "#F4EFE4", rough=0.5), bev=0.004)
     R = Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z'); mid = Vector((RAIL0[0], RAIL0[1], 0)) + R @ Vector((RAIL_LEN * 0.5, 0, 0))
@@ -193,7 +193,7 @@ def shot2():
     # his hand goes to the first bunch, pushes it down the rail, comes back
     def bunch_side(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return rows[0][2].matrix_world.translation + Vector((0, 0, -0.07)) + Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z') @ Vector((-0.06, 0, 0))
+        return rows[0][2].matrix_world.translation + Vector((0, 0, -0.11)) + Matrix.Rotation(math.radians(RAIL_YAW), 3, 'Z') @ Vector((-0.06, 0, 0))
     reach(data, side, lambda t: bunch_side(max(t, T_PUSH - 0.05)), T_PUSH - 0.2, T_PUSH + 0.18, lead=0.45, elbow_out=0.4)
     data.look_at(rows[0][0] + Vector((0, 0, -0.1)), 0.4, max_yaw=40)
     data.look_at(rows[3][0], T_PUSH + 0.6, max_yaw=40)            # he follows the swing down the row
@@ -288,7 +288,7 @@ def shot4():
     lanes, kiosks = produce_set()
     PX, PY = -0.06, -0.42
     pl = PR.planter("planter", (PX, PY, 0.0), w=0.32, d=0.26, h=0.2)
-    pt = PR.plant("young plant", (PX, PY, pl["top_z"] - 0.02), height=0.36, n_leaves=5, seed=8)
+    pt = PR.plant("young plant", (PX, PY, pl["top_z"] - 0.02), height=0.36, seed=8, angles=(8, 172, 38, 142, 70, 110))   # to the sides and back, none at the lens
     T_CLIMB0, T_CLIMB1 = 0.2, DUR * 0.7
     PR.rot(pt["stem_mat"], T_CLIMB0, T_CLIMB1, to=0.95)
     # the leaf that points at him is the one he lifts; the others wilt in turn
@@ -306,16 +306,16 @@ def shot4():
     def pitch(t):
         if t < 0.9: return -5
         if t < T_G0: return -5 + 35 * ease((t - 0.9) / (T_G0 - 0.9))      # it sags toward him
-        if t < T_G1: return 30 - 45 * ease((t - T_G0) / (T_G1 - T_G0))     # he lifts it back up
-        if t < T_LET: return -15
-        u = t - T_LET; return 62 - 77 * math.exp(-u / 0.12) * math.cos(u * 14) if u < 1.2 else 62   # it flops down and bounces once
+        if t < T_G1: return 30 - 30 * ease((t - T_G0) / (T_G1 - T_G0))     # he lifts it back up, level (higher took his arm into his face)
+        if t < T_LET: return 0
+        u = t - T_LET; return 62 - 62 * math.exp(-u / 0.12) * math.cos(u * 14) if u < 1.2 else 62   # it flops down and bounces once
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; hz.rotation_euler = (0, math.radians(pitch(t)), to_him); hz.keyframe_insert("rotation_euler", frame=f)
     PR.rot(hm, T_G0, T_LET + 0.6, to=0.75)
     side = near_hand(data, Vector((PX, PY, 0.5)))
     def tip(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return hz.matrix_world @ Vector((0.2, 0, 0.12))
+        return hz.matrix_world @ Vector((0.21, 0, 0.03))
     reach(data, side, tip, T_G0, T_LET, lead=0.45, back=0.5, elbow_out=0.4)
     data.look_at((PX, PY, 0.35), 0.3, max_yaw=40)
     data.look_at((PX, PY, 0.5), T_G0, max_yaw=40)
@@ -327,7 +327,7 @@ def shot4():
     data.blink(0.8); data.blink(T_G1 + 0.2); data.blink(DUR - 0.4)
     data.finish()
     soft_key("plant key", (-0.75, -1.3, 1.0), (PX, PY, 0.45), energy=45, size=28)
-    C0, C1 = Vector((0.12, -1.68, 0.54)), Vector((0.12, -1.56, 0.52)); LK = Vector((0.12, -0.35, 0.42))   # plant and him both whole in frame
+    C0, C1 = Vector((0.07, -1.55, 0.52)), Vector((0.07, -1.46, 0.5)); LK = Vector((0.07, -0.35, 0.42))   # plant and him both whole in frame
     cam = K.camera(tuple(C0), tuple(LK), lens=26, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, (PX, PY, 0.45)))
     leaves = [o for h_, _ in pt["leaves"] for o in h_.children]
@@ -389,12 +389,18 @@ def shot5():
     data.finish()
     soft_key("rail key", (0.9, -1.7, 1.1), (0.25, -0.62, 0.62), energy=40, size=34)
     soft_key("hug key", (-0.5, -1.6, 0.9), tuple(chest), energy=18, size=18)
-    C0, LK0 = RAIL_C0, RAIL_LK
+    # it OPENS on the far end, the ECUADOR box and the first bunch going black over it, and pans with the rot down
+    # the row to him (that opening is a cutaway: he is not in it), then pushes in on the hug
+    C0, LKF, LK0 = RAIL_C0, Vector((far.x - 0.1, far.y - 0.05, 0.42)), RAIL_LK
     C1, LK1 = Vector((DP.x + 0.05, DP.y - 0.85, 0.68)), Vector((DP.x + 0.02, DP.y, 0.58))
-    cam = K.camera(tuple(C0), tuple(LK0), lens=26, fstop=3.5)
-    camera_path(cam, lambda t: (C0.lerp(C1, ease((t - T_REACH + 0.6) / 2.2)), LK0.lerp(LK1, ease((t - T_REACH + 0.6) / 2.2)), DP + Vector((0, 0, 0.5))))
+    T_PAN0, T_PAN1 = 0.55, 1.7
+    def look(t):
+        a = LKF.lerp(LK0, ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))
+        return a.lerp(LK1, ease((t - T_REACH + 0.6) / 2.2))
+    cam = K.camera(tuple(C0), tuple(LKF), lens=26, fstop=3.5)
+    camera_path(cam, lambda t: (C0.lerp(C1, ease((t - T_REACH + 0.6) / 2.2)), look(t), far.lerp(DP + Vector((0, 0, 0.5)), ease((t - T_PAN0) / (T_PAN1 - T_PAN0)))))
     fallen = [r[2] for r in rows[1:]]
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("rail bunch 0",),
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("rail bunch 0",), cutaway=(0.0, T_PAN1 - 0.3),
                 conseq=[("the bunches go black and fall, toward him", lambda: meshes(fallen), T0_, T_REACH + 0.6),
                         ("he holds the last yellow bunch", lambda: meshes([lroot]), T_HUG, DUR)])
 
