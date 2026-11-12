@@ -247,7 +247,7 @@ def shot1():
     for s_ in "LR":
         sh_ = acts._shoulder(data, s_); side_ = (sh_ - data.pos()); side_.z = 0; side_ = side_.normalized()
         hang = sh_ + side_ * 0.04 + Vector((0, 0, -0.17))
-        cover = crown + duck_off + side_ * 0.09 + data.forward() * 0.21 + Vector((0, 0, -0.05))   # over the FRONT of his head
+        cover = crown + duck_off + side_ * 0.09 + data.forward() * 0.2 + Vector((0, 0, 0.07))   # ON TOP of the front of his head (clipping check: at z -0.05 both hands sank 7-9 cm into it)
         data._arm_ik(s_, hang, 1.95, 0.4)
         for tt in (2.2, 2.8): data._arm_ik(s_, cover, tt, 0.6)
         data._arm_ik(s_, sh_ + duck_off + side_ * 0.06 + data.forward() * 0.22 + Vector((0, 0, -0.06)), 3.02, 0.5)   # down in front, not round the back
@@ -535,7 +535,7 @@ def shot3():
             K.box("photo body", (WX - 0.029, py, pz - 0.045), (0.004, 0.11, 0.06), face_m, bev=0.01, parent=pe)
             K.sph("photo head", (WX - 0.029, py, pz + 0.025), 0.034, head_m, scale=(0.3, 1, 1.1), parent=pe)
     # the calendar: BIG, beside the door at Data's height, one page a year
-    cy = DY0 - 0.4; PH = 0.5; PW = 0.42; cz = 0.52; HOLD = 0.3      # 11-12 judge: about Data's height, years big enough to read on a phone
+    cy = DY0 - 0.4; PH = 0.5; PW = 0.42; cz = 0.52; HOLD = 0.24      # 11-12 judge: about Data's height, years big enough to read on a phone
     paper = K.mat("calendar paper", "#F4F1EA", rough=0.8); ink = K.mat("sign navy")
     K.box("calendar back", (WX - 0.008, cy, cz), (0.012, PW + 0.04, PH + 0.12), K.mat("calendar board", "#3A3D42", rough=0.6), bev=0.003)
     K.box("calendar band", (WX - 0.02, cy, cz + PH / 2 + 0.025), (0.012, PW + 0.04, 0.06), K.mat("sale red", "#C6392B", rough=0.5), bev=0.002)
@@ -601,12 +601,12 @@ def shot3():
         themselves off. Each year is its own move: the hand comes up from his side, grips the page's edge, yanks it
         down and away, lets go, and drops back to his side before the next one."""
         for k, (ta, g) in enumerate(grabs):
-            r0 = ta - 0.18 - 0.2                              # reach up from his side
+            r0 = ta - 0.18 - 0.16                             # reach up from his side (fits the 500,000-by-72% pace)
             if t < r0: return rest(t)
-            if t < ta - 0.18: return rest(t).lerp(gp(g, ta - 0.18), ease((t - r0) / 0.2))
+            if t < ta - 0.18: return rest(t).lerp(gp(g, ta - 0.18), ease((t - r0) / 0.16))
             if t <= ta + HOLD: return gp(g, t)                 # the grip, the rip, the carry down and away
-            if t < ta + HOLD + 0.16 and (k + 1 == len(grabs) or t < grabs[k + 1][0] - 0.38):
-                return gp(g, ta + HOLD).lerp(rest(t), ease((t - ta - HOLD) / 0.16))   # let go, back to his side
+            if t < ta + HOLD + 0.14 and (k + 1 == len(grabs) or t < grabs[k + 1][0] - 0.34):
+                return gp(g, ta + HOLD).lerp(rest(t), ease((t - ta - HOLD) / 0.14))   # let go, back to his side
         return rest(t)
     grip_follow(data, side, pull, 0.0, DUR, elbow_out=0.5)
     for ta, _ in grabs:                                        # he puts his weight into each rip
@@ -750,8 +750,8 @@ def shot4():
         """hanging at his side, or straight out over its jar; returns (point, how far the sack is turned over 0..1)"""
         sc.frame_set(F(t)); bpy.context.view_layer.update(); s_ = hand_of[i]; sh = acts._shoulder(data, s_)
         side = Vector((jars[i][0].x - DP.x, 0, 0)).normalized()
-        hang = sh + side * 0.045 + Vector((0, 0, -0.185))
-        over = Vector((jars[i][0].x, jars[i][0].y, 0.53))
+        hang = sh + side * 0.11 + data.forward() * 0.05 + Vector((0, 0, -0.17))   # clipping check: at 0.045 the sack sat in his thigh and coat
+        over = Vector((jars[i][0].x - side.x * 0.03, jars[i][0].y, 0.62))            # clipping check: at 0.53 the hand and forearm went into the glass
         pa, pb = windows[i]; u = ease((t - (pa - 0.32)) / 0.32) * (1 - ease((t - pb) / 0.32))
         flip = ease((t - (pa - 0.3)) / 0.42) * (1 - ease((t - (pb - 0.05)) / 0.42))   # slow enough not to smear into a blob (11-12 panel)
         return hang.lerp(over, u), flip
@@ -873,7 +873,7 @@ def shot5():
     side = near_hand(data, (JX5, JY5, 0.5))
     def hand5(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update(); sh = acts._shoulder(data, side)
-        hang = sh + Vector((0.045, 0, -0.185)); over = Vector((JX5 - 0.04, JY5, JH5 + 0.1))
+        hang = sh + Vector((0.11, 0, -0.17)) + data.forward() * 0.05; over = Vector((JX5 - 0.05, JY5, JH5 + 0.17))   # clear of his thigh; over the rim, not in it
         u = ease((t - T_P0) / 0.35) * (1 - ease((t - T_P1) / 0.3))
         return hang.lerp(over, u), ease((t - (T_P0 + 0.15)) / 0.4) * (1 - ease((t - (T_P1 - 0.05)) / 0.4))
     for f in range(1, NF + 1):
@@ -958,6 +958,10 @@ if not staging.consequence(sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT
 import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
 if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")
+import clipping   # nothing of him passes through himself or the set (caaleb 2026-11-12: "clipping issues when data moves")
+if not clipping.check(data, NF, name=f"shot {SHOT}", grips=S.get("grips", ())) and os.environ.get("CLIPPING", "report") == "strict" \
+        and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the clipping check: part of him passes through something")
 os.makedirs(OUT, exist_ok=True)
 if os.environ.get("DIAG"): exec(open(os.environ["DIAG"]).read()); sys.exit(0)
 still = os.environ.get("STILL"); step = int(os.environ.get("STEP", "1")); fr = os.environ.get("FRAMES")
