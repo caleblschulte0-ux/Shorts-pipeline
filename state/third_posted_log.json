@@ -19262,6 +19262,34 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is only about a third of the 9:16 canvas, a thin strip across the middle, well short of the roughly th; vision: In the first ~16s the gameplay is a wide, zoomed-out game view with tiny champions and unreadable HUD. The action is sma; vision: In the reaction frames the strea",
       "ts": "2026-11-12T12:54:51.830979+00:00"
+    },
+    "rejected-prettyimpossiblebisonpjsalt-wnfjg5z_b5fwlq3q": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/PrettyImpossibleBisonPJSalt-wnFJG5Z_b5fWLq3Q",
+      "streamer": "jynxzi",
+      "title": "Jynxzi bcomes Mini Magnus",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (chess narration, no visible event)",
+      "ts": "2026-11-12T13:08:46.998690+00:00"
+    },
+    "rejected-grosselatedbutterflyoptimizeprime-ovpwn5_b-36rgxne": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/GrossElatedButterflyOptimizePrime-OVPwN5_b-36rGxnE",
+      "streamer": "jasontheween",
+      "title": "HE TRYNA IGNORE IT",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Scrolling feeds while game launches)",
+      "ts": "2026-11-12T13:09:16.450826+00:00"
+    },
+    "clip-20261112-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/loltyler1/clip/DeadHelpfulGrassGrammarKing-3Av-UbWuB3HGiqD1",
+      "story_key": null,
+      "streamer": "loltyler1",
+      "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-11-12T13:11:10.504233+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
