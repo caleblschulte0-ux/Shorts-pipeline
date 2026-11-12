@@ -669,8 +669,11 @@ def test_a_blocked_youtube_video_comes_through_a_converter(tmp_path):
         got = yc.fetch("https://www.youtube.com/watch?v=abcdefghijk", out)
     assert got and got["path"] == out and out.exists()
     assert got["title"] == "Reggie part two" and got["clipper"] == "Reggie"
-    assert got["via"] == "piped" and "down" in yc._DEAD
+    # one failure is counted, not fatal (2026-11-11: one reset killed the
+    # only converter that worked; tests/test_one_blip_does_not_kill_...)
+    assert got["via"] == "piped" and yc._FAILS.get("down") == 1
     yc._DEAD.clear()
+    yc._FAILS.clear()
 
 
 def test_a_converter_still_refuses_a_video_longer_than_a_clip(tmp_path):
