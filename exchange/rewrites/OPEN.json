@@ -1,97 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-12T12:17:34Z",
+ "updated": "2026-11-12T12:19:38Z",
  "open": [
-  {
-   "id": "drone-commercial-overtake__d011f727",
-   "slug": "drone-commercial-overtake",
-   "filed": "2026-11-12T01:45:43Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261112/drone-commercial-overtake__d011f727.request.json",
-   "answer_path": "exchange/rewrites/20261112/drone-commercial-overtake__d011f727.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__428eddfe",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-11-12T01:45:42Z",
-   "why": [
-    "premise: brain: It lacks a single consequential, verifiable number and does not clearly reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261112/third-interstellar-visitor__428eddfe.request.json",
-   "answer_path": "exchange/rewrites/20261112/third-interstellar-visitor__428eddfe.answer.json"
-  },
-  {
-   "id": "library-digital-shift__4fea1593",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-11T13:26:47Z",
-   "why": [
-    "premise: brain: The premise does not clearly invert a specific viewer expectation and relies on a vague numeric claim without a decisive, verifiable reversal."
-   ],
-   "request": "exchange/rewrites/20261111/library-digital-shift__4fea1593.request.json",
-   "answer_path": "exchange/rewrites/20261111/library-digital-shift__4fea1593.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__80d498eb",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-11-11T13:26:46Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261111/activity-inequality-steps__80d498eb.request.json",
-   "answer_path": "exchange/rewrites/20261111/activity-inequality-steps__80d498eb.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__0fb55a9a",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-11-11T13:26:46Z",
-   "why": [
-    "premise: brain: The claim flips expectations but relies on an implausible, unverifiable temperature figure, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261111/coldest-place-in-the-universe-is-human-made__0fb55a9a.request.json",
-   "answer_path": "exchange/rewrites/20261111/coldest-place-in-the-universe-is-human-made__0fb55a9a.answer.json"
-  },
-  {
-   "id": "left-brain-right-brain-myth__4d837340",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-11-08T14:45:28Z",
-   "why": [
-    "premise: brain: It offers a factual claim without overturning a viewer expectation and relies on a single number that isn’t a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261108/left-brain-right-brain-myth__4d837340.request.json",
-   "answer_path": "exchange/rewrites/20261108/left-brain-right-brain-myth__4d837340.answer.json"
-  },
-  {
-   "id": "antarctic-sea-ice-record-low__80962613",
-   "slug": "antarctic-sea-ice-record-low",
-   "filed": "2026-11-08T13:02:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a generic claim rather than a striking, verifiable number tied to an expectation flip."
-   ],
-   "request": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__80962613.request.json",
-   "answer_path": "exchange/rewrites/20261108/antarctic-sea-ice-record-low__80962613.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__b68d2add",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-08T13:02:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague scenario rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261108/metric-system-holdouts__b68d2add.request.json",
-   "answer_path": "exchange/rewrites/20261108/metric-system-holdouts__b68d2add.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-19T11:44:38Z",
-   "why": [
-    "premise: brain: The claim relies on an obscure, unverifiable figure and does not convincingly overturn a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261019/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261019/helium-supply-squeeze__067a945d.answer.json"
-  },
   {
    "id": "religious-nones-rise__677be75f",
    "slug": "religious-nones-rise",
@@ -211,6 +121,16 @@
    ],
    "request": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.request.json",
    "answer_path": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-18T15:35:16Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified specific loss figure and lacks a clear reversal of a common viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261018/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261018/helium-supply-squeeze__067a945d.answer.json"
   },
   {
    "id": "blockbuster-to-one-store__857f036d",
