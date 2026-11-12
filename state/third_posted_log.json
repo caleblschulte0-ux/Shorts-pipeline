@@ -19282,13 +19282,59 @@
       "ts": "2026-11-12T13:09:16.450826+00:00"
     },
     "clip-20261112-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/loltyler1/clip/DeadHelpfulGrassGrammarKing-3Av-UbWuB3HGiqD1",
-      "story_key": null,
-      "streamer": "loltyler1",
+      "url": "https://youtube.com/shorts/jfCQ4MRbpXE",
       "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-11-12T13:11:10.504233+00:00",
+      "ts": "2026-11-12T13:11:19.740691+00:00",
+      "uploaded_at": "2026-11-12T13:11:19.740705+00:00",
+      "publish_at": "2026-11-12T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261112-loltyler1-gets-muted-by-allstars-and-can-t-belie-93ae8765",
+        "tiktok": "queued for 2026-11-12T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/loltyler1/clip/DeadHelpfulGrassGrammarKing-3Av-UbWuB3HGiqD1",
+      "streamer": "loltyler1",
+      "series": "chaos",
+      "hook": "Allstars muted tyler1's mic \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5785,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 14.0
+      },
+      "director_cut": true
+    },
+    "rejected-playfulcharmingbeefargieb8-bpm-y9hutnvxuo-3": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/PlayfulCharmingBeefArgieB8-BPM-y9HUTnvXUo-3",
+      "streamer": "stableronaldo",
+      "title": "RON SAYING NO NO WORD",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Fortnite running, no visible event)",
+      "ts": "2026-11-12T13:12:49.460113+00:00"
+    },
+    "rejected-honestgentlepigseemsgood-dn8ej27atpneltvx": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/HonestGentlePigSeemsGood-dN8eJ27AtpnEltVX",
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Tells Streamer Saying Fuck The Labels They're Listening \ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the 9:16 canvas, not the roughly three quarters expected. Most of th; vision: In the first and last frames (0.2s, 4.8-5.8s) the subject is tiny and far away on a wide stage shot. He is barely readab; vision: The burned-in caption 'THE JEWS ",
+      "ts": "2026-11-12T13:14:25.328545+00:00"
+    },
+    "clip-20261112-3": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-53b65ef6562543c6",
+      "streamer": "tminnzy",
+      "title": "Silent Hill 2's Laura trolled Tminnzy at the door",
+      "kind": "story",
+      "ts": "2026-11-12T13:31:54.946078+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

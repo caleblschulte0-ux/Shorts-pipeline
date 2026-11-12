@@ -172,8 +172,14 @@
   },
   "assiduouscrispywallabyderp-qpp_b8busa7wh7rc": {
    "ch": "tminnzy",
-   "d": "2026-11-11",
-   "said": "Yes, send me up. you can look, Brat! Why should I? I'm a liar, right? Want me to open it?"
+   "d": "2026-11-10",
+   "said": "Yes, send me up. you can look, Brat! Why should I? I'm a liar, right? Want me to open it?",
+   "saw": "The streamer plays a Silent Hill 2 scene and speaks for James as he begs Laura to open a locked door. Laura taunts him and calls him a liar.",
+   "who": [
+    "tminnzy (streamer, f",
+    "James (Silent Hill 2",
+    "Laura (Silent Hill 2"
+   ]
   },
   "astutekawaiiherbsspicyboy-yxpye-zl3sf314sb": {
    "ch": "kaicenat",
@@ -1054,6 +1060,11 @@
    "ch": "buddha",
    "d": "2026-10-21"
   },
+  "honestgentlepigseemsgood-dn8ej27atpneltvx": {
+   "ch": "plaqueboymax",
+   "d": "2026-11-12",
+   "said": "If you trying to get signed can't be saying fuck the labels the Jews listening on"
+  },
   "honorableinexpensivetrianglekevinturtle-b8bv6rozwpz9zlba": {
    "ch": "marmeladova_ya",
    "d": "2026-10-26",
@@ -1443,6 +1454,10 @@
    "ch": "valkyrae",
    "d": "2026-10-21",
    "said": "this maid mom's name is actually Lola. It's so cute How are you guys doing in there? Isn't"
+  },
+  "playfulcharmingbeefargieb8-bpm-y9hutnvxuo-3": {
+   "ch": "stableronaldo",
+   "d": "2026-11-12"
   },
   "pleasantobliquehamcclamchamp-cyhopen_-mov3tgm": {
    "ch": "yuliabaka",
@@ -2142,6 +2157,15 @@
    "d": "2026-10-29",
    "said": "it. Oh my god"
   },
+  "vibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr": {
+   "ch": "steel",
+   "d": "2026-11-05",
+   "said": "this area, well, good luck, bro, 100 ,000.",
+   "saw": "The streamer browses an online listing for a 55 m\u00b2 office for rent at 100,000 per month, looking through photos and a floor plan, then searc",
+   "who": [
+    "steel (streamer, in "
+   ]
+  },
   "victoriousshinyalmondsmoocherz-otn1e_0g-6bzacaw": {
    "ch": "avoidingthepuddle",
    "d": "2026-11-11",
@@ -2639,26 +2663,6 @@
   }
  ],
  "stories_tried": [
-  {
-   "d": "2026-10-14",
-   "edit": 5,
-   "members": [
-    "daintywimpynightingalenononocat-q22n5lpusu1olc0w",
-    "lazycharmingpepperonidatsheffy-w6k-b5g0ebotqhep",
-    "renownedpricklythymekippa-2a6qiirjlxwetdxd"
-   ],
-   "premise": "Stableronaldo accuses Jynxzi of dying to an Enderman on purpose, after a run of dumb deaths.",
-   "why": "rendered; critic scored 58 after 2 revision(s) \u2014 @35s weak_payoff: The cut ends mid-sentence on 'flick to your left and look at it'. The verdict line ('you got "
-  },
-  {
-   "d": "2026-10-14",
-   "members": [
-    "coldbloodedcourteouscheesecakelitfam-89bofen04y8kjbkr",
-    "courageouspleasantdiamondssssss-cb0e6nrmd1cd-zep"
-   ],
-   "premise": "Ron answers a question on his own stream with a one-word answer, and Jasontheween reacts to it on his stream.",
-   "why": "sources fail preflight: preflight:source only 5.1s \u2014 too short to edit"
-  },
   {
    "d": "2026-10-14",
    "members": [
@@ -3190,6 +3194,22 @@
    ],
    "premise": "@momentdelightfuldirtylaptopdoublerainbow-s4seaynhnpzsh4ka",
    "why": "its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+  },
+  {
+   "d": "2026-11-12",
+   "members": [
+    "vibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr"
+   ],
+   "premise": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr",
+   "why": "director judged: not a story \u2014 The clip is steel looking at a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. The before and after so"
+  },
+  {
+   "d": "2026-11-12",
+   "members": [
+    "rudehardyamnerfblueblaster-uux56y8iqb1aolmb"
+   ],
+   "premise": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
+   "why": "its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
   }
  ]
 }

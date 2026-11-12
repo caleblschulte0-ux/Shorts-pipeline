@@ -5595,6 +5595,52 @@
         "story-4a5b4bb08f7d4f84"
       ],
       "last_updated": "2026-11-11"
+    },
+    "steel-brows-list-2026w45": {
+      "event_id": "steel-brows-list-2026w45",
+      "people": [
+        "steel"
+      ],
+      "actions": [
+        "brows",
+        "list",
+        "office",
+        "online"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2914729767/332-572",
+        "https://www.twitch.tv/steel/clip/VibrantRepleteSharkPunchTrees-i8qSwCqs3Bm84qCr",
+        "vodmine://2914729767/617-857"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-12"
+    },
+    "tminnzy-boss-fight-2026w46": {
+      "event_id": "tminnzy-boss-fight-2026w46",
+      "people": [
+        "tminnzy"
+      ],
+      "actions": [
+        "boss",
+        "fight",
+        "laura",
+        "open"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2924432520/9472-9712",
+        "https://www.twitch.tv/tminnzy/clip/AssiduousCrispyWallabyDerp-qpP_b8BUSa7wh7rc",
+        "vodmine://2924432520/9767-10007"
+      ],
+      "published_versions": [
+        "story-53b65ef6562543c6"
+      ],
+      "last_updated": "2026-11-12"
     }
   }
 }
