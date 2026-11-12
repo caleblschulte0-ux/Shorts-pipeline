@@ -386,7 +386,11 @@ def shot3():
     data.place(here.x, here.y, yaw_cam + 32)              # three-quarters to us, turned a little toward the pad
     sc.frame_set(1); bpy.context.view_layer.update()
     side = near_hand(data, Vector((WX - 0.02, cy, top - PH)))
-    rest = lambda t: (sc.frame_set(F(t)), acts._shoulder(data, side) + Vector((0, 0, -0.2)) - data.forward() * 0.02)[1]
+    def rest(t):
+        """the hand hanging at his side, OUTSIDE the coat (the anatomy check caught it resting inside his hip)"""
+        sc.frame_set(F(t)); bpy.context.view_layer.update(); sh = acts._shoulder(data, side)
+        out = sh - data.pos(); out.z = 0; out = out.normalized() if out.length > 1e-4 else Vector((0, 0, 0))
+        return sh + Vector((0, 0, -0.19)) + out * 0.06 + data.forward() * 0.01
     def pull(t):
         """the hand on the bottom of the page it is pulling; between pages it slides to the next one's corner"""
         for k, (ta, g) in enumerate(grabs):
@@ -568,6 +572,9 @@ if os.environ.get("TEMPORAL_SAFE", "1") == "1":
 import staging    # the filmmaker's check: his face to the lens, big enough to read, MEASURED before a frame renders
 if not staging.check(data, sc.camera, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails staging: restage it (his back to the lens, or too small to read)")
+import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
+if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")
 os.makedirs(OUT, exist_ok=True)
 if os.environ.get("DIAG"): exec(open(os.environ["DIAG"]).read()); sys.exit(0)
 still = os.environ.get("STILL"); step = int(os.environ.get("STEP", "1")); fr = os.environ.get("FRAMES")
