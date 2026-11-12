@@ -281,14 +281,15 @@ def hang_bunch(name, swing, m, seed=0, L=0.14, n=6):
     return root, fingers
 
 
-def swing(sw, t0, amp_deg=18, period=0.9, tau=1.4, nf=None):
-    """a hung thing pushed at t0: a damped swing along the rail, keyed every frame from t0 to nf"""
+def swing(sw, t0, amp_deg=18, period=0.9, tau=1.4, nf=None, across=False):
+    """a hung thing pushed at t0: a damped swing along the rail (or ACROSS it: a rail seen down its length swings
+    toward and away from the lens along it, which reads as standing still), keyed every frame from t0 to nf"""
     base = tuple(sw.rotation_euler)
     sw.keyframe_insert("rotation_euler", frame=1)
     for f in range(max(1, F(t0)), (nf or F(t0 + 4)) + 1):
         u = (f - 1) / FPS - t0
         a = math.radians(amp_deg) * math.sin(2 * math.pi * u / period) * math.exp(-u / tau) if u >= 0 else 0.0
-        sw.rotation_euler = (base[0], a, base[2]); sw.keyframe_insert("rotation_euler", frame=f)
+        sw.rotation_euler = (base[0] + a, base[1], base[2]) if across else (base[0], a, base[2]); sw.keyframe_insert("rotation_euler", frame=f)
 
 
 def produce_box(name, loc, yaw=0.0, word="ECUADOR", parent=None):
