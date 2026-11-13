@@ -833,10 +833,10 @@ class Data:
         'shrug': lambda sg: ((-4, 0, -sg * 20), (-18, 0, -sg * 48), (-10, sg * -95, 0)),
     }
 
-    def perform(self, name, t0, hold=1.0, arms=True):
+    def perform(self, name, t0, hold=1.0, arms=True, pace=1.0):
         """the whole body acts `name` from t0: anticipation, overshoot, settle, hold (with life), release.
-        Returns the time he is back at rest."""
-        P_ = self.PERFORM[name]; sp = P_['speed']
+        pace < 1 plays it slower (a hit that measures as a whip from a hanging arm). Returns the time he is back at rest."""
+        P_ = self.PERFORM[name]; sp = P_['speed'] * pace
         ta = t0 + 0.12 / sp                 # anticipation: a small move the other way
         th = ta + 0.22 / sp                 # the hit: past the pose
         ts = th + 0.2 / sp                  # settled
