@@ -7,104 +7,37 @@
   {
    "sub": "nba",
    "who": "Dirk Nowitzki",
-   "why": "Dirk laughs about his first impression of Jalen Brunson, then we see Brunson become a star.",
+   "why": "Dirk laughing about his doubts on Jalen Brunson's body, then Brunson becoming a star.",
    "post_title": "Dirk Nowitzki on his first impressions of Jalen Brunson: \"I was like this isn't gonna work. His body... the head's too big. How is he not falling forward the whole time?\"",
    "upvotes": 0,
    "url": "https://streamable.com/eej84b",
    "topic": "https://www.reddit.com/r/nba/comments/1xs5qbw/dirk_nowitzki_on_his_first_impressions_of_jalen",
-   "title": "Dirk Nowitzki Thought Jalen Brunson Wouldn't Make It, Until He Saw This",
-   "hook": "Dirk doubted Brunson at first \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "zoom@6.91"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "face_content",
-     "reason": "face on the right beside what it is showing \u2014 that on top, the face below",
-     "shots": [
-      {
-       "mode": "face_content",
-       "reason": "face on the right beside what it is showing \u2014 that on top, the face below"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.5,
-       1.0
-      ]
-     ]
-    },
-    "outro": {
-     "song": "underdog",
-     "grade": "clean",
-     "shots": [
-      "https://www.youtube.com/watch?v=1d1mIchu3Q4",
-      "https://www.youtube.com/watch?v=1d1mIchu3Q4",
-      "https://www.youtube.com/watch?v=51b09g1mPgQ",
-      "https://www.youtube.com/watch?v=UbEnKGUCT1s",
-      "https://www.youtube.com/watch?v=IwlSgBjpWi0",
-      "https://www.youtube.com/watch?v=IwlSgBjpWi0",
-      "https://www.youtube.com/watch?v=0r2UBuirQso"
-     ],
-     "secs": 15.71
-    },
-    "cut_in": [],
-    "shown": [],
-    "music": [
-     {
-      "track": "ncs:b0ea1925-a703-402b-9663-cc6dc3268263",
-      "credit": "Song: Sync, Avi Snow, Marky Style - Alright\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/Alright"
-     }
-    ]
-   },
-   "repairs": [
-    {
-     "score": 74,
-     "reason": "showrunner BLOCK: The story works: Dirk doubts Brunson, then the payoff shows Brunson as a Knicks star. But the interview half is a reposted split screen where a table and an arm take the top of the frame and Dirk is squeezed below, half covered by two caption layers."
-    },
-    {
-     "score": 70,
-     "reason": "showrunner BLOCK: The quote is great, but half the frame shows a table and a headless torso, and the highlight montage never pays off 'until he saw this'."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The quote is great, but half the frame shows a table and a headless torso, and the highlight montage never pays off 'until he saw this'.",
-    "score": 70
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The quote is great, but half the frame shows a table and a headless torso, and the highlight montage never pays off 'until he saw this'."
+   "skipped": "render failed: JSONDecodeError: Extra data: line 3 column 1 (char 308)"
   },
   {
    "sub": "nfl",
-   "who": "Tyler Shough",
-   "why": "A veteran QB consoles a rookie right after his fumble with a real, human pep talk.",
-   "post_title": "[Highlight] Tyler Shough to rookie Barion Brown after his fumble:\"We've all fumbled before ... you learn from it bro, it ain't going to happen again ... you can be mad about it later, but right now ho",
+   "who": "Jordan Davis",
+   "why": "A player admits he was near tears after being traded and prayed with Sinatra's My Way.",
+   "post_title": "[Highlight] Jordan Davis says he was near tears after being traded by the Eagles and heading to Jacksonville. He says he prayed and played Frank Sinatra\u2018s My Way song.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xtltls/highlight_tyler_shough_to_rookie_barion_brown/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xtltls/highlight_tyler_shough_to_rookie_barion_brown",
-   "title": "Tyler Shough Tells Rookie Barion Brown How To Bounce Back After His Fumble",
-   "hook": "Shough picks up Barion Brown after fumble",
+   "url": "https://www.reddit.com/r/nfl/comments/1xulu9x/highlight_jordan_davis_says_he_was_near_tears/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xulu9x/highlight_jordan_davis_says_he_was_near_tears",
+   "title": "Jordan Davis Was Near Tears On The Way To The Airport After Eagles Trade",
+   "hook": "Jordan Davis tears up after Eagles trade \ud83e\udd40",
    "ledger": {
-    "moves": [],
-    "mood": null,
+    "moves": [
+     "sad@0.3(silent)"
+    ],
+    "mood": "sad",
     "shot_plan": {
      "layout": "cameras",
-     "reason": "4 camera shot(s), each framed by a look at it",
+     "reason": "2 camera shot(s), each framed by a look at it",
      "shots": [
       {
        "mode": "camera",
        "t0": 0.0,
-       "t1": 5.23,
-       "reason": "the framer: Pile of Cleveland players on the ball at the center of the frame, which is the fumble recovery. The blurred player at the right edge is left out.",
+       "t1": 14.97,
+       "reason": "the framer: Jordan Davis #90 seen from behind (hat, DAVIS name, number 90) in columns 3-6; the blurred player at the right edge is not the subject.",
        "crop": [
         540,
         720,
@@ -114,83 +47,56 @@
       },
       {
        "mode": "camera",
-       "t0": 5.23,
-       "t1": 22.37,
-       "reason": "the framer: Brown (19) with his back to the camera and Shough (6) facing him, helmet and face whole at columns 5-7. Brown's helmet and Shough's face fit in columns 3-6.",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 22.37,
-       "t1": 25.47,
-       "reason": "the framer: Brown's helmet and shoulders (cols 3-5) and Shough's face and helmet (cols 5-7) in conversation.",
-       "crop": [
-        540,
-        720,
-        498,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 25.47,
-       "t1": 36.8,
-       "reason": "the framer: Brown's helmet and name (cols 4-5) and Shough's whole face and helmet (cols 6-7).",
-       "crop": [
-        540,
-        720,
-        498,
-        0
-       ]
+       "t0": 14.97,
+       "t1": 17.93,
+       "reason": "the framer: Davis's face in the Eagles helmet fills columns 4-8, so the crop keeps the whole face. The blurred second player at far left is left out. (whole frame)",
+       "crop": null
       }
      ],
      "subtitle_spans": [
       0.0,
+      0.768,
       0.0,
       0.0,
-      0.0,
-      0.117
+      0.0
      ],
      "n_subjects": 0,
      "face_bands": []
     },
     "outro": null,
-    "cut_in": [],
+    "cut_in": [
+     "Jordan Davis Eagles@9.31"
+    ],
     "shown": [],
     "music": []
    },
    "showrunner": {
     "blocked": false,
     "reason": "",
-    "score": 82
+    "score": 70
    },
-   "video_url": "https://youtube.com/shorts/2a5_OSiVJCM",
+   "video_url": "https://youtube.com/shorts/T31y5vOhz64",
    "ok": true,
-   "publish_at": "2026-11-14T00:00:00Z",
-   "seconds": 217,
+   "publish_at": "2026-11-14T18:00:00Z",
+   "seconds": 257,
    "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261113-tyler-shough-tells-rookie-barion-brown-how-to-bo-2a610a68",
-    "tiktok": "queued for 2026-11-14T00:00:00Z"
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261113-jordan-davis-was-near-tears-on-the-way-to-the-ai-7fd03b8b",
+    "tiktok": "queued for 2026-11-14T18:00:00Z"
    }
   },
   {
    "sub": "nba",
    "who": "Steve Kerr",
-   "why": "Kerr deadpans a glowing review of Jimmy Butler dressed as a coach.",
+   "why": "Kerr deadpans praise for Jimmy Butler dressed as a coach, down to the team fouls.",
    "post_title": "Steve Kerr on Jimmy Butler dressing up like a coach: \"I thought he looked great. Really good looking sweater. He said all the right things, you know, team fouls, how many team fouls we had. Like he wa",
    "upvotes": 0,
    "url": "https://streamable.com/u9ir96",
    "topic": "https://www.reddit.com/r/nba/comments/1xsxmql/steve_kerr_on_jimmy_butler_dressing_up_like_a",
-   "title": "Steve Kerr Says Jimmy Butler's Coach Act Hurt A Little \ud83d\ude02",
-   "hook": "Kerr on Jimmy Butler's coach act \ud83d\ude02",
+   "title": "Steve Kerr Reveals Jimmy Butler Was Secretly Mocking The Warriors The Whole Time",
+   "hook": "Kerr on Jimmy dressing up as a coach \ud83d\ude02",
    "ledger": {
     "moves": [
-     "whoa@19.6"
+     "zoom@14.2"
     ],
     "mood": null,
     "shot_plan": {
@@ -206,179 +112,70 @@
      ]
     },
     "outro": null,
-    "cut_in": [],
+    "cut_in": [
+     "Jimmy Butler@2.66"
+    ],
     "shown": [],
     "music": []
    },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: A real, mildly funny Kerr soundbite, but it's a thin letterboxed strip in a mostly empty frame, with overlapping, garbled word captions, and Jimmy's costume is never shown."
-    },
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: A real, well-cropped Kerr presser moment, but the word captions overlap into garbled text (mid1, mid4) and the clip never shows Jimmy's coach act, so the joke lands weakly."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: Real Kerr presser, but our captions collide with the clip's own burned-in captions, and Butler's coach outfit is never shown, so a stranger can't see the joke.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: Real Kerr presser, but our captions collide with the clip's own burned-in captions, and Butler's coach outfit is never shown, so a stranger can't see the joke."
+   "skipped": "author: the title names 'Warriors', which the post never does"
   },
   {
-   "sub": "soccer",
-   "who": "Morgan Rogers",
-   "why": "A player admits he couldn't believe he was on the pitch against Messi and wonders what he was like in his prime.",
-   "post_title": "Morgan Rogers: \"Ronaldo is my favorite player, but I played against Messi in the World Cup semi-final.\u201d \u201cHe was 39 years old, and I couldn't believe it. I can't imagine what he was like at his prime.\u201d",
+   "sub": "nfl",
+   "who": "Justin Jefferson",
+   "why": "Jefferson speaks warmly about Kirk Cousins taking over as a leader in the meeting room.",
+   "post_title": "[Highlight] Vikings WR Justin Jefferson, speaking for the first time since Kirk Cousins\u2019 return: \u201cIt\u2019s just kind a joy to hear him take over and be a leader in the meeting room, on the field. It\u2019s def",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1xtsofv/morgan_rogers_ronaldo_is_my_favorite_player_but_i/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1xtsofv/morgan_rogers_ronaldo_is_my_favorite_player_but_i",
-   "title": "Morgan Rogers Faced Messi At 39 And Still Couldn't Believe It",
-   "hook": "Rogers on facing Messi at 39",
+   "url": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking",
+   "title": "Justin Jefferson Says Kirk Cousins' Return Has Changed The Whole Vikings Building",
+   "hook": "Jefferson on Kirk Cousins being back",
    "ledger": {
     "moves": [],
     "mood": null,
     "shot_plan": {
-     "layout": "cameras",
-     "reason": "3 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 9.73,
-       "reason": "the framer: Rogers, the speaker, in a blue Chelsea top. His whole head spans columns 2-5, and the mic and empty backdrop are left out.",
-       "crop": [
-        270,
-        480,
-        140,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 9.73,
-       "t1": 11.73,
-       "reason": "the framer: Wide two-person shot. The host sits at the far left (columns 0-2) and the guest at the far right (columns 8-9), so a tall crop would lose one of them. (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 11.73,
-       "t1": 18.73,
-       "reason": "the framer: Rogers in close-up, listening. His full face and head sit in columns 3-6.",
-       "crop": [
-        270,
-        480,
-        208,
-        0
-       ]
-      }
-     ],
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
      "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.0,
-       0.88
-      ],
-      [
-       0.0,
-       0.858
-      ]
+      0.087,
+      0.971,
+      0.972,
+      0.096,
+      0.098
      ]
     },
     "outro": {
      "song": "legacy",
      "grade": "clean",
      "shots": [
-      "https://www.youtube.com/watch?v=Q_A_FP2F7T0",
-      "https://www.youtube.com/watch?v=DtRgCMoWoMM"
+      "https://www.youtube.com/watch?v=-fBQeDMGAHI",
+      "https://www.youtube.com/watch?v=e7mnFmB9z7Y",
+      "https://www.youtube.com/watch?v=GwlgahPw-mM",
+      "https://www.youtube.com/watch?v=GwlgahPw-mM"
      ],
-     "secs": 4.8
+     "secs": 9.6
     },
-    "cut_in": [
-     "Lionel Messi Argentina vs England@2.47"
-    ],
+    "cut_in": [],
     "shown": [],
     "music": [
      {
-      "track": "ncs:018563ec-10f8-44ab-b46c-e05b7cb20749",
-      "credit": "Song: Tatsunoshin, fawlin - Sunrise (feat. fawlin)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/TS_sunrise"
+      "track": "ncs:86546a93-21c6-48ca-aed0-19c652b19ba5",
+      "credit": "Song: AC13, KAZHI, Jessee, Cartoon - Made For The Game (ft. Kazhi)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/MadeForTheGame"
      }
     ]
    },
-   "repairs": [
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: The interview quote is a decent hook, but the cut splices in an unrelated podcast and padded b-roll, and it ends mid-sentence on a stock photo."
-    }
-   ],
    "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
+    "blocked": true,
+    "reason": "showrunner BLOCK: A routine press-conference talking head with a label for a hook and no visible moment: Cousins never appears and the payoff is generic b-roll of Jefferson standing in the end zone.",
+    "score": 57
    },
-   "video_url": "https://youtube.com/shorts/kljyOppxJfE",
-   "ok": true,
-   "publish_at": "2026-11-14T03:00:00Z",
-   "seconds": 1724,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261113-morgan-rogers-faced-messi-at-39-and-still-couldn-d2c53e71",
-    "tiktok": "queued for 2026-11-14T03:00:00Z"
-   }
-  },
-  {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "Luka talks trash straight to Hawks fans after the game.",
-   "post_title": "Luka Doncic trash talking Hawks fans tonight \"You all wish you would have had me. You all wish, huh?\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/58la42",
-   "topic": "https://www.reddit.com/r/nba/comments/1xsfsmw/luka_doncic_trash_talking_hawks_fans_tonight_you",
-   "title": "Luka Doncic Trash Talks Hawks Fans: \"You All Wish You Had Me\"",
-   "hook": "Luka trolls Hawks fans \ud83d\ude02",
-   "ledger": {
-    "moves": [
-     "zoom@11.45"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 70
-   },
-   "video_url": "https://youtube.com/shorts/qftOM1MSB_Y",
-   "ok": true,
-   "publish_at": "2026-11-14T15:00:00Z",
-   "seconds": 127,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261113-luka-doncic-trash-talks-hawks-fans-you-all-wish--e83ef436",
-    "tiktok": "queued for 2026-11-14T15:00:00Z"
-   }
+   "skipped": "showrunner_block: showrunner BLOCK: A routine press-conference talking head with a label for a hook and no visible moment: Cousins never appears and the payoff is generic b-roll of Jefferson standing in the end zone."
   },
   {
    "sub": "nba",
    "who": "T.J. McConnell",
-   "why": "His Pacers teammates push him back down so they can help him up, a funny team moment.",
+   "why": "Pacers teammates push McConnell back down so they can help him up.",
    "post_title": "[Highlight] T.J. McConnell stood up on his own after hitting the floor, so his Pacers teammates made him sit back down so they could help him up",
    "upvotes": 0,
    "url": "https://streamable.com/1dstnc",
@@ -387,18 +184,8 @@
   },
   {
    "sub": "nfl",
-   "who": "Josh Allen",
-   "why": "A furious Josh Allen slams his helmet into the air and catches it.",
-   "post_title": "[Highlight] A frustrated Josh Allen slams his helmet to the ground, launching it into the air before catching it.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his",
-   "skipped": "too short: the post runs 7.6s (< 15s)"
-  },
-  {
-   "sub": "nfl",
    "who": "Justin Jefferson",
-   "why": "Jefferson ignores his head coach and walks off frustrated, with the sideline tension on camera.",
+   "why": "Jefferson walks away frustrated from his head coach mid-game.",
    "post_title": "[Highlights] Justin Jefferson ignores Head Coach KOC and walks away frustrated",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/nfl/comments/1xseeze/highlights_justin_jefferson_ignores_head_coach/",
@@ -406,108 +193,19 @@
    "skipped": "no sound: the post has no audio track"
   },
   {
-   "sub": "nfl",
-   "who": "Jameis Winston",
-   "why": "Jameis yells 'Who Let The Dogs Out' at the line to bait the defense.",
-   "post_title": "[Highlight] Giants QB Jameis Winston says \"Who Let The Dogs Out\" at the line of scrimmage while trying to get the Commanders defense to jump",
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Tatum taps Brown, who keeps spinning the ball on his finger and ignores him.",
+   "post_title": "Jayson Tatum taps Jaylen Brown, who spins the ball on his finger and ignores him",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xuxwax/highlight_giants_qb_jameis_winston_says_who_let/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xuxwax/highlight_giants_qb_jameis_winston_says_who_let",
-   "title": "Jameis Winston Yells \"Who Let The Dogs Out\" At The Line To Bait The Defense",
-   "hook": "Jameis tries to get the Commanders to jump \ud83d\udc36",
-   "ledger": {
-    "moves": [
-     "zoom@19.89"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "3 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 23.17,
-       "reason": "the framer: Giants line and Commanders defense face off at the line of scrimmage on 4th & 1; the play spans columns 2-7, wider than a tall crop (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 23.17,
-       "t1": 23.8,
-       "reason": "the framer: Jameis in the Giants helmet, face centered in columns 4-6, with the helmet and shoulders in 3-7 \u2014 overruled: every face in the shot fits a tall crop on them",
-       "crop": [
-        404,
-        720,
-        810,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 23.8,
-       "t1": 29.7,
-       "reason": "the framer: Jameis looking up in the Giants helmet, face in columns 5-7, with the full helmet and facemask in 4-8 (whole frame)",
-       "crop": null
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.066
-     ],
-     "n_subjects": 0,
-     "face_bands": [
-      [
-       0.124,
-       0.483
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "repairs": [
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: It's the real moment and the right player, but our word captions sit on top of the broadcast scorebug the whole way through, and the wide shot never lets us see Jameis bark the line."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: It's the real moment and the right player, but our word captions sit on top of the broadcast scorebug the whole way through, and the wide shot never lets us see Jameis bark the line.",
-    "score": 62
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: It's the real moment and the right player, but our word captions sit on top of the broadcast scorebug the whole way through, and the wide shot never lets us see Jameis bark the line."
-  },
-  {
-   "sub": "hockey",
-   "who": "Sidney Crosby",
-   "why": "Crosby is caught being harsh on Celebrini during a faceoff.",
-   "post_title": "Clip of Crosby being harsh on Celebrini during a face-off last night.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xuplkq/clip_of_crosby_being_harsh_on_celebrini_during_a/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xuplkq/clip_of_crosby_being_harsh_on_celebrini_during_a",
-   "skipped": "too short: the post runs 12.9s (< 15s)"
-  },
-  {
-   "sub": "hockey",
-   "who": "Connor Hellebuyck",
-   "why": "Hellebuyck hears 'coward' chants from his old home crowd while sitting out.",
-   "post_title": "Connor Hellebuyck (sitting tonight due to a decision that improves the Devils expected win probability) hears \u201cCOWARD\u201d chants from Winnipeg fans.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a",
-   "skipped": "not English (English p=0.40, 0% English words)"
+   "url": "https://streamable.com/5pz2ak",
+   "topic": "https://www.reddit.com/r/nba/comments/1xt4jkb/jayson_tatum_taps_jaylen_brown_who_spins_the_ball",
+   "skipped": "too short: the post runs 11.1s (< 15s)"
   },
   {
    "sub": "baseball",
    "who": "Kevin McGonigle",
-   "why": "A kid's homemade 'McGonigoggles' get the best view of a rookie's home run.",
+   "why": "A kid's homemade McGonigoggles get the best view of a rookie's home run.",
    "post_title": "This young fan brought custom-made \u201cMcGonigoggles\u201d to the ballpark in June andn they got the best view of Rookie of the Year Kevin McGonigle\u2019s home run",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/baseball/comments/1xscovn/this_young_fan_brought_custommade_mcgonigoggles/",
@@ -515,224 +213,18 @@
    "skipped": "too short: the post runs 12.1s (< 15s)"
   },
   {
-   "sub": "baseball",
-   "who": "Rich Hill",
-   "why": "Rich Hill tries to name every team he's played for in order.",
-   "post_title": "[MLB Network] Rich Hill being asked to name the teams he played for in order",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xqswwg/mlb_network_rich_hill_being_asked_to_name_the/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xqswwg/mlb_network_rich_hill_being_asked_to_name_the",
-   "skipped": "render failed: JSONDecodeError: Extra data: line 3 column 1 (char 244)"
-  },
-  {
-   "sub": "CFB",
-   "who": "Bret Bielema",
-   "why": "Bielema complains his 6-3 team would rank top 15 in the SEC.",
-   "post_title": "[Scott Richey] Bret Bielema: \u201cWe're 6-3 and beat another 5-3 team. If we were in the SEC we'd be a top 15 team.\u201d",
-   "upvotes": 0,
-   "url": "https://x.com/srrichey/status/2118931117210243182?a=0uRJSEnBI_1sDzi7pyc&s=46",
-   "topic": "https://www.reddit.com/r/CFB/comments/1xq8psr/scott_richey_bret_bielema_were_63_and_beat",
-   "skipped": "download failed"
-  },
-  {
-   "sub": "CollegeBasketball",
-   "who": "College basketball announcers",
-   "why": "Announcers seriously wonder whether polar bears could be motivated by soft pretzels.",
-   "post_title": "The announcers wonder if polar bears are fast and ponder if they could be motivated by soft pretzels",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xt7d7r/the_announcers_wonder_if_polar_bears_are_fast_and/",
-   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xt7d7r/the_announcers_wonder_if_polar_bears_are_fast_and",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "MMA",
-   "who": "Andrei Arlovski",
-   "why": "Arlovski jokes 'He's dead and I am alive' about losing to Rumble Johnson.",
-   "post_title": "Andrei Arlovski on losing to Anthony 'Rumble' Johnson: \"I am winner anyway. He's dead and I am alive.\" Arlovski says 'Rumble' broke his jaw in two places in the first round. Johnson won by decision.",
-   "upvotes": 0,
-   "url": "https://x.com/Home_of_Fight/status/2119131737674363119",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xqgjci/andrei_arlovski_on_losing_to_anthony_rumble",
-   "title": "Andrei Arlovski Fought Two Rounds With A Broken Jaw And Still Says He Won",
-   "hook": "Arlovski fought on with a broken jaw \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@20.33"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "split",
-     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
-     "shots": [
-      {
-       "mode": "split",
-       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.124,
-      0.103,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 2,
-     "face_bands": [
-      [
-       0.022,
-       0.268
-      ],
-      [
-       0.5,
-       0.689
-      ]
-     ]
-    },
-    "outro": {
-     "song": "legacy",
-     "grade": "clean",
-     "shots": [
-      "https://www.youtube.com/watch?v=-WM_jF5xpGQ",
-      "https://www.youtube.com/watch?v=-WM_jF5xpGQ",
-      "https://www.youtube.com/watch?v=-WM_jF5xpGQ",
-      "https://www.youtube.com/watch?v=GFaJkAfpdaU",
-      "https://www.youtube.com/watch?v=GFaJkAfpdaU",
-      "https://www.youtube.com/watch?v=a8okBgnUz-0",
-      "https://www.youtube.com/watch?v=t1b0DbITWE4"
-     ],
-     "secs": 16.8
-    },
-    "cut_in": [
-     "Andrei Arlovski, Anthony Johnson@5.31"
-    ],
-    "shown": [],
-    "music": [
-     {
-      "track": "ncs:018563ec-10f8-44ab-b46c-e05b7cb20749",
-      "credit": "Song: Tatsunoshin, fawlin - Sunrise (feat. fawlin)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/TS_sunrise"
-     }
-    ]
-   },
-   "repairs": [
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: A repost-of-a-repost: the Arlovski podcast bit works, but half the runtime is a Bandicam recording of the wrong fight and a fading Johnson still, and the 'he's dead and I am alive' payoff never lands."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A repost-of-a-repost: the Arlovski podcast bit works, but half the runtime is a Bandicam recording of the wrong fight and a fading Johnson still, and the 'he's dead and I am alive' payoff never lands.",
-    "score": 62
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A repost-of-a-repost: the Arlovski podcast bit works, but half the runtime is a Bandicam recording of the wrong fight and a fading Johnson still, and the 'he's dead and I am alive' payoff never lands."
-  },
-  {
-   "sub": "MMA",
-   "who": "Cris Cyborg",
-   "why": "Cyborg looks back on her loss to Nunes before the Harrison vs Nunes fight.",
-   "post_title": "Cris Cyborg reflects on her loss to Amanda Nunes: \"More than 7 years later, I\u2019m 18-0 since that night. Looking back, I\u2019m grateful for the lessons that made me stronger. I\u2019m excited to watch Kayla vs A",
-   "upvotes": 0,
-   "url": "https://streamable.com/knkls5",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xs4yxx/cris_cyborg_reflects_on_her_loss_to_amanda_nunes",
-   "title": "Amanda Nunes Drops Cris Cyborg Hard In Their Fight",
-   "hook": "Nunes drops Cyborg and the ref steps in \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@0.67"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "4 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 3.97,
-       "reason": "the framer: Nunes standing over Cyborg on the mat, grappling at cols 6-9. Cols 0-4 are a text overlay.",
-       "crop": [
-        810,
-        1080,
-        1110,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 3.97,
-       "t1": 8.4,
-       "reason": "the framer: Cyborg at cols 5-6 and Nunes at cols 8-9 face each other, too far apart for a tall crop. (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 8.4,
-       "t1": 11.4,
-       "reason": "the framer: Cyborg's face and Nunes' back, both fighters close together in cols 6-8.",
-       "crop": [
-        608,
-        1080,
-        1136,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 11.4,
-       "t1": 17.33,
-       "reason": "the framer: Nunes at cols 5-7 and Cyborg's face at cols 9. They are too far apart to crop. (whole frame)",
-       "crop": null
-      }
-     ],
-     "subtitle_spans": [
-      0.346,
-      0.346,
-      0.346,
-      0.346,
-      0.346
-     ],
-     "n_subjects": 0,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": [
-     {
-      "track": "ncs:da612e5c-1614-49be-9988-b7c2c6c64bf3",
-      "credit": "Song: Pasha, Carlos Ukareda, VALLO, NCT, Cartoon - Around Us (ft. Pasha & Carlos Ukareda)\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/AroundUs"
-     }
-    ]
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: Real knockdown footage, but most of it is a tiny embed beside an unreadable tweet over blur, and the title wrongly says Cyborg stayed in the fight when the referee stops it."
-    },
-    {
-     "score": 70,
-     "reason": "showrunner BLOCK: The hook footage is real and fits the line, but over half the video, including the knockout and the ref stepping in, plays as a tiny inset beside a tweet screenshot over blurred filler."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The hook footage is real and fits the line, but over half the video, including the knockout and the ref stepping in, plays as a tiny inset beside a tweet screenshot over blurred filler.",
-    "score": 70
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The hook footage is real and fits the line, but over half the video, including the knockout and the ref stepping in, plays as a tiny inset beside a tweet screenshot over blurred filler."
-  },
-  {
    "sub": "hockey",
-   "who": "Leafs vs Habs referee",
-   "why": "A ref pulls an apple out of his pocket mid-game.",
-   "post_title": "Ref pulls an apple? out of his pocket during the Leafs vs Habs game",
+   "who": "Sidney Crosby",
+   "why": "Crosby is harsh on Celebrini during a faceoff.",
+   "post_title": "Clip of Crosby being harsh on Celebrini during a face-off last night.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xqmh4b/ref_pulls_an_apple_out_of_his_pocket_during_the/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xqmh4b/ref_pulls_an_apple_out_of_his_pocket_during_the",
-   "skipped": "too short: the post runs 5.6s (< 15s)"
+   "url": "https://www.reddit.com/r/hockey/comments/1xuplkq/clip_of_crosby_being_harsh_on_celebrini_during_a/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xuplkq/clip_of_crosby_being_harsh_on_celebrini_during_a",
+   "skipped": "too short: the post runs 12.9s (< 15s)"
   }
  ],
- "already_today": 0,
- "pool": 130,
- "already_posted": 13,
- "shipped": 3
+ "already_today": 3,
+ "pool": 115,
+ "already_posted": 12,
+ "shipped": 1
 }
