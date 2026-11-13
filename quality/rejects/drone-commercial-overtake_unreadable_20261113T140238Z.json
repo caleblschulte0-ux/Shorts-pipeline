@@ -1,0 +1,16 @@
+{
+ "slug": "drone-commercial-overtake",
+ "ts": "20261113T140238Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start: the caption \"837,513. The shared\" is a faint ghost on the sand and cannot be read. seg3:start and seg3:mid: drones fly across the headline \"11,300 a month\" and its subtitle (\"2024\" and \"new\" are covered).",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:start shows a drone over \"2024\" in the subtitle. seg3:mid shows one drone crossing the \"h\" of \"month\" and another covering \"new\" in \"new US drone registrations\".",
+  "root_cause": "The ambient delivery drones fly through the headline band at the top of the frame, and nothing keeps them out of the text area.",
+  "repair_goal": "Keep the flying drones out of the headline and subtitle region, for example by routing them below y\u2248260 or by drawing the text above them on a clear band, so that \"11,300 a month\" and its subtitle stay unobstructed for the whole beat."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

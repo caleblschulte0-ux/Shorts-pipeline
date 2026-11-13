@@ -1,0 +1,16 @@
+{
+ "slug": "a-language-dies-every-2-weeks",
+ "ts": "20261113T140238Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In hook@0.3 to seg0:end, the small subtitle 'everything they knew goes with them' is thin dark text on a beige wall. Its last word overlaps the row of letter tiles above the chalkboard, so on a phone it collides with the tiles and is hard to read.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable",
+  "visible_evidence": "In hook@0.3 to seg0:end, the subtitle under 'The last speaker' is small, low-contrast and runs into the tile row above the chalkboard. The word 'them' sits on top of a tile.",
+  "root_cause": "The subtitle's baseline is placed against the tile strip with no clearance. Its type is too small and too low-contrast for the beige wall.",
+  "repair_goal": "Move the subtitle clear of the tile row, or drop it, since the caption already says the line. If it stays, set it larger in ink colour with clearance above the tiles. Keep the chalkboard erase as the hook action."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

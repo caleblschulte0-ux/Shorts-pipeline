@@ -1,0 +1,16 @@
+{
+ "slug": "earth-rotation-speeding-up",
+ "ts": "20261113T140238Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end the '60% no change' label runs into '...leap second by 2035' and reads as '2035no change'. In seg1:start the caption 'beating the last.' is faint grey on the brown floor, and in seg2:start the caption under the bench ('to our clocks') almost disappears.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start-end: Data stands beside a prize wheel and points while the wheel turns by itself. The '60% no change' label collides with the 40% subtitle at seg3:end.",
+  "root_cause": "The wheel is a stock probability machine with no one causing it to spin. Its second label was placed without measuring its width against the first one.",
+  "repair_goal": "Have Data grab the wheel's handles and spin it, so it comes to rest on the 40% 'remove a second' wedge. Put the 60% label on its own line away from the subtitle, or drop it so the frame shows one number."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
