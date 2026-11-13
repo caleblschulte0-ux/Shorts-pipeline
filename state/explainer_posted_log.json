@@ -5411,6 +5411,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 24.9
+    },
+    "a-language-dies-every-2-weeks": {
+      "claimed_at": "2026-11-13T14:01:58.272972+00:00",
+      "title": "A Language Goes Extinct Every 2 Weeks",
+      "publish_at": "2026-11-14T05:03:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6958,6 +6965,14 @@
       "state": "posted",
       "slug": "drone-commercial-overtake",
       "at": "2026-11-13T12:53:41.348482+00:00"
+    },
+    {
+      "claimed_at": "2026-11-13T14:01:58.272972+00:00",
+      "title": "A Language Goes Extinct Every 2 Weeks",
+      "publish_at": "2026-11-14T05:03:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "a-language-dies-every-2-weeks"
     }
   ]
 }
