@@ -2,76 +2,102 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 6,
+   "count": 9,
    "stories": {
+    "sports_jameis_winston_says_who_let": 1,
+    "sports_andrei_arlovski_thony_rumble": 1,
     "sports_cris_cyborg_amanda_nunes": 1,
-    "sports_tyler_shough_barion_brown": 3,
-    "sports_elly_de_la_cruz_rds_with_his": 1,
-    "maternal-mortality-pandemic-reversal": 1
+    "earth-rotation-speeding-up": 1,
+    "naep-math-pandemic-drop": 1,
+    "drone-commercial-overtake": 2,
+    "a-language-dies-every-2-weeks": 1,
+    "sports_jameis_winston_let_the_dogs": 1
    },
    "timestamps": [
-    "2026-11-12T11:54:39+00:00",
-    "2026-11-12T12:11:41+00:00",
-    "2026-11-12T12:16:15+00:00",
-    "2026-11-12T12:20:41+00:00",
-    "2026-11-12T12:38:17+00:00",
-    "2026-11-12T17:58:28+00:00"
+    "2026-11-13T13:14:46+00:00",
+    "2026-11-13T13:32:09+00:00",
+    "2026-11-13T13:39:02+00:00",
+    "2026-11-13T10:21:49+00:00",
+    "2026-11-13T11:00:25+00:00",
+    "2026-11-13T12:27:09+00:00",
+    "2026-11-13T12:53:27+00:00",
+    "2026-11-13T14:01:56+00:00",
+    "2026-11-13T15:49:38+00:00"
    ],
    "examples": [
-    "unreadable: In mid1/mid2 the tweet text in the inset is far too small to read on a phone, and it is the context the clip relies on. The on-screen line itself is readable, but by payoff@-0.4 it sits di",
-    "unreadable: In mid4 and mid5 our two-line hook sits right on top of the footage's own burned-in captions. 'Brown after fumble' touches 'But right now,' / 'who cares.', and on a phone the two blocks re",
-    "unreadable: hook@0.3 to mid0: our line 'Shough to Brown / after his fumble' sits right on top of the footage's own burned-in captions ('And now Brown lost the football.', 'And Cleveland has it.'). The"
+    "unreadable: Our word captions are printed directly over the broadcast scorebug in every frame. 'HERE WE GO.' sits on the WAS/NYG score bar in hook@0.3, 'GOT IT!' covers the 17-21 score in hook@2.2, 'W",
+    "unreadable: The footage burns in its own caption ('HE BROKE MY', 'JOINT TWO PLACES') right above our line in hook@0.3-mid1, so two caption tracks fight. The payoff@-0.4 fade dims our line to low contr",
+    "unreadable: In mid1 through payoff@-0.4 the embedded tweet text (CrisCyborg's post) is tiny and cannot be read on a phone. Our hook line is readable."
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 5,
+   "count": 6,
    "stories": {
-    "sports_cris_cyborg_amanda_nunes": 1,
     "sports_andrei_arlovski_thony_rumble": 1,
-    "sports_luka_doncic__tonight_you": 2,
-    "sports_kirk_cousins_ns_leads_the": 1
+    "sports_cris_cyborg_amanda_nunes": 2,
+    "sports_dirk_nowitzki_ons_of_jalen": 3
    },
    "timestamps": [
-    "2026-11-12T11:54:39+00:00",
-    "2026-11-12T12:07:06+00:00",
-    "2026-11-12T12:31:03+00:00",
-    "2026-11-12T12:33:21+00:00",
-    "2026-11-12T12:47:19+00:00"
+    "2026-11-13T13:32:09+00:00",
+    "2026-11-13T13:39:02+00:00",
+    "2026-11-13T13:47:35+00:00",
+    "2026-11-13T15:05:03+00:00",
+    "2026-11-13T15:24:41+00:00",
+    "2026-11-13T15:44:13+00:00"
    ],
    "examples": [
-    "junk_imagery: mid1/mid2 are a screenshot of Cyborg's tweet beside a small inset of fight footage, which is a reposted post with a video inside a video. mid3, mid5 and payoff@-0.4 show Cyborg winning o",
-    "junk_imagery: mid3-payoff@-0.4 show a greyscale Rumble Johnson knockout highlight reel against other opponents. mid4 has a bald fighter who is not Arlovski, and payoff@-0.4 has a fighter laid out flat",
-    "junk_imagery: mid3 (12.24s): the crop leaves Luka half out of frame at the left edge, his face sliced off, while the frame is mostly empty crowd and floor. mid1 (5.75s): the letterbox band cuts across"
+    "junk_imagery: mid3 (t=23.90s) is a Bandicam screen-recording of a BT Sport broadcast, a video inside a video, and it shows Johnson fighting a blond fighter, not Arlovski. The footage does not show the",
+    "junk_imagery: mid1, mid2, mid4 and payoff@-0.4 show a screenshot of a social post (a tweet beside a small fight clip) laid over a blurred copy of itself. That is a video inside a video, not the moment",
+    "junk_imagery: mid1, mid2, mid4, mid5, payoff@-1.8 and payoff@-0.4 are a video inside a video. The Reddit post's tweet screenshot sits on the left and the fight clip is a small inset, about 55% of the "
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 2,
+   "count": 4,
    "stories": {
-    "sports_cris_cyborg_amanda_nunes": 1,
-    "sports_andrei_arlovski_thony_rumble": 1
+    "sports_cris_cyborg_amanda_nunes": 2,
+    "sports_dirk_nowitzki_ons_of_jalen": 2
    },
    "timestamps": [
-    "2026-11-12T11:54:39+00:00",
-    "2026-11-12T12:07:06+00:00"
+    "2026-11-13T13:39:02+00:00",
+    "2026-11-13T13:47:35+00:00",
+    "2026-11-13T15:24:41+00:00",
+    "2026-11-13T15:44:13+00:00"
    ],
    "examples": [
-    "empty_void: In mid1 through payoff@-0.4 the footage is a small letterboxed strip in the middle third, with blurred or darkened copies filling the top and bottom thirds. In mid1/mid2 the bottom 40% is ",
-    "empty_void: mid3-payoff@-0.4: the footage is a letterbox strip in the middle third with large blurred, darkened bands above and below. payoff@-0.4 is mostly near-black."
+    "empty_void: In mid1, mid2, mid4, mid5 and payoff@-0.4 the real footage fills only about a quarter of the frame. The top and bottom thirds are blurred, dark filler.",
+    "empty_void: In mid1, mid4, mid5 and both payoff frames, roughly 65% of the frame is blurred dead fill above and below the small tweet+clip composite. The only real content is a band in the middle.",
+    "empty_void: hook@0.3\u2013mid0: about half the frame is a still table, plant and hand that never changes. mid4\u2013payoff: the game footage is a thin band with blurred filler above and below."
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 1,
+   "count": 2,
    "stories": {
-    "bat-fungus-collapse": 1
+    "earth-rotation-speeding-up": 1,
+    "drone-commercial-overtake": 1
    },
    "timestamps": [
-    "2026-11-12T16:42:08+00:00"
+    "2026-11-13T10:21:49+00:00",
+    "2026-11-13T12:27:09+00:00"
    ],
    "examples": [
-    "decorative_mascot: Only seg1 has Data doing the action, stamping fungus onto map bats (seg1:mid). In seg2:start through seg2:end he stands on the ladder with his hands up while the bats vanish without"
+    "decorative_mascot: seg3:start/mid/end: Data stands beside the prize wheel, smiling or pointing, and never spins it. In seg0/seg1 he holds a hand wheel on the telescope, but nothing visibly turns or ch",
+    "decorative_mascot: Data waves or stands beside the drone line in seg0:start, seg1:start and seg1:end, and stands with folded arms in seg2:end and payoff@-0.4. Only in seg3 does he pull the door chain,"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "earth-rotation-speeding-up": 1
+   },
+   "timestamps": [
+    "2026-11-13T10:21:49+00:00"
+   ],
+   "examples": [
+    "dead_air: hook@0.3 through seg1:end (0.3-9.4s) is the same telescope shot for about 9 seconds. Only the star-trail swirl and the label change (1.66 to 1.59 to 1.66 ms), and seg0 and seg1 look almost t"
    ],
    "recurred_after_fix": false
   }
@@ -84,7 +110,7 @@
   },
   "data_demo": {
    "median": 3,
-   "min": 1,
+   "min": 2,
    "max": 4
   },
   "mascot": {
@@ -104,7 +130,7 @@
   },
   "payoff": {
    "median": 1,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "temporal_craft": {
@@ -114,25 +140,25 @@
   }
  },
  "scores": [
-  58,
-  57,
+  87,
+  70,
+  62,
+  62,
+  66,
+  70,
+  61,
   74,
-  82,
-  70,
-  70,
-  66,
-  66,
-  57,
+  75,
   79,
-  87,
-  70,
+  65,
   74,
-  87,
-  66,
+  79,
+  70,
+  57,
   66,
   70,
-  74,
-  70,
-  74
+  62,
+  83,
+  83
  ]
 }
