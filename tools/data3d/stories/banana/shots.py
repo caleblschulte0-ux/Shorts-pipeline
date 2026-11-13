@@ -144,18 +144,24 @@ def shot1():
     data.pb["spine"].rotation_euler = (0, 0, 0); bpy.context.view_layer.update()
     # judge 62: "the recoil never happens ... a slight lean": a BIG jerk on impact that overshoots and settles, and a
     # fresh flinch on every finger that goes, so nothing holds still after the payoff
-    lean = [(0.0, 0, 0), (T_REC, 0, 0), (T_REC + 0.13, 25, 17), (T_REC + 0.45, 19, 12),
+    lean = [(0.0, 0, 0), (T_REC, 0, 0), (T_REC + 0.12, 30, 21), (T_REC + 0.45, 21, 14),
             (T_DROP2 + 0.12, 18, 12), (T_FL2 + 0.13, 27, 19), (T_FL2 + 0.45, 21, 14),
             (T_DROP3 + 0.1, 20, 13), (T_DROP3 + 0.25, 26, 18), (T_DROP3 + 0.55, 22, 15), (DUR, 22, 15)]
     for t_, b_, s_ in lean:
         data._k("spine", t_, rot=(BK * b_, 0, SD * s_)); data._k("chest", t_, rot=(BK * b_ * 0.45, 0, SD * s_ * 0.45))
     REACH = 0.995 * (data.U + data.Fo)
     out = lambda t: ease((t - T_REC) / 0.26)
-    def hand_off(s_, c):
-        sx = -1 if sh0[s_].x < mid.x else 1
-        return c + Vector((sx * 0.05 - 0.01, 0.02, -0.04 if sx > 0 else -0.01))
     # the fan spread flat to the lens so every finger is its own shape (fingers at the lens fanned into one blob)
     tilt = lambda t: Vector((math.radians(90), math.radians(-38 - 10 * out(t)), 0))
+    # judge 48: "hands are round blobs crossed over the chest ... next to the fruit, not holding it": one hand closes on
+    # the CROWN (the stem end), the other cups the fingers from behind, and each hand takes the point on ITS OWN side
+    from mathutils import Euler
+    S_LO = "L" if sh0["L"].x < sh0["R"].x else "R"
+    def hand_off(s_, c, t):
+        R_ = Euler(tuple(tilt(t)), 'XYZ').to_matrix()
+        a_ = c + R_ @ Vector((-0.03, 0.0, -0.012)); b_ = c + R_ @ Vector((0.09, 0.0, -0.035))
+        lo_, hi_ = (a_, b_) if a_.x <= b_.x else (b_, a_)
+        return lo_ if s_ == S_LO else hi_
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
         sh = {s_: acts._shoulder(data, s_) for s_ in "LR"}
@@ -165,7 +171,7 @@ def shot1():
         for _ in range(10):                                            # held at his reach, never past it
             worst = None
             for s_ in "LR":
-                d_ = hand_off(s_, c) - sh[s_]
+                d_ = hand_off(s_, c, t) - sh[s_]
                 if d_.length > REACH and (worst is None or d_.length - REACH > worst[0]): worst = (d_.length - REACH, d_)
             if worst is None: break
             c = c - worst[1].normalized() * (worst[0] + 1e-4)
@@ -173,18 +179,28 @@ def shot1():
         hero.rotation_euler = tuple(tilt(t) + Vector((0.035 * math.sin(2 * math.pi * 7 * t), 0, 0)) * shake)
         hero.keyframe_insert("rotation_euler", frame=f)
         for s_ in "LR":
-            data._arm_ik(s_, hand_off(s_, c), t, 0.4)
+            data._arm_ik(s_, hand_off(s_, c, t), t, 0.4)
     # the rot: a clean bright bunch on frame one, patches spreading all through the shot (it never stops)
+    # judge 48: "the rot runs backwards" (black at 2.4 s, spotted again after): hm.copy() SHARED the bunch's action, so
+    # every fallen finger's keys were written into the bunch's own curve. Now ONE forward-only curve that ends fully
+    # black, and every copy gets its own action.
+    ROT = ((0.0, 0.1), (0.15, 0.12), (T_DROP, 0.40), (T_DROP2, 0.47), (T_DROP3, 0.56), (DUR, 0.64))
+    def rot_at(t):
+        for (ta, va), (tb, vb) in zip(ROT, ROT[1:]):
+            if t <= tb: return va + (vb - va) * max(0.0, t - ta) / max(1e-6, tb - ta)
+        return ROT[-1][1]
     rv = PR.rot_node(hm)
-    for t_, v_ in ((0.0, 0.1), (0.15, 0.12), (T_DROP, 0.45), (T_FL2, 0.56), (DUR, 0.64)):
+    for t_, v_ in ROT:
         rv.default_value = v_; rv.keyframe_insert("default_value", frame=F(t_))
     # judge 62: "the dropped banana lands as a large dark log ... a sausage": a finger that has left the bunch stops
     # rotting where it was, so it lies on the table a spotted YELLOW banana, not a black slug (own material per object)
     def own_rot(fo, t_hold):
         try:
-            m_ = hm.copy(); rv_ = PR.rot_node(m_)
-            hold = min(0.42, 0.1 + 0.32 * t_hold / T_DROP)
-            for t_, v_ in ((0.0, 0.1), (0.15, 0.12), (t_hold, hold), (DUR, hold)):
+            m_ = hm.copy()
+            if m_.node_tree.animation_data: m_.node_tree.animation_data_clear()
+            rv_ = PR.rot_node(m_)
+            hold = rot_at(t_hold)
+            for t_, v_ in [k_ for k_ in ROT if k_[0] < t_hold - 0.02] + [(t_hold, hold), (DUR, hold + 0.04)]:
                 rv_.default_value = v_; rv_.keyframe_insert("default_value", frame=F(t_))
             sl_ = fo.material_slots[0]; sl_.link = 'OBJECT'; sl_.material = m_
         except (KeyError, AttributeError, IndexError, TypeError, RuntimeError):
@@ -199,8 +215,9 @@ def shot1():
             e_ = M_.to_euler('XYZ', prev) if prev else M_.to_euler('XYZ'); prev = e_
             fo.location = M_.translation; fo.rotation_euler = e_
             fo.keyframe_insert("location", frame=f); fo.keyframe_insert("rotation_euler", frame=f)
-    f2, f3 = fingers[3], fingers[5]
-    bake(f2, T_DROP2); bake(f3, T_DROP3)
+    # only two fingers go: a third appearing on the table read as a pile that "came from nowhere" (judge 48)
+    f2 = fingers[3]
+    bake(f2, T_DROP2)
     def bunch_at(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update(); return hero.matrix_world.translation.copy()
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -212,7 +229,7 @@ def shot1():
     data.look_at(bunch_at(T_DROP2) + Vector((0, 0, 0.05)), T_DROP2 + 0.05, max_yaw=30)      # another one goes
     data.look_at((-0.45, -1.7, 0.78), T_FL2 + 0.12, max_yaw=30)                             # he turns his face away
     data.look_at(US, T_BACK, max_yaw=30)                                                   # back to us
-    data.look_at(bunch_at(T_DROP3) + Vector((0, 0, 0.05)), T_DROP3 + 0.05, max_yaw=30)      # and ANOTHER goes
+    data.look_at(bunch_at(T_DROP3) + Vector((0, 0, 0.05)), T_DROP3 + 0.05, max_yaw=30)      # it has gone all black
     data.look_at(US, T_END, max_yaw=30)                                                    # to us, alarmed, to the end
     data.expression("worried", 0.45)
     data.expression("alarmed", T_REC, blend=0.08)
@@ -225,16 +242,22 @@ def shot1():
     data.finish()
     # judge 62: the first finger landed "across the table at his waist, hiding his lower body": every finger now pops
     # off toward image right, the side the bunch is held out to, clear of his body, with a visible bounce
-    own_rot(fingers[0], T_DROP); own_rot(f2, T_DROP2); own_rot(f3, T_DROP3)
-    drop(fingers[0], T_DROP, TABLE_H + 0.034, kick=(0.45, -0.1, 1.0), spin=(2, 0.5, 4), bounce=0.45)
-    drop(f2, T_DROP2, TABLE_H + 0.034, kick=(0.15, -0.08, 0.7), spin=(-2, 0.4, 3), bounce=0.45)
-    drop(f3, T_DROP3, TABLE_H + 0.034, kick=(0.25, -0.06, 0.8), spin=(2, -0.4, 3), bounce=0.45)
+    # judge 48: "never seen dropping ... only after it has landed": it pops UP off the bunch first, so the fall lasts
+    # about half a second (several sampled frames mid-air) and lands with a bounce. And "twice the size of the bananas
+    # still in the bunch" (it lies broadside, nearer the lens): it eases to the bunch's apparent size as it falls.
+    own_rot(fingers[0], T_DROP); own_rot(f2, T_DROP2)
+    drop(fingers[0], T_DROP, TABLE_H + 0.034, kick=(0.3, -0.15, 1.7), spin=(2, 0.5, 3), bounce=0.45)
+    drop(f2, T_DROP2, TABLE_H + 0.034, kick=(-0.1, -0.05, 1.5), spin=(-2, 0.4, 3), bounce=0.45)
+    for fo, t_go in ((fingers[0], T_DROP), (f2, T_DROP2)):
+        for t_, k_ in ((0.0, 1.0), (t_go, 1.0), (t_go + 0.4, 0.78), (DUR, 0.78)):
+            fo.scale = (k_, k_, k_); fo.keyframe_insert("scale", frame=F(t_))
     soft_key("bunch key", (0.5, -1.0, 0.9), tuple(P0), energy=24, size=26)
     # a medium close (30 mm) that JOLTS in 5 cm with his recoil (the camera reacts with him), then holds
-    C0, LK = Vector((0.05, -1.0, 0.66)), Vector((mid.x + 0.02, -0.1, 0.51))
-    cam = K.camera(tuple(C0), tuple(LK), lens=30, fstop=3.2)
+    # judge 48: "frame a little tighter ... the large empty counter in the bottom third does nothing"
+    C0, LK = Vector((0.05, -1.0, 0.68)), Vector((mid.x + 0.03, -0.1, 0.55))
+    cam = K.camera(tuple(C0), tuple(LK), lens=34, fstop=3.2)
     camera_path(cam, lambda t: (C0 + Vector((0, 0.05 * ease((t - T_REC) / 0.2), 0)), LK, P0))
-    rest_f = [fo for k, fo in enumerate(fingers) if k not in (0, 3, 5)]
+    rest_f = [fo for k, fo in enumerate(fingers) if k not in (0, 3)]
     return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("hero bunch",),
                 conseq=[("the bunch goes black in his hands", rest_f, 0.0, T_DROP2),
                         ("a finger drops onto the table", [fingers[0]], T_DROP, DUR),
@@ -297,42 +320,77 @@ def shot2():
     the same swing; on "what kills one can kill them all" the rot starts on the bunch under his hand and jumps from
     bunch to bunch down the row, ending on the whole row black. (Judge, takes 2-6: the row behind him read as "tiny
     yellow shapes in the background", his hand pushed air, he hugged the frame edge.)"""
+    # take 8 (judge 50): "the left frame edge cuts off Data's head", "no bunch visibly swings", "the rail is small and
+    # only four bunches show", "the sign is small and partly hidden", "his hand behind the stanchion", "a neutral hold
+    # after the rot". Now SIX bunches 0.3 m apart run from his right hand back into depth at ~30 deg to the lens, so a
+    # swing ACROSS the rail is a big left-right swing on the phone; he stands centre-left with his whole head in frame;
+    # the near post moves back between hooks 0 and 1; the sign is big, square to the lens, hung over the row; the rot
+    # runs down the row in the swing's order; he shrugs to us at the end.
     where = place("warehouse")
-    R0, YAW = (0.0, -1.08), 50                      # from beside him, straight away from the lens and a little right
-    DP, DROT = Vector((-0.22, -0.84, 0)), 18          # beside the near end, turned a little to it, face to the lens
-    T_PUSH, T_BLIGHT = 1.1, DUR * 0.52
-    mats = [PR.skin_mat(f"rail {k}") for k in range(4)]
-    rows = rail_row(lambda k: mats[k], sticker=False, r0=R0, yaw=YAW, n=4, length=0.66, L=0.19)   # four big copies, all in frame   # the sticker read as a blue ball under each bunch
+    N2, LEN2, YAW = 6, 1.8, 56                         # six hooks 0.3 m apart, back and right, ~30 deg off the lens axis
+    SP = LEN2 / N2
+    DP, DROT = Vector((-0.12, -0.86, 0)), 18           # centre-left, turned a little to the rail, face to the lens
+    D = Vector((math.cos(math.radians(YAW)), math.sin(math.radians(YAW)), 0))
+    LEFT = Vector((-D.y, D.x, 0))                      # the side of the rail he stands on
+    HOOK0 = DP + Vector((0.31, -0.04, 0))
+    R0 = (HOOK0.x - D.x * SP / 2, HOOK0.y - D.y * SP / 2)
+    T_PUSH, STEP_SW = 1.1, 0.28
+    T_BLIGHT, STEP_ROT = DUR * 0.5, 0.36
+    mats = [PR.skin_mat(f"rail {k}") for k in range(N2)]
+    rows = rail_row(lambda k: mats[k], sticker=False, r0=R0, yaw=YAW, n=N2, length=LEN2, L=0.22)
+    bpy.context.view_layer.update()
+    for nm in ("banana rail post", "banana rail foot"):   # the near post: back between hooks 0 and 1, clear of his hand
+        ps = [o for o in bpy.data.objects if o.name.startswith(nm)]
+        if ps:
+            near = min(ps, key=lambda o: (o.matrix_world.translation.xy - Vector(R0)).length)
+            near.matrix_world = Matrix.Translation(D * (SP + 0.03)) @ near.matrix_world
+    SIGN = Vector((R0[0], R0[1], 0)) + D * (LEN2 * 0.42) + Vector((0, 0, RAIL_Z + 0.3))
+    SYAW = math.radians(4); RS = Matrix.Rotation(SYAW, 3, 'Z'); SS = 1.6
+    sg = bpy.data.objects.get("rail sign"); st = bpy.data.objects.get("rail sign text")
+    if sg:
+        sg.location = SIGN; sg.rotation_euler = (0, 0, SYAW); sg.scale = (SS, SS, SS)
+    if st:
+        st.location = SIGN + RS @ Vector((0, -0.0075 * SS - 0.002, 0)); st.rotation_euler = (math.radians(90), 0, SYAW)
+        st.scale = (SS, SS, SS)
+    wires = sorted([o for o in bpy.data.objects if o.name.startswith("sign wire")], key=lambda o: o.name)
+    for j, o in enumerate(wires):                       # hung from above on two long wires, out of the top of frame
+        o.location = SIGN + RS @ Vector(((-1 if j == 0 else 1) * 0.3, 0, 0)) + Vector((0, 0, 0.09 + 1.0))
+        o.scale = (1, 1, 20)
+    # the swing: big, slow to die, each bunch in turn, first AWAY from him (to the lens' right)
     for k, (p, sw, root, fingers) in enumerate(rows):
-        PR.swing(sw, T_PUSH + 0.2 * k, amp_deg=30, period=1.0, tau=1.6, nf=NF, across=True)
-        PR.rot(mats[k], T_BLIGHT + 0.45 * k, T_BLIGHT + 0.45 * k + 0.8, to=0.62)
+        PR.swing(sw, T_PUSH + STEP_SW * k, amp_deg=-42, period=1.1, tau=2.0, nf=NF, across=True)
+        PR.rot(mats[k], T_BLIGHT + STEP_ROT * k, T_BLIGHT + STEP_ROT * k + 0.7, to=0.62)
     data = load_data()
     data.place(DP.x, DP.y, DROT)
     sc.frame_set(1); bpy.context.view_layer.update()
     side = near_hand(data, rows[0][0])
     def on_bunch(t):                                  # the side of the first bunch that faces him, at its middle
         sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return rows[0][2].matrix_world.translation + Vector((-0.06, 0.0, -0.09))
-    reach(data, side, lambda t: on_bunch(max(t, T_PUSH - 0.05)), T_PUSH - 0.5, T_PUSH + 0.3, lead=0.45, elbow_out=0.35)
-    reach(data, side, lambda t: on_bunch(max(t, T_BLIGHT - 0.05)), T_BLIGHT - 0.5, T_BLIGHT + 0.25, lead=0.4, elbow_out=0.35)   # he touches it again: the rot starts under his hand
+        return rows[0][2].matrix_world.translation + LEFT * 0.06 + Vector((0, 0, -0.1))
+    reach(data, side, lambda t: on_bunch(max(t, T_PUSH - 0.05)), T_PUSH - 0.5, T_PUSH + 0.28, lead=0.45, elbow_out=0.35)
+    reach(data, side, lambda t: on_bunch(max(t, T_BLIGHT - 0.05)), T_BLIGHT - 0.5, T_BLIGHT + 0.2, lead=0.4, elbow_out=0.35)   # he touches it again: the rot starts under his hand
+    C0, C1 = Vector((0.05, -2.0, 0.7)), Vector((0.08, -1.88, 0.68))   # down the row: Data centre-left, six bunches into depth
+    LK = Vector((0.15, -0.5, 0.42))
+    US = tuple(C0)
     data.look_at(rows[0][0] + Vector((0, 0, -0.1)), 0.3, max_yaw=38)
-    data.look_at(rows[3][0], T_PUSH + 0.5, max_yaw=38)                 # the swing running away down the row
-    data.look_at((DP.x + 0.1, -2.2, 0.75), T_PUSH + 1.5, max_yaw=25)    # to us: all the same plant
+    data.look_at(rows[N2 - 1][0], T_PUSH + 0.6, max_yaw=38)                # the swing running away down the row
+    data.look_at(US, T_PUSH + 1.7, max_yaw=25)    # to us: all the same plant
     data.look_at(rows[0][0] + Vector((0, 0, -0.1)), T_BLIGHT - 0.2, max_yaw=38)
-    data.look_at(rows[3][0], T_BLIGHT + 1.0, max_yaw=38)               # it runs away from him down the row
-    data.look_at((DP.x + 0.1, -2.2, 0.75), DUR - 1.0, max_yaw=25)      # to us: all of them
+    data.look_at(rows[N2 - 1][0], T_BLIGHT + 1.2, max_yaw=38)               # it runs away from him down the row
+    data.look_at(US, DUR - 1.1, max_yaw=25)                           # to us: all of them
     data.idle(0.0, DUR)
+    data.act("shrug", DUR - 0.95, dur=0.28, hold=0.45)                # nothing to be done: no dead hold after the rot
     data.expression("happy", 0.2, T_BLIGHT - 0.3)
     data.expression("alarmed", T_BLIGHT + 0.1, DUR)
-    data.blink(0.7); data.blink(T_BLIGHT - 0.6); data.blink(DUR - 0.5)
+    data.blink(0.7); data.blink(T_BLIGHT - 0.6)
     data.finish()
-    soft_key("rail key", (0.7, -1.6, 1.1), (0.05, -0.6, 0.5), energy=40, size=30)
-    C0, C1 = Vector((-0.04, -1.88, 0.66)), Vector((-0.01, -1.8, 0.65)); LK = Vector((0.0, -0.55, 0.44))   # the whole row in frame, drifting toward it, not into his face
-    cam = K.camera(tuple(C0), tuple(LK), lens=24, fstop=5.6)
+    soft_key("rail key", (0.9, -1.6, 1.1), tuple(Vector((R0[0], R0[1], 0.4)) + D * 0.7), energy=45, size=34)
+    soft_key("sign key", (0.3, -1.4, 1.2), tuple(SIGN), energy=14, size=20)
+    cam = K.camera(tuple(C0), tuple(LK), lens=22, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK, rows[1][0]))
     swingers = [r[2] for r in rows]
     return dict(**where, data=data, rest=1, grips=("rail bunch 0",),
-                conseq=[("every bunch swings in turn", lambda: meshes(swingers), T_PUSH, T_PUSH + 1.6),
+                conseq=[("every bunch swings in turn", lambda: meshes(swingers), T_PUSH, T_PUSH + 2.0),
                         ("the blight runs down the row", lambda: meshes(swingers), T_BLIGHT, DUR)])
 
 
@@ -532,13 +590,13 @@ def shot4():
         h_, m_ = pt["leaves"][k]; w0 = 0.35 + 0.3 * i
         yellow(m_, w0, w0 + 0.7)
         PR.wilt(h_, m_, w0 + 0.3, w0 + 1.2, droop_deg=72, to=0.5)   # brown, blackening, collapsed limp down the stem
-    T_SAG, T_G0, T_G1, T_LET = 0.35, 1.2, 2.0, 2.75    # it sags; he takes it from underneath; lifts it to his eye line; holds; lets go
-    UP = -32                                          # held clearly ABOVE level, near his eye line: the lift reads
+    # take 6: NO HAND WORK. Four takes failed on his hand and the leaf ("brushes the tips", "pokes into the leaves");
+    # shot 5 passed on one big action. The last green leaf, the one facing him, hangs on while the others die, then
+    # FLOPS on its own; he throws his hands up as it goes, then slumps.
+    T_SAG, T_G0, T_G1, T_LET = 0.35, 1.2, 2.0, 2.75
+    UP = -10
     def pitch(t):
-        if t < T_SAG: return -5
-        if t < T_G0: return -5 + 50 * ease((t - T_SAG) / (T_G0 - T_SAG))      # it sags far down toward him
-        if t < T_G1: return 45 - (45 - UP) * ease((t - T_G0) / (T_G1 - T_G0))  # he lifts it right back up
-        if t < T_LET: return UP
+        if t < T_LET: return -5 + (UP + 5) * ease(t / T_LET)     # the last leaf still up
         u = t - T_LET; FALL = 0.32                    # it drops (gravity, ease-in), then swings limp on its stalk and stops
         if u < FALL: return UP + (74 - UP) * (u / FALL) ** 2
         w = u - FALL; return 74 - 14 * math.exp(-w / 0.35) * math.sin(w * 11) if w < 1.6 else 74
@@ -546,15 +604,10 @@ def shot4():
         t = (f - 1) / FPS; hz.rotation_euler = (0, math.radians(pitch(t)), to_him); hz.keyframe_insert("rotation_euler", frame=f)
     yellow(hm, T_SAG, T_G0 + 0.3)
     PR.rot(hm, T_SAG, T_LET + 0.4, to=0.55)     # dead in his hand: it browns as it drops, still a leaf, not a black rag
-    side = near_hand(data, Vector((PX, PY, 0.5)))
-    def under_leaf(t):
-        sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return hz.matrix_world @ Vector((0.17, 0, 0.0))    # his fingers UNDER the blade, mid-leaf, not brushing the tip
-    reach(data, side, under_leaf, T_G0, T_LET, lead=0.4, back=0.55, elbow_out=0.4)
     US = (0.03, -2.4, 0.6)
     data.look_at((PX, PY, 0.3), 0.0, max_yaw=25, blend=0.0)  # the rot climbing out of the soil
     data.look_at((PX, PY, 0.5), T_SAG + 0.2, max_yaw=25)      # the leaf sagging
-    data.look_at((PX + 0.14, PY, 0.62), T_G1 - 0.1, max_yaw=25)  # the leaf held up at his eye line: come on
+    data.look_at((PX + 0.14, PY, 0.5), T_G1 - 0.1, max_yaw=25)   # the last green leaf
     data.look_at((PX + 0.1, PY, 0.25), T_LET + 0.15, max_yaw=25)  # his eyes drop with it
     data.look_at(US, T_LET + 0.6, max_yaw=25)                  # then to us: it's gone
     T_SH = T_LET + 0.85                                        # a slow head shake to us: no
@@ -567,6 +620,7 @@ def shot4():
     data._k("spine", 0.0, rot=(0, 0, 0)); data._k("spine", T_SAG + 0.3, rot=(5, 0, 2))
     data._k("spine", T_G0, rot=(11, 0, 4)); data._k("spine", T_G1, rot=(3, 0, 3)); data._k("spine", T_LET, rot=(3, 0, 2))
     data._k("spine", T_SLUMP - 0.15, rot=(1, 0, 0)); data._k("spine", T_SLUMP + 0.35, rot=(10, 0, 0)); data._k("spine", DUR, rot=(9, 0, 0))
+    data.act("whoa", T_LET - 0.15, dur=0.25, hold=0.7)     # hands up and open as the last leaf flops: no!
     data.expression("worried", 0.2, DUR)
     data._face(T_SLUMP + 0.3, brow=0.12, lid=0.3, frown=1.0); data._face(DUR, brow=0.12, lid=0.3, frown=1.0)
     data.blink(0.9); data.blink(T_G1 + 0.25)
@@ -580,10 +634,10 @@ def shot4():
     cam = K.camera(tuple(C0), tuple(LK0), lens=26, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), LK0.lerp(LK1, ease(t / DUR)), (PX, PY, 0.45)))
     leaves = [o for h_, _ in pt["leaves"] for o in h_.children]
-    return dict(**where, data=data, rest=1, grips=("young plant",),
+    return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("the rot climbs the stem", [pt["stem"], fung], T_CLIMB0, T_CLIMB1),
                         ("the leaves droop", leaves, 0.5, DUR),
-                        ("the lifted leaf flops down", list(hz.children), T_LET, DUR)])
+                        ("the last leaf flops down", list(hz.children), T_LET, DUR)])
 
 
 # ================================================================ SHOT 5: no banana to switch to
