@@ -1,17 +1,11 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261112",
-  "judged_date": "20261111",
+  "date": "20261113",
+  "judged_date": "20261112",
   "alarm": {
-    "date": "20261111",
+    "date": "20261112",
     "ok": false,
     "alarms": [
-      {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261111 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261111.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
       {
         "code": "credential_dead_groq",
         "severity": "critical",
@@ -19,26 +13,16 @@
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
-        "code": "short_slate_explainer",
-        "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20261111.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "short_slate_third",
-        "severity": "warning",
-        "detail": "third: 2/6 posted for 20261111.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (64 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (65 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
+      "explainer: 6/4 posted",
+      "third: 6/6 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -225,191 +209,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-08T12:41:35+00:00",
-      "slug": "sports_mike_tomlin_wboys_have_a",
-      "score": 96,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 4,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A fast, direct clip that shows Tomlin delivering both promised phrases, with only minor broadcast-graphic clutter.",
-      "auto_fails": [],
-      "problems": [
-        "The lower broadcast ticker and score make the frame busier than necessary."
-      ],
-      "fixes": [
-        "Crop or mask the lower broadcast graphics while keeping Tomlin's face, the headline, and source captions clear."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 9
-      },
-      "judge": "chatgpt-mailbox",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "visual_clutter",
-        "visible_evidence": "hook@0.3 and mid0 contain the creator headline, source captions, and a television score/ticker at the same time.",
-        "root_cause": "The source broadcast graphics were retained beneath two added text layers.",
-        "repair_goal": "Tighten the vertical crop or mask the lower ticker while preserving Tomlin and the spoken-word captions."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.099,
-        "effective_fps": 21.6,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.58,
-        "duration_s": 3.0
-      },
-      "fingerprint": "?|-|visual_clutter"
-    },
-    {
-      "ts": "2026-11-08T12:41:50+00:00",
-      "slug": "sports_raphinha_out_football",
-      "score": 84,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The authentic interview clearly delivers Raphinha's tribute, but the long talking-head cut ends on a soft, incomplete beat.",
-      "auto_fails": [],
-      "problems": [
-        "The nearly forty-second single-angle interview has limited visual variety.",
-        "The ending captions do not present a clean final sentence."
-      ],
-      "fixes": [
-        "Tighten the clip around the tribute to Jesus de Miguel's family.",
-        "End immediately after a complete sentence or a clear reflective pause."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 120
-      },
-      "judge": "chatgpt-mailbox",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "soft_ending",
-        "visible_evidence": "mid5 and payoff@-1.8 display incomplete source-caption phrases ('AND TODAY I'M', 'NOT GOING TO'), while payoff@-0.4 has no concluding caption or reaction.",
-        "root_cause": "The clip ends after the tribute's substance but not on a self-contained final sentence or emotional beat.",
-        "repair_goal": "Trim the ending to the completed tribute line or hold briefly on Raphinha after the full final sentence lands."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.198,
-        "effective_fps": 19.3,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.83,
-        "max_dup_at_s": 29.58,
-        "duration_s": 39.83
-      },
-      "fingerprint": "?|-|soft_ending"
-    },
-    {
-      "ts": "2026-11-08T12:42:00+00:00",
-      "slug": "sports_rosario_central_ebrate_their",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "The setup looks authentic, but the supposed Boca-title discovery never becomes visible, so the promised twist has no payoff.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through payoff@-0.4 show Rosario supporters and players, but no frame visibly establishes that Boca won or captures the promised discovery."
-      ],
-      "problems": [
-        "The edit never visually proves that Boca won the title.",
-        "The final stadium-wide shot does not communicate a reversal or discovery."
-      ],
-      "fixes": [
-        "Insert a scoreboard, broadcast announcement, or phone-screen update that clearly establishes Boca's win.",
-        "Follow that proof with a readable Rosario reaction before ending."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 60
-      },
-      "judge": "chatgpt-mailbox",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "missing_payoff",
-        "visible_evidence": "mid5, payoff@-1.8, and payoff@-0.4 show continued crowd activity and a wide stadium shot, not a recognizable realization that Boca won.",
-        "root_cause": "The edit contains general Rosario footage without the decisive scoreboard, announcement, or reaction beat that proves the twist.",
-        "repair_goal": "End on an unmistakable Boca-winning update followed by Rosario players or supporters visibly processing it."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.138,
-        "effective_fps": 20.7,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.094,
-        "frozen_fps": 21.8,
-        "max_frozen_run": 5,
-        "judder_ratio": 0.069,
-        "judder_fps": 22.4,
-        "held_s": 1.12,
-        "max_dup_at_s": 19.42,
-        "duration_s": 20.04
-      },
-      "fingerprint": "?|junk_imagery|missing_payoff"
-    },
     {
       "ts": "2026-11-08T12:44:08+00:00",
       "slug": "sports_mike_tomlin_wboys_have_a",
@@ -4014,6 +3813,218 @@
         "duration_s": 28.29
       },
       "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-11-12T16:06:04+00:00",
+      "slug": "bat-fungus-collapse",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong map-and-cave first half where Data spreads the fungus and the roost empties visibly, then it falls into a generic green tank that understates the $53B scale and a closing that shows nothing of its grocery-store payoff.",
+      "auto_fails": [],
+      "problems": [
+        "seg3 uses a stock fill-a-tank machine with green liquid that has nothing to do with bats or pests",
+        "The tank scale is misleading: $3.7B sits about 1/3 full and $53B is full, about 2.5x on screen for a 14x number",
+        "seg4 closing shows no payoff (no pests on crops, no grocery bill); the frame is static except for small bats and Data waving",
+        "In seg2 Data only reacts with hands on his head while the roost empties; he is not the cause",
+        "The hook headline flips between '35 states', 'White-nose' and '1 state' within 2s (hook@0.3 \u2192 hook@1.5), which muddles the first read",
+        "The '$3.7B' dashed line loses its label in the closing and becomes an unexplained mark"
+      ],
+      "fixes": [
+        "Redraw seg3 made of the subject: a cornfield where bats eat a pest swarm, and the pests that would be left without bats pile onto the crops, scaled at true proportion to $53B",
+        "Map the low and high estimates honestly (53 \u2248 14x 3.7) or drop the low estimate",
+        "Make the closing land the consequence: pests on crops turning into a rising grocery price tag in the same shot",
+        "Give Data agency in the cave, e.g. holding the flashlight and sweeping the beam across the empty roost",
+        "Keep one hook headline ('35 states') on screen through the hook instead of cycling through three"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "generic_vessel_misleading_scale",
+        "visible_evidence": "seg3:start-end: Data pours green liquid from a small cup through a tube into a plain grey farm tank. The '$3.7B' dashed line sits about a third of the way up, and '$53B' fills it to the top. That is roughly 2.5x on screen for a 14x claim. Data's pouring is not tied to bats or pests, and the bats onl",
+        "root_cause": "The brain reached for a stock fill-a-vessel machine. A tank of green liquid is not made of the subject, and the scale is not mapped to the numbers, so the 3.7B->53B range reads as a modest top-up.",
+        "repair_goal": "Make the picture MADE OF the subject: bats eating a swarm of crop pests over a cornfield, or a pile of grocery-receipt dollars that grows when bats are removed. Draw the low and high estimates at true proportion (53B \u2248 14x 3.7B) so the size of the free service is visible without reading it. Have Dat"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.083,
+        "effective_fps": 22.0,
+        "max_dup_run": 12,
+        "measured": true,
+        "frozen_ratio": 0.054,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 12,
+        "judder_ratio": 0.009,
+        "judder_fps": 23.8,
+        "held_s": 1.29,
+        "max_dup_at_s": 0.0,
+        "duration_s": 28.62
+      },
+      "fingerprint": "?|-|generic_vessel_misleading_scale",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-12T16:42:08+00:00",
+      "slug": "bat-fungus-collapse",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong map and cave beats, but the money half has Data waving beside bats multiplying, which contradicts a story about losing them, and the closing never shows the grocery-bill payoff.",
+      "auto_fails": [
+        "decorative_mascot: Only seg1 has Data doing the action, stamping fungus onto map bats (seg1:mid). In seg2:start through seg2:end he stands on the ladder with his hands up while the bats vanish without him. In seg3:start through seg4:end, about 11s, he only waves beside the bat box while bats and the $ sign change around him."
+      ],
+      "problems": [
+        "seg2: Data only stands on the ladder with his hands up while the roost empties. He is not the cause of anything in it.",
+        "seg3: Data waves beside the bat box for the whole beat, which is decorative.",
+        "seg3: a $3.7B sign stays in the field while the headline reads $53B. Two money figures compete and confuse the claim.",
+        "seg3/seg4: the picture shows bats increasing while the narration says we are losing them.",
+        "seg4 closing: the same field of bats, with no pests on crops and no grocery cost, so the payoff does not land.",
+        "payoff@-0.4: the final frame is the wordless field with Data waving and nothing resolving."
+      ],
+      "fixes": [
+        "seg3: show bats leaving and moths swarming the corn, with Data hauling a crate of damaged corn onto a scale whose readout climbs to one number, $53B.",
+        "Remove the $3.7B sign: one headline per frame.",
+        "seg4: end on a grocery receipt or price tag that Data stretches longer as the pests eat the crop, so the cost is felt.",
+        "seg2: give Data the torch so his sweep reveals the empty roost, making him the cause of the reveal."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "seg3:start to seg3:end: Data stands beside the bat box with one hand up, waving, while bats pour into the sky and the headline goes from $3.7B to $53B. A $3.7B sign stays planted in the field while the headline says $53B, so two money figures compete. The picture shows bats multiplying while the nar",
+        "root_cause": "The scene draws bats arriving instead of the loss and its cost. Data has no job in the scene (he does not release, count or pay anything), and the low estimate gets a sign of its own beside the headline.",
+        "repair_goal": "Make Data the cause of the cost: as the bats vanish he weighs the moths that come back onto a farm scale, or carries a rising grocery bill, and a single $53B lands on that object. Drop the second $3.7B number so the frame has one headline, and have the picture show the bats leaving and pests taking "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.083,
+        "effective_fps": 22.0,
+        "max_dup_run": 12,
+        "measured": true,
+        "frozen_ratio": 0.054,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 12,
+        "judder_ratio": 0.009,
+        "judder_fps": 23.8,
+        "held_s": 1.29,
+        "max_dup_at_s": 0.0,
+        "duration_s": 28.62
+      },
+      "fingerprint": "?|decorative_mascot|decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-12T17:58:28+00:00",
+      "slug": "maternal-mortality-pandemic-reversal",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong art and a real mascot performance, but the scale beat crams a ghosted 14.5 and a tiny label against the window, and the candle beat shows a fall while the narration says 'stayed'.",
+      "auto_fails": [
+        "unreadable: seg3:mid shows a ghosted \"14.5\" printed under the \"Black women...\" subtitle against the night windows. In seg3:end the small \"White women, the next highest\" label sits on the window sill line and is cramped and hard to read on a phone."
+      ],
+      "problems": [
+        "seg3:mid has a ghosted '14.5' under the 50.3 subtitle on a busy night window, so it is unreadable at phone size",
+        "seg3:end has the 'White women, the next highest' label tiny and jammed against the window sill",
+        "seg2's readout steps 69.9 to 49.5 to 50.3 while the narration says Black maternal deaths 'stayed at 50.3', so the picture shows a fall that contradicts the claim",
+        "The closing (seg4) is the same tipped scale held for about 4s with only Data's pose and the gurney changing, a weak payoff with no fresh 'whoa'",
+        "The hook's first frame (hook@0.3) shows 18.6 with no context, then cuts to a 'Maternal deaths' title card, so the opening never shows the triple gap it promises"
+      ],
+      "fixes": [
+        "Put 14.5 on the right-hand pan in readable ink, keep 50.3 as the single big number, and remove the fade-in under the subtitle",
+        "In seg2, hold the candle count steady near 50.3 (or show the national shrine dimming while the Black-mothers row stays lit) so the picture shows 'stayed' while others fell",
+        "Open on the finished scale or on the candle contrast so the triple gap is the shock in the first second",
+        "Give the closing a final move, such as the scale tipping fully or Data adding a weight, so the payoff lands instead of holding"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 76
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "unreadable",
+        "visible_evidence": "seg3:mid shows a faint, half-drawn \"14.5\" behind the 50.3 subtitle on a dark busy window. In seg3:end the \"White women, the next highest\" caption is tiny and collides with the window sill, and the two-number stack is crammed into the window band.",
+        "root_cause": "The second readout (14.5) fades in at the same spot as the first headline's subtitle, over a high-detail night-city background. Its label is set at small size right on the sill edge, so neither text has clear space or contrast.",
+        "repair_goal": "Give the 14.5 a clean place of its own: put it ON the right pan (or a tag hanging from it) in INK at readable size. Keep 50.3 as the only big headline, with nothing faded in underneath it. Move or remove the 'next highest' caption so no text touches the window frame. Let the scale's tip stay the thi"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.177,
+        "effective_fps": 19.8,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.059,
+        "frozen_fps": 22.6,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 2.12,
+        "max_dup_at_s": 0.0,
+        "duration_s": 25.46
+      },
+      "fingerprint": "?|unreadable|unreadable",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
@@ -4025,7 +4036,7 @@
       ]
     },
     "?|junk_imagery|missing_payoff": {
-      "count": 4,
+      "count": 3,
       "days": [
         "2026-11-08",
         "2026-11-10"
@@ -4036,18 +4047,6 @@
       "days": [
         "2026-11-09",
         "2026-11-10"
-      ]
-    },
-    "?|-|visual_clutter": {
-      "count": 2,
-      "days": [
-        "2026-11-08"
-      ]
-    },
-    "?|-|soft_ending": {
-      "count": 2,
-      "days": [
-        "2026-11-08"
       ]
     },
     "longform|temporal_gate|-": {
@@ -4061,6 +4060,30 @@
       "days": [
         "2026-11-11",
         "2026-11-12"
+      ]
+    },
+    "?|decorative_mascot|decorative_mascot": {
+      "count": 2,
+      "days": [
+        "2026-11-12"
+      ]
+    },
+    "?|unreadable|unreadable": {
+      "count": 2,
+      "days": [
+        "2026-11-12"
+      ]
+    },
+    "?|-|visual_clutter": {
+      "count": 1,
+      "days": [
+        "2026-11-08"
+      ]
+    },
+    "?|-|soft_ending": {
+      "count": 1,
+      "days": [
+        "2026-11-08"
       ]
     },
     "?|-|minor_visual_clutter": {
@@ -4201,12 +4224,6 @@
         "2026-11-11"
       ]
     },
-    "?|decorative_mascot|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
     "?|empty_void+junk_imagery+unreadable|junk_imagery": {
       "count": 1,
       "days": [
@@ -4226,12 +4243,6 @@
       ]
     },
     "?|unreadable|unreadable_text_collision": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|unreadable|unreadable": {
       "count": 1,
       "days": [
         "2026-11-12"
@@ -4278,16 +4289,21 @@
       "days": [
         "2026-11-12"
       ]
+    },
+    "?|-|generic_vessel_misleading_scale": {
+      "count": 1,
+      "days": [
+        "2026-11-12"
+      ]
     }
   },
   "recent_commits": [
-    "2d80d85 2026-11-12 watchdog: chatgpt task verdicts 20261112 [skip ci]",
-    "c6e5ca1 2026-11-12 deadman: repaired 2026-11-12 [skip ci]"
+    "752659c 2026-11-13 claim: mailbox verdicts 2026-11-13T04:48Z [skip ci]",
+    "6bcabad 2026-11-13 claim: mailbox verdicts 2026-11-13T03:31Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-29": 3,
         "2026-10-30": 5,
         "2026-10-31": 5,
         "2026-11-01": 5,
@@ -4309,7 +4325,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-29": 4,
         "2026-10-30": 4,
         "2026-10-31": 3,
         "2026-11-01": 2,
@@ -4319,15 +4334,14 @@
         "2026-11-06": 3,
         "2026-11-07": 3,
         "2026-11-11": 1,
-        "2026-11-12": 3
+        "2026-11-12": 6
       },
-      "total_posted": 396,
-      "attempted": 396,
+      "total_posted": 399,
+      "attempted": 399,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-29": 8,
         "2026-10-30": 5,
         "2026-10-31": 9,
         "2026-11-01": 4,
@@ -4340,11 +4354,12 @@
         "2026-11-08": 2,
         "2026-11-10": 3,
         "2026-11-11": 2,
-        "2026-11-12": 6
+        "2026-11-12": 6,
+        "2026-11-13": 3
       },
-      "total_posted": 539,
-      "attempted": 1352,
-      "rejected_or_pending": 813
+      "total_posted": 542,
+      "attempted": 1363,
+      "rejected_or_pending": 821
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4358,71 +4373,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 141,
+      "videos": 143,
       "top_by_vph": [
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 9.55,
+          "vph": 7.98,
           "views": 1031
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 8.78,
-          "views": 1131
+          "vph": 7.55,
+          "views": 1133
         },
         {
           "title": "Antarctica Welcomed Over 100,000 Tourists In One Season",
-          "vph": 5.5,
-          "views": 643
+          "vph": 4.66,
+          "views": 644
         },
         {
           "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-          "vph": 5.31,
-          "views": 713
+          "vph": 4.59,
+          "views": 714
         },
         {
-          "title": "NASA Made 0.0000000001 Kelvin Cold, Beating Nature",
-          "vph": 5.1,
-          "views": 36
+          "title": "9 Pitch Drops Took 84 Years To Fall",
+          "vph": 4.34,
+          "views": 1380
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 134,
+      "videos": 133,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.81,
+          "vph": 3.76,
           "views": 1900
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.69,
+          "vph": 1.67,
           "views": 1088
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.58,
-          "views": 485
+          "vph": 1.57,
+          "views": 492
+        },
+        {
+          "title": "Pikabooirl Hits His Nuts After His Headset Cord Spooks Him",
+          "vph": 1.42,
+          "views": 21
         },
         {
           "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
-          "vph": 1.15,
-          "views": 47
-        },
-        {
-          "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
-          "vph": 1.02,
-          "views": 139
+          "vph": 1.11,
+          "views": 53
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261109/brief.json",
       "retro/20261110/brief.json",
-      "retro/20261111/brief.json"
+      "retro/20261111/brief.json",
+      "retro/20261112/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
