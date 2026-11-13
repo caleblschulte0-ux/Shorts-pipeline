@@ -5385,6 +5385,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 27.4
+    },
+    "drone-commercial-overtake": {
+      "claimed_at": "2026-11-13T12:53:28.736979+00:00",
+      "title": "453,635 Commercial Drones Quietly Overtook Hobby Drones",
+      "publish_at": "2026-11-13T23:03:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6923,6 +6930,14 @@
       "state": "posted",
       "slug": "naep-math-pandemic-drop",
       "at": "2026-11-13T12:01:54.694550+00:00"
+    },
+    {
+      "claimed_at": "2026-11-13T12:53:28.736979+00:00",
+      "title": "453,635 Commercial Drones Quietly Overtook Hobby Drones",
+      "publish_at": "2026-11-13T23:03:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "drone-commercial-overtake"
     }
   ]
 }
