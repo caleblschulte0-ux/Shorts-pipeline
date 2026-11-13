@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "library-digital-shift__9cdb5f1d",
+  "slug": "library-digital-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-13T12:12:10Z",
+  "title": "Library Visits Fell While Digital Borrowing Hit 739 Million",
+  "hook": "Library visits fell, but digital borrowing hit 739 million.",
+  "closing": "Readers did not abandon libraries; libraries followed readers onto their phones.",
+  "question": "How do you borrow books?",
+  "segments": [
+    {
+      "topic": "Library Physical Visits",
+      "say": "Library visits fell to 671 million, making buildings look quieter even while readers stayed interested."
+    },
+    {
+      "topic": "Library Digital Borrowing",
+      "say": "Digital checkouts reached 739 million. Library demand moved online instead of disappearing."
+    }
+  ]
+}
