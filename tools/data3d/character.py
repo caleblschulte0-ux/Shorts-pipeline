@@ -865,8 +865,58 @@ class Data:
                 ex, eo = P_['ears']
                 self._k(f'ear.{sd}', th + 0.08, rot=(ex * 1.3, 0, sg * eo * 1.3))
         self.expression(P_['face'], ta, te, blend=0.18 / sp)
+        self.alive(ts, te, seed=len(name))
         self._end = max(self._end, tr)
         return tr
+
+    # caaleb 2026-11-13, of the acting clip: "had a bit of a dr.Katz effect". Measured: in every HOLD the body moved
+    # 0.2 (frame diff) -- frozen -- while the mouth flapped open/shut every 0.07 s. A stiff body with a flapping mouth is
+    # exactly that look. A person holding a feeling still breathes, drifts and shifts; a person talking talks with the
+    # head (a nod on the stressed word, a turn between phrases) and the brows, in syllables of uneven length with pauses.
+    def alive(self, t0, t1, seed=0, amp=1.0):
+        """a held pose keeps living: breath in the chest, the head drifting and tilting, layered ON the pose"""
+        import random
+        if t1 - t0 < 0.4: return
+        rnd = random.Random(seed); ph = rnd.random() * 6.28
+        ts = [t0 + k * 0.4 for k in range(1, int((t1 - t0) / 0.4))]
+        base = {b: [self._pose_now(b, t) for t in ts] for b in ('chest', 'neck', 'head')}
+        for i, t in enumerate(ts):
+            u = t - t0; br = math.sin(2 * math.pi * u / 2.8 + ph)
+            dh = (amp * 2.2 * math.sin(2 * math.pi * u / 2.1 + ph * 1.7), amp * 3.0 * math.sin(2 * math.pi * u / 3.3 + ph), amp * 1.6 * math.sin(2 * math.pi * u / 2.6 + ph * 0.6))
+            off = {'chest': (-1.6 * br * amp, 0, 0), 'neck': (0.8 * br * amp, dh[1] * 0.4, 0), 'head': dh}
+            for b in base:
+                self._k(b, t, rot=tuple(a + o for a, o in zip(base[b][i], off[b])))
+
+    def talk(self, t0, t1, seed=0, rate=4.3, energy=1.0, head=True):
+        """he SAYS something from t0 to t1: syllables of uneven length and size in phrases of 3-7 with a breath between,
+        a nod (and the brows up) on each phrase's stressed syllable, the head turning a little between phrases.
+        The mouth is layered on whatever face he wears (it keys only 'open' and 'brow')."""
+        import random
+        rnd = random.Random(seed + 7)
+        syl = syllables(t0, t1, seed, rate, energy)
+        kb = self.lips.data.shape_keys.key_blocks
+        def k_open(tt, v):
+            self._face_open = True; kb['open'].value = v; kb['open'].keyframe_insert('value', frame=F(tt))
+        k_open(t0 - 0.05, 0.0)
+        for tt, d, v, st in syl:
+            k_open(tt + d * 0.35, v); k_open(tt + d * 0.85, v * 0.18)
+        k_open(min(t1, syl[-1][0] + syl[-1][1]) + 0.08 if syl else t1, 0.0)
+        if not head: return
+        stresses = [tt for tt, d, v, st in syl if st]
+        base = {b: {tt: self._pose_now(b, tt) for tt in stresses for tt in (tt - 0.1, tt + 0.08, tt + 0.38)} for b in ('neck', 'head')}
+        for k_, tt in enumerate(stresses):
+            turn = (rnd.uniform(-4, 4) if k_ else 0.0)
+            for b, amt in (('neck', 1.2), ('head', 3.2)):
+                b0 = base[b]
+                self._k(b, tt - 0.1, rot=b0[tt - 0.1])
+                self._k(b, tt + 0.08, rot=(b0[tt + 0.08][0] + amt * energy, b0[tt + 0.08][1] + turn * 0.5, b0[tt + 0.08][2]))   # the nod lands ON the word
+                self._k(b, tt + 0.38, rot=(b0[tt + 0.38][0], b0[tt + 0.38][1] + turn, b0[tt + 0.38][2]))
+            for br in self.brows:                 # the brows lift on the stressed word
+                z0 = br.location.z; self.sc.frame_set(F(tt - 0.1)); z0 = br.location.z
+                y0 = br.location.y; br.keyframe_insert('location', frame=F(tt - 0.1))
+                br.location.z = z0 + 0.012; br.location.y = y0 + 0.011; br.keyframe_insert('location', frame=F(tt + 0.06))
+                br.location.z = z0; br.location.y = y0; br.keyframe_insert('location', frame=F(tt + 0.4))
+        self._end = max(self._end, t1)
 
     # ---------------------------------------------------------------- end
     def finish(self):
@@ -961,7 +1011,7 @@ class Data:
 
 
 SMOOTH = os.environ.get("TWITCH_FILTER", "1") == "1"
-SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 2.0       # Gaussian sigma, in frames at 30 fps
+SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 1.2   # face 2.0 blurred syllables into a mumble       # Gaussian sigma, in frames at 30 fps
 
 
 def _gauss(v, sig):
@@ -984,6 +1034,25 @@ def _fcurves(action):
         for strip in layer.strips:
             for cb in strip.channelbags: out.extend(cb.fcurves)
     return out
+
+
+def syllables(t0, t1, seed=0, rate=4.3, energy=1.0):
+    """a spoken line's syllables: [(t, dur, open, stressed)], in phrases of 3-7 with a breath (0.22-0.4 s, mouth shut)
+    between, each syllable 0.7-1.35 of 1/rate long and its own size, the phrase's stressed one bigger. (The acting
+    clip's flap was every 0.07 s, all one size: caaleb, 2026-11-13, "a bit of a dr.Katz effect".)"""
+    import random
+    rnd = random.Random(seed)
+    syl, t = [], t0
+    while t < t1 - 0.15:
+        n = rnd.randint(3, 7); stress = rnd.randint(0, n - 1)
+        for i in range(n):
+            if t >= t1 - 0.15: break
+            d = (1.0 / rate) * rnd.uniform(0.7, 1.35)
+            v = rnd.uniform(0.28, 0.55) * energy + (0.2 if i == stress else 0.0)
+            syl.append((t, min(d, t1 - t), min(0.85, v), i == stress))
+            t += d
+        t += rnd.uniform(0.22, 0.4)
+    return syl
 
 
 def load(sc):

@@ -262,12 +262,73 @@ def dock():
     return light
 
 
-def crocus_field():
-    raise NotImplementedError
+def crocus_field(clear=lambda x, y: abs(x) < 0.35 and -0.6 < y < 0.45):
+    """a saffron field in autumn: low ridges of dark soil carpeted with violet crocuses as far as the hills, the near
+    flowers each a real crocus (store/saffron_kit.py), the far field a violet haze on the ground. A clearing where Data
+    stands (`clear`). The shot that wants flowers that close keeps the `own` list (FIELD_OWN, set here)."""
+    import saffron_kit as SK
+    global FIELD_OWN
+    soil = _noise_mat("crocus soil", "#4E3A2A", "#3E2E22", scale=1.4, rough=0.95, bump=0.35)
+    _ground("crocus ground", soil)
+    carpet = bpy.data.materials.new("crocus carpet"); carpet.use_nodes = True; nt = carpet.node_tree; b = nt.nodes["Principled BSDF"]
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 90.0; nz.inputs["Detail"].default_value = 4.0
+    rp = nt.nodes.new("ShaderNodeValToRGB"); nt.links.new(nz.outputs["Fac"], rp.inputs["Fac"])
+    rp.color_ramp.elements[0].position = 0.42; rp.color_ramp.elements[0].color = (*K.lin("#3A4A26"), 1)
+    rp.color_ramp.elements[1].position = 0.55; rp.color_ramp.elements[1].color = (*K.lin("#7E52BC"), 1)
+    nt.links.new(rp.outputs["Color"], b.inputs["Base Color"]); b.inputs["Roughness"].default_value = 0.8
+    K.box("crocus far carpet", (0, 16.0, 0.004), (40, 22, 0.006), carpet, bev=0)
+    own_near = lambda x, y: y < 2.2 and abs(x) < 1.4
+    FIELD_OWN, rest = SK.flower_bed(-2.2, 2.2, -0.9, 5.2, dx=0.12, dy=0.12, seed=11, skip=clear, own_near=own_near)
+    rnd = random.Random(5)
+    for i, o in enumerate(FIELD_OWN[::2]):
+        SK.leaves_tuft(f"crocus leaves {i}", tuple(o.location), seed=i)
+    hill = _noise_mat("autumn hill", "#6E6A3E", "#8A7A4E", scale=0.3, rough=0.95, bump=0.1)
+    for x, r in ((-9, 7), (3, 9), (13, 7)): K.sph("hill", (x, 26, -2.5), 1.0, hill, scale=(r, 3, 4.6))
+    K.sph("far mountain", (-2, 60, -6), 1.0, _noise_mat("far mountain", "#8C8EA6", "#9C9EB4", scale=0.2, rough=1.0, bump=0.0), scale=(40, 4, 14))
+
+    def light():
+        return sky_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.34, warm=(1.0, 0.9, 0.78), haze=1.6)
+    return light
 
 
 def sorting_room():
-    raise NotImplementedError
+    """a farmhouse room where the threads come out: plank floor, lime-washed walls, a window in the back wall with
+    daylight pouring through it onto a heavy table, a round clock on the wall. The light can run day -> night (the
+    shot keys WINDOW_SUN and WINDOW_LAMP)."""
+    global WINDOW_SUN, WINDOW_LAMP
+    floor = _noise_mat("plank floor", "#6E4E34", "#5C3F2A", scale=3.0, rough=0.7, bump=0.08)
+    K.box("room floor", (0, 1.0, -0.01), (6, 6, 0.02), floor, bev=0)
+    wall = _noise_mat("limewash", "#E6DCCB", "#D6CAB6", scale=2.0, rough=0.9, bump=0.06)
+    WY = 0.75
+    K.box("room back wall left", (-1.55, WY, 1.2), (2.3, 0.12, 2.4), wall, bev=0)
+    K.box("room back wall right", (1.55, WY, 1.2), (2.3, 0.12, 2.4), wall, bev=0)
+    K.box("room back wall below", (0, WY, 0.38), (0.8, 0.12, 0.76), wall, bev=0)
+    K.box("room back wall above", (0, WY, 1.85), (0.8, 0.12, 1.1), wall, bev=0)
+    K.box("room side wall", (-2.0, 0.0, 1.2), (0.12, 3.5, 2.4), wall, bev=0)
+    K.box("room ceiling", (0, 0.0, 2.4), (6, 3.6, 0.05), wall, bev=0)
+    wood = K.mat("window frame", "#5A3B24", rough=0.6)
+    for x in (-0.4, 0.4): K.box("window jamb", (x, WY - 0.07, 0.95), (0.05, 0.04, 0.6), wood, bev=0.004)
+    for z in (0.65, 1.25): K.box("window sill", (0, WY - 0.07, z), (0.85, 0.06, 0.05), wood, bev=0.004)
+    K.box("window bar", (0, WY - 0.07, 0.95), (0.03, 0.03, 0.6), wood, bev=0.003)
+    K.box("window bar", (0, WY - 0.07, 0.95), (0.8, 0.03, 0.03), wood, bev=0.003)
+    sky = K.mat("window sky", "#BFD6EE", rough=1.0, emit=2.0)
+    K.box("window sky", (0, WY + 1.5, 1.0), (3.0, 0.05, 2.0), sky, bev=0)
+    K.box("window field", (0, WY + 1.45, 0.45), (3.0, 0.05, 0.4), K.mat("window field", "#7E58B8", rough=1.0, emit=0.6), bev=0)
+    K.box("shelf", (-1.2, WY - 0.13, 1.1), (0.7, 0.14, 0.03), wood, bev=0.004)
+    for i, (x, c) in enumerate(((-1.45, "#B98A4E"), (-1.25, "#7A8A6A"), (-1.05, "#C9B48A"))):
+        K.cyl(f"shelf jar {i}", (x, WY - 0.13, 1.17), 0.04, 0.11, K.mat(f"shelf jar {i}", c, rough=0.5), bev=0.004)
+    sd = bpy.data.lights.new("window sun", 'AREA'); sd.shape = 'RECTANGLE'; sd.size = 0.8; sd.size_y = 0.6; sd.energy = 260; sd.color = (1.0, 0.92, 0.8)
+    WINDOW_SUN = bpy.data.objects.new("window sun", sd); bpy.context.collection.objects.link(WINDOW_SUN)
+    WINDOW_SUN.location = (0.0, WY + 0.4, 1.0); WINDOW_SUN.rotation_euler = (Vector((0.0, -0.4, 0.3)) - Vector(WINDOW_SUN.location)).to_track_quat('-Z', 'Y').to_euler()
+    ld = bpy.data.lights.new("oil lamp", 'POINT'); ld.energy = 0.0; ld.color = (1.0, 0.7, 0.4); ld.shadow_soft_size = 0.05
+    WINDOW_LAMP = bpy.data.objects.new("oil lamp", ld); bpy.context.collection.objects.link(WINDOW_LAMP); WINDOW_LAMP.location = (0.55, -0.15, 0.62)
+
+    def light():
+        sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
+        bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.75, 0.7, 0.62, 1); bg.inputs["Strength"].default_value = 0.25
+        _area("room fill", (1.4, -2.0, 1.5), 2.0, 40, (1.0, 0.95, 0.88), aim=(0.0, 0.0, 0.5))
+        return _hero_key()
+    return light
 
 
 PLACES = {"warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room}
