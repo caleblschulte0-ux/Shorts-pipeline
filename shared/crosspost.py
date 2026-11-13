@@ -1,6 +1,6 @@
 """Cross-post a video that ALREADY SHIPPED to YouTube to the feed-first
-platforms: TikTok (every channel with a linked account) and Instagram Reels
-(when Meta is configured).
+platforms: TikTok (every channel with a linked account). Instagram and
+Facebook Reels go from the same release via meta_due.yml.
 
 Called only after a channel's own gate passed AND its YouTube upload
 succeeded — it never judges anything and never blocks anything. Best-effort:
@@ -123,16 +123,9 @@ def crosspost(channel: str, mp4: Path, title: str, description: str,
             except Exception as e:  # noqa: BLE001
                 print(f"::warning::[crosspost] tiktok mark failed ({e})",
                       flush=True)
-    if all(os.environ.get(k) for k in
-           ("META_ACCESS_TOKEN", "IG_USER_ID", "REELS_PUBLIC_HOST")):
-        try:
-            from shared.uploaders import InstagramUploader
-            up = InstagramUploader().upload(
-                file_path=mp4, title=title, description=description, tags=tags)
-            out["instagram"] = getattr(up, "url", str(up))
-            print(f"[crosspost] instagram -> {out['instagram']}", flush=True)
-        except Exception as e:  # noqa: BLE001
-            print(f"::warning::[crosspost] instagram failed ({e})", flush=True)
+    # Instagram + Facebook: not posted here. The release above is the queue,
+    # and meta_due.yml (scripts/meta_post_release.py --due) posts each video
+    # at its YouTube slot to the channel's accounts in channels.<id>.meta.
     if not any(k in out for k in ("tiktok", "instagram")):
         print(f"[crosspost] {channel}: YouTube only"
               + (f" — {why}" if why else "") + ".", flush=True)

@@ -1,0 +1,58 @@
+name: meta_due
+
+# Instagram + Facebook Reels for every channel whose `channels.<id>.meta`
+# in config/channel_registry.json has post: true. Each video goes at its
+# YouTube slot (never more than 3h late), only if its channel's posted log
+# records it as posted — the same rules as tiktok_due.yml, from the same
+# GitHub Release. Token: secret META_ACCESS_TOKEN (a Business-portfolio
+# system-user token). Nothing configured = nothing posted, green.
+#
+# Manual: dispatch with `tag` to post one release now, or with
+# `accounts: true` to list every Page / Instagram id the token reaches.
+
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Post this one release now (optional)"
+        required: false
+        default: ""
+      accounts:
+        description: "Only list the Pages/Instagram accounts the token reaches"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write   # marks each release it posts (instagram.json / facebook.json)
+
+concurrency:
+  group: meta-post-release
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Instagram + Facebook
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          TAG: ${{ inputs.tag }}
+          ACCOUNTS: ${{ inputs.accounts }}
+        run: |
+          if [ "$ACCOUNTS" = "true" ]; then
+            python scripts/meta_post_release.py --accounts
+          elif [ -n "$TAG" ]; then
+            python scripts/meta_post_release.py --tag "$TAG"
+          else
+            python scripts/meta_post_release.py --due
+          fi
