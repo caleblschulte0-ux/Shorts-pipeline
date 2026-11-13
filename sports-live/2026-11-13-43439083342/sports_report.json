@@ -1,0 +1,203 @@
+{
+ "date": "2026-11-13",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nba",
+   "who": "Dirk Nowitzki",
+   "why": "Dirk laughs about thinking Jalen Brunson's body wouldn't work, then we see Brunson become a star.",
+   "post_title": "Dirk Nowitzki on his first impressions of Jalen Brunson: \"I was like this isn't gonna work. His body... the head's too big. How is he not falling forward the whole time?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/eej84b",
+   "topic": "https://www.reddit.com/r/nba/comments/1xs5qbw/dirk_nowitzki_on_his_first_impressions_of_jalen",
+   "title": "Dirk Nowitzki Admits He Doubted Jalen Brunson's Body At First",
+   "hook": "Dirk doubted Brunson at first \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@6.71"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "face_content",
+     "reason": "face on the right beside what it is showing \u2014 that on top, the face below",
+     "shots": [
+      {
+       "mode": "face_content",
+       "reason": "face on the right beside what it is showing \u2014 that on top, the face below"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.5,
+       1.0
+      ]
+     ]
+    },
+    "outro": {
+     "song": "underdog",
+     "grade": "clean",
+     "shots": [
+      "https://www.youtube.com/watch?v=NdQGiKtoGMU",
+      "https://www.youtube.com/watch?v=0r2UBuirQso",
+      "https://www.youtube.com/watch?v=IwlSgBjpWi0",
+      "https://www.youtube.com/watch?v=IwlSgBjpWi0",
+      "https://www.youtube.com/watch?v=BpCqJwnGZkI",
+      "https://www.youtube.com/watch?v=0r2UBuirQso"
+     ],
+     "secs": 14.4
+    },
+    "cut_in": [
+     "Jalen Brunson@18.13"
+    ],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:b0ea1925-a703-402b-9663-cc6dc3268263",
+      "credit": "Song: Sync, Avi Snow, Marky Style - Alright\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/Alright"
+     }
+    ]
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: A recycled split-screen repost with two caption layers and a bad crop that loses Dirk. The 'head's too big' line the title promises is never clearly landed, and it ends on a fade."
+    },
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: The story lands (Dirk doubted Brunson's body, then his game proved him wrong), but the opening wastes half the frame on a table and a hand, and the payoff is a thin letterboxed strip."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: Dirk's 'his head's too big' quote is a good moment, but a split crop shows an empty table and an arm for 25 seconds, the co-host is cut away, and the highlights play tiny in a letterbox.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: Dirk's 'his head's too big' quote is a good moment, but a split crop shows an empty table and an arm for 25 seconds, the co-host is cut away, and the highlights play tiny in a letterbox."
+  },
+  {
+   "sub": "nba",
+   "who": "Steve Kerr",
+   "why": "Kerr deadpans praise for Jimmy Butler's coach costume sweater and team-foul talk, in the vein of his most-watched Kerr jokes.",
+   "post_title": "Steve Kerr on Jimmy Butler dressing up like a coach: \"I thought he looked great. Really good looking sweater. He said all the right things, you know, team fouls, how many team fouls we had. Like he wa",
+   "upvotes": 0,
+   "url": "https://streamable.com/u9ir96",
+   "topic": "https://www.reddit.com/r/nba/comments/1xsxmql/steve_kerr_on_jimmy_butler_dressing_up_like_a",
+   "title": "Steve Kerr Says Jimmy Butler Was Secretly Mocking The Warriors Dressed As A Coach",
+   "hook": "Kerr realized Jimmy was mocking them \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@17.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.865,
+      0.157,
+      0.736,
+      0.736,
+      0.736
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "skipped": "author: the title names 'Warriors', which the post never does"
+  },
+  {
+   "sub": "sports",
+   "who": "Jameis Winston",
+   "why": "A QB sings 'Who Let The Dogs Out' at the line to bait the defense offside, and it's funny with no backstory.",
+   "post_title": "Giants QB Jameis Winston starts \"Who Let The Dogs Out\" at the line of scrimmage while trying to get the Commanders defense to jump",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xuyn99/giants_qb_jameis_winston_starts_who_let_the_dogs/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xuyn99/giants_qb_jameis_winston_starts_who_let_the_dogs",
+   "title": "Jameis Winston Sings Who Let The Dogs Out To Make The Defense Jump",
+   "hook": "Jameis tries to get Commanders to jump \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 3.07,
+       "reason": "the framer: The line of scrimmage on 4th & 1, with the Giants' offensive line set and the Commanders' defenders lined up across from them. This is the play.",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 3.07,
+       "t1": 15.23,
+       "reason": "the framer: Close-up of the Giants player's face in his helmet, spanning roughly columns 5-7, with his shoulders and chest below.",
+       "crop": [
+        540,
+        720,
+        498,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.105
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: A genuinely funny moment that is clearly shown and lands, but our hook line is printed over the TV scorebug for the first ~10 seconds."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/6B1DZK6ZP9E",
+   "ok": true,
+   "publish_at": "2026-11-14T21:00:00Z",
+   "seconds": 424,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261113-jameis-winston-sings-who-let-the-dogs-out-to-mak-51336653",
+    "tiktok": "queued for 2026-11-14T21:00:00Z"
+   }
+  }
+ ],
+ "already_today": 4,
+ "pool": 114,
+ "already_posted": 16,
+ "shipped": 1
+}
