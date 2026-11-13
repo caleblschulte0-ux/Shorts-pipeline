@@ -120,3 +120,15 @@ def test_the_shorts_are_native_and_the_captions_sit_in_the_safe_area():
     assert vals["CAP_BOTTOM"] >= 420, "the caption sits under the app's own title and buttons"
     assert vals["SAFE_R"] >= 150, "the caption runs under the like / share column"
     assert vals["HOOK_TOP"] >= 230, "the hook sits under the app's tabs"
+
+
+def test_the_precheck_catches_a_prop_too_small_or_cut_before_anything_renders():
+    """caaleb 2026-11-13, after the saffron proofs failed the judge for props "a few pixels on a phone" and a pan cut by
+    the frame edge: "Why don't we fix these things beforehand?" The consequence pre-check measures both, in seconds,
+    before a frame renders: a floor that a few pixels cannot pass, and the group whole inside the frame."""
+    src = (D3 / "store" / "staging.py").read_text()
+    h = float(re.search(r"^CONSEQ_MIN_H = ([0-9.]+)", src, re.M).group(1))
+    inside = float(re.search(r"^CONSEQ_INSIDE = ([0-9.]+)", src, re.M).group(1))
+    assert h >= 0.1, "a consequence a tenth of the frame tall is the least a phone shows"
+    assert inside >= 0.8
+    assert "inside >= CONSEQ_INSIDE" in src

@@ -91,7 +91,7 @@ def shot1():
     T_UP, T_DOWN0, T_DOWN1 = 0.0, 1.35, 1.85
     P1 = [(2.0, 2.6), (3.15, 3.75)]          # the two shoves
     J_REST = Vector((-0.17, -0.3, TOP))
-    jar = SK.jar("jar", tuple(J_REST))
+    jar = SK.jar("jar", tuple(J_REST), h=0.095, r=0.032)     # small, but big enough to read as a jar of red on a phone
     data = load_data(); data.place(0.0, 0.08, 0)
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
@@ -135,13 +135,13 @@ def shot1():
     data.blink(0.9)
     data.finish()
     soft_key("table key", (0.5, -1.0, 1.0), (0.0, -0.3, TOP + 0.05), energy=22, size=30)
-    C0, C1 = Vector((-0.08, -0.95, 0.66)), Vector((0.0, -1.15, 0.86))
+    C0, C1 = Vector((-0.08, -0.82, 0.66)), Vector((0.0, -1.15, 0.86))   # close on the jar first: it has to read as red
     L0, L1 = Vector((-0.06, -0.1, 0.6)), Vector((0.0, -0.12, 0.4))
     cam = K.camera(tuple(C0), tuple(L0), lens=32, fstop=4.0)
     cp = lambda t: (C0.lerp(C1, ease(min(1.0, max(0.0, (t - 1.2) / 1.0)))), L0.lerp(L1, ease(min(1.0, max(0.0, (t - 1.2) / 1.0)))), Vector((0.0, -0.2, 0.5)))
     camera_path(cam, cp)
     return dict(**where, data=data, rest=1, grips=("jar", "cash"),
-                conseq=[("he holds the tiny jar up to us", lambda: meshes([jar]), 0.0, T_DOWN1),
+                conseq=[("he holds the tiny jar up to us", lambda: meshes([jar]), 0.0, T_DOWN0),
                         ("the cash piles up beside the tiny jar", lambda: meshes(bricks), P1[0][0], DUR)])
 
 
@@ -337,7 +337,7 @@ def shot4():
         c_at = T_SHUT0 + (T_SHUT1 - T_SHUT0 - 0.55) * max(0.0, min(1.0, (2.2 - y) / 3.2))   # far rows first: a wave rolling at him
         for t_, v in ((0.0, 0.85), (o_at, 0.85), (o_at + 0.45, 0.0), (max(c_at, o_at + 0.5), 0.0), (max(c_at, o_at + 0.5) + 0.55, 1.0)):
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
-    sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.0, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
+    sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
     for t_, z in ((0.0, 2.0), (DUR, 7.5)):           # it climbs clear of the hills, in plain view beside him
         sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
     def light():
@@ -374,7 +374,7 @@ def shot4():
     cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     return dict(**where, data=data, rest=1, grips=("race basket",),
-                conseq=[("the field opens with the sun, then starts to fold shut toward him", lambda: own, 0.2, DUR),
+                conseq=[("the field opens with the sun, then starts to fold shut toward him", lambda: own, 0.2, DUR, {"whole": False}),
                         ("the sun climbs clear of the hills", lambda: [sun_disc], 0.3, DUR)])
 
 
@@ -405,7 +405,7 @@ def shot5():
     def pan_pt(sg, t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         return (beam.matrix_world @ Vector((sg * ARM, 0, 0))) - Vector((0, 0, DROP - 0.006 * S))
-    jar = SK.jar("jar", tuple(pan_pt(-1, 0.0)))
+    jar = SK.jar("jar", tuple(pan_pt(-1, 0.0)), h=0.095, r=0.032)
     follow(jar, lambda t: pan_pt(-1, t), 0.0, DUR)
     data = load_data(); data.place(0.0, 0.08, 0)
     L, R = sides(data)
