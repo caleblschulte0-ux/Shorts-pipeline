@@ -3,159 +3,6 @@
     {
       "date": "20261107",
       "dry_run": false,
-      "ts": "2026-11-07T12:40:09+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 149,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-07T11:44:30.635011+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-07T12:40:09+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261107-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261107-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 19.7
-        },
-        {
-          "slug": "clip-20261107-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261107-3",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261107-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261107-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261107",
-      "dry_run": false,
       "ts": "2026-11-07T12:43:19+00:00",
       "feedback": {
         "snapshot": true,
@@ -5647,6 +5494,406 @@
           "slug": "clip-20261112-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261113",
+      "dry_run": false,
+      "ts": "2026-11-13T13:09:53+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 137,
+        "with_retention": 117,
+        "with_curve": 14,
+        "fetched_at": "2026-11-13T08:46:17.870330+00:00"
+      },
+      "brain": {
+        "ok": 39,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:moistcr1tikal": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:emiru": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:timthetatman": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261113-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "award win, needs context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Famous name wins award, speech; mostly s",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Qtcinderella Cries As Speed Wins 2026 Streamer Of The Year"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The hook caption sits on top of the on-screen ISHOWSPEED nameplate at about 33s and 37s. It is minor.",
+                "At 25.5s Speed is cropped half out of the left edge. It is a brief moment.",
+                "At 2.0s the caption sits near the lower face and chin of the person in the yellow beanie. It does not hide the face."
+              ]
+            }
+          },
+          "took_s": 290.5
+        },
+        {
+          "slug": "clip-20261113-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is an uncropped 16:9 strip filling only about a third of the 9:16 canvas, far below the roughly three ; vision: The people are small on a phone screen. Ari and the interrupte",
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "visible interruption during winning spee",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Visible stage interruption, but mostly s",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Qtcinderella: Ari Gets Interrupted Mid-Speech After Winning Best Music Streamer, DDG Shouted Ou"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is an uncropped 16:9 strip filling only about a third of the 9:16 canvas, far below the roughly three ",
+                "The people are small on a phone screen. Ari and the interrupter are only head-and-shoulders in a short strip.",
+                "The wide stage shots at about 9.8s, 20.7s and 22.8s make the people tiny and lost.",
+                "The blurred padding above and below is mostly dark blur and a giant blurred face or sleeve. The hook text sits in the pa"
+              ]
+            }
+          },
+          "took_s": 235.6
+        },
+        {
+          "slug": "clip-20261113-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred or black padding above and bel; vision: The footage is a very dark night motorcycle POV. The subject i",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Vague title, unknown outcome",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Dark scooter ride, long middle finger ga",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Loses It And Can't Stop Laughing At This"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the canvas height, with large blurred or black padding above and bel",
+                "The footage is a very dark night motorcycle POV. The subject is tiny and hard to read on a phone, and several frames are",
+                "Stableronaldo is never visible, so the hook card 'cannot believe this' has no visible reaction to support it, and the cl",
+                "A stray 'OUT' caption appears at 5.4s over the picture, with no context.",
+                "The hook caption is repeated unchanged over blurred padding in every frame, and the strip beneath it holds almost nothin"
+              ]
+            }
+          },
+          "took_s": 98.8
+        },
+        {
+          "slug": "clip-20261113-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague betrayal, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Street interview reaction, unclear payof",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Edwardkso Got Tricked Into Saying THIS On Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "From about 8s to 14s the cutaway is a thin 16:9 strip with the people on stage tiny and hard to read on a phone. The sur",
+                "At 8.5s the caption 'EATING CONTEST?' sits on top of the burned-in news chyron, so the two texts collide.",
+                "The first frame (1.2s) is a 'The Dreamer' title card with cropped text. It is a minor issue."
+              ]
+            }
+          },
+          "took_s": 257.7
+        },
+        {
+          "slug": "clip-20261113-5",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 147,
+                "refused_shown": 10,
+                "scouted": [],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2949,
+                "pool_with_vod": 2095,
+                "arc_sizes": [
+                  3,
+                  3,
+                  4,
+                  2,
+                  2,
+                  4,
+                  3,
+                  3,
+                  2,
+                  5
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
+                  "outcome": "qa_failed",
+                  "why": "vision: From about 34s to 51s the sharp picture has no clear subject: a blank wall, a tilted screen, a dark blurry shape and an ; vision: Th"
+                },
+                {
+                  "cluster": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
+                  "outcome": "already_refused",
+                  "why": "2026-11-12: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "mokrivskyi@momentlachrymosecrazychickpeacharlietheunicorn-tb",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1638.5
+        },
+        {
+          "slug": "clip-20261113-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (Game dialogue, no visible event)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 149,
+                "refused_shown": 10,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat tells how Reggie tried to manipulate his cameraman and threatened him, then escalates to demanding proof and R",
+                    "shape": "multi_stream",
+                    "n": 6
+                  },
+                  {
+                    "premise": "Ludwig loses an influencer League tournament match and rages, then Jynxzi gives his view on the tournament setting Leagu",
+                    "shape": "multi_streamer",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Forsen's Hellraiser: Revival stream on one night, from the first clip to the GOTY reaction.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jynxzi's Elden Ring grind, from beating Rellana to finally conquering the Putrescent Knight and Midra.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 316,
+                "moments": 40,
+                "candidates": 532,
+                "pool": 2949,
+                "pool_with_vod": 2095,
+                "arc_sizes": [
+                  3,
+                  3,
+                  4,
+                  2,
+                  2,
+                  4,
+                  3,
+                  3,
+                  2,
+                  5
+                ]
+              }
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown streamer, no contex",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "Game dialogue, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 36.2
         }
       ]
     }

@@ -19610,14 +19610,67 @@
       "director_cut": true
     },
     "clip-20261113-5": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-280e98dcbff0064c",
-      "streamer": "mokrivskyi",
+      "url": "https://youtube.com/shorts/RTqzzGfwEaM",
       "title": "Mokrivskyi: Birthday stream gets weird: 'this is a joke, we recorded this'",
       "kind": "story",
-      "ts": "2026-11-13T13:07:25.787188+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-13T13:07:37.560591+00:00",
+      "uploaded_at": "2026-11-13T13:07:37.560607+00:00",
+      "publish_at": "2026-11-13T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261113-mokrivskyi-birthday-stream-gets-weird-this-is-a--edb17c31",
+        "tiktok": "queued for 2026-11-13T23:00:00Z"
+      },
+      "story_key": "story-280e98dcbff0064c",
+      "member_keys": [
+        "vodmine://2922273015/5926-6166",
+        "https://www.twitch.tv/mokrivskyi/clip/LachrymoseCrazyChickpeaCharlietheUnicorn-tbrxxrR5zM1ERue9",
+        "vodmine://2922273015/6174-6414"
+      ],
+      "streamer": "mokrivskyi",
+      "who": [
+        "mokrivskyi"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 50.9,
+      "narrative_score": 0,
+      "narrative_summary": "At Mokrivskyi's birthday stream, a house-party scene turns tense and confusing on camera. Guests insist it is all a joke, and the clip's line then lands: they don't drink, they have a circle to increa",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-happyplacidkiwipjsugar-ld24bugd1rgcvfg5": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/HappyPlacidKiwiPJSugar-Ld24bugD1RGcVfg5",
+      "streamer": "summit1g",
+      "title": "BUSSERS 1G EMOTE PLS",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (static chair shot, no visible event)",
+      "ts": "2026-11-13T13:08:49.238696+00:00"
+    },
+    "rejected-relievedscaryleopardbudstar-kvvdts9lg-zfjvmu": {
+      "source_url": "https://www.twitch.tv/jokerdtv/clip/RelievedScaryLeopardBudStar-kvVDtS9LG-ZFjVMu",
+      "streamer": "jokerdtv",
+      "title": "Jokerd gets rekt by a paper straw",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW auction house, mild straw mishap tal)",
+      "ts": "2026-11-13T13:09:17.132494+00:00"
+    },
+    "rejected-dependableprotectivetardigradeninjagrumpy-oi1cji4yl2qa12hx": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/DependableProtectiveTardigradeNinjaGrumpy-Oi1CJI4yl2qa12hX",
+      "streamer": "erobb221",
+      "title": "Jam a man of L's",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Game dialogue, no visible event)",
+      "ts": "2026-11-13T13:09:53.285476+00:00"
     }
   }
 }
