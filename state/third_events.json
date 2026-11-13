@@ -5727,6 +5727,52 @@
       ],
       "published_versions": [],
       "last_updated": "2026-11-12"
+    },
+    "2xrakai-bath-bubble-2026w45": {
+      "event_id": "2xrakai-bath-bubble-2026w45",
+      "people": [
+        "2xrakai"
+      ],
+      "actions": [
+        "bath",
+        "bubble",
+        "else",
+        "towel"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2922690812/11103-11343",
+        "https://www.twitch.tv/2xrakai/clip/BoringPuzzledToothNononoCat-kwd8HrI5vbJlpoPW",
+        "vodmine://2922690812/11349-11589"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-13"
+    },
+    "mokrivskyi-black-house-2026w45": {
+      "event_id": "mokrivskyi-black-house-2026w45",
+      "people": [
+        "mokrivskyi"
+      ],
+      "actions": [
+        "black",
+        "house",
+        "joke",
+        "people"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2922273015/5926-6166",
+        "https://www.twitch.tv/mokrivskyi/clip/LachrymoseCrazyChickpeaCharlietheUnicorn-tbrxxrR5zM1ERue9",
+        "vodmine://2922273015/6174-6414"
+      ],
+      "published_versions": [
+        "story-280e98dcbff0064c"
+      ],
+      "last_updated": "2026-11-13"
     }
   }
 }
