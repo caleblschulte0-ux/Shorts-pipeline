@@ -14,7 +14,7 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
   ending      the last shot ends ON its payoff, never a pull-back to a wide frame
 
     usage: STORY=name SHOT=n python -I shots.py OUTDIR [SPP] [PCT]
-    env: NARR=narration.json | STILL=<local t> | STEP | FRAMES=a-b | STAGING=strict|on | CLIPPING=strict|report
+    env: NARR=narration.json | STILL=<local t> | STEP | KEYS=n (n evenly spaced stills: the storyboard pass) | FRAMES=a-b | STAGING=strict|on | CLIPPING=strict|report
 Frames are written with GLOBAL numbers (the shot's start in the narration + local frame), so the shot folders merge
 into one sequence. Prints 'FRAME n seconds'."""
 import sys, os, math, json, time, random
@@ -272,6 +272,7 @@ if os.environ.get("DIAG"): exec(open(os.environ["DIAG"]).read()); sys.exit(0)
 still = os.environ.get("STILL"); step = int(os.environ.get("STEP", "1")); fr = os.environ.get("FRAMES")
 if still is not None: frames = [min(NF, F(float(still)))]
 elif fr: a, b = fr.split("-"); frames = [f for f in range(int(a), int(b) + 1, step) if 1 <= f <= NF]
+elif os.environ.get("KEYS"): k = max(2, int(os.environ["KEYS"])); frames = sorted({1 + round((NF - 1) * (0.08 + 0.9 * i / (k - 1))) for i in range(k)})
 else: frames = list(range(1, NF + 1, step))
 print(f"SHOT {SHOT} T0={T0:.2f} T1={T1:.2f} NF={NF} G0={G0}")
 for f in frames:

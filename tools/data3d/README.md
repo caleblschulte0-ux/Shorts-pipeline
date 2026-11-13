@@ -52,3 +52,15 @@ What every shot is held to before a frame renders (store/shots.py runs them; a s
 last line ends on a question a viewer can answer in a comment (at most the registry's `question_words`), and the 3D
 music bed sits at `MUSIC_BED_3D` in `story/assemble.py`, under the 2D explainer's. Held by
 `tests/test_data3d_story.py::test_a_3d_short_ends_on_a_question_and_its_music_sits_low`.
+
+## The order a smart studio works in (caaleb 2026-11-13: "what would an even smarter person be doing?")
+
+1. **Start from staging that passed.** The idea's prop big and right in front of Data at chest height, camera about
+   a metre away, Data chest-up; a field-wide effect gets a low camera among the near things. The consequence
+   pre-check (`store/staging.py`, `CONSEQ_MIN_H`, `CONSEQ_INSIDE`) fails a prop under 12% of the frame or cut by its
+   edge in seconds, before anything renders.
+2. **Storyboard pass:** `STORY=<story> VBPY=<blender python> bash store/board3d.sh <dir>` renders four rough key
+   stills of every shot (two shots at a time, every measured check first) and the judge reads them at phone size
+   (`JUDGE3D_BOARD=1`). Fix until it passes. Minutes, not the 40 a proof costs.
+3. **Proofs in parallel, in CI:** push the render trigger; `data3d_render.yml` proofs all shots at once and its
+   judge must pass before a single full frame renders. Don't proof shot after shot on one machine.

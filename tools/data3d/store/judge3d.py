@@ -71,6 +71,20 @@ BAR = BAR.replace("NOTES: everything else", """- TINY DATA: Data so small in the
 - NO PAYOFF (last shot only): the video ends on a zoom-out, a pose or nothing happening instead of a visual payoff.
 
 NOTES: everything else""")
+if os.environ.get("JUDGE3D_BOARD") == "1":
+    # THE STORYBOARD PASS (caaleb 2026-11-13: "what would an even smarter person be doing?"). Before a single shot is
+    # animated at proof quality, a few KEY STILLS of each shot are judged at phone size for what a still can show:
+    # framing, size, what is cut off, what the shot is about. The saffron proofs failed for exactly that, "a few
+    # pixels on a phone", after 40 minutes each; a still says it in a minute.
+    BAR = BAR.replace(BAR[BAR.index("How to read the sheets"):BAR.index("score: 0-100")], """How to read the sheets: this is a STORYBOARD, a few
+key stills per shot (start to end, left to right), rendered rough and fast. Motion, timing, blur and render noise are
+NOT graded. Grade only what a still shows, as a phone viewer would: is the shot's subject (the FOR line) big and
+whole in the frame, is Data big enough to read, is anything that matters cut by the frame edge or hidden behind
+something, would a stranger seeing these stills say what the shot shows. A CONSEQUENCE defect here means the result
+the FOR line names is not visible in the stills at all, or too small to read. Background people are deliberately
+minimal faceless figures (operator ruling), and the sets, lighting and Data's design are approved: never grade those.
+
+""")
 PASS_SCORE = 70
 
 
