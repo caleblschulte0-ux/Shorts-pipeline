@@ -5387,11 +5387,30 @@
       "duration_s": 27.4
     },
     "drone-commercial-overtake": {
-      "claimed_at": "2026-11-13T12:53:28.736979+00:00",
+      "url": "https://youtube.com/shorts/aYA4XPhpzP0",
       "title": "453,635 Commercial Drones Quietly Overtook Hobby Drones",
+      "at": "2026-11-13T12:53:41.348482+00:00",
       "publish_at": "2026-11-13T23:03:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "a line came out at 1.0 words/s",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.52,
+      "beat_s": [
+        3.04,
+        6.52,
+        5.49,
+        5.11,
+        4.31
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 24.9
     }
   },
   "uploads": [
@@ -6935,9 +6954,10 @@
       "claimed_at": "2026-11-13T12:53:28.736979+00:00",
       "title": "453,635 Commercial Drones Quietly Overtook Hobby Drones",
       "publish_at": "2026-11-13T23:03:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "drone-commercial-overtake"
+      "url": "https://youtube.com/shorts/aYA4XPhpzP0",
+      "state": "posted",
+      "slug": "drone-commercial-overtake",
+      "at": "2026-11-13T12:53:41.348482+00:00"
     }
   ]
 }
