@@ -127,15 +127,16 @@ class Data:
         # 2026-11-13 (caaleb: "we need to do a lot of work on how he express"): rendered side by side the seven faces
         # were nearly one face. Each now has its own BROW SHAPE (worry lifts the inner ends, mad drops them) and its
         # own EYES (squint is the lower lid rising: the eye smile), so it reads at phone size from the brows alone.
+        # The glasses frame hides the top and bottom ~30 deg of each eye, so a lid under ~0.35 is never SEEN.
         'neutral': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0),
-        'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=0.08, lid=0.0, squint=0.55),
+        'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=0.08, lid=0.0, squint=0.95),
         'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.32, lid=0.0, frown=0.3, worry=0.25),
-        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.15, frown=1.0, worry=1.0),
+        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.35, frown=1.0, worry=1.0),
         'alarmed': dict(smile=0.0, open=0.0, oh=0.0, brow=0.34, lid=0.0, frown=0.7, worry=0.55),  # brows high, eyes wide, the mouth turned down: shock without the mouth hole
         'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.04, lid=0.0),
-        'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.15, worry=0.35, squint=0.2),   # "what can you do": brows up, a half smile
-        'determined': dict(smile=0.15, open=0.0, oh=0.0, brow=0.12, lid=0.2, mad=0.75, squint=0.35),
-        'sad': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.35, frown=0.8, worry=0.9),
+        'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.42, worry=0.35, squint=0.35),   # "what can you do": brows up, a half smile
+        'determined': dict(smile=0.15, open=0.0, oh=0.0, brow=0.12, lid=0.5, mad=0.75, squint=0.55),
+        'sad': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.62, frown=0.8, worry=0.9),
     }
 
     def __init__(self, sc):
