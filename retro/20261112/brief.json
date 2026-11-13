@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261112",
-  "generated_at": "2026-11-12T23:31:15Z",
+  "generated_at": "2026-11-13T00:31:11Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 49.76,
+          "days": 49.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 48.76,
+          "days": 48.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1711,10 +1711,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "c1361c2",
-    "commits_since": "2026-11-11",
+    "head": "6945c03",
+    "commits_since": "2026-11-12",
     "commit_count": 50,
     "commits": [
+      "6945c03 story forge: new real-data stories [skip ci]",
+      "443d28e claim: mailbox verdicts 2026-11-12T23:48Z [skip ci]",
+      "a22c01b retro: brief + triage for 20261112 [skip ci]",
       "c1361c2 explainer: update posted log + analytics [skip ci]",
       "aab8747 claim: mailbox verdicts 2026-11-12T22:50Z [skip ci]",
       "16d6b68 claim: mailbox verdicts 2026-11-12T22:48Z [skip ci]",
@@ -1751,10 +1754,7 @@
       "5abd997 story forge: new real-data stories [skip ci]",
       "9376576 claim: mailbox verdicts 2026-11-12T16:09Z [skip ci]",
       "dd6dfb2 watchdog: chatgpt task verdicts 20261112 [skip ci]",
-      "d94cda2 third: analytics [skip ci]",
-      "f49075a third: update posted log + analytics [skip ci]",
-      "b5c0491 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "5880f33 watchdog: chatgpt task verdicts 20261112 [skip ci]"
+      "d94cda2 third: analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
