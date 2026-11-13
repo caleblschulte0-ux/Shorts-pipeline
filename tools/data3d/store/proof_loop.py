@@ -84,7 +84,10 @@ The proof's contact sheet (every few frames, left to right, top to bottom) is {s
 {history}
 Fix the CAUSE the judge names, the way a film director would: stage for this one camera, make the action and its
 result big and clear in frame, keep Data's face to the lens, give him acting (a pose, a reaction) rather than a
-held stare. Prefer moving the camera, Data's place, timing and props over new machinery. This is Blender 5 (bpy 5.0):
+held stare. Prefer moving the camera, Data's place, timing and props over new machinery. When an action keeps failing on his hands (a hand that "never touches", a push
+of air, an object that "moves on its own"), stop polishing the contact: restage the beat as ONE big action that needs
+no fine hand contact (the thing happens on its own while he reacts with his whole body, or he holds one object the
+whole shot). The banana short's passing shots were exactly that; its failing ones were all fiddly hand work. This is Blender 5 (bpy 5.0):
 an Action has no .fcurves (layered actions), so key with keyframe_insert and the helpers the file already uses. Edit
 the copy you were given, never {path} itself: an edit there is lost. Keep every check above passing. Keep the function's return dict the same shape. Make the edit, then reply with one line saying what you
 changed."""
