@@ -14,7 +14,13 @@ So the loop belongs to the pipeline, not to a session. Each round:
   3. REVISE  for every shot that failed, a headless Claude gets the shot's own function, the judge's notes, the
              measured checks and the proof sheet, and edits ONLY that shot in stories/<story>/shots.py.
              (--no-revise stops after the judge, for a session that makes the fixes itself.)
-A shot that passes is never re-rendered or re-judged. The loop stops when every shot passes (exit 0) or after
+A shot that passes is never re-rendered or re-judged.
+A shot that STALLS (its best score has not risen for STALL revisions) is not polished again: the next revision is a
+RETHINK, told which element the judge has named round after round, and it cuts that element or simplifies the beat
+to one idea that still says the storyboard line. The banana hook spent ~8 hours and 20+ hand rounds polishing a floor
+stain the judge called a "spill" every time; it passed the moment the stain was cut (caaleb, 2026-11-13: "we can't
+take 4 days to make one video"). And the file never ends on an unjudged edit: every shot is put back to its best
+judged take before the loop exits. The loop stops when every shot passes (exit 0) or after
 --rounds (exit 2, the last verdict and every round's notes in OUT/loop.json).
 
 usage: python proof_loop.py STORY OUT [--shots 1 2 3] [--rounds 6] [--no-revise] [--step 6] [--spp 8] [--pct 30]
@@ -93,7 +99,44 @@ the copy you were given, never {path} itself: an edit there is lost. Keep every 
 changed."""
 
 
-def revise(story, out, n, v, history):
+STALL = int(os.environ.get("PROOF_STALL", "2"))
+
+RETHINK = """
+THIS SHOT HAS STALLED: its best score has not risen in {stalled} revisions ({scores}). Polishing it again will fail
+again. Do NOT tweak the same element. The judge keeps naming these, round after round:
+{recurring}
+Either CUT the element those notes are about (delete it from the shot entirely) or rebuild the beat around ONE
+simpler idea that still says the storyboard line. Fewer, bigger things. A shot with one clear object beats a shot
+with a clever detail the judge misreads.
+"""
+
+
+def stalled(scores, k=STALL):
+    """True when the last k revisions did not beat the best score before them."""
+    if len(scores) <= k:
+        return False
+    return max(scores[-k:]) <= max(scores[:-k])
+
+
+def recurring(problem_lists, min_rounds=2, top=6):
+    """The judge's notes about the same thing in several rounds: content words that show up in >= min_rounds verdicts,
+    each with one note that uses it."""
+    stop = set("the a an of to and in on is it its his he with for at as by but not no this that from be are was "
+               "into out up so or than then very too only one shot data frame scene reads read look looks".split())
+    seen, example = {}, {}
+    for probs in problem_lists:
+        words = set()
+        for note in probs or []:
+            for w in re.findall(r"[a-z]{4,}", str(note).lower()):
+                if w not in stop:
+                    words.add(w); example.setdefault(w, str(note))
+        for w in words:
+            seen[w] = seen.get(w, 0) + 1
+    hits = sorted((w for w, c in seen.items() if c >= min_rounds), key=lambda w: (-seen[w], w))[:top]
+    return [(w, seen[w], example[w]) for w in hits]
+
+
+def revise(story, out, n, v, history, rethink=""):
     path = STORIES / story / "shots.py"
     work = out / "rev" / f"shot{n}.py"; work.parent.mkdir(exist_ok=True)
     work.write_text(shot_source(path.read_text(), n))
@@ -105,7 +148,7 @@ def revise(story, out, n, v, history):
                             checks=checks, sheet=out / f"sheet_s{n}.jpg", work=work,
                             history=("Earlier attempts at this shot, and what the judge gave them (the best one is "
                                      "what you are editing now; do not repeat what scored lower):\n" + "\n".join(history) + "\n")
-                            if history else "")
+                            if history else "") + rethink
     before = work.read_text()
     p = subprocess.run(["claude", "-p", prompt, "--model", os.environ.get("REVISER_MODEL", "opus"),
                         "--allowedTools", "Read,Edit", "--output-format", "text"],
@@ -133,6 +176,7 @@ def main():
     todo = a.shots or list(range(1, n_shots + 1))
     log, passed = [], {}
     path = STORIES / a.story / "shots.py"
+    scores, probs = {n: [] for n in todo}, {n: [] for n in todo}
     best, history, pending = {}, {n: [] for n in todo}, {}       # best[n] = (score, source, verdict); pending[n] = what was tried
     for rnd in range(1, a.rounds + 1):
         t0 = time.time()
@@ -153,6 +197,7 @@ def main():
         for n in todo:
             sc = verdict[n].get("score") or 0; src = shot_source(path.read_text(), n)
             if n in pending: history[n].append(f"- {pending.pop(n)} -> scored {sc}")
+            scores[n].append(sc); probs[n].append(list(verdict[n].get("problems") or []) + list(verdict[n].get("hard") or []))
             if verdict[n].get("pass"):
                 passed[n] = verdict[n]
                 if not verdict[n].get("kept"):
@@ -166,14 +211,26 @@ def main():
         print(f"=== round {rnd}: passed {sorted(passed)}  failing {todo}", flush=True)
         if not todo:
             print("PROOF LOOP: every shot passes: the full render is worth starting"); return 0
-        if a.no_revise:
-            return 2
+        if a.no_revise or rnd == a.rounds:          # never end on an edit nobody judged
+            break
+
+        def rethink_for(n):
+            if not stalled(scores[n]):
+                return ""
+            rec = recurring(probs[n]) or [("(no single word)", 0, p) for p in (probs[n][-1] or [])[:3]]
+            print(f"RETHINK shot {n}: stalled at {max(scores[n])} over {scores[n]}", flush=True)
+            return RETHINK.format(stalled=STALL, scores=", ".join(map(str, scores[n])),
+                                  recurring="\n".join(f"- {w!r} in {c} rounds, e.g. {ex}" for w, c, ex in rec))
+
         with ThreadPoolExecutor(len(todo)) as ex:       # each brain edits its own copy of its own shot, in parallel
-            outs = list(ex.map(lambda n: (n, revise(a.story, out, n, verdict[n], history[n])), todo))
+            outs = list(ex.map(lambda n: (n, revise(a.story, out, n, verdict[n], history[n], rethink_for(n))), todo))
         for n, (body, note) in outs:
             if body:
                 put_shot(path, n, body); pending[n] = note.replace("\n", " ")[:300]
-    print(f"PROOF LOOP: still failing after {a.rounds} rounds: {todo}"); return 2
+    for n in todo:                                   # the file holds each failing shot's best JUDGED take
+        if n in best:
+            put_shot(path, n, best[n][1])
+    print(f"PROOF LOOP: still failing after {rnd} rounds: {todo}"); return 2
 
 
 if __name__ == "__main__":
