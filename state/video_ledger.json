@@ -7072,6 +7072,54 @@
    "ending_type": "inversion",
    "franchise": "",
    "notes": "kept existing scenes; tile flip is the signature"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-11-13",
+   "hook_text": "Forgotten money is piling up in state vaults, and it may be yours.",
+   "depictions": [
+    "illustrated:scene",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "inversion",
+   "notes": "pre-render pass: kept existing varied scenes; validate OK"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-13",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "illustrated:scene",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "notes": "pre-render pass: kept existing varied scenes; validate OK"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-13",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:scene",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "inversion",
+   "notes": "pre-render pass: kept existing varied scenes; validate OK"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-13",
+   "hook_text": "Index funds quietly bought over half the market, and three firms hold the keys.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "illustrated:scene"
+   ],
+   "ending_type": "inversion",
+   "notes": "pre-render pass: kept existing varied scenes; validate OK"
   }
  ]
 }
