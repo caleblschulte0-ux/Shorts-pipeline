@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__312d565d",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-13T12:12:10Z",
+  "title": "English Fell From 75% To 45% As The Internet Globalized",
+  "hook": "English fell to 45% when the rest of the world logged on.",
+  "closing": "Searching only in English now leaves nearly half the web—and its voices—unseen.",
+  "question": "Which language do you browse in?",
+  "segments": [
+    {
+      "topic": "English Page Fall",
+      "say": "By 2005, English had fallen to 45 percent of web pages. The internet was no longer an English-only room."
+    },
+    {
+      "topic": "English Growth Rival",
+      "say": "Arabic content grew nearly nine times faster than English. New users were rebuilding the web in their own languages."
+    },
+    {
+      "topic": "English Website Share",
+      "say": "English still leads at 55 percent of websites. That means nearly half the web now speaks something else."
+    }
+  ]
+}
