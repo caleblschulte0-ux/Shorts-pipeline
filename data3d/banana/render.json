@@ -1,0 +1,60 @@
+{
+ "frames_rendered": 885,
+ "frame_size": [
+  1080,
+  1920
+ ],
+ "native": true,
+ "fps": 30,
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30.0,
+  "codec": "h264",
+  "frames": 885,
+  "pix_fmt": "yuv420p"
+ },
+ "audio": {
+  "codec": "aac",
+  "sample_rate": "44100"
+ },
+ "duration_s": 29.5,
+ "bytes": 18580445,
+ "last_word_s": 28.403,
+ "tts": {
+  "engine": "gemini",
+  "voice": "gemini Charon",
+  "why_not_elevenlabs": null,
+  "why_not_chatterbox": null,
+  "why_not_gemini": null
+ },
+ "lines": [
+  "Nearly every banana here is a clone, and a fungus is coming for it.",
+  "They're all Cavendish, copies of one plant grown from its offshoots, with no seeds. So what kills one can kill them all.",
+  "It's happened before. In the 1950s a soil fungus wiped out the banana America ate, the Gros Michel, so growers switched to Cavendish.",
+  "Now a new strain is killing Cavendish. There's no cure, and it can sit in the soil for decades.",
+  "Now it's in Ecuador, the biggest exporter of all, and this time there's no banana to switch to."
+ ],
+ "windows": [
+  [
+   0.0,
+   4.948333
+  ],
+  [
+   4.948333,
+   11.703458000000001
+  ],
+  [
+   11.703458000000001,
+   18.944125
+  ],
+  [
+   18.944125,
+   23.56825
+  ],
+  [
+   23.56825,
+   28.872833
+  ]
+ ]
+}

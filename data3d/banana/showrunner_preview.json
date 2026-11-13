@@ -1,0 +1,115 @@
+{
+  "score": 83,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 3,
+    "data_demo": 4,
+    "mascot": 3,
+    "craft": 2,
+    "pace": 2,
+    "payoff": 2,
+    "temporal_craft": 3
+  },
+  "auto_fails": [
+    "unreadable: mid4: the papers on the ground right of Data read as a smeared '2046' you have to puzzle out, and Data's hand partly covers the '2056' sign. 'TR4 FUNGUS' is pale on light soil. mid3: the second crate covers the 'GROS MICHEL' stencil, cutting it to 'GROS MICHE'."
+  ],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "Every frame is a coherent 3D scene that fits the topic: banana shelves (hook@1.5), cloned potted plants (mid1), a Gros Michel crate on a rail switch (mid2), a TR4 soil cutaway (mid4) and Ecuador crates (mid5)."
+    },
+    "decorative_mascot": {
+      "present": false,
+      "evidence": "Data drives most beats. He holds up the banana in the hook, throws the switch lever from the Gros Michel car to Cavendish (mid3), pours into the infected soil (mid4) and works the lever at an empty '?' crate (payoff@-0.4). Only seg0 (mid1) has him standing idle beside the plants."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "No beat is a number on a background. Even the dates sit inside scenes: 1950 is stencilled on the crate (mid2) and 2056 is on a field calendar sign (mid4)."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "Measured longest_static_s is 0.0 and max_frozen_run is 4. Shelves fill in the hook, the crate switches at seg1, spores drift at seg2 and the lever moves in the closing."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "dark_fraction is 0.0. Every frame is filled with a full environment: shelving, warehouse aisle, plantation, port yard."
+    },
+    "unreadable": {
+      "present": true,
+      "evidence": "mid4: the papers on the ground right of Data read as a smeared '2046' you have to puzzle out, and Data's hand partly covers the '2056' sign. 'TR4 FUNGUS' is pale on light soil. mid3: the second crate covers the 'GROS MICHEL' stencil, cutting it to 'GROS MICHE'."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 89
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.109,
+    "effective_fps": 21.4,
+    "max_dup_run": 11,
+    "measured": true,
+    "frozen_ratio": 0.028,
+    "frozen_fps": 23.3,
+    "max_frozen_run": 4,
+    "judder_ratio": 0.0,
+    "judder_fps": 24.0,
+    "held_s": 1.33,
+    "max_dup_at_s": 10.92,
+    "duration_s": 29.5
+  },
+  "judge": "headless-claude",
+  "weakest_scene": {
+    "id": "seg2",
+    "index": 3,
+    "failure_class": "unreadable",
+    "visible_evidence": "mid4: the calendar sheets on the ground are an illegible smear ('2046'?), Data's hand covers the left edge of the 2056 sign, and the 'TR4 FUNGUS' label is low-contrast white-grey on tan soil.",
+    "root_cause": "Too many small date labels in the payoff frame, placed where Data's body and the ground clutter cover them, and the fungus label wears a pale tint instead of ink with an outline.",
+    "repair_goal": "Keep ONE date. Put the decades-long persistence on a single clean calendar sign fully clear of Data, with no loose papers on the ground. Give 'TR4 FUNGUS' ink-coloured text with an outline, or drop it and let the glowing spores carry it. Show time passing on the subject itself (spores still glowing as seasons tick) rather than with extra labels."
+  },
+  "depictions": [
+    {
+      "id": "seg0",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 2,
+      "note": "A row of identical potted banana suckers in an aisle reads as copies, but Data just stands beside them and nothing shows that what kills one kills all."
+    },
+    {
+      "id": "seg1",
+      "kind": "bespoke",
+      "bespoke": 3,
+      "proves_claim": 3,
+      "note": "A rail switch moves from the blackened Gros Michel 1950 car to a yellow Cavendish car in a plantation. The history is told by the switch itself, and Data throws the lever."
+    },
+    {
+      "id": "seg2",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 2,
+      "note": "The soil cutaway with glowing TR4 spores around the roots is strong, but 'sits for decades' depends on small calendar labels, not on the picture."
+    },
+    {
+      "id": "seg3",
+      "kind": "bespoke",
+      "bespoke": 3,
+      "proves_claim": 3,
+      "note": "The same switch callback: the blackened Ecuador car beside an empty crate marked '?'. 'No banana to switch to' is shown, not said."
+    }
+  ],
+  "one_line": "A strong bespoke rail-switch story with a great empty-crate payoff, held back by cluttered, partly covered date labels in the soil beat and a passive Data in beat one.",
+  "problems": [
+    "seg2 (mid4): the loose calendar papers on the ground are illegible, Data's hand covers the 2056 sign, and 'TR4 FUNGUS' is pale on tan soil",
+    "seg1 (mid3): the adjacent crate cuts the Gros Michel stencil to 'GROS MICHE'",
+    "seg0 (mid1): Data stands idle beside the cloned plants with no action tied to 'what kills one kills them all'",
+    "hook: the shelves fill behind a mostly static Data, so the first second has a weak sense of threat (no fungus visible)"
+  ],
+  "fixes": [
+    "seg2: one clean date sign clear of Data, no ground papers, and ink-coloured outlined text for the fungus label (or no label)",
+    "seg1: space the two crates apart so the 'GROS MICHEL' stencil is fully visible",
+    "seg0: have Data cut one sucker and plant it so the row is visibly copies, then a wilt spreads down the whole row",
+    "hook: show a hint of creeping fungus reaching the shelf edge in frame one"
+  ]
+}
