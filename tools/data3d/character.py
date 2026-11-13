@@ -124,13 +124,18 @@ def _mouth_paths(n=24):
 # ------------------------------------------------------------------------------------------------ the character
 class Data:
     EXPRESSIONS = {
+        # 2026-11-13 (caaleb: "we need to do a lot of work on how he express"): rendered side by side the seven faces
+        # were nearly one face. Each now has its own BROW SHAPE (worry lifts the inner ends, mad drops them) and its
+        # own EYES (squint is the lower lid rising: the eye smile), so it reads at phone size from the brows alone.
         'neutral': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0),
-        'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=-0.02, lid=0.1),
-        'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.14, lid=0.0, frown=0.45),
-        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.06, lid=0.2, frown=1.0),
-        'alarmed': dict(smile=0.0, open=0.0, oh=0.0, brow=0.22, lid=0.0, frown=0.7),      # brows high, eyes wide, the mouth turned down: shock without the mouth hole
-        'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.0, lid=0.0),
-        'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.15),     # "what can you do": brows up, a half smile
+        'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=0.08, lid=0.0, squint=0.55),
+        'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.32, lid=0.0, frown=0.3, worry=0.25),
+        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.15, frown=1.0, worry=1.0),
+        'alarmed': dict(smile=0.0, open=0.0, oh=0.0, brow=0.34, lid=0.0, frown=0.7, worry=0.55),  # brows high, eyes wide, the mouth turned down: shock without the mouth hole
+        'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.04, lid=0.0),
+        'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.15, worry=0.35, squint=0.2),   # "what can you do": brows up, a half smile
+        'determined': dict(smile=0.15, open=0.0, oh=0.0, brow=0.12, lid=0.2, mad=0.75, squint=0.35),
+        'sad': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.35, frown=0.8, worry=0.9),
     }
 
     def __init__(self, sc):
@@ -279,6 +284,7 @@ class Data:
         while coat.modifiers[0] != md: bpy.ops.object.modifier_move_up({'object': coat}, modifier=md.name) if False else coat.modifiers.move(len(coat.modifiers) - 1, 0)
         self.parts = [o for o in bpy.data.objects if o not in before and o != arm]
         self.brows = P['Brow']
+        self._brow_shapes()
         self.sc.frame_set(1)
         self._rest = {pb.name: pb.bone.matrix_local.copy() for pb in self.pb}
 
@@ -476,7 +482,34 @@ class Data:
     OH_MAX = 0.0    # caaleb 11-04 and 11-12 ("data's mouth looked weird"): never an open 'o' / mouth hole, in ANY shot.
                     # Shock is the brows, the eyes and the body. Held here, where every expression is keyed, so no shot can ask for one.
 
-    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0, frown=0.0):
+    def _brow_shapes(self):
+        """Two shape keys on each brow (caaleb 2026-11-13: "we need to do a lot of work on how he express"): a brow that
+        only slides up and down cannot act. 'worry' lifts the INNER end (sad, pleading, worried), 'mad' drops it
+        (determined, angry, focused). The outer end stays put, so it is a tilt, and the brow stays on the head."""
+        self.sc.frame_set(1); bpy.context.view_layer.update()
+        for b in self.brows:
+            if b.type != 'CURVE' or b.data.shape_keys: continue
+            M = b.matrix_world; Mi = M.inverted().to_3x3()
+            pts = [p for sp in b.data.splines for p in sp.points]
+            wx = [(M @ Vector(p.co[:3])).x for p in pts]
+            head_x = (self.arm.matrix_world @ self.pb['head'].head).x
+            inner = min(range(len(pts)), key=lambda i: abs(wx[i] - head_x))
+            outer = max(range(len(pts)), key=lambda i: abs(wx[i] - head_x))
+            span = abs(wx[outer] - wx[inner]) or 1.0
+            up = (Mi @ Vector((0, 0, 1)))
+            b.shape_key_add(name='Basis')
+            for name, sgn in (('worry', 1.0), ('mad', -1.0)):
+                k = b.shape_key_add(name=name)
+                for i, p in enumerate(pts):
+                    w = max(0.0, 1.0 - abs(wx[i] - wx[inner]) / span) ** 1.3
+                    k.data[i].co = Vector(p.co[:3]) + up * (sgn * 0.42 * span * w)
+                k.slider_min, k.slider_max = 0.0, 1.0
+
+    def _brow_key(self, name):
+        sk = self.brows[0].data.shape_keys
+        return sk.key_blocks[name].value if sk and name in sk.key_blocks else 0.0
+
+    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0, frown=0.0, worry=0.0, mad=0.0, squint=0.0):
         oh = min(oh, self.OH_MAX)
         kb = self.lips.data.shape_keys.key_blocks
         for name, v in (('smile', smile), ('open', open), ('oh', oh), ('frown', frown)):
@@ -487,7 +520,13 @@ class Data:
             b.location.z = 0.305 + brow * 0.5; b.location.y = brow * 0.45; b.keyframe_insert('location', frame=F(t))
         for s in 'LR':
             self.EYE[s + 'up'].rotation_euler.x = math.radians(-100 + 100 * lid); self.EYE[s + 'up'].keyframe_insert('rotation_euler', frame=F(t), index=0)
-            self.EYE[s + 'lo'].rotation_euler.x = math.radians(100 - 100 * lid * 0.6); self.EYE[s + 'lo'].keyframe_insert('rotation_euler', frame=F(t), index=0)
+            self.EYE[s + 'lo'].rotation_euler.x = math.radians(100 - 100 * min(0.95, lid * 0.6 + squint * 0.8)); self.EYE[s + 'lo'].keyframe_insert('rotation_euler', frame=F(t), index=0)
+        for b in self.brows:
+            sk = b.data.shape_keys
+            if not sk: continue
+            for name, v in (('worry', worry), ('mad', mad)):
+                sk.key_blocks[name].value = v; sk.key_blocks[name].keyframe_insert('value', frame=F(t))
+        self._squint = squint
         self._end = max(self._end, t)
 
     def expression(self, name, t0, t1=None, blend=0.22, cross='other'):
@@ -500,8 +539,10 @@ class Data:
 
     def _face_state(self):
         kb = self.lips.data.shape_keys.key_blocks
+        lid = (math.degrees(self.EYE['Lup'].rotation_euler.x) + 100) / 100
+        lo = (100 - math.degrees(self.EYE['Llo'].rotation_euler.x)) / 100      # = lid*0.6 + squint*0.8
         return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, frown=kb['frown'].value, brow=(self.brows[0].location.z - 0.305) * 2,
-                    lid=(math.degrees(self.EYE['Lup'].rotation_euler.x) + 100) / 100)
+                    lid=lid, worry=self._brow_key('worry'), mad=self._brow_key('mad'), squint=max(0.0, (lo - lid * 0.6) / 0.8))
 
     def say(self, keys, key='open'):
         for t, v in keys: self._face(t, **{key: v})
@@ -752,6 +793,10 @@ class Data:
         sk = self.lips.data.shape_keys
         if sk.animation_data and sk.animation_data.action:
             jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(sk.animation_data.action)]
+        for b in self.brows:
+            k = b.data.shape_keys if b.type == 'CURVE' else None
+            if k and k.animation_data and k.animation_data.action:
+                jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(k.animation_data.action)]
         for o in [self.cavity] + list(self.brows):
             if o.animation_data and o.animation_data.action:
                 jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(o.animation_data.action)]
