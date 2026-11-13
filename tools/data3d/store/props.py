@@ -83,12 +83,13 @@ def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.
     return grab
 
 
-def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_below=None):
+def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_below=None, lie=False):
     """items: objects (coins); schedule: their release times (same length); mouth_fn(t) -> world point the item
     leaves from; kick_fn(t) -> initial velocity (default a small spill downward); land_fn(x, y, t) -> the height of the
     surface under (x, y) at time t, or None for 'keep falling'. An item sits hidden at the mouth until its time, falls,
     and once it touches the surface it RESTS there; hide_below(rest_point, t) -> True hides a rested item (buried by
-    the fill rising past it)."""
+    the fill rising past it). lie=True rests a long item (a flower on its stem) on its side, as a heap of them lies,
+    not stood up on end."""
     rnd = random.Random(seed)
     for o, ts in zip(items, schedule):
         p0 = Vector(mouth_fn(ts)) + Vector((rnd.uniform(-0.012, 0.012), rnd.uniform(-0.012, 0.012), 0))
@@ -102,7 +103,8 @@ def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_belo
                 p = p0 + v0 * u + Vector((0, 0, -0.5 * G * u * u))
                 s = land_fn(p.x, p.y, t)
                 if s is not None and p.z <= s:
-                    rest = (Vector((p.x, p.y, s)), rnd.uniform(-0.3, 0.3), rnd.uniform(-0.3, 0.3), rnd.uniform(0, 6.28))
+                    tip = (rnd.choice((-1, 1)) * rnd.uniform(1.2, 1.55)) if lie else rnd.uniform(-0.3, 0.3)
+                    rest = (Vector((p.x, p.y, s)), tip, rnd.uniform(-0.3, 0.3), rnd.uniform(0, 6.28))
                 else:
                     r = spin * u; _key(o, f, loc=p, rot=(r.x, r.y, r.z), scale=(1, 1, 1)); continue
             hidden = bool(hide_below and hide_below(rest[0], t))

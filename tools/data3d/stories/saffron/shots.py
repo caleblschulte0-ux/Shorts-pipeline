@@ -147,77 +147,82 @@ def shot1():
 
 # ================================================================ SHOT 2: three threads
 def shot2():
-    """THREE THREADS BARELY MOVE THE GRAM SCALE. In the crocus field. He holds ONE crocus up close to us, its three
-    red threads hanging out of the violet cup; he pulls them out and drops them on a kitchen scale on a crate beside
-    him: the needle barely twitches. A basket heaped with flowers stands by the scale. He looks at us, unimpressed."""
+    """THREE THREADS BARELY MOVE THE GRAM SCALE. In the crocus field, one held shot with everything in frame: a big
+    kitchen scale on a crate beside him, a basket heaped with flowers at his feet. He holds ONE crocus out over the
+    scale, pinches its three red threads out, lifts them so we see them, drops them on the pan: the needle barely
+    twitches. He sets the flower down and shrugs. (Rethought 2026-11-13 after the judge read the close-up pull as
+    yellow stamens and the scale was cut by the frame edge: one wide shot, a big scale, big red threads.)"""
     where = place("crocus_field")
     crate_m = K.mat("crate wood", "#9A7A52", rough=0.8)
-    CR = Vector((0.3, -0.18, 0.0)); CRH = 0.3
-    K.box("crate", (CR.x, CR.y, CRH / 2), (0.24, 0.2, CRH), crate_m, bev=0.008)
-    scl, needle = SK.gram_scale("gram scale", (CR.x, CR.y, CRH), yaw=0.0)
-    PAN = Vector((CR.x, CR.y, CRH + 0.1))
-    bk = SK.basket("basket", (-0.32, -0.2, 0.0), r=0.14, h=0.11)
+    CR = Vector((0.3, -0.22, 0.0)); CRH = 0.3; SS = 1.7
+    K.box("crate", (CR.x, CR.y, CRH / 2), (0.26, 0.22, CRH), crate_m, bev=0.008)
+    scl, needle = SK.gram_scale("gram scale", (CR.x - 0.02, CR.y, CRH), yaw=0.0)
+    scl.scale = (SS, SS, SS)
+    PAN = Vector((CR.x - 0.02, CR.y, CRH + 0.095 * SS))
+    BKP = Vector((-0.3, -0.22, 0.0))
+    bk = SK.basket("basket", tuple(BKP), r=0.14, h=0.11)
     rnd = random.Random(4)
     for i in range(26):   # heaped with flowers
         a = rnd.uniform(0, 6.28); rr = rnd.uniform(0, 0.1); z = 0.1 + rnd.uniform(0, 0.06) * (1 - rr / 0.11)
-        o = SK.crocus(f"basket flower {i}", (-0.32 + math.cos(a) * rr, -0.2 + math.sin(a) * rr, z), yaw=rnd.uniform(0, 6.28), seed=500 + i, own=False,
+        o = SK.crocus(f"basket flower {i}", (BKP.x + math.cos(a) * rr, BKP.y + math.sin(a) * rr, z), yaw=rnd.uniform(0, 6.28), seed=500 + i, own=False,
                       mesh=bpy.data.meshes.get("crocus tmpl 0") if i % 2 else bpy.data.meshes.get("crocus tmpl 2"))
         o.rotation_euler = (rnd.uniform(-1.2, 1.2), rnd.uniform(-1.2, 1.2), rnd.uniform(0, 6.28))
-    # the hero flower: no threads of its own; its three threads are a separate piece that comes away in his hand
     hm = SK.crocus_mesh("hero crocus", H=0.2, R=0.07, seed=21, threads=False)
     hero = bpy.data.objects.new("hero crocus", hm); bpy.context.collection.objects.link(hero)
     th_m = SK._mat("crocus thread", SK.THREAD, rough=0.35)
     threads = K.empty("hero threads", (0, 0, 0))
-    for k in range(3):
+    for k in range(3):     # three threads, thick enough to read as red at phone size
         a = math.radians(120 * k + 30)
-        pts = [Vector((math.cos(a) * 0.05 * v, math.sin(a) * 0.05 * v, 0.06 * v - 0.035 * v * v)) for v in (0, 0.33, 0.66, 1.0)]
+        pts = [Vector((math.cos(a) * 0.03 * v, math.sin(a) * 0.03 * v, 0.075 * v)) for v in (0, 0.5, 1.0)]
         for i, (p0, p1) in enumerate(zip(pts, pts[1:])):
-            d = p1 - p0; c = K.cyl(f"hero thread {k}{i}", tuple((p0 + p1) / 2), 0.0045, d.length * 1.08, th_m, v=8, bev=0)
+            d = p1 - p0; c = K.cyl(f"hero thread {k}{i}", tuple((p0 + p1) / 2), 0.0075, d.length * 1.08, th_m, v=8, bev=0)
             c.rotation_euler = d.to_track_quat('Z', 'Y').to_euler(); c.parent = threads
-    data = load_data(); data.place(0.0, 0.05, 0)
+    data = load_data(); data.place(-0.06, 0.05, 0)
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    T_PULL0, T_PULL1, T_DROP = 2.7, 3.3, 3.95
-    UPF = sh[L] + Vector((-0.04, -0.26, 0.06))          # the flower held up by his face, toward us
-    fp = path([(0.0, UPF), (T_PULL0, UPF + Vector((0.01, 0, 0.0))), (T_PULL1 + 0.3, UPF + Vector((0.03, 0.02, -0.06))), (5.0, UPF + Vector((0.0, 0.05, -0.16)))])
-    HR = Euler((math.radians(50), 0, 0)).to_matrix()     # tipped toward the lens so we look into the cup
-    follow(hero, lambda t: fp(t) + Vector((0, 0, -0.07)), 0.0, DUR, rot_fn=lambda t: (math.radians(50), 0, 0))
-    hero.scale = (1, 1, 1)
-    top = lambda t: fp(t) + Vector((0, 0, -0.07)) + HR @ Vector((0, 0, 0.2 * 0.38))
-    over_pan = PAN + Vector((0, 0, 0.12))
-    tp = path([(0.0, Vector((0, 0, 0))), (T_PULL0, Vector((0, 0, 0))), (T_PULL1, over_pan - top(T_PULL1)), (T_DROP - 0.1, over_pan - top(T_DROP - 0.1))])
+    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 2.3, 3.0, 3.8, 4.25, 5.0, 5.6
+    HOLD = Vector((data.pos().x - 0.15, -0.2, 0.41))              # the flower held out at chest height, on his far side from the scale
+    INBK = BKP + Vector((0.01, 0.0, 0.15))                          # tossed: it lands on the heap in the basket
+    T_REL = T_DROP + 0.45
+    _arc = lambda u: HOLD.lerp(INBK, u) + Vector((0, 0, 0.12 * math.sin(math.pi * u)))
+    fp = lambda t: (HOLD + Vector((0, 0, -0.04)) * (1 - ease(min(1.0, t / 1.0)))) if t < T_REL else _arc(min(1.0, ((t - T_REL) / 0.45) ** 1.3))
+    frot = lambda t: (math.radians(35) + (0.0 if t < T_REL else math.radians(160) * min(1.0, (t - T_REL) / 0.45)), 0, 0)
+    follow(hero, fp, 0.0, DUR, rot_fn=frot)
+    cup = lambda t: fp(t) + Euler(frot(t)).to_matrix() @ Vector((0, 0, 0.2 * 0.4))
+    UP = HOLD + Vector((0.24, -0.13, 0.05))                         # pulled out and lifted up in front of him, to us
+    OVER = PAN + Vector((0.0, 0.0, 0.12))
+    tp = path([(T_PINCH, cup(T_PINCH)), (T_UP, UP), (T_OVER, OVER)])
     def thr(t):
-        if t < T_PULL0: return top(t)
-        if t < T_DROP: return top(t) + tp(t) if t < T_PULL1 else over_pan
-        u = min(1.0, (t - T_DROP) / 0.28); return over_pan.lerp(PAN + Vector((0, 0, 0.012)), u * u)
-    follow(threads, thr, 0.0, DUR, rot_fn=lambda t: (math.radians(50) * (1 - min(1.0, max(0.0, (t - T_PULL0) / 0.6))) + math.radians(80) * min(1.0, max(0.0, (t - T_DROP) / 0.3)), 0, 0))
-    reach(data, L, lambda t: fp(t) + Vector((0.0, 0.0, -0.16)), 0.0, 5.0, lead=0.05, back=0.5, elbow_out=0.35)
-    reach(data, R, lambda t: thr(t) + Vector((0.035, 0.0, 0.01)) if t < T_DROP else over_pan + Vector((0.035, 0, 0.03)), T_PULL0 - 0.05, T_DROP + 0.05, lead=0.4, back=0.45, elbow_out=0.4)
-    # the needle: a hair's twitch and back, then rests one tick on
-    a0 = math.radians(-120)
-    for t_, d_ in ((0.0, 0), (T_DROP + 0.2, 0), (T_DROP + 0.32, 4.5), (T_DROP + 0.5, 1.5), (T_DROP + 0.65, 3.0), (DUR, 3.0)):
+        if t < T_PINCH: return cup(t)
+        if t < T_DROP: return tp(t)
+        u = min(1.0, (t - T_DROP) / 0.3); return OVER.lerp(PAN + Vector((0, 0, 0.008)), u * u)
+    follow(threads, thr, 0.0, DUR, rot_fn=lambda t: (math.radians(35) if t < T_PINCH else (0.0 if t < T_DROP else math.radians(90) * min(1.0, (t - T_DROP) / 0.3)), 0, 0))
+    reach(data, L, lambda t: fp(min(t, T_REL)) + Vector((0.025, 0.0, 0.015)) + Vector((0.03, 0, 0.06)) * ease(min(1.0, max(0.0, (t - T_REL + 0.25) / 0.25))), 0.0, T_REL + 0.05, lead=0.05, back=0.45, elbow_out=0.35)
+    reach(data, R, lambda t: thr(min(t, T_DROP)) + Vector((0.03, 0.0, 0.08)), T_PINCH - 0.1, T_DROP + 0.05, lead=0.5, back=0.45, elbow_out=0.4)
+    a0 = math.radians(-120)          # the needle: a hair's twitch and back, then rests one tick on
+    for t_, d_ in ((0.0, 0), (T_DROP + 0.25, 0), (T_DROP + 0.37, 5.0), (T_DROP + 0.55, 1.5), (T_DROP + 0.7, 3.0), (DUR, 3.0)):
         needle.rotation_euler = (0, a0 + math.radians(d_), 0); needle.keyframe_insert("rotation_euler", frame=F(t_))
-    US = Vector((0.0, -1.3, 0.6))
+    US = Vector((0.0, -1.5, 0.6))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(fp(1.0) + Vector((0, 0, -0.04)), 1.0, max_yaw=30)
-    data.look_at(over_pan, T_PULL1 - 0.1, max_yaw=35)
-    data.look_at(scl.matrix_world.translation + Vector((0, -0.05, 0.04)), T_DROP + 0.1, max_yaw=35)
-    data.look_at(US, T_DROP + 1.1, max_yaw=20)
+    data.look_at(cup(1.0), 0.9, max_yaw=35)
+    data.look_at(UP, T_UP - 0.2, max_yaw=35)
+    data.look_at(PAN + Vector((0, -0.08, 0.02)), T_OVER, max_yaw=35)
+    data.look_at(INBK, T_REL + 0.1, max_yaw=35)
+    data.look_at(US, T_SHRUG - 0.3, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("pleased", 0.1, T_PULL0 - 0.1)
-    data.expression("determined", T_PULL0, T_DROP + 0.3)
-    data.perform("wry", T_DROP + 1.2, hold=max(0.5, DUR - T_DROP - 2.2), arms=False)   # his hands are busy: the flower, then the scale
+    data.expression("pleased", 0.1, T_PINCH - 0.1)
+    data.expression("determined", T_PINCH, T_DROP + 0.3)
+    data.act("shrug", T_SHRUG, dur=0.35, hold=max(0.5, DUR - T_SHRUG - 0.9))
+    data.alive(T_SHRUG + 0.4, DUR, seed=2)
     data.blink(1.6); data.blink(T_DROP + 0.8)
     data.finish()
-    soft_key("flower key", (0.4, -1.0, 0.9), tuple(UPF), energy=12, size=22)
-    soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=14, size=22)
-    C0, L0 = Vector((-0.1, -0.78, 0.62)), Vector((-0.08, -0.15, 0.6))
-    C1, L1 = Vector((0.02, -1.25, 0.52)), Vector((0.03, -0.12, 0.38))
-    cam = K.camera(tuple(C0), tuple(L0), lens=34, fstop=2.8)
-    w = lambda t: ease(min(1.0, max(0.0, (t - 2.4) / 1.4)))
-    camera_path(cam, lambda t: (C0.lerp(C1, w(t)), L0.lerp(L1, w(t)), Vector(fp(t)).lerp(Vector((0.1, -0.12, 0.45)), w(t))))
+    soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=16, size=22)
+    C0, L0 = Vector((0.0, -1.55, 0.62)), Vector((0.0, -0.1, 0.42))
+    C1, L1 = Vector((0.02, -1.42, 0.6)), Vector((0.02, -0.1, 0.42))
+    cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
+    camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.15, 0.45))))
     return dict(**where, data=data, rest=1, grips=("hero crocus", "hero threads"),
-                conseq=[("one crocus and its three red threads, up close", lambda: meshes([hero, threads]), 0.2, T_PULL1),
+                conseq=[("three red threads pulled out of one crocus", lambda: meshes([hero, threads]), T_PINCH, T_OVER),
                         ("the threads land on the scale and the needle barely moves", lambda: meshes([scl]), T_DROP, DUR)])
 
 
@@ -320,19 +325,20 @@ def shot3():
 # ================================================================ SHOT 4: the race
 def shot4():
     """THE RISING SUN CLOSES THE FLOWERS TOWARD HIM. Dawn over the hills behind the field: the violet cups open as the
-    light reaches them; then, far to near, they start to fold shut, a wave rolling toward Data, who clutches his
-    basket and hurries a last flower into it."""
+    light reaches them; then, far to near, they start to fold shut, a wave rolling toward Data, who sees the sun
+    clear the hills and the field shutting at him, and is alarmed. (Rethought 2026-11-13: the basket on his arm and
+    the hurried last flower read as broken hands; the sun is now in plain view and the wave closes all the way.)"""
     where = place("crocus_field")
     own = list(LOC.FIELD_OWN)
-    T_OPEN, T_SHUT0, T_SHUT1 = 0.9, 1.4, DUR
+    T_OPEN, T_SHUT0, T_SHUT1 = 0.9, 1.25, DUR - 0.75
     for o in own:
         y = o.location.y; kb = o.data.shape_keys.key_blocks["closed"]
         o_at = 0.15 + 0.5 * max(0.0, (2.2 - y) / 3.2)      # the light reaches the far rows first
-        c_at = T_SHUT0 + (T_SHUT1 - T_SHUT0 - 0.6) * max(0.0, min(1.0, (2.2 - y) / 3.2))
-        for t_, v in ((0.0, 0.85), (o_at, 0.85), (o_at + 0.55, 0.0), (c_at, 0.0), (c_at + 0.7, 0.55)):
+        c_at = T_SHUT0 + (T_SHUT1 - T_SHUT0 - 0.55) * max(0.0, min(1.0, (2.2 - y) / 3.2))   # far rows first: a wave rolling at him
+        for t_, v in ((0.0, 0.85), (o_at, 0.85), (o_at + 0.45, 0.0), (max(c_at, o_at + 0.5), 0.0), (max(c_at, o_at + 0.5) + 0.55, 1.0)):
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
-    sun_disc = K.sph("sun disc", (3.5, 45.0, 1.0), 2.4, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
-    for t_, z in ((0.0, 1.2), (DUR, 4.2)):           # it climbs out from behind the hills, over his shoulder
+    sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.0, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
+    for t_, z in ((0.0, 2.0), (DUR, 7.5)):           # it climbs clear of the hills, in plain view beside him
         sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
     def light():
         key = LOC.sky_light(sun_elev=6, sun_az=160, sun=2.6, sky=0.18, warm=(1.0, 0.62, 0.36), haze=1.4)
@@ -343,27 +349,22 @@ def shot4():
             sun.data.energy = en; sun.data.keyframe_insert("energy", frame=F(t_))
         return key
     where["light"] = light
-    bk = SK.basket("race basket", (0, 0, 0), r=0.1, h=0.08)
-    data = load_data(); data.place(0.0, 0.05, 0)
-    L, R = sides(data)
-    sh = {s: acts._shoulder(data, s) for s in "LR"}
-    BK = sh[L] + Vector((-0.06, -0.16, -0.24))
-    follow(bk, lambda t: BK + Vector((0, 0, 0.01 * math.sin(t * 9))) if t > 1.6 else BK, 0.0, DUR)
-    reach(data, L, lambda t: bk.location + Vector((0.0, 0.0, 0.1)) if False else (BK + Vector((0, 0, 0.11 + (0.01 * math.sin(t * 9) if t > 1.6 else 0.0)))), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
-    # a last flower: from his right hand into the basket
-    fl = SK.crocus("last flower", (0, 0, 0), seed=77, own=False, mesh=bpy.data.meshes.get("crocus tmpl 1"))
-    HAND0 = sh[R] + Vector((0.08, -0.18, -0.08))
-    fpth = path([(0.0, HAND0), (1.7, HAND0), (2.35, BK + Vector((0.0, 0.0, 0.1))), (2.6, BK + Vector((0.0, 0.0, 0.06)))])
-    follow(fl, fpth, 0.0, DUR, rot_fn=lambda t: (0.3, -0.5 if t < 2.3 else 0.9, 0.0))
-    reach(data, R, lambda t: fpth(min(t, 2.4)) + Vector((0.03, 0.0, -0.1)), 0.0, 2.45, lead=0.05, back=0.4, elbow_out=0.4)
+    bk = SK.basket("race basket", (-0.3, -0.12, 0.0), r=0.12, h=0.1)     # on the ground at his side, nearly full
+    rnd = random.Random(9)
+    for k in range(16):
+        a_ = rnd.uniform(0, 6.28); rr = rnd.uniform(0, 0.085)
+        o = SK.crocus(f"race basket flower {k}", (-0.3 + math.cos(a_) * rr, -0.12 + math.sin(a_) * rr, 0.09 + rnd.uniform(0, 0.04)), yaw=rnd.uniform(0, 6.28),
+                      seed=900 + k, own=False, mesh=bpy.data.meshes.get(f"crocus tmpl {k % 5}"))
+        o.rotation_euler = (rnd.uniform(-1.2, 1.2), rnd.uniform(-1.2, 1.2), rnd.uniform(0, 6.28))
+    data = load_data(); data.place(0.05, 0.05, 0)
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(Vector((1.2, 6.0, 0.4)), 1.25, max_yaw=35)          # over his shoulder: the field closing behind him
-    data.look_at(BK + Vector((0, 0, 0.1)), 2.0, max_yaw=35)
-    data.look_at(US, 2.75, max_yaw=20)
+    data.look_at(Vector((-6.0, 30.0, 4.0)), 0.6, max_yaw=35)        # up at the sun
+    data.look_at(Vector((-0.4, 1.4, 0.0)), 1.5, max_yaw=35)          # the field shutting, rolling at him
+    data.look_at(US, 2.2, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("pleased", 0.1, 1.2)
-    data.perform("alarmed", 2.75, hold=max(0.3, DUR - 3.4), arms=False)
+    data.expression("pleased", 0.1, 1.0)
+    data.perform("alarmed", 2.2, hold=max(0.3, DUR - 2.8), arms=True)
     data.blink(0.6)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
@@ -371,9 +372,9 @@ def shot4():
     C1, L1 = Vector((-0.18, -1.15, 0.44)), Vector((0.05, 0.5, 0.55))
     cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
-    return dict(**where, data=data, rest=1, grips=("race basket", "last flower"),
+    return dict(**where, data=data, rest=1, grips=("race basket",),
                 conseq=[("the field opens with the sun, then starts to fold shut toward him", lambda: own, 0.2, DUR),
-                        ("he hurries a last flower into his basket", lambda: meshes([bk, fl]), 1.7, 2.8)])
+                        ("the sun climbs clear of the hills", lambda: [sun_disc], 0.3, DUR)])
 
 
 # ================================================================ SHOT 5: the payoff
@@ -384,14 +385,14 @@ def shot5():
     where = store_set()
     SK.table("spice table", tuple(TABLE), w=0.9, d=0.42, h=TABLE_H)
     TOP = TABLE_H
-    ARM, BH = 0.17, 0.3
+    ARM, BH = 0.17, 0.18                        # a low balance: its pans at his chest, not his face
     BC = Vector((-0.08, -0.34, TOP))
     bal, beam, pans = SK.balance("balance", tuple(BC), arm=ARM, h=BH, pan_r=0.09)
     DROP = BH * 0.62
     PANZ = BC.z + BH - DROP + 0.006
     jar = SK.jar("jar", (BC.x - ARM, BC.y, PANZ))
     T_TIP0, T_TIP1, T_POUR0, T_POUR1 = 0.5, 1.0, 1.0, 2.6
-    TILT0 = math.radians(9)                     # the jar side sits down
+    TILT0 = math.radians(15)                    # the jar side sits down
     def tilt(t):
         if t < T_POUR0 + 0.3: return -TILT0
         u = min(1.0, (t - T_POUR0 - 0.3) / (T_POUR1 + 0.3 - T_POUR0)); return -TILT0 * (1 - ease(u)) + (0.012 * math.exp(-5 * max(0.0, t - T_POUR1 - 0.6)) * math.sin(10 * max(0.0, t - T_POUR1 - 0.6)) if t > T_POUR1 + 0.6 else 0.0)
@@ -407,10 +408,10 @@ def shot5():
     L, R = sides(data)
     bk = SK.basket("pour basket", (0, 0, 0), r=0.1, h=0.08)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    B0 = sh[L] + Vector((-0.04, -0.18, -0.17))      # in his near hand, the one toward the scale
-    def over(t): return pan_pt(1, t) + Vector((0.07, 0.0, 0.16))
+    B0 = Vector((sh[L].x - 0.04, -0.2, TOP + 0.005))   # the full basket starts on the table by his near hand
+    def over(t): return pan_pt(1, t) + Vector((0.12, 0.0, 0.05))   # tipped right beside the pan, at its height
     REST = None                                           # the empty basket tips upright and sinks a little, still out over the scale
-    bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(over(T_POUR1 + 0.3) + Vector((0.04, -0.02, -0.07)), ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8))))
+    bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(Vector((over(T_POUR1 + 0.3).x + 0.05, -0.2, TOP + 0.005)), ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8))))
     def brot(t):
         a = 0.0 if t < T_TIP0 + 0.2 else min(1.0, (t - T_TIP0 - 0.2) / 0.6) * 1.9
         if t > T_POUR1 + 0.3: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8)))
@@ -420,14 +421,14 @@ def shot5():
     # the flowers pour from the basket's mouth onto the right pan, heaping
     rnd = random.Random(3)
     N = 34; sched = [T_POUR0 + 0.15 + (T_POUR1 - T_POUR0 - 0.3) * (i / N) + rnd.uniform(-0.03, 0.03) for i in range(N)]
-    fls = [SK.crocus(f"pour flower {i}", (0, 0, 0), seed=1000 + i, own=False, mesh=bpy.data.meshes.get(f"crocus tmpl {i % 5}") or SK.crocus_mesh(f"crocus tmpl {i % 5}", seed=100 + i % 5)) for i in range(N)]
+    fls = [SK.crocus(f"pour flower {i}", (0, 0, 0), seed=1000 + i, scale=0.6, own=False, mesh=bpy.data.meshes.get(f"crocus tmpl {i % 5}") or SK.crocus_mesh(f"crocus tmpl {i % 5}", seed=100 + i % 5)) for i in range(N)]
     count = {"n": 0}
     def land(x, y, t):
         c = pan_pt(1, t); d = math.hypot(x - c.x, y - c.y)
-        if d > 0.1: return None
-        return c.z + 0.008 + 0.09 * max(0.0, 1 - d / 0.11) * min(1.0, (t - T_POUR0) / (T_POUR1 - T_POUR0))
+        if d > 0.11: return None
+        return c.z + 0.008 + 0.06 * max(0.0, 1 - d / 0.12) * min(1.0, (t - T_POUR0) / (T_POUR1 - T_POUR0))
     props.pour(fls, NF, sched, lambda t: bk.matrix_world @ Vector((-0.1, 0.0, 0.07)) if (sc.frame_set(F(t)) or True) else None, land,
-               kick_fn=lambda t: Vector((-0.25, 0.0, -0.1)), seed=5)
+               kick_fn=lambda t: Vector((-0.18, 0.0, -0.05)), seed=5, lie=True)
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(pan_pt(1, 1.2) + Vector((0, 0, 0.05)), 0.45, max_yaw=35)
@@ -447,8 +448,8 @@ def shot5():
     data.blink(1.5)
     data.finish()
     soft_key("balance key", (-0.6, -1.0, 1.1), tuple(BC + Vector((0, 0, 0.2))), energy=24, size=32)
-    C0, L0 = Vector((0.04, -1.3, 0.62)), Vector((0.05, -0.15, 0.45))
-    C1, L1 = Vector((0.07, -1.18, 0.62)), Vector((0.08, -0.15, 0.47))
+    C0, L0 = Vector((0.05, -1.68, 0.6)), Vector((0.06, -0.15, 0.42))   # wide enough for the whole balance and all of him
+    C1, L1 = Vector((0.07, -1.55, 0.6)), Vector((0.08, -0.15, 0.44))
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.2, 0.5))))
     return dict(**where, data=data, rest=1, grips=("pour basket", "jar"),
