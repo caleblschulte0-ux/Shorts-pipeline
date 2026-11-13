@@ -1,0 +1,76 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261113",
+  "status": "blocked",
+  "step": "verify_actual_channel_output_against_frozen_contract",
+  "recorded_at": "2026-11-13T12:19:00Z",
+  "bundle_identity": "0cedf0ea187819da2b6c1e23f8b0026fcf112cf963b40a273fb5199049a562ea",
+  "attempts": [
+    "Committed and read back a valid response.json containing all three explainer stories supplied by the authoring request.",
+    "Committed DONE separately to trigger downstream rendering.",
+    "Waited and checked recent main-branch commits after DONE; no downstream claim/apply/render/upload commit had appeared yet.",
+    "Read all three posted logs and counted unique accepted YouTube URLs assigned to the 2026-11-13 production date.",
+    "Executed two mailbox rounds: no reviews; 22 genuinely unanswered ask keys answered; four missing rewrites answered and six settled rewrites reused within the cap.",
+    "Verified the configured Google Drive folder remains public to anyone with the link; no bundle image requests existed, so no image upload was applicable."
+  ],
+  "channels": {
+    "explainer": {
+      "required": 4,
+      "verified_posted": 2,
+      "pending": 2,
+      "verified_urls": [
+        "https://youtube.com/shorts/Ta8h1eDYfVk",
+        "https://youtube.com/shorts/6JUVBZsSPNo"
+      ]
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 3,
+      "pending": 3,
+      "verified_urls": [
+        "https://youtube.com/shorts/qoc8EtCzOjU",
+        "https://youtube.com/shorts/cKalXWYsunM",
+        "https://youtube.com/shorts/F8ts_chgzc4"
+      ]
+    },
+    "trending": {
+      "required": 5,
+      "verified_posted": 5,
+      "pending": 0,
+      "verified_urls": [
+        "https://youtube.com/shorts/QTiVTWyCrTI",
+        "https://youtube.com/shorts/hFnBzjdFUcA",
+        "https://youtube.com/shorts/bCP7iRqURxU",
+        "https://youtube.com/shorts/nFpqjv_CxNk",
+        "https://youtube.com/shorts/wwHO1JHaMKQ"
+      ]
+    }
+  },
+  "mailboxes": {
+    "reviews": {
+      "index_open": 0,
+      "answered_this_run": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "index_open_batches": 8,
+      "answered_this_run": 22,
+      "genuinely_unanswered_after_rounds": 0,
+      "note": "OPEN.json remained stale after valid answer files were committed."
+    },
+    "rewrites": {
+      "index_open": 122,
+      "answered_this_run": 4,
+      "reused_settled_in_cap": 6,
+      "not_evaluated_beyond_cap": 112
+    }
+  },
+  "exact_blocker": "DONE has landed, but downstream workers have not yet produced and logged the remaining 2 Explainer uploads and 3 Third/Twitch uploads. Accepted upload URLs are therefore missing.",
+  "remaining_shortfall": {
+    "explainer": 2,
+    "third": 3,
+    "trending": 0,
+    "total": 5
+  },
+  "day_closed": false
+}
