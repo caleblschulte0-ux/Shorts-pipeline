@@ -1,0 +1,26 @@
+{
+  "key": "penny_vs_nickel_production_cost_2024",
+  "title": "Cost to produce one penny vs one nickel, 2024",
+  "unit": "cents",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "US Mint Annual Report",
+    "publisher": "United States Mint",
+    "url": "https://www.usmint.gov/about/congressional-reports/annual-report",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Both the penny and the nickel cost more to make than their face value; the nickel is the bigger loss per coin.",
+  "points": [
+    {
+      "label": "Penny (1 cent)",
+      "value": 3.69
+    },
+    {
+      "label": "Nickel (5 cents)",
+      "value": 13.78
+    }
+  ],
+  "insight_type": "comparison"
+}

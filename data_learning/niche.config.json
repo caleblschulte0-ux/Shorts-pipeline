@@ -38415,6 +38415,235 @@
      "say": "China installs more robots than anyone but ranks only 22nd in density, at 166. Density is what really changes a factory floor."
     }
    ]
+  },
+  {
+   "slug": "people-over-65-outnumber-kids-under-5",
+   "title": "For The First Time, People Over 65 Outnumber Kids Under 5",
+   "hook": "This has never happened before in human history.",
+   "closing": "Grandparents are winning the numbers game now.",
+   "question": "How many grandparents do you have?",
+   "caption": "In 2018, the number of people over 65 passed the number of children under 5 worldwide for the first time ever. By 2050 the gap more than doubles. How many grandparents do you have? 👇",
+   "hashtags": [
+    "demographics",
+    "population",
+    "grandparents",
+    "didyouknow",
+    "unitednations",
+    "worldfacts",
+    "society",
+    "agingpopulation",
+    "generations",
+    "dataviz",
+    "globalpopulation",
+    "humanhistory"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "elderly_vs_children_2018_crossover",
+     "params": {
+      "file": "elderly_vs_children_2018_crossover.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE CROSSOVER",
+     "topic": "people over 65 vs kids under 5, worldwide",
+     "say": "In 2018, people over 65 passed kids under 5 worldwide for the first time ever — 705 million versus 680 million."
+    },
+    {
+     "source": "offline",
+     "key": "elderly_population_growth_2000_2050",
+     "params": {
+      "file": "elderly_population_growth_2000_2050.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · IT KEEPS CLIMBING",
+     "topic": "how fast the over-65 group is growing",
+     "say": "That over-65 group keeps climbing — from about 420 million in 2000, to 727 million by 2020, heading toward 1.6 billion by 2050."
+    },
+    {
+     "source": "offline",
+     "key": "elderly_vs_children_2050_gap",
+     "params": {
+      "file": "elderly_vs_children_2050_gap.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE GAP DOUBLES",
+     "topic": "people over 65 vs kids under 5 by 2050",
+     "say": "By 2050, people over 65 will outnumber kids under 5 more than two to one — 1.6 billion versus roughly 630 million."
+    }
+   ]
+  },
+  {
+   "slug": "richest-americans-live-14-years-longer",
+   "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
+   "hook": "Same country. Same age. A 14-year gap in how long you live.",
+   "closing": "Money doesn't just buy comfort — it buys years.",
+   "question": "Would you want to know your number?",
+   "caption": "The richest 1% of American men outlive the poorest 1% by 14.6 years. That gap alone is bigger than six decades of national progress. Would you want to know your number? 👇",
+   "hashtags": [
+    "lifeexpectancy",
+    "incomeinequality",
+    "health",
+    "didyouknow",
+    "wealthgap",
+    "publichealth",
+    "socialscience",
+    "dataviz",
+    "economics",
+    "healthfacts",
+    "society",
+    "statistics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "life_expectancy_gap_by_sex",
+     "params": {
+      "file": "life_expectancy_gap_by_sex.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE GAP",
+     "topic": "richest vs poorest, life expectancy gap",
+     "say": "Richest American men outlive the poorest men by 14.6 years. For women the gap is smaller, but still huge — 10.1 years."
+    },
+    {
+     "source": "offline",
+     "key": "us_life_expectancy_overall_1960_2023",
+     "params": {
+      "file": "us_life_expectancy_overall_1960_2023.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · FOR CONTEXT",
+     "topic": "how much US life expectancy improved since 1960",
+     "say": "US average life expectancy only climbed about 9 years since 1960. That income gap alone beats six decades of progress."
+    },
+    {
+     "source": "offline",
+     "key": "life_expectancy_gains_by_income_since_2001",
+     "params": {
+      "file": "life_expectancy_gains_by_income_since_2001.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · AND IT'S WIDENING",
+     "topic": "richest americans pulling further ahead since 2001",
+     "say": "Since 2001, the richest fifth of Americans gained about 2.3 more years of life. The poorest fifth gained almost none — just 0.3."
+    }
+   ]
+  },
+  {
+   "slug": "fifty-otters-survived-climate-fight",
+   "title": "50 Sea Otters Survived. Now They're Fighting Climate Change.",
+   "hook": "They were almost wiped out. Then scientists noticed something weird.",
+   "closing": "Sometimes saving one weird animal saves everything around it.",
+   "question": "Would you want otters near your coastline?",
+   "caption": "Fur traders hunted California's sea otters down to about 50 survivors. They've crept back to 3,000 — and the kelp forests they protect could store millions of tons of CO2. Would you want them near your coastline? 👇",
+   "hashtags": [
+    "seaotters",
+    "conservation",
+    "climatechange",
+    "wildlife",
+    "kelp",
+    "didyouknow",
+    "marinebiology",
+    "california",
+    "oceanlife",
+    "dataviz",
+    "nature",
+    "endangeredspecies"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ca_sea_otter_population_before_after_fur_trade",
+     "params": {
+      "file": "ca_sea_otter_population_before_after_fur_trade.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · NEARLY WIPED OUT",
+     "topic": "california sea otters nearly wiped out",
+     "say": "Fur traders hunted California sea otters from about 16,000 down to just 50 survivors by the 1930s."
+    },
+    {
+     "source": "offline",
+     "key": "ca_sea_otter_population_recovery",
+     "params": {
+      "file": "ca_sea_otter_population_recovery.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE SLOW COMEBACK",
+     "topic": "how sea otters survived and came back",
+     "say": "From that handful in the 1930s, California's otters have crept back to about 3,000 today — still listed as threatened."
+    },
+    {
+     "source": "offline",
+     "key": "sea_otter_kelp_carbon_potential",
+     "params": {
+      "file": "sea_otter_kelp_carbon_potential.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY IT MATTERS",
+     "topic": "how otters fighting climate change pays off",
+     "say": "Otters eat urchins that strip kelp bare. A full recovery could help store up to 8.7 million tons of CO2 a year."
+    }
+   ]
+  },
+  {
+   "slug": "us-stops-making-pennies-232-years",
+   "title": "The US Will Stop Making Pennies After 232 Years",
+   "hook": "It costs more to make than it's worth — so they're done.",
+   "closing": "The nickel's next — it loses even more.",
+   "question": "Would you miss the penny at all?",
+   "caption": "Making a penny costs 3.69 cents for something worth one. After 232 years, the US is finally pulling the plug — and the nickel loses even more. Would you miss it? 👇",
+   "hashtags": [
+    "penny",
+    "usmint",
+    "currency",
+    "coins",
+    "treasury",
+    "didyouknow",
+    "moneyfacts",
+    "economics",
+    "uscurrency",
+    "dataviz",
+    "nickel",
+    "finance"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "penny_program_savings_from_ending",
+     "params": {
+      "file": "penny_program_savings_from_ending.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · WHAT STOPPING IS WORTH",
+     "topic": "what stopping pennies is worth",
+     "say": "Ending penny production saves taxpayers about 56 million dollars a year — making them was losing about 86 million a year."
+    },
+    {
+     "source": "offline",
+     "key": "penny_vs_discontinued_us_coins_years_in_production",
+     "params": {
+      "file": "penny_vs_discontinued_us_coins_years_in_production.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · HOW LONG IT RAN",
+     "topic": "how long the US will keep making pennies, compared",
+     "say": "Most discontinued US coins did not last long — the two-cent piece ran just 9 years. The penny ran 232 years before stopping."
+    },
+    {
+     "source": "offline",
+     "key": "penny_vs_nickel_production_cost_2024",
+     "params": {
+      "file": "penny_vs_nickel_production_cost_2024.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COIN THAT'S WORSE",
+     "topic": "which coins still cost more to make than they are worth",
+     "say": "The penny was not the worst offender. It costs 3.69 cents to make one — but 13.78 cents for a nickel, still sticking around."
+    }
+   ]
   }
  ]
 }

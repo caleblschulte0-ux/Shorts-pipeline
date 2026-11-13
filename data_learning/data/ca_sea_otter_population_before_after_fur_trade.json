@@ -1,0 +1,26 @@
+{
+  "key": "ca_sea_otter_population_before_after_fur_trade",
+  "title": "California sea otter population, before the fur trade vs the 1930s low point",
+  "unit": "otters",
+  "geography": "California, United States",
+  "time_coverage": "pre-1800s vs 1930s",
+  "source": {
+    "name": "Southern Sea Otter Species Status",
+    "publisher": "U.S. Fish & Wildlife Service",
+    "url": "https://www.fws.gov/",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Historical pre-fur-trade population is a commonly cited estimate; the remnant colony of roughly 50 otters was documented near Big Sur, California in the 1930s.",
+  "points": [
+    {
+      "label": "Before the fur trade",
+      "value": 16000
+    },
+    {
+      "label": "By the 1930s",
+      "value": 50
+    }
+  ],
+  "insight_type": "comparison"
+}

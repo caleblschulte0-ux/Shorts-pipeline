@@ -1,0 +1,26 @@
+{
+  "key": "penny_program_savings_from_ending",
+  "title": "US penny program: annual loss vs projected savings from ending it",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "2024 vs projected",
+  "source": {
+    "name": "US Mint Annual Report / Treasury penny announcement",
+    "publisher": "United States Mint",
+    "url": "https://www.usmint.gov/about/congressional-reports/annual-report",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "The 2024 loss (118M cost minus 32M face value) is from the Mint annual report; the ~56M/year savings is the Treasury's own public estimate when it announced ending penny production.",
+  "points": [
+    {
+      "label": "Lost every year while making them",
+      "value": 86
+    },
+    {
+      "label": "Saved every year after stopping",
+      "value": 56
+    }
+  ],
+  "insight_type": "comparison"
+}

@@ -1,0 +1,28 @@
+{
+  "key": "elderly_vs_children_2050_gap",
+  "title": "People over 65 vs children under 5, worldwide (2050 projected)",
+  "unit": "million people",
+  "geography": "World",
+  "time_coverage": "2050 (projected)",
+  "source": {
+    "name": "World Population Prospects 2022 Revision",
+    "publisher": "United Nations, Department of Economic and Social Affairs (Population Division)",
+    "url": "https://population.un.org/wpp/",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Rounded, medium-variant projection figures from UN WPP 2022.",
+  "points": [
+    {
+      "label": "Under 5 (2050)",
+      "value": 630,
+      "period": "2050"
+    },
+    {
+      "label": "Over 65 (2050)",
+      "value": 1600,
+      "period": "2050"
+    }
+  ],
+  "insight_type": "comparison"
+}

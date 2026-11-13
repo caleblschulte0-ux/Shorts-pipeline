@@ -1,0 +1,28 @@
+{
+  "key": "elderly_vs_children_2018_crossover",
+  "title": "People over 65 vs children under 5, worldwide (2018)",
+  "unit": "million people",
+  "geography": "World",
+  "time_coverage": "2018",
+  "source": {
+    "name": "World Population Prospects",
+    "publisher": "United Nations, Department of Economic and Social Affairs (Population Division)",
+    "url": "https://population.un.org/wpp/",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Rounded from UN DESA World Population Prospects estimates. 2018 is the commonly cited year the global 65+ population first exceeded the under-5 population.",
+  "points": [
+    {
+      "label": "Under 5",
+      "value": 680,
+      "period": "2018"
+    },
+    {
+      "label": "Over 65",
+      "value": 705,
+      "period": "2018"
+    }
+  ],
+  "insight_type": "comparison"
+}

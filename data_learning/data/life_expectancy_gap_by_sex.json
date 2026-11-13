@@ -1,0 +1,26 @@
+{
+  "key": "life_expectancy_gap_by_sex",
+  "title": "US life expectancy gap, richest vs poorest 1% by income",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "2001-2014",
+  "source": {
+    "name": "The Association Between Income and Life Expectancy in the United States, 2001-2014 (Chetty et al., JAMA 2016)",
+    "publisher": "JAMA (Journal of the American Medical Association)",
+    "url": "https://www.equality-of-opportunity.org/",
+    "officiality": "secondary",
+    "access_date": "2026-11-13"
+  },
+  "notes": "The study's headline figures: a 14.6-year gap for men and a 10.1-year gap for women, comparing the richest 1% to the poorest 1% by household income.",
+  "points": [
+    {
+      "label": "Men",
+      "value": 14.6
+    },
+    {
+      "label": "Women",
+      "value": 10.1
+    }
+  ],
+  "insight_type": "comparison"
+}
