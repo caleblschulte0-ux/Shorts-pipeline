@@ -132,7 +132,9 @@ def ready(items: list[dict], work: Path, title: str = "") -> list[dict]:
               f"{'cut in' if hit else 'no checked footage — not cut in'}",
               flush=True)
         if hit:
+            from third_capture.shot_plan import fill_crop
             out.append({**it, "mp4": hit["path"], "url": hit["url"],
+                        "crop": fill_crop(Path(hit["path"])),
                         "from_s": hit.get("from_s"),
                         "secs": min(it["secs"], hit.get("secs") or it["secs"])})
     return out
@@ -143,9 +145,11 @@ def overlay(cur: str, n: int, item: dict, w: int, h: int, out: str) -> str:
     `[cur]` for the item's seconds, cut in hard. Laid out like the clip
     itself: the whole picture across the frame on a blur of itself, so
     two people side by side both stay in it."""
+    from third_capture.shot_plan import crop_vf
     a, b = item["at"], item["at"] + item["secs"]
     k = f"ci{out}"
-    return (f"[{n}:v]setpts=PTS-STARTPTS+{a:.2f}/TB,setsar=1,"
+    return (f"[{n}:v]{crop_vf(item.get('crop'))}"
+            f"setpts=PTS-STARTPTS+{a:.2f}/TB,setsar=1,"
             f"split=2[{k}b][{k}f];"
             f"[{k}b]scale={w}:{h}:force_original_aspect_ratio=increase,"
             f"crop={w}:{h},gblur=sigma=24,eq=brightness=-0.03[{k}bd];"

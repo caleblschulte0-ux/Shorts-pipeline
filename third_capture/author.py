@@ -897,7 +897,33 @@ def _call_claude(user: str, system: str = SYSTEM,
             f"no JSON in claude output (rc={r.returncode})"
             + (f" stderr={err!r}" if err else "")
             + (f" stdout={head!r}" if head else " stdout=<empty>"))
-    return json.loads(m.group(0))
+    return one_object(r.stdout)
+
+
+def one_object(text: str) -> dict:
+    """The JSON object a model's reply carries. A reply with TWO objects in
+    it (an answer, then a corrected one; a fenced block plus an example)
+    made the greedy brace match span both and raise "Extra data: line 3
+    column 1" — one to three Baller Bro posts a run died as "render
+    failed: JSONDecodeError" for days (2026-11-11..13). Every top-level
+    object is decoded on its own and the LAST is the answer: a model that
+    writes two writes its correction second. Raises ValueError only when
+    no object decodes at all."""
+    dec = json.JSONDecoder()
+    text = text or ""
+    found, i = [], text.find("{")
+    while i != -1:
+        try:
+            obj, end = dec.raw_decode(text, i)
+        except ValueError:
+            i = text.find("{", i + 1)
+            continue
+        if isinstance(obj, dict):
+            found.append(obj)
+        i = text.find("{", end)
+    if not found:
+        raise ValueError("no JSON object in the reply")
+    return found[-1]
 
 
 # ------------------------------------------------ the fallback judges
@@ -987,10 +1013,7 @@ def _json_from_text(txt: str) -> dict:
     try:
         out = json.loads(txt)
     except ValueError:
-        m = re.search(r"\{.*\}", txt, re.DOTALL)
-        if not m:
-            raise
-        out = json.loads(m.group(0))
+        out = one_object(txt)
     if not isinstance(out, dict):
         raise ValueError("model reply is JSON but not an object")
     return out
