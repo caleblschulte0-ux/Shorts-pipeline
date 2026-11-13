@@ -224,7 +224,7 @@ def field():
     stem), open soil underfoot. Overcast and flat, a cooler light than the 1950 plantation."""
     soil = _noise_mat("field soil", "#5A4430", "#47362A", scale=1.0, rough=0.95, bump=0.35)
     _ground("field ground", soil)
-    tree_rows(-5, 5, 0.6, 14, dx=1.1, dy=1.2, h=(1.5, 2.0), seed=31, dead_frac=0.35, skip=lambda x, y: abs(x - 0.1) < 1.0 and y < 1.6)
+    tree_rows(-5, 5, 0.6, 14, dx=1.1, dy=1.2, h=(1.5, 2.0), seed=31, dead_frac=0.0, skip=lambda x, y: abs(x - 0.1) < 1.0 and y < 1.6)   # a HEALTHY field: the one young plant dying in front is the story (judge: "a dying plant in front of an already-dead field undercuts the change")
     hill = _noise_mat("hill", "#4E6A3A", "#6A7E4A", scale=0.3, rough=0.95, bump=0.1)
     for x, r in ((-8, 6), (4, 8), (14, 7)): K.sph("hill", (x, 22, -2.5), 1.0, hill, scale=(r, 3, 4.5))
 
