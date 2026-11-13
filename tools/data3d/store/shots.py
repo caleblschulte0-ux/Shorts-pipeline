@@ -264,6 +264,9 @@ CLIP_MODE = os.environ.get("CLIPPING", SCRIPT.get("clipping", "strict"))   # str
 if not clipping.check(data, NF, name=f"shot {SHOT}", grips=S.get("grips", ())) and CLIP_MODE == "strict" \
         and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the clipping check: part of him passes through something")
+import twitch     # no whip, no pop (caaleb 2026-11-13: "why does data tweak out"): every bone and face control, per frame
+if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the twitch check: a bone whips or the face pops in one frame")
 os.makedirs(OUT, exist_ok=True)
 if os.environ.get("DIAG"): exec(open(os.environ["DIAG"]).read()); sys.exit(0)
 still = os.environ.get("STILL"); step = int(os.environ.get("STEP", "1")); fr = os.environ.get("FRAMES")

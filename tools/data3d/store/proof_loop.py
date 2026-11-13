@@ -32,7 +32,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STORIES = HERE.parent / "stories"
-CHECKS = re.compile(r"^(STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|SHOT|Traceback|\w*Error)")
+CHECKS = re.compile(r"^(STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|SHOT|Traceback|\w*Error)")
 
 
 def render_proof(story, n, out, step, spp, pct, py):

@@ -44,3 +44,18 @@ def test_a_reshoot_renders_only_the_named_shots(tmp_path):
     env = dict(os.environ, NARR=str(narr), VBPY=str(fake), RESHOOT="3 4")
     subprocess.run([sys.executable, str(rr), "1", "500", str(tmp_path), "8", "30"], env=env, check=True, capture_output=True)
     assert log.read_text().split() == ["3", "4"]
+
+
+def test_smoothing_keeps_a_held_pose_and_softens_a_step():
+    """character._gauss: the twitch filter. A held value stays put; a one-frame step becomes a ramp over several."""
+    import importlib.util, types
+    src = (Path(pl.__file__).resolve().parents[1] / "character.py").read_text()
+    tree = ast.parse(src)
+    fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "_gauss")
+    ns = {"math": __import__("math")}
+    exec(compile(ast.Module([fn], []), "character.py", "exec"), ns)
+    g = ns["_gauss"]
+    assert all(abs(x - 1.0) < 1e-9 for x in g([1.0] * 20, 2.0))
+    out = g([0.0] * 10 + [1.0] * 10, 1.5)
+    steps = [b - a for a, b in zip(out, out[1:])]
+    assert max(steps) < 0.35                       # no single frame carries the whole jump

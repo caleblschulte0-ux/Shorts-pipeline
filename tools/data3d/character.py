@@ -19,7 +19,7 @@ Data is 0.95 m tall. Rest facing is -Y. clock.FPS (30) fps; every time is second
     arm_bend(data, f0, f1) -> (max_deg, mean_deg) elbow angle over frames (0 = straight)
 """
 import bpy, bmesh, math, os, sys
-from mathutils import Vector, Matrix, Euler
+from mathutils import Vector, Matrix, Euler, Quaternion
 
 from clock import FPS   # the one clock (clock.py)
 SCALE = 0.2
@@ -134,7 +134,7 @@ class Data:
     }
 
     def __init__(self, sc):
-        self.sc = sc; self._end = 0.0
+        self.sc = sc; self._end = 0.0; self._ik_last = {}
         self._build()
         # the RESTING face is keyed on frame one. Unkeyed, every shape key and the mouth cavity sat at full value, and the
         # first expression() keyed that "current" state as its start: a shot whose first expression came late opened on
@@ -334,12 +334,50 @@ class Data:
         else:
             cosA = (La * La + D * D - Lb * Lb) / (2 * La * D); ang = math.acos(max(-1, min(1, cosA))); clamped = False
         n = d.cross(pole)
+        f_ = F(t); last = self._ik_last.get(A.name)
+        near = last is not None and abs(f_ - last[0]) <= 2
+        if n.length < 0.15 * d.length * pole.length and near:   # the bend plane is degenerate (target in line with the pole):
+            n = last[1].copy()                                   # keep last frame's, never let the elbow flip sides
         if n.length < 1e-6: n = Vector((1, 0, 0))
         n.normalize()
+        if near and n.dot(last[1]) < 0 and d.cross(pole).length < 0.35 * d.length * pole.length:
+            n = -n                                               # a sign flip near the degenerate pose: hold the side
         upper = Matrix.Rotation(ang, 4, n) @ d.normalized()
         joint = head + upper * La; lower = (tgt - joint).normalized()
-        self._set_bone(A, head, self._frame(upper), t); self._set_bone(B, joint, self._frame(lower), t)
+        # THE ELBOW IS A HINGE: both bones take the bend plane's normal as their x, so the forearm only ever turns ABOUT
+        # the elbow and never spins about its own length (measured 2026-11-13: the forearm rolled ~300 deg as he let go
+        # of the lever, the mitten spinning, because each bone took its roll from world up on its own)
+        xh = upper.cross(Vector((0, 0, 1)))
+        sgn = last[2] if near and len(last) > 2 else (1.0 if xh.length < 1e-4 or n.dot(xh) >= 0 else -1.0)
+        x = n * sgn
+        RA = Matrix((x, upper.normalized(), x.cross(upper.normalized()))).transposed()
+        RB = Matrix((x, lower, x.cross(lower))).transposed()
+        self._ik_last[A.name] = (f_, n.copy(), sgn)
+        self._set_bone(A, head, RA, t); self._set_bone(B, joint, RB, t)
         return clamped
+
+    def _frame_cont(self, key, dirn, f_):
+        """_frame with a CONTINUOUS roll (caaleb 2026-11-13, "why does data tweak out"): _frame takes the roll from
+        world up, which is undefined for an arm that hangs or reaches straight up, so a lever pull down to his side
+        spun the forearm up to 50 deg in one frame. Near vertical, the roll follows the previous frame's instead."""
+        y = dirn.normalized(); xh = y.cross(Vector((0, 0, 1)))
+        prev = self._ik_last.get('roll ' + key)
+        if prev is not None and abs(f_ - prev[0]) <= 2:
+            xc = prev[1] - y * prev[1].dot(y)
+            if xc.length > 1e-4:
+                xc.normalize()
+                w = min(1.0, max(0.0, (xh.length - 0.35) / 0.4))          # 0 when within ~20 deg of vertical
+                xh = xh.normalized() if xh.length > 1e-4 else xc
+                if xh.dot(xc) < 0 and w < 1.0: xh = -xh
+                x = (xc * (1 - w) + xh * w)
+                x = x.normalized() if x.length > 1e-4 else xc
+            else:
+                x = xh.normalized() if xh.length > 1e-4 else y.cross(Vector((0, 1, 0))).normalized()
+        else:
+            x = xh.normalized() if xh.length > 1e-4 else y.cross(Vector((0, 1, 0))).normalized()
+        self._ik_last['roll ' + key] = (f_, x.copy())
+        z = x.cross(y)
+        return Matrix((x, y, z)).transposed()
 
     def _arm_ik(self, s, target, t, elbow_out=0.5):
         A, Fo = self.pb[f'arm.{s}'], self.pb[f'fore.{s}']
@@ -690,8 +728,98 @@ class Data:
             if ad and ad.action:
                 for fc in _fcurves(ad.action):
                     for kp in fc.keyframe_points: kp.interpolation = 'BEZIER'; kp.easing = 'AUTO'
+        if SMOOTH: self.smooth(n)
         self.sc.frame_set(1)
         return n
+
+    def smooth(self, n):
+        """THE TWITCH FILTER (caaleb 2026-11-13, of the banana short: "why does data tweak out"). Measured with
+        store/twitch.py: arms whipping 26-30 deg in ONE frame (900 deg/s) where a grip key met a sparse pose key, the
+        torso stopping dead from 5.6 deg/frame to 0, and the smile dropping 0.6 -> 0.2 between two frames. Every body
+        channel and face control is baked per frame and low-passed (a Gaussian, wider on the torso and head than on
+        the hands, angle jumps unwrapped first), so every move eases in and out the way a person's does. Blinks (the
+        lids) keep their speed. The staging, anatomy and clipping checks run after this, on what is rendered."""
+        if n < 4: return
+        body = self.arm.animation_data.action if self.arm.animation_data else None
+        jobs = []
+        if body:
+            for fc in _fcurves(body):
+                dp = fc.data_path
+                if not dp.startswith('pose.bones['): continue
+                bone = dp.split('"')[1]
+                sig = SMOOTH_TORSO if bone.startswith(('head', 'neck', 'spine', 'chest', 'hips', 'root', 'clav')) else SMOOTH_LIMB
+                jobs.append((fc, sig, 'rotation' in dp))
+        sk = self.lips.data.shape_keys
+        if sk.animation_data and sk.animation_data.action:
+            jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(sk.animation_data.action)]
+        for o in [self.cavity] + list(self.brows):
+            if o.animation_data and o.animation_data.action:
+                jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(o.animation_data.action)]
+        bones = {}
+        for fc, sig, is_angle in jobs:
+            if is_angle and fc.data_path.endswith('rotation_euler'):
+                bones.setdefault(fc.data_path.split('"')[1], (sig, {}))[1][fc.array_index] = fc
+        for bname, (sig, fcs) in bones.items():           # rotations are smoothed as ROTATIONS (quaternions), so a
+            if len(fcs) < 3 or all(len(fc.keyframe_points) < 2 for fc in fcs.values()): continue   # turn is never averaged channel by channel through a flip
+            # between two keys the bone turns the SHORT way (a slerp, eased): Euler channels interpolated one by one
+            # tumble the arm the long way round when an IK key (pb.matrix decomposed) meets a hand-written pose key,
+            # which is the 77-112 deg/frame whip measured as he let go of the rail lever
+            ts = sorted({round(kp.co.x) for fc in fcs.values() for kp in fc.keyframe_points})
+            kq = []
+            for tk in ts:
+                q = Euler([fcs[i].evaluate(tk) for i in range(3)], 'XYZ').to_quaternion()
+                if kq and q.dot(kq[-1]) < 0: q.negate()
+                kq.append(q)
+            qs = []
+            for f in range(1, n + 1):
+                if f <= ts[0]: q = kq[0].copy()
+                elif f >= ts[-1]: q = kq[-1].copy()
+                else:
+                    j = max(i for i in range(len(ts)) if ts[i] <= f)
+                    u = (f - ts[j]) / max(1, ts[j + 1] - ts[j]); q = kq[j].slerp(kq[j + 1], ease(u))
+                if qs and q.dot(qs[-1]) < 0: q.negate()
+                qs.append(q)
+            comps = [_gauss([q[i] for q in qs], sig) for i in range(4)]
+            prev = None; outs = [[], [], []]
+            for k in range(n):
+                q = Quaternion((comps[0][k], comps[1][k], comps[2][k], comps[3][k])).normalized()
+                e = q.to_euler('XYZ', prev) if prev is not None else q.to_euler('XYZ'); prev = e
+                for i in range(3): outs[i].append(e[i])
+            for i in range(3):
+                fc = fcs[i]; fc.keyframe_points.clear(); fc.keyframe_points.add(n)
+                for k in range(n):
+                    kp = fc.keyframe_points[k]; kp.co = (k + 1, outs[i][k]); kp.interpolation = 'LINEAR'
+                fc.update()
+        done = {id(fc) for _, fcs in bones.values() for fc in fcs.values() if len(fcs) >= 3}
+        for fc, sig, is_angle in jobs:
+            if id(fc) in done or len(fc.keyframe_points) < 2: continue
+            v = [fc.evaluate(f) for f in range(1, n + 1)]
+            if is_angle:                                     # unwrap: a 359 -> 1 degree step is 2 degrees, not 358
+                for i in range(1, len(v)):
+                    while v[i] - v[i - 1] > math.pi: v[i] -= 2 * math.pi
+                    while v[i] - v[i - 1] < -math.pi: v[i] += 2 * math.pi
+            out = _gauss(v, sig)
+            fc.keyframe_points.clear()
+            fc.keyframe_points.add(len(out))
+            for i, val in enumerate(out):
+                kp = fc.keyframe_points[i]; kp.co = (i + 1, val); kp.interpolation = 'LINEAR'
+            fc.update()
+
+
+SMOOTH = os.environ.get("TWITCH_FILTER", "1") == "1"
+SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 2.0       # Gaussian sigma, in frames at 30 fps
+
+
+def _gauss(v, sig):
+    """a Gaussian low-pass of a per-frame series, the ends held (a shot starts and ends on its own pose)"""
+    r = max(1, int(3 * sig)); w = [math.exp(-0.5 * (k / sig) ** 2) for k in range(-r, r + 1)]
+    n = len(v); out = []
+    for i in range(n):
+        acc = tw = 0.0
+        for k, wk in zip(range(-r, r + 1), w):
+            j = min(n - 1, max(0, i + k)); acc += wk * v[j]; tw += wk
+        out.append(acc / tw)
+    return out
 
 
 def _fcurves(action):
