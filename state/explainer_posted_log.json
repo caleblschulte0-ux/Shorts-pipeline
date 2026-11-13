@@ -5325,6 +5325,13 @@
         "score": 62,
         "reason": "showrunner BLOCK: Strong hook (cash spewing from an ERROR kiosk) and a nice coin-bin bit, but the numbers never land on screen (2/10, 200,000) and the video ends on Data standing still in front of ERROR screens, with no payoff for the twist."
       }
+    },
+    "earth-rotation-speeding-up": {
+      "claimed_at": "2026-11-13T10:36:19.878935+00:00",
+      "title": "Earth's Day Was 1.66 Milliseconds Shorter",
+      "publish_at": "2026-11-13T11:03:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6845,6 +6852,14 @@
       "style_arm": "3d",
       "slug": "self-checkout-3d",
       "at": "2026-11-12T19:01:21.786318+00:00"
+    },
+    {
+      "claimed_at": "2026-11-13T10:36:19.878935+00:00",
+      "title": "Earth's Day Was 1.66 Milliseconds Shorter",
+      "publish_at": "2026-11-13T11:03:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "earth-rotation-speeding-up"
     }
   ]
 }
