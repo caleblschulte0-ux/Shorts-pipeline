@@ -482,7 +482,7 @@ class Data:
         for s in 'LR':
             g = self.EYE[s + 'gaze']
             if not self._has_keys(g, 'rotation_euler'): g.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))   # hold the rest gaze until now
-            g.rotation_euler = (math.radians(dz), 0, math.radians(dx)); g.keyframe_insert('rotation_euler', frame=F(t))
+            g.rotation_euler = (math.radians(-dz), 0, math.radians(dx)); g.keyframe_insert('rotation_euler', frame=F(t))   # +X turns the -Y pupil DOWN, so up is -dz (it was +dz: 'look down' rolled his eyes up out of his glasses)
         self._end = max(self._end, t)
 
     def breathe(self, t0, t1, amp=1.5, period=3.2):

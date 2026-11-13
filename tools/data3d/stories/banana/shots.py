@@ -100,168 +100,192 @@ def _drop(obj, t_drop, floor_at, kick, spin, bounce):
 
 # ================================================================ SHOT 1: the hook
 def shot1():
-    """THE SHOCK FIRST (CLAUDE.md, "the opening is the shock"): a medium CLOSE on Data at the produce table holding a
-    clean bright-yellow bunch up in both hands. Black patches creep over it (yellow showing between them, so it stays a
-    bunch of BANANAS); at 0.9 s a finger pops off and hits the table; on that impact he RECOILS IN THE PICTURE PLANE:
-    his body jerks back and sideways away from it, the arms shove the bunch out to full straight-arm length toward the
-    lens, brows up. It keeps rotting and trembling in his outstretched hands; he shoots us a look; a second finger
-    drops, he flinches harder and turns his face away squinting, then looks back to us, alarmed, to the end."""
+    """THE HOOK: ONE BANANA, AND BEHIND HIM A WALL OF COPIES. Data stays BIG in the foreground the whole shot (a medium,
+    waist-up to full body). Frame one is tight on his face and the one bright banana he holds up to us, the background a
+    soft yellow blur. The camera eases back only about a metre while the focus racks from the banana to the wall behind
+    him: a display that fills the background edge to edge, row on row of bunches, every bunch EXACTLY the same (one
+    mesh, instanced: clones). Then a dark fungus stain creeps in from the side ON THE FLOOR IN FRONT of him, growing;
+    he looks down at it (head only, face to us), alarmed, steps back toward the wall and pulls the banana to his chest."""
     lanes, kiosks = produce_set()
-    PR.table("produce table", (0.0, -0.36, 0.0), w=1.1, d=0.36, h=TABLE_H)
-    # a BARE table: bunches laid along it were cut by the frame edges in every frame and read as clutter (judge, take 2)
+    WY = 0.6                                  # the display, a step behind him: far enough to go soft, near enough to fill
+    ROWS, COLS, DX, DZ = 6, 34, 0.075, 0.3       # judge: 11x15 small ones read as wallpaper; fewer, BIG bunches
+    T_PULL0, T_PULL1 = 1.2, 2.2                # judge: the fill hid behind the pull-back. It fills FIRST, then we pull back
+    T_RACK0, T_RACK1 = 0.15, 0.55                # focus: the banana -> the wall
+    T_STAIN = 2.35                              # judge: it 'appeared at his feet'. It starts once the wide shot shows the display's foot
+    T_SEE, T_BACK = 2.0, 2.9
+    T_COPY0, T_COPY1 = 0.05, 1.5                # the copies POP IN row by row as the camera pulls back: the reveal
+    DUR_ = DUR
+    # ---- the wall: tiers of shelves, every bunch the SAME bunch (a collection instance of one template)
+    wood = K.mat("display wood", "#6B4E33", rough=0.7); back = K.mat("display back", "#2F4A2C", rough=0.8)
+    W = COLS * DX + 0.12
+    H = ROWS * DZ + 0.25
+    K.box("display back", (0.0, WY + 0.05 * ROWS + 0.2, H / 2), (W + 0.06, 0.03, H), back, bev=0.005)
+    for r in range(ROWS):
+        z = 0.1 + r * DZ; y = WY + 0.05 * r     # STEPPED tiers rising away from us, a produce display
+        K.box(f"display tier {r}", (0.0, y + 0.04, z), (W, 0.26, 0.022), wood, bev=0.004)
+        K.box(f"display lip {r}", (0.0, y - 0.085, z + 0.022), (W, 0.012, 0.035), wood, bev=0.003)
+    wm = PR.skin_mat("wall skin")
+    # judge (takes 19-21): the copies 'don't match his'. They ARE his banana: the same mesh, lying the way he holds it,
+    # side on to us, curving up: the banana everyone draws
+    _bm = PR.banana_mesh("wall banana", L=0.24); tmpl = bpy.data.objects.new("wall banana", _bm); _bm.materials.append(wm)
+    bpy.context.collection.objects.link(tmpl); tmpl.scale = (1.25, 1.25, 1.25)
+    coll = bpy.data.collections.new("wall bunch tmpl")
+    stack = [tmpl]
+    while stack:
+        o = stack.pop(); stack.extend(o.children)
+        for c in list(o.users_collection): c.objects.unlink(o)
+        coll.objects.link(o)
+    real = []
+    for r in range(ROWS):
+        z = 0.1 + r * DZ + 0.03; y = WY + 0.05 * r
+        for c in range(COLS):
+            e = bpy.data.objects.new(f"wall copy {r}-{c}", None)
+            bpy.context.collection.objects.link(e)
+            if c == COLS // 2 - 2:          # one column is real geometry (the SAME meshes) so the checks can measure the wall
+                def dup(o, par):
+                    n_ = o.copy(); bpy.context.collection.objects.link(n_); n_.parent = par
+                    if n_.type == 'MESH': real.append(n_)
+                    for ch in o.children: dup(ch, n_)
+                dup(tmpl, e); e.children[0].location = (0, 0, 0)
+            else:
+                e.instance_type = 'COLLECTION'; e.instance_collection = coll
+            e.location = (-W / 2 + DX * (c + 0.5 * (r % 2)) - 0.02, y + 0.02, z + 0.012)   # staggered row to row, not a grid
+            # lying as on a real display, the hand turned a little so each finger's CURVE shows to the lens
+            e.rotation_euler = (0, math.radians(61), math.pi)   # every copy stands exactly as he holds his
+            # the copies appear: nothing behind him at first, then row by row, centre out, the SAME bunch fills the wall
+            tc = T_COPY0 + (T_COPY1 - T_COPY0) * (r / (ROWS - 1) * 0.82 + c / (COLS - 1) * 0.18)   # judge: 'random pops'. Strictly row by row, left to right
+            # judge: copies 'pop in from nowhere'. Each one GROWS in place, a quick swell and settle, row after row
+            for tt, k_ in ((0.0, 0.0), (tc, 0.0), (tc + 0.1, 1.15), (tc + 0.18, 1.0)):
+                e.scale = (k_, k_, k_); e.keyframe_insert("scale", frame=max(1, F(tt)))
+    # ---- the stain: a fungus front on the floor IN FRONT of him, creeping in from frame right, growing
+    import bmesh
+    rnd = random.Random(11); bm = bmesh.new(); ctr = bm.verts.new((0, 0, 0)); ring = []
+    NS = 160; ph = [rnd.uniform(0, 6.28) for _ in range(4)]
+    for i in range(NS):
+        a = 2 * math.pi * i / NS
+        rr = (0.8 + 0.12 * math.sin(3 * a + ph[0]) + 0.07 * max(0.0, math.sin(11 * a + ph[1])) ** 3
+              + 0.03 * max(0.0, math.sin(17 * a + ph[2])) ** 4 + 0.04 * rnd.uniform(-1, 1))
+        ring.append(bm.verts.new((rr * math.cos(a), rr * 0.75 * math.sin(a), 0)))
+    for i in range(NS): bm.faces.new((ctr, ring[i], ring[(i + 1) % NS]))
+    me = bpy.data.meshes.new("fungus stain"); bm.to_mesh(me); bm.free()
+    stain = bpy.data.objects.new("fungus stain", me); bpy.context.collection.objects.link(stain)
+    sm = LOC._noise_mat("fungus stain mottled", "#1C2A10", "#3E2A14", scale=14.0, rough=0.32, bump=0.45, detail=10.0)
+    me.materials.append(sm)
+    fringe = stain.copy(); fringe.data = stain.data.copy(); bpy.context.collection.objects.link(fringe)
+    for _o in (stain, fringe): _o.hide_render = True; _o.hide_viewport = True   # 18 takes: the floor stain always read as 'a spill'. The fungus is shot 4's; this shot is the CLONES
+    fm = LOC._noise_mat("fungus fringe", "#56603A", "#7C8656", scale=60.0, rough=0.9, bump=0.8, detail=12.0)   # a pale fuzzy fringe
+    fringe.data.materials.clear(); fringe.data.materials.append(fm)
+    # judge (take 8): "a decal sliding in". It GROWS now: rooted off frame right, its front edge spreading across the floor
+    # to his feet (a stain does not travel, it spreads), the pale fuzzy fringe always just ahead of the dark
+    # judge (takes 10-12): a puddle 'appearing beside him'. It is a STREAK now, rooted at the foot of the display and
+    # stretching across the tiles to the spot where he stands, arriving as he jumps, then widening there
+    A = Vector((0.3, 0.52, 0.003)); B = Vector((-0.04, -0.04, 0.003)); B2 = Vector((-0.1, -0.06, 0.003))   # judge: it 'stopped short'. It reaches UNDER his feet, then after him   # on a diagonal, so his body never hides it
+    stain.rotation_euler = (0, 0, math.radians(180))
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS
+        g = ease((t - T_STAIN) / (T_BACK - T_STAIN)); w = max(0.0, min(1.0, (t - T_BACK) / (DUR_ - T_BACK)))
+        tip = A.lerp(B, g).lerp(B2, 0.92 * ease(w))        # judge: 'it spreads away from him'. It FOLLOWS him after the jump
+        d_ = tip - A; L = 0.04 + d_.length
+        stain.location = A + d_ * 0.5
+        stain.rotation_euler = (0, 0, math.atan2(d_.x, -d_.y)); stain.keyframe_insert("rotation_euler", frame=f)
+        stain.scale = (0.16 + 0.06 * g + 0.1 * w, L / 1.3, 1)
+        stain.keyframe_insert("location", frame=f); stain.keyframe_insert("scale", frame=f)
+        fringe.location = stain.location + Vector((0, 0, -0.001)); fringe.scale = (stain.scale[0] * 1.32, stain.scale[1] * 1.12, 1)
+        fringe.keyframe_insert("location", frame=f); fringe.keyframe_insert("scale", frame=f)
+    # judge: 'a puddle, not a fungus'. Fungus SHEDS SPORES: pale specks lift off the streak as it spreads, and drift
+    spm = K.mat("spore", "#8E9A62", rough=0.9)   # judge: bright specks read as glitter
+    for i in range(0):
+        q = rnd.uniform(0.05, 1.0); t0 = T_STAIN + q * (T_BACK - T_STAIN) + rnd.uniform(0, 0.8)
+        if t0 > DUR_ - 0.3: continue
+        p0 = A.lerp(B, q) + Vector((rnd.uniform(0.0, 0.08), rnd.uniform(-0.04, 0.04), 0.01))
+        sp = K.sph(f"spore {i}", tuple(p0), rnd.uniform(0.007, 0.012), spm, seg=8, ring=6)
+        life = rnd.uniform(1.0, 1.8); drift = Vector((rnd.uniform(-0.03, 0.06), rnd.uniform(-0.05, 0.02), rnd.uniform(0.18, 0.32)))
+        for tt, k_ in ((0.0, 0.0), (t0, 0.0), (t0 + 0.12, 1.0), (t0 + life * 0.7, 1.0), (t0 + life, 0.0)):
+            sp.scale = (k_, k_, k_); sp.keyframe_insert("scale", frame=F(min(tt, DUR_)))
+        for tt in (t0, t0 + life):
+            sp.location = p0 + drift * max(0.0, (tt - t0) / life); sp.keyframe_insert("location", frame=F(min(tt, DUR_)))
+    # ---- Data and the ONE banana
     hm = PR.skin_mat("hero")
-    # take 5 (judge 60): "once it goes black it reads as a black glove", "the dropped one lands as a flat black slug".
-    # The rot is now PATCHES over yellow: the spots are a deep brown-black, and the whole-skin darkening only starts
-    # far past where this shot takes the rot, so the yellow and every finger's shape stay readable to the end.
-    try:
-        for n_ in hm.node_tree.nodes:
-            if n_.type == 'MAP_RANGE':
-                n_.inputs["From Min"].default_value = 0.5; n_.inputs["From Max"].default_value = 1.6
-            if n_.type == 'MIX':
-                a_ = [s_ for s_ in n_.inputs if s_.name == "A" and s_.type == 'RGBA' and s_.is_linked]
-                if a_ and a_[0].links[0].from_node.type == 'VALTORGB':
-                    for s_ in n_.inputs:
-                        if s_.name == "B" and s_.type == 'RGBA': s_.default_value = (*K.lin("#22140B"), 1)
-    except (KeyError, AttributeError, IndexError, TypeError):
-        pass
-    hero, fingers = PR.bunch("hero bunch", (0, 0, 0), hm, n=6, seed=3, L=0.24, spread=1.0)
+    bme = PR.banana_mesh("hero banana", L=0.24)
+    ban = bpy.data.objects.new("hero banana", bme); bme.materials.append(hm); bpy.context.collection.objects.link(ban)
     data = load_data()
-    data.place(0.0, 0.02, 0)
+    data.place(-0.1, 0.0, 0)                 # judge: he hid the display's foot. He stands LEFT, the foot of the display open to his right
     sc.frame_set(1); bpy.context.view_layer.update()
     sh0 = {s_: acts._shoulder(data, s_) for s_ in "LR"}
-    mid = (sh0["L"] + sh0["R"]) / 2
-    T_DROP, T_REC, T_US, T_DROP2, T_FL2, T_BACK, T_DROP3, T_END = 0.85, 1.05, 1.7, 2.2, 2.4, 3.15, 3.75, 4.25
-    # judge 62: "the bunch sits right under his chin and covers his mouth": held 7 cm lower, at his chest
-    P0 = mid + Vector((0.02, -0.17, -0.04))
-    P1 = mid + Vector((0.10, -0.32, -0.08))      # beyond his reach on purpose: the reach clamp below makes the arms STRAIGHT
-    # take 5: "the recoil never happens ... his body doesn't pull back". A lean straight back is invisible from a lens
-    # in front of him, so the flinch goes back AND sideways, away from the bunch: his head travels across the frame
-    # while the bunch goes the other way, out to full arm's length. The bend directions are MEASURED on the rig.
-    def head_with(rx, rz):
-        data.pb["spine"].rotation_euler = (math.radians(rx), 0, math.radians(rz)); bpy.context.view_layer.update()
-        return (data.arm.matrix_world @ data.pb["head"].head).copy()
-    h0 = head_with(0, 0); BK = -1 if (head_with(-10, 0) - h0).y > 0 else 1; SD = -1 if (head_with(0, 10) - h0).x > 0 else 1
-    data.pb["spine"].rotation_euler = (0, 0, 0); bpy.context.view_layer.update()
-    # judge 62: "the recoil never happens ... a slight lean": a BIG jerk on impact that overshoots and settles, and a
-    # fresh flinch on every finger that goes, so nothing holds still after the payoff
-    lean = [(0.0, 0, 0), (T_REC, 0, 0), (T_REC + 0.12, 30, 21), (T_REC + 0.45, 21, 14),
-            (T_DROP2 + 0.12, 18, 12), (T_FL2 + 0.13, 27, 19), (T_FL2 + 0.45, 21, 14),
-            (T_DROP3 + 0.1, 20, 13), (T_DROP3 + 0.25, 26, 18), (T_DROP3 + 0.55, 22, 15), (DUR, 22, 15)]
-    for t_, b_, s_ in lean:
-        data._k("spine", t_, rot=(BK * b_, 0, SD * s_)); data._k("chest", t_, rot=(BK * b_ * 0.45, 0, SD * s_ * 0.45))
-    REACH = 0.995 * (data.U + data.Fo)
-    out = lambda t: ease((t - T_REC) / 0.26)
-    # the fan spread flat to the lens so every finger is its own shape (fingers at the lens fanned into one blob)
-    tilt = lambda t: Vector((math.radians(90), math.radians(-38 - 10 * out(t)), 0))
-    # judge 48: "hands are round blobs crossed over the chest ... next to the fruit, not holding it": one hand closes on
-    # the CROWN (the stem end), the other cups the fingers from behind, and each hand takes the point on ITS OWN side
+    side = "L" if sh0["L"].x > sh0["R"].x else "R"          # the arm on image right holds it up
+    # he steps back toward the wall (a short, quick step: away from the stain)
+    BACK, AWAY = 0.0, 0.0                  # back and to the side, away from the stain: a move you can see
+    for t_, dx, dy, dz in ((0.0, 0, 0, 0), (T_BACK - 0.12, 0, 0, 0), (T_BACK, 0, 0, -0.01), (T_BACK + 0.22, AWAY * 0.5, BACK * 0.5, 0.0), (T_BACK + 0.45, AWAY, BACK, 0), (DUR_, AWAY, BACK, 0)):
+        data.arm.location = (-0.1 + dx, dy, dz); data.arm.keyframe_insert("location", frame=F(t_))   # a startled HOP back and away
+    sc.frame_set(1); bpy.context.view_layer.update(); side_o = 1 if acts._shoulder(data, side).x > data.pos().x else -1
+    def held(t):                                           # up beside his face, then pulled in to his chest
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        sh = acts._shoulder(data, side); o = 1 if sh.x > data.pos().x else -1
+        up = sh + Vector((o * 0.1, -0.3, 0.13))   # judge: 'straight to camera at arm's length, centred in front of his chest'           # held UP and out toward the lens
+        chest = sh + Vector((-o * 0.05, -0.17, -0.1))     # pulled in to his chest, protected
+        return up   # clutched to him as he jumps; judge: the banana 'teleported' between two holds. ONE hold now
+    HOLD_ROT = (0.0, math.radians(61), math.pi)
+    def ban_rot(t):
+        return HOLD_ROT                                      # exactly as every copy on the wall stands
     from mathutils import Euler
-    S_LO = "L" if sh0["L"].x < sh0["R"].x else "R"
-    def hand_off(s_, c, t):
-        R_ = Euler(tuple(tilt(t)), 'XYZ').to_matrix()
-        a_ = c + R_ @ Vector((-0.03, 0.0, -0.012)); b_ = c + R_ @ Vector((0.09, 0.0, -0.035))
-        lo_, hi_ = (a_, b_) if a_.x <= b_.x else (b_, a_)
-        return lo_ if s_ == S_LO else hi_
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
-        sh = {s_: acts._shoulder(data, s_) for s_ in "LR"}
-        c = P0.lerp(P1, out(t))
-        shake = min(1.0, max(0.0, (t - T_REC - 0.25) / 0.3))           # it trembles in his outstretched hands
-        c = c + Vector((0.005 * math.sin(2 * math.pi * 9 * t), 0, 0.005 * math.sin(2 * math.pi * 11 * t + 1))) * shake
-        for _ in range(10):                                            # held at his reach, never past it
-            worst = None
-            for s_ in "LR":
-                d_ = hand_off(s_, c, t) - sh[s_]
-                if d_.length > REACH and (worst is None or d_.length - REACH > worst[0]): worst = (d_.length - REACH, d_)
-            if worst is None: break
-            c = c - worst[1].normalized() * (worst[0] + 1e-4)
-        hero.location = c; hero.keyframe_insert("location", frame=f)
-        hero.rotation_euler = tuple(tilt(t) + Vector((0.035 * math.sin(2 * math.pi * 7 * t), 0, 0)) * shake)
-        hero.keyframe_insert("rotation_euler", frame=f)
-        for s_ in "LR":
-            data._arm_ik(s_, hand_off(s_, c, t), t, 0.4)
-    # the rot: a clean bright bunch on frame one, patches spreading all through the shot (it never stops)
-    # judge 48: "the rot runs backwards" (black at 2.4 s, spotted again after): hm.copy() SHARED the bunch's action, so
-    # every fallen finger's keys were written into the bunch's own curve. Now ONE forward-only curve that ends fully
-    # black, and every copy gets its own action.
-    ROT = ((0.0, 0.1), (0.15, 0.12), (T_DROP, 0.40), (T_DROP2, 0.47), (T_DROP3, 0.56), (DUR, 0.64))
-    def rot_at(t):
-        for (ta, va), (tb, vb) in zip(ROT, ROT[1:]):
-            if t <= tb: return va + (vb - va) * max(0.0, t - ta) / max(1e-6, tb - ta)
-        return ROT[-1][1]
-    rv = PR.rot_node(hm)
-    for t_, v_ in ROT:
-        rv.default_value = v_; rv.keyframe_insert("default_value", frame=F(t_))
-    # judge 62: "the dropped banana lands as a large dark log ... a sausage": a finger that has left the bunch stops
-    # rotting where it was, so it lies on the table a spotted YELLOW banana, not a black slug (own material per object)
-    def own_rot(fo, t_hold):
-        try:
-            m_ = hm.copy()
-            if m_.node_tree.animation_data: m_.node_tree.animation_data_clear()
-            rv_ = PR.rot_node(m_)
-            hold = rot_at(t_hold)
-            for t_, v_ in [k_ for k_ in ROT if k_[0] < t_hold - 0.02] + [(t_hold, hold), (DUR, hold + 0.04)]:
-                rv_.default_value = v_; rv_.keyframe_insert("default_value", frame=F(t_))
-            sl_ = fo.material_slots[0]; sl_.link = 'OBJECT'; sl_.material = m_
-        except (KeyError, AttributeError, IndexError, TypeError, RuntimeError):
-            pass
-    # fingers that go later keep their own world path while still on the bunch (drop() freezes an un-keyed one)
-    def bake(fo, t_go):
-        Ms = []
-        for f in range(1, F(t_go) + 1):
-            sc.frame_set(f); bpy.context.view_layer.update(); Ms.append(fo.matrix_world.copy())
-        fo.parent = None; prev = None
-        for f, M_ in enumerate(Ms, 1):
-            e_ = M_.to_euler('XYZ', prev) if prev else M_.to_euler('XYZ'); prev = e_
-            fo.location = M_.translation; fo.rotation_euler = e_
-            fo.keyframe_insert("location", frame=f); fo.keyframe_insert("rotation_euler", frame=f)
-    # only two fingers go: a third appearing on the table read as a pile that "came from nowhere" (judge 48)
-    f2 = fingers[3]
-    bake(f2, T_DROP2)
-    def bunch_at(t):
-        sc.frame_set(F(t)); bpy.context.view_layer.update(); return hero.matrix_world.translation.copy()
-    sc.frame_set(1); bpy.context.view_layer.update()
-    US = (0.0, -2.0, 0.7)
-    data.look_at(P0 + Vector((0, 0, 0.08)), 0.0, max_yaw=30, blend=0.0)
-    data.look_at((P0.x + 0.1, P0.y - 0.04, TABLE_H + 0.05), T_DROP + 0.15, max_yaw=30)     # his eyes follow it down
-    data.look_at(bunch_at(T_REC + 0.3) + Vector((0, 0, 0.1)), T_REC + 0.15, max_yaw=30)     # then the thing in his hands
-    data.look_at(US, T_US, max_yaw=30)                                                     # to us: are you seeing this?
-    data.look_at(bunch_at(T_DROP2) + Vector((0, 0, 0.05)), T_DROP2 + 0.05, max_yaw=30)      # another one goes
-    data.look_at((-0.45, -1.7, 0.78), T_FL2 + 0.12, max_yaw=30)                             # he turns his face away
-    data.look_at(US, T_BACK, max_yaw=30)                                                   # back to us
-    data.look_at(bunch_at(T_DROP3) + Vector((0, 0, 0.05)), T_DROP3 + 0.05, max_yaw=30)      # it has gone all black
-    data.look_at(US, T_END, max_yaw=30)                                                    # to us, alarmed, to the end
-    data.expression("worried", 0.45)
-    data.expression("alarmed", T_REC, blend=0.08)
-    A_ = data.EXPRESSIONS["alarmed"]
-    W_ = dict(brow=0.16, lid=0.38, frown=1.0)                                              # the wince
-    data._face(T_FL2, **A_); data._face(T_FL2 + 0.12, **W_); data._face(T_BACK - 0.2, **W_)
-    data._face(T_BACK + 0.05, **A_); data._face(T_DROP3, **A_); data._face(T_DROP3 + 0.12, **W_)
-    data._face(T_END - 0.15, **W_); data._face(T_END + 0.05, **A_); data._face(DUR, **A_)
-    data.blink(0.6)   # no blink late in the shot: the end blink glitched the eyes into rings behind the lenses (frame 24)
+        t = (f - 1) / FPS; p = held(t); R_ = Euler(ban_rot(t), 'XYZ').to_matrix()
+        ban.location = p - R_ @ Vector((0.03, 0, 0)); ban.rotation_euler = ban_rot(t)
+        ban.keyframe_insert("location", frame=f); ban.keyframe_insert("rotation_euler", frame=f)
+    def grip(t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        return ban.matrix_world @ Vector((0.03, 0, -0.005))   # his fist round the neck
+    reach(data, side, grip, 0.0, DUR_, lead=0.05, back=0.3, elbow_out=0.4)
+    US0 = (0.02, -1.5, 0.66)
+    data.look_at(US0, 0.0, max_yaw=12, blend=0.0)                                  # to us: look at this
+    data.look_at((0.0, -2.0, 0.66), T_SEE, max_yaw=10, blend=0.3)   # judge: the side glances slid his glasses. He just looks at us, worried
+    data.idle(0.0, DUR_)
+    def head_with(rx):
+        data.pb["spine"].rotation_euler = (math.radians(rx), 0, 0); bpy.context.view_layer.update()
+        return (data.arm.matrix_world @ data.pb["head"].head).copy()
+    sc.frame_set(1); h0 = head_with(0); FWD = 1 if (head_with(10) - h0).y < 0 else -1
+    data.pb["spine"].rotation_euler = (0, 0, 0); bpy.context.view_layer.update()
+    for t_, b_ in ((0.0, 0), (T_SEE - 0.1, 0), (T_SEE + 0.25, 3), (T_BACK - 0.05, 3), (T_BACK + 0.12, -6), (T_BACK + 0.45, -4), (DUR_, -3)):
+        data._k("spine", t_, rot=(FWD * b_, 0, 0))          # leans to look down at it, then STARTLES back
+    data.expression("happy", 0.0, T_SEE - 0.05)
+    data.expression("surprised", T_BACK - 0.05, T_BACK + 0.5, blend=0.06) if "surprised" in data.EXPRESSIONS else None
+    data.expression("alarmed", T_SEE + 0.1, blend=0.08)
+    AL = dict(data.EXPRESSIONS["alarmed"]); AL["frown"] = 1.0
+    data._face(T_BACK, **AL); data._face(DUR_, **AL)
+    data.blink(1.1)
     data.finish()
-    # judge 62: the first finger landed "across the table at his waist, hiding his lower body": every finger now pops
-    # off toward image right, the side the bunch is held out to, clear of his body, with a visible bounce
-    # judge 48: "never seen dropping ... only after it has landed": it pops UP off the bunch first, so the fall lasts
-    # about half a second (several sampled frames mid-air) and lands with a bounce. And "twice the size of the bananas
-    # still in the bunch" (it lies broadside, nearer the lens): it eases to the bunch's apparent size as it falls.
-    own_rot(fingers[0], T_DROP); own_rot(f2, T_DROP2)
-    drop(fingers[0], T_DROP, TABLE_H + 0.034, kick=(0.3, -0.15, 1.7), spin=(2, 0.5, 3), bounce=0.45)
-    drop(f2, T_DROP2, TABLE_H + 0.034, kick=(-0.1, -0.05, 1.5), spin=(-2, 0.4, 3), bounce=0.45)
-    for fo, t_go in ((fingers[0], T_DROP), (f2, T_DROP2)):
-        for t_, k_ in ((0.0, 1.0), (t_go, 1.0), (t_go + 0.4, 0.78), (DUR, 0.78)):
-            fo.scale = (k_, k_, k_); fo.keyframe_insert("scale", frame=F(t_))
-    soft_key("bunch key", (0.5, -1.0, 0.9), tuple(P0), energy=24, size=26)
-    # a medium close (30 mm) that JOLTS in 5 cm with his recoil (the camera reacts with him), then holds
-    # judge 48: "frame a little tighter ... the large empty counter in the bottom third does nothing"
-    C0, LK = Vector((0.05, -1.0, 0.68)), Vector((mid.x + 0.03, -0.1, 0.55))
-    cam = K.camera(tuple(C0), tuple(LK), lens=34, fstop=3.2)
-    camera_path(cam, lambda t: (C0 + Vector((0, 0.05 * ease((t - T_REC) / 0.2), 0)), LK, P0))
-    rest_f = [fo for k, fo in enumerate(fingers) if k not in (0, 3)]
-    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("hero bunch",),
-                conseq=[("the bunch goes black in his hands", rest_f, 0.0, T_DROP2),
-                        ("a finger drops onto the table", [fingers[0]], T_DROP, DUR),
-                        ("a second finger drops", [f2], T_DROP2, DUR)])
+    soft_key("banana key", (0.45, -0.9, 0.95), (0.08, -0.1, 0.72), energy=18, size=28)
+    wk = soft_key("wall key", (-0.6, -1.0, 2.0), (0.0, WY, 1.0), energy=70, size=55)
+    soft_key("wall fill", (0.8, -0.8, 1.6), (0.0, WY, 0.8), energy=90, size=60)   # judge: 'dim shelves'. The yellow rows pop
+    for t_, e_ in ((0.0, 4), (T_RACK0, 4), (T_RACK1, 220), (DUR_, 220)):   # the wall LIGHTS UP as the focus finds it
+        wk.data.energy = e_; wk.data.keyframe_insert("energy", frame=F(t_))
+    soft_key("stain key", (0.9, -1.2, 1.2), (0.15, 0.2, 0.0), energy=35, size=30)
+    # tight on his face and the banana -> a medium (he stays ~45% of the frame), the focus racking banana -> wall -> him
+    C0, C1 = Vector((0.0, -1.02, 0.74)), Vector((0.02, -1.38, 0.72))   # he sits left in the close-up: the shelves to his right fill in plain view   # opens waist-up so the shelves either side of him show the fill   # centred on him (he starts right of centre)   # take 9: the opening no longer crops his head
+    L0, L1 = Vector((0.0, -0.2, 0.7)), Vector((0.02, 0.2, 0.46))
+    C2 = Vector((-0.06, -1.1, 0.66)); L2 = Vector((-0.06, 0.05, 0.4))   # judge: 'ends limp'. Once he lands we push in on his face, the banana clutched, the stain at his feet   # judge: a following camera hid his step back. It holds still and he hops out of the stain's way   # following him as he steps away                                  # and it never stops: a slow creep in to the end
+    cam = K.camera(tuple(C0), tuple(L0), lens=32, fstop=0.95)
+    WALLF = Vector((0.0, WY + 0.25, 0.9))
+    def focus(t):
+        bp = ban.matrix_world.translation if False else held(t)
+        hp = data.pos() + Vector((0, 0, 0.6))
+        bp = bp.lerp(data.pos() + Vector((0, -0.05, 0.62)), 0.5)   # between the banana and his face: both sharp
+        if t < T_RACK0: return bp
+        if t < T_RACK1: return bp.lerp(WALLF, ease((t - T_RACK0) / (T_RACK1 - T_RACK0)))
+        if t < T_SEE - 0.35: return WALLF
+        return WALLF.lerp(hp, ease((t - T_SEE + 0.35) / 0.4))     # and back to him as he sees it
+    def cp(t):
+        u = ease((t - T_PULL0) / (T_PULL1 - T_PULL0))
+        w = ease((t - T_BACK) / max(0.1, DUR_ - T_BACK))   # the camera goes WITH his jump: he never lands at the frame edge
+        c_ = C0.lerp(C1, u) if t <= T_PULL1 else C1.lerp(C2, w)
+        l_ = L0.lerp(L1, u) if t <= T_PULL1 else L1.lerp(L2, w)
+        return c_, l_, focus(t)
+    camera_path(cam, cp)
+    for t_, a_ in ((0.0, 2.2), (T_RACK1, 5.6), (DUR_, 5.6)):   # judge: the copies were 'soft blobs'. Sharp once the focus finds them   # stopped down on the close-up so his face reads
+        cam.data.dof.aperture_fstop = a_; cam.data.dof.keyframe_insert("aperture_fstop", frame=F(t_))
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), data=data, rest=1, grips=("hero banana",),
+                conseq=[("the wall of identical bananas", real, T_PULL1 - 0.5, DUR_),
+])
 
 
 # ================================================================ the rail (shots 2 and 5)
