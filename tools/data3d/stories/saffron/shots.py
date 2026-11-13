@@ -409,8 +409,8 @@ def shot5():
     sh = {s: acts._shoulder(data, s) for s in "LR"}
     B0 = sh[L] + Vector((-0.04, -0.18, -0.17))      # in his near hand, the one toward the scale
     def over(t): return pan_pt(1, t) + Vector((0.07, 0.0, 0.16))
-    REST = B0 + Vector((0.05, 0.02, 0.0))                 # the empty basket comes back down to his side
-    bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(REST, ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8))))
+    REST = None                                           # the empty basket tips upright and sinks a little, still out over the scale
+    bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(over(T_POUR1 + 0.3) + Vector((0.04, -0.02, -0.07)), ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8))))
     def brot(t):
         a = 0.0 if t < T_TIP0 + 0.2 else min(1.0, (t - T_TIP0 - 0.2) / 0.6) * 1.9
         if t > T_POUR1 + 0.3: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8)))
@@ -436,7 +436,7 @@ def shot5():
     data.idle(0.0, DUR)
     data.expression("determined", 0.3, T_POUR1)
     # "you're paying for all those hands": he holds up both hands to us, open, and grins
-    T_HANDS = T_POUR1 + 1.15
+    T_HANDS = T_POUR1 + 1.7               # after the empty basket has come to rest at his side
     for s in (R,):                       # the basket is still in his near hand: the other comes up, open, to us
         sg = 1 if acts._shoulder(data, s).x > data.pos().x else -1
         up = lambda t, s=s, sg=sg: acts._shoulder(data, s) + Vector((sg * 0.12, -0.16, 0.08))
