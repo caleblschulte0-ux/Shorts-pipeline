@@ -89,6 +89,22 @@ def main():
         print("JUDGE3D: no claude CLI: no judge, no pass"); return 1
     sheets = []
     only = [int(x) for x in os.environ.get("SHOTS", "").split()] or sorted(BRIEFS)   # re-judge just the shots that were sent back
+    # a shot the panel already passed on this exact code and brief keeps its pass (store/judged.py: the panel swings
+    # ~10 points between runs, so re-rolling a pass turns the gate into a coin flip). Only the rest are watched.
+    kept = []
+    story = os.environ.get("STORY", "")
+    if story and os.environ.get("JUDGE3D_REJUDGE") != "1":
+        import judged
+        for n_ in list(only):
+            r = judged.still_passed(story, n_)
+            if r:
+                kept.append({"shot": n_, "score": r["score"], "scores": r.get("scores"), "hard": [], "pass": True,
+                             "kept": f"passed by the panel at {r['at']} on this exact code and brief"})
+                only.remove(n_)
+    if not only:
+        out.write_text(json.dumps({"shots": kept, "panel": 0}, indent=2))
+        for s in kept: print(f"JUDGE3D shot {s['shot']}: {s['score']} {s.get('scores', '')} PASS (kept: {s['kept']})")
+        return 0
     for n in only:
         fr = sorted((proof / f"s{n}").glob("f*.png"))
         if not fr: print(f"JUDGE3D: shot {n} has no proof frames"); return 1
@@ -115,7 +131,7 @@ def main():
         except Exception as e: print("JUDGE3D: unreadable verdict:", e)
     if len(panel) < (n // 2 + 1):
         print(f"JUDGE3D: only {len(panel)} of {n} judges answered: no pass"); return 1
-    v = {"shots": [], "panel": len(panel)}
+    v = {"shots": list(kept), "panel": len(panel)}
     for n_, _, _ in sheets:
         votes = [j[n_] for j in panel if n_ in j]
         if not votes: v["shots"].append({"shot": n_, "score": 0, "pass": False, "hard": ["no judge graded this shot"]}); continue
@@ -127,7 +143,8 @@ def main():
                            "minority_hard": [h for x in hard_votes for h in x["hard"]] if not hard else [],
                            "problems": best.get("problems", []), "better": best.get("better", [])})
     for s in v["shots"]:                  # code holds the rule
-        s["pass"] = not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
+        if not s.get("kept"):
+            s["pass"] = not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
     out.write_text(json.dumps(v, indent=2))
     fails = [s for s in v.get("shots", []) if not s.get("pass")]
     for s in v.get("shots", []):

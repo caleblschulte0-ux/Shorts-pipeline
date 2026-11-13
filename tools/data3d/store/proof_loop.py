@@ -153,7 +153,10 @@ def main():
         for n in todo:
             sc = verdict[n].get("score") or 0; src = shot_source(path.read_text(), n)
             if n in pending: history[n].append(f"- {pending.pop(n)} -> scored {sc}")
-            if verdict[n].get("pass"): passed[n] = verdict[n]
+            if verdict[n].get("pass"):
+                passed[n] = verdict[n]
+                if not verdict[n].get("kept"):
+                    import judged; judged.record(a.story, n, verdict[n])   # the pass is kept while this code is unchanged
             if n not in best or sc > best[n][0]:
                 best[n] = (sc, src, verdict[n])
             else:                                  # a revision that scored no better is undone: the loop never walks backwards
