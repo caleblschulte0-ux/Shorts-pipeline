@@ -45,3 +45,10 @@ What every shot is held to before a frame renders (store/shots.py runs them; a s
   output); captions sit inside the Shorts / TikTok safe area and are timed to where the voice is actually speaking.
 - **judged**: `judge3d.py` reads the story's own storyboard; the showrunner's preview verdict is written beside the
   video (`showrunner_preview.json`). Posting is `data3d_upload.yml` on main, only on the operator's word.
+
+## The ending asks the viewer something (caaleb 2026-11-13)
+
+"We need to be ending the videos with like a question, so people have a reason to comment or engage." A new story's
+last line ends on a question a viewer can answer in a comment (at most the registry's `question_words`), and the 3D
+music bed sits at `MUSIC_BED_3D` in `story/assemble.py`, under the 2D explainer's. Held by
+`tests/test_data3d_story.py::test_a_3d_short_ends_on_a_question_and_its_music_sits_low`.

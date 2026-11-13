@@ -38,6 +38,10 @@ subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(narr / "narratio
                 f"atrim=0:{said + 0.06:.3f},afade=t=out:st={said - 0.02:.3f}:d=0.08,apad=whole_dur={total:.3f}", str(clean)],
                check=True)
 vibe = json.load(open(main / "data_learning/niche.config.json")).get("music_vibe", "calm")
+# THE 3D BED SITS LOWER (caaleb 2026-11-13: "the music's a little too loud on these 3D videos"). The explainer's 2D
+# mix keeps its own MUSIC_BED; the 3D short has no scene sound to share the space with, so its bed is set here.
+MUSIC_BED_3D = 0.13
+sr.MUSIC_BED = MUSIC_BED_3D
 mix0 = sr._build_soundtrack(clean, [tuple(w) for w in win], [], total, vibe, work, slug=meta.get("slug", ""))
 mix = work / "soundtrack_faded.wav"
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mix0), "-af",

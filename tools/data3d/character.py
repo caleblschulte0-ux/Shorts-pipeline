@@ -578,6 +578,8 @@ class Data:
 
     def expression(self, name, t0, t1=None, blend=0.22, cross='other'):
         e = self.EXPRESSIONS[name]
+        if t0 - blend <= 1.0 / FPS:          # a shot that OPENS on a face starts in it (it popped in over frame 1-2)
+            self._face(0.0, **e)
         self.sc.frame_set(F(max(0, t0 - blend)))
         cur = self._face_state()
         self._face(t0 - blend, **cur); self._face(t0, **e)

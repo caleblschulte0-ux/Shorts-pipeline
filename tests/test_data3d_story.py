@@ -75,6 +75,30 @@ def test_a_new_story_fits_the_explainers_pacing():
         assert len(lines) - 2 >= pace["min_beats"]
 
 
+POSTED_BEFORE_THE_QUESTION = {"checkout", "banana"}
+
+
+def test_a_3d_short_ends_on_a_question_and_its_music_sits_low():
+    """caaleb 2026-11-13: "we need to be ending the videos with like a question, so people have a reason to comment
+    or engage ... the music's a little too loud on these 3D videos." The closing line ends on a question the viewer
+    can answer in a comment, short enough to say (the registry's question_words), and the 3D bed is under the 2D one."""
+    reg = json.loads((ROOT / "config" / "channel_registry.json").read_text())
+    pace = reg["channels"]["explainer"]["formats"]["data_story"]["pacing"]
+    for st in STORIES:
+        if st.name in POSTED_BEFORE_THE_QUESTION:
+            continue
+        last = json.loads((st / "script.json").read_text())["lines"][-1].strip()
+        assert last.endswith("?"), f"{st.name}: the closing does not end on a question"
+        q = re.split(r"(?<=[.!])\s+", last)[-1]
+        assert len(q.split()) <= pace["question_words"], f"{st.name}: the question runs over question_words"
+    src = (D3 / "story" / "assemble.py").read_text()
+    m = re.search(r"^MUSIC_BED_3D = ([0-9.]+)", src, re.M)
+    assert m and "sr.MUSIC_BED = MUSIC_BED_3D" in src
+    sys.path.insert(0, str(ROOT / "data_learning"))
+    bed = re.search(r"^MUSIC_BED = ([0-9.]+)", (ROOT / "data_learning" / "studio_render.py").read_text(), re.M)
+    assert float(m.group(1)) < float(bed.group(1))
+
+
 def test_no_part_of_the_3d_pipeline_keeps_its_own_frame_rate():
     files = list((D3).rglob("*.py")) + [ROOT / ".github/workflows/data3d_render.yml", ROOT / ".github/workflows/data3d_assemble.yml"]
     bad = []

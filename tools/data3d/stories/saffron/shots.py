@@ -89,7 +89,7 @@ def shot1():
     SK.table("spice table", tuple(TABLE), w=0.9, d=0.42, h=TABLE_H)
     TOP = TABLE_H
     T_UP, T_DOWN0, T_DOWN1 = 0.0, 1.35, 1.85
-    P1 = [(2.05, 2.75), (2.95, 3.65)]          # the two shoves
+    P1 = [(2.0, 2.6), (3.15, 3.75)]          # the two shoves
     J_REST = Vector((-0.17, -0.3, TOP))
     jar = SK.jar("jar", tuple(J_REST))
     data = load_data(); data.place(0.0, 0.08, 0)
@@ -121,7 +121,7 @@ def shot1():
         if k:
             root.keyframe_insert("scale", frame=1); root.scale = (0, 0, 0); root.keyframe_insert("scale", frame=F(a - 0.4))
             root.scale = (1, 1, 1); root.keyframe_insert("scale", frame=F(a - 0.15))
-        reach(data, R, lambda t, bp=bp: bp(t) + Vector((0.075, 0.0, 0.045 + (0.05 if k == 0 else 0.0))), a - 0.05, b + 0.05, lead=0.35,
+        reach(data, R, lambda t, bp=bp: bp(t) + Vector((0.075, 0.0, 0.045 + (0.05 if k == 0 else 0.0))), a - 0.05, b + 0.05, lead=0.35 if k == 0 else 0.4,
               back=0.4 if k == 1 else None, elbow_out=0.4)
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
@@ -206,7 +206,7 @@ def shot2():
     data.idle(0.0, DUR)
     data.expression("pleased", 0.1, T_PULL0 - 0.1)
     data.expression("determined", T_PULL0, T_DROP + 0.3)
-    data.perform("wry", T_DROP + 1.2, hold=max(0.5, DUR - T_DROP - 2.2))
+    data.perform("wry", T_DROP + 1.2, hold=max(0.5, DUR - T_DROP - 2.2), arms=False)   # his hands are busy: the flower, then the scale
     data.blink(1.6); data.blink(T_DROP + 0.8)
     data.finish()
     soft_key("flower key", (0.4, -1.0, 0.9), tuple(UPF), energy=12, size=22)
@@ -409,13 +409,14 @@ def shot5():
     sh = {s: acts._shoulder(data, s) for s in "LR"}
     B0 = sh[L] + Vector((-0.04, -0.18, -0.17))      # in his near hand, the one toward the scale
     def over(t): return pan_pt(1, t) + Vector((0.07, 0.0, 0.16))
-    bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(B0 + Vector((0.05, 0.02, -0.06)), ease(min(1.0, (t - T_POUR1 - 0.3) / 0.5))))
+    REST = B0 + Vector((0.05, 0.02, 0.0))                 # the empty basket comes back down to his side
+    bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(REST, ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8))))
     def brot(t):
         a = 0.0 if t < T_TIP0 + 0.2 else min(1.0, (t - T_TIP0 - 0.2) / 0.6) * 1.9
-        if t > T_POUR1 + 0.3: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.3) / 0.5)))
+        if t > T_POUR1 + 0.3: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.3) / 0.8)))
         return (0, -a, 0)
     follow(bk, bp, 0.0, DUR, rot_fn=brot)
-    reach(data, L, lambda t: bk.matrix_world @ Vector((0.0, 0.0, 0.09)) if (sc.frame_set(F(t)) or True) else None, 0.0, T_POUR1 + 0.85, lead=0.05, back=0.4, elbow_out=0.45)
+    reach(data, L, lambda t: bk.matrix_world @ Vector((0.0, 0.0, 0.09)) if (sc.frame_set(F(t)) or True) else None, 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)
     # the flowers pour from the basket's mouth onto the right pan, heaping
     rnd = random.Random(3)
     N = 34; sched = [T_POUR0 + 0.15 + (T_POUR1 - T_POUR0 - 0.3) * (i / N) + rnd.uniform(-0.03, 0.03) for i in range(N)]
@@ -435,11 +436,11 @@ def shot5():
     data.idle(0.0, DUR)
     data.expression("determined", 0.3, T_POUR1)
     # "you're paying for all those hands": he holds up both hands to us, open, and grins
-    T_HANDS = T_POUR1 + 1.0
-    for s in (L, R):
+    T_HANDS = T_POUR1 + 1.15
+    for s in (R,):                       # the basket is still in his near hand: the other comes up, open, to us
         sg = 1 if acts._shoulder(data, s).x > data.pos().x else -1
         up = lambda t, s=s, sg=sg: acts._shoulder(data, s) + Vector((sg * 0.12, -0.16, 0.08))
-        reach(data, s, up, T_HANDS, DUR, lead=0.35, back=None, elbow_out=0.6)
+        reach(data, s, up, T_HANDS, DUR, lead=0.3, back=None, elbow_out=0.6)
         data._k(f"hand.{s}", T_HANDS, rot=(-70, 0, 0)); data._k(f"hand.{s}", DUR, rot=(-70, 0, 0))
     data.expression("happy", T_HANDS - 0.1, DUR)
     data.alive(T_HANDS + 0.3, DUR, seed=5)
