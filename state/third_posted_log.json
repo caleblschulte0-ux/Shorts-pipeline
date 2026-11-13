@@ -19719,13 +19719,50 @@
       "ts": "2026-11-13T13:28:54.877389+00:00"
     },
     "clip-20261113-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/qtcinderella/clip/EnjoyableGenerousBarracudaArgieB8-oSGC_PwCLKXCv3L3",
-      "story_key": null,
-      "streamer": "qtcinderella",
+      "url": "https://youtube.com/shorts/Hvt9NMn7eRM",
       "title": "Qtcinderella: Critical Role Wins Best Roleplay Streamer At The Streamer Awards",
       "kind": "twitch_clip",
-      "ts": "2026-11-13T13:33:32.750906+00:00",
+      "ts": "2026-11-13T13:33:40.678804+00:00",
+      "uploaded_at": "2026-11-13T13:33:40.678819+00:00",
+      "publish_at": "2026-11-14T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261113-qtcinderella-critical-role-wins-best-roleplay-st-97a9466a",
+        "tiktok": "queued for 2026-11-14T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/qtcinderella/clip/EnjoyableGenerousBarracudaArgieB8-oSGC_PwCLKXCv3L3",
+      "streamer": "qtcinderella",
+      "series": "win",
+      "hook": "Critical Role wins streamer of the year",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7111,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 59.56
+      },
+      "director_cut": true
+    },
+    "rejected-gracefulflirtysalsifypupper-lbx_jgy_wyxizxmx": {
+      "source_url": "https://www.twitch.tv/silky/clip/GracefulFlirtySalsifyPupper-LBX_JGy_wYXIZXMX",
+      "streamer": "silky",
+      "title": "WoW",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Static screen-share talk, insider feud)",
+      "ts": "2026-11-13T14:20:10.032992+00:00"
+    },
+    "clip-20261113-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/CleverSpookyLlamaWow-eQ8xKh8owJOWOza0",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Loses It And Chat Can't Stop Laughing After This",
+      "kind": "twitch_clip",
+      "ts": "2026-11-13T14:25:22.354459+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

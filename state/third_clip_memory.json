@@ -327,6 +327,17 @@
     "Twitch chat (visible"
    ]
   },
+  "boringpuzzledtoothnononocat-kwd8hri5vbjlpopw": {
+   "ch": "2xrakai",
+   "d": "2026-11-08",
+   "said": "Oh shit.",
+   "saw": "A woman in a black bikini, covered in soap suds, wraps a white towel around herself next to a bubble bath, then walks out of frame while cha",
+   "who": [
+    "2xrakai (streamer)",
+    "a woman in a bikini ",
+    "a person sitting in "
+   ]
+  },
   "brainyconcernedmulepanicvis-mi--yge28qkc7_nx": {
    "ch": "tminnzy",
    "d": "2026-10-30",
@@ -413,6 +424,11 @@
    "who": [
     "Kai Cenat"
    ]
+  },
+  "cleverspookyllamawow-eq8xkh8owjowoza0": {
+   "ch": "silky",
+   "d": "2026-11-13",
+   "said": "is the"
   },
   "clip_01m45qvs2stys2knamz5rh4mr5": {
    "ch": "adinross",
@@ -780,7 +796,13 @@
   "enjoyablegenerousbarracudaargieb8-osgc_pwclkxcv3l3": {
    "ch": "qtcinderella",
    "d": "2026-11-13",
-   "said": "The Streamer award goes to... Critical Role! This is critical role second nomination and f"
+   "said": "The Streamer award goes to... Critical Role! This is critical role second nomination and f",
+   "saw": "The Best Role-Play Streamer award at The Streamer Awards is announced as going to Critical Role, the crowd reacts, and two members walk to t",
+   "who": [
+    "Critical Role cast m",
+    "Award presenter (unn",
+    "Nominees shown on sc"
+   ]
   },
   "enjoyablerelievedbaguettetbtacoleft-4zkketmyqh50sgqe": {
    "ch": "rayasianboy",
@@ -1040,7 +1062,13 @@
   "gorgeoussparklinggoatbloodtrail-l-5iiruft8yscvom": {
    "ch": "jynxzi",
    "d": "2026-11-13",
-   "said": "on, on! The streamer award goes to... but... I won Gamer of the Year? Sweet! Yo! Let's go"
+   "said": "on, on! The streamer award goes to... but... I won Gamer of the Year? Sweet! Yo! Let's go",
+   "saw": "At the Streamer Awards, Jynxzi watches the Gamer of the Year announcement on his stream, reacts with shock and joy when he wins, then keeps ",
+   "who": [
+    "Jynxzi",
+    "Fehnberg",
+    "ItsTimmy"
+   ]
   },
   "gracefulcrispyjackalfrankerz-fdhaeesry9_k0mro": {
    "ch": "joe_bartolozzi",
@@ -1062,6 +1090,11 @@
    "ch": "pokimane",
    "d": "2026-10-30",
    "said": "are the nice guys and who are the boys in How many Oh my gosh, Mr. Duck, thank you so much"
+  },
+  "gracefulflirtysalsifypupper-lbx_jgy_wyxizxmx": {
+   "ch": "silky",
+   "d": "2026-11-13",
+   "said": "Do y 'all know that got a severe drinking problem? Like this nigga Rika used to in his str"
   },
   "grosselatedbutterflyoptimizeprime-ovpwn5_b-36rgxne": {
    "ch": "jasontheween",
@@ -1545,6 +1578,16 @@
    "ch": "ludwig",
    "d": "2026-10-23",
    "said": "Okay, I don't want to start too much drama. Because ultimately this is a special day. Ther"
+  },
+  "preciousdelightfulgoldfishopieop-hlsw5tqlyiwoi9xh": {
+   "ch": "qtcinderella",
+   "d": "2026-11-13",
+   "said": "I show speed! This is Speed's 10th nomination and 8th win. tears.",
+   "saw": "At the Streamer Awards, IShowSpeed is announced as Streamer of the Year, walks to the stage through the crowd, and gives an acceptance speec",
+   "who": [
+    "IShowSpeed",
+    "Streamer Awards anno"
+   ]
   },
   "preciousmushymetalelegiggle-snp7txv5l2fepwyp": {
    "ch": "rayasianboy",
@@ -2065,6 +2108,17 @@
     "rubius"
    ]
   },
+  "talentedkitschyplumbermikehogu-owjx28acyxlvtkan": {
+   "ch": "qtcinderella",
+   "d": "2026-11-13",
+   "said": "And a few years ago I decided I need to probably stop doing that and make content that can",
+   "saw": "Ari gives an acceptance speech for Best Music Streamer, DDG walks up and cuts in saying he is the best music artist of all time, and Ari the",
+   "who": [
+    "Ari (Best Music Stre",
+    "DDG (rapper/streamer",
+    "two men in dark suit"
+   ]
+  },
   "tallspunkyhedgehogwutface-902rseqsmeddsxhk": {
    "ch": "maya",
    "d": "2026-11-06",
@@ -2435,6 +2489,93 @@
    ]
   },
   {
+   "d": "2026-11-13",
+   "edl": {
+    "beats": [
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 63.9,
+      "framing": "wide",
+      "link": "start",
+      "purpose": "He is in the tub, steaming and freezing.",
+      "role": "setup",
+      "source_id": "vodmine://2922690812/11103-11343",
+      "start": 57.6,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 100.2,
+      "framing": "wide",
+      "link": "so",
+      "purpose": "He can't get out because it's too cold and calls for towels.",
+      "role": "escalation",
+      "source_id": "vodmine://2922690812/11103-11343",
+      "start": 79.9,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 6.0,
+      "framing": "wide",
+      "link": "so",
+      "purpose": "A woman grabs a towel and leaves, and the streamer reacts.",
+      "role": "reaction",
+      "source_id": "https://www.twitch.tv/2xrakai/clip/BoringPuzzledToothNononoCat-kwd8HrI5vbJlpoPW",
+      "start": 0.0,
+      "transition": "j_cut"
+     },
+     {
+      "context_overlay": "Later, he is hauled out",
+      "effects": [],
+      "end": 88.9,
+      "framing": "wide",
+      "link": "so",
+      "purpose": "He is finally pulled out of the tub while others warn 'He's gonna fall'.",
+      "role": "climax",
+      "source_id": "vodmine://2922690812/11349-11589",
+      "start": 75.0,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 236.4,
+      "framing": "tight",
+      "link": "so",
+      "purpose": "Afterwards he calls himself the bad guy.",
+      "role": "payoff",
+      "source_id": "vodmine://2922690812/11349-11589",
+      "start": 232.8,
+      "transition": "hard_cut"
+     }
+    ],
+    "central_question": "How does 2xRakai get out of the bath?",
+    "ending": {
+     "duration": 1.0,
+     "type": "reaction_hold"
+    },
+    "ending_emotion": "embarrassed, resigned",
+    "hook_overlay": "2xRakai is stuck in a freezing stream",
+    "is_story": true,
+    "narration": null,
+    "premise": "A freezing stream bath: 2xRakai can't get out of the tub, calls for towels, and ends up calling himself the bad guy.",
+    "structure": "chronological",
+    "structure_reason": "Told in time order so a stranger sees him in the tub, stuck in the cold, the towel run, then the self-roast ending. The garbled cold open is dropped.",
+    "target_duration": 52,
+    "title": "2xRakai is stuck in a freezing bath on stream"
+   },
+   "score": 79,
+   "sources": [
+    "https://www.twitch.tv/2xrakai/clip/BoringPuzzledToothNononoCat-kwd8HrI5vbJlpoPW",
+    "vodmine://2922690812/11103-11343",
+    "vodmine://2922690812/11349-11589"
+   ]
+  },
+  {
    "d": "2026-10-29",
    "edl": {
     "beats": [
@@ -2570,6 +2711,68 @@
    "sources": [
     "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
     "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw"
+   ]
+  },
+  {
+   "d": "2026-11-13",
+   "edl": {
+    "beats": [
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 35.0,
+      "framing": "wide",
+      "link": "start",
+      "purpose": "Ari is mid-speech when DDG steps in and claims best music artist of all time.",
+      "role": "escalation",
+      "source_id": "https://www.twitch.tv/qtcinderella/clip/TalentedKitschyPlumberMikeHogu-oWJX28aCYxlVTkAn",
+      "start": 14.0,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "Right after the interruption",
+      "effects": [],
+      "end": 87.5,
+      "framing": "tight",
+      "link": "so",
+      "purpose": "After the interruption, QTCinderella thanks those being respectful.",
+      "role": "reaction",
+      "source_id": "https://www.twitch.tv/qtcinderella/clip/TalentedKitschyPlumberMikeHogu-oWJX28aCYxlVTkAn",
+      "start": 80.5,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 13.5,
+      "framing": "wide",
+      "link": "but",
+      "purpose": "The night ends with IShowSpeed winning Streamer of the Year.",
+      "role": "payoff",
+      "source_id": "https://www.twitch.tv/qtcinderella/clip/PreciousDelightfulGoldfishOpieOP-hlSw5tQLyIwoi9XH",
+      "start": 0.5,
+      "transition": "hard_cut"
+     }
+    ],
+    "central_question": "How does the show handle the interruption, and how does the night end?",
+    "ending": {
+     "duration": 1.0,
+     "type": "reaction_hold"
+    },
+    "ending_emotion": "conciliatory",
+    "hook_overlay": "DDG crashes Ari's Best Music Streamer speech",
+    "is_story": true,
+    "narration": null,
+    "premise": "DDG interrupts Ari's Best Music Streamer speech, the hosts ask the room to stay respectful, and the night ends with Speed's Streamer of the Year win.",
+    "structure": "two_perspectives",
+    "structure_reason": "The interruption comes first, then the host's response, then the night's biggest award.",
+    "target_duration": 42,
+    "title": "DDG interrupts Ari at the Streamer Awards"
+   },
+   "score": 78,
+   "sources": [
+    "https://www.twitch.tv/qtcinderella/clip/PreciousDelightfulGoldfishOpieOP-hlSw5tQLyIwoi9XH",
+    "https://www.twitch.tv/qtcinderella/clip/TalentedKitschyPlumberMikeHogu-oWJX28aCYxlVTkAn"
    ]
   },
   {
@@ -2940,27 +3143,6 @@
   }
  ],
  "stories_tried": [
-  {
-   "d": "2026-10-15",
-   "members": [
-    "courteousfriendlybibimbapargieb8-z7cr55wrq74anccg",
-    "crypticabstemioussharkasianglow-ihef_mom_hx-nvli",
-    "smellyantediluvianhamstertoospicy-ffyh6c5u_kildjv1",
-    "toughsucculentpandabloodtrail-9nl3c7efwssituhz",
-    "vibranthandsomemarjoramssssss-gakcu5kjsl7hp9wf",
-    "zealousrelentlesskoalawow-bsoh5llexpm4c2n0"
-   ],
-   "premise": "northernlion@vod2880264709",
-   "why": "sources fail preflight: preflight:source barely moves (avg frame delta 0.13) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
-  },
-  {
-   "d": "2026-10-15",
-   "members": [
-    "artisticfamoustomatofreakinstinkin-f2jwn81dcxtrb0xb"
-   ],
-   "premise": "sondergaardlol@momentartisticfamoustomatofreakinstinkin-f2jwn81dcxtrb0xb",
-   "why": "director judged: not a story \u2014 The sources show no setup, change or payoff that can be stated plainly. The clip (13.7s) has two men bent over a desk, then laugh"
-  },
   {
    "d": "2026-10-15",
    "edit": 5,
@@ -3495,6 +3677,29 @@
    ],
    "premise": "Pikaboo's WoW week: he ganks a higher-level shaman, larps about his girlfriend, then gets dumped for a Horde player.",
    "why": "director judged: not a story \u2014 The scout's third clip, the one where Pikaboo gets dumped for a Horde player, is not in the sources. Only two clips exist, so the"
+  },
+  {
+   "d": "2026-11-13",
+   "edit": 5,
+   "members": [
+    "enjoyablegenerousbarracudaargieb8-osgc_pwclkxcv3l3",
+    "gorgeoussparklinggoatbloodtrail-l-5iiruft8yscvom",
+    "preciousdelightfulgoldfishopieop-hlsw5tqlyiwoi9xh",
+    "talentedkitschyplumbermikehogu-owjx28acyxlvtkan"
+   ],
+   "premise": "At the Streamer Awards, DDG crashes Ari's Best Music Streamer speech, and the night closes with IShowSpeed winning Strea",
+   "retries_left": 2,
+   "why": "rendered; critic scored 70 after 2 revision(s) \u2014 @0s confusing: The cut opens on a fragment, 'celebrities or famous streamers but just with regular people', whi"
+  },
+  {
+   "d": "2026-11-13",
+   "edit": 5,
+   "members": [
+    "boringpuzzledtoothnononocat-kwd8hri5vbjlpopw"
+   ],
+   "premise": "A freezing stream bath: 2xRakai can't get out of the tub, calls for towels, and ends up calling himself the bad guy.",
+   "retries_left": 2,
+   "why": "rendered; critic scored 79 after 2 revision(s) \u2014 @36s pacing: There is a gap between 'He's gonna fall' and the final clip. Trim it or add a short 'Afterwards' o"
   }
  ]
 }
