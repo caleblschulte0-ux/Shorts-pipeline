@@ -1,0 +1,26 @@
+{
+  "key": "sea_otter_kelp_carbon_potential",
+  "title": "Potential CO2 stored by otter-protected kelp forests, North Pacific range",
+  "unit": "million metric tons of CO2 per year",
+  "geography": "North Pacific",
+  "time_coverage": "modeled estimate",
+  "source": {
+    "name": "Do trophic cascades affect the storage and flux of atmospheric carbon? (Wilmers et al., Frontiers in Ecology and the Environment, 2012)",
+    "publisher": "Frontiers in Ecology and the Environment",
+    "url": "https://esajournals.onlinelibrary.wiley.com/journal/15409309",
+    "officiality": "secondary",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Modeled range, not an observed annual figure: otters keep sea urchins in check, which lets kelp forests grow and store more carbon.",
+  "points": [
+    {
+      "label": "Low estimate",
+      "value": 4.4
+    },
+    {
+      "label": "High estimate",
+      "value": 8.7
+    }
+  ],
+  "insight_type": "comparison"
+}

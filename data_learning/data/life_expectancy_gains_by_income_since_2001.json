@@ -1,0 +1,26 @@
+{
+  "key": "life_expectancy_gains_by_income_since_2001",
+  "title": "Life expectancy gained since 2001, by income group",
+  "unit": "years gained",
+  "geography": "United States",
+  "time_coverage": "2001-2014",
+  "source": {
+    "name": "The Association Between Income and Life Expectancy in the United States, 2001-2014 (Chetty et al., JAMA 2016)",
+    "publisher": "JAMA (Journal of the American Medical Association)",
+    "url": "https://www.equality-of-opportunity.org/",
+    "officiality": "secondary",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Approximate figures from the study: the richest fifth gained roughly 2.3 years of life expectancy over the period; the poorest fifth gained roughly 0.3 years.",
+  "points": [
+    {
+      "label": "Poorest fifth",
+      "value": 0.3
+    },
+    {
+      "label": "Richest fifth",
+      "value": 2.3
+    }
+  ],
+  "insight_type": "comparison"
+}

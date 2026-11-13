@@ -1,0 +1,28 @@
+{
+  "key": "ca_sea_otter_population_recovery",
+  "title": "California sea otter population recovery, 1930s to today",
+  "unit": "otters",
+  "geography": "California, United States",
+  "time_coverage": "1930s-2020s",
+  "source": {
+    "name": "California spring sea otter census",
+    "publisher": "U.S. Geological Survey / California Department of Fish and Wildlife",
+    "url": "https://www.usgs.gov/",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "The southern sea otter remains federally listed as threatened; the spring census has put the population at roughly 3,000 in recent years.",
+  "points": [
+    {
+      "label": "1930s",
+      "value": 50,
+      "period": "1938"
+    },
+    {
+      "label": "Today",
+      "value": 3000,
+      "period": "2023"
+    }
+  ],
+  "insight_type": "trend"
+}

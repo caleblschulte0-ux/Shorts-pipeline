@@ -1,0 +1,38 @@
+{
+  "key": "us_life_expectancy_overall_1960_2023",
+  "title": "US average life expectancy at birth, 1960-2023",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "1960-2023",
+  "source": {
+    "name": "National Vital Statistics",
+    "publisher": "CDC National Center for Health Statistics",
+    "url": "https://www.cdc.gov/nchs/fastats/life-expectancy.htm",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Rounded figures; 2021 dipped due to the pandemic before partially recovering by 2023.",
+  "points": [
+    {
+      "label": "1960",
+      "value": 69.8,
+      "period": "1960"
+    },
+    {
+      "label": "1990",
+      "value": 75.4,
+      "period": "1990"
+    },
+    {
+      "label": "2010",
+      "value": 78.7,
+      "period": "2010"
+    },
+    {
+      "label": "2023",
+      "value": 78.4,
+      "period": "2023"
+    }
+  ],
+  "insight_type": "trend"
+}

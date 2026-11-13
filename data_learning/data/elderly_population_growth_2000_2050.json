@@ -1,0 +1,43 @@
+{
+  "key": "elderly_population_growth_2000_2050",
+  "title": "World population aged 65+, 2000-2050 (projected)",
+  "unit": "million people",
+  "geography": "World",
+  "time_coverage": "2000-2050 (projected)",
+  "source": {
+    "name": "World Population Prospects 2022 Revision",
+    "publisher": "United Nations, Department of Economic and Social Affairs (Population Division)",
+    "url": "https://population.un.org/wpp/",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "Rounded, medium-variant projection figures from UN WPP 2022.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 420,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 524,
+      "period": "2010"
+    },
+    {
+      "label": "2020",
+      "value": 727,
+      "period": "2020"
+    },
+    {
+      "label": "2030",
+      "value": 994,
+      "period": "2030"
+    },
+    {
+      "label": "2050",
+      "value": 1600,
+      "period": "2050"
+    }
+  ],
+  "insight_type": "trend"
+}

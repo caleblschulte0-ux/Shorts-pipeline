@@ -1,0 +1,34 @@
+{
+  "key": "penny_vs_discontinued_us_coins_years_in_production",
+  "title": "Years in production before discontinued, selected US coins",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "1793-2025",
+  "source": {
+    "name": "US coin history",
+    "publisher": "United States Mint",
+    "url": "https://www.usmint.gov/",
+    "officiality": "official",
+    "access_date": "2026-11-13"
+  },
+  "notes": "The two-cent piece (1864-1873) and half cent (1793-1857) are historical discontinued US denominations; the penny traces continuously back to 1793.",
+  "points": [
+    {
+      "label": "Two-Cent Piece",
+      "value": 9
+    },
+    {
+      "label": "Three-Cent Piece",
+      "value": 38
+    },
+    {
+      "label": "Half Cent",
+      "value": 64
+    },
+    {
+      "label": "The Penny",
+      "value": 232
+    }
+  ],
+  "insight_type": "rank"
+}
