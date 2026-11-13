@@ -25400,9 +25400,9 @@
   },
   {
    "slug": "unclaimed-money-states-hold",
-   "title": "14.3% of Americans Have Money States Must Return",
-   "hook": "Forgotten money is piling up in state vaults, and it may be yours.",
-   "closing": "Search your state's free site today. Unclaimed money doesn't come looking for you.",
+   "title": "14.3% Of Americans Have Money Waiting In State Vaults",
+   "hook": "14.3% of Americans have money waiting in state vaults.",
+   "closing": "A free state search could return money you forgot was yours.",
    "question": "Have you checked your state?",
    "caption": "US states are collectively holding about $70 billion in unclaimed money -- old paychecks, forgotten accounts, insurance payouts -- owed to 1 in 7 Americans. States only handed back $4.49 billion of it last year. Have you ever checked if you're owed money? 👇",
    "hashtags": [
@@ -25419,8 +25419,8 @@
     "financetips",
     "money"
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-11T14:09:46Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-13T13:51:54Z",
    "retold": "retell/v4",
    "hook_was": "States are quietly holding 70 billion dollars of your money.",
    "segments": [
@@ -25434,8 +25434,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "1 · IT'S EVERYWHERE",
-     "topic": "Money states hold",
-     "say": "California alone sits on 15 billion dollars of other people's money, more than any other state. Some of it could be yours.",
+     "topic": "Money States Hold",
+     "say": "California holds 15 billion dollars in unclaimed money. The largest state vault is filled with other people's forgotten cash.",
      "viz": "geo_us",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _ufd_dollar(cr, x, cy, s, rgb):\n    \"\"\"A dollar sign cut into the bag, drawn as strokes so nothing reads as a label.\"\"\"\n    cr.set_source_rgba(*_c(rgb))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.move_to(x + 13 * s, cy - 13 * s)\n    cr.curve_to(x + 6 * s, cy - 22 * s, x - 16 * s, cy - 21 * s, x - 14 * s, cy - 8 * s)\n    cr.curve_to(x - 12 * s, cy + 2 * s, x + 14 * s, cy - 2 * s, x + 14 * s, cy + 10 * s)\n    cr.curve_to(x + 14 * s, cy + 22 * s, x - 8 * s, cy + 24 * s, x - 15 * s, cy + 14 * s)\n    cr.move_to(x, cy - 27 * s)\n    cr.line_to(x, cy + 27 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n\n\ndef _ufd_bag(cr, x, y, s):\n    contact_shadow(cr, x, y, 110 * s, a=0.4)\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.curve_to(x - 70 * s, y - 64 * s, x - 62 * s, y, x, y)\n    cr.curve_to(x + 62 * s, y, x + 70 * s, y - 64 * s, x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (204, 178, 124))\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.line_to(x - 26 * s, y - 104 * s)\n    cr.line_to(x + 26 * s, y - 104 * s)\n    cr.line_to(x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (184, 156, 104))\n    cr.rectangle(x - 20 * s, y - 90 * s, 40 * s, 9 * s)\n    solid(cr, (110, 80, 46), rim=False)\n    _ufd_dollar(cr, x, y - 38 * s, 0.9 * s, (64, 110, 62))\n\n\ndef _ufd_bundle(cr, x, y):\n    box(cr, x, y, 50, 22, (92, 146, 92), depth=12)\n    cr.rectangle(x + 20, y - 22, 10, 22)\n    solid(cr, (234, 224, 192), edge=False, rim=False)\n\n\ndef _ufd_car(cr, x, y, s):\n    contact_shadow(cr, x + 195 * s, y + 4, 400 * s, a=0.45)\n    cr.move_to(x + 4 * s, y - 30 * s)\n    cr.line_to(x, y - 66 * s)\n    cr.curve_to(x + 8 * s, y - 88 * s, x + 50 * s, y - 92 * s, x + 96 * s, y - 96 * s)\n    cr.line_to(x + 140 * s, y - 142 * s)\n    cr.curve_to(x + 190 * s, y - 150 * s, x + 236 * s, y - 150 * s, x + 262 * s, y - 140 * s)\n    cr.line_to(x + 306 * s, y - 96 * s)\n    cr.curve_to(x + 360 * s, y - 92 * s, x + 390 * s, y - 80 * s, x + 392 * s, y - 52 * s)\n    cr.line_to(x + 388 * s, y - 30 * s)\n    cr.close_path()\n    solid(cr, (58, 96, 150), finish=\"gloss\")\n    cr.move_to(x + 112 * s, y - 98 * s)\n    cr.line_to(x + 148 * s, y - 134 * s)\n    cr.line_to(x + 194 * s, y - 138 * s)\n    cr.line_to(x + 194 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    cr.move_to(x + 206 * s, y - 98 * s)\n    cr.line_to(x + 206 * s, y - 138 * s)\n    cr.line_to(x + 254 * s, y - 132 * s)\n    cr.line_to(x + 288 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    disc(cr, x + 380 * s, y - 64 * s, 8 * s, (255, 236, 180), finish=\"gloss\")\n    for wx in (x + 84 * s, x + 312 * s):\n        disc(cr, wx, y - 24 * s, 34 * s, (34, 34, 38), finish=\"matte\")\n        disc(cr, wx, y - 24 * s, 14 * s, (176, 178, 184), finish=\"metal\")\n\n\ndef _ufd_person(cr, x, y, s, t, i, coat, hair, walking):\n    \"\"\"A regular person seen from behind, walking up to the vault.\"\"\"\n    contact_shadow(cr, x, y, 80 * s, a=0.35)\n    sw = (math.sin(t * 6 + i * 1.7) * 14 * s) if walking else 0.0\n    cr.set_source_rgba(*_c((44, 46, 60)))\n    cr.set_line_width(16 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for d in (-1, 1):\n        cr.move_to(x + d * 10 * s, y - 70 * s)\n        cr.line_to(x + d * 10 * s + d * sw, y - 4 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n    cr.move_to(x - 28 * s, y - 70 * s)\n    cr.curve_to(x - 34 * s, y - 120 * s, x - 34 * s, y - 150 * s, x - 18 * s, y - 158 * s)\n    cr.line_to(x + 18 * s, y - 158 * s)\n    cr.curve_to(x + 34 * s, y - 150 * s, x + 34 * s, y - 120 * s, x + 28 * s, y - 70 * s)\n    cr.close_path()\n    solid(cr, coat)\n    disc(cr, x, y - 178 * s, 21 * s, (214, 170, 136))\n    cr.arc(x, y - 180 * s, 22 * s, math.pi * 0.95, math.pi * 2.05)\n    cr.close_path()\n    solid(cr, hair, rim=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: the state treasury's unclaimed-money vault\n    SUBSTANCE: forgotten cash in the vault\n    CAUSE: Data grips the giant vault door and drags it open with his own hands, exposing the money held inside\n    A domed state capitol with a columned portico and steps on a plaza;\n    regular people walk up to it by the camera while a car goes by. In the\n    capitol's base is the UNCLAIMED PROPERTY vault, its steel door shut on\n    shelves of cash and money bags. Data grabs the door's handle and hauls\n    it aside, state by state: the door opens as far as that state's\n    forgotten money, Ohio's, then Texas's, then California's 15 billion\n    throws it fully open. Each state leaves a notch on the door's track,\n    named on the stone above, so a glance shows California's stash is about\n    three times Ohio's. Landed by 0.56 and held, the vault light spilling\n    onto the steps while the flag waves and cars pass.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    n = len(rows)\n    top = rows[-1][1] or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.7))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    frac = 0.0 if u < a0 else (prev + (rows[k][1] - prev) * slide) / top\n    landed_to = k if slide >= 0.999 else k - 1\n    shown = None if (u < a0 or landed_to < 0) else rows[landed_to]\n\n    landscape(cr, t, \"town\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n\n    BASE = 1440\n    STONE = (230, 224, 210)\n    COL = (238, 233, 222)\n    cast_shadow(cr, 60, 1010, BASE, length=340, a=0.3)\n    contact_shadow(cr, 535, BASE + 4, 1000, a=0.4)\n    b = building(cr, 60, 1010, BASE, 560, STONE, roof_rgb=(150, 146, 138),\n                 roof=\"flat\", boards=False)\n    rx = (b[\"x0\"] + b[\"x1\"]) / 2\n    ty = b[\"top\"]\n\n    # the capitol dome: a colonnaded drum, a gilded ribbed dome, lantern, flag\n    cylinder(cr, rx - 160, ty, 320, 80, COL)\n    cr.set_source_rgba(*_c((170, 164, 150)))\n    cr.set_line_width(5)\n    for i in range(9):\n        cx_ = rx - 140 + i * 35\n        cr.move_to(cx_, ty - 8)\n        cr.line_to(cx_, ty - 64)\n    cr.stroke()\n    DR, DK = 150, 0.66\n    cr.save()\n    cr.translate(rx, ty - 80)\n    cr.scale(1, DK)\n    cr.arc(0, 0, DR, math.pi, 2 * math.pi)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (214, 184, 106), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 120, 60), 0.7))\n    cr.set_line_width(4)\n    for i in range(1, 6):\n        ang = math.pi + i * math.pi / 6\n        cr.move_to(rx + DR * math.cos(ang), ty - 80)\n        cr.curve_to(rx + DR * math.cos(ang), ty - 80 + DR * DK * math.sin(ang) * 0.7,\n                    rx + DR * 0.4 * math.cos(ang), ty - 80 - DR * DK,\n                    rx, ty - 80 - DR * DK)\n    cr.stroke()\n    lt = ty - 80 - DR * DK + 4\n    cylinder(cr, rx - 20, lt, 40, 40, COL)\n    pole_top = lt - 40 - 40\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(5)\n    cr.move_to(rx, lt - 40)\n    cr.line_to(rx, pole_top)\n    cr.stroke()\n    fl = []\n    for i in range(13):\n        fx = rx + i * 9\n        fl.append((fx, pole_top + 7 * math.sin(t * 3.2 - i * 0.5) * (i / 12)))\n    cr.move_to(*fl[0])\n    for p_ in fl[1:]:\n        cr.line_to(*p_)\n    for p_ in reversed(fl):\n        cr.line_to(p_[0], p_[1] + 46)\n    cr.close_path()\n    solid(cr, (64, 92, 150), rim=False)\n\n    # the portico: pediment, entablature, columns\n    cr.move_to(50, 962)\n    cr.line_to(rx, 892)\n    cr.line_to(1020, 962)\n    cr.close_path()\n    solid(cr, (224, 218, 204))\n    box(cr, 50, 1000, 970, 40, (222, 216, 202), depth=20)\n    for cx in (78, 600, 680, 760, 840, 920):\n        cylinder(cr, cx, BASE, 36, 440, COL)\n\n    # the vault: shelves of cash and money bags behind the doorway\n    DX0, DX1, DY, GY = 130, 530, 1040, BASE\n    dw = DX1 - DX0\n    cr.save()\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.clip()\n    vgrad(cr, [(0, (52, 42, 30)), (1, (120, 92, 56))], DY, GY, DX0, DX1)\n    glow(cr, (DX0 + DX1) / 2, 1240, 300, (255, 214, 140), 0.25 + 0.35 * frac)\n    for sy in (1150, 1270):\n        cr.rectangle(DX0, sy, dw, 12)\n        solid(cr, (122, 92, 58), rim=False)\n        for j in range(7):\n            _ufd_bundle(cr, DX0 + 10 + j * 56, sy)\n        for j in range(6):\n            _ufd_bundle(cr, DX0 + 38 + j * 56, sy - 24)\n    for i, bx in enumerate((180, 280, 380, 480)):\n        _ufd_bag(cr, bx, GY - 4, 0.95 + 0.15 * (i % 2))\n    cr.restore()\n    cr.set_source_rgba(*_c((70, 72, 80)))\n    cr.set_line_width(14)\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.stroke()\n\n    # the steps up to the vault, its light spilling down them as it opens\n    box(cr, 30, 1474, 1010, 30, (214, 208, 194), depth=16)\n    box(cr, 0, 1508, 1080, 32, (204, 198, 184), depth=16)\n    if frac > 0:\n        glow(cr, DX0 + dw * frac / 2, GY + 40, 140 + 280 * frac,\n             (255, 214, 140), 0.5 * frac)\n\n    # the track, the door sliding along it\n    cr.set_source_rgba(*_c((46, 44, 48)))\n    cr.set_line_width(10)\n    cr.move_to(DX0 - 20, DY - 20)\n    cr.line_to(DX1 + dw + 30, DY - 20)\n    cr.stroke()\n    dx = DX0 + dw * frac\n    cr.rectangle(dx, DY - 8, dw, GY - DY + 8)\n    solid(cr, (128, 134, 144), finish=\"metal\")\n    cr.set_source_rgba(*_c((84, 88, 98)))\n    cr.set_line_width(6)\n    cr.rectangle(dx + 18, DY + 10, dw - 36, GY - DY - 28)\n    cr.stroke()\n    for i in range(6):\n        disc(cr, dx + 30 + i * (dw - 60) / 5, DY + 30, 7, (176, 180, 188), finish=\"metal\")\n        disc(cr, dx + 30 + i * (dw - 60) / 5, GY - 30, 7, (176, 180, 188), finish=\"metal\")\n    wx, wy = dx + dw / 2, 1250\n    disc(cr, wx, wy, 84, (150, 156, 166), finish=\"metal\")\n    rot = frac * 7.0\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(14)\n    for i in range(3):\n        ang = rot + i * math.pi / 3\n        cr.move_to(wx - 74 * math.cos(ang), wy - 74 * math.sin(ang))\n        cr.line_to(wx + 74 * math.cos(ang), wy + 74 * math.sin(ang))\n    cr.stroke()\n    disc(cr, wx, wy, 24, (180, 184, 192), finish=\"metal\")\n    box(cr, dx + 50, 1112, dw - 100, 40, (232, 214, 150), depth=6, finish=\"metal\")\n    text(cr, \"UNCLAIMED PROPERTY\", dx + dw / 2, 1102, 26, (50, 44, 36),\n         face=\"bold\", anchor=\"center\", shadow=False)\n    cr.rectangle(dx + dw - 40, 1280, 16, 110)\n    solid(cr, (60, 62, 70), finish=\"metal\")\n    for hx_ in (dx + 40, dx + dw - 40):\n        disc(cr, hx_, DY - 20, 11, (70, 70, 76), finish=\"metal\")\n\n    # THE SCALE on the track: a notch where each state's money opened it to,\n    # its name cut into the stone above, staggered so none collide\n    if u >= a0:\n        for j in range(0, landed_to + 1):\n            nx = DX0 + dw * rows[j][1] / top\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(nx, DY - 40)\n            cr.line_to(nx, DY - 4)\n            cr.stroke()\n            ly = DY - 50 if j % 2 == 0 else DY - 86\n            text(cr, rows[j][0], nx, ly, 30, look.INK, face=\"bold\", anchor=\"center\")\n\n    # right by the camera: regular people walking up to claim it, a car by\n    crowd = [(150, 1720, (176, 60, 52), (60, 40, 30)),\n             (320, 1700, (70, 120, 96), (30, 26, 24)),\n             (480, 1735, (214, 160, 60), (120, 80, 44))]\n    for i, (px, py, coat, hair) in enumerate(crowd):\n        g = ease(seg(u, 0.05 + 0.08 * i, 0.45 + 0.08 * i))\n        walking = 0.0 < g < 1.0\n        _ufd_person(cr, px - 360 * (1 - g), py, 1.3, t, i, coat, hair, walking)\n    cx = -480 + ((t * 230) % 2040)\n    _ufd_car(cr, cx, 1880, 1.15)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    edge_x = dx + dw\n    hx = edge_x + 40\n    hands = [(edge_x - 32, 1306), (edge_x - 32, 1366)]\n    if u < a0:\n        host(\"point\", DX1 + 60, 1450, 240)\n    elif u < 0.9:\n        host(\"grip\", hx, 1450, 240, hands=hands, lower=\"brace\",\n             expr=\"strain\" if u < a1 + 0.04 else \"happy\")\n    else:\n        host(\"cheer\", hx, 1450, 240)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"${v:g} billion\", f\"forgotten money held by {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Forgotten money\", \"the state is holding it for you\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -25448,8 +25448,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · BARELY RECLAIMED",
-     "topic": "Money states returned",
-     "say": "Last year states returned only about one dollar in every sixteen they hold. The rest just sits there, waiting for its owners.",
+     "topic": "Money States Returned",
+     "say": "States returned only about one dollar in every sixteen they hold. Most unclaimed money still waits for its owners.",
      "scene": {
       "mechanic": "vault-drain-trickle",
       "concept": "a bank vault photo fills to the brim with cash representing the total held, then only a thin trickle drains out the door to represent what actually got returned",
@@ -25464,8 +25464,8 @@
      },
      "insight_type": "share",
      "role": "3 · IS IT YOURS?",
-     "topic": "Money states owe",
-     "say": "About one in seven Americans has money waiting. Searching your state's site is free, so it costs nothing to check.",
+     "topic": "Money States Owe",
+     "say": "About one in seven Americans has money waiting. A free state search can tell you whether some is yours.",
      "scene": {
       "mechanic": "crowd-glow-share",
       "concept": "a grid of real person silhouettes stands dim, and exactly 1-in-7 light up gold holding a dollar bill as the share reveals",
@@ -26198,10 +26198,10 @@
   },
   {
    "slug": "left-brain-right-brain-myth",
-   "title": "0 Of 7 Brain Networks Supported The Personality Myth",
-   "hook": "You were never a left-brain or right-brain person, and science just proved it.",
-   "closing": "Your brain works as one team, so you are not a left or right type.",
-   "question": "Were you labeled left-brained or right-brained?",
+   "title": "0 Of 7 Brain Networks Supported The Left-Brain Myth",
+   "hook": "0 of 7 brain networks supported the personality myth.",
+   "closing": "Your brain works as one team, so a left-or-right label cannot define you.",
+   "question": "Were you given a brain label?",
    "caption": "A study scanned 1,011 brains looking for 'left-brained' and 'right-brained' personality types. It found zero. Some brain jobs really are lateralized (language leans 96% left) -- but your overall personality isn't one of them. Here's what the science actually shows. Ever been called 'more right-brained'? 👇",
    "hashtags": [
     "brain",
@@ -26229,7 +26229,7 @@
      "ascending": false,
      "role": "1 · WHAT'S ACTUALLY LATERALIZED",
      "topic": "Brain Language",
-     "say": "Language really does lean left: about 96 percent of right-handers. But personality has no favorite side, so the myth falls apart.",
+     "say": "Language leans left in 96 percent of right-handers. Personality does not, so one real specialization cannot prove the myth.",
      "scene": {
       "mechanic": "brain-lean-wipe",
       "concept": "a brain per task gets a left-side glow wiping across it to the real share of the job done by one hemisphere",
@@ -26246,7 +26246,7 @@
      "use_baseline": true,
      "role": "2 · THE STUDY THAT TESTED IT",
      "topic": "Brain Myth Test",
-     "say": "All 7 networks they checked worked across both sides. None fit the myth, so the idea fails the moment anyone tests it.",
+     "say": "All 7 brain networks worked across both sides. The personality myth failed its direct test.",
      "ascending": false,
      "illustrated_scene": "def _brain_half(cr, cx, cy, rx, ry, side):\n    cr.new_path()\n    cr.move_to(cx + side * 6, cy - ry * 0.96)\n    for i in range(0, 61):\n        a = -math.pi / 2 + math.pi * i / 60.0\n        bump = 1.0 + 0.035 * math.sin(a * 11.0 + side)\n        x = cx + side * (6 + rx * math.cos(a) * bump)\n        y = cy + ry * math.sin(a) * bump * (1.0 if a < 0 else 0.92)\n        cr.line_to(x, y)\n    cr.line_to(cx + side * 6, cy + ry * 0.84)\n    cr.close_path()\n\n\ndef _gyri(cr, cx, cy, rx, ry, side, rgb):\n    cr.set_source_rgba(*_c(rgb, 0.85))\n    cr.set_line_width(7)\n    for j in range(7):\n        yy = cy - ry * 0.75 + j * ry * 0.25\n        cr.move_to(cx + side * 30, yy)\n        for i in range(1, 13):\n            xx = cx + side * (30 + i * rx * 0.075)\n            cr.line_to(xx, yy + 18 * math.sin(i * 1.7 + j * 2.3))\n        cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a human brain, both halves\n    SUBSTANCE: glowing brain networks\n    CAUSE: Data cranks the scanner and each network lights up across both halves\n    The 2013 scan: a top-down brain split by its central fissure, the\n    myth's LEFT/RIGHT line down the middle. Each crank of the scanner\n    lights one network, and every one of them spans BOTH halves, so none\n    of the networks fits the myth's split.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    (ln, n_tot) = max(rows, key=lambda r: r[1])\n    (lz, n_zero) = min(rows, key=lambda r: r[1])\n    n = max(1, int(round(n_tot)))\n    acc = P[\"accent2\"]\n\n    # the lab: full-height ground (stops are (offset, rgb) pairs)\n    vgrad(cr, [(0.0, (14, 20, 34)), (0.6, (26, 36, 58)), (1.0, (40, 50, 72))], 0, 1300)\n    vgrad(cr, [(0.0, (52, 60, 78)), (1.0, (30, 34, 46))], 1300, H)\n    haze(cr, 0, 1300, (26, 36, 58), a=0.25)\n\n    # the scanner ring behind the brain\n    cx, cy = 540, 930\n    cr.new_path()\n    cr.arc(cx, cy, 440, 0, 2 * math.pi)\n    cr.arc_negative(cx, cy, 372, 2 * math.pi, 0)\n    cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)\n    solid(cr, (196, 202, 214), finish=\"gloss\")\n    cr.set_fill_rule(cairo.FILL_RULE_WINDING)\n    contact_shadow(cr, cx, 1380, 620, a=0.4)\n    box(cr, cx - 260, 1380, 520, 40, (150, 158, 172), depth=40)\n\n    # the brain: two lit hemispheres and their folds\n    rx, ry = 300, 250\n    pink, pink_d = (232, 168, 170), (176, 104, 112)\n    for side in (-1, 1):\n        _brain_half(cr, cx, cy, rx, ry, side)\n        solid(cr, pink, finish=\"gloss\")\n        cr.save()\n        _brain_half(cr, cx, cy, rx, ry, side)\n        cr.clip()\n        _gyri(cr, cx, cy, rx, ry, side, pink_d)\n        cr.restore()\n        _brain_half(cr, cx, cy, rx, ry, side)\n        edge(cr, (90, 40, 50), width=5)\n\n    # the myth's line down the fissure\n    cr.set_source_rgba(*_c((240, 240, 250), 0.7))\n    cr.set_line_width(4)\n    cr.set_dash([18, 14])\n    cr.move_to(cx, cy - ry - 70)\n    cr.line_to(cx, cy + ry + 40)\n    cr.stroke()\n    cr.set_dash([])\n    text(cr, \"LEFT\", cx - 30, cy - ry - 40, 40, INK_2, anchor=\"right\")\n    text(cr, \"RIGHT\", cx + 30, cy - ry - 40, 40, INK_2, anchor=\"left\")\n\n    # the networks: each one lights in BOTH halves, joined across the line\n    spots = [(0.45, -0.55), (0.75, -0.15), (0.35, -0.05), (0.62, 0.35),\n             (0.28, 0.45), (0.82, 0.25), (0.55, -0.32)]\n    k, f = step_through(u, n, hold_first=0.16, hold_last=0.2)\n    lit = 0\n    for i in range(n):\n        if i < k:\n            a = 1.0\n        elif i == k:\n            a = ease(seg(f, 0.35, 0.75))\n        else:\n            a = 0.0\n        if a <= 0:\n            continue\n        if a >= 0.6:\n            lit += 1\n        fx, fy = spots[i % len(spots)]\n        lx, rxp = cx - rx * fx, cx + rx * fx\n        y = cy + ry * fy\n        r = 60 * pop(a)\n        glow(cr, lx, y, r * 1.6, acc, 0.55 * a)\n        glow(cr, rxp, y, r * 1.6, acc, 0.55 * a)\n        disc(cr, lx, y, 16 * a, acc, finish=\"gloss\")\n        disc(cr, rxp, y, 16 * a, acc, finish=\"gloss\")\n        cr.set_source_rgba(*_c(acc, 0.9 * a))\n        cr.set_line_width(6)\n        cr.move_to(lx, y)\n        cr.curve_to(lx + (cx - lx) * 0.5, y - 70 * a, rxp - (rxp - cx) * 0.5,\n                    y - 70 * a, lx + (rxp - lx) * a, y)\n        cr.stroke()\n\n    # the scanner console and its crank wheel\n    wx, wy = 300, 1330\n    contact_shadow(cr, 230, 1500, 220, a=0.4)\n    box(cr, 150, 1500, 170, 150, (120, 128, 146), depth=36)\n    turn = (k + ease(seg(f, 0.0, 0.6))) * math.pi * 1.2\n    disc(cr, wx, wy, 52, (180, 150, 70), finish=\"gloss\")\n    cr.set_source_rgba(*_c((60, 46, 20)))\n    cr.set_line_width(7)\n    for s in range(4):\n        aa = turn + s * math.pi / 2\n        cr.move_to(wx, wy)\n        cr.line_to(wx + 46 * math.cos(aa), wy + 46 * math.sin(aa))\n        cr.stroke()\n    hx, hy = wx + 46 * math.cos(turn), wy + 46 * math.sin(turn)\n    disc(cr, hx, hy, 12, (210, 210, 220), finish=\"gloss\")\n\n    # Data: points at the brain, cranks the scanner, reacts to the result\n    walk_in = ease(seg(u, 0.08, 0.16))\n    walk_out = ease(seg(u, 0.84, 0.92))\n    x = 120 + 260 * walk_in + 340 * walk_out\n    if u < 0.12:\n        role, bk = \"point\", 0\n    elif u < 0.84:\n        role, bk = \"crank\", k\n    else:\n        role, bk = \"shock\", 0\n    contact_shadow(cr, x, 1500, 140, a=0.35)\n    host(role, x, 1500, 220, beat=bk)\n\n    vignette(cr, 0.32)\n\n    # readouts\n    if u < 0.84:\n        fit_readout(cr, f\"{lit} of {n}\", f\"{ln.lower()} · each lights both halves\",\n                    80, 520, a=ease(seg(u, 0.0, 0.08)), size=130)\n    else:\n        fit_readout(cr, f\"{int(round(n_zero))} of {n}\", lz.lower(), 80, 520,\n                    a=ease(seg(u, 0.84, 0.9)), rgb=acc, size=150)\n",
      "scene": {
@@ -26265,7 +26265,7 @@
      "use_baseline": false,
      "role": "3 · WHY",
      "topic": "Brain Connections",
-     "say": "About 200 million nerve fibers wire the two halves together, so they swap signals nonstop. Neither side runs you alone.",
+     "say": "About 200 million nerve fibers connect the brain's halves. Constant signal sharing means neither side runs you alone.",
      "illustrated_scene": null,
      "scene": {
       "mechanic": "fiber-million-grid",
@@ -26274,8 +26274,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-11T10:29:08Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-13T13:51:54Z",
    "retold": "retell/v4",
    "hook_was": "Scientists checked 7 brain networks. Not one matched the left-brain myth."
   },
@@ -27518,9 +27518,9 @@
   },
   {
    "slug": "library-digital-shift",
-   "title": "Libraries Looked Emptier While Digital Borrowing Hit 739 Million",
+   "title": "Library Visits Fell While Digital Borrowing Hit 739 Million",
    "hook": "Library visits fell, but digital borrowing hit 739 million.",
-   "closing": "Readers did not disappear; libraries followed them onto their phones.",
+   "closing": "Readers did not abandon libraries; libraries followed readers onto their phones.",
    "question": "How do you borrow books?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
@@ -27544,8 +27544,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "Library physical visits",
-     "say": "Library visits fell to 671 million, making buildings look quieter even while demand survived.",
+     "topic": "Library Physical Visits",
+     "say": "Library visits fell to 671 million, making buildings look quieter even while readers stayed interested.",
      "scene": {
       "mechanic": "library-turnstile-thinning",
       "concept": "a library photo with a row of visitors per year; the row of people thins from 1.25 billion to 671 million as figures keep filing through the door",
@@ -27560,8 +27560,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "Library digital borrowing",
-     "say": "Digital checkouts reached 739 million, proving library use moved online instead of disappearing.",
+     "topic": "Library Digital Borrowing",
+     "say": "Digital checkouts reached 739 million. Library demand moved online instead of disappearing.",
      "scene": {
       "mechanic": "phone-fills-with-books",
       "concept": "stacks of ebooks rise inside a phone for each year as books fly from the library building into the phone on a loop",
@@ -27570,7 +27570,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-11T12:27:36Z",
+   "rewritten_at": "2026-11-13T13:51:54Z",
    "retold": "retell/v4"
   },
   {
