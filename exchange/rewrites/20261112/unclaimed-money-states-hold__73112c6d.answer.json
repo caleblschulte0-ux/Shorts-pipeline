@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "unclaimed-money-states-hold__73112c6d",
+  "slug": "unclaimed-money-states-hold",
+  "by": "chatgpt",
+  "written_at": "2026-11-13T12:12:10Z",
+  "title": "14.3% Of Americans Have Money Waiting In State Vaults",
+  "hook": "14.3% of Americans have money waiting in state vaults.",
+  "closing": "A free state search could return money you forgot was yours.",
+  "question": "Have you checked your state?",
+  "segments": [
+    {
+      "topic": "Money States Hold",
+      "say": "California holds 15 billion dollars in unclaimed money. The largest state vault is filled with other people's forgotten cash."
+    },
+    {
+      "topic": "Money States Returned",
+      "say": "States returned only about one dollar in every sixteen they hold. Most unclaimed money still waits for its owners."
+    },
+    {
+      "topic": "Money States Owe",
+      "say": "About one in seven Americans has money waiting. A free state search can tell you whether some is yours."
+    }
+  ]
+}
