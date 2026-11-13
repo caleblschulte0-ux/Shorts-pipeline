@@ -111,14 +111,11 @@ def shot1():
                     SK.cash_stack(f"cash {k}{i}{j}{lay}", (i * 0.046 - 0.046, j * 0.102 - 0.051, lay * 0.05), n=38, yaw=math.pi / 2, mesh=bill, seed=k * 9 + i * 3 + j, parent=root)
         bricks.append(root)
     B_START = [Vector((0.36, -0.3, TOP)), Vector((0.36, -0.3, TOP))]
-    B_END = [Vector((0.02, -0.3, TOP)), Vector((0.02, -0.3, TOP + 0.1))]
+    B_END = [Vector((-0.03, -0.3, TOP)), Vector((0.13, -0.3, TOP))]
     for k, root in enumerate(bricks):
         (a, b) = P1[k]
         start = B_START[k] if k == 0 else Vector((0.36, -0.3, TOP))
-        if k == 1:   # the second comes in on top of the first: lifted over it
-            bp = path([(0.0, start), (a, start), (a + 0.25, start + Vector((-0.06, 0, 0.12))), (b, B_END[1])])
-        else:
-            bp = path([(0.0, start), (a, start), (b, B_END[0])])
+        bp = path([(0.0, start), (a, start), (b, B_END[k])])     # side by side on the table: a wide heap of money
         follow(root, bp, 0.0, DUR)
         root.scale = (0.0, 0.0, 0.0) if k else (1, 1, 1)
         if k:
@@ -183,8 +180,8 @@ def shot2():
     T_PULL0, T_PULL1, T_DROP = 2.7, 3.3, 3.95
     UPF = sh[L] + Vector((-0.04, -0.26, 0.06))          # the flower held up by his face, toward us
     fp = path([(0.0, UPF), (T_PULL0, UPF + Vector((0.01, 0, 0.0))), (T_PULL1 + 0.3, UPF + Vector((0.03, 0.02, -0.06))), (5.0, UPF + Vector((0.0, 0.05, -0.16)))])
-    HR = Euler((math.radians(-28), 0, 0)).to_matrix()     # tipped toward the lens so we look into the cup
-    follow(hero, lambda t: fp(t) + Vector((0, 0, -0.07)), 0.0, DUR, rot_fn=lambda t: (math.radians(-28), 0, 0))
+    HR = Euler((math.radians(50), 0, 0)).to_matrix()     # tipped toward the lens so we look into the cup
+    follow(hero, lambda t: fp(t) + Vector((0, 0, -0.07)), 0.0, DUR, rot_fn=lambda t: (math.radians(50), 0, 0))
     hero.scale = (1, 1, 1)
     top = lambda t: fp(t) + Vector((0, 0, -0.07)) + HR @ Vector((0, 0, 0.2 * 0.38))
     over_pan = PAN + Vector((0, 0, 0.12))
@@ -193,7 +190,7 @@ def shot2():
         if t < T_PULL0: return top(t)
         if t < T_DROP: return top(t) + tp(t) if t < T_PULL1 else over_pan
         u = min(1.0, (t - T_DROP) / 0.28); return over_pan.lerp(PAN + Vector((0, 0, 0.012)), u * u)
-    follow(threads, thr, 0.0, DUR, rot_fn=lambda t: (math.radians(-28) * (1 - min(1.0, max(0.0, (t - T_PULL0) / 0.6))) + math.radians(80) * min(1.0, max(0.0, (t - T_DROP) / 0.3)), 0, 0))
+    follow(threads, thr, 0.0, DUR, rot_fn=lambda t: (math.radians(50) * (1 - min(1.0, max(0.0, (t - T_PULL0) / 0.6))) + math.radians(80) * min(1.0, max(0.0, (t - T_DROP) / 0.3)), 0, 0))
     reach(data, L, lambda t: fp(t) + Vector((0.0, 0.0, -0.16)), 0.0, 5.0, lead=0.05, back=0.5, elbow_out=0.35)
     reach(data, R, lambda t: thr(t) + Vector((0.035, 0.0, 0.01)) if t < T_DROP else over_pan + Vector((0.035, 0, 0.03)), T_PULL0 - 0.05, T_DROP + 0.05, lead=0.4, back=0.45, elbow_out=0.4)
     # the needle: a hair's twitch and back, then rests one tick on
@@ -232,7 +229,7 @@ def shot3():
     where = place("sorting_room")
     TB = Vector((0.0, -0.3, 0.0)); TH = 0.36; TOP = TH + 0.0
     SK.table("sorting table", tuple(TB), w=0.95, d=0.42, h=TH)
-    HEAP = Vector((-0.27, -0.33, TOP)); DISH = Vector((0.0, -0.4, TOP)); SPENT = Vector((0.28, -0.3, TOP))
+    HEAP = Vector((-0.27, -0.33, TOP)); DISH = Vector((0.0, -0.4, TOP)); SPENT = Vector((0.22, -0.36, TOP))
     K.cyl("dish", (DISH.x, DISH.y, TOP + 0.008), 0.05, 0.016, K.mat("dish", "#F1ECE2", rough=0.3), bev=0.004)
     rnd = random.Random(9)
     heap = []
@@ -334,8 +331,8 @@ def shot4():
         c_at = T_SHUT0 + (T_SHUT1 - T_SHUT0 - 0.6) * max(0.0, min(1.0, (2.2 - y) / 3.2))
         for t_, v in ((0.0, 0.85), (o_at, 0.85), (o_at + 0.55, 0.0), (c_at, 0.0), (c_at + 0.7, 0.55)):
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
-    sun_disc = K.sph("sun disc", (2.5, 30.0, -1.2), 1.4, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
-    for t_, z in ((0.0, -1.0), (DUR, 1.6)):
+    sun_disc = K.sph("sun disc", (3.5, 45.0, 1.0), 2.4, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
+    for t_, z in ((0.0, 1.2), (DUR, 4.2)):           # it climbs out from behind the hills, over his shoulder
         sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
     def light():
         key = LOC.sky_light(sun_elev=6, sun_az=160, sun=2.6, sky=0.18, warm=(1.0, 0.62, 0.36), haze=1.4)
@@ -387,9 +384,9 @@ def shot5():
     where = store_set()
     SK.table("spice table", tuple(TABLE), w=0.9, d=0.42, h=TABLE_H)
     TOP = TABLE_H
-    ARM, BH = 0.26, 0.4
-    BC = Vector((-0.08, -0.32, TOP))
-    bal, beam, pans = SK.balance("balance", tuple(BC), arm=ARM, h=BH)
+    ARM, BH = 0.17, 0.3
+    BC = Vector((-0.08, -0.34, TOP))
+    bal, beam, pans = SK.balance("balance", tuple(BC), arm=ARM, h=BH, pan_r=0.09)
     DROP = BH * 0.62
     PANZ = BC.z + BH - DROP + 0.006
     jar = SK.jar("jar", (BC.x - ARM, BC.y, PANZ))
@@ -406,19 +403,19 @@ def shot5():
         return pans[0 if sg < 0 else 1].matrix_world @ Vector((0, 0, -DROP + 0.006)) if False else (beam.matrix_world @ Vector((sg * ARM, 0, 0))) - Vector((0, 0, DROP - 0.006))
     follow(jar, lambda t: pan_pt(-1, t), 0.0, DUR)
     # the basket: in his right hand, tipped over the right pan
-    data = load_data(); data.place(0.24, 0.02, 0)
+    data = load_data(); data.place(0.3, 0.0, 0)
     L, R = sides(data)
-    bk = SK.basket("pour basket", (0, 0, 0), r=0.12, h=0.09)
+    bk = SK.basket("pour basket", (0, 0, 0), r=0.1, h=0.08)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    B0 = sh[R] + Vector((0.04, -0.2, -0.16))
-    def over(t): return pan_pt(1, t) + Vector((0.08, 0.0, 0.2))
+    B0 = sh[L] + Vector((-0.04, -0.18, -0.17))      # in his near hand, the one toward the scale
+    def over(t): return pan_pt(1, t) + Vector((0.07, 0.0, 0.16))
     bp = lambda t: B0 if t < T_TIP0 else (B0.lerp(over(t), ease(min(1.0, (t - T_TIP0) / (T_TIP1 - T_TIP0)))) if t < T_POUR1 + 0.3 else over(T_POUR1 + 0.3).lerp(B0 + Vector((0.05, 0.02, -0.06)), ease(min(1.0, (t - T_POUR1 - 0.3) / 0.5))))
     def brot(t):
         a = 0.0 if t < T_TIP0 + 0.2 else min(1.0, (t - T_TIP0 - 0.2) / 0.6) * 1.9
         if t > T_POUR1 + 0.3: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.3) / 0.5)))
         return (0, -a, 0)
     follow(bk, bp, 0.0, DUR, rot_fn=brot)
-    reach(data, R, lambda t: bk.matrix_world @ Vector((0.0, 0.0, 0.09)) if (sc.frame_set(F(t)) or True) else None, 0.0, T_POUR1 + 0.85, lead=0.05, back=0.4, elbow_out=0.45)
+    reach(data, L, lambda t: bk.matrix_world @ Vector((0.0, 0.0, 0.09)) if (sc.frame_set(F(t)) or True) else None, 0.0, T_POUR1 + 0.85, lead=0.05, back=0.4, elbow_out=0.45)
     # the flowers pour from the basket's mouth onto the right pan, heaping
     rnd = random.Random(3)
     N = 34; sched = [T_POUR0 + 0.15 + (T_POUR1 - T_POUR0 - 0.3) * (i / N) + rnd.uniform(-0.03, 0.03) for i in range(N)]
@@ -426,7 +423,7 @@ def shot5():
     count = {"n": 0}
     def land(x, y, t):
         c = pan_pt(1, t); d = math.hypot(x - c.x, y - c.y)
-        if d > 0.13: return None
+        if d > 0.1: return None
         return c.z + 0.008 + 0.09 * max(0.0, 1 - d / 0.11) * min(1.0, (t - T_POUR0) / (T_POUR1 - T_POUR0))
     props.pour(fls, NF, sched, lambda t: bk.matrix_world @ Vector((-0.1, 0.0, 0.07)) if (sc.frame_set(F(t)) or True) else None, land,
                kick_fn=lambda t: Vector((-0.25, 0.0, -0.1)), seed=5)
@@ -449,8 +446,8 @@ def shot5():
     data.blink(1.5)
     data.finish()
     soft_key("balance key", (-0.6, -1.0, 1.1), tuple(BC + Vector((0, 0, 0.2))), energy=24, size=32)
-    C0, L0 = Vector((0.0, -1.3, 0.6)), Vector((0.02, -0.15, 0.45))
-    C1, L1 = Vector((0.05, -1.15, 0.6)), Vector((0.06, -0.15, 0.47))
+    C0, L0 = Vector((0.04, -1.3, 0.62)), Vector((0.05, -0.15, 0.45))
+    C1, L1 = Vector((0.07, -1.18, 0.62)), Vector((0.08, -0.15, 0.47))
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.2, 0.5))))
     return dict(**where, data=data, rest=1, grips=("pour basket", "jar"),

@@ -873,17 +873,18 @@ class Data:
     # 0.2 (frame diff) -- frozen -- while the mouth flapped open/shut every 0.07 s. A stiff body with a flapping mouth is
     # exactly that look. A person holding a feeling still breathes, drifts and shifts; a person talking talks with the
     # head (a nod on the stressed word, a turn between phrases) and the brows, in syllables of uneven length with pauses.
-    def alive(self, t0, t1, seed=0, amp=1.0):
+    def alive(self, t0, t1, seed=0, amp=1.8):
         """a held pose keeps living: breath in the chest, the head drifting and tilting, layered ON the pose"""
         import random
         if t1 - t0 < 0.4: return
         rnd = random.Random(seed); ph = rnd.random() * 6.28
         ts = [t0 + k * 0.4 for k in range(1, int((t1 - t0) / 0.4))]
-        base = {b: [self._pose_now(b, t) for t in ts] for b in ('chest', 'neck', 'head')}
+        base = {b: [self._pose_now(b, t) for t in ts] for b in ('spine', 'chest', 'neck', 'head')}
         for i, t in enumerate(ts):
             u = t - t0; br = math.sin(2 * math.pi * u / 2.8 + ph)
             dh = (amp * 2.2 * math.sin(2 * math.pi * u / 2.1 + ph * 1.7), amp * 3.0 * math.sin(2 * math.pi * u / 3.3 + ph), amp * 1.6 * math.sin(2 * math.pi * u / 2.6 + ph * 0.6))
-            off = {'chest': (-1.6 * br * amp, 0, 0), 'neck': (0.8 * br * amp, dh[1] * 0.4, 0), 'head': dh}
+            off = {'spine': (0, 0, 1.2 * amp * math.sin(2 * math.pi * u / 3.7 + ph * 1.3)),          # a slow weight shift
+                   'chest': (-1.6 * br * amp, 0, 0), 'neck': (0.8 * br * amp, dh[1] * 0.4, 0), 'head': dh}
             for b in base:
                 self._k(b, t, rot=tuple(a + o for a, o in zip(base[b][i], off[b])))
 

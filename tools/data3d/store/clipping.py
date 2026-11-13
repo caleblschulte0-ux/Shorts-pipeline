@@ -57,8 +57,19 @@ def _inside(points, tree, depth):
         hit = tree.find_nearest(p)
         if hit[0] is None: continue
         loc, nor, _, d = hit
-        if d > depth and (p - loc).dot(nor) < 0: n += 1; deepest = max(deepest, d)
+        if d > depth and (p - loc).dot(nor) < 0 and _odd(p, tree): n += 1; deepest = max(deepest, d)
     return n, deepest
+
+
+def _odd(p, tree, d=Vector((0.0123, 0.0071, 1.0)).normalized()):
+    """a point is INSIDE a closed mesh when a ray from it crosses the surface an odd number of times. The nearest-face
+    test alone called a point in a bowl's open mouth 'inside' its bottom (2026-11-13: an eye 60 cm 'into' a basket)."""
+    o, n = Vector(p), 0
+    for _ in range(40):
+        hit = tree.ray_cast(o, d)
+        if hit[0] is None: break
+        n += 1; o = hit[0] + d * 1e-4
+    return n % 2 == 1
 
 
 def _data_parts(data):

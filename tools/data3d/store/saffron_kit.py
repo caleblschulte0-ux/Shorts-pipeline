@@ -252,7 +252,7 @@ def gram_scale(name, loc, yaw=0.0, parent=None):
     return root, piv
 
 
-def balance(name, loc, arm=0.22, h=0.32, yaw=0.0, parent=None):
+def balance(name, loc, arm=0.22, h=0.32, yaw=0.0, parent=None, pan_r=0.075):
     """an old brass balance scale: a column, a beam on a pivot, two pans hanging on chains. Returns (root, beam, pans):
     key beam.rotation_euler.y (radians; + drops the RIGHT pan as seen from the front); the pans stay level."""
     root = K.empty(name, (0, 0, 0))
@@ -269,7 +269,7 @@ def balance(name, loc, arm=0.22, h=0.32, yaw=0.0, parent=None):
         for a in (0, 2.09, 4.19):
             c = K.cyl(f"{name} chain {sg}{a}", (sg * arm + 0.03 * math.cos(a) * 0.5, 0.03 * math.sin(a) * 0.5, h - drop / 2), 0.0012, drop * 1.01, brass, parent=hang, v=6, bev=0)
             c.rotation_euler = (math.atan2(0.015 * math.sin(a), drop) * 1, -math.atan2(0.015 * math.cos(a), drop), 0)
-        pan = K.cyl(f"{name} pan {sg}", (sg * arm, 0, h - drop), 0.075, 0.01, brass, parent=hang, bev=0.004)
+        pan = K.cyl(f"{name} pan {sg}", (sg * arm, 0, h - drop), pan_r, 0.01, brass, parent=hang, bev=0.004)
         pans.append(hang)
     _place(root, loc, locals().get("yaw", 0.0), parent)
     return root, beam, pans
@@ -325,9 +325,9 @@ def table(name, loc, w=0.9, d=0.5, h=0.38, parent=None):
 def _plank_mat():
     m = bpy.data.materials.new("farm table"); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
     b.inputs["Roughness"].default_value = 0.55
-    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (1.0, 14.0, 1.0)
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (0.6, 9.0, 0.6)
     nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
-    wave = nt.nodes.new("ShaderNodeTexWave"); wave.inputs["Scale"].default_value = 2.0; wave.inputs["Distortion"].default_value = 6.0
+    wave = nt.nodes.new("ShaderNodeTexWave"); wave.bands_direction = 'Y'; wave.inputs["Scale"].default_value = 1.2; wave.inputs["Distortion"].default_value = 1.5; wave.inputs["Detail"].default_value = 4.0
     nt.links.new(mp.outputs["Vector"], wave.inputs["Vector"])
     r = nt.nodes.new("ShaderNodeValToRGB"); nt.links.new(wave.outputs["Fac"], r.inputs["Fac"])
     r.color_ramp.elements[0].color = (*K.lin("#6E4A2C"), 1); r.color_ramp.elements[1].color = (*K.lin("#9A6E44"), 1)
@@ -349,7 +349,7 @@ def wall_clock(name, loc, r=0.16, yaw=0.0, parent=None):
     hands = []
     for nm, L, w, dy in (("hour", r * 0.5, 0.012, -0.022), ("minute", r * 0.75, 0.008, -0.025)):
         p = K.empty(f"{name} {nm}", (0, dy, 0), parent=root)
-        K.box(f"{name} {nm} hand", (0, 0, L / 2 - 0.01), (w, 0.002, L), ink if nm == "hour" else _mat("clock minute", "#C42A1C", rough=0.4), bev=0, parent=p)
+        K.box(f"{name} {nm} hand", (0, dy, L / 2 - 0.01), (w, 0.002, L), ink if nm == "hour" else _mat("clock minute", "#C42A1C", rough=0.4), bev=0, parent=p)
         hands.append(p)
     K.cyl(name + " hub", (0, -0.027, 0), 0.01, 0.004, ink, rot=(math.pi / 2, 0, 0), parent=root)
     _place(root, loc, locals().get("yaw", 0.0), parent)
