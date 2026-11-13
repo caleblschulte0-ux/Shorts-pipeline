@@ -5327,11 +5327,39 @@
       }
     },
     "earth-rotation-speeding-up": {
-      "claimed_at": "2026-11-13T10:36:19.878935+00:00",
+      "url": "https://youtube.com/shorts/Ta8h1eDYfVk",
       "title": "Earth's Day Was 1.66 Milliseconds Shorter",
+      "at": "2026-11-13T10:36:32.095429+00:00",
       "publish_at": "2026-11-13T11:03:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.35,
+      "beat_s": [
+        3.14,
+        7.35,
+        6.17,
+        6.72,
+        6.44
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 30.3,
+      "hook": "shock_stat",
+      "topic_category": "science",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:spin-blur-earth",
+        "mechanic:leap-second-clock-stack",
+        "mechanic:clock-fracture-odds"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -6857,9 +6885,10 @@
       "claimed_at": "2026-11-13T10:36:19.878935+00:00",
       "title": "Earth's Day Was 1.66 Milliseconds Shorter",
       "publish_at": "2026-11-13T11:03:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "earth-rotation-speeding-up"
+      "url": "https://youtube.com/shorts/Ta8h1eDYfVk",
+      "state": "posted",
+      "slug": "earth-rotation-speeding-up",
+      "at": "2026-11-13T10:36:32.095429+00:00"
     }
   ]
 }
