@@ -5437,6 +5437,14 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 21.9
+    },
+    "cavendish-banana-clone-3d": {
+      "claimed_at": "2026-11-13T16:05:05.398163+00:00",
+      "title": "Every Banana You Eat Is a Clone, and It's Dying",
+      "publish_at": "2026-11-13T20:03:16Z",
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d"
     }
   },
   "uploads": [
@@ -6993,6 +7001,15 @@
       "state": "posted",
       "slug": "a-language-dies-every-2-weeks",
       "at": "2026-11-13T14:02:14.043353+00:00"
+    },
+    {
+      "claimed_at": "2026-11-13T16:05:05.398163+00:00",
+      "title": "Every Banana You Eat Is a Clone, and It's Dying",
+      "publish_at": "2026-11-13T20:03:16Z",
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d",
+      "slug": "cavendish-banana-clone-3d"
     }
   ]
 }
