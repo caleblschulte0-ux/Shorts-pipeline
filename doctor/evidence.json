@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261112 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261112.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "credential_dead_groq",
         "severity": "critical",
         "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-11T14:00:28+00:00).",
@@ -4298,8 +4304,8 @@
     }
   },
   "recent_commits": [
-    "752659c 2026-11-13 claim: mailbox verdicts 2026-11-13T04:48Z [skip ci]",
-    "6bcabad 2026-11-13 claim: mailbox verdicts 2026-11-13T03:31Z [skip ci]"
+    "029fc72 2026-11-13 explainer: posted drone-commercial-overtake [skip ci]",
+    "6bc4941 2026-11-13 explainer: claim upload slot drone-commercial-overtake [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4317,10 +4323,11 @@
         "2026-11-09": 5,
         "2026-11-10": 6,
         "2026-11-11": 5,
-        "2026-11-12": 5
+        "2026-11-12": 5,
+        "2026-11-13": 1
       },
-      "total_posted": 552,
-      "attempted": 552,
+      "total_posted": 553,
+      "attempted": 553,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4334,10 +4341,11 @@
         "2026-11-06": 3,
         "2026-11-07": 3,
         "2026-11-11": 1,
-        "2026-11-12": 6
+        "2026-11-12": 6,
+        "2026-11-13": 3
       },
-      "total_posted": 399,
-      "attempted": 399,
+      "total_posted": 402,
+      "attempted": 402,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4355,11 +4363,11 @@
         "2026-11-10": 3,
         "2026-11-11": 2,
         "2026-11-12": 6,
-        "2026-11-13": 3
+        "2026-11-13": 4
       },
-      "total_posted": 542,
-      "attempted": 1363,
-      "rejected_or_pending": 821
+      "total_posted": 543,
+      "attempted": 1371,
+      "rejected_or_pending": 828
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4404,32 +4412,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 133,
+      "videos": 137,
       "top_by_vph": [
         {
+          "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
+          "vph": 6.25,
+          "views": 61
+        },
+        {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.76,
-          "views": 1900
+          "vph": 3.67,
+          "views": 1902
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.67,
+          "vph": 1.64,
           "views": 1088
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.57,
-          "views": 492
+          "vph": 1.53,
+          "views": 500
         },
         {
           "title": "Pikabooirl Hits His Nuts After His Headset Cord Spooks Him",
-          "vph": 1.42,
-          "views": 21
-        },
-        {
-          "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
-          "vph": 1.11,
-          "views": 53
+          "vph": 1.19,
+          "views": 33
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -4506,20 +4514,6 @@
       "title": "Restore explainer delivery before interpreting its topic test",
       "horizon": "strategy",
       "severity": "critical",
-      "ruling": "in_progress"
-    },
-    {
-      "signature": "33ccbcdc479b",
-      "title": "Hold the trending mix until reliability and attribution are measurable",
-      "horizon": "strategy",
-      "severity": "high",
-      "ruling": "in_progress"
-    },
-    {
-      "signature": "2127c6395c2c",
-      "title": "Challenge Third's oversized chaos bucket with proven alternatives",
-      "horizon": "strategy",
-      "severity": "high",
       "ruling": "in_progress"
     },
     {
@@ -4903,6 +4897,13 @@
       "revisit_after": null
     },
     {
+      "signature": "33ccbcdc479b",
+      "verdict": "not_doing",
+      "date": "20261113",
+      "because": "Triage 2026-11-13. Superseded by the operator's 2026-10-11 ruling ('we'll switch it to sports moments'): graph_race and reddit_story are RETIRED in config/channel_registry.json and trending is now EXACTLY 5 sports_moment, made by capture (scripts/run_sports.py). The finding's whole object -- hold the 4/2 graph/Reddit mix until five consecutive 6/6 days and 15 mature uploads per format -- no longer exists to hold; the five-6/6-days objective was never reached before the switch. What was built stays: failed_by_stage/failed_by_format in the production outcome (scripts/run_trending_daily.py) and the format_scoreboard fix. If sports_moment reliability or attribution is a problem, that is a NEW finding against run_sports.py and the sports_moment outcome record, with its own evidence, not this one.",
+      "revisit_after": null
+    },
+    {
       "signature": "ee3bb63e4024",
       "verdict": "done",
       "date": "20260824",
@@ -4956,6 +4957,13 @@
       "verdict": "done",
       "date": "20260824",
       "because": "Built: _call_claude requires returncode 0 before accepting JSON; the usage-limit breaker keeps its regex path; any other nonzero exit raises with bounded stderr/stdout and the callers' existing except+_brain_note(False) records a brain failure instead of a success. Mocked tests cover nonzero-with-valid-JSON, limit-text, zero-with-valid-JSON, and that rank_clips health-counts the failure.",
+      "revisit_after": null
+    },
+    {
+      "signature": "2127c6395c2c",
+      "verdict": "done",
+      "date": "20261113",
+      "because": "Triage 2026-11-13. The buildable half landed in #372 (5b693e6): series validated against the 11-value enum, unclassified clips labelled unknown not chaos, scripts/third_series_audit.py wired into third.yml. The revisit condition is met: state/third_series_audit.json (refreshed 2026-11-12) under the fixed labelling shows unknown n=2 excluded, chaos still n=51 at median VPH 0.02 vs drama n=20 at 0.055, wholesome n=9 at 0.04, fail n=7 at 0.03 -- the mislabelling was NOT what made chaos look weak. The mix-shift half (cap chaos, reserve ranking attention for fail/wholesome) is deliberately not built: (1) every series median sits at 0.02-0.06 views an hour on a channel whose retro briefs call single-digit views noise, so a predeclared sample that could separate 0.02 from 0.04 does not exist; (2) the operator's 2026-11-05 ruling ('Switch it') replaced series-bucket selection with picking what strangers already upvoted (run_third._proven_pool, proven_boost in the registry), which is a stronger and already-shipped answer to 'the slate spends its largest sample on its weakest cohort'. A series cap on top of the proven pool would be a second allocation rule with no data behind it. Re-file against the proven-pool era if the series audit shows a real spread after a month of proven-pool posts.",
       "revisit_after": null
     },
     {
