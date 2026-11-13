@@ -19673,13 +19673,59 @@
       "ts": "2026-11-13T13:09:53.285476+00:00"
     },
     "clip-20261113-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/GorgeousSparklingGoatBloodTrail-l-5IIruft8YsCVoM",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/5_aayrj6GHs",
       "title": "Jynxzi Wins Gamer Of The Year And Loses It On Stage \ud83d\udd25",
       "kind": "twitch_clip",
-      "ts": "2026-11-13T13:27:03.527545+00:00",
+      "ts": "2026-11-13T13:27:15.295407+00:00",
+      "uploaded_at": "2026-11-13T13:27:15.295421+00:00",
+      "publish_at": "2026-11-14T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261113-jynxzi-wins-gamer-of-the-year-and-loses-it-on-st-c19aa2af",
+        "tiktok": "queued for 2026-11-14T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/GorgeousSparklingGoatBloodTrail-l-5IIruft8YsCVoM",
+      "streamer": "jynxzi",
+      "series": "win",
+      "hook": "Jynxzi wins Gamer of the Year \ud83d\udd25",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2051,
+      "banger": 0.55,
+      "cut": {
+        "start": 8.0,
+        "end": 42.0
+      },
+      "director_cut": true
+    },
+    "rejected-acceptableartistichorseradishshadylulu-ismsuh5sr8avy8v3": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/AcceptableArtisticHorseradishShadyLulu-ISmSuh5sr8aVY8v3",
+      "streamer": "stableronaldo",
+      "title": "Degloved",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (red carpet chatter, no clear event)",
+      "ts": "2026-11-13T13:27:50.896543+00:00"
+    },
+    "rejected-jazzytiredbutterflyplanking-q2qkdxmtdycsb1ax": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/JazzyTiredButterflyPlanking-Q2QkdxmTDyCSb1ax",
+      "streamer": "caseoh_",
+      "title": "spiders",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.08 < 0.35 (Dark Minecraft wandering, no visible eve)",
+      "ts": "2026-11-13T13:28:54.877389+00:00"
+    },
+    "clip-20261113-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/qtcinderella/clip/EnjoyableGenerousBarracudaArgieB8-oSGC_PwCLKXCv3L3",
+      "story_key": null,
+      "streamer": "qtcinderella",
+      "title": "Qtcinderella: Critical Role Wins Best Roleplay Streamer At The Streamer Awards",
+      "kind": "twitch_clip",
+      "ts": "2026-11-13T13:33:32.750906+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
