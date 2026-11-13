@@ -63,6 +63,7 @@
         "handle": "ballerbro2.1",
         "post": true
       },
+      "meta": {"post": false, "instagram_id": "", "facebook_page_id": ""},
       "comments": {
         "reply": true,
         "max_per_run": 15,
@@ -230,6 +231,7 @@
         "handle": "shortexplainer1",
         "post": true
       },
+      "meta": {"post": false, "instagram_id": "", "facebook_page_id": ""},
       "comments": {
         "reply": true,
         "max_per_run": 15,
@@ -428,6 +430,7 @@
         "handle": "third.brain.down",
         "post": true
       },
+      "meta": {"post": false, "instagram_id": "", "facebook_page_id": ""},
       "comments": {
         "reply": true,
         "max_per_run": 15,

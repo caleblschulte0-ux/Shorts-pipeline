@@ -28,16 +28,9 @@ Required environment variables per platform:
                               it expires in 24h — the broker does not.
 
   instagram / facebook (both share the Meta token):
-    META_ACCESS_TOKEN       long-lived page/system-user token with
-                            instagram_content_publish and/or
-                            pages_manage_posts scopes.
-    IG_USER_ID              Instagram Business / Creator account ID
-                            (instagram-only).
-    FB_PAGE_ID              Facebook Page ID (facebook-only).
-    REELS_PUBLIC_HOST       HTTPS URL prefix Meta can fetch the file
-                            from. The pipeline does NOT host it for
-                            you — copy the output MP4 to S3 / R2 /
-                            Cloudfront and point this at that prefix.
+    META_ACCESS_TOKEN[_<CHANNEL>]  Business-portfolio system-user token.
+    Account ids come from channels.<id>.meta in config/channel_registry.json
+    (scripts/meta_post_release.py, meta_due.yml). No public file host needed.
 
   rumble:
     RUMBLE_API_KEY          Partner Program API key (Rumble's public
@@ -605,96 +598,137 @@ class TikTokUploader(Uploader):
 
 
 # ---------- Meta (Instagram + Facebook Reels) ----------
+#
+# One token for every channel: a Business-portfolio SYSTEM USER token
+# (business.facebook.com > Settings > Users > System users > Generate token),
+# which never expires and needs no App Review for accounts the business owns.
+# Scopes: instagram_basic, instagram_content_publish, pages_show_list,
+# pages_read_engagement, pages_manage_posts, business_management.
+# META_ACCESS_TOKEN_<CHANNEL> overrides it for one channel.
+#
+# Both uploads send the file's BYTES to rupload.facebook.com, so Meta never
+# has to fetch it from a public URL (the old REELS_PUBLIC_HOST requirement
+# is gone). Facebook Pages publish through /{page}/video_reels with the
+# Page's own token; Instagram through a resumable REELS container.
+
+META_GRAPH_VERSION = "v21.0"
+META_GRAPH = f"https://graph.facebook.com/{META_GRAPH_VERSION}"
+
+
+def meta_token(channel: str = "") -> str:
+    if channel:
+        v = os.environ.get(f"META_ACCESS_TOKEN_{channel.upper()}", "").strip()
+        if v:
+            return v
+    return _env("META_ACCESS_TOKEN").strip()
+
+
+def _meta_check(r, what: str) -> dict:
+    try:
+        body = r.json()
+    except ValueError:
+        body = {"raw": r.text[:300]}
+    if not r.ok or (isinstance(body, dict) and body.get("error")):
+        raise UploadError(f"{what} failed: {r.status_code} {str(body)[:500]}")
+    return body
+
+
+def _caption(description: str, tags) -> str:
+    caption = description or ""
+    if tags:
+        caption += "\n\n" + " ".join(f"#{t}" for t in list(tags)[:5])
+    return caption
+
 
 class _MetaReelsUploader(Uploader):
-    GRAPH = "https://graph.facebook.com/v21.0"
+    GRAPH = META_GRAPH
 
-    def _target_id(self) -> str:
-        raise NotImplementedError
+    def __init__(self, channel: str = "", target_id: str = ""):
+        self.channel = channel
+        self.target = target_id
 
-    def _post_url(self, post_id: str) -> str:
-        raise NotImplementedError
-
-    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
+    def _rupload(self, url: str, file_path: Path, token: str) -> dict:
         import requests
-
-        # Meta Reels supports scheduled posting via "published=false" +
-        # scheduled_publish_time on Pages, but only on FB Pages, not
-        # Instagram. For now publish_at is ignored on both.
-        token = _env("META_ACCESS_TOKEN")
-        target = self._target_id()
-        host = _env("REELS_PUBLIC_HOST")
-        public_url = host.rstrip("/") + "/" + urllib.parse.quote(file_path.name)
-
-        caption = description
-        if tags:
-            caption += "\n\n" + " ".join(f"#{t}" for t in tags)
-
-        r = requests.post(
-            f"{self.GRAPH}/{target}/media",
-            data={
-                "media_type": "REELS",
-                "video_url": public_url,
-                "caption": caption[:2200],
-                "access_token": token,
-            },
-            timeout=60,
-        )
-        if not r.ok:
-            raise UploadError(
-                f"{self.name} container create failed: {r.status_code} {r.text}"
-            )
-        container_id = r.json()["id"]
-
-        deadline = time.time() + 600
-        last_code = None
-        while time.time() < deadline:
-            time.sleep(5)
-            s = requests.get(
-                f"{self.GRAPH}/{container_id}",
-                params={"fields": "status_code", "access_token": token},
-                timeout=30,
-            )
-            last_code = (s.json() or {}).get("status_code")
-            if last_code == "FINISHED":
-                break
-            if last_code == "ERROR":
-                raise UploadError(f"{self.name} container errored: {s.text}")
-        else:
-            raise UploadError(
-                f"{self.name} container did not reach FINISHED in 10m "
-                f"(last status={last_code})"
-            )
-
-        p = requests.post(
-            f"{self.GRAPH}/{target}/media_publish",
-            data={"creation_id": container_id, "access_token": token},
-            timeout=60,
-        )
-        if not p.ok:
-            raise UploadError(f"{self.name} publish failed: {p.status_code} {p.text}")
-        post_id = p.json()["id"]
-        return UploadResult(self.name, self._post_url(post_id), p.json())
+        size = Path(file_path).stat().st_size
+        with open(file_path, "rb") as f:
+            r = requests.post(url, data=f, timeout=900, headers={
+                "Authorization": f"OAuth {token}",
+                "offset": "0", "file_size": str(size),
+                "Content-Type": "application/octet-stream"})
+        return _meta_check(r, f"{self.name} byte upload")
 
 
 class InstagramUploader(_MetaReelsUploader):
     name = "instagram"
 
-    def _target_id(self):
-        return _env("IG_USER_ID")
-
-    def _post_url(self, post_id):
-        return f"https://www.instagram.com/reel/{post_id}/"
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
+        import requests
+        token = meta_token(self.channel)
+        ig = self.target or _env("IG_USER_ID")
+        c = _meta_check(requests.post(f"{self.GRAPH}/{ig}/media", timeout=60, data={
+            "media_type": "REELS", "upload_type": "resumable",
+            "caption": _caption(description, tags)[:2200],
+            "share_to_feed": "true", "access_token": token}),
+            "instagram container create")
+        cid = c["id"]
+        self._rupload(c.get("uri") or
+                      f"https://rupload.facebook.com/ig-api-upload/"
+                      f"{META_GRAPH_VERSION}/{cid}", file_path, token)
+        deadline, last = time.time() + 900, None
+        while time.time() < deadline:
+            time.sleep(10)
+            s = requests.get(f"{self.GRAPH}/{cid}", timeout=30, params={
+                "fields": "status_code,status", "access_token": token})
+            body = s.json() if s.ok else {}
+            last = body.get("status_code")
+            if last == "FINISHED":
+                break
+            if last in ("ERROR", "EXPIRED"):
+                raise UploadError(f"instagram container {last}: {body}")
+        else:
+            raise UploadError(f"instagram container not FINISHED in 15m ({last})")
+        p = _meta_check(requests.post(f"{self.GRAPH}/{ig}/media_publish", timeout=60,
+                                      data={"creation_id": cid, "access_token": token}),
+                        "instagram publish")
+        media_id = p["id"]
+        link = f"https://www.instagram.com/"
+        try:
+            q = requests.get(f"{self.GRAPH}/{media_id}", timeout=30, params={
+                "fields": "permalink", "access_token": token}).json()
+            link = q.get("permalink") or link
+        except Exception:  # noqa: BLE001
+            pass
+        return UploadResult(self.name, link, {"media_id": media_id})
 
 
 class FacebookUploader(_MetaReelsUploader):
     name = "facebook"
 
-    def _target_id(self):
-        return _env("FB_PAGE_ID")
+    def _page_token(self, page: str, token: str) -> str:
+        import requests
+        body = _meta_check(requests.get(f"{self.GRAPH}/{page}", timeout=30, params={
+            "fields": "access_token", "access_token": token}), "facebook page token")
+        return body.get("access_token") or token
 
-    def _post_url(self, post_id):
-        return f"https://www.facebook.com/reel/{post_id}/"
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
+        import requests
+        page = self.target or _env("FB_PAGE_ID")
+        token = self._page_token(page, meta_token(self.channel))
+        st = _meta_check(requests.post(f"{self.GRAPH}/{page}/video_reels", timeout=60,
+                                       data={"upload_phase": "start",
+                                             "access_token": token}),
+                         "facebook reel start")
+        vid = st["video_id"]
+        self._rupload(st.get("upload_url") or
+                      f"https://rupload.facebook.com/video-upload/"
+                      f"{META_GRAPH_VERSION}/{vid}", file_path, token)
+        _meta_check(requests.post(f"{self.GRAPH}/{page}/video_reels", timeout=120, data={
+            "upload_phase": "finish", "video_id": vid, "video_state": "PUBLISHED",
+            "title": (title or "")[:255],
+            "description": _caption(description, tags)[:5000],
+            "access_token": token}), "facebook reel publish")
+        return UploadResult(self.name, f"https://www.facebook.com/reel/{vid}/",
+                            {"video_id": vid})
 
 
 # ---------- Rumble ----------

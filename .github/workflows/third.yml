@@ -191,15 +191,12 @@ jobs:
           # ADDITIVE REACH (deep dive #1 lever): cross-post each clip to the
           # TikTok FYP — where our niche's sub-10k-follower accounts hit
           # millions while YouTube's feed starves a cold channel. Optional:
-          # unset = YouTube-only (today's behaviour). IG Reels also needs
-          # META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST.
+          # unset = YouTube-only (today's behaviour). Instagram/Facebook
+          # go from the release via meta_due.yml, not from this job.
           TIKTOK_ACCESS_TOKEN_THIRD: ${{ secrets.TIKTOK_ACCESS_TOKEN_THIRD }}
           # Which account linked at shorts-media.netlify.app/app/ this
           # channel posts to; optional while only one is linked.
           TIKTOK_HANDLE_THIRD: ${{ vars.TIKTOK_HANDLE_THIRD }}
-          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          REELS_PUBLIC_HOST: ${{ secrets.REELS_PUBLIC_HOST }}
           # Wrong-channel guard: hard default to the real third channel;
           # repo var THIRD_EXPECTED_CHANNEL can override if renamed.
           YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL || 'Thirdbraindown' }}
