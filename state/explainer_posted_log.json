@@ -5360,6 +5360,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "naep-math-pandemic-drop": {
+      "claimed_at": "2026-11-13T12:01:40.437494+00:00",
+      "title": "Schools Reopened, but Math Scores Still Fell to 270",
+      "publish_at": "2026-11-13T17:03:16Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -6889,6 +6896,14 @@
       "state": "posted",
       "slug": "earth-rotation-speeding-up",
       "at": "2026-11-13T10:36:32.095429+00:00"
+    },
+    {
+      "claimed_at": "2026-11-13T12:01:40.437494+00:00",
+      "title": "Schools Reopened, but Math Scores Still Fell to 270",
+      "publish_at": "2026-11-13T17:03:16Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "naep-math-pandemic-drop"
     }
   ]
 }
