@@ -118,7 +118,17 @@ def _mouth_paths(n=24):
     # FROWN: the same thin closed line with its corners turned DOWN (2026-11-12, the second 3D short: every face he had
     # was some amount of smile, so "worried" over a rotting banana still read as pleased). Closed, never a hole.
     frown = two_rows(lambda x: 3.10 - 0.055 * (x / 0.26) ** 2, -0.26, 0.26, 0.005)
-    return {'rest': rest, 'smile': smile, 'open': opn, 'oh': oh, 'frown': frown}
+    # GRIN: the open smile, a D on its back (caaleb 2026-11-13: "he needs be be able to open his mouth"): the top lip is
+    # the smile's own curve, the bottom drops into a deep round. Filled (inside, tongue), never a black hole.
+    def d_shape(x0, x1, top, depth):
+        tp = [on_head(x0 + (x1 - x0) * i / (n - 1), top(x0 + (x1 - x0) * i / (n - 1))) for i in range(n)]
+        bt = []
+        for i in range(n):
+            x = x1 + (x0 - x1) * i / (n - 1); u = x / x1
+            bt.append(on_head(x, top(x) - depth * max(0.0, 1 - u * u) ** 0.75))
+        return tp + bt
+    grin = d_shape(-0.34, 0.34, lambda x: 3.10 + 0.13 * (x / 0.34) ** 2, 0.22)
+    return {'rest': rest, 'smile': smile, 'open': opn, 'oh': oh, 'frown': frown, 'grin': grin}
 
 
 # ------------------------------------------------------------------------------------------------ the character
@@ -129,10 +139,11 @@ class Data:
         # own EYES (squint is the lower lid rising: the eye smile), so it reads at phone size from the brows alone.
         # The glasses frame hides the top and bottom ~30 deg of each eye, so a lid under ~0.35 is never SEEN.
         'neutral': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0),
-        'happy': dict(smile=1.0, open=0.0, oh=0.0, brow=0.08, lid=0.0, squint=0.95),
-        'surprised': dict(smile=0.0, open=0.0, oh=0.9, brow=0.32, lid=0.0, frown=0.3, worry=0.25),
+        'happy': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.0, squint=0.95, grin=1.0),
+        'pleased': dict(smile=1.0, open=0.0, oh=0.0, brow=0.08, lid=0.0, squint=0.95),
+        'surprised': dict(smile=0.0, open=0.75, oh=0.0, brow=0.32, lid=0.0, frown=0.3, worry=0.25),
         'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.35, frown=1.0, worry=1.0),
-        'alarmed': dict(smile=0.0, open=0.0, oh=0.0, brow=0.34, lid=0.0, frown=0.7, worry=0.55),  # brows high, eyes wide, the mouth turned down: shock without the mouth hole
+        'alarmed': dict(smile=0.0, open=0.55, oh=0.0, brow=0.34, lid=0.0, frown=0.7, worry=0.55),  # brows high, eyes wide, the mouth turned down: shock without the mouth hole
         'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.04, lid=0.0),
         'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.42, worry=0.35, squint=0.35),   # "what can you do": brows up, a half smile
         'determined': dict(smile=0.15, open=0.0, oh=0.0, brow=0.12, lid=0.5, mad=0.75, squint=0.55),
@@ -211,14 +222,36 @@ class Data:
         lips = bpy.data.objects.new('Lips', me); bpy.context.collection.objects.link(lips); lips.data.materials.append(lip_m)
         for p in me.polygons: p.use_smooth = True
         lips.shape_key_add(name='Basis')
-        for key in ('smile', 'open', 'oh', 'frown'):
+        for key in ('smile', 'open', 'oh', 'frown', 'grin'):
             v2, _ = _tube(paths[key], r=LIP_R); sk = lips.shape_key_add(name=key)
             for i, v in enumerate(v2): sk.data[i].co = v
-        cav_m = bpy.data.materials.new('Mouth / cavity'); cav_m.use_nodes = True
-        b = cav_m.node_tree.nodes['Principled BSDF']; b.inputs['Base Color'].default_value = (0.02, 0.005, 0.006, 1); b.inputs['Roughness'].default_value = 0.6
-        cav = _sphere('Mouth cavity', (0, head_surface_y(0, 3.10) - 0.018, 3.10), 1.0, cav_m, (0.001, 0.001, 0.001))
-        self.lips = lips; self.cavity = cav
-        P.setdefault('face', []).extend([lips, cav])
+        # THE INSIDE OF THE MOUTH: a skin of the lip outline itself, a little behind the lip, in a deep warm red, with the
+        # same shape keys as the lips, so it is exactly as big as the mouth is open and nothing when it is shut. The old
+        # inside was a black sphere scaled up behind the lips: "a dark open-mouth slab", the reason the mouth was banned.
+        nn = len(paths['rest']) // 2
+        def fill_pts(path):
+            return [Vector(v) + Vector((0, 0.006, 0)) for v in path]
+        fv = fill_pts(paths['rest'])
+        ffaces = [(i, i + 1, 2 * nn - 2 - i, 2 * nn - 1 - i) for i in range(nn - 1)]
+        fme = bpy.data.meshes.new('Mouth inside'); fme.from_pydata([tuple(v) for v in fv], [], ffaces); fme.update()
+        in_m = bpy.data.materials.new('Mouth / inside'); in_m.use_nodes = True
+        ib = in_m.node_tree.nodes['Principled BSDF']; ib.inputs['Base Color'].default_value = (0.16, 0.025, 0.03, 1); ib.inputs['Roughness'].default_value = 0.45
+        fill = bpy.data.objects.new('Mouth inside', fme); bpy.context.collection.objects.link(fill); fill.data.materials.append(in_m)
+        fill.shape_key_add(name='Basis')
+        for key in ('smile', 'open', 'oh', 'frown', 'grin'):
+            sk = fill.shape_key_add(name=key)
+            for i, v in enumerate(fill_pts(paths[key])): sk.data[i].co = v
+        # each lip key drives the same key on the inside
+        for key in ('smile', 'open', 'oh', 'frown', 'grin'):
+            fc = fill.data.shape_keys.key_blocks[key].driver_add('value'); dr = fc.driver; dr.type = 'AVERAGE'
+            var = dr.variables.new(); var.type = 'SINGLE_PROP'; var.targets[0].id_type = 'KEY'
+            var.targets[0].id = lips.data.shape_keys; var.targets[0].data_path = f'key_blocks["{key}"].value'
+        # the tongue: a soft pink lozenge low in the mouth, scaled with how open it is (the old cavity's job)
+        tg_m = bpy.data.materials.new('Mouth / tongue'); tg_m.use_nodes = True
+        tb_ = tg_m.node_tree.nodes['Principled BSDF']; tb_.inputs['Base Color'].default_value = (0.62, 0.17, 0.2, 1); tb_.inputs['Roughness'].default_value = 0.4
+        cav = _sphere('Mouth tongue', (0, head_surface_y(0, 2.99) - 0.027, 2.99), 1.0, tg_m, (0.001, 0.001, 0.001))
+        self.lips = lips; self.cavity = cav; self.mouth_inside = fill
+        P.setdefault('face', []).extend([lips, cav, fill])
         # ---- profile fix: ears swept back, temples on the head
         if PROFILE_FIX:
             for o in P['Ear']: o.rotation_euler.x = math.radians(-30)
@@ -241,6 +274,18 @@ class Data:
             bone(f'hand.{s}', J['wr'], J['wr'] + Vector((0.08 * (1 if s == 'R' else -1), -0.04, -0.34)), f'fore.{s}')
             bone(f'leg.{s}', J['hip'], J['kn'], 'root'); bone(f'shin.{s}', J['kn'], J['an'], f'leg.{s}')
             bone(f'foot.{s}', J['an'], J['an'] + Vector((0, -0.36, -0.18)), f'shin.{s}')
+        # EARS THAT ACT (caaleb 2026-11-13, "that was just smiles and frowns"): each ear gets a bone from its base on
+        # the head to its tip, so it can droop, perk and flick. At rest the bone does nothing: the silhouette is as approved.
+        bpy.context.view_layer.update()
+        self.EAR = {}
+        for o in P['Ear']:
+            pts = [o.matrix_world @ Vector(c) for c in o.bound_box]
+            sd = 'L' if o.matrix_world.translation.x < 0 else 'R'
+            lo_z = min(p_.z for p_ in pts); hi = max(pts, key=lambda p_: p_.z)
+            ctr = sum(pts, Vector()) / 8
+            base = Vector((ctr.x, ctr.y, lo_z + 0.25 * (hi.z - lo_z)))
+            bone(f'ear.{sd}', base, Vector((ctr.x, hi.y if abs(hi.y - ctr.y) < 0.3 else ctr.y, hi.z)), 'head')
+            self.EAR[sd] = o
         bpy.ops.object.mode_set(mode='OBJECT')
         self.arm = arm; self.pb = arm.pose.bones
         for pb in self.pb: pb.rotation_mode = 'XYZ'
@@ -254,9 +299,10 @@ class Data:
             b = arm_data.bones[bname]
             o.parent = arm; o.parent_type = 'BONE'; o.parent_bone = bname
             o.matrix_parent_inverse = (b.matrix_local @ Matrix.Translation((0, b.length, 0))).inverted()
-        head_parts = ['Head', 'Ear', 'Glasses frame', 'Glasses bridge', 'Temple', 'Brow', 'Nose', 'face']
+        head_parts = ['Head', 'Glasses frame', 'Glasses bridge', 'Temple', 'Brow', 'Nose', 'face']
         for key in head_parts:
             for o in P.get(key, []): rigid(o, 'head')
+        for sd, o in self.EAR.items(): rigid(o, f'ear.{sd}')
         for o in P['Neck']: rigid(o, 'neck')
         for key in ('Shirt opening', 'Tie knot', 'Tie blade', 'Lapel', 'Pocket', 'Pen', 'Coat button', 'Coat center seam'):
             for o in P.get(key, []): rigid(o, 'chest')
@@ -510,12 +556,12 @@ class Data:
         sk = self.brows[0].data.shape_keys
         return sk.key_blocks[name].value if sk and name in sk.key_blocks else 0.0
 
-    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0, frown=0.0, worry=0.0, mad=0.0, squint=0.0):
+    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0, frown=0.0, worry=0.0, mad=0.0, squint=0.0, grin=0.0):
         oh = min(oh, self.OH_MAX)
         kb = self.lips.data.shape_keys.key_blocks
-        for name, v in (('smile', smile), ('open', open), ('oh', oh), ('frown', frown)):
+        for name, v in (('smile', smile), ('open', open), ('oh', oh), ('frown', frown), ('grin', grin)):
             kb[name].value = v; kb[name].keyframe_insert('value', frame=F(t))
-        sc = Vector((0.26, 0.06, 0.16)) * open + Vector((0.12, 0.06, 0.12)) * oh
+        sc = Vector((0.13, 0.004, 0.055)) * max(open * 0.9, grin)
         self.cavity.scale = tuple(max(0.001, v) for v in sc); self.cavity.keyframe_insert('scale', frame=F(t))
         for b in self.brows:                                   # the brow rides UP the head surface, so it goes back as it rises
             b.location.z = 0.305 + brow * 0.5; b.location.y = brow * 0.45; b.keyframe_insert('location', frame=F(t))
@@ -542,7 +588,7 @@ class Data:
         kb = self.lips.data.shape_keys.key_blocks
         lid = (math.degrees(self.EYE['Lup'].rotation_euler.x) + 100) / 100
         lo = (100 - math.degrees(self.EYE['Llo'].rotation_euler.x)) / 100      # = lid*0.6 + squint*0.8
-        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, frown=kb['frown'].value, brow=(self.brows[0].location.z - 0.305) * 2,
+        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, frown=kb['frown'].value, grin=kb['grin'].value, brow=(self.brows[0].location.z - 0.305) * 2,
                     lid=lid, worry=self._brow_key('worry'), mad=self._brow_key('mad'), squint=max(0.0, (lo - lid * 0.6) / 0.8))
 
     def say(self, keys, key='open'):
@@ -759,6 +805,68 @@ class Data:
             raise KeyError(name)
         self._end = max(self._end, t3)
         return t3
+
+    # ---------------------------------------------------------------- acting
+    # caaleb 2026-11-13, of the face-only pass: "So that was just smiles and frowns". On a phone the BODY carries the
+    # feeling: how the ears hang, where the head goes, what the shoulders do, which way he leans. Each performance is a
+    # pose of the whole body (degrees, local bone axes: x pitches forward, z bends sideways; clav z lifts the shoulder)
+    # reached the way an animator reaches it: a small ANTICIPATION the other way, an OVERSHOOT past the pose, a SETTLE
+    # into it, a HOLD with a little life in it, then back. The face expression of the same name rides on top.
+    PERFORM = {
+        #             spine        chest        neck          head          clav (sg*z)  ears (x, out)   arms        face        speed
+        'happy':      dict(spine=(-3, 0, 0), chest=(-2, 0, 0), neck=(0, 6, 0), head=(-4, 8, 0), clav=-6, ears=(-12, -6), arms='open', face='happy', speed=1.0, bounce=0.02),
+        'surprised':  dict(spine=(-7, 0, 0), chest=(-5, 0, 0), neck=(-3, 0, 0), head=(-3, 0, 0), clav=-14, ears=(-22, -4), arms='whoa', face='surprised', speed=1.5),
+        'alarmed':    dict(spine=(-10, 0, 0), chest=(-6, 0, 0), neck=(-3, 0, 0), head=(-2, 0, 0), clav=-18, ears=(-28, -2), arms='whoa', face='alarmed', speed=1.7),
+        'sad':        dict(spine=(10, 0, 0), chest=(8, 0, 0), neck=(8, 0, 0), head=(7, -6, 0), clav=10, ears=(35, 30), arms='hang', face='sad', speed=0.6),
+        'worried':    dict(spine=(4, 0, 0), chest=(3, 0, 0), neck=(8, 0, 0), head=(6, 5, 0), clav=-12, ears=(20, 14), arms='clasp', face='worried', speed=0.9),
+        'determined': dict(spine=(6, 0, 0), chest=(4, 0, 0), neck=(4, 0, 0), head=(6, 0, 0), clav=-4, ears=(28, -4), arms='fists', face='determined', speed=1.2),
+        'wry':        dict(spine=(0, 0, 3), chest=(0, 0, 2), neck=(4, 10, 0), head=(2, 10, 0), clav=-8, ears=(8, 18), arms='shrug', face='wry', speed=0.9),
+    }
+    ARMS = {   # FK arm poses per side sign sg (L = -1): (arm, fore, hand)
+        'hang':  lambda sg: ((6, 0, sg * 3), (-10, 0, 0), (0, 0, 0)),
+        'open':  lambda sg: ((-10, 0, -sg * 14), (-30, 0, -sg * 20), (-10, sg * -40, 0)),
+        'whoa':  lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-15, sg * -20, -sg * 25)),
+        'clasp': lambda sg: ((-18, 0, sg * 10), (-62, 0, sg * 22), (0, 0, 0)),
+        'fists': lambda sg: ((-8, 0, -sg * 6), (-48, 0, sg * 8), (-20, 0, 0)),
+        'shrug': lambda sg: ((-4, 0, -sg * 20), (-18, 0, -sg * 48), (-10, sg * -95, 0)),
+    }
+
+    def perform(self, name, t0, hold=1.0, arms=True):
+        """the whole body acts `name` from t0: anticipation, overshoot, settle, hold (with life), release.
+        Returns the time he is back at rest."""
+        P_ = self.PERFORM[name]; sp = P_['speed']
+        ta = t0 + 0.12 / sp                 # anticipation: a small move the other way
+        th = ta + 0.22 / sp                 # the hit: past the pose
+        ts = th + 0.2 / sp                  # settled
+        te = ts + hold                      # end of the hold
+        tr = te + 0.4 / sp                  # back at rest
+        def key(bone, rot):
+            now = self._pose_now(bone, t0)
+            self._k(bone, t0, rot=now)
+            self._k(bone, ta, rot=tuple(n - 0.25 * (r - n) for n, r in zip(now, rot)))
+            self._k(bone, th, rot=tuple(n + 1.18 * (r - n) for n, r in zip(now, rot)))
+            self._k(bone, ts, rot=rot)
+            self._k(bone, te, rot=tuple(n + 0.92 * (r - n) for n, r in zip(now, rot)))   # it eases off a touch while held
+            self._k(bone, tr, rot=now)
+        for b in ('spine', 'chest', 'neck', 'head'): key(b, P_[b])
+        for sd, sg in (('L', -1), ('R', 1)):
+            key(f'clav.{sd}', (0, 0, sg * P_['clav']))
+            ex, eo = P_['ears']
+            if f'ear.{sd}' in self.pb: key(f'ear.{sd}', (ex, 0, sg * eo))
+            if arms and P_.get('arms'):
+                a_, f_, h_ = self.ARMS[P_['arms']](sg)
+                for bn, r in ((f'arm.{sd}', a_), (f'fore.{sd}', f_), (f'hand.{sd}', h_)): key(bn, r)
+        if P_.get('bounce'):                 # happy: two little hops of the whole body in the hold
+            for i in range(2):
+                tb = ts + i * 0.32
+                self._k('root', tb, rot=(0, 0, 0)); self._k('root', tb + 0.16, rot=(-3, 0, 0)); self._k('root', tb + 0.32, rot=(0, 0, 0))
+        if 'ear.L' in self.pb:               # an ear flick on the hit: the ears lag, like soft things do
+            for sd, sg in (('L', -1), ('R', 1)):
+                ex, eo = P_['ears']
+                self._k(f'ear.{sd}', th + 0.08, rot=(ex * 1.3, 0, sg * eo * 1.3))
+        self.expression(P_['face'], ta, te, blend=0.18 / sp)
+        self._end = max(self._end, tr)
+        return tr
 
     # ---------------------------------------------------------------- end
     def finish(self):
