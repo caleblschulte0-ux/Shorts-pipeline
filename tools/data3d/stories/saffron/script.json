@@ -1,0 +1,94 @@
+{
+ "slug": "saffron-hand-picked-3d",
+ "title": "Why Saffron Costs More Than Any Spice On Earth",
+ "voice": "am_fenrir",
+ "note": "The queued story saffron-red-gold-myth, made as the third 3D short. One number at most per beat; the closing says why you care. Every claim is in 'sources' with the source's own wording.",
+ "lines": [
+  "Saffron costs more than any spice on Earth, and it's all picked by hand.",
+  "Each purple crocus holds just three tiny red threads. You need a whole basket of flowers for one pinch.",
+  "Every flower is picked by hand, then every thread is pulled out by hand, for hours on end.",
+  "And it's a race. The flowers open at dawn and start to wilt as the day goes on.",
+  "So that tiny jar isn't pricey for the spice. You're paying for all those hands."
+ ],
+ "draft_windows": [
+  [
+   0.0,
+   4.4
+  ],
+  [
+   4.4,
+   10.6
+  ],
+  [
+   10.6,
+   16.2
+  ],
+  [
+   16.2,
+   21.6
+  ],
+  [
+   21.6,
+   26.4
+  ]
+ ],
+ "sources": [
+  {
+   "claim": "Saffron is the costliest spice",
+   "says": "At US$5,000 per kg or higher, saffron has long been the world's costliest spice by weight.",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "It is picked by hand; the price comes from the labour",
+   "says": "The high retail value of saffron is maintained on world markets because of labour-intensive harvesting methods. Forty hours of labour are needed to pick 150,000 flowers.",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Each crocus holds three red threads (stigmas)",
+   "says": "a style ... branches into three ... Each prong terminates with a vivid crimson stigma",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "A basket of flowers for one pinch (about 150 flowers per gram)",
+   "says": "roughly 150 flowers yield 1 g (1/32 oz) of dry saffron threads",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "The flowers open at dawn and wilt as the day goes on",
+   "says": "after blossoming at dawn, flowers quickly wilt as the day passes. All plants bloom within a window of one or two weeks.",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  }
+ ],
+ "sets": [
+  "store",
+  "crocus_field",
+  "sorting_room",
+  "crocus_field",
+  "store"
+ ],
+ "sets_why": "the shop where you pay, the field where it grows, the room where the threads come out, the field at dawn, back to the shop",
+ "ideas": [
+  "a pile of cash for one tiny jar",
+  "three threads barely move the gram scale",
+  "the clock spins through the hours as he plucks",
+  "the rising sun closes the flowers toward him",
+  "the tiny jar balances a heap of flowers"
+ ],
+ "storyboard": [
+  "1 hook (store): Data at a checkout counter holds ONE tiny glass jar of red saffron threads up to us; he sets it down and slides a thick stack of cash across the counter for it, then another, the bills piling up beside the tiny jar; he looks back at us, eyebrows up.",
+  "2 threads (crocus_field): a field of purple crocus flowers; Data holds ONE flower up close to us, its three bright red threads sticking out; he pulls the threads and drops them on the pan of a little gram scale beside him and the needle barely twitches; he looks at us, unimpressed.",
+  "3 by hand (sorting_room): a farmhouse table heaped with purple flowers; Data pulls the red threads out of one flower after another with his own hands into a small dish; on the wall behind him a clock's hands spin round and round and the window light goes from day to night.",
+  "4 the race (crocus_field at dawn): the sun rises over the hills behind the field and the open purple flowers fold shut in a wave rolling toward Data; he grabs flowers into his basket as fast as he can before the wave reaches him.",
+  "5 payoff (store): the checkout counter again with a balance scale: the tiny jar alone on one pan; Data tips his basket of purple flowers onto the other pan, a big heap, and only then does the scale level out; he turns to us: that's what's in the jar."
+ ]
+}

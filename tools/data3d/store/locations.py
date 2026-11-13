@@ -262,4 +262,12 @@ def dock():
     return light
 
 
-PLACES = {"warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock}
+def crocus_field():
+    raise NotImplementedError
+
+
+def sorting_room():
+    raise NotImplementedError
+
+
+PLACES = {"warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room}
