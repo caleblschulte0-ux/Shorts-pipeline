@@ -754,7 +754,8 @@ def shot3():
     cav = PR.skin_mat("cavendish", base="#F2D43C", neck="#9DBA3A")
     new, new_f = tk_cart("tk new cart", "CAVENDISH", cav, M, seed=80)
     path = tk_stem(3.4) + tk_right()[1:]
-    d_stop = sum((b - a).length for a, b in zip(path, path[1:])) - 0.3     # it stops 0.3 m short of the right buffer
+    BACK = 0.65                     # showrunner 11-13: stopped 0.3 short it hid the old crate's stencil ("GROS MICHE")
+    d_stop = sum((b - a).length for a, b in zip(path, path[1:])) - BACK
     def s_of(t):
         if t < T_GO: return 0.0
         u = min(1.0, (t - T_GO) / (T_STOP - T_GO)); s = d_stop * (1 - (1 - u) ** 2.4)
@@ -773,7 +774,7 @@ def shot3():
     data.look_at(US, T_ROT1 + 0.1, max_yaw=40)                  # to us: dead, all of it
     data.look_at(US, T_PULL0 - 0.15, max_yaw=40)                # watch this
     data.look_at((TK_SW.x, 1.8, 0.25), T_PULL1 + 0.2, max_yaw=60)   # the new cart coming in from behind him
-    data.look_at((TK_RX, TK_END + 0.3, 0.25), T_STOP - 0.4, max_yaw=50)   # ... past him, to the front
+    data.look_at((TK_RX, TK_END + BACK, 0.25), T_STOP - 0.4, max_yaw=50)   # ... past him, to the front
     data.look_at(US, T_STOP + 0.3, max_yaw=40)                  # to us, relieved
     data.idle(T_LET + 0.5, DUR)
     data.expression("worried", 0.3, T_PULL0 - 0.2)
@@ -859,10 +860,9 @@ def shot4():
             t = (f - 1) / FPS; es.default_value = 6.0 + 3.0 * math.sin(t * 2 * math.pi / 1.6) + 7.0 * sum(math.exp(-(t - c) / 0.3) for c in FLIPS if t >= c); es.keyframe_insert("default_value", frame=f)
     except (KeyError, AttributeError):
         pass
-    K.text("tr4 label", "TR4 FUNGUS", (PX + 0.5, FACE_Y - 0.002, -0.33), 0.06, (math.radians(90), 0, 0),
-           K.mat("tr4 label ink", "#E7C9FF", rough=0.5, emit=2.5), extrude=0.001)
+    # no "TR4 FUNGUS" label (showrunner 11-13: pale text on tan soil, unreadable): the glowing spores say it
     # THE CALENDAR on a stake beside him: a page every five years, each one falling to the ground
-    CX, CY, PH_, PW = 0.33, FACE_Y + 0.3, 0.22, 0.2
+    CX, CY, PH_, PW = 0.39, FACE_Y + 0.3, 0.22, 0.2      # showrunner 11-13: his hand covered the sign's left edge
     cz = 0.34                                   # take 2: below his head, beside his body (it hid behind his head)
     K.box("calendar stake", (CX, CY + 0.012, cz / 2), (0.03, 0.03, cz + PH_ / 2), K.mat("stake wood", "#7C6146", rough=0.85), bev=0.003)
     K.box("calendar back", (CX, CY, cz), (PW + 0.03, 0.012, PH_ + 0.08), K.mat("calendar board", "#3A3D42", rough=0.6), bev=0.003)
@@ -875,8 +875,10 @@ def shot4():
         y = CY - 0.009 - 0.0032 * (len(years) - k)
         piv = K.empty(f"page {yr}", (CX, y, top))
         K.box(f"page sheet {yr}", (CX, y, top - PH_ / 2), (PW, 0.0012, PH_), paper, bev=0, parent=piv)
-        K.text(f"year {yr}", str(yr), (CX, y - 0.0011, top - PH_ / 2 - 0.01), 0.095, (math.radians(90), 0, 0), ink, extrude=0.0004, parent=piv)
-        if k < len(flips):
+        yt = K.text(f"year {yr}", str(yr), (CX, y - 0.0011, top - PH_ / 2 - 0.01), 0.095, (math.radians(90), 0, 0), ink, extrude=0.0004, parent=piv)
+        if k < len(flips):              # a fallen page goes blank: only ONE year is ever readable (showrunner 11-13: "a smeared 2046")
+            for tt, s_ in ((flips[k] + 0.12, 1.0), (flips[k] + 0.3, 0.0)):
+                yt.scale = (s_,) * 3; yt.keyframe_insert("scale", frame=F(tt))
             props.tear_off(piv, NF, flips[k], (0, -1, 0), floor_z=0.0, seed=k + 11, page_h=PH_, side_drift=(0.04, 0.12),
                            layer=k, hold_s=0.0, carry=(0.0, 0.0, 0.0), out_drift=(0.0, 0.06))
     # Data between the plant and the calendar, turned a little toward the plant, face to us

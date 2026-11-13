@@ -10,6 +10,7 @@ name: Data 3D short (narrate, render shards, assemble; no upload)
 # data3d/<story>/ for review. Nothing here posts anywhere.
 #
 # .github/triggers/data3d_render:  story=<folder>  spp=<n>  pct=100
+#   reuse_run=<run id> reshoot=3 4   re-render only shots 3 and 4; every other frame comes from that run (3-day artifacts)
 #   narration_run=<run id>   reuse that run's voice (omit to voice it here)
 #   mode=narrate             voice the lines and stop (time the shots to the real read first)
 on:
@@ -194,6 +195,15 @@ jobs:
           timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
             || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
           pip install -q bpy==5.0.0 numpy==1.26.4 pillow
+      - name: Reuse an earlier run's frames (trigger reuse_run=<run id> reshoot=<shots>)
+        id: reuse
+        run: |
+          cfg=.github/triggers/data3d_render
+          echo "run=$(sed -n 's/^reuse_run=//p' $cfg)" >> $GITHUB_OUTPUT
+          echo "reshoot=$(sed -n 's/^reshoot=//p' $cfg)" >> $GITHUB_OUTPUT
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        if: steps.reuse.outputs.run != '' && steps.reuse.outputs.reshoot != ''
+        with: {name: 'frames-${{ matrix.shard }}', path: frames, run-id: '${{ steps.reuse.outputs.run }}', github-token: '${{ github.token }}'}
       - name: Render shard
         env:
           LOOK: NYC
@@ -207,6 +217,8 @@ jobs:
           A=$(( SHARD * N / SHARDS + 1 )); B=$(( (SHARD + 1) * N / SHARDS ))
           echo "frames $A-$B of $N at ${SPP}spp ${PCT}%"
           cd tools/data3d/store
+          # with a reuse_run, only the reshot shots render, over that run's frames (caaleb 11-13: "we can't take 4 days")
+          if [ -n "${{ steps.reuse.outputs.run }}" ]; then export RESHOOT="${{ steps.reuse.outputs.reshoot }}"; fi
           NARR="$GITHUB_WORKSPACE/narr/narration.json" VBPY=$(which python) python render_range.py $A $B "$GITHUB_WORKSPACE/frames" "${SPP:-48}" "${PCT:-100}" 2>&1 | grep -v "^Fra:"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

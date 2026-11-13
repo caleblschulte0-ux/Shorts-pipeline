@@ -30,3 +30,17 @@ def test_the_loop_ends_on_the_best_judged_take():
     body = ast.unparse(main)
     assert "rnd == a.rounds" in body                       # no revision after the last judging round
     assert "put_shot(path, n, best[n][1])" in body.split("for rnd in")[-1].split("return 2")[-2]
+
+
+def test_a_reshoot_renders_only_the_named_shots(tmp_path):
+    """A fix to two shots re-renders two shots: reuse_run + reshoot in the render trigger (caaleb 11-13)."""
+    import json, os, subprocess
+    narr = tmp_path / "narr.json"
+    narr.write_text(json.dumps({"windows": [[0.2, 3.0], [3.2, 6.0], [6.2, 9.0], [9.2, 12.0], [12.2, 15.0]]}))
+    log = tmp_path / "shots.log"
+    fake = tmp_path / "fakepy"
+    fake.write_text(f"#!/bin/sh\necho $SHOT >> {log}\n"); fake.chmod(0o755)
+    rr = Path(pl.__file__).with_name("render_range.py")
+    env = dict(os.environ, NARR=str(narr), VBPY=str(fake), RESHOOT="3 4")
+    subprocess.run([sys.executable, str(rr), "1", "500", str(tmp_path), "8", "30"], env=env, check=True, capture_output=True)
+    assert log.read_text().split() == ["3", "4"]
