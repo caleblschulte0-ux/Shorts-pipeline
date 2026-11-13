@@ -19671,6 +19671,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.35 (Game dialogue, no visible event)",
       "ts": "2026-11-13T13:09:53.285476+00:00"
+    },
+    "clip-20261113-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/GorgeousSparklingGoatBloodTrail-l-5IIruft8YsCVoM",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Wins Gamer Of The Year And Loses It On Stage \ud83d\udd25",
+      "kind": "twitch_clip",
+      "ts": "2026-11-13T13:27:03.527545+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
