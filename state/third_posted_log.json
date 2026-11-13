@@ -19500,13 +19500,95 @@
       "director_cut": true
     },
     "clip-20261113-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/qtcinderella/clip/PreciousDelightfulGoldfishOpieOP-hlSw5tQLyIwoi9XH",
-      "story_key": null,
-      "streamer": "qtcinderella",
+      "url": "https://youtube.com/shorts/mA3ZIvAizlw",
       "title": "Qtcinderella Cries As Speed Wins 2026 Streamer Of The Year",
       "kind": "twitch_clip",
-      "ts": "2026-11-13T12:23:19.942656+00:00",
+      "ts": "2026-11-13T12:23:30.701254+00:00",
+      "uploaded_at": "2026-11-13T12:23:30.701265+00:00",
+      "publish_at": "2026-11-13T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261113-qtcinderella-cries-as-speed-wins-2026-streamer-o-bd542e44",
+        "tiktok": "queued for 2026-11-13T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/qtcinderella/clip/PreciousDelightfulGoldfishOpieOP-hlSw5tQLyIwoi9XH",
+      "streamer": "qtcinderella",
+      "series": "win",
+      "hook": "Speed wins Streamer of the Year \ud83e\udd79",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 28371,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 47.0
+      },
+      "director_cut": true
+    },
+    "rejected-animatedsmoothdoveossloth-ozxvl7uumwwmwdd6": {
+      "source_url": "https://www.twitch.tv/tenzinniznet/clip/AnimatedSmoothDoveOSsloth-OzXvl7UUmWwMwDd6",
+      "streamer": "tenzinniznet",
+      "title": "Tenzin proves himself wrong in 30 seconds",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (unknown streamer, no payoff, mostly read)",
+      "ts": "2026-11-13T12:24:03.387172+00:00"
+    },
+    "rejected-talentedkitschyplumbermikehogu-owjx28acyxlvtkan": {
+      "source_url": "https://www.twitch.tv/qtcinderella/clip/TalentedKitschyPlumberMikeHogu-oWJX28aCYxlVTkAn",
+      "streamer": "qtcinderella",
+      "title": "Qtcinderella: Ari Gets Interrupted Mid-Speech After Winning Best Music Streamer, DDG Shouted Ou",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is an uncropped 16:9 strip filling only about a third of the 9:16 canvas, far below the roughly three ; vision: The people are small on a phone screen. Ari and the interrupter are only head-and-shoulders in a short strip.; vision: The wide stage shots at about 9.8s, 20.7s a",
+      "ts": "2026-11-13T12:28:20.980583+00:00"
+    },
+    "rejected-optimisticamazonianplumfrankerz--uodn3avmvx4o4lb": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/OptimisticAmazonianPlumFrankerZ--UODn3AVmVx4o4lB",
+      "streamer": "caseoh_",
+      "title": "Caseoh Wins Best Variety Streamer Award And Can't Believe It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 3.5s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+      "ts": "2026-11-13T12:33:03.513138+00:00"
+    },
+    "rejected-filthyenticingbeartbtacoleft-rmzotuq_h8ti2f5x": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/FilthyEnticingBearTBTacoLeft-rMzOtUq_h8tI2F5x",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Loses It And Can't Stop Laughing At This",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred or black padding above and bel; vision: The footage is a very dark night motorcycle POV. The subject is tiny and hard to read on a phone, and several frames are; vision: Stableronaldo is never visible, ",
+      "ts": "2026-11-13T12:34:42.288579+00:00"
+    },
+    "rejected-outstandingtemperedlocustbrainslug-jvt4dvuedpx-hliy": {
+      "source_url": "https://www.twitch.tv/forsen/clip/OutstandingTemperedLocustBrainSlug-jVT4dVuEdPX-HLIY",
+      "streamer": "forsen",
+      "title": "Forsen PVE:rs",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW PvP chaos, needs game context)",
+      "ts": "2026-11-13T12:35:30.792581+00:00"
+    },
+    "rejected-ignorantgoldenherondeilluminati-sqnahipbzeumyt75": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/IgnorantGoldenHeronDeIlluminati-sqNaHiPbzeUMYt75",
+      "streamer": "ohnepixel",
+      "title": "Close your eyes",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (game cutscene, streamer barely reacts)",
+      "ts": "2026-11-13T12:36:01.340320+00:00"
+    },
+    "clip-20261113-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/edwardkso/clip/DeterminedEntertainingWoodcockUWot-_N5vBv9hbS04tXbg",
+      "story_key": null,
+      "streamer": "edwardkso",
+      "title": "Edwardkso Got Tricked Into Saying THIS On Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-11-13T12:40:09.118537+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
