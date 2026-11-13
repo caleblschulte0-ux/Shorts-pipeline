@@ -645,6 +645,58 @@ def action_window(an: dict, aspect: tuple = ACTION_CROP_ASPECT) -> tuple | None:
     return (want_w - want_w % 2, sh - sh % 2, x - x % 2, 0)
 
 
+# FOOTAGE FILLS THE FRAME, cut-ins and montage shots too (2026-11-13:
+# every Baller Bro post with a montage was held, "the highlights play tiny
+# in a letterbox", "a tiny inset ... over blurred filler"). The main clip
+# has been cropped to its action since the 31.6% fix above; the footage cut
+# in over it and the montage after it were still the whole 16:9 frame
+# shrunk into the middle of a blur, and a reel's own black bars made it
+# smaller still. A shot gets the same treatment as the clip: its bars
+# trimmed off, then the 3:4 window over its motion.
+BAR_ENERGY = 0.04            # a row this still, vs the frame, is a bar
+BAR_MIN = 0.04               # ...and a band this thick is worth trimming
+
+
+def fill_crop(video: Path) -> tuple | None:
+    """(w, h, x, y) to crop `video` to before it is laid on the canvas, or
+    None to lay it whole. Never raises."""
+    try:
+        an = analyze(Path(video))
+        if an is None:
+            return None
+        sw, sh = int(an["sw"]), int(an["sh"])
+        rows = [float(v) for v in an.get("row_energy") or []]
+        y0, y1 = 0, sh
+        if len(rows) == sh and sum(rows) > 0:
+            floor = BAR_ENERGY * sum(rows) / sh
+            while y0 < sh // 3 and rows[y0] < floor:
+                y0 += 1
+            while y1 > sh - sh // 3 and rows[y1 - 1] < floor:
+                y1 -= 1
+            if y0 < BAR_MIN * sh:
+                y0 = 0
+            if sh - y1 < BAR_MIN * sh:
+                y1 = sh
+        h = y1 - y0
+        win = action_window({**an, "sh": h})
+        if win is None:
+            if h == sh:
+                return None
+            return (sw - sw % 2, h - h % 2, 0, y0 - y0 % 2)
+        w, wh, x, _ = win
+        return (w, wh, x, y0 - y0 % 2)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def crop_vf(crop) -> str:
+    """The ffmpeg filter for `fill_crop`'s answer, with its comma, or ''."""
+    if not crop:
+        return ""
+    w, h, x, y = (int(v) for v in crop)
+    return f"crop={w}:{h}:{x}:{y},"
+
+
 # A FACE BESIDE WHAT IT IS TALKING ABOUT (operator, 2026-10-13, of a
 # Kai/Reggie cut: a commentator on one side of the frame and the texts he
 # was reading on the other, and one crop "split the difference and ended
@@ -666,6 +718,13 @@ def face_and_content(an: dict) -> dict | None:
     something worth seeing; None otherwise."""
     sw, sh = int(an.get("sw") or 0), int(an.get("sh") or 0)
     if sw <= 0 or sh <= 0 or sw / sh < 1.5:
+        return None
+    # ONE CAMERA ONLY (2026-11-13: Dirk's podcast cut between three
+    # cameras, and the one crop made for the camera on Dirk showed "an
+    # empty table and an arm for 25 seconds" on the others; held at 62 and
+    # 70). A source that cuts between cameras gets every camera framed on
+    # its own (`framed` / `cameras`), never one pair of boxes for all.
+    if an.get("cuts"):
         return None
     faces = [s for s in an.get("subjects") or []
              if getattr(s, "presence", 0) >= PERSIST_MIN

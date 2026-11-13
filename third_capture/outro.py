@@ -242,18 +242,23 @@ def play_out(hit: dict, work: Path) -> dict:
 
 
 def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
-          line_y: int | None, grade: str = "faded") -> str:
+          line_y: int | None, grade: str = "faded",
+          crops: list | None = None) -> str:
     """filter_complex joining input 0 (the rendered clip) to inputs 1..n
     (the shots), with input n+1 the song and, when line_y is set, input
     n+2 the line of text. Ends in [vout] and [aout]; runs clip_s +
     sum(durs): the clip's last frame is held under the dissolve, so
     nothing it says is cut."""
+    from third_capture.shot_plan import crop_vf
     look = GRADES.get(grade, LOOK)
+    crops = list(crops or [])
     parts = []
     for i in range(n):
         k = i + 1
+        fill = crop_vf(crops[i] if i < len(crops) else None)
         parts.append(
-            f"[{k}:v]setpts=PTS-STARTPTS,fps=30,setsar=1,split=2[b{k}][f{k}];"
+            f"[{k}:v]{fill}setpts=PTS-STARTPTS,fps=30,setsar=1,"
+            f"split=2[b{k}][f{k}];"
             f"[b{k}]scale={w}:{h}:force_original_aspect_ratio=increase,"
             f"crop={w}:{h},gblur=sigma=24,eq=brightness=-0.05[bd{k}];"
             f"[f{k}]scale={w}:{h}:force_original_aspect_ratio=decrease:"
@@ -312,7 +317,8 @@ def _render(clip: Path, got: list[dict], song: Path, out: Path,
         cmd += ["-loop", "1", "-i", str(line_png)]
     cmd += ["-filter_complex",
             graph(len(got), durs, clip_s, w, h,
-                  line_y if with_line else None, grade),
+                  line_y if with_line else None, grade,
+                  [g.get("crop") for g in got]),
             "-map", "[vout]", "-map", "[aout]",
             "-t", f"{clip_s + sum(durs):.3f}",
             "-c:v", "libx264", "-preset", "medium", "-crf", "19",
@@ -352,8 +358,12 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
         # a shot ffmpeg cannot join is dropped, not the whole tribute
         tries = [got] + ([got[:i] + got[i + 1:] for i in range(len(got))]
                          if len(got) > MIN_SHOTS else [])
+        from third_capture.shot_plan import fill_crop
         for use in tries:
             use = use[:-1] + [play_out(use[-1], work)]
+            for g in use:
+                if "crop" not in g:
+                    g["crop"] = fill_crop(Path(g["path"]))
             durs = _render(clip, use, song, out, clip_s, w, h,
                            line_png, line_y, item.get("grade", "faded"))
             if durs:

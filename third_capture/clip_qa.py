@@ -309,7 +309,8 @@ def _vision(sheet: Path, led: dict, dur: float) -> dict | None:
             except Exception:  # noqa: BLE001
                 pass
             return None
-        out = json.loads(m.group(0))
+        from third_capture.author import one_object
+        out = one_object(r.stdout)
         return {"publish": bool(out.get("publish", True)),
                 "problems": [str(p)[:120] for p in
                              (out.get("problems") or [])][:6],
