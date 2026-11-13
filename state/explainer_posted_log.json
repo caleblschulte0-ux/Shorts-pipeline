@@ -5439,12 +5439,18 @@
       "duration_s": 21.9
     },
     "cavendish-banana-clone-3d": {
-      "claimed_at": "2026-11-13T16:05:05.398163+00:00",
+      "url": "https://youtube.com/shorts/hIG4Isw-0JY",
       "title": "Every Banana You Eat Is a Clone, and It's Dying",
+      "at": "2026-11-13T16:05:21.659078+00:00",
       "publish_at": "2026-11-13T20:03:16Z",
-      "url": null,
-      "state": "uploading",
-      "style_arm": "3d"
+      "state": "posted",
+      "style_arm": "3d",
+      "duration_s": 29.5,
+      "operator_overruled_showrunner": {
+        "operator_said": "Post it but like why does data tweak out like we need to do a lot of work on how he express",
+        "score": 83,
+        "reason": "showrunner BLOCK: A strong callback structure (the rail switch reused for the 'nothing to switch to' ending) and clean 3D craft, held back by cluttered, low-contrast labels in the soil beat and a standing-only clone beat."
+      }
     }
   },
   "uploads": [
@@ -7006,10 +7012,11 @@
       "claimed_at": "2026-11-13T16:05:05.398163+00:00",
       "title": "Every Banana You Eat Is a Clone, and It's Dying",
       "publish_at": "2026-11-13T20:03:16Z",
-      "url": null,
-      "state": "uploading",
+      "url": "https://youtube.com/shorts/hIG4Isw-0JY",
+      "state": "posted",
       "style_arm": "3d",
-      "slug": "cavendish-banana-clone-3d"
+      "slug": "cavendish-banana-clone-3d",
+      "at": "2026-11-13T16:05:21.659078+00:00"
     }
   ]
 }
