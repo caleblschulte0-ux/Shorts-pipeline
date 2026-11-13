@@ -84,11 +84,11 @@
     }
   ],
   "storyboard": [
-    "1 hook (store): a MEDIUM CLOSE on Data at the produce table holding a bright bunch; black rot creeps over it in his hands, a banana drops off and hits the table; he recoils, alarmed.",
-    "2 clones (warehouse): a rail of identical bunches on hooks, the same shape on every hook under one CAVENDISH sign; Data's hand pushes the first and every bunch swings the same way in turn, then the black rot runs down the row: what kills one can kill them all.",
-    "3 Gros Michel (plantation): an old wooden crate stenciled GROS MICHEL 1950 on a table; the bananas inside blacken; Data pushes the crate over toward us and the dead fruit pours off the table onto the ground.",
-    "4 TR4 (field): a young banana plant in a mound of soil in a healthy green field; dark fungus climbs its stem from the soil and its leaves brown and collapse one after another; the last green leaf flops dead and Data throws his hands up, then slumps.",
-    "5 payoff (dock): opens on the ECUADOR box at the end of the rail; the bunches blacken one after another toward Data; he snatches the LAST yellow bunch off its hook and hugs it, the camera pushing in to him."
+    "1 hook (store): Data holds up ONE banana to us at the produce stand; the camera pulls back and back to reveal a whole wall of bananas exactly like it, every bunch the same; a dark fungus stain creeps across the floor toward the display and Data, seeing it, steps back in front of the wall.",
+    "2 clones (warehouse): a long row of identical young banana plants in pots stands like dominoes; Data tips the first one with one push and the whole row falls, one knocking down the next, all the way down: what kills one can kill them all.",
+    "3 Gros Michel (plantation): a little rail cart loaded with big old bananas, stenciled GROS MICHEL 1950, sits at a fork in the track, its fruit black and dead; Data hauls a big track-switch lever and a fresh cart stenciled CAVENDISH rolls in on the new branch past him.",
+    "4 TR4 (field): a cut-away of the ground under one banana plant: glowing fungus spores wait in the soil below; Data sprays the plant with a big sprayer and nothing changes, while a calendar beside him flips through the years and the spores are still there.",
+    "5 payoff (dock): an ECUADOR export dock with crates of bananas and a track to the ship; the dark fungus stain spreads across the dock toward the crates; Data runs to the same track-switch lever as before, hauls it, and there is no second track, it switches to nothing; he turns to us, out of options."
   ],
   "narration_run": 43285150605,
   "sets": [
@@ -98,5 +98,12 @@
     "field",
     "dock"
   ],
-  "sets_why": "every beat its own place (caaleb 2026-11-12: one aisle behind every beat read as one scene): the hook in the store where you buy them; the clones in a ripening warehouse of identical boxes; 1950 on a Gros Michel plantation; the soil fungus in a banana field; Ecuador on its export dock"
+  "sets_why": "every beat its own place (caaleb 2026-11-12: one aisle behind every beat read as one scene): the hook in the store where you buy them; the clones in a ripening warehouse of identical boxes; 1950 on a Gros Michel plantation; the soil fungus in a banana field; Ecuador on its export dock",
+  "ideas": [
+    "one becomes a whole wall of copies",
+    "dominoes: one push fells the row",
+    "a track switch to a new banana",
+    "spray does nothing, spores wait for years",
+    "the same switch, and no track left"
+  ]
 }

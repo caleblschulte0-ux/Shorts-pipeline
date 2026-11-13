@@ -51,6 +51,14 @@ def test_every_story_folder_is_complete():
             assert len(set(sets)) >= 3, f"{st.name}: a short needs three places at least"
             known = set(re.findall(r'^PLACES = \{(.*)\}$', (D3 / "store" / "locations.py").read_text(), re.M)[0].replace('"', "").replace(" ", "").split(","))
             assert {x for x in sets if x != "store"} <= {k.split(":")[0] for k in known}, f"{st.name}: a place store/locations.py does not build"
+            # every beat is its own IDEA (caaleb 2026-11-13, of the banana short's five shots: "All those were just
+            # varying shots of bananas getting browner. What the fuck is this?"): a story names one visual action per
+            # beat in `ideas`, no two alike, and at most one beat may be the thing simply rotting, browning or dying.
+            ideas = s["ideas"]
+            assert len(ideas) == n and len({i.lower().strip() for i in ideas}) == n, f"{st.name}: one distinct idea per beat"
+            decay = re.compile(r"\b(rot|rots|rotting|brown|browns|browning|blacken|blackens|wilt|wilts|dies|dying|decay)\b", re.I)
+            assert sum(bool(decay.search(i)) for i in ideas) <= 1, f"{st.name}: more than one beat is just the thing decaying"
+            assert sum(bool(decay.search(b)) for b in s["storyboard"]) <= 2, f"{st.name}: the storyboard keeps showing decay"
 
 
 def test_a_new_story_fits_the_explainers_pacing():
