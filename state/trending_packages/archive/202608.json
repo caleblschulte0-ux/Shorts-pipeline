@@ -5709,5 +5709,429 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260814": {
+    "01_graph-glp1-vs-bariatric-surgery.json": {
+      "format": "graph_race",
+      "slug": "graph-glp1-vs-bariatric-surgery",
+      "title": "Weight-Loss Drugs Just Crushed Bariatric Surgery",
+      "hook": "One line replaced surgery.",
+      "y_label": "People treated per year (millions)",
+      "duration": 13,
+      "source": "GLP-1 weight-loss-drug users: Gallup polling reported ~3% of US adults using a GLP-1 for weight loss in 2024, rising to an estimated 40 million adults (~11%) by 2026 per Medical Daily/Forbes Health coverage of Medicare GLP-1 coverage (Aug 2026); 2019-2023 figures approximate, back-modeled from the well-documented Ozempic/Wegovy/Zepbound adoption ramp (Wegovy approved 2021, Zepbound 2023). Bariatric/metabolic surgery counts: American Society for Metabolic and Bariatric Surgery (ASMBS) annual estimates; procedures fell below 200,000 in 2024 for the first time since 2020, a 20%+ drop; 2025-2026 approximate, continuing the reported decline.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "GLP-1 weight-loss users",
+          "color": "#50c8ff",
+          "icon": "Rx",
+          "values": [
+            0.3,
+            0.6,
+            1.5,
+            3.0,
+            5.0,
+            7.7,
+            20.0,
+            40.0
+          ]
+        },
+        {
+          "name": "Bariatric surgeries",
+          "color": "#ff9f40",
+          "icon": "MD",
+          "values": [
+            0.256,
+            0.198,
+            0.262,
+            0.28,
+            0.253,
+            0.198,
+            0.19,
+            0.185
+          ]
+        }
+      ],
+      "hashtags": [
+        "glp1",
+        "ozempic",
+        "wegovy",
+        "zepbound",
+        "weightloss",
+        "bariatricsurgery",
+        "health",
+        "obesity",
+        "pharma",
+        "medicine"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-fever-outdraws-the-league.json": {
+      "format": "graph_race",
+      "slug": "graph-fever-outdraws-the-league",
+      "title": "One WNBA Team Now Outdraws The Whole League",
+      "hook": "One rookie changed the math.",
+      "y_label": "Average attendance per game",
+      "duration": 13,
+      "source": "Indiana Fever average home attendance: 2022 1,776; 2023 4,067; 2024 17,036 (post-Caitlin Clark draft); 2025 16,560 (widely reported, e.g. Sportsnaut/Yahoo Sports season recaps). WNBA league-wide average attendance: 2022 5,647; 2023 6,608; 2024 9,807; 2025 10,986 (ESPN, WNBA.com season recaps). 2026 figures are partial-season, through the first 59 league games: league average 11,381 (reported record pace); Fever 2026 approximate, consistent with reported individual-game attendance in the 17,000 range this season.",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Indiana Fever",
+          "color": "#ffc633",
+          "icon": "Fever",
+          "values": [
+            1776,
+            4067,
+            17036,
+            16560,
+            17000
+          ]
+        },
+        {
+          "name": "WNBA league avg",
+          "color": "#e0289b",
+          "icon": "WNBA",
+          "values": [
+            5647,
+            6608,
+            9807,
+            10986,
+            11381
+          ]
+        }
+      ],
+      "hashtags": [
+        "wnba",
+        "caitlinclark",
+        "indianafever",
+        "basketball",
+        "sports",
+        "attendance",
+        "womenssports",
+        "sportsbusiness",
+        "wnbarecord",
+        "angelreese",
+        "attendancerecord"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-cybertruck-vs-lightning.json": {
+      "format": "graph_race",
+      "slug": "graph-cybertruck-vs-lightning",
+      "title": "The Electric Truck Lead Just Flipped Twice",
+      "hook": "The lead flipped twice.",
+      "y_label": "US annual deliveries (units)",
+      "duration": 13,
+      "source": "Ford F-150 Lightning US annual deliveries: 2022 approx. 15,617 (first partial year); 2023 approx. 24,165; 2024 33,510; 2025 approx. 27,300 (CarBuzz/Electrek reporting). Tesla Cybertruck deliveries: 2022 0 (not yet launched); 2023 approx. 3,900 (limited late-2023 ramp after Nov 2023 launch, industry-tracker estimate); 2024 39,442 (surpassed Lightning for the first time in Q2 2024); 2025 approx. 21,500 global (InsideEVs/Forbes/Electrek reporting on the sales reversal). Ford ended F-150 Lightning production in Dec 2025/Jan 2026 (Electrek); Cybertruck Q1 2026 fell to 3,519 units, its worst quarter yet.",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Ford F-150 Lightning",
+          "color": "#00539b",
+          "icon": "Ford",
+          "values": [
+            15617,
+            24165,
+            33510,
+            27300
+          ]
+        },
+        {
+          "name": "Tesla Cybertruck",
+          "color": "#cccccc",
+          "icon": "Tesla",
+          "values": [
+            0,
+            3900,
+            39442,
+            21500
+          ]
+        }
+      ],
+      "hashtags": [
+        "cybertruck",
+        "f150lightning",
+        "tesla",
+        "ford",
+        "ev",
+        "electrictruck",
+        "cars",
+        "automotive",
+        "elonmusk",
+        "evsales",
+        "pickuptruck"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_graph-china-humanoid-robots.json": {
+      "format": "graph_race",
+      "slug": "graph-china-humanoid-robots",
+      "title": "China's Humanoid Robots Went From Hundreds To 50,000",
+      "hook": "The robot army already shipped.",
+      "y_label": "Humanoid robots deployed (units)",
+      "duration": 13,
+      "source": "Morgan Stanley research (via BigGo Finance / Futu News, June 2026): roughly 16,000 humanoid robots deployed worldwide in 2025, with China accounting for more than 80% of that; Morgan Stanley raised its 2026 China humanoid shipment forecast to 50,000 units (from an earlier 28,000 estimate), its second upgrade in six months. 2023-2024 figures are approximate, back-modeled from the reported pilot-to-commercialization ramp (China's earliest factory/warehouse humanoid pilots began around 2023). 2026 rest-of-world figure is an approximation derived from Morgan Stanley's stated ~80% China share.",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#de2910",
+          "icon": "CN",
+          "values": [
+            400,
+            2200,
+            13000,
+            50000
+          ]
+        },
+        {
+          "name": "Rest of world",
+          "color": "#50c8ff",
+          "icon": "RW",
+          "values": [
+            100,
+            800,
+            3000,
+            12500
+          ]
+        }
+      ],
+      "hashtags": [
+        "humanoidrobot",
+        "china",
+        "robotics",
+        "ai",
+        "automation",
+        "tech",
+        "manufacturing",
+        "robots",
+        "morganstanley",
+        "factoryautomation",
+        "futuretech"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-badge-every-room.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-badge-every-room",
+      "title": "Badge In For Every Room. Even The Bathroom.",
+      "script": "Our new facilities director rolled out a mandate: badge in and out of every room in the building, every single time, no exceptions \u2014 the break room, the supply closet, even the bathroom, all \"for security audit accuracy.\" Fine by me. I badged in for the bathroom. I badged out of the bathroom. I badged into the break room for eleven seconds to grab a pen and badged right back out on my way to the printer. Within two days my badge history ran four hundred and twelve entries long. By day four the security software flagged our whole floor for \"anomalous access patterns\" and froze half the badges \u2014 including his. He spent the next morning locked out of his own office, badging the door twelve times while security reviewed a log that now showed, in exact timestamps, exactly how many bathroom trips a security audit apparently required. The mandate quietly vanished from the intranet that afternoon. I kept a screenshot of all four hundred and twelve entries anyway.",
+      "shots": [
+        {
+          "phrase": "badge in and out of every room",
+          "query": "employee id badge",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Biometric_Argentine_DNI_for_Citizens-Foreigners_Falkland_Islands_Seal.png",
+          "pin_query": "badge",
+          "pin_context": "office building access control card",
+          "news_query": "badge",
+          "news_angle": "The narrator uses their badge to comply with the facilities director's mandate."
+        },
+        {
+          "phrase": "the break room for eleven seconds",
+          "query": "office break room",
+          "pin_query": "break room",
+          "pin_context": "office building interior space",
+          "news_query": "break room",
+          "news_angle": "The narrator badges in and out of the break room to grab a pen.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/2015-04-28_19_09_17_Employee_break_room_at_the_National_Weather_Service_Weather_Forecast_Office_in_Elko%2C_Nevada_%28NWS_WFO_LKN%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "four hundred and twelve entries long",
+          "query": "computer log screen",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+        },
+        {
+          "phrase": "anomalous access patterns",
+          "query": "security control room",
+          "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+        },
+        {
+          "phrase": "froze half the badges",
+          "query": "office building hallway",
+          "image_url": "https://live.staticflickr.com/3834/9821525314_f5d4bf4d15_b.jpg"
+        },
+        {
+          "phrase": "locked out of his own office",
+          "query": "closed office door",
+          "image_url": "https://drive.google.com/uc?export=download&id=1xIzh8xWQrEwh3x2T7kkvAX-TgBGncS4b",
+          "media_origin": "chatgpt",
+          "media_file_id": "1xIzh8xWQrEwh3x2T7kkvAX-TgBGncS4b",
+          "media_sha256": "7570a77d5ff21f4b9a6d5a5a06d7a612d1b78f083ad8d53148ace731760ee6ce",
+          "media_bytes": 1019358
+        },
+        {
+          "phrase": "quietly vanished from the intranet",
+          "query": "computer intranet screen",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png",
+          "pin_query": "intranet",
+          "pin_context": "office building internal network",
+          "news_query": "intranet",
+          "news_angle": "The facilities director's mandate quietly vanishes from the intranet."
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "four hundred and twelve entries",
+          "text": "412 ENTRIES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "froze half the badges",
+          "text": "BADGES FROZEN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "quietly vanished from the intranet",
+          "text": "POLICY GONE",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "corporatelife",
+        "officepolicy",
+        "worklife",
+        "karma",
+        "9to5",
+        "security",
+        "reddit",
+        "workplacestories",
+        "officelife",
+        "corporate"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-price-dispute-item-free.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-price-dispute-item-free",
+      "title": "Wrong Price? It's Free. Every Single Time.",
+      "script": "Corporate rolled out a new rule for cashiers: if a customer says an item rang up wrong, don't argue, don't call for a price check, just make it free and keep the line moving. One regular figured that out within a week. Every visit, something new had \"scanned wrong\" \u2014 a rotisserie chicken, a case of water, once an entire pack of steaks. Store policy was store policy, so I gave her every single one, free, exactly like corporate wanted. I also started paging it over the intercom. \"Price dispute at register two \u2014 item free.\" Every item, every time, loud enough for the whole store to hear. Three visits of that and people started watching her cart. The store manager started watching too. Two weeks in, corporate finally added one word to the policy: \"verify.\" She hasn't been back since. I heard she tried the same routine four towns over, and they already knew her name.",
+      "shots": [
+        {
+          "phrase": "if a customer says an item rang up wrong",
+          "query": "cash register checkout",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
+        },
+        {
+          "phrase": "a rotisserie chicken",
+          "query": "rotisserie chicken store",
+          "pin_query": "rotisserie chicken",
+          "pin_context": "grocery store food product",
+          "news_query": "rotisserie chicken",
+          "news_angle": "A customer claims a rotisserie chicken scanned wrong to get it for free.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Donauinselfest2007_Grillhendl.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "a case of water",
+          "query": "bottled water case",
+          "pin_query": "case of water",
+          "pin_context": "bottled beverage grocery item",
+          "news_query": "case of water",
+          "news_angle": "The customer claims a case of water rang up wrong to receive it at no cost.",
+          "image_url": "https://live.staticflickr.com/5217/5405402182_8697e6243d_b.jpg"
+        },
+        {
+          "phrase": "gave her every single one, free",
+          "query": "grocery store checkout",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+          "media_sha256": "f94acff3e5c32406e1d84b9aa0686e3ab8bd7a320ced41d5864aedf5f8d76cc2",
+          "media_bytes": 1287533
+        },
+        {
+          "phrase": "paging it over the intercom",
+          "query": "store intercom speaker",
+          "image_url": "https://drive.google.com/uc?export=download&id=1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+          "media_origin": "chatgpt",
+          "media_file_id": "1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+          "media_sha256": "64e087b561abcb56ddc30f5087f0744a0361b89f7b76215cc45f040f27b0ae29",
+          "media_bytes": 1572498
+        },
+        {
+          "phrase": "people started watching her cart",
+          "query": "shopping cart aisle",
+          "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg"
+        },
+        {
+          "phrase": "corporate finally added one word to the policy",
+          "query": "corporate policy document",
+          "image_url": "https://drive.google.com/uc?export=download&id=1vSigz-LijdcIwv4ndNf8n9z38PErYU1H",
+          "media_origin": "chatgpt",
+          "media_file_id": "1vSigz-LijdcIwv4ndNf8n9z38PErYU1H",
+          "media_sha256": "a54c2215dbfcfb3925f873a06353fe45c2a00a0a9a7ebadf152f4c124c14850a",
+          "media_bytes": 1158603
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "an entire pack of steaks",
+          "text": "FREE STEAKS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "item free",
+          "text": "ITEM: FREE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "corporate finally added one word to the policy",
+          "text": "POLICY: FIXED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "hasn't been back since",
+          "text": "BANNED",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "talesfromthecustomer",
+        "retail",
+        "customerservice",
+        "karma",
+        "corporatepolicy",
+        "cashier",
+        "storepolicy",
+        "reddit",
+        "workplace",
+        "retailstories",
+        "storelife"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
