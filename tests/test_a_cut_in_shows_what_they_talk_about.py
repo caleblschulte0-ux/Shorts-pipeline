@@ -71,3 +71,19 @@ class ALongPlayKeepsItsEnd(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class APhoneEditIsTheLastResortNotRefused(unittest.TestCase):
+    def test_tall_footage_is_tried_after_the_wide(self):
+        got = [(0, {"title": "tall"}, Path("t.mp4")),
+               (1, {"title": "wide"}, Path("w.mp4")),
+               (2, {"title": "none"}, None)]
+        with mock.patch.object(ff, "portrait",
+                               lambda p: str(p) == "t.mp4"):
+            order = [v["title"] for _, v, _p in ff._wide_first(iter(got),
+                                                               "x")]
+        self.assertEqual(order, ["wide", "none", "tall"])
+
+    def test_the_look_is_searched_on_its_own(self):
+        qs = ff.queries("Jimmy Butler", "Jimmy Butler sideline coach outfit")
+        self.assertIn("Jimmy Butler sideline coach outfit", qs)

@@ -175,7 +175,9 @@ class NeverSomeoneElsesEdit(unittest.TestCase):
     def test_a_phone_edit_is_skipped_and_the_judge_refuses_captions(self):
         from funnel import find_footage
         self.assertIn("NOT a fan edit", find_footage.ACTION)
-        self.assertIn("if portrait(video):",
+        # since 2026-11-14 a phone edit is tried LAST, not refused: the
+        # judge (ACTION, above) still refuses one carrying its own captions
+        self.assertIn("if video and portrait(video):",
                       (REPO / "funnel" / "find_footage.py").read_text())
         fake = mock.Mock(stdout="1080,1920\n")
         with mock.patch("subprocess.run", return_value=fake):
