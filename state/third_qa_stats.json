@@ -3,159 +3,6 @@
     {
       "date": "20261108",
       "dry_run": false,
-      "ts": "2026-11-08T12:40:28+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-08T11:42:12.242121+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-08T12:40:27+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261108-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261108-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 16.5
-        },
-        {
-          "slug": "clip-20261108-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261108",
-      "dry_run": false,
       "ts": "2026-11-08T12:43:26+00:00",
       "feedback": {
         "snapshot": true,
@@ -5939,6 +5786,296 @@
           "slug": "clip-20261114-6",
           "ok": false,
           "skipped": "run budget reached"
+        }
+      ]
+    },
+    {
+      "date": "20261114",
+      "dry_run": false,
+      "ts": "2026-11-14T14:00:06+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 138,
+        "with_retention": 114,
+        "with_curve": 14,
+        "fetched_at": "2026-11-14T08:46:13.981939+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261114-1",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height. It shows the whole stream screen capture (browser; vision: The renderer did not crop toward the action. The red carpet in",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 142,
+                "refused_shown": 12,
+                "scouted": [
+                  {
+                    "premise": "Stableronaldo finds the Pirate Shop Access token on Fortnite, screams about it, and Jynxzi reacts to Ron getting the tok",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Forsen's Hellraiser: Revival stream, three moments from one broadcast.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jynxzi's Elden Ring grind: he spams, finally beats Rellana, then finishes Putrescent Knight after four hours.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 299,
+                "moments": 40,
+                "candidates": 500,
+                "pool": 2873,
+                "pool_with_vod": 2030,
+                "arc_sizes": [
+                  3,
+                  2,
+                  4,
+                  2,
+                  2,
+                  6,
+                  3,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-menu-ohnepixel-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:jynxzi+stableronaldo/jynxzi-stableronaldo-fortnite-pir",
+                  "outcome": "narrative_failed",
+                  "why": "scores [58] after 1 revision(s) (revision render failed) \u2014 @17s confusing: The 'YOU FOUND PIRATE SHOP ACCESS' banner shows up in the last clip, after the 'Then he gets launched' beat. The premise and the clip order say he finds it first, so the chronology is backwards. Put t; @15s misleading: The 'S"
+                },
+                {
+                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
+                  "outcome": "narrative_failed",
+                  "why": "scores [74, 63, 76] after 2 revision(s) \u2014 @4s confusing: The caption 'stuck in a freezing bath' and the overlay 'stream bath: he's freezing' tell two slightly different stories. He is steaming and soapy in the first frames, so the bath looks hot, not freezi; @9s pacing: The 9-19s stretch is mostly a"
+                },
+                {
+                  "cluster": "kaicenat@vod2849957264/kaicenat-call-cenat-2026w34",
+                  "outcome": "narrative_failed",
+                  "why": "scores [52, 66, 66] after 2 revision(s) \u2014 @48s confusing: The payoff is 'my heart dropped', but the cut never shows or says what he saw on his phone. Use a clip that reveals the cause, or trim to the reaction plus a line saying what happened.; @21s missing_context: The picture switches to a TikTok d"
+                },
+                {
+                  "cluster": "scout:forsen/forsen-clad-enemy-2026w43",
+                  "outcome": "table_read_failed",
+                  "why": "table read 38 < 50 \u2014 not rendered; confusing: The 40-minutes-later clip is the answer to 'what is this game about', but the cut never shows that Forsen understands or reacts to it. Use a clip where he actually reacts to the enemy, or where he say; weak_payoff: The cut ends on 'All the pain!', which "
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "reaction to interview, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Watching red carpet video, small visible",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Gets Exposed Live By Jynx After Saying He Won't Troll Emily"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the canvas height. It shows the whole stream screen capture (browser",
+                "The renderer did not crop toward the action. The red carpet interview is small inside a letterboxed desktop capture, and",
+                "The opening frame at 0.8s is mostly a black empty box, which is a weak first shot.",
+                "The last frames (15.2s to 18.4s) show a Twitter/X UI page at tiny scale, with unreadable content and no clear subject.",
+                "The hook card is fine, but the large blurry areas dominate the frame and the real content is lost."
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 110.5
+        },
+        {
+          "slug": "clip-20261114-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261114-3",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the 9:16 canvas, against a target of roughly three quarters. Most of; vision: The interviewer and Emily are small within the strip and hard ",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261114-3",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "reaction to interview, needs context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Red carpet interview, vague, reactions u",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Asks Emily If She Deserves Streamer Of The Year After Taking Her Spot"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the 9:16 canvas, against a target of roughly three quarters. Most of",
+                "The interviewer and Emily are small within the strip and hard to read on a phone. The renderer did not crop toward them.",
+                "The full-width stream capture is shown uncropped, so chat overlays and stream UI clutter the strip.",
+                "The streamer's webcam facecam covers the lower-left corner of the strip and takes space from the action."
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 107.3
+        },
+        {
+          "slug": "clip-20261114-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261114-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261114-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Red carpet chat, no clear event)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "niche roleplay insider talk",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Red carpet chat, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 29.7
         }
       ]
     }

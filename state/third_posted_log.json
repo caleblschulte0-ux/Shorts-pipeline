@@ -19920,6 +19920,60 @@
         "end": 50.8
       },
       "director_cut": true
+    },
+    "rejected-spineycrepuscularsharkhotpokket-mvrkko3-omtkep2a": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/SpineyCrepuscularSharkHotPokket-MVrkko3-oMtkeP2a",
+      "streamer": "joe_bartolozzi",
+      "title": "joe murders 5th graders",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Two guys talking in car, nothing happens)",
+      "ts": "2026-11-14T13:53:44.450604+00:00"
+    },
+    "rejected-delightfulshortlegtbtacoright-agv62ls3kgfaoumb": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DelightfulShortLegTBTacoRight-Agv62ls3kGFaOUmB",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Gets Exposed Live By Jynx After Saying He Won't Troll Emily",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height. It shows the whole stream screen capture (browser; vision: The renderer did not crop toward the action. The red carpet interview is small inside a letterboxed desktop capture, and; vision: The opening frame at 0.8s is mos",
+      "ts": "2026-11-14T13:55:34.935601+00:00"
+    },
+    "rejected-amorphousarborealpoxfailfish-5dvago4vzken4x6x": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AmorphousArborealPoxFailFish-5DVagO4VzkEN4X6X",
+      "streamer": "jynxzi",
+      "title": "evan burger",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-11-14T13:56:16.197179+00:00"
+    },
+    "rejected-bumblingopenravenyee-ukli0oberl1bvofe": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BumblingOpenRavenYee-uKlI0oberl1bvOFe",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Asks Emily If She Deserves Streamer Of The Year After Taking Her Spot",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the 9:16 canvas, against a target of roughly three quarters. Most of; vision: The interviewer and Emily are small within the strip and hard to read on a phone. The renderer did not crop toward them.; vision: The full-width stream capture is",
+      "ts": "2026-11-14T13:58:03.449706+00:00"
+    },
+    "rejected-repleteabnegatepeanutohmydog-thi1cgetkrbpc1lv": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RepleteAbnegatePeanutOhMyDog-thI1CGeTKrbpC1lV",
+      "streamer": "jynxzi",
+      "title": "worst clipfarm ever part 2",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Fortnite chase, unclear event, insider)",
+      "ts": "2026-11-14T13:59:36.756254+00:00"
+    },
+    "rejected-venomoushungrybasenjifloof-5oapjloj4tkf8-dd": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/VenomousHungryBasenjiFloof-5OapJlOj4TKF8-Dd",
+      "streamer": "stableronaldo",
+      "title": "Willneff wants Burn to win Best Roleplay Streamer of the Year",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Red carpet chat, no clear event)",
+      "ts": "2026-11-14T14:00:06.345394+00:00"
     }
   }
 }

@@ -1172,10 +1172,12 @@
       "known_claims": [],
       "candidate_sources": [
         "https://www.twitch.tv/kaicenat/clip/AttractiveEsteemedNikudonPartyTime-BffiYx-OsOxSdSTN",
-        "https://www.twitch.tv/kaicenat/clip/NurturingColorfulCrabsPeanutButterJellyTime-pKpKnJYyLC31iwYb"
+        "https://www.twitch.tv/kaicenat/clip/NurturingColorfulCrabsPeanutButterJellyTime-pKpKnJYyLC31iwYb",
+        "https://www.twitch.tv/kaicenat/clip/DarlingSuspiciousCrabsDansGame-A4mKRO7kie3mpInn",
+        "https://www.twitch.tv/kaicenat/clip/IronicMotionlessPigRaccAttack-Lchs5URj26kEhaH6"
       ],
       "published_versions": [],
-      "last_updated": "2026-08-26"
+      "last_updated": "2026-11-14"
     },
     "stableronaldo-appear-call-2026w35": {
       "event_id": "stableronaldo-appear-call-2026w35",
@@ -5773,6 +5775,117 @@
         "story-280e98dcbff0064c"
       ],
       "last_updated": "2026-11-13"
+    },
+    "ohnepixel-menu-ohnepixel-2026w40": {
+      "event_id": "ohnepixel-menu-ohnepixel-2026w40",
+      "people": [
+        "ohnepixel"
+      ],
+      "actions": [
+        "menu",
+        "ohnepixel",
+        "pause",
+        "says"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/ohnepixel/clip/PeacefulCleverCardRaccAttack-ucc04g0tD9xvgOU1",
+        "https://www.twitch.tv/ohnepixel/clip/PolishedHyperToothKeyboardCat-lYxt3_2OqjYU0qwe",
+        "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-14"
+    },
+    "jynxzi-stableronaldo-fortnite-pirate-2026w46": {
+      "event_id": "jynxzi-stableronaldo-fortnite-pirate-2026w46",
+      "people": [
+        "jynxzi",
+        "stableronaldo"
+      ],
+      "actions": [
+        "fortnite",
+        "pirate",
+        "stableronaldo",
+        "token"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/BumblingKitschyFlamingoAliens-IzMZHtykx_-kiEWH",
+        "https://www.twitch.tv/stableronaldo/clip/ConcernedEnticingNarwhalSquadGoals-Y5shuUMqcdVxV8hc",
+        "https://www.twitch.tv/jynxzi/clip/DelightfulEndearingVelociraptorPrimeMe-x6nicQqPB4nA_t8s"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-14"
+    },
+    "2xrakai-bath-bikini-2026w45": {
+      "event_id": "2xrakai-bath-bikini-2026w45",
+      "people": [
+        "2xrakai"
+      ],
+      "actions": [
+        "bath",
+        "bikini",
+        "bubble",
+        "towel"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2922690812/11103-11343",
+        "https://www.twitch.tv/2xrakai/clip/BoringPuzzledToothNononoCat-kwd8HrI5vbJlpoPW",
+        "vodmine://2922690812/11349-11589"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-14"
+    },
+    "forsen-clad-enemy-2026w43": {
+      "event_id": "forsen-clad-enemy-2026w43",
+      "people": [
+        "forsen"
+      ],
+      "actions": [
+        "clad",
+        "enemy",
+        "forsen",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/forsen/clip/TangibleAssiduousMangoMingLee-CVV7C9czSZa1gz4n",
+        "https://www.twitch.tv/forsen/clip/FragileSmoggyGiraffeRitzMitz-lwOIMDCeLOaCO6o_",
+        "https://www.twitch.tv/forsen/clip/BusyRudeGarlicKappaClaus-r1GSC2EOdaHzuSJi"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-14"
+    },
+    "mokrivskyi-dark-goes-2026w45": {
+      "event_id": "mokrivskyi-dark-goes-2026w45",
+      "people": [
+        "mokrivskyi"
+      ],
+      "actions": [
+        "dark",
+        "goes",
+        "guest",
+        "house"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2922273015/5926-6166",
+        "https://www.twitch.tv/mokrivskyi/clip/LachrymoseCrazyChickpeaCharlietheUnicorn-tbrxxrR5zM1ERue9",
+        "vodmine://2922273015/6174-6414"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-14"
     }
   }
 }
