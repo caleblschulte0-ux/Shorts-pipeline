@@ -689,6 +689,118 @@ def fill_crop(video: Path) -> tuple | None:
         return None
 
 
+# THE POST'S OWN PICTURE, NOT ITS PADDING (2026-11-14 audit of 68 sports
+# holds: "a small letterboxed strip", "a postage-stamp split-screen inside
+# two thirds of blur", "65% of the frame is blurred filler"). A Reddit post
+# is often already a repost: the broadcast laid into a phone frame on black
+# or a blur of itself, sometimes under someone's caption. Everything below
+# then framed the PADDING with it. The padding is measured, not guessed: a
+# band with next to no sharp detail on BOTH sides of the picture.
+FILL_DETAIL = 0.22        # a line this soft, vs the sharpest lines, is fill
+FILL_MIN = 0.06           # each side's band at least this share of the frame
+PICTURE_MAX = 0.88        # crop only when the picture is under this share
+SIDES_EVEN = 0.4          # the smaller pad is at least this share of the larger
+PICTURE_WIDE = 1.2        # a padded-in picture is at least this wide for tall
+BLACK_MAX = 18            # mean grey level under which a side band is black
+
+
+def _bands(prof, frac: float = FILL_DETAIL) -> tuple[int, int] | None:
+    """(first, last+1) of the longest run of sharp lines in `prof`, with
+    gaps of up to 2% bridged; None when nothing is sharp."""
+    import numpy as np
+    prof = np.asarray(prof, dtype=float)
+    if not len(prof) or prof.max() <= 0:
+        return None
+    sharp = prof >= frac * float(np.percentile(prof, 90))
+    gap = max(1, int(len(prof) * 0.02))
+    best, run0, last = (0, 0), None, -10 ** 9
+    for i, v in enumerate(sharp):
+        if not v:
+            continue
+        if run0 is None or i - last > gap + 1:
+            run0 = i
+        last = i
+        if last + 1 - run0 > best[1] - best[0]:
+            best = (run0, last + 1)
+    return best if best[1] > best[0] else None
+
+
+def picture_area(video: Path, samples: int = 8) -> tuple | None:
+    """(w, h, x, y) of the sharp picture inside a padded post, or None when
+    the post is its own picture. Never raises."""
+    try:
+        import numpy as np
+        w0, h0, dur = _probe_wh_dur(Path(video))
+        if w0 <= 0 or h0 <= 0 or dur <= 0:
+            return None
+        sw = 320
+        sh = max(2, int(round(h0 * sw / w0)))
+        rows = np.zeros(sh)
+        cols = np.zeros(sw)
+        lum = np.zeros(sw)
+        for k in range(samples):
+            t = dur * (k + 0.5) / samples
+            raw = subprocess.run(
+                ["ffmpeg", "-v", "error", "-ss", f"{t:.2f}", "-i",
+                 str(video), "-frames:v", "1", "-vf",
+                 f"scale={sw}:{sh},format=gray", "-f", "rawvideo", "-"],
+                capture_output=True, timeout=60).stdout
+            if len(raw) != sw * sh:
+                continue
+            g = np.frombuffer(raw, dtype=np.uint8).reshape(sh, sw)
+            g = g.astype(np.int16)
+            dx = np.abs(np.diff(g, axis=1))
+            dy = np.abs(np.diff(g, axis=0))
+            rows += dx.mean(axis=1)
+            rows[1:] += dy.mean(axis=1)
+            cols[1:] += dx.mean(axis=0)
+            cols += dy.mean(axis=0)
+            lum += g.mean(axis=0)
+        r = _bands(rows)
+        if r is None:
+            return None
+        c = _bands(cols)
+        if c is None:
+            return None
+        y0, y1 = r
+        x0, x1 = c
+        top, bot = y0 / sh, (sh - y1) / sh
+        left, right = x0 / sw, (sw - x1) / sw
+        # padding is laid round the picture, so its two sides match; a
+        # flat sky or wall on one side of a real shot does not
+        def even(a, b):
+            return min(a, b) >= FILL_MIN and min(a, b) >= SIDES_EVEN * max(a, b)
+        # Above and below: the picture inside must be a WIDE one, the shape
+        # a broadcast laid into a phone frame has. Either side: only black
+        # (a pillarbox) — a face against a dark backdrop has soft sides too
+        # (2026-11-14: Mendoza's close-up measured as 84px of padding a side)
+        n = max(1, samples)
+        black = (lum[:x0].mean() / n if x0 else 255) <= BLACK_MAX and \
+            (lum[x1:].mean() / n if x1 < sw else 255) <= BLACK_MAX
+        horiz = even(left, right) and black
+        if not horiz:
+            x0, x1 = 0, sw
+        vert = even(top, bot) and (x1 - x0) * w0 / sw >= \
+            PICTURE_WIDE * (y1 - y0) * h0 / sh
+        if not vert:
+            y0, y1 = 0, sh
+        if not (vert or horiz):
+            return None
+        if (x1 - x0) * (y1 - y0) > PICTURE_MAX * sw * sh:
+            return None
+        if (x1 - x0) < 0.25 * sw or (y1 - y0) < 0.15 * sh:
+            return None
+        fx, fy = w0 / sw, h0 / sh
+
+        def ev(v):
+            v = int(v)
+            return v - v % 2
+        return (ev((x1 - x0) * fx), ev((y1 - y0) * fy),
+                ev(x0 * fx), ev(y0 * fy))
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def crop_vf(crop) -> str:
     """The ffmpeg filter for `fill_crop`'s answer, with its comma, or ''."""
     if not crop:

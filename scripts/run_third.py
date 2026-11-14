@@ -434,6 +434,15 @@ def _remember_refused(member_urls: list[str], premise: str, why: str,
         print(f"::warning::[clip-memory] {e}", flush=True)
 
 
+def self_heal_differs(led: dict) -> bool:
+    """Would the simple (auto=False) render look different from this one?
+    Only when this one was reframed by the shot plan: the simple render IS
+    the blur fill, so a cut that already fell back to it would be rendered
+    again identical (third_capture/clip_edit: `reframe` is "blur" exactly
+    when the shot plan returned no reframe)."""
+    return str(led.get("reframe") or "blur") != "blur"
+
+
 def _cm_keep_min() -> int:
     from third_capture import clip_memory
     return clip_memory.KEEP_MIN
@@ -2383,6 +2392,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 except Exception as e:  # noqa: BLE001
                     print(f"::warning::[story] {elbl}: render failed ({e})"
                           " — next event", flush=True)
+                    # ON THE RECORD: this `continue` wrote nothing, so a
+                    # story renderer crashing on every cut looked, in
+                    # third_qa_stats, exactly like a quiet day
+                    _story_verdict(elbl, "render_failed",
+                                   f"{type(e).__name__}: {e}")
                     continue
 
                 # ---- narrative review + ONE revision (§18-19)
@@ -2620,6 +2634,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     _story_verdict(elbl, "duration",
                                    f"{led['duration_s']:.0f}s outside "
                                    f"{s_min:.0f}-{s_max:.0f}s")
+                    # REMEMBERED, like every other refusal of a rendered
+                    # cut. It was not: the same 21s ohnepixel cut was
+                    # scouted, analysed, planned, rendered, read by the
+                    # critic and dropped here in five runs running
+                    # (2026-11-11..13), the answer never once different.
+                    _remember_refused(
+                        _refuse_urls, edl.get("premise") or who,
+                        f"rendered {led['duration_s']:.0f}s, outside the "
+                        f"{s_min:.0f}-{s_max:.0f}s story band",
+                        rendered=True)
                     continue
 
                 # ---- mechanical QA (§20 floor; coherence judged above)
@@ -3491,7 +3515,33 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 ledger_path.write_text(json.dumps(led, indent=2) + "\n")
                 if qa["verdict"] != "fail":
                     break
+                if auto_flag and not self_heal_differs(led):
+                    # THE SIMPLE RENDER IS THIS SAME PICTURE (2026-11-11..13:
+                    # 12 self-heals, 10 rejected again for the thin strip
+                    # the first render was rejected for). auto=False only
+                    # turns the shot plan off; when the shot plan had
+                    # already fallen back to the blur fill there is nothing
+                    # to turn off, and a second render is minutes of ffmpeg
+                    # and a second vision call to ask the same judge the
+                    # same question until it says yes. The clip is refused
+                    # on the first verdict, and the record says why.
+                    _judge("self_heal", verdict="skipped",
+                           why="the first render was already the blur "
+                               "fill; the simple render is the same "
+                               "picture")
+                    print(f"::warning::[qa] {slug} failed "
+                          f"({'; '.join(qa['problems'])[:140]}) — not "
+                          "self-healing: the simple render is the same "
+                          "blur fill", flush=True)
+                    break
                 if auto_flag:
+                    # keep the edit render's verdict: the self-heal's
+                    # overwrites render_qa/vision, and without this the
+                    # record never said why the shot-planned cut failed
+                    _judge("first_render",
+                           reframe=led.get("reframe"),
+                           layout=(led.get("shot_plan") or {}).get("layout"),
+                           problems=qa["problems"])
                     print(f"::warning::[qa] {slug} failed "
                           f"({'; '.join(qa['problems'])[:140]}) — "
                           "self-healing with the simple render", flush=True)

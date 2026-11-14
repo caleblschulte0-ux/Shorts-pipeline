@@ -239,7 +239,7 @@ class ARefusedCutIsRepaired(unittest.TestCase):
              "permalink": "/r/hockey/comments/abc/x/"}
         made = []
 
-        def make(c, info, mp4, notes="", line_top=False):
+        def make(c, info, mp4, notes="", line_top=False, **_kw):
             made.append({"notes": notes, "line_top": line_top})
             mp4.parent.mkdir(parents=True, exist_ok=True)
             mp4.write_bytes(b"x")
@@ -263,6 +263,8 @@ class ARefusedCutIsRepaired(unittest.TestCase):
                 mock.patch.object(rs, "REPORT",
                                   Path(self.tmp) / "r.json"), \
                 mock.patch.object(rs, "OUT", Path(self.tmp) / "out"), \
+                mock.patch.object(rs, "REFUSED",
+                                  Path(self.tmp) / "refused.json"), \
                 mock.patch.object(sys, "argv",
                                   ["run_sports", "--count", "1",
                                    "--dry-run"]):

@@ -17,6 +17,15 @@ doesn't pay off).
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import os
 import re
 
@@ -900,30 +909,6 @@ def _call_claude(user: str, system: str = SYSTEM,
     return one_object(r.stdout)
 
 
-def one_object(text: str) -> dict:
-    """The JSON object a model's reply carries. A reply with TWO objects in
-    it (an answer, then a corrected one; a fenced block plus an example)
-    made the greedy brace match span both and raise "Extra data: line 3
-    column 1" — one to three Baller Bro posts a run died as "render
-    failed: JSONDecodeError" for days (2026-11-11..13). Every top-level
-    object is decoded on its own and the LAST is the answer: a model that
-    writes two writes its correction second. Raises ValueError only when
-    no object decodes at all."""
-    dec = json.JSONDecoder()
-    text = text or ""
-    found, i = [], text.find("{")
-    while i != -1:
-        try:
-            obj, end = dec.raw_decode(text, i)
-        except ValueError:
-            i = text.find("{", i + 1)
-            continue
-        if isinstance(obj, dict):
-            found.append(obj)
-        i = text.find("{", end)
-    if not found:
-        raise ValueError("no JSON object in the reply")
-    return found[-1]
 
 
 # ------------------------------------------------ the fallback judges
@@ -1415,7 +1400,34 @@ def rank_clips(clips: list[dict]) -> dict:
                 result[key] = (b, str(s.get("why", ""))[:40])
         except (TypeError, ValueError, KeyError):
             continue
+    if degenerate(result):
+        # A RANKING THAT RANKS NOTHING (2026-11-08..10). With Claude at its
+        # weekly limit the fallback judge gave every candidate on the slate
+        # the same 0.20 — r/LivestreamFail clips with 20,000 views among
+        # them — and the hard floor skipped 64 slots in a row as "nothing
+        # worth transcribing": three days, zero posts, every run green.
+        # Eight different titles cannot all be exactly as good as each
+        # other; one number for all of them is a judge that did not read
+        # them. That is no ranking, so the caller keeps velocity (every
+        # candidate neutral) and the transcript + vision judges downstream
+        # — which watch the clip — decide, at their own unchanged bars.
+        print(f"::warning::[rank] every one of {len(result)} candidates "
+              f"scored {next(iter(result.values()))[0]:.2f} — a judge that "
+              "did not rank them; velocity only", flush=True)
+        _BRAIN["fail"] += 1
+        _BRAIN["ok"] = max(0, _BRAIN["ok"] - 1)
+        return {}
     return result
+
+
+DEGENERATE_MIN = 4   # fewer candidates than this can honestly tie
+
+
+def degenerate(scores: dict) -> bool:
+    """True when a ranking gave `DEGENERATE_MIN` or more candidates one
+    and the same banger score: it ranked nothing."""
+    vals = {round(float(v[0]), 3) for v in scores.values()}
+    return len(scores) >= DEGENERATE_MIN and len(vals) == 1
 
 
 # ---------------------------------------------- story "showrunner" brain

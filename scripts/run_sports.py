@@ -79,6 +79,41 @@ def permalink_key(c: dict) -> str:
     return (p or c.get("url") or "").split("?")[0].rstrip("/")
 
 
+# A POST THAT CAN NEVER BE CUT IS NOT PICKED AGAIN (2026-11-14: 72 of 252
+# slots in ten days went to 28 posts already refused for being too short or
+# silent; one Kaka post was downloaded and refused twelve times, each time
+# in place of a post that could have run). What the footage itself rules
+# out is remembered for good; a failed download only after `DL_TRIES`.
+REFUSED = ROOT / "state" / "sports_refused.json"
+FOR_GOOD = ("too short: the post runs", "no sound", "not English",
+            "author: no setup or no payoff")
+DL_TRIES = 2
+
+
+def load_refused(path: Path | None = None) -> dict:
+    try:
+        d = json.loads((path or REFUSED).read_text())
+        return d if isinstance(d, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def note_refused(refused: dict, key: str, why: str) -> None:
+    """Remember why `key` was refused, when it is a reason that lasts."""
+    if not key or not why:
+        return
+    if why.startswith(FOR_GOOD):
+        refused[key] = {"why": why[:160], "n": DL_TRIES}
+    elif why == "download failed":
+        n = int((refused.get(key) or {}).get("n") or 0) + 1
+        refused[key] = {"why": why, "n": n}
+
+
+def never_again(refused: dict) -> set[str]:
+    return {k for k, v in refused.items()
+            if int((v or {}).get("n") or 0) >= DL_TRIES}
+
+
 def already_used(pool: list[dict], log: dict) -> set[str]:
     """Keys of pool posts the channel has already posted or claimed."""
     seen = {rt._norm(e.get("topic")) for e in log.get("posted") or []}
@@ -138,6 +173,21 @@ def over_graphic(v: dict) -> bool:
             or "lower third" in text or "scorebug" in text)
 
 
+def words_collide(v: dict) -> bool:
+    """The judge saw our word captions on top of the footage's own text
+    (its subtitles, a scorebug, a burned-in title). Four of the 68 holds
+    in the 2026-11-14 audit said so while OCR had read the band as free;
+    the repair then turned the line, never the words, off it."""
+    text = " ".join([str(v.get("one_line") or "")]
+                    + [str(x) for x in v.get("problems") or []]
+                    + [str(x) for x in v.get("auto_fails") or []]).lower()
+    ours = ("caption" in text or "subtitle" in text or "our words" in text)
+    clash = any(w in text for w in ("collide", "on top of", "stacked",
+                                    "over the clip's own", "burned-in",
+                                    "burned in", "scorebug", "overlap"))
+    return ours and clash
+
+
 def repair_notes(v: dict, meta: dict) -> str:
     """The refused cut's verdict, in words the author can cut from."""
     cut = (meta.get("edit") or {}).get("cut") or {}
@@ -181,8 +231,18 @@ def main() -> int:
               "format": FORMAT, "want": want, "dry_run": a.dry_run,
               "slots": []}
 
+    refused: dict = {}
+    noted: set[int] = set()
+
     def _save():
         REPORT.write_text(json.dumps(report, indent=1, default=str))
+        for k, r in enumerate(report["slots"]):
+            if k not in noted and r.get("skipped"):
+                noted.add(k)
+                note_refused(refused, r.get("topic") or "", r["skipped"])
+        if refused:
+            REFUSED.parent.mkdir(parents=True, exist_ok=True)
+            REFUSED.write_text(json.dumps(refused, indent=1, sort_keys=True))
 
     if not want:
         print(f"[sports] the registry asks for no {FORMAT} today", flush=True)
@@ -205,8 +265,13 @@ def main() -> int:
 
     pool = ss.discover(a.period)
     used = already_used(pool, log)
-    fresh = [c for c in pool if permalink_key(c) not in used]
-    report.update(pool=len(pool), already_posted=len(used))
+    refused = load_refused()
+    gone = never_again(refused)
+    fresh = [c for c in pool if permalink_key(c) not in used
+             and permalink_key(c) not in gone]
+    report.update(pool=len(pool), already_posted=len(used),
+                  refused_before=len([c for c in pool
+                                      if permalink_key(c) in gone]))
     print(f"[sports] {len(pool)} posts, {len(used)} already used, "
           f"{len(fresh)} fresh", flush=True)
     if not fresh:
@@ -258,9 +323,29 @@ def main() -> int:
             continue
         row.update(title=meta["title"], hook=made.get("hook"),
                    ledger=made.get("ledger"))
-        made_up = sports_scope.invented(
-            meta["title"], c.get("post_title"),
-            " ".join(w["w"] for w in clip_edit_words(info)))
+        said = " ".join(w["w"] for w in clip_edit_words(info))
+        made_up = sports_scope.invented(meta["title"], c.get("post_title"),
+                                        said)
+        if made_up:
+            # RETITLED, not dropped (2026-11-13: Kerr on Butler's coach act
+            # was refused twice for "Warriors", true but unsaid, and a good
+            # post was lost over one word). The author gets one more go
+            # with the word named; the same check then decides.
+            try:
+                again = ss.make(c, info, mp4, notes=(
+                    f"YOUR TITLE {meta['title']!r} WAS REFUSED: {made_up}. "
+                    "Write the title again naming only what the post title "
+                    "or the clip itself says."))
+            except Exception as e:  # noqa: BLE001
+                again = {"skipped": f"render failed: {type(e).__name__}"}
+            ameta = again.get("meta") or {}
+            if not again.get("skipped") and ameta.get("title") and \
+                    not sports_scope.invented(ameta["title"],
+                                              c.get("post_title"), said):
+                made, meta = again, ameta
+                row.update(title=meta["title"], hook=made.get("hook"),
+                           ledger=made.get("ledger"))
+                made_up = ""
         if made_up:
             row["skipped"] = f"author: {made_up}"
             continue
@@ -274,16 +359,18 @@ def main() -> int:
         gate = judge(mp4, c, meta, made.get("hook") or "",
                      will_upload=not a.dry_run)
         line_top = False
+        no_words = False
         for _ in range(REPAIRS):
             v = gate.get("verdict") or {}
             if not gate["blocked"] or (v.get("score") or 0) < REPAIR_MIN:
                 break
             line_top = line_top or over_graphic(v)
+            no_words = no_words or words_collide(v)
             row.setdefault("repairs", []).append(
                 {"score": v.get("score"), "reason": gate.get("reason")})
             try:
                 again = ss.make(c, info, mp4, notes=repair_notes(v, meta),
-                                line_top=line_top)
+                                line_top=line_top, no_words=no_words)
             except Exception as e:  # noqa: BLE001
                 print(f"[sports] repair failed: {e}", flush=True)
                 break

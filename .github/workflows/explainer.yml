@@ -227,9 +227,16 @@ jobs:
           # per-scene SVG (Data + prop) to PNG at render time.
           # libcairo2-dev + pkg-config: build deps of pycairo, which draws the
           # illustrated A/B arm (data_learning/illustrated.py).
-          sudo apt-get install -y -q ffmpeg blender \
-            libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2 libcairo2 \
-            libcairo2-dev pkg-config
+          # RETRIED: 2026-11-11 lost two runs to a mirror that would not
+          # resolve for a minute (apt exit 100 -> no pip deps -> nothing)
+          for i in 1 2 3; do
+            sudo apt-get install -y -q -o Acquire::Retries=3 ffmpeg blender \
+              libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2 libcairo2 \
+              libcairo2-dev pkg-config && break
+            [ "$i" = 3 ] && exit 1
+            echo "::warning::apt failed (attempt $i) — retrying"; sleep 30
+            sudo apt-get update -qq || true
+          done
 
       - name: Install Python deps
         run: |
@@ -904,7 +911,8 @@ jobs:
           # persisted plan; this line is what lets it ever see one.
           bash scripts/ci_commit_state.sh \
             "explainer: update posted log + analytics [skip ci]" \
-            state/explainer_posted_log.json state/analytics_explainer \
+            state/explainer_posted_log.json state/explainer_runs.json \
+            state/analytics_explainer \
             state/forge_used.json \
             state/video_ledger.json state/brain_context.json \
             data_learning/niche.config.json data_learning/data \
@@ -912,3 +920,12 @@ jobs:
             state/showrunner_verdicts.jsonl \
             exchange/reviews exchange/asks exchange/rewrites exchange/OPEN.json \
             state/scene_plans quality
+
+      # IS THE CHANNEL STILL POSTING? (operator, 2026-11-14). Reads this
+      # run's record and the last few in state/explainer_runs.json, plus the
+      # showrunner's verdicts on explainer stories, and goes red on a
+      # fault, days with nothing posted, a story stuck not_current, or a
+      # gate that keeps naming the same defect. Last, after the persist.
+      - name: Health check — drawn, judged, posted
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        run: python3 scripts/explainer_health.py
