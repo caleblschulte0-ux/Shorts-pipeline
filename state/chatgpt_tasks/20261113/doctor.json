@@ -1,17 +1,17 @@
 {
- "checked_at": "2026-11-13T21:25:01+00:00",
+ "checked_at": "2026-11-14T12:31:05+00:00",
  "date": "20261113",
  "deadline_central": 23,
- "deadline_passed": false,
+ "deadline_passed": true,
  "expected": [
   "doctor/reports/20261113.json"
  ],
  "found": [],
- "headline": "doctor: pending",
+ "headline": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261113 (the doctor is a daily read).",
  "ok": false,
  "required": true,
  "schema": "chatgpt-task-outcome/v1",
- "status": "pending",
+ "status": "FAILED_NO_ARTIFACT",
  "task": "doctor",
  "why_required": "the doctor is a daily read"
 }
