@@ -15,6 +15,7 @@ with out me having to get invloved"), each beat its own place and its own idea (
 
 Run through the shot harness (store/shots.py, STORY=saffron). The props are store/saffron_kit.py."""
 import saffron_kit as SK
+import prop_kit as PK
 import produce as PR
 import locations as LOC
 from mathutils import Euler
@@ -125,7 +126,7 @@ def shot1():
               back=0.4 if k == 1 else None, elbow_out=0.4)
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(jp(T_DOWN1) + Vector((0, 0, 0.03)), T_DOWN0 + 0.1, max_yaw=30)
+    data.look_at(jp(T_DOWN1) + Vector((0, 0, 0.03)), T_DOWN0 + 0.1, max_yaw=30, max_pitch=22)   # head only: the neck bend put his forearm in his head
     data.look_at(B_END[0] + Vector((0, 0, 0.1)), P1[0][0] + 0.2, max_yaw=30)
     data.look_at(US, P1[1][1] + 0.15, max_yaw=20)
     data.idle(0.0, DUR)
@@ -360,32 +361,14 @@ def shot4():
     # its hands racing, and the crocus in his other hand wilting brown and drooping. Neither needs a subtle face.
     G = Vector((data.pos().x + 0.06, -0.34, 0.48))                    # his grip on the stem, in front of his chest
     hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.6, scale=1.25, seed=61)
-    pm = hero.active_material.copy(); pm.name = "wilting petal"             # this one flower browns as it wilts
-    hero.material_slots[0].material = pm
-    nt = pm.node_tree; bsdf = nt.nodes["Principled BSDF"]
-    src = bsdf.inputs["Base Color"].links[0].from_socket
-    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = 'RGBA'; mix.blend_type = 'MIX'
-    mix.inputs["B"].default_value = (*K.lin("#6B4A2E"), 1)
-    nt.links.new(src, mix.inputs["A"]); nt.links.new(mix.outputs["Result"], bsdf.inputs["Base Color"])
-    fac = mix.inputs["Factor"]
     T_W0, T_W1 = 0.6, DUR - 0.8
-    for t_, v in ((0.0, 0.0), (T_W0, 0.0), (T_W1, 0.85)):
-        fac.default_value = v; fac.keyframe_insert("default_value", frame=F(t_))
-    kb = hero.data.shape_keys.key_blocks["closed"]
-    for t_, v in ((0.0, 0.0), (T_W0, 0.0), (T_W1, 1.0)):
-        kb.value = v; kb.keyframe_insert("value", frame=F(t_))
-    droop = lambda t: math.radians(75) * ease(max(0.0, min(1.0, (t - T_W0) / (T_W1 - T_W0))))
+    droop = PK.wilt(hero, T_W0, T_W1, slots=(0,))      # this one flower browns, shuts and droops (the shared prop kit)
     follow(hero, lambda t: G - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))   # it flops over toward us
     # the alarm clock, held up beside his face: bells on top, hands racing, ringing (a fast shake)
     CK = Vector((data.pos().x - 0.24, -0.36, 0.66))
-    clock, hh, mm = SK.wall_clock("alarm clock", (0, 0, 0), r=0.075)
-    bell_m = SK._mat("clock bell", "#C9A227", rough=0.3, metal=0.8)
-    for sg in (-1, 1):
-        K.sph(f"alarm bell {sg}", (sg * 0.05, 0.0, 0.075), 0.03, bell_m, parent=clock)
-    K.box("alarm clock body", (0, 0.012, 0), (0.17, 0.03, 0.17), SK._mat("clock rim", "#1E1D20"), bev=0.03, parent=clock)
-    SK.spin_clock(hh, mm, 0.2, DUR - 0.3, hours=5.0, start_h=5.0)
-    ring = lambda t: math.radians(7) * math.sin(2 * math.pi * 11 * t) * (1.0 if t > 0.4 else t / 0.4)
-    follow(clock, lambda t: CK, 0.0, DUR, rot_fn=lambda t: (0, ring(t), 0))
+    ak = PK.alarm_clock("alarm clock", r=0.075); clock = ak["root"]
+    ak["race"](0.2, DUR - 0.3, hours=5.0, start_h=5.0)
+    follow(clock, lambda t: CK, 0.0, DUR, rot_fn=lambda t: (0, ak["ring"](t), 0))
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)                       # to us, with the clock: "it's a race"
     data.look_at(G + Vector((0, 0, 0.08)), 1.2, max_yaw=25, max_pitch=40)   # down at the flower as it wilts

@@ -18,12 +18,7 @@ the reason and who must fix them; the test fails once an entry is no longer need
 import re
 
 POSTED = {"checkout", "banana"}          # already on the channel: the same set the ending-question test exempts
-GRANDFATHERED = {
-    "saffron": "storyboard written 2026-11-13, a day before this lint, and in production in another session that this "
-               "change may not touch. Its beat 2 ('the needle barely twitches ... a wry, unimpressed look') is the very "
-               "case the lint was written for. That session rewrites beat 2 (and its `ideas` entry) around a big "
-               "carrier, then deletes this entry.",
-}
+GRANDFATHERED = {}                       # saffron came off 2026-11-14: beat 2 rewritten around a giant crocus
 
 TINY = re.compile(r"\b(barely|slightly|subtl[ey]|subtlety|hardly|faint(ly)?|imperceptibl[ey]|a tiny (change|move|flick|twitch)|"
                   r"twitch(es|ing)?|flickers?|moves? a little|a little (more|less))\b", re.I)
