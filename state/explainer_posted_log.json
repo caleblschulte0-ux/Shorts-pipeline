@@ -5488,11 +5488,29 @@
       "scene_changes_before_5s": 2
     },
     "podcasts-passed-radio-spoken-word": {
-      "claimed_at": "2026-11-14T11:20:13.523480+00:00",
+      "url": "https://youtube.com/shorts/FIgEvWehv-s",
       "title": "Podcasts Overtook Radio By Just 1 Percentage Point",
+      "at": "2026-11-14T11:20:26.115731+00:00",
       "publish_at": "2026-11-14T16:35:33Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.34,
+      "beat_s": [
+        4.42,
+        6.24,
+        5.43,
+        6.34,
+        7.96
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 74,
+      "duration_s": 30.9
     }
   },
   "uploads": [
@@ -7073,9 +7091,10 @@
       "claimed_at": "2026-11-14T11:20:13.523480+00:00",
       "title": "Podcasts Overtook Radio By Just 1 Percentage Point",
       "publish_at": "2026-11-14T16:35:33Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "podcasts-passed-radio-spoken-word"
+      "url": "https://youtube.com/shorts/FIgEvWehv-s",
+      "state": "posted",
+      "slug": "podcasts-passed-radio-spoken-word",
+      "at": "2026-11-14T11:20:26.115731+00:00"
     }
   ]
 }
