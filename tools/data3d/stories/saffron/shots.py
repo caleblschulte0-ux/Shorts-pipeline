@@ -177,8 +177,8 @@ def shot2():
         d = HROT.to_matrix() @ Vector((math.cos(a) * math.sin(sp), math.sin(a) * math.sin(sp), math.cos(sp)))
         threads.append(dict(root=root, rest_rot=d.to_track_quat('Z', 'Y').to_euler()))
     BEATS = [0.9, 2.6, 4.3]                          # reach the cup; pinch; pull up and out by +0.75; held
-    HOLD = shL + Vector((-0.13, -0.09, 0.04))
-    VIA = shL + Vector((-0.1, -0.11, -0.04))         # out in front first, so his forearm never sweeps past his chin           # up beside him, against the sky, clear of his face
+    HOLD = shL + Vector((-0.07, -0.15, -0.04))          # up in front of him, beside the flower: one flower, three threads, one spot
+    VIA = shL + Vector((-0.06, -0.14, -0.05))         # out in front first, so his forearm never sweeps past his chin           # up beside him, against the sky, clear of his face
     REST = shL + Vector((-0.06, -0.08, -0.1))
     def lhand(t):
         if t < BEATS[0] - 0.75: return REST
@@ -200,7 +200,7 @@ def shot2():
         g = BEATS[k]
         if t < g + 0.2: return threads[k]["rest_rot"]
         u = ease(min(1.0, (t - g - 0.2) / 0.5))
-        r0 = threads[k]["rest_rot"]; fan = (k - 1) * 0.3
+        r0 = threads[k]["rest_rot"]; fan = (k - 1) * 0.5
         return Euler((r0.x * (1 - u), r0.y * (1 - u) + fan * u, r0.z * (1 - u)))
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
@@ -220,13 +220,13 @@ def shot2():
     def tpos(k, t):
         g = BEATS[k]
         if t < g + 0.2: return CUP
-        return hand_at(L, t) + Vector(((k - 1) * 0.01, -0.005, -0.006))
-    follow(hero, lambda t: hand_at(R, t) - Vector((0, 0, 0.03)), 0.0, DUR, rot_fn=lambda t: tuple(HROT))   # the flower is IN his fist, wherever the solve put it
+        return hand_at(L, t) + Vector(((k - 1) * 0.022, -0.005, -0.006))
+    follow(hero, lambda t: hand_at(R, t) - Vector((0, 0, 0.07)), 0.0, DUR, rot_fn=lambda t: tuple(HROT))   # the flower is IN his fist, wherever the solve put it
     for k, th in enumerate(threads):
         follow(th["root"], lambda t, k=k: tpos(k, t), 0.0, DUR, rot_fn=lambda t, k=k: trot(k, t))
     soft_key("thread key", (0.5, -1.1, 0.85), tuple(CUP), energy=10, size=30)
-    C0, L0 = Vector((0.0, -1.02, 0.52)), Vector((0.0, 0.2, 0.52))     # a real waist-up (45 mm): legs out of frame, the fanned threads inside it
-    C1, L1 = Vector((0.0, -0.97, 0.52)), Vector((0.0, 0.2, 0.52))
+    C0, L0 = Vector((0.03, -1.04, 0.3)), Vector((0.03, 0.2, 0.6))     # low, looking up: the flower and threads stand against the SKY, not the purple field
+    C1, L1 = Vector((0.03, -1.0, 0.3)), Vector((0.03, 0.2, 0.6))
     cam = K.camera(tuple(C0), tuple(L0), lens=45, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     one = lambda k: (lambda: meshes([threads[k]["root"]]))
@@ -326,7 +326,7 @@ def shot3():
     soft_key("table key", (-0.6, -0.9, 1.1), (0.0, -0.33, TOP), energy=20, size=40)
     C0, L0 = Vector((-0.2, -1.2, 0.72)), Vector((0.02, -0.05, 0.55))
     C1, L1 = Vector((-0.15, -1.1, 0.7)), Vector((0.06, -0.05, 0.56))
-    cam = K.camera(tuple(C0), tuple(L0), lens=28, fstop=5.6)
+    cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, -0.2, 0.55))))
     return dict(**where, data=data, rest=1, grips=("in hand",),
                 conseq=[("flower after flower goes from the heap to the spent pile, its threads into the dish", lambda: meshes(spent), cyc[0][0] + 0.3, T_END),
@@ -335,14 +335,14 @@ def shot3():
 
 # ================================================================ SHOT 4: the race
 def shot4():
-    """IT'S A RACE. Dawn in the field: Data holds a ringing alarm clock up to us, its hands racing, while the crocus in
-    his other hand wilts brown and flops over and the field behind him shuts. He looks down at it, then at us, alarmed."""
+    """IT'S A RACE. Dawn in the field, low among the flowers: one big crocus close to us wilts brown and flops over in
+    seconds while the field behind shuts; Data, behind it, watches it die, then looks at us, alarmed."""
     where = place("crocus_field")
     own = list(LOC.FIELD_OWN)
     T_SHUT0, T_SHUT1 = 0.7, DUR - 0.9
     for o in own:
         y = o.location.y; kb = o.data.shape_keys.key_blocks["closed"]
-        c_at = (T_SHUT1 - 1.6) + 1.2 * max(0.0, min(1.0, (2.2 - y) / 3.2))   # then the field: a quick wave of shutting rolling at him
+        c_at = 0.9 + 1.4 * max(0.0, min(1.0, (2.2 - y) / 3.2))   # then the field: a quick wave of shutting rolling at him
         for t_, v in ((0.0, 0.0), (c_at, 0.0), (c_at + 0.9, 1.0)):     # wide open at first; one change only: they shut
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
     # no sun disc: four rounds read it as a flat lamp or a moon; the dawn light warming over the shot carries it
@@ -355,54 +355,45 @@ def shot4():
             sun.data.energy = en; sun.data.keyframe_insert("energy", frame=F(t_))
         return key
     where["light"] = light
-    data = load_data(); data.place(0.08, 0.05, 0)
-    L, R = sides(data)
-    # 2026-11-14 rethink (operator: "90 degrees didn't work 3 times, try 180"): six rounds asked his FACE to carry the
-    # race and the flowers to read from a petal fold. Now two props carry it: a ringing alarm clock held up to us,
-    # its hands racing, and the crocus in his other hand wilting brown and drooping. Neither needs a subtle face.
-    shL4, shR4 = acts._shoulder(data, L), acts._shoulder(data, R)
-    G = shR4 + Vector((0.08, -0.12, 0.0))                            # out to his side, against the field, not his coat                           # inside his 0.19 m reach: no clamped, floating hand                    # his grip on the stem, in front of his chest
-    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.6, scale=1.6, seed=61)
-    T_W0, T_W1 = 0.6, DUR - 0.8
-    droop = PK.wilt(hero, T_W0, T_W1, brown="#3A2212", to=1.0, slots=(0,))   # a deep brown: dull maroon read as purple      # this one flower browns, shuts and droops (the shared prop kit)
-    follow(hero, lambda t: G - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))   # it flops over toward us
-    # the alarm clock, held up beside his face: bells on top, hands racing, ringing (a fast shake)
-    CK = shL4 + Vector((-0.04, -0.15, 0.0))            # where his hand really is, at chest height: face stays clear
-    ak = PK.alarm_clock("alarm clock", r=0.075); clock = ak["root"]
-    ak["race"](0.2, DUR - 0.3, hours=5.0, start_h=5.0)
-    buzz = lambda t: Vector((0.008 * math.sin(2 * math.pi * 13 * t), 0, 0.006 * math.sin(2 * math.pi * 17 * t + 1.0))) * (1.0 if t > 0.4 else t / 0.4)
-    follow(clock, lambda t: CK + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=22.0), 0))   # it RINGS: a hard rattle you can see
-    US = Vector((0.0, -1.3, 0.62))
-    data.look_at(US, 0.0, max_yaw=20, blend=0.0)                       # to us, with the clock: "it's a race"
-    data.look_at(G + Vector((0, 0, 0.08)), 1.2, max_yaw=10, max_pitch=40)   # down at the flower as it wilts
-    data.gaze(1.2, 0, -22); data.gaze(T_W1 - 0.5, 0, -22)
-    data.look_at(US, T_W1 - 0.4, max_yaw=20)                           # back to us
-    data.gaze(T_W1 - 0.3, 0, 0, blend=0.1)
+    data = load_data(); data.place(0.3, 0.4, 0)
+    # 2026-11-14, second 180 (eight rounds on props in his hands): his arms reach 19 cm, so anything he holds sits inside
+    # his own big head's width and is small on a phone. Now the dying flower is the HERO, close to the lens and tall
+    # against the dawn sky, and Data stands behind it and reacts. No prop in his hands, nothing at a frame edge.
+    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.4, scale=2.0, seed=61)
+    T_W0, T_W1 = 0.4, DUR - 0.4                                 # it dies across the WHOLE shot: no dead hold after it
+    droop = PK.wilt(hero, T_W0, T_W1, brown="#6E4220", to=1.0, droop_deg=70.0, slots=(0,))   # it browns, shuts and flops over
+    kb = hero.data.shape_keys.key_blocks["closed"]; kb.slider_min = -1.0      # wide open at first: a star of petals, not a bud
+    kb.value = -1.0; kb.keyframe_insert("value", frame=F(0.0))
+    kb.value = -0.6; kb.keyframe_insert("value", frame=F(0.6 * T_W1))
+    HB = Vector((-0.06, -0.25, 0.0))
+    follow(hero, lambda t: HB, 0.0, DUR, rot_fn=lambda t: (-droop(t) * 0.25, droop(t) * 0.9, 0.4))   # it flops over sideways: a silhouette against the sky
+    for o in own:                                                      # nothing between the lens and the hero flower
+        if o.location.y < HB.y + 0.1 and abs(o.location.x - HB.x) < 0.7:
+            o.hide_render = True; o.hide_viewport = True
+    own = [o for o in own if not o.hide_render]
+    US = Vector((0.0, -1.3, 0.5))
+    FL = HB + Vector((0, 0, 0.4))
+    T_REACT = T_W0 + 0.6 * (T_W1 - T_W0)                             # he reacts WHILE it dies, not after
+    data.look_at(FL, 0.0, max_yaw=45, max_pitch=45, blend=0.0)
+    data.gaze(0.0, -12, -25)        # watching his flower
+    data.look_at(US, T_REACT, max_yaw=20)                           # then at us
     data.idle(0.0, DUR)
-    data.expression("worried", 0.0, T_W1 - 0.45, blend=0.3)
-    data.perform("alarmed", T_W1 - 0.4, hold=DUR, arms=False, pace=0.55)
-    data.expression("alarmed", T_W1 - 0.3, DUR + 1.0, blend=0.12)
-    data.blink(0.9)
-    # hands solved AFTER the body acts, so his recoil does not carry them off the props
-    reach(data, R, lambda t: G + Vector((0.0, 0.0, 0.004 * math.sin(2.0 * t))), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
-    reach(data, L, lambda t: CK + buzz(t) + Vector((0.02, 0.025, -0.075)), 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)   # his hand under the clock, holding it up
+    data.expression("worried", 0.3, T_REACT - 0.05, blend=0.3)
+    data.perform("alarmed", T_REACT, hold=DUR, arms=False, pace=0.6)
+    data.expression("alarmed", T_REACT + 0.05, DUR + 1.0, blend=0.12)
+    data.blink(1.4)
     data.finish()
-    def hand_at(side, t):                              # the props ride his REAL hands, wherever the solve put them
-        sc.frame_set(F(t)); bpy.context.view_layer.update(); return data.arm.matrix_world @ data.pb[f"hand.{side}"].tail
-    follow(clock, lambda t: hand_at(L, t) + Vector((-0.02, -0.025, 0.075)) + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=22.0), 0))
-    follow(hero, lambda t: hand_at(R, t) - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((0.08, -1.12, 0.52)), Vector((0.08, 0.2, 0.52))    # waist-up (45 mm): clock left, flower right, face clear between
-    C1, L1 = Vector((0.08, -1.07, 0.52)), Vector((0.08, 0.2, 0.52))
-    cam = K.camera(tuple(C0), tuple(L0), lens=45, fstop=5.6)
-    camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
-    return dict(**where, data=data, rest=1, grips=("dawn crocus", "alarm clock"),
-                conseq=[("the alarm clock rings, its hands racing", lambda: meshes([clock]), 0.3, DUR),
-                        ("the crocus in his hand wilts brown and droops", lambda: [hero], T_W0, DUR),
+    soft_key("flower key", (-0.5, -1.0, 0.6), tuple(HB + Vector((0, 0, 0.3))), energy=8, size=30, color=(1.0, 0.85, 0.7))
+    C0, L0 = Vector((0.05, -1.1, 0.07)), Vector((0.08, 0.2, 0.42))    # low among the flowers: the hero crocus tall against the dawn sky, Data behind it
+    C1, L1 = Vector((0.05, -1.05, 0.07)), Vector((0.08, 0.2, 0.42))
+    cam = K.camera(tuple(C0), tuple(L0), lens=38, fstop=2.8)
+    camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.45))))
+    return dict(**where, data=data, rest=1,
+                conseq=[("the crocus wilts brown and flops over", lambda: [hero], T_W0, DUR, {"whole": False}),   # its stem runs out the bottom of the frame by design: the bloom is up against the sky
                         ("the field folds shut behind him", lambda: own, 0.2, DUR, {"whole": False})])
 
 
-# ================================================================ SHOT 5: the payoff
 def shot5():
     """THE TINY JAR BALANCES A HEAP OF FLOWERS. Close on the store table: a big brass balance stands right in front
     of Data, the tiny jar alone on its left pan, which sits low. He tips his basket over the right pan and a stream of
