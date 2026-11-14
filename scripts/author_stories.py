@@ -23,6 +23,15 @@ from __future__ import annotations
 
 import argparse
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import re
 import sys
 from datetime import date
@@ -637,7 +646,7 @@ def _direct_batch(stories: list, examples: list | None = None) -> dict:
         return json.loads(txt)
     except json.JSONDecodeError:
         m = re.search(r"\{.*\}", txt, re.S)
-        return json.loads(m.group(0)) if m else {}
+        return one_object(m.group(0)) if m else {}
 
 
 def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
@@ -722,7 +731,7 @@ def _generate(cfg: dict, n: int) -> list[dict]:
                 m = re.search(r"\{.*\}", text, re.S)
                 if not m:
                     raise
-                data = json.loads(m.group(0))
+                data = one_object(m.group(0))
             stories = data.get("stories") if isinstance(data, dict) else data
             if stories:
                 return stories

@@ -31,6 +31,15 @@ so the caller can log exactly why a video was held.
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import os
 import re
 import sys
@@ -306,7 +315,7 @@ def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
             "\"reason\":\"<one sentence>\"}.")
         raw = _call_llm(sysmsg, user)
         m = re.search(r"\{.*\}", raw, re.S)
-        data = json.loads(m.group(0)) if m else {}
+        data = one_object(m.group(0)) if m else {}
         # ONLY the two exact tokens the prompt asked for count as evidence.
         # This used to be `if verdict == REJECT ... else: llm-pass`, which
         # turned every malformed answer — `{}`, a misspelled verdict, a
@@ -515,7 +524,7 @@ def beats_support_one_thesis(sc: dict, *, use_llm: bool = True) -> dict:
             "with one entry per segment index above.")
         raw = _call_llm(sysmsg, user)
         m = re.search(r"\{.*\}", raw, re.S)
-        data = json.loads(m.group(0)) if m else {}
+        data = one_object(m.group(0)) if m else {}
         bridges = data.get("bridges") if isinstance(data, dict) else None
         if not isinstance(bridges, dict):
             return {"ok": False,

@@ -25,6 +25,15 @@ the heuristic guarantees the never-float rule even before the brain is tuned.
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import math
 import os
 import re
@@ -462,7 +471,7 @@ def _brain_author(subject: str, label: str, value: str, kind: str) -> dict | Non
         m = re.search(r"\{.*\}", proc.stdout or "", re.S)
         if not m:
             return None
-        spec = json.loads(m.group(0))
+        spec = one_object(m.group(0))
         if value and spec.get("prop") == "price_tag":
             spec["text"] = value
         return spec if validate_pose(spec) else None
