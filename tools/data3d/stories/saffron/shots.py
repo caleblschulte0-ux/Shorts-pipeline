@@ -154,7 +154,7 @@ def shot2():
     yellow stamens and the scale was cut by the frame edge: one wide shot, a big scale, big red threads.)"""
     where = place("crocus_field")
     crate_m = K.mat("crate wood", "#9A7A52", rough=0.8)
-    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.27; SS = 1.9   # the crate right in front of him: the scale at his chest
+    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.22; SS = 1.75   # the crate right in front of him: the scale at his chest
     K.box("crate", (CR.x - 0.08, CR.y, CRH / 2), (0.56, 0.24, CRH), crate_m, bev=0.008)
     scl, needle = SK.gram_scale("gram scale", (CR.x + 0.04, CR.y, CRH), yaw=0.0)
     scl.scale = (SS, SS, SS)
@@ -180,7 +180,7 @@ def shot2():
     data = load_data(); data.place(0.02, 0.08, 0)
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.2, 2.0, 2.6, 3.0, 3.8, 5.0   # no long hold on the threads
+    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.3, 2.2, 3.3, 3.8, 4.6, 5.6
     HOLD = Vector((data.pos().x - 0.07, -0.26, 0.47))   # clear of the basket, against his coat, below his chin               # the flower held out at chest height, on his far side from the scale
     INBK = BKP + Vector((0.03, -0.02, 0.17))                        # laid on top of the heap in the basket, slowly, in view
     T_REL = T_DROP + 0.45; LAY_S = 0.8
@@ -189,9 +189,9 @@ def shot2():
     frot = lambda t: (math.radians(35) + (0.0 if t < T_REL else math.radians(55) * ease(min(1.0, (t - T_REL) / LAY_S))), 0, 0)
     follow(hero, fp, 0.0, DUR, rot_fn=frot)
     cup = lambda t: fp(t) + Euler(frot(t)).to_matrix() @ Vector((0, 0, 0.2 * 0.4))
-    UP = HOLD + Vector((0.24, -0.13, 0.05))                         # pulled out and lifted up in front of him, to us
+    UP = Vector((data.pos().x + 0.16, -0.3, 0.68))                 # lifted up beside his face, centre frame, for us to see
     OVER = PAN + Vector((0.0, 0.0, 0.12))
-    tp = path([(T_PINCH, cup(T_PINCH)), (T_UP, UP), (T_OVER, OVER)])
+    tp = path([(T_PINCH, cup(T_PINCH)), (T_UP, UP), (T_UP + 0.6, UP + Vector((0, 0, 0.01))), (T_OVER, OVER)])   # held up ~0.6 s
     def thr(t):
         if t < T_PINCH: return cup(t)
         if t < T_DROP: return tp(t)
@@ -200,7 +200,7 @@ def shot2():
     reach(data, L, lambda t: fp(min(t, T_REL + LAY_S)) + Vector((0.025, 0.0, 0.015)), 0.0, T_REL + LAY_S + 0.05, lead=0.05, back=0.6, elbow_out=0.35)
     reach(data, R, lambda t: thr(min(t, T_DROP)) + Vector((0.0, 0.0, 0.05)), T_PINCH - 0.1, T_DROP + 0.05, lead=0.5, back=0.45, elbow_out=0.4)
     a0 = math.radians(-120)          # the needle: a hair's twitch and back, then rests one tick on
-    for t_, d_ in ((0.0, 0), (T_DROP + 0.25, 0), (T_DROP + 0.37, 9.0), (T_DROP + 0.55, 3.0), (T_DROP + 0.75, 5.0), (DUR, 5.0)):
+    for t_, d_ in ((0.0, 0), (T_DROP + 0.25, 0), (T_DROP + 0.4, 14.0), (T_DROP + 0.62, 2.0), (T_DROP + 0.85, 5.0), (DUR, 5.0)):   # a flick you can see, then it settles one tick on
         needle.rotation_euler = (0, a0 + math.radians(d_), 0); needle.keyframe_insert("rotation_euler", frame=F(t_))
     US = Vector((0.0, -1.5, 0.6))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
@@ -218,9 +218,10 @@ def shot2():
     soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=16, size=22)
     C0, L0 = Vector((-0.04, -1.08, 0.74)), Vector((-0.04, -0.15, 0.52))   # close: the scale's dial and his face both read
     C1, L1 = Vector((0.1, -0.84, 0.6)), Vector((0.1, -0.2, 0.47))        # after the drop it pushes in on the dial: the twitch reads
-    T_IN = T_DROP
+    T_IN0, T_IN1 = T_OVER - 0.3, T_DROP + 0.2          # pushes in onto the dial BEFORE the threads land, then holds still: the flick is the only move
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
-    camera_path(cam, lambda t: (C0.lerp(C1, ease(max(0.0, t - T_IN) / (DUR - T_IN))), L0.lerp(L1, ease(max(0.0, t - T_IN) / (DUR - T_IN))), Vector((0.0, -0.15, 0.45))))
+    def _u(t): return ease(max(0.0, min(1.0, (t - T_IN0) / (T_IN1 - T_IN0))))
+    camera_path(cam, lambda t: (C0.lerp(C1, _u(t)), L0.lerp(L1, _u(t)), Vector((0.0, -0.15, 0.45))))
     return dict(**where, data=data, rest=1, grips=("hero crocus", "hero threads"),
                 conseq=[("three red threads pulled out of one crocus", lambda: meshes([hero, threads]), T_PINCH, T_OVER),
                         ("the threads land on the scale and the needle barely moves", lambda: meshes([scl]), T_DROP, DUR)])
@@ -338,7 +339,7 @@ def shot4():
         for t_, v in ((0.0, 0.0), (c_at, 0.0), (c_at + 0.55, 1.0)):     # wide open at first; one change only: they shut
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
     sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFF2CC", rough=1.0, emit=60.0))
-    for t_, z in ((0.0, 3.0), (DUR, 9.5)):         # it visibly climbs off the hills, beside his shoulder
+    for t_, z in ((0.0, 2.2), (DUR, 13.0)):         # it visibly climbs off the hills, beside his shoulder
         sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
     # three big crocuses right in front of the lens: the shot's point is THEM folding shut, slowly enough to read
     heroes = []
@@ -358,6 +359,7 @@ def shot4():
         return key
     where["light"] = light
     data = load_data(); data.place(0.05, 0.05, 0)
+    L, R = sides(data)
     US = Vector((0.0, -1.3, 0.62))
     DOWN = Vector((0.02, -0.62, 0.25))                                 # right down at the big flowers as they fold
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
@@ -365,9 +367,10 @@ def shot4():
     data.look_at(US, T_SHUT1 - 0.55, max_yaw=20)                       # snaps up to us
     data.idle(0.0, DUR)
     data.alive(0.0, 1.0, seed=4)
-    data.expression("pleased", 0.0, 1.1)
-    data.expression("worried", 1.1, T_SHUT1 - 0.6, blend=0.45)   # eases over: a cut between faces pops
-    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=True, pace=0.55)   # hands up: whoa
+    data.expression("worried", 0.7, T_SHUT1 - 0.6, blend=0.45)      # no smile anywhere in this shot: it is a race he is losing
+    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=False, pace=0.55)
+    for sd, sg in ((L, -1), (R, 1)):     # hands to his cheeks as the flowers shut: "oh no"
+        reach(data, sd, (lambda sg_: (lambda t: head_pt(data, t) + Vector((sg_ * 0.16, -0.1, -0.06))))(sg), 1.3, DUR, lead=0.45, back=None, elbow_out=0.5)
     data.blink(0.6)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
