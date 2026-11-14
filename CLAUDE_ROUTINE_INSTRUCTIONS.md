@@ -19,7 +19,19 @@
 >    `True` means write NO trending package — skip Part 1 entirely and
 >    open the PR with Part 2 alone. Part 1 is kept below for the day the
 >    registry says otherwise.
-> 2. **Author the 4 explainer stories** (Part 2 below) into the same PR.
+> 2. **Check the explainer queue — don't hand-author unless it's starving.**
+>    The registry's own `channels.explainer.queue.stocked_by` says
+>    `scripts/story_forge.py`, not this routine (contrast `curiosity`,
+>    whose `stocked_by` is literally `"the Claude Routine"` — that one
+>    IS yours, see Part 3). `story_forge.yml` runs twice daily and restocks
+>    `data_learning/niche.config.json` with real World Bank data; its own
+>    workflow banner says it exists to retire exactly the failure mode
+>    Part 2's old manual process risked — "an LLM inventing numbers, which
+>    the editorial gate refuses to publish." Count unposted stories
+>    (`data_learning/niche.config.json` minus `state/explainer_posted_log.json`)
+>    against `queue.minimum_unposted` (3). Only fall back to hand-authoring
+>    Part 2 stories if the count is at or below that floor; otherwise
+>    confirm the forge is current (check its last commit date) and move on.
 > 3. **FIRE THE EXPLAINER POSTING YOURSELF** after the PR merges —
 >    `mcp__github__actions_run_trigger` on `explainer.yml` with
 >    `{"mode": "schedule"}` (CLI: `gh workflow run explainer.yml -f
@@ -645,6 +657,24 @@ because the renderer fills the rest with distinct stock automatically.
 ---
 
 # Part 2 — Data-graph explainer stories (Short_explainer channel)
+
+> **This section is a BACKSTOP, not a daily requirement — read before
+> writing anything.** `config/channel_registry.json`'s
+> `channels.explainer.queue.stocked_by` is `scripts/story_forge.py`: a
+> twice-daily cron that discovers indicators from the live World Bank WDI
+> catalogue and writes real, sourced stories straight into
+> `niche.config.json`. That is what keeps this queue full now, not the
+> Routine. Check `queue.minimum_unposted` (3) against the actual unposted
+> count before touching this section; if the queue clears that floor
+> (it almost always will — the forge tops up to `top_up: 10` on every
+> run), **skip Part 2 entirely.** Hand-authoring a story here means writing
+> a dataset yourself and marking it `"Illustrative"` — i.e. an LLM-invented
+> number — which is the precise failure `story_forge.yml` was built to
+> retire (its own workflow banner says so) and which
+> `editorial_gate`/`shared/levity` and the showrunner are primed to catch
+> and refuse anyway. Use the worked process below only when the forge has
+> genuinely fallen behind (e.g. its cron hasn't run, or it's erroring) and
+> the queue is at or under the floor.
 
 After the trending batch above, ALSO author **exactly 4 brand-new data-graph
 explainer stories** for the **Short_explainer** channel. Four a day, posted
