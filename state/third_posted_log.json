@@ -19782,6 +19782,43 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-darkmorallardpanicbasket-uscazucrfqmckinz": {
+      "source_url": "https://www.twitch.tv/hachubby/clip/DarkMoralLardPanicBasket-UscAZucrfQMcKInz",
+      "streamer": "hachubby",
+      "title": "Hachubby Gets Caught Being Rowdy In A Hospital And It Gets Wild",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 30% of the canvas height. The brief asks for roughly 75%, so the framing did no; vision: In the first ~10s (1.2s to 8.5s) the subject is small and far away inside the strip, and the huge blurred padding domina; vision: The blurred padding is mostly a ",
+      "ts": "2026-11-14T12:39:37.639037+00:00"
+    },
+    "rejected-confidentfunjaywtruck-fqct3mccno3-b8xo": {
+      "source_url": "https://www.twitch.tv/knut/clip/ConfidentFunJayWTRuck-fQct3Mccno3-b8Xo",
+      "streamer": "knut",
+      "title": "Knut - Already causing BIG drama at Twitchcon",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Walking chat, no visible event)",
+      "ts": "2026-11-14T12:40:21.391985+00:00"
+    },
+    "rejected-suspicioustrustworthynoodlekippa-1gblq3ftqfsgv4as": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/SuspiciousTrustworthyNoodleKippa-1GBLQ3FtqfsGV4As",
+      "streamer": "ishowspeed",
+      "title": "Come on now, chat! Inspire, bro",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Watching awards edit, no visible reactio)",
+      "ts": "2026-11-14T12:40:58.934737+00:00"
+    },
+    "clip-20261114-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/murdercrumpet/clip/HungrySuaveWoodcockPunchTrees-V1IlWSJaZt3x-7kk",
+      "story_key": null,
+      "streamer": "murdercrumpet",
+      "title": "Murdercrumpet: Twitch CEO Dan Clancy's Message At Jimmy And Floopy's Wedding Is Unreal",
+      "kind": "twitch_clip",
+      "ts": "2026-11-14T12:47:07.363879+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
