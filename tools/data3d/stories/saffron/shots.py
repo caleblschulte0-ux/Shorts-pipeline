@@ -175,21 +175,21 @@ def shot2():
         a = math.radians(120 * k + 30)
         pts = [Vector((math.cos(a) * 0.03 * v, math.sin(a) * 0.03 * v, 0.075 * v)) for v in (0, 0.5, 1.0)]
         for i, (p0, p1) in enumerate(zip(pts, pts[1:])):
-            d = p1 - p0; c = K.cyl(f"hero thread {k}{i}", tuple((p0 + p1) / 2), 0.0075, d.length * 1.08, th_m, v=8, bev=0)
+            d = p1 - p0; c = K.cyl(f"hero thread {k}{i}", tuple((p0 + p1) / 2), 0.0055, d.length * 1.08, th_m, v=8, bev=0)
             c.rotation_euler = d.to_track_quat('Z', 'Y').to_euler(); c.parent = threads
     data = load_data(); data.place(0.02, 0.08, 0)
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.3, 2.2, 3.3, 3.8, 4.6, 5.6
+    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.2, 2.6, 3.6, 4.2, 5.0, 5.7
     HOLD = Vector((data.pos().x - 0.07, -0.26, 0.47))   # clear of the basket, against his coat, below his chin               # the flower held out at chest height, on his far side from the scale
     INBK = BKP + Vector((0.03, -0.02, 0.17))                        # laid on top of the heap in the basket, slowly, in view
-    T_REL = T_DROP + 0.45; LAY_S = 0.8
+    T_REL = DUR + 1.0; LAY_S = 0.8                                   # he keeps the flower: no toss to lose
     _arc = lambda u: HOLD.lerp(INBK, u) + Vector((0, 0, 0.05 * math.sin(math.pi * u)))
     fp = lambda t: (HOLD + Vector((0, 0, -0.04)) * (1 - ease(min(1.0, t / 0.6)))) if t < T_REL else _arc(ease(min(1.0, (t - T_REL) / LAY_S)))
     frot = lambda t: (math.radians(35) + (0.0 if t < T_REL else math.radians(55) * ease(min(1.0, (t - T_REL) / LAY_S))), 0, 0)
     follow(hero, fp, 0.0, DUR, rot_fn=frot)
     cup = lambda t: fp(t) + Euler(frot(t)).to_matrix() @ Vector((0, 0, 0.2 * 0.4))
-    UP = Vector((data.pos().x + 0.16, -0.3, 0.68))                 # lifted up beside his face, centre frame, for us to see
+    UP = HOLD + Vector((0.13, -0.09, 0.07))                          # pulled free in a clear arc at chest height, in front of his coat
     OVER = PAN + Vector((0.0, 0.0, 0.12))
     tp = path([(T_PINCH, cup(T_PINCH)), (T_UP, UP), (T_UP + 0.6, UP + Vector((0, 0, 0.01))), (T_OVER, OVER)])   # held up ~0.6 s
     def thr(t):
@@ -217,7 +217,7 @@ def shot2():
     data.finish()
     soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=16, size=22)
     C0, L0 = Vector((-0.04, -1.08, 0.74)), Vector((-0.04, -0.15, 0.52))   # close: the scale's dial and his face both read
-    C1, L1 = Vector((0.1, -0.84, 0.6)), Vector((0.1, -0.2, 0.47))        # after the drop it pushes in on the dial: the twitch reads
+    C1, L1 = Vector((0.06, -0.92, 0.66)), Vector((0.06, -0.2, 0.53))     # pushes in toward the dial, his whole head still in
     T_IN0, T_IN1 = T_OVER - 0.3, T_DROP + 0.2          # pushes in onto the dial BEFORE the threads land, then holds still: the flick is the only move
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     def _u(t): return ease(max(0.0, min(1.0, (t - T_IN0) / (T_IN1 - T_IN0))))
@@ -332,23 +332,15 @@ def shot4():
     the hurried last flower read as broken hands; the sun is now in plain view and the wave closes all the way.)"""
     where = place("crocus_field")
     own = list(LOC.FIELD_OWN)
-    T_SHUT0, T_SHUT1 = 1.0, DUR - 0.9
+    T_SHUT0, T_SHUT1 = 0.7, DUR - 0.9
     for o in own:
         y = o.location.y; kb = o.data.shape_keys.key_blocks["closed"]
         c_at = T_SHUT0 + (T_SHUT1 - T_SHUT0 - 0.55) * max(0.0, min(1.0, (2.2 - y) / 3.2))   # far rows first: a wave rolling at him
         for t_, v in ((0.0, 0.0), (c_at, 0.0), (c_at + 0.55, 1.0)):     # wide open at first; one change only: they shut
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
-    sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFF2CC", rough=1.0, emit=60.0))
+    sun_disc = K.sph("sun disc", (-7.0, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFF2CC", rough=1.0, emit=60.0))
     for t_, z in ((0.0, 2.2), (DUR, 13.0)):         # it visibly climbs off the hills, beside his shoulder
         sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
-    # three big crocuses right in front of the lens: the shot's point is THEM folding shut, slowly enough to read
-    heroes = []
-    for k, (x, y, yw, sc_) in enumerate(((-0.2, -0.72, 0.4, 2.1), (0.03, -0.88, 2.0, 1.5), (0.21, -0.74, 4.1, 2.1))):   # flanking his face, never over it
-        o = SK.crocus(f"dawn crocus {k}", (x, y, 0.0), yaw=yw, scale=sc_, seed=60 + k)
-        kb = o.data.shape_keys.key_blocks["closed"]
-        for t_, v in ((0.0, 0.0), (T_SHUT0 - 0.1 + 0.15 * k, 0.0), (T_SHUT1 - 0.2 + 0.1 * k, 1.0)):
-            kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
-        heroes.append(o)
     def light():
         key = LOC.sky_light(sun_elev=6, sun_az=160, sun=2.6, sky=0.18, warm=(1.0, 0.62, 0.36), haze=1.4)
         sun = next(o for o in bpy.data.objects if o.type == 'LIGHT' and o.data.type == 'SUN')
@@ -360,27 +352,29 @@ def shot4():
     where["light"] = light
     data = load_data(); data.place(0.05, 0.05, 0)
     L, R = sides(data)
+    # ONE crocus held up in his hand in front of his chest: it folds shut right there, in the middle of the frame
+    G = Vector((data.pos().x + 0.06, -0.3, 0.46))                     # his grip on the stem
+    hero = SK.crocus("dawn crocus", tuple(G - Vector((0, 0, 0.05))), yaw=0.6, scale=1.5, seed=61)
+    kb = hero.data.shape_keys.key_blocks["closed"]
+    for t_, v in ((0.0, 0.0), (T_SHUT0 - 0.2, 0.0), (T_SHUT1 - 0.1, 1.0)):
+        kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
+    reach(data, R, lambda t: G + Vector((0.0, 0.0, 0.004 * math.sin(2.0 * t))), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
     US = Vector((0.0, -1.3, 0.62))
-    DOWN = Vector((0.02, -0.62, 0.25))                                 # right down at the big flowers as they fold
-    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(DOWN, 0.8, max_yaw=20, max_pitch=50)
-    data.look_at(US, T_SHUT1 - 0.55, max_yaw=20)                       # snaps up to us
+    data.look_at(G + Vector((0, 0, 0.12)), 0.0, max_yaw=20, max_pitch=40, blend=0.0)   # eyes on the flower in his hand
+    data.look_at(US, T_SHUT1 - 0.45, max_yaw=20)                       # snaps up to us
     data.idle(0.0, DUR)
-    data.alive(0.0, 1.0, seed=4)
-    data.expression("worried", 0.7, T_SHUT1 - 0.6, blend=0.45)      # no smile anywhere in this shot: it is a race he is losing
-    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=False, pace=0.55)
-    for sd, sg in ((L, -1), (R, 1)):     # hands to his cheeks as the flowers shut: "oh no"
-        reach(data, sd, (lambda sg_: (lambda t: head_pt(data, t) + Vector((sg_ * 0.16, -0.1, -0.06))))(sg), 1.3, DUR, lead=0.45, back=None, elbow_out=0.5)
-    data.blink(0.6)
+    data.expression("worried", 0.0, T_SHUT1 - 0.3, blend=0.3)       # no smile anywhere in this shot: it is a race he is losing
+    data.perform("alarmed", T_SHUT1 - 0.45, hold=DUR, arms=False, pace=0.55)
+    data.blink(0.5)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((-0.03, -1.3, 0.3)), Vector((0.02, 0.2, 0.58))     # at flower height: the three big crocuses fill the bottom, him behind
-    C1, L1 = Vector((-0.02, -1.24, 0.3)), Vector((0.02, 0.2, 0.6))
-    cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=5.6)
+    C0, L0 = Vector((-0.05, -1.05, 0.6)), Vector((0.03, 0.2, 0.62))   # medium: his face and the flower in his hand both read
+    C1, L1 = Vector((-0.04, -0.98, 0.6)), Vector((0.03, 0.2, 0.62))
+    cam = K.camera(tuple(C0), tuple(L0), lens=28, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
-    return dict(**where, data=data, rest=1, grips=(),
-                conseq=[("the big crocuses in front of him fold shut", lambda: heroes, T_SHUT0, DUR, {"whole": False}),   # foreground: their stems run off the bottom edge by design
-                        ("the field folds shut toward him", lambda: own, 0.2, DUR, {"whole": False}),
+    return dict(**where, data=data, rest=1, grips=("dawn crocus",),
+                conseq=[("the crocus in his hand folds shut", lambda: [hero], T_SHUT0, DUR),
+                        ("the field folds shut behind him", lambda: own, 0.2, DUR, {"whole": False}),
                         ("the sun climbs clear of the hills", lambda: [sun_disc], 0.3, DUR)])
 
 
