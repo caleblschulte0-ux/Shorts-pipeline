@@ -341,8 +341,8 @@ def shot4():
     T_SHUT0, T_SHUT1 = 0.7, DUR - 0.9
     for o in own:
         y = o.location.y; kb = o.data.shape_keys.key_blocks["closed"]
-        c_at = (T_SHUT1 - 0.7) + 0.8 * max(0.0, min(1.0, (2.2 - y) / 3.2))   # then the field: a quick wave of shutting rolling at him
-        for t_, v in ((0.0, 0.0), (c_at, 0.0), (c_at + 0.3, 1.0)):     # wide open at first; one change only: they shut
+        c_at = (T_SHUT1 - 1.6) + 1.2 * max(0.0, min(1.0, (2.2 - y) / 3.2))   # then the field: a quick wave of shutting rolling at him
+        for t_, v in ((0.0, 0.0), (c_at, 0.0), (c_at + 0.9, 1.0)):     # wide open at first; one change only: they shut
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
     # no sun disc: four rounds read it as a flat lamp or a moon; the dawn light warming over the shot carries it
     def light():
@@ -360,20 +360,20 @@ def shot4():
     # race and the flowers to read from a petal fold. Now two props carry it: a ringing alarm clock held up to us,
     # its hands racing, and the crocus in his other hand wilting brown and drooping. Neither needs a subtle face.
     shL4, shR4 = acts._shoulder(data, L), acts._shoulder(data, R)
-    G = shR4 + Vector((0.05, -0.15, -0.03))                           # inside his 0.19 m reach: no clamped, floating hand                    # his grip on the stem, in front of his chest
-    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.6, scale=1.25, seed=61)
+    G = shR4 + Vector((0.0, -0.15, -0.03))                           # inside his 0.19 m reach: no clamped, floating hand                    # his grip on the stem, in front of his chest
+    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.6, scale=1.6, seed=61)
     T_W0, T_W1 = 0.6, DUR - 0.8
     droop = PK.wilt(hero, T_W0, T_W1, brown="#3A2212", to=1.0, slots=(0,))   # a deep brown: dull maroon read as purple      # this one flower browns, shuts and droops (the shared prop kit)
     follow(hero, lambda t: G - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))   # it flops over toward us
     # the alarm clock, held up beside his face: bells on top, hands racing, ringing (a fast shake)
-    CK = shL4 + Vector((-0.08, -0.15, 0.0))            # where his hand really is, at chest height: face stays clear
+    CK = shL4 + Vector((-0.04, -0.15, 0.0))            # where his hand really is, at chest height: face stays clear
     ak = PK.alarm_clock("alarm clock", r=0.075); clock = ak["root"]
     ak["race"](0.2, DUR - 0.3, hours=5.0, start_h=5.0)
-    buzz = lambda t: Vector((0.004 * math.sin(2 * math.pi * 13 * t), 0, 0.003 * math.sin(2 * math.pi * 17 * t + 1.0))) * (1.0 if t > 0.4 else t / 0.4)
-    follow(clock, lambda t: CK + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=14.0), 0))   # it RINGS: a hard rattle you can see
+    buzz = lambda t: Vector((0.008 * math.sin(2 * math.pi * 13 * t), 0, 0.006 * math.sin(2 * math.pi * 17 * t + 1.0))) * (1.0 if t > 0.4 else t / 0.4)
+    follow(clock, lambda t: CK + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=22.0), 0))   # it RINGS: a hard rattle you can see
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)                       # to us, with the clock: "it's a race"
-    data.look_at(G + Vector((0, 0, 0.08)), 1.2, max_yaw=25, max_pitch=40)   # down at the flower as it wilts
+    data.look_at(G + Vector((0, 0, 0.08)), 1.2, max_yaw=10, max_pitch=40)   # down at the flower as it wilts
     data.gaze(1.2, 0, -22); data.gaze(T_W1 - 0.5, 0, -22)
     data.look_at(US, T_W1 - 0.4, max_yaw=20)                           # back to us
     data.gaze(T_W1 - 0.3, 0, 0, blend=0.1)
@@ -388,11 +388,11 @@ def shot4():
     data.finish()
     def hand_at(side, t):                              # the props ride his REAL hands, wherever the solve put them
         sc.frame_set(F(t)); bpy.context.view_layer.update(); return data.arm.matrix_world @ data.pb[f"hand.{side}"].tail
-    follow(clock, lambda t: hand_at(L, t) + Vector((-0.02, -0.025, 0.075)) + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=14.0), 0))
+    follow(clock, lambda t: hand_at(L, t) + Vector((-0.02, -0.025, 0.075)) + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=22.0), 0))
     follow(hero, lambda t: hand_at(R, t) - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((0.04, -1.3, 0.58)), Vector((0.04, 0.2, 0.55))    # centred on him: clock left, flower right, face clear between
-    C1, L1 = Vector((0.04, -1.22, 0.58)), Vector((0.04, 0.2, 0.55))
+    C0, L0 = Vector((0.07, -1.12, 0.46)), Vector((0.07, 0.2, 0.49))    # waist-up as in shot 2: clock left, flower right, face clear between
+    C1, L1 = Vector((0.07, -1.06, 0.46)), Vector((0.07, 0.2, 0.49))
     cam = K.camera(tuple(C0), tuple(L0), lens=40, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     return dict(**where, data=data, rest=1, grips=("dawn crocus", "alarm clock"),
