@@ -121,8 +121,15 @@ jobs:
 
       - name: Install system deps
         run: |
-          sudo apt-get update -q
-          sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr
+          # RETRIED: a mirror that fails to resolve for a minute killed
+          # whole runs (explainer, 2026-11-11 twice: "Temporary failure
+          # resolving 'security.ubuntu.com'", exit 100, nothing rendered)
+          for i in 1 2 3; do
+            sudo apt-get update -q && sudo apt-get install -y -q -o Acquire::Retries=3 \
+              ffmpeg miller fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr && break
+            [ "$i" = 3 ] && exit 1
+            echo "::warning::apt failed (attempt $i) — retrying"; sleep 30
+          done
 
       - name: Install python deps
         # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble.
@@ -299,3 +306,13 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "third: analytics [skip ci]" state/analytics_third \
             state/third_series_audit.json state/third_series_audit.md
+
+      # IS THE CHANNEL STILL MAKING VIDEOS? (operator, 2026-11-14). Reads
+      # this run's record and the last few in state/third_qa_stats.json and
+      # goes red when the pattern says something is broken: a crash, days
+      # with nothing shipped, a judge skipping every slot unwatched, QA
+      # refusing most renders, the same story refused again and again.
+      # Last, so nothing about it can stop the state from being committed.
+      - name: Health check — picks, renders, posts
+        if: ${{ always() && inputs.dry_run != true }}
+        run: python3 scripts/third_health.py

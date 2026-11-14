@@ -534,6 +534,54 @@ def classify_results(results: list[dict]) -> dict:
     return {"posted": posted, "held": held, "faults": faults, "dry": dry}
 
 
+RUNS_PATH = REPO / "state" / "explainer_runs.json"
+RUNS_KEEP = 30
+
+
+def run_record(buckets: dict, dry_run: bool = False) -> dict:
+    """One run's outcome, small enough to keep thirty of in state/.
+
+    The explainer kept NOTHING about a run but its log: 2026-11-08..11
+    posted zero across sixteen runs, each holding the same 75 stories, and
+    the only way to see that was to open sixteen logs. Held stories are
+    kept as slugs under their reason code, with one example of the words,
+    so `scripts/explainer_health.py` can see a story stuck run after run.
+    """
+    held: dict[str, list[str]] = {}
+    example: dict[str, str] = {}
+    for r in buckets["held"]:
+        code = str(r.get("error") or "?")
+        held.setdefault(code, []).append(str(r.get("slug")))
+        why = (r.get("reasons") or [None])[0]
+        if why and code not in example:
+            example[code] = str(why)[:160]
+    return {
+        "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "dry_run": bool(dry_run),
+        "posted": [str(r.get("slug")) for r in buckets["posted"]],
+        "held": held, "example": example,
+        "faults": [{"slug": str(r.get("slug")),
+                    "error": str(r.get("error"))[:200]}
+                   for r in buckets["faults"]],
+    }
+
+
+def record_run(buckets: dict, dry_run: bool = False,
+               path: Path | None = None) -> None:
+    """Append this run's record to state/explainer_runs.json. A run that
+    tried nothing (the day's slate already posted) is not recorded."""
+    if not any(buckets[k] for k in ("posted", "held", "faults")):
+        return
+    path = path or RUNS_PATH
+    try:
+        runs = json.loads(path.read_text()).get("runs", [])
+    except (OSError, ValueError):
+        runs = []
+    runs.append(run_record(buckets, dry_run))
+    from shared.fsutil import atomic_write_json
+    atomic_write_json(path, {"runs": runs[-RUNS_KEEP:]})
+
+
 def exit_code_for(buckets: dict) -> int:
     """1 means SOMETHING IS BROKEN. Nothing else."""
     if buckets["faults"]:
@@ -1433,6 +1481,11 @@ def main() -> int:
                       f"ChatGPT (exchange/rewrites/OPEN.json)", flush=True)
         except Exception as _e:  # noqa: BLE001
             print(f"[rewrites] filing skipped: {_e}", flush=True)
+
+    try:
+        record_run(_b, dry_run=args.dry_run)
+    except Exception as _e:  # noqa: BLE001 — a record never fails a run
+        print(f"[runs] record skipped: {_e}", flush=True)
 
     print(f"\ndone: {len(posted)} posted, {len(held)} held by the gate, "
           f"{len(faults)} faults"
