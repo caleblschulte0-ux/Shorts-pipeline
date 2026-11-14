@@ -172,6 +172,13 @@ jobs:
             state/posted_log.json state/showrunner_verdicts.jsonl sports_report.json \
             exchange/reviews exchange/OPEN.json
 
+      # Fails the run when the cut-ins and montages stop reaching the
+      # channel, or a render crashes (operator, 2026-11-14: "what can we
+      # double check to make sure isn't going to be wrong again?")
+      - name: Health check — cut-ins, montages, crashes
+        if: always() && steps.preflight.outputs.skip == ''
+        run: python3 scripts/sports_health.py
+
       - name: Keep the cuts (dry run)
         if: always() && inputs.dry_run && steps.preflight.outputs.skip == ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
