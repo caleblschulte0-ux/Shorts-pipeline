@@ -159,11 +159,11 @@ def shot2():
     scl, needle = SK.gram_scale("gram scale", (CR.x + 0.04, CR.y, CRH), yaw=0.0)
     scl.scale = (SS, SS, SS)
     PAN = Vector((CR.x + 0.04, CR.y, CRH + 0.095 * SS))
-    BKP = Vector((-0.19, -0.33, CRH))                     # the basket of flowers on the crate beside the scale
-    bk = SK.basket("basket", tuple(BKP), r=0.115, h=0.1)
+    BKP = Vector((-0.24, -0.3, CRH))                     # the basket of flowers on the crate beside the scale
+    bk = SK.basket("basket", tuple(BKP), r=0.1, h=0.09)
     rnd = random.Random(4)
     for i in range(26):   # heaped with flowers
-        a = rnd.uniform(0, 6.28); rr = rnd.uniform(0, 0.08); z = BKP.z + 0.1 + rnd.uniform(0, 0.06) * (1 - rr / 0.11)
+        a = rnd.uniform(0, 6.28); rr = rnd.uniform(0, 0.07); z = BKP.z + 0.1 + rnd.uniform(0, 0.06) * (1 - rr / 0.11)
         o = SK.crocus(f"basket flower {i}", (BKP.x + math.cos(a) * rr, BKP.y + math.sin(a) * rr, z), yaw=rnd.uniform(0, 6.28), seed=500 + i, own=False,
                       mesh=bpy.data.meshes.get("crocus tmpl 0") if i % 2 else bpy.data.meshes.get("crocus tmpl 2"))
         o.rotation_euler = (rnd.uniform(-1.2, 1.2), rnd.uniform(-1.2, 1.2), rnd.uniform(0, 6.28))
@@ -180,8 +180,8 @@ def shot2():
     data = load_data(); data.place(0.02, 0.08, 0)
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.4, 2.5, 3.6, 4.2, 5.0, 5.9
-    HOLD = Vector((data.pos().x - 0.12, -0.24, 0.5))               # the flower held out at chest height, on his far side from the scale
+    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.2, 2.0, 2.6, 3.0, 3.8, 5.0   # no long hold on the threads
+    HOLD = Vector((data.pos().x - 0.07, -0.26, 0.47))   # clear of the basket, against his coat, below his chin               # the flower held out at chest height, on his far side from the scale
     INBK = BKP + Vector((0.03, -0.02, 0.17))                        # laid on top of the heap in the basket, slowly, in view
     T_REL = T_DROP + 0.45; LAY_S = 0.8
     _arc = lambda u: HOLD.lerp(INBK, u) + Vector((0, 0, 0.05 * math.sin(math.pi * u)))
@@ -217,7 +217,7 @@ def shot2():
     data.finish()
     soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=16, size=22)
     C0, L0 = Vector((-0.04, -1.08, 0.74)), Vector((-0.04, -0.15, 0.52))   # close: the scale's dial and his face both read
-    C1, L1 = Vector((0.0, -0.92, 0.7)), Vector((0.0, -0.18, 0.52))       # after the drop it creeps in: the shot keeps moving, his head and the basket stay in
+    C1, L1 = Vector((0.1, -0.84, 0.6)), Vector((0.1, -0.2, 0.47))        # after the drop it pushes in on the dial: the twitch reads
     T_IN = T_DROP
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(max(0.0, t - T_IN) / (DUR - T_IN))), L0.lerp(L1, ease(max(0.0, t - T_IN) / (DUR - T_IN))), Vector((0.0, -0.15, 0.45))))
@@ -337,11 +337,17 @@ def shot4():
         c_at = T_SHUT0 + (T_SHUT1 - T_SHUT0 - 0.55) * max(0.0, min(1.0, (2.2 - y) / 3.2))   # far rows first: a wave rolling at him
         for t_, v in ((0.0, 0.0), (c_at, 0.0), (c_at + 0.55, 1.0)):     # wide open at first; one change only: they shut
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
-    sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFE9B0", rough=1.0, emit=40.0))
-    halo = [K.sph(f"sun glow {i}", (-3.2, 46.0 + i, 1.0), 3.6 * (1.5 + 0.8 * i), K.mat(f"sun glow {i}", "#FFB060", rough=1.0, emit=6.0 / (1 + 2 * i))) for i in range(2)]
-    for o in [sun_disc] + halo:                    # it climbs above his shoulder, glowing: a sun, not a lamp
-        for t_, z in ((0.0, 3.5), (DUR, 9.0)):
-            o.location.z = z; o.keyframe_insert("location", frame=F(t_))
+    sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFF2CC", rough=1.0, emit=60.0))
+    for t_, z in ((0.0, 3.0), (DUR, 9.5)):         # it visibly climbs off the hills, beside his shoulder
+        sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
+    # three big crocuses right in front of the lens: the shot's point is THEM folding shut, slowly enough to read
+    heroes = []
+    for k, (x, y, yw, sc_) in enumerate(((-0.2, -0.72, 0.4, 2.1), (0.03, -0.88, 2.0, 1.5), (0.21, -0.74, 4.1, 2.1))):   # flanking his face, never over it
+        o = SK.crocus(f"dawn crocus {k}", (x, y, 0.0), yaw=yw, scale=sc_, seed=60 + k)
+        kb = o.data.shape_keys.key_blocks["closed"]
+        for t_, v in ((0.0, 0.0), (T_SHUT0 - 0.1 + 0.15 * k, 0.0), (T_SHUT1 - 0.2 + 0.1 * k, 1.0)):
+            kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
+        heroes.append(o)
     def light():
         key = LOC.sky_light(sun_elev=6, sun_az=160, sun=2.6, sky=0.18, warm=(1.0, 0.62, 0.36), haze=1.4)
         sun = next(o for o in bpy.data.objects if o.type == 'LIGHT' and o.data.type == 'SUN')
@@ -353,24 +359,25 @@ def shot4():
     where["light"] = light
     data = load_data(); data.place(0.05, 0.05, 0)
     US = Vector((0.0, -1.3, 0.62))
-    DOWN = Vector((0.0, -0.3, 0.1))                                   # right down at the flowers by his feet as they shut
+    DOWN = Vector((0.02, -0.62, 0.25))                                 # right down at the big flowers as they fold
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(DOWN, 0.9, max_yaw=20)
+    data.look_at(DOWN, 0.8, max_yaw=20, max_pitch=50)
     data.look_at(US, T_SHUT1 - 0.55, max_yaw=20)                       # snaps up to us
     data.idle(0.0, DUR)
     data.alive(0.0, 1.0, seed=4)
     data.expression("pleased", 0.0, 1.1)
     data.expression("worried", 1.1, T_SHUT1 - 0.6, blend=0.45)   # eases over: a cut between faces pops
-    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=False, pace=0.55)   # the face and body say it; the arms read as a shrug
+    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=True, pace=0.55)   # hands up: whoa
     data.blink(0.6)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((-0.06, -1.0, 0.42)), Vector((0.03, 0.2, 0.6))     # chest-high and close: his face reads, the near flowers fill the bottom
-    C1, L1 = Vector((-0.04, -0.92, 0.42)), Vector((0.03, 0.2, 0.62))
+    C0, L0 = Vector((-0.03, -1.3, 0.3)), Vector((0.02, 0.2, 0.58))     # at flower height: the three big crocuses fill the bottom, him behind
+    C1, L1 = Vector((-0.02, -1.24, 0.3)), Vector((0.02, 0.2, 0.6))
     cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     return dict(**where, data=data, rest=1, grips=(),
-                conseq=[("the field folds shut toward him", lambda: own, 0.2, DUR, {"whole": False}),
+                conseq=[("the big crocuses in front of him fold shut", lambda: heroes, T_SHUT0, DUR, {"whole": False}),   # foreground: their stems run off the bottom edge by design
+                        ("the field folds shut toward him", lambda: own, 0.2, DUR, {"whole": False}),
                         ("the sun climbs clear of the hills", lambda: [sun_disc], 0.3, DUR)])
 
 
@@ -385,7 +392,7 @@ def shot5():
     SK.table("spice table", tuple(TABLE), w=0.9, d=0.42, h=TABLE_H)
     TOP = TABLE_H
     S = 1.7                                       # the balance, scaled up to read on a phone
-    ARM, BH, PR_ = 0.13, 0.11, 0.07               # local sizes
+    ARM, BH, PR_ = 0.13, 0.14, 0.07               # local sizes: a tall post, so the low pan hangs clearly in the air
     BC = Vector((-0.02, -0.3, TOP))
     bal, beam, pans = SK.balance("balance", tuple(BC), arm=ARM, h=BH, pan_r=PR_)
     bal.scale = (S, S, S)
@@ -456,10 +463,10 @@ def shot5():
     data.finish()
     soft_key("balance key", (-0.6, -1.0, 1.1), tuple(BC + Vector((0, 0, 0.2))), energy=24, size=32)
     soft_key("jar key", (-0.5, -0.7, 0.55), tuple(BC + Vector((-0.2, 0, 0.1))), energy=10, size=14)   # lights the jar's red
-    C0, L0 = Vector((0.0, -1.3, 0.88)), Vector((0.0, -0.25, 0.56))   # close and a little above: the table fills the bottom, the jar side in frame
-    C1, L1 = Vector((0.0, -1.2, 0.86)), Vector((0.0, -0.25, 0.56))
+    C0, L0 = Vector((0.0, -1.3, 1.0)), Vector((0.0, -0.25, 0.56))    # close and above: his face clear over the balance and the heap
+    C1, L1 = Vector((-0.02, -1.08, 0.92)), Vector((-0.02, -0.28, 0.52))   # pushes in as the beam comes level: the payoff gets its beat
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
-    camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.25, 0.5))))
+    camera_path(cam, lambda t: (C0.lerp(C1, ease(max(0.0, t - T_POUR1 + 0.3) / (DUR - T_POUR1 + 0.3))), L0.lerp(L1, ease(max(0.0, t - T_POUR1 + 0.3) / (DUR - T_POUR1 + 0.3))), Vector((0.0, -0.25, 0.5))))
     return dict(**where, data=data, rest=1, grips=("pour basket", "jar"),
                 conseq=[("the flowers pour onto the right pan", lambda: meshes(fls), T_POUR0 + 0.3, T_POUR1 + 0.3),
                         ("the beam levels: the tiny jar balances a heap of flowers", lambda: meshes([bal, jar]) + meshes(fls), T_POUR1, DUR)])
