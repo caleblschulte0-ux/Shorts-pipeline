@@ -4508,8 +4508,8 @@
     }
   },
   "recent_commits": [
-    "8310a4d 2026-11-14 claim: mailbox verdicts 2026-11-14T04:49Z [skip ci]",
-    "a5f4d69 2026-11-13 Twitch: post a clip before the other clippers do (#758)"
+    "79a24d3 2026-11-14 claim: mailbox verdicts 2026-11-14T11:47Z [skip ci]",
+    "e85102c 2026-11-14 deadman: repaired 2026-11-14 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4545,10 +4545,10 @@
         "2026-11-11": 1,
         "2026-11-12": 6,
         "2026-11-13": 4,
-        "2026-11-14": 1
+        "2026-11-14": 3
       },
-      "total_posted": 404,
-      "attempted": 404,
+      "total_posted": 406,
+      "attempted": 406,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4615,32 +4615,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 139,
+      "videos": 138,
       "top_by_vph": [
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 5.28,
-          "views": 103
+          "vph": 3.97,
+          "views": 134
         },
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.6,
+          "vph": 3.51,
           "views": 1902
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.62,
+          "vph": 1.58,
           "views": 1088
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.5,
-          "views": 503
+          "vph": 1.46,
+          "views": 510
         },
         {
-          "title": "Qtcinderella Cries As Speed Wins 2026 Streamer Of The Year",
-          "vph": 1.32,
-          "views": 2
+          "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
+          "vph": 1.0,
+          "views": 85
         }
       ],
       "full_data": "state/analytics_third/latest.json"
