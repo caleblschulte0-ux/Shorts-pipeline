@@ -247,7 +247,8 @@ def gram_scale(name, loc, yaw=0.0, parent=None):
         K.box(f"{name} tick {k}", (0.028 * math.sin(a), -0.054, 0.036 + 0.028 * math.cos(a)), (0.0016, 0.001, 0.007 if k % 5 == 0 else 0.004), ink,
               bev=0, parent=root).rotation_euler = (0, a, 0)
     piv = K.empty(name + " needle pivot", (0, -0.055, 0.036), parent=root)
-    nd = K.box(name + " needle", (0, -0.055, 0.049), (0.0022, 0.001, 0.028), _mat("scale needle", "#D21F1A", rough=0.4), bev=0, parent=piv)
+    nd = K.box(name + " needle", (0, -0.055, 0.049), (0.0048, 0.0014, 0.03), _mat("scale needle", "#D21F1A", rough=0.4), bev=0, parent=piv)   # thick enough to see move on a phone
+    K.cyl(name + " needle cap", (0, -0.057, 0.036), 0.006, 0.003, _mat("scale needle", "#D21F1A", rough=0.4), rot=(math.pi / 2, 0, 0), parent=root, bev=0.0005)
     K.cyl(name + " hub", (0, -0.0565, 0.036), 0.004, 0.003, ink, rot=(math.pi / 2, 0, 0), parent=root)
     piv.rotation_euler = (0, math.radians(-120), 0)
     _place(root, loc, locals().get("yaw", 0.0), parent)
