@@ -46,7 +46,9 @@ def measure(data, NF):
             d = abs(face[i][key] - face[i - 1][key])
             if d > FACE_JUMP:
                 events.append((i + 1, "FACE", key, f"{face[i-1][key]:.2f} -> {face[i][key]:.2f} in one frame"))
-                if key != "lid": pops.append((i + 1, key))          # a blink is meant to be fast
+                blinking = any(abs(face[j]["lid"] - face[j - 1]["lid"]) > FACE_JUMP for j in range(max(1, i - 4), min(len(face), i + 5)))
+                if key != "lid" and not (key == "squint" and blinking):   # a blink is meant to be fast, and squint is
+                    pops.append((i + 1, key))       # read from the lower lid, which a blink moves too (life pass, 11-14)
     events.sort()
     return events, worst, pops
 
