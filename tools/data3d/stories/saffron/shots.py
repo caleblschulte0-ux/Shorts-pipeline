@@ -363,8 +363,13 @@ def shot4():
     T_W0, T_W1 = 0.1, 0.62 * DUR                                 # it dies across the WHOLE shot: no dead hold after it
     droop = PK.wilt(hero, T_W0, T_W1, brown="#8A5A30", to=1.0, droop_deg=85.0, slots=(0,))   # it browns, shuts and flops over
     # (no forced opening: splayed to -1 the petals read as a spider lily; its own cup reads as a crocus)
-    HB = Vector((0.0, -0.25, 0.0))
-    follow(hero, lambda t: HB, 0.0, DUR, rot_fn=lambda t: (-droop(t) * 0.25, droop(t) * 0.9, 0.4))   # it flops over sideways, landing short of Data   # it flops over sideways: a silhouette against the sky
+    HB = Vector((0.0, -0.4, 0.0))     # 11-14 round 25: "mid-size, beside Data's legs": closer to the lens
+    hero.scale = (2.3, 2.3, 2.3)
+    # round 25: "the browning happens mostly while it tips over, so it reads as a flower falling over rather than
+    # wilting". It browns and shuts standing up FIRST, against the sky; only then does the dead flower flop
+    T_FLOP = T_W0 + 0.55 * (T_W1 - T_W0)
+    late = lambda t: droop(T_W0 + max(0.0, t - T_FLOP) / (T_W1 - T_FLOP) * (T_W1 - T_W0)) if t > T_FLOP else 0.0
+    follow(hero, lambda t: HB, 0.0, DUR, rot_fn=lambda t: (-late(t) * 0.25, late(t) * 0.9, 0.4))   # it flops over sideways, landing short of Data   # it flops over sideways: a silhouette against the sky
     for o in own:                                                      # nothing between the lens and the hero flower
         if o.location.y < HB.y + 0.1 and abs(o.location.x - HB.x) < 0.7:
             o.hide_render = True; o.hide_viewport = True

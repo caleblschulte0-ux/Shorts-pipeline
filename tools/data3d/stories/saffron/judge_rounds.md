@@ -323,3 +323,16 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Keep his face toward the camera through the pulls, only glancing down with his eyes, so the glasses never turn into profile.
 - better: Make the threads thicker or brighter (a saturated orange-red with a slight glow or rim light) and hold up three fanned fingers' worth of spacing so 'three' reads at a glance. Drop the red collar accent in this shot or shift its colour.
 
+
+## 2026-11-14 15:18Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 73 | 72, 73, 74 | PASS |
+
+**shot 4** (PASS, 73, bar 70)
+
+- problem: Nothing happens for roughly the first 8 frames (about 1.1 s): the crocus stays purple and still while Data stares at it, so the shot starts flat.
+- problem: The hero flower does not read as a big OPEN crocus. It is a closed, tulip-like bud with red stamen threads sticking sideways out of the closed petals like wires (frames 1-12).
+- problem: The worried look-up uses Data's open dark-red mouth oval (frames 18-28), which is the 'open mouth hole' look the operator has already flagged.
+
