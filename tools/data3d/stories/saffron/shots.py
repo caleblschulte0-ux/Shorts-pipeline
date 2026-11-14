@@ -154,7 +154,7 @@ def shot2():
     yellow stamens and the scale was cut by the frame edge: one wide shot, a big scale, big red threads.)"""
     where = place("crocus_field")
     crate_m = K.mat("crate wood", "#9A7A52", rough=0.8)
-    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.16; SS = 2.0   # the crate right in front of him: the scale at his chest
+    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.2; SS = 2.0   # the crate right in front of him: the scale at his chest
     K.box("crate", (CR.x - 0.08, CR.y, CRH / 2), (0.56, 0.24, CRH), crate_m, bev=0.008)
     scl, needle = SK.gram_scale("gram scale", (CR.x + 0.04, CR.y, CRH), yaw=0.0)
     scl.scale = (SS, SS, SS)
@@ -341,7 +341,7 @@ def shot4():
             sun.data.energy = en; sun.data.keyframe_insert("energy", frame=F(t_))
         return key
     where["light"] = light
-    data = load_data(); data.place(0.05, 0.05, 0)
+    data = load_data(); data.place(0.08, 0.05, 0)
     L, R = sides(data)
     # 2026-11-14 rethink (operator: "90 degrees didn't work 3 times, try 180"): six rounds asked his FACE to carry the
     # race and the flowers to read from a petal fold. Now two props carry it: a ringing alarm clock held up to us,
@@ -365,7 +365,7 @@ def shot4():
     droop = lambda t: math.radians(75) * ease(max(0.0, min(1.0, (t - T_W0) / (T_W1 - T_W0))))
     follow(hero, lambda t: G - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))   # it flops over toward us
     # the alarm clock, held up beside his face: bells on top, hands racing, ringing (a fast shake)
-    CK = Vector((data.pos().x - 0.2, -0.36, 0.7))
+    CK = Vector((data.pos().x - 0.24, -0.36, 0.66))
     clock, hh, mm = SK.wall_clock("alarm clock", (0, 0, 0), r=0.075)
     bell_m = SK._mat("clock bell", "#C9A227", rough=0.3, metal=0.8)
     for sg in (-1, 1):
@@ -387,11 +387,11 @@ def shot4():
     data.blink(0.9)
     # hands solved AFTER the body acts, so his recoil does not carry them off the props
     reach(data, R, lambda t: G + Vector((0.0, 0.0, 0.004 * math.sin(2.0 * t))), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
-    reach(data, L, lambda t: CK + Vector((0.02, 0.02, -0.08)), 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)
+    reach(data, L, lambda t: CK + Vector((0.03, 0.03, -0.085)), 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)   # his hand under the clock, holding it up
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((-0.05, -1.2, 0.62)), Vector((0.0, 0.2, 0.6))     # waist up: his face, the clock and the flower all big
-    C1, L1 = Vector((-0.04, -1.12, 0.62)), Vector((0.0, 0.2, 0.6))
+    C0, L0 = Vector((-0.08, -1.22, 0.62)), Vector((-0.04, 0.2, 0.6))  # waist up: his face, the clock and the flower all big, the clock inside the frame
+    C1, L1 = Vector((-0.07, -1.14, 0.62)), Vector((-0.04, 0.2, 0.6))
     cam = K.camera(tuple(C0), tuple(L0), lens=40, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     return dict(**where, data=data, rest=1, grips=("dawn crocus", "alarm clock"),
