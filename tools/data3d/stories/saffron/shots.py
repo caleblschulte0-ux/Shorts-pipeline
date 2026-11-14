@@ -154,7 +154,7 @@ def shot2():
     yellow stamens and the scale was cut by the frame edge: one wide shot, a big scale, big red threads.)"""
     where = place("crocus_field")
     crate_m = K.mat("crate wood", "#9A7A52", rough=0.8)
-    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.34; SS = 1.9   # the crate right in front of him: the scale at his chest
+    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.27; SS = 1.9   # the crate right in front of him: the scale at his chest
     K.box("crate", (CR.x - 0.08, CR.y, CRH / 2), (0.56, 0.24, CRH), crate_m, bev=0.008)
     scl, needle = SK.gram_scale("gram scale", (CR.x + 0.04, CR.y, CRH), yaw=0.0)
     scl.scale = (SS, SS, SS)
@@ -217,7 +217,7 @@ def shot2():
     data.finish()
     soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=16, size=22)
     C0, L0 = Vector((-0.04, -1.08, 0.74)), Vector((-0.04, -0.15, 0.52))   # close: the scale's dial and his face both read
-    C1, L1 = Vector((0.08, -0.86, 0.66)), Vector((0.1, -0.2, 0.47))      # after the drop it creeps in on the dial: the shot keeps moving
+    C1, L1 = Vector((0.0, -0.92, 0.7)), Vector((0.0, -0.18, 0.52))       # after the drop it creeps in: the shot keeps moving, his head and the basket stay in
     T_IN = T_DROP
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(max(0.0, t - T_IN) / (DUR - T_IN))), L0.lerp(L1, ease(max(0.0, t - T_IN) / (DUR - T_IN))), Vector((0.0, -0.15, 0.45))))
@@ -353,21 +353,20 @@ def shot4():
     where["light"] = light
     data = load_data(); data.place(0.05, 0.05, 0)
     US = Vector((0.0, -1.3, 0.62))
-    DOWN = Vector((0.0, -0.45, 0.0))                                   # right down at the flowers by his feet as they shut
-    data.look_at(Vector((-0.4, -0.6, 0.35)), 0.0, max_yaw=20, blend=0.0)   # admiring the open field
-    data.look_at(Vector((0.3, -0.6, 0.35)), 0.5, max_yaw=20)
-    data.look_at(DOWN, 1.1, max_yaw=20)
+    DOWN = Vector((0.0, -0.3, 0.1))                                   # right down at the flowers by his feet as they shut
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
+    data.look_at(DOWN, 0.9, max_yaw=20)
     data.look_at(US, T_SHUT1 - 0.55, max_yaw=20)                       # snaps up to us
     data.idle(0.0, DUR)
     data.alive(0.0, 1.0, seed=4)
     data.expression("pleased", 0.0, 1.1)
     data.expression("worried", 1.1, T_SHUT1 - 0.6, blend=0.45)   # eases over: a cut between faces pops
-    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=True, pace=0.55)
+    data.perform("alarmed", T_SHUT1 - 0.5, hold=max(0.3, DUR - T_SHUT1 + 0.3), arms=False, pace=0.55)   # the face and body say it; the arms read as a shrug
     data.blink(0.6)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((-0.12, -1.3, 0.2)), Vector((0.05, 0.4, 0.5))     # low, among the near flowers: they are big as they shut
-    C1, L1 = Vector((-0.08, -1.2, 0.21)), Vector((0.05, 0.4, 0.5))
+    C0, L0 = Vector((-0.06, -1.0, 0.42)), Vector((0.03, 0.2, 0.6))     # chest-high and close: his face reads, the near flowers fill the bottom
+    C1, L1 = Vector((-0.04, -0.92, 0.42)), Vector((0.03, 0.2, 0.62))
     cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     return dict(**where, data=data, rest=1, grips=(),
@@ -402,7 +401,7 @@ def shot5():
     def pan_pt(sg, t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         return (beam.matrix_world @ Vector((sg * ARM, 0, 0))) - Vector((0, 0, DROP - 0.006 * S))
-    jar = SK.jar("jar", tuple(pan_pt(-1, 0.0)), h=0.095, r=0.032)
+    jar = SK.jar("jar", tuple(pan_pt(-1, 0.0)), h=0.12, r=0.04)     # bigger here: it has to read against the heap
     follow(jar, lambda t: pan_pt(-1, t), 0.0, DUR)
     data = load_data(); data.place(0.0, 0.08, 0)
     L, R = sides(data)
@@ -413,7 +412,7 @@ def shot5():
         o = SK.crocus(f"basket top {k}", (math.cos(a_) * rr, math.sin(a_) * rr, 0.06), seed=700 + k, scale=0.55, own=False, mesh=bpy.data.meshes.get(f"crocus tmpl {k % 5}"))
         o.rotation_euler = (rnd0.uniform(1.0, 1.5), 0, rnd0.uniform(0, 6.28)); o.parent = bk
     B0 = Vector((0.31, -0.16, TOP + 0.005))          # on the table by his right hand
-    def over(t): return pan_pt(1, t) + Vector((0.11, 0.0, 0.12))
+    def over(t): return pan_pt(1, t) + Vector((0.12, 0.06, 0.13))   # a little behind the pan: the beam stays clear in front
     SET_S = 1.4                                   # set down slowly: a quick one whipped his elbow over
     END = Vector((0.33, -0.3, TOP + 0.005))   # back where it came from: he held it there at the start, so his arm can reach it; set down at his side, clear of the heap so we see it land
     def bp(t):
@@ -456,8 +455,9 @@ def shot5():
     data.blink(1.5)
     data.finish()
     soft_key("balance key", (-0.6, -1.0, 1.1), tuple(BC + Vector((0, 0, 0.2))), energy=24, size=32)
-    C0, L0 = Vector((0.05, -1.2, 0.98)), Vector((0.05, -0.25, 0.56))  # close and above, looking down: the table, not the floor, fills the bottom
-    C1, L1 = Vector((0.05, -1.1, 0.95)), Vector((0.04, -0.25, 0.56))
+    soft_key("jar key", (-0.5, -0.7, 0.55), tuple(BC + Vector((-0.2, 0, 0.1))), energy=10, size=14)   # lights the jar's red
+    C0, L0 = Vector((0.0, -1.3, 0.88)), Vector((0.0, -0.25, 0.56))   # close and a little above: the table fills the bottom, the jar side in frame
+    C1, L1 = Vector((0.0, -1.2, 0.86)), Vector((0.0, -0.25, 0.56))
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.25, 0.5))))
     return dict(**where, data=data, rest=1, grips=("pour basket", "jar"),

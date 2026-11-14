@@ -145,7 +145,7 @@ class Data:
         'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.35, frown=1.0, worry=1.0),
         'alarmed': dict(smile=0.0, open=0.55, oh=0.0, brow=0.34, lid=0.0, frown=0.7, worry=0.55),  # brows high, eyes wide, the mouth turned down: shock without the mouth hole
         'talk': dict(smile=0.2, open=0.5, oh=0.0, brow=0.04, lid=0.0),
-        'wry': dict(smile=0.45, open=0.0, oh=0.0, brow=0.13, lid=0.42, worry=0.35, squint=0.35),   # "what can you do": brows up, a half smile
+        'wry': dict(smile=0.22, open=0.0, oh=0.0, brow=0.16, lid=0.48, worry=0.6, squint=0.15),   # "what can you do": brows up, heavy lids, a flat half smile (at 0.45 smile the judge read it as contented, 11-14)
         'determined': dict(smile=0.15, open=0.0, oh=0.0, brow=0.12, lid=0.5, mad=0.75, squint=0.55),
         'sad': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.62, frown=0.8, worry=0.9),
     }
