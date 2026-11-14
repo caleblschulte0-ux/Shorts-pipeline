@@ -77,7 +77,10 @@ def _norm(s) -> str:
 def queries(who: str, look: str) -> list[str]:
     """What is searched, most specific first."""
     qs = []
-    for q in (f"{look} highlights" if look else "", f"{who} highlights"):
+    # the look on its own too: "Jimmy Butler sideline coach outfit" is not
+    # a highlight, and "... highlights" finds reels of everything else
+    for q in (f"{look} highlights" if look else "", look,
+              f"{who} highlights"):
         q = re.sub(r"\s+", " ", q).strip()
         if q and q.lower() not in (x.lower() for x in qs):
             qs.append(q)
@@ -320,6 +323,26 @@ def cut(video: Path, start: float, secs: float, out: Path) -> Path | None:
         return None
 
 
+def _wide_first(got, who: str):
+    """`got` with every phone edit held back until the broadcast footage
+    has been tried. A phone edit was refused outright (it carries its own
+    captions), and on 2026-11-14 that left nothing: every search for
+    Jimmy Butler's coach act and Cooper Flagg's bench PB&J came back as
+    Shorts, so the clip talking about them showed neither (operator:
+    "it's a cut-in. They're talking about something, it shows that
+    something"). A tall one is still judged like any other, and it fills
+    the frame."""
+    tall = []
+    for n, v, video in got:
+        if video and portrait(video):
+            print(f"[footage] {who!r}: {v['title'][:50]!r} is a phone "
+                  "edit — tried after the broadcast footage", flush=True)
+            tall.append((n, v, video))
+            continue
+        yield n, v, video
+    yield from tall
+
+
 def find(who: str, look: str = "", *, secs: float = MAX_MOMENT,
          work: Path | str = ".", title: str = "",
          avoid: list[dict] | None = None, context: str = "") -> dict | None:
@@ -342,17 +365,13 @@ def find(who: str, look: str = "", *, secs: float = MAX_MOMENT,
                 if v["url"] not in seen and not is_talk(v.get("title")):
                     seen.add(v["url"])
                     cands.append(v)
-        for n, v, video in _downloads(
+        for n, v, video in _wide_first(_downloads(
                 cands[:CANDIDATES],
-                lambda i: work / f"foot_{tag}_{i}.mp4"):
+                lambda i: work / f"foot_{tag}_{i}.mp4"), who):
             if not video:
                 continue
             dur = _seconds(video)
             if dur < MIN_VIDEO:
-                continue
-            if portrait(video):
-                print(f"[footage] {who!r}: {v['title'][:50]!r} is a phone "
-                      "edit — skipped", flush=True)
                 continue
             frames = []
             for i, f in enumerate(POINTS):
