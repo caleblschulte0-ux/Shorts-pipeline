@@ -83,19 +83,32 @@ def tear_off(pivot, nf, t_tear, out, floor_z=0.0, peel_s=0.18, seed=0, page_h=0.
     return grab
 
 
-def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_below=None, lie=False):
+class Floating(AssertionError):
+    """A rested item no longer touches what it landed on (2026-11-14, caaleb on the saffron balance: "the scale goes
+    down, but the saffron just hovers in place")."""
+
+
+FLOAT_TOL = 0.01      # metres a rested item may sit above its surface before it reads as hovering
+
+
+def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_below=None, lie=False, carry_fn=None):
     """items: objects (coins); schedule: their release times (same length); mouth_fn(t) -> world point the item
     leaves from; kick_fn(t) -> initial velocity (default a small spill downward); land_fn(x, y, t) -> the height of the
     surface under (x, y) at time t, or None for 'keep falling'. An item sits hidden at the mouth until its time, falls,
     and once it touches the surface it RESTS there; hide_below(rest_point, t) -> True hides a rested item (buried by
     the fill rising past it). lie=True rests a long item (a flower on its stem) on its side, as a heap of them lies,
-    not stood up on end."""
+    not stood up on end.
+
+    carry_fn(t) -> a world point ON the support (a balance pan, a tray, a cart): a rested item rides with it, moved
+    by how far that point has moved since the item landed. Whatever the caller passes, every rested, visible item is
+    checked against land_fn on every frame, and one left more than FLOAT_TOL above its surface raises Floating: a
+    support that moves without carry_fn is a render nobody should see."""
     rnd = random.Random(seed)
     for o, ts in zip(items, schedule):
         p0 = Vector(mouth_fn(ts)) + Vector((rnd.uniform(-0.012, 0.012), rnd.uniform(-0.012, 0.012), 0))
         v0 = Vector(kick_fn(ts)) if kick_fn else Vector((0, 0, -0.2))
         v0 += Vector((rnd.uniform(-0.08, 0.08), rnd.uniform(-0.08, 0.08), rnd.uniform(-0.05, 0.05)))
-        spin = Vector((rnd.uniform(-14, 14), rnd.uniform(-14, 14), rnd.uniform(-6, 6))); rest = None
+        spin = Vector((rnd.uniform(-14, 14), rnd.uniform(-14, 14), rnd.uniform(-6, 6))); rest = None; anchor = None
         for f in range(1, nf + 1):
             t = (f - 1) / FPS; u = t - ts
             if u < 0: _key(o, f, loc=p0, scale=(0, 0, 0)); continue
@@ -105,10 +118,17 @@ def pour(items, nf, schedule, mouth_fn, land_fn, kick_fn=None, seed=0, hide_belo
                 if s is not None and p.z <= s:
                     tip = (rnd.choice((-1, 1)) * rnd.uniform(1.2, 1.55)) if lie else rnd.uniform(-0.3, 0.3)
                     rest = (Vector((p.x, p.y, s)), tip, rnd.uniform(-0.3, 0.3), rnd.uniform(0, 6.28))
+                    anchor = Vector(carry_fn(t)) if carry_fn else None
                 else:
                     r = spin * u; _key(o, f, loc=p, rot=(r.x, r.y, r.z), scale=(1, 1, 1)); continue
-            hidden = bool(hide_below and hide_below(rest[0], t))
-            _key(o, f, loc=rest[0], rot=(rest[1], rest[2], rest[3]), scale=(0, 0, 0) if hidden else (1, 1, 1))
+            at = rest[0] + (Vector(carry_fn(t)) - anchor) if carry_fn else rest[0]
+            hidden = bool(hide_below and hide_below(at, t))
+            if not hidden:
+                s = land_fn(at.x, at.y, t)
+                if s is not None and at.z - s > FLOAT_TOL:
+                    raise Floating(f"{o.name} hovers {100 * (at.z - s):.1f} cm above its surface at {t:.2f}s: "
+                                   "its support moved and it did not (pass carry_fn)")
+            _key(o, f, loc=at, rot=(rest[1], rest[2], rest[3]), scale=(0, 0, 0) if hidden else (1, 1, 1))
 
 
 def bill_mesh(name="bill", w=0.1, h=0.045, res=(256, 116)):

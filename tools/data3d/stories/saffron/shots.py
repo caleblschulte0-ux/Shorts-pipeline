@@ -461,7 +461,8 @@ def shot5():
         if d > PRW: return None
         return c.z + 0.008 + 0.07 * max(0.0, 1 - d / (PRW + 0.01)) * min(1.0, (t - T_POUR0) / (T_POUR1 - T_POUR0))
     props.pour(fls, NF, sched, lambda t: bk.matrix_world @ Vector((-0.09, 0.0, 0.06)) if (sc.frame_set(F(t)) or True) else None, land,
-               kick_fn=lambda t: Vector((-0.12, 0.0, 0.0)), seed=5, lie=True)
+               kick_fn=lambda t: Vector((-0.12, 0.0, 0.0)), seed=5, lie=True,
+               carry_fn=lambda t: pan_pt(1, t))     # the heap rides the pan down as the beam levels
     US = Vector((0.0, -1.2, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(over(1.0), 0.5, max_yaw=35)

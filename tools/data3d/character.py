@@ -176,6 +176,8 @@ class Data:
         self._neck_looks = []   # look_at's neck share: (t, blend, degrees), layered onto the neck in finish()
         self._eye_looks = []    # look_at's eye targets: (t, blend, target, gaze calls before it), aimed in finish()
         self._gaze_calls = []   # every explicit gaze() frame, in call order: a later gaze() at a look's frame wins
+        self._blinks = []       # every blink() time: the life pass spaces its own around them
+        self._turns = []        # (t, blend, yaw, tilt) of every look_at: a big head turn gets a blink, as people do
         self._ik_keys = {}      # (side, frame) -> (world target, elbow_out, error when solved): finish() re-solves drift
         self.hands_resolved = (0, 0.0)
         self._build()
@@ -590,6 +592,7 @@ class Data:
         # bone Y is up; yaw about the armature's Z, pitch tilts the top of the head toward the target
         Rl = Matrix.Rotation(math.radians(yaw), 3, 'Z') @ Matrix.Rotation(math.radians(-head_tilt), 3, 'X') @ self._rest['head'].to_3x3()
         self._set_bone(hb, head, M.to_3x3().normalized() @ Rl, t)
+        self._turns.append((t, blend, yaw, tilt))
         if eyes:     # the eyes take the rest of the way, each pupil aimed from where IT is once the body is final
             self._eye_looks.append((t, blend * 0.6, Vector(target), len(self._gaze_calls)))
             self._end = max(self._end, t)
@@ -756,6 +759,7 @@ class Data:
         for t, v in keys: self._face(t, **{key: v})
 
     def blink(self, t, dur=0.2):
+        self._blinks.append(t)
         for s in 'LR':
             up, lo = self.EYE[s + 'up'], self.EYE[s + 'lo']
             self.sc.frame_set(F(t - dur / 2)); u0, l0 = up.rotation_euler.x, lo.rotation_euler.x         # the lids as they were
@@ -1154,6 +1158,7 @@ class Data:
         self._layer_neck(n)
         self._resolve_hands()
         self._aim_eyes()
+        if LIFE: self._live(n)
         owners = [self.arm, self.lips, self.cavity, self.lips.data.shape_keys] + list(self.brows) + [self.EYE[k] for k in self.EYE if k[-2:] in ('up', 'lo') or k.endswith('gaze')]
         for o in owners:
             ad = getattr(o, 'animation_data', None)
@@ -1163,6 +1168,86 @@ class Data:
         if SMOOTH: self.smooth(n)
         self.sc.frame_set(1)
         return n
+
+    # caaleb 2026-11-14, of the saffron short: "Data facial expressions and the like, making him feel like a real
+    # character in a real world instead of just like a series of animations." Measured on that cut: one or two hand-
+    # placed blinks a shot (28.8 s, 7 blinks; a person blinks every 2-6 s and on every big turn of the head) and pupils
+    # that never moved except when a look_at moved them, so between scripted moves his eyes were painted on. A living
+    # face is never still: the eyes dart between points of what they look at, and the lids come down as the head turns.
+    BLINK_GAP = (2.2, 4.8)      # seconds between his own blinks
+    BLINK_TURN = 18.0           # degrees of head turn that bring a blink with them
+    SACCADE = (3.0, 2.0)        # degrees each way the pupils dart (yaw, pitch) while he holds a look
+    SACCADE_GAP = (0.45, 1.4)   # seconds between darts
+
+    def life_plan(self, n, seed=None):
+        """(blinks, darts): the blink times and the (t, dx, dz) pupil offsets the life pass will add, from the shot's own
+        looks and blinks. Pure: tests read it without a render."""
+        import random
+        rnd = random.Random(11 if seed is None else seed)
+        T = (n - 1) / FPS
+        taken = sorted(self._blinks)
+        blinks = []
+        def free(t, gap=0.6):
+            return 0.25 < t < T - 0.25 and all(abs(t - b) >= gap for b in taken + blinks)
+        prev = None
+        for t, bl, yaw, tilt in sorted(self._turns):
+            if prev is not None and abs(yaw - prev[0]) + abs(tilt - prev[1]) >= self.BLINK_TURN:
+                tb = t - bl * 0.6                          # the lids drop as the head starts to go
+                if free(tb, 0.4): blinks.append(tb)
+            prev = (yaw, tilt)
+        t = rnd.uniform(0.6, 1.8)
+        while t < T - 0.3:
+            if free(t): blinks.append(t)
+            t += rnd.uniform(*self.BLINK_GAP)
+        darts = []; t = rnd.uniform(0.3, 0.9)
+        while t < T:
+            if rnd.random() < 0.35: darts.append((t, 0.0, 0.0))              # back to the point he is looking at
+            else: darts.append((t, rnd.uniform(-1, 1) * self.SACCADE[0], rnd.uniform(-1, 1) * self.SACCADE[1]))
+            t += rnd.uniform(*self.SACCADE_GAP)
+        return sorted(blinks), darts
+
+    def _live(self, n):
+        """THE LIFE PASS, on every shot in finish(): his own blinks (a cadence, and one with each big head turn) and
+        small saccades of the pupils layered on whatever the shot keyed. A dart is held, never drifted, and none lands
+        while the gaze is already travelling (a look in progress)."""
+        blinks, darts = self.life_plan(n)
+        lids = [(self.EYE[s + k], k) for s in 'LR' for k in ('up', 'lo')]
+        lidv = {}
+        for o, _ in lids:
+            fc = next((c for c in _fcurves(o.animation_data.action) if c.data_path == 'rotation_euler' and c.array_index == 0), None) \
+                if o.animation_data and o.animation_data.action else None
+            lidv[o.name] = (fc, [fc.evaluate(f) if fc else o.rotation_euler.x for f in range(1, n + 1)])
+        dur = 0.2
+        for tb in blinks:
+            fa, fm, fb = F(tb - dur / 2), F(tb), F(tb + dur / 2)
+            if fa < 1 or fb > n: continue
+            for o, k in lids:
+                v = lidv[o.name][1]
+                shut = math.radians(25) if k == 'up' else math.radians(-10)      # as blink(): the lids overlap, shut
+                for f, val in ((fa, v[fa - 1]), (fm, shut), (fb, v[fb - 1])):
+                    o.rotation_euler.x = val; o.keyframe_insert('rotation_euler', frame=f, index=0)
+        for s in 'LR':
+            g = self.EYE[s + 'gaze']
+            if not self._has_keys(g, 'rotation_euler'): g.keyframe_insert('rotation_euler', frame=1)
+            fcs = {c.array_index: c for c in _fcurves(g.animation_data.action) if c.data_path == 'rotation_euler'}
+            base = {i: [fcs[i].evaluate(f) for f in range(1, n + 1)] for i in (0, 2)}
+            off = [(0.0, 0.0)] * n; cur = (0.0, 0.0); j = 0
+            for f in range(1, n + 1):
+                t = (f - 1) / FPS
+                while j < len(darts) and darts[j][0] <= t:
+                    cur = (darts[j][1], darts[j][2]); j += 1
+                moving = f > 1 and (abs(base[0][f - 1] - base[0][f - 2]) + abs(base[2][f - 1] - base[2][f - 2])) > math.radians(0.4)
+                if moving: cur = (0.0, 0.0)
+                off[f - 1] = cur
+            for i in (0, 2):
+                fc = fcs[i]
+                fc.keyframe_points.clear(); fc.keyframe_points.add(n)
+                for k in range(n):
+                    dx, dz = off[k]
+                    lim = math.radians(self.EYE_YAW if i == 2 else self.EYE_PITCH)
+                    v = base[i][k] + (math.radians(dx) if i == 2 else -math.radians(dz))
+                    kp = fc.keyframe_points[k]; kp.co = (k + 1, max(-lim, min(lim, v))); kp.interpolation = 'LINEAR'
+                fc.update()
 
     def smooth(self, n):
         """THE TWITCH FILTER (caaleb 2026-11-13, of the banana short: "why does data tweak out"). Measured with
@@ -1243,6 +1328,7 @@ class Data:
 
 
 SMOOTH = os.environ.get("TWITCH_FILTER", "1") == "1"
+LIFE = os.environ.get("DATA_LIFE", "1") == "1"      # the life pass (blinks, saccades); 0 only to compare
 SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 1.2   # face 2.0 blurred syllables into a mumble       # Gaussian sigma, in frames at 30 fps
 
 
