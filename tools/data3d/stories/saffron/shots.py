@@ -418,18 +418,19 @@ def shot5():
         o.rotation_euler = (rnd0.uniform(1.0, 1.5), 0, rnd0.uniform(0, 6.28)); o.parent = bk
     B0 = Vector((0.31, -0.16, TOP + 0.005))          # on the table by his right hand
     def over(t): return pan_pt(1, t) + Vector((0.11, 0.0, 0.12))
-    END = Vector((0.33, -0.13, TOP + 0.005))   # set down at his side, clear of the heap so we see it land
+    SET_S = 1.4                                   # set down slowly: a quick one whipped his elbow over
+    END = B0.copy()   # back where it came from: he held it there at the start, so his arm can reach it; set down at his side, clear of the heap so we see it land
     def bp(t):
         if t < T_LIFT: return B0
         if t < T_TIP1: return B0.lerp(over(t), ease((t - T_LIFT) / (T_TIP1 - T_LIFT)))
         if t < T_POUR1 + 0.25: return over(t)
-        return over(T_POUR1 + 0.25).lerp(END, ease(min(1.0, (t - T_POUR1 - 0.25) / 0.8)))
+        return over(T_POUR1 + 0.25).lerp(END, ease(min(1.0, (t - T_POUR1 - 0.25) / SET_S)))
     def brot(t):
         a = 0.0 if t < T_TIP1 - 0.35 else min(1.0, (t - T_TIP1 + 0.35) / 0.5) * 1.9
-        if t > T_POUR1 + 0.25: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.25) / 0.8)))
+        if t > T_POUR1 + 0.25: a = 1.9 * (1 - ease(min(1.0, (t - T_POUR1 - 0.25) / (SET_S * 0.7))))
         return (0, -a, 0)
     follow(bk, bp, 0.0, DUR, rot_fn=brot)
-    T_LET = T_POUR1 + 1.35                        # the basket is down: he lets go
+    T_LET = T_POUR1 + 0.25 + SET_S + 0.2                        # the basket is down: he lets go
     reach(data, R, lambda t: bk.matrix_world @ Vector((0.0, 0.0, 0.085)) if (sc.frame_set(F(t)) or True) else None, 0.0, T_LET, lead=0.05, back=0.9, elbow_out=0.45)
     # the stream: flowers fall from the basket's mouth onto the right pan, heaping
     rnd = random.Random(3)
