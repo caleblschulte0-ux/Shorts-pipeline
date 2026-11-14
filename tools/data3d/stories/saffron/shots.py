@@ -359,13 +359,11 @@ def shot4():
     # 2026-11-14, second 180 (eight rounds on props in his hands): his arms reach 19 cm, so anything he holds sits inside
     # his own big head's width and is small on a phone. Now the dying flower is the HERO, close to the lens and tall
     # against the dawn sky, and Data stands behind it and reacts. No prop in his hands, nothing at a frame edge.
-    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.4, scale=2.0, seed=61)
-    T_W0, T_W1 = 0.1, DUR - 0.4                                 # it dies across the WHOLE shot: no dead hold after it
-    droop = PK.wilt(hero, T_W0, T_W1, brown="#8A5A30", to=1.0, droop_deg=70.0, slots=(0,))   # it browns, shuts and flops over
-    kb = hero.data.shape_keys.key_blocks["closed"]; kb.slider_min = -1.0      # wide open at first: a star of petals, not a bud
-    kb.value = -1.0; kb.keyframe_insert("value", frame=F(0.0))
-    kb.value = -0.6; kb.keyframe_insert("value", frame=F(0.6 * T_W1))
-    HB = Vector((-0.02, -0.25, 0.0))
+    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.4, scale=2.0, own=False, mesh=SK.crocus_mesh("dawn crocus", seed=61, thread_r=0.0018))   # fine threads up close (judge: "red hoses")
+    T_W0, T_W1 = 0.1, 0.62 * DUR                                 # it dies across the WHOLE shot: no dead hold after it
+    droop = PK.wilt(hero, T_W0, T_W1, brown="#8A5A30", to=1.0, droop_deg=85.0, slots=(0,))   # it browns, shuts and flops over
+    # (no forced opening: splayed to -1 the petals read as a spider lily; its own cup reads as a crocus)
+    HB = Vector((0.0, -0.25, 0.0))
     follow(hero, lambda t: HB, 0.0, DUR, rot_fn=lambda t: (-droop(t) * 0.25, droop(t) * 0.9, 0.4))   # it flops over sideways, landing short of Data   # it flops over sideways: a silhouette against the sky
     for o in own:                                                      # nothing between the lens and the hero flower
         if o.location.y < HB.y + 0.1 and abs(o.location.x - HB.x) < 0.7:
@@ -373,14 +371,15 @@ def shot4():
     own = [o for o in own if not o.hide_render]
     US = Vector((0.0, -1.3, 0.5))
     FL = HB + Vector((0, 0, 0.4))
-    T_REACT = T_W0 + 0.7 * (T_W1 - T_W0)                             # he reacts WHILE it dies, not after
+    T_REACT = T_W1 - 0.1                                              # he looks to us when it is dead: the payoff causes it                             # he reacts WHILE it dies, not after
     data.look_at(FL, 0.0, max_yaw=45, max_pitch=45, blend=0.0)
     data.gaze(0.0, -12, -25)        # watching his flower
-    data.look_at(US, T_REACT, max_yaw=20)                           # then at us
+    data.look_at(FL, T_REACT - 0.25, max_yaw=45, max_pitch=45)        # eyes stay on the flower until it is dead
+    data.look_at(US, T_REACT, max_yaw=20, blend=0.2)                           # then at us
     data.idle(0.0, DUR)
     data.expression("worried", 0.3, T_REACT - 0.05, blend=0.3)
-    data.perform("alarmed", T_REACT, hold=DUR, arms=False, pace=0.6)
-    data.expression("alarmed", T_REACT + 0.05, DUR + 1.0, blend=0.12)
+    data.perform("worried", T_W0 + 0.6, hold=DUR, arms=True, pace=0.7)   # hands clasp, he leans in as it dies: acting, not standing
+    data.expression("alarmed", T_REACT + 0.05, DUR + 1.0, blend=0.12)   # brows up, mouth shut: no open-mouth hole
     data.blink(1.4)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))

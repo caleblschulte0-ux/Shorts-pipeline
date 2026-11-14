@@ -176,3 +176,132 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - problem: Data's body is stiff the whole shot: his arms hang straight at his sides and nothing moves from the shoulders down, even at the moment of alarm (frames 17-28). His reaction is carried by his eyes and an open mouth alone.
 - problem: In frames 1-2 the left edge of the frame clips the flower's petals.
 
+
+## 2026-11-14 08:46Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 64 | 60, 64, 71 | FAIL |
+
+**shot 4** (FAIL, 64, bar 70)
+
+- problem: The hero crocus doesn't read as an open crocus. From frame 1 it is a dark, spiky, half-closed purple shape, and its red stamens are long hooked tubes that stick out sideways like tentacles or wires. In the wilt (frames 9-20) those red tubes sweep across the flower and look more like a rig glitch than a flower dying.
+- problem: Data stops watching the flower too early. He looks down at it only in frames 1-8. From frame 9 on he stares into the lens while the wilt is still happening, so his 'watching' beat is gone before the change he should be reacting to.
+- problem: The recoil is weak. In frames 21-28 he lifts both hands to chest height with his mouth open, but there is no step back, no flinch and no body pull-away. It reads as a mild 'oh' rather than alarm.
+- problem: Data's raised left hand is cut off at the right frame edge in frames 21-28, the reaction beat. His head also sits tight to the top of frame.
+- problem: The flower's petals and stem overlap Data's lower body for most of the shot, so the two silhouettes merge in the middle of the frame.
+- better: Rebuild the crocus as a recognisable open cup in bright saturated lavender with short orange stamens inside the cup. The brown wilt should be the only big colour change in the shot, and the flop should be one clean droop of the head, not stamens swinging around.
+- better: Keep Data's eyes on the flower until it has finished landing (around frame 20). Then do a sharp take: a quick flinch back of about half a step with his shoulders up and hands up, followed by a snap of his eyes to the camera.
+- better: Move Data and the camera so he sits fully inside the frame with headroom and both hands visible, and offset the flower so it is clear of his body.
+
+
+## 2026-11-14 08:51Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 60 | 60, 60, 62 | FAIL |
+
+**shot 4** (FAIL, 60, bar 70)
+
+- problem: The 'crocus' doesn't read as a crocus. Its petals are splayed, spiky, star-like blades, and the red stigmas are huge glossy tubes that bend out sideways like red hoses or wires (frames 1-20). A viewer sees a strange purple plant with red pipes, not a dawn crocus.
+- problem: The wilt happens, but it reads as the petals rotating and fanning flat more than drooping and shrivelling. The browning starts only around frame 15, and the flop to the soil comes late (frames 21-28). The 'in seconds' death shows, but not clearly as wilting.
+- problem: There is almost no recoil. Data's body barely moves. The only change is his head and the frame shifting down a little around frames 21-22, which looks more like the camera settling than Data flinching back.
+- problem: Data spends the first ~20 frames in one held, neutral stare down at the flower with no reaction building up. The alarm (open mouth, wide eyes to camera) arrives only in the last third.
+- problem: In frames 9-20 the flower's head covers Data's hands and coat. Both the subject and Data's body language are in the same muddy band of the frame, so neither reads cleanly on a phone.
+- problem: In frame 1 the bloom's left petals and stigma are cut by the left edge of the frame.
+- better: Rebuild the crocus as a recognisable cup: 6 rounded, upright petals forming a goblet, with small orange stigmas tucked inside, not long red tubes. Then make the wilt a real droop: the petals go limp and fold down, the colour runs purple to brown across the whole bloom, and the stem bends at the neck so the head drops onto the soil with a small settle.
+- better: Give Data a real recoil: a half step back, shoulders up, hands lifting up to his chest, timed to the moment the flower hits the ground. Then turn his head and eyes to the lens with the alarmed face, and hold that for a beat.
+- better: Build his reaction in stages: curious lean-in while it is still healthy → brow pinches as it browns → recoil on the flop → look to camera. Right now it is one held stare followed by a sudden face swap.
+
+
+## 2026-11-14 08:55Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 52 | 50, 52, 58 | FAIL |
+
+**shot 4** (FAIL, 52, bar 70)
+
+- HARD: BROKEN: Data is cut off by the right edge of the frame for the whole shot. His right shoulder, arm and hand are outside the picture in every frame (1-28). He is also pushed so far right that the composition looks like a framing mistake, not a choice.
+- HARD: NOT THE POINT (partly): the brief says Data 'recoils and looks at us, alarmed', but he never recoils. His body, arms and feet hold the same stiff stance from frame 1 to 28, and the only reaction is his mouth opening around frame 19. Someone watching would see a flower wilt next to a mascot who barely reacts.
+- HARD: BROKEN: Data is cut off by the right edge of the frame for the whole shot. The right side of his glasses and head, his right arm and his right shoulder are outside the frame in every frame (1-28).
+- HARD: BROKEN: the hero crocus is cut off by the left edge too. Its left petals and red tendrils run past the edge in frames 1-16, so the shot's main object is never fully in frame.
+- problem: The flower doesn't read as a big open crocus. It's a closed, spiky purple bud with long red streamers and a bare tube stem with no leaves, so it looks more like a lily or a flame than a crocus, and it isn't open when the shot starts.
+- problem: It doesn't flop over. The whole flower tips stiffly from the base like a rigid stick (frames 9-24) while the stem stays perfectly straight. There's no droop, the petals don't collapse and the stem doesn't bend, so it reads as a prop being tilted, not a flower wilting.
+- problem: The brown colour comes late and slowly. The flower is still mostly purple at frame 16 and only clearly brown from about frame 21, so 'wilts brown in seconds' only half lands.
+- problem: There is no recoil. Data's body stays planted and almost still the whole time. The only reaction is his eyes moving and his mouth dropping open (frames 19-28). He never pulls back or flinches.
+- problem: Frames 1-8 are a dead hold. For over a second nothing happens: the flower doesn't change and Data only glances down.
+- problem: The open mouth shows a dark hole with a strip of teeth or tongue (frames 19-28). The operator has already flagged this 'open mouth hole' as goofy.
+- problem: It doesn't really feel like dawn or like being low among the flowers. The field of crocuses is a thin purple strip at Data's ankles, and the brown ground takes up the bottom third of the frame.
+- better: Reframe so Data and the crocus are both fully inside the frame with breathing room. Centre the pair, or put the flower in the lower foreground and Data's full head above it.
+- better: Make the hero a real crocus: a goblet-shaped open cup with orange stamens and grassy leaves, big in the foreground. Have it start fully open and vivid.
+- better: Animate a real wilt: the colour drains to brown, the petals curl and sag, then the stem bends partway up and the head flops to the soil, maybe with a petal falling off.
+
+
+## 2026-11-14 09:00Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 68 | 64, 68, 72 | FAIL |
+
+**shot 4** (FAIL, 68, bar 70)
+
+- problem: The field closing behind Data is almost impossible to see. The background rows go from a red-purple mix to a flat purple between rows 2 and 3, but no flower is ever seen shutting, so the 'race' half of the line doesn't read on a phone. Only the one hero flower dying does.
+- problem: Data does nothing for 24 of 28 frames: arms hang at his sides and the only change is his eyes moving from the flower to the lens. The alarm rests on a small face change and a late open mouth (row 3 frame 3 onward), which is the subtle-face acting that fails on a phone.
+- problem: The open mouth shows as a dark hole with teeth and tongue (row 3 frame 3 to row 4 frame 4). That is the 'open mouth hole' look already flagged on Data.
+- problem: When he looks up (row 3 frames 5-8) the glasses ride high and the top rim sits above his head outline, so they read as slipping off his forehead.
+- problem: The hero flower overlaps Data's body for the whole shot. In row 1 its petals are cut by the left edge of the frame, and as it browns it blends into his dark legs, so where it lands is muddy (row 4).
+- better: Make the field closing big and in the foreground: put several near flowers among the camera's foreground grass, each folding shut one after another (a visible wave crossing the frame), so 'race' is something you SEE rather than a colour change in the background.
+- better: Give Data a big readable action instead of a face: reaching out to cup the flower as it drops, or holding up a ticking pocket watch or alarm clock while it wilts. The beat's emotion should sit on a prop or a physical move, not on his expression.
+- better: Move the hero flower right of centre or lower in the frame so it doesn't overlap Data's legs. It should end lying on clear soil against a lighter background so the brown dead flower stands out.
+
+
+## 2026-11-14 09:04Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 68 | 64, 68, 72 | FAIL |
+
+**shot 4** (FAIL, 68, bar 70)
+
+- problem: Data does almost no acting. He stands stiff with his arms dead at his sides for all 28 frames, and the only acting is a small head turn, from looking down at the flower (row 1) to the camera (row 2 on). His 'worried' face is a small frown that barely changes from his resting face, so on a phone the worry hardly reads.
+- problem: When the crocus 'flops over', the whole stem tips like a falling stick instead of bending from a rooted base. From row 2 on, the bottom of the stem looks like it ends in mid-air above the soil (clearest in row 3, frames 1-4, and row 4), so the flower looks like a prop leaning over rather than a plant that is dying.
+- problem: The hero flower does not read as a crocus. When it is open (row 1) the petals splay out flat and spiky, like a spider lily, with long red threads sticking out, instead of the cup shape a crocus has. Its purple-to-brown change is clear, but the 'open, healthy' starting state is weak, so the loss lands less hard.
+- problem: The end state is small and low. The flopped brown flower finishes as a blob at about knee height in the bottom-left corner (rows 3-4), well below Data's face. The payoff and his reaction are never in the same part of the frame.
+- problem: Data looks up at the camera at the very start of row 2, while the flower is still purple and only starting to droop. He takes his eyes off the event before it pays off, so the look to us reads as a cut-in, not a reaction to the flower dying.
+- better: Make the reaction physical instead of facial. Have Data step forward and crouch behind the flower, reach toward it, and pull his hand back as it flops, or put both hands to his head, so the worry reads from his body and not from a millimetre of brow.
+- better: Keep him watching the flower until it has fully flopped and gone brown (end of row 3), then have him look up at us. Hold that look for about 0.5 seconds with a clear worried expression (brows up and pinched, mouth turned down).
+- better: Root the stem. Bend it from about a third of the way up so the head droops toward the soil while the base stays planted, and have a petal or two drop and land.
+
+
+## 2026-11-14 09:09Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 66 | 63, 66, 72 | FAIL |
+
+**shot 4** (FAIL, 66, bar 70)
+
+- problem: Data looks up at the camera too early. From about frame 9, at the start of row 2, his eyes are already on us, but the crocus has only just started to wilt. So he is not watching the wilt, and 'watches, then looks up at us' plays the wrong way round.
+- problem: The worry depends almost entirely on clasping his hands at frame 10. His face keeps the same mild frown from frame 1 to frame 28: no brow lift, no widening eyes, no change when the flower flops. On a phone he reads as standing there rather than worried.
+- problem: The wilted bloom ends up dark brown, low in the frame (frames 21-28), sitting in front of Data's dark teal legs and the dark soil. The payoff state has little contrast and gets lost in his silhouette.
+- problem: The wilt is slow and even. The flower spends rows 2-3 a muddy mauve-grey and only reads as brown in about the last third. 'Wilts brown in seconds' has no clear moment where it turns.
+- problem: The flop is more a slow lean to about 45 degrees than a collapse. There is no droop or bounce of the head when it lands, so it reads as tilting rather than flopping over dead.
+- better: Keep Data's eyes and head on the flower until it lands (about frame 21), then make the look-up to camera a clear head turn with brows tilting up into worry (the new worry and sad shape keys). The clasped hands should land at that same moment, not before the wilt.
+- better: Make the colour change happen fast and saturated: vivid purple to clearly brown with curling, shrivelling petal tips over about 1.5 s. Then have the head drop with a little bounce as it hits.
+- better: Put the flower against a clean background: move it a little left and up so the brown head lands on the soil or sky, not in front of Data's legs. Or warm the dawn key so the brown separates from the shadow.
+
+
+## 2026-11-14 09:13Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 73 | 72, 73, 74 | PASS |
+
+**shot 4** (PASS, 73, bar 70)
+
+- problem: The flower's colour change happens mostly after it has already fallen (frames 13-16). For most of the fall it is still purple, so it reads more as tipping over than wilting.
+- problem: Once it lands, the brown flower lies on brown dirt at Data's feet (frames 16-28) and is small in frame. On a phone it nearly blends into the ground.
+- problem: Data's arms jump from hanging at his sides to clasped at his chest in about two sampled frames (frames 8-10). It looks snappy, with no anticipation.
+- problem: The flower that fails is barely 'open' at the start (frames 1-4). It looks like a closed tulip bud with red stigmas sticking out, so 'a fresh bloom dies' is weaker than it could be.
+
