@@ -180,7 +180,7 @@ def shot2():
     data = load_data(); data.place(0.02, 0.08, 0)
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
-    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.3, 2.0, 2.8, 3.2, 4.0, 4.6
+    T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.4, 2.5, 3.6, 4.2, 5.0, 5.9
     HOLD = Vector((data.pos().x - 0.12, -0.24, 0.5))               # the flower held out at chest height, on his far side from the scale
     INBK = BKP + Vector((0.01, 0.0, 0.15))                          # tossed: it lands on the heap in the basket
     T_REL = T_DROP + 0.45
@@ -212,13 +212,13 @@ def shot2():
     data.idle(0.0, DUR)
     data.expression("pleased", 0.1, T_PINCH - 0.1)
     data.expression("determined", T_PINCH, T_DROP + 0.3)
-    data.act("shrug", T_SHRUG, dur=0.35, hold=max(0.5, DUR - T_SHRUG - 0.9))
+    data.perform("wry", T_SHRUG, hold=max(0.5, DUR - T_SHRUG - 0.5), arms=False)   # his hands would be hidden by the crate: the face says it
     data.alive(T_SHRUG + 0.4, DUR, seed=2)
     data.blink(1.6); data.blink(T_DROP + 0.8)
     data.finish()
     soft_key("scale key", (0.7, -0.9, 0.8), tuple(PAN), energy=16, size=22)
-    C0, L0 = Vector((-0.02, -1.12, 0.64)), Vector((-0.02, -0.15, 0.55))   # close: the scale's dial and his face both read
-    C1, L1 = Vector((0.0, -1.04, 0.62)), Vector((0.0, -0.15, 0.55))
+    C0, L0 = Vector((-0.02, -1.08, 0.74)), Vector((-0.02, -0.15, 0.52))   # close: the scale's dial and his face both read
+    C1, L1 = Vector((0.04, -0.98, 0.72)), Vector((0.04, -0.15, 0.52))   # a little above: we see down into the pan
     cam = K.camera(tuple(C0), tuple(L0), lens=30, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.15, 0.45))))
     return dict(**where, data=data, rest=1, grips=("hero crocus", "hero threads"),
@@ -293,7 +293,8 @@ def shot3():
         def pos(t, t0=t0, p=p, land=land):
             if t < t0 + 0.7 * p: return lhand(t) + Vector((0.0, 0.0, -0.02))
             u = min(1.0, (t - t0 - 0.7 * p) / (0.3 * p)); return (MID + Vector((0, 0, -0.02))).lerp(land, ease(u)) + Vector((0, 0, 0.035 * math.sin(math.pi * u)))
-        follow(o, pos, t0, DUR, rot_fn=lambda t: (0.4, 0.2, 1.0))
+        yaw_ = rnd.uniform(0, 6.28)     # it tips over as it drops and LIES on the pile (the judge: "standing upright on their stems")
+        follow(o, pos, t0, DUR, rot_fn=lambda t, t0=t0, p=p, yaw_=yaw_: (0.4 + 1.15 * ease(min(1.0, max(0.0, (t - t0 - 0.7 * p) / (0.3 * p)))), 0.2, yaw_))
         for t_, s_ in ((0.0, 0), (t0 - 0.01, 0), (t0 + 0.08, 1.0)): o.scale = (s_, s_, s_); o.keyframe_insert("scale", frame=max(1, F(t_)))
         o.location = HEAP; o.keyframe_insert("location", frame=1)
         spent.append(o)
@@ -338,7 +339,7 @@ def shot4():
         for t_, v in ((0.0, 0.85), (o_at, 0.85), (o_at + 0.45, 0.0), (max(c_at, o_at + 0.5), 0.0), (max(c_at, o_at + 0.5) + 0.55, 1.0)):
             kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
     sun_disc = K.sph("sun disc", (-3.2, 45.0, 1.0), 3.6, K.mat("sun disc", "#FFD27A", rough=1.0, emit=25.0))
-    for t_, z in ((0.0, 2.0), (DUR, 7.5)):           # it climbs clear of the hills, in plain view beside him
+    for t_, z in ((0.0, 2.0), (DUR, 10.0)):           # it climbs clear of the hills, in plain view beside him
         sun_disc.location.z = z; sun_disc.keyframe_insert("location", frame=F(t_))
     def light():
         key = LOC.sky_light(sun_elev=6, sun_az=160, sun=2.6, sky=0.18, warm=(1.0, 0.62, 0.36), haze=1.4)
@@ -359,13 +360,13 @@ def shot4():
     data = load_data(); data.place(0.05, 0.05, 0)
     US = Vector((0.0, -1.3, 0.62))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(Vector((0.35, -0.8, 0.0)), 0.9, max_yaw=35)          # down at the flowers in front of him as they shut
-    data.look_at(Vector((-0.35, -0.8, 0.0)), 1.7, max_yaw=35)
+    data.look_at(Vector((0.12, -0.7, 0.0)), 0.9, max_yaw=20)          # down at the flowers in front of him as they shut
+    data.look_at(Vector((-0.12, -0.7, 0.0)), 1.7, max_yaw=20)
     data.look_at(US, 2.45, max_yaw=20)
     data.idle(0.0, DUR)
     data.alive(0.0, 1.9, seed=4)
     data.expression("pleased", 0.1, 1.0)
-    data.perform("alarmed", 2.4, hold=max(0.3, DUR - 3.3), arms=True, pace=0.55)
+    data.perform("alarmed", 2.4, hold=max(0.3, DUR - 2.6), arms=True, pace=0.55)
     data.blink(0.6)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
@@ -417,7 +418,7 @@ def shot5():
         o.rotation_euler = (rnd0.uniform(1.0, 1.5), 0, rnd0.uniform(0, 6.28)); o.parent = bk
     B0 = Vector((0.31, -0.16, TOP + 0.005))          # on the table by his right hand
     def over(t): return pan_pt(1, t) + Vector((0.11, 0.0, 0.12))
-    END = Vector((0.27, -0.17, TOP + 0.005))
+    END = Vector((0.33, -0.13, TOP + 0.005))   # set down at his side, clear of the heap so we see it land
     def bp(t):
         if t < T_LIFT: return B0
         if t < T_TIP1: return B0.lerp(over(t), ease((t - T_LIFT) / (T_TIP1 - T_LIFT)))
