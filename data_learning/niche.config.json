@@ -33328,8 +33328,8 @@
   {
    "slug": "drug-resistant-infections-2050",
    "title": "Drug-Resistant Infections Could Kill More Than Cancer By 2050",
-   "hook": "Drug-resistant infections already kill 1.3 million people a year.",
-   "closing": "The fix is using old drugs less, not new ones.",
+   "hook": "A bacteria your medicine can't touch is already killing 1.3 million people a year.",
+   "closing": "By 2050, a germ could kill as many people as cancer does now. The fix is using old drugs less, not new ones.",
    "question": "Did you know resistance was this deadly?",
    "hashtags": [
     "health",
@@ -33356,7 +33356,12 @@
      "use_baseline": false,
      "role": "1 · THE SCOPE",
      "topic": "how many die from drug-resistant infections",
-     "say": "Resistant infections directly killed 1.27 million people in 2019."
+     "say": "Resistant infections directly killed 1.27 million people in 2019.",
+     "scene": {
+      "mechanic": "petri-dish-deaths",
+      "concept": "two petri dishes grow one colony dot per 50,000 deaths: 1.27M direct vs 4.95M where resistance was a factor",
+      "code": "bug = subject_image('bacteria colony microscope')\ndish = [(RX0 + 270, RTOP + 560), (RX0 + 270, RTOP + 1180)]\nfor r in range(2):\n    cx, cy = dish[r]\n    R = 250\n    cnt = int(round(values[r] / 0.05))\n    d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=rgba(TEXT, 170), width=8, fill=rgba(SUBTLE, 40))\n    shown = int(cnt * clamp(reveal * 1.1))\n    for k in range(cnt):\n        a = k * 2.399\n        rr = R * 0.9 * math.sqrt((k + 0.5) / cnt)\n        px = cx + rr * math.cos(a)\n        py = cy + rr * math.sin(a)\n        if k < shown:\n            col = HIGHLIGHT if r == 0 else REST\n            sz = 15 + 4 * math.sin(reveal * 18 + k)\n            d.ellipse([px - sz, py - sz, px + sz, py + sz], fill=rgba(col, 230))\n    if bug is not None:\n        paste(bug, cx - 70, cy - 70, w=140, h=140)\n    text(fmt(values[r] * clamp(reveal * 1.1)), RX0 + 600, cy - 70, size=96, color=HIGHLIGHT if r == 0 else TEXT)\n    text(labels[r], RX0 + 600, cy + 40, size=40, color=SUBTLE)\ntext('1 dot = 50,000 lives', RX0 + 40, RTOP + 160, size=48, color=SUBTLE)\n"
+     }
     },
     {
      "source": "offline",
@@ -33368,7 +33373,12 @@
      "use_baseline": false,
      "role": "2 · THE TRAJECTORY",
      "topic": "drug-resistant deaths projected to explode by 2050",
-     "say": "That's projected to reach 10 million deaths a year by 2050."
+     "say": "That's projected to hit ten million deaths a year by 2050, eight times today's.",
+     "scene": {
+      "mechanic": "blister-pack-failing",
+      "concept": "a blister pack of antibiotic pills, each 250k deaths a year, turns dead-red: 1.27M in 2019 vs 10M in 2050",
+      "code": "pill = subject_image('antibiotic capsule pill')\ncols, rows = 8, 5\nper = 10.0 / 40.0\ncw = (RX1 - RX0) // cols\nfor r in range(2):\n    top = RTOP + 150 + r * 720\n    nd = int(round(values[r] / per))\n    text(labels[r], RX0 + 40, top - 20, size=50, color=SUBTLE)\n    d.rounded_rectangle([RX0, top + 50, RX1, top + 50 + rows * 110 + 20], radius=30, outline=rgba(TEXT, 120), width=5)\n    dead = int(nd * clamp(reveal * 1.1))\n    for k in range(cols * rows):\n        x = RX0 + (k % cols) * cw + cw // 2\n        y = top + 105 + (k // cols) * 110\n        isd = k < dead\n        if pill is not None:\n            paste(pill, x - 36, y - 30, w=72, h=60)\n        else:\n            d.rounded_rectangle([x - 34, y - 20, x + 34, y + 20], radius=20, fill=rgba(REST, 160))\n        if isd:\n            d.rounded_rectangle([x - 40, y - 26, x + 40, y + 26], radius=22, fill=rgba(HIGHLIGHT, 190))\n            d.line([x - 22, y - 16, x + 22, y + 16], fill=rgba(TEXT, 240), width=6)\n            d.line([x - 22, y + 16, x + 22, y - 16], fill=rgba(TEXT, 240), width=6)\n    text(fmt(values[r] * clamp(reveal * 1.1)), RX1 - 40, top - 30, size=84, color=HIGHLIGHT if r == 1 else TEXT)\n"
+     }
     },
     {
      "source": "offline",
@@ -33380,7 +33390,12 @@
      "use_baseline": false,
      "role": "3 · THE COMPARISON",
      "topic": "resistant infections could match cancer by 2050",
-     "say": "That would make it as deadly as cancer is today."
+     "say": "Ten million. The exact number cancer kills every year today. The scales go level.",
+     "scene": {
+      "mechanic": "scales-level-with-cancer",
+      "concept": "a scale tips level as 10M AMR deaths stack to match 10M cancer deaths",
+      "code": "cell = subject_image('cancer cell microscope')\nbug = subject_image('drug resistant bacteria microscope')\nimgs = [cell, bug]\ncx, cy = 540, RTOP + 560\ntilt = (1 - clamp(reveal * 1.2)) ** 2 * 0.22\nln = 420\nax, ay = cx - ln * math.cos(tilt), cy + ln * math.sin(tilt)\nbx, by = cx + ln * math.cos(tilt), cy - ln * math.sin(tilt)\nd.polygon([(cx - 40, cy + 520), (cx + 40, cy + 520), (cx + 12, cy), (cx - 12, cy)], fill=rgba(REST, 220))\nd.line([ax, ay, bx, by], fill=rgba(TEXT, 240), width=16)\nfor i, (px, py) in enumerate([(ax, ay), (bx, by)]):\n    n10 = int(round(values[i]))\n    shown = int(n10 * clamp(reveal * 1.15))\n    for k in range(n10):\n        bx0 = px - 100 + (k % 5) * 42\n        by0 = py - 40 - (k // 5) * 44\n        if k < shown:\n            d.rounded_rectangle([bx0, by0 - 40, bx0 + 38, by0], radius=6, fill=rgba(HIGHLIGHT if i == 1 else REST, 240))\n    if imgs[i] is not None:\n        paste(imgs[i], px - 150, py + 30, w=300, h=300)\n    text(labels[i], px, py + 360, size=40, color=SUBTLE, center=True)\n    text(fmt(values[i] * clamp(reveal * 1.15)), px, py + 410, size=84, color=TEXT, center=True)\ntext('SAME WEIGHT', 540, RTOP + 1330, size=96, color=HIGHLIGHT, center=True)\n"
+     }
     }
    ]
   },
