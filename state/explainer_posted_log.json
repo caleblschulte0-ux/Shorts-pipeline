@@ -5453,11 +5453,39 @@
       }
     },
     "activity-inequality-steps": {
-      "claimed_at": "2026-11-14T10:35:33.090522+00:00",
+      "url": "https://youtube.com/shorts/H5b6Yz5XRIU",
       "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
+      "at": "2026-11-14T10:35:47.789620+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.9,
+      "beat_s": [
+        4.42,
+        7.9,
+        7.19,
+        6.46,
+        6.58
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 74,
+      "duration_s": 33.0,
+      "hook": "inversion",
+      "topic_category": "body",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:footprint-trail-row",
+        "mechanic:risk-scale-tilt",
+        "mechanic:step-gap-scale"
+      ],
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -7029,9 +7057,10 @@
       "claimed_at": "2026-11-14T10:35:33.090522+00:00",
       "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "activity-inequality-steps"
+      "url": "https://youtube.com/shorts/H5b6Yz5XRIU",
+      "state": "posted",
+      "slug": "activity-inequality-steps",
+      "at": "2026-11-14T10:35:47.789620+00:00"
     }
   ]
 }
