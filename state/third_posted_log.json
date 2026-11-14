@@ -19866,13 +19866,41 @@
       "ts": "2026-11-14T12:50:12.330662+00:00"
     },
     "clip-20261114-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/AntsyObliqueRadicchioVoHiYo-uSskG_k0giMYoe-q",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/bf-rmisdIkY",
       "title": "Jynxzi Clutch Goes Through Walls And Chat Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-11-14T12:54:36.891329+00:00",
+      "ts": "2026-11-14T12:54:46.964342+00:00",
+      "uploaded_at": "2026-11-14T12:54:46.964355+00:00",
+      "publish_at": "2026-11-14T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261114-jynxzi-clutch-goes-through-walls-and-chat-can-t--a8067e7e",
+        "tiktok": "queued for 2026-11-14T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AntsyObliqueRadicchioVoHiYo-uSskG_k0giMYoe-q",
+      "streamer": "jynxzi",
+      "series": "clutch",
+      "hook": "Jynxzi's clutch goes through walls \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3329,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 23.8
+      },
+      "director_cut": true
+    },
+    "clip-20261114-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cooksux/clip/PerfectSpinelessDumplingsAliens-fQ7UKNRFMzwALt2v",
+      "story_key": null,
+      "streamer": "cooksux",
+      "title": "Cooksux Gets Told He's Mr. King After Chat Won't Stop Memeing Him",
+      "kind": "twitch_clip",
+      "ts": "2026-11-14T13:01:42.509204+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
