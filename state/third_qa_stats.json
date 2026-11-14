@@ -3,159 +3,6 @@
     {
       "date": "20261108",
       "dry_run": false,
-      "ts": "2026-11-08T11:42:02+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-08T08:46:18.274667+00:00"
-      },
-      "brain": {
-        "ok": 4,
-        "fail": 0,
-        "limited_at": "2026-11-08T11:40:55+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261108-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261108-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.4
-        },
-        {
-          "slug": "clip-20261108-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261108",
-      "dry_run": false,
       "ts": "2026-11-08T12:40:28+00:00",
       "feedback": {
         "snapshot": true,
@@ -5720,6 +5567,378 @@
           "slug": "clip-20261113-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261114",
+      "dry_run": false,
+      "ts": "2026-11-14T13:01:49+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 138,
+        "with_retention": 114,
+        "with_curve": 14,
+        "fetched_at": "2026-11-14T08:46:13.981939+00:00"
+      },
+      "brain": {
+        "ok": 40,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261114-1",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about 30% of the canvas height. The brief asks for roughly 75%, so the framing did no; vision: In the first ~10s (1.2s to 8.5s) the subject is small and far ",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 142,
+                "refused_shown": 12,
+                "scouted": [
+                  {
+                    "premise": "Stableronaldo's chat-stream saga with his girlfriend Amanda: the 'That's beef' moment, picking Amanda in a fight, then g",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Sodapoppin's WoW week: his own managers camp him for hours, then the average Mitch stream follows with a gift-sub giveaw",
+                    "shape": "multi_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Stableronaldo and Jynxzi's Fortnite pirate token run: the token is found, Ron wins, and Jynxzi loses it when Ron gets th",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "The 2026 Streamer Awards night: DDG crashes Ari's speech, Jynxzi wins Gamer of the Year, and IShowSpeed is crowned Strea",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Forsen plays Clive Barker's Hellraiser: Revival on one stream, from the first stretch to the GOTY moment.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 298,
+                "moments": 40,
+                "candidates": 502,
+                "pool": 2875,
+                "pool_with_vod": 2033,
+                "arc_sizes": [
+                  3,
+                  4,
+                  3,
+                  2,
+                  2,
+                  6,
+                  3,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:stableronaldo/stableronaldo-about-amanda-2026w43",
+                  "outcome": "narrative_failed",
+                  "why": "scores [76, 72, 74] after 2 revision(s) \u2014 @8s missing_context: The fight shots never show Amanda clearly, so a stranger can't tell which boxer she is. Add a short overlay or caption such as 'Amanda in white' or 'Amanda vs Mysterious' at the start of the fight sec; @8s confusing: The 'swing at the re"
+                },
+                {
+                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
+                  "outcome": "narrative_failed",
+                  "why": "scores [72, 76, 72] after 2 revision(s) \u2014 @26s confusing: The 'girl drama' is never introduced. The cut jumps from the bath to 'do you want me to go into the thing with the girl?' with no setup. Add a short line of context or cut in the earlier mention, so '; @30s confusing: The overlay 'Afterwards,"
+                },
+                {
+                  "cluster": "kaicenat@vod2849957264/kaicenat-about-asks-2026w34",
+                  "outcome": "narrative_failed",
+                  "why": "scores [68, 66, 55] after 2 revision(s) \u2014 @50s weak_payoff: The ending raises a question it never answers. The phone shows only the Add to Story menu and Kai never says what he saw. Cut to a moment where the cause of the reaction is visible or said, or drop th; @21s confusing: The hang-up question a"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "Named streamer, vague hospital rowdiness",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Hospital dancing stream, gift-sub alerts",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Hachubby Gets Caught Being Rowdy In A Hospital And It Gets Wild"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is a thin strip, about 30% of the canvas height. The brief asks for roughly 75%, so the framing did no",
+                "In the first ~10s (1.2s to 8.5s) the subject is small and far away inside the strip, and the huge blurred padding domina",
+                "The blurred padding is mostly a giant blurred copy of her face and hair, which is distracting beside the small sharp str"
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 251.8
+        },
+        {
+          "slug": "clip-20261114-2",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "Real wedding officiated, wholesome momen",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "clown wedding, quirky but little payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Murdercrumpet: Twitch CEO Dan Clancy's Message At Jimmy And Floopy's Wedding Is Unreal"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture is a fairly thin strip, about a third of the canvas height, well under the ~75% target. The couple and off",
+                "Small speech captions inside the picture (e.g. 'honored you could') are tiny, though legible enough.",
+                "No overlay covers a face, and no frame is broken."
+              ]
+            },
+            "first_render": {
+              "reframe": "facecam_gameplay",
+              "layout": "facecam_gameplay",
+              "problems": [
+                "vision: The sharp picture is a thin strip of about 30% of the canvas height, far below the roughly 75% target. The renderer did ",
+                "vision: The bottom ~40% of the canvas is a dark blur of the priest's hands, so a large part of the frame is wasted.",
+                "vision: The couple and the priest are small and mid-distance, so faces are hard to read on a phone.",
+                "vision: The captions sit on the thin strip and are tiny."
+              ]
+            }
+          },
+          "took_s": 378.0
+        },
+        {
+          "slug": "clip-20261114-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (talking, no visible event, needs context)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261114-3",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "Insider cosplay, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "talking, no visible event, needs context",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 20.7
+        },
+        {
+          "slug": "clip-20261114-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "Routine gameplay clutch",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Fortnite chase, ends 2nd place, laughing",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Clutch Goes Through Walls And Chat Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Gameplay half is mostly sky, ground and wood planks, so the 'through walls' action is hard to read",
+                "Facecam crop drifts at 18.8s and 20.8s, with the face at the edge or half cut off",
+                "The hook caption sits over the lower chin and shirt of the facecam, which is acceptable but crowds it"
+              ]
+            }
+          },
+          "took_s": 233.7
+        },
+        {
+          "slug": "clip-20261114-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "vague title, unknown streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "IRL street banter, needs context",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cooksux Gets Told He's Mr. King After Chat Won't Stop Memeing Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.65,
+              "problems": [
+                "Some frames (11.0s, 20.5s, 26.8s) are motion-blurred, but that comes from the source footage's camera movement.",
+                "At 4.7s and 17.3s the subject's face is partly cropped at the edge of the frame.",
+                "The hook caption stays at the bottom for the whole clip, and the word captions sit close above it, so the bottom of the "
+              ]
+            }
+          },
+          "took_s": 305.7
+        },
+        {
+          "slug": "clip-20261114-6",
+          "ok": false,
+          "skipped": "run budget reached"
         }
       ]
     }

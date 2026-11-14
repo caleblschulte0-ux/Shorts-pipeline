@@ -19894,14 +19894,32 @@
       "director_cut": true
     },
     "clip-20261114-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cooksux/clip/PerfectSpinelessDumplingsAliens-fQ7UKNRFMzwALt2v",
-      "story_key": null,
-      "streamer": "cooksux",
+      "url": "https://youtube.com/shorts/8QjVi9JOob8",
       "title": "Cooksux Gets Told He's Mr. King After Chat Won't Stop Memeing Him",
       "kind": "twitch_clip",
-      "ts": "2026-11-14T13:01:42.509204+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-14T13:01:49.468042+00:00",
+      "uploaded_at": "2026-11-14T13:01:49.468058+00:00",
+      "publish_at": "2026-11-14T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261114-cooksux-gets-told-he-s-mr-king-after-chat-won-t--e3bc5094",
+        "tiktok": "queued for 2026-11-14T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cooksux/clip/PerfectSpinelessDumplingsAliens-fQ7UKNRFMzwALt2v",
+      "streamer": "cooksux",
+      "series": "chaos",
+      "hook": "Cooksux can't believe they're calling him that \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1785,
+      "banger": 0.3,
+      "cut": {
+        "start": 14.5,
+        "end": 50.8
+      },
+      "director_cut": true
     }
   }
 }
