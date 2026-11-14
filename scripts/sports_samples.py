@@ -833,7 +833,8 @@ def end_card(raw: Path, edit: dict, work: Path) -> dict:
 
 
 def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
-         line_top: bool = False, used_songs: list | None = None) -> dict:
+         line_top: bool = False, used_songs: list | None = None,
+         no_words: bool = False) -> dict:
     """Author and cut one post. `notes` is a refused cut's verdict for the
     author to repair from; `line_top` puts our line at the top because
     the judge saw it over the footage's own graphic."""
@@ -880,7 +881,9 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                          words=words, series=(meta or {}).get("series",
                                                               "unknown"),
                          direct=dict((meta or {}).get("edit") or {},
-                                     **({"line": "top"} if line_top else {})))
+                                     **({"line": "top"} if line_top else {}),
+                                     **({"speech": "off"} if no_words
+                                        else {})))
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
                                                "shot_plan", "outro",
