@@ -20,14 +20,15 @@ with the reason in the step summary) when:
 """
 from __future__ import annotations
 
-import datetime as dt
 import json
-import os
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from shared import channel_health  # noqa: E402
+
 REPORT = ROOT / "sports_report.json"
 DAYS = 3
 MIN_POSTS = 4
@@ -35,7 +36,7 @@ HELD_MIN = 3
 HELD_SHARE = 2 / 3
 # Runs before the 2026-11-14 fixes (PRs 754-756) are the problems this
 # check was written from; counting them would keep it red for days after.
-FLOOR = "2026-11-14"
+FLOOR = channel_health.FLOOR
 
 
 def _rich(slot: dict) -> bool:
@@ -79,8 +80,7 @@ def recent(days: int = DAYS) -> list[dict]:
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[health] no earlier reports ({e})", flush=True)
         return []
-    since = max(FLOOR, (dt.date.today()
-                        - dt.timedelta(days=days)).isoformat())
+    since = channel_health.since(days, FLOOR)
     out = []
     for d in names:
         day = d.split("/")[-1][:10]
@@ -104,17 +104,9 @@ def main() -> int:
         except ValueError:
             pass
     found = problems(reports)
-    lines = ([f"- {p}" for p in found] if found
-             else ["- cut-ins and montages are being made and posted"])
-    text = "### Baller Bro health\n" + "\n".join(lines) + "\n"
-    print(text, flush=True)
-    summary = os.environ.get("GITHUB_STEP_SUMMARY")
-    if summary:
-        with open(summary, "a") as f:
-            f.write(text)
-    for p in found:
-        print(f"::error::[health] {p}", flush=True)
-    return 1 if found else 0
+    return channel_health.emit(
+        "Baller Bro health", found,
+        "cut-ins and montages are being made and posted")
 
 
 if __name__ == "__main__":

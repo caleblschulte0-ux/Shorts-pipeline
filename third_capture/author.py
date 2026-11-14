@@ -1400,7 +1400,34 @@ def rank_clips(clips: list[dict]) -> dict:
                 result[key] = (b, str(s.get("why", ""))[:40])
         except (TypeError, ValueError, KeyError):
             continue
+    if degenerate(result):
+        # A RANKING THAT RANKS NOTHING (2026-11-08..10). With Claude at its
+        # weekly limit the fallback judge gave every candidate on the slate
+        # the same 0.20 — r/LivestreamFail clips with 20,000 views among
+        # them — and the hard floor skipped 64 slots in a row as "nothing
+        # worth transcribing": three days, zero posts, every run green.
+        # Eight different titles cannot all be exactly as good as each
+        # other; one number for all of them is a judge that did not read
+        # them. That is no ranking, so the caller keeps velocity (every
+        # candidate neutral) and the transcript + vision judges downstream
+        # — which watch the clip — decide, at their own unchanged bars.
+        print(f"::warning::[rank] every one of {len(result)} candidates "
+              f"scored {next(iter(result.values()))[0]:.2f} — a judge that "
+              "did not rank them; velocity only", flush=True)
+        _BRAIN["fail"] += 1
+        _BRAIN["ok"] = max(0, _BRAIN["ok"] - 1)
+        return {}
     return result
+
+
+DEGENERATE_MIN = 4   # fewer candidates than this can honestly tie
+
+
+def degenerate(scores: dict) -> bool:
+    """True when a ranking gave `DEGENERATE_MIN` or more candidates one
+    and the same banger score: it ranked nothing."""
+    vals = {round(float(v[0]), 3) for v in scores.values()}
+    return len(scores) >= DEGENERATE_MIN and len(vals) == 1
 
 
 # ---------------------------------------------- story "showrunner" brain
