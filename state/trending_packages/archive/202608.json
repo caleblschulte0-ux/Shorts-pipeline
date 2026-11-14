@@ -6133,5 +6133,435 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260815": {
+    "01_graph-japan-korea-tourism.json": {
+      "format": "graph_race",
+      "slug": "graph-japan-korea-tourism",
+      "title": "Japan Just Lapped South Korea In Tourism",
+      "hook": "One nation's comeback tripled.",
+      "y_label": "International tourist arrivals (millions)",
+      "duration": 13,
+      "source": "Japan National Tourism Organization (JNTO) inbound visitor totals: 2019 31.88M (pre-pandemic peak), 2020 4.12M, 2021 0.25M (COVID low), 2022 3.83M, 2023 25.07M, 2024 36.87M (record, per JNTO/Reuters coverage). Korea Tourism Organization inbound totals: 2019 17.50M, 2020 2.5M, 2021 0.97M, 2022 3.20M, 2023 11.03M, 2024 16.36M (still below its own 2019 peak). Both countries crashed together in 2020-2021; Japan's recovery pulled dramatically ahead of Korea's by 2023-2024, widely reported as Japan riding a weak yen to record visitor numbers.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Japan",
+          "color": "#ff4d6d",
+          "icon": "JP",
+          "values": [
+            31.88,
+            4.12,
+            0.25,
+            3.83,
+            25.07,
+            36.87
+          ]
+        },
+        {
+          "name": "South Korea",
+          "color": "#4a90e2",
+          "icon": "KR",
+          "values": [
+            17.5,
+            2.5,
+            0.97,
+            3.2,
+            11.03,
+            16.36
+          ]
+        }
+      ],
+      "hashtags": [
+        "japan",
+        "southkorea",
+        "tourism",
+        "travel",
+        "weakyen",
+        "traveltrends",
+        "asia",
+        "tourists",
+        "visitjapan",
+        "koreatourism",
+        "traveldata"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-byd-vs-tesla.json": {
+      "format": "graph_race",
+      "slug": "graph-byd-vs-tesla",
+      "title": "BYD Just Overtook Tesla In EV Sales",
+      "hook": "Tesla just lost its EV crown.",
+      "y_label": "Battery-electric vehicles sold (millions)",
+      "duration": 13,
+      "source": "Tesla annual deliveries (company reports): 2019 0.3675M, 2020 0.4996M, 2021 0.9362M, 2022 1.3139M, 2023 1.8086M, 2024 1.7892M, 2025 1.6361M (BEV, down amid rising competition). BYD battery-electric-only sales (BYD/CnEVPost/InsideEVs/Statista reporting): 2023 ~1.6M, 2024 1.778M, 2025 2.2567M (surpassing Tesla for the first time, per CNBC/InsideEVs Jan 2026 reporting); 2019-2022 figures approximate, back-modeled from BYD's reported NEV sales mix before its BEV line scaled (2019 ~0.11M, 2020 ~0.11M, 2021 ~0.32M, 2022 ~0.91M). BYD figures exclude its separate plug-in-hybrid line.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Tesla",
+          "color": "#e74c3c",
+          "icon": "Tesla",
+          "values": [
+            0.3675,
+            0.4996,
+            0.9362,
+            1.3139,
+            1.8086,
+            1.7892,
+            1.6361
+          ]
+        },
+        {
+          "name": "BYD",
+          "color": "#2ecc71",
+          "icon": "BYD",
+          "values": [
+            0.11,
+            0.11,
+            0.32,
+            0.91,
+            1.6,
+            1.778,
+            2.2567
+          ]
+        }
+      ],
+      "hashtags": [
+        "byd",
+        "tesla",
+        "ev",
+        "electricvehicles",
+        "elonmusk",
+        "china",
+        "evsales",
+        "automotive",
+        "evs",
+        "carindustry",
+        "evwar"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-sports-betting-handle.json": {
+      "format": "graph_race",
+      "slug": "graph-sports-betting-handle",
+      "title": "Americans Now Bet $167 Billion A Year On Sports",
+      "hook": "One Supreme Court case did this.",
+      "y_label": "US legal sports betting (billions $)",
+      "duration": 13,
+      "source": "American Gaming Association (AGA) annual commercial gaming reports, first full year after the May 2018 PASPA repeal opened legal sports betting beyond Nevada: handle (total amount wagered) 2019 $13.0B, 2020 $21.5B, 2021 $57.22B, 2022 $93.4B, 2023 $119.84B, 2024 $149.90B, 2025 $166.94B. Sportsbook revenue (the house's cut) over the same years, also AGA: 2019 ~$0.9B, 2020 ~$1.5B, 2021 $4.29B, 2022 $7.5B, 2023 $10.9B (ESPN), 2024 ~$13.7B, 2025 ~$15.8B (approximate from reported handle/hold ratios).",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Total handle",
+          "color": "#f5c518",
+          "icon": "Handle",
+          "values": [
+            13.0,
+            21.5,
+            57.22,
+            93.4,
+            119.84,
+            149.9,
+            166.94
+          ]
+        },
+        {
+          "name": "Sportsbook revenue",
+          "color": "#4a90e2",
+          "icon": "Rev",
+          "values": [
+            0.9,
+            1.5,
+            4.29,
+            7.5,
+            10.9,
+            13.7,
+            15.8
+          ]
+        }
+      ],
+      "hashtags": [
+        "sportsbetting",
+        "gambling",
+        "aga",
+        "draftkings",
+        "fanduel",
+        "sportsgambling",
+        "vegas",
+        "bettingindustry",
+        "nfl",
+        "wagering",
+        "money"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "04_graph-popmart-vs-mattel.json": {
+      "format": "graph_race",
+      "slug": "graph-popmart-vs-mattel",
+      "title": "The Labubu Company's Revenue Just 8Xed",
+      "hook": "This toy startup is closing in.",
+      "y_label": "Annual revenue (RMB billions)",
+      "duration": 13,
+      "source": "Pop Mart annual results (company filings via PRNewswire/Yahoo Finance/HKEX disclosures): 2019 RMB 1.68B, 2020 RMB 2.51B, 2021 RMB 4.49B, 2022 RMB 4.62B, 2023 RMB 6.30B, 2024 RMB 13.04B (up 106.9% y/y, driven by Labubu demand). Mattel Inc. annual revenue (SEC filings), converted to RMB at an approximate 7.1 CNY/USD rate for comparison: 2019 $4.456B (~RMB31.6B), 2020 $4.038B (~RMB28.7B), 2021 $5.456B (~RMB38.7B), 2022 $5.442B (~RMB38.6B), 2023 $5.441B (~RMB38.6B), 2024 $5.150B (~RMB36.6B). Pop Mart has not yet caught Mattel on revenue, but by July 2025 its STOCK MARKET value had already passed Hasbro and Mattel combined (Sherwood News), which is the tension this chart sets up.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Pop Mart",
+          "color": "#ff6bd6",
+          "icon": "Pop Mart",
+          "values": [
+            1.68,
+            2.51,
+            4.49,
+            4.62,
+            6.3,
+            13.04
+          ]
+        },
+        {
+          "name": "Mattel",
+          "color": "#2ecc71",
+          "icon": "Mattel",
+          "values": [
+            31.6,
+            28.7,
+            38.7,
+            38.6,
+            38.6,
+            36.6
+          ]
+        }
+      ],
+      "hashtags": [
+        "popmart",
+        "labubu",
+        "mattel",
+        "toys",
+        "blindbox",
+        "barbie",
+        "collectibles",
+        "china",
+        "toyindustry",
+        "revenue",
+        "business"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-reply-all-chaos.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-reply-all-chaos",
+      "title": "He Wanted Reply-All Confirmation. He Got It.",
+      "script": "Our new VP wanted proof that people actually read company emails, so he made a rule: reply-all, every single time, with the words \"confirmed read,\" no exceptions, on any message sent to the all-staff list, fine by me. The next memo went out to four hundred people. Four hundred replies landed in every inbox within six minutes, each one triggering someone's out-of-office auto-reply, which triggered another wave of confirmed reads, which triggered more auto-replies. By hour two the mail server was queuing eleven thousand messages and IT had shut off outbound email company-wide. The VP sent an urgent memo asking everyone to please stop replying all. I replied all: confirmed read. So did everyone else. IT shut down the entire distribution list by lunch, and the reply-all rule quietly disappeared from the handbook that same afternoon.",
+      "shots": [
+        {
+          "phrase": "Our new VP wanted proof",
+          "query": "corporate executive office"
+        },
+        {
+          "phrase": "reply-all, every single time",
+          "query": "email inbox screen",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png"
+        },
+        {
+          "phrase": "confirmed read",
+          "query": "typing keyboard closeup",
+          "image_url": "https://drive.google.com/uc?export=download&id=1-AgBpsZjm3R1jvECKfU4klUWtibqqVd1",
+          "media_origin": "chatgpt",
+          "media_file_id": "1-AgBpsZjm3R1jvECKfU4klUWtibqqVd1",
+          "media_sha256": "33de0c834cdbdc64a11fe952f7fe1c2bdb48380bd21cee9f4664084d61ca9722",
+          "media_bytes": 1034560
+        },
+        {
+          "phrase": "four hundred people",
+          "query": "office cubicles rows",
+          "image_url": "https://live.staticflickr.com/3834/9821525314_f5d4bf4d15_b.jpg"
+        },
+        {
+          "phrase": "eleven thousand messages",
+          "query": "laptop screen overload",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+        },
+        {
+          "phrase": "shut off outbound email company-wide",
+          "query": "IT server room",
+          "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+        },
+        {
+          "phrase": "urgent memo asking everyone to please stop",
+          "query": "printed office memo",
+          "image_url": "https://drive.google.com/uc?export=download&id=1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+          "media_origin": "chatgpt",
+          "media_file_id": "1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+          "media_sha256": "b382798b43f73b74570b99d1ffcde85972141de86973017cfdfba479d52887a6",
+          "media_bytes": 1261544
+        },
+        {
+          "phrase": "quietly disappeared from the handbook",
+          "query": "employee handbook binder",
+          "image_url": "https://drive.google.com/uc?export=download&id=1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+          "media_origin": "chatgpt",
+          "media_file_id": "1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+          "media_sha256": "a596c748d32ff217911acb735b04c8d2d9594411d16c942946666dfbb1c7a61f",
+          "media_bytes": 1535959
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "four hundred people",
+          "text": "400 PEOPLE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "eleven thousand messages",
+          "text": "11,000 MSGS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "shut off outbound email company-wide",
+          "text": "EMAIL: DOWN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "quietly disappeared from the handbook",
+          "text": "RULE: GONE",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "corporatelife",
+        "workplace",
+        "officepolicy",
+        "emailfail",
+        "replyallgate",
+        "9to5",
+        "reddit",
+        "worklife",
+        "itproblems",
+        "corporatestories",
+        "officelife"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-loss-prevention-audit.json": {
+      "subreddit": "ProRevenge",
+      "slug": "reddit-loss-prevention-audit",
+      "title": "He Stopped Me At The Exit Every Visit. Big Mistake.",
+      "script": "The loss-prevention guy at my regular grocery store started stopping me at the exit every single visit, bag check and receipt check both, despite the register printing a receipt every time. I started keeping every one of those receipts in a folder just in case, dated and everything. After the eleventh stop in six weeks, I filed a formal complaint with corporate, receipts attached, timestamps and all. Before responding to me, corporate pulled the store's loss-prevention log to check his actual stop pattern, and it turned out I wasn't the only regular customer he'd been stopping for no reason, and the store's own shrink numbers, the ones his stops were supposed to explain, had been climbing the entire time he worked there. An internal audit found what the stops were covering for: he'd been walking product out the loading dock himself for over a year. He was gone within the week, and corporate mailed me a written apology along with a gift card for the trouble.",
+      "shots": [
+        {
+          "phrase": "stopping me at the exit every single visit",
+          "query": "store exit security check",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Biometric_Argentine_DNI_for_Citizens-Foreigners_Falkland_Islands_Seal.png"
+        },
+        {
+          "phrase": "the register printing a receipt every time",
+          "query": "cash register receipt",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
+        },
+        {
+          "phrase": "filed a formal complaint with corporate",
+          "query": "printed complaint letter",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
+        },
+        {
+          "phrase": "pulled the store's loss-prevention log",
+          "query": "computer log screen",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+        },
+        {
+          "phrase": "An internal audit found what the stops were covering for",
+          "query": "security control room monitors",
+          "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+        },
+        {
+          "phrase": "walking product out the loading dock himself",
+          "query": "warehouse loading dock"
+        },
+        {
+          "phrase": "corporate mailed me a written apology",
+          "query": "mail envelope letter",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the register printing a receipt every time",
+          "text": "RECEIPT: PROOF",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "filed a formal complaint with corporate",
+          "text": "COMPLAINT FILED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "An internal audit found what the stops were covering for",
+          "text": "AUDIT TIME",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "walking product out the loading dock himself",
+          "text": "HE WAS STEALING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "corporate mailed me a written apology",
+          "text": "SORRY + GIFT CARD",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "prorevenge",
+        "lossprevention",
+        "retail",
+        "karma",
+        "corporatelife",
+        "grocerystore",
+        "customerservice",
+        "reddit",
+        "workplacejustice",
+        "retailstories",
+        "storelife",
+        "shoplifting"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
