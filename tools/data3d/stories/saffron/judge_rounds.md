@@ -160,3 +160,19 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - problem: In the first frames of row 1 the bloom is clipped at the left edge of the frame.
 - problem: Data's body doesn't move at all. Arms hang straight down and his stance never changes; only his eyes and mouth react. The alarm (row 3 onward) is just a mouth-open face swap, with no flinch, step back or hands coming up.
 
+
+## 2026-11-14 08:22Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 70 | 66, 70, 72 | PASS |
+
+**shot 4** (PASS, 70, bar 70)
+
+- problem: Data looks up at the camera with a worried face in frames 9-16, while the crocus is still purple and upright. He reacts before anything happens, so his look up comes before the payoff instead of being caused by it.
+- problem: For the first 8 frames nothing changes: the flower holds still and Data looks down. The wilt only starts around frame 10 of 28, so the opening third of the shot gives the viewer nothing to watch.
+- problem: The flower is not 'up against the sky'. Its head sits below the horizon, over the hills and Data's white coat, so the purple-to-brown change reads against busy shapes instead of a clean sky.
+- problem: The flower reads as a spiky lily or thistle more than an open crocus cup. The petals are narrow pointed blades, and the red stigmas are thick tubes that look like red hoses.
+- problem: Data's body is stiff the whole shot: his arms hang straight at his sides and nothing moves from the shoulders down, even at the moment of alarm (frames 17-28). His reaction is carried by his eyes and an open mouth alone.
+- problem: In frames 1-2 the left edge of the frame clips the flower's petals.
+

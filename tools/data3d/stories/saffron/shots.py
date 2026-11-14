@@ -360,20 +360,20 @@ def shot4():
     # his own big head's width and is small on a phone. Now the dying flower is the HERO, close to the lens and tall
     # against the dawn sky, and Data stands behind it and reacts. No prop in his hands, nothing at a frame edge.
     hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.4, scale=2.0, seed=61)
-    T_W0, T_W1 = 0.4, DUR - 0.4                                 # it dies across the WHOLE shot: no dead hold after it
-    droop = PK.wilt(hero, T_W0, T_W1, brown="#6E4220", to=1.0, droop_deg=70.0, slots=(0,))   # it browns, shuts and flops over
+    T_W0, T_W1 = 0.1, DUR - 0.4                                 # it dies across the WHOLE shot: no dead hold after it
+    droop = PK.wilt(hero, T_W0, T_W1, brown="#8A5A30", to=1.0, droop_deg=70.0, slots=(0,))   # it browns, shuts and flops over
     kb = hero.data.shape_keys.key_blocks["closed"]; kb.slider_min = -1.0      # wide open at first: a star of petals, not a bud
     kb.value = -1.0; kb.keyframe_insert("value", frame=F(0.0))
     kb.value = -0.6; kb.keyframe_insert("value", frame=F(0.6 * T_W1))
-    HB = Vector((-0.06, -0.25, 0.0))
-    follow(hero, lambda t: HB, 0.0, DUR, rot_fn=lambda t: (-droop(t) * 0.25, droop(t) * 0.9, 0.4))   # it flops over sideways: a silhouette against the sky
+    HB = Vector((-0.02, -0.25, 0.0))
+    follow(hero, lambda t: HB, 0.0, DUR, rot_fn=lambda t: (-droop(t) * 0.25, droop(t) * 0.9, 0.4))   # it flops over sideways, landing short of Data   # it flops over sideways: a silhouette against the sky
     for o in own:                                                      # nothing between the lens and the hero flower
         if o.location.y < HB.y + 0.1 and abs(o.location.x - HB.x) < 0.7:
             o.hide_render = True; o.hide_viewport = True
     own = [o for o in own if not o.hide_render]
     US = Vector((0.0, -1.3, 0.5))
     FL = HB + Vector((0, 0, 0.4))
-    T_REACT = T_W0 + 0.6 * (T_W1 - T_W0)                             # he reacts WHILE it dies, not after
+    T_REACT = T_W0 + 0.7 * (T_W1 - T_W0)                             # he reacts WHILE it dies, not after
     data.look_at(FL, 0.0, max_yaw=45, max_pitch=45, blend=0.0)
     data.gaze(0.0, -12, -25)        # watching his flower
     data.look_at(US, T_REACT, max_yaw=20)                           # then at us
@@ -384,10 +384,10 @@ def shot4():
     data.blink(1.4)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    soft_key("flower key", (-0.5, -1.0, 0.6), tuple(HB + Vector((0, 0, 0.3))), energy=8, size=30, color=(1.0, 0.85, 0.7))
-    C0, L0 = Vector((0.05, -1.1, 0.07)), Vector((0.08, 0.2, 0.42))    # low among the flowers: the hero crocus tall against the dawn sky, Data behind it
-    C1, L1 = Vector((0.05, -1.05, 0.07)), Vector((0.08, 0.2, 0.42))
-    cam = K.camera(tuple(C0), tuple(L0), lens=38, fstop=2.8)
+    soft_key("flower key", (-0.5, -1.0, 0.6), tuple(HB + Vector((0, 0, 0.3))), energy=10, size=30, color=(1.0, 0.85, 0.7))
+    C0, L0 = Vector((0.06, -1.1, 0.07)), Vector((0.09, 0.2, 0.42))    # low among the flowers: the hero crocus tall against the dawn sky, Data behind it
+    C1, L1 = Vector((0.06, -1.05, 0.07)), Vector((0.09, 0.2, 0.42))
+    cam = K.camera(tuple(C0), tuple(L0), lens=33, fstop=2.8)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.45))))
     return dict(**where, data=data, rest=1,
                 conseq=[("the crocus wilts brown and flops over", lambda: [hero], T_W0, DUR, {"whole": False}),   # its stem runs out the bottom of the frame by design: the bloom is up against the sky
