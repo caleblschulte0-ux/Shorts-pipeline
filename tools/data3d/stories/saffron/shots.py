@@ -161,14 +161,15 @@ def shot2():
             bpy.data.objects.remove(o, do_unlink=True)
     data = load_data(); data.place(0.04, 0.2, 0)
     L, R = sides(data)
-    S = 3.0                                          # his arm reaches 0.19 m: the flower stands BESIDE him, at his right hand, its cup at his waist
-    G = Vector((0.36, 0.14, 0.0))
+    S = 3.2                                          # his arm reaches 0.19 m: the flower stands BESIDE him, at his right hand, its cup at his waist
+    G = Vector((0.38, 0.14, 0.0))
     giant = SK.crocus("giant crocus", tuple(G), yaw=0.0, scale=S, seed=21)
     giant.rotation_euler = (0, 0, 0)
     gm = SK.crocus_mesh("giant crocus mesh", seed=21, threads=False); giant.data = gm
+    kb = gm.shape_keys.key_blocks["closed"]; kb.slider_min = -1.0; kb.value = -1.0   # opened PAST open: a wide six-petal star (judge: "a frayed cup or tulip")
     BASE = G + Vector((0, 0, 0.16 * 0.38 * S))
-    th_m = SK._mat("crocus thread", SK.THREAD, rough=0.35)
-    TL, TR = 0.17, 0.0105                        # each thread as long as his forearm: thin, crimson, flaring at its end
+    th_m = SK._mat("giant thread", SK.THREAD, rough=0.75)   # matte: glossy and thick, they read as crayons
+    TL, TR = 0.17, 0.0072                        # each thread as long as his forearm: thin, crimson, flaring at its end
     threads = []
     for k, (az, sp) in enumerate(((165, 30), (195, 30), (180, 22))):
         root = K.empty(f"thread {k}", (0, 0, 0))
@@ -182,14 +183,14 @@ def shot2():
         threads.append((root, d))
     US = Vector((0.0, -1.4, 0.55))
     # the three pulls: (grab, out, released) times, the hand that does it, and where the thread lands
-    PULLS = [(0.45, 1.35, 1.6, R, Vector((0.12, -0.12, 0.008))),
-             (2.25, 3.15, 3.4, R, Vector((0.22, -0.16, 0.008))),
-             (4.05, 4.95, None, R, None)]
-    HOLDUP = Vector((0.26, 0.14, 0.55))                      # the last one held up at his side, in clear air against the sky
+    PULLS = [(0.4, 1.2, 1.75, R, Vector((0.12, -0.12, 0.006))),     # out, HELD up a beat so you count it, then tossed
+             (2.15, 2.95, 3.5, R, Vector((0.22, -0.16, 0.006))),
+             (3.9, 4.7, None, R, None)]
+    HOLDUP = Vector((0.26, 0.1, 0.52))                      # the last one held by its foot, standing UP from his hand against the sky
     for (root, d), (tg, to, tr, hand, land) in zip(threads, PULLS):
         rest = BASE.copy(); rest_rot = d.to_track_quat('Z', 'Y').to_euler()
         lift = rest + Vector((0, 0, TL + 0.02))           # pulled straight up out of the flower's heart
-        side = lift if land is not None else HOLDUP - Vector((0, 0, TL))
+        side = lift if land is not None else HOLDUP
         def pos(t, rest=rest, lift=lift, side=side, tg=tg, to=to, tr=tr, land=land):
             if t <= tg + 0.15: return rest
             if t <= to: return rest.lerp(lift, ease((t - tg - 0.15) / (to - tg - 0.15)))
@@ -197,14 +198,14 @@ def shot2():
             u = min(1.0, (t - tr) / 0.4); p = side.lerp(land, u); p.z = side.z + (land.z - side.z) * u * u + 0.06 * math.sin(math.pi * u); return p
         def rot(t, rest_rot=rest_rot, to=to, tr=tr):
             if t <= to: return rest_rot
-            if tr is None: u = ease(min(1.0, (t - to) / 0.35)); return Euler((rest_rot.x * (1 - u), rest_rot.y * (1 - u), rest_rot.z))
+            if tr is None: u = ease(min(1.0, (t - to) / 0.35)); return Euler((rest_rot.x * (1 - u), rest_rot.y * (1 - u) + math.radians(18) * u, rest_rot.z * (1 - u)))
             if t <= tr: return Euler((0, 0, rest_rot.z))
             u = ease(min(1.0, (t - tr) / 0.4)); return Euler((math.radians(90) * u, 0, rest_rot.z))
         follow(root, pos, 0.0, DUR, rot_fn=rot)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     for (root, d), (tg, to, tr, hand, land) in zip(threads, PULLS):
         data.look_at(BASE + Vector((0, 0, TL)), tg - 0.15, max_yaw=35, max_pitch=40)
-    data.look_at(US, 5.4, max_yaw=20)
+    data.look_at(US, 5.2, max_yaw=20)
     data.idle(0.0, DUR)
     data.expression("pleased", 0.0, 0.4)
     data.expression("determined", 0.4, 5.3)
@@ -212,7 +213,11 @@ def shot2():
     data.blink(2.0); data.blink(3.9)
     # hands last: each grips its thread's tip and rides it up and out
     # ONE hand path through the three pulls (two reaches on one hand snapped his arm between them)
-    tips = [lambda t, root=root: (sc.frame_set(F(t)), bpy.context.view_layer.update(), root.matrix_world @ Vector((0, 0, TL + 0.015)))[2] for root, _ in threads]
+    def _at(root, t, z):
+        sc.frame_set(F(t)); bpy.context.view_layer.update(); return root.matrix_world @ Vector((0, 0, z))
+    tips = [lambda t, root=root: _at(root, t, TL + 0.015) for root, _ in threads[:2]]
+    T3 = PULLS[2][1]                                  # the third: he slides his grip down to its foot as he raises it
+    tips.append(lambda t, root=threads[2][0]: _at(root, t, (TL + 0.015) * (1 - ease(max(0.0, min(1.0, (t - T3) / 0.35)))) + 0.01))
     def hand_path(t):
         for k, (tg, to, tr, hand, land) in enumerate(PULLS):
             if t < tg:
@@ -225,14 +230,14 @@ def shot2():
     data.finish()
     soft_key("thread key", (0.6, -1.0, 0.9), tuple(BASE + Vector((0, 0, 0.2))), energy=14, size=30)
     # from FAR on a long lens: up close the field's own flowers by the camera looked as big as the giant one
-    C0, L0 = Vector((0.2, -2.2, 0.48)), Vector((0.2, 0.12, 0.41))
-    C1, L1 = Vector((0.2, -2.12, 0.48)), Vector((0.2, 0.12, 0.41))
-    cam = K.camera(tuple(C0), tuple(L0), lens=62, fstop=8.0)
+    C0, L0 = Vector((0.2, -2.2, 0.5)), Vector((0.2, 0.12, 0.45))     # a medium shot: knees up
+    C1, L1 = Vector((0.2, -2.14, 0.5)), Vector((0.2, 0.12, 0.45))
+    cam = K.camera(tuple(C0), tuple(L0), lens=72, fstop=8.0)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.4))))
     return dict(**where, data=data, rest=1, grips=("thread 0", "thread 1", "thread 2"),
                 conseq=[("a red thread as thick as rope comes up out of the flower", lambda: meshes([threads[0][0]]), PULLS[0][0], PULLS[0][2] + 0.4),
                         ("the second thread comes out and drops beside it", lambda: meshes([threads[1][0]]), PULLS[1][0], PULLS[1][2] + 0.4),
-                        ("the third, held up: the whole flower's worth", lambda: meshes([threads[2][0], giant]), PULLS[2][0], DUR)])
+                        ("the third, held up: the whole flower's worth", lambda: meshes([threads[2][0]]), PULLS[2][0], DUR)])
 
 
 # ================================================================ SHOT 3: by hand, for hours
