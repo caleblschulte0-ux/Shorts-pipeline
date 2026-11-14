@@ -172,7 +172,7 @@ def shot2():
         pts = [Vector(((0.006 if k % 2 else -0.006) * math.sin(math.pi * v), 0, TL * v)) for v in (0.0, 0.35, 0.7, 0.9)]
         for i, (p0, p1) in enumerate(zip(pts, pts[1:])):
             K.capsule(f"thread {k} seg {i}", p0, p1, TR, th_m, parent=root, seg=10, ra=TR * (0.75 + 0.1 * i), rb=TR * (0.85 + 0.1 * i))
-        K.capsule(f"thread {k} tip", pts[-1], Vector((0, 0, TL + 0.012)), TR, th_m, parent=root, seg=12, ra=TR * 1.1, rb=TR * 2.0)
+        K.capsule(f"thread {k} tip", pts[-1], Vector((0, 0, TL + 0.012)), TR, th_m, parent=root, seg=12, ra=TR * 1.1, rb=TR * 1.25)
         a = math.radians(120 * k + 50); sp = math.radians(32)
         d = HROT.to_matrix() @ Vector((math.cos(a) * math.sin(sp), math.sin(a) * math.sin(sp), math.cos(sp)))
         threads.append(dict(root=root, rest_rot=d.to_track_quat('Z', 'Y').to_euler()))
@@ -215,18 +215,19 @@ def shot2():
     reach(data, R, lambda t: G, 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
     reach(data, L, lhand, 0.0, DUR, lead=0.05, back=None, elbow_out=0.25)
     data.finish()
-    def hand_at(t):                                   # the threads ride his REAL hand, wherever the solve put it
-        sc.frame_set(F(t)); bpy.context.view_layer.update(); return data.arm.matrix_world @ data.pb[f"hand.{L}"].tail
+    def hand_at(side, t):                             # the threads ride his REAL hand, wherever the solve put it
+        sc.frame_set(F(t)); bpy.context.view_layer.update(); return data.arm.matrix_world @ data.pb[f"hand.{side}"].tail
     def tpos(k, t):
         g = BEATS[k]
         if t < g + 0.2: return CUP
-        return hand_at(t) + Vector(((k - 1) * 0.01, -0.005, -0.006))
+        return hand_at(L, t) + Vector(((k - 1) * 0.01, -0.005, -0.006))
+    follow(hero, lambda t: hand_at(R, t) - Vector((0, 0, 0.03)), 0.0, DUR, rot_fn=lambda t: tuple(HROT))   # the flower is IN his fist, wherever the solve put it
     for k, th in enumerate(threads):
         follow(th["root"], lambda t, k=k: tpos(k, t), 0.0, DUR, rot_fn=lambda t, k=k: trot(k, t))
     soft_key("thread key", (0.5, -1.1, 0.85), tuple(CUP), energy=10, size=30)
-    C0, L0 = Vector((0.02, -1.02, 0.46)), Vector((0.02, 0.2, 0.49))     # a real waist-up, a little low: sky behind the flower
-    C1, L1 = Vector((0.02, -0.96, 0.46)), Vector((0.02, 0.2, 0.49))
-    cam = K.camera(tuple(C0), tuple(L0), lens=40, fstop=5.6)
+    C0, L0 = Vector((0.0, -1.02, 0.52)), Vector((0.0, 0.2, 0.52))     # a real waist-up (45 mm): legs out of frame, the fanned threads inside it
+    C1, L1 = Vector((0.0, -0.97, 0.52)), Vector((0.0, 0.2, 0.52))
+    cam = K.camera(tuple(C0), tuple(L0), lens=45, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     one = lambda k: (lambda: meshes([threads[k]["root"]]))
     return dict(**where, data=data, rest=1, grips=("held crocus", "thread 0", "thread 1", "thread 2"),
@@ -360,7 +361,7 @@ def shot4():
     # race and the flowers to read from a petal fold. Now two props carry it: a ringing alarm clock held up to us,
     # its hands racing, and the crocus in his other hand wilting brown and drooping. Neither needs a subtle face.
     shL4, shR4 = acts._shoulder(data, L), acts._shoulder(data, R)
-    G = shR4 + Vector((0.0, -0.15, -0.03))                           # inside his 0.19 m reach: no clamped, floating hand                    # his grip on the stem, in front of his chest
+    G = shR4 + Vector((0.08, -0.12, 0.0))                            # out to his side, against the field, not his coat                           # inside his 0.19 m reach: no clamped, floating hand                    # his grip on the stem, in front of his chest
     hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.6, scale=1.6, seed=61)
     T_W0, T_W1 = 0.6, DUR - 0.8
     droop = PK.wilt(hero, T_W0, T_W1, brown="#3A2212", to=1.0, slots=(0,))   # a deep brown: dull maroon read as purple      # this one flower browns, shuts and droops (the shared prop kit)
@@ -380,7 +381,7 @@ def shot4():
     data.idle(0.0, DUR)
     data.expression("worried", 0.0, T_W1 - 0.45, blend=0.3)
     data.perform("alarmed", T_W1 - 0.4, hold=DUR, arms=False, pace=0.55)
-    data.expression("surprised", T_W1 - 0.3, DUR + 1.0, blend=0.12)
+    data.expression("alarmed", T_W1 - 0.3, DUR + 1.0, blend=0.12)
     data.blink(0.9)
     # hands solved AFTER the body acts, so his recoil does not carry them off the props
     reach(data, R, lambda t: G + Vector((0.0, 0.0, 0.004 * math.sin(2.0 * t))), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
@@ -391,9 +392,9 @@ def shot4():
     follow(clock, lambda t: hand_at(L, t) + Vector((-0.02, -0.025, 0.075)) + buzz(t), 0.0, DUR, rot_fn=lambda t: (0, PK.ring(t, amp_deg=22.0), 0))
     follow(hero, lambda t: hand_at(R, t) - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((0.07, -1.12, 0.46)), Vector((0.07, 0.2, 0.49))    # waist-up as in shot 2: clock left, flower right, face clear between
-    C1, L1 = Vector((0.07, -1.06, 0.46)), Vector((0.07, 0.2, 0.49))
-    cam = K.camera(tuple(C0), tuple(L0), lens=40, fstop=5.6)
+    C0, L0 = Vector((0.08, -1.12, 0.52)), Vector((0.08, 0.2, 0.52))    # waist-up (45 mm): clock left, flower right, face clear between
+    C1, L1 = Vector((0.08, -1.07, 0.52)), Vector((0.08, 0.2, 0.52))
+    cam = K.camera(tuple(C0), tuple(L0), lens=45, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
     return dict(**where, data=data, rest=1, grips=("dawn crocus", "alarm clock"),
                 conseq=[("the alarm clock rings, its hands racing", lambda: meshes([clock]), 0.3, DUR),
