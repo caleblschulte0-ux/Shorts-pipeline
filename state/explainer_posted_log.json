@@ -5451,6 +5451,13 @@
         "score": 83,
         "reason": "showrunner BLOCK: A strong callback structure (the rail switch reused for the 'nothing to switch to' ending) and clean 3D craft, held back by cluttered, low-contrast labels in the soil beat and a standing-only clone beat."
       }
+    },
+    "activity-inequality-steps": {
+      "claimed_at": "2026-11-14T10:35:33.090522+00:00",
+      "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7017,6 +7024,14 @@
       "style_arm": "3d",
       "slug": "cavendish-banana-clone-3d",
       "at": "2026-11-13T16:05:21.659078+00:00"
+    },
+    {
+      "claimed_at": "2026-11-14T10:35:33.090522+00:00",
+      "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "activity-inequality-steps"
     }
   ]
 }
