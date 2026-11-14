@@ -110,6 +110,24 @@ class ASearchChannelPostsNamesPeopleSearch(unittest.TestCase):
         self.assertIn("SEARCHED NAMES", author._RANK_SYSTEM)
 
 
+class PostItBeforeTheOtherClippers(unittest.TestCase):
+    """11-14: same retention as Baller Bro, ~1% of its feed views. A clip
+    days old is already on dozens of clipper channels."""
+
+    def test_a_stale_clip_ranks_far_down(self):
+        i = SRC.index("for c in cands[:age_probe]:")
+        block = SRC[i:i + 2400]
+        self.assertIn('spec.get("fresh_h", 48)', block)
+        self.assertIn('c["score"] *= float(spec.get("stale_factor", 0.3))',
+                      block)
+
+    def test_it_uses_the_true_age_not_the_capped_one(self):
+        i = SRC.index("for c in cands[:age_probe]:")
+        block = SRC[i:i + 2400]
+        self.assertLess(block.index('c["age_true_h"] = age'),
+                        block.index("age = min(age or 24.0, 24.0)"))
+
+
 class TheRankerLooksForNoContextMoments(unittest.TestCase):
     def test_it_is_told(self):
         self.assertIn("NO CONTEXT NEEDED", author._RANK_SYSTEM)

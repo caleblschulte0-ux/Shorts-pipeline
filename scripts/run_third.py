@@ -3027,6 +3027,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 for c in cands[:age_probe]:
                     # helix candidates carry exact age; yt-dlp ones probe
                     age = c.get("age_h") or clip_edit.fetch_age_hours(c["url"])
+                    c["age_true_h"] = age
                     if c.get("proven_by") == "r/LivestreamFail":
                         # an upvoted clip is days or weeks old by the time
                         # Reddit has voted on it; dividing its views by that
@@ -3037,6 +3038,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     c["vph"] = c["views"] / max(age, 0.5) if age else \
                         c["views"] / 24.0
                     c["score"] = c["vph"] * _fit(c["channel"], c)
+                    # POST IT FIRST (operator, 2026-11-14: "the sports clips
+                    # have to be the same everybody else is posting, why do
+                    # those get views and these don't?"). Retention is the
+                    # same on both channels (68% vs 74%), so viewers who see
+                    # our clips watch them; YouTube just rarely shows them in
+                    # the feed. A Twitch clip days old has already been
+                    # uploaded by dozens of clipper channels and the feed
+                    # serves the first copy; a sports post is days ahead of
+                    # YouTube. So a clip older than `fresh_h` ranks far down.
+                    _true = c["age_true_h"]
+                    if _true and _true > float(spec.get("fresh_h", 48)):
+                        c["score"] *= float(spec.get("stale_factor", 0.3))
                 # candidates past the probe window keep a raw-view proxy (age
                 # unknown -> assume ~24h) so a thin day can still surface them,
                 # but a measured fast-climber always outranks the proxy.
