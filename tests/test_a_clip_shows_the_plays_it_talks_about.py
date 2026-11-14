@@ -222,8 +222,13 @@ class ACutInIsWatchedNotTimed(unittest.TestCase):
     def test_footage_the_watcher_refuses_is_never_cut_in(self):
         self.assertIsNone(self._find(None))
 
-    def test_a_moment_longer_than_the_room_is_not_cut_short(self):
-        self.assertIsNone(self._find((10.0, 21.0), room=6.0))
+    def test_a_moment_longer_than_the_room_keeps_its_end(self):
+        # 2026-11-14 (operator: "Cut-ins should be very simple to do"):
+        # three watched Brunson plays were refused for running long and
+        # the clip went without; the slot now plays the play's last
+        # seconds, where it pays off
+        hit = self._find((10.0, 21.0), room=6.0)
+        self.assertEqual((hit["from_s"], hit["secs"]), (15.0, 6.0))
 
     def test_the_watcher_names_frames_and_they_become_seconds(self):
         import shutil
