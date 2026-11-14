@@ -844,5 +844,21 @@
   "topic": "dating apps",
   "starred": false,
   "sig": "59543372b1ff"
+ },
+ {
+  "mechanic": "crate-records-drop-in",
+  "concept": "41 vinyl discs and 33 CDs drop one at a time into two crates, one disc per million sold, the vinyl crate towering over the CD crate",
+  "code": "vinyl = subject_image('vinyl record')\ncds = subject_image('compact disc')\ncols = [(RX0 + 270, 215, (24, 24, 30), HIGHLIGHT), (RX1 - 270, 165, (205, 210, 220), REST)]\nbase = RBOT - 150\nstep = 17\ntext('1 disc = 1 million sold', 540, RTOP + 20, size=40, color=SUBTLE, center=True)\nfor i in range(2):\n    cx, rx, body, acc = cols[i]\n    v = int(round(values[i]))\n    d.rounded_rectangle([cx - rx - 25, base - 20, cx + rx + 25, base + 70], radius=20, fill=rgba(SUBTLE, 150))\n    land = 0\n    for k in range(v):\n        t0 = k / float(max(v, 1)) * 0.78\n        f = clamp((reveal * 1.0 - t0) / 0.22)\n        rest = base - k * step\n        y = lerp(RTOP + 200, rest, f * f)\n        if f <= 0.0:\n            continue\n        if f >= 1.0:\n            land += 1\n        d.ellipse([cx - rx, y - 26, cx + rx, y + 26], fill=rgba(body, 255), outline=rgba(TEXT, 90), width=2)\n        d.ellipse([cx - rx * 0.28, y - 8, cx + rx * 0.28, y + 8], fill=rgba(acc, 255))\n    img = vinyl if i == 0 else cds\n    if img is not None:\n        paste(img, cx - 90, base + 90, w=180, h=180)\n    text(fmt(values[i] * clamp(reveal * 1.1)), cx, base - v * step - 150, size=84, color=HIGHLIGHT if i == 0 else TEXT, center=True)\n    text(str(labels[i]), cx, base + 290, size=44, color=TEXT, center=True)\n",
+  "topic": "vinyl vs CD units",
+  "starred": false,
+  "sig": "85794e5e6113"
+ },
+ {
+  "mechanic": "streaming-tide-over-shelf",
+  "concept": "a shelf of 100 records, streaming's tide sweeps and turns 84 of them into play buttons, leaving 11 vinyl and CDs standing",
+  "code": "rec = subject_image('vinyl record')\nif rec is not None:\n    paste(rec, 540 - 110, RTOP + 20, w=220, h=220)\ntide = clamp(reveal * 1.05) * 100.0\nstream = values[0]\nphys = values[1]\nfor k in range(100):\n    r, c = k // 10, k % 10\n    cx = RX0 + 50 + c * 100\n    cy = RTOP + 330 + r * 112\n    if k < stream:\n        hit = tide > k\n        if hit:\n            d.rounded_rectangle([cx - 42, cy - 42, cx + 42, cy + 42], radius=14, fill=rgba(REST, 150))\n            d.polygon([(cx - 14, cy - 22), (cx - 14, cy + 22), (cx + 24, cy)], fill=rgba(TEXT, 230))\n        else:\n            d.ellipse([cx - 42, cy - 42, cx + 42, cy + 42], fill=rgba((24, 24, 30), 255), outline=rgba(TEXT, 60), width=2)\n            d.ellipse([cx - 12, cy - 12, cx + 12, cy + 12], fill=rgba(SUBTLE, 255))\n    else:\n        isphys = k < stream + phys\n        d.ellipse([cx - 42, cy - 42, cx + 42, cy + 42], fill=rgba((24, 24, 30), 255), outline=rgba(HIGHLIGHT if isphys else SUBTLE, 255), width=6 if isphys else 2)\n        d.ellipse([cx - 12, cy - 12, cx + 12, cy + 12], fill=rgba(HIGHLIGHT if isphys else SUBTLE, 255))\nfront = int(tide)\nif front < stream:\n    fr, fc = front // 10, front % 10\n    d.rectangle([RX0 + 5, RTOP + 330 + fr * 112 - 50, RX1 - 5, RTOP + 330 + fr * 112 + 50], outline=rgba(HIGHLIGHT, 120), width=3)\ntext(fmt(stream * clamp(reveal * 1.05)) + ' STREAMING', 540, RTOP + 1470 - 130, size=64, color=TEXT, center=True)\ntext(str(labels[1]) + ': ' + fmt(phys), 540, RTOP + 1470 - 55, size=46, color=HIGHLIGHT, center=True)\n",
+  "topic": "music format share",
+  "starred": false,
+  "sig": "c4fe360acef9"
  }
 ]
