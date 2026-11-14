@@ -305,3 +305,21 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - problem: Data's arms jump from hanging at his sides to clasped at his chest in about two sampled frames (frames 8-10). It looks snappy, with no anticipation.
 - problem: The flower that fails is barely 'open' at the start (frames 1-4). It looks like a closed tulip bud with red stigmas sticking out, so 'a fresh bloom dies' is weaker than it could be.
 
+
+## 2026-11-14 09:38Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 66 | 64, 66, 72 | FAIL |
+
+**shot 2** (FAIL, 66, bar 70)
+
+- problem: You never clearly see a thread coming out of the flower. The crocus sits low at belly height, purple on a purple field, and the red threads just seem to appear in the raised hand up by his shoulder (rows 2-4). A viewer sees threads collected but cannot tell they came out of this one flower, which is half the point.
+- problem: For most of the pull (about frames 9-36) Data's head is turned three-quarters to screen left and tilted down. The glasses frame juts past the side of his head (row 4, frames 1-2; row 5, frames 1-5), so they look like they are sliding off his face. A viewer would notice it.
+- problem: The threads are thin red lines. On a phone the count of 1, 2, 3 is only just readable, and the red collar/tie at his neck is the same red, so it competes with the threads.
+- problem: The crocus is mostly lost. It is the same violet as the field behind it and is partly hidden by his hand and coat, so 'one whole flower' does not read.
+- problem: The ending holds too long. From about frame 39 to 60 (~3 s) it is the same pose with the mouth open and nothing new happening.
+- better: Stage the flower big and right in front of his chest, petals toward the lens, against the sky or his white coat rather than the field. Each pull should start visibly AT the flower's centre and travel up into clear air beside his face.
+- better: Keep his face toward the camera through the pulls, only glancing down with his eyes, so the glasses never turn into profile.
+- better: Make the threads thicker or brighter (a saturated orange-red with a slight glow or rim light) and hold up three fanned fingers' worth of spacing so 'three' reads at a glance. Drop the red collar accent in this shot or shift its colour.
+
