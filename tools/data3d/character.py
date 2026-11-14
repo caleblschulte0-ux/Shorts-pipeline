@@ -582,9 +582,36 @@ class Data:
             self._face(0.0, **e)
         self.sc.frame_set(F(max(0, t0 - blend)))
         cur = self._face_state()
+        # a new face OWNS its window. 2026-11-14 saffron shot 4: a worried face whose release keyed the resting face
+        # 0.15 s AFTER the alarm began, so the alarm was overwritten and he ended the shot on a contented smile (judge:
+        # "the opposite emotion"), whatever order the calls were made in. Clear any older face keys inside the window.
+        self._clear_face(t0 - blend, t1 if t1 is not None else t0)
         self._face(t0 - blend, **cur); self._face(t0, **e)
         if t1 is not None:
             self._face(t1, **e); self._face(t1 + blend, **self.EXPRESSIONS['neutral'])
+
+    def _face_owners(self):
+        """every animated thing that makes up the face: (id with animation_data, data_path prefix or None for all)"""
+        out = [(self.lips.data.shape_keys, None), (self.cavity, 'scale')]
+        for br in self.brows:
+            out.append((br, 'location'))
+            if br.data.shape_keys: out.append((br.data.shape_keys, None))
+        for s_ in 'LR':
+            out += [(self.EYE[s_ + 'up'], 'rotation_euler'), (self.EYE[s_ + 'lo'], 'rotation_euler')]
+        return out
+
+    def _clear_face(self, ta, tb):
+        """remove face keys strictly between ta and tb (seconds): a later face never inherits an older face's release"""
+        fa, fb = F(ta), F(tb)
+        if fb - fa < 2: return
+        for owner, prefix in self._face_owners():
+            ad = getattr(owner, 'animation_data', None)
+            if not ad or not ad.action: continue
+            for fc in _fcurves(ad.action):
+                if prefix and not fc.data_path.startswith(prefix): continue
+                for i in sorted((i for i, k in enumerate(fc.keyframe_points) if fa < k.co.x < fb), reverse=True):
+                    fc.keyframe_points.remove(fc.keyframe_points[i], fast=True)
+                fc.update()
 
     def _face_state(self):
         kb = self.lips.data.shape_keys.key_blocks

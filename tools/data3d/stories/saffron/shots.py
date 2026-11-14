@@ -154,7 +154,7 @@ def shot2():
     yellow stamens and the scale was cut by the frame edge: one wide shot, a big scale, big red threads.)"""
     where = place("crocus_field")
     crate_m = K.mat("crate wood", "#9A7A52", rough=0.8)
-    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.2; SS = 2.0   # the crate right in front of him: the scale at his chest
+    CR = Vector((0.1, -0.3, 0.0)); CRH = 0.16; SS = 2.0   # the crate right in front of him: the scale at his chest
     K.box("crate", (CR.x - 0.08, CR.y, CRH / 2), (0.56, 0.24, CRH), crate_m, bev=0.008)
     scl, needle = SK.gram_scale("gram scale", (CR.x + 0.04, CR.y, CRH), yaw=0.0)
     scl.scale = (SS, SS, SS)
@@ -174,7 +174,7 @@ def shot2():
     L, R = sides(data)
     sh = {s: acts._shoulder(data, s) for s in "LR"}
     T_PINCH, T_UP, T_OVER, T_DROP, T_DOWN, T_SHRUG = 1.0, 2.0, 3.4, 4.0, 4.8, 5.6
-    HOLD = Vector((data.pos().x - 0.07, -0.26, 0.47))   # clear of the basket, against his coat, below his chin               # the flower held out at chest height, on his far side from the scale
+    HOLD = Vector((data.pos().x - 0.12, -0.26, 0.4))   # clear of the basket, against his coat, below his chin               # the flower held out at chest height, on his far side from the scale
     INBK = HOLD + Vector((-0.05, -0.05, 0.13))                      # the spent flower lifted a little, clear of his coat: you see it is empty
     T_REL = DUR + 1.0; LAY_S = 0.7                                   # he keeps the spent flower low in his hand (lifted, it left his reach)
     _arc = lambda u: HOLD.lerp(INBK, u) + Vector((0, 0, 0.05 * math.sin(math.pi * u)))
@@ -201,6 +201,7 @@ def shot2():
     data.look_at(UP, T_UP - 0.2, max_yaw=35)
     data.look_at(PAN + Vector((0, -0.08, 0.02)), T_OVER, max_yaw=35)
     data.look_at(PAN + Vector((0.0, -0.12, -0.06)), T_DROP + 0.45, max_yaw=35, max_pitch=40)   # glances at the dial as it flicks
+    data.gaze(T_DROP + 0.45, 0, -24); data.gaze(T_SHRUG - 0.4, 0, -24); data.gaze(T_SHRUG - 0.2, 0, 0, blend=0.12)   # his EYES on the needle, then to us
     data.look_at(US, T_SHRUG - 0.3, max_yaw=20)                                                # then at us
     data.idle(0.0, DUR)
     data.expression("pleased", 0.1, T_PINCH - 0.1)
@@ -320,10 +321,8 @@ def shot3():
 
 # ================================================================ SHOT 4: the race
 def shot4():
-    """THE DAWN CLOSES THE FLOWER IN HIS HAND. Dawn over the hills behind the field: the violet cups open as the
-    light reaches them; then, far to near, they start to fold shut, a wave rolling toward Data, who sees the sun
-    clear the hills and the field shutting at him, and is alarmed. (Rethought 2026-11-13: the basket on his arm and
-    the hurried last flower read as broken hands; the sun is now in plain view and the wave closes all the way.)"""
+    """IT'S A RACE. Dawn in the field: Data holds a ringing alarm clock up to us, its hands racing, while the crocus in
+    his other hand wilts brown and flops over and the field behind him shuts. He looks down at it, then at us, alarmed."""
     where = place("crocus_field")
     own = list(LOC.FIELD_OWN)
     T_SHUT0, T_SHUT1 = 0.7, DUR - 0.9
@@ -344,32 +343,60 @@ def shot4():
     where["light"] = light
     data = load_data(); data.place(0.05, 0.05, 0)
     L, R = sides(data)
-    # ONE crocus held up in his hand in front of his chest: it folds shut right there, in the middle of the frame
-    G = Vector((data.pos().x + 0.03, -0.34, 0.5))                     # his grip on the stem: the flower up in front of his chest
-    hero = SK.crocus("dawn crocus", tuple(G - Vector((0, 0, 0.05))), yaw=0.6, scale=1.2, seed=61)
+    # 2026-11-14 rethink (operator: "90 degrees didn't work 3 times, try 180"): six rounds asked his FACE to carry the
+    # race and the flowers to read from a petal fold. Now two props carry it: a ringing alarm clock held up to us,
+    # its hands racing, and the crocus in his other hand wilting brown and drooping. Neither needs a subtle face.
+    G = Vector((data.pos().x + 0.06, -0.34, 0.48))                    # his grip on the stem, in front of his chest
+    hero = SK.crocus("dawn crocus", (0, 0, 0), yaw=0.6, scale=1.25, seed=61)
+    pm = hero.active_material.copy(); pm.name = "wilting petal"             # this one flower browns as it wilts
+    hero.material_slots[0].material = pm
+    nt = pm.node_tree; bsdf = nt.nodes["Principled BSDF"]
+    src = bsdf.inputs["Base Color"].links[0].from_socket
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = 'RGBA'; mix.blend_type = 'MIX'
+    mix.inputs["B"].default_value = (*K.lin("#6B4A2E"), 1)
+    nt.links.new(src, mix.inputs["A"]); nt.links.new(mix.outputs["Result"], bsdf.inputs["Base Color"])
+    fac = mix.inputs["Factor"]
+    T_W0, T_W1 = 0.6, DUR - 0.8
+    for t_, v in ((0.0, 0.0), (T_W0, 0.0), (T_W1, 0.85)):
+        fac.default_value = v; fac.keyframe_insert("default_value", frame=F(t_))
     kb = hero.data.shape_keys.key_blocks["closed"]
-    for t_, v in ((0.0, 0.0), (T_SHUT0 - 0.2, 0.0), (T_SHUT1 - 0.6, 1.0)):
-        kb.value = v; kb.keyframe_insert("value", frame=F(min(DUR, t_)))
+    for t_, v in ((0.0, 0.0), (T_W0, 0.0), (T_W1, 1.0)):
+        kb.value = v; kb.keyframe_insert("value", frame=F(t_))
+    droop = lambda t: math.radians(75) * ease(max(0.0, min(1.0, (t - T_W0) / (T_W1 - T_W0))))
+    follow(hero, lambda t: G - Vector((0, 0, 0.05)), 0.0, DUR, rot_fn=lambda t: (-droop(t), 0, 0.6))   # it flops over toward us
+    # the alarm clock, held up beside his face: bells on top, hands racing, ringing (a fast shake)
+    CK = Vector((data.pos().x - 0.2, -0.36, 0.7))
+    clock, hh, mm = SK.wall_clock("alarm clock", (0, 0, 0), r=0.075)
+    bell_m = SK._mat("clock bell", "#C9A227", rough=0.3, metal=0.8)
+    for sg in (-1, 1):
+        K.sph(f"alarm bell {sg}", (sg * 0.05, 0.0, 0.075), 0.03, bell_m, parent=clock)
+    K.box("alarm clock body", (0, 0.012, 0), (0.17, 0.03, 0.17), SK._mat("clock rim", "#1E1D20"), bev=0.03, parent=clock)
+    SK.spin_clock(hh, mm, 0.2, DUR - 0.3, hours=5.0, start_h=5.0)
+    ring = lambda t: math.radians(7) * math.sin(2 * math.pi * 11 * t) * (1.0 if t > 0.4 else t / 0.4)
+    follow(clock, lambda t: CK, 0.0, DUR, rot_fn=lambda t: (0, ring(t), 0))
     US = Vector((0.0, -1.3, 0.62))
-    data.look_at(G + Vector((0, 0, 0.12)), 0.0, max_yaw=20, max_pitch=40, blend=0.0)   # eyes on the flower in his hand
-    data.gaze(0.2, 0, -22); data.gaze(T_SHUT1 - 0.5, 0, -22)           # his EYES on it too, the whole time it folds
-    data.look_at(US, T_SHUT1 - 0.45, max_yaw=20)                       # snaps up to us
-    data.gaze(T_SHUT1 - 0.4, 0, 0, blend=0.1)
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)                       # to us, with the clock: "it's a race"
+    data.look_at(G + Vector((0, 0, 0.08)), 1.2, max_yaw=25, max_pitch=40)   # down at the flower as it wilts
+    data.gaze(1.2, 0, -22); data.gaze(T_W1 - 0.5, 0, -22)
+    data.look_at(US, T_W1 - 0.4, max_yaw=20)                           # back to us
+    data.gaze(T_W1 - 0.3, 0, 0, blend=0.1)
     data.idle(0.0, DUR)
-    data.expression("worried", 0.0, T_SHUT1 - 0.5, blend=0.3)       # no smile anywhere in this shot: it is a race he is losing
-    data.perform("alarmed", T_SHUT1 - 0.45, hold=DUR, arms=False, pace=0.55)
-    data.expression("surprised", T_SHUT1 - 0.35, DUR + 1.0, blend=0.12)   # and it stays alarmed to the cut (the worried face's release keyed his rest smile back in)
-    # the hand is solved AFTER the body acts, so his recoil does not carry the hand off the stem
+    data.expression("worried", 0.0, T_W1 - 0.45, blend=0.3)
+    data.perform("alarmed", T_W1 - 0.4, hold=DUR, arms=False, pace=0.55)
+    data.expression("surprised", T_W1 - 0.3, DUR + 1.0, blend=0.12)
+    data.blink(0.9)
+    # hands solved AFTER the body acts, so his recoil does not carry them off the props
     reach(data, R, lambda t: G + Vector((0.0, 0.0, 0.004 * math.sin(2.0 * t))), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4)
-    data.blink(0.5)
+    reach(data, L, lambda t: CK + Vector((0.02, 0.02, -0.08)), 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)
     data.finish()
     soft_key("rim fill", (0.5, -1.1, 0.8), (0.0, 0.0, 0.5), energy=9, size=40, color=(1.0, 0.8, 0.65))
-    C0, L0 = Vector((-0.05, -1.15, 0.62)), Vector((0.03, 0.2, 0.6))   # waist up: his face and the flower in his hand both big
-    C1, L1 = Vector((-0.04, -1.08, 0.62)), Vector((0.03, 0.2, 0.6))
-    cam = K.camera(tuple(C0), tuple(L0), lens=42, fstop=5.6)
+    C0, L0 = Vector((-0.05, -1.2, 0.62)), Vector((0.0, 0.2, 0.6))     # waist up: his face, the clock and the flower all big
+    C1, L1 = Vector((-0.04, -1.12, 0.62)), Vector((0.0, 0.2, 0.6))
+    cam = K.camera(tuple(C0), tuple(L0), lens=40, fstop=5.6)
     camera_path(cam, lambda t: (C0.lerp(C1, t / DUR), L0.lerp(L1, t / DUR), Vector((0.0, 0.0, 0.5))))
-    return dict(**where, data=data, rest=1, grips=("dawn crocus",),
-                conseq=[("the crocus in his hand folds shut", lambda: [hero], T_SHUT0, DUR),
+    return dict(**where, data=data, rest=1, grips=("dawn crocus", "alarm clock"),
+                conseq=[("the alarm clock rings, its hands racing", lambda: meshes([clock]), 0.3, DUR),
+                        ("the crocus in his hand wilts brown and droops", lambda: [hero], T_W0, DUR),
                         ("the field folds shut behind him", lambda: own, 0.2, DUR, {"whole": False})])
 
 

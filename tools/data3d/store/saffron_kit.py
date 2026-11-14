@@ -251,6 +251,9 @@ def gram_scale(name, loc, yaw=0.0, parent=None):
     K.cyl(name + " needle cap", (0, -0.057, 0.036), 0.006, 0.003, _mat("scale needle", "#D21F1A", rough=0.4), rot=(math.pi / 2, 0, 0), parent=root, bev=0.0005)
     K.cyl(name + " hub", (0, -0.0565, 0.036), 0.004, 0.003, ink, rot=(math.pi / 2, 0, 0), parent=root)
     piv.rotation_euler = (0, math.radians(-120), 0)
+    z0 = K.box(name + " zero mark", (0, -0.0535, 0.036), (0.006, 0.0015, 0.012), ink, bev=0, parent=root)   # a bold zero where the needle rests:
+    z0.location = (0.026 * math.sin(math.radians(-120)), -0.0535, 0.036 + 0.026 * math.cos(math.radians(-120)))   # "barely moved" is measured from it
+    z0.rotation_euler = (0, math.radians(-120), 0)
     _place(root, loc, locals().get("yaw", 0.0), parent)
     return root, piv
 
