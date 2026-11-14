@@ -1,0 +1,119 @@
+{
+  "shots": [
+    {
+      "shot": 1,
+      "score": 73,
+      "scores": [
+        72,
+        73,
+        73
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The jar is very dark. On a phone it reads as a black jar, and the red saffron threads hardly show (frames 1-12)",
+        "The pull-back from the close-up to the medium shot lurches. The framing jumps and the tabletop slides around between frames 13 and 16 instead of one smooth move",
+        "Both money bricks slide in from the right edge of the frame. His hand is on each one only once it is already in frame (rows 3-4), so the shove starts off-screen"
+      ],
+      "better": [
+        "Light the jar from behind or the side so the red threads glow, and hold it a little away from his glasses so it doesn't merge with the frame",
+        "Make the pull-back one eased dolly move, or hard-cut from the close-up to the medium shot",
+        "Start each brick inside the frame next to his hand so we see him grab it and push it the whole way",
+        "Push his surprise further at the end (eyebrows, lean back) and hold it a beat less: the last row is mostly the same pose"
+      ],
+      "pass": true
+    },
+    {
+      "shot": 2,
+      "score": 71,
+      "scores": [
+        69,
+        71,
+        71
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The crocus is a small twisted purple shape half hidden by his hand against his chest. It barely reads as a flower on a phone (frames 1-40).",
+        "While he pulls threads, his raised hand crosses over his glasses and covers an eye several times (frames 12-13, 20-22, 29-31).",
+        "In the end pose the three threads stick straight out of his fingers and can read as red finger extensions rather than threads he is holding (frames 41-60)."
+      ],
+      "better": [
+        "Hold the flower lower and turned to camera with its cup open, so it reads clearly as a crocus and you can see where each thread comes from.",
+        "Keep the pulling hand to one side of his face so he never covers his own eyes.",
+        "Pinch the threads together at their bases in his fingertips, fanned at the tips, so they read as things he is holding.",
+        "The amazed hold runs about 3 seconds unchanged (frames 43-60). Add a small move, like a glance from the threads to us, or end the shot sooner."
+      ],
+      "pass": true
+    },
+    {
+      "shot": 3,
+      "score": 71,
+      "scores": [
+        69,
+        71,
+        72
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "Data sits low behind the table and his hands are small and motion-blurred at his chest, so the actual pulling of threads is hard to read on a phone",
+        "The spent flowers are thrown far to the right and land in a second pile cut off by the right frame edge (rows 3-5), not in one clear pile next to him",
+        "His face barely changes the whole shot (a flat, worried look). Nothing in his acting shows the hours piling up"
+      ],
+      "better": [
+        "Push in or raise him so his hands and the dish are bigger in frame. The red going into the dish is the point",
+        "Toss the spent flowers onto one pile close beside him that grows in full view",
+        "Build tiredness as the window darkens: slumping shoulders, heavier blinks",
+        "Make the faster-and-faster speed-up more obvious in his hands, with the spinning clock driving it"
+      ],
+      "pass": true
+    },
+    {
+      "shot": 4,
+      "score": 70,
+      "scores": [
+        70,
+        70,
+        71
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The brief asks for one big crocus close to camera, but it sits in the mid-ground on the left, smaller than Data, and ends at his feet as a small brown shape (frames 1-28).",
+        "Data is full-length and a bit far away. His face reads, but his hands and posture are small on a phone, close to the 'tiny Data' line.",
+        "The dawn lighting is dim overall. The wilted brown flower almost disappears into the dark soil (frames 13-28)."
+      ],
+      "better": [
+        "Move the camera low and right up to the flower, filling the lower half of the frame, with Data waist-up behind it out of focus and then sharpening as he looks up.",
+        "Put a warm rim light on the flower so the change from purple to brown pops.",
+        "Make the worried look stronger and earlier, with brows knit and his hands gripping tighter."
+      ],
+      "pass": true
+    },
+    {
+      "shot": 5,
+      "score": 74,
+      "scores": [
+        73,
+        74,
+        74
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The jar on the left pan is small and dark, so 'tiny jar of saffron' is hard to read at phone size (all frames).",
+        "His raised open hand on screen-left is partly hidden behind the beam and the jar (frames 37-54), which weakens the final gesture.",
+        "The basket is set down in front of the right pan and overlaps the scale's base and pan, cluttering the payoff picture (frames 31-54)."
+      ],
+      "better": [
+        "Light or enlarge the jar so its red threads read against the brass. That contrast is the whole joke.",
+        "Raise the open hand clear of the beam, above or beside it, so the 'that's what you pay for' gesture reads cleanly.",
+        "Set the basket down off to the side, away from the scale, so the level beam is unobstructed in the final frames.",
+        "Add a small settle or wobble as the beam comes level, so the levelling lands as its own moment."
+      ],
+      "pass": true
+    }
+  ],
+  "panel": 3
+}

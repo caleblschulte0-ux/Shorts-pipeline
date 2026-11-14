@@ -1,0 +1,104 @@
+{
+  "score": 87,
+  "verdict": "ship",
+  "dimensions": {
+    "hook": 3,
+    "data_demo": 3,
+    "mascot": 4,
+    "craft": 3,
+    "pace": 2,
+    "payoff": 2,
+    "temporal_craft": 3
+  },
+  "auto_fails": [],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "All frames are one consistent 3D world: shop shelves, jar, cash stack, crocus field and scale (hook@0.3 through payoff@-0.4). No stray stock or AI cutouts."
+    },
+    "decorative_mascot": {
+      "present": false,
+      "evidence": "Data does the work in every beat. He lifts the jar (hook@0.8), pushes the cash stack beside it (mid0), holds up three red threads from a crocus (mid1/mid2), pulls threads into a dish at a workbench (mid3) and loads the balance scale (mid4)."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "No beat is a number on a background. Each one is a staged physical scene."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "Measured longest_static_s is 0.0 and max_frozen_run is 4. payoff@-1.8 and payoff@-0.4 are a closing hold of about 1.4s with Data gesturing, which is under the threshold."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "dark_fraction is 0.0. Every frame is filled: the shelves in the hook and payoff, the flower field in mid1, the room with window and clock in mid3."
+    },
+    "unreadable": {
+      "present": false,
+      "evidence": "The hook line sits over Data's glasses (hook@0.3-1.5) but the white text with a black outline stays legible. Caption chunks like 'HOLDS JUST THREE' (mid1) and 'THAT TINY JAR' (mid4) are large and fully inside the frame."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 86
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.178,
+    "effective_fps": 19.7,
+    "max_dup_run": 20,
+    "measured": true,
+    "frozen_ratio": 0.023,
+    "frozen_fps": 23.4,
+    "max_frozen_run": 4,
+    "judder_ratio": 0.0,
+    "judder_fps": 24.0,
+    "held_s": 3.08,
+    "max_dup_at_s": 11.75,
+    "duration_s": 28.79
+  },
+  "judge": "headless-claude",
+  "weakest_scene": {
+    "id": "seg0",
+    "index": 1,
+    "failure_class": "claim_not_demonstrated",
+    "visible_evidence": "mid1 and mid2 are a close-up of Data holding one crocus and three red threads in front of a field. The claim 'a whole basket of flowers for one pinch' is never shown in that beat: no basket and no pinch.",
+    "root_cause": "The beat shows the first half of the line (three threads per flower) and holds a talking close-up while the narration states the ratio, so the actual number has no picture.",
+    "repair_goal": "After the three threads, have Data drop flower after flower into a basket while only a tiny pinch of red threads builds up in his palm, so the viewer sees a full basket on one side and a pinch on the other. Land it by about 4s."
+  },
+  "depictions": [
+    {
+      "id": "seg0",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 2,
+      "note": "Real crocus and three threads shown by hand prove 'three per flower', but the basket-for-a-pinch ratio is only spoken."
+    },
+    {
+      "id": "seg1",
+      "kind": "bespoke",
+      "bespoke": 3,
+      "proves_claim": 2,
+      "note": "Heaps of crocuses, a tiny dish of plucked threads and a wall clock make 'by hand, for hours' out of the subject itself. Time passing is only hinted by the clock."
+    },
+    {
+      "id": "seg3",
+      "kind": "bespoke",
+      "bespoke": 3,
+      "proves_claim": 3,
+      "note": "A balance with the tiny jar on one pan and a basket's worth of crocuses on the other shows the cost is the labour, without needing to read anything."
+    }
+  ],
+  "one_line": "A well-crafted, lit 3D short where Data does the work in every beat. The closing balance scale lands the point, but the 'basket for a pinch' ratio is never pictured and the dawn-race beat is barely seen.",
+  "problems": [
+    "seg0 states 'a whole basket of flowers for one pinch' over a talking close-up; the ratio is never drawn.",
+    "The seg2 'race against wilting at dawn' beat does not appear in any sampled frame (mid3 at 17.08s is still seg1 and mid4 at 21.94s is already the closing), so it has little or no screen time.",
+    "The hook caption sits directly over Data's glasses and eyes (hook@0.3-1.5), covering the performer's face for the opening seconds."
+  ],
+  "fixes": [
+    "In seg0, show the basket filling with flowers while a tiny pinch of threads builds in Data's hand.",
+    "Give seg2 its own clear shot: a dawn sky over the field, flowers open then wilting as the light moves, and Data racing along the rows with a basket.",
+    "Move the hook caption above Data's head or into the lower third so his face and the jar stay clear."
+  ]
+}

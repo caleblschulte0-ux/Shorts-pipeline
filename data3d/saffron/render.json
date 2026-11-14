@@ -1,0 +1,60 @@
+{
+ "frames_rendered": 864,
+ "frame_size": [
+  1080,
+  1920
+ ],
+ "native": true,
+ "fps": 30,
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30.0,
+  "codec": "h264",
+  "frames": 864,
+  "pix_fmt": "yuv420p"
+ },
+ "audio": {
+  "codec": "aac",
+  "sample_rate": "44100"
+ },
+ "duration_s": 28.8,
+ "bytes": 17317008,
+ "last_word_s": 27.504,
+ "tts": {
+  "engine": "gemini",
+  "voice": "gemini Charon",
+  "why_not_elevenlabs": null,
+  "why_not_chatterbox": null,
+  "why_not_gemini": null
+ },
+ "lines": [
+  "Saffron costs more than any spice on Earth, and it's all picked by hand.",
+  "Each purple crocus holds just three tiny red threads. You need a whole basket of flowers for one pinch.",
+  "Every flower is picked by hand, then every thread is pulled out by hand, for hours on end.",
+  "And it's a race. The flowers open at dawn and start to wilt as the day goes on.",
+  "That tiny jar isn't pricey for the spice. You're paying for the hands. Would you pay it?"
+ ],
+ "windows": [
+  [
+   0.0,
+   5.117917
+  ],
+  [
+   5.117917,
+   13.146167
+  ],
+  [
+   13.146167,
+   17.949375
+  ],
+  [
+   17.949375,
+   21.655583
+  ],
+  [
+   21.655583,
+   28.175125
+  ]
+ ]
+}
