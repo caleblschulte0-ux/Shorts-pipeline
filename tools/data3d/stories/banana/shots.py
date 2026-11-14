@@ -58,14 +58,9 @@ def follow(obj, fn, t0=0.0, t1=None, rot_fn=None):
 def reach(data, side, fn, t0, t1, lead=0.4, back=0.45, elbow_out=0.45):
     """ONE HAND DOES A JOB, and only then: the arm hangs relaxed (FK, Data.RELAXED: the hand clear of the coat), swings
     to the job over `lead`, is ON the moving point fn(t) every frame of t0..t1, and falls back relaxed over `back`.
-    (An IK 'hang' point kept the mitten 3 cm inside his coat on every idle frame: the clipping check found it.)"""
-    bones = (f"arm.{side}", f"fore.{side}", f"hand.{side}")
-    for b in bones:
-        if not data._has_keys(data.arm, f'pose.bones["{b}"].rotation_euler'): data._k(b, 0.0, rot=data.RELAXED[b])
-        data._k(b, max(0.0, t0 - lead), rot=data._pose_now(b, max(0.0, t0 - lead)) if t0 - lead > 0.05 else data.RELAXED[b])
-    for f in range(F(t0), F(t1) + 1):
-        t = (f - 1) / FPS; sc.frame_set(f); data._arm_ik(side, Vector(fn(t)), t, elbow_out)
-    for b in bones: data._k(b, t1 + back, rot=data.RELAXED[b])
+    (An IK 'hang' point kept the mitten 3 cm inside his coat on every idle frame: the clipping check found it.)
+    The rig owns it now (character.Data.reach, identical keys), so its hands are re-solved if a body act moves them."""
+    return data.reach(side, fn, t0, t1, lead=lead, back=back, elbow_out=elbow_out)
 
 
 def drop(obj, t_drop, floor_z, kick=(0, -0.25, 0.25), spin=(5, 2, 7), bounce=0.25):

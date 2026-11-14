@@ -7,6 +7,8 @@ Every frame of the shot, MEASURED on the posed rig, never eyeballed:
   wrist   the hand turns off the forearm by at most WRIST_MAX
   shoulder the upper arm never swings more than BEHIND_MAX behind the body
   hand    never inside the torso
+  head    bends off the chest (neck and head together) by at most HEAD_BEND_MAX: a look down bends the neck now
+          (character.Data._tilt), and a look down on top of a slumped performance must still be a neck a body has
 A shot with more than GRACE bad frames for any rule is refused before it renders, with the frames and the rule named.
 """
 import math
@@ -19,6 +21,8 @@ WRIST_MAX = 80.0
 BEHIND_MAX = 55.0
 POINT_K = 0.35          # how far the joint must point the wrong way (share of its offset) to count
 HAND_IN = 0.07          # metres from the torso axis: inside his coat
+HEAD_BEND_MAX = 60.0    # degrees the head may tip off the chest's line, neck and head together (a person's neck flexes
+                        # ~50-60 deg forward); a look down is at most 38 (character.Data.TILT_DOWN), a sad slump adds ~18
 GRACE = 2               # frames
 
 
@@ -46,6 +50,8 @@ def check(data, nf, step=1, name="shot"):
         sc.frame_set(f); bpy.context.view_layer.update(); M = data.arm.matrix_world
         yaw = data.arm.rotation_euler.z; fw = Vector((math.sin(yaw), -math.cos(yaw), 0))
         s0, s1 = _seg(M, data.pb["spine"]); c0, c1 = _seg(M, data.pb["chest"])
+        h0, h1 = _seg(M, data.pb["head"]); hb = _ang(c1 - c0, h1 - h0)
+        if hb > HEAD_BEND_MAX: hit("head bent off the neck", f, hb)
         for s in "LR":
             sh, el = _seg(M, data.pb[f"arm.{s}"]); _, wr = _seg(M, data.pb[f"fore.{s}"]); _, hd = _seg(M, data.pb[f"hand.{s}"])
             bend = _ang(el - sh, wr - el)

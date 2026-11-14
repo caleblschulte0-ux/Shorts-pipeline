@@ -94,22 +94,62 @@ CONSEQ_INSIDE = 0.85    # of the group's bounding-box corners inside the frame: 
 CONSEQ_SEEN = 0.6       # of its window it must be in frame, whole and that big
 
 
+MOVE_MIN = 0.06         # of the frame height (115 px of a 1080x1920 Short): the least a MOVING part must travel on screen
+                        # for its move to be seen on a phone. 2026-11-14: saffron's gram-scale needle passed every size
+                        # check (the whole scale was big) while the needle itself flicked ~2% of the frame height, and
+                        # the judge failed it as "the needle hardly moves" -- the move was the point and nothing measured
+                        # it. Three times that is the floor: about a centimetre on a phone held in the hand.
+
+
+def _corners(o, dg):
+    oe = o.evaluated_get(dg); M = oe.matrix_world
+    return [M @ Vector(c) for c in oe.bound_box]
+
+
+def motion_px(ref, now, project, res):
+    """the farthest any tracked point has moved on screen from where it was at the start of the window, in pixels.
+    ref / now: {key: [world points]} at the window's start and now; project(p) -> (x, y, depth) in 0..1 of the frame,
+    BOTH projected through the camera as it is NOW, so a camera move is not counted as the thing moving."""
+    best = 0.0
+    for k, pts in now.items():
+        for a, b in zip(ref.get(k, ()), pts):
+            pa, pb = project(a), project(b)
+            if pa[2] <= 0 or pb[2] <= 0: continue
+            best = max(best, ((pb[0] - pa[0]) * res[0]) ** 2 + ((pb[1] - pa[1]) * res[1]) ** 2)
+    return best ** 0.5
+
+
 def consequence(cam, nf, items, name="shot"):
     """EVERY ACTION SHOWS ITS CONSEQUENCE (caaleb 2026-11-12: "if this guy's pulling things off a calendar, maybe
     show them falling to the ground ... if this guy's pouring coins in a jar, show them falling ... give the emphasis
     to it"). A shot declares, for each thing Data does, what it CAUSES: [(label, [objects], t0, t1)] (a 5th element {"whole": False}
     for a field-wide effect that runs past the frame). Over t0..t1 the caused things must be inside the frame, not cut
     by its edge (CONSEQ_INSIDE of their box corners), and at least CONSEQ_MIN_H of its height (the group's projected
-    extent) for CONSEQ_SEEN of the time. A shot that declares nothing fails: an action with no shown result is the defect."""
+    extent) for CONSEQ_SEEN of the time. A shot that declares nothing fails: an action with no shown result is the defect.
+    The 5th element may also say what MOVES: {"moves": True} (the listed objects are the moving part) or
+    {"moves": [objects] | callable} (the moving part inside a bigger group: a needle on a scale). That part's projected
+    motion is MEASURED at the output resolution over the window and must reach MOVE_MIN of the frame height."""
     sc = bpy.context.scene; ok_all = bool(items)
+    res = (sc.render.resolution_x, sc.render.resolution_y)
     if not items: print(f"CONSEQUENCE {name}: no action declares what it causes -> FAIL", flush=True)
     for it in items:
         label, objs, t0, t1 = it[:4]
-        whole = (it[4] if len(it) > 4 else {}).get("whole", True)     # False: a field-wide effect that runs past the frame
+        opt = it[4] if len(it) > 4 else {}
+        whole = opt.get("whole", True)     # False: a field-wide effect that runs past the frame
         objs = objs() if callable(objs) else objs     # resolved now: the set dressing replaces objects after the shot is built
+        mv = opt.get("moves")
+        if mv is True: mv = objs
+        elif callable(mv): mv = mv()
+        mv = [o for o in (mv or []) if o.type in ('MESH', 'FONT', 'CURVE')] if mv is not None else None
+        ref = None; moved = 0.0
         seen = n = 0; hs = []
         for f in range(int(round(t0 * FPS)) + 1, int(round(t1 * FPS)) + 2, 2):
             sc.frame_set(f); bpy.context.view_layer.update(); ys = []; xs = []; tot = inside = 0
+            if mv is not None:
+                dg = bpy.context.evaluated_depsgraph_get()
+                now = {o.name: _corners(o, dg) for o in mv if not o.hide_render}
+                if ref is None: ref = now
+                moved = max(moved, motion_px(ref, now, lambda p: world_to_camera_view(sc, cam, p), res))
             for o in objs:
                 if o.hide_render or (o.type == 'MESH' and max(abs(v) for v in o.matrix_world.to_scale()) < 1e-3): continue
                 for c in o.bound_box:
@@ -120,10 +160,18 @@ def consequence(cam, nf, items, name="shot"):
                     if -0.05 <= p.x <= 1.05 and -0.05 <= p.y <= 1.05: xs.append(p.x); ys.append(p.y)
             n += 1; h = (max(ys) - min(ys)) if ys else 0.0; hs.append(h)
             if h >= CONSEQ_MIN_H and (not whole or inside >= CONSEQ_INSIDE * max(1, tot)): seen += 1
-        frac = seen / max(1, n); good = frac >= CONSEQ_SEEN; ok_all &= good
+        frac = seen / max(1, n); good = frac >= CONSEQ_SEEN
         med = sorted(hs)[len(hs) // 2] if hs else 0.0
+        motion = ""
+        if mv is not None:
+            if not mv: good = False; motion = "; it declares a moving part but names nothing that can move"
+            else:
+                big = moved >= MOVE_MIN * res[1]; good &= big
+                motion = (f"; the moving part travels {moved:.0f} px on screen ({moved / res[1]:.1%} of the frame height, "
+                          f"min {MOVE_MIN:.0%}){'' if big else ': TOO SMALL TO SEE MOVE'}")
+        ok_all &= good
         print(f"CONSEQUENCE {name}: {label}: in frame, whole and big enough {frac:.0%} of its window (min {CONSEQ_SEEN:.0%}; "
-              f"median height {med:.0%} of frame, min {CONSEQ_MIN_H:.0%}) -> {'OK' if good else 'FAIL'}", flush=True)
+              f"median height {med:.0%} of frame, min {CONSEQ_MIN_H:.0%}){motion} -> {'OK' if good else 'FAIL'}", flush=True)
     return ok_all
 
 
@@ -138,7 +186,7 @@ def ending(data, cam, nf, items, name="shot"):
     final END_S, and the camera does not pull back: its distance to his head at the last frame is at most PULL_BACK
     times what it was halfway through the shot."""
     sc = bpy.context.scene; dur = (nf - 1) / FPS
-    live = [lab for lab, _, t0, t1 in items if t1 >= dur - END_S + 1e-3 and t0 <= dur - END_S * 0.5]
+    live = [lab for lab, _, t0, t1 in (it[:4] for it in items) if t1 >= dur - END_S + 1e-3 and t0 <= dur - END_S * 0.5]   # a 5th element (options) is allowed
     def dist(f):
         sc.frame_set(f); bpy.context.view_layer.update()
         return (cam.matrix_world.translation - data.arm.matrix_world @ data.pb["head"].head).length

@@ -9,6 +9,7 @@ import math, random
 import bpy, bmesh
 from mathutils import Vector, Matrix
 import scene_kit as K
+import prop_kit as PK
 from clock import FPS
 
 F = lambda t: int(round(t * FPS)) + 1
@@ -251,9 +252,7 @@ def gram_scale(name, loc, yaw=0.0, parent=None):
     K.cyl(name + " needle cap", (0, -0.057, 0.036), 0.006, 0.003, _mat("scale needle", "#D21F1A", rough=0.4), rot=(math.pi / 2, 0, 0), parent=root, bev=0.0005)
     K.cyl(name + " hub", (0, -0.0565, 0.036), 0.004, 0.003, ink, rot=(math.pi / 2, 0, 0), parent=root)
     piv.rotation_euler = (0, math.radians(-120), 0)
-    z0 = K.box(name + " zero mark", (0, -0.0535, 0.036), (0.006, 0.0015, 0.012), ink, bev=0, parent=root)   # a bold zero where the needle rests:
-    z0.location = (0.026 * math.sin(math.radians(-120)), -0.0535, 0.036 + 0.026 * math.cos(math.radians(-120)))   # "barely moved" is measured from it
-    z0.rotation_euler = (0, math.radians(-120), 0)
+    PK.zero_mark(name + " zero mark", (0, -0.0535, 0.036), 0.026, -120, ink, parent=root)   # a bold zero where the needle rests: "barely moved" is measured from it
     _place(root, loc, locals().get("yaw", 0.0), parent)
     return root, piv
 
@@ -341,31 +340,6 @@ def _plank_mat():
     return m
 
 
-def wall_clock(name, loc, r=0.16, yaw=0.0, parent=None):
-    """a round wall clock facing -Y (rotate with yaw): white face, black rim, twelve ticks, two hands.
-    Returns (root, hour, minute): key hand.rotation_euler.y (radians, + clockwise from the front)."""
-    root = K.empty(name, (0, 0, 0))
-    K.cyl(name + " rim", (0, 0, 0), r, 0.03, _mat("clock rim", "#1E1D20", rough=0.35, metal=0.3), rot=(math.pi / 2, 0, 0), parent=root, bev=0.006)
-    K.cyl(name + " face", (0, -0.016, 0), r * 0.9, 0.004, _mat("clock face", "#F8F5EC", rough=0.5), rot=(math.pi / 2, 0, 0), parent=root, bev=0.001)
-    ink = _mat("clock ink", "#1E1D20", rough=0.5)
-    for k in range(12):
-        a = math.radians(30 * k)
-        K.box(f"{name} tick {k}", (r * 0.78 * math.sin(a), -0.02, r * 0.78 * math.cos(a)), (0.008 if k % 3 == 0 else 0.004, 0.002, r * (0.16 if k % 3 == 0 else 0.09)), ink,
-              bev=0, parent=root).rotation_euler = (0, a, 0)
-    hands = []
-    for nm, L, w, dy in (("hour", r * 0.5, 0.012, -0.022), ("minute", r * 0.75, 0.008, -0.025)):
-        p = K.empty(f"{name} {nm}", (0, dy, 0), parent=root)
-        K.box(f"{name} {nm} hand", (0, dy, L / 2 - 0.01), (w, 0.002, L), ink if nm == "hour" else _mat("clock minute", "#C42A1C", rough=0.4), bev=0, parent=p)
-        hands.append(p)
-    K.cyl(name + " hub", (0, -0.027, 0), 0.01, 0.004, ink, rot=(math.pi / 2, 0, 0), parent=root)
-    _place(root, loc, locals().get("yaw", 0.0), parent)
-    return root, hands[0], hands[1]
-
-
-def spin_clock(hour, minute, t0, t1, hours=8.0, start_h=7.0):
-    """the hands race round: `hours` hours from t0 to t1 (minute hand: 2*pi per hour), easing in and out"""
-    for f in range(1, F(t1) + 30):
-        t = (f - 1) / FPS; u = 0.0 if t < t0 else 1.0 if t > t1 else (t - t0) / (t1 - t0)
-        u = u * u * (3 - 2 * u); hh = start_h + hours * u
-        minute.rotation_euler = (0, 2 * math.pi * (hh % 1.0) + 2 * math.pi * int(hh), 0); minute.keyframe_insert("rotation_euler", frame=f)
-        hour.rotation_euler = (0, 2 * math.pi * hh / 12.0, 0); hour.keyframe_insert("rotation_euler", frame=f)
+# the wall clock and its racing hands are the SHARED kit's now (store/prop_kit.py, moved verbatim; held equivalent by
+# tests/test_data3d_prop_kit.py), re-exported here so every saffron call is unchanged
+from prop_kit import wall_clock, spin_clock  # noqa: E402,F401

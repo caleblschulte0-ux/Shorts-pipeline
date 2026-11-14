@@ -88,6 +88,17 @@ minimal faceless figures (operator ruling), and the sets, lighting and Data's de
 PASS_SCORE = 70
 
 
+def report(shots, out):
+    """THE ROUND REPORT (store/rounds.py): what this run judged, shot by shot, appended to stories/<story>/judge_rounds.md
+    so the operator can see what failed each round; a copy of the whole file goes beside the verdict (the CI artifact)"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import rounds
+    p = rounds.append(os.environ.get("STORY", "checkout"), shots, mode="storyboard" if os.environ.get("JUDGE3D_BOARD") == "1" else "proof",
+                      round_no=os.environ.get("JUDGE3D_ROUND"), label=os.environ.get("JUDGE3D_LABEL"),
+                      copy_to=out.parent / rounds.NAME, pass_score=PASS_SCORE)
+    if p: print(f"JUDGE3D: round report appended to {p}")
+
+
 def strip(frames, out, h=540, cols=8):
     ims = [Image.open(p).convert("RGB") for p in frames]
     ims = [im.resize((int(im.width * h / im.height), h)) for im in ims]
@@ -117,6 +128,7 @@ def main():
                 only.remove(n_)
     if not only:
         out.write_text(json.dumps({"shots": kept, "panel": 0}, indent=2))
+        report(kept, out)
         for s in kept: print(f"JUDGE3D shot {s['shot']}: {s['score']} {s.get('scores', '')} PASS (kept: {s['kept']})")
         return 0
     for n in only:
@@ -144,7 +156,10 @@ def main():
         try: panel.append({s["shot"]: s for s in parse_judge_json(so).get("shots", [])})
         except Exception as e: print("JUDGE3D: unreadable verdict:", e)
     if len(panel) < (n // 2 + 1):
-        print(f"JUDGE3D: only {len(panel)} of {n} judges answered: no pass"); return 1
+        print(f"JUDGE3D: only {len(panel)} of {n} judges answered: no pass")
+        report([{"shot": n_, "score": None, "pass": False, "hard": [f"no verdict: only {len(panel)} of {n} judges answered"]}
+                for n_, _, _ in sheets] + kept, out)
+        return 1
     v = {"shots": list(kept), "panel": len(panel)}
     for n_, _, _ in sheets:
         votes = [j[n_] for j in panel if n_ in j]
@@ -160,6 +175,7 @@ def main():
         if not s.get("kept"):
             s["pass"] = not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
     out.write_text(json.dumps(v, indent=2))
+    report(v["shots"], out)
     fails = [s for s in v.get("shots", []) if not s.get("pass")]
     for s in v.get("shots", []):
         print(f"JUDGE3D shot {s.get('shot')}: {s.get('score')} {s.get('scores', '')} {'PASS' if s.get('pass') else 'FAIL'}")
