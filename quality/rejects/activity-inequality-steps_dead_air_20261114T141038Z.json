@@ -1,0 +1,21 @@
+{
+ "slug": "activity-inequality-steps",
+ "ts": "20261114T141038Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg1:mid (9.69s) and seg1:end (12.05s) are the same frame, with only background cars moving. seg1 also replays the staircase from hook and seg0, back at 6,880 Hong Kong after seg0:end had moved on to 4,774 United States, so two beats repeat.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "dead_air_repeated_scene",
+  "visible_evidence": "seg1:start, seg1:mid and seg1:end show the same staircase from the hook and seg0. Data waves in one pose, the people don't move, and the headline is back at 6,880 Hong Kong. Hong Kong and United States are just two signs at the top of the stairs, and nothing shows the gap in steps between them.",
+  "root_cause": "Beat 0 reuses the hook's staircase picture instead of getting a shot of its own. The 6,880 vs 4,774 comparison is shown only as text and signposts, never as a physical difference, and Data is not the cause of anything.",
+  "repair_goal": "Redraw beat 0 as its own shot where the step gap is physical. For example, two flights of stairs or two walking paths, with the Hong Kong walkers visibly much further up or along than the US walkers. Data should climb or pace out the extra 2,100 steps himself, so the difference arrives by about 70% of the beat and doesn't repeat the hook's frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
