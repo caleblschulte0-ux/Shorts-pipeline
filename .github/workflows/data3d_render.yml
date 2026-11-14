@@ -219,7 +219,7 @@ jobs:
           cd tools/data3d/store
           # with a reuse_run, only the reshot shots render, over that run's frames (caaleb 11-13: "we can't take 4 days")
           if [ -n "${{ steps.reuse.outputs.run }}" ]; then export RESHOOT="${{ steps.reuse.outputs.reshoot }}"; fi
-          NARR="$GITHUB_WORKSPACE/narr/narration.json" VBPY=$(which python) python render_range.py $A $B "$GITHUB_WORKSPACE/frames" "${SPP:-48}" "${PCT:-100}" 2>&1 | grep -v "^Fra:"
+          NARR="$GITHUB_WORKSPACE/narr/narration.json" VBPY=$(which python) python render_range.py $A $B "$GITHUB_WORKSPACE/frames" "${SPP:-16}" "${PCT:-100}" 2>&1 | grep -v "^Fra:"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: frames-${{ matrix.shard }}
