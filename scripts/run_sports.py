@@ -90,9 +90,9 @@ FOR_GOOD = ("too short: the post runs", "no sound", "not English",
 DL_TRIES = 2
 
 
-def load_refused(path: Path = REFUSED) -> dict:
+def load_refused(path: Path | None = None) -> dict:
     try:
-        d = json.loads(path.read_text())
+        d = json.loads((path or REFUSED).read_text())
         return d if isinstance(d, dict) else {}
     except (OSError, ValueError):
         return {}
@@ -171,6 +171,21 @@ def over_graphic(v: dict) -> bool:
     return ("text_over_source" in text or "over the source" in text
             or "banner" in text or "lower-third" in text
             or "lower third" in text or "scorebug" in text)
+
+
+def words_collide(v: dict) -> bool:
+    """The judge saw our word captions on top of the footage's own text
+    (its subtitles, a scorebug, a burned-in title). Four of the 68 holds
+    in the 2026-11-14 audit said so while OCR had read the band as free;
+    the repair then turned the line, never the words, off it."""
+    text = " ".join([str(v.get("one_line") or "")]
+                    + [str(x) for x in v.get("problems") or []]
+                    + [str(x) for x in v.get("auto_fails") or []]).lower()
+    ours = ("caption" in text or "subtitle" in text or "our words" in text)
+    clash = any(w in text for w in ("collide", "on top of", "stacked",
+                                    "over the clip's own", "burned-in",
+                                    "burned in", "scorebug", "overlap"))
+    return ours and clash
 
 
 def repair_notes(v: dict, meta: dict) -> str:
@@ -344,16 +359,18 @@ def main() -> int:
         gate = judge(mp4, c, meta, made.get("hook") or "",
                      will_upload=not a.dry_run)
         line_top = False
+        no_words = False
         for _ in range(REPAIRS):
             v = gate.get("verdict") or {}
             if not gate["blocked"] or (v.get("score") or 0) < REPAIR_MIN:
                 break
             line_top = line_top or over_graphic(v)
+            no_words = no_words or words_collide(v)
             row.setdefault("repairs", []).append(
                 {"score": v.get("score"), "reason": gate.get("reason")})
             try:
                 again = ss.make(c, info, mp4, notes=repair_notes(v, meta),
-                                line_top=line_top)
+                                line_top=line_top, no_words=no_words)
             except Exception as e:  # noqa: BLE001
                 print(f"[sports] repair failed: {e}", flush=True)
                 break

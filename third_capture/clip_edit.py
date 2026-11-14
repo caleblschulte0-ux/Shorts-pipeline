@@ -1479,14 +1479,31 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                  for w in words if t0 <= w["s"] and w["e"] <= t1 - 0.05]
     dur = t1 - t0
 
+    # THE POST'S OWN PICTURE, NOT ITS PADDING: a repost laid into a phone
+    # frame on blur or black is cut down to the broadcast inside it before
+    # anything frames it (shot_plan.picture_area)
+    area = None
+    if auto:
+        try:
+            from third_capture import shot_plan as _spa
+            area = _spa.picture_area(raw)
+        except Exception:  # noqa: BLE001
+            area = None
+        if area:
+            print(f"[edit] the post is padded — using its picture "
+                  f"{area[0]}x{area[1]} at {area[2]},{area[3]}", flush=True)
+
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         cut = tmp / "cut.mp4"
-        if t0 > 0.01 or t1 < src_dur - 0.01:
+        if area or t0 > 0.01 or t1 < src_dur - 0.01:
             _run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t0}",
-                  "-to", f"{t1}", "-i", str(raw), "-c:v", "libx264",
-                  "-preset", "veryfast", "-crf", "18", "-c:a", "aac",
-                  str(cut)])
+                  "-to", f"{t1}", "-i", str(raw)]
+                 + (["-vf", "crop={}:{}:{}:{}".format(*area)] if area
+                    else [])
+                 + ["-c:v", "libx264",
+                    "-preset", "veryfast", "-crf", "18", "-c:a", "aac",
+                    str(cut)])
         else:
             cut = raw
 
@@ -1550,6 +1567,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # NO CAPTIONS OVER CAPTIONS (operator, 2026-10-09): a stream that
         # already shows what is said gets no second copy on top of it
         own_subs = own_captions(cut, words) if auto else False
+        if direct and str(direct.get("speech") or "") == "off":
+            # a repair: the judge saw our word captions on the footage's
+            # own (2026-11-14 audit: Kerr, Jameis, Lewandowski, Shough all
+            # held for it while OCR read the band as free)
+            own_subs = True
         if own_subs:
             print("[edit] the video captions itself — no speech captions",
                   flush=True)
