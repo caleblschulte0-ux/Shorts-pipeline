@@ -19811,13 +19811,68 @@
       "ts": "2026-11-14T12:40:58.934737+00:00"
     },
     "clip-20261114-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/murdercrumpet/clip/HungrySuaveWoodcockPunchTrees-V1IlWSJaZt3x-7kk",
-      "story_key": null,
-      "streamer": "murdercrumpet",
+      "url": "https://youtube.com/shorts/DjEk4AgAqJ0",
       "title": "Murdercrumpet: Twitch CEO Dan Clancy's Message At Jimmy And Floopy's Wedding Is Unreal",
       "kind": "twitch_clip",
-      "ts": "2026-11-14T12:47:07.363879+00:00",
+      "ts": "2026-11-14T12:47:16.936710+00:00",
+      "uploaded_at": "2026-11-14T12:47:16.936725+00:00",
+      "publish_at": "2026-11-14T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261114-murdercrumpet-twitch-ceo-dan-clancy-s-message-at-3480534c",
+        "tiktok": "queued for 2026-11-14T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/murdercrumpet/clip/HungrySuaveWoodcockPunchTrees-V1IlWSJaZt3x-7kk",
+      "streamer": "murdercrumpet",
+      "series": "chaos",
+      "hook": "Streamer wedding gets a message from Twitch's CEO \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2117,
+      "banger": 0.62,
+      "cut": {
+        "start": 23.8,
+        "end": 57.1
+      },
+      "director_cut": true
+    },
+    "rejected-dignifiedsilkypoultrygingerpower-saled10ikx96yizy": {
+      "source_url": "https://www.twitch.tv/forsen/clip/DignifiedSilkyPoultryGingerPower-SaLed10iKx96yIZy",
+      "streamer": "forsen",
+      "title": "WHO",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (awards nominee reading, no event)",
+      "ts": "2026-11-14T12:48:46.010373+00:00"
+    },
+    "rejected-proudbigtomato4head-zrsgbrj__cewmwz3": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/ProudBigTomato4Head-zrsgBrJ__CewMWz3",
+      "streamer": "erobb221",
+      "title": "why same",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (talking, no visible event, needs context)",
+      "ts": "2026-11-14T12:49:06.662588+00:00"
+    },
+    "rejected-americananimatedgerbilamptroppunch-b4uplmtj4_1yb6pg": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/AmericanAnimatedGerbilAMPTropPunch-B4UPLMtj4_1yb6Pg",
+      "streamer": "erobb221",
+      "title": "Erobb helps a chatter by giving them ExtraEmily's exact location",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (convention chatter, no visible payoff)",
+      "ts": "2026-11-14T12:50:12.330662+00:00"
+    },
+    "clip-20261114-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AntsyObliqueRadicchioVoHiYo-uSskG_k0giMYoe-q",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Clutch Goes Through Walls And Chat Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-11-14T12:54:36.891329+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
