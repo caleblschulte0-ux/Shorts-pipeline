@@ -46,6 +46,29 @@ What every shot is held to before a frame renders (store/shots.py runs them; a s
 - **judged**: `judge3d.py` reads the story's own storyboard; the showrunner's preview verdict is written beside the
   video (`showrunner_preview.json`). Posting is `data3d_upload.yml` on main, only on the operator's word.
 
+## System-wide, 2026-11-14 (after the saffron rounds)
+
+Every one of these runs on every story, wired where named, held by the test named:
+- **storyboard lint** (`store/boardlint.py`, run by `store/shots.py` before a shot is built): a beat's payoff is a BIG
+  prop or action, never "barely / slightly / subtle" or a face alone ("reacts", "looks alarmed", "a wry look").
+  Posted stories are exempt; `saffron` is grandfathered with its reason. `tests/test_data3d_storyboard_lint.py`.
+- **face lint** (`store/facelint.py`, beside twitch): inside a worried / alarmed / surprised / sad / wry / determined
+  window the smile key and the mouth's SMILE READ (its corners' upturn, in resting smiles: rest is itself a smile)
+  stay low. An expression now releases into whichever face holds the moment it ends, not to rest. `tests/test_data3d_face.py`.
+- **faces differ**: every `EXPRESSIONS` entry is at least `MIN_APART` from every other over what a viewer can see;
+  `wry` is ONE-SIDED (`cock`: one brow up; `side`: the mouth pulled to one side; shape keys only, his look unchanged).
+- **looks read**: `look_at()` aims each pupil onto the target from where it really is on the final body (`eyes=False` opts out; a later `gaze()` at that frame wins) and a big look down bends the
+  NECK too (up to 38 deg, layered in `finish()`); `anatomy.py` holds head+neck under `HEAD_BEND_MAX`.
+- **motion you can see**: a consequence may declare `{"moves": True | [objects]}`; its travel is measured in pixels at
+  1080x1920 and must reach `staging.MOVE_MIN` (6% of the frame height). A 2% needle flick is what failed the judge.
+- **hands last**: `data.reach()` is shared (character.py); every IK key is re-solved in `finish()` if a later body act
+  moved it off its target (`HANDS` line). `tests/test_data3d_rig.py` (on the rig when `DATA3D_BPY` names a bpy python).
+- **the 180 rule** (`store/proof_loop.py`): three rounds under the bar on one idea and the reviser must carry the line
+  with a DIFFERENT idea, camera / timing / framing tweaks forbidden. **Round reports**: every judge run appends to
+  `stories/<story>/judge_rounds.md` (`store/rounds.py`). `tests/test_data3d_loop_and_reports.py`.
+- **prop kit** (`store/prop_kit.py`): `alarm_clock`, `wilt`, `zero_mark`, `wall_clock`, `spin_clock`, held equivalent
+  to the saffron code they came from.
+
 ## The ending asks the viewer something (caaleb 2026-11-13)
 
 "We need to be ending the videos with like a question, so people have a reason to comment or engage." A new story's

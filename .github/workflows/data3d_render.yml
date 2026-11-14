@@ -169,6 +169,7 @@ jobs:
           path: |
             proof/verdict.json
             proof/sheet_s*.jpg
+            proof/judge_rounds.md
           retention-days: 7
 
   frames:
@@ -282,6 +283,7 @@ jobs:
           python3 branch/tools/data3d/story/assemble.py frames art/narration main out/data3d_short.mp4
           python3 branch/tools/data3d/store/sheet.py frames out/data3d_short_2fps.jpg 8 15
           cp art/verdict/*.json out/ 2>/dev/null || echo '{"panel": 0, "note": "no verdict"}' > out/proof_verdict.json
+          cp art/verdict/judge_rounds.md out/ 2>/dev/null || true   # every judge round, shot by shot (store/rounds.py)
       - name: The showrunner watches the finished cut (a PREVIEW verdict, beside the video; the posting run judges it again)
         continue-on-error: true
         working-directory: main

@@ -75,7 +75,8 @@ def test_a_new_story_fits_the_explainers_pacing():
         assert len(lines) - 2 >= pace["min_beats"]
 
 
-POSTED_BEFORE_THE_QUESTION = {"checkout", "banana"}
+sys.path.insert(0, str(D3 / "store"))
+from boardlint import POSTED as POSTED_BEFORE_THE_QUESTION  # noqa: E402  the one list of posted stories
 
 
 def test_a_3d_short_ends_on_a_question_and_its_music_sits_low():

@@ -12,6 +12,10 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
   anatomy     no joint bends the way no body can
   clipping    nothing of him passes through himself or the set
   ending      the last shot ends ON its payoff, never a pull-back to a wide frame
+  twitch      no bone whips, no face control pops
+  face lint   a worried / alarmed / surprised / sad / wry / determined face never turns into a smile (store/facelint.py)
+  hands       IK hands re-solved on the final body (character.Data._resolve_hands, in finish(); reported as HANDS)
+  storyboard  before any of it, the script's payoffs are carried by big props or actions (store/boardlint.py)
 
     usage: STORY=name SHOT=n python -I shots.py OUTDIR [SPP] [PCT]
     env: NARR=narration.json | STILL=<local t> | STEP | KEYS=n (n evenly spaced stills: the storyboard pass) | FRAMES=a-b | STAGING=strict|on | CLIPPING=strict|report
@@ -30,6 +34,12 @@ STORY = os.environ.get("STORY", "checkout")
 STORY_DIR = os.path.join(os.path.dirname(HERE), "stories", STORY)
 SCRIPT = json.load(open(os.path.join(STORY_DIR, "script.json")))
 SHOT = int(os.environ.get("SHOT", "1"))
+import boardlint   # the payoff is carried by a big prop or action, never a subtle face or a tiny change (store/boardlint.py)
+for _where, _p in boardlint.problems(SCRIPT):
+    print(f"BOARD {STORY} {_where}: {_p}" + ("" if boardlint.held(STORY) else
+          f" (not binding: {'posted' if STORY in boardlint.POSTED else 'grandfathered, see store/boardlint.py'})"), flush=True)
+if boardlint.held(STORY) and boardlint.problems(SCRIPT) and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY}: the storyboard lint fails: a beat's payoff leans on a subtle face or a tiny change; give it a big prop or action")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
 PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
@@ -267,6 +277,11 @@ if not clipping.check(data, NF, name=f"shot {SHOT}", grips=S.get("grips", ())) a
 import twitch     # no whip, no pop (caaleb 2026-11-13: "why does data tweak out"): every bone and face control, per frame
 if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the twitch check: a bone whips or the face pops in one frame")
+import facelint   # a face that is not a smile never turns into one (2026-11-14, saffron shot 4: "the opposite emotion")
+if not facelint.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the face lint: a worried / alarmed / sad / wry face smiles inside its own window")
+n_res, worst_res = getattr(data, "hands_resolved", (0, 0.0))   # character.Data._resolve_hands, in data.finish()
+print(f"HANDS shot {SHOT}: {n_res} IK frames re-solved after a later body move (worst drift {worst_res * 100:.1f} cm) -> OK", flush=True)
 os.makedirs(OUT, exist_ok=True)
 if os.environ.get("DIAG"): exec(open(os.environ["DIAG"]).read()); sys.exit(0)
 still = os.environ.get("STILL"); step = int(os.environ.get("STEP", "1")); fr = os.environ.get("FRAMES")
