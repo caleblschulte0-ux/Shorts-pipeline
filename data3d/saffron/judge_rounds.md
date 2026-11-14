@@ -324,43 +324,59 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Make the threads thicker or brighter (a saturated orange-red with a slight glow or rim light) and hold up three fanned fingers' worth of spacing so 'three' reads at a glance. Drop the red collar accent in this shot or shift its colour.
 
 
-## 2026-11-14 09:53Z · proof
+## 2026-11-14 15:18Z · proof
 
 | shot | score | panel | result |
 |---|---|---|---|
-| 1 | 73 | 72, 73, 73 | PASS |
-| 2 | 71 | 69, 71, 71 | PASS |
-| 3 | 71 | 69, 71, 72 | PASS |
-| 4 | 70 | 70, 70, 71 | PASS |
-| 5 | 74 | 73, 74, 74 | PASS |
+| 4 | 73 | 72, 73, 74 | PASS |
 
-**shot 1** (PASS, 73, bar 70)
+**shot 4** (PASS, 73, bar 70)
 
-- problem: The jar is very dark. On a phone it reads as a black jar, and the red saffron threads hardly show (frames 1-12)
-- problem: The pull-back from the close-up to the medium shot lurches. The framing jumps and the tabletop slides around between frames 13 and 16 instead of one smooth move
-- problem: Both money bricks slide in from the right edge of the frame. His hand is on each one only once it is already in frame (rows 3-4), so the shove starts off-screen
+- problem: Nothing happens for roughly the first 8 frames (about 1.1 s): the crocus stays purple and still while Data stares at it, so the shot starts flat.
+- problem: The hero flower does not read as a big OPEN crocus. It is a closed, tulip-like bud with red stamen threads sticking sideways out of the closed petals like wires (frames 1-12).
+- problem: The worried look-up uses Data's open dark-red mouth oval (frames 18-28), which is the 'open mouth hole' look the operator has already flagged.
 
-**shot 2** (PASS, 71, bar 70)
 
-- problem: The crocus is a small twisted purple shape half hidden by his hand against his chest. It barely reads as a flower on a phone (frames 1-40).
-- problem: While he pulls threads, his raised hand crosses over his glasses and covers an eye several times (frames 12-13, 20-22, 29-31).
-- problem: In the end pose the three threads stick straight out of his fingers and can read as red finger extensions rather than threads he is holding (frames 41-60).
+## 2026-11-14 15:38Z · proof
 
-**shot 3** (PASS, 71, bar 70)
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 71 | 70, 71, 74 | PASS |
+| 2 | 70 | 58, 70, 72 | PASS |
+| 3 | 73 | 64, 73, 75 | PASS |
+| 4 | 72 | 67, 72, 73 | PASS |
+| 5 | 73 | 70, 73, 74 | PASS |
 
-- problem: Data sits low behind the table and his hands are small and motion-blurred at his chest, so the actual pulling of threads is hard to read on a phone
-- problem: The spent flowers are thrown far to the right and land in a second pile cut off by the right frame edge (rows 3-5), not in one clear pile next to him
-- problem: His face barely changes the whole shot (a flat, worried look). Nothing in his acting shows the hours piling up
+**shot 1** (PASS, 71, bar 70)
 
-**shot 4** (PASS, 70, bar 70)
+- problem: Frames 1-12: the jar sits over Data's left lens and the glasses rim crosses it, so the jar and his face merge instead of reading as the jar held beside his face
+- problem: Frames 13-16: the framing jumps (the whole picture shifts up and back mid-move), which reads as a camera bump rather than a planned move
+- problem: Once the jar is on the table it is small and dark; the red threads are barely visible on a phone, so the 'tiny jar vs money' contrast depends on a dark blob
+- problem: The 'wide heap' is only two bricks, and both slide in from the right frame edge
 
-- problem: The brief asks for one big crocus close to camera, but it sits in the mid-ground on the left, smaller than Data, and ends at his feet as a small brown shape (frames 1-28).
-- problem: Data is full-length and a bit far away. His face reads, but his hands and posture are small on a phone, close to the 'tiny Data' line.
-- problem: The dawn lighting is dim overall. The wilted brown flower almost disappears into the dark soil (frames 13-28).
+**shot 2** (PASS, 70, bar 70)
 
-**shot 5** (PASS, 74, bar 70)
+- hard (one judge only): NOT THE POINT: the flower is a crumpled purple wad against his chest and never reads as one crocus. The three threads read as long red fingers or claws sprouting from his hand, not stigmas pulled from a flower (rows 5-8). The pulling is not readable: threads appear in his fingers already raised (row 2 frames 3-8, row 4 frames 1-4).
+- problem: The crocus is a crumpled purple wedge pressed against the lab coat. Seen alone it barely reads as a flower, let alone a crocus.
+- problem: The threads read as thick orange rods sticking out of a mitten fist, not three fine threads fanned between fingers.
+- problem: For much of rows 2-5 Data's head turns down and sideways to his hand, so his face is three-quarter or profile.
 
-- problem: The jar on the left pan is small and dark, so 'tiny jar of saffron' is hard to read at phone size (all frames).
-- problem: His raised open hand on screen-left is partly hidden behind the beam and the jar (frames 37-54), which weakens the final gesture.
-- problem: The basket is set down in front of the right pan and overlaps the scale's base and pan, cluttering the payoff picture (frames 31-54).
+**shot 3** (PASS, 73, bar 70)
+
+- problem: His hands are small and motion-blurred behind the table; you see flowers flying and the dish filling, but never threads actually being pulled
+- problem: The source heap is cut by the left frame edge for the whole shot
+- problem: The spent flowers fly through the air instead of being put down, and some still look whole
+- problem: His face stays flat and neutral, so there is no rising effort as the pace gets faster
+
+**shot 4** (PASS, 72, bar 70)
+
+- problem: The 'big open crocus' reads as a closed dark bud. It never looks open and fresh, so the wilt has less to lose.
+- problem: In rows 1-2 the flower's threads and leaf run off the left edge of the frame.
+- problem: Once it has fallen, the flower lies over Data's feet and lower legs, a cluttered overlap.
+
+**shot 5** (PASS, 73, bar 70)
+
+- problem: The pour happens at the right edge of the frame. In row 1 f7-8 and row 2 the basket is partly cut by the frame.
+- problem: The beam's change from tilted to level is a small angle at the bottom of a busy frame, so the payoff is subtle on a phone.
+- problem: The upside-down basket hangs over the pan for a long stretch (rows 2-3) after the flowers have landed.
 
