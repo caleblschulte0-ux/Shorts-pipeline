@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261113",
-  "generated_at": "2026-11-13T23:31:10Z",
+  "generated_at": "2026-11-14T00:31:10Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 50.76,
+          "days": 50.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 49.76,
+          "days": 49.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1731,10 +1731,16 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "4c4aae8",
-    "commits_since": "2026-11-12",
+    "head": "c93a6b7",
+    "commits_since": "2026-11-13",
     "commit_count": 50,
     "commits": [
+      "c93a6b7 story forge: new real-data stories [skip ci]",
+      "d8c4878 Baller Bro: a cut-in is the default whenever someone talks about something (#755)",
+      "aa92207 exchange: phase A bundle for 20261114 [skip ci]",
+      "0091a64 claim: mailbox verdicts 2026-11-13T23:48Z [skip ci]",
+      "c1d5c68 Baller Bro: cut-ins and montages fill the frame; no one crop over many cameras; two-object replies parse (#754)",
+      "f08b7c9 retro: brief + triage for 20261113 [skip ci]",
       "4c4aae8 claim: mailbox verdicts 2026-11-13T22:48Z [skip ci]",
       "1ca47be claim: mailbox verdicts 2026-11-13T21:48Z [skip ci]",
       "51a62e1 watchdog: chatgpt task verdicts 20261113 [skip ci]",
@@ -1768,13 +1774,7 @@
       "792017c story forge: new real-data stories [skip ci]",
       "be44fab claim: mailbox verdicts 2026-11-13T14:48Z [skip ci]",
       "58ad573 explainer: update posted log + analytics [skip ci]",
-      "5c1af34 sports: 2026-11-13 posted log + verdicts [skip ci]",
-      "ae59c19 watchdog: chatgpt task verdicts 20261113 [skip ci]",
-      "952ceff third: analytics [skip ci]",
-      "cda7589 third: update posted log + analytics [skip ci]",
-      "9b82b34 third: analytics [skip ci]",
-      "7e99378 third: update posted log + analytics [skip ci]",
-      "44867ee third: checkpoint posted log (claim upload slot) [skip ci]"
+      "5c1af34 sports: 2026-11-13 posted log + verdicts [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1788,6 +1788,7 @@
       "test_a_comparison_is_checked_not_invented.py",
       "test_a_cut_in_lands_inside_what_plays.py",
       "test_a_cut_in_lands_on_its_word.py",
+      "test_a_cut_in_shows_what_they_talk_about.py",
       "test_a_cut_never_ends_on_the_networks_card.py",
       "test_a_dial_needs_a_scale.py",
       "test_a_face_beside_what_it_shows_gets_both.py",
@@ -1900,6 +1901,7 @@
       "test_fifteen_seconds_a_beat_is_too_long.py",
       "test_fit_title.py",
       "test_footage_downloads_run_side_by_side.py",
+      "test_footage_fills_the_frame.py",
       "test_format_is_not_a_template.py",
       "test_format_scoreboard.py",
       "test_fsutil_writes.py",
