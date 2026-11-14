@@ -8,9 +8,9 @@ from __future__ import annotations
 
 import shutil
 import subprocess
+import tempfile
+import unittest
 from pathlib import Path
-
-import pytest
 
 from third_capture import cut_in, outro, shot_plan
 from third_capture.author import one_object
@@ -27,31 +27,6 @@ def _letterboxed_reel(path: Path) -> None:
         check=True)
 
 
-@pytest.mark.skipif(not shutil.which("ffmpeg"), reason="needs ffmpeg")
-def test_a_letterboxed_reel_is_cropped_to_its_picture_and_its_motion(tmp_path):
-    pytest.importorskip("cv2")
-    reel = tmp_path / "reel.mp4"
-    _letterboxed_reel(reel)
-    crop = shot_plan.fill_crop(reel)
-    assert crop is not None
-    w, h, x, y = crop
-    assert 50 <= y <= 64 and 232 <= h <= 252, "the black bars stay in"
-    assert w < 640 * 0.6, "still the whole width shrunk into a blur"
-    assert x <= 400 <= x + w, "the crop misses what moves"
-
-
-def test_the_crop_reaches_both_filters():
-    fc = outro.graph(2, [3.0, 3.0], 10.0, 1080, 1920, None, "clean",
-                     [(180, 240, 300, 60), None])
-    assert "[1:v]crop=180:240:300:60," in fc
-    assert "[2:v]setpts" in fc
-    item = {"at": 4.0, "secs": 2.0, "crop": (180, 240, 300, 60)}
-    assert "[3:v]crop=180:240:300:60," in cut_in.overlay("v0", 3, item,
-                                                         1080, 1920, "v1")
-    assert "[3:v]setpts" in cut_in.overlay("v0", 3, {"at": 4.0, "secs": 2.0},
-                                           1080, 1920, "v1")
-
-
 class _Face:
     presence, cx, cy = 0.9, 1500.0, 500.0
 
@@ -65,14 +40,50 @@ def _an(cuts):
             "col_detail": det, "cuts": cuts}
 
 
-def test_one_pair_of_boxes_is_never_laid_over_several_cameras():
-    single = shot_plan.face_and_content(_an([]))
-    assert single is not None, "the one-camera case this layout is for"
-    assert shot_plan.face_and_content(_an([4.2, 9.8])) is None
+class FootageFillsTheFrame(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("ffmpeg"), "needs ffmpeg")
+    def test_a_letterboxed_reel_is_cropped_to_its_picture_and_its_motion(self):
+        try:
+            import cv2  # noqa: F401
+        except ImportError:
+            self.skipTest("needs cv2")
+        with tempfile.TemporaryDirectory() as d:
+            reel = Path(d) / "reel.mp4"
+            _letterboxed_reel(reel)
+            crop = shot_plan.fill_crop(reel)
+        self.assertIsNotNone(crop)
+        w, h, x, y = crop
+        self.assertTrue(50 <= y <= 64 and 232 <= h <= 252,
+                        "the black bars stay in")
+        self.assertLess(w, 640 * 0.6,
+                        "still the whole width shrunk into a blur")
+        self.assertTrue(x <= 400 <= x + w, "the crop misses what moves")
+
+    def test_the_crop_reaches_both_filters(self):
+        fc = outro.graph(2, [3.0, 3.0], 10.0, 1080, 1920, None, "clean",
+                         [(180, 240, 300, 60), None])
+        self.assertIn("[1:v]crop=180:240:300:60,", fc)
+        self.assertIn("[2:v]setpts", fc)
+        item = {"at": 4.0, "secs": 2.0, "crop": (180, 240, 300, 60)}
+        self.assertIn("[3:v]crop=180:240:300:60,",
+                      cut_in.overlay("v0", 3, item, 1080, 1920, "v1"))
+        self.assertIn("[3:v]setpts",
+                      cut_in.overlay("v0", 3, {"at": 4.0, "secs": 2.0},
+                                     1080, 1920, "v1"))
+
+    def test_one_pair_of_boxes_is_never_laid_over_several_cameras(self):
+        single = shot_plan.face_and_content(_an([]))
+        self.assertIsNotNone(single,
+                             "the one-camera case this layout is for")
+        self.assertIsNone(shot_plan.face_and_content(_an([4.2, 9.8])))
+
+    def test_two_objects_in_a_reply_is_the_last_one(self):
+        self.assertEqual(one_object('{"a": 1}\n\n{"a": 2}'), {"a": 2})
+        self.assertEqual(one_object('ok: {"x": "{not a brace}"} done'),
+                         {"x": "{not a brace}"})
+        with self.assertRaises(ValueError):
+            one_object("no json here")
 
 
-def test_two_objects_in_a_reply_is_the_last_one():
-    assert one_object('{"a": 1}\n\n{"a": 2}') == {"a": 2}
-    assert one_object('ok: {"x": "{not a brace}"} done') == {"x": "{not a brace}"}
-    with pytest.raises(ValueError):
-        one_object("no json here")
+if __name__ == "__main__":
+    unittest.main()
