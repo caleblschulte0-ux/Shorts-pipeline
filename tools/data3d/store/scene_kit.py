@@ -1,0 +1,744 @@
+"""The checkout set, built from primitives in bpy (rebuild of 2026-11-06, after the scratchpad wipe).
+
+Units: metres at Data's scale. Data is 0.95 m tall; the world is built at U = 0.56 of adult size so he reads adult-sized.
+Front of the store (the camera side) is -Y; the back wall is at BACK_Y. Data walks along y = 0 in +X.
+Every builder returns the objects a stager needs (anchors are empties); materials are looked up by NAME by style.py,
+so keep the names.
+"""
+import bpy, bmesh, math, os, random
+from mathutils import Vector, Euler
+
+U = 0.56
+BACK_Y = 2.4 * U          # 1.344
+WALL_H = 4.6 * U          # 2.576
+LANE_X = [0.0, 0.62, 1.24, 1.86]
+FAR_X = [3.05, 3.67]
+FAR_Y = BACK_Y + 7.0        # the far wall: the store goes on behind the lanes
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__)))); from clock import FPS   # the one clock (tools/data3d/clock.py)
+
+# natural supermarket colours; one brand accent (the orange band) and the blue of the screens
+PAL = {
+    "wall": "#E6E1D8", "wall band": "#C8643A", "floor": "#B9BDC1", "grout": "#A9ADB2", "counter": "#E9E6E0",
+    "counter edge": "#6E6961", "kiosk body": "#EDEEF0", "kiosk dark": "#2B2F36", "kiosk screen": "#2F7FE0",
+    "register": "#2B2F36", "reg screen": "#BFD8F0", "card reader": "#2B2F36", "keypad": "#3A3F47", "uniform": "#1F5F8B",
+    "apron": "#2B2F36", "belt": "#1C1E22", "belt well": "#8A8F96", "rail": "#C9CDD2", "sign pole": "#AEB3B9",
+    "lane sign": "#F6F2E8", "sign frame": "#2B2F36", "rack": "#4A4F57", "rack shelf": "#AEB3B9", "paper bag": "#C9A97E",
+    "bag fold": "#B0905F", "cereal": "#C6392B", "cereal2": "#F0D27A", "milk": "#F2F2F0", "milk cap": "#2F5FB8",
+    "banana": "#E8C94E", "cart metal": "#C9CDD2", "cart plastic": "#C6392B", "wheel": "#2A2D31", "shelf": "#8E9299",
+    "plank": "#DAD6CE", "trim": "#8F8A82", "base board": "#5B5F66", "sign ivory": "#FFF6E6", "sign navy": "#1F3B63",
+    "mat rubber": "#3A3D42", "basket red": "#B23A2E", "cone yellow": "#E8C219", "pallet wood": "#9C7A4E",
+    "price strip": "#F5F1E8", "can lid": "#C9CDD2", "thin bag": "#EDEFF2", "skin": "#E8B48E", "hair": "#3A2A20",
+    "pants": "#3E424C", "shoe": "#1F2024", "eye white": "#F6F4F0", "pupil": "#1C1A1E", "lip": "#B46A5C", "name tag": "#F7F5EE",
+}
+PRODUCTS = ["#B8655A", "#6E8FB5", "#C9A94E", "#7E9C6A", "#8A6FA8", "#D08A4E", "#5F8F8A", "#B5B0A6", "#C46A7E", "#5E6E8F"]
+
+# LOOK=DS: the "design-studio" dressing (Apple-keynote / Headspace-explainer register). Same shot, same staging, same
+# animation; the SET changes: warm neutrals only (off-white, two greys, one sand), Data the only teal, no labels, no
+# text on products, no pole signs, no decal, no ceiling tiles, a cyclorama ground. style_DS.py lights and grades it.
+DS = os.environ.get("LOOK", "").upper() == "DS"
+DS_PAL = {
+    "wall": "#F1EEE8", "wall band": "#D4C4A8", "floor": "#EAE7E1", "grout": "#EAE7E1", "counter": "#F4F2EE", "counter edge": "#CFCBC4",
+    "kiosk screen": "#DCE8F4", "reg screen": "#DCE8F4", "register": "#A9A5A0", "card reader": "#4A4E54", "keypad": "#6E6A66",
+    "uniform": "#5B6672", "apron": "#434B55", "belt": "#7A7672", "belt well": "#CFCBC4", "rail": "#C9C6C1", "sign pole": "#C9C6C1",
+    "lane sign": "#F6F3EE", "sign frame": "#3A3D42", "paper bag": "#D9CDB8", "bag fold": "#CFC1A8", "cereal": "#D4C4A8", "cereal2": "#CFCBC4",
+    "milk": "#F2F0EC", "milk cap": "#A9A5A0", "banana": "#D9CDB8", "cart metal": "#A9A5A0", "cart plastic": "#4A4E54", "wheel": "#3A3D42",
+    "shelf": "#DDD9D3", "plank": "#E6E2DC", "trim": "#CFCBC4", "base board": "#CFCBC4", "sign ivory": "#F6F3EE", "sign navy": "#3A3D42",
+    "price strip": "#DAD6CF", "can lid": "#C9C6C1", "thin bag": "#EAE7E1", "pants": "#4A505A", "shoe": "#2E3136", "name tag": "#F6F3EE",
+}
+DS_PRODUCTS = ["#D9D3CA", "#C6C1B9", "#E4DFD7", "#D4C4A8"]
+if DS:
+    PAL.update(DS_PAL); PRODUCTS = DS_PRODUCTS
+BRANDS = ["OATIES", "VITA", "PURE", "CRISP", "NOVA", "ALPINE", "SUNNY", "GOLD", "FRESH", "DAILY", "ORIGIN", "KETTLE", "MAPLE",
+          "HARVEST", "BLUE SKY", "ROOTS", "SILK", "NORTH", "PRIMA", "ZEST", "ORCHARD", "CLASSIC"]
+
+
+def mute(hexc, k=0.5):
+    """pull a hex colour k of the way toward its own grey (sRGB)"""
+    h = hexc.lstrip("#"); c = [int(h[i:i + 2], 16) for i in (0, 2, 4)]; g = sum(c) / 3
+    return "#" + "".join(f"{int(round(v + (g - v) * k)):02X}" for v in c)
+
+
+def lin(hexc):
+    h = hexc.lstrip("#"); c = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+    return tuple(x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4 for x in c)
+
+
+_MATS = {}
+def mat(name, hexc=None, rough=0.6, metal=0.0, emit=0.0, spec=0.45):
+    """one material per NAME (style.py restyles by name); the first call sets the colour"""
+    if name in _MATS: return _MATS[name]
+    m = bpy.data.materials.get(name)
+    if m is None:
+        m = bpy.data.materials.new(name); m.use_nodes = True
+        b = m.node_tree.nodes["Principled BSDF"]
+        col = lin(hexc or PAL.get(name, "#AAAAAA"))
+        b.inputs["Base Color"].default_value = (*col, 1); b.inputs["Roughness"].default_value = rough
+        b.inputs["Metallic"].default_value = metal; b.inputs["Specular IOR Level"].default_value = spec
+        if emit: b.inputs["Emission Strength"].default_value = emit; b.inputs["Emission Color"].default_value = (*col, 1)
+    _MATS[name] = m
+    return m
+
+
+
+# ------------------------------------------------------------------ printed graphics (labels.py, PIL, system python)
+LABELS_DIR = os.environ.get("LABELS_DIR") or os.path.join(os.path.expanduser("~"), ".cache", "data3d_labels")   # generated once by labels.py (PIL, system python)
+_IMGS = {}
+def labels():
+    """generate the label PNGs once (system python3 -I labels.py) and return their dir"""
+    if not os.path.exists(os.path.join(LABELS_DIR, "manifest.txt")):
+        import subprocess, sys as _s
+        subprocess.run(["python3", "-I", os.path.join(os.path.dirname(os.path.abspath(__file__)), "labels.py"), LABELS_DIR], check=True)
+    return LABELS_DIR
+
+def img(name):
+    if name in _IMGS: return _IMGS[name]
+    im = bpy.data.images.load(os.path.join(labels(), name), check_existing=True); _IMGS[name] = im; return im
+
+def _front_uv(nt):
+    """Generated coords of a box -> (x, z) on the faces whose normal is +-Y; returns (uv socket, is_front socket)"""
+    tc = nt.nodes.new("ShaderNodeTexCoord"); sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Generated"], sp.inputs[0])
+    cb = nt.nodes.new("ShaderNodeCombineXYZ"); nt.links.new(sp.outputs["X"], cb.inputs["X"]); nt.links.new(sp.outputs["Z"], cb.inputs["Y"])
+    geo = nt.nodes.new("ShaderNodeNewGeometry"); tn = nt.nodes.new("ShaderNodeVectorTransform"); tn.vector_type = 'NORMAL'; tn.convert_from = 'WORLD'; tn.convert_to = 'OBJECT'
+    nt.links.new(geo.outputs["Normal"], tn.inputs[0]); spn = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tn.outputs[0], spn.inputs[0])
+    ab = nt.nodes.new("ShaderNodeMath"); ab.operation = 'ABSOLUTE'; nt.links.new(spn.outputs["Y"], ab.inputs[0])
+    gt = nt.nodes.new("ShaderNodeMath"); gt.operation = 'GREATER_THAN'; gt.inputs[1].default_value = 0.7; nt.links.new(ab.outputs[0], gt.inputs[0])
+    return cb.outputs[0], gt.outputs[0]
+
+def _wrap_uv(nt):
+    """Generated coords of a cylinder -> (angle around z, z): a label wrapped round a can"""
+    tc = nt.nodes.new("ShaderNodeTexCoord"); sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Generated"], sp.inputs[0])
+    sx = nt.nodes.new("ShaderNodeMath"); sx.operation = 'SUBTRACT'; sx.inputs[1].default_value = 0.5; nt.links.new(sp.outputs["X"], sx.inputs[0])
+    sy = nt.nodes.new("ShaderNodeMath"); sy.operation = 'SUBTRACT'; sy.inputs[1].default_value = 0.5; nt.links.new(sp.outputs["Y"], sy.inputs[0])
+    at = nt.nodes.new("ShaderNodeMath"); at.operation = 'ARCTAN2'; nt.links.new(sy.outputs[0], at.inputs[0]); nt.links.new(sx.outputs[0], at.inputs[1])
+    u = nt.nodes.new("ShaderNodeMath"); u.operation = 'MULTIPLY_ADD'; u.inputs[1].default_value = 1 / (2 * math.pi); u.inputs[2].default_value = 0.75; nt.links.new(at.outputs[0], u.inputs[0])
+    cb = nt.nodes.new("ShaderNodeCombineXYZ"); nt.links.new(u.outputs[0], cb.inputs["X"]); nt.links.new(sp.outputs["Z"], cb.inputs["Y"])
+    geo = nt.nodes.new("ShaderNodeNewGeometry"); tn = nt.nodes.new("ShaderNodeVectorTransform"); tn.vector_type = 'NORMAL'; tn.convert_from = 'WORLD'; tn.convert_to = 'OBJECT'
+    nt.links.new(geo.outputs["Normal"], tn.inputs[0]); spn = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tn.outputs[0], spn.inputs[0])
+    ab = nt.nodes.new("ShaderNodeMath"); ab.operation = 'ABSOLUTE'; nt.links.new(spn.outputs["Z"], ab.inputs[0])
+    lt = nt.nodes.new("ShaderNodeMath"); lt.operation = 'LESS_THAN'; lt.inputs[1].default_value = 0.5; nt.links.new(ab.outputs[0], lt.inputs[0])
+    return cb.outputs[0], lt.outputs[0]
+
+def label_mat(i, kind="front", rough=0.45, field=None):
+    """a PRINTED product: the label image on the faces that carry it, the label's field colour (or `field`) elsewhere,
+    a satin paper/plastic finish. kind front = a box; wrap = a can/bottle/jug; soft = a bag (front image, high roughness)"""
+    name = f"print {i:02d} {kind}"
+    if name in _MATS: return _MATS[name]
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    tex = nt.nodes.new("ShaderNodeTexImage"); tex.image = img(f"label{i % 24:02d}_{'wrap' if kind == 'wrap' else 'front'}.png"); tex.extension = 'EXTEND'
+    uv, on = (_wrap_uv(nt) if kind == "wrap" else _front_uv(nt)); nt.links.new(uv, tex.inputs["Vector"])
+    fc = lin(field or PRODUCTS[i % len(PRODUCTS)])
+    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'; mx.inputs["A"].default_value = (*fc, 1); nt.links.new(tex.outputs["Color"], mx.inputs["B"]); nt.links.new(on, mx.inputs["Factor"])
+    nt.links.new(mx.outputs["Result"], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.75 if kind == "soft" else rough; b.inputs["Specular IOR Level"].default_value = 0.4
+    if kind != "soft": b.inputs["Coat Weight"].default_value = 0.25; b.inputs["Coat Roughness"].default_value = 0.2   # printed card / shrink wrap
+    _MATS[name] = m; return m
+
+def screen_mat(name, png, emit=1.0):
+    """a lit display: the UI image as base colour AND emission colour; emission strength is what a stager keys"""
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    tex = nt.nodes.new("ShaderNodeTexImage"); tex.image = img(png); tex.extension = 'EXTEND'
+    uv, on = _front_uv(nt); nt.links.new(uv, tex.inputs["Vector"])
+    nt.links.new(tex.outputs["Color"], b.inputs["Base Color"]); nt.links.new(tex.outputs["Color"], b.inputs["Emission Color"])
+    b.inputs["Emission Strength"].default_value = emit; b.inputs["Roughness"].default_value = 0.08; b.inputs["Coat Weight"].default_value = 1.0; b.inputs["Coat Roughness"].default_value = 0.03
+    _MATS[name] = m; return m
+
+def strip_mat(name, axis="x", tag=0.14):
+    """shelf-edge price tags: the 8-tag strip repeated along the strip's own length (Object coords), one tag = `tag` m"""
+    if name in _MATS: return _MATS[name]
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    tex = nt.nodes.new("ShaderNodeTexImage"); tex.image = img("price_strip.png"); tex.extension = 'REPEAT'
+    tc = nt.nodes.new("ShaderNodeTexCoord"); sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sp.inputs[0])
+    u = nt.nodes.new("ShaderNodeMath"); u.operation = 'MULTIPLY'; u.inputs[1].default_value = 1 / (8 * tag); nt.links.new(sp.outputs["X" if axis == "x" else "Y"], u.inputs[0])
+    v = nt.nodes.new("ShaderNodeMath"); v.operation = 'MULTIPLY_ADD'; v.inputs[1].default_value = 1 / 0.025; v.inputs[2].default_value = 0.5; nt.links.new(sp.outputs["Z"], v.inputs[0])
+    cb = nt.nodes.new("ShaderNodeCombineXYZ"); nt.links.new(u.outputs[0], cb.inputs["X"]); nt.links.new(v.outputs[0], cb.inputs["Y"]); nt.links.new(cb.outputs[0], tex.inputs["Vector"])
+    nt.links.new(tex.outputs["Color"], b.inputs["Base Color"]); b.inputs["Roughness"].default_value = 0.35; b.inputs["Coat Weight"].default_value = 0.3
+    _MATS[name] = m; return m
+
+
+def bag(name, loc, size, m, parent=None, seed=0):
+    """a soft bag (chips, rice, pet food): a sphere squashed to size with a low-frequency crumple, smooth shaded"""
+    o = sph(name, loc, 0.5, m, scale=size, parent=parent, seg=24, ring=16)
+    tx = bpy.data.textures.get("crumple")
+    if tx is None: tx = bpy.data.textures.new("crumple", 'CLOUDS'); tx.noise_scale = 0.35; tx.noise_depth = 1
+    md = o.modifiers.new("crumple", "DISPLACE"); md.texture = tx; md.strength = 0.06; md.mid_level = 0.5; md.texture_coords = 'LOCAL'
+    o.rotation_euler = (0, 0, 0.15 * ((seed % 3) - 1))
+    return o
+
+
+def _link(o, parent=None):
+    bpy.context.collection.objects.link(o)
+    if parent is not None:
+        # children are built at ABSOLUTE positions; the parent's matrix_world is stale until the depsgraph runs, so the
+        # inverse is built from its basis (roots) or after an update (nested) - never from a stale identity
+        if parent.parent is None: inv = parent.matrix_basis.inverted()
+        else: bpy.context.view_layer.update(); inv = parent.matrix_world.inverted()
+        o.parent = parent; o.matrix_parent_inverse = inv
+    return o
+
+
+def _smooth(o):
+    for p in o.data.polygons: p.use_smooth = True
+
+
+def empty(name, loc, parent=None):
+    o = bpy.data.objects.new(name, None); o.location = loc; o.empty_display_size = 0.05
+    return _link(o, parent)
+
+
+def box(name, loc, size, m, bev=0.012, parent=None):
+    bm = bmesh.new(); bmesh.ops.create_cube(bm, size=1.0)
+    for v in bm.verts: v.co = Vector((v.co.x * size[0], v.co.y * size[1], v.co.z * size[2]))
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new(name, me); o.location = loc; me.materials.append(m)
+    if bev:
+        md = o.modifiers.new("bevel", "BEVEL"); md.width = min(bev, min(size) * 0.45); md.segments = 3; md.limit_method = 'NONE'
+        _smooth(o)
+    return _link(o, parent)
+
+
+def cyl(name, loc, r, h, m, rot=(0, 0, 0), v=32, bev=0.004, parent=None):
+    bm = bmesh.new(); bmesh.ops.create_cone(bm, cap_ends=True, segments=v, radius1=r, radius2=r, depth=h)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new(name, me); o.location = loc; o.rotation_euler = rot; me.materials.append(m)
+    _smooth(o)
+    if bev:
+        md = o.modifiers.new("bevel", "BEVEL"); md.width = min(bev, r * 0.3, h * 0.3); md.segments = 3
+    return _link(o, parent)
+
+
+def sph(name, loc, r, m, scale=(1, 1, 1), parent=None, seg=32, ring=16):
+    bm = bmesh.new(); bmesh.ops.create_uvsphere(bm, u_segments=seg, v_segments=ring, radius=r)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new(name, me); o.location = loc; o.scale = scale; me.materials.append(m); _smooth(o)
+    return _link(o, parent)
+
+
+def text(name, body, loc, size, rot, m, extrude=0.002, parent=None, align='CENTER'):
+    cu = bpy.data.curves.new(name, 'FONT'); cu.body = body; cu.size = size; cu.extrude = extrude
+    cu.align_x = align; cu.align_y = 'CENTER'
+    o = bpy.data.objects.new(name, cu); o.location = loc; o.rotation_euler = rot; cu.materials.append(m)
+    return _link(o, parent)
+
+
+# ------------------------------------------------------------------ the room
+def floor(size=(16, 10), tile=0.34):
+    """lino floor: big tiles as a faint seam grid in the base colour (style.py adds speckle/gloss/scuffs)"""
+    m = mat("floor", rough=0.55)
+    if DS: return box("floor", (0.5, -2.0, -0.01), (size[0], size[1] + 2, 0.02), m, bev=0)   # a seamless matte ground; the cove to the wall is built in walls()
+    nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    br = nt.nodes.new("ShaderNodeTexBrick"); br.inputs["Scale"].default_value = 1.0 / tile
+    br.inputs["Mortar Size"].default_value = 0.006 / tile; br.inputs["Mortar Smooth"].default_value = 0.6; br.offset = 0.0; br.squash = 1.0
+    br.inputs["Color1"].default_value = (*lin(PAL["floor"]), 1); br.inputs["Color2"].default_value = (*lin("#B2B6BA"), 1); br.inputs["Bias"].default_value = 0.0   # the brick node picks Color1/Color2 per tile: no two tiles the same
+    br.inputs["Mortar"].default_value = (*lin(PAL["grout"]), 1)
+    tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], br.inputs["Vector"])
+    nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
+    o = box("floor", (0.5, -2.0, -0.01), (size[0], size[1], 0.02), m, bev=0)
+    return o
+
+
+def walls():
+    """back wall with trim and base board, the orange band with its text, a side return at the far end"""
+    wall = mat("wall", rough=0.7); band = mat("wall band", rough=0.55); trim = mat("trim", rough=0.6); base = mat("base board", rough=0.7)
+    if DS: return walls_ds(wall, band)
+    box("back wall", (0.5, FAR_Y + 0.1, WALL_H / 2), (26, 0.2, WALL_H), wall, bev=0)
+    cm = mat("ceiling", "#E9E7E2", rough=0.9)
+    nt = cm.node_tree; b = nt.nodes["Principled BSDF"]
+    br = nt.nodes.new("ShaderNodeTexBrick"); br.inputs["Scale"].default_value = 1 / 0.6; br.inputs["Mortar Size"].default_value = 0.012 / 0.6
+    br.inputs["Color1"].default_value = (*lin("#E9E7E2"), 1); br.inputs["Color2"].default_value = (*lin("#E4E2DD"), 1); br.inputs["Mortar"].default_value = (*lin("#C9C7C2"), 1)
+    br.offset = 0.0; br.squash = 1.0; tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], br.inputs["Vector"]); nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
+    box("ceiling", (0.5, 3.2, WALL_H + 0.02), (26, 11.6, 0.04), cm, bev=0)
+    for x in range(-5, 7):
+        for y in [0.0, 1.0] + [2.4 + 1.4 * k for k in range(5)]:   # recessed light panels: a dark frame and a bright diffuser, lit by the real area lights below them
+            box("light frame", (x * 1.2 + 0.3, y, WALL_H - 0.012), (1.22, 0.42, 0.02), mat("light frame", "#9A9C9E", rough=0.5), bev=0.003)
+            box("light diffuser", (x * 1.2 + 0.3, y, WALL_H - 0.01), (1.16, 0.36, 0.01), mat("light diffuser", "#FFFFFF", rough=0.3, emit=7.0), bev=0.002)
+    box("wall band", (0.5, FAR_Y - 0.012, 3.45 * U), (26, 0.024, 0.6 * U), band, bev=0.004)
+    box("trim line", (0.5, FAR_Y - 0.012, 1.42), (26, 0.024, 0.035), trim, bev=0.004)
+    box("base board", (0.5, FAR_Y - 0.012, 0.045), (26, 0.024, 0.09), base, bev=0.004)
+    ivory = mat("sign ivory", rough=0.5)
+    text("band sign", "SELF CHECKOUT  →", (2.4, FAR_Y - 0.034, 3.45 * U - 0.1), 0.24, (math.radians(90), 0, 0), ivory, extrude=0.008)
+    text("band sign 2", "LANES 1-4", (-2.6, FAR_Y - 0.034, 3.45 * U - 0.09), 0.2, (math.radians(90), 0, 0), ivory, extrude=0.008)
+    # the near overhead header over the lane line (the far band is soft and mostly behind the aisles)
+    box("header band", (1.2, BACK_Y - 0.03, 2.1), (7.0, 0.05, 0.3), band, bev=0.006)
+    text("header sign", "SELF CHECKOUT  →", (1.75, BACK_Y - 0.06, 2.1 - 0.07), 0.17, (math.radians(90), 0, 0), ivory, extrude=0.006)
+    text("header sign 2", "LANES 1-4", (-1.4, BACK_Y - 0.06, 2.1 - 0.06), 0.14, (math.radians(90), 0, 0), ivory, extrude=0.006)
+    for x in (-2.0, 0.4, 2.8, 4.4):
+        cyl("header rod", (x, BACK_Y - 0.03, (2.25 + WALL_H) / 2), 0.006, WALL_H - 2.25, mat("sign pole", rough=0.4, metal=0.6), bev=0)
+    # the far wall: department signs over the back aisles, a column, a wall clock - a real store goes on back there
+    navy = mat("sign navy", rough=0.5)
+    for x, body in ((-3.6, "BAKERY"), (-0.2, "DAIRY"), (3.3, "FROZEN"), (6.6, "PHARMACY")):
+        box("dept sign", (x, FAR_Y - 0.03, 1.65), (1.5, 0.04, 0.34), navy, bev=0.008)
+        text("dept text", body, (x, FAR_Y - 0.055, 1.65), 0.2, (math.radians(90), 0, 0), ivory, extrude=0.006)
+    for x in (-4.2, 1.8, 7.8):
+        box("column", (x, FAR_Y - 0.5, WALL_H / 2), (0.36, 0.36, WALL_H), mat("column", "#D9D6CF", rough=0.6), bev=0.02)
+
+
+def cove(name, y, R, x0, x1, m, seg=24):
+    """a concave quarter-pipe where the ground meets the wall (the cyclorama): floor at z=0 up to the wall at y"""
+    bm = bmesh.new(); rows = []
+    for k in range(seg + 1):
+        a = math.pi / 2 * k / seg
+        yy, zz = y - R + R * math.sin(a), R - R * math.cos(a)
+        rows.append([bm.verts.new((x0, yy, zz)), bm.verts.new((x1, yy, zz))])
+    for k in range(seg):
+        bm.faces.new((rows[k][0], rows[k][1], rows[k + 1][1], rows[k + 1][0]))
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free(); me.materials.append(m)
+    o = bpy.data.objects.new(name, me); _smooth(o); return _link(o)
+
+
+def walls_ds(wall, band):
+    """the DS room: a cyclorama (ground curving up into an off-white wall), a plain soft ceiling, a sand band on the far
+    wall and a sand header over the lanes, each with SELF CHECKOUT in charcoal; nothing else on the walls"""
+    ink = mat("sign navy", rough=0.6)
+    box("back wall", (0.5, FAR_Y + 0.1, WALL_H / 2 + 0.5), (26, 0.2, WALL_H + 1), wall, bev=0)
+    cove("cove", FAR_Y, 0.6, -12.5, 13.5, wall)
+    box("ceiling", (0.5, 3.2, WALL_H + 0.02), (26, 11.6, 0.04), mat("ceiling", "#F4F2EE", rough=0.9), bev=0)
+    box("wall band", (0.5, FAR_Y - 0.012, 3.45 * U), (26, 0.024, 0.6 * U), band, bev=0.004)
+    text("band sign", "SELF CHECKOUT", (2.4, FAR_Y - 0.034, 3.45 * U - 0.1), 0.24, (math.radians(90), 0, 0), ink, extrude=0.008)
+    box("header band", (1.2, BACK_Y - 0.03, 2.1), (7.0, 0.05, 0.3), band, bev=0.006)
+    text("header sign", "SELF CHECKOUT  →", (1.75, BACK_Y - 0.06, 2.1 - 0.07), 0.17, (math.radians(90), 0, 0), ink, extrude=0.006)
+    for x in (-2.0, 0.4, 2.8, 4.4):
+        cyl("header rod", (x, BACK_Y - 0.03, (2.25 + WALL_H) / 2), 0.006, WALL_H - 2.25, mat("sign pole", rough=0.5), bev=0)
+
+
+def aisles(y0=2.3, y1=7.6, xs=(-3.2, -1.8, -0.4, 1.0, 2.4, 3.8, 5.2), seed=5):
+    """aisles of shelving receding away from camera behind the near gondola: each a double-sided unit running along
+    +y with four planks of product runs on both faces and an end cap, under the ceiling light rows"""
+    r = random.Random(seed); root = empty("aisles", (0, 0, 0))
+    shelf = mat("shelf", rough=0.5); plank = mat("plank", rough=0.45); strip = mat("price strip", rough=0.6) if DS else strip_mat("price strip y", "y")
+    L = y1 - y0; yc = (y0 + y1) / 2; H = 1.5; W = 0.9   # 2.7 m real: big-box shelving, tall enough to show over the gondola back
+    if DS:   # simple soft grey masses receding into the depth of field: a slab per unit, plank lines, no products
+        for x in xs:
+            box("aisle mass", (x, yc, H / 2), (W, L, H), shelf, bev=0.05, parent=root)
+            for z in (0.72, 1.14):
+                box("aisle line", (x, yc, z), (W + 0.02, L + 0.02, 0.02), plank, bev=0.004, parent=root)
+        return root
+    for x in xs:
+        box("aisle spine", (x, yc, H / 2), (0.05, L, H), shelf, bev=0.003, parent=root)
+        box("aisle base", (x, yc, 0.06), (W, L, 0.12), shelf, bev=0.004, parent=root)
+        box("aisle cap", (x, y0 - 0.02, H / 2), (W, 0.04, H), shelf, bev=0.004, parent=root)
+        for z in (0.28, 0.62, 0.96, 1.3):
+            box("aisle plank", (x, yc, z), (W, L, 0.03), plank, bev=0.003, parent=root)
+            for sg in (-1, 1):
+                box("aisle strip", (x + sg * W / 2, yc, z - 0.002), (0.006, L, 0.025), strip, bev=0.001, parent=root)
+                y = y0 + 0.08
+                while y < y1 - 0.2:
+                    col = r.choice(PRODUCTS); n = r.randint(3, 7); w = r.choice((0.1, 0.13, 0.16)); h = r.choice((0.16, 0.2, 0.26)); d = r.choice((0.07, 0.09))
+                    pm = mat(f"prod {col}", col, rough=0.5) if DS else label_mat(r.randrange(24), "front")
+                    for k in range(n):
+                        if y + w > y1 - 0.1: break
+                        box("aisle prod", (x + sg * (W / 2 - 0.1), y + w / 2, z + 0.015 + h / 2), (d * 2, w - 0.01, h), pm, bev=0.004, parent=root)
+                        y += w
+                    y += 0.05
+        # end-cap product block facing camera
+        col = r.choice(PRODUCTS); pm = mat(f"prod {col}", col, rough=0.5) if DS else label_mat(r.randrange(24), "front")
+        for zz in (0.35, 0.72, 1.1):
+            for k in range(3):
+                box("cap prod", (x - 0.28 + k * 0.28, y0 - 0.1, zz), (0.22, 0.12, 0.3), pm, bev=0.004, parent=root)
+    return root
+
+
+def ceiling_signs():
+    ivory = mat("sign ivory"); navy = mat("sign navy", rough=0.5); rod = mat("sign pole", rough=0.4, metal=0.6)
+    root = empty("ceiling signs", (0, 0, 0))
+    signs = ((0.85, "10 ITEMS OR LESS"),) if DS else ((-1.35, "EXPRESS LANE"), (0.85, "10 ITEMS OR LESS"), (3.1, "EXIT  →"))
+    for x, body in signs:
+        y, zc = 0.9, 1.3
+        box("hanging sign", (x, y, zc), (0.9, 0.025, 0.28), navy, bev=0.006, parent=root)
+        box("hanging sign face", (x, y - 0.014, zc), (0.84, 0.004, 0.22), ivory, bev=0.002, parent=root)
+        text("hanging sign text", body, (x, y - 0.018, zc), 0.1, (math.radians(90), 0, 0), navy, extrude=0.003, parent=root)
+        for sg in (-1, 1):
+            cyl("sign rod", (x + sg * 0.35, y, (zc + 0.14 + WALL_H) / 2), 0.006, WALL_H - zc - 0.14, rod, bev=0, parent=root)
+    return root
+
+
+def gondola(x0=-3.5, x1=4.8, door_x=None, seed=3):
+    """a shelf run along the back wall, three planks, PRINTED products in runs of the same item: boxes with a front
+    label, cans and bottles with a wrapped label, jugs, soft bags; a price-tag strip along every shelf edge"""
+    r = random.Random(seed)
+    shelf = mat("shelf", rough=0.5); plank = mat("plank", rough=0.45)
+    strip = mat("price strip", rough=0.6) if DS else strip_mat("price strip x", "x")
+    lid = mat("can lid", rough=0.35, metal=0.9)
+    root = empty("gondola", (0, 0, 0)); depth = 0.26; y_back = BACK_Y - 0.02
+    box("shelf back", ((x0 + x1) / 2, y_back - 0.01, 0.64), (x1 - x0, 0.02, 1.28), shelf, bev=0.003, parent=root)   # low enough to see the aisles over it
+    for z in (0.22, 0.66, 1.1):
+        box("shelf plank", ((x0 + x1) / 2, y_back - depth / 2, z), (x1 - x0, depth, 0.03), plank, bev=0.004, parent=root)
+        yf = y_back - depth
+        box("price strip", ((x0 + x1) / 2, yf - 0.004, z - 0.002), (x1 - x0, 0.006, 0.025), strip, bev=0.002, parent=root)
+        x = x0 + 0.06; top = z + 0.015
+        while x < x1 - 0.14:
+            kind = r.choice(("box", "box", "can", "bottle", "box", "jug", "bag")); li = r.randrange(24)
+            n = r.randint(2, 5); col = PRODUCTS[li % len(PRODUCTS)]
+            pm = mat(f"prod {col}", col, rough=0.5) if DS else None
+            if kind == "box":
+                w, dp, h = r.uniform(0.07, 0.12), r.uniform(0.05, 0.1), r.uniform(0.11, 0.21); m = pm or label_mat(li, "front")
+                for k in range(n):
+                    if x + w > x1 - 0.06: break
+                    box("product", (x + w / 2, yf + 0.08 + r.uniform(-0.004, 0.004), top + h / 2), (w, dp, h), m, bev=0.002, parent=root).rotation_euler = (0, 0, r.uniform(-0.03, 0.03))
+                    x += w + 0.01
+            elif kind == "can":
+                rr, h = r.uniform(0.03, 0.04), r.uniform(0.08, 0.12); m = pm or label_mat(li, "wrap")
+                for k in range(n):
+                    if x + 2 * rr > x1 - 0.06: break
+                    cyl("product", (x + rr, yf + 0.08, top + h / 2), rr, h, m, v=24, parent=root).rotation_euler = (0, 0, r.uniform(-0.6, 0.6))
+                    cyl("can lid", (x + rr, yf + 0.08, top + h), rr * 0.96, 0.006, lid, v=24, bev=0.002, parent=root)
+                    x += 2 * rr + 0.008
+            elif kind == "bottle":
+                rr, h = r.uniform(0.025, 0.035), r.uniform(0.14, 0.2); m = pm or label_mat(li, "wrap"); capm = mat(f"cap {li}", PRODUCTS[(li * 7 + 3) % len(PRODUCTS)], rough=0.4)
+                for k in range(n):
+                    if x + 2 * rr > x1 - 0.06: break
+                    cyl("product", (x + rr, yf + 0.08, top + h / 2), rr, h, m, v=24, parent=root).rotation_euler = (0, 0, r.uniform(-0.5, 0.5))
+                    sph("shoulder", (x + rr, yf + 0.08, top + h), rr, m, scale=(1, 1, 0.5), parent=root)
+                    cyl("neck", (x + rr, yf + 0.08, top + h + 0.025), rr * 0.45, 0.04, m, v=16, parent=root)
+                    cyl("cap", (x + rr, yf + 0.08, top + h + 0.052), rr * 0.5, 0.015, capm, v=16, parent=root)
+                    x += 2 * rr + 0.008
+            elif kind == "bag":
+                w, h = r.uniform(0.09, 0.13), r.uniform(0.14, 0.2); m = pm or label_mat(li, "soft")
+                for k in range(n):
+                    if x + w > x1 - 0.06: break
+                    bag("product bag", (x + w / 2, yf + 0.09, top + h / 2), (w, 0.07, h), m, parent=root, seed=k)
+                    x += w + 0.012
+            else:
+                w, h = 0.1, r.uniform(0.17, 0.22); m = pm or label_mat(li, "wrap"); capm = mat(f"cap {li}", PRODUCTS[(li * 7 + 3) % len(PRODUCTS)], rough=0.4)
+                for k in range(n):
+                    if x + w > x1 - 0.06: break
+                    box("product", (x + w / 2, yf + 0.09, top + h / 2), (w, 0.1, h), m, bev=0.014, parent=root)
+                    cyl("cap", (x + w / 2, yf + 0.09, top + h + 0.01), 0.022, 0.02, capm, v=16, parent=root)
+                    x += w + 0.012
+            x += r.uniform(0.01, 0.05)
+    return root
+
+
+# ------------------------------------------------------------------ people
+PEOPLE = [("crop", "#3A2A20", "#E8B48E", 1.0, 1.0), ("bob", "#1E1A18", "#C68B62", 0.96, 0.95), ("bun", "#6B4A2C", "#F0C9A8", 1.02, 0.97),
+          ("crop", "#1A1A1A", "#8A5A3C", 1.04, 1.03), ("bob", "#B8762F", "#F2D4B8", 0.98, 0.96), ("crop", "#2C2C2C", "#5A3A28", 1.0, 1.0)]
+_N = [0]
+
+
+def capsule(name, a, b, r, m, parent=None, seg=24, ra=None, rb=None):
+    """a smooth capsule from a to b (world), radius r (ra/rb taper the two ends); one mesh, smooth shaded, no seam"""
+    a = Vector(a); b = Vector(b); d = b - a; h = max(1e-4, d.length); ra = ra or r; rb = rb or r
+    bm = bmesh.new()
+    res = bmesh.ops.create_cone(bm, cap_ends=False, segments=seg, radius1=ra, radius2=rb, depth=h)
+    bmesh.ops.translate(bm, verts=res["verts"], vec=(0, 0, h / 2))
+    for z, rr, keep in ((0.0, ra, lambda c: c.z <= 1e-6), (h, rb, lambda c: c.z >= -1e-6)):
+        sp = bmesh.ops.create_uvsphere(bm, u_segments=seg, v_segments=12, radius=rr)
+        bmesh.ops.translate(bm, verts=sp["verts"], vec=(0, 0, z))
+        kill = [v for v in sp["verts"] if not keep(Vector((v.co.x, v.co.y, v.co.z - z)))]
+        bmesh.ops.delete(bm, geom=kill, context='VERTS')
+    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new(name, me); me.materials.append(m)
+    o.location = a; o.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
+    _smooth(o); return _link(o, parent)
+
+
+def cashier(name, loc, yaw=0.0):
+    """a stylised person in the same register as Data: smooth capsules, no seams. Rounded head with a hair cap and a
+    simple face (eyes, brows, mouth), neck, a torso with sloped rounded shoulders, an apron with a name tag, arms as
+    joined capsules (upper arm, forearm, mitten) bending only at the elbow, legs as joined capsules with shoes.
+    Every part is a DIRECT child of the root (the stager hides root.children). Front is -Y; yaw turns it."""
+    i = _N[0] % len(PEOPLE); _N[0] += 1
+    style, hair_c, skin_c, hs, ws = PEOPLE[i]
+    if DS: hair_c = mute(hair_c, 0.55); skin_c = mute(skin_c, 0.3)   # the studio set keeps every colour but Data's muted
+    root = empty(name, loc); L = Vector(loc)
+    skin = mat(f"skin{i}", skin_c, rough=0.5); hair = mat(f"hair{i}", hair_c, rough=0.7)
+    polo = mat("uniform", rough=0.7); apron = mat("apron", rough=0.75); pants = mat("pants", rough=0.75); shoe = mat("shoe", rough=0.45)
+    tag = mat("name tag", rough=0.5); white = mat("eye white", rough=0.2); dark = mat("pupil", rough=0.3); lip = mat("lip", rough=0.6)
+    H = 1.65 * U * hs; s = H / 0.924
+    P = lambda ox, oy, oz: Vector((L.x + ox * ws, L.y + oy, L.z + oz * s))
+    # legs: hip -> knee -> ankle, joined at the knee (same radius, the capsule ends overlap), shoes
+    for sg in (-1, 1):
+        hip = P(sg * 0.06, 0.0, 0.47); knee = P(sg * 0.06, -0.01, 0.26); ank = P(sg * 0.06, 0.0, 0.05)
+        capsule("thigh", hip, knee, 0.052 * ws, pants, parent=root); capsule("shin", knee, ank, 0.046 * ws, pants, parent=root, ra=0.05 * ws, rb=0.04 * ws)
+        capsule("shoe", P(sg * 0.06, 0.02, 0.028), P(sg * 0.06, -0.11, 0.028), 0.03, shoe, parent=root, ra=0.035, rb=0.028)
+    # hips and torso: one tapered capsule hips->chest, a wide flattened cap for the sloped shoulders
+    capsule("hips", P(0, 0, 0.44), P(0, 0, 0.56), 0.13 * ws, pants, parent=root, ra=0.125 * ws, rb=0.135 * ws).scale = (1.0, 0.68, 1.0)
+    t = capsule("torso", P(0, 0, 0.55), P(0, 0, 0.77), 0.15 * ws, polo, parent=root, ra=0.135 * ws, rb=0.155 * ws); t.scale = (1.0, 0.66, 1.0)
+    sh_ = sph("shoulders", P(0, 0, 0.77), 0.155 * ws, polo, scale=(1.0, 0.66, 0.5), parent=root)
+    box("apron", P(0, -0.104, 0.585), (0.2 * ws, 0.012, 0.3 * s), apron, bev=0.03, parent=root)
+    box("apron bib", P(0, -0.104, 0.75), (0.1 * ws, 0.012, 0.08 * s), apron, bev=0.02, parent=root)
+    for sg in (-1, 1):
+        capsule("strap", P(sg * 0.04, -0.1, 0.78), P(sg * 0.09, 0.0, 0.8), 0.008, apron, parent=root)
+    box("name tag", P(0.08, -0.115, 0.70), (0.05 * ws, 0.005, 0.02 * s), tag, bev=0.002, parent=root)
+    lan = mat("lanyard", "#1F3B63", rough=0.8)   # a lanyard round the neck down to a badge on the chest: staff, not a pill
+    for sg in (-1, 1):
+        capsule("lanyard", P(sg * 0.05, -0.07, 0.8), P(sg * 0.012, -0.112, 0.66), 0.004, lan, parent=root)
+    capsule("lanyard back", P(-0.05, -0.07, 0.8), P(0.05, -0.07, 0.8), 0.004, lan, parent=root)
+    box("badge", P(0, -0.118, 0.63), (0.045 * ws, 0.004, 0.06 * s), tag, bev=0.002, parent=root)
+    box("badge photo", P(-0.008, -0.1205, 0.635), (0.018 * ws, 0.001, 0.022 * s), skin, bev=0, parent=root)
+    box("collar", P(0, -0.03, 0.775), (0.11 * ws, 0.1, 0.012), polo, bev=0.004, parent=root)
+    # neck and head
+    capsule("neck", P(0, 0, 0.77), P(0, 0, 0.84), 0.034 * ws, skin, parent=root)
+    sph("head", P(0, 0, 0.905), 0.095, skin, scale=(ws, 0.98, 1.08 * s), parent=root)
+    for sg in (-1, 1): sph("ear", P(sg * 0.093, 0.0, 0.9), 0.02, skin, scale=(0.5, 0.8, 1.0), parent=root)
+    sph("hair cap", P(0, 0.012, 0.935), 0.1, hair, scale=(1.03 * ws, 1.03, 0.8 * s), parent=root)
+    if style == "bob":
+        for sg in (-1, 1): capsule("hair side", P(sg * 0.09, 0.01, 0.94), P(sg * 0.092, 0.015, 0.8), 0.028, hair, parent=root)
+        capsule("fringe", P(-0.07, -0.085, 0.965), P(0.07, -0.085, 0.965), 0.022, hair, parent=root)
+    elif style == "bun":
+        sph("bun", P(0, 0.095, 0.955), 0.045, hair, parent=root)
+        capsule("fringe", P(-0.02, -0.088, 0.97), P(0.08, -0.08, 0.96), 0.018, hair, parent=root)
+    else:
+        for sg in (-1, 1): capsule("sideburn", P(sg * 0.092, -0.03, 0.91), P(sg * 0.092, -0.03, 0.86), 0.01, hair, parent=root)
+    for sg in (-1, 1):
+        sph("eye", P(sg * 0.036, -0.082, 0.91), 0.014, white, parent=root)
+        sph("pupil", P(sg * 0.036, -0.094, 0.91), 0.007, dark, parent=root)
+        capsule("brow", P(sg * 0.02, -0.088, 0.937), P(sg * 0.054, -0.086, 0.941), 0.004, hair, parent=root)
+    capsule("mouth", P(-0.016, -0.093, 0.865), P(0.016, -0.093, 0.865), 0.0035, lip, parent=root)
+    # arms: shoulder -> elbow -> wrist, joined at the elbow, bend only there; a mitten hand
+    for sg in (-1, 1):
+        sh = P(sg * 0.16, 0.0, 0.75); el = P(sg * 0.185, -0.03, 0.56); wr = P(sg * 0.17, -0.14, 0.45)
+        capsule("sleeve", sh, sh + (el - sh) * 0.42, 0.05 * ws, polo, parent=root, ra=0.052 * ws, rb=0.045 * ws)
+        capsule("upper arm", sh + (el - sh) * 0.3, el, 0.038 * ws, skin, parent=root)
+        capsule("forearm", el, wr, 0.038 * ws, skin, parent=root, ra=0.038 * ws, rb=0.032 * ws)
+        sph("mitten", wr + Vector((0, -0.02, -0.02)), 0.04 * ws, skin, scale=(0.8, 0.8, 1.1), parent=root)
+    root.rotation_euler = (0, 0, yaw)
+    return root
+
+
+# ------------------------------------------------------------------ lanes
+def checkout_lane(name, x, number=1, y0=0.32, length=1.5 * U, counter_h=0.9 * U, width=0.52 * U, with_cashier=True):
+    """a staffed lane: counter body/top/kick band, belt well + belt + rails + rollers, register with tilted screen, card
+    reader + keypad on the customer side, a candy rack at the near end, paper bags on a bagging shelf at the far end, a
+    lit lane-number sign on a pole, a bag carousel, the cashier standing beside the counter (x - width*0.78).
+    Returns dict(root, counter, cashier, x, kiosk_spot, h). The counter (and everything parented to it) sinks later."""
+    root = empty(name, (x, y0, 0))
+    cm = mat("counter", rough=0.6); edge = mat("counter edge", rough=0.6); belt = mat("belt", rough=0.65)
+    railm = mat("rail", rough=0.4, metal=0.7); regm = mat("register", rough=0.5)
+    scr = mat("reg screen", rough=0.15, emit=0.5) if DS else (_MATS.get("reg screen") or screen_mat("reg screen", "register_ui.png", emit=1.0))
+    counter = empty(name + " counter", (x, y0, 0))
+    box("counter body", (x, y0 + length / 2, counter_h / 2 + 0.03), (width, length, counter_h - 0.06), cm, bev=0.02, parent=counter)
+    box("counter kick", (x, y0 + length / 2, 0.03), (width - 0.03, length - 0.03, 0.06), edge, bev=0.006, parent=counter)
+    box("counter top", (x, y0 + length / 2, counter_h + 0.012), (width + 0.04, length + 0.04, 0.025), edge, bev=0.01, parent=counter)
+    bL = length * 0.58; by = y0 + 0.32 + bL / 2
+    box("belt well", (x, by, counter_h + 0.016), (width * 0.62, bL + 0.02, 0.02), mat("belt well"), bev=0.003, parent=counter)
+    box("belt", (x, by, counter_h + 0.028), (width * 0.56, bL, 0.012), belt, bev=0.004, parent=counter)
+    for s in (-1, 1):
+        box("belt rail", (x + s * width * 0.31, by, counter_h + 0.045), (0.016, bL + 0.02, 0.04), railm, bev=0.004, parent=counter)
+    for yy in (by - bL / 2, by + bL / 2):
+        cyl("roller", (x, yy, counter_h + 0.028), 0.012, width * 0.56, railm, rot=(0, math.radians(90), 0), v=16, parent=counter)
+    box("register", (x, y0 + 0.16, counter_h + 0.085), (0.2, 0.17, 0.12), regm, bev=0.012, parent=counter)
+    fr = box("reg screen frame", (x, y0 + 0.10, counter_h + 0.24), (0.2, 0.025, 0.15), regm, bev=0.006, parent=counter); fr.rotation_euler = (math.radians(-12), 0, 0)
+    s_ = box("reg screen", (x, y0 + 0.085, counter_h + 0.245), (0.17, 0.008, 0.12), scr, bev=0.003, parent=counter); s_.rotation_euler = (math.radians(-12), 0, 0)
+    box("card reader", (x - width * 0.3, y0 + 0.08, counter_h + 0.06), (0.07, 0.1, 0.07), mat("card reader"), bev=0.006, parent=counter)
+    box("keypad", (x - width * 0.3, y0 + 0.055, counter_h + 0.098), (0.05, 0.04, 0.006), mat("keypad"), bev=0.002, parent=counter)
+    # candy rack at the near end (customer side)
+    rack = mat("rack", rough=0.5)
+    if not DS: box("rack", (x + width * 0.3, y0 + 0.05, 0.3), (0.12, 0.08, 0.55), rack, bev=0.006, parent=counter)
+    for k, z in (() if DS else enumerate((0.15, 0.3, 0.45))):
+        box("rack shelf", (x + width * 0.3, y0 + 0.02, z), (0.13, 0.05, 0.01), mat("rack shelf"), bev=0.002, parent=counter)
+        for j in range(3):
+            box("candy", (x + width * 0.3 - 0.04 + j * 0.04, y0 + 0.02, z + 0.03), (0.03, 0.04, 0.05), label_mat((k * 3 + j) % 24, "front"), bev=0.003, parent=counter)
+    # bagging shelf with paper bags
+    bagm = mat("paper bag", rough=0.8); fold = mat("bag fold", rough=0.8)
+    for k in (range(1) if DS else range(2)):
+        bx = x + (k - 0.5) * 0.11
+        box("paper bag", (bx, y0 + length - 0.18, counter_h + 0.1), (0.09, 0.07, 0.17), bagm, bev=0.006, parent=counter)
+        box("bag fold", (bx, y0 + length - 0.18, counter_h + 0.19), (0.085, 0.075, 0.015), fold, bev=0.003, parent=counter)
+    # lane number sign on a pole, lit
+    pole = mat("sign pole", rough=0.4, metal=0.6); signm = mat("lane sign", rough=0.4, emit=1.0); frame = mat("sign frame", rough=0.5)
+    if DS:   # a lane number PLATE standing on the counter's far end, no pole
+        zp = counter_h + 0.1
+        box("lane plate stand", (x, y0 + length - 0.1, counter_h + 0.04), (0.03, 0.03, 0.06), frame, bev=0.004, parent=counter)
+        box("lane sign frame", (x, y0 + length - 0.1, zp), (0.16, 0.02, 0.12), frame, bev=0.005, parent=counter)
+        box("lane sign", (x, y0 + length - 0.1 - 0.012, zp), (0.14, 0.004, 0.1), mat("lane sign", rough=0.5), bev=0.002, parent=counter)
+        text("lane number", str(number), (x, y0 + length - 0.1 - 0.016, zp), 0.075, (math.radians(90), 0, 0), frame, extrude=0.002, parent=counter)
+    else:
+        cyl("sign pole", (x, y0 + length - 0.1, counter_h + 0.55), 0.012, 1.0, pole, parent=counter)
+        box("lane sign frame", (x, y0 + length - 0.1, counter_h + 1.08), (0.22, 0.03, 0.14), frame, bev=0.006, parent=counter)
+        box("lane sign", (x, y0 + length - 0.1 - 0.017, counter_h + 1.08), (0.19, 0.004, 0.11), signm, bev=0.002, parent=counter)
+        text("lane number", str(number), (x, y0 + length - 0.1 - 0.021, counter_h + 1.08), 0.085, (math.radians(90), 0, 0), frame, extrude=0.002, parent=counter)
+    # bag carousel
+    wire = mat("rail"); thin = mat("thin bag", rough=0.4)
+    cy = y0 + length - 0.17 + 0.22
+    if not DS: cyl("carousel pole", (x + 0.1, cy, counter_h + 0.16), 0.012, 0.32, pole, parent=counter)
+    for k in (() if DS else range(4)):
+        a = k * math.pi / 2; hx, hy = x + 0.1 + 0.07 * math.cos(a), cy + 0.07 * math.sin(a)
+        for zz in (counter_h + 0.27, counter_h + 0.14): cyl("hoop", (hx, hy, zz), 0.045, 0.004, wire, v=20, bev=0, parent=counter)
+        b = box("thin bag", (hx, hy, counter_h + 0.2), (0.075, 0.075, 0.13), thin, bev=0.008, parent=counter); b.rotation_euler = (0, 0, a)
+    if not DS: box("carousel base", (x + 0.1, cy, counter_h + 0.003), (0.22, 0.22, 0.006), pole, bev=0.002, parent=counter)
+    cash = cashier(name + " cashier", (x - width * 0.78, y0 + length * 0.45, 0), yaw=math.radians(90)) if with_cashier else None
+    return {"root": root, "counter": counter, "cashier": cash, "x": x, "kiosk_spot": Vector((x, y0 + length * 0.42, 0)), "h": counter_h, "number": number}
+
+
+def kiosk(name, spot, counter_h=0.9 * U):
+    """a self-checkout kiosk that is UNMISTAKABLY not a counter at phone size: a tall charcoal machine (1.3x the
+    counter), a big bright screen at Data's eye level angled to camera, a lit SELF CHECKOUT sign on top, a card
+    reader and a bagging shelf. Built with its base at z = 0 so the stager can start it below the floor and raise it.
+    Returns dict(root, h, screen_mat): the screen's emission is keyed by the stager so it lights up as it arrives."""
+    root = empty(name, (spot.x, spot.y, 0))
+    body = mat("kiosk body", "#2E3136", rough=0.45); dark = mat("kiosk dark", "#1B1D21", rough=0.5)
+    accent = mat("kiosk accent", "#C8643A", rough=0.5); ivory = mat("sign ivory", rough=0.5); navy = mat("sign navy", rough=0.5)
+    if DS:
+        scr = mat(f"kiosk screen {name}", "#DDEEFF", rough=0.08, emit=0.0)
+        scr.node_tree.nodes["Principled BSDF"].inputs["Emission Color"].default_value = (0.55, 0.72, 1.0, 1)   # DS: a soft blue-white
+        scr.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.25, 0.3, 0.38, 1)
+    else:
+        scr = screen_mat(f"kiosk screen {name}", "kiosk_ui.png", emit=0.0)   # the real UI, lit as the stager keys it
+    H = counter_h * 1.3                                   # 0.655
+    box("kiosk base", (spot.x, spot.y, 0.03), (0.4, 0.36, 0.06), dark, bev=0.006, parent=root)
+    box("kiosk body", (spot.x, spot.y, H / 2 + 0.03), (0.32, 0.3, H - 0.06), body, bev=0.012, parent=root)
+    if not DS: box("kiosk stripe", (spot.x, spot.y - 0.151, H * 0.5), (0.26, 0.004, 0.03), accent, bev=0.001, parent=root)
+    # the screen: big, on top, facing camera (-y), tilted back 18 degrees, centre at about Data's eye level
+    zc = H + 0.17
+    f = box("kiosk screen frame", (spot.x, spot.y - 0.04, zc), (0.34, 0.035, 0.3), dark, bev=0.006, parent=root); f.rotation_euler = (math.radians(18), 0, 0)
+    s_ = box("kiosk screen", (spot.x, spot.y - 0.06, zc), (0.3, 0.006, 0.26), scr, bev=0.002, parent=root); s_.rotation_euler = (math.radians(18), 0, 0)
+    if DS:
+        ui = box("kiosk ui button", (spot.x, spot.y - 0.064, zc - 0.03), (0.16, 0.003, 0.05), mat("kiosk ui", "#FFFFFF", rough=0.3, emit=0.0), bev=0.004, parent=root); ui.rotation_euler = (math.radians(18), 0, 0)
+    box("kiosk screen neck", (spot.x, spot.y + 0.02, H + 0.03), (0.08, 0.08, 0.08), dark, bev=0.006, parent=root)
+    # the lit sign on top
+    box("kiosk sign", (spot.x, spot.y + 0.1, H + 0.38), (0.3, 0.03, 0.09), navy, bev=0.006, parent=root)   # a small lit sign on the machine, no pole
+    box("kiosk sign face", (spot.x, spot.y + 0.083, H + 0.38), (0.27, 0.004, 0.065), mat("lane sign", rough=0.4, emit=1.0), bev=0.002, parent=root)
+    text("kiosk sign text", "SELF CHECKOUT", (spot.x, spot.y + 0.079, H + 0.38), 0.03, (math.radians(90), 0, 0), navy, extrude=0.002, parent=root)
+    # card reader on the near face, bagging shelf with a scale to the +x side
+    box("kiosk reader", (spot.x - 0.11, spot.y - 0.17, H - 0.08), (0.07, 0.06, 0.1), dark, bev=0.006, parent=root)
+    box("kiosk reader pad", (spot.x - 0.11, spot.y - 0.202, H - 0.07), (0.05, 0.004, 0.04), mat("keypad"), bev=0.001, parent=root)
+    box("kiosk shelf", (spot.x + 0.3, spot.y, counter_h - 0.02), (0.3, 0.32, 0.025), body, bev=0.006, parent=root)
+    box("kiosk shelf leg", (spot.x + 0.42, spot.y, counter_h / 2 - 0.02), (0.03, 0.03, counter_h - 0.04), dark, bev=0, parent=root)
+    box("kiosk scale", (spot.x + 0.3, spot.y, counter_h - 0.0), (0.24, 0.24, 0.012), dark, bev=0.003, parent=root)
+    box("kiosk bag", (spot.x + 0.3, spot.y + 0.02, counter_h + 0.08), (0.1, 0.07, 0.16), mat("paper bag"), bev=0.006, parent=root)
+    return {"root": root, "h": H + 0.7, "screen_mat": scr}
+
+
+def cart(name, loc, W=0.22, top=0.32, L=0.42, D=0.24, over=0.10):
+    """Data's cart: a wire basket (slats fattened so they don't shimmer), four legs, four wheels, two handle posts and a
+    bar barely longer than the basket so his hands grip the ENDS (handle_L at +y, handle_R at -y, both on the bar axis).
+    The cart rolls along its +X. Returns dict(root, handle_L, handle_R, wheels, wheel_r, L, W, top, nose)."""
+    root = empty(name, loc)
+    met = mat("cart metal", rough=0.36, metal=1.0); plas = mat("cart grip", "#2A2B2E", rough=0.45); wheel = mat("wheel", rough=0.5)
+    wheel_r = 0.035; bot = top - D; x0 = loc.x; y0 = loc.y
+    t = 0.0085; wr_ = 0.0028; rim = 0.0055
+    def wire(a, b, r_=wr_, m_=met, nm="wire"):
+        a = Vector(a); b = Vector(b); d = b - a
+        c = cyl(nm, (a + b) / 2, r_, d.length, m_, v=10, bev=0, parent=root); c.rotation_euler = d.to_track_quat('Z', 'Y').to_euler(); return c
+    # a REAL wire basket: round wire, a dense mesh, a fat tube rim, a plastic tray floor
+    box("basket floor", (x0 + L / 2, y0, bot), (L - 0.01, W - 0.01, 0.006), mat("cart tray", "#8A8D92", rough=0.5), bev=0.002, parent=root)
+    nx = 11; ny = 6; nz = 5
+    for k in range(nx + 1):
+        xx = x0 + k * L / nx
+        for s in (-1, 1): wire((xx, y0 + s * W / 2, bot), (xx, y0 + s * W / 2, top))
+        wire((xx, y0 - W / 2, bot), (xx, y0 + W / 2, bot))
+    for k in range(ny + 1):
+        yy = y0 - W / 2 + k * W / ny
+        wire((x0 + L, yy, bot), (x0 + L, yy, top)); wire((x0, yy, bot), (x0, yy, top))
+        wire((x0, yy, bot), (x0 + L, yy, bot))
+    for k in range(nz + 1):
+        z = bot + k * D / nz; rr_ = rim if k == nz else wr_
+        for s in (-1, 1): wire((x0, y0 + s * W / 2, z), (x0 + L, y0 + s * W / 2, z), rr_)
+        wire((x0 + L, y0 - W / 2, z), (x0 + L, y0 + W / 2, z), rr_); wire((x0, y0 - W / 2, z), (x0, y0 + W / 2, z), rr_)
+    for s in (-1, 1):   # corner posts of the basket
+        for xx in (x0, x0 + L): wire((xx, y0 + s * W / 2, bot - 0.004), (xx, y0 + s * W / 2, top + 0.004), rim)
+    for s in (-1, 1):
+        for xx in (x0 + 0.06, x0 + L - 0.06):
+            cyl("leg", (xx, y0 + s * (W / 2 - 0.01), (bot) / 2), 0.007, bot, met, v=12, bev=0, parent=root)
+            cyl("fork", (xx, y0 + s * (W / 2 + 0.004), wheel_r + 0.012), 0.012, 0.016, wheel, rot=(math.radians(90), 0, 0), v=12, parent=root)
+            cyl("wheel", (xx, y0 + s * (W / 2 + 0.012), wheel_r), wheel_r, 0.018, wheel, rot=(math.radians(90), 0, 0), parent=root)
+            cyl("hub", (xx, y0 + s * (W / 2 + 0.012), wheel_r), wheel_r * 0.45, 0.022, mat("hub", "#9A9DA2", rough=0.4, metal=0.8), rot=(math.radians(90), 0, 0), v=16, parent=root)
+    hz = top + 0.05          # the posts rise 5 cm above the basket rim so the bar READS clearly above it
+    for s in (-1, 1):
+        cyl("post", (x0 - 0.025, y0 + s * (W / 2 - 0.01), (hz + bot) / 2), 0.007, hz - bot, met, v=12, bev=0, parent=root)
+    cyl("handle bar", (x0 - 0.03, y0, hz), 0.014, W + over, plas, rot=(math.radians(90), 0, 0), parent=root)
+    for s in (-1, 1):   # rubber end caps, fat enough to read as the rod's end under the mitten when seen end-on
+        cyl("bar cap", (x0 - 0.03, y0 + s * (W + over) / 2 - s * 0.012, hz), 0.019, 0.024, plas, rot=(math.radians(90), 0, 0), v=20, parent=root)
+        # the handle frame: a tube from the basket rim up to the bar on each side, so side-on the handle has a STRUCTURE
+        a = Vector((x0 + 0.10, y0 + s * (W / 2 - 0.01), top)); b = Vector((x0 - 0.03, y0 + s * (W / 2 - 0.01), hz))
+        d = b - a; c = cyl("handle strut", ((a + b) / 2), 0.007, d.length, met, v=12, bev=0, parent=root)
+        c.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
+    hL = empty(name + " handle_L", (x0 - 0.03, y0 + W / 2, hz), parent=root)
+    hR = empty(name + " handle_R", (x0 - 0.03, y0 - W / 2, hz), parent=root)
+    nose = empty(name + " nose", (x0 + L, y0, top), parent=root)
+    wheels = [o for o in root.children if o.name.startswith("wheel")]
+    # goods
+    cer = mat("cereal", rough=0.5); cer2 = mat("cereal2", rough=0.5); milk = mat("milk", rough=0.3); cap = mat("milk cap", rough=0.35); ban = mat("banana", rough=0.45)
+    ivory = mat("label ivory", "#FFF8EC", rough=0.5); navy = mat("label navy", "#1F3B63", rough=0.5)
+    cb = box("cereal box", (x0 + L * 0.62, y0 + 0.02, bot + 0.09), (0.07, 0.14, 0.17), cer, bev=0.003, parent=root)
+    if not DS: box("cereal stripe", (x0 + L * 0.62 - 0.036, y0 + 0.02, bot + 0.05), (0.001, 0.12, 0.05), navy, bev=0, parent=root)
+    if not DS: text("cereal brand front", "OAT CRUNCH", (x0 + L * 0.62 - 0.0365, y0 + 0.02, bot + 0.12), 0.022, (math.radians(90), 0, math.radians(-90)), ivory, extrude=0.0004, parent=root)
+    if not DS: text("cereal brand side", "OAT\nCRUNCH", (x0 + L * 0.62, y0 + 0.02 - 0.071, bot + 0.11), 0.018, (math.radians(90), 0, 0), ivory, extrude=0.0004, parent=root)
+    cyl("milk", (x0 + L * 0.3, y0 - 0.03, bot + 0.08), 0.035, 0.16, milk, v=24, parent=root)
+    cyl("milk cap", (x0 + L * 0.3, y0 - 0.03, bot + 0.165), 0.02, 0.012, cap, v=16, parent=root)
+    if not DS: box("milk label", (x0 + L * 0.3, y0 - 0.03 - 0.0355, bot + 0.08), (0.05, 0.002, 0.06), cap, bev=0, parent=root)
+    if not DS: text("milk name", "MILK", (x0 + L * 0.3, y0 - 0.03 - 0.037, bot + 0.085), 0.016, (math.radians(90), 0, 0), ivory, extrude=0.0004, parent=root)
+    for k in range(3):
+        b = cyl("banana", (x0 + L * 0.85, y0 + (k - 1) * 0.022, bot + 0.03), 0.013, 0.12, ban, v=12, rot=(0, math.radians(80), 0.3 * k), parent=root)
+    return {"root": root, "handle_L": hL, "handle_R": hR, "wheels": wheels, "wheel_r": wheel_r, "L": L, "W": W, "top": top, "nose": nose}
+
+
+def contact_shadow(name, loc, rx, ry, parent=None, alpha=0.7):
+    m = bpy.data.materials.get("contact shadow")
+    if m is None:
+        m = bpy.data.materials.new("contact shadow"); m.use_nodes = True; nt = m.node_tree
+        for n in list(nt.nodes): nt.nodes.remove(n)
+        out = nt.nodes.new("ShaderNodeOutputMaterial"); mixs = nt.nodes.new("ShaderNodeMixShader"); tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+        dif = nt.nodes.new("ShaderNodeBsdfDiffuse"); dif.inputs["Color"].default_value = (0.02, 0.02, 0.025, 1)
+        tc = nt.nodes.new("ShaderNodeTexCoord"); grad = nt.nodes.new("ShaderNodeTexGradient"); grad.gradient_type = 'SPHERICAL'
+        mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Location"].default_value = (-0.5, -0.5, 0); mp.inputs["Scale"].default_value = (1, 1, 1)
+        # UV from 0..1 across the plane; spherical gradient from its centre
+        nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"]); nt.links.new(mp.outputs["Vector"], grad.inputs["Vector"])
+        ramp = nt.nodes.new("ShaderNodeMath"); ramp.operation = 'MULTIPLY'; ramp.inputs[1].default_value = alpha * 2.2
+        nt.links.new(grad.outputs["Fac"], ramp.inputs[0]); nt.links.new(ramp.outputs[0], mixs.inputs["Fac"])
+        nt.links.new(tr.outputs[0], mixs.inputs[1]); nt.links.new(dif.outputs[0], mixs.inputs[2]); nt.links.new(mixs.outputs[0], out.inputs["Surface"])
+        m.blend_method = 'BLEND' if hasattr(m, "blend_method") else None
+    bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=0.5)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free(); me.materials.append(m)
+    o = bpy.data.objects.new(name, me); o.location = (loc[0], loc[1], 0.0015); o.scale = (rx * 2, ry * 2, 1)
+    o.visible_shadow = False
+    return _link(o, parent)
+
+
+def dressing():
+    """floor mat, end-cap pallet with a SALE sign, the floor decal and a dump bin at the left edge (nothing in the foreground may ever cross him or the cart)"""
+    if DS: return   # the studio set is clean negative space: no mat, pallet, decal or bin
+    box("floor mat", (-1.25, -0.05, 0.004), (0.95, 0.6, 0.008), mat("mat rubber", rough=0.9), bev=0.004)
+    box("mat edge", (-1.25, -0.05, 0.0035), (1.0, 0.65, 0.006), mat("mat edge", "#55585E", rough=0.9), bev=0.003)
+    ivory = mat("sign ivory"); pal = ["#C6392B", "#E0A62A", "#2F6FB0", "#3F8F5A"]
+    box("pallet", (-1.3, 0.95, 0.03), (0.6, 0.45, 0.06), mat("pallet wood", rough=0.8), bev=0.004)
+    for r in range(3):
+        for c in range(3):
+            box("endcap box", (-1.5 + c * 0.19, 0.95, 0.06 + 0.09 + r * 0.19), (0.17, 0.3, 0.18), mat(f"endcap {r}{c}", pal[(r + c) % 4], rough=0.55), bev=0.003)
+    box("endcap sign", (-1.3, 0.72, 0.45), (0.3, 0.01, 0.12), ivory, bev=0.002)
+    text("endcap text", "SALE", (-1.3, 0.712, 0.45), 0.08, (math.radians(90), 0, 0), mat("sale red", "#C6392B", rough=0.5), extrude=0.002)
+    # (the foreground basket stack is GONE: it crossed the cart for two and a half seconds; no prop may ever cover him or the cart)
+    # painted floor decal he walks along: SELF CHECKOUT with chevrons, matte paint in the near aisle (y = -0.55)
+    paint = mat("floor paint", "#1F3B63", rough=0.85); paint2 = mat("floor paint 2", "#C8643A", rough=0.85)
+    text("floor decal", "SELF CHECKOUT", (0.55, -0.62, 0.0015), 0.17, (0, 0, 0), paint, extrude=0.0005)
+    # (no chevrons: one decal is enough; the floor was loud)
+    # a low dump bin at the left frame edge for the first second, passing in the foreground
+    dx, dy = float(os.environ.get("BIN_X", "-1.12")), float(os.environ.get("BIN_Y", "-0.6"))   # a sliver at the left edge in the first half second, never over him
+    binm = mat("dump bin", "#3A3D42", rough=0.55); binr = mat("dump bin rim", "#C8643A", rough=0.5)
+    box("dump bin", (dx, dy, 0.2), (0.46, 0.46, 0.4), binm, bev=0.02)
+    box("dump bin rim", (dx, dy, 0.405), (0.48, 0.48, 0.02), binr, bev=0.006)
+    for k in range(9):
+        sph("bin ball", (dx + (k % 3 - 1) * 0.13, dy + (k // 3 - 1) * 0.13, 0.41 + (k % 2) * 0.03), 0.07, mat(f"ball{k % 4}", PRODUCTS[k % len(PRODUCTS)], rough=0.4))
+    box("bin sign", (dx, dy - 0.245, 0.3), (0.2, 0.006, 0.1), mat("sale red", rough=0.5), bev=0.003)
+    text("bin sign text", "2 FOR 1", (dx, dy - 0.25, 0.3), 0.05, (math.radians(90), 0, 0), mat("sign ivory"), extrude=0.001)
+
+
+def camera(loc, target, lens=30, fstop=8.0):
+    cam_d = bpy.data.cameras.new("cam"); cam_d.lens = lens; cam_d.sensor_fit = 'VERTICAL'; cam_d.sensor_height = 36
+    cam_d.dof.use_dof = True; cam_d.dof.aperture_fstop = fstop; cam_d.dof.focus_distance = (Vector(target) - Vector(loc)).length
+    cam = bpy.data.objects.new("cam", cam_d); cam.location = loc
+    cam.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat('-Z', 'Y').to_euler()
+    _link(cam); bpy.context.scene.camera = cam
+    return cam
+
+
+def build_store(set3=True):
+    """the whole set; returns dict(lanes, kiosks, extra, cart)"""
+    floor(); walls(); ceiling_signs(); gondola(); aisles()
+    lanes = [checkout_lane(f"lane{i + 1}", x, number=i + 1) for i, x in enumerate(LANE_X)]
+    extra = [checkout_lane("lane_far", FAR_X[0], number=5), checkout_lane("lane_far2", FAR_X[1], number=6)]
+    kiosks = [kiosk(f"kiosk{i + 1}", ln["kiosk_spot"], ln["h"]) for i, ln in enumerate(lanes)]
+    for kk in kiosks: kk["root"].location.z = -kk["h"] - 0.05
+    ct = cart("cart", Vector((-0.6, 0.0, 0)))
+    for ln in lanes + extra:
+        contact_shadow(ln["counter"].name + " shadow", (ln["x"], 0.32 + 1.5 * U / 2), rx=0.52 * U / 2 + 0.08, ry=1.5 * U / 2 + 0.08, parent=ln["counter"])
+        if ln["cashier"] is not None:
+            contact_shadow(ln["cashier"].name + " shadow", ln["cashier"].location, rx=0.17, ry=0.12, parent=ln["cashier"])
+    cr = ct["root"]
+    for w in ct["wheels"]:
+        p = w.matrix_world.translation if w.parent is None else w.parent.matrix_world @ w.location
+        contact_shadow("wheel shadow", (p.x, p.y), rx=0.05, ry=0.035, parent=cr)
+    contact_shadow("cart shadow", (cr.location.x + ct["L"] / 2, cr.location.y), rx=ct["L"] * 0.55, ry=ct["W"] * 0.5, parent=cr)
+    dressing()
+    return {"lanes": lanes, "kiosks": kiosks, "extra": extra, "cart": ct}

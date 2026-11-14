@@ -1,0 +1,1389 @@
+"""Data, the rigged 3D character (rebuild of 2026-11-06, after the scratchpad was wiped).
+
+Geometry is ChatGPT/Codex's approved model, built verbatim by base_build.py (NEVER redesign him). This module only
+replaces what has to be animated: each one-capsule sleeve becomes upper arm + forearm with an ELBOW, each leg
+thigh + shin with a KNEE, the eye pads become sunk eye SPHERES with lids, pupils and glints that move, the smile curve
+becomes a lip tube with shape keys (rest flat line, smile, open, oh), and a deforming armature drives it all.
+
+Units: the model is in rig units (0.2 m per unit); the armature object is scaled 0.2 so the world is in metres and
+Data is 0.95 m tall. Rest facing is -Y. clock.FPS (30) fps; every time is seconds; frame F(t) = round(t*FPS) + 1.
+
+    from character import load
+    data = load(bpy.context.scene)
+    data.place(x, y, rot_deg=90)           # faces +X
+    data.walk_to((x1, y1), t0, t1)         # procedural walk: planted feet (measured), knees, bob
+    data._arm_ik('L', world_point, t, elbow_out)   # 2-bone IK; at >= 99% reach the arm is EXACTLY straight
+    data.look_at(point, t, max_yaw=40); data.expression('surprised', t0, t1); data.blink(t); data.breathe(t0, t1)
+    data.act('shrug'|'wave'|'thumbs_up', t0, dur=0.3, hold=0.5); data.release(t)
+    n = data.finish()
+    arm_bend(data, f0, f1) -> (max_deg, mean_deg) elbow angle over frames (0 = straight)
+"""
+import bpy, bmesh, math, os, sys
+from mathutils import Vector, Matrix, Euler, Quaternion
+
+from clock import FPS   # the one clock (clock.py)
+SCALE = 0.2
+SOFT_Z = -0.0006   # metres the body settles when standing: a 0.198 m leg bends ~9 deg at the knee (-0.003 had him in a 20 deg squat all the time)
+LEG_USE = 0.993     # the most of a leg the body ever stands on: 0.985 kept every planted knee bent 20-26 deg (a squat); 0.993 is ~13 deg, under the IK straight_at 0.995
+HERE = os.path.dirname(os.path.abspath(__file__))
+PROFILE_FIX = os.environ.get('PROFILE_FIX', '1') == '1'
+EYE_CAP_DEG = 50     # the eyeball is a cap this many degrees off its front; its rim sits ~3 cm inside the head
+
+
+def F(t):
+    return int(round(t * FPS)) + 1
+
+
+def ease(u):
+    u = max(0.0, min(1.0, u)); return u * u * (3 - 2 * u)
+
+
+# ------------------------------------------------------------------------------------------------ geometry helpers
+def head_surface_y(x, z, cx=0.0, cz=3.525, rx=0.929, ry=0.69, rz=0.86):
+    """y of the head ellipsoid's front surface at (x, z) in rig units (the base head after every shift)."""
+    v = 1 - ((x - cx) / rx) ** 2 - ((z - cz) / rz) ** 2
+    return -ry * math.sqrt(max(0.01, v))
+
+
+def _capsule(name, a, b, r, mat, segs=40):
+    a, b = Vector(a), Vector(b)
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=segs, ring_count=24, location=(a + b) / 2)
+    o = bpy.context.object; o.name = name
+    o.scale = (r, r, (b - a).length / 2 + r)
+    o.rotation_euler = (b - a).to_track_quat('Z', 'Y').to_euler()
+    o.data.materials.append(mat)
+    for p in o.data.polygons: p.use_smooth = True
+    return o
+
+
+def _sphere(name, loc, r, mat, scale=None, segs=40):
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=segs, ring_count=24, location=loc)
+    o = bpy.context.object; o.name = name; o.scale = scale or (r, r, r)
+    o.data.materials.append(mat)
+    for p in o.data.polygons: p.use_smooth = True
+    return o
+
+
+def _cap(name, centre, r, mat, keep, segs=48):
+    """a spherical shell piece: the verts of a sphere of radius r (local, centred at origin) for which keep(n) holds"""
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=segs, ring_count=32, location=centre)
+    o = bpy.context.object; o.name = name; o.scale = (r, r, r)
+    bm = bmesh.new(); bm.from_mesh(o.data)
+    for v in bm.verts: v.co = Vector((v.co.x, -v.co.z, v.co.y))        # poles on Y: a y-cut is a ring, a z-cut a meridian
+    kill = [v for v in bm.verts if not keep(v.co.normalized())]
+    bmesh.ops.delete(bm, geom=kill, context='VERTS')
+    bm.to_mesh(o.data); bm.free(); o.data.update()
+    o.data.materials.append(mat)
+    for p in o.data.polygons: p.use_smooth = True
+    return o
+
+
+def _tube(path, r=0.016, m=10, normal=Vector((0, -1, 0))):
+    """verts/faces of a closed tube along a closed path (list of Vectors)"""
+    n = len(path); verts = []; faces = []
+    for i, p in enumerate(path):
+        tn = (path[(i + 1) % n] - path[i - 1]).normalized()
+        nx = normal - normal.dot(tn) * tn
+        if nx.length < 1e-4: nx = Vector((0, 0, 1)) - tn.z * tn
+        nx.normalize(); bn = tn.cross(nx)
+        for k in range(m):
+            a = 2 * math.pi * k / m
+            verts.append(p + r * (math.cos(a) * nx + math.sin(a) * bn))
+    for i in range(n):
+        for k in range(m):
+            faces.append((i * m + k, i * m + (k + 1) % m, ((i + 1) % n) * m + (k + 1) % m, ((i + 1) % n) * m + k))
+    return verts, faces
+
+
+def _mouth_paths(n=24):
+    """closed paths of 2n points on the head surface: rest (thin closed lips), smile, open, oh"""
+    def on_head(x, z, off=0.03):
+        return Vector((x, head_surface_y(x, z) - off, z))
+    def two_rows(fz, x0, x1, gap):
+        top = [on_head(x0 + (x1 - x0) * i / (n - 1), fz(x0 + (x1 - x0) * i / (n - 1)) + gap) for i in range(n)]
+        bot = [on_head(x1 + (x0 - x1) * i / (n - 1), fz(x1 + (x0 - x1) * i / (n - 1)) - gap) for i in range(n)]
+        return top + bot
+    def ellipse(cx, cz, rx, rz):
+        pts = []
+        for i in range(2 * n):
+            a = math.pi - 2 * math.pi * i / (2 * n)          # start at the left corner, over the top, back under
+            pts.append(on_head(cx + rx * math.cos(a), cz + rz * math.sin(a)))
+        return pts
+    # REST is a still, closed smile: a thin line with the corners turned up (operator, 2026-11-06: from the side the flat
+    # dark slab read as a moustache). 'smile' is the bigger version; talking keys still move freely over it.
+    rest = two_rows(lambda x: 3.085 + 0.07 * (x / 0.30) ** 2, -0.30, 0.30, 0.005)
+    smile = two_rows(lambda x: 3.065 + 0.16 * (x / 0.37) ** 2, -0.37, 0.37, 0.009)
+    opn = ellipse(0.0, 3.10, 0.27, 0.17)
+    oh = ellipse(0.0, 3.08, 0.13, 0.13)
+    # FROWN: the same thin closed line with its corners turned DOWN (2026-11-12, the second 3D short: every face he had
+    # was some amount of smile, so "worried" over a rotting banana still read as pleased). Closed, never a hole.
+    frown = two_rows(lambda x: 3.10 - 0.055 * (x / 0.26) ** 2, -0.26, 0.26, 0.005)
+    # GRIN: the open smile, a D on its back (caaleb 2026-11-13: "he needs be be able to open his mouth"): the top lip is
+    # the smile's own curve, the bottom drops into a deep round. Filled (inside, tongue), never a black hole.
+    def d_shape(x0, x1, top, depth):
+        tp = [on_head(x0 + (x1 - x0) * i / (n - 1), top(x0 + (x1 - x0) * i / (n - 1))) for i in range(n)]
+        bt = []
+        for i in range(n):
+            x = x1 + (x0 - x1) * i / (n - 1); u = x / x1
+            bt.append(on_head(x, top(x) - depth * max(0.0, 1 - u * u) ** 0.75))
+        return tp + bt
+    grin = d_shape(-0.34, 0.34, lambda x: 3.10 + 0.13 * (x / 0.34) ** 2, 0.22)
+    # SIDE: the mouth PULLED TO ONE SIDE (2026-11-14, of 'wry' read as contented: a symmetric face has no skepticism in
+    # it). The closed line slides toward one cheek and shortens; the near corner hitches up a touch, the far one goes
+    # flat and a little down. side_R pulls toward +x (his right), side_L is its mirror. A shape key only: at 0 the
+    # mouth is the approved rest line, so his look is unchanged.
+    def pulled(sg):
+        c = sg * 0.15; half = 0.25
+        def fz(x):
+            u = (x - c) / half * sg                       # +1 at the pulled corner, -1 at the far one
+            return 3.09 + 0.06 * max(0.0, u) ** 2 - 0.04 * max(0.0, -u) ** 2
+        return two_rows(fz, c - half, c + half, 0.005)
+    return {'rest': rest, 'smile': smile, 'open': opn, 'oh': oh, 'frown': frown, 'grin': grin,
+            'side_R': pulled(1), 'side_L': pulled(-1)}
+
+
+MOUTH_KEYS = ('smile', 'open', 'oh', 'frown', 'grin', 'side_R', 'side_L')
+
+
+# ------------------------------------------------------------------------------------------------ the character
+class Data:
+    EXPRESSIONS = {
+        # 2026-11-13 (caaleb: "we need to do a lot of work on how he express"): rendered side by side the seven faces
+        # were nearly one face. Each now has its own BROW SHAPE (worry lifts the inner ends, mad drops them) and its
+        # own EYES (squint is the lower lid rising: the eye smile), so it reads at phone size from the brows alone.
+        # The glasses frame hides the top and bottom ~30 deg of each eye, so a lid under ~0.35 is never SEEN.
+        'neutral': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0),
+        'happy': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.0, squint=0.95, grin=1.0),
+        'pleased': dict(smile=1.0, open=0.0, oh=0.0, brow=0.08, lid=0.0, squint=0.95),
+        # 2026-11-14: held APART by tests/test_data3d_face.py (every face at least MIN_APART from neutral and from every
+        # other face over what a viewer can see). worried/sad, surprised/alarmed and talk/neutral were under it.
+        'surprised': dict(smile=0.0, open=0.75, oh=0.0, brow=0.4, lid=0.0, frown=0.0, worry=0.1),    # brows at their highest, the mouth dropped open, nothing turned down
+        'worried': dict(smile=0.0, open=0.0, oh=0.0, brow=0.18, lid=0.25, frown=0.9, worry=1.0),     # inner brows lifted high, eyes open, the mouth pressed down
+        'alarmed': dict(smile=0.0, open=0.5, oh=0.0, brow=0.3, lid=0.0, frown=0.85, worry=0.75),     # brows high and pinched up in the middle, eyes wide, the mouth turned down: shock without the mouth hole
+        'talk': dict(smile=0.2, open=0.6, oh=0.0, brow=0.08, lid=0.0),
+        # SKEPTICAL: one brow cocked up, the mouth pulled flat to one side, heavy lids. The symmetric "flat half smile"
+        # read as contented (judge, 11-14); a face that is the same on both sides cannot doubt anything.
+        'wry': dict(smile=0.0, open=0.0, oh=0.0, brow=0.1, lid=0.45, frown=0.15, squint=0.15, cock=1.0, side=0.85),
+        # the mouth PRESSED, not smiling: at smile 0.15 over his resting smile 'determined' read as pleased (face lint, 11-14)
+        'determined': dict(smile=0.0, open=0.0, oh=0.0, brow=0.12, lid=0.5, mad=0.75, squint=0.55, frown=0.45),
+        'sad': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.7, frown=0.8, worry=0.8),          # brows not raised, lids heavy, the mouth down
+    }
+    NOT_SMILING = ('worried', 'alarmed', 'surprised', 'sad', 'wry', 'determined')   # store/facelint.py holds their windows
+
+    def __init__(self, sc):
+        self.sc = sc; self._end = 0.0; self._ik_last = {}
+        self.face_log = []      # every expression() as (name, start of its blend, t0, t1 or None, blend): store/facelint.py reads it
+        self._neck_looks = []   # look_at's neck share: (t, blend, degrees), layered onto the neck in finish()
+        self._eye_looks = []    # look_at's eye targets: (t, blend, target, gaze calls before it), aimed in finish()
+        self._gaze_calls = []   # every explicit gaze() frame, in call order: a later gaze() at a look's frame wins
+        self._blinks = []       # every blink() time: the life pass spaces its own around them
+        self._turns = []        # (t, blend, yaw, tilt) of every look_at: a big head turn gets a blink, as people do
+        self._ik_keys = {}      # (side, frame) -> (world target, elbow_out, error when solved): finish() re-solves drift
+        self.hands_resolved = (0, 0.0)
+        self._build()
+        # the RESTING face is keyed on frame one. Unkeyed, every shape key and the mouth cavity sat at full value, and the
+        # first expression() keyed that "current" state as its start: a shot whose first expression came late opened on
+        # a wide dark mouth hole (11-12 judge, shot 3: "a large dark open-mouth slab ... the first thing seen").
+        self._face(0.0, **self.EXPRESSIONS['neutral'])
+
+    # ---------------------------------------------------------------- build
+    def _build(self):
+        src = open(os.path.join(HERE, 'base_build.py')).read().split('\n')
+        keep = [l for i, l in enumerate(src, 1) if i not in (8, 9, 10, 11) and i < 197]
+        ns = {'__name__': 'base_build'}
+        before = set(bpy.data.objects)
+        exec('\n'.join(keep), ns)
+        parts = [o for o in ns['parts']]
+        root = bpy.data.objects.get('DATA_ROOT')
+        for o in parts: o.parent = None
+        if root: bpy.data.objects.remove(root)
+        mats = {m.name: m for m in bpy.data.materials}
+        self.M = lambda n: mats[n]
+        teal, ivory, black, eye, pupil = mats['Data / teal'], mats['Coat / warm ivory'], mats['Frames / charcoal'], mats['Eyes / ivory'], mats['Pupils / deep charcoal']
+        P = {}
+        for o in parts: P.setdefault(o.name.split('.')[0], []).append(o)
+        # ---- limbs: the one-capsule sleeve and leg become two capsules with a joint
+        for o in P['Sleeve'] + P['Leg']: bpy.data.objects.remove(o)
+        self.J = {}            # joints in rig units
+        for s, sg in (('L', -1), ('R', 1)):
+            sh = Vector((sg * 0.37, 0.0, 2.42)); el = Vector((sg * 0.52, -0.01, 1.95)); wr = el + (el - sh) * 0.95   # collinear at rest: 0 deg
+            hip = Vector((sg * 0.261, 0.007, 1.25)); kn = Vector((sg * 0.261, 0.007, 0.72)); an = Vector((sg * 0.261, 0.007, 0.26))
+            self.J[s] = dict(sh=sh, el=el, wr=wr, hip=hip, kn=kn, an=an)
+            P.setdefault('Upper arm', []).append(_capsule(f'Upper arm.{s}', sh, el, 0.214, ivory))
+            P.setdefault('Forearm', []).append(_capsule(f'Forearm.{s}', el, wr, 0.205, ivory))
+            P.setdefault('Thigh', []).append(_capsule(f'Thigh.{s}', hip, kn, 0.162, teal))
+            P.setdefault('Shin', []).append(_capsule(f'Shin.{s}', kn, an, 0.150, teal))
+        # ---- face: eye spheres sunk into the head, lids, pupils and glints on the sphere, the lip tube, a cavity
+        for o in P['Eye white'] + P['Pupil'] + P['Eye glint'] + P['Eye glint small'] + P['Smile']: bpy.data.objects.remove(o)
+        self.R_EYE = 0.30; self.EYE = {}
+        for s, sg in (('L', -1), ('R', 1)):
+            ex, ez = sg * 0.411, 3.73
+            ys = head_surface_y(ex, ez); protrude = 0.07
+            c = Vector((ex, ys - protrude + self.R_EYE, ez))
+            self.EYE[s] = c
+            ball = _cap(f'Eye ball.{s}', c, self.R_EYE, eye, lambda n: -n.y > math.cos(math.radians(EYE_CAP_DEG)))   # only the front dome: a whole sphere showed its white outside the lens in three-quarter view
+            gaze = bpy.data.objects.new(f'Gaze.{s}', None); bpy.context.collection.objects.link(gaze); gaze.location = c
+            bpy.context.view_layer.update()
+            pup = _cap(f'Pupil.{s}', c, self.R_EYE + 0.005, pupil, lambda n: -n.y > math.cos(math.radians(31)))   # a cap ON the sphere: under a closed lid everywhere
+            g1 = _sphere(f'Eye glint.{s}', c + (self.R_EYE + 0.004) * Vector((-0.17, -0.97, 0.18)).normalized(), 0.04, eye, (0.045, 0.012, 0.043))
+            g2 = _sphere(f'Eye glint small.{s}', c + (self.R_EYE + 0.004) * Vector((0.17, -0.97, -0.12)).normalized(), 0.02, eye, (0.02, 0.009, 0.019))
+            for o in (pup, g1, g2): o.parent = gaze; o.matrix_parent_inverse = gaze.matrix_world.inverted()
+            gaze.rotation_euler = (0, 0, math.radians(-4 * sg))        # a slight convergence, like the base model's gaze
+            up = _cap(f'Lid upper.{s}', c, self.R_EYE + 0.025, teal, lambda n: -n.y > math.cos(math.radians(88)) and n.z > -0.001)
+            lo = _cap(f'Lid lower.{s}', c, self.R_EYE + 0.025, teal, lambda n: -n.y > math.cos(math.radians(88)) and n.z < 0.001)
+            pu = bpy.data.objects.new(f'Lid pivot upper.{s}', None); pl = bpy.data.objects.new(f'Lid pivot lower.{s}', None)
+            for e in (pu, pl): bpy.context.collection.objects.link(e); e.location = c
+            bpy.context.view_layer.update()
+            up.parent = pu; up.matrix_parent_inverse = pu.matrix_world.inverted()
+            lo.parent = pl; lo.matrix_parent_inverse = pl.matrix_world.inverted()
+            pu.rotation_euler = (math.radians(-100), 0, 0); pl.rotation_euler = (math.radians(100), 0, 0)
+            self.EYE[s + 'gaze'] = gaze; self.EYE[s + 'up'] = pu; self.EYE[s + 'lo'] = pl
+            P.setdefault('face', []).extend([ball, gaze, pu, pl])
+        paths = _mouth_paths()
+        LIP_R = 0.009                                        # a thin line, not a slab
+        verts, faces = _tube(paths['rest'], r=LIP_R)
+        me = bpy.data.meshes.new('Lips'); me.from_pydata([tuple(v) for v in verts], [], faces); me.update()
+        # the lip is a slightly darker tint of his own skin, never dark brown: nothing in profile reads as facial hair
+        lip_m = bpy.data.materials.new('Mouth / lip'); lip_m.use_nodes = True
+        lb = lip_m.node_tree.nodes['Principled BSDF']; tb = teal.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value
+        lb.inputs['Base Color'].default_value = (tb[0] * 0.55, tb[1] * 0.6, tb[2] * 0.6, 1); lb.inputs['Roughness'].default_value = 0.5
+        lips = bpy.data.objects.new('Lips', me); bpy.context.collection.objects.link(lips); lips.data.materials.append(lip_m)
+        for p in me.polygons: p.use_smooth = True
+        lips.shape_key_add(name='Basis')
+        for key in MOUTH_KEYS:
+            v2, _ = _tube(paths[key], r=LIP_R); sk = lips.shape_key_add(name=key)
+            for i, v in enumerate(v2): sk.data[i].co = v
+        # THE INSIDE OF THE MOUTH: a skin of the lip outline itself, a little behind the lip, in a deep warm red, with the
+        # same shape keys as the lips, so it is exactly as big as the mouth is open and nothing when it is shut. The old
+        # inside was a black sphere scaled up behind the lips: "a dark open-mouth slab", the reason the mouth was banned.
+        nn = len(paths['rest']) // 2
+        def fill_pts(path):
+            return [Vector(v) + Vector((0, 0.006, 0)) for v in path]
+        fv = fill_pts(paths['rest'])
+        ffaces = [(i, i + 1, 2 * nn - 2 - i, 2 * nn - 1 - i) for i in range(nn - 1)]
+        fme = bpy.data.meshes.new('Mouth inside'); fme.from_pydata([tuple(v) for v in fv], [], ffaces); fme.update()
+        in_m = bpy.data.materials.new('Mouth / inside'); in_m.use_nodes = True
+        ib = in_m.node_tree.nodes['Principled BSDF']; ib.inputs['Base Color'].default_value = (0.16, 0.025, 0.03, 1); ib.inputs['Roughness'].default_value = 0.45
+        fill = bpy.data.objects.new('Mouth inside', fme); bpy.context.collection.objects.link(fill); fill.data.materials.append(in_m)
+        fill.shape_key_add(name='Basis')
+        for key in MOUTH_KEYS:
+            sk = fill.shape_key_add(name=key)
+            for i, v in enumerate(fill_pts(paths[key])): sk.data[i].co = v
+        # each lip key drives the same key on the inside
+        for key in MOUTH_KEYS:
+            fc = fill.data.shape_keys.key_blocks[key].driver_add('value'); dr = fc.driver; dr.type = 'AVERAGE'
+            var = dr.variables.new(); var.type = 'SINGLE_PROP'; var.targets[0].id_type = 'KEY'
+            var.targets[0].id = lips.data.shape_keys; var.targets[0].data_path = f'key_blocks["{key}"].value'
+        # the tongue: a soft pink lozenge low in the mouth, scaled with how open it is (the old cavity's job)
+        tg_m = bpy.data.materials.new('Mouth / tongue'); tg_m.use_nodes = True
+        tb_ = tg_m.node_tree.nodes['Principled BSDF']; tb_.inputs['Base Color'].default_value = (0.62, 0.17, 0.2, 1); tb_.inputs['Roughness'].default_value = 0.4
+        cav = _sphere('Mouth tongue', (0, head_surface_y(0, 2.99) - 0.027, 2.99), 1.0, tg_m, (0.001, 0.001, 0.001))
+        self.lips = lips; self.cavity = cav; self.mouth_inside = fill
+        P.setdefault('face', []).extend([lips, cav, fill])
+        # ---- profile fix: ears swept back, temples on the head
+        if PROFILE_FIX:
+            for o in P['Ear']: o.rotation_euler.x = math.radians(-30)
+        # ---- the armature
+        arm_data = bpy.data.armatures.new('DataRig'); arm = bpy.data.objects.new('Data', arm_data)
+        bpy.context.collection.objects.link(arm); bpy.context.view_layer.objects.active = arm
+        bpy.ops.object.mode_set(mode='EDIT')
+        eb = arm_data.edit_bones
+        def bone(name, head, tail, parent=None):
+            b = eb.new(name); b.head = Vector(head); b.tail = Vector(tail); b.use_connect = False
+            if parent: b.parent = eb[parent]
+            return b
+        bone('root', (0, 0, 1.25), (0, 0, 1.55))
+        bone('spine', (0, 0, 1.55), (0, 0, 2.05), 'root'); bone('chest', (0, 0, 2.05), (0, 0, 2.55), 'spine')
+        bone('neck', (0, 0, 2.55), (0, 0, 2.75), 'chest'); bone('head', (0, 0, 2.75), (0, 0, 3.6), 'neck')
+        for s in 'LR':
+            J = self.J[s]
+            bone(f'clav.{s}', (J['sh'].x * 0.3, 0, 2.45), J['sh'], 'chest')
+            bone(f'arm.{s}', J['sh'], J['el'], f'clav.{s}'); bone(f'fore.{s}', J['el'], J['wr'], f'arm.{s}')
+            bone(f'hand.{s}', J['wr'], J['wr'] + Vector((0.08 * (1 if s == 'R' else -1), -0.04, -0.34)), f'fore.{s}')
+            bone(f'leg.{s}', J['hip'], J['kn'], 'root'); bone(f'shin.{s}', J['kn'], J['an'], f'leg.{s}')
+            bone(f'foot.{s}', J['an'], J['an'] + Vector((0, -0.36, -0.18)), f'shin.{s}')
+        # EARS THAT ACT (caaleb 2026-11-13, "that was just smiles and frowns"): each ear gets a bone from its base on
+        # the head to its tip, so it can droop, perk and flick. At rest the bone does nothing: the silhouette is as approved.
+        bpy.context.view_layer.update()
+        self.EAR = {}
+        for o in P['Ear']:
+            pts = [o.matrix_world @ Vector(c) for c in o.bound_box]
+            sd = 'L' if o.matrix_world.translation.x < 0 else 'R'
+            lo_z = min(p_.z for p_ in pts); hi = max(pts, key=lambda p_: p_.z)
+            ctr = sum(pts, Vector()) / 8
+            base = Vector((ctr.x, ctr.y, lo_z + 0.25 * (hi.z - lo_z)))
+            bone(f'ear.{sd}', base, Vector((ctr.x, hi.y if abs(hi.y - ctr.y) < 0.3 else ctr.y, hi.z)), 'head')
+            self.EAR[sd] = o
+        bpy.ops.object.mode_set(mode='OBJECT')
+        self.arm = arm; self.pb = arm.pose.bones
+        for pb in self.pb: pb.rotation_mode = 'XYZ'
+        arm.scale = (SCALE, SCALE, SCALE)
+        self.U = (self.J['L']['el'] - self.J['L']['sh']).length * SCALE
+        self.Fo = (self.J['L']['wr'] - self.J['L']['el']).length * SCALE
+        self.LEG = ((self.J['L']['kn'] - self.J['L']['hip']).length, (self.J['L']['an'] - self.J['L']['kn']).length)   # rig units
+        self.height = 0.95
+        # ---- attach: rigid parts to bones, the coat deforms over root/spine/chest
+        def rigid(o, bname):
+            b = arm_data.bones[bname]
+            o.parent = arm; o.parent_type = 'BONE'; o.parent_bone = bname
+            o.matrix_parent_inverse = (b.matrix_local @ Matrix.Translation((0, b.length, 0))).inverted()
+        head_parts = ['Head', 'Glasses frame', 'Glasses bridge', 'Temple', 'Brow', 'Nose', 'face']
+        for key in head_parts:
+            for o in P.get(key, []): rigid(o, 'head')
+        for sd, o in self.EAR.items(): rigid(o, f'ear.{sd}')
+        for o in P['Neck']: rigid(o, 'neck')
+        for key in ('Shirt opening', 'Tie knot', 'Tie blade', 'Lapel', 'Pocket', 'Pen', 'Coat button', 'Coat center seam'):
+            for o in P.get(key, []): rigid(o, 'chest')
+        for o in P['Upper arm']: rigid(o, 'arm.' + o.name[-1])
+        for o in P['Forearm']: rigid(o, 'fore.' + o.name[-1])
+        for o in P['Thigh']: rigid(o, 'leg.' + o.name[-1])
+        for o in P['Shin']: rigid(o, 'shin.' + o.name[-1])
+        for o in P['Mitten'] + P['Thumb']:
+            rigid(o, 'hand.' + ('L' if o.matrix_world.translation.x < 0 else 'R'))
+        for o in P['Shoe']:
+            rigid(o, 'foot.' + ('L' if o.matrix_world.translation.x < 0 else 'R'))
+        coat = P['Coat / continuous tapered body'][0]
+        coat.parent = arm; coat.matrix_parent_inverse = Matrix.Identity(4)
+        for name in ('root', 'spine', 'chest'): coat.vertex_groups.new(name=name)
+        for v in coat.data.vertices:
+            z = v.co.z * coat.scale.z + coat.location.z
+            w = {'root': 0.0, 'spine': 0.0, 'chest': 0.0}
+            if z < 1.45: w['root'] = 1.0
+            elif z < 1.75: u = (z - 1.45) / 0.3; w['root'] = 1 - u; w['spine'] = u
+            elif z < 2.0: w['spine'] = 1.0
+            elif z < 2.3: u = (z - 2.0) / 0.3; w['spine'] = 1 - u; w['chest'] = u
+            else: w['chest'] = 1.0
+            for name, ww in w.items():
+                if ww > 0: coat.vertex_groups[name].add([v.index], ww, 'REPLACE')
+        md = coat.modifiers.new('Rig', 'ARMATURE'); md.object = arm
+        while coat.modifiers[0] != md: bpy.ops.object.modifier_move_up({'object': coat}, modifier=md.name) if False else coat.modifiers.move(len(coat.modifiers) - 1, 0)
+        self.parts = [o for o in bpy.data.objects if o not in before and o != arm]
+        self.brows = P['Brow']
+        bpy.context.view_layer.update()
+        # which brow is on which side (each is its own curve object, origin at the head; the side is in its points)
+        self.BROW_SIDE = {}
+        for b in self.brows:
+            xs = [(b.matrix_world @ Vector(p.co[:3])).x for sp in b.data.splines for p in sp.points]
+            self.BROW_SIDE[b.name] = 'L' if sum(xs) / max(1, len(xs)) < 0 else 'R'
+        self._brow_shapes()
+        self.sc.frame_set(1)
+        self._rest = {pb.name: pb.bone.matrix_local.copy() for pb in self.pb}
+
+    # ---------------------------------------------------------------- basics
+    def place(self, x, y, rot_deg=0.0):
+        self.arm.location = (x, y, 0); self.arm.rotation_euler = (0, 0, math.radians(rot_deg)); bpy.context.view_layer.update()
+
+    def pos(self):
+        return Vector(self.arm.location)
+
+    def forward(self, yaw=None):
+        yaw = self.arm.rotation_euler.z if yaw is None else yaw
+        return Vector((math.sin(yaw), -math.cos(yaw), 0))
+
+    def _obj_loc(self, t):
+        self.sc.frame_set(F(t)); return Vector(self.arm.location), self.arm.rotation_euler.z
+
+    def _kobj(self, t, loc=None, rot=None):
+        if loc is not None: self.arm.location = (loc[0], loc[1], loc[2] if len(loc) > 2 else self.arm.location.z); self.arm.keyframe_insert('location', frame=F(t))
+        if rot is not None: self.arm.rotation_euler.z = rot; self.arm.keyframe_insert('rotation_euler', frame=F(t))
+        self._end = max(self._end, t)
+
+    def _k(self, bone, t, rot=None):
+        pb = self.pb[bone]
+        if rot is not None:
+            pb.rotation_euler = tuple(math.radians(v) for v in rot); pb.keyframe_insert('rotation_euler', frame=F(t))
+            if bone[:4] in ('arm.', 'fore'):          # an FK key on this frame replaces the IK solve there: nothing to re-solve
+                self._ik_keys.pop((bone[-1], F(t)), None)
+        self._end = max(self._end, t)
+
+    def _set_bone(self, pb, head_world, R_world, t):
+        """pose a bone so its head sits at head_world with world rotation R_world (3x3, bone Y = direction); key it"""
+        M = self.arm.matrix_world
+        Ra = M.to_3x3().normalized().inverted() @ R_world
+        Ma = Ra.to_4x4(); Ma.translation = M.inverted() @ head_world
+        pb.matrix = Ma; bpy.context.view_layer.update()
+        pb.keyframe_insert('rotation_euler', frame=F(t))
+
+    @staticmethod
+    def _frame(dirn, up_hint=Vector((0, 0, 1))):
+        y = dirn.normalized(); x = y.cross(up_hint)
+        if x.length < 1e-4: x = y.cross(Vector((0, 1, 0)))
+        x.normalize(); z = x.cross(y)
+        return Matrix((x, y, z)).transposed()
+
+    def _two_bone(self, A, B, target, pole, t, La, Lb, straight_at=0.99):
+        """2-bone IK on pose bones A (upper) and B (lower) toward a world target; pole = world direction the joint
+        bends toward. At >= straight_at of full reach the chain is EXACTLY straight."""
+        self.sc.frame_set(F(t))
+        A.rotation_euler = (0, 0, 0); B.rotation_euler = (0, 0, 0); bpy.context.view_layer.update()
+        M = self.arm.matrix_world
+        head = M @ A.head; tgt = Vector(target)
+        d = tgt - head; D = d.length; reach = La + Lb
+        if D >= reach * straight_at: tgt = head + d.normalized() * reach * 0.999; D = reach * 0.999; ang = 0.0; clamped = D < d.length - 1e-4
+        else:
+            cosA = (La * La + D * D - Lb * Lb) / (2 * La * D); ang = math.acos(max(-1, min(1, cosA))); clamped = False
+        n = d.cross(pole)
+        f_ = F(t); last = self._ik_last.get(A.name)
+        near = last is not None and abs(f_ - last[0]) <= 2
+        if n.length < 0.15 * d.length * pole.length and near:   # the bend plane is degenerate (target in line with the pole):
+            n = last[1].copy()                                   # keep last frame's, never let the elbow flip sides
+        if n.length < 1e-6: n = Vector((1, 0, 0))
+        n.normalize()
+        if near and n.dot(last[1]) < 0 and d.cross(pole).length < 0.35 * d.length * pole.length:
+            n = -n                                               # a sign flip near the degenerate pose: hold the side
+        upper = Matrix.Rotation(ang, 4, n) @ d.normalized()
+        joint = head + upper * La; lower = (tgt - joint).normalized()
+        # THE ELBOW IS A HINGE: both bones take the bend plane's normal as their x, so the forearm only ever turns ABOUT
+        # the elbow and never spins about its own length (measured 2026-11-13: the forearm rolled ~300 deg as he let go
+        # of the lever, the mitten spinning, because each bone took its roll from world up on its own)
+        xh = upper.cross(Vector((0, 0, 1)))
+        sgn = last[2] if near and len(last) > 2 else (1.0 if xh.length < 1e-4 or n.dot(xh) >= 0 else -1.0)
+        x = n * sgn
+        RA = Matrix((x, upper.normalized(), x.cross(upper.normalized()))).transposed()
+        RB = Matrix((x, lower, x.cross(lower))).transposed()
+        self._ik_last[A.name] = (f_, n.copy(), sgn)
+        self._set_bone(A, head, RA, t); self._set_bone(B, joint, RB, t)
+        return clamped
+
+    def _frame_cont(self, key, dirn, f_):
+        """_frame with a CONTINUOUS roll (caaleb 2026-11-13, "why does data tweak out"): _frame takes the roll from
+        world up, which is undefined for an arm that hangs or reaches straight up, so a lever pull down to his side
+        spun the forearm up to 50 deg in one frame. Near vertical, the roll follows the previous frame's instead."""
+        y = dirn.normalized(); xh = y.cross(Vector((0, 0, 1)))
+        prev = self._ik_last.get('roll ' + key)
+        if prev is not None and abs(f_ - prev[0]) <= 2:
+            xc = prev[1] - y * prev[1].dot(y)
+            if xc.length > 1e-4:
+                xc.normalize()
+                w = min(1.0, max(0.0, (xh.length - 0.35) / 0.4))          # 0 when within ~20 deg of vertical
+                xh = xh.normalized() if xh.length > 1e-4 else xc
+                if xh.dot(xc) < 0 and w < 1.0: xh = -xh
+                x = (xc * (1 - w) + xh * w)
+                x = x.normalized() if x.length > 1e-4 else xc
+            else:
+                x = xh.normalized() if xh.length > 1e-4 else y.cross(Vector((0, 1, 0))).normalized()
+        else:
+            x = xh.normalized() if xh.length > 1e-4 else y.cross(Vector((0, 1, 0))).normalized()
+        self._ik_last['roll ' + key] = (f_, x.copy())
+        z = x.cross(y)
+        return Matrix((x, y, z)).transposed()
+
+    def _arm_ik(self, s, target, t, elbow_out=0.5):
+        A, Fo = self.pb[f'arm.{s}'], self.pb[f'fore.{s}']
+        fw = self.forward(); side = Vector((-1 if s == 'L' else 1, 0, 0)); side = (self.arm.matrix_world.to_3x3() @ side).normalized()
+        pole = (fw + side * elbow_out)
+        if pole.length < 1e-4: pole = fw
+        over = self._two_bone(A, Fo, target, -pole, t, self.U, self.Fo)
+        if over: print(f'hold: {s} hand out of reach, clamped')
+        self._k(f'hand.{s}', t, rot=(0, 0, 0))
+        if not getattr(self, '_resolving', False):     # remembered, so finish() can put the hand back on it (see _resolve_hands)
+            M = self.arm.matrix_world
+            self._ik_keys[(s, F(t))] = (Vector(target), elbow_out, ((M @ Fo.tail) - Vector(target)).length)
+
+    def _leg_ik(self, s, target, t, pitch=0.0):
+        """pitch: degrees, toe UP positive, about the body's right axis (heel strike / toe-off roll)"""
+        L, Sh = self.pb[f'leg.{s}'], self.pb[f'shin.{s}']
+        knee_dir = self.forward()                               # the knee bends FORWARD: _two_bone bends toward `pole` (the arm passes -pole so the ELBOW goes back; the leg had copied that and walked on bird knees, measured knee_fwd < 0 every frame)
+        over = self._two_bone(L, Sh, target, knee_dir, t, self.LEG[0] * SCALE, self.LEG[1] * SCALE, straight_at=0.995)
+        # the foot stays LEVEL in the world whatever the shin does (else the shoe pivots about the ankle: a slide)
+        fb = self.pb[f'foot.{s}']; M = self.arm.matrix_world
+        R0 = M.to_3x3().normalized() @ self._rest[f'foot.{s}'].to_3x3()
+        if pitch:
+            yaw = self.arm.rotation_euler.z; right = Vector((math.cos(yaw), math.sin(yaw), 0))
+            R0 = Matrix.Rotation(math.radians(-pitch), 3, right) @ R0
+        self._set_bone(fb, M @ Sh.tail, R0, t)
+        return over
+
+    # the shoe, in metres from the ankle: heel contact behind, ball of the foot ahead, both on the sole
+    HEEL = (-0.033, -0.052); BALL = (0.090, -0.052)   # the ends of the flat sole: the shoe is rigid, so it rolls on its edges
+
+    def _foot_ankle(self, ground_pt_ankle, fw, pitch):
+        """ankle position for a foot rolled `pitch` degrees about its heel (toe up, pitch>0) or its ball (heel up,
+        pitch<0), given where the ankle would sit if the foot were flat. Returns the rolled ankle."""
+        if abs(pitch) < 1e-6: return ground_pt_ankle
+        piv = self.HEEL if pitch > 0 else self.BALL
+        P = ground_pt_ankle + fw * piv[0] + Vector((0, 0, piv[1]))
+        axis = Vector((fw.y, -fw.x, 0)).normalized()           # right of travel: +angle about it lifts the toe
+        R = Matrix.Rotation(math.radians(pitch), 3, axis)
+        return P + R @ (ground_pt_ankle - P)
+
+    def hold(self, pL, pR, t0, t1=None, elbow_out=0.6):
+        self._arm_ik('L', Vector(pL), t0, elbow_out); self._arm_ik('R', Vector(pR), t0, elbow_out)
+        if t1 is not None:
+            self._arm_ik('L', Vector(pL), t1, elbow_out); self._arm_ik('R', Vector(pR), t1, elbow_out)
+
+    def reach(self, side, fn, t0, t1, lead=0.4, back=0.45, elbow_out=0.45):
+        """ONE HAND DOES A JOB, and only then: the arm hangs relaxed (FK, RELAXED: the hand clear of the coat), swings to
+        the job over `lead`, is ON the moving point fn(t) every frame of t0..t1, and falls back relaxed over `back`
+        (back=None: it stays where the job left it). (An IK 'hang' point kept the mitten 3 cm inside his coat on every
+        idle frame: the clipping check found it.) Shared by every story; the stories' own copies delegate here. Its IK
+        frames are re-solved in finish() if a body act keyed after it moves the shoulder (_resolve_hands)."""
+        bones = (f"arm.{side}", f"fore.{side}", f"hand.{side}")
+        for b in bones:
+            if not self._has_keys(self.arm, f'pose.bones["{b}"].rotation_euler'): self._k(b, 0.0, rot=self.RELAXED[b])
+            self._k(b, max(0.0, t0 - lead), rot=self._pose_now(b, max(0.0, t0 - lead)) if t0 - lead > 0.05 else self.RELAXED[b])
+        for f in range(F(t0), F(t1) + 1):
+            t = (f - 1) / FPS; self.sc.frame_set(f); self._arm_ik(side, Vector(fn(t)), t, elbow_out)
+        if back is not None:
+            for b in bones: self._k(b, t1 + back, rot=self.RELAXED[b])
+
+    RELAXED = {'arm.L': (-4, 0, 5), 'arm.R': (-4, 0, -5), 'fore.L': (-22, 0, 0), 'fore.R': (-22, 0, 0), 'hand.L': (0, 0, 0), 'hand.R': (0, 0, 0)}
+
+    def _pose_now(self, bone, t):
+        self.sc.frame_set(F(t)); return tuple(math.degrees(v) for v in self.pb[bone].rotation_euler)
+
+    def release(self, t, dur=0.45):
+        """let go: the arms hold where they are at t, then fall to a RELAXED hang (elbows soft, never dead straight)
+        over `dur` with a little overshoot, instead of snapping to the rest pose in three frames"""
+        bones = list(self.RELAXED)
+        now = {b: self._pose_now(b, t) for b in bones}
+        for b in bones: self._k(b, t, rot=now[b])
+        for b in bones:
+            r = self.RELAXED[b]
+            over = tuple(v * 1.18 for v in r) if b.startswith('fore') else r
+            self._k(b, t + dur * 0.7, rot=over); self._k(b, t + dur, rot=r)
+
+    def idle(self, t0, t1, seed=3):
+        """standing life: breath in the chest, a slow weight shift in the hips, a little sway in the relaxed arms"""
+        import random
+        rnd = random.Random(seed); ph = rnd.random() * 6.28
+        for f in range(F(t0), F(t1) + 1, 3):
+            t = (f - 1) / FPS; u = t - t0; w = min(1.0, u / 0.4)
+            br = math.sin(2 * math.pi * u / 3.0 + ph)
+            self._k('chest', t, rot=(-1.4 * br * w, 0, 0)); self._k('spine', t, rot=(0.6 * br * w, 0, 1.2 * math.sin(2 * math.pi * u / 4.6 + ph) * w))
+            self._k('neck', t, rot=(0.8 * br * w, 0, 0))
+
+    # ---------------------------------------------------------------- head and face
+    # HOW FAR HE LOOKS UP AND DOWN (2026-11-14: "looks down at the flower" was a 13 deg nod, max_pitch 22 x 0.6, that no
+    # phone viewer could read). Up to SOFT_PITCH a look is still 0.6 of the angle in the head (the eyes take the rest);
+    # past it the tilt grows 1:1 to TILT_DOWN (TILT_UP looking up). The head takes up to HEAD_TILT of that and the NECK
+    # bends the rest, so a big look-down is the whole head going down off the neck, not a skull rolling on a stiff post.
+    # store/anatomy.py holds the head+neck bend under HEAD_BEND_MAX; twitch holds its speed.
+    SOFT_PITCH, TILT_DOWN, TILT_UP, HEAD_TILT = 22.0, 38.0, 25.0, 22.0
+    EYE_YAW, EYE_PITCH = 25.0, 22.0      # the pupils stay on the front of the eye, inside the glasses (saffron shot 4 looks down with gaze -22)
+
+    @classmethod
+    def _tilt(cls, pitch):
+        """degrees of head+neck tilt for a target `pitch` degrees above (+) or below (-) the eye line"""
+        a = abs(pitch); s = 1.0 if pitch >= 0 else -1.0
+        tilt = 0.6 * a if a <= cls.SOFT_PITCH else 0.6 * cls.SOFT_PITCH + (a - cls.SOFT_PITCH)
+        return s * min(tilt, cls.TILT_UP if s > 0 else cls.TILT_DOWN)
+
+    def look_at(self, target, t, max_yaw=40, max_pitch=60, blend=0.3, eyes=True):
+        """he turns his head to `target` by t. The neck bends for a big look up or down (_tilt), and with eyes=True (the
+        default) the pupils take whatever the head does not, so "he looks at X" is his eyes ON X, not a head pointed
+        near it. eyes=False leaves the pupils where they are (a shot keying gaze() itself)."""
+        hb = self.pb['head']
+        if not self._has_keys(self.arm, 'pose.bones["head"].rotation_euler'):      # the first look: hold the rest pose until it starts
+            self.sc.frame_set(F(max(0.0, t - blend))); hb.rotation_euler = (0, 0, 0); hb.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))
+        self.sc.frame_set(F(t)); M = self.arm.matrix_world; head = M @ hb.head
+        d = Vector(target) - head - Vector((0, 0, 0.12))
+        # in the ARMATURE's own frame (rest face is -Y): the body's yaw is already in M, so it must not be added again.
+        # (it was: every look_at after a turn twisted the head by the body's yaw, so at 180 he faced away with his head screwed round)
+        dl = M.to_3x3().normalized().inverted() @ d
+        yaw = math.degrees(math.atan2(dl.y, dl.x) + math.pi / 2)
+        want_yaw = (yaw + 180) % 360 - 180; yaw = max(-max_yaw, min(max_yaw, want_yaw))
+        want_pitch = math.degrees(math.atan2(dl.z, Vector((dl.x, dl.y, 0)).length)); pitch = max(-max_pitch, min(max_pitch, want_pitch))
+        tilt = self._tilt(pitch)
+        head_tilt = max(-self.HEAD_TILT, min(self.HEAD_TILT, tilt)); neck_tilt = tilt - head_tilt
+        # the neck's share is LAYERED onto whatever else keys the neck (idle, alive, perform) in finish(), so a breath
+        # keyed later never wipes the look out and a look never pops a frame out of a breath
+        self._neck_looks.append((t, blend, -neck_tilt))           # neck x + pitches forward (down): a look down is +
+        # bone Y is up; yaw about the armature's Z, pitch tilts the top of the head toward the target
+        Rl = Matrix.Rotation(math.radians(yaw), 3, 'Z') @ Matrix.Rotation(math.radians(-head_tilt), 3, 'X') @ self._rest['head'].to_3x3()
+        self._set_bone(hb, head, M.to_3x3().normalized() @ Rl, t)
+        self._turns.append((t, blend, yaw, tilt))
+        if eyes:     # the eyes take the rest of the way, each pupil aimed from where IT is once the body is final
+            self._eye_looks.append((t, blend * 0.6, Vector(target), len(self._gaze_calls)))
+            self._end = max(self._end, t)
+
+    def _has_keys(self, obj, data_path):
+        ad = obj.animation_data
+        if not ad or not ad.action: return False
+        return any(fc.data_path == data_path for fc in _fcurves(ad.action))
+
+    def _key_val(self, obj, path, t, value, index=-1):
+        if index >= 0: getattr(obj, path)[index] = value
+        else: setattr(obj, path, value)
+        obj.keyframe_insert(path, frame=F(t), index=index)
+
+    OH_MAX = 0.0    # caaleb 11-04 and 11-12 ("data's mouth looked weird"): never an open 'o' / mouth hole, in ANY shot.
+                    # Shock is the brows, the eyes and the body. Held here, where every expression is keyed, so no shot can ask for one.
+
+    def _brow_shapes(self):
+        """Two shape keys on each brow (caaleb 2026-11-13: "we need to do a lot of work on how he express"): a brow that
+        only slides up and down cannot act. 'worry' lifts the INNER end (sad, pleading, worried), 'mad' drops it
+        (determined, angry, focused). The outer end stays put, so it is a tilt, and the brow stays on the head."""
+        self.sc.frame_set(1); bpy.context.view_layer.update()
+        for b in self.brows:
+            if b.type != 'CURVE' or b.data.shape_keys: continue
+            M = b.matrix_world; Mi = M.inverted().to_3x3()
+            pts = [p for sp in b.data.splines for p in sp.points]
+            wx = [(M @ Vector(p.co[:3])).x for p in pts]
+            head_x = (self.arm.matrix_world @ self.pb['head'].head).x
+            inner = min(range(len(pts)), key=lambda i: abs(wx[i] - head_x))
+            outer = max(range(len(pts)), key=lambda i: abs(wx[i] - head_x))
+            span = abs(wx[outer] - wx[inner]) or 1.0
+            up = (Mi @ Vector((0, 0, 1)))
+            b.shape_key_add(name='Basis')
+            for name, sgn in (('worry', 1.0), ('mad', -1.0)):
+                k = b.shape_key_add(name=name)
+                for i, p in enumerate(pts):
+                    w = max(0.0, 1.0 - abs(wx[i] - wx[inner]) / span) ** 1.3
+                    k.data[i].co = Vector(p.co[:3]) + up * (sgn * 0.42 * span * w)
+                k.slider_min, k.slider_max = 0.0, 1.0
+
+    def _brow_key(self, name):
+        sk = self.brows[0].data.shape_keys
+        return sk.key_blocks[name].value if sk and name in sk.key_blocks else 0.0
+
+    COCK_B = 0.45    # brow units a COCKED brow rises above the other (cock=1); 0.45 is a raised brow you see across a room
+    COCK_MAD = 0.6   # ... and the other one drops at its inner end that much: one up, one down is the skeptic's look
+
+    def _brow_side_val(self, b, brow, cock, mad):
+        """(height, mad) of this brow for a face: cock > 0 raises his RIGHT brow (+x), cock < 0 his left"""
+        up = max(0.0, cock) if self.BROW_SIDE.get(b.name) == 'R' else max(0.0, -cock)
+        low = abs(cock) - up                              # the brow that is NOT cocked
+        return brow + self.COCK_B * up, min(1.0, mad + self.COCK_MAD * low)
+
+    def _face(self, t, smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.0, frown=0.0, worry=0.0, mad=0.0, squint=0.0, grin=0.0,
+              cock=0.0, side=0.0):
+        """cock: ONE brow up (+ his right, - his left); side: the mouth pulled to one side (+ his right, - his left)"""
+        oh = min(oh, self.OH_MAX)
+        kb = self.lips.data.shape_keys.key_blocks
+        for name, v in (('smile', smile), ('open', open), ('oh', oh), ('frown', frown), ('grin', grin),
+                        ('side_R', max(0.0, side)), ('side_L', max(0.0, -side))):
+            kb[name].value = v; kb[name].keyframe_insert('value', frame=F(t))
+        sc = Vector((0.13, 0.004, 0.055)) * max(open * 0.9, grin)
+        self.cavity.scale = tuple(max(0.001, v) for v in sc); self.cavity.keyframe_insert('scale', frame=F(t))
+        for b in self.brows:                                   # the brow rides UP the head surface, so it goes back as it rises
+            bs, _ = self._brow_side_val(b, brow, cock, mad)
+            b.location.z = 0.305 + bs * 0.5; b.location.y = bs * 0.45; b.keyframe_insert('location', frame=F(t))
+        for s in 'LR':
+            self.EYE[s + 'up'].rotation_euler.x = math.radians(-100 + 100 * lid); self.EYE[s + 'up'].keyframe_insert('rotation_euler', frame=F(t), index=0)
+            self.EYE[s + 'lo'].rotation_euler.x = math.radians(100 - 100 * min(0.95, lid * 0.6 + squint * 0.8)); self.EYE[s + 'lo'].keyframe_insert('rotation_euler', frame=F(t), index=0)
+        for b in self.brows:
+            sk = b.data.shape_keys
+            if not sk: continue
+            _, md = self._brow_side_val(b, brow, cock, mad)
+            for name, v in (('worry', worry), ('mad', md)):
+                sk.key_blocks[name].value = v; sk.key_blocks[name].keyframe_insert('value', frame=F(t))
+        self._squint = squint
+        self._end = max(self._end, t)
+
+    def expression(self, name, t0, t1=None, blend=0.22, cross='other'):
+        e = self.EXPRESSIONS[name]
+        self.face_log.append((name, t0 - blend, t0, t1, blend))
+        if t0 - blend <= 1.0 / FPS:          # a shot that OPENS on a face starts in it (it popped in over frame 1-2)
+            self._face(0.0, **e)
+        self.sc.frame_set(F(max(0, t0 - blend)))
+        cur = self._face_state()
+        # a new face OWNS its window. 2026-11-14 saffron shot 4: a worried face whose release keyed the resting face
+        # 0.15 s AFTER the alarm began, so the alarm was overwritten and he ended the shot on a contented smile (judge:
+        # "the opposite emotion"), whatever order the calls were made in. Clear any older face keys inside the window.
+        self._clear_face(t0 - blend, t1 if t1 is not None else t0)
+        self._face(t0 - blend, **cur); self._face(t0, **e)
+        if t1 is not None:
+            self._face(t1, **e)
+        self._rekey_releases()
+
+    def _release_face(self, i):
+        """the face an expression lets go INTO: whichever other expression holds the moment it ends (the latest call,
+        like every other ownership here), else neutral. 2026-11-14, the face lint on the banana hook: 'happy' and a
+        'surprised' flash both released to the resting face in the middle of an open-ended 'alarmed', so the alarm
+        smiled for 0.7 s twice (rest is itself a small smile). A face only goes back to rest when nothing else holds."""
+        r = self.face_log[i][3] + self.face_log[i][4]
+        best = None
+        for j, (nm, ta, t0, t1, bl) in enumerate(self.face_log):
+            if j != i and ta < r <= (math.inf if t1 is None else t1):
+                best = j
+        if best is None: return self.EXPRESSIONS['neutral']
+        if best > i and r < self.face_log[best][2]: return None      # inside a later face's blend in: its own keys rule there
+        return self.EXPRESSIONS[self.face_log[best][0]]
+
+    def _held_at(self, i, r):
+        """the face another expression HOLDS (past its blend in) at r, the latest call winning; None if none does"""
+        best = None
+        for j, (nm, ta, t0, t1, bl) in enumerate(self.face_log):
+            if j != i and t0 <= r <= (math.inf if t1 is None else t1):
+                best = j
+        return None if best is None else self.EXPRESSIONS[self.face_log[best][0]]
+
+    def _rekey_releases(self):
+        """every expression's release AND blend-in start, keyed again now that the log may hold a face that covers
+        them. The blend-in start is keyed with the face as it was when that call was made; a face declared LATER that
+        holds that moment (banana shot 1: 'surprised' at 2.8 s keyed the resting face, then an open-ended 'alarmed'
+        from 2.1 s was declared) must own it, or the face slides back to a smile between the two."""
+        for i, (nm, ta, t0, t1, bl) in enumerate(self.face_log):
+            if ta > 1.0 / FPS:
+                e = self._held_at(i, ta)
+                if e is not None: self._face(ta, **e)
+            if t1 is not None:
+                e = self._release_face(i)
+                if e is not None: self._face(t1 + bl, **e)
+
+    def _face_owners(self):
+        """every animated thing that makes up the face: (id with animation_data, data_path prefix or None for all)"""
+        out = [(self.lips.data.shape_keys, None), (self.cavity, 'scale')]
+        for br in self.brows:
+            out.append((br, 'location'))
+            if br.data.shape_keys: out.append((br.data.shape_keys, None))
+        for s_ in 'LR':
+            out += [(self.EYE[s_ + 'up'], 'rotation_euler'), (self.EYE[s_ + 'lo'], 'rotation_euler')]
+        return out
+
+    def _clear_face(self, ta, tb):
+        """remove face keys strictly between ta and tb (seconds): a later face never inherits an older face's release"""
+        fa, fb = F(ta), F(tb)
+        if fb - fa < 2: return
+        for owner, prefix in self._face_owners():
+            ad = getattr(owner, 'animation_data', None)
+            if not ad or not ad.action: continue
+            for fc in _fcurves(ad.action):
+                if prefix and not fc.data_path.startswith(prefix): continue
+                for i in sorted((i for i, k in enumerate(fc.keyframe_points) if fa < k.co.x < fb), reverse=True):
+                    fc.keyframe_points.remove(fc.keyframe_points[i], fast=True)
+                fc.update()
+
+    def _face_state(self):
+        kb = self.lips.data.shape_keys.key_blocks
+        lid = (math.degrees(self.EYE['Lup'].rotation_euler.x) + 100) / 100
+        lo = (100 - math.degrees(self.EYE['Llo'].rotation_euler.x)) / 100      # = lid*0.6 + squint*0.8
+        bh = {self.BROW_SIDE.get(b.name, 'L'): (b.location.z - 0.305) * 2 for b in self.brows}
+        mads = [b.data.shape_keys.key_blocks['mad'].value for b in self.brows if b.data.shape_keys and 'mad' in b.data.shape_keys.key_blocks]
+        return dict(smile=kb['smile'].value, open=kb['open'].value, oh=kb['oh'].value, frown=kb['frown'].value, grin=kb['grin'].value,
+                    brow=min(bh.values()), cock=(bh.get('R', 0.0) - bh.get('L', 0.0)) / self.COCK_B, side=kb['side_R'].value - kb['side_L'].value,
+                    lid=lid, worry=self._brow_key('worry'), mad=min(mads) if mads else 0.0, squint=max(0.0, (lo - lid * 0.6) / 0.8))
+
+    def say(self, keys, key='open'):
+        for t, v in keys: self._face(t, **{key: v})
+
+    def blink(self, t, dur=0.2):
+        self._blinks.append(t)
+        for s in 'LR':
+            up, lo = self.EYE[s + 'up'], self.EYE[s + 'lo']
+            self.sc.frame_set(F(t - dur / 2)); u0, l0 = up.rotation_euler.x, lo.rotation_euler.x         # the lids as they were
+            for tt, (uu, ll) in ((t - dur / 2, (u0, l0)), (t, (math.radians(25), math.radians(-10))), (t + dur / 2, (u0, l0))):   # the lids overlap at the centre: shut
+                up.rotation_euler.x = uu; lo.rotation_euler.x = ll
+                up.keyframe_insert('rotation_euler', frame=F(tt), index=0); lo.keyframe_insert('rotation_euler', frame=F(tt), index=0)
+        self._end = max(self._end, t + dur)
+
+    def _aim_eyes(self):
+        """every look_at's pupils, solved per eye on the FINAL body (after the neck layer and the hand re-solve). The
+        first version split the look's planned angles between head and eyes from a point 12 cm above the head bone: a
+        close target was missed by 25 deg (each eye sees it from its own side) and a far one was made WORSE by the
+        eyes (1 deg off with them still, 6 with them moving). Clamped to EYE_YAW / EYE_PITCH, so the pupils stay in
+        the glasses."""
+        for t, bl, tgt, k in sorted(self._eye_looks, key=lambda x: x[0]):
+            if F(t) in self._gaze_calls[k:]: continue              # a shot keyed the pupils itself there, after this look
+            self.sc.frame_set(F(t)); bpy.context.view_layer.update()
+            for s in 'LR':
+                g = self.EYE[s + 'gaze']
+                P = g.matrix_world @ g.matrix_basis.inverted()           # its parent's frame, bone-parented or not
+                v = (P.to_3x3().normalized().inverted() @ (tgt - g.matrix_world.translation)).normalized()
+                # rotation_euler (-dz, 0, dx) takes the rest pupil (-Y) to (cos dz sin dx, -cos dz cos dx, sin dz)
+                dz = max(-self.EYE_PITCH, min(self.EYE_PITCH, math.degrees(math.asin(max(-1.0, min(1.0, v.z))))))
+                dx = max(-self.EYE_YAW, min(self.EYE_YAW, math.degrees(math.atan2(v.x, -v.y))))
+                if not self._has_keys(g, 'rotation_euler'): g.keyframe_insert('rotation_euler', frame=F(max(0.0, t - bl)))
+                g.rotation_euler = (math.radians(-dz), 0, math.radians(dx)); g.keyframe_insert('rotation_euler', frame=F(t))
+
+    def gaze(self, t, dx, dz, blend=0.15):
+        """the pupils turn dx degrees (positive = his right) and dz up, on their spheres"""
+        self._gaze_calls.append(F(t))
+        for s in 'LR':
+            g = self.EYE[s + 'gaze']
+            if not self._has_keys(g, 'rotation_euler'): g.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))   # hold the rest gaze until now
+            g.rotation_euler = (math.radians(-dz), 0, math.radians(dx)); g.keyframe_insert('rotation_euler', frame=F(t))   # +X turns the -Y pupil DOWN, so up is -dz (it was +dz: 'look down' rolled his eyes up out of his glasses)
+        self._end = max(self._end, t)
+
+    def breathe(self, t0, t1, amp=1.5, period=3.2):
+        f0, f1 = F(t0), F(t1)
+        for f in range(f0, f1 + 1, 3):
+            t = (f - 1) / FPS; a = amp * math.sin(2 * math.pi * (t - t0) / period)
+            self._k('chest', t, rot=(-a * 0.6, 0, 0)); self._k('spine', t, rot=(a * 0.3, 0, 0))
+
+    # ---------------------------------------------------------------- locomotion
+    def turn_to(self, rot_deg, t0, t1, lift=0.022):
+        """turn on the spot by STEPPING: each foot holds its spot, lifts, and is put down under the new facing (the
+        farther foot first, the other overlapping it), the body easing round and dipping a little as it shifts"""
+        p, y0 = self._obj_loc(t0); y1 = math.radians(rot_deg)
+        while y1 - y0 > math.pi: y1 -= 2 * math.pi
+        while y1 - y0 < -math.pi: y1 += 2 * math.pi
+        z0 = p.z
+        self.sc.frame_set(F(t0)); M = self.arm.matrix_world
+        start = {s: M @ self.pb[f'shin.{s}'].tail for s in 'LR'}
+        def under(yaw, s):
+            c, sn = math.cos(yaw), math.sin(yaw); j = self.J[s]['an'] * SCALE
+            return Vector((p.x + c * j.x - sn * j.y, p.y + sn * j.x + c * j.y, j.z))
+        end = {s: under(y1, s) for s in 'LR'}
+        first = max('LR', key=lambda s: (start[s] - end[s]).length)
+        win = {first: (0.0, 0.6), ('R' if first == 'L' else 'L'): (0.4, 1.0)}
+        legL = sum(self.LEG) * SCALE; hipz = self.J['L']['hip'].z * SCALE
+        for f in range(F(t0), F(t1) + 1):
+            t = (f - 1) / FPS; u = (t - t0) / max(1e-6, t1 - t0)
+            yaw = y0 + (y1 - y0) * ease(u)
+            feet = {}
+            for s in 'LR':
+                a, b = win[s]; v = min(1.0, max(0.0, (u - a) / (b - a)))
+                pos = start[s].lerp(end[s], ease(v)); pos.z = start[s].z + (end[s].z - start[s].z) * v + lift * math.sin(math.pi * v)
+                feet[s] = pos
+            loc = Vector((p.x, p.y, z0 + (SOFT_Z - z0) * ease(u) - 0.006 * math.sin(math.pi * u)))
+            c, sn = math.cos(yaw), math.sin(yaw)
+            for s in 'LR':
+                h = self.J[s]['hip'] * SCALE; hip = Vector((p.x + c * h.x - sn * h.y, p.y + sn * h.x + c * h.y, loc.z + hipz))
+                horiz = (Vector((feet[s].x, feet[s].y, 0)) - Vector((hip.x, hip.y, 0))).length
+                need = feet[s].z + math.sqrt(max(0.0, (LEG_USE * legL) ** 2 - horiz ** 2)) - hipz
+                if need < loc.z: loc.z = need
+            self.arm.location = loc; self.arm.rotation_euler.z = yaw
+            self.arm.keyframe_insert('location', frame=f); self.arm.keyframe_insert('rotation_euler', frame=f)
+            self._end = max(self._end, t)
+            bpy.context.view_layer.update()
+            for s in 'LR': self._leg_ik(s, feet[s], t)
+
+    def _plant_feet_here(self, t, lift=(0.0, 0.0)):
+        """both feet under the body at the current pose (standing)"""
+        self.sc.frame_set(F(t)); M = self.arm.matrix_world
+        for s, lf in (('L', lift[0]), ('R', lift[1])):
+            an = M @ self.J[s]['an']; an.z = self.J[s]['an'].z * SCALE + lf
+            self._leg_ik(s, an, t)
+
+    def walk_to(self, target, t0, t1, step=None, bob=0.005, lift=0.015, lean=5.0, stance=0.6, ramp=0.35, pushing=False):
+        """procedural walk for a short-legged character: SHORT QUICK steps (no lunge, no crouch), a 60% stance with
+        heel strike and toe-off roll, the hip high at mid-stance, the pelvis turning with the leg and the shoulders
+        held square against it (square when pushing), a lean into the travel, and an eased start and stop."""
+        p0, yaw0 = self._obj_loc(t0)
+        tgt = Vector((target[0], target[1], 0)); d = tgt - p0; dist = d.length
+        if dist < 1e-4: return t1
+        dirn = d.normalized(); yaw = math.atan2(dirn.x, -dirn.y)
+        self._kobj(t0, loc=p0, rot=yaw0)
+        legL = sum(self.LEG) * SCALE
+        L = step if step else 0.75 * legL                   # metres per step: 0.62 leg length with a 3 cm lift read as a high-knee scurry; 0.75 with 1.5 cm is a walk
+        T = t1 - t0; ra = min(ramp, T / 3)
+        vmax = dist / (T - ra)                              # trapezoid speed: ramps of `ra` at both ends
+        def s_of(t):
+            u = t - t0
+            if u <= 0: return 0.0
+            if u < ra: return vmax * u * u / (2 * ra)
+            if u < T - ra: return vmax * (ra / 2 + (u - ra))
+            if u < T: w = T - u; return dist - vmax * w * w / (2 * ra)
+            return dist
+        right = Vector((math.cos(yaw), math.sin(yaw), 0)); hipz = self.J['L']['hip'].z * SCALE
+        anz = self.J['L']['an'].z * SCALE
+        self.walk_slide = []; self.walk_drop = 0.0
+        # the gait starts at L's mid-stance with R passing it (feet side by side at rest) and ends in double support:
+        # dist = (k + 0.5) steps, so the last foot lands as the body stops
+        k = max(1, round(dist / L - 0.5)); L = dist / (k + 0.5)
+        def planted(o, jj):
+            return p0 + dirn * ((2 * jj - o) * L)
+        for f in range(F(t0), F(t1) + 1):
+            t = (f - 1) / FPS; sdist = s_of(t); ph = sdist / L + stance
+            yaw_now = yaw0 + (yaw - yaw0) * ease((t - t0) / 0.2) if t - t0 < 0.2 else yaw
+            loc = p0 + dirn * sdist
+            moving = 0.0 if sdist >= dist - 1e-4 or sdist <= 1e-4 else min(1.0, (t - t0) / ra, max(0.0, (t1 - t) / ra))
+            started = min(1.0, sdist / (0.25 * L))
+            loc.z = -bob * moving * (1 - abs(math.sin(math.pi * (ph - (stance - 0.5)))))
+            feet = {}; sway = 0.0
+            for s, o in (('L', 0.0), ('R', 1.0)):
+                php = ph + o; j = math.floor(php / 2); psi = php / 2 - j
+                lat = right * self.J[s]['hip'].x * SCALE
+                if psi < stance:
+                    base = planted(o, j) + lat; fz = 0.0; u = psi / stance
+                    # heel strike settles flat by 15% of stance; heel peels off from 70%
+                    pitch = 12 * (1 - ease(u / 0.15)) if u < 0.15 else (-16 * ease((u - 0.7) / 0.3) if u > 0.7 else 0.0)
+                    if psi < 0.5: sway += (1 if s == 'R' else -1)
+                else:
+                    u = (psi - stance) / (1 - stance); a, b = planted(o, j) + lat, planted(o, j + 1) + lat
+                    travel = (b - a).length > 1e-3
+                    base = a.lerp(b, ease(u)); fz = lift * started * math.sin(math.pi * u) * (1 if travel else 0)
+                    pitch = (-16 * (1 - ease(u / 0.5)) + 12 * ease((u - 0.5) / 0.5)) if travel else 0.0
+                pitch *= moving if moving > 0 else 0.0
+                ankle = self._foot_ankle(Vector((base.x, base.y, anz + fz)), dirn, pitch)
+                feet[s] = (ankle, psi < stance, base, pitch)
+            # the hip drops only as much as a reaching leg truly needs (short steps: rarely)
+            for s in 'LR':
+                lat = right * self.J[s]['hip'].x * SCALE
+                hip = loc + lat + Vector((0, 0, hipz)); ank = feet[s][0]
+                horiz = (Vector((ank.x, ank.y, 0)) - Vector((hip.x, hip.y, 0))).length
+                need = ank.z + math.sqrt(max(0.0, (LEG_USE * legL) ** 2 - horiz ** 2)) - hipz
+                if need < loc.z: self.walk_drop = max(self.walk_drop, loc.z - need); loc.z = need
+            cyc = math.cos(math.pi * ph)                    # +1 at the left heel strike: the left leg is forward
+            self.arm.location = loc; self.arm.rotation_euler.z = yaw_now
+            self.arm.keyframe_insert('location', frame=f); self.arm.keyframe_insert('rotation_euler', frame=f)
+            # pelvis turns with the forward leg and rolls toward the swing side; spine and chest undo the turn so the
+            # shoulders stay square (they hold the cart); the lean rises with the speed
+            pel = 6.0 * cyc * moving; roll = 2.5 * math.sin(math.pi * ph) * moving
+            lean_now = lean * moving
+            self._k('root', t, rot=(0, pel, roll))
+            sq = 1.0 if pushing else 0.7
+            self._k('spine', t, rot=(lean_now * 0.6, -pel * 0.5 * sq, -roll * 0.6))
+            self._k('chest', t, rot=(lean_now * 0.4, -pel * 0.5 * sq, -roll * 0.4))
+            bpy.context.view_layer.update()
+            for s in 'LR':
+                ankle, st, base, pitch = feet[s]
+                self._leg_ik(s, ankle, t, pitch)
+                self.walk_slide.append((f, s, st, tuple(base)))
+            # arms swing opposite the legs (a grip keys them afterwards when pushing); the head lags the bob
+            a = 16 * cyc * moving
+            self._k('arm.L', t, rot=(a, 0, 0)); self._k('arm.R', t, rot=(-a, 0, 0))   # +X swings an arm BACK: the arm opposite the forward leg leads
+            self._k('fore.L', t, rot=(-14, 0, 0)); self._k('fore.R', t, rot=(-14, 0, 0))
+            self._k('neck', t, rot=(-lean_now * 0.7 + 1.6 * moving * math.cos(2 * math.pi * (ph - (stance - 0.5))), 0, 0))
+        self._end = max(self._end, t1)
+        return t1
+
+    def foot_slide(self):
+        """max and mean planted-foot movement per frame in mm (stance frames only), from the last walk_to"""
+        import collections
+        last = {}; mv = []
+        for f, s, stance, foot in self.walk_slide:
+            if stance and s in last and last[s][0] == f - 1 and last[s][2]: mv.append((Vector(foot) - Vector(last[s][1])).length * 1000)
+            last[s] = (f, foot, stance)
+        return (round(max(mv), 2), round(sum(mv) / len(mv), 2)) if mv else (0, 0)
+
+    # ---------------------------------------------------------------- acts
+    def act(self, name, t0, dur=0.3, hold=0.5, side='R'):
+        M = self.arm.matrix_world; fw = self.forward(); right = Vector((math.cos(self.arm.rotation_euler.z), math.sin(self.arm.rotation_euler.z), 0))
+        sh = {s: M @ self.J[s]['sh'] for s in 'LR'}
+        t1, t2 = t0 + dur, t0 + dur + hold; t3 = t2 + dur
+        if name in ('shrug', 'whoa'):
+            # caaleb 2026-11-12, of a shrug that held the hands up by the shoulders: "inverted ... a normal person
+            # would ... their arms would be bent downwards at a 45-ish degree angle ... hands pointed outwards".
+            # FK SOLVED to directions (tools/data3d/pose_dirs in the commit): upper arm down and a little out, forearm
+            # out to the side, a little forward, 45 degrees BELOW horizontal; palms up for a shrug, open toward the
+            # lens for a whoa. FK, not IK: IK Euler triples like (66, -103, -52) flail on the way back to the hang.
+            for s, sg in (('L', -1), ('R', 1)):
+                # 11-12 judge: the first shrug (forearms out sideways) read at phone size as "arms held straight out,
+                # palms down, a T-pose spread". A shrug tucks the elbows and brings the forearms FORWARD and out.
+                if name == 'shrug': arm = (-4, 0, -sg * 20); fore = (-18, 0, -sg * 48); hand = (-10, sg * -95, 0)
+                else:               arm = (-16, 0, -sg * 18); fore = (-20, 0, -sg * 40); hand = (-15, sg * -20, -sg * 25)
+                for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN
+                self._k(f'arm.{s}', t1, rot=arm); self._k(f'fore.{s}', t1, rot=fore); self._k(f'hand.{s}', t1, rot=hand)
+                self._k(f'arm.{s}', t2, rot=(arm[0] - 2, 0, arm[2] * 1.15)); self._k(f'fore.{s}', t2, rot=(fore[0] - 3, 0, fore[2] * 1.1)); self._k(f'hand.{s}', t2, rot=hand)
+                for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t3, rot=self.RELAXED[bn])
+                lift = -30 if name == 'shrug' else -6
+                self._k(f'clav.{s}', t0, rot=(0, 0, 0)); self._k(f'clav.{s}', t1, rot=(0, 0, sg * lift)); self._k(f'clav.{s}', t2, rot=(0, 0, sg * lift)); self._k(f'clav.{s}', t3, rot=(0, 0, 0))
+            self.expression('wry' if name == 'shrug' else 'surprised', t0, t2)
+            if name == 'shrug':      # the head goes with it: tipped to one side and a little down
+                self._k('neck', t0, rot=self._pose_now('neck', t0)); self._k('neck', t1, rot=(6, 9, 0)); self._k('neck', t2, rot=(6, 9, 0)); self._k('neck', t3, rot=(0, 0, 0))
+        elif name == 'wave':
+            s = side; sg = 1 if s == 'R' else -1
+            # 11-12 judge: a wave at shoulder height "doesn't read". The hand goes up BESIDE THE HEAD, palm to the lens,
+            # the elbow still bent, and it swings wide enough to see on a phone.
+            up = sh[s] + right * sg * 0.15 + fw * 0.05 + Vector((0, 0, 0.25))
+            self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t0, 0.3)
+            self._arm_ik(s, up, t1, 1.2)
+            n = max(2, int(hold / 0.3)); self._k(f'hand.{s}', t1, rot=(0, 0, 0))
+            for i in range(n):
+                tt = t1 + (i + 0.5) * hold / n
+                self._arm_ik(s, up + right * sg * (0.05 if i % 2 else -0.05), tt, 1.2); self._k(f'hand.{s}', tt, rot=(0, 0, sg * (40 if i % 2 else -40)))
+            self._arm_ik(s, up, t2, 1.2); self._k(f'hand.{s}', t2, rot=(0, 0, 0))
+            self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t3, 0.3)
+            self.expression('happy', t0, t2)
+        elif name == 'thumbs_up':
+            s = side; sg = 1 if s == 'R' else -1
+            p = sh[s] + fw * 0.17 + right * sg * 0.02 + Vector((0, 0, -0.02))
+            self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t0, 0.3); self._k(f'hand.{s}', t0, rot=(0, 0, 0))
+            self._arm_ik(s, p, t1, 0.4); self._k(f'hand.{s}', t1, rot=(-85, 0, sg * 15))     # the fist turns so the thumb points UP
+            self._arm_ik(s, p, t2, 0.4); self._k(f'hand.{s}', t2, rot=(-85, 0, sg * 15))
+            self._arm_ik(s, sh[s] + right * sg * 0.04 + Vector((0, 0, -0.17)), t3, 0.3); self._k(f'hand.{s}', t3, rot=(0, 0, 0))
+            self.expression('happy', t0, t2)
+        else:
+            raise KeyError(name)
+        self._end = max(self._end, t3)
+        return t3
+
+    # ---------------------------------------------------------------- acting
+    # caaleb 2026-11-13, of the face-only pass: "So that was just smiles and frowns". On a phone the BODY carries the
+    # feeling: how the ears hang, where the head goes, what the shoulders do, which way he leans. Each performance is a
+    # pose of the whole body (degrees, local bone axes: x pitches forward, z bends sideways; clav z lifts the shoulder)
+    # reached the way an animator reaches it: a small ANTICIPATION the other way, an OVERSHOOT past the pose, a SETTLE
+    # into it, a HOLD with a little life in it, then back. The face expression of the same name rides on top.
+    PERFORM = {
+        #             spine        chest        neck          head          clav (sg*z)  ears (x, out)   arms        face        speed
+        'happy':      dict(spine=(-3, 0, 0), chest=(-2, 0, 0), neck=(0, 6, 0), head=(-4, 8, 0), clav=-6, ears=(-12, -6), arms='open', face='happy', speed=1.0, bounce=0.02),
+        'surprised':  dict(spine=(-7, 0, 0), chest=(-5, 0, 0), neck=(-3, 0, 0), head=(-3, 0, 0), clav=-14, ears=(-22, -4), arms='whoa', face='surprised', speed=1.5),
+        'alarmed':    dict(spine=(-10, 0, 0), chest=(-6, 0, 0), neck=(-3, 0, 0), head=(-2, 0, 0), clav=-18, ears=(-28, -2), arms='whoa', face='alarmed', speed=1.7),
+        'sad':        dict(spine=(10, 0, 0), chest=(8, 0, 0), neck=(8, 0, 0), head=(7, -6, 0), clav=10, ears=(35, 30), arms='hang', face='sad', speed=0.6),
+        'worried':    dict(spine=(4, 0, 0), chest=(3, 0, 0), neck=(8, 0, 0), head=(6, 5, 0), clav=-12, ears=(20, 14), arms='clasp', face='worried', speed=0.9),
+        'determined': dict(spine=(6, 0, 0), chest=(4, 0, 0), neck=(4, 0, 0), head=(6, 0, 0), clav=-4, ears=(28, -4), arms='fists', face='determined', speed=1.2),
+        'wry':        dict(spine=(0, 0, 3), chest=(0, 0, 2), neck=(4, 10, 0), head=(2, 10, 0), clav=-8, ears=(8, 18), arms='shrug', face='wry', speed=0.9),
+    }
+    ARMS = {   # FK arm poses per side sign sg (L = -1): (arm, fore, hand)
+        'hang':  lambda sg: ((6, 0, sg * 3), (-10, 0, 0), (0, 0, 0)),
+        'open':  lambda sg: ((-10, 0, -sg * 14), (-30, 0, -sg * 20), (-10, sg * -40, 0)),
+        'whoa':  lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-15, sg * -20, -sg * 25)),
+        'clasp': lambda sg: ((-18, 0, sg * 10), (-62, 0, sg * 22), (0, 0, 0)),
+        'fists': lambda sg: ((-8, 0, -sg * 6), (-48, 0, sg * 8), (-20, 0, 0)),
+        'shrug': lambda sg: ((-4, 0, -sg * 20), (-18, 0, -sg * 48), (-10, sg * -95, 0)),
+    }
+
+    def perform(self, name, t0, hold=1.0, arms=True, pace=1.0):
+        """the whole body acts `name` from t0: anticipation, overshoot, settle, hold (with life), release.
+        pace < 1 plays it slower (a hit that measures as a whip from a hanging arm). Returns the time he is back at rest."""
+        P_ = self.PERFORM[name]; sp = P_['speed'] * pace
+        ta = t0 + 0.12 / sp                 # anticipation: a small move the other way
+        th = ta + 0.22 / sp                 # the hit: past the pose
+        ts = th + 0.2 / sp                  # settled
+        te = ts + hold                      # end of the hold
+        tr = te + 0.4 / sp                  # back at rest
+        def key(bone, rot):
+            now = self._pose_now(bone, t0)
+            self._k(bone, t0, rot=now)
+            self._k(bone, ta, rot=tuple(n - 0.25 * (r - n) for n, r in zip(now, rot)))
+            self._k(bone, th, rot=tuple(n + 1.18 * (r - n) for n, r in zip(now, rot)))
+            self._k(bone, ts, rot=rot)
+            self._k(bone, te, rot=tuple(n + 0.92 * (r - n) for n, r in zip(now, rot)))   # it eases off a touch while held
+            self._k(bone, tr, rot=now)
+        for b in ('spine', 'chest', 'neck', 'head'): key(b, P_[b])
+        for sd, sg in (('L', -1), ('R', 1)):
+            key(f'clav.{sd}', (0, 0, sg * P_['clav']))
+            ex, eo = P_['ears']
+            if f'ear.{sd}' in self.pb: key(f'ear.{sd}', (ex, 0, sg * eo))
+            if arms and P_.get('arms'):
+                a_, f_, h_ = self.ARMS[P_['arms']](sg)
+                for bn, r in ((f'arm.{sd}', a_), (f'fore.{sd}', f_), (f'hand.{sd}', h_)): key(bn, r)
+        if P_.get('bounce'):                 # happy: two little hops of the whole body in the hold
+            for i in range(2):
+                tb = ts + i * 0.32
+                self._k('root', tb, rot=(0, 0, 0)); self._k('root', tb + 0.16, rot=(-3, 0, 0)); self._k('root', tb + 0.32, rot=(0, 0, 0))
+        if 'ear.L' in self.pb:               # an ear flick on the hit: the ears lag, like soft things do
+            for sd, sg in (('L', -1), ('R', 1)):
+                ex, eo = P_['ears']
+                self._k(f'ear.{sd}', th + 0.08, rot=(ex * 1.3, 0, sg * eo * 1.3))
+        self.expression(P_['face'], ta, te, blend=0.18 / sp)
+        self.alive(ts, te, seed=len(name))
+        self._end = max(self._end, tr)
+        return tr
+
+    # caaleb 2026-11-13, of the acting clip: "had a bit of a dr.Katz effect". Measured: in every HOLD the body moved
+    # 0.2 (frame diff) -- frozen -- while the mouth flapped open/shut every 0.07 s. A stiff body with a flapping mouth is
+    # exactly that look. A person holding a feeling still breathes, drifts and shifts; a person talking talks with the
+    # head (a nod on the stressed word, a turn between phrases) and the brows, in syllables of uneven length with pauses.
+    def alive(self, t0, t1, seed=0, amp=1.8):
+        """a held pose keeps living: breath in the chest, the head drifting and tilting, layered ON the pose"""
+        import random
+        if t1 - t0 < 0.4: return
+        rnd = random.Random(seed); ph = rnd.random() * 6.28
+        ts = [t0 + k * 0.4 for k in range(1, int((t1 - t0) / 0.4))]
+        base = {b: [self._pose_now(b, t) for t in ts] for b in ('spine', 'chest', 'neck', 'head')}
+        for i, t in enumerate(ts):
+            u = t - t0; br = math.sin(2 * math.pi * u / 2.8 + ph)
+            dh = (amp * 2.2 * math.sin(2 * math.pi * u / 2.1 + ph * 1.7), amp * 3.0 * math.sin(2 * math.pi * u / 3.3 + ph), amp * 1.6 * math.sin(2 * math.pi * u / 2.6 + ph * 0.6))
+            off = {'spine': (0, 0, 1.2 * amp * math.sin(2 * math.pi * u / 3.7 + ph * 1.3)),          # a slow weight shift
+                   'chest': (-1.6 * br * amp, 0, 0), 'neck': (0.8 * br * amp, dh[1] * 0.4, 0), 'head': dh}
+            for b in base:
+                self._k(b, t, rot=tuple(a + o for a, o in zip(base[b][i], off[b])))
+
+    def talk(self, t0, t1, seed=0, rate=4.3, energy=1.0, head=True):
+        """he SAYS something from t0 to t1: syllables of uneven length and size in phrases of 3-7 with a breath between,
+        a nod (and the brows up) on each phrase's stressed syllable, the head turning a little between phrases.
+        The mouth is layered on whatever face he wears (it keys only 'open' and 'brow')."""
+        import random
+        rnd = random.Random(seed + 7)
+        syl = syllables(t0, t1, seed, rate, energy)
+        kb = self.lips.data.shape_keys.key_blocks
+        def k_open(tt, v):
+            self._face_open = True; kb['open'].value = v; kb['open'].keyframe_insert('value', frame=F(tt))
+        k_open(t0 - 0.05, 0.0)
+        for tt, d, v, st in syl:
+            k_open(tt + d * 0.35, v); k_open(tt + d * 0.85, v * 0.18)
+        k_open(min(t1, syl[-1][0] + syl[-1][1]) + 0.08 if syl else t1, 0.0)
+        if not head: return
+        stresses = [tt for tt, d, v, st in syl if st]
+        base = {b: {tt: self._pose_now(b, tt) for tt in stresses for tt in (tt - 0.1, tt + 0.08, tt + 0.38)} for b in ('neck', 'head')}
+        for k_, tt in enumerate(stresses):
+            turn = (rnd.uniform(-4, 4) if k_ else 0.0)
+            for b, amt in (('neck', 1.2), ('head', 3.2)):
+                b0 = base[b]
+                self._k(b, tt - 0.1, rot=b0[tt - 0.1])
+                self._k(b, tt + 0.08, rot=(b0[tt + 0.08][0] + amt * energy, b0[tt + 0.08][1] + turn * 0.5, b0[tt + 0.08][2]))   # the nod lands ON the word
+                self._k(b, tt + 0.38, rot=(b0[tt + 0.38][0], b0[tt + 0.38][1] + turn, b0[tt + 0.38][2]))
+            for br in self.brows:                 # the brows lift on the stressed word
+                z0 = br.location.z; self.sc.frame_set(F(tt - 0.1)); z0 = br.location.z
+                y0 = br.location.y; br.keyframe_insert('location', frame=F(tt - 0.1))
+                br.location.z = z0 + 0.012; br.location.y = y0 + 0.011; br.keyframe_insert('location', frame=F(tt + 0.06))
+                br.location.z = z0; br.location.y = y0; br.keyframe_insert('location', frame=F(tt + 0.4))
+        self._end = max(self._end, t1)
+
+    # ---------------------------------------------------------------- end
+    NECK_SPEED = 90.0    # deg/s the neck's look layer may change at most (3 deg a frame): a big look-down takes its time
+
+    def _neck_layer(self, t):
+        """degrees the looks add to the neck's forward bend at time t: each look eases there over its ramp, ending at its t"""
+        v = 0.0
+        for tl, bl, deg in sorted(self._neck_looks, key=lambda x: x[0]):
+            ramp = max(bl, abs(deg - v) / self.NECK_SPEED, 1.0 / FPS)
+            if t >= tl: v = deg; continue
+            if t > tl - ramp: v = v + (deg - v) * ease((t - (tl - ramp)) / ramp)
+            break
+        return v
+
+    def _layer_neck(self, n):
+        """LOOKS BEND THE NECK, ON TOP of everything else that keys it (idle's breath, alive's drift, a performance)"""
+        if not any(abs(d) > 1e-6 for *_, d in self._neck_looks): return
+        path = 'pose.bones["neck"].rotation_euler'
+        ad = self.arm.animation_data
+        fcs = {fc.array_index: fc for fc in (_fcurves(ad.action) if ad and ad.action else []) if fc.data_path == path}
+        base = [[(fcs[i].evaluate(f) if i in fcs else 0.0) for i in range(3)] for f in range(1, n + 1)]
+        pb = self.pb['neck']
+        for f in range(1, n + 1):
+            b = base[f - 1]
+            pb.rotation_euler = (b[0] + math.radians(self._neck_layer((f - 1) / FPS)), b[1], b[2])
+            pb.keyframe_insert('rotation_euler', frame=f)
+
+    def _resolve_hands(self, tol=0.01):
+        """HANDS ARE SOLVED LAST (2026-11-14: a hand keyed on a prop by reach() and then a perform() bending the chest
+        carried the hand off the prop; a story had to remember to call reach() after every body act). Every IK key is
+        remembered with its target; here, after everything is keyed, each one whose hand has drifted more than `tol`
+        off its target (beyond what the solve itself left, e.g. a clamped reach) is solved again on the final body."""
+        todo = []
+        for (s, f), (tgt, eo, err0) in sorted(self._ik_keys.items()):
+            self.sc.frame_set(f)
+            err = ((self.arm.matrix_world @ self.pb[f'fore.{s}'].tail) - tgt).length
+            if err > err0 + tol: todo.append((s, f, tgt, eo, err - err0))   # the drift, not what a clamped reach already missed by
+        if todo:
+            self._resolving = True
+            try:
+                for s, f, tgt, eo, err in todo:
+                    self.sc.frame_set(f); self._arm_ik(s, tgt, (f - 1) / FPS, eo)
+            finally:
+                self._resolving = False
+        self.hands_resolved = (len(todo), max((e for *_, e in todo), default=0.0))
+        if todo:
+            print(f"HANDS: {len(todo)} IK frames had drifted off their targets after a later body move (worst "
+                  f"{self.hands_resolved[1] * 100:.1f} cm): re-solved on the final body", flush=True)
+
+    def finish(self):
+        n = F(self._end)
+        self.sc.frame_start, self.sc.frame_end = 1, max(2, n)
+        self._layer_neck(n)
+        self._resolve_hands()
+        self._aim_eyes()
+        if LIFE: self._live(n)
+        owners = [self.arm, self.lips, self.cavity, self.lips.data.shape_keys] + list(self.brows) + [self.EYE[k] for k in self.EYE if k[-2:] in ('up', 'lo') or k.endswith('gaze')]
+        for o in owners:
+            ad = getattr(o, 'animation_data', None)
+            if ad and ad.action:
+                for fc in _fcurves(ad.action):
+                    for kp in fc.keyframe_points: kp.interpolation = 'BEZIER'; kp.easing = 'AUTO'
+        if SMOOTH: self.smooth(n)
+        self.sc.frame_set(1)
+        return n
+
+    # caaleb 2026-11-14, of the saffron short: "Data facial expressions and the like, making him feel like a real
+    # character in a real world instead of just like a series of animations." Measured on that cut: one or two hand-
+    # placed blinks a shot (28.8 s, 7 blinks; a person blinks every 2-6 s and on every big turn of the head) and pupils
+    # that never moved except when a look_at moved them, so between scripted moves his eyes were painted on. A living
+    # face is never still: the eyes dart between points of what they look at, and the lids come down as the head turns.
+    BLINK_GAP = (2.2, 4.8)      # seconds between his own blinks
+    BLINK_TURN = 18.0           # degrees of head turn that bring a blink with them
+    SACCADE = (3.0, 2.0)        # degrees each way the pupils dart (yaw, pitch) while he holds a look
+    SACCADE_GAP = (0.45, 1.4)   # seconds between darts
+
+    def life_plan(self, n, seed=None):
+        """(blinks, darts): the blink times and the (t, dx, dz) pupil offsets the life pass will add, from the shot's own
+        looks and blinks. Pure: tests read it without a render."""
+        import random
+        rnd = random.Random(11 if seed is None else seed)
+        T = (n - 1) / FPS
+        taken = sorted(self._blinks)
+        blinks = []
+        def free(t, gap=0.6):
+            return 0.25 < t < T - 0.25 and all(abs(t - b) >= gap for b in taken + blinks)
+        prev = None
+        for t, bl, yaw, tilt in sorted(self._turns):
+            if prev is not None and abs(yaw - prev[0]) + abs(tilt - prev[1]) >= self.BLINK_TURN:
+                tb = t - bl * 0.6                          # the lids drop as the head starts to go
+                if free(tb, 0.4): blinks.append(tb)
+            prev = (yaw, tilt)
+        t = rnd.uniform(0.6, 1.8)
+        while t < T - 0.3:
+            if free(t): blinks.append(t)
+            t += rnd.uniform(*self.BLINK_GAP)
+        darts = []; t = rnd.uniform(0.3, 0.9)
+        while t < T:
+            if rnd.random() < 0.35: darts.append((t, 0.0, 0.0))              # back to the point he is looking at
+            else: darts.append((t, rnd.uniform(-1, 1) * self.SACCADE[0], rnd.uniform(-1, 1) * self.SACCADE[1]))
+            t += rnd.uniform(*self.SACCADE_GAP)
+        return sorted(blinks), darts
+
+    def _live(self, n):
+        """THE LIFE PASS, on every shot in finish(): his own blinks (a cadence, and one with each big head turn) and
+        small saccades of the pupils layered on whatever the shot keyed. A dart is held, never drifted, and none lands
+        while the gaze is already travelling (a look in progress)."""
+        blinks, darts = self.life_plan(n)
+        lids = [(self.EYE[s + k], k) for s in 'LR' for k in ('up', 'lo')]
+        lidv = {}
+        for o, _ in lids:
+            fc = next((c for c in _fcurves(o.animation_data.action) if c.data_path == 'rotation_euler' and c.array_index == 0), None) \
+                if o.animation_data and o.animation_data.action else None
+            lidv[o.name] = (fc, [fc.evaluate(f) if fc else o.rotation_euler.x for f in range(1, n + 1)])
+        dur = 0.2
+        for tb in blinks:
+            fa, fm, fb = F(tb - dur / 2), F(tb), F(tb + dur / 2)
+            if fa < 1 or fb > n: continue
+            for o, k in lids:
+                v = lidv[o.name][1]
+                shut = math.radians(25) if k == 'up' else math.radians(-10)      # as blink(): the lids overlap, shut
+                for f, val in ((fa, v[fa - 1]), (fm, shut), (fb, v[fb - 1])):
+                    o.rotation_euler.x = val; o.keyframe_insert('rotation_euler', frame=f, index=0)
+        for s in 'LR':
+            g = self.EYE[s + 'gaze']
+            if not self._has_keys(g, 'rotation_euler'): g.keyframe_insert('rotation_euler', frame=1)
+            fcs = {c.array_index: c for c in _fcurves(g.animation_data.action) if c.data_path == 'rotation_euler'}
+            base = {i: [fcs[i].evaluate(f) for f in range(1, n + 1)] for i in (0, 2)}
+            off = [(0.0, 0.0)] * n; cur = (0.0, 0.0); j = 0
+            for f in range(1, n + 1):
+                t = (f - 1) / FPS
+                while j < len(darts) and darts[j][0] <= t:
+                    cur = (darts[j][1], darts[j][2]); j += 1
+                moving = f > 1 and (abs(base[0][f - 1] - base[0][f - 2]) + abs(base[2][f - 1] - base[2][f - 2])) > math.radians(0.4)
+                if moving: cur = (0.0, 0.0)
+                off[f - 1] = cur
+            for i in (0, 2):
+                fc = fcs[i]
+                fc.keyframe_points.clear(); fc.keyframe_points.add(n)
+                for k in range(n):
+                    dx, dz = off[k]
+                    lim = math.radians(self.EYE_YAW if i == 2 else self.EYE_PITCH)
+                    v = base[i][k] + (math.radians(dx) if i == 2 else -math.radians(dz))
+                    kp = fc.keyframe_points[k]; kp.co = (k + 1, max(-lim, min(lim, v))); kp.interpolation = 'LINEAR'
+                fc.update()
+
+    def smooth(self, n):
+        """THE TWITCH FILTER (caaleb 2026-11-13, of the banana short: "why does data tweak out"). Measured with
+        store/twitch.py: arms whipping 26-30 deg in ONE frame (900 deg/s) where a grip key met a sparse pose key, the
+        torso stopping dead from 5.6 deg/frame to 0, and the smile dropping 0.6 -> 0.2 between two frames. Every body
+        channel and face control is baked per frame and low-passed (a Gaussian, wider on the torso and head than on
+        the hands, angle jumps unwrapped first), so every move eases in and out the way a person's does. Blinks (the
+        lids) keep their speed. The staging, anatomy and clipping checks run after this, on what is rendered."""
+        if n < 4: return
+        body = self.arm.animation_data.action if self.arm.animation_data else None
+        jobs = []
+        if body:
+            for fc in _fcurves(body):
+                dp = fc.data_path
+                if not dp.startswith('pose.bones['): continue
+                bone = dp.split('"')[1]
+                sig = SMOOTH_TORSO if bone.startswith(('head', 'neck', 'spine', 'chest', 'hips', 'root', 'clav')) else SMOOTH_LIMB
+                jobs.append((fc, sig, 'rotation' in dp))
+        sk = self.lips.data.shape_keys
+        if sk.animation_data and sk.animation_data.action:
+            jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(sk.animation_data.action)]
+        for b in self.brows:
+            k = b.data.shape_keys if b.type == 'CURVE' else None
+            if k and k.animation_data and k.animation_data.action:
+                jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(k.animation_data.action)]
+        for o in [self.cavity] + list(self.brows):
+            if o.animation_data and o.animation_data.action:
+                jobs += [(fc, SMOOTH_FACE, False) for fc in _fcurves(o.animation_data.action)]
+        bones = {}
+        for fc, sig, is_angle in jobs:
+            if is_angle and fc.data_path.endswith('rotation_euler'):
+                bones.setdefault(fc.data_path.split('"')[1], (sig, {}))[1][fc.array_index] = fc
+        for bname, (sig, fcs) in bones.items():           # rotations are smoothed as ROTATIONS (quaternions), so a
+            if len(fcs) < 3 or all(len(fc.keyframe_points) < 2 for fc in fcs.values()): continue   # turn is never averaged channel by channel through a flip
+            # between two keys the bone turns the SHORT way (a slerp, eased): Euler channels interpolated one by one
+            # tumble the arm the long way round when an IK key (pb.matrix decomposed) meets a hand-written pose key,
+            # which is the 77-112 deg/frame whip measured as he let go of the rail lever
+            ts = sorted({round(kp.co.x) for fc in fcs.values() for kp in fc.keyframe_points})
+            kq = []
+            for tk in ts:
+                q = Euler([fcs[i].evaluate(tk) for i in range(3)], 'XYZ').to_quaternion()
+                if kq and q.dot(kq[-1]) < 0: q.negate()
+                kq.append(q)
+            qs = []
+            for f in range(1, n + 1):
+                if f <= ts[0]: q = kq[0].copy()
+                elif f >= ts[-1]: q = kq[-1].copy()
+                else:
+                    j = max(i for i in range(len(ts)) if ts[i] <= f)
+                    u = (f - ts[j]) / max(1, ts[j + 1] - ts[j]); q = kq[j].slerp(kq[j + 1], ease(u))
+                if qs and q.dot(qs[-1]) < 0: q.negate()
+                qs.append(q)
+            comps = [_gauss([q[i] for q in qs], sig) for i in range(4)]
+            prev = None; outs = [[], [], []]
+            for k in range(n):
+                q = Quaternion((comps[0][k], comps[1][k], comps[2][k], comps[3][k])).normalized()
+                e = q.to_euler('XYZ', prev) if prev is not None else q.to_euler('XYZ'); prev = e
+                for i in range(3): outs[i].append(e[i])
+            for i in range(3):
+                fc = fcs[i]; fc.keyframe_points.clear(); fc.keyframe_points.add(n)
+                for k in range(n):
+                    kp = fc.keyframe_points[k]; kp.co = (k + 1, outs[i][k]); kp.interpolation = 'LINEAR'
+                fc.update()
+        done = {id(fc) for _, fcs in bones.values() for fc in fcs.values() if len(fcs) >= 3}
+        for fc, sig, is_angle in jobs:
+            if id(fc) in done or len(fc.keyframe_points) < 2: continue
+            v = [fc.evaluate(f) for f in range(1, n + 1)]
+            if is_angle:                                     # unwrap: a 359 -> 1 degree step is 2 degrees, not 358
+                for i in range(1, len(v)):
+                    while v[i] - v[i - 1] > math.pi: v[i] -= 2 * math.pi
+                    while v[i] - v[i - 1] < -math.pi: v[i] += 2 * math.pi
+            out = _gauss(v, sig)
+            fc.keyframe_points.clear()
+            fc.keyframe_points.add(len(out))
+            for i, val in enumerate(out):
+                kp = fc.keyframe_points[i]; kp.co = (i + 1, val); kp.interpolation = 'LINEAR'
+            fc.update()
+
+
+SMOOTH = os.environ.get("TWITCH_FILTER", "1") == "1"
+LIFE = os.environ.get("DATA_LIFE", "1") == "1"      # the life pass (blinks, saccades); 0 only to compare
+SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 1.2   # face 2.0 blurred syllables into a mumble       # Gaussian sigma, in frames at 30 fps
+
+
+def _gauss(v, sig):
+    """a Gaussian low-pass of a per-frame series, the ends held (a shot starts and ends on its own pose)"""
+    r = max(1, int(3 * sig)); w = [math.exp(-0.5 * (k / sig) ** 2) for k in range(-r, r + 1)]
+    n = len(v); out = []
+    for i in range(n):
+        acc = tw = 0.0
+        for k, wk in zip(range(-r, r + 1), w):
+            j = min(n - 1, max(0, i + k)); acc += wk * v[j]; tw += wk
+        out.append(acc / tw)
+    return out
+
+
+def _fcurves(action):
+    """every fcurve of an action, legacy or slotted (Blender 5)"""
+    if hasattr(action, 'fcurves'): return list(action.fcurves)
+    out = []
+    for layer in action.layers:
+        for strip in layer.strips:
+            for cb in strip.channelbags: out.extend(cb.fcurves)
+    return out
+
+
+def syllables(t0, t1, seed=0, rate=4.3, energy=1.0):
+    """a spoken line's syllables: [(t, dur, open, stressed)], in phrases of 3-7 with a breath (0.22-0.4 s, mouth shut)
+    between, each syllable 0.7-1.35 of 1/rate long and its own size, the phrase's stressed one bigger. (The acting
+    clip's flap was every 0.07 s, all one size: caaleb, 2026-11-13, "a bit of a dr.Katz effect".)"""
+    import random
+    rnd = random.Random(seed)
+    syl, t = [], t0
+    while t < t1 - 0.15:
+        n = rnd.randint(3, 7); stress = rnd.randint(0, n - 1)
+        for i in range(n):
+            if t >= t1 - 0.15: break
+            d = (1.0 / rate) * rnd.uniform(0.7, 1.35)
+            v = rnd.uniform(0.28, 0.55) * energy + (0.2 if i == stress else 0.0)
+            syl.append((t, min(d, t1 - t), min(0.85, v), i == stress))
+            t += d
+        t += rnd.uniform(0.22, 0.4)
+    return syl
+
+
+def load(sc):
+    return Data(sc)
+
+
+def arm_bend(data, f0, f1, step=4):
+    """MEASURED: the angle between upper arm and forearm, both arms, over frames (0 = straight)"""
+    worst = 0.0; tot = 0.0; n = 0
+    for f in range(f0, f1 + 1, step):
+        data.sc.frame_set(f); M = data.arm.matrix_world
+        for s in 'LR':
+            A, Fo = data.pb[f'arm.{s}'], data.pb[f'fore.{s}']
+            u = (M @ A.tail - M @ A.head).normalized(); v = (M @ Fo.tail - M @ Fo.head).normalized()
+            a = math.degrees(math.acos(max(-1.0, min(1.0, u.dot(v))))); worst = max(worst, a); tot += a; n += 1
+    return round(worst, 1), round(tot / max(1, n), 1)

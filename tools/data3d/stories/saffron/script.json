@@ -1,0 +1,95 @@
+{
+ "slug": "saffron-hand-picked-3d",
+ "title": "Why Saffron Costs More Than Any Spice On Earth",
+ "voice": "am_fenrir",
+ "note": "The queued story saffron-red-gold-myth, made as the third 3D short. One number at most per beat; the closing says why you care. Every claim is in 'sources' with the source's own wording.",
+ "lines": [
+  "Saffron costs more than any spice on Earth, and it's all picked by hand.",
+  "Each purple crocus holds just three tiny red threads. You need a whole basket of flowers for one pinch.",
+  "Every flower is picked by hand, then every thread is pulled out by hand, for hours on end.",
+  "And it's a race. The flowers open at dawn and start to wilt as the day goes on.",
+  "That tiny jar isn't pricey for the spice. You're paying for the hands. Would you pay it?"
+ ],
+ "draft_windows": [
+  [
+   0.0,
+   5.117917
+  ],
+  [
+   5.117917,
+   13.146167
+  ],
+  [
+   13.146167,
+   17.949375
+  ],
+  [
+   17.949375,
+   21.655583
+  ],
+  [
+   21.655583,
+   28.175125
+  ]
+ ],
+ "sources": [
+  {
+   "claim": "Saffron is the costliest spice",
+   "says": "At US$5,000 per kg or higher, saffron has long been the world's costliest spice by weight.",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "It is picked by hand; the price comes from the labour",
+   "says": "The high retail value of saffron is maintained on world markets because of labour-intensive harvesting methods. Forty hours of labour are needed to pick 150,000 flowers.",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Each crocus holds three red threads (stigmas)",
+   "says": "a style ... branches into three ... Each prong terminates with a vivid crimson stigma",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "A basket of flowers for one pinch (about 150 flowers per gram)",
+   "says": "roughly 150 flowers yield 1 g (1/32 oz) of dry saffron threads",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "The flowers open at dawn and wilt as the day goes on",
+   "says": "after blossoming at dawn, flowers quickly wilt as the day passes. All plants bloom within a window of one or two weeks.",
+   "url": "https://en.wikipedia.org/wiki/Saffron",
+   "publisher": "Wikipedia",
+   "year": 2026
+  }
+ ],
+ "sets": [
+  "store",
+  "crocus_field",
+  "sorting_room",
+  "crocus_field",
+  "store"
+ ],
+ "sets_why": "the shop where you pay, the field where it grows, the room where the threads come out, the field at dawn, back to the shop",
+ "ideas": [
+  "a pile of cash for one tiny jar",
+  "one flower gives up just three red threads",
+  "the clock spins through the hours as he plucks",
+  "one flower dies in seconds right in front of us",
+  "the tiny jar balances a heap of flowers"
+ ],
+ "storyboard": [
+  "1 hook (store): Data behind a low wooden table in the store holds ONE tiny glass jar of red saffron threads up beside his face to us; he sets it down on the table and shoves a big brick of banknote stacks across the table toward it, then a second brick: a wide heap of money next to one tiny jar; he looks back at us, surprised.",
+  "2 threads (crocus_field): waist-up in the field, Data holds ONE crocus in front of his chest and with his other hand pulls its three red threads out one at a time, each up into clear air, keeping them fanned in his fingers; he ends holding up all three and looks at us, amazed: one whole flower, three threads.",
+  "3 by hand (sorting_room): behind a farmhouse table heaped with purple flowers, Data takes flower after flower in one hand and pulls its red threads into a small dish with the other, faster and faster, the spent flowers landing on a pile on his right; on the wall behind him a clock's hands spin round and the window goes from day to night.",
+  "4 race (crocus_field): low among the flowers at dawn: one big open crocus close to the camera wilts brown and flops over in seconds; Data stands behind it watching, then looks up at us, worried.",
+  "5 payoff (store): close on the store table: a big brass balance stands right in front of Data, the tiny jar of red saffron alone on its left pan, which sits low; Data lifts his full basket, tips it over the right pan and a stream of purple flowers falls onto it, heaping, and only then does the beam come level; he sets the empty basket down, raises his open hand to us and grins: that's what you pay for."
+ ],
+ "narration_run": 43502491163
+}
