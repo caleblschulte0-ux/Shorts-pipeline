@@ -27,6 +27,15 @@ percent of artery plaque". Each line is true; none of them is a story.
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import re
 from pathlib import Path
 
@@ -217,7 +226,7 @@ def _script(sc: dict) -> str:
 def _parse(raw) -> dict | None:
     m = re.search(r"\{.*\}", str(raw or ""), re.S)
     try:
-        got = json.loads(m.group(0)) if m else None
+        got = one_object(m.group(0)) if m else None
     except Exception:  # noqa: BLE001
         return None
     return got if isinstance(got, dict) else None

@@ -33,6 +33,15 @@ re-written: they are what already guards a ChatGPT rewrite.
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import re
 
 #: What the brain is told. Kept here so the forge and the render-time
@@ -341,7 +350,7 @@ def _ask(prompt: str, brain) -> list:
         return []
     m = re.search(r"\{.*\}", str(raw), re.S)
     try:
-        hooks = json.loads(m.group(0)).get("hooks") if m else None
+        hooks = one_object(m.group(0)).get("hooks") if m else None
     except Exception:  # noqa: BLE001
         return []
     return [str(h).strip() for h in hooks or [] if str(h).strip()]
@@ -407,7 +416,7 @@ def _ranking(raw, n: int) -> list | None:
     verdict."""
     m = re.search(r"\{.*\}", str(raw or ""), re.S)
     try:
-        got = json.loads(m.group(0)).get("ranking") if m else None
+        got = one_object(m.group(0)).get("ranking") if m else None
     except Exception:  # noqa: BLE001
         return None
     if not isinstance(got, list):
@@ -441,7 +450,7 @@ def listen(cands: list, story_cfg: dict, brain,
     if why is not None:
         m = re.search(r"\{.*\}", str(raw or ""), re.S)
         try:
-            got = json.loads(m.group(0)).get("why") if m else None
+            got = one_object(m.group(0)).get("why") if m else None
         except Exception:  # noqa: BLE001
             got = None
         for k, w in (got or {}).items() if isinstance(got, dict) else ():

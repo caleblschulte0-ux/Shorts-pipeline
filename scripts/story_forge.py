@@ -33,6 +33,15 @@ from __future__ import annotations
 
 import argparse
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import os
 import re
 import sys
@@ -415,7 +424,7 @@ def _claude_words(sysmsg: str, user: str) -> dict | None:
         if proc.returncode != 0:
             return None
         m = re.search(r"\{.*\}", proc.stdout or "", re.S)
-        return json.loads(m.group(0)) if m else None
+        return one_object(m.group(0)) if m else None
     except Exception:  # noqa: BLE001
         return None
 
@@ -669,7 +678,7 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
         from shared.script_generator import _call_llm, _strip_fence
         raw = _strip_fence(_call_llm(sysmsg, user))
         m = re.search(r"\{.*\}", raw, re.S)
-        out = json.loads(m.group(0))
+        out = one_object(m.group(0))
         if not out.get("title") or not out.get("hook"):
             return None
         return out

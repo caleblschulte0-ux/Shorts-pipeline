@@ -25,6 +25,15 @@ rejected and a different clip competes next run.
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import os
 import re
 import shutil
@@ -309,7 +318,6 @@ def _vision(sheet: Path, led: dict, dur: float) -> dict | None:
             except Exception:  # noqa: BLE001
                 pass
             return None
-        from third_capture.author import one_object
         out = one_object(r.stdout)
         return {"publish": bool(out.get("publish", True)),
                 "problems": [str(p)[:120] for p in

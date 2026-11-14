@@ -170,6 +170,7 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "sports: $(date -u +%Y-%m-%d) posted log + verdicts [skip ci]" \
             state/posted_log.json state/showrunner_verdicts.jsonl sports_report.json \
+            state/sports_refused.json \
             exchange/reviews exchange/OPEN.json
 
       # Fails the run when the cut-ins and montages stop reaching the

@@ -21,6 +21,15 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import os
 import re
 import shutil
@@ -299,7 +308,7 @@ def vision_judge(frame_paths, *, topic: str = "", title: str = "",
         resp = c.models.generate_content(model=VISION_MODEL, contents=parts)
         text = (getattr(resp, "text", "") or "").strip()
         m = re.search(r"\{.*\}", text, re.S)
-        data = json.loads(m.group(0)) if m else {}
+        data = one_object(m.group(0)) if m else {}
         broken, unsafe = bool(data.get("broken")), bool(data.get("unsafe"))
         return {
             "ok": not (broken or unsafe),

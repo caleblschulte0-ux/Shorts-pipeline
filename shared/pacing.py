@@ -24,6 +24,15 @@ it and gives every writer and every gate the same numbers:
 from __future__ import annotations
 
 import json
+
+try:
+    from shared.jsonreply import one_object  # noqa: E402
+except ImportError:  # run as a script: the repo root is not on the path
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))))
+    from shared.jsonreply import one_object  # noqa: E402
 import re
 from pathlib import Path
 
@@ -196,7 +205,7 @@ def _parse(raw) -> dict | None:
     if not m:
         return None
     try:
-        ans = json.loads(m.group(0))
+        ans = one_object(m.group(0))
     except Exception:  # noqa: BLE001
         return None
     return ans if isinstance(ans, dict) else None
