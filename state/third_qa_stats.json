@@ -3,159 +3,6 @@
     {
       "date": "20261108",
       "dry_run": false,
-      "ts": "2026-11-08T12:43:26+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-08T11:42:12.242121+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-08T12:43:25+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261108-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261108-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 16.9
-        },
-        {
-          "slug": "clip-20261108-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261108",
-      "dry_run": false,
       "ts": "2026-11-08T12:50:37+00:00",
       "feedback": {
         "snapshot": true,
@@ -6076,6 +5923,331 @@
             }
           },
           "took_s": 29.7
+        }
+      ]
+    },
+    {
+      "date": "20261114",
+      "dry_run": false,
+      "ts": "2026-11-14T18:01:37+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 138,
+        "with_retention": 114,
+        "with_curve": 14,
+        "fetched_at": "2026-11-14T15:16:01.136259+00:00"
+      },
+      "brain": {
+        "ok": 25,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261114-1",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 4.0s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: Framing failed for most of the clip. From 0.9s to about 14s the sharp region is a thin strip, roughly a quarte",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 143,
+                "refused_shown": 13,
+                "scouted": [
+                  {
+                    "premise": "Jynxzi's Elden Ring boss grind: he spams his way through one fight, finally beats Rellana, then finishes the Putrescent ",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "A Minecraft Ender Dragon speedrun keeps resetting: Jynxzi panics when he dies on day 3, a teammate is slain in the End, ",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Ironmouse plays Clive Barker's Hellraiser: Revival, struggling with the house and the wrong door, then reacting to a Hel",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Lacy's Japan trip goes wrong: the restaurant bill passes 500,000 yen, then her cameraman quits mid-stream.",
+                    "shape": "multi_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 309,
+                "moments": 40,
+                "candidates": 511,
+                "pool": 2877,
+                "pool_with_vod": 2033,
+                "arc_sizes": [
+                  2,
+                  3,
+                  4,
+                  2,
+                  2,
+                  6,
+                  3,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:jynxzi/jynxzi-boss-fight-2026w43",
+                  "outcome": "narrative_failed",
+                  "why": "scores [72, 74, 74] after 2 revision(s) \u2014 @0s confusing: The caption 'Easy boss vs the boss that took' is cut off. It ends on 'took' with no 'four hours', so it reads as a broken sentence. Rewrite it as one complete line, such as 'Easy boss vs the boss that; @0s missing_context: The Dancing Lion cli"
+                },
+                {
+                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
+                  "outcome": "narrative_failed",
+                  "why": "scores [70, 72, 78] after 2 revision(s) \u2014 @2s confusing: The opening line ('you know you're cute a towel') is garbled and unclear. Trim it, or start on the clearer 'it's too cold, I can't get up there' so the stuck-in-the-tub premise lands at once.; @23s missing_context: The jump from the towel clip"
+                },
+                {
+                  "cluster": "2xrakai@vod2922690812/2xrakai-about-bubble-2026w45",
+                  "outcome": "narrative_failed",
+                  "why": "scores [66, 64, 78] after 2 revision(s) \u2014 @0s missing_context: The caption 'Rakai won't let' trails off, and the opening line 'Don't get out right now' never says why. Finish the caption, for example 'Rakai won't let her out of the tub until the towel shows up', ; @17s pacing: The audio repeats 'I k"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, searched name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Needs context; four women introduce, no ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Picked One From The Group Chat And Then This Happens"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 4.0s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.82,
+              "problems": [
+                "Framing failed for most of the clip. From 0.9s to about 14s the sharp region is a thin strip, roughly a quarter of the c",
+                "The 9.5s and 11.2s frames are nearly black and empty. The image is dead, with only a faint dot, so it looks like a broke",
+                "The blurred padding above and below is mostly dark and empty, so the sharp picture takes up well under three quarters of",
+                "The streamer's facecam is tiny in the corner. Over the first ten seconds the action is a small tweet on a screen and can",
+                "Only the last few frames (16.4s onward) fill the strip reasonably, with the people clearly visible. The rest of the clip"
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 111.5
+        },
+        {
+          "slug": "clip-20261114-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261114-3",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about one third of the canvas height, with large blurred padding above and below. The; vision: The subject (the player character) is small in the strip and h",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261114-3",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "crypto insider, finding token",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Fortnite hype, chat excited, unclear sta",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Screams 'Don't Back Out' As He Finally Finds The Token"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.78,
+              "problems": [
+                "The sharp picture is a thin strip, about one third of the canvas height, with large blurred padding above and below. The",
+                "The subject (the player character) is small in the strip and hard to read on a phone, and the game UI and webcam inset t",
+                "The frame at 9.6s has a black sharp region, with only the webcam inset and chat visible. It looks like a broken or empty",
+                "The caption text is placed far from the picture, and the main subject is tiny relative to the canvas."
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 113.1
+        },
+        {
+          "slug": "clip-20261114-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261114-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261114-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is an uncropped 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly; vision: From about 4s to the end, the sharp region is a wide game scre",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "wholesome-ish but insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Fuslie laughing chat about Twilight, low",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Fuslie Gets Sucked Into Twilight Even When It's Terrible"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.65,
+              "problems": [
+                "The sharp picture is an uncropped 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly",
+                "From about 4s to the end, the sharp region is a wide game screen. Fuslie is a tiny facecam in the corner, so there is no",
+                "In the first ~3s Fuslie sits small and far away in the strip, and the blurred padding above and below is mostly empty.",
+                "The framing changes from a facecam shot to a game screen without any reframing, so it looks like a reposted clip, not an"
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: From about 4s to the end (about 10s of the 13.9s) Fuslie is gone and the frame is a static game lobby with two idle char",
+                "vision: The word captions are cut off at the frame edges in several frames (\"n\", \"ng it\", \"ike\", \"t\", \"se i'll\"), so the speech ",
+                "vision: The framing changes abruptly from a close facecam to a wide game scene with no continuity. It reads as a cut that lost t"
+              ]
+            }
+          },
+          "took_s": 164.3
         }
       ]
     }

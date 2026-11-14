@@ -19974,6 +19974,60 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Red carpet chat, no clear event)",
       "ts": "2026-11-14T14:00:06.345394+00:00"
+    },
+    "rejected-philanthropicnaivewombatbloodtrail-h5osgxxscnzzr0hb": {
+      "source_url": "https://www.twitch.tv/agent00/clip/PhilanthropicNaiveWombatBloodTrail-H5osGXXsCnZzr0HB",
+      "streamer": "agent00",
+      "title": "Agent is going to put Emily's Lego set in his R34",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Casual talk at car meet, no event)",
+      "ts": "2026-11-14T17:51:27.128759+00:00"
+    },
+    "rejected-shyflirtyhawkkapow-om_ccvxq1pshyljk": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ShyFlirtyHawkKAPOW-om_ccVXq1PsHyljk",
+      "streamer": "caseoh_",
+      "title": "HES EVILLL\ud83d\udca5\ud83d\udca5\ud83d\udca5",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Game NPC chat, little visible payoff)",
+      "ts": "2026-11-14T17:52:13.227359+00:00"
+    },
+    "rejected-smallgiftedeggdbstyle-citrdsluwsxvx7uj": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/SmallGiftedEggDBstyle-CITrdSLuwsxVx7Uj",
+      "streamer": "jasontheween",
+      "title": "Jasontheween Picked One From The Group Chat And Then This Happens",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 4.0s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: Framing failed for most of the clip. From 0.9s to about 14s the sharp region is a thin strip, roughly a quarter of the c; vision: The 9.5s and 11.2s frames are nearly black and empty. The image is dead, with on",
+      "ts": "2026-11-14T17:54:04.737496+00:00"
+    },
+    "rejected-blatantfurtivekaletf2john-0habvzji9k6ieh3e": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/BlatantFurtiveKaleTF2John-0Habvzji9k6IEh3e",
+      "streamer": "plaqueboymax",
+      "title": "RISING STAR RECAP!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static zoomed face, tiny, chat laughing)",
+      "ts": "2026-11-14T17:54:51.798563+00:00"
+    },
+    "rejected-coweringexcitedbeanralpherz-qon8wxdm_uxoiwps": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CoweringExcitedBeanRalpherZ-qOn8WxDm_uXOIwpS",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Screams 'Don't Back Out' As He Finally Finds The Token",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about one third of the canvas height, with large blurred padding above and below. The; vision: The subject (the player character) is small in the strip and hard to read on a phone, and the game UI and webcam inset t; vision: The frame at 9.6s has a black sh",
+      "ts": "2026-11-14T17:57:26.043134+00:00"
+    },
+    "rejected-doubtfullachrymosebananabiblethump-jzcytsvaakjlmx_j": {
+      "source_url": "https://www.twitch.tv/fuslie/clip/DoubtfulLachrymoseBananaBibleThump-jzCYTSVAaKjlMX_J",
+      "streamer": "fuslie",
+      "title": "Fuslie Gets Sucked Into Twilight Even When It's Terrible",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is an uncropped 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly; vision: From about 4s to the end, the sharp region is a wide game screen. Fuslie is a tiny facecam in the corner, so there is no; vision: In the first ~3s Fuslie sits sma",
+      "ts": "2026-11-14T18:01:37.315066+00:00"
     }
   }
 }
