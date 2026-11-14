@@ -186,11 +186,19 @@ BROLL_SYSTEM = (
     "{\"broll\": [{\"who\": str, \"look\": str, \"at\": number, "
     "\"said\": str}]}: who = the players or teams as a search finds "
     "them; look = the GAME ACTION the footage must show, in search words "
-    "(\"Cam Skattebo lowers helmet run Giants\"), never a press "
-    "conference or interview; at = the second it is said, from the "
+    "(\"Cam Skattebo lowers helmet run Giants\"), or, when what they "
+    "describe is not a play, exactly that thing (\"Jimmy Butler sideline "
+    "coach outfit Heat\"); never a press conference or interview; at = the second it is said, from the "
     "time-stamped transcript; said = the word or two of the transcript "
-    "that name it there. 0-3, at least 4s apart. [] when the words name "
-    "nothing showable; never a guess at what they do not name. "
+    "that name it there. 0-3, at least 4s apart. THIS IS THE DEFAULT, "
+    "NOT THE EXCEPTION (the operator, 2026-11-14: \"it's a cut-in. "
+    "They're talking about something, it shows that something\"): "
+    "whenever they name a player, a team, a game, a play, a moment or "
+    "something someone did or wore that is not on screen, cut it in. A "
+    "named person off screen is a cut-in of that person in action, or "
+    "doing exactly what is described (Jimmy Butler's coach act = Butler "
+    "on the sideline dressed as a coach). [] only when the words name "
+    "nothing at all; never a guess at what they do not name. "
     "ALSO \"show\": the CONCEPT is that anything they mention which a "
     "viewer would need to SEE to get it goes on screen; a play is "
     "footage (broll), anything else is its real picture laid over the "
@@ -250,7 +258,8 @@ def talking(raw: Path, edit: dict, dur: float, work: Path) -> bool:
 
 
 def broll(c: dict, words: list[dict], dur: float, edit: dict,
-          raw: Path | None = None, work: Path | None = None) -> dict:
+          raw: Path | None = None, work: Path | None = None,
+          notes: str = "") -> dict:
     """SHOW WHAT THE CLIP TALKS ABOUT. The author is asked for `broll`
     among a dozen other things and, on the 10-28 batch, gave none on any
     clip: Skattebo talked about the fines and the plays never appeared.
@@ -266,7 +275,7 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
                          and lo <= float(r["at"]) <= hi - 1.0] or None
             if not edit[key]:
                 edit.pop(key)
-    if (edit.get("broll") and edit.get("show")) or not words:
+    if (edit.get("broll") and edit.get("show") and not notes) or not words:
         return edit
     if raw is not None and not talking(raw, edit, dur,
                                        work or raw.parent / "talk"):
@@ -286,6 +295,13 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
             f"must land inside it.\n"
             f"Transcript, each line with the second it starts:\n"
             f"{_fine_stamps(said)[:3000]}")
+    if notes:
+        # THE JUDGE NAMES WHAT IS MISSING (2026-11-13: Kerr held at 66 for
+        # "Butler's coach outfit is never shown", and the repair re-cut it
+        # without asking this question with that in hand)
+        user += ("\n\nTHE JUDGE WATCHED THE LAST CUT. Whatever it says is "
+                 "talked about but never shown is a cut-in now, at the "
+                 "second it is said:\n" + notes[:1500])
     try:
         ans = _brain(user, BROLL_SYSTEM) or {}
         got = [g for g in cut_in.parse(ans.get("broll"), dur)
@@ -302,8 +318,14 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
           f"{', '.join(g['look'] for g in got) or 'nothing showable'}"
           f"; pictures: {', '.join(s.get('look', s['thing']) for s in shows) or 'none'}",
           flush=True)
-    if got and not edit.get("broll"):
-        edit["broll"] = got
+    if got:
+        # the author's own first, then any the question adds, 4s apart
+        keep = list(edit.get("broll") or [])
+        for g in got:
+            if len(keep) < 3 and all(abs(float(g["at"]) - float(k["at"])) >= 4
+                                     for k in keep if _isnum(k.get("at"))):
+                keep.append(g)
+        edit["broll"] = keep
     if shows and not edit.get("show"):
         edit["show"] = shows
     return edit
@@ -837,7 +859,7 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
         trim_front(meta["edit"], words, dur)
         whole_thought(c, meta["edit"], words, dur)
         broll(c, words, dur, meta["edit"], raw,
-              out_mp4.parent / "work" / out_mp4.stem)
+              out_mp4.parent / "work" / out_mp4.stem, notes=notes)
         end_card(raw, meta["edit"], out_mp4.parent / "work" / out_mp4.stem)
         hold_length(meta["edit"], words, dur)
         # NO MUSIC UNDER THE CLIP (operator, 2026-10-28: "It played loud

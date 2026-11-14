@@ -378,10 +378,16 @@ def find(who: str, look: str = "", *, secs: float = MAX_MOMENT,
                         continue
                     start, end = m
                     if end - start > secs:
+                        # KEEP ITS END, don't throw it away (2026-11-13:
+                        # three watched Brunson plays of 5.5-7s were all
+                        # refused for a 4.8s slot and the Dirk cut went
+                        # without them; operator: "Cut-ins should be very
+                        # simple to do"). A play pays off at its end, so
+                        # the slot plays the last `secs` of it.
                         print(f"[footage] {who!r}: the moment runs "
-                              f"{end - start:.1f}s, more than the "
-                              f"{secs:.1f}s there is room for", flush=True)
-                        continue
+                              f"{end - start:.1f}s, the last {secs:.1f}s "
+                              "of it fit", flush=True)
+                        start = end - secs
                     clip = cut(video, start, end - start,
                                work / f"foot_{tag}_{n}_{start:.0f}_cut.mp4")
                     if clip:
