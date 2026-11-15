@@ -6563,5 +6563,498 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260816": {
+    "01_graph-panama-passed-suez.json": {
+      "format": "graph_race",
+      "slug": "graph-panama-passed-suez",
+      "title": "The Panama Canal Just Passed The Suez",
+      "hook": "The Suez lost half its ships.",
+      "y_label": "Ship transits per year",
+      "duration": 13,
+      "source": "Suez Canal Authority annual navigation reports, calendar-year vessel transits: 2019 18,880; 2020 18,830; 2021 20,694; 2022 23,851; 2023 26,434 (all-time record); 2024 13,213 (a ~50% collapse after Houthi attacks on Red Sea shipping pushed carriers around the Cape of Good Hope); 2025 12,758. Panama Canal Authority (ACP) fiscal-year transits of deep-draft and small commercial vessels: FY2019 ~13,785; FY2020 ~13,369; FY2021 13,342; FY2022 ~14,239; FY2023 ~14,080; FY2024 11,240 (Gatun Lake drought forced booking-slot cuts); FY2025 ~13,400 (ACP reported over 13,400 transits, +19.3% year over year). The two series use different accounting years (Suez calendar, Panama Oct-Sep fiscal) and Panama's FY2019/FY2020 figures are rounded; the crossover in 2025 is the point and it is real in both datasets. Context: attacks on commercial vessels in the Red Sea and Gulf of Aden are continuing, with Yemen's Mokha port suspending operations after strikes reported by Reuters in mid-August 2026.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Suez Canal",
+          "color": "#ff4d6d",
+          "icon": "EG",
+          "values": [
+            18880,
+            18830,
+            20694,
+            23851,
+            26434,
+            13213,
+            12758
+          ]
+        },
+        {
+          "name": "Panama Canal",
+          "color": "#4a90e2",
+          "icon": "PA",
+          "values": [
+            13785,
+            13369,
+            13342,
+            14239,
+            14080,
+            11240,
+            13400
+          ]
+        }
+      ],
+      "hashtags": [
+        "suezcanal",
+        "panamacanal",
+        "redsea",
+        "shipping",
+        "houthi",
+        "supplychain",
+        "globaltrade",
+        "maritime",
+        "capeofgoodhope",
+        "logistics",
+        "containership",
+        "chokepoint"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "02_graph-measles-1992-levels.json": {
+      "format": "graph_race",
+      "slug": "graph-measles-1992-levels",
+      "title": "Measles Is Back At 1992 Levels",
+      "hook": "13 cases, then 2,566.",
+      "y_label": "Confirmed US measles cases",
+      "duration": 13,
+      "source": "U.S. CDC confirmed measles case counts by year: 2019 1,274 (outbreaks in New York); 2020 13; 2021 49; 2022 121; 2023 59; 2024 285; 2025 2,144 confirmed in CDC's final tally, the highest annual total since 1992 and enough to put US measles elimination status at risk. The 2026 figure, 2,566, is the year-to-date count CDC reported as of 13 August 2026 \u2014 it is a partial year and already exceeds the full 2025 total. The flat comparison line is the 1992 annual total of 2,126 confirmed cases, the record 2025 broke. CDC attributes the resurgence mainly to falling MMR coverage and rising vaccination exemptions; roughly 93% of 2025 cases were in people unvaccinated or of unknown status.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "US measles cases",
+          "color": "#ff3030",
+          "icon": "US",
+          "values": [
+            1274,
+            13,
+            49,
+            121,
+            59,
+            285,
+            2144,
+            2566
+          ]
+        },
+        {
+          "name": "1992 record",
+          "color": "#8fa3b8",
+          "values": [
+            2126,
+            2126,
+            2126,
+            2126,
+            2126,
+            2126,
+            2126,
+            2126
+          ]
+        }
+      ],
+      "hashtags": [
+        "measles",
+        "cdc",
+        "outbreak",
+        "mmr",
+        "vaccination",
+        "publichealth",
+        "elimination",
+        "vaccines",
+        "epidemiology",
+        "diseaseoutbreak",
+        "healthnews",
+        "immunization"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_graph-spacex-outlaunches-countries.json": {
+      "format": "graph_race",
+      "slug": "graph-spacex-outlaunches-countries",
+      "title": "One Company Out-Launches Every Country",
+      "hook": "13 launches, then 170.",
+      "y_label": "Orbital launches per year",
+      "duration": 13,
+      "source": "Orbital launch attempts per year, compiled from SpaceNews, Payload and Aviation Week launch tallies plus the annual 'in spaceflight' launch logs. SpaceX (Falcon 9 + Falcon Heavy + Starship): 2019 13; 2020 26; 2021 31; 2022 61; 2023 98; 2024 134; 2025 ~170 (165 Falcon missions plus Starship test flights). China (all state and commercial providers): 2019 34; 2020 39; 2021 55; 2022 64; 2023 67; 2024 68; 2025 92. Russia (Roscosmos, all vehicles): 2019 25; 2020 17; 2021 25; 2022 21; 2023 19; 2024 17; 2025 17. Global orbital launch attempts hit a record ~324 in 2025, with the US and China together accounting for about 88% of them; SpaceX alone flew more missions than the rest of the world combined. Counts vary by a launch or two between trackers depending on how partial failures and suborbital test flights are classified.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "SpaceX",
+          "color": "#50ff80",
+          "icon": "SpaceX",
+          "values": [
+            13,
+            26,
+            31,
+            61,
+            98,
+            134,
+            170
+          ]
+        },
+        {
+          "name": "China",
+          "color": "#ff4d6d",
+          "icon": "CN",
+          "values": [
+            34,
+            39,
+            55,
+            64,
+            67,
+            68,
+            92
+          ]
+        },
+        {
+          "name": "Russia",
+          "color": "#4a90e2",
+          "icon": "RU",
+          "values": [
+            25,
+            17,
+            25,
+            21,
+            19,
+            17,
+            17
+          ]
+        }
+      ],
+      "hashtags": [
+        "spacex",
+        "falcon9",
+        "starship",
+        "orbitallaunch",
+        "roscosmos",
+        "chinaspace",
+        "spacerace",
+        "rocketlaunch",
+        "capecanaveral",
+        "spaceflight",
+        "elonmusk",
+        "launchcadence"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_graph-summer-box-office-4-billion.json": {
+      "format": "graph_race",
+      "slug": "graph-summer-box-office-4-billion",
+      "title": "Summer Movies Clawed Back To $4 Billion",
+      "hook": "$176 million to $4 billion.",
+      "y_label": "Summer domestic box office ($ millions)",
+      "duration": 13,
+      "source": "North American summer box office (first Friday in May through Labor Day), Comscore/Box Office Mojo totals as reported by Deadline, Variety and TheWrap: 2019 $4.33B; 2020 $0.176B (theatres shut for the pandemic); 2021 $1.74B; 2022 $3.40B; 2023 $4.095B; 2024 $3.68B; 2025 $3.67B, down 0.2% year over year and short of the hoped-for $4B; 2026 crossed $4.0B in mid-August with the season still running, the second $4B summer since the pandemic, driven by 'Spider-Man: Brand New Day' \u2014 a record $360M domestic opening and the biggest overall box-office weekend ever at $436.6M \u2014 plus 'The Odyssey'. The flat comparison line is summer 2013's $4.755B, still the all-time seasonal record. The 2026 figure is season-to-date and will finish higher.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Summer box office",
+          "color": "#ffaa30",
+          "icon": "US",
+          "values": [
+            4330,
+            176,
+            1740,
+            3400,
+            4095,
+            3680,
+            3670,
+            4000
+          ]
+        },
+        {
+          "name": "2013 record",
+          "color": "#8fa3b8",
+          "values": [
+            4755,
+            4755,
+            4755,
+            4755,
+            4755,
+            4755,
+            4755,
+            4755
+          ]
+        }
+      ],
+      "hashtags": [
+        "boxoffice",
+        "spiderman",
+        "brandnewday",
+        "summerboxoffice",
+        "theodyssey",
+        "movies",
+        "hollywood",
+        "cinema",
+        "moviemilestone",
+        "filmindustry",
+        "openingweekend",
+        "theaters"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-break-room-company-property.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-break-room-company-property",
+      "title": "The Break Room Is Company Property. So We Emptied It.",
+      "script": "Our office manager decided the break room was a liability, so she posted a memo: the fridge and the counter are company property, and any personal item left in them would be removed and binned. And that was fine by me. Every single thing in that break room was personal. The coffee maker was mine. The kettle belonged to a woman in accounts. The mugs, the toaster, the tin of decent teabags, the fruit bowl somebody restocked out of her own pocket \u2014 all personal property, all carried out to our cars in a laundry bag by 5 p.m., exactly as instructed. By day three, forty people were walking to the petrol station for coffee and the manager was drinking hot water from a paper cup. She emailed a second memo asking us to please bring our things back. We brought back one thing: an order form. The company has bought the coffee ever since.",
+      "shots": [
+        {
+          "phrase": "posted a memo",
+          "query": "printed office memo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
+        },
+        {
+          "phrase": "the fridge and the counter are company property",
+          "query": "office break room",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/2015-04-28_19_09_17_Employee_break_room_at_the_National_Weather_Service_Weather_Forecast_Office_in_Elko%2C_Nevada_%28NWS_WFO_LKN%29.jpg"
+        },
+        {
+          "phrase": "The coffee maker was mine",
+          "query": "kitchen countertop appliance",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Vitamix_Blender.jpg"
+        },
+        {
+          "phrase": "the tin of decent teabags",
+          "query": "loose tea tin",
+          "image_url": "https://drive.google.com/uc?export=download&id=1NSI7GRYK42dBgQccYhDS4S0yVtIs90UQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1NSI7GRYK42dBgQccYhDS4S0yVtIs90UQ",
+          "media_sha256": "24a77376704bebbb305db5c78a59897f83a6e365a357acd7986adb9c6d512e49",
+          "media_bytes": 1231904
+        },
+        {
+          "phrase": "carried out to our cars in a laundry bag",
+          "query": "canvas bag handles",
+          "image_url": "https://drive.google.com/uc?export=download&id=1P4Z9Tc_vN4-D0NVZeY35nKbR2-latNT7",
+          "media_origin": "chatgpt",
+          "media_file_id": "1P4Z9Tc_vN4-D0NVZeY35nKbR2-latNT7",
+          "media_sha256": "6aa6b15cfad9f1a94a30f3da84e9288de3025a0d6721835e8569e13638d67311",
+          "media_bytes": 1351748
+        },
+        {
+          "phrase": "by 5 p.m., exactly as instructed",
+          "query": "wall clock office",
+          "image_url": "https://drive.google.com/uc?export=download&id=10FoFRammbqQXRPdWUMG3oyBdRQAVLtyl",
+          "media_origin": "chatgpt",
+          "media_file_id": "10FoFRammbqQXRPdWUMG3oyBdRQAVLtyl",
+          "media_sha256": "7395369e45b05753d171b32402fc87257f97bf9557845847a617a79429b9cbe1",
+          "media_bytes": 1374715
+        },
+        {
+          "phrase": "walking to the petrol station for coffee",
+          "query": "petrol station forecourt"
+        },
+        {
+          "phrase": "She emailed a second memo",
+          "query": "email inbox icon",
+          "image_url": "https://drive.google.com/uc?export=download&id=183fF4uAuHiAm-t881HXZbzILYrjU86U5",
+          "media_origin": "chatgpt",
+          "media_file_id": "183fF4uAuHiAm-t881HXZbzILYrjU86U5",
+          "media_sha256": "07e6949b5919a7948edfdab39cf8fa3a0c2f1a5d8998c29afa55bc9f5c627b0e",
+          "media_bytes": 1107335
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "any personal item left in them would be removed",
+          "text": "ALL OF IT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Every single thing in that break room was personal",
+          "text": "EVERY SINGLE THING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "By day three",
+          "text": "DAY 3",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "drinking hot water from a paper cup",
+          "text": "HOT WATER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "The company has bought the coffee ever since",
+          "text": "COMPANY PAYS NOW",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "breakroom",
+        "officepolicy",
+        "workplace",
+        "coffee",
+        "corporatelife",
+        "officelife",
+        "reddit",
+        "9to5",
+        "petty",
+        "worklife",
+        "officemanager"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-gift-card-scam-wrong-digit.json": {
+      "subreddit": "ProRevenge",
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "title": "The Scammer Wanted Gift Card Codes. He Got Codes.",
+      "script": "The call said my bank account had been compromised and the only way to protect my savings was to buy gift cards, which is the point where a sensible person hangs up. I did not hang up. I told him I was seventy-one and frightened and that I would need help finding the right shop, so he stayed on the line for two hours, coaching me down the aisle of a hardware store while I read him the codes off eleven cards. Every code I read was wrong by one digit. Every failure made him buy me more time by insisting on another card. What he did not know is that my other phone had been open to the card issuer's fraud team the whole time, and I was passing them the real numbers at the register as I bought them. They froze all eleven and flagged the account redeeming them. He rang back nine times. The last voicemail threatened to report me.",
+      "shots": [
+        {
+          "phrase": "my bank account had been compromised",
+          "query": "bank cards closeup",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg"
+        },
+        {
+          "phrase": "buy gift cards",
+          "query": "gift card rack",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/OSH_gift_card.jpg"
+        },
+        {
+          "phrase": "he stayed on the line for two hours",
+          "query": "speakerphone desk phone",
+          "image_url": "https://drive.google.com/uc?export=download&id=1MHmMb-cBCSygkVpclAtRPz5w_f7nwPsw",
+          "media_origin": "chatgpt",
+          "media_file_id": "1MHmMb-cBCSygkVpclAtRPz5w_f7nwPsw",
+          "media_sha256": "08de2891e8cf3cecf7fa7b153cec5981ec215aa4810626aa8e4806bc7a7f6ee9",
+          "media_bytes": 1239215
+        },
+        {
+          "phrase": "the aisle of a hardware store",
+          "query": "hardware store aisle",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Hagebau.JPG"
+        },
+        {
+          "phrase": "Every code I read was wrong by one digit",
+          "query": "scratch card code",
+          "image_url": "https://drive.google.com/uc?export=download&id=1VsZRNG2YhzLOMhReve2auStH5vWFBgBL",
+          "media_origin": "chatgpt",
+          "media_file_id": "1VsZRNG2YhzLOMhReve2auStH5vWFBgBL",
+          "media_sha256": "511f9473ea04e0eb38ac4ff42675661ac80bdcf81523660047b9dda5f63d085c",
+          "media_bytes": 1300117
+        },
+        {
+          "phrase": "the real numbers at the register as I bought them",
+          "query": "cashier checkout register",
+          "image_url": "https://drive.google.com/uc?export=download&id=1KxVx5aqGi2T8r1oMPALwpVLMj9NHEQkN",
+          "media_origin": "chatgpt",
+          "media_file_id": "1KxVx5aqGi2T8r1oMPALwpVLMj9NHEQkN",
+          "media_sha256": "56f90f3eccf2a7511be7282c292dd9a31f0b7ee53b589a499a0a3b47990288f7",
+          "media_bytes": 1073055
+        },
+        {
+          "phrase": "They froze all eleven",
+          "query": "laptop banking screen",
+          "image_url": "https://drive.google.com/uc?export=download&id=1TLr4WLWnLcD1BiItSb28p7qMJLctUtLr",
+          "media_origin": "chatgpt",
+          "media_file_id": "1TLr4WLWnLcD1BiItSb28p7qMJLctUtLr",
+          "media_sha256": "8867a825ce6e8e8c490a025278c9e9dda023eab3ee0bdf9ef0222673b56b0fab",
+          "media_bytes": 1657600
+        },
+        {
+          "phrase": "He rang back nine times",
+          "query": "mobile phone missed calls",
+          "image_url": "https://drive.google.com/uc?export=download&id=1GvJsGGPq_f6Oe31PbXzf0AjCXcvZvcfU",
+          "media_origin": "chatgpt",
+          "media_file_id": "1GvJsGGPq_f6Oe31PbXzf0AjCXcvZvcfU",
+          "media_sha256": "e185a9fbf834cb40bb2cb9dbc0b3b316913c4427f20f9ba3357221284061f630",
+          "media_bytes": 1174285
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "buy gift cards",
+          "text": "GIFT CARDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "eleven cards",
+          "text": "11 CARDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "wrong by one digit",
+          "text": "OFF BY ONE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "They froze all eleven",
+          "text": "ALL FROZEN",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "He rang back nine times",
+          "text": "9 CALLBACKS",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "scambait",
+        "prorevenge",
+        "giftcardscam",
+        "phonescam",
+        "fraudprevention",
+        "scammer",
+        "karma",
+        "reddit",
+        "scamalert",
+        "revengestory",
+        "banksafety",
+        "storytime"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    }
   }
 }
