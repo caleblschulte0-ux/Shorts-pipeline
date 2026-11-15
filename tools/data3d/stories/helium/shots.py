@@ -239,41 +239,49 @@ def shot3():
     L, R = sides(data)
     top = counter("dock crate", w=0.8)
     shR = acts._shoulder(data, R)
-    LEN = 0.17
-    H0 = shR + Vector((0.07, -0.12, -0.07))                       # his fist in front of his chest, image-right
-    KOFF = Vector((0.125, -0.02, 0.15)); LEN = KOFF.length          # the balloon up and out beside his head, never on it
+    # round 13: "the snatch never happens ... his arm stays out at chest height". The fist starts LOW at his waist, the
+    # gust lifts the balloon to just above his head-side shoulder, where it HANGS for a beat, the string's end dangling;
+    # his fist shoots UP from his waist and stops a hand's width under that end; then the gust takes it for good.
+    H0 = shR + Vector((0.07, -0.12, -0.1))                        # his fist low, just over the crate
+    KOFF = Vector((0.125, -0.02, 0.16))                           # the balloon at his chest, out beside him
+    SV = Vector((0.06, 0.0, 0.19)); LEN = SV.length               # tail to balloon while it hangs: leaning in the gust
     KN0 = H0 + KOFF
-    T_TUG, T_SLIP, T_GRAB = 0.7, 0.9, 1.4
-    # it drifts IN over his head-side shoulder as it climbs, so his snatch goes straight UP after it and closes
-    # a hand's width under the string's end, not sideways at shoulder height (round 11)
-    rise = lambda u: Vector((-0.09 * ease(min(1.0, u / 0.5)) + 0.02 * max(0.0, u - 0.5), 0.06 * u * u, 0.36 * u + 0.15 * u * u))
+    TG = shR + Vector((0.12, -0.10, 0.12))                        # where the string's end dangles, just out of reach
+    T_TUG, T_SLIP, T_GRAB = 0.6, 0.75, 1.35
+    T_GONE = T_GRAB + 0.4
+    TUG = Vector((0, 0, 0.04))
+    tugk = lambda t: ease(min(1.0, max(0.0, (t - T_TUG) / 0.12)))
     def kp(t):
-        if t < T_SLIP:
-            tug = 0.04 * ease(min(1.0, max(0.0, (t - T_TUG) / 0.12)))        # a gust yanks it up
-            return KN0 + Vector((0.005 * math.sin(2.1 * t), 0.0, 0.004 * math.sin(3.3 * t) + tug))
-        return KN0 + Vector((0, 0, 0.02)) + rise(t - T_SLIP) + Vector((0.01 * math.sin(2.4 * t), 0, 0))
-    def tail(t):                      # the string's end: in his fist, then sliding up out of it and trailing
-        if t < T_SLIP: return H0 + Vector((0.005 * math.sin(2.1 * t), 0.0, 0.004 * math.sin(3.3 * t)))
-        sw = 0.025 * math.sin(6.0 * (t - T_SLIP)) * math.exp(-1.5 * (t - T_SLIP))
-        return kp(t) - KOFF * (1 - ease(min(1.0, (t - T_SLIP) / 0.5))) - Vector((sw, 0, LEN)) * ease(min(1.0, (t - T_SLIP) / 0.5))
+        wob = Vector((0.005 * math.sin(2.1 * t), 0.0, 0.004 * math.sin(3.3 * t)))
+        if t < T_SLIP: return KN0 + wob + TUG * tugk(t)
+        if t < T_GRAB:
+            u = ease((t - T_SLIP) / (T_GRAB - T_SLIP)); return (KN0 + TUG).lerp(TG + SV, u) + wob
+        if t < T_GONE: return TG + SV + Vector((0, 0, 0.025 * (t - T_GRAB) / (T_GONE - T_GRAB))) + wob
+        v = t - T_GONE
+        return TG + SV + Vector((0.03 * v, 0.05 * v * v, 0.025 + 0.3 * v + 0.3 * v * v)) + wob
+    def tail(t):                      # the string's end: in his fist, then pulled up out of it, dangling under the balloon
+        wob = Vector((0.005 * math.sin(2.1 * t), 0.0, 0.004 * math.sin(3.3 * t)))
+        if t < T_SLIP: return H0 + wob + Vector((0, 0, 0.03)) * tugk(t)
+        sw = Vector((0.012 * math.sin(7.0 * (t - T_SLIP)), 0, 0))
+        if t < T_GRAB:
+            u = ease((t - T_SLIP) / (T_GRAB - T_SLIP)); return (H0 + Vector((0, 0, 0.03))).lerp(TG, u) + wob + sw * u
+        return kp(t) - SV + sw
     b = HK.balloon("escape balloon", tuple(KN0), r=0.11, color="#D22B2B")
     follow(b, kp, 0.0, DUR)
     HK.string_between("escape string", tail, kp, NF, r=0.0028)
-    # his fist: holds, jerks up with the tug and opens (drops a little) as it slips, then snatches up after the
-    # string, closing a hand under its end at T_GRAB, and comes back down to the crate
-    GRAB = lambda: tail(T_GRAB) - shR - Vector((0, 0, 0.055))
-    UP = Vector((0, 0, 0.045))
-    arc = spline([(0.0, H0 - shR), (T_TUG, H0 - shR), (T_TUG + 0.12, H0 - shR + UP),       # the tug yanks his fist up
-                  (T_GRAB, GRAB()), (T_GRAB + 0.25, GRAB() - Vector((0, 0, 0.008))),   # a beat frozen, reaching
-                  (T_GRAB + 0.8, Vector((0.08, -0.15, -0.02))),                            # down in front of him, elbow low
-                  (T_GRAB + 1.3, H0 - shR + Vector((-0.02, -0.02, 0.01)))])               # his empty fist, held where it was
+    GRAB = lambda: TG - shR - Vector((0, 0, 0.05))
+    UP = Vector((0, 0, 0.03))
+    arc = spline([(0.0, H0 - shR), (T_TUG, H0 - shR), (T_TUG + 0.1, H0 - shR + UP),       # the tug yanks his fist up
+                  (T_GRAB, GRAB()), (T_GRAB + 0.35, GRAB() - Vector((0, 0, 0.008))),       # a beat frozen, reaching
+                  (T_GRAB + 0.9, Vector((0.08, -0.15, -0.04))),                            # down in front of him, elbow low
+                  (T_GRAB + 1.3, H0 - shR + Vector((-0.02, -0.02, 0.07)))])               # his empty fist, looked at
     def hand(t):
         bpy.context.view_layer.update(); return acts._shoulder(data, R) + arc(t)
     reach(data, R, hand, 0.0, T_GRAB + 1.7, lead=0.05, back=1.0, elbow_out=0.35)   # the empty fist drops as he slumps
     data.look_at(KN0 + Vector((0, 0, 0.05)), 0.0, max_yaw=25, max_pitch=15, blend=0.0)
     data.look_at(kp(T_GRAB), T_SLIP + 0.05, max_yaw=25, max_pitch=16)       # the head tips a little; the eyes do the rest
     data.look_at(kp(T_GRAB + 0.6), T_GRAB + 0.2, max_yaw=25, max_pitch=18)
-    data.look_at(H0 + Vector((-0.02, -0.02, 0.01)), T_GRAB + 1.1, max_yaw=25, max_pitch=30)   # a beat at his empty fist
+    data.look_at(H0 + Vector((-0.02, -0.02, 0.07)), T_GRAB + 1.1, max_yaw=25, max_pitch=30)   # a beat at his empty fist
     data.look_at(US, T_GRAB + 1.9, max_yaw=20)
     data.idle(0.0, DUR)
     data.expression("pleased", 0.0, T_TUG)
@@ -302,7 +310,7 @@ def shot4():
     top = counter("scanner cart", y=-0.22, w=0.8, d=0.26, h=0.17)    # a low cart: the funnel at his chest, in reach
     shR = acts._shoulder(data, R)
     SC = Vector((shR.x + 0.16, -0.16, top))                         # the hero: big, beside him, never in front of him
-    ms = HK.model_scanner("model", tuple(SC), R=0.112, depth=0.13, light_r=0.036, shell_hex="#A9B5C2")   # blue-grey: the white frost shows on it
+    ms = HK.model_scanner("model", tuple(SC), R=0.112, depth=0.13, light_r=0.036, shell_hex="#8796A6")   # blue-grey: the white frost shows on it
     ms["root"].rotation_euler = (0, 0, math.radians(24)); bpy.context.view_layer.update()   # three-quarter: the bore and the bed read (round 12: "a hair dryer")
     MW = ms["root"].matrix_world.copy()
     PORT = MW @ ms["port"]; JOINT = MW @ ms["joint"]
@@ -359,30 +367,27 @@ def shot5():
     L, R = sides(data)
     top = counter("party counter")
     shL, shR = acts._shoulder(data, L), acts._shoulder(data, R)
-    SC = Vector((shR.x + 0.135, -0.21, top))                        # at the image-right, clear of his arm and body
-    ms = HK.model_scanner("model", tuple(SC), R=0.085, depth=0.11, light_r=0.03, shell_hex="#A9B5C2")
+    SC = Vector((shR.x + 0.14, -0.21, top))                        # at the image-right, clear of his arm and body
+    ms = HK.model_scanner("model", tuple(SC), R=0.074, depth=0.1, light_r=0.027, shell_hex="#A9B5C2")
     HK.status(ms["light"], 0.0, "#10D040", emit=3.5)
     HK.frost(ms["parts"], 0.0, 0.01)
     HK.frost_spread(ms["ring"], SC + ms["joint"], 0.0, 0.05, 0.3)
     H0 = shL + Vector((-0.07, -0.08, -0.09))                       # his fist low at his side
-    # THE WEIGHING (round 12: "a held pose ... the lift is a few pixels"): he looks up at the balloon, presents the
-    # frosted scanner with his other hand, then holds the two out like the pans of a scale and weighs them, the
-    # balloon side and the scanner side bobbing against each other to the last frame, brow up at us: which one?
-    T_LOOK_B, T_LOOK_S, T_LOOK_US, T_OFFER0, T_OFFER1, T_WEIGH = 0.15, 1.35, 2.7, 2.8, 3.6, 3.7
-    H1 = shL + Vector((-0.06, -0.15, -0.05))                       # held out toward us, still low and wide
-    weigh = lambda t, ph: 0.024 * math.sin(2 * math.pi * (t - T_WEIGH) / 1.3 + ph) * ease(min(1.0, max(0.0, (t - T_WEIGH) / 0.5)))
+    # round 13: the weighing (both arms out, bobbing 2 cm) read as "a stiff T pose ... a held pose". Now: his other
+    # hand stays down (the counter is out of his reach); he looks across to the scanner; then at us, brow up, and
+    # brings the balloon UP from his side to beside his face, and gives it two little shakes at us: this? still?
+    T_LOOK_B, T_LOOK_S, T_LOOK_US, T_OFFER0, T_OFFER1 = 0.15, 1.4, 2.6, 2.9, 3.8
+    H1 = shL + Vector((-0.08, -0.12, 0.0))                         # raised beside his face, wide of it
+    shake = lambda t: 0.035 * 0.5 * (1 - math.cos(2 * math.pi * (t - T_OFFER1 - 0.2) / 1.0)) * (T_OFFER1 + 0.2 < t < T_OFFER1 + 2.2)
     Hs = spline([(0.0, H0), (T_OFFER0, H0), (T_OFFER1, H1)])
-    H = lambda t: Hs(t) + Vector((0, 0, weigh(t, 0.0)))
+    H = lambda t: Hs(t) + Vector((0, 0, shake(t)))
     reach(data, L, H, 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)
-    PR0 = shR + Vector((0.07, -0.12, 0.02))                        # his right hand up over the scanner, presenting it
-    PR = lambda t: PR0 + Vector((0, 0, weigh(t, math.pi)))
-    reach(data, R, PR, T_LOOK_S + 0.25, DUR, lead=1.05, back=None, elbow_out=0.3)
     U = Vector((-0.09, -0.02, 0.25))                               # the balloon up and out beside his head
     b = HK.balloon("last balloon", (0, 0, 0), r=0.08, color="#E2559B")
     kp = lambda t: H(t) + U + bob(t, 2, amp=0.01)
     follow(b, kp, 0.0, DUR)
     HK.string_between("last string", H, kp, NF, r=0.0022)
-    LAMP = SC + Vector((0.085 * 0.62, -0.06, 0.101 + 0.085 * 0.62))
+    LAMP = SC + Vector((0.074 * 0.62, -0.055, 0.09 + 0.074 * 0.62))
     for k in range(2):                                             # the lamp blinks as he turns to it
         t = T_LOOK_S + 0.15 + k * 0.3
         HK.status(ms["light"], t, "#10D040", emit=3.5); HK.status(ms["light"], t + 0.12, "#40FF70", emit=9.0); HK.status(ms["light"], t + 0.26, "#10D040", emit=3.5)
@@ -396,8 +401,8 @@ def shot5():
     data.expression("wry", T_LOOK_US + 0.05, DUR + 1.0, blend=0.2)        # brow up at us; his hands do the body acting
     data.finish()
     soft_key("counter key", (0.6, -1.0, 1.0), tuple(SC + Vector((-0.1, 0, 0.15))), energy=18, size=40)
-    C0, L0 = Vector((0.04, -1.02, 0.7)), Vector((0.04, 0.06, 0.6))   # waist-up: his face, the balloon and the scanner fill it
-    C1, L1 = Vector((0.04, -0.96, 0.69)), Vector((0.04, 0.06, 0.6))
+    C0, L0 = Vector((0.05, -0.99, 0.7)), Vector((0.05, 0.06, 0.6))   # waist-up: his face, the balloon and the scanner fill it
+    C1, L1 = Vector((0.05, -0.97, 0.7)), Vector((0.05, 0.06, 0.6))
     cam = K.camera(tuple(C0), tuple(L0), lens=24, fstop=4.0)
     camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.08, 0.6))))
     return dict(**where, data=data, rest=1, grips=("last",),
