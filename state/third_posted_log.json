@@ -20193,6 +20193,34 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The title and hook promise a creepy guy repeatedly kissing Jinny's hand, but that action is visible only around 2.7\u20134.5s; vision: The sharp picture is a small strip, roughly a third of the canvas height. The subjects are tiny and far away in most fra; vision: The hook caption sits on the blu",
       "ts": "2026-11-15T12:42:40.343466+00:00"
+    },
+    "rejected-coldfurtivegazellespicyboy-67pywdbsdcbal7nw": {
+      "source_url": "https://www.twitch.tv/t10nat/clip/ColdFurtiveGazelleSpicyBoy-67PyWdbSdcBAl7nw",
+      "streamer": "t10nat",
+      "title": "nat choked by peter",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.22 < 0.35 (chaotic game, unclear event, unknown str)",
+      "ts": "2026-11-15T12:46:11.287596+00:00"
+    },
+    "rejected-impossiblelightbillbuddhabar-1uxnxp2vjqihwlzf": {
+      "source_url": "https://www.twitch.tv/fuslie/clip/ImpossibleLightBillBuddhaBar-1uxNxP2VJqIHWlzF",
+      "streamer": "fuslie",
+      "title": "Leslie\u2019s a GAMER! SHEESH!!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.22 < 0.35 (Routine CS2 callouts, no visible event)",
+      "ts": "2026-11-15T12:47:09.585019+00:00"
+    },
+    "clip-20261115-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/BenevolentCalmMelonBudBlast-brgqErpUPqz-C55f",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Hilariously Chants Jibba Jibba At Chibu Airlines Until Everyone Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-11-15T12:49:10.458858+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
