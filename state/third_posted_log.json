@@ -20213,13 +20213,41 @@
       "ts": "2026-11-15T12:47:09.585019+00:00"
     },
     "clip-20261115-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/silky/clip/BenevolentCalmMelonBudBlast-brgqErpUPqz-C55f",
-      "story_key": null,
-      "streamer": "silky",
+      "url": "https://youtube.com/shorts/Osq2wupNVrs",
       "title": "Silky Hilariously Chants Jibba Jibba At Chibu Airlines Until Everyone Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-11-15T12:49:10.458858+00:00",
+      "ts": "2026-11-15T12:49:19.138965+00:00",
+      "uploaded_at": "2026-11-15T12:49:19.138981+00:00",
+      "publish_at": "2026-11-16T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261115-silky-hilariously-chants-jibba-jibba-at-chibu-ai-9f8525a0",
+        "tiktok": "queued for 2026-11-16T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/silky/clip/BenevolentCalmMelonBudBlast-brgqErpUPqz-C55f",
+      "streamer": "silky",
+      "series": "chaos",
+      "hook": "Chibu Airlines goes off the rails \ud83d\ude02",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2886,
+      "banger": 0.5,
+      "cut": {
+        "start": 9.4,
+        "end": 25.5
+      },
+      "director_cut": true
+    },
+    "clip-20261115-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/BumblingAgreeableCheetahVoteYea-3rbQzUlcWfsSeL7c",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Reacts To Wubby And Poob And It Gets Loud",
+      "kind": "twitch_clip",
+      "ts": "2026-11-15T13:18:02.232995+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
