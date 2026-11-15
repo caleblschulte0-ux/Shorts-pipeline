@@ -1348,6 +1348,9 @@ class Data:
                 if qs and q.dot(qs[-1]) < 0: q.negate()
                 qs.append(q)
             comps = [_gauss([q[i] for q in qs], sig) for i in range(4)]
+            if FLUID and bname.startswith(('arm.', 'fore.', 'hand.')):
+                pins = {f - 1 for (s, f) in self._ik_keys if s == bname[-1]}
+                comps = fluid(comps, pins)
             prev = None; outs = [[], [], []]
             for k in range(n):
                 q = Quaternion((comps[0][k], comps[1][k], comps[2][k], comps[3][k])).normalized()
@@ -1378,6 +1381,59 @@ SMOOTH = os.environ.get("TWITCH_FILTER", "1") == "1"
 LIFE = os.environ.get("DATA_LIFE", "1") == "1"
 TAKES = os.environ.get("DATA_TAKES", "1") == "1"    # a body take with every change of feeling; 0 only to compare      # the life pass (blinks, saccades); 0 only to compare
 SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 1.2   # face 2.0 blurred syllables into a mumble       # Gaussian sigma, in frames at 30 fps
+
+
+FLUID = os.environ.get("DATA_FLUID", "1") == "1"
+ACC_MAX = 3.0       # deg/frame per frame an arm bone may change its speed by: a person's arm speeds up and slows down
+HITCH_DIP = 0.3     # an arm that drops under this share of its speed for a frame or three, then goes on, has stuttered
+
+
+def _qang(a, b):
+    """degrees between two unit quaternions given as 4-tuples"""
+    d = abs(sum(x * y for x, y in zip(a, b)))
+    return math.degrees(2 * math.acos(min(1.0, d)))
+
+
+def hot_frames(qs, acc_max=ACC_MAX):
+    """frames where a per-frame rotation series speeds up or slows down faster than acc_max, or stutters (moving,
+    nearly stops for 1-3 frames, moves on). Pure: the fluid pass and its test both read it."""
+    v = [0.0] + [_qang(qs[k - 1], qs[k]) for k in range(1, len(qs))]
+    hot = set()
+    for k in range(2, len(v)):
+        if abs(v[k] - v[k - 1]) > acc_max: hot.add(k)
+    for k in range(2, len(v) - 3):
+        if v[k - 1] > 1.5 and v[k] < HITCH_DIP * v[k - 1] and max(v[k + 1:k + 4]) > 1.5: hot.add(k)
+    return hot, v
+
+
+def fluid(comps, pins=(), acc_max=ACC_MAX, iters=600, win=6):
+    """THE FLUID PASS (caaleb 2026-11-14: "sometimes data's movements are not the best or most fluid"). Measured on
+    the posted saffron short: his arms went from still to 20-29 deg a frame inside two frames (accel up to 9.9
+    deg/frame^2) where a reach() swing met its grip, and stuttered (a fast move that all but stops for a frame, then
+    goes on) 37 times across the five shots. A Gaussian of fixed width cannot fix a key placed too close to the next
+    one. This relaxes the curve itself, only around the frames that are too sudden: each free frame is moved to lower
+    the curvature of the motion around it, and the frames a hand is ON its job (pins: IK
+    contact frames) never move, so the hand stays on the handle. Each step lowers the change of acceleration, so a
+    sudden swing becomes one that eases in and out, never a constant-speed ramp. comps: four per-frame lists (w, x, y, z)."""
+    n = len(comps[0])
+    if n < 5: return comps
+    q = [[comps[i][k] for i in range(4)] for k in range(n)]
+    for k in range(1, n):
+        if sum(a * b for a, b in zip(q[k], q[k - 1])) < 0: q[k] = [-x for x in q[k]]
+    fixed = set(pins) | {0, n - 1}
+    free = []
+    for it in range(iters):
+        if it % 15 == 0:
+            hot, _ = hot_frames(q, acc_max)
+            if not hot: break
+            free = sorted({j for k in hot for j in range(k - win, k + win + 1) if 0 < j < n - 1} - fixed)
+            if not free: break
+        for k in free:                     # one step down the ACCELERATION's slope (a biharmonic step): a straight
+            a, b, c, d = q[max(0, k - 2)], q[k - 1], q[k + 1], q[min(n - 1, k + 2)]   # Laplacian would flatten a
+            r = [x - 0.1 * (p0 - 4 * p1 + 6 * x - 4 * p3 + p4) for x, p0, p1, p3, p4 in zip(q[k], a, b, c, d)]   # move into a ramp that starts and stops dead
+            l = math.sqrt(sum(x * x for x in r)) or 1.0
+            q[k] = [x / l for x in r]
+    return [[q[k][i] for k in range(n)] for i in range(4)]
 
 
 def _gauss(v, sig):
