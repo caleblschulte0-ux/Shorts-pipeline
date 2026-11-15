@@ -5567,6 +5567,14 @@
         "mechanic:vault-drain-trickle",
         "mechanic:crowd-glow-share"
       ]
+    },
+    "saffron-hand-picked-3d": {
+      "claimed_at": "2026-11-15T02:29:27.152612+00:00",
+      "title": "Why Saffron Costs More Than Any Spice On Earth",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d"
     }
   },
   "uploads": [
@@ -7169,6 +7177,15 @@
       "state": "posted",
       "slug": "unclaimed-money-states-hold",
       "at": "2026-11-14T15:05:45.205428+00:00"
+    },
+    {
+      "claimed_at": "2026-11-15T02:29:27.152612+00:00",
+      "title": "Why Saffron Costs More Than Any Spice On Earth",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d",
+      "slug": "saffron-hand-picked-3d"
     }
   ]
 }
