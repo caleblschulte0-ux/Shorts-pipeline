@@ -70,11 +70,13 @@ def string_between(name, a_fn, b_fn, nf, r=0.0012, t0=0.0):
     return s
 
 
-def shrivel(root, t0, t1, to=0.5, seed=0, hang=True):
+def shrivel(root, t0, t1, to=0.5, seed=0, hang=True, fold="side"):
     """the balloon goes LIMP (judge 2026-11-15: a shrunk round balloon read as "a candy blob, jelly beans"): its
     skin loses its gas and stops being round. It narrows a lot and stays long (an empty sock, not a smaller ball),
     wrinkles deeply, and folds over its own knot until it hangs DOWN off it, the knot and string where they were.
-    Nothing drops: the knot never moves (the root is the knot). hang=False: it only goes soft and droops sideways."""
+    Nothing drops: the knot never moves (the root is the knot). hang=False: it only goes soft and droops sideways.
+    fold="front" folds it over toward the lens instead of across the frame (helium round 11: folding sideways read as
+    the balloon "flung sideways like it was thrown"); half way it points at us, so it reads as collapsing in place."""
     body = bpy.data.objects[root["body"]]
     rnd = random.Random(seed)
     tex = bpy.data.textures.new(f"{root.name} wrinkle", 'CLOUDS'); tex.noise_scale = 0.12; tex.noise_depth = 2
@@ -85,7 +87,8 @@ def shrivel(root, t0, t1, to=0.5, seed=0, hang=True):
         w = 1 - (1 - to * 0.75) * e                  # width falls further than length: limp, not small
         ln = 1 - (1 - to * 1.35) * e
         body.scale = (w, w * (1 - 0.25 * e), ln); body.keyframe_insert("scale", frame=F(t))
-        root.rotation_euler = (0, side * lean * (e ** 1.4), 0); root.keyframe_insert("rotation_euler", frame=F(t))
+        a = lean * (e ** 1.4)
+        root.rotation_euler = (a, 0, 0) if fold == "front" else (0, side * a, 0); root.keyframe_insert("rotation_euler", frame=F(t))
         md.strength = 0.14 * e; md.keyframe_insert("strength", frame=F(t))
     return body
 
@@ -477,3 +480,102 @@ def crank_wellhead(name, loc, h=0.4, r=0.045, stem=0.17, WR=0.075, front=False, 
         K.cyl(f"{name} ground pipe", (0.09, 0.0, 0.03), r * 0.6, 0.06, steel, rot=(0, math.pi / 2, 0), v=16, bev=0.002, parent=root)   # a line running off into the ground
     root.location = loc
     return root, wheel, Vector((0, 0, h + 0.09 + neck_h)), WC, WR
+
+
+def rock_core(name, loc, w=0.22, d=0.13, h=0.11, seed=0):
+    """A TABLETOP CUTAWAY OF THE GROUND (the counter version of "comes up from gas wells, made underground as
+    radioactive rock breaks down", 2026-11-15): a glass case filled with rock layers seen edge on (soil, sandstone,
+    grey shale, and at the bottom dark granite flecked with glowing green specks: the radioactive rock), a steel pipe
+    standing out of the top. Returns dict(root, top=z of the case top local, specks=[local points], pipe_in=local
+    point where the pipe enters the top)."""
+    rnd = random.Random(seed)
+    root = K.empty(name, (0, 0, 0))   # built at the origin (K builds children at absolute spots), placed at the end
+    layers = (("granite", "#3A3A40", 0.3), ("shale", "#6E7378", 0.22), ("sandstone", "#B8794A", 0.26), ("soil", "#5A4630", 0.22))
+    z = 0.0
+    for nm, col, frac in layers:
+        hh = h * frac
+        m = _mat(f"core {nm}", col, rough=0.85)
+        K.box(f"{name} {nm}", (0, 0, z + hh / 2), (w * 0.98, d * 0.98, hh * 0.99), m, bev=0.002, parent=root)
+        for k in range(5):            # a few pebbles and grains at the front face, so each band reads as rock
+            K.sph(f"{name} {nm} grain {k}", (rnd.uniform(-w * 0.45, w * 0.45), -d * 0.49, z + rnd.uniform(0.2, 0.8) * hh),
+                  rnd.uniform(0.004, 0.008), _mat(f"core {nm} grain", K.mute(col, 0.3), rough=0.8),
+                  scale=(1.3, 0.5, 1.0), parent=root, seg=10, ring=6)
+        z += hh
+    glow = _mat("radioactive speck", "#7CFF6A", rough=0.4, emit=6.0)
+    specks = []
+    for k in range(9):
+        p = Vector((rnd.uniform(-w * 0.42, w * 0.42), -d * 0.495, rnd.uniform(0.12, 0.85) * h * 0.3))
+        K.sph(f"{name} speck {k}", tuple(p), rnd.uniform(0.004, 0.0065), glow, scale=(1, 0.5, 1), parent=root, seg=10, ring=6)
+        specks.append(p)
+    glass = bpy.data.materials.new(f"{name} glass"); glass.use_nodes = True
+    b = glass.node_tree.nodes["Principled BSDF"]
+    for k, v in (("Transmission Weight", 1.0), ("Roughness", 0.04), ("IOR", 1.45), ("Alpha", 0.25)):
+        try: b.inputs[k].default_value = v
+        except KeyError: pass
+    try: glass.blend_method = 'BLEND'
+    except Exception: pass
+    frame = _mat("core frame", "#2B2E33", rough=0.4, metal=0.6)
+    K.box(f"{name} glass", (0, 0, h / 2), (w + 0.006, d + 0.006, h + 0.004), glass, bev=0.002, parent=root)
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            K.box(f"{name} post", (sx * (w / 2 + 0.004), sy * (d / 2 + 0.004), h / 2), (0.008, 0.008, h + 0.012), frame, bev=0.001, parent=root)
+    K.box(f"{name} lid", (0, 0, h + 0.006), (w + 0.016, d + 0.016, 0.01), frame, bev=0.002, parent=root)
+    K.box(f"{name} plinth", (0, 0, -0.006), (w + 0.02, d + 0.02, 0.012), frame, bev=0.002, parent=root)
+    root.location = loc
+    return dict(root=root, top=h + 0.011, specks=specks)
+
+
+def tap(name, loc, length=0.075, parent=None):
+    """a red-handled ball valve facing the lens: a brass body on the pipe, a spindle toward us, a long red lever.
+    Returns (root, lever pivot empty). The lever lies along +X at rest in the pivot's frame; turn the pivot about its
+    local Y (toward the lens) to open it."""
+    root = K.empty(name, (0, 0, 0))
+    brass = _mat("valve brass", "#B88A3A", rough=0.3, metal=1.0)
+    K.sph(f"{name} body", (0, 0, 0), 0.026, brass, scale=(1.2, 1.0, 1.0), parent=root, seg=24, ring=12)
+    K.cyl(f"{name} spindle", (0, -0.03, 0), 0.007, 0.03, brass, rot=(math.pi / 2, 0, 0), v=12, bev=0.001, parent=root)
+    piv = K.empty(f"{name} pivot", (0, -0.046, 0), parent=root)
+    red = _mat("lever red", "#C8261E", rough=0.35, coat=0.4)
+    K.box(f"{name} lever", (length / 2, -0.046, 0), (length, 0.014, 0.024), red, bev=0.005, parent=piv)   # fat enough to read red past his mitten
+    K.sph(f"{name} lever end", (length, -0.046, 0), 0.016, red, parent=piv, seg=16, ring=8)
+    root.location = loc
+    return root, piv
+
+
+def model_scanner(name, loc, R=0.1, depth=0.12, light_r=0.026, shell_hex="#E9ECEF"):
+    """A TABLETOP MODEL of a hospital MRI (the counter version, 2026-11-15): a fat white ring standing on edge round a
+    dark bore, a blue-padded patient bed sliding out of it toward the lens, a big round status lamp in a dark bezel on
+    the ring's face, and a steel funnel port on top where it is filled. Proportioned like the real machine, so it
+    reads as an MRI and not a washing machine. Returns dict(root, ring=ring object name, light=bsdf, port=local point
+    of the funnel mouth, joint=local point where the port meets the ring)."""
+    root = K.empty(name, (0, 0, 0))
+    shell = _mat(f"model shell {shell_hex}", shell_hex, rough=0.25, coat=0.6)
+    CZ = R + 0.016
+    bpy.ops.mesh.primitive_torus_add(major_radius=R * 0.7, minor_radius=R * 0.32, major_segments=64, minor_segments=24, location=(0, 0, CZ))
+    ring = bpy.context.active_object; ring.name = f"{name} ring"; ring.rotation_euler = (math.pi / 2, 0, 0)
+    ring.scale = (1, 1, depth / (R * 0.64)); ring.data.materials.append(shell); ring.parent = root
+    for p in ring.data.polygons: p.use_smooth = True
+    bore = _mat("model bore", "#1E2329", rough=0.5)
+    K.cyl(f"{name} bore", (0, 0.004, CZ), R * 0.42, depth * 0.98, bore, rot=(math.pi / 2, 0, 0), v=48, bev=0.002, parent=root)
+    blue = _mat("model ring band", "#3A78B8", rough=0.4, coat=0.3)
+    K.cyl(f"{name} trim", (0, -depth * 0.5 - 0.001, CZ), R * 0.45, 0.004, blue, rot=(math.pi / 2, 0, 0), v=48, bev=0.001, parent=root)
+    K.box(f"{name} foot", (0, 0, 0.008), (R * 1.5, depth * 1.1, 0.016), shell, bev=0.004, parent=root)
+    pad = _mat("model pad", "#3A6E9E", rough=0.6)
+    BZ = CZ - R * 0.3
+    K.box(f"{name} bed", (0, -depth * 0.9, BZ), (R * 0.5, depth * 1.2, 0.012), shell, bev=0.004, parent=root)
+    K.box(f"{name} bed pad", (0, -depth * 0.9, BZ + 0.009), (R * 0.44, depth * 1.16, 0.008), pad, bev=0.003, parent=root)
+    K.box(f"{name} bed leg", (0, -depth * 1.3, BZ / 2), (R * 0.32, 0.02, BZ), shell, bev=0.003, parent=root)
+    light = bpy.data.materials.new(f"{name} status"); light.use_nodes = True
+    bsdf = light.node_tree.nodes["Principled BSDF"]
+    LA = Vector((R * 0.62, -depth * 0.5 - 0.004, CZ + R * 0.62))
+    K.cyl(f"{name} bezel", tuple(LA + Vector((0, 0.002, 0))), light_r * 1.3, 0.008, _mat("lamp bezel", "#22262B", rough=0.4, metal=0.4), rot=(math.pi / 2, 0, 0), v=40, bev=0.002, parent=root)
+    K.cyl(f"{name} status light", tuple(LA + Vector((0, -0.003, 0))), light_r, 0.008, light, rot=(math.pi / 2, 0, 0), v=40, bev=0.003, parent=root)
+    steel = _mat("port steel", "#A9AEB4", rough=0.25, metal=1.0)
+    PX = -R * 0.35
+    top = CZ + R * 1.02 * (1 - (PX / (R * 1.02)) ** 2) ** 0.5
+    K.cyl(f"{name} port pipe", (PX, 0, top + 0.012), 0.008, 0.03, steel, v=16, bev=0.001, parent=root)
+    bpy.ops.mesh.primitive_cone_add(vertices=32, radius1=0.008, radius2=0.03, depth=0.03, location=(PX, 0, top + 0.04))
+    fun = bpy.context.active_object; fun.name = f"{name} funnel"; fun.data.materials.append(steel); fun.parent = root
+    for pl in fun.data.polygons: pl.use_smooth = True
+    root.location = loc
+    return dict(root=root, ring=ring.name, light=bsdf, port=Vector((PX, 0, top + 0.056)), joint=Vector((PX, 0, top)),
+                parts=[f"{name} port pipe", f"{name} funnel"])

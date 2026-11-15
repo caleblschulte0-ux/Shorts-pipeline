@@ -775,3 +775,109 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Animate a big readable shrug toward the camera: shoulders up, elbows bent about 45 degrees down, palms up and out, brows high, and a small closed questioning mouth. Reach it by the midpoint and hold it to the last frame
 - better: Make the string loop visibly round his wrist and have the balloon's bob tug his arm slightly
 
+
+## 2026-11-15 12:38Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 72 | 66, 72, 73 | PASS |
+| 2 | 70 | 64, 70, 72 | PASS |
+| 3 | 66 | 65, 66, 67 | FAIL |
+| 4 | 56 | 55, 56, 62 | FAIL |
+| 5 | 50 | 50, 50, 52 | FAIL |
+
+**shot 1** (PASS, 72, bar 70)
+
+- problem: The balloon doesn't sag down its string. Around frames 10-14 it gets flung sideways to the left like it was thrown, and at frames 12-13 it touches the left edge of the frame.
+- problem: Frames 4-9: the full balloon sits on top of his left lens and covers part of his glasses and face.
+- problem: Frames 1-8: his eyes look off to the side, not at the balloon, so the opening has no clear focus.
+
+**shot 2** (PASS, 70, bar 70)
+
+- problem: The lever swing is small and the handle reads as brass, not red. The cause (him opening the valve) barely registers next to the balloon.
+- problem: At the start the empty balloon is a flat blue sliver that reads like a flag or a leaf (frames 1-20).
+- problem: The top third of the frame is empty sky, and his legs show under the table, so the shot is looser than chest-up and the rock case is fairly small.
+
+**shot 3** (FAIL, 66, bar 70)
+
+- problem: The snatch goes sideways. His arm shoots straight out at shoulder height to the right (frames 10-16) while the balloon rises above him, so he isn't reaching up after it and there's no near-miss under the string end.
+- problem: Frames 1-8: the balloon overlaps the right side of his face and glasses.
+- problem: After the balloon leaves (frame 21), the sad face holds almost unchanged for about 15 frames (around 2 s), so the shot lingers after the payoff.
+- problem: The 'tug' isn't visible. The string just starts sliding with no jerk of his hand.
+- better: Stage the grab as an upward lunge: arm up, hand closing just under the trailing string end, a beat of frozen hand, then the arm drops.
+- better: Show a small yank on his fist at the tug so the escape has a cause.
+- better: Make the slump physical (shoulders and head drop, ears droop) and cut sooner after it lands.
+
+**shot 4** (FAIL, 56, bar 70)
+
+- HARD: NOT THE POINT: the model MRI is smaller than Data's head and reads as a white appliance or sink, not a scanner (all frames).
+- HARD: CONSEQUENCE: no frost is seen spreading over the ring, and the freezing vapour is barely visible (frames 9-24). Only the small lamp dot changes, from red to green (frame 24).
+- HARD: CONSEQUENCE: frost spreading over the ring from the port is never seen. The ring is plain white throughout (frames 1-39), and the white vapour pouring into the funnel is barely visible wisps (frames 12-24).
+- HARD: NOT THE POINT: the model MRI is a small white blob with a blue patch partly behind his hand at the right edge of the table. A viewer can't tell it's a scanner, so all they see is 'he puts something on a white thing and a light turns green'.
+- problem: You can't see the flask tipping. His hand covers the flask over the funnel, so the pour doesn't read.
+- problem: The lamp is a tiny dot, so the red-to-green payoff is hard to see on a phone.
+- better: Make the model MRI big and right in front of him at chest height, with a fat ring and a clearly visible bore and bed. It should be the hero of the frame.
+- better: Show the flask in profile, tipping clearly, with a thick white vapour stream falling into the funnel.
+- better: Make the frost a visible blue-white crust that creeps across the ring from the port, and make the lamp large with a glow.
+
+**shot 5** (FAIL, 50, bar 70)
+
+- HARD: NO PAYOFF: the last shot is a held pose with only eye movements. The balloon is never lifted toward the lens, and nothing happens for about 6.5 seconds (frames 1-49).
+- HARD: BROKEN: the scanner sits in front of his right arm and body and merges with him, so his hand and the prop overlap (all frames).
+- HARD: NO PAYOFF: frames 1-49 (about 7 s) are essentially a held pose. The look-up, look-across and brow-raise are tiny eye moves, and the lift of the balloon toward the lens isn't visible; the balloon stays at the same height beside his head throughout.
+- HARD: NO PAYOFF: frames 25-49 (about 3.5 s) hold an almost static look-to-camera. The 'lifts the balloon a little toward us' cannot be seen, and nothing happens at the end.
+- problem: The camera is wide. Data takes up a small part of the frame, with ceiling and empty floor and counter around him, so his face and brow can't be read on a phone (borderline TINY DATA).
+- problem: The scanner sits in front of his torso, centre-right, covering his body and other hand instead of standing clearly at the image-right.
+- problem: His feet show under the counter, which reads oddly in a store-counter close-up.
+- problem: Nothing in the frame puts the question 'would you still buy one?' to the viewer visually.
+- better: Shoot chest-up and close: balloon at one side of his head, the frosted scanner big at the image-right, nothing overlapping.
+- better: Make the beat a visible comparison move: a big head turn from the balloon to the scanner, with the scanner lamp blinking green as he looks at it.
+- better: End on a clear gesture to the lens, held low and to the side (not toward the lens, where it clips his head), plus an exaggerated brow-raise held long enough to read.
+
+
+## 2026-11-15 13:57Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 73 | 72, 73, 74 | PASS |
+| 2 | 71 | 66, 71, 71 | PASS |
+| 3 | 71 | 68, 71, 73 | PASS |
+| 4 | 70 | 69, 70, 70 | PASS |
+| 5 | 55 | 52, 55, 56 | FAIL |
+
+**shot 1** (PASS, 73, bar 70)
+
+- problem: Once the balloon has fully deflated (row 3 onward), it rests at counter height beside his fist and reads more like a small red bottle standing on the counter than a limp balloon hanging off a string.
+- problem: During the deflation (row 2, frames 3-5) the balloon becomes a floating red blob with almost no visible string, so for a few frames it looks detached from his hand.
+
+**shot 2** (PASS, 71, bar 70)
+
+- problem: The red lever's swing is tiny and hard to see. His hand barely moves between rows 1 and 2, so the cause of the swelling is weak.
+- problem: The rising bubbles are small white dots that read as sparkle noise on a phone, not as gas coming out of the rock.
+- problem: His head hugs the left edge of the frame (row 1 and row 4, first frames).
+
+**shot 3** (PASS, 71, bar 70)
+
+- problem: The tug is not visible. The string just starts sliding, and the snatch is a slow, stiff arm extension out to the side, not a quick grab that closes a hand's width under the string's end.
+- problem: Frames 17-36 (about 2.7 s): he holds an arm stiffly outstretched down and to the side, then stands with nothing happening. The tail after the balloon leaves is too long.
+- problem: Frames 1-8: the balloon overlaps the side of his glasses and face.
+
+**shot 4** (PASS, 70, bar 70)
+
+- problem: The pour is small: the white vapour is a thin wisp at the funnel and hard to read at phone size.
+- problem: On the way back (row 4, frames 2-4) the flask passes in front of his mouth and chin, a cluttered moment over his face.
+- problem: The model MRI (white disc, blue bore, blue bed pointing down) can read as a hair dryer or washing machine. The 'bed sliding out toward us' doesn't read.
+
+**shot 5** (FAIL, 55, bar 70)
+
+- HARD: NO PAYOFF: the shot ends on a held pose. Rows 4-7 (about 3.5 s) are near-identical frames, and the 'lift the balloon toward us' is barely perceptible.
+- HARD: NOT THE POINT: the look up at the balloon doesn't read. His glances go to the scanner and the lens, but at no point is he clearly looking up at the balloon, so the balloon/scanner juxtaposition is never made.
+- HARD: NO PAYOFF: frames 1-49 are essentially a held pose. He glances up, glances right and looks at us, and the balloon lift in frames 25-49 is a few pixels, so the video ends on nothing happening rather than a visual payoff.
+- HARD: NO PAYOFF: rows 3-7 (frames ~17-49, over 4 s) end on a near-static pose looking into the lens. The balloon 'lift toward us' is barely a few pixels, so the video ends on a pose with nothing happening
+- problem: Almost nothing happens over 49 frames: small head turns and a still body.
+- problem: The pink balloon sits against the left frame edge for most of the shot.
+- problem: The scanner is small and low at image-right. Its green lamp is the only cue tying it back to beat 4.
+- better: Build a real visual payoff that asks the question, e.g. he holds the balloon beside the frosted scanner, the scanner's lamp flickers, and he pulls the balloon back to his chest protectively. Or he offers it toward the lens low and to the side (not across his face), then raises an eyebrow.
+- better: Make each look a clear, held head turn: up at the balloon with his chin raised, a sharp turn to the scanner, then a snap to the lens with one brow up.
+- better: Move the balloon in from the left edge and push the scanner up and bigger so both read on a phone.
+
