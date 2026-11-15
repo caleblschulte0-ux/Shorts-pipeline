@@ -360,14 +360,15 @@ def gas_field():
 
 
 def hospital():
-    """a hospital scanner room: pale floor tiles, white walls with a soft blue band, ceiling light panels, a window
+    """a hospital scanner room: grey floor tiles, soft teal-grey walls with a blue band (white walls under four
+    bright panels blew the whole frame out and hid the white scanner against them, judge 2026-11-15), ceiling light panels, a window
     to the control room, and room for a big scanner at the back (the shot brings the scanner, store/helium_kit.py)."""
-    floor = _noise_mat("hospital floor", "#D9DCDC", "#CDD1D2", scale=3.0, rough=0.35, bump=0.02)
+    floor = _noise_mat("hospital floor", "#B4BBBD", "#A7AFB1", scale=3.0, rough=0.35, bump=0.02)
     K.box("hospital floor", (0, 1.5, -0.01), (8, 8, 0.02), floor, bev=0)
     for k in range(-12, 13):                                   # tile seams
         K.box("floor seam", (k * 0.3, 1.5, 0.0005), (0.004, 8, 0.001), K.mat("tile seam", "#AEB3B5", rough=0.6), bev=0)
-    wall = _noise_mat("hospital wall", "#EEF0F0", "#E4E7E8", scale=2.0, rough=0.7, bump=0.01)
-    band = K.mat("wall band", "#7FA6C8", rough=0.6)
+    wall = _noise_mat("hospital wall", "#A9C0C8", "#9FB6BF", scale=2.0, rough=0.7, bump=0.01)
+    band = K.mat("wall band", "#4F7FA8", rough=0.6)
     K.box("hospital back wall", (0, 2.2, 1.4), (8, 0.12, 2.8), wall, bev=0)
     K.box("wall band", (0, 2.13, 0.95), (8, 0.02, 0.14), band, bev=0)
     for sx in (-1, 1): K.box("hospital side wall", (sx * 2.6, 0.6, 1.4), (0.12, 4.0, 2.8), wall, bev=0)
@@ -375,15 +376,15 @@ def hospital():
     glass = K.mat("control window", "#9FB8C8", rough=0.1, emit=0.6)
     K.box("control window", (-1.6, 2.15, 1.35), (1.1, 0.03, 0.6), glass, bev=0.004)
     K.box("control window frame", (-1.6, 2.14, 1.35), (1.18, 0.02, 0.68), K.mat("window frame grey", "#8A9096", rough=0.4, metal=0.5), bev=0.004)
-    panel = K.mat("ceiling panel", "#FFFFFF", rough=0.3, emit=5.0)
+    panel = K.mat("ceiling panel", "#FFFFFF", rough=0.3, emit=2.5)
     for x, y in ((-0.8, 0.2), (0.8, 0.2), (-0.8, 1.4), (0.8, 1.4)):
         K.box("ceiling panel", (x, y, 2.37), (0.6, 0.6, 0.01), panel, bev=0)
-        _area(f"panel {x}_{y}", (x, y, 2.33), 0.6, 60, (0.96, 0.98, 1.0), aim=(x, y, 0))
+        _area(f"panel {x}_{y}", (x, y, 2.33), 0.6, 30, (0.96, 0.98, 1.0), aim=(x, y, 0))
 
     def light():
         sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
         bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.8, 0.84, 0.88, 1); bg.inputs["Strength"].default_value = 0.2
-        _area("room fill", (1.6, -2.2, 1.5), 2.0, 45, (0.95, 0.97, 1.0), aim=(0.0, 0.3, 0.6))
+        _area("room fill", (1.6, -2.2, 1.5), 2.0, 25, (0.95, 0.97, 1.0), aim=(0.0, 0.3, 0.6))
         return _hero_key()
     return light
 
