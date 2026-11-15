@@ -20121,13 +20121,50 @@
       "ts": "2026-11-15T12:30:32.315308+00:00"
     },
     "clip-20261115-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/AnimatedSolidHamburgerPermaSmug-gQvyismtjbXBbOKB",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/3FAyr_kt9m8",
       "title": "Ishowspeed Gets Emotional After This Kid Asks To Be Friends",
       "kind": "twitch_clip",
-      "ts": "2026-11-15T12:34:09.751388+00:00",
+      "ts": "2026-11-15T12:34:22.939182+00:00",
+      "uploaded_at": "2026-11-15T12:34:22.939198+00:00",
+      "publish_at": "2026-11-15T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261115-ishowspeed-gets-emotional-after-this-kid-asks-to-d45d213c",
+        "tiktok": "queued for 2026-11-15T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AnimatedSolidHamburgerPermaSmug-gQvyismtjbXBbOKB",
+      "streamer": "ishowspeed",
+      "series": "wholesome",
+      "hook": "This kid made Speed emotional \ud83e\udd79",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4073,
+      "banger": 0.72,
+      "cut": {
+        "start": 10.0,
+        "end": 29.5
+      },
+      "director_cut": true
+    },
+    "rejected-obliviouscreativechamoistwitchraid-jns9uzbj8qszbzvj": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ObliviousCreativeChamoisTwitchRaid-JnS9uZbJ8QSzbzvj",
+      "streamer": "jynxzi",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Sick talk, no event, static)",
+      "ts": "2026-11-15T12:35:13.634836+00:00"
+    },
+    "clip-20261115-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/pokimane/clip/PeppySmoggyWaterNerfBlueBlaster-R831oVzHRdTHmG_O",
+      "story_key": null,
+      "streamer": "pokimane",
+      "title": "Pokimane Tears Up Talking About Her Cat That's Gone",
+      "kind": "twitch_clip",
+      "ts": "2026-11-15T12:37:40.584750+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
