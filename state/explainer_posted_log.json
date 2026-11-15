@@ -5638,11 +5638,29 @@
       "duration_s": 31.8
     },
     "neutron-star-manhattan-size": {
-      "claimed_at": "2026-11-15T12:02:30.958358+00:00",
+      "url": "https://youtube.com/shorts/N0yIPJUOcEE",
       "title": "A Neutron Star Is Only 20 Kilometers Wide",
+      "at": "2026-11-15T12:02:42.500894+00:00",
       "publish_at": "2026-11-15T22:24:46Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.15,
+      "beat_s": [
+        4.1,
+        5.85,
+        5.68,
+        6.15,
+        7.63
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+scene",
+      "narrative_score": 74,
+      "duration_s": 29.9
     }
   },
   "uploads": [
@@ -7278,9 +7296,10 @@
       "claimed_at": "2026-11-15T12:02:30.958358+00:00",
       "title": "A Neutron Star Is Only 20 Kilometers Wide",
       "publish_at": "2026-11-15T22:24:46Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "neutron-star-manhattan-size"
+      "url": "https://youtube.com/shorts/N0yIPJUOcEE",
+      "state": "posted",
+      "slug": "neutron-star-manhattan-size",
+      "at": "2026-11-15T12:02:42.500894+00:00"
     }
   ]
 }
