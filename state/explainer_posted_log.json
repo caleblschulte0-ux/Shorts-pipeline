@@ -5636,6 +5636,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 31.8
+    },
+    "neutron-star-manhattan-size": {
+      "claimed_at": "2026-11-15T12:02:30.958358+00:00",
+      "title": "A Neutron Star Is Only 20 Kilometers Wide",
+      "publish_at": "2026-11-15T22:24:46Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7266,6 +7273,14 @@
       "state": "posted",
       "slug": "genome-sequencing-cost-collapse",
       "at": "2026-11-15T11:25:53.240060+00:00"
+    },
+    {
+      "claimed_at": "2026-11-15T12:02:30.958358+00:00",
+      "title": "A Neutron Star Is Only 20 Kilometers Wide",
+      "publish_at": "2026-11-15T22:24:46Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "neutron-star-manhattan-size"
     }
   ]
 }
