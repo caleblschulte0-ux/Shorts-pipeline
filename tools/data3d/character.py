@@ -1032,7 +1032,7 @@ class Data:
             for s, sg in (('L', -1), ('R', 1)):
                 # 11-12 judge: the first shrug (forearms out sideways) read at phone size as "arms held straight out,
                 # palms down, a T-pose spread". A shrug tucks the elbows and brings the forearms FORWARD and out.
-                if name == 'shrug': arm = (-4, 0, -sg * 20); fore = (-18, 0, -sg * 48); hand = (-10, sg * -95, 0)
+                if name == 'shrug': arm = (-4, 0, -sg * 20); fore = (-18, 0, -sg * 48); hand = (-10, sg * -86, 0)   # palms up, inside anatomy's TWIST_MAX (-95 read 100+)
                 else:               arm = (-16, 0, -sg * 18); fore = (-20, 0, -sg * 40); hand = (-15, sg * -20, -sg * 25)
                 for bn in (f'arm.{s}', f'fore.{s}', f'hand.{s}'): self._k(bn, t0, rot=self._pose_now(bn, t0))   # from the pose he is IN
                 self._k(f'arm.{s}', t1, rot=arm); self._k(f'fore.{s}', t1, rot=fore); self._k(f'hand.{s}', t1, rot=hand)

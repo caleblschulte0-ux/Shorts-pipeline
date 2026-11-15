@@ -419,7 +419,7 @@ def needle_to(needle, t, a, base=None):
     needle.keyframe_insert("rotation_euler", frame=F(t))
 
 
-def crank_wellhead(name, loc, h=0.4, r=0.045, stem=0.17, WR=0.075, front=False, neck_h=0.0, stem_a=0.0):
+def crank_wellhead(name, loc, h=0.4, r=0.045, stem=0.17, WR=0.075, front=False, neck_h=0.0, stem_a=0.0, gauge=False):
     """a gas wellhead with its valve wheel turned to FACE THE CAMERA (judge 2026-11-15: a flat wheel on top "looks
     static, the cause isn't readable"): a fat red pipe out of a concrete pad up to a gate valve, an open steel neck
     on top where a balloon is tied (the gas from the ground fills it right there), and out to the image-left (-X) a
@@ -432,7 +432,8 @@ def crank_wellhead(name, loc, h=0.4, r=0.045, stem=0.17, WR=0.075, front=False, 
     far toward -X, so the pipe and its balloon stand off to the side of whoever turns the wheel (the wheel itself
     still faces -Y, the camera)."""
     root = K.empty(name, (0, 0, 0))   # built at the origin (K builds children at absolute spots), placed at the end
-    red = _mat("wellhead red", "#B8322A", rough=0.4, metal=0.3, coat=0.3)
+    red = _mat("wellhead paint", "#56707F", rough=0.45, metal=0.4, coat=0.2)   # painted steel, not red: red read as a
+                                                                  # fire hydrant (helium round 7)
     steel = _mat("wellhead steel", "#8C9196", rough=0.3, metal=1.0)
     conc = _mat("well pad", "#9A968E", rough=0.9)
     K.box(f"{name} pad", (0, 0, 0.02), (0.22, 0.22, 0.04), conc, bev=0.01, parent=root)
@@ -466,5 +467,13 @@ def crank_wellhead(name, loc, h=0.4, r=0.045, stem=0.17, WR=0.075, front=False, 
     K.cyl(f"{name} hub", tuple(WC + Vector((0, -0.01, 0))), 0.02, 0.03, steel, rot=(math.pi / 2, 0, 0), v=16, bev=0.002, parent=wheel)
     knob = _mat("crank knob", "#C62B24", rough=0.35, coat=0.4)
     K.cyl(f"{name} crank", tuple(WC + Vector((WR, -0.025, 0))), 0.014, 0.05, knob, rot=(math.pi / 2, 0, 0), v=16, bev=0.004, parent=wheel)
+    if gauge:                         # a pressure gauge on the valve body, facing the lens: gas plumbing
+        face = _mat("gauge face", "#F4F1EA", rough=0.5); rim = _mat("gauge rim", "#2B2D30", rough=0.35, metal=0.8)
+        GZ = h + 0.06
+        K.cyl(f"{name} gauge stalk", (0, -r * 1.3, GZ - 0.02), 0.006, 0.04, steel, v=8, bev=0.001, parent=root)
+        K.cyl(f"{name} gauge rim", (0, -r * 1.4, GZ + 0.02), 0.034, 0.02, rim, rot=(math.pi / 2, 0, 0), v=32, bev=0.003, parent=root)
+        K.cyl(f"{name} gauge face", (0, -r * 1.4 - 0.011, GZ + 0.02), 0.028, 0.003, face, rot=(math.pi / 2, 0, 0), v=32, bev=0.0005, parent=root)
+        K.box(f"{name} gauge needle", (0.008, -r * 1.4 - 0.014, GZ + 0.026), (0.022, 0.002, 0.003), rim, bev=0.0, parent=root)
+        K.cyl(f"{name} ground pipe", (0.09, 0.0, 0.03), r * 0.6, 0.06, steel, rot=(0, math.pi / 2, 0), v=16, bev=0.002, parent=root)   # a line running off into the ground
     root.location = loc
     return root, wheel, Vector((0, 0, h + 0.09 + neck_h)), WC, WR

@@ -561,3 +561,217 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Shoot chest-up and centred, with his whole head in frame and the balloon kept off his face
 - better: Hold a clear question face for the last second: eyebrows up, head tilted, mouth in a small open 'hm?'
 
+
+## 2026-11-15 10:17Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 72 | 66, 72, 72 | PASS |
+| 2 | 56 | 52, 56, 58 | FAIL |
+| 3 | 64 | 52, 64, 75 | FAIL |
+| 4 | 58 | 55, 58, 63 | FAIL |
+| 5 | 48 | 48, 48, 50 | FAIL |
+
+**shot 1** (PASS, 72, bar 70)
+
+- problem: Framed full body down to the feet, not waist up, so the balloon and face are smaller than they should be
+- problem: The balloon is cut off by the top/left frame edge in frames 1-12; in frames 10-12 it swings out toward the left edge while it deflates instead of sagging in on itself beside his face
+- problem: Data's glasses are clipped by the right edge in frames 1-8
+- problem: Once limp, the balloon reads as a red rubber glove or rag rather than an obviously spent balloon
+
+**shot 2** (FAIL, 56, bar 70)
+
+- HARD: BODY: his hand is on the pipe beside the valve wheel, not on its handle, while it should be cranking, frames 1-12
+- HARD: BROKEN: the balloon inflates as a flat horizontal pancake that runs out of the right frame edge, frames 13-20
+- HARD: BODY: his hand rests on the pipe beside the valve wheel instead of gripping its handle, frames 1-14; the wheel never visibly turns, so the crank doesn't read
+- HARD: BROKEN: the valve wheel shifts from beside his arm to in front of his tie and overlaps his coat, frames 33-39
+- HARD: BODY: in frames 9-16 his hand sits on the pipe below and to the right of the yellow wheel, not on the wheel or its handle, so the cranking isn't happening
+- problem: The wellhead is a thin blue-grey pipe, not a big red one, and the wheel is small and turned partly edge-on rather than standing up facing us
+- problem: The empty balloon starts as a tiny blue flap that pokes sideways toward the right edge (frames 12-18); it is never 'huge'
+- problem: The gas-from-the-ground idea is weak: nothing ties the swelling balloon to the ground under the pipe
+- better: Put a big wheel right in front of his chest facing the lens, both hands on the rim, and show it make clear quarter turns with a visible spoke or handle moving
+- better: Make the pipe thick and red with a flange at the ground, and let the balloon swell well past head size
+- better: Add a shimmer or puff rising from the ground into the pipe as he cranks
+
+**shot 3** (FAIL, 64, bar 70)
+
+- hard (one judge only): BROKEN: a yellow vertical line runs from his coat down to the floor beside his legs in almost every frame. It stays attached to him mid-jump (frames 12-16) and after the balloon is gone, so it is stray geometry
+- hard (one judge only): TINY DATA: wide, full-body framing with Data about a third of the frame height. His face is too small to read on a phone for most of the shot
+- problem: The let-go 'by mistake' never reads. The balloon is already floating by his head in frame 1 and no slip from his hand is visible.
+- problem: In frames 1-24 his head is tilted far back: we see his chin and underside, and the glasses perch on his forehead. His face is unreadable for most of the action.
+- problem: The shot is wide, full body with a lot of empty sky. Data's face and hands are small on a phone.
+- problem: The string is nearly invisible, so the 'missed by a hand' moment depends on guessing.
+- better: Open with the string clearly in his fist at chest height, then show the fingers open and the string slip out.
+- better: Use a lower, closer camera so his upturned face still reads toward the lens. Thicken or brighten the string.
+- better: Hold the jump's apex with his fingertips just under the string end so the near-miss lands, then cut his sad stare tighter.
+
+**shot 4** (FAIL, 58, bar 70)
+
+- HARD: BROKEN: Data's head is cut by the left frame edge for most of the shot, frames 1-39 (the side of his head and the glasses arm are clipped)
+- HARD: BROKEN: the scanner ring, the shot's subject, is cut off by the right frame edge in every frame (1-39), and Data's head and ear are clipped by the left edge in frames 1-24
+- HARD: BROKEN: the scanner ring, the hero, is cut by the right edge of the frame for the whole shot. Only about half the ring is ever visible
+- HARD: BROKEN: Data's head is cut by the left and top edges in frames 33-39, and his body hugs the left edge throughout
+- problem: The fill port and funnel at his chest are hard to see; the smoke pours into an area by the bench, not clearly into a port
+- problem: Frost doesn't spread out from where the port meets the ring; the whole ring just turns white at once (frames 19-25)
+- problem: The status light is a flat disc floating in front of the ring instead of a lamp mounted on it
+- better: Pull back or reframe so the whole ring and the whole of Data are in frame, with the port running big and clear from the ring to the funnel at his chest
+- better: Animate the frost as a creeping front out from the port joint
+- better: Mount the light on the ring housing; the red to amber to green change itself reads well
+
+**shot 5** (FAIL, 48, bar 70)
+
+- HARD: NO PAYOFF: the shrug drops by about frame 33 and Data then stands idle in a neutral pose until the end, frames 33-49 (about 2.3 s of nothing happening)
+- HARD: BROKEN: the balloon rises and is cut by the left and top frame edges during the shrug, frames 17-32
+- HARD: BROKEN: the balloon is cut off by the left frame edge for most of the shot, half off-frame in frames 17-32
+- HARD: BODY: the string isn't visibly tied to his wrist; it runs past his arm and off the frame, frames 1-16 and 33-49
+- HARD: NO PAYOFF: after the shrug (frames 18-30) he drops back to an idle stance and stands doing nothing for about 2.5 seconds to the end, frames 33-49
+- HARD: BROKEN: the pink balloon, the subject of the question, is cut by the left edge of the frame for most of the shot (frames 17-49 especially)
+- HARD: NO PAYOFF: the shrug lasts about frames 17-31, then he drops back to a rest pose and stands still for roughly 2.5 seconds (frames 32-49), so the video ends on a static stand
+- HARD: BODY: the shrug arms are near-straight and angled down, not bent at about 45 degrees with the hands out. It reads as arms spread, not a shrug
+- problem: Framed full body, not chest up
+- problem: He never looks up at the balloon; his eyes go off to the side, away from it (frames 1-10)
+- problem: The shrug reads only as arms out: palms up and raised eyebrows are not legible, and the face is a flat, slightly sour line rather than a questioning look
+- better: Push in to chest up with the balloon fully in frame over his shoulder and the string clearly looped round his wrist
+- better: Act it in order: look up at the balloon, look at us, then a big shrug with palms up and brows high, and END on that held question while the balloon bobs
+- better: Open the mouth a little or tilt the head into the question so it reads as 'would you?' on a phone
+
+
+## 2026-11-15 10:54Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 71 | 68, 71, 72 | PASS |
+| 2 | 62 | 52, 62, 63 | FAIL |
+| 3 | 64 | 63, 64, 70 | FAIL |
+| 4 | 60 | 58, 60, 67 | FAIL |
+| 5 | 50 | 48, 50, 62 | FAIL |
+
+**shot 1** (PASS, 71, bar 70)
+
+- problem: The top and left of the balloon are cut off by the frame edge in frames 1-10, and as it deflates it whips out past the left edge (frames 10-13) instead of sagging down its string
+- problem: The framing is knees-to-head, not the waist-up close the hook asks for, so the face reaction is smaller than it should be
+- problem: The deflated balloon reads more like a raw chicken or a rubber glove than a limp balloon
+
+**shot 2** (FAIL, 62, bar 70)
+
+- hard (one judge only): BODY: the hand that should crank the valve is mostly resting on the pipe body beside or under the wheel, not on its red handle (frames ~17-26); the red handle only shows in the last ~6 frames
+- hard (one judge only): NOT THE POINT: the wheel is a small yellow ring seen edge-on at Data's chest, so 'he cranks it round and round' does not read; the opening balloon reads as a blue flag on a pole, not a limp balloon
+- problem: The cranking does not read. The yellow wheel is small, seen edge-on, at his hip and mostly hidden behind his hand. It does not stand facing the camera, and no round-and-round motion or red handle is visible.
+- problem: The pipe is blue-grey, not the big red wellhead in the plan, so it blends into the sky and ground.
+- problem: Data's head is clipped at the left edge through rows 2-3.
+- problem: The inflated balloon touches the right edge of the frame in rows 4-5.
+- better: Put the valve wheel big and face-on at chest height in front of Data, with the red handle visible on its rim. Have him crank it in clear full turns.
+- better: Make the wellhead red and bigger so it is the hero prop. Frame Data and the pipe so neither touches an edge.
+- better: Let the balloon swell visibly with each turn so the cause and the result read together.
+
+**shot 3** (FAIL, 64, bar 70)
+
+- problem: The release by mistake does not read: the string is never clearly in his hand, and the balloon simply starts rising beside his head.
+- problem: On the jump he spreads his arms wide in a V, like cheering, instead of reaching straight up at the string. The balloon is already well above his hands, so the near miss does not read.
+- problem: For about 16 frames after landing (row 3), his head is tipped back and the eyes are hidden behind the top of the glasses, so the staring-after reaction is invisible until row 4.
+- better: Open with the string clearly gripped in his fist. Show his fingers opening, with a small fumble, and the string slipping out.
+- better: On the jump, stage both hands straight up and stretching, with the string tail a hand's width above his fingertips at the peak.
+- better: Use a lower camera angle so his face stays readable while he looks up. Or cut his stare to a 3/4 view with his eyes visible, then turn to camera.
+
+**shot 4** (FAIL, 60, bar 70)
+
+- problem: The scanner reads poorly: a grey ring with a round grey inside and a white funnel underneath looks more like a toilet or washing machine than a hospital MRI, and the status light is a flat disc stuck on top.
+- problem: The smoke appears inside the ring's bore rather than visibly pouring from the flask down into the fill port and funnel at his chest, so the cause-and-effect is muddy.
+- problem: Data is full body and fairly small, not close as the brief asks, and his face is turned down and away for the first two-thirds (frames 1-24).
+- problem: Frames 29-39: the flask is pressed flat against his chest and tie, and looks partly sunk into the coat.
+- better: Show it plainly as an MRI: a big white ring with a patient bed sliding into the bore and a clear hospital look, with the light as a lit lamp on the housing.
+- better: Bring the funnel up to chest height in front of him and show a thick, visible stream of white vapour falling from the flask lip into it.
+- better: Make the frost spread visibly outward from the port across the ring before the light turns green.
+
+**shot 5** (FAIL, 50, bar 70)
+
+- HARD: NO PAYOFF: the video ends on a held stand-and-stare pose; the shrug barely happens (arms only slightly out, palms not clearly up, rows 3-6), so the final beat is a pose with nothing happening
+- HARD: BROKEN: the balloon is cut by the left frame edge for most of the shot (frames ~17-49)
+- HARD: NO PAYOFF: the video ends on a held shrug pose with nothing happening and no visual payoff (rows 3-7).
+- HARD: BROKEN: the balloon, the shot's subject, is cut off by the left frame edge for most of the shot (rows 3-6).
+- problem: It is framed full-body, not the chest-up close specified, so the questioning face is small
+- problem: The face reads as neutral or slightly sad, not 'eyebrows up, questioning'
+- problem: The look up at the balloon is just an eye shift with no head tilt
+- better: Go chest-up, with the balloon fully in frame over his shoulder and the string clearly tied round his wrist
+- better: Play a real shrug: elbows bent down ~45 deg, forearms out, palms up, shoulders raised, brows high, a small open questioning mouth, held about 1 s
+- better: Give it a payoff motion: the balloon bobs into his cheek or the string tugs his wrist up as he shrugs, so the ending lands on something happening
+
+
+## 2026-11-15 11:23Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 54 | 52, 54, 60 | FAIL |
+| 2 | 66 | 58, 66, 66 | FAIL |
+| 3 | 60 | 48, 60, 68 | FAIL |
+| 4 | 64 | 63, 64, 64 | FAIL |
+| 5 | 22 | 22, 22, 28 | FAIL |
+
+**shot 1** (FAIL, 54, bar 70)
+
+- HARD: BROKEN: the balloon is cut off by the top-left frame edge for the whole first third of the shot (frames 1-10), so the 'huge shiny balloon' is never seen whole before it fails
+- HARD: BROKEN: after the push-in, the right side of Data's head and glasses is cut off by the right frame edge (frames 17-27). Between the two crops, a key subject is clipped for most of the shot
+- HARD: BROKEN: a key subject is cut by the frame edge for most of the shot. In frames 1-10 the red balloon, the hook's subject, is half off the left edge, so the opening frame reads as a red blob in the corner. In frames 17-27 the camera has drifted until Data's right lens and the right side of his head are cut by the right edge, which crops his alarmed look at us, the moment the hook exists for.
+- HARD: BROKEN: the subject is cut by the frame edge for most of the shot. In frames 1-10 the balloon is clipped by the top-left corner, and in frames 17-27 Data's right lens and eye are cut by the right edge.
+- HARD: CONSEQUENCE: the deflation, the shot's whole action, happens mostly off-frame at the left edge. Between frames 9 and 12 the balloon jumps from full to a crumpled lump, so you never see it 'sag in on itself'.
+- problem: Data is framed hard right with dead shelf space on the left. When the balloon drops out of the upper left, that side of the frame is empty.
+- problem: In frames 1-8 he looks off to the side, smiling, not at the balloon or at us. Nothing in the first second tells the viewer to watch the balloon.
+- problem: The face falls in two steps: a flat mouth from frame 9, then an open 'alarmed' mouth only from frame 20. The reaction lands late for a hook.
+- better: Center Data and bring the balloon fully into frame beside his face. Keep the whole deflation on screen, slowing it to about 1 second so it visibly wrinkles and sinks down its string.
+- better: Have him look up at the balloon as it starts to go, then snap his eyes to the lens with the alarmed face on the same beat it hits his fist.
+- better: Pull the camera back slightly so his head never touches the right edge.
+
+**shot 2** (FAIL, 66, bar 70)
+
+- hard (one judge only): BODY: Data's hand sits on the pipe beside the valve wheel, not on its red handle (frames 1-8), so the crank is not being held while it supposedly turns
+- problem: The valve wheel is small and seen nearly edge-on beside his chest instead of facing us, so the cranking does not read as round and round. In frames 25-32 his hand sits on the side of the pipe, off the wheel, while the balloon is still swelling.
+- problem: The wellhead is a thin blue-grey pole on a concrete pad, not the big red pipe out of bare ground in the brief. Nothing shows the gas coming up out of the ground.
+- problem: In frames 25-39 the swollen balloon sits right against Data's head and overlaps the edge of his glasses, which looks cluttered.
+- better: Turn the wheel to face the lens at chest height in front of Data, make it bigger, and have his hand orbit it visibly by its red handle.
+- better: Make the wellhead a thick red pipe rising out of dirt, perhaps with a shimmer of gas rising inside a clear section, so the cause is on screen.
+- better: Move the pipe and balloon a little away from his head so the balloon swells into clear sky.
+
+**shot 3** (FAIL, 60, bar 70)
+
+- hard (one judge only): TINY DATA: this is a wide full-body shot in which Data's head is about a tenth of the frame height. His face and hands can't be read on a phone for the whole shot (frames 1-36)
+- hard (one judge only): NOT THE POINT: the 'lets go by mistake' moment does not read. The balloon is already beside his head with no visible grip or slip (frames 1-8), so this plays as a balloon floating away, not him losing it
+- problem: The 'by mistake' release is not seen. In frames 1-8 the balloon sits against his head with no visible string to his hand, so it seems to float away on its own.
+- problem: In frames 1-12 and 17-24 his head is tipped fully back. We see under his chin with the glasses perched on his forehead, his face is unreadable, and the glasses look detached.
+- problem: The jump in frames 12-15 is short and his hands are well below the string, so 'misses by a hand' does not read as a near-miss.
+- problem: He stares at us rather than after the balloon at the end. The sad face reads, but it breaks the 'stares after it' action.
+- problem: The black hat-like object on the dock near his feet is an unexplained prop that pulls the eye.
+- better: Show the string clearly in his fist first, then the fingers opening by accident, with a quick 'oops' face toward us.
+- better: Angle the camera lower and slightly to the side so his face stays readable while he looks up, rather than showing the underside of his chin.
+- better: Make the jump a real stretch with his fingertips a hand-width under the string end, holding the apex for a couple of frames.
+
+**shot 4** (FAIL, 64, bar 70)
+
+- problem: The shot calls for 'close on Data', but this is a full-body wide. The flask, port and frost are small on a phone
+- problem: The fill port and funnel sit low by the scanner's base, not at his chest. The smoke reads as pouring into the bore rather than down a port, so the plumbing is unclear
+- problem: During the pour his brows are knitted down (frames 1-24), which reads as angry rather than concentrating
+- problem: The left side of his head and glasses brushes or is clipped by the left frame edge (frames 1-24)
+- problem: The scanner ring is half-hidden behind Data and the red status light. Spreading frost reads as the ring just changing from grey to white, not frost creeping out from the port
+- problem: The status light changing from red through amber to green is clear and is the strongest read in the shot
+- better: Go waist-up, with the flask and funnel big at chest height in front of him and the ring filling the background
+- better: Show frost visibly growing outward from the port joint across the ring over about a second
+- better: Keep his brows neutral or slightly raised during the pour and save the impressed face for after the light turns green
+
+**shot 5** (FAIL, 22, bar 70)
+
+- HARD: NO PAYOFF: there is no shrug at any point. His arms hang at his sides with no palms up and no brows up (frames 1-49), and the shot ends on a slack open-mouth face (frames 45-49)
+- HARD: BROKEN: the right half of Data's head and body is cut off by the right frame edge for the entire shot (frames 1-49). The balloon is also cut by the left edge (frames 17-48)
+- HARD: NOT THE POINT: 'would you still buy one?', asked to the lens, does not come across. He just stands beside a balloon
+- HARD: BODY: the balloon string runs to the area by his hand, but it is never visibly tied round his wrist and he never reacts to a tug
+- HARD: NO PAYOFF / NOT THE POINT: Data never shrugs. Through all 49 frames his arms hang at his sides with no palms up, no raised shoulders and no lifted eyebrows. His face goes flat and neutral, then opens its mouth in frames 46-49, so the questioning shrug that is the payoff never happens.
+- HARD: BROKEN: Data is cut by the right frame edge for the whole shot. His right lens and the side of his head are off-frame in every frame, and in frames 17-40 the balloon is also cut by the left edge.
+- HARD: BROKEN: frames 47-49 jump: Data lurches sideways and his arm swings up in a single step, which looks like a pop at the very end of the video.
+- HARD: BROKEN: Data's head is cut by the right frame edge for the whole shot (frames 1-49). His right lens and half his face are off-screen.
+- HARD: NO PAYOFF / NOT THE POINT: the shrug never happens. No palms up and no raised brows at any frame. He holds a flat neutral face and a loose arm until a late open mouth in frames 45-49. The 'would you still buy one?' question is never asked with his body.
+- HARD: BODY: the balloon string runs to a lowered, loosely open hand rather than tied round a wrist, and no tug on his wrist is ever seen.
+- problem: The head-tilt up to the balloon is barely there. His eyes drift, and the 'tips his head up to it' beat doesn't read
+- problem: The flat, neutral face through the middle (frames 17-44) reads as a held still frame, with no acting
+- problem: The end changes to an open mouth hole, which the operator has flagged as a defect
+- better: Centre Data chest-up, with the balloon fully in frame over his shoulder
+- better: Animate a big readable shrug toward the camera: shoulders up, elbows bent about 45 degrees down, palms up and out, brows high, and a small closed questioning mouth. Reach it by the midpoint and hold it to the last frame
+- better: Make the string loop visibly round his wrist and have the balloon's bob tug his arm slightly
+
