@@ -1,5 +1,24 @@
 # Shorts-pipeline — notes for Claude sessions
 
+## Data Explainer script quality directive (2026-11-15)
+
+For **Data Explainer** illustrated/data shorts and 3D mascot shorts, read
+`data_learning/STORY_FIRST_SCRIPT_PLAYBOOK.md` **before** writing, rewriting,
+reviewing, or changing script-generation logic. It contains the researched
+story-first editorial standard, hook/payoff process, beat structure, source
+requirements, examples, scorecard, and implementation/measurement plan.
+
+Prefer a surprising human-relevant premise, hook and payoff designed together,
+progressive cause-and-effect beats, demonstrable visual evidence, and natural
+spoken language over a mechanical series of statistics or schema-driven prose.
+**This is a direction for future authoring and implementation, NOT a claim
+that the production code already enforces it.** Existing factual provenance,
+validation, showrunner, and publishing safeguards remain in force. When
+implementing changes, reconcile any old numeric-hook/keyword/beat-count rules
+with the new editorial standard in code **and tests** rather than bypassing
+safeguards or weakening quality gates. Do not extend this channel-specific
+rule to the other channels without an explicit request.
+
 ## Rule zero: if you can fix it, fix it — do not just name it
 
 Operator ruling, 2026-08-01. An audit that lists a problem you were capable
