@@ -5578,11 +5578,39 @@
       "duration_s": 28.8
     },
     "highest-point-illusion": {
-      "claimed_at": "2026-11-15T10:03:57.316601+00:00",
+      "url": "https://youtube.com/shorts/q6FSDzVJyqg",
       "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+      "at": "2026-11-15T10:04:08.946004+00:00",
       "publish_at": "2026-11-15T10:24:46Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.97,
+      "beat_s": [
+        4.67,
+        6.81,
+        6.45,
+        7.97,
+        6.77
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 83,
+      "duration_s": 33.2,
+      "hook": "inversion",
+      "topic_category": "geography",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:summit-skyline-ascent",
+        "mechanic:ocean-drains-to-reveal",
+        "viz:comparison"
+      ],
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -7200,9 +7228,10 @@
       "claimed_at": "2026-11-15T10:03:57.316601+00:00",
       "title": "Why 10,211 Meters Doesn't Make Everest Highest",
       "publish_at": "2026-11-15T10:24:46Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "highest-point-illusion"
+      "url": "https://youtube.com/shorts/q6FSDzVJyqg",
+      "state": "posted",
+      "slug": "highest-point-illusion",
+      "at": "2026-11-15T10:04:08.946004+00:00"
     }
   ]
 }
