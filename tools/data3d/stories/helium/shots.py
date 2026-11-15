@@ -358,55 +358,74 @@ def shot4():
 
 # ================================================================ SHOT 5: payoff
 def shot5():
-    """WOULD YOU STILL BUY ONE? Back at the party counter: Data holds a pink balloon by its string down at his side
-    (image-left), the balloon floating beside his head; on the counter at the image-right stands the little MRI from
-    beat 4, frosted, its lamp green. He looks up at the balloon, then across to the scanner, then into the lens, one
-    brow up, and lifts the balloon a little toward us. The question is the look and the offered balloon."""
+    """THE BALLOON GOES TO THE HOSPITAL. Back at the party counter, close: Data holds a pink balloon by its string in
+    his fist; beside it on the counter stands the little MRI from beat 4, frosted, its lamp green. The balloon tugs
+    and the string slides up out of his fist; he snatches it back, pulls it down and ties it round the scanner's fill
+    pipe, so the balloon bobs over the scanner instead of flying off; the lamp blinks. He looks up at it, then at us,
+    brow up: would you still buy one? (Rounds 11-14, looks and a lifted balloon: 50, 55, 56, 58, "ends on a held
+    pose". The coordinator's event: the helium goes to the hospital instead of the sky, which is the line.)"""
     where = store_set()
-    data = load_data(); data.place(0.04, 0.06, 0)
+    data = load_data(); data.place(0.0, 0.0, 0)                    # up at the counter: the scanner is in his reach
     L, R = sides(data)
     top = counter("party counter")
     shL, shR = acts._shoulder(data, L), acts._shoulder(data, R)
-    SC = Vector((shR.x + 0.14, -0.21, top))                        # at the image-right, clear of his arm and body
-    ms = HK.model_scanner("model", tuple(SC), R=0.074, depth=0.1, light_r=0.027, shell_hex="#A9B5C2")
-    HK.status(ms["light"], 0.0, "#10D040", emit=3.5)
+    RS = 0.072
+    SC = Vector((shR.x + 0.11, -0.15, top))                         # on the counter in front of his right side
+    ms = HK.model_scanner("model", tuple(SC), R=RS, depth=0.1, light_r=0.026, shell_hex="#8796A6")
     HK.frost(ms["parts"], 0.0, 0.01)
     HK.frost_spread(ms["ring"], SC + ms["joint"], 0.0, 0.05, 0.3)
-    H0 = shL + Vector((-0.07, -0.08, -0.09))                       # his fist low at his side
-    # round 13: the weighing (both arms out, bobbing 2 cm) read as "a stiff T pose ... a held pose". Now: his other
-    # hand stays down (the counter is out of his reach); he looks across to the scanner; then at us, brow up, and
-    # brings the balloon UP from his side to beside his face, and gives it two little shakes at us: this? still?
-    T_LOOK_B, T_LOOK_S, T_LOOK_US, T_OFFER0, T_OFFER1 = 0.15, 1.4, 2.6, 2.9, 3.8
-    H1 = shL + Vector((-0.08, -0.12, 0.0))                         # raised beside his face, wide of it
-    shake = lambda t: 0.035 * 0.5 * (1 - math.cos(2 * math.pi * (t - T_OFFER1 - 0.2) / 1.0)) * (T_OFFER1 + 0.2 < t < T_OFFER1 + 2.2)
-    Hs = spline([(0.0, H0), (T_OFFER0, H0), (T_OFFER1, H1)])
-    H = lambda t: Hs(t) + Vector((0, 0, shake(t)))
-    reach(data, L, H, 0.0, DUR, lead=0.05, back=None, elbow_out=0.45)
-    U = Vector((-0.09, -0.02, 0.25))                               # the balloon up and out beside his head
-    b = HK.balloon("last balloon", (0, 0, 0), r=0.08, color="#E2559B")
-    kp = lambda t: H(t) + U + bob(t, 2, amp=0.01)
+    TP = SC + ms["joint"] + Vector((0, -0.012, 0.016))              # the fill pipe, where he ties it
+    F0 = shR + Vector((0.07, -0.12, -0.07))                        # his fist, holding the string
+    SV = Vector((0.12, 0.0, 0.19))                                  # tail to balloon: up and out, clear of his head
+    T_SLIP, T_CATCH, T_DOWN, T_TIE, T_OFF = 0.55, 0.9, 1.8, 2.8, 3.05
+    SLIP = Vector((0, 0, 0.07))
+    loop = lambda u: Vector((0.018 * math.sin(2 * math.pi * 2 * u), -0.018 * math.cos(2 * math.pi * 2 * u) + 0.018, 0.0)) * math.sin(math.pi * u)
+    down = spline([(T_CATCH, F0 + SLIP), (T_DOWN, TP + Vector((0, 0, 0.03)))])
+    def tail(t):
+        if t < T_SLIP: return F0.copy()
+        if t < T_CATCH: return F0 + SLIP * ease((t - T_SLIP) / (T_CATCH - T_SLIP))
+        if t < T_DOWN: return down(t)
+        if t < T_TIE:
+            u = (t - T_DOWN) / (T_TIE - T_DOWN); return TP + Vector((0, 0, 0.03 * (1 - ease(u)))) + loop(u)
+        return TP.copy()
+    hand = spline([(0.0, F0), (T_SLIP + 0.08, F0), (T_CATCH, F0 + SLIP)])     # he snatches it back
+    def hand_at(t):
+        return hand(t) if t < T_CATCH else tail(min(t, T_TIE))
+    reach(data, R, hand_at, 0.0, T_OFF, lead=0.05, back=0.9, elbow_out=0.35)
+    b = HK.balloon("last balloon", (0, 0, 0), r=0.075, color="#E2559B")
+    kp = lambda t: tail(t) + SV + bob(t, 2, amp=0.012 if t > T_TIE else 0.006)
     follow(b, kp, 0.0, DUR)
-    HK.string_between("last string", H, kp, NF, r=0.0022)
-    LAMP = SC + Vector((0.074 * 0.62, -0.055, 0.09 + 0.074 * 0.62))
-    for k in range(2):                                             # the lamp blinks as he turns to it
-        t = T_LOOK_S + 0.15 + k * 0.3
-        HK.status(ms["light"], t, "#10D040", emit=3.5); HK.status(ms["light"], t + 0.12, "#40FF70", emit=9.0); HK.status(ms["light"], t + 0.26, "#10D040", emit=3.5)
-    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(kp(T_LOOK_B + 0.3) + Vector((0, 0, 0.03)), T_LOOK_B, max_yaw=40, max_pitch=32)
-    data.look_at(LAMP, T_LOOK_S, max_yaw=45, max_pitch=25)
-    data.look_at(US, T_LOOK_US, max_yaw=20)
+    HK.string_between("last string", tail, kp, NF, r=0.0024)
+    knot = K.sph("last knot", tuple(TP), 0.009, HK._mat("balloon string", "#F2F0EA", rough=0.8), seg=12, ring=6)
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; k = ease(min(1.0, max(0.0, (t - T_TIE + 0.3) / 0.3)))
+        knot.scale = (k, k, k * 0.8); knot.keyframe_insert("scale", frame=f)
+    st = ms["light"]
+    HK.status(st, 0.0, "#10D040", emit=3.0)
+    for c in (T_TIE + 0.05, T_TIE + 0.4):                          # tied: the lamp blinks
+        HK.status(st, c - 0.05, "#10D040", emit=3.0); HK.status(st, c + 0.05, "#5CFF8A", emit=12.0); HK.status(st, c + 0.2, "#10D040", emit=3.0)
+    data.look_at(kp(0.3) + Vector((0, 0, 0.03)), 0.0, max_yaw=35, max_pitch=30, blend=0.0)
+    data.look_at(kp(T_CATCH), T_SLIP, max_yaw=35, max_pitch=30)
+    data.look_at(TP, T_CATCH + 0.4, max_yaw=22, max_pitch=24)          # eyes down to the knot; the head stays clear of the balloon
+    data.look_at(kp(T_OFF + 0.6) + Vector((0, 0, 0.04)), T_OFF + 0.1, max_yaw=40, max_pitch=32)
+    data.look_at(US, T_OFF + 1.1, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("pleased", 0.0, T_LOOK_S)
-    data.expression("worried", T_LOOK_S + 0.15, T_LOOK_US)
-    data.expression("wry", T_LOOK_US + 0.05, DUR + 1.0, blend=0.2)        # brow up at us; his hands do the body acting
+    data.expression("pleased", 0.0, T_SLIP)
+    data.expression("surprised", T_SLIP + 0.05, T_CATCH + 0.3, blend=0.12)
+    data.expression("determined", T_CATCH + 0.45, T_TIE)
+    data.expression("pleased", T_TIE + 0.1, T_OFF + 1.0)
+    data.expression("wry", T_OFF + 1.15, DUR + 1.0, blend=0.2)        # brow up at us: would you still buy one?
     data.finish()
-    soft_key("counter key", (0.6, -1.0, 1.0), tuple(SC + Vector((-0.1, 0, 0.15))), energy=18, size=40)
-    C0, L0 = Vector((0.05, -0.99, 0.7)), Vector((0.05, 0.06, 0.6))   # waist-up: his face, the balloon and the scanner fill it
-    C1, L1 = Vector((0.05, -0.97, 0.7)), Vector((0.05, 0.06, 0.6))
-    cam = K.camera(tuple(C0), tuple(L0), lens=24, fstop=4.0)
-    camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.0, -0.08, 0.6))))
-    return dict(**where, data=data, rest=1, grips=("last",),
-                conseq=[("he lifts the balloon toward us, one brow up: would you?", lambda: meshes([b]), T_OFFER0, DUR, {"whole": False})])
+    soft_key("counter key", (0.6, -1.0, 1.0), tuple(SC + Vector((-0.05, 0, 0.2))), energy=18, size=40)
+    C0, L0 = Vector((0.1, -0.98, 0.72)), Vector((0.1, 0.0, 0.64))
+    C1, L1 = Vector((0.1, -0.93, 0.71)), Vector((0.1, 0.0, 0.64))
+    cam = K.camera(tuple(C0), tuple(L0), lens=26, fstop=4.0)
+    camera_path(cam, lambda t: (C0.lerp(C1, ease(t / DUR)), L0.lerp(L1, ease(t / DUR)), Vector((0.08, -0.12, 0.6))))
+    return dict(**where, data=data, rest=1, grips=("last", "model"),
+                conseq=[("the balloon slips, he catches it and ties it to the scanner, where it bobs", lambda: meshes([b]) + [bpy.data.objects["last string"]],
+                         T_SLIP, T_TIE + 0.6, {"whole": False, "moves": lambda: meshes([b])}),
+                        ("tied on, the scanner's lamp blinks", lambda: [bpy.data.objects[ms["ring"]], bpy.data.objects["model status light"]],
+                         T_TIE - 0.3, DUR, {"whole": False})])
 
 
 SHOTS = {1: shot1, 2: shot2, 3: shot3, 4: shot4, 5: shot5}
