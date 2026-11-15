@@ -15,6 +15,41 @@
       },
       "example": {},
       "faults": []
+    },
+    {
+      "ts": "2026-11-15T12:02:55+00:00",
+      "dry_run": false,
+      "posted": [
+        "highest-point-illusion",
+        "genome-sequencing-cost-collapse",
+        "neutron-star-manhattan-size"
+      ],
+      "held": {
+        "editorial_hold": [
+          "left-brain-right-brain-myth",
+          "helium-supply-squeeze",
+          "measles-ninety-five-rule",
+          "third-interstellar-visitor",
+          "divorce-rate-quiet-decline",
+          "volcano-country-ranking"
+        ],
+        "duplicate_hold": [
+          "mangrove-forest-loss",
+          "ocean-floor-vs-mars-mapped",
+          "oceanic-shark-collapse",
+          "drug-resistant-infections-2050"
+        ],
+        "not_current": [
+          "religious-nones-rise",
+          "cruise-ship-outbreaks-climbing",
+          "autism-diagnosis-rate-rise"
+        ]
+      },
+      "example": {
+        "editorial_hold": "premise: brain: Lacks a single verifiable number to support the claim despite reversing a common belief",
+        "not_current": "beat(s) [2] have no verified scene and the 'current' look has no slot (2 drawn, kept)"
+      },
+      "faults": []
     }
   ]
 }

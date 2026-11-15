@@ -1,0 +1,16 @@
+{
+ "slug": "genome-sequencing-cost-collapse",
+ "ts": "20261115T120303Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start and seg3:start: the small caption 'to read one human genome \u00b7 Human Genome Project (1990\u20132003)' sits right on the window's horizontal mullion, so the bar strikes through the text. It is low-contrast thin type over a busy skyline and cannot be read on a phone.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:start: the subtitle under '4,745 days' is printed on the window frame's crossbar and over the city behind the glass. The line runs through the words and the source text is illegible.",
+  "root_cause": "The headline and caption anchor at a fixed top-left position that lands on the window mullion in this lab set, and the caption is thin, light type with no backing against a busy background.",
+  "repair_goal": "Move the headline and caption onto clean wall space above or below the window, or shorten the caption to 'Human Genome Project, 1990\u20132003' in ink-weight type with a contrast halo, so no frame line crosses it. Also make the bead rack visibly assemble from 4,745 slow steps down to one quick sweep, with Data turning a crank so he drives it."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
