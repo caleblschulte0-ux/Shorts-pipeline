@@ -20028,6 +20028,25 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is an uncropped 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly; vision: From about 4s to the end, the sharp region is a wide game screen. Fuslie is a tiny facecam in the corner, so there is no; vision: In the first ~3s Fuslie sits sma",
       "ts": "2026-11-14T18:01:37.315066+00:00"
+    },
+    "rejected-muddyramshacklemoosemrdestructoid-ybpfteeal-4e2kiw": {
+      "source_url": "https://www.twitch.tv/forsen/clip/MuddyRamshackleMooseMrDestructoid-YbpftEEAl-4E2KIW",
+      "streamer": "forsen",
+      "title": "Olympus vs Forsen",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW PvP chatter; needs context, no visib)",
+      "ts": "2026-11-15T11:35:11.728376+00:00"
+    },
+    "clip-20261115-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caedrel/clip/ColdbloodedUglyGarageSuperVinlin-Yb1fh6v9eF7R69TS",
+      "story_key": null,
+      "streamer": "caedrel",
+      "title": "Caedrel Can't Believe Ruler's Insane Q Combo Takes Down Viper",
+      "kind": "twitch_clip",
+      "ts": "2026-11-15T11:39:06.738974+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
