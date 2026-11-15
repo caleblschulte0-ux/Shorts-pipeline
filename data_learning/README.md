@@ -1,5 +1,11 @@
 # data_learning — data-driven micro-learning add-on
 
+> **Data Explainer script quality — current editorial direction:** Read
+> [STORY_FIRST_SCRIPT_PLAYBOOK.md](STORY_FIRST_SCRIPT_PLAYBOOK.md) before
+> authoring, rewriting, judging, or changing the illustrated and 3D explainer
+> scripts. This playbook is a documented editorial target; its proposed rule
+> changes are **not automatically active** in production.
+
 > **Heads-up (2026-07-30): the TRENDING/DAILY channel's chain changed — THIS channel's flow did NOT.** For trending only: packages -> auto-merge -> Exchange Phase A -> ChatGPT -> Phase B -> render, so never dispatch `daily.yml` after authoring (it is the LAST step of that chain). THIS channel's authoring, triggers, and workflow are unchanged — follow this playbook exactly as written. Details: `docs/EXCHANGE_PIPELINE.md`.
 
 
