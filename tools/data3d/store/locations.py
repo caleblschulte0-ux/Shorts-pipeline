@@ -331,4 +331,61 @@ def sorting_room():
     return light
 
 
-PLACES = {"warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room}
+def gas_field():
+    """a gas field on the plains: dry short grass and bare dirt to a flat horizon, a few far pump jacks and a line of
+    fence posts, a big pale sky. Where helium comes up out of the ground (the helium short, 2026-11-15)."""
+    dirt = _noise_mat("plains dirt", "#9A8462", "#86714F", scale=0.9, rough=0.95, bump=0.25)
+    _ground("plains ground", dirt)
+    grass = _noise_mat("plains grass", "#A89A5E", "#8C8448", scale=2.2, rough=0.95, bump=0.4)
+    rnd = random.Random(23)
+    for i in range(26):
+        x, y = rnd.uniform(-7, 7), rnd.uniform(0.8, 18)
+        if abs(x) < 1.2 and y < 2.5: continue
+        r = rnd.uniform(0.6, 1.8); K.sph(f"grass patch {i}", (x, y, -0.02), 1.0, grass, scale=(r, r * 0.6, 0.05))
+    jack = K.mat("pump jack", "#3C3E42", rough=0.5, metal=0.5); head = K.mat("pump jack head", "#B8322A", rough=0.5, metal=0.3)
+    for i, (x, y, yaw) in enumerate(((-4.5, 9.0, 0.3), (3.8, 12.0, -0.4), (8.5, 16.0, 0.2))):
+        K.box(f"jack base {i}", (x, y, 0.08), (0.9, 0.3, 0.16), jack, bev=0.01)
+        K.box(f"jack post {i}", (x, y, 0.5), (0.1, 0.1, 0.84), jack, bev=0.006)
+        K.box(f"jack beam {i}", (x, y, 0.95), (1.1, 0.1, 0.1), jack, bev=0.006)
+        K.box(f"jack head {i}", (x + 0.58, y, 0.85), (0.14, 0.12, 0.34), head, bev=0.01)
+    post = K.mat("fence post", "#6E5A40", rough=0.9)
+    for k in range(14): K.box("fence post", (-6.5 + k * 1.0, 6.5, 0.32), (0.06, 0.06, 0.64), post, bev=0.006)
+    K.box("fence wire", (0, 6.5, 0.5), (14, 0.006, 0.006), post, bev=0)
+    hill = _noise_mat("far rise", "#9C9468", "#B0A47A", scale=0.3, rough=0.95, bump=0.05)
+    for x, r in ((-12, 9), (6, 12), (20, 9)): K.sph("far rise", (x, 40, -3.0), 1.0, hill, scale=(r, 3, 3.6))
+
+    def light():
+        return sky_light(sun_elev=34, sun_az=-40, sun=3.4, sky=0.4, warm=(1.0, 0.93, 0.82), haze=1.4)
+    return light
+
+
+def hospital():
+    """a hospital scanner room: pale floor tiles, white walls with a soft blue band, ceiling light panels, a window
+    to the control room, and room for a big scanner at the back (the shot brings the scanner, store/helium_kit.py)."""
+    floor = _noise_mat("hospital floor", "#D9DCDC", "#CDD1D2", scale=3.0, rough=0.35, bump=0.02)
+    K.box("hospital floor", (0, 1.5, -0.01), (8, 8, 0.02), floor, bev=0)
+    for k in range(-12, 13):                                   # tile seams
+        K.box("floor seam", (k * 0.3, 1.5, 0.0005), (0.004, 8, 0.001), K.mat("tile seam", "#AEB3B5", rough=0.6), bev=0)
+    wall = _noise_mat("hospital wall", "#EEF0F0", "#E4E7E8", scale=2.0, rough=0.7, bump=0.01)
+    band = K.mat("wall band", "#7FA6C8", rough=0.6)
+    K.box("hospital back wall", (0, 2.2, 1.4), (8, 0.12, 2.8), wall, bev=0)
+    K.box("wall band", (0, 2.13, 0.95), (8, 0.02, 0.14), band, bev=0)
+    for sx in (-1, 1): K.box("hospital side wall", (sx * 2.6, 0.6, 1.4), (0.12, 4.0, 2.8), wall, bev=0)
+    K.box("hospital ceiling", (0, 0.6, 2.4), (6, 4.2, 0.05), wall, bev=0)
+    glass = K.mat("control window", "#9FB8C8", rough=0.1, emit=0.6)
+    K.box("control window", (-1.6, 2.15, 1.35), (1.1, 0.03, 0.6), glass, bev=0.004)
+    K.box("control window frame", (-1.6, 2.14, 1.35), (1.18, 0.02, 0.68), K.mat("window frame grey", "#8A9096", rough=0.4, metal=0.5), bev=0.004)
+    panel = K.mat("ceiling panel", "#FFFFFF", rough=0.3, emit=5.0)
+    for x, y in ((-0.8, 0.2), (0.8, 0.2), (-0.8, 1.4), (0.8, 1.4)):
+        K.box("ceiling panel", (x, y, 2.37), (0.6, 0.6, 0.01), panel, bev=0)
+        _area(f"panel {x}_{y}", (x, y, 2.33), 0.6, 60, (0.96, 0.98, 1.0), aim=(x, y, 0))
+
+    def light():
+        sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
+        bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.8, 0.84, 0.88, 1); bg.inputs["Strength"].default_value = 0.2
+        _area("room fill", (1.6, -2.2, 1.5), 2.0, 45, (0.95, 0.97, 1.0), aim=(0.0, 0.3, 0.6))
+        return _hero_key()
+    return light
+
+
+PLACES = {"warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room, "gas_field": gas_field, "hospital": hospital}

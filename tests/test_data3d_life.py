@@ -49,3 +49,18 @@ def test_a_big_turn_brings_a_blink_and_a_small_one_does_not():
 def test_his_own_blinks_keep_clear_of_the_shots_blinks():
     blinks, _ = _plan(blinks=[2.0, 6.0])
     assert all(abs(b - s) >= 0.6 for b in blinks for s in (2.0, 6.0))
+
+
+def test_every_change_of_feeling_gets_a_body_take_unless_a_perform_acts_it():
+    cls = next(n for n in ast.parse(SRC).body if isinstance(n, ast.ClassDef) and n.name == "Data")
+    fin = next(n for n in cls.body if isinstance(n, ast.FunctionDef) and n.name == "finish")
+    assert "self._takes()" in ast.unparse(fin)
+    pytest.importorskip("bpy")
+    sys.path.insert(0, str(ROOT / "tools" / "data3d"))
+    import character
+    D = character.Data
+    fake = type("F", (), {"TAKE": D.TAKE, "TAKE_FROM": D.TAKE_FROM})()
+    fake.face_log = [("determined", 0.1, 0.3, 2.0, 0.2), ("happy", 2.6, 3.0, None, 0.4),
+                     ("alarmed", 4.9, 5.0, None, 0.1), ("worried", 7.0, 7.2, None, 0.2)]
+    fake._performs = [5.2]
+    assert D.take_plan(fake) == [(3.0, "happy"), (7.2, "worried")]

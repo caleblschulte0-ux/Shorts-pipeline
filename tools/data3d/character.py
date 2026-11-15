@@ -178,6 +178,7 @@ class Data:
         self._gaze_calls = []   # every explicit gaze() frame, in call order: a later gaze() at a look's frame wins
         self._blinks = []       # every blink() time: the life pass spaces its own around them
         self._turns = []        # (t, blend, yaw, tilt) of every look_at: a big head turn gets a blink, as people do
+        self._performs = []     # every perform() start: a face change there already has its whole-body act
         self._ik_keys = {}      # (side, frame) -> (world target, elbow_out, error when solved): finish() re-solves drift
         self.hands_resolved = (0, 0.0)
         self._build()
@@ -1020,6 +1021,7 @@ class Data:
         """the whole body acts `name` from t0: anticipation, overshoot, settle, hold (with life), release.
         pace < 1 plays it slower (a hit that measures as a whip from a hanging arm). Returns the time he is back at rest."""
         P_ = self.PERFORM[name]; sp = P_['speed'] * pace
+        self._performs.append(t0)
         ta = t0 + 0.12 / sp                 # anticipation: a small move the other way
         th = ta + 0.22 / sp                 # the hit: past the pose
         ts = th + 0.2 / sp                  # settled
@@ -1155,6 +1157,7 @@ class Data:
     def finish(self):
         n = F(self._end)
         self.sc.frame_start, self.sc.frame_end = 1, max(2, n)
+        if TAKES: self._takes()
         self._layer_neck(n)
         self._resolve_hands()
         self._aim_eyes()
@@ -1178,6 +1181,50 @@ class Data:
     BLINK_TURN = 18.0           # degrees of head turn that bring a blink with them
     SACCADE = (3.0, 2.0)        # degrees each way the pupils dart (yaw, pitch) while he holds a look
     SACCADE_GAP = (0.45, 1.4)   # seconds between darts
+
+    # The other half of that note: every feeling a shot gives him was a FACE cross-fading on a body that carried on
+    # as if nothing had happened, so a turn of the story read as a mask swap. A person who feels something moves with
+    # it: the body takes it (a pull back at a shock, a lift and a tilt at a win, a sink at bad news, a lean and a nod
+    # at resolve) with a beat of anticipation, an overshoot and a settle, the ears a frame behind. Every expression()
+    # a shot calls after its opening now carries that take, layered on whatever the body is doing, unless a perform()
+    # already acts that moment.
+    TAKE = {      # spine, chest, head (x, tilt) degrees, ears x: + leans in / down, - pulls back / up
+        'happy': ((-2, 0, 0), (-2, 0, 0), (-3, 7, 0), -16), 'pleased': ((-1.5, 0, 0), (-1.5, 0, 0), (-2, 6, 0), -12),
+        'surprised': ((-5, 0, 0), (-4, 0, 0), (-5, 0, 0), -26), 'alarmed': ((-6, 0, 0), (-4, 0, 0), (-4, 0, 0), -28),
+        'worried': ((4, 0, 0), (3, 0, 0), (5, 4, 0), 18), 'sad': ((5, 0, 0), (4, 0, 0), (6, -5, 0), 26),
+        'determined': ((3, 0, 0), (2, 0, 0), (6, 0, 0), 10), 'wry': ((0, 0, 0), (0, 0, 0), (2, 9, 0), 8),
+    }
+    TAKE_FROM = 0.5      # a face set in a shot's first half second is where it starts, not something that happens
+
+    def take_plan(self):
+        """[(t0, name)] for every face change that gets a body take. Pure: tests read it without a render."""
+        out = []
+        for nm, ta, t0, t1, bl in self.face_log:
+            if nm not in self.TAKE or t0 < self.TAKE_FROM: continue
+            if any(abs(t0 - p) < 0.45 for p in self._performs): continue
+            if any(abs(t0 - o) < 0.6 for o, _ in out): continue
+            out.append((t0, nm))
+        return out
+
+    def _takes(self):
+        for t0, nm in self.take_plan():
+            sp_, ch_, hd_, ear = self.TAKE[nm]
+            ta, th, ts, te, tr = t0 - 0.1, t0 + 0.12, t0 + 0.3, t0 + 0.75, t0 + 1.15
+            # a hand holding something (an IK key in the window) keeps the torso out of it: a spine move under a held
+            # grip is re-solved into an elbow flip (helium shot 1, 37 deg/frame); the head and ears still take it
+            held = any(F(t0 - 0.2) <= f <= F(tr) for (_, f) in self._ik_keys)
+            parts = (('head', tuple(1.4 * x for x in hd_)),) if held else (('spine', sp_), ('chest', ch_), ('head', hd_))
+            for bone, off in parts:
+                base = [self._pose_now(bone, t) for t in (t0 - 0.2, ta, th, ts, te, tr)]
+                for (t, b), w in zip(zip((t0 - 0.2, ta, th, ts, te, tr), base), (0.0, -0.2, 1.2, 1.0, 0.85, 0.0)):
+                    self._k(bone, t, rot=tuple(x + w * o for x, o in zip(b, off)))
+            for sd, sg in (('L', -1), ('R', 1)):
+                eb = f'ear.{sd}'
+                if eb not in self.pb: continue
+                tt = (t0 - 0.2, th + 0.06, ts + 0.06, te, tr)
+                base = [self._pose_now(eb, t) for t in tt]
+                for t, b, w in zip(tt, base, (0.0, 1.3, 1.0, 0.8, 0.0)):
+                    self._k(eb, t, rot=(b[0] + w * ear, b[1], b[2]))
 
     def life_plan(self, n, seed=None):
         """(blinks, darts): the blink times and the (t, dx, dz) pupil offsets the life pass will add, from the shot's own
@@ -1328,7 +1375,8 @@ class Data:
 
 
 SMOOTH = os.environ.get("TWITCH_FILTER", "1") == "1"
-LIFE = os.environ.get("DATA_LIFE", "1") == "1"      # the life pass (blinks, saccades); 0 only to compare
+LIFE = os.environ.get("DATA_LIFE", "1") == "1"
+TAKES = os.environ.get("DATA_TAKES", "1") == "1"    # a body take with every change of feeling; 0 only to compare      # the life pass (blinks, saccades); 0 only to compare
 SMOOTH_TORSO, SMOOTH_LIMB, SMOOTH_FACE = 2.5, 1.5, 1.2   # face 2.0 blurred syllables into a mumble       # Gaussian sigma, in frames at 30 fps
 
 

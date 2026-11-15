@@ -336,3 +336,33 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - problem: The hero flower does not read as a big OPEN crocus. It is a closed, tulip-like bud with red stamen threads sticking sideways out of the closed petals like wires (frames 1-12).
 - problem: The worried look-up uses Data's open dark-red mouth oval (frames 18-28), which is the 'open mouth hole' look the operator has already flagged.
 
+
+## 2026-11-15 02:44Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 73 | 73, 73, 74 | PASS |
+| 4 | 70 | 64, 70, 71 | PASS |
+| 5 | 74 | 72, 74, 75 | PASS |
+
+**shot 1** (PASS, 73, bar 70)
+
+- problem: The saffron jar shows as dark glass. On a phone the red threads look like a black-red blob (frames 1-14), so 'tiny jar of RED saffron' doesn't come through when it counts most.
+- problem: While the jar is held up it sits over Data's glasses and cheek and covers part of his face (frames 1-12).
+- problem: The camera jumps back fast at the set-down (frames 12-17). The table edge and framing move a lot in about half a second, so it reads as a lurch, not a planned move.
+- problem: Both money bricks come in from the right frame edge, half cut off (frames 17-18, 24-26). They look like they appear out of the edge instead of being pushed across the table from somewhere we can see.
+- problem: After the pull-back the bottom third of the frame is empty grey floor under the table (frames 17-38), which wastes the vertical frame.
+
+**shot 4** (PASS, 70, bar 70)
+
+- problem: The 'big open crocus' is never open. It starts as a cupped, closed bud, so wilting reads as a bud turning brown rather than a living bloom dying.
+- problem: For the first 8 frames the bloom's petals and red stigmas are cut by the left frame edge, with stray red threads sticking out sideways and looking detached.
+- problem: Data is stiff: his arms hang, then his hands clasp, and his body barely moves through the whole wilt (frames 1-28). His worry is mostly the open mouth.
+
+**shot 5** (PASS, 74, bar 70)
+
+- problem: While the basket is lowered to the table (around frames 26-31), Data's hand on it isn't clearly readable at sheet size. If the basket moves without his hand on it, that is a hard defect, so check it at full size.
+- problem: The empty basket ends at the bottom right, crowding the frame edge and partly cut, and it pulls the eye away from the level beam at the payoff.
+- problem: The saffron jar is still a dark shape and the red threads hardly show, so the 'tiny jar vs heap of flowers' contrast leans on the flowers alone.
+- problem: His raised hand (frames 37-54) rises on the jar side, behind the beam and jar, so the 'that's what you pay for' gesture is partly cluttered.
+
