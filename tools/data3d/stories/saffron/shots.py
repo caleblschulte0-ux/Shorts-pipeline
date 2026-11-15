@@ -48,15 +48,10 @@ def follow(obj, fn, t0=0.0, t1=None, rot_fn=None):
 
 
 def reach(data, side, fn, t0, t1, lead=0.4, back=0.45, elbow_out=0.45):
-    """one hand does a job: relaxed, swings onto the moving point fn(t) from t0 to t1, falls back relaxed"""
-    bones = (f"arm.{side}", f"fore.{side}", f"hand.{side}")
-    for b in bones:
-        if not data._has_keys(data.arm, f'pose.bones["{b}"].rotation_euler'): data._k(b, 0.0, rot=data.RELAXED[b])
-        data._k(b, max(0.0, t0 - lead), rot=data._pose_now(b, max(0.0, t0 - lead)) if t0 - lead > 0.05 else data.RELAXED[b])
-    for f in range(F(t0), F(t1) + 1):
-        t = (f - 1) / FPS; sc.frame_set(f); data._arm_ik(side, Vector(fn(t)), t, elbow_out)
-    if back is not None:
-        for b in bones: data._k(b, t1 + back, rot=data.RELAXED[b])
+    """one hand does a job: the rig's own reach (character.Data.reach). This story kept a private copy that slerped
+    joint angles to the grip, which drew the wing swing to the money stack (caaleb 2026-11-14: "his arms will bend
+    goofy"); the rig's hand now travels on a line (Data._hand_path)."""
+    return data.reach(side, fn, t0, t1, lead=lead, back=back, elbow_out=elbow_out)
 
 
 def sides(data):

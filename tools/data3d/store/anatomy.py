@@ -6,6 +6,9 @@ Every frame of the shot, MEASURED on the posed rig, never eyeballed:
   knee    bends 0..KNEE_MAX and never points backward
   wrist   the hand turns off the forearm by at most WRIST_MAX
   shoulder the upper arm never swings more than BEHIND_MAX behind the body
+  goofy   (caaleb 2026-11-14: "sometimes his arms and body like don't follow the rules and his arms will bend goofy")
+          a bent elbow never points UP while the hand is under the shoulder (a chicken wing), and the hand never rolls more than TWIST_MAX about the forearm (a wrung-out wrist). The old
+          rules only caught an elbow pointing FORWARD, so every other wrong direction an elbow can point passed
   hand    never inside the torso
   head    bends off the chest (neck and head together) by at most HEAD_BEND_MAX: a look down bends the neck now
           (character.Data._tilt), and a look down on top of a slumped performance must still be a neck a body has
@@ -23,6 +26,8 @@ POINT_K = 0.35          # how far the joint must point the wrong way (share of i
 HAND_IN = 0.07          # metres from the torso axis: inside his coat
 HEAD_BEND_MAX = 60.0    # degrees the head may tip off the chest's line, neck and head together (a person's neck flexes
                         # ~50-60 deg forward); a look down is at most 38 (character.Data.TILT_DOWN), a sad slump adds ~18
+ELBOW_UP_K = 0.55       # a bent elbow pointing UP while the hand is below the shoulder: the chicken wing
+TWIST_MAX = 100.0       # degrees the hand may roll about the forearm off the forearm's own roll
 GRACE = 2               # frames
 
 
@@ -58,6 +63,17 @@ def check(data, nf, step=1, name="shot"):
             if bend > ELBOW_MAX: hit("elbow over-bent", f, bend)
             o = _off(sh, el, wr)
             if bend > 20 and o.length > 1e-4 and o.normalized().dot(fw) > POINT_K: hit("elbow bends backward", f, bend)
+            if bend > 25 and o.length > 0.02:
+                od = o.normalized()
+                if wr.z < sh.z - 0.02 and od.z > ELBOW_UP_K: hit("elbow points up (chicken wing)", f, od.z * 100)
+            ax = (wr - el).normalized()
+            def roll(pb):
+                x = (M.to_3x3() @ pb.matrix.to_3x3()).col[0]; x = x - ax * x.dot(ax)
+                return x.normalized() if x.length > 1e-5 else None
+            rf, rh = roll(data.pb[f"fore.{s}"]), roll(data.pb[f"hand.{s}"])
+            if rf is not None and rh is not None:
+                tw = _ang(rf, rh)
+                if tw > TWIST_MAX: hit("hand wrung round the forearm", f, tw)
             wa = _ang(wr - el, hd - wr)
             if wa > WRIST_MAX: hit("wrist snapped", f, wa)
             u = (el - sh).normalized(); behind = math.degrees(math.asin(max(-1.0, min(1.0, -u.dot(fw)))))

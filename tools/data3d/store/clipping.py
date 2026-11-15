@@ -107,6 +107,11 @@ def check(data, nf, step=3, name="shot", grips=()):
                 if held and o.name.startswith(HANDS): continue      # the hand that holds it may touch it; nothing else of him may
                 k, dd = _inside(mesh[o][0][::4], tr, DEPTH)
                 if k: key = f"{o.name} into {s.name}"; bad.setdefault(key, set()).add(f); worst[key] = max(worst.get(key, 0), dd)
+            # and the other way round: a THIN prop through his body has no vertex of his inside it (helium shot 2, round 2:
+            # a valve wheel's 1 cm ring stood inside his coat on every frame, with this check reporting nothing)
+            for o, otr in trees.items():
+                k, dd = _inside(ws[0][::2], otr, DEPTH)
+                if k: key = f"{s.name} into {o.name}"; bad.setdefault(key, set()).add(f); worst[key] = max(worst.get(key, 0), dd)
     fails = {r for r, fr in bad.items() if len(fr) > GRACE}
     if not bad: print(f"CLIPPING {name}: nothing of him passes through anything -> OK", flush=True)
     for r, fr in sorted(bad.items()):

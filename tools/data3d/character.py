@@ -178,6 +178,7 @@ class Data:
         self._gaze_calls = []   # every explicit gaze() frame, in call order: a later gaze() at a look's frame wins
         self._blinks = []       # every blink() time: the life pass spaces its own around them
         self._turns = []        # (t, blend, yaw, tilt) of every look_at: a big head turn gets a blink, as people do
+        self._approaches = []   # (side, f0, f1) of every hand travel (_hand_path): store/twitch.py measures their bulge
         self._performs = []     # every perform() start: a face change there already has its whole-body act
         self._ik_keys = {}      # (side, frame) -> (world target, elbow_out, error when solved): finish() re-solves drift
         self.hands_resolved = (0, 0.0)
@@ -520,14 +521,93 @@ class Data:
         idle frame: the clipping check found it.) Shared by every story; the stories' own copies delegate here. Its IK
         frames are re-solved in finish() if a body act keyed after it moves the shoulder (_resolve_hands)."""
         bones = (f"arm.{side}", f"fore.{side}", f"hand.{side}")
+        if t0 > 0.05:            # FLUID: a swing gets the time it needs (hand speed at most REACH_SPEED), never a snap
+            self.sc.frame_set(F(max(0.0, t0 - lead)))
+            d = ((self.arm.matrix_world @ self.pb[f'fore.{side}'].tail) - Vector(fn(t0))).length
+            lead = min(max(lead, d / self.REACH_SPEED), max(lead, t0))
+        # a hand already ON a job at the start (an IK key: the last frame of an earlier reach) leaves from that solve; an
+        # FK copy of it there drops out of _resolve_hands, so the body's later lean moved it off the path (helium shot 5)
+        on_job = (side, F(max(0.0, t0 - lead))) in self._ik_keys
         for b in bones:
             if not self._has_keys(self.arm, f'pose.bones["{b}"].rotation_euler'): self._k(b, 0.0, rot=self.RELAXED[b])
-            self._k(b, max(0.0, t0 - lead), rot=self._pose_now(b, max(0.0, t0 - lead)) if t0 - lead > 0.05 else self.RELAXED[b])
+            if not on_job:
+                self._k(b, max(0.0, t0 - lead), rot=self._pose_now(b, max(0.0, t0 - lead)) if t0 - lead > 0.05 else self.RELAXED[b])
+        if t0 - lead > 0.05: self._hand_path(side, max(0.0, t0 - lead), t0, Vector(fn(t0)), elbow_out, ik_end=True)
         for f in range(F(t0), F(t1) + 1):
             t = (f - 1) / FPS; self.sc.frame_set(f); self._arm_ik(side, Vector(fn(t)), t, elbow_out)
         if back is not None:
             for b in bones: self._k(b, t1 + back, rot=self.RELAXED[b])
+            self._hand_path(side, t1, t1 + back, None, elbow_out)
 
+    # THE HAND TRAVELS, NOT THE JOINTS (caaleb 2026-11-14: "sometimes his arms and body like don't follow the rules and
+    # his arms will bend goofy"). Seen in the posted saffron short at 1.7-3.3 s: on the way to the money stack his arm
+    # swung out wide to the side like a wing, stiff and nearly straight, then swept down. reach() used to go from the
+    # hanging FK pose to the grip by slerping JOINT angles, so the hand drew a wide arc and the elbow took in-between
+    # angles no arm takes. A person moves the HAND: on a near-straight eased line (a slight lift) from where it is to
+    # where it is going, the elbow following. So every frame between is an IK solve on that line; only the first and
+    # last PATH_BLEND of it blend with the hanging pose, so leaving and arriving at the hang never pops.
+    PATH_ARC = 0.015        # m the hand lifts at the middle of its travel
+    PATH_CLEAR = 0.1        # m the hand's travel keeps off his shoulder
+    PATH_BLEND = 0.3        # share of the path at each FK end that eases between the FK pose and the IK solve
+
+    def _shoulder_w(self, side):
+        bpy.context.view_layer.update(); return self.arm.matrix_world @ self.pb[f'arm.{side}'].head
+
+    def _wrist(self, side, f):
+        self.sc.frame_set(f); bpy.context.view_layer.update()
+        return self.arm.matrix_world @ self.pb[f'fore.{side}'].tail
+
+    def _hand_path(self, side, ta, tb, p1=None, elbow_out=0.45, ik_end=False):
+        """IK every frame strictly between ta and tb, the wrist on an eased line from where it is at ta to p1 (None:
+        to where the keys put it at tb, e.g. the relaxed hang). The end that is an FK pose (not an IK key) blends.
+        ik_end: tb is where a job starts (reach() solves the path first, then the job on from it)."""
+        fa, fb = F(ta), F(tb)
+        if fb - fa < 2: return
+        p0 = self._wrist(side, fa); s0 = self._shoulder_w(side)
+        if p1 is None: p1 = self._wrist(side, fb)
+        self.sc.frame_set(fb); s1 = self._shoulder_w(side)
+        # the line is drawn IN HIS FRAME (off the shoulder), so a hand coming down as he lands from a jump comes down
+        # with him: drawn in the world it stayed up where the jump left it, out of reach (helium shot 3, 4 cm short)
+        r0, r1 = p0 - s0, p1 - s1
+        fk_a = (side, fa) not in self._ik_keys
+        fk_b = (side, fb) not in self._ik_keys and not ik_end
+        poses = {}
+        for b in (f'arm.{side}', f'fore.{side}'):
+            poses[b] = (self._euler_at(b, fa).to_quaternion(), self._euler_at(b, fb).to_quaternion())
+        self._approaches.append((side, fa, fb))
+        # ONE CHAIN OF SOLVES, in time order: each frame's elbow carries on from the frame before (_two_bone keeps the
+        # last bend plane near a degenerate pose). Solved as separate runs, a path met the job it came from, or the job
+        # it went to, with the elbow on the other side: the same wrist, a different arm, and the smoothing pass turned
+        # that flip into a 65-75 deg/frame swing off the line (helium shot 5, the open hand after the tie). So a path
+        # leaving a job starts from that job's last solve, and reach() solves its path BEFORE the job (ik_end).
+        if not fk_a: self.sc.frame_set(fa); self._arm_ik(side, p0, (fa - 1) / FPS, elbow_out)
+        for f in range(fa + 1, fb):
+            u = (f - fa) / (fb - fa); e = ease(u); t = (f - 1) / FPS
+            self.sc.frame_set(f)
+            sh = self._shoulder_w(side)                                # a line from overhead down to the hang runs through
+            r = r0.lerp(r1, e) + Vector((0, 0, self.PATH_ARC * math.sin(math.pi * u)))
+            tgt = sh + r                                               # his own shoulder: the arm folds flat there and the
+            if r.length < self.PATH_CLEAR:                             # elbow spins (29 deg/frame, helium shot 3's landing).
+                out = r if r.length > 1e-4 else Vector((0, 0, 0))      # The hand goes round it, PATH_CLEAR off, out in front.
+                out = out + self.forward() * 0.5 * self.PATH_CLEAR
+                tgt = sh + out.normalized() * self.PATH_CLEAR
+            self._arm_ik(side, tgt, t, elbow_out)   # kept as an IK key: finish() re-solves it on
+            w = 1.0                                  # the final body (a later take or lean must not carry it off its line)
+            if fk_a and u < self.PATH_BLEND: w = ease(u / self.PATH_BLEND)
+            if fk_b and u > 1 - self.PATH_BLEND: w = min(w, ease((1 - u) / self.PATH_BLEND))
+            if w < 1.0:
+                self._ik_keys.pop((side, f), None)   # a blend with the hang is not ON the line: nothing to re-solve
+                for b, (qa, qb) in poses.items():
+                    pb = self.pb[b]; q_ik = pb.rotation_euler.to_quaternion()
+                    q_fk = qa if u < 0.5 else qb
+                    if q_fk.dot(q_ik) < 0: q_fk = -q_fk
+                    pb.rotation_euler = q_fk.slerp(q_ik, w).to_euler('XYZ', pb.rotation_euler)
+                    pb.keyframe_insert('rotation_euler', frame=f)
+
+    def _euler_at(self, bone, f):
+        self.sc.frame_set(f); return self.pb[bone].rotation_euler.copy()
+
+    REACH_SPEED = 1.0     # m/s the hand averages on a swing to its job (eased, so it peaks near twice that)
     RELAXED = {'arm.L': (-4, 0, 5), 'arm.R': (-4, 0, -5), 'fore.L': (-22, 0, 0), 'fore.R': (-22, 0, 0), 'hand.L': (0, 0, 0), 'hand.R': (0, 0, 0)}
 
     def _pose_now(self, bone, t):
@@ -535,14 +615,12 @@ class Data:
 
     def release(self, t, dur=0.45):
         """let go: the arms hold where they are at t, then fall to a RELAXED hang (elbows soft, never dead straight)
-        over `dur` with a little overshoot, instead of snapping to the rest pose in three frames"""
+        over `dur`, the hand coming down on a line (_hand_path), instead of snapping to the rest pose in three frames"""
         bones = list(self.RELAXED)
         now = {b: self._pose_now(b, t) for b in bones}
         for b in bones: self._k(b, t, rot=now[b])
-        for b in bones:
-            r = self.RELAXED[b]
-            over = tuple(v * 1.18 for v in r) if b.startswith('fore') else r
-            self._k(b, t + dur * 0.7, rot=over); self._k(b, t + dur, rot=r)
+        for b in bones: self._k(b, t + dur, rot=self.RELAXED[b])
+        for side in "LR": self._hand_path(side, t, t + dur, None)      # the hand comes down on a line, not a wing
 
     def idle(self, t0, t1, seed=3):
         """standing life: breath in the chest, a slow weight shift in the hips, a little sway in the relaxed arms"""
