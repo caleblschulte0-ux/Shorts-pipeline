@@ -1,8 +1,795 @@
 {
- "date": "2026-11-14",
+ "date": "2026-11-15",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
- "slots": [],
- "already_today": 5
+ "slots": [
+  {
+   "sub": "nba",
+   "who": "Shai Gilgeous-Alexander",
+   "why": "SGA calmly fact-checks a reporter who used an AI-generated stat, a funny press-conference exchange.",
+   "post_title": "[Almanza] Shai Gilgeous-Alexander fact-checks an LA reporter who used AI search results to get an incorrect stat",
+   "upvotes": 0,
+   "url": "https://streamable.com/nj9vv6",
+   "topic": "https://www.reddit.com/r/nba/comments/1xw4y6u/almanza_shai_gilgeousalexander_factchecks_an_la",
+   "title": "Shai Gilgeous-Alexander Fact-Checks A Reporter Live: \"That's A False Stat\"",
+   "hook": "Shai catches a reporter's wrong stat \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@8.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 20.6,
+       "reason": "the framer: Shai at the press-conference mic: his face is in columns 4-6, centred near column 5, and his shoulders and torso fill the columns on either side.",
+       "crop": [
+        398,
+        708,
+        504,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.01,
+       0.688
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Shai Gilgeous-Alexander Thunder@10.46"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: The opening line 'That's a false stat, by the way' is a strong cold open and Shai is well cropped throughout. But the reporter and the wrong stat are never shown, and our caption collides with a broadcast score bug at mid0."
+    },
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: A real, well-cropped Shai moment, but the frames never show the reporter or the wrong stat. The cut drags in a glitch transition and game b-roll from the source edit, and our caption collides with the TV scorebug at mid2."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/xQXsIP1keYw",
+   "ok": true,
+   "publish_at": "2026-11-16T00:00:00Z",
+   "seconds": 1670,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261115-shai-gilgeous-alexander-fact-checks-a-reporter-l-029adbc9",
+    "tiktok": "queued for 2026-11-16T00:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Justin Jefferson",
+   "why": "Jefferson talks about Kirk Cousins taking over as a leader in the meeting room, a story about a returning quarterback.",
+   "post_title": "[Highlight] Vikings WR Justin Jefferson, speaking for the first time since Kirk Cousins\u2019 return: \u201cIt\u2019s just kind a joy to hear him take over and be a leader in the meeting room, on the field. It\u2019s def",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking",
+   "title": "Justin Jefferson Reveals What Kirk Cousins' Return Has Done For The Vikings",
+   "hook": "Jefferson on Kirk Cousins being back",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      1.0,
+      0.087,
+      1.0,
+      1.0,
+      0.098
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Kirk Cousins Justin Jefferson@9.46"
+    ],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A 32-second letterboxed press conference of Jefferson politely praising Cousins. It is on topic and clean, but there is no hook, no captions, a tiny subject and no moment that lands for a stranger.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A 32-second letterboxed press conference of Jefferson politely praising Cousins. It is on topic and clean, but there is no hook, no captions, a tiny subject and no moment that lands for a stranger."
+  },
+  {
+   "sub": "baseball",
+   "who": "Kevin McGonigle",
+   "why": "A kid in custom-made 'McGonigoggles' gets the best view of the Rookie of the Year's home run.",
+   "post_title": "This young fan brought custom-made \u201cMcGonigoggles\u201d to the ballpark in June andn they got the best view of Rookie of the Year Kevin McGonigle\u2019s home run",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xscovn/this_young_fan_brought_custommade_mcgonigoggles/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xscovn/this_young_fan_brought_custommade_mcgonigoggles",
+   "skipped": "too short: the post runs 12.1s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Skattebo",
+   "why": "He shows up to Thursday night in a Giants-themed Iron Man helmet.",
+   "post_title": "[Highlight] Cam Skattebo arrives for TNF in a Giants-themed Iron Man helmet",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xuslzs/highlight_cam_skattebo_arrives_for_tnf_in_a/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xuslzs/highlight_cam_skattebo_arrives_for_tnf_in_a",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Josh Allen",
+   "why": "A frustrated Allen slams his helmet into the air, then catches it.",
+   "post_title": "[Highlight] A frustrated Josh Allen slams his helmet to the ground, launching it into the air before catching it.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his",
+   "skipped": "too short: the post runs 7.6s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Jameis Winston",
+   "why": "He yells 'Who Let The Dogs Out' at the line to bait the defense offside.",
+   "post_title": "[Highlight] Giants QB Jameis Winston says \"Who Let The Dogs Out\" at the line of scrimmage while trying to get the Commanders defense to jump",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xuxwax/highlight_giants_qb_jameis_winston_says_who_let/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xuxwax/highlight_giants_qb_jameis_winston_says_who_let",
+   "title": "Jameis Winston Yells \"Who Let The Dogs Out\" At The Line Of Scrimmage \ud83d\udc36",
+   "hook": "Jameis chants Who Let The Dogs Out \ud83d\udc36",
+   "ledger": {
+    "moves": [
+     "zoom@6.31"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "3 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 9.27,
+       "reason": "the framer: Wide line of scrimmage on 4th & 1: Giants and Washington linemen in the middle, with a defender at col 7 and a receiver at col 2. The play runs wider than the crop allows. (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 9.27,
+       "t1": 9.9,
+       "reason": "the framer: Close-up of the Giants player's helmet and face, filling cols 3-6.",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 9.9,
+       "t1": 15.8,
+       "reason": "the framer: Giants player looking up with his whole face and helmet in cols 4-7.",
+       "crop": [
+        540,
+        720,
+        498,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.071,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: A fun real moment (Jameis chanting 'Who Let The Dogs Out' at the line), but our line sits on the TNF scorebug in the second half and the clip never shows whether the defense jumped."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/PXwgPjRncJc",
+   "ok": true,
+   "publish_at": "2026-11-16T03:00:00Z",
+   "seconds": 324,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261115-jameis-winston-yells-who-let-the-dogs-out-at-the-765e1ada",
+    "tiktok": "queued for 2026-11-16T03:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Yordan Alvarez",
+   "why": "Current and former teammates congratulate the AL MVP, a warm human moment.",
+   "post_title": "Current and former teammates congratulate American League MVP, Yordan Alvarez",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xvcdjn/current_and_former_teammates_congratulate/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xvcdjn/current_and_former_teammates_congratulate",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nba",
+   "who": "Damian Lillard",
+   "why": "Lillard thinks about it, then shoots right in McCain's face.",
+   "post_title": "[Highlight] Damian Lillard thinks about it, then decides to shoot it in McCain's face",
+   "upvotes": 0,
+   "url": "https://streamable.com/g9x91f",
+   "topic": "https://www.reddit.com/r/nba/comments/1xt9u3w/highlight_damian_lillard_thinks_about_it_then",
+   "title": "Damian Lillard Thinks About It, Then Pulls The Trigger Right In McCain's Face",
+   "hook": "Lillard thought about it, then fired \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@14.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "5 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.38,
+       "reason": "the framer: Ball handler in black dribbling (col 7), with defender #35 and the other defender beside him",
+       "crop": [
+        404,
+        720,
+        758,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.38,
+       "t1": 6.08,
+       "reason": "the framer: Lillard #0 in black, alone on the right side of the court (col 8)",
+       "crop": [
+        404,
+        720,
+        876,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 6.08,
+       "t1": 14.73,
+       "reason": "the framer: Ball handler in black working against the defender in blue, with the referee close by (cols 5-6)",
+       "crop": [
+        404,
+        720,
+        630,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 14.73,
+       "t1": 16.08,
+       "reason": "the framer: Close-up of Lillard's face and Portland jersey, with his face centered on cols 4-5",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 16.08,
+       "t1": 18.17,
+       "reason": "the framer: The play spreads from the ball handler in blue (col 4) to Lillard shooting at the right (col 7), so the shot is too wide to crop (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.066,
+      0.065,
+      0.029,
+      0.0,
+      0.168
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.0,
+       0.513
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: A real Lillard moment, but it is a re-crop of another repost: garbled burned-in captions stacked over the action, and a crop that loses Lillard at the edge during the setup."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A real Lillard moment, but it is a re-crop of another repost: garbled burned-in captions stacked over the action, and a crop that loses Lillard at the edge during the setup.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A real Lillard moment, but it is a re-crop of another repost: garbled burned-in captions stacked over the action, and a crop that loses Lillard at the edge during the setup."
+  },
+  {
+   "sub": "nba",
+   "who": "Marcus Smart",
+   "why": "He throws a punch, whiffs, and is ejected immediately.",
+   "post_title": "[Highlight] Marcus Smart throws a punch and whiffs at Charles Bassey and gets thrown out immediately",
+   "upvotes": 0,
+   "url": "https://streamable.com/r9wih3",
+   "topic": "https://www.reddit.com/r/nba/comments/1xu3em5/highlight_marcus_smart_throws_a_punch_and_whiffs",
+   "title": "Marcus Smart Swings At Charles Bassey, Misses, And Gets Tossed Instantly",
+   "hook": "Marcus Smart throws a punch and whiffs \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@5.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: The line promises a whiffed punch, but no sampled frame clearly shows it: the crop keeps cutting Smart and Bassey off, the middle is an unreadable wide scrum, and the end is a blurred walk-off."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The line promises a whiffed punch, but no sampled frame clearly shows it: the crop keeps cutting Smart and Bassey off, the middle is an unreadable wide scrum, and the end is a blurred walk-off.",
+    "score": 61
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The line promises a whiffed punch, but no sampled frame clearly shows it: the crop keeps cutting Smart and Bassey off, the middle is an unreadable wide scrum, and the end is a blurred walk-off."
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Fran McCaffery",
+   "why": "He gets his first technical foul as Penn head coach.",
+   "post_title": "Fran McCaffery receives his first technical foul as Penn head coach",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xu2onl/fran_mccaffery_receives_his_first_technical_foul/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xu2onl/fran_mccaffery_receives_his_first_technical_foul",
+   "skipped": "no sound: the post has no audio track"
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Tatum taps Brown, who keeps spinning the ball on his finger and ignores him.",
+   "post_title": "Jayson Tatum taps Jaylen Brown, who spins the ball on his finger and ignores him",
+   "upvotes": 0,
+   "url": "https://streamable.com/5pz2ak",
+   "topic": "https://www.reddit.com/r/nba/comments/1xt4jkb/jayson_tatum_taps_jaylen_brown_who_spins_the_ball",
+   "skipped": "too short: the post runs 11.1s (< 15s)"
+  },
+  {
+   "sub": "baseball",
+   "who": "Lauren Shehadi",
+   "why": "She shouts out Sarah Langs at the MLB Awards, a feel-good moment.",
+   "post_title": "Lauren Shehadi shouts out Sarah Langs at the MLB Awards",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xu283l/lauren_shehadi_shouts_out_sarah_langs_at_the_mlb/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xu283l/lauren_shehadi_shouts_out_sarah_langs_at_the_mlb",
+   "title": "Lauren Shehadi Tells Sarah Langs \"You Are Light\" At The MLB Awards",
+   "hook": "Lauren Shehadi's tribute to Sarah Langs",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "7 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 10.27,
+       "reason": "the framer: Lauren Shehadi speaking at the mic, face at columns 4-5 and body across 3-6",
+       "crop": [
+        270,
+        360,
+        184,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 10.27,
+       "t1": 13.2,
+       "reason": "the framer: Lauren Shehadi at the mic, face at columns 4-5, with Sarah Langs tweet text behind her",
+       "crop": [
+        270,
+        360,
+        184,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 13.2,
+       "t1": 18.6,
+       "reason": "the framer: Two audience members, the man in plaid at columns 2-3 and the smiling woman at columns 5-6, are about 3 columns apart, so both faces need to stay whole (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 18.6,
+       "t1": 21.77,
+       "reason": "the framer: Wide shot of the audience and stage with heads in the foreground at columns 6-9, too spread out to crop (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 21.77,
+       "t1": 24.1,
+       "reason": "the framer: The same two audience members, the man at columns 2-3 and the woman at columns 5-6, both reacting (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 24.1,
+       "t1": 26.87,
+       "reason": "the framer: Lauren Shehadi speaking at the mic, face at columns 4-5, body across 3-6",
+       "crop": [
+        270,
+        360,
+        184,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 26.87,
+       "t1": 29.77,
+       "reason": "the framer: Wide shot of the room, with the crowd at the left and the stage and speaker at the right, so it needs the full frame (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: A genuinely touching moment is buried: the opening is a seated pair smiling, six seconds are the backs of fans' heads, and the standing ovation that is the payoff plays as a tiny letterboxed strip."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/eoI9taKh3jk",
+   "ok": true,
+   "publish_at": "2026-11-16T15:00:00Z",
+   "seconds": 297,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261115-lauren-shehadi-tells-sarah-langs-you-are-light-a-83a1194a",
+    "tiktok": "queued for 2026-11-16T15:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Team Venezuela",
+   "why": "The World Baseball Classic champions are honored at the All-MLB Awards.",
+   "post_title": "Team Venezuela won its first World Baseball Classic title back in March & was honored at the All-MLB Awards last night!",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xujp41/team_venezuela_won_its_first_world_baseball/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xujp41/team_venezuela_won_its_first_world_baseball",
+   "title": "Team Venezuela Waited Years For This WBC Title, Then Dedicated It To Home",
+   "hook": "Venezuela dedicates its WBC title to home",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "6 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 4.67,
+       "reason": "the framer: Man in dark suit holding the WBC trophy; the trophy is centered at columns 4-6 and his body spans 3-7",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 4.67,
+       "t1": 12.6,
+       "reason": "the framer: Wide stage shot: host and speaker at left, flag holders, and a man at column 5, with the big screen on the right. The people are spread wider than a tall crop holds (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 12.6,
+       "t1": 16.37,
+       "reason": "the framer: Host with the microphone (cols 3-5) and the speaker in the dark suit (cols 5-7), with faces and mic close together",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 16.37,
+       "t1": 20.27,
+       "reason": "the framer: Very wide audience shot with the small stage in the middle (cols 3-6); the people on stage are tiny and the foreground heads are cropped, so show it uncropped (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 20.27,
+       "t1": 22.3,
+       "reason": "the framer: Close-up of the speaker's whole face and chain at cols 3-5; the host's partial face at the left edge is left out",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 22.3,
+       "t1": 26.63,
+       "reason": "the framer: Wide stage: host, speaker, flag holder and a man with sunglasses and the trophy span cols 2-7, wider than a tall crop (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.008,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.0,
+       0.735
+      ]
+     ]
+    },
+    "outro": {
+     "song": "champions",
+     "grade": "clean",
+     "shots": [
+      "https://www.youtube.com/watch?v=U_O5mTJ6UWc",
+      "https://www.youtube.com/watch?v=U_O5mTJ6UWc"
+     ],
+     "secs": 8.8
+    },
+    "cut_in": [
+     "Venezuela national baseball team World Baseball Classic@6.83"
+    ],
+    "shown": [],
+    "music": [
+     {
+      "track": "ncs:575c58c4-b0ac-44cb-9f34-2ceffa540509",
+      "credit": "Song: Tatsunoshin - Lost My Love\nMusic provided by NoCopyrightSounds\nFree Download/Stream: https://ncs.io/LostMyLove"
+     }
+    ]
+   },
+   "repairs": [
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: Real, on-topic WBC champion footage, but the closing fan section stacks our line on top of the clip's own cropped subtitles, and the flag emoji renders as 'VE'."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/JRfbu7PEhr0",
+   "ok": true,
+   "publish_at": "2026-11-16T18:00:00Z",
+   "seconds": 1766,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261115-team-venezuela-waited-years-for-this-wbc-title-t-0ed4a530",
+    "tiktok": "queued for 2026-11-16T18:00:00Z"
+   }
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "College basketball announcers",
+   "why": "The announcers wonder whether polar bears are fast and whether pretzels could motivate them.",
+   "post_title": "The announcers wonder if polar bears are fast and ponder if they could be motivated by soft pretzels",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xt7d7r/the_announcers_wonder_if_polar_bears_are_fast_and/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xt7d7r/the_announcers_wonder_if_polar_bears_are_fast_and",
+   "title": "College Basketball Announcers Debate If Soft Pretzels Could Make Polar Bears Fast",
+   "hook": "Announcers ask if polar bears are fast \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.647,
+      0.647,
+      0.647,
+      0.647,
+      0.647
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: A funny audio bit with no visual payoff: after a two-second look at the back of an announcer's head beside the pretzels, the clip is generic blowout gameplay, and a muted viewer gets nothing."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A funny audio bit with no visual payoff: after a two-second look at the back of an announcer's head beside the pretzels, the clip is generic blowout gameplay, and a muted viewer gets nothing.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A funny audio bit with no visual payoff: after a two-second look at the back of an announcer's head beside the pretzels, the clip is generic blowout gameplay, and a muted viewer gets nothing."
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "John Calipari",
+   "why": "Calipari's newest recruiting initiative is competitive pigeon herding.",
+   "post_title": "Coach Calipari\u2019s Newest Masterclass recruiting initiative: Competitive Pigeon Herding",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xr83l1/coach_caliparis_newest_masterclass_recruiting/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xr83l1/coach_caliparis_newest_masterclass_recruiting",
+   "title": "John Calipari Steps In To Shoo Pigeons Off The Court Mid-Game",
+   "hook": "Calipari shoos the birds off \ud83d\udc26",
+   "ledger": {
+    "moves": [
+     "zoom@35.67"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "subtitle_spans": [
+      0.375,
+      0.518,
+      0.518,
+      0.518,
+      0.117
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: The pigeons are shown well, but Calipari shooing them, which the title is built on, never appears, and the video ends on ceiling lights and the crowd."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 78
+   },
+   "video_url": "https://youtube.com/shorts/gaMY72qHneE",
+   "ok": true,
+   "publish_at": "2026-11-16T21:00:00Z",
+   "seconds": 488,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261115-john-calipari-steps-in-to-shoo-pigeons-off-the-c-6dd29a73",
+    "tiktok": "queued for 2026-11-16T21:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 100,
+ "already_posted": 14,
+ "refused_before": 2,
+ "shipped": 5
 }
