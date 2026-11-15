@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261114",
-  "generated_at": "2026-11-14T23:31:06Z",
+  "generated_at": "2026-11-15T00:31:03Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 51.76,
+          "days": 51.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 50.76,
+          "days": 50.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1695,10 +1695,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "8d423de",
-    "commits_since": "2026-11-13",
+    "head": "5166c52",
+    "commits_since": "2026-11-14",
     "commit_count": 50,
     "commits": [
+      "5166c52 claim: mailbox verdicts 2026-11-14T23:51Z [skip ci]",
+      "2046cfd retro: brief + triage for 20261114 [skip ci]",
       "8d423de comments: saved viewer comments [skip ci]",
       "10fa04a story forge: new real-data stories [skip ci]",
       "8c74048 claim: mailbox verdicts 2026-11-14T22:48Z [skip ci]",
@@ -1736,9 +1738,7 @@
       "e07b2fd explainer: update posted log + analytics [skip ci]",
       "4db32c9 third: analytics [skip ci]",
       "bf5768c third: update posted log + analytics [skip ci]",
-      "b426735 daily: 2026-11-14 report + state [skip ci]",
-      "b409531 claim: mailbox verdicts 2026-11-14T13:48Z [skip ci]",
-      "d348014 sports: 2026-11-14 posted log + verdicts [skip ci]"
+      "b426735 daily: 2026-11-14 report + state [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
