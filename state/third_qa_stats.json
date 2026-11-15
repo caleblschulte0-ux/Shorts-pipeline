@@ -3,182 +3,6 @@
     {
       "date": "20261108",
       "dry_run": false,
-      "ts": "2026-11-08T12:50:37+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-08T12:40:47.620294+00:00"
-      },
-      "brain": {
-        "ok": 3,
-        "fail": 6,
-        "limited_at": "2026-11-08T12:46:25+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261108-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261108-2",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "TEAM Jokerd world first 60 WoW Forever",
-              "raw": "TEAM Jokerd world first 60 WoW Forever",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 182.4
-        },
-        {
-          "slug": "clip-20261108-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.8
-        },
-        {
-          "slug": "clip-20261108-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261108",
-      "dry_run": false,
       "ts": "2026-11-08T17:08:11+00:00",
       "feedback": {
         "snapshot": true,
@@ -6248,6 +6072,396 @@
             }
           },
           "took_s": 164.3
+        }
+      ]
+    },
+    {
+      "date": "20261115",
+      "dry_run": false,
+      "ts": "2026-11-15T12:42:40+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 135,
+        "with_retention": 114,
+        "with_curve": 15,
+        "fetched_at": "2026-11-15T08:46:17.211827+00:00"
+      },
+      "brain": {
+        "ok": 48,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261115-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "Aimbot accusation, Worlds finals drama",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Worlds LoL gameplay, needs game context",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caedrel Can't Believe Ruler's Insane Q Combo Takes Down Viper"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.55,
+              "problems": [
+                "gameplay strip is small and the champions are tiny on a phone; bottom third is empty blur",
+                "hook caption sits over the streamer's lower face and hand in the facecam crop",
+                "facecam crop cuts off the top of the streamer's head in several frames"
+              ]
+            }
+          },
+          "took_s": 247.9
+        },
+        {
+          "slug": "clip-20261115-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: frozen video at 25.0s; render_qa: freeze: 2.0s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about one third of the canvas height. The rest is bl",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title; likely jump scare reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Horror jump scare lands, CaseOh reacts",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Gets Jump Scared In Bed And Hurts His Neck"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "frozen video at 25.0s",
+                "render_qa: freeze: 2.0s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin strip, about one third of the canvas height. The rest is blurred padding, so the framing loo",
+                "At 3.5s and 5.8s the sharp region is almost entirely black, with only a tiny 'FLESHBOUND' title and a 'GAME?' overlay, s",
+                "From about 15s to the end (roughly 12 seconds) the picture is a dark, static wall and chair. Nothing happens, and no per",
+                "The jump scare and neck injury in the title and hook are never clearly shown. The creature appears only briefly at the s",
+                "The in-game subtitles are too small to read, and the big-word overlays ('GAME?', 'A DREAM?') sit over empty frames with "
+              ]
+            },
+            "first_render": {
+              "reframe": "facecam_gameplay",
+              "layout": "facecam_gameplay",
+              "problems": [
+                "render_qa: freeze: 5.3s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+                "vision: The game footage is a thin strip in the middle, about 1/4 to 1/3 of the canvas, and it is small and hard to read on a ph",
+                "vision: At 3.5s and 5.8s the game picture is almost completely black, with only a faint title",
+                "vision: From about 15s to the end (~13s) the picture is a static, empty wall with a small subtitle and no action or person, so t",
+                "vision: The hook caption sits over the lower part of the streamer's facecam, covering part of his face"
+              ]
+            }
+          },
+          "took_s": 268.0
+        },
+        {
+          "slug": "clip-20261115-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (WoW PvP, dark, needs context)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 142,
+                "refused_shown": 9,
+                "scouted": [],
+                "vod_arcs": 303,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2866,
+                "pool_with_vod": 2009,
+                "arc_sizes": [
+                  5,
+                  3,
+                  2,
+                  2,
+                  4,
+                  6,
+                  3,
+                  2,
+                  2,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "@momentsmokyephemeralicecreamdoublerainbow-pqzizslxzr27y0xh",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "rickyedit@momentheartlessvivaciousbobatinyface-wga7q10tsvire",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "joebartolozzi@momentcleverfantasticgoshawkjebaited-0zfq9foxe",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "@momentamazingcolorfullaptopnononocat-gecnbzfzumaorxoq/annou",
+                  "outcome": "structure_failed",
+                  "why": "5.1s of dead air at 22s; the picture stands still for 2s at 0s"
+                },
+                {
+                  "cluster": "pokimane@momentrealeagernewtcharlietheunicorn-jzeh-qhglh-jxz",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is a 6-second fragment ('Also, I think we have a good system going') with no event, conflict or payoff. The stream before it is casual banter about rebranding, a themed amusement park, makeup"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "Gameplay skill, niche audience",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "WoW PvP, dark, needs context",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 35.3
+        },
+        {
+          "slug": "clip-20261115-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "Searched name, emotional reaction, kid m",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Fortnite friend request, mild payoff, fa",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Gets Emotional After This Kid Asks To Be Friends"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.62,
+              "problems": [
+                "Sharp picture fills only about a third of the canvas (a full-width 16:9 strip), well under the three quarters target. Sp",
+                "Face-cam is cropped at the bottom-left, and the game HUD and captions are tiny on a phone."
+              ]
+            }
+          },
+          "took_s": 230.6
+        },
+        {
+          "slug": "clip-20261115-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261115-5",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "Vague title, searchable name, unclear ev",
+              "blind": false
+            },
+            "content": {
+              "score": 0.74,
+              "why": "Pokimane tears up over late cat",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Pokimane Tears Up Talking About Her Cat That's Gone"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Hook text overlays the mic and torso, not her face, which is acceptable",
+                "Word captions sit close to the hook card, and in 'with us anymore' the text touches the frame edge, which is minor",
+                "The picture fills the frame well, and the grey mood overlay fits the sad moment"
+              ]
+            }
+          },
+          "took_s": 153.8
+        },
+        {
+          "slug": "clip-20261115-6",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The title and hook promise a creepy guy repeatedly kissing Jinny's hand, but that action is visible only around 2.7\u20134.5s; vision: The sharp picture is a small strip, roughly a third of the can",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, searchable streamer, unknow",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Street vendor kisses hand; mild, unclear",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jinnytty Keeps Getting Her Hand Kissed By A Creepy Guy And Calls It Out \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The title and hook promise a creepy guy repeatedly kissing Jinny's hand, but that action is visible only around 2.7\u20134.5s",
+                "The sharp picture is a small strip, roughly a third of the canvas height. The subjects are tiny and far away in most fra",
+                "The hook caption sits on the blurred top padding for the whole video and never changes. It is not tied to what is on scr",
+                "From about 6s to 18s there is no person or action in focus, only street, stalls and a distant crowd. The payoff the hook"
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 209.0
         }
       ]
     }

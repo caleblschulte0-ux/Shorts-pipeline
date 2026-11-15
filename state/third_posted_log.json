@@ -20158,14 +20158,41 @@
       "ts": "2026-11-15T12:35:13.634836+00:00"
     },
     "clip-20261115-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/pokimane/clip/PeppySmoggyWaterNerfBlueBlaster-R831oVzHRdTHmG_O",
-      "story_key": null,
-      "streamer": "pokimane",
+      "url": "https://youtube.com/shorts/o3X0CLoY7IU",
       "title": "Pokimane Tears Up Talking About Her Cat That's Gone",
       "kind": "twitch_clip",
-      "ts": "2026-11-15T12:37:40.584750+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-15T12:37:47.457129+00:00",
+      "uploaded_at": "2026-11-15T12:37:47.457143+00:00",
+      "publish_at": "2026-11-15T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261115-pokimane-tears-up-talking-about-her-cat-that-s-g-f4c621a8",
+        "tiktok": "queued for 2026-11-15T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/pokimane/clip/PeppySmoggyWaterNerfBlueBlaster-R831oVzHRdTHmG_O",
+      "streamer": "pokimane",
+      "series": "wholesome",
+      "hook": "Pokimane tears up over her cat \ud83e\udd40",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3851,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 9.8
+      },
+      "director_cut": true
+    },
+    "rejected-gorgeousdeafbottlehoneybadger-ynj3hz9yooaoa_k-": {
+      "source_url": "https://www.twitch.tv/jinnytty/clip/GorgeousDeafBottleHoneyBadger-yNj3HZ9YOoAOA_K-",
+      "streamer": "jinnytty",
+      "title": "Jinnytty Keeps Getting Her Hand Kissed By A Creepy Guy And Calls It Out \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The title and hook promise a creepy guy repeatedly kissing Jinny's hand, but that action is visible only around 2.7\u20134.5s; vision: The sharp picture is a small strip, roughly a third of the canvas height. The subjects are tiny and far away in most fra; vision: The hook caption sits on the blu",
+      "ts": "2026-11-15T12:42:40.343466+00:00"
     }
   }
 }
