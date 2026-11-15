@@ -1,0 +1,94 @@
+{
+ "slug": "helium-cant-make-more-3d",
+ "title": "The Gas In Your Party Balloon Is Running Out",
+ "voice": "am_fenrir",
+ "note": "Fourth 3D short, written for 3D from the queued helium-supply-squeeze story. One number at most per beat; the closing says why you care and asks. Every claim is in 'sources' with the source's own wording.",
+ "lines": [
+  "The gas in party balloons is running out, and we can't make more.",
+  "Almost all of it comes up from natural gas wells, made underground as radioactive rock slowly breaks down.",
+  "And once it's out, it floats up through the air and escapes into space. It's gone for good.",
+  "Its biggest job isn't balloons. About a quarter of it keeps hospital MRI machines cold enough to work.",
+  "So every balloon we let go is helium a hospital might need. Would you still buy one?"
+ ],
+ "draft_windows": [
+  [
+   0.0,
+   4.6
+  ],
+  [
+   4.6,
+   10.6
+  ],
+  [
+   10.6,
+   16.2
+  ],
+  [
+   16.2,
+   22.4
+  ],
+  [
+   22.4,
+   28.0
+  ]
+ ],
+ "sources": [
+  {
+   "claim": "It is running out and cannot be made again",
+   "says": "Terrestrial helium is a non-renewable resource because once released into the atmosphere, it promptly escapes into space. Its supply is thought to be rapidly diminishing.",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "It comes from natural gas wells, made by radioactive decay underground",
+   "says": "Most terrestrial helium present today is created by the natural radioactive decay of heavy radioactive elements ... This radiogenic helium is trapped with natural gas in concentrations as great as 7% by volume",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Released helium escapes into space",
+   "says": "once released into the atmosphere, it promptly escapes into space",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Its biggest use, about a quarter, cools MRI magnets",
+   "says": "its largest single use, consuming about a quarter of production ... most of which involves cooling the superconducting magnets in medical MRI scanners and NMR spectrometers",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Balloons are a minor use",
+   "says": "While balloons are perhaps the best-known use of helium, they are a minor part of all helium use.",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  }
+ ],
+ "sets": [
+  "store",
+  "field",
+  "dock",
+  "warehouse",
+  "store"
+ ],
+ "sets_why": "the party aisle where you buy it, the gas well where it comes from, the open sky by the water where it leaves, the hospital bay where it works, back to the aisle",
+ "ideas": [
+  "his big bunch of balloons shrivels and sags in his hand",
+  "he turns a wellhead wheel and gas from the ground swells a balloon on the pipe",
+  "he jumps for an escaping balloon and it gets away into the sky",
+  "he pours a smoking flask of freezing helium into a giant scanner",
+  "he ties the last balloon down instead of letting it go"
+ ],
+ "storyboard": [
+  "1 hook (store): close in the party aisle, Data holds a huge bunch of shiny balloons on strings right in front of us, filling the top of the frame; one by one the balloons shrivel and sag until he is holding a droop of limp rubber; he looks at us, alarmed.",
+  "2 well (field): a big red wellhead pipe stands out of the bare ground right in front of Data, a fat balloon tied over its open end, limp; he grips the big valve wheel with both hands and turns it, and the balloon on the pipe swells huge and round from the gas coming up out of the ground; he looks at us, pleased.",
+  "3 escape (dock): low on the dock with open sky behind, Data lets go of a big balloon by mistake; it rises past his face, he jumps with both arms up and misses the string by a hand, and it climbs away into the sky, shrinking to a dot; he lands and stares after it.",
+  "4 MRI (warehouse): a huge white hospital scanner ring stands right behind a low cart; Data tips a big silver flask and a stream of white freezing smoke pours out into the scanner's port, frost spreading over the ring and its big status light going from red to green; he looks at us, impressed.",
+  "5 payoff (store): close in the party aisle, Data holds one big balloon by its string, starts to let it go, stops, and ties the string firmly round a heavy iron weight on the shelf in front of him; the big balloon bobs, held down; he points at it and looks at us: would you?"
+ ]
+}
