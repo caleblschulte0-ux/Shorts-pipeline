@@ -20039,13 +20039,95 @@
       "ts": "2026-11-15T11:35:11.728376+00:00"
     },
     "clip-20261115-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caedrel/clip/ColdbloodedUglyGarageSuperVinlin-Yb1fh6v9eF7R69TS",
-      "story_key": null,
-      "streamer": "caedrel",
+      "url": "https://youtube.com/shorts/P1xRj1EFIMY",
       "title": "Caedrel Can't Believe Ruler's Insane Q Combo Takes Down Viper",
       "kind": "twitch_clip",
-      "ts": "2026-11-15T11:39:06.738974+00:00",
+      "ts": "2026-11-15T11:39:19.649848+00:00",
+      "uploaded_at": "2026-11-15T11:39:19.649864+00:00",
+      "publish_at": "2026-11-15T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261115-caedrel-can-t-believe-ruler-s-insane-q-combo-tak-b624095e",
+        "tiktok": "queued for 2026-11-15T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caedrel/clip/ColdbloodedUglyGarageSuperVinlin-Yb1fh6v9eF7R69TS",
+      "streamer": "caedrel",
+      "series": "win",
+      "hook": "Caedrel watches Ruler go crazy \ud83e\udd2f",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 49222,
+      "banger": 0.72,
+      "cut": {
+        "start": 0.3,
+        "end": 28.0
+      },
+      "director_cut": true
+    },
+    "rejected-wittysilkywombatseemsgood-ltmmc_yyyjmwdeau": {
+      "source_url": "https://www.twitch.tv/moonmoon/clip/WittySilkyWombatSeemsGood-lTMmC_YYYjMWdeaU",
+      "streamer": "moonmoon",
+      "title": "moonmoon on azeroth politics",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Flying travel, talk only, no event)",
+      "ts": "2026-11-15T11:40:56.158768+00:00"
+    },
+    "rejected-ephemeralsavorywatermelonampenergy-bcrhrv4g2kmb0ow8": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/EphemeralSavoryWatermelonAMPEnergy-bCRHRV4G2kmb0oW8",
+      "streamer": "caseoh_",
+      "title": "Caseoh Gets Jump Scared In Bed And Hurts His Neck",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "frozen video at 25.0s; render_qa: freeze: 2.0s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about one third of the canvas height. The rest is blurred padding, so the framing loo; vision: At 3.5s and 5.8s the sharp region is almost entirely blac",
+      "ts": "2026-11-15T11:45:24.184386+00:00"
+    },
+    "rejected-oilyfrozendolphincmonbruh-h6y75d12ghb0-_zx": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/OilyFrozenDolphinCmonBruh-h6y75D12GHb0-_ZX",
+      "streamer": "stableronaldo",
+      "title": "Exterminauts interview",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Promo cutaway, no clear event)",
+      "ts": "2026-11-15T12:20:28.007095+00:00"
+    },
+    "rejected-caringcuriouscardbloodtrail-viwie_n4vt6m3zr6": {
+      "source_url": "https://www.twitch.tv/sunglitters/clip/CaringCuriousCardBloodTrail-ViWIE_N4VT6M3ZR6",
+      "streamer": "sunglitters",
+      "title": "BEST PVP ACTION",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW PvP, dark, needs context)",
+      "ts": "2026-11-15T12:21:03.258438+00:00"
+    },
+    "rejected-averageaffluentmilkkappa-sf0f2wngj5n0dlnc": {
+      "source_url": "https://www.twitch.tv/roflgator/clip/AverageAffluentMilkKappa-sf0F2wNgj5n0DlNc",
+      "streamer": "roflgator",
+      "title": "it's not about the setup",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Blurry convention walk, no visible event)",
+      "ts": "2026-11-15T12:21:32.643384+00:00"
+    },
+    "rejected-moralaltruisticgoshawkstinkycheese-klk--qwbgcl4s5s3": {
+      "source_url": "https://www.twitch.tv/lirik/clip/MoralAltruisticGoshawkStinkyCheese-KLk--qWBgcL4s5S3",
+      "streamer": "lirik",
+      "title": "Lirik Loses His Mind As SpaceX Catches Starship Landing",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 15-20% of the canvas height, in nearly every frame. The rocket and tower are ti; vision: In the first three frames (2.1s-10.6s) the top half of the canvas is pure black and the sharp image is a small strip nea; vision: No person or Lirik is visible in",
+      "ts": "2026-11-15T12:30:32.315308+00:00"
+    },
+    "clip-20261115-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AnimatedSolidHamburgerPermaSmug-gQvyismtjbXBbOKB",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Gets Emotional After This Kid Asks To Be Friends",
+      "kind": "twitch_clip",
+      "ts": "2026-11-15T12:34:09.751388+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
