@@ -5576,6 +5576,13 @@
       "state": "posted",
       "style_arm": "3d",
       "duration_s": 28.8
+    },
+    "highest-point-illusion": {
+      "claimed_at": "2026-11-15T10:03:57.316601+00:00",
+      "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+      "publish_at": "2026-11-15T10:24:46Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7188,6 +7195,14 @@
       "style_arm": "3d",
       "slug": "saffron-hand-picked-3d",
       "at": "2026-11-15T02:29:38.049915+00:00"
+    },
+    {
+      "claimed_at": "2026-11-15T10:03:57.316601+00:00",
+      "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+      "publish_at": "2026-11-15T10:24:46Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "highest-point-illusion"
     }
   ]
 }
