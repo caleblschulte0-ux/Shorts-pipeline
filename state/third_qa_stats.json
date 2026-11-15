@@ -1,182 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261108",
-      "dry_run": false,
-      "ts": "2026-11-08T17:08:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 145,
-        "with_retention": 126,
-        "with_curve": 14,
-        "fetched_at": "2026-11-08T15:29:29.817825+00:00"
-      },
-      "brain": {
-        "ok": 4,
-        "fail": 0,
-        "limited_at": "2026-11-08T17:04:32+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 11, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261108-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261108-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "visible celebration",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "Streamer celebrates visibly, takes shirt",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Shouts WE DID IT After Epic Win"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 238.8
-        },
-        {
-          "slug": "clip-20261108-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.4
-        },
-        {
-          "slug": "clip-20261108-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261108-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261108-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
       "date": "20261109",
       "dry_run": false,
       "ts": "2026-11-09T11:34:00+00:00",
@@ -6462,6 +6286,272 @@
             }
           },
           "took_s": 209.0
+        }
+      ]
+    },
+    {
+      "date": "20261115",
+      "dry_run": false,
+      "ts": "2026-11-15T13:21:54+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 135,
+        "with_retention": 114,
+        "with_curve": 15,
+        "fetched_at": "2026-11-15T08:46:17.211827+00:00"
+      },
+      "brain": {
+        "ok": 23,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261115-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261115-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "funny title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "Visible wrestling stunt, lifting guy ups",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Silky Hilariously Chants Jibba Jibba At Chibu Airlines Until Everyone Loses It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Hook caption sits over the lower body/legs in some frames but doesn't cover faces",
+                "Word captions occasionally overlap the subject's torso/legs, minor"
+              ]
+            }
+          },
+          "took_s": 129.6
+        },
+        {
+          "slug": "clip-20261115-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 141,
+                "refused_shown": 9,
+                "scouted": [],
+                "vod_arcs": 303,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2866,
+                "pool_with_vod": 2009,
+                "arc_sizes": [
+                  5,
+                  3,
+                  2,
+                  2,
+                  4,
+                  6,
+                  3,
+                  2,
+                  2,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "@momentsmokyephemeralicecreamdoublerainbow-pqzizslxzr27y0xh",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "rickyedit@momentheartlessvivaciousbobatinyface-wga7q10tsvire",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "joebartolozzi@momentcleverfantasticgoshawkjebaited-0zfq9foxe",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "@momentamazingcolorfullaptopnononocat-gecnbzfzumaorxoq/appar",
+                  "outcome": "structure_failed",
+                  "why": "4.8s of dead air at 11s; the picture stands still for 2s at 1s"
+                },
+                {
+                  "cluster": "pokimane@momentrealeagernewtcharlietheunicorn-jzeh-qhglh-jxz",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 These sources are one stretch of casual hangout chat from a Korea trip stream. The Twitch clip is 6 seconds of Pokimane's friend saying 'I think we have a good system going' while Pokimane moves in an"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, inside joke likely",
+              "blind": false
+            },
+            "content": {
+              "score": 0.6,
+              "why": "Gold/silver statue costumes, awkward red",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Reacts To Wubby And Poob And It Gets Loud"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture is a thin 16:9 strip, about a third of the canvas height, so the three people are fairly small on a phone",
+                "The blurred padding above and below is mostly empty apart from the hook text, so the picture could have been cropped tig"
+              ]
+            }
+          },
+          "took_s": 154.9
+        },
+        {
+          "slug": "clip-20261115-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261115-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261115-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Searched name, vague crashout title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Visible rage after death, searchable nam",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Crashout After Calling Himself Brain Dead Mid-Game"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.55,
+              "problems": [
+                "The facecam crop cuts off the top of his head, with the forehead or eyes at the edge of the frame in many frames (1.0s, ",
+                "The hook caption sits over his mouth and chin in the reaction frames (8.6s, 10.5s, 14.3s), covering the main subject's e",
+                "The operator portrait overlay covers the gameplay and stacks awkwardly above the face, so the layout looks cluttered",
+                "The opening 7 seconds show a static, expressionless face over an empty wall, with no clear action"
+              ]
+            }
+          },
+          "took_s": 190.7
         }
       ]
     }
