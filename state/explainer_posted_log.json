@@ -5611,6 +5611,13 @@
       ],
       "words_first_10s": 8,
       "scene_changes_before_5s": 2
+    },
+    "genome-sequencing-cost-collapse": {
+      "claimed_at": "2026-11-15T11:25:40.470429+00:00",
+      "title": "Genome Sequencing Now Costs Just $525",
+      "publish_at": "2026-11-15T16:24:46Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7232,6 +7239,14 @@
       "state": "posted",
       "slug": "highest-point-illusion",
       "at": "2026-11-15T10:04:08.946004+00:00"
+    },
+    {
+      "claimed_at": "2026-11-15T11:25:40.470429+00:00",
+      "title": "Genome Sequencing Now Costs Just $525",
+      "publish_at": "2026-11-15T16:24:46Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "genome-sequencing-cost-collapse"
     }
   ]
 }
