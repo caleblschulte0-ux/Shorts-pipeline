@@ -936,3 +936,51 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Pose him relaxed: one fist with the string low at his side, the other hand resting on the counter beside the MRI. No spread arms.
 - better: Stage the glances as three crisp head turns with a hold on each (balloon up, scanner across, lens), then a strong arched brow and a half-smile.
 
+
+## 2026-11-15 16:44Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 71 | 71, 71, 74 | PASS |
+| 2 | 70 | 66, 70, 71 | PASS |
+| 3 | 70 | 65, 70, 71 | PASS |
+| 4 | 73 | 72, 73, 73 | PASS |
+| 5 | 58 | 56, 58, 58 | FAIL |
+
+**shot 1** (PASS, 71, bar 70)
+
+- problem: Frames 11-14: the balloon does not sag down its string. It shrinks to a blob and jumps to the far left of the frame, so it reads as being flung or popping rather than going limp.
+- problem: Frames 16-27: the limp balloon ends as a small red lump down by the counter edge. On a phone it is barely readable as a balloon hanging off his fist.
+- problem: Frames 17-27: the alarmed stare at the lens is held about 1.5 s with almost no change.
+
+**shot 2** (PASS, 70, bar 70)
+
+- problem: Rows 1-2: the empty blue balloon sticks out stiffly sideways like a wing. A real empty balloon droops, so it reads as a solid blue fin, not an empty balloon.
+- problem: Rows 1-2: his hand rests on the case lid near the tap. The red handle sits beside his hand, so 'he swings the red lever open' is hard to see. The lever motion is tiny.
+- problem: The rock case is small in frame. The green specks and rising bubbles are a few pixels each on a phone.
+- problem: Row 1 (about 1.1 s) holds nearly still before anything happens.
+
+**shot 3** (PASS, 70, bar 70)
+
+- problem: Rows 2-3: once the balloon escapes, his eyes stay level or sideways rather than tracking up after it. 'He watches it go' reads weakly, and by row 3 frames 6-8 he is staring at the lens at an empty sky.
+- problem: Row 2: you can see the string end slip out of his fist, but the snatch is a slow, extended arm rather than a quick grab that just misses.
+- problem: Row 4 frame 6: the hand bends oddly at the wrist as the arm lowers (minor).
+
+**shot 4** (PASS, 73, bar 70)
+
+- problem: The model MRI reads as a grey round gadget with a light rather than an MRI. The blue bed looks like a handle on a phone.
+- problem: The 'vapour' is a few white clumps at the funnel. It does not read as a pour of freezing vapour.
+- problem: In frame 8 the flask passes very close to his glasses and face during the lift.
+
+**shot 5** (FAIL, 58, bar 70)
+
+- HARD: NO PAYOFF: the last ~2.5 s (frames 33-49) is a held stare at the lens with a near-neutral face. The 'one brow up' and the lift toward us do not read, so the video ends on a pose.
+- HARD: TINY DATA: the camera is wide, with a lot of ceiling and floor and Data about 40% of frame height. His face, the brow and the small balloon lift are hard to read on a phone for most of the shot.
+- HARD: NO PAYOFF: frames 25-49 hold a near-static stare into the lens. The balloon lift toward us is a few pixels, so the video ends on a pose with nothing happening.
+- HARD: NO PAYOFF: rows 4-7 (frames ~25-49, about 3 s) are an almost identical static hold of Data staring at the lens. The 'lift the balloon toward us' moves it up only a few pixels and never comes toward camera, so the video ends on a pose with nothing happening.
+- problem: The scanner's stand appears to drop below the front edge of the counter. Check that it sits on the counter and is not sunk into it or floating in front.
+- problem: The 'looks up at the balloon, across at the scanner' beats happen mostly with the eyes at this size and barely register.
+- better: Push in to chest-up with the balloon and the frosted scanner both large in frame.
+- better: End on a real action: a big skeptical brow raise plus a clear push of the balloon toward the lens (low and to the side, not across his head), held on that moment rather than a neutral stare.
+- better: Make the head turn between balloon and scanner a deliberate move so the comparison reads.
+
