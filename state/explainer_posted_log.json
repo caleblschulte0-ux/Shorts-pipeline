@@ -5569,12 +5569,13 @@
       ]
     },
     "saffron-hand-picked-3d": {
-      "claimed_at": "2026-11-15T02:29:27.152612+00:00",
+      "url": "https://youtube.com/shorts/YkCTmRkK4ko",
       "title": "Why Saffron Costs More Than Any Spice On Earth",
+      "at": "2026-11-15T02:29:38.049915+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "style_arm": "3d"
+      "state": "posted",
+      "style_arm": "3d",
+      "duration_s": 28.8
     }
   },
   "uploads": [
@@ -7182,10 +7183,11 @@
       "claimed_at": "2026-11-15T02:29:27.152612+00:00",
       "title": "Why Saffron Costs More Than Any Spice On Earth",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
+      "url": "https://youtube.com/shorts/YkCTmRkK4ko",
+      "state": "posted",
       "style_arm": "3d",
-      "slug": "saffron-hand-picked-3d"
+      "slug": "saffron-hand-picked-3d",
+      "at": "2026-11-15T02:29:38.049915+00:00"
     }
   ]
 }
