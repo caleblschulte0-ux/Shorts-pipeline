@@ -5663,11 +5663,29 @@
       "duration_s": 29.9
     },
     "mangrove-forest-loss": {
-      "claimed_at": "2026-11-16T13:56:17.104965+00:00",
+      "url": "https://youtube.com/shorts/SLfmmI0R0jg",
       "title": "Mangrove Loss Fell 45% Before the Destruction Stopped",
+      "at": "2026-11-16T13:56:28.329328+00:00",
       "publish_at": "2026-11-16T14:46:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.09,
+      "beat_s": [
+        6.77,
+        5.45,
+        4.81,
+        6.09,
+        6.97
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 100,
+      "duration_s": 30.6
     }
   },
   "uploads": [
@@ -7312,9 +7330,10 @@
       "claimed_at": "2026-11-16T13:56:17.104965+00:00",
       "title": "Mangrove Loss Fell 45% Before the Destruction Stopped",
       "publish_at": "2026-11-16T14:46:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "mangrove-forest-loss"
+      "url": "https://youtube.com/shorts/SLfmmI0R0jg",
+      "state": "posted",
+      "slug": "mangrove-forest-loss",
+      "at": "2026-11-16T13:56:28.329328+00:00"
     }
   ]
 }
