@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-16T14:03:03Z",
+ "updated": "2026-11-16T18:18:45Z",
  "open": [
+  {
+   "id": "autism-diagnosis-rate-rise__bea5446c",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-16T18:18:45Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a statistic without a striking, singular consequential number."
+   ],
+   "request": "exchange/rewrites/20261116/autism-diagnosis-rate-rise__bea5446c.request.json",
+   "answer_path": "exchange/rewrites/20261116/autism-diagnosis-rate-rise__bea5446c.answer.json"
+  },
+  {
+   "id": "library-digital-shift__9cdb5f1d_r1",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-16T18:18:45Z",
+   "why": [
+    "premise: brain: It states a trend without reversing a viewer expectation and relies on a vague number rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261116/library-digital-shift__9cdb5f1d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261116/library-digital-shift__9cdb5f1d_r1.answer.json"
+  },
   {
    "id": "religious-nones-rise__ba903e44",
    "slug": "religious-nones-rise",
