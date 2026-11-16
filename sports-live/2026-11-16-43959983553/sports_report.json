@@ -1,0 +1,71 @@
+{
+ "date": "2026-11-16",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Injury] Aidan Hutchinson Is Down After Celebrating...",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xwx8hv/injury_aidan_hutchinson_is_down_after_celebrating/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xwx8hv/injury_aidan_hutchinson_is_down_after_celebrating",
+   "title": "Nfl: Aidan Hutchinson Gets HURT Celebrating a Play",
+   "hook": "Aidan Hutchinson injured celebrating",
+   "ledger": {
+    "moves": [
+     "whoa@7.33"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 96
+   },
+   "video_url": "https://youtube.com/shorts/wjC-W2c79dY",
+   "ok": true,
+   "publish_at": "2026-11-17T21:00:00Z",
+   "seconds": 158,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261116-nfl-aidan-hutchinson-gets-hurt-celebrating-a-pla-6933f71f",
+    "tiktok": "queued for 2026-11-17T21:00:00Z"
+   }
+  }
+ ],
+ "already_today": 4,
+ "pool": 131,
+ "already_posted": 19,
+ "refused_before": 22,
+ "shipped": 1
+}
