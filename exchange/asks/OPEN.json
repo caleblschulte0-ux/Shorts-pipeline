@@ -1,158 +1,17 @@
 {
  "schema": "shorts-ask-index/v1",
- "updated": "2026-11-10T23:24:24Z",
+ "updated": "2026-11-16T12:03:19Z",
  "open": [
   {
-   "batch": "exchange/asks/20260921.json",
-   "answer_path": "exchange/asks/20260921.answers.json",
-   "pending": 1,
+   "batch": "exchange/asks/20261116.json",
+   "answer_path": "exchange/asks/20261116.answers.json",
+   "pending": 5,
    "keys": [
-    "69f0f96894613917"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20260922.json",
-   "answer_path": "exchange/asks/20260922.answers.json",
-   "pending": 1,
-   "keys": [
-    "627ef373dcb8c078"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20260923.json",
-   "answer_path": "exchange/asks/20260923.answers.json",
-   "pending": 1,
-   "keys": [
-    "6138aa4d200ece15"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20260925.json",
-   "answer_path": "exchange/asks/20260925.answers.json",
-   "pending": 3,
-   "keys": [
-    "03fcbbfed42f68a8",
-    "32665a4f0ea84005",
-    "4412300926e90694"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20261107.json",
-   "answer_path": "exchange/asks/20261107.answers.json",
-   "pending": 26,
-   "keys": [
-    "f05a4f05d51e86a7",
-    "8ea48d072028676c",
-    "5f93ef56c91e2d75",
-    "f0bad46d1872f19f",
-    "af31deea01a0dcbe",
-    "cbe512327a5e1d3f",
-    "785c8770d0412a99",
-    "f59a007c06208bcb",
-    "f3af4ec66dda85ae",
-    "78fa7e60ce25c269",
-    "fe012b5e72061957",
-    "dc07157e7b31db58",
-    "543c4dbf9c0c7f3c",
-    "5d01bafe916e9625",
-    "a04b43a0baba0dba",
-    "1f1f1988f3fecd21",
-    "f4336cb9a99f11ef",
-    "36a686c9bbc4eba0",
-    "8db9666a1e143377",
-    "1399d506126a940d",
-    "52b5b406007ad6f5",
-    "9a96b1ba4b2a1e5b",
-    "902835b346b57092",
-    "890b247092011094",
-    "d9066410f969ccb2",
-    "1dfd1a7ca285b12c"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20261108.json",
-   "answer_path": "exchange/asks/20261108.answers.json",
-   "pending": 23,
-   "keys": [
-    "5ad8452e79820ea2",
-    "564dd04cbc1f9559",
-    "8b11d84153452bb7",
-    "9e06baa017d66975",
-    "25de58b6d01186a5",
-    "cbded26667de5b8d",
-    "586dfa16eee6ed9d",
-    "430c86d3986974fa",
-    "a0658e0cbabdd767",
-    "73f1d8f6c717220b",
-    "8b4907b028c6694d",
-    "01ab1cceafbd8cfa",
-    "edf42c54f35fcf96",
-    "e7678299e006c973",
-    "b1befd9430f3424d",
-    "e9bba0c560fd7497",
-    "3b46b5fd1f606f80",
-    "9a3cc617d55d8445",
-    "9c08636cb0adf61f",
-    "832e79ac98c1b4a2",
-    "7080aa3b85a11f5b",
-    "49e37d0b98c06e45",
-    "9c71389d48ba7c52"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20261109.json",
-   "answer_path": "exchange/asks/20261109.answers.json",
-   "pending": 7,
-   "keys": [
-    "79c350e95ac0a12a",
-    "ec55d207f0ff6718",
-    "55102da6fa3afc48",
-    "1a49c83ab360561d",
-    "1dd097e9578b148c",
-    "67eb18420440831e",
-    "2b4051dc71c761b5"
-   ]
-  },
-  {
-   "batch": "exchange/asks/20261110.json",
-   "answer_path": "exchange/asks/20261110.answers.json",
-   "pending": 35,
-   "keys": [
-    "9e76516d118f6be4",
-    "ea0ef90f3ca00c2e",
-    "437aed7e35d41c6f",
-    "ec352c39672a0192",
-    "2ab2537079096115",
-    "af7de089c3c09e37",
-    "af49356c5d47b5cc",
-    "7d8c579efc6003be",
-    "2134cd633107b400",
-    "cb572fb1840ec93f",
-    "c653e13a72d1a954",
-    "1b375832047f502d",
-    "beb8c919cd0e5dac",
-    "a91cbdedf5a5be22",
-    "289e76db1fa4729e",
-    "3c572f34190eba75",
-    "3e6bab684427e09b",
-    "6ec88752fde61439",
-    "0d1e883666156f1d",
-    "fb01b2667e78bcc3",
-    "0f34e403f5fb1b77",
-    "26e34b0ecf64529d",
-    "f7872ae58ccb8cef",
-    "207d6d696cdfc372",
-    "f769d0c2f7ab07e0",
-    "0783cedb1549cb49",
-    "404b0bd8593cb15a",
-    "ae761eb9d2a3a38d",
-    "e1931e875a990161",
-    "232926945c849383",
-    "01060f78ab3151f0",
-    "8d1160585f28738d",
-    "747530eb7c6d8087",
-    "522ecbb5d758cd9d",
-    "d87723d48ba9baf5"
+    "5de224cf16fbbb02",
+    "280cba6a504996f4",
+    "d02fdae768df1ed0",
+    "058d0dc9b605cea8",
+    "4e9bf217121f824e"
    ]
   }
  ],

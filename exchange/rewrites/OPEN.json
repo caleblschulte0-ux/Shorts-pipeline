@@ -1,36 +1,98 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-15T12:02:55Z",
+ "updated": "2026-11-16T12:04:30Z",
  "open": [
   {
-   "id": "third-interstellar-visitor__15b63969",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-11-15T12:02:55Z",
+   "id": "betelgeuse-great-dimming__6a0c802e",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-11-16T12:04:30Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and hinges on an ambiguous number without a verifiable consequential fact."
+    "premise: brain: The claim hinges on an unsubstantiated specific dimming percentage and lacks a verifiable, consequential number to overturn a clear viewer expectation."
    ],
-   "request": "exchange/rewrites/20261115/third-interstellar-visitor__15b63969.request.json",
-   "answer_path": "exchange/rewrites/20261115/third-interstellar-visitor__15b63969.answer.json"
+   "request": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.request.json",
+   "answer_path": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.answer.json"
   },
   {
-   "id": "left-brain-right-brain-myth__ea91746f_r1",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-11-15T12:02:54Z",
+   "id": "lab-grown-diamond-price-collapse__e51f51ef",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-11-16T12:04:30Z",
    "why": [
-    "premise: brain: Lacks a single verifiable number to support the claim despite reversing a common belief"
+    "premise: brain: It relies on two numbers ($4,200 and $380) instead of a single consequential, verifiable number."
    ],
-   "request": "exchange/rewrites/20261115/left-brain-right-brain-myth__ea91746f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261115/left-brain-right-brain-myth__ea91746f_r1.answer.json"
+   "request": "exchange/rewrites/20261116/lab-grown-diamond-price-collapse__e51f51ef.request.json",
+   "answer_path": "exchange/rewrites/20261116/lab-grown-diamond-price-collapse__e51f51ef.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__81a9a288",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-11-16T12:04:30Z",
+   "why": [
+    "premise: brain: The premise relies on a vague claim about a conversion emptying a plane and does not clearly reverse a specific viewer expectation with a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261116/metric-system-holdouts__81a9a288.request.json",
+   "answer_path": "exchange/rewrites/20261116/metric-system-holdouts__81a9a288.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__07ec260a",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-16T12:04:29Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261116/index-funds-own-corporate-america__07ec260a.request.json",
+   "answer_path": "exchange/rewrites/20261116/index-funds-own-corporate-america__07ec260a.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__c613f552",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-16T12:04:29Z",
+   "why": [
+    "premise: no consequential number in the title or hook",
+    "pace: closing is 19 words (max 18)"
+   ],
+   "request": "exchange/rewrites/20261116/vinyl-beats-cd-sales-again__c613f552.request.json",
+   "answer_path": "exchange/rewrites/20261116/vinyl-beats-cd-sales-again__c613f552.answer.json"
   },
   {
    "id": "english-internet-share-decline__312d565d_r1",
    "slug": "english-internet-share-decline",
-   "filed": "2026-11-13T13:59:46Z",
+   "filed": "2026-11-16T12:04:28Z",
    "why": [
-    "premise: brain: The claim hinges on an undefined '30 points' metric, lacking a clear, verifiable number and concrete expectation reversal."
+    "premise: brain: The claim lacks a clear, verifiable metric and does not convincingly reverse a specific viewer expectation."
    ],
-   "request": "exchange/rewrites/20261113/english-internet-share-decline__312d565d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261113/english-internet-share-decline__312d565d_r1.answer.json"
+   "request": "exchange/rewrites/20261116/english-internet-share-decline__312d565d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261116/english-internet-share-decline__312d565d_r1.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__15b63969",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-11-16T12:04:28Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and does not hinge on a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.request.json",
+   "answer_path": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.answer.json"
+  },
+  {
+   "id": "left-brain-right-brain-myth__ea91746f_r1",
+   "slug": "left-brain-right-brain-myth",
+   "filed": "2026-11-16T12:04:28Z",
+   "why": [
+    "premise: brain: The premise lacks a single verifiable number and thus does not meet the required criteria."
+   ],
+   "request": "exchange/rewrites/20261116/left-brain-right-brain-myth__ea91746f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261116/left-brain-right-brain-myth__ea91746f_r1.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__31163b79",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-16T12:04:28Z",
+   "why": [
+    "thesis: seg0 ('robotic procedures') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline",
+    "thesis: seg2 ('robotic revenue') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.request.json",
+   "answer_path": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__90876971",
@@ -101,16 +163,6 @@
    ],
    "request": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.request.json",
    "answer_path": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__b2dd235b",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-10-18T11:46:50Z",
-   "why": [
-    "premise: brain: Uses multiple dates instead of a single consequential number, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.request.json",
-   "answer_path": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
   },
   {
    "id": "saturn-rings-vanishing__acf09995",
@@ -201,16 +253,6 @@
    ],
    "request": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.request.json",
    "answer_path": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__19285cc1",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.request.json",
-   "answer_path": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.answer.json"
   },
   {
    "id": "insect-planet__3c4a491b",
@@ -471,16 +513,6 @@
    ],
    "request": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.request.json",
    "answer_path": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.answer.json"
-  },
-  {
-   "id": "betelgeuse-great-dimming__e2882181",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-10-13T07:18:57Z",
-   "why": [
-    "premise: brain: The premise is vague and does not clearly reverse a specific viewer expectation with a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261013/betelgeuse-great-dimming__e2882181.request.json",
-   "answer_path": "exchange/rewrites/20261013/betelgeuse-great-dimming__e2882181.answer.json"
   },
   {
    "id": "hurricane-names-retired-growing-list__4dcbc649",
