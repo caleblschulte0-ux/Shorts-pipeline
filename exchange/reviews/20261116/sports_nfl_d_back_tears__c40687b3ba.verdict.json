@@ -1,0 +1,55 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_nfl_d_back_tears__c40687b3ba",
+ "video_sha256": "c40687b3ba4c5e50dd5d06bc063f3da47218b185f540ee0e02a74f258bee52b0",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-16T12:48:53Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All frames show real footage of an interview on a football field."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is visible in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present in any frame."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Motion facts show `longest_static_s` is 0.0s and `max_dup_run` is 5 frames (0.2s)."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are well-composed, showing the interview subjects and stadium background without large empty areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "On-screen text is clear, legible, and not cut off or obscured."
+   }
+  },
+  "weakest_scene": {
+   "id": "hook",
+   "index": 0,
+   "failure_class": "N/A",
+   "visible_evidence": "All scenes are well-executed and meet format requirements.",
+   "root_cause": "N/A",
+   "repair_goal": "Maintain current quality."
+  },
+  "depictions": [],
+  "one_line": "Kirk Cousins' emotional post-game interview is effectively captured.",
+  "problems": [],
+  "fixes": []
+ }
+}
