@@ -1,0 +1,59 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_connor_mcdavid_y_night_itll__04d5caf658",
+ "video_sha256": "04d5caf658a5957e58a49209e0fb6ea9c2455e275db9ed00bd63406c5b996771",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-16T13:49:02Z",
+ "grades": {
+  "dimensions": {
+   "hook": 3,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Frame hook@0.3 shows real footage of Connor McDavid speaking."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is visible in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present in any frame."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Motion facts show longest_static_s is 0.0."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames show a well-composed shot of Connor McDavid, with relevant background elements."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear, legible, and not cut off."
+   }
+  },
+  "weakest_scene": {
+   "id": "hook",
+   "index": 0,
+   "failure_class": "lack_of_visual_interest",
+   "visible_evidence": "The initial frames of the hook segment show a static shot of the speaker, without immediate dynamic elements beyond lip movement.",
+   "root_cause": "The video relies on a single, continuous interview shot, which inherently limits visual variation in the opening.",
+   "repair_goal": "Introduce subtle camera movement or a quick, relevant graphic overlay within the first 2 seconds to enhance initial engagement, while maintaining the 'sports moment' format."
+  },
+  "depictions": [],
+  "one_line": "Connor McDavid shares his deep appreciation for Hockey Night in Canada.",
+  "problems": [
+   "The video is a standard talking head interview, which, while effective for the format, offers limited visual dynamism, especially in the opening hook."
+  ],
+  "fixes": [
+   "Consider subtle camera movements or quick, relevant visual cues (e.g., a brief graphic of the Hockey Night in Canada logo) in the hook to enhance engagement without disrupting the 'sports moment' format."
+  ]
+ }
+}

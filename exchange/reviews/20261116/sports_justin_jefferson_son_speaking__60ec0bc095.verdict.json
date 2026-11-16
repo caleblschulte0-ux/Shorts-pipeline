@@ -1,0 +1,67 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_justin_jefferson_son_speaking__60ec0bc095",
+ "video_sha256": "60ec0bc0956ea0bacf2bd0551dc49679d0e82a757e5b004b005d0253fd5c6488",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-16T13:48:41Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 1,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Real footage of Justin Jefferson speaking at a press conference."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot visible in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No number cards are present in the video; this format does not use them."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "Motion facts show `held_s`: 8.58s, indicating long stretches of minimal meaningful movement, even if no single frame is perfectly static for 4+ seconds."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is well-composed, showing the subject and background without large empty areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "On-screen text 'Jefferson on leading the Vikings' is clearly readable and not cut off."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid0",
+   "index": 0,
+   "failure_class": "dead_air",
+   "visible_evidence": "The video shows Justin Jefferson speaking at a press conference with minimal dynamic motion, leading to long stretches of visually similar frames.",
+   "root_cause": "Static camera shot of a talking head without additional visual elements or dynamic cuts to maintain engagement.",
+   "repair_goal": "Introduce more dynamic camera work (zooms, pans, cuts) or overlay relevant B-roll footage to break up the static talking head shot and increase visual engagement."
+  },
+  "depictions": [
+   {
+    "id": "mid0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Direct footage of the subject speaking, fulfilling the 'sports moment' format."
+   }
+  ],
+  "one_line": "Justin Jefferson discusses leadership in a static press conference clip.",
+  "problems": [
+   "The video suffers from dead air due to a static camera shot and minimal dynamic motion over long stretches."
+  ],
+  "fixes": [
+   "Incorporate dynamic camera movements (zooms, pans) or B-roll footage to enhance visual engagement and break up the static talking head shot."
+  ]
+ }
+}
