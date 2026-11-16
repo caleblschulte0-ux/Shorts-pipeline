@@ -5661,6 +5661,13 @@
       "story_structure": "auto+auto+scene",
       "narrative_score": 74,
       "duration_s": 29.9
+    },
+    "mangrove-forest-loss": {
+      "claimed_at": "2026-11-16T13:56:17.104965+00:00",
+      "title": "Mangrove Loss Fell 45% Before the Destruction Stopped",
+      "publish_at": "2026-11-16T14:46:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7300,6 +7307,14 @@
       "state": "posted",
       "slug": "neutron-star-manhattan-size",
       "at": "2026-11-15T12:02:42.500894+00:00"
+    },
+    {
+      "claimed_at": "2026-11-16T13:56:17.104965+00:00",
+      "title": "Mangrove Loss Fell 45% Before the Destruction Stopped",
+      "publish_at": "2026-11-16T14:46:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "mangrove-forest-loss"
     }
   ]
 }
