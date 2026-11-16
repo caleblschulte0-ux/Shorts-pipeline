@@ -5,60 +5,52 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "baseball",
-   "who": "Yordan Alvarez",
-   "why": "Teammates flood social media praising his MVP win",
-   "post_title": "Current and former teammates congratulate American League MVP, Yordan Alvarez",
+   "sub": "nfl",
+   "who": "Justin Jefferson",
+   "why": "He gushes about Kirk Cousins finally stepping up as a locker\u2011room leader",
+   "post_title": "[Highlight] Vikings WR Justin Jefferson, speaking for the first time since Kirk Cousins\u2019 return: \u201cIt\u2019s just kind a joy to hear him take over and be a leader in the meeting room, on the field. It\u2019s def",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1xvcdjn/current_and_former_teammates_congratulate/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1xvcdjn/current_and_former_teammates_congratulate",
-   "skipped": "download failed"
+   "url": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking",
+   "skipped": "author: no title"
   },
   {
-   "sub": "hockey",
-   "who": "Connor Celebrini",
-   "why": "Sidney Crosby scolds Celebrini during a face\u2011off, showing veteran pressure",
-   "post_title": "Clip of Crosby being harsh on Celebrini during a face-off last night.",
+   "sub": "nba",
+   "who": "Marcus Smart",
+   "why": "He throws a wild punch at Charles Bassey and gets ejected, sparking a bench\u2011clearing vibe",
+   "post_title": "[Highlight] Marcus Smart throws a punch and whiffs at Charles Bassey and gets thrown out immediately",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xuplkq/clip_of_crosby_being_harsh_on_celebrini_during_a/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xuplkq/clip_of_crosby_being_harsh_on_celebrini_during_a",
-   "skipped": "too short: the post runs 12.9s (< 15s)"
-  },
-  {
-   "sub": "hockey",
-   "who": "Connor McDavid",
-   "why": "McDavid declares Saturday night will always be Hockey Night in Canada",
-   "post_title": "Connor McDavid on playing on Saturday night: \u201cIt\u2019ll always be Hockey Night In Canada to me\u201d",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xvwwb2/connor_mcdavid_on_playing_on_saturday_night_itll/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xvwwb2/connor_mcdavid_on_playing_on_saturday_night_itll",
-   "title": "Connor McDavid Says Hockey Night In Canada Will Always Be Special",
-   "hook": "Connor says Hockey Night In Canada means everything",
+   "url": "https://streamable.com/r9wih3",
+   "topic": "https://www.reddit.com/r/nba/comments/1xu3em5/highlight_marcus_smart_throws_a_punch_and_whiffs",
+   "title": "Marcus Smart Throws Punch, Gets Ejected Instantly",
+   "hook": "Smart throws a punch and gets tossed \ud83d\ude33",
    "ledger": {
-    "moves": [],
+    "moves": [
+     "whoa@1.7"
+    ],
     "mood": null,
     "shot_plan": {
-     "layout": "closeup",
-     "reason": "one large persistent face \u2014 the face is the content",
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
      "shots": [
       {
-       "mode": "closeup",
-       "reason": "one large persistent face \u2014 the face is the content"
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
       }
      ],
      "subtitle_spans": [
-      0.031,
+      0.0,
       0.0,
       0.0,
       0.0,
       0.0
      ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.047,
-       0.894
-      ]
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
      ]
     },
     "outro": null,
@@ -74,46 +66,39 @@
    "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
   },
   {
-   "sub": "nfl",
-   "who": "Justin Jefferson",
-   "why": "Jefferson opens up about team leadership after Kirk Cousins\u2019 return",
-   "post_title": "[Highlight] Vikings WR Justin Jefferson, speaking for the first time since Kirk Cousins\u2019 return: \u201cIt\u2019s just kind a joy to hear him take over and be a leader in the meeting room, on the field. It\u2019s def",
+   "sub": "nba",
+   "who": "Draymond Green",
+   "why": "He shoves rookie Victor Wembanyama in a heated moment as the Warriors trail",
+   "post_title": "[Highlight] Draymond Green shoves Wemby in the back as the Warriors trail by 23 in the first half (flagrant 1 on review)",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking",
-   "title": "Justin Jefferson Praises Cousins Return And Talks Leadership \ud83e\udd14",
-   "hook": "Jefferson on leading the Vikings",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
-     "shots": [],
-     "subtitle_spans": [
-      1.0,
-      0.087,
-      1.0,
-      0.097,
-      0.992
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n)\", 'gemini: out of budg",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n)\", 'gemini: out of budg"
+   "url": "https://streamable.com/8kqgaz",
+   "topic": "https://www.reddit.com/r/nba/comments/1xvs67s/highlight_draymond_green_shoves_wemby_in_the_back",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Henrik Lundqvist",
+   "why": "The legendary goalie scores his own goal, a surreal highlight for fans",
+   "post_title": "Henrik Lundqvist scores a goalie goal",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xx3pne/henrik_lundqvist_scores_a_goalie_goal/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xx3pne/henrik_lundqvist_scores_a_goalie_goal",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nfl",
+   "who": "Fernando Mendoza",
+   "why": "He celebrates his first NFL touchdown with pure joy and a big grin",
+   "post_title": "[Highlight] Fernando Mendoza scores his 1st NFL TD",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xx71qa/highlight_fernando_mendoza_scores_his_1st_nfl_td/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xx71qa/highlight_fernando_mendoza_scores_his_1st_nfl_td",
+   "skipped": "too short: the post runs 10.0s (< 15s)"
   }
  ],
- "already_today": 2,
- "pool": 115,
- "already_posted": 18,
- "refused_before": 19,
+ "already_today": 3,
+ "pool": 117,
+ "already_posted": 19,
+ "refused_before": 17,
  "shipped": 0
 }

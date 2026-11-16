@@ -1,6 +1,17 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-16T14:48:45Z",
- "open": [],
+ "updated": "2026-11-16T15:43:45Z",
+ "open": [
+  {
+   "id": "sports_marcus_smart_h_and_whiffs__4c0ce1cdcc",
+   "channel": "trending",
+   "slug": "sports_marcus_smart_h_and_whiffs",
+   "title": "Marcus Smart Throws Punch, Gets Ejected Instantly",
+   "filed": "2026-11-16T15:43:45Z",
+   "request": "exchange/reviews/20261116/sports_marcus_smart_h_and_whiffs__4c0ce1cdcc.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261116/sports_marcus_smart_h_and_whiffs__4c0ce1cdcc/sheet.jpg",
+   "answer_path": "exchange/reviews/20261116/sports_marcus_smart_h_and_whiffs__4c0ce1cdcc.verdict.json"
+  }
+ ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }
