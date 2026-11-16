@@ -1,6 +1,17 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-16T11:48:09Z",
- "open": [],
+ "updated": "2026-11-16T12:27:51Z",
+ "open": [
+  {
+   "id": "sports_nfl_d_back_tears__c40687b3ba",
+   "channel": "trending",
+   "slug": "sports_nfl_d_back_tears",
+   "title": "Nfl: Kirk Cousins Holds Back Tears After Win, Thanks Lindsey Thiry",
+   "filed": "2026-11-16T12:27:51Z",
+   "request": "exchange/reviews/20261116/sports_nfl_d_back_tears__c40687b3ba.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261116/sports_nfl_d_back_tears__c40687b3ba/sheet.jpg",
+   "answer_path": "exchange/reviews/20261116/sports_nfl_d_back_tears__c40687b3ba.verdict.json"
+  }
+ ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }

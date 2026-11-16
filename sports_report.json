@@ -8,34 +8,41 @@
    "sub": "nfl",
    "who": "nfl",
    "why": "most upvoted",
-   "post_title": "[Highlight] Lions do human centipede celebration",
+   "post_title": "[Highlight] Vikings QB Kirk Cousins held back tears while speaking to Lindsey Thiry after today\u2019s win: \u201cTearing my Achilles here, it\u2019s been a tough 3 years. \u2026 There\u2019s more of the story being written.\u201d",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xx014w/highlight_lions_do_human_centipede_celebration/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xx014w/highlight_lions_do_human_centipede_celebration",
-   "skipped": "too short: the post runs 3.8s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "nba",
-   "why": "most upvoted",
-   "post_title": "[Highlight] NBA G-League player Keyshawn Bryant completely cleared a defender on a dunk last night",
-   "upvotes": 0,
-   "url": "https://streamable.com/uithp6",
-   "topic": "https://www.reddit.com/r/nba/comments/1xw1rvf/highlight_nba_gleague_player_keyshawn_bryant",
-   "title": "Nba: Keyshawn Bryant Jumps OVER a Defender For This Insane Dunk",
-   "hook": "Keyshawn Bryant jumped right over him \ud83d\ude33",
+   "url": "https://www.reddit.com/r/nfl/comments/1xx7r4g/highlight_vikings_qb_kirk_cousins_held_back_tears/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xx7r4g/highlight_vikings_qb_kirk_cousins_held_back_tears",
+   "title": "Nfl: Kirk Cousins Holds Back Tears After Win, Thanks Lindsey Thiry",
+   "hook": "Kirk Cousins gets emotional after victory \ud83d\ude22",
    "ledger": {
     "moves": [
-     "zoom@8.61",
-     "whoa@17.32",
-     "hype@6.81(silent)"
+     "zoom@18.69",
+     "sad@18.69(silent)"
     ],
-    "mood": "hype",
+    "mood": "sad",
     "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      426,
+      0
+     ]
     },
     "outro": null,
     "cut_in": [],
@@ -43,18 +50,21 @@
     "music": []
    },
    "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 96
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
+    "score": null
    },
-   "video_url": "https://youtube.com/shorts/W-NvEkdpAqE",
-   "ok": true,
-   "publish_at": "2026-11-17T00:00:00Z",
-   "seconds": 108,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261116-nba-keyshawn-bryant-jumps-over-a-defender-for-th-5fd4595a",
-    "tiktok": "queued for 2026-11-17T00:00:00Z"
-   }
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Wemby questioning why he even tried that",
+   "upvotes": 0,
+   "url": "https://streamable.com/89upsw",
+   "topic": "https://www.reddit.com/r/nba/comments/1xsgf35/highlight_wemby_questioning_why_he_even_tried_that",
+   "skipped": "too short: the post runs 5.8s (< 15s)"
   },
   {
    "sub": "baseball",
@@ -70,56 +80,56 @@
    "sub": "hockey",
    "who": "hockey",
    "why": "most upvoted",
-   "post_title": "Connor Hellebuyck (sitting tonight due to a decision that improves the Devils expected win probability) hears \u201cCOWARD\u201d chants from Winnipeg fans.",
+   "post_title": "Celebrini showing off his soccer moves",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a",
-   "skipped": "author: no setup or no payoff in the clip"
+   "url": "https://www.reddit.com/r/hockey/comments/1xse0o6/celebrini_showing_off_his_soccer_moves/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xse0o6/celebrini_showing_off_his_soccer_moves",
+   "skipped": "too short: the post runs 7.3s (< 15s)"
   },
   {
    "sub": "CollegeBasketball",
    "who": "CollegeBasketball",
    "why": "most upvoted",
-   "post_title": "The UMKC-Florida A&M game just ended and the stream just keeps going. Riveting 1-on-1 taking place here.",
+   "post_title": "A guy is sleeping in the rafters near the end of Seton Hall-Charlotte",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xtt04z/the_umkcflorida_am_game_just_ended_and_the_stream/",
-   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xtt04z/the_umkcflorida_am_game_just_ended_and_the_stream",
-   "skipped": "author: no setup or no payoff in the clip"
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xse798/a_guy_is_sleeping_in_the_rafters_near_the_end_of/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xse798/a_guy_is_sleeping_in_the_rafters_near_the_end_of",
+   "skipped": "too short: the post runs 11.3s (< 15s)"
   },
   {
    "sub": "MMA",
    "who": "MMA",
    "why": "most upvoted",
-   "post_title": "Footage of Merab Dvalishvili being attacked at RAF Abu Dhabi",
+   "post_title": "The 6 members of the Nurmagomedov crew have been sentenced to 6 months in jail for inciting Wednesday\u2019s brawl with Merab",
    "upvotes": 0,
-   "url": "https://streamable.com/vj7g9x",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xtngru/footage_of_merab_dvalishvili_being_attacked_at",
-   "skipped": "not English (English p=0.22, 62% English words)"
+   "url": "https://x.com/arielhelwani/status/2121219924848783487?a=ndxXduqCejNBzelOusg&s=46",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xv73sx/the_6_members_of_the_nurmagomedov_crew_have_been",
+   "skipped": "download failed"
   },
   {
    "sub": "soccer",
    "who": "soccer",
    "why": "most upvoted",
-   "post_title": "Ronaldinho bizarre first touch in training",
+   "post_title": "Alternate angles of Arda G\u00fcler's stunning freekick against Belgium 20'",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1xwchzv/ronaldinho_bizarre_first_touch_in_training/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1xwchzv/ronaldinho_bizarre_first_touch_in_training",
-   "skipped": "too short: the post runs 7.7s (< 15s)"
+   "url": "https://www.reddit.com/r/soccer/comments/1xujafu/alternate_angles_of_arda_g\u00fclers_stunning_freekick/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xujafu/alternate_angles_of_arda_g\u00fclers_stunning_freekick",
+   "skipped": "author: no setup or no payoff in the clip"
   },
   {
    "sub": "sports",
    "who": "sports",
    "why": "most upvoted",
-   "post_title": "UFC veteran Stephen Thompson gets a highlight reel knock out in his retirement fight",
+   "post_title": "Absurd scenes as Blackhawks goalie Spencer Knight gets his stick wedged between the boards behind the goal, and the Jets swoop in for the score.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight/",
-   "topic": "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight",
-   "skipped": "too short: the post runs 12.9s (< 15s)"
+   "url": "https://www.reddit.com/r/sports/comments/1xwqord/absurd_scenes_as_blackhawks_goalie_spencer_knight/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xwqord/absurd_scenes_as_blackhawks_goalie_spencer_knight",
+   "skipped": "author: no title"
   }
  ],
- "already_today": 0,
+ "already_today": 1,
  "pool": 114,
- "already_posted": 16,
- "refused_before": 8,
- "shipped": 1
+ "already_posted": 17,
+ "refused_before": 14,
+ "shipped": 0
 }
