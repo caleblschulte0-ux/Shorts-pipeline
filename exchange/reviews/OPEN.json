@@ -1,6 +1,27 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-16T12:49:07Z",
- "open": [],
+ "updated": "2026-11-16T13:43:02Z",
+ "open": [
+  {
+   "id": "sports_justin_jefferson_son_speaking__60ec0bc095",
+   "channel": "trending",
+   "slug": "sports_justin_jefferson_son_speaking",
+   "title": "Justin Jefferson Praises Cousins Return And Talks Leadership 🤔",
+   "filed": "2026-11-16T13:43:02Z",
+   "request": "exchange/reviews/20261116/sports_justin_jefferson_son_speaking__60ec0bc095.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261116/sports_justin_jefferson_son_speaking__60ec0bc095/sheet.jpg",
+   "answer_path": "exchange/reviews/20261116/sports_justin_jefferson_son_speaking__60ec0bc095.verdict.json"
+  },
+  {
+   "id": "sports_connor_mcdavid_y_night_itll__04d5caf658",
+   "channel": "trending",
+   "slug": "sports_connor_mcdavid_y_night_itll",
+   "title": "Connor McDavid Says Hockey Night In Canada Will Always Be Special",
+   "filed": "2026-11-16T13:42:01Z",
+   "request": "exchange/reviews/20261116/sports_connor_mcdavid_y_night_itll__04d5caf658.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261116/sports_connor_mcdavid_y_night_itll__04d5caf658/sheet.jpg",
+   "answer_path": "exchange/reviews/20261116/sports_connor_mcdavid_y_night_itll__04d5caf658.verdict.json"
+  }
+ ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }
