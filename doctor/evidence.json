@@ -1,39 +1,44 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261115",
-  "judged_date": "20261114",
+  "date": "20261116",
+  "judged_date": "20261115",
   "alarm": {
-    "date": "20261114",
+    "date": "20261115",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261114 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261114.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261114 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20261114/response.json, exchange/bundles/20261114/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261115 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20261115/response.json, exchange/bundles/20261115/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-14T18:42:40+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-15T19:20:15+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
+      },
+      {
+        "code": "credential_limited_claude_subscription",
+        "severity": "warning",
+        "detail": "the `claude-subscription` credential is SPENT, not broken (the subscription window is spent: you've hit your weekly limit \u00b7 resets nov 18, 12am (utc); probed 2026-11-15T19:20:15+00:00).",
+        "fix": "If the detail names a limit or a reset, there is nothing to rotate: the subscription comes back on its own at that reset. Until then the explainer has no brain to draw or verify a scene and the showrunner has no judge, so the channel ships nothing \u2014 the gate is right to hold. Same-day options are the operator's call: a funded text brain (ANTHROPIC_API_KEY, or Gemini on a paid tier). Anything else: run `claude setup-token` and replace CLAUDE_CODE_OAUTH_TOKEN."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 3/6 posted for 20261115.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (67 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (68 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "explainer: 5/4 posted",
-      "third: 6/6 posted",
+      "explainer: 4/4 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -220,1142 +225,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-12T12:31:03+00:00",
-      "slug": "sports_luka_doncic__tonight_you",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The trash-talk moment is real, but the crop keeps losing Luka: a fan's hair over the hook, his face cut at mid1, and him half out of frame at mid3, so the reaction never lands visually.",
-      "auto_fails": [
-        "junk_imagery: mid3 (12.24s): the crop leaves Luka half out of frame at the left edge, his face sliced off, while the frame is mostly empty crowd and floor. mid1 (5.75s): the letterbox band cuts across the top of his face. hook@0.3-2.2: a fan's hair fills the right half of the frame."
-      ],
-      "problems": [
-        "Hook (0-2.2s) is a distant phone shot with a spectator's hair over half the frame, and Luka is small and far away. Nothing shows him talking yet.",
-        "mid1: the letterbox band cuts across the top of Luka's face.",
-        "mid3: Luka is pushed to the left edge with his head cropped off, and the frame is empty bleachers.",
-        "Payoff: 'HE'S RIGHT.' is captioned but the Hawks side reacting or admitting it is never shown. The clip ends on Luka standing, with no visible punchline."
-      ],
-      "fixes": [
-        "Open on the close talking shot (~5s, 'HAD YOU.') so the first frame shows Luka mouthing off.",
-        "Track Luka with the crop through mid3 so his head and torso stay centred, and never leave the frame sitting on empty crowd.",
-        "Shrink or remove the top blurred band so his face is never clipped.",
-        "End on the 'HE'S RIGHT' moment with a punch-in on whoever says it, or cut the claim from the line if the footage cannot show it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 62
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "crop_cuts_subject",
-        "visible_evidence": "At mid3 (12.24s) Luka is cropped at the left edge with his head cut off at the top, and about 75% of the frame is empty bleachers and floor. At mid1 the top band slices through his eyes. The hook frames show a spectator's hair over half the frame and Luka small in the distance.",
-        "root_cause": "The 9:16 crop stays fixed instead of following the speaker. The source jumps from a phone shot behind a fan to a zoomed broadcast-style angle, and the crop window does not re-centre on Luka as he walks left.",
-        "repair_goal": "Reframe so Luka's full head and torso stay centred for the whole clip. Track him through mid3, lower the top letterbox band so his face is not cut at mid1, and open on the close angle where he is talking (about 5s) instead of the fan's-hair shot so the first two seconds show him speaking."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.167,
-        "effective_fps": 20.0,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.161,
-        "frozen_fps": 20.1,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.097,
-        "judder_fps": 21.7,
-        "held_s": 0.58,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.75
-      },
-      "fingerprint": "?|junk_imagery|crop_cuts_subject"
-    },
-    {
-      "ts": "2026-11-12T12:33:21+00:00",
-      "slug": "sports_luka_doncic__tonight_you",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A real Luka trash-talk moment, but it opens behind a fan's head and later crops Luka off the edge, so the line barely lands.",
-      "auto_fails": [
-        "junk_imagery: Bad crop: at mid2 (t=8.99) Luka is cut off at the left edge of the frame, half his body gone, and the rest of the frame is empty floor and crowd. In hook@0.3\u2013hook@2.2 the back of a fan's head fills the right half of the frame and Luka is a small figure behind it."
-      ],
-      "problems": [
-        "The hook frames are about half taken up by the back of a spectator's head, and Luka is small and far away.",
-        "At mid2 (t=8.99) Luka is cut off at the left edge while the frame sits on empty floor.",
-        "The payoff is thin: the full quote 'You all wish you would have had me' is never clearly delivered on screen. Only the fragments 'HAD YOU', 'I WISH' and 'HE'S RIGHT' appear.",
-        "The Hawks fans he is talking to are never shown reacting."
-      ],
-      "fixes": [
-        "Start on the mid0 close-up of Luka speaking.",
-        "Track Luka in the crop so he stays centred through mid2 to mid5.",
-        "Caption the full quote as one readable beat at the moment he says it.",
-        "End on his smirk at the fans or the fans' reaction, not on a wide shot of him standing."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 62
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "bad_crop_obstructed_subject",
-        "visible_evidence": "hook@0.3\u2013hook@2.2: the back of a fan's head covers about half the frame. Luka is small and far away, and nothing he says can be seen or read in the first two seconds.",
-        "root_cause": "The clip opens on a fan's handheld phone shot from behind another spectator. The cut takes the source's start unchanged instead of opening on the trash-talk close-up.",
-        "repair_goal": "Open on the mid0 close-up, where Luka is speaking at camera with the 'HAD YOU.' caption, or crop out the spectator's head so Luka fills the frame from frame 1. Re-frame mid2 so Luka is centred, not cut off at the left edge."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.167,
-        "effective_fps": 20.0,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.159,
-        "frozen_fps": 20.2,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.097,
-        "judder_fps": 21.7,
-        "held_s": 0.58,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.75
-      },
-      "fingerprint": "?|junk_imagery|bad_crop_obstructed_subject"
-    },
-    {
-      "ts": "2026-11-12T12:35:29+00:00",
-      "slug": "sports_luka_doncic__tonight_you",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "There's a real Luka trash-talk moment here, but it opens on 2.5s of a hair-blocked fan-cam and never shows the Hawks fans who answer him.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3-mid0: a spectator's hair covers half the frame while Luka stands far away and blurry, with no speech or action, so a stranger has no reason to stay",
-        "The 'back and forth' promised by the line is one-sided on screen: no Hawks fan is ever shown, and 'HE'S RIGHT.' (mid4) plays over a wide shot of Luka walking",
-        "mid2: Luka is cut off at the left frame edge during the pan",
-        "Payoff is soft: the clip ends on Luka standing (payoff@-0.4) and not on a reaction"
-      ],
-      "fixes": [
-        "Start the cut at the mid1 close-up of Luka saying 'You all wish you would have had me'",
-        "Keep Luka framed in the center during the mid2 pan",
-        "Punch in or add a sound hit on 'HE'S RIGHT.' and end there, with no tail of Luka standing",
-        "If the source has footage of the fans, include it so the exchange shows both sides"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 62
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_crop",
-        "visible_evidence": "hook@0.3 through mid0: a blurry fan-cam where a spectator's dark hair fills the right half of the frame and Luka is a small figure mid-court; nothing is said and no reaction happens until he turns at mid1",
-        "root_cause": "The cut opens on the raw fan-phone lead-in before the trash talk starts, so the first 2.5s is a far, blocked shot of Luka standing",
-        "repair_goal": "Open on the close-up of Luka talking at mid1 ('You all wish you would have had me') with the line on screen from frame one; drop or trim the hair-blocked lead-in and end on the fan's 'he's right' moment"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.167,
-        "effective_fps": 20.0,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.159,
-        "frozen_fps": 20.2,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.095,
-        "judder_fps": 21.7,
-        "held_s": 0.58,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.75
-      },
-      "fingerprint": "?|-|weak_hook_crop"
-    },
-    {
-      "ts": "2026-11-12T12:38:17+00:00",
-      "slug": "sports_elly_de_la_cruz_rds_with_his",
-      "score": 79,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is good: the 'twin brother' reveal next to Elly lands visually. But the roast captions overlap into garbled text and the clip cuts off on 'THE' before the punchline.",
-      "auto_fails": [
-        "unreadable: At payoff@-1.8 two word captions are drawn on top of each other and read 'GOTHERE'S A LOTJS,', which is garbled. At payoff@-0.4 the video ends on the lone caption 'THE', cut off mid-sentence."
-      ],
-      "problems": [
-        "At payoff@-1.8 the word captions overlap ('GOTHERE'S A LOTJS,') and cannot be read.",
-        "The video ends mid-sentence on the caption 'THE' (payoff@-0.4), so the host's roast never finishes.",
-        "The footage fills only the centre band, about 30% of the frame, with large blurred areas above and below."
-      ],
-      "fixes": [
-        "Fix caption timing so only one caption group is on screen at a time.",
-        "Move the clip's end point to after the host's roast line and the crowd's laugh.",
-        "Punch in on the side-by-side reveal (mid3) so the twins fill more of the frame at the payoff."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.355,
-        "sampled": 76
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "unreadable_overlapping_captions_and_cut_ending",
-        "visible_evidence": "At payoff@-1.8 the word captions overlap into 'GOTHERE'S A LOTJS,'. At payoff@-0.4 the last thing on screen is the caption 'THE', so the host's roast line is cut off before it lands.",
-        "root_cause": "Two caption groups are on screen at the same moment because their timings overlap. The clip's end point also falls in the middle of the host's sentence, so the roast punchline is cut off.",
-        "repair_goal": "Show only one caption group at a time and never draw two transcript groups together. Move the clip's end to after the host finishes the roast line and the room laughs, so the video ends on the full punchline and the reaction instead of on the word 'THE'."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.026,
-        "effective_fps": 23.4,
-        "max_dup_run": 11,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.42,
-        "max_dup_at_s": 1.96,
-        "duration_s": 25.38
-      },
-      "fingerprint": "?|unreadable|unreadable_overlapping_captions_and_cut_ending"
-    },
-    {
-      "ts": "2026-11-12T12:40:58+00:00",
-      "slug": "sports_elly_de_la_cruz_rds_with_his",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The joke lands: the 'twin' is visibly nothing like Elly and the host reacts on camera, but the opening is slow setup and the footage band is small.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (0-2.5s) is a plain two-shot of Elly and the host talking; the twin, who is the payoff image, doesn't appear until about 6-10s",
-        "Footage occupies only about a third of the vertical frame (hook@0.3, mid2), so faces are small on a phone",
-        "The cut ends on the host mid-sentence ('THE', payoff@-0.4) rather than on a laugh"
-      ],
-      "fixes": [
-        "Flash the mid2 reveal frame (Elly next to his short 'twin') over the first 1-2 seconds",
-        "Crop or zoom the 16:9 source tighter so the footage band fills more of the 9:16 frame while keeping Elly, the twin and the host in shot",
-        "End on the crowd or host laugh after 'GOODNESS GRACIOUS' instead of mid-word"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.382,
-        "sampled": 76
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "slow_setup",
-        "visible_evidence": "hook@0.3 to hook@2.2: Elly and the host stand talking in a static two-shot ('I'M HERE WITH'). The twin, who is the joke, doesn't show up until about mid1/mid2 (6-10s)",
-        "root_cause": "The cut starts at the start of the interview, not at the reveal, so the first two seconds are setup with no visual gag",
-        "repair_goal": "Open on or flash-forward to the reveal frame from mid2 (the short 'twin' grinning beside the 6'5\" Elly) for the first 1-2s, then cut back to the intro, and scale the footage band up so the faces read on a phone"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.026,
-        "effective_fps": 23.4,
-        "max_dup_run": 11,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.42,
-        "max_dup_at_s": 1.96,
-        "duration_s": 25.38
-      },
-      "fingerprint": "?|-|slow_setup"
-    },
-    {
-      "ts": "2026-11-12T12:44:24+00:00",
-      "slug": "sports_steph_curry_lbert_arenas",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Steph is framed well and talks the whole time, but the clip opens on a preamble, never names who he is calling out on screen, and ends on what looks like a plug instead of the call-out.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0 to 2.2s) is Steph looking at the ceiling saying 'obviously'. There is no confrontation in the first two seconds.",
-        "The on-screen line is vague: it does not say he is calling out Nick Young or Gilbert Arenas, which the title promises.",
-        "The ending (mid5, payoff) appears to be a promo, 'starring Aisha Curry', not the call-out landing.",
-        "The bottom 12% of the frame is a blurred duplicate band, which wastes space.",
-        "The word captions misspell Ayesha as 'AISHA' (mid5, payoff@-1.8)."
-      ],
-      "fixes": [
-        "Start the cut on the 'kindly suggest you...' call-out line, then play the context.",
-        "Rewrite the on-screen line to name the target, e.g. 'Steph tells Nick Young & Gilbert Arenas to leave Ayesha alone \ud83d\ude33'.",
-        "End on the call-out or his smirk, not on the promo line.",
-        "Fix the transcript spelling of 'Ayesha' in the word captions.",
-        "Crop or fill the frame so the blurred bottom band is gone."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 117
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "From hook@0.3 to hook@2.2 Steph looks up at the ceiling and the word caption reads 'OBVIOUSLY,'. Nothing yet tells a stranger that he is calling out Nick Young and Gilbert Arenas.",
-        "root_cause": "The cut opens on his preamble, not on the call-out line, and the on-screen line 'checks in about Ayesha' is vague. It never names the feud or the podcasters.",
-        "repair_goal": "Open on his sharpest line, the 'kindly suggest you...' call-out near mid2. Rewrite the on-screen line to name the target, e.g. 'Steph tells Nick Young & Gilbert Arenas to leave Ayesha alone \ud83d\ude33', so a stranger knows within one second who is being called out."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 6.42,
-        "duration_s": 39.08
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-11-12T12:47:19+00:00",
-      "slug": "sports_kirk_cousins_ns_leads_the",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A great moment that lands with the crowd's SKOL clap, but the crop keeps cutting Cousins off: the opening frame is a headless torso at the edge, and his face is out of frame or half-split through 2.5-5s.",
-      "auto_fails": [
-        "junk_imagery: The crop keeps cutting off the person the clip is about. At hook@0.3 we see only a raised arm and a bare torso at the left edge with no face. At mid0 his face is out of frame and the shot is mostly purple wall. At mid1 only half his face shows at the left edge while the frame centres on his arm and empty banner."
-      ],
-      "problems": [
-        "hook@0.3: crop shows only an arm and a bare torso at the left edge, with no face, so a stranger can't tell who it is",
-        "mid0 (2.5s): Cousins's face is out of frame and most of the frame is the purple wall",
-        "mid1 (4.6s): only half his face shows at the left edge while the crop centres on his raised arm and the banner",
-        "The broadcast lower-third is cut to 'NS / ack' at the left edge in every Cousins frame, which looks sloppy"
-      ],
-      "fixes": [
-        "Re-crop with person/face tracking so Cousins's head and both raised arms stay centred from frame one",
-        "Open on a frame where his face and the gold chain are visible (for example around 1.5s) so the hook reads immediately",
-        "Crop the broadcast lower-third out completely rather than leaving it half cut off",
-        "Keep the crowd SKOL clap ending; it is the payoff"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 45
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "crop_cuts_off_subject",
-        "visible_evidence": "At hook@0.3 the frame is a headless arm and torso pushed to the left edge, with half the frame on the purple wall. mid0 and mid1 repeat this, with Cousins's face out of frame or split by the left edge. The broadcast name bar is also cut to 'NS / ack'.",
-        "root_cause": "The 9:16 crop is fixed off-centre to the right of the 16:9 broadcast frame, so as Cousins moves left he leaves the crop. The tracker follows the banner instead of the person.",
-        "repair_goal": "Re-crop with face/person tracking so that Cousins's head and raised arms stay centred for the whole clip, especially the first 2s and 2.5-5s. Keep the wide crowd shots from mid4 onward as they are, and either keep the broadcast lower-third whole or crop it out completely."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 15.0
-      },
-      "fingerprint": "?|junk_imagery|crop_cuts_off_subject"
-    },
-    {
-      "ts": "2026-11-12T12:49:48+00:00",
-      "slug": "sports_kirk_cousins_ns_leads_the",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The clip shows exactly what the line promises, Cousins shirtless in a gold chain leading the SKOL chant and the crowd answering, but it stays letterboxed small.",
-      "auto_fails": [],
-      "problems": [
-        "The footage stays in a narrow letterboxed middle band for the whole clip, so Cousins is small on a phone.",
-        "In mid2 the top of the band clips his head and arm, and the SNF lower-third covers his torso."
-      ],
-      "fixes": [
-        "Punch in or crop to the vertical frame on Cousins during the chant beats.",
-        "Add a zoom or sound hit on each SKOL clap to lift the reaction."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 45
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "framing",
-        "visible_evidence": "In mid2 Cousins's head and raised arm are cut off by the top of the footage band, and the SNF lower-third covers his torso. The letterboxed band is small on a phone.",
-        "root_cause": "The landscape broadcast is letterboxed into a narrow middle band with no punch-in on the subject.",
-        "repair_goal": "Punch in on Cousins during the arm-raises (mid1-mid4) so his face and the gold chain fill more of the vertical frame, and keep the full crowd shot for the payoff."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.05,
-        "effective_fps": 22.8,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 3.25,
-        "duration_s": 15.0
-      },
-      "fingerprint": "?|-|framing"
-    },
-    {
-      "ts": "2026-11-12T12:55:09+00:00",
-      "slug": "sports_unai_emery_is_interview",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Clean, correctly cropped Emery interview with a good goal cut-in. But the awkward answer the hook promises only lands if you hear it, and the clip ends on a flat frame.",
-      "auto_fails": [],
-      "problems": [
-        "No speech captions: with the sound off, a stranger cannot tell what Emery's answer is (mid2 to mid5).",
-        "The ending (payoff@-1.8 and payoff@-0.4) is a neutral head-down frame with no reaction beat.",
-        "The footage fills only the middle third of the frame; the blurred bands above and below waste two-thirds of the screen.",
-        "The hook is a static talking head with no zoom or sound hit in the first two seconds."
-      ],
-      "fixes": [
-        "Burn in word captions above the hook line for Emery's answer.",
-        "Punch in or zoom on the awkward line and end on that reaction.",
-        "Enlarge the footage band (a tighter crop on Emery) so it fills more of the vertical frame.",
-        "Open on the goal cut-in or the most awkward sentence to make the first two seconds hit harder."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 98
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "payoff@-1.8 and payoff@-0.4: Emery looks down mid-answer and the clip ends on a neutral talking head. There is no visible reaction beat, and no caption tells a stranger what his 'awkward' answer was.",
-        "root_cause": "This is a talking-head interview with no word captions or second line, so the answer the hook promises depends entirely on audio. The cut ends on a flat frame instead of the awkward moment.",
-        "repair_goal": "Add speech captions above the hook line so the answer about leaving before the 96th-minute goal reads with the sound off, and punch in on the awkward beat. End on the line or reaction that lands, not on him looking down."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.177,
-        "effective_fps": 19.8,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.112,
-        "frozen_fps": 21.3,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.084,
-        "judder_fps": 22.0,
-        "held_s": 1.21,
-        "max_dup_at_s": 11.08,
-        "duration_s": 32.75
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
-    {
-      "ts": "2026-11-12T12:57:14+00:00",
-      "slug": "sports_unai_emery_is_interview",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "This is the right moment, correctly framed and named, but it is a flat letterboxed interview with no zooms or captions, and it ends looking down instead of on the 'my English is poor' punchline.",
-      "auto_fails": [],
-      "problems": [
-        "The 16:9 footage is letterboxed into the middle third with a blurred fill, so Emery is small on a phone (every frame).",
-        "There are no word captions, so a muted viewer cannot follow the 96th-minute exchange.",
-        "There are no zooms or sound hits on the reaction; the grin at mid0 goes unmarked.",
-        "The last frame shows Emery looking down mid-thought, so the punchline does not land (payoff@-0.4)."
-      ],
-      "fixes": [
-        "Crop tighter on Emery to fill more of the 9:16 frame.",
-        "Add word captions for the reporter's question and Emery's answer, placed above our line.",
-        "Punch in with a sound hit on the grin and on 'my English is poor'.",
-        "Trim the cut so it ends on the 'my English is poor' line or his laugh."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 60
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "At payoff@-0.4 Emery is looking down mid-sentence. There is no laugh, no punch-in and no caption of the 'my English is poor' line, so the video just stops. mid0 has his grin, but nothing marks it as the beat.",
-        "root_cause": "The cut is a flat letterboxed interview with no zoom, no word captions and no sound hit. A stranger watching muted cannot follow the 96th-minute back-and-forth, and the punchline is not emphasised.",
-        "repair_goal": "End on the 'my English is poor' line or his grin with a punch-in and a sound hit. Add word captions above our line so the exchange can be followed without sound. Fill more of the 9:16 frame with a tighter crop on Emery."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.156,
-        "effective_fps": 20.3,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.121,
-        "frozen_fps": 21.1,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.11,
-        "judder_fps": 21.4,
-        "held_s": 0.0,
-        "max_dup_at_s": 1.08,
-        "duration_s": 20.08
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
-    {
-      "ts": "2026-11-12T12:59:44+00:00",
-      "slug": "sports_unai_emery_is_interview",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Real, well-framed Emery interview with a clean caption, but the 'is my English clear' payoff doesn't visibly land at the end and strangers get no context for what he is explaining.",
-      "auto_fails": [],
-      "problems": [
-        "The ending frames (payoff@-1.8, payoff@-0.4) show Emery mid-explanation looking down, not the 'is my English clear?' moment or a reaction",
-        "Nothing explains the 96th-minute goal he is talking about; only the small 4-4 score bug hints at it",
-        "The footage band fills about a third of the vertical frame, and the blurred fill above and below wastes the rest",
-        "No zoom or sound hit on the reaction, which the format contract calls for"
-      ],
-      "fixes": [
-        "End the cut on the English question plus his grin or the reporter's laugh",
-        "Add a short context line at the turn about the 96th-minute 4-4 equaliser",
-        "Punch in on the laugh around mid2 and on the final question",
-        "Scale the footage up to fill more of the 9:16 frame"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "payoff@-1.8 and payoff@-0.4 show Emery looking down mid-sentence with a neutral face. The laugh is at mid2 (12s), and the frames don't show the 'is my English clear?' question or anyone answering it as a final beat.",
-        "root_cause": "The cut runs the whole interview flat instead of building to the moment the on-screen line promises. Nothing tells a stranger what he is explaining: only the 4-4 score bug hints at the 96th-minute goal.",
-        "repair_goal": "Trim so the clip ends on Emery asking whether his English is clear and the reporter's reaction or his grin, with a zoom and a sound hit on that line. Start closer to the explanation and add a second line of text at the turn ('after a 96th-minute 4-4 equaliser') so a stranger knows what he is explain"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.212,
-        "effective_fps": 18.9,
-        "max_dup_run": 14,
-        "measured": true,
-        "frozen_ratio": 0.127,
-        "frozen_fps": 21.0,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.102,
-        "judder_fps": 21.6,
-        "held_s": 1.54,
-        "max_dup_at_s": 6.62,
-        "duration_s": 28.29
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
-    {
-      "ts": "2026-11-12T16:06:04+00:00",
-      "slug": "bat-fungus-collapse",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong map-and-cave first half where Data spreads the fungus and the roost empties visibly, then it falls into a generic green tank that understates the $53B scale and a closing that shows nothing of its grocery-store payoff.",
-      "auto_fails": [],
-      "problems": [
-        "seg3 uses a stock fill-a-tank machine with green liquid that has nothing to do with bats or pests",
-        "The tank scale is misleading: $3.7B sits about 1/3 full and $53B is full, about 2.5x on screen for a 14x number",
-        "seg4 closing shows no payoff (no pests on crops, no grocery bill); the frame is static except for small bats and Data waving",
-        "In seg2 Data only reacts with hands on his head while the roost empties; he is not the cause",
-        "The hook headline flips between '35 states', 'White-nose' and '1 state' within 2s (hook@0.3 \u2192 hook@1.5), which muddles the first read",
-        "The '$3.7B' dashed line loses its label in the closing and becomes an unexplained mark"
-      ],
-      "fixes": [
-        "Redraw seg3 made of the subject: a cornfield where bats eat a pest swarm, and the pests that would be left without bats pile onto the crops, scaled at true proportion to $53B",
-        "Map the low and high estimates honestly (53 \u2248 14x 3.7) or drop the low estimate",
-        "Make the closing land the consequence: pests on crops turning into a rising grocery price tag in the same shot",
-        "Give Data agency in the cave, e.g. holding the flashlight and sweeping the beam across the empty roost",
-        "Keep one hook headline ('35 states') on screen through the hook instead of cycling through three"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 86
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "generic_vessel_misleading_scale",
-        "visible_evidence": "seg3:start-end: Data pours green liquid from a small cup through a tube into a plain grey farm tank. The '$3.7B' dashed line sits about a third of the way up, and '$53B' fills it to the top. That is roughly 2.5x on screen for a 14x claim. Data's pouring is not tied to bats or pests, and the bats onl",
-        "root_cause": "The brain reached for a stock fill-a-vessel machine. A tank of green liquid is not made of the subject, and the scale is not mapped to the numbers, so the 3.7B->53B range reads as a modest top-up.",
-        "repair_goal": "Make the picture MADE OF the subject: bats eating a swarm of crop pests over a cornfield, or a pile of grocery-receipt dollars that grows when bats are removed. Draw the low and high estimates at true proportion (53B \u2248 14x 3.7B) so the size of the free service is visible without reading it. Have Dat"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.083,
-        "effective_fps": 22.0,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.054,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 12,
-        "judder_ratio": 0.009,
-        "judder_fps": 23.8,
-        "held_s": 1.29,
-        "max_dup_at_s": 0.0,
-        "duration_s": 28.62
-      },
-      "fingerprint": "?|-|generic_vessel_misleading_scale",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-12T16:42:08+00:00",
-      "slug": "bat-fungus-collapse",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong map and cave beats, but the money half has Data waving beside bats multiplying, which contradicts a story about losing them, and the closing never shows the grocery-bill payoff.",
-      "auto_fails": [
-        "decorative_mascot: Only seg1 has Data doing the action, stamping fungus onto map bats (seg1:mid). In seg2:start through seg2:end he stands on the ladder with his hands up while the bats vanish without him. In seg3:start through seg4:end, about 11s, he only waves beside the bat box while bats and the $ sign change around him."
-      ],
-      "problems": [
-        "seg2: Data only stands on the ladder with his hands up while the roost empties. He is not the cause of anything in it.",
-        "seg3: Data waves beside the bat box for the whole beat, which is decorative.",
-        "seg3: a $3.7B sign stays in the field while the headline reads $53B. Two money figures compete and confuse the claim.",
-        "seg3/seg4: the picture shows bats increasing while the narration says we are losing them.",
-        "seg4 closing: the same field of bats, with no pests on crops and no grocery cost, so the payoff does not land.",
-        "payoff@-0.4: the final frame is the wordless field with Data waving and nothing resolving."
-      ],
-      "fixes": [
-        "seg3: show bats leaving and moths swarming the corn, with Data hauling a crate of damaged corn onto a scale whose readout climbs to one number, $53B.",
-        "Remove the $3.7B sign: one headline per frame.",
-        "seg4: end on a grocery receipt or price tag that Data stretches longer as the pests eat the crop, so the cost is felt.",
-        "seg2: give Data the torch so his sweep reveals the empty roost, making him the cause of the reveal."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 86
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg3:start to seg3:end: Data stands beside the bat box with one hand up, waving, while bats pour into the sky and the headline goes from $3.7B to $53B. A $3.7B sign stays planted in the field while the headline says $53B, so two money figures compete. The picture shows bats multiplying while the nar",
-        "root_cause": "The scene draws bats arriving instead of the loss and its cost. Data has no job in the scene (he does not release, count or pay anything), and the low estimate gets a sign of its own beside the headline.",
-        "repair_goal": "Make Data the cause of the cost: as the bats vanish he weighs the moths that come back onto a farm scale, or carries a rising grocery bill, and a single $53B lands on that object. Drop the second $3.7B number so the frame has one headline, and have the picture show the bats leaving and pests taking "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.083,
-        "effective_fps": 22.0,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.054,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 12,
-        "judder_ratio": 0.009,
-        "judder_fps": 23.8,
-        "held_s": 1.29,
-        "max_dup_at_s": 0.0,
-        "duration_s": 28.62
-      },
-      "fingerprint": "?|decorative_mascot|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-12T17:58:28+00:00",
-      "slug": "maternal-mortality-pandemic-reversal",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong art and a real mascot performance, but the scale beat crams a ghosted 14.5 and a tiny label against the window, and the candle beat shows a fall while the narration says 'stayed'.",
-      "auto_fails": [
-        "unreadable: seg3:mid shows a ghosted \"14.5\" printed under the \"Black women...\" subtitle against the night windows. In seg3:end the small \"White women, the next highest\" label sits on the window sill line and is cramped and hard to read on a phone."
-      ],
-      "problems": [
-        "seg3:mid has a ghosted '14.5' under the 50.3 subtitle on a busy night window, so it is unreadable at phone size",
-        "seg3:end has the 'White women, the next highest' label tiny and jammed against the window sill",
-        "seg2's readout steps 69.9 to 49.5 to 50.3 while the narration says Black maternal deaths 'stayed at 50.3', so the picture shows a fall that contradicts the claim",
-        "The closing (seg4) is the same tipped scale held for about 4s with only Data's pose and the gurney changing, a weak payoff with no fresh 'whoa'",
-        "The hook's first frame (hook@0.3) shows 18.6 with no context, then cuts to a 'Maternal deaths' title card, so the opening never shows the triple gap it promises"
-      ],
-      "fixes": [
-        "Put 14.5 on the right-hand pan in readable ink, keep 50.3 as the single big number, and remove the fade-in under the subtitle",
-        "In seg2, hold the candle count steady near 50.3 (or show the national shrine dimming while the Black-mothers row stays lit) so the picture shows 'stayed' while others fell",
-        "Open on the finished scale or on the candle contrast so the triple gap is the shock in the first second",
-        "Give the closing a final move, such as the scale tipping fully or Data adding a weight, so the payoff lands instead of holding"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 76
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "unreadable",
-        "visible_evidence": "seg3:mid shows a faint, half-drawn \"14.5\" behind the 50.3 subtitle on a dark busy window. In seg3:end the \"White women, the next highest\" caption is tiny and collides with the window sill, and the two-number stack is crammed into the window band.",
-        "root_cause": "The second readout (14.5) fades in at the same spot as the first headline's subtitle, over a high-detail night-city background. Its label is set at small size right on the sill edge, so neither text has clear space or contrast.",
-        "repair_goal": "Give the 14.5 a clean place of its own: put it ON the right pan (or a tag hanging from it) in INK at readable size. Keep 50.3 as the only big headline, with nothing faded in underneath it. Move or remove the 'next highest' caption so no text touches the window frame. Let the scale's tip stay the thi"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.177,
-        "effective_fps": 19.8,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.059,
-        "frozen_fps": 22.6,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 2.12,
-        "max_dup_at_s": 0.0,
-        "duration_s": 25.46
-      },
-      "fingerprint": "?|unreadable|unreadable",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-13T12:09:48+00:00",
-      "slug": "sports_dirk_nowitzki_ons_of_jalen",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The story works: Dirk doubts Brunson, then the payoff shows Brunson as a Knicks star. But the interview half is a reposted split screen where a table and an arm take the top of the frame and Dirk is squeezed below, half covered by two caption layers.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through mid0 and mid3: the entire top half of the frame shows a side table, cups, a Polymarket football and a co-host's forearm. The co-host is cropped out to a hand on an armrest. Dirk, who is speaking, is squeezed into the bottom half with two caption layers across his face."
-      ],
-      "problems": [
-        "hook@0.3 to mid0: half the frame is a static table, cups and a co-host's forearm, with the listener cropped out to his hand.",
-        "Dirk, the speaker, is boxed into the bottom half and his face sits under the source's burned-in captions and then our line.",
-        "mid1: a second repost-style panel with a duplicated studio backdrop. Dirk is not in the shot while his quote is the point.",
-        "The source is another account's edited repost (burned-in word captions, split layout), not the original interview."
-      ],
-      "fixes": [
-        "Cut the interview from the original podcast and crop Dirk full frame in 9:16, face centred in the upper two-thirds.",
-        "Drop the table and arm panel entirely. If both people are needed, use a face-and-face stack, never a table.",
-        "Keep our single line in the bottom third, clear of his face. If the source captions can't be avoided, skip our duplicate word captions.",
-        "Keep the Mavericks-to-Knicks highlight run and the Brunson #11 celebration as the payoff."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.008,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "bad_crop_restream_layout",
-        "visible_evidence": "hook@0.3 through mid0 and again at mid3: the top half is a static table and a co-host's arm. Dirk fills only the bottom half, his face covered by the source's caption ('SAW JALEN WALK') and then our line. mid1 is a second repost panel showing a duplicated studio background.",
-        "root_cause": "The source is someone else's repost edit with a split layout and burned-in captions. It was used as-is instead of cutting from the original podcast, so the listener panel takes half the frame and the speaker is boxed into the bottom half.",
-        "repair_goal": "Recrop the interview so Dirk's face fills the 9:16 frame for the whole quote, with no table or arm panel. Use the original podcast upload, or crop the bottom panel to full height, so that only our one line sits in the bottom third and does not cover his face. Keep the Brunson highlight payoff as it "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.145,
-        "effective_fps": 20.5,
-        "max_dup_run": 23,
-        "measured": true,
-        "frozen_ratio": 0.035,
-        "frozen_fps": 23.2,
-        "max_frozen_run": 7,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 3.92,
-        "max_dup_at_s": 5.92,
-        "duration_s": 39.42
-      },
-      "fingerprint": "?|junk_imagery|bad_crop_restream_layout"
-    },
-    {
-      "ts": "2026-11-13T12:29:07+00:00",
-      "slug": "sports_dirk_nowitzki_ons_of_jalen",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The quote is great, but half the frame shows a table and a headless torso, and the highlight montage never pays off 'until he saw this'.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3\u2013mid2: the top half of the stacked frame is a side table with a Polymarket football and a stranger's hand on a chair arm. In mid1 it is a headless blue-hoodie torso. Half the frame spends the setup on the listener's furniture and body instead of Dirk or Brunson."
-      ],
-      "problems": [
-        "The top half of the podcast section (hook through mid2) is a side table, cups and a hand, or a headless torso (mid1). The crop cuts away from who matters.",
-        "Dirk is squeezed into the bottom half with the source's captions and our line on top of his face.",
-        "The title promises 'until he saw this', but the montage (mid3\u2013mid5) shows generic Brunson highlights. Nothing shows what changed Dirk's mind, so the payoff is weak.",
-        "The hook opens on the furniture panel rather than on Dirk's face or the funny 'head's too big' line."
-      ],
-      "fixes": [
-        "Reframe the interview as a single full-height crop on Dirk while he speaks, and cut to Brunson's laughing reaction as its own shot.",
-        "Open on the 'the head's too big' line with a punch-in on Brunson laughing so the first two seconds hook.",
-        "Either cut in footage or a quote showing the moment Dirk changed his mind, or retitle so it does not promise a 'this' the clip never shows.",
-        "Keep our line in the bottom third, clear of the speaker's face and the source captions."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.011,
-        "sampled": 95
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "bad_crop",
-        "visible_evidence": "hook@0.3 through mid2 split the frame. The top half shows a table, cups and someone's hand, and Dirk is squeezed into the bottom half behind a mic, with our line and the source captions across his face. mid1's top panel is a torso with the head cut off.",
-        "root_cause": "The repost's two-camera split layout was kept as-is, so the listener's camera takes half the frame during the claim that sells the video.",
-        "repair_goal": "Crop the podcast section to a single full-height shot of Dirk while he speaks, cutting to Brunson's laughing reaction (mid1 bottom) as its own full frame. Move our line so it does not sit on Dirk's face."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.178,
-        "effective_fps": 19.7,
-        "max_dup_run": 23,
-        "measured": true,
-        "frozen_ratio": 0.052,
-        "frozen_fps": 22.8,
-        "max_frozen_run": 11,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 3.79,
-        "max_dup_at_s": 5.92,
-        "duration_s": 31.58
-      },
-      "fingerprint": "?|junk_imagery|bad_crop"
-    },
-    {
-      "ts": "2026-11-13T12:32:44+00:00",
-      "slug": "sports_tyler_shough_barion_brown",
-      "score": 82,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clear, real moment: the fumble, the recovery, then the QB's sideline pep talk to the rookie, framed on the speaker's face. It needs a cleaner crop through the one obstructed stretch.",
-      "auto_fails": [],
-      "problems": [
-        "mid3: a blurred foreground player blocks the left of the frame and Brown for a moment.",
-        "Hook frames are fast, motion-blurred fumble footage. It reads as action, but the emotional moment the line promises only starts at about 9s."
-      ],
-      "fixes": [
-        "Reframe toward Shough during the obstructed stretch around 20-23s.",
-        "Consider tightening the fumble replay so the sideline talk starts sooner."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 110
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "crop_obstruction",
-        "visible_evidence": "At mid3 (t=21.88s) a blurred dark foreground player covers the left third of the frame and hides Brown, leaving only Shough's helmet visible on the right.",
-        "root_cause": "The source camera's view is blocked by a passing player, and the static crop does not reframe around it.",
-        "repair_goal": "Shift or punch the crop right toward Shough and Brown for the few seconds the foreground body blocks the shot, so both stay readable."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.137,
-        "effective_fps": 20.7,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.13,
-        "frozen_fps": 20.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.121,
-        "judder_fps": 21.1,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.12,
-        "duration_s": 36.79
-      },
-      "fingerprint": "?|-|crop_obstruction"
-    },
     {
       "ts": "2026-11-13T12:35:00+00:00",
       "slug": "sports_steve_kerr_ng_up_like_a",
@@ -4301,22 +3170,1142 @@
       },
       "fingerprint": "?|-|decorative_mascot",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-15T11:51:04+00:00",
+      "slug": "sports_shai_gilgeous_alexander_checks_an",
+      "score": 83,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The opening line 'That's a false stat, by the way' is a strong cold open and Shai is well cropped throughout. But the reporter and the wrong stat are never shown, and our caption collides with a broadcast score bug at mid0.",
+      "auto_fails": [
+        "unreadable: At mid0 our line 'reporter's fake stat' sits on top of the broadcast score bug (OKC / 3:21 / BONUS) and collides with it. At mid3 it is printed over an inserted OKC logo disc, and a cropped graphic ('20 MED AVA') is cut off at the right edge."
+      ],
+      "problems": [
+        "mid0: our hook line is printed over the OKC/IND score bar in a letterboxed game cutaway, so both texts are hard to read.",
+        "mid3: an inserted OKC logo disc and a graphic cut off at the right edge ('20 MED AVA') sit under our line and clutter the frame.",
+        "The reporter and the actual AI stat never appear on screen. A stranger hears the correction but may not learn what the fake stat was, which weakens the payoff."
+      ],
+      "fixes": [
+        "During the game cutaway, move our line into the blurred letterbox band, or cut the cutaway entirely.",
+        "Trim or crop out the logo/graphic insert at mid3, or move the line so it never overlaps inserted graphics.",
+        "Add a short second line (line2) at the turn that states the stat the reporter cited, so the correction lands for someone with no context."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 121
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 1,
+        "failure_class": "text_over_broadcast_graphic",
+        "visible_evidence": "At 2.5s the source cuts to letterboxed Finals game footage with blurred bands. Our bottom-third line 'Shai catches a reporter's fake stat' lands directly on the TV score bar, so both are hard to read.",
+        "root_cause": "The caption line has a fixed y position. When the source footage changes layout to a letterboxed broadcast clip with a score bug in the bottom third, the line does not move to avoid the graphic.",
+        "repair_goal": "Detect the broadcast graphic or letterbox band during the game cutaway. Move our line clear of it (into the blurred band) for that stretch, or trim the cutaway out so the line never sits on a score bug."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.218,
+        "effective_fps": 18.8,
+        "max_dup_run": 12,
+        "measured": true,
+        "frozen_ratio": 0.066,
+        "frozen_fps": 22.4,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 2.71,
+        "max_dup_at_s": 15.58,
+        "duration_s": 40.25
+      },
+      "fingerprint": "?|unreadable|text_over_broadcast_graphic"
+    },
+    {
+      "ts": "2026-11-15T12:01:10+00:00",
+      "slug": "sports_shai_gilgeous_alexander_checks_an",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, well-cropped Shai moment, but the frames never show the reporter or the wrong stat. The cut drags in a glitch transition and game b-roll from the source edit, and our caption collides with the TV scorebug at mid2.",
+      "auto_fails": [
+        "unreadable: In mid2 (t=13.09s) our line 'reporter's stat live' sits on top of the TV scorebug ('HOU 31-19 ... 10:44'), so the caption collides with the broadcast graphic. At mid1 it also sits over a glitchy, high-contrast transition."
+      ],
+      "problems": [
+        "The reporter and the incorrect stat are never shown on screen, so a stranger may not know what is being corrected (hook through payoff).",
+        "mid1 is a glitchy smeared transition copied from someone else's repost edit.",
+        "mid2: our caption overlaps the broadcast scorebug.",
+        "The hook frames (hook@0.3 to hook@2.2) are a static podium shot of a smiling Shai, with no visible tension or question in the first two seconds.",
+        "A source watermark shows in the bottom-left corner of the podium frames."
+      ],
+      "fixes": [
+        "Open on the reporter's question or Shai's 'that's a false stat' line so the conflict starts in the first second.",
+        "Cut the glitch transition and game b-roll at mid1/mid2, or raise the caption above the scorebug when broadcast graphics are on screen.",
+        "Add a second on-screen line at the turn stating the wrong stat versus the real one, so the correction reads without audio.",
+        "Crop or cover the source watermark."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 93
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid2",
+        "index": 2,
+        "failure_class": "caption_over_broadcast_graphic",
+        "visible_evidence": "At mid2 our white two-line caption overlaps the top of the TAT/HOU scorebug strip. mid1 just before it is a smeared glitch transition with a Pelicans-style logo, carried over from the source repost's edit.",
+        "root_cause": "The source is someone else's repost edit with glitch transitions and game b-roll. Our fixed-position caption ignores the scorebug that this footage carries in the bottom third.",
+        "repair_goal": "Move the caption above the scorebug (or detect broadcast graphics and raise the line) during the game-footage insert. Better still, trim the clip to the press-conference exchange only: the reporter's wrong stat, Shai's correction and his laugh. Cut the glitch transition at mid1 and the unrelated gam"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.22,
+        "effective_fps": 18.7,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.055,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 2.0,
+        "max_dup_at_s": 28.92,
+        "duration_s": 30.96
+      },
+      "fingerprint": "?|unreadable|caption_over_broadcast_graphic"
+    },
+    {
+      "ts": "2026-11-15T12:06:59+00:00",
+      "slug": "sports_shai_gilgeous_alexander_checks_an",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Shai is cropped well and the line is clean, but the clip never shows on screen what wrong stat he catches, so the payoff depends entirely on the audio.",
+      "auto_fails": [],
+      "problems": [
+        "The reporter and the false stat are never shown or captioned, so a stranger on mute cannot tell what was fact-checked.",
+        "The hook frames are Shai talking with no visible trigger for the 'wrong stat' moment."
+      ],
+      "fixes": [
+        "Burn in word captions for the reporter's stat and Shai's correction.",
+        "Add a second line at the turn, e.g. \"The stat came from AI search\", from the source title."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 62
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid2",
+        "index": 2,
+        "failure_class": "missing_context",
+        "visible_evidence": "From mid0 to payoff@-0.4 the clip only shows Shai talking and smiling at the podium. The reporter is never shown, and no caption says what the false stat was or what Shai corrected it to.",
+        "root_cause": "The clip relies on press-conference audio alone. The edit has no word captions or second line naming the wrong stat, so the 'fact-check' moment is never made visible.",
+        "repair_goal": "Add speech captions above our line for the reporter's question and Shai's 'that's a false stat' correction, or add a second line at the turn naming the wrong stat, so a stranger sees what he is correcting before he smiles in mid4."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.43,
+        "effective_fps": 13.7,
+        "max_dup_run": 22,
+        "measured": true,
+        "frozen_ratio": 0.093,
+        "frozen_fps": 21.8,
+        "max_frozen_run": 6,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.29,
+        "max_dup_at_s": 4.83,
+        "duration_s": 20.58
+      },
+      "fingerprint": "?|-|missing_context"
+    },
+    {
+      "ts": "2026-11-15T12:10:19+00:00",
+      "slug": "sports_justin_jefferson_son_speaking",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A 32-second letterboxed press conference of Jefferson politely praising Cousins. It is on topic and clean, but there is no hook, no captions, a tiny subject and no moment that lands for a stranger.",
+      "auto_fails": [
+        "empty_void: In every presser frame (hook@0.3, mid1, mid3, payoff@-0.4) the real footage is a thin centre band about 245px tall out of 764. Roughly two thirds of the frame is a blurred blow-up of the same shot, so the speaker is small on a phone."
+      ],
+      "problems": [
+        "The hook (hook@0.3 to hook@2.2) is a static podium shot under a neutral label, with no reason to stay.",
+        "The footage fills only a thin centre band, with the rest of the frame a blurred copy, so his face is small on a phone (mid1, mid3).",
+        "There are no spoken-word captions, so a muted viewer never gets the quote that is the whole point.",
+        "There are no zooms or sound hits on a reaction. The cut is one long locked-off presser with one game cutaway (mid2).",
+        "Payoff: it is mild praise with no punchline, and the clip ends mid-presser (payoff@-0.4) without a landing line."
+      ],
+      "fixes": [
+        "Start on the 'joy to hear him take over' quote and trim the lead-in.",
+        "Crop to fill 9:16 on Jefferson's face instead of the blurred letterbox.",
+        "Burn in word captions above the hook line.",
+        "Punch in on the key phrase and end on it.",
+        "Rewrite the on-screen line as a hook with stakes rather than a topic label."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_static_presser",
+        "visible_evidence": "hook@0.3 to hook@2.2: a small letterboxed shot of a player at a podium with microphones, the same framing in all four frames. There is no zoom, no reaction and no caption of what he says. The line is a neutral topic label.",
+        "root_cause": "The clip opens on the presser's quiet lead-in and puts a flat topic label over it instead of the quote. The footage is shrunk into a centre band, so the face is tiny, and there is no punch-in on the speaker.",
+        "repair_goal": "Open on his strongest spoken line (the 'joy to hear him take over and be a leader' quote). Crop the presser to fill the vertical frame on his face rather than a blurred letterbox. Burn in word captions so a muted viewer gets the quote, and rewrite the on-screen line as a hook with stakes, e.g. 'Jeff"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.398,
+        "effective_fps": 14.4,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.049,
+        "frozen_fps": 22.8,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.028,
+        "judder_fps": 23.3,
+        "held_s": 5.71,
+        "max_dup_at_s": 8.42,
+        "duration_s": 32.5
+      },
+      "fingerprint": "?|empty_void|weak_hook_static_presser"
+    },
+    {
+      "ts": "2026-11-15T12:13:35+00:00",
+      "slug": "sports_jameis_winston_says_who_let",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A fun real moment (Jameis chanting 'Who Let The Dogs Out' at the line), but our line sits on the TNF scorebug in the second half and the clip never shows whether the defense jumped.",
+      "auto_fails": [
+        "unreadable: In mid3, mid4, mid5 and payoff@-0.4 our line 'Jameis tries to fake out the defense' is printed right on top of the TNF scorebug ('4TH 3:26'). In hook@0.3 and mid0 the word captions ('GET READY!', 'GET SET!') sit over the broadcast score bar."
+      ],
+      "problems": [
+        "Our hook line overlaps the TNF scorebug from mid3 through payoff@-0.4.",
+        "The word captions 'GET READY!' and 'GET SET!' cover the broadcast score bar in hook@0.3 and mid0.",
+        "The payoff never shows the defense's reaction. The clip ends on Jameis's close-up, so 'fake out the defense' doesn't land.",
+        "The first half is a small centre band with large blurred fill; the hook frame is a static-looking wide shot of players set at the line."
+      ],
+      "fixes": [
+        "Move our line up into clear footage, or down into the blurred bottom band, during the close-ups so it never touches the scorebug.",
+        "Raise the word captions above the score bar in the wide shots.",
+        "Include the snap or the defense's reaction (the jump, or the delay-of-game flag) before the end so the fake-out pays off.",
+        "Open on the 'WHO LET THE DOGS OUT' moment, or punch in on Jameis in the first second, instead of the static wide set."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 72
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid3",
+        "index": 3,
+        "failure_class": "text_over_broadcast_graphic",
+        "visible_evidence": "In mid3 to payoff@-0.4, after the cut to the Jameis close-up, our hook line overlaps the TNF scorebug, and the clip ends on his face without showing whether the defense jumped.",
+        "root_cause": "The hook line stays at a fixed Y position. When the crop changes to the close-up, the broadcast scorebug moves up into the same band. The clip also cuts before the defense reacts.",
+        "repair_goal": "Move our line clear of the scorebug in the close-up shots (raise it, or put it in the bottom blurred band). Extend or re-order the cut so the defense's reaction (jump or no jump) is on screen before the end."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.301,
+        "effective_fps": 16.8,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.147,
+        "frozen_fps": 20.5,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.089,
+        "judder_fps": 21.9,
+        "held_s": 3.96,
+        "max_dup_at_s": 13.42,
+        "duration_s": 23.88
+      },
+      "fingerprint": "?|unreadable|text_over_broadcast_graphic"
+    },
+    {
+      "ts": "2026-11-15T12:15:59+00:00",
+      "slug": "sports_jameis_winston_says_who_let",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The moment is real and the FLAG close-up pays it off, but the first 7 seconds are a tiny letterboxed wide shot where you can't see Jameis doing the chant.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3-mid2: the wide all-22 shot fills only the middle third of the frame, and Jameis is not identifiable at phone size.",
+        "Half the frame is blurred fill for the first 7s, which wastes the 9:16 canvas.",
+        "The payoff depends on the viewer reading 'FLAG' in the scorebug (mid4-payoff). Nothing on screen makes it clear that the chant drew the defense offside."
+      ],
+      "fixes": [
+        "Punch in on the quarterback in the wide shot, or crop that shot to a much tighter 9:16 window centred on Jameis, so the chant is visible.",
+        "Shorten the pre-snap wide shot to at most 2s and get to the close-up reaction faster.",
+        "Add a zoom or sound hit as the FLAG appears so the payoff (the defense jumped) reads without audio context."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 47
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "tiny_subject_wide_shot",
+        "visible_evidence": "hook@0.3 to mid2 (about 7s) are an all-22 wide shot squeezed into a thin middle band. Jameis is a few pixels tall behind the line and cannot be identified on a phone, so the chant itself is never SEEN.",
+        "root_cause": "The source wide broadcast angle is letterboxed into the 9:16 frame without a punch-in on the quarterback, which leaves half the frame as blur.",
+        "repair_goal": "Open on (or punch in to) Jameis at the line, cropped tight to fill the frame, so the first 2s show HIM making the call. Alternatively, start on the mid3 close-up and cut the wide pre-snap shot to under 2s."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.235,
+        "effective_fps": 18.3,
+        "max_dup_run": 14,
+        "measured": true,
+        "frozen_ratio": 0.169,
+        "frozen_fps": 19.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.143,
+        "judder_fps": 20.6,
+        "held_s": 0.92,
+        "max_dup_at_s": 5.33,
+        "duration_s": 15.79
+      },
+      "fingerprint": "?|-|tiny_subject_wide_shot"
+    },
+    {
+      "ts": "2026-11-15T12:19:15+00:00",
+      "slug": "sports_damian_lillard_bout_it_then",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real Lillard moment, but it is a re-crop of another repost: garbled burned-in captions stacked over the action, and a crop that loses Lillard at the edge during the setup.",
+      "auto_fails": [
+        "junk_imagery: hook@2.2 and mid0: the crop drifts right onto empty court and the Moda Center logo while Lillard and the defender are half out of frame at the left edge, so the setup to the shot is cropped away",
+        "unreadable: hook@0.3 shows another channel's burned-in captions garbled ('HETHE SHOT/AVT'), and in mid3 'WAS GOING TO' sits on top of 'LET IT FLY', both stacked right above our line"
+      ],
+      "problems": [
+        "The source has another channel's word captions burned in, and they collide ('HETHE SHOT/AVT' at hook@0.3, 'WAS GOING TO' over 'LET IT FLY' at mid3)",
+        "At hook@2.2 and mid0 the crop sits on empty court while the players are cut off at the left edge",
+        "'BRINGS BACK MEMORIES' (mid0, mid1) is unexplained context that makes the clip confusing",
+        "It is unclear whether the shot goes in or what 'in McCain's face' looks like before it jumps to the letterboxed reaction"
+      ],
+      "fixes": [
+        "Pull the clean broadcast clip instead of a captioned repost, or blur/mask the burned-in captions",
+        "Make the crop follow Lillard through the hesitation, the release and the make",
+        "Show the ball going through the net, then the reaction close-up, then the commentators losing it",
+        "Drop or explain the 'brings back memories' setup so a stranger knows what they are watching"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 55
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "crop_and_caption_collision",
+        "visible_evidence": "At hook@0.3 the burned-in source captions are a garbled overlap just above our line. At hook@2.2 and mid0 the frame sits on empty court and logo while Lillard is cut off at the left edge. mid3 shows two source captions printed on top of each other.",
+        "root_cause": "The source is another repost with its own word captions burned in, and the vertical crop is static or drifts off the ball-handler instead of tracking Lillard",
+        "repair_goal": "Use the clean NBA broadcast source with no burned-in captions, or mask those captions. Track the crop on Lillard through the hesitation and release so he and McCain stay fully in frame, and show the release clearly before cutting to the reaction."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.007,
+        "effective_fps": 23.8,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 16.79,
+        "duration_s": 18.17
+      },
+      "fingerprint": "?|junk_imagery+unreadable|crop_and_caption_collision"
+    },
+    {
+      "ts": "2026-11-15T12:21:49+00:00",
+      "slug": "sports_marcus_smart_h_and_whiffs",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The line promises a whiffed punch, but no sampled frame clearly shows it: the crop keeps cutting Smart and Bassey off, the middle is an unreadable wide scrum, and the end is a blurred walk-off.",
+      "auto_fails": [
+        "junk_imagery: The crop keeps cutting off the people who matter. At hook@1.5 and hook@2.2, Smart (red #36) is half out of frame at the left edge while the shot sits on a Warriors player and the referee. At mid0, Bassey (#28) is half out at the right. At payoff@-0.4, Smart is mid-swing at the right edge and the man he swings at is entirely out of frame."
+      ],
+      "problems": [
+        "Smart (#36) is half out of frame at hook@1.5 and hook@2.2. The crop centres on a Warriors teammate and the referee instead of him.",
+        "Bassey (#28) is cut off at the right edge in mid0.",
+        "At payoff@-0.4 Smart swings at someone entirely out of frame, so the whiff the title promises is never readable.",
+        "Mid1-mid4 is a wide arena shot where neither player can be identified on a phone.",
+        "The source carries another channel's burned-in commentary captions stacked right above our line. That reads as a repost of a repost."
+      ],
+      "fixes": [
+        "Reframe the crop to track Smart and Bassey together so the swing and the miss are both in frame.",
+        "Open on the swing (or its replay) in the first 2 seconds instead of the aftermath.",
+        "Cut the wide arena stretch, or punch in on Smart being sent off.",
+        "Use the clean broadcast source without the third-party captions.",
+        "End on the clearest replay of the miss, not a blurred player walking away."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "crop_misses_subject",
+        "visible_evidence": "From hook@1.5 to mid0, Smart is a sliver at the left edge while the frame centres on a Warriors teammate and the referee's back. Mid1-mid4 is a wide shot where Smart can't be picked out. The payoff frame shows Smart half out of frame at the right, swinging at someone the viewer cannot see.",
+        "root_cause": "The 9:16 crop is fixed or tracks the wrong player and never reframes onto Smart and Bassey. The source is a repost that already carries another channel's commentary captions, so it is not the clean broadcast angle of the swing.",
+        "repair_goal": "Open on the swing itself, cropped so both Smart and Bassey are fully in frame and the miss is visible within the first 2s. Keep the crop on Smart through the ejection. Prefer the clean broadcast source without the burned-in 'HE'S ABSOLUTELY GONE' captions, and end on the clearest replay of the whiff"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.267,
+        "effective_fps": 17.6,
+        "max_dup_run": 21,
+        "measured": true,
+        "frozen_ratio": 0.245,
+        "frozen_fps": 18.1,
+        "max_frozen_run": 21,
+        "judder_ratio": 0.136,
+        "judder_fps": 20.7,
+        "held_s": 1.0,
+        "max_dup_at_s": 12.29,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|junk_imagery|crop_misses_subject"
+    },
+    {
+      "ts": "2026-11-15T12:24:12+00:00",
+      "slug": "sports_lauren_shehadi_s_at_the_mlb",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuinely touching moment is buried: the opening is a seated pair smiling, six seconds are the backs of fans' heads, and the standing ovation that is the payoff plays as a tiny letterboxed strip.",
+      "auto_fails": [
+        "junk_imagery: mid1 and mid2 are a grainy phone recording from the balcony. Two backs of heads fill the lower half and the stage is a blur in the distance, so the speaker is cut away while the frame sits on listeners.",
+        "empty_void: hook@0.3 to mid0 and mid4 to payoff@-0.4: the footage is a thin letterbox strip, and the top third is dark or blurred filler. Measured dark_fraction is 0.333, so about a third of the frame is wasted."
+      ],
+      "problems": [
+        "The hook (0-2.5s) is two people sitting and smiling. Nothing tells a stranger why to stay or who Sarah Langs is.",
+        "mid1-mid2 is a grainy phone recording dominated by the backs of two heads, and the speaker cannot be seen.",
+        "The wide shots from mid4 to the end are a narrow letterbox strip with about a third of the frame dark or blurred filler, so the ovation reads small.",
+        "There is no context on why the room stands for Langs, so a stranger cannot fully tell why it matters."
+      ],
+      "fixes": [
+        "Open on Shehadi at the mic (the mid3 framing) or on the room rising, then cut to Langs reacting.",
+        "Drop the phone-angle footage, or crop it onto the stage instead of the heads.",
+        "Punch in on the standing ovation so the crowd fills the vertical frame instead of a strip.",
+        "Have the on-screen line carry the why (Langs is an MLB stats reporter living with ALS) so the payoff lands for strangers."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.333,
+        "sampled": 57
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void",
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 5,
+        "failure_class": "junk_imagery",
+        "visible_evidence": "mid1 (t=5.38s) and mid2 (t=8.26s): a low-res phone clip shot over two audience members' heads, which fill half the frame. Lauren Shehadi is a blurred speck on a distant stage.",
+        "root_cause": "The source montage includes a crowd member's phone angle, and the vertical crop centred on the backs of heads instead of the stage or the speaker.",
+        "repair_goal": "Replace the phone-angle stretch with the broadcast shot of Shehadi speaking (as in mid3), or crop that stretch onto the stage and crowd. Open on her speech or the room rising instead of the seated pair."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.402,
+        "effective_fps": 14.4,
+        "max_dup_run": 15,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.75,
+        "max_dup_at_s": 11.12,
+        "duration_s": 18.92
+      },
+      "fingerprint": "?|empty_void+junk_imagery|junk_imagery"
+    },
+    {
+      "ts": "2026-11-15T12:26:49+00:00",
+      "slug": "sports_lauren_shehadi_s_at_the_mlb",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, touching moment, but it opens on the speech setup with no stakes, and the ovation payoff is a tiny letterboxed wide shot.",
+      "auto_fails": [],
+      "problems": [
+        "The first 2 seconds are generic podium talk ('YOU KNOW,', 'THE RAYS BENEFIT'), so nothing makes a stranger stay",
+        "The on-screen line never says who Sarah Langs is or why the tribute matters, so a stranger cannot tell why it is emotional",
+        "The 'You are light' line from the title is not visible in the sampled frames",
+        "mid3 to the payoff letterbox the footage into the middle third, so the standing ovation reads small on a phone",
+        "About 17 seconds of speech before the reaction cut; the pace drags"
+      ],
+      "fixes": [
+        "Cold-open on Sarah Langs reacting or the 'you are light' line, then back up for context",
+        "Change the line to give the stakes, e.g. 'MLB reporter battling ALS gets a standing ovation \ud83e\udd79'",
+        "Punch in on the standing ovation and on Sarah's reaction instead of the letterboxed wide shot",
+        "Trim the opening speech so the payoff lands by the midpoint"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.202,
+        "sampled": 89
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_missing_context",
+        "visible_evidence": "hook@0.3 to hook@2.2 show a woman talking at a podium with captions 'YOU KNOW,' / 'THE RAYS BENEFIT' / 'THE BEST ANALYTICS'. The line 'tribute to Sarah Langs' does not say who Sarah Langs is or why this matters (her ALS fight). The title's 'You are light' payoff is not on screen in the sampled frame",
+        "root_cause": "The clip opens at the start of a long speech, not on the emotional peak. The on-screen line names two people a casual viewer does not know and never gives the stakes.",
+        "repair_goal": "Open on the emotional peak: the 'you are light' line or Sarah Langs smiling in the crowd (mid3) with the room standing. Rewrite the line so a stranger gets the stakes, e.g. 'MLB reporter battling ALS gets a standing ovation \ud83e\udd79', and trim the setup speech so the ovation lands well before the end."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.248,
+        "effective_fps": 18.0,
+        "max_dup_run": 12,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.75,
+        "max_dup_at_s": 27.25,
+        "duration_s": 29.75
+      },
+      "fingerprint": "?|-|weak_hook_missing_context"
+    },
+    {
+      "ts": "2026-11-15T12:39:35+00:00",
+      "slug": "sports_team_venezuela_rld_baseball",
+      "score": 75,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real, on-topic WBC champion footage, but the closing fan section stacks our line on top of the clip's own cropped subtitles, and the flag emoji renders as 'VE'.",
+      "auto_fails": [
+        "unreadable: At mid4 and mid5 our line 'Venezuela finally got its WBC title' is printed directly over the footage's own subtitles ('ng live Venezuela Champions of th\u2026', 'because we are world champions\u2026 who love baseball have been waitin\u2026'), and both texts collide into an illegible mess. The flag emoji also renders as the letters 'VE' in every frame."
+      ],
+      "problems": [
+        "mid4/mid5: our hook line overlaps the source footage's burned-in subtitles, which are also cropped at both frame edges",
+        "The flag emoji renders as the letters 'VE' in light blue in every frame",
+        "payoff@-0.4: the ending fades to a dim, low-contrast street shot with no clear final moment",
+        "The burned-in word captions (e.g. 'IT'S A DREAM') sit right above our line in the hook and early frames, which crowds the bottom third",
+        "The payoff is soft: a stranger hears 'proud to open doors' but there is no peak celebration moment to end on"
+      ],
+      "fixes": [
+        "Detect the source's burned-in subtitles in the fan clip and either move our line above them or cut that clip",
+        "Replace the flag emoji with a rendered flag glyph or remove it so it does not show as 'VE'",
+        "End on the trophy or the players with the flag (as in mid2/mid3) instead of fading over the subtitled street clip",
+        "Leave vertical space between the word captions and our line"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.016,
+        "sampled": 129
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "text_collision",
+        "visible_evidence": "At mid4 (t=33.25s) and mid5 (t=40.93s) the hook line sits on the same band as the source's own white subtitle, which is also cropped off both frame edges. The payoff at payoff@-0.4 is a dark faded street with overlapping text.",
+        "root_cause": "The fan-celebration source clip carries burned-in subtitles. The caption placement never checks for existing on-screen text, and the vertical crop cuts that subtitle at both edges.",
+        "repair_goal": "Move our line clear of the source subtitles (or drop or replace the subtitled fan clip), and end on a clearer celebration beat such as the trophy or the players with the flag rather than a dim fade over colliding text. Render the flag emoji as a glyph or drop it so it does not read as 'VE'."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.023,
+        "effective_fps": 23.4,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.003,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 19.25,
+        "duration_s": 42.92
+      },
+      "fingerprint": "?|unreadable|text_collision"
+    },
+    {
+      "ts": "2026-11-15T12:56:16+00:00",
+      "slug": "sports_team_venezuela_rld_baseball",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The footage is real and on topic, and the interview is strong, but it opens on a slow trophy close-up and a stranger never clearly hears or sees the dedication 'to home' land before it fades out.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (0-2.5s) is a slow close-up of the trophy's body with the holder's face cut off. Nothing happens to make a stranger stay.",
+        "The promised dedication line is buried in the middle (mid2/mid3). With no visible payoff text, a stranger can't tell what was dedicated or why.",
+        "The mid4 crossfade stacks the celebration over a TV flag graphic. It is cluttered and looks amateur.",
+        "The ending celebration fades to dark (payoff@-0.4) instead of closing on the emotional peak."
+      ],
+      "fixes": [
+        "Open on the player's emotional quote at the awards or on the dogpile moment.",
+        "Make sure the dedication words are audible and land before the final third, and end on the player's emotion or the dogpile peak.",
+        "Replace the mid4 graphic crossfade with a hard cut to the celebration.",
+        "Reframe the trophy shot so the holder's face is in frame, or drop it."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.009,
+        "sampled": 106
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_hook",
+        "visible_evidence": "From hook@0.3 to mid0 the first ~2.5s is an extreme close-up of the silver trophy body and hands. The holder's face is cut off at the top, and nobody speaks or reacts.",
+        "root_cause": "The cut opens on a static prop B-roll instead of the emotional dedication or the title-clinching celebration.",
+        "repair_goal": "Open on the player's emotional dedication line at the awards (mid1/mid2 interview) or the dogpile (mid5), and move the trophy close-up later as a cutaway."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.192,
+        "effective_fps": 19.4,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.025,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.008,
+        "judder_fps": 23.8,
+        "held_s": 0.92,
+        "max_dup_at_s": 4.75,
+        "duration_s": 35.42
+      },
+      "fingerprint": "?|-|slow_hook"
+    },
+    {
+      "ts": "2026-11-15T12:59:04+00:00",
+      "slug": "sports_college_basketball_announcers_are",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A funny audio bit with no visual payoff: after a two-second look at the back of an announcer's head beside the pretzels, the clip is generic blowout gameplay, and a muted viewer gets nothing.",
+      "auto_fails": [],
+      "problems": [
+        "The hook shows the announcer only from behind (a shirt and shoulder). No face and no reaction.",
+        "From mid1 to payoff@-0.4 the footage is routine half-court offense unrelated to polar bears or pretzels; the joke lives only in the audio.",
+        "There are no speech captions, so the bit fails with the sound off.",
+        "The ending at payoff@-0.4 is an ordinary possession, not a laugh or a punchline.",
+        "The footage band takes up only about a third of the frame height."
+      ],
+      "fixes": [
+        "Caption the announcers' exact polar bear and pretzel lines as they are said.",
+        "Punch in on the pretzel tray and the announcer table at the moment pretzels are mentioned.",
+        "Trim to the setup and the punchline and end on the announcers' laugh or the best line.",
+        "Enlarge the footage band, or crop closer on the action, so the moment is legible on a phone."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 92
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid3",
+        "index": 3,
+        "failure_class": "moment_not_shown",
+        "visible_evidence": "From mid1 to payoff@-0.4, about 25 of 30 seconds, the frames show routine half-court possessions in a 42-89 blowout with 37 to 18 seconds left. There is nothing on screen about polar bears or pretzels, and we never see an announcer's face or reaction. The only visual link to the bit is hook@0.3-mid0",
+        "root_cause": "The moment is entirely in the commentary audio. The source footage shows the game, not the people talking, so the cut has no visual payoff and nothing lands on screen at the end. A muted scroller sees an ordinary garbage-time possession.",
+        "repair_goal": "Add a word-caption track for the key commentary lines ('are polar bears fast?', 'soft pretzels') so the joke reads without sound. Punch in on the pretzel tray and the announcer at the pretzel line. End on the funniest spoken line or the announcers' laugh instead of an unrelated possession."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.117,
+        "effective_fps": 21.2,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.007,
+        "frozen_fps": 23.8,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 0.67,
+        "max_dup_at_s": 6.96,
+        "duration_s": 30.54
+      },
+      "fingerprint": "?|-|moment_not_shown"
+    },
+    {
+      "ts": "2026-11-15T13:03:23+00:00",
+      "slug": "sports_john_calipari_s_recruiting",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The pigeons are shown well, but Calipari shooing them, which the title is built on, never appears, and the video ends on ceiling lights and the crowd.",
+      "auto_fails": [
+        "junk_imagery: The title promises 'John Calipari Stops The Game To Shoo Pigeons', but Calipari is never in any sampled frame. hook@0.3-2.2 show players' legs and an Arkansas player crouching, mid1-mid3 are close-ups of pigeons, mid4 is courtside fans, and mid5/payoff@-1.8 point the camera at the arena ceiling lights while the burned-in caption says 'CAL'S SHOOING THE'. The moment the title names never appears. The video is also a repost with another channel's burned-in word captions."
+      ],
+      "problems": [
+        "Calipari is never seen in any sampled frame, though the title and segment say he stepped in to shoo the birds.",
+        "Payoff@-1.8 and mid5 are the arena ceiling lights while the caption says 'CAL'S SHOOING THE'. The punchline happens off camera.",
+        "It is a repost with another channel's burned-in yellow and white word captions, layered just above our line and the ESPN score bug.",
+        "The hook frames (hook@0.8-2.2) are mostly players' legs and a crouching player, so the pigeon is only clear at hook@0.3."
+      ],
+      "fixes": [
+        "Recut the video to the footage that shows Calipari on the court shooing the pigeons, centered in the crop, and end on the reaction.",
+        "Open on the clearest pigeon close-up (the mid1-style shot) for the first two seconds.",
+        "If no Calipari footage exists in the source, retitle the video to what it actually shows, or refuse the package."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.023,
+        "sampled": 129
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "payoff_not_shown",
+        "visible_evidence": "At mid5 (t=41.1s) and payoff@-1.8 the frame is the arena ceiling lights and Gazelle Group signage, while the caption reads 'CAL'S SHOOING THE'. Calipari and the shooing are never shown. The video ends on a crowd shot (payoff@-0.4).",
+        "root_cause": "The source clip is a repost whose camera follows the birds up to the ceiling, and the cut never includes the Calipari footage the title and package promise.",
+        "repair_goal": "Cut to the stretch of footage where Calipari is visibly on the court waving the pigeons off, centered in the 9:16 crop, and end on that plus the announcers' or crowd's reaction. If the source has no such footage, retitle the video to what is actually shown (pigeons stop the game) or drop the package"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.077,
+        "effective_fps": 22.1,
+        "max_dup_run": 3,
+        "measured": true,
+        "frozen_ratio": 0.058,
+        "frozen_fps": 22.6,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.05,
+        "judder_fps": 22.8,
+        "held_s": 0.0,
+        "max_dup_at_s": 12.75,
+        "duration_s": 43.12
+      },
+      "fingerprint": "?|junk_imagery|payoff_not_shown"
+    },
+    {
+      "ts": "2026-11-15T13:07:09+00:00",
+      "slug": "sports_john_calipari_s_recruiting",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A genuinely funny real moment (pigeons on the court, Calipari shooing them, the crowd laughing), but the first two seconds show players standing around instead of the birds.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (0-2.2s) is a stoppage shot of players with no pigeon or Calipari visible, which is weak for a scroller.",
+        "Our caption sits directly on top of the ESPN scorebug, which makes the bottom third crowded.",
+        "The rafters shot at mid4 is ambiguous and the bird is not visible on a phone."
+      ],
+      "fixes": [
+        "Cold-open on the pigeons or Calipari's shoo gesture at frame 1.",
+        "Raise the caption line a bit so it clears the scorebug.",
+        "Trim or zoom the rafters shot so the bird is visible, or cut straight to the laughing crowd."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.025,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook",
+        "visible_evidence": "hook@0.3 to hook@2.2 show Virginia #28 and Arkansas players standing around during a stoppage. No pigeon and no Calipari appear until mid0 at 2.5s.",
+        "root_cause": "The cut opens on the dead stoppage before the moment, so the first two seconds do not show what the line promises.",
+        "repair_goal": "Open on the pigeons on the court or on Calipari waving at them in frame 1, then cut back to the stoppage if context is needed."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.099,
+        "effective_fps": 21.6,
+        "max_dup_run": 3,
+        "measured": true,
+        "frozen_ratio": 0.072,
+        "frozen_fps": 22.3,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.058,
+        "judder_fps": 22.6,
+        "held_s": 0.0,
+        "max_dup_at_s": 9.08,
+        "duration_s": 39.25
+      },
+      "fingerprint": "?|-|weak_hook"
+    },
+    {
+      "ts": "2026-11-15T17:26:22+00:00",
+      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 7.33,
+        "static_at_s": 55.33,
+        "dark_fraction": 0.026,
+        "sampled": 189
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": "longform",
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.931,
+        "effective_fps": 1.7,
+        "max_dup_run": 83,
+        "measured": true,
+        "frozen_ratio": 0.394,
+        "frozen_fps": 14.5,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 54.62,
+        "max_dup_at_s": 22.46,
+        "duration_s": 63.08
+      },
+      "fingerprint": "longform|temporal_gate|-"
+    },
+    {
+      "ts": "2026-11-15T21:37:58+00:00",
+      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 7.33,
+        "static_at_s": 55.33,
+        "dark_fraction": 0.026,
+        "sampled": 189
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": "longform",
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.931,
+        "effective_fps": 1.7,
+        "max_dup_run": 83,
+        "measured": true,
+        "frozen_ratio": 0.394,
+        "frozen_fps": 14.5,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 54.62,
+        "max_dup_at_s": 22.46,
+        "duration_s": 63.08
+      },
+      "fingerprint": "longform|temporal_gate|-"
     }
   ],
   "showrunner_recurrence": {
     "?|unreadable|unreadable": {
-      "count": 12,
+      "count": 11,
       "days": [
-        "2026-11-12",
         "2026-11-13",
         "2026-11-14",
         "2026-11-15"
       ]
     },
     "?|-|weak_payoff": {
-      "count": 8,
+      "count": 5,
       "days": [
-        "2026-11-12",
         "2026-11-13",
         "2026-11-14"
       ]
@@ -4324,82 +4313,28 @@
     "?|-|weak_hook": {
       "count": 3,
       "days": [
-        "2026-11-12",
         "2026-11-13",
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ]
     },
-    "?|-|weak_hook_crop": {
+    "?|empty_void+junk_imagery|junk_imagery": {
       "count": 2,
       "days": [
-        "2026-11-12",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-15"
       ]
     },
-    "?|junk_imagery|crop_cuts_subject": {
-      "count": 1,
+    "?|unreadable|text_over_broadcast_graphic": {
+      "count": 2,
       "days": [
-        "2026-11-12"
+        "2026-11-15"
       ]
     },
-    "?|junk_imagery|bad_crop_obstructed_subject": {
-      "count": 1,
+    "longform|temporal_gate|-": {
+      "count": 2,
       "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|unreadable|unreadable_overlapping_captions_and_cut_ending": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|-|slow_setup": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|junk_imagery|crop_cuts_off_subject": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|-|framing": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|-|generic_vessel_misleading_scale": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|decorative_mascot|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-11-12"
-      ]
-    },
-    "?|junk_imagery|bad_crop_restream_layout": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
-      ]
-    },
-    "?|junk_imagery|bad_crop": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
-      ]
-    },
-    "?|-|crop_obstruction": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
+        "2026-11-15"
       ]
     },
     "?|empty_void+unreadable|unreadable": {
@@ -4408,13 +4343,13 @@
         "2026-11-13"
       ]
     },
-    "?|empty_void+junk_imagery|junk_imagery": {
+    "?|-|weak_framing": {
       "count": 1,
       "days": [
         "2026-11-13"
       ]
     },
-    "?|-|weak_framing": {
+    "?|-|weak_hook_crop": {
       "count": 1,
       "days": [
         "2026-11-13"
@@ -4545,16 +4480,81 @@
       "days": [
         "2026-11-15"
       ]
+    },
+    "?|unreadable|caption_over_broadcast_graphic": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|-|missing_context": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|empty_void|weak_hook_static_presser": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|-|tiny_subject_wide_shot": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|junk_imagery+unreadable|crop_and_caption_collision": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|junk_imagery|crop_misses_subject": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|-|weak_hook_missing_context": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|unreadable|text_collision": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|-|slow_hook": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|-|moment_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
+    "?|junk_imagery|payoff_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
     }
   },
   "recent_commits": [
-    "1befb5b 2026-11-15 third: checkpoint posted log (claim upload slot) [skip ci]",
-    "13ef7b8 2026-11-15 third: checkpoint posted log (claim upload slot) [skip ci]"
+    "977f66f 2026-11-16 claim: mailbox verdicts 2026-11-16T04:48Z [skip ci]",
+    "74b0f2d 2026-11-16 claim: mailbox verdicts 2026-11-16T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-01": 5,
         "2026-11-02": 1,
         "2026-11-03": 5,
         "2026-11-04": 5,
@@ -4568,15 +4568,14 @@
         "2026-11-12": 5,
         "2026-11-13": 5,
         "2026-11-14": 5,
-        "2026-11-15": 3
+        "2026-11-15": 5
       },
-      "total_posted": 565,
-      "attempted": 565,
+      "total_posted": 567,
+      "attempted": 567,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-01": 2,
         "2026-11-02": 2,
         "2026-11-04": 2,
         "2026-11-05": 4,
@@ -4594,7 +4593,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-01": 4,
         "2026-11-02": 3,
         "2026-11-03": 3,
         "2026-11-04": 4,
@@ -4607,11 +4605,12 @@
         "2026-11-12": 6,
         "2026-11-13": 6,
         "2026-11-14": 6,
-        "2026-11-15": 2
+        "2026-11-15": 3,
+        "2026-11-16": 3
       },
-      "total_posted": 553,
-      "attempted": 1413,
-      "rejected_or_pending": 860
+      "total_posted": 557,
+      "attempted": 1419,
+      "rejected_or_pending": 862
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4625,32 +4624,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 152,
+      "videos": 151,
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 106.9,
-          "views": 1054
-        },
-        {
-          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 56.83,
-          "views": 110
+          "vph": 55.52,
+          "views": 1081
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 45.82,
-          "views": 768
+          "vph": 30.0,
+          "views": 791
+        },
+        {
+          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+          "vph": 24.34,
+          "views": 281
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 25.31,
-          "views": 1020
+          "vph": 20.52,
+          "views": 1024
         },
         {
           "title": "3x Obesity Risk Comes From Unequal Activity, Not Average Steps",
-          "vph": 12.04,
-          "views": 310
+          "vph": 9.13,
+          "views": 323
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4660,36 +4659,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.37,
+          "vph": 3.31,
           "views": 1906
         },
         {
-          "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 2.86,
-          "views": 165
+          "title": "Caedrel Can't Believe Ruler's Insane Q Combo Takes Down Viper",
+          "vph": 2.91,
+          "views": 2
         },
         {
-          "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 1.53,
-          "views": 1088
+          "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
+          "vph": 2.56,
+          "views": 171
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.37,
+          "vph": 1.34,
           "views": 512
         },
         {
           "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
-          "vph": 0.87,
-          "views": 95
+          "vph": 0.82,
+          "views": 97
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261112/brief.json",
       "retro/20261113/brief.json",
-      "retro/20261114/brief.json"
+      "retro/20261114/brief.json",
+      "retro/20261115/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
