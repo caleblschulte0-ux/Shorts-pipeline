@@ -5688,11 +5688,37 @@
       "duration_s": 30.6
     },
     "left-brain-right-brain-myth": {
-      "claimed_at": "2026-11-16T14:36:29.290914+00:00",
+      "url": "https://youtube.com/shorts/uYSjuGe84TQ",
       "title": "0 Of 7 Brain Networks Supported The Personality Myth",
+      "at": "2026-11-16T14:36:41.962009+00:00",
       "publish_at": "2026-11-16T17:46:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.96,
+      "beat_s": [
+        3.83,
+        6.96,
+        6.68,
+        6.54,
+        6.32
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 100,
+      "duration_s": 30.8,
+      "hook": "inversion",
+      "topic_category": "body",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:brain-lean-wipe",
+        "scene:seven-networks-both-halves",
+        "mechanic:fiber-million-grid"
+      ]
     }
   },
   "uploads": [
@@ -7346,9 +7372,10 @@
       "claimed_at": "2026-11-16T14:36:29.290914+00:00",
       "title": "0 Of 7 Brain Networks Supported The Personality Myth",
       "publish_at": "2026-11-16T17:46:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "left-brain-right-brain-myth"
+      "url": "https://youtube.com/shorts/uYSjuGe84TQ",
+      "state": "posted",
+      "slug": "left-brain-right-brain-myth",
+      "at": "2026-11-16T14:36:41.962009+00:00"
     }
   ]
 }
