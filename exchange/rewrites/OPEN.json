@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-16T18:18:45Z",
+ "updated": "2026-11-16T23:21:22Z",
  "open": [
+  {
+   "id": "cavendish-banana-monoculture__c839b8fc",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-11-16T23:21:22Z",
+   "why": [
+    "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261116/cavendish-banana-monoculture__c839b8fc.request.json",
+   "answer_path": "exchange/rewrites/20261116/cavendish-banana-monoculture__c839b8fc.answer.json"
+  },
   {
    "id": "autism-diagnosis-rate-rise__bea5446c",
    "slug": "autism-diagnosis-rate-rise",
