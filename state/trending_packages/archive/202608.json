@@ -7056,5 +7056,503 @@
       "music_vibe": "dark",
       "bottom_theme": "auto"
     }
+  },
+  "20260817": {
+    "01_graph-tiktok-shop-passed-etsy.json": {
+      "format": "graph_race",
+      "slug": "graph-tiktok-shop-passed-etsy",
+      "title": "A 2-Year-Old App Just Passed Etsy",
+      "hook": "Etsy took 19 years. TikTok took 2.",
+      "y_label": "Global GMV ($ billions)",
+      "duration": 13,
+      "source": "Etsy Inc. 10-K filings, total marketplace Gross Merchandise Sales: 2019 $4.97B, 2020 $10.28B, 2021 $13.51B, 2022 $13.31B, 2023 $13.2B, 2024 $12.6B, 2025 $11.9B (three straight years of decline per Etsy's FY2025 10-K). TikTok Shop global Gross Merchandise Value, per company disclosures and reporting by Reuters/Momentum Works/Retail TouchPoints: an estimated $4.4B in its 2022 launch year, $11B in 2023, $33.2B in 2024, and $66B in 2025 (nearly doubling year over year). TikTok Shop's global GMV overtook Etsy's total GMS sometime in 2024, three years after TikTok Shop's first market launch.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Etsy",
+          "color": "#f45800",
+          "icon": "Etsy",
+          "values": [
+            4.97,
+            10.28,
+            13.51,
+            13.31,
+            13.2,
+            12.6,
+            11.9
+          ]
+        },
+        {
+          "name": "TikTok Shop",
+          "color": "#25f4ee",
+          "icon": "TikTok",
+          "values": [
+            0,
+            0,
+            0,
+            4.4,
+            11,
+            33.2,
+            66
+          ]
+        }
+      ],
+      "hashtags": [
+        "tiktokshop",
+        "etsy",
+        "ecommerce",
+        "onlineshopping",
+        "smallbusiness",
+        "tiktok",
+        "retail",
+        "socialcommerce",
+        "gmv",
+        "shopping",
+        "business",
+        "startup"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "02_graph-asteroids-catalogued.json": {
+      "format": "graph_race",
+      "slug": "graph-asteroids-catalogued",
+      "title": "We've Now Found 40,000 Asteroids Near Earth",
+      "hook": "Space just got a lot less empty.",
+      "y_label": "Cumulative near-Earth asteroids catalogued",
+      "duration": 13,
+      "source": "NASA Center for Near-Earth Object Studies (CNEOS) and ESA's Planetary Defence Office milestone announcements: the 10,000th near-Earth object was catalogued in June 2013, the 30,000th in October 2022, and the 40,000th in November 2025. Earlier and intermediate-year totals are conservative estimates interpolated from the discovery-rate curve published in those releases. Potentially Hazardous Asteroid (PHA) counts are approximate running totals from the same catalogues, which track PHAs as a subset of all catalogued near-Earth asteroids.",
+      "years": [
+        2000,
+        2010,
+        2013,
+        2018,
+        2022,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Near-Earth Asteroids",
+          "color": "#f5c518",
+          "icon": "NASA",
+          "values": [
+            900,
+            7000,
+            10000,
+            19000,
+            30000,
+            40000
+          ]
+        },
+        {
+          "name": "Potentially Hazardous",
+          "color": "#e74c3c",
+          "icon": "PHA",
+          "values": [
+            150,
+            1000,
+            1400,
+            1900,
+            2300,
+            2500
+          ]
+        }
+      ],
+      "hashtags": [
+        "asteroid",
+        "nasa",
+        "space",
+        "planetarydefense",
+        "astronomy",
+        "science",
+        "solarsystem",
+        "cneos",
+        "esa",
+        "spacefacts",
+        "universe",
+        "nearearthobject"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-dota-prize-pool-collapse.json": {
+      "format": "graph_race",
+      "slug": "graph-dota-prize-pool-collapse",
+      "title": "Esports' Biggest Prize Ever Just Collapsed",
+      "hook": "It was $40 million. Then Valve changed one thing.",
+      "y_label": "Tournament prize pool ($ millions)",
+      "duration": 13,
+      "source": "Prize pool totals for Dota 2's The International, per Valve's own compendium/battle-pass disclosures and reporting by Tips.GG, GosuGamers and esports outlets: TI5 (2015) $18.4M, TI8 (2018) approx. $25.5M, TI9 (2019) approx. $34.3M, TI10 (2021) $40.0M (an all-time esports record), TI11 (2022) $18.9M, TI12 (2023) $3.0M, TI13 (2024) $2.8M \u2014 the crash followed Valve ending the crowdfunded Battle Pass/Compendium model in 2023. League of Legends World Championship prize pools (Riot Games, via Statista/Fragster): 2015 approx. $2.13M, 2018 $6.45M (its own record year), 2019-2024 stable around $2.2-2.3M each year, including just under $2.23M in 2024.",
+      "years": [
+        2015,
+        2018,
+        2019,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Dota 2: The International",
+          "color": "#e74c3c",
+          "icon": "Dota 2",
+          "values": [
+            18.4,
+            25.5,
+            34.3,
+            40.0,
+            18.9,
+            3.0,
+            2.8
+          ]
+        },
+        {
+          "name": "LoL Worlds",
+          "color": "#1abc9c",
+          "icon": "League of Legends",
+          "values": [
+            2.13,
+            6.45,
+            2.25,
+            2.225,
+            2.25,
+            2.3,
+            2.23
+          ]
+        }
+      ],
+      "hashtags": [
+        "dota2",
+        "theinternational",
+        "esports",
+        "leagueoflegends",
+        "gaming",
+        "prizepool",
+        "valve",
+        "lolworlds",
+        "twitch",
+        "esportsnews",
+        "pcgaming",
+        "riotgames"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "04_graph-kpop-demon-hunters-record.json": {
+      "format": "graph_race",
+      "slug": "graph-kpop-demon-hunters-record",
+      "title": "A Cartoon Just Became Netflix's Biggest Movie Ever",
+      "hook": "Red Notice held the record for 4 years.",
+      "y_label": "Netflix views (millions)",
+      "duration": 13,
+      "source": "Netflix official viewership figures and reporting by Variety, The Hollywood Reporter and What's on Netflix. Red Notice (2021) reached roughly 148M hours in its first 4 weeks and plateaued as Netflix's most-watched film ever at 230.9 million views (views = hours viewed / runtime), a record it held from late 2021 into 2025. KPop Demon Hunters (released June 2025) passed it within weeks, reaching 236 million views by late August 2025 and 266 million views within six months of release by early 2026 -- also surpassing Squid Game Season 1's six-month record of 265.2 million views -- while logging 15 straight weeks in Netflix's global Top 10.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Red Notice",
+          "color": "#4a90e2",
+          "icon": "Netflix",
+          "values": [
+            150,
+            210,
+            225,
+            231,
+            231,
+            231
+          ]
+        },
+        {
+          "name": "KPop Demon Hunters",
+          "color": "#ff3b81",
+          "icon": "Netflix",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            236,
+            280
+          ]
+        }
+      ],
+      "hashtags": [
+        "kpopdemonhunters",
+        "netflix",
+        "rednotice",
+        "kpop",
+        "animatedmovie",
+        "streaming",
+        "boxoffice",
+        "netflixrecord",
+        "movies",
+        "squidgame",
+        "entertainment",
+        "animation"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-vacation-approval-chain.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-vacation-approval-chain",
+      "title": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+      "script": "Our company rolled out a new PTO policy: every request now needs sign-off from all five team leads, not just your own manager, to improve coverage visibility. Fine. I run support tickets, and I had eleven vacation days saved up. I didn't book eleven days. I booked eleven separate one-day requests, one per email, each routed to all five leads for individual approval. The first request needed five signatures. So did the second. So did every single one after that, stretching three months out. The leads' inboxes filled with color-coded approval chains before 9 a.m. Two coworkers saw what I was doing and started doing the same thing. Within two weeks, one team lead was approving requests during her own commute. By the third week, coverage visibility had collapsed completely, because nobody could tell who was actually working without opening forty separate threads. HR quietly reverted to one-manager approval nine days later. My eleven days are still unbooked. I'm using them all in December, in one request.",
+      "shots": [
+        {
+          "phrase": "a new PTO policy",
+          "query": "office memo policy",
+          "pin_query": "PTO",
+          "pin_context": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+          "news_query": "PTO",
+          "news_angle": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+          "image_url": "https://live.staticflickr.com/4794/40172418154_639e0917f3_b.jpg"
+        },
+        {
+          "phrase": "sign-off from all five team leads",
+          "query": "email approval chain",
+          "image_url": "https://drive.google.com/uc?export=download&id=1uy3cIaWP3tg1ro8oCoFE-dgjFE8qhpBk",
+          "media_origin": "chatgpt",
+          "media_file_id": "1uy3cIaWP3tg1ro8oCoFE-dgjFE8qhpBk",
+          "media_sha256": "d0bb88000e7be76c176821fc59ad49ba5f9104ca91641efdaff2c95c3053dd4f",
+          "media_bytes": 1170000
+        },
+        {
+          "phrase": "eleven separate one-day requests",
+          "query": "calendar sticky notes",
+          "image_url": "https://drive.google.com/uc?export=download&id=1OzEGqcNF8cVLCK1mwvGy6iQ9i04AdqnD",
+          "media_origin": "chatgpt",
+          "media_file_id": "1OzEGqcNF8cVLCK1mwvGy6iQ9i04AdqnD",
+          "media_sha256": "56e39466a3352ce328fcd914d393968a680615d09a72bb172277044f5a0c596b",
+          "media_bytes": 1296523
+        },
+        {
+          "phrase": "inboxes filled with color-coded approval chains",
+          "query": "inbox unread emails",
+          "image_url": "https://drive.google.com/uc?export=download&id=1K9pzbh1J6pGi6u3795-g4DZg2bdP_C0C",
+          "media_origin": "chatgpt",
+          "media_file_id": "1K9pzbh1J6pGi6u3795-g4DZg2bdP_C0C",
+          "media_sha256": "ce96004bfd16fb1c894956fdf605b55efdeeebae7fafc032a1e0c0ceb1d4dbc3",
+          "media_bytes": 1204294
+        },
+        {
+          "phrase": "approving requests during her own commute",
+          "query": "phone commuter train",
+          "image_url": "https://drive.google.com/uc?export=download&id=1oo0RRoSl1QSlXAfHW0pnAIUWEqqmtK9y",
+          "media_origin": "chatgpt",
+          "media_file_id": "1oo0RRoSl1QSlXAfHW0pnAIUWEqqmtK9y",
+          "media_sha256": "95e2ae0827b7559e778cff5b5bc92503e1b4dd8c2c858e9f815935ddc4016e64",
+          "media_bytes": 1362201
+        },
+        {
+          "phrase": "coverage visibility had collapsed completely",
+          "query": "empty office desks",
+          "image_url": "https://drive.google.com/uc?export=download&id=1sg4iwbkvVZ4NNyQwo6adTuCNXMpfqSCF",
+          "media_origin": "chatgpt",
+          "media_file_id": "1sg4iwbkvVZ4NNyQwo6adTuCNXMpfqSCF",
+          "media_sha256": "9e4b1c13bc5e59a0fcd2f7d4f94de44f59f674ffec905a8e0926ccc7c7e30ae6",
+          "media_bytes": 1091835
+        },
+        {
+          "phrase": "HR quietly reverted to one-manager approval",
+          "query": "HR office door",
+          "pin_query": "HR",
+          "pin_context": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+          "news_query": "HR",
+          "news_angle": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+          "image_url": "https://live.staticflickr.com/3244/2909813837_6375a89997_b.jpg"
+        },
+        {
+          "phrase": "using them all in December",
+          "query": "december calendar snow",
+          "image_url": "https://drive.google.com/uc?export=download&id=1MQAGE3SWIqZ8t4SkeQTCd7EkH9ZEscn-",
+          "media_origin": "chatgpt",
+          "media_file_id": "1MQAGE3SWIqZ8t4SkeQTCd7EkH9ZEscn-",
+          "media_sha256": "b55d6f97f35af1a21c2aff3e025cfe4d83fcdfa2edce08c06bec8c2f364cc9b5",
+          "media_bytes": 1867301
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "all five team leads",
+          "text": "FIVE SIGNATURES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "eleven separate one-day requests",
+          "text": "ELEVEN REQUESTS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "The first request needed five signatures",
+          "text": "5 SIGNATURES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "coverage visibility had collapsed completely",
+          "text": "COLLAPSED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "nine days later",
+          "text": "9 DAYS",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "pto",
+        "vacationdays",
+        "hrpolicy",
+        "officelife",
+        "corporatelife",
+        "reddit",
+        "worklife",
+        "9to5",
+        "workplace",
+        "pettyrevenge",
+        "customerservice"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-quiet-hours-vacuum.json": {
+      "subreddit": "pettyrevenge",
+      "slug": "reddit-quiet-hours-vacuum",
+      "title": "She Blasted Music At 2 AM. I Found the Quiet Hours Rule.",
+      "script": "My upstairs neighbor blasts music until 2 a.m. most nights. Our lease has one rule everyone signed: quiet hours, 10 p.m. to 8 a.m., no exceptions, building-wide. I work nights and sleep mornings, so I emailed management with timestamps and a recording. They sent her a warning. She played it louder the next night out of spite. So I read the lease more carefully. Quiet hours end at exactly 8 a.m. Not 8:01. At 7:59 the next morning, I set up my vacuum by her bedroom wall. At 8:00:00 I turned it on. Then I practiced trumpet. Then I ran the washing machine on the loudest cycle it has. Every morning, right on the second the rule allowed it, for two straight weeks. She filed a noise complaint. Management pulled up the same lease she'd been ignoring and pointed out I hadn't broken a single quiet hour. She started keeping her music down by 9:30, just to be safe. I still vacuum at 8 sharp. Old habits.",
+      "shots": [
+        {
+          "phrase": "upstairs neighbor blasts music until 2 a.m.",
+          "query": "apartment building night",
+          "image_url": "https://drive.google.com/uc?export=download&id=1A8PmME-sGUl4rBkQ1OF8FYMIX5BQfJWp",
+          "media_origin": "chatgpt",
+          "media_file_id": "1A8PmME-sGUl4rBkQ1OF8FYMIX5BQfJWp",
+          "media_sha256": "6015229cf801201b7e46e5601305da0503d65d532d21e9fc6abb4a6e0bd9bf06",
+          "media_bytes": 993911
+        },
+        {
+          "phrase": "quiet hours, 10 p.m. to 8 a.m.",
+          "query": "lease agreement paper",
+          "image_url": "https://drive.google.com/uc?export=download&id=15MNEb7pzKB_C-OmRzYkfW1q5VKkQdp-N",
+          "media_origin": "chatgpt",
+          "media_file_id": "15MNEb7pzKB_C-OmRzYkfW1q5VKkQdp-N",
+          "media_sha256": "7d89a759aa7c3a9e9d1ed7fa4d04fa8d1f18c501747a137538c0516f34509201",
+          "media_bytes": 1500667
+        },
+        {
+          "phrase": "emailed management with timestamps and a recording",
+          "query": "smartphone voice recording",
+          "image_url": "https://drive.google.com/uc?export=download&id=1OUEVZg_4ERolecIJo9RGz0nf-Dpvs_z_",
+          "media_origin": "chatgpt",
+          "media_file_id": "1OUEVZg_4ERolecIJo9RGz0nf-Dpvs_z_",
+          "media_sha256": "a343105fb160b7afce5fc474b4d0ece3a89dc8f3d9b47b3f36c68646bab133fc",
+          "media_bytes": 961265
+        },
+        {
+          "phrase": "played it louder the next night out of spite",
+          "query": "speaker loud music",
+          "image_url": "https://drive.google.com/uc?export=download&id=1y_di3XaSWcHgphE315KYmQcxS9e4c46D",
+          "media_origin": "chatgpt",
+          "media_file_id": "1y_di3XaSWcHgphE315KYmQcxS9e4c46D",
+          "media_sha256": "324e9fd53ef831756a27b09bad4899671bf50ab03ebf4d19b62dd7ce0982a0eb",
+          "media_bytes": 1431751
+        },
+        {
+          "phrase": "set up my vacuum by her bedroom wall",
+          "query": "vacuum cleaner",
+          "pin_query": "Vacuum Cleaner",
+          "pin_context": "household appliance noisy cleaning",
+          "news_query": "Vacuum Cleaner",
+          "news_angle": "The vacuum cleaner used by the narrator to make noise exactly at 8 AM to annoy the neighbor.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Numatic_Henry_vacuum_cleaner_%283308986870%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "Then I practiced trumpet",
+          "query": "trumpet instrument",
+          "pin_query": "Trumpet",
+          "pin_context": "brass musical instrument loud",
+          "news_query": "Trumpet",
+          "news_angle": "The trumpet played by the narrator to create noise right after quiet hours ended.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Yamaha_Trumpet_YTR-8335LA_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "washing machine on the loudest cycle",
+          "query": "washing machine laundry",
+          "pin_query": "Washing Machine",
+          "pin_context": "laundry appliance noisy home",
+          "news_query": "Washing Machine",
+          "news_angle": "The washing machine run on its loudest cycle by the narrator to bother the neighbor in the morning.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/LG_%EB%93%9C%EB%9F%BC%EC%84%B8%ED%83%81%EA%B8%B0%EC%99%80_%EC%8B%9D%EA%B8%B0%EC%84%B8%EC%B2%99%EA%B8%B0%2C_%EC%98%81%EA%B5%AD%EC%84%9C_%EB%AC%BC%EC%82%AC%EC%9A%A9_%ED%9A%A8%EC%9C%A8_%EC%B5%9C%EC%9A%B0%EC%88%98_%EC%A0%9C%ED%92%88_%EC%88%98%EC%83%81.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+        },
+        {
+          "phrase": "She filed a noise complaint",
+          "query": "complaint form clipboard",
+          "pin_query": "Noise Complaint Form",
+          "pin_context": "tenant residential building official document",
+          "news_query": "Noise Complaint Form",
+          "news_angle": "The noise complaint form filed by the neighbor against the narrator after two weeks of morning noise.",
+          "image_url": "https://live.staticflickr.com/1154/1076347028_2ed6e6a790_b.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "10 p.m. to 8 a.m.",
+          "text": "10PM-8AM",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "played it louder the next night out of spite",
+          "text": "LOUDER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "At 8:00:00 I turned it on",
+          "text": "8:00:00",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "She filed a noise complaint",
+          "text": "COMPLAINT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "hadn't broken a single quiet hour",
+          "text": "ZERO VIOLATIONS",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "pettyrevenge",
+        "quiethours",
+        "apartmentliving",
+        "neighbors",
+        "lease",
+        "reddit",
+        "landlordtenant",
+        "noisecomplaint",
+        "revenge",
+        "apartmentlife",
+        "hoa",
+        "roommates"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
