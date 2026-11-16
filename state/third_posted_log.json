@@ -20488,14 +20488,27 @@
       "ts": "2026-11-16T15:37:02.177746+00:00"
     },
     "clip-20261116-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/BetterCrunchyEndiveKappaClaus-FdEl7Bc7JuOSLXHB",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/Hw1DRC0r8xo",
       "title": "Gotta love him",
       "kind": "twitch_clip",
-      "ts": "2026-11-16T15:40:35.169247+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-16T15:40:45.888563+00:00",
+      "uploaded_at": "2026-11-16T15:40:45.888574+00:00",
+      "publish_at": "2026-11-16T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261116-gotta-love-him-eeac5b29",
+        "tiktok": "queued for 2026-11-16T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BetterCrunchyEndiveKappaClaus-FdEl7Bc7JuOSLXHB",
+      "streamer": "caseoh_",
+      "series": "unknown",
+      "hook": "",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3619,
+      "banger": 0.5
     }
   }
 }
