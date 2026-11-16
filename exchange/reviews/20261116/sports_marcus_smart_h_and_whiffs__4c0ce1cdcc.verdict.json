@@ -1,0 +1,63 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_marcus_smart_h_and_whiffs__4c0ce1cdcc",
+ "video_sha256": "4c0ce1cdcc8693373048e5c99af9839cb96deb25d876403db4b0e9710b323294",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-16T17:48:16Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All frames show real basketball game footage."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present; text overlays describe the action."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest_static_s is 0.0 and held_s is 1.0, well below the 4s threshold."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "All frames are filled with relevant game footage; dark_fraction is 0.0."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All text overlays are clear, high-contrast, and fully visible."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid1",
+   "index": 5,
+   "failure_class": "text_relevance",
+   "visible_evidence": "The text 'I DON'T NEED' is generic and doesn't add specific value to the wider shot of the court.",
+   "root_cause": "Lack of specific commentary for a segment showing wider context rather than direct action.",
+   "repair_goal": "Ensure all text overlays provide specific, impactful commentary relevant to the visual, even in wider shots."
+  },
+  "depictions": [
+   {
+    "id": "video_moment",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 3,
+    "note": "Raw footage directly shows the event described by the text, serving as its own demonstration rather than a data visualization."
+   }
+  ],
+  "one_line": "A clear and direct depiction of a basketball player throwing a punch and getting ejected, with effective text overlays.",
+  "problems": [],
+  "fixes": []
+ }
+}
