@@ -5686,6 +5686,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 100,
       "duration_s": 30.6
+    },
+    "left-brain-right-brain-myth": {
+      "claimed_at": "2026-11-16T14:36:29.290914+00:00",
+      "title": "0 Of 7 Brain Networks Supported The Personality Myth",
+      "publish_at": "2026-11-16T17:46:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7334,6 +7341,14 @@
       "state": "posted",
       "slug": "mangrove-forest-loss",
       "at": "2026-11-16T13:56:28.329328+00:00"
+    },
+    {
+      "claimed_at": "2026-11-16T14:36:29.290914+00:00",
+      "title": "0 Of 7 Brain Networks Supported The Personality Myth",
+      "publish_at": "2026-11-16T17:46:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "left-brain-right-brain-myth"
     }
   ]
 }
