@@ -1,11 +1,23 @@
 {
+ "https://www.reddit.com/r/CollegeBasketball/comments/1xtt04z/the_umkcflorida_am_game_just_ended_and_the_stream": {
+  "n": 2,
+  "why": "author: no setup or no payoff in the clip"
+ },
  "https://www.reddit.com/r/CollegeBasketball/comments/1xu2onl/fran_mccaffery_receives_his_first_technical_foul": {
   "n": 2,
   "why": "no sound: the post has no audio track"
  },
+ "https://www.reddit.com/r/MMA/comments/1xtngru/footage_of_merab_dvalishvili_being_attacked_at": {
+  "n": 2,
+  "why": "not English (English p=0.22, 62% English words)"
+ },
  "https://www.reddit.com/r/baseball/comments/1xscovn/this_young_fan_brought_custommade_mcgonigoggles": {
   "n": 2,
   "why": "too short: the post runs 12.1s (< 15s)"
+ },
+ "https://www.reddit.com/r/baseball/comments/1xtxkcl/day_1_of_predicting_the_2027_mlb_season_with_a": {
+  "n": 1,
+  "why": "download failed"
  },
  "https://www.reddit.com/r/baseball/comments/1xutyug/yordan_alvarezs_son_congratulates_his_dad_on": {
   "n": 2,
@@ -14,6 +26,10 @@
  "https://www.reddit.com/r/baseball/comments/1xvcdjn/current_and_former_teammates_congratulate": {
   "n": 1,
   "why": "download failed"
+ },
+ "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a": {
+  "n": 2,
+  "why": "author: no setup or no payoff in the clip"
  },
  "https://www.reddit.com/r/nba/comments/1xt4jkb/jayson_tatum_taps_jaylen_brown_who_spins_the_ball": {
   "n": 2,
@@ -31,8 +47,20 @@
   "n": 2,
   "why": "author: no setup or no payoff in the clip"
  },
+ "https://www.reddit.com/r/nfl/comments/1xx014w/highlight_lions_do_human_centipede_celebration": {
+  "n": 2,
+  "why": "too short: the post runs 3.8s (< 15s)"
+ },
  "https://www.reddit.com/r/soccer/comments/1xvaozg/mauricio_pochettino_breaks_down_in_tears_during": {
   "n": 2,
   "why": "not English (English p=0.28, 50% English words)"
+ },
+ "https://www.reddit.com/r/soccer/comments/1xwchzv/ronaldinho_bizarre_first_touch_in_training": {
+  "n": 2,
+  "why": "too short: the post runs 7.7s (< 15s)"
+ },
+ "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight": {
+  "n": 2,
+  "why": "too short: the post runs 12.9s (< 15s)"
  }
 }

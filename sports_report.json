@@ -1,8 +1,125 @@
 {
- "date": "2026-11-15",
+ "date": "2026-11-16",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
- "slots": [],
- "already_today": 5
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Lions do human centipede celebration",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xx014w/highlight_lions_do_human_centipede_celebration/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xx014w/highlight_lions_do_human_centipede_celebration",
+   "skipped": "too short: the post runs 3.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "[Highlight] NBA G-League player Keyshawn Bryant completely cleared a defender on a dunk last night",
+   "upvotes": 0,
+   "url": "https://streamable.com/uithp6",
+   "topic": "https://www.reddit.com/r/nba/comments/1xw1rvf/highlight_nba_gleague_player_keyshawn_bryant",
+   "title": "Nba: Keyshawn Bryant Jumps OVER a Defender For This Insane Dunk",
+   "hook": "Keyshawn Bryant jumped right over him \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@8.61",
+     "whoa@17.32",
+     "hype@6.81(silent)"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 96
+   },
+   "video_url": "https://youtube.com/shorts/W-NvEkdpAqE",
+   "ok": true,
+   "publish_at": "2026-11-17T00:00:00Z",
+   "seconds": 108,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261116-nba-keyshawn-bryant-jumps-over-a-defender-for-th-5fd4595a",
+    "tiktok": "queued for 2026-11-17T00:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "baseball",
+   "why": "most upvoted",
+   "post_title": "Day 1 of Predicting the 2027 MLB Season with a Marble Race - 30th Place Simulation",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xtxkcl/day_1_of_predicting_the_2027_mlb_season_with_a/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xtxkcl/day_1_of_predicting_the_2027_mlb_season_with_a",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "Connor Hellebuyck (sitting tonight due to a decision that improves the Devils expected win probability) hears \u201cCOWARD\u201d chants from Winnipeg fans.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xt3ikx/connor_hellebuyck_sitting_tonight_due_to_a",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "CollegeBasketball",
+   "why": "most upvoted",
+   "post_title": "The UMKC-Florida A&M game just ended and the stream just keeps going. Riveting 1-on-1 taking place here.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xtt04z/the_umkcflorida_am_game_just_ended_and_the_stream/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xtt04z/the_umkcflorida_am_game_just_ended_and_the_stream",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "MMA",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "Footage of Merab Dvalishvili being attacked at RAF Abu Dhabi",
+   "upvotes": 0,
+   "url": "https://streamable.com/vj7g9x",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xtngru/footage_of_merab_dvalishvili_being_attacked_at",
+   "skipped": "not English (English p=0.22, 62% English words)"
+  },
+  {
+   "sub": "soccer",
+   "who": "soccer",
+   "why": "most upvoted",
+   "post_title": "Ronaldinho bizarre first touch in training",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xwchzv/ronaldinho_bizarre_first_touch_in_training/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xwchzv/ronaldinho_bizarre_first_touch_in_training",
+   "skipped": "too short: the post runs 7.7s (< 15s)"
+  },
+  {
+   "sub": "sports",
+   "who": "sports",
+   "why": "most upvoted",
+   "post_title": "UFC veteran Stephen Thompson gets a highlight reel knock out in his retirement fight",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight",
+   "skipped": "too short: the post runs 12.9s (< 15s)"
+  }
+ ],
+ "already_today": 0,
+ "pool": 114,
+ "already_posted": 16,
+ "refused_before": 8,
+ "shipped": 1
 }
