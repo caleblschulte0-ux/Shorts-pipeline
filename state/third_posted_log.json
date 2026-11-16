@@ -20297,13 +20297,77 @@
       "director_cut": true
     },
     "clip-20261116-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/SmokySecretiveWaspShadyLulu-yLMtwnipBrWzaWLv",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/I85Oh9Najbo",
       "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
       "kind": "twitch_clip",
-      "ts": "2026-11-16T11:35:25.255950+00:00",
+      "ts": "2026-11-16T11:35:34.946651+00:00",
+      "uploaded_at": "2026-11-16T11:35:34.946665+00:00",
+      "publish_at": "2026-11-16T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261116-jynxzi-screams-ahhh-as-crowd-goes-wild-48b12943",
+        "tiktok": "queued for 2026-11-16T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SmokySecretiveWaspShadyLulu-yLMtwnipBrWzaWLv",
+      "streamer": "jynxzi",
+      "series": "wholesome",
+      "hook": "jynxzi goes wild \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4402,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 10.0
+      },
+      "director_cut": true
+    },
+    "rejected-tangiblehoneststarlingcorgiderp-49jilbm8fzn44oym": {
+      "source_url": "https://www.twitch.tv/forsen/clip/TangibleHonestStarlingCorgiDerp-49JilbM8fzn44oym",
+      "streamer": "forsen",
+      "title": "ForsenLookingAtYou",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Routine gameplay dialogue, no visible re)",
+      "ts": "2026-11-16T11:36:12.667398+00:00"
+    },
+    "rejected-seductivescaryartichokemikehogu-ilokmbgy1n7df3gp": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SeductiveScaryArtichokeMikeHogu-ilokmbgy1N7dF3Gp",
+      "streamer": "jynxzi",
+      "title": "jynxzi wants to play tmrw",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Routine talk about game scheduling.)",
+      "ts": "2026-11-16T11:36:58.082984+00:00"
+    },
+    "rejected-generousamericanowlbirb-wgv0rktu9s8fr74k": {
+      "source_url": "https://www.twitch.tv/marlon/clip/GenerousAmericanOwlBIRB-wgV0RkTu9s8FR74K",
+      "streamer": "marlon",
+      "title": "dddd",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Monologue, no observable event)",
+      "ts": "2026-11-16T11:38:05.293094+00:00"
+    },
+    "rejected-puzzledlongantelopedxabomb-g8qcjk1905yv3xmq": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PuzzledLongAntelopeDxAbomb-G8QCjK1905yV3xMQ",
+      "streamer": "kaicenat",
+      "title": "Funny gta 5",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "the clip ends mid-sentence on \"her\"",
+      "ts": "2026-11-16T11:38:31.919124+00:00"
+    },
+    "clip-20261116-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/HappyRelentlessOilPeteZaroll-rTA8QCVI9kXcV4lN",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe What Happened In This Taxi",
+      "kind": "twitch_clip",
+      "ts": "2026-11-16T11:40:05.310999+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
