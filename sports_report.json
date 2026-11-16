@@ -6,27 +6,17 @@
  "slots": [
   {
    "sub": "nfl",
-   "who": "Justin Jefferson",
-   "why": "He gushes about Kirk Cousins finally stepping up as a locker\u2011room leader",
-   "post_title": "[Highlight] Vikings WR Justin Jefferson, speaking for the first time since Kirk Cousins\u2019 return: \u201cIt\u2019s just kind a joy to hear him take over and be a leader in the meeting room, on the field. It\u2019s def",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Injury] Aidan Hutchinson Is Down After Celebrating...",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xuu2ky/highlight_vikings_wr_justin_jefferson_speaking",
-   "skipped": "author: no title"
-  },
-  {
-   "sub": "nba",
-   "who": "Marcus Smart",
-   "why": "He throws a wild punch at Charles Bassey and gets ejected, sparking a bench\u2011clearing vibe",
-   "post_title": "[Highlight] Marcus Smart throws a punch and whiffs at Charles Bassey and gets thrown out immediately",
-   "upvotes": 0,
-   "url": "https://streamable.com/r9wih3",
-   "topic": "https://www.reddit.com/r/nba/comments/1xu3em5/highlight_marcus_smart_throws_a_punch_and_whiffs",
-   "title": "Marcus Smart Throws Punch, Gets Ejected Instantly",
-   "hook": "Smart throws a punch and gets tossed \ud83d\ude33",
+   "url": "https://www.reddit.com/r/nfl/comments/1xwx8hv/injury_aidan_hutchinson_is_down_after_celebrating/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xwx8hv/injury_aidan_hutchinson_is_down_after_celebrating",
+   "title": "Nfl: Aidan Hutchinson Gets HURT Celebrating a Play",
+   "hook": "Aidan Hutchinson injured celebrating",
    "ledger": {
     "moves": [
-     "whoa@1.7"
+     "whoa@7.33"
     ],
     "mood": null,
     "shot_plan": {
@@ -59,46 +49,23 @@
     "music": []
    },
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
-    "score": null
+    "blocked": false,
+    "reason": "",
+    "score": 96
    },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
-  },
-  {
-   "sub": "nba",
-   "who": "Draymond Green",
-   "why": "He shoves rookie Victor Wembanyama in a heated moment as the Warriors trail",
-   "post_title": "[Highlight] Draymond Green shoves Wemby in the back as the Warriors trail by 23 in the first half (flagrant 1 on review)",
-   "upvotes": 0,
-   "url": "https://streamable.com/8kqgaz",
-   "topic": "https://www.reddit.com/r/nba/comments/1xvs67s/highlight_draymond_green_shoves_wemby_in_the_back",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "hockey",
-   "who": "Henrik Lundqvist",
-   "why": "The legendary goalie scores his own goal, a surreal highlight for fans",
-   "post_title": "Henrik Lundqvist scores a goalie goal",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1xx3pne/henrik_lundqvist_scores_a_goalie_goal/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1xx3pne/henrik_lundqvist_scores_a_goalie_goal",
-   "skipped": "author: no title"
-  },
-  {
-   "sub": "nfl",
-   "who": "Fernando Mendoza",
-   "why": "He celebrates his first NFL touchdown with pure joy and a big grin",
-   "post_title": "[Highlight] Fernando Mendoza scores his 1st NFL TD",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xx71qa/highlight_fernando_mendoza_scores_his_1st_nfl_td/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xx71qa/highlight_fernando_mendoza_scores_his_1st_nfl_td",
-   "skipped": "too short: the post runs 10.0s (< 15s)"
+   "video_url": "https://youtube.com/shorts/wjC-W2c79dY",
+   "ok": true,
+   "publish_at": "2026-11-17T21:00:00Z",
+   "seconds": 158,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261116-nfl-aidan-hutchinson-gets-hurt-celebrating-a-pla-6933f71f",
+    "tiktok": "queued for 2026-11-17T21:00:00Z"
+   }
   }
  ],
- "already_today": 3,
- "pool": 117,
+ "already_today": 4,
+ "pool": 131,
  "already_posted": 19,
- "refused_before": 17,
- "shipped": 0
+ "refused_before": 22,
+ "shipped": 1
 }
