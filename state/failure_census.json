@@ -1,30 +1,6 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "other": {
-   "count": 6,
-   "stories": {
-    "genome-sequencing-cost-collapse": 1,
-    "sports_shai_gilgeous_alexander_checks_an": 2,
-    "sports_jameis_winston_says_who_let": 1,
-    "sports_damian_lillard_bout_it_then": 1,
-    "sports_team_venezuela_rld_baseball": 1
-   },
-   "timestamps": [
-    "2026-11-15T11:10:48+00:00",
-    "2026-11-15T11:51:04+00:00",
-    "2026-11-15T12:01:10+00:00",
-    "2026-11-15T12:13:35+00:00",
-    "2026-11-15T12:19:15+00:00",
-    "2026-11-15T12:39:35+00:00"
-   ],
-   "examples": [
-    "unreadable: seg2:start and seg3:start: the small caption 'to read one human genome \u00b7 Human Genome Project (1990\u20132003)' sits right on the window's horizontal mullion, so the bar strikes through the tex",
-    "unreadable: At mid0 our line 'reporter's fake stat' sits on top of the broadcast score bug (OKC / 3:21 / BONUS) and collides with it. At mid3 it is printed over an inserted OKC logo disc, and a croppe",
-    "unreadable: In mid2 (t=13.09s) our line 'reporter's stat live' sits on top of the TV scorebug ('HOU 31-19 ... 10:44'), so the caption collides with the broadcast graphic. At mid1 it also sits over a g"
-   ],
-   "recurred_after_fix": false
-  },
   "junk_imagery": {
    "count": 4,
    "stories": {
@@ -46,19 +22,19 @@
    ],
    "recurred_after_fix": false
   },
-  "empty_void": {
+  "other": {
    "count": 2,
    "stories": {
-    "sports_justin_jefferson_son_speaking": 1,
-    "sports_lauren_shehadi_s_at_the_mlb": 1
+    "sports_damian_lillard_bout_it_then": 1,
+    "sports_team_venezuela_rld_baseball": 1
    },
    "timestamps": [
-    "2026-11-15T12:10:19+00:00",
-    "2026-11-15T12:24:12+00:00"
+    "2026-11-15T12:19:15+00:00",
+    "2026-11-15T12:39:35+00:00"
    ],
    "examples": [
-    "empty_void: In every presser frame (hook@0.3, mid1, mid3, payoff@-0.4) the real footage is a thin centre band about 245px tall out of 764. Roughly two thirds of the frame is a blurred blow-up of the s",
-    "empty_void: hook@0.3 to mid0 and mid4 to payoff@-0.4: the footage is a thin letterbox strip, and the top third is dark or blurred filler. Measured dark_fraction is 0.333, so about a third of the frame"
+    "unreadable: hook@0.3 shows another channel's burned-in captions garbled ('HETHE SHOT/AVT'), and in mid3 'WAS GOING TO' sits on top of 'LET IT FLY', both stacked right above our line",
+    "unreadable: At mid4 and mid5 our line 'Venezuela finally got its WBC title' is printed directly over the footage's own subtitles ('ng live Venezuela Champions of th\u2026', 'because we are world champions\u2026"
    ],
    "recurred_after_fix": false
   },
@@ -76,6 +52,32 @@
     "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
    ],
    "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 1,
+   "stories": {
+    "sports_lauren_shehadi_s_at_the_mlb": 1
+   },
+   "timestamps": [
+    "2026-11-15T12:24:12+00:00"
+   ],
+   "examples": [
+    "empty_void: hook@0.3 to mid0 and mid4 to payoff@-0.4: the footage is a thin letterbox strip, and the top third is dark or blurred filler. Measured dark_fraction is 0.333, so about a third of the frame"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "sports_justin_jefferson_son_speaking": 1
+   },
+   "timestamps": [
+    "2026-11-16T13:49:19+00:00"
+   ],
+   "examples": [
+    "dead_air: Motion facts show `held_s`: 8.58s, indicating long stretches of minimal meaningful movement, even if no single frame is perfectly static for 4+ seconds."
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
@@ -87,7 +89,7 @@
   "data_demo": {
    "median": 3,
    "min": 0,
-   "max": 4
+   "max": 5
   },
   "mascot": {
    "median": 4,
@@ -116,14 +118,6 @@
   }
  },
  "scores": [
-  83,
-  70,
-  74,
-  83,
-  70,
-  79,
-  57,
-  66,
   70,
   66,
   61,
@@ -135,6 +129,14 @@
   61,
   78,
   14,
-  14
+  14,
+  96,
+  100,
+  96,
+  96,
+  100,
+  100,
+  95,
+  96
  ]
 }
