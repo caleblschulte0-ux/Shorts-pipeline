@@ -20459,6 +20459,43 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no clear observable event)",
       "ts": "2026-11-16T11:56:39.791110+00:00"
+    },
+    "rejected-cautiouspopularpieritzmitz-dwuwhqcyfhpkbz7m": {
+      "source_url": "https://www.twitch.tv/michelia3/clip/CautiousPopularPieRitzMitz-dwUwHQcYfHPKbZ7M",
+      "streamer": "\u7c73\u82b9",
+      "title": "\u54c7\u64cd...\u597d\u56b4\u91cd\u554a...",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-11-16T15:35:23.057417+00:00"
+    },
+    "rejected-wittypiliablepineappledogface-gkuzhjdvgfnm4l66": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/WittyPiliablePineappleDogFace-gKUzhjDvgfnm4L66",
+      "streamer": "stableronaldo",
+      "title": "Ron almost crashed",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (No clear observable event)",
+      "ts": "2026-11-16T15:36:27.846962+00:00"
+    },
+    "rejected-fitplaincobblercorgiderp-4zyn6furlksllod2": {
+      "source_url": "https://www.twitch.tv/qtcinderella/clip/FitPlainCobblerCorgiDerp-4ZYN6FUrlKslLoD2",
+      "streamer": "qtcinderella",
+      "title": "Emily arrives at the 2026 Streamer Awards",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-11-16T15:37:02.177746+00:00"
+    },
+    "clip-20261116-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BetterCrunchyEndiveKappaClaus-FdEl7Bc7JuOSLXHB",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Gotta love him",
+      "kind": "twitch_clip",
+      "ts": "2026-11-16T15:40:35.169247+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
