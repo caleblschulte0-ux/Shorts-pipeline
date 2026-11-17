@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__81a9a288",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:20:00Z",
+  "title": "Only 5% Avoid Metric—Yet Conversion Errors Downed A Plane",
+  "hook": "Only 5% avoid metric, but one conversion emptied a plane.",
+  "closing": "Unit checks feel tedious until one conversion turns routine work into an emergency.",
+  "question": "Should every country use metric?",
+  "segments": [
+    {
+      "topic": "Metric System Holdouts",
+      "say": "Only 5 percent live in non-metric countries. A small holdout still creates dangerous conversion points."
+    },
+    {
+      "topic": "Metric Mars Altitude",
+      "say": "A metric mix-up dropped the Mars orbiter to 57 kilometers. It flew far below the planned path."
+    },
+    {
+      "topic": "Metric Plane Fuel",
+      "say": "A metric error left the plane 55 percent short on fuel. It ran dry and had to glide down."
+    }
+  ]
+}
