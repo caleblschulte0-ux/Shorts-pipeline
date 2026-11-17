@@ -20509,6 +20509,24 @@
       "self_healed": false,
       "source_views": 3619,
       "banger": 0.5
+    },
+    "rejected-callousobedientkeyboardcopythis-b8l6pukdc8y1bo66": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CallousObedientKeyboardCopyThis-b8L6puKdc8y1bo66",
+      "streamer": "caseoh_",
+      "title": "Caseoh Reacts to a HUGE Spider On Stream \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "frozen video at 14.0s; frozen video at 16.7s; frozen video at 20.9s; render_qa: freeze: 16.2s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+      "ts": "2026-11-17T11:38:43.068989+00:00"
+    },
+    "rejected-fastthirstystorkhassaanchop-48fo0axpdrykmpjj": {
+      "source_url": "https://www.twitch.tv/pikabooirl/clip/FastThirstyStorkHassaanChop-48fo0AXPDRyKMpjJ",
+      "streamer": "pikabooirl",
+      "title": "Pikabooirl Gets Smoked By 58\u2011Year\u2011Old Grandfather\u2026 \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "audio dead for 6.0s at 9.8s; audio dead for 5.5s at 28.4s",
+      "ts": "2026-11-17T11:42:48.045282+00:00"
     }
   }
 }
