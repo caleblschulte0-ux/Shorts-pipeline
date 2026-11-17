@@ -22214,10 +22214,10 @@
   },
   {
    "slug": "betelgeuse-great-dimming",
-   "title": "Betelgeuse Fell To 36% Brightness Without Exploding",
-   "hook": "Betelgeuse dimmed to 36% brightness, then survived.",
-   "closing": "A dramatic dimming can signal dust, not a star's final explosion.",
-   "question": "Would you have believed the supernova headlines?",
+   "title": "Betelgeuse Fell To 36% Brightness—Then Survived",
+   "hook": "Betelgeuse dropped to 36%, but dust—not death—caused the blackout.",
+   "closing": "A dramatic dimming can mean blocked light, not a star's final explosion.",
+   "question": "Would you expect a supernova?",
    "hashtags": [
     "space",
     "astronomy",
@@ -22241,7 +22241,7 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE FADE",
-     "topic": "Betelgeuse brightness",
+     "topic": "Betelgeuse Brightness",
      "say": "Betelgeuse fell to 36 percent of normal brightness. The plunge looked like a star nearing its end.",
      "scene": {
       "mechanic": "star-dim-veil",
@@ -22257,8 +22257,8 @@
      },
      "insight_type": "share",
      "role": "2 · WHAT ACTUALLY HAPPENED",
-     "topic": "Betelgeuse dust",
-     "say": "Dust obscured 50 percent of Betelgeuse, turning an apparent death signal into a blocked view.",
+     "topic": "Betelgeuse Dust",
+     "say": "Dust obscured 50 percent of Betelgeuse. A blocked view looked like a dying star.",
      "scene": {
       "mechanic": "star-disc-dust-sweep",
       "concept": "a dark dust wipe sweeps across the star's own photographed disk, stopping at the obscured share",
@@ -22273,8 +22273,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · NOT YET",
-     "topic": "Betelgeuse real death",
-     "say": "Betelgeuse's real explosion remains an estimated 100,000 years away. The scare ended much sooner.",
+     "topic": "Betelgeuse Real Death",
+     "say": "Betelgeuse's real explosion remains an estimated 100,000 years away. The false alarm ended much sooner.",
      "scene": {
       "mechanic": "cosmic-timeline-zoom-out",
       "concept": "the star's dimming episode sits as a tiny blip on a timeline that pulls back to the real supernova estimate",
@@ -22283,7 +22283,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-12T12:24:41Z",
+   "rewritten_at": "2026-11-17T12:22:21Z",
    "retold": "retell/v3"
   },
   {

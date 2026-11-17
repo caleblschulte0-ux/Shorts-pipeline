@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-17T11:59:11Z",
+ "updated": "2026-11-17T12:22:21Z",
  "open": [
-  {
-   "id": "betelgeuse-great-dimming__6a0c802e",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-11-17T11:59:11Z",
-   "why": [
-    "premise: brain: The claim hinges on a single percentage without a clear, surprising reversal of a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261117/betelgeuse-great-dimming__6a0c802e.request.json",
-   "answer_path": "exchange/rewrites/20261117/betelgeuse-great-dimming__6a0c802e.answer.json"
-  },
   {
    "id": "english-internet-share-decline__312d565d_r1",
    "slug": "english-internet-share-decline",
@@ -132,6 +122,16 @@
    ],
    "request": "exchange/rewrites/20261116/religious-nones-rise__ba903e44.request.json",
    "answer_path": "exchange/rewrites/20261116/religious-nones-rise__ba903e44.answer.json"
+  },
+  {
+   "id": "betelgeuse-great-dimming__6a0c802e",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-11-16T12:04:30Z",
+   "why": [
+    "premise: brain: The claim hinges on an unsubstantiated specific dimming percentage and lacks a verifiable, consequential number to overturn a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.request.json",
+   "answer_path": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.answer.json"
   },
   {
    "id": "left-brain-right-brain-myth__ea91746f_r1",
