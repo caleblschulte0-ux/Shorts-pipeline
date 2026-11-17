@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "helium-supply-squeeze__067a945d",
+  "slug": "helium-supply-squeeze",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:25:00Z",
+  "title": "Helium Prices Hit 4x When Supply Tightened",
+  "hook": "Helium prices hit 4x when supply tightened.",
+  "closing": "Concentrated reserves and rising demand can make essential helium costlier.",
+  "question": "Have helium balloons gotten pricier?",
+  "segments": [
+    {
+      "topic": "Helium Country Reserves",
+      "say": "Qatar holds 10.1 billion cubic meters of helium reserves. Global supply depends heavily on a few countries."
+    },
+    {
+      "topic": "Helium Future Demand",
+      "say": "Projected helium demand reaches a 190 index. More buyers will chase a limited resource."
+    },
+    {
+      "topic": "Helium Price Crunch",
+      "say": "The helium price index reached 400 during the crunch. Tight supply made costs surge."
+    }
+  ]
+}
