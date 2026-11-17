@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "vinyl-beats-cd-sales-again__c613f552",
+  "slug": "vinyl-beats-cd-sales-again",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:20:00Z",
+  "title": "Vinyl Earned 2.5x More Than CDs—Then Outsold Them",
+  "hook": "In 2022, vinyl beat CDs for the first time since 1987.",
+  "closing": "Streaming dominates, yet listeners still pay extra for music they can hold.",
+  "question": "Do you still own CDs?",
+  "segments": [
+    {
+      "topic": "Vinyl Revenue Win",
+      "say": "Vinyl earned two and a half times what CDs did in 2022. That had not happened since 1987."
+    },
+    {
+      "topic": "Vinyl Units Sold",
+      "say": "Vinyl outsold CDs by count: 41 million records to 33 million. Physical music buyers chose the older format."
+    },
+    {
+      "topic": "Vinyl Streaming Context",
+      "say": "Streaming still captures 84 percent of music revenue in America. Vinyl's comeback survives inside a much larger digital shift."
+    }
+  ]
+}
