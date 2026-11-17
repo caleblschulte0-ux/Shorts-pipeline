@@ -1,50 +1,44 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261116",
-  "judged_date": "20261115",
+  "date": "20261117",
+  "judged_date": "20261116",
   "alarm": {
-    "date": "20261115",
+    "date": "20261116",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261115 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261115.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261115 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20261115/response.json, exchange/bundles/20261115/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261116 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20261116/response.json, exchange/bundles/20261116/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-15T19:20:15+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-16T22:50:36+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
         "code": "credential_limited_claude_subscription",
         "severity": "warning",
-        "detail": "the `claude-subscription` credential is SPENT, not broken (the subscription window is spent: you've hit your weekly limit \u00b7 resets nov 18, 12am (utc); probed 2026-11-15T19:20:15+00:00).",
+        "detail": "the `claude-subscription` credential is SPENT, not broken (the subscription window is spent: you've hit your weekly limit \u00b7 resets nov 18, 12am (utc); probed 2026-11-16T22:50:36+00:00).",
         "fix": "If the detail names a limit or a reset, there is nothing to rotate: the subscription comes back on its own at that reset. Until then the explainer has no brain to draw or verify a scene and the showrunner has no judge, so the channel ships nothing \u2014 the gate is right to hold. Same-day options are the operator's call: a funded text brain (ANTHROPIC_API_KEY, or Gemini on a paid tier). Anything else: run `claude setup-token` and replace CLAUDE_CODE_OAUTH_TOKEN."
       },
       {
-        "code": "short_slate_third",
+        "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20261115.",
+        "detail": "explainer: 2/4 posted for 20261116.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (68 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (69 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "explainer: 4/4 posted",
+      "third: 6/6 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -231,416 +225,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-13T12:40:46+00:00",
-      "slug": "sports_steve_kerr_ng_up_like_a",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real Kerr presser, but our captions collide with the clip's own burned-in captions, and Butler's coach outfit is never shown, so a stranger can't see the joke.",
-      "auto_fails": [
-        "unreadable: mid1 shows 'FLIKE HE WAS.' and mid4 shows 'ISO IT WAS,.' Our word captions are printed on top of the footage's own burned-in captions, so the two sets of letters collide and come out garbled."
-      ],
-      "problems": [
-        "Our word captions overlap the footage's own captions and come out garbled (mid1 'FLIKE HE WAS.', mid4 'ISO IT WAS,.').",
-        "The top third of the frame is empty blue fill in every frame.",
-        "No zoom or sound-hit edit on the reaction: 20s of one static presser angle.",
-        "Jimmy Butler in his coach outfit never appears, and the 'hurt a little' payoff only lands if you hear it."
-      ],
-      "fixes": [
-        "Suppress our word captions when the source already shows captions, or mask the source caption band.",
-        "Fill the top band, or punch in on Kerr's face for the payoff line at ~18s.",
-        "Cut in a few seconds of Butler dressed as a coach (edit.show) so viewers see what Kerr is reacting to.",
-        "Add a zoom and sound hit on Kerr's grin at payoff@-0.4."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 62
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "unreadable",
-        "visible_evidence": "mid1 'FLIKE HE WAS.' and mid4 'ISO IT WAS,.': two caption tracks sit on top of each other in the same band just above the table.",
-        "root_cause": "The source clip already has burned-in captions. The own-captions detection (clip_edit.own_captions) did not suppress our word captions, so we drew ours in the same spot as theirs.",
-        "repair_goal": "Detect the source's burned-in captions and drop our word captions, or crop or mask the source caption band. Then use the empty blue top third with a punch-in on Kerr's face for the 'hurt a little' line."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.653,
-        "effective_fps": 8.3,
-        "max_dup_run": 25,
-        "measured": true,
-        "frozen_ratio": 0.205,
-        "frozen_fps": 19.1,
-        "max_frozen_run": 8,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 11.33,
-        "max_dup_at_s": 3.83,
-        "duration_s": 20.58
-      },
-      "fingerprint": "?|unreadable|unreadable"
-    },
-    {
-      "ts": "2026-11-13T12:55:11+00:00",
-      "slug": "sports_morgan_rogers_player_but_i",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The interview quote is a decent hook, but the cut splices in an unrelated podcast and padded b-roll, and it ends mid-sentence on a stock photo.",
-      "auto_fails": [
-        "junk_imagery: mid2 (10.78s) cuts to a two-man podcast set with neither man being the speaker in the hook frames, so the footage does not show who the line names. mid0 and mid1 are blurred-background letterboxed match footage with a 'Neymopic' watermark, which is generic Argentina b-roll and not a semi-final Rogers played in.",
-        "empty_void: In mid0 and mid1 the match footage fills only the middle third. The top and bottom thirds are blurred green padding, so most of the frame is wasted."
-      ],
-      "problems": [
-        "mid2: an unrelated two-man podcast shot appears mid-quote, so a stranger loses who is speaking",
-        "mid0/mid1: match footage is letterboxed into the middle third with blurred padding and a third-party watermark",
-        "The speaker wears a Chelsea kit while the title says Morgan Rogers, so the identity cannot be confirmed from the frames",
-        "The payoff ends on 'AND HE'S JUST' over a stock Messi photo, and the line never lands",
-        "Our hook line and the word captions stack in the lower-middle and compete for the eye"
-      ],
-      "fixes": [
-        "Stay on the speaker's close-up for the whole quote and remove the podcast cutaway",
-        "If match footage is used, crop it full-height to Messi instead of letterboxing, or drop it",
-        "Verify the speaker's identity against the source post before titling it Morgan Rogers",
-        "Trim the end so the final frame lands on his complete 'can't imagine him in his prime' line",
-        "Keep the Messi card short and over the line that names him, not as the closing shot"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 76
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 6,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "At 10.78s a wide podcast shot of two different men (grey shirt left, blue jacket right) replaces the close-up of the speaker, while the caption reads 'COMING OFF AGAINST'.",
-        "root_cause": "The source is a compilation-style repost that splices in unrelated podcast footage and generic match b-roll, so the cut does not stay on the person the line names.",
-        "repair_goal": "Cut only the close-up interview footage of the speaker and drop the unrelated podcast cutaway and the letterboxed b-roll. Confirm the speaker really is Morgan Rogers, because the kit is Chelsea while the line names an Aston Villa player. End on his complete closing sentence instead of mid-phrase 'AN"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.29,
-        "effective_fps": 17.0,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.152,
-        "frozen_fps": 20.3,
-        "max_frozen_run": 10,
-        "judder_ratio": 0.031,
-        "judder_fps": 23.2,
-        "held_s": 3.0,
-        "max_dup_at_s": 1.79,
-        "duration_s": 25.21
-      },
-      "fingerprint": "?|empty_void+junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-11-13T13:09:19+00:00",
-      "slug": "sports_morgan_rogers_player_but_i",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean repost-style cut: Rogers' quote about Messi is shown and then proven with Messi's dribbling; only the wide podcast shot sags.",
-      "auto_fails": [],
-      "problems": [
-        "mid2: the wide podcast two-shot leaves Rogers tiny, with dark blur filling the top and bottom.",
-        "Source watermarks (\"FAD3NHO\", \"SH\") are visible in the match clips at mid0/mid1/mid5.",
-        "The hook opens on a plain talking head; the Messi footage only arrives at 2.5s."
-      ],
-      "fixes": [
-        "Crop mid2 onto Rogers, or cover that line with Messi footage.",
-        "Lead with a second of the Messi dribble before the face-cam to sharpen the hook.",
-        "Crop the source watermarks out of the match clips where possible."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.014,
-        "sampled": 71
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "weak_framing",
-        "visible_evidence": "mid2 cuts to a wide two-shot of the podcast set. Rogers is a small figure on the right, and the top and bottom thirds of the frame are dark blur.",
-        "root_cause": "The source's wide studio angle was letterboxed into 9:16 instead of cropped onto the speaker.",
-        "repair_goal": "Punch in on Rogers (the right-hand speaker) for the wide podcast shot, or swap it for more Messi match footage while he talks."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.252,
-        "effective_fps": 18.0,
-        "max_dup_run": 11,
-        "measured": true,
-        "frozen_ratio": 0.147,
-        "frozen_fps": 20.5,
-        "max_frozen_run": 10,
-        "judder_ratio": 0.035,
-        "judder_fps": 23.1,
-        "held_s": 1.83,
-        "max_dup_at_s": 11.12,
-        "duration_s": 23.54
-      },
-      "fingerprint": "?|-|weak_framing"
-    },
-    {
-      "ts": "2026-11-13T13:11:29+00:00",
-      "slug": "sports_luka_doncic__tonight_you",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The trash talk is real and readable in mid1 and mid2, but the hook opens behind a fan's head and the payoff ('HE'S RIGHT') is only a caption, never shown.",
-      "auto_fails": [],
-      "problems": [
-        "For the first 2.5s (hook@0.3 to hook@2.2), the back of a spectator's head fills half the frame and Luka is small and far away, with no speech yet.",
-        "At mid2 (t=8.99s), Luka is pushed to the left edge with his arm out of frame while the crowd fills the shot.",
-        "The payoff 'HE'S RIGHT.' (mid5) is a fan's reply heard off-camera. The clip never shows who said it or a reaction, so the honest reply lands weakly.",
-        "The thin blurred bands at the top and bottom of every frame look unfinished."
-      ],
-      "fixes": [
-        "Start on the mid1 close-up of Luka saying 'You all wish you would have had me', or crop the hook in on Luka to remove the spectator's head.",
-        "Reframe mid2 so Luka is centered rather than at the edge.",
-        "Hold on Luka's reaction (the grin in mid4 and mid5) right after the 'HE'S RIGHT' caption, and punch in on it so the payoff lands.",
-        "Scale the footage to fill the full 9:16 frame and drop the blurred bars."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 62
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_crop",
-        "visible_evidence": "In hook@0.3 to hook@2.2 the back of a fan's head fills the right half of the frame. Luka is a small figure in the far court, and no speech caption has appeared yet.",
-        "root_cause": "The cut opens on the wide fan-phone shot from behind a spectator's head instead of the close-up of Luka talking that appears at mid1.",
-        "repair_goal": "Open on the close-up from mid1 (Luka mid-sentence, 'HAD YOU.'), or crop the hook in on Luka so the spectator's head is gone. Show the fans' reply or Luka's reaction to 'HE'S RIGHT' clearly before the end."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.165,
-        "effective_fps": 20.0,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.159,
-        "frozen_fps": 20.2,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.091,
-        "judder_fps": 21.8,
-        "held_s": 0.58,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.75
-      },
-      "fingerprint": "?|-|weak_hook_crop"
-    },
-    {
-      "ts": "2026-11-13T13:14:46+00:00",
-      "slug": "sports_jameis_winston_says_who_let",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "It's the real moment and the right player, but our word captions sit on top of the broadcast scorebug the whole way through, and the wide shot never lets us see Jameis bark the line.",
-      "auto_fails": [
-        "unreadable: Our word captions are printed directly over the broadcast scorebug in every frame. 'HERE WE GO.' sits on the WAS/NYG score bar in hook@0.3, 'GOT IT!' covers the 17-21 score in hook@2.2, 'WHO LET THE' covers the scorebug in mid3, and 'HOT THREE.' covers it in payoff@-0.4. Two graphics collide and neither reads cleanly on a phone."
-      ],
-      "problems": [
-        "Word captions are placed over the TV scorebug in every frame (hook@0.3 'HERE WE GO.', hook@2.2 'GOT IT!', mid3 'WHO LET THE', payoff@-0.4 'HOT THREE.'), so both are hard to read.",
-        "The hook is a static-looking wide shot of a 4th & 1 formation with tiny players. Nothing grabs in the first two seconds.",
-        "Through the key line (mid3) Jameis is a speck behind center. The viewer never sees him say 'Who let the dogs out'.",
-        "The payoff does not show whether the Commanders jumped. The clip ends on a Jameis close-up in payoff@-0.4 with no resolution (offsides flag, punt or timeout)."
-      ],
-      "fixes": [
-        "Move the karaoke captions into the upper blurred area or above the footage band, clear of the scorebug.",
-        "Zoom or punch in on Jameis under center for the cadence, and hit the zoom with a sound effect on 'Who let the dogs out'.",
-        "Open on the barking line or the reaction instead of the formation setup.",
-        "Keep the play's result (a flag or no jump) so the moment resolves before the end."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 89
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "unreadable",
-        "visible_evidence": "At 17.6s, the moment the hook promises, the 'WHO LET THE' caption is stamped over the TV scorebug in a wide shot. Jameis is a tiny figure behind the line, so the viewer can neither see him say it nor read it cleanly.",
-        "root_cause": "The word-caption Y position is fixed at the bottom of the footage band, which is exactly where the broadcast scorebug sits. The wide broadcast framing is kept tiny inside a 16:9 strip.",
-        "repair_goal": "Move the word captions above the footage band or into the upper blurred area, clear of the scorebug. On the 'Who let the dogs out' line, punch in on Jameis under center so the viewer sees him bark it. Keep the reaction shot that follows."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.306,
-        "effective_fps": 16.7,
-        "max_dup_run": 16,
-        "measured": true,
-        "frozen_ratio": 0.147,
-        "frozen_fps": 20.5,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.103,
-        "judder_fps": 21.5,
-        "held_s": 4.25,
-        "max_dup_at_s": 19.25,
-        "duration_s": 29.71
-      },
-      "fingerprint": "?|unreadable|unreadable"
-    },
-    {
-      "ts": "2026-11-13T13:32:09+00:00",
-      "slug": "sports_andrei_arlovski_thony_rumble",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A repost-of-a-repost: the Arlovski podcast bit works, but half the runtime is a Bandicam recording of the wrong fight and a fading Johnson still, and the 'he's dead and I am alive' payoff never lands.",
-      "auto_fails": [
-        "junk_imagery: mid3 (t=23.90s) is a Bandicam screen-recording of a BT Sport broadcast, a video inside a video, and it shows Johnson fighting a blond fighter, not Arlovski. The footage does not show the jaw-breaking fight the line promises. mid4-payoff are blurred B&W Johnson stills.",
-        "unreadable: The footage burns in its own caption ('HE BROKE MY', 'JOINT TWO PLACES') right above our line in hook@0.3-mid1, so two caption tracks fight. The payoff@-0.4 fade dims our line to low contrast."
-      ],
-      "problems": [
-        "mid3: Bandicam-watermarked screen recording of a BT Sport broadcast (a video inside a video) showing Johnson vs a blond fighter, not Arlovski.",
-        "mid4-payoff: about 15s of a static B&W Johnson portrait that slowly fades to black. The quote that pays it off is never shown.",
-        "Hook through mid1: the source's own burned-in captions sit directly above our line, so two caption tracks stack.",
-        "mid2: a messy multi-layer crossfade (host, fight, Johnson) reads as an amateur edit."
-      ],
-      "fixes": [
-        "Trim to the Arlovski podcast segment only and end on 'I am winner anyway. He's dead and I am alive.'",
-        "Remove the Bandicam fight footage and the B&W stills. If fight footage is used, it must be the real Arlovski-Johnson bout from an original source.",
-        "Hide our line, or move it clear of the burned-in captions, while those captions are on screen.",
-        "Cut the runtime to about 20s so the reaction lands before the end."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 38.33,
-        "dark_fraction": 0.033,
-        "sampled": 121
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "mid3 is a Bandicam-watermarked screen recording of a BT Sport fight between Anthony Johnson and a blond opponent who is not Arlovski, framed inside a blurred copy of itself. mid4-mid5 are a static B&W Johnson portrait with a slow zoom.",
-        "root_cause": "The source is someone else's repost edit: a podcast clip with burned-in captions plus filler B-roll of the wrong fight and stills. It was cut as-is, not trimmed to the Arlovski interview moment.",
-        "repair_goal": "Cut to the Arlovski podcast segment only, from the 'broke my jaw in two places' line through 'I am winner anyway, he's dead and I am alive'. End on his delivery. Drop the Bandicam fight footage and the stills, and place our line so it does not stack against the burned-in captions."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.239,
-        "effective_fps": 18.3,
-        "max_dup_run": 34,
-        "measured": true,
-        "frozen_ratio": 0.106,
-        "frozen_fps": 21.5,
-        "max_frozen_run": 33,
-        "judder_ratio": 0.036,
-        "judder_fps": 23.1,
-        "held_s": 6.21,
-        "max_dup_at_s": 37.62,
-        "duration_s": 40.17
-      },
-      "fingerprint": "?|junk_imagery+unreadable|junk_imagery"
-    },
     {
       "ts": "2026-11-13T13:39:02+00:00",
       "slug": "sports_cris_cyborg_amanda_nunes",
@@ -4270,11 +3854,367 @@
         "duration_s": 19.71
       },
       "fingerprint": "?|-|N/A"
+    },
+    {
+      "ts": "2026-11-16T13:49:02+00:00",
+      "slug": "sports_connor_mcdavid_y_night_itll",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Connor McDavid shares his deep appreciation for Hockey Night in Canada.",
+      "auto_fails": [],
+      "problems": [
+        "The video is a standard talking head interview, which, while effective for the format, offers limited visual dynamism, especially in the opening hook."
+      ],
+      "fixes": [
+        "Consider subtle camera movements or quick, relevant visual cues (e.g., a brief graphic of the Hockey Night in Canada logo) in the hook to enhance engagement without disrupting the 'sports moment' format."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 93
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "lack_of_visual_interest",
+        "visible_evidence": "The initial frames of the hook segment show a static shot of the speaker, without immediate dynamic elements beyond lip movement.",
+        "root_cause": "The video relies on a single, continuous interview shot, which inherently limits visual variation in the opening.",
+        "repair_goal": "Introduce subtle camera movement or a quick, relevant graphic overlay within the first 2 seconds to enhance initial engagement, while maintaining the 'sports moment' format."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.06,
+        "effective_fps": 22.6,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.011,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.009,
+        "judder_fps": 23.8,
+        "held_s": 0.0,
+        "max_dup_at_s": 2.75,
+        "duration_s": 31.08
+      },
+      "fingerprint": "?|-|lack_of_visual_interest"
+    },
+    {
+      "ts": "2026-11-16T13:49:19+00:00",
+      "slug": "sports_justin_jefferson_son_speaking",
+      "score": 96,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Justin Jefferson discusses leadership in a static press conference clip.",
+      "auto_fails": [
+        "dead_air: Motion facts show `held_s`: 8.58s, indicating long stretches of minimal meaningful movement, even if no single frame is perfectly static for 4+ seconds."
+      ],
+      "problems": [
+        "The video suffers from dead air due to a static camera shot and minimal dynamic motion over long stretches."
+      ],
+      "fixes": [
+        "Incorporate dynamic camera movements (zooms, pans) or B-roll footage to enhance visual engagement and break up the static talking head shot."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 111
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 0,
+        "failure_class": "dead_air",
+        "visible_evidence": "The video shows Justin Jefferson speaking at a press conference with minimal dynamic motion, leading to long stretches of visually similar frames.",
+        "root_cause": "Static camera shot of a talking head without additional visual elements or dynamic cuts to maintain engagement.",
+        "repair_goal": "Introduce more dynamic camera work (zooms, pans, cuts) or overlay relevant B-roll footage to break up the static talking head shot and increase visual engagement."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.511,
+        "effective_fps": 11.7,
+        "max_dup_run": 25,
+        "measured": true,
+        "frozen_ratio": 0.017,
+        "frozen_fps": 23.6,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 8.58,
+        "max_dup_at_s": 9.54,
+        "duration_s": 36.92
+      },
+      "fingerprint": "?|dead_air|dead_air"
+    },
+    {
+      "ts": "2026-11-16T13:56:15+00:00",
+      "slug": "mangrove-forest-loss",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively uses animated destruction of mangroves to demonstrate data on forest loss and the slowing of that destruction.",
+      "auto_fails": [],
+      "problems": [
+        "In segment 2, the visual comparison of mangrove loss between Asia and other regions relies too heavily on text labels rather than a direct visual demonstration of the difference in scale."
+      ],
+      "fixes": [
+        "For segment 2, introduce a visual mechanic that clearly compares the 1.9M hectares lost in Asia against the 1.2M from other regions, perhaps by showing two distinct areas of destruction or a comparative filling/emptying mechanic."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 92
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "data_demo",
+        "visible_evidence": "The comparison between '1.9M hectares of mangroves lost in Asia' and '1.2M North & Central America + Africa combined' is presented primarily through text labels, with the mascot's action of cutting trees not visually differentiating the scale of loss between regions.",
+        "root_cause": "The visual metaphor for comparing regional loss amounts is underdeveloped, relying on text rather than a direct visual representation of the difference.",
+        "repair_goal": "Introduce a visual element that clearly and comparatively demonstrates the difference in mangrove loss between Asia and the combined regions, beyond just text labels."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.119,
+        "effective_fps": 21.2,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.068,
+        "frozen_fps": 22.4,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.008,
+        "judder_fps": 23.8,
+        "held_s": 2.21,
+        "max_dup_at_s": 0.0,
+        "duration_s": 30.58
+      },
+      "fingerprint": "?|-|data_demo",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-16T14:36:28+00:00",
+      "slug": "left-brain-right-brain-myth",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively debunks the left-brain/right-brain myth with clear data demonstrations and engaging visuals.",
+      "auto_fails": [],
+      "problems": [
+        "Segment 0 introduces the topic but lacks a specific numerical data demonstration, making it less aligned with the channel's core data visualization goal."
+      ],
+      "fixes": [
+        "Consider adding a visual element in segment 0 that quantifies the prevalence of the myth or the strength of the 'one team' concept early on, perhaps a small, subtle data point."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 92
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "data_demonstration",
+        "visible_evidence": "This segment introduces the myth and refutes it with text, but does not visually demonstrate a specific numerical data point.",
+        "root_cause": "The segment's purpose is narrative setup rather than data visualization.",
+        "repair_goal": "Integrate a numerical data point or a visual metaphor for the 'myth' or 'teamwork' concept in this introductory segment."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.171,
+        "effective_fps": 19.9,
+        "max_dup_run": 14,
+        "measured": true,
+        "frozen_ratio": 0.08,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 3.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 30.79
+      },
+      "fingerprint": "?|-|data_demonstration",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-16T17:48:16+00:00",
+      "slug": "sports_marcus_smart_h_and_whiffs",
+      "score": 95,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clear and direct depiction of a basketball player throwing a punch and getting ejected, with effective text overlays.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 5,
+        "failure_class": "text_relevance",
+        "visible_evidence": "The text 'I DON'T NEED' is generic and doesn't add specific value to the wider shot of the court.",
+        "root_cause": "Lack of specific commentary for a segment showing wider context rather than direct action.",
+        "repair_goal": "Ensure all text overlays provide specific, impactful commentary relevant to the visual, even in wider shots."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.265,
+        "effective_fps": 17.6,
+        "max_dup_run": 21,
+        "measured": true,
+        "frozen_ratio": 0.248,
+        "frozen_fps": 18.1,
+        "max_frozen_run": 21,
+        "judder_ratio": 0.128,
+        "judder_fps": 20.9,
+        "held_s": 1.0,
+        "max_dup_at_s": 12.29,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|-|text_relevance"
+    },
+    {
+      "ts": "2026-11-16T21:39:09+00:00",
+      "slug": "sports_nfl__celebrating",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video shows Aidan Hutchinson injured on the field, with text implying the injury happened during celebration, though the celebration itself is not shown.",
+      "auto_fails": [],
+      "problems": [
+        "The video shows the aftermath of the injury and a later fall, but does not explicitly show the \"celebrating\" action that led to the injury as stated in the hook text."
+      ],
+      "fixes": [
+        "Find footage that clearly shows Aidan Hutchinson celebrating and then getting injured, or rephrase the on-screen text to accurately reflect what is shown in the footage."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "data_demo",
+        "visible_evidence": "The hook text claims \"Aidan Hutchinson injured celebrating\", but the footage primarily shows the aftermath of the injury and a later fall, not the celebration itself that led to the injury.",
+        "root_cause": "Mismatch between the specific claim in the on-screen text and the visual evidence provided in the footage.",
+        "repair_goal": "Either acquire footage that explicitly shows the celebration leading to the injury, or modify the on-screen text to accurately reflect the visual content (e.g., \"Aidan Hutchinson injured on field\")."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.006,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.006,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 14.83
+      },
+      "fingerprint": "?|-|data_demo"
     }
   ],
   "showrunner_recurrence": {
     "?|unreadable|unreadable": {
-      "count": 10,
+      "count": 8,
       "days": [
         "2026-11-13",
         "2026-11-14",
@@ -4296,13 +4236,6 @@
         "2026-11-15"
       ]
     },
-    "?|empty_void+junk_imagery|junk_imagery": {
-      "count": 2,
-      "days": [
-        "2026-11-13",
-        "2026-11-15"
-      ]
-    },
     "?|unreadable|text_over_broadcast_graphic": {
       "count": 2,
       "days": [
@@ -4315,22 +4248,10 @@
         "2026-11-15"
       ]
     },
-    "?|-|weak_framing": {
-      "count": 1,
+    "?|-|data_demo": {
+      "count": 2,
       "days": [
-        "2026-11-13"
-      ]
-    },
-    "?|-|weak_hook_crop": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
-      ]
-    },
-    "?|junk_imagery+unreadable|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
+        "2026-11-16"
       ]
     },
     "?|empty_void+junk_imagery+unreadable|restream_embed": {
@@ -4489,6 +4410,12 @@
         "2026-11-15"
       ]
     },
+    "?|empty_void+junk_imagery|junk_imagery": {
+      "count": 1,
+      "days": [
+        "2026-11-15"
+      ]
+    },
     "?|-|weak_hook_missing_context": {
       "count": 1,
       "days": [
@@ -4530,16 +4457,39 @@
       "days": [
         "2026-11-16"
       ]
+    },
+    "?|-|lack_of_visual_interest": {
+      "count": 1,
+      "days": [
+        "2026-11-16"
+      ]
+    },
+    "?|dead_air|dead_air": {
+      "count": 1,
+      "days": [
+        "2026-11-16"
+      ]
+    },
+    "?|-|data_demonstration": {
+      "count": 1,
+      "days": [
+        "2026-11-16"
+      ]
+    },
+    "?|-|text_relevance": {
+      "count": 1,
+      "days": [
+        "2026-11-16"
+      ]
     }
   },
   "recent_commits": [
-    "f0fb669 2026-11-16 deadman: repaired 2026-11-16 [skip ci]",
-    "cb5aa7d 2026-11-16 watchdog: chatgpt task verdicts 20261116 [skip ci]"
+    "e7c56ac 2026-11-17 claim: mailbox verdicts 2026-11-17T04:48Z [skip ci]",
+    "a1e682c 2026-11-17 claim: mailbox verdicts 2026-11-17T03:49Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-02": 1,
         "2026-11-03": 5,
         "2026-11-04": 5,
         "2026-11-05": 5,
@@ -4553,15 +4503,14 @@
         "2026-11-13": 5,
         "2026-11-14": 5,
         "2026-11-15": 5,
-        "2026-11-16": 2
+        "2026-11-16": 5
       },
-      "total_posted": 569,
-      "attempted": 569,
+      "total_posted": 572,
+      "attempted": 572,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-02": 2,
         "2026-11-04": 2,
         "2026-11-05": 4,
         "2026-11-06": 3,
@@ -4570,15 +4519,15 @@
         "2026-11-12": 6,
         "2026-11-13": 4,
         "2026-11-14": 5,
-        "2026-11-15": 4
+        "2026-11-15": 4,
+        "2026-11-16": 2
       },
-      "total_posted": 412,
-      "attempted": 412,
+      "total_posted": 414,
+      "attempted": 414,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-02": 3,
         "2026-11-03": 3,
         "2026-11-04": 4,
         "2026-11-05": 5,
@@ -4591,11 +4540,11 @@
         "2026-11-13": 6,
         "2026-11-14": 6,
         "2026-11-15": 3,
-        "2026-11-16": 5
+        "2026-11-16": 6
       },
-      "total_posted": 559,
-      "attempted": 1433,
-      "rejected_or_pending": 874
+      "total_posted": 560,
+      "attempted": 1437,
+      "rejected_or_pending": 877
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4609,71 +4558,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 150,
+      "videos": 152,
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 33.3,
-          "views": 1118
+          "vph": 24.08,
+          "views": 1125
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 19.79,
+          "vph": 14.94,
           "views": 801
         },
         {
-          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 16.68,
-          "views": 428
+          "title": "Every Banana You Eat Is a Clone, and It's Dying",
+          "vph": 13.45,
+          "views": 1038
         },
         {
-          "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 16.12,
-          "views": 1032
+          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+          "vph": 11.08,
+          "views": 430
         },
         {
           "title": "Earth's Day Was 1.66 Milliseconds Shorter",
-          "vph": 6.67,
+          "vph": 5.65,
           "views": 487
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 135,
+      "videos": 136,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.21,
-          "views": 1906
+          "vph": 3.17,
+          "views": 1907
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 2.17,
+          "vph": 1.96,
           "views": 184
         },
         {
-          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.27,
-          "views": 511
+          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
+          "vph": 1.74,
+          "views": 7
         },
         {
-          "title": "Caedrel Can't Believe Ruler's Insane Q Combo Takes Down Viper",
-          "vph": 0.9,
-          "views": 17
+          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
+          "vph": 1.25,
+          "views": 512
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 0.77,
+          "vph": 0.75,
           "views": 329
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261113/brief.json",
       "retro/20261114/brief.json",
-      "retro/20261115/brief.json"
+      "retro/20261115/brief.json",
+      "retro/20261116/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
