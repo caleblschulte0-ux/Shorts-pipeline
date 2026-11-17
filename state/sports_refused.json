@@ -15,6 +15,10 @@
   "n": 2,
   "why": "no sound: the post has no audio track"
  },
+ "https://www.reddit.com/r/MMA/comments/1xtm5wg/uncrowned_uncrownedcombat_merab_dvalishvili": {
+  "n": 1,
+  "why": "download failed"
+ },
  "https://www.reddit.com/r/MMA/comments/1xtngru/footage_of_merab_dvalishvili_being_attacked_at": {
   "n": 2,
   "why": "not English (English p=0.22, 62% English words)"
@@ -42,6 +46,10 @@
  "https://www.reddit.com/r/baseball/comments/1xutyug/yordan_alvarezs_son_congratulates_his_dad_on": {
   "n": 2,
   "why": "too short: the post runs 4.2s (< 15s)"
+ },
+ "https://www.reddit.com/r/baseball/comments/1xuzzz2/day_2_of_predicting_the_mlb_season_with_a_marble": {
+  "n": 2,
+  "why": "not English (English p=0.26, 50% English words)"
  },
  "https://www.reddit.com/r/baseball/comments/1xvcdjn/current_and_former_teammates_congratulate": {
   "n": 2,

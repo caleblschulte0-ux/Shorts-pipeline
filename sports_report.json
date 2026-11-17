@@ -8,21 +8,31 @@
    "sub": "nfl",
    "who": "nfl",
    "why": "most upvoted",
-   "post_title": "[Highlight] NBC segued an exasperated Aaron Rodgers montage into the commercial break",
+   "post_title": "[Highlight] Mustapha is flagged for unsportsmanlike conduct for doing \"what the safety is supposed to do\" according to Tom Brady",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xxet1s/highlight_nbc_segued_an_exasperated_aaron_rodgers/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xxet1s/highlight_nbc_segued_an_exasperated_aaron_rodgers",
-   "skipped": "too short: the post runs 10.0s (< 15s)"
+   "url": "https://www.reddit.com/r/nfl/comments/1xxatbi/highlight_mustapha_is_flagged_for_unsportsmanlike/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xxatbi/highlight_mustapha_is_flagged_for_unsportsmanlike",
+   "skipped": "author: no title"
   },
   {
    "sub": "nba",
    "who": "nba",
    "why": "most upvoted",
-   "post_title": "Charles Barkley: \"New Orleans. We need that team in Seattle. I'll help y'all pack.\"",
+   "post_title": "[Highlight] Damian Lillard thinks about it, then decides to shoot it in McCain's face",
    "upvotes": 0,
-   "url": "https://streamable.com/e932gn",
-   "topic": "https://www.reddit.com/r/nba/comments/1xwnryo/charles_barkley_new_orleans_we_need_that_team_in",
-   "skipped": "too short: the post runs 4.8s (< 15s)"
+   "url": "https://streamable.com/g9x91f",
+   "topic": "https://www.reddit.com/r/nba/comments/1xt9u3w/highlight_damian_lillard_thinks_about_it_then",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "baseball",
+   "who": "baseball",
+   "why": "most upvoted",
+   "post_title": "Day 2 of Predicting the MLB Season with a Marble Race - 29th Place Simulation",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xuzzz2/day_2_of_predicting_the_mlb_season_with_a_marble/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xuzzz2/day_2_of_predicting_the_mlb_season_with_a_marble",
+   "skipped": "not English (English p=0.26, 50% English words)"
   },
   {
    "sub": "hockey",
@@ -32,48 +42,7 @@
    "upvotes": 0,
    "url": "https://www.reddit.com/r/hockey/comments/1xt67bh/wshott_chychrun_absolutely_obliterates_nick/",
    "topic": "https://www.reddit.com/r/hockey/comments/1xt67bh/wshott_chychrun_absolutely_obliterates_nick",
-   "title": "Hockey: Jakob Chychrun Destroys Nick Cousins And Leaves Him Stunned",
-   "hook": "Chychrun destroys Cousins on the ice \ud83d\udc80",
-   "ledger": {
-    "moves": [
-     "whoa@3.36"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      370,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+   "skipped": "author: no title"
   },
   {
    "sub": "CollegeBasketball",
@@ -83,158 +52,27 @@
    "upvotes": 0,
    "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xwh32l/highlight_unc_asheville_makes_a_desperation_three/",
    "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xwh32l/highlight_unc_asheville_makes_a_desperation_three",
-   "title": "Collegebasketball: Miles Mayfield Makes a COSTLY Foul After Tying Shot",
-   "hook": "Miles Mayfield forgot the score \ud83d\udc80",
-   "ledger": {
-    "moves": [
-     "whoa@17.37",
-     "zoom@31.57",
-     "zoom@38.39"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "7 camera shots, each framed on its own \u2014 one crop (wide) cut a face off",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 13.17,
-       "reason": "no face to frame \u2014 the clip's own window",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 13.17,
-       "t1": 15.97,
-       "reason": "framed on this shot's face",
-       "crop": [
-        404,
-        720,
-        642,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 15.97,
-       "t1": 18.0,
-       "reason": "framed on this shot's face",
-       "crop": [
-        404,
-        720,
-        876,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 18.0,
-       "t1": 20.63,
-       "reason": "framed on this shot's face",
-       "crop": [
-        404,
-        720,
-        392,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 20.63,
-       "t1": 27.2,
-       "reason": "no face to frame \u2014 the clip's own window",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 27.2,
-       "t1": 33.23,
-       "reason": "no face to frame \u2014 the clip's own window",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 33.23,
-       "t1": 39.4,
-       "reason": "no face to frame \u2014 the clip's own window",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.528,
-      0.497,
-      0.49,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "face_bands": [
-      [
-       0.311,
-       0.683
-      ],
-      [
-       0.098,
-       0.465
-      ],
-      [
-       0.169,
-       0.508
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "shown": [],
-    "music": []
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+   "skipped": "author: no title"
   },
   {
    "sub": "CFB",
    "who": "CFB",
    "why": "most upvoted",
-   "post_title": "[Hall] Kentucky now has 3 losses. Their best win is,\u2026 LSU? LSU now has 4 losses. Their best win is\u2026 6-4 Clemson? South Carolina now has 4 losses including today to 4-6 Arkansas. These 3 are all ranked",
+   "post_title": "[Highlight] Ohio @ Miami (OH): Miami of Ohio receives an unsportsmanlike conduct penalty because the scoreboard operator put photos of field goal posts on the video board in order to confuse the Bobca",
    "upvotes": 0,
-   "url": "https://x.com/MikeHallHere/status/2121821438961218007?a=kPupFoJDjwGyzJX0vRs&s=19",
-   "topic": "https://www.reddit.com/r/CFB/comments/1xwvotb/hall_kentucky_now_has_3_losses_their_best_win_is",
-   "skipped": "download failed"
+   "url": "https://streamable.com/6psjto",
+   "topic": "https://www.reddit.com/r/CFB/comments/1xt6z3x/highlight_ohio_miami_oh_miami_of_ohio_receives_an",
+   "skipped": "author: no title"
   },
   {
    "sub": "MMA",
    "who": "MMA",
    "why": "most upvoted",
-   "post_title": "[Video] Saba Lazishvili getting love from UAE fans after getting released from detention center (from Giga Chikadze IG)",
+   "post_title": "Uncrowned (@uncrownedcombat): Merab Dvalishvili reveals he was jumped by Usman Nurmagomedov and multiple other people in Abu Dhabi \ud83d\ude33",
    "upvotes": 0,
-   "url": "https://streamable.com/2xt6wy",
-   "topic": "https://www.reddit.com/r/MMA/comments/1xvfbj6/video_saba_lazishvili_getting_love_from_uae_fans",
-   "skipped": "not English (English p=0.08, 49% English words)"
+   "url": "https://x.com/uncrownedcombat/status/2120550130478883113?a=tey0ftQxxCXS4dffSXs&s=46",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xtm5wg/uncrowned_uncrownedcombat_merab_dvalishvili",
+   "skipped": "download failed"
   },
   {
    "sub": "sports",
@@ -248,8 +86,8 @@
   }
  ],
  "already_today": 1,
- "pool": 102,
- "already_posted": 15,
- "refused_before": 15,
+ "pool": 115,
+ "already_posted": 18,
+ "refused_before": 23,
  "shipped": 0
 }
