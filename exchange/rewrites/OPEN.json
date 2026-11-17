@@ -1,97 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-17T12:22:21Z",
+ "updated": "2026-11-17T12:24:42Z",
  "open": [
   {
-   "id": "english-internet-share-decline__312d565d_r1",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-11-17T01:13:19Z",
-   "why": [
-    "premise: brain: The premise lacks a clear, verifiable metric and does not convincingly reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261117/english-internet-share-decline__312d565d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261117/english-internet-share-decline__312d565d_r1.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__07ec260a",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-17T01:13:19Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261117/index-funds-own-corporate-america__07ec260a.request.json",
-   "answer_path": "exchange/rewrites/20261117/index-funds-own-corporate-america__07ec260a.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__e51f51ef",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-11-17T01:13:19Z",
-   "why": [
-    "premise: brain: The claim merely states a price drop without subverting a clear viewer expectation, making the premise weak."
-   ],
-   "request": "exchange/rewrites/20261117/lab-grown-diamond-price-collapse__e51f51ef.request.json",
-   "answer_path": "exchange/rewrites/20261117/lab-grown-diamond-price-collapse__e51f51ef.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__81a9a288",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-17T01:13:19Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and does not hinge on a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261117/metric-system-holdouts__81a9a288.request.json",
-   "answer_path": "exchange/rewrites/20261117/metric-system-holdouts__81a9a288.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__c613f552",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-17T01:13:19Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "pace: closing is 19 words (max 18)"
-   ],
-   "request": "exchange/rewrites/20261117/vinyl-beats-cd-sales-again__c613f552.request.json",
-   "answer_path": "exchange/rewrites/20261117/vinyl-beats-cd-sales-again__c613f552.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-17T01:13:19Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague comparison rather than a single, decisive, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f.request.json",
-   "answer_path": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__15b63969",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-11-17T01:13:18Z",
-   "why": [
-    "premise: brain: The premise relies on a vague numeric claim without a clear, verifiable consequence and does not convincingly overturn a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261117/third-interstellar-visitor__15b63969.request.json",
-   "answer_path": "exchange/rewrites/20261117/third-interstellar-visitor__15b63969.answer.json"
-  },
-  {
-   "id": "robotic-surgery-doubled__31163b79",
-   "slug": "robotic-surgery-doubled",
-   "filed": "2026-11-17T01:13:18Z",
-   "why": [
-    "thesis: seg2 ('robotic revenue') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261117/robotic-surgery-doubled__31163b79.request.json",
-   "answer_path": "exchange/rewrites/20261117/robotic-surgery-doubled__31163b79.answer.json"
-  },
-  {
-   "id": "cavendish-banana-monoculture__c839b8fc",
+   "id": "cavendish-banana-monoculture__c839b8fc_r1",
    "slug": "cavendish-banana-monoculture",
-   "filed": "2026-11-16T23:21:22Z",
+   "filed": "2026-11-17T12:24:41Z",
    "why": [
     "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
    ],
-   "request": "exchange/rewrites/20261116/cavendish-banana-monoculture__c839b8fc.request.json",
-   "answer_path": "exchange/rewrites/20261116/cavendish-banana-monoculture__c839b8fc.answer.json"
+   "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
+  },
+  {
+   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "filed": "2026-11-17T12:24:41Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague comparison rather than a single, decisive, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
   },
   {
    "id": "autism-diagnosis-rate-rise__bea5446c",
@@ -134,6 +63,67 @@
    "answer_path": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.answer.json"
   },
   {
+   "id": "lab-grown-diamond-price-collapse__e51f51ef",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-11-16T12:04:30Z",
+   "why": [
+    "premise: brain: It relies on two numbers ($4,200 and $380) instead of a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261116/lab-grown-diamond-price-collapse__e51f51ef.request.json",
+   "answer_path": "exchange/rewrites/20261116/lab-grown-diamond-price-collapse__e51f51ef.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__81a9a288",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-11-16T12:04:30Z",
+   "why": [
+    "premise: brain: The premise relies on a vague claim about a conversion emptying a plane and does not clearly reverse a specific viewer expectation with a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261116/metric-system-holdouts__81a9a288.request.json",
+   "answer_path": "exchange/rewrites/20261116/metric-system-holdouts__81a9a288.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__07ec260a",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-16T12:04:29Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261116/index-funds-own-corporate-america__07ec260a.request.json",
+   "answer_path": "exchange/rewrites/20261116/index-funds-own-corporate-america__07ec260a.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__c613f552",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-16T12:04:29Z",
+   "why": [
+    "premise: no consequential number in the title or hook",
+    "pace: closing is 19 words (max 18)"
+   ],
+   "request": "exchange/rewrites/20261116/vinyl-beats-cd-sales-again__c613f552.request.json",
+   "answer_path": "exchange/rewrites/20261116/vinyl-beats-cd-sales-again__c613f552.answer.json"
+  },
+  {
+   "id": "english-internet-share-decline__312d565d_r1",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-11-16T12:04:28Z",
+   "why": [
+    "premise: brain: The claim lacks a clear, verifiable metric and does not convincingly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261116/english-internet-share-decline__312d565d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261116/english-internet-share-decline__312d565d_r1.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__15b63969",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-11-16T12:04:28Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and does not hinge on a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.request.json",
+   "answer_path": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.answer.json"
+  },
+  {
    "id": "left-brain-right-brain-myth__ea91746f_r1",
    "slug": "left-brain-right-brain-myth",
    "filed": "2026-11-16T12:04:28Z",
@@ -142,6 +132,17 @@
    ],
    "request": "exchange/rewrites/20261116/left-brain-right-brain-myth__ea91746f_r1.request.json",
    "answer_path": "exchange/rewrites/20261116/left-brain-right-brain-myth__ea91746f_r1.answer.json"
+  },
+  {
+   "id": "robotic-surgery-doubled__31163b79",
+   "slug": "robotic-surgery-doubled",
+   "filed": "2026-11-16T12:04:28Z",
+   "why": [
+    "thesis: seg0 ('robotic procedures') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline",
+    "thesis: seg2 ('robotic revenue') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.request.json",
+   "answer_path": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__90876971",
