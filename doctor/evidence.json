@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261116 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261116.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
         "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20261116 (a bundle exists for this date).",
@@ -225,229 +231,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-13T13:39:02+00:00",
-      "slug": "sports_cris_cyborg_amanda_nunes",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real knockdown footage, but most of it is a tiny embed beside an unreadable tweet over blur, and the title wrongly says Cyborg stayed in the fight when the referee stops it.",
-      "auto_fails": [
-        "junk_imagery: mid1, mid2, mid4 and payoff@-0.4 show a screenshot of a social post (a tweet beside a small fight clip) laid over a blurred copy of itself. That is a video inside a video, not the moment. The title also says Cyborg 'Stays In The Fight', but mid5 shows the referee stopping it.",
-        "empty_void: In mid1, mid2, mid4, mid5 and payoff@-0.4 the real footage fills only about a quarter of the frame. The top and bottom thirds are blurred, dark filler.",
-        "unreadable: In mid1 through payoff@-0.4 the embedded tweet text (CrisCyborg's post) is tiny and cannot be read on a phone. Our hook line is readable."
-      ],
-      "problems": [
-        "From mid1 on, a repost layout shows a tweet screenshot plus a small fight window over blurred filler.",
-        "The fight occupies about a quarter of the frame, and the rest is blurred dead space.",
-        "The tweet text is unreadable on a phone.",
-        "The title says 'Stays In The Fight', but mid5 shows the referee stopping it, so the claim is false.",
-        "The edit jumps between full-frame fight shots (hook, mid3) and the embed layout, which reads as messy."
-      ],
-      "fixes": [
-        "Extract the fight footage itself and crop it to fill 9:16 throughout.",
-        "Remove the tweet panel and the blurred background.",
-        "Retitle to match what happens, e.g. 'Nunes KOs Cyborg in 51 seconds'.",
-        "Build the cut to the knockdown and the referee's stoppage as the payoff."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.212,
-        "sampled": 52
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "restream_embed",
-        "visible_evidence": "mid1 (t=5.07s) onward: a tweet screenshot and a small fight window sit inside a blurred background, so most of the frame is blur and unreadable tweet text.",
-        "root_cause": "The source is a repost graphic (tweet plus clip) used as-is. The fight footage was not extracted and cropped to full frame.",
-        "repair_goal": "Crop to the fight footage only and fill the 9:16 frame as in hook@0.3 and mid3. Drop the tweet panel and blurred filler. Cut to the knockdown and the stoppage, and fix the title, because she did not stay in the fight."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 17.33
-      },
-      "fingerprint": "?|empty_void+junk_imagery+unreadable|restream_embed"
-    },
-    {
-      "ts": "2026-11-13T13:47:35+00:00",
-      "slug": "sports_cris_cyborg_amanda_nunes",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The hook footage is real and fits the line, but over half the video, including the knockout and the ref stepping in, plays as a tiny inset beside a tweet screenshot over blurred filler.",
-      "auto_fails": [
-        "junk_imagery: mid1, mid2, mid4, mid5, payoff@-1.8 and payoff@-0.4 are a video inside a video. The Reddit post's tweet screenshot sits on the left and the fight clip is a small inset, about 55% of the width and 30% of the height, over a blurred copy of the clip. The finish, with the ref stepping in, plays only inside that inset.",
-        "empty_void: In mid1, mid4, mid5 and both payoff frames, roughly 65% of the frame is blurred dead fill above and below the small tweet+clip composite. The only real content is a band in the middle."
-      ],
-      "problems": [
-        "mid1, mid2, mid4, mid5 and both payoff frames are a video inside a video: a tweet screenshot plus a small inset clip, so the finish the line promises is postage-stamp size",
-        "About 65% of the frame in those segments is blurred dead fill",
-        "The cut jumps back and forth between full-frame broadcast footage (hook, mid0, mid3) and the composite, which is jarring",
-        "The tweet text is too small to read on a phone, so it adds clutter without adding context",
-        "hook@1.5 is filled by the ref's back and an arm, so the fighters are mostly blocked"
-      ],
-      "fixes": [
-        "Crop out the fight footage region and scale it to fill the 9:16 frame for every segment",
-        "Make sure the knockdown and the ref stepping in (mid4 to payoff) are full-frame, with Nunes, Cyborg and the ref all visible",
-        "Drop the tweet panel. If the 18-0 context matters, say it in a short second line of our own text",
-        "Use one consistent source, the broadcast clip, rather than alternating with the repost composite"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.212,
-        "sampled": 52
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "video_in_video_crop",
-        "visible_evidence": "From mid5 to payoff@-0.4, the moment the line promises (the ref stepping in as Nunes finishes Cyborg) plays in a postage-stamp inset beside an unreadable tweet screenshot, with blurred filler above and below.",
-        "root_cause": "The source is a Reddit repost laid out as tweet screenshot plus clip. The cut alternates between the full-frame broadcast footage and that composite instead of cropping the fight footage out of it.",
-        "repair_goal": "Crop to the fight footage only, full-frame vertical, for the whole video. Above all, the finish and the ref stepping in (mid4 to the end) must fill the frame with Nunes, Cyborg and the ref all in shot. Drop the tweet panel and the blurred fill."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 17.33
-      },
-      "fingerprint": "?|empty_void+junk_imagery|video_in_video_crop"
-    },
-    {
-      "ts": "2026-11-13T10:21:49+00:00",
-      "slug": "earth-rotation-speeding-up",
-      "score": 61,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The leap-second tally tower works, but the first ~9 seconds are one static telescope shot repeated across two beats, and Data never spins the wheel he stands next to.",
-      "auto_fails": [
-        "decorative_mascot: seg3:start/mid/end: Data stands beside the prize wheel, smiling or pointing, and never spins it. In seg0/seg1 he holds a hand wheel on the telescope, but nothing visibly turns or changes because of it. His only real bit is turning the crank in seg2.",
-        "dead_air: hook@0.3 through seg1:end (0.3-9.4s) is the same telescope shot for about 9 seconds. Only the star-trail swirl and the label change (1.66 to 1.59 to 1.66 ms), and seg0 and seg1 look almost the same.",
-        "unreadable: In seg3:end the '60% no change' label runs into '...leap second by 2035' and reads as '2035no change'. In seg1:start the caption 'beating the last.' is faint grey on the brown floor, and in seg2:start the caption under the bench ('to our clocks') almost disappears."
-      ],
-      "problems": [
-        "The hook and seg0/seg1 reuse the same telescope composition for about 9 seconds; nothing shows a day getting shorter.",
-        "Data holds the telescope crank in seg0/seg1, but nothing he does causes any visible change.",
-        "In seg3 Data stands beside the wheel instead of spinning it.",
-        "The '60% no change' label collides with the 40% subtitle at seg3:end.",
-        "Captions are low-contrast against the floor in seg1:start and seg2:start.",
-        "The ending frame (payoff@-0.4) drops all text; the payoff is the closing card over a static wheel."
-      ],
-      "fixes": [
-        "Redraw seg0/seg1 as a spinning Earth or a day clock whose sweep visibly finishes early, with Data driving the spin, and make the 1.59 ms and 1.66 ms records visibly beat each other.",
-        "Give seg1 its own shot instead of repeating seg0's.",
-        "In seg3 have Data spin the wheel by its handles until it lands on the 40% wedge.",
-        "Measure the 60% label and place it clear of the subtitle line.",
-        "Put every caption on the outlined white caption style so it reads over any floor colour."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 91
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg3:start-end: Data stands beside a prize wheel and points while the wheel turns by itself. The '60% no change' label collides with the 40% subtitle at seg3:end.",
-        "root_cause": "The wheel is a stock probability machine with no one causing it to spin. Its second label was placed without measuring its width against the first one.",
-        "repair_goal": "Have Data grab the wheel's handles and spin it, so it comes to rest on the 40% 'remove a second' wedge. Put the 60% label on its own line away from the subtitle, or drop it so the frame shows one number."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.241,
-        "effective_fps": 18.2,
-        "max_dup_run": 13,
-        "measured": true,
-        "frozen_ratio": 0.118,
-        "frozen_fps": 21.2,
-        "max_frozen_run": 13,
-        "judder_ratio": 0.007,
-        "judder_fps": 23.8,
-        "held_s": 3.29,
-        "max_dup_at_s": 0.0,
-        "duration_s": 30.29
-      },
-      "fingerprint": "?|dead_air+decorative_mascot+unreadable|decorative_mascot",
-      "style_arm": "illustrated"
-    },
     {
       "ts": "2026-11-13T11:00:25+00:00",
       "slug": "naep-math-pandemic-drop",
@@ -4210,6 +3993,184 @@
         "duration_s": 14.83
       },
       "fingerprint": "?|-|data_demo"
+    },
+    {
+      "ts": "2026-11-17T11:43:06+00:00",
+      "slug": "sports_nba__the_reasons",
+      "score": 83,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 0,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively presents a compelling quote but suffers from significant static footage.",
+      "auto_fails": [
+        "dead_air: Motion facts show `held_s` is 7.5s, and the visual content of the speakers appears static for over 5 seconds between mid0 and mid1, and similar durations in subsequent segments."
+      ],
+      "problems": [
+        "The video contains long stretches of static background footage, leading to dead air."
+      ],
+      "fixes": [
+        "Introduce continuous, subtle motion in the background footage or vary camera angles more frequently to avoid static holds.",
+        "Ensure the video content is dynamic throughout, even when text is displayed."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 91
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "dead_air",
+        "visible_evidence": "The video footage of the speakers remains static for over 5 seconds between mid0 and mid1, and similar durations in subsequent segments, with only text appearing.",
+        "root_cause": "Insufficient motion in the background video footage, leading to long static holds during the presentation of the quote.",
+        "repair_goal": "Ensure continuous, meaningful motion in the background footage throughout the video, especially during segments where text is displayed, to avoid static holds longer than 4 seconds."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.475,
+        "effective_fps": 12.6,
+        "max_dup_run": 26,
+        "measured": true,
+        "frozen_ratio": 0.078,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 7,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 7.5,
+        "max_dup_at_s": 7.58,
+        "duration_s": 30.33
+      },
+      "fingerprint": "?|dead_air|dead_air"
+    },
+    {
+      "ts": "2026-11-17T11:52:39+00:00",
+      "slug": "sports_nba__the_reasons",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and engaging sports moment featuring Rick Carlisle's praise for LeBron James and LeBron's humble reaction.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 95
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "visual monotony",
+        "visible_evidence": "The split-screen composition remains largely static throughout the video, with minimal dynamic camera movement.",
+        "root_cause": "Reliance on static interview footage without additional dynamic visual elements.",
+        "repair_goal": "Introduce subtle camera movements (e.g., slow zoom/pan) or dynamic text animations to enhance visual engagement within the split-screen."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.103,
+        "effective_fps": 21.5,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.005,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 6.96,
+        "duration_s": 31.67
+      },
+      "fingerprint": "?|-|visual monotony"
+    },
+    {
+      "ts": "2026-11-17T11:56:43+00:00",
+      "slug": "sports_soccer_israeli_team",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked: judge response failed schema validation",
+      "auto_fails": [
+        "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+        "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+        "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
+      ],
+      "problems": [
+        "checks.junk_imagery.evidence missing or empty",
+        "checks.decorative_mascot.evidence missing or empty",
+        "checks.bare_number_card.evidence missing or empty"
+      ],
+      "fixes": [
+        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 125
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "malformed_judge_response"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.493,
+        "effective_fps": 12.2,
+        "max_dup_run": 31,
+        "measured": true,
+        "frozen_ratio": 0.115,
+        "frozen_fps": 21.3,
+        "max_frozen_run": 7,
+        "judder_ratio": 0.016,
+        "judder_fps": 23.6,
+        "held_s": 11.96,
+        "max_dup_at_s": 0.29,
+        "duration_s": 41.5
+      },
+      "fingerprint": "?|malformed_judge_response|-"
     }
   ],
   "showrunner_recurrence": {
@@ -4248,28 +4209,17 @@
         "2026-11-15"
       ]
     },
+    "?|dead_air|dead_air": {
+      "count": 2,
+      "days": [
+        "2026-11-16",
+        "2026-11-17"
+      ]
+    },
     "?|-|data_demo": {
       "count": 2,
       "days": [
         "2026-11-16"
-      ]
-    },
-    "?|empty_void+junk_imagery+unreadable|restream_embed": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
-      ]
-    },
-    "?|empty_void+junk_imagery|video_in_video_crop": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
-      ]
-    },
-    "?|dead_air+decorative_mascot+unreadable|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-11-13"
       ]
     },
     "?|-|repeated_shot_weak_change": {
@@ -4464,12 +4414,6 @@
         "2026-11-16"
       ]
     },
-    "?|dead_air|dead_air": {
-      "count": 1,
-      "days": [
-        "2026-11-16"
-      ]
-    },
     "?|-|data_demonstration": {
       "count": 1,
       "days": [
@@ -4481,11 +4425,23 @@
       "days": [
         "2026-11-16"
       ]
+    },
+    "?|-|visual monotony": {
+      "count": 1,
+      "days": [
+        "2026-11-17"
+      ]
+    },
+    "?|malformed_judge_response|-": {
+      "count": 1,
+      "days": [
+        "2026-11-17"
+      ]
     }
   },
   "recent_commits": [
-    "e7c56ac 2026-11-17 claim: mailbox verdicts 2026-11-17T04:48Z [skip ci]",
-    "a1e682c 2026-11-17 claim: mailbox verdicts 2026-11-17T03:49Z [skip ci]"
+    "87dd4f4 2026-11-17 explainer: update posted log + analytics [skip ci]",
+    "f56f4c6 2026-11-17 claim: mailbox verdicts 2026-11-17T13:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4503,10 +4459,11 @@
         "2026-11-13": 5,
         "2026-11-14": 5,
         "2026-11-15": 5,
-        "2026-11-16": 5
+        "2026-11-16": 5,
+        "2026-11-17": 1
       },
-      "total_posted": 572,
-      "attempted": 572,
+      "total_posted": 573,
+      "attempted": 573,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4540,11 +4497,12 @@
         "2026-11-13": 6,
         "2026-11-14": 6,
         "2026-11-15": 3,
-        "2026-11-16": 6
+        "2026-11-16": 6,
+        "2026-11-17": 1
       },
-      "total_posted": 560,
-      "attempted": 1437,
-      "rejected_or_pending": 877
+      "total_posted": 561,
+      "attempted": 1443,
+      "rejected_or_pending": 882
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4562,59 +4520,59 @@
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 24.08,
-          "views": 1125
+          "vph": 19.25,
+          "views": 1142
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 14.94,
+          "vph": 12.09,
           "views": 801
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 13.45,
-          "views": 1038
+          "vph": 11.42,
+          "views": 1025
         },
         {
           "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 11.08,
+          "vph": 8.36,
           "views": 430
         },
         {
           "title": "Earth's Day Was 1.66 Milliseconds Shorter",
-          "vph": 5.65,
-          "views": 487
+          "vph": 4.89,
+          "views": 483
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 136,
+      "videos": 132,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.17,
-          "views": 1907
+          "vph": 3.08,
+          "views": 1908
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.96,
-          "views": 184
+          "vph": 1.71,
+          "views": 188
         },
         {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.74,
-          "views": 7
+          "vph": 1.45,
+          "views": 29
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.25,
-          "views": 512
+          "vph": 1.22,
+          "views": 520
         },
         {
-          "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 0.75,
-          "views": 329
+          "title": "Pokimane Tears Up Talking About Her Cat That's Gone",
+          "vph": 0.76,
+          "views": 29
         }
       ],
       "full_data": "state/analytics_third/latest.json"
