@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cavendish-banana-monoculture__c839b8fc",
+  "slug": "cavendish-banana-monoculture",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:20:00Z",
+  "title": "99% Of Exported Bananas Are The Same Clone",
+  "hook": "99% of exported bananas share one Cavendish weakness.",
+  "closing": "If the Cavendish falls, cheap bananas could vanish before another variety replaces it.",
+  "question": "Have you tried another banana?",
+  "segments": [
+    {
+      "topic": "Banana Clone Dominance",
+      "say": "Cavendish makes up 99 percent of exported bananas. Buying one almost anywhere means eating essentially the same clone."
+    },
+    {
+      "topic": "Banana Variety Bottleneck",
+      "say": "More than 1,000 banana varieties exist, yet only one dominates exports. The global supply has almost no backup."
+    },
+    {
+      "topic": "Banana Disease Spread",
+      "say": "The fungus reached three continents, up from one in 1990. Identical plants share one weakness, so disease spreads freely."
+    }
+  ]
+}
