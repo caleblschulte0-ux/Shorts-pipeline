@@ -20582,6 +20582,24 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (Verbal outburst, no visible event or con)",
       "ts": "2026-11-17T12:54:55.581487+00:00"
+    },
+    "rejected-courageoushumbleflydendiface-kpha1r4tkjws2b14": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/CourageousHumbleFlyDendiFace-kPhA1R4tkjws2b14",
+      "streamer": "erobb221",
+      "title": "Erobb221 takes a call7",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable action)",
+      "ts": "2026-11-17T19:48:29.910831+00:00"
+    },
+    "rejected-obesefrailmomm4xheh-ugejoyv79z2_ycr2": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ObeseFrailMomM4xHeh-ugeJOYV79Z2_ycR2",
+      "streamer": "kaicenat",
+      "title": "kai calls you fake",
+      "qa_rejected": true,
+      "rejected_by": "rescue fail-closed",
+      "rejected_why": "weak title + no transcript judge reachable \u2014 nothing vouched for it",
+      "ts": "2026-11-17T19:52:53.684806+00:00"
     }
   }
 }
