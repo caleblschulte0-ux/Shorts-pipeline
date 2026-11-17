@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "a-language-dies-every-2-weeks__8d6939dc",
+  "slug": "a-language-dies-every-2-weeks",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:25:00Z",
+  "title": "26 Languages Disappear Each Year—Far Faster Than Before",
+  "hook": "26 languages disappear each year, far faster than before.",
+  "closing": "Every lost language erases knowledge, memory, and a distinct way of seeing.",
+  "question": "Which languages do you speak?",
+  "segments": [
+    {
+      "topic": "Language Danger",
+      "say": "About 40 percent of languages are endangered or dying. Their last speakers carry entire cultures."
+    },
+    {
+      "topic": "Language Loss Pace",
+      "say": "Today, 26 languages disappear each year. Language loss has accelerated sharply."
+    },
+    {
+      "topic": "Language Future",
+      "say": "Only 3,500 languages are projected to remain. Half of today's linguistic diversity could vanish."
+    }
+  ]
+}
