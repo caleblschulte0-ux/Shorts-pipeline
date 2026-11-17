@@ -1,6 +1,6 @@
 {
  "https://www.reddit.com/r/CFB/comments/1xwvotb/hall_kentucky_now_has_3_losses_their_best_win_is": {
-  "n": 1,
+  "n": 2,
   "why": "download failed"
  },
  "https://www.reddit.com/r/CollegeBasketball/comments/1xse798/a_guy_is_sleeping_in_the_rafters_near_the_end_of": {
@@ -22,6 +22,10 @@
  "https://www.reddit.com/r/MMA/comments/1xv73sx/the_6_members_of_the_nurmagomedov_crew_have_been": {
   "n": 2,
   "why": "download failed"
+ },
+ "https://www.reddit.com/r/MMA/comments/1xvfbj6/video_saba_lazishvili_getting_love_from_uae_fans": {
+  "n": 2,
+  "why": "not English (English p=0.08, 49% English words)"
  },
  "https://www.reddit.com/r/baseball/comments/1xscovn/this_young_fan_brought_custommade_mcgonigoggles": {
   "n": 2,
@@ -75,6 +79,10 @@
   "n": 2,
   "why": "author: no setup or no payoff in the clip"
  },
+ "https://www.reddit.com/r/nba/comments/1xwnryo/charles_barkley_new_orleans_we_need_that_team_in": {
+  "n": 2,
+  "why": "too short: the post runs 4.8s (< 15s)"
+ },
  "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his": {
   "n": 2,
   "why": "too short: the post runs 7.6s (< 15s)"
@@ -92,6 +100,10 @@
   "why": "too short: the post runs 8.0s (< 15s)"
  },
  "https://www.reddit.com/r/nfl/comments/1xx71qa/highlight_fernando_mendoza_scores_his_1st_nfl_td": {
+  "n": 2,
+  "why": "too short: the post runs 10.0s (< 15s)"
+ },
+ "https://www.reddit.com/r/nfl/comments/1xxet1s/highlight_nbc_segued_an_exasperated_aaron_rodgers": {
   "n": 2,
   "why": "too short: the post runs 10.0s (< 15s)"
  },
