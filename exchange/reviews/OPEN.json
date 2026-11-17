@@ -1,17 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-17T19:48:59Z",
- "open": [
-  {
-   "id": "sports_devon_levi_picks_up_the__18192bfb46",
-   "channel": "trending",
-   "slug": "sports_devon_levi_picks_up_the",
-   "title": "Devon Levi Explains His Sand Ritual Inspired By Gladiator 😲",
-   "filed": "2026-11-17T12:29:23Z",
-   "request": "exchange/reviews/20261117/sports_devon_levi_picks_up_the__18192bfb46.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_devon_levi_picks_up_the__18192bfb46/sheet.jpg",
-   "answer_path": "exchange/reviews/20261117/sports_devon_levi_picks_up_the__18192bfb46.verdict.json"
-  }
- ],
+ "updated": "2026-11-17T20:49:03Z",
+ "open": [],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }

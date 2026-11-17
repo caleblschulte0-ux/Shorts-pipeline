@@ -1,0 +1,59 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_devon_levi_picks_up_the__18192bfb46",
+ "video_sha256": "18192bfb4677cbec8dcd84781505b2c0d33fbe27af7bf077fb7dbdfb0d155496",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-17T20:48:47Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All footage is real interview footage of Devon Levi."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static period is 0.0 seconds, indicating continuous motion."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is consistently filled with the speaker and relevant graphics."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear, legible, and not cut off."
+   }
+  },
+  "weakest_scene": {
+   "id": "payoff",
+   "index": 0,
+   "failure_class": "lack_of_impactful_conclusion",
+   "visible_evidence": "The video ends with the speaker still talking, without a clear concluding statement or visual emphasis.",
+   "root_cause": "The clip was cut without a strong final soundbite or visual cue to signal completion and impact.",
+   "repair_goal": "Re-edit the clip to end on a more definitive statement, a summary graphic, or a visual reaction that provides a stronger sense of closure."
+  },
+  "depictions": [],
+  "one_line": "Devon Levi explains his sand ritual in a clear and engaging interview clip.",
+  "problems": [
+   "The video ends somewhat abruptly, lacking a strong concluding moment or 'punchline' for the payoff."
+  ],
+  "fixes": [
+   "Edit the clip to conclude with a more impactful statement from the speaker, or add a brief graphic that summarizes the ritual's significance or the interview's main takeaway."
+  ]
+ }
+}
