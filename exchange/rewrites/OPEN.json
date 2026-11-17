@@ -1,21 +1,11 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-17T12:24:42Z",
+ "updated": "2026-11-17T12:26:59Z",
  "open": [
-  {
-   "id": "cavendish-banana-monoculture__c839b8fc_r1",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-11-17T12:24:41Z",
-   "why": [
-    "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
-  },
   {
    "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
    "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-17T12:24:41Z",
+   "filed": "2026-11-17T12:26:58Z",
    "why": [
     "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague comparison rather than a single, decisive, verifiable number."
    ],
@@ -23,34 +13,24 @@
    "answer_path": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
   },
   {
-   "id": "autism-diagnosis-rate-rise__bea5446c",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-16T18:18:45Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a statistic without a striking, singular consequential number."
-   ],
-   "request": "exchange/rewrites/20261116/autism-diagnosis-rate-rise__bea5446c.request.json",
-   "answer_path": "exchange/rewrites/20261116/autism-diagnosis-rate-rise__bea5446c.answer.json"
-  },
-  {
-   "id": "library-digital-shift__9cdb5f1d_r1",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-16T18:18:45Z",
-   "why": [
-    "premise: brain: It states a trend without reversing a viewer expectation and relies on a vague number rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261116/library-digital-shift__9cdb5f1d_r1.request.json",
-   "answer_path": "exchange/rewrites/20261116/library-digital-shift__9cdb5f1d_r1.answer.json"
-  },
-  {
-   "id": "religious-nones-rise__ba903e44",
+   "id": "religious-nones-rise__ba903e44_r1",
    "slug": "religious-nones-rise",
-   "filed": "2026-11-16T14:03:03Z",
+   "filed": "2026-11-17T12:26:58Z",
    "why": [
     "premise: brain: Unclear if it truly reverses a common viewer expectation, so default to reject."
    ],
-   "request": "exchange/rewrites/20261116/religious-nones-rise__ba903e44.request.json",
-   "answer_path": "exchange/rewrites/20261116/religious-nones-rise__ba903e44.answer.json"
+   "request": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.request.json",
+   "answer_path": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.answer.json"
+  },
+  {
+   "id": "cavendish-banana-monoculture__c839b8fc_r1",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-11-17T12:26:57Z",
+   "why": [
+    "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
   },
   {
    "id": "betelgeuse-great-dimming__6a0c802e",
@@ -124,16 +104,6 @@
    "answer_path": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.answer.json"
   },
   {
-   "id": "left-brain-right-brain-myth__ea91746f_r1",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-11-16T12:04:28Z",
-   "why": [
-    "premise: brain: The premise lacks a single verifiable number and thus does not meet the required criteria."
-   ],
-   "request": "exchange/rewrites/20261116/left-brain-right-brain-myth__ea91746f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261116/left-brain-right-brain-myth__ea91746f_r1.answer.json"
-  },
-  {
    "id": "robotic-surgery-doubled__31163b79",
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-16T12:04:28Z",
@@ -145,64 +115,14 @@
    "answer_path": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.answer.json"
   },
   {
-   "id": "cursive-handwriting-comeback__90876971",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-10-18T15:35:20Z",
+   "id": "left-brain-right-brain-myth__ea91746f_r1",
+   "slug": "left-brain-right-brain-myth",
+   "filed": "2026-11-15T12:02:54Z",
    "why": [
-    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure, failing the one-number requirement."
+    "premise: brain: Lacks a single verifiable number to support the claim despite reversing a common belief"
    ],
-   "request": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.request.json",
-   "answer_path": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__72cdc200",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-10-18T15:35:19Z",
-   "why": [
-    "premise: brain: The premise is vague and does not clearly reverse a specific viewer expectation with a single, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.request.json",
-   "answer_path": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-18T15:35:16Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified specific loss figure and lacks a clear reversal of a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261018/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
-   "id": "blockbuster-to-one-store__857f036d",
-   "slug": "blockbuster-to-one-store",
-   "filed": "2026-10-18T15:35:16Z",
-   "why": [
-    "premise: brain: Uses two numbers (9,000 and 1) instead of a single consequential, verifiable number"
-   ],
-   "request": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.request.json",
-   "answer_path": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.answer.json"
-  },
-  {
-   "id": "global-remittances-record-2023__21255dfc_r1",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-18T14:23:09Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a large number without a verifiable, consequential hook."
-   ],
-   "request": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
-  },
-  {
-   "id": "a-language-dies-every-2-weeks__8d6939dc",
-   "slug": "a-language-dies-every-2-weeks",
-   "filed": "2026-10-18T14:23:07Z",
-   "why": [
-    "premise: brain: The claim offers a single numeric claim but does not clearly overturn a well‑known viewer expectation in a compelling, verifiable way."
-   ],
-   "request": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.request.json",
-   "answer_path": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.answer.json"
+   "request": "exchange/rewrites/20261115/left-brain-right-brain-myth__ea91746f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261115/left-brain-right-brain-myth__ea91746f_r1.answer.json"
   },
   {
    "id": "highest-point-illusion__3d90af0a",
@@ -385,6 +305,46 @@
    "answer_path": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.answer.json"
   },
   {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-17T15:25:39Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on an unsubstantiated, vague claim rather than a single, verifiable numeric fact."
+   ],
+   "request": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.answer.json"
+  },
+  {
+   "id": "cursive-handwriting-comeback__90876971",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-10-17T12:56:21Z",
+   "why": [
+    "premise: brain: Premise includes multiple figures (two‑thirds and 25 states) instead of hinging on a single verifiable number, so it fails the one‑number requirement."
+   ],
+   "request": "exchange/rewrites/20261017/cursive-handwriting-comeback__90876971.request.json",
+   "answer_path": "exchange/rewrites/20261017/cursive-handwriting-comeback__90876971.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__72cdc200",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-10-17T12:56:19Z",
+   "why": [
+    "premise: brain: The premise is vague, uses multiple numbers and does not clearly reverse a single, specific viewer expectation with one verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261017/chip-transistor-shrink-limit__72cdc200.request.json",
+   "answer_path": "exchange/rewrites/20261017/chip-transistor-shrink-limit__72cdc200.answer.json"
+  },
+  {
+   "id": "blockbuster-to-one-store__857f036d",
+   "slug": "blockbuster-to-one-store",
+   "filed": "2026-10-17T12:56:16Z",
+   "why": [
+    "premise: brain: Uses multiple numbers (9,000 and 1) instead of a single consequential, verifiable number"
+   ],
+   "request": "exchange/rewrites/20261017/blockbuster-to-one-store__857f036d.request.json",
+   "answer_path": "exchange/rewrites/20261017/blockbuster-to-one-store__857f036d.answer.json"
+  },
+  {
    "id": "competitive-eating-record-climb__e38b83da",
    "slug": "competitive-eating-record-climb",
    "filed": "2026-10-16T17:52:55Z",
@@ -393,6 +353,16 @@
    ],
    "request": "exchange/rewrites/20261016/competitive-eating-record-climb__e38b83da.request.json",
    "answer_path": "exchange/rewrites/20261016/competitive-eating-record-climb__e38b83da.answer.json"
+  },
+  {
+   "id": "global-remittances-record-2023__21255dfc_r1",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-16T13:40:39Z",
+   "why": [
+    "premise: brain: Unclear reversal of viewer expectation; premise is ambiguous."
+   ],
+   "request": "exchange/rewrites/20261016/global-remittances-record-2023__21255dfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261016/global-remittances-record-2023__21255dfc_r1.answer.json"
   },
   {
    "id": "moon-drifting-away__904b95b2",
