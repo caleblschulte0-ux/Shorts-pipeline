@@ -20547,14 +20547,41 @@
       "ts": "2026-11-17T11:47:05.471856+00:00"
     },
     "clip-20261117-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/DistinctTentativePandaGOWSkull-ZPakthzf1aMTaqdU",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/bBYvJEbsRO8",
       "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-11-17T12:53:35.137546+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-17T12:53:45.117583+00:00",
+      "uploaded_at": "2026-11-17T12:53:45.117599+00:00",
+      "publish_at": "2026-11-17T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261117-ishowspeed-shows-obama-he-speaks-indonesian-1bc792e4",
+        "tiktok": "queued for 2026-11-17T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/DistinctTentativePandaGOWSkull-ZPakthzf1aMTaqdU",
+      "streamer": "ishowspeed",
+      "series": "wholesome",
+      "hook": "Speed talks to Obama in Indonesian",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 11782,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 36.76
+      },
+      "director_cut": true
+    },
+    "rejected-fancyantsykathytbtacoleft-sbdvgyoirooyk7_l": {
+      "source_url": "https://www.twitch.tv/lirik/clip/FancyAntsyKathyTBTacoLeft-sbDVgyOIRooyK7_L",
+      "streamer": "lirik",
+      "title": "shut up",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Verbal outburst, no visible event or con)",
+      "ts": "2026-11-17T12:54:55.581487+00:00"
     }
   }
 }
