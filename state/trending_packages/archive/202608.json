@@ -7554,5 +7554,491 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260818": {
+    "01_graph-nwsl-expansion-fees.json": {
+      "format": "graph_race",
+      "slug": "graph-nwsl-expansion-fees",
+      "title": "Women's Soccer Expansion Fees Just Went Vertical",
+      "hook": "$2 million. Now $205 million.",
+      "y_label": "Expansion franchise fee ($ millions)",
+      "duration": 13,
+      "source": "NWSL expansion fees: roughly $2M for Angel City FC / San Diego Wave (2020-2022 rounds, per Sportico/Yahoo Sports reporting); Bay FC $53M (announced 2023, joined 2024, Just Women's Sports); Denver Summit FC $110M (announced Jan 2025, Sportico -- 'largest in the history of U.S. women's sports'); Columbus $205M (announced April 2026, Sportico/Forbes -- 'nearly double' Denver's fee, the current NWSL record). MLS expansion fees: FC Cincinnati $150M (2018-2019 round); Charlotte FC $325M (2019 announcement, joined 2022, per CBC/Wikipedia); San Diego FC $500M (announced May 2023, joined 2025, per Goal.com/NBC Sports/CBS Sports -- the MLS record, still the benchmark through the 2025-2026 cycle).",
+      "years": [
+        2020,
+        2022,
+        2023,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "NWSL (women's)",
+          "color": "#ff2d95",
+          "icon": "NWSL",
+          "values": [
+            2,
+            2,
+            53,
+            110,
+            205
+          ]
+        },
+        {
+          "name": "MLS (men's)",
+          "color": "#1e6fff",
+          "icon": "MLS",
+          "values": [
+            150,
+            325,
+            500,
+            500,
+            500
+          ]
+        }
+      ],
+      "hashtags": [
+        "nwsl",
+        "mls",
+        "soccer",
+        "womenssoccer",
+        "sportsbusiness",
+        "expansion",
+        "football",
+        "sportsfinance",
+        "businessofsport",
+        "womensoccer",
+        "soccernews",
+        "sports"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-condor-wild-vs-captive.json": {
+      "format": "graph_race",
+      "slug": "graph-condor-wild-vs-captive",
+      "title": "More Condors Now Fly Free Than Live In Captivity",
+      "hook": "0 wild. Now 350 flying free.",
+      "y_label": "California condors (individual birds)",
+      "duration": 13,
+      "source": "U.S. Fish & Wildlife Service California Condor Recovery Program population records: 1987 -- the last 27 wild condors were trapped into captivity, leaving zero in the wild; 1992 -- first captive-bred birds released (about 2 wild, 25 captive); 2010 -- total population 370 (181 wild-flying, 189 captive), per FWS-sourced population chart (ResearchGate fig. 3); 2020 -- total 504 (329 wild, 175 captive), FWS year-end status report; 2025 -- total 607 (approximately 350 wild-flying, 257 captive), FWS '2025 California Condor Population Status Report' (published Feb 2026).",
+      "years": [
+        1987,
+        1992,
+        2010,
+        2020,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Wild-flying",
+          "color": "#50ff80",
+          "values": [
+            0,
+            2,
+            181,
+            329,
+            350
+          ]
+        },
+        {
+          "name": "In captivity",
+          "color": "#ffaa30",
+          "values": [
+            27,
+            25,
+            189,
+            175,
+            257
+          ]
+        }
+      ],
+      "hashtags": [
+        "californiacondor",
+        "conservation",
+        "endangeredspecies",
+        "wildlife",
+        "wildlifeconservation",
+        "nature",
+        "birds",
+        "usfws",
+        "recovery",
+        "biodiversity",
+        "science",
+        "animals"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-solar-passed-coal.json": {
+      "format": "graph_race",
+      "slug": "graph-solar-passed-coal",
+      "title": "Solar Power Just Passed Coal In America",
+      "hook": "Solar just out-built coal.",
+      "y_label": "Installed generating capacity (gigawatts)",
+      "duration": 13,
+      "source": "U.S. cumulative installed capacity, gigawatts. Solar (utility-scale): 76 GW (2019) and 141 GW (2022), 177 GW (2023), 236 GW (2024) -- SEIA/Wood Mackenzie 'Solar Market Insight' Year-in-Review reports; 2020 and 2026 figures are straight-line estimates between confirmed SEIA annual totals, not independently reported. Coal (net summer capacity): 223 GW (2020) and 178.4 GW (2023) -- EIA 'Today in Energy'; 163.4 GW (early 2026) -- EIA data as reported by Energy Central, the point at which cumulative solar capacity overtook coal capacity for the first time; 2019 and 2022 figures are straight-line estimates between confirmed EIA totals.",
+      "years": [
+        2019,
+        2020,
+        2022,
+        2023,
+        2024,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Solar",
+          "color": "#ffd23f",
+          "values": [
+            76,
+            95,
+            141,
+            177,
+            236,
+            290
+          ]
+        },
+        {
+          "name": "Coal",
+          "color": "#4a4a4a",
+          "values": [
+            229,
+            223,
+            206,
+            178,
+            165,
+            163
+          ]
+        }
+      ],
+      "hashtags": [
+        "solarenergy",
+        "coal",
+        "energy",
+        "renewableenergy",
+        "climate",
+        "cleanenergy",
+        "electricity",
+        "powergrid",
+        "sustainability",
+        "energytransition",
+        "science",
+        "usa"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_graph-march-madness-gender-gap.json": {
+      "format": "graph_race",
+      "slug": "graph-march-madness-gender-gap",
+      "title": "Women's March Madness Beat The Men's. Once.",
+      "hook": "It happened once. Not since.",
+      "y_label": "Championship game TV viewers (millions)",
+      "duration": 13,
+      "source": "NCAA basketball championship game TV audience, Nielsen-measured, as reported by ESPN/CBS/Sportico/Front Office Sports/Sports Media Watch. Women's Final: 2021 Stanford-Arizona 4.1M, 2022 South Carolina-UConn 4.9M, 2023 LSU-Iowa 9.9M, 2024 South Carolina-Iowa 18.9M (Nielsen record for a women's college basketball broadcast), 2025 UConn-South Carolina 8.5M, 2026 South Carolina-UCLA 9.9M. Men's Final: 2021 Baylor-Gonzaga 16.9M (CBS), 2022 Kansas-North Carolina 18.1M (cable record at the time), 2023 UConn-San Diego State 14.7M, 2024 UConn-Purdue 14.8M (CBS/TBS/TNT), 2025 Florida-Houston 18.1M (CBS), 2026 Michigan-UConn 18.3M (TBS/TNT/truTV/HBO Max). 2024 was the first time in NCAA history the women's final out-rated the men's; every other year on record, the men's game led.",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "Women's Final",
+          "color": "#ff2d95",
+          "icon": "ESPN",
+          "values": [
+            4.1,
+            4.9,
+            9.9,
+            18.9,
+            8.5,
+            9.9
+          ]
+        },
+        {
+          "name": "Men's Final",
+          "color": "#1e6fff",
+          "icon": "CBS",
+          "values": [
+            16.9,
+            18.1,
+            14.7,
+            14.8,
+            18.1,
+            18.3
+          ]
+        }
+      ],
+      "hashtags": [
+        "marchmadness",
+        "ncaa",
+        "womensbasketball",
+        "collegebasketball",
+        "sports",
+        "tvratings",
+        "caitlinclark",
+        "ncaab",
+        "sportsbusiness",
+        "basketball",
+        "media",
+        "sportsmedia"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-snack-bag-clipboard.json": {
+      "subreddit": "entitledparents",
+      "slug": "reddit-snack-bag-clipboard",
+      "title": "She Let Her Kid Open Every Bag. So I Started A Clipboard.",
+      "script": "Every trip to my store, she let her son rip open snack bags to try them, then walked out without paying, telling me kids get a pass. I started keeping every opened bag behind the register with a sticky note: date, item, price. Three weeks in, I had forty-one dollars in unpaid snacks taped to a clipboard. Corporate policy says opened stock gets billed to the last customer who touched it, so I finally called it in. Loss prevention flagged her rewards account and froze it until the balance cleared. She showed up the next day for her free coffee redemption and got declined at the register, in front of the line, with the clipboard sitting right there. I slid it across the counter. Forty-one dollars, itemized, dated, signed off by three different cashiers. She paid in cash, counted out to the penny, and hasn't let her son open so much as a straw wrapper since.",
+      "shots": [
+        {
+          "phrase": "let her son rip open snack bags",
+          "query": "torn snack bag",
+          "image_url": "https://drive.google.com/uc?export=download&id=1qeURTWzAI3Uyu6lRx-YSrrBgfDIqXPbg",
+          "media_origin": "chatgpt",
+          "media_file_id": "1qeURTWzAI3Uyu6lRx-YSrrBgfDIqXPbg",
+          "media_sha256": "1098f3230ebce54f2a8d56dddbe66334018fe15f4a0727be03f7e20854e6704d",
+          "media_bytes": 1347607
+        },
+        {
+          "phrase": "walked out without paying",
+          "query": "store exit doors",
+          "image_url": "https://drive.google.com/uc?export=download&id=1y6n0JhwoJfWNwc5d1ss2RXZTM0fjxzy6",
+          "media_origin": "chatgpt",
+          "media_file_id": "1y6n0JhwoJfWNwc5d1ss2RXZTM0fjxzy6",
+          "media_sha256": "111f6e21a30ff461b4a923275a03ff8fa79ee1447802808def90289f6e9f63c3",
+          "media_bytes": 1207774
+        },
+        {
+          "phrase": "keeping every opened bag behind the register",
+          "query": "convenience store register",
+          "image_url": "https://drive.google.com/uc?export=download&id=1JQiLsICO5yswZczGCHHijpwLzlJVu8_1",
+          "media_origin": "chatgpt",
+          "media_file_id": "1JQiLsICO5yswZczGCHHijpwLzlJVu8_1",
+          "media_sha256": "75b93e4c6825c4f23370c2b3efae5e6f2faa9dc22e7dd31f22e345832c0c0cf4",
+          "media_bytes": 1173070
+        },
+        {
+          "phrase": "forty-one dollars in unpaid snacks",
+          "query": "receipt pile clipboard",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Ify5eCOBTjk9SXWaVIot_nZ0FA715A4e",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Ify5eCOBTjk9SXWaVIot_nZ0FA715A4e",
+          "media_sha256": "0184a8ff21c2f806407c0a434b8c65517ae91d7b5daeaf5ec35bacf7488e7d9e",
+          "media_bytes": 1340409
+        },
+        {
+          "phrase": "Loss prevention flagged her rewards account",
+          "query": "security camera monitor",
+          "image_url": "https://drive.google.com/uc?export=download&id=1pbosam8aF5Qcu2L0HUPnM-kBikkXUg9c",
+          "media_origin": "chatgpt",
+          "media_file_id": "1pbosam8aF5Qcu2L0HUPnM-kBikkXUg9c",
+          "media_sha256": "c7f8a2cab9d9f1f38b91e8cccf4e7d230b758ef37cd78651f431b72a63147592",
+          "media_bytes": 1546252
+        },
+        {
+          "phrase": "got declined at the register",
+          "query": "card declined machine",
+          "image_url": "https://drive.google.com/uc?export=download&id=1UMjTpf-6onu_odTWbmavxzbGITMgoNm7",
+          "media_origin": "chatgpt",
+          "media_file_id": "1UMjTpf-6onu_odTWbmavxzbGITMgoNm7",
+          "media_sha256": "5b26386ac06ee5581a7f9af633d1f6f34d3d52cc7a40948536fae3cb269794d2",
+          "media_bytes": 1134067
+        },
+        {
+          "phrase": "in front of the line",
+          "query": "customers waiting line",
+          "image_url": "https://drive.google.com/uc?export=download&id=1RCert08Nayhtok8_swEi1cFDFI5q5m3C",
+          "media_origin": "chatgpt",
+          "media_file_id": "1RCert08Nayhtok8_swEi1cFDFI5q5m3C",
+          "media_sha256": "dce904d8d0d99830f996ac66f5764f21fa6422cc1fcccf074cf3811260fd153d",
+          "media_bytes": 1356178
+        },
+        {
+          "phrase": "hasn't let her son open so much as a straw wrapper",
+          "query": "kid grocery cart",
+          "image_url": "https://drive.google.com/uc?export=download&id=1LWDaNhilfrxzZJIe1JSwD9XGdutHo9lr",
+          "media_origin": "chatgpt",
+          "media_file_id": "1LWDaNhilfrxzZJIe1JSwD9XGdutHo9lr",
+          "media_sha256": "0c1a80c2bb4dca58be86320198b7c53b85dfac5a7e5cea57950f74de7f7bb40a",
+          "media_bytes": 1528786
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "forty-one dollars in unpaid snacks",
+          "text": "$41 OWED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "froze it until the balance cleared",
+          "text": "ACCOUNT FROZEN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "got declined at the register",
+          "text": "DECLINED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "signed off by three different cashiers",
+          "text": "3 CASHIERS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "hasn't let her son open",
+          "text": "NEVER AGAIN",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "entitledparents",
+        "retailkarma",
+        "karma",
+        "storeworker",
+        "cashierlife",
+        "customerservice",
+        "pettyrevenge",
+        "reddit",
+        "redditstories",
+        "workplacestory",
+        "entitled",
+        "retail",
+        "storeproblems",
+        "karmaisreal"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-not-staff-microwave.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-not-staff-microwave",
+      "title": "She Wanted 50% Off From A Guy Who Didn't Work There.",
+      "script": "I was picking up paint for my own garage when a woman in a motorized cart cut me off and demanded fifty percent off a dented microwave box, insisting my navy jacket meant I worked there. I told her twice I didn't work there. She followed me down two aisles, cart squeaking, repeating that she wanted a manager. So I stopped fighting it and just walked her to the actual customer service desk, said she needs help with a price match, and left. Turns out the real employee recognized her instantly, she does this every few weeks, different store, same script, same dented box excuse. Corporate flagged her account after loss prevention pulled the footage from three locations in one month. Now every associate in that chain has her photo taped inside the register drawer. I still don't work there. I just paint my garage in peace, and apparently I'm the reason she got banned from four stores in the county.",
+      "shots": [
+        {
+          "phrase": "demanded fifty percent off a dented microwave box",
+          "query": "dented appliance box",
+          "image_url": "https://drive.google.com/uc?export=download&id=1lsYGWk8EGKpViAg79ehKEMumqSPJpdkQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1lsYGWk8EGKpViAg79ehKEMumqSPJpdkQ",
+          "media_sha256": "66a2b9e894fa0447d18ba854e798e787cbf530b53fa2f77bf11b048f261828cb",
+          "media_bytes": 1684074
+        },
+        {
+          "phrase": "insisting my navy jacket meant I worked there",
+          "query": "store employee vest",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ZRAicrEA6CtPo_69JjXSBRR7LdAxSYRx",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ZRAicrEA6CtPo_69JjXSBRR7LdAxSYRx",
+          "media_sha256": "c4e8d924c758e473dd8198a7eb44d3e19ab1f5b1de587b4a26b9b2c8c253c766",
+          "media_bytes": 1366239
+        },
+        {
+          "phrase": "followed me down two aisles",
+          "query": "hardware store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1EhT8oexPaLm6uHR7VFsveGVShprE2tyR",
+          "media_origin": "chatgpt",
+          "media_file_id": "1EhT8oexPaLm6uHR7VFsveGVShprE2tyR",
+          "media_sha256": "f3aaba79cb19ffdb4c667f019c955f8261fa882caaddcc3b6a2af7dbfb78be01",
+          "media_bytes": 1293688
+        },
+        {
+          "phrase": "walked her to the actual customer service desk",
+          "query": "customer service desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1qvXVE-beMn1Y68RHbnSV3LfJAPlCVro9",
+          "media_origin": "chatgpt",
+          "media_file_id": "1qvXVE-beMn1Y68RHbnSV3LfJAPlCVro9",
+          "media_sha256": "84924db86558e4a8fc548d80ec219ccf062178d5ca18494bf178a39325449261",
+          "media_bytes": 1175485
+        },
+        {
+          "phrase": "the real employee recognized her instantly",
+          "query": "employee name tag",
+          "image_url": "https://drive.google.com/uc?export=download&id=16ZC3fWKcHPAJ8Xmj4YDKusgc6g-NE7S3",
+          "media_origin": "chatgpt",
+          "media_file_id": "16ZC3fWKcHPAJ8Xmj4YDKusgc6g-NE7S3",
+          "media_sha256": "7f275cce32f7e528f90b6c92f49adf5dc20b0ba2b5b7dab02509c4310fd800d5",
+          "media_bytes": 957101
+        },
+        {
+          "phrase": "loss prevention pulled the footage from three locations",
+          "query": "security camera footage",
+          "image_url": "https://drive.google.com/uc?export=download&id=1qQqHc7MC8vcgKITj6pMM_Rbj6HoKZI9h",
+          "media_origin": "chatgpt",
+          "media_file_id": "1qQqHc7MC8vcgKITj6pMM_Rbj6HoKZI9h",
+          "media_sha256": "0fd29d50fdd9072580388ebfb8c919dd518724d9444ea2551e3b3d9d27c3c5b0",
+          "media_bytes": 1462547
+        },
+        {
+          "phrase": "has her photo taped inside the register drawer",
+          "query": "cash register drawer",
+          "image_url": "https://drive.google.com/uc?export=download&id=18dBlz-RqbmqM-Q9Lme1fVEhwnC8Lz2jJ",
+          "media_origin": "chatgpt",
+          "media_file_id": "18dBlz-RqbmqM-Q9Lme1fVEhwnC8Lz2jJ",
+          "media_sha256": "ac8d5946387b648daff19e244e72b9a14cdf0d6aaef0666bfc9104a42876a75d",
+          "media_bytes": 1270435
+        },
+        {
+          "phrase": "banned from four stores in the county",
+          "query": "store parking lot",
+          "image_url": "https://drive.google.com/uc?export=download&id=1eB2Ep7k5YYIBV0pKTZkkin5eyunLsJuY",
+          "media_origin": "chatgpt",
+          "media_file_id": "1eB2Ep7k5YYIBV0pKTZkkin5eyunLsJuY",
+          "media_sha256": "a630f88bcbeec58deb3fa562a50264a5b00882d6d9306ad4c4828e1e66a9696d",
+          "media_bytes": 1253453
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "fifty percent off a dented microwave box",
+          "text": "50% OFF?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "I didn't work there",
+          "text": "NOT STAFF",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "three locations in one month",
+          "text": "3 STORES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "banned from four stores",
+          "text": "BANNED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "I'm the reason",
+          "text": "CAUGHT",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "idontworkherelady",
+        "retailstory",
+        "karma",
+        "entitled",
+        "retail",
+        "pettyrevenge",
+        "reddit",
+        "redditstories",
+        "storeworker",
+        "mistakenidentity",
+        "karmaisreal",
+        "customerservice",
+        "workplacestory",
+        "truestory"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
