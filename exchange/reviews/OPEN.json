@@ -1,6 +1,47 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-17T12:27:04Z",
- "open": [],
+ "updated": "2026-11-17T12:36:29Z",
+ "open": [
+  {
+   "id": "sports_dawson_mercer_er_opens_the__dc762ce4cf",
+   "channel": "trending",
+   "slug": "sports_dawson_mercer_er_opens_the",
+   "title": "Dawson Mercer Scores Against Former Team After Long Shot",
+   "filed": "2026-11-17T12:36:29Z",
+   "request": "exchange/reviews/20261117/sports_dawson_mercer_er_opens_the__dc762ce4cf.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_dawson_mercer_er_opens_the__dc762ce4cf/sheet.jpg",
+   "answer_path": "exchange/reviews/20261117/sports_dawson_mercer_er_opens_the__dc762ce4cf.verdict.json"
+  },
+  {
+   "id": "sports_vancouver_canucks_e_first_time__c9774ff05e",
+   "channel": "trending",
+   "slug": "sports_vancouver_canucks_e_first_time",
+   "title": "Vancouver Canucks Celebrate First Win in 8 Games After On‑Ice Fight",
+   "filed": "2026-11-17T12:33:54Z",
+   "request": "exchange/reviews/20261117/sports_vancouver_canucks_e_first_time__c9774ff05e.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_vancouver_canucks_e_first_time__c9774ff05e/sheet.jpg",
+   "answer_path": "exchange/reviews/20261117/sports_vancouver_canucks_e_first_time__c9774ff05e.verdict.json"
+  },
+  {
+   "id": "sports_erik_johnson_s_on_players__8c1319fb89",
+   "channel": "trending",
+   "slug": "sports_erik_johnson_s_on_players",
+   "title": "Erik Johnson Calls Out Players Bailing Ship Midseason",
+   "filed": "2026-11-17T12:31:40Z",
+   "request": "exchange/reviews/20261117/sports_erik_johnson_s_on_players__8c1319fb89.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_erik_johnson_s_on_players__8c1319fb89/sheet.jpg",
+   "answer_path": "exchange/reviews/20261117/sports_erik_johnson_s_on_players__8c1319fb89.verdict.json"
+  },
+  {
+   "id": "sports_devon_levi_picks_up_the__18192bfb46",
+   "channel": "trending",
+   "slug": "sports_devon_levi_picks_up_the",
+   "title": "Devon Levi Explains His Sand Ritual Inspired By Gladiator 😲",
+   "filed": "2026-11-17T12:29:23Z",
+   "request": "exchange/reviews/20261117/sports_devon_levi_picks_up_the__18192bfb46.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_devon_levi_picks_up_the__18192bfb46/sheet.jpg",
+   "answer_path": "exchange/reviews/20261117/sports_devon_levi_picks_up_the__18192bfb46.verdict.json"
+  }
+ ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }
