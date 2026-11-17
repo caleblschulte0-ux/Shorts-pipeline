@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blockbuster-to-one-store__857f036d",
+  "slug": "blockbuster-to-one-store",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:25:00Z",
+  "title": "Blockbuster's 9,000-Store Empire Disappeared",
+  "hook": "Blockbuster's 9,000-store empire vanished as movies moved home.",
+  "closing": "Even giants can disappear when convenience rewires everyday habits.",
+  "question": "Did you ever rent from Blockbuster?",
+  "segments": [
+    {
+      "topic": "Blockbuster Mail Rival",
+      "say": "Netflix mail subscribers reached 12.3 million. Home delivery removed the trip that Blockbuster depended on."
+    },
+    {
+      "topic": "Blockbuster Stores Vanish",
+      "say": "Blockbuster once operated 9,000 stores. The giant's physical network became its weakness."
+    },
+    {
+      "topic": "Last Blockbuster Store",
+      "say": "Only 1 Blockbuster store remained. A global chain became a single survivor."
+    }
+  ]
+}
