@@ -1,5 +1,5 @@
 {
- "date": "2026-11-16",
+ "date": "2026-11-17",
  "format": "sports_moment",
  "want": 5,
  "dry_run": false,
@@ -8,39 +8,129 @@
    "sub": "nfl",
    "who": "nfl",
    "why": "most upvoted",
-   "post_title": "[Injury] Aidan Hutchinson Is Down After Celebrating...",
+   "post_title": "[Highlight] Packers fans rejected the Lambeau Leap from Myles Price",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1xwx8hv/injury_aidan_hutchinson_is_down_after_celebrating/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1xwx8hv/injury_aidan_hutchinson_is_down_after_celebrating",
-   "title": "Nfl: Aidan Hutchinson Gets HURT Celebrating a Play",
-   "hook": "Aidan Hutchinson injured celebrating",
+   "url": "https://www.reddit.com/r/nfl/comments/1xx37wl/highlight_packers_fans_rejected_the_lambeau_leap/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xx37wl/highlight_packers_fans_rejected_the_lambeau_leap",
+   "skipped": "too short: the post runs 8.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "Rick Carlisle: \u201cLeBron James is one of the reasons we try not to have play calls cuz he knows all of them. Yeah, he\u2019s a walking NBA basketball AI machine\u2014is what he is. So smart and so everything else",
+   "upvotes": 0,
+   "url": "https://streamable.com/ls020l",
+   "topic": "https://www.reddit.com/r/nba/comments/1xxtp2d/rick_carlisle_lebron_james_is_one_of_the_reasons",
+   "title": "Nba: Rick Carlisle Calls LeBron James a 'Walking AI Machine' \ud83e\udd16",
+   "hook": "Rick Carlisle calls LeBron an AI machine \ud83e\udd16",
    "ledger": {
     "moves": [
-     "whoa@7.33"
+     "zoom@30.77"
     ],
     "mood": null,
     "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "layout": "two_shot",
+     "reason": "two conversation faces fit one deliberate wide crop (plan refused: containment guard)",
+     "shots": [],
+     "n_subjects": 2
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: The video effectively presents a compelling quote but suffers from significant static footage."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 100
+   },
+   "video_url": "https://youtube.com/shorts/kTdZNm3STNo",
+   "ok": true,
+   "publish_at": "2026-11-18T00:00:00Z",
+   "seconds": 731,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261117-nba-rick-carlisle-calls-lebron-james-a-walking-a-e92e18eb",
+    "tiktok": "queued for 2026-11-18T00:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "baseball",
+   "why": "most upvoted",
+   "post_title": "Jacob Misiorowski is the first pitcher to win a Cy Young Award, win a World Series, and make two All-Star Games in his first two seasons!",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xtz7vr/jacob_misiorowski_is_the_first_pitcher_to_win_a/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xtz7vr/jacob_misiorowski_is_the_first_pitcher_to_win_a",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "Guy on TikTok announcing game action better, and with more passion, than most current professionals",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xtpdop/guy_on_tiktok_announcing_game_action_better_and/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xtpdop/guy_on_tiktok_announcing_game_action_better_and",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "CFB",
+   "who": "CFB",
+   "why": "most upvoted",
+   "post_title": "[Hall] Kentucky now has 3 losses. Their best win is,\u2026 LSU? LSU now has 4 losses. Their best win is\u2026 6-4 Clemson? South Carolina now has 4 losses including today to 4-6 Arkansas. These 3 are all ranked",
+   "upvotes": 0,
+   "url": "https://x.com/MikeHallHere/status/2121821438961218007?a=kPupFoJDjwGyzJX0vRs&s=19",
+   "topic": "https://www.reddit.com/r/CFB/comments/1xwvotb/hall_kentucky_now_has_3_losses_their_best_win_is",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "MMA",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "The 6 members of the Nurmagomedov crew have been sentenced to 6 months in jail for inciting Wednesday\u2019s brawl with Merab",
+   "upvotes": 0,
+   "url": "https://x.com/arielhelwani/status/2121219924848783487?a=ndxXduqCejNBzelOusg&s=46",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xv73sx/the_6_members_of_the_nurmagomedov_crew_have_been",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "soccer",
+   "why": "most upvoted",
+   "post_title": "Journalist from Kosovo presses Israeli team before their match to ask if it's fair that they get to play International football while committing war crimes",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xxbrtp/journalist_from_kosovo_presses_israeli_team/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xxbrtp/journalist_from_kosovo_presses_israeli_team",
+   "title": "Soccer: Israeli Team Refuses To Answer War Crimes Question",
+   "hook": "Israeli team avoids war crimes question \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@9.69",
+     "zoom@26.99"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible",
      "shots": [
       {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+       "mode": "stacked",
+       "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible"
       }
      ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      370,
-      0
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.0,
+       0.292
+      ]
      ]
     },
     "outro": null,
@@ -49,23 +139,16 @@
     "music": []
    },
    "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 96
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked: judge response failed schema validation",
+    "score": 14
    },
-   "video_url": "https://youtube.com/shorts/wjC-W2c79dY",
-   "ok": true,
-   "publish_at": "2026-11-17T21:00:00Z",
-   "seconds": 158,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261116-nfl-aidan-hutchinson-gets-hurt-celebrating-a-pla-6933f71f",
-    "tiktok": "queued for 2026-11-17T21:00:00Z"
-   }
+   "skipped": "showrunner_block: showrunner BLOCK: blocked: judge response failed schema validation"
   }
  ],
- "already_today": 4,
- "pool": 131,
- "already_posted": 19,
- "refused_before": 22,
+ "already_today": 0,
+ "pool": 103,
+ "already_posted": 17,
+ "refused_before": 15,
  "shipped": 1
 }
