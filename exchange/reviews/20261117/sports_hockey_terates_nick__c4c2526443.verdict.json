@@ -1,0 +1,78 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_hockey_terates_nick__c4c2526443",
+ "video_sha256": "c4c25264437b426e91c7277dec97fc36630d1e66bd8fd4dde7e03a36c0fe15e3",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-17T16:49:30Z",
+ "grades": {
+  "dimensions": {
+   "hook": 3,
+   "data_demo": 0,
+   "mascot": 4,
+   "craft": 2,
+   "pace": 2,
+   "payoff": 0
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": true,
+    "evidence": "The video claims 'Chychrun destroys Cousins on the ice' but the actual hit is not shown in the footage, only the lead-up and aftermath."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present in the video."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest static stretch is 0.0s, indicating continuous motion."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The dark fraction is 0.0, indicating no large empty dark areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear and readable."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "junk_imagery",
+   "visible_evidence": "The video's central claim of 'Chychrun destroys Cousins on the ice' is not visually demonstrated; the actual hit is missing from the footage.",
+   "root_cause": "Incorrect or incomplete footage selection for the promised 'sports moment', failing to include the key action.",
+   "repair_goal": "Replace or augment the footage in seg0 to clearly show Jakob Chychrun delivering the hit to Nick Cousins."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "The footage shows players skating and then a player on the ice, but the promised hit itself is absent, failing to prove the claim."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "The footage shows player reactions and Cousins on the ice, which are specific to the event, but still does not show the core 'destruction' action."
+   }
+  ],
+  "one_line": "The video promises a massive hockey hit but fails to show the actual impact, only presenting the lead-up and aftermath.",
+  "problems": [
+   "The crucial moment of Jakob Chychrun's hit on Nick Cousins is entirely missing from the video.",
+   "The video relies on descriptive text rather than visual demonstration for its central claim, which is a critical failure for a 'sports moment' format.",
+   "The absence of the core action significantly weakens both the hook's promise and the video's payoff."
+  ],
+  "fixes": [
+   "Integrate clear footage of Jakob Chychrun delivering the hit to Nick Cousins into the video, ideally in the hook or early segments.",
+   "Ensure the visual content directly and unequivocally demonstrates the claim made in the on-screen text.",
+   "Re-edit the sequence to build up to and clearly show the impact, followed by the reactions, to create a compelling sports moment."
+  ]
+ }
+}

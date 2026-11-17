@@ -1,0 +1,68 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_collegebasketball_ration_three__3e1cb59398",
+ "video_sha256": "3e1cb5939819a57b9237d20d34a11b152113eb49bacdf995c962b8fd9fccaf5b",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-17T16:49:00Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 2,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": ""
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": ""
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": ""
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Motion facts show longest_static_s is 0.0s."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames show full game footage, no large empty areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly readable against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "demonstration_clarity",
+   "visible_evidence": "The video title promises 'Miles Mayfield Makes a COSTLY Foul After Tying Shot', but the actual foul is not shown in the footage. The video focuses on the score and Mayfield's reaction.",
+   "root_cause": "The selected footage does not fully capture the action described in the title, prioritizing the aftermath and realization over the specific foul.",
+   "repair_goal": "Replace or edit the footage to clearly show Miles Mayfield committing the costly foul, or revise the title and hook to accurately reflect only what is shown (e.g., 'Miles Mayfield forgot the score and reacted')."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Real game footage directly showing the sports moment and player reaction."
+   }
+  ],
+  "one_line": "A basketball player forgets the score after a tying shot, leading to a costly mistake that is implied but not fully shown.",
+  "problems": [
+   "The core action of the 'costly foul' mentioned in the title is not explicitly shown in the footage, only implied by the narrative and player reaction."
+  ],
+  "fixes": [
+   "Source footage that clearly shows the foul being committed.",
+   "Alternatively, adjust the video title and on-screen text to focus solely on Miles Mayfield forgetting the score and his reaction, if footage of the foul is unavailable."
+  ]
+ }
+}
