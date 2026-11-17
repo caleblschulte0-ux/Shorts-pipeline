@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-17T15:55:22Z",
+ "updated": "2026-11-17T22:22:48Z",
  "open": [
+  {
+   "id": "chatgpt-fastest-adoption-ever__467b2734",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-17T22:22:48Z",
+   "why": [
+    "premise: brain: The claim hinges on an unverified adoption timeframe and lacks a single, concrete, verifiable number to substantiate the reversal of expectations."
+   ],
+   "request": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.request.json",
+   "answer_path": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.answer.json"
+  },
+  {
+   "id": "lake-mead-water-crisis__4529ddf6",
+   "slug": "lake-mead-water-crisis",
+   "filed": "2026-11-17T22:22:48Z",
+   "why": [
+    "premise: brain: The premise reports reservoir decline but does not reverse a specific viewer expectation beyond the statistic itself."
+   ],
+   "request": "exchange/rewrites/20261117/lake-mead-water-crisis__4529ddf6.request.json",
+   "answer_path": "exchange/rewrites/20261117/lake-mead-water-crisis__4529ddf6.answer.json"
+  },
   {
    "id": "us-height-ranking-fall__7d1b012d",
    "slug": "us-height-ranking-fall",
