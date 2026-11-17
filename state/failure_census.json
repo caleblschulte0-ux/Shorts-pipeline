@@ -1,40 +1,41 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "junk_imagery": {
-   "count": 4,
+  "dead_air": {
+   "count": 3,
    "stories": {
-    "sports_damian_lillard_bout_it_then": 1,
-    "sports_marcus_smart_h_and_whiffs": 1,
-    "sports_lauren_shehadi_s_at_the_mlb": 1,
-    "sports_john_calipari_s_recruiting": 1
+    "sports_justin_jefferson_son_speaking": 1,
+    "sports_nba__the_reasons": 1,
+    "sports_erik_johnson_s_on_players": 1
    },
    "timestamps": [
-    "2026-11-15T12:19:15+00:00",
-    "2026-11-15T12:21:49+00:00",
-    "2026-11-15T12:24:12+00:00",
-    "2026-11-15T13:03:23+00:00"
+    "2026-11-16T13:49:19+00:00",
+    "2026-11-17T11:43:06+00:00",
+    "2026-11-17T19:48:49+00:00"
    ],
    "examples": [
-    "junk_imagery: hook@2.2 and mid0: the crop drifts right onto empty court and the Moda Center logo while Lillard and the defender are half out of frame at the left edge, so the setup to the shot is crop",
-    "junk_imagery: The crop keeps cutting off the people who matter. At hook@1.5 and hook@2.2, Smart (red #36) is half out of frame at the left edge while the shot sits on a Warriors player and the referee",
-    "junk_imagery: mid1 and mid2 are a grainy phone recording from the balcony. Two backs of heads fill the lower half and the stage is a blur in the distance, so the speaker is cut away while the frame si"
+    "dead_air: Motion facts show `held_s`: 8.58s, indicating long stretches of minimal meaningful movement, even if no single frame is perfectly static for 4+ seconds.",
+    "dead_air: Motion facts show `held_s` is 7.5s, and the visual content of the speakers appears static for over 5 seconds between mid0 and mid1, and similar durations in subsequent segments.",
+    "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text."
    ],
    "recurred_after_fix": false
   },
-  "other": {
-   "count": 2,
+  "junk_imagery": {
+   "count": 3,
    "stories": {
-    "sports_damian_lillard_bout_it_then": 1,
-    "sports_team_venezuela_rld_baseball": 1
+    "sports_soccer_israeli_team": 1,
+    "sports_collegebasketball_ration_three": 1,
+    "sports_hockey_terates_nick": 1
    },
    "timestamps": [
-    "2026-11-15T12:19:15+00:00",
-    "2026-11-15T12:39:35+00:00"
+    "2026-11-17T11:56:43+00:00",
+    "2026-11-17T16:49:30+00:00",
+    "2026-11-17T16:49:30+00:00"
    ],
    "examples": [
-    "unreadable: hook@0.3 shows another channel's burned-in captions garbled ('HETHE SHOT/AVT'), and in mid3 'WAS GOING TO' sits on top of 'LET IT FLY', both stacked right above our line",
-    "unreadable: At mid4 and mid5 our line 'Venezuela finally got its WBC title' is printed directly over the footage's own subtitles ('ng live Venezuela Champions of th\u2026', 'because we are world champions\u2026"
+    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+    "junk_imagery: The video claims 'Chychrun destroys Cousins on the ice' but the actual hit is not shown in the footage, only the lead-up and aftermath."
    ],
    "recurred_after_fix": false
   },
@@ -53,41 +54,47 @@
    ],
    "recurred_after_fix": false
   },
-  "empty_void": {
-   "count": 1,
+  "decorative_mascot": {
+   "count": 2,
    "stories": {
-    "sports_lauren_shehadi_s_at_the_mlb": 1
+    "sports_soccer_israeli_team": 1,
+    "sports_collegebasketball_ration_three": 1
    },
    "timestamps": [
-    "2026-11-15T12:24:12+00:00"
+    "2026-11-17T11:56:43+00:00",
+    "2026-11-17T16:49:30+00:00"
    ],
    "examples": [
-    "empty_void: hook@0.3 to mid0 and mid4 to payoff@-0.4: the footage is a thin letterbox strip, and the top third is dark or blurred filler. Measured dark_fraction is 0.333, so about a third of the frame"
+    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty"
    ],
    "recurred_after_fix": false
   },
-  "dead_air": {
-   "count": 1,
+  "bare_number": {
+   "count": 2,
    "stories": {
-    "sports_justin_jefferson_son_speaking": 1
+    "sports_soccer_israeli_team": 1,
+    "sports_collegebasketball_ration_three": 1
    },
    "timestamps": [
-    "2026-11-16T13:49:19+00:00"
+    "2026-11-17T11:56:43+00:00",
+    "2026-11-17T16:49:30+00:00"
    ],
    "examples": [
-    "dead_air: Motion facts show `held_s`: 8.58s, indicating long stretches of minimal meaningful movement, even if no single frame is perfectly static for 4+ seconds."
+    "malformed_judge_response: checks.bare_number_card.evidence missing or empty",
+    "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 4,
    "min": 0,
    "max": 4
   },
   "data_demo": {
-   "median": 3,
+   "median": 5,
    "min": 0,
    "max": 5
   },
@@ -97,7 +104,7 @@
    "max": 4
   },
   "craft": {
-   "median": 2,
+   "median": 3,
    "min": 0,
    "max": 3
   },
@@ -107,7 +114,7 @@
    "max": 2
   },
   "payoff": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -118,15 +125,6 @@
   }
  },
  "scores": [
-  70,
-  66,
-  61,
-  62,
-  70,
-  75,
-  74,
-  66,
-  61,
   78,
   14,
   14,
@@ -137,6 +135,15 @@
   100,
   100,
   95,
-  96
+  96,
+  83,
+  100,
+  14,
+  14,
+  62,
+  100,
+  74,
+  100,
+  100
  ]
 }
