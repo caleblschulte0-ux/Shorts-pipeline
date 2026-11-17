@@ -1,0 +1,93 @@
+{
+ "date": "2026-11-17",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Mustapha is flagged for unsportsmanlike conduct for doing \"what the safety is supposed to do\" according to Tom Brady",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xxatbi/highlight_mustapha_is_flagged_for_unsportsmanlike/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xxatbi/highlight_mustapha_is_flagged_for_unsportsmanlike",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Damian Lillard thinks about it, then decides to shoot it in McCain's face",
+   "upvotes": 0,
+   "url": "https://streamable.com/g9x91f",
+   "topic": "https://www.reddit.com/r/nba/comments/1xt9u3w/highlight_damian_lillard_thinks_about_it_then",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "baseball",
+   "who": "baseball",
+   "why": "most upvoted",
+   "post_title": "Day 2 of Predicting the MLB Season with a Marble Race - 29th Place Simulation",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xuzzz2/day_2_of_predicting_the_mlb_season_with_a_marble/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xuzzz2/day_2_of_predicting_the_mlb_season_with_a_marble",
+   "skipped": "not English (English p=0.26, 50% English words)"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "[WSH-OTT] Chychrun absolutely obliterates Nick Cousins",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xt67bh/wshott_chychrun_absolutely_obliterates_nick/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xt67bh/wshott_chychrun_absolutely_obliterates_nick",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "CollegeBasketball",
+   "why": "most upvoted",
+   "post_title": "[Highlight] UNC Asheville makes a desperation three to tie it, but they forget the score and commit an intentional foul to lose by 1",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xwh32l/highlight_unc_asheville_makes_a_desperation_three/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xwh32l/highlight_unc_asheville_makes_a_desperation_three",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "CFB",
+   "who": "CFB",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Ohio @ Miami (OH): Miami of Ohio receives an unsportsmanlike conduct penalty because the scoreboard operator put photos of field goal posts on the video board in order to confuse the Bobca",
+   "upvotes": 0,
+   "url": "https://streamable.com/6psjto",
+   "topic": "https://www.reddit.com/r/CFB/comments/1xt6z3x/highlight_ohio_miami_oh_miami_of_ohio_receives_an",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "MMA",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "Uncrowned (@uncrownedcombat): Merab Dvalishvili reveals he was jumped by Usman Nurmagomedov and multiple other people in Abu Dhabi \ud83d\ude33",
+   "upvotes": 0,
+   "url": "https://x.com/uncrownedcombat/status/2120550130478883113?a=tey0ftQxxCXS4dffSXs&s=46",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xtm5wg/uncrowned_uncrownedcombat_merab_dvalishvili",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "sports",
+   "who": "sports",
+   "why": "most upvoted",
+   "post_title": "Absurd scenes as Blackhawks goalie Spencer Knight gets his stick wedged between the boards behind the goal, and the Jets swoop in for the score.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xwqord/absurd_scenes_as_blackhawks_goalie_spencer_knight/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xwqord/absurd_scenes_as_blackhawks_goalie_spencer_knight",
+   "skipped": "author: no title"
+  }
+ ],
+ "already_today": 1,
+ "pool": 115,
+ "already_posted": 18,
+ "refused_before": 23,
+ "shipped": 0
+}
