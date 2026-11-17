@@ -1,0 +1,67 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_dawson_mercer_er_opens_the__dc762ce4cf",
+ "video_sha256": "dc762ce4cfcc5d473215a01c75fe11d894d31335e17aab8090328381fc203846",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-17T17:49:42Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All frames show real hockey game footage."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "The '1-0' text appears during a celebration, not as a bare number card."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Motion facts show longest_static_s is 0.0s."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are filled with game action; dark_fraction is 0.0."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clearly readable and not obscured."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid0",
+   "index": 4,
+   "failure_class": "craft",
+   "visible_evidence": "Text overlays 'HE'LL GO TO' and 'UP ON THE' are fragmented and incomplete phrases across mid0 and mid1.",
+   "root_cause": "Text generation for build-up phrases is too short or cut off, leading to incomplete sentences.",
+   "repair_goal": "Ensure on-screen text forms complete, coherent phrases or full sentences."
+  },
+  "depictions": [
+   {
+    "id": "mid_sequence",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The entire sequence of game footage serves as a bespoke depiction of the sports moment, clearly showing the goal and celebration."
+   }
+  ],
+  "one_line": "A well-executed sports highlight showing Mercer's goal and celebration.",
+  "problems": [
+   "Fragmented text overlays ('HE'LL GO TO', 'UP ON THE') make some phrases incomplete during the action build-up."
+  ],
+  "fixes": [
+   "Ensure all on-screen text overlays form complete and coherent phrases or sentences."
+  ]
+ }
+}
