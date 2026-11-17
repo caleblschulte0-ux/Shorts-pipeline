@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "betelgeuse-great-dimming__6a0c802e",
+  "slug": "betelgeuse-great-dimming",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:20:00Z",
+  "title": "Betelgeuse Fell To 36% Brightness—Then Survived",
+  "hook": "Betelgeuse dropped to 36%, but dust—not death—caused the blackout.",
+  "closing": "A dramatic dimming can mean blocked light, not a star's final explosion.",
+  "question": "Would you expect a supernova?",
+  "segments": [
+    {
+      "topic": "Betelgeuse Brightness",
+      "say": "Betelgeuse fell to 36 percent of normal brightness. The plunge looked like a star nearing its end."
+    },
+    {
+      "topic": "Betelgeuse Dust",
+      "say": "Dust obscured 50 percent of Betelgeuse. A blocked view looked like a dying star."
+    },
+    {
+      "topic": "Betelgeuse Real Death",
+      "say": "Betelgeuse's real explosion remains an estimated 100,000 years away. The false alarm ended much sooner."
+    }
+  ]
+}
