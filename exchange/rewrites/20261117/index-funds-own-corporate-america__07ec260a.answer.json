@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "index-funds-own-corporate-america__07ec260a",
+  "slug": "index-funds-own-corporate-america",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:20:00Z",
+  "title": "Index Funds Now Control 52% Of The Stock Market",
+  "hook": "Index funds quietly grew from 2% to 52% of the market.",
+  "closing": "Your index fund owns the shares, but giant managers cast the votes.",
+  "question": "Who votes your index shares?",
+  "segments": [
+    {
+      "topic": "Index Fund Control",
+      "say": "Index funds rose from 2 percent in 2000 to 52 percent in 2024. Passive investing became the market's majority owner."
+    },
+    {
+      "topic": "Index Firm Ownership",
+      "say": "BlackRock, Vanguard, and State Street own 22 percent of a typical large company. The largest active manager holds only 4 percent."
+    },
+    {
+      "topic": "Index Fund Votes",
+      "say": "Vanguard alone casts 9 percent of votes at major shareholder meetings. Passive ownership still creates concentrated power."
+    }
+  ]
+}
