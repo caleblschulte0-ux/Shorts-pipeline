@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261116",
-  "generated_at": "2026-11-16T23:31:03Z",
+  "generated_at": "2026-11-17T00:31:03Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 53.76,
+          "days": 53.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 52.76,
+          "days": 52.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1700,10 +1700,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "1e5c4fb",
-    "commits_since": "2026-11-15",
+    "head": "ac9e5c1",
+    "commits_since": "2026-11-16",
     "commit_count": 50,
     "commits": [
+      "ac9e5c1 claim: mailbox verdicts 2026-11-16T23:47Z [skip ci]",
+      "1000d4b watchdog: chatgpt task verdicts 20261116 [skip ci]",
+      "9efafe3 retro: brief + triage for 20261116 [skip ci]",
       "1e5c4fb comments: saved viewer comments [skip ci]",
       "1087066 watchdog: chatgpt task verdicts 20261116 [skip ci]",
       "f7ab1b1 explainer: update posted log + analytics [skip ci]",
@@ -1740,10 +1743,7 @@
       "4d3e823 claim: mailbox verdicts 2026-11-16T14:48Z [skip ci]",
       "e8cf4b5 exchange: phase B applied for 20261116 [skip ci]",
       "b0a79b1 explainer: update posted log + analytics [skip ci]",
-      "2f0730f explainer: posted left-brain-right-brain-myth [skip ci]",
-      "da391f6 explainer: claim upload slot left-brain-right-brain-myth [skip ci]",
-      "bdedc1f watchdog: chatgpt task verdicts 20261116 [skip ci]",
-      "3d05b38 explainer: update posted log + analytics [skip ci]"
+      "2f0730f explainer: posted left-brain-right-brain-myth [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
