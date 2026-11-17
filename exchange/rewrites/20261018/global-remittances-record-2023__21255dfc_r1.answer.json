@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "global-remittances-record-2023__21255dfc_r1",
+  "slug": "global-remittances-record-2023",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:25:00Z",
+  "title": "Remittances Reached $685 Billion—More Than Foreign Investment",
+  "hook": "Workers sent $685 billion home, outweighing foreign investment.",
+  "closing": "Workers' transfers can support families more than the investment headlines suggest.",
+  "question": "Have you ever sent money home?",
+  "segments": [
+    {
+      "topic": "Remittance Total",
+      "say": "Remittances reached $685 billion. Families rely on workers sending money across borders."
+    },
+    {
+      "topic": "Remittance Recipients",
+      "say": "India received $120 billion. One country alone captured a huge share of the flow."
+    },
+    {
+      "topic": "Remittance Investment Gap",
+      "say": "Remittances exceeded foreign investment by $270 billion. Workers' paychecks outweighed big-business money."
+    }
+  ]
+}
