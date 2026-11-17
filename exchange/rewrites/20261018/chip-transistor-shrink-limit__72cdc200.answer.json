@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chip-transistor-shrink-limit__72cdc200",
+  "slug": "chip-transistor-shrink-limit",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:25:00Z",
+  "title": "Phone Chips Reached 19 Billion Transistors—Then Doubling Slowed",
+  "hook": "Phone chips reached 19 billion transistors, but progress is slowing.",
+  "closing": "Future phones can improve, but each transistor leap now takes longer.",
+  "question": "Does your phone feel faster?",
+  "segments": [
+    {
+      "topic": "Chip Transistor Count",
+      "say": "A phone chip reached 19 billion transistors. Tiny switches now pack enormous computing power."
+    },
+    {
+      "topic": "Chip Doubling Speed",
+      "say": "Chip transistor doubling now takes about 3 years. The old pace is slipping."
+    },
+    {
+      "topic": "Chip Manufacturing Size",
+      "say": "Modern chip manufacturing reached 2 nanometers. Shrinking further becomes harder as components approach physical limits."
+    }
+  ]
+}
