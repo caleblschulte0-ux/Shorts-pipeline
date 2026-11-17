@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-17T13:49:51Z",
+ "updated": "2026-11-17T15:55:22Z",
  "open": [
+  {
+   "id": "us-height-ranking-fall__7d1b012d",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-17T15:55:22Z",
+   "why": [
+    "premise: brain: The premise relies on multiple numbers (1914 and 36) rather than a single consequential, verifiable figure, failing the one-number rule."
+   ],
+   "request": "exchange/rewrites/20261117/us-height-ranking-fall__7d1b012d.request.json",
+   "answer_path": "exchange/rewrites/20261117/us-height-ranking-fall__7d1b012d.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__19dac2dc",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-11-17T15:55:21Z",
+   "why": [
+    "premise: brain: Unclear reversal of a specific viewer expectation; premise is ambiguous."
+   ],
+   "request": "exchange/rewrites/20261117/third-interstellar-visitor__19dac2dc.request.json",
+   "answer_path": "exchange/rewrites/20261117/third-interstellar-visitor__19dac2dc.answer.json"
+  },
   {
    "id": "autism-diagnosis-rate-rise__d4ebe18e",
    "slug": "autism-diagnosis-rate-rise",
@@ -102,16 +122,6 @@
    ],
    "request": "exchange/rewrites/20261116/english-internet-share-decline__312d565d_r1.request.json",
    "answer_path": "exchange/rewrites/20261116/english-internet-share-decline__312d565d_r1.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__15b63969",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-11-16T12:04:28Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and does not hinge on a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.request.json",
-   "answer_path": "exchange/rewrites/20261116/third-interstellar-visitor__15b63969.answer.json"
   },
   {
    "id": "robotic-surgery-doubled__31163b79",
@@ -594,16 +604,6 @@
    ],
    "request": "exchange/rewrites/20261009/marathon-super-shoes-record-pace__129ca870.request.json",
    "answer_path": "exchange/rewrites/20261009/marathon-super-shoes-record-pace__129ca870.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__eb3dbf7e",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-10-09T13:18:04Z",
-   "why": [
-    "premise: brain: The claim relies on a vague reversal and a single number (36) without a clear, verifiable counter‑expectation, making the premise weak."
-   ],
-   "request": "exchange/rewrites/20261009/us-height-ranking-fall__eb3dbf7e.request.json",
-   "answer_path": "exchange/rewrites/20261009/us-height-ranking-fall__eb3dbf7e.answer.json"
   },
   {
    "id": "landline-death-robocall-boom__8f868915_r1",
