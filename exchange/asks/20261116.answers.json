@@ -90,6 +90,81 @@
       "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The undefined 30-point claim lacks a clearly verifiable metric and does not establish a concrete expectation reversal.\"}",
       "by": "chatgpt",
       "at": "2026-11-17T12:18:00Z"
+    },
+    "13c266dcd1c8cc6e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "f03f2b5c9688fa14": {
+      "answer": "{\"hook\":\"Vinyl earned two and a half times CD revenue in 2022.\",\"closing\":\"Streaming dominates music money, but vinyl proves listeners still value something tangible.\",\"question\":\"Do you still own a CD?\",\"segments\":[{\"topic\":\"Vinyl Records Revenue\",\"say\":\"Vinyl earned two and a half times CD revenue in 2022. Physical music buyers clearly favored records.\"},{\"topic\":\"Vinyl Records Sold\",\"say\":\"Vinyl sold forty-one million records, beating CDs by count. Listeners still wanted music they could hold.\"},{\"topic\":\"America Music Streaming\",\"say\":\"Streaming captured 84 percent of America's music revenue. Vinyl's comeback remained a small piece of a digital market.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "8789603d4e91fc06": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the glamorous Mars-trip expectation with a consequential, specific 30% hip-bone loss.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "724a21330f5af918": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation of steady aging by showing later muscle loss can accelerate to 18% per decade.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "0d48053134a54100": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that online chess was a short-lived fad with the consequential 200 million membership figure.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "8dcd1b391eee6613": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation that a 5% holdout is harmless by tying conversion errors to a concrete safety consequence.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "33efddf365e7db36": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise directly overturns the expectation that the men's final draws more viewers, anchored by 18.9 million.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "64fd96ed2a30d4b1": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "133c49ee8d32836f": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that extinction is diffuse by attributing 90 frog-species losses to one fungus.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "b45c03f8d1e8c23e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "6437e5c193932bc7": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise states a dramatic price drop but does not clearly overturn a specific expectation the viewer already holds.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "fc41ea1e52621735": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise reports reservoir decline but does not reverse a specific viewer expectation beyond the statistic itself.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "1a2c2021d767ce49": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "1b8faccb1d3e0ab8": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
+    },
+    "3cdfaef588cd44b5": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-17T12:24:00Z"
     }
   }
 }
