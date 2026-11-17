@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lab-grown-diamond-price-collapse__e51f51ef",
+  "slug": "lab-grown-diamond-price-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:20:00Z",
+  "title": "A $4,200 Diamond's Lab Twin Now Costs $380",
+  "hook": "The same-looking diamond now costs $380 instead of $4,200.",
+  "closing": "When identical-looking stones diverge this much, buyers start questioning what rarity is worth.",
+  "question": "Natural or lab-grown?",
+  "segments": [
+    {
+      "topic": "Diamond Price Collapse",
+      "say": "In 2023, a lab-grown diamond cost $1,400. The price halved in one year, then nearly halved again."
+    },
+    {
+      "topic": "Diamond Price Gap",
+      "say": "A natural one-carat diamond costs $4,200; a lab-grown one costs $380. That is about eleven times less."
+    },
+    {
+      "topic": "Diamond Ring Share",
+      "say": "By 2024, 47 percent of US engagement rings used lab-grown centers. In 2018, only 3 percent did."
+    }
+  ]
+}
