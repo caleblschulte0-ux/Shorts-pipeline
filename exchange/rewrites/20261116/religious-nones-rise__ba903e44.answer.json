@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "religious-nones-rise__ba903e44",
+  "slug": "religious-nones-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-17T12:25:00Z",
+  "title": "No Religion Now Covers 28% Of Americans—More Than Catholics",
+  "hook": "No religion now describes 28% of Americans, passing Catholics.",
+  "closing": "Generational replacement could reshape churches, communities, and public life.",
+  "question": "Do you consider yourself religious?",
+  "segments": [
+    {
+      "topic": "Religion Decline",
+      "say": "No religious affiliation reached 29 percent. What was once unusual has become mainstream."
+    },
+    {
+      "topic": "Religion Generations",
+      "say": "Among millennials, 36 percent report no religion. Younger adults are driving the shift."
+    },
+    {
+      "topic": "Religion Today",
+      "say": "Unaffiliated adults now make up 28 percent. That puts no religion ahead of Catholicism."
+    }
+  ]
+}
