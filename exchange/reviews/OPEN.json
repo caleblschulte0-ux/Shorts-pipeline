@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-11-17T18:48:46Z",
+ "updated": "2026-11-17T19:48:59Z",
  "open": [
-  {
-   "id": "sports_vancouver_canucks_e_first_time__c9774ff05e",
-   "channel": "trending",
-   "slug": "sports_vancouver_canucks_e_first_time",
-   "title": "Vancouver Canucks Celebrate First Win in 8 Games After On‑Ice Fight",
-   "filed": "2026-11-17T12:33:54Z",
-   "request": "exchange/reviews/20261117/sports_vancouver_canucks_e_first_time__c9774ff05e.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_vancouver_canucks_e_first_time__c9774ff05e/sheet.jpg",
-   "answer_path": "exchange/reviews/20261117/sports_vancouver_canucks_e_first_time__c9774ff05e.verdict.json"
-  },
-  {
-   "id": "sports_erik_johnson_s_on_players__8c1319fb89",
-   "channel": "trending",
-   "slug": "sports_erik_johnson_s_on_players",
-   "title": "Erik Johnson Calls Out Players Bailing Ship Midseason",
-   "filed": "2026-11-17T12:31:40Z",
-   "request": "exchange/reviews/20261117/sports_erik_johnson_s_on_players__8c1319fb89.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261117/sports_erik_johnson_s_on_players__8c1319fb89/sheet.jpg",
-   "answer_path": "exchange/reviews/20261117/sports_erik_johnson_s_on_players__8c1319fb89.verdict.json"
-  },
   {
    "id": "sports_devon_levi_picks_up_the__18192bfb46",
    "channel": "trending",

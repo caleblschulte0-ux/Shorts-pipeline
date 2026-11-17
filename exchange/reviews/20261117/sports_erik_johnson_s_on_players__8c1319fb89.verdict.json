@@ -1,0 +1,69 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sports_erik_johnson_s_on_players__8c1319fb89",
+ "video_sha256": "8c1319fb89f1582c1ce608bc00c725f2870ace1316ef8652c645179992a760d8",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-11-17T19:48:49Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 4,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Footage shows Erik Johnson speaking, matching the title."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot is present in any frame."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No bare number cards are present; text provides context for the interview."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frame is filled by the interview subject and blurred background, no large dead/black areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All on-screen text is clear and readable against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "mid1",
+   "index": 1,
+   "failure_class": "dead_air",
+   "visible_evidence": "The video shows Erik Johnson speaking with minimal changes in expression or camera angle for extended periods (e.g., from t=9.43s to t=37.13s), with only the lower third text updating.",
+   "root_cause": "Lack of dynamic visual changes or cuts within the interview segment, leading to a static presentation despite the speaker's activity.",
+   "repair_goal": "Introduce more dynamic cuts, zooms, or visual elements to break up the long static talking head shot and maintain viewer engagement."
+  },
+  "depictions": [
+   {
+    "id": "mid0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "Direct footage of the subject speaking, fulfilling the 'sports moment' format."
+   }
+  ],
+  "one_line": "The video effectively presents Erik Johnson's interview but suffers from long static visual periods.",
+  "problems": [
+   "The visual presentation is too static for extended periods, particularly the talking head shot with minimal cuts or dynamic elements.",
+   "The pace feels slow due to the lack of visual variation over long stretches."
+  ],
+  "fixes": [
+   "Incorporate more dynamic camera work (zooms, different angles) or B-roll footage to break up the long talking head segment.",
+   "Ensure text updates are accompanied by more significant visual changes to maintain engagement."
+  ]
+ }
+}
