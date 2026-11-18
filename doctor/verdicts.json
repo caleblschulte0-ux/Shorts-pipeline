@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261113",
+  "updated": "20261118",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -546,11 +546,16 @@
       "commit": "f61ef2b"
     },
     "87d632368528": {
-      "verdict": "later",
-      "date": "20260818",
-      "because": "Confirmed real (verified against make_reddit_story.py:71-87, base._fetch_image, and the 3 blocked showrunner verdicts from 08-16) but a reliable pre-render semantic/OCR gate needs an actual vision/OCR dependency chosen through the engines/ checklist (CPU-viable, pinned model, license) before it can be built responsibly. A shallow heuristic (e.g. text-density only) would create a second gate that can disagree with the sovereign showrunner, which already fails closed on exactly these four failure modes -- nothing bad has shipped, the cost is wasted renders, not editorial quality. Revisit once an OCR/vision engine is registered with a documented consumer plan.",
-      "history": [],
-      "revisit_after": "20260917"
+      "verdict": "not_doing",
+      "date": "20261118",
+      "because": "Triage 2026-11-18. The renderer this gate would sit in front of is retired: config/channel_registry.json marks trending's reddit_story (and graph_race, text_card) 'retired' since the 2026-10-11 switch to sports_moment, whose footage is the clip itself and requests no shot media. There is no longer a Reddit shot pipeline for a pre-render semantic/OCR gate to protect, and the sovereign showrunner already fails closed on the four failure modes this finding listed. If reddit_story is ever un-retired, the engines/ checklist (CPU-viable, pinned, licensed OCR/vision) is still the prerequisite named in the 08-18 park.",
+      "history": [
+        {
+          "verdict": "later",
+          "date": "20260818",
+          "because": "Confirmed real (verified against make_reddit_story.py:71-87, base._fetch_image, and the 3 blocked showrunner verdicts from 08-16) but a reliable pre-render semantic/OCR gate needs an actual vision/OCR dependency chosen through the engines/ checklist (CPU-viable, pinned model, license) before it can be built responsibly. A shallow heuristic (e.g. text-density only) would create a second gate that can disagree with the sovereign showrunner, which already fails closed on exactly these four failure modes -- nothing bad has shipped, the cost is wasted renders, not editorial quality. Revisit once an OCR/vision engine is registered with a documented consumer plan."
+        }
+      ]
     },
     "8b6949ab0573": {
       "verdict": "done",
@@ -681,8 +686,8 @@
     },
     "aaeb12de3ebd": {
       "verdict": "in_progress",
-      "date": "20261111",
-      "because": "Triage 2026-11-11. Delivery WAS restored (explainer 4/4 on 10-29, 10-30, 10-31, 11-05, 11-06) and is dark again since 11-08 for a cause the finding predicted could not be localized: every text brain died at once \u2014 Groq key refused (HTTP 403, state/credentials.json 11-10), Claude subscription at its weekly limit, Gemini 429 by the second story \u2014 so no scene could be drawn or verified and the gate held everything; all five explainer runs on 11-09/11-10 ended red at '0 videos reached the channel' with no cause named. The instrumentation half is built today: daily_alarm reads the credential heartbeat, raises credential_dead_<name>/credential_limited_<name> with the exact secret to replace, and no_posts_<channel> cites the dead brain (tests/test_daily_alarm.py TestADeadBrainSaysSo); credential_check now classifies a weekly limit as LIMITED not DEAD. Stays in_progress until the operator replaces GROQ_API_KEY and the channel posts 4/4 again; the topic-test readout stays frozen until then.",
+      "date": "20261118",
+      "because": "Triage 2026-11-18. Delivery is back but not steady: explainer posted 4/5/4/4 on 11-12..11-15, 2 on 11-16, 0 on 11-17 (state/explainer_runs.json: six runs that day each held every queued story - editorial_hold ~45, not_current ~29 - and posted nothing while CLAUDE_CODE_OAUTH_TOKEN sat at its weekly limit and GROQ_API_KEY was still refused with HTTP 403, state/credentials.json 2026-11-17T21:41Z), then 2 by 03:25 UTC on 11-18, ninety minutes after the subscription reset. The instrumentation half is done; the bottleneck is brain budget, and the exact operator action is unchanged and already alarmed daily as credential_dead_groq: mint a key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Closes when the channel posts 4/4 for a run of days with that key live.",
       "history": [
         {
           "verdict": "doing",
@@ -693,6 +698,11 @@
           "verdict": "in_progress",
           "date": "20260824",
           "because": "The delivery restoration is built and merging: PR #294 fixed the run-completion cascade (cutout circuit breaker), PR #305 fixed what the showrunner blocks (mascot anchoring clamp, geo scene as a real demonstration, churn joints: 48h rotation window, persisted scene_plans, ledger problems/fixes, showrunner_starving_the_slate alarm), PR #306 wires the exemplar/reject library and failure census into production. A proving render of the most-blocked slug is running now; the topic-test readout stays frozen until the channel posts on cadence again."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20261111",
+          "because": "Triage 2026-11-11. Delivery WAS restored (explainer 4/4 on 10-29, 10-30, 10-31, 11-05, 11-06) and is dark again since 11-08 for a cause the finding predicted could not be localized: every text brain died at once \u2014 Groq key refused (HTTP 403, state/credentials.json 11-10), Claude subscription at its weekly limit, Gemini 429 by the second story \u2014 so no scene could be drawn or verified and the gate held everything; all five explainer runs on 11-09/11-10 ended red at '0 videos reached the channel' with no cause named. The instrumentation half is built today: daily_alarm reads the credential heartbeat, raises credential_dead_<name>/credential_limited_<name> with the exact secret to replace, and no_posts_<channel> cites the dead brain (tests/test_daily_alarm.py TestADeadBrainSaysSo); credential_check now classifies a weekly limit as LIMITED not DEAD. Stays in_progress until the operator replaces GROQ_API_KEY and the channel posts 4/4 again; the topic-test readout stays frozen until then."
         }
       ]
     },
