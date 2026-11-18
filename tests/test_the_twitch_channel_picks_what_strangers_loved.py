@@ -98,7 +98,7 @@ class ASearchChannelPostsNamesPeopleSearch(unittest.TestCase):
         i = SRC.index("for c in _proven_pool(clip_edit, spec):")
         block = SRC[i - 600:i + 400]
         self.assertIn("_followed", block)
-        self.assertIn('!= "r/LivestreamFail"', block)
+        self.assertIn('("r/LivestreamFail", "favored game")', block)
 
     def test_a_chart_clip_gets_no_free_pass_on_the_core_penalty(self):
         i = SRC.index("def _fit(ch, c=None):")
@@ -126,6 +126,50 @@ class PostItBeforeTheOtherClippers(unittest.TestCase):
         block = SRC[i:i + 2400]
         self.assertLess(block.index('c["age_true_h"] = age'),
                         block.index("age = min(age or 24.0, 24.0)"))
+
+
+class GTASixIsFavored(unittest.TestCase):
+    """Operator, 2026-11-18: "Favor GTA 6 clips"."""
+
+    def test_a_gta_six_clip_is_recognised(self):
+        self.assertIn("Grand Theft Auto VI", rt.FAVOR_GAMES)
+        for t in ("xQc's first GTA 6 heist", "GTA VI police chase",
+                  "Grand Theft Auto VI is insane"):
+            self.assertTrue(rt._favored({"title": t}, set()), t)
+        self.assertFalse(rt._favored({"title": "GTA 5 RP moment"}, set()))
+        self.assertTrue(rt._favored({"title": "x", "game_id": "99"},
+                                    {"99"}))
+
+    def test_its_chart_joins_from_any_streamer(self):
+        class CE:
+            def helix_clips(self, ids):
+                return []
+
+            def top_by_category(self, ids, days=2, top=20):
+                if ids == ["777"]:
+                    return [{"url": "u/gta", "channel": "nobody",
+                             "title": "first heist", "views": 9}]
+                return []
+
+            def game_id(self, name):
+                return "777"
+        rt._PROVEN_POOL = None
+        from funnel import hot_clips
+        hot_clips._LSF_CACHE.clear()
+        with mock.patch.object(hot_clips, "livestreamfail",
+                               return_value=[]):
+            pool = rt._proven_pool(CE(), {})
+        rt._PROVEN_POOL = None
+        self.assertEqual([c["proven_by"] for c in pool], ["favored game"])
+        i = SRC.index("for c in _proven_pool(clip_edit, spec):")
+        self.assertIn('"favored game"', SRC[i:i + 500])
+
+    def test_it_is_boosted_and_the_ranker_is_told(self):
+        i = SRC.index("def _fit(ch, c=None):")
+        self.assertIn("_favored(c, _fav_ids)", SRC[i:i + 300])
+        from third_capture import author
+        self.assertIn("GTA 6 IS WHAT PEOPLE SEARCH NOW",
+                      author._RANK_SYSTEM)
 
 
 class TheRankerLooksForNoContextMoments(unittest.TestCase):
