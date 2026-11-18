@@ -143,9 +143,13 @@ def _real_story(slug: str) -> dict:
 
 class TestBeatsSupportOneThesis(unittest.TestCase):
     def test_every_segment_bridges_needs_no_brain(self):
+        # Without a brain, a story whose every topic shares a keyword with
+        # its headline passes the floor offline. WITH one, the story-first
+        # playbook (2026-11-17) has every beat judged for continuity — see
+        # tests/test_story_first.py::SemanticContinuity.
         with mock.patch("shared.script_generator._call_llm") as llm:
             v = editorial_gate.beats_support_one_thesis(
-                COHERENT_SC, use_llm=True)
+                COHERENT_SC, use_llm=False)
             llm.assert_not_called()
         self.assertTrue(v["ok"])
         self.assertEqual(v["judge"], "deterministic")

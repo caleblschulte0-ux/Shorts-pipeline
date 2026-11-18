@@ -400,7 +400,7 @@ def _fallback_words(dss: list[dict]) -> dict:
                 f"{_fmt(p[2]['value'])}.")
     return {"title": title[:95], "hook": hook,
             "closing": "The numbers were public the whole time.",
-            "question": "Which number surprised you most?",
+            "question": "",
             "hashtags": ["data", "facts", "statistics", "shorts", "worldbank"]}
 
 
@@ -451,7 +451,8 @@ BEATS = (4, 4, 4, 5)
 MIN_BEATS = int(_pace.budget().get("min_beats") or 3)
 
 
-def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None:
+def _brain_words(dss: list[dict], reject_note: str | None = None,
+                 idea: dict | None = None) -> dict | None:
     brief = []
     for d in dss:
         pts = ", ".join(f"{p['label']}={p['value']}" for p in d["points"])
@@ -467,18 +468,25 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
         "write must appear VERBATIM in the data given to you — you may never "
         "invent, round differently, or extrapolate a number. Your job is the "
         "WORDS.\n"
-        "The TITLE must reverse a specific expectation the viewer already "
-        "holds AND hang on one consequential number. A ruthless editor will "
-        "REJECT it otherwise. Automatic rejects:\n"
+        "The TITLE must be a CONCRETE premise: it names the subject plainly "
+        "and reverses a specific expectation the viewer already holds -- a "
+        "surprise, a threat, a contradiction or a scale they can picture. "
+        "It needs no number; the beats carry the numbers. A ruthless editor "
+        "will REJECT it otherwise. Automatic rejects:\n"
         "  - a bare noun phrase ('Forest Area By Country')\n"
         "  - a league table or geography comparison ('India Beats America On "
         "Farmland', 'Russia Has The Most Forest') — being biggest is not "
         "surprising\n"
-        "  - a number with no belief attached to it\n"
-        "What passes: the viewer believes X, the data says NOT-X, and one "
-        "number proves it ('Landlines Fell Below Their 1993 Level', 'Cities "
-        "Are Growing Half As Fast As In 1983'). Ask yourself what the viewer "
-        "would have guessed, then write the title that corrects them.\n"
+        "  - a fact with no belief attached to it\n"
+        "What passes: the viewer believes X, the data says NOT-X ('Landlines "
+        "Fell Below Their 1993 Level', 'Cow Burps Are Cooking The Planet'). "
+        "Ask yourself what the viewer would have guessed, then write the "
+        "title that corrects them.\n"
+        "THE STORY IS ONE ARC, not a row of facts: the hook makes a promise, "
+        "each beat happens BECAUSE of the one before it or turns AGAINST it, "
+        "and the closing pays off the promise and says why the viewer should "
+        "care. The comment question is optional: leave it \"\" unless a real "
+        "question follows naturally from the payoff.\n"
         "\n" + _HOOK_DOCTRINE)
     kit = ("  object      — a drawable SUBJECT cut-out sized by its value. "
            "region 'ground-row' for a row of 2-5 of them. needs subject + "
@@ -653,7 +661,7 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
             "fish; health spending -> a pill bottle) and let its size, count "
             "or fill carry the value.\n\nELEMENT KIT:\n" + kit +
             "\n\nReturn STRICT JSON: {\"title\":str,\"hook\":str,"
-            "\"closing\":str,\"question\":str,\"hashtags\":[str],"
+            "\"closing\":str,\"question\":str (may be \"\"),\"hashtags\":[str],"
             "\"says\":[str],\"scenes\":[{\"title\":true,\"elements\":"
             "[{...}]}]} where says AND scenes each have exactly "
             f"{len(dss)} entries, one per dataset in order. Each say tells "
@@ -668,6 +676,9 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
             "\"34 percent, 2.6 billion people\" over a chart of percentages "
             "makes the viewer hunt for a number that is not on screen. Say "
             "\"34 percent, up from 22\" instead.")
+    if idea:
+        from shared import story_brief as _sb
+        user = _sb.brief_for_writer(idea) + "\n\n" + user
     if reject_note:
         user += ("\n\nYour previous title was REJECTED by the editor for this "
                  f"reason — fix exactly this:\n{reject_note}")
@@ -694,18 +705,50 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
 # path the benchmark suite actually validates.
 
 
-def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
+def _digest(dss: list[dict]) -> str:
+    """The datasets as the brief-writer reads them: title, unit, shape,
+    place, points — the same lines the word-writer is given."""
+    return "\n".join(
+        f"- {d['title']} ({d['unit'] or 'units'}), {d['insight_type']}, "
+        f"{d['geography']}: "
+        + ", ".join(f"{p['label']}={p['value']}" for p in d["points"])
+        for d in dss)
+
+
+def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict | None, str]:
     """Ask the brain for words until the PUBLISH-TIME premise judge accepts
     them (up to 3 tries), feeding each rejection back in. A story that only
     passes the deterministic floor gets held at publish and wastes a render."""
     from scripts import editorial_gate as eg
     from shared import beat_match as bm
+    # THE IDEA BRIEF COMES FIRST (story-first playbook §3/§13, operator
+    # 2026-11-17). Before a word of narration: what the viewer believes,
+    # what the data says instead, the stakes, the one picture that proves
+    # it, the promise and the payoff, and five different hook concepts the
+    # brain picks the best TRUE one from. A dataset whose only pitch is "here
+    # are some statistics" is refused here, before any words are written.
+    # No brain answering is no brief: the words are written as before, and
+    # the run says so.
+    from shared import story_brief as _sb
+    idea = _sb.pitch(_digest(dss))
+    if idea is None:
+        print("    [brief] no idea brief (no brain answered) — writing "
+              "without one")
+    elif idea["weak"]:
+        print(f"    [brief] WEAK PITCH, not written: "
+              f"{(idea['why_weak'] or 'only statistics')[:120]}")
+        return None, "weak-pitch"
+    else:
+        print(f"    [brief] {idea['angle'] or 'hook'}: {idea['hook'][:90]}")
     last = None
     for attempt in range(3):
-        w = _brain_words(dss, reject_note=last)
+        w = _brain_words(dss, reject_note=last,
+                         **({"idea": idea} if idea else {}))
         if not w:
             break
-        v = eg.premise_ok({"title": w.get("title", ""), "hook": w.get("hook", "")},
+        v = eg.premise_ok({"title": w.get("title", ""), "hook": w.get("hook", ""),
+                           "segments": [{"topic": d["title"][:40],
+                                         "key": d["key"]} for d in dss]},
                           use_llm=True)
         reasons = list(v["reasons"]) if not v["ok"] else []
         # BEAT MATCHING. Every `say` line is spoken OVER its own beat's
@@ -748,6 +791,10 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
              "question": w.get("question"),
              "segments": [{"say": x} for x in (w.get("says") or [])]})]
         if v["ok"] and not reasons:
+            if idea:
+                w["_idea"] = {k: idea[k] for k in (
+                    "belief", "surprise", "stakes", "visual_proof", "promise",
+                    "payoff", "hook", "angle", "hooks")}
             return w, f"brain(attempt {attempt + 1}, judge {v['judge']})"
         last = "; ".join(reasons)[:300]
         print(f"    [words] rejected: {last[:140]}")
@@ -763,6 +810,8 @@ def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
     # SEE that Claude contributed nothing and hand the words to ChatGPT
     # instead of shipping that. See shared/authoring_brief.py.
     words, words_by = _words_that_clear_the_bar(dss)
+    if words is None:                 # a weak pitch: nothing is written
+        return None
     title = str(words.get("title", "")).strip()
     slug = _slugify(title)
     if not slug or slug in used_slugs:
@@ -798,9 +847,10 @@ def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
             "closing": str(words.get("closing") or
                            "The numbers were public the whole time.").strip(),
             "hashtags": [t for t in tags if t][:12] or ["data", "facts", "shorts"],
-            "question": str(words.get("question") or
-                            "Which number surprised you most?").strip(),
+            # Optional (playbook §9): "" closes on the payoff, no CTA.
+            "question": str(words.get("question") or "").strip(),
             "segments": segs, "_datasets": dss,
+            **({"brief": words["_idea"]} if words.get("_idea") else {}),
             "words_by": words_by}
 
 

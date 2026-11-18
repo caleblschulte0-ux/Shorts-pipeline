@@ -1,0 +1,387 @@
+{
+ "run": "2026-11-18",
+ "judge": "claude CLI (headless), one blind pass per story, shuffled, views never shown",
+ "set": "10 most-watched and 10 least-watched posted illustrated stories older than 72h, state/analytics_explainer/latest.json; words as they stand in niche.config.json today (some were retold after posting)",
+ "strong": [
+  46,
+  52,
+  55,
+  55,
+  55,
+  57,
+  60,
+  61,
+  61,
+  66
+ ],
+ "weak": [
+  36,
+  45,
+  48,
+  53,
+  56,
+  56,
+  59,
+  60,
+  61,
+  68
+ ],
+ "strong_mean": 56.8,
+ "weak_mean": 54.2,
+ "auc": 0.565,
+ "fatal": {
+  "strong": 0,
+  "weak": 3
+ },
+ "reading": "The total barely separates (AUC 0.565): this judge scores everything 36-68 on the playbook's 100, so the playbook's 85/70 bands would hold all 20, every strong story included. What separated was the FATAL flags (3 of 10 weak, 0 of 10 strong) and the hook criterion (strong 12.1, weak 10.0 of 20). The bands are therefore set on this judge's own scale: pass_at 46 (the lowest strong story) and rewrite_at 40 \u2014 in this set no strong story is held, and 3 of 10 weak ones are (two by fatal flags, one by score+fatal). Re-run scripts/calibrate_story_gate.py before moving them.",
+ "rows": [
+  {
+   "band": "weak",
+   "slug": "jury-trial-collapse",
+   "views": 1,
+   "total": 68,
+   "weakest": "visual_proof",
+   "fatal": [],
+   "scores": {
+    "premise": 11,
+    "hook": 14,
+    "arc": 13,
+    "factual": 12,
+    "visual_proof": 8,
+    "payoff": 6,
+    "voice": 4
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "private-moon-landings-fail-rate",
+   "views": 1061,
+   "total": 66,
+   "weakest": "arc",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 14,
+    "arc": 12,
+    "factual": 11,
+    "visual_proof": 9,
+    "payoff": 6,
+    "voice": 4
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "airfare-booking-window-trap",
+   "views": 1193,
+   "total": 61,
+   "weakest": "arc",
+   "fatal": [],
+   "scores": {
+    "premise": 11,
+    "hook": 13,
+    "arc": 9,
+    "factual": 10,
+    "visual_proof": 9,
+    "payoff": 6,
+    "voice": 3
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "tsa-digital-id-states-growth",
+   "views": 1137,
+   "total": 61,
+   "weakest": "visual_proof",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 12,
+    "arc": 12,
+    "factual": 10,
+    "visual_proof": 7,
+    "payoff": 7,
+    "voice": 3
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "big-mac-index-currency-gap",
+   "views": 4,
+   "total": 61,
+   "weakest": "arc",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 13,
+    "arc": 8,
+    "factual": 11,
+    "visual_proof": 10,
+    "payoff": 5,
+    "voice": 4
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "airline-pilot-shortage",
+   "views": 3,
+   "total": 60,
+   "weakest": "payoff",
+   "fatal": [],
+   "scores": {
+    "premise": 8,
+    "hook": 12,
+    "arc": 11,
+    "factual": 11,
+    "visual_proof": 9,
+    "payoff": 5,
+    "voice": 4
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "hearing-aids-otc-price-drop",
+   "views": 1176,
+   "total": 60,
+   "weakest": "voice",
+   "fatal": [],
+   "scores": {
+    "premise": 9,
+    "hook": 14,
+    "arc": 9,
+    "factual": 10,
+    "visual_proof": 11,
+    "payoff": 5,
+    "voice": 2
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "blockbuster-to-one-store",
+   "views": 6,
+   "total": 59,
+   "weakest": "arc",
+   "fatal": [],
+   "scores": {
+    "premise": 8,
+    "hook": 12,
+    "arc": 10,
+    "factual": 11,
+    "visual_proof": 8,
+    "payoff": 6,
+    "voice": 4
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "ghost-fishing-gear-ocean-plastic",
+   "views": 1024,
+   "total": 57,
+   "weakest": "arc",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 13,
+    "arc": 7,
+    "factual": 11,
+    "visual_proof": 7,
+    "payoff": 6,
+    "voice": 3
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "svalbard-seed-vault",
+   "views": 1,
+   "total": 56,
+   "weakest": "visual_proof",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 9,
+    "arc": 12,
+    "factual": 10,
+    "visual_proof": 6,
+    "payoff": 6,
+    "voice": 3
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "chip-shortage-tsmc-fragility",
+   "views": 4,
+   "total": 56,
+   "weakest": "hook",
+   "fatal": [
+    "false_comparison"
+   ],
+   "scores": {
+    "premise": 8,
+    "hook": 10,
+    "arc": 11,
+    "factual": 8,
+    "visual_proof": 11,
+    "payoff": 5,
+    "voice": 3
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "california-condor-comeback",
+   "views": 1031,
+   "total": 55,
+   "weakest": "visual_proof",
+   "fatal": [],
+   "scores": {
+    "premise": 8,
+    "hook": 11,
+    "arc": 12,
+    "factual": 12,
+    "visual_proof": 5,
+    "payoff": 5,
+    "voice": 2
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "nuclear-stockpile-growth-reversal",
+   "views": 1026,
+   "total": 55,
+   "weakest": "payoff",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 13,
+    "arc": 8,
+    "factual": 11,
+    "visual_proof": 8,
+    "payoff": 3,
+    "voice": 2
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "pitch-drop-slowest-experiment",
+   "views": 1387,
+   "total": 55,
+   "weakest": "payoff",
+   "fatal": [],
+   "scores": {
+    "premise": 8,
+    "hook": 12,
+    "arc": 9,
+    "factual": 12,
+    "visual_proof": 7,
+    "payoff": 4,
+    "voice": 3
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "adhd-diagnosis-surge",
+   "views": 1,
+   "total": 53,
+   "weakest": "visual_proof",
+   "fatal": [],
+   "scores": {
+    "premise": 10,
+    "hook": 11,
+    "arc": 8,
+    "factual": 12,
+    "visual_proof": 5,
+    "payoff": 4,
+    "voice": 3
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "rubiks-cube-record-vs-robot",
+   "views": 1737,
+   "total": 52,
+   "weakest": "arc",
+   "fatal": [],
+   "scores": {
+    "premise": 7,
+    "hook": 10,
+    "arc": 9,
+    "factual": 10,
+    "visual_proof": 7,
+    "payoff": 5,
+    "voice": 4
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "aquaculture-overtook-wild-fishing",
+   "views": 6,
+   "total": 48,
+   "weakest": "hook",
+   "fatal": [],
+   "scores": {
+    "premise": 8,
+    "hook": 7,
+    "arc": 9,
+    "factual": 9,
+    "visual_proof": 6,
+    "payoff": 6,
+    "voice": 3
+   }
+  },
+  {
+   "band": "strong",
+   "slug": "parker-solar-probe-speed-record",
+   "views": 1202,
+   "total": 46,
+   "weakest": "visual_proof",
+   "fatal": [],
+   "scores": {
+    "premise": 8,
+    "hook": 9,
+    "arc": 8,
+    "factual": 10,
+    "visual_proof": 5,
+    "payoff": 4,
+    "voice": 2
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "peanut-allergy-guideline-flip",
+   "views": 0,
+   "total": 45,
+   "weakest": "hook",
+   "fatal": [
+    "false_comparison",
+    "missing_payoff"
+   ],
+   "scores": {
+    "premise": 10,
+    "hook": 6,
+    "arc": 9,
+    "factual": 6,
+    "visual_proof": 8,
+    "payoff": 4,
+    "voice": 2
+   }
+  },
+  {
+   "band": "weak",
+   "slug": "the-biggest-lightest-workforce",
+   "views": 2,
+   "total": 36,
+   "weakest": "payoff",
+   "fatal": [
+    "missing_payoff",
+    "deceptive"
+   ],
+   "scores": {
+    "premise": 5,
+    "hook": 6,
+    "arc": 6,
+    "factual": 10,
+    "visual_proof": 5,
+    "payoff": 2,
+    "voice": 2
+   }
+  }
+ ]
+}

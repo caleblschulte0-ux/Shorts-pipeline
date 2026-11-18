@@ -269,20 +269,51 @@ _TENSION = re.compile(
     r"than|but|why|how|what)\b", re.I)
 
 
+def _subject_words(sc: dict) -> set:
+    """What the story is ABOUT, by its own labels: segment topics and the
+    titles of the datasets they cite."""
+    texts = []
+    for seg in sc.get("segments") or []:
+        texts.append(seg.get("topic") or "")
+        p = _seg_data_path(seg)
+        if p is not None:
+            try:
+                texts.append(str(json.loads(p.read_text()).get("title") or ""))
+            except Exception:  # noqa: BLE001 — data_provenance reports this
+                pass
+    return _thesis_tokens(*texts)
+
+
 def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
     """Grade the PREMISE (title + hook) before we spend a render on it.
 
-    Deterministic hard floor (fail-closed): the hook must name a consequential
-    number, and the title must not be a bare noun phrase. When a brain is
-    reachable, an ADVERSARIAL judge (whose job is to find reasons to REJECT)
-    has the final say; when it isn't, the deterministic floor stands.
+    Deterministic hard floor (fail-closed): the premise must be CONCRETE —
+    the title or hook names the story's own subject (a word its segments or
+    datasets are labelled with) or a number — and the title must not be a
+    bare noun phrase. When a brain is reachable, an ADVERSARIAL judge has the
+    final say; when it isn't, the deterministic floor stands.
+
+    The floor used to demand a DIGIT in the title or hook. That rule taught
+    the writer to open on a number, and the operator's later rulings say the
+    opposite: the hook is the threat with no number in it
+    (`hook_doctrine`), and it names the thing ("Cow burps are cooking the
+    planet"). The story-first playbook (data_learning/
+    STORY_FIRST_SCRIPT_PLAYBOOK.md §13, ordered 2026-11-17) replaces the
+    mandatory digit with a concrete-premise rule. A vague premise still
+    fails here: "A Quiet Thing Happened" / "No numbers here." names nothing.
     """
     title = (sc.get("title") or "").strip()
     hook = (sc.get("hook") or "").strip()
     reasons = []
 
-    if not _NUM_RE.search(hook) and not _NUM_RE.search(title):
-        reasons.append("no consequential number in the title or hook")
+    subject = _subject_words(sc)
+    said = _thesis_tokens(title, hook)
+    concrete = bool(_NUM_RE.search(hook) or _NUM_RE.search(title)
+                    or (subject and said & subject))
+    if not concrete:
+        reasons.append(
+            "the premise is not concrete: the title and hook name neither "
+            "the story's subject nor a number")
     # Bare-noun title: <=5 words, Title Case-ish, no number, no tension word.
     words = title.split()
     if (len(words) <= 5 and not _NUM_RE.search(title)
@@ -304,9 +335,12 @@ def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
         from shared.script_generator import _call_llm  # type: ignore
         sysmsg = (
             "You are a ruthless YouTube Shorts editor. Your ONLY job is to "
-            "REJECT weak premises. A premise passes ONLY if it reverses a "
-            "specific expectation the viewer already holds AND hangs on one "
-            "consequential, verifiable number. A searchable noun phrase "
+            "REJECT weak premises. A premise passes ONLY if it is CONCRETE "
+            "and TRUE: it names the subject plainly and promises a specific "
+            "surprise, threat, contradiction or scale the viewer can picture "
+            "-- something they believe that the story will turn over. It "
+            "does not need a number (the video says the number; the hook "
+            "says what it means). A searchable noun phrase "
             "('Oldest Written Languages', 'Tectonic Plates on the Move') is an "
             "automatic REJECT. Default to REJECT when unsure.")
         user = (
@@ -490,65 +524,84 @@ def beats_support_one_thesis(sc: dict, *, use_llm: bool = True) -> dict:
         if not (_thesis_tokens(topic) & subject):
             candidates.append((i, topic))
 
-    if not candidates:
-        return {"ok": True, "reasons": [], "judge": "deterministic"}
-
     def _floor_reasons(extra: str) -> list:
         return [
             f"seg{i} ({topic!r}) shares no keyword with the headline "
             f"({title!r}) — {extra}"
             for i, topic in candidates]
 
-    if not use_llm:
-        return {"ok": False,
-                "reasons": _floor_reasons("no checkable bridge to the thesis"),
-                "judge": "deterministic"}
+    def _floor(extra: str, judge: str) -> dict:
+        return {"ok": not candidates, "reasons": _floor_reasons(extra),
+                "judge": judge}
 
+    if not use_llm:
+        return _floor("no checkable bridge to the thesis", "deterministic")
+
+    # SEMANTIC CONTINUITY (story-first playbook §13, 2026-11-17). With a
+    # brain, a shared keyword is no longer the test: ONE call reads every
+    # beat in order and says whether it advances the headline AND follows
+    # from the beat before it (it happens BECAUSE of it, or turns AGAINST
+    # it) — a keyword-matched beat can still be "and then". Without a usable
+    # answer the keyword floor above governs, fail-closed as before: this
+    # never lets through a story the old rule held.
     try:
         import sys
         if str(REPO) not in sys.path:
             sys.path.insert(0, str(REPO))
         from shared.script_generator import _call_llm  # type: ignore
         sysmsg = (
-            "You are a ruthless YouTube Shorts editor checking whether every "
-            "segment of a data video genuinely supports ONE headline claim. "
-            "For each segment given by index, decide whether it has a real "
-            "semantic bridge to the headline -- not just a shared category, "
-            "but something that helps prove or contextualize the SAME claim. "
-            "Default to false when unsure.")
-        listing = "\n".join(f"{i}: {topic!r}" for i, topic in candidates)
+            "You are a ruthless YouTube Shorts editor checking that a data "
+            "video is ONE story told in order. For each beat, decide whether "
+            "it (a) genuinely helps prove or explain the SAME headline claim "
+            "-- not just a shared category -- and (b) follows from the beat "
+            "before it: it happens because of it, or turns against it, never "
+            "'and another fact'. Beat 0 only needs (a). Default to false "
+            "when unsure.")
+        listing = "\n".join(
+            f"{i}: {(seg.get('topic') or '').strip()!r} -- "
+            f"{(seg.get('say') or '').strip()[:220]}"
+            for i, seg in enumerate(segments))
         user = (
             f"HEADLINE TITLE: {title}\nHOOK: {hook}\n\n"
-            f"SEGMENTS TO CHECK (index: topic):\n{listing}\n\n"
-            "Return STRICT JSON: {\"bridges\": {\"<index>\": true|false}} "
-            "with one entry per segment index above.")
+            f"BEATS IN ORDER (index: topic -- narration):\n{listing}\n\n"
+            "Return STRICT JSON: {\"bridges\": {\"<index>\": true|false}, "
+            "\"why\": {\"<index>\": \"<short reason when false>\"}} with "
+            "one bridges entry per beat index above.")
         raw = _call_llm(sysmsg, user)
         m = re.search(r"\{.*\}", raw, re.S)
         data = one_object(m.group(0)) if m else {}
         bridges = data.get("bridges") if isinstance(data, dict) else None
         if not isinstance(bridges, dict):
-            return {"ok": False,
-                    "reasons": _floor_reasons(
-                        "and the semantic judge returned no usable verdict"),
-                    "judge": f"deterministic (llm unusable: {str(data)[:60]!r})"}
-        reasons = []
-        for i, topic in candidates:
-            v = bridges.get(str(i))
-            # Only an exact bool counts as evidence -- a missing key, a
-            # string "true", or anything else is UNAVAILABLE, not a pass.
-            if v is True:
-                continue
-            why = ("brain: no genuine bridge to the headline" if v is False
-                   else "the judge gave no verdict for this segment")
-            reasons.append(
-                f"seg{i} ({topic!r}) has no bridge to the headline "
-                f"({title!r}) — {why}")
+            return _floor("and the semantic judge returned no usable verdict",
+                          f"deterministic (llm unusable: {str(data)[:60]!r})")
+        why = data.get("why") if isinstance(data.get("why"), dict) else {}
+        if not all(isinstance(bridges.get(str(i)), bool)
+                   for i in range(len(segments))):
+            # A partial answer is no answer: the beats it skipped are judged
+            # by the keyword floor, exactly as with no brain.
+            flagged = [i for i, _ in candidates
+                       if bridges.get(str(i)) is not True]
+            reasons = [r for (i, _), r in zip(candidates, _floor_reasons(
+                "and the judge gave no verdict for it")) if i in flagged]
+            reasons += [
+                f"seg{i} does not follow the story — brain: "
+                f"{str(why.get(str(i)) or 'no bridge')[:120]}"
+                for i in range(len(segments))
+                if bridges.get(str(i)) is False
+                and i not in {c for c, _ in candidates}]
+            return {"ok": not reasons, "reasons": reasons,
+                    "judge": "llm (partial; keyword floor for the rest)"}
+        reasons = [
+            f"seg{i} ({(segments[i].get('topic') or '').strip()!r}) does not "
+            f"continue the story of the headline ({title!r}) — brain: "
+            f"{str(why.get(str(i)) or 'no genuine bridge')[:120]}"
+            # Only an exact True is a bridge (every entry is a bool here).
+            for i in range(len(segments)) if not bridges.get(str(i)) is True]
         return {"ok": not reasons, "reasons": reasons, "judge": "llm"}
     except Exception as e:  # noqa: BLE001 — brain optional; floor stands
-        return {"ok": False,
-                "reasons": _floor_reasons(
-                    f"and the semantic judge is unavailable ({str(e)[:60]})"),
-                "judge": "deterministic (llm unavailable)"}
+        return _floor(
+            f"and the semantic judge is unavailable ({str(e)[:60]})",
+            "deterministic (llm unavailable)")
 
 
 def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:

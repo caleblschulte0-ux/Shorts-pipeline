@@ -265,6 +265,17 @@ def _illustrated(story_cfg: dict) -> bool:
         return False
 
 
+def question_of(story_cfg: dict) -> str:
+    """The closing comment question. OPTIONAL for the illustrated explainer
+    (story-first playbook §9/§13, 2026-11-17: no forced CTA): a story that
+    sets `question` to "" closes on its payoff with none; one written before
+    the key existed keeps the old default."""
+    q = story_cfg.get("question")
+    if isinstance(q, str) and "question" in story_cfg:
+        return q
+    return "Which number hit you hardest? Drop it in the comments."
+
+
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     """Construct a Story: fetch each segment's data, render its chart, and
     assemble the narration + punches."""
@@ -428,6 +439,5 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
         segments=segments,
         hashtags=story_cfg.get("hashtags", []),
         sources=sources,
-        question=(story_cfg.get("question")
-                  or "Which number hit you hardest? Drop it in the comments."),
+        question=question_of(story_cfg),
     )

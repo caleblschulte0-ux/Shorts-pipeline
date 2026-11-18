@@ -254,6 +254,20 @@ def _scout_digest(max_chars: int = 1800) -> str:
               "extremes. Skip signals with no honest data angle.\n")[:max_chars]
 
 
+from shared import pacing as _pace  # noqa: E402 — the beat budget, from the registry
+
+#: A ceiling, not a target: six 8-second beats plus hook and closing is
+#: already past a minute.
+MAX_BEATS = 6
+
+
+def _beats_rule() -> str:
+    """How many beats, from the registry's pacing (`min_beats`); no fixed
+    count — a story is as long as its arc (story-first playbook §13)."""
+    lo = int(_pace.budget().get("min_beats") or 3)
+    return f"{lo} to {MAX_BEATS} beats (segments)"
+
+
 def _user_prompt(cfg: dict, n: int, topics: list[str] | None = None) -> str:
     doctrine = cfg.get("topic_doctrine", "")
     covered = _covered_subjects(cfg)
@@ -268,9 +282,9 @@ def _user_prompt(cfg: dict, n: int, topics: list[str] | None = None) -> str:
     schema = {
         "stories": [{
             "title": "5-9 word curiosity-gap title",
-            "hook": "one punchy spoken opener, NO numbers-only, makes you stop scrolling",
+            "hook": "the threat or twist, named plainly, NO number, makes you stop scrolling",
             "closing": "one-line spoken takeaway",
-            "question": "an engagement question for the comments",
+            "question": "OPTIONAL: \"\" unless a real question follows from the payoff",
             "hashtags": ["6-12 lowercase tags, no #"],
             "segments": [{
                 "topic": "2-4 word topic label shown on screen",
@@ -297,11 +311,12 @@ def _user_prompt(cfg: dict, n: int, topics: list[str] | None = None) -> str:
         f"Channel doctrine: {doctrine}\n"
         + _scout_digest() + "\n"
         f"Invent {n} BRAND-NEW data stories that fit the doctrine. Each is a "
-        f"35-45 second Short with EXACTLY 4 segments that build one arc.\n"
-        f"LENGTH IS A HARD FLOOR: the finished narration must run 35-45 seconds, "
-        f"so give EACH segment a full TWO-sentence 'say' (a setup line, then the "
-        f"line that speaks the number), plus a hooky opening and a closing beat. "
-        f"Four segments of one short clause each is too short and is REJECTED.\n\n"
+        f"35-50 second Short of {_beats_rule()} that build ONE arc: the hook "
+        f"makes a promise, each beat happens BECAUSE of the one before it or "
+        f"turns AGAINST it (never 'and another fact'), and the closing pays "
+        f"the promise off and says why the viewer should care. Use as many "
+        f"beats as the story needs, no more.\n"
+        f"{_pace.rule()}\n\n"
         "You are the CREATIVE DIRECTOR of a top-tier YouTube channel. For EACH "
         "segment, FIRST invent the single most ENTERTAINING way to VISUALLY depict "
         "THAT specific data — compose a `scene` from this element kit (arrange "
@@ -326,15 +341,16 @@ def _user_prompt(cfg: dict, n: int, topics: list[str] | None = None) -> str:
         "forest on fire for wildfire, a lung for breathing) with fill_object; one "
         "big height/size -> a stack vs a hero object; a ranking of drawable things "
         "-> a ground-row of `object`s; distances/counts -> orbit_group.\n"
-        "- VARY the depiction across the 4 segments; include at least ONE stand-out. "
+        "- VARY the depiction across the segments; include at least ONE stand-out. "
         "No two segments may use the same mechanic.\n"
         "- `subject` for image elements must be a CONCRETE drawable thing (animals, "
         "foods, vehicles, planets, landmarks, a globe) — never an abstraction.\n"
         "- Do NOT repeat or closely resemble any already-covered subject.\n"
         "- Each segment: 2-6 points with realistic, illustrative numbers (labelled "
         "'illustrative') and a dramatic spread. Add a 'period' per point for time.\n"
-        "- 'say' is TWO full sentences per segment that speak the actual numbers "
-        "shown (setup, then the number) — not a single clause.\n"
+        "- Each 'say' is the beat's number AND what it means, in spoken English "
+        "(see the pace rule above) — at most ONE number a beat, with its "
+        "yardstick (what normal is).\n"
         "- Prefer science, space, nature, the human body, history, records, scale "
         "and superlatives. Avoid dry personal-finance topics.\n\n"
         f"ALREADY COVERED (avoid these): {covered_blob}\n"
@@ -468,7 +484,8 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         segs_in = raw["segments"]
     except (KeyError, TypeError):
         return None
-    if not title or not hook or not isinstance(segs_in, list) or len(segs_in) < 2:
+    if not title or not hook or not isinstance(segs_in, list) \
+            or len(segs_in) < int(_pace.budget().get("min_beats") or 3):
         return None
 
     slug = _slugify(title)
@@ -478,7 +495,9 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         return None
 
     segments, datasets = [], []
-    for i, seg in enumerate(segs_in[:4]):
+    # As many beats as the arc needs (no fixed four), capped at the most a
+    # short holds at the registry's beat length.
+    for i, seg in enumerate(segs_in[:MAX_BEATS]):
         if not isinstance(seg, dict):
             return None
         pts_in = seg.get("points") or []
@@ -564,8 +583,8 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         "closing": str(raw.get("closing", "That's the story in the data.")).strip(),
         "hashtags": tags,
         "segments": segments,
-        "question": str(raw.get("question",
-                                "Which number surprised you most? Comment below.")).strip(),
+        # Optional (story-first playbook §9): "" closes on the payoff.
+        "question": str(raw.get("question") or "").strip(),
     }
     story["_datasets"] = datasets        # carried out-of-band for writing
     used_slugs.add(slug)

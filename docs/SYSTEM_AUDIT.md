@@ -967,3 +967,64 @@ happens, `explainer.yml mode=schedule` will keep posting only whatever
 that day's fresh batch contributes — the backlog does not clear itself,
 and a green `done: N posted, 0 faults` log with N equal to the day's fresh
 count is currently indistinguishable from a healthy queue.
+
+## Story first, 2026-11-18: the playbook's §13, built for the illustrated explainer
+
+Operator, 2026-11-17: *"our scripts suck ... ChatGPT made some thing about
+how we should improve our scripts, and it's in the GitHub, so go find that
+and do it."* The thing is `data_learning/STORY_FIRST_SCRIPT_PLAYBOOK.md`.
+
+**Built** (`shared/story_brief.py`, `tests/test_story_first.py`):
+
+- An IDEA BRIEF before any words (`pitch`, called by
+  `story_forge._words_that_clear_the_bar`). A weak pitch is refused there.
+- The premise floor no longer demands a digit. It asks for a CONCRETE
+  premise: the title or hook names the story's subject or a number, and a
+  vague one still fails. The adversarial judge's prompt says the same.
+- Beat continuity: with a brain, ONE call judges every beat (does it prove
+  the headline, and follow from the beat before). With no usable answer the
+  old keyword floor still decides, and it still fails closed.
+- `author_stories` lost "EXACTLY 4 segments / TWO sentences". The beat count
+  comes from the registry's `min_beats`, capped at `MAX_BEATS`.
+- The comment question is optional for the illustrated explainer
+  (`story.question_of`: `""` means none).
+- A blind §11 scorecard before the render, in `post_stories`:
+  - It runs after the deterministic gate.
+  - There is one brain call per wording, and the card is cached on the story.
+  - Below the registry's `story_gate` bands, the story is a `story_hold`. The
+    rewrite mailbox picks it up with the weakest criterion named, or marked to
+    be re-conceived.
+  - No judge answering adds nothing, and the log says so.
+- An EARS / EYES / EVIDENCE sidecar per scored story, written to
+  `state/story_sidecars/<slug>.json`.
+
+**Calibration** (`scripts/calibrate_story_gate.py`, recorded in
+`data_learning/story_gate_calibration.json`). The run scored the 10 most- and
+10 least-watched posted illustrated stories, blind and shuffled:
+
+| | Scores | Mean |
+|---|---|---|
+| Strong | 46-66 | 56.8 |
+| Weak | 36-68 | 54.2 |
+
+- AUC is 0.565, so the total barely separates strong from weak.
+- The fatal flags did separate: 3 of the 10 weak stories, none of the 10 strong.
+- The playbook's own 85/70 bands would have held all 20 stories, the strong
+  ones included. The bands are therefore set on this judge's own scale:
+  - `pass_at` is 46, the lowest strong score.
+  - `rewrite_at` is 40.
+- Re-run the calibration before moving either band.
+
+**Where the operator's rulings beat the playbook:**
+
+- The hook is a tabloid threat with no number in it (`hook_doctrine`). The
+  playbook prefers an honest, measured opener.
+- One number a beat (`narration.MAX_NUMBERS`). The playbook allows two.
+- "The experts", not the agency name.
+
+**Not done here:**
+
+- The 3D shorts' comment-question rule lives on the unmerged
+  `claude/data3d-video2` branch (`tests/test_data3d_story.py`). The 3D
+  pipeline keeps its question. Only the illustrated explainer's question
+  became optional.
