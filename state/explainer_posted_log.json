@@ -5789,6 +5789,13 @@
       ],
       "words_first_10s": 23,
       "scene_changes_before_5s": 2
+    },
+    "lake-mead-water-crisis": {
+      "claimed_at": "2026-11-18T14:57:23.556509+00:00",
+      "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7464,6 +7471,14 @@
       "state": "posted",
       "slug": "religious-nones-rise",
       "at": "2026-11-18T03:25:23.797670+00:00"
+    },
+    {
+      "claimed_at": "2026-11-18T14:57:23.556509+00:00",
+      "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "lake-mead-water-crisis"
     }
   ]
 }
