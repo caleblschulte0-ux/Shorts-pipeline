@@ -92,6 +92,14 @@ CONSEQ_MIN_H = 0.12     # of the frame height: a consequence smaller than this i
                         # fix these things beforehand?")
 CONSEQ_INSIDE = 0.85    # of the group's bounding-box corners inside the frame: a pan cut by the frame edge is not seen
 CONSEQ_SEEN = 0.6       # of its window it must be in frame, whole and that big
+HERO_MIN_H = 0.25       # of the frame height: THE BEAT'S OWN PROP (the shot's first consequence, or the one marked
+                        # {"hero": True}) must be at least this big at the median of its window. 2026-11-18, card
+                        # rewards: every shot passed the 12% floor and the judge still scored them 40-60 because the
+                        # idea's prop (a coin tray, price tags, a ramp) was a sliver beside Data's head on a phone.
+                        # A quarter of the frame is what the one passing shot (the tipped piggy bank) had.
+FLOOR_Z = -0.05         # metres: a consequence object whose whole box is below this is built under the set (a kit
+                        # part parented wrongly lands at the world origin under the counter: card_kit's chute and
+                        # lever on 2026-11-18, invisible for three rounds with every check green)
 
 
 MOVE_MIN = 0.06         # of the frame height (115 px of a 1080x1920 Short): the least a MOVING part must travel on screen
@@ -119,6 +127,13 @@ def motion_px(ref, now, project, res):
     return best ** 0.5
 
 
+def _hero_of(items):
+    """the beat's own prop: the item marked {"hero": True}, else the first one"""
+    for it in items:
+        if len(it) > 4 and it[4].get("hero"): return it
+    return items[0] if items else None
+
+
 def consequence(cam, nf, items, name="shot"):
     """EVERY ACTION SHOWS ITS CONSEQUENCE (caaleb 2026-11-12: "if this guy's pulling things off a calendar, maybe
     show them falling to the ground ... if this guy's pouring coins in a jar, show them falling ... give the emphasis
@@ -137,6 +152,9 @@ def consequence(cam, nf, items, name="shot"):
         opt = it[4] if len(it) > 4 else {}
         whole = opt.get("whole", True)     # False: a field-wide effect that runs past the frame
         objs = objs() if callable(objs) else objs     # resolved now: the set dressing replaces objects after the shot is built
+        hero = opt.get("hero", it is _hero_of(items)) and whole
+        buried = [o.name for o in objs if o.type == 'MESH' and not o.hide_render
+                  and max((o.matrix_world @ Vector(c)).z for c in o.bound_box) < FLOOR_Z]
         mv = opt.get("moves")
         if mv is True: mv = objs
         elif callable(mv): mv = mv()
@@ -162,6 +180,12 @@ def consequence(cam, nf, items, name="shot"):
             if h >= CONSEQ_MIN_H and (not whole or inside >= CONSEQ_INSIDE * max(1, tot)): seen += 1
         frac = seen / max(1, n); good = frac >= CONSEQ_SEEN
         med = sorted(hs)[len(hs) // 2] if hs else 0.0
+        extra = ""
+        if hero:
+            big = med >= HERO_MIN_H; good &= big
+            extra += f"; THE BEAT'S PROP: median {med:.0%} of the frame (min {HERO_MIN_H:.0%}){'' if big else ': TOO SMALL BESIDE DATA ON A PHONE'}"
+        if buried:
+            good = False; extra += f"; built UNDER THE SET (whole box below the floor): {', '.join(buried[:4])}"
         motion = ""
         if mv is not None:
             if not mv: good = False; motion = "; it declares a moving part but names nothing that can move"
@@ -171,7 +195,7 @@ def consequence(cam, nf, items, name="shot"):
                           f"min {MOVE_MIN:.0%}){'' if big else ': TOO SMALL TO SEE MOVE'}")
         ok_all &= good
         print(f"CONSEQUENCE {name}: {label}: in frame, whole and big enough {frac:.0%} of its window (min {CONSEQ_SEEN:.0%}; "
-              f"median height {med:.0%} of frame, min {CONSEQ_MIN_H:.0%}){motion} -> {'OK' if good else 'FAIL'}", flush=True)
+              f"median height {med:.0%} of frame, min {CONSEQ_MIN_H:.0%}){motion}{extra} -> {'OK' if good else 'FAIL'}", flush=True)
     return ok_all
 
 

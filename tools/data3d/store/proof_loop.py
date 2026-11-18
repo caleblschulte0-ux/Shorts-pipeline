@@ -52,6 +52,42 @@ def render_proof(story, n, out, step, spp, pct, py):
     return n, p.returncode == 0 and any(d.glob("f*.png")), lines
 
 
+def board(story, out, shots, rnd, py, keys=3):
+    """THE STORYBOARD GATE (2026-11-18, card rewards: four 20-minute proof rounds failed shots for what one still
+    showed -- props a sliver beside Data's head, a ramp built under the counter -- while board3d.sh, the one-minute
+    still-judge, sat unused). Every round, every shot still in play is first rendered as KEYS rough stills with
+    every measured pre-check and judged at phone size. Only a shot whose stills pass is rendered as a proof; the
+    rest take the storyboard verdict for the round and go straight to revision. {shot: verdict}, or None: no judge."""
+    bd = out / "board"; bd.mkdir(parents=True, exist_ok=True)
+    def still(n):
+        d = bd / f"s{n}"; shutil.rmtree(d, ignore_errors=True)
+        env = dict(os.environ, STORY=story, SHOT=str(n), KEYS=str(keys), STAGING="strict")
+        p = subprocess.run([py, "-I", "shots.py", str(d), "8", "30"], cwd=HERE, env=env, capture_output=True, text=True)
+        lines = [l for l in (p.stdout + p.stderr).splitlines() if CHECKS.match(l.strip())]
+        (bd / f"s{n}.checks.txt").write_text("\n".join(lines))
+        return n, p.returncode == 0 and d.exists() and any(d.glob("*.png")), lines
+    with ThreadPoolExecutor(2) as ex:
+        res = list(ex.map(still, shots))
+    built = [n for n, ok, _ in res if ok]
+    v = {}
+    for n, ok, lines in res:
+        if not ok:
+            bad = [l for l in lines if "FAIL" in l] or ["the stills did not render"]
+            v[n] = {"shot": n, "score": 0, "pass": False, "board": True, "hard": ["a measured pre-check failed: " + b for b in bad[:4]]}
+    if built:
+        env = dict(os.environ, STORY=story, SHOTS=" ".join(map(str, built)), JUDGE3D_BOARD="1", JUDGE3D_REJUDGE="1",
+                   JUDGE3D_ROUND=str(rnd), JUDGE3D_LABEL=f"storyboard gate {out.name}")
+        p = subprocess.run([sys.executable, str(HERE / "judge3d.py"), str(bd), str(bd / "board_verdict.json")], env=env,
+                           capture_output=True, text=True)
+        print(p.stdout)
+        if not (bd / "board_verdict.json").exists(): return None
+        for s_ in json.loads((bd / "board_verdict.json").read_text())["shots"]:
+            if s_["shot"] in built: v[s_["shot"]] = dict(s_, board=True)
+    for n in shots:
+        print(f"STORYBOARD shot {n}: {v.get(n, {}).get('score')} {'PASS -> proof' if v.get(n, {}).get('pass') else 'FAIL -> revise, no proof'}", flush=True)
+    return v
+
+
 def judge(story, out, shots, rnd=None):
     env = dict(os.environ, STORY=story, SHOTS=" ".join(map(str, shots)), JUDGE3D_ROUND=str(rnd or ""), JUDGE3D_LABEL=f"proof loop {out.name}")
     p = subprocess.run([sys.executable, str(HERE / "judge3d.py"), str(out), str(out / "verdict.json")], env=env,
@@ -214,9 +250,10 @@ def revise(story, out, n, v, history, rethink=""):
     script = json.loads((STORIES / story / "script.json").read_text())
     brief = re.sub(r"^\d+\s*", "", script["storyboard"][n - 1])
     verdict = json.dumps({k: v.get(k) for k in ("score", "scores", "hard", "problems", "better")}, indent=1)
-    checks = (out / f"s{n}.checks.txt").read_text() if (out / f"s{n}.checks.txt").exists() else "(none)"
+    src = out / "board" if v.get("board") else out     # a shot the storyboard stopped is revised from its stills
+    checks = (src / f"s{n}.checks.txt").read_text() if (src / f"s{n}.checks.txt").exists() else "(none)"
     prompt = REVISER.format(n=n, story=story, path=path, brief=brief, score=v.get("score"), verdict=verdict, pass_score=PASS,
-                            checks=checks, sheet=out / f"sheet_s{n}.jpg", work=work,
+                            checks=checks, sheet=src / f"sheet_s{n}.jpg", work=work,
                             history=("Earlier attempts at this shot, and what the judge gave them (the best one is "
                                      "what you are editing now; do not repeat what scored lower):\n" + "\n".join(history) + "\n")
                             if history else "") + rethink
@@ -237,6 +274,7 @@ def main():
     ap.add_argument("--shots", type=int, nargs="*")
     ap.add_argument("--rounds", type=int, default=6)
     ap.add_argument("--no-revise", action="store_true")
+    ap.add_argument("--no-board", action="store_true", help="skip the storyboard gate (never on a new story)")
     ap.add_argument("--step", type=int, default=6); ap.add_argument("--spp", type=int, default=8)
     ap.add_argument("--pct", type=int, default=30)
     ap.add_argument("--jobs", type=int, default=max(1, (os.cpu_count() or 2)))
@@ -254,16 +292,22 @@ def main():
     import rounds
     for rnd in range(1, a.rounds + 1):
         t0 = time.time()
-        print(f"=== round {rnd}: proof of shots {todo}", flush=True)
+        bv = {} if a.no_board else board(a.story, out, todo, rnd, a.python)
+        if bv is None:
+            print("PROOF LOOP: no judge answered the storyboard: stopping (fail closed)"); return 1
+        proof = [n for n in todo if a.no_board or bv.get(n, {}).get("pass")]
+        print(f"=== round {rnd}: proof of shots {proof} (storyboard failed {[n for n in todo if n not in proof]})", flush=True)
         with ThreadPoolExecutor(a.jobs) as ex:
-            res = list(ex.map(lambda n: render_proof(a.story, n, out, a.step, a.spp, a.pct, a.python), todo))
+            res = list(ex.map(lambda n: render_proof(a.story, n, out, a.step, a.spp, a.pct, a.python), proof))
         broken = [n for n, ok, _ in res if not ok]
         for n, ok, lines in res:
             print("\n".join(lines))
-        ok_shots = [n for n in todo if n not in broken]
+        ok_shots = [n for n in proof if n not in broken]
         verdict = judge(a.story, out, ok_shots, rnd) if ok_shots else {}
         if verdict is None:
             print("PROOF LOOP: no judge answered: stopping (fail closed)"); return 1
+        for n in todo:
+            if n not in proof: verdict[n] = bv[n]
         for n in broken:
             verdict[n] = {"shot": n, "score": 0, "pass": False, "hard": ["the proof did not render: see s%d.checks.txt" % n]}
         log.append({"round": rnd, "secs": round(time.time() - t0), "verdict": verdict})
