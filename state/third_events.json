@@ -5664,7 +5664,7 @@
         "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO"
       ],
       "published_versions": [],
-      "last_updated": "2026-11-12"
+      "last_updated": "2026-11-18"
     },
     "kaicenat-about-cenat-2026w46": {
       "event_id": "kaicenat-about-cenat-2026w46",
@@ -6041,6 +6041,31 @@
         "vodmine://2928883214/272-512"
       ],
       "published_versions": [],
+      "last_updated": "2026-11-18"
+    },
+    "jynxzi-boss-fight-2026w43": {
+      "event_id": "jynxzi-boss-fight-2026w43",
+      "people": [
+        "jynxzi"
+      ],
+      "actions": [
+        "boss",
+        "fight",
+        "jynxzi",
+        "knight"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-18",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jynxzi/clip/DullAuspiciousPeppermintLitty-4pJjLnPSAsxRSbZD",
+        "https://www.twitch.tv/jynxzi/clip/StylishGlamorousStorkPeanutButterJellyTime-tgfmua9duHEzxZlp",
+        "https://www.twitch.tv/jynxzi/clip/BoldCoweringMuleNomNom-usi5gO99Wcq5pUY5",
+        "https://www.twitch.tv/jynxzi/clip/TolerantHumbleEchidnaTheTarFu-sdCuo3dMhNzJZt7h"
+      ],
+      "published_versions": [
+        "story-db4eebc961be8603"
+      ],
       "last_updated": "2026-11-18"
     }
   }
