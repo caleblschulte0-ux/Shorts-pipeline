@@ -27668,7 +27668,7 @@
    "slug": "freshwater-accessible",
    "title": "How Much Of Earth's Water You Can Actually Drink",
    "hook": "Earth is drowning in water and you still can't drink almost any of it.",
-   "closing": "Out of 10,000 drops on Earth, you can drink less than one.",
+   "closing": "Out of 10,000 drops on Earth, you can drink less than one, so every drop counts.",
    "question": "Would you have guessed it was this small?",
    "caption": "96.5% of Earth's water is ocean. Almost all the rest is frozen or buried underground. What's left in every lake and river combined? A rounding error. 👇",
    "hashtags": [
@@ -27697,7 +27697,7 @@
      "ascending": false,
      "topic": "Earth's salty water",
      "role": "1 · THE SPLIT",
-     "say": "Only 3.5 percent of Earth's water is fresh; the rest is salty ocean.",
+     "say": "Only 3.5 percent of Earth's water is fresh. The other 96.5 percent is salty ocean, so almost everything you see is undrinkable.",
      "scene": {
       "mechanic": "hundred-drops-three-sweet",
       "concept": "100 water drops on a grid; a salt-blue wave sweeps across and turns 96 of them into brine, leaving 3.5 glowing fresh drops",
@@ -27714,7 +27714,7 @@
      "ascending": false,
      "topic": "Water locked away",
      "role": "2 · THE CATCH",
-     "say": "Nearly all freshwater is locked up, with 68.7 percent frozen in glaciers and ice caps.",
+     "say": "Of that fresh water, nearly 69 percent is frozen in glaciers and ice caps. Most of what's drinkable is locked up solid.",
      "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass of Earth's freshwater\n    SUBSTANCE: chunks of glacier ice\n    CAUSE: Data tosses ice chunks into the glass, one throw at a time, until ice fills most of it\n    All of Earth's freshwater is one tall glass standing on the ice field.\n    The liquid part (groundwater plus surface water) sits blue at the bottom\n    at its true share. Data tosses ice into the glass, throw by throw, until\n    the frozen share fills its real 68.7% of the glass up to the brim. That\n    lands by 0.56 and holds. After that Data keeps throwing, and the extra\n    chunks bounce off the full brim and tumble down onto the snow. The scale\n    is the glass itself: brim to base is all the freshwater there is, and a\n    dashed mark shows where the liquid ends.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    lab, vice = max(rows, key=lambda r: r[1])\n    share = vice / tot\n\n    n = 6\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fly = seg(f, 0.0, 0.4)\n    grow = ease(seg(f, 0.35, 0.7))\n    step = 0.0 if u < a0 else (k + grow) / n\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n\n    # the setting: an ice field under a low sun\n    gy = landscape(cr, t, \"snow\")\n    birds(cr, t, y0=760, n=3, rgb=(60, 66, 80))\n\n    GX0, GX1, BASE, TOP = 300, 780, 1440, 640\n    WALL = 14\n    IX0, IX1, IB, IT = GX0 + WALL, GX1 - WALL, BASE - WALL, TOP + 10\n    hin = IB - IT\n    water_h = hin * (1 - share)\n    yw = IB - water_h\n\n    cast_shadow(cr, GX0, GX1, BASE, length=340, a=0.3)\n    contact_shadow(cr, (GX0 + GX1) / 2, BASE + 4, GX1 - GX0 + 80, a=0.4)\n\n    # the contents, clipped to the inside of the glass\n    cr.save()\n    cr.rectangle(IX0, IT, IX1 - IX0, IB - IT)\n    cr.clip()\n    vgrad(cr, [(0, (196, 214, 228)), (1, (170, 190, 208))], IT, IB, IX0, IX1)\n    # the liquid share: blue water at the bottom\n    vgrad(cr, [(0, (86, 156, 214)), (1, (34, 84, 150))], yw, IB, IX0, IX1)\n    wave = 6 * math.sin(t * 2.2)\n    cr.set_source_rgba(*_c((210, 236, 252), 0.8))\n    cr.set_line_width(5)\n    cr.move_to(IX0, yw + wave)\n    cr.curve_to(IX0 + 150, yw - wave, IX1 - 150, yw + wave, IX1, yw - wave)\n    cr.stroke()\n    # the frozen share: ice chunks packed up from the waterline\n    cols, rh = 5, 64\n    cw = (IX1 - IX0) / cols\n    nrows = int(math.ceil(share * hin / rh))\n    total = cols * nrows\n    shown = int(total * step + 0.5)\n    ice = (206, 232, 246)\n    for i in range(shown):\n        r_, c = divmod(i, cols)\n        bx = IX0 + c * cw + 3 + (r_ % 2) * 8\n        by = yw - r_ * rh\n        box(cr, bx, by, cw - 18, rh - 8, ice, depth=12, finish=\"ice\")\n    cr.restore()\n\n    # the glass itself, over its contents\n    cr.rectangle(GX0, TOP, GX1 - GX0, BASE - TOP)\n    cr.rectangle(IX0, IT, IX1 - IX0, IB - IT)\n    cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)\n    solid(cr, (200, 226, 240), finish=\"glass\", a=0.55)\n    cr.set_fill_rule(cairo.FILL_RULE_WINDING)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.35))\n    cr.rectangle(GX0 + 30, TOP + 30, 22, BASE - TOP - 80)\n    cr.fill()\n    cr.rectangle(GX0, TOP, GX1 - GX0, BASE - TOP)\n    edge(cr, (40, 52, 66))\n    # the scale on the glass: brim is all freshwater, the liquid's top marked\n    if step > 0.02:\n        then_mark(cr, GX0 - 10, GX1 + 10, yw, \"liquid\", a=ease(seg(u, a0, a0 + 0.05)))\n\n    # Data walks in along the right of the glass as he throws\n    walk_in = ease(seg(u, a0, a1))\n    hx = 1000 - 160 * walk_in\n    hy = 1452\n\n    # the chunk in flight, from his hands into the glass\n    if u >= a0 and u < a1 + 0.01 and 0 < fly < 1:\n        r_, c = divmod(min(shown, total - 1), cols)\n        sx, sy = hx - 30, hy - 200\n        ex, ey = IX0 + c * cw + cw / 2, yw - r_ * rh - 40\n        bx = sx + (ex - sx) * fly\n        by = sy + (ey - sy) * fly - 300 * math.sin(math.pi * fly)\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(fly * 5)\n        cr.rectangle(-40, -30, 80, 60)\n        solid(cr, ice, finish=\"ice\")\n        cr.restore()\n\n    # after it lands: he keeps throwing, the extra ice bounces off the brim\n    j = 0\n    if u > a1:\n        per = 0.14\n        j = int((u - a1) / per)\n        ph = ((u - a1) % per) / per\n        sx, sy = hx - 30, hy - 200\n        if ph < 0.5:\n            q = ph / 0.5\n            bx = sx + (GX1 - 60 - sx) * q\n            by = sy + (TOP - 20 - sy) * q - 260 * math.sin(math.pi * q)\n        else:\n            q = (ph - 0.5) / 0.5\n            bx = GX1 - 60 + 90 * q\n            by = TOP - 20 + (BASE - 30 - TOP + 20) * q * q\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(ph * 7)\n        cr.rectangle(-36, -28, 72, 56)\n        solid(cr, ice, finish=\"ice\")\n        cr.restore()\n\n    # right by the camera: broken ice on the snow\n    for i in range(4):\n        box(cr, 70 + i * 260, 1700 + (i % 2) * 60, 120 + 20 * (i % 2), 80, ice,\n            depth=26, finish=\"ice\")\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u <= a1:\n        host(\"toss\", hx, hy, 220, beat=k)\n    else:\n        host(\"toss\", hx, hy, 220, beat=n + j)\n\n    if done or u > a1:\n        fit_readout(cr, f\"{vice:g}%\", f\"of freshwater is frozen · {lab.lower()}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Freshwater\", \"all of it, in one glass\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n",
      "scene": {
       "mechanic": "ice-locks-the-tap",
@@ -27732,7 +27732,7 @@
      "ascending": false,
      "topic": "Water you can reach",
      "role": "3 · THE LEFTOVER",
-     "say": "Every lake and river combined holds just 0.007% of Earth's water.",
+     "say": "Every lake and river combined holds just 0.007 percent of Earth's water. That's the only easy part for us to reach.",
      "scene": {
       "mechanic": "ten-thousand-dots-less-than-one",
       "concept": "a field of 10,000 ocean-blue dots floods in; the share you can drink is 0.007% - less than a single dot, which pulses alone in the corner",
@@ -27740,9 +27740,10 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:28:39Z",
-   "hook_was": "Only 3.5 percent of Earth's water isn't salty."
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:06:54Z",
+   "hook_was": "Only 3.5 percent of Earth's water isn't salty.",
+   "retold": "retell/v4"
   },
   {
    "slug": "cargo-ship-size-growth",
@@ -28312,7 +28313,7 @@
    "slug": "tattoo-mainstream-shift",
    "title": "A Third Of Americans Are Now Tattooed",
    "hook": "Once you get one tattoo, you almost never stop at one.",
-   "closing": "Ink used to mean rebel. Now it just means human.",
+   "closing": "Ink used to mean rebel. Now a third of Americans wear it, so it's just normal.",
    "question": "How many tattoos do you have?",
    "caption": "Tattoos have gone from rebellious to mainstream -- a third of Americans now have at least one, more women than men, and most who start don't stop at just one. How many do you have? 💀",
    "hashtags": [
@@ -28339,7 +28340,7 @@
      "insight_type": "trend",
      "role": "1 · THEN",
      "topic": "Tattooed Americans",
-     "say": "Back in 2006, just 16% of Americans had a tattoo. Since then that has doubled.",
+     "say": "In 2006, just 16 percent of Americans had a tattoo. Today that has doubled, to roughly one in three.",
      "illustrated_scene": "# scene standard: 2026-10-11\ndef _tat_capsule(cr, x0, y0, x1, y1, r):\n    a = math.atan2(y1 - y0, x1 - x0)\n    cr.new_path()\n    cr.arc(x1, y1, r, a - math.pi / 2, a + math.pi / 2)\n    cr.arc(x0, y0, r, a + math.pi / 2, a + 3 * math.pi / 2)\n    cr.close_path()\n\n\ndef _tat_half(x):\n    # half-thickness of the arm: a slim wrist swelling to the upper arm\n    if x < 620:\n        return 95 + 30 * ease(clamp((x - 280) / 340.0))\n    return 125 + 22 * ease(clamp((x - 620) / 380.0))\n\n\ndef _tat_top(cy, x):\n    return cy - _tat_half(x) - 6 * math.sin((x - 280) / 340.0 * math.pi)\n\n\ndef _tat_arm_path(cr, cy, x0, x1):\n    cr.new_path()\n    xs = [x0 + (x1 - x0) * i / 40.0 for i in range(41)]\n    cr.move_to(xs[0], _tat_top(cy, xs[0]))\n    for x in xs[1:]:\n        cr.line_to(x, _tat_top(cy, x))\n    for x in reversed(xs):\n        cr.line_to(x, cy + _tat_half(x))\n    cr.close_path()\n\n\ndef _tat_star(cr, x, y, r, rgb):\n    cr.new_path()\n    for i in range(10):\n        rr = r if i % 2 == 0 else r * 0.45\n        a = -math.pi / 2 + i * math.pi / 5\n        if i == 0:\n            cr.move_to(x + rr * math.cos(a), y + rr * math.sin(a))\n        else:\n            cr.line_to(x + rr * math.cos(a), y + rr * math.sin(a))\n    cr.close_path()\n    solid(cr, rgb)\n\n\ndef _tat_heart(cr, x, y, s, rgb):\n    cr.new_path()\n    cr.move_to(x, y + 26 * s)\n    cr.curve_to(x - 44 * s, y - 4 * s, x - 22 * s, y - 38 * s, x, y - 14 * s)\n    cr.curve_to(x + 22 * s, y - 38 * s, x + 44 * s, y - 4 * s, x, y + 26 * s)\n    cr.close_path()\n    solid(cr, rgb)\n\n\ndef _tat_rose(cr, x, y, s, ink):\n    cr.save()\n    cr.translate(x - 30 * s, y + 18 * s)\n    cr.scale(1.0, 0.5)\n    cr.arc(0, 0, 22 * s, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (62, 120, 72))\n    disc(cr, x, y, 28 * s, (190, 38, 46), finish=\"gloss\")\n    cr.set_source_rgba(*_c(ink))\n    cr.set_line_width(5 * s)\n    cr.arc(x, y, 9 * s, 0, 1.6 * math.pi)\n    cr.arc(x, y, 18 * s, 1.6 * math.pi, 3.0 * math.pi)\n    cr.stroke()\n\n\ndef _tat_machine(cr, x, y, s, t, live):\n    # a classic coil tattoo machine, needle down on the skin at (x, y):\n    # the steel tip and knurled grip, two copper coils on the frame, the\n    # armature bar across them, the spring and the brass contact screw\n    STEEL, IRON, COPPER = (178, 182, 192), (52, 54, 62), (196, 112, 56)\n    buzz = (3.0 * s * math.sin(t * 90)) if live else 0.0\n    # the power cord, looping up out of frame\n    cr.set_source_rgba(*_c((24, 24, 28)))\n    cr.set_line_width(12 * s)\n    cr.move_to(x - 172 * s, y - 440 * s)\n    cr.curve_to(x - 260 * s, y - 640 * s, W - 40, y - 700 * s, W + 40, 300)\n    cr.stroke()\n    # the needle\n    cr.set_source_rgba(*_c((220, 224, 232)))\n    cr.set_line_width(5 * s)\n    cr.move_to(x, y)\n    cr.line_to(x, y - 50 * s + buzz)\n    cr.stroke()\n    if live:\n        # a wet bead of black ink where the needle meets the skin\n        glow(cr, x, y, 40 * s, (255, 236, 200), 0.5)\n        disc(cr, x, y + 4 * s, 13 * s, (14, 14, 18), finish=\"gloss\")\n    # tip, grip and tube\n    cylinder(cr, x - 14 * s, y - 36 * s, 28 * s, 90 * s, STEEL, finish=\"metal\")\n    cylinder(cr, x - 26 * s, y - 126 * s, 52 * s, 124 * s, IRON, finish=\"metal\")\n    cr.set_source_rgba(*_c((120, 124, 134)))\n    cr.set_line_width(3 * s)\n    for j in range(9):\n        yy = y - 136 * s - j * 12 * s\n        cr.move_to(x - 24 * s, yy)\n        cr.line_to(x + 24 * s, yy)\n    cr.stroke()\n    cylinder(cr, x - 12 * s, y - 250 * s, 24 * s, 70 * s, STEEL, finish=\"metal\")\n    # the frame: base plate and upright with its top arm\n    box(cr, x - 185 * s, y - 246 * s, 210 * s, 26 * s, IRON, depth=30 * s, finish=\"metal\")\n    cr.rectangle(x - 190 * s, y - 455 * s, 30 * s, 212 * s)\n    solid(cr, IRON, finish=\"metal\")\n    cr.rectangle(x - 190 * s, y - 455 * s, 112 * s, 24 * s)\n    solid(cr, IRON, finish=\"metal\")\n    # the two copper coils with black caps\n    for cx_ in (x - 150 * s, x - 88 * s):\n        cylinder(cr, cx_, y - 272 * s, 54 * s, 118 * s, COPPER, finish=\"metal\")\n        cr.set_source_rgba(*_c((120, 60, 30), 0.8))\n        cr.set_line_width(2.5 * s)\n        for j in range(8):\n            yy = y - 282 * s - j * 13 * s\n            cr.move_to(cx_ + 2 * s, yy)\n            cr.line_to(cx_ + 52 * s, yy)\n        cr.stroke()\n        box(cr, cx_ - 4 * s, y - 390 * s, 62 * s, 10 * s, (30, 30, 34), depth=12 * s)\n    # the armature bar across the coils to the tube, buzzing\n    cr.rectangle(x - 156 * s, y - 418 * s + buzz, 168 * s, 18 * s)\n    solid(cr, STEEL, finish=\"metal\")\n    # the spring back to the frame\n    cr.set_source_rgba(*_c((200, 204, 212)))\n    cr.set_line_width(4 * s)\n    cr.move_to(x - 160 * s, y - 412 * s + buzz)\n    for j in range(5):\n        cr.line_to(x - 168 * s - j * 3 * s, y - 418 * s - (j % 2) * 8 * s + buzz)\n    cr.stroke()\n    # the brass contact screw over the armature\n    cylinder(cr, x - 108 * s, y - 418 * s, 16 * s, 22 * s, P[\"brass\"], finish=\"metal\")\n    disc(cr, x - 100 * s, y - 443 * s, 14 * s, P[\"brass\"], finish=\"metal\")\n\n\ndef _tat_ink_bottle(cr, x, y, s, rgb, label):\n    # a squat ink bottle with a nozzle cap and a paper label\n    contact_shadow(cr, x + 30 * s, y, 80 * s, a=0.4)\n    cylinder(cr, x, y, 60 * s, 90 * s, rgb, finish=\"gloss\")\n    cr.rectangle(x + 6 * s, y - 70 * s, 48 * s, 36 * s)\n    solid(cr, (236, 228, 206), rim=False)\n    cr.rectangle(x + 14 * s, y - 60 * s, 32 * s, 14 * s)\n    cr.set_source_rgba(*_c(label))\n    cr.fill()\n    cylinder(cr, x + 18 * s, y - 88 * s, 24 * s, 22 * s, (30, 30, 34), finish=\"gloss\")\n    cylinder(cr, x + 26 * s, y - 108 * s, 8 * s, 22 * s, (240, 240, 244))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: an arm under a tattoo machine\n    SUBSTANCE: black tattoo ink\n    CAUSE: Data shoves a giant buzzing tattoo machine down the arm and its needle inks the skin as it goes\n    One huge arm lies across a tattoo parlor's armrest, hand and fingers on\n    the left, the T-shirt sleeve on the right: the WHOLE arm is all\n    Americans. A coil tattoo machine as big as Data — copper coils, knurled\n    grip, needle on the skin, cord looping up — stands on the arm. Each year\n    Data shoves it down the arm from the sleeve, and behind the needle the\n    skin turns solid wet BLACK INK — a blackwork sleeve, black with thin\n    lines of bare skin showing through, a bead of ink at the needle — until\n    that year's share of the arm is inked; the ink front is edged in the\n    accent and every landed year leaves a notch under the arm. 2006's ink\n    stays as a dashed box so the doubling reads at a glance. Done by 0.56\n    and held; the fan keeps turning, the needle keeps buzzing and Data\n    keeps shoving.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.25, 0.65))           # the ink lands with the shove\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    share = 0.0 if u < a0 else clamp((prev + (rows[k][1] - prev) * slide) / 100.0)\n    landed_to = k if slide >= 0.999 else k - 1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if (u < a0 or named is None) else rows[named]\n\n    # the arm is drawn in its own coordinates and scaled up into the frame\n    CY = 1060\n    WX, SX = 280, 1000\n    L = SX - WX\n    S, OX, OY = 1.15, -120.0, -39.0\n    INKC = (16, 16, 22)\n    SKIN = (226, 178, 144)\n    GOLD = (226, 178, 58)\n    FLOOR = 1420\n\n    def wx(x):\n        return OX + S * x\n\n    def wy(y):\n        return OY + S * y\n\n    def xat(v):\n        return SX - L * v / 100.0\n\n    def top_w(xw):\n        xl = (xw - OX) / S\n        return wy(_tat_top(CY, xl))\n\n    def bot_w(xl):\n        return wy(CY + _tat_half(xl))\n\n    front = SX - L * share\n    front_w = wx(front)\n\n    # the parlor: a pale ceiling, a deep teal wall\n    vgrad(cr, [(0, (200, 194, 180)), (1, (168, 160, 146))], 0, 250)\n    vgrad(cr, [(0, (44, 76, 82)), (1, (24, 40, 46))], 250, FLOOR)\n    cr.rectangle(0, 244, W, 12)\n    solid(cr, (120, 96, 70), rim=False)\n    # a wall of flash art, sheets pinned edge to edge\n    for i, fx in enumerate((50, 255, 460, 665, 870)):\n        fy = 650 + (i % 2) * 18\n        cr.rectangle(fx, fy, 165, 215)\n        solid(cr, (236, 226, 200))\n        cr.set_source_rgba(*_c((60, 40, 30)))\n        cr.set_line_width(8)\n        cr.rectangle(fx, fy, 165, 215)\n        cr.stroke()\n        disc(cr, fx + 82, fy + 12, 7, (190, 40, 48), finish=\"gloss\")\n        kind = i % 3\n        if kind == 0:\n            _tat_heart(cr, fx + 82, fy + 115, 1.5, (190, 40, 48))\n        elif kind == 1:\n            _tat_star(cr, fx + 82, fy + 112, 56, GOLD)\n        else:\n            _tat_rose(cr, fx + 88, fy + 110, 1.4, INKC)\n    # the neon sign\n    glow(cr, 830, 310, 260, P[\"accent2\"], 0.35)\n    text(cr, \"TATTOO\", 830, 340, 78, P[\"accent2\"], face=\"display\", anchor=\"center\")\n    haze(cr, 250, FLOOR, (44, 76, 82), a=0.22)\n\n    # the ceiling fan, always turning\n    FX, FYc = 480, 150\n    cr.set_source_rgba(*_c((70, 60, 50)))\n    cr.set_line_width(10)\n    cr.move_to(FX, 0)\n    cr.line_to(FX, FYc)\n    cr.stroke()\n    for i in range(4):\n        a = t * 1.6 + i * math.pi / 2\n        ca, sa = math.cos(a), math.sin(a)\n        px, py = -sa, ca\n        tip = (FX + ca * 280, FYc + sa * 280 * 0.3)\n        cr.new_path()\n        cr.move_to(FX + px * 14, FYc + py * 14 * 0.3)\n        cr.line_to(tip[0] + px * 40, tip[1] + py * 40 * 0.3)\n        cr.line_to(tip[0] - px * 40, tip[1] - py * 40 * 0.3)\n        cr.line_to(FX - px * 14, FYc - py * 14 * 0.3)\n        cr.close_path()\n        solid(cr, (110, 72, 44))\n    disc(cr, FX, FYc, 30, (150, 140, 120), finish=\"metal\")\n\n    # a checker floor running to the camera\n    vgrad(cr, [(0, (196, 190, 178)), (1, (232, 228, 218))], FLOOR, H)\n    cr.save()\n    cr.rectangle(0, FLOOR, W, H - FLOOR)\n    cr.clip()\n    rows_y = [FLOOR + (H - FLOOR) * (i / 6.0) ** 1.5 for i in range(7)]\n\n    def fxp(j, y):\n        return 540 + j * 170 * (y - 1150) / (H - 1150)\n    for i in range(6):\n        for j in range(-12, 12):\n            if (i + j) % 2:\n                continue\n            y0, y1 = rows_y[i], rows_y[i + 1]\n            cr.move_to(fxp(j, y0), y0)\n            cr.line_to(fxp(j + 1, y0), y0)\n            cr.line_to(fxp(j + 1, y1), y1)\n            cr.line_to(fxp(j, y1), y1)\n            cr.close_path()\n            cr.set_source_rgba(*_c((30, 30, 34), 0.6))\n            cr.fill()\n    cr.restore()\n\n    # the armrest: a padded bed on a chrome post\n    cast_shadow(cr, 420, 640, 1690, length=260, a=0.28)\n    contact_shadow(cr, 530, 1690, 280, a=0.45)\n    cr.save()\n    cr.translate(530, 1686)\n    cr.scale(1, 0.25)\n    cr.arc(0, 0, 125, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (60, 62, 68), finish=\"metal\")\n    cylinder(cr, 512, 1680, 36, 320, (186, 190, 198), finish=\"metal\")\n    box(cr, 240, 1400, 520, 64, (34, 34, 40), depth=70, finish=\"gloss\")\n\n    # a work light over the arm, warm on the skin\n    glow(cr, front_w, top_w(front_w) + 80, 360, (255, 232, 190), 0.28)\n\n    cr.save()\n    cr.translate(OX, OY)\n    cr.scale(S, S)\n    # the hand: four fingers fanned, a thumb, the palm over their roots\n    for i, (dy, ln) in enumerate(((-58, 130), (-20, 150), (18, 145), (54, 120))):\n        _tat_capsule(cr, 230, CY + dy * 0.8, 230 - ln, CY + dy * 1.15, 24 - (i == 3) * 3)\n        solid(cr, SKIN)\n    _tat_capsule(cr, 260, CY - 70, 170, CY - 130, 26)\n    solid(cr, SKIN)\n    cr.save()\n    cr.translate(250, CY)\n    cr.scale(1.0, 0.95)\n    cr.arc(0, 0, 90, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, SKIN)\n    cr.set_source_rgba(*_c((150, 100, 80), 0.8))\n    cr.set_line_width(4)\n    for dy in (-46, -14, 18, 48):                   # knuckle creases\n        cr.move_to(180, CY + dy - 8)\n        cr.curve_to(170, CY + dy, 172, CY + dy + 6, 182, CY + dy + 12)\n    cr.stroke()\n\n    # the arm itself\n    _tat_arm_path(cr, CY, WX, SX + 60)\n    solid(cr, SKIN)\n\n    # the ink: solid wet black ink, a blackwork sleeve from the shirt to the needle\n    if share > 0.002:\n        cr.save()\n        _tat_arm_path(cr, CY, WX, SX + 60)\n        cr.clip()\n        cr.rectangle(front, 0, 2000, 3000)\n        cr.clip()\n        cr.set_source_rgba(*_c(INKC, 0.94))\n        cr.paint()\n        # thin lines of bare skin left showing through the black\n        cr.set_source_rgba(*_c(SKIN, 0.55))\n        cr.set_line_width(5)\n        for j in range(14):\n            xb = SX + 30 - j * 56\n            h_ = _tat_half(xb)\n            cr.move_to(xb, CY - h_ - 10)\n            cr.curve_to(xb - 46, CY - 40, xb + 34, CY + 40, xb - 24, CY + h_ + 10)\n        cr.stroke()\n        # the fresh ink is WET: a glossy sheen along the lit top of the arm\n        xs_ = [front + (SX + 60 - front) * i / 20.0 for i in range(21)]\n        cr.new_path()\n        cr.move_to(xs_[0], _tat_top(CY, xs_[0]) + 18)\n        for x_ in xs_[1:]:\n            cr.line_to(x_, _tat_top(CY, x_) + 18)\n        for x_ in reversed(xs_):\n            cr.line_to(x_, _tat_top(CY, x_) + 46)\n        cr.close_path()\n        cr.set_source_rgba(*_c((200, 206, 226), 0.28))\n        cr.fill()\n        cr.restore()\n        # the share's edge, in the accent\n        h_ = _tat_half(front)\n        cr.set_source_rgba(*_c(P[\"accent2\"]))\n        cr.set_line_width(7)\n        cr.move_to(front, CY - h_ - 16)\n        cr.line_to(front, CY + h_ + 16)\n        cr.stroke()\n    _tat_arm_path(cr, CY, WX, SX + 60)\n    edge(cr, (90, 56, 44))\n\n    # the T-shirt sleeve the arm comes out of\n    cr.new_path()\n    cr.move_to(985, CY - 175)\n    cr.line_to(1200, CY - 200)\n    cr.line_to(1200, CY + 200)\n    cr.line_to(975, CY + 175)\n    cr.curve_to(960, CY + 60, 960, CY - 60, 985, CY - 175)\n    cr.close_path()\n    solid(cr, (150, 156, 168))\n    cr.set_source_rgba(*_c((110, 114, 126)))\n    cr.set_line_width(6)\n    cr.move_to(1000, CY - 172)\n    cr.curve_to(984, CY - 60, 984, CY + 60, 992, CY + 172)\n    cr.stroke()\n    cr.restore()\n\n    # THE SCALE on the arm: 2006's ink as a dashed box, a notch per year\n    if u >= a0:\n        if landed_to >= 1:\n            x06 = xat(rows[0][1])\n            h6 = _tat_half(x06) * S\n            cr.rectangle(wx(x06), wy(CY) - h6 - 22, wx(SX) - wx(x06), 2 * h6 + 44)\n            ghost(cr, a=0.9)\n        nxn = wx(xat(rows[named][1])) if named is not None else None\n        for j in range(0, landed_to + 1):\n            xl = xat(rows[j][1])\n            nx = wx(xl)\n            yb = bot_w(xl)\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(nx, yb + 26)\n            cr.line_to(nx, yb + 62)\n            cr.stroke()\n            if j == named or (j == 0 and nxn is not None and abs(nxn - nx) > 100):\n                text(cr, rows[j][0], nx, yb + 104, 36, look.INK, face=\"bold\",\n                     anchor=\"center\")\n\n    # the tattoo machine itself, needle down on the ink front\n    mx = min(front_w, 1010)\n    _tat_machine(cr, mx, top_w(mx) + 4, 0.85, t, u >= a0)\n\n    # right by the camera: the artist's steel tray of black ink bottles and caps\n    contact_shadow(cr, 790, 1830, 560, a=0.45)\n    box(cr, 520, 1820, 540, 34, (176, 180, 188), depth=90, finish=\"metal\")\n    for i in range(4):\n        _tat_ink_bottle(cr, 560 + i * 92, 1792, 1.05, INKC, (20, 20, 24))\n    cylinder(cr, 940, 1792, 90, 150, (240, 238, 232))\n    for i in range(3):\n        cylinder(cr, 70 + i * 70, 1880, 48, 34, INKC, finish=\"gloss\")\n    vignette(cr, a=0.28)\n\n    # Data stands on the arm behind the machine and shoves it down the arm\n    if u < a0:\n        sx0 = 640\n        host(\"point\", sx0, top_w(sx0) + 6, 220)\n    else:\n        hx = min(mx + 80, 1000)\n        hy = top_w(hx) + 6\n        if u < a1 + 0.04:\n            host(\"shove\", hx, hy, 220, beat=k)\n        else:\n            host(\"shove\", hx, hy, 220, beat=100 + int((u - a1) / 0.1))\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))}%\", f\"of Americans have a tattoo · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Tattoos\", f\"Americans, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n    if u >= a1 and rows[0][1] > 0:\n        ratio = rows[-1][1] / rows[0][1]\n        lbl = f\"{int(round(ratio))}x\" if abs(ratio - round(ratio)) < 0.05 else f\"{ratio:.1f}x\"\n        text(cr, lbl, W - 80, 620, 100, look.INK, face=\"display\", anchor=\"right\",\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n",
      "viz": "trend"
     },
@@ -28353,7 +28354,7 @@
      "use_baseline": true,
      "role": "2 · WHO",
      "topic": "Tattooed women",
-     "say": "37% of women now have a tattoo, against 32% of all American adults. The rebel look is the average look.",
+     "say": "Women lead the pack: 37 percent have a tattoo, against about a third of all adults. Not a rebel look anymore.",
      "ascending": false,
      "scene": {
       "mechanic": "torso-ink-fill-duel",
@@ -28370,7 +28371,7 @@
      "insight_type": "share",
      "role": "3 · THE HABIT",
      "topic": "Tattooed, then more",
-     "say": "Once people start, they rarely stop. 22 percent of Americans carry more than one, and only 10 percent stopped at a single tattoo.",
+     "say": "Once people start, they rarely stop. One in five Americans has more than one tattoo, twice as many as stopped at one.",
      "scene": {
       "mechanic": "skin-grid-more-than-one",
       "concept": "a hundred people tiles: 68 stay blank, 10 get one ink stamp, 22 keep getting stamped until they carry several",
@@ -28378,9 +28379,10 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-11T17:49:27Z",
-   "hook_was": "Tattoos went from rebel mark to 32% of Americans."
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:07:37Z",
+   "hook_was": "Tattoos went from rebel mark to 32% of Americans.",
+   "retold": "retell/v4"
   },
   {
    "slug": "dating-app-user-exodus",
@@ -37320,7 +37322,7 @@
    "slug": "nuclear-reactors-under-construction",
    "title": "The World Is Quietly Building 78 Gigawatts Of Nuclear Power",
    "hook": "Nuclear power never actually went away.",
-   "closing": "Turns out the 'dying' industry was just reloading.",
+   "closing": "Turns out the 'dying' industry was just reloading, and your future power may depend on it.",
    "question": "Would you live near a nuclear plant?",
    "caption": "78 gigawatts of nuclear power are under construction worldwide right now, across 15 countries — and China alone is building half of it. Would you live near a nuclear plant? Tell me below ⚛️",
    "hashtags": [
@@ -37346,8 +37348,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RESTART",
-     "topic": "new nuclear reactor construction",
-     "say": "In 2024, 9 new nuclear reactors broke ground worldwide. In 2025 it climbed to 10 — and nine of those were in China alone."
+     "topic": "New nuclear reactor construction",
+     "say": "Builders started 10 new reactors worldwide last year, one more than the year before. Nuclear is growing, not fading."
     },
     {
      "source": "offline",
@@ -37357,8 +37359,8 @@
      },
      "insight_type": "share",
      "role": "2 · WHO'S BUILDING",
-     "topic": "nuclear reactor construction by country",
-     "say": "Half of all that new nuclear capacity under construction right now is in China alone."
+     "topic": "Nuclear construction by country",
+     "say": "Half of all the nuclear capacity being built right now sits in one country: China. Everyone else splits the other half."
     },
     {
      "source": "offline",
@@ -37368,11 +37370,14 @@
      },
      "insight_type": "rank",
      "role": "3 · THE SCALE",
-     "topic": "how much nuclear capacity is under construction",
-     "say": "That's 78 gigawatts of nuclear power under construction right now — roughly the equivalent of building 78 full-size reactors at the same time.",
+     "topic": "Nuclear capacity under construction",
+     "say": "That adds up to 78 gigawatts under construction, the output of dozens of big reactors. Tomorrow's power is being built right now.",
      "ascending": false
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:10:16Z"
   },
   {
    "slug": "craft-brewery-boom-and-bust",
@@ -38265,7 +38270,7 @@
    "slug": "great-barrier-reef-bleaching-accelerating",
    "title": "The Great Barrier Reef Has Now Bleached 7 Times Since 1998",
    "hook": "Mass bleaching used to be rare. Not anymore.",
-   "closing": "The reef isn't just struggling. It's running out of time to recover between hits.",
+   "closing": "Each bleaching now hits a reef that never healed from the last one.",
    "question": "Could the reef keep up with this?",
    "hashtags": [
     "greatbarrierreef",
@@ -38290,8 +38295,8 @@
      },
      "insight_type": "trend",
      "role": "1 · HOW OFTEN",
-     "topic": "how often the reef bleaches",
-     "say": "In the 1990s and 2000s, the reef bleached just once each decade — rare and newsworthy. The 2020s alone already have 3 events."
+     "topic": "Reef bleaching rate",
+     "say": "For decades the reef bleached about once a decade. Now it's happened three times in the 2020s alone."
     },
     {
      "source": "offline",
@@ -38301,8 +38306,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE GAP CLOSING",
-     "topic": "the gap between reef bleaching events",
-     "say": "The gap from the first event to the second ran a full 14 years. Now the reef barely gets 2 before it happens again."
+     "topic": "Reef gap shrinking",
+     "say": "The longest calm on record was 14 years. Lately the reef barely gets a breather before the next hit."
     },
     {
      "source": "offline",
@@ -38312,10 +38317,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · NOT ENOUGH TIME",
-     "topic": "recovery time the reef doesn't get",
-     "say": "Scientists say a reef typically needs about 10 years of calm water to fully heal. It's now only getting about 2."
+     "topic": "Reef recovery time",
+     "say": "A reef needs about 10 years to heal fully. It's getting a fifth of that, so damage keeps piling up."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:13:34Z"
   },
   {
    "slug": "normal-body-temperature-has-shifted",
@@ -38549,7 +38557,7 @@
    "slug": "richest-americans-live-14-years-longer",
    "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
    "hook": "Same country. Same age. A 14-year gap in how long you live.",
-   "closing": "Money doesn't just buy comfort — it buys years.",
+   "closing": "Money doesn't just buy comfort. It buys years, and that gap keeps growing.",
    "question": "Would you want to know your number?",
    "caption": "The richest 1% of American men outlive the poorest 1% by 14.6 years. That gap alone is bigger than six decades of national progress. Would you want to know your number? 👇",
    "hashtags": [
@@ -38575,8 +38583,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GAP",
-     "topic": "richest vs poorest, life expectancy gap",
-     "say": "Richest American men outlive the poorest men by 14.6 years. For women the gap is smaller, but still huge — 10.1 years."
+     "topic": "Richest vs poorest",
+     "say": "Richest American men outlive the poorest men by 14.6 years. That is more than a decade of life, lost to a paycheck."
     },
     {
      "source": "offline",
@@ -38586,8 +38594,8 @@
      },
      "insight_type": "trend",
      "role": "2 · FOR CONTEXT",
-     "topic": "how much US life expectancy improved since 1960",
-     "say": "US average life expectancy only climbed about 9 years since 1960. That income gap alone beats six decades of progress."
+     "topic": "Americans since 1960",
+     "say": "Sixty years of progress added only about 9 years to American lives. The richest-poorest gap beats all of it."
     },
     {
      "source": "offline",
@@ -38597,16 +38605,19 @@
      },
      "insight_type": "comparison",
      "role": "3 · AND IT'S WIDENING",
-     "topic": "richest americans pulling further ahead since 2001",
-     "say": "Since 2001, the richest fifth of Americans gained about 2.3 more years of life. The poorest fifth gained almost none — just 0.3."
+     "topic": "Richest pulling ahead",
+     "say": "Since 2001, the richest fifth of Americans gained 2.3 years of life. The poorest fifth got almost nothing."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:17:26Z"
   },
   {
    "slug": "fifty-otters-survived-climate-fight",
    "title": "50 Sea Otters Survived. Now They're Fighting Climate Change.",
    "hook": "They were almost wiped out. Then scientists noticed something weird.",
-   "closing": "Sometimes saving one weird animal saves everything around it.",
+   "closing": "Sometimes saving one weird animal helps save everything around it, including us.",
    "question": "Would you want otters near your coastline?",
    "caption": "Fur traders hunted California's sea otters down to about 50 survivors. They've crept back to 3,000 — and the kelp forests they protect could store millions of tons of CO2. Would you want them near your coastline? 👇",
    "hashtags": [
@@ -38632,8 +38643,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · NEARLY WIPED OUT",
-     "topic": "california sea otters nearly wiped out",
-     "say": "Fur traders hunted California sea otters from about 16,000 down to just 50 survivors by the 1930s."
+     "topic": "Otters nearly wiped out",
+     "say": "Fur traders hunted California's sea otters to the brink. By the 1930s, only about fifty were left."
     },
     {
      "source": "offline",
@@ -38643,8 +38654,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE SLOW COMEBACK",
-     "topic": "how sea otters survived and came back",
-     "say": "From that handful in the 1930s, California's otters have crept back to about 3,000 today — still listed as threatened."
+     "topic": "Sea otters came back",
+     "say": "From that handful, they've crept back to about 3,000 today. That's a real comeback, but they're still listed as threatened."
     },
     {
      "source": "offline",
@@ -38654,16 +38665,19 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHY IT MATTERS",
-     "topic": "how otters fighting climate change pays off",
-     "say": "Otters eat urchins that strip kelp bare. A full recovery could help store up to 8.7 million tons of CO2 a year."
+     "topic": "Otters fighting climate change",
+     "say": "Otters eat the urchins that strip kelp bare. Healthy kelp stores carbon, up to 8.7 million tons of CO2 a year."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:17:56Z"
   },
   {
    "slug": "us-stops-making-pennies-232-years",
    "title": "The US Will Stop Making Pennies After 232 Years",
    "hook": "It costs more to make than it's worth — so they're done.",
-   "closing": "The nickel's next — it loses even more.",
+   "closing": "The nickel loses even more money, so your pocket change may be next.",
    "question": "Would you miss the penny at all?",
    "caption": "Making a penny costs 3.69 cents for something worth one. After 232 years, the US is finally pulling the plug — and the nickel loses even more. Would you miss it? 👇",
    "hashtags": [
@@ -38689,8 +38703,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · WHAT STOPPING IS WORTH",
-     "topic": "what stopping pennies is worth",
-     "say": "Ending penny production saves taxpayers about 56 million dollars a year — making them was losing about 86 million a year."
+     "topic": "Pennies saving money",
+     "say": "Making pennies loses taxpayers about 86 million dollars a year. Ending it saves roughly two thirds of that."
     },
     {
      "source": "offline",
@@ -38701,8 +38715,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · HOW LONG IT RAN",
-     "topic": "how long the US will keep making pennies, compared",
-     "say": "Most discontinued US coins did not last long — the two-cent piece ran just 9 years. The penny ran 232 years before stopping."
+     "topic": "Pennies lasted centuries",
+     "say": "Most dead coins went fast; the two-cent piece lasted just 9 years. The penny hung on for over two centuries."
     },
     {
      "source": "offline",
@@ -38712,10 +38726,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COIN THAT'S WORSE",
-     "topic": "which coins still cost more to make than they are worth",
-     "say": "The penny was not the worst offender. It costs 3.69 cents to make one — but 13.78 cents for a nickel, still sticking around."
+     "topic": "Pennies versus nickels",
+     "say": "A nickel costs 13.78 cents to make, nearly three times its five-cent value. The penny wasn't even the worst."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T10:18:44Z"
   }
  ]
 }

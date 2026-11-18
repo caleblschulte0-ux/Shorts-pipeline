@@ -1,26 +1,259 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-17T22:22:48Z",
+ "updated": "2026-11-18T10:18:50Z",
  "open": [
-  {
-   "id": "chatgpt-fastest-adoption-ever__467b2734",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-17T22:22:48Z",
-   "why": [
-    "premise: brain: The claim hinges on an unverified adoption timeframe and lacks a single, concrete, verifiable number to substantiate the reversal of expectations."
-   ],
-   "request": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.request.json",
-   "answer_path": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.answer.json"
-  },
   {
    "id": "lake-mead-water-crisis__4529ddf6",
    "slug": "lake-mead-water-crisis",
-   "filed": "2026-11-17T22:22:48Z",
+   "filed": "2026-11-18T10:18:50Z",
    "why": [
-    "premise: brain: The premise reports reservoir decline but does not reverse a specific viewer expectation beyond the statistic itself."
+    "thesis: seg2 ('lake mead power shutoff') does not continue the story of the headline ('Lake Mead Dropped To Just 27% Full') — brain: Focuses on power generation cutoff, not directly proving the 27% full claim"
    ],
-   "request": "exchange/rewrites/20261117/lake-mead-water-crisis__4529ddf6.request.json",
-   "answer_path": "exchange/rewrites/20261117/lake-mead-water-crisis__4529ddf6.answer.json"
+   "request": "exchange/rewrites/20261118/lake-mead-water-crisis__4529ddf6.request.json",
+   "answer_path": "exchange/rewrites/20261118/lake-mead-water-crisis__4529ddf6.answer.json"
+  },
+  {
+   "id": "dating-app-user-exodus__ff59ad54",
+   "slug": "dating-app-user-exodus",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "premise: brain: The hook makes a specific claim about Tinder's user loss that lacks verifiable evidence, making the premise unsubstantiated."
+   ],
+   "request": "exchange/rewrites/20261118/dating-app-user-exodus__ff59ad54.request.json",
+   "answer_path": "exchange/rewrites/20261118/dating-app-user-exodus__ff59ad54.answer.json"
+  },
+  {
+   "id": "fifty-otters-survived-climate-fight__212454a4",
+   "slug": "fifty-otters-survived-climate-fight",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, true surprise about sea otters actively combating climate change."
+   ],
+   "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__212454a4.request.json",
+   "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__212454a4.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__772f1262",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim that the fungus erased 90 frog species and is not a clear continuation of beat 0.",
+    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Only mentions 40 frog species affected, not the 90 extinctions claimed, and doesn't follow logically from beat 1."
+   ],
+   "request": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262.request.json",
+   "answer_path": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262.answer.json"
+  },
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__f3401a29",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "premise: brain: The claim about exactly seven bleaching events since 1998 is not a verifiable, concrete fact."
+   ],
+   "request": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__f3401a29.request.json",
+   "answer_path": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__f3401a29.answer.json"
+  },
+  {
+   "id": "nuclear-reactors-under-construction__db53359a",
+   "slug": "nuclear-reactors-under-construction",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, provable surprise about nuclear power's ongoing growth."
+   ],
+   "request": "exchange/rewrites/20261118/nuclear-reactors-under-construction__db53359a.request.json",
+   "answer_path": "exchange/rewrites/20261118/nuclear-reactors-under-construction__db53359a.answer.json"
+  },
+  {
+   "id": "richest-americans-live-14-years-longer__0b929b85",
+   "slug": "richest-americans-live-14-years-longer",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Provides broader context but doesn’t directly support the headline claim nor logically follow from beat 0"
+   ],
+   "request": "exchange/rewrites/20261118/richest-americans-live-14-years-longer__0b929b85.request.json",
+   "answer_path": "exchange/rewrites/20261118/richest-americans-live-14-years-longer__0b929b85.answer.json"
+  },
+  {
+   "id": "us-stops-making-pennies-232-years__e8e35070",
+   "slug": "us-stops-making-pennies-232-years",
+   "filed": "2026-11-18T10:18:50Z",
+   "why": [
+    "premise: brain: The premise is not a true, concrete claim—there is no evidence the US will cease penny production after 232 years."
+   ],
+   "request": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070.request.json",
+   "answer_path": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070.answer.json"
+  },
+  {
+   "id": "clear-air-turbulence-increase__0e7d743e",
+   "slug": "clear-air-turbulence-increase",
+   "filed": "2026-11-18T10:18:49Z",
+   "why": [
+    "premise: brain: The claim about a 55% increase in severe turbulence lacks a concrete, verifiable source and is not a proven fact."
+   ],
+   "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__0e7d743e.request.json",
+   "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__0e7d743e.answer.json"
+  },
+  {
+   "id": "cursive-handwriting-comeback__6e95b30a",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-11-18T10:18:49Z",
+   "why": [
+    "premise: brain: The premise is vague and contradictory, lacking a concrete, verifiable claim about cursive returning to 25 states and reading collapse."
+   ],
+   "request": "exchange/rewrites/20261118/cursive-handwriting-comeback__6e95b30a.request.json",
+   "answer_path": "exchange/rewrites/20261118/cursive-handwriting-comeback__6e95b30a.answer.json"
+  },
+  {
+   "id": "human-domesticated-14-animals__60c60bd9",
+   "slug": "human-domesticated-14-animals",
+   "filed": "2026-11-18T10:18:49Z",
+   "why": [
+    "premise: brain: The claim of exactly 14 large domesticated animals is not a verifiable, concrete fact and is likely inaccurate."
+   ],
+   "request": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9.request.json",
+   "answer_path": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9.answer.json"
+  },
+  {
+   "id": "lego-minifigs-outnumber-humans__d15cebf7",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-18T10:18:49Z",
+   "why": [
+    "premise: brain: The premise is not a verifiable true fact and relies on an unsubstantiated claim that LEGO minifigures outnumber humans."
+   ],
+   "request": "exchange/rewrites/20261118/lego-minifigs-outnumber-humans__d15cebf7.request.json",
+   "answer_path": "exchange/rewrites/20261118/lego-minifigs-outnumber-humans__d15cebf7.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__467b2734",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The claim of ChatGPT achieving mass adoption in just two months is unverified and likely false, making the premise non‑concrete and untrue."
+   ],
+   "request": "exchange/rewrites/20261118/chatgpt-fastest-adoption-ever__467b2734.request.json",
+   "answer_path": "exchange/rewrites/20261118/chatgpt-fastest-adoption-ever__467b2734.answer.json"
+  },
+  {
+   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('The Hadza Carry About 730 Gut Bacteria Species') — brain: Beat 2 introduces antibiotics as a separate factor; it doesn't directly follow from the fiber discussion in Beat 1."
+   ],
+   "request": "exchange/rewrites/20261118/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__96377171",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The claim about a Mars trip stripping 30% of hip bone density is speculative and not a proven, concrete fact."
+   ],
+   "request": "exchange/rewrites/20261118/astronaut-bone-loss__96377171.request.json",
+   "answer_path": "exchange/rewrites/20261118/astronaut-bone-loss__96377171.answer.json"
+  },
+  {
+   "id": "betelgeuse-great-dimming__f1ec3d70",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The premise presents a specific brightness drop and cause that are not verified facts, making it untrue and not concrete."
+   ],
+   "request": "exchange/rewrites/20261118/betelgeuse-great-dimming__f1ec3d70.request.json",
+   "answer_path": "exchange/rewrites/20261118/betelgeuse-great-dimming__f1ec3d70.answer.json"
+  },
+  {
+   "id": "chess-online-boom__d1f110de",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about 200 million members."
+   ],
+   "request": "exchange/rewrites/20261118/chess-online-boom__d1f110de.request.json",
+   "answer_path": "exchange/rewrites/20261118/chess-online-boom__d1f110de.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__bad26b67",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The premise is vague and not a concrete, verifiable claim about a specific, surprising change."
+   ],
+   "request": "exchange/rewrites/20261118/chip-transistor-shrink-limit__bad26b67.request.json",
+   "answer_path": "exchange/rewrites/20261118/chip-transistor-shrink-limit__bad26b67.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__497e0491",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The premise makes unverified quantitative claims and vague threats without concrete, proven facts."
+   ],
+   "request": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.request.json",
+   "answer_path": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__17bea803",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "thesis: seg1 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Provides a separate statistic rather than a logical consequence of beat 0.",
+    "thesis: seg2 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Discusses streaming market share, not a direct continuation of the vinyl vs CD sales argument."
+   ],
+   "request": "exchange/rewrites/20261118/vinyl-beats-cd-sales-again__17bea803.request.json",
+   "answer_path": "exchange/rewrites/20261118/vinyl-beats-cd-sales-again__17bea803.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__d4ebe18e",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-18T10:18:47Z",
+   "why": [
+    "thesis: seg1 ('Autism Diagnosis Sex') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Focuses on sex differences, not on geography, so it doesn't support the headline about location affecting rates.",
+    "thesis: seg2 ('Autism Diagnosis Sites') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Although it mentions a site with higher rates, it does not logically follow from the previous beat about sex differences"
+   ],
+   "request": "exchange/rewrites/20261118/autism-diagnosis-rate-rise__d4ebe18e.request.json",
+   "answer_path": "exchange/rewrites/20261118/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__e0bad3cf",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-18T10:18:47Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, provable claim about a specific number of outbreaks."
+   ],
+   "request": "exchange/rewrites/20261118/cruise-ship-outbreaks-climbing__e0bad3cf.request.json",
+   "answer_path": "exchange/rewrites/20261118/cruise-ship-outbreaks-climbing__e0bad3cf.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__deb29172",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-18T10:18:47Z",
+   "why": [
+    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim."
+   ],
+   "request": "exchange/rewrites/20261118/freshwater-accessible__deb29172.request.json",
+   "answer_path": "exchange/rewrites/20261118/freshwater-accessible__deb29172.answer.json"
+  },
+  {
+   "id": "tattoo-mainstream-shift__9b1e4add",
+   "slug": "tattoo-mainstream-shift",
+   "filed": "2026-11-18T10:18:47Z",
+   "why": [
+    "premise: brain: The hook makes a vague, unverified claim about tattoo behavior rather than presenting a concrete, provable fact."
+   ],
+   "request": "exchange/rewrites/20261118/tattoo-mainstream-shift__9b1e4add.request.json",
+   "answer_path": "exchange/rewrites/20261118/tattoo-mainstream-shift__9b1e4add.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__ca924794",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-18T10:18:47Z",
+   "why": [
+    "premise: brain: The premise is vague and lacks a concrete, specific surprise or contradiction that viewers can picture."
+   ],
+   "request": "exchange/rewrites/20261118/womens-college-hoops-out-rates-men__ca924794.request.json",
+   "answer_path": "exchange/rewrites/20261118/womens-college-hoops-out-rates-men__ca924794.answer.json"
   },
   {
    "id": "us-height-ranking-fall__7d1b012d",
@@ -43,26 +276,6 @@
    "answer_path": "exchange/rewrites/20261117/third-interstellar-visitor__19dac2dc.answer.json"
   },
   {
-   "id": "autism-diagnosis-rate-rise__d4ebe18e",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-17T13:49:51Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a generic geographic variation rather than a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261117/autism-diagnosis-rate-rise__d4ebe18e.request.json",
-   "answer_path": "exchange/rewrites/20261117/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-17T12:26:58Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague comparison rather than a single, decisive, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261117/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
-  },
-  {
    "id": "religious-nones-rise__ba903e44_r1",
    "slug": "religious-nones-rise",
    "filed": "2026-11-17T12:26:58Z",
@@ -81,16 +294,6 @@
    ],
    "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
    "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
-  },
-  {
-   "id": "betelgeuse-great-dimming__6a0c802e",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-11-16T12:04:30Z",
-   "why": [
-    "premise: brain: The claim hinges on an unsubstantiated specific dimming percentage and lacks a verifiable, consequential number to overturn a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.request.json",
-   "answer_path": "exchange/rewrites/20261116/betelgeuse-great-dimming__6a0c802e.answer.json"
   },
   {
    "id": "lab-grown-diamond-price-collapse__e51f51ef",
@@ -121,17 +324,6 @@
    ],
    "request": "exchange/rewrites/20261116/index-funds-own-corporate-america__07ec260a.request.json",
    "answer_path": "exchange/rewrites/20261116/index-funds-own-corporate-america__07ec260a.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__c613f552",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-16T12:04:29Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "pace: closing is 19 words (max 18)"
-   ],
-   "request": "exchange/rewrites/20261116/vinyl-beats-cd-sales-again__c613f552.request.json",
-   "answer_path": "exchange/rewrites/20261116/vinyl-beats-cd-sales-again__c613f552.answer.json"
   },
   {
    "id": "english-internet-share-decline__312d565d_r1",
@@ -245,16 +437,6 @@
    "answer_path": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
   },
   {
-   "id": "freshwater-accessible__94d3a9c8",
-   "slug": "freshwater-accessible",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/freshwater-accessible__94d3a9c8.request.json",
-   "answer_path": "exchange/rewrites/20261018/freshwater-accessible__94d3a9c8.answer.json"
-  },
-  {
    "id": "game-industry-layoffs-record__47b9280e",
    "slug": "game-industry-layoffs-record",
    "filed": "2026-10-18T11:46:47Z",
@@ -353,26 +535,6 @@
    ],
    "request": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.request.json",
    "answer_path": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__90876971",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-10-17T12:56:21Z",
-   "why": [
-    "premise: brain: Premise includes multiple figures (two‑thirds and 25 states) instead of hinging on a single verifiable number, so it fails the one‑number requirement."
-   ],
-   "request": "exchange/rewrites/20261017/cursive-handwriting-comeback__90876971.request.json",
-   "answer_path": "exchange/rewrites/20261017/cursive-handwriting-comeback__90876971.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__72cdc200",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-10-17T12:56:19Z",
-   "why": [
-    "premise: brain: The premise is vague, uses multiple numbers and does not clearly reverse a single, specific viewer expectation with one verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261017/chip-transistor-shrink-limit__72cdc200.request.json",
-   "answer_path": "exchange/rewrites/20261017/chip-transistor-shrink-limit__72cdc200.answer.json"
   },
   {
    "id": "blockbuster-to-one-store__857f036d",
@@ -586,16 +748,6 @@
    "answer_path": "exchange/rewrites/20261013/gulf-dead-zone-growth__a4939372.answer.json"
   },
   {
-   "id": "tattoo-mainstream-shift__8da41eb1",
-   "slug": "tattoo-mainstream-shift",
-   "filed": "2026-10-13T04:11:20Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261013/tattoo-mainstream-shift__8da41eb1.request.json",
-   "answer_path": "exchange/rewrites/20261013/tattoo-mainstream-shift__8da41eb1.answer.json"
-  },
-  {
    "id": "medical-debt-credit-score-fix__c967088f",
    "slug": "medical-debt-credit-score-fix",
    "filed": "2026-10-10T13:04:21Z",
@@ -636,16 +788,6 @@
    ],
    "request": "exchange/rewrites/20261009/landline-death-robocall-boom__8f868915_r1.request.json",
    "answer_path": "exchange/rewrites/20261009/landline-death-robocall-boom__8f868915_r1.answer.json"
-  },
-  {
-   "id": "human-domesticated-14-animals__7aa9dda8",
-   "slug": "human-domesticated-14-animals",
-   "filed": "2026-10-09T13:18:02Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261009/human-domesticated-14-animals__7aa9dda8.request.json",
-   "answer_path": "exchange/rewrites/20261009/human-domesticated-14-animals__7aa9dda8.answer.json"
   },
   {
    "id": "adhd-diagnosis-surge__5cd541a0",
@@ -770,18 +912,6 @@
    "answer_path": "exchange/rewrites/20261006/the-penny-lost-money-19-years-straight__8ce61b7f.answer.json"
   },
   {
-   "id": "dating-app-user-exodus__b6c4222d",
-   "slug": "dating-app-user-exodus",
-   "filed": "2026-10-06T13:45:33Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "pace: beat 1 says 35 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 23 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261006/dating-app-user-exodus__b6c4222d.request.json",
-   "answer_path": "exchange/rewrites/20261006/dating-app-user-exodus__b6c4222d.answer.json"
-  },
-  {
    "id": "twin-birth-rate-rise__32203474",
    "slug": "twin-birth-rate-rise",
    "filed": "2026-10-06T13:45:29Z",
@@ -790,18 +920,6 @@
    ],
    "request": "exchange/rewrites/20261006/twin-birth-rate-rise__32203474.request.json",
    "answer_path": "exchange/rewrites/20261006/twin-birth-rate-rise__32203474.answer.json"
-  },
-  {
-   "id": "clear-air-turbulence-increase__452b3b56",
-   "slug": "clear-air-turbulence-increase",
-   "filed": "2026-10-06T13:45:28Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "pace: beat 1 says 24 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 24 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261006/clear-air-turbulence-increase__452b3b56.request.json",
-   "answer_path": "exchange/rewrites/20261006/clear-air-turbulence-increase__452b3b56.answer.json"
   },
   {
    "id": "sand-mining-crisis__6010dfc1",

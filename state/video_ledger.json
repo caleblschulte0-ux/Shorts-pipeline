@@ -7283,6 +7283,58 @@
       ],
       "ending_type": "inversion",
       "notes": "pre-render pass; existing scenes kept"
+    },
+    {
+      "slug": "tattoo-mainstream-shift",
+      "directed_at": "2026-11-18",
+      "video_id": null,
+      "hook_text": "Once you get one tattoo, you almost never stop at one.",
+      "depictions": [
+        "illustrated:tattoo-arm",
+        "mechanic:torso-ink-fill-duel",
+        "mechanic:skin-grid-more-than-one"
+      ],
+      "ending_type": "consequence",
+      "notes": "pre-render pass; varied existing scenes kept"
+    },
+    {
+      "slug": "back-to-sleep-campaign-cut-sids",
+      "directed_at": "2026-11-18",
+      "video_id": null,
+      "hook_text": "For years, the way we put babies to bed was killing them.",
+      "depictions": [
+        "mechanic:crib-night-lights",
+        "illustrated:baby-flip",
+        "mechanic:crib-census"
+      ],
+      "ending_type": "consequence",
+      "notes": "pre-render pass; varied existing scenes kept"
+    },
+    {
+      "slug": "index-funds-own-corporate-america",
+      "directed_at": "2026-11-18",
+      "video_id": null,
+      "hook_text": "Index funds quietly bought over half the market, and three firms hold the keys.",
+      "depictions": [
+        "mechanic:index-tiles-flip",
+        "mechanic:tower-owned-floors",
+        "illustrated:vote-share"
+      ],
+      "ending_type": "inversion",
+      "notes": "pre-render pass; varied existing scenes kept"
+    },
+    {
+      "slug": "vinyl-beats-cd-sales-again",
+      "directed_at": "2026-11-18",
+      "video_id": null,
+      "hook_text": "Vinyl was supposed to be dead. Now it's crushing the CD.",
+      "depictions": [
+        "illustrated:record-wall-divider",
+        "mechanic:crate-records-drop-in",
+        "mechanic:streaming-tide-over-shelf"
+      ],
+      "ending_type": "inversion",
+      "notes": "pre-render pass; varied existing scenes kept"
     }
   ]
 }
