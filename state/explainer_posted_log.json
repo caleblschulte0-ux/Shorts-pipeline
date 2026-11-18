@@ -5721,11 +5721,39 @@
       ]
     },
     "third-interstellar-visitor": {
-      "claimed_at": "2026-11-18T01:59:23.919655+00:00",
+      "url": "https://youtube.com/shorts/uG-TY6xwxtQ",
       "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
+      "at": "2026-11-18T01:59:33.020835+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.39,
+      "beat_s": [
+        5.66,
+        4.53,
+        7.12,
+        7.39,
+        6.27
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 74,
+      "duration_s": 31.5,
+      "hook": "shock_stat",
+      "topic_category": "space",
+      "ending_type": "escalation",
+      "depictions": [
+        "mechanic:portal-comet-count",
+        "mechanic:comet-speedway-race",
+        "mechanic:comet-scale-swell"
+      ],
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -7388,9 +7416,10 @@
       "claimed_at": "2026-11-18T01:59:23.919655+00:00",
       "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "third-interstellar-visitor"
+      "url": "https://youtube.com/shorts/uG-TY6xwxtQ",
+      "state": "posted",
+      "slug": "third-interstellar-visitor",
+      "at": "2026-11-18T01:59:33.020835+00:00"
     }
   ]
 }
