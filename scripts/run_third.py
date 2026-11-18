@@ -929,6 +929,18 @@ def _deadline_passed() -> bool:
 
 
 _SWEEP_CACHE: dict = {}
+# Games the operator wants more of. A clip of one (its Twitch category, or
+# its title naming it) gets `favor_boost`, and the category's week of top
+# clips joins the pool from any streamer. Spec key `favor_games` overrides.
+FAVOR_GAMES = ("Grand Theft Auto VI",)
+_FAVOR_WORDS = re.compile(r"\bgta\s*(?:6|vi)\b|grand theft auto\s*(?:6|vi)\b",
+                          re.I)
+
+
+def _favored(c: dict, ids: set) -> bool:
+    return bool(c.get("favored")
+                or (c.get("game_id") and str(c["game_id"]) in ids)
+                or _FAVOR_WORDS.search(str(c.get("title") or "")))
 _PROVEN_POOL: list | None = None
 
 
@@ -970,8 +982,29 @@ def _proven_pool(clip_edit, spec: dict) -> list:
             if c["url"] not in have:
                 c["proven_by"] = "Twitch category chart"
                 out.append(c)
+                have.add(c["url"])
+        # FAVORED GAMES (operator, 2026-11-18: "Favor GTA 6 clips"): the
+        # week's top clips in each favored category, from ANY streamer
+        n_fav = 0
+        for name in spec.get("favor_games", FAVOR_GAMES):
+            gid = clip_edit.game_id(name)
+            if not gid:
+                print(f"[proven] favored game {name!r}: no Twitch id",
+                      flush=True)
+                continue
+            for c in clip_edit.top_by_category(
+                    [gid], days=2,
+                    top=int(spec.get("favor_category_n", 40))):
+                if c["url"] not in have:
+                    c["proven_by"] = "favored game"
+                    c["favored"] = name
+                    out.append(c)
+                    have.add(c["url"])
+                    n_fav += 1
+        print(f"[proven] {n_fav} favored-game clip(s)", flush=True)
         print(f"[proven] {n_lsf} r/LivestreamFail clip(s) + "
-              f"{len(out) - n_lsf} category-chart clip(s)", flush=True)
+              f"{len(out) - n_lsf - n_fav} category-chart clip(s)",
+              flush=True)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[proven] pool failed ({type(e).__name__}: {e})",
               flush=True)
@@ -2956,7 +2989,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     _followed = {str(h).lower() for hs in sources.values()
                                  for h in (hs or [])}
                     for c in _proven_pool(clip_edit, spec):
-                        if (c.get("proven_by") != "r/LivestreamFail"
+                        if (c.get("proven_by") not in
+                                ("r/LivestreamFail", "favored game")
                                 and str(c["channel"]).lower()
                                 not in _followed):
                             continue
@@ -3030,7 +3064,16 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # clipped: the feed rewards what strangers already loved
                 proven_boost = float(spec.get("proven_boost", 4.0))
 
+                favor_boost = float(spec.get("favor_boost", 3.0))
+                _fav_ids = {clip_edit.game_id(n) for n in
+                            spec.get("favor_games", FAVOR_GAMES)} - {None}
+
                 def _fit(ch, c=None):
+                    if c is not None and _favored(c, _fav_ids):
+                        boost = favor_boost
+                        if c.get("proven_by") == "r/LivestreamFail":
+                            boost *= proven_boost
+                        return boost
                     if c is not None and c.get("proven_by"):
                         if c["proven_by"] == "r/LivestreamFail":
                             return proven_boost

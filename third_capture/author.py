@@ -1149,6 +1149,11 @@ you already know the streamer, their friends or the running joke. A line
 with `internet_says` was upvoted by strangers on r/LivestreamFail: that
 post title is what they saw in it.
 
+GTA 6 IS WHAT PEOPLE SEARCH NOW (operator, 2026-11-18: "Favor GTA 6
+clips"). A streamer's first reaction, a wild moment, a glitch, a chase or
+a funny bit in Grand Theft Auto VI travels on its own; score it as a live
+event people are searching NOW, not as routine gameplay.
+
 SEARCHED NAMES (operator, 2026-11-12: "fix it"). About 90% of this
 channel's views come from YouTube SEARCH. The hits are drama about people
 viewers already type into the search bar: Atrioc calling out Fuslie and

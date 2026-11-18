@@ -441,6 +441,33 @@ def top_by_category(game_ids=None, *, days: int = 7,
     return out
 
 
+_GAME_IDS: dict = {}
+
+
+def game_id(name: str) -> str | None:
+    """Twitch's id for a category by its exact name (helix /games), or
+    None without creds or when Twitch does not know it. Remembered for the
+    run, so a game that launched after this code was written (GTA VI) is
+    found by name instead of by a hard-coded id."""
+    if name in _GAME_IDS:
+        return _GAME_IDS[name]
+    gid = None
+    if _helix_creds():
+        try:
+            import requests
+            r = requests.get("https://api.twitch.tv/helix/games",
+                             params={"name": name},
+                             headers=_helix_headers(), timeout=20)
+            r.raise_for_status()
+            data = r.json().get("data") or []
+            gid = str(data[0]["id"]) if data else None
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[helix] game id for {name!r} failed "
+                  f"({type(e).__name__})", flush=True)
+    _GAME_IDS[name] = gid
+    return gid
+
+
 def helix_clips(ids) -> list[dict]:
     """Twitch clips by id (slug), in discovery's own shape — the clips
     the internet picked (funnel/hot_clips.py) join the story pool with

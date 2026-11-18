@@ -917,7 +917,10 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   `tests/test_the_twitch_channel_picks_what_strangers_loved.py`. But a
   chart clip only adds a streamer we FOLLOW (operator, 2026-11-12, "fix
   it", after a week of unknown chart streamers at 0-3 views), and the
-  ranker scores up drama that names someone people search for.
+  ranker scores up drama that names someone people search for. GTA 6 is
+  FAVORED (operator, 2026-11-18): `run_third.FAVOR_GAMES` brings its
+  category's top clips in from any streamer, a clip of it (category or
+  title) scores `favor_boost`, and the ranker treats it as a live event.
 - **The channel is a SEARCH channel** — ~89% of views are YouTube search.
   `_search_guidance` hands the title author the real queries for that
   streamer ("lang buddha", "jasontheween news"), with an honesty rule and
