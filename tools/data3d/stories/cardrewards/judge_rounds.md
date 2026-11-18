@@ -179,3 +179,73 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Fatten the cash stack so the contrast of one card outweighing a big pile of cash is obvious
 - better: Swing the beam hard with a small bounce and a rattle, then end on a raised-brow look to the lens holding the question
 
+
+## 2026-11-18 15:34Z · proof · round 1 · proof loop loop3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 52 | 44, 52, 58 | FAIL |
+| 2 | 63 | 63, 63, 66 | FAIL |
+| 3 | 72 | 72, 72, 72 | PASS |
+| 4 | 48 | 48, 48, 48 | FAIL |
+| 5 | 56 | 56, 56, 62 | FAIL |
+
+**shot 1** (FAIL, 52, bar 70)
+
+- HARD: CONSEQUENCE: no stream of coins is ever seen leaving his hand; coins just appear as a small heap at the card stand's foot (frames 6-9), so the pour and roll never happen on screen
+- HARD: BODY: the hand that should be held open over the counter stays a closed fist resting by the stand for the whole shot (frames 4-20)
+- HARD: NOT THE POINT: the final pile is a small gold lump at the card's base; seen alone, the shot reads as 'Data sitting next to a card', not 'his money is pouring into the card'
+- HARD: BROKEN: no stream of coins is ever seen leaving the hand. A coin pile just appears and grows under the sleeve cuff at the stand's base (frames 5-8 onward), so the coins seem to come from nowhere
+- HARD: BODY: the wrist looks snapped. The red-and-white cuff points down while the mitten hand angles up and away from it (frames 4-9, 17-20), so the hand reads as detached from the forearm
+- HARD: CONSEQUENCE: no stream of coins is ever seen leaving his hand or rolling to the card. A small pile just appears at the foot of the stand (frames 5-8) and grows under his fist
+- HARD: NOT THE POINT: his hand is a closed fist resting on the pile (frames 6-20), not an open hand pouring, so the shot reads as Data patting a coin pile next to a card
+- problem: The hook has no visible event in its first second: Data just turns his head
+- problem: His face reads as neutral or mildly worried, not annoyed
+- problem: The coin heap is too small to read on a phone
+- better: Open, palm-down hand raised high over the counter with a continuous, dense stream of coins visibly falling and rolling across to the card
+- better: Make the heap grow big enough to bury the card's stand by the end
+- better: Give the annoyed look a strong brow-down glare to the lens timed to the last coin
+
+**shot 2** (FAIL, 63, bar 70)
+
+- problem: The tap on the reader barely reads: the hand is a rounded fist that dips near the reader (frames 5-7), with no finger contact and no green light or beep seen
+- problem: The tags rise only slightly; the white-to-red change carries the beat alone
+- problem: The third tag sits against his coat and tie and loses contrast (frames 10-29)
+- problem: Product labels and '$' tags are tiny on a phone
+- better: Show a clear one-finger tap with the reader screen flashing bright green
+- better: Make the tags shoot up a lot higher with a pop, and keep them clear of his body
+- better: Lower the camera or push in so the boxes and tags fill the lower third
+
+**shot 3** (PASS, 72, bar 70)
+
+- problem: The pig sits directly under his head, so pig, hand and head stack into a totem-pole column and his body is hidden
+- problem: The card is mostly buried, and the heap becomes a shapeless gold blob instead of countable coins
+- problem: The 'looks at us' face is flat and neutral
+
+**shot 4** (FAIL, 48, bar 70)
+
+- HARD: BODY/CONSEQUENCE: no brass lever is seen at any point; his left hand just rests on the counter (frames 1-30), so the cause of the coins moving uphill is missing
+- HARD: NOT THE POINT: the 'mansion' reads as a plain white box with a tiny building on top and the shack is a small brown block at the edge, so seen alone the shot does not say 'money flows from poor to rich'
+- HARD: CONSEQUENCE/BODY: no brass lever is visible and no lever pull is seen. His screen-left hand just rests flat near the shack in every frame (1-30), so nothing in the shot causes the coins to move
+- HARD: NOT THE POINT: the 'mansion' is a plain white box with a tiny block on top, and the shack is cut by the left frame edge. A viewer cannot read poor home vs rich home, so 'money flows uphill to the rich' does not land (all frames)
+- HARD: BROKEN: a full row of coins appears on the ramp at once between frames 8 and 9 instead of visibly sliding up from the shack
+- HARD: NOT THE POINT / CONSEQUENCE: no brass lever is visible and his hand never pulls anything. It rests by the shack the whole shot (frames 1-30), so the cause of the coins moving is missing
+- HARD: NOT THE POINT: the 'mansion' reads as a plain white box with a tiny building on top, and the final pile beside it is a few coins, half hidden (frames 22-30)
+- problem: The ramp crosses in front of Data's torso and cuts him in half
+- problem: The coins at the top end up as a small pile half-hidden behind the ramp end
+- problem: The ramp is empty again in the last frames, so the flow ends abruptly
+- better: Put a big brass lever right beside his hand and show a clear pull-down with the coins starting on that pull
+- better: Make the mansion read as a mansion (columns, roof, windows) and the shack as a dented tin shack, both bigger
+- better: Angle the ramp so it does not slice through Data
+
+**shot 5** (FAIL, 56, bar 70)
+
+- HARD: NOT THE POINT: the gold card on the right pan is almost invisible. The pan is dark and the card is a thin sliver behind his hand (frames 10-31), so a viewer sees the scale move but not that a single card did it
+- HARD: NO PAYOFF: the swing is a modest tilt, not a 'hard' swing. The cash rises only a little, and the last ~20 frames are a static hold, so the video ends on a pose rather than a payoff
+- HARD: NOT THE POINT: the gold card laid on the right pan is not readable. It is a dark sliver on the pan, so the viewer sees the scale tip but not what tipped it (frames 9-31)
+- problem: The scale is small and pushed to the left, overlapping his left arm and coat. The cash stack is partly lost against his white coat
+- problem: The card is set down with a vague hover, not a clear lay-it-down beat
+- better: Bring the scale forward and make it larger. Show the card big and gold in his hand before he places it, on a light-colored pan
+- better: Have the beam slam the card side down so the cash flies up high, with some bounce and settle; consider bills fluttering off the top
+- better: Frame Data beside the scale, not behind it, and end on his deadpan 'cash or card?' look at us while the cash is still swinging up
+

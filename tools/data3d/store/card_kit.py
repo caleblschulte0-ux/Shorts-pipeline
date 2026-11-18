@@ -206,3 +206,26 @@ def coin_cup(name):
     K.cyl(name + " body", (0, 0, 0.035), 0.03, 0.07, paper, v=32, bev=0.002, parent=root)
     K.cyl(name + " band", (0, 0, 0.04), 0.0305, 0.02, _mat("coin cup band", "#C8302A", rough=0.5), v=32, bev=0.0, parent=root)
     return root, Vector((0, 0, 0.07))
+
+
+def wallet(name, loc):
+    """an open brown leather wallet lying on its back: a body, an open flap leaning back, a few notes poking out"""
+    root = K.empty(name, (0, 0, 0))
+    lea = _mat("wallet leather", "#6B3E22", rough=0.6)
+    K.box(name + " body", (0, 0, 0.012), (0.11, 0.07, 0.024), lea, bev=0.006, parent=root)
+    f = K.box(name + " flap", (0, 0.035, 0.03), (0.11, 0.004, 0.05), lea, bev=0.003, parent=root)
+    f.rotation_euler = (math.radians(-20), 0, 0)
+    for k in range(3):
+        K.box(f"{name} note {k}", (-0.02 + 0.02 * k, 0.012, 0.03 + 0.004 * k), (0.07, 0.003, 0.03), _mat("wallet note", "#9DB88A", rough=0.7), bev=0.001, parent=root)
+    _place(root, loc, 0.0, None)
+    return root
+
+
+def button(name, loc, h=0.06):
+    """a big red push button on a grey post: returns (root, dome) -- key dome.scale.z to press it"""
+    root = K.empty(name, (0, 0, 0))
+    K.box(name + " post", (0, 0, h / 2), (0.06, 0.06, h), _mat("button post", "#3A3F45", rough=0.4, metal=0.4), bev=0.006, parent=root)
+    K.cyl(name + " ring", (0, 0, h + 0.004), 0.028, 0.008, _mat("button ring", "#E0B02E", rough=0.4, metal=0.5), v=32, bev=0.002, parent=root)
+    dome = K.sph(name + " dome", (0, 0, h + 0.008), 0.022, _mat("button red", "#D8261C", rough=0.3), parent=root, scale=(1, 1, 0.8))
+    _place(root, loc, 0.0, None)
+    return root, dome

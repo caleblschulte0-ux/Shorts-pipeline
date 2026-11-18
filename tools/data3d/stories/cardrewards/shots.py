@@ -93,60 +93,49 @@ def camera(C0, L0, C1, L1, t_end, focus, lens=32, fstop=5.0):
 
 # ================================================================ SHOT 1: the hook
 def shot1():
-    """COINS POUR OUT OF HIS CUP AND PILE UP UNDER A GIANT GOLD CREDIT CARD. Close at the checkout counter: a big gold
-    rewards card stands upright on a black stand, a dark tray at its foot. Data holds a paper coin cup beside it and
-    tips it: big coins tumble out one after another and heap up in the tray under the card. He looks at us, annoyed.
-    (Round 1, 52: a mitten cannot open into a pouring palm, so the coins came from a fist as a gold blob; the cup is
-    the thing the coins visibly leave.)"""
+    """COINS LEAP OUT OF HIS WALLET AND PILE UP UNDER A GIANT GOLD CREDIT CARD. Close at the checkout counter: his open
+    brown wallet lies at one end, a big gold rewards card stands upright at the other with a dark tray at its foot.
+    From the first second, coin after coin hops out of the wallet in an arc across the counter and lands in the tray
+    under the card; the heap grows. Data looks from the wallet to us, annoyed.
+    (Rounds 1-3, 52/45/52: a mitten never read as a hand pouring, a cup, or a hand at all. The 180: no hand in it --
+    his money visibly leaves HIS wallet and goes to the card on its own, which is exactly what the line says.)"""
     where = store_set()
     TOP = 0.36
     counter("checkout counter", TOP)
     data = load_data(); data.place(0.0, 0.08, 0)
     L, R = sides(data)
-    sh = acts._shoulder(data, R)
-    CARD = Vector((-0.08, -0.045, TOP))
-    CK.card_stand("card stand", tuple(CARD), w=0.12)
-    crd = CK.card("hook card", (CARD.x, CARD.y - 0.006, TOP + 0.004), w=0.16, h=0.1, upright=True)
-    DISH = Vector((0.04, -0.1, TOP))
+    CARD = Vector((-0.07, -0.05, TOP))
+    CK.card_stand("card stand", tuple(CARD), w=0.13)
+    crd = CK.card("hook card", (CARD.x, CARD.y - 0.006, TOP + 0.004), w=0.17, h=0.106, upright=True)
+    DISH = Vector((-0.07, -0.125, TOP))
     dsh = CK.dish("coin tray", tuple(DISH), r=0.065)
-    cup, rim = CK.coin_cup("coin cup")
-    T0, T1 = 0.9, DUR * 0.78
-    HOLD = Vector((sh.x + 0.05, -0.075, TOP + 0.075))
-    TIP = math.radians(115)
-    tip = lambda t: TIP * ease(min(1.0, max(0.0, (t - 0.35) / (T0 - 0.35)))) * (1 if t < T1 + 0.2 else max(0.0, 1 - (t - T1 - 0.2) / 0.6))
-    hp = path([(0.0, HOLD + Vector((0.0, 0.0, -0.01))), (0.4, HOLD), (T1 + 0.8, HOLD + Vector((0.005, 0.0, -0.005)))])
-    def cup_at(t):
-        return hp(t) + Vector((-0.012, -0.055, -0.025))
-    follow(cup, cup_at, 0.0, DUR, rot_fn=lambda t: Euler((0, -tip(t), 0)))
-    reach(data, R, hp, 0.0, DUR, lead=0.6, back=0.6, elbow_out=0.4)
-    def mouth(t):
-        a = -tip(t)
-        return cup_at(t) + Vector((rim.z * math.sin(a), 0, rim.z * math.cos(a)))
-    N = 44
-    cs = CK.coins(N, "hook coin", r=0.024, h=0.006)
+    W = Vector((0.11, -0.13, TOP))
+    wal = CK.wallet("wallet", tuple(W))
+    T0, T1 = 0.3, DUR * 0.8
+    N = 40
+    cs = CK.coins(N, "hook coin", r=0.022, h=0.006)
     sched = schedule(N, T0, T1)
-    top = lambda t: 0.012 + 0.045 * min(1.0, max(0.0, (t - T0) / (T1 - T0)))
+    top = lambda t: 0.012 + 0.05 * min(1.0, max(0.0, (t - T0) / (T1 - T0)))
     hh = heap(DISH, 0.06, top)
     def land(x, y, t):
         v = hh(x, y, t)
         if v is not None: return TOP + 0.008 + v
         if -0.45 < x < 0.45 and -0.39 < y < -0.01: return TOP + 0.002
         return None
-    props.pour(cs, NF, sched, mouth, land, kick_fn=lambda t: Vector((-0.3, -0.04, 0.05)), seed=3)
+    props.pour(cs, NF, sched, lambda t: W + Vector((-0.01, 0.0, 0.03)), land, kick_fn=lambda t: Vector((-0.62, 0.0, 0.95)), seed=3)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(DISH, 0.6, max_yaw=18, max_pitch=12)
-    data.look_at(US, T1 - 0.6, max_yaw=20)
+    data.look_at(W, 0.3, max_yaw=18, max_pitch=12)
+    data.look_at(US, 1.6, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("determined", 0.3, T1 - 0.6)
-    data.expression("wry", T1 - 0.5, DUR + 1.0, blend=0.25)
+    data.expression("determined", 0.3, DUR + 1.0)
     data.blink(2.6)
     data.finish()
     soft_key("counter key", (-0.5, -1.0, 1.1), (0.0, -0.1, TOP + 0.08), energy=22, size=34)
     soft_key("card key", (-0.5, -0.8, 0.9), (CARD.x, CARD.y, TOP + 0.07), energy=10, size=18)
     camera(Vector((0.0, -0.68, 0.5)), Vector((0.0, -0.05, 0.57)), Vector((0.0, -0.63, 0.5)), Vector((0.0, -0.05, 0.57)),
            T1, (0.0, -0.12, 0.42), lens=24, fstop=4.0)
-    return dict(**where, data=data, rest=1, grips=("coin cup",),
-                conseq=[("coins tumble out of his cup and heap up under the gold card", lambda: meshes(cs) + meshes([dsh, crd]), T0 + 0.3, DUR)])
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("coins hop out of his wallet and heap up under the gold card", lambda: meshes(cs) + meshes([dsh, crd, wal]), T0 + 0.3, DUR)])
 
 
 # ================================================================ SHOT 2: the swipe fee
@@ -172,9 +161,14 @@ def shot2():
     hp = path([(0.0, up + Vector((0.01, 0.02, 0.0))), (T_TAP - 0.35, up), (T_TAP, on), (T_TAP + 0.3, up), (T_TAP + 1.2, up + Vector((0.01, 0.0, 0.0)))])
     reach(data, R, hp, 0.0, DUR, lead=0.7, back=0.7, elbow_out=0.4)
     CK.key_emission(lamp, [(0.0, 0.0), (T_TAP, 0.0), (T_TAP + 0.08, 18.0)], F)
+    beep = bpy.data.lights.new("reader beep", 'POINT'); beep.color = (0.2, 1.0, 0.4); beep.shadow_soft_size = 0.02
+    bo = bpy.data.objects.new("reader beep", beep); bpy.context.collection.objects.link(bo); bo.location = KEY + Vector((0, -0.04, 0.03))
+    for t, e in ((0.0, 0.0), (T_TAP, 0.0), (T_TAP + 0.08, 6.0), (T_TAP + 0.9, 6.0), (T_TAP + 1.3, 1.5)):
+        beep.energy = e; beep.keyframe_insert("energy", frame=max(1, F(t)))
     T_UP = [T_TAP + 0.35 + 0.3 * i for i in range(3)]
     for (tg, tm, z0), tu in zip(tags, T_UP):
-        follow(tg, lambda t, tg=tg, z0=z0, tu=tu: Vector((tg.location.x, tg.location.y, z0 + 0.065 * (0 if t < tu else min(1.0, 1 - (1 - min(1.0, (t - tu) / 0.7)) ** 3)))), 0.0, DUR)
+        follow(tg, lambda t, tg=tg, z0=z0, tu=tu: Vector((tg.location.x, tg.location.y, z0 + 0.09 * (0 if t < tu else min(1.0, 1 - (1 - min(1.0, (t - tu) / 0.7)) ** 3)))), 0.0, DUR)
+        tg.scale = (1.4, 1.4, 1.4)
         CK.key_color(tm, [(0.0, "#F7F4EC"), (tu, "#F7F4EC"), (tu + 0.5, RED)], F)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(KEY, 0.3, max_yaw=18, max_pitch=12)
@@ -266,20 +260,23 @@ def shot4():
     PL = Vector((0.115, -0.1, TOP)); PH = 0.13
     plinth = K.box("mansion plinth", (PL.x, PL.y, TOP + PH / 2), (0.11, 0.12, PH), K.mat("plinth marble", "#E9E3D8", rough=0.2), bev=0.004)
     K.box("plinth cap", (PL.x, PL.y, TOP + PH + 0.004), (0.12, 0.13, 0.008), CK._mat("plinth gold", "#C9A04A", rough=0.3, metal=0.9), bev=0.002)
-    man = CK.mansion("mansion", (PL.x, PL.y + 0.025, TOP + PH + 0.008), s=0.55)
+    man = CK.mansion("mansion", (PL.x, PL.y + 0.02, TOP + PH + 0.008), s=0.62)
     shk = CK.shack("shack", (-0.135, -0.2, TOP), s=1.05)
     A = Vector((-0.085, -0.19, TOP + 0.01)); B = Vector((0.06, -0.135, TOP + PH + 0.006))
     ramp = CK.chute("ramp", A, B, w=0.07, color="#C98A3E")
     for k, u in enumerate((0.35, 0.7)):                    # legs under the ramp, so it is a built thing on the counter
         p = A.lerp(B, u); K.box(f"ramp leg {k}", (p.x, p.y, (TOP + p.z) / 2), (0.01, 0.01, p.z - TOP), CK._mat("chute tin", "#A9AEB3", rough=0.35, metal=0.8), bev=0.001)
     PILE = Vector((PL.x - 0.03, PL.y - 0.03, TOP + PH + 0.008))
-    piv, knob = CK.lever("lever", (-0.1, -0.045, TOP), length=0.08)
-    T_PULL0, T_PULL1 = 0.7, 1.3
-    ang = lambda t: math.radians(30 - 40 * ease(min(1.0, max(0.0, (t - T_PULL0) / (T_PULL1 - T_PULL0)))))
-    P0 = piv.location.copy()
-    follow(piv, lambda t: P0, 0.0, DUR, rot_fn=lambda t: Euler((ang(t), 0, 0)))
-    kp = lambda t: P0 + Vector((0.0, -knob.z * math.sin(ang(t)), knob.z * math.cos(ang(t)))) + Vector((0.0, 0.0, 0.022))
-    reach(data, L, kp, 0.0, DUR, lead=0.7, back=0.7, elbow_out=0.4)
+    BTN = Vector((-0.125, -0.045, TOP))
+    btn, dome = CK.button("big button", tuple(BTN), h=0.06)
+    T_PULL0, T_PULL1 = 0.7, 1.0
+    TOPB = BTN + Vector((0, 0, 0.06 + 0.022))
+    hp = path([(0.0, TOPB + Vector((0.01, 0.005, 0.05))), (T_PULL0, TOPB + Vector((0, 0, 0.045))), (T_PULL1, TOPB + Vector((0, 0, 0.032))),
+               (T_PULL1 + 0.4, TOPB + Vector((0, 0, 0.045))), (DUR, TOPB + Vector((0.01, 0.01, 0.05)))])
+    reach(data, L, hp, 0.0, DUR, lead=0.7, back=0.7, elbow_out=0.4)
+    for t, z in ((0.0, 1.0), (T_PULL1 - 0.1, 1.0), (T_PULL1, 0.45), (T_PULL1 + 0.35, 0.45), (T_PULL1 + 0.6, 1.0)):
+        dome.scale = (1, 1, z); dome.keyframe_insert("scale", frame=max(1, F(t)))
+    P0 = BTN
     N = 16
     T0, T1 = T_PULL1 + 0.05, DUR * 0.82
     sched = schedule(N, T0, T1 - 0.9, seed=4)
@@ -305,7 +302,7 @@ def shot4():
     props.pour(pile, NF, [s + RIDE for s in sched], lambda t: B + Vector((0.012, 0.0, 0.02)), land,
                kick_fn=lambda t: Vector((0.12, 0.02, 0.05)), seed=6)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(P0, 0.4, max_yaw=18, max_pitch=12)
+    data.look_at(BTN, 0.4, max_yaw=18, max_pitch=12)
     data.look_at(PILE, T0 + 0.5, max_yaw=18, max_pitch=12)
     data.look_at(US, T1 - 0.5, max_yaw=20)
     data.idle(0.0, DUR)
@@ -335,12 +332,15 @@ def shot5():
     L, R = sides(data)
     BX, BY, ARM, H = -0.03, -0.05, 0.12, 0.25
     bal, beam, pans = SK.balance("scale", (BX, BY, TOP), arm=ARM, h=H, pan_r=0.058)
+    steel = CK._mat("scale pan steel", "#D5D9DE", rough=0.25, metal=0.9)
+    for o in bpy.data.objects:
+        if o.name.startswith("scale pan "): o.data.materials.clear(); o.data.materials.append(steel)
     T_LAY = 1.5
     def tilt(t):
-        if t < T_LAY: return math.radians(-12)
-        u = (t - T_LAY) / 0.4
-        if u < 1: return math.radians(-12 + 34 * ease(u))
-        return math.radians(22 - 3 * math.sin(min(1.0, (u - 1) / 1.2) * math.pi) * math.exp(-(u - 1)))
+        if t < T_LAY: return math.radians(-15)
+        u = (t - T_LAY) / 0.3
+        if u < 1: return math.radians(-15 + 45 * ease(u))
+        return math.radians(30 - 5 * math.sin(min(1.0, (u - 1) / 1.2) * math.pi) * math.exp(-(u - 1)))
     for f in range(1, NF + 1):
         beam.rotation_euler = (0, tilt((f - 1) / FPS), 0); beam.keyframe_insert("rotation_euler", frame=f)
     SK.level_pans(beam, pans, NF)
@@ -352,7 +352,7 @@ def shot5():
     at = lambda o, t: tops[o.name][min(NF - 1, max(0, F(t) - 1))]
     stack = SK.cash_stack("cash on the scale", tuple(at(panL, 0.0)), n=34)
     follow(stack, lambda t: at(panL, t), 0.0, DUR)
-    crd = CK.card("scale card", (0, 0, 0), w=0.13, h=0.082, color="#16171A", ink_hex="#D9B65A")
+    crd = CK.card("scale card", (0, 0, 0), w=0.14, h=0.088)
     START = at(panR, 0.0) + Vector((0.0, 0.01, 0.05))
     hand = path([(0.0, START), (T_LAY, at(panR, T_LAY) + Vector((0, 0, 0.026))),
                  (T_LAY + 0.45, at(panR, T_LAY + 0.45) + Vector((0, 0, 0.05))), (T_LAY + 1.4, at(panR, T_LAY) + Vector((0.06, 0.06, 0.02)))])
