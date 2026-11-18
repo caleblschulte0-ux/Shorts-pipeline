@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-18T13:46:10.149088+00:00",
+  "fetched_at": "2026-11-18T13:49:11.360350+00:00",
   "videos": [
     {
       "video_id": "bBYvJEbsRO8",
@@ -35,7 +35,7 @@
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.23
+      "views_per_hour": 3.22
     },
     {
       "video_id": "Hnj4zFNzRTc",
@@ -615,7 +615,7 @@
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.59
+      "views_per_hour": 1.58
     },
     {
       "video_id": "jfCQ4MRbpXE",
@@ -1189,13 +1189,13 @@
       "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
       "published_at": "2026-10-30T18:30:39Z",
       "age_hours": 451.3,
-      "views": 534,
+      "views": 530,
       "engaged_views": 202,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.18,
+      "views_per_hour": 1.17,
       "average_view_percentage": 133.6,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 48.0,
@@ -9452,48 +9452,6 @@
       "retention_insufficient_data": true
     },
     {
-      "video_id": "eKeJVcLHvcA",
-      "url": "https://youtube.com/shorts/eKeJVcLHvcA",
-      "catalog_id": "clip-20261111-2",
-      "streamer": "emilycc",
-      "series": "wholesome",
-      "format": null,
-      "songs": [],
-      "blocked_in": [],
-      "experiment_arm": "clip",
-      "actual_structure": "simple_fallback",
-      "hook": "Emily prays her computer works \ud83e\udd40",
-      "source_views": 3796,
-      "banger": 0.68,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Emilycc Can't Believe Her Beautiful Computer Actually Worked After This",
-      "published_at": "2026-11-12T08:00:37Z",
-      "age_hours": 149.8,
-      "views": 6,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.04,
-      "average_view_percentage": 35.5,
-      "average_view_duration_s": 6.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
       "video_id": "DjEk4AgAqJ0",
       "url": "https://youtube.com/shorts/DjEk4AgAqJ0",
       "catalog_id": "clip-20261114-2",
@@ -9824,6 +9782,48 @@
       "views_per_hour": 0.03,
       "average_view_percentage": 51.7,
       "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "eKeJVcLHvcA",
+      "url": "https://youtube.com/shorts/eKeJVcLHvcA",
+      "catalog_id": "clip-20261111-2",
+      "streamer": "emilycc",
+      "series": "wholesome",
+      "format": null,
+      "songs": [],
+      "blocked_in": [],
+      "experiment_arm": "clip",
+      "actual_structure": "simple_fallback",
+      "hook": "Emily prays her computer works \ud83e\udd40",
+      "source_views": 3796,
+      "banger": 0.68,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Emilycc Can't Believe Her Beautiful Computer Actually Worked After This",
+      "published_at": "2026-11-12T08:00:37Z",
+      "age_hours": 149.8,
+      "views": 5,
+      "engaged_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.03,
+      "average_view_percentage": 35.5,
+      "average_view_duration_s": 6.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -12384,13 +12384,13 @@
   ],
   "summary": {
     "total_videos": 128,
-    "total_views": 5976,
-    "avg_views_per_video": 46.7,
+    "total_views": 5971,
+    "avg_views_per_video": 46.6,
     "median_views_per_hour": 0.03,
     "top_5_by_vph": [
       {
         "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
-        "views_per_hour": 3.23,
+        "views_per_hour": 3.22,
         "views": 67,
         "age_hours": 20.8,
         "url": "https://youtube.com/shorts/bBYvJEbsRO8"
@@ -12404,7 +12404,7 @@
       },
       {
         "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-        "views_per_hour": 1.59,
+        "views_per_hour": 1.58,
         "views": 71,
         "age_hours": 44.8,
         "url": "https://youtube.com/shorts/I85Oh9Najbo"
@@ -12418,8 +12418,8 @@
       },
       {
         "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-        "views_per_hour": 1.18,
-        "views": 534,
+        "views_per_hour": 1.17,
+        "views": 530,
         "age_hours": 451.3,
         "url": "https://youtube.com/shorts/4ORQm-EO5tg"
       }
@@ -12474,7 +12474,7 @@
         "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
         "average_view_percentage": 133.6,
         "average_view_duration_s": 13.0,
-        "views": 534,
+        "views": 530,
         "url": "https://youtube.com/shorts/4ORQm-EO5tg"
       },
       {
@@ -12565,7 +12565,7 @@
         "n": 6,
         "n_mature_24h": 6,
         "median_vph": 0.07,
-        "avg_views": 328.5,
+        "avg_views": 328.3,
         "enough_data": false
       },
       "note": "compare only when each arm's n_mature_24h >= 25"
@@ -12590,11 +12590,11 @@
     }
   },
   "traffic_sources": {
-    "YT_SEARCH": 7519,
-    "SUBSCRIBER": 321,
-    "SHORTS": 305,
+    "YT_SEARCH": 7518,
+    "SUBSCRIBER": 322,
+    "SHORTS": 306,
     "EXT_URL": 103,
-    "YT_OTHER_PAGE": 90,
+    "YT_OTHER_PAGE": 89,
     "YT_CHANNEL": 41,
     "NO_LINK_OTHER": 13,
     "PLAYLIST": 5,
@@ -12604,7 +12604,7 @@
   "search_terms": [
     {
       "term": "alinity",
-      "views": 992
+      "views": 991
     },
     {
       "term": "atrioc",
@@ -12643,6 +12643,10 @@
       "views": 42
     },
     {
+      "term": "jynxzi deepins",
+      "views": 42
+    },
+    {
       "term": "alinity channel",
       "views": 39
     },
@@ -12672,10 +12676,6 @@
     },
     {
       "term": "fuslie wedding late",
-      "views": 22
-    },
-    {
-      "term": "jynxzi deepins",
       "views": 22
     },
     {
