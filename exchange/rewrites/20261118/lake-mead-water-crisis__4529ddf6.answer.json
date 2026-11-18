@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lake-mead-water-crisis__4529ddf6",
+  "slug": "lake-mead-water-crisis",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "Lake Mead Fell To 27% Full—Threatening Hoover Power",
+  "hook": "Lake Mead fell to 27% full, threatening Hoover Dam power.",
+  "closing": "Falling water threatens both the reservoir and the electricity people rely on.",
+  "question": "Did you know Lake Mead fell this low?",
+  "segments": [
+    {
+      "topic": "Lake Mead Level",
+      "say": "Lake Mead dropped 153 feet. The reservoir's retreat became visible from shore."
+    },
+    {
+      "topic": "Lake Mead Capacity",
+      "say": "Lake Mead fell to 27 percent full. America's biggest reservoir was barely above one-quarter capacity."
+    },
+    {
+      "topic": "Lake Mead Power",
+      "say": "Lake Mead sat 97 feet above the power cutoff. More decline puts Hoover Dam generation at risk."
+    }
+  ]
+}
