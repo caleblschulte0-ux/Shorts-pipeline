@@ -20857,13 +20857,41 @@
       "ts": "2026-11-18T12:43:59.303502+00:00"
     },
     "clip-20261118-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kyedae/clip/FantasticEndearingKimchiResidentSleeper-zo_rMmkosO8Eql7u",
-      "story_key": null,
-      "streamer": "kyedae",
+      "url": "https://youtube.com/shorts/xOx62U7Jz4U",
       "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
       "kind": "twitch_clip",
-      "ts": "2026-11-18T12:46:27.401046+00:00",
+      "ts": "2026-11-18T12:46:33.923702+00:00",
+      "uploaded_at": "2026-11-18T12:46:33.923713+00:00",
+      "publish_at": "2026-11-18T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261118-kyedae-can-t-believe-he-said-she-was-toxic-to-hi-e2009d99",
+        "tiktok": "queued for 2026-11-18T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kyedae/clip/FantasticEndearingKimchiResidentSleeper-zo_rMmkosO8Eql7u",
+      "streamer": "kyedae",
+      "series": "drama",
+      "hook": "He called her a hypocrite \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3332,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 21.48
+      },
+      "director_cut": true
+    },
+    "clip-20261118-5": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-bd4892a2e97b6ed3",
+      "streamer": "brattygbaby",
+      "title": "Brattygbaby: She wore the wrong shoes to get a burger",
+      "kind": "story",
+      "ts": "2026-11-18T13:03:14.379711+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
