@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "human-domesticated-14-animals__60c60bd9",
+  "slug": "human-domesticated-14-animals",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:25:00Z",
+  "title": "Only 14 Large Mammals Were Ever Domesticated",
+  "hook": "Humans domesticated only 14 candidate large mammals.",
+  "closing": "The animals that built civilization came from a remarkably short list.",
+  "question": "Which wild animal would you domesticate?",
+  "segments": [
+    {
+      "topic": "Domesticated Animals First",
+      "say": "Dogs were domesticated 15,000 years ago. Every familiar farm animal came later."
+    },
+    {
+      "topic": "Domesticated Mammal Count",
+      "say": "Only 14 candidate large mammals were domesticated. Most wild species never accepted human control."
+    },
+    {
+      "topic": "Domesticated Animals Today",
+      "say": "The total reached 14 species today. Humanity's large-animal roster has barely changed for millennia."
+    }
+  ]
+}
