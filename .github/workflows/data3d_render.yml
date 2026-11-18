@@ -13,6 +13,9 @@ name: Data 3D short (narrate, render shards, assemble; no upload)
 #   reuse_run=<run id> reshoot=3 4   re-render only shots 3 and 4; every other frame comes from that run (3-day artifacts)
 #   narration_run=<run id>   reuse that run's voice (omit to voice it here)
 #   mode=narrate             voice the lines and stop (time the shots to the real read first)
+#   operator_said=<words>    caaleb's own words OK-ing a render the judge failed: the judge still runs and its verdict
+#                            is kept, but his OK lets the render go (memory operator-word-over-gate; never without his
+#                            words about this exact video). It renders a preview only: nothing here posts.
 on:
   push:
     branches: ['claude/3d-data', 'claude/data3d-video2']
@@ -34,6 +37,7 @@ jobs:
       shots: ${{ steps.c.outputs.shots }}
       narr_run: ${{ steps.c.outputs.narr_run }}
       mode: ${{ steps.c.outputs.mode }}
+      operator_said: ${{ steps.c.outputs.operator_said }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: {fetch-depth: 1}
@@ -47,7 +51,9 @@ jobs:
           run=$(sed -n 's/^narration_run=//p' $cfg)
           echo "narr_run=${run:-${{ github.run_id }}}" >> $GITHUB_OUTPUT
           echo "mode=$(sed -n 's/^mode=//p' $cfg)" >> $GITHUB_OUTPUT     # mode=narrate: voice the lines and stop, so the shots can be timed to the real read
-          echo "story $story, voice from run ${run:-this one}"
+          said=$(sed -n 's/^operator_said=//p' $cfg | tr -d '"$`\\')
+          echo "operator_said=$said" >> $GITHUB_OUTPUT
+          echo "story $story, voice from run ${run:-this one}${said:+, render OK'd by the operator: $said}"
 
   narrate:
     needs: cfg
@@ -159,9 +165,11 @@ jobs:
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           STORY: ${{ needs.cfg.outputs.story }}
+          OPERATOR_SAID: ${{ needs.cfg.outputs.operator_said }}
         run: |
           [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ] || { echo "::error::CLAUDE_CODE_OAUTH_TOKEN is not set: no judge, no render"; exit 1; }
-          SHOTS="$(python3 -c "import json;print(' '.join(map(str,json.loads('${{ needs.cfg.outputs.shots }}'))))")" python tools/data3d/store/judge3d.py proof proof/verdict.json
+          SHOTS="$(python3 -c "import json;print(' '.join(map(str,json.loads('${{ needs.cfg.outputs.shots }}'))))")" python tools/data3d/store/judge3d.py proof proof/verdict.json \
+            || { [ -n "$OPERATOR_SAID" ] && echo "::warning::the judge failed a shot; the operator OK'd this render: $OPERATOR_SAID"; }
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
