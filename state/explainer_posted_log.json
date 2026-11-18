@@ -5719,6 +5719,13 @@
         "scene:seven-networks-both-halves",
         "mechanic:fiber-million-grid"
       ]
+    },
+    "third-interstellar-visitor": {
+      "claimed_at": "2026-11-18T01:59:23.919655+00:00",
+      "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7376,6 +7383,14 @@
       "state": "posted",
       "slug": "left-brain-right-brain-myth",
       "at": "2026-11-16T14:36:41.962009+00:00"
+    },
+    {
+      "claimed_at": "2026-11-18T01:59:23.919655+00:00",
+      "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "third-interstellar-visitor"
     }
   ]
 }
