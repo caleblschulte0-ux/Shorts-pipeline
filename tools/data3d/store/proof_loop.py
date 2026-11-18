@@ -24,8 +24,9 @@ times, try 180"): a shot that has scored under the bar FLIP (3) rounds running o
 the narration line with a different idea (different props, a different action), every camera / timing / framing tweak
 of the old one forbidden; the new idea is judged on its own (never undone back to the old one) and gets its own rounds.
 Every decision goes into loop.json ("rethink") and the story's judge_rounds.md (store/rounds.py). And the file never ends on an unjudged edit: every shot is put back to its best
-judged take before the loop exits. The loop stops when every shot passes (exit 0) or after
---rounds (exit 2, the last verdict and every round's notes in OUT/loop.json).
+judged take before the loop exits. The loop stops when every shot passes (exit 0), after
+--rounds (exit 2, the last verdict and every round's notes in OUT/loop.json), or when a shot has failed FLIP rounds on
+each of its MAX_IDEAS ideas (exit 3: THE HARD CAP, the line needs rewriting; see exhausted()).
 
 usage: python proof_loop.py STORY OUT [--shots 1 2 3] [--rounds 6] [--no-revise] [--step 6] [--spp 8] [--pct 30]
 Runs wherever Blender's bpy and the `claude` CLI are: a session's container, or a runner.
@@ -137,6 +138,21 @@ reply with "NEW IDEA:" and the idea in a few words.
 """
 
 
+MAX_IDEAS = int(os.environ.get("PROOF_MAX_IDEAS", "2"))
+
+# THE HARD CAP (caaleb, 2026-11-17, after the helium short ran 15 judge rounds by hand over two days, never passed, and
+# its loops used up the week's Claude allowance: "We cannot be having 13 missed tries on a render ... stop wasting our
+# compute power ... this is a much bigger problem"). A shot gets MAX_IDEAS ideas, FLIP rounds each. When its last idea
+# fails FLIP rounds too, the LINE is the problem, not the staging: the loop stops trying that shot, and exits 3 naming
+# it, so a person (or the session) rewrites the beat or drops the story. It never polishes a lost shot again. Sessions
+# run 3D proofs through this loop, never in hand-rolled loops that have no cap.
+
+
+def exhausted(scores, ideas_tried, k=FLIP, pass_score=PASS, max_ideas=MAX_IDEAS):
+    """True when a shot has used every idea it is allowed and the last one failed k rounds running"""
+    return ideas_tried >= max_ideas and needs_new_idea(scores, len(scores) - min(len(scores), k), k, pass_score)
+
+
 def needs_new_idea(scores, since=0, k=FLIP, pass_score=PASS):
     """THE 180 RULE: True when the last k rounds of this idea (rounds since the last 180) all scored under the bar"""
     s = scores[since:]
@@ -234,6 +250,7 @@ def main():
     scores, probs = {n: [] for n in todo}, {n: [] for n in todo}
     best, history, pending = {}, {n: [] for n in todo}, {}       # best[n] = (score, source, verdict); pending[n] = what was tried
     base, since, fresh = {}, {n: 0 for n in todo}, set()        # base[n]: the best take of the CURRENT idea (a 180 starts a new one)
+    ideas_tried, given_up = {n: 1 for n in todo}, {}            # ideas each shot has had; shots stopped by THE HARD CAP
     import rounds
     for rnd in range(1, a.rounds + 1):
         t0 = time.time()
@@ -267,7 +284,17 @@ def main():
                 put_shot(path, n, base[n][1]); verdict[n] = base[n][2]
                 if history[n]: history[n][-1] += f" (no better than the best, {base[n][0]}: undone)"
         todo = [n for n in todo if not verdict[n].get("pass")]
-        print(f"=== round {rnd}: passed {sorted(passed)}  failing {todo}", flush=True)
+        for n in list(todo):                       # THE HARD CAP: every idea tried and failed: stop spending on this shot
+            if exhausted(scores[n][since[n]:], ideas_tried[n]):
+                given_up[n] = list(scores[n]); todo.remove(n)
+                put_shot(path, n, best[n][1])
+                rounds.note(a.story, f"round {rnd}, shot {n}: HARD CAP: {ideas_tried[n]} ideas, every one under {PASS} "
+                                     f"({', '.join(map(str, scores[n]))}). The line itself needs rewriting; the loop stopped trying this shot.")
+                print(f"HARD CAP shot {n}: {ideas_tried[n]} ideas failed ({scores[n]}): stopped", flush=True)
+        print(f"=== round {rnd}: passed {sorted(passed)}  failing {todo}  given up {sorted(given_up)}", flush=True)
+        if given_up and not todo:
+            print(f"PROOF LOOP: shots {sorted(given_up)} hit the hard cap: rewrite their lines (or drop the story) "
+                  f"before any more rounds"); return 3
         if not todo:
             print("PROOF LOOP: every shot passes: the full render is worth starting"); return 0
         if a.no_revise or rnd == a.rounds:          # never end on an edit nobody judged
@@ -293,7 +320,7 @@ def main():
             if body:
                 put_shot(path, n, body); pending[n] = ("[180: NEW IDEA] " if kind == "180" else "") + note.replace("\n", " ")[:300]
                 if kind == "180":
-                    since[n] = len(scores[n]); fresh.add(n)     # the new idea gets its own rounds, and its own best
+                    since[n] = len(scores[n]); fresh.add(n); ideas_tried[n] += 1   # the new idea gets its own rounds, and its own best
             if kind:                                   # the round report says what the loop decided, and why
                 log[-1].setdefault("rethink", {})[n] = {"kind": kind, "scores": list(scores[n]), "applied": bool(body), "note": note[:300]}
                 rounds.note(a.story, decision_note(rnd, n, kind, scores[n], note if body else None))
@@ -301,6 +328,8 @@ def main():
     for n in todo:                                   # the file holds each failing shot's best JUDGED take
         if n in best:
             put_shot(path, n, best[n][1])
+    if given_up:
+        print(f"PROOF LOOP: shots {sorted(given_up)} hit the hard cap; still failing {todo}"); return 3
     print(f"PROOF LOOP: still failing after {rnd} rounds: {todo}"); return 2
 
 

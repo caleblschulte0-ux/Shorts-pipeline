@@ -59,3 +59,17 @@ def test_smoothing_keeps_a_held_pose_and_softens_a_step():
     out = g([0.0] * 10 + [1.0] * 10, 1.5)
     steps = [b - a for a, b in zip(out, out[1:])]
     assert max(steps) < 0.35                       # no single frame carries the whole jump
+
+
+def test_the_hard_cap_stops_a_shot_whose_every_idea_failed():
+    """caaleb 2026-11-17, after 15 hand rounds on helium: "We cannot be having 13 missed tries on a render". A shot gets
+    MAX_IDEAS ideas of FLIP rounds each; when the last one fails too, the loop stops trying it (exit 3)."""
+    import proof_loop as P
+    bar = P.PASS
+    low = [bar - 10] * P.FLIP
+    assert not P.exhausted(low, 1)                      # the first idea failed: that earns a 180, not a stop
+    assert P.exhausted(low, P.MAX_IDEAS)                # the last allowed idea failed FLIP rounds: stop
+    assert not P.exhausted(low[:-1], P.MAX_IDEAS)       # not yet FLIP rounds on the last idea
+    assert not P.exhausted(low[:-1] + [bar], P.MAX_IDEAS)   # a pass is never given up on
+    src = (P.HERE / "proof_loop.py").read_text()
+    assert "return 3" in src and "given_up" in src      # the loop exits 3 and names the shots
