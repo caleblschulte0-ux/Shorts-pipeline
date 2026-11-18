@@ -38147,8 +38147,8 @@
   {
    "slug": "runway-near-misses-climbing",
    "title": "The FAA Logged 23 Serious Runway Near-Misses In One Year",
-   "hook": "Are planes getting too close on the ground?",
-   "closing": "More flights, more close calls, same runways.",
+   "hook": "The FAA says close calls on runways are climbing, and the culprit isn't who you'd think.",
+   "closing": "More flights, same runways. Every close call puts a planeload of people at risk.",
    "question": "Does this make you nervous to fly?",
    "caption": "Serious runway near-misses hit a level not seen in years — and they're not spread evenly across airports. A handful of hubs account for nearly a third of the worst ones. Does this make you nervous to fly? 👇",
    "hashtags": [
@@ -38175,7 +38175,7 @@
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
      "topic": "runway near-misses over time",
-     "say": "A decade ago, the US saw 11 serious runway near-misses a year. By 2022 it was 16. In 2023, 23.",
+     "say": "Serious runway near-misses have more than doubled in about a decade, to 23 last year. That's roughly one every two weeks.",
      "scene": {
       "title": true,
       "elements": [
@@ -38194,8 +38194,8 @@
      },
      "insight_type": "share",
      "role": "2 · THE CAUSE",
-     "topic": "what causes most runway incursions",
-     "say": "Out of 1,756 total runway incursions that year, about 60% were people or vehicles wandering onto the runway by mistake."
+     "topic": "what causes runway incursions",
+     "say": "Six in ten runway incursions last year were people or vehicles wandering onto the runway by mistake, not planes at all."
     },
     {
      "source": "offline",
@@ -38206,9 +38206,29 @@
      "insight_type": "comparison",
      "role": "3 · WHERE IT CLUSTERS",
      "topic": "where runway near-misses cluster",
-     "say": "And it's not spread evenly — just 8 airports, including Boston and Chicago Midway, account for almost a third of the worst ones."
+     "say": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst ones. That's where the danger lives."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T11:53:06Z",
+   "scorecard": {
+    "scores": {
+     "premise": 12,
+     "hook": 18,
+     "arc": 17,
+     "factual": 13,
+     "visual_proof": 12,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 84,
+    "fatal": [],
+    "weakest": "payoff",
+    "note": "Make the data visuals simpler and larger so key numbers are instantly readable on a phone screen.",
+    "fp": "8ad37fecb6319626"
+   },
+   "hook_was": "Are planes getting too close on the ground?"
   },
   {
    "slug": "feet-are-getting-bigger",
@@ -38329,7 +38349,7 @@
    "slug": "normal-body-temperature-has-shifted",
    "title": "98.6°F Isn't 'Normal' Body Temperature Anymore",
    "hook": "The number everyone learned in school? It's wrong now.",
-   "closing": "Normal was never fixed. It's been quietly drifting for two centuries.",
+   "closing": "Your 'normal' may be cooler than you think, and it has been shifting for two centuries.",
    "question": "What's your actual resting temperature right now?",
    "hashtags": [
     "bodytemperature",
@@ -38354,8 +38374,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DRIFT",
-     "topic": "body temperature by birth era",
-     "say": "Stanford researchers compared body temperatures by birth year. Men born in the early 1800s averaged 98.6. Men born in the 1990s average about 97.5."
+     "topic": "Body temperature drop",
+     "say": "Stanford researchers found today's men run about 97.5 degrees, about a degree cooler than men born in the early 1800s."
     },
     {
      "source": "offline",
@@ -38365,8 +38385,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · WOMEN VS MEN",
-     "topic": "the temperature drop, women vs men",
-     "say": "Women's average fell about 0.58 degrees over two centuries. Men's fell nearly double that, 1.06 degrees — scientists think slowing metabolism is why."
+     "topic": "Body cooling by sex",
+     "say": "Men cooled nearly twice as much as women. Scientists suspect slower metabolisms, so our bodies run cooler than our ancestors' did."
     },
     {
      "source": "offline",
@@ -38376,10 +38396,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE NUMBER ITSELF",
-     "topic": "the original temperature reading",
-     "say": "A 1992 study found Wunderlich's original thermometers were miscalibrated. His true average was probably closer to 98.2, not 98.6."
+     "topic": "Original 'normal' reading",
+     "say": "The doctor who invented 'normal' used miscalibrated thermometers; his true average was probably 98.2. Normal was a guess."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T12:14:25Z"
   },
   {
    "slug": "volcanoes-erupting-right-now",
@@ -38411,8 +38434,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · HOW MANY ARE ACTIVE",
-     "topic": "how many volcanoes are active",
-     "say": "Earth has about 1,400 volcanoes considered potentially active. Right now, only about 45 of them are actually erupting."
+     "topic": "Active volcanoes",
+     "say": "Earth has about 1,400 active volcanoes, but only a tiny slice are erupting at any moment. So the planet always has a few going."
     },
     {
      "source": "offline",
@@ -38422,8 +38445,8 @@
      },
      "insight_type": "share",
      "role": "2 · WHERE THEY SIT",
-     "topic": "where most of earth's volcanoes sit",
-     "say": "Three-quarters of them sit along one line — the Pacific Ring of Fire circling the ocean."
+     "topic": "Ring of Fire volcanoes",
+     "say": "Three in four sit along one line, the Pacific Ring of Fire. So the danger is packed around one ocean's edge."
     },
     {
      "source": "offline",
@@ -38433,10 +38456,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE MOST DANGEROUS",
-     "topic": "the most dangerous volcanoes",
-     "say": "Of all of them, only 16 are officially named 'Decade Volcanoes' — the ones considered most dangerous to the people living nearby."
+     "topic": "Most dangerous volcanoes",
+     "say": "Just 16 are labeled 'Decade Volcanoes', the most dangerous to nearby people. Out of over a thousand, that's a short watch list."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T12:15:01Z"
   },
   {
    "slug": "south-korea-robot-density-record",
@@ -38500,7 +38526,7 @@
    "slug": "people-over-65-outnumber-kids-under-5",
    "title": "For The First Time, People Over 65 Outnumber Kids Under 5",
    "hook": "This has never happened before in human history.",
-   "closing": "Grandparents are winning the numbers game now.",
+   "closing": "A much older world is coming, and it will change jobs, healthcare and families for everyone.",
    "question": "How many grandparents do you have?",
    "caption": "In 2018, the number of people over 65 passed the number of children under 5 worldwide for the first time ever. By 2050 the gap more than doubles. How many grandparents do you have? 👇",
    "hashtags": [
@@ -38526,8 +38552,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE CROSSOVER",
-     "topic": "people over 65 vs kids under 5, worldwide",
-     "say": "In 2018, people over 65 passed kids under 5 worldwide for the first time ever — 705 million versus 680 million."
+     "topic": "Over 65 outnumber kids",
+     "say": "For the first time ever, seniors outnumber toddlers worldwide, about 705 million of them, and the gap keeps growing."
     },
     {
      "source": "offline",
@@ -38537,8 +38563,8 @@
      },
      "insight_type": "trend",
      "role": "2 · IT KEEPS CLIMBING",
-     "topic": "how fast the over-65 group is growing",
-     "say": "That over-65 group keeps climbing — from about 420 million in 2000, to 727 million by 2020, heading toward 1.6 billion by 2050."
+     "topic": "People over 65 growing",
+     "say": "That senior crowd keeps growing, heading for 1.6 billion, nearly four times its size at the turn of the century."
     },
     {
      "source": "offline",
@@ -38548,10 +38574,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE GAP DOUBLES",
-     "topic": "people over 65 vs kids under 5 by 2050",
-     "say": "By 2050, people over 65 will outnumber kids under 5 more than two to one — 1.6 billion versus roughly 630 million."
+     "topic": "Over 65 outnumber kids",
+     "say": "Meanwhile, seniors will outnumber little kids more than two to one, which means a much older world, with fewer young people."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T12:16:32Z"
   },
   {
    "slug": "richest-americans-live-14-years-longer",

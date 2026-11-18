@@ -1,7 +1,78 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-18T10:18:50Z",
+ "updated": "2026-11-18T12:16:51Z",
  "open": [
+  {
+   "id": "us-height-ranking-fall__7d1b012d",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-18T12:16:50Z",
+   "why": [
+    "premise: brain: The claim about Americans being the tallest nation in 1914 and exactly 36 countries now being taller is unverified and likely inaccurate."
+   ],
+   "request": "exchange/rewrites/20261118/us-height-ranking-fall__7d1b012d.request.json",
+   "answer_path": "exchange/rewrites/20261118/us-height-ranking-fall__7d1b012d.answer.json"
+  },
+  {
+   "id": "normal-body-temperature-has-shifted__5658afbe",
+   "slug": "normal-body-temperature-has-shifted",
+   "filed": "2026-11-18T12:16:50Z",
+   "why": [
+    "thesis: seg1 ('Body cooling by sex') does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Focuses on sex differences rather than directly supporting the claim that 98.6°F is no longer normal, and doesn't logica",
+    "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Introduces a separate historical calibration issue that doesn't follow from beat 1 and is not a direct continuation of t"
+   ],
+   "request": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe.request.json",
+   "answer_path": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe.answer.json"
+  },
+  {
+   "id": "people-over-65-outnumber-kids-under-5__ef77b98a",
+   "slug": "people-over-65-outnumber-kids-under-5",
+   "filed": "2026-11-18T12:16:50Z",
+   "why": [
+    "thesis: seg1 ('People over 65 growing') does not continue the story of the headline ('For The First Time, People Over 65 Outnumber Kids Under 5') — brain: Adds another fact about future senior population without directly following from beat 0; not a causal or contrasting bri"
+   ],
+   "request": "exchange/rewrites/20261118/people-over-65-outnumber-kids-under-5__ef77b98a.request.json",
+   "answer_path": "exchange/rewrites/20261118/people-over-65-outnumber-kids-under-5__ef77b98a.answer.json"
+  },
+  {
+   "id": "volcanoes-erupting-right-now__78b520e6",
+   "slug": "volcanoes-erupting-right-now",
+   "filed": "2026-11-18T12:16:50Z",
+   "why": [
+    "premise: brain: The claim of ~45 simultaneous eruptions is not a verifiable, concrete fact and likely inaccurate."
+   ],
+   "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6.request.json",
+   "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__c76f31b3",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-18T12:16:49Z",
+   "why": [
+    "premise: brain: The premise makes an unverified specific claim about 18% muscle loss per decade, which is not a concrete, universally true fact."
+   ],
+   "request": "exchange/rewrites/20261118/muscle-loss-after-30__c76f31b3.request.json",
+   "answer_path": "exchange/rewrites/20261118/muscle-loss-after-30__c76f31b3.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__387d8387",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-18T12:16:48Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, verifiable surprise or contradiction."
+   ],
+   "request": "exchange/rewrites/20261118/blood-supply-three-percent__387d8387.request.json",
+   "answer_path": "exchange/rewrites/20261118/blood-supply-three-percent__387d8387.answer.json"
+  },
+  {
+   "id": "library-digital-shift__2314aec3",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-18T12:16:48Z",
+   "why": [
+    "premise: brain: The claim about digital checkouts reaching 739 million lacks verifiable evidence and may not be a concrete, provable fact."
+   ],
+   "request": "exchange/rewrites/20261118/library-digital-shift__2314aec3.request.json",
+   "answer_path": "exchange/rewrites/20261118/library-digital-shift__2314aec3.answer.json"
+  },
   {
    "id": "lake-mead-water-crisis__4529ddf6",
    "slug": "lake-mead-water-crisis",
@@ -254,16 +325,6 @@
    ],
    "request": "exchange/rewrites/20261118/womens-college-hoops-out-rates-men__ca924794.request.json",
    "answer_path": "exchange/rewrites/20261118/womens-college-hoops-out-rates-men__ca924794.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__7d1b012d",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-17T15:55:22Z",
-   "why": [
-    "premise: brain: The premise relies on multiple numbers (1914 and 36) rather than a single consequential, verifiable figure, failing the one-number rule."
-   ],
-   "request": "exchange/rewrites/20261117/us-height-ranking-fall__7d1b012d.request.json",
-   "answer_path": "exchange/rewrites/20261117/us-height-ranking-fall__7d1b012d.answer.json"
   },
   {
    "id": "third-interstellar-visitor__19dac2dc",
