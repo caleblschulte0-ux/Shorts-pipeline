@@ -716,7 +716,8 @@ class Data:
         sk = self.brows[0].data.shape_keys
         return sk.key_blocks[name].value if sk and name in sk.key_blocks else 0.0
 
-    COCK_B = 0.45    # brow units a COCKED brow rises above the other (cock=1); 0.45 is a raised brow you see across a room
+    COCK_B = 0.22    # brow units a COCKED brow rises above the other (cock=1). 0.45 lifted it clear of the skull: the judge saw a brow
+                     # "floating above the head" on every wry ending of the card rewards short (2026-11-18, round 2)
     COCK_MAD = 0.6   # ... and the other one drops at its inner end that much: one up, one down is the skeptic's look
 
     def _brow_side_val(self, b, brow, cock, mad):

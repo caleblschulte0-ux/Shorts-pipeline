@@ -139,16 +139,17 @@ def piggy(name, loc, s=1.0, yaw=0.0):
     return root, Vector((L * 0.62 - L * 0.35 - 0.014 * s + 0.013 * s, 0, R + 0.02 * s))
 
 
-def chute(name, a, b, w=0.06):
+def chute(name, a, b, w=0.06, color="#A9AEB3"):
     """a bent-tin chute from a to b (world points on its floor): a floor and two low sides"""
     a, b = Vector(a), Vector(b); d = b - a
-    m = _mat("chute tin", "#A9AEB3", rough=0.35, metal=0.8)
-    root = K.empty(name, tuple((a + b) / 2))
-    root.rotation_euler = (0, -math.atan2(d.z, math.hypot(d.x, d.y)), math.atan2(d.y, d.x))
+    m = _mat(f"chute {color}", color, rough=0.45, metal=0.0 if color != "#A9AEB3" else 0.8)
+    root = K.empty(name, (0, 0, 0))          # children are built at absolute positions about an identity root, then it moves
     L = d.length
-    K.box(name + " floor", (0, 0, -0.002), (L, w, 0.004), m, bev=0.001, parent=root)
+    K.box(name + " floor", (0, 0, -0.006), (L, w, 0.012), m, bev=0.002, parent=root)
     for sy in (-1, 1):
-        K.box(name + " side", (0, sy * w / 2, 0.008), (L, 0.003, 0.02), m, bev=0.0008, parent=root)
+        K.box(name + " side", (0, sy * w / 2, 0.01), (L, 0.006, 0.026), m, bev=0.001, parent=root)
+    root.location = (a + b) / 2
+    root.rotation_euler = (0, -math.atan2(d.z, math.hypot(d.x, d.y)), math.atan2(d.y, d.x))
     return root
 
 
@@ -156,7 +157,7 @@ def shack(name, loc, s=1.0):
     """a tiny tin shack: grey corrugated walls, a slanted rust roof, a dark door"""
     root = K.empty(name, (0, 0, 0))
     W, D, H = 0.07 * s, 0.06 * s, 0.05 * s
-    K.box(name + " walls", (0, 0, H / 2), (W, D, H), _mat("shack tin", "#8D9196", rough=0.5, metal=0.5), bev=0.002, parent=root)
+    K.box(name + " walls", (0, 0, H / 2), (W, D, H), _mat("shack tin", "#6B5B4C", rough=0.7, metal=0.3), bev=0.002, parent=root)
     r = K.box(name + " roof", (0, 0, H + 0.006 * s), (W * 1.15, D * 1.15, 0.006 * s), _mat("shack rust", "#8A4B2A", rough=0.7), bev=0.001, parent=root)
     r.rotation_euler = (0, math.radians(10), 0)
     K.box(name + " door", (W * 0.15, -D / 2 - 0.0005, H * 0.36), (W * 0.26, 0.001, H * 0.62), _mat("shack door", "#2B2420", rough=0.7), bev=0, parent=root)
@@ -190,9 +191,10 @@ def lever(name, base, length=0.09):
     """a brass lever on a little housing: returns (pivot to key rotation_euler.y, knob local point on the pivot)"""
     brass = _mat("lever brass", "#C9A04A", rough=0.3, metal=0.9)
     K.box(name + " housing", (base[0], base[1], base[2] + 0.012), (0.05, 0.04, 0.024), _mat("lever housing", "#2E3136", rough=0.4, metal=0.4), bev=0.004)
-    piv = K.empty(name + " pivot", (base[0], base[1], base[2] + 0.024))
-    K.cyl(name + " arm", (0, 0, length / 2), 0.004, length, brass, v=12, bev=0, parent=piv)
+    piv = K.empty(name + " pivot", (0, 0, 0))             # built about an identity pivot (children are absolute), then moved
+    K.cyl(name + " arm", (0, 0, length / 2), 0.006, length, brass, v=12, bev=0, parent=piv)
     K.sph(name + " knob", (0, 0, length), 0.016, _mat("lever knob", "#B8241C", rough=0.35), parent=piv)
+    piv.location = (base[0], base[1], base[2] + 0.024)
     return piv, Vector((0, 0, length))
 
 
