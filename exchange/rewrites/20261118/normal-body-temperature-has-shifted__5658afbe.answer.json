@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "normal-body-temperature-has-shifted__5658afbe",
+  "slug": "normal-body-temperature-has-shifted",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "Average Body Temperature Fell Below 98.6°F",
+  "hook": "98.6°F is not the average body temperature anymore.",
+  "closing": "Your personal baseline can be cooler than the number everyone memorized.",
+  "question": "What is your resting temperature?",
+  "segments": [
+    {
+      "topic": "Body Temperature Today",
+      "say": "Men born in the 1990s averaged 97.5°F. Modern bodies run cooler than the old textbook number."
+    },
+    {
+      "topic": "Body Temperature Decline",
+      "say": "Men's average body temperature fell 1.06°F. The shift was larger than the decline measured in women."
+    },
+    {
+      "topic": "Body Temperature History",
+      "say": "The original thermometer readings recalculate to 98.2°F. Even the historic benchmark was warmer than the corrected average."
+    }
+  ]
+}
