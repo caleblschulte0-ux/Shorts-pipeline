@@ -5754,6 +5754,13 @@
       ],
       "words_first_10s": 19,
       "scene_changes_before_5s": 3
+    },
+    "religious-nones-rise": {
+      "claimed_at": "2026-11-18T03:25:11.749871+00:00",
+      "title": "28% Of Americans Now Claim No Religion",
+      "publish_at": "2026-11-18T08:13:49Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7420,6 +7427,14 @@
       "state": "posted",
       "slug": "third-interstellar-visitor",
       "at": "2026-11-18T01:59:33.020835+00:00"
+    },
+    {
+      "claimed_at": "2026-11-18T03:25:11.749871+00:00",
+      "title": "28% Of Americans Now Claim No Religion",
+      "publish_at": "2026-11-18T08:13:49Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "religious-nones-rise"
     }
   ]
 }
