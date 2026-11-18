@@ -24507,7 +24507,7 @@
    "slug": "clear-air-turbulence-increase",
    "title": "Severe Turbulence Lasted 55% Longer Over The North Atlantic",
    "hook": "Severe turbulence lasted 55% longer over the North Atlantic.",
-   "closing": "The seatbelt sign matters more as rough air becomes more common.",
+   "closing": "Rough air is rising, so keep your seatbelt fastened whenever you sit, even when the skies look calm.",
    "question": "Have your flights felt bumpier?",
    "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
    "hashtags": [
@@ -24537,7 +24537,7 @@
      "insight_type": "trend",
      "role": "1 · THE BUMP",
      "topic": "Turbulence Annual Hours",
-     "say": "Severe turbulence reached 27.4 annual hours. North Atlantic flights now spend more time in rough air.",
+     "say": "Severe turbulence now lasts 27 hours a year over the North Atlantic, about half again what it was in 1979. Crossings are bumpier.",
      "scene": {
       "mechanic": "shaking-jet-climb",
       "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
@@ -24554,7 +24554,7 @@
      "ascending": false,
      "role": "2 · THE PATTERN",
      "topic": "Turbulence Severity Increase",
-     "say": "Severe turbulence duration rose 55 percent. The roughest air grew faster than lighter bumps.",
+     "say": "Severe turbulence lasts 55 percent longer, more than triple the rise in light bumps. The worst air is growing fastest.",
      "scene": {
       "mechanic": "rough-air-bands",
       "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
@@ -24570,7 +24570,7 @@
      "insight_type": "trend",
      "role": "3 · WHY",
      "topic": "Turbulence Future Hours",
-     "say": "Models project 62 annual hours by 2080. Future crossings could encounter far more severe turbulence.",
+     "say": "Models say severe turbulence could hit 62 hours a year by 2080, over double today's level. Flights would get much rougher.",
      "scene": {
       "mechanic": "future-storm-panels",
       "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
@@ -24578,9 +24578,9 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:43Z",
-   "retold": "retell/v3"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T12:50:02Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "lego-minifigs-outnumber-humans",
@@ -26617,7 +26617,7 @@
    "slug": "us-height-ranking-fall",
    "title": "American Height Gained 6 Centimeters While Other Countries Passed",
    "hook": "American men gained 6 centimeters, but other countries grew faster.",
-   "closing": "Height reflects living conditions, so national rankings can change within generations.",
+   "closing": "Height tracks how well people live, so a country's standing can slip within a few generations.",
    "question": "Are you taller than your grandparents?",
    "caption": "A century ago, American men were the third-tallest in the world. Today the US ranks 37th, as South Korea, Iran and others raced ahead on better childhood nutrition and healthcare. Height isn't just genetics -- it's basically a scoreboard for how a country raises its kids. Are you taller than your grandparents were? 👇",
    "hashtags": [
@@ -26648,7 +26648,7 @@
      "use_baseline": false,
      "role": "1 · A REAL GAIN",
      "topic": "American Height",
-     "say": "American men averaged 177 centimeters by 2014. A century of growth still was not enough to keep the lead.",
+     "say": "American men averaged 177 centimeters by 2014, barely taller than a century earlier. Everyone else was sprinting ahead.",
      "scene": {
       "mechanic": "height-wall-measure",
       "concept": "a man stands against a measuring wall; his head line climbs from 171 to 177 cm past a ghost line at 1914, a modest gain on a real ruler",
@@ -26666,7 +26666,7 @@
      "use_baseline": false,
      "role": "2 · EVERYONE ELSE SPED UP",
      "topic": "Height Gains",
-     "say": "South Korean women gained 20.2 centimeters. Other populations improved far faster than Americans.",
+     "say": "South Korean women gained 20.2 centimeters in a century, far more than American men. Same century, very different growth.",
      "scene": {
       "mechanic": "gain-blocks-on-heads",
       "concept": "three people stand at the same base height; centimeter blocks stack on their heads as each gain lands, South Korean women towering, American men a stub",
@@ -26683,7 +26683,7 @@
      "use_baseline": false,
      "role": "3 · THE RANKING FLIPPED",
      "topic": "Height Ranking",
-     "say": "By 2014, 36 countries had taller men. America's modest gains became a ranking collapse.",
+     "say": "A century ago, almost nobody beat the US in male height. By 2014, 36 countries did. That is how a lead disappears.",
      "scene": {
       "mechanic": "overtaken-by-crowd",
       "concept": "one American man stands under a line; 2 taller countries stand beside him in 1914, then 34 more men file in over the line until 36 stand taller",
@@ -26691,9 +26691,9 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:45Z",
-   "retold": "retell/v3"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T12:50:50Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "global-displacement-record",
@@ -28388,7 +28388,7 @@
    "slug": "dating-app-user-exodus",
    "title": "Tinder Fell To 11 Million Users As Dating Apps Burned Out",
    "hook": "Tinder fell to 11 million users as dating apps burned people out.",
-   "closing": "Swiping promised connection, but burnout is pushing users away.",
+   "closing": "Apps promised connection, but burnout is driving people away, so the next swipe may feel like work.",
    "question": "Have you deleted a dating app?",
    "caption": "Tinder's US users dropped from 18 million to 11 million in two years, and it's not alone -- usage across the top 10 dating apps fell industry-wide. 78% of users say the apps leave them drained. Have you quit one? 👥",
    "hashtags": [
@@ -28415,7 +28415,7 @@
      "insight_type": "trend",
      "role": "1 · THE DROP",
      "topic": "Tinder User Loss",
-     "say": "Tinder fell to 11 million US users. Millions stopped swiping on the app everyone knows.",
+     "say": "Two years ago Tinder had 18 million US users. Now about a third of them have quietly left the app.",
      "scene": {
       "mechanic": "swipe-left-phone-exodus",
       "concept": "a grid of 18 profile-card phones, one per million 2022 users; seven get swiped off the left edge one after another until 11 remain",
@@ -28432,7 +28432,7 @@
      "use_baseline": false,
      "role": "2 · NOT JUST ONE",
      "topic": "Dating App Usage",
-     "say": "Dating app usage fell 16 percent. Tinder's decline was part of a wider retreat.",
+     "say": "Across the biggest dating apps, usage dropped 16 percent in a year. So Tinder wasn't alone: the whole category is shrinking.",
      "scene": {
       "mechanic": "hearts-fall-off-the-hundred",
       "concept": "a hundred hearts stand for 2023 usage and sixteen shake loose and fall to the floor",
@@ -28448,7 +28448,7 @@
      "insight_type": "share",
      "role": "3 · THE WHY",
      "topic": "Dating App Burnout",
-     "say": "About 78 percent of dating app users feel drained. Burnout helps explain the exodus.",
+     "say": "About 78 percent of dating app users say they feel drained. That burnout is why so many people quit swiping.",
      "scene": {
       "mechanic": "battery-drained-by-swiping",
       "concept": "a phone battery drains to the 78 percent who feel drained, leaving a sliver of charge",
@@ -28456,9 +28456,9 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:43Z",
-   "retold": "retell/v3"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T12:51:55Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "fusion-net-energy-gain",
@@ -37815,7 +37815,7 @@
   {
    "slug": "lake-mead-water-crisis",
    "title": "Lake Mead Fell To 27% Full—Threatening Hoover Power",
-   "hook": "Lake Mead fell to 27% full, threatening Hoover Dam power.",
+   "hook": "Lake Mead is shrinking, and the lights at Hoover Dam are on the line.",
    "closing": "Falling water threatens both the reservoir and the electricity people rely on.",
    "question": "Did you know Lake Mead fell this low?",
    "caption": "Lake Mead used to be nearly full. Now it's sitting at just 27% capacity — the lowest since the Hoover Dam was built. If it drops much further, the dam can't even generate power. Scary, right?",
@@ -37873,7 +37873,8 @@
         "region": "full"
        }
       ]
-     }
+     },
+     "illustrated_scene": "# scene standard: 2026-10-28.1\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: Hoover Dam holding back Lake Mead\n    SUBSTANCE: the lake's blue water\n    CAUSE: Data turns the dam's outlet valve wheel by hand and the lake drains down its canyon walls\n    Lake Mead from upstream, above the water: the great concrete arch of\n    Hoover Dam bowing out toward the lake across a red-rock canyon, its\n    crest road with lamps and its two Art Deco elevator towers, four\n    ribbed intake towers with stepped crowns standing in the water. Data\n    walks the crest to the outlet valve and turns it with his own two\n    hands; the lake drops and leaves a white bathtub ring on the rock\n    where it used to stand. The water stops at its 2022 level. The power\n    shutoff line is drawn on the towers below it, so the gap that is left\n    reads at a glance.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    lev_l, lev = max(rows, key=lambda r: r[1])\n    shut_l, shut = min(rows, key=lambda r: r[1])\n    gap = lev - shut\n\n    CREST, BUL = 880.0, 120.0\n    DX0, DX1 = 200.0, 920.0\n    MID, HALF = (DX0 + DX1) / 2, (DX1 - DX0) / 2\n\n    def crest_y(x):\n        q = (x - MID) / HALF\n        return CREST + BUL * max(0.0, 1.0 - q * q)\n\n    Y_SHUT = 1500.0\n    S = 2.4\n    Y_LEV = Y_SHUT - gap * S\n    Y0 = 1040.0                                  # where the ring's top sits\n    d = ease(seg(u, 0.18, 0.6))\n    surf = Y0 + (Y_LEV - Y0) * d\n\n    landscape(cr, t, \"desert\", horizon=880, time=\"day\", seed=\"Hoover Dam\", skyline=False)\n\n    # the dam: a concrete ARCH bowing out toward the lake\n    xs = [DX0 + (DX1 - DX0) * i / 40 for i in range(41)]\n\n    def dam_path():\n        cr.move_to(xs[0], crest_y(xs[0]))\n        for x in xs[1:]:\n            cr.line_to(x, crest_y(x))\n        cr.line_to(DX1, H)\n        cr.line_to(DX0, H)\n        cr.close_path()\n    dam_path()\n    solid(cr, (214, 204, 186))\n    cr.save()\n    dam_path()\n    cr.clip()\n    seams(cr, DX0, CREST, DX1, H, (214, 204, 186), n=14, axis=\"v\")\n    seams(cr, DX0, CREST + 60, DX1, H, (214, 204, 186), n=10, axis=\"h\", a=0.3)\n    # the arch's curved face falls into shade toward the middle\n    glow(cr, MID + 120, crest_y(MID) + 220, 360, (120, 110, 96), 0.25)\n    cr.restore()\n\n    # the crest road: its top surface following the arch, its thickness\n    cr.move_to(xs[0], crest_y(xs[0]) - 26)\n    for x in xs[1:]:\n        cr.line_to(x, crest_y(x) - 26)\n    for x in reversed(xs):\n        cr.line_to(x, crest_y(x))\n    cr.close_path()\n    solid(cr, (232, 224, 206))\n    cr.set_source_rgba(*_c((120, 112, 100)))\n    cr.set_line_width(3)\n    cr.move_to(xs[0], crest_y(xs[0]) - 13)\n    for x in xs[1:]:\n        cr.line_to(x, crest_y(x) - 13)\n    cr.stroke()\n    # the parapet on the lake side\n    for i in range(40):\n        px = DX0 + 6 + i * 18\n        py = crest_y(px)\n        cr.rectangle(px, py - 18, 6, 20)\n        solid(cr, (204, 196, 180), rim=False)\n    cr.set_source_rgba(*_c((150, 142, 128)))\n    cr.set_line_width(4)\n    cr.move_to(xs[0], crest_y(xs[0]) - 18)\n    for x in xs[1:]:\n        cr.line_to(x, crest_y(x) - 18)\n    cr.stroke()\n\n    # the two Art Deco elevator towers rising off the crest\n    for ex in (270.0, 410.0):\n        ey = crest_y(ex + 30) - 20\n        contact_shadow(cr, ex + 30, ey, 80, a=0.3)\n        box(cr, ex, ey, 60, 150, (226, 216, 196), depth=16)\n        seams(cr, ex + 4, ey - 140, ex + 56, ey - 10, (226, 216, 196), n=6, axis=\"v\", a=0.6)\n        box(cr, ex + 6, ey - 150, 48, 22, (214, 204, 184), depth=13)\n        box(cr, ex + 14, ey - 172, 32, 18, (204, 194, 174), depth=10)\n        cr.rectangle(ex + 20, ey - 120, 20, 28)\n        solid(cr, (70, 80, 92), finish=\"glass\", rim=False)\n        trim(cr, ex + 18, ey - 122, ex + 42, ey - 90, (200, 190, 170), w=3)\n\n    # lamps along the crest\n    for i in range(8):\n        lx = 470 + i * 56\n        ly = crest_y(lx) - 18\n        cr.rectangle(lx, ly - 52, 5, 52)\n        solid(cr, (60, 60, 66), finish=\"metal\", rim=False)\n        disc(cr, lx + 2.5, ly - 58, 8, (236, 226, 196), finish=\"glass\")\n\n    # the canyon walls, red rock with strata\n    def left_wall():\n        cr.move_to(0, 740)\n        cr.curve_to(110, 750, 180, 800, 230, 880)\n        cr.line_to(250, 1300)\n        cr.line_to(200, H)\n        cr.line_to(0, H)\n        cr.close_path()\n\n    def right_wall():\n        cr.move_to(W, 720)\n        cr.curve_to(1000, 740, 930, 800, 900, 880)\n        cr.line_to(880, 1300)\n        cr.line_to(920, H)\n        cr.line_to(W, H)\n        cr.close_path()\n    for wp, x0, x1 in ((left_wall, 0, 260), (right_wall, 870, W)):\n        wp()\n        solid(cr, (174, 92, 58))\n        cr.save()\n        wp()\n        cr.clip()\n        seams(cr, x0, 740, x1, H, (174, 92, 58), n=12, axis=\"h\", a=0.5)\n        # the bathtub ring: bleached rock where the water stood\n        cr.rectangle(x0, Y0, x1 - x0, surf - Y0)\n        cr.set_source_rgba(*_c((236, 230, 216), 0.9))\n        cr.fill()\n        seams(cr, x0, Y0, x1, max(Y0 + 2, surf), (220, 212, 196), n=6, axis=\"h\", a=0.4)\n        cr.restore()\n    # the same ring on the dam's own face\n    cr.save()\n    dam_path()\n    cr.clip()\n    cr.rectangle(DX0, Y0, DX1 - DX0, surf - Y0)\n    cr.set_source_rgba(*_c((244, 240, 230), 0.55))\n    cr.fill()\n    cr.restore()\n\n    # the four intake towers: ribbed shafts, stepped Art Deco crowns\n    for i, tx in enumerate((290, 400, 660, 770)):\n        tw, base = 74, 1720\n        top = crest_y(tx + tw / 2) + 50 + (i % 2) * 10\n        cylinder(cr, tx, base, tw, base - top, (222, 212, 194))\n        seams(cr, tx + 6, top + 20, tx + tw - 6, base, (222, 212, 194), n=6, axis=\"v\", a=0.55)\n        for j in range(5):\n            wy = top + 50 + j * 80\n            cr.rectangle(tx + tw / 2 - 8, wy, 16, 34)\n            solid(cr, (70, 66, 62), rim=False)\n            trim(cr, tx + tw / 2 - 10, wy - 2, tx + tw / 2 + 10, wy + 36, (200, 190, 172), w=3)\n        # the stepped crown: three shrinking drums and a cap\n        cylinder(cr, tx - 6, top + 4, tw + 12, 18, (206, 196, 178))\n        cylinder(cr, tx + 6, top - 14, tw - 12, 26, (214, 204, 186))\n        cylinder(cr, tx + 18, top - 40, tw - 36, 26, (206, 196, 178))\n        disc(cr, tx + tw / 2, top - 48, 10, (150, 140, 120), finish=\"metal\")\n\n    # the lake: blue water from the surface down\n    g = cairo.LinearGradient(0, surf, 0, H)\n    g.add_color_stop_rgba(0, 70 / 255, 140 / 255, 190 / 255, 0.93)\n    g.add_color_stop_rgba(1, 18 / 255, 58 / 255, 104 / 255, 0.97)\n    cr.rectangle(0, surf, W, H - surf)\n    cr.set_source(g)\n    cr.fill()\n    cr.set_source_rgba(*_c((210, 236, 250), 0.8))\n    cr.set_line_width(4)\n    cr.move_to(0, surf)\n    cr.line_to(W, surf)\n    cr.stroke()\n    cr.set_source_rgba(*_c((200, 230, 248), 0.35))\n    cr.set_line_width(3)\n    for i in range(16):\n        rx = (i * 157 + t * 30) % W\n        ry = surf + 30 + (i * 53) % 300\n        cr.move_to(rx, ry)\n        cr.line_to(rx + 40, ry)\n    cr.stroke()\n\n    # the power shutoff line on the towers under the water — label kept inside\n    then_mark(cr, 280, 640, Y_SHUT, \"shutoff\")\n\n    # a houseboat drifting across, riding the surface down\n    bx = 1180 - ((t * 120) % 1500)\n    contact_shadow(cr, bx + 80, surf + 6, 180, a=0.3)\n    box(cr, bx, surf + 8, 170, 26, (238, 236, 230), depth=30)\n    box(cr, bx + 30, surf - 16, 100, 40, (226, 222, 212), depth=22)\n    for j in range(4):\n        cr.rectangle(bx + 38 + j * 23, surf - 46, 14, 14)\n        solid(cr, (70, 110, 140), finish=\"glass\", rim=False)\n    cr.rectangle(bx + 26, surf - 60, 112, 6)\n    solid(cr, (170, 60, 50), rim=False)\n\n    # right by the camera: the lakebed the water left, bleached\n    cr.move_to(0, 1790)\n    cr.curve_to(250, 1740, 520, 1830, 760, 1790)\n    cr.curve_to(900, 1770, 1000, 1780, W, 1760)\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    solid(cr, (214, 196, 170))\n    foreground(cr, \"desert\", y0=1800)\n    vignette(cr, a=0.28)\n\n    # the outlet valve on the crest, turned by hand\n    WX = 830.0\n    FY = crest_y(WX - 90) - 8\n    WY = FY - 105\n    box(cr, WX - 10, crest_y(WX) - 6, 20, crest_y(WX) - 6 - WY - 20, (70, 72, 80),\n        finish=\"metal\", depth=8)\n    turn = 1.6 * d\n    hands = handwheel(cr, WX, WY, turn, r=48)\n\n    HH = 300\n    sx = stand_at(hands, FY, HH, WX - 90)\n    if sx is None:\n        sx = WX - 90\n    X_START = 540.0\n    if u < 0.08:\n        host(\"point\", X_START, crest_y(X_START) - 8, HH)\n    elif u < 0.17:\n        wx = X_START + (sx - X_START) * ease(seg(u, 0.08, 0.17))\n        host(\"point\", wx, crest_y(wx) - 8 + (FY - crest_y(sx) + 8) * ease(seg(u, 0.08, 0.17)), HH)\n    elif u < 0.92:\n        host(\"grip\", sx, FY, HH, hands=hands, lower=\"brace\",\n             expr=\"strain\" if u < 0.62 else \"happy\")\n    else:\n        host(\"shock\", sx, FY, HH)\n\n    if u >= 0.6:\n        fit_readout(cr, f\"{int(round(lev)):,} ft\", f\"Lake Mead's surface · {lev_l}\",\n                    80, 520, max_w=560, size=130)\n        a = ease(seg(u, 0.6, 0.66))\n        my = (surf + Y_SHUT) / 2\n        cr.set_source_rgba(*_c((244, 238, 226), 0.9 * a))\n        cr.set_line_width(5)\n        cr.move_to(560, surf + 8)\n        cr.line_to(560, Y_SHUT - 8)\n        cr.stroke()\n        text(cr, f\"{int(round(gap))} ft\", 580, my + 10, 80, look.INK, face=\"display\",\n             alpha=a)\n        text(cr, \"above the power shutoff\", 580, my + 50, 30, look.INK, alpha=a)\n    else:\n        fit_readout(cr, \"Lake Mead\", \"America's biggest reservoir\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), max_w=560, size=130)\n"
     },
     {
      "source": "offline",
@@ -37889,7 +37890,24 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:44Z"
+   "rewritten_at": "2026-11-18T12:25:44Z",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 18,
+     "arc": 12,
+     "factual": 13,
+     "visual_proof": 10,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 75,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "Make the middle beats flow as a narrative arc rather than a list of stats—add a human or visual hook that shows the impact before jumping to the power risk.",
+    "fp": "c0260f50e9406dca"
+   },
+   "hook_was": "Lake Mead fell to 27% full, threatening Hoover Dam power."
   },
   {
    "slug": "frog-fungus-mass-extinction",
@@ -38029,7 +38047,7 @@
    "slug": "ocean-is-changing-color",
    "title": "56% Of The Ocean Has Changed Color",
    "hook": "The ocean is quietly changing color.",
-   "closing": "And nobody's sure yet what it means for what lives down there.",
+   "closing": "Nobody knows yet what it means for the sea life down there, or for us.",
    "question": "Have you noticed the ocean looking different?",
    "caption": "NASA satellites tracked the ocean's color for 20 years — and more than half of it has visibly shifted. A climate model predicted this back in 2019, and now the data backs it up. Have you noticed the ocean looking different? 👇",
    "hashtags": [
@@ -38055,8 +38073,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE SHIFT",
-     "topic": "how much of the ocean changed color",
-     "say": "Scientists tracked ocean color with NASA satellites for 20 years. 56% of the ocean's surface has measurably changed."
+     "topic": "Ocean color change",
+     "say": "NASA satellites watched for twenty years. The result: 56% of the ocean's surface, more than half, now looks different."
     },
     {
      "source": "offline",
@@ -38066,8 +38084,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE PREDICTION",
-     "topic": "predicting the ocean's color change",
-     "say": "A climate model predicted this back in 2019 — it expected about 50% of the ocean to shift. Real satellite data found 56%."
+     "topic": "Ocean color prediction",
+     "say": "A 2019 climate model predicted half the ocean would shift. Satellites found a bit more, so the warning was right."
     },
     {
      "source": "offline",
@@ -38077,10 +38095,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE SCALE",
-     "topic": "how big the changed area of ocean really is",
-     "say": "That's about 200 million square kilometers of ocean — bigger than every continent on Earth combined."
+     "topic": "Ocean area changed",
+     "say": "That's about 200 million square kilometers of ocean, bigger than all the land on Earth put together."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T13:13:01Z"
   },
   {
    "slug": "hadza-gut-bacteria-vs-americans",
@@ -38147,7 +38168,7 @@
   {
    "slug": "runway-near-misses-climbing",
    "title": "The FAA Logged 23 Serious Runway Near-Misses In One Year",
-   "hook": "The FAA says close calls on runways are climbing, and the culprit isn't who you'd think.",
+   "hook": "Runway near-misses keep climbing, and most don't even involve a plane.",
    "closing": "More flights, same runways. Every close call puts a planeload of people at risk.",
    "question": "Does this make you nervous to fly?",
    "caption": "Serious runway near-misses hit a level not seen in years — and they're not spread evenly across airports. A handful of hubs account for nearly a third of the worst ones. Does this make you nervous to fly? 👇",
@@ -38174,7 +38195,7 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
-     "topic": "runway near-misses over time",
+     "topic": "Runway near-misses over time",
      "say": "Serious runway near-misses have more than doubled in about a decade, to 23 last year. That's roughly one every two weeks.",
      "scene": {
       "title": true,
@@ -38194,7 +38215,7 @@
      },
      "insight_type": "share",
      "role": "2 · THE CAUSE",
-     "topic": "what causes runway incursions",
+     "topic": "What causes runway incursions",
      "say": "Six in ten runway incursions last year were people or vehicles wandering onto the runway by mistake, not planes at all."
     },
     {
@@ -38205,13 +38226,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHERE IT CLUSTERS",
-     "topic": "where runway near-misses cluster",
+     "topic": "Where near-misses cluster",
      "say": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst ones. That's where the danger lives."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T11:53:06Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-18T13:13:13Z",
    "scorecard": {
     "scores": {
      "premise": 12,
@@ -38234,7 +38255,7 @@
    "slug": "feet-are-getting-bigger",
    "title": "British Feet Grew Two Shoe Sizes In 40 Years",
    "hook": "Your feet are bigger than your grandparents'.",
-   "closing": "So are shoes changing — or are we?",
+   "closing": "Your shoes aren't shrinking. You're outgrowing them, so check your size before you buy.",
    "question": "What shoe size do you wear?",
    "caption": "The average British foot has grown two full shoe sizes since the 1970s — and it's not just length, feet are getting wider too. Podiatrists point to one simple cause. What shoe size do you wear? 👇",
    "hashtags": [
@@ -38259,8 +38280,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GROWTH",
-     "topic": "how much british feet grew",
-     "say": "In the 1970s, the average British man wore a size 8 shoe. Today it's a size 10."
+     "topic": "British feet grew",
+     "say": "In the 1970s, the average British man wore a size 8 shoe. Now his feet have grown two full sizes."
     },
     {
      "source": "offline",
@@ -38270,8 +38291,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · NOT JUST LENGTH",
-     "topic": "whose feet got wider",
-     "say": "It's not just length — two-thirds of women and 61% of men say their feet got wider as adults too."
+     "topic": "Feet got wider",
+     "say": "It's not just length. About two in three women say their feet got wider as adults, and six in ten men agree."
     },
     {
      "source": "offline",
@@ -38281,10 +38302,13 @@
      },
      "insight_type": "share",
      "role": "3 · THE WHY",
-     "topic": "why british feet keep growing",
-     "say": "Podiatrists blame body size — 66% of adults in England are now overweight or living with obesity, and extra weight spreads the foot."
+     "topic": "Why British feet grow",
+     "say": "Podiatrists blame body size. Two in three adults in England are overweight, and extra weight spreads the foot."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T13:13:37Z"
   },
   {
    "slug": "great-barrier-reef-bleaching-accelerating",

@@ -1,0 +1,141 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "dating-app-user-exodus__803f07ec",
+ "filed": "2026-11-18T13:14:51Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "dating-app-user-exodus",
+ "current": {
+  "title": "Tinder Fell To 11 Million Users As Dating Apps Burned Out",
+  "hook": "Tinder fell to 11 million users as dating apps burned people out.",
+  "closing": "Apps promised connection, but burnout is driving people away, so the next swipe may feel like work.",
+  "question": "Have you deleted a dating app?",
+  "segments": [
+   {
+    "topic": "Tinder User Loss",
+    "say": "Two years ago Tinder had 18 million US users. Now about a third of them have quietly left the app."
+   },
+   {
+    "topic": "Dating App Usage",
+    "say": "Across the biggest dating apps, usage dropped 16 percent in a year. So Tinder wasn't alone: the whole category is shrinking."
+   },
+   {
+    "topic": "Dating App Burnout",
+    "say": "About 78 percent of dating app users say they feel drained. That burnout is why so many people quit swiping."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Tinder User Loss",
+   "say": "Two years ago Tinder had 18 million US users. Now about a third of them have quietly left the app.",
+   "role": "1 · THE DROP",
+   "data": {
+    "file": "dating_app_tinder_mau.json",
+    "unit": "million",
+    "title": "Tinder US monthly active users (millions)",
+    "points": [
+     {
+      "label": "2022",
+      "value": 18,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 14,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 11,
+      "period": "2024"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Dating App Usage",
+   "say": "Across the biggest dating apps, usage dropped 16 percent in a year. So Tinder wasn't alone: the whole category is shrinking.",
+   "role": "2 · NOT JUST ONE",
+   "data": {
+    "file": "dating_app_industry_usage_comparison.json",
+    "unit": "index",
+    "title": "Combined usage across the 10 biggest dating apps (index)",
+    "points": [
+     {
+      "label": "2023",
+      "value": 100
+     },
+     {
+      "label": "2024",
+      "value": 84
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Dating App Burnout",
+   "say": "About 78 percent of dating app users say they feel drained. That burnout is why so many people quit swiping.",
+   "role": "3 · THE WHY",
+   "data": {
+    "file": "dating_app_fatigue_share.json",
+    "unit": "percent",
+    "title": "Dating app users reporting burnout",
+    "points": [
+     {
+      "label": "Report feeling drained",
+      "value": 78
+     },
+     {
+      "label": "Do not",
+      "value": 22
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise makes an unverified claim about Tinder's user count and a vague cause, lacking concrete, proven facts."
+ ],
+ "reasons": [
+  "premise: brain: The premise makes an unverified claim about Tinder's user count and a vague cause, lacking concrete, proven facts."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261118/dating-app-user-exodus__803f07ec.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
