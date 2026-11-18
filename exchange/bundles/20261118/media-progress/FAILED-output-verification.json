@@ -1,0 +1,74 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261118",
+  "bundle_id": "e1d3735a6a72a24470bd98c7273827f119b416d701a702ca459cf5052540b20f",
+  "failed_step": "Verify actual channel output against the frozen bundle contract using posted logs and accepted upload URLs",
+  "status": "blocked_downstream_output_shortfall",
+  "day_closed": false,
+  "attempts": [
+    "Committed and read back the authorized producer response.",
+    "Committed DONE separately to trigger rendering.",
+    "Observed downstream Phase B commit e4e5c3071577c96da7623d2fa4a98feef87093a4.",
+    "Completed two takeover mailbox rounds within Section 7 per-round caps.",
+    "Re-read posted output logs after an additional downstream processing window and counted unique accepted YouTube Shorts URLs dated 2026-11-18."
+  ],
+  "frozen_contract": {
+    "explainer": {
+      "required": 4,
+      "verified_posted": 2,
+      "pending": 2
+    },
+    "third_channel": {
+      "required": 6,
+      "verified_posted": 0,
+      "pending": 6
+    },
+    "trending_sports": {
+      "required": 5,
+      "verified_posted": 4,
+      "pending": 1
+    }
+  },
+  "verified_urls": {
+    "explainer": [
+      "https://youtube.com/shorts/qNTEHw27owI",
+      "https://youtube.com/shorts/uG-TY6xwxtQ"
+    ],
+    "third_channel": [],
+    "trending_sports": [
+      "https://youtube.com/shorts/kTdZNm3STNo",
+      "https://youtube.com/shorts/dtXDWf3Tdy0",
+      "https://youtube.com/shorts/dlUeUkZiIiw",
+      "https://youtube.com/shorts/v9GnpR0G_Ws"
+    ]
+  },
+  "mailboxes": {
+    "reviews": {
+      "open": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No open review requests in either round."
+    },
+    "asks": {
+      "open_keys": 23,
+      "answered": 23,
+      "skipped": 0
+    },
+    "rewrites": {
+      "open": 135,
+      "answered_this_run": 20,
+      "skipped": 115,
+      "reason": "Remaining backlog exceeded the two Section 7 rounds' cap of 10 rewrites per round."
+    }
+  },
+  "commits": {
+    "started": "2fd14b47d294c2c6f87cf6c00e52c1f6e612e7e2",
+    "ask_round_1": "3026947ec631067ace217835b235f5518abac0c6",
+    "ask_round_2": "867ee0f7dc3b4ab049e9a00ebec7d0dd3db57322",
+    "response": "56bb357da1c401bcabebcf73b9913dd405aa2aad",
+    "done": "37765341bf199c9c1800ffb474ff942f00a716ef",
+    "phase_b": "e4e5c3071577c96da7623d2fa4a98feef87093a4"
+  },
+  "exact_remaining_shortfall": 9,
+  "note": "DONE is a render trigger, not proof of successful uploads. The day remains open until all 15 required uploads are verified."
+}
