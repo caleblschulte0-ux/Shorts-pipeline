@@ -567,7 +567,7 @@ def _learned_prior() -> dict:
 
         K = 4.0  # shrinkage strength: n/(n+K) weight on observed deviation
         import statistics as _st
-        rows = []   # (mid_r, n, shrunk) per streamer with enough clips
+        rows = []   # ((reach, mid_r), n, shrunk) per streamer with enough clips
         for streamer, vs in buckets.items():
             n = len(vs)
             if n < MIN_STREAMER_VIDS:   # too few clips to trust a prior
@@ -587,11 +587,13 @@ def _learned_prior() -> dict:
             # scales it by the streamer's median multiplier, kept apart
             # from reach as above.
             rets = [r for r in (_ret(v) for v in vs) if r is not None]
-            mid_r = 2.0 * vph_pct(_st.median(
+            reach = 2.0 * vph_pct(_st.median(
                 float(v.get("views") or 0.0) for v in vs))
+            mid_r = reach
             if rets:
                 mid_r *= _st.median(rets)
-            rows.append([streamer, mid_r, n, 1.0 + (mid_r - 1.0) * (n / (n + K))])
+            rows.append([streamer, (reach, mid_r), n,
+                         1.0 + (mid_r - 1.0) * (n / (n + K))])
         # SHRINKAGE MAY DAMPEN AN ORDER, NEVER INVERT IT. On 2026-10-07
         # cinna (3 clips, median 96 views) sat at 1.296 below xqc (14 clips,
         # median 31) at 1.302: cinna's stronger median was pulled further
@@ -602,6 +604,15 @@ def _learned_prior() -> dict:
         # whose shrunk order disagrees with their medians are pooled to one
         # shared value — "we cannot tell these apart yet" — and every other
         # value is left exactly as shrinkage set it.
+        #
+        # RETENTION MAY DAMPEN A REACH ORDER, NEVER INVERT IT either. On
+        # 2026-11-18 rayasianboy (median 78.5 views, clips that loop past
+        # 100% AVP) sat at 1.40 above pokimane (median 283) at 1.336: the
+        # x1.25 retention multiplier outweighed a 3.6x gap in views. So the
+        # order the pooling enforces is REACH alone (the median clip's
+        # percentile, retention breaking ties); retention still moves a
+        # value, but where it would flip two streamers' reach order they
+        # are pooled instead.
         rows.sort(key=lambda r: r[1])
         blocks = []   # [sum(w*val), sum(w), members]
         for streamer, mid_r, n, eff in rows:

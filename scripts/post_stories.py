@@ -511,7 +511,7 @@ from shared.near_duplicate import (_DUP_JACCARD, _DUP_SEQ, _DUP_STOP,  # noqa: E
 
 # Outcomes a run can have. A gate HOLD is the fail-closed review working as
 # designed; it is not a fault and must never be reported as one.
-HELD_REASONS = {"editorial_hold", "showrunner_block", "duplicate_hold",
+HELD_REASONS = {"editorial_hold", "story_hold", "showrunner_block", "duplicate_hold",
                 "arm_quota_full", "not_current"}
 
 
@@ -994,6 +994,30 @@ def main() -> int:
                 results.append({"slug": slug, "ok": False,
                                 "error": "editorial_hold",
                                 "reasons": pre["reasons"]})
+                continue
+        # STORY FIRST (operator, 2026-11-17: "our scripts suck ... go find
+        # that and do it" — data_learning/STORY_FIRST_SCRIPT_PLAYBOOK.md
+        # §11). A blind 100-point scorecard on the script and its planned
+        # pictures, BEFORE the render: under the registry's `story_gate`
+        # bar the story is not rendered — it goes to the rewrite mailbox
+        # with its weakest criterion named (or to be re-conceived from its
+        # data), never parked. One brain call per wording; the card is kept
+        # on the story. No judge answering adds nothing: the gates above and
+        # the showrunner still decide, and the log says so.
+        try:
+            from shared import story_brief as _sb
+            _sd = _sb.gate(sc, config_path=args.config,
+                           log=lambda m: print(f"[{slug}] {m}", flush=True))
+        except Exception as _se:  # noqa: BLE001
+            print(f"[{slug}] scorecard skipped: {_se}", flush=True)
+            _sd = {"action": "unscored"}
+        if _sd["action"] in ("rewrite", "reconceive", "hold"):
+            print(f"[{slug}] STORY HOLD (pre-render): {_sd['reason']}",
+                  flush=True)
+            if not args.dry_run:
+                results.append({"slug": slug, "ok": False,
+                                "error": "story_hold",
+                                "reasons": _sb.hold_reasons(_sd)})
                 continue
         # THE SAME STORY BY THE BRAIN'S READING, across the data channels —
         # one text call per story that is about to render, after the gate

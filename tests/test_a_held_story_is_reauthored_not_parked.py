@@ -115,7 +115,7 @@ class TheHoldIsAWordsProblemAndItIsFiled(_Box):
         self.assertEqual(req["current"]["title"], "Nearsighted People")
         self.assertEqual(req["segments"][0]["data"]["points"][1]["value"], 34.0)
         self.assertEqual(req["segments"][1]["data"]["unit"], "hours")
-        self.assertIn("consequential NUMBER", " ".join(req["rules"]))
+        self.assertIn("CONCRETE", " ".join(req["rules"]))
         self.assertTrue(req["held_for"])
         idx = json.loads((self.rewrites / "OPEN.json").read_text())
         self.assertEqual([o["slug"] for o in idx["open"]], ["myopia"])

@@ -130,10 +130,15 @@ class ItADDSAJudgeAndRemovesNothing(unittest.TestCase):
         self.assertIn("is True", src)
 
     def test_no_gate_threshold_moved_with_this_change(self):
-        """The premise floor is still a digit in the title or hook, and the
-        thesis floor is still keyword overlap. If a future change wants to
-        move either, it does not get to do it under cover of adding a
-        judge."""
+        """The thesis floor is still keyword overlap, and a vague premise
+        still fails the premise floor. If a future change wants to move
+        either, it does not get to do it under cover of adding a judge.
+
+        The premise floor's DIGIT was moved deliberately and in the open
+        (operator, 2026-11-17, ordering the story-first playbook §13): a
+        concrete premise — the title or hook names the story's subject or a
+        number — replaced it, because the hook is the threat with no number
+        in it (hook_doctrine). `_NUM_RE` is still one way to be concrete."""
         self.assertEqual(_eg._NUM_RE.pattern, r"\d")
         sc = {"title": "A Quiet Thing Happened", "hook": "No numbers here.",
               "segments": []}

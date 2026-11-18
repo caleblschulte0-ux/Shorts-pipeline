@@ -11,8 +11,21 @@ requirements, examples, scorecard, and implementation/measurement plan.
 Prefer a surprising human-relevant premise, hook and payoff designed together,
 progressive cause-and-effect beats, demonstrable visual evidence, and natural
 spoken language over a mechanical series of statistics or schema-driven prose.
-**This is a direction for future authoring and implementation, NOT a claim
-that the production code already enforces it.** Existing factual provenance,
+Its §13 is now BUILT for the illustrated explainer (operator, 2026-11-17:
+*"our scripts suck ... go find that and do it"*), in `shared/story_brief.py`:
+the forge writes an IDEA BRIEF first (belief, surprise, stakes, visual proof,
+promise, payoff, five different hook concepts, the best true one picked) and
+refuses a weak pitch before any words; the premise floor asks for a CONCRETE
+premise, not a digit; with a brain, every beat is judged for continuity
+(because of / turns against), the keyword bridge is only the no-brain floor;
+the comment question is optional; and `post_stories` scores each story BLIND
+on the §11 card before the render — the bands are the registry's
+`story_gate`, set from `scripts/calibrate_story_gate.py`
+(`data_learning/story_gate_calibration.json`), and a held story goes to the
+rewrite mailbox, never parked. Every scored story gets an EARS / EYES /
+EVIDENCE sidecar in `state/story_sidecars/`. `tests/test_story_first.py`.
+The operator's own rulings win where the playbook differs (threat hooks
+with no number, one number a beat). Existing factual provenance,
 validation, showrunner, and publishing safeguards remain in force. When
 implementing changes, reconcile any old numeric-hook/keyword/beat-count rules
 with the new editorial standard in code **and tests** rather than bypassing

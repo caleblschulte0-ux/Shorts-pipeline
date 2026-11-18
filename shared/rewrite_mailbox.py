@@ -81,16 +81,22 @@ def words_by(ans: dict) -> str:
 #: `scripts/editorial_gate.py` — the CODE there is what decides, this text
 #: only tells the writer what it will be measured against.
 RULES = [
-    "TITLE or HOOK must contain a consequential NUMBER from the data below "
-    "(the gate refuses a title+hook with no digit in either).",
+    # story-first playbook §13, 2026-11-17: a CONCRETE premise replaced the
+    # mandatory digit (the hook carries no number — hook_doctrine).
+    "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own "
+    "subject plainly (a word its topics or data are labelled with) and "
+    "promises a specific surprise, threat or scale the viewer can picture. "
+    "The video says the number; the hook says what it means.",
     "TITLE must be a PREMISE, not a searchable noun phrase: more than five "
     "words, or a number, or a question mark, or a tension word. 'Oldest "
     "Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are "
     "Still Unreadable' is the shape.",
-    "Every segment's TOPIC (a 2-4 word on-screen label) must share at least "
-    "one real word with the TITLE — the gate checks a keyword bridge from "
-    "each segment to the headline. Rename the topic, or write the title so "
-    "it names what the segments are about.",
+    "The beats are ONE STORY in order: each one helps prove the headline "
+    "AND follows from the beat before it (it happens because of it, or "
+    "turns against it) — never 'and another fact'. A judge reads every beat "
+    "for that; with no judge answering, each TOPIC (a 2-4 word on-screen "
+    "label) must share a real word with the TITLE, so name the topics for "
+    "what they are about.",
     "Every NUMBER you say in a segment's SAY must be one that segment's data "
     "can show: a listed value, a difference between two of them, a percent "
     "change, a share of the total, or the same value in a bigger unit. A "
@@ -122,7 +128,7 @@ ANSWER_SCHEMA = {
     "by": "chatgpt",
     "written_at": "<ISO-8601 UTC>",
     "title": "<the premise>",
-    "hook": "<one line that stops the thumb, with a number>",
+    "hook": "<one line that stops the thumb: the threat or twist, no number>",
     "closing": "<lands the point>",
     "question": "<an engagement question, optional>",
     "segments": [{"topic": "<2-4 words>", "say": "<the line>"}],
@@ -182,7 +188,9 @@ def _dataset(seg: dict) -> dict | None:
 # What the gate would say — word reasons only
 # ---------------------------------------------------------------------------
 
-_WORD_PREFIX = ("premise:", "thesis:", "beats:", "pace:")
+#: `story:` is the story-first scorecard (shared/story_brief.py): a story it
+#: holds is re-authored here like any other words hold.
+_WORD_PREFIX = ("premise:", "thesis:", "beats:", "pace:", "story:")
 
 
 def word_holds(sc: dict) -> list[str]:
@@ -365,7 +373,7 @@ def file_for_run(results: list[dict], stories: dict, *,
         if not sc or r.get("ok"):
             continue
         err = r.get("error")
-        if err == "editorial_hold":
+        if err in ("editorial_hold", "story_hold"):
             reasons = [x for x in (r.get("reasons") or [])
                        if str(x).startswith(_WORD_PREFIX)
                        and not str(x).startswith("beats (noted)")]
