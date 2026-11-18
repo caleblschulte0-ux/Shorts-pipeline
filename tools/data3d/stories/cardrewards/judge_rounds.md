@@ -249,3 +249,60 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Have the beam slam the card side down so the cash flies up high, with some bounce and settle; consider bills fluttering off the top
 - better: Frame Data beside the scale, not behind it, and end on his deadpan 'cash or card?' look at us while the cash is still swinging up
 
+
+## 2026-11-18 15:47Z · proof · round 1 · proof loop loop4
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 48 | 45, 48, 52 | FAIL |
+| 2 | 64 | 64, 64, 71 | FAIL |
+| 4 | 61 | 60, 61, 64 | FAIL |
+| 5 | 67 | 66, 67, 72 | FAIL |
+
+**shot 1** (FAIL, 48, bar 70)
+
+- HARD: NOT THE POINT / BROKEN, frames 3-20: Data's hand is never over the counter, so the coins seem to appear from nowhere at the card's right edge instead of pouring out of his open hand. You can't tell he is the one paying.
+- HARD: CONSEQUENCE, frames 4-12: the coins don't roll across the counter to the card. They pop into a heap at its foot, so the pour-and-roll action is never seen.
+- HARD: NOT THE POINT / hand not on the action: Data's hand never appears over the counter in any frame (1-20). The coins seem to drop from above the frame next to the card, so nobody can tell that HE is pouring them
+- HARD: BROKEN: coins appear from nowhere mid-air beside the card, frames 3-6 and 10-16
+- HARD: BROKEN / CONSEQUENCE: Data's hand is never seen over the counter. The coins just appear in mid-air beside the card reader with no visible source (frames 3-8), so 'coins pour out of his hand' is never shown
+- HARD: NOT THE POINT: without the hand, a viewer sees coins spawning next to a card instead of Data paying a price into it (frames 3-20)
+- problem: Data's head fills the top half and his body is hidden behind the counter. The shot is a talking head over a small prop strip
+- problem: The coin pile at the card's foot is small and blends into the gold card at phone size
+- problem: His face stays a neutral, faintly smiling look. It does not read as annoyed until the very end, and even then only a little
+- problem: The hook opens on a still head with nothing happening in frames 1-2
+- better: Bring his open hand into frame, palm up and tilted, between the lens and the counter. The coin stream should visibly leave that hand and roll across to the card
+- better: Lower the camera so the counter, card and growing pile fill the lower third. Keep Data chest-up behind it with both hands in frame
+- better: Make the pile grow big enough to bury the card's foot so the result reads in a glance
+
+**shot 2** (FAIL, 64, bar 70)
+
+- problem: The tap does not read. A mitten-hand hovers over the reader with no extended finger and no visible contact, and the reader just turns green (frames 5-8)
+- problem: The tags rise with no stick visible under them, so they seem to float rather than shoot up on their sticks
+- problem: Once raised, the red tags cover Data's chest and chin (rows 2-4). The tags, his face and the reader blur into one cluster
+- problem: His eyes look off to the side for the first third, so the 'looks at us' moment is late and weak
+- better: Pose a single extended index finger that clearly presses the reader, with a small dip of the reader and a flash on contact, then the beep
+- better: Keep the sticks visible and lengthening, or put the tags on longer sticks, so the rise reads as the price going up
+- better: Move the box row to one side, or lower the camera, so the raised tags sit clear of his face
+
+**shot 4** (FAIL, 61, bar 70)
+
+- problem: The lever pull can't be seen: the arm stays stretched straight to the red knob with no clear downward throw (frames 1-8)
+- problem: The coins on the ramp read as a lumpy gold caterpillar, not as separate coins sliding uphill (frames 9-20)
+- problem: The 'mansion' is a plain white block with a tiny building on top, and the pile beside it is a few pixels at the top of the riser. On a phone the rich end doesn't read (frames 18-30)
+- problem: The ramp cuts diagonally across Data's torso and makes the frame cluttered
+- problem: 'Unimpressed' is only a slight mouth change
+- better: Make the lever big and in front of him, with a clear grab, pull down and click, and only then start the coins
+- better: Space the coins out so each one shows as a disc. Let the pile grow big and gold beside a mansion that clearly looks like a mansion (columns, roof, windows) and stands taller
+- better: Angle the ramp so it doesn't run across his body: shack low in the foreground, mansion high to the side
+
+**shot 5** (FAIL, 67, bar 70)
+
+- problem: The card is tiny on the right pan. At phone size the swing is readable, but WHAT caused it barely is
+- problem: The scale stands against his coat, so the beam, chains and cash stack merge with the white coat and red tie
+- problem: After he places the card his hand floats in mid-air for the rest of the shot (rows 2-4)
+- problem: The beat ends on a long static hold (rows 3-4, about 2.5s) with no comment-bait gesture. It is a pose rather than a button on the payoff
+- better: Make the card big and shiny, and show it in his hand on the way in, then the 'tap' onto the pan
+- better: Pull the scale forward between Data and the lens and give it a darker backdrop, so beam and pans read clean against the shelves
+- better: Exaggerate the beam swing with overshoot and wobble, and let the cash stack lift visibly high
+
