@@ -20754,6 +20754,34 @@
       "rejected_by": "director",
       "rejected_why": "the clip ends mid-sentence on \"with\"",
       "ts": "2026-11-18T12:28:32.921248+00:00"
+    },
+    "rejected-punchyroundsandstormfloof-7wl99yxpd8yf9bif": {
+      "source_url": "https://www.twitch.tv/marlon/clip/PunchyRoundSandstormFloof-7Wl99yxpD8yf9BiF",
+      "streamer": "marlon",
+      "title": "marlon reacting to streamer awards 2026",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Host talking, no visible event)",
+      "ts": "2026-11-18T12:32:02.127004+00:00"
+    },
+    "rejected-smalldifficulthumankeepo-_aap6xvkonntqbeu": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/SmallDifficultHumanKeepo-_Aap6xvKonNtQbEu",
+      "streamer": "joe_bartolozzi",
+      "title": "joe calls it",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Game dialogue, no visible event)",
+      "ts": "2026-11-18T12:32:38.461817+00:00"
+    },
+    "clip-20261118-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SincereMoldyGaragePartyTime-C2fuK1XJ2UtVfHel",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Loses It After Hitting 6 Stars In GTA 6 As Lucia",
+      "kind": "twitch_clip",
+      "ts": "2026-11-18T12:36:58.445023+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
