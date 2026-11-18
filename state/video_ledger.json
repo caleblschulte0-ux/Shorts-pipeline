@@ -7395,6 +7395,58 @@
    "ending_type": "inversion",
    "franchise": "Dead Format Comebacks",
    "notes": "$1.2B vs $483M; streaming 84% twist"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-18",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "scene:illustrated-arm-tattoo-machine"
+   ],
+   "ending_type": "escalation",
+   "notes": "validated pre-render; existing illustrated scenes kept"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-18",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:illustrated-baby-flip"
+   ],
+   "ending_type": "consequence",
+   "notes": "validated pre-render; nightlights drop 13->6"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-18",
+   "topic_category": "finance",
+   "hook_type": "shock_stat",
+   "hook_text": "Nobody elected them, but three firms now decide how America's biggest companies are run.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors"
+   ],
+   "ending_type": "inversion",
+   "notes": "validated pre-render; tiles flip 2%->52%"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-18",
+   "topic_category": "music",
+   "hook_type": "inversion",
+   "hook_text": "Vinyl was supposed to be dead. Now it's crushing the CD.",
+   "depictions": [
+    "scene:illustrated-record-wall",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "notes": "validated pre-render"
   }
  ]
 }

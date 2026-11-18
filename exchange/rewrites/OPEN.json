@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-18T18:41:47Z",
+ "updated": "2026-11-18T23:01:25Z",
  "open": [
+  {
+   "id": "clear-air-turbulence-increase__afb34a62",
+   "slug": "clear-air-turbulence-increase",
+   "filed": "2026-11-18T23:01:25Z",
+   "why": [
+    "premise: brain: The claim is vague and unverified, lacking a concrete, provable fact about turbulence duration."
+   ],
+   "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.request.json",
+   "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.answer.json"
+  },
   {
    "id": "fireflies-losing-their-glow__5dd482f3",
    "slug": "fireflies-losing-their-glow",
