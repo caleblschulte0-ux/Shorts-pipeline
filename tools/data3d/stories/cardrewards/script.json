@@ -1,0 +1,94 @@
+{
+ "slug": "card-rewards-cash-pays-3d",
+ "title": "Paying Cash? You're Funding Someone's Credit Card Rewards",
+ "voice": "am_fenrir",
+ "note": "The sixth 3D short (2026-11-18, caaleb picked 'Card rewards scam' off a topic card after rejecting vanilla: a topic about the viewer's own money, with a villain). Every beat a counter close-up with the prop big in front of Data (data-3d-tabletop-beats). One number per beat, every claim in 'sources' with the source's own words.",
+ "lines": [
+  "Every time you pay cash, you're paying for someone else's credit card rewards.",
+  "Stores pay a fee on every card swipe, so they quietly raise prices for everyone, even people paying cash.",
+  "A Federal Reserve study found the average cash-paying household hands about one hundred forty-nine dollars a year to card users.",
+  "And it flows uphill: the richest households collect about seven hundred fifty dollars a year, while the poorest pay in.",
+  "Your cash is quietly funding their points. So which do you use, cash or card?"
+ ],
+ "draft_windows": [
+  [
+   0,
+   4.69
+  ],
+  [
+   4.69,
+   11.36
+  ],
+  [
+   11.36,
+   18.36
+  ],
+  [
+   18.36,
+   25.36
+  ],
+  [
+   25.36,
+   30.71
+  ]
+ ],
+ "sources": [
+  {
+   "claim": "Paying cash pays for card users' rewards",
+   "says": "On average, each cash-using household pays $149 to card-using households and each card-using household receives $1,133 from cash users every year.",
+   "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+   "publisher": "Federal Reserve Bank of Boston (Schuh, Shy, Stavins)",
+   "year": 2010
+  },
+  {
+   "claim": "Stores pay a fee on card swipes and raise prices for everyone",
+   "says": "as card use becomes more frequent, merchants have raised their prices to compensate for card-processing charges",
+   "url": "https://www.huffpost.com/entry/credit-cards-transfer-mon_n_660768",
+   "publisher": "HuffPost, on the Boston Fed study",
+   "year": 2010
+  },
+  {
+   "claim": "About $149 a year from each cash-paying household to card users",
+   "says": "each cash-using household pays $149 to card-using households",
+   "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+   "publisher": "Federal Reserve Bank of Boston",
+   "year": 2010
+  },
+  {
+   "claim": "The richest households collect about $750 a year; the poorest pay in",
+   "says": "after accounting for rewards paid to households by banks, the lowest-income household ($20,000 or less annually) pays $21 and the highest-income household ($150,000 or more annually) receives $750 every year",
+   "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+   "publisher": "Federal Reserve Bank of Boston",
+   "year": 2010
+  },
+  {
+   "claim": "It flows from poorer to richer households",
+   "says": "the payment instrument transfer also induces a regressive transfer from low-income to high-income households",
+   "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+   "publisher": "Federal Reserve Bank of Boston",
+   "year": 2010
+  }
+ ],
+ "sets": [
+  "store",
+  "warehouse",
+  "sorting_room",
+  "bank",
+  "store"
+ ],
+ "sets_why": "the checkout where you pay cash, the stockroom where the store marks its prices up, a kitchen table at home where your savings go, a bank where the money ends up with the rich, back to the checkout to ask you",
+ "ideas": [
+  "coins pour out of his hand and pile up under a giant gold credit card",
+  "he taps the card reader and every price tag on the boxes shoots up",
+  "he tips his piggy bank and its coins slide down a chute to a gold card",
+  "he pulls a lever and coins climb a ramp from a tiny shack to a mansion",
+  "he drops a gold card on a scale and it outweighs a whole stack of cash"
+ ],
+ "storyboard": [
+  "1 hook (store): close at the checkout counter; a big gold credit card stands upright on a little stand at one end of the counter; Data holds his open hand over the counter and a stream of shiny coins pours out of it, rolling across to the card and piling up at its foot; he looks at us, annoyed.",
+  "2 swipe fee (warehouse): on a stockroom bench a row of three product boxes, each with a price tag on a stick; a card reader sits in front of Data; he taps the reader with one finger, it beeps green, and all three price tags shoot up higher on their sticks and turn red; he looks at us.",
+  "3 $149 (sorting_room): at the kitchen table a pink piggy bank sits at the top of a short tilted chute that runs down to a gold credit card lying flat; Data pushes the pig's back so it tips forward, coins pour out of its slot, slide down the chute and pile on the card; the pig is left empty.",
+  "4 uphill (bank): on a marble bank counter a tiny tin shack at the low end of a ramp and a big white model mansion on a riser at the top end; Data pulls a brass lever down and coins slide UP the ramp from the shack into a growing pile beside the mansion; he looks at us, unimpressed.",
+  "5 payoff (store): back at the checkout a brass balance scale; a fat stack of cash sits on the left pan; Data lays one gold credit card on the right pan and the card side drops hard, lifting the cash up; he looks at us and shrugs: cash or card?"
+ ]
+}

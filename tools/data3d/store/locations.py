@@ -331,6 +331,33 @@ def sorting_room():
     return light
 
 
+def vanilla_farm():
+    """a vanilla shade house in Madagascar: a dirt floor, rows of wooden posts each wound with a green vanilla vine and
+    its glossy leaves, a shade cloth roof that breaks the tropical sun into soft dapples, a rough potting bench in
+    front. Green and warm, close and leafy: where the flower is pollinated by hand."""
+    import vanilla_kit as VK
+    dirt = _noise_mat("shade house dirt", "#6E553C", "#584330", scale=1.2, rough=0.95, bump=0.3)
+    _ground("shade house ground", dirt)
+    rnd = random.Random(23)
+    for j, y in enumerate((1.2, 2.1, 3.0, 3.9, 4.8, 5.7)):
+        for i, x in enumerate((-2.2, -1.3, -0.4, 0.5, 1.4, 2.3)):
+            if j == 0 and abs(x) < 0.9: continue           # a clear patch behind Data: his head against the vines, not a post
+            VK.vine_post(f"vine post {i}{j}", (x + rnd.uniform(-0.12, 0.12), y + rnd.uniform(-0.15, 0.15), 0), h=1.6, seed=i * 7 + j)
+    cloth = K.mat("shade cloth", "#2E3A2A", rough=0.95)
+    K.box("shade cloth roof", (0, 3.5, 2.0), (8, 9, 0.01), cloth, bev=0)
+    hill = _noise_mat("jungle edge", "#2F5A28", "#457A34", scale=0.6, rough=0.95, bump=0.2)
+    K.box("jungle edge", (0, 8.5, 1.2), (12, 0.6, 2.6), hill, bev=0)
+
+    def light():
+        key = sky_light(sun_elev=55, sun_az=-30, sun=2.2, sky=0.4, warm=(1.0, 0.92, 0.78), haze=1.4)
+        sun = next(o for o in bpy.data.objects if o.type == 'LIGHT' and o.data.type == 'SUN')
+        bpy.data.objects["shade cloth roof"].hide_render = True       # the cloth is the colour of the light, not a lid on it
+        sun.data.energy = 2.2
+        _area("shade fill", (0.8, -1.6, 1.4), 1.6, 30, (0.9, 1.0, 0.88), aim=(0.0, 0.0, 0.5))   # leaf-green bounce
+        return key
+    return light
+
+
 def gas_field():
     """a gas field on the plains: dry short grass and bare dirt to a flat horizon, a few far pump jacks and a line of
     fence posts, a big pale sky. Where helium comes up out of the ground (the helium short, 2026-11-15)."""
@@ -389,4 +416,42 @@ def hospital():
     return light
 
 
-PLACES = {"warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room, "gas_field": gas_field, "hospital": hospital}
+def bank():
+    """a bank lobby: a polished marble floor, warm wood panelling on the back wall with a row of brass teller windows
+    behind grilles, a big round vault door set in the wall, pendant lamps. Old money, close and warm: where the
+    rewards end up (the card rewards short, 2026-11-18)."""
+    floor = _noise_mat("bank marble", "#E4DED4", "#CFC7BA", scale=2.5, rough=0.18, bump=0.01)
+    K.box("bank floor", (0, 2.0, -0.01), (8, 8, 0.02), floor, bev=0)
+    WY = 1.6
+    panel = _noise_mat("bank panelling", "#6A4128", "#583420", scale=5.0, rough=0.45, bump=0.03)
+    K.box("bank back wall", (0, WY, 1.4), (8, 0.12, 2.8), panel, bev=0)
+    K.box("bank side wall", (-2.6, 0.5, 1.4), (0.12, 3.0, 2.8), panel, bev=0)
+    K.box("bank ceiling", (0, 0.5, 2.8), (8, 3.6, 0.05), K.mat("bank ceiling", "#EDE6D8", rough=0.8), bev=0)
+    brass = K.mat("bank brass", "#C9A04A", rough=0.3, metal=0.9)
+    stone = K.mat("bank counter stone", "#2F3A36", rough=0.25)
+    K.box("teller counter", (0, WY - 0.35, 0.55), (5.0, 0.5, 1.1), stone, bev=0.01)
+    for i, x in enumerate((-1.8, -0.9, 0.9, 1.8)):
+        K.box(f"teller window {i}", (x, WY - 0.12, 1.5), (0.6, 0.02, 0.6), K.mat("teller glass", "#3A4A48", rough=0.1), bev=0)
+        for k in range(7):
+            K.box(f"teller grille {i}{k}", (x - 0.27 + 0.09 * k, WY - 0.14, 1.5), (0.012, 0.012, 0.6), brass, bev=0.002)
+        K.box(f"teller frame {i}", (x, WY - 0.14, 1.82), (0.66, 0.03, 0.04), brass, bev=0.003)
+    door = K.cyl("vault door", (0, WY - 0.08, 1.35), 0.55, 0.08, K.mat("vault steel", "#8E9398", rough=0.3, metal=0.9), rot=(math.pi / 2, 0, 0), v=64, bev=0.01)
+    K.cyl("vault ring", (0, WY - 0.13, 1.35), 0.45, 0.03, brass, rot=(math.pi / 2, 0, 0), v=64, bev=0.004)
+    K.cyl("vault hub", (0, WY - 0.16, 1.35), 0.08, 0.06, brass, rot=(math.pi / 2, 0, 0), v=32, bev=0.004)
+    for a in range(3):
+        sp = K.box(f"vault spoke {a}", (0, WY - 0.18, 1.35), (0.5, 0.025, 0.025), brass, bev=0.003); sp.rotation_euler = (0, math.radians(60 * a), 0)
+    lamp = K.mat("pendant glow", "#FFE7B8", rough=0.3, emit=8.0)
+    for x in (-1.4, 0.0, 1.4):
+        K.cyl("pendant cord", (x, 0.6, 2.55), 0.005, 0.5, K.mat("cord", "#1C1B1E"), bev=0)
+        K.sph("pendant globe", (x, 0.6, 2.25), 0.11, lamp)
+
+    def light():
+        sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
+        bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.7, 0.62, 0.52, 1); bg.inputs["Strength"].default_value = 0.22
+        _area("bank fill", (1.4, -2.0, 1.6), 2.0, 40, (1.0, 0.93, 0.84), aim=(0.0, 0.0, 0.5))
+        _area("bank glow", (0.0, 0.9, 2.3), 2.5, 60, (1.0, 0.88, 0.7), aim=(0.0, 0.6, 0.0))
+        return _hero_key()
+    return light
+
+
+PLACES = {"vanilla_farm": vanilla_farm, "warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room, "gas_field": gas_field, "hospital": hospital, "bank": bank}
