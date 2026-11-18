@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "people-over-65-outnumber-kids-under-5__ef77b98a",
+  "slug": "people-over-65-outnumber-kids-under-5",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "People Over 65 Now Outnumber Young Children",
+  "hook": "705 million older people now outnumber the youngest children.",
+  "closing": "An older world will reshape work, healthcare, and family care.",
+  "question": "How will aging change your family?",
+  "segments": [
+    {
+      "topic": "People Over 65",
+      "say": "People over 65 reached 705 million. For the first time, they outnumbered children under five."
+    },
+    {
+      "topic": "People Growing Older",
+      "say": "The older population is projected to reach 1.6 billion. The first crossover is only the beginning."
+    },
+    {
+      "topic": "People Age Gap",
+      "say": "By 2050, older people will more than double the youngest children. The world's age balance keeps tilting."
+    }
+  ]
+}
