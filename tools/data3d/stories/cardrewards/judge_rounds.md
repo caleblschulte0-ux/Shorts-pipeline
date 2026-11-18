@@ -306,3 +306,148 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Pull the scale forward between Data and the lens and give it a darker backdrop, so beam and pans read clean against the shelves
 - better: Exaggerate the beam swing with overshoot and wobble, and let the cash stack lift visibly high
 
+
+## 2026-11-18 16:22Z · storyboard · round 1 · storyboard gate loop5
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 72 | 71, 72, 72 | PASS |
+| 2 | 76 | 76, 76, 78 | PASS |
+| 4 | 62 | 61, 62, 64 | FAIL |
+| 5 | 77 | 75, 77, 77 | PASS |
+
+**shot 1** (PASS, 72, bar 70)
+
+- problem: The wallet reads as a closed brown block on the counter, not an open wallet (all frames)
+- problem: The coin heap in the tray is small and low in frame. The 'heap growing' reads only from frame 1 to frame 2
+- problem: Data is hidden behind the card from the nose down, and he looks more neutral than annoyed in frame 3
+
+**shot 2** (PASS, 76, bar 70)
+
+- problem: After they rise, the red tags sit over Data's face and chest and merge with his tie and coat (frames 2-3)
+- problem: The tags show only '$' with no number, so 'more expensive' rests on height and colour alone
+
+**shot 4** (FAIL, 62, bar 70)
+
+- hard (one judge only): BODY: in frames 1-3 Data's hand is over the shack, well left of the red button, which sits half-hidden behind the ramp and under his elbow. The press is never seen.
+- problem: The ramp reads as two separate orange planks splayed in a V/X, not one steep ramp, which looks like a broken prop (frames 1 and 3)
+- problem: The red button is half hidden behind the ramp and Data's arm. His hand hovers over the shack, not clearly on the button (frame 1)
+- problem: The coin pile beside the mansion in frame 3 is a tiny gold stack on the plinth edge, a weak result to end on
+- problem: The mansion is small and the plinth reads as a white box, so 'tall marble plinth' does not read
+- better: Build the ramp as one solid board with side rails, running cleanly from shack to plinth top
+- better: Move the red button in front of the ramp toward the lens and stage his palm pressing it from above
+- better: Make the pile at the mansion large and still growing in the last frame, so coins are clearly arriving there
+
+**shot 5** (PASS, 77, bar 70)
+
+- problem: In frames 2-3 the tilted beam and strings cut across Data's chin and lower face.
+- problem: The scale is small in the frame and sits low. The swing reads, but not with force.
+- problem: Frame 1 does not show the card clearly in Data's hand before it goes on the pan.
+
+
+## 2026-11-18 16:30Z · proof · round 1 · proof loop loop5
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 70 | 68, 70, 74 | PASS |
+| 2 | 71 | 71, 71, 72 | PASS |
+| 5 | 66 | 64, 66, 66 | FAIL |
+
+**shot 1** (PASS, 70, bar 70)
+
+- problem: The coins in the tray merge into one shapeless gold blob (rows 2-3) that looks more like melted gold or noodles than a heap of coins. On a phone you can't count it as a growing pile.
+- problem: The wallet is a flat brown slab with no visible opening, so it barely reads as a wallet. The coins seem to come from a brown brick.
+- problem: The annoyed look is weak. Data glances down at the wallet (frames 2-5), then holds a flat, neutral face for the rest of the shot. It reads as blank, not annoyed.
+
+**shot 2** (PASS, 71, bar 70)
+
+- problem: The tap isn't readable. Data's mitten just hovers over the reader, and the reader is a plain black slab until it glows green, so 'card reader' only reads from the glow.
+- problem: The three boxes sit small at the very bottom of the frame, and about a third of the frame is empty bench in front of them.
+- problem: After they rise, the red tags overlap Data's chest and coat. They cluster against his body instead of reading as tags lifted above their own boxes.
+
+**shot 5** (FAIL, 66, bar 70)
+
+- problem: The payoff is too small to read on a phone. The card on the right pan is a thin gold sliver (frames 10-31), and the beam's final tilt is modest. 'Swings hard the other way' reads as a mild tip.
+- problem: The cash is pale cream stacked paper. It doesn't read as a fat stack of money.
+- problem: The scale is thin brass wire standing right in front of Data. Its post runs up through his tie and the beam crosses his chest, so the scale and Data visually merge.
+- problem: The beam swings at about frame 10, then the shot holds Data's flat stare for about 21 frames (about 3 s). On the last shot, the ending sits on a pose after a payoff that was small to begin with.
+- problem: Data's face in the hold is flat and neutral. It doesn't pose 'cash or card?'. There is no questioning brow tilt and no gesture between the two pans.
+- better: Move the scale forward toward the lens and make it bigger. Make the pans wide and the beam thick, so the scale fills the lower half and its post doesn't line up with his tie (close-on-the-prop rule).
+- better: Make the cash read as money: a green banknote texture with a paper band, a taller stack, slightly fanned.
+- better: Make the card big and gold and angle it to the lens on the pan. Give the beam a fast slam with overshoot and settle, and let the cash stack visibly lift high.
+
+
+## 2026-11-18 16:42Z · storyboard · round 3 · storyboard gate loop5
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 68 | 68, 68, 70 | FAIL |
+
+**shot 4** (FAIL, 68, bar 70)
+
+- problem: The coin pile beside the mansion in frames 2-3 is a small gold cluster at the top edge of the plinth. The payoff of money pooling at the rich end is barely readable on a phone.
+- problem: The red button is mostly hidden behind Data's mitten and the ramp's upper end (frames 1-3). The cause of the coins' motion, Data pressing it, doesn't read clearly.
+- problem: The 'unimpressed' look at the camera in frame 3 reads as wide-eyed and neutral, even slightly surprised, not unimpressed. The flat mouth alone doesn't sell it.
+- problem: Frame 1: Data's pupils are mismatched (left eye looks at the lens, right eye looks sideways), so he looks cross-eyed rather than focused on the button.
+- problem: Data's head takes up the top 60% of the frame while the whole idea (shack, ramp, mansion) is packed into a thin strip along the bottom third.
+- problem: The mansion is a small white model sitting on a plain white block. It reads more as a box than as 'a mansion on a tall marble plinth', and the gap between rich and poor is undersold.
+- better: Lower the camera or move the props up and forward so the shack, ramp and mansion fill the lower half and the frame isn't mostly Data's head. The idea is the hero here.
+- better: Make the coin pile at the top big and obvious: a heap that visibly grows across frames 2-3 and spills onto the plinth, at least as tall as the shack.
+- better: Put the red button clearly in view: on the counter beside the shack, in front of the ramp, with Data's mitten coming down on top of it from above. The press should be unmistakable.
+
+
+## 2026-11-18 16:49Z · storyboard · round 1 · storyboard gate loop6
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 63 | 62, 63, 63 | FAIL |
+| 5 | 58 | 52, 58, 71 | FAIL |
+
+**shot 4** (FAIL, 63, bar 70)
+
+- problem: The gold heap at the top (frames 2-3) looks like a coiled spring or a twisted gold rope. It does not read as a pile of coins, and it is far smaller than the 'big gold pile' the shot is about.
+- problem: The mansion is a plain white box with small windows, so it reads as a factory or office block. The plinth is short and the top of the ramp does not look much higher than the shack, so the 'uphill' idea is weak.
+- problem: Frame 1 shows no coins at all, and no still shows a coin leaving the shack. The flow starts already on the ramp.
+- problem: The ramp cuts diagonally across Data's torso and hides his hands. His only acting is the eyes and a flat mouth, and 'unimpressed' only comes across weakly in frame 3.
+- better: Make the payoff an actual heap of separate coins, wide and spilling, at least as tall as the mansion's plinth, so it reads as a pile of money on a phone.
+- better: Make the slope dramatic: put the mansion on a plinth that is clearly tall (columns, a marble step tower) and add a pillared front or a roof shape so it reads as a mansion, not a box.
+- better: Show coins popping out of the shack door in frame 1 so the start of the flow is on screen.
+
+**shot 5** (FAIL, 58, bar 70)
+
+- HARD: CONSEQUENCE: the cash is never flung up. The stack stays sitting on its pan in frames 2-3, so the 'card beats cash' result happens only as a quiet pan shift.
+- HARD: BROKEN: in frames 2-3 the gold card stands upright beside or behind the right pan, larger than the pan, and doesn't visibly rest on it. It looks pasted in rather than dropped on.
+- HARD: BROKEN: the gold card and the right pan are cut by the right frame edge (frames 2-3)
+- HARD: BROKEN: the scale's left-pan strings and beam end run across Data's mouth and chin (frames 2-3), so the prop looks stuck to his face
+- problem: The scale's beam and chains run right across Data's face and chin in frames 2-3, which clutters the face and hides which way the beam tips.
+- problem: It's hard to tell the beam swinging 'hard the other way'. Between frames 1 and 3 the change reads as the pans moving, not a dramatic swing.
+- problem: The raised cash pan sits flat against Data's chest and tie, so it merges with his coat.
+- problem: Data's reaction is weak. Frames 2-3 show the same neutral face looking at the lens, with no surprise and no gesture.
+- problem: As the last shot, the payoff (card wins) is too low-key to land as the ending.
+- better: Show the cash stack leaving the pan: bills fanning upward and in the air by frame 3, so the card's 'weight' visibly launches the cash.
+- better: Make the card a pan-sized gold card lying flat on the right pan, angled toward the camera so 'REWARDS' still reads, with the pan pressed down to the counter.
+- better: Move the scale off Data's face line (lower it, or set it in front of him and to one side) so his whole face is clear and the beam's tilt reads as one clean diagonal.
+
+
+## 2026-11-18 16:55Z · storyboard · round 2 · storyboard gate loop6
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 56 | 56, 56, 62 | FAIL |
+
+**shot 4** (FAIL, 56, bar 70)
+
+- HARD: NOT THE POINT, frames 2-3: a second, bigger spill of gold coins lies flat on the counter at the foot of the marble plinth (right of the ramp). From the stills, the coins look like they fall DOWN off the plinth onto the counter, not climb UP to the mansion, so the uphill idea doesn't read.
+- HARD: BROKEN, frames 2→3: the orange ramp jumps. In frames 1-2 it leans from the shack up to the plinth top at about 60°. In frame 3 it stands almost upright, shifted right and away from the plinth, with its top end no longer meeting the mansion's ledge. A key prop changing pose between stills reads as a pop.
+- HARD: CONSEQUENCE / NOT THE POINT, frames 2-3: about half the coins end up in a spill on the counter at the FOOT of the plinth, not heaped up beside the mansion. A stranger reads 'coins fell off the plinth' rather than 'money climbed uphill to the rich', which works against the shot's point.
+- HARD: NOT THE POINT, frames 2-3: the biggest gold heap is on the counter at the foot of the plinth, which is the low end. It reads as coins spilling off the plinth or rolling down, not coins climbing uphill to the mansion. The heap on top of the plinth is small and sits behind the mansion. A stranger could not tell which way the coins went.
+- HARD: CONSEQUENCE, frame 3: the 'big gold pile beside the mansion' is a small stack that hides the mansion instead of a clear heap next to it. The mansion is only a few pixels on a phone, so 'the rich end' never reads.
+- problem: The mansion is tiny, about 40 px wide, and in frame 3 the coin heap covers most of it, so the 'rich house at the top' barely reads on a phone.
+- problem: The shack is mostly hidden behind the low end of the ramp. Only its roof and door show, so 'coins roll OUT of the shack' is never seen. In frame 1 the coins are already on the ramp.
+- problem: In frame 3 the ramp's lower end lands in front of the shack, not at its door, so the path from shack to mansion is broken.
+- problem: Coins on the ramp don't show which way they're moving. Nothing in the stills says UP rather than down: no coin at the shack mouth, no line of coins rising towards the top.
+- problem: The 'unimpressed' look in frame 3 is weak. Data has a flat mouth and a slight brow, but it reads closer to neutral or mildly sad than deadpan.
+- better: Lock the ramp to one fixed transform for the whole shot, from the shack door to the lip of the plinth top. Make it a straight line the viewer can follow from bottom left to top right.
+- better: Keep every coin on the plinth top. Catch them in a tray or bowl beside the mansion so nothing spills onto the counter, and make the final heap tall beside the mansion, not in front of it.
+- better: Scale the mansion and plinth up about 1.5-2x, or move them nearer the lens, so the 'rich' end reads at a glance. Pull the shack out from behind the ramp so its door faces the camera.
+

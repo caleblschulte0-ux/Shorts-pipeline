@@ -24,3 +24,10 @@ def test_the_beats_prop_must_fill_a_quarter_of_the_frame():
     fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "consequence")
     names = {n.id for n in ast.walk(fn) if isinstance(n, ast.Name)}
     assert {"HERO_MIN_H", "FLOOR_Z"} <= names, "the gate constants must be used, not just declared"
+
+
+def test_a_revision_that_breaks_a_measured_check_never_spends_a_round():
+    src = (STORE / "proof_loop.py").read_text()
+    main = src[src.index("def main():"):]
+    assert "precheck(a.story, out, n, a.python)" in main
+    assert "put_shot(path, n, base[n][1])" in main[main.index("def checked"):], "a still-broken revision is undone"

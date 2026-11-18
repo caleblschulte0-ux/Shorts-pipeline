@@ -88,6 +88,18 @@ def board(story, out, shots, rnd, py, keys=3):
     return v
 
 
+def precheck(story, out, n, py):
+    """the measured checks on a REVISED shot, before it is allowed to spend a round (2026-11-18, card rewards: four
+    of six revisions broke a measured check -- an arm through his head, a wrung wrist, the face behind the scale --
+    and each one burned a whole capped round to score 0). (ok, failing lines)"""
+    d = out / "pre" / f"s{n}"; shutil.rmtree(d, ignore_errors=True)
+    env = dict(os.environ, STORY=story, SHOT=str(n), KEYS="2", STAGING="strict")
+    p = subprocess.run([py, "-I", "shots.py", str(d), "8", "20"], cwd=HERE, env=env, capture_output=True, text=True)
+    lines = [l for l in (p.stdout + p.stderr).splitlines() if CHECKS.match(l.strip())]
+    bad = [l for l in lines if "FAIL" in l or "Error" in l or "Traceback" in l]
+    return p.returncode == 0 and not bad, bad or ([] if p.returncode == 0 else ["the shot did not build"])
+
+
 def judge(story, out, shots, rnd=None):
     env = dict(os.environ, STORY=story, SHOTS=" ".join(map(str, shots)), JUDGE3D_ROUND=str(rnd or ""), JUDGE3D_LABEL=f"proof loop {out.name}")
     p = subprocess.run([sys.executable, str(HERE / "judge3d.py"), str(out), str(out / "verdict.json")], env=env,
@@ -360,9 +372,26 @@ def main():
         with ThreadPoolExecutor(len(todo)) as ex:       # each brain edits its own copy of its own shot, in parallel
             outs = list(ex.map(lambda n: (n, revise(a.story, out, n, verdict[n], history[n], rethink_for(n))), todo))
         for n, (body, note) in outs:
+            if body: put_shot(path, n, body)
+        def checked(item):                              # a revision that breaks a measured check gets ONE retry, else it is undone
+            n, (body, note) = item
+            if not body: return n, body, note
+            ok, bad = precheck(a.story, out, n, a.python)
+            if ok: return n, body, note
+            print(f"PRECHECK shot {n}: the revision broke {len(bad)} measured check(s): retrying once", flush=True)
+            body2, note2 = revise(a.story, out, n, verdict[n], history[n], rethink_for(n) + "\n\nYOUR LAST EDIT OF THIS SHOT "
+                                  "BROKE THESE MEASURED CHECKS (it was not judged; fix them, keep the idea):\n" + "\n".join(bad[:6]))
+            if body2:
+                put_shot(path, n, body2); ok, bad = precheck(a.story, out, n, a.python)
+                if ok: return n, body2, note2
+            print(f"PRECHECK shot {n}: still broken: undone to the best judged take", flush=True)
+            put_shot(path, n, base[n][1]); history[n].append(f"- a revision that broke measured checks ({'; '.join(bad[:2])[:200]}): undone")
+            return n, None, note
+        outs = [(n, (b, t)) for n, b, t in map(checked, outs)]   # one at a time: a retry rewrites the shared shots.py
+        for n, (body, note) in outs:
             kind = decided.get(n)
             if body:
-                put_shot(path, n, body); pending[n] = ("[180: NEW IDEA] " if kind == "180" else "") + note.replace("\n", " ")[:300]
+                pending[n] = ("[180: NEW IDEA] " if kind == "180" else "") + note.replace("\n", " ")[:300]
                 if kind == "180":
                     since[n] = len(scores[n]); fresh.add(n); ideas_tried[n] += 1   # the new idea gets its own rounds, and its own best
             if kind:                                   # the round report says what the loop decided, and why
