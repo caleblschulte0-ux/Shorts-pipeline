@@ -984,3 +984,27 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: End on a real action: a big skeptical brow raise plus a clear push of the balloon toward the lens (low and to the side, not across his head), held on that moment rather than a neutral stare.
 - better: Make the head turn between balloon and scanner a deliberate move so the comparison reads.
 
+
+## 2026-11-15 17:18Z · proof
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 5 | 52 | 50, 52, 52 | FAIL |
+
+**shot 5** (FAIL, 52, bar 70)
+
+- HARD: NOT THE POINT, frames 1-49: the frosted little MRI doesn't read as an MRI. On a phone it is a small white-and-blue blob with a green dot, sitting directly under his fist and the balloon string at chest height and partly hidden by his hand. Someone seeing only this shot would see a balloon and a gadget, not 'balloon vs. MRI scanner'.
+- HARD: NO PAYOFF, frames 33-49: the promised lift of the balloon toward the lens never happens. The balloon and fist hold the same position for the last ~2.5 s, so the video ends on a static stare-to-camera pose.
+- HARD: BODY/BROKEN, frames 17-24: the head leans hard sideways (~30 deg), and in frame 23 the glasses look shifted and skewed off the face.
+- HARD: NO PAYOFF: from about frame 29 (row 4, col 5) to frame 49 he just stares into the lens. The balloon never moves and never lifts toward us, so the video ends on a held pose with nothing happening for about 3 seconds
+- HARD: BROKEN: the scanner lamp flashes from green to white on frames 23, 25 and 26 (row 3 col 7, row 4 cols 1-2), then goes back to green. It reads as a pop, not a deliberate light change
+- HARD: NO PAYOFF: the shot ends on a held stare into the lens. Frames ~33-49 (rows 5-7) are almost identical, and the promised lift of the balloon toward the viewer never visibly happens: the balloon stays at the same height and distance beside his head through to the last frame
+- HARD: NOT THE POINT: the 'little MRI' does not read as an MRI on a phone. It is a small frosted white-and-blue blob with a green dot, and it sits in front of Data's belly at frame centre, overlapping his body, not on the counter at image-right. Someone seeing only this shot sees Data, a balloon and an unidentifiable gadget, so the balloon-vs-scanner comparison does not land (all frames)
+- problem: The balloon fist is not 'low at his side'. It rests on top of the scanner at center-right, so the two props merge into one cluster instead of reading as two separate things.
+- problem: No raised brow is visible on the look into the lens (frames 33-49). The face stays a neutral wide-eyed stare, so the 'would you still buy one?' beat has no acting.
+- problem: The look up at the balloon and the look across at the scanner (frames 1-24) read as a generic head wobble with an open mouth, not two clear eye-line beats.
+- problem: Frame 37: the blink fills both lenses with flat teal and reads as the eyes vanishing for a frame.
+- better: Separate the props. Put the MRI big on the counter at image-right, in front of Data and closer to the lens (a recognizable mini ring scanner with the patient bed and a green lamp, about a third of the frame width). Keep the balloon fist low at image-left so the balloon floats beside his head on the other side. The frame then reads as 'party balloon vs. hospital scanner' at a glance.
+- better: Make the ending an action. Lift the balloon toward the lens on the question line (fist rising maybe 15 cm, keeping the arm low and to the side so it doesn't clip the head) and let the balloon bob forward, landing in the final ~1 s. Or tug the string so the balloon dips toward the scanner. End on that move, not a held stare.
+- better: Stage the eye-lines as two clean holds: up at the balloon (~0.7 s), across at the scanner (~0.7 s), then a snap to the lens. No in-between head lean past ~10 deg.
+
