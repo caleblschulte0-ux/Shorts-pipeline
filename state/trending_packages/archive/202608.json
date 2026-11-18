@@ -8040,5 +8040,466 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260819": {
+    "01_graph-nokia-vs-iphone.json": {
+      "format": "graph_race",
+      "slug": "graph-nokia-vs-iphone",
+      "title": "Nokia Ruled Smartphones. Then Apple Ended It",
+      "hook": "100 million, then nearly zero",
+      "y_label": "Smartphones shipped per year (millions)",
+      "duration": 13,
+      "source": "Nokia smartphone (Symbian, then early Lumia) unit shipments and Apple iPhone fiscal-year unit sales, compiled from IDC/Gartner/Strategy Analytics quarterly trackers and company reports. Nokia shipped a then-record ~100 million smartphones in 2010 (IDC); its global smartphone share halved from 33% in 2010 to 16% in 2011 as Apple became the world's largest smartphone vendor by volume in Q4 2011 (Strategy Analytics: Apple 37M vs Nokia 19.6M that quarter). Nokia's full-year total collapsed to roughly 30-35 million by 2012-2013 as Symbian was wound down and Lumia never scaled; Apple's iPhone unit sales are from Apple's 10-K filings (FY2008-FY2013). Figures approximate and rounded to the nearest million.",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "series": [
+        {
+          "name": "Nokia",
+          "color": "#124191",
+          "icon": "Nokia",
+          "values": [
+            61,
+            68,
+            100,
+            78,
+            35,
+            30
+          ]
+        },
+        {
+          "name": "iPhone",
+          "color": "#a3a3a3",
+          "icon": "Apple",
+          "values": [
+            11.63,
+            20.73,
+            39.99,
+            72.29,
+            125.05,
+            150.26
+          ]
+        }
+      ],
+      "hashtags": [
+        "nokia",
+        "iphone",
+        "apple",
+        "smartphones",
+        "symbian",
+        "techhistory",
+        "applehistory",
+        "iphonehistory",
+        "mobilephones",
+        "smartphonewars",
+        "mobiletech",
+        "techcollapse",
+        "stevejobs",
+        "2010s"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-yellow-cab-vs-uber.json": {
+      "format": "graph_race",
+      "slug": "graph-yellow-cab-vs-uber",
+      "title": "Uber Passed NYC's Yellow Cabs In 4 Years",
+      "hook": "173 million rides. Then this.",
+      "y_label": "NYC trips per year (millions)",
+      "duration": 13,
+      "source": "NYC Taxi & Limousine Commission (TLC) monthly trip-record data, aggregated to annual totals, and contemporaneous reporting (Reuters/BBC/Time, 2015-2017) on ride-hail growth. Yellow-cab annual trips fell from roughly 173 million in 2013 to about 25 million in 2021 during the pandemic before partially recovering. TLC data showed Uber's average daily NYC trips overtook yellow cabs' in 2017 (Uber ~289,000 rides/day vs yellow cabs ~277,000/day, July 2017); Uber's own NYC trip count was about 36 million in 2015 per TLC figures. Figures are approximate, rounded annual estimates built from TLC monthly aggregates.",
+      "years": [
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Yellow Cab",
+          "color": "#f4c430",
+          "values": [
+            173,
+            144,
+            101,
+            84,
+            25,
+            38
+          ]
+        },
+        {
+          "name": "Uber",
+          "color": "#276ef1",
+          "icon": "Uber",
+          "values": [
+            2,
+            36,
+            103,
+            175,
+            95,
+            180
+          ]
+        }
+      ],
+      "hashtags": [
+        "uber",
+        "nyctaxi",
+        "yellowcab",
+        "rideshare",
+        "nyc",
+        "gigeconomy",
+        "tlcdata",
+        "taxiindustry",
+        "ridesharing",
+        "nycdata",
+        "transportation",
+        "appeconomy",
+        "cityliving",
+        "sharingeconomy"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "03_graph-mobile-only-landline.json": {
+      "format": "graph_race",
+      "slug": "graph-mobile-only-landline",
+      "title": "More Than 3 In 4 US Homes Cut The Landline",
+      "hook": "The landline just kept losing",
+      "y_label": "Share of US adults (%)",
+      "duration": 13,
+      "source": "CDC/National Center for Health Statistics, National Health Interview Survey (NHIS) Wireless Substitution early-release reports, 2003-2024. Share of US adults in households with wireless phone service only rose from about 3% in 2003 to 76% by the second half of 2023 (CDC NHIS, released June 2024); adults in a home with a landline fell from near-universal in 2003 to roughly a quarter by 2023. Wireless-only households became a majority of US adults for the first time around 2016 (CDC, widely reported May 2016). Intermediate-year figures are approximate readings from the NHIS early-release series.",
+      "years": [
+        2003,
+        2007,
+        2010,
+        2014,
+        2016,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Mobile-Only",
+          "color": "#2ecc71",
+          "values": [
+            3,
+            14,
+            26.6,
+            44.1,
+            50.8,
+            64.4,
+            76
+          ]
+        },
+        {
+          "name": "Has Landline",
+          "color": "#888888",
+          "values": [
+            97,
+            84,
+            72,
+            53,
+            47,
+            34,
+            24
+          ]
+        }
+      ],
+      "hashtags": [
+        "mobileonly",
+        "landline",
+        "cellphones",
+        "cordcutting",
+        "cdc",
+        "wirelesssubstitution",
+        "phonehistory",
+        "householdtrends",
+        "techhistory",
+        "smartphonenation",
+        "usadults",
+        "phonehabits",
+        "publichealthdata"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "04_graph-boeing-vs-airbus.json": {
+      "format": "graph_race",
+      "slug": "graph-boeing-vs-airbus",
+      "title": "Boeing Had A Record Year. Then It Collapsed",
+      "hook": "806 planes. Then 157.",
+      "y_label": "Aircraft delivered per year",
+      "duration": 13,
+      "source": "Boeing and Airbus annual commercial-aircraft delivery totals, from company press releases compiled by Flight Global, Statista and Cirium industry tracking, 2010-2024. Boeing delivered a company-record 806 jets in 2018, then collapsed to 380 in 2019 after the 737 MAX was grounded worldwide (March 2019) and to just 157 in 2020 as COVID-19 hit travel demand. Airbus delivered a record 863 aircraft in 2019 and has out-delivered Boeing every year since 2019, reaching 766 deliveries in 2024 versus Boeing's 348. Figures are the manufacturers' own reported annual delivery counts.",
+      "years": [
+        2010,
+        2015,
+        2018,
+        2019,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Boeing",
+          "color": "#0033a0",
+          "icon": "Boeing",
+          "values": [
+            462,
+            762,
+            806,
+            380,
+            157,
+            480,
+            348
+          ]
+        },
+        {
+          "name": "Airbus",
+          "color": "#e4002b",
+          "icon": "Airbus",
+          "values": [
+            491,
+            635,
+            800,
+            863,
+            566,
+            661,
+            766
+          ]
+        }
+      ],
+      "hashtags": [
+        "boeing",
+        "airbus",
+        "aviation",
+        "aircraft",
+        "737max",
+        "commercialaviation",
+        "aerospace",
+        "airlineindustry",
+        "boeingcrisis",
+        "deliveries",
+        "planespotting",
+        "aviationnews",
+        "aviationgeek"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-logged-every-call.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-logged-every-call",
+      "title": "No Personal Calls On The Floor. So I Logged Every Call.",
+      "script": "My manager rolled out a new rule: no personal calls on the floor, every call has to go through the front desk phone and get logged in the visitor binder, no exceptions. I said fine, and I meant it literally. Every call, mine and everyone else's, went in that binder: time, caller, duration, reason. Two weeks in, the binder was thicker than the schedule board, and half the entries said manager's cell, personal, twelve minutes. Turns out our manager was taking two personal calls an hour from the same number, on the clock, off the log, every single day. Corporate did a policy audit after a complaint about staffing gaps, pulled the binder as evidence, and the log did the rest. My manager got written up for the exact rule he wrote, in front of the district supervisor, off a binder he never thought anyone would actually use. Now the binder just says front desk only, and somehow the personal calls stopped completely.",
+      "shots": [
+        {
+          "phrase": "no personal calls on the floor",
+          "query": "office phone desk",
+          "image_url": "https://pixabay.com/get/g5910c8527d02fa9d151b2bd7c0f65bfed4c2a71db8f564216cac2557ca27ef22e4b0f098217505c0ead09f63673b01a27ea31fd599e0a905c54eef68a5a32f41_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "logged in the visitor binder",
+          "query": "logbook binder pen",
+          "pin_query": "Visitor Binder",
+          "pin_context": "office front desk call log book register",
+          "news_query": "Visitor Binder",
+          "news_angle": "The visitor binder was meticulously used to log every call, revealing the manager's frequent personal calls.",
+          "image_url": "https://live.staticflickr.com/31/47785944_4e75a34a47_b.jpg"
+        },
+        {
+          "phrase": "went in that binder: time, caller, duration, reason",
+          "query": "handwritten log entries",
+          "image_url": "https://images.pexels.com/photos/12983110/pexels-photo-12983110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the binder was thicker than the schedule board",
+          "query": "thick binder stack",
+          "image_url": "https://pixabay.com/get/ga6c034e4a44678dd521c75f87e1c6237417bebe048557057841bb5d7221ba99edea487710f79238e16dbd591a437a5dd22cd1a2a0a6254f5c5424b69ef48cbc8_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "taking two personal calls an hour from the same number",
+          "query": "phone call ringing",
+          "image_url": "https://live.staticflickr.com/765/21886785298_0579769d21_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Corporate did a policy audit",
+          "query": "office audit meeting",
+          "pin_query": "Corporate Office",
+          "pin_context": "company headquarters administration policy audit",
+          "news_query": "Corporate Office",
+          "news_angle": "Corporate conducted a policy audit using the visitor binder as evidence to write up the manager.",
+          "image_url": "https://live.staticflickr.com/4010/4650354197_c4fa2c40d9_b.jpg"
+        },
+        {
+          "phrase": "written up for the exact rule he wrote",
+          "query": "disciplinary paperwork desk",
+          "image_url": "https://pixabay.com/get/g59ce2d6f205f8c1c5e67be3971ddea55d08410a9f53025ea347d28bf18905343ffe943111bb8036b3cbde868d1c8c7646b9b6f09983efaaa59e4838bbf1f71b3_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the personal calls stopped completely",
+          "query": "quiet empty office",
+          "image_url": "https://pixabay.com/get/gc1f3bf6a502810ae86115f6011c05cfbc5ff7e251662cf4794841c1470e7fc0962a4f5c0d308e481731624ecc3d63e27f988800bd61cd8f1c219b4d57e00acfc_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no personal calls on the floor",
+          "text": "NEW RULE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "manager's cell, personal, twelve minutes",
+          "text": "LOGGED HIM TOO",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "policy audit",
+          "text": "AUDITED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "written up for the exact rule he wrote",
+          "text": "WRITTEN UP",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "personal calls stopped completely",
+          "text": "RULE ENFORCED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "workplacestory",
+        "corporatelife",
+        "karma",
+        "pettyrevenge",
+        "reddit",
+        "redditstories",
+        "officepolitics",
+        "boss",
+        "management",
+        "worklife",
+        "karmaisreal",
+        "9to5",
+        "truestory"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-landlord-deposit-audit.json": {
+      "subreddit": "ProRevenge",
+      "slug": "reddit-landlord-deposit-audit",
+      "title": "He Faked Damage To Keep My Deposit. I Had Photos.",
+      "script": "My landlord claimed a laundry list of damage to keep my entire security deposit: scuffed floors, a broken blind, stains that weren't there when I moved in. I had photographed every room the day I got the keys and the day I left, timestamped, floor by floor. I sent the photos once, politely, and he ignored the email. So I filed in small claims, attached the timestamped set side by side with his move-out invoice, and let the judge do the reading. Turns out the blind was already broken in my move-in photos, and the stains matched the same rug pattern from his own listing photos. The judge didn't just order the deposit back, he added the statutory penalty for withholding it in bad faith, plus my filing fee. My landlord walked out owing triple what he tried to keep, and the courthouse clerk told me later he's been sued by two other former tenants using the exact same trick.",
+      "shots": [
+        {
+          "phrase": "claimed a laundry list of damage",
+          "query": "damage inspection clipboard",
+          "image_url": "https://pixabay.com/get/gfb653ca32eca361fe87b49909b45697c1eba6c4819ebf893a17693dbc75f2a9c0d42abadbf823c91c0bc0ee0c4499a37f46cbb53ad49bb8b208176a2e29131cf_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "keep my entire security deposit",
+          "query": "cash envelope withheld"
+        },
+        {
+          "phrase": "photographed every room the day I got the keys",
+          "query": "empty apartment photos",
+          "image_url": "https://live.staticflickr.com/6169/6263479762_ea4acc31c0_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "I sent the photos once, politely, and he ignored the email",
+          "query": "unread email inbox",
+          "image_url": "https://pixabay.com/get/g95955d0b640f934dd3d2b45655bd6149d651600ad35116c491907431d4fd84492d326d80500cad85d9bb96496f5892048241b77e28042d5cbaf0989ebe6f63ec_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "filed in small claims",
+          "query": "courthouse filing desk",
+          "image_url": "https://pixabay.com/get/g92c61d8160a684b2c025373d5b74f330aa5b9f97f2c631aa22260b2b008adc7eb5bb427fa312d5da5f9f521c0daf36b3144fd328782c0387732f5397959bc986_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the blind was already broken in my move-in photos",
+          "query": "broken window blind",
+          "image_url": "https://pixabay.com/get/gac80974911f8b39c13bb10a0d2a8327c41a8697ed725f6cdccb64ee7cd57ca3f2037fb20c0b05f19b24f2fb537a11865_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "The judge didn't just order the deposit back",
+          "query": "courtroom judge gavel",
+          "image_url": "https://pixabay.com/get/g5570eea8bdfdefde9c304134ef50d5ec639a4aaaefd801b09493f1871dd97c22fc7abcd6bab8cafbcd596a77928c0c087bae5f01660c60ff2b87e5ef44ffb40f_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "owing triple what he tried to keep",
+          "query": "stack of cash",
+          "image_url": "https://pixabay.com/get/gf5958a2f8ffcbd1f031f1c6a00fda831e6796f76b3f5c962fd7f3eb056adfafd8feabb7c6e5426e5c56d8919a763c9d9a105ee41dce98411b6b574b6b546312a_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "keep my entire security deposit",
+          "text": "DEPOSIT STOLEN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "timestamped, floor by floor",
+          "text": "TIMESTAMPED PROOF",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "filed in small claims",
+          "text": "SMALL CLAIMS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "statutory penalty for withholding it in bad faith",
+          "text": "BAD FAITH PENALTY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "owing triple what he tried to keep",
+          "text": "TRIPLE PAYOUT",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "prorevenge",
+        "landlordstory",
+        "tenantrights",
+        "karma",
+        "smallclaimscourt",
+        "reddit",
+        "redditstories",
+        "renterlife",
+        "landlordproblems",
+        "karmaisreal",
+        "apartmentliving",
+        "revenge",
+        "truestory",
+        "justiceserved"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    }
   }
 }
