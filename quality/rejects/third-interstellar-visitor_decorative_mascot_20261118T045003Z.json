@@ -1,0 +1,16 @@
+{
+ "slug": "third-interstellar-visitor",
+ "ts": "20261118T045003Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 through seg1:end Data stands in the same place beside the observatory, pointing, while the telescope moves by itself. In seg2:start and seg2:end he stands on a platform waving as the rocks streak past. He only does real work in seg3, where he shovels the dust off the",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start to seg2:end: Data stands on a raised plank deck in the desert and waves while three labelled rocks streak overhead. The '1.8x the first' tag carries the comparison, and the streaks look about the same length, so the speed difference does not show.",
+  "root_cause": "The speed claim is drawn as decoration in the sky with Data watching it. He does not cause the motion, and nothing shows the speeds as distance covered in the same time.",
+  "repair_goal": "Make Data the cause and make speed into distance. For example, Data sets off a timed race (he drops a flag or hits a stopwatch) in which all three visitors are released from one line at once, and ATLAS travels about 1.8x as far as 'Oumuamua in the same time. Keep the gap on screen at the payoff and keep only one headline number."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

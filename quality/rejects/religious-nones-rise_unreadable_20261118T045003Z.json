@@ -1,0 +1,21 @@
+{
+ "slug": "religious-nones-rise",
+ "ts": "20261118T045003Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:end: the 'Other faiths' label is tiny, butts against 'Catholic' and touches the right edge. seg0:start: the small '1990'/'2021' tags sit on a busy stained-glass window. seg4:start: the closing white text runs over the white steeple and clouds.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "claim_mismatch_and_confusing_readout",
+  "visible_evidence": "From hook@0.8 to seg0:end the hook reads '28% of Americans, passing Catholics' while the headline says '8%' with '1990'. The finished frame (hook@0.3/seg1:end) shows 29% and 3.6x, which contradicts the spoken 28%. Small year tags sit on the stained glass.",
+  "root_cause": "The readout steps from 1990 to 2021 under a hook that states the present-day value, and it uses a different data year (29%, 2021) from the narration's 28%.",
+  "repair_goal": "Open on the finished state with the same number the hook says. Make the snuffed-candle share read at a glance (lit vs dark, about 28% dark) with one headline number that matches the narration. Remove the tiny year tags from the window, or move them onto a plain backdrop."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}
