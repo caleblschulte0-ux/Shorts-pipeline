@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "us-stops-making-pennies-232-years__e8e35070",
+  "slug": "us-stops-making-pennies-232-years",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:25:00Z",
+  "title": "Pennies Lose $86 Million A Year To Produce",
+  "hook": "Pennies lose taxpayers $86 million every year.",
+  "closing": "Small coins can create surprisingly large losses for taxpayers.",
+  "question": "Would you miss the penny?",
+  "segments": [
+    {
+      "topic": "Penny Annual Loss",
+      "say": "Making pennies loses $86 million each year. A one-cent coin creates a massive recurring bill."
+    },
+    {
+      "topic": "Penny Production History",
+      "say": "The penny has remained in production for 232 years. Few obsolete coins lasted nearly as long."
+    },
+    {
+      "topic": "Penny Versus Nickel",
+      "say": "A nickel costs 13.78 cents to produce. The penny is not even the worst money-losing coin."
+    }
+  ]
+}
