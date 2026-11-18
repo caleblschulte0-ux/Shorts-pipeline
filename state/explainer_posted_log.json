@@ -5756,11 +5756,39 @@
       "scene_changes_before_5s": 3
     },
     "religious-nones-rise": {
-      "claimed_at": "2026-11-18T03:25:11.749871+00:00",
+      "url": "https://youtube.com/shorts/qNTEHw27owI",
       "title": "28% Of Americans Now Claim No Religion",
+      "at": "2026-11-18T03:25:23.797670+00:00",
       "publish_at": "2026-11-18T08:13:49Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.58,
+      "beat_s": [
+        4.02,
+        6.58,
+        6.18,
+        4.86,
+        7.8
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 79,
+      "duration_s": 29.9,
+      "hook": "inversion",
+      "topic_category": "society",
+      "ending_type": "escalation",
+      "depictions": [
+        "mechanic:empty-pew-exodus",
+        "mechanic:generation-pew-seats",
+        "mechanic:people-stack-overtake"
+      ],
+      "words_first_10s": 23,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -7432,9 +7460,10 @@
       "claimed_at": "2026-11-18T03:25:11.749871+00:00",
       "title": "28% Of Americans Now Claim No Religion",
       "publish_at": "2026-11-18T08:13:49Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "religious-nones-rise"
+      "url": "https://youtube.com/shorts/qNTEHw27owI",
+      "state": "posted",
+      "slug": "religious-nones-rise",
+      "at": "2026-11-18T03:25:23.797670+00:00"
     }
   ]
 }
