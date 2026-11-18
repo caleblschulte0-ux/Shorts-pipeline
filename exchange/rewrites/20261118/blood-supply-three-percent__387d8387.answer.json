@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-supply-three-percent__387d8387",
+  "slug": "blood-supply-three-percent",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "Only 3% Of Eligible People Donate Blood",
+  "hook": "Most eligible people can donate blood; only 3% actually do.",
+  "closing": "Hospitals depend on a tiny donor pool that keeps shrinking.",
+  "question": "Would you donate blood?",
+  "segments": [
+    {
+      "topic": "Blood Donation Gap",
+      "say": "Only 3 percent of eligible people donate blood. Hospitals depend on a tiny volunteer pool."
+    },
+    {
+      "topic": "Blood Donor Decline",
+      "say": "Blood donor volume fell to an index of 60. Fewer people are replacing regular donors."
+    }
+  ]
+}
