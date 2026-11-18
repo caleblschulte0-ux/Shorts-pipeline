@@ -53,7 +53,7 @@ jobs:
           echo "mode=$(sed -n 's/^mode=//p' $cfg)" >> $GITHUB_OUTPUT     # mode=narrate: voice the lines and stop, so the shots can be timed to the real read
           said=$(sed -n 's/^operator_said=//p' $cfg | tr -d '"$`\\')
           echo "operator_said=$said" >> $GITHUB_OUTPUT
-          echo "story $story, voice from run ${run:-this one}${said:+, render OK'd by the operator: $said}"
+          echo "story $story, voice from run ${run:-this one}${said:+, render approved by the operator: $said}"
 
   narrate:
     needs: cfg
