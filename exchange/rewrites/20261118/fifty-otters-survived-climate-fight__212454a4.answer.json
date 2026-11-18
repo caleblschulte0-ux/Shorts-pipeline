@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "fifty-otters-survived-climate-fight__212454a4",
+  "slug": "fifty-otters-survived-climate-fight",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "50 Sea Otters Survived—Then Protected Carbon-Storing Kelp",
+  "hook": "50 sea otters survived, then helped protect carbon-storing kelp.",
+  "closing": "Saving one predator can protect an entire coastline and its carbon.",
+  "question": "Would you welcome otters nearby?",
+  "segments": [
+    {
+      "topic": "Sea Otters Survived",
+      "say": "Only 50 California sea otters remained. Fur trading nearly erased the population."
+    },
+    {
+      "topic": "Sea Otters Recovered",
+      "say": "The population recovered to about 3,000. The comeback remains incomplete because the species is still threatened."
+    },
+    {
+      "topic": "Sea Otters Protect",
+      "say": "Otter-protected kelp can store 8.7 million metric tons of CO2 yearly. One predator shields a major carbon sink."
+    }
+  ]
+}
