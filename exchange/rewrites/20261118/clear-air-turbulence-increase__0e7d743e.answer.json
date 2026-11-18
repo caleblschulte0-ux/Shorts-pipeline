@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "clear-air-turbulence-increase__0e7d743e",
+  "slug": "clear-air-turbulence-increase",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:25:00Z",
+  "title": "Severe Turbulence Lasted 55% Longer Over The North Atlantic",
+  "hook": "Severe turbulence lasted 55% longer over the North Atlantic.",
+  "closing": "The seatbelt sign matters more as rough air becomes more common.",
+  "question": "Have your flights felt bumpier?",
+  "segments": [
+    {
+      "topic": "Turbulence Annual Hours",
+      "say": "Severe turbulence reached 27.4 annual hours. North Atlantic flights now spend more time in rough air."
+    },
+    {
+      "topic": "Turbulence Severity Increase",
+      "say": "Severe turbulence duration rose 55 percent. The roughest air grew faster than lighter bumps."
+    },
+    {
+      "topic": "Turbulence Future Hours",
+      "say": "Models project 62 annual hours by 2080. Future crossings could encounter far more severe turbulence."
+    }
+  ]
+}
