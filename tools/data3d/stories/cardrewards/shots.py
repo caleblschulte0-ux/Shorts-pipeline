@@ -1,0 +1,360 @@
+"""THE CARD REWARDS SHORT (the sixth 3D short, 2026-11-18): every time you pay cash, you pay for someone else's credit
+card rewards (Boston Fed, Schuh/Shy/Stavins 2010). Each beat its own place and its own idea (script.json), every beat
+a counter close-up with the idea's prop big in front of Data (data-3d-tabletop-beats). Every touched prop sits within
+his 0.18 m reach and below his shoulders (the vanilla stills, 11-18: hands at shoulder height put his forearms in his
+head).
+
+  1 hook      store         coins pour out of his hand and pile up under a giant gold credit card
+  2 the fee   warehouse     he taps the card reader and every price tag on the boxes shoots up
+  3 $149      sorting_room  he tips his piggy bank and its coins pour out onto a gold card
+  4 uphill    bank          he pulls a lever and coins climb a ramp from a tiny shack to a mansion
+  5 payoff    store         he lays a gold card on a scale and it outweighs a whole stack of cash
+
+Run through the shot harness (store/shots.py, STORY=cardrewards). The props are store/card_kit.py."""
+import card_kit as CK
+import saffron_kit as SK
+import locations as LOC
+import props
+from mathutils import Euler
+
+US = Vector((0.0, -1.3, 0.62))
+RED = "#D93A2B"
+
+
+def place(name):
+    return dict(lanes=[], kiosks=[], place=name, light=LOC.PLACES[name]())
+
+
+def store_set():
+    lanes, kiosks, clerks = build_set([2.4, 3.0], ())
+    return dict(lanes=lanes, kiosks=list(kiosks.values()), place="store")
+
+
+def soft_key(name, at, aim, energy=30, size=26, color=(1.0, 0.95, 0.86)):
+    ld = bpy.data.lights.new(name, 'SPOT'); ld.energy = energy; ld.spot_size = math.radians(size); ld.spot_blend = 0.6
+    ld.shadow_soft_size = 0.15; ld.color = color
+    o = bpy.data.objects.new(name, ld); bpy.context.collection.objects.link(o); o.location = at
+    o.rotation_euler = (Vector(aim) - Vector(at)).to_track_quat('-Z', 'Y').to_euler()
+    return o
+
+
+def follow(obj, fn, t0=0.0, t1=None, rot_fn=None):
+    for f in range(F(t0), F(t1 if t1 is not None else DUR) + 1):
+        t = (f - 1) / FPS; obj.location = fn(t); obj.keyframe_insert("location", frame=f)
+        if rot_fn: obj.rotation_euler = rot_fn(t); obj.keyframe_insert("rotation_euler", frame=f)
+
+
+def reach(data, side, fn, t0, t1, lead=0.4, back=0.45, elbow_out=0.45):
+    return data.reach(side, fn, t0, t1, lead=lead, back=back, elbow_out=elbow_out)
+
+
+def sides(data):
+    """(image-left hand, image-right hand) for a camera on -Y looking +Y"""
+    sc.frame_set(1); bpy.context.view_layer.update()
+    l, r = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
+    return l, r
+
+
+def path(keys):
+    """piecewise eased path through (t, Vector) keys"""
+    def fn(t):
+        if t <= keys[0][0]: return Vector(keys[0][1])
+        for (ta, a), (tb, b) in zip(keys, keys[1:]):
+            if t <= tb: return Vector(a).lerp(Vector(b), ease((t - ta) / max(1e-6, tb - ta)))
+        return Vector(keys[-1][1])
+    return fn
+
+
+def heap(center, r, top_fn):
+    """a coin heap's height over (x, y): a cone of radius r whose peak is top_fn(t) above its floor"""
+    def h(x, y, t):
+        d = math.hypot(x - center.x, y - center.y)
+        return top_fn(t) * max(0.0, 1.0 - d / r) if d < r else None
+    return h
+
+
+def schedule(n, t0, t1, seed=1):
+    rnd = random.Random(seed)
+    return [t0 + (t1 - t0) * (i / max(1, n - 1)) + rnd.uniform(-0.02, 0.02) for i in range(n)]
+
+
+def counter(name, TOP, BACK=-0.01, DEP=0.38, w=0.9, store=True):
+    if store:
+        SK.table(name, (0.0, BACK - DEP / 2, 0.0), w=w, d=DEP, h=TOP)
+    else:
+        K.box(name, (0.0, BACK - DEP / 2, TOP / 2), (w, DEP, TOP), K.mat(name, "#2F3A36", rough=0.25), bev=0.006)
+
+
+def camera(C0, L0, C1, L1, t_end, focus, lens=32, fstop=5.0):
+    cam = K.camera(tuple(C0), tuple(L0), lens=lens, fstop=fstop)
+    camera_path(cam, lambda t: (C0.lerp(C1, ease(min(1.0, t / t_end))), L0.lerp(L1, ease(min(1.0, t / t_end))), Vector(focus)))
+    return cam
+
+
+# ================================================================ SHOT 1: the hook
+def shot1():
+    """COINS POUR OUT OF HIS HAND AND PILE UP UNDER A GIANT GOLD CREDIT CARD. Close at the checkout counter: a big
+    gold rewards card stands upright on a black stand, a dark tray at its foot. Data holds his hand over the tray and
+    a stream of coins pours out of it, heaping up under the card. He looks at us, unimpressed."""
+    where = store_set()
+    TOP = 0.36
+    counter("checkout counter", TOP)
+    data = load_data(); data.place(0.0, 0.10, 0)
+    L, R = sides(data)
+    sh = acts._shoulder(data, R)
+    CARD = Vector((0.235, -0.035, TOP))
+    CK.card_stand("card stand", tuple(CARD), w=0.14)
+    crd = CK.card("hook card", (CARD.x, CARD.y - 0.006, TOP + 0.004), w=0.2, h=0.125, upright=True)
+    DISH = Vector((0.115, -0.085, TOP))
+    dsh = CK.dish("coin tray", tuple(DISH), r=0.07)
+    T0, T1 = 0.55, DUR * 0.72
+    HAND = Vector((sh.x + 0.04, -0.06, TOP + 0.1))
+    hp = path([(0.0, HAND + Vector((0, 0.01, 0.012))), (T0, HAND), (T1, HAND + Vector((0, 0, 0.004))), (T1 + 0.5, HAND + Vector((-0.02, 0.03, -0.01)))])
+    reach(data, R, hp, 0.0, T1 + 0.5, lead=0.3, back=0.6, elbow_out=0.4)
+    N = 110
+    cs = CK.coins(N, "hook coin")
+    sched = schedule(N, T0, T1)
+    top = lambda t: 0.012 + 0.05 * min(1.0, max(0.0, (t - T0) / (T1 - T0)))
+    hh = heap(DISH, 0.065, top)
+    def land(x, y, t):
+        v = hh(x, y, t)
+        if v is not None: return TOP + 0.008 + v
+        if -0.45 < x < 0.45 and -0.39 < y < -0.01: return TOP + 0.002
+        return None
+    props.pour(cs, NF, sched, lambda t: hp(t) + Vector((0.005, -0.012, -0.03)), land,
+               kick_fn=lambda t: Vector((0.0, 0.0, -0.15)), seed=3)
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
+    data.look_at(DISH, 0.5, max_yaw=30, max_pitch=40)
+    data.look_at(US, T1 - 0.4, max_yaw=20)
+    data.idle(0.0, DUR)
+    data.expression("determined", 0.3, T1 - 0.5)
+    data.expression("wry", T1 - 0.4, DUR + 1.0, blend=0.25)
+    data.blink(1.2)
+    data.finish()
+    soft_key("counter key", (-0.5, -1.0, 1.1), (0.1, -0.08, TOP + 0.08), energy=22, size=32)
+    soft_key("card key", (0.6, -0.8, 0.9), (CARD.x, CARD.y, TOP + 0.07), energy=10, size=18)
+    camera(Vector((0.08, -0.85, 0.6)), Vector((0.08, -0.05, 0.56)), Vector((0.09, -0.76, 0.59)), Vector((0.1, -0.05, 0.55)),
+           T1, (0.12, -0.08, 0.45))
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("coins pour from his hand and heap up under the gold card", lambda: meshes(cs) + meshes([dsh, crd]), T0 + 0.3, DUR)])
+
+
+# ================================================================ SHOT 2: the swipe fee
+def shot2():
+    """HE TAPS THE CARD READER AND EVERY PRICE TAG ON THE BOXES SHOOTS UP. A stockroom bench: three product boxes,
+    each with a white price tag on a stick, and a card reader by his right hand. He taps the reader, its screen
+    lights green, and one after another the tags shoot up on their sticks and go red."""
+    where = place("warehouse")
+    TOP = 0.34
+    counter("stock bench", TOP)
+    data = load_data(); data.place(0.0, 0.10, 0)
+    L, R = sides(data)
+    RD = Vector((0.14, -0.035, TOP))
+    rd, lamp, keypt = CK.reader("card reader", tuple(RD))
+    rd.scale = (1.3, 1.3, 1.3)
+    KEY = RD + keypt * 1.3
+    boxes = []; tags = []
+    for i, (x, h, c, lab) in enumerate(((-0.27, 0.1, "#C8462E", "CEREAL"), (-0.16, 0.13, "#2D6FB0", "SOAP"), (-0.05, 0.09, "#E2B33C", "RICE"))):
+        b = CK.product_box(f"product {i}", (x, -0.12, TOP), (0.085, 0.07, h), c, label=lab); boxes.append(b)
+        tg, tm = CK.price_tag(f"price tag {i}", (x, -0.12, TOP + h - 0.02), stick=0.06); tags.append((tg, tm, TOP + h - 0.02))
+    T_TAP = 1.0
+    up = KEY + Vector((0, -0.005, 0.07)); on = KEY + Vector((0, -0.005, 0.058))
+    hp = path([(0.0, up + Vector((0.01, 0.02, 0.0))), (T_TAP - 0.35, up), (T_TAP, on), (T_TAP + 0.3, up), (T_TAP + 1.2, up + Vector((0.01, 0.0, 0.0)))])
+    reach(data, R, hp, 0.0, DUR, lead=0.7, back=0.7, elbow_out=0.4)
+    CK.key_emission(lamp, [(0.0, 0.0), (T_TAP, 0.0), (T_TAP + 0.08, 6.0)], F)
+    T_UP = [T_TAP + 0.35 + 0.3 * i for i in range(3)]
+    for (tg, tm, z0), tu in zip(tags, T_UP):
+        follow(tg, lambda t, tg=tg, z0=z0, tu=tu: Vector((tg.location.x, tg.location.y, z0 + 0.11 * (0 if t < tu else min(1.0, 1 - (1 - min(1.0, (t - tu) / 0.35)) ** 3)))), 0.0, DUR)
+        CK.key_color(tm, [(0.0, "#F7F4EC"), (tu, "#F7F4EC"), (tu + 0.2, RED)], F)
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
+    data.look_at(KEY, 0.3, max_yaw=30, max_pitch=40)
+    data.look_at(Vector((-0.16, -0.12, TOP + 0.2)), T_TAP + 0.3, max_yaw=35, max_pitch=30)
+    data.look_at(US, T_UP[-1] + 0.6, max_yaw=20)
+    data.idle(0.0, DUR)
+    data.expression("pleased", 0.0, T_TAP + 0.2)
+    data.expression("wry", T_UP[-1] + 0.4, DUR + 1.0, blend=0.25)
+    data.blink(0.6)
+    data.finish()
+    soft_key("bench key", (-0.55, -1.0, 1.1), (-0.1, -0.1, TOP + 0.1), energy=24, size=34)
+    soft_key("tag key", (-0.3, -0.7, 0.9), (-0.16, -0.12, TOP + 0.25), energy=8, size=20)
+    camera(Vector((-0.06, -0.88, 0.6)), Vector((-0.06, -0.05, 0.57)), Vector((-0.06, -0.8, 0.61)), Vector((-0.07, -0.05, 0.58)),
+           T_UP[-1] + 0.4, (-0.1, -0.11, 0.5))
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("every price tag shoots up and turns red", lambda: meshes([t[0] for t in tags]) + meshes(boxes), T_UP[0], DUR)])
+
+
+# ================================================================ SHOT 3: $149 a year
+def shot3():
+    """HE TIPS HIS PIGGY BANK AND ITS COINS POUR OUT ONTO A GOLD CARD. At the kitchen table: a pink piggy bank on a
+    little wooden block, a gold card lying flat in front of its snout. He puts his hand on the pig's back and tips it
+    forward; coins pour out of it onto the card in a heap. He looks at us."""
+    where = place("sorting_room")
+    TOP = 0.28
+    counter("kitchen table", TOP)
+    data = load_data(); data.place(0.0, 0.10, 0)
+    L, R = sides(data)
+    S = 1.1
+    YAW = -math.pi / 2                                    # snout to the camera: his hand tips it from behind
+    PIV = Vector((-0.02, -0.095, TOP))
+    pig, snout = CK.piggy("piggy bank", tuple(PIV), s=S, yaw=YAW)
+    CARD = Vector((-0.02, -0.215, TOP))
+    crd = CK.card("table card", tuple(CARD), w=0.17, h=0.107)
+    T_ON, T_TIP, T_END = 0.6, 1.4, DUR * 0.75
+    TILT = math.radians(35)
+    tilt = lambda t: 0.0 if t < T_ON + 0.25 else TILT * ease(min(1.0, (t - T_ON - 0.25) / (T_TIP - T_ON - 0.25)))
+    follow(pig, lambda t: PIV, 0.0, DUR, rot_fn=lambda t: Euler((0, tilt(t), YAW)))
+    def world(local, a):
+        """a point in the pig's own frame (x forward, z up) after tipping by a, in the world"""
+        x, z = local.x, local.z
+        fx, fz = x * math.cos(a) + z * math.sin(a), -x * math.sin(a) + z * math.cos(a)
+        return PIV + Vector((fx * math.cos(YAW), fx * math.sin(YAW), fz))
+    BACK = Vector((-0.085, 0, 0.14))                      # the top of the pig's rump, in its root frame
+    on_back = lambda t: world(BACK, tilt(t)) + Vector((0, 0.01, 0.048))
+    reach(data, L, on_back, 0.0, DUR, lead=0.6, back=0.6, elbow_out=0.4)
+    mouth = lambda t: world(snout, TILT)
+    N = 60
+    cs = CK.coins(N, "pig coin")
+    sched = schedule(N, T_TIP, T_END, seed=5)
+    hh = heap(CARD + Vector((0, 0.02, 0)), 0.07, lambda t: 0.01 + 0.03 * min(1.0, max(0.0, (t - T_TIP) / (T_END - T_TIP))))
+    def land(x, y, t):
+        v = hh(x, y, t)
+        if v is not None: return TOP + 0.004 + v
+        if -0.45 < x < 0.45 and -0.39 < y < -0.01: return TOP + 0.002
+        return None
+    props.pour(cs, NF, sched, mouth, land, kick_fn=lambda t: Vector((0.0, -0.2, 0.0)), seed=9)
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
+    data.look_at(PIV, 0.3, max_yaw=30, max_pitch=40)
+    data.look_at(CARD, T_TIP, max_yaw=30, max_pitch=45)
+    data.look_at(US, T_END - 0.3, max_yaw=20)
+    data.idle(0.0, DUR)
+    data.expression("determined", 0.4, T_END - 0.4)
+    data.expression("wry", T_END - 0.3, DUR + 1.0, blend=0.25)
+    data.blink(1.0)
+    data.finish()
+    soft_key("table key", (-0.55, -1.0, 1.0), (0.0, -0.08, TOP + 0.08), energy=22, size=32)
+    soft_key("pig key", (0.45, -0.8, 0.8), (PIV.x, PIV.y, TOP + 0.08), energy=9, size=18)
+    camera(Vector((0.0, -0.82, 0.52)), Vector((0.0, -0.05, 0.5)), Vector((0.01, -0.74, 0.52)), Vector((0.01, -0.05, 0.5)),
+           T_END, (0.0, -0.07, 0.38))
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("he tips the piggy bank forward", lambda: meshes([pig]), T_ON + 0.25, DUR),
+                        ("coins pour out of the pig onto the gold card", lambda: meshes(cs) + meshes([crd]), T_TIP + 0.3, DUR)])
+
+
+# ================================================================ SHOT 4: it flows uphill
+def shot4():
+    """HE PULLS A LEVER AND COINS CLIMB A RAMP FROM A TINY SHACK TO A MANSION. On a marble bank counter: a tin shack
+    at the low end of a ramp, a white model mansion on a riser at the top. He pulls a brass lever over, and coin after
+    coin slides UP the ramp from the shack and drops onto a growing pile in front of the mansion."""
+    where = place("bank")
+    TOP = 0.36
+    counter("bank counter", TOP, store=False)
+    data = load_data(); data.place(0.0, 0.10, 0)
+    L, R = sides(data)
+    RIS = Vector((-0.03, -0.085, TOP)); RH = 0.05
+    K.box("mansion riser", (RIS.x, RIS.y, TOP + RH / 2), (0.17, 0.13, RH), K.mat("riser marble", "#E9E3D8", rough=0.2), bev=0.004)
+    man = CK.mansion("mansion", (RIS.x, RIS.y + 0.03, TOP + RH), s=0.8)
+    shk = CK.shack("shack", (-0.255, -0.12, TOP), s=1.2)
+    A = Vector((-0.21, -0.13, TOP + 0.006)); B = Vector((-0.12, -0.13, TOP + RH + 0.004))
+    ramp = CK.chute("ramp", A, B, w=0.05)
+    PILE = Vector((RIS.x - 0.01, -0.12, TOP + RH))
+    piv, knob = CK.lever("lever", (0.105, -0.035, TOP), length=0.07)
+    T_PULL0, T_PULL1 = 0.7, 1.3
+    ang = lambda t: math.radians(25 - 30 * ease(min(1.0, max(0.0, (t - T_PULL0) / (T_PULL1 - T_PULL0)))))
+    P0 = piv.location.copy()
+    follow(piv, lambda t: P0, 0.0, DUR, rot_fn=lambda t: Euler((ang(t), 0, 0)))
+    kp = lambda t: P0 + Vector((0.0, -knob.z * math.sin(ang(t)), knob.z * math.cos(ang(t)))) + Vector((0.0, 0.0, 0.02))
+    reach(data, R, kp, 0.0, DUR, lead=0.7, back=0.7, elbow_out=0.4)
+    N = 26
+    T0, T1 = T_PULL1 + 0.05, DUR * 0.8
+    sched = schedule(N, T0, T1 - 0.5, seed=4)
+    RIDE = 0.45
+    climbers = CK.coins(N, "climbing coin")
+    for o, ts in zip(climbers, sched):
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; u = (t - ts) / RIDE
+            if 0 <= u <= 1:
+                o.location = A.lerp(B, u) + Vector((0, 0, 0.004)); o.scale = (1, 1, 1)
+                o.rotation_euler = (0, -math.atan2(B.z - A.z, B.x - A.x), 0)
+            else:
+                o.location = A if u < 0 else B; o.scale = (0, 0, 0)
+            o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f); o.keyframe_insert("rotation_euler", frame=f)
+    pile = CK.coins(N, "pile coin")
+    hh = heap(PILE, 0.05, lambda t: 0.008 + 0.03 * min(1.0, max(0.0, (t - T0) / (T1 - T0))))
+    def land(x, y, t):
+        v = hh(x, y, t)
+        if v is not None: return TOP + RH + v
+        if abs(x - RIS.x) < 0.08 and abs(y - RIS.y) < 0.055: return TOP + RH
+        if -0.45 < x < 0.45 and -0.39 < y < -0.01: return TOP + 0.002
+        return None
+    props.pour(pile, NF, [s + RIDE for s in sched], lambda t: B + Vector((0.01, 0, 0.01)), land,
+               kick_fn=lambda t: Vector((0.25, 0.0, 0.1)), seed=6)
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
+    data.look_at(P0, 0.3, max_yaw=30, max_pitch=40)
+    data.look_at(PILE, T0 + 0.2, max_yaw=35, max_pitch=40)
+    data.look_at(US, T1 - 0.4, max_yaw=20)
+    data.idle(0.0, DUR)
+    data.expression("determined", 0.3, T1 - 0.5)
+    data.expression("wry", T1 - 0.4, DUR + 1.0, blend=0.25)
+    data.blink(0.9)
+    data.finish()
+    soft_key("bank key", (-0.55, -1.0, 1.1), (-0.12, -0.1, TOP + 0.08), energy=24, size=34)
+    soft_key("mansion key", (0.3, -0.8, 0.9), (RIS.x, RIS.y, TOP + RH + 0.05), energy=9, size=18)
+    camera(Vector((-0.06, -0.9, 0.58)), Vector((-0.06, -0.05, 0.55)), Vector((-0.06, -0.82, 0.58)), Vector((-0.06, -0.05, 0.55)),
+           T1, (-0.12, -0.11, 0.46))
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("coins climb the ramp from the shack and pile up at the mansion", lambda: meshes(pile) + meshes([man, shk, ramp]), T0 + RIDE, DUR)])
+
+
+# ================================================================ SHOT 5: the payoff
+def shot5():
+    """HE LAYS A GOLD CARD ON A SCALE AND IT OUTWEIGHS A WHOLE STACK OF CASH. Back at the checkout: a brass balance,
+    a fat stack of cash weighing its left pan down. He lays one gold card on the right pan and the beam swings hard
+    the other way, lifting the cash. He looks at us: cash or card?"""
+    where = store_set()
+    TOP = 0.3
+    counter("checkout counter", TOP)
+    data = load_data(); data.place(0.0, 0.10, 0)
+    L, R = sides(data)
+    BX, BY, ARM, H = -0.05, -0.05, 0.15, 0.2
+    bal, beam, pans = SK.balance("scale", (BX, BY, TOP), arm=ARM, h=H, pan_r=0.058)
+    T_LAY = 1.5
+    def tilt(t):
+        if t < T_LAY: return math.radians(-12)
+        u = (t - T_LAY) / 0.4
+        if u < 1: return math.radians(-12 + 34 * ease(u))
+        return math.radians(22 - 3 * math.sin(min(1.0, (u - 1) / 1.2) * math.pi) * math.exp(-(u - 1)))
+    for f in range(1, NF + 1):
+        beam.rotation_euler = (0, tilt((f - 1) / FPS), 0); beam.keyframe_insert("rotation_euler", frame=f)
+    SK.level_pans(beam, pans, NF)
+    panL = bpy.data.objects["scale pan -1"]; panR = bpy.data.objects["scale pan 1"]
+    def pan_top(o, t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        return o.matrix_world.translation + Vector((0, 0, 0.005))
+    tops = {o.name: [pan_top(o, (f - 1) / FPS) for f in range(1, NF + 1)] for o in (panL, panR)}
+    at = lambda o, t: tops[o.name][min(NF - 1, max(0, F(t) - 1))]
+    stack = SK.cash_stack("cash on the scale", tuple(at(panL, 0.0)), n=34)
+    follow(stack, lambda t: at(panL, t), 0.0, DUR)
+    crd = CK.card("scale card", (0, 0, 0), w=0.12, h=0.075)
+    START = at(panR, 0.0) + Vector((0.0, 0.0, 0.05))
+    hand = path([(0.0, START), (0.6, START), (T_LAY, at(panR, T_LAY) + Vector((0, 0, 0.026))),
+                 (T_LAY + 0.45, at(panR, T_LAY + 0.45) + Vector((0, 0, 0.05))), (T_LAY + 1.4, at(panR, T_LAY) + Vector((0.02, 0.02, 0.04)))])
+    follow(crd, lambda t: hand(t) - Vector((0, 0, 0.024)) if t < T_LAY else at(panR, t), 0.0, DUR)
+    reach(data, R, hand, 0.0, T_LAY + 1.4, lead=0.8, back=0.8, elbow_out=0.4)
+    data.look_at(US, 0.0, max_yaw=20, blend=0.0)
+    data.look_at(at(panR, T_LAY), 0.3, max_yaw=30, max_pitch=40)
+    data.look_at(at(panL, T_LAY + 0.5), T_LAY + 0.3, max_yaw=35, max_pitch=35)
+    data.look_at(US, T_LAY + 1.3, max_yaw=20)
+    data.idle(0.0, DUR)
+    data.expression("determined", 0.3, T_LAY + 0.4)
+    data.expression("wry", T_LAY + 1.2, DUR + 1.0, blend=0.25)
+    data.blink(0.8)
+    data.finish()
+    soft_key("counter key", (-0.55, -1.0, 1.1), (BX, BY, TOP + 0.12), energy=22, size=32)
+    soft_key("scale key", (0.45, -0.8, 0.9), (BX, BY, TOP + 0.1), energy=9, size=20)
+    camera(Vector((-0.04, -0.85, 0.56)), Vector((-0.04, -0.05, 0.53)), Vector((-0.04, -0.77, 0.56)), Vector((-0.04, -0.05, 0.53)),
+           T_LAY + 0.8, (BX, BY, TOP + 0.1))
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("the card drops its pan and lifts the cash", lambda: meshes([bal, stack, crd]), T_LAY + 0.2, DUR)])
+
+
+SHOTS = {1: shot1, 2: shot2, 3: shot3, 4: shot4, 5: shot5}

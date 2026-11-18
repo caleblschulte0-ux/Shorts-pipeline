@@ -22,7 +22,7 @@ def coin_proto(name="card coin proto", r=0.016, h=0.004):
     return K.cyl(name, (0, 0, -5), r, h, gold(), v=24, bev=0.0012)
 
 
-def coins(n, name="coin", r=0.016, h=0.004):
+def coins(n, name="coin", r=0.02, h=0.005):
     """n loose coins parked out of sight (props.pour moves them)"""
     proto = coin_proto(name + " proto", r, h)
     out = []
@@ -192,5 +192,5 @@ def lever(name, base, length=0.09):
     K.box(name + " housing", (base[0], base[1], base[2] + 0.012), (0.05, 0.04, 0.024), _mat("lever housing", "#2E3136", rough=0.4, metal=0.4), bev=0.004)
     piv = K.empty(name + " pivot", (base[0], base[1], base[2] + 0.024))
     K.cyl(name + " arm", (0, 0, length / 2), 0.004, length, brass, v=12, bev=0, parent=piv)
-    K.sph(name + " knob", (0, 0, length), 0.012, _mat("lever knob", "#B8241C", rough=0.35), parent=piv)
+    K.sph(name + " knob", (0, 0, length), 0.016, _mat("lever knob", "#B8241C", rough=0.35), parent=piv)
     return piv, Vector((0, 0, length))
