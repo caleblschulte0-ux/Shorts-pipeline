@@ -20921,14 +20921,41 @@
       "replay_count": 0
     },
     "clip-20261118-6": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-db4eebc961be8603",
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/tYvSyKmXwpo",
       "title": "Jynxzi Elden Ring boss grind ends with a four-hour win",
       "kind": "story",
-      "ts": "2026-11-18T13:45:52.744290+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-18T13:46:03.136265+00:00",
+      "uploaded_at": "2026-11-18T13:46:03.136282+00:00",
+      "publish_at": "2026-11-19T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261118-jynxzi-elden-ring-boss-grind-ends-with-a-four-ho-cc9094b4",
+        "tiktok": "queued for 2026-11-19T00:30:00Z"
+      },
+      "story_key": "story-db4eebc961be8603",
+      "member_keys": [
+        "https://www.twitch.tv/jynxzi/clip/DullAuspiciousPeppermintLitty-4pJjLnPSAsxRSbZD",
+        "https://www.twitch.tv/jynxzi/clip/StylishGlamorousStorkPeanutButterJellyTime-tgfmua9duHEzxZlp",
+        "https://www.twitch.tv/jynxzi/clip/BoldCoweringMuleNomNom-usi5gO99Wcq5pUY5",
+        "https://www.twitch.tv/jynxzi/clip/TolerantHumbleEchidnaTheTarFu-sdCuo3dMhNzJZt7h"
+      ],
+      "streamer": "jynxzi",
+      "who": [
+        "jynxzi"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 4,
+      "story_structure": "escalation",
+      "duration_s": 55.0,
+      "narrative_score": 82,
+      "narrative_summary": "Jynxzi grinds through Elden Ring DLC bosses solo, celebrating beating Rellana, begging for no third phase on a new boss, soloing a Frenzied Flame boss, and finally screaming 'Four hours!' when he beats the Putrescent Knight.",
+      "revision_count": 1,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 3,
+      "replay_count": 0
     }
   }
 }

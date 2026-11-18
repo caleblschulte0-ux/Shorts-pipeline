@@ -3,169 +3,6 @@
     {
       "date": "20261111",
       "dry_run": false,
-      "ts": "2026-11-11T13:07:54+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 134,
-        "with_retention": 121,
-        "with_curve": 15,
-        "fetched_at": "2026-11-11T12:44:49.620921+00:00"
-      },
-      "brain": {
-        "ok": 18,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261111-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "split",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "Hyper reaction, unclear cause",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "blue face, hyper, unclear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Deadblossomjesse Jumps Up And Down Screaming \"I'm Dumping\" And Gets Weird"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Hook caption sits close under the chin and over the mic in some frames, but it does not cover the face",
-                "Face drifts toward the left edge in a few frames and the hand sweeping across at ~17-21s briefly blocks the view, which "
-              ]
-            }
-          },
-          "took_s": 237.1
-        },
-        {
-          "slug": "clip-20261111-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.10 < 0.35 (static menu, singing, no event)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.3,
-              "why": "Song-like title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.1,
-              "why": "static menu, singing, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 64.5
-        },
-        {
-          "slug": "clip-20261111-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261111-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261111-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261111-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261111",
-      "dry_run": false,
       "ts": "2026-11-11T13:12:51+00:00",
       "feedback": {
         "snapshot": true,
@@ -6970,6 +6807,308 @@
             }
           },
           "took_s": 22.4
+        }
+      ]
+    },
+    {
+      "date": "20261118",
+      "dry_run": false,
+      "ts": "2026-11-18T13:46:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 128,
+        "with_retention": 115,
+        "with_curve": 14,
+        "fetched_at": "2026-11-18T08:46:26.193567+00:00"
+      },
+      "brain": {
+        "ok": 26,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261118-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261118-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Vague title; Kai Cenat searchable, unkno",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA VI gameplay, 6-star chase, named str",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Loses It After Hitting 6 Stars In GTA 6 As Lucia"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "The facecam shows twice, once in the top panel and again in the game's corner inset. This is a little redundant but look",
+                "At 1.5s a game subtitle ('professi') is cut off in the top facecam panel.",
+                "The opening game footage is very dark."
+              ]
+            }
+          },
+          "took_s": 271.0
+        },
+        {
+          "slug": "clip-20261118-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "Famous name, GTA VI hype, visible reacti",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Searchable GTA VI reaction, but no clear",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat's Crazy Reaction to GTA VI Has Everyone Talking"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The game panel is fairly dark and small, but it is readable.",
+                "The top face crop shows a stream overlay at the edge in some frames, which is minor."
+              ]
+            }
+          },
+          "took_s": 215.1
+        },
+        {
+          "slug": "clip-20261118-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague reaction, known streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Animated storytelling, drama accusation,",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Word captions sit close to the chin and mouth in a few frames (e.g. 'YEAH,' at 6.3s), but they never cover the face",
+                "The first caption, 'PRESSES THE PUSH', looks like a mis-transcription"
+              ]
+            }
+          },
+          "took_s": 154.6
+        },
+        {
+          "slug": "clip-20261118-5",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 140,
+                "refused_shown": 5,
+                "scouted": [],
+                "vod_arcs": 304,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2855,
+                "pool_with_vod": 1977,
+                "arc_sizes": [
+                  3,
+                  3,
+                  6,
+                  6,
+                  2,
+                  4,
+                  3,
+                  3,
+                  2,
+                  6
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "2xrakai@momentbigvictoriousstorkcoolstorybro-lcsby0q814b7s4u",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "brattygbaby@momentbrainykathishhamburgeryoudontsay-u1dy6qng4",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1012.0
+        },
+        {
+          "slug": "clip-20261118-6",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 141,
+                "refused_shown": 5,
+                "scouted": [
+                  {
+                    "premise": "Jynxzi grinds through Elden Ring bosses: finally beats Rellana, begs for no third phase, conquers Midra, and finally bea",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "At the NMS Boxing event, Jasontheween takes a fall, the knockdown gets reacted to, then his girl walks in and chat loses",
+                    "shape": "multi_streamer",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Kai Cenat's stream gets physical: muscle slap, a sumo match, getting smacked, and finally hitting his cameraman after he",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Streamer Awards night: Ari's speech interrupted, Speed wins Streamer of the Year, and Jynxzi wins Gamer of the Year.",
+                    "shape": "multi_streamer",
+                    "n": 4
+                  }
+                ],
+                "vod_arcs": 304,
+                "moments": 40,
+                "candidates": 511,
+                "pool": 2855,
+                "pool_with_vod": 1977,
+                "arc_sizes": [
+                  3,
+                  3,
+                  6,
+                  6,
+                  2,
+                  4,
+                  3,
+                  3,
+                  2,
+                  6
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                }
+              ]
+            }
+          },
+          "took_s": 2557.2
         }
       ]
     }
