@@ -1,0 +1,94 @@
+{
+ "slug": "vanilla-hand-pollinated-3d",
+ "title": "Every Vanilla Flower Is Pollinated By Hand",
+ "voice": "am_fenrir",
+ "note": "The fifth 3D short (2026-11-18, caaleb: 'Pick a new idea. Pick a better idea.' after helium was dropped). The saffron formula (our best 3D short: an everyday thing, why it costs what it does, the hands behind it) on a story with a stronger twist. Every beat a counter or bench close-up with the prop big in front of Data (data-3d-tabletop-beats). One number at most per beat. Every claim is in 'sources' with the source's own wording.",
+ "lines": [
+  "Every vanilla flower on Earth has to be pollinated by hand, with a stick.",
+  "Each flower opens for about one day. Miss it, and that flower never turns into a vanilla bean.",
+  "Then every green bean spends about six months sweating in boxes and drying in the sun until it turns black.",
+  "That's why about ninety-five percent of vanilla flavor never touches a bean. Most of it is made from wood.",
+  "Real vanilla is years of patient hands. Next time, check your bottle. Is yours real?"
+ ],
+ "draft_windows": [],
+ "sources": [
+  {
+   "claim": "Every vanilla flower is pollinated by hand",
+   "says": "As a result, all vanilla grown today is pollinated by hand.",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "With a stick",
+   "says": "A small splinter of wood or a grass stem is used to lift the rostellum",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Each flower opens for about one day",
+   "says": "The flowers of V. planifolia last about one day, sometimes less",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Miss it and it never becomes a bean",
+   "says": "Each flower must be hand-pollinated within 12 hours of opening.",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "About six months of curing in boxes",
+   "says": "Conditioning is performed by storing the pods for five to six months in closed boxes",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "About 95% of vanilla flavor is not from the bean; it is made from wood",
+   "says": "An estimated 95% of \"vanilla\" products are artificially flavored with vanillin derived from lignin",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Years of work (three years before a vine flowers)",
+   "says": "Three years are required for cuttings to grow enough to produce flowers and subsequent pods.",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Labour is why it is expensive",
+   "says": "because growing the vanilla seed pods is labor-intensive",
+   "url": "https://en.wikipedia.org/wiki/Vanilla",
+   "publisher": "Wikipedia",
+   "year": 2026
+  }
+ ],
+ "sets": [
+  "vanilla_farm",
+  "plantation",
+  "sorting_room",
+  "warehouse",
+  "store"
+ ],
+ "sets_why": "the vine where the flower is pollinated, the bench where a missed flower drops, the room where the beans cure, the plant where wood becomes flavor, back to the shop shelf where your bottle sits",
+ "ideas": [
+  "one touch of his stick swells the flower into a long green bean",
+  "the hourglass runs dry and the flower he missed drops off the vine",
+  "calendar pages tear off and fall as the green beans he turns go black",
+  "he cranks a log into a grinder and a bottle of vanilla pours out the spout",
+  "he snaps the real bean and black seeds spill beside the fake bottle"
+ ],
+ "storyboard": [
+  "1 hook (vanilla_farm): close at a bench under a vanilla vine, one big pale yellow orchid flower hanging right in front of Data at chest height; he lifts a thin bamboo stick, pokes it into the flower and presses with his thumb; at once the flower's green stem swells and grows into a long green vanilla bean hanging from the vine; he holds the stick up to us, amazed.",
+  "2 one day (plantation): on the packing bench a big hourglass beside a potted vine with one open yellow flower; the sand pours down and runs out while Data, stick in hand, is busy with another flower; the moment the sand is gone the open flower drops off the vine onto the bench; he turns, reaches with the stick too late and holds his empty hand out over it.",
+  "3 six months (sorting_room): behind a farmhouse table covered in a blanket of bright green beans, Data rolls the beans over with both hands, row by row; a big wall calendar behind the table tears off page after page, the pages falling to the floor, and the beans go from green to brown to shiny black under his hands; he lifts one black bean up to us.",
+  "4 made from wood (warehouse): a small steel grinder on a factory bench right in front of Data; he feeds a wooden log into its hopper and turns its crank; the log sinks in and a brown stream pours from the spout into a bottle labelled vanilla, filling it; beside it one real black bean lies alone on the bench; he holds the full bottle up next to the bean.",
+  "5 payoff (store): close at the shop counter, a little bottle of vanilla flavor and one real black bean side by side right in front of Data; he picks up the bean, splits it open with his thumbs and a heap of tiny black seeds spills onto the counter beside the bottle; he holds the open bean in one hand, points to the bottle with the other and looks at us, asking."
+ ]
+}
