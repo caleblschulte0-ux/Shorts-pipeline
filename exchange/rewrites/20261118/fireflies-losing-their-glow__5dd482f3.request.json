@@ -1,0 +1,156 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "fireflies-losing-their-glow__5dd482f3",
+ "filed": "2026-11-18T18:41:47Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "fireflies-losing-their-glow",
+ "current": {
+  "title": "Where Did All The Fireflies Go?",
+  "hook": "Your summer nights are going dark: 14 percent of firefly species threatened.",
+  "closing": "Dim your porch light this summer. A darker night is the one thing you can give them.",
+  "question": "Noticed fewer fireflies where you grew up?",
+  "segments": [
+   {
+    "topic": "Fireflies lose the dark",
+    "say": "The night sky got nearly three times brighter in a decade. Fireflies talk in flashes, so that's a harder place to be seen."
+   },
+   {
+    "topic": "Fireflies at risk",
+    "say": "Officially, one in seven firefly species is threatened. Add the ones we know too little about, and it's closer to a third."
+   },
+   {
+    "topic": "Fireflies nobody studied",
+    "say": "Scientists haven't studied about one in four firefly species at all. For those, nobody can say yet how safe they are."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Fireflies lose the dark",
+   "say": "The night sky got nearly three times brighter in a decade. Fireflies talk in flashes, so that's a harder place to be seen.",
+   "role": "1 · THE SKY IS BRIGHTER",
+   "data": {
+    "file": "firefly_light_pollution_index.json",
+    "unit": "index",
+    "title": "Global night-sky brightness index (2011 = 100)",
+    "points": [
+     {
+      "label": "2011",
+      "value": 100,
+      "period": "2011"
+     },
+     {
+      "label": "2013",
+      "value": 120,
+      "period": "2013"
+     },
+     {
+      "label": "2015",
+      "value": 144,
+      "period": "2015"
+     },
+     {
+      "label": "2017",
+      "value": 173,
+      "period": "2017"
+     },
+     {
+      "label": "2019",
+      "value": 208,
+      "period": "2019"
+     },
+     {
+      "label": "2022",
+      "value": 274,
+      "period": "2022"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Fireflies at risk",
+   "say": "Officially, one in seven firefly species is threatened. Add the ones we know too little about, and it's closer to a third.",
+   "role": "2 · THE COST",
+   "data": {
+    "file": "firefly_extinction_risk_share.json",
+    "unit": "percent",
+    "title": "Share of North American firefly species at risk of extinction",
+    "points": [
+     {
+      "label": "Confirmed threatened (2021 assessment)",
+      "value": 14
+     },
+     {
+      "label": "Projected at risk, data-deficient included",
+      "value": 29
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Fireflies nobody studied",
+   "say": "Scientists haven't studied about one in four firefly species at all. For those, nobody can say yet how safe they are.",
+   "role": "3 · THE BLIND SPOT",
+   "data": {
+    "file": "firefly_species_assessed_share.json",
+    "unit": "count",
+    "title": "Firefly species formally assessed vs. still unstudied",
+    "points": [
+     {
+      "label": "Species assessed",
+      "value": 132
+     },
+     {
+      "label": "Total described species",
+      "value": 172
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The title is a generic search-style question, and the hook rests on a vague 'summer nights going dark' with a stat-based 'percent threatened' line; it names no concrete surprise, contradiction or scale the viewer can picture."
+ ],
+ "reasons": [
+  "premise: brain: The title is a generic search-style question, and the hook rests on a vague 'summer nights going dark' with a stat-based 'percent threatened' line; it names no concrete surprise, contradiction or scale the viewer can picture."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-18T16:58:18Z",
+ "updated": "2026-11-18T18:41:47Z",
  "open": [
+  {
+   "id": "fireflies-losing-their-glow__5dd482f3",
+   "slug": "fireflies-losing-their-glow",
+   "filed": "2026-11-18T18:41:47Z",
+   "why": [
+    "premise: brain: The title is a generic search-style question, and the hook rests on a vague 'summer nights going dark' with a stat-based 'percent threatened' line; it names no concrete surprise, contradiction or scale the viewer can picture."
+   ],
+   "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
+   "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__ef8ed986",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-18T18:41:46Z",
+   "why": [
+    "premise: brain: It names the subject plainly and the freezing fact is surprising, but the hook is a bare statistic restated as a headline, with no threat, stakes, or belief it turns over, so a viewer has no reason to care."
+   ],
+   "request": "exchange/rewrites/20261118/frog-freezes-and-revives__ef8ed986.request.json",
+   "answer_path": "exchange/rewrites/20261118/frog-freezes-and-revives__ef8ed986.answer.json"
+  },
+  {
+   "id": "measles-ninety-five-rule__e5720400",
+   "slug": "measles-ninety-five-rule",
+   "filed": "2026-11-18T18:41:45Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified claim that kindergartens are already below the 95% herd immunity threshold, making it insufficiently concrete and provably true."
+   ],
+   "request": "exchange/rewrites/20261118/measles-ninety-five-rule__e5720400.request.json",
+   "answer_path": "exchange/rewrites/20261118/measles-ninety-five-rule__e5720400.answer.json"
+  },
   {
    "id": "map-distortion-true-size__bc5c8508",
    "slug": "map-distortion-true-size",
@@ -900,16 +930,6 @@
    ],
    "request": "exchange/rewrites/20261009/youth-sports-dropout__00a41695.request.json",
    "answer_path": "exchange/rewrites/20261009/youth-sports-dropout__00a41695.answer.json"
-  },
-  {
-   "id": "fireflies-losing-their-glow__a9f6a040",
-   "slug": "fireflies-losing-their-glow",
-   "filed": "2026-10-09T00:20:16Z",
-   "why": [
-    "premise: brain: The premise offers a modest statistic without a clear reversal of a common viewer expectation, making it too weak for acceptance."
-   ],
-   "request": "exchange/rewrites/20261009/fireflies-losing-their-glow__a9f6a040.request.json",
-   "answer_path": "exchange/rewrites/20261009/fireflies-losing-their-glow__a9f6a040.answer.json"
   },
   {
    "id": "permafrost-thaw__a94a08e2",
