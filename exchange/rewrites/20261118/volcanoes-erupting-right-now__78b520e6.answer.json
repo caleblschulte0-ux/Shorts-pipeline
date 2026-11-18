@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "volcanoes-erupting-right-now__78b520e6",
+  "slug": "volcanoes-erupting-right-now",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "45 Volcanoes Can Be Erupting While Earth Looks Quiet",
+  "hook": "45 volcanoes can erupt while most of Earth looks calm.",
+  "closing": "Volcanic activity never really stops; it only shifts location.",
+  "question": "Did you know one erupts today?",
+  "segments": [
+    {
+      "topic": "Volcanoes Erupting Now",
+      "say": "About 45 volcanoes are erupting now. A calm skyline hides a planet that never fully settles."
+    },
+    {
+      "topic": "Volcano Ring",
+      "say": "The Pacific Ring of Fire holds 75 percent of active volcanoes. Most danger crowds one ocean."
+    },
+    {
+      "topic": "Volcano Danger List",
+      "say": "Only 16 are designated Decade Volcanoes. The highest-risk watch list is surprisingly short."
+    }
+  ]
+}
