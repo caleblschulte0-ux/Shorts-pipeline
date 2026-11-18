@@ -289,9 +289,12 @@ if still is not None: frames = [min(NF, F(float(still)))]
 elif fr: a, b = fr.split("-"); frames = [f for f in range(int(a), int(b) + 1, step) if 1 <= f <= NF]
 elif os.environ.get("KEYS"): k = max(2, int(os.environ["KEYS"])); frames = sorted({1 + round((NF - 1) * (0.08 + 0.9 * i / (k - 1))) for i in range(k)})
 else: frames = list(range(1, NF + 1, step))
+import glob as _glob   # 2026-11-18: an old still of a REWRITTEN shot was silently kept and looked at as the new one
+SOURCE_MTIME = max(os.path.getmtime(f) for f in [os.path.join(STORY_DIR, "shots.py"), os.path.join(STORY_DIR, "script.json")]
+                   + _glob.glob(os.path.join(HERE, "*.py")) + _glob.glob(os.path.join(os.path.dirname(HERE), "*.py")))
 print(f"SHOT {SHOT} T0={T0:.2f} T1={T1:.2f} NF={NF} G0={G0}")
 for f in frames:
     path = os.path.join(OUT, f"f{G0 + f:04d}.png")
-    if os.path.exists(path): continue
+    if os.path.exists(path) and os.path.getmtime(path) > SOURCE_MTIME: continue   # a frame older than the code is stale
     t0 = time.time(); sc.frame_set(f); sc.render.filepath = path; bpy.ops.render.render(write_still=True)
     print(f"FRAME {G0 + f} {time.time() - t0:.1f}", flush=True)

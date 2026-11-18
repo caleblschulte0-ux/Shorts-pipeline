@@ -7,8 +7,8 @@ head).
   1 hook      store         coins pour out of his hand and pile up under a giant gold credit card
   2 the fee   warehouse     he taps the card reader and every price tag on the boxes shoots up
   3 $149      sorting_room  he tips his piggy bank and its coins pour out onto a gold card
-  4 uphill    bank          he pulls a lever and coins climb a ramp from a tiny shack to a mansion
-  5 payoff    store         he lays a gold card on a scale and it outweighs a whole stack of cash
+  4 uphill    bank          coins lob out of a poor family's cup and fill a rich family's jar
+  5 payoff    store         his cash flies note by note into a gold card, and the card grows
 
 Run through the shot harness (store/shots.py, STORY=cardrewards). The props are store/card_kit.py."""
 import card_kit as CK
@@ -246,130 +246,104 @@ def shot3():
 
 # ================================================================ SHOT 4: it flows uphill
 def shot4():
-    """HE PULLS A LEVER AND COINS CLIMB A RAMP FROM A TINY SHACK UP TO A MANSION. On a dark bank counter: a tin shack
-    low at the front left, a steep chunky ramp running diagonally up across the frame to a tall marble plinth on the
-    right, a white mansion on top of it. Data pulls a big brass lever toward himself, and fat coins climb the ramp one
-    after another, against gravity, and stack up in front of the mansion. He looks at us, unimpressed.
-    (Round 1, 40: a shallow gold stick of a ramp, a mansion in front of his coat, the lever off frame. The 180: the
-    rise is the picture now, the lever is in his near hand, the mansion stands off his body.)"""
+    """THE POOR FAMILY'S SHACK EMPTIES INTO THE RICH FAMILY'S JAR. On a dark bank counter: a tiny ribbed tin shack at
+    the left, a tall white mansion at the right with a clear jar standing just left of it.
+    Coin after coin lobs out of the shack's door, arcs UP across the counter and drops into the jar, which fills to the brim. Data
+    watches them go, then looks at us, unimpressed.
+    (2026-11-18 second rewrite, after a lever, a button and a ramp all scored 40-68: the judge never read the ramp or
+    the button on a phone. One container empties into another; no hand in it. It is shot 1's coin arc, which passed.)"""
     where = place("bank")
     TOP = 0.36
     counter("bank counter", TOP, store=False)
     data = load_data(); data.place(0.0, 0.10, 0)
-    L, R = sides(data)
-    PL = Vector((0.115, -0.1, TOP)); PH = 0.13
-    plinth = K.box("mansion plinth", (PL.x, PL.y, TOP + PH / 2), (0.11, 0.12, PH), K.mat("plinth marble", "#E9E3D8", rough=0.2), bev=0.004)
-    K.box("plinth cap", (PL.x, PL.y, TOP + PH + 0.004), (0.12, 0.13, 0.008), CK._mat("plinth gold", "#C9A04A", rough=0.3, metal=0.9), bev=0.002)
-    man = CK.mansion("mansion", (PL.x, PL.y + 0.02, TOP + PH + 0.008), s=0.62)
-    shk = CK.shack("shack", (-0.135, -0.2, TOP), s=1.05)
-    A = Vector((-0.085, -0.19, TOP + 0.01)); B = Vector((0.06, -0.135, TOP + PH + 0.006))
-    ramp = CK.chute("ramp", A, B, w=0.07, color="#C98A3E")
-    for k, u in enumerate((0.35, 0.7)):                    # legs under the ramp, so it is a built thing on the counter
-        p = A.lerp(B, u); K.box(f"ramp leg {k}", (p.x, p.y, (TOP + p.z) / 2), (0.01, 0.01, p.z - TOP), CK._mat("chute tin", "#A9AEB3", rough=0.35, metal=0.8), bev=0.001)
-    PILE = Vector((PL.x - 0.03, PL.y - 0.03, TOP + PH + 0.008))
-    T_PULL1 = 0.5                                          # no hand action: the coins start on their own
-    N = 26
-    T0, T1 = T_PULL1 + 0.05, DUR * 0.82
-    sched = schedule(N, T0, T1 - 0.9, seed=4)
-    RIDE = 0.9
-    climbers = CK.coins(N, "climbing coin", r=0.024, h=0.007)
-    for o, ts in zip(climbers, sched):
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; u = (t - ts) / RIDE
-            if 0 <= u <= 1:
-                o.location = A.lerp(B, u) + Vector((0, 0, 0.026)); o.scale = (1, 1, 1)
-                o.rotation_euler = (math.pi / 2, 0, math.atan2(B.y - A.y, B.x - A.x) + u * 0)   # on its edge, rolling up
-            else:
-                o.location = A if u < 0 else B; o.scale = (0, 0, 0)
-            o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f); o.keyframe_insert("rotation_euler", frame=f)
-    pile = CK.coins(N, "pile coin", r=0.026, h=0.008)
-    hh = heap(PILE, 0.07, lambda t: 0.02 + 0.08 * min(1.0, max(0.0, (t - T0 - RIDE) / (T1 - T0))))
-    def land(x, y, t):
-        v = hh(x, y, t)
-        if v is not None: return TOP + PH + 0.008 + v
-        if abs(x - PL.x) < 0.08 and abs(y - PL.y) < 0.065: return TOP + PH + 0.008
-        if -0.45 < x < 0.45 and -0.39 < y < -0.01: return TOP + 0.002
-        return None
-    props.pour(pile, NF, [s + RIDE for s in sched], lambda t: B + Vector((0.012, 0.0, 0.02)), land,
-               kick_fn=lambda t: Vector((0.12, 0.02, 0.05)), seed=6)
+    shk = CK.shack("shack", (-0.13, -0.11, TOP), s=1.6)
+    man = CK.mansion("mansion", (0.155, -0.04, TOP), s=1.35, wide=0.5)
+    J = Vector((0.025, -0.165, TOP))
+    jar, RIM, RIN = CK.coin_jar("rich jar", tuple(J), r=0.056, h=0.15)
+    T0, T1 = 0.35, DUR * 0.85
+    N = 40
+    cs = CK.coins(N, "uphill coin", r=0.02, h=0.006)
+    sched = schedule(N, T0, T1, seed=4)
+    MOUTH = Vector((-0.13 + 0.07 * 1.6 * 0.15, -0.11 - 0.06 * 1.6 / 2 - 0.01, TOP + 0.03))   # out of the shack's door
+    level = lambda t: 0.012 + (RIM - 0.035) * min(1.0, max(0.0, (t - T0) / (T1 - T0)))
+    rnd = random.Random(9)
+    spots = [(rnd.uniform(0, 6.28), RIN * 0.75 * math.sqrt(rnd.uniform(0, 1))) for _ in range(N)]
+    CK.arc_into(cs, NF, FPS, sched, MOUTH, lambda i, t: J + Vector((math.cos(spots[i][0]) * spots[i][1], math.sin(spots[i][0]) * spots[i][1], level(t))),
+                flight=0.65, apex=0.05)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(A, 0.4, max_yaw=18, max_pitch=12)
-    data.look_at(PILE, T0 + 0.5, max_yaw=18, max_pitch=12)
-    data.look_at(US, T1 - 0.5, max_yaw=20)
+    data.look_at(MOUTH, 0.3, max_yaw=18, max_pitch=12)
+    data.look_at(J + Vector((0, 0, 0.1)), 1.4, max_yaw=18, max_pitch=12)
+    data.look_at(US, T1 - 0.6, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("determined", 0.3, T1 - 0.6)
-    data.expression("wry", T1 - 0.5, DUR + 1.0, blend=0.25)
+    data.expression("determined", 0.3, T1 - 0.7)
+    data.expression("neutral", T1 - 0.6, DUR + 1.0, blend=0.25)
+    data.perform("wry", T1 - 0.55, hold=1.0, pace=0.7, arms=False)
     data.blink(2.2)
     data.finish()
     soft_key("bank key", (-0.55, -1.0, 1.1), (0.0, -0.14, TOP + 0.08), energy=24, size=36)
-    soft_key("mansion key", (0.6, -0.8, 0.9), (PL.x, PL.y, TOP + PH + 0.05), energy=10, size=18)
-    soft_key("ramp key", (-0.3, -0.7, 0.7), (-0.05, -0.17, TOP + 0.06), energy=8, size=22)
-    camera(Vector((-0.01, -0.72, 0.52)), Vector((-0.01, -0.05, 0.57)), Vector((-0.01, -0.67, 0.52)), Vector((-0.01, -0.05, 0.57)),
-           T1, (0.0, -0.15, 0.44), lens=24, fstop=4.0)
+    soft_key("jar key", (0.6, -0.8, 0.9), (J.x, J.y, TOP + 0.1), energy=12, size=18)
+    camera(Vector((0.0, -0.7, 0.52)), Vector((0.0, -0.05, 0.56)), Vector((0.0, -0.65, 0.52)), Vector((0.0, -0.05, 0.56)),
+           T1, (0.02, -0.15, 0.45), lens=24, fstop=4.0)
     return dict(**where, data=data, rest=1, grips=(),
-                conseq=[("coins climb the ramp from the shack up to the mansion", lambda: meshes(climbers) + meshes([shk, ramp]), T0 + 0.3, T1),
-                        ("the pile grows in front of the mansion", lambda: meshes(pile) + meshes([man, plinth]), T0 + RIDE, DUR, {"hero": True})])
+                conseq=[("coins arc out of the poor shack and fill the rich jar", lambda: meshes(cs) + meshes([jar]), T0 + 0.6, DUR, {"hero": True}),
+                        ("the shack and the mansion both stay in view", lambda: meshes([shk, man]), 0.0, DUR)])
 
 
 # ================================================================ SHOT 5: the payoff
 def shot5():
-    """ONE GOLD CARD DROPS ON A SCALE AND OUTWEIGHS A WHOLE STACK OF CASH. Back at the checkout: a brass balance with
-    silver pans stands BESIDE him (never in front of his coat), a fat stack of cash weighing its left pan down. A big
-    gold card drops onto the right pan, tilted to the lens, and the beam swings hard the other way, flinging the
-    cash up. He jolts, then looks at us: cash or card?
-    (2026-11-18 rewrite after 66: the card was a flat sliver laid by a mitten, the scale merged with his coat, the
-    tilt was mild and the shot ended on a stare. No hand action now: the card falls, the swing is big, he acts.)"""
+    """HIS CASH FLIES NOTE BY NOTE INTO A GOLD CARD, AND THE CARD GROWS. Back at the checkout: a fat stack of cash at
+    the left, a big gold rewards card standing upright at the right. One note after another lifts off the stack,
+    arcs across and vanishes into the card; the stack shrinks and the card swells. He looks at us: cash or card?
+    (2026-11-18 second rewrite, after a balance scale scored 56-66: a scale's tilt never read as "the card wins". A
+    stack that shrinks and a card that grows needs no reading.)"""
     where = store_set()
-    TOP = 0.3
+    TOP = 0.36
     counter("checkout counter", TOP)
-    data = load_data(); data.place(-0.07, 0.10, 0)
-    BX, BY, ARM, H = 0.07, -0.08, 0.13, 0.25
-    bal, beam, pans = SK.balance("scale", (BX, BY, TOP), arm=ARM, h=H, pan_r=0.062)
-    steel = CK._mat("scale pan steel", "#D5D9DE", rough=0.25, metal=0.9)
-    for o in bpy.data.objects:
-        if o.name.startswith("scale pan "): o.data.materials.clear(); o.data.materials.append(steel)
-    T_LAY = 1.4
-    def tilt(t):
-        if t < T_LAY: return math.radians(-18)
-        u = (t - T_LAY) / 0.3
-        if u < 1: return math.radians(-18 + 54 * ease(u))
-        return math.radians(36 - 5 * math.sin(min(1.0, (u - 1) / 1.2) * math.pi) * math.exp(-(u - 1)))
+    data = load_data(); data.place(0.0, 0.08, 0)
+    S = Vector((-0.1, -0.14, TOP))
+    stack = SK.cash_stack("cash stack", tuple(S), n=60); stack.scale = (1.35, 1.35, 1.0)
+    CARD = Vector((0.09, -0.06, TOP))
+    CK.card_stand("card stand", tuple(CARD), w=0.19)
+    crd = CK.card("fat card", (CARD.x, CARD.y - 0.006, TOP + 0.004), w=0.23, h=0.145, upright=True)
+    T0, T1 = 0.4, DUR - 0.25
+    N = 14
+    bs = CK.bills(N, "flying note")
+    sched = schedule(N, T0, T1 - 0.4, seed=5)
+    H0 = 0.0012 * 60
+    def stack_h(t): return 1.0 - 0.7 * min(1.0, max(0.0, (t - T0) / (T1 - T0)))
+    def card_s(t): return 1.0 + 0.4 * min(1.0, max(0.0, (t - T0 - 0.4) / (T1 - T0)))
     for f in range(1, NF + 1):
-        beam.rotation_euler = (0, tilt((f - 1) / FPS), 0); beam.keyframe_insert("rotation_euler", frame=f)
-    SK.level_pans(beam, pans, NF)
-    panL = bpy.data.objects["scale pan -1"]; panR = bpy.data.objects["scale pan 1"]
-    def pan_top(o, t):
-        sc.frame_set(F(t)); bpy.context.view_layer.update()
-        return o.matrix_world.translation + Vector((0, 0, 0.005))
-    tops = {o.name: [pan_top(o, (f - 1) / FPS) for f in range(1, NF + 1)] for o in (panL, panR)}
-    at = lambda o, t: tops[o.name][min(NF - 1, max(0, F(t) - 1))]
-    stack = SK.cash_stack("cash on the scale", tuple(at(panL, 0.0)), n=40)
-    follow(stack, lambda t: at(panL, t), 0.0, DUR)
-    crd = CK.card("scale card", (0, 0, 0), w=0.15, h=0.095)
-    crd.rotation_euler = (math.radians(55), 0, 0)               # tilted to the lens: a card, not a sliver
-    DROP0 = T_LAY - 0.45
-    def card_at(t):
-        if t < DROP0: return at(panR, 0.0) + Vector((0, 0, 0.6))  # above the frame
-        if t < T_LAY:
-            u = (t - DROP0) / (T_LAY - DROP0); return at(panR, T_LAY) + Vector((0, 0, 0.035 + 0.45 * (1 - u * u)))
-        return at(panR, t) + Vector((0, 0, 0.035))
-    follow(crd, card_at, 0.0, DUR)
+        t = (f - 1) / FPS
+        stack.scale = (1.35, 1.35, stack_h(t)); stack.keyframe_insert("scale", frame=f)
+        s_ = card_s(t); crd.scale = (s_, s_, s_); crd.keyframe_insert("scale", frame=f)
+    INTO = CARD + Vector((0.0, -0.02, 0.07))
+    for o, ts in zip(bs, sched):
+        p0 = S + Vector((0, 0, H0 * stack_h(ts) + 0.005)); FL = 0.5
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; u = (t - ts) / FL
+            if 0 <= u <= 1:
+                p = p0.lerp(INTO, u) + Vector((0, 0, 0.09 * math.sin(math.pi * u)))
+                o.location = p; o.rotation_euler = (math.radians(70) * u, 0, math.radians(15) * math.sin(math.pi * u))
+                k = 1.0 if u < 0.8 else max(0.0, (1 - u) / 0.2); o.scale = (k, k, k)
+            else:
+                o.location = p0; o.scale = (0, 0, 0)
+            o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f); o.keyframe_insert("scale", frame=f)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
-    data.look_at(at(panL, 0.0), 0.3, max_yaw=18, max_pitch=12)
-    data.look_at(at(panR, T_LAY), DROP0, max_yaw=18, max_pitch=12)
-    data.look_at(US, T_LAY + 0.7, max_yaw=20)
+    data.look_at(S, 0.3, max_yaw=18, max_pitch=12)
+    data.look_at(CARD + Vector((0, 0, 0.08)), 1.3, max_yaw=18, max_pitch=12)
+    data.look_at(US, 2.6, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("determined", 0.3, T_LAY)
-    back = data.perform("surprised", T_LAY + 0.05, hold=0.6, pace=0.6, arms=False)
-    data.expression("wry", back + 0.1, DUR + 1.0, blend=0.25)
-    data.blink(0.8)
+    data.expression("determined", 0.3, 2.5)
+    data.expression("wry", 2.6, DUR + 1.0, blend=0.25)
+    data.blink(1.0)
     data.finish()
-    soft_key("counter key", (-0.55, -1.0, 1.1), (BX, BY, TOP + 0.12), energy=22, size=32)
-    soft_key("scale key", (0.45, -0.8, 0.9), (BX, BY, TOP + 0.1), energy=9, size=20)
-    camera(Vector((0.0, -0.72, 0.52)), Vector((0.0, -0.05, 0.55)), Vector((0.0, -0.67, 0.52)), Vector((0.0, -0.05, 0.55)),
-           T_LAY + 0.8, (BX, BY, TOP + 0.14), lens=24, fstop=4.0)
+    soft_key("counter key", (-0.5, -1.0, 1.1), (0.0, -0.1, TOP + 0.08), energy=22, size=34)
+    soft_key("card key", (0.5, -0.8, 0.9), (CARD.x, CARD.y, TOP + 0.08), energy=10, size=18)
+    camera(Vector((0.0, -0.68, 0.5)), Vector((0.0, -0.05, 0.57)), Vector((0.0, -0.63, 0.5)), Vector((0.0, -0.05, 0.57)),
+           T1, (0.0, -0.12, 0.42), lens=24, fstop=4.0)
     return dict(**where, data=data, rest=1, grips=(),
-                conseq=[("the card drops its pan and flings the cash up", lambda: meshes([bal, stack, crd]), T_LAY + 0.2, DUR, {"hero": True})])
+                conseq=[("the cash stack shrinks note by note and the gold card swells", lambda: meshes([stack, crd]) + meshes(bs), T0 + 0.3, DUR,
+                         {"hero": True, "moves": lambda: meshes([crd])})])
 
 
 SHOTS = {1: shot1, 2: shot2, 3: shot3, 4: shot4, 5: shot5}

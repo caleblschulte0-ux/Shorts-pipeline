@@ -154,23 +154,28 @@ def chute(name, a, b, w=0.06, color="#A9AEB3"):
 
 
 def shack(name, loc, s=1.0):
-    """a tiny tin shack: grey corrugated walls, a slanted rust roof, a dark door"""
+    """a tiny tin shack: ribbed grey corrugated walls, a slanted rust roof with a patch, a dark door. 2026-11-18 judge:
+    plain brown walls read as "a cardboard box"; the ribs and the rust patch are what say poor tin shack."""
     root = K.empty(name, (0, 0, 0))
     W, D, H = 0.07 * s, 0.06 * s, 0.05 * s
-    K.box(name + " walls", (0, 0, H / 2), (W, D, H), _mat("shack tin", "#6B5B4C", rough=0.7, metal=0.3), bev=0.002, parent=root)
+    tin = _mat("shack tin", "#8E9398", rough=0.55, metal=0.5)
+    K.box(name + " walls", (0, 0, H / 2), (W, D, H), tin, bev=0.002, parent=root)
+    for k in range(9):                                   # corrugation ribs on the front
+        K.box(f"{name} rib {k}", (-W * 0.45 + W * 0.1125 * k, -D / 2 - 0.0012 * s, H / 2), (0.0025 * s, 0.002 * s, H * 0.98), tin, bev=0, parent=root)
     r = K.box(name + " roof", (0, 0, H + 0.006 * s), (W * 1.15, D * 1.15, 0.006 * s), _mat("shack rust", "#8A4B2A", rough=0.7), bev=0.001, parent=root)
     r.rotation_euler = (0, math.radians(10), 0)
-    K.box(name + " door", (W * 0.15, -D / 2 - 0.0005, H * 0.36), (W * 0.26, 0.001, H * 0.62), _mat("shack door", "#2B2420", rough=0.7), bev=0, parent=root)
+    K.box(name + " patch", (-W * 0.28, -D * 0.2, H + 0.0105 * s), (W * 0.3, D * 0.4, 0.002 * s), _mat("shack patch", "#5E6B4E", rough=0.8), bev=0, parent=root).rotation_euler = (0, math.radians(10), 0)
+    K.box(name + " door", (W * 0.15, -D / 2 - 0.0025 * s, H * 0.36), (W * 0.26, 0.001, H * 0.62), _mat("shack door", "#2B2420", rough=0.7), bev=0, parent=root)
     _place(root, loc, 0.0, None)
     return root
 
 
-def mansion(name, loc, s=1.0):
+def mansion(name, loc, s=1.0, wide=1.0):
     """a big white model mansion: two wings and a taller centre with columns, a grey roof, dark windows, a gold door"""
     root = K.empty(name, (0, 0, 0))
     wall = _mat("mansion white", "#F2EEE6", rough=0.45); roof = _mat("mansion roof", "#4C5157", rough=0.5)
     win = _mat("mansion window", "#2A3440", rough=0.15); trim = _mat("mansion gold", "#D2A84A", rough=0.3, metal=0.8)
-    W, D, H = 0.2 * s, 0.07 * s, 0.07 * s
+    W, D, H = 0.2 * s * wide, 0.07 * s, 0.07 * s      # wide < 1: a narrower house for a vertical frame
     K.box(name + " wings", (0, 0, H / 2), (W, D, H), wall, bev=0.002, parent=root)
     K.box(name + " centre", (0, -0.004 * s, H * 0.7), (W * 0.34, D * 1.05, H * 1.4), wall, bev=0.002, parent=root)
     K.box(name + " wing roof", (0, 0, H + 0.004 * s), (W * 1.04, D * 1.08, 0.008 * s), roof, bev=0.002, parent=root)
@@ -229,3 +234,56 @@ def button(name, loc, h=0.06):
     dome = K.sph(name + " dome", (0, 0, h + 0.008), 0.022, _mat("button red", "#D8261C", rough=0.3), parent=root, scale=(1, 1, 0.8))
     _place(root, loc, 0.0, None)
     return root, dome
+
+
+def coin_jar(name, loc, r=0.05, h=0.17):
+    """a tall clear jar that coins FILL (2026-11-18 rewrite of card rewards shot 4: a ramp and a button never read on
+    a phone; a jar filling to the brim does). Low-IOR glass so the coins inside read through it, a gold rim so its
+    top edge reads, a dark foot. Built about its own origin (its foot); returns (root, rim height, inner radius)."""
+    root = K.empty(name, (0, 0, 0))
+    g = bpy.data.materials.get("coin jar glass")
+    if not g:
+        g = bpy.data.materials.new("coin jar glass"); g.use_nodes = True; b = g.node_tree.nodes["Principled BSDF"]
+        b.inputs["Base Color"].default_value = (0.86, 0.94, 1.0, 1); b.inputs["Roughness"].default_value = 0.06
+        b.inputs["Transmission Weight"].default_value = 1.0; b.inputs["IOR"].default_value = 1.12   # 1.04 vanished; 1.25 refracted a blue blob into the empty jar on the bank's dark counter
+    K.cyl(name + " glass", (0, 0, h / 2 + 0.006), r, h, g, v=48, bev=0.004, parent=root)
+    K.cyl(name + " rim", (0, 0, h + 0.006), r * 1.03, 0.008, _mat("coin jar rim", "#C9A04A", rough=0.3, metal=0.9), v=48, bev=0.002, parent=root)
+    K.cyl(name + " foot", (0, 0, 0.003), r * 1.05, 0.006, _mat("coin jar foot", "#1C1B1E", rough=0.4), v=48, bev=0.002, parent=root)
+    K.cyl(name + " band", (0, 0, h * 0.55), r * 1.01, 0.012, _mat("coin jar band", "#C9A04A", rough=0.3, metal=0.9), v=48, bev=0.001, parent=root)
+    _place(root, loc, 0.0, None)
+    return root, h + 0.006, r * 0.82
+
+
+def lob(p0, p1, apex=0.06, g=9.8):
+    """the launch velocity that lobs a thrown thing from p0 into p1, peaking `apex` metres above p1: the arc a coin
+    or a note takes from one container into another (props.pour's kick_fn)"""
+    top = max(p0.z, p1.z) + apex
+    vz = math.sqrt(2 * g * (top - p0.z)); T = vz / g + math.sqrt(2 * (top - p1.z) / g)
+    return Vector(((p1.x - p0.x) / T, (p1.y - p0.y) / T, vz)), T
+
+
+def bills(n, name="flying bill", w=0.09, h=0.04):
+    """n banknotes (one shared printed mesh, props.bill_mesh) parked out of sight"""
+    import props
+    me = props.bill_mesh(name + " mesh", w=w, h=h); out = []
+    for i in range(n):
+        o = bpy.data.objects.new(f"{name} {i}", me); bpy.context.collection.objects.link(o); o.location = (0, 0, -5); out.append(o)
+    return out
+
+
+def arc_into(items, nf, fps, sched, mouth, target_fn, flight=0.45, apex=0.06, seed=0):
+    """each item flies on a clean parabola from `mouth` to target_fn(i, t_land) (a point INSIDE the receiving
+    container at its fill level then) and rests there: deterministic, so nothing misses the jar (props.pour's random
+    kick scattered a third of shot 4's coins onto the counter). Hidden (scale 0) until its time."""
+    rnd = random.Random(seed)
+    for i, (o, ts) in enumerate(zip(items, sched)):
+        p1 = Vector(target_fn(i, ts + flight)); spin = (rnd.uniform(-9, 9), rnd.uniform(-9, 9), rnd.uniform(-3, 3))
+        rest = (rnd.uniform(-0.3, 0.3), rnd.uniform(-0.3, 0.3), rnd.uniform(0, 6.28))
+        for f in range(1, nf + 1):
+            t = (f - 1) / fps; u = (t - ts) / flight
+            if u < 0: o.location = mouth; o.scale = (0, 0, 0)
+            elif u <= 1:
+                o.location = mouth.lerp(p1, u) + Vector((0, 0, (apex + 0.5 * abs(p1.z - mouth.z)) * 4 * u * (1 - u)))
+                o.rotation_euler = tuple(a * u * flight for a in spin); o.scale = (1, 1, 1)
+            else: o.location = p1; o.rotation_euler = rest; o.scale = (1, 1, 1)
+            o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f); o.keyframe_insert("scale", frame=f)

@@ -451,3 +451,187 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Keep every coin on the plinth top. Catch them in a tray or bowl beside the mansion so nothing spills onto the counter, and make the final heap tall beside the mansion, not in front of it.
 - better: Scale the mansion and plinth up about 1.5-2x, or move them nearer the lens, so the 'rich' end reads at a glance. Pull the shack out from behind the ramp so its door faces the camera.
 
+
+## 2026-11-18 18:48Z · storyboard · round 1 · storyboard gate loop7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 62 | 52, 62, 66 | FAIL |
+| 5 | 74 | 73, 74, 76 | PASS |
+
+**shot 4** (FAIL, 62, bar 70)
+
+- HARD: NOT THE POINT, frames 1-3: the poor-vs-rich contrast does not read. The 'tin shack' at left looks like a brown cardboard box behind the cup, and the mansion at right is almost entirely hidden behind the jar. A stranger would see coins moving from a can into a jar, not money flowing uphill from a poor home to a rich one.
+- HARD: BROKEN, frames 1-3: the model mansion, half of the shot's point, is cut off by the right edge of the frame and blocked by the jar for the whole shot.
+- HARD: BROKEN / NOT THE POINT: the tin shack can barely be seen. Only a sliver of brown roof shows behind the coin cup, cut by the left frame edge, in frames 1-3. The model mansion sits behind the jar and is cut by the right frame edge in frames 1-3. Without the shack and the mansion the poor-to-rich contrast doesn't read, so a stranger sees 'coins go from a cup into a jar', not money flowing uphill.
+- problem: The props that carry the meaning (the shack and the mansion) are hidden behind the cup and jar and cut by both frame edges.
+- problem: The cup reads as a white can with a red band, not a paper coin cup for the poor side, and nothing in or around it says 'poor'.
+- problem: Data's head fills the top two-thirds of the frame, while the cup and jar, which carry the action, are small along the bottom.
+- problem: Frame 1: Data's eyes roll off to the side, which reads goofy rather than watching the coins.
+- better: Lower the camera and pull the props forward toward the lens: put the shack beside the cup (not behind it) and the mansion beside the jar (not behind it), both whole and inside the frame.
+- better: Make the size contrast huge: a shack the size of the cup on the left against a mansion clearly taller than the jar on the right.
+- better: Make the coin arc bigger and higher so it crosses in front of Data's chest, and show more coins in the air at once in the middle frame.
+
+**shot 5** (PASS, 74, bar 70)
+
+- problem: The notes in flight (frames 1-2) are a faint green smear by Data's chest. The note lifting off and going into the card barely reads in stills.
+- problem: In frame 3 the swollen card crowds the right edge of the frame and covers Data's body up to his chin.
+- problem: The stack shrinks only modestly (about a third of its height). The trade between the shrinking stack and the swelling card could be bigger.
+
+
+## 2026-11-18 18:52Z · proof · round 1 · proof loop loop7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 5 | 60 | 48, 60, 72 | FAIL |
+
+**shot 5** (FAIL, 60, bar 70)
+
+- hard (one judge only): CONSEQUENCE: the cash stack never visibly shrinks. Its height is about the same in frame 1 (row 1) and frames 25-31 (row 4), so 'the stack shrinks' is not seen, only the card growing
+- hard (one judge only): BROKEN/NOT THE POINT: the flying notes are tiny green smudges, a few pixels on a phone, and mostly motion blur (frames 4-8, 10-24, 26-30). Several notes look stuck flat on the card face near the chip (frames 4, 5, 7, 10, 12, 18, 26, 30) instead of arcing over and vanishing into it. A viewer can't read 'money is flowing into the card'
+- hard (one judge only): BROKEN: as the camera pushes in, the cash stack is cut by the left frame edge for most of the second half (frames 17-31). By the end it is a sliver, so 'cash or card?' has no cash to compare
+- problem: The cash-into-card transfer barely reads. Each note is small (about a tenth of the frame width) and blurred. Most of the time it only shows up at the card's top-left corner (frames 4-8, 10-16, 26-30). The lift off the stack and the arc over are almost never visible: only a faint green streak in frames 17-19 and 24-27. On a phone it looks like notes appearing on top of the card, not flying out of the stack.
+- problem: Data does nothing. Both hands stay hidden behind the counter and card for all 31 frames, so the money moves by itself and he just watches. That breaks the channel rule that Data is the cause of the motion.
+- problem: The face is goofy in frames 2-5 and 9-11. The eyes don't match (one wide, one half-lidded and sliding sideways) and the eyes cross while watching the notes.
+- problem: The ending is flat. From about frame 17 Data stares at the lens with a neutral, slightly downturned mouth and no gesture. Nothing in the picture asks 'cash or card?', and notes keep going in right up to the last frame. The payoff never finishes: the stack is thinner but not gone, and there's no final moment where the card visibly swells.
+- problem: As the card grows (frames 24-31), its top edge sits at Data's chin and covers his whole body. He ends up as a floating head behind a slab.
+- better: Make Data the cause. Put his hand on the stack and have him flick or deal each note toward the card, or have him hold the card up like a vacuum. The money should move because he moves it.
+- better: Make the arc big and readable. Use fewer notes (5-6), each larger, on a high arc that lifts well above the stack and is held on screen about 0.3 s. Swap in a sharp note instead of a motion-blurred one, and add a small flash or bump on the card each time one lands.
+- better: Finish the payoff before the question. Empty the stack, then do one last clear swell or glint on the card. After that, Data turns to camera with eyebrows raised and an open-hand shrug toward each side (cash ←, card →) so the image itself asks the question.
+
+
+## 2026-11-18 18:58Z · storyboard · round 2 · storyboard gate loop7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 56 | 56, 56, 56 | FAIL |
+| 5 | 71 | 71, 71, 72 | PASS |
+
+**shot 4** (FAIL, 56, bar 70)
+
+- HARD: NOT THE POINT / BROKEN, frames 1-3: the model mansion is mostly hidden behind the jar and cut off by the right edge of the frame in every frame. The tin shack behind the cup looks like a brown cardboard box. Neither 'poor' nor 'rich' comes across, so a stranger sees coins moving from a cup into a jar, not money flowing uphill from the poor to the rich.
+- HARD: BROKEN: the model mansion is cut by the right frame edge and mostly hidden behind the jar in all 3 frames; only a white wall with windows shows, so the rich side never reads (frames 1-3)
+- HARD: NOT THE POINT: the tin shack is just a brown roof edge peeking out behind the cup, and the mansion is a sliver, so a stranger sees coins going from a cup into a jar but not poor to rich, which is the 'uphill' idea (frames 1-3)
+- HARD: NOT THE POINT, frames 1-3: the poor-versus-rich contrast doesn't come across. The tin shack is hidden behind the cup and all that shows is a brown slab, so it doesn't read as a shack. The mansion is mostly hidden behind the jar and cut off by the right frame edge. A stranger sees coins going from a white cup into a jar, but not that money is flowing from a poor home to a rich one.
+- HARD: BROKEN, frames 1-3: the model mansion, which carries the 'rich' half of the idea, is cut off by the right frame edge for the whole shot.
+- problem: The mansion is hidden behind the jar and cut off by the right edge of the frame. Only a white wall corner with windows shows.
+- problem: The tin shack sits behind the cup and reads as a box with a brown lid, not a shack.
+- problem: The coins in flight are small and pass in front of Data's tie and coat, where they get lost against the white.
+- problem: The cup is a plain white tin with a red band. Nothing marks it as the poor side (it isn't a paper cup and isn't dented or near-empty).
+- better: Move the shack and the mansion out from behind the cup and jar, next to them or raised up, so each building is whole and readable in frame. Bring the jar in from the right edge so the mansion fits.
+- better: Make the shack read as a shack at phone size: corrugated tin roof, a lean, a small door.
+- better: Make the coins bigger, or arc them higher across the dark background above the counter instead of in front of his white coat.
+
+**shot 5** (PASS, 71, bar 70)
+
+- problem: The notes in flight are faint, translucent green smears (frame 1 above the stack, frame 2 near the card's left edge). A single note doesn't read as a banknote.
+- problem: In frame 3 the swollen card reaches the right edge of the frame and its top edge covers Data's chin, so his face and the card crowd each other.
+- problem: The starting stack is a modest bundle, not the 'fat stack' the beat promises, so the shrink is smaller than it could be.
+
+
+## 2026-11-18 19:03Z · proof · round 2 · proof loop loop7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 5 | 71 | 66, 71, 73 | PASS |
+
+**shot 5** (PASS, 71, bar 70)
+
+- problem: The stack shrinks too little to read as the payoff. It starts at about four bundles high (frames 1-8) and ends at about two (frames 25-31). On a phone the 'cash runs out' half barely registers next to the clear growth of the card.
+- problem: Each note is a small green blur (frames 4-8, 18-30). Once the note has lifted off the stack, the arc is hard to follow on a phone. It reads more as green flecks near the card than as money flying into it.
+- problem: Data is passive. His hands are never seen, he takes no part in the action, and for the first third of the shot (frames 1-12) his eyes wander sideways inside the glasses. He reads as a bystander behind the props, not as someone presenting the choice.
+- problem: By the last row the swollen card covers Data's body up to his chin (frames 25-31). Only a head floating over the card is left for the 'cash or card?' look.
+
+
+## 2026-11-18 19:07Z · storyboard · round 3 · storyboard gate loop7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 60 | 60, 60, 62 | FAIL |
+
+**shot 4** (FAIL, 60, bar 70)
+
+- HARD: BROKEN/NOT THE POINT: the poor-vs-rich contrast that gives the shot its meaning cannot be read in any frame. The model mansion is cut by the right frame edge and mostly hidden behind the jar in all three frames, so only a white wall with a few windows shows. The tin shack is almost completely hidden behind the coin cup in all three frames; only a brown roof edge is visible. A stranger would see 'coins jump from a can into a jar', not money flowing uphill from a shack to a mansion.
+- HARD: BROKEN: the model mansion is cut off by the right edge of the frame and mostly hidden behind the jar in all 3 frames. Only a white wall with a few windows shows, so it doesn't read as a mansion.
+- HARD: NOT THE POINT: the tin shack is never readable in frames 1-3. It is only a brown slab behind the cup. A stranger would see coins hopping from a cup into a jar, not money moving from the poor to the rich, so the uphill idea is lost.
+- HARD: NOT THE POINT, frames 1-3: the poor-vs-rich contrast that carries the shot can't be read. The tin shack is only a brown slab hidden behind the cup, and the mansion is mostly hidden behind the jar and cut off by the right edge of the frame. A stranger sees coins moving from a white canister into a jar, not money flowing uphill from a shack to a mansion.
+- HARD: BROKEN, frames 1-3: the mansion is cut by the right edge of the frame for the whole shot.
+- problem: The props carrying the idea take up only the bottom third of the frame, and Data's head takes the top two thirds. The shack, cup, jar and mansion are small on a phone.
+- problem: The cup reads as a white canister with a red band, not a paper coin cup. It is the same size as the rich jar, so it doesn't look poor.
+- problem: The jar ends nearly full (frame 3) but not clearly to the brim. The fill is a loose stack of tilted coins, so 'full to the brim' is weak.
+- problem: Data looks at us in frame 3, but his expression is close to his resting face. It reads as mild, not clearly unimpressed.
+- better: Lower the camera, or raise and enlarge the props: put the shack and mansion side by side, whole in the frame and big, behind their containers, with Data's face higher or partly out of frame above them.
+- better: Place the containers so neither covers its building. Put the cup beside the shack's door and the jar beside the mansion's steps, both offset so the buildings stay visible.
+- better: Make the contrast obvious at a glance: a rusty corrugated shack with a crooked roof against a white columned mansion lit warm, and a small crumpled paper cup against a tall shining jar.
+
+
+## 2026-11-18 19:10Z · storyboard · round 1 · storyboard gate loop8
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 71 | 67, 71, 72 | PASS |
+
+**shot 4** (PASS, 71, bar 70)
+
+- problem: The jar stands in front of Data's chest, centre frame, with a clear gap before the mansion, so it reads as Data's jar more than the rich house's jar (all frames)
+- problem: The mansion reads as a generic white office or bank block, not a mansion. The 'rich' side of the comparison is weak.
+- problem: The shack is a plain grey box. Its ribbing and door barely read on a phone, so 'poor home' is carried mostly by its size.
+- problem: Frame 1: a stray blue object sits inside the empty jar before any coins arrive
+- problem: Frame 3: the coins in the jar look like stacked gold rings floating in layers, not a heap of coins settled from the bottom
+- problem: Frame 3: the jar is nearly full but not clearly brimming. The payoff stops just short of 'filled to the brim'.
+- problem: The props sit in a thin band at the bottom third with an empty strip of counter below them, so the idea is smaller than it needs to be
+
+
+## 2026-11-18 19:12Z · proof · round 1 · proof loop loop8
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 66 | 56, 66, 72 | FAIL |
+
+**shot 4** (FAIL, 66, bar 70)
+
+- hard (one judge only): BROKEN: the white mansion, which stands for the rich side, is cut off by the right frame edge for the whole shot (frames 1-30). Only its left part shows, so it reads as a cropped office block, not a mansion.
+- hard (one judge only): NOT THE POINT (borderline): the jar sits in front of the mansion's cropped face and covers Data's chest, and the mansion never reads as 'rich'. A viewer sees coins moving from a shed to a jar, but not clearly 'poor to rich' (frames 1-30).
+- problem: The mansion barely reads as a mansion. The jar stands right in front of it and hides most of it, and its right side sits against or past the frame edge in almost every frame. The rich side of the uphill contrast is therefore weak: it reads as 'a white block behind a jar', not 'a tall white mansion'.
+- problem: The coins don't clearly come out of the shack's door. In row 1, frames 3-6, they first appear above or behind the shack's roof line at the far left, so the source is unclear. The door at the base never visibly emits a coin.
+- problem: A stray, blurred coin appears on the front of the counter, well below the arc (row 1, frames 4-5). It reads as a coin falling out of the flow, or a pop.
+- problem: From frame 1 there is a blue object inside the empty jar, and it stays visible under the pile. It is an unexplained prop that muddies 'clear jar fills with coins'.
+- problem: The arc passes in front of Data's white coat, so mid-flight coins become gold-on-white clutter and the lob is hard to follow on a phone.
+- problem: The 'unimpressed' ending is weak. In the last 6-8 frames Data's face is a wide-eyed, slight frown that reads as worried or sad, not a flat, unimpressed look at camera. He has no body acting (no arms or shrug) to sell it.
+- better: Move the jar to stand clearly LEFT of the mansion, not in front of it, and pull the mansion fully into frame so it is tall, white and obviously grand. Make it taller than Data's shoulders so the shack-vs-mansion size contrast reads at a glance.
+- better: Make each coin visibly pop out of the shack's dark doorway at counter level, then arc. Start the arc low at the door so the cause and effect is plain.
+- better: Remove the blue object from the jar and remove the stray coin that drops to the counter front.
+
+
+## 2026-11-18 19:14Z · storyboard · round 1 · storyboard gate loop9
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 72 | 72, 72, 74 | PASS |
+
+**shot 4** (PASS, 72, bar 70)
+
+- problem: The mansion barely looks bigger or richer than the shack. Both are low boxes about the same height, so 'tin shack vs tall white mansion' doesn't come across at phone size (frames 1-3).
+- problem: The jar sits right in front of Data's chest with its rim at his chin. It reads as stuck to his body instead of standing on the counter next to the mansion (frames 1-3).
+- problem: Data's hands and arms are never seen. He is a big head behind the counter, cut off at the shoulders by the props, with no body language (frames 1-3).
+- problem: The jar ends about two-thirds full, not full to the brim as the FOR line says (frame 3).
+- problem: Only one or two coins are in the air in each still, so the steady 'coin after coin' stream is thin (frames 1-2).
+
+
+## 2026-11-18 19:16Z · proof · round 1 · proof loop loop9
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 66 | 58, 66, 72 | FAIL |
+
+**shot 4** (FAIL, 66, bar 70)
+
+- problem: The coins do not visibly come out of the shack's DOOR. In row 1 frames 3-6 and row 2 frames 1-3 they appear around the shack's right roof edge and side wall, as if spawning beside the shack, so the poor house never reads as the source.
+- problem: There is no clear lob or arc. The shack sits right against the jar, so each coin jumps a few centimetres in a jumbled cluster in front of Data's chest instead of travelling up across the counter. The uphill idea of money climbing from poor to rich is lost.
+- problem: The jar does not read as the rich house's jar. It is centred in front of Data and covers his whole torso, while the 'tall white mansion' is a small white block about as tall as the jar, half hidden behind it on the right. The shack, jar and mansion look like three equal props, not a poor-to-rich pairing.
+- problem: Stray coins drop off the front of the counter (row 1 frame 4, below the counter lip; row 4 frame 1, left of the shack). This reads as spillage, not every coin landing in the rich jar.
+- problem: The 'unimpressed' look at us is only the last ~4 frames (about 0.5 s) and is a slight flat mouth; on a phone it reads as neutral, not unimpressed.
+- better: Make the coins leave through the shack's door: an open dark doorway on the front face, each coin popping out of it toward the camera side.
+- better: Spread the props across the counter: shack hard left, mansion hard right and clearly taller (at least 1.5x the jar), jar set right beside the mansion's front step. Each coin then flies a visible high parabola across the gap, one or two at a time, readable in flight.
+- better: Move the jar off Data's chest. Put it to the right next to the mansion so Data's torso and hands stay visible and the coin path does not cross his body.
+
