@@ -24505,10 +24505,10 @@
   },
   {
    "slug": "clear-air-turbulence-increase",
-   "title": "Why Flights Are Getting Bumpier",
-   "hook": "Severe turbulence on flights is up 55 percent, and it's getting worse.",
-   "closing": "So when the seatbelt sign comes on, believe it. Rough air is becoming a bigger part of flying.",
-   "question": "Have you noticed flights getting bumpier lately?",
+   "title": "Severe Turbulence Lasted 55% Longer Over The North Atlantic",
+   "hook": "Severe turbulence lasted 55% longer over the North Atlantic.",
+   "closing": "The seatbelt sign matters more as rough air becomes more common.",
+   "question": "Have your flights felt bumpier?",
    "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
    "hashtags": [
     "turbulence",
@@ -24536,8 +24536,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE BUMP",
-     "topic": "Bumpier North Atlantic flights",
-     "say": "Severe turbulence over the North Atlantic lasts 55 percent longer than in 1979. So more of any crossing is now spent in rough air.",
+     "topic": "Turbulence Annual Hours",
+     "say": "Severe turbulence reached 27.4 annual hours. North Atlantic flights now spend more time in rough air.",
      "scene": {
       "mechanic": "shaking-jet-climb",
       "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
@@ -24553,8 +24553,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE PATTERN",
-     "topic": "Bumpier by severity",
-     "say": "Light bumps grew a little, but the severe kind grew by 55 percent. So the rough stuff is growing faster than the gentle stuff.",
+     "topic": "Turbulence Severity Increase",
+     "say": "Severe turbulence duration rose 55 percent. The roughest air grew faster than lighter bumps.",
      "scene": {
       "mechanic": "rough-air-bands",
       "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
@@ -24569,8 +24569,8 @@
      },
      "insight_type": "trend",
      "role": "3 · WHY",
-     "topic": "Bumpier flights ahead",
-     "say": "Models say severe turbulence could more than double by 2080, to 62 hours a year. Future flights could be a lot rougher.",
+     "topic": "Turbulence Future Hours",
+     "say": "Models project 62 annual hours by 2080. Future crossings could encounter far more severe turbulence.",
      "scene": {
       "mechanic": "future-storm-panels",
       "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
@@ -24578,8 +24578,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:39:25Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:43Z",
    "retold": "retell/v3"
   },
   {
@@ -26615,9 +26615,9 @@
   },
   {
    "slug": "us-height-ranking-fall",
-   "title": "Americans Used To Be The Tallest People On Earth (3 Charts)",
-   "hook": "Americans towered over the world in 1914 — now 36 countries stand taller.",
-   "closing": "Height was never just about genes, and the tallest nation can lose its lead.",
+   "title": "American Height Gained 6 Centimeters While Other Countries Passed",
+   "hook": "American men gained 6 centimeters, but other countries grew faster.",
+   "closing": "Height reflects living conditions, so national rankings can change within generations.",
    "question": "Are you taller than your grandparents?",
    "caption": "A century ago, American men were the third-tallest in the world. Today the US ranks 37th, as South Korea, Iran and others raced ahead on better childhood nutrition and healthcare. Height isn't just genetics -- it's basically a scoreboard for how a country raises its kids. Are you taller than your grandparents were? 👇",
    "hashtags": [
@@ -26647,8 +26647,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "1 · A REAL GAIN",
-     "topic": "Americans' average height",
-     "say": "A century ago, the average American man stood about 171 centimeters, which already made him one of the tallest men anywhere.",
+     "topic": "American Height",
+     "say": "American men averaged 177 centimeters by 2014. A century of growth still was not enough to keep the lead.",
      "scene": {
       "mechanic": "height-wall-measure",
       "concept": "a man stands against a measuring wall; his head line climbs from 171 to 177 cm past a ghost line at 1914, a modest gain on a real ruler",
@@ -26665,8 +26665,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "2 · EVERYONE ELSE SPED UP",
-     "topic": "People gaining height",
-     "say": "Then South Korean women shot up over 20 centimeters, while American men gained barely six. Other nations simply grew faster.",
+     "topic": "Height Gains",
+     "say": "South Korean women gained 20.2 centimeters. Other populations improved far faster than Americans.",
      "scene": {
       "mechanic": "gain-blocks-on-heads",
       "concept": "three people stand at the same base height; centimeter blocks stack on their heads as each gain lands, South Korean women towering, American men a stub",
@@ -26682,8 +26682,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE RANKING FLIPPED",
-     "topic": "Countries taller than Americans",
-     "say": "In 1914 only two countries had taller men. Today it's 36, because the rest of the world passed them.",
+     "topic": "Height Ranking",
+     "say": "By 2014, 36 countries had taller men. America's modest gains became a ranking collapse.",
      "scene": {
       "mechanic": "overtaken-by-crowd",
       "concept": "one American man stands under a line; 2 taller countries stand beside him in 1914, then 34 more men file in over the line until 36 stand taller",
@@ -26691,8 +26691,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T10:47:08Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:45Z",
    "retold": "retell/v3"
   },
   {
@@ -27475,8 +27475,8 @@
   {
    "slug": "blood-supply-three-percent",
    "title": "Only 3% Of Eligible People Donate Blood",
-   "hook": "Most people assume eligible donors give; only 3% do.",
-   "closing": "Hospitals need more eligible people to become regular blood donors.",
+   "hook": "Most eligible people can donate blood; only 3% actually do.",
+   "closing": "Hospitals depend on a tiny donor pool that keeps shrinking.",
    "question": "Would you donate blood?",
    "caption": "About 38% of Americans qualify to donate blood — but only 3% of them actually do each year. Individual donations have fallen roughly 40% in two decades, and in January 2024 the Red Cross declared its first national blood emergency in years. Have you ever donated?",
    "hashtags": [
@@ -27501,8 +27501,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "1 · THE GAP",
-     "topic": "blood donation gap",
-     "say": "Only 3 percent of eligible people donate blood, leaving hospitals dependent on a tiny volunteer pool.",
+     "topic": "Blood Donation Gap",
+     "say": "Only 3 percent of eligible people donate blood. Hospitals depend on a tiny volunteer pool.",
      "ascending": false,
      "scene": {
       "mechanic": "hundred-people-one-gives",
@@ -27518,8 +27518,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE TREND",
-     "topic": "blood donor decline",
-     "say": "Blood donor volume fell to an index of 60, so fewer people are replacing the donors hospitals rely on.",
+     "topic": "Blood Donor Decline",
+     "say": "Blood donor volume fell to an index of 60. Fewer people are replacing regular donors.",
      "scene": {
       "mechanic": "blood-bag-draining",
       "concept": "an IV blood bag photo drains from full (2004 = 100) to 60 as drops fall off the bottom and a ghost line marks where it used to be",
@@ -27528,13 +27528,13 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-08T12:30:17Z",
+   "rewritten_at": "2026-11-18T12:25:43Z",
    "retold": "retell/v4"
   },
   {
    "slug": "library-digital-shift",
    "title": "Libraries Looked Emptier While Digital Borrowing Hit 739 Million",
-   "hook": "Libraries looked quieter while digital checkouts hit 739 million.",
+   "hook": "Libraries looked quieter while digital borrowing hit 739 million.",
    "closing": "Readers did not disappear; library use followed them onto their phones.",
    "question": "How do you borrow books?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
@@ -27560,7 +27560,7 @@
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
      "topic": "Library Physical Visits",
-     "say": "Library visits reached 800 million. Buildings remained quieter than before, but readers had not vanished.",
+     "say": "Library visits reached 800 million. Buildings stayed quieter than before, but readers had not vanished.",
      "scene": {
       "mechanic": "library-turnstile-thinning",
       "concept": "a library photo with a row of visitors per year; the row of people thins from 1.25 billion to 671 million as figures keep filing through the door",
@@ -27585,7 +27585,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-17T12:26:57Z",
+   "rewritten_at": "2026-11-18T12:25:44Z",
    "retold": "retell/v4"
   },
   {
@@ -27961,10 +27961,10 @@
   },
   {
    "slug": "cursive-handwriting-comeback",
-   "title": "Cursive Returned To 25 States While Reading It Collapsed",
-   "hook": "Cursive returned to 25 states after young readers lost the skill.",
+   "title": "25 States Brought Cursive Back As Literacy Collapsed",
+   "hook": "25 states brought cursive back after young readers lost the skill.",
    "closing": "Without cursive literacy, family letters and historical records become harder to read.",
-   "question": "Did you learn cursive in school?",
+   "question": "Did you learn cursive?",
    "caption": "14 states required cursive in 2016. 25 do now. Meanwhile about 2 in 3 young Americans can't read it — and 80% of the National Archives is written in it. Did you learn cursive? Tell me below. 👇",
    "hashtags": [
     "cursive",
@@ -27990,7 +27990,7 @@
      "insight_type": "trend",
      "topic": "Cursive State Laws",
      "role": "1 · THE COMEBACK",
-     "say": "Cursive instruction now reaches 25 states. Schools are bringing handwriting back.",
+     "say": "Cursive instruction now reaches 25 states. Schools are restoring a skill many students lost.",
      "scene": {
       "mechanic": "cursive-ink-fills-states",
       "concept": "a pen sweeps a 50-state tile map and inks tiles gold one by one, counting from 14 to 20 to 25 states that require cursive",
@@ -28033,7 +28033,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-17T12:26:57Z",
+   "rewritten_at": "2026-11-18T12:25:43Z",
    "retold": "retell/v4"
   },
   {
@@ -28386,10 +28386,10 @@
   },
   {
    "slug": "dating-app-user-exodus",
-   "title": "Dating Apps Just Lost Millions Of Users",
-   "hook": "Tinder lost nearly 40% of its US users in two years.",
-   "closing": "Swiping was supposed to find love, and for four in five users it just drained the battery.",
-   "question": "Have you deleted a dating app this year?",
+   "title": "Tinder Fell To 11 Million Users As Dating Apps Burned Out",
+   "hook": "Tinder fell to 11 million users as dating apps burned people out.",
+   "closing": "Swiping promised connection, but burnout is pushing users away.",
+   "question": "Have you deleted a dating app?",
    "caption": "Tinder's US users dropped from 18 million to 11 million in two years, and it's not alone -- usage across the top 10 dating apps fell industry-wide. 78% of users say the apps leave them drained. Have you quit one? 👥",
    "hashtags": [
     "datingapps",
@@ -28414,8 +28414,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "Tinder's US users",
-     "say": "Tinder's US users sank to about 11 million in two years. Millions of people simply stopped swiping on the app everyone knows.",
+     "topic": "Tinder User Loss",
+     "say": "Tinder fell to 11 million US users. Millions stopped swiping on the app everyone knows.",
      "scene": {
       "mechanic": "swipe-left-phone-exodus",
       "concept": "a grid of 18 profile-card phones, one per million 2022 users; seven get swiped off the left edge one after another until 11 remain",
@@ -28431,8 +28431,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · NOT JUST ONE",
-     "topic": "Dating app usage",
-     "say": "Usage across the biggest dating apps fell 16% in a year. So it isn't just Tinder's problem; the whole category is losing people.",
+     "topic": "Dating App Usage",
+     "say": "Dating app usage fell 16 percent. Tinder's decline was part of a wider retreat.",
      "scene": {
       "mechanic": "hearts-fall-off-the-hundred",
       "concept": "a hundred hearts stand for 2023 usage and sixteen shake loose and fall to the floor",
@@ -28447,8 +28447,8 @@
      },
      "insight_type": "share",
      "role": "3 · THE WHY",
-     "topic": "Why users leave",
-     "say": "Nearly four in five dating app users say the apps leave them drained. That may be why people are walking away.",
+     "topic": "Dating App Burnout",
+     "say": "About 78 percent of dating app users feel drained. Burnout helps explain the exodus.",
      "scene": {
       "mechanic": "battery-drained-by-swiping",
       "concept": "a phone battery drains to the 78 percent who feel drained, leaving a sliver of charge",
@@ -28456,8 +28456,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T18:16:30Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:43Z",
    "retold": "retell/v3"
   },
   {
@@ -37320,10 +37320,10 @@
   },
   {
    "slug": "nuclear-reactors-under-construction",
-   "title": "The World Is Quietly Building 78 Gigawatts Of Nuclear Power",
-   "hook": "Nuclear power never actually went away.",
-   "closing": "Turns out the 'dying' industry was just reloading, and your future power may depend on it.",
-   "question": "Would you live near a nuclear plant?",
+   "title": "78 Gigawatts Of Nuclear Power Is Still Under Construction",
+   "hook": "78 gigawatts of nuclear power is still being built.",
+   "closing": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
+   "question": "Would you live near nuclear power?",
    "caption": "78 gigawatts of nuclear power are under construction worldwide right now, across 15 countries — and China alone is building half of it. Would you live near a nuclear plant? Tell me below ⚛️",
    "hashtags": [
     "nuclearpower",
@@ -37348,8 +37348,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RESTART",
-     "topic": "New nuclear reactor construction",
-     "say": "Builders started 10 new reactors worldwide last year, one more than the year before. Nuclear is growing, not fading."
+     "topic": "Nuclear Reactor Starts",
+     "say": "Builders started 10 nuclear reactors worldwide. Construction is growing rather than disappearing."
     },
     {
      "source": "offline",
@@ -37359,8 +37359,8 @@
      },
      "insight_type": "share",
      "role": "2 · WHO'S BUILDING",
-     "topic": "Nuclear construction by country",
-     "say": "Half of all the nuclear capacity being built right now sits in one country: China. Everyone else splits the other half."
+     "topic": "Nuclear Construction Share",
+     "say": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout."
     },
     {
      "source": "offline",
@@ -37370,14 +37370,14 @@
      },
      "insight_type": "rank",
      "role": "3 · THE SCALE",
-     "topic": "Nuclear capacity under construction",
-     "say": "That adds up to 78 gigawatts under construction, the output of dozens of big reactors. Tomorrow's power is being built right now.",
+     "topic": "Nuclear Capacity Building",
+     "say": "About 78 gigawatts of nuclear capacity is under construction. Tomorrow's power supply is already taking shape.",
      "ascending": false
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T10:10:16Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:45Z"
   },
   {
    "slug": "craft-brewery-boom-and-bust",
@@ -37814,10 +37814,10 @@
   },
   {
    "slug": "lake-mead-water-crisis",
-   "title": "Lake Mead Dropped To Just 27% Full",
-   "hook": "America's biggest reservoir is disappearing in plain sight.",
-   "closing": "If the water keeps falling, Hoover Dam stops making power, and everyone relying on it feels that.",
-   "question": "Did you know Lake Mead dropped this low?",
+   "title": "Lake Mead Fell To 27% Full—Threatening Hoover Power",
+   "hook": "Lake Mead fell to 27% full, threatening Hoover Dam power.",
+   "closing": "Falling water threatens both the reservoir and the electricity people rely on.",
+   "question": "Did you know Lake Mead fell this low?",
    "caption": "Lake Mead used to be nearly full. Now it's sitting at just 27% capacity — the lowest since the Hoover Dam was built. If it drops much further, the dam can't even generate power. Scary, right?",
    "hashtags": [
     "lakemead",
@@ -37843,8 +37843,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "lake mead water level",
-     "say": "In 2000, Lake Mead was nearly full. By 2022 the water had sunk about 150 feet.",
+     "topic": "Lake Mead Level",
+     "say": "Lake Mead dropped 153 feet. The reservoir's retreat became visible from shore.",
      "scene": {
       "title": true,
       "elements": [
@@ -37863,8 +37863,8 @@
      },
      "insight_type": "trend",
      "role": "2 · HOW FULL",
-     "topic": "lake mead percent full",
-     "say": "Lake Mead held 37% of its capacity in 2016. Six years later, it was barely over a quarter full.",
+     "topic": "Lake Mead Capacity",
+     "say": "Lake Mead fell to 27 percent full. America's biggest reservoir was barely above one-quarter capacity.",
      "scene": {
       "title": true,
       "elements": [
@@ -37883,13 +37883,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · HOW CLOSE",
-     "topic": "lake mead power shutoff",
-     "say": "By 2022, Lake Mead sat only 97 feet above the level where Hoover Dam stops making power."
+     "topic": "Lake Mead Power",
+     "say": "Lake Mead sat 97 feet above the power cutoff. More decline puts Hoover Dam generation at risk."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-06T13:23:20Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:44Z"
   },
   {
    "slug": "frog-fungus-mass-extinction",
@@ -38288,10 +38288,10 @@
   },
   {
    "slug": "great-barrier-reef-bleaching-accelerating",
-   "title": "The Great Barrier Reef Has Now Bleached 7 Times Since 1998",
-   "hook": "Mass bleaching used to be rare. Not anymore.",
-   "closing": "Each bleaching now hits a reef that never healed from the last one.",
-   "question": "Could the reef keep up with this?",
+   "title": "Great Barrier Reef Bleaching Now Returns Every 2 Years",
+   "hook": "Reef bleaching now returns about every 2 years.",
+   "closing": "Each bleaching wave now arrives before the reef can fully recover.",
+   "question": "Can the reef keep up?",
    "hashtags": [
     "greatbarrierreef",
     "coralbleaching",
@@ -38315,8 +38315,8 @@
      },
      "insight_type": "trend",
      "role": "1 · HOW OFTEN",
-     "topic": "Reef bleaching rate",
-     "say": "For decades the reef bleached about once a decade. Now it's happened three times in the 2020s alone."
+     "topic": "Reef Bleaching Events",
+     "say": "The reef has already suffered 3 bleaching events this decade. What was rare became routine."
     },
     {
      "source": "offline",
@@ -38326,8 +38326,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE GAP CLOSING",
-     "topic": "Reef gap shrinking",
-     "say": "The longest calm on record was 14 years. Lately the reef barely gets a breather before the next hit."
+     "topic": "Reef Bleaching Gap",
+     "say": "The average gap shrank to 2 years. The reef barely catches its breath."
     },
     {
      "source": "offline",
@@ -38337,13 +38337,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · NOT ENOUGH TIME",
-     "topic": "Reef recovery time",
-     "say": "A reef needs about 10 years to heal fully. It's getting a fifth of that, so damage keeps piling up."
+     "topic": "Reef Recovery Time",
+     "say": "A reef typically needs 10 years to recover. New bleaching arrives far too soon."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T10:13:34Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:44Z"
   },
   {
    "slug": "normal-body-temperature-has-shifted",
@@ -38644,10 +38644,10 @@
   },
   {
    "slug": "fifty-otters-survived-climate-fight",
-   "title": "50 Sea Otters Survived. Now They're Fighting Climate Change.",
-   "hook": "They were almost wiped out. Then scientists noticed something weird.",
-   "closing": "Sometimes saving one weird animal helps save everything around it, including us.",
-   "question": "Would you want otters near your coastline?",
+   "title": "50 Sea Otters Survived—Then Protected Carbon-Storing Kelp",
+   "hook": "50 sea otters survived, then helped protect carbon-storing kelp.",
+   "closing": "Saving one predator can protect an entire coastline and its carbon.",
+   "question": "Would you welcome otters nearby?",
    "caption": "Fur traders hunted California's sea otters down to about 50 survivors. They've crept back to 3,000 — and the kelp forests they protect could store millions of tons of CO2. Would you want them near your coastline? 👇",
    "hashtags": [
     "seaotters",
@@ -38672,8 +38672,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · NEARLY WIPED OUT",
-     "topic": "Otters nearly wiped out",
-     "say": "Fur traders hunted California's sea otters to the brink. By the 1930s, only about fifty were left."
+     "topic": "Sea Otters Survived",
+     "say": "Only 50 California sea otters remained. Fur trading nearly erased the population."
     },
     {
      "source": "offline",
@@ -38683,8 +38683,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE SLOW COMEBACK",
-     "topic": "Sea otters came back",
-     "say": "From that handful, they've crept back to about 3,000 today. That's a real comeback, but they're still listed as threatened."
+     "topic": "Sea Otters Recovered",
+     "say": "The population recovered to about 3,000. The comeback remains incomplete because the species is still threatened."
     },
     {
      "source": "offline",
@@ -38694,13 +38694,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHY IT MATTERS",
-     "topic": "Otters fighting climate change",
-     "say": "Otters eat the urchins that strip kelp bare. Healthy kelp stores carbon, up to 8.7 million tons of CO2 a year."
+     "topic": "Sea Otters Protect",
+     "say": "Otter-protected kelp can store 8.7 million metric tons of CO2 yearly. One predator shields a major carbon sink."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T10:17:56Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:43Z"
   },
   {
    "slug": "us-stops-making-pennies-232-years",

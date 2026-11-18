@@ -1,208 +1,98 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-18T12:16:51Z",
+ "updated": "2026-11-18T12:25:45Z",
  "open": [
   {
-   "id": "us-height-ranking-fall__7d1b012d",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-18T12:16:50Z",
-   "why": [
-    "premise: brain: The claim about Americans being the tallest nation in 1914 and exactly 36 countries now being taller is unverified and likely inaccurate."
-   ],
-   "request": "exchange/rewrites/20261118/us-height-ranking-fall__7d1b012d.request.json",
-   "answer_path": "exchange/rewrites/20261118/us-height-ranking-fall__7d1b012d.answer.json"
-  },
-  {
-   "id": "normal-body-temperature-has-shifted__5658afbe",
+   "id": "normal-body-temperature-has-shifted__5658afbe_r1",
    "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-18T12:16:50Z",
+   "filed": "2026-11-18T12:25:45Z",
    "why": [
     "thesis: seg1 ('Body cooling by sex') does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Focuses on sex differences rather than directly supporting the claim that 98.6°F is no longer normal, and doesn't logica",
     "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Introduces a separate historical calibration issue that doesn't follow from beat 1 and is not a direct continuation of t"
    ],
-   "request": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe.request.json",
-   "answer_path": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe.answer.json"
+   "request": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe_r1.answer.json"
   },
   {
-   "id": "people-over-65-outnumber-kids-under-5__ef77b98a",
+   "id": "people-over-65-outnumber-kids-under-5__ef77b98a_r1",
    "slug": "people-over-65-outnumber-kids-under-5",
-   "filed": "2026-11-18T12:16:50Z",
+   "filed": "2026-11-18T12:25:45Z",
    "why": [
     "thesis: seg1 ('People over 65 growing') does not continue the story of the headline ('For The First Time, People Over 65 Outnumber Kids Under 5') — brain: Adds another fact about future senior population without directly following from beat 0; not a causal or contrasting bri"
    ],
-   "request": "exchange/rewrites/20261118/people-over-65-outnumber-kids-under-5__ef77b98a.request.json",
-   "answer_path": "exchange/rewrites/20261118/people-over-65-outnumber-kids-under-5__ef77b98a.answer.json"
+   "request": "exchange/rewrites/20261118/people-over-65-outnumber-kids-under-5__ef77b98a_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/people-over-65-outnumber-kids-under-5__ef77b98a_r1.answer.json"
   },
   {
-   "id": "volcanoes-erupting-right-now__78b520e6",
+   "id": "richest-americans-live-14-years-longer__0b929b85_r1",
+   "slug": "richest-americans-live-14-years-longer",
+   "filed": "2026-11-18T12:25:45Z",
+   "why": [
+    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Provides broader context but doesn’t directly support the headline claim nor logically follow from beat 0"
+   ],
+   "request": "exchange/rewrites/20261118/richest-americans-live-14-years-longer__0b929b85_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/richest-americans-live-14-years-longer__0b929b85_r1.answer.json"
+  },
+  {
+   "id": "us-stops-making-pennies-232-years__e8e35070_r1",
+   "slug": "us-stops-making-pennies-232-years",
+   "filed": "2026-11-18T12:25:45Z",
+   "why": [
+    "premise: brain: The premise is not a true, concrete claim—there is no evidence the US will cease penny production after 232 years."
+   ],
+   "request": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070_r1.answer.json"
+  },
+  {
+   "id": "volcanoes-erupting-right-now__78b520e6_r1",
    "slug": "volcanoes-erupting-right-now",
-   "filed": "2026-11-18T12:16:50Z",
+   "filed": "2026-11-18T12:25:45Z",
    "why": [
     "premise: brain: The claim of ~45 simultaneous eruptions is not a verifiable, concrete fact and likely inaccurate."
    ],
-   "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6.request.json",
-   "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6.answer.json"
+   "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
   },
   {
-   "id": "muscle-loss-after-30__c76f31b3",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-18T12:16:49Z",
-   "why": [
-    "premise: brain: The premise makes an unverified specific claim about 18% muscle loss per decade, which is not a concrete, universally true fact."
-   ],
-   "request": "exchange/rewrites/20261118/muscle-loss-after-30__c76f31b3.request.json",
-   "answer_path": "exchange/rewrites/20261118/muscle-loss-after-30__c76f31b3.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__387d8387",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-18T12:16:48Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, verifiable surprise or contradiction."
-   ],
-   "request": "exchange/rewrites/20261118/blood-supply-three-percent__387d8387.request.json",
-   "answer_path": "exchange/rewrites/20261118/blood-supply-three-percent__387d8387.answer.json"
-  },
-  {
-   "id": "library-digital-shift__2314aec3",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-18T12:16:48Z",
-   "why": [
-    "premise: brain: The claim about digital checkouts reaching 739 million lacks verifiable evidence and may not be a concrete, provable fact."
-   ],
-   "request": "exchange/rewrites/20261118/library-digital-shift__2314aec3.request.json",
-   "answer_path": "exchange/rewrites/20261118/library-digital-shift__2314aec3.answer.json"
-  },
-  {
-   "id": "lake-mead-water-crisis__4529ddf6",
-   "slug": "lake-mead-water-crisis",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "thesis: seg2 ('lake mead power shutoff') does not continue the story of the headline ('Lake Mead Dropped To Just 27% Full') — brain: Focuses on power generation cutoff, not directly proving the 27% full claim"
-   ],
-   "request": "exchange/rewrites/20261118/lake-mead-water-crisis__4529ddf6.request.json",
-   "answer_path": "exchange/rewrites/20261118/lake-mead-water-crisis__4529ddf6.answer.json"
-  },
-  {
-   "id": "dating-app-user-exodus__ff59ad54",
-   "slug": "dating-app-user-exodus",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "premise: brain: The hook makes a specific claim about Tinder's user loss that lacks verifiable evidence, making the premise unsubstantiated."
-   ],
-   "request": "exchange/rewrites/20261118/dating-app-user-exodus__ff59ad54.request.json",
-   "answer_path": "exchange/rewrites/20261118/dating-app-user-exodus__ff59ad54.answer.json"
-  },
-  {
-   "id": "fifty-otters-survived-climate-fight__212454a4",
-   "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, true surprise about sea otters actively combating climate change."
-   ],
-   "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__212454a4.request.json",
-   "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__212454a4.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__772f1262",
+   "id": "frog-fungus-mass-extinction__772f1262_r1",
    "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-18T10:18:50Z",
+   "filed": "2026-11-18T12:25:44Z",
    "why": [
     "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim that the fungus erased 90 frog species and is not a clear continuation of beat 0.",
     "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Only mentions 40 frog species affected, not the 90 extinctions claimed, and doesn't follow logically from beat 1."
    ],
-   "request": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262.request.json",
-   "answer_path": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262.answer.json"
+   "request": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262_r1.answer.json"
   },
   {
-   "id": "great-barrier-reef-bleaching-accelerating__f3401a29",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "premise: brain: The claim about exactly seven bleaching events since 1998 is not a verifiable, concrete fact."
-   ],
-   "request": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__f3401a29.request.json",
-   "answer_path": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__f3401a29.answer.json"
-  },
-  {
-   "id": "nuclear-reactors-under-construction__db53359a",
-   "slug": "nuclear-reactors-under-construction",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, provable surprise about nuclear power's ongoing growth."
-   ],
-   "request": "exchange/rewrites/20261118/nuclear-reactors-under-construction__db53359a.request.json",
-   "answer_path": "exchange/rewrites/20261118/nuclear-reactors-under-construction__db53359a.answer.json"
-  },
-  {
-   "id": "richest-americans-live-14-years-longer__0b929b85",
-   "slug": "richest-americans-live-14-years-longer",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Provides broader context but doesn’t directly support the headline claim nor logically follow from beat 0"
-   ],
-   "request": "exchange/rewrites/20261118/richest-americans-live-14-years-longer__0b929b85.request.json",
-   "answer_path": "exchange/rewrites/20261118/richest-americans-live-14-years-longer__0b929b85.answer.json"
-  },
-  {
-   "id": "us-stops-making-pennies-232-years__e8e35070",
-   "slug": "us-stops-making-pennies-232-years",
-   "filed": "2026-11-18T10:18:50Z",
-   "why": [
-    "premise: brain: The premise is not a true, concrete claim—there is no evidence the US will cease penny production after 232 years."
-   ],
-   "request": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070.request.json",
-   "answer_path": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070.answer.json"
-  },
-  {
-   "id": "clear-air-turbulence-increase__0e7d743e",
-   "slug": "clear-air-turbulence-increase",
-   "filed": "2026-11-18T10:18:49Z",
-   "why": [
-    "premise: brain: The claim about a 55% increase in severe turbulence lacks a concrete, verifiable source and is not a proven fact."
-   ],
-   "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__0e7d743e.request.json",
-   "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__0e7d743e.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__6e95b30a",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-11-18T10:18:49Z",
-   "why": [
-    "premise: brain: The premise is vague and contradictory, lacking a concrete, verifiable claim about cursive returning to 25 states and reading collapse."
-   ],
-   "request": "exchange/rewrites/20261118/cursive-handwriting-comeback__6e95b30a.request.json",
-   "answer_path": "exchange/rewrites/20261118/cursive-handwriting-comeback__6e95b30a.answer.json"
-  },
-  {
-   "id": "human-domesticated-14-animals__60c60bd9",
+   "id": "human-domesticated-14-animals__60c60bd9_r1",
    "slug": "human-domesticated-14-animals",
-   "filed": "2026-11-18T10:18:49Z",
+   "filed": "2026-11-18T12:25:44Z",
    "why": [
     "premise: brain: The claim of exactly 14 large domesticated animals is not a verifiable, concrete fact and is likely inaccurate."
    ],
-   "request": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9.request.json",
-   "answer_path": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9.answer.json"
+   "request": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9_r1.answer.json"
   },
   {
-   "id": "lego-minifigs-outnumber-humans__d15cebf7",
+   "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
    "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-18T10:18:49Z",
+   "filed": "2026-11-18T12:25:44Z",
    "why": [
     "premise: brain: The premise is not a verifiable true fact and relies on an unsubstantiated claim that LEGO minifigures outnumber humans."
    ],
-   "request": "exchange/rewrites/20261118/lego-minifigs-outnumber-humans__d15cebf7.request.json",
-   "answer_path": "exchange/rewrites/20261118/lego-minifigs-outnumber-humans__d15cebf7.answer.json"
+   "request": "exchange/rewrites/20261118/lego-minifigs-outnumber-humans__d15cebf7_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
   },
   {
-   "id": "chatgpt-fastest-adoption-ever__467b2734",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-18T10:18:48Z",
+   "id": "muscle-loss-after-30__c76f31b3_r1",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-18T12:25:44Z",
    "why": [
-    "premise: brain: The claim of ChatGPT achieving mass adoption in just two months is unverified and likely false, making the premise non‑concrete and untrue."
+    "premise: brain: The premise makes an unverified specific claim about 18% muscle loss per decade, which is not a concrete, universally true fact."
    ],
-   "request": "exchange/rewrites/20261118/chatgpt-fastest-adoption-ever__467b2734.request.json",
-   "answer_path": "exchange/rewrites/20261118/chatgpt-fastest-adoption-ever__467b2734.answer.json"
+   "request": "exchange/rewrites/20261118/muscle-loss-after-30__c76f31b3_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/muscle-loss-after-30__c76f31b3_r1.answer.json"
   },
   {
    "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
@@ -325,6 +215,36 @@
    ],
    "request": "exchange/rewrites/20261118/womens-college-hoops-out-rates-men__ca924794.request.json",
    "answer_path": "exchange/rewrites/20261118/womens-college-hoops-out-rates-men__ca924794.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__467b2734",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-11-17T22:22:48Z",
+   "why": [
+    "premise: brain: The claim hinges on an unverified adoption timeframe and lacks a single, concrete, verifiable number to substantiate the reversal of expectations."
+   ],
+   "request": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.request.json",
+   "answer_path": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.answer.json"
+  },
+  {
+   "id": "lake-mead-water-crisis__4529ddf6",
+   "slug": "lake-mead-water-crisis",
+   "filed": "2026-11-17T22:22:48Z",
+   "why": [
+    "premise: brain: The premise reports reservoir decline but does not reverse a specific viewer expectation beyond the statistic itself."
+   ],
+   "request": "exchange/rewrites/20261117/lake-mead-water-crisis__4529ddf6.request.json",
+   "answer_path": "exchange/rewrites/20261117/lake-mead-water-crisis__4529ddf6.answer.json"
+  },
+  {
+   "id": "us-height-ranking-fall__7d1b012d",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-17T15:55:22Z",
+   "why": [
+    "premise: brain: The premise relies on multiple numbers (1914 and 36) rather than a single consequential, verifiable figure, failing the one-number rule."
+   ],
+   "request": "exchange/rewrites/20261117/us-height-ranking-fall__7d1b012d.request.json",
+   "answer_path": "exchange/rewrites/20261117/us-height-ranking-fall__7d1b012d.answer.json"
   },
   {
    "id": "third-interstellar-visitor__19dac2dc",
