@@ -1,22 +1,45 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "dead_air": {
-   "count": 3,
+  "other": {
+   "count": 5,
    "stories": {
-    "sports_justin_jefferson_son_speaking": 1,
-    "sports_nba__the_reasons": 1,
-    "sports_erik_johnson_s_on_players": 1
+    "third-interstellar-visitor": 1,
+    "religious-nones-rise": 3,
+    "lake-mead-water-crisis": 1
    },
    "timestamps": [
-    "2026-11-16T13:49:19+00:00",
-    "2026-11-17T11:43:06+00:00",
-    "2026-11-17T19:48:49+00:00"
+    "2026-11-18T01:25:43+00:00",
+    "2026-11-18T02:28:36+00:00",
+    "2026-11-18T03:00:51+00:00",
+    "2026-11-18T03:25:10+00:00",
+    "2026-11-18T14:17:41+00:00"
    ],
    "examples": [
-    "dead_air: Motion facts show `held_s`: 8.58s, indicating long stretches of minimal meaningful movement, even if no single frame is perfectly static for 4+ seconds.",
-    "dead_air: Motion facts show `held_s` is 7.5s, and the visual content of the speakers appears static for over 5 seconds between mid0 and mid1, and similar durations in subsequent segments.",
-    "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text."
+    "unreadable: In seg4:start through payoff@-1.8, the white closing caption sits on top of the big yellow '0.975 km' / '5.6 km' headline, so the headline reads as '0.975 Km' / '5.6 Kili' and neither text",
+    "unreadable: seg3:end: the 'Other faiths' table label is tiny and pressed against 'Catholic', so it cannot be read on a phone. The '2021' and '1990' tags in seg1:end are also very small.",
+    "unreadable: In seg4:start and seg4:mid the small subtitle 'of US adults had no religion \u00b7 1990' runs through the church gable line. In payoff@-0.4 the tiny 'of US adults have no religion \u00b7 2021 \u00b7 ahea"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 4,
+   "stories": {
+    "sports_soccer_israeli_team": 1,
+    "sports_collegebasketball_ration_three": 1,
+    "third-interstellar-visitor": 1,
+    "lake-mead-water-crisis": 1
+   },
+   "timestamps": [
+    "2026-11-17T11:56:43+00:00",
+    "2026-11-17T16:49:30+00:00",
+    "2026-11-18T01:45:11+00:00",
+    "2026-11-18T14:17:41+00:00"
+   ],
+   "examples": [
+    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+    "decorative_mascot: From hook@0.3 through seg1:end Data stands in the same place beside the observatory, pointing, while the telescope moves by itself. In seg2:start and seg2:end he stands on a platfor"
    ],
    "recurred_after_fix": false
   },
@@ -39,34 +62,19 @@
    ],
    "recurred_after_fix": false
   },
-  "temporal_gate": {
+  "dead_air": {
    "count": 2,
    "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
+    "sports_nba__the_reasons": 1,
+    "sports_erik_johnson_s_on_players": 1
    },
    "timestamps": [
-    "2026-11-15T17:26:22+00:00",
-    "2026-11-15T21:37:58+00:00"
+    "2026-11-17T11:43:06+00:00",
+    "2026-11-17T19:48:49+00:00"
    ],
    "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-   ],
-   "recurred_after_fix": false
-  },
-  "decorative_mascot": {
-   "count": 2,
-   "stories": {
-    "sports_soccer_israeli_team": 1,
-    "sports_collegebasketball_ration_three": 1
-   },
-   "timestamps": [
-    "2026-11-17T11:56:43+00:00",
-    "2026-11-17T16:49:30+00:00"
-   ],
-   "examples": [
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty"
+    "dead_air: Motion facts show `held_s` is 7.5s, and the visual content of the speakers appears static for over 5 seconds between mid0 and mid1, and similar durations in subsequent segments.",
+    "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text."
    ],
    "recurred_after_fix": false
   },
@@ -89,12 +97,12 @@
  },
  "weak_dims": {
   "hook": {
-   "median": 4,
+   "median": 3,
    "min": 0,
    "max": 4
   },
   "data_demo": {
-   "median": 5,
+   "median": 4,
    "min": 0,
    "max": 5
   },
@@ -114,7 +122,7 @@
    "max": 2
   },
   "payoff": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -125,14 +133,6 @@
   }
  },
  "scores": [
-  78,
-  14,
-  14,
-  96,
-  100,
-  96,
-  96,
-  100,
   100,
   95,
   96,
@@ -144,6 +144,14 @@
   100,
   74,
   100,
-  100
+  100,
+  66,
+  74,
+  79,
+  79,
+  74,
+  70,
+  74,
+  74
  ]
 }
