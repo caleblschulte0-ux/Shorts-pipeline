@@ -5791,11 +5791,28 @@
       "scene_changes_before_5s": 2
     },
     "lake-mead-water-crisis": {
-      "claimed_at": "2026-11-18T14:57:23.556509+00:00",
+      "url": "https://youtube.com/shorts/-7GEFCp1P38",
       "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
+      "at": "2026-11-18T14:57:36.437118+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 2,
+      "fallback_beats": 0,
+      "beat_s_max": 5.93,
+      "beat_s": [
+        5.3,
+        5.29,
+        5.93,
+        6.09
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+auto",
+      "narrative_score": 74,
+      "duration_s": 23.1
     }
   },
   "uploads": [
@@ -7476,9 +7493,10 @@
       "claimed_at": "2026-11-18T14:57:23.556509+00:00",
       "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "lake-mead-water-crisis"
+      "url": "https://youtube.com/shorts/-7GEFCp1P38",
+      "state": "posted",
+      "slug": "lake-mead-water-crisis",
+      "at": "2026-11-18T14:57:36.437118+00:00"
     }
   ]
 }
