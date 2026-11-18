@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-reactors-under-construction__db53359a",
+  "slug": "nuclear-reactors-under-construction",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:25:00Z",
+  "title": "78 Gigawatts Of Nuclear Power Is Still Under Construction",
+  "hook": "78 gigawatts of nuclear power is still being built.",
+  "closing": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
+  "question": "Would you live near nuclear power?",
+  "segments": [
+    {
+      "topic": "Nuclear Reactor Starts",
+      "say": "Builders started 10 nuclear reactors worldwide. Construction is growing rather than disappearing."
+    },
+    {
+      "topic": "Nuclear Construction Share",
+      "say": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout."
+    },
+    {
+      "topic": "Nuclear Capacity Building",
+      "say": "About 78 gigawatts of nuclear capacity is under construction. Tomorrow's power supply is already taking shape."
+    }
+  ]
+}
