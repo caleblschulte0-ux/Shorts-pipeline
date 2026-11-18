@@ -31,16 +31,16 @@ def coins(n, name="coin", r=0.02, h=0.005):
     return out
 
 
-def card(name, loc, w=0.17, h=0.107, yaw=0.0, upright=False, parent=None):
+def card(name, loc, w=0.17, h=0.107, yaw=0.0, upright=False, parent=None, color="#E3B23C", ink_hex="#3B2A0C", label="REWARDS"):
     """a big gold rewards card: rounded slab, a chip, an embossed number line, REWARDS across it. Lying flat by
     default (face up, +Z); upright=True stands it on its long edge facing -Y (the camera)."""
     root = K.empty(name, (0, 0, 0))
-    face = _mat("rewards card gold", "#E3B23C", rough=0.28, metal=0.55)
+    face = _mat(f"rewards card {color}", color, rough=0.28, metal=0.55)
     K.box(name + " slab", (0, 0, 0.002), (w, h, 0.004), face, bev=0.0035, parent=root)
     K.box(name + " stripe", (0, h * 0.18, 0.0042), (w * 0.999, h * 0.12, 0.0006), _mat("card stripe", "#B8861F", rough=0.35, metal=0.6), bev=0, parent=root)
     K.box(name + " chip", (-w * 0.3, -h * 0.02, 0.0045), (w * 0.15, h * 0.2, 0.001), _mat("card chip", "#CFC7B0", rough=0.25, metal=0.9), bev=0.0006, parent=root)
-    ink = _mat("card ink", "#3B2A0C", rough=0.5)
-    K.text(name + " rewards", "REWARDS", (w * 0.12, h * 0.33, 0.0046), h * 0.15, (0, 0, 0), ink, extrude=0.0004, parent=root)
+    ink = _mat(f"card ink {ink_hex}", ink_hex, rough=0.5)
+    K.text(name + " rewards", label, (w * 0.12, h * 0.33, 0.0046), h * 0.15, (0, 0, 0), ink, extrude=0.0004, parent=root)
     K.text(name + " number", "4000 1234 5678 9010", (0, -h * 0.25, 0.0046), h * 0.1, (0, 0, 0), ink, extrude=0.0005, parent=root)
     if upright:
         inner = root; root = K.empty(name + " stand root", (0, 0, 0)); inner.parent = root
@@ -194,3 +194,13 @@ def lever(name, base, length=0.09):
     K.cyl(name + " arm", (0, 0, length / 2), 0.004, length, brass, v=12, bev=0, parent=piv)
     K.sph(name + " knob", (0, 0, length), 0.016, _mat("lever knob", "#B8241C", rough=0.35), parent=piv)
     return piv, Vector((0, 0, length))
+
+
+def coin_cup(name):
+    """a paper coin cup he holds and tips: a white tapered cup with a red band. Built with its rim up at the origin's
+    +Z; returns (root, rim local point)"""
+    root = K.empty(name, (0, 0, 0))
+    paper = _mat("coin cup paper", "#F4F1EA", rough=0.6)
+    K.cyl(name + " body", (0, 0, 0.035), 0.03, 0.07, paper, v=32, bev=0.002, parent=root)
+    K.cyl(name + " band", (0, 0, 0.04), 0.0305, 0.02, _mat("coin cup band", "#C8302A", rough=0.5), v=32, bev=0.0, parent=root)
+    return root, Vector((0, 0, 0.07))
