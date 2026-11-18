@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261117 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261117.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "credential_dead_groq",
         "severity": "critical",
         "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-17T21:41:56+00:00).",
@@ -4407,8 +4413,8 @@
     }
   },
   "recent_commits": [
-    "44953c5 2026-11-18 explainer: update posted log + analytics [skip ci]",
-    "de5ae79 2026-11-18 claim: mailbox verdicts 2026-11-18T04:48Z [skip ci]"
+    "0ba2dbb 2026-11-18 third: analytics [skip ci]",
+    "da73d36 2026-11-18 third: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4464,11 +4470,13 @@
         "2026-11-14": 6,
         "2026-11-15": 3,
         "2026-11-16": 6,
-        "2026-11-17": 1
+        "2026-11-17": 1,
+        "2026-11-18": 5,
+        "2026-11-19": 1
       },
-      "total_posted": 561,
-      "attempted": 1445,
-      "rejected_or_pending": 884
+      "total_posted": 567,
+      "attempted": 1470,
+      "rejected_or_pending": 903
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4482,63 +4490,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 151,
+      "videos": 149,
       "top_by_vph": [
         {
           "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
-          "vph": 29.96,
-          "views": 85
+          "vph": 14.57,
+          "views": 164
         },
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 15.5,
-          "views": 1152
-        },
-        {
-          "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 9.88,
-          "views": 803
+          "vph": 13.79,
+          "views": 1141
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 9.8,
+          "vph": 9.07,
           "views": 1027
         },
         {
+          "title": "14.3% of Americans Have Money States Must Return",
+          "vph": 8.9,
+          "views": 798
+        },
+        {
           "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 6.47,
+          "vph": 5.75,
           "views": 430
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 132,
+      "videos": 128,
       "top_by_vph": [
         {
+          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
+          "vph": 3.22,
+          "views": 67
+        },
+        {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 3.05,
+          "vph": 2.97,
           "views": 1909
         },
         {
-          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
-          "vph": 2.37,
-          "views": 7
+          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
+          "vph": 1.58,
+          "views": 71
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.62,
-          "views": 190
-        },
-        {
-          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.56,
-          "views": 42
+          "vph": 1.43,
+          "views": 193
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.2,
-          "views": 521
+          "vph": 1.17,
+          "views": 530
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -4964,10 +4972,10 @@
     },
     {
       "signature": "87d632368528",
-      "verdict": "later",
-      "date": "20260818",
-      "because": "Confirmed real (verified against make_reddit_story.py:71-87, base._fetch_image, and the 3 blocked showrunner verdicts from 08-16) but a reliable pre-render semantic/OCR gate needs an actual vision/OCR dependency chosen through the engines/ checklist (CPU-viable, pinned model, license) before it can be built responsibly. A shallow heuristic (e.g. text-density only) would create a second gate that can disagree with the sovereign showrunner, which already fails closed on exactly these four failure modes -- nothing bad has shipped, the cost is wasted renders, not editorial quality. Revisit once an OCR/vision engine is registered with a documented consumer plan.",
-      "revisit_after": "20260917"
+      "verdict": "not_doing",
+      "date": "20261118",
+      "because": "Triage 2026-11-18. The renderer this gate would sit in front of is retired: config/channel_registry.json marks trending's reddit_story (and graph_race, text_card) 'retired' since the 2026-10-11 switch to sports_moment, whose footage is the clip itself and requests no shot media. There is no longer a Reddit shot pipeline for a pre-render semantic/OCR gate to protect, and the sovereign showrunner already fails closed on the four failure modes this finding listed. If reddit_story is ever un-retired, the engines/ checklist (CPU-viable, pinned, licensed OCR/vision) is still the prerequisite named in the 08-18 park.",
+      "revisit_after": null
     },
     {
       "signature": "8b6949ab0573",
