@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "us-height-ranking-fall__7d1b012d",
+  "slug": "us-height-ranking-fall",
+  "by": "chatgpt",
+  "written_at": "2026-11-18T12:21:00Z",
+  "title": "American Height Gained 6 Centimeters While Other Countries Passed",
+  "hook": "American men gained 6 centimeters, but other countries grew faster.",
+  "closing": "Height reflects living conditions, so national rankings can change within generations.",
+  "question": "Are you taller than your grandparents?",
+  "segments": [
+    {
+      "topic": "American Height",
+      "say": "American men averaged 177 centimeters by 2014. A century of growth still was not enough to keep the lead."
+    },
+    {
+      "topic": "Height Gains",
+      "say": "South Korean women gained 20.2 centimeters. Other populations improved far faster than Americans."
+    },
+    {
+      "topic": "Height Ranking",
+      "say": "By 2014, 36 countries had taller men. America's modest gains became a ranking collapse."
+    }
+  ]
+}
