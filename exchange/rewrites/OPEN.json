@@ -1,7 +1,18 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-18T13:14:53Z",
+ "updated": "2026-11-18T15:25:26Z",
  "open": [
+  {
+   "id": "cohabitation-overtakes-marriage__debb4b76",
+   "slug": "cohabitation-overtakes-marriage",
+   "filed": "2026-11-18T15:25:26Z",
+   "why": [
+    "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Provides a historical marriage rate trend rather than directly supporting the current young‑adult cohab vs marriage clai",
+    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts focus to older adults, not the young‑adult claim, and is unrelated to the previous beat."
+   ],
+   "request": "exchange/rewrites/20261118/cohabitation-overtakes-marriage__debb4b76.request.json",
+   "answer_path": "exchange/rewrites/20261118/cohabitation-overtakes-marriage__debb4b76.answer.json"
+  },
   {
    "id": "fifty-otters-survived-climate-fight__dffc79c4",
    "slug": "fifty-otters-survived-climate-fight",
