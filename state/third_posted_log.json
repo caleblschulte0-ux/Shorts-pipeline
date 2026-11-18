@@ -20600,6 +20600,25 @@
       "rejected_by": "rescue fail-closed",
       "rejected_why": "weak title + no transcript judge reachable \u2014 nothing vouched for it",
       "ts": "2026-11-17T19:52:53.684806+00:00"
+    },
+    "rejected-proudsavorybutterdoggo-lptls8xwz7trvrgh": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/ProudSavoryButterDoggo-LpTls8xWZ7TRVrGH",
+      "streamer": "summit1g",
+      "title": "grok is this crashout valid",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW walking, talk, no visible event)",
+      "ts": "2026-11-18T11:34:59.714910+00:00"
+    },
+    "clip-20261118-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/VivaciousVenomousMangetoutRaccAttack-ESKcgB7b9ijG-Nkc",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Crashes Out After He Can't Build The Bridge",
+      "kind": "twitch_clip",
+      "ts": "2026-11-18T11:37:10.442079+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
