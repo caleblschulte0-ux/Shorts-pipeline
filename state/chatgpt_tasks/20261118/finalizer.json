@@ -1,0 +1,22 @@
+{
+ "checked_at": "2026-11-18T12:31:05+00:00",
+ "date": "20261118",
+ "deadline_central": 8,
+ "deadline_passed": false,
+ "expected": [
+  "exchange/bundles/20261118/response.json",
+  "exchange/bundles/20261118/DONE"
+ ],
+ "found": [
+  "response.json",
+  "DONE"
+ ],
+ "headline": "finalizer: ok",
+ "ok": true,
+ "partial": false,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "finalizer",
+ "why_required": "a bundle exists for this date"
+}
