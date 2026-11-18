@@ -20611,14 +20611,149 @@
       "ts": "2026-11-18T11:34:59.714910+00:00"
     },
     "clip-20261118-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/VivaciousVenomousMangetoutRaccAttack-ESKcgB7b9ijG-Nkc",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/b_Cv5tLxycM",
       "title": "Jynxzi Crashes Out After He Can't Build The Bridge",
       "kind": "twitch_clip",
-      "ts": "2026-11-18T11:37:10.442079+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-18T11:37:20.491439+00:00",
+      "uploaded_at": "2026-11-18T11:37:20.491455+00:00",
+      "publish_at": "2026-11-18T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261118-jynxzi-crashes-out-after-he-can-t-build-the-brid-37a81c6f",
+        "tiktok": "queued for 2026-11-18T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/VivaciousVenomousMangetoutRaccAttack-ESKcgB7b9ijG-Nkc",
+      "streamer": "jynxzi",
+      "series": "rage",
+      "hook": "Jynxzi can't build the bridge \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3702,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 9.0
+      },
+      "director_cut": true
+    },
+    "rejected-livelyprotectivewasabikevinturtle-n3ho6mvoov3gauep": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/LivelyProtectiveWasabiKevinTurtle-n3Ho6MVOov3gaUEP",
+      "streamer": "summit1g",
+      "title": "fasefsa",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (walking in game, talk, no event)",
+      "ts": "2026-11-18T11:38:38.958294+00:00"
+    },
+    "rejected-amazingspikyzebranotlikethis-9w2napua14nnh3kg": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AmazingSpikyZebraNotLikeThis-9W2nAPUA14Nnh3kg",
+      "streamer": "jynxzi",
+      "title": "Joe sex",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Street interview talk, sexual, not a cle)",
+      "ts": "2026-11-18T11:39:23.296725+00:00"
+    },
+    "rejected-brainyimpartialwerewolftebowing-3r5pje8gk-c6hyax": {
+      "source_url": "https://www.twitch.tv/lacy/clip/BrainyImpartialWerewolfTebowing-3R5PJe8gK-C6hyAX",
+      "streamer": "lacy",
+      "title": "a",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Streamer watching a TikTok, nothing happ)",
+      "ts": "2026-11-18T11:40:15.018142+00:00"
+    },
+    "rejected-longfuriousgarlicdendiface-c43hko8gkc7bktxl": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/LongFuriousGarlicDendiFace-C43HKo8gkc7BKTXl",
+      "streamer": "caseoh_",
+      "title": "insane",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay, checkpoint retrace, no)",
+      "ts": "2026-11-18T11:41:05.710738+00:00"
+    },
+    "rejected-adventurousenticingtrollshadylulu-eazavzfapzq8oxl5": {
+      "source_url": "https://www.twitch.tv/forsen/clip/AdventurousEnticingTrollShadyLulu-eAZaVZFaPZq8OXL5",
+      "streamer": "forsen",
+      "title": "Bajsen whisper",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Offensive whisper talk, no visible event)",
+      "ts": "2026-11-18T11:41:56.848891+00:00"
+    },
+    "rejected-cheerfulwisesnoodyoudontsay-o4top2dtveexf6a8": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CheerfulWiseSnoodYouDontSay-O4top2dtVEExf6A8",
+      "streamer": "jasontheween",
+      "title": ".",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (scheduling talk, no visible event)",
+      "ts": "2026-11-18T11:42:30.333988+00:00"
+    },
+    "rejected-kathishexpensivelaptopraccattack--gvl-d-7hp8lmwvb": {
+      "source_url": "https://www.twitch.tv/lacy/clip/KathishExpensiveLaptopRaccAttack--GVL-D-7HP8LmWVb",
+      "streamer": "lacy",
+      "title": "a",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Dark car flex talk, no event)",
+      "ts": "2026-11-18T11:43:04.724537+00:00"
+    },
+    "rejected-mushyfriendlytrianglearsonnosexy-jmdzv4zsevjyaxhg": {
+      "source_url": "https://www.twitch.tv/nickmercs/clip/MushyFriendlyTriangleArsonNoSexy-jmDZv4zSEvjyaXhG",
+      "streamer": "nickmercs",
+      "title": "Nickmercs Gets Told Off After This Loot Fight In Warzone Gone Wrong",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 4.3s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin landscape strip, about one third of the 9:16 canvas, instead of the roughly three quarters e; vision: The player and the action are small and hard to read on a phone. The gameplay UI",
+      "ts": "2026-11-18T11:46:45.448098+00:00"
+    },
+    "rejected-wildknottykimchihassaanchop-xjsowrx6zhv8sjby": {
+      "source_url": "https://www.twitch.tv/qtcinderella/clip/WildKnottyKimchiHassaanChop-xJsOWRx6ZHv8sjBY",
+      "streamer": "qtcinderella",
+      "title": "spotted",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Red carpet camera feed, no clear event)",
+      "ts": "2026-11-18T12:19:30.750144+00:00"
+    },
+    "rejected-belovedroughraccoonsaltbae-h7vaj_qusuatw9k-": {
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/BelovedRoughRaccoonSaltBae-h7VAj_qusuAtW9k-",
+      "streamer": "rayasianboy",
+      "title": "w kelo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.12 < 0.35 (Phone chatter, no visible event)",
+      "ts": "2026-11-18T12:20:07.406755+00:00"
+    },
+    "rejected-hilarioussmellystingrayarsonnosexy-8jkqz83uqfrohxjf": {
+      "source_url": "https://www.twitch.tv/fuslie/clip/HilariousSmellyStingrayArsonNoSexy-8JKQZ83uQFROhXJF",
+      "streamer": "fuslie",
+      "title": "She\u2019s TALL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Height chat over menus, nothing happens)",
+      "ts": "2026-11-18T12:21:11.928702+00:00"
+    },
+    "rejected-obliquedepresseddinosaurtebowing-ypjfuq3nwna7qs-d": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/ObliqueDepressedDinosaurTebowing-YpJfUq3NWNA7qS-d",
+      "streamer": "ishowspeed",
+      "title": "speed talks about what\u2019s important",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Fortnite talk, no visible event)",
+      "ts": "2026-11-18T12:28:10.482026+00:00"
+    },
+    "rejected-thankfulsoftchipmunkstonelightning-wbwh0sf79dxsxtcv": {
+      "source_url": "https://www.twitch.tv/lacy/clip/ThankfulSoftChipmunkStoneLightning-wBWh0Sf79DxSXtCv",
+      "streamer": "lacy",
+      "title": "a",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "the clip ends mid-sentence on \"with\"",
+      "ts": "2026-11-18T12:28:32.921248+00:00"
     }
   }
 }
