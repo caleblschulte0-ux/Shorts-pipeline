@@ -1,0 +1,107 @@
+{
+  "score": 65,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 3,
+    "data_demo": 2,
+    "mascot": 2,
+    "craft": 2,
+    "pace": 2,
+    "payoff": 1,
+    "temporal_craft": 3
+  },
+  "auto_fails": [],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "All props are consistent 3D renders that fit the topic: a store shelf, a REWARDS card, coins, a piggy bank and price tags (hook@0.3, mid1, mid2)."
+    },
+    "decorative_mascot": {
+      "present": false,
+      "evidence": "Data does something in each scene: he presses the register in mid1, feeds a coin into the piggy bank in mid2 and drops coins into the jar in mid4. He stays parked behind the props, though, and his big head fills most of every frame."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "No beat is just a big number on a background. Every scene shows objects: coins flowing, a piggy bank draining onto a card, a jar filling."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "Measured longest_static_s is 0.0. Coins are in motion in hook@0.8 to hook@2.2, mid2 and mid4."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "Every frame has a full set: shelves in the hook, a warehouse aisle in mid1, a window in mid2 and a railing in mid3."
+    },
+    "unreadable": {
+      "present": false,
+      "evidence": "Captions are white with a heavy outline and read clearly. In payoff@-1.8 the caption \"DO YOU USE,\" covers part of the card number, but that number is only a prop."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 83
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.134,
+    "effective_fps": 20.8,
+    "max_dup_run": 14,
+    "measured": true,
+    "frozen_ratio": 0.011,
+    "frozen_fps": 23.7,
+    "max_frozen_run": 5,
+    "judder_ratio": 0.0,
+    "judder_fps": 24.0,
+    "held_s": 1.42,
+    "max_dup_at_s": 7.92,
+    "duration_s": 27.75
+  },
+  "judge": "headless-claude",
+  "weakest_scene": {
+    "id": "seg2",
+    "index": 2,
+    "failure_class": "claim_not_demonstrated",
+    "visible_evidence": "In mid3 and mid4 one jar of coins sits between a small shack and a white mansion. Nothing shows money moving from the shack to the mansion, and the $750 is never shown.",
+    "root_cause": "The scene shows a single neutral jar, so the 'flows uphill' claim (the poor pay in, the rich collect about $750) has no direction and no winner.",
+    "repair_goal": "Show coins visibly leaving the shack and climbing a ramp or chute into the mansion. Data should pour or shovel them uphill, and the mansion's pile should end clearly bigger than the shack's, so a viewer sees the transfer without reading a number."
+  },
+  "depictions": [
+    {
+      "id": "seg0",
+      "kind": "machine",
+      "bespoke": 1,
+      "proves_claim": 1,
+      "note": "Product boxes with $ tags and Data pressing a register. The tags never visibly rise, so 'raise prices for everyone' is asserted, not shown."
+    },
+    {
+      "id": "seg1",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 2,
+      "note": "Coins drain from the cash household's piggy bank onto a rewards card. Good subject-made picture of the transfer, but the $149 scale is never shown."
+    },
+    {
+      "id": "seg2",
+      "kind": "machine",
+      "bespoke": 1,
+      "proves_claim": 1,
+      "note": "A coin jar between a shack and a mansion. The flow has no direction, so 'uphill' and the rich-vs-poor gap don't read."
+    }
+  ],
+  "one_line": "The cash-to-card coin transfer in the hook and seg1 works, but the strongest claim, money flowing uphill to the rich, ends on a neutral jar and never lands.",
+  "problems": [
+    "seg2: the jar between the shack and the mansion gives the flow no direction, so the payoff claim is not demonstrated.",
+    "seg0: the price tags only show '$' and never rise, so the price increase is not visible.",
+    "Data is a giant static head behind a counter in every scene. Only his hands do small acts, and his face takes up the top half of each frame.",
+    "Neither the $149 nor the $750 figure shows up in any picture, so the scale of the transfer is never felt.",
+    "The closing scene repeats the hook's set with one bill sliding into the card, which is a weak finish."
+  ],
+  "fixes": [
+    "seg2: run coins from the shack up a ramp into the mansion's vault, with Data cranking or shoveling, and end with the mansion's pile clearly towering over the shack's.",
+    "seg0: animate the price tags flipping up to higher prices as Data stamps them.",
+    "Frame Data smaller and further back so the props get the frame and he can move through the scene.",
+    "Closing: end on the finished picture of the uphill flow rather than a reprise of the hook set."
+  ]
+}

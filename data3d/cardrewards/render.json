@@ -1,0 +1,60 @@
+{
+ "frames_rendered": 832,
+ "frame_size": [
+  1080,
+  1920
+ ],
+ "native": true,
+ "fps": 30,
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30.0,
+  "codec": "h264",
+  "frames": 832,
+  "pix_fmt": "yuv420p"
+ },
+ "audio": {
+  "codec": "aac",
+  "sample_rate": "44100"
+ },
+ "duration_s": 27.733,
+ "bytes": 13030854,
+ "last_word_s": 26.611,
+ "tts": {
+  "engine": "gemini",
+  "voice": "gemini Charon",
+  "why_not_elevenlabs": null,
+  "why_not_chatterbox": null,
+  "why_not_gemini": null
+ },
+ "lines": [
+  "Every time you pay cash, you're paying for someone else's credit card rewards.",
+  "Stores pay a fee on every card swipe, so they quietly raise prices for everyone, even people paying cash.",
+  "A Federal Reserve study found the average cash-paying household hands about one hundred forty-nine dollars a year to card users.",
+  "And it flows uphill: the richest households collect about seven hundred fifty dollars a year, while the poorest pay in.",
+  "Your cash is quietly funding their points. So which do you use, cash or card?"
+ ],
+ "windows": [
+  [
+   0.0,
+   3.973458
+  ],
+  [
+   3.973458,
+   9.662833
+  ],
+  [
+   9.662833,
+   15.669332999999998
+  ],
+  [
+   15.669332999999998,
+   21.59675
+  ],
+  [
+   21.59675,
+   27.092292
+  ]
+ ]
+}

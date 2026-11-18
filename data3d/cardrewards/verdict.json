@@ -1,0 +1,119 @@
+{
+  "shots": [
+    {
+      "shot": 5,
+      "score": 71,
+      "scores": [
+        66,
+        71,
+        73
+      ],
+      "hard": [],
+      "pass": true,
+      "kept": "passed by the panel at 2026-11-18T19:03:03Z on this exact code and brief"
+    },
+    {
+      "shot": 1,
+      "score": 58,
+      "scores": [
+        52,
+        58,
+        60
+      ],
+      "hard": [
+        "NOT THE POINT, frames 1-30: the 'wallet' is a thin flat brown slab at the lower right of the card. It never reads as an open wallet, so on a phone nobody can say where the coins come from. The coins are tiny and the heap stays a small gold smear at the card's base. Seen alone, the shot reads as 'a giant card in front of Data' and not 'money hopping out of my wallet into the card'.",
+        "NOT THE POINT: the wallet is a dark brown sliver at the right end of the counter in every frame (1-30). On a phone it does not read as an open wallet, so nobody can tell the coins are leaving HIS wallet. It looks like coins popping out of a box."
+      ],
+      "minority_hard": [],
+      "problems": [
+        "The upright card covers Data's whole torso and both hands, so he is a floating head over a card for the entire shot.",
+        "The coins are small and the heap in the tray stays low and flat (frames 20-30). The 'growing heap' never becomes a pile you notice at a glance.",
+        "'Annoyed' does not come across: his look to camera (frames 9-30) is a neutral flat mouth with no brow change.",
+        "The tray at the card's foot is a black disc almost lost against the counter."
+      ],
+      "better": [
+        "Turn the wallet three-quarters toward camera, open, with visible bills or card slots, and make it about three times bigger. It is the subject of the line.",
+        "Lower or shift the card so his hands and chest show. Have a hand reach toward the wallet and fail to stop it.",
+        "Use bigger coins with a higher arc. Make the heap rise visibly, and add a beat where one coin bounces off the top.",
+        "Give him a real annoyed read: brows down, mouth pulled to one side, a small sigh or slump on the look to camera."
+      ],
+      "pass": false
+    },
+    {
+      "shot": 2,
+      "score": 64,
+      "scores": [
+        63,
+        64,
+        70
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "When the tags rise they end up pressed against Data's chin and chest, overlapping his face and coat (row 3 onward). The payoff gets lost in a clutter of red squares in front of him.",
+        "The products are tiny: the CEREAL/SOAP/RICE labels and the $ tags cannot be read on a phone, and the boxes sit in the bottom tenth of the frame.",
+        "The tap is soft and hard to read. His hand hovers over the reader for most of row 1 and the green beep is a glow under his mitten, not a clear tap-and-flash.",
+        "Data's head tilts back and sways oddly while he looks down (rows 1-2), so the body reads as loose rather than deliberate."
+      ],
+      "better": [
+        "Put the boxes and tags to one side of Data, not in front of his chest, so the tags rise into clear background space where the change in height and colour reads.",
+        "Make the props larger or push the camera in on the bench. The $ tags should be legible on a phone, ideally showing an old price and a new price.",
+        "Stage the tap with anticipation: lift the finger, tap down, have the reader flash bright green with a little bounce, then pop the tags in a quick stagger.",
+        "Hold a clear 'see?' look to camera after the tags land, with a brow raise or a pointing glance at the tags."
+      ],
+      "pass": false
+    },
+    {
+      "shot": 3,
+      "score": 62,
+      "scores": [
+        60,
+        62,
+        63
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "Data's hand on the pig reads as a separate teal ball sitting on its back (frames 1-45). The arm behind it is hidden by the pig, so the hand looks detached.",
+        "The tip is barely visible. The pig mostly turns its snout toward camera and foreshortens instead of clearly tilting forward, so 'he tips the pig' is hard to read.",
+        "The card lies upside down to the camera (REWARDS and the number read inverted) and at the bottom edge, so its identity as a credit card is weak.",
+        "The wooden block under the pig is not visible, and the pig sits directly over Data's torso, so the whole composition is one stacked column of head, hand, pig and card.",
+        "The coin pour is a small trickle and the heap on the card stays small. It is not a satisfying 'all my savings onto the card' moment."
+      ],
+      "better": [
+        "Shoot from three-quarters, with the pig to one side of Data, so his arm visibly goes from the shoulder to the pig's back and the forward tip reads in silhouette.",
+        "Make the tip a clear 30-45\u00b0 tilt with anticipation, and have coins gush, not trickle, from a visible slot or snout.",
+        "Turn the card so REWARDS and the gold chip face the camera, and pull it up from the frame edge.",
+        "Show the wooden block and give the pig some scale against the card.",
+        "Give the look to camera an expression that lands the joke (deadpan, eyebrow up) on a held beat."
+      ],
+      "pass": false
+    },
+    {
+      "shot": 4,
+      "score": 67,
+      "scores": [
+        64,
+        67,
+        71
+      ],
+      "hard": [],
+      "minority_hard": [],
+      "problems": [
+        "The 'mansion' reads as a white office or factory block, not a home. Without it, 'the poor pay the rich' is only half legible on a phone.",
+        "The jar sits squarely in front of Data's torso and the coin arcs fly across his coat. The flight path reads as coins pelting him rather than travelling across the counter (rows 3-5).",
+        "The shack and the mansion are small and low at the frame edges, cut by the edge of the frame on the right in several frames. The rich-versus-poor contrast is weak in size.",
+        "The gold lamp directly behind his head reads as a bald pate or halo, which distracts from his face."
+      ],
+      "better": [
+        "Make the mansion unmistakably a mansion (pillars, a pitched roof, windows) and make it much bigger than the shack. Put the jar right beside it as written.",
+        "Move Data off-centre so the coin arc travels through clear space from shack to jar, ideally higher and more visible.",
+        "Land the ending harder: the jar overflows or the shack visibly empties, then Data gives a long unimpressed stare to camera.",
+        "Move or dim the gold lamp so it no longer frames his head.",
+        "Hold the final full-jar frame a beat longer so the payoff reads before the cut."
+      ],
+      "pass": false
+    }
+  ],
+  "panel": 3
+}
