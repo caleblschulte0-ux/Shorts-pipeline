@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "normal-body-temperature-has-shifted__5658afbe_r1",
+  "slug": "normal-body-temperature-has-shifted",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:22:00Z",
+  "title": "Body Temperature Dropped Below 98.6°F",
+  "hook": "The classroom definition of normal no longer matches modern bodies.",
+  "closing": "Knowing your own baseline helps you notice when your body is actually running hot.",
+  "question": "What is your resting temperature?",
+  "segments": [
+    {
+      "topic": "Body Temperature",
+      "say": "Modern men average 97.5 degrees. Today's bodies run cooler than the historic standard."
+    },
+    {
+      "topic": "Temperature Gap",
+      "say": "Men's average body temperature dropped 1.06 degrees. Their decline was larger than women's."
+    },
+    {
+      "topic": "Temperature Baseline",
+      "say": "Recalculating the original thermometers produced 98.2 degrees. Even the famous baseline appears slightly too warm."
+    }
+  ]
+}
