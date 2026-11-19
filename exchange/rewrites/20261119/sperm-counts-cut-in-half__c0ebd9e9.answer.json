@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "sperm-counts-cut-in-half__c0ebd9e9",
+  "slug": "sperm-counts-cut-in-half",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:22:00Z",
+  "title": "Sperm Counts Fell 52%—Then The Decline Accelerated",
+  "hook": "Men now produce far fewer sperm, and the loss is speeding up.",
+  "closing": "A faster decline could make starting a family harder for more people.",
+  "question": "Why is the decline accelerating?",
+  "segments": [
+    {
+      "topic": "Sperm Concentration",
+      "say": "Sperm concentration fell 52 percent. Modern samples contain about half as many sperm as older ones."
+    },
+    {
+      "topic": "Sperm Decline",
+      "say": "The annual sperm-count decline accelerated to 2.64 percent. The loss is now happening faster."
+    },
+    {
+      "topic": "Sperm Total",
+      "say": "Total sperm count fell 62 percent. The decline affects overall production, not only concentration."
+    }
+  ]
+}
