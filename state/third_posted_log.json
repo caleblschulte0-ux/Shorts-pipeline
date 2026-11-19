@@ -20956,6 +20956,61 @@
       "used_narration": false,
       "context_overlay_count": 3,
       "replay_count": 0
+    },
+    "rejected-peacefulglutenfreevultureshazbotstix-kghnvnwwgzoeo6xs": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/PeacefulGlutenFreeVultureShazBotstix-KgHnVnwwgZOeO6Xs",
+      "streamer": "ohnepixel",
+      "title": "ohnePixel tries out the strip club's private dance in GTA 6",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Nudity, age-restrict risk; streamer bare)",
+      "ts": "2026-11-19T11:34:38.991514+00:00"
+    },
+    "rejected-blueicysnoodsaltbae-qkp3qe1r_foncnn1": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BlueIcySnoodSaltBae-qKp3QE1R_FoncNN1",
+      "streamer": "ohnepixel",
+      "title": "WHAT?!",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 27/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-11-19T11:34:56.759266+00:00"
+    },
+    "rejected-tsunderesmoggyraccoonpermasmug-zuq7va1zp5olv98f": {
+      "source_url": "https://www.twitch.tv/illojuan/clip/TsundereSmoggyRaccoonPermaSmug-zUq7va1zP5OLv98f",
+      "streamer": "illojuan",
+      "title": "gta 6 borrado",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Deleting GTA 6, menu navigation, no payo)",
+      "ts": "2026-11-19T11:35:42.467108+00:00"
+    },
+    "rejected-awkwardcoldbloodedbunnykappawealth-jwq_hei8hgarlves": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AwkwardColdbloodedBunnyKappaWealth-jwq_HEi8HgaRlves",
+      "streamer": "ohnepixel",
+      "title": "horny ohne!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.05 < 0.35 (Nudity in game; age-restrict, ad-unsafe)",
+      "ts": "2026-11-19T12:23:00.879822+00:00"
+    },
+    "rejected-differentsullenreubenitsboshytime-k1eo8-_fjy3zqqan": {
+      "source_url": "https://www.twitch.tv/zoil/clip/DifferentSullenReubenItsBoshyTime-K1Eo8-_fjY3ZqQan",
+      "streamer": "zoil",
+      "title": "wtf",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (GTA strip-club lap dance, age-restrict r)",
+      "ts": "2026-11-19T12:24:13.322796+00:00"
+    },
+    "clip-20261119-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/dinah/clip/InventiveStylishSwanTBCheesePull-bpUxg33iLnxUyEOG",
+      "story_key": null,
+      "streamer": "dinah",
+      "title": "Dinah Can't Stop Saying What The F*** After Seeing This",
+      "kind": "twitch_clip",
+      "ts": "2026-11-19T12:27:13.130733+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
