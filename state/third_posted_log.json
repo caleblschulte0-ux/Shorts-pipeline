@@ -21159,14 +21159,50 @@
       "ts": "2026-11-19T13:06:54.555975+00:00"
     },
     "clip-20261119-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/alanzoka/clip/SmallDeterminedTrollBloodTrail-zazo4PfHTAYNhgZ7",
-      "story_key": null,
-      "streamer": "alanzoka",
+      "url": "https://youtube.com/shorts/CQpMuXedtow",
       "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
       "kind": "twitch_clip",
-      "ts": "2026-11-19T13:11:21.285361+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-19T13:11:31.277733+00:00",
+      "uploaded_at": "2026-11-19T13:11:31.277750+00:00",
+      "publish_at": "2026-11-20T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261119-alanzoka-reacts-to-mandy-and-can-t-believe-what--cb97e2ab",
+        "tiktok": "queued for 2026-11-20T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/alanzoka/clip/SmallDeterminedTrollBloodTrail-zazo4PfHTAYNhgZ7",
+      "streamer": "alanzoka",
+      "series": "chaos",
+      "hook": "Alanzoka sees what Mandy did \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 27101,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-diligentbumblingbaconklappa-whzsniiwpjdxtdud": {
+      "source_url": "https://www.twitch.tv/illojuan/clip/DiligentBumblingBaconKlappa-whzsnIIWPJDxTdud",
+      "streamer": "illojuan",
+      "title": "y lo borra puajajajaj",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Deleting and redownloading GTA VI, menus)",
+      "ts": "2026-11-19T13:12:22.390368+00:00"
+    },
+    "rejected-trustworthycarefuljalapenokapow--cphzddjibw-x0-c": {
+      "source_url": "https://www.twitch.tv/xqc/clip/TrustworthyCarefulJalapenoKAPOW--CPhZdDJiBW-X0-C",
+      "streamer": "xqc",
+      "title": "Xqc Gets Called Out By A GTA 6 NPC Right After Doing It First",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip of about one third of the 9:16 canvas, well short of the roughly three quarters e; vision: The subject is small and far away. The truck and the NPC are tiny in a very dark scene, and the streamer's facecam is a ; vision: The picture is very dark and low",
+      "ts": "2026-11-19T13:16:10.786048+00:00"
     }
   }
 }
