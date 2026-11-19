@@ -21049,13 +21049,68 @@
       "ts": "2026-11-19T12:30:38.725817+00:00"
     },
     "clip-20261119-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/EsteemedAlertBoarTTours-qTa7AtR3giDjQF5-",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/Ot-iA4j7y5w",
       "title": "Ohnepixel Gets A Surprise Visit From Mandy After She Fixed His Sink",
       "kind": "twitch_clip",
-      "ts": "2026-11-19T12:33:22.327730+00:00",
+      "ts": "2026-11-19T12:33:34.325916+00:00",
+      "uploaded_at": "2026-11-19T12:33:34.325932+00:00",
+      "publish_at": "2026-11-19T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261119-ohnepixel-gets-a-surprise-visit-from-mandy-after-94a4c447",
+        "tiktok": "queued for 2026-11-19T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/EsteemedAlertBoarTTours-qTa7AtR3giDjQF5-",
+      "streamer": "ohnepixel",
+      "series": "drama",
+      "hook": "Mandy fixes the sink and leaves something behind",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 64048,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 17.57
+      },
+      "director_cut": true
+    },
+    "rejected-boldpiliableminkcoolstorybro-ndccktlkofaarmam": {
+      "source_url": "https://www.twitch.tv/lacy/clip/BoldPiliableMinkCoolStoryBro-nDCcktLkOFAarmAm",
+      "streamer": "lacy",
+      "title": "SON...",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-11-19T12:34:39.412043+00:00"
+    },
+    "rejected-shortcovertpantrihard-m5vbby4s2llcj-ab": {
+      "source_url": "https://www.twitch.tv/djmariio/clip/ShortCovertPanTriHard-M5Vbby4S2lLcJ-aB",
+      "streamer": "djmariio",
+      "title": "AY DIOS",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (sexual game cutscene, age-restrict risk)",
+      "ts": "2026-11-19T12:35:01.148364+00:00"
+    },
+    "rejected-wealthynimblehamsterdansgame-yru7ushzomelh1ke": {
+      "source_url": "https://www.twitch.tv/xqc/clip/WealthyNimbleHamsterDansGame-yrU7UShZomelh1Ke",
+      "streamer": "xqc",
+      "title": "xQc commits Grand Theft Auto for the first time in GTA 6",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-11-19T12:35:37.863365+00:00"
+    },
+    "clip-20261119-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/ReliablePowerfulOilBatChest-ydNija0st6UB0byp",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "Lirik Finds An Easter Egg And Can't Believe What He Sees",
+      "kind": "twitch_clip",
+      "ts": "2026-11-19T12:43:47.564372+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
