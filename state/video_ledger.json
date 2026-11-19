@@ -7563,6 +7563,74 @@
    "ending_type": "inversion",
    "franchise": "",
    "notes": "Existing scenes kept; comeback-not-takeover ending"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-19",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "words_first_10s": 22,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "illustrated:tattoo-arm-trend",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "How Normal Became Normal",
+   "notes": "kept existing scenes; ink-as-count on people tiles"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-19",
+   "topic_category": "body",
+   "hook_type": "shock_stat",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "words_first_10s": 22,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:sids-baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "One Change That Worked",
+   "notes": "baby flip is the tier-1 beat"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-19",
+   "topic_category": "money",
+   "hook_type": "inversion",
+   "hook_text": "Corporate America has new owners, and nobody ever voted for them.",
+   "words_first_10s": 22,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Who Owns It",
+   "notes": "tiles flip to index colour; towers fill with owner share"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-19",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Vinyl was supposed to be dead. Now it's crushing the CD.",
+   "words_first_10s": 22,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "illustrated:vinyl-sleeves",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Comeback Not Takeover",
+   "notes": "discs drop into crates one per million"
   }
  ]
 }

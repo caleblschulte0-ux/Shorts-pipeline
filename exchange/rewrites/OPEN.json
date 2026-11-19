@@ -1,7 +1,28 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-19T15:22:33Z",
+ "updated": "2026-11-19T18:14:40Z",
  "open": [
+  {
+   "id": "frog-fungus-mass-extinction__ed6b28a5",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-19T18:14:40Z",
+   "why": [
+    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim of 90 species erased and isn't a logical continuation of beat 0.",
+    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Not a causal follow‑up to beat 1 and only adds a separate geographic fact, not strengthening the headline claim."
+   ],
+   "request": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.request.json",
+   "answer_path": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.answer.json"
+  },
+  {
+   "id": "measles-ninety-five-rule__e5720400",
+   "slug": "measles-ninety-five-rule",
+   "filed": "2026-11-19T18:14:39Z",
+   "why": [
+    "premise: brain: The claim about kindergartens already falling below the 95% herd immunity threshold is not a verifiable, concrete fact without supporting data."
+   ],
+   "request": "exchange/rewrites/20261119/measles-ninety-five-rule__e5720400.request.json",
+   "answer_path": "exchange/rewrites/20261119/measles-ninety-five-rule__e5720400.answer.json"
+  },
   {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
    "slug": "richest-americans-live-14-years-longer",
@@ -256,16 +277,6 @@
    "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
   },
   {
-   "id": "measles-ninety-five-rule__e5720400",
-   "slug": "measles-ninety-five-rule",
-   "filed": "2026-11-18T18:41:45Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified claim that kindergartens are already below the 95% herd immunity threshold, making it insufficiently concrete and provably true."
-   ],
-   "request": "exchange/rewrites/20261118/measles-ninety-five-rule__e5720400.request.json",
-   "answer_path": "exchange/rewrites/20261118/measles-ninety-five-rule__e5720400.answer.json"
-  },
-  {
    "id": "map-distortion-true-size__bc5c8508",
    "slug": "map-distortion-true-size",
    "filed": "2026-11-18T16:58:18Z",
@@ -406,17 +417,6 @@
    ],
    "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.request.json",
    "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__772f1262_r1",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-18T12:25:44Z",
-   "why": [
-    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim that the fungus erased 90 frog species and is not a clear continuation of beat 0.",
-    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Only mentions 40 frog species affected, not the 90 extinctions claimed, and doesn't follow logically from beat 1."
-   ],
-   "request": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262_r1.request.json",
-   "answer_path": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262_r1.answer.json"
   },
   {
    "id": "human-domesticated-14-animals__60c60bd9_r1",
