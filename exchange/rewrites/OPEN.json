@@ -1,209 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-19T10:47:30Z",
+ "updated": "2026-11-19T12:52:43Z",
  "open": [
   {
-   "id": "clear-air-turbulence-increase__afb34a62",
-   "slug": "clear-air-turbulence-increase",
-   "filed": "2026-11-19T10:47:30Z",
-   "why": [
-    "premise: brain: The claim is vague and unverified, lacking a concrete, provable fact."
-   ],
-   "request": "exchange/rewrites/20261119/clear-air-turbulence-increase__afb34a62.request.json",
-   "answer_path": "exchange/rewrites/20261119/clear-air-turbulence-increase__afb34a62.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__f3e6eb41",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-11-19T10:47:30Z",
-   "why": [
-    "premise: brain: The claim that 25 states reinstated cursive because young readers lost the skill is vague and lacks verifiable evidence."
-   ],
-   "request": "exchange/rewrites/20261119/cursive-handwriting-comeback__f3e6eb41.request.json",
-   "answer_path": "exchange/rewrites/20261119/cursive-handwriting-comeback__f3e6eb41.answer.json"
-  },
-  {
-   "id": "sperm-counts-cut-in-half__c0ebd9e9",
-   "slug": "sperm-counts-cut-in-half",
-   "filed": "2026-11-19T10:47:30Z",
-   "why": [
-    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Adds a separate statistic rather than a logical consequence of beat 1; it's another fact, not a direct follow‑on."
-   ],
-   "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9.request.json",
-   "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9.answer.json"
-  },
-  {
-   "id": "seabed-mining-rush__497e0491",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-11-19T10:47:29Z",
-   "why": [
-    "premise: brain: The premise relies on unverified speculative claims about seabed cobalt reserves and lacks concrete, proven evidence."
-   ],
-   "request": "exchange/rewrites/20261119/seabed-mining-rush__497e0491.request.json",
-   "answer_path": "exchange/rewrites/20261119/seabed-mining-rush__497e0491.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__a401ad38",
+   "id": "index-funds-own-corporate-america__a401ad38_r1",
    "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-19T10:47:29Z",
+   "filed": "2026-11-19T12:52:42Z",
    "why": [
     "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
    ],
-   "request": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38.request.json",
-   "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38.answer.json"
-  },
-  {
-   "id": "fifty-otters-survived-climate-fight__dffc79c4",
-   "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-19T00:50:08Z",
-   "why": [
-    "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Recovery to 3,000 is a population-size fact; it doesn't turn against or follow from the near-extinction by cause, and th",
-    "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Jumps to kelp carbon storage without showing how otters protect kelp (eating urchins); the kelp claim isn't linked to th"
-   ],
-   "request": "exchange/rewrites/20261119/fifty-otters-survived-climate-fight__dffc79c4.request.json",
-   "answer_path": "exchange/rewrites/20261119/fifty-otters-survived-climate-fight__dffc79c4.answer.json"
-  },
-  {
-   "id": "normal-body-temperature-has-shifted__5658afbe_r1",
-   "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-19T00:50:08Z",
-   "why": [
-    "premise: brain: It's a vague 'the number you learned is wrong' hook that doesn't say what the real number is or what the surprise means, and it names no concrete threat or picture the viewer can see, so it reads as a generic myth-bust rather than a specific turn-over of belief."
-   ],
-   "request": "exchange/rewrites/20261119/normal-body-temperature-has-shifted__5658afbe_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/normal-body-temperature-has-shifted__5658afbe_r1.answer.json"
-  },
-  {
-   "id": "us-stops-making-pennies-232-years__e8e35070_r1",
-   "slug": "us-stops-making-pennies-232-years",
-   "filed": "2026-11-19T00:50:08Z",
-   "why": [
-    "premise: brain: The premise is not true; the US has not announced stopping penny production after 232 years."
-   ],
-   "request": "exchange/rewrites/20261119/us-stops-making-pennies-232-years__e8e35070_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/us-stops-making-pennies-232-years__e8e35070_r1.answer.json"
-  },
-  {
-   "id": "volcanoes-erupting-right-now__78b520e6_r1",
-   "slug": "volcanoes-erupting-right-now",
-   "filed": "2026-11-19T00:50:08Z",
-   "why": [
-    "premise: brain: The title is a stat-led trivia fact with no tension, and the hook's \"it just moves around\" is a vague, mild observation without a concrete belief to overturn or a threat or stakes the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261119/volcanoes-erupting-right-now__78b520e6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
-  },
-  {
-   "id": "richest-americans-live-14-years-longer__ff249bfc",
-   "slug": "richest-americans-live-14-years-longer",
-   "filed": "2026-11-19T00:50:08Z",
-   "why": [
-    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Introduces a different comparison (US lifespan gain since 1960) and doesn't follow from beat 0's 14.6-year gap. It is an"
-   ],
-   "request": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc.request.json",
-   "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc.answer.json"
-  },
-  {
-   "id": "cohabitation-overtakes-marriage__debb4b76",
-   "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Marriage decline since 1968 is context, but it doesn't follow from or turn against beat 0. It never says unmarried partn",
-    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts to older adults and a count of unmarried couples since 2000. It reads as 'and another fact' rather than building "
-   ],
-   "request": "exchange/rewrites/20261119/cohabitation-overtakes-marriage__debb4b76.request.json",
-   "answer_path": "exchange/rewrites/20261119/cohabitation-overtakes-marriage__debb4b76.answer.json"
-  },
-  {
-   "id": "feet-are-getting-bigger__9e6def1c",
-   "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "thesis: seg2 ('Why British feet grow') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Beat 2 shifts to a cause (body size, overweight rates) that beat 1 never set up. Beat 1 is about feet getting wider. Bea"
-   ],
-   "request": "exchange/rewrites/20261119/feet-are-getting-bigger__9e6def1c.request.json",
-   "answer_path": "exchange/rewrites/20261119/feet-are-getting-bigger__9e6def1c.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__772f1262_r1",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Shifts to a different statistic (share still declining) without following from beat 0's count; it doesn't support the '9",
-    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Australia's 40 species is another standalone count; the 'isolated ecosystems' point doesn't follow from or turn against "
-   ],
-   "request": "exchange/rewrites/20261119/frog-fungus-mass-extinction__772f1262_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/frog-fungus-mass-extinction__772f1262_r1.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__5bac8a81",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "premise: brain: The claim of a precise 2‑year bleaching cycle lacks verified evidence and is not a concrete, proven fact."
-   ],
-   "request": "exchange/rewrites/20261119/great-barrier-reef-bleaching-accelerating__5bac8a81.request.json",
-   "answer_path": "exchange/rewrites/20261119/great-barrier-reef-bleaching-accelerating__5bac8a81.answer.json"
-  },
-  {
-   "id": "nuclear-reactors-under-construction__5de43777",
-   "slug": "nuclear-reactors-under-construction",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: China's share of capacity is a new fact about who builds it, not a consequence of or turn against reactor starts; it rea"
-   ],
-   "request": "exchange/rewrites/20261119/nuclear-reactors-under-construction__5de43777.request.json",
-   "answer_path": "exchange/rewrites/20261119/nuclear-reactors-under-construction__5de43777.answer.json"
-  },
-  {
-   "id": "ocean-is-changing-color__94e5fa3d",
-   "slug": "ocean-is-changing-color",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "premise: brain: The hook is vague and abstract (\"quietly changing color\") with no concrete picture, villain, stakes or belief being overturned, so the viewer can't tell what it means for them."
-   ],
-   "request": "exchange/rewrites/20261119/ocean-is-changing-color__94e5fa3d.request.json",
-   "answer_path": "exchange/rewrites/20261119/ocean-is-changing-color__94e5fa3d.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__a488693a",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-19T00:50:07Z",
-   "why": [
-    "premise: brain: The claim about 23 serious runway near-misses lacks verifiable evidence and may not be a concrete, proven fact"
-   ],
-   "request": "exchange/rewrites/20261119/runway-near-misses-climbing__a488693a.request.json",
-   "answer_path": "exchange/rewrites/20261119/runway-near-misses-climbing__a488693a.answer.json"
-  },
-  {
-   "id": "dating-app-user-exodus__803f07ec",
-   "slug": "dating-app-user-exodus",
-   "filed": "2026-11-19T00:50:06Z",
-   "why": [
-    "premise: brain: The claim about Tinder's user count dropping to 11 million is unverified and vague, lacking concrete, verifiable evidence."
-   ],
-   "request": "exchange/rewrites/20261119/dating-app-user-exodus__803f07ec.request.json",
-   "answer_path": "exchange/rewrites/20261119/dating-app-user-exodus__803f07ec.answer.json"
-  },
-  {
-   "id": "human-domesticated-14-animals__60c60bd9_r1",
-   "slug": "human-domesticated-14-animals",
-   "filed": "2026-11-19T00:50:06Z",
-   "why": [
-    "premise: brain: The claim of exactly 14 large domesticated animals is likely inaccurate and unverified, making the premise non‑concrete and not reliably true."
-   ],
-   "request": "exchange/rewrites/20261119/human-domesticated-14-animals__60c60bd9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/human-domesticated-14-animals__60c60bd9_r1.answer.json"
-  },
-  {
-   "id": "north-american-bird-collapse__1e7ff9ae",
-   "slug": "north-american-bird-collapse",
-   "filed": "2026-11-19T00:50:06Z",
-   "why": [
-    "premise: brain: The premise is a statistic about common birds declining without a concrete picture, a villain, or a belief overturned that the viewer can visualize, and the title reads like a searchable headline."
-   ],
-   "request": "exchange/rewrites/20261119/north-american-bird-collapse__1e7ff9ae.request.json",
-   "answer_path": "exchange/rewrites/20261119/north-american-bird-collapse__1e7ff9ae.answer.json"
+   "request": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.answer.json"
   },
   {
    "id": "us-height-ranking-fall__5c0b88f4",
@@ -398,6 +205,16 @@
    "answer_path": "exchange/rewrites/20261119/womens-college-hoops-out-rates-men__ca924794.answer.json"
   },
   {
+   "id": "clear-air-turbulence-increase__afb34a62",
+   "slug": "clear-air-turbulence-increase",
+   "filed": "2026-11-18T23:01:25Z",
+   "why": [
+    "premise: brain: The claim is vague and unverified, lacking a concrete, provable fact about turbulence duration."
+   ],
+   "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.request.json",
+   "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.answer.json"
+  },
+  {
    "id": "fireflies-losing-their-glow__5dd482f3",
    "slug": "fireflies-losing-their-glow",
    "filed": "2026-11-18T18:41:47Z",
@@ -426,6 +243,169 @@
    ],
    "request": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.request.json",
    "answer_path": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.answer.json"
+  },
+  {
+   "id": "north-american-bird-collapse__1e7ff9ae",
+   "slug": "north-american-bird-collapse",
+   "filed": "2026-11-18T16:58:18Z",
+   "why": [
+    "premise: brain: The claim of 2.9 billion breeding birds vanished is a specific, unverified figure, making the premise insufficiently concrete and likely false."
+   ],
+   "request": "exchange/rewrites/20261118/north-american-bird-collapse__1e7ff9ae.request.json",
+   "answer_path": "exchange/rewrites/20261118/north-american-bird-collapse__1e7ff9ae.answer.json"
+  },
+  {
+   "id": "cohabitation-overtakes-marriage__debb4b76",
+   "slug": "cohabitation-overtakes-marriage",
+   "filed": "2026-11-18T15:25:26Z",
+   "why": [
+    "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Provides a historical marriage rate trend rather than directly supporting the current young‑adult cohab vs marriage clai",
+    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts focus to older adults, not the young‑adult claim, and is unrelated to the previous beat."
+   ],
+   "request": "exchange/rewrites/20261118/cohabitation-overtakes-marriage__debb4b76.request.json",
+   "answer_path": "exchange/rewrites/20261118/cohabitation-overtakes-marriage__debb4b76.answer.json"
+  },
+  {
+   "id": "fifty-otters-survived-climate-fight__dffc79c4",
+   "slug": "fifty-otters-survived-climate-fight",
+   "filed": "2026-11-18T13:14:53Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a clear, concrete surprise or factual claim."
+   ],
+   "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.request.json",
+   "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.answer.json"
+  },
+  {
+   "id": "feet-are-getting-bigger__9e6def1c",
+   "slug": "feet-are-getting-bigger",
+   "filed": "2026-11-18T13:14:52Z",
+   "why": [
+    "premise: brain: The claim that British feet have grown two shoe sizes over 40 years is not a concrete, verified fact."
+   ],
+   "request": "exchange/rewrites/20261118/feet-are-getting-bigger__9e6def1c.request.json",
+   "answer_path": "exchange/rewrites/20261118/feet-are-getting-bigger__9e6def1c.answer.json"
+  },
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__5bac8a81",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-18T13:14:52Z",
+   "why": [
+    "premise: brain: The claim about bleaching returning every 2 years is vague and not a verifiable concrete fact."
+   ],
+   "request": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__5bac8a81.request.json",
+   "answer_path": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__5bac8a81.answer.json"
+  },
+  {
+   "id": "ocean-is-changing-color__94e5fa3d",
+   "slug": "ocean-is-changing-color",
+   "filed": "2026-11-18T13:14:52Z",
+   "why": [
+    "premise: brain: The claim that 56% of the ocean has changed color is not a verifiable, concrete fact and lacks supporting evidence."
+   ],
+   "request": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.request.json",
+   "answer_path": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.answer.json"
+  },
+  {
+   "id": "runway-near-misses-climbing__a488693a",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-18T13:14:52Z",
+   "why": [
+    "thesis: seg2 ('Where near-misses cluster') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: It introduces a new fact about airport clustering rather than building on the cause explained in beat 1, so it doesn't f"
+   ],
+   "request": "exchange/rewrites/20261118/runway-near-misses-climbing__a488693a.request.json",
+   "answer_path": "exchange/rewrites/20261118/runway-near-misses-climbing__a488693a.answer.json"
+  },
+  {
+   "id": "cursive-handwriting-comeback__f3e6eb41",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-11-18T13:14:51Z",
+   "why": [
+    "premise: brain: The claim is vague and unverified, lacking concrete, true evidence."
+   ],
+   "request": "exchange/rewrites/20261118/cursive-handwriting-comeback__f3e6eb41.request.json",
+   "answer_path": "exchange/rewrites/20261118/cursive-handwriting-comeback__f3e6eb41.answer.json"
+  },
+  {
+   "id": "dating-app-user-exodus__803f07ec",
+   "slug": "dating-app-user-exodus",
+   "filed": "2026-11-18T13:14:51Z",
+   "why": [
+    "premise: brain: The premise makes an unverified claim about Tinder's user count and a vague cause, lacking concrete, proven facts."
+   ],
+   "request": "exchange/rewrites/20261118/dating-app-user-exodus__803f07ec.request.json",
+   "answer_path": "exchange/rewrites/20261118/dating-app-user-exodus__803f07ec.answer.json"
+  },
+  {
+   "id": "nuclear-reactors-under-construction__5de43777",
+   "slug": "nuclear-reactors-under-construction",
+   "filed": "2026-11-18T13:14:51Z",
+   "why": [
+    "premise: brain: The claim of exactly 78 GW of nuclear capacity under construction is a vague aggregate without verifiable source, making it non‑concrete and likely inaccurate."
+   ],
+   "request": "exchange/rewrites/20261118/nuclear-reactors-under-construction__5de43777.request.json",
+   "answer_path": "exchange/rewrites/20261118/nuclear-reactors-under-construction__5de43777.answer.json"
+  },
+  {
+   "id": "normal-body-temperature-has-shifted__5658afbe_r1",
+   "slug": "normal-body-temperature-has-shifted",
+   "filed": "2026-11-18T12:25:45Z",
+   "why": [
+    "thesis: seg1 ('Body cooling by sex') does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Focuses on sex differences rather than directly supporting the claim that 98.6°F is no longer normal, and doesn't logica",
+    "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Introduces a separate historical calibration issue that doesn't follow from beat 1 and is not a direct continuation of t"
+   ],
+   "request": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/normal-body-temperature-has-shifted__5658afbe_r1.answer.json"
+  },
+  {
+   "id": "us-stops-making-pennies-232-years__e8e35070_r1",
+   "slug": "us-stops-making-pennies-232-years",
+   "filed": "2026-11-18T12:25:45Z",
+   "why": [
+    "premise: brain: The premise is not a true, concrete claim—there is no evidence the US will cease penny production after 232 years."
+   ],
+   "request": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070_r1.answer.json"
+  },
+  {
+   "id": "volcanoes-erupting-right-now__78b520e6_r1",
+   "slug": "volcanoes-erupting-right-now",
+   "filed": "2026-11-18T12:25:45Z",
+   "why": [
+    "premise: brain: The claim of ~45 simultaneous eruptions is not a verifiable, concrete fact and likely inaccurate."
+   ],
+   "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__772f1262_r1",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-18T12:25:44Z",
+   "why": [
+    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim that the fungus erased 90 frog species and is not a clear continuation of beat 0.",
+    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Only mentions 40 frog species affected, not the 90 extinctions claimed, and doesn't follow logically from beat 1."
+   ],
+   "request": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/frog-fungus-mass-extinction__772f1262_r1.answer.json"
+  },
+  {
+   "id": "human-domesticated-14-animals__60c60bd9_r1",
+   "slug": "human-domesticated-14-animals",
+   "filed": "2026-11-18T12:25:44Z",
+   "why": [
+    "premise: brain: The claim of exactly 14 large domesticated animals is not a verifiable, concrete fact and is likely inaccurate."
+   ],
+   "request": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9_r1.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__497e0491",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-18T10:18:48Z",
+   "why": [
+    "premise: brain: The premise makes unverified quantitative claims and vague threats without concrete, proven facts."
+   ],
+   "request": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.request.json",
+   "answer_path": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.answer.json"
   },
   {
    "id": "chatgpt-fastest-adoption-ever__467b2734",

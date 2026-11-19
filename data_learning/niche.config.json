@@ -24365,9 +24365,9 @@
   },
   {
    "slug": "seabed-mining-rush",
-   "title": "Seabed Cobalt Holds 4x Land Reserves As Claims Multiply",
-   "hook": "Seabed cobalt could dwarf land reserves, but countries want a pause.",
-   "closing": "Your phone and car batteries may depend on a deal the world hasn't made yet.",
+   "title": "31 Seabed Mining Contracts Triggered A Global Backlash",
+   "hook": "Battery metals beneath the ocean are creating a political fight.",
+   "closing": "The outcome could reshape battery supplies and determine how much ocean floor gets disturbed.",
    "question": "Should seabed mining proceed?",
    "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
    "hashtags": [
@@ -24396,8 +24396,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RUSH",
-     "topic": "Seabed Mining Claims",
-     "say": "Deep-sea mining contracts have nearly quadrupled, to 31. The ocean floor is already a crowded race for metal.",
+     "topic": "Seabed Contracts",
+     "say": "Deep-sea exploration contracts reached 31. The seabed metal rush is no longer theoretical.",
      "scene": {
       "mechanic": "seafloor-claim-flags-plant",
       "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
@@ -24413,8 +24413,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Seabed Cobalt Reserves",
-     "say": "Seabed rocks hold four times more cobalt than all known land reserves combined. That is the prize, and cobalt goes into batteries.",
+     "topic": "Seabed Cobalt",
+     "say": "Seabed nodules contain 44 million tonnes of cobalt. That potential battery supply explains the rush.",
      "scene": {
       "mechanic": "nodule-pile-vs-landpile",
       "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
@@ -24430,8 +24430,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE CATCH",
-     "topic": "Seabed Mining Pause",
-     "say": "Countries calling for a deep-sea mining pause hit 37, up over half in a year. The backlash is growing.",
+     "topic": "Seabed Pause",
+     "say": "37 countries now support a seabed mining pause or ban. Political resistance is catching up.",
      "scene": {
       "mechanic": "world-pause-flag-spread",
       "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
@@ -24439,8 +24439,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-04T17:45:09Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:43Z",
    "retold": "retell/v4"
   },
   {
@@ -24521,9 +24521,9 @@
   },
   {
    "slug": "clear-air-turbulence-increase",
-   "title": "Severe Turbulence Lasted 55% Longer Over The North Atlantic",
-   "hook": "Severe turbulence lasted 55% longer over the North Atlantic.",
-   "closing": "Rough air is rising, so keep your seatbelt fastened whenever you sit, even when the skies look calm.",
+   "title": "Severe North Atlantic Turbulence Lasts 55% Longer",
+   "hook": "The invisible rough air over the Atlantic is getting worse.",
+   "closing": "Longer severe turbulence makes keeping your seatbelt fastened throughout every flight more important.",
    "question": "Have your flights felt bumpier?",
    "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
    "hashtags": [
@@ -24552,8 +24552,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE BUMP",
-     "topic": "Turbulence Annual Hours",
-     "say": "Severe turbulence now lasts 27 hours a year over the North Atlantic, about half again what it was in 1979. Crossings are bumpier.",
+     "topic": "Atlantic Turbulence",
+     "say": "Severe turbulence reached 27.4 annual hours over the North Atlantic. Crossings now spend more time in dangerous invisible air.",
      "scene": {
       "mechanic": "shaking-jet-climb",
       "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
@@ -24569,8 +24569,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE PATTERN",
-     "topic": "Turbulence Severity Increase",
-     "say": "Severe turbulence lasts 55 percent longer, more than triple the rise in light bumps. The worst air is growing fastest.",
+     "topic": "Severe Turbulence",
+     "say": "Severe turbulence duration increased 55 percent. The worst bumps are growing faster than lighter ones.",
      "scene": {
       "mechanic": "rough-air-bands",
       "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
@@ -24585,8 +24585,8 @@
      },
      "insight_type": "trend",
      "role": "3 · WHY",
-     "topic": "Turbulence Future Hours",
-     "say": "Models say severe turbulence could hit 62 hours a year by 2080, over double today's level. Flights would get much rougher.",
+     "topic": "Future Turbulence",
+     "say": "Severe turbulence could reach 62 annual hours. Future Atlantic flights would spend far longer in dangerous rough air.",
      "scene": {
       "mechanic": "future-storm-panels",
       "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
@@ -24594,8 +24594,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T12:50:02Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:42Z",
    "retold": "retell/v4"
   },
   {
@@ -37370,10 +37370,10 @@
   },
   {
    "slug": "nuclear-reactors-under-construction",
-   "title": "78 Gigawatts Of Nuclear Power Is Still Under Construction",
-   "hook": "78 gigawatts of nuclear power is still being built.",
-   "closing": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
-   "question": "Would you live near nuclear power?",
+   "title": "78 Gigawatts Of Nuclear Power Is Still Being Built",
+   "hook": "The supposedly fading industry still has a massive construction pipeline.",
+   "closing": "Projects under construction now will shape electricity supplies for decades.",
+   "question": "Would you support more nuclear power?",
    "caption": "78 gigawatts of nuclear power are under construction worldwide right now, across 15 countries — and China alone is building half of it. Would you live near a nuclear plant? Tell me below ⚛️",
    "hashtags": [
     "nuclearpower",
@@ -37399,7 +37399,7 @@
      "insight_type": "trend",
      "role": "1 · THE RESTART",
      "topic": "Nuclear Reactor Starts",
-     "say": "Builders started 10 nuclear reactors worldwide. Construction is growing rather than disappearing."
+     "say": "Nuclear construction starts reached 10 worldwide. New projects are still entering the pipeline."
     },
     {
      "source": "offline",
@@ -37410,7 +37410,7 @@
      "insight_type": "share",
      "role": "2 · WHO'S BUILDING",
      "topic": "Nuclear Construction Share",
-     "say": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout."
+     "say": "China holds 50 percent of nuclear capacity under construction. The buildout is concentrated, not globally even."
     },
     {
      "source": "offline",
@@ -37427,7 +37427,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:45Z"
+   "rewritten_at": "2026-11-19T12:52:42Z"
   },
   {
    "slug": "craft-brewery-boom-and-bust",
@@ -37798,10 +37798,10 @@
   },
   {
    "slug": "sperm-counts-cut-in-half",
-   "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
-   "hook": "Men today have about half the sperm their grandfathers did.",
-   "closing": "It's speeding up, and sperm counts matter for any family hoping to have kids.",
-   "question": "Did you know sperm counts dropped?",
+   "title": "Sperm Counts Fell 52%—Then The Decline Accelerated",
+   "hook": "Men now produce far fewer sperm, and the loss is speeding up.",
+   "closing": "A faster decline could make starting a family harder for more people.",
+   "question": "Why is the decline accelerating?",
    "caption": "In 1973, the average man had about double the sperm count he does today. Scientists still don't fully know why — but the decline just keeps accelerating. Did you know this was happening? 👇",
    "hashtags": [
     "spermcount",
@@ -37826,8 +37826,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "sperm count decline",
-     "say": "In 1973, the average count was 101. By 2018 it was under half that, so grandfathers had the edge.",
+     "topic": "Sperm Concentration",
+     "say": "Sperm concentration fell 52 percent. Modern samples contain about half as many sperm as older ones.",
      "scene": {
       "title": true,
       "elements": [
@@ -37846,8 +37846,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · SPEEDING UP",
-     "topic": "Sperm count decline speed",
-     "say": "Since 2000, counts fall 2.6% a year, more than double the old pace. The drop itself is speeding up."
+     "topic": "Sperm Decline",
+     "say": "The annual sperm-count decline accelerated to 2.64 percent. The loss is now happening faster."
     },
     {
      "source": "offline",
@@ -37857,13 +37857,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE BIGGER DROP",
-     "topic": "Total sperm count drop",
-     "say": "Total sperm count fell 62%, even worse than concentration. Men now make far fewer sperm overall, not just thinner samples."
+     "topic": "Sperm Total",
+     "say": "Total sperm count fell 62 percent. The decline affects overall production, not only concentration."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-19T10:45:55Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:43Z"
   },
   {
    "slug": "lake-mead-water-crisis",
@@ -38104,10 +38104,10 @@
   },
   {
    "slug": "ocean-is-changing-color",
-   "title": "56% Of The Ocean Has Changed Color",
-   "hook": "The ocean is quietly changing color.",
-   "closing": "Nobody knows yet what it means for the sea life down there, or for us.",
-   "question": "Have you noticed the ocean looking different?",
+   "title": "56% Of The Ocean Changed Color",
+   "hook": "Satellites detected a global color shift across more ocean than land.",
+   "closing": "Ocean color tracks microscopic life, so a global shift can signal ecosystem change.",
+   "question": "What is changing beneath the surface?",
    "caption": "NASA satellites tracked the ocean's color for 20 years — and more than half of it has visibly shifted. A climate model predicted this back in 2019, and now the data backs it up. Have you noticed the ocean looking different? 👇",
    "hashtags": [
     "oceancolor",
@@ -38132,8 +38132,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE SHIFT",
-     "topic": "Ocean color change",
-     "say": "NASA satellites watched for twenty years. The result: 56% of the ocean's surface, more than half, now looks different."
+     "topic": "Ocean Color Shift",
+     "say": "56 percent of the ocean surface changed color. More than half the sea now reflects light differently."
     },
     {
      "source": "offline",
@@ -38143,8 +38143,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE PREDICTION",
-     "topic": "Ocean color prediction",
-     "say": "A 2019 climate model predicted half the ocean would shift. Satellites found a bit more, so the warning was right."
+     "topic": "Ocean Color Prediction",
+     "say": "A climate model predicted 50 percent of the ocean would shift. Later satellite observations matched the warning."
     },
     {
      "source": "offline",
@@ -38154,13 +38154,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE SCALE",
-     "topic": "Ocean area changed",
-     "say": "That's about 200 million square kilometers of ocean, bigger than all the land on Earth put together."
+     "topic": "Ocean Color Area",
+     "say": "Changed ocean area reached 203 million square kilometers. The shift covers more space than all Earth's land."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T13:13:01Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:42Z"
   },
   {
    "slug": "hadza-gut-bacteria-vs-americans",
@@ -38226,10 +38226,10 @@
   },
   {
    "slug": "runway-near-misses-climbing",
-   "title": "The FAA Logged 23 Serious Runway Near-Misses In One Year",
-   "hook": "Runway near-misses keep climbing, and most don't even involve a plane.",
-   "closing": "More flights, same runways. Every close call puts a planeload of people at risk.",
-   "question": "Does this make you nervous to fly?",
+   "title": "Serious Runway Incursions More Than Doubled",
+   "hook": "The worst close calls are climbing and clustering at a few airports.",
+   "closing": "Every runway incursion risks passengers before their flight even leaves the ground.",
+   "question": "Does this change how you fly?",
    "caption": "Serious runway near-misses hit a level not seen in years — and they're not spread evenly across airports. A handful of hubs account for nearly a third of the worst ones. Does this make you nervous to fly? 👇",
    "hashtags": [
     "aviation",
@@ -38254,8 +38254,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
-     "topic": "Runway near-misses over time",
-     "say": "Serious runway near-misses have more than doubled in about a decade, to 23 last year. That's roughly one every two weeks.",
+     "topic": "Runway Incursions Climb",
+     "say": "Serious runway incursions rose to 23. The most dangerous close calls more than doubled over roughly a decade.",
      "scene": {
       "title": true,
       "elements": [
@@ -38274,8 +38274,8 @@
      },
      "insight_type": "share",
      "role": "2 · THE CAUSE",
-     "topic": "What causes runway incursions",
-     "say": "Six in ten runway incursions last year were people or vehicles wandering onto the runway by mistake, not planes at all."
+     "topic": "Runway Incursion Cause",
+     "say": "60 percent of runway incursions came from pedestrians or vehicles. The threat is not always another aircraft."
     },
     {
      "source": "offline",
@@ -38285,13 +38285,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHERE IT CLUSTERS",
-     "topic": "Where near-misses cluster",
-     "say": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst ones. That's where the danger lives."
+     "topic": "Runway Risk Clusters",
+     "say": "A small airport cluster accounts for 33 percent of the worst incursions. Risk is concentrated, not evenly spread."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-11-18T13:13:13Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:42Z",
    "scorecard": {
     "scores": {
      "premise": 12,
@@ -38371,10 +38371,10 @@
   },
   {
    "slug": "great-barrier-reef-bleaching-accelerating",
-   "title": "Great Barrier Reef Bleaching Now Returns Every 2 Years",
-   "hook": "Reef bleaching now returns about every 2 years.",
-   "closing": "Each bleaching wave now arrives before the reef can fully recover.",
-   "question": "Can the reef keep up?",
+   "title": "Great Barrier Reef Recovery Takes 10 Years—Bleaching Returns Sooner",
+   "hook": "New bleaching can arrive before damaged coral rebuilds.",
+   "closing": "Repeated bleaching can strip reefs of the recovery time their ecosystems need.",
+   "question": "Can the reef recover fast enough?",
    "hashtags": [
     "greatbarrierreef",
     "coralbleaching",
@@ -38399,7 +38399,7 @@
      "insight_type": "trend",
      "role": "1 · HOW OFTEN",
      "topic": "Reef Bleaching Events",
-     "say": "The reef has already suffered 3 bleaching events this decade. What was rare became routine."
+     "say": "The reef suffered 3 mass bleaching events this decade. A once-rare shock is becoming routine."
     },
     {
      "source": "offline",
@@ -38409,8 +38409,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE GAP CLOSING",
-     "topic": "Reef Bleaching Gap",
-     "say": "The average gap shrank to 2 years. The reef barely catches its breath."
+     "topic": "Reef Bleaching Gaps",
+     "say": "The longest recorded bleaching gap was 14 years. That breathing room has collapsed."
     },
     {
      "source": "offline",
@@ -38421,12 +38421,12 @@
      "insight_type": "comparison",
      "role": "3 · NOT ENOUGH TIME",
      "topic": "Reef Recovery Time",
-     "say": "A reef typically needs 10 years to recover. New bleaching arrives far too soon."
+     "say": "A reef typically needs 10 years to recover. Repeated bleaching can arrive before damaged coral rebuilds."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:44Z"
+   "rewritten_at": "2026-11-19T12:52:42Z"
   },
   {
    "slug": "normal-body-temperature-has-shifted",
@@ -38489,10 +38489,10 @@
   },
   {
    "slug": "volcanoes-erupting-right-now",
-   "title": "About 45 Volcanoes Are Erupting On Earth Right Now",
-   "hook": "Earth never actually stops erupting. It just moves around.",
-   "closing": "Something, somewhere, is always on fire under your feet.",
-   "question": "Did you know one was erupting today?",
+   "title": "45 Erupting Volcanoes Hide A Concentrated Global Threat",
+   "hook": "Earth's volcanic danger is clustered closer together than it looks.",
+   "closing": "Where volcanoes cluster matters because nearby communities share the same concentrated risk.",
+   "question": "Do you live near a volcano?",
    "hashtags": [
     "volcanoes",
     "geology",
@@ -38517,8 +38517,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · HOW MANY ARE ACTIVE",
-     "topic": "Active volcanoes",
-     "say": "Earth has about 1,400 active volcanoes, but only a tiny slice are erupting at any moment. So the planet always has a few going."
+     "topic": "Volcanoes Active",
+     "say": "About 45 volcanoes are erupting now. Earth's interior stays active even when headlines are quiet."
     },
     {
      "source": "offline",
@@ -38528,8 +38528,8 @@
      },
      "insight_type": "share",
      "role": "2 · WHERE THEY SIT",
-     "topic": "Ring of Fire volcanoes",
-     "say": "Three in four sit along one line, the Pacific Ring of Fire. So the danger is packed around one ocean's edge."
+     "topic": "Volcanoes Ring",
+     "say": "75 percent of active volcanoes sit on the Pacific Ring of Fire. Much of the danger circles one ocean."
     },
     {
      "source": "offline",
@@ -38539,13 +38539,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE MOST DANGEROUS",
-     "topic": "Most dangerous volcanoes",
-     "say": "Just 16 are labeled 'Decade Volcanoes', the most dangerous to nearby people. Out of over a thousand, that's a short watch list."
+     "topic": "Volcanoes Dangerous",
+     "say": "Only 16 are designated Decade Volcanoes. Scientists focus attention where eruptions could threaten nearby communities most."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T12:15:01Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:43Z"
   },
   {
    "slug": "south-korea-robot-density-record",
@@ -38689,10 +38689,10 @@
   },
   {
    "slug": "richest-americans-live-14-years-longer",
-   "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
-   "hook": "Your paycheck decides how long you get to live, and the gap is growing.",
-   "closing": "Money doesn't just buy comfort. It buys years, and that gap keeps growing.",
-   "question": "Would you want to know your number?",
+   "title": "Richest American Men Live 14.6 Years Longer",
+   "hook": "Income now separates entire decades of American life.",
+   "closing": "The widening lifespan gap means prosperity can determine how much life people get.",
+   "question": "What should close this gap?",
    "caption": "The richest 1% of American men outlive the poorest 1% by 14.6 years. That gap alone is bigger than six decades of national progress. Would you want to know your number? 👇",
    "hashtags": [
     "lifeexpectancy",
@@ -38717,8 +38717,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GAP",
-     "topic": "Richest vs poorest",
-     "say": "Richest American men outlive the poorest men by 14.6 years. That is more than a decade of life, lost to a paycheck."
+     "topic": "Richest Gap",
+     "say": "Richest American men outlive the poorest by 14.6 years. Income separates more than a decade of life."
     },
     {
      "source": "offline",
@@ -38728,8 +38728,8 @@
      },
      "insight_type": "trend",
      "role": "2 · FOR CONTEXT",
-     "topic": "Americans since 1960",
-     "say": "Sixty years of progress added only about 9 years to American lives. The richest-poorest gap beats all of it."
+     "topic": "American Lifespan",
+     "say": "Average American life expectancy rose 8.6 years. The income gap is larger than decades of nationwide progress."
     },
     {
      "source": "offline",
@@ -38739,13 +38739,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · AND IT'S WIDENING",
-     "topic": "Richest pulling ahead",
-     "say": "Since 2001, the richest fifth of Americans gained 2.3 years of life. The poorest fifth got almost nothing."
+     "topic": "Richest Gains",
+     "say": "The richest fifth gained 2.3 years of life. The poorest group barely advanced, widening the divide."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T10:17:26Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-19T12:52:42Z",
    "scorecard": {
     "scores": {
      "premise": 12,
@@ -38766,9 +38766,9 @@
   },
   {
    "slug": "fifty-otters-survived-climate-fight",
-   "title": "50 Sea Otters Survived—Then Protected Carbon-Storing Kelp",
-   "hook": "50 sea otters survived, then helped protect carbon-storing kelp.",
-   "closing": "Saving one predator can protect an entire coastline and its carbon.",
+   "title": "50 Sea Otters Survived And Kelp Became A Carbon Shield",
+   "hook": "A nearly erased predator returned with climate consequences.",
+   "closing": "Protecting one predator can strengthen an entire coastline and its carbon storage.",
    "question": "Would you welcome otters nearby?",
    "caption": "Fur traders hunted California's sea otters down to about 50 survivors. They've crept back to 3,000 — and the kelp forests they protect could store millions of tons of CO2. Would you want them near your coastline? 👇",
    "hashtags": [
@@ -38794,7 +38794,7 @@
      },
      "insight_type": "comparison",
      "role": "1 · NEARLY WIPED OUT",
-     "topic": "Sea Otters Survived",
+     "topic": "Sea Otters Survive",
      "say": "Only 50 California sea otters remained. Fur trading nearly erased the population."
     },
     {
@@ -38805,8 +38805,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE SLOW COMEBACK",
-     "topic": "Sea Otters Recovered",
-     "say": "The population recovered to about 3,000. The comeback remains incomplete because the species is still threatened."
+     "topic": "Sea Otters Recover",
+     "say": "California sea otters recovered to 3,000. That comeback restored a predator linked to healthier kelp forests."
     },
     {
      "source": "offline",
@@ -38817,12 +38817,12 @@
      "insight_type": "comparison",
      "role": "3 · WHY IT MATTERS",
      "topic": "Sea Otters Protect",
-     "say": "Otter-protected kelp can store 8.7 million metric tons of CO2 yearly. One predator shields a major carbon sink."
+     "say": "Otter-protected kelp could store 8.7 million metric tons of CO2 yearly. The comeback can strengthen a major carbon sink."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:43Z"
+   "rewritten_at": "2026-11-19T12:52:42Z"
   },
   {
    "slug": "us-stops-making-pennies-232-years",

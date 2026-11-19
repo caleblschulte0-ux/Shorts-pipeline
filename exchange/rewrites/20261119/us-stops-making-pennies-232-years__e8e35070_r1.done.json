@@ -1,0 +1,10 @@
+{
+ "id": "us-stops-making-pennies-232-years__e8e35070_r1",
+ "slug": "us-stops-making-pennies-232-years",
+ "settled": "2026-11-19T12:52:43Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: new named entity not in the data: Lifespan",
+  "segment 2: new named entity not in the data: Comparison"
+ ]
+}

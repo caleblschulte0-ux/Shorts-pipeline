@@ -1,0 +1,11 @@
+{
+ "id": "human-domesticated-14-animals__60c60bd9_r1",
+ "slug": "human-domesticated-14-animals",
+ "settled": "2026-11-19T12:52:42Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Begin, Domestic",
+  "segment 1: new named entity not in the data: Domestic, Selected",
+  "segment 2: new named entity not in the data: Domestic, Plateau"
+ ]
+}
