@@ -47,11 +47,12 @@ for _where, _p in _vp:
 if variety.held(STORY) and _vp and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"{STORY}: the beats repeat each other (store/variety.py): build each beat its own camera, act and props")
 import fresh      # every video new, every beat worth watching (caaleb 2026-11-19: "Dr. Katz effect ... reusing backgrounds ... works for maybe 1 second")
-_fp = fresh.problems(STORY, SCRIPT)
+import story_world   # story and world first (caaleb 2026-11-19: "Building a world that the viewer has to believe in")
+_fp = fresh.problems(STORY, SCRIPT) + story_world.problems(STORY, SCRIPT)
 for _where, _p in _fp:
     print(f"FRESH {STORY} {_where}: {_p}", flush=True)
 if _fp and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"{STORY}: an old set, an old gag, a one-second beat or a talking head (store/fresh.py): build it new")
+    raise SystemExit(f"{STORY}: an old set, an old gag, a one-second beat, a talking head (store/fresh.py) or no world (store/story_world.py): build it new")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
 PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60

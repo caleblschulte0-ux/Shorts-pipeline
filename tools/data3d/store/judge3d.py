@@ -63,6 +63,16 @@ _story = Path(__file__).resolve().parents[1] / "stories" / os.environ.get("STORY
 if os.environ.get("STORY", "checkout") != "checkout" and _story.exists():
     import re as _re
     BRIEFS = {i + 1: _re.sub(r"^\d+\s*", "", line) for i, line in enumerate(json.load(open(_story))["storyboard"])}
+    _world = json.load(open(_story)).get("world")
+    if _world:   # story and world first (store/story_world.py): the judge knows whose story each shot is a moment of
+        BAR = BAR.replace("NOTES: everything else", f"""- NOT THE WORLD: the place does not look like a real, lived-in part of THIS story's world (a stage set, a
+  toy, a bare backdrop, objects floating in a void), or the shot breaks the story's continuity (the hero out of
+  costume, the weather or time of day jumping).
+
+THE STORY these shots are moments of: {_world.get("logline", "")} The hero: {_world.get("hero", "")}. The world:
+{_world.get("place", "")}; {_world.get("time", "")}; {_world.get("weather", "")}.
+
+NOTES: everything else""")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1])); from clock import FPS   # the one clock
 BAR = BAR.replace("every 4th frame of a 24 fps shot (about six frames a second)", f"every 4th frame of a {FPS} fps shot (about {FPS // 4} frames a second)")
 # the second story's brief (2026-11-12) adds the bars the first one was missed on
@@ -92,6 +102,10 @@ the FOR line names is not visible in the stills at all, or too small to read. Ba
 minimal faceless figures (operator ruling), and the sets, lighting and Data's design are approved: never grade those.
 
 """)
+if os.environ.get("STORY", "checkout") != "checkout" and _story.exists() and json.load(open(_story)).get("world"):
+    # a story with its own world is graded on that world: only Data's design is approved, never its sets
+    BAR = BAR.replace("the sets, lighting and Data's design are approved: never grade those", "Data's design is approved: never grade it")
+    BAR = BAR.replace("the store set, its floor and lighting, and Data's design are approved: never\ngrade those", "Data's design is approved: never grade it")
 PASS_SCORE = 70
 
 

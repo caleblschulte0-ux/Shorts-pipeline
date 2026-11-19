@@ -59,6 +59,13 @@ SAME = dict(x=0.12, y=0.10, h=0.25, yaw=30.0, pitch=12.0)   # head centre x/y (f
 GRANDFATHERED = {"checkout", "banana", "saffron", "helium"}
 
 
+def _continuity(script):
+    """what the story itself carries from beat to beat (script.json world.continuity, store/story_world.py): his costume,
+    his goal, the storm. That recurs because it is the same world, not because a builder was reused, and spends no callback"""
+    import story_world
+    return set(story_world.continuity(script))
+
+
 def held(story):
     return story not in GRANDFATHERED
 
@@ -113,7 +120,7 @@ def script_problems(script):
         for p in b.get("props") or []:
             where.setdefault(str(p).strip().lower(), []).append(i)
     for p, beats in where.items():
-        if len(beats) > 1 and p not in {k.lower() for k in cb}:
+        if len(beats) > 1 and p not in {k.lower() for k in cb} and p.replace("_", " ") not in _continuity(script):
             out.append(("props", f"{p!r} is in beats {beats}: build each beat its own, or make it THE callback"))
     sets = script.get("sets") or []
     for s in sorted(set(sets)):
@@ -158,7 +165,8 @@ def code_problems(src, script):
                 used.setdefault(c, []).append(int(name[4:]))
     out = []
     for c, beats in sorted(used.items()):
-        if len(beats) > 1 and c.lower() not in cb and c.split(".")[-1].lower() not in cb:
+        if len(beats) > 1 and c.lower() not in cb and c.split(".")[-1].lower() not in cb \
+                and c.split(".")[-1].lower().replace("_", " ") not in _continuity(script):
             out.append(("code", f"{c} builds something in shots {beats}: each beat builds its own (or name {c} as the callback)"))
     return out
 

@@ -115,3 +115,51 @@ def test_it_is_wired_into_the_shot_harness_the_storyboard_gate_and_the_judge():
     for need in ("TALKING HEAD", "ONE-SECOND GAG", "STOCK GAG"):
         assert need in bar
     assert "Medium shots and close-ups only" not in bar
+
+
+# ---- story and world first (caaleb, 2026-11-19: "you just realize you're much more writing a story now. Building a
+# world that the viewer has to believe in. And you're just being very, very lazy about it.")
+import story_world  # noqa: E402
+import variety  # noqa: E402
+
+WORLD = {
+    "logline": "A harbour pilot races a storm from the glacier down to his ship before it sails without him.",
+    "hero": "Data as the harbour pilot: an orange float coat over his lab coat",
+    "goal": "reach his ship before it sails without him",
+    "place": "one fjord: a glacier above a town, an ice cave, the harbour, a lighthouse on the point",
+    "time": "one afternoon into dusk",
+    "weather": "a squall that builds the whole way",
+    "path": GOOD["sets"],
+    "continuity": {"float coat": "his costume, in every beat", "ship": "his goal: seen in beat 1, reached in beat 4"},
+}
+STORYBOARD = ["1 the pilot in his float coat rides a cracking slab; his ship waits far below",
+              "2 he hauls the sled through the ice cave, coat flapping", "3 he ropes the mast", "4 he runs the gangway onto the ship",
+              "5 the pilot lights the beacon"]
+
+
+def test_a_story_is_planned_as_a_world_first():
+    assert story_world.problems("new_story", _with(world=WORLD, storyboard=STORYBOARD)) == []
+    assert any("WORLD" in w for _, w in story_world.problems("new_story", GOOD))
+
+
+def test_the_world_is_his_route_through_one_place():
+    w = dict(WORLD, path=list(reversed(GOOD["sets"])))
+    assert any("route" in p for _, p in story_world.problems("new_story", _with(world=w, storyboard=STORYBOARD)))
+
+
+def test_what_the_story_carries_is_seen_in_two_beats():
+    w = dict(WORLD, continuity={"brass compass": "his father's"})
+    assert any("at least two" in p for _, p in story_world.problems("new_story", _with(world=w, storyboard=STORYBOARD)))
+
+
+def test_continuity_is_not_a_lazy_reuse_and_spends_no_callback():
+    st = json.loads(json.dumps(GOOD["staging"]))
+    st[0]["props"] = ["ice slab", "float coat"]; st[3]["props"] = ["gangway", "float coat"]
+    assert not any("float coat" in p for _, p in variety.script_problems(_with(staging=st, world=WORLD)))
+    assert any("float coat" in p for _, p in variety.script_problems(_with(staging=st)))
+
+
+def test_the_judge_is_told_whose_story_it_is():
+    bar = (D3 / "store" / "judge3d.py").read_text()
+    assert "NOT THE WORLD" in bar and '_world.get("logline"' in bar
+    assert "story_world.problems(STORY, SCRIPT)" in (D3 / "store" / "shots.py").read_text()

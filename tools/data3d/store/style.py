@@ -206,7 +206,7 @@ def render_settings(sc, spp=24, pct=60, out=None):
     sc.render.engine = 'CYCLES'; cy = sc.cycles
     cy.device = 'CPU'; cy.samples = spp; cy.use_adaptive_sampling = True; cy.adaptive_threshold = 0.05
     cy.use_denoising = True; cy.denoising_input_passes = 'RGB_ALBEDO_NORMAL'; cy.seed = 7; cy.use_animated_seed = False
-    cy.max_bounces = 6; cy.diffuse_bounces = 3; cy.glossy_bounces = 3; cy.transparent_max_bounces = 6; cy.caustics_reflective = False; cy.caustics_refractive = False
+    cy.max_bounces = 6; cy.diffuse_bounces = 3; cy.glossy_bounces = 3; cy.transparent_max_bounces = 16; cy.caustics_reflective = False; cy.caustics_refractive = False
     cy.filter_width = 1.05
     sc.render.use_motion_blur = True; sc.render.motion_blur_shutter = 0.5
     sc.render.resolution_x = 1080; sc.render.resolution_y = 1920; sc.render.resolution_percentage = pct; sc.render.fps = FPS

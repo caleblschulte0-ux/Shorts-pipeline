@@ -60,14 +60,14 @@ def _tube(name, pts, r, m, parent=None):
     return o
 
 
-def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0):
+def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0, rough=0.22):
     """a lightning bolt from `top` (up in the cloud) to `bottom` (what it hits): a white-hot core, a wide soft blue
     glow round it, and `branches` forks that die out partway. Returns the root empty; strike() makes it flash."""
     rnd = random.Random(seed)
     root = bpy.data.objects.new(name, None); bpy.context.collection.objects.link(root)
     core = _emit_mat("bolt core", (1.0, 0.98, 1.0), 60.0)
     halo = _emit_mat("bolt glow", (0.55, 0.65, 1.0), 6.0, alpha=0.35)
-    main = _jag(top, bottom, rnd)
+    main = _jag(top, bottom, rnd, rough=rough)
     parts = [_tube(name + " core", main, width, core, root), _tube(name + " glow", main, width * glow, halo, root)]
     for k in range(branches):
         i = rnd.randrange(len(main) // 6, int(len(main) * 0.7))
