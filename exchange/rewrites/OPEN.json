@@ -1,7 +1,28 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-19T12:52:43Z",
+ "updated": "2026-11-19T13:57:05Z",
  "open": [
+  {
+   "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
+   "slug": "sperm-counts-cut-in-half",
+   "filed": "2026-11-19T13:57:05Z",
+   "why": [
+    "thesis: seg1 ('Sperm count decline speed') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Provides a related statistic but doesn't directly prove the headline claim and doesn't follow as a consequence of beat 0",
+    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: States a total count drop that supports the headline, but it isn't a logical continuation of the speed increase mentione"
+   ],
+   "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
+  },
+  {
+   "id": "library-digital-shift__502c582f",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-19T13:57:03Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, provable claim about libraries' quietness and the exact digital borrowing figure."
+   ],
+   "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
+   "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
+  },
   {
    "id": "index-funds-own-corporate-america__a401ad38_r1",
    "slug": "index-funds-own-corporate-america",
