@@ -139,7 +139,7 @@ def shot1():
     soft_key("card key", (-0.7, -0.7, 0.8), (CARD.x, CARD.y, TOP + 0.22), energy=18, size=26)
     # MEDIUM from a little above the counter: the wad on its top, the nozzle, the tube's arc and the card all in one
     # frame with him (11-18: a LOW lens put the counter's front over the cash and the tube over his face)
-    camera(Vector((-0.2, -1.08, 0.76)), Vector((-0.2, 0.0, 0.57)), Vector((-0.18, -1.02, 0.74)), Vector((-0.18, 0.0, 0.57)),
+    camera(Vector((-0.2, -1.04, 0.88)), Vector((-0.2, 0.0, 0.5)), Vector((-0.18, -0.98, 0.86)), Vector((-0.18, 0.0, 0.5)),
            DUR, (-0.1, -0.08, 0.45), lens=24, fstop=5.6)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("his cash is sucked up the tube and into the giant gold card", lambda: meshes(notes) + meshes([tube, card]), T0 + 0.2, DUR,
@@ -392,8 +392,8 @@ def shot4():
     # WIDE from the left and above, down onto the belt's face: the whole machine runs corner to corner, the bucket at
     # its foot, the vault high on the right, Data turning the wheel (11-18: square-on it was framed like the pump shot;
     # from the right the belt was edge-on, a black line)
-    camera(Vector((-0.3, -1.05, 0.95)), Vector((0.06, 0.02, 0.36)), Vector((-0.26, -1.0, 0.93)), Vector((0.06, 0.02, 0.36)),
-           DUR, (0.0, -0.02, 0.4), lens=22, fstop=8.0)
+    camera(Vector((-0.34, -1.2, 1.0)), Vector((-0.02, 0.02, 0.5)), Vector((-0.3, -1.14, 0.98)), Vector((-0.02, 0.02, 0.5)),
+           DUR, (0.0, -0.02, 0.4), lens=24, fstop=8.0)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("coins ride the belt up out of the tin bucket into the VIP vault", lambda: meshes([belt, vault]) + coins, T0 + 0.6, DUR,
                          {"hero": True, "moves": lambda: coins}),
