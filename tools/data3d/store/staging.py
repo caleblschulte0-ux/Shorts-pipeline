@@ -85,6 +85,28 @@ def check(data, cam, nf, step=2, name="shot", cutaway=None, min_h=None):
     return ok
 
 
+def framing(data, cam, nf, step=4):
+    """the shot's FRAMING fingerprint, medians over the shot (store/variety.py compares it across beats): where his head
+    centre sits in the frame (x, y as fractions), how tall he is (head to feet, as staging.check), which side of him the
+    lens sees (yaw, degrees: 0 his face, +-90 a profile, signed) and from how high (pitch, degrees above his head)"""
+    sc = bpy.context.scene; xs, ys, hs, yaws, pits = [], [], [], [], []
+    for f in range(1, nf + 1, step):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        h0 = data.arm.matrix_world @ data.pb["head"].head; top = data.arm.matrix_world @ data.pb["head"].tail
+        foot = data.arm.matrix_world.translation
+        c = world_to_camera_view(sc, cam, h0.lerp(top, 0.5)); a = world_to_camera_view(sc, cam, top); b = world_to_camera_view(sc, cam, foot)
+        xs.append(c.x); ys.append(c.y); hs.append(abs(a.y - b.y))
+        to_cam = cam.matrix_world.translation - h0
+        fd = face_dir(data); fd.z = 0; flat = to_cam.copy(); flat.z = 0
+        if fd.length > 1e-4 and flat.length > 1e-4:
+            yaw = math.degrees(math.atan2(fd.x * flat.y - fd.y * flat.x, fd.dot(flat) / 1.0))
+            yaws.append(yaw)
+        pits.append(math.degrees(math.atan2(to_cam.z, max(1e-6, flat.length))))
+    med = lambda v: sorted(v)[len(v) // 2] if v else 0.0
+    return dict(x=round(med(xs), 3), y=round(med(ys), 3), h=round(med(hs), 3), yaw=round(med(yaws), 1), pitch=round(med(pits), 1),
+                lens=round(cam.data.lens, 1))
+
+
 CONSEQ_MIN_H = 0.12     # of the frame height: a consequence smaller than this is not seen on a phone. It was 0.035
                         # until 2026-11-13, when every saffron shot passed it and then failed the judge with the idea's
                         # prop "a few pixels on a phone" (threads, a scale needle, a balance beam) -- 40 minutes of

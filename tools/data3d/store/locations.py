@@ -454,4 +454,114 @@ def bank():
     return light
 
 
-PLACES = {"vanilla_farm": vanilla_farm, "warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room, "gas_field": gas_field, "hospital": hospital, "bank": bank}
+def stockroom():
+    """a supermarket STOCKROOM, built for the card rewards rebuild (2026-11-18): sealed concrete, a pegboard back wall
+    under a big fee notice, steel shelving down the side stacked with cases of every colour (cereal, soap, detergent,
+    tins), a pallet of shrink-wrapped cases, a caged strip lamp. Where the store decides what everything costs."""
+    import random
+    rnd = random.Random(11)
+    floor = _noise_mat("stockroom floor", "#77756F", "#86847D", scale=0.9, rough=0.45, bump=0.04)
+    K.box("stockroom floor", (0, 2.0, -0.01), (8, 8, 0.02), floor, bev=0)
+    WY = 1.5
+    wall = _noise_mat("stockroom block", "#C9C3B6", "#BDB7AA", scale=2.0, rough=0.85, bump=0.05)
+    K.box("stockroom back wall", (0, WY, 1.4), (8, 0.12, 2.8), wall, bev=0)
+    for k in range(12):                                         # block courses
+        K.box("block course", (0, WY - 0.062, 0.1 + 0.2 * k), (8, 0.004, 0.006), K.mat("mortar", "#A7A196", rough=0.9), bev=0)
+    K.box("stockroom side wall", (2.4, 0.5, 1.4), (0.12, 3.0, 2.8), wall, bev=0)
+    K.box("stockroom ceiling", (0, 0.5, 2.6), (8, 3.6, 0.05), K.mat("stockroom ceiling", "#5E6266", rough=0.9), bev=0)
+    peg = K.mat("pegboard", "#B88E5E", rough=0.8)
+    K.box("pegboard", (-0.2, WY - 0.075, 1.15), (1.6, 0.02, 0.9), peg, bev=0.004)
+    sign = K.mat("fee notice", "#F4EEDF", rough=0.6); red = K.mat("fee red", "#C7302A", rough=0.5)
+    K.box("fee notice", (-0.2, WY - 0.09, 1.35), (0.7, 0.01, 0.34), sign, bev=0.003)
+    K.text("fee notice head", "CARD FEES", (-0.2, WY - 0.097, 1.43), 0.09, (math.pi / 2, 0, 0), red, extrude=0.002)
+    K.text("fee notice sub", "ADD 2-3% TO ALL PRICES", (-0.2, WY - 0.097, 1.29), 0.04, (math.pi / 2, 0, 0), K.mat("fee ink", "#2B2B2E", rough=0.6), extrude=0.001)
+    steel = K.mat("shelf steel", "#8C9399", rough=0.4, metal=0.7)
+    cols = ["#C8462E", "#2D6FB0", "#E2B33C", "#3E8E5A", "#E07B2E", "#7A4FA0", "#D9D2C2"]
+    for x0 in (-1.9, -1.2):
+        for dx in (-0.3, 0.3):
+            for dy in (-0.22, 0.22):
+                K.box("shelf post", (x0 + dx, 0.9 + dy, 1.0), (0.03, 0.03, 2.0), steel, bev=0.003)
+        for z in (0.1, 0.55, 1.0, 1.45, 1.9):
+            K.box("shelf deck", (x0, 0.9, z), (0.64, 0.48, 0.02), steel, bev=0.003)
+            x = x0 - 0.28
+            while x < x0 + 0.24:
+                w = rnd.uniform(0.1, 0.18); hh = rnd.uniform(0.14, 0.32)
+                K.box("case", (x + w / 2, 0.9 + rnd.uniform(-0.04, 0.04), z + 0.01 + hh / 2), (w * 0.95, 0.36, hh), K.mat(f"case {rnd.choice(cols)}", rnd.choice(cols), rough=0.75), bev=0.006)
+                x += w
+    pal = K.mat("pallet wood", "#A88A5E", rough=0.85); wrap = K.mat("shrink wrap", "#D8DEE3", rough=0.15)
+    K.box("pallet", (1.3, 0.9, 0.06), (0.9, 0.7, 0.1), pal, bev=0.004)
+    K.box("wrapped cases", (1.3, 0.9, 0.5), (0.86, 0.66, 0.78), wrap, bev=0.02)
+    lamp = K.mat("strip lamp", "#FFF6E6", rough=0.3, emit=10.0)
+    for x in (-1.0, 0.6):
+        K.box("strip lamp", (x, 0.6, 2.5), (0.9, 0.08, 0.03), lamp, bev=0.004)
+        _area(f"strip {x}", (x, 0.6, 2.45), 0.8, 90, (1.0, 0.96, 0.88), aim=(x, 0.6, 0), shape='RECTANGLE', size_y=0.1)
+
+    def light():
+        sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
+        bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.6, 0.62, 0.66, 1); bg.inputs["Strength"].default_value = 0.18
+        _area("stockroom fill", (-1.6, -2.2, 1.4), 2.0, 35, (0.95, 0.97, 1.0), aim=(0.0, 0.3, 0.5))
+        return _hero_key()
+    return light
+
+
+def kitchen():
+    """a family KITCHEN at night, built for the card rewards rebuild (2026-11-18): checkerboard lino, pale green
+    cabinets with a worktop and a kettle, a fridge with a magnet calendar, a window gone dark blue, a warm pendant over
+    the floor. Where the household's money is."""
+    lin_a = K.mat("lino cream", "#E6DCC6", rough=0.5); lin_b = K.mat("lino red", "#A8433A", rough=0.5)
+    for i in range(-10, 11):
+        for j in range(-4, 14):
+            K.box("lino", (i * 0.16, j * 0.16, -0.005), (0.16, 0.16, 0.01), lin_a if (i + j) % 2 else lin_b, bev=0)
+    WY = 1.3
+    wall = _noise_mat("kitchen wall", "#EFE6D2", "#E4DAC4", scale=2.0, rough=0.8, bump=0.03)
+    K.box("kitchen back wall", (0, WY, 1.4), (6, 0.12, 2.8), wall, bev=0)
+    K.box("kitchen side wall", (-1.8, 0.4, 1.4), (0.12, 3.0, 2.8), wall, bev=0)
+    K.box("kitchen ceiling", (0, 0.4, 2.5), (6, 3.6, 0.05), wall, bev=0)
+    cab = K.mat("cabinet green", "#8FB5A0", rough=0.45); top = K.mat("worktop", "#D8D2C4", rough=0.3)
+    for k, x in enumerate((-1.1, -0.6, 0.6, 1.1)):
+        K.box("base cabinet", (x, WY - 0.33, 0.24), (0.48, 0.5, 0.48), cab, bev=0.008)
+        K.box("cabinet knob", (x, WY - 0.585, 0.38), (0.06, 0.01, 0.012), K.mat("knob brass", "#C9A04A", rough=0.3, metal=0.9), bev=0.003)
+        K.box("wall cabinet", (x, WY - 0.2, 1.25), (0.48, 0.28, 0.44), cab, bev=0.008)
+    K.box("worktop", (0, WY - 0.33, 0.495), (2.7, 0.54, 0.03), top, bev=0.004)
+    K.box("sink gap", (0, WY - 0.33, 0.24), (0.7, 0.5, 0.48), K.mat("under sink", "#6E8F7E", rough=0.5), bev=0.006)
+    K.cyl("kettle", (-0.9, WY - 0.33, 0.6), 0.07, 0.17, K.mat("kettle red", "#C7302A", rough=0.25, metal=0.3), v=40, bev=0.02)
+    fr = K.mat("fridge white", "#F2F0EA", rough=0.25)
+    K.box("fridge", (1.6, WY - 0.38, 0.75), (0.6, 0.6, 1.5), fr, bev=0.03)
+    K.box("fridge seam", (1.6, WY - 0.684, 1.05), (0.58, 0.004, 0.006), K.mat("fridge seam", "#BEBBB2", rough=0.5), bev=0)
+    K.box("calendar", (1.55, WY - 0.69, 0.85), (0.22, 0.004, 0.3), K.mat("calendar", "#F7F4EC", rough=0.6), bev=0.002)
+    K.box("window", (0, WY - 0.065, 1.2), (0.7, 0.02, 0.55), K.mat("night window", "#22314F", rough=0.1, emit=0.25), bev=0.004)
+    K.box("window frame", (0, WY - 0.07, 1.2), (0.78, 0.015, 0.63), K.mat("window frame white", "#F2F0EA", rough=0.4), bev=0.004)
+    K.cyl("pendant cord", (0, 0.2, 2.25), 0.004, 0.5, K.mat("cord", "#1C1B1E"), bev=0)
+    K.sph("pendant shade", (0, 0.2, 1.95), 0.12, K.mat("pendant glow warm", "#FFD9A0", rough=0.3, emit=6.0), scale=(1, 1, 0.6))
+
+    def light():
+        sc = bpy.context.scene; w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True
+        bg = w.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value = (0.55, 0.5, 0.45, 1); bg.inputs["Strength"].default_value = 0.15
+        _area("pendant pool", (0.0, 0.2, 1.85), 0.5, 70, (1.0, 0.86, 0.66), aim=(0.0, 0.0, 0.0))
+        _area("kitchen fill", (1.6, -2.2, 1.6), 2.0, 30, (0.9, 0.93, 1.0), aim=(0.0, 0.2, 0.5))
+        return _hero_key()
+    return light
+
+
+def crossroads():
+    """a country CROSSROADS at golden hour, built for the card rewards rebuild (2026-11-18): a dirt road that forks in
+    two behind Data, grass verges, a fence line, hills going into haze and a low warm sun. Where you choose."""
+    grass = _noise_mat("verge grass", "#6E8A3E", "#86A04A", scale=1.2, rough=0.95, bump=0.3)
+    _ground("crossroads ground", grass)
+    dirt = _noise_mat("road dirt", "#B08A5E", "#9C7A52", scale=1.6, rough=0.95, bump=0.25)
+    K.box("road near", (0, 0.4, 0.0), (0.9, 2.4, 0.01), dirt, bev=0)
+    for sx in (-1, 1):
+        r = K.box("road fork", (sx * 1.3, 4.2, 0.0), (0.8, 6.0, 0.01), dirt, bev=0); r.rotation_euler = (0, 0, sx * math.radians(32))
+    wood = K.mat("fence wood", "#8A6A4A", rough=0.8)
+    for k in range(-14, 15):
+        K.box("fence post", (k * 0.5, 6.5, 0.3), (0.05, 0.05, 0.6), wood, bev=0.006)
+    for z in (0.25, 0.48): K.box("fence rail", (0, 6.5, z), (15, 0.03, 0.05), wood, bev=0.004)
+    hill = _noise_mat("hill", "#4E6A3A", "#6A7E4A", scale=0.3, rough=0.95, bump=0.1)
+    for x, r in ((-9, 7), (3, 9), (15, 7)): K.sph("hill", (x, 24, -2.5), 1.0, hill, scale=(r, 3, 4.5))
+
+    def light():
+        return sky_light(sun_elev=14, sun_az=-55, sun=3.0, sky=0.3, warm=(1.0, 0.82, 0.6), haze=2.2)
+    return light
+
+
+PLACES = {"stockroom": stockroom, "kitchen": kitchen, "crossroads": crossroads, "vanilla_farm": vanilla_farm, "warehouse": warehouse, "plantation": plantation, "field": field, "dock": dock, "crocus_field": crocus_field, "sorting_room": sorting_room, "gas_field": gas_field, "hospital": hospital, "bank": bank}

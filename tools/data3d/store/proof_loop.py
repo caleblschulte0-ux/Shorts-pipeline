@@ -37,7 +37,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STORIES = HERE.parent / "stories"
-CHECKS = re.compile(r"^(STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|HANDS|BOARD|SHOT|Traceback|\w*Error)")
+CHECKS = re.compile(r"^(VARIETY|FRAMING|STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|HANDS|BOARD|SHOT|Traceback|\w*Error)")
 PASS = int(re.search(r"^PASS_SCORE = (\d+)", (HERE / "judge3d.py").read_text(), re.M).group(1))   # the judge's own bar, read, never restated
 
 
@@ -70,6 +70,15 @@ def board(story, out, shots, rnd, py, keys=3):
         res = list(ex.map(still, shots))
     built = [n for n, ok, _ in res if ok]
     v = {}
+    import variety    # two beats framed alike are one shot twice (caaleb 2026-11-18: "lazy as shit"): redraw the later
+    fr = {int(p.parent.name[1:]): json.loads(p.read_text()) for p in bd.glob("s*/framing.json")}
+    if variety.held(story):
+        for n, why in variety.framing_problems(fr):
+            m = n if n in built else next((a for a in sorted(fr) if a in built and a != n and why.find(f"shot {a} ") >= 0), None)
+            if m in built:
+                built.remove(m)
+                v[m] = {"shot": m, "score": 0, "pass": False, "board": True, "hard": ["VARIETY: " + why]}
+                print(f"VARIETY shot {m}: {why}", flush=True)
     for n, ok, lines in res:
         if not ok:
             bad = [l for l in lines if "FAIL" in l] or ["the stills did not render"]

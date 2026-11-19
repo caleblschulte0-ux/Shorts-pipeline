@@ -40,6 +40,12 @@ for _where, _p in boardlint.problems(SCRIPT):
           f" (not binding: {'posted' if STORY in boardlint.POSTED else 'grandfathered, see store/boardlint.py'})"), flush=True)
 if boardlint.held(STORY) and boardlint.problems(SCRIPT) and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"{STORY}: the storyboard lint fails: a beat's payoff leans on a subtle face or a tiny change; give it a big prop or action")
+import variety    # build fresh, reuse is rare (caaleb 2026-11-18, "lazy as shit"): every beat its own camera, act, props
+_vp = variety.script_problems(SCRIPT) + variety.code_problems(open(os.path.join(STORY_DIR, "shots.py")).read(), SCRIPT)
+for _where, _p in _vp:
+    print(f"VARIETY {STORY} {_where}: {_p}" + ("" if variety.held(STORY) else " (not binding: grandfathered)"), flush=True)
+if variety.held(STORY) and _vp and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY}: the beats repeat each other (store/variety.py): build each beat its own camera, act and props")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
 PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
@@ -280,6 +286,10 @@ if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING",
 import facelint   # a face that is not a smile never turns into one (2026-11-14, saffron shot 4: "the opposite emotion")
 if not facelint.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the face lint: a worried / alarmed / sad / wry face smiles inside its own window")
+if os.environ.get("KEYS"):   # the storyboard pass: the framing fingerprint, compared across beats (store/variety.py)
+    os.makedirs(OUT, exist_ok=True)
+    _fr = staging.framing(data, sc.camera, NF); print(f"FRAMING shot {SHOT}: {_fr}", flush=True)
+    json.dump(_fr, open(os.path.join(OUT, "framing.json"), "w"))
 n_res, worst_res = getattr(data, "hands_resolved", (0, 0.0))   # character.Data._resolve_hands, in data.finish()
 print(f"HANDS shot {SHOT}: {n_res} IK frames re-solved after a later body move (worst drift {worst_res * 100:.1f} cm) -> OK", flush=True)
 os.makedirs(OUT, exist_ok=True)
