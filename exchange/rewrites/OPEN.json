@@ -1,7 +1,57 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-19T00:50:08Z",
+ "updated": "2026-11-19T10:47:30Z",
  "open": [
+  {
+   "id": "clear-air-turbulence-increase__afb34a62",
+   "slug": "clear-air-turbulence-increase",
+   "filed": "2026-11-19T10:47:30Z",
+   "why": [
+    "premise: brain: The claim is vague and unverified, lacking a concrete, provable fact."
+   ],
+   "request": "exchange/rewrites/20261119/clear-air-turbulence-increase__afb34a62.request.json",
+   "answer_path": "exchange/rewrites/20261119/clear-air-turbulence-increase__afb34a62.answer.json"
+  },
+  {
+   "id": "cursive-handwriting-comeback__f3e6eb41",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-11-19T10:47:30Z",
+   "why": [
+    "premise: brain: The claim that 25 states reinstated cursive because young readers lost the skill is vague and lacks verifiable evidence."
+   ],
+   "request": "exchange/rewrites/20261119/cursive-handwriting-comeback__f3e6eb41.request.json",
+   "answer_path": "exchange/rewrites/20261119/cursive-handwriting-comeback__f3e6eb41.answer.json"
+  },
+  {
+   "id": "sperm-counts-cut-in-half__c0ebd9e9",
+   "slug": "sperm-counts-cut-in-half",
+   "filed": "2026-11-19T10:47:30Z",
+   "why": [
+    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Adds a separate statistic rather than a logical consequence of beat 1; it's another fact, not a direct follow‑on."
+   ],
+   "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9.request.json",
+   "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__497e0491",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-11-19T10:47:29Z",
+   "why": [
+    "premise: brain: The premise relies on unverified speculative claims about seabed cobalt reserves and lacks concrete, proven evidence."
+   ],
+   "request": "exchange/rewrites/20261119/seabed-mining-rush__497e0491.request.json",
+   "answer_path": "exchange/rewrites/20261119/seabed-mining-rush__497e0491.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__a401ad38",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-19T10:47:29Z",
+   "why": [
+    "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
+   ],
+   "request": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38.request.json",
+   "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38.answer.json"
+  },
   {
    "id": "fifty-otters-survived-climate-fight__dffc79c4",
    "slug": "fifty-otters-survived-climate-fight",
@@ -348,16 +398,6 @@
    "answer_path": "exchange/rewrites/20261119/womens-college-hoops-out-rates-men__ca924794.answer.json"
   },
   {
-   "id": "clear-air-turbulence-increase__afb34a62",
-   "slug": "clear-air-turbulence-increase",
-   "filed": "2026-11-18T23:01:25Z",
-   "why": [
-    "premise: brain: The claim is vague and unverified, lacking a concrete, provable fact about turbulence duration."
-   ],
-   "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.request.json",
-   "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.answer.json"
-  },
-  {
    "id": "fireflies-losing-their-glow__5dd482f3",
    "slug": "fireflies-losing-their-glow",
    "filed": "2026-11-18T18:41:47Z",
@@ -386,36 +426,6 @@
    ],
    "request": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.request.json",
    "answer_path": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__6b2790d8",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-18T16:58:16Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, demonstrable fact about specific firms controlling corporate America."
-   ],
-   "request": "exchange/rewrites/20261118/index-funds-own-corporate-america__6b2790d8.request.json",
-   "answer_path": "exchange/rewrites/20261118/index-funds-own-corporate-america__6b2790d8.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__f3e6eb41",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-11-18T13:14:51Z",
-   "why": [
-    "premise: brain: The claim is vague and unverified, lacking concrete, true evidence."
-   ],
-   "request": "exchange/rewrites/20261118/cursive-handwriting-comeback__f3e6eb41.request.json",
-   "answer_path": "exchange/rewrites/20261118/cursive-handwriting-comeback__f3e6eb41.answer.json"
-  },
-  {
-   "id": "seabed-mining-rush__497e0491",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-11-18T10:18:48Z",
-   "why": [
-    "premise: brain: The premise makes unverified quantitative claims and vague threats without concrete, proven facts."
-   ],
-   "request": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.request.json",
-   "answer_path": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.answer.json"
   },
   {
    "id": "chatgpt-fastest-adoption-ever__467b2734",

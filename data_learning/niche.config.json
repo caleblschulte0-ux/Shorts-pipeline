@@ -37800,7 +37800,7 @@
    "slug": "sperm-counts-cut-in-half",
    "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
    "hook": "Men today have about half the sperm their grandfathers did.",
-   "closing": "And the decline isn't slowing down — it's speeding up.",
+   "closing": "It's speeding up, and sperm counts matter for any family hoping to have kids.",
    "question": "Did you know sperm counts dropped?",
    "caption": "In 1973, the average man had about double the sperm count he does today. Scientists still don't fully know why — but the decline just keeps accelerating. Did you know this was happening? 👇",
    "hashtags": [
@@ -37827,7 +37827,7 @@
      "insight_type": "trend",
      "role": "1 · THE DROP",
      "topic": "sperm count decline",
-     "say": "In 1973, the average sperm concentration was 101 per milliliter. By 2018, it had fallen to 49.",
+     "say": "In 1973, the average count was 101. By 2018 it was under half that, so grandfathers had the edge.",
      "scene": {
       "title": true,
       "elements": [
@@ -37846,8 +37846,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · SPEEDING UP",
-     "topic": "how fast sperm counts are dropping",
-     "say": "Before 2000, counts were falling about 1% a year. After 2000, that rate jumped to 2.6%."
+     "topic": "Sperm count decline speed",
+     "say": "Since 2000, counts fall 2.6% a year, more than double the old pace. The drop itself is speeding up."
     },
     {
      "source": "offline",
@@ -37857,10 +37857,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE BIGGER DROP",
-     "topic": "total sperm count vs concentration decline",
-     "say": "Sperm concentration fell 52%. Total sperm count — concentration times volume — fell even further, down 62%."
+     "topic": "Total sperm count drop",
+     "say": "Total sperm count fell 62%, even worse than concentration. Men now make far fewer sperm overall, not just thinner samples."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-19T10:45:55Z"
   },
   {
    "slug": "lake-mead-water-crisis",

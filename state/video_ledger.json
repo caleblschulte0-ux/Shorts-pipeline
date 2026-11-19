@@ -7447,6 +7447,62 @@
    ],
    "ending_type": "consequence",
    "notes": "validated pre-render"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-19",
+   "topic_category": "culture",
+   "hook_type": "stake",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "scene:illustrated-tattoo-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "notes": "re-validated pre-render; arm ink 16->32%, torso duel, 100-person ink grid"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-19",
+   "topic_category": "health",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:illustrated-baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated pre-render; cribs dim 13->6, baby flips, 34 cribs remain"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-19",
+   "topic_category": "finance",
+   "hook_type": "inversion",
+   "hook_text": "Corporate America has new owners, and nobody ever voted for them.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "notes": "re-validated pre-render; tiles flip 2->52%, towers fill 22% vs 4%"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-19",
+   "topic_category": "music",
+   "hook_type": "inversion",
+   "hook_text": "Vinyl was supposed to be dead. Now it's crushing the CD.",
+   "depictions": [
+    "scene:illustrated-record-wall",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated pre-render; record wall, crates of discs, streaming tide"
   }
  ]
 }
