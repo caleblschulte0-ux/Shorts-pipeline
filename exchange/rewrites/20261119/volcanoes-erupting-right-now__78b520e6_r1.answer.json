@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "volcanoes-erupting-right-now__78b520e6_r1",
+  "slug": "volcanoes-erupting-right-now",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:22:00Z",
+  "title": "45 Erupting Volcanoes Hide A Concentrated Global Threat",
+  "hook": "Earth's volcanic danger is clustered closer together than it looks.",
+  "closing": "Where volcanoes cluster matters because nearby communities share the same concentrated risk.",
+  "question": "Do you live near a volcano?",
+  "segments": [
+    {
+      "topic": "Volcanoes Active",
+      "say": "About 45 volcanoes are erupting now. Earth's interior stays active even when headlines are quiet."
+    },
+    {
+      "topic": "Volcanoes Ring",
+      "say": "75 percent of active volcanoes sit on the Pacific Ring of Fire. Much of the danger circles one ocean."
+    },
+    {
+      "topic": "Volcanoes Dangerous",
+      "say": "Only 16 are designated Decade Volcanoes. Scientists focus attention where eruptions could threaten nearby communities most."
+    }
+  ]
+}
