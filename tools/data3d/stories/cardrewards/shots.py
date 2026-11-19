@@ -95,15 +95,16 @@ def shot1():
     # the nozzle LIES ON THE COUNTER beside the wad, mouth toward it, so the notes go sideways and nothing hangs in
     # front of his face (11-18 judge: a hood over the wad covered his face and read as a chemistry set)
     HOOD = W + Vector((-0.16, 0.0, 0.1))
-    # ...and the tube climbs IN FRONT of the card and drops into its top slot (11-19: behind it, nothing joined them)
-    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((-0.05, -0.04, 0.05)), Vector((-0.4, -0.27, 0.6)),
-                                                 Vector((-0.46, -0.22, 0.8)), SLOT + Vector((0, 0, 0.1)), SLOT + Vector((0, 0, 0.03))],
+    # ...and the tube climbs up the card's near edge, in front, and hooks over into its top slot (11-19: behind it,
+    # nothing joined them; across its face it hid REWARDS)
+    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((-0.04, -0.06, 0.06)), Vector((-0.31, -0.22, 0.6)),
+                                                 Vector((-0.34, -0.2, 0.82)), SLOT + Vector((0, 0, 0.12)), SLOT + Vector((0, 0, 0.03))],
                                   r=0.045, mouth=(1, 0, -0.1))
-    T_SLAP = 0.95                                                       # a wind-up the first still can see, then the slap
+    T_SLAP = 1.0                                                       # a wind-up the first still can see, then the slap
     top = W + Vector((0, 0, 0.0035 * len(notes) + 0.012))
     top = top + Vector((0, 0, 0.045))                                  # the wrist: the mitten's palm lands on the wad, not in the counter
-    hp = path([(0.3, top + Vector((0.0, 0.02, 0.07))), (0.7, top + Vector((0.01, 0.03, 0.13))), (T_SLAP, top), (1.25, top),
-               (1.65, top + Vector((0.07, 0.05, -0.02)))])
+    hp = path([(0.3, top + Vector((0.0, 0.02, 0.06))), (0.6, top + Vector((-0.01, 0.0, 0.075))), (T_SLAP, top), (1.3, top),
+               (1.7, top + Vector((0.07, 0.05, -0.02)))])
     data.reach(L, hp, 0.3, DUR, lead=0.3, back=None, elbow_out=0.3)
     T0, T1 = 1.4, DUR - 0.75
     sched = [T0 + (T1 - T0) * i / (len(notes) - 1) for i in range(len(notes))]
@@ -175,10 +176,10 @@ def shot2():
                                         Vector((SX - 0.12, SY - 0.13, 0.06)), Vector((SX - 0.07, SY - 0.12, 0.2)),
                                         BAL + Vector((-0.02, -0.04, 0.02)), BAL + Vector((0, 0, 0.03))],
                           0.011, XK._mat("pump black", "#1A1A1D", rough=0.5))
-    STROKES = [0.6, 1.65, 2.7]
+    STROKES = [0.6, 1.6, 2.6]                                         # back to back: a pause at the top read as a hitch
     PERIOD = 1.0
     DOWN, DWELL, UPS = PERIOD / 2, 0.0, PERIOD / 2
-    TRAVEL = 0.12                                                       # a HARD stroke: the handle drives most of the rod's length
+    TRAVEL = 0.105                                                      # a HARD stroke: the handle drives most of the rod's length
     def stroke(t):
         d = 0.0
         for ts in STROKES:
@@ -238,6 +239,7 @@ def shot3():
     sack, mouth = XK.sack("points sack", tuple(SACK), r=0.13, h=0.27)
     MOUTH = SACK + mouth
     inside = bpy.data.objects["points sack gold inside"]                # the sack starts empty and fills scoop by scoop
+    IS = inside.scale.copy()
     shov, grip_l, mid_l = XK.shovel("coal shovel", length=0.42)
     GL = grip_l.z
     SCOOPS = [0.5, 2.0, 3.5]
@@ -306,7 +308,7 @@ def shot3():
         if m and t < SCOOPS[m - 1] + DIG + LIFT + 0.55: b = pb_ + (b - pb_) * ease((t - SCOOPS[m - 1] - DIG - LIFT - 0.25) / 0.3)
         sack.scale = (b, b, 1.0 + 0.12 * (b - 1.0) / 0.16); sack.keyframe_insert("scale", frame=f)
         g = (b - 1.0) / 0.48
-        inside.scale = (0.05 + 0.95 * g, 0.05 + 0.95 * g, 0.05 + 0.95 * g); inside.keyframe_insert("scale", frame=f)
+        k = 0.05 + 0.95 * g; inside.scale = (IS.x * k, IS.y * k, IS.z * k); inside.keyframe_insert("scale", frame=f)
         flag.location = HEAP + Vector((-0.09, 0.02, 0.12 * (h - 1.0))); flag.keyframe_insert("location", frame=f)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(HEAP, 0.3, max_yaw=30, max_pitch=14)
@@ -353,10 +355,7 @@ def shot4():
     bfill = K.cyl("bucket coins", (BK.x, BK.y, 0.05), 0.064, 0.01, bpy.data.materials.get("coins") or K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12), v=32, bev=0.002)
     PL = Vector((B.x + 0.07, B.y + 0.03, 0.0))
     K.box("vault plinth", (PL.x, PL.y, 0.22), (0.26, 0.22, 0.44), K.mat("plinth marble", "#E9E3D8", rough=0.2), bev=0.006)
-    vault, fill, vm = XK.vault("vip vault", (PL.x, PL.y, 0.44), w=0.22, d=0.16, h=0.32, label="$750", sub="RICHEST")
-    for o in vault.children_recursive:                                  # a glass front: the gold is SEEN rising inside
-        if o.name.startswith("vip vault wall") and o.matrix_world.translation.y < PL.y:
-            o.data.materials.clear(); o.data.materials.append(XK._glass("vault glass", (0.92, 0.96, 1.0)))
+    vault, fill, vm = XK.vault("vip vault", (PL.x, PL.y, 0.44), w=0.22, d=0.16, h=0.32, label="$750", sub="RICHEST", glass_front=True)
     T0, T1 = 0.5, DUR - 0.9
     OMEGA = 2 * math.pi * 0.42                                         # wheel turns per second: a heavy crank (faster turns stutter the arm)
     RAMP = 0.6
@@ -391,9 +390,10 @@ def shot4():
                 d = min(1.0, (u - 1.0) / 0.12); o.scale = (1 - d, 1 - d, 1 - d) if d < 1 else (0, 0, 0)
                 o.location = B + Vector((0.04 * d, 0.03 * d, -0.12 * d * d))
             o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f); o.keyframe_insert("scale", frame=f)
+    ARRIVE = max(1, sum(1 for s0 in starts if pos(DUR) - s0 >= 1.05))  # the coins that make it this shot fill it to the brim
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; done = sum(1 for s0 in starts if pos(t) - s0 >= 1.05)
-        fill.scale = (1, 1, 0.04 + 0.96 * done / N); fill.keyframe_insert("scale", frame=f)
+        fill.scale = (1, 1, 0.06 + 0.9 * done / ARRIVE); fill.keyframe_insert("scale", frame=f)
         left = sum(1 for s0 in starts if pos(t) - s0 < 0)
         bfill.location.z = 0.012 + 0.045 * left / N; bfill.keyframe_insert("location", frame=f)
     data.look_at(US, 0.0, max_yaw=25, blend=0.0)

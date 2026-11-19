@@ -280,7 +280,7 @@ def tin_bucket(name, loc, r=0.05, h=0.06):
     return root
 
 
-def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None):
+def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None, glass_front=False):
     """a squat gold-trimmed steel vault, open at the top, with a gold FILL inside (returned) that rises when keyed
     (fill.scale.z 0..1) and VIP stencilled on it. Returns (root, fill, mouth local)."""
     root = K.empty(name, (0, 0, 0))
@@ -288,7 +288,9 @@ def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None):
     t = 0.012
     K.box(name + " floor", (0, 0, t / 2), (w, d, t), steel, bev=0.002, parent=root)
     for sx in (-1, 1): K.box(name + " side", (sx * (w / 2 - t / 2), 0, h / 2), (t, d, h), steel, bev=0.002, parent=root)
-    for sy in (-1, 1): K.box(name + " wall", (0, sy * (d / 2 - t / 2), h / 2), (w, t, h), steel, bev=0.002, parent=root)
+    for sy in (-1, 1):                     # a glass front shows the gold rising inside
+        K.box(name + " wall", (0, sy * (d / 2 - t / 2), h / 2), (w, t, h), _glass("vault glass", (0.92, 0.96, 1.0)) if (glass_front and sy < 0) else steel,
+              bev=0.002, parent=root)
     K.box(name + " rim", (0, -d / 2 + 0.002, h - 0.008), (w + 0.006, 0.008, 0.016), brass, bev=0.002, parent=root)
     K.box(name + " band", (0, -d / 2 - 0.001, h * 0.35), (w + 0.004, 0.004, 0.02), brass, bev=0.001, parent=root)
     K.text(name + " label", label, (0, -d / 2 - 0.002, h * 0.62), w * 0.24, (math.pi / 2, 0, 0), brass, extrude=0.002, parent=root)
