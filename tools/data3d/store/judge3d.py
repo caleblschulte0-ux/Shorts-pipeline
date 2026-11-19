@@ -40,7 +40,7 @@ HARD DEFECTS (the operator's bare minimums). A shot with ANY of these FAILS, wha
 - BODY: a limb bent the way no body bends, a twisted or snapped wrist, an arm through the body, a hand that should hold
   something visibly not on it, feet sunk in the floor.
 - CONSEQUENCE: the shot's action happens but its RESULT is not seen (the money never seen coming out, pages not seen
-  falling and landing, coins not seen going into a jar, lanes not seen changing), or it happens off-frame/behind Data.
+  falling and landing, lanes not seen changing), or it happens off-frame/behind Data.
 - BACK TO CAMERA: Data's back, or the back of his head, to the camera for longer than a quick glance.
 - BROKEN: a glitch, a pop, an object appearing from nowhere, a subject cut by the frame edge for most of the shot,
   the text that carries the shot's point unreadable on a phone.
@@ -66,8 +66,15 @@ if os.environ.get("STORY", "checkout") != "checkout" and _story.exists():
 sys.path.insert(0, str(Path(__file__).resolve().parents[1])); from clock import FPS   # the one clock
 BAR = BAR.replace("every 4th frame of a 24 fps shot (about six frames a second)", f"every 4th frame of a {FPS} fps shot (about {FPS // 4} frames a second)")
 # the second story's brief (2026-11-12) adds the bars the first one was missed on
-BAR = BAR.replace("NOTES: everything else", """- TINY DATA: Data so small in the frame (a wide shot) that his face and hands cannot be read on a phone for most of
-  the shot. Medium shots and close-ups only.
+BAR = BAR.replace("NOTES: everything else", """- TINY DATA: Data so small in the frame that his face and hands cannot be read on a phone for most of the shot.
+  Full-body in his world is the norm, not a fault.
+- TALKING HEAD: the shot is mostly Data facing us, waist-up or closer, doing little, with the camera parked on him
+  (the operator calls it the "Dr. Katz effect"): a picture of a character, not a scene happening.
+- ONE-SECOND GAG: the shot's idea reads in its first second and the rest repeats it (the same stroke again, a thing
+  slowly swelling or filling) or holds still. Something NEW must happen every couple of seconds, building to the end;
+  a stranger who would swipe by second two is a fail.
+- STOCK GAG: coins or cash poured or dropped into a jar, sack, bucket or vault; a pile or stack growing; a balloon or
+  tag being pumped up. The channel has done them to death.
 - NO PAYOFF (last shot only): the video ends on a zoom-out, a pose or nothing happening instead of a visual payoff.
 
 NOTES: everything else""")

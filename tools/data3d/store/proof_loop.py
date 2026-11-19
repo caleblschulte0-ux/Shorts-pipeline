@@ -79,6 +79,13 @@ def board(story, out, shots, rnd, py, keys=3):
                 built.remove(m)
                 v[m] = {"shot": m, "score": 0, "pass": False, "board": True, "hard": ["VARIETY: " + why]}
                 print(f"VARIETY shot {m}: {why}", flush=True)
+    import fresh      # the Dr. Katz look: Data parked facing the lens, waist-up, in beat after beat (caaleb 2026-11-19)
+    if fresh.held(story):
+        for n, why in fresh.talking_heads(fr):
+            if n in built:
+                built.remove(n)
+                v[n] = {"shot": n, "score": 0, "pass": False, "board": True, "hard": ["TALKING HEAD: " + why]}
+                print(f"FRESH shot {n}: {why}", flush=True)
     for n, ok, lines in res:
         if not ok:
             bad = [l for l in lines if "FAIL" in l] or ["the stills did not render"]
