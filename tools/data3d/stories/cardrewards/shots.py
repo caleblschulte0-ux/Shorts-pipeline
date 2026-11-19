@@ -5,7 +5,7 @@ The first cut was refused by caaleb as "lazy as shit": five beats of Data centre
 gold card in four of them, watching coins move by themselves. This cut builds every beat new: its own place, its own
 camera, its own machine, and Data DRIVES the machine with his body (store/variety.py holds all of it):
 
-  1 hook      store      low       he slaps his cash on the counter and a vacuum tube sucks it away to a giant gold card
+  1 hook      store      medium    he slaps his cash on the counter and a vacuum nozzle sucks it away to a giant gold card
   2 the fee   stockroom  profile   he works a floor pump and a red price tag swells like a balloon
   3 $149      kitchen    high      he shovels his family's coin heap into the card users' POINTS sack
   4 uphill    bank       wide      he cranks a conveyor that carries coins from a tin bucket up into a VIP vault
@@ -82,25 +82,28 @@ def shot1():
     flares with every one. He looks at us, outraged."""
     where = store_set()
     TOP = 0.32
-    K.box("bagging counter", (0.02, -0.22, TOP / 2), (0.86, 0.36, TOP), K.mat("bagging steel", "#9EA6AD", rough=0.28, metal=0.85), bev=0.01)
-    K.box("bagging edge", (0.02, -0.402, TOP - 0.01), (0.86, 0.012, 0.024), K.mat("bagging trim", "#2B2B2E", rough=0.4), bev=0.004)
-    data = load_data(); data.place(0.11, 0.055, 0)
+    K.box("bagging counter", (-0.06, -0.22, TOP / 2), (1.06, 0.36, TOP), K.mat("bagging steel", "#9EA6AD", rough=0.28, metal=0.85), bev=0.01)
+    K.box("bagging edge", (-0.06, -0.402, TOP - 0.01), (1.06, 0.012, 0.024), K.mat("bagging trim", "#2B2B2E", rough=0.4), bev=0.004)
+    data = load_data(); data.place(0.04, 0.055, 0)
     L, R = sides(data)
-    W = Vector((-0.04, -0.08, TOP))
-    notes = XK.wad("cash wad", tuple(W), n=14)
-    CARD = Vector((-0.30, -0.10, TOP))
-    card, glow, slot = XK.giant_card("giant card", tuple(CARD), w=0.2, h=0.3)
+    W = Vector((-0.1, -0.08, TOP))
+    import props as _P
+    notes = XK.wad("cash wad", tuple(W), n=14, mesh=_P.bill_mesh("cash wad note", w=0.15, h=0.068))
+    CARD = Vector((-0.45, -0.14, TOP))
+    card, glow, slot = XK.giant_card("giant card", tuple(CARD), w=0.22, h=0.36)
     SLOT = CARD + slot
-    HOOD = W + Vector((0, 0, 0.17))
-    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((0.0, 0, 0.3)), Vector((-0.14, -0.09, 0.92)),
-                                                 Vector((-0.29, -0.10, 0.8)), SLOT + Vector((0, 0, 0.03))], r=0.04)
+    # the nozzle LIES ON THE COUNTER beside the wad, mouth toward it, so the notes go sideways and nothing hangs in
+    # front of his face (11-18 judge: a hood over the wad covered his face and read as a chemistry set)
+    HOOD = W + Vector((-0.16, 0.0, 0.1))
+    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((-0.06, 0.01, 0.03)), Vector((-0.4, -0.1, 0.56)),
+                                                 SLOT + Vector((0, 0, 0.12)), SLOT + Vector((0, 0, 0.03))], r=0.04, mouth=(1, 0, -0.1))
     T_SLAP = 0.62
     top = W + Vector((0, 0, 0.0035 * len(notes) + 0.012))
     top = top + Vector((0, 0, 0.045))                                  # the wrist: the mitten's palm lands on the wad, not in the counter
     hp = path([(0.3, top + Vector((0.0, 0.02, 0.07))), (T_SLAP, top), (0.95, top),
-               (1.6, top + Vector((0.05, 0.05, 0.0)))])
+               (1.35, top + Vector((0.07, 0.05, -0.02)))])
     data.reach(L, hp, 0.3, DUR, lead=0.3, back=None, elbow_out=0.3)
-    T0, T1 = 0.85, DUR - 0.75
+    T0, T1 = 1.1, DUR - 0.75
     sched = [T0 + (T1 - T0) * i / (len(notes) - 1) for i in range(len(notes))]
     UP, RIDE = 0.14, 0.55
     arrivals = []
@@ -114,7 +117,7 @@ def shot1():
                 u = ease((t - ts) / UP); key_all(o, f, loc=p0.lerp(along(0.0), u), rot=(u * 1.4, 0, r0.z), scale=(1, 1, 1))
             elif t < ts + UP + RIDE:                                    # up the tube and over, fluttering
                 u = (t - ts - UP) / RIDE; q = along(u)
-                key_all(o, f, loc=q, rot=(1.4 + 6.0 * u, 0.6 * math.sin(9 * u), r0.z), scale=(0.8, 0.8, 0.8))
+                key_all(o, f, loc=q, rot=(1.4 + 6.0 * u, 0.6 * math.sin(9 * u), r0.z), scale=(1, 1, 1))
             else:
                 key_all(o, f, loc=SLOT + Vector((0, 0, -0.02)), rot=(1.57, 0, 0), scale=(0, 0, 0))
         arrivals.append(ts + UP + RIDE)
@@ -123,7 +126,7 @@ def shot1():
     glow_keys(glow, sorted(keys))
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(top, 0.25, max_yaw=25, max_pitch=25)
-    data.look_at(HOOD + Vector((0, 0, 0.3)), 1.0, max_yaw=30, max_pitch=30)
+    data.look_at(HOOD + Vector((-0.05, 0, 0.15)), 1.0, max_yaw=30, max_pitch=30)
     data.look_at(CARD + Vector((0, 0, 0.25)), 1.9, max_yaw=35, max_pitch=15)
     data.look_at(US, DUR - 1.0, max_yaw=20)
     data.idle(0.0, DUR)
@@ -133,9 +136,11 @@ def shot1():
     data.blink(1.6)
     data.finish()
     soft_key("counter key", (0.55, -0.9, 0.6), (-0.05, -0.05, TOP + 0.2), energy=26, size=40)
-    soft_key("card key", (-0.6, -0.7, 0.7), (CARD.x, CARD.y, TOP + 0.18), energy=14, size=22)
-    camera(Vector((0.12, -0.84, 0.37)), Vector((-0.07, 0.0, 0.64)), Vector((0.1, -0.78, 0.37)), Vector((-0.07, 0.0, 0.64)),
-           DUR, (-0.05, -0.08, 0.5), lens=22, fstop=5.6)
+    soft_key("card key", (-0.7, -0.7, 0.8), (CARD.x, CARD.y, TOP + 0.22), energy=18, size=26)
+    # MEDIUM from a little above the counter: the wad on its top, the nozzle, the tube's arc and the card all in one
+    # frame with him (11-18: a LOW lens put the counter's front over the cash and the tube over his face)
+    camera(Vector((-0.2, -1.08, 0.76)), Vector((-0.2, 0.0, 0.57)), Vector((-0.18, -1.02, 0.74)), Vector((-0.18, 0.0, 0.57)),
+           DUR, (-0.1, -0.08, 0.45), lens=24, fstop=5.6)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("his cash is sucked up the tube and into the giant gold card", lambda: meshes(notes) + meshes([tube, card]), T0 + 0.2, DUR,
                          {"hero": True, "moves": lambda: meshes(notes)})])
@@ -148,27 +153,32 @@ def shot2():
     with a big white "$" tied to a stack of cases. Three hard strokes; with each one the tag swells. A notice behind
     says CARD FEES ADD 2-3% TO ALL PRICES. On the last stroke he turns his head to us, wry."""
     where = place("stockroom")
-    DX = -0.30
+    DX = -0.27
     data = load_data(); data.place(DX, 0.0, 90)
     PUMP = Vector((DX + 0.105, 0.0, 0.0))
-    pump, handle, needle = XK.stirrup_pump("floor pump", tuple(PUMP), h=0.3, yaw=math.radians(90))
+    pump, handle, needle = XK.stirrup_pump("floor pump", tuple(PUMP), h=0.4, yaw=math.radians(90), rod=0.1)
     H0 = handle.location.copy()
-    cases = K.box("case stack", (0.2, 0.06, 0.12), (0.26, 0.2, 0.24), K.mat("case blue", "#2D6FB0", rough=0.75), bev=0.006)
-    K.box("case stack top", (0.2, 0.06, 0.26), (0.22, 0.18, 0.04), K.mat("case orange", "#E07B2E", rough=0.75), bev=0.004)
-    BAL = Vector((0.22, 0.04, 0.28))
-    bal, _v = XK.price_balloon("price balloon", tuple(BAL), s=1.0)
+    # a stack of three shrink-wrapped cases of stock; the tag is tied to the top one (what every price in the store wears)
+    SX, SY = 0.1, -0.2
+    for k, (w, col) in enumerate([(0.27, "#2D6FB0"), (0.25, "#3E8E5A"), (0.23, "#2D6FB0")]):
+        K.box(f"stock case {k}", (SX + 0.006 * k, SY, 0.045 + 0.09 * k), (w, 0.2, 0.086), K.mat(f"case {col}", col, rough=0.75), bev=0.006)
+        K.box(f"stock case label {k}", (SX + 0.006 * k, SY - 0.101, 0.045 + 0.09 * k), (w * 0.5, 0.002, 0.04), K.mat("case label", "#F4EEDF", rough=0.6), bev=0)
+    # the tag stands nearer the lens than he does, so it can swell big without crowding him
+    BAL = Vector((SX, SY - 0.02, 0.27))
+    bal, _v = XK.price_balloon("price balloon", tuple(BAL), s=0.85)
+    bal.rotation_euler = (0, math.radians(22), 0)                        # hangs tilted, point up, like a shop tag
     hose = XK._curve_tube("pump hose", [PUMP + Vector((0.0, -0.035, 0.03)), Vector((-0.02, -0.07, 0.01)), Vector((0.12, -0.05, 0.05)),
                                         BAL + Vector((0, -0.01, 0.0))], 0.007, XK._mat("pump black", "#1A1A1D", rough=0.5))
     STROKES = [0.6, 1.65, 2.7]
     PERIOD = 1.0
     DOWN, DWELL, UPS = PERIOD / 2, 0.0, PERIOD / 2
-    TRAVEL = 0.08
+    TRAVEL = 0.09
     def stroke(t):
         d = 0.0
         for ts in STROKES:
             if ts <= t < ts + PERIOD: d = 0.5 - 0.5 * math.cos(2 * math.pi * (t - ts) / PERIOD)
         return d
-    SCALES = [1.0, 1.35, 1.7, 2.05]
+    SCALES = [1.0, 1.25, 1.5, 1.72]
     def swell(t):
         s = SCALES[0]
         for k, ts in enumerate(STROKES):
@@ -178,10 +188,10 @@ def shot2():
         t = (f - 1) / FPS
         key_all(handle, f, loc=H0 - Vector((0, 0, TRAVEL * stroke(t))))
         s = swell(t); key_all(bal, f, scale=(s, s, s))
-        key_all(needle, f, rot=(0, math.radians(-60 + 120 * (s - 1.0) / 1.05), 0))
+        key_all(needle, f, rot=(0, math.radians(-60 + 120 * (s - 1.0) / 0.72), 0))
     # the grip ends, in the world: the pump is turned 90 deg so its T-bar runs along Y (one end per hand, side-on)
     def grip(sy):
-        return lambda t: PUMP + Vector((0, sy * 0.075, 0.012 + 0.3 * 0.8 + 0.18 - TRAVEL * stroke(t)))
+        return lambda t: PUMP + Vector((0, sy * 0.075, 0.012 + 0.4 * 0.8 + 0.1 - TRAVEL * stroke(t)))
     # facing +X the rig's L side is toward the lens (-Y): L takes the near end of the bar, R the far end
     data.reach("L", grip(-1), 0.0, DUR, back=None, elbow_out=0.35)
     data.reach("R", grip(1), 0.0, DUR, back=None, elbow_out=0.35)
@@ -195,11 +205,11 @@ def shot2():
     data.finish()
     soft_key("pump key", (-0.6, -1.1, 1.0), (DX + 0.1, 0.0, 0.4), energy=30, size=36)
     soft_key("tag key", (0.6, -0.9, 0.9), (BAL.x, BAL.y, BAL.z + 0.1), energy=16, size=26)
-    camera(Vector((-0.04, -1.25, 0.46)), Vector((-0.04, 0.2, 0.44)), Vector((-0.02, -1.18, 0.46)), Vector((-0.02, 0.2, 0.45)),
+    camera(Vector((-0.02, -1.36, 0.46)), Vector((-0.02, 0.2, 0.44)), Vector((0.0, -1.29, 0.46)), Vector((0.0, 0.2, 0.45)),
            DUR, (-0.04, 0.0, 0.42), lens=30, fstop=6.0)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("each pump stroke swells the red price tag", lambda: meshes([bal]), STROKES[0], DUR, {"hero": True, "moves": lambda: meshes([bal])}),
-                        ("the pump handle goes down and up", lambda: meshes([handle]), STROKES[0], STROKES[-1] + DOWN + DWELL + UPS, {"moves": lambda: meshes([handle])})])
+                        ("the pump handle goes down and up", lambda: meshes([pump, handle]), STROKES[0], STROKES[-1] + DOWN + DWELL + UPS, {"moves": lambda: meshes([handle])})])
 
 
 # ================================================================ SHOT 3: $149 a year
@@ -218,7 +228,7 @@ def shot3():
     K.text("flag text", "$149", (0.1, -0.004, 0.292), 0.062, (math.pi / 2, 0, 0), K.mat("flag ink", "#2B5C2E", rough=0.5), extrude=0.0015, parent=flag)
     K.text("flag text 2", "A YEAR", (0.1, -0.004, 0.247), 0.026, (math.pi / 2, 0, 0), K.mat("flag ink", "#2B5C2E", rough=0.5), extrude=0.0008, parent=flag)
     flag.location = HEAP + Vector((-0.09, 0.02, 0.0))
-    SACK = Vector((0.23, -0.17, 0.0))
+    SACK = Vector((0.2, -0.17, 0.0))
     sack, mouth = XK.sack("points sack", tuple(SACK), r=0.13, h=0.27)
     MOUTH = SACK + mouth
     shov, grip_l, mid_l = XK.shovel("coal shovel", length=0.42)
@@ -251,21 +261,21 @@ def shot3():
         shov.keyframe_insert("location", frame=f); shov.keyframe_insert("rotation_euler", frame=f)
     L, R = sides(data)
     data.reach(R, lambda t: pose(t)[0], 0.0, DUR, back=None, elbow_out=0.4)
-    data.reach(L, lambda t: pose(t)[0] - pose(t)[1] * 0.045, 0.0, DUR, back=None, elbow_out=0.4)
+    data.reach(L, lambda t: pose(t)[0] - pose(t)[1] * 0.075, 0.0, DUR, back=None, elbow_out=0.4)          # two hands apart on the shaft, the way a shovel is held
     # a load of coins rides the blade from the dig to the dump, then flies into the sack
     gold = bpy.data.materials.get("coins")
     load = K.empty("blade load", (0, 0, 0)); load.parent = shov
-    K.sph("blade load heap", (0, -0.012, 0.0), 1.0, gold, scale=(0.035, 0.014, 0.04), parent=load)
+    K.sph("blade load heap", (0, -0.016, -0.01), 1.0, gold, scale=(0.05, 0.02, 0.055), parent=load)
     flyers = []
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         on = any(ts + DIG * 0.7 <= t < ts + DIG + LIFT + DUMP * 0.4 for ts in SCOOPS)
         load.scale = (1, 1, 1) if on else (0, 0, 0); load.keyframe_insert("scale", frame=f)
-    proto = K.cyl("sack coin", (0, 0, -5), 0.018, 0.004, gold, v=20, bev=0.001)
+    proto = K.cyl("sack coin", (0, 0, -5), 0.022, 0.005, gold, v=20, bev=0.001)
     rnd = random.Random(3)
     for k, ts in enumerate(SCOOPS):
         a = ts + DIG + LIFT
-        for j in range(9):
+        for j in range(13):
             o = proto.copy(); bpy.context.collection.objects.link(o); flyers.append(o)
             t0 = a + 0.05 + 0.02 * j; fl = 0.35
             for f in range(1, NF + 1):
@@ -284,10 +294,10 @@ def shot3():
         if n and t < SCOOPS[n - 1] + DIG: h = prev + (h - prev) * ease((t - SCOOPS[n - 1] - DIG * 0.7) / (DIG * 0.3))
         heap.scale = (0.8 + 0.2 * h, 0.8 + 0.2 * h, h); heap.keyframe_insert("scale", frame=f)
         m = sum(1 for ts in SCOOPS if t >= ts + DIG + LIFT + 0.25)
-        b = 1.0 + 0.2 * m
-        pb_ = 1.0 + 0.2 * max(0, m - 1)
+        b = 1.0 + 0.16 * m
+        pb_ = 1.0 + 0.16 * max(0, m - 1)
         if m and t < SCOOPS[m - 1] + DIG + LIFT + 0.55: b = pb_ + (b - pb_) * ease((t - SCOOPS[m - 1] - DIG - LIFT - 0.25) / 0.3)
-        sack.scale = (b, b, 1.0 + 0.12 * (b - 1.0) / 0.2); sack.keyframe_insert("scale", frame=f)
+        sack.scale = (b, b, 1.0 + 0.12 * (b - 1.0) / 0.16); sack.keyframe_insert("scale", frame=f)
         flag.location = HEAP + Vector((-0.09, 0.02, 0.12 * (h - 1.0))); flag.keyframe_insert("location", frame=f)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(HEAP, 0.3, max_yaw=30, max_pitch=40)
@@ -300,8 +310,8 @@ def shot3():
     data.expression("sad", DUR - 1.1, DUR + 1.0, blend=0.25)
     data.blink(1.1)
     data.finish()
-    camera(Vector((0.02, -0.82, 0.92)), Vector((0.01, -0.04, 0.36)), Vector((0.02, -0.77, 0.9)), Vector((0.01, -0.04, 0.36)),
-           DUR, (0.0, -0.1, 0.25), lens=26, fstop=6.0)
+    camera(Vector((0.0, -0.86, 0.96)), Vector((0.0, -0.02, 0.42)), Vector((0.0, -0.81, 0.94)), Vector((0.0, -0.02, 0.42)),
+           DUR, (0.0, -0.1, 0.25), lens=22, fstop=6.0)
     return dict(**where, data=data, rest=1, grips=("coal shovel",),
                 conseq=[("the coin heap shrinks and the POINTS sack bulges, scoop by scoop", lambda: meshes([heap, sack]), SCOOPS[0], DUR, {"hero": True}),
                         ("each scoop of coins flies off the shovel into the sack", lambda: meshes([shov]) + flyers, SCOOPS[0], SCOOPS[-1] + DIG + LIFT + DUMP,
@@ -349,7 +359,7 @@ def shot4():
             t = (f - 1) / FPS; u = (k / len(cleats) + pos(t)) % 1.0
             c.location = belt_fn(u); c.keyframe_insert("location", frame=f)
     gold = bpy.data.materials.get("coins")
-    proto = K.cyl("belt coin", (0, 0, -5), 0.03, 0.008, gold, v=24, bev=0.0015)
+    proto = K.cyl("belt coin", (0, 0, -5), 0.038, 0.009, gold, v=24, bev=0.0015)
     N = 14
     starts = [0.02 + 0.13 * i for i in range(N)]                       # belt position at which coin i boards
     coins = []
@@ -379,8 +389,11 @@ def shot4():
     data.finish()
     soft_key("bank key", (-0.7, -1.4, 1.4), (0.0, -0.02, 0.45), energy=40, size=40)
     soft_key("vault key", (0.8, -1.0, 1.2), (PL.x, PL.y, 0.6), energy=16, size=22)
-    camera(Vector((-0.03, -1.46, 0.6)), Vector((-0.03, 0.1, 0.48)), Vector((-0.03, -1.38, 0.6)), Vector((-0.03, 0.1, 0.48)),
-           DUR, (0.0, -0.02, 0.45), lens=30, fstop=8.0)
+    # WIDE from the left and above, down onto the belt's face: the whole machine runs corner to corner, the bucket at
+    # its foot, the vault high on the right, Data turning the wheel (11-18: square-on it was framed like the pump shot;
+    # from the right the belt was edge-on, a black line)
+    camera(Vector((-0.3, -1.05, 0.95)), Vector((0.06, 0.02, 0.36)), Vector((-0.26, -1.0, 0.93)), Vector((0.06, 0.02, 0.36)),
+           DUR, (0.0, -0.02, 0.4), lens=22, fstop=8.0)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("coins ride the belt up out of the tin bucket into the VIP vault", lambda: meshes([belt, vault]) + coins, T0 + 0.6, DUR,
                          {"hero": True, "moves": lambda: coins}),
@@ -395,13 +408,15 @@ def shot5():
     flashing CASH, CARD, CASH; he catches it and it is still spinning on its edge between his hands. He looks at us:
     which one?"""
     where = place("crossroads")
-    data = load_data(); data.place(0.0, 0.1, 0)
+    # he stands left of centre so the signpost's two arms read clear of his head, CASH one way and CARD the other
+    data = load_data(); data.place(-0.08, 0.1, 0)
     L, R = sides(data)
-    post = XK.signpost("crossroads sign", (0.25, 0.45, 0.0), h=0.92)
+    post = XK.signpost("crossroads sign", (0.22, 0.5, 0.0), h=1.3, arm=0.16)   # its arms up above his ears
     coin = XK.flip_coin("giant coin", r=0.1, h=0.02)
-    C0 = Vector((0.07, -0.06, 0.42))
+    C0 = Vector((-0.01, -0.06, 0.42))
     T_TOSS, T_CATCH = 0.9, 2.5
     PEAK = 0.96
+    FLIP = 1.1
     def cpos(t):
         if t < T_TOSS - 0.3: return C0
         if t < T_TOSS: return C0 + Vector((0, 0, 0.055 * math.sin(math.pi * (t - T_TOSS + 0.3) / 1.3) ** 2))
@@ -412,7 +427,11 @@ def shot5():
     def crot(t):
         if t < T_TOSS: return (0, 0, 0)
         if t < T_CATCH: return (2 * math.pi * 3.5 * (t - T_TOSS) / (T_CATCH - T_TOSS), 0, 0)
-        return (0, 0, 2 * math.pi * 0.5 * (t - T_CATCH))                    # caught on its edge, turning: CASH ... CARD ... CASH
+        # caught by its rim between his palms, he flips it over and back on the axis through his hands, a face full to
+        # the lens each time: CARD ... CASH ... CARD (edge-on to the lens between his hands it read as floating)
+        tt = min(t, DUR - 1.2) - T_CATCH                                # the last flip lands a face, held to the end
+        k = int(tt // FLIP); u = ease(min(1.0, (tt - k * FLIP) / 0.35))
+        return (math.pi * (7 + k + u), 0, 0)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; key_all(coin, f, loc=cpos(t), rot=crot(t))
     def hand(sx):
@@ -431,13 +450,13 @@ def shot5():
     data.look_at(C0, T_CATCH - 0.15, max_yaw=20, max_pitch=25)
     data.look_at(US, T_CATCH + 0.6, max_yaw=20)
     data.idle(0.0, DUR)
-    data.expression("pleased", 0.0, T_TOSS)
+    data.expression("determined", 0.0, T_TOSS)                        # (pleased is an eye-smile: shut eyes on the first still)
     data.expression("surprised", T_TOSS + 0.1, T_CATCH, blend=0.15)
-    data.expression("wry", T_CATCH + 0.5, DUR + 1.0, blend=0.25)
-    data.blink(0.5)
+    data.expression("worried", T_CATCH + 0.5, DUR + 1.0, blend=0.25)  # which one?
+    data.blink(1.7)
     data.finish()
-    camera(Vector((0.02, -0.62, 0.58)), Vector((0.03, 0.1, 0.62)), Vector((0.02, -0.58, 0.58)), Vector((0.03, 0.1, 0.62)),
-           DUR, (0.05, -0.05, 0.5), lens=28, fstop=4.0)
+    camera(Vector((0.05, -0.64, 0.58)), Vector((0.06, 0.1, 0.64)), Vector((0.05, -0.6, 0.58)), Vector((0.06, 0.1, 0.64)),
+           DUR, (-0.02, -0.05, 0.5), lens=26, fstop=4.0)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("the giant CASH / CARD coin spins up and lands on its edge in his hands", lambda: meshes([coin]), T_TOSS, DUR,
                          {"hero": True, "moves": lambda: meshes([coin])})])

@@ -472,9 +472,13 @@ def stockroom():
     peg = K.mat("pegboard", "#B88E5E", rough=0.8)
     K.box("pegboard", (-0.2, WY - 0.075, 1.15), (1.6, 0.02, 0.9), peg, bev=0.004)
     sign = K.mat("fee notice", "#F4EEDF", rough=0.6); red = K.mat("fee red", "#C7302A", rough=0.5)
-    K.box("fee notice", (-0.2, WY - 0.09, 1.35), (0.7, 0.01, 0.34), sign, bev=0.003)
-    K.text("fee notice head", "CARD FEES", (-0.2, WY - 0.097, 1.43), 0.09, (math.pi / 2, 0, 0), red, extrude=0.002)
-    K.text("fee notice sub", "ADD 2-3% TO ALL PRICES", (-0.2, WY - 0.097, 1.29), 0.04, (math.pi / 2, 0, 0), K.mat("fee ink", "#2B2B2E", rough=0.6), extrude=0.001)
+    # the notice hangs to the right of where he works, low enough to read beside him, not behind his head
+    NX, NZ = 0.3, 1.2
+    K.box("fee notice", (NX, WY - 0.09, NZ), (0.86, 0.01, 0.62), sign, bev=0.003)
+    K.text("fee notice head", "CARD FEES", (NX, WY - 0.097, NZ + 0.16), 0.15, (math.pi / 2, 0, 0), red, extrude=0.002)
+    ink = K.mat("fee ink", "#2B2B2E", rough=0.6)
+    K.text("fee notice sub", "ADD 2-3% TO", (NX, WY - 0.097, NZ - 0.03), 0.11, (math.pi / 2, 0, 0), ink, extrude=0.001)
+    K.text("fee notice sub2", "ALL PRICES", (NX, WY - 0.097, NZ - 0.18), 0.11, (math.pi / 2, 0, 0), ink, extrude=0.001)
     steel = K.mat("shelf steel", "#8C9399", rough=0.4, metal=0.7)
     cols = ["#C8462E", "#2D6FB0", "#E2B33C", "#3E8E5A", "#E07B2E", "#7A4FA0", "#D9D2C2"]
     for x0 in (-1.9, -1.2):
