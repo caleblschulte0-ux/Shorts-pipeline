@@ -66,7 +66,7 @@ def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0, rough=0.2
     rnd = random.Random(seed)
     root = bpy.data.objects.new(name, None); bpy.context.collection.objects.link(root)
     core = _emit_mat("bolt core", (1.0, 0.98, 1.0), 60.0)
-    halo = _emit_mat("bolt glow", (0.55, 0.65, 1.0), 6.0, alpha=0.35)
+    halo = glow_mat()
     main = _jag(top, bottom, rnd, rough=rough)
     parts = [_tube(name + " core", main, width, core, root), _tube(name + " glow", main, width * glow, halo, root)]
     for k in range(branches):
@@ -168,3 +168,38 @@ def cloud_deck(z, y0=2.0, y1=30.0, x=(-14, 14), n=26, seed=3, roll=None):
         root.location.x = dx; root.keyframe_insert("location", frame=F(t0))
         root.location.x = 0; root.keyframe_insert("location", frame=F(t1))
     return root
+
+
+def glow_mat():
+    """the bolt's glow: brightest where the tube faces the lens, fading to nothing at its edges, so it reads as light
+    round the core and not as a blue outline (the trail beat's look, 2026-11-19)"""
+    m = bpy.data.materials.get("bolt glow soft")
+    if m: return m
+    m = bpy.data.materials.new("bolt glow soft"); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    out = nt.nodes.new("ShaderNodeOutputMaterial"); em = nt.nodes.new("ShaderNodeEmission"); tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    em.inputs["Color"].default_value = (0.55, 0.68, 1.0, 1); em.inputs["Strength"].default_value = 14.0
+    lw = nt.nodes.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = 0.5
+    inv = nt.nodes.new("ShaderNodeMath"); inv.operation = 'SUBTRACT'; inv.inputs[0].default_value = 1.0
+    pw = nt.nodes.new("ShaderNodeMath"); pw.operation = 'POWER'; pw.inputs[1].default_value = 2.5
+    nt.links.new(lw.outputs["Facing"], inv.inputs[1]); nt.links.new(inv.outputs[0], pw.inputs[0])
+    mx = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(pw.outputs[0], mx.inputs["Fac"]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], out.inputs["Surface"])
+    try: m.blend_method = 'BLEND'
+    except AttributeError: pass
+    return m
+
+
+def bloom(threshold=1.2, strength=0.55, size=0.7):
+    """a soft lens bloom over the frame (the compositor), so a bolt, a flash or a fire glows as light does in a lens.
+    Every storm beat calls it, so the short has one look"""
+    sc = bpy.context.scene
+    if getattr(sc, "compositing_node_group", None) and sc.compositing_node_group.name == "storm bloom": return
+    ng = bpy.data.node_groups.new("storm bloom", "CompositorNodeTree")
+    ng.interface.new_socket("Image", in_out='OUTPUT', socket_type='NodeSocketColor')
+    rl = ng.nodes.new("CompositorNodeRLayers"); gl = ng.nodes.new("CompositorNodeGlare"); go = ng.nodes.new("NodeGroupOutput")
+    gl.inputs["Type"].default_value = 'Bloom'; gl.inputs["Threshold"].default_value = threshold
+    gl.inputs["Strength"].default_value = strength; gl.inputs["Size"].default_value = size
+    ng.links.new(rl.outputs["Image"], gl.inputs["Image"]); ng.links.new(gl.outputs["Image"], go.inputs[0])
+    sc.compositing_node_group = ng

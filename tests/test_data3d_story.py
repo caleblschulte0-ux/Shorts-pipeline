@@ -50,7 +50,8 @@ def test_every_story_folder_is_complete():
             assert all(a != b for a, b in zip(sets, sets[1:])), f"{st.name}: two beats in a row in one place"
             assert len(set(sets)) >= 3, f"{st.name}: a short needs three places at least"
             known = set(re.findall(r'^PLACES = \{(.*)\}$', (D3 / "store" / "locations.py").read_text(), re.M)[0].replace('"', "").replace(" ", "").split(","))
-            assert {x for x in sets if x != "store"} <= {k.split(":")[0] for k in known}, f"{st.name}: a place store/locations.py does not build"
+            own = set(re.findall(r"^def place_(\w+)\(", (st / "shots.py").read_text(), re.M))   # a place the story builds itself
+            assert {x for x in sets if x != "store"} <= {k.split(":")[0] for k in known} | own, f"{st.name}: a place nothing builds"
             # every beat is its own IDEA (caaleb 2026-11-13, of the banana short's five shots: "All those were just
             # varying shots of bananas getting browner. What the fuck is this?"): a story names one visual action per
             # beat in `ideas`, no two alike, and at most one beat may be the thing simply rotting, browning or dying.

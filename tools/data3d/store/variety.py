@@ -50,6 +50,7 @@ NON_VISUAL = {
     "mat", "lin", "mute", "_mat", "_area", "sky_light", "mist", "contact_shadow", "seed_mesh", "bill_mesh",
     "Vector", "Euler", "Matrix", "range", "len", "min", "max", "abs", "round", "int", "float", "list", "dict", "zip",
     "box", "cyl", "sph", "empty", "text", "capsule", "bag", "_link", "_smooth", "img", "label_mat", "screen_mat", "strip_mat",
+    "strike", "flash_level", "_jag", "_tube", "_emit_mat", "glow_mat", "bloom", "cloud_mat",   # storm_kit: light, timing, raw geometry
     "enumerate", "sorted", "print", "set", "tuple", "sum", "any", "all", "isinstance", "getattr", "hasattr",
 }
 KIT_ALIASES = {"CK", "SK", "VK", "HK", "PK", "LOC", "K", "props", "built", "checkout"}
