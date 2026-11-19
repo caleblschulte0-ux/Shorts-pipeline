@@ -1900,3 +1900,74 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - problem: The swing is all arm. His body barely turns or bends to dig, so the scoops look weightless.
 - problem: The final 'sad' face reads closer to neutral.
 
+
+## 2026-11-19 05:17Z · storyboard · round 1 · storyboard gate pl11
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 52 | 52, 52, 66 | FAIL |
+| 2 | 72 | 64, 72, 72 | PASS |
+| 4 | 73 | 73, 73, 74 | PASS |
+
+**shot 1** (FAIL, 52, bar 70)
+
+- HARD: CONSEQUENCE, frame 2: the notes float in a loose cloud by Data's glasses. None is seen arcing down into a slot on the card's top edge, and the card shows no slot. The card swallowing the money, which is the point of the shot, never shows in the stills; the money just disappears between frames 2 and 3.
+- HARD: CONSEQUENCE, frame 2: the notes fly up and to the upper left, above and behind Data's head. None is seen arcing down into a slot on the card, and no slot is visible on the card's top edge. It reads as Data tossing money into the air, not the card swallowing it.
+- HARD: NOT THE POINT, frames 2-3: from these stills a stranger would say 'money flies away near a rewards card', not 'the rewards card eats your cash'. The card and the notes never touch.
+- problem: The REWARDS card shows no flash or glow change across the three frames, so it reads as a passive sign, not something eating the cash.
+- problem: The flying notes in frame 2 overlap Data's face and glasses, which clutters the hook's key frame.
+- problem: Frame 3 'outraged glare' reads as sad or confused: the brows are not angled down and the mouth is a flat frown.
+- problem: Frame 1 'slap' reads as a gentle hand resting on the wad. There is no impact or raised hand.
+- better: Put a visible dark slot on the card's top edge and show at least one note half in it in the middle frame, with the card visibly flashing brighter.
+- better: Arc the notes between the wad and the card, at counter-to-card height, not up across Data's face.
+- better: Make the frame 3 expression angry: brows down hard, lean toward the lens, maybe a fist on the bare counter.
+
+**shot 2** (PASS, 72, bar 70)
+
+- problem: The pump is mostly hidden behind the cases and Data's body, so the T-handle and the pumping action barely read. Frame 2 shows only one hand on the handle, not both.
+- problem: Data turns to camera by frame 2. The FOR line saves the turn for the last stroke, so the 'wry' beat lands early and frames 2 and 3 look alike.
+- problem: In frame 3 the swollen tag crowds Data's hands and arm. The tag and the pump overlap into one red mass.
+- problem: Data is small: full body, head about 15% of frame height. It is readable but loose for a profile action beat.
+
+**shot 4** (PASS, 73, bar 70)
+
+- problem: Data's frame 3 expression reads worried or sad rather than sour.
+- problem: The vault fill jumps from low to nearly full between frames 2 and 3, and the POOREST bucket barely looks emptier, so the transfer reads as one-way filling rather than poor to rich.
+- problem: The POOREST label sits on the floor below the bucket instead of on it, and the bucket is a clean tin, not dented.
+- problem: The vault's right edge sits right at the frame edge in frame 3, and the plinth reads as a plain white box, not marble.
+
+
+## 2026-11-19 05:21Z · proof · round 1 · proof loop pl11
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 63 | 54, 63, 64 | FAIL |
+| 4 | 61 | 56, 61, 63 | FAIL |
+
+**shot 2** (FAIL, 63, bar 70)
+
+- hard (one judge only): NOT THE POINT / BODY: you can't see the pumping. In all 29 frames Data's hands stay almost still at chest height, and the pump's T-handle and plunger are hidden behind his arm and body. No 'hard stroke' ever reads, so the tag grows with no visible cause (frames 1-29)
+- hard (one judge only): BROKEN: Data's head and glasses cover the notice from frame ~9 to the end. 'ADD' and 'ALL PRICES' are cut ('LL PRICES', frames 9-11, 17-24), and that notice carries the shot's point
+- problem: The pump strokes do not read. The T-handle stays at about chest height in every frame (1-29), so three hard strokes never show up. The tag swells, but nothing visibly drives it.
+- problem: The hose never clearly reaches the tag. The black hose loops down behind the cases, and the only thing touching the tag is a thin white tie to the boxes. A viewer can't tell that the pump is inflating the tag.
+- problem: From frame 9 on, Data's head and glasses cover the start of the notice's second and third lines ('ADD 2-3%', 'ALL PRICES'), and the 'A' of ALL is hidden in several frames. The text that carries the point is partly blocked.
+- problem: The tag grows only modestly, about 1.5x from frame 1 to frame 29. That's not a big enough swell for 'each stroke the tag swells bigger'. No three distinct jumps are visible; it creeps.
+- problem: In profile (frames 1-8) the glasses stick out in front of the face and look detached from the head.
+- better: Give each stroke a big vertical travel: handle up to head height, slam down to the waist, with a squash on the body. Make the tag jump visibly on each down-stroke and settle between strokes.
+- better: Run a thick, clearly visible hose from the pump base straight into the tag's neck in front of the cases, so cause and effect are one line.
+- better: Move the notice left or higher, or move Data, so his head never overlaps it. Or put the fee on the tag itself.
+
+**shot 4** (FAIL, 61, bar 70)
+
+- HARD: BROKEN: the 'POOREST' label is a tiny strip of floor text under the bucket (every frame) and can't be read on a phone. The poorest-to-richest contrast is the shot's point, and only the '$750 RICHEST' half reads
+- HARD: BROKEN: the POOREST label is tiny floor text under the bucket in all 30 frames and can't be read on a phone, so the poor-to-rich contrast that carries the shot is lost (frames 1-30)
+- problem: There's a lot of dead space: the bottom ~40% of every frame is empty marble floor, which pushes Data and the machine into a band across the middle
+- problem: Data turns his head away toward the vault twice (frames 3-5 and 12-16). The side and back of his head face the camera, and his face is lost for about 1.5 s in total
+- problem: Blink frames (8, 18, 25) fill his glasses lenses with a flat skin-coloured plate that reads as a glitch
+- problem: His final 'sour' face uses a dark open mouth hole (frames 25-30), the open-mouth look the operator has rejected before
+- problem: The coins on the belt are small. 'One by one' doesn't read; it looks like a continuous stripe
+- problem: The bucket barely looks emptier by the end. The drain isn't sold the way the vault filling is
+- better: Make POOREST a big label on the bucket itself, as large as '$750 RICHEST', facing the lens
+- better: Crop in or lower the camera so the machine fills the frame: bucket bottom-left, vault top-right, Data's face large
+- better: Keep Data's face toward the camera while he cranks; at most a quick eye-glance at the vault, no head turn
+
