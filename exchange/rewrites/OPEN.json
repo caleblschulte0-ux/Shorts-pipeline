@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-19T13:57:05Z",
+ "updated": "2026-11-19T15:22:33Z",
  "open": [
+  {
+   "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
+   "slug": "richest-americans-live-14-years-longer",
+   "filed": "2026-11-19T15:22:32Z",
+   "why": [
+    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Adds unrelated historical context rather than a direct consequence of beat 0; does not follow logically from the previou"
+   ],
+   "request": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
+  },
   {
    "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
    "slug": "sperm-counts-cut-in-half",
