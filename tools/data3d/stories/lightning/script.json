@@ -1,252 +1,260 @@
 {
- "slug": "lightning",
- "title": "The Ranger Who Got Struck by Lightning Seven Times",
- "voice": "am_fenrir",
- "note": "The seventh 3D short (2026-11-19). Planned STORY AND WORLD FIRST (caaleb, 2026-11-19: \"you just realize you're much more writing a story now. Building a world that the viewer has to believe in\"): one ranger, one mountain park, one storm, one run home from his lookout to his truck. Each fact lands on a moment of that run. Made under store/fresh.py and store/story_world.py.",
- "lines": [
-  "Right now, lightning is flashing about a hundred times every second, somewhere on Earth.",
-  "And it hunts for the tallest thing around. The Empire State Building gets hit about twenty-five times a year.",
-  "One park ranger, Roy Sullivan, got struck seven different times, and lived through every single one.",
-  "Every bolt is hotter than the surface of the sun, hot enough to turn sand into glass.",
-  "But your car protects you. Not the rubber tires, the metal shell. Would you stay inside?"
- ],
- "draft_windows": [
-  [
-   0.0,
-   4.150708
+  "slug": "lightning",
+  "title": "The Ranger Who Got Struck by Lightning Seven Times",
+  "voice": "am_fenrir",
+  "note": "The seventh 3D short (2026-11-19). Planned STORY AND WORLD FIRST (caaleb, 2026-11-19: \"you just realize you're much more writing a story now. Building a world that the viewer has to believe in\"): one ranger, one mountain park, one storm, one run home from his lookout to his truck. Each fact lands on a moment of that run. Made under store/fresh.py and store/story_world.py.",
+  "lines": [
+    "Right now, lightning is flashing about a hundred times every second, somewhere on Earth.",
+    "And it hunts for the tallest thing around. The Empire State Building gets hit about twenty-five times a year.",
+    "One park ranger, Roy Sullivan, got struck seven different times, and lived through every single one.",
+    "Every bolt is hotter than the surface of the sun, hot enough to turn sand into glass.",
+    "But your car protects you. Not the rubber tires, the metal shell. Would you stay inside?"
   ],
-  [
-   4.150708,
-   9.351541
+  "draft_windows": [
+    [
+      0.0,
+      4.150708
+    ],
+    [
+      4.150708,
+      9.351541
+    ],
+    [
+      9.351541,
+      14.084708
+    ],
+    [
+      14.084708,
+      18.291083
+    ],
+    [
+      18.291083,
+      23.656791
+    ]
   ],
-  [
-   9.351541,
-   14.084708
+  "sources": [
+    {
+      "claim": "about a hundred flashes every second",
+      "says": "producing on the order of 100 flashes per second",
+      "url": "https://sos.noaa.gov/datasets/lightning-flash-rate",
+      "publisher": "NOAA Science On a Sphere",
+      "year": 2024
+    },
+    {
+      "claim": "the Empire State Building gets hit about twenty-five times a year",
+      "says": "the Empire State Building is hit by lightning an average of 25 times per year",
+      "url": "https://www.mprnews.org/story/2014/07/08/when-lightning-strikes-tall-buildings",
+      "publisher": "MPR News, citing the National Weather Service",
+      "year": 2014
+    },
+    {
+      "claim": "Roy Sullivan, struck seven times",
+      "says": "The only man in the world to be struck by lightning seven times was ex-park ranger Roy C. Sullivan",
+      "url": "https://www.guinnessworldrecords.com/world-records/most-lightning-strikes-survived",
+      "publisher": "Guinness World Records",
+      "year": 2023
+    },
+    {
+      "claim": "hotter than the surface of the sun, turns sand into glass",
+      "says": "At 50,000 degrees F, hotter than the surface of the sun, lightning blasts the sand ... melting the surrounding sand into dark glass",
+      "url": "https://www.nps.gov/articles/grsa-fulgurites.htm",
+      "publisher": "National Park Service",
+      "year": 2023
+    },
+    {
+      "claim": "a car's metal shell protects you, the tires do not",
+      "says": "the outer metal shell of hard-topped metal vehicles does provide protection to those inside ... Do the rubber tires on your car protect you ... NO!",
+      "url": "https://weather.gov/safety/lightning-cars",
+      "publisher": "National Weather Service",
+      "year": 2024
+    }
   ],
-  [
-   14.084708,
-   18.291083
+  "sets": [
+    "ridge",
+    "lookout_tower",
+    "forest_trail",
+    "lake_beach",
+    "trailhead"
   ],
-  [
-   18.291083,
-   23.656791
-  ]
- ],
- "sources": [
-  {
-   "claim": "about a hundred flashes every second",
-   "says": "producing on the order of 100 flashes per second",
-   "url": "https://sos.noaa.gov/datasets/lightning-flash-rate",
-   "publisher": "NOAA Science On a Sphere",
-   "year": 2024
-  },
-  {
-   "claim": "the Empire State Building gets hit about twenty-five times a year",
-   "says": "the Empire State Building is hit by lightning an average of 25 times per year",
-   "url": "https://www.mprnews.org/story/2014/07/08/when-lightning-strikes-tall-buildings",
-   "publisher": "MPR News, citing the National Weather Service",
-   "year": 2014
-  },
-  {
-   "claim": "Roy Sullivan, struck seven times",
-   "says": "The only man in the world to be struck by lightning seven times was ex-park ranger Roy C. Sullivan",
-   "url": "https://www.guinnessworldrecords.com/world-records/most-lightning-strikes-survived",
-   "publisher": "Guinness World Records",
-   "year": 2023
-  },
-  {
-   "claim": "hotter than the surface of the sun, turns sand into glass",
-   "says": "At 50,000 degrees F, hotter than the surface of the sun, lightning blasts the sand ... melting the surrounding sand into dark glass",
-   "url": "https://www.nps.gov/articles/grsa-fulgurites.htm",
-   "publisher": "National Park Service",
-   "year": 2023
-  },
-  {
-   "claim": "a car's metal shell protects you, the tires do not",
-   "says": "the outer metal shell of hard-topped metal vehicles does provide protection to those inside ... Do the rubber tires on your car protect you ... NO!",
-   "url": "https://weather.gov/safety/lightning-cars",
-   "publisher": "National Weather Service",
-   "year": 2024
-  }
- ],
- "sets": [
-  "ridge",
-  "lookout_tower",
-  "forest_trail",
-  "lake_beach",
-  "trailhead"
- ],
- "sets_why": "one park, walked top to bottom: the ridge where the storm hits first, the lookout tower that is the tallest thing on it, the forest trail down, the lake beach at the bottom, the trailhead lot where his truck is",
- "ideas": [
-  "the storm rolls over the ridge, a bolt splits the old oak beside the ranger and he dives flat; his truck sits tiny far below",
-  "he scrambles down the lookout tower's stairs as bolt after bolt slams into the rod on its roof above him",
-  "on the trail down he gets struck again and again and keeps marching, the trail markers counting him up to seven",
-  "at the lake a bolt hits the beach at his feet and he hauls a long branching glass root out of the sand",
-  "he slams himself into his truck, a bolt hits its roof, sparks race over the metal shell, and he knocks on the window at us from inside, grinning"
- ],
- "storyboard": [
-  "1 hook (the ridge at last light, WIDE: the ranger whole on the bare crest, his lookout tower behind, the old oak beside him, his green truck tiny in the valley far below): storm clouds roll over the ridge and the light drops; his ears and hat brim lift with static and he looks up; a blinding bolt slams into the old oak beside him; the oak's crown splits and crashes down in flames as he dives flat into the grass.",
-  "2 the tallest thing (the steel fire-lookout tower in the rain, LOW: looking up the tower's zigzag stairs at him): the ranger bursts out of the cab at the top and runs down the stairs; a bolt slams into the lightning rod on the roof above him; sparks rain down past him as two more bolts hit the rod one after another; he jumps the last flight, lands, flicks his hat back onto his head and runs for the trail, straight past the camera.",
-  "3 seven times (the pine forest trail in the rain, TRACKING beside him as he marches downhill): the ranger marches down the trail; a bolt knocks his hat off and he snatches it back; strike after strike hits him while the numbered trail markers he passes count 1, 2, 3 ... up to 7; smoking and frazzled, he jams the hat back on and keeps marching.",
-  "4 hotter than the sun (the lake beach below the forest, HIGH: looking down on him and the sand): a bolt slams into the sand right in front of the ranger; the strike crater glows orange and steams; he grips and heaves; a long, branching glass root pops out of the sand and he tumbles back holding it up, glinting.",
-  "5 your shelter (the trailhead lot in the rain, CLOSE on his truck's side window): the ranger runs across the wet lot, yanks his green truck's door and slams himself in; a bolt hits the truck's roof; blue sparks race over the whole metal body around him and leap off the bumper into a puddle while the tyres stay dark; inside, untouched, he knocks twice on the window at us with a big grin and spreads his palms: see? would you stay inside?"
- ],
- "staging": [
-  {
-   "camera": "wide",
-   "data": "dives flat as the bolt splits the oak beside him",
-   "props": [
-    "old oak",
-    "lookout tower in the distance",
-    "truck far below"
-   ],
-   "arc": [
+  "sets_why": "one park, walked top to bottom: the ridge where the storm hits first, the lookout tower that is the tallest thing on it, the forest trail down, the lake beach at the bottom, the trailhead lot where his truck is",
+  "ideas": [
+    "the storm rolls over the ridge, a bolt splits the old oak beside the ranger and he dives flat; his truck sits tiny far below",
+    "he scrambles down the lookout tower's stairs as bolt after bolt slams into the rod on its roof above him",
+    "on the trail down he gets struck again and again and keeps marching, the trail markers counting him up to seven",
+    "at the lake a bolt hits the beach at his feet and he hauls a long branching glass root out of the sand",
+    "he slams himself into his truck, a bolt hits its roof, sparks race over the metal shell, and he knocks on the window at us from inside, grinning"
+  ],
+  "storyboard": [
+    "1 hook (the ridge at last light, WIDE: the ranger whole on the bare crest, his lookout tower behind, the old oak beside him, his green truck tiny in the valley far below): storm clouds roll over the ridge and the light drops; his ears and hat brim lift with static and he looks up; a blinding bolt slams into the old oak beside him; the oak's crown splits and crashes down in flames as he dives flat into the grass.",
+    "2 the tallest thing (the steel fire-lookout tower in the rain, LOW: looking up the tower's zigzag stairs at him): the ranger bursts out of the cab at the top and runs down the stairs; a bolt slams into the lightning rod on the roof above him; sparks rain down past him as two more bolts hit the rod one after another; he jumps the last flight, lands and runs for the trail, straight past the camera.",
+    "3 seven times (a pine forest trail cut into a mountainside in the rain, below a switchback, TRACKING beside him as he marches downhill): the ranger marches down the trail in his hat; a bolt hits him at each numbered trail marker he passes, and each marker's number brands on as its bolt hits, counting 1, 2, 3 ... up to 7; every strike leaves him sootier, smokier and more frazzled while his reaction shrinks from shock to a deadpan trudge; the seventh, the big one, blows his hat straight up off his head, it drops back on, he jams it down with a dip of his head, gives us a deadpan look and keeps marching.",
+    "4 hotter than the sun (the lake beach below the forest, HIGH: looking down on him and the sand): a bolt slams into the sand right in front of the ranger; the strike crater glows orange and steams; he grips and heaves; a long, branching glass root pops out of the sand and he tumbles back holding it up, glinting.",
+    "5 your shelter (the trailhead lot in the rain, CLOSE on his truck's side window): the ranger yanks his green truck's door open, dives in and slams it shut; a bolt hits the truck's roof; blue sparks race over the whole metal body around him and leap off the bumper into a puddle while the tyres stay dark; inside, untouched, he turns to his window, raps twice on the glass at us with a big grin and shrugs, palms up: see? would you stay inside?"
+  ],
+  "staging": [
     {
-     "at": 0.05,
-     "what": "storm clouds roll over the hill and the light drops"
+      "camera": "wide",
+      "data": "dives flat as the bolt splits the oak beside him",
+      "props": [
+        "old oak",
+        "lookout tower in the distance",
+        "truck far below"
+      ],
+      "arc": [
+        {
+          "at": 0.05,
+          "what": "storm clouds roll over the hill and the light drops"
+        },
+        {
+          "at": 0.3,
+          "what": "his ears and coat lift with static and he looks up"
+        },
+        {
+          "at": 0.55,
+          "what": "a bolt slams into the oak in a white flash"
+        },
+        {
+          "at": 0.8,
+          "what": "the burning crown crashes down as he dives flat"
+        }
+      ]
     },
     {
-     "at": 0.3,
-     "what": "his ears and coat lift with static and he looks up"
+      "camera": "low",
+      "data": "runs down the lookout stairs under the strikes",
+      "props": [
+        "lookout tower",
+        "stairs",
+        "lightning rod"
+      ],
+      "arc": [
+        {
+          "at": 0.05,
+          "what": "he bursts out of the cab at the top and runs for the stairs"
+        },
+        {
+          "at": 0.3,
+          "what": "a bolt slams into the rod on the roof right above him"
+        },
+        {
+          "at": 0.55,
+          "what": "sparks rain past him as two more bolts hit the rod"
+        },
+        {
+          "at": 0.8,
+          "what": "he jumps the last flight, lands and runs for the trail, straight past the camera"
+        }
+      ]
     },
     {
-     "at": 0.55,
-     "what": "a bolt slams into the oak in a white flash"
+      "camera": "tracking",
+      "data": "marches down the trail through strike after strike",
+      "props": [
+        "trail markers"
+      ],
+      "arc": [
+        {
+          "at": 0.065,
+          "what": "bolt one hits him at marker 1 and he is shocked"
+        },
+        {
+          "at": 0.18,
+          "what": "bolt two at marker 2 leaves him smoking and alarmed"
+        },
+        {
+          "at": 0.38,
+          "what": "bolts three to six, one at each marker, each leaving him sootier while he trudges on deadpan"
+        },
+        {
+          "at": 0.67,
+          "what": "the seventh, the big one, blows his hat straight up off his head"
+        },
+        {
+          "at": 0.8,
+          "what": "the hat drops back on, he jams it down with a dip of his head and marches on, deadpan"
+        }
+      ]
     },
     {
-     "at": 0.8,
-     "what": "the burning crown crashes down as he dives flat"
+      "camera": "high",
+      "data": "grips the glass under the glowing sand, heaves it out and tumbles back holding it up",
+      "props": [
+        "glowing crater",
+        "glass root"
+      ],
+      "arc": [
+        {
+          "at": 0.06,
+          "what": "a bolt slams into the sand in front of him"
+        },
+        {
+          "at": 0.2,
+          "what": "the empty crater glows orange and steams"
+        },
+        {
+          "at": 0.4,
+          "what": "he grips under the glowing sand and heaves"
+        },
+        {
+          "at": 0.66,
+          "what": "a long branching glass root pops out of the sand"
+        },
+        {
+          "at": 0.8,
+          "what": "he tumbles back holding it up, glinting"
+        }
+      ]
+    },
+    {
+      "camera": "close",
+      "data": "yanks open his truck, dives in and slams it, then raps on the window at us as it is struck",
+      "props": [
+        "green ranger truck",
+        "puddle"
+      ],
+      "arc": [
+        {
+          "at": 0.05,
+          "what": "he yanks the door open, dives in and slams it shut"
+        },
+        {
+          "at": 0.3,
+          "what": "a bolt hits the truck's roof and sparks race over the metal body"
+        },
+        {
+          "at": 0.5,
+          "what": "the sparks leap off the bumper into the puddle while the tyres stay dark"
+        },
+        {
+          "at": 0.75,
+          "what": "untouched inside, he raps twice on his window at us and shrugs, palms up"
+        }
+      ]
     }
-   ]
+  ],
+  "callbacks": {
+    "bolt": "the lightning is the story: every beat is a strike, each one a new bolt shape in a new place"
   },
-  {
-   "camera": "low",
-   "data": "runs down the lookout stairs under the strikes",
-   "props": [
-    "lookout tower",
-    "stairs",
-    "lightning rod"
-   ],
-   "arc": [
-    {
-     "at": 0.05,
-     "what": "he bursts out of the cab at the top and runs for the stairs"
+  "world": {
+    "logline": "A park ranger's run home through the worst storm of the year: from his fire lookout on the ridge, down the forest trail and along the lake, to his truck at the trailhead.",
+    "hero": "Data as the park's ranger: his lab coat under a ranger's flat-brimmed campaign hat, which he keeps losing and getting back",
+    "goal": "get from the lookout to his truck before the storm gets him",
+    "place": "one mountain national park: a bare ridge with an old oak and a steel fire-lookout tower, a pine forest trail switchbacking down, a lake with a sand beach, and the gravel trailhead lot where his green ranger pickup waits",
+    "time": "one evening: the last orange light at the start, full dark and rain by the end",
+    "weather": "one storm that builds the whole way: clouds rolling in, then rain, then lightning everywhere",
+    "continuity": {
+      "ranger hat": "the hero's hat: on his head in every beat (knocked off and caught back in beat 3)",
+      "ranger truck": "his goal: seen far below at the trailhead in beat 1, reached in beat 5",
+      "bolt": "the storm itself: every beat is a strike, each a new bolt shape",
+      "rain": "the one storm over one park, darker and wetter each beat"
     },
-    {
-     "at": 0.3,
-     "what": "a bolt slams into the rod on the roof right above him"
-    },
-    {
-     "at": 0.55,
-     "what": "sparks rain past him as two more bolts hit the rod"
-    },
-    {
-     "at": 0.8,
-     "what": "he jumps the last flight, flicks his hat back on and runs for the trail"
-    }
-   ]
+    "path": [
+      "ridge",
+      "lookout_tower",
+      "forest_trail",
+      "lake_beach",
+      "trailhead"
+    ]
   },
-  {
-   "camera": "tracking",
-   "data": "marches down the trail through strike after strike",
-   "props": [
-    "trail markers"
-   ],
-   "arc": [
-    {
-     "at": 0.05,
-     "what": "the first bolt knocks his hat off and he snatches it back"
-    },
-    {
-     "at": 0.3,
-     "what": "a strike leaves him smoking as he passes marker 2"
-    },
-    {
-     "at": 0.55,
-     "what": "bolts hammer him in a rapid run, the markers racing to 6"
-    },
-    {
-     "at": 0.8,
-     "what": "the seventh hits, he jams the hat back on and keeps marching"
-    }
-   ]
-  },
-  {
-   "camera": "high",
-   "data": "digs into the glowing sand and hauls out the glass",
-   "props": [
-    "glowing crater",
-    "glass root"
-   ],
-   "arc": [
-    {
-     "at": 0.05,
-     "what": "a bolt slams into the sand in front of him"
-    },
-    {
-     "at": 0.3,
-     "what": "the crater glows orange and steams"
-    },
-    {
-     "at": 0.55,
-     "what": "he plunges his hands in and hauls"
-    },
-    {
-     "at": 0.8,
-     "what": "a long branching glass root comes up out of the sand, glinting"
-    }
-   ]
-  },
-  {
-   "camera": "close",
-   "data": "slams himself into his truck and knocks on the window at us as it is struck",
-   "props": [
-    "green ranger truck",
-    "puddle"
-   ],
-   "arc": [
-    {
-     "at": 0.05,
-     "what": "he dives into the truck and slams the door"
-    },
-    {
-     "at": 0.3,
-     "what": "a bolt hits the truck's roof and sparks race over the metal body"
-    },
-    {
-     "at": 0.55,
-     "what": "the sparks leap off the bumper into the puddle while the tyres stay dark"
-    },
-    {
-     "at": 0.8,
-     "what": "untouched inside, he knocks on the window at us and spreads his palms"
-    }
-   ]
-  }
- ],
- "callbacks": {
-  "bolt": "the lightning is the story: every beat is a strike, each one a new bolt shape in a new place"
- },
- "world": {
-  "logline": "A park ranger's run home through the worst storm of the year: from his fire lookout on the ridge, down the forest trail and along the lake, to his truck at the trailhead.",
-  "hero": "Data as the park's ranger: his lab coat under a ranger's flat-brimmed campaign hat, which he keeps losing and getting back",
-  "goal": "get from the lookout to his truck before the storm gets him",
-  "place": "one mountain national park: a bare ridge with an old oak and a steel fire-lookout tower, a pine forest trail switchbacking down, a lake with a sand beach, and the gravel trailhead lot where his green ranger pickup waits",
-  "time": "one evening: the last orange light at the start, full dark and rain by the end",
-  "weather": "one storm that builds the whole way: clouds rolling in, then rain, then lightning everywhere",
-  "continuity": {
-   "ranger hat": "the hero's hat: on his head in every beat (knocked off and caught back in beat 3)",
-   "ranger truck": "his goal: seen far below at the trailhead in beat 1, reached in beat 5",
-   "bolt": "the storm itself: every beat is a strike, each a new bolt shape",
-   "rain": "the one storm over one park, darker and wetter each beat"
-  },
-  "path": [
-   "ridge",
-   "lookout_tower",
-   "forest_trail",
-   "lake_beach",
-   "trailhead"
-  ]
- },
- "narration_run": 44561321866
+  "narration_run": 44561321866
 }
