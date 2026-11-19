@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "great-barrier-reef-bleaching-accelerating__5bac8a81",
+  "slug": "great-barrier-reef-bleaching-accelerating",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "Great Barrier Reef Recovery Takes 10 Years—Bleaching Returns Sooner",
+  "hook": "New bleaching can arrive before damaged coral rebuilds.",
+  "closing": "Repeated bleaching can strip reefs of the recovery time their ecosystems need.",
+  "question": "Can the reef recover fast enough?",
+  "segments": [
+    {
+      "topic": "Reef Bleaching Events",
+      "say": "The reef suffered 3 mass bleaching events this decade. A once-rare shock is becoming routine."
+    },
+    {
+      "topic": "Reef Bleaching Gaps",
+      "say": "The longest recorded bleaching gap was 14 years. That breathing room has collapsed."
+    },
+    {
+      "topic": "Reef Recovery Time",
+      "say": "A reef typically needs 10 years to recover. Repeated bleaching can arrive before damaged coral rebuilds."
+    }
+  ]
+}
