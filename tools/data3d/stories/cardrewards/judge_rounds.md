@@ -1749,3 +1749,85 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: At the end, plant the shovel upright beside him, with a hand on it, in clear view, so it never vanishes.
 - better: Make the coins in the heap and in flight distinct and catch the light. Let a few bounce off the sack's rim for physical authenticity.
 
+
+## 2026-11-19 04:49Z · storyboard · round 1 · storyboard gate pl9
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 71 | 66, 71, 72 | PASS |
+| 2 | 66 | 60, 66, 73 | FAIL |
+| 3 | 75 | 74, 75, 75 | PASS |
+| 4 | 67 | 62, 67, 70 | FAIL |
+
+**shot 1** (PASS, 71, bar 70)
+
+- problem: Frame 2: the notes fly up past Data's face toward the top-left. They do not clearly arc down into the slot on the card's top edge, so the idea that the card is eating the notes reads only from the card's glow and the bare counter in frame 3.
+- problem: The card covers Data's left shoulder and arm in frames 1-3, so the card and Data overlap instead of each reading on its own.
+- problem: Frame 3: Data is supposed to fling a hand at the card in outrage, but his arm hangs low and loose. His face looks mildly put out, not outraged, and he is not clearly glaring at us.
+
+**shot 2** (FAIL, 66, bar 70)
+
+- hard (one judge only): BROKEN: the price-tag balloon is the shot's subject and its payoff, and the right frame edge cuts it off in frame 2 (slightly) and frame 3 (badly). You never see the fully swollen tag whole.
+- problem: Frames 2-3: the swelling price tag runs off the right edge of the frame. By frame 3 about a third of it is cut, at the very moment the tag is biggest.
+- problem: Frame 1: Data's head is clipped at the left edge.
+- problem: Only one hand reads on the T-handle in profile. The two-handed hard stroke doesn't come across, and in frame 2 the hand sits low on the shaft, so the pumping effort looks slight.
+- problem: The tag doesn't look like a balloon. It reads as a rigid plastic tag growing, not something being inflated.
+- better: Reframe or move the set left so the largest tag in frame 3 fits entirely inside the frame with margin. Don't widen; move the cases and tag toward the centre.
+- better: Leave headroom and space on Data's left so he is never cut by the frame edge.
+- better: Pose the stroke for this camera: both hands on the T-handle ends, arms straight down at the bottom of the stroke, body bent over the pump.
+
+**shot 3** (PASS, 75, bar 70)
+
+- problem: Only one coin is seen in the air off the blade in frame 2. The 'scoop arcing into the sack' is thin.
+- problem: The '$149 A YEAR' flag is small: the '$149' reads on a phone, the 'A YEAR' barely.
+- problem: In frame 3 the bulging sack is cut slightly by the right frame edge.
+- problem: In frame 1 the shovel is barely visible. Data's hands are clasped at his chest, so the digging action does not read at the start.
+
+**shot 4** (FAIL, 67, bar 70)
+
+- problem: The key props are small. The coins on the belt are a few pixels each, and the 'dented tin bucket' reads as a flat pan, so 'out of the poorest' is weak on a phone.
+- problem: The bottom ~40% of the frame is empty floor and the top is wall and windows, with the story squeezed into a narrow middle band.
+- problem: The vault reads as a black open box, not a steel vault on a marble plinth. The plinth is just a white block with the label.
+- problem: The steep 'uphill' angle reads, but the belt is thin and dark against a dark wall, so it gets lost.
+- better: Move the camera closer and lower so the bucket, belt and vault fill the frame in front of Data. Make the bucket a tall, visibly dented tin pail with only a few coins left.
+- better: Make the coins bigger and brighter on a lighter belt so each one climbing reads, and show coins dropping into the vault at the top.
+- better: Give the vault a steel door frame, rivets and a marble plinth so 'the richest' reads from the object, not just the label.
+
+
+## 2026-11-19 04:54Z · proof · round 1 · proof loop pl9
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 60 | 52, 60, 72 | FAIL |
+| 3 | 58 | 44, 58, 72 | FAIL |
+
+**shot 1** (FAIL, 60, bar 70)
+
+- HARD: CONSEQUENCE/BROKEN: the notes are never seen going down into the slot. They arc up and gather in a clump floating over the card's top-left edge (frames 6-20). That clump is still there after the counter is bare (frames 17-20), so it reads as cash stuck in mid-air rather than being swallowed.
+- HARD: CONSEQUENCE: the notes are never clearly seen going into the slot. From frames 9-19 they bunch into a static, overlapping cluster hovering above the card's top-left corner and never visibly drop into its top edge, so 'the card swallows them' doesn't read; it looks like a stuck stack of bills floating in mid-air
+- HARD: BROKEN: the last notes in that cluster vanish in mid-air between frames 19 and 20 instead of landing in the slot (a pop)
+- problem: The stream of notes passes in front of Data's face (frames 5-8), hiding his reaction during the key action.
+- problem: The card's flash is weak. A glow builds slowly at its base instead of a clear pulse with each note.
+- problem: The 'outraged hand fling' is a slow point with the palm down. It reads as presenting the card, not outrage.
+- problem: In the last frames his gaze drifts camera-left. He does not lock eyes with the lens for the glare.
+- problem: The empty grey counter front fills about the bottom 30% of the frame, which is wasted space.
+- better: Make each note dive into the slot and disappear, with a flash on the card each time. Nothing should stay in the air when the counter goes bare.
+- better: Route the arc over the card side only, so it never crosses Data's face.
+- better: Make the fling a sharp jab with an open palm, then cut to a hard, square stare into the lens with the brows down.
+
+**shot 3** (FAIL, 58, bar 70)
+
+- HARD: BROKEN: the shovel appears from nowhere. Frames 1-4 show Data empty-handed with no shovel in the frame, and in frame 5 it is suddenly planted in the heap.
+- HARD: BROKEN: the shovel disappears mid-throw. In frames 9 and 24 coins are arcing over the sack but no shovel blade or handle is visible anywhere.
+- HARD: BODY: Data never holds the long shovel with two hands. One mitten stays clutched at his chest while the shaft just runs to it (frames 6-8, 14-15, 21-23), so the scoop doesn't read as his effort.
+- HARD: BROKEN: the POINTS sack, the beat's payoff, runs off the right edge of the frame in the last frames (25-30), and the POINTS stencil gets cut off.
+- HARD: BROKEN: the shovel appears from nowhere. It isn't in frame or in Data's hands in frames 1-4, then shows up already planted in the heap in frame 5
+- problem: Data has no dig action: his hands stay clasped at his chest while the shovel swings on its own pivot, so the shovel looks like it moves itself rather than Data driving it into the heap (frames 6-28)
+- problem: 'A YEAR' on the flag is tiny and unreadable at phone size; only '$149' reads
+- problem: The coins entering the sack read as a few gold specks over a dark hole. The arc off the blade is short and mostly hidden behind the sack's rim
+- problem: Through the middle scoops Data's face goes back to a resting smile, which fights the 'sad' end beat. The final look-up reads mildly worried more than sad
+- problem: From the high lens the full body puts Data in the upper third, smaller than the props; his face is readable but not by much
+- better: Start with the shovel already in Data's two hands, gripping the handle at shoulder width, and have the hands and arms lead every scoop: dig, lift, swing, tip
+- better: Make each coin throw a big visible arc above the sack mouth, with a clink and a little sack swell on each landing so the bulge is earned scoop by scoop
+- better: Scale up the flag text, or drop 'A YEAR' in favour of a larger '$149/yr'
+

@@ -96,7 +96,7 @@ def wad(name, loc, n=14, mesh=None):
     return out
 
 
-def giant_card(name, loc, w=0.2, h=0.3, yaw=0.0):
+def giant_card(name, loc, w=0.2, h=0.3, yaw=0.0, slot_w=0.4):
     """a giant gold rewards card stood up on its short edge like a monument (portrait, so it is tall in a phone frame),
     REWARDS and POINTS across it, an intake slot in its top edge for the tube, and a glow (returned) that flares when
     something arrives. Returns (root, glow material, slot point local)."""
@@ -112,7 +112,7 @@ def giant_card(name, loc, w=0.2, h=0.3, yaw=0.0):
     K.text(name + " rewards", "REWARDS", (0, -0.0115, h * 0.86), w * 0.16, (math.pi / 2, 0, 0), ink, extrude=0.0008, parent=root)
     K.text(name + " points", "+POINTS", (0, -0.0115, h * 0.3), w * 0.17, (math.pi / 2, 0, 0), ink, extrude=0.0008, parent=root)
     K.text(name + " number", "4000 1234 5678", (0, -0.0115, h * 0.14), w * 0.085, (math.pi / 2, 0, 0), ink, extrude=0.0006, parent=root)
-    K.box(name + " slot", (0, 0, h + 0.001), (w * 0.4, 0.012, 0.004), _mat("card slot", "#141316", rough=0.4), bev=0.001, parent=root)
+    K.box(name + " slot", (0, 0, h + 0.001), (w * slot_w, 0.012, 0.004), _mat("card slot", "#141316", rough=0.4), bev=0.001, parent=root)
     _place(root, loc, yaw, None)
     return root, glow, Vector((0, 0, h))
 
