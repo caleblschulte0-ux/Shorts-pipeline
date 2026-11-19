@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "clear-air-turbulence-increase__afb34a62",
+  "slug": "clear-air-turbulence-increase",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:22:00Z",
+  "title": "Severe North Atlantic Turbulence Lasts 55% Longer",
+  "hook": "The invisible rough air over the Atlantic is getting worse.",
+  "closing": "Longer severe turbulence makes keeping your seatbelt fastened throughout every flight more important.",
+  "question": "Have your flights felt bumpier?",
+  "segments": [
+    {
+      "topic": "Atlantic Turbulence",
+      "say": "Severe turbulence reached 27.4 annual hours over the North Atlantic. Crossings now spend more time in dangerous invisible air."
+    },
+    {
+      "topic": "Severe Turbulence",
+      "say": "Severe turbulence duration increased 55 percent. The worst bumps are growing faster than lighter ones."
+    },
+    {
+      "topic": "Future Turbulence",
+      "say": "Severe turbulence could reach 62 annual hours. Future Atlantic flights would spend far longer in dangerous rough air."
+    }
+  ]
+}
