@@ -87,7 +87,7 @@ def shot1():
     L, R = sides(data)
     W = Vector((-0.02, -0.1, TOP))
     import props as _P
-    notes = XK.wad("cash wad", tuple(W), n=20, mesh=_P.bill_mesh("cash wad note", w=0.15, h=0.068))
+    notes = XK.wad("cash wad", tuple(W), n=24, mesh=_P.bill_mesh("cash wad note", w=0.19, h=0.086))   # a FAT wad of big notes
     # the card stands ON THE COUNTER beside the wad, big and whole, and SWALLOWS the notes straight off it: each one
     # whips up in an arc and down into its slot. No tube, no nozzle (11-19, three rounds: a tube and nozzle read as
     # "a coiled horn and a red cone", hid the card's end, and the notes inside were black flecks)
@@ -99,13 +99,13 @@ def shot1():
     T_SLAP = 0.45
     top = W + Vector((0, 0, 0.0035 * len(notes) + 0.012 + 0.015))      # the palm on the wad (Data.PALM)
     UPH = Vector((0.03, 0.0, 0.075))                                     # raised, clear of his face
-    PNT = Vector((-0.11, -0.12, 0.5))                                   # ...then flung out at the card: "THAT took it"
+    PNT = Vector((-0.11, -0.13, 0.49))                                   # ...then flung out at the card: "THAT took it"
     hp = path([(0.0, top + UPH), (T_SLAP, top), (1.2, top + Vector((0.0, 0.0, 0.004))), (1.75, PNT), (DUR, PNT + Vector((0.01, 0, 0.01)))])
     data.reach(L, hp, 0.0, DUR, back=None, elbow_out=0.3)
     lift = lambda t: (hp(t) - top) if t < T_SLAP else Vector((0, 0, 0))   # the wad rides in his hand till it lands
     T0, T1 = 0.55, DUR - 0.9
     sched = [T0 + (T1 - T0) * i / (len(notes) - 1) for i in range(len(notes))]
-    FLY = 0.5                                                           # several notes in the air at once: a stream
+    FLY = 0.75                                                          # several big notes in the air at once: a stream
     arrivals = []
     for k, (o, ts) in enumerate(zip(reversed(notes), sched)):        # the top note goes first
         p0 = o.location.copy(); r0 = o.rotation_euler.copy()
@@ -116,7 +116,7 @@ def shot1():
                 key_all(o, f, loc=p0 + lift(t) + Vector((0, 0, b)), rot=r0, scale=(1, 1, 1))
             elif t < ts + FLY:                                          # whipped up off the wad and down into the slot
                 u = (t - ts) / FLY
-                c = (p0 + SLOT) / 2 + Vector((0, -0.03, 0.26))           # one high arc a phone can follow
+                c = (p0 + SLOT) / 2 + Vector((0, -0.12, 0.3))            # one high arc, in FRONT of the card, a phone can follow
                 q = p0 * (1 - u) ** 2 + c * 2 * u * (1 - u) + (SLOT + Vector((0, 0, 0.01))) * u * u
                 key_all(o, f, loc=q, rot=(1.57 * min(1.0, u * 1.6), 0.5 * math.sin(7 * u), r0.z * (1 - u)), scale=(1, 1, 1))
             else:
@@ -130,7 +130,7 @@ def shot1():
     data.look_at(US, 1.9, max_yaw=20)
     data.idle(0.0, DUR)
     data.expression("determined", 0.0, 0.8)
-    data.expression("angry", 1.6, DUR + 1.0, blend=0.2)              # outraged: brows slammed down, glaring, shouting
+    data.perform("angry", 1.6, hold=DUR, arms=False)                  # outraged: leans in at us, ears back, brows slammed down
     data.blink(2.6)
     data.finish()
     soft_key("counter key", (0.55, -0.9, 0.6), (-0.05, -0.05, TOP + 0.2), energy=26, size=40)
@@ -161,10 +161,10 @@ def shot2():
         K.box(f"stock case label {k}", (SX + 0.006 * k, SY - 0.101, 0.045 + 0.09 * k), (w * 0.5, 0.002, 0.04), K.mat("case label", "#F4EEDF", rough=0.6), bev=0)
     # the tag stands nearer the lens than he does, so it can swell big without crowding him
     BAL = Vector((SX, SY - 0.02, 0.18))
-    bal, _v = XK.price_balloon("price balloon", tuple(BAL), s=0.9)
+    bal, _v = XK.price_balloon("price balloon", tuple(BAL), s=1.0)
     bal.rotation_euler = (0, math.radians(22), 0)                        # hangs tilted, point up, like a shop tag
     bpy.context.view_layer.update()
-    NECK = bal.matrix_world @ Vector((-0.15 * 0.9, 0.0, 0.15 * 0.9))      # the tag's pointed end, where the air goes in
+    NECK = bal.matrix_world @ Vector((-0.15 * 1.0, 0.0, 0.15 * 1.0))      # the tag's pointed end, where the air goes in
     # a fat hose that climbs from the pump's foot up the front of the cases into the tag's neck: the pump visibly
     # feeds the tag (11-19 judge: a thin line along the floor, the tag seemed to swell by itself)
     hose = XK._curve_tube("pump hose", [PUMP + Vector((0.03, -0.03, 0.02)), Vector((PUMP.x + 0.12, -0.12, 0.03)),
@@ -180,7 +180,7 @@ def shot2():
         for ts in STROKES:
             if ts <= t < ts + PERIOD: d = 0.5 - 0.5 * math.cos(2 * math.pi * (t - ts) / PERIOD)
         return d
-    SCALES = [1.0, 1.15, 1.3, 1.45]
+    SCALES = [1.0, 1.18, 1.36, 1.55]
     def swell(t):
         s = SCALES[0]
         for k, ts in enumerate(STROKES):
@@ -190,7 +190,7 @@ def shot2():
         t = (f - 1) / FPS
         key_all(handle, f, loc=H0 - Vector((0, 0, TRAVEL * stroke(t))))
         s = swell(t); key_all(bal, f, scale=(s, s, s))
-        key_all(needle, f, rot=(0, math.radians(-60 + 120 * (s - 1.0) / 0.45), 0))
+        key_all(needle, f, rot=(0, math.radians(-60 + 120 * (s - 1.0) / 0.55), 0))
     # the grip ends, in the world: the pump is turned 90 deg so its T-bar runs along Y (one end per hand, side-on)
     def grip(sy):
         return lambda t: PUMP + Vector((0, sy * 0.075, 0.012 + 0.32 * 0.8 + 0.2 - TRAVEL * stroke(t)))   # the palms on the bar
@@ -356,8 +356,11 @@ def shot4():
     # a stake sign in front of the bucket, big enough to read on a phone
     SG = Vector((BK.x - 0.12, BK.y - 0.14, 0.0))                        # out front of the bucket, clear of the belt foot and his legs
     # the label is ON the bucket (11-19: a stake sign in front of it hid the bucket)
-    K.box("poorest board", (BK.x, BK.y - 0.094, 0.055), (0.15, 0.006, 0.05), K.mat("poorest card", "#F4EEDF", rough=0.6), bev=0.002)
-    K.text("bucket tag", "POOREST", (BK.x, BK.y - 0.098, 0.055), 0.034, (math.pi / 2, 0, 0), K.mat("tag ink dark", "#2B2B2E", rough=0.5), extrude=0.001)
+    YW = math.radians(-33)                                              # turned to the lens
+    nb = Vector((math.sin(YW), -math.cos(YW), 0))
+    pb_ = BK + nb * 0.1 + Vector((0, 0, 0.05))
+    K.box("poorest board", tuple(pb_), (0.22, 0.006, 0.075), K.mat("poorest card", "#F4EEDF", rough=0.6), bev=0.002).rotation_euler = (0, 0, YW)
+    K.text("bucket tag", "POOREST", tuple(pb_ + nb * 0.005), 0.052, (math.pi / 2, 0, YW), K.mat("tag ink dark", "#2B2B2E", rough=0.5), extrude=0.0012)
     bfill = K.cyl("bucket coins", (BK.x, BK.y, 0.05), 0.078, 0.01, bpy.data.materials.get("coins") or K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12), v=32, bev=0.002)
     PL = Vector((B.x + 0.05, B.y + 0.03, 0.0))                          # the belt's head right over the vault's mouth
     PH = 0.36                                                           # a lower plinth and a bigger vault: the destination reads
@@ -412,11 +415,12 @@ def shot4():
         bfill.location.z = 0.012 + 0.11 * left / N        # heaped over the rim at first, so its emptying shows; bfill.keyframe_insert("location", frame=f)
     # he keeps his face to us: a glance at the wheel, the vault, and back (11-19: turned to the belt he showed the
     # lens the back of his head)
-    data.look_at(US, 0.0, max_yaw=25, blend=0.0)
+    CAM = Vector((-0.86, -1.06, 1.0))                                  # the lens, off to his left
+    data.look_at(CAM, 0.0, max_yaw=45, blend=0.0)
     data.look_at(HUB, 0.4, max_yaw=15, max_pitch=25)
-    data.look_at(US, 1.6, max_yaw=25)
+    data.look_at(CAM, 1.6, max_yaw=45)
     data.look_at(VM + Vector((0, 0, 0.1)), DUR * 0.45, max_yaw=15, max_pitch=15)
-    data.look_at(US, DUR * 0.6, max_yaw=25)
+    data.look_at(CAM, DUR * 0.6, max_yaw=45)
     data.idle(0.0, DUR)
     data.expression("determined", 0.2, T1 - 0.3)
     data.expression("angry", T1 - 0.2, DUR + 1.0, blend=0.25)          # sour: narrowed eyes, the mouth turned down
@@ -427,7 +431,8 @@ def shot4():
     # WIDE from the left and above, down onto the belt's face: the whole machine runs corner to corner, the bucket at
     # its foot, the vault high on the right, Data turning the wheel (11-18: square-on it was framed like the pump shot;
     # from the right the belt was edge-on, a black line)
-    camera(Vector((-0.07, -1.36, 1.04)), Vector((0.02, 0.02, 0.55)), Vector((-0.05, -1.3, 1.02)), Vector((0.02, 0.02, 0.55)),   # wide enough for all of him (11-19: cut by the left edge)
+    # from his LEFT: the wheel stands out beside his chest instead of on it (11-19, three rounds: "a badge or target on his coat")
+    camera(Vector((-0.92, -1.12, 1.02)), Vector((0.04, 0.0, 0.52)), Vector((-0.86, -1.06, 1.0)), Vector((0.04, 0.0, 0.52)),   # wide enough for all of him (11-19: cut by the left edge)
            DUR, (0.0, -0.02, 0.4), lens=24, fstop=8.0)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("coins ride the belt up out of the tin bucket into the VIP vault", lambda: meshes([belt, vault]) + coins, T0 + 0.6, DUR,

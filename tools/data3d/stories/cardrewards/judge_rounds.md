@@ -1604,3 +1604,63 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Make the crank a big wheel at his side on its own stand with a clear handle and a visible belt or chain to the conveyor. Have him grip the handle and crank it in full circles, his body putting effort into each turn.
 - better: Make the bucket visibly dented with a big POOREST label, and show the coins thinning out as they leave.
 
+
+## 2026-11-19 04:19Z · storyboard · round 1 · storyboard gate pl7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 63 | 60, 63, 74 | FAIL |
+| 3 | 74 | 70, 74, 76 | PASS |
+| 4 | 52 | 52, 52, 56 | FAIL |
+
+**shot 1** (FAIL, 63, bar 70)
+
+- problem: The notes going into the card barely read. Only frame 2 shows any cash in the air: one or two notes flapping behind the card's top edge. No still shows a clear arc from the wad into the slot, and none shows a note going in.
+- problem: The ending emotion is wrong. In frame 3 Data looks flat and sad, not outraged. His hand sits out at chest height near his own body, not flung at the card, so the 'flings a hand at the card and glares at us' beat doesn't land.
+- problem: The 'fat wad' looks thin and small next to the giant card in frame 1. The slap-down reads as a small stack, not a big pile of money.
+- problem: The card flashing shows only as a faint glow in frame 3, and frames 1 and 2 show no flash with each note.
+- better: Show a still with three or four notes in a clear arc between the wad and the slot, with the top one half into the slot. That is the shot's consequence and it has to read in a still.
+- better: Make the wad two to three times taller, and keep it between Data and the card so the card visibly eats into it.
+- better: Make the end pose read: arm straight out pointing at the card, brows angled hard, mouth open in protest, eyes to the lens.
+
+**shot 3** (PASS, 74, bar 70)
+
+- problem: Frames 1 and 3 hide the shovel blade. Only a thin handle shows behind the $149 flag, so outside frame 2 it doesn't read as a shovel.
+- problem: In frame 1 Data's pupils point in different directions, so his face looks wonky.
+- problem: The POINTS stencil is small and partly turned away in frames 1 and 2.
+
+**shot 4** (FAIL, 52, bar 70)
+
+- HARD: BROKEN: the POOREST label on the bucket is a tiny tag that can't be read on a phone, and it carries half the shot's point (poorest to richest). Frames 1-3.
+- HARD: NOT THE POINT: the yellow and red crank wheel sits right over Data's chest and reads as a badge or target on his lab coat, not a wheel he is turning. Frames 1-3, worst in frame 3.
+- HARD: BROKEN: the POOREST label carries half the point, but in frames 1, 2 and 3 it is a tiny tag at the foot of the conveyor, partly behind the crank post. It can't be read on a phone.
+- HARD: BROKEN: the 'POOREST' label carries half the shot's point and is unreadable on a phone (all frames). The tin bucket is mostly hidden behind the crank post and the belt foot, so the coins' source can't be read.
+- HARD: NOT THE POINT: the yellow crank wheel sits flat in front of Data's chest, all frames. It reads as a badge or emblem on his coat, not a big wheel he is turning. A stranger couldn't say he is driving the belt.
+- problem: The bucket is tiny and nearly hidden under the bottom of the belt, so you can't see coins leaving the 'dented tin bucket'.
+- problem: The belt runs past the top of the vault toward the frame edge, so it's unclear whether the coins end up in the vault.
+- problem: The bucket on the floor and the vault on its plinth are almost the same height, so the 'steep uphill' doesn't read as poorest-at-the-bottom versus richest-on-high.
+- problem: Data stands still in the same pose in all three frames, with no visible cranking effort.
+- better: Make the bucket big and in front of the camera, with POOREST on it in large letters, about the size of the $750 RICHEST lettering. Show coins being lifted off the top of the pile in the bucket.
+- better: Move the crank wheel to the side of Data's body, on a post at his hip, side-on to the camera, with his hand on the handle at the rim. Then it reads as a wheel and he reads as the one turning it.
+- better: Raise the vault on a much taller plinth and make the belt steeper, so the poor-to-rich climb is the picture itself.
+
+
+## 2026-11-19 04:23Z · proof · round 1 · proof loop pl7
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 3 | 62 | 60, 62, 64 | FAIL |
+
+**shot 3** (FAIL, 62, bar 70)
+
+- hard (one judge only): BROKEN / BODY: for the first six frames (row 1, frames 1-6, about 0.8 s) Data's hands are empty and there is no shovel anywhere in shot. Then a blade appears in the heap (row 1, frame 6) and a full shaft is in his hand by frame 7. The shovel comes from nowhere. The shaft would cross open floor, so it cannot be hidden behind the heap.
+- problem: On scoops 1 and 3 the coins fly past the right side of the sack instead of into its mouth (row 1 frame 8: coins at the frame's right edge beyond the sack; row 3 frame 7: coins falling down the sack's right side). The money looks like it misses the sack.
+- problem: The ending should be sad, but it doesn't read that way. In the final look up (row 4, frames 2-6) his eyes are wide and his brows flat: neutral or mildly surprised, not sad. Only row 4 frame 1 has heavy lids, and that's while he is still looking down.
+- problem: Nothing says night. The cabinets and wall are evenly and brightly lit, like daytime.
+- problem: He shovels one-handed while the other arm hangs. A long coal shovel swung one-handed with a mitten looks weightless, and the hand-to-shaft contact is hard to read at this size.
+- problem: On scoops 2 and 3 the blade drops in front of the lower part of the sack while the coins appear at its mouth (row 2 frame 2, row 3 frames 1-2). The blade seems to overlap or clip into the sack, and the toss is hidden behind it.
+- problem: 'A YEAR' on the flag is unreadable on a phone. '$149' only just reads.
+- better: Hold the shovel from frame 1: start with the blade already in the heap, or give a short beat of him lifting it into frame. Swing it two-handed (one hand high on the shaft, one low) so each scoop has weight.
+- better: Aim the arc so every scoop lands in the sack's mouth, and keep the blade above and outside the sack's silhouette at release. The coins pouring off the blade into the opening is the moment.
+- better: Re-stage the camera. About 40% of the frame is empty checkered floor below the props. Push in or tilt so the heap, sack and Data's hands fill the lower two-thirds and the flag reads big.
+
