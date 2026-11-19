@@ -181,14 +181,15 @@ def hose(name, a_fn, b_fn, nf, r=0.007, sag=0.04):
     return o
 
 
-def shovel(name, length=0.3):
+def shovel(name, length=0.3, big=False):
     """a coal shovel: a wooden shaft with a D-grip at its top end and a broad steel blade at the bottom. Built along
     local +Z from the blade (origin at the blade's centre). Returns (root, grip local, mid-shaft local)."""
     root = K.empty(name, (0, 0, 0))
     wood = _mat("shovel shaft", "#9A6B3F", rough=0.6); steel = _mat("shovel steel", "#5E6268", rough=0.35, metal=0.85)
-    K.box(name + " blade", (0, 0, -0.01), (0.13, 0.005, 0.14), steel, bev=0.003, parent=root)
-    for sx in (-1, 1): K.box(name + " lip", (sx * 0.065, -0.014, -0.01), (0.005, 0.03, 0.14), steel, bev=0.001, parent=root)
-    K.cyl(name + " shaft", (0, 0, 0.05 + length / 2), 0.009, length, wood, v=20, bev=0.002, parent=root)
+    bw, sr = (0.17, 0.014) if big else (0.13, 0.009)                    # big: a blade and shaft a phone can see
+    K.box(name + " blade", (0, 0, -0.01), (bw, 0.006, bw * 1.08), steel, bev=0.003, parent=root)
+    for sx in (-1, 1): K.box(name + " lip", (sx * bw / 2, -0.014, -0.01), (0.006, 0.03, bw * 1.08), steel, bev=0.001, parent=root)
+    K.cyl(name + " shaft", (0, 0, 0.05 + length / 2), sr, length, wood, v=20, bev=0.002, parent=root)
     K.box(name + " grip", (0, 0, 0.05 + length + 0.012), (0.06, 0.012, 0.012), _mat("pump black", "#1A1A1D", rough=0.5), bev=0.004, parent=root)
     return root, Vector((0, 0, 0.05 + length + 0.01)), Vector((0, 0, 0.05 + length * 0.45))
 

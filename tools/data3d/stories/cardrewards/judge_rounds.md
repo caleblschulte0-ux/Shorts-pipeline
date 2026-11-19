@@ -1664,3 +1664,88 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Aim the arc so every scoop lands in the sack's mouth, and keep the blade above and outside the sack's silhouette at release. The coins pouring off the blade into the opening is the moment.
 - better: Re-stage the camera. About 40% of the frame is empty checkered floor below the props. Push in or tilt so the heap, sack and Data's hands fill the lower two-thirds and the flag reads big.
 
+
+## 2026-11-19 04:31Z · storyboard · round 1 · storyboard gate pl8
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 72 | 70, 72, 74 | PASS |
+| 2 | 76 | 54, 76, 76 | PASS |
+| 3 | 77 | 76, 77, 77 | PASS |
+| 4 | 64 | 56, 64, 70 | FAIL |
+
+**shot 1** (PASS, 72, bar 70)
+
+- problem: Frame 2: the notes fly up beside Data's face and stop near the card's top-left corner. None is seen going into a slot on the top edge, so the card 'swallowing' them is implied, not shown.
+- problem: Frame 3: Data's hand is held out low toward the camera, not flung at the card (the card is on his left), so the outrage gesture doesn't point at the villain.
+- problem: The wad is small next to the giant card, so a 'fat wad of cash' reads as a modest stack.
+
+**shot 2** (PASS, 76, bar 70)
+
+- hard (one judge only): BODY: the FOR says both hands work the T-handle, but in frames 1 and 3 Data's far hand is raised by his chin gripping nothing, and only one hand is on the pump.
+- problem: Frame 3: Data's expression is neutral, not wry, and his hand has left the pump and floats at chest height with nothing to do.
+- problem: The tag reads as a rigid plastic tag growing, not a balloon inflating: no taper, no stretch, no tie at the neck.
+- problem: The hose goes behind the tag and its link to the tag is hard to read on a phone.
+
+**shot 3** (PASS, 77, bar 70)
+
+- problem: Frames 1 and 3: the shovel blade can't be seen (hidden behind the heap or flag). Only a thin stick in Data's hand shows, so the tool doesn't read in two of three stills.
+- problem: The '$149 A YEAR' flag is small. '$149' just reads on a phone and 'A YEAR' barely does.
+- problem: Frame 3: the sad look is mild. It reads as wide-eyed, not sad.
+
+**shot 4** (FAIL, 64, bar 70)
+
+- hard (one judge only): CONSEQUENCE, frames 1-3: the steel vault's gold fill doesn't visibly rise. It sits about the same level in all three stills, half hidden behind the belt, so coins are not seen landing and piling up in the RICHEST vault.
+- hard (one judge only): CONSEQUENCE, frames 1-3: the POOREST bucket is mostly hidden behind the crank wheel and Data's leg, so it's never seen emptying.
+- problem: The vault, the shot's payoff, reads as a small black box on a white block, not a steel vault. Its gold fill is a thin sliver behind the belt that barely changes across the stills, so 'the richest get fuller' is too small to read on a phone
+- problem: The POOREST bucket is mostly hidden under the crank and Data's leg, and it shows no visible draining. Half of the transfer, the poorest losing, isn't seen
+- problem: The right half of the frame is cramped. The belt, vault and plinth are crowded into a narrow strip while Data takes the whole left half, and the belt partly crosses in front of the vault
+- problem: The brief says WIDE, but the staging is a medium on Data with the machine as a sidecar. The uphill slope, the thing the beat is named for, is short and steep, not a long climb
+- better: Restage with the machine big and in front: the bucket low in the near foreground on the left, a long belt rising diagonally across the frame, and the vault on its plinth high at the upper right. Data cranks from the side, at medium size, below the belt
+- better: Make the vault read as a vault, with a round steel door, a wheel handle and an open front, and let its gold visibly climb from near-empty to overflowing across the three stills
+- better: Show the bucket clearly going from full to near-empty
+
+
+## 2026-11-19 04:38Z · proof · round 1 · proof loop pl8
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 68 | 48, 68, 71 | FAIL |
+| 2 | 66 | 60, 66, 72 | FAIL |
+| 3 | 63 | 56, 63, 66 | FAIL |
+
+**shot 1** (FAIL, 68, bar 70)
+
+- hard (one judge only): CONSEQUENCE: the notes are never seen going into the card's slot. From about frame 6 they pile up as a frozen clump of bills floating over the top edge of the card, and the clump is still there in frames 17-20 after the counter is bare, so it looks like the bills got stuck, not swallowed
+- hard (one judge only): BROKEN: the floating bills cover the REWARDS word and much of the card's top, and lie across Data's glasses and face, frames 6-16
+- problem: Frames 5-19: the notes don't read as single notes arcing into a slot. They bunch into one big static-looking clump hanging over the card's top-left corner and stay there for about 2 seconds, so it looks like a stuck pile rather than the card swallowing them.
+- problem: Frames 5-19: the clump covers the REWARDS label on the card, so the prop's name can't be read during the whole action.
+- problem: Frames 5-8: notes fly straight across Data's face and glasses, hiding his reaction just as the theft starts.
+- problem: Frames 8-20: Data's head sits hard against the right edge of the frame and the right lens of his glasses touches or is clipped by it.
+- problem: The card's flash on each note is weak. Only a faint edge glow shows in row 2, so the 'flashes with every note' beat is lost.
+- problem: Frame 1: the slap-down lands on the first frame with no wind-up, so the hook has no impact moment.
+- better: Send the notes one at a time on clean, separate arcs that go fully into a slot you can see on the card's top edge, with each note gone before the next one rises. Keep them away from the card's label and from Data's face.
+- better: Open with Data's hand coming down hard and the wad landing, with a small bounce and dust or a paper ruffle, so the first second grabs attention.
+- better: Make the flash on each note a strong, short pulse over the whole card face so you can count the notes by the flashes.
+
+**shot 2** (FAIL, 66, bar 70)
+
+- problem: The main action, pumping, barely shows. Across frames 1-16 the T-handle and Data's hands stay at about the same height. There are no visible hard strokes, only a slight head bob.
+- problem: The tag inflates smoothly instead of swelling in three clear steps tied to the strokes, so the cause and its effect don't line up.
+- problem: Data turns to camera around frame 17 and holds there for the last 13 frames, about a third of the shot, while barely moving. The turn lands as a held pose, not a beat on the last stroke.
+- better: Make each stroke huge: lift the T-handle to chin height with his arms straight to its ends, then drive it down to waist height with his body dipping into it. Three distinct strokes.
+- better: On each downstroke, the tag should jump in size with a little overshoot and wobble, so every stroke is visibly what makes it grow.
+- better: Turn Data to camera on the third downstroke, not before, and trim the hold at the end. Give him a clearly wry look, one brow up and a lopsided smirk, rather than the resting smile.
+
+**shot 3** (FAIL, 63, bar 70)
+
+- hard (one judge only): BROKEN: the long coal shovel isn't visible in frames 1-5 (row 1) and appears at the heap in frame 6. It also drops out of view between scoops (row 2 frames 3-5, row 3 frames 3-4), so it seems to come from nowhere
+- hard (one judge only): CONSEQUENCE: when the coins go in (row 2 frame 2, row 3 frames 1 and 7-8), the blade sits in front of or beside the sack, not tipped over its mouth, so the coins aren't seen leaving the blade and going into the sack
+- problem: In frames 26-30 the shovel all but disappears. The blade is hidden behind the sack and the handle is a hairline, so on a phone Data seems to be holding nothing at the end.
+- problem: During the dumps (about frames 10, 17 and 25) the blade sits down at the sack's base or overlaps it, while the coins rise up into the mouth. The coins look as if they fly upward out of the sack rather than off a blade swung over its opening.
+- problem: It isn't a long coal shovel. It's a short blade on a thin stick, worked mostly one-handed from chest height, so the digging has no weight.
+- problem: The heap reads as a flat gold blob rather than a pile of individual coins, and the small $149 A YEAR flag is hard to read on a phone.
+- better: Give the shovel a long, readable shaft with both of Data's hands on it, one at the top and one partway down. Have him bend into the heap, lever a scoop up, and swing it over the sack's mouth so the blade tips above the opening and the coins pour down into it.
+- better: At the end, plant the shovel upright beside him, with a hand on it, in clear view, so it never vanishes.
+- better: Make the coins in the heap and in flight distinct and catch the light. Let a few bounce off the sack's rim for physical authenticity.
+
