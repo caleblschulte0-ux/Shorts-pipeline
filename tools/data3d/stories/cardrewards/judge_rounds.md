@@ -1831,3 +1831,72 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Make each coin throw a big visible arc above the sack mouth, with a clink and a little sack swell on each landing so the bulge is earned scoop by scoop
 - better: Scale up the flag text, or drop 'A YEAR' in favour of a larger '$149/yr'
 
+
+## 2026-11-19 05:01Z · storyboard · round 1 · storyboard gate pl10
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 73 | 73, 73, 74 | PASS |
+| 2 | 78 | 76, 78, 78 | PASS |
+| 3 | 74 | 72, 74, 75 | PASS |
+
+**shot 1** (PASS, 73, bar 70)
+
+- problem: Frame 2: the notes are a loose clump in the air, up and to the left of the card. You can't see an arc landing in a slot. The slot on the card's top edge can't be seen from this camera height, so the notes look like they go behind the card, not into it.
+- problem: Frame 1: Data's eyes don't match behind the glasses (one looks off to the side), so his face reads as goofy, not focused, as he slaps the wad down.
+- problem: Frame 3: the fling is weak. His hand hangs low by the card's edge and looks like he's reaching down, not throwing an outraged gesture at it.
+- problem: The wad of cash is small next to the giant card, so the 'fat wad' doesn't land as a big loss.
+
+**shot 2** (PASS, 78, bar 70)
+
+- problem: The hose runs from the pump into the gap behind the cases and never visibly meets the tag (frames 1-3). The tag looks tied by a white string, so 'the pump inflates the tag' is implied rather than shown.
+- problem: The tag stays a rigid, flat-faced shape as it grows. It reads as a tag scaling up, not a balloon swelling (no rounding or stretched sheen).
+- problem: Data's face is three-quarters to camera in frame 2, mid-stroke, so the turn to us on the last stroke has no contrast and doesn't land as a beat.
+- problem: Only one hand reads on the T-handle in profile. Acceptable, but the both-hands effort isn't sold.
+
+**shot 3** (PASS, 74, bar 70)
+
+- problem: The '$149 A YEAR' flag reads as $149, but 'A YEAR' is too small to read on a phone, and it's half the point.
+- problem: Frame 1: the shovel blade is hidden behind the heap, and Data is scowling down. It doesn't read as digging in.
+- problem: The shovel is short and stubby, not a long coal shovel. In frame 2 the blade sits over the sack's mouth almost clipping into it, and Data's hand is jammed against his chest.
+- problem: Frame 3: the 'sad' look up is mild. Wide eyes with a slight frown read as blank.
+
+
+## 2026-11-19 05:07Z · proof · round 1 · proof loop pl10
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 52 | 52, 52, 66 | FAIL |
+| 2 | 64 | 60, 64, 72 | FAIL |
+| 3 | 72 | 71, 72, 72 | PASS |
+
+**shot 1** (FAIL, 52, bar 70)
+
+- HARD: CONSEQUENCE/BROKEN, frames 6-19: the notes don't go into the slot. They lift off the wad and collect in a cluster that hangs still above the card's top-left corner, at shelf height, for most of the shot. You see a note actually go into the card only on frames 18-19, so it looks like money stuck in the air, not money being swallowed.
+- HARD: BROKEN/CONSEQUENCE: from frame 5 to frame 16 the notes don't go into a slot. They pile up in a clump hanging in midair above the card's top edge, then vanish (frames 17-20). From this camera height no slot can be seen, so nobody sees the card swallow anything; it looks like the money is stuck floating.
+- problem: The 'fling a hand at the card' beat reads as a limp arm hanging toward the counter (frames 9-20), not a gesture.
+- problem: The card's flash is only a faint glow at its base and doesn't sync with any note going in, so the card never looks like it's doing the eating.
+- problem: The wad shrinks in steps while the floating cluster stays the same size. The money is never seen moving from the counter to the card.
+- better: Fly each note on one clean arc that ends inside the slot within about 0.3 s. Have only 1-2 notes in the air at once, and have each note vanish into the slot with a card flash and a small bounce.
+- better: Turn the fling into a real gesture: arm straight out toward the card, palm open, a sharp move, then hold. Then a beat where he glares into the lens.
+- better: Move the card a little toward center and nearer the lens so the slot on its top edge is readable on a phone.
+
+**shot 2** (FAIL, 64, bar 70)
+
+- problem: The pump strokes are weak: the T-handle and his hands move only slightly between frames. The tag swells without three clear, hard strokes, so cause and result don't line up.
+- problem: From frame 5 to frame 12, Data's head and glasses cover part of 'ALL PRICES' on the notice.
+- problem: From frame 17 on, his head is cut by the left edge of the frame. From frame 24 on, the tag's right edge touches the right edge of the frame.
+- problem: This isn't a true profile: his head is three-quarter to camera for the whole shot, so the turn to us at the end has nowhere to go.
+- problem: The final face reads as blank and wide-eyed, not wry.
+- better: Make three big strokes: handle to chin height, then a full drive down with his body bending into it, and the tag jumping a size on each down-stroke with a small overshoot.
+- better: Move Data and the pump a little to the right and lower, and put the notice clear of his head so the text is never covered.
+- better: Start him truly side-on so the head turn to camera on the last stroke reads as a beat. Give him a one-sided smirk and a raised brow for 'wry'.
+
+**shot 3** (PASS, 72, bar 70)
+
+- problem: The kitchen is lit like daytime. Nothing says 'at night'.
+- problem: The high angle leaves the bottom 40% of the frame as empty checkered floor. Data and the props sit in the top half, smaller than they need to be.
+- problem: 'A YEAR' on the flag is too small to read on a phone. Only '$149' reads.
+- problem: The swing is all arm. His body barely turns or bends to dig, so the scoops look weightless.
+- problem: The final 'sad' face reads closer to neutral.
+
