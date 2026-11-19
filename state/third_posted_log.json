@@ -21104,14 +21104,32 @@
       "ts": "2026-11-19T12:35:37.863365+00:00"
     },
     "clip-20261119-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/ReliablePowerfulOilBatChest-ydNija0st6UB0byp",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/aUnMw5BvIOo",
       "title": "Lirik Finds An Easter Egg And Can't Believe What He Sees",
       "kind": "twitch_clip",
-      "ts": "2026-11-19T12:43:47.564372+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-19T12:44:11.654861+00:00",
+      "uploaded_at": "2026-11-19T12:44:11.654876+00:00",
+      "publish_at": "2026-11-20T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261119-lirik-finds-an-easter-egg-and-can-t-believe-what-c99acfbc",
+        "tiktok": "queued for 2026-11-20T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lirik/clip/ReliablePowerfulOilBatChest-ydNija0st6UB0byp",
+      "streamer": "lirik",
+      "series": "chaos",
+      "hook": "Lirik finds a secret in game \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 27524,
+      "banger": 0.4,
+      "cut": {
+        "start": 8.0,
+        "end": 55.0
+      },
+      "director_cut": true
     }
   }
 }

@@ -3,369 +3,6 @@
     {
       "date": "20261112",
       "dry_run": false,
-      "ts": "2026-11-12T12:54:51+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 134,
-        "with_retention": 115,
-        "with_curve": 15,
-        "fetched_at": "2026-11-12T08:46:23.237278+00:00"
-      },
-      "brain": {
-        "ok": 46,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261112-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip (about 25% of canvas height) in the middle of mostly black and blurred padding, not th; vision: The subject, Hasan, is a small webcam inset in the bottom-righ",
-          "judges": {
-            "banger": {
-              "score": 0.82,
-              "why": "Searched name, arrest shock",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Famous name, but static talk; likely jok",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Hasanabi: Hasan Piker Says He Was Arrested Last Night And Calls It A 'Misunderstanding'"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.85,
-              "problems": [
-                "The sharp picture is a thin strip (about 25% of canvas height) in the middle of mostly black and blurred padding, not th",
-                "The subject, Hasan, is a small webcam inset in the bottom-right corner. His face is tiny and unreadable on a phone, and ",
-                "Word captions sit on top of the webcam and the bottom of the strip, and a second hook line sits below the strip. This ov",
-                "The framing looks like an uncropped screen-share repost, not an intentional edit."
-              ]
-            }
-          },
-          "took_s": 121.2
-        },
-        {
-          "slug": "clip-20261112-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Routine game fail, half static menu)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Famous streamer, routine game rant",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Routine game fail, half static menu",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 27.4
-        },
-        {
-          "slug": "clip-20261112-3",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Animated talking, no clear event)",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 135,
-                "refused_shown": 7,
-                "scouted": [],
-                "vod_arcs": 319,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 2936,
-                "pool_with_vod": 2084,
-                "arc_sizes": [
-                  3,
-                  2,
-                  2,
-                  2,
-                  2,
-                  4,
-                  2,
-                  3,
-                  3,
-                  4
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr/s",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The clip is the streamer scrolling a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. That is a mild, sarcastic aside with no turn, no reveal and no reaction a stranger would"
-                },
-                {
-                  "cluster": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "tminnzy@momentassiduouscrispywallabyderp-qpp_b8busa7wh7rc/tm",
-                  "outcome": "structure_failed",
-                  "why": "the picture stands still for 2s at 4s"
-                },
-                {
-                  "cluster": "joebartolozzi@momentgracefulcrispyjackalfrankerz-fdhaeesry9_",
-                  "outcome": "structure_ok",
-                  "why": "kept"
-                },
-                {
-                  "cluster": "joebartolozzi@momentgracefulcrispyjackalfrankerz-fdhaeesry9_",
-                  "outcome": "duration",
-                  "why": "22s outside 25-90s"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "Vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Animated talking, no clear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 49.4
-        },
-        {
-          "slug": "clip-20261112-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.3,
-              "why": "Gameplay inside joke, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Monkey King staff twirl, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Geezgiselle Gets Hit Hard In Wild Streamer Fight Moment"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The 'HIT MY FIST' and 'HARD!' word overlays sit on the torso. They stay clear of the face but are a little cluttered.",
-                "A cropped fragment of the source's on-screen text ('00/$100.00') shows at the bottom-left in every frame.",
-                "The footage is a person in a Monkey King costume, not an obvious streamer fight. The visuals are clean, but the title ma"
-              ]
-            }
-          },
-          "took_s": 128.8
-        },
-        {
-          "slug": "clip-20261112-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: render_qa: freeze: 2.6s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height. The rest is blurred padding, so th",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261112-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.35,
-              "why": "Needs context, reaction to unseen",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Fortnite chaos, insider, no clear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Reacts To Ron Getting Token And Loses It"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": [
-                "render_qa: freeze: 2.6s of frozen frames (>= 2s) \u2014 stalled render or dead source"
-              ]
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.6,
-              "problems": [
-                "The sharp picture is a thin 16:9 strip, about a third of the canvas height. The rest is blurred padding, so the clip rea",
-                "The subject is small on a phone screen. The facecam and the Fortnite action are both tiny, and the in-game text and HUD ",
-                "The framing was not cropped toward the facecam or the action, so it fails the roughly three-quarters fill target.",
-                "No overlay covers a face and no frame is broken; the hook card sits in the blurred padding."
-              ]
-            }
-          },
-          "took_s": 157.0
-        },
-        {
-          "slug": "clip-20261112-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is only about a third of the 9:16 canvas, a thin strip across the middle, well short of the roughly th; vision: In the first ~16s the gameplay is a wide, zoomed-out game view",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "Vague title, likely gameplay",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Esports finals win, reactions, niche con",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Loltyler1 Hits Zed And The Crowd Goes Off After This"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.7,
-              "problems": [
-                "The sharp picture is only about a third of the 9:16 canvas, a thin strip across the middle, well short of the roughly th",
-                "In the first ~16s the gameplay is a wide, zoomed-out game view with tiny champions and unreadable HUD. The action is sma",
-                "In the reaction frames the streamer is small within the strip, with a bodyguard and a lot of dead space around him. The ",
-                "The framing looks like a plain repost, with no crop toward the action."
-              ]
-            }
-          },
-          "took_s": 381.5
-        }
-      ]
-    },
-    {
-      "date": "20261112",
-      "dry_run": false,
       "ts": "2026-11-12T14:04:56+00:00",
       "feedback": {
         "snapshot": true,
@@ -6950,6 +6587,414 @@
           "slug": "clip-20261118-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261119",
+      "dry_run": false,
+      "ts": "2026-11-19T12:44:11+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 130,
+        "with_retention": 114,
+        "with_curve": 14,
+        "fetched_at": "2026-11-19T08:46:24.655826+00:00"
+      },
+      "brain": {
+        "ok": 44,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:silky": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261119-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Deleting GTA 6, menu navigation, no payo)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "GTA 6 deleted, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Deleting GTA 6, menu navigation, no payo",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 45.7
+        },
+        {
+          "slug": "clip-20261119-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 131,
+                "refused_shown": 4,
+                "scouted": [
+                  {
+                    "premise": "xQc's first hours in GTA 6: his first police chase, his first crime, then an NPC right after he said it to them.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Lacy's first GTA 6 session, playing as Lucia, goes from excitement to confusion to accidentally killing an innocent dog.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "ohnePixel's marathon GTA 6 stream escalates from a brain-melting moment to getting horny to a misclicked strip club priv",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jasontheween's NMS Boxing night: he falls over, a clip goes viral, then chat loses it when his girl walks in.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Kai Cenat's physical-chaos stream: he gets smacked, then a sumo match, then it ends with him hitting his cameraman after",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 313,
+                "moments": 40,
+                "candidates": 521,
+                "pool": 2902,
+                "pool_with_vod": 2006,
+                "arc_sizes": [
+                  4,
+                  6,
+                  3,
+                  6,
+                  3,
+                  6,
+                  2,
+                  3,
+                  3,
+                  6
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:xqc/xqc-call-from-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [72, 74, 72] after 2 revision(s) \u2014 @7s confusing: 'Spread, lady. Jesus.' at 6.6s is an unexplained line between the chase start and the celebration. Trim it, or cut the escape clip so it opens directly on the shake-off.; @13s missing_context: The third clip is a different clip, and nothing te"
+                },
+                {
+                  "cluster": "dementedll@momentagitatedpuzzledtirebabyrage-leea_nit_5ymccx",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "ohnepixel@vod2932275268/ohnepixel-almost-danc-2026w47",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The only change in these clips is ohnePixel spending his in-game money on a lap dance until he has about 300 left, and the footage that shows it is a nude or topless dancer in a close, sexualized scen"
+                },
+                {
+                  "cluster": "scout:lacy/lacy-animal-charact-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [68, 72, 78] after 2 revision(s) \u2014 @12s pacing: The shower clip has little audio or reaction beyond 'Go back in', so the middle feels thin. Trim it to the moment he says the line, or add a short overlay that says what the game is showing (e.g. 'An ; @19s other: The dog clip never shows a dog,"
+                },
+                {
+                  "cluster": "yololaryy@momentamericansmallramendendiface-apc4bgbszgqaunls",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The three sources are one broadcast of yololaryy promoting a spin-the-wheel for 5 subs. No spin happens in any of them. The before source is an empty room, then a greeting, a jeans bit and a tip pitch"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague laugh, unknown trigger",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "GTA6 strip-club shock reaction, borderli",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Dinah Can't Stop Saying What The F*** After Seeing This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": [
+                "The subject sits low in the frame in a few shots (e.g. 20.2s), leaving empty dark space above her",
+                "The hook caption sits over her torso, not her face, which is acceptable"
+              ]
+            }
+          },
+          "took_s": 197.3
+        },
+        {
+          "slug": "clip-20261119-3",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA6 prologue, streamer resets, head-in-",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 25.8
+        },
+        {
+          "slug": "clip-20261119-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261119-4",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague, insider feel",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 scene, thirsty but borderline",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Gets A Surprise Visit From Mandy After She Fixed His Sink"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.55,
+              "problems": [
+                "Game footage fills only a thin middle strip and the subjects are small, with a large blurred dead zone below it",
+                "The top face-cam crop is zoomed tightly and the hook caption sits over the streamer's chest, though not over his face",
+                "Suggestive content (bikini) is borderline for age-restriction but within the channel's stated limits"
+              ]
+            }
+          },
+          "took_s": 175.6
+        },
+        {
+          "slug": "clip-20261119-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (sexual game cutscene, age-restrict risk)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague shock, unknown cause",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "sexual game cutscene, age-restrict risk",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 21.7
+        },
+        {
+          "slug": "clip-20261119-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague Easter egg, routine gameplay disco",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 dog on jetski, visible but low-sta",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lirik Finds An Easter Egg And Can't Believe What He Sees"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Subject is small and far away in the 5.9s, 9.8s and 17.6s frames",
+                "The word captions and the hook card sit close together in the middle frames, but neither covers a face",
+                "The last frame (45.0s) crops the character at the left edge"
+              ]
+            }
+          },
+          "took_s": 513.8
         }
       ]
     }
