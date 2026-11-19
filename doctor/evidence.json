@@ -1,51 +1,39 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261118",
-  "judged_date": "20261117",
+  "date": "20261119",
+  "judged_date": "20261118",
   "alarm": {
-    "date": "20261117",
+    "date": "20261118",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261117 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261117.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-17T21:41:56+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-18T21:20:55+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
-        "code": "credential_limited_claude_subscription",
+        "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "the `claude-subscription` credential is SPENT, not broken (the subscription window is spent: you've hit your weekly limit \u00b7 resets 12am (utc); probed 2026-11-17T21:41:56+00:00).",
-        "fix": "If the detail names a limit or a reset, there is nothing to rotate: the subscription comes back on its own at that reset. Until then the explainer has no brain to draw or verify a scene and the showrunner has no judge, so the channel ships nothing \u2014 the gate is right to hold. Same-day options are the operator's call: a funded text brain (ANTHROPIC_API_KEY, or Gemini on a paid tier). Anything else: run `claude setup-token` and replace CLAUDE_CODE_OAUTH_TOKEN."
-      },
-      {
-        "code": "no_posts_explainer",
-        "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261117 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused), claude-subscription LIMITED (the subscription window is spent: you've hit your weekly limit \u00b7 resets 12am (utc)) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261117. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: 3/4 posted for 20261118.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 1/6 posted for 20261117.",
+        "detail": "third: 5/6 posted for 20261118.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "short_slate_trending",
-        "severity": "warning",
-        "detail": "trending: 4/5 posted for 20261117.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+        "code": "no_posts_trending",
+        "severity": "critical",
+        "detail": "trending: ZERO videos posted for 20261118 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
+        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261118. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (70 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (71 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
@@ -236,207 +224,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-13T15:49:38+00:00",
-      "slug": "sports_jameis_winston_let_the_dogs",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuinely funny moment that is clearly shown and lands, but our hook line is printed over the TV scorebug for the first ~10 seconds.",
-      "auto_fails": [
-        "unreadable: In hook@0.3, hook@1.5, mid0 and mid1 the second row of our line ('Dogs Out at the line \ud83d\ude02') is printed right on top of the TV scorebug (the WAS 2-5-1 / 4TH 3:26 / GIANTS 5-2-1 bar), so text sits on text. In mid1 a doubled caption '[IT'S PERFECT.]' also overlaps itself."
-      ],
-      "problems": [
-        "hook@0.3-mid1: our line's second row overlaps the broadcast scorebug, so text is printed on a TV graphic",
-        "mid1: the word caption '[IT'S PERFECT.]' renders doubled and overlaps itself",
-        "payoff@-0.4: it ends on a blurry sideline shot instead of the Commanders players laughing (mid4), so the strongest beat is not the last"
-      ],
-      "fixes": [
-        "Move the on-screen line above the scorebug in the full-bleed opening segment, or letterbox that segment like mid2+ so the line sits on the blurred fill",
-        "Remove the duplicated caption track at ~9.5s",
-        "Trim the tail so the video ends on or just after the players laughing at ~30s"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 119
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "unreadable",
-        "visible_evidence": "hook@0.3 to mid1: the white two-line hook caption sits directly on the broadcast scorebug at the bottom of the source frame. 'Dogs Out at the line \ud83d\ude02' is printed over the team logos, scores and clock.",
-        "root_cause": "The line was placed at a fixed bottom-third y without checking for the TV graphic burned into the full-bleed vertical crop of the first part. After the cut to the letterboxed segments (mid2 onward) the same y position is clear.",
-        "repair_goal": "Detect the scorebug band in the opening segment and move our line above it, around y\u22480.45-0.55 below the word captions. Or put the opening in the same letterboxed layout as mid2 so the line sits on the blurred fill, never over the scorebug."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.073,
-        "effective_fps": 22.3,
-        "max_dup_run": 13,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.83,
-        "max_dup_at_s": 27.04,
-        "duration_s": 39.5
-      },
-      "fingerprint": "?|unreadable|unreadable"
-    },
-    {
-      "ts": "2026-11-13T15:52:10+00:00",
-      "slug": "sports_jameis_winston_let_the_dogs",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The setup is real and funny and the person is correct, but the punchline (he gets his own team flagged for delay of game) is left to scorebug text over blurry helmet close-ups.",
-      "auto_fails": [],
-      "problems": [
-        "The payoff relies on a small 'DELAY OF GAME' scorebug graphic. The field result is never shown.",
-        "The singing frames (mid3, mid4) are motion-blurred helmet close-ups, so the bit reads mostly through captions.",
-        "Blurred letterbox bands at the top and bottom waste about a quarter of the vertical frame."
-      ],
-      "fixes": [
-        "Add a second line at the turn naming the result, e.g. '...gets flagged for delay of game \ud83d\udc80'.",
-        "Include the wide shot of the defense not moving and the ref's flag if the source has it.",
-        "Crop the source to fill the 9:16 frame instead of padding it with a blurred letterbox."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 46
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid4",
-        "index": 4,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "From mid4 to payoff@-0.4 the clip sits on Jameis close-ups with a 'DELAY OF GAME' FLAG on the scorebug and 'IT'S PERFECT.' as a caption. The singing itself is a few caption words over a blurry helmet (mid3 'HOT TWO,', mid4 'WHO LET THE'). The fact that the defense did NOT jump and the Giants got fla",
-        "root_cause": "The source repost is a tight face cut with a blurred letterbox fill. The punchline (his own team gets a delay of game while he grins) is never shown on the field: no ref and no flag on the ground, just the scorebug.",
-        "repair_goal": "End on a shot that makes the failed trick obvious: the defense staying put and the flag or the ref's delay-of-game call. Alternatively, land a second on-screen line at the turn ('...and gets flagged for delay of game \ud83d\udc80') so a stranger gets the joke without reading the scorebug."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 15.25
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
-    {
-      "ts": "2026-11-14T12:08:36+00:00",
-      "slug": "sports_dirk_nowitzki_ons_of_jalen",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a reposted montage that skips the funny 'head's too big' quote the title promises and opens on the turn ('but then I saw...'). Its line swap at mid3 overprints our two captions into an illegible ghost.",
-      "auto_fails": [
-        "unreadable: In mid3 (t=25.6s), a slow cross-dissolve prints our second line 'Then he saw the work' over our main line 'Dirk thought Brunson wouldn't work', and both are ghosted over a doubled podcast/game image. The two lines overlap into illegible text. Lesser issue: hook@0.3 and mid0 put the source's own burned-in word captions ('BUT THEN I', 'FOOTWORK,') right above our line, so the two caption stacks compete."
-      ],
-      "problems": [
-        "Title and package promise Dirk's 'head's too big, how is he not falling forward' quote, but from hook@0.3 the speech is already 'BUT THEN I SAW HOW HIS FOOTWORK', so the funny setup a stranger came for is never shown.",
-        "hook@0.3/hook@0.8 show two other hosts on a wide set while Dirk talks off-screen. A stranger doesn't see Dirk until hook@1.5.",
-        "mid3: our two on-screen lines crossfade on top of each other at the same position, over a doubled podcast/game dissolve, and both are unreadable.",
-        "The source's own burned-in word captions (hook@0.3, mid0, mid1, mid2) stack right above our line, giving two caption systems at once.",
-        "Payoff ends on a fade to black over generic Mavs footage (payoff@-0.4) with no final reaction or punchline."
-      ],
-      "fixes": [
-        "Re-cut from the start of the quote ('I was like this isn't gonna work... the head's too big') so the setup and the turn are both in the clip.",
-        "Open on Dirk's face speaking, not on the wide shot of the other hosts.",
-        "Hard-cut between our hook line and line2, or use one line throughout. Never crossfade two captions at the same position.",
-        "Move our line clear of the source's word captions, or source a clean (uncaptioned) version of the interview.",
-        "End on a strong Brunson highlight or a laughing reaction from the panel instead of a fade to black on generic dribbling."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.008,
-        "sampled": 129
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "unreadable",
-        "visible_evidence": "mid3 (t=25.64s): a cross-dissolve of the podcast set over Brunson/Heat game footage, with 'Then he saw the work \ud83d\udc40' printed directly over 'Dirk thought Brunson wouldn't work \ud83d\ude33'. Both lines are half-opacity and overlap into garbled text.",
-        "root_cause": "The switch from line2 back to the hook line is done as a long opacity crossfade at the same screen position, laid over the source's own dissolve, so for a beat two of our lines and two images all sit on top of each other.",
-        "repair_goal": "Hard-cut the on-screen line swap (or keep one line fixed for the whole clip) so only one of our lines is ever visible. Also open on Dirk speaking, not the wide shot of the other hosts, and make sure the clip includes the funny 'head's too big' quote the title promises, not only the 'then he saw the "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.148,
-        "effective_fps": 20.4,
-        "max_dup_run": 22,
-        "measured": true,
-        "frozen_ratio": 0.062,
-        "frozen_fps": 22.5,
-        "max_frozen_run": 16,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 5.83,
-        "max_dup_at_s": 24.5,
-        "duration_s": 43.08
-      },
-      "fingerprint": "?|unreadable|unreadable"
-    },
     {
       "ts": "2026-11-14T12:33:46+00:00",
       "slug": "sports_dirk_nowitzki_ons_of_jalen",
@@ -4132,22 +3919,227 @@
       },
       "fingerprint": "?|unreadable|claim_mismatch_and_confusing_readout",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-18T14:17:41+00:00",
+      "slug": "lake-mead-water-crisis",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The lake and dam art is strong, but Data watches the water fall instead of causing it, the 27% beat is missing, and the ending just repeats the dam frame.",
+      "auto_fails": [
+        "decorative_mascot: seg2:start to seg3:end: Data stands on top of the dam holding a red valve wheel and pointing while the water drops by itself. He never turns the wheel or causes the drop. In the lake scene (seg1) he only leans on the lever and then reacts in shock, so he does not cause the retreat either.",
+        "unreadable: seg0:end: the caption '153 feet. The' is grey and faint, sitting on a brown dark sphere, and can barely be read. seg3:start: 'Did you know Lake Mead fell this low?' is faded grey on dark ground."
+      ],
+      "problems": [
+        "seg2: Data points and holds a valve wheel he never turns while the water drops on its own.",
+        "The script's '27 percent full' beat never appears on screen: seg1:end moves straight to seg2:start's '97 feet above'.",
+        "seg0: the '1,200 ft \u00b7 2000' counter stays on screen while the water visibly drains, so the number and the picture disagree.",
+        "seg0:end: the caption '153 feet. The' is faded and low-contrast over a dark sphere.",
+        "Dark brown spheres along the bottom of the lake scene read as unexplained blobs behind the captions.",
+        "seg3: the payoff is a static repeat of the dam with its labels removed. Nothing new happens, such as the lights going dark."
+      ],
+      "fixes": [
+        "Make Data turn the valve wheel with a wind-up and crank so the water level drops because of him.",
+        "Give the 27% beat its own shot: a bathtub ring on the canyon or dam with a quarter-full mark, its own picture before the shutoff beat.",
+        "Animate the hook counter down from 1,200 to 1,047 as the water drains, instead of holding 1,200.",
+        "Remove or lighten the dark spheres under the captions and keep caption text at full contrast.",
+        "End on the stakes: the dam's lights or turbines go dark as the water nears the shutoff line, so the payoff lands visually."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 69
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "decorative_mascot / missing beat",
+        "visible_evidence": "seg2:start through seg2:end: the water drops toward the dashed shutoff line while Data stands on the dam rim pointing, with a valve wheel he never turns. The '27 percent full' beat in the script never appears in any frame; the video jumps from 'visible from shore' (seg1:end) straight to '97 feet abo",
+        "root_cause": "The dam scene casts Data as a pointer beside the moving part, not the cause of the drop. The 27% capacity beat seems to have been squeezed out or merged, so the 'barely a quarter full' turn is never shown.",
+        "repair_goal": "Have Data crank the outlet valve so his turning visibly drains the water down toward the shutoff line, landing on '97 ft above the power shutoff'. Restore the 27% beat with its own picture: a bathtub ring on the dam face showing the full line and the water sitting just above one quarter."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.136,
+        "effective_fps": 20.7,
+        "max_dup_run": 18,
+        "measured": true,
+        "frozen_ratio": 0.054,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 18,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.29,
+        "max_dup_at_s": 0.0,
+        "duration_s": 23.08
+      },
+      "fingerprint": "?|decorative_mascot+unreadable|decorative_mascot / missing beat",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-18T14:45:06+00:00",
+      "slug": "lake-mead-water-crisis",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong bespoke lake-and-dam scenes with Data driving the drain, but the 27% beat never shows on screen and the ending reuses the last scene instead of showing the lights going out.",
+      "auto_fails": [],
+      "problems": [
+        "No sampled frame shows the 27-percent-full beat. The captions go straight from the 153 ft scene (seg1) to '97 feet above' (seg2).",
+        "seg2:end puts the water just above the 'shutoff' dashes, so the picture says ~0 ft of margin while the label says 97 ft.",
+        "seg3 closing reuses seg2's picture: no power or lights payoff, Data only reacts with hands on head.",
+        "The hook mascot only clutches his head on the dam crest (hook@0.3\u20132.2) rather than causing anything.",
+        "Dark floating boulders in the seg1 foreground read as odd blobs behind the captions."
+      ],
+      "fixes": [
+        "Give the 27% beat its own on-screen scene, for example the lake drawn as a capacity gauge on the canyon wall draining to just past a quarter.",
+        "Scale the seg2 shutoff line so the remaining 97 ft of water above it is visibly substantial, and mark it with a yardstick.",
+        "Draw a closing where the powerhouse lights from the hook go dark as the water nears shutoff.",
+        "Replace the foreground boulder blobs in seg1 with grounded shoreline detail, or remove them."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 69
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "flat_payoff",
+        "visible_evidence": "seg3:start through payoff@-0.4 reuse the seg2 dam scene unchanged. Data clutches his head, a boat drifts, and a text block covers the sky. Nothing new happens: no lights going dark, no turbines stopping.",
+        "root_cause": "The closing has no scene of its own. It holds the last beat's finished picture and lays a text block over it, so the threat the hook promised (the lights going out) is never shown.",
+        "repair_goal": "Draw a closing payoff where the hook's threat lands. Water reaches the shutoff line, the powerhouse windows and pylon lights from the hook flicker and go dark, and Data strains at the valve wheel as the turbines spin down. Keep the closing line short and away from the hero."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.25,
+        "effective_fps": 18.0,
+        "max_dup_run": 18,
+        "measured": true,
+        "frozen_ratio": 0.052,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 18,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.29,
+        "max_dup_at_s": 0.0,
+        "duration_s": 23.08
+      },
+      "fingerprint": "?|-|flat_payoff",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-18T14:57:21+00:00",
+      "slug": "lake-mead-water-crisis",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The Lake Mead drop is drawn beautifully, but the 27%-full beat has no picture, and the closing reuses beat one's number instead of showing the lights going out.",
+      "auto_fails": [],
+      "problems": [
+        "The 27%-full beat is narrated but never visualised; seg2 opens under a generic 'America's biggest reservoir' title.",
+        "The closing (seg3) repeats 1,200 to 1,047 ft from seg1 instead of paying off the Hoover power threat: the city lights stay on throughout.",
+        "In the hook, Data only holds his head on the dam crest. He reacts instead of causing anything.",
+        "The hook's opening frames show the intact dam with water flowing; the threat isn't visible yet."
+      ],
+      "fixes": [
+        "Build a dedicated 27% scene: a full line at the top of the wall, the water draining to a quarter, Data opening the outlet, and one '27% full' headline.",
+        "Make the closing pay off the stakes: as the water nears the shutoff line, the powerhouse turbine slows and the city windows go dark.",
+        "In the hook, have Data turn the outlet valve so the water level visibly drops past the intake, flash-forwarding to the low-water state."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 69
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "claim_not_drawn",
+        "visible_evidence": "The beat 'Lake Mead fell to 27 percent full' never appears on screen. seg2:start is headed 'Lake Mead / America's biggest reservoir' while the caption already says '97 feet above', and no frame shows a quarter-full measure. The 27% beat and the 97 ft beat collapse into one dam-wall scene.",
+        "root_cause": "The 27%-full beat has no picture of its own. The window reuses the shutoff-line dam scene with a generic title, so the story's central number is only spoken.",
+        "repair_goal": "Give the 27% beat its own shot. Show the dam wall or the canyon with the 'full' line at the top and the water stopping at about a quarter of that height, with Data as the cause: he opens the outlet valve and the level drains to 27%. Put one big '27% full' on the subject. Then the 97 ft shutoff beat "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.25,
+        "effective_fps": 18.0,
+        "max_dup_run": 18,
+        "measured": true,
+        "frozen_ratio": 0.054,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 18,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.5,
+        "max_dup_at_s": 0.0,
+        "duration_s": 23.08
+      },
+      "fingerprint": "?|-|claim_not_drawn",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
-    "?|unreadable|unreadable": {
-      "count": 5,
+    "?|-|weak_payoff": {
+      "count": 3,
       "days": [
-        "2026-11-13",
-        "2026-11-14",
-        "2026-11-15"
+        "2026-11-14"
       ]
     },
-    "?|-|weak_payoff": {
-      "count": 4,
+    "?|unreadable|unreadable": {
+      "count": 3,
       "days": [
-        "2026-11-13",
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ]
     },
     "?|dead_air|dead_air": {
@@ -4155,6 +4147,13 @@
       "days": [
         "2026-11-16",
         "2026-11-17"
+      ]
+    },
+    "?|-|flat_payoff": {
+      "count": 2,
+      "days": [
+        "2026-11-14",
+        "2026-11-18"
       ]
     },
     "?|-|weak_hook": {
@@ -4202,12 +4201,6 @@
       ]
     },
     "?|-|weak_hook_small_footage": {
-      "count": 1,
-      "days": [
-        "2026-11-14"
-      ]
-    },
-    "?|-|flat_payoff": {
       "count": 1,
       "days": [
         "2026-11-14"
@@ -4410,16 +4403,27 @@
       "days": [
         "2026-11-18"
       ]
+    },
+    "?|decorative_mascot+unreadable|decorative_mascot / missing beat": {
+      "count": 1,
+      "days": [
+        "2026-11-18"
+      ]
+    },
+    "?|-|claim_not_drawn": {
+      "count": 1,
+      "days": [
+        "2026-11-18"
+      ]
     }
   },
   "recent_commits": [
-    "0ba2dbb 2026-11-18 third: analytics [skip ci]",
-    "da73d36 2026-11-18 third: update posted log + analytics [skip ci]"
+    "db2d697 2026-11-19 claim: mailbox verdicts 2026-11-19T04:53Z [skip ci]",
+    "d8101fb 2026-11-19 claim: mailbox verdicts 2026-11-19T03:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-04": 5,
         "2026-11-05": 5,
         "2026-11-06": 5,
         "2026-11-07": 4,
@@ -4440,7 +4444,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-04": 2,
         "2026-11-05": 4,
         "2026-11-06": 3,
         "2026-11-07": 3,
@@ -4450,15 +4453,14 @@
         "2026-11-14": 5,
         "2026-11-15": 4,
         "2026-11-16": 2,
-        "2026-11-18": 2
+        "2026-11-18": 3
       },
-      "total_posted": 416,
-      "attempted": 416,
+      "total_posted": 417,
+      "attempted": 417,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-04": 4,
         "2026-11-05": 5,
         "2026-11-06": 6,
         "2026-11-07": 4,
@@ -4490,32 +4492,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 149,
+      "videos": 148,
       "top_by_vph": [
         {
-          "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
-          "vph": 14.57,
-          "views": 164
+          "title": "Why Saffron Costs More Than Any Spice On Earth",
+          "vph": 12.25,
+          "views": 1156
         },
         {
-          "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 13.79,
-          "views": 1141
+          "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
+          "vph": 9.62,
+          "views": 95
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 9.07,
+          "vph": 8.23,
           "views": 1027
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 8.9,
+          "vph": 7.88,
           "views": 798
         },
         {
-          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 5.75,
-          "views": 430
+          "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
+          "vph": 7.4,
+          "views": 169
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4524,37 +4526,37 @@
       "videos": 128,
       "top_by_vph": [
         {
-          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
-          "vph": 3.22,
-          "views": 67
-        },
-        {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 2.97,
+          "vph": 2.94,
           "views": 1909
         },
         {
+          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
+          "vph": 2.58,
+          "views": 68
+        },
+        {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.58,
-          "views": 71
+          "vph": 1.55,
+          "views": 78
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.43,
+          "vph": 1.37,
           "views": 193
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
           "vph": 1.17,
-          "views": 530
+          "views": 534
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261115/brief.json",
       "retro/20261116/brief.json",
-      "retro/20261117/brief.json"
+      "retro/20261117/brief.json",
+      "retro/20261118/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
