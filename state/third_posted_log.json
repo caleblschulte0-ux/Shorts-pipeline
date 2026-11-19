@@ -21130,6 +21130,43 @@
         "end": 55.0
       },
       "director_cut": true
+    },
+    "rejected-unusualmoistsharkbirb-wlz2wmgatoqaniku": {
+      "source_url": "https://www.twitch.tv/clix/clip/UnusualMoistSharkBIRB-Wlz2wmgaTOQAniKu",
+      "streamer": "clix",
+      "title": "Clix Reacts Wtf After Seeing This On Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip across the middle, about a third of the canvas height. The rest is blurred paddin; vision: The action is small and hard to read on a phone. The player character and NPCs are tiny, and the streamer facecam is a p; vision: Many frames show nude NPCs (nude",
+      "ts": "2026-11-19T12:53:35.141432+00:00"
+    },
+    "rejected-curiousbadechidnacoolstorybro-g66tfyhbff_r5vxz": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CuriousBadEchidnaCoolStoryBro-g66TfyHbfF_r5vxZ",
+      "streamer": "caseoh_",
+      "title": "Caseoh Snaps At Chat Over Where He Gets The Water",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas height. The rest is blurred padding, well short; vision: The subject is small and far away. The seaplane is tiny in most frames and CaseOh's facecam is a small corner thumbnail,; vision: The renderer did not crop toward",
+      "ts": "2026-11-19T13:00:17.904385+00:00"
+    },
+    "rejected-wisebusystaplenononocat--xyneyymrlr4koey": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/WiseBusyStapleNononoCat--XYNEyYmRlr4KoEY",
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Panics As Cops Won't Shoot Near Civilians on NoPixel",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with the rest blurred padding. The plane and the ; vision: The hook card 'Ohnepixel realizes the cops won't shoot' doesn't match the footage. The footage shows a plane flying and ; vision: The speech captions ('THAT MEAN?",
+      "ts": "2026-11-19T13:06:54.555975+00:00"
+    },
+    "clip-20261119-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/alanzoka/clip/SmallDeterminedTrollBloodTrail-zazo4PfHTAYNhgZ7",
+      "story_key": null,
+      "streamer": "alanzoka",
+      "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
+      "kind": "twitch_clip",
+      "ts": "2026-11-19T13:11:21.285361+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
