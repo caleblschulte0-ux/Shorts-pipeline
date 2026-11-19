@@ -21203,6 +21203,34 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin 16:9 strip of about one third of the 9:16 canvas, well short of the roughly three quarters e; vision: The subject is small and far away. The truck and the NPC are tiny in a very dark scene, and the streamer's facecam is a ; vision: The picture is very dark and low",
       "ts": "2026-11-19T13:16:10.786048+00:00"
+    },
+    "rejected-cuteblindingsandwichkevinturtle-stfzx5edlf9jn5_j": {
+      "source_url": "https://www.twitch.tv/theburntpeanut/clip/CuteBlindingSandwichKevinTurtle-StfZX5EDlf9jn5_j",
+      "streamer": "theburntpeanut",
+      "title": "worth it.. (banned)",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 9.6s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-11-19T19:33:16.192986+00:00"
+    },
+    "rejected-vivaciouscallousyogurtdxcat-tcaghtrsbnp82hx2": {
+      "source_url": "https://www.twitch.tv/xqc/clip/VivaciousCallousYogurtDxCat-tcAghtrsbnP82HX2",
+      "streamer": "xqc",
+      "title": "Xqc Says GTA 6 Hurt His Eyes After A 24 Hour Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred bands above and below. It is w; vision: The streamer's face cam is a tiny corner thumbnail, so the person is not readable on a phone.; vision: The game footage inside the sharp region is itself out of f",
+      "ts": "2026-11-19T19:35:25.177278+00:00"
+    },
+    "clip-20261119-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/SlickStylishBeaverStrawBeary-ljpqadoCXEhYwJx5",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Can't Stop Gushing Over Lucia After She Walks In",
+      "kind": "twitch_clip",
+      "ts": "2026-11-19T19:37:32.073703+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
