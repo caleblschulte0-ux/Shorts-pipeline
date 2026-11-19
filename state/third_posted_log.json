@@ -21223,14 +21223,32 @@
       "ts": "2026-11-19T19:35:25.177278+00:00"
     },
     "clip-20261119-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/SlickStylishBeaverStrawBeary-ljpqadoCXEhYwJx5",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/iuEpbVyejHk",
       "title": "Lacy Can't Stop Gushing Over Lucia After She Walks In",
       "kind": "twitch_clip",
-      "ts": "2026-11-19T19:37:32.073703+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-19T19:37:39.088661+00:00",
+      "uploaded_at": "2026-11-19T19:37:39.088676+00:00",
+      "publish_at": "2026-11-20T06:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261119-lacy-can-t-stop-gushing-over-lucia-after-she-wal-5a1ab60e",
+        "tiktok": "queued for 2026-11-20T06:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/SlickStylishBeaverStrawBeary-ljpqadoCXEhYwJx5",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy sees Lucia and loses it \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 27344,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 12.2
+      },
+      "director_cut": true
     }
   }
 }
