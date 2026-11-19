@@ -509,12 +509,14 @@ import random as _s1_random
 S1_OAK = Vector((0.5, 0.85, 0.0))                 # the old oak, image-right just behind him
 S1_SPLIT = S1_OAK + Vector((-0.02, 0.0, 0.78))    # where the trunk forks: the crown splits here
 S1_DX = -0.08                                     # Data's line on the crest
-S1_T = dict(drop0=0.1, drop1=1.2, static=1.25, look=1.35, strike=2.53, restrike=2.85,
-            fall0=3.15, dive0=3.4, launch=3.52, land=3.92, hit=3.96, lift=4.08)
-S1_SHEET = (0.0, 1.0, 1.9)                        # sheet lightning inside the clouds (no bolt): the storm is already here
+# every moment is a FRACTION of the beat (timed to the voice: DUR comes from script.json's windows), so a re-voice
+# cannot push the strike late or the dive past the cut; the last ~0.3 s of the beat is the dive settling, nothing new
+S1_T = {k: v * DUR for k, v in dict(drop0=0.022, drop1=0.26, static=0.272, look=0.293, strike=0.55, restrike=0.62,
+                                    fall0=0.685, dive0=0.739, launch=0.765, land=0.852, hit=0.861, lift=0.887).items()}
+S1_SHEET = (0.0, 0.217 * DUR, 0.413 * DUR)                        # sheet lightning inside the clouds (no bolt): the storm is already here
 S1_C0, S1_L0 = Vector((0.08, -1.32, 0.3)), Vector((0.18, 0.6, 1.0))
 S1_C1, S1_L1 = Vector((-0.48, -1.38, 0.3)), Vector((-0.39, 0.3, 0.4))
-S1_MOVE = (3.05, 4.4)
+S1_MOVE = (0.663 * DUR, 0.93 * DUR)
 S1_VALLEY = -2.4                                  # the valley floor, far below the ridge
 S1_TOWER = Vector((-1.15, 3.9, 0.0))              # his fire-lookout tower, on the crest behind him
 S1_TRUCK = Vector((-5.2, 38.0, 0.0))              # his green pickup, parked tiny at the trailhead in the valley
@@ -1343,6 +1345,9 @@ the last flight toward us, his hat flies off, he snatches it out of the air and 
 import locations as LOC
 
 S2_TOWER = Vector((0.0, 0.0, 0.0))     # the tower's stair front, on the ridge
+# TIMES are designed on a 6.2 s beat and scaled to the voiced beat (DUR) by s2_clock() when the shot is built, so the arc
+# lands at the same FRACTIONS of whatever the voice gives it (bolt 1 at 0.30, the pair at 0.55, the landing at 0.80)
+S2_DESIGN = 6.2
 S2_BOLTS = (1.86, 3.38, 3.72)          # one bolt, then two in a row
 S2_TAKE = 4.32                         # he crouches at the landing's edge ...
 S2_AIR = (4.46, 4.94)                  # ... is in the air over the last flight ...
@@ -1564,7 +1569,7 @@ def s2_gauss(v, sig):
     return out
 
 
-def s2_spline(keys, t):
+def s2_spline(keys, t, carry=0.0):
     """a Catmull-Rom curve through (t, tuple) keys, still at both ends: a move that never stops dead in the middle"""
     if t <= keys[0][0]: return keys[0][1]
     if t >= keys[-1][0]: return keys[-1][1]
@@ -1572,7 +1577,7 @@ def s2_spline(keys, t):
     for i in range(len(keys) - 1):
         if t <= T[i + 1]:
             u = (t - T[i]) / (T[i + 1] - T[i]); h = T[i + 1] - T[i]
-            m0 = Vector((0, 0, 0)) if i == 0 else (P[i + 1] - P[i - 1]) / (T[i + 1] - T[i - 1]) * h   # it carries on from the catch
+            m0 = (P[1] - P[0]) * carry if i == 0 else (P[i + 1] - P[i - 1]) / (T[i + 1] - T[i - 1]) * h   # it carries on from the catch
             m1 = Vector((0, 0, 0)) if i + 2 >= len(P) else (P[i + 2] - P[i]) / (T[i + 2] - T[i]) * h
             u2, u3 = u * u, u * u * u
             return tuple(P[i] * (2 * u3 - 3 * u2 + 1) + m0 * (u3 - 2 * u2 + u) + P[i + 1] * (-2 * u3 + 3 * u2) + m1 * (u3 - u2))
@@ -1587,8 +1592,23 @@ def s2_keys(keys, t):
     return keys[-1][1]
 
 
+def s2_clock():
+    """scale the design times (on a S2_DESIGN beat) to this beat's real DUR, once"""
+    g = globals()
+    if g.get("S2_K") is not None: return g["S2_K"]
+    k = DUR / S2_DESIGN; g["S2_K"] = k
+    for n in ("S2_BOLTS", "S2_AIR", "S2_FLICK"): g[n] = tuple(x * k for x in g[n])
+    c = g["S2_AIR"][1] + 0.18                                            # he catches it once he has landed,
+    g["S2_HAT"] = (g["S2_HAT"][0] * k, c)
+    g["S2_FLICK"] = (c, c + 0.26, c + 0.4)                             # flicks it straight up onto his head,
+    g["S2_RUN_T"] = c + 0.3                                            # and runs
+    g["S2_TAKE"] = g["S2_TAKE"] * k
+    return k
+
+
 def shot2():
     """HE RUNS DOWN THE LOOKOUT UNDER THE STRIKES (see the module docstring)."""
+    KT = s2_clock(); T = lambda x: x * KT                 # T(design seconds) -> seconds of this beat
     light = place_lookout_tower(); tw = S2_TW; ground = tw["ground"]
     data = load_data()
     import character as CH
@@ -1603,7 +1623,7 @@ def shot2():
     pts = s2_fillet(raw, 0.15)
     LEN, AT = s2_line(pts)
     # the pace: a burst out of the door, a stumble at each bolt, slowing into the edge for the jump
-    vk = [(0.0, 0.3), (0.3, 1.0), (1.8, 1.0), (1.98, 0.5), (2.3, 1.0), (3.33, 1.0), (3.5, 0.55), (3.85, 0.6), (4.05, 0.75), (S2_TAKE - 0.06, 0.2), (S2_TAKE, 0.0)]
+    vk = [(T(a), v) for a, v in ((0.0, 0.3), (0.3, 1.0), (1.8, 1.0), (1.98, 0.5), (2.3, 1.0), (3.33, 1.0), (3.5, 0.55), (3.85, 0.6), (4.05, 0.75))] + [(S2_TAKE - 0.06, 0.2), (S2_TAKE, 0.0)]
     vel = lambda t: s2_keys(vk, t) if t < S2_TAKE else 0.0
     cum = [0.0]
     for f in range(2, NF + 1): cum.append(cum[-1] + vel((f - 1.5) / FPS))
@@ -1734,8 +1754,9 @@ def shot2():
             if t >= S2_RUN_T - 0.05: continue                 # walk_to swings his arms from here
             if s_ == 'R' and T_R < t: continue
             ab = 3 + 5 * ease(min(1.0, t / 0.7))
-            data._k(f'arm.{s_}', t, rot=(sg * a - 6 - 18 * dk - 20 * jw, 0, sg * (ab + 6 * dk + 30 * jw)))
-            data._k(f'fore.{s_}', t, rot=(-48 - 22 * dk + 18 * jw, 0, 0))
+            jj = jw * (0.2 if s_ == 'R' else 1.0)               # the hat hand stays nearer, ready for the catch
+            data._k(f'arm.{s_}', t, rot=(sg * a - 6 - 18 * dk - 20 * jj, 0, sg * (ab + 6 * dk + 30 * jj)))
+            data._k(f'fore.{s_}', t, rot=(-48 - 22 * dk + 18 * jj, 0, 0))
     # ---- the hat flies off in the jump and he snatches it
     # he takes off running past the lens, toward the trail (keyed before the hat reach, so the reach's IK wins)
     data.walk_to(tuple(S2_RUN), S2_RUN_T, DUR + 0.5, step=0.13, lean=9.0, lift=0.03)
@@ -1753,19 +1774,19 @@ def shot2():
             if rt.dot(sh - data.arm.location) < 0: rt = -rt
             return sh + Vector((0, 0, up)) + fwn * fw + rt * out
         CATCH = side_pt(S2_HAT[1], 0.02, 0.12, 0.1)
-        HAND_K = [(S2_HAT[1], Vector((0.02, 0.12, 0.1))), (S2_FLICK[0], Vector((-0.04, 0.11, 0.11))),     # catch, carry it down,
+        HAND_K = [(S2_HAT[1], Vector((0.02, 0.12, 0.1))),                                                     # catch it rising,
                   (S2_FLICK[1], Vector((0.06, 0.1, 0.12))), (S2_FLICK[1] + 0.36, Vector((-0.11, 0.09, 0.09)))]   # flick it up, down to run
         def hp(t):
             if t <= S2_HAT[0]: return H0
             if t <= S2_HAT[1]:
                 u = (t - S2_HAT[0]) / (S2_HAT[1] - S2_HAT[0])
-                return H0.lerp(CATCH, u) + Vector((0, 0, 0.16 * math.sin(math.pi * u)))
-            return side_pt(t, *s2_keys(HAND_K, t))           # (up, forward, out) from his shoulder, one smooth curve
+                return H0.lerp(CATCH, u) + Vector((0, 0, 0.3 * math.sin(math.pi * u)))
+            return side_pt(t, *s2_spline(HAND_K, t, carry=0.6))   # the hand rises into the catch and on up through the flick           # (up, forward, out) from his shoulder, one smooth curve
         hat_path = hp
-        data.reach("R", hp, S2_HAT[1], DUR + 0.3, lead=0.38, back=None, elbow_out=0.5)
+        data.reach("R", hp, S2_HAT[1], DUR + 0.3, lead=0.42, back=None, elbow_out=0.5)
     # ---- where he looks and what he feels
     data.look_at(Vector((xd, -1.2, 1.3)), 0.0, max_yaw=30, max_pitch=35, blend=0.0)
-    data.look_at(Vector((0.6, -0.9, 1.0)), 0.6, max_yaw=30, max_pitch=35, blend=0.4)
+    data.look_at(Vector((0.6, -0.9, 1.0)), T(0.6), max_yaw=30, max_pitch=35, blend=0.4)
     data.look_at(Vector((0.6, -1.0, 2.6)), S2_BOLTS[0] + 0.04, max_yaw=25, max_pitch=35, blend=0.18)
     data.look_at(Vector((-0.4, -1.1, 0.6)), S2_BOLTS[0] + 0.6, max_yaw=30, max_pitch=35, blend=0.4)
     data.look_at(Vector((-0.5, -1.5, 2.0)), S2_BOLTS[1] + 0.04, max_yaw=25, max_pitch=35, blend=0.18)
@@ -1814,7 +1835,7 @@ def shot2():
             loose.keyframe_insert("location", frame=f); loose.keyframe_insert("rotation_euler", frame=f)
     # ---- the door bursts open as he comes through it
     door = tw["door"]
-    for t, a in ((0.0, 0.0), (0.05, 0.0), (0.24, -110.0), (0.38, -97.0), (0.55, -102.0)):
+    for t, a in ((0.0, 0.0), (0.04, 0.0), (0.21, -110.0), (0.34, -97.0), (0.5, -102.0)):
         door.rotation_euler = (0, 0, math.radians(a)); door.keyframe_insert("rotation_euler", frame=F(t))
     # ---- the bolts onto the rod, the sparks off the roof
     ROD = tw["rod_tip"]
@@ -1827,9 +1848,8 @@ def shot2():
                                 lambda r: Vector((r.uniform(-0.55, 0.55), 0.4 + r.choice((-1, 1)) * r.uniform(0.35, 0.6), rz + r.uniform(0.0, 0.25))))
         sparks += s2_spark_rain(f"s2 tip spark {i}", tb, 14, 90 + i, lambda r: ROD + Vector((r.uniform(-0.03, 0.03), r.uniform(-0.03, 0.03), 0)), life=(0.5, 0.9))
     # ---- the camera: low and close, travelling down with him, looking up past him at the roof; a jolt on every strike
-    OFF = [(0.0, Vector((-0.3, -1.0, -0.1))), (0.45, Vector((-0.1, -1.0, -0.18))), (1.0, Vector((0.48, -0.98, -0.28))), (1.5, Vector((0.38, -1.05, -0.34))),
-           (2.4, Vector((-0.42, -1.0, -0.32))), (3.3, Vector((-0.2, -1.08, -0.32))), (4.2, Vector((0.16, -1.1, -0.26))),
-           (DUR, Vector((0.3, -1.12, -0.1)))]
+    OFF = [(T(a), v) for a, v in ((0.0, Vector((-0.3, -1.0, -0.1))), (0.45, Vector((-0.1, -1.0, -0.18))), (1.0, Vector((0.48, -0.98, -0.28))), (1.5, Vector((0.38, -1.05, -0.34))),
+           (2.4, Vector((-0.42, -1.0, -0.32))), (3.3, Vector((-0.2, -1.08, -0.32))), (4.2, Vector((0.16, -1.1, -0.26))))] + [(DUR, Vector((0.3, -1.12, -0.1)))]
     off = lambda t: s2_keys(OFF, t)
     ROOT = []
     for f in range(1, NF + 1):
@@ -1837,7 +1857,8 @@ def shot2():
     iF = F(S2_RUN_T + 0.2) - 1
     ROOT_C = [r if i <= iF else ROOT[iF].lerp(r, 0.5) for i, r in enumerate(ROOT)]
     RS = s2_gauss(ROOT_C, 6.0)
-    up = lambda t: s2_keys([(0.0, 0.12), (1.45, 0.14), (1.8, 0.27), (2.4, 0.14), (3.15, 0.16), (3.4, 0.26), (4.0, 0.2), (4.4, 0.05), (DUR, 0.0)], t)
+    UPK = [(T(a), v) for a, v in ((0.0, 0.12), (1.45, 0.14), (1.8, 0.27), (2.4, 0.14), (3.15, 0.16), (3.4, 0.26), (4.0, 0.2), (4.4, 0.05))] + [(DUR, 0.0)]
+    up = lambda t: s2_keys(UPK, t)
     rs = random.Random(5); shake = {tb: Vector((rs.uniform(-1, 1), rs.uniform(-1, 1), rs.uniform(-1, 1))) for tb in S2_BOLTS}
     def cam_fn(t):
         i = min(NF - 1, max(0, int(round(t * FPS)))); r = RS[i]
@@ -1859,7 +1880,7 @@ def shot2():
         return out
     return dict(lanes=[], kiosks=[], place="lookout_tower", light=light, data=data, rest=1, grips=("ranger hat",),
                 conseq=[("he bursts out of the cab door and runs for the stairs", lambda: [o for o in bpy.data.objects if o.type == 'MESH' and o.name.startswith(("tower door", "tower cab", "tower top landing"))],
-                         0.05, 1.5, {"hero": True, "whole": False, "moves": lambda: meshes([door])}),
+                         0.05, T(1.5), {"hero": True, "whole": False, "moves": lambda: meshes([door])}),
                         ("a bolt slams into the rod on the roof above him", lambda: roof() + bparts(0), S2_BOLTS[0], S2_BOLTS[0] + 0.3, {"whole": False}),
                         ("sparks rain off the roof past him as two more bolts hit", lambda: roof() + bparts(1) + bparts(2) + sparks, S2_BOLTS[1] + 0.05, S2_BOLTS[2] + 0.5,
                          {"whole": False, "moves": lambda: [o for o in sparks if o.name.startswith(("s2 spark 1", "s2 spark 2"))]}),
@@ -1891,7 +1912,8 @@ from mathutils.bvhtree import BVHTree as s4_BVH
 
 S4_FLASH = []
 S4_CA = -0.88                     # where the camera's aim starts along the trail                      # every strike time of this beat: the place's light flashes the world with them
-S4_TS = [0.32, 1.6, 2.2, 2.75, 3.3, 3.85, 4.48]   # the seven strikes (arc: 0.05 hat off, 0.3 two, 0.55 the run, 0.8 seven)
+S4_FR = [0.06, 0.30, 0.405, 0.50, 0.595, 0.69, 0.80]   # the strikes as FRACTIONS of the beat: 1, 2 and 7 clear, 3-6 a rapid run
+S4_TS = [0.0] * 7                                       # set from DUR in shot4(), so a re-voice cannot break it
 
 
 # ---------------------------------------------------------------- materials
@@ -2248,7 +2270,7 @@ S4_V0, S4_V1 = 0.6, 1.25            # m/s: his march, and the jog the rapid run 
 
 def s4_speed(t):
     """his speed down the trail: a brisk march, a jog from just before the rapid run to just after it, the march again"""
-    up = ease(min(1.0, max(0.0, (t - 1.85) / 0.3))); dn = ease(min(1.0, max(0.0, (t - 3.95) / 0.35)))
+    up = ease(min(1.0, max(0.0, (t - (S4_TS[2] - 0.35)) / 0.3))); dn = ease(min(1.0, max(0.0, (t - (S4_TS[5] + 0.4)) / 0.35)))
     return S4_V0 + (S4_V1 - S4_V0) * (up - dn)
 
 
@@ -2319,6 +2341,7 @@ def shot4():
     storm: bolt one blows the hat off his head and he snatches it out of the air; bolt after bolt hits him (each
     throws the forest into white, jolts him, splays his ears, leaves him smoking more) as he passes the numbered trail
     markers 1 ... 7; at the seventh he flips the hat back up onto his head and marches on."""
+    S4_TS[:] = [fr * DUR for fr in S4_FR]
     light = place_forest_trail()
     s4_bloom()
     S4_FLASH[:] = S4_TS
@@ -2343,14 +2366,15 @@ def shot4():
         fw = Vector((math.sin(yaw), -math.cos(yaw), 0)); R = s4_Matrix.Rotation(yaw, 3, 'Z')
         sh = loc + R @ SH[HAND]; out = (sh - loc); out.z = 0; out.normalize()
         return loc, fw, out, sh
-    T_KNOCK = S4_TS[0]; T_CATCH = 0.98; T_TOSS0, T_REL, T_LAND = 4.42, 4.74, 5.14
+    T_KNOCK = S4_TS[0]; T_CATCH = T_KNOCK + 0.62
+    T_REL = min(S4_TS[6] + 0.3, DUR - 0.63); T_TOSS0 = T_REL - 0.36; T_LAND = T_REL + 0.36   # the hat is on 0.27 s before the cut
     def hand_target(t):
         loc, fw, out, _sh = frame_of(t); bpy.context.view_layer.update(); sh = acts._shoulder(data, HAND)
         catch = sh + fw * 0.09 + out * 0.1 + Vector((0, 0, -0.04))
-        carry = sh + fw * 0.06 + out * 0.08 + Vector((0, 0, -0.11))
+        carry = sh + fw * 0.11 + out * 0.08 + Vector((0, 0, -0.11))   # forward of the catch: the hand never stops dead at it
         cock = sh + fw * 0.04 + out * 0.08 + Vector((0, 0, -0.14))
         flick = sh + fw * 0.1 + out * 0.08 + Vector((0, 0, 0.02))
-        ready = sh + fw * 0.05 + out * 0.09 + Vector((0, 0, -0.12))
+        ready = sh + fw * 0.02 + out * 0.09 + Vector((0, 0, -0.12))
         keys = [(T_CATCH - 0.3, ready), (T_CATCH, catch), (T_CATCH + 0.45, carry), (T_TOSS0 - 0.15, carry), (T_REL, flick)]
         p = s4_path([(a, Vector(b) - sh) for a, b in keys])(t)
         return sh + p
@@ -2365,7 +2389,7 @@ def shot4():
         loc, fw, _o, _s = frame_of(t); bpy.context.view_layer.update(); sh = acts._shoulder(data, OTHER)
         o2 = sh - loc; o2.z = 0; o2.normalize()
         k_ = 1.1 * math.tanh(sum(s4_kick(t - ts, 0.2) for ts in S4_TS) / 1.1)   # no clamp: a clamp is a stop, a stop is a hitch
-        return sh + fw * 0.1 + o2 * (0.03 + 0.06 * k_) + Vector((0, 0, -0.1 + 0.05 * k_))
+        return sh + fw * 0.1 + o2 * (0.03 + 0.04 * k_) + Vector((0, 0, -0.1 + 0.035 * k_))
     # FRAZZLED EARS: each strike splays them out, and they stay a little more splayed after every one; they stand back
     # up just before the hat comes down over them
     def ears_off(sd):
@@ -2382,7 +2406,7 @@ def shot4():
     swing = {}
     for f in range(1, NF + 30):
         sc.frame_set(f); swing[f] = {b: tuple(math.degrees(v) for v in data.pb[b].rotation_euler) for b in (f"arm.{HAND}", f"fore.{HAND}")}
-    data.reach(HAND, hand_target, 0.0, T_REL + 0.02, lead=0.62, back=1.1, elbow_out=0.4)
+    data.reach(HAND, hand_target, 0.0, T_REL + 0.02, lead=0.5, back=1.1, elbow_out=0.4)
     data.reach(OTHER, fist, 0.0, DUR + 0.5, lead=0.3, back=None, elbow_out=0.35)
     T_BACK = T_REL + 0.02 + 1.1          # the hand is back at the hang: it eases into the march swing again
     for f in range(F(T_BACK), F(T_BACK + 0.45) + 1):
@@ -2393,22 +2417,22 @@ def shot4():
     # ---- where he looks, what he feels
     AHEAD = lambda t: frame_of(t)[0] + frame_of(t)[1] * 1.2 + Vector((0, 0, 0.6))
     data.look_at(AHEAD(0.0), 0.0, max_yaw=30, blend=0.0)
-    data.look_at(frame_of(0.6)[0] + frame_of(0.6)[1] * 0.25 + Vector((0, 0, 1.25)), 0.55, max_yaw=30, max_pitch=40, blend=0.22)   # up at the flying hat
-    data.look_at(frame_of(0.95)[3] + frame_of(0.95)[1] * 0.16 + Vector((0, 0, 0.0)), 0.95, max_yaw=35, max_pitch=40, blend=0.25)  # at it in his fist
-    data.look_at(AHEAD(1.45), 1.45, max_yaw=30, blend=0.3)
-    data.look_at(frame_of(2.0)[0] + Vector((0.2, -1.4, 0.55)), 2.05, max_yaw=40, blend=0.3)        # a glance at us: really?
-    data.look_at(AHEAD(2.6), 2.5, max_yaw=30, blend=0.3)
-    data.look_at(frame_of(3.4)[0] + Vector((0.5, -1.4, 0.6)), 3.3, max_yaw=40, blend=0.3)         # mid-jog, at us again: still going
-    data.look_at(AHEAD(4.1), 4.0, max_yaw=30, blend=0.3)
-    data.look_at(frame_of(4.6)[0] + frame_of(4.6)[1] * 0.25 + Vector((0, 0, 1.2)), 4.62, max_yaw=30, max_pitch=40, blend=0.2)  # watching the hat go up
-    data.look_at(frame_of(5.2)[0] + Vector((0.35, -1.4, 0.5)), 5.15, max_yaw=40, blend=0.25)       # at us, hat on: still marching
-    data.expression("determined", 0.0, 0.3)
-    data.expression("surprised", 0.36, 1.0, blend=0.12)
-    data.expression("determined", 1.15, 1.62)
-    data.expression("alarmed", 1.7, 2.3, blend=0.12)
-    data.expression("determined", 2.5, 4.25)
-    data.expression("alarmed", 4.33, 4.7, blend=0.12)
-    data.expression("pleased", 5.18, DUR + 1.0, blend=0.25)
+    data.look_at(frame_of(T_KNOCK + 0.25)[0] + frame_of(T_KNOCK + 0.25)[1] * 0.25 + Vector((0, 0, 1.25)), T_KNOCK + 0.23, max_yaw=30, max_pitch=40, blend=0.2)   # up at the flying hat
+    data.look_at(frame_of(T_CATCH)[3] + frame_of(T_CATCH)[1] * 0.16, T_CATCH - 0.03, max_yaw=35, max_pitch=40, blend=0.22)  # at it in his fist
+    data.look_at(AHEAD(T_CATCH + 0.4), T_CATCH + 0.4, max_yaw=30, blend=0.25)
+    data.look_at(frame_of(S4_TS[1] + 0.4)[0] + Vector((0.2, -1.4, 0.55)), S4_TS[1] + 0.4, max_yaw=40, blend=0.25)        # a glance at us: really?
+    data.look_at(AHEAD(S4_TS[2] + 0.35), S4_TS[2] + 0.3, max_yaw=30, blend=0.25)
+    data.look_at(frame_of(S4_TS[4] + 0.1)[0] + Vector((0.5, -1.4, 0.6)), S4_TS[4], max_yaw=40, blend=0.25)         # mid-jog, at us again: still going
+    data.look_at(AHEAD(S4_TS[5] + 0.15), S4_TS[5] + 0.1, max_yaw=30, blend=0.25)
+    data.look_at(frame_of(T_TOSS0 + 0.2)[0] + frame_of(T_TOSS0 + 0.2)[1] * 0.25 + Vector((0, 0, 1.2)), T_TOSS0 + 0.2, max_yaw=30, max_pitch=40, blend=0.2)  # watching the hat go up
+    data.look_at(frame_of(T_LAND)[0] + Vector((0.35, -1.4, 0.5)), T_LAND + 0.01, max_yaw=40, blend=0.22)       # at us, hat on: still marching
+    data.expression("determined", 0.0, T_KNOCK - 0.02)
+    data.expression("surprised", T_KNOCK + 0.04, T_CATCH + 0.02, blend=0.12)
+    data.expression("determined", T_CATCH + 0.15, S4_TS[1] + 0.02)
+    data.expression("alarmed", S4_TS[1] + 0.08, S4_TS[2] - 0.05, blend=0.12)
+    data.expression("determined", S4_TS[2] + 0.12, S4_TS[6] - 0.23)
+    data.expression("alarmed", S4_TS[6] - 0.15, T_REL - 0.04, blend=0.12)
+    data.expression("pleased", T_LAND + 0.04, DUR + 1.0, blend=0.25)
     data.finish()
 
     # ---- the hat: worn, blown off, caught, carried, flipped back on
@@ -3229,8 +3253,8 @@ def shot3():
             (T_C1, 0.085, 0.035, 33, 12), (T_IN, 0.092, 0.035, 35, 13), (T_TUG0 + 0.45 * (T_TUG1 - T_TUG0), 0.08, 0.045, 27, 10),
             (T_TUG1, 0.088, 0.04, 31, 12), (T_TUG1 + 0.4 * (T_H1 - T_TUG1), 0.06, 0.035, 8, 2),
             (T_H1, 0.045, 0.035, -6, -4), (T_POP, 0.07, 0.07, -12, -6),
-            (T_POP + 0.55 * (T_SIT - T_POP), 0.16, 0.11, -12, -6), (T_SIT, 0.19, 0.12, 6, 2), (T_SIT + 0.12, 0.183, 0.12, 2, 0),
-            (T_SIT + 0.3, 0.19, 0.12, 12, 4), (D, 0.19, 0.12, 13, 5))
+            (T_POP + 0.55 * (T_SIT - T_POP), 0.16, 0.11, -12, -6), (T_SIT, 0.19, 0.12, 6, 2),
+            (T_SIT + 0.06 * D, 0.19, 0.12, 12, 4), (D, 0.19, 0.12, 13, 5))
     for t, drop, back, sp, ch in body:
         w = Dp + Rz @ Vector((0, back, 0))
         data.arm.location = (w.x, w.y, -drop); data.arm.keyframe_insert("location", frame=F(t))
@@ -3260,7 +3284,7 @@ def shot3():
         if t < T_SIT:
             sh = 0.004 * math.sin(2 * math.pi * 7 * (t - T_TUG1)) * math.sin(math.pi * seg(t, T_TUG1, T_H1)) if t < T_H1 else 0.0
             return B(t) + OFF(t) + Vector((0, 0, sh))
-        return B(t) + OFF(T_SIT) + Vector((0, 0, 0.012 * math.sin(math.pi * min(1.0, (t - T_SIT) / 0.6))))
+        return B(t) + OFF(T_SIT) + Vector((0, 0, 0.012 * math.sin(math.pi * min(1.0, (t - T_SIT) / (0.12 * D)))))
     def q_l(t):
         if t < T_TUG1: return Q0
         if t < T_H1: return Q0.slerp(Q_H1, seg(t, T_TUG1, T_H1))
@@ -3319,8 +3343,8 @@ def shot3():
     data.look_at(C2, T_GL + 0.2, max_yaw=40, max_pitch=40)
     data.idle(0.0, T_C0)
     data.expression("worried", 0.0, T_S)
-    data.expression("surprised", T_S + 0.9, T_C0 + 0.3)
-    data.expression("determined", T_C0 + 0.4, T_POP - 0.05)
+    data.expression("surprised", T_C0 - 0.04 * D, T_C0 + 0.06 * D)
+    data.expression("determined", T_C0 + 0.08 * D, T_POP - 0.01 * D)
     data.expression("surprised", T_POP, T_GL)
     data.expression("happy", T_GL + 0.1, D + 1.0, blend=0.2)
     data.blink(T_C0 + 0.2)
@@ -3871,18 +3895,19 @@ def shot5():
     SK.bloom()
     truck = ranger_truck("ranger truck", (0.0, 0.0, 0.0), 0.0)
     puddles, water = s5_puddle()
+    SC = DUR / 6.8                         # every beat time below is a fraction of the voiced window (6.8 s when first timed)
     T_HIT = 0.3 * DUR                      # the bolt
-    T_FULL = T_HIT + 1.3                   # the charge has the whole shell
+    T_FULL = T_HIT + 1.3 * SC                   # the charge has the whole shell
     T_LEAP = 0.55 * DUR                    # it leaps off the bumper
-    T_LEAN = 4.5                           # he leans over to his window
-    T_K1, T_K2 = 5.0, 5.36                 # and knocks on the glass at us, twice
-    T_PALMS = 5.85                         # then both palms out: see?
-    T_FADE = 5.6                           # while the last of the charge drains off the shell
+    T_LEAN = 0.662 * DUR                   # he leans over to his window
+    T_K1 = 0.735 * DUR; T_K2 = T_K1 + 0.4   # and knocks on the glass at us, twice (a rap keeps its own pace)
+    T_PALMS = T_K2 + 0.5                  # then both palms out: see?
+    T_FADE = 0.82 * DUR                    # while the last of the charge drains off the shell
     strikes = [T_HIT, T_HIT + 0.33]
     s5_roof_bolt(strikes, tuple(reversed(s5_quarter(48, 3.55, -0.62))) + (64,))
     flash = lambda t: SK.flash_level(t, strikes)
     s5_flash_light(strikes, 6000.0, (-1.5, -3.2, 4.2))
-    for k, (x, t0) in enumerate(((9.0, 1.2), (6.5, T_LEAP + 0.9), (-3.0, DUR - 0.9))):   # strikes in the hills all round
+    for k, (x, t0) in enumerate(((9.0, 0.176 * DUR), (6.5, T_LEAP + 0.9 * SC), (-3.0, DUR - 0.9 * SC))):   # strikes in the hills all round
         fb = SK.bolt(f"s5 far bolt {k}", (x + 1.5, 26.0 - 8.0 * (k == 0), 14.0), (x, 24.0 - 8.0 * (k == 0), 0.0), seed=900 + 31 * k, branches=4, width=0.05, glow=4.0)
         SK.strike(fb, [t0], NF, light_at=Vector((x, 18.0, 6.0)), energy=9000.0)
     sparks, spark_lights = s5_sparks(T_HIT, t_fade=T_FADE)
@@ -3890,15 +3915,14 @@ def shot5():
     pane = s5_door_glass(truck)
     KN = Vector((-0.02, -0.592, 0.8))     # where his knuckles meet the pane
     knock_marks = s5_knock_marks([T_K1, T_K2], KN)
-    leap_t = [[T_LEAP, T_LEAP + 0.62, T_LEAP + 1.5, T_LEAP + 2.5], [T_LEAP + 0.25, T_LEAP + 1.05, T_LEAP + 2.0, T_LEAP + 2.85],
-              [T_LEAP + 0.42, T_LEAP + 1.3, T_LEAP + 2.3], [T_LEAP + 0.8, T_LEAP + 1.75, T_LEAP + 2.7]]
+    leap_t = [[T_LEAP + o * SC for o in os_] for os_ in ((0.0, 0.62, 1.5, 2.5), (0.25, 1.05, 2.0, 2.85), (0.42, 1.3, 2.3), (0.8, 1.75, 2.7))]
     arcs, rings, all_leaps = s5_leaps(leap_t)
     em = water.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
     for f in range(1, NF + 1):      # the puddle lights up blue under every arc
         em.default_value = 2.5 * SK.flash_level((f - 1) / FPS, all_leaps); em.keyframe_insert("default_value", frame=f)
     # the arrival: he RUNS in across the wet gravel from the lake trail behind the truck, catches the door's back edge
     # and yanks it open, scrambles up into the cab past it, and the door slams shut behind him
-    T_RUN = 1.0; T_OPEN = 1.26; T_IN = 1.64; T_SLAM = 1.82
+    T_RUN = 0.147 * DUR; T_OPEN = T_RUN + 0.26; T_IN = T_OPEN + 0.38; T_SLAM = T_IN + 0.18   # the yank and scramble keep their pace
     door = truck["door"]
     def door_ang(t):
         if t < T_RUN - 0.05: return 0.0
@@ -3918,7 +3942,7 @@ def shot5():
     off_f = acts._shoulder(data, far_s) - Vector(data.arm.location)
     seat = Vector((0.03, S5_DY, S5_Z0))
     shN = seat + off_n
-    data.place(2.1, -0.98, -96); bpy.context.view_layer.update()
+    data.place(0.58 + 1.52 * T_RUN, -0.98, -96); bpy.context.view_layer.update()   # the run keeps its speed: a shorter window starts him nearer
     if "ranger_hat" in globals(): ranger_hat(data)
     data.walk_to((0.58, -0.82), 0.0, T_RUN, step=0.27, lift=0.03, lean=10.0, ramp=0.22)
     run_at = {f: Vector(data._obj_loc((f - 1) / FPS)[0]) for f in range(1, F(T_RUN) + 1)}
@@ -3942,13 +3966,13 @@ def shot5():
     grip_n = wc + Vector((0.02, -0.068, 0.03)); grip_f = wc + Vector((0.02, 0.068, 0.03))
     # the lens: following him in from the side, then round to the front quarter, through the open window: the bumper,
     # the puddle and the black tyre in the frame's lower left, Data at the wheel, the sky over the cab for the bolt
-    C0, L0 = Vector((1.3, -4.3, 0.62)), Vector((1.85, -0.9, 0.62))
+    X0 = 0.58 + 1.52 * T_RUN; C0, L0 = Vector((X0 - 0.8, -4.3, 0.62)), Vector((X0 - 0.25, -0.9, 0.62))
     Cr, Lr = Vector((0.75, -4.25, 0.62)), Vector((0.4, -0.95, 0.66))
     L1, C1 = s5_quarter(48, 3.55, -0.62)
     L2 = Vector((-0.18, -0.26, 0.9)); C2 = L2 + (Vector((-0.7, -2.42, 0.98)) - L2) * 1.3
     C3 = C2 + (L2 - C2) * 0.07
-    cpos = s5_spline([(0.0, C0), (T_RUN + 0.1, Cr), (T_HIT - 0.1, C1), (T_LEAP + 0.6, C1 + Vector((0.06, 0.09, 0.02))), (T_K1 - 0.1, C2), (DUR, C3)])
-    clook = s5_spline([(0.0, L0), (T_RUN + 0.1, Lr), (T_HIT - 0.1, L1), (T_LEAP + 0.6, L1), (T_K1 - 0.1, L2), (DUR, L2)])
+    cpos = s5_spline([(0.0, C0), (T_RUN + 0.1, Cr), (T_HIT - 0.1, C1), (T_LEAP + 0.8 * SC, C1 + Vector((0.06, 0.09, 0.02))), (T_K1 - 0.1, C2), (DUR, C3)])
+    clook = s5_spline([(0.0, L0), (T_RUN + 0.1, Lr), (T_HIT - 0.1, L1), (T_LEAP + 0.8 * SC, L1), (T_K1 - 0.1, L2), (DUR, L2)])
     # hands: the far one catches the door's edge and yanks it open; the near one is flung back at the door as he lands
     # and goes on to the wheel; the far one takes the wheel; then the near hand comes up in a thumbs up and points at us
     fw = data.forward(math.radians(-90)); side_out = Vector((0, -1, 0))
@@ -4010,7 +4034,7 @@ def shot5():
                         ("the bolt hits the roof and the struck shell lights up", hero, T_HIT, T_HIT + 1.5, {"hero": True}),
                         ("sparks race over the whole metal body around him", sparks, T_HIT + 0.6, T_LEAP, {"whole": False}),
                         ("they leap off the bumper into the puddle while the tyres stay dark", lambda: arcs + puddles[:1] + [truck["bumper"]] + truck["tyres"][:1],
-                         T_LEAP, T_LEAP + 1.6, {"whole": False}),
+                         T_LEAP, T_LEAP + 1.0 * SC, {"whole": False}),
                         ("untouched inside, he knocks on his window at us and spreads his palms: see?", [pane] + knock_marks, T_K1, DUR, {"whole": False})])
 
 
