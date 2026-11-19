@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261118 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261118.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "credential_dead_groq",
         "severity": "critical",
         "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-18T21:20:55+00:00).",
@@ -4418,8 +4424,8 @@
     }
   },
   "recent_commits": [
-    "db2d697 2026-11-19 claim: mailbox verdicts 2026-11-19T04:53Z [skip ci]",
-    "d8101fb 2026-11-19 claim: mailbox verdicts 2026-11-19T03:47Z [skip ci]"
+    "01d5af2 2026-11-19 explainer: update posted log + analytics [skip ci]",
+    "829cd79 2026-11-19 claim: mailbox verdicts 2026-11-19T13:50Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4474,11 +4480,12 @@
         "2026-11-16": 6,
         "2026-11-17": 1,
         "2026-11-18": 5,
-        "2026-11-19": 1
+        "2026-11-19": 3,
+        "2026-11-20": 2
       },
-      "total_posted": 567,
-      "attempted": 1470,
-      "rejected_or_pending": 903
+      "total_posted": 571,
+      "attempted": 1489,
+      "rejected_or_pending": 918
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4496,59 +4503,59 @@
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 12.25,
-          "views": 1156
-        },
-        {
-          "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
-          "vph": 9.62,
-          "views": 95
+          "vph": 10.78,
+          "views": 1158
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 8.23,
-          "views": 1027
+          "vph": 7.46,
+          "views": 1028
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 7.88,
+          "vph": 6.98,
           "views": 798
         },
         {
+          "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
+          "vph": 6.22,
+          "views": 143
+        },
+        {
           "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
-          "vph": 7.4,
-          "views": 169
+          "vph": 4.89,
+          "views": 176
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 128,
+      "videos": 130,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 2.94,
-          "views": 1909
+          "vph": 2.86,
+          "views": 1910
         },
         {
           "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
-          "vph": 2.58,
+          "vph": 1.54,
           "views": 68
         },
         {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.55,
-          "views": 78
+          "vph": 1.42,
+          "views": 97
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.37,
-          "views": 193
+          "vph": 1.26,
+          "views": 199
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.17,
-          "views": 534
+          "vph": 1.13,
+          "views": 537
         }
       ],
       "full_data": "state/analytics_third/latest.json"
