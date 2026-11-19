@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "feet-are-getting-bigger__9e6def1c",
+  "slug": "feet-are-getting-bigger",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "British Feet Grew Two Shoe Sizes In 40 Years",
+  "hook": "Modern shoes are fitting feet that became longer and wider.",
+  "closing": "Measure before buying because the size you remember may no longer fit your feet.",
+  "question": "Has your shoe size changed?",
+  "segments": [
+    {
+      "topic": "British Feet Length",
+      "say": "Average British men's feet grew two shoe sizes. Modern shoppers need a larger fit than the previous generation."
+    },
+    {
+      "topic": "British Feet Width",
+      "say": "67 percent of British women report wider feet in adulthood. The change affects width as well as length."
+    },
+    {
+      "topic": "British Feet Cause",
+      "say": "66 percent of adults in England are overweight or obese. More body weight helps explain why feet spread."
+    }
+  ]
+}
