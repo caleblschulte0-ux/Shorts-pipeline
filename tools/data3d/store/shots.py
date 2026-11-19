@@ -157,7 +157,8 @@ def blink_red(kiosks, t_on, t_off, rate=2.5, alarm=False):
             r = kk["root"]; ld = bpy.data.lights.new(f"alarm {i}", 'POINT'); ld.color = (1.0, 0.12, 0.08); ld.shadow_soft_size = 0.15
             o = bpy.data.objects.new(f"alarm {i}", ld); o.location = (r.location.x, r.location.y - 0.35, 1.05); bpy.context.collection.objects.link(o)
             for f in range(1, NF + 1):
-                t = (f - 1) / FPS; ld.energy = (11.0 if int((t - t_on) * rate + 0.5 * i) % 2 == 0 else 1.5) if on(t) else 0.0   # light FROM each machine, staggered down the row: not a red filter on the frame; ld.keyframe_insert("energy", frame=f)
+                t = (f - 1) / FPS; ld.energy = (11.0 if int((t - t_on) * rate + 0.5 * i) % 2 == 0 else 1.5) if on(t) else 0.0   # light FROM each machine, staggered down the row: not a red filter on the frame
+                ld.keyframe_insert("energy", frame=f)
     for name, red, dim in (("lane lamp", (1.0, 0.08, 0.05, 1.0), (0.25, 0.02, 0.01, 1.0)), ("terminal screen", (1.0, 0.25, 0.2, 1.0), (0.55, 0.12, 0.1, 1.0))):
         m = bpy.data.materials.get(name)
         if not (m and m.use_nodes): continue
@@ -171,7 +172,8 @@ def blink_red(kiosks, t_on, t_off, rate=2.5, alarm=False):
         nt = sm.node_tree; b = nt.nodes.get("Principled BSDF")
         es = b.inputs["Emission Strength"]                       # a hard pulse between two REDS: bright, then dim
         for f in range(1, NF + 1):
-            t = (f - 1) / FPS; es.default_value = (2.8 if ph(t) else 0.2) if on(t) else 0.9   # 11-12 panel: 2.4/0.9 read as a steady red; ON, then nearly OFF; es.keyframe_insert("default_value", frame=f)
+            t = (f - 1) / FPS; es.default_value = (2.8 if ph(t) else 0.2) if on(t) else 0.9   # 11-12 panel: 2.4/0.9 read as a steady red; ON, then nearly OFF
+            es.keyframe_insert("default_value", frame=f)
         for kp in (fc for fc in (nt.animation_data.action.fcurves if nt.animation_data and hasattr(nt.animation_data.action, "fcurves") else [])):
             for k_ in kp.keyframe_points: k_.interpolation = 'CONSTANT'
 

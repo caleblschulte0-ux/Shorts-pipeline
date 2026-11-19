@@ -167,8 +167,12 @@ class Data:
         # the mouth PRESSED, not smiling: at smile 0.15 over his resting smile 'determined' read as pleased (face lint, 11-14)
         'determined': dict(smile=0.0, open=0.0, oh=0.0, brow=0.12, lid=0.5, mad=0.75, squint=0.55, frown=0.45),
         'sad': dict(smile=0.0, open=0.0, oh=0.0, brow=0.0, lid=0.7, frown=0.8, worry=0.8),          # brows not raised, lids heavy, the mouth down
+        # OUTRAGED (11-19 judge, twice: "his outraged look reads as sad or dazed, flat brows, no anger"): no face here
+        # was ANGRY. Brows slammed down hard in the middle, a hard squint, the mouth open and turned down: a shout.
+        # (an open, turned-down mouth read as crying: the shout is a wide flat grimace under glaring lids)
+        'angry': dict(smile=0.0, open=0.28, oh=0.0, brow=0.0, lid=0.62, mad=1.0, squint=0.9, frown=0.75),
     }
-    NOT_SMILING = ('worried', 'alarmed', 'surprised', 'sad', 'wry', 'determined')   # store/facelint.py holds their windows
+    NOT_SMILING = ('worried', 'alarmed', 'surprised', 'sad', 'wry', 'determined', 'angry')   # store/facelint.py holds their windows
 
     def __init__(self, sc):
         self.sc = sc; self._end = 0.0; self._ik_last = {}
@@ -1100,6 +1104,8 @@ class Data:
         'worried':    dict(spine=(4, 0, 0), chest=(3, 0, 0), neck=(8, 0, 0), head=(6, 5, 0), clav=-12, ears=(20, 14), arms='clasp', face='worried', speed=0.9),
         'determined': dict(spine=(6, 0, 0), chest=(4, 0, 0), neck=(4, 0, 0), head=(6, 0, 0), clav=-4, ears=(28, -4), arms='fists', face='determined', speed=1.2),
         'wry':        dict(spine=(0, 0, 3), chest=(0, 0, 2), neck=(4, 10, 0), head=(2, 10, 0), clav=-8, ears=(8, 18), arms='shrug', face='wry', speed=0.9),
+        # outrage is in the BODY too: he leans in at us, chin down, shoulders up, ears pinned back, fists
+        'angry':      dict(spine=(8, 0, 0), chest=(5, 0, 0), neck=(2, 0, 0), head=(9, 0, 0), clav=-12, ears=(38, -8), arms='fists', face='angry', speed=1.6),
     }
     ARMS = {   # FK arm poses per side sign sg (L = -1): (arm, fore, hand)
         'hang':  lambda sg: ((6, 0, sg * 3), (-10, 0, 0), (0, 0, 0)),

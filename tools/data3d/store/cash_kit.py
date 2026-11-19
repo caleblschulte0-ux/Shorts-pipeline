@@ -144,9 +144,23 @@ def price_balloon(name, loc, s=1.0, yaw=0.0):
     red = _mat("tag balloon", "#D93A2B", rough=0.25, emit=0.0)
     white = _mat("tag hole", "#F4F1EA", rough=0.5)
     zc = 0.15 * s
-    K.box(name + " body", (0.03 * s, 0, zc), (0.2 * s, 0.065 * s, 0.21 * s), red, bev=0.03 * s, parent=root)
-    pt = K.box(name + " point", (-0.07 * s, 0, zc), (0.13 * s, 0.062 * s, 0.13 * s), red, bev=0.028 * s, parent=root)
-    pt.rotation_euler = (0, math.pi / 4, 0)
+    # ONE puffy pillow in the outline of a shop tag (11-19 judge: a box and a turned box "read as two red tags stacked
+    # on top of each other, like duplicated geometry"): the outline extruded, bevelled and subdivided
+    import bmesh
+    me = bpy.data.meshes.new(name + " pillow"); bm = bmesh.new()
+    outline = [(0.13, -0.105), (0.13, 0.105), (-0.045, 0.105), (-0.15, 0.0), (-0.045, -0.105)]
+    for y in (-0.0325, 0.0325):
+        for x, z in outline: bm.verts.new((x * s, y * s, zc + z * s))
+    bm.verts.ensure_lookup_table(); n = len(outline); V = bm.verts
+    bm.faces.new([V[i] for i in range(n)][::-1]); bm.faces.new([V[n + i] for i in range(n)])
+    for i in range(n):
+        j = (i + 1) % n; bm.faces.new([V[i], V[j], V[n + j], V[n + i]])
+    bm.normal_update(); bm.to_mesh(me); bm.free()
+    body = bpy.data.objects.new(name + " body", me); bpy.context.collection.objects.link(body); body.parent = root
+    me.materials.append(red)
+    bv = body.modifiers.new("puff", 'BEVEL'); bv.width = 0.028 * s; bv.segments = 4; bv.limit_method = 'NONE'
+    sub = body.modifiers.new("smooth", 'SUBSURF'); sub.levels = 2; sub.render_levels = 2
+    for pg in me.polygons: pg.use_smooth = True
     # a brass GROMMET, not a white ring round a dark hole (that read as an eye, and the tag as a fish: 11-18 judge)
     K.cyl(name + " grommet", (-0.105 * s, -0.033 * s, zc), 0.014 * s, 0.004, _mat("tag grommet", "#C9A443", rough=0.3, metal=0.9), rot=(math.pi / 2, 0, 0), v=32, bev=0.001, parent=root)
     K.cyl(name + " grommet in", (-0.105 * s, -0.035 * s, zc), 0.008 * s, 0.004, red, rot=(math.pi / 2, 0, 0), v=24, bev=0, parent=root)
@@ -303,7 +317,7 @@ def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None, glass_front=F
     return root, fill, Vector((0, 0, h))
 
 
-def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075, knob=0.04, post_dx=0.0):
+def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075, knob=0.04, post_dx=0.0, cleat_col="#E8B623"):
     """a steep cleated conveyor belt from a (its foot) to b (its head), on two steel stringers with legs, a crank
     WHEEL (returned) standing at its foot on the camera side (-Y), a knob on its rim. The cleats are returned with
     the belt path so a shot can run them up the belt. Returns (root, wheel, cleats, belt fn(u)->world, wheel radius)."""
@@ -346,7 +360,7 @@ def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075, knob=0.04, post_
     n_ = Vector((0, 0, 1)) - up * up.z; n_.normalize()       # the belt's own "up", for the cleats
     cl = []
     for k in range(cleats):
-        o = K.box(name + f" cleat {k}", (0, 0, -5), (0.012, w * 0.95, 0.022), yel, bev=0.002); o.rotation_euler = rot; cl.append(o)
+        o = K.box(name + f" cleat {k}", (0, 0, -5), (0.012, w * 0.95, 0.022), _mat(name + " cleat", cleat_col, rough=0.4, metal=0.5), bev=0.002); o.rotation_euler = rot; cl.append(o)
     belt_fn = lambda u: a.lerp(b, u) + n_ * 0.018
     return root, wheel, cl, belt_fn, WR
 

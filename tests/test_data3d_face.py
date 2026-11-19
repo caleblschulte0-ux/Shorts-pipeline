@@ -84,7 +84,7 @@ def test_the_rig_has_the_one_sided_controls_without_touching_his_shape():
 
 
 def test_the_non_smiling_faces_are_the_operators_list():
-    assert set(NOT_SMILING) == {"worried", "alarmed", "surprised", "sad", "wry", "determined"}
+    assert set(NOT_SMILING) == {"worried", "alarmed", "surprised", "sad", "wry", "determined", "angry"}
     for k in NOT_SMILING:
         assert EXPR[k].get("smile", 0) <= FL.SMILE_MAX / 2 and EXPR[k].get("grin", 0) == 0, k
 

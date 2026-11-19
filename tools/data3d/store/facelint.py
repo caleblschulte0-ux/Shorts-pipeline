@@ -4,7 +4,7 @@ smile; the judge called it "the opposite emotion"). character.expression() now c
 new face's window (_clear_face); this check catches the whole class, whatever keyed the smile back in.
 
 shots.py runs check() on every shot beside twitch, after data.finish(), on what renders. For every expression in
-Data.NOT_SMILING (worried, alarmed, surprised, sad, wry, determined) it takes the frames that face OWNS and HOLDS (from
+Data.NOT_SMILING (worried, alarmed, surprised, sad, wry, determined, angry) it takes the frames that face OWNS and HOLDS (from
 SETTLE_F frames after it arrives to its t1, or the end of the shot; frames a later expression() took over are that
 one's) and fails the shot when, on any of them:
   - the 'smile' or 'grin' shape key is above SMILE_MAX, or
