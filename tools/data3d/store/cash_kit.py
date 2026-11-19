@@ -307,7 +307,7 @@ def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None, glass_front=F
               bev=0.002, parent=root)
     K.box(name + " rim", (0, -d / 2 + 0.002, h - 0.008), (w + 0.006, 0.008, 0.016), brass, bev=0.002, parent=root)
     K.box(name + " band", (0, -d / 2 - 0.001, h * 0.35), (w + 0.004, 0.004, 0.02), brass, bev=0.001, parent=root)
-    K.text(name + " label", label, (0, -d / 2 - 0.002, h * 0.62), w * 0.24, (math.pi / 2, 0, 0), brass, extrude=0.002, parent=root)
+    if label: K.text(name + " label", label, (0, -d / 2 - 0.002, h * 0.62), w * 0.24, (math.pi / 2, 0, 0), brass, extrude=0.002, parent=root)
     if sub: K.text(name + " sub", sub, (0, -d / 2 - 0.002, h * 0.45), w * 0.16, (math.pi / 2, 0, 0), brass, extrude=0.0012, parent=root)
     gold = bpy.data.materials.get("coins") or K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12)
     fill = K.empty(name + " fill pivot", (0, 0, t), parent=root)
@@ -346,7 +346,7 @@ def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075, knob=0.04, post_
         if post_dx:                           # a cross arm from the post top to the axle's back end
             K.box(name + " post arm", ((PX + hub.x) / 2, hub.y + PB, hub.z), (abs(post_dx) + 0.02, 0.02, 0.02), steel, bev=0.003, parent=root)
         for dz in (-0.012, 0.012):
-            _curve_tube(name + " chain", [hub + Vector((0, 0.09, dz)), a + Vector((0, (w / 2 + 0.02), dz))], 0.003,
+            _curve_tube(name + " chain", [hub + Vector((0, 0.09, dz)), a + Vector((0, (w / 2 + 0.02), dz))], 0.006,
                         _mat("chain dark", "#2B2B2E", rough=0.4, metal=0.7)).parent = root
     wheel = K.empty(name + " wheel", tuple(hub), parent=root)
     H = tuple(hub)                            # children at ABSOLUTE spots (scene_kit), so the wheel turns about the hub

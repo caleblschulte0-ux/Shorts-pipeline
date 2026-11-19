@@ -5,7 +5,7 @@ The first cut was refused by caaleb as "lazy as shit": five beats of Data centre
 gold card in four of them, watching coins move by themselves. This cut builds every beat new: its own place, its own
 camera, its own machine, and Data DRIVES the machine with his body (store/variety.py holds all of it):
 
-  1 hook      store      medium    he slaps his cash on the counter and a vacuum nozzle sucks it away to a giant gold card
+  1 hook      store      medium    he slaps his cash on the counter and a giant gold card swallows it note by note
   2 the fee   stockroom  profile   he works a floor pump and a red price tag swells like a balloon
   3 $149      kitchen    high      he shovels his family's coin heap into the card users' POINTS sack
   4 uphill    bank       wide      he cranks a conveyor that carries coins from a tin bucket up into a VIP vault
@@ -75,11 +75,10 @@ def glow_keys(m, keys):
 
 # ================================================================ SHOT 1: the hook
 def shot1():
-    """HE SLAPS HIS CASH ON THE COUNTER AND A VACUUM TUBE SUCKS IT AWAY INTO A GIANT GOLD CARD. A LOW lens at the
-    checkout, looking up: Data behind the bagging counter, a fat wad of notes in front of him, a clear pneumatic tube
-    hanging over it with a chrome hood, the tube arcing over to a giant gold rewards card standing at the end of the
-    counter. He slaps the wad down; the notes lift off one after another, up the tube, over and into the card, which
-    flares with every one. He looks at us, outraged."""
+    """HE SLAPS HIS CASH ON THE COUNTER AND A GIANT GOLD CARD SWALLOWS IT, NOTE BY NOTE. Medium, at the checkout:
+    Data behind the bagging counter slaps a fat wad of notes down beside a giant gold rewards card standing on the
+    counter; the notes whip up off the wad one after another, arc over and drop into the slot in the card's top edge,
+    which flashes with every one, until the counter is bare. He flings a hand at the card and glares at us."""
     where = store_set()
     TOP = 0.32
     K.box("bagging counter", (-0.06, -0.22, TOP / 2), (1.06, 0.36, TOP), K.mat("bagging steel", "#9EA6AD", rough=0.28, metal=0.85), bev=0.01)
@@ -89,17 +88,12 @@ def shot1():
     W = Vector((-0.02, -0.1, TOP))
     import props as _P
     notes = XK.wad("cash wad", tuple(W), n=20, mesh=_P.bill_mesh("cash wad note", w=0.15, h=0.068))
-    # the card stands ON THE COUNTER at its end, big and whole, in front of everything (11-19 proof judge, every
-    # panel: on a wall bracket behind him it was "a small poster on the back shelf", half behind his head and the tube)
-    CARD = Vector((-0.36, -0.2, TOP))
+    # the card stands ON THE COUNTER beside the wad, big and whole, and SWALLOWS the notes straight off it: each one
+    # whips up in an arc and down into its slot. No tube, no nozzle (11-19, three rounds: a tube and nozzle read as
+    # "a coiled horn and a red cone", hid the card's end, and the notes inside were black flecks)
+    CARD = Vector((-0.31, -0.2, TOP))
     card, glow, slot = XK.giant_card("giant card", tuple(CARD), w=0.24, h=0.4)
     SLOT = CARD + slot
-    # the nozzle LIES ON ITS SIDE on the counter, its mouth at the wad; the tube makes one low arch, wholly inside
-    # the frame, and drops into the card's top slot (11-19: the arch left the frame and crossed REWARDS)
-    HOOD = Vector((W.x - 0.16, W.y, TOP + 0.075))
-    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((-0.03, 0.0, 0.16)), Vector((-0.27, -0.17, TOP + 0.58)),
-                                                 SLOT + Vector((0.0, 0, 0.15)), SLOT + Vector((0, 0, 0.03))],
-                                  r=0.045, mouth=(1, 0, -0.15), flare=1.7)
     # it OPENS ON THE SLAP: his hand comes down with the wad in it inside the first stills (11-19: the wad was already
     # lying there and his hand slid onto it), the notes bounce, and the sucking starts right after
     T_SLAP = 0.45
@@ -111,7 +105,7 @@ def shot1():
     lift = lambda t: (hp(t) - top) if t < T_SLAP else Vector((0, 0, 0))   # the wad rides in his hand till it lands
     T0, T1 = 0.55, DUR - 0.9
     sched = [T0 + (T1 - T0) * i / (len(notes) - 1) for i in range(len(notes))]
-    UP, RIDE = 0.14, 0.7                                                # several notes in the tube at once: a stream
+    FLY = 0.5                                                           # several notes in the air at once: a stream
     arrivals = []
     for k, (o, ts) in enumerate(zip(reversed(notes), sched)):        # the top note goes first
         p0 = o.location.copy(); r0 = o.rotation_euler.copy()
@@ -120,16 +114,16 @@ def shot1():
             if t < ts:                                                  # in his hand, slapped down, a bounce, then waits
                 b = 0.012 * k / len(notes) * max(0.0, math.sin(min(1.0, (t - T_SLAP) / 0.18) * math.pi)) if t >= T_SLAP else 0.0
                 key_all(o, f, loc=p0 + lift(t) + Vector((0, 0, b)), rot=r0, scale=(1, 1, 1))
-            elif t < ts + UP:                                           # whipped off the wad into the nozzle
-                u = ease((t - ts) / UP); key_all(o, f, loc=p0.lerp(along(0.0), u), rot=(u * 1.4, 0, r0.z), scale=(1, 1, 1))
-            elif t < ts + UP + RIDE:                                    # up the tube and over, fluttering
-                u = (t - ts - UP) / RIDE; q = along(u)
-                key_all(o, f, loc=q, rot=(1.4 + 6.0 * u, 0.6 * math.sin(9 * u), r0.z), scale=(1, 1, 1))
+            elif t < ts + FLY:                                          # whipped up off the wad and down into the slot
+                u = (t - ts) / FLY
+                c = (p0 + SLOT) / 2 + Vector((0, -0.03, 0.26))           # one high arc a phone can follow
+                q = p0 * (1 - u) ** 2 + c * 2 * u * (1 - u) + (SLOT + Vector((0, 0, 0.01))) * u * u
+                key_all(o, f, loc=q, rot=(1.57 * min(1.0, u * 1.6), 0.5 * math.sin(7 * u), r0.z * (1 - u)), scale=(1, 1, 1))
             else:
                 key_all(o, f, loc=SLOT + Vector((0, 0, -0.02)), rot=(1.57, 0, 0), scale=(0, 0, 0))
-        arrivals.append(ts + UP + RIDE)
+        arrivals.append(ts + FLY)
     keys = [(0.0, 0.0)]
-    for ta in arrivals: keys += [(ta - 0.02, 2.0), (ta + 0.04, 60.0), (ta + 0.2, 8.0)]   # a flash a still can catch
+    for ta in arrivals: keys += [(ta - 0.02, 4.0), (ta + 0.04, 120.0), (ta + 0.3, 12.0)]   # a flash a still can catch
     glow_keys(glow, sorted(keys))
     data.look_at(top, 0.0, max_yaw=25, max_pitch=25, blend=0.0)
     data.look_at(CARD + Vector((0, 0, 0.3)), 1.0, max_yaw=35, max_pitch=25)
@@ -144,7 +138,7 @@ def shot1():
     camera(Vector((-0.15, -1.32, 0.76)), Vector((-0.15, 0.0, 0.6)), Vector((-0.14, -1.24, 0.75)), Vector((-0.14, 0.0, 0.6)),
            DUR, (-0.14, -0.1, 0.55), lens=30, fstop=6.5)
     return dict(**where, data=data, rest=1, grips=(),
-                conseq=[("his cash is sucked up the tube and into the giant gold card", lambda: meshes(notes) + meshes([tube, card]), T0 + 0.2, DUR,
+                conseq=[("his cash flies off the counter into the giant gold card", lambda: meshes(notes) + meshes([card]), T0 + 0.2, DUR,
                          {"hero": True, "moves": lambda: meshes(notes)})])
 
 
@@ -243,11 +237,14 @@ def shot3():
     MOUTH = SACK + mouth
     inside = bpy.data.objects["points sack gold inside"]                # the sack starts empty and fills scoop by scoop
     IS = inside.scale.copy()
+    sheap = XK.coin_heap("sack coins", tuple(MOUTH + Vector((0, 0, -0.005))), r=0.085, h=0.07, n=70, seed=5)   # LOOSE COINS heaping up in its mouth
     shov, grip_l, mid_l = XK.shovel("coal shovel", length=0.42)
     GL = grip_l.z
     SCOOPS = [0.5, 2.0, 3.5]
     DIG, LIFT, DUMP, BACK = 0.35, 0.45, 0.3, 0.4
-    G_DIG = Vector((-0.01, 0.03, 0.42)); G_DUMP = Vector((0.0, 0.03, 0.45))      # the D-grip, by his chest (his reach is 0.19 m)
+    # the grip TRAVELS: low and out over the heap to dig, up and across to the sack to dump (11-19 proof: "his shovel
+    # hand stays parked at his chest while the blade swings around it ... a puppet")
+    G_DIG = Vector((-0.07, 0.05, 0.36)); G_DUMP = Vector((0.06, 0.04, 0.47))      # the D-grip, by his chest (his reach is 0.19 m)
     U_DIG = (G_DIG - (HEAP + Vector((0.04, 0.06, 0.03)))).normalized()
     U_DUMP = (G_DUMP - (MOUTH + Vector((-0.03, 0.03, 0.15)))).normalized()   # the blade tips ABOVE the mouth, not through the sack (11-19)
     def phase(t):
@@ -283,7 +280,7 @@ def shot3():
         t = (f - 1) / FPS
         on = any(ts + DIG * 0.7 <= t < ts + DIG + LIFT + DUMP * 0.4 for ts in SCOOPS)
         load.scale = (1, 1, 1) if on else (0, 0, 0); load.keyframe_insert("scale", frame=f)
-    proto = K.cyl("sack coin", (0, 0, -5), 0.022, 0.005, gold, v=20, bev=0.001)
+    proto = K.cyl("sack coin", (0, 0, -5), 0.03, 0.006, gold, v=20, bev=0.001)   # big enough to see in flight
     rnd = random.Random(3)
     for k, ts in enumerate(SCOOPS):
         a = ts + DIG + LIFT
@@ -304,7 +301,7 @@ def shot3():
         h = 1.0 - 0.3 * n
         prev = 1.0 - 0.3 * max(0, n - 1)
         if n and t < SCOOPS[n - 1] + DIG: h = prev + (h - prev) * ease((t - SCOOPS[n - 1] - DIG * 0.7) / (DIG * 0.3))
-        heap.scale = (0.5 + 0.5 * h, 0.5 + 0.5 * h, h)                   # half its size by the last scoop, not a flattened ring
+        hs = 0.3 + 0.7 * h; heap.scale = (hs, hs, hs)                    # a smaller PILE each scoop, never a flat gold plate
         heap.keyframe_insert("scale", frame=f)
         m = sum(1 for ts in SCOOPS if t >= ts + DIG + LIFT + 0.25)
         b = 1.0 + 0.16 * m
@@ -312,7 +309,8 @@ def shot3():
         if m and t < SCOOPS[m - 1] + DIG + LIFT + 0.55: b = pb_ + (b - pb_) * ease((t - SCOOPS[m - 1] - DIG - LIFT - 0.25) / 0.3)
         sack.scale = (b, b, 1.0 + 0.12 * (b - 1.0) / 0.16); sack.keyframe_insert("scale", frame=f)
         g = (b - 1.0) / 0.48
-        k = 0.05 + 0.95 * g; inside.scale = (IS.x * k, IS.y * k, IS.z * k); inside.keyframe_insert("scale", frame=f)
+        inside.scale = (0, 0, 0); inside.keyframe_insert("scale", frame=f)   # a smooth gold dome read as an egg in a pan
+        k = 0.15 + 0.85 * g; sheap.scale = (k, k, k); sheap.keyframe_insert("scale", frame=f)
         flag.location = HEAP + Vector((-0.09, 0.02, 0.12 * (h - 1.0))); flag.keyframe_insert("location", frame=f)
     data.look_at(US, 0.0, max_yaw=20, blend=0.0)
     data.look_at(HEAP, 0.3, max_yaw=30, max_pitch=14)
@@ -320,13 +318,15 @@ def shot3():
     data.look_at(HEAP, SCOOPS[1], max_yaw=30, max_pitch=14)
     data.look_at(MOUTH, SCOOPS[1] + DIG + 0.1, max_yaw=30, max_pitch=14)
     data.look_at(Vector((0.02, -0.77, 0.9)), DUR - 1.1, max_yaw=20, max_pitch=40)
-    data.idle(0.0, DUR)
+    for f in range(1, NF + 1, 2):                                        # his back bends into the dig and twists to each end
+        t = (f - 1) / FPS; v = phase(t)
+        data._k('spine', t, rot=(10 * (1 - v), 0, 8 - 16 * v)); data._k('chest', t, rot=(4 * (1 - v) - 1.4 * math.sin(2 * math.pi * t / 3.2), 0, 4 - 8 * v))
     data.expression("determined", 0.2, DUR - 1.2)
-    data.expression("sad", DUR - 1.1, DUR + 1.0, blend=0.25)
+    data.expression("sad", DUR - 1.1, DUR + 1.0, blend=0.25)          # (a slumped head from above hides the face)
     data.blink(1.1)
     data.finish()
     # HIGH, but in close over the heap and the sack, so the money reads big in the near frame
-    camera(Vector((0.0, -0.8, 0.82)), Vector((0.0, -0.08, 0.36)), Vector((0.0, -0.76, 0.8)), Vector((0.0, -0.08, 0.36)),
+    camera(Vector((0.0, -0.95, 0.92)), Vector((0.0, -0.05, 0.33)), Vector((0.0, -0.9, 0.9)), Vector((0.0, -0.05, 0.33)),
            DUR, (0.0, -0.15, 0.2), lens=22, fstop=6.0)
     return dict(**where, data=data, rest=1, grips=("coal shovel",),
                 conseq=[("the coin heap shrinks and the POINTS sack bulges, scoop by scoop", lambda: meshes([heap, sack]), SCOOPS[0], DUR, {"hero": True}),
@@ -348,25 +348,25 @@ def shot4():
     data = load_data(); data.place(DX, DY, 0)
     L, R = sides(data)
     HUB = Vector((DX + 0.074, DY - 0.1, 0.42))                          # the wheel square in front of his cranking shoulder                          # a big wheel right under his hand
-    A = Vector((-0.06, -0.04, 0.08)); B = Vector((0.3, 0.02, 0.8))
+    A = Vector((-0.06, -0.04, 0.08)); B = Vector((0.33, 0.02, 0.8))
     belt, wheel, cleats, belt_fn, WR = XK.conveyor("money conveyor", A, B, w=0.11, cleats=12, hub=HUB, WR=0.075, knob=0.06, post_dx=0.1,
                                                        cleat_col="#33373C")   # dark cleats: yellow ones read as "paddles or cups", not coins (11-19)
     BK = Vector((A.x - 0.085, A.y - 0.05, 0.0))
     bucket = XK.tin_bucket("tin bucket", tuple(BK), r=0.09, h=0.1)
     # a stake sign in front of the bucket, big enough to read on a phone
     SG = Vector((BK.x - 0.12, BK.y - 0.14, 0.0))                        # out front of the bucket, clear of the belt foot and his legs
-    K.box("poorest stake", (SG.x, SG.y, 0.07), (0.012, 0.012, 0.14), K.mat("sign wood", "#8A5A34", rough=0.7), bev=0.002)
-    K.box("poorest board", (SG.x, SG.y - 0.008, 0.15), (0.2, 0.01, 0.07), K.mat("poorest card", "#F4EEDF", rough=0.6), bev=0.003)
-    K.text("bucket tag", "POOREST", (SG.x, SG.y - 0.015, 0.15), 0.045, (math.pi / 2, 0, 0), K.mat("tag ink dark", "#2B2B2E", rough=0.5), extrude=0.001)
+    # the label is ON the bucket (11-19: a stake sign in front of it hid the bucket)
+    K.box("poorest board", (BK.x, BK.y - 0.094, 0.055), (0.15, 0.006, 0.05), K.mat("poorest card", "#F4EEDF", rough=0.6), bev=0.002)
+    K.text("bucket tag", "POOREST", (BK.x, BK.y - 0.098, 0.055), 0.034, (math.pi / 2, 0, 0), K.mat("tag ink dark", "#2B2B2E", rough=0.5), extrude=0.001)
     bfill = K.cyl("bucket coins", (BK.x, BK.y, 0.05), 0.078, 0.01, bpy.data.materials.get("coins") or K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12), v=32, bev=0.002)
-    PL = Vector((B.x + 0.07, B.y + 0.03, 0.0))
+    PL = Vector((B.x + 0.05, B.y + 0.03, 0.0))                          # the belt's head right over the vault's mouth
     PH = 0.36                                                           # a lower plinth and a bigger vault: the destination reads
     K.box("vault plinth", (PL.x, PL.y, PH / 2), (0.32, 0.22, PH), K.mat("plinth marble", "#E9E3D8", rough=0.2), bev=0.006)
     ink = K.mat("plinth ink", "#2B2B2E", rough=0.5)
     # the point of the shot is written on the PLINTH, big and below the gold, so the rising fill never covers it (11-19)
     K.text("plinth price", "$750", (PL.x, PL.y - 0.112, PH * 0.66), 0.1, (math.pi / 2, 0, 0), K.mat("plinth gold", "#B8862B", rough=0.3, metal=0.8), extrude=0.002)
     K.text("plinth word", "RICHEST", (PL.x, PL.y - 0.112, PH * 0.36), 0.062, (math.pi / 2, 0, 0), ink, extrude=0.0015)
-    vault, fill, vm = XK.vault("vip vault", (PL.x, PL.y, PH), w=0.28, d=0.18, h=0.32, label="VIP", glass_front=True)
+    vault, fill, vm = XK.vault("vip vault", (PL.x, PL.y, PH), w=0.28, d=0.18, h=0.32, label=None, glass_front=True)
     VM = PL + Vector((0, 0, PH + 0.2))                                # where a coin lands in the vault
     T0, T1 = 0.5, DUR - 0.9
     OMEGA = 2 * math.pi * 0.42                                         # wheel turns per second: a heavy crank (faster turns stutter the arm)
@@ -389,8 +389,8 @@ def shot4():
             c.location = belt_fn(u); c.keyframe_insert("location", frame=f)
     gold = bpy.data.materials.get("coins")
     proto = K.cyl("belt coin", (0, 0, -5), 0.038, 0.009, gold, v=24, bev=0.0015)
-    N = 14
-    starts = [0.02 + 0.13 * i for i in range(N)]                       # belt position at which coin i boards
+    N = 18
+    starts = [-0.62 + 0.13 * i for i in range(N)]                      # already riding at the start: the vault fills from the first second
     coins = []
     for i, s0 in enumerate(starts):
         o = proto.copy(); bpy.context.collection.objects.link(o); coins.append(o)
@@ -419,7 +419,7 @@ def shot4():
     data.look_at(US, DUR * 0.6, max_yaw=25)
     data.idle(0.0, DUR)
     data.expression("determined", 0.2, T1 - 0.3)
-    data.expression("sad", T1 - 0.2, DUR + 1.0, blend=0.25)            # sour: lids down, mouth down
+    data.expression("angry", T1 - 0.2, DUR + 1.0, blend=0.25)          # sour: narrowed eyes, the mouth turned down
     data.blink(2.4)
     data.finish()
     soft_key("bank key", (-0.7, -1.4, 1.4), (0.0, -0.02, 0.45), energy=40, size=40)
@@ -427,7 +427,7 @@ def shot4():
     # WIDE from the left and above, down onto the belt's face: the whole machine runs corner to corner, the bucket at
     # its foot, the vault high on the right, Data turning the wheel (11-18: square-on it was framed like the pump shot;
     # from the right the belt was edge-on, a black line)
-    camera(Vector((-0.34, -1.2, 1.0)), Vector((-0.02, 0.02, 0.5)), Vector((-0.3, -1.14, 0.98)), Vector((-0.02, 0.02, 0.5)),
+    camera(Vector((-0.07, -1.36, 1.04)), Vector((0.02, 0.02, 0.55)), Vector((-0.05, -1.3, 1.02)), Vector((0.02, 0.02, 0.55)),   # wide enough for all of him (11-19: cut by the left edge)
            DUR, (0.0, -0.02, 0.4), lens=24, fstop=8.0)
     return dict(**where, data=data, rest=1, grips=(),
                 conseq=[("coins ride the belt up out of the tin bucket into the VIP vault", lambda: meshes([belt, vault]) + coins, T0 + 0.6, DUR,

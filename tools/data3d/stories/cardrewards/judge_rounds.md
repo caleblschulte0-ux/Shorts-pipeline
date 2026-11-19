@@ -1529,3 +1529,78 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Plumb the hose straight into the tag's neck so the air path from pump to tag is unbroken and easy to follow
 - better: Keep the notice clear of the full-size tag: put the sign higher or further left, or have the tag swell away from it, so 'CARD FEES ADD 2-3% TO ALL PRICES' stays readable at the end
 
+
+## 2026-11-19 04:05Z · storyboard · round 1 · storyboard gate pl6
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 55 | 46, 55, 64 | FAIL |
+| 3 | 74 | 72, 74, 76 | PASS |
+| 4 | 70 | 70, 70, 70 | PASS |
+
+**shot 1** (FAIL, 55, bar 70)
+
+- HARD: CONSEQUENCE, frames 1-3: no note is ever seen going into the REWARDS card. The hose arcs above and behind the card and ends out of sight, and the card never flashes. The notes are only small green flecks inside an opaque black hose (frames 2-3).
+- HARD: NOT THE POINT, frames 1-3: the 'vacuum' is a black-and-red coiled horn behind Data plus a red cone hanging off the edge of the counter, not a nozzle lying on the counter. A stranger would not read it as a vacuum sucking up the cash, and the wad on the counter does not visibly shrink.
+- HARD: CONSEQUENCE, frames 1-3: no note is ever seen going into the REWARDS card. The tube is a loose hoop behind the card and never visibly runs into it, and the card does not flash in any frame.
+- HARD: NOT THE POINT, frames 1-3: from these stills a stranger sees a red hose, a gold sign and some cash. The vacuum sucking the notes away along a path into the card does not read. The notes in the tube (frames 2-3) are dark smudges at the top of the hoop, apart from the wad and the nozzle.
+- problem: The tube is opaque black, not clear, so the notes travelling through it can't be read on a phone.
+- problem: The red nozzle hangs below the counter edge instead of lying on the counter next to the cash.
+- problem: In frame 3 Data's hand drops loose to the nozzle with nothing to do. The slap reads only in frame 1.
+- problem: The gold card hides the end of the hose.
+- better: Lay a clear tube along the counter top from a nozzle right beside the wad into the top of the card, with notes big and green inside it.
+- better: Show the wad visibly thinning frame by frame, and flash the card bright or add a +POINTS pop as each note lands.
+- better: Make Data's outrage bigger at the end: brows down hard and a palm-out gesture at the card while he looks at us.
+
+**shot 3** (PASS, 74, bar 70)
+
+- problem: The sack's open mouth reads as a frying pan with a fried egg (a dark disc with a gold yolk, frame 2), which confuses what the sack is
+- problem: The tops of Data's ears and head are cut by the top edge in frames 1-2
+- problem: The shovel blade is hard to find: a dark grey sliver at the sack's edge in frame 2. The scoop-and-swing action reads weakly
+- problem: The lens is only moderately high, not the HIGH looking-down angle asked for
+- problem: In frame 3 Data looks more blank than sad
+
+**shot 4** (PASS, 70, bar 70)
+
+- problem: Nothing visibly links the crank wheel to the belt, so it doesn't read as the thing driving the conveyor.
+- problem: The POOREST sign stands in front of the bucket and hides most of it. The bucket is barely seen as dented tin.
+- problem: The belt's top end overshoots the vault and no coin is shown dropping in. The vault's fill only shows as a gold block in frame 3.
+- problem: Data's face is turned down and away in frame 1, and his 'sour' look in frame 3 is neutral.
+- problem: The vault is labelled VIP, which competes with $750 RICHEST.
+
+
+## 2026-11-19 04:10Z · proof · round 1 · proof loop pl6
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 3 | 63 | 56, 63, 71 | FAIL |
+| 4 | 52 | 50, 52, 52 | FAIL |
+
+**shot 3** (FAIL, 63, bar 70)
+
+- hard (one judge only): BROKEN/CONSEQUENCE: the coins never leave the blade. They pop up above the sack mouth while the shovel blade is already down on the floor in front of the sack (frames 10, 18, 25-26), so each scoop reads as coins appearing from nowhere instead of arcing off the shovel
+- hard (one judge only): BROKEN: the blade swings down through the front face of the sack instead of lifting over its mouth (frames 14-15, 22-23, 31)
+- problem: The scooping is done by the shovel alone, as if it were glued to his hand. His shovel hand stays parked at his chest the whole shot while the blade swings around it (row 1 f6 to row 4 f1). His shoulders, hips and knees never take part, and his other arm hangs dead. It reads as a puppet, not a person shovelling.
+- problem: The coins inside the sack are a smooth, shiny gold dome (row 3 f3 onward, row 4 all). It reads as a gold lid or a bowl, not a sack filling with coins. The heap ends the same way (row 3 f5 to row 4 f6): a glossy gold plate with a thin ring of coins, not a smaller pile of coins.
+- problem: The coins flying off the blade are small and smeared by motion blur. They show clearly on only about three frames (row 2 f2, row 3 f1-f2). On a phone, the coins arcing into the sack barely registers.
+- problem: The blade mostly scoops at the heap's right edge, right next to the sack. The swing is short and partly hidden behind the sack (row 2 f2, row 3 f2: the blade dips in front of the sack's base). Each scoop has no clear dig, lift and dump.
+- problem: The ending is meant to read 'sad', but his face reads blank or neutral (row 4). His brows were furrowed and angry for the whole shovelling stretch, so the turn into sadness never shows.
+- better: Use two hands on the handle: one at the grip, one partway down. Bend his knees for the dig and turn his torso on each swing. He should visibly lift weight.
+- better: Make the sack fill and the shrinking heap out of loose coins piled up, never a smooth gold surface.
+- better: Make the three scoops bigger and slower, with the dump high over the open sack mouth, so the coin arc is big and sharp in the frame. Fewer frames of blur, more frames where the arc is readable.
+
+**shot 4** (FAIL, 52, bar 70)
+
+- HARD: BROKEN: Data is cut by the left edge of the frame for most of the shot. His left arm, coat side and part of his head are clipped (frames 1-8, 17-20, 25-30).
+- HARD: CONSEQUENCE: the POOREST tin bucket is hidden behind Data's legs and the stake sign. Coins are never clearly seen leaving the bucket. They only show up already on the belt (frames 9-30).
+- HARD: NOT THE POINT: the yellow crank wheel sits flat against Data's chest and reads as a badge or target pinned to his coat, not a crank he is turning. Its link to the belt (a thin rod down to the bucket) can't be read, so the cause is unclear.
+- HARD: BROKEN: Data is cut by the left frame edge for the entire shot. The left side of his head, his glasses and his left arm are cropped in every frame (frames 1-30)
+- HARD: BROKEN: Data is cut by the left frame edge for nearly the whole shot. The side of his head and his left arm or sleeve are clipped in row 1 f1-f8, row 2 f1-f8, row 3 f1-f8 and row 4 f1-f6.
+- problem: The vault's gold rises only in the last ~8 frames, and it is small and hidden behind the VIP box. The payoff of the fill rising is hard to see on a phone.
+- problem: The mitten pokes at the wheel's centre or rim instead of gripping a handle and turning it in a circle. The rotation only reads from the red knob shifting.
+- problem: The POOREST sign is small and sits low at his feet, while $750 RICHEST is the bigger, more readable label. The low end of the idea is underweighted.
+- problem: The sour look at the end (frames 26-30) is close to neutral.
+- better: Turn the set so the machine runs left to right across the frame: bucket bottom left in clear view, the belt rising across the middle, the vault on its plinth up on the right. Put Data beside the crank, not in front of it, with all of him in frame.
+- better: Make the crank a big wheel at his side on its own stand with a clear handle and a visible belt or chain to the conveyor. Have him grip the handle and crank it in full circles, his body putting effort into each turn.
+- better: Make the bucket visibly dented with a big POOREST label, and show the coins thinning out as they leave.
+
