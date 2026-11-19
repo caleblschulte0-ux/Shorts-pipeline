@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "richest-americans-live-14-years-longer__ff249bfc",
+  "slug": "richest-americans-live-14-years-longer",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:22:00Z",
+  "title": "Richest American Men Live 14.6 Years Longer",
+  "hook": "Income now separates entire decades of American life.",
+  "closing": "The widening lifespan gap means prosperity can determine how much life people get.",
+  "question": "What should close this gap?",
+  "segments": [
+    {
+      "topic": "Richest Gap",
+      "say": "Richest American men outlive the poorest by 14.6 years. Income separates more than a decade of life."
+    },
+    {
+      "topic": "American Lifespan",
+      "say": "Average American life expectancy rose 8.6 years. The income gap is larger than decades of nationwide progress."
+    },
+    {
+      "topic": "Richest Gains",
+      "say": "The richest fifth gained 2.3 years of life. The poorest group barely advanced, widening the divide."
+    }
+  ]
+}
