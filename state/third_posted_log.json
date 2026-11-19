@@ -21003,13 +21003,59 @@
       "ts": "2026-11-19T12:24:13.322796+00:00"
     },
     "clip-20261119-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/dinah/clip/InventiveStylishSwanTBCheesePull-bpUxg33iLnxUyEOG",
-      "story_key": null,
-      "streamer": "dinah",
+      "url": "https://youtube.com/shorts/V0MG_uPidts",
       "title": "Dinah Can't Stop Saying What The F*** After Seeing This",
       "kind": "twitch_clip",
-      "ts": "2026-11-19T12:27:13.130733+00:00",
+      "ts": "2026-11-19T12:27:30.662889+00:00",
+      "uploaded_at": "2026-11-19T12:27:30.662905+00:00",
+      "publish_at": "2026-11-19T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261119-dinah-can-t-stop-saying-what-the-f-after-seeing--4f5186f4",
+        "tiktok": "queued for 2026-11-19T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/dinah/clip/InventiveStylishSwanTBCheesePull-bpUxg33iLnxUyEOG",
+      "streamer": "dinah",
+      "series": "chaos",
+      "hook": "Dinah's reaction says it all \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 33601,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 25.0
+      },
+      "director_cut": true
+    },
+    "rejected-perfectcrypticchinchillakappaclaus-ncpm8sjuqmlth2l4": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/PerfectCrypticChinchillaKappaClaus-nCPM8sJuQmLth2l4",
+      "streamer": "jasontheween",
+      "title": "Reset",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-11-19T12:29:23.047372+00:00"
+    },
+    "rejected-crowdedtenacioushorseradishtinyface-fej6eadsjumi2ieg": {
+      "source_url": "https://www.twitch.tv/zloyn/clip/CrowdedTenaciousHorseradishTinyFace-feJ6eaDSJUmi2IEG",
+      "streamer": "zloyn",
+      "title": "\u0433\u0440\u044f\u0437\u044e\u043a\u0430",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Strip club lap dance; age-restrict risk)",
+      "ts": "2026-11-19T12:30:38.725817+00:00"
+    },
+    "clip-20261119-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/EsteemedAlertBoarTTours-qTa7AtR3giDjQF5-",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Gets A Surprise Visit From Mandy After She Fixed His Sink",
+      "kind": "twitch_clip",
+      "ts": "2026-11-19T12:33:22.327730+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
