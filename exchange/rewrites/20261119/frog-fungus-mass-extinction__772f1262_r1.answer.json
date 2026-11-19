@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "frog-fungus-mass-extinction__772f1262_r1",
+  "slug": "frog-fungus-mass-extinction",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "One Fungus Erased 90 Frog Species And Still Spreads",
+  "hook": "A single disease turned amphibian decline into a global extinction crisis.",
+  "closing": "Stopping wildlife disease matters because extinction continues long after the first outbreak.",
+  "question": "Which frog would you protect?",
+  "segments": [
+    {
+      "topic": "Fungus Extinctions",
+      "say": "The fungus erased 90 amphibian species. One pathogen turned population decline into permanent extinction."
+    },
+    {
+      "topic": "Fungus Recovery",
+      "say": "39 percent of affected species are still declining. The crisis continues even after scientists identify the cause."
+    },
+    {
+      "topic": "Fungus Australia",
+      "say": "The fungus hit 40 Australian frog species. Isolation did not protect an entire continent's amphibians."
+    }
+  ]
+}
