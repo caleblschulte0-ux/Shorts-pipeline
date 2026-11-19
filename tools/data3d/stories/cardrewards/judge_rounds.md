@@ -962,3 +962,279 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - problem: The CASH and CARD signs on the post are small, high and behind his head, so the crossroads choice barely registers on a phone
 - problem: For most of the hold the coin floats between his mitts rather than visibly resting on or spinning between his palms
 
+
+## 2026-11-19 02:01Z · storyboard · round 1 · storyboard gate pl3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 54 | 52, 54, 55 | FAIL |
+| 2 | 72 | 60, 72, 74 | PASS |
+| 3 | 58 | 48, 58, 62 | FAIL |
+| 4 | 62 | 60, 62, 64 | FAIL |
+
+**shot 1** (FAIL, 54, bar 70)
+
+- HARD: BROKEN: Data is cut by the right frame edge in frames 1 and 3: his head, ear and glasses run off the side
+- HARD: BROKEN: the top of the clear tube runs off the left edge in all 3 frames, so the path the notes take is cut
+- HARD: CONSEQUENCE: no note is ever seen going into the REWARDS card, and the card never visibly flashes. The only note shown is in the tube in frame 2, and in frame 3 the cash is just gone
+- HARD: CONSEQUENCE, frames 2-3: the notes are never seen going into the REWARDS card. The only note in the tube is a small dark-green blob in frame 2, and the card never visibly flashes. The cash just disappears from the counter between frames 2 and 3.
+- HARD: BROKEN, frames 1-3: Data's head is cut by the right edge of the frame in every frame, and in frame 3 part of his skull and ear are cropped.
+- HARD: CONSEQUENCE, frames 2-3: the notes go up the tube, but the tube curls out of the frame at top-left and never reaches the REWARDS card. No note is seen landing in the card, and the card never visibly flashes.
+- HARD: BROKEN, frames 1-3: the top of the clear tube is cut off by the left frame edge, so the path from the cash to the card is lost.
+- problem: The empty counter top fills the bottom ~45% of every frame while the action is pushed into the top third
+- problem: The red cone reads as a horn or funnel, not as a vacuum nozzle, and it points down at the counter rather than lying beside the wad
+- problem: The slap is not readable: in frame 1 Data's hand only sits near the cash
+- problem: Data's face in frame 3 reads as worried or startled, not outraged
+- better: Raise the counter line and push the camera in, so the wad, the nozzle, the tube and the card fit inside the frame with Data whole and centred behind them
+- better: Shorten the tube into a low arc that is fully in frame and ends visibly inside the top of the card. Make the flash obvious with a bright glow or a +POINTS pop for each note
+- better: Show 2-3 notes in the tube at once, and show the wad visibly thinner frame by frame
+
+**shot 2** (PASS, 72, bar 70)
+
+- hard (one judge only): BODY, frames 1 and 3: Data's hands are held up at his chest and are not on the pump's T-handle, which sits at waist height, so he is not working the pump.
+- hard (one judge only): BODY, frame 2: only one hand is near the handle. The FOR line says both hands grip the T-handle.
+- problem: Only one hand reads on the pump. The 'both hands on the T-handle' grip is not visible, and in frame 3 his hand sits at his chest, above the top of the pump.
+- problem: The hose runs into the base of the cases instead of to the tag, so the pump-to-tag link has to be inferred.
+- problem: In frame 1 the profile glasses float off the front of his face.
+- problem: Data is on the small side at full body on the left. His face is readable, but only just.
+
+**shot 3** (FAIL, 58, bar 70)
+
+- HARD: BODY: Data's hands are not on the shovel. In frames 1 and 3 they are folded at his chest while the shovel stands on its own beside him
+- HARD: CONSEQUENCE: the $149 heap is a tiny cluster that does not shrink across frames 1-3, so the drain is not seen. Only the sack's growth reads
+- HARD: BODY, frames 1 and 3: both hands are held at chest height and are not on the shovel. The shaft ends at his hip and nothing is holding it.
+- HARD: CONSEQUENCE, frames 1-3: the $149 heap doesn't visibly shrink. It is the same small pile in frame 1 and frame 3, so only the sack's growth reads.
+- problem: The heap is tiny, a plate-sized cluster beside the flag, not a heap you shovel from. Its loss can't read on a phone.
+- problem: No coins are seen arcing off the blade. Frame 2 shows a lump on the blade at the sack mouth, nothing in the air.
+- problem: The high lens shows Data from the front, standing behind the props, so the scoop has no visible swing arc.
+- better: Start with a big heap, knee-high to Data, and cut it down to almost nothing by frame 3 so the 'all going into points' story reads at a glance.
+- better: Put both hands on the shovel (one on the D-grip, one on the shaft) for the whole shot, with the blade digging in, lifted and tipped.
+- better: Show 4-6 coins in mid-air between the blade and the sack in the tip frame.
+
+**shot 4** (FAIL, 62, bar 70)
+
+- HARD: BROKEN: the $750 RICHEST label that carries the point is tiny on a phone in frames 1-2, and in frame 3 the rising gold fill covers it
+- HARD: NOT THE POINT: the POOREST source does not read as a bucket of coins. It is a dark gold blob hidden behind the POOREST stick sign, so the 'poorest to richest' transfer does not read
+- HARD: BROKEN, frames 1-3: the POOREST bucket, the source of the whole uphill idea, is hidden behind Data's legs and the sign post and reads as a dark ball. Nobody can see coins leaving a bucket.
+- HARD: BROKEN, frames 2-3: the left side of Data's head is cut by the left edge of the frame.
+- problem: Frame 1: his hand points at the belt instead of gripping the yellow crank wheel. Only frame 3 suggests a hand on the wheel.
+- problem: The coins on the belt look like yellow cleats or arrows, not coins, especially in frame 1.
+- problem: The RICHEST text under $750 is too small to read on a phone.
+- problem: The vault's gold fill reads in frame 3. That's good, but it is the only beat that lands.
+- problem: In frame 3 his expression is closer to blank than sour.
+- better: Move the bucket in front of Data and toward the camera, big and dented, with POOREST on the bucket itself and coins spilling from it onto the foot of the belt.
+- better: Shift the framing right or move Data right so his head is whole. Put both hands on the crank wheel's rim in profile.
+- better: Make the coins round, flat and gold, spaced one per cleat, so 'one by one uphill' reads.
+
+
+## 2026-11-19 02:03Z · proof · round 1 · proof loop pl3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 52 | 38, 52, 56 | FAIL |
+
+**shot 2** (FAIL, 52, bar 70)
+
+- HARD: BODY/CONSEQUENCE: the three hard pump strokes never read. The T-handle and Data's hand stay at about chest height in every frame (1-29), with no visible up-down travel of the plunger, so the tag seems to swell by itself instead of because he pumps. Only one hand is ever seen near the handle, not both.
+- HARD: BROKEN: once the tag swells (about frames 17-29) its right side is cut off by the frame edge, so the payoff prop is cropped for the whole back half of the shot.
+- HARD: BROKEN: the balloon tag reads as two overlapping tags (a second red tag shape sits offset behind the front one, frames 1-29). On a phone it looks like a duplicate or ghost mesh, not one inflating tag.
+- HARD: NOT THE POINT / CONSEQUENCE: the three hard pump strokes never read. Data's hands and the T-handle stay at the same chest height in every frame from 1 to 29, so the tag swells without any visible cause, and the shot looks like a tag growing while Data stands next to a pump
+- HARD: NOT THE POINT: the hose never visibly reaches the tag. In every frame it runs from the pump base into the stack of cases, and only a thin string goes from the cases up to the tag, so the pump-inflates-tag link is not on screen
+- HARD: BROKEN: from about frame 17 to 29 the swollen tag's right edge is cut by the frame edge, and that is the payoff state of the shot
+- HARD: BODY: Data's hand is never on the pump's T-handle in any frame. He holds one floating fist at chest height while the pump rod ends lower, about at his hip, and partly behind his coat. The second hand is never seen gripping the pump (frames 1-29).
+- HARD: CONSEQUENCE: the three hard strokes never show. Data's height, shoulders and arms barely move across the shot and the pump rod never goes visibly up or down, so the tag grows with nothing on screen causing it (frames 1-29, most clearly 9-16 where the tag grows most).
+- HARD: CONSEQUENCE: the pump's hose goes to the stack of cases, not to the tag. Only a thin string links the tag to anything, so nothing shows the tag being inflated (frames 9-29).
+- problem: Data turns to camera around frame 12 of 29 and stays front-facing for the second half, instead of turning on the last stroke. The PROFILE staging is lost and the turn has no beat to land on
+- problem: The tag reads as two overlapping tags rather than one inflated balloon tag, so its silhouette is muddled
+- problem: The wry look is a flat neutral face that reads as blank, not wry
+- problem: 'ADD 2-3% TO ALL PRICES' is small light-grey text and borderline readable on a phone
+- better: Animate three big, clearly separated strokes: the T-handle goes from full up (above Data's head height) to full down with his body bending into it, and the tag swells in a visible jump on each downstroke
+- better: Route the hose from the pump base straight up into the tag's neck as one unbroken, readable line, and tie the tag's string to the case separately
+- better: Keep Data side-on in strict profile for strokes 1-3, then turn his head (not his whole body) to camera only after the last stroke, with a clear wry expression: one brow up and a lopsided mouth
+
+
+## 2026-11-19 02:19Z · storyboard · round 2 · storyboard gate pl3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 52 | 48, 52, 60 | FAIL |
+| 2 | 58 | 50, 58, 71 | FAIL |
+| 3 | 55 | 52, 55, 58 | FAIL |
+| 4 | 74 | 63, 74, 75 | PASS |
+
+**shot 1** (FAIL, 52, bar 70)
+
+- HARD: CONSEQUENCE, frames 1-3: notes are never seen going into the REWARDS card. One note shows in the tube (frame 2), but the tube ends beside or behind the card, and the card's flash is a faint brightening, not a readable pulse per note
+- HARD: BROKEN, frames 1-3: the top loop of the tube and its open red end are cut by the left frame edge in every still, and the right side of Data's head is clipped on the right edge
+- HARD: NOT THE POINT, frames 1-3: the 'red vacuum nozzle' reads as a red cone or horn, and the tube as a stack of red rings. A stranger could not tell that a vacuum is sucking the cash into the card
+- HARD: CONSEQUENCE, frames 2-3: the notes are hard to see going up the tube and never land in the REWARDS card. The card never flashes, so the payoff (cash becomes points) is missing.
+- HARD: NOT THE POINT, frames 1-3: the red cone and curled tube read as an odd sculpture, not a vacuum sucking cash. A stranger could not say the card is eating the money.
+- HARD: BROKEN: the right frame edge cuts off Data's head (ear and the side of his head/glasses) in all 3 frames; in frames 2-3 his face is pushed to the edge just as he turns to us
+- HARD: CONSEQUENCE: the REWARDS card never flashes, and no note is seen entering it. One dark note shows in the tube in frame 2, then the wad is simply gone in frame 3
+- problem: The bottom ~40% of the frame is empty steel counter, so the subject is crowded into the top half
+- problem: Frame 1 is not a slap: Data's hand rests beside the wad instead of on it
+- problem: The vacuum nozzle is a red cone pointing away from the cash, so it doesn't read as sucking the notes up
+- problem: The tube's route from nozzle to card is a tangle of red rings at the top left that is hard to follow on a phone
+- better: Move the camera left and down so Data's whole head is inside the frame with headroom, and fill the lower frame with the counter action
+- better: Point the nozzle mouth at the wad, with notes visibly mid-flight in the tube in at least 2 stills
+- better: Run the tube into the card's top edge and give the card a clear glow or flash on each note
+
+**shot 2** (FAIL, 58, bar 70)
+
+- HARD: BODY, frames 1-3: neither hand is visibly on a T-handle. In frame 1 his near arm covers the pump top; in frames 2-3 one hand is near the shaft at hip height and the other is raised to his chest, holding nothing. No T-handle can be read in any still
+- HARD: BODY, frame 1: in profile the glasses float out in front of the face like goggles on a stalk
+- HARD: BODY: in frames 1 and 3 Data's hands are at his chest, well above the pump's T-handle, which is at hip height. He is not working the pump. In frame 2 one hand is only near the top
+- HARD: NOT THE POINT: Data faces the camera from frame 2 on, so the side-on pumping (three strokes, then a turn on the last) never reads; it looks like Data standing beside a pump while a tag inflates
+- problem: He turns square to camera by frame 2, so the 'three hard strokes' are not seen. No still shows the handle up versus down
+- problem: The pump reads as a thin red stick, not a floor pump
+- problem: The tag reads clearly and swells well (1→2→3), but in frame 3 it touches the right edge
+- problem: The 'wry' look in frame 3 reads as neutral
+- better: Hold the profile through the strokes: both mittens on a wide, visible T-bar, with the handle high in one still and low in the next. Only turn to camera after the last stroke
+- better: Make the pump chunkier, with a visible barrel, a foot plate and a T-bar, and place it in front of Data, not behind his arm
+- better: Leave headroom on the right for the biggest tag size, or start it smaller
+
+**shot 3** (FAIL, 55, bar 70)
+
+- HARD: CONSEQUENCE, frames 1-3: the $149 heap does not visibly shrink. It is the same small cluster in every still, so 'the heap shrinks' is not seen
+- HARD: NOT THE POINT, frames 1-3: the 'heap' is a plate-sized cluster that reads as a gold wreath or nugget, not a pile of coins. The $149 flag beside it is small
+- HARD: CONSEQUENCE, frames 1-3: the gold heap by the $149 flag is the same small pile in every frame and never shrinks. No coins are seen arcing off the blade into the sack.
+- HARD: NOT THE POINT, frames 1-3: the 'heap' is a fist-sized clump that does not read as $149 of money. The gold blob in the sack mouth in frame 3 reads as one giant egg or cushion, not scooped coins.
+- HARD: CONSEQUENCE: the $149 heap does not visibly shrink from frame 1 to frame 3 (same small mound), and coins are never seen arcing off the blade. Only the sack's bulge shows the transfer
+- problem: No coins are seen arcing off the blade. Frame 2 shows one gold blob (it reads like a bow or ribbon) at the sack mouth
+- problem: In frame 3 the sack's bulge is topped by one giant coin that reads as a lid or bun, not as many coins
+- problem: In frame 3 the shovel handle drifts away from his hand; the grip is unclear
+- problem: The shovel blade is oversized and black, so it reads more like a dustpan than a coal shovel
+- better: Make the heap a real mound, knee-high and wide, so three scoops visibly bite it down: big, then medium, then small
+- better: Show a spray of separate coins in the air between blade and sack mid-swing
+- better: Fill the sack with many visible coins spilling at the mouth, not one disc
+
+**shot 4** (PASS, 74, bar 70)
+
+- hard (one judge only): BODY, frames 1-3: the shot is about Data turning the yellow crank wheel, but the wheel is hidden behind his arm. In frame 1 his hand reaches past it to the belt, and in frames 2-3 the hub reads as a small red-and-black dial. His hand is never readably on the wheel's handle, so the cause does not read
+- problem: The yellow crank wheel is small and mostly hidden behind Data's hand, so 'turning a crank' reads weakly
+- problem: The vault's 'VIP' text competes with the plinth's $750 RICHEST label
+- problem: The belt's top end overshoots the vault, so coins seem to go past it rather than into it
+- problem: The POOREST label is small on a phone
+
+
+## 2026-11-19 02:22Z · proof · round 2 · proof loop pl3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 50 | 50, 50, 50 | FAIL |
+
+**shot 4** (FAIL, 50, bar 70)
+
+- HARD: BODY: the hand that should be turning the crank is off it for much of the shot. In frames 1-8 his arm reaches out past the belt toward the vault with an open hand. In frames 13-17 it is again open and pointing at the belt rather than gripping the wheel. It is only really on the wheel in frames 10-12 and 18-30, so the coins move while he is not driving them
+- HARD: BROKEN: the vault's gold fill pops instead of rising. Frames 1-23 show only a thin gold strip at the base, then by frame 24 the vault is almost full. That is a jump of about 0.13 s, not the gradual rise the beat is about
+- HARD: NOT THE POINT (borderline): the 'big yellow crank wheel' is a small ring at chest height, about the size of his hand. A phone viewer cannot see that his turning drives the belt, so cause and effect do not read
+- HARD: BODY: Data's hand should be turning the crank, but it comes off the wheel and points at the belt while coins ride up it. Frames 1-8 (row 1, arm out toward the belt and vault), frames 13-16 (row 2, cols 5-8) and frames 17-18 (row 3, cols 1-2). The belt runs on its own while his hand is somewhere else, so he isn't the one causing it.
+- HARD: BROKEN/CONSEQUENCE: the vault's gold doesn't rise. Through frame 23 (row 3, col 7) the vault is still black with only a gold tray. At frame 24 (row 3, col 8) it is suddenly full of gold. That is a pop. Coins are also never seen leaving the top of the belt and dropping into the vault, so the transfer the shot exists for is never shown.
+- HARD: BODY: in frames 1-8 and again in 15-19 his right arm reaches straight out past the belt toward the plinth, and his hand is nowhere near the crank wheel at his hip. The wheel is still turning (the red dot moves) and coins are moving up the belt, so the crank turns with no hand on it.
+- HARD: BROKEN: the vault's gold fill pops. It sits at the same low level from frame 17 to frame 23, then the vault is completely gold in frame 24. It does not rise.
+- problem: The 'POOREST' label is a tiny plate at floor level, half-hidden by spilled coins, and cannot be read on a phone. It is half of the comparison
+- problem: The bucket never visibly empties. Coins leave POOREST, but its level stays the same while loose coins sit around it, so the drain from poor to rich isn't shown
+- problem: Frames 2-7: his head is turned three-quarters away toward the belt, in profile with eyes off-camera. That's not a back-to-camera fail, but the opening second shows us very little of his face
+- problem: The final look to camera reads neutral or wide-eyed, not sour. The brows only tilt slightly, so the emotional button doesn't land
+- problem: The vault reads as a black 'VIP' box rather than a steel vault, and it's small and pushed to the top-right corner. The '$750 RICHEST' plinth is larger than the thing it labels
+- better: Make the crank wheel big (about head-sized, bright yellow, with spokes) and put it in front of Data at chest height. Lock his hand to the handle on every frame and turn it in full, visible rotations with each rotation advancing coins, so his turning clearly causes the movement
+- better: Key the vault fill as a steady rise that keeps pace with coins arriving, starting the first time a coin drops in. Add a small bounce or flash as each coin lands
+- better: Make the bucket's level visibly drop as the vault rises. Give it a large, readable 'POOREST' label facing the camera, and clear the loose coins away from it
+
+
+## 2026-11-19 02:36Z · storyboard · round 3 · storyboard gate pl3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 56 | 50, 56, 56 | FAIL |
+| 2 | 74 | 74, 74, 76 | PASS |
+| 3 | 57 | 52, 57, 64 | FAIL |
+| 4 | 72 | 71, 72, 73 | PASS |
+
+**shot 1** (FAIL, 56, bar 70)
+
+- HARD: CONSEQUENCE, frames 1-3: you never see the notes go into the REWARDS card. The tube rises from the nozzle and curls off the top-left edge of the frame, so the money's path ends outside the shot. The card looks the same in every frame and never flashes.
+- HARD: BROKEN, frames 1-3: the clear tube, the thing that carries the shot's action, is cut by the top-left frame edge for the whole shot.
+- HARD: BROKEN, frames 2-3: Data's head and body are cut by the right frame edge.
+- HARD: BROKEN: Data's head is cut by the right frame edge in frames 1-2, and the top of the tube's arc (where the notes travel) is cut by the top-left edge in all 3 frames
+- HARD: CONSEQUENCE: the notes are never seen dropping into the REWARDS card and the card never flashes (frames 2-3). One small note sits in the tube, cropped at the arc, and then the wad is just gone
+- HARD: CONSEQUENCE, frames 2-3: the notes going up the tube and into the REWARDS card can't be read. The only sign is a small dark-green blob inside the tube, and the card never visibly flashes or takes the money in. A viewer sees the wad on the counter, then sees it gone.
+- HARD: BROKEN, frames 1-3: the frame's left edge cuts off the top of the clear tube (the bend where the notes turn down into the card) for the whole shot.
+- problem: The empty steel counter takes up the bottom ~45% of the frame. That is dead space while the action is squeezed into the top strip
+- problem: The 'nozzle' is an upright red cone, not a vacuum nozzle lying on the counter, so it doesn't read as sucking
+- problem: The notes in the tube are tiny on a phone; the money stream doesn't read
+- problem: Frame 1's slap is soft: the wad is small and his hand rests next to it rather than coming down on it
+- better: Bring the camera down and in so the counter is a thin band at the bottom, and Data, cash, nozzle, tube and card all fit with margin
+- better: Keep the whole tube path in frame, and show the notes in a visible stream of several at once dropping into the card top, with a bright card flash per note
+- better: Lay the nozzle flat on the counter facing the wad, with the notes visibly peeling off toward it
+
+**shot 2** (PASS, 74, bar 70)
+
+- problem: Grip is ambiguous: in frames 1 and 3 his hands sit at chest height, above the pump's T-handle, so it reads like he's hovering rather than pumping
+- problem: The balloon tag floats above the cases, and the tie string is barely visible
+- problem: Frame 1 profile: the glasses stick out in front of his face
+
+**shot 3** (FAIL, 57, bar 70)
+
+- HARD: CONSEQUENCE, frames 1-3: the $149 heap never visibly shrinks. It is a fist-sized pile in frame 1 and nearly the same in frame 3. No coins are seen arcing off the blade. The sack's fill reads as one big gold egg, not coins.
+- HARD: BODY, frames 1 and 3: the shovel handle runs behind Data's leg (frame 1) and behind the sack (frame 3), so it doesn't read as held. Data stands bolt upright and is never digging or swinging.
+- HARD: CONSEQUENCE: the $149 heap doesn't visibly shrink across frames 1-3. It's the same small pile throughout, so only half the transfer reads
+- HARD: BODY: in frame 3 the shovel handle ends short of his hands. His mitts are at his chest, off the shovel, so the tool he's using isn't in his hands
+- problem: The 'heap' is a few coins about the size of a plate, nowhere near a pile worth $149 a year
+- problem: The coins arcing off the blade show only as a small gold blob at the sack mouth in frame 2
+- problem: The $149 A YEAR flag is small, and 'A YEAR' is unreadable on a phone
+- problem: Data stands upright at the back with the props at his feet. Bring the props up close to the camera, in front of him (close-on-the-prop rule)
+- better: Start with a big heap and cut it down to almost nothing by frame 3, with the sack swelling to match
+- better: Keep both hands on the shovel handle in every frame, with the handle long enough to reach his grip
+- better: Lower the lens a little and move heap and sack closer to camera so the coins, flag and POINTS stencil read big
+
+**shot 4** (PASS, 72, bar 70)
+
+- problem: Coins in frame 3 float beside the belt like lollipops on sticks instead of riding on it.
+- problem: The POOREST bucket's level hardly drops (frame 1 to frame 3), so the 'taken from the poorest' half of the point is weak.
+- problem: The crank wheel is small, and Data's hand only roughly reaches its rim. The turning doesn't read.
+- problem: The end expression is neutral, not sour.
+- problem: The right half is crowded (belt, vault, plinth), and the dark wall above eats a third of the frame.
+
+
+## 2026-11-19 02:41Z · proof · round 3 · proof loop pl3
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 60 | 42, 60, 64 | FAIL |
+| 4 | 52 | 50, 52, 52 | FAIL |
+
+**shot 2** (FAIL, 60, bar 70)
+
+- hard (one judge only): BODY: Data's hands are never on the T-handle. One hand floats at chest height above the top of the pump and the other hangs by the tube, with no grip on the handle anywhere (frames 1-29).
+- hard (one judge only): CONSEQUENCE: no pump strokes can be seen. The handle and Data's body never travel up and down, so the tag swells on its own instead of on three hard strokes (frames 1-29).
+- hard (one judge only): BROKEN: the swollen $ tag is cut off by the right frame edge for the whole back half of the shot (frames 13-29).
+- problem: The three hard strokes don't read. Data's hand barely moves on the T-handle (frames 1-12), so there are no pumping beats driving the swells. The tag grows smoothly instead of jumping once per stroke.
+- problem: Data turns to camera around frame 10, about a third of the way in, instead of on the last stroke. He then holds a front-facing pose for the rest of the shot while the tag keeps growing, so the turn isn't a payoff.
+- problem: The expression is flat and a little sad (frames 12-29), not wry. There's no smirk, eyebrow or head tilt to land the joke.
+- problem: The hose doesn't clearly reach the tag. The black hose loops along the floor and up behind the cases, and the tag only hangs off a thin white string. It doesn't read as 'pumping the tag up'.
+- problem: From about frame 13 the grown tag runs off the right edge of the frame, so the $ shape is cropped for the second half of the shot. Data's head also touches the left edge in frames 17-29.
+- problem: The blink frames (16, 25) put a large flat eyelid behind the glasses lens, which looks odd.
+- better: Key one big down-up stroke per swell, about 3 strokes over 2.5 s: handle down hard, body dips, tag pops bigger with a little overshoot and settle.
+- better: Hold profile through all three strokes. On the last one, snap the head to the lens with a wry half-smile and one raised brow, then hold for about 0.5 s.
+- better: Run the hose visibly into the tag's neck.
+
+**shot 4** (FAIL, 52, bar 70)
+
+- HARD: BODY: the hand that should be turning the crank wheel is off it, reaching out to the belt, in frames 1-4 and 17-18 (row 3, frames 1-2)
+- HARD: BROKEN: coins ride past the top of the belt and hang in the air above the vault instead of dropping in (frames 21-30)
+- HARD: BACK TO CAMERA: Data's head is turned away so the side and back of his head face the lens for about 12 frames, roughly 1.7 s (frames 2-12)
+- HARD: BODY: Data's hand leaves the crank wheel and floats in the air out by the belt while coins keep moving (frames 6-8, 14-16, 17-19). He is not turning anything, so the machine runs by itself.
+- HARD: NOT THE POINT: the 'big yellow crank wheel' is a small ring about the size of his hand, half hidden against his coat. A viewer cannot tell that Data is what drives the belt.
+- HARD: BACK TO CAMERA: Data turns his head away toward the belt, so only the back or side of his head and the arm of his glasses are visible, for about 1.5 s (frames 5-12).
+- HARD: BROKEN: the vault's gold fill pops from a thin bottom layer to a full gold block between frames 23 and 24 instead of rising.
+- HARD: CONSEQUENCE: coins are never clearly seen dropping into the vault. In frames 25-30 the line of coins runs up past the top of the vault and appears to overshoot it.
+- problem: The POOREST label on the bucket is small, slanted and partly hidden by the belt foot and Data's leg. It cannot be read on a phone, so half of the comparison is missing.
+- problem: In frames 1-8 Data turns his head away toward the belt in a three-quarter rear view (not a full back, but close). His face is lost at the start.
+- problem: The final expression reads as wide-eyed neutral or mild surprise, not sour.
+- problem: Coins overshoot the top of the belt and sit above the vault mouth at the end (frames 22-30), with no visible drop into the vault. The gold fill rises, but the hand-off itself is unclear.
+- problem: The vault's gold fill pops up late (around frames 22-24) instead of rising as coins arrive.
+- better: Make the crank a large wheel at Data's side, with both hands on its handle going round in clear circular strokes for the whole shot. Belt speed should match his turning.
+- better: Turn the bucket so POOREST faces the camera in big type, matching the size of $750 RICHEST.
+- better: Show each coin tip off the top of the belt and drop into the vault, and make the gold fill step up with each coin from the first arrival.
+

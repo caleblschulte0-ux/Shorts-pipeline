@@ -151,7 +151,7 @@ def price_balloon(name, loc, s=1.0, yaw=0.0):
     K.cyl(name + " grommet", (-0.105 * s, -0.033 * s, zc), 0.014 * s, 0.004, _mat("tag grommet", "#C9A443", rough=0.3, metal=0.9), rot=(math.pi / 2, 0, 0), v=32, bev=0.001, parent=root)
     K.cyl(name + " grommet in", (-0.105 * s, -0.035 * s, zc), 0.008 * s, 0.004, red, rot=(math.pi / 2, 0, 0), v=24, bev=0, parent=root)
     K.text(name + " dollar", "$", (0.045 * s, -0.035 * s, zc - 0.005 * s), 0.17 * s, (math.pi / 2, 0, 0), white, extrude=0.004 * s, parent=root)
-    _curve_tube(name + " string", [Vector((-0.105 * s, 0, zc)), Vector((-0.1 * s, 0, zc * 0.45)), Vector((-0.04 * s, 0, 0.0))], 0.0025,
+    _curve_tube(name + " string", [Vector((-0.105 * s, 0, zc)), Vector((-0.1 * s, 0, zc * 0.45)), Vector((-0.04 * s, 0, 0.0))], 0.005,
                 _mat("tag string", "#EDE3C8", rough=0.7)).parent = root
     _place(root, loc, yaw, None)
     return root, Vector((0, 0, 0.0))
