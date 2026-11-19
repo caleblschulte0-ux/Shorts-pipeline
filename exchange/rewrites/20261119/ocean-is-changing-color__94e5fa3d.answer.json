@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ocean-is-changing-color__94e5fa3d",
+  "slug": "ocean-is-changing-color",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "56% Of The Ocean Changed Color",
+  "hook": "Satellites detected a global color shift across more ocean than land.",
+  "closing": "Ocean color tracks microscopic life, so a global shift can signal ecosystem change.",
+  "question": "What is changing beneath the surface?",
+  "segments": [
+    {
+      "topic": "Ocean Color Shift",
+      "say": "56 percent of the ocean surface changed color. More than half the sea now reflects light differently."
+    },
+    {
+      "topic": "Ocean Color Prediction",
+      "say": "A climate model predicted 50 percent of the ocean would shift. Later satellite observations matched the warning."
+    },
+    {
+      "topic": "Ocean Color Area",
+      "say": "Changed ocean area reached 203 million square kilometers. The shift covers more space than all Earth's land."
+    }
+  ]
+}
