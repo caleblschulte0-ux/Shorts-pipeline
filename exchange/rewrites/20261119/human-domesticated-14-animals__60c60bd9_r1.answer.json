@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "human-domesticated-14-animals__60c60bd9_r1",
+  "slug": "human-domesticated-14-animals",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "Most Large Mammals Never Became Domestic",
+  "hook": "Humanity's animal toolkit stopped expanding thousands of years ago.",
+  "closing": "Modern farming still depends on an animal roster chosen deep in human history.",
+  "question": "Which wild animal would you domesticate?",
+  "segments": [
+    {
+      "topic": "Domestic Mammals Begin",
+      "say": "Dogs were domesticated 15,000 years ago. The long human partnership with large animals began with a companion."
+    },
+    {
+      "topic": "Domestic Mammals Selected",
+      "say": "Only 14 candidate mammals were domesticated. Most large wild species never fit human farming."
+    },
+    {
+      "topic": "Domestic Mammals Plateau",
+      "say": "The domesticated total had reached 13 thousands of years ago. Almost the entire modern roster was already established."
+    }
+  ]
+}
