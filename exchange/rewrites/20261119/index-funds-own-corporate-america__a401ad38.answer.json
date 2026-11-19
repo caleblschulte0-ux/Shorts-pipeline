@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "index-funds-own-corporate-america__a401ad38",
+  "slug": "index-funds-own-corporate-america",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:22:00Z",
+  "title": "Index Funds Now Control 52% Of US Stock Assets",
+  "hook": "Your retirement fund quietly became a corporate power broker.",
+  "closing": "The funds holding your savings can influence companies without asking how you would vote.",
+  "question": "Who votes the shares you own?",
+  "segments": [
+    {
+      "topic": "Index Assets",
+      "say": "Passive index funds hold 52 percent of US stock assets. Automatic investing concentrated enormous ownership power."
+    },
+    {
+      "topic": "Index Ownership",
+      "say": "The Big Three hold 22 percent of a typical large company. A few managers now speak for millions of investors."
+    },
+    {
+      "topic": "Index Votes",
+      "say": "Vanguard casts 9 percent of major-company shareholder votes. One fund manager can shape corporate decisions."
+    }
+  ]
+}
