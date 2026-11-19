@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "runway-near-misses-climbing__a488693a",
+  "slug": "runway-near-misses-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "Serious Runway Incursions More Than Doubled",
+  "hook": "The worst close calls are climbing and clustering at a few airports.",
+  "closing": "Every runway incursion risks passengers before their flight even leaves the ground.",
+  "question": "Does this change how you fly?",
+  "segments": [
+    {
+      "topic": "Runway Incursions Climb",
+      "say": "Serious runway incursions rose to 23. The most dangerous close calls more than doubled over roughly a decade."
+    },
+    {
+      "topic": "Runway Incursion Cause",
+      "say": "60 percent of runway incursions came from pedestrians or vehicles. The threat is not always another aircraft."
+    },
+    {
+      "topic": "Runway Risk Clusters",
+      "say": "A small airport cluster accounts for 33 percent of the worst incursions. Risk is concentrated, not evenly spread."
+    }
+  ]
+}
