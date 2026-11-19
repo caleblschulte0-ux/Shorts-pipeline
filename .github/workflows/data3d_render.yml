@@ -117,7 +117,9 @@ jobs:
     needs: [cfg, narrate]
     if: always() && needs.cfg.result == 'success' && needs.narrate.result != 'failure' && needs.cfg.outputs.mode != 'narrate'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # 2026-11-19: the lightning ridge's fire and smoke cost a FIXED ~60 s per frame in Cycles' scene sync (1 spp took as
+    # long as 10), so its 31 proof frames took 62 min and the 60-min cap killed the proof before the judge saw it
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
