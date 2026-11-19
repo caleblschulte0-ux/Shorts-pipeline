@@ -470,12 +470,26 @@ class Data:
         z = x.cross(y)
         return Matrix((x, y, z)).transposed()
 
+    # THE PALM IS ON THE JOB, NOT THE WRIST (2026-11-19, card rewards judge, eight rounds running: "his hand rests on
+    # his chest while the shovel sits in the heap by itself", "his hands sit above the pump's T-handle", "his hand is
+    # not on the crank"). The IK put the WRIST on the grip, so the mitten stood 4-5 cm past it, beside the handle, and
+    # every check passed because every check measured the wrist. With PALM on (the harness turns it on for every story
+    # store/variety.py binds), each solve is done twice: the second aims the wrist so the middle of the mitten lands on
+    # the point. The remembered target (_ik_keys, the REACH check, _resolve_hands) is the wrist's, so all agree.
+    PALM = False
+    PALM_AT = 0.45           # share of the hand bone from the wrist: the middle of the mitten's palm
+
     def _arm_ik(self, s, target, t, elbow_out=0.5):
         A, Fo = self.pb[f'arm.{s}'], self.pb[f'fore.{s}']
         fw = self.forward(); side = Vector((-1 if s == 'L' else 1, 0, 0)); side = (self.arm.matrix_world.to_3x3() @ side).normalized()
         pole = (fw + side * elbow_out)
         if pole.length < 1e-4: pole = fw
         over = self._two_bone(A, Fo, target, -pole, t, self.U, self.Fo)
+        if self.PALM and not getattr(self, '_resolving', False):       # (a re-solve gets the wrist target it remembered)
+            Hb = self.pb[f'hand.{s}']; Hb.rotation_euler = (0, 0, 0); bpy.context.view_layer.update(); M = self.arm.matrix_world
+            off = (M @ Hb.head).lerp(M @ Hb.tail, self.PALM_AT) - (M @ Fo.tail)
+            target = Vector(target) - off
+            over = self._two_bone(A, Fo, target, -pole, t, self.U, self.Fo)
         if over: print(f'hold: {s} hand out of reach, clamped')
         self._k(f'hand.{s}', t, rot=(0, 0, 0))
         if not getattr(self, '_resolving', False):     # remembered, so finish() can put the hand back on it (see _resolve_hands)

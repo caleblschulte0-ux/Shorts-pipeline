@@ -57,7 +57,7 @@ def bezier_path(pts, n=200):
     return fn
 
 
-def vacuum_tube(name, pts, r=0.032, mouth=(0, 0, -1)):
+def vacuum_tube(name, pts, r=0.032, mouth=(0, 0, -1), flare=2.6):
     """a clear pneumatic tube along pts (world points), a chrome collar every so often and a wide chrome HOOD at its
     first point, opening downward: what it sucks up goes in there. Returns (root, path fn(u))."""
     root = K.empty(name, (0, 0, 0))
@@ -71,7 +71,7 @@ def vacuum_tube(name, pts, r=0.032, mouth=(0, 0, -1)):
     h0 = Vector(pts[0])
     hood = bpy.data.meshes.new(name + " hood")
     import bmesh
-    bm = bmesh.new(); bmesh.ops.create_cone(bm, cap_ends=False, segments=40, radius1=r * 2.6, radius2=r * 1.05, depth=0.07)
+    bm = bmesh.new(); bmesh.ops.create_cone(bm, cap_ends=False, segments=40, radius1=r * flare, radius2=r * 1.05, depth=0.07)
     bm.to_mesh(hood); bm.free()
     # a red vacuum NOZZLE (a chrome hood over clear glass read as a chemistry set, 11-18 judge)
     ho = bpy.data.objects.new(name + " hood", hood); bpy.context.collection.objects.link(ho)
@@ -294,7 +294,7 @@ def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None, glass_front=F
     K.box(name + " rim", (0, -d / 2 + 0.002, h - 0.008), (w + 0.006, 0.008, 0.016), brass, bev=0.002, parent=root)
     K.box(name + " band", (0, -d / 2 - 0.001, h * 0.35), (w + 0.004, 0.004, 0.02), brass, bev=0.001, parent=root)
     K.text(name + " label", label, (0, -d / 2 - 0.002, h * 0.62), w * 0.24, (math.pi / 2, 0, 0), brass, extrude=0.002, parent=root)
-    if sub: K.text(name + " sub", sub, (0, -d / 2 - 0.002, h * 0.47), w * 0.11, (math.pi / 2, 0, 0), brass, extrude=0.0012, parent=root)
+    if sub: K.text(name + " sub", sub, (0, -d / 2 - 0.002, h * 0.45), w * 0.16, (math.pi / 2, 0, 0), brass, extrude=0.0012, parent=root)
     gold = bpy.data.materials.get("coins") or K.mat("coins", "#F4CC52", rough=0.22, metal=0.65, emit=0.12)
     fill = K.empty(name + " fill pivot", (0, 0, t), parent=root)
     K.box(name + " fill", (0, 0, (h - 0.03) / 2), (w - 2.4 * t, d - 2.4 * t, h - 0.03), gold, bev=0.004, parent=fill)
@@ -303,7 +303,7 @@ def vault(name, loc, w=0.2, d=0.16, h=0.34, label="VIP", sub=None, glass_front=F
     return root, fill, Vector((0, 0, h))
 
 
-def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075):
+def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075, knob=0.04, post_dx=0.0):
     """a steep cleated conveyor belt from a (its foot) to b (its head), on two steel stringers with legs, a crank
     WHEEL (returned) standing at its foot on the camera side (-Y), a knob on its rim. The cleats are returned with
     the belt path so a shot can run them up the belt. Returns (root, wheel, cleats, belt fn(u)->world, wheel radius)."""
@@ -325,8 +325,12 @@ def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075):
     hub = Vector(hub) if post else a + Vector((0, -(w / 2 + 0.03), 0.0))
     if post:                                  # the wheel stands on its own post at hand height, a chain down to the belt's foot
         PB = 0.085                            # the post stands well BEHIND the wheel: the arm that turns it never meets it
-        K.box(name + " post", (hub.x, hub.y + PB, hub.z / 2), (0.03, 0.03, hub.z), steel, bev=0.003, parent=root)
-        K.box(name + " post foot", (hub.x, hub.y + PB, 0.006), (0.12, 0.08, 0.012), steel, bev=0.003, parent=root)
+        PX = hub.x + post_dx                  # ...or off to the SIDE, when the man turning it stands behind the wheel
+        if post_dx: PB = 0.05
+        K.box(name + " post", (PX, hub.y + PB, hub.z / 2), (0.03, 0.03, hub.z), steel, bev=0.003, parent=root)
+        K.box(name + " post foot", (PX, hub.y + PB, 0.006), (0.08 if post_dx else 0.12, 0.08, 0.012), steel, bev=0.003, parent=root)
+        if post_dx:                           # a cross arm from the post top to the axle's back end
+            K.box(name + " post arm", ((PX + hub.x) / 2, hub.y + PB, hub.z), (abs(post_dx) + 0.02, 0.02, 0.02), steel, bev=0.003, parent=root)
         for dz in (-0.012, 0.012):
             _curve_tube(name + " chain", [hub + Vector((0, 0.09, dz)), a + Vector((0, (w / 2 + 0.02), dz))], 0.003,
                         _mat("chain dark", "#2B2B2E", rough=0.4, metal=0.7)).parent = root
@@ -337,7 +341,7 @@ def conveyor(name, a, b, w=0.09, cleats=14, hub=None, WR=0.075):
     for k in range(4):
         sp = K.box(name + " spoke", tuple(hub + Vector((0, -0.003, 0))), (WR * 1.7, 0.01, 0.014), yel, bev=0.002, parent=wheel); sp.rotation_euler = (0, math.radians(45 * k), 0)
     K.cyl(name + " hub cap", tuple(hub + Vector((0, -0.01, 0))), 0.016, 0.02, _mat("crank knob", "#C7302A", rough=0.4), rot=(math.pi / 2, 0, 0), v=24, bev=0.003, parent=wheel)
-    K.cyl(name + " knob", tuple(hub + Vector((WR * 0.86, -0.025, 0))), 0.012, 0.04, _mat("crank knob", "#C7302A", rough=0.4), rot=(math.pi / 2, 0, 0), v=24, bev=0.003, parent=wheel)
+    K.cyl(name + " knob", tuple(hub + Vector((WR * 0.86, -0.005 - knob / 2, 0))), 0.012, knob, _mat("crank knob", "#C7302A", rough=0.4), rot=(math.pi / 2, 0, 0), v=24, bev=0.003, parent=wheel)
     K.cyl(name + " axle", tuple(hub + Vector((0, 0.05, 0))), 0.01, 0.1, steel, rot=(math.pi / 2, 0, 0), v=24, bev=0.002, parent=root)
     n_ = Vector((0, 0, 1)) - up * up.z; n_.normalize()       # the belt's own "up", for the cleats
     cl = []

@@ -229,6 +229,7 @@ def near_hand(data, p):
 
 def load_data():
     import character as CH
+    CH.Data.PALM = variety.held(STORY)          # a held story puts his PALM on every job (character.Data.PALM)
     return CH.load(sc)
 
 

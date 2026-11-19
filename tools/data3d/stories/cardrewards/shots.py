@@ -100,15 +100,15 @@ def shot1():
     HOOD = W + Vector((-0.16, 0.0, 0.1))
     # ...and the tube climbs up the card's near edge, in front, and hooks over into its top slot (11-19: behind it,
     # nothing joined them; across its face it hid REWARDS)
-    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((-0.07, 0.0, 0.08)), Vector((-0.4, 0.05, 0.7)),
-                                                 Vector((-0.36, 0.2, 1.24)), SLOT + Vector((0, 0, 0.12)), SLOT + Vector((0, 0, 0.03))],
-                                  r=0.055, mouth=(1, 0, -0.1))
-    T_SLAP = 1.0                                                       # a wind-up the first still can see, then the slap
+    tube, along = XK.vacuum_tube("vacuum tube", [HOOD, HOOD + Vector((-0.07, 0.0, 0.08)), Vector((-0.35, 0.05, 0.7)),
+                                                 Vector((-0.33, 0.2, 1.22)), SLOT + Vector((0, 0, 0.12)), SLOT + Vector((0, 0, 0.03))],
+                                  r=0.055, mouth=(1, 0, -0.1), flare=1.7)                     # a nozzle, not a traffic cone
+    T_SLAP = 1.05                                                      # a wind-up the first still can see, then the slap
     top = W + Vector((0, 0, 0.0035 * len(notes) + 0.012))
-    top = top + Vector((0, 0, 0.045))                                  # the wrist: the mitten's palm lands on the wad, not in the counter
-    hp = path([(0.3, top + Vector((0.0, 0.02, 0.06))), (0.6, top + Vector((-0.01, 0.0, 0.075))), (T_SLAP, top), (1.3, top),
+    top = top + Vector((0, 0, 0.015))                                  # the palm on the wad (character.Data.PALM puts the palm, not the wrist, there)
+    hp = path([(0.6, top + Vector((0.03, 0.06, 0.06))), (0.8, top + Vector((-0.01, 0.0, 0.075))), (T_SLAP, top), (1.3, top),
                (1.7, top + Vector((0.07, 0.05, -0.02)))])
-    data.reach(L, hp, 0.3, DUR, lead=0.3, back=None, elbow_out=0.3)
+    data.reach(L, hp, 0.6, DUR, lead=0.6, back=None, elbow_out=0.3)
     T0, T1 = 1.4, DUR - 0.75
     sched = [T0 + (T1 - T0) * i / (len(notes) - 1) for i in range(len(notes))]
     UP, RIDE = 0.14, 0.8                                                # several notes in the tube at once: a stream
@@ -177,7 +177,7 @@ def shot2():
     # feeds the tag (11-19 judge: a thin line along the floor, the tag seemed to swell by itself)
     hose = XK._curve_tube("pump hose", [PUMP + Vector((0.03, -0.03, 0.02)), Vector((PUMP.x + 0.12, -0.12, 0.03)),
                                         Vector((SX - 0.12, SY - 0.13, 0.06)), Vector((SX - 0.07, SY - 0.12, 0.2)),
-                                        BAL + Vector((-0.02, -0.04, 0.02)), BAL + Vector((0, 0, 0.03))],
+                                        BAL + Vector((-0.02, -0.05, 0.03)), BAL + Vector((0.02, -0.02, 0.06))],
                           0.011, XK._mat("pump black", "#1A1A1D", rough=0.5))
     STROKES = [0.7, 2.2, 3.7]                                         # back to back (a pause at the top read as a hitch), slow and heavy
     PERIOD = 1.5
@@ -201,7 +201,7 @@ def shot2():
         key_all(needle, f, rot=(0, math.radians(-60 + 120 * (s - 1.0) / 0.45), 0))
     # the grip ends, in the world: the pump is turned 90 deg so its T-bar runs along Y (one end per hand, side-on)
     def grip(sy):
-        return lambda t: PUMP + Vector((0, sy * 0.075, 0.012 + 0.4 * 0.8 + 0.128 - 0.02 - TRAVEL * stroke(t)))   # wrists just under the bar: mitts wrapped on it
+        return lambda t: PUMP + Vector((0, sy * 0.075, 0.012 + 0.4 * 0.8 + 0.128 - TRAVEL * stroke(t)))   # the palms on the bar
     # facing +X the rig's L side is toward the lens (-Y): L takes the near end of the bar, R the far end
     data.reach("L", grip(-1), 0.0, DUR, back=None, elbow_out=0.35)
     data.reach("R", grip(1), 0.0, DUR, back=None, elbow_out=0.35)
@@ -247,7 +247,7 @@ def shot3():
     GL = grip_l.z
     SCOOPS = [0.5, 2.0, 3.5]
     DIG, LIFT, DUMP, BACK = 0.35, 0.45, 0.3, 0.4
-    G_DIG = Vector((-0.01, 0.06, 0.42)); G_DUMP = Vector((0.0, 0.06, 0.43))      # the D-grip, by his chest (his reach is 0.19 m)
+    G_DIG = Vector((-0.01, 0.03, 0.42)); G_DUMP = Vector((0.0, 0.03, 0.43))      # the D-grip, by his chest (his reach is 0.19 m)
     U_DIG = (G_DIG - (HEAP + Vector((0.04, 0.06, 0.03)))).normalized()
     U_DUMP = (G_DUMP - (MOUTH + Vector((-0.04, 0.0, 0.07)))).normalized()
     def phase(t):
@@ -272,7 +272,7 @@ def shot3():
         shov.location = B; shov.rotation_euler = (q @ Euler((tip, 0, 0)).to_quaternion()).to_euler()
         shov.keyframe_insert("location", frame=f); shov.keyframe_insert("rotation_euler", frame=f)
     L, R = sides(data)
-    data.reach(R, lambda t: pose(t)[0] + pose(t)[1] * 0.03, 0.0, DUR, back=None, elbow_out=0.4)   # the wrist past the grip: the mitt round it
+    data.reach(R, lambda t: pose(t)[0], 0.0, DUR, back=None, elbow_out=0.4)   # the wrist past the grip: the mitt round it
     data.reach(L, lambda t: pose(t)[0] - pose(t)[1] * 0.075, 0.0, DUR, back=None, elbow_out=0.4)          # two hands apart on the shaft, the way a shovel is held
     # a load of coins rides the blade from the dig to the dump, then flies into the sack
     gold = bpy.data.materials.get("coins")
@@ -344,11 +344,11 @@ def shot4():
     for o in list(bpy.data.objects):                                    # the lobby's own vault door competed with his vault
         if o.name.startswith(("vault door", "vault ring", "vault hub", "vault spoke")): bpy.data.objects.remove(o)
     DX, DY = -0.33, -0.02
-    data = load_data(); data.place(DX, DY, 20)
+    data = load_data(); data.place(DX, DY, 0)
     L, R = sides(data)
-    HUB = Vector((DX + 0.16, DY + 0.02, 0.42))                          # a big wheel right under his hand
+    HUB = Vector((DX + 0.074, DY - 0.1, 0.42))                          # the wheel square in front of his cranking shoulder                          # a big wheel right under his hand
     A = Vector((-0.06, -0.04, 0.08)); B = Vector((0.3, 0.02, 0.8))
-    belt, wheel, cleats, belt_fn, WR = XK.conveyor("money conveyor", A, B, w=0.11, cleats=12, hub=HUB, WR=0.085)
+    belt, wheel, cleats, belt_fn, WR = XK.conveyor("money conveyor", A, B, w=0.11, cleats=12, hub=HUB, WR=0.075, knob=0.06, post_dx=0.1)
     BK = Vector((A.x - 0.085, A.y - 0.05, 0.0))
     bucket = XK.tin_bucket("tin bucket", tuple(BK), r=0.09, h=0.1)
     # a stake sign in front of the bucket, big enough to read on a phone
@@ -372,8 +372,8 @@ def shot4():
     ang = lambda t: _acc[max(0, min(len(_acc) - 1, int(round(t * FPS))))]
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; wheel.rotation_euler = (0, -ang(t), 0); wheel.keyframe_insert("rotation_euler", frame=f)
-    knob = lambda t: HUB + Vector((WR * 0.86 * math.cos(-ang(t)), -0.045, WR * 0.86 * math.sin(ang(t))))
-    data.reach(R, knob, 0.0, DUR, back=None, elbow_out=0.15)
+    knob = lambda t: HUB + Vector((WR * 0.86 * math.cos(-ang(t)), -0.055, WR * 0.86 * math.sin(ang(t))))
+    data.reach(R, knob, 0.0, DUR, back=None, elbow_out=0.35)
     SPEED = 0.7                                                         # belt travel per wheel turn, as a fraction of the belt
     pos = lambda t: ang(t) / (2 * math.pi) * SPEED
     for k, c in enumerate(cleats):
