@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cohabitation-overtakes-marriage__debb4b76",
+  "slug": "cohabitation-overtakes-marriage",
+  "by": "chatgpt",
+  "written_at": "2026-11-19T12:25:00Z",
+  "title": "Young Adults Now Cohabit More Than They Marry",
+  "hook": "Living together is replacing marriage as the first serious commitment.",
+  "closing": "Marriage is no longer the automatic starting point for building a shared life.",
+  "question": "Would you live together before marrying?",
+  "segments": [
+    {
+      "topic": "Young Adults Cohabit",
+      "say": "9 percent of young adults live with an unmarried partner. That now exceeds the share living with a spouse."
+    },
+    {
+      "topic": "Young Adults Marry",
+      "say": "The married share for young adults fell to 40 percent. Cohabitation grew as marriage stopped being the automatic next step."
+    },
+    {
+      "topic": "Adults Cohabit Longer",
+      "say": "Cohabiting adults over 50 reached 4.2 million. The same shift now extends beyond the youngest generation."
+    }
+  ]
+}
