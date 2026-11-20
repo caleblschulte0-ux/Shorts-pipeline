@@ -1,109 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T12:23:42Z",
+ "updated": "2026-11-20T12:26:12Z",
  "open": [
   {
    "id": "moon-drifting-away__653a5ccc_r1",
    "slug": "moon-drifting-away",
-   "filed": "2026-11-20T12:23:42Z",
+   "filed": "2026-11-20T12:26:11Z",
    "why": [
     "premise: brain: The claim is misleading: the Moon is receding about 3.8 cm a year, and total eclipses end only because it appears too small to cover the Sun. \"Escape\" and \"leaving\" overstate this, and the 600-million-year timescale is too distant for a viewer to feel as a threat."
    ],
    "request": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r1.request.json",
    "answer_path": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r1.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('The Hadza Carry About 730 Gut Bacteria Species') — brain: doesn't follow from previous beat, introduces a new cause rather than continuing the story"
-   ],
-   "request": "exchange/rewrites/20261120/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261120/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__20b034fd",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "premise: brain: The premise lacks a concrete, verifiable statistic and may be inaccurate, making it untrustworthy as a hook."
-   ],
-   "request": "exchange/rewrites/20261120/blood-supply-three-percent__20b034fd.request.json",
-   "answer_path": "exchange/rewrites/20261120/blood-supply-three-percent__20b034fd.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__deb29172",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim."
-   ],
-   "request": "exchange/rewrites/20261120/freshwater-accessible__deb29172.request.json",
-   "answer_path": "exchange/rewrites/20261120/freshwater-accessible__deb29172.answer.json"
-  },
-  {
-   "id": "people-over-65-outnumber-kids-under-5__df8ae648",
-   "slug": "people-over-65-outnumber-kids-under-5",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261120/people-over-65-outnumber-kids-under-5__df8ae648.request.json",
-   "answer_path": "exchange/rewrites/20261120/people-over-65-outnumber-kids-under-5__df8ae648.answer.json"
-  },
-  {
-   "id": "tattoo-mainstream-shift__9b1e4add",
-   "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "premise: brain: The claim that a third of Americans are tattooed is not a concrete, verifiable fact and may be inaccurate."
-   ],
-   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__9b1e4add.request.json",
-   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__9b1e4add.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__17bea803",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "thesis: seg1 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Adds another fact without a causal link to beat 0; not a direct continuation.",
-    "thesis: seg2 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Focuses on streaming share, not on vinyl vs CD sales, and doesn't follow from beat 1."
-   ],
-   "request": "exchange/rewrites/20261120/vinyl-beats-cd-sales-again__17bea803.request.json",
-   "answer_path": "exchange/rewrites/20261120/vinyl-beats-cd-sales-again__17bea803.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__ed6b28a5",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Does not directly support the claim that one fungus erased 90 frog species and is not a logical continuation of beat 0.",
-    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Focuses on a regional impact (40 Australian species) rather than proving the overall loss of 90 frog species and does no"
-   ],
-   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__ed6b28a5.request.json",
-   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__ed6b28a5.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__a401ad38_r1",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-20T00:27:42Z",
-   "why": [
-    "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
-   ],
-   "request": "exchange/rewrites/20261120/index-funds-own-corporate-america__a401ad38_r1.request.json",
-   "answer_path": "exchange/rewrites/20261120/index-funds-own-corporate-america__a401ad38_r1.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__d4ebe18e",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-20T00:27:41Z",
-   "why": [
-    "thesis: seg1 ('Autism Diagnosis Sex') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Focuses on sex differences, not on location, so it doesn't support the headline claim about geography.",
-    "thesis: seg2 ('Autism Diagnosis Sites') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Introduces a location statistic but does not logically follow from beat 1, which discussed sex rather than location."
-   ],
-   "request": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__d4ebe18e.request.json",
-   "answer_path": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
   },
   {
    "id": "cruise-ship-outbreaks-climbing__e0bad3cf",
@@ -124,6 +31,17 @@
    ],
    "request": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__ca924794.request.json",
    "answer_path": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__ca924794.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__ed6b28a5",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-19T18:14:40Z",
+   "why": [
+    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim of 90 species erased and isn't a logical continuation of beat 0.",
+    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Not a causal follow‑up to beat 1 and only adds a separate geographic fact, not strengthening the headline claim."
+   ],
+   "request": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.request.json",
+   "answer_path": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.answer.json"
   },
   {
    "id": "measles-ninety-five-rule__e5720400",
@@ -165,6 +83,16 @@
    ],
    "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
    "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__a401ad38_r1",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-19T12:52:42Z",
+   "why": [
+    "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
+   ],
+   "request": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.answer.json"
   },
   {
    "id": "us-height-ranking-fall__5c0b88f4",
@@ -247,6 +175,16 @@
    "answer_path": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.answer.json"
   },
   {
+   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "filed": "2026-11-19T00:50:04Z",
+   "why": [
+    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('The Hadza Carry About 730 Gut Bacteria Species') — brain: Introduces a new, unrelated factor (antibiotics) instead of continuing the fiber explanation, so it doesn't follow direc"
+   ],
+   "request": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
+  },
+  {
    "id": "astronaut-bone-loss__96377171",
    "slug": "astronaut-bone-loss",
    "filed": "2026-11-19T00:50:04Z",
@@ -265,6 +203,68 @@
    ],
    "request": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.request.json",
    "answer_path": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__20b034fd",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-19T00:50:03Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, provable claim."
+   ],
+   "request": "exchange/rewrites/20261119/blood-supply-three-percent__20b034fd.request.json",
+   "answer_path": "exchange/rewrites/20261119/blood-supply-three-percent__20b034fd.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__deb29172",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-19T00:50:03Z",
+   "why": [
+    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim about drinkable water."
+   ],
+   "request": "exchange/rewrites/20261119/freshwater-accessible__deb29172.request.json",
+   "answer_path": "exchange/rewrites/20261119/freshwater-accessible__deb29172.answer.json"
+  },
+  {
+   "id": "people-over-65-outnumber-kids-under-5__df8ae648",
+   "slug": "people-over-65-outnumber-kids-under-5",
+   "filed": "2026-11-19T00:50:03Z",
+   "why": [
+    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261119/people-over-65-outnumber-kids-under-5__df8ae648.request.json",
+   "answer_path": "exchange/rewrites/20261119/people-over-65-outnumber-kids-under-5__df8ae648.answer.json"
+  },
+  {
+   "id": "tattoo-mainstream-shift__9b1e4add",
+   "slug": "tattoo-mainstream-shift",
+   "filed": "2026-11-19T00:50:03Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified statistic and a vague claim about behavior, lacking concrete, demonstrably true specifics."
+   ],
+   "request": "exchange/rewrites/20261119/tattoo-mainstream-shift__9b1e4add.request.json",
+   "answer_path": "exchange/rewrites/20261119/tattoo-mainstream-shift__9b1e4add.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__17bea803",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-19T00:50:03Z",
+   "why": [
+    "thesis: seg1 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Provides a separate sales figure rather than a logical continuation from beat 0; it's another fact, not a cause/effect l",
+    "thesis: seg2 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Discusses streaming's market share, which does not directly support the claim that vinyl beats CD sales and does not fol"
+   ],
+   "request": "exchange/rewrites/20261119/vinyl-beats-cd-sales-again__17bea803.request.json",
+   "answer_path": "exchange/rewrites/20261119/vinyl-beats-cd-sales-again__17bea803.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__d4ebe18e",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-19T00:50:02Z",
+   "why": [
+    "thesis: seg1 ('Autism Diagnosis Sex') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Focuses on sex differences, not on geographic location claimed in headline, so it doesn't support the same claim.",
+    "thesis: seg2 ('Autism Diagnosis Sites') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Although it mentions site variation, it does not logically follow from the previous beat about sex differences, breaking"
+   ],
+   "request": "exchange/rewrites/20261119/autism-diagnosis-rate-rise__d4ebe18e.request.json",
+   "answer_path": "exchange/rewrites/20261119/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
   },
   {
    "id": "clear-air-turbulence-increase__afb34a62",
