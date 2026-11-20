@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T13:11:34Z",
+ "updated": "2026-11-20T14:27:20Z",
  "open": [
+  {
+   "id": "runway-near-misses-climbing__8938319a",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-20T14:27:20Z",
+   "why": [
+    "thesis: seg2 ('Where near-misses cluster') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Location clustering doesn't directly follow from the cause of incursions; it's just another fact, not a consequence of b"
+   ],
+   "request": "exchange/rewrites/20261120/runway-near-misses-climbing__8938319a.request.json",
+   "answer_path": "exchange/rewrites/20261120/runway-near-misses-climbing__8938319a.answer.json"
+  },
+  {
+   "id": "tattoo-mainstream-shift__f7fc7a74",
+   "slug": "tattoo-mainstream-shift",
+   "filed": "2026-11-20T14:27:20Z",
+   "why": [
+    "premise: brain: The claim that a third of Americans are tattooed is not a verifiable, concrete fact and likely false."
+   ],
+   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.request.json",
+   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__197e2d03",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-11-20T14:27:19Z",
+   "why": [
+    "thesis: seg1 ('Later marriage divorce') does not continue the story of the headline ('US Divorce Fell to 2.4 per Thousand Annually') — brain: Introduces separate fact rather than a direct consequence of beat 0"
+   ],
+   "request": "exchange/rewrites/20261120/divorce-rate-quiet-decline__197e2d03.request.json",
+   "answer_path": "exchange/rewrites/20261120/divorce-rate-quiet-decline__197e2d03.answer.json"
+  },
+  {
+   "id": "measles-ninety-five-rule__c11b709d",
+   "slug": "measles-ninety-five-rule",
+   "filed": "2026-11-20T14:27:18Z",
+   "why": [
+    "premise: brain: The premise is vague and lacks a concrete, specific surprise or contradiction that can be visualized."
+   ],
+   "request": "exchange/rewrites/20261120/measles-ninety-five-rule__c11b709d.request.json",
+   "answer_path": "exchange/rewrites/20261120/measles-ninety-five-rule__c11b709d.answer.json"
+  },
   {
    "id": "chess-online-boom__585373ee",
    "slug": "chess-online-boom",
@@ -93,16 +133,6 @@
    "answer_path": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
   },
   {
-   "id": "moon-drifting-away__653a5ccc_r2",
-   "slug": "moon-drifting-away",
-   "filed": "2026-11-20T12:45:25Z",
-   "why": [
-    "premise: brain: The claim is misleading: the Moon is receding about 3.8 cm a year, and total eclipses end only because it appears too small to cover the Sun. \"Escape\" and \"leaving\" overstate this, and the 600-million-year timescale is too distant for a viewer to feel as a threat."
-   ],
-   "request": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r2.request.json",
-   "answer_path": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r2.answer.json"
-  },
-  {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
    "slug": "richest-americans-live-14-years-longer",
    "filed": "2026-11-19T15:22:32Z",
@@ -122,16 +152,6 @@
    ],
    "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
    "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
-  },
-  {
-   "id": "library-digital-shift__502c582f",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-19T13:57:03Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, provable claim about libraries' quietness and the exact digital borrowing figure."
-   ],
-   "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
-   "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
   },
   {
    "id": "index-funds-own-corporate-america__a401ad38_r1",
@@ -234,16 +254,6 @@
    "answer_path": "exchange/rewrites/20261119/people-over-65-outnumber-kids-under-5__df8ae648.answer.json"
   },
   {
-   "id": "tattoo-mainstream-shift__9b1e4add",
-   "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified statistic and a vague claim about behavior, lacking concrete, demonstrably true specifics."
-   ],
-   "request": "exchange/rewrites/20261119/tattoo-mainstream-shift__9b1e4add.request.json",
-   "answer_path": "exchange/rewrites/20261119/tattoo-mainstream-shift__9b1e4add.answer.json"
-  },
-  {
    "id": "vinyl-beats-cd-sales-again__17bea803",
    "slug": "vinyl-beats-cd-sales-again",
    "filed": "2026-11-19T00:50:03Z",
@@ -273,16 +283,6 @@
    ],
    "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
    "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
-  },
-  {
-   "id": "measles-ninety-five-rule__e5720400",
-   "slug": "measles-ninety-five-rule",
-   "filed": "2026-11-18T18:41:45Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified claim that kindergartens are already below the 95% herd immunity threshold, making it insufficiently concrete and provably true."
-   ],
-   "request": "exchange/rewrites/20261118/measles-ninety-five-rule__e5720400.request.json",
-   "answer_path": "exchange/rewrites/20261118/measles-ninety-five-rule__e5720400.answer.json"
   },
   {
    "id": "map-distortion-true-size__bc5c8508",
@@ -354,16 +354,6 @@
    ],
    "request": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.request.json",
    "answer_path": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__a488693a",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-18T13:14:52Z",
-   "why": [
-    "thesis: seg2 ('Where near-misses cluster') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: It introduces a new fact about airport clustering rather than building on the cause explained in beat 1, so it doesn't f"
-   ],
-   "request": "exchange/rewrites/20261118/runway-near-misses-climbing__a488693a.request.json",
-   "answer_path": "exchange/rewrites/20261118/runway-near-misses-climbing__a488693a.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__f3e6eb41",
@@ -666,16 +656,6 @@
    ],
    "request": "exchange/rewrites/20261018/earth-rotation-speeding-up__e26a5423.request.json",
    "answer_path": "exchange/rewrites/20261018/earth-rotation-speeding-up__e26a5423.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261018/divorce-rate-quiet-decline__d6b27d36.answer.json"
   },
   {
    "id": "volcano-country-ranking__692a9e46",

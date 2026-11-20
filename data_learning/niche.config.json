@@ -28347,8 +28347,8 @@
   {
    "slug": "tattoo-mainstream-shift",
    "title": "A Third Of Americans Are Now Tattooed",
-   "hook": "Once you get one tattoo, you almost never stop at one.",
-   "closing": "Ink used to mean rebel. Now a third of Americans wear it, so it's just normal.",
+   "hook": "A third of America now wears ink, and most can't stop at one.",
+   "closing": "Tattoos stopped being rebellion once a third of America had one. That's just normal now.",
    "question": "How many tattoos do you have?",
    "caption": "Tattoos have gone from rebellious to mainstream -- a third of Americans now have at least one, more women than men, and most who start don't stop at just one. How many do you have? 💀",
    "hashtags": [
@@ -28414,8 +28414,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T10:07:37Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-20T13:31:37Z",
    "hook_was": "Tattoos went from rebel mark to 32% of Americans.",
    "retold": "retell/v4"
   },
@@ -34135,8 +34135,8 @@
   {
    "slug": "vinyl-beats-cd-sales-again",
    "title": "Vinyl Beat CDs, but Streaming Still Owns Music",
-   "hook": "The physical-format comeback is real, but it is not a takeover.",
-   "closing": "Vinyl won the physical contest while streaming kept control of the larger market.",
+   "hook": "Vinyl just crushed the CD, but streaming is eating all of music.",
+   "closing": "Vinyl won the shelf. Streaming owns the building.",
    "question": "Do you still own a CD?",
    "caption": "In 2022, vinyl album sales passed CDs in America for the first time since 1987 -- but the twist is what it says about the entire music industry. Do you still own a CD? 👇",
    "hashtags": [
@@ -34178,7 +34178,7 @@
      "ascending": false,
      "role": "2 · THE UNITS",
      "topic": "Vinyl Records",
-     "say": "Vinyl sold 41 million albums. The revenue win also appeared in the number of physical records people bought.",
+     "say": "Vinyl sold 41 million albums. The revenue win showed up in the number of records people bought too.",
      "scene": {
       "mechanic": "crate-records-drop-in",
       "concept": "41 vinyl discs and 33 CDs drop one at a time into two crates, one disc per million sold, the vinyl crate towering over the CD crate",
@@ -34204,8 +34204,8 @@
     }
    ],
    "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-20T12:26:12Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-20T13:32:02Z",
    "hook_was": "In 2022, vinyl beat CD sales for the first time since 1987."
   },
   {
@@ -38396,7 +38396,7 @@
   {
    "slug": "great-barrier-reef-bleaching-accelerating",
    "title": "Great Barrier Reef Bleaching Now Returns Every 2 Years",
-   "hook": "Reef bleaching now returns about every 2 years.",
+   "hook": "The Great Barrier Reef is being cooked again before it can recover.",
    "closing": "Each bleaching wave now arrives before the reef can fully recover.",
    "question": "Can the reef keep up?",
    "hashtags": [
@@ -38450,7 +38450,24 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:44Z"
+   "rewritten_at": "2026-11-18T12:25:44Z",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 10,
+     "arc": 8,
+     "factual": 10,
+     "visual_proof": 8,
+     "payoff": 6,
+     "voice": 3
+    },
+    "total": 55,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "The hook, beats and closing all say the same thing (bleaching every 2 years, with no time to recover). Open on a concrete, human-scale threat, such as 'The Great Barrier Reef is dying faster than it can heal', and use the beats to build tow",
+    "fp": "040b7030bf8325fb"
+   },
+   "hook_was": "Reef bleaching now returns about every 2 years."
   },
   {
    "slug": "normal-body-temperature-has-shifted",

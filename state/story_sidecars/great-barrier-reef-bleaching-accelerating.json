@@ -1,0 +1,52 @@
+{
+ "slug": "great-barrier-reef-bleaching-accelerating",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 10,
+   "hook": 10,
+   "arc": 8,
+   "factual": 10,
+   "visual_proof": 8,
+   "payoff": 6,
+   "voice": 3
+  },
+  "total": 55,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "The hook, beats and closing all say the same thing (bleaching every 2 years, with no time to recover). Open on a concrete, human-scale threat, such as 'The Great Barrier Reef is dying faster than it can heal', and use the beats to build tow",
+  "fp": "040b7030bf8325fb"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Reef bleaching now returns about every 2 years.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "The reef has already suffered 3 bleaching events this decade. What was rare became routine.",
+   "eyes": "a data picture (trend)",
+   "evidence": "Australian Institute of Marine Science (AIMS) | Great Barrier Reef mass bleaching events per decade | https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf | 2026-11-12"
+  },
+  {
+   "window": "beat 1",
+   "ears": "The average gap shrank to 2 years. The reef barely catches its breath.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Australian Institute of Marine Science (AIMS) | Years between Great Barrier Reef mass bleaching events | https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf | 2026-11-12"
+  },
+  {
+   "window": "beat 2",
+   "ears": "A reef typically needs 10 years to recover. New bleaching arrives far too soon.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Australian Institute of Marine Science (AIMS) / NOAA Coral Reef Watch | Coral recovery time vs time actually between bleaching events | https://aims.gov.au | 2026-11-12"
+  },
+  {
+   "window": "closing",
+   "ears": "Each bleaching wave now arrives before the reef can fully recover.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
