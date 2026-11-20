@@ -604,8 +604,13 @@ in **`engines/`**. Channels are thin consumers: daily renderers at root
 
 ## The story forge keeps the queue full of REAL data
 
-`scripts/story_forge.py` discovers indicators from the live World Bank WDI
-catalogue, fetches world trends / country rankings, and writes datasets with
+`scripts/story_forge.py` discovers indicators from the live World Bank
+catalogues (`WB_SOURCES`: WDI, Health Nutrition and Population, Education,
+ESG — WDI alone ran dry on 2026-09-07 and the forge wrote nothing for ten
+weeks with every run green), remembers an indicator whose series proved
+unusable so it is never redrawn (`state/forge_used.json`, whose `updated`
+is the forge's heartbeat for the `forge_silent` alarm), fetches world
+trends / country rankings, and writes datasets with
 honest provenance (publisher, url, access_date, officiality=official). The
 brain writes only the WORDS and the SCENE; every number comes from the
 source. Run by `story_forge.yml` (twice daily) and by every posting run.

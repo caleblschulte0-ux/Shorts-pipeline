@@ -237,6 +237,52 @@ def _dead_credentials() -> list[dict]:
     return out
 
 
+#: Days the story forge may go without KEEPING a story before the alarm
+#: calls it dead. It runs on every explainer posting run (several a day),
+#: so three silent days is not a quiet spell, it is a dry well.
+FORGE_SILENT_DAYS = 3
+
+
+def _forge_silence(date: str) -> dict | None:
+    """How long the explainer's story forge has written nothing, read from
+    its own heartbeat (`state/forge_used.json` `updated`, stamped only when
+    a story is KEPT). 2026-09-07..11-19: ten weeks of "forged 0", exit 0,
+    every check green, until the queue it was meant to fill ran out and
+    the channel went dark. Missing heartbeat: nothing — its absence is not
+    evidence."""
+    rec = _load(ROOT / "state" / "forge_used.json")
+    if not isinstance(rec, dict) or not rec.get("updated"):
+        return None
+    try:
+        last = datetime.strptime(str(rec["updated"])[:10], "%Y-%m-%d").date()
+        day = datetime.strptime(date, "%Y%m%d").date()
+    except ValueError:
+        return None
+    silent = (day - last).days
+    if silent < FORGE_SILENT_DAYS:
+        return None
+    return {"last": last.isoformat(), "days": silent,
+            "unusable": len(rec.get("unusable") or []),
+            "used": len(rec.get("indicators") or [])}
+
+
+def _sports_source_dead(date: str) -> dict | None:
+    """The sports run's own report for this date saying its source pool was
+    EMPTY — every Reddit route refused the runner, so it had nothing to cut
+    and exited. 2026-11-18/19: two days, five failed runs, and the alarm
+    blamed the Groq key. Another date's report, or a pool with posts in it:
+    nothing."""
+    rec = _load(ROOT / "sports_report.json")
+    if not isinstance(rec, dict):
+        return None
+    day = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+    if str(rec.get("date") or "") != day:
+        return None
+    if int(rec.get("pool") or 0) > 0:
+        return None
+    return {"want": rec.get("want")}
+
+
 def _too_early(date: str, now=None) -> bool:
     """Is it still plausibly mid-day for this production date?"""
     try:
@@ -377,6 +423,45 @@ def check(date: str, now=None) -> dict:
                   _credential_fix(row))
     brains_text = [r for r in brains_out if r["name"] in TEXT_BRAINS]
 
+    # ---- 0b. IS THERE ANYTHING TO MAKE? ---------------------------------
+    # A channel can be dark with every brain alive and every gate right:
+    # when nothing reaches the gate. The explainer's supply is the story
+    # forge; the sports channel's is Reddit. Each writes its own record,
+    # and from 2026-09-07 (forge) and 2026-11-18 (Reddit) nothing read
+    # them — the morning alarm said `no_posts_*` and pointed at a key.
+    forge_out = _forge_silence(date) if reg.is_enabled("explainer", registry) \
+        else None
+    if forge_out:
+        alarm("forge_silent", "critical",
+              f"the explainer's story forge has KEPT NO STORY since "
+              f"{forge_out['last']} ({forge_out['days']} days; "
+              f"{forge_out['used']} indicators used, "
+              f"{forge_out['unusable']} remembered as unusable). Every "
+              f"posting run says 'forged 0' and exits green; the queue "
+              f"only shrinks.",
+              "Read the forge step of the latest explainer run: 'catalogue "
+              "is EXHAUSTED' means widen WB_SOURCES/THEMES in "
+              "scripts/story_forge.py; '[net]' lines mean the World Bank "
+              "API is unreachable from the runner; 'HELD by editorial "
+              "gate' or 'WEAK PITCH' on every candidate means the words, "
+              "not the well. The gate stays where it is.")
+    sports_out = {}
+    for _cid in reg.channel_ids(registry):
+        if reg.captured(_cid, registry) and _sports_source_dead(date):
+            sports_out[_cid] = _sports_source_dead(date)
+            alarm("sports_source_dead", "critical",
+                  f"{_cid}: the sports run found ZERO Reddit video posts "
+                  f"for {date} (sports_report.json pool=0) — every route "
+                  f"(API, PullPush, RSS) refused the runner, so nothing "
+                  f"was cut or judged.",
+                  "Authenticate the Reddit reads: create a 'script' app at "
+                  "reddit.com/prefs/apps and set the repository secrets "
+                  "REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET — the OAuth "
+                  "path (funnel/media_funnel._reddit_token) is already "
+                  "built and sports.yml already passes both. Until then "
+                  "the channel posts nothing, however healthy every brain "
+                  "is.")
+
     # ---- 1. did each channel ship what the registry asked for? ----------
     for cid in reg.channel_ids(registry):
         paths = reg.paths(cid, registry)
@@ -401,6 +486,14 @@ def check(date: str, now=None) -> dict:
                              "draws and verifies nothing, the judge cannot "
                              "watch, and the gate holds the rest — that is "
                              "the gate working, not the fault. Then: ")
+            if cid in sports_out:
+                why += (" The sports run found 0 Reddit posts to cut — "
+                        "see sports_source_dead above.")
+                fix_first = ("Fix the SOURCE first (sports_source_dead): "
+                             "no posts, no cuts, no videos. Then: ")
+            if cid == "explainer" and forge_out:
+                why += (f" The story forge has kept no story since "
+                        f"{forge_out['last']} — see forge_silent above.")
             alarm(f"no_posts_{cid}", "critical",
                   f"{cid}: ZERO videos posted for {date} (registry wants "
                   f"{target}).{why}",
