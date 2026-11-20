@@ -281,9 +281,99 @@ def strikes(nf):
     return out
 
 
+def near_strikes(data, nf, cutaway=None):
+    """the strikes of this beat's event: [(root, start frame)] of every strike (strikes()) that lands within
+    motion.SCENERY_M of him, off any cutaway. The storm's far bolts over the valley are scenery and not in it"""
+    import motion as MO
+    sc = bpy.context.scene; out = []
+    for r, f in strikes(nf):
+        if cutaway and cutaway[0] <= (f - 1) / FPS < cutaway[1]: continue
+        sc.frame_set(f); bpy.context.view_layer.update()
+        if (_hit(r, bpy.data.objects[r["parts"][0]]) - data.arm.matrix_world.translation).length <= MO.SCENERY_M:
+            out.append((r, f))
+    return out
+
+
+def _flash(r, f, nf):
+    """the frames of the flash that starts at f (while its core is shown), at most 0.3 s of them"""
+    core = bpy.data.objects[r["parts"][0]]; fc = _hide_curve(core); out = []
+    for g in range(f, min(nf, f + int(0.3 * FPS)) + 1):
+        if (fc.evaluate(g) < 0.5) if fc else not core.hide_render: out.append(g)
+        else: break
+    return out or [f]
+
+
+def _through_him(o, d, length, mine):
+    """does the ray o + t*d (0 < t < length) pass through him? Whatever else it meets first is passed through"""
+    sc = bpy.context.scene; dg = bpy.context.evaluated_depsgraph_get(); pos = o.copy(); gone = 0.0
+    for _ in range(24):
+        hit, loc, _n, _i, ob, _m = sc.ray_cast(dg, pos, d, distance=max(1e-4, length - gone))
+        if not hit: return False
+        if ob is not None and (ob.name in mine or ob.original.name in mine): return True
+        step = (loc - pos).length + 0.004; gone += step; pos = pos + d * step
+        if gone >= length: return False
+    return False
+
+
+RINGS = (0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.08, 0.10, 0.12)   # frame heights round a strike's target point
+
+
+def bolt_view(data, cam, r, f, mine=None):
+    """what the viewer sees one strike do at frame f, for motion.bolt_problems: (path, flags, ring, tilt, target_seen),
+    or None for a bolt with no curve channel"""
+    import math as _mt
+    core = bpy.data.objects[r["parts"][0]]
+    if core.type != 'CURVE' or not core.data.splines: return None
+    sc = bpy.context.scene; sc.frame_set(f); bpy.context.view_layer.update()
+    mine = mine or _his(data)
+    C = cam.matrix_world.translation.copy(); cm = cam.matrix_world.to_3x3()
+    world = [core.matrix_world @ Vector(p.co[:3]) for p in core.data.splines[0].points]
+    hit = _hit(r, core)
+    if (world[-1] - hit).length > (world[0] - hit).length: world.reverse()     # cloud first, target last
+    world[-1] = hit
+    path = []
+    for p in world:
+        q = world_to_camera_view(sc, cam, p); path.append((q.x, q.y) if q.z > 0 else None)
+    flags = []
+    for p in world:
+        d = p - C; L = d.length; dn = d.normalized()
+        flags.append("h" if _through_him(C, dn, L - 0.02, mine) else ("f" if _through_him(p + dn * 0.02, dn, 3.0, mine) else ""))
+    vf = list(cam.data.view_frame(scene=sc)); fh = max(v.y / -v.z for v in vf) - min(v.y / -v.z for v in vf)
+    dep = (hit - C).dot(cm @ Vector((0, 0, -1))); rx = cm @ Vector((1, 0, 0)); ry = cm @ Vector((0, 1, 0)); ring = None
+    for rho in RINGS:
+        if any(_through_him(C, (q - C).normalized(), (q - C).length + 3.0, mine)
+               for q in (hit + (rx * _mt.cos(a) + ry * _mt.sin(a)) * rho * dep * fh for a in (6.2832 * k / 16 for k in range(16)))):
+            ring = rho; break
+    ins = [q is not None and 0 <= q[0] <= 1 and 0 <= q[1] <= 1 for q in path]
+    e = ins.index(True) if True in ins else 0
+    v = world[-1] - world[e]
+    tilt = _mt.degrees(_mt.atan2(_mt.hypot(v.x, v.y), -v.z)) if v.length > 1e-6 else 0.0
+    seen = None
+    tg = r.get("target") if "target" in r.keys() else None
+    if tg:
+        objs = [bpy.data.objects[n] for n in ([tg] if isinstance(tg, str) else list(tg)) if n in bpy.data.objects]
+        seen = False
+        for o in objs:
+            cs = [o.matrix_world @ Vector(c) for c in o.bound_box]; c = sum(cs, Vector()) / 8
+            q = world_to_camera_view(sc, cam, c)
+            if q.z > 0 and 0 <= q.x <= 1 and 0 <= q.y <= 1 and not _through_him(C, (c - C).normalized(), (c - C).length - 0.02, mine):
+                seen = True
+    return path, flags, ring, tilt, seen
+
+
+def on_him(data, r, f):
+    """does the strike starting at f land on him (within motion.TARGET_R of any of his bones)?"""
+    import motion as MO
+    sc = bpy.context.scene; sc.frame_set(f); bpy.context.view_layer.update(); M = data.arm.matrix_world
+    hit = _hit(r, bpy.data.objects[r["parts"][0]])
+    return min((hit - M @ v).length for b in data.arm.pose.bones for v in (b.head, b.tail)) <= MO.TARGET_R
+
+
 def far(data, cam, nf, arc=(), name="shot", cutaway=None):
     """FAR (store/motion.py has the rules and their calibration): at each arc moment (fractions of the shot) Data is
-    big; every strike lands near him, inside the frame, thick enough to read; a drop is seen from the side"""
+    big; every strike lands near him, inside the frame, thick enough to read; a drop is seen from the side; and BOLT:
+    every strike near him is seen whole, from where it enters the frame to its target, steep, and clear of his body
+    unless he is its target (motion.bolt_problems, measured by bolt_view on every frame of its flash)"""
     import motion as MO
     sc = bpy.context.scene; res = (sc.render.resolution_x, sc.render.resolution_y); asp = res[0] / res[1]
     dur = nf / FPS; probs = []
@@ -312,6 +402,16 @@ def far(data, cam, nf, arc=(), name="shot", cutaway=None):
         gap = min((math.hypot((c.x - p.x) * asp, c.y - p.y) for c in pts if c.z > 0), default=9.9)
         for pr in MO.strike_problems(p, gap, abs(q.x - p.x) * res[0]):
             probs.append(f"{r.name} at f{f} {pr}")
+    mine = _his(data); n_bolt = 0
+    for r, f in near_strikes(data, nf, cutaway):          # BOLT (store/motion.py): what the viewer sees each strike do
+        him = on_him(data, r, f); seen = []
+        for g in _flash(r, f, nf):
+            v = bolt_view(data, cam, r, g, mine)
+            if v is None: break
+            path, flags, ring, tilt, tseen = v
+            for pr in MO.bolt_problems(path, flags, ring, him, tilt, tseen):
+                if pr not in seen: seen.append(pr); probs.append(f"BOLT {r.name} at f{g} {pr}")
+        n_bolt += 1
     hh, side = [], []
     for f in range(1, nf + 1):
         sc.frame_set(f); M = data.arm.matrix_world; pb = data.pb
@@ -325,6 +425,7 @@ def far(data, cam, nf, arc=(), name="shot", cutaway=None):
         probs.append(f"he drops (a knockdown, a sit, a crouch) at f{dr[0][0]}-{dr[-1][0]} seen {min(d[2] for d in dr):.0f} deg off his "
                      f"front (min {MO.DROP_SIDE:.0f}): from the front a fall reads as a hop; turn the lens to his side or three-quarter")
     ok = not probs
-    print(f"FAR {name}: his size at the arc moments {sizes} (min {MO.FAR_H}); {n_st} strikes near him measured"
-          + "".join(f"; {p}" for p in probs[:6]) + f" -> {'OK' if ok else 'FAIL'}", flush=True)
+    print(f"FAR {name}: his size at the arc moments {sizes} (min {MO.FAR_H}); {n_st} strikes near him measured; "
+          f"{n_bolt} strikes' channels seen (BOLT: in frame to the target, steep, off his body unless he is the target)"
+          + "".join(f"; {p}" for p in probs[:8]) + f" -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok

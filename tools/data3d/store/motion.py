@@ -260,3 +260,200 @@ def check(data, cam, nf, name="shot", cutaway=None, fps=FPS_):
           + "".join(f"; DEAD HOLD f{a}-{b} {s:.2f}s" for a, b, s in dead[:3])
           + f" -> {'OK' if hold_ok else 'FAIL: give him a new action inside every 0.8 s; a tap or a drift is not one'}", flush=True)
     return pop_ok and hold_ok, sorted(set(fast))
+
+
+# ---------------------------------------------------------------- READ: too small to read on the judge's sheet (round 2)
+"""READ (2026-11-20, round 2). HOLD counts a pose as changing once his joints move 7 cm in the world, but the judge reads
+a phone-sized sheet (every 4th frame, ~35% resolution). The truck remake passed HOLD and the judge still called sheet
+frames 9-24 "one pose while the arcs crawl", 25-32 "a dead second" and the jolt, hat hop, cower, hand check and shrug
+"too small to see"; the ridge's first hit "had no visible effect on him". So the move is measured where the viewer sees
+it: on SCREEN, through the shot camera.
+
+  MOVE   his READ points (head top and centre, hands, elbows, knees, feet, chest, hips, and his hat while it is shown),
+         each projected through the CURRENT frame's camera both where they are now and where they were at the
+         stretch's start (so a camera move is not his move), in frame heights. A pose change is the MEAN of their
+         travels: one hand flicking 0.07 while the rest of him sits still is a small change on a phone; a whole-body
+         jolt is not.
+  HOLD   a stretch where that mean stays under READ_R for more than READ_HOLD is a hold (the final payoff included).
+  REACT  every strike that lands near him (staging.near_strikes: within motion.SCENERY_M) must move him: the largest
+         mean travel from REACT_PRE frames before the strike to any frame in the next REACT_S is at least REACT_MIN.
+
+Calibration (2026-11-20; every frame of the judged takes dumped through the harness, no render):
+                         HOLD (mean < 0.02)         REACT per strike near him (mean travel in 0.5 s)
+  trail  (PASS 72)       0.60 s                     0.136  0.136  0.067
+  beach  (PASS 71)       0.77 s                     0.090  0.053
+  truck  (52)            2.73 s at f49-131          0.052  0.026 (the second strike: "no big palms-up shrug")
+  tower  (42)            0.73 s                     0.070  0.033 (the second strike: "the hot-foot barely registers")  0.114
+  ridge  (46)            1.00 s at f95-125          0.145  0.062  0.093
+The truck's hold covers the judge's sheet frames 9-24 and 25-32 (frames 33-93 and 97-125 of the shot). What READ does
+NOT separate, said plainly: the truck's first jolt (0.052) moves him as much as the beach's second strike (0.053, which
+the judge passed: there the event is the jar bursting round him), and the ridge's first hit (0.145: he is mid-turn when
+it lands) and the truck's closing lean (8 cm toward the lens, read by the judge as "a slow push-in") both measure as
+moves. Arc moments are not reaction beats here: the trail's own closing arc moment moves him 0.020, and it passed.
+"""
+READ_R = 0.02          # of the frame height: the mean travel of his READ points under which nothing of him reads as moving
+READ_HOLD = 1.0        # s: the longest stretch under READ_R (trail 0.60, beach 0.77; truck 2.73)
+REACT_MIN = 0.04       # of the frame height: the least mean travel a strike near him must cause (passes 0.053+; truck 0.026, tower 0.033)
+REACT_S = 0.5          # s after the strike in which he reacts
+REACT_PRE = 3          # frames before the strike his pose is measured from
+READ_PTS = (("head", 1), ("head", 0), ("hand.L", 1), ("hand.R", 1), ("fore.L", 0), ("fore.R", 0), ("shin.L", 0),
+            ("shin.R", 0), ("foot.L", 1), ("foot.R", 1), ("chest", 1), ("root", 0))
+
+
+def project(cam, p, asp):
+    """p (world) through cam = {"mi": the camera's inverse matrix (3 rows of 4), "rect": (x0, x1, y0, y1) of the view
+    frame at depth 1}: (x in frame HEIGHTS, y in frame heights, depth), or None behind the lens"""
+    mi, (x0, x1, y0, y1) = cam["mi"], cam["rect"]
+    c = [mi[r][0] * p[0] + mi[r][1] * p[1] + mi[r][2] * p[2] + mi[r][3] for r in range(3)]
+    z = -c[2]
+    if z <= 1e-6: return None
+    return ((c[0] / z - x0) / (x1 - x0) * asp, (c[1] / z - y0) / (y1 - y0), z)
+
+
+def read_move(cams, pts, a, k, asp):
+    """the mean on-screen travel (frame heights) of his points from frame index a to k, both through camera k"""
+    cam = cams[k]; tot = n = 0
+    for p, q in zip(pts[a], pts[k]):
+        if p is None or q is None: continue
+        A = project(cam, p, asp); B = project(cam, q, asp)
+        if A and B: tot += math.hypot(A[0] - B[0], A[1] - B[1]); n += 1
+    return tot / n if n else 0.0
+
+
+def read_holds(cams, pts, asp, r=READ_R, fps=FPS_, skip=()):
+    """[(f0, f1, seconds)] of every maximal stretch where his mean on-screen travel from its start stays under r"""
+    n = len(pts); ext = []
+    for a in range(n):
+        b = a
+        while b + 1 < n and (b + 2) not in skip and read_move(cams, pts, a, b + 1, asp) < r:
+            b += 1
+        ext.append(b)
+    out, mx = [], -1
+    for a in range(n):
+        if (a + 1) in skip: continue
+        if ext[a] > mx:
+            if ext[a] > a: out.append((a + 1, ext[a] + 1, (ext[a] - a) / fps))
+            mx = ext[a]
+    return out
+
+
+def reactions(cams, pts, asp, frames, fps=FPS_):
+    """[(strike frame, his largest mean travel in the REACT_S after it, from REACT_PRE frames before)]"""
+    n = len(pts); out = []
+    for f in frames:
+        a = max(0, f - 1 - REACT_PRE)
+        out.append((f, max(read_move(cams, pts, a, min(n - 1, f - 1 + k), asp) for k in range(0, int(round(REACT_S * fps)) + 1))))
+    return out
+
+
+def sample_read(data, cam, nf):
+    """every frame: the camera (for project()) and his READ points in the world, his hat's centre among them (any object
+    named "...hat..." that is his: parented to him, or a copy of his hat's mesh knocked off; None while it is hidden)"""
+    import bpy
+    sc = bpy.context.scene
+    mine = {o for o in bpy.data.objects if o.parent == data.arm and "hat" in o.name.lower() and o.type == 'MESH'}
+    hats = sorted(mine | {o for o in bpy.data.objects if o.type == 'MESH' and any(o.data == h.data for h in mine)}, key=lambda o: o.name)
+    cams, pts = [], []
+    for f in range(1, nf + 1):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        Mi = cam.matrix_world.inverted(); vf = list(cam.data.view_frame(scene=sc))
+        xs = [v.x / -v.z for v in vf]; ys = [v.y / -v.z for v in vf]
+        cams.append({"mi": [[Mi[r][c] for c in range(4)] for r in range(3)], "rect": (min(xs), max(xs), min(ys), max(ys))})
+        row = [tuple(_pt(data, b, t)) for b, t in READ_PTS]
+        for h in hats:
+            if h.hide_render: row.append(None); continue
+            cs = [h.matrix_world @ __import__("mathutils").Vector(c) for c in h.bound_box]
+            row.append(tuple(sum(c[i] for c in cs) / 8 for i in range(3)))
+        pts.append(row)
+    return cams, pts
+
+
+def read_check(data, cam, nf, strike_frames=(), name="shot", cutaway=None, fps=FPS_):
+    """READ: prints a READ line; True when no hold is too small to read and every strike near him moves him"""
+    import bpy
+    sc = bpy.context.scene; asp = sc.render.resolution_x / sc.render.resolution_y
+    cams, pts = sample_read(data, cam, nf)
+    skip = {f for f in range(1, nf + 1) if cutaway and cutaway[0] <= (f - 1) / fps < cutaway[1]}
+    st = read_holds(cams, pts, asp, skip=skip); dead = [s for s in st if s[2] > READ_HOLD + 1e-9]
+    longest = max(st, key=lambda s: s[2]) if st else (0, 0, 0.0)
+    re_ = [r for r in reactions(cams, pts, asp, [f for f in strike_frames if f not in skip])]
+    weak = [r for r in re_ if r[1] < REACT_MIN]
+    ok = not dead and not weak
+    print(f"READ {name}: on the judge's sheet his longest still stretch is {longest[2]:.2f}s at f{longest[0]}-{longest[1]} "
+          f"(his points' mean travel on screen under {READ_R} of the frame height; max {READ_HOLD}s)"
+          + "".join(f"; TOO SMALL TO READ f{a}-{b} {s:.2f}s" for a, b, s in dead[:3])
+          + f"; strikes near him move him {[round(x, 3) for _, x in re_]} (min {REACT_MIN} in {REACT_S}s)"
+          + "".join(f"; NO VISIBLE REACTION to the strike at f{f} ({x:.3f})" for f, x in weak[:3])
+          + f" -> {'OK' if ok else 'FAIL: act it bigger, with his whole body: a hand flick or a 5 cm lean is a still frame on a phone'}",
+          flush=True)
+    return ok
+
+
+# ---------------------------------------------------------------- BOLT: the event's object is in the shot (round 2)
+"""BOLT (2026-11-20, round 2; staging.far measures it for every strike near him, on every frame of its flash). The
+tower remake passed FAR and the judge failed it: "the copper rod, cab roof and windsock are never in frame, so the bolts
+end at the top edge and read as lightning striking Data, not the rod"; the ridge's "near-horizontal bolt streaks along
+the grass" and "a bolt cuts in front of his body". FAR measured where a bolt lands; BOLT measures what the viewer sees
+it DO, from the bolt's own main channel (store/storm_kit: the core curve, cloud to target):
+
+  PATH    from where it enters the frame, the channel stays in frame all the way to its target point
+  INSET   the target point is at least BOLT_INSET inside every side of the frame
+  STEEP   the part in frame falls within BOLT_TILT degrees of vertical: a bolt drawn toward the lens across the ground
+          reads as a streak on the grass, not lightning
+  BODY    unless he is its target (it lands within TARGET_R of his body), no point of the channel in frame is in front
+          of him or hidden behind him (a ray from the lens through it passes through him), and its target point is at
+          least TOUCH of the frame height from his outline on screen: a bolt ending at his hat reads as striking him,
+          whatever it hits 1.4 m behind him
+  TARGET  a bolt that names its target (storm_kit.bolt(target=...)) shows it: the target's centre in frame, not
+          hidden behind him
+
+Calibration (2026-11-20, the same judged takes, every frame of every flash near him; "ring" is the smallest distance on
+screen from the target point to his outline, in frame heights, found by rays round the point; strikes in order):
+                     on him (m)        INSET       STEEP (deg)    BODY
+  trail  (PASS 72)   0.09 0.10 0.09    0.27-0.29   5 35 31        he is the target of all three
+  beach  (PASS 71)   0.19 0.14         0.23-0.33   7 35           he is the target (the jar fused round him)
+  truck  (52)        0.53 0.56         0.25-0.30   25 18          roof bolt 1 at f14-15: 0.01 from his hat, its channel
+                                                                  over him (the judge did not name it; the take fails READ)
+  tower  (42)        1.38 1.44 1.38    0.30-0.33   21 19 11       bolt 2: 0.01 from his hat and behind his head (f61-63);
+                                                                  bolt 3: leaves the frame and runs behind him (f97-99)
+  ridge  (46)        0.40 0.30 0.52    0.13-0.26   32 31 45       bolt 2's channel crosses him at f37-39 (sheet frame 10);
+                                                                  bolt 3 is the streak along the grass (45 deg)
+TOUCH 0.03 sits under the truck roof bolt's 0.05 at its first frame and over the tower's 0.01. What BOLT does NOT catch,
+said plainly: the tower's FIRST bolt (0.04-0.05 from his hat, its channel clear of him) passes; the rod itself is a
+9 cm tip the check sees as on screen. A bolt that names its target (storm_kit.bolt(target=...)) is held to TARGET.
+TARGET_R 0.25 sits between the beach's 0.19 and the ridge's 0.30 (at the strike's first frame).
+"""
+BOLT_INSET = 0.10      # of the frame (each side): the target point's least distance inside
+BOLT_TILT = 40.0       # degrees from vertical: the steepest the in-frame channel may lean (passes 35; ridge streak 45)
+TARGET_R = 0.25        # m: a strike this close to his body has HIM as its target (beach 0.19; ridge 0.30, truck 0.53)
+TOUCH = 0.03           # of the frame height: a strike not on him lands at least this far from his outline on screen
+
+
+def bolt_problems(path, flags=(), ring=None, on_him=False, tilt=0.0, target_seen=None, inset=BOLT_INSET):
+    """one strike, one frame. path: the main channel on screen, cloud to target, [(x, y) as fractions of the frame's
+    width and height, or None behind the lens]; flags: per path point "h" (hidden behind him), "f" (in front of him)
+    or ""; ring: the smallest screen distance (frame heights) at which his outline is found round the target point,
+    None when farther than any measured; tilt: degrees off vertical of the in-frame channel (world); target_seen: for a
+    bolt that names its target, whether its centre is in frame and not behind him. The problems, or []"""
+    ins = [q is not None and 0 <= q[0] <= 1 and 0 <= q[1] <= 1 for q in path]
+    if True not in ins: return ["never in frame"]
+    e = ins.index(True); out = []
+    if not all(ins[e:]):
+        out.append("leaves the frame between where it enters and its target: the viewer never sees what it hits")
+    h = path[-1]
+    if h is None or min(h[0], 1 - h[0], h[1], 1 - h[1]) < inset:
+        out.append(f"its target point is at the frame edge or outside it ({'behind the lens' if h is None else f'x {h[0]:.2f}, y {h[1]:.2f}'}; "
+                   f"keep it {inset:.2f} inside)")
+    if tilt > BOLT_TILT:
+        out.append(f"the channel in frame leans {tilt:.0f} deg off vertical (max {BOLT_TILT:.0f}): a streak along the ground, not lightning")
+    if not on_him:
+        over = [i for i in range(e, len(flags)) if flags[i]]
+        if over:
+            k = "in front of" if any(flags[i] == "f" for i in over) else "behind"
+            out.append(f"it is not striking him, yet its channel passes {k} his body on screen ({len(over)} of its points)")
+        if ring is not None and ring < TOUCH:
+            out.append(f"it is not striking him, yet it lands {ring:.2f} of the frame height from his outline on screen "
+                       f"(min {TOUCH}): it reads as lightning striking him")
+    if target_seen is False:
+        out.append("the object it strikes (its target) is not on screen: out of frame or behind him")
+    return out

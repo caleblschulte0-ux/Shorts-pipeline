@@ -60,9 +60,11 @@ def _tube(name, pts, r, m, parent=None):
     return o
 
 
-def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0, rough=0.22):
+def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0, rough=0.22, target=None):
     """a lightning bolt from `top` (up in the cloud) to `bottom` (what it hits): a white-hot core, a wide soft blue
-    glow round it, and `branches` forks that die out partway. Returns the root empty; strike() makes it flash."""
+    glow round it, and `branches` forks that die out partway. Returns the root empty; strike() makes it flash.
+    target: the object (or its name, or several) the bolt strikes: the rod, the roof, the tree. staging.far then
+    requires it on screen and not hidden behind him on every frame of the flash (motion.bolt_problems, TARGET)."""
     rnd = random.Random(seed)
     root = bpy.data.objects.new(name, None); bpy.context.collection.objects.link(root)
     core = _emit_mat("bolt core", (1.0, 0.98, 1.0), 60.0)
@@ -81,6 +83,9 @@ def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0, rough=0.2
     root["parts"] = [p.name for p in parts]
     root["hit"] = tuple(bottom)    # where it strikes (in the root's space): staging.far measures every frame the bolt is
                                    # visible against Data on screen, however a shot flashes it (strike() or its own keys)
+    if target is not None:
+        ts = target if isinstance(target, (list, tuple)) else [target]
+        root["target"] = [t if isinstance(t, str) else t.name for t in ts]
     return root
 
 
