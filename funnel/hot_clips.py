@@ -96,6 +96,14 @@ def _fetch(url: str, headers: dict) -> bytes:
         return r.read()
 
 
+def _err(e: BaseException) -> str:
+    """`HTTPError 403`, not `HTTPError`: 2026-11-18/19 every route refused
+    the sports run for two days and the log never said whether Reddit was
+    rate-limiting (429, wait) or blocking the runner (403, authenticate)."""
+    code = getattr(e, "code", None)
+    return f"{type(e).__name__}{f' {code}' if code else ''}"
+
+
 def _get(path: str) -> dict | None:
     from funnel import media_funnel
     token = media_funnel._reddit_token()
@@ -108,7 +116,7 @@ def _get(path: str) -> dict | None:
                           .decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] {path.split('?')[0]} "
-              f"API failed ({type(e).__name__})", flush=True)
+              f"API failed ({_err(e)})", flush=True)
         return None
 
 
@@ -163,7 +171,7 @@ def _rss(path: str, sub: str = SUB) -> dict | None:
         got = _from_atom(raw.decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] r/{sub} RSS failed "
-              f"({type(e).__name__})", flush=True)
+              f"({_err(e)})", flush=True)
         return None
     return got
 
@@ -183,7 +191,7 @@ def _pullpush(query: str | None, period: str, limit: int,
                           .decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] PullPush failed "
-              f"({type(e).__name__})", flush=True)
+              f"({_err(e)})", flush=True)
         return None
     posts = data.get("data") if isinstance(data, dict) else None
     if not isinstance(posts, list):

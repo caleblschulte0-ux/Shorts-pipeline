@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261118",
+  "updated": "20261120",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -686,8 +686,8 @@
     },
     "aaeb12de3ebd": {
       "verdict": "in_progress",
-      "date": "20261118",
-      "because": "Triage 2026-11-18. Delivery is back but not steady: explainer posted 4/5/4/4 on 11-12..11-15, 2 on 11-16, 0 on 11-17 (state/explainer_runs.json: six runs that day each held every queued story - editorial_hold ~45, not_current ~29 - and posted nothing while CLAUDE_CODE_OAUTH_TOKEN sat at its weekly limit and GROQ_API_KEY was still refused with HTTP 403, state/credentials.json 2026-11-17T21:41Z), then 2 by 03:25 UTC on 11-18, ninety minutes after the subscription reset. The instrumentation half is done; the bottleneck is brain budget, and the exact operator action is unchanged and already alarmed daily as credential_dead_groq: mint a key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Closes when the channel posts 4/4 for a run of days with that key live.",
+      "date": "20261120",
+      "because": "Triage 2026-11-20. Explainer posted 0 on 11-19 across eight runs (74 queued stories, all held: 34 non-official data, 41 the brain's premise judge calls vague, 7 narration readouts, 3 repeats). Root cause found and fixed this session: the story forge had KEPT NO STORY since 2026-09-07 - with 66 WDI indicators used, the 32 on-doctrine ones left all failed its series filters, and every run redrew the same 32, printed 'forged 0' and exited green, so the queue only shrank. Fix: scripts/story_forge.py now reads four World Bank databases (WB_SOURCES), remembers unusable indicators in state/forge_used.json instead of retrying them, and warns loudly when it writes nothing; daily_alarm raises forge_silent (3 days without a kept story) and sports_source_dead (sports_report pool=0), both with the exact fix; explainer.yml now persists state/story_sidecars. tests/test_the_forge_does_not_retry_a_dry_well.py. Still open: GROQ_API_KEY is dead (operator), and the next explainer runs must show the forge writing again before this closes.",
       "history": [
         {
           "verdict": "doing",
@@ -703,6 +703,11 @@
           "verdict": "in_progress",
           "date": "20261111",
           "because": "Triage 2026-11-11. Delivery WAS restored (explainer 4/4 on 10-29, 10-30, 10-31, 11-05, 11-06) and is dark again since 11-08 for a cause the finding predicted could not be localized: every text brain died at once \u2014 Groq key refused (HTTP 403, state/credentials.json 11-10), Claude subscription at its weekly limit, Gemini 429 by the second story \u2014 so no scene could be drawn or verified and the gate held everything; all five explainer runs on 11-09/11-10 ended red at '0 videos reached the channel' with no cause named. The instrumentation half is built today: daily_alarm reads the credential heartbeat, raises credential_dead_<name>/credential_limited_<name> with the exact secret to replace, and no_posts_<channel> cites the dead brain (tests/test_daily_alarm.py TestADeadBrainSaysSo); credential_check now classifies a weekly limit as LIMITED not DEAD. Stays in_progress until the operator replaces GROQ_API_KEY and the channel posts 4/4 again; the topic-test readout stays frozen until then."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20261118",
+          "because": "Triage 2026-11-18. Delivery is back but not steady: explainer posted 4/5/4/4 on 11-12..11-15, 2 on 11-16, 0 on 11-17 (state/explainer_runs.json: six runs that day each held every queued story - editorial_hold ~45, not_current ~29 - and posted nothing while CLAUDE_CODE_OAUTH_TOKEN sat at its weekly limit and GROQ_API_KEY was still refused with HTTP 403, state/credentials.json 2026-11-17T21:41Z), then 2 by 03:25 UTC on 11-18, ninety minutes after the subscription reset. The instrumentation half is done; the bottleneck is brain budget, and the exact operator action is unchanged and already alarmed daily as credential_dead_groq: mint a key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Closes when the channel posts 4/4 for a run of days with that key live."
         }
       ]
     },

@@ -1028,3 +1028,65 @@ and do it."* The thing is `data_learning/STORY_FIRST_SCRIPT_PLAYBOOK.md`.
   `claude/data3d-video2` branch (`tests/test_data3d_story.py`). The 3D
   pipeline keeps its question. Only the illustrated explainer's question
   became optional.
+
+## Two dark channels, 2026-11-20 (doctor triage): the well was dry and the source was refused
+
+The doctor's backlog had nothing new (the ChatGPT reviewer has filed nothing
+since 09-08), so the triage run read the channels instead. Both data
+channels were dark, each for a cause no alarm named.
+
+**Explainer, 0/4 on 11-19 across eight runs.** `state/explainer_runs.json`:
+74 queued stories, every one held — 63 `editorial_hold` (34 on
+non-official data, 41 the brain's premise judge calls vague, 7 whose
+segments do not continue the headline), 7 `not_current` (readouts), 3
+repeats, 1 `story_hold`. That is the gate working on an old queue. The
+cause was upstream: **the story forge had kept no story since 2026-09-07**.
+`state/forge_used.json` (`updated`, stamped only when a story is kept) said
+so the whole time. With 66 WDI indicators used, the 32 on-doctrine
+indicators that remained all failed its series filters (too few points,
+flat, no spread), every posting run drew the same 32, printed
+`forged 0 real-data stories (written)` and exited 0 — the workflow's
+warning fires only on a non-zero exit. Ten weeks, ~200 green runs, a queue
+that only shrank.
+
+Fixed in the same change (`scripts/story_forge.py`,
+`tests/test_the_forge_does_not_retry_a_dry_well.py`):
+
+- the catalogue is read from four World Bank databases (`WB_SOURCES`: WDI,
+  Health Nutrition and Population, Education, ESG), deduplicated, and a
+  non-WDI indicator's data call carries `&source=`;
+- an indicator whose series proved unusable is remembered (`unusable` in
+  `state/forge_used.json`) and never drawn again; `updated` still means
+  "the last day a story was kept";
+- a run that writes nothing prints a GitHub warning, and an exhausted
+  catalogue says that rather than "network?".
+
+What the forge then writes still goes through the idea brief, the gate and
+the blind scorecard unchanged. Whether the wider well yields stories the
+brain's premise judge accepts is for the next runs to show — the
+`forge_silent` alarm below will say if it does not.
+
+**Baller Bro (trending), 0/5 on 11-18 and 11-19, five failed runs.** Every
+Reddit route — the API, PullPush, the RSS feed — returned an HTTP error to
+the runner, so `run_sports` found 0 posts and exited; `sports_report.json`
+said `pool: 0` both days while the morning alarm blamed the Groq key. The
+authenticated path (`media_funnel._reddit_token`, app-only OAuth) is built
+and `sports.yml` passes both secrets, but they are empty. **Operator
+action:** create a "script" app at reddit.com/prefs/apps and set the
+repository secrets `REDDIT_CLIENT_ID` and `REDDIT_CLIENT_SECRET`. The
+`hot_clips` warnings now carry the HTTP status, so 429 (wait) and 403
+(authenticate) are no longer the same word in the log.
+
+**Two alarms, so neither is silent again** (`scripts/daily_alarm.py`,
+`tests/test_daily_alarm.py`): `forge_silent` (critical, three days without a
+kept story, from the forge's own heartbeat) and `sports_source_dead`
+(critical, the day's `sports_report.json` with an empty pool, naming the
+secrets). The `no_posts_*` they explain cite them.
+
+**Also found and fixed:** `shared/story_brief.write_sidecar` writes
+`state/story_sidecars/<slug>.json` for every scored story, and
+`explainer.yml`'s persist step did not name the directory, so every sidecar
+died with the runner while CLAUDE.md promised them. It is persisted now.
+
+**Deliberately not done:** nothing in any gate moved. The queue's 74 held
+stories stay held; the rewrite mailbox (142 open) is the path for them.

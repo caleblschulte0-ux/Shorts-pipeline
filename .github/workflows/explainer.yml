@@ -919,7 +919,7 @@ jobs:
             data_learning/viz_mechanics.json \
             state/showrunner_verdicts.jsonl \
             exchange/reviews exchange/asks exchange/rewrites exchange/OPEN.json \
-            state/scene_plans quality
+            state/scene_plans state/story_sidecars quality
 
       # IS THE CHANNEL STILL POSTING? (operator, 2026-11-14). Reads this
       # run's record and the last few in state/explainer_runs.json, plus the

@@ -68,6 +68,21 @@ WB_SOURCE = {"name": "World Development Indicators",
              "publisher": "World Bank",
              "url": "https://data.worldbank.org",
              "officiality": "official"}
+# THE WELL. WDI (source 2) alone ran dry on 2026-09-07: with 66 indicators
+# used, the 32 on-doctrine indicators that remained all failed the series
+# filters (too few points, flat, no spread), and every posting run from then
+# to 2026-11-19 drew the SAME 32, forged nothing, printed "forged 0" and
+# exited green — the explainer queue only shrank, and on 11-19 it posted
+# nothing. Two cures, both here: the catalogue is read from every World Bank
+# database that covers this channel's themes, not WDI alone, and an
+# indicator whose series proved unusable is REMEMBERED (`unusable` in
+# state/forge_used.json) instead of retried forever. The `updated` stamp in
+# that file still means "the last day a story was kept" — daily_alarm reads
+# it as the forge's heartbeat (`forge_silent`).
+WB_SOURCES = {2: "World Development Indicators",
+              16: "Health Nutrition and Population Statistics",
+              12: "Education Statistics",
+              75: "Environment, Social and Governance Data"}
 OWID_SOURCE = {"publisher": "Our World in Data",
                "officiality": "secondary"}
 
@@ -165,20 +180,35 @@ def wb_countries() -> dict:
 
 
 def wb_indicators() -> list[dict]:
-    """Every WDI indicator, straight from the live catalogue."""
+    """Every indicator of every database in WB_SOURCES, straight from the
+    live catalogue, each carrying the `source` it is fetched from. An id
+    listed by several databases is kept once, from the first (WDI)."""
     def load():
-        out, page = [], 1
-        while page <= 4:
-            js = _get_json(f"{WB}/indicator?source=2&format=json"
-                           f"&per_page=500&page={page}")
-            if not js or len(js) < 2 or not js[1]:
-                break
-            out += [{"id": i["id"], "name": i["name"]} for i in js[1]]
-            if page >= int(js[0].get("pages", 1)):
-                break
-            page += 1
+        out, seen = [], set()
+        for source in WB_SOURCES:
+            page = 1
+            while page <= 6:
+                js = _get_json(f"{WB}/indicator?source={source}&format=json"
+                               f"&per_page=500&page={page}")
+                if not js or len(js) < 2 or not js[1]:
+                    break
+                for i in js[1]:
+                    if i.get("id") and i["id"] not in seen:
+                        seen.add(i["id"])
+                        out.append({"id": i["id"], "name": i.get("name", ""),
+                                    "source": source})
+                if page >= int(js[0].get("pages", 1)):
+                    break
+                page += 1
         return out
-    return _cached("wb_indicators.json", load) or []
+    return _cached("wb_indicators_v2.json", load) or []
+
+
+def _wb_q(spec: dict) -> str:
+    """The `&source=` a non-WDI indicator needs on its data call (the API
+    answers a WDI question by default and knows nothing else)."""
+    source = int(spec.get("wb_source") or 2)
+    return "" if source == 2 else f"&source={source}"
 
 
 def _theme_of(name: str) -> str | None:
@@ -221,7 +251,8 @@ def candidates(used: set[str], limit: int = 90) -> dict[str, list[dict]]:
                 or re.match(r"^(male|female)\b", topic, re.I)):
             continue
         by_theme.setdefault(theme, []).append(
-            {"src": "wb", "id": iid, "topic": topic, "unit": unit})
+            {"src": "wb", "id": iid, "topic": topic, "unit": unit,
+             "wb_source": int(ind.get("source") or 2)})
     # deterministic rotation so successive runs draw DIFFERENT indicators
     off = len(used)
     for theme, lst in by_theme.items():
@@ -246,7 +277,8 @@ def _round(v: float) -> float:
 def fetch_trend(spec: dict) -> dict | None:
     """World-level time series for one indicator."""
     js = _get_json(f"{WB}/country/WLD/indicator/{spec['id']}"
-                   f"?format=json&per_page=200&date={_YEAR_MIN}:2026")
+                   f"?format=json&per_page=200&date={_YEAR_MIN}:2026"
+                   + _wb_q(spec))
     if not js or len(js) < 2 or not js[1]:
         return None
     rows = [(int(r["date"]), float(r["value"]))
@@ -270,7 +302,7 @@ def fetch_trend(spec: dict) -> dict | None:
 def fetch_rank(spec: dict, countries: dict) -> dict | None:
     """Top-5 countries on one indicator, most recent value each."""
     js = _get_json(f"{WB}/country/all/indicator/{spec['id']}"
-                   f"?format=json&per_page=400&mrnev=1")
+                   f"?format=json&per_page=400&mrnev=1" + _wb_q(spec))
     if not js or len(js) < 2 or not js[1]:
         return None
     rows = []
@@ -903,9 +935,23 @@ def _too_similar(story: dict, cfg: dict) -> str | None:
 # --------------------------------------------------------------------------- #
 def _load_used() -> dict:
     try:
-        return json.loads(USED.read_text())
+        got = json.loads(USED.read_text())
     except Exception:  # noqa: BLE001
-        return {"indicators": []}
+        got = {}
+    if not isinstance(got, dict):
+        got = {}
+    got.setdefault("indicators", [])
+    got.setdefault("unusable", [])
+    return got
+
+
+def _save_used(used_inds: set, unusable: set, updated: str) -> None:
+    """`updated` is the last day a story was KEPT — the heartbeat
+    daily_alarm reads. Remembering an unusable indicator is not a beat."""
+    USED.parent.mkdir(parents=True, exist_ok=True)
+    USED.write_text(json.dumps(
+        {"indicators": sorted(used_inds), "unusable": sorted(unusable),
+         "updated": updated}, indent=1))
 
 
 def _stable_hash(text: str) -> int:
@@ -931,13 +977,21 @@ def forge(count: int, dry_run: bool = False) -> int:
     cfg = json.loads(CONFIG.read_text())
     used_state = _load_used()
     used_inds = set(used_state.get("indicators", []))
+    unusable = set(used_state.get("unusable", []))
+    last_kept = str(used_state.get("updated") or "")
     used_keys = {seg.get("key") for s in cfg.get("stories", [])
                  for seg in s.get("segments", [])}
     used_slugs = {s["slug"] for s in cfg.get("stories", [])}
     countries = wb_countries()
-    pool = candidates(used_inds)
+    pool = candidates(used_inds | unusable)
     if not pool:
-        print("no fresh indicators reachable (network?) — nothing forged")
+        if wb_indicators():
+            print("::warning::[forge] the catalogue is EXHAUSTED: every "
+                  f"on-doctrine indicator is used ({len(used_inds)}) or "
+                  f"proved unusable ({len(unusable)}) — widen WB_SOURCES or "
+                  "the themes; the queue only shrinks until then")
+        else:
+            print("no fresh indicators reachable (network?) — nothing forged")
         return 0
     print(f"themes available: {', '.join(f'{t}({len(v)})' for t, v in pool.items())}")
 
@@ -972,9 +1026,7 @@ def forge(count: int, dry_run: bool = False) -> int:
             cfg.setdefault("stories", []).append(entry)
             from shared.fsutil import write_json_if_changed
             write_json_if_changed(CONFIG, cfg)
-            USED.parent.mkdir(parents=True, exist_ok=True)
-            USED.write_text(json.dumps(
-                {"indicators": sorted(used_inds), "updated": TODAY}, indent=1))
+            _save_used(used_inds, unusable, TODAY)
         used_slugs.add(story["slug"])
         made += 1
         if not dry_run:
@@ -1026,7 +1078,12 @@ def forge(count: int, dry_run: bool = False) -> int:
                 continue
             ds = (fetch_trend(spec) if tried % 2 else None) \
                 or fetch_rank(spec, countries) or fetch_trend(spec)
-            if not ds or ds["key"] in used_keys:
+            if not ds:
+                # Neither shape of this series is a story. Remember that,
+                # or the next run draws it again — and the one after.
+                unusable.add(spec["id"])
+                continue
+            if ds["key"] in used_keys:
                 continue
             used_inds.add(spec["id"])
             used_keys.add(ds["key"])
@@ -1051,6 +1108,13 @@ def forge(count: int, dry_run: bool = False) -> int:
         leftovers = leftovers[n_mix:]
     print(f"\nforged {made} real-data stor{'y' if made == 1 else 'ies'} "
           f"({'dry run' if dry_run else 'written'})")
+    if not dry_run and unusable - set(used_state.get("unusable", [])):
+        _save_used(used_inds, unusable, TODAY if made else last_kept)
+    if not made:
+        print("::warning::[forge] wrote NOTHING this run — "
+              f"{len(unusable)} indicator(s) are now remembered as unusable "
+              f"(last story kept {last_kept or 'never'}); the queue only "
+              "shrinks until the forge writes again")
     return made
 
 

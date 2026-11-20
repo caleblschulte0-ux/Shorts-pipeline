@@ -579,3 +579,94 @@ class TestADeadBrainSaysSo(AlarmCase):
         self.assertIn("GEMINI_API_KEY", alarm._CREDENTIAL_FIXES["gemini"])
         self.assertIn("CLAUDE_CODE_OAUTH_TOKEN",
                       alarm._CREDENTIAL_FIXES["claude-subscription"])
+
+
+class TestASilentForgeSaysSo(AlarmCase):
+    """2026-09-07..11-19: the story forge kept no story for ten weeks. With
+    66 World Bank indicators used, the 32 that remained all failed its
+    series filters, every posting run drew the SAME 32, printed 'forged 0'
+    and exited green — until the queue it was meant to fill ran out and the
+    explainer posted nothing on 11-19 (eight runs, 74 holds). Its heartbeat
+    (`state/forge_used.json` `updated`, stamped only when a story is kept)
+    had the date the whole time. The alarm reads it."""
+
+    def _forge(self, updated, unusable=0):
+        (self.tmp / "state" / "forge_used.json").write_text(json.dumps(
+            {"indicators": [f"I{i}" for i in range(66)],
+             "unusable": [f"U{i}" for i in range(unusable)],
+             "updated": updated}))
+
+    def test_a_forge_that_kept_nothing_for_days_is_CRITICAL(self):
+        self._forge("2999-11-20", unusable=32)
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("forge_silent", self.criticals(r))
+        a = next(x for x in r["alarms"] if x["code"] == "forge_silent")
+        self.assertIn("2999-11-20", a["detail"])
+        self.assertIn("25 days", a["detail"])
+        self.assertIn("32 remembered as unusable", a["detail"])
+        self.assertIn("scripts/story_forge.py", a["fix"])
+        self.assertIn("gate stays", a["fix"])
+
+    def test_a_dark_explainer_cites_the_silent_forge(self):
+        self._forge("2999-09-07")
+        self._write_log(reg.paths("explainer")["posted_log"], 0)
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"] if x["code"] == "no_posts_explainer")
+        self.assertIn("forge_silent", a["detail"])
+        self.assertIn("2999-09-07", a["detail"])
+
+    def test_a_forge_that_wrote_this_week_is_quiet(self):
+        self._forge("2999-12-13")                      # two days before DATE
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("forge_silent", self.codes(r))
+
+    def test_no_heartbeat_is_not_evidence(self):
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("forge_silent", self.codes(r))
+        (self.tmp / "state" / "forge_used.json").write_text("not json")
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("forge_silent", self.codes(r))
+
+
+class TestADeadSportsSourceSaysSo(AlarmCase):
+    """2026-11-18/19: every Reddit route (API, PullPush, RSS) refused the
+    sports run, five runs found 0 posts and exited, Baller Bro posted
+    nothing for two days — and the morning alarm blamed the Groq key. The
+    run's own `sports_report.json` said `pool: 0` both days. The alarm
+    reads it and names the fix: the Reddit app secrets."""
+
+    def _report(self, date, pool):
+        (self.tmp / "sports_report.json").write_text(json.dumps(
+            {"date": f"{date[:4]}-{date[4:6]}-{date[6:8]}", "want": 5,
+             "pool": pool, "slots": []}))
+
+    def _captured(self):
+        caps = [c for c in reg.channel_ids() if reg.captured(c)]
+        self.assertTrue(caps, "the registry has a captured (sports) channel")
+        return caps[0]
+
+    def test_an_empty_pool_today_is_CRITICAL_and_names_the_secrets(self):
+        self._report(DATE, 0)
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("sports_source_dead", self.criticals(r))
+        a = next(x for x in r["alarms"] if x["code"] == "sports_source_dead")
+        self.assertIn("REDDIT_CLIENT_ID", a["fix"])
+        self.assertIn("REDDIT_CLIENT_SECRET", a["fix"])
+        self.assertIn("pool=0", a["detail"])
+
+    def test_the_dark_channel_blames_the_source_not_a_key(self):
+        cid = self._captured()
+        self._report(DATE, 0)
+        self._write_log(reg.paths(cid)["posted_log"], 0)
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"] if x["code"] == f"no_posts_{cid}")
+        self.assertIn("sports_source_dead", a["detail"])
+        self.assertTrue(a["fix"].startswith("Fix the SOURCE first"))
+
+    def test_a_pool_with_posts_or_another_day_is_quiet(self):
+        self._report(DATE, 40)
+        self.assertNotIn("sports_source_dead",
+                         self.codes(alarm.check(DATE, now=LATE)))
+        self._report("29991201", 0)
+        self.assertNotIn("sports_source_dead",
+                         self.codes(alarm.check(DATE, now=LATE)))
