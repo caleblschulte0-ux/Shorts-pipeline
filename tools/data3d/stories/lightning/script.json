@@ -85,47 +85,59 @@
     "he slams himself into his truck, a bolt hits its roof, sparks race over the metal shell, and he knocks on the window at us from inside, grinning"
   ],
   "storyboard": [
-    "1 hook (the ridge at last light, WIDE: the ranger whole on the bare crest, his lookout tower behind, the old oak beside him, his green truck tiny in the valley far below): storm clouds roll over the ridge and the light drops; his ears and hat brim lift with static and he looks up; a blinding bolt slams into the old oak beside him; the oak's crown splits and crashes down in flames as he dives flat into the grass.",
-    "2 the tallest thing (the steel fire-lookout tower in the rain, LOW: looking up the tower's zigzag stairs at him): the ranger bursts out of the cab at the top and runs down the stairs; a bolt slams into the lightning rod on the roof above him; sparks rain down past him as two more bolts hit the rod one after another; he jumps the last flight, lands and runs for the trail, straight past the camera.",
-    "3 seven times (a pine forest trail cut into a mountainside in the rain, below a switchback, TRACKING beside him as he marches downhill): the ranger marches down the trail in his hat; a bolt hits him at each numbered trail marker he passes, and each marker's number brands on as its bolt hits, counting 1, 2, 3 ... up to 7; every strike leaves him sootier, smokier and more frazzled while his reaction shrinks from shock to a deadpan trudge; the seventh, the big one, blows his hat straight up off his head, it drops back on, he jams it down with a dip of his head, gives us a deadpan look and keeps marching.",
-    "4 hotter than the sun (the lake beach below the forest, HIGH: looking down on him and the sand): a bolt slams into the sand right in front of the ranger; the strike crater glows orange and steams; he grips and heaves; a long, branching glass root pops out of the sand and he tumbles back holding it up, glinting.",
-    "5 your shelter (the trailhead lot in the rain, CLOSE on his truck's side window): the ranger yanks his green truck's door open, dives in and slams it shut; a bolt hits the truck's roof; blue sparks race over the whole metal body around him and leap off the bumper into a puddle while the tyres stay dark; inside, untouched, he turns to his window, raps twice on the glass at us with a big grin and shrugs, palms up: see? would you stay inside?"
+    "1 hook (the bare ridge under the storm, LOW and WIDE: the ranger full-body and big on the crest beside the old oak, his lookout tower further along the ridge, on his way home to his truck): the static lifts his ranger hat clean off his head and crackles between it and his ears; a spark snaps from the hat to his nose and he jolts, hands up, and the hat tumbles into the grass; a blinding bolt slams into the oak; the whole crown tears off the trunk and topples across the frame as he dives flat into the grass out of its way; it crashes down flat beside him, leaving a bare split stump glowing orange; he lifts his chin to us, gulps, ears flopping flat, and pushes up on his arms.",
+    "2 the tallest thing (the steel fire-lookout tower in the rain, LOW: the lens rides down the zigzag stairs at his face's height, then drops low onto the grass beside the foot of the tower): the ranger kicks the cab door open and runs out of it, panicked, and down the stairs; a bolt slams into the lightning rod on the roof above him; a second bolt hits the rod and a shower of sparks pours off the roof and rains down past him; a third, bigger bolt hits the rod and more sparks pour down; he leaps the last flight, lands in a crouch on the grass and sprints off down the ridge for the trail, still panicked.",
+    "3 struck again and again (a pine forest trail stepping down a mountainside in the rain, the cut bank and the switchback climbing behind him, TRACKING backwards ahead of him as he marches down at us): the ranger marches down the trail in his hat and a bolt hits him three times, each strike a huge step of damage: the first chars his teal face and hands soot-black, the second chars his white coat black and sets it pouring smoke, and the third, the big one, rockets his hat straight up off his head and out of the frame; the hat falls back down rocking like a leaf, lands on his head, he jams it down with a dip of his head and it puffs out smoke, then he turns to us with a long deadpan stare and a slow blink and trudges on.",
+    "4 hotter than the sun (the lake beach below the forest, HIGH: looking down on him and the sand): a bolt slams into the sand right in front of the ranger; the crater glows orange and pours steam round a glowing glass spike the bolt fused; he grabs the spike in both fists and heaves it up like a sword from a stone; a long, branching root of glowing orange glass comes up out of the sand and he staggers back, hoisting it high in one fist as it glints.",
+    "5 your shelter (the gravel trailhead lot at night in the rain under its sodium lamps, the pines dark beyond; CLOSE on his green ranger truck): the ranger is already inside, door shut; a bolt hits the truck's roof right over his hat; blue sparks race over the whole metal body around him and leap off the bumper into a puddle, splashing, while the tyres stay dark; then, close on his rain-streaked window, he raps on the glass twice with his knuckles, the pane shivering, and sits up into a big palms-up shrug with a grin: see? would you stay inside?"
   ],
   "staging": [
     {
       "camera": "wide",
-      "data": "dives flat as the bolt splits the oak beside him",
+      "data": "dives flat into the grass as the bolt tears the oak's crown off and it crashes down beside him",
       "props": [
         "old oak",
-        "lookout tower in the distance",
-        "truck far below"
+        "ranger hat",
+        "lookout tower in the distance"
       ],
       "arc": [
         {
-          "at": 0.05,
-          "what": "wide on the ridge, his truck tiny in the valley; the camera pushes in as storm clouds roll over and the light drops"
+          "at": 0.03,
+          "what": "the static lifts his hat off his head and crackles between it and his ears; he looks up at it"
         },
         {
-          "at": 0.2,
-          "what": "his ears and hat brim lift with static and he looks up"
+          "at": 0.17,
+          "what": "a spark snaps from the hat to his nose and he jolts, hands up, and the hat tumbles into the grass"
         },
         {
-          "at": 0.46,
-          "what": "a blinding bolt slams into the oak and lights the ridge cold blue"
+          "at": 0.3,
+          "what": "a blinding bolt slams into the oak"
         },
         {
-          "at": 0.5,
-          "what": "the crown splits off the fork and topples, burning, as he dives flat"
+          "at": 0.33,
+          "what": "the whole crown tears off the trunk and topples across the frame as he dives flat out of its way"
         },
         {
-          "at": 0.74,
-          "what": "the burning crown crashes down behind him and he lifts his chin out of the smoke"
+          "at": 0.585,
+          "what": "it crashes down flat beside him, leaving a bare split stump glowing orange"
+        },
+        {
+          "at": 0.6,
+          "what": "he lifts his chin out of the grass to us, alarmed"
+        },
+        {
+          "at": 0.72,
+          "what": "he gulps and his ears flop down flat"
+        },
+        {
+          "at": 0.82,
+          "what": "he pushes up on his arms, still staring at us"
         }
       ]
     },
     {
       "camera": "low",
-      "data": "runs down the lookout stairs under the strikes",
+      "data": "runs down the lookout stairs under the strikes and leaps the last flight",
       "props": [
         "lookout tower",
         "stairs",
@@ -133,55 +145,64 @@
       ],
       "arc": [
         {
-          "at": 0.05,
-          "what": "he bursts out of the cab at the top and runs for the stairs"
+          "at": 0.0,
+          "what": "he kicks the cab door open and runs out of it for the stairs, panicked"
         },
         {
-          "at": 0.3,
+          "at": 0.24,
           "what": "a bolt slams into the rod on the roof right above him"
         },
         {
-          "at": 0.55,
-          "what": "sparks rain past him as two more bolts hit the rod"
+          "at": 0.45,
+          "what": "a second bolt hits the rod and a shower of sparks pours off the roof, raining past him"
         },
         {
-          "at": 0.8,
-          "what": "he jumps the last flight, lands and runs for the trail, straight past the camera"
+          "at": 0.62,
+          "what": "a third, bigger bolt hits the rod and more sparks pour down"
+        },
+        {
+          "at": 0.72,
+          "what": "he leaps the last flight, lands in a crouch on the grass and sprints off for the trail"
         }
       ]
     },
     {
       "camera": "tracking",
-      "data": "marches down the trail through strike after strike",
+      "data": "marches down the trail through three strikes, each leaving him more charred",
       "props": [
-        "trail markers"
+        "ranger hat",
+        "smoke"
       ],
       "arc": [
         {
-          "at": 0.065,
-          "what": "bolt one hits him at marker 1 and he is shocked"
+          "at": 0.06,
+          "what": "bolt one hits him and chars his face and hands soot-black"
         },
         {
-          "at": 0.18,
-          "what": "bolt two at marker 2 leaves him smoking and alarmed"
+          "at": 0.28,
+          "what": "bolt two chars his white coat black and sets it pouring smoke"
         },
         {
-          "at": 0.38,
-          "what": "bolts three to six, one at each marker, each leaving him sootier while he trudges on deadpan"
+          "at": 0.48,
+          "what": "the big third bolt rockets his hat straight up out of the frame"
         },
         {
-          "at": 0.67,
-          "what": "the seventh, the big one, blows his hat straight up off his head"
+          "at": 0.6,
+          "what": "the hat falls back down rocking like a leaf"
         },
         {
-          "at": 0.8,
-          "what": "the hat drops back on, he jams it down with a dip of his head and marches on, deadpan"
+          "at": 0.71,
+          "what": "it lands, he jams it down and it puffs out smoke"
+        },
+        {
+          "at": 0.78,
+          "what": "a long deadpan stare at us, a slow blink, and he trudges on"
         }
       ]
     },
     {
       "camera": "high",
-      "data": "grips the glass under the glowing sand, heaves it out and tumbles back holding it up",
+      "data": "grabs the glass spike standing, heaves it out of the sand with his whole body and hoists it high in one fist",
       "props": [
         "glowing crater",
         "glass root"
@@ -192,46 +213,56 @@
           "what": "a bolt slams into the sand in front of him"
         },
         {
-          "at": 0.2,
-          "what": "the empty crater glows orange and steams"
+          "at": 0.14,
+          "what": "the crater glows orange and steams round a glowing glass spike"
         },
         {
-          "at": 0.4,
-          "what": "he grips under the glowing sand and heaves"
+          "at": 0.36,
+          "what": "he grabs the spike in both fists and heaves"
         },
         {
-          "at": 0.66,
-          "what": "a long branching glass root pops out of the sand"
+          "at": 0.58,
+          "what": "a long branching glass root comes up out of the sand"
         },
         {
-          "at": 0.8,
-          "what": "he tumbles back holding it up, glinting"
+          "at": 0.74,
+          "what": "he staggers back and hoists it high in one fist, glowing"
+        },
+        {
+          "at": 0.87,
+          "what": "the storm flickers and the glass glints"
         }
       ]
     },
     {
       "camera": "close",
-      "data": "yanks open his truck, dives in and slams it, then raps on the window at us as it is struck",
+      "data": "sits safe in his struck truck, then raps on the window glass at us and shrugs",
       "props": [
         "green ranger truck",
-        "puddle"
+        "puddle",
+        "window glass",
+        "lot lamp"
       ],
       "arc": [
         {
-          "at": 0.05,
-          "what": "he yanks the door open, dives in and slams it shut"
+          "at": 0.1,
+          "what": "a bolt hits the roof of the truck he sits in"
         },
         {
-          "at": 0.3,
-          "what": "a bolt hits the truck's roof and sparks race over the metal body"
+          "at": 0.2,
+          "what": "sparks race over the whole metal body around him"
         },
         {
-          "at": 0.5,
-          "what": "the sparks leap off the bumper into the puddle while the tyres stay dark"
+          "at": 0.36,
+          "what": "the sparks leap off the bumper into the puddle and splash while the tyres stay dark"
         },
         {
-          "at": 0.75,
-          "what": "untouched inside, he raps twice on his window at us and shrugs, palms up"
+          "at": 0.62,
+          "what": "untouched inside, he raps twice on his window glass at us"
+        },
+        {
+          "at": 0.8,
+          "what": "he shrugs big, palms up, grinning: see?"
         }
       ]
     }
@@ -247,8 +278,8 @@
     "time": "one evening: the last orange light at the start, full dark and rain by the end",
     "weather": "one storm that builds the whole way: clouds rolling in, then rain, then lightning everywhere",
     "continuity": {
-      "ranger hat": "the hero's hat: on his head in every beat (knocked off and caught back in beat 3)",
-      "ranger truck": "his goal: seen far below at the trailhead in beat 1, reached in beat 5",
+      "ranger hat": "the hero's hat: on his head through the storm (blown off and lands back on his head in beat 3)",
+      "ranger truck": "his goal: named as his way home in beat 1, reached in beat 5",
       "bolt": "the storm itself: every beat is a strike, each a new bolt shape",
       "rain": "the one storm over one park, darker and wetter each beat"
     },
