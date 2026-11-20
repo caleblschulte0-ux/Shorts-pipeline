@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "moon-drifting-away__653a5ccc_r2",
+ "slug": "moon-drifting-away",
+ "by": "chatgpt",
+ "written_at": "2026-11-20T12:33:14.194Z",
+ "title": "Moon Recession Ends Total Eclipses In 600 Million Years",
+ "hook": "The Moon is slowly shrinking out of total eclipses.",
+ "closing": "Total eclipses are temporary, and we live while the Moon still appears large enough.",
+ "question": "Would you travel for a total eclipse?",
+ "segments": [
+  {
+   "topic": "Moon recession",
+   "say": "The Moon has receded 2.17 meters, a steady shift we can measure."
+  },
+  {
+   "topic": "Moon distance",
+   "say": "The Moon is now 384,400 kilometers away, so its apparent size keeps shrinking."
+  },
+  {
+   "topic": "Moon eclipse deadline",
+   "say": "In 600 million years, the Moon will look too small for total eclipses."
+  }
+ ]
+}
