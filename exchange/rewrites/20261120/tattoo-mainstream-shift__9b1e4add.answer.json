@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "tattoo-mainstream-shift__9b1e4add",
+  "slug": "tattoo-mainstream-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "US Adult Tattoo Surveys Rose From 16% to 32%",
+  "hook": "Surveyed US adults with tattoos doubled across the recorded years.",
+  "closing": "The survey trend shows tattoos moving from subculture toward ordinary adult life.",
+  "question": "How many tattoos do you have?",
+  "segments": [
+    {
+      "topic": "Tattooed Americans",
+      "say": "The surveyed tattoo share reached 32 percent of US adults. That doubled the earliest value in the dataset."
+    },
+    {
+      "topic": "Tattooed women",
+      "say": "Tattoo prevalence reached 37 percent among women. The pattern is now common, not confined to a narrow group."
+    },
+    {
+      "topic": "Tattooed, then more",
+      "say": "More than one tattoo appeared among 22 percent of US adults. Repeat tattoos now outnumber single tattoos in the survey."
+    }
+  ]
+}
