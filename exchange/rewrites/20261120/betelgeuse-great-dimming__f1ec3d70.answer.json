@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "betelgeuse-great-dimming__f1ec3d70",
+  "slug": "betelgeuse-great-dimming",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:14:42.277Z",
+  "title": "Betelgeuse's Great Dimming Hid Half Its Face",
+  "hook": "Betelgeuse looked ready to die, but the images told a stranger story.",
+  "closing": "One dramatic fade can mislead us about what a star is actually doing.",
+  "question": "Would that dimming fool you?",
+  "segments": [
+    {
+      "topic": "Betelgeuse Dims",
+      "say": "Betelgeuse fell to 36 percent of normal brightness. A familiar star suddenly looked alarmingly faint."
+    },
+    {
+      "topic": "Betelgeuse Obscured",
+      "say": "Images showed 50 percent of Betelgeuse obscured. The observation supports hidden light without claiming the star was dying."
+    },
+    {
+      "topic": "Betelgeuse Timeline",
+      "say": "Its estimated supernova remains 100,000 years away. A brief fade and stellar death run on wildly different clocks."
+    }
+  ]
+}
