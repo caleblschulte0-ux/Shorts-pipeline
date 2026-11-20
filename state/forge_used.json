@@ -11,6 +11,7 @@
   "AG.LND.IRIG.AG.ZS",
   "AG.LND.PFLS.HA",
   "AG.LND.TOTL.K2",
+  "AG.LND.TOTL.UR.K2",
   "AG.PRD.CREL.MT",
   "AG.PRD.CROP.XD",
   "AG.PRD.FOOD.XD",
@@ -70,6 +71,10 @@
   "SP.URB.TOTL.IN.ZS"
  ],
  "unusable": [
+  "AG.LND.AGRI.ZS",
+  "AG.LND.ARBL.ZS",
+  "AG.LND.FRST.ZS",
+  "AG.LND.TOTL.RU.K2",
   "EN.LND.LTMP.DC",
   "EN.POP.SLUM.UR.ZS",
   "EN.URB.LCTY",

@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T10:09:14Z",
+ "updated": "2026-11-20T11:49:58Z",
  "open": [
+  {
+   "id": "betelgeuse-great-dimming__f1ec3d70",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-11-20T11:49:58Z",
+   "why": [
+    "premise: brain: The premise is not a verified fact; the claim that dust caused a 36% brightness drop in Betelgeuse is speculative and unconfirmed."
+   ],
+   "request": "exchange/rewrites/20261120/betelgeuse-great-dimming__f1ec3d70.request.json",
+   "answer_path": "exchange/rewrites/20261120/betelgeuse-great-dimming__f1ec3d70.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__bad26b67",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-20T11:49:58Z",
+   "why": [
+    "premise: brain: The premise is vague and lacks a concrete, verifiable surprise or specific detail, making it insufficiently concrete."
+   ],
+   "request": "exchange/rewrites/20261120/chip-transistor-shrink-limit__bad26b67.request.json",
+   "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__bad26b67.answer.json"
+  },
   {
    "id": "us-height-ranking-fall__5c0b88f4",
    "slug": "us-height-ranking-fall",
@@ -224,26 +244,6 @@
    ],
    "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
    "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
-  },
-  {
-   "id": "betelgeuse-great-dimming__f1ec3d70",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The claim about Betelgeuse dropping to exactly 36% brightness and being caused by dust is not a verified, concrete fact."
-   ],
-   "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
-   "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__bad26b67",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The premise is a flat statement of a slowdown with no concrete surprise, threat or belief overturned. \"Slowing a once-familiar pace\" is vague, and the title reads like a searchable topic rather than a picturable claim."
-   ],
-   "request": "exchange/rewrites/20261119/chip-transistor-shrink-limit__bad26b67.request.json",
-   "answer_path": "exchange/rewrites/20261119/chip-transistor-shrink-limit__bad26b67.answer.json"
   },
   {
    "id": "frog-freezes-and-revives__ef8ed986",

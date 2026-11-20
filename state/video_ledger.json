@@ -7631,6 +7631,74 @@
    "ending_type": "consequence",
    "franchise": "Comeback Not Takeover",
    "notes": "discs drop into crates one per million"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-20",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "words_first_10s": 25,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "scene:tattoo-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "How Normal Is It",
+   "notes": "kept existing scenes; pre-render pass"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-20",
+   "topic_category": "health",
+   "hook_type": "shock_stat",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "One Change That Worked",
+   "notes": "kept existing scenes; pre-render pass"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-20",
+   "topic_category": "finance",
+   "hook_type": "stake",
+   "hook_text": "Corporate America has new owners, and nobody ever voted for them.",
+   "words_first_10s": 25,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Who Really Owns It",
+   "notes": "kept existing scenes; pre-render pass"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-20",
+   "topic_category": "music",
+   "hook_type": "inversion",
+   "hook_text": "Vinyl was supposed to be dead. Now it's crushing the CD.",
+   "words_first_10s": 25,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "scene:vinyl-sleeves",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Comeback Formats",
+   "notes": "kept existing scenes; pre-render pass"
   }
  ]
 }
