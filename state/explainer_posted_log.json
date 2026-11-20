@@ -5813,6 +5813,13 @@
       "story_structure": "scene+scene+auto",
       "narrative_score": 74,
       "duration_s": 23.1
+    },
+    "richest-americans-live-14-years-longer": {
+      "claimed_at": "2026-11-20T10:05:36.042312+00:00",
+      "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
+      "publish_at": "2026-11-20T10:25:14Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7497,6 +7504,14 @@
       "state": "posted",
       "slug": "lake-mead-water-crisis",
       "at": "2026-11-18T14:57:36.437118+00:00"
+    },
+    {
+      "claimed_at": "2026-11-20T10:05:36.042312+00:00",
+      "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
+      "publish_at": "2026-11-20T10:25:14Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "richest-americans-live-14-years-longer"
     }
   ]
 }
