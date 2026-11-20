@@ -1,0 +1,79 @@
+{
+ "schema": "shorts-exchange-blocker/v1",
+ "date": "20261120",
+ "bundle_id": "a1a308b7c6b69d58d5fe2c6c571399c7e8c41e297a1af8cddffc60652c28f006",
+ "source_commit": "d8e95ba0c743a9a112fd51112d9b616cd61ea4c9",
+ "status": "partial",
+ "observed_at": "2026-11-20T12:34:00.021Z",
+ "day_closed": false,
+ "exact_failed_step": "Verify actual channel output against the frozen contract after DONE",
+ "channel_status": {
+  "explainer": {
+   "required": 4,
+   "verified_posted": 1,
+   "pending": 3,
+   "accepted_urls": [
+    "https://youtube.com/shorts/GnwunMUQkUI"
+   ],
+   "note": "Daily Shorts run 44734410295 completed successfully, but the posted log contains only one accepted 2026-11-20 Explainer URL."
+  },
+  "third": {
+   "required": 6,
+   "verified_posted": 2,
+   "pending": 4,
+   "accepted_urls": [
+    "https://youtube.com/shorts/Ke_sj8Wk9P8",
+    "https://youtube.com/shorts/XOsS_O9lw-I"
+   ],
+   "note": "clip-20261120-3 is only a pending upload claim with no accepted URL and is not counted."
+  },
+  "trending": {
+   "required": 5,
+   "verified_posted": 0,
+   "pending": 5,
+   "accepted_urls": [],
+   "note": "Sports run 44734354797 failed before rendering: Reddit/RSS routes returned HTTP 403, 404, and 429; the runner reported zero fresh sports video posts and produced zero cuts."
+  }
+ },
+ "attempts": [
+  "Committed STARTED before all other producer writes.",
+  "Completed three mailbox passes across reviews, asks, and rewrites; read back every new answer.",
+  "Committed and validated response.json, then committed DONE separately.",
+  "Allowed Daily Shorts and Sports workflows to consume the exchange; Daily Shorts succeeded and Sports failed.",
+  "Re-read posted logs and counted only accepted YouTube URLs.",
+  "Answered a supported moon-drifting-away r2 request after the r1 guard rejection."
+ ],
+ "mailbox_status": {
+  "reviews": {
+   "open": 0,
+   "answered": 0,
+   "skipped": 0,
+   "reason": "No review cuts were filed; Sports produced no source clips or held renders."
+  },
+  "asks": {
+   "open_batches": 1,
+   "listed_keys": 23,
+   "answered_new": 0,
+   "reused_existing": 23,
+   "reason": "Every listed key already existed in the authorized answers file; no settled answer was overwritten."
+  },
+  "rewrites": {
+   "open_index_entries": 142,
+   "answered_new": 26,
+   "applied": 10,
+   "rejected": 11,
+   "pending_claim": 5,
+   "reason": "Per-round cap observed. Five final-pass answers still await claim; the moon r1 rejection was repaired only through the new r2 request."
+  }
+ },
+ "media": {
+  "requested": 0,
+  "generated": 0,
+  "verified": 0,
+  "note": "The frozen bundle contained zero media requests and active authored formats required no ChatGPT images."
+ },
+ "workflow_urls": {
+  "daily": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/44734410295",
+  "sports": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/44734354797"
+ }
+}
