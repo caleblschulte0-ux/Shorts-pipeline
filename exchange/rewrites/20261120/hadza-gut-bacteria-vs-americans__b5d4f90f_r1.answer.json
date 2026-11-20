@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
+  "slug": "hadza-gut-bacteria-vs-americans",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "Hadza Gut Diversity Reflects Fiber and Antibiotic Pressure",
+  "hook": "A richer gut ecosystem follows very different food and medicine patterns.",
+  "closing": "Diet and antibiotic exposure help explain why modern guts can lose microbial variety.",
+  "question": "How much fiber did you eat?",
+  "segments": [
+    {
+      "topic": "Hadza gut species",
+      "say": "The Hadza carry about 730 gut bacteria species. Their microbiome holds far more variety than the average American's."
+    },
+    {
+      "topic": "Hadza gut fiber",
+      "say": "The Hadza eat 150 grams of fiber daily. That fuel helps sustain the richer gut community shown before."
+    },
+    {
+      "topic": "US gut antibiotics",
+      "say": "Thirty-four percent of US outpatient antibiotic prescriptions were likely unnecessary. That is another pressure on the diversity the first beat counted."
+    }
+  ]
+}
