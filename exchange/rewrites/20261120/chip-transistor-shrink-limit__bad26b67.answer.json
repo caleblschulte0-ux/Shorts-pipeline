@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chip-transistor-shrink-limit__bad26b67",
+  "slug": "chip-transistor-shrink-limit",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:14:42.277Z",
+  "title": "Chip Transistor Growth Is Hitting a Slower Gear",
+  "hook": "Phone chips still improve, but their old growth rhythm is slipping.",
+  "closing": "Smaller chip labels no longer guarantee equally dramatic gains in the device you buy.",
+  "question": "Do phone upgrades still feel major?",
+  "segments": [
+    {
+      "topic": "Chip Transistors",
+      "say": "Apple's iPhone chip reached 19 billion transistors. The count is enormous, but growth no longer keeps its old rhythm."
+    },
+    {
+      "topic": "Chip Doubling",
+      "say": "Chip transistor doubling now takes 3 years. The next big leap arrives more slowly than it once did."
+    },
+    {
+      "topic": "Chip Process",
+      "say": "The newest chip process is labeled 2 nanometers. That label marks a generation, not every part's literal width."
+    }
+  ]
+}
