@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "cruise-ship-outbreaks-climbing__e0bad3cf",
+ "slug": "cruise-ship-outbreaks-climbing",
+ "by": "chatgpt",
+ "written_at": "2026-11-20T12:30:06.355Z",
+ "title": "Cruise Outbreaks Rose From 14 To 20",
+ "hook": "Cruise outbreaks keep climbing as passenger crowds grow.",
+ "closing": "Cruise crowds make hygiene matter, so wash your hands before eating.",
+ "question": "Would outbreaks change your cruise pick?",
+ "segments": [
+  {
+   "topic": "Cruise outbreaks",
+   "say": "Cruise outbreaks reached 20, rising even as ships kept sailing."
+  },
+  {
+   "topic": "Cruise norovirus",
+   "say": "Cruise norovirus caused 15 outbreaks, making it the leading recorded cause."
+  },
+  {
+   "topic": "Cruise crowds",
+   "say": "Cruise crowds can include 7,600 guests, creating thousands of close contacts."
+  }
+ ]
+}
