@@ -6155,6 +6155,96 @@
       ],
       "published_versions": [],
       "last_updated": "2026-11-19"
+    },
+    "illojuan-dicen-driv-2026w46": {
+      "event_id": "illojuan-dicen-driv-2026w46",
+      "people": [
+        "illojuan"
+      ],
+      "actions": [
+        "dicen",
+        "driv",
+        "esto",
+        "michael"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-20",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2928823801/18980-19220",
+        "https://www.twitch.tv/illojuan/clip/InexpensivePricklyPigFeelsBadMan-REf7S7hxBfk0sVsH",
+        "vodmine://2928823801/19228-19468"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-20"
+    },
+    "yuuechka-about-cola-2026w46": {
+      "event_id": "yuuechka-about-cola-2026w46",
+      "people": [
+        "yuuechka"
+      ],
+      "actions": [
+        "about",
+        "cola",
+        "desk",
+        "sits"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-20",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2928429297/2048-2288",
+        "https://www.twitch.tv/yuuechka/clip/FragileBoredRavenPraiseIt-E9yyk_LjoEmt-7Qi",
+        "vodmine://2928429297/2295-2535"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-20"
+    },
+    "sashacheer-about-agre-2026w46": {
+      "event_id": "sashacheer-about-agre-2026w46",
+      "people": [
+        "sashacheer"
+      ],
+      "actions": [
+        "about",
+        "agre",
+        "pink",
+        "russian"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-20",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2927690590/1361-1601",
+        "https://www.twitch.tv/sashacheer/clip/VictoriousMistyFinchPRChase-wL-yZyD7zKxFB5cH",
+        "vodmine://2927690590/1611-1851"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-20"
+    },
+    "buster-added-bust-2026w47": {
+      "event_id": "buster-added-bust-2026w47",
+      "people": [
+        "buster"
+      ],
+      "actions": [
+        "added",
+        "bust",
+        "donat",
+        "russian"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-20",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2931500004/1455-1695",
+        "https://www.twitch.tv/buster/clip/FurryFaithfulAniseRaccAttack-AdM_S82u6cqhe4fS",
+        "vodmine://2931500004/1714-1954"
+      ],
+      "published_versions": [
+        "story-d28c4881b679e887"
+      ],
+      "last_updated": "2026-11-20"
     }
   }
 }
