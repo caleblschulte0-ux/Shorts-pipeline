@@ -8974,5 +8974,505 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260821": {
+    "01_graph-china-japan-car-exports.json": {
+      "format": "graph_race",
+      "slug": "graph-china-japan-car-exports",
+      "title": "China Overtook Japan In The Car Export Race",
+      "hook": "Japan Lost Its Export Crown",
+      "y_label": "Vehicles exported (millions)",
+      "duration": 13,
+      "source": "China Association of Automobile Manufacturers (CAAM) and Japan Automobile Manufacturers Association (JAMA) annual vehicle export totals, as reported by Reuters, CNBC and Just Auto on China overtaking Japan as world's top vehicle exporter in 2023. China (CAAM, million units): ~0.9 (2017) and ~1.0 (2019), a decade-long plateau per CAAM commentary, then 2.02 (2021), 3.11 (2022), 4.91 (2023), 5.86 (2024). Japan (JAMA, million units): 4.71 (2017), 4.82 (2019), 3.82 (2021), 4.2 (2022), 4.42 (2023), 4.22 (2024).",
+      "years": [
+        2017,
+        2019,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#DE2910",
+          "icon": "CN",
+          "values": [
+            0.9,
+            1.0,
+            2.02,
+            3.11,
+            4.91,
+            5.86
+          ]
+        },
+        {
+          "name": "Japan",
+          "color": "#2456A6",
+          "icon": "JP",
+          "values": [
+            4.71,
+            4.82,
+            3.82,
+            4.2,
+            4.42,
+            4.22
+          ]
+        }
+      ],
+      "hashtags": [
+        "chinaautoexports",
+        "japanautoexports",
+        "caam",
+        "jama",
+        "vehicleexports",
+        "carexports",
+        "autoindustry",
+        "globaltrade",
+        "evexports",
+        "manufacturing",
+        "chinaeconomy",
+        "japaneconomy",
+        "cars",
+        "automotive",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-vinyl-buried-cd.json": {
+      "format": "graph_race",
+      "slug": "graph-vinyl-buried-cd",
+      "title": "Vinyl Buried CDs After 34 Years On Top",
+      "hook": "Records Won The Rematch",
+      "y_label": "US format revenue ($ millions)",
+      "duration": 13,
+      "source": "RIAA Year-End Music Industry Revenue Reports, US physical format revenue: vinyl $395M (2017), $419M (2018), $504M (2019), $626M (2020), $1,000M (2021), $1,200M (2022), $1,350M (2023); CD $1,100M (2017), $698M (2018), $615M (2019), $483M (2020), $584M (2021), $482M (2022), $537M (2023). Vinyl revenue overtook CD revenue in 2020, the first time since 1987.",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Vinyl",
+          "color": "#7C3AED",
+          "values": [
+            395,
+            419,
+            504,
+            626,
+            1000,
+            1200,
+            1350
+          ]
+        },
+        {
+          "name": "CDs",
+          "color": "#38BDF8",
+          "values": [
+            1100,
+            698,
+            615,
+            483,
+            584,
+            482,
+            537
+          ]
+        }
+      ],
+      "hashtags": [
+        "vinyl",
+        "vinylrecords",
+        "cds",
+        "compactdisc",
+        "musicindustry",
+        "riaa",
+        "recordstore",
+        "turntable",
+        "physicalmedia",
+        "musichistory",
+        "nostalgia",
+        "albumsales",
+        "musicbiz",
+        "records",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-opioid-deaths-vs-car-crashes.json": {
+      "format": "graph_race",
+      "slug": "graph-opioid-deaths-vs-car-crashes",
+      "title": "Opioid Deaths Overtook Car Crash Deaths",
+      "hook": "The Deadlier Road",
+      "y_label": "US deaths per year",
+      "duration": 13,
+      "source": "CDC/NCHS and NIDA opioid-involved overdose deaths (CDC WONDER) vs NHTSA/FARS motor vehicle traffic fatalities: opioid deaths 21,089 (2010), 33,091 (2015), 42,249 (2016), 47,600 (2017), 49,860 (2019), 80,411 (2021); motor vehicle deaths 32,999 (2010), 35,092 (2015), 37,806 (2016), 37,473 (2017), 36,096 (2019), 42,915 (2021). Opioid deaths overtook motor vehicle deaths in 2016; the National Safety Council has since reported higher odds of dying from opioid overdose than a car crash.",
+      "years": [
+        2010,
+        2015,
+        2016,
+        2017,
+        2019,
+        2021
+      ],
+      "series": [
+        {
+          "name": "Opioid overdoses",
+          "color": "#B91C1C",
+          "values": [
+            21089,
+            33091,
+            42249,
+            47600,
+            49860,
+            80411
+          ]
+        },
+        {
+          "name": "Car crashes",
+          "color": "#64748B",
+          "values": [
+            32999,
+            35092,
+            37806,
+            37473,
+            36096,
+            42915
+          ]
+        }
+      ],
+      "hashtags": [
+        "opioidcrisis",
+        "overdosedeaths",
+        "fentanyl",
+        "publichealth",
+        "cdc",
+        "nhtsa",
+        "cardeaths",
+        "trafficsafety",
+        "drugcrisis",
+        "healthdata",
+        "addiction",
+        "opioids",
+        "publichealthcrisis",
+        "statistics",
+        "dataviz"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "04_graph-wind-passed-hydro.json": {
+      "format": "graph_race",
+      "slug": "graph-wind-passed-hydro",
+      "title": "Wind Power Just Passed Hydro In America",
+      "hook": "The Quiet Energy Flip",
+      "y_label": "US electricity generation (billion kWh)",
+      "duration": 13,
+      "source": "U.S. Energy Information Administration (EIA) Electric Power Annual net generation by energy source: wind ~95 (2010), ~168 (2013), ~227 (2016), ~300 (2019), ~380 (2021), ~425 (2023), ~430 (2024) billion kWh; conventional hydroelectric ~260 (2010), ~269 (2013), ~267 (2016), ~274 (2019), ~252 (2021), ~239 (2023), ~241 (2024) billion kWh. EIA reported wind generation first exceeded hydroelectric generation on an annual basis in 2019.",
+      "years": [
+        2010,
+        2013,
+        2016,
+        2019,
+        2021,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Wind",
+          "color": "#38BDF8",
+          "values": [
+            95,
+            168,
+            227,
+            300,
+            380,
+            425,
+            430
+          ]
+        },
+        {
+          "name": "Hydro",
+          "color": "#1D4ED8",
+          "values": [
+            260,
+            269,
+            267,
+            274,
+            252,
+            239,
+            241
+          ]
+        }
+      ],
+      "hashtags": [
+        "windpower",
+        "windenergy",
+        "hydropower",
+        "renewableenergy",
+        "eia",
+        "cleanenergy",
+        "electricity",
+        "energytransition",
+        "powergrid",
+        "usenergy",
+        "climate",
+        "energydata",
+        "turbines",
+        "sustainability",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-voluntary-overtime-labor-board.json": {
+      "subreddit": "ProRevenge",
+      "slug": "reddit-voluntary-overtime-labor-board",
+      "title": "He Called It Voluntary. The Labor Board Didn't.",
+      "script": "My manager scheduled us for unpaid weekend inventory counts and called it \"voluntary team spirit,\" even though skipping one got you cut from the good shifts for a month. I stayed quiet and started saving everything: every text where he told us to come in on a day off, every pay stub showing zero overtime for it. After four months I had four weekends documented with timestamps, texts, and my badge scan records from the building system. I mailed the whole packet to our state labor board as a wage complaint, not just for me but naming the entire inventory team. Two weeks later an investigator called the store directly, and our district manager showed up unannounced with a stack of printed labor code sections. My manager had to explain, in front of his own boss, why six employees had unpaid overtime going back four months. The company cut checks to every person on that weekend list within the month, backdated with interest.",
+      "shots": [
+        {
+          "phrase": "unpaid weekend inventory counts",
+          "query": "warehouse inventory shelves",
+          "image_url": "https://drive.google.com/uc?export=download&id=1kOtauAGQ2GD1zYMkXA7dGck8lX-sWlya",
+          "media_origin": "chatgpt",
+          "media_file_id": "1kOtauAGQ2GD1zYMkXA7dGck8lX-sWlya",
+          "media_sha256": "848c89eff0fbd015fa3d9688c2f5cbfab946740bc9c4f0dca425871bd30c201a",
+          "media_bytes": 1489752
+        },
+        {
+          "phrase": "voluntary team spirit",
+          "query": "office team meeting",
+          "image_url": "https://drive.google.com/uc?export=download&id=1KxnUN16fVJoM_po9Kk2TvROSNhK-Qbd3",
+          "media_origin": "chatgpt",
+          "media_file_id": "1KxnUN16fVJoM_po9Kk2TvROSNhK-Qbd3",
+          "media_sha256": "60ca026f878241aacccffba545fe714003dbc9538fa30f0863cb6457776b4497",
+          "media_bytes": 1266239
+        },
+        {
+          "phrase": "started saving everything",
+          "query": "person taking notes desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1QhvrN5YKbsP1Us4wCRTOjaH1yHRGege8",
+          "media_origin": "chatgpt",
+          "media_file_id": "1QhvrN5YKbsP1Us4wCRTOjaH1yHRGege8",
+          "media_sha256": "ce445953f3a241b1f0644c4288feabba753bce286d2af3b168be946e45cf84a8",
+          "media_bytes": 1107993
+        },
+        {
+          "phrase": "badge scan records from the building system",
+          "query": "keycard scanner office door",
+          "image_url": "https://drive.google.com/uc?export=download&id=1qx9uHYTErSUVU3M8UsF_tjiRaB5O7Qmi",
+          "media_origin": "chatgpt",
+          "media_file_id": "1qx9uHYTErSUVU3M8UsF_tjiRaB5O7Qmi",
+          "media_sha256": "c9877b57ba344a92643572fe1d79752e0ddd2c4addf1b7477b680410deb01b12",
+          "media_bytes": 1165882
+        },
+        {
+          "phrase": "state labor board as a wage complaint",
+          "query": "envelope mailing documents",
+          "image_url": "https://drive.google.com/uc?export=download&id=1-ldentdkEp8YMkNInUFoVwbpbyYztVsJ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1-ldentdkEp8YMkNInUFoVwbpbyYztVsJ",
+          "media_sha256": "05def1d1d6e301ff2a4ebc789f1c8d39bb35f0a332ad567bb55f63abc8ce5279",
+          "media_bytes": 991197
+        },
+        {
+          "phrase": "district manager showed up unannounced",
+          "query": "man entering office hallway",
+          "image_url": "https://drive.google.com/uc?export=download&id=10K8pUfEApsaLiQf-KByOLZQIZUAx3rMF",
+          "media_origin": "chatgpt",
+          "media_file_id": "10K8pUfEApsaLiQf-KByOLZQIZUAx3rMF",
+          "media_sha256": "95d5df5715b3e2ffa2caa94d453178ec9cbf21645471a5c3ed628c11e0fe5314",
+          "media_bytes": 1041232
+        },
+        {
+          "phrase": "unpaid overtime going back four months",
+          "query": "office clock overtime",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ww6lSYx6EU8iu6AY7G4iX6_1IvwCDBlV",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ww6lSYx6EU8iu6AY7G4iX6_1IvwCDBlV",
+          "media_sha256": "8dbb240f324655865f59263323aa5faeee32c952812d4ed43a928bb938550dbf",
+          "media_bytes": 1165021
+        },
+        {
+          "phrase": "cut checks to every person on that weekend list",
+          "query": "paycheck stack desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1B-ZZ8lWjnPRvMFxn5VPA11dVB16ZBBk9",
+          "media_origin": "chatgpt",
+          "media_file_id": "1B-ZZ8lWjnPRvMFxn5VPA11dVB16ZBBk9",
+          "media_sha256": "2c0e37e370cd56f7502543b8a22f70dfb1cf49058ae1a67713580fd3712b5566",
+          "media_bytes": 1281155
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "voluntary team spirit",
+          "text": "\"VOLUNTARY\"",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "state labor board",
+          "text": "LABOR BOARD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "unannounced",
+          "text": "UNANNOUNCED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "backdated with interest",
+          "text": "WITH INTEREST",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "prorevenge",
+        "reddit",
+        "workplace",
+        "laborlaws",
+        "overtime",
+        "karma",
+        "revenge",
+        "storytime",
+        "worklife",
+        "shorts",
+        "viral",
+        "satisfying",
+        "corporate",
+        "paycheck"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-blender-serial-number-security.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-blender-serial-number-security",
+      "title": "She Wouldn't Believe I Didn't Work There",
+      "script": "I was on my day off in sweatpants, holding a basket of protein bars, when a woman grabbed my arm in the electronics aisle and demanded to know why the store would not take her opened blender back without a box. I told her three times I did not work there, and she waved it off like I was the slowest employee she had ever met. So I stopped arguing and helped. I walked her straight to the actual return counter, loudly told the real employee behind it that she needed a manager override because she was very insistent, and stepped back to watch. The employee pulled up the blender's serial number and recognized it instantly \u2014 it matched one reported stolen from the store two towns over the week before. Security was already walking over before she finished explaining her gift receipt story. I put my protein bars down, picked a different checkout line, and never once told her I worked there.",
+      "shots": [
+        {
+          "phrase": "grabbed my arm in the electronics aisle",
+          "query": "electronics store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1yR6UaC-h5LVWXBdZK2MAImLclC6EULre",
+          "media_origin": "chatgpt",
+          "media_file_id": "1yR6UaC-h5LVWXBdZK2MAImLclC6EULre",
+          "media_sha256": "f990963dc71ae55e7d6a9b48c75054d47411cd1fd1c68bb282390bb97fb2b274",
+          "media_bytes": 1363456
+        },
+        {
+          "phrase": "opened blender back without a box",
+          "query": "kitchen blender box",
+          "image_url": "https://drive.google.com/uc?export=download&id=15fotaM27l3qHomUBDtPT5VV6Yc60LWe1",
+          "media_origin": "chatgpt",
+          "media_file_id": "15fotaM27l3qHomUBDtPT5VV6Yc60LWe1",
+          "media_sha256": "0465c951a7956651d228da7172d559e46731dd29658df380e5e76405f7e4e8b7",
+          "media_bytes": 1285258
+        },
+        {
+          "phrase": "I did not work there",
+          "query": "person shrugging store",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+          "media_sha256": "076378e56df53c4645f3b3a3680d84265f2adafd9981a5796afd53c0fe8cc4ee",
+          "media_bytes": 1503942
+        },
+        {
+          "phrase": "walked her straight to the actual return counter",
+          "query": "customer service counter",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+          "media_sha256": "59cc4f03eda4da982e1028e3acf9cb759027b49ebf37aa15bf2c0188be3b1b31",
+          "media_bytes": 1155752
+        },
+        {
+          "phrase": "manager override because she was very insistent",
+          "query": "cashier register store",
+          "image_url": "https://drive.google.com/uc?export=download&id=1G2R7rImw-uc0kXP9Nk43bshII5erptY9",
+          "media_origin": "chatgpt",
+          "media_file_id": "1G2R7rImw-uc0kXP9Nk43bshII5erptY9",
+          "media_sha256": "d366373f60b06899484c923bdac3dd426bacf78ea097882d442188a7c85d24bd",
+          "media_bytes": 1327635
+        },
+        {
+          "phrase": "blender's serial number",
+          "query": "barcode scanner product",
+          "image_url": "https://drive.google.com/uc?export=download&id=1AuY4kkPMQ7nQCrEBmDPRspDiG-O4KR_w",
+          "media_origin": "chatgpt",
+          "media_file_id": "1AuY4kkPMQ7nQCrEBmDPRspDiG-O4KR_w",
+          "media_sha256": "98c0bdf2b8f5d4040cd907b0ae23a47c8cd3c8997c090a51ef3449134b494f36",
+          "media_bytes": 863848
+        },
+        {
+          "phrase": "reported stolen from the store two towns over",
+          "query": "security guard retail",
+          "image_url": "https://drive.google.com/uc?export=download&id=1gF_LaAiZkvXSNya-oqDb7p-aohQdYONY",
+          "media_origin": "chatgpt",
+          "media_file_id": "1gF_LaAiZkvXSNya-oqDb7p-aohQdYONY",
+          "media_sha256": "082bc4d98c2b81afe9392c3e8c20aa0b1adeacd7d898d38d5a0f526c4c035a03",
+          "media_bytes": 1158649
+        },
+        {
+          "phrase": "Security was already walking over",
+          "query": "security guard walking",
+          "pin_query": "Security",
+          "pin_context": "She Wouldn't Believe I Didn't Work There",
+          "news_query": "Security",
+          "news_angle": "She Wouldn't Believe I Didn't Work There",
+          "image_url": "https://drive.google.com/uc?export=download&id=1z1e2ej8V80mbOj43pnv3PVUGJorAiMnx",
+          "media_origin": "chatgpt",
+          "media_file_id": "1z1e2ej8V80mbOj43pnv3PVUGJorAiMnx",
+          "media_sha256": "ac60f87c1276fc94d007b30a671c3ad8d99f41255584ec71f89fcf0e82b1d019",
+          "media_bytes": 1066240
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "did not work there",
+          "text": "NOT STAFF",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "manager override",
+          "text": "OVERRIDE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "reported stolen",
+          "text": "STOLEN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "never once told her",
+          "text": "NEVER TOLD HER",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "idontworkherelady",
+        "reddit",
+        "retail",
+        "storytime",
+        "karma",
+        "revenge",
+        "customerservice",
+        "shorts",
+        "viral",
+        "satisfying",
+        "shopping",
+        "pettyjustice"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    }
   }
 }
