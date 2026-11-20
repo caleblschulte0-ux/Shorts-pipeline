@@ -3,276 +3,6 @@
     {
       "date": "20261113",
       "dry_run": false,
-      "ts": "2026-11-13T14:25:34+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 137,
-        "with_retention": 117,
-        "with_curve": 14,
-        "fetched_at": "2026-11-13T08:46:17.870330+00:00"
-      },
-      "brain": {
-        "ok": 23,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261113-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "face_content",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "win celebration, fan pull",
-              "blind": false
-            },
-            "content": {
-              "score": 0.78,
-              "why": "Streamer Awards win, huge visible joy",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Wins Gamer Of The Year And Loses It On Stage \ud83d\udd25"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.55,
-              "problems": [
-                "Hook caption sits over the lower face and hands in several reaction shots, for example the hands-over-mouth moment",
-                "Roughly 15-24s is a dark, wide crowd shot with no clear subject, so it is small and hard to read on a phone",
-                "Cropped stream UI fragments ('EERS: 7') show at the left edge in several frames",
-                "The 4.2s frame is mostly empty starry backdrop with no person",
-                "Framing varies between tight face-cam and wide stage shots"
-              ]
-            }
-          },
-          "took_s": 256.9
-        },
-        {
-          "slug": "clip-20261113-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "award announcement, niche context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Award win, real joy, niche audience",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Qtcinderella: Critical Role Wins Best Roleplay Streamer At The Streamer Awards"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "frame 12.4s: the woman's face is cropped tight and the right edge is cut off",
-                "frame 42.2s: the hook caption overlaps the stage banner text, which looks slightly cluttered",
-                "frames 22.3s and 27.3s: wide crowd shots with a small subject, though the action is still readable"
-              ]
-            }
-          },
-          "took_s": 285.8
-        },
-        {
-          "slug": "clip-20261113-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 143,
-                "refused_shown": 10,
-                "scouted": [
-                  {
-                    "premise": "The 2026 Streamer Awards night: Critical Role wins, Ari is interrupted mid-speech, Jynxzi wins Gamer of the Year, and Sp",
-                    "shape": "multi_streamer",
-                    "n": 4
-                  },
-                  {
-                    "premise": "Ludwig's week of Counter-Strike: he gets shot practicing peeks IRL, hits an ace and loses his mind, then vents.",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Jynxzi's Elden Ring grind: he spams and gets told to stop, finally beats Rellana, then conquers Putrescent Knight and Mi",
-                    "shape": "multi_stream",
-                    "n": 4
-                  },
-                  {
-                    "premise": "Jasontheween's chaos run: Ron ruins his car intro, he begs forgiveness after a fight, and he is mocked.",
-                    "shape": "multi_stream",
-                    "n": 3
-                  }
-                ],
-                "vod_arcs": 315,
-                "moments": 40,
-                "candidates": 532,
-                "pool": 2948,
-                "pool_with_vod": 2096,
-                "arc_sizes": [
-                  3,
-                  3,
-                  4,
-                  2,
-                  2,
-                  4,
-                  3,
-                  3,
-                  2,
-                  5
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
-                  "outcome": "duration",
-                  "why": "21s outside 25-90s"
-                },
-                {
-                  "cluster": "scout:jynxzi+qtcinderella/jynxzi-qtcinderella-award-best-202",
-                  "outcome": "narrative_failed",
-                  "why": "scores [76, 78, 70] after 2 revision(s) \u2014 @0s confusing: The cut opens on a fragment, 'celebrities or famous streamers but just with regular people', which is the tail of Ari's sentence and has no context. Start the first clip after that fragment, at the in; @5s missing_context: Ari and DDG are neve"
-                },
-                {
-                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
-                  "outcome": "narrative_failed",
-                  "why": "scores [72, 64, 79] after 2 revision(s) \u2014 @36s pacing: There is a gap between 'He's gonna fall' and the final clip. Trim it or add a short 'Afterwards' overlay so the jump to the bad-guy line reads clearly.; @45s missing_context: Why he calls himself the bad guy is never explained. Open the last cli"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unknown event, decent veloc",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Streamer dancing at party, chat laughing",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Silky Loses It And Chat Can't Stop Laughing After This"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "Frames at 6.2s and 8.8s show mostly the back of someone's head or an obscured crowd, so the subject is unclear for a mom",
-                "The hook caption sits over the lower action, but it doesn't cover any faces."
-              ]
-            }
-          },
-          "took_s": 324.6
-        }
-      ]
-    },
-    {
-      "date": "20261113",
-      "dry_run": false,
       "ts": "2026-11-13T14:28:29+00:00",
       "feedback": {
         "snapshot": true,
@@ -6807,6 +6537,165 @@
             }
           },
           "took_s": 455.8
+        }
+      ]
+    },
+    {
+      "date": "20261120",
+      "dry_run": false,
+      "ts": "2026-11-20T19:08:22+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 135,
+        "with_retention": 114,
+        "with_curve": 14,
+        "fetched_at": "2026-11-20T17:07:30.677970+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:pokimane": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261120-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Suggestive GTA6 cutscene, age-restrict r)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, famous streamer, GTA",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Suggestive GTA6 cutscene, age-restrict r",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 27.1
         }
       ]
     }

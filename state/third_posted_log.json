@@ -21487,6 +21487,15 @@
       "rejected_by": "qa",
       "rejected_why": "render_qa: freeze: 4.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The frame at 16.9s is fully black in the sharp region, with only a tiny caption showing. It looks like a broken or empty; vision: The sharp picture is a thin landscape strip, about a third of the canvas height.",
       "ts": "2026-11-20T13:00:04.255899+00:00"
+    },
+    "rejected-onerousencouragingkeyboardoskomodo-4rg8jtatq5xqiw3r": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/OnerousEncouragingKeyboardOSkomodo-4rg8jTATQ5xQiW3R",
+      "streamer": "ishowspeed",
+      "title": "GTAXXO",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Suggestive GTA6 cutscene, age-restrict r)",
+      "ts": "2026-11-20T19:08:22.660000+00:00"
     }
   }
 }
