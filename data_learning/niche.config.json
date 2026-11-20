@@ -38869,7 +38869,25 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-18T12:25:43Z"
+   "rewritten_at": "2026-11-18T12:25:43Z",
+   "scorecard": {
+    "scores": {
+     "premise": 8,
+     "hook": 8,
+     "arc": 11,
+     "factual": 7,
+     "visual_proof": 9,
+     "payoff": 6,
+     "voice": 2
+    },
+    "total": 51,
+    "fatal": [
+     "deceptive"
+    ],
+    "weakest": "hook",
+    "note": "The hook is a flat, jargon-y summary that gives away the whole story and implies the 50 otters protected kelp, which isn't what happened. Lead with the concrete tension instead, e.g. 'Fur traders left 50 sea otters alive, and the kelp fores",
+    "fp": "b97796bd81104216"
+   }
   },
   {
    "slug": "us-stops-making-pennies-232-years",

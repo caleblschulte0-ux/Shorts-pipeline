@@ -1,0 +1,54 @@
+{
+ "slug": "fifty-otters-survived-climate-fight",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 8,
+   "hook": 8,
+   "arc": 11,
+   "factual": 7,
+   "visual_proof": 9,
+   "payoff": 6,
+   "voice": 2
+  },
+  "total": 51,
+  "fatal": [
+   "deceptive"
+  ],
+  "weakest": "hook",
+  "note": "The hook is a flat, jargon-y summary that gives away the whole story and implies the 50 otters protected kelp, which isn't what happened. Lead with the concrete tension instead, e.g. 'Fur traders left 50 sea otters alive, and the kelp fores",
+  "fp": "b97796bd81104216"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "50 sea otters survived, then helped protect carbon-storing kelp.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Only 50 California sea otters remained. Fur trading nearly erased the population.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "U.S. Fish & Wildlife Service | California sea otter population, before the fur trade vs the 1930s low point | https://www.fws.gov/ | 2026-11-13"
+  },
+  {
+   "window": "beat 1",
+   "ears": "The population recovered to about 3,000. The comeback remains incomplete because the species is still threatened.",
+   "eyes": "a data picture (trend)",
+   "evidence": "U.S. Geological Survey / California Department of Fish and Wildlife | California sea otter population recovery, 1930s to today | https://www.usgs.gov/ | 2026-11-13"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Otter-protected kelp can store 8.7 million metric tons of CO2 yearly. One predator shields a major carbon sink.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Frontiers in Ecology and the Environment | Potential CO2 stored by otter-protected kelp forests, North Pacific range | https://esajournals.onlinelibrary.wiley.com/journal/15409309 | 2026-11-13"
+  },
+  {
+   "window": "closing",
+   "ears": "Saving one predator can protect an entire coastline and its carbon.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
