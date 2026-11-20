@@ -3,406 +3,6 @@
     {
       "date": "20261113",
       "dry_run": false,
-      "ts": "2026-11-13T13:09:53+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 137,
-        "with_retention": 117,
-        "with_curve": 14,
-        "fetched_at": "2026-11-13T08:46:17.870330+00:00"
-      },
-      "brain": {
-        "ok": 39,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:moistcr1tikal": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:emiru": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:connoreatspants": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:timthetatman": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261113-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.62,
-              "why": "award win, needs context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Famous name wins award, speech; mostly s",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Qtcinderella Cries As Speed Wins 2026 Streamer Of The Year"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "The hook caption sits on top of the on-screen ISHOWSPEED nameplate at about 33s and 37s. It is minor.",
-                "At 25.5s Speed is cropped half out of the left edge. It is a brief moment.",
-                "At 2.0s the caption sits near the lower face and chin of the person in the yellow beanie. It does not hide the face."
-              ]
-            }
-          },
-          "took_s": 290.5
-        },
-        {
-          "slug": "clip-20261113-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is an uncropped 16:9 strip filling only about a third of the 9:16 canvas, far below the roughly three ; vision: The people are small on a phone screen. Ari and the interrupte",
-          "judges": {
-            "banger": {
-              "score": 0.72,
-              "why": "visible interruption during winning spee",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Visible stage interruption, but mostly s",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Qtcinderella: Ari Gets Interrupted Mid-Speech After Winning Best Music Streamer, DDG Shouted Ou"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.6,
-              "problems": [
-                "The sharp picture is an uncropped 16:9 strip filling only about a third of the 9:16 canvas, far below the roughly three ",
-                "The people are small on a phone screen. Ari and the interrupter are only head-and-shoulders in a short strip.",
-                "The wide stage shots at about 9.8s, 20.7s and 22.8s make the people tiny and lost.",
-                "The blurred padding above and below is mostly dark blur and a giant blurred face or sleeve. The hook text sits in the pa"
-              ]
-            }
-          },
-          "took_s": 235.6
-        },
-        {
-          "slug": "clip-20261113-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred or black padding above and bel; vision: The footage is a very dark night motorcycle POV. The subject i",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Vague title, unknown outcome",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Dark scooter ride, long middle finger ga",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Loses It And Can't Stop Laughing At This"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "The sharp picture is a thin strip, about a third of the canvas height, with large blurred or black padding above and bel",
-                "The footage is a very dark night motorcycle POV. The subject is tiny and hard to read on a phone, and several frames are",
-                "Stableronaldo is never visible, so the hook card 'cannot believe this' has no visible reaction to support it, and the cl",
-                "A stray 'OUT' caption appears at 5.4s over the picture, with no context.",
-                "The hook caption is repeated unchanged over blurred padding in every frame, and the strip beneath it holds almost nothin"
-              ]
-            }
-          },
-          "took_s": 98.8
-        },
-        {
-          "slug": "clip-20261113-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague betrayal, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Street interview reaction, unclear payof",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Edwardkso Got Tricked Into Saying THIS On Stream"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "From about 8s to 14s the cutaway is a thin 16:9 strip with the people on stage tiny and hard to read on a phone. The sur",
-                "At 8.5s the caption 'EATING CONTEST?' sits on top of the burned-in news chyron, so the two texts collide.",
-                "The first frame (1.2s) is a 'The Dreamer' title card with cropped text. It is a minor issue."
-              ]
-            }
-          },
-          "took_s": 257.7
-        },
-        {
-          "slug": "clip-20261113-5",
-          "ok": true,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 147,
-                "refused_shown": 10,
-                "scouted": [],
-                "vod_arcs": 316,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 2949,
-                "pool_with_vod": 2095,
-                "arc_sizes": [
-                  3,
-                  3,
-                  4,
-                  2,
-                  2,
-                  4,
-                  3,
-                  3,
-                  2,
-                  5
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
-                  "outcome": "structure_ok",
-                  "why": "kept"
-                },
-                {
-                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
-                  "outcome": "qa_failed",
-                  "why": "vision: From about 34s to 51s the sharp picture has no clear subject: a blank wall, a tilted screen, a dark blurry shape and an ; vision: Th"
-                },
-                {
-                  "cluster": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
-                  "outcome": "already_refused",
-                  "why": "2026-11-12: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "mokrivskyi@momentlachrymosecrazychickpeacharlietheunicorn-tb",
-                  "outcome": "structure_ok",
-                  "why": "kept"
-                }
-              ]
-            }
-          },
-          "took_s": 1638.5
-        },
-        {
-          "slug": "clip-20261113-6",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (Game dialogue, no visible event)",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 149,
-                "refused_shown": 10,
-                "scouted": [
-                  {
-                    "premise": "Kai Cenat tells how Reggie tried to manipulate his cameraman and threatened him, then escalates to demanding proof and R",
-                    "shape": "multi_stream",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Ludwig loses an influencer League tournament match and rages, then Jynxzi gives his view on the tournament setting Leagu",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Forsen's Hellraiser: Revival stream on one night, from the first clip to the GOTY reaction.",
-                    "shape": "one_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Jynxzi's Elden Ring grind, from beating Rellana to finally conquering the Putrescent Knight and Midra.",
-                    "shape": "multi_stream",
-                    "n": 3
-                  }
-                ],
-                "vod_arcs": 316,
-                "moments": 40,
-                "candidates": 532,
-                "pool": 2949,
-                "pool_with_vod": 2095,
-                "arc_sizes": [
-                  3,
-                  3,
-                  4,
-                  2,
-                  2,
-                  4,
-                  3,
-                  3,
-                  2,
-                  5
-                ]
-              }
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unknown streamer, no contex",
-              "blind": false
-            },
-            "content": {
-              "score": 0.15,
-              "why": "Game dialogue, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 36.2
-        }
-      ]
-    },
-    {
-      "date": "20261113",
-      "dry_run": false,
       "ts": "2026-11-13T14:25:34+00:00",
       "feedback": {
         "snapshot": true,
@@ -7009,6 +6609,204 @@
             }
           },
           "took_s": 52.6
+        }
+      ]
+    },
+    {
+      "date": "20261120",
+      "dry_run": false,
+      "ts": "2026-11-20T13:00:04+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 114,
+        "with_curve": 15,
+        "fetched_at": "2026-11-20T08:46:14.733538+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261120-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261120-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 4.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The frame at 16.9s is fully black in the sharp region, with only a tiny caption showing. It looks like a broke",
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "GTA 6 comparison, searched name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA6 tech comparison, no drama",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Shows GTA 6 With Modded Framegen On vs Off And The Difference Is Wild"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 4.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The frame at 16.9s is fully black in the sharp region, with only a tiny caption showing. It looks like a broken or empty",
+                "The sharp picture is a thin landscape strip, about a third of the canvas height. The renderer did not crop toward the ac",
+                "The player character is small and far away in most frames, so it is hard to read on a phone.",
+                "The streamer facecam is a tiny corner inset, and the footage does not clearly show the framegen on vs off comparison the",
+                "The small in-picture captions are tiny and sit low, and they read as hard to follow."
+              ]
+            },
+            "first_render": {
+              "reframe": "facecam_gameplay",
+              "layout": "facecam_gameplay",
+              "problems": [
+                "vision: Frame at 16.9s: the gameplay region is solid black while captions still show, so the picture has dropped out.",
+                "vision: The sharp gameplay strip fills only about a third of the canvas. The player is small throughout, and the bottom third is",
+                "vision: The hook card sits over the facecam's face for the whole video. The face is the top panel, which makes the layout look c",
+                "vision: The framegen on vs off comparison is never visible; the clip is just a character walking through grass."
+              ]
+            }
+          },
+          "took_s": 455.8
         }
       ]
     }

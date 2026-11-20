@@ -21478,6 +21478,15 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (GTA 6 driving, menu, radio ad talk)",
       "ts": "2026-11-20T12:47:30.467918+00:00"
+    },
+    "rejected-superslickstrawberryampenergy-ilijf7374bmmsbtk": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SuperSlickStrawberryAMPEnergy-iLijF7374bmMsbtk",
+      "streamer": "xqc",
+      "title": "Xqc Shows GTA 6 With Modded Framegen On vs Off And The Difference Is Wild",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 4.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The frame at 16.9s is fully black in the sharp region, with only a tiny caption showing. It looks like a broken or empty; vision: The sharp picture is a thin landscape strip, about a third of the canvas height.",
+      "ts": "2026-11-20T13:00:04.255899+00:00"
     }
   }
 }
