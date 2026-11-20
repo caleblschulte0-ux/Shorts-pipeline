@@ -21639,9 +21639,6 @@
     "dataviz"
    ],
    "keep_order": true,
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-20T12:37:31Z",
-   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -21696,7 +21693,10 @@
      },
      "illustrated_scene": "# scene standard: 2026-10-09\ndef _patient(cr, x, y, s, i, t, a=1.0):\n    \"\"\"A sick person: lit legs and shoes, a shirt with shoulders and both\n    arms, a head with hair, eyes, a tired mouth, flushed cheeks and a few\n    small red measles spots on the face.\"\"\"\n    shirts = [(74, 108, 160), (150, 156, 166), (188, 150, 84), (96, 132, 104),\n              (170, 92, 80), (110, 96, 140), (200, 196, 186)]\n    pants = [(52, 58, 74), (70, 62, 54), (40, 44, 52), (88, 84, 96)]\n    skins = [(236, 196, 164), (196, 148, 112), (150, 104, 76), (226, 180, 140)]\n    hairs = [(40, 30, 26), (92, 60, 36), (170, 130, 80), (30, 30, 34), (120, 112, 104)]\n    h = 80.0 * s\n    bw = 30.0 * s\n    hip = y - h * 0.36\n    sy = y - h * 0.62\n    skin = skins[(i * 3) % len(skins)]\n    shirt = shirts[i % len(shirts)]\n    # legs, slightly apart, and shoes\n    for lx in (x - bw * 0.27, x + bw * 0.05):\n        cr.move_to(lx, hip)\n        cr.line_to(lx + bw * 0.23, hip)\n        cr.line_to(lx + bw * 0.21, y - 3 * s)\n        cr.line_to(lx + bw * 0.02, y - 3 * s)\n        cr.close_path()\n    solid(cr, pants[i % len(pants)], a=a, rim=False)\n    for lx in (x - bw * 0.3, x + bw * 0.04):\n        cr.rectangle(lx, y - 4 * s, bw * 0.3, 4 * s)\n    solid(cr, (34, 30, 30), a=a, rim=False, edge=False)\n    # arms hang at the sides, sleeves then hands\n    for side in (-1, 1):\n        ax = x + side * bw * 0.5\n        cr.move_to(ax, sy + bw * 0.02)\n        cr.line_to(ax + side * bw * 0.16, sy + bw * 0.1)\n        cr.line_to(ax + side * bw * 0.12, hip + 4 * s)\n        cr.line_to(ax - side * bw * 0.04, hip + 4 * s)\n        cr.close_path()\n        solid(cr, shirt, a=a, rim=False)\n        disc(cr, ax + side * bw * 0.04, hip + 7 * s, 3.6 * s, skin, a=a)\n    # torso with rounded shoulders\n    cr.move_to(x - bw / 2, hip + 2 * s)\n    cr.line_to(x - bw / 2, sy + bw * 0.25)\n    cr.curve_to(x - bw / 2, sy - bw * 0.05, x - bw * 0.3, sy - bw * 0.12, x, sy - bw * 0.12)\n    cr.curve_to(x + bw * 0.3, sy - bw * 0.12, x + bw / 2, sy - bw * 0.05, x + bw / 2, sy + bw * 0.25)\n    cr.line_to(x + bw / 2, hip + 2 * s)\n    cr.close_path()\n    solid(cr, shirt, a=a)\n    hy = sy - bw * 0.12 - 11 * s\n    # neck and head\n    cr.rectangle(x - 3.5 * s, hy + 6 * s, 7 * s, 8 * s)\n    solid(cr, skin, a=a, rim=False, edge=False)\n    disc(cr, x, hy, 12 * s, skin, a=a)\n    # hair cap\n    cr.arc(x, hy, 12.6 * s, math.pi * 1.02, math.pi * 1.98)\n    cr.curve_to(x + 8 * s, hy - 6 * s, x - 8 * s, hy - 7 * s, x - 12.4 * s, hy - 1 * s)\n    cr.close_path()\n    solid(cr, hairs[(i * 7) % len(hairs)], a=a, rim=False)\n    # a fevered flush on the cheeks\n    for cx_ in (x - 6 * s, x + 6 * s):\n        cr.set_source_rgba(*_c((230, 90, 80), 0.35 * a))\n        cr.arc(cx_, hy + 4 * s, 4 * s, 0, 2 * math.pi)\n        cr.fill()\n    # tired eyes and a flat mouth\n    cr.set_source_rgba(*_c((30, 24, 24), a))\n    for ex in (x - 4.2 * s, x + 4.2 * s):\n        cr.arc(ex, hy + 0.5 * s, 1.5 * s, 0, 2 * math.pi)\n        cr.fill()\n    cr.set_line_width(max(1.0, 1.1 * s))\n    cr.move_to(x - 3 * s, hy + 7 * s)\n    cr.curve_to(x - 1 * s, hy + 6 * s, x + 1 * s, hy + 6 * s, x + 3 * s, hy + 7 * s)\n    cr.stroke()\n    # measles: a few small spots, forehead, cheeks, chin, neck\n    cr.set_source_rgba(*_c((196, 36, 40), 0.95 * a))\n    for dx, dy in ((-3, -5), (5, -4), (-8, 5), (8, 3), (1, 10), (-2, 15), (3, 17)):\n        cr.arc(x + dx * s, hy + dy * s, 1.25 * s, 0, 2 * math.pi)\n        cr.fill()\n\n\ndef _ambulance(cr, x, y, s, t):\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(s, s)\n    contact_shadow(cr, 130, 4, 300, a=0.35)\n    box(cr, 0, -20, 200, 110, (240, 240, 242), depth=40, finish=\"gloss\")\n    box(cr, 200, -20, 70, 76, (232, 232, 236), depth=24, finish=\"gloss\")\n    cr.rectangle(220, -88, 40, 30)\n    solid(cr, (90, 130, 170), finish=\"glass\", edge=False)\n    cr.rectangle(0, -70, 270, 10)\n    solid(cr, (204, 34, 38), edge=False, rim=False)\n    cr.rectangle(86, -118, 28, 70)\n    cr.rectangle(65, -97, 70, 28)\n    solid(cr, (204, 34, 38), edge=False)\n    disc(cr, 50, -12, 24, (40, 40, 44))\n    disc(cr, 220, -12, 24, (40, 40, 44))\n    disc(cr, 50, -12, 10, (170, 170, 176), finish=\"metal\")\n    disc(cr, 220, -12, 10, (170, 170, 176), finish=\"metal\")\n    box(cr, 70, -130, 60, 10, (220, 40, 40), depth=12, finish=\"gloss\")\n    glow(cr, 100, -140, 40, (255, 60, 60), 0.5 + 0.4 * math.sin(t * 9))\n    cr.restore()\n\n\ndef _slot(s):\n    \"\"\"The queue outside the gate, running from the gap to the camera.\"\"\"\n    return 300 - 40 * s, 1565 + 78 * s, 1.9 + 0.3 * s\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a hospital yard filling with sick people\n    SUBSTANCE: crowds of spotted measles patients\n    CAUSE: Data cranks the hospital gate open wider and spotted patients pour through the gap into the yard\n    The small gap is a gate in the hospital wall. Each turn of Data's crank\n    slides it further open, the queue of red-spotted patients shuffles up\n    and the one at the front walks through into the yard, and the crowd\n    there spreads: its area is the case count, from the year before the\n    jump to the latest. THE SCALE is on the ground: the old crowd stays as\n    a dashed ring with its year, inside the one that is now about nine\n    times as big. The readout names only the start and the finish, each\n    held long enough to read.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    if len(rows) > 1:\n        j = max(range(1, len(rows)),\n                key=lambda i: rows[i][1] / max(1.0, rows[i - 1][1]))\n    else:\n        j = 0\n    l0, v0 = rows[max(0, j - 1)]\n    l1, v1 = rows[-1]\n    v0 = v0 or 1.0\n    v1 = max(v1, v0)\n    ratio = v1 / v0\n    n = 6\n    a0, a1 = 0.08, 0.6\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    if u < a0:\n        f = 0.0\n    grow = ease(seg(f, 0.4, 0.85))\n    step = 0.0 if u < a0 else (k + grow) / n\n    val = v0 + (v1 - v0) * step\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n\n    # the yard crowd: its area is the case count\n    CX, CY = 610, 1230\n    RX1, RY1 = 440.0, 165.0\n    NMAX = 120\n    nf = NMAX * val / v1\n    rx0 = RX1 * math.sqrt(v0 / v1)\n    ry0 = RY1 * math.sqrt(v0 / v1)\n    WT, WB = 1400, 1482                       # the yard wall, top and base\n\n    landscape(cr, t, \"town\", horizon=1040)\n    birds(cr, t, y0=700, n=4, rgb=(60, 60, 70))\n\n    # the yard: paved concrete with painted bay lines running back\n    vgrad(cr, [(0, (184, 178, 166)), (1, (156, 150, 140))], 1040, WT)\n    cr.save()\n    cr.rectangle(0, 1040, W, WT - 1040)\n    cr.clip()\n    cr.set_source_rgba(*_c((120, 114, 104), 0.35))\n    cr.set_line_width(3)\n    for i in range(12):\n        cr.move_to(540 + (i - 5.5) * 40, 1040)\n        cr.line_to(540 + (i - 5.5) * 230, WT)\n    for yy in (1090, 1160, 1260, 1380):\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n    cr.restore()\n\n    # the hospital behind the yard, three-quarter, throwing its shadow\n    cast_shadow(cr, 300, 900, 1040, length=220, a=0.28)\n    b = building(cr, 290, 880, 1040, 290, (232, 228, 220), roof_rgb=(150, 154, 162),\n                 roof=\"flat\", boards=False)\n    for r in range(2):\n        for c in range(5):\n            wx = b[\"x0\"] + 40 + c * 112\n            wy = b[\"top\"] + 92 + r * 78\n            cr.rectangle(wx, wy, 66, 50)\n            solid(cr, (120, 160, 196), finish=\"glass\")\n    cr.rectangle(b[\"x0\"] + 40, b[\"top\"] + 22, 32, 76)\n    cr.rectangle(b[\"x0\"] + 18, b[\"top\"] + 44, 76, 32)\n    solid(cr, (204, 34, 38), edge=False)\n    text(cr, \"HOSPITAL\", b[\"x0\"] + 112, b[\"top\"] + 76, 46, (204, 34, 38),\n         shadow=False)\n    # the emergency entrance: glass doors under a red canopy\n    cr.rectangle(b[\"x1\"] - 200, 1040 - 96, 140, 96)\n    solid(cr, (130, 170, 200), finish=\"glass\")\n    box(cr, b[\"x1\"] - 226, 1040 - 100, 192, 22, (196, 40, 42), depth=40, finish=\"gloss\")\n\n    # the gate: slides open with every turn of the crank\n    GX0, GW = 150, 210\n    GX1 = GX0 + GW\n    opn = 0.25 + 0.75 * (0.0 if u < a0 else (k + ease(seg(f, 0.0, 0.45))) / n)\n    gxm = GX0 + GW * opn * 0.5\n\n    # the queue shuffles up one place a crank; the front one walks in\n    m = ease(seg(f, 0.15, 0.55)) if a0 <= u else 0.0\n    walk_p = seg(f, 0.0, 0.75) if a0 <= u else 0.0\n    if u >= a1:\n        walk_p = 1.0\n    out = []                                   # (y, x, s, id) outside the wall\n    yard = []                                  # (y, x, s, id, alpha) inside\n    for s_i in range(6):\n        pid = k + s_i + 1\n        xa, ya, sa = _slot(s_i + 1)\n        xb, yb, sb = _slot(s_i)\n        out.append((ya + (yb - ya) * m, xa + (xb - xa) * m, sa + (sb - sa) * m, pid))\n    edge_x = CX - RX1 * math.sqrt(max(nf, 1.0) / NMAX) * 0.95\n    if walk_p < 1.0:\n        x_s, y_s, s_s = _slot(0)\n        if walk_p < 0.45:\n            q = ease(walk_p / 0.45)\n            wx, wy, ws = x_s + (gxm - x_s) * q, y_s + (WB - 8 - y_s) * q, s_s - 0.2 * q\n        else:\n            q = ease((walk_p - 0.45) / 0.55)\n            tx, ty = edge_x + 30, CY + 70\n            wx, wy = gxm + (tx - gxm) * q, WB - 8 + (ty - WB + 8) * q\n            ws = 1.7\n        if wy >= WT + 20:\n            out.append((wy, wx, ws, k))\n        else:\n            yard.append((wy, wx, ws, k, 1.0))\n\n    contact_shadow(cr, CX, CY + RY1 * 0.4, 2 * RX1 * math.sqrt(nf / NMAX) + 120, a=0.38)\n    for i in range(int(min(NMAX, nf + 1))):\n        al = clamp(nf - i)\n        if al <= 0:\n            continue\n        r = math.sqrt((i + 0.5) / NMAX)\n        ang = i * 2.39996\n        px = CX + RX1 * r * math.cos(ang)\n        py = CY + RY1 * r * math.sin(ang)\n        s_ = 1.3 + 0.7 * (py - (CY - RY1)) / (2 * RY1)\n        yard.append((py, px, s_, i + 40, al))\n    for py, px, s_, i, al in sorted(yard):\n        bob = 2.0 * math.sin(t * 2.2 + i * 1.3)\n        _patient(cr, px, py + bob - 24 * (1 - al), s_, i, t, a=al)\n\n    # THE SCALE: the old crowd as a dashed ring on the ground, its year on it\n    if step > 0.02:\n        cr.save()\n        cr.translate(CX, CY)\n        cr.scale(1.0, ry0 / rx0)\n        cr.arc(0, 0, rx0, 0, 2 * math.pi)\n        cr.restore()\n        ghost(cr, a=0.95)\n        cr.save()\n        cr.translate(CX, CY)\n        cr.scale(1.0, ry0 / rx0)\n        cr.arc(0, 0, rx0 + 4, 0, 2 * math.pi)\n        cr.restore()\n        ghost(cr, a=0.6)\n        text(cr, l0, CX + rx0 + 14, CY - ry0 + 6, 40, look.INK, face=\"bold\")\n\n    # the gate panel, sliding away behind the right-hand wall\n    gpx = GX0 + GW * opn\n    for bx in range(8):\n        cr.rectangle(gpx + 8 + bx * 25, 1320, 9, WB - 1320)\n    cr.rectangle(gpx, 1320, GW, 12)\n    cr.rectangle(gpx, 1392, GW, 10)\n    solid(cr, (52, 54, 60), finish=\"metal\")\n\n    # the brick wall either side of the gap\n    for x0, x1 in ((0, GX0), (GX1, W)):\n        cr.rectangle(x0, WT, x1 - x0, WB - WT)\n        solid(cr, P[\"brick\"])\n        cr.set_source_rgba(*_c(P[\"brick_shade\"], 0.7))\n        cr.set_line_width(2)\n        for row in range(1, 3):\n            cr.move_to(x0, WT + row * 27)\n            cr.line_to(x1, WT + row * 27)\n        for col in range(int(x0) + 20, int(x1), 56):\n            for row in range(3):\n                off = 28 if row % 2 else 0\n                cr.move_to(col + off, WT + row * 27)\n                cr.line_to(col + off, WT + row * 27 + 27)\n        cr.stroke()\n        cr.rectangle(x0, WT - 12, x1 - x0, 14)\n        solid(cr, (214, 206, 192), edge=False)\n\n    # the gate posts, and on the right one the big crank wheel\n    contact_shadow(cr, GX0 - 18, WB + 2, 70, a=0.4)\n    box(cr, GX0 - 40, WB, 40, 180, (150, 150, 156), finish=\"metal\")\n    disc(cr, GX0 - 20, WB - 186, 16, (190, 190, 196), finish=\"metal\")\n    contact_shadow(cr, GX1 + 22, WB + 2, 80, a=0.4)\n    box(cr, GX1, WB, 44, 190, (150, 150, 156), finish=\"metal\")\n    disc(cr, GX1 + 22, WB - 196, 18, (190, 190, 196), finish=\"metal\")\n    wa = opn * 14.0\n    WX, WYc, WR = GX1 + 40, 1372, 50\n    disc(cr, WX, WYc, WR, (196, 60, 48), finish=\"metal\")\n    disc(cr, WX, WYc, WR - 12, (60, 62, 70), finish=\"metal\")\n    cr.set_source_rgba(*_c((196, 60, 48)))\n    cr.set_line_width(8)\n    for sp in range(4):\n        a_ = wa + sp * math.pi / 2\n        cr.move_to(WX, WYc)\n        cr.line_to(WX + (WR - 6) * math.cos(a_), WYc + (WR - 6) * math.sin(a_))\n    cr.stroke()\n    disc(cr, WX, WYc, 10, (200, 200, 206), finish=\"metal\")\n    disc(cr, WX + WR * math.cos(wa), WYc + WR * math.sin(wa), 11, (40, 40, 44),\n         finish=\"gloss\")\n\n    foreground(cr, \"town\")\n    # an ambulance keeps arriving along the front of the yard\n    _ambulance(cr, -500 + (t * 420) % 2200, 1830, 1.5, t)\n    # the queue outside, right by the camera\n    for (y, x, s_, i) in sorted(out):\n        contact_shadow(cr, x, y + 2, 40 * s_, a=0.3)\n        _patient(cr, x, y, s_, i, t)\n    vignette(cr, a=0.28)\n\n    hx0, hx1, fy = 760, 470, 1490\n    if u < a0:\n        host(\"point\", hx0 + (hx1 - hx0) * ease(seg(u, 0.0, a0)), fy, 230)\n    elif u < a1 + 0.04:\n        host(\"crank\", hx1, fy, 230, beat=k)\n    elif u < 0.9:\n        host(\"crank\", hx1, fy, 230, beat=n + int((u - a1) / 0.1))\n    else:\n        host(\"shock\", hx1, fy, 230)\n\n    # the readout names only the start and the finish: 285 holds while the\n    # crowd swells, the latest lands with the last crank and holds to the end\n    lab, v = (l1, v1) if done else (l0, v0)\n    fit_readout(cr, f\"{int(round(v)):,} cases\", f\"US measles · {lab}\",\n                80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n    if done:\n        text(cr, f\"{ratio:.0f}x\", W - 80, 680, 96, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n"
     }
-   ]
+   ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-20T12:45:25Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "gold-central-bank-hoarding",
@@ -24211,9 +24211,9 @@
   },
   {
    "slug": "moon-drifting-away",
-   "title": "Moon Recession Ends Total Eclipses In 600 Million Years",
-   "hook": "The Moon is slowly shrinking out of total eclipses.",
-   "closing": "Total eclipses are temporary, and we live while the Moon still appears large enough.",
+   "title": "The Moon's Escape Ends Total Eclipses In 600 Million Years",
+   "hook": "The Moon is leaving, ending total eclipses in 600 million years.",
+   "closing": "We live in a lucky window, when the Moon fits perfectly. That window is closing.",
    "question": "Would you travel for a total eclipse?",
    "caption": "The Moon drifts 3.8 centimeters farther from Earth every single year, and it's been doing that since before dinosaurs existed. Keep that pace going and in 600 million years, the Moon will finally be too far away for a total solar eclipse to ever happen again. Does it freak you out that the Moon is leaving? Tell me below 👇",
    "hashtags": [
@@ -24242,8 +24242,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DRIFT",
-     "topic": "Moon recession",
-     "say": "The Moon has receded 2.17 meters, a steady shift we can measure.",
+     "topic": "Moon drifting away",
+     "say": "Since humans first landed there, the Moon has crept 2.17 meters farther away. It never stops, and it never turns back.",
      "scene": {
       "mechanic": "earth-moon-tape-stretch",
       "concept": "a measuring tape unspools between Earth and the Moon, the gap widening year by year as cumulative drift climbs toward 2 meters",
@@ -24260,7 +24260,7 @@
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
      "topic": "Moon distance",
-     "say": "The Moon is now 384,400 kilometers away, so its apparent size keeps shrinking.",
+     "say": "The Moon now sits 384,400 kilometers away, noticeably farther than long ago. Tides slowly shove it outward, and it keeps going.",
      "scene": {
       "mechanic": "tidal-drag-orbit-widen",
       "concept": "two side-by-side Earth-Moon orbits, the ancient orbit tight and the modern orbit visibly wider, moons circling at true relative radius",
@@ -24277,7 +24277,7 @@
      "ascending": false,
      "role": "3 · THE PAYOFF",
      "topic": "Moon eclipse deadline",
-     "say": "In 600 million years, the Moon will look too small for total eclipses.",
+     "say": "In 600 million years, the Moon will look too small to cause a total solar eclipse. Dinosaurs died out far more recently.",
      "scene": {
       "mechanic": "eclipse-deep-time-ruler",
       "concept": "a deep-time ruler stretching from today out to 600 million years, dinosaur markers at their epochs and a sun-moon eclipse disc sliding out to the vanishing point",
@@ -24285,8 +24285,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-20T12:37:32Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-18T04:19:54Z",
    "retold": "retell/v4"
   },
   {
@@ -27549,10 +27549,10 @@
   },
   {
    "slug": "library-digital-shift",
-   "title": "Library Visits Stayed Down While Digital Checkouts Hit 739 Million",
-   "hook": "Library buildings stayed quieter while borrowing moved online.",
-   "closing": "Library readers did not disappear; borrowing followed them onto their phones.",
-   "question": "How do you borrow library books?",
+   "title": "Libraries Looked Emptier While Digital Borrowing Hit 739 Million",
+   "hook": "Libraries looked quieter while digital borrowing hit 739 million.",
+   "closing": "Readers did not disappear; library use followed them onto their phones.",
+   "question": "How do you borrow books?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
     "libraries",
@@ -27566,9 +27566,6 @@
     "explained",
     "bookstagram"
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-20T12:37:31Z",
-   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -27578,8 +27575,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "Library visits",
-     "say": "Library visits reached 800 million, still well below their earlier peak.",
+     "topic": "Library Physical Visits",
+     "say": "Library visits reached 800 million. Buildings stayed quieter than before, but readers had not vanished.",
      "scene": {
       "mechanic": "library-turnstile-thinning",
       "concept": "a library photo with a row of visitors per year; the row of people thins from 1.25 billion to 671 million as figures keep filing through the door",
@@ -27594,15 +27591,18 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "Library digital checkouts",
-     "say": "Library digital checkouts reached 739 million, proving borrowing moved online instead of disappearing.",
+     "topic": "Library Digital Borrowing",
+     "say": "Digital library checkouts reached 739 million. Borrowing moved online instead of disappearing.",
      "scene": {
       "mechanic": "phone-fills-with-books",
       "concept": "stacks of ebooks rise inside a phone for each year as books fly from the library building into the phone on a loop",
       "code": "phone = subject_image('smartphone with ebook reader')\nbook = subject_image('book')\nlib = subject_image('library building icon')\nn = len(values)\nbase = RBOT - 180\ncolw = (RX1 - RX0) // n\nunit = 60.0\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    cx = RX0 + colw * i + colw // 2\n    grow = clamp(reveal * 1.3 - i * 0.18)\n    cnt = int(round(v / unit * grow))\n    for k in range(cnt):\n        y = base - (k + 1) * 82\n        if book is not None:\n            paste(book, cx - 80, y, 160, 80)\n        else:\n            d.rounded_rectangle([cx - 80, y, cx + 80, y + 76], radius=8, fill=rgba(HIGHLIGHT if i == n - 1 else REST, 230))\n    text(lab, cx, base + 20, size=40, color=TEXT, center=True)\n    text(fmt(v * grow), cx, base - cnt * 82 - 70, size=40, color=HIGHLIGHT if i == n - 1 else TEXT, center=True)\nif phone is not None:\n    paste(phone, RX1 - 260, RTOP + 20, 220, 380)\nif lib is not None:\n    paste(lib, RX0 + 20, RTOP + 20, 220, 220)\nfor k in range(6):\n    ph = (reveal * 3.0 + k / 6.0) % 1.0\n    x = RX0 + 240 + int(ph * (RX1 - RX0 - 520))\n    y = RTOP + 120 - int(60 * math.sin(ph * math.pi))\n    if book is not None:\n        paste(book, x, y, 90, 60)\n    else:\n        d.rounded_rectangle([x, y, x + 90, y + 60], radius=6, fill=rgba(HIGHLIGHT, 230))\n"
      }
     }
-   ]
+   ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-18T12:25:44Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "ocean-floor-vs-mars-mapped",
@@ -27764,20 +27764,20 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 16,
-     "arc": 12,
+     "hook": 15,
+     "arc": 15,
      "factual": 13,
      "visual_proof": 8,
      "payoff": 8,
      "voice": 4
     },
-    "total": 71,
+    "total": 73,
     "fatal": [
      "unrenderable_visual"
     ],
     "weakest": "visual_proof",
-    "note": "Make the visual concepts concrete and phone‑friendly (e.g., show a simple graphic of water distribution rather than vague 'data picture (rank)') to ensure viewers instantly grasp each beat.",
-    "fp": "90fb773c5a7c8e2d"
+    "note": "Provide clear, simple visual concepts that are easily readable on a phone screen, e.g., concise infographics or animated bars, instead of vague 'data picture (rank)' placeholders.",
+    "fp": "1ea878c4faf3e8ea"
    }
   },
   {
@@ -36800,7 +36800,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-20T12:37:31Z",
+   "rewritten_at": "2026-11-20T12:45:25Z",
    "hook_was": "Here's why your next cruise might get you sick.",
    "segments": [
     {
@@ -37594,10 +37594,6 @@
     "collegesports",
     "didyouknow"
    ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-20T12:37:32Z",
-   "hook_was": "18.9 million watched. More than the men's final.",
    "segments": [
     {
      "source": "offline",
@@ -37643,7 +37639,11 @@
      "topic": "Women's Basketball Rights",
      "say": "Women's basketball media rights reached 200 million dollars yearly, turning audience growth into revenue."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-20T12:45:25Z",
+   "hook_was": "18.9 million watched. More than the men's final."
   },
   {
    "slug": "government-internet-shutdowns-record",
@@ -38026,7 +38026,26 @@
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-11-20T12:26:11Z",
-   "hook_was": "Extinction was rare—then one fungus erased 90 frog species."
+   "hook_was": "Extinction was rare—then one fungus erased 90 frog species.",
+   "scorecard": {
+    "scores": {
+     "premise": 5,
+     "hook": 12,
+     "arc": 8,
+     "factual": 12,
+     "visual_proof": 5,
+     "payoff": 2,
+     "voice": 3
+    },
+    "total": 47,
+    "fatal": [
+     "missing_payoff",
+     "unrenderable_visual"
+    ],
+    "weakest": "payoff",
+    "note": "Add a clear payoff that resolves the hook, such as showing a concrete action or solution to the frog crisis, and provide simple, readable visuals that work on a phone screen.",
+    "fp": "9b61a36b4699c68f"
+   }
   },
   {
    "slug": "cohabitation-overtakes-marriage",
@@ -38231,7 +38250,7 @@
   {
    "slug": "runway-near-misses-climbing",
    "title": "The FAA Logged 23 Serious Runway Near-Misses In One Year",
-   "hook": "Runway near-misses keep climbing, and most don't even involve a plane.",
+   "hook": "The scariest danger at airports isn't in the sky, it's on the ground.",
    "closing": "More flights, same runways. Every close call puts a planeload of people at risk.",
    "question": "Does this make you nervous to fly?",
    "caption": "Serious runway near-misses hit a level not seen in years — and they're not spread evenly across airports. A handful of hubs account for nearly a third of the worst ones. Does this make you nervous to fly? 👇",
@@ -38268,7 +38287,8 @@
         "region": "full"
        }
       ]
-     }
+     },
+     "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _rw(p):\n    y = 1160 + 380 * p\n    w = 40 + 1000 * p\n    cx = 560 - 40 * p\n    return cx, y, w\n\n\ndef _jet(cr, x, y, s, gear=True, tail=(38, 68, 140)):\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(s, abs(s))\n    # far wing, behind the body\n    cr.move_to(20, -6)\n    cr.line_to(150, -72)\n    cr.line_to(184, -72)\n    cr.line_to(110, 0)\n    cr.close_path()\n    solid(cr, (150, 156, 166), finish=\"metal\")\n    # tail fin and stabiliser\n    cr.move_to(186, -30)\n    cr.line_to(248, -124)\n    cr.line_to(276, -124)\n    cr.line_to(262, -26)\n    cr.close_path()\n    solid(cr, tail)\n    cr.move_to(230, -20)\n    cr.line_to(300, -44)\n    cr.line_to(312, -40)\n    cr.line_to(262, -8)\n    cr.close_path()\n    solid(cr, (176, 180, 190), finish=\"metal\")\n    # fuselage\n    cr.move_to(-210, 10)\n    cr.curve_to(-210, -30, -172, -36, -130, -36)\n    cr.line_to(230, -36)\n    cr.line_to(282, -20)\n    cr.line_to(282, 0)\n    cr.curve_to(242, 30, 200, 34, 160, 34)\n    cr.line_to(-150, 34)\n    cr.curve_to(-196, 34, -210, 25, -210, 10)\n    cr.close_path()\n    solid(cr, (234, 234, 238), finish=\"metal\")\n    seams(cr, -140, -34, 220, 32, (234, 234, 238), n=7, axis=\"v\", a=0.25, width=1.5)\n    cr.rectangle(-150, 8, 380, 7)\n    solid(cr, tail, rim=False, edge=False)\n    # cockpit\n    for i in range(3):\n        cr.move_to(-196 + i * 16, -10)\n        cr.line_to(-186 + i * 16, -22)\n        cr.line_to(-174 + i * 16, -22)\n        cr.line_to(-182 + i * 16, -10)\n        cr.close_path()\n        solid(cr, (36, 48, 66), finish=\"glass\", rim=False)\n    # cabin windows\n    for i in range(24):\n        disc(cr, -130 + i * 14, -14, 3.6, (40, 52, 70), finish=\"glass\")\n    # doors\n    for dx_ in (-150, 60, 210):\n        cr.rectangle(dx_, -28, 16, 42)\n        edge(cr, (120, 124, 134), width=2)\n    # near wing with its engine\n    cr.move_to(-10, 14)\n    cr.line_to(120, 122)\n    cr.line_to(162, 122)\n    cr.line_to(100, 14)\n    cr.close_path()\n    solid(cr, (196, 200, 208), finish=\"metal\")\n    trim(cr, 112, 116, 164, 124, (196, 200, 208), w=3)\n    cr.rectangle(20, 48, 86, 34)\n    solid(cr, (180, 184, 194), finish=\"metal\")\n    cr.save()\n    cr.translate(20, 65)\n    cr.scale(0.45, 1)\n    cr.arc(0, 0, 18, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (40, 42, 50), finish=\"metal\")\n    if gear:\n        for gx, gl in ((-150, 50), (60, 64), (90, 64)):\n            cr.set_source_rgba(*_c((60, 62, 70)))\n            cr.set_line_width(5)\n            cr.move_to(gx, 30)\n            cr.line_to(gx, 30 + gl)\n            cr.stroke()\n            disc(cr, gx - 7, 30 + gl, 9, (30, 30, 34))\n            disc(cr, gx + 7, 30 + gl, 9, (30, 30, 34))\n    cr.restore()\n\n\ndef _flag(cr, x, y, s, t, i, p):\n    if p <= 0:\n        return\n    h = 118 * s * pop(p)\n    lean = 0.05 * math.sin(i * 2.3)\n    contact_shadow(cr, x, y, 40 * s, a=0.32)\n    box(cr, x - 9 * s, y, 18 * s, 10 * s, (70, 72, 80), depth=6 * s)\n    tx = x + lean * h\n    cr.move_to(x - 2.5 * s, y - 8 * s)\n    cr.line_to(tx - 2.5 * s, y - h)\n    cr.line_to(tx + 2.5 * s, y - h)\n    cr.line_to(x + 2.5 * s, y - 8 * s)\n    cr.close_path()\n    solid(cr, (176, 180, 188), finish=\"metal\")\n    wave = 5 * s * math.sin(t * 2.6 + i * 0.9)\n    big = (0.9 + 0.2 * ((i * 0.37) % 1.0)) * s * pop(p)\n    cr.move_to(tx + 2 * s, y - h)\n    cr.curve_to(tx + 20 * big, y - h - 6 * big + wave, tx + 36 * big, y - h + 4 * big - wave,\n                tx + 54 * big, y - h + 14 * big + wave)\n    cr.line_to(tx + 2 * s, y - h + 32 * big)\n    cr.close_path()\n    solid(cr, (214, 52, 40))\n    disc(cr, tx, y - h - 3 * s, 4 * s, (200, 200, 206), finish=\"metal\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: an airport runway with jets\n    SUBSTANCE: red warning flags\n    CAUSE: Data places a red warning flag on the runway edge for every near-miss, walking down the runway\n    Dusk at a busy airport, the runway filling the frame from the camera\n    to the horizon: a jet comes in to land while another taxis across the\n    far end. Data walks the runway's left edge from far to near and places\n    one red flag for each serious near-miss — 11 around 2013, then 16, then\n    23 — so the line of flags runs more than twice as far down the runway.\n    Where the first year's flags ended and where the latest end are painted\n    across the runway, the year named past the RIGHT edge, clear of Data.\n    The taxiway sign by the camera carries arrows only, no lettering, so\n    nothing prints in the caption band.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    N = max(1, int(round(max(v for _, v in rows))))\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.05, 0.85))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    cnt = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if (u < a0 or named is None) else rows[named]\n\n    landscape(cr, t, \"field\", horizon=1150, time=\"dusk\", seed=\"runway\", skyline=False)\n    # the control tower, far left, and the terminal beside it\n    contact_shadow(cr, 95, 1162, 80, a=0.3)\n    cylinder(cr, 70, 1160, 50, 290, (190, 188, 182))\n    box(cr, 44, 880, 102, 64, (60, 86, 110), finish=\"glass\", depth=24)\n    for i in range(5):\n        cr.rectangle(50 + i * 19, 840, 3, 36)\n        solid(cr, (40, 42, 48), rim=False, edge=False)\n    box(cr, 38, 820, 114, 14, (120, 122, 130), finish=\"metal\", depth=26)\n    building(cr, 170, 470, 1160, 100, (172, 174, 182), roof=\"flat\", boards=False)\n    for i in range(8):\n        cr.rectangle(186 + i * 34, 1098, 22, 28)\n        solid(cr, (250, 214, 150), rim=False)\n    haze(cr, 800, 1170, (240, 170, 130), a=0.4)\n\n    # the taxiway crossing the far end of the runway\n    cr.rectangle(0, 1210, W, 26)\n    solid(cr, (92, 92, 98), rim=False, edge=False)\n    cr.set_source_rgba(*_c((236, 196, 60)))\n    cr.set_line_width(3)\n    cr.move_to(0, 1223)\n    cr.line_to(W, 1223)\n    cr.stroke()\n\n    # the runway: wide by the camera, narrowing to the horizon\n    ps = [1.4 * i / 24 for i in range(25)]\n    c0, y0, w0 = _rw(ps[0])\n    cr.move_to(c0 - w0 / 2, y0)\n    for p in ps:\n        cx, y, w = _rw(p)\n        cr.line_to(cx - w / 2, y)\n    for p in reversed(ps):\n        cx, y, w = _rw(p)\n        cr.line_to(cx + w / 2, y)\n    cr.close_path()\n    solid(cr, (70, 70, 76), rim=False)\n    # side stripes, the centreline, tyre marks, threshold keys\n    for side in (-1, 1):\n        cx, y, w = _rw(0.02)\n        cr.move_to(cx + side * (w / 2 - 14 * 0.02), y)\n        for p in ps[1:]:\n            cx, y, w = _rw(p)\n            cr.line_to(cx + side * (w / 2 - 14 * p), y)\n        cr.set_source_rgba(*_c((228, 228, 222), 0.8))\n        cr.set_line_width(3)\n        cr.stroke()\n    for i in range(16):\n        p0 = 0.03 + 1.3 * (i / 16) ** 1.4\n        p1 = p0 + 0.035 * (0.4 + p0)\n        x0_, y0_, _ = _rw(p0)\n        x1_, y1_, _ = _rw(p1)\n        cr.set_source_rgba(*_c((236, 236, 228)))\n        cr.set_line_width(2 + 7 * p0)\n        cr.move_to(x0_, y0_)\n        cr.line_to(x1_, y1_)\n        cr.stroke()\n    for i in range(5):\n        p0 = 0.35 + i * 0.13\n        cx, y, w = _rw(p0)\n        cr.set_source_rgba(*_c((40, 40, 44), 0.35))\n        cr.set_line_width(4 + 6 * p0)\n        cr.move_to(cx + w * 0.06, y)\n        cr.line_to(cx + w * 0.09, y + 30 * p0)\n        cr.stroke()\n    cx, y, w = _rw(1.22)\n    for i in range(10):\n        if i in (4, 5):\n            continue\n        kx = cx - w * 0.42 + i * w * 0.086\n        cr.rectangle(kx, y - 44, w * 0.055, 40)\n        solid(cr, (232, 232, 226), rim=False, edge=False)\n\n    # edge lights down both sides\n    for i in range(20):\n        p = 0.04 + 1.3 * (i / 19) ** 1.3\n        cx, y, w = _rw(p)\n        for side in (-1, 1):\n            glow(cr, cx + side * w / 2, y, 8 + 24 * p, (255, 230, 170), 0.5)\n            disc(cr, cx + side * w / 2, y, 2 + 6 * p, (255, 236, 190), finish=\"glass\")\n\n    # a jet taxiing across the far end of the runway\n    tx = -320 + ((t * 120) % 1720)\n    contact_shadow(cr, tx + 20, 1238, 200, a=0.3)\n    _jet(cr, tx, 1208, -0.42, gear=True, tail=(170, 50, 46))\n\n    # the flags: far first, down the left edge toward the camera\n    def fp(i):\n        return 0.2 + 0.72 * (i / max(1, N - 1)) ** 1.25\n\n    def fpos(i):\n        p = fp(i)\n        c_, y_, w_ = _rw(p)\n        return c_ - w_ / 2 + 34 * p, y_, p\n\n    # where a year's flags ended: a line painted across to the RIGHT edge\n    year_marks = []\n    if u >= a0:\n        for j in range(0, landed_to + 1):\n            if j == named or (j == 0 and named is not None and named != 0):\n                b = int(clamp(int(round(rows[j][1])) - 1, 0, N - 1))\n                c_, y_, w_ = _rw(fp(b))\n                cr.set_source_rgba(*_c((244, 238, 226), 0.9))\n                cr.set_line_width(5)\n                cr.move_to(c_ - w_ * 0.1, y_ + 4)\n                cr.line_to(c_ + w_ / 2, y_ + 4)\n                cr.stroke()\n                year_marks.append((rows[j][0], min(c_ + w_ / 2 + 16, W - 110), y_ - 8))\n\n    for i in range(N):\n        fx, fy, p = fpos(i)\n        _flag(cr, fx, fy, 0.35 + 1.15 * p, t, i, clamp(cnt - i))\n\n    # the jet on final approach, gear down, coming in over the runway\n    jx = 1000 - 360 * u\n    jy = 640 + 190 * u\n    js = 0.95 + 0.35 * u\n    glow(cr, jx - 200 * js, jy + 20 * js, 60, (255, 240, 200), 0.5)\n    _jet(cr, jx, jy, js, gear=True)\n\n    # right by the camera: a taxiway sign on its legs (arrows, no lettering), the grass\n    foreground(cr, \"field\", y0=1640)\n    contact_shadow(cr, 920, 1800, 260, a=0.4)\n    for lx in (820, 1010):\n        cr.rectangle(lx, 1730, 10, 70)\n        solid(cr, (150, 152, 158), finish=\"metal\", rim=False)\n    box(cr, 790, 1740, 250, 96, (28, 28, 32), depth=26)\n    cr.rectangle(800, 1660, 110, 76)\n    solid(cr, (236, 196, 60), rim=False)\n    trim(cr, 800, 1660, 910, 1736, (236, 196, 60), w=4)\n    # a black up-arrow painted on the yellow panel\n    cr.move_to(855, 1672)\n    cr.line_to(885, 1702)\n    cr.line_to(866, 1702)\n    cr.line_to(866, 1726)\n    cr.line_to(844, 1726)\n    cr.line_to(844, 1702)\n    cr.line_to(825, 1702)\n    cr.close_path()\n    solid(cr, (24, 24, 28), rim=False, edge=False)\n    # a yellow right-arrow on the black panel\n    cr.move_to(930, 1698)\n    cr.line_to(990, 1698)\n    cr.line_to(990, 1680)\n    cr.line_to(1024, 1702)\n    cr.line_to(990, 1724)\n    cr.line_to(990, 1706)\n    cr.line_to(930, 1706)\n    cr.close_path()\n    solid(cr, (236, 196, 60), rim=False)\n    for bx in (806, 1020):\n        disc(cr, bx, 1668, 4, (160, 160, 166), finish=\"metal\")\n    vignette(cr, a=0.28)\n\n    # Data walks down the runway edge, placing the next flag\n    def spot(i):\n        fx, fy, p = fpos(i)\n        return fx + 150 * p + 40, fy + 4, clamp(250 + 80 * p, 280, 330)\n\n    if u < a0:\n        hx, hy, hh = spot(0)\n        host(\"point\", hx, hy, hh)\n    elif u < a1 + 0.04:\n        hx, hy, hh = spot(int(clamp(cnt, 0, N - 1)))\n        host(\"place\", hx, hy, hh, beat=int(cnt))\n    else:\n        hx, hy, hh = spot(N - 1)\n        host(\"hold_up\", hx, hy, hh)\n\n    # every word is drawn AFTER Data, the year names past the far edge\n    for lab_, lx_, ly_ in year_marks:\n        text(cr, lab_, lx_, ly_, 34, look.INK, face=\"bold\", anchor=\"left\")\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} near-misses\",\n                    f\"serious runway incidents, FAA · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Runway near-misses\", f\"serious incidents, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -38309,8 +38329,8 @@
     "total": 84,
     "fatal": [],
     "weakest": "payoff",
-    "note": "Make the data visuals simpler and larger so key numbers are instantly readable on a phone screen.",
-    "fp": "8ad37fecb6319626"
+    "note": "Make the data visuals larger and high‑contrast so they remain clear on a phone screen; simple icons or bold bars will help viewers grasp the stats instantly.",
+    "fp": "d8484e70898c9ac3"
    },
    "hook_was": "Are planes getting too close on the ground?"
   },

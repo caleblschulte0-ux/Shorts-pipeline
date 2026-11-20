@@ -1,0 +1,55 @@
+{
+ "slug": "frog-fungus-mass-extinction",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 5,
+   "hook": 12,
+   "arc": 8,
+   "factual": 12,
+   "visual_proof": 5,
+   "payoff": 2,
+   "voice": 3
+  },
+  "total": 47,
+  "fatal": [
+   "missing_payoff",
+   "unrenderable_visual"
+  ],
+  "weakest": "payoff",
+  "note": "Add a clear payoff that resolves the hook, such as showing a concrete action or solution to the frog crisis, and provide simple, readable visuals that work on a phone screen.",
+  "fp": "9b61a36b4699c68f"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Extinction was only the first chapter of this amphibian disease.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "The fungus affected 501 amphibian species. One pathogen created a worldwide survival crisis.",
+   "eyes": "substance: grey fungus on the frogs; cause: Data pours a bucket of sick water along the log and grey fungus spreads over every frog it touches",
+   "evidence": "Science | Amphibian species affected by chytrid fungus: extinct vs still around (count) | https://doi.org/10.1126/science.aav0379 | 2026-11-05"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Thirty-nine percent of affected species are still declining. The crisis continued after scientists identified it.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Science | Chytrid-affected amphibian species: still declining vs showing recovery (percent) | https://doi.org/10.1126/science.aav0379 | 2026-11-05"
+  },
+  {
+   "window": "beat 2",
+   "ears": "The fungus hit 40 Australian frog species. The global crisis also reached isolated regional ecosystems.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Science | Australian frog species hit by chytrid fungus vs untouched (count) | https://doi.org/10.1126/science.aav0379 | 2026-11-05"
+  },
+  {
+   "window": "closing",
+   "ears": "The damage spans extinction, continuing decline, and regional losses that recovery has not erased.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

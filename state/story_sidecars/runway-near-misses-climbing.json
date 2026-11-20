@@ -1,0 +1,52 @@
+{
+ "slug": "runway-near-misses-climbing",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 12,
+   "hook": 18,
+   "arc": 17,
+   "factual": 13,
+   "visual_proof": 12,
+   "payoff": 8,
+   "voice": 4
+  },
+  "total": 84,
+  "fatal": [],
+  "weakest": "payoff",
+  "note": "Make the data visuals larger and high‑contrast so they remain clear on a phone screen; simple icons or bold bars will help viewers grasp the stats instantly.",
+  "fp": "d8484e70898c9ac3"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Runway near-misses keep climbing, and most don't even involve a plane.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Serious runway near-misses have more than doubled in about a decade, to 23 last year. That's roughly one every two weeks.",
+   "eyes": "a data picture (trend)",
+   "evidence": "Federal Aviation Administration / U.S. Senate Commerce Committee | Serious (Category A/B) US runway incursions per year | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Six in ten runway incursions last year were people or vehicles wandering onto the runway by mistake, not planes at all.",
+   "eyes": "a data picture (share)",
+   "evidence": "Federal Aviation Administration | What caused FY2023's 1,756 US runway incursions | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst ones. That's where the danger lives.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "AVweb analysis of FAA data | Share of the worst US runway incursions at just 8 airports | https://avweb.com/aviation-news/us-runway-incursion-hotspots/ | 2026-11-06"
+  },
+  {
+   "window": "closing",
+   "ears": "More flights, same runways. Every close call puts a planeload of people at risk.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

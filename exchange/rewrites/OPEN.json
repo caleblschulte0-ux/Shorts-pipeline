@@ -1,17 +1,106 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T12:37:32Z",
+ "updated": "2026-11-20T13:11:34Z",
  "open": [
   {
-   "id": "frog-fungus-mass-extinction__ed6b28a5",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-19T18:14:40Z",
+   "id": "chess-online-boom__585373ee",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-20T13:11:34Z",
    "why": [
-    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim of 90 species erased and isn't a logical continuation of beat 0.",
-    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Not a causal follow‑up to beat 1 and only adds a separate geographic fact, not strengthening the headline claim."
+    "premise: brain: The premise is vague and does not present a concrete, verifiable surprise or specific claim."
    ],
-   "request": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.request.json",
-   "answer_path": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.answer.json"
+   "request": "exchange/rewrites/20261120/chess-online-boom__585373ee.request.json",
+   "answer_path": "exchange/rewrites/20261120/chess-online-boom__585373ee.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__84c75f11",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-20T13:11:34Z",
+   "why": [
+    "premise: brain: The premise is vague and does not present a concrete, verifiable surprise or specific claim."
+   ],
+   "request": "exchange/rewrites/20261120/muscle-loss-after-30__84c75f11.request.json",
+   "answer_path": "exchange/rewrites/20261120/muscle-loss-after-30__84c75f11.answer.json"
+  },
+  {
+   "id": "us-height-ranking-fall__27486ff4",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-20T13:11:34Z",
+   "why": [
+    "premise: brain: The claim about American men’s height increase and loss of global lead is vague and unverified, lacking concrete, true evidence."
+   ],
+   "request": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.request.json",
+   "answer_path": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__609ffc7e",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-20T13:11:33Z",
+   "why": [
+    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
+   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__a3a64c1f",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-20T13:11:32Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, universally verifiable fact."
+   ],
+   "request": "exchange/rewrites/20261120/blood-supply-three-percent__a3a64c1f.request.json",
+   "answer_path": "exchange/rewrites/20261120/blood-supply-three-percent__a3a64c1f.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__c926fe13",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-20T13:11:32Z",
+   "why": [
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261120/freshwater-accessible__c926fe13.request.json",
+   "answer_path": "exchange/rewrites/20261120/freshwater-accessible__c926fe13.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__3fe10075",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-20T13:11:32Z",
+   "why": [
+    "premise: brain: The claim about viewership numbers is unverified and not a concrete, proven fact."
+   ],
+   "request": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__3fe10075.request.json",
+   "answer_path": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__3fe10075.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__75d8b1a9",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-20T13:11:31Z",
+   "why": [
+    "premise: brain: The hook is vague and does not present a concrete, specific surprise or contradiction."
+   ],
+   "request": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__75d8b1a9.request.json",
+   "answer_path": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__75d8b1a9.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__cd1439f7",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-20T13:11:31Z",
+   "why": [
+    "premise: brain: The premise is vague and lacks a concrete, verifiable claim or specific surprising detail."
+   ],
+   "request": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__cd1439f7.request.json",
+   "answer_path": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
+  },
+  {
+   "id": "moon-drifting-away__653a5ccc_r2",
+   "slug": "moon-drifting-away",
+   "filed": "2026-11-20T12:45:25Z",
+   "why": [
+    "premise: brain: The claim is misleading: the Moon is receding about 3.8 cm a year, and total eclipses end only because it appears too small to cover the Sun. \"Escape\" and \"leaving\" overstate this, and the 600-million-year timescale is too distant for a viewer to feel as a threat."
+   ],
+   "request": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r2.request.json",
+   "answer_path": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r2.answer.json"
   },
   {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
@@ -35,6 +124,16 @@
    "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
   },
   {
+   "id": "library-digital-shift__502c582f",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-19T13:57:03Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, provable claim about libraries' quietness and the exact digital borrowing figure."
+   ],
+   "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
+   "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
+  },
+  {
    "id": "index-funds-own-corporate-america__a401ad38_r1",
    "slug": "index-funds-own-corporate-america",
    "filed": "2026-11-19T12:52:42Z",
@@ -45,16 +144,6 @@
    "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.answer.json"
   },
   {
-   "id": "us-height-ranking-fall__5c0b88f4",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-19T00:50:06Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking concrete, true details about specific height changes."
-   ],
-   "request": "exchange/rewrites/20261119/us-height-ranking-fall__5c0b88f4.request.json",
-   "answer_path": "exchange/rewrites/20261119/us-height-ranking-fall__5c0b88f4.answer.json"
-  },
-  {
    "id": "betelgeuse-great-dimming__f1ec3d70",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-11-19T00:50:05Z",
@@ -63,16 +152,6 @@
    ],
    "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
-  },
-  {
-   "id": "chess-online-boom__d1f110de",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The hook is vague and unsupported: 'one TV show' and 'supposed fad' name no real show, no contradiction and no stake, and it reads as a summary rather than a concrete surprise or threat."
-   ],
-   "request": "exchange/rewrites/20261119/chess-online-boom__d1f110de.request.json",
-   "answer_path": "exchange/rewrites/20261119/chess-online-boom__d1f110de.answer.json"
   },
   {
    "id": "chip-transistor-shrink-limit__bad26b67",
@@ -115,16 +194,6 @@
    "answer_path": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
   },
   {
-   "id": "muscle-loss-after-30__c76f31b3_r1",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The claim of 18% muscle loss per decade is not a universally established fact and lacks concrete, verifiable evidence."
-   ],
-   "request": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.answer.json"
-  },
-  {
    "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
    "slug": "hadza-gut-bacteria-vs-americans",
    "filed": "2026-11-19T00:50:04Z",
@@ -153,26 +222,6 @@
    ],
    "request": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.request.json",
    "answer_path": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__20b034fd",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, provable claim."
-   ],
-   "request": "exchange/rewrites/20261119/blood-supply-three-percent__20b034fd.request.json",
-   "answer_path": "exchange/rewrites/20261119/blood-supply-three-percent__20b034fd.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__deb29172",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim about drinkable water."
-   ],
-   "request": "exchange/rewrites/20261119/freshwater-accessible__deb29172.request.json",
-   "answer_path": "exchange/rewrites/20261119/freshwater-accessible__deb29172.answer.json"
   },
   {
    "id": "people-over-65-outnumber-kids-under-5__df8ae648",
@@ -204,37 +253,6 @@
    ],
    "request": "exchange/rewrites/20261119/vinyl-beats-cd-sales-again__17bea803.request.json",
    "answer_path": "exchange/rewrites/20261119/vinyl-beats-cd-sales-again__17bea803.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__d4ebe18e",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-19T00:50:02Z",
-   "why": [
-    "thesis: seg1 ('Autism Diagnosis Sex') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Focuses on sex differences, not on geographic location claimed in headline, so it doesn't support the same claim.",
-    "thesis: seg2 ('Autism Diagnosis Sites') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Although it mentions site variation, it does not logically follow from the previous beat about sex differences, breaking"
-   ],
-   "request": "exchange/rewrites/20261119/autism-diagnosis-rate-rise__d4ebe18e.request.json",
-   "answer_path": "exchange/rewrites/20261119/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__e0bad3cf",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-19T00:50:02Z",
-   "why": [
-    "premise: brain: The premise is vague and lacks a specific, concrete surprise or contradiction that can be easily visualized."
-   ],
-   "request": "exchange/rewrites/20261119/cruise-ship-outbreaks-climbing__e0bad3cf.request.json",
-   "answer_path": "exchange/rewrites/20261119/cruise-ship-outbreaks-climbing__e0bad3cf.answer.json"
-  },
-  {
-   "id": "womens-college-hoops-out-rates-men__ca924794",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-19T00:50:02Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, verifiable surprise or specific claim."
-   ],
-   "request": "exchange/rewrites/20261119/womens-college-hoops-out-rates-men__ca924794.request.json",
-   "answer_path": "exchange/rewrites/20261119/womens-college-hoops-out-rates-men__ca924794.answer.json"
   },
   {
    "id": "clear-air-turbulence-increase__afb34a62",
