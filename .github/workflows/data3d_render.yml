@@ -136,9 +136,12 @@ jobs:
           timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
             || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
           pip install -q bpy==5.0.0 numpy==1.26.4 pillow
-      - name: Proof pass (every 6th frame, the staging, consequence and body checks first)
+      - name: Proof pass (every 4th frame plus the in-betweens of fast moves; the staging, consequence, body, pop, hold, far and empty checks first)
         env: {LOOK: NYC, SHOT: '${{ matrix.shot }}', STEP: '4', STORY: '${{ needs.cfg.outputs.story }}'}
         run: |
+          # pipefail: without it the grep's exit status was the step's, so a shot that FAILED a measured check (staging,
+          # pop, hold, far, empty: shots.py exits non-zero) still went on to the judge with a green proof step
+          set -o pipefail
           cd tools/data3d/store
           NARR="$GITHUB_WORKSPACE/narr/narration.json" python -I shots.py "$GITHUB_WORKSPACE/proof/s$SHOT" 10 35 2>&1 | grep -v "^Fra:"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

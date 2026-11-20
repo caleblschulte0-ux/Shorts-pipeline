@@ -14,6 +14,11 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
   ending      the last shot ends ON its payoff, never a pull-back to a wide frame
   twitch      no bone whips, no face control pops
   face lint   a worried / alarmed / surprised / sad / wry / determined face never turns into a smile (store/facelint.py)
+  pop / hold  no move jumps between proof frames, glides on planted feet or leaps without air time; no pose held over
+              0.8 s (store/motion.py); a fast move's in-between frames go into a proof render (inbetween.json)
+  far         at each arc moment he is big, every strike lands near him and reads, a fall is seen from the side
+              (staging.far, its rules in store/motion.py)
+  empty       after the frames render: the set behind him is not one flat, bare region (store/empty.py)
   hands       IK hands re-solved on the final body (character.Data._resolve_hands, in finish(); reported as HANDS)
   storyboard  before any of it, the script's payoffs are carried by big props or actions (store/boardlint.py)
 
@@ -296,6 +301,17 @@ if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING",
 import facelint   # a face that is not a smile never turns into one (2026-11-14, saffron shot 4: "the opposite emotion")
 if not facelint.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the face lint: a worried / alarmed / sad / wry face smiles inside its own window")
+import motion     # POP, HOLD and FAR (the lightning rough cut, 2026-11-20: "good not great, clearly there are large scale
+                  # issues"): a teleport between proof frames, a pose held two seconds, the event far from him (store/motion.py)
+_bind = fresh.held(STORY); _nb = "" if _bind else " (not binding: grandfathered)"
+_mo_ok, FAST = motion.check(data, sc.camera, NF, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway"))
+if not _mo_ok and _bind and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the motion check: a move pops between proof frames or glides, or he holds one pose too long")
+_st = SCRIPT.get("staging") or []   # the beat's arc moments (fractions of the beat), where FAR measures him
+_arc = [m["at"] for m in (_st[SHOT - 1].get("arc") or []) if isinstance(m, dict) and "at" in m] if len(_st) >= SHOT and isinstance(_st[SHOT - 1], dict) else []
+if not staging.far(data, sc.camera, NF, _arc, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway")) and _bind \
+        and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the FAR check: at an arc moment he is small, or the event lands far from him, or a fall is seen from the front")
 if os.environ.get("KEYS"):   # the storyboard pass: the framing fingerprint, compared across beats (store/variety.py)
     os.makedirs(OUT, exist_ok=True)
     _fr = staging.framing(data, sc.camera, NF); print(f"FRAMING shot {SHOT}: {_fr}", flush=True)
@@ -309,12 +325,29 @@ if still is not None: frames = [min(NF, F(float(still)))]
 elif fr: a, b = fr.split("-"); frames = [f for f in range(int(a), int(b) + 1, step) if 1 <= f <= NF]
 elif os.environ.get("KEYS"): k = max(2, int(os.environ["KEYS"])); frames = sorted({1 + round((NF - 1) * (0.08 + 0.9 * i / (k - 1))) for i in range(k)})
 else: frames = list(range(1, NF + 1, step))
+INBETWEEN = []   # a proof samples every STEP-th frame, so a fast move shows as its two ends (the tower's "teleport", judge
+                 # 2026-11-20): every frame inside a measured fast move goes into the proof too, and judge3d.strip marks them
+if step > 1 and still is None and not os.environ.get("KEYS") and os.environ.get("INBETWEENS", "1") == "1":
+    _lo, _hi = (frames[0], frames[-1]) if frames else (1, 0)
+    INBETWEEN = sorted({f for a, b in FAST for f in range(a, b + 1) if _lo <= f <= _hi} - set(frames))
+    frames = sorted(set(frames) | set(INBETWEEN))
 import glob as _glob   # 2026-11-18: an old still of a REWRITTEN shot was silently kept and looked at as the new one
 SOURCE_MTIME = max(os.path.getmtime(f) for f in [os.path.join(STORY_DIR, "shots.py"), os.path.join(STORY_DIR, "script.json")]
                    + _glob.glob(os.path.join(HERE, "*.py")) + _glob.glob(os.path.join(os.path.dirname(HERE), "*.py")))
 print(f"SHOT {SHOT} T0={T0:.2f} T1={T1:.2f} NF={NF} G0={G0}")
+json.dump([G0 + f for f in INBETWEEN], open(os.path.join(OUT, "inbetween.json"), "w"))
+from bpy_extras.object_utils import world_to_camera_view as _w2c
+_seen = []       # (frame png, Data's box on screen) for the EMPTY check (store/empty.py)
 for f in frames:
     path = os.path.join(OUT, f"f{G0 + f:04d}.png")
+    sc.frame_set(f); bpy.context.view_layer.update()
+    _pp = [_w2c(sc, sc.camera, data.arm.matrix_world @ v) for b in data.arm.pose.bones for v in (b.head, b.tail)]
+    _pp = [q for q in _pp if q.z > 0]
+    _seen.append((path, (min(q.x for q in _pp), max(q.x for q in _pp), min(q.y for q in _pp), max(q.y for q in _pp)) if _pp else None))
     if os.path.exists(path) and os.path.getmtime(path) > SOURCE_MTIME: continue   # a frame older than the code is stale
-    t0 = time.time(); sc.frame_set(f); sc.render.filepath = path; bpy.ops.render.render(write_still=True)
+    t0 = time.time(); sc.render.filepath = path; bpy.ops.render.render(write_still=True)
     print(f"FRAME {G0 + f} {time.time() - t0:.1f}", flush=True)
+import empty      # the set reads flat and bare (the lightning rough cut: "a flat lawn with cutout pines", "an empty plane")
+if not empty.check([(p, b) for p, b in _seen if os.path.exists(p)], name=f"shot {SHOT}" + _nb) and _bind \
+        and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the EMPTY check: the set behind him is one flat, bare region; dress it")

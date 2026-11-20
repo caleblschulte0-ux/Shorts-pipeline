@@ -37,7 +37,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STORIES = HERE.parent / "stories"
-CHECKS = re.compile(r"^(VARIETY|FRAMING|STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|HANDS|BOARD|SHOT|Traceback|\w*Error)")
+CHECKS = re.compile(r"^(VARIETY|FRAMING|STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|HANDS|BOARD|POP|HOLD|FAR|EMPTY|SHOT|Traceback|\w*Error)")
 PASS = int(re.search(r"^PASS_SCORE = (\d+)", (HERE / "judge3d.py").read_text(), re.M).group(1))   # the judge's own bar, read, never restated
 
 
@@ -152,7 +152,10 @@ The judge's verdict (score {score}, pass needs >= {pass_score} and no hard defec
 {verdict}
 
 The measured checks on the same proof (staging = face to lens, back turned, face hidden, head at the frame edge,
-size in frame; consequence = the result of the action is on screen; anatomy; clipping):
+size in frame; consequence = the result of the action is on screen; anatomy; clipping; pop = a move that jumps between
+proof frames, a glide on planted feet, a leap with no air time; hold = one pose held over 0.8 s; far = Data small at an
+arc moment, a strike landing far from him or at the frame edge or thin, a fall seen from the front; empty = the set
+behind him one flat, bare region):
 {checks}
 
 The proof's contact sheet (every few frames, left to right, top to bottom) is {sheet}: READ it first.

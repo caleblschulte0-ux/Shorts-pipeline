@@ -22,6 +22,12 @@ bucket or a vault in four. This module holds three things, before a frame render
             may be a close or medium camera, at least WORLD_MIN must show Data whole in his world, and on the
             storyboard stills (staging.framing) at most TALK_MAX shots may measure as a talking head.
 
+  ...and WHOLE IS NOT FAR (2026-11-20, the lightning rough cut): WORLD_MIN pushed every camera wide, and four of five
+            beats failed with Data small and the bolts landing far from him; the one that passed (the trail, 72) was a
+            close TRACKING camera with every strike landing on his body. So "whole in his world" is held together with
+            staging.far (store/motion.py): whole body, but at least motion.FAR_H of the frame at every arc moment, and
+            the event near him on screen. Wide means his world around him, not him small in it.
+
 Binds every short not in BEFORE (the shorts that existed when it was written; their beats are the history it reads).
 """
 import json

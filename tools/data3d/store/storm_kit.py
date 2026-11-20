@@ -79,6 +79,8 @@ def bolt(name, top, bottom, seed=0, branches=4, width=0.012, glow=4.0, rough=0.2
         parts.append(_tube(name + f" branch{k}", br, width * 0.5, core, root))
         parts.append(_tube(name + f" branch{k} glow", br, width * 0.5 * glow, halo, root))
     root["parts"] = [p.name for p in parts]
+    root["hit"] = tuple(bottom)    # where it strikes (in the root's space): staging.far measures every frame the bolt is
+                                   # visible against Data on screen, however a shot flashes it (strike() or its own keys)
     return root
 
 

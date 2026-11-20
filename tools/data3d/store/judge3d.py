@@ -53,6 +53,10 @@ How to read the sheets: each is every 4th frame of a 24 fps shot (about six fram
 a few frames and a fast move may carry motion blur, which is normal. Background people are deliberately minimal
 faceless figures (operator ruling), and the store set, its floor and lighting, and Data's design are approved: never
 grade those.
+IN-BETWEEN frames: a frame with an ORANGE band and the label IN-BETWEEN is not on the every-4th grid. The harness
+measured a fast move there and added EVERY frame of it, so you can see the move itself (a leap's take-off, its frames
+in the air, its landing) and not only its two ends. Judge the move on them: a move that still reads as a jump cut with
+its in-betweens shown is a real pop; one that reads as a move is not. They are fractions of a second, never time held.
 
 score: 0-100 for the shot as a finished piece. pass: true only when there is NO hard defect AND score >= 70.
 Return ONLY JSON: {"shots": [{"shot": N, "score": 0-100, "pass": true|false, "hard": ["defect, frames"],
@@ -120,12 +124,36 @@ def report(shots, out):
     if p: print(f"JUDGE3D: round report appended to {p}")
 
 
+INBETWEEN_RGB = (255, 140, 0)   # the band that marks an in-between frame of a fast move on the sheet
+
+
+def inbetweens(frames):
+    """the frame numbers shots.py added inside a measured fast move (store/motion.py), from inbetween.json beside them"""
+    out = set()
+    for d in {Path(p).parent for p in frames}:
+        try: out |= set(json.loads((d / "inbetween.json").read_text()))
+        except (OSError, ValueError): pass
+    return out
+
+
 def strip(frames, out, h=540, cols=8):
+    """the contact sheet. A frame shots.py added inside a fast move (an IN-BETWEEN: the proof is every 4th frame, so a
+    fast move would show only as its two ends) gets an orange band and its label, so the judge reads the move frame by
+    frame and does not count it as time held (the BAR says so)"""
+    from PIL import ImageDraw
+    extra = inbetweens(frames)
     ims = [Image.open(p).convert("RGB") for p in frames]
     ims = [im.resize((int(im.width * h / im.height), h)) for im in ims]
     rows = (len(ims) + cols - 1) // cols; w = ims[0].width
     S = Image.new("RGB", (w * min(cols, len(ims)), h * rows), (20, 20, 20))
-    for i, im in enumerate(ims): S.paste(im, ((i % cols) * w, (i // cols) * h))
+    for i, (p, im) in enumerate(zip(frames, ims)):
+        try: n = int(Path(p).stem.lstrip("f"))
+        except ValueError: n = None
+        if n in extra:
+            dr = ImageDraw.Draw(im); bh = max(10, h // 18)
+            dr.rectangle((0, 0, w - 1, bh), fill=INBETWEEN_RGB); dr.rectangle((0, 0, w - 1, h - 1), outline=INBETWEEN_RGB, width=max(2, h // 120))
+            dr.text((4, 1), "IN-BETWEEN", fill=(0, 0, 0))
+        S.paste(im, ((i % cols) * w, (i // cols) * h))
     S.save(out, quality=88); return out
 
 

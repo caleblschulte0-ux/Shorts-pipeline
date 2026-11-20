@@ -241,3 +241,90 @@ def ending(data, cam, nf, items, name="shot"):
     print(f"ENDING {name}: payoff still on screen in the last {END_S:.0f}s: {live or 'NOTHING'}; camera ends {end:.2f} m from him "
           f"vs {mid:.2f} m mid-shot (max x{PULL_BACK}) -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok
+
+
+def _hide_curve(o):
+    """the hide_render f-curve of an object (Blender 5 layered actions), or None"""
+    ad = getattr(o, "animation_data", None)
+    if not ad or not ad.action: return None
+    for ly in getattr(ad.action, "layers", ()):
+        for st in ly.strips:
+            cb = st.channelbag(ad.action_slot) if ad.action_slot else None
+            for fc in (cb.fcurves if cb else ()):
+                if fc.data_path == "hide_render": return fc
+    for fc in getattr(ad.action, "fcurves", ()):   # a legacy action
+        if fc.data_path == "hide_render": return fc
+    return None
+
+
+def _hit(r, core):
+    """where a bolt strikes, in the world: storm_kit.bolt tags its root ("hit"); a bolt a shot builds its own way (the
+    ridge's s1_bolt keeps only the "parts" contract) strikes at the lowest point of its core"""
+    if "hit" in r.keys(): return r.matrix_world @ Vector(r["hit"])
+    if core.type == 'CURVE' and core.data.splines:
+        return min((core.matrix_world @ Vector(p.co[:3]) for sp in core.data.splines for p in sp.points), key=lambda v: v.z)
+    return core.matrix_world.translation.copy()
+
+
+def strikes(nf):
+    """every lightning bolt of the shot (anything with storm_kit's root["parts"] contract) and the frame each flash of
+    it STARTS: [(root, frame)]. Read from the bolt's own hide_render keys, so a shot that flashes it its own way (the
+    tower's longer stroke) is measured too"""
+    out = []
+    for r in bpy.data.objects:
+        if "parts" not in r.keys(): continue
+        core = bpy.data.objects.get(r["parts"][0])
+        if core is None: continue
+        fc = _hide_curve(core)
+        vis = [f for f in range(1, nf + 1) if (fc.evaluate(f) < 0.5 if fc else not core.hide_render)]
+        out += [(r, f) for i, f in enumerate(vis) if i == 0 or vis[i - 1] < f - 6]   # a return stroke's flicker is one strike
+    return out
+
+
+def far(data, cam, nf, arc=(), name="shot", cutaway=None):
+    """FAR (store/motion.py has the rules and their calibration): at each arc moment (fractions of the shot) Data is
+    big; every strike lands near him, inside the frame, thick enough to read; a drop is seen from the side"""
+    import motion as MO
+    sc = bpy.context.scene; res = (sc.render.resolution_x, sc.render.resolution_y); asp = res[0] / res[1]
+    dur = nf / FPS; probs = []
+    off = lambda f: bool(cutaway) and cutaway[0] <= (f - 1) / FPS < cutaway[1]
+    def size(f):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        hc = data.arm.matrix_world @ data.pb["head"].head; up = cam.matrix_world.to_3x3() @ Vector((0, 1, 0))
+        return abs(world_to_camera_view(sc, cam, hc + up * MO.STAND).y - world_to_camera_view(sc, cam, hc).y)
+    sizes = []
+    for at in arc:
+        f = min(nf, max(1, int(round(at * dur * FPS)) + 1))
+        if off(f): continue
+        h = size(f); sizes.append(round(h, 2))
+        if h < MO.FAR_H: probs.append(f"at {at:.2f} of the beat (f{f}) he is {h:.3f} of the frame height (min {MO.FAR_H})")
+    n_st = 0
+    for r, f in strikes(nf):
+        if off(f): continue
+        sc.frame_set(f); bpy.context.view_layer.update(); M = data.arm.matrix_world
+        hit = _hit(r, bpy.data.objects[r["parts"][0]])
+        if (hit - M.translation).length > MO.SCENERY_M: continue          # the storm's scenery, not this beat's event
+        n_st += 1
+        p = world_to_camera_view(sc, cam, hit)
+        glow = max(bpy.data.objects[n].data.bevel_depth for n in r["parts"] if n in bpy.data.objects)
+        q = world_to_camera_view(sc, cam, hit + (cam.matrix_world.to_3x3() @ Vector((1, 0, 0))) * glow)
+        pts = [world_to_camera_view(sc, cam, M @ v) for b in data.arm.pose.bones for v in (b.head, b.tail)]
+        gap = min((math.hypot((c.x - p.x) * asp, c.y - p.y) for c in pts if c.z > 0), default=9.9)
+        for pr in MO.strike_problems(p, gap, abs(q.x - p.x) * res[0]):
+            probs.append(f"{r.name} at f{f} {pr}")
+    hh, side = [], []
+    for f in range(1, nf + 1):
+        sc.frame_set(f); M = data.arm.matrix_world; pb = data.pb
+        z = lambda b, t: (M @ (pb[b].tail if t else pb[b].head)).z
+        hh.append(z("head", 1) - min(z("foot.L", 1), z("foot.R", 1), z("root", 0)))
+        lat = (M @ pb["leg.L"].head) - (M @ pb["leg.R"].head); to = cam.matrix_world.translation - (M @ pb["head"].head)
+        lat.z = 0; to.z = 0
+        side.append(math.degrees(math.asin(min(1.0, abs(lat.normalized().dot(to.normalized()))))) if lat.length > 1e-6 and to.length > 1e-6 else 90.0)
+    dr = [d for d in MO.drops(hh, side, fps=FPS) if not off(d[0])]
+    if dr:
+        probs.append(f"he drops (a knockdown, a sit, a crouch) at f{dr[0][0]}-{dr[-1][0]} seen {min(d[2] for d in dr):.0f} deg off his "
+                     f"front (min {MO.DROP_SIDE:.0f}): from the front a fall reads as a hop; turn the lens to his side or three-quarter")
+    ok = not probs
+    print(f"FAR {name}: his size at the arc moments {sizes} (min {MO.FAR_H}); {n_st} strikes near him measured"
+          + "".join(f"; {p}" for p in probs[:6]) + f" -> {'OK' if ok else 'FAIL'}", flush=True)
+    return ok
