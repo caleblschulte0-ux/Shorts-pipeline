@@ -21379,13 +21379,59 @@
       "ts": "2026-11-20T12:35:33.388704+00:00"
     },
     "clip-20261120-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/UnusualConsiderateLionGingerPower-oJF7Ao2MX9omrH0x",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/x3OvfAmGTWM",
       "title": "Kaicenat: Kai Cenat's New Girlfriend Confronts Him About Her Ex And It Goes Off The Rails",
       "kind": "twitch_clip",
-      "ts": "2026-11-20T12:39:24.080843+00:00",
+      "ts": "2026-11-20T12:39:34.928095+00:00",
+      "uploaded_at": "2026-11-20T12:39:34.928113+00:00",
+      "publish_at": "2026-11-20T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261120-kaicenat-kai-cenat-s-new-girlfriend-confronts-hi-2a4a5f08",
+        "tiktok": "queued for 2026-11-20T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/UnusualConsiderateLionGingerPower-oJF7Ao2MX9omrH0x",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "Kai's new girlfriend catches him lying \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 27770,
+      "banger": 0.72,
+      "cut": {
+        "start": 5.1,
+        "end": 51.3
+      },
+      "director_cut": true
+    },
+    "rejected-exuberantproudgazellepipehype-kdjzz6oyzodso0wj": {
+      "source_url": "https://www.twitch.tv/djmariio/clip/ExuberantProudGazellePipeHype-KdJZz6OyzoDSO0wj",
+      "streamer": "djmariio",
+      "title": "Caminante",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA 6 hallway, Spanish, unclear event)",
+      "ts": "2026-11-20T12:40:38.073675+00:00"
+    },
+    "rejected-elegantsparklingravenbigbrother-wjzo9yzf7p-vev41": {
+      "source_url": "https://www.twitch.tv/strogo/clip/ElegantSparklingRavenBigBrother-Wjzo9YZf7p-veV41",
+      "streamer": "strogo",
+      "title": "ww",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.05 < 0.35 (explicit nudity game scene, age-restrict)",
+      "ts": "2026-11-20T12:41:12.559925+00:00"
+    },
+    "clip-20261120-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/illojuan/clip/FuriousAliveMonitorPunchTrees-TWdn7xitFr9S6Tx3",
+      "story_key": null,
+      "streamer": "illojuan",
+      "title": "Illojuan Thinks He Just Closed The Process And Realizes What He Did",
+      "kind": "twitch_clip",
+      "ts": "2026-11-20T12:42:41.244514+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
