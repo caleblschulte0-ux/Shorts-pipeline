@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "autism-diagnosis-rate-rise__d4ebe18e",
+  "slug": "autism-diagnosis-rate-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "Autism Rates Vary Sharply by Year, Sex, and Site",
+  "hook": "One national rate hides very different measurement patterns.",
+  "closing": "Raw autism rates need context because time, sex, and screening location all shape the measurement.",
+  "question": "Has screening changed near you?",
+  "segments": [
+    {
+      "topic": "Autism Diagnosis Trend",
+      "say": "Autism prevalence reached 32.2 per thousand children. The measured rate rose sharply across the recorded years."
+    },
+    {
+      "topic": "Autism Diagnosis Sex",
+      "say": "Boys measured 49.2 per thousand. The national average hides a large difference by sex."
+    },
+    {
+      "topic": "Autism Diagnosis Sites",
+      "say": "The California site measured 52.6 per thousand. Location adds another major source of variation to the same reported rate."
+    }
+  ]
+}
