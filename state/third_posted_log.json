@@ -21288,13 +21288,58 @@
       "director_cut": true
     },
     "clip-20261120-2": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-d28c4881b679e887",
-      "streamer": "buster",
+      "url": "https://youtube.com/shorts/XOsS_O9lw-I",
       "title": "Buster Anar and Lera could be added in a couple of years",
       "kind": "story",
-      "ts": "2026-11-20T12:07:10.426023+00:00",
+      "ts": "2026-11-20T12:07:20.027850+00:00",
+      "uploaded_at": "2026-11-20T12:07:20.027867+00:00",
+      "publish_at": "2026-11-20T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261120-buster-anar-and-lera-could-be-added-in-a-couple--3bb5aef7",
+        "tiktok": "queued for 2026-11-20T18:30:00Z"
+      },
+      "story_key": "story-d28c4881b679e887",
+      "member_keys": [
+        "vodmine://2931500004/1455-1695",
+        "https://www.twitch.tv/buster/clip/FurryFaithfulAniseRaccAttack-AdM_S82u6cqhe4fS",
+        "vodmine://2931500004/1714-1954"
+      ],
+      "streamer": "buster",
+      "who": [
+        "buster"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 33.3,
+      "narrative_score": 0,
+      "narrative_summary": "Buster says Anar and Lera could be added in a couple of years. He then says the prize is a different one and won't include Mophania. Later a viewer message says yes, they are a pair, and he says he'll",
+      "revision_count": 2,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-artsyrichwalletsmoocherz-wyogtrob768rmcmd": {
+      "source_url": "https://www.twitch.tv/zloyn/clip/ArtsyRichWalletSmoocherZ-WYogtROb768RMcmd",
+      "streamer": "zloyn",
+      "title": "\u0421\u0438\u0441\u044e\u043b\u0438",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (explicit nudity; age-restrict, not allow)",
+      "ts": "2026-11-20T12:08:26.289066+00:00"
+    },
+    "clip-20261120-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/PricklySpineyChickpeaKeyboardCat-lPhZkKg4k9Nq98Bm",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Says GTA 6 Is So Easy a 10 Year Old Won't Fail A Mission",
+      "kind": "twitch_clip",
+      "ts": "2026-11-20T12:11:20.669854+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
