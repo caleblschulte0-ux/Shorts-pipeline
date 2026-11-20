@@ -1,45 +1,39 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261119",
-  "judged_date": "20261118",
+  "date": "20261120",
+  "judged_date": "20261119",
   "alarm": {
-    "date": "20261118",
+    "date": "20261119",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261118 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261118.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-18T21:20:55+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-19T21:24:12+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
-        "code": "short_slate_explainer",
-        "severity": "warning",
-        "detail": "explainer: 3/4 posted for 20261118.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+        "code": "no_posts_explainer",
+        "severity": "critical",
+        "detail": "explainer: ZERO videos posted for 20261119 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
+        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261119. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 5/6 posted for 20261118.",
+        "detail": "third: 3/6 posted for 20261119.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261118 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261118. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: ZERO videos posted for 20261119 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
+        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261119. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (71 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (72 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
@@ -4424,13 +4418,12 @@
     }
   },
   "recent_commits": [
-    "01d5af2 2026-11-19 explainer: update posted log + analytics [skip ci]",
-    "829cd79 2026-11-19 claim: mailbox verdicts 2026-11-19T13:50Z [skip ci]"
+    "eb51436 2026-11-20 claim: mailbox verdicts 2026-11-20T04:48Z [skip ci]",
+    "044eb8c 2026-11-20 claim: mailbox verdicts 2026-11-20T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-05": 5,
         "2026-11-06": 5,
         "2026-11-07": 4,
         "2026-11-08": 7,
@@ -4450,7 +4443,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-05": 4,
         "2026-11-06": 3,
         "2026-11-07": 3,
         "2026-11-11": 1,
@@ -4467,7 +4459,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-05": 5,
         "2026-11-06": 6,
         "2026-11-07": 4,
         "2026-11-08": 2,
@@ -4481,11 +4472,11 @@
         "2026-11-17": 1,
         "2026-11-18": 5,
         "2026-11-19": 3,
-        "2026-11-20": 2
+        "2026-11-20": 3
       },
-      "total_posted": 571,
-      "attempted": 1489,
-      "rejected_or_pending": 918
+      "total_posted": 572,
+      "attempted": 1492,
+      "rejected_or_pending": 920
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4499,32 +4490,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 148,
+      "videos": 147,
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 10.78,
-          "views": 1158
+          "vph": 9.84,
+          "views": 1161
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 7.46,
+          "vph": 6.93,
           "views": 1028
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 6.98,
+          "vph": 6.39,
           "views": 798
         },
         {
           "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
-          "vph": 6.22,
-          "views": 143
+          "vph": 4.48,
+          "views": 150
         },
         {
-          "title": "Only 3 Interstellar Visitors Exist\u2014The Newest Is Nearly 6x Bigger",
-          "vph": 4.89,
-          "views": 176
+          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
+          "vph": 3.88,
+          "views": 427
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4534,36 +4525,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 2.86,
+          "vph": 2.84,
           "views": 1910
         },
         {
-          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
-          "vph": 1.54,
-          "views": 68
+          "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
+          "vph": 1.49,
+          "views": 33
         },
         {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.42,
-          "views": 97
+          "vph": 1.35,
+          "views": 101
+        },
+        {
+          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
+          "vph": 1.34,
+          "views": 68
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.26,
-          "views": 199
-        },
-        {
-          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.13,
-          "views": 537
+          "vph": 1.24,
+          "views": 204
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261116/brief.json",
       "retro/20261117/brief.json",
-      "retro/20261118/brief.json"
+      "retro/20261118/brief.json",
+      "retro/20261119/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
