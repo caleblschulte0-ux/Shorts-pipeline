@@ -21249,6 +21249,25 @@
         "end": 12.2
       },
       "director_cut": true
+    },
+    "rejected-viscousstormysquirreldancingbanana-2gkxgahz-cwpc3go": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/ViscousStormySquirrelDancingBanana-2gkXgAHz-CwpC3GO",
+      "streamer": "ishowspeed",
+      "title": "GYATT OMG THAT CRAZY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA6 nude shower scene, age-restrict ris)",
+      "ts": "2026-11-20T11:34:19.257169+00:00"
+    },
+    "clip-20261120-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/ThirstyAcceptableRaccoonDxAbomb-NT930bCo04OgUQHD",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Calls Over An Innocent Dog And Then This Happens",
+      "kind": "twitch_clip",
+      "ts": "2026-11-20T11:36:00.427837+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
