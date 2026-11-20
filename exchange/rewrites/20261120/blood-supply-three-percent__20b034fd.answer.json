@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-supply-three-percent__20b034fd",
+  "slug": "blood-supply-three-percent",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "Blood Donation Depends on 3% of Eligible People",
+  "hook": "Most eligible donors never join the pool hospitals rely on.",
+  "closing": "A shrinking donor base leaves hospitals depending on the same small group.",
+  "question": "Would you donate blood?",
+  "segments": [
+    {
+      "topic": "Blood Donation Gap",
+      "say": "Only 3 percent of eligible people donate blood. Hospitals depend on a very small volunteer pool."
+    },
+    {
+      "topic": "Blood Donor Decline",
+      "say": "US blood donor volume fell to an index of 60. Fewer people are replacing the regular donors who age out."
+    }
+  ]
+}
