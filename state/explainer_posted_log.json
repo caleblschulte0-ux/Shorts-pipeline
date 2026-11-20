@@ -5815,11 +5815,29 @@
       "duration_s": 23.1
     },
     "richest-americans-live-14-years-longer": {
-      "claimed_at": "2026-11-20T10:05:36.042312+00:00",
+      "url": "https://youtube.com/shorts/GnwunMUQkUI",
       "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
+      "at": "2026-11-20T10:05:50.800104+00:00",
       "publish_at": "2026-11-20T10:25:14Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.94,
+      "beat_s": [
+        5.64,
+        7.94,
+        6.27,
+        7.42,
+        7.0
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 34.8
     }
   },
   "uploads": [
@@ -7509,9 +7527,10 @@
       "claimed_at": "2026-11-20T10:05:36.042312+00:00",
       "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
       "publish_at": "2026-11-20T10:25:14Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "richest-americans-live-14-years-longer"
+      "url": "https://youtube.com/shorts/GnwunMUQkUI",
+      "state": "posted",
+      "slug": "richest-americans-live-14-years-longer",
+      "at": "2026-11-20T10:05:50.800104+00:00"
     }
   ]
 }
