@@ -38320,17 +38320,20 @@
     "scores": {
      "premise": 12,
      "hook": 18,
-     "arc": 17,
-     "factual": 13,
-     "visual_proof": 12,
+     "arc": 15,
+     "factual": 8,
+     "visual_proof": 8,
      "payoff": 8,
      "voice": 4
     },
-    "total": 84,
-    "fatal": [],
-    "weakest": "payoff",
-    "note": "Make the data visuals larger and high‑contrast so they remain clear on a phone screen; simple icons or bold bars will help viewers grasp the stats instantly.",
-    "fp": "d8484e70898c9ac3"
+    "total": 73,
+    "fatal": [
+     "invented_fact",
+     "unrenderable_visual"
+    ],
+    "weakest": "factual",
+    "note": "Provide verifiable sources for the statistics and design clearer, phone‑friendly visuals that directly illustrate each beat.",
+    "fp": "2daee2cfb23e7edd"
    },
    "hook_was": "Are planes getting too close on the ground?"
   },

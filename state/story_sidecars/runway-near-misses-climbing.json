@@ -5,29 +5,32 @@
   "scores": {
    "premise": 12,
    "hook": 18,
-   "arc": 17,
-   "factual": 13,
-   "visual_proof": 12,
+   "arc": 15,
+   "factual": 8,
+   "visual_proof": 8,
    "payoff": 8,
    "voice": 4
   },
-  "total": 84,
-  "fatal": [],
-  "weakest": "payoff",
-  "note": "Make the data visuals larger and high‑contrast so they remain clear on a phone screen; simple icons or bold bars will help viewers grasp the stats instantly.",
-  "fp": "d8484e70898c9ac3"
+  "total": 73,
+  "fatal": [
+   "invented_fact",
+   "unrenderable_visual"
+  ],
+  "weakest": "factual",
+  "note": "Provide verifiable sources for the statistics and design clearer, phone‑friendly visuals that directly illustrate each beat.",
+  "fp": "2daee2cfb23e7edd"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Runway near-misses keep climbing, and most don't even involve a plane.",
+   "ears": "The scariest danger at airports isn't in the sky, it's on the ground.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
    "ears": "Serious runway near-misses have more than doubled in about a decade, to 23 last year. That's roughly one every two weeks.",
-   "eyes": "a data picture (trend)",
+   "eyes": "substance: red warning flags; cause: Data places a red warning flag on the runway edge for every near-miss, walking down the runway",
    "evidence": "Federal Aviation Administration / U.S. Senate Commerce Committee | Serious (Category A/B) US runway incursions per year | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
   },
   {
