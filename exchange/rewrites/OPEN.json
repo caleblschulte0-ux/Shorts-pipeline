@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T11:49:58Z",
+ "updated": "2026-11-20T12:17:01Z",
  "open": [
-  {
-   "id": "betelgeuse-great-dimming__f1ec3d70",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-11-20T11:49:58Z",
-   "why": [
-    "premise: brain: The premise is not a verified fact; the claim that dust caused a 36% brightness drop in Betelgeuse is speculative and unconfirmed."
-   ],
-   "request": "exchange/rewrites/20261120/betelgeuse-great-dimming__f1ec3d70.request.json",
-   "answer_path": "exchange/rewrites/20261120/betelgeuse-great-dimming__f1ec3d70.answer.json"
-  },
   {
    "id": "chip-transistor-shrink-limit__bad26b67",
    "slug": "chip-transistor-shrink-limit",
@@ -244,6 +234,16 @@
    ],
    "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
    "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
+  },
+  {
+   "id": "betelgeuse-great-dimming__f1ec3d70",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-11-19T00:50:05Z",
+   "why": [
+    "premise: brain: The claim about Betelgeuse dropping to exactly 36% brightness and being caused by dust is not a verified, concrete fact."
+   ],
+   "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
+   "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
   },
   {
    "id": "frog-freezes-and-revives__ef8ed986",

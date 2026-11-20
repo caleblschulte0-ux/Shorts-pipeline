@@ -1,0 +1,10 @@
+{
+ "id": "betelgeuse-great-dimming__f1ec3d70",
+ "slug": "betelgeuse-great-dimming",
+ "settled": "2026-11-20T12:17:01Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Dims",
+  "segment 2: new named entity not in the data: Timeline"
+ ]
+}
