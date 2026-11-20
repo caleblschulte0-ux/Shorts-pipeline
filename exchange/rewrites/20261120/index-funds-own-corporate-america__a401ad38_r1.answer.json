@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "index-funds-own-corporate-america__a401ad38_r1",
+  "slug": "index-funds-own-corporate-america",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "Three Index Managers Hold 22% of a Typical S&P 500 Company",
+  "hook": "Index funds grew into concentrated ownership and voting power.",
+  "closing": "Your fund owns the shares, but its manager usually casts the corporate votes.",
+  "question": "Who votes the shares in your fund?",
+  "segments": [
+    {
+      "topic": "index fund share",
+      "say": "Passive index funds reached 52 percent of US stock-market assets. Routine investing created enormous collective ownership."
+    },
+    {
+      "topic": "index fund owners",
+      "say": "BlackRock, Vanguard, and State Street together hold 22 percent of a typical large company. Ownership concentrates behind familiar fund names."
+    },
+    {
+      "topic": "index fund votes",
+      "say": "Vanguard alone casts 9 percent of votes at large-company meetings. Fund ownership becomes corporate voting power."
+    }
+  ]
+}
