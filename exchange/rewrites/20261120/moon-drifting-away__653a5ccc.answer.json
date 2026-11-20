@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "moon-drifting-away__653a5ccc",
+  "slug": "moon-drifting-away",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "Moon Recession Will Eventually Shrink Total Eclipses",
+  "hook": "The Moon is not escaping; it is slowly changing how eclipses look.",
+  "closing": "We occupy a rare window when the Moon can fully cover the Sun.",
+  "question": "Would you travel for totality?",
+  "segments": [
+    {
+      "topic": "Moon recession",
+      "say": "Since 1969, the Moon has receded 2.17 meters. The movement is gradual, not an escape from Earth."
+    },
+    {
+      "topic": "Moon distance",
+      "say": "The Moon now sits 384,400 kilometers away. That greater distance makes it look slightly smaller in our sky."
+    },
+    {
+      "topic": "Moon eclipses",
+      "say": "Total solar eclipses are projected to end in 600 million years. The geometry changes, not the Moon's orbit vanishing."
+    }
+  ]
+}
