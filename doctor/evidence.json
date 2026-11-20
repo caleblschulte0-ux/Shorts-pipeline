@@ -7,15 +7,27 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261119 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261119.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "credential_dead_groq",
         "severity": "critical",
         "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-19T21:24:12+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
+        "code": "forge_silent",
+        "severity": "critical",
+        "detail": "the explainer's story forge has KEPT NO STORY since 2026-09-07 (73 days; 69 indicators used, 31 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
+        "fix": "Read the forge step of the latest explainer run: 'catalogue is EXHAUSTED' means widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' lines mean the World Bank API is unreachable from the runner; 'HELD by editorial gate' or 'WEAK PITCH' on every candidate means the words, not the well. The gate stays where it is."
+      },
+      {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261119 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
+        "detail": "explainer: ZERO videos posted for 20261119 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above. The story forge has kept no story since 2026-09-07 \u2014 see forge_silent above.",
         "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261119. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
@@ -224,75 +236,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-14T12:33:46+00:00",
-      "slug": "sports_dirk_nowitzki_ons_of_jalen",
-      "score": 75,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The quote is a good moment and the Brunson footage pays it off, but the middle cuts to letterboxed panel shots that crop Dirk out of frame while he is telling the story.",
-      "auto_fails": [
-        "junk_imagery: mid1: the wide panel shot is letterboxed, and Dirk (the speaker) is pushed to the far right edge with his face and body cut off; mid2 stays on Nash and another host while Dirk, the person telling the story, is out of frame entirely"
-      ],
-      "problems": [
-        "mid1: a letterboxed wide shot with Dirk cut off at the right edge, so the speaker is half out of frame",
-        "mid2: the frame stays on the listeners while Dirk is cut away",
-        "mid1/mid2/mid4/mid5: 16:9 boxes over blurred bands look like a cheap repost rather than a vertical edit",
-        "The payoff fades to dark over a jump shot without showing what changed Dirk's mind or the punchline reaction"
-      ],
-      "fixes": [
-        "Stay on the vertical Dirk close-up through the whole quote and crop any panel shot onto Dirk",
-        "Use the hosts' laughing reaction only as a short punch-in at the punchline",
-        "Show the Brunson game footage full-frame vertical, cropped onto Brunson, with no letterbox blur",
-        "End on the made shot or Dirk's laugh landing, not a fade to dark"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.017,
-        "sampled": 121
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 1,
-        "failure_class": "crop_cuts_off_speaker",
-        "visible_evidence": "mid1 is a small letterboxed 16:9 wide shot of five people with Dirk cut off at the right edge; mid2 is a letterboxed two-shot of the listeners with Dirk not in it",
-        "root_cause": "The reposted wide and reaction shots were pasted in as a letterbox on a blurred background instead of being reframed onto the speaker, so the man telling the story leaves the frame partway through his line",
-        "repair_goal": "Keep the vertical close-up on Dirk (like hook@0.3-mid0) through his whole line, cut to the laughing hosts only for a beat at the punchline, and go to full-frame Brunson footage (no letterbox bands) as he says 'his body... the head's too big'"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.202,
-        "effective_fps": 19.1,
-        "max_dup_run": 27,
-        "measured": true,
-        "frozen_ratio": 0.04,
-        "frozen_fps": 23.0,
-        "max_frozen_run": 7,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 6.5,
-        "max_dup_at_s": 9.62,
-        "duration_s": 40.17
-      },
-      "fingerprint": "?|junk_imagery|crop_cuts_off_speaker"
-    },
     {
       "ts": "2026-11-14T13:06:05+00:00",
       "slug": "sports_dirk_nowitzki_ons_of_jalen",
@@ -4126,6 +4069,78 @@
       },
       "fingerprint": "?|-|claim_not_drawn",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-20T09:54:56+00:00",
+      "slug": "richest-americans-live-14-years-longer",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The cake hook and the hourglass beat where Data pours sand are strong, but the middle 'progress' beat is a generic house-and-fence scene that never shows its claim, and the ending reuses the last picture with no fresh punch.",
+      "auto_fails": [
+        "unreadable: At seg1:start the caption 'men by 14.6' is ghosted at very low contrast on the white floor and cannot be read. At seg4:start 'Would you want to know your number?' sits over the pocket watch at the frame bottom."
+      ],
+      "problems": [
+        "seg2: houses and fence are generic; the '+9 years' is only in the label, and the claim that the gap beats 60 years of progress is never shown",
+        "seg0/seg1: Data points beside the cake while the candles light themselves; he is not the cause",
+        "seg1:start: a ghosted 'men by 14.6' caption is unreadable on the white floor",
+        "seg2: a stray deer/dog in the foreground has nothing to do with the story",
+        "seg4: the closing reuses the seg3 hourglasses unchanged apart from Data's pose, so the payoff is flat"
+      ],
+      "fixes": [
+        "Redraw seg2 so Data hammers in 9 fence posts, one per year of progress, beside a visibly longer 14.6-post run (or a ghost of the cake candles) to show the gap is bigger",
+        "Give Data a match or lighter in seg0/seg1 so he lights each candle on the rich cake himself",
+        "Fix the caption fade on the cake-to-cake transition so no half-transparent text is left on the floor",
+        "Remove the foreground animal from seg2",
+        "Give the closing its own picture, e.g. the poorest hourglass running out while the richest keeps flowing, so the last frame lands a new 'whoa'"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 104
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "weak_demonstration",
+        "visible_evidence": "seg2:start-end shows a static pair of houses with a picket fence. The headline swaps 69.8 to 78.4 years and adds '+9 years since 1960'. Data holds a sledgehammer by the fence but is never seen driving a post. A deer/dog wanders in the foreground. Nothing on screen compares the 9 years with the 14.6-",
+        "root_cause": "The scene draws a generic suburban setting for 'progress' and leaves the number in the label. The picture is not made of the claim: sixty years of progress is SMALLER than the rich-poor gap.",
+        "repair_goal": "Redraw seg2 so the comparison is the picture. Data hammers in fence posts one per year of national progress: 9 posts since 1960, each landing on a swing. Beside that run, the 14.6-year rich-poor gap is drawn as a visibly longer fence (or a then_mark ghost of the cake's 14.6 candles), so the viewer s"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.271,
+        "effective_fps": 17.5,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.112,
+        "frozen_fps": 21.3,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.007,
+        "judder_fps": 23.8,
+        "held_s": 6.12,
+        "max_dup_at_s": 0.0,
+        "duration_s": 34.75
+      },
+      "fingerprint": "?|unreadable|weak_demonstration",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
@@ -4192,12 +4207,6 @@
       "count": 2,
       "days": [
         "2026-11-17"
-      ]
-    },
-    "?|junk_imagery|crop_cuts_off_speaker": {
-      "count": 1,
-      "days": [
-        "2026-11-14"
       ]
     },
     "?|-|weak_hook_small_footage": {
@@ -4415,11 +4424,17 @@
       "days": [
         "2026-11-18"
       ]
+    },
+    "?|unreadable|weak_demonstration": {
+      "count": 1,
+      "days": [
+        "2026-11-20"
+      ]
     }
   },
   "recent_commits": [
-    "eb51436 2026-11-20 claim: mailbox verdicts 2026-11-20T04:48Z [skip ci]",
-    "044eb8c 2026-11-20 claim: mailbox verdicts 2026-11-20T03:48Z [skip ci]"
+    "9690394 2026-11-20 claim: mailbox verdicts 2026-11-20T13:47Z [skip ci]",
+    "e8d4f64 2026-11-20 watchdog: chatgpt task verdicts 20261120 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4451,10 +4466,11 @@
         "2026-11-14": 5,
         "2026-11-15": 4,
         "2026-11-16": 2,
-        "2026-11-18": 3
+        "2026-11-18": 3,
+        "2026-11-20": 1
       },
-      "total_posted": 417,
-      "attempted": 417,
+      "total_posted": 418,
+      "attempted": 418,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4472,11 +4488,11 @@
         "2026-11-17": 1,
         "2026-11-18": 5,
         "2026-11-19": 3,
-        "2026-11-20": 3
+        "2026-11-20": 8
       },
-      "total_posted": 572,
-      "attempted": 1492,
-      "rejected_or_pending": 920
+      "total_posted": 577,
+      "attempted": 1507,
+      "rejected_or_pending": 930
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4490,63 +4506,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 147,
+      "videos": 148,
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 9.84,
-          "views": 1161
+          "vph": 8.9,
+          "views": 1163
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 6.93,
+          "vph": 6.38,
           "views": 1028
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 6.39,
+          "vph": 5.8,
           "views": 798
         },
         {
-          "title": "Lake Mead Fell To 27% Full\u2014Threatening Hoover Power",
-          "vph": 4.48,
-          "views": 150
+          "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
+          "vph": 4.7,
+          "views": 13
         },
         {
           "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 3.88,
-          "views": 427
+          "vph": 3.49,
+          "views": 428
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 130,
+      "videos": 134,
       "top_by_vph": [
         {
+          "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
+          "vph": 7.37,
+          "views": 70
+        },
+        {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 2.84,
+          "vph": 2.77,
           "views": 1910
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 1.49,
-          "views": 33
-        },
-        {
-          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.35,
-          "views": 101
-        },
-        {
-          "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
-          "vph": 1.34,
-          "views": 68
+          "vph": 1.24,
+          "views": 49
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.24,
-          "views": 204
+          "vph": 1.13,
+          "views": 205
+        },
+        {
+          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
+          "vph": 1.13,
+          "views": 104
         }
       ],
       "full_data": "state/analytics_third/latest.json"
