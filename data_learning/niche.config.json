@@ -20747,9 +20747,9 @@
   },
   {
    "slug": "astronaut-bone-loss",
-   "title": "A Mars Trip Could Strip 30% of Hip Bone Density",
-   "hook": "Mars sounds adventurous until it costs 30% of hip bone density.",
-   "closing": "Long missions need protection because floating removes the loading that keeps skeletons strong.",
+   "title": "Astronaut Hip Bone Loss Outpaces the Rest",
+   "hook": "Floating hits the bones that carry your weight hardest.",
+   "closing": "Long missions need countermeasures because weight-bearing bones lose the loading that keeps them strong.",
    "question": "Would this change your Mars plans?",
    "caption": "Astronauts lose 1.5% of their bone density every single month in zero gravity — faster than a severe osteoporosis patient loses in a whole year. It's why NASA has them exercising 2.5 hours a day, and why a Mars mission might be the scariest part of getting there. Would you handle a Mars mission knowing the cost? 👇",
    "hashtags": [
@@ -20779,8 +20779,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "1 · THE RATE",
-     "topic": "Mars bone loss",
-     "say": "Astronaut bone density can fall 1.5 percent monthly because space removes normal skeletal loading.",
+     "topic": "Space Bone Loss",
+     "say": "Astronaut bone density can fall 1.5 percent monthly. Removing normal loading makes loss arrive on a much faster clock.",
      "scene": {
       "mechanic": "bone-erosion-duel",
       "concept": "two bone x-rays, astronaut on top and an osteoporosis patient below, each eaten away from both ends by a dark erosion mask that grows with reveal - the astronaut's bone erodes visibly faster",
@@ -20796,8 +20796,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "Mars hip loss",
-     "say": "Astronaut hip density can drop 2.2 percent monthly, making weight-bearing bone especially vulnerable.",
+     "topic": "Hip Bone Loss",
+     "say": "Hip bone density can drop 2.2 percent monthly. Weight-bearing bone takes the hardest hit.",
      "scene": {
       "mechanic": "region-erosion-columns",
       "concept": "four bone x-ray columns (hip, spine, pelvis, forearm) each filled from the bottom with a red erosion overlay to its monthly loss rate - the weight-bearing hip erodes tallest, the forearm barely at all",
@@ -20813,8 +20813,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE MARS PROBLEM",
-     "topic": "Mars bone cost",
-     "say": "A Mars mission could cost 30 percent of hip bone density without protection, turning countermeasures into survival equipment.",
+     "topic": "Mars Bone Estimate",
+     "say": "An unmitigated Mars estimate reaches 30 percent hip bone loss. That is a projection, not a completed mission result.",
      "scene": {
       "mechanic": "mission-bone-gauge",
       "concept": "two vertical capsule gauges topped with an astronaut suit, each filling red upward to the total bone percentage lost on that mission - ISS short, Mars nearly to the top",
@@ -20823,7 +20823,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-11T12:27:36Z",
+   "rewritten_at": "2026-11-20T12:19:18Z",
    "retold": "retell/v4"
   },
   {
@@ -21852,9 +21852,9 @@
   },
   {
    "slug": "muscle-loss-after-30",
-   "title": "Muscle Loss Can Reach 18% Per Decade",
-   "hook": "You don't lose muscle steadily. Later loss can reach 18% per decade.",
-   "closing": "Strength training matters because later muscle loss accelerates instead of staying steady.",
+   "title": "One Muscle Dataset Shows Loss Accelerating Later",
+   "hook": "Muscle decline in this dataset bends sharply instead of staying steady.",
+   "closing": "The study data makes resistance training matter most when later-life loss begins accelerating.",
    "question": "How often do you strength train?",
    "caption": "After age 30, you lose 3 to 5 percent of your muscle mass every decade -- and after 70, that jumps to as much as 24 percent a decade. It's called sarcopenia and almost nobody talks about it until it's already happened. Here's the good news: one study reversed it in 12 weeks. 👇",
    "hashtags": [
@@ -21880,8 +21880,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DECLINE",
-     "topic": "muscle mass loss",
-     "say": "Muscle mass can fall to 65 percent of its starting level, making everyday strength harder to preserve.",
+     "topic": "Muscle Retained",
+     "say": "Muscle mass fell to 65 percent of its starting level. Everyday strength becomes harder to preserve as that reserve shrinks.",
      "scene": {
       "title": true,
       "elements": [
@@ -21900,8 +21900,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE CLIFF",
-     "topic": "muscle loss rate",
-     "say": "Muscle loss rises to 18 percent per decade later in life, so delaying strength work becomes more costly.",
+     "topic": "Muscle Loss Rate",
+     "say": "The dataset's later muscle-loss rate reached 18 percent per decade. This is a measured pattern, not a universal guarantee.",
      "scene": {
       "mechanic": "muscle-cliff-drop",
       "concept": "a muscular silhouette walks down a gentle ramp scaled to the 4%-per-decade slope through the 30s-50s, then the ramp breaks into a sheer cliff at 70 where the same figure plunges at the much steeper 18%-per-decade rate",
@@ -21916,8 +21916,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE FIX",
-     "topic": "muscle training",
-     "say": "Resistance training drove measured sarcopenia to zero in the study, showing muscle decline is not automatically irreversible.",
+     "topic": "Muscle Training Study",
+     "say": "Measured sarcopenia fell to zero after resistance training in the study. The result shows decline was not automatically irreversible there.",
      "scene": {
       "mechanic": "rep-count-cure-grid",
       "concept": "a 40-icon grid of people starts 35% shaded red for sarcopenia and clears to zero red as a pumping barbell counts up through 12 weeks of training",
@@ -21926,7 +21926,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-08T12:23:17Z",
+   "rewritten_at": "2026-11-20T12:19:19Z",
    "retold": "retell/v4"
   },
   {
@@ -22082,10 +22082,10 @@
   },
   {
    "slug": "chip-transistor-shrink-limit",
-   "title": "Chip Transistor Doubling Slowed To 3 Years Instead Of Getting Easier",
-   "hook": "Chip transistor doubling stretched to 3 years, slowing a once-familiar pace.",
-   "closing": "Chips still get better, but slower, so expect smaller jumps between your phone upgrades.",
-   "question": "What actually makes a phone upgrade worthwhile?",
+   "title": "Chip Transistor Growth Is Hitting a Slower Gear",
+   "hook": "Phone chips still improve, but their old growth rhythm is slipping.",
+   "closing": "Smaller chip labels no longer guarantee equally dramatic gains in the device you buy.",
+   "question": "Do phone upgrades still feel major?",
    "hashtags": [
     "technology",
     "chips",
@@ -22109,8 +22109,8 @@
      },
      "insight_type": "trend",
      "role": "1 · STILL GROWING",
-     "topic": "Chip transistor growth",
-     "say": "Apple's iPhone chip now holds 19 billion transistors, almost ten times more than in 2015. Huge, but the growth is slowing down.",
+     "topic": "Chip Transistors",
+     "say": "Apple's iPhone chip reached 19 billion transistors. The count is enormous, but growth no longer keeps its old rhythm.",
      "scene": {
       "mechanic": "chip-die-density-swell",
       "concept": "a real chip photo fills with a growing grid of glowing transistor dots as the years climb",
@@ -22125,8 +22125,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE SLOWDOWN",
-     "topic": "Chip doubling slows",
-     "say": "Chips used to double their transistors every two years. Now it takes three, so each big leap arrives a year later.",
+     "topic": "Chip Doubling",
+     "say": "Chip transistor doubling now takes 3 years. The next big leap arrives more slowly than it once did.",
      "scene": {
       "mechanic": "moores-law-metronome",
       "concept": "two cadence tracks tick off doublings over the same 12 years, one visibly slower than the other",
@@ -22141,8 +22141,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE ATOMIC WALL",
-     "topic": "Chip process labels",
-     "say": "The newest chips are labeled 2 nanometers, but that's a generation name, not the real width of every part.",
+     "topic": "Chip Process",
+     "say": "The newest chip process is labeled 2 nanometers. That label marks a generation, not every part's literal width.",
      "scene": {
       "mechanic": "atom-scale-zoom",
       "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
@@ -22150,8 +22150,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-21T12:29:38Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-20T12:19:18Z",
    "retold": "retell/v4"
   },
   {
@@ -22379,9 +22379,9 @@
   },
   {
    "slug": "chess-online-boom",
-   "title": "Online Chess Kept Growing Long After One TV Show",
-   "hook": "Online chess reached 200 million members years after the supposed fad.",
-   "closing": "Entertainment sparked attention, but the online chess habit outlasted the release.",
+   "title": "Chess.com Accounts Kept Growing After the Release Spike",
+   "hook": "The television bump became a lasting online chess habit.",
+   "closing": "A release sparked attention, but the platform's own totals show the habit kept spreading.",
    "question": "What pulled you into chess?",
    "caption": "Chess.com had 30 million members when the pandemic began. Then The Queen's Gambit dropped on Netflix, and by 2025 membership hit 200 million — nearly seven times bigger in five years. Do you know how to play chess? Tell me below ♟️",
    "hashtags": [
@@ -22407,8 +22407,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Online Chess Growth",
-     "say": "Online chess reached 200 million members, showing the boom continued years beyond one television release.",
+     "topic": "Chess.com Growth",
+     "say": "Chess.com reported 200 million registered accounts. The platform's total kept climbing years after the release spike.",
      "scene": {
       "mechanic": "pawn-stack-timeline",
       "concept": "chess pawn photos stack into growing towers along a five-point timeline, the 2025 tower dwarfing 2020's single piece",
@@ -22424,8 +22424,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · TURN",
-     "topic": "Online Chess Spike",
-     "say": "Monthly online chess signups hit 2.8 million after the release, accelerating growth already underway.",
+     "topic": "Chess.com Spike",
+     "say": "Monthly Chess.com signups reached 2.8 million after the release. A surge accelerated growth already underway.",
      "scene": {
       "mechanic": "queens-gambit-signup-flood",
       "concept": "a TV showing a chess board streams a flood of pawn icons into a signup funnel, the stream thickening hard the moment the show hits — 1M vs 2.8M members a month",
@@ -22441,8 +22441,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "Online Chess Reach",
-     "say": "Online chess accounts equal about 33% of regular players, leaving the game substantial room to grow.",
+     "topic": "Chess.com Reach",
+     "say": "Chess.com accounts equal about one-third of estimated regular players. The comparison suggests room to grow, not unique people verified.",
      "scene": {
       "mechanic": "globe-pawn-fill-share",
       "concept": "a world globe fills with tiny pawn dots for every regular player on Earth, then a glowing chessboard wedge highlights the third of them that Chess.com alone claims",
@@ -22451,7 +22451,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-05T13:10:55Z",
+   "rewritten_at": "2026-11-20T12:19:18Z",
    "retold": "retell/v4"
   },
   {
@@ -26631,9 +26631,9 @@
   },
   {
    "slug": "us-height-ranking-fall",
-   "title": "American Height Gained 6 Centimeters While Other Countries Passed",
-   "hook": "American men gained 6 centimeters, but other countries grew faster.",
-   "closing": "Height tracks how well people live, so a country's standing can slip within a few generations.",
+   "title": "American Height Rose While the World Passed It",
+   "hook": "American men grew taller, yet their global height lead disappeared.",
+   "closing": "National height can improve while faster gains elsewhere still erase a country's advantage.",
    "question": "Are you taller than your grandparents?",
    "caption": "A century ago, American men were the third-tallest in the world. Today the US ranks 37th, as South Korea, Iran and others raced ahead on better childhood nutrition and healthcare. Height isn't just genetics -- it's basically a scoreboard for how a country raises its kids. Are you taller than your grandparents were? 👇",
    "hashtags": [
@@ -26664,7 +26664,7 @@
      "use_baseline": false,
      "role": "1 · A REAL GAIN",
      "topic": "American Height",
-     "say": "American men averaged 177 centimeters by 2014, barely taller than a century earlier. Everyone else was sprinting ahead.",
+     "say": "American men's average height reached 177 centimeters. The gain was real, but it did not preserve their global lead.",
      "scene": {
       "mechanic": "height-wall-measure",
       "concept": "a man stands against a measuring wall; his head line climbs from 171 to 177 cm past a ghost line at 1914, a modest gain on a real ruler",
@@ -26682,7 +26682,7 @@
      "use_baseline": false,
      "role": "2 · EVERYONE ELSE SPED UP",
      "topic": "Height Gains",
-     "say": "South Korean women gained 20.2 centimeters in a century, far more than American men. Same century, very different growth.",
+     "say": "South Korean women gained 20.2 centimeters. Much faster growth elsewhere changed what counted as tall.",
      "scene": {
       "mechanic": "gain-blocks-on-heads",
       "concept": "three people stand at the same base height; centimeter blocks stack on their heads as each gain lands, South Korean women towering, American men a stub",
@@ -26699,7 +26699,7 @@
      "use_baseline": false,
      "role": "3 · THE RANKING FLIPPED",
      "topic": "Height Ranking",
-     "say": "A century ago, almost nobody beat the US in male height. By 2014, 36 countries did. That is how a lead disappears.",
+     "say": "By 2014, 36 countries had taller average men than the US. A gain at home still became a ranking collapse.",
      "scene": {
       "mechanic": "overtaken-by-crowd",
       "concept": "one American man stands under a line; 2 taller countries stand beside him in 1914, then 34 more men file in over the line until 36 stand taller",
@@ -26707,8 +26707,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T12:50:50Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-20T12:19:19Z",
    "retold": "retell/v4"
   },
   {

@@ -1,97 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T12:17:01Z",
+ "updated": "2026-11-20T12:19:19Z",
  "open": [
-  {
-   "id": "chip-transistor-shrink-limit__bad26b67",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-20T11:49:58Z",
-   "why": [
-    "premise: brain: The premise is vague and lacks a concrete, verifiable surprise or specific detail, making it insufficiently concrete."
-   ],
-   "request": "exchange/rewrites/20261120/chip-transistor-shrink-limit__bad26b67.request.json",
-   "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__bad26b67.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__5c0b88f4",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-20T10:09:14Z",
-   "why": [
-    "premise: brain: The premise makes an unverified claim about American height increase and comparative growth that is not concretely substantiated."
-   ],
-   "request": "exchange/rewrites/20261120/us-height-ranking-fall__5c0b88f4.request.json",
-   "answer_path": "exchange/rewrites/20261120/us-height-ranking-fall__5c0b88f4.answer.json"
-  },
-  {
-   "id": "fireflies-losing-their-glow__5dd482f3",
-   "slug": "fireflies-losing-their-glow",
-   "filed": "2026-11-20T00:27:44Z",
-   "why": [
-    "premise: brain: The title is a generic curiosity question, and the hook's \"14 percent of firefly species threatened\" is a statistic with no concrete twist, villain or picturable stake, so it states a fact without turning over anything the viewer believes."
-   ],
-   "request": "exchange/rewrites/20261120/fireflies-losing-their-glow__5dd482f3.request.json",
-   "answer_path": "exchange/rewrites/20261120/fireflies-losing-their-glow__5dd482f3.answer.json"
-  },
-  {
-   "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
-   "slug": "sperm-counts-cut-in-half",
-   "filed": "2026-11-20T00:27:44Z",
-   "why": [
-    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Introduces a different metric (total count vs concentration) as a new fact; it does not follow from or turn against the "
-   ],
-   "request": "exchange/rewrites/20261120/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261120/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__96377171",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-20T00:27:43Z",
-   "why": [
-    "premise: brain: The claim about a Mars trip stripping 30% of hip bone density is speculative, not a concrete, verified fact."
-   ],
-   "request": "exchange/rewrites/20261120/astronaut-bone-loss__96377171.request.json",
-   "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__96377171.answer.json"
-  },
-  {
-   "id": "chess-online-boom__d1f110de",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-20T00:27:43Z",
-   "why": [
-    "premise: brain: The claim of 200 million members lacks verifiable evidence and is not a concrete, proven fact."
-   ],
-   "request": "exchange/rewrites/20261120/chess-online-boom__d1f110de.request.json",
-   "answer_path": "exchange/rewrites/20261120/chess-online-boom__d1f110de.answer.json"
-  },
-  {
-   "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-20T00:27:43Z",
-   "why": [
-    "premise: brain: The claim is a statistic-driven fun fact whose hook merely restates the title, and the comparison is shaky (cumulative minifigures produced aren't comparable to people alive, and the hook repeats the number, so it has no concrete threat or belief to overturn)."
-   ],
-   "request": "exchange/rewrites/20261120/lego-minifigs-outnumber-humans__d15cebf7_r1.request.json",
-   "answer_path": "exchange/rewrites/20261120/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__c76f31b3_r1",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-20T00:27:43Z",
-   "why": [
-    "premise: brain: The claim about 18% muscle loss per decade is not a well‑established, verifiable fact, making the premise insufficiently concrete and true."
-   ],
-   "request": "exchange/rewrites/20261120/muscle-loss-after-30__c76f31b3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261120/muscle-loss-after-30__c76f31b3_r1.answer.json"
-  },
-  {
-   "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
-   "slug": "richest-americans-live-14-years-longer",
-   "filed": "2026-11-20T00:27:43Z",
-   "why": [
-    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Beat 1 only gives general lifespan trends since 1960 and doesn’t directly support the specific claim about a 14‑year gap"
-   ],
-   "request": "exchange/rewrites/20261120/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261120/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
-  },
   {
    "id": "moon-drifting-away__653a5ccc",
    "slug": "moon-drifting-away",
@@ -226,6 +136,27 @@
    "answer_path": "exchange/rewrites/20261119/measles-ninety-five-rule__e5720400.answer.json"
   },
   {
+   "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
+   "slug": "richest-americans-live-14-years-longer",
+   "filed": "2026-11-19T15:22:32Z",
+   "why": [
+    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Adds unrelated historical context rather than a direct consequence of beat 0; does not follow logically from the previou"
+   ],
+   "request": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
+  },
+  {
+   "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
+   "slug": "sperm-counts-cut-in-half",
+   "filed": "2026-11-19T13:57:05Z",
+   "why": [
+    "thesis: seg1 ('Sperm count decline speed') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Provides a related statistic but doesn't directly prove the headline claim and doesn't follow as a consequence of beat 0",
+    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: States a total count drop that supports the headline, but it isn't a logical continuation of the speed increase mentione"
+   ],
+   "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
+  },
+  {
    "id": "library-digital-shift__502c582f",
    "slug": "library-digital-shift",
    "filed": "2026-11-19T13:57:03Z",
@@ -236,6 +167,16 @@
    "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
   },
   {
+   "id": "us-height-ranking-fall__5c0b88f4",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-19T00:50:06Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking concrete, true details about specific height changes."
+   ],
+   "request": "exchange/rewrites/20261119/us-height-ranking-fall__5c0b88f4.request.json",
+   "answer_path": "exchange/rewrites/20261119/us-height-ranking-fall__5c0b88f4.answer.json"
+  },
+  {
    "id": "betelgeuse-great-dimming__f1ec3d70",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-11-19T00:50:05Z",
@@ -244,6 +185,26 @@
    ],
    "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
+  },
+  {
+   "id": "chess-online-boom__d1f110de",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-19T00:50:05Z",
+   "why": [
+    "premise: brain: The hook is vague and unsupported: 'one TV show' and 'supposed fad' name no real show, no contradiction and no stake, and it reads as a summary rather than a concrete surprise or threat."
+   ],
+   "request": "exchange/rewrites/20261119/chess-online-boom__d1f110de.request.json",
+   "answer_path": "exchange/rewrites/20261119/chess-online-boom__d1f110de.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__bad26b67",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-19T00:50:05Z",
+   "why": [
+    "premise: brain: The premise is a flat statement of a slowdown with no concrete surprise, threat or belief overturned. \"Slowing a once-familiar pace\" is vague, and the title reads like a searchable topic rather than a picturable claim."
+   ],
+   "request": "exchange/rewrites/20261119/chip-transistor-shrink-limit__bad26b67.request.json",
+   "answer_path": "exchange/rewrites/20261119/chip-transistor-shrink-limit__bad26b67.answer.json"
   },
   {
    "id": "frog-freezes-and-revives__ef8ed986",
@@ -266,6 +227,36 @@
    "answer_path": "exchange/rewrites/20261119/gulf-dead-zone-growth__00fcbaeb.answer.json"
   },
   {
+   "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-19T00:50:05Z",
+   "why": [
+    "premise: brain: The hook states a number (10 billion) and a comparison without a surprise the viewer can picture or a belief it overturns, and it is a mechanical restatement of the title in a formula-like pattern."
+   ],
+   "request": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__c76f31b3_r1",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-19T00:50:05Z",
+   "why": [
+    "premise: brain: The claim of 18% muscle loss per decade is not a universally established fact and lacks concrete, verifiable evidence."
+   ],
+   "request": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.request.json",
+   "answer_path": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__96377171",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-19T00:50:04Z",
+   "why": [
+    "premise: brain: The claim about a Mars trip stripping exactly 30% of hip bone density is not a verified concrete fact."
+   ],
+   "request": "exchange/rewrites/20261119/astronaut-bone-loss__96377171.request.json",
+   "answer_path": "exchange/rewrites/20261119/astronaut-bone-loss__96377171.answer.json"
+  },
+  {
    "id": "gps-einstein-fix__c2b1ca22",
    "slug": "gps-einstein-fix",
    "filed": "2026-11-19T00:50:04Z",
@@ -284,6 +275,16 @@
    ],
    "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.request.json",
    "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.answer.json"
+  },
+  {
+   "id": "fireflies-losing-their-glow__5dd482f3",
+   "slug": "fireflies-losing-their-glow",
+   "filed": "2026-11-18T18:41:47Z",
+   "why": [
+    "premise: brain: The title is a generic search-style question, and the hook rests on a vague 'summer nights going dark' with a stat-based 'percent threatened' line; it names no concrete surprise, contradiction or scale the viewer can picture."
+   ],
+   "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
+   "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
   },
   {
    "id": "map-distortion-true-size__bc5c8508",
