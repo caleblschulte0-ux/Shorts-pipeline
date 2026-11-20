@@ -1,17 +1,199 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-19T18:14:40Z",
+ "updated": "2026-11-20T00:27:44Z",
  "open": [
+  {
+   "id": "fireflies-losing-their-glow__5dd482f3",
+   "slug": "fireflies-losing-their-glow",
+   "filed": "2026-11-20T00:27:44Z",
+   "why": [
+    "premise: brain: The title is a generic curiosity question, and the hook's \"14 percent of firefly species threatened\" is a statistic with no concrete twist, villain or picturable stake, so it states a fact without turning over anything the viewer believes."
+   ],
+   "request": "exchange/rewrites/20261120/fireflies-losing-their-glow__5dd482f3.request.json",
+   "answer_path": "exchange/rewrites/20261120/fireflies-losing-their-glow__5dd482f3.answer.json"
+  },
+  {
+   "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
+   "slug": "sperm-counts-cut-in-half",
+   "filed": "2026-11-20T00:27:44Z",
+   "why": [
+    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Introduces a different metric (total count vs concentration) as a new fact; it does not follow from or turn against the "
+   ],
+   "request": "exchange/rewrites/20261120/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__96377171",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-20T00:27:43Z",
+   "why": [
+    "premise: brain: The claim about a Mars trip stripping 30% of hip bone density is speculative, not a concrete, verified fact."
+   ],
+   "request": "exchange/rewrites/20261120/astronaut-bone-loss__96377171.request.json",
+   "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__96377171.answer.json"
+  },
+  {
+   "id": "chess-online-boom__d1f110de",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-20T00:27:43Z",
+   "why": [
+    "premise: brain: The claim of 200 million members lacks verifiable evidence and is not a concrete, proven fact."
+   ],
+   "request": "exchange/rewrites/20261120/chess-online-boom__d1f110de.request.json",
+   "answer_path": "exchange/rewrites/20261120/chess-online-boom__d1f110de.answer.json"
+  },
+  {
+   "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-11-20T00:27:43Z",
+   "why": [
+    "premise: brain: The claim is a statistic-driven fun fact whose hook merely restates the title, and the comparison is shaky (cumulative minifigures produced aren't comparable to people alive, and the hook repeats the number, so it has no concrete threat or belief to overturn)."
+   ],
+   "request": "exchange/rewrites/20261120/lego-minifigs-outnumber-humans__d15cebf7_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__c76f31b3_r1",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-20T00:27:43Z",
+   "why": [
+    "premise: brain: The claim about 18% muscle loss per decade is not a well‑established, verifiable fact, making the premise insufficiently concrete and true."
+   ],
+   "request": "exchange/rewrites/20261120/muscle-loss-after-30__c76f31b3_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/muscle-loss-after-30__c76f31b3_r1.answer.json"
+  },
+  {
+   "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
+   "slug": "richest-americans-live-14-years-longer",
+   "filed": "2026-11-20T00:27:43Z",
+   "why": [
+    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Beat 1 only gives general lifespan trends since 1960 and doesn’t directly support the specific claim about a 14‑year gap"
+   ],
+   "request": "exchange/rewrites/20261120/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
+  },
+  {
+   "id": "moon-drifting-away__653a5ccc",
+   "slug": "moon-drifting-away",
+   "filed": "2026-11-20T00:27:43Z",
+   "why": [
+    "premise: brain: The claim is misleading: the Moon is receding about 3.8 cm a year, and total eclipses end only because it appears too small to cover the Sun. \"Escape\" and \"leaving\" overstate this, and the 600-million-year timescale is too distant for a viewer to feel as a threat."
+   ],
+   "request": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc.request.json",
+   "answer_path": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc.answer.json"
+  },
+  {
+   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('The Hadza Carry About 730 Gut Bacteria Species') — brain: doesn't follow from previous beat, introduces a new cause rather than continuing the story"
+   ],
+   "request": "exchange/rewrites/20261120/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__20b034fd",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "premise: brain: The premise lacks a concrete, verifiable statistic and may be inaccurate, making it untrustworthy as a hook."
+   ],
+   "request": "exchange/rewrites/20261120/blood-supply-three-percent__20b034fd.request.json",
+   "answer_path": "exchange/rewrites/20261120/blood-supply-three-percent__20b034fd.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__deb29172",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim."
+   ],
+   "request": "exchange/rewrites/20261120/freshwater-accessible__deb29172.request.json",
+   "answer_path": "exchange/rewrites/20261120/freshwater-accessible__deb29172.answer.json"
+  },
+  {
+   "id": "people-over-65-outnumber-kids-under-5__df8ae648",
+   "slug": "people-over-65-outnumber-kids-under-5",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261120/people-over-65-outnumber-kids-under-5__df8ae648.request.json",
+   "answer_path": "exchange/rewrites/20261120/people-over-65-outnumber-kids-under-5__df8ae648.answer.json"
+  },
+  {
+   "id": "tattoo-mainstream-shift__9b1e4add",
+   "slug": "tattoo-mainstream-shift",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "premise: brain: The claim that a third of Americans are tattooed is not a concrete, verifiable fact and may be inaccurate."
+   ],
+   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__9b1e4add.request.json",
+   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__9b1e4add.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__17bea803",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "thesis: seg1 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Adds another fact without a causal link to beat 0; not a direct continuation.",
+    "thesis: seg2 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Focuses on streaming share, not on vinyl vs CD sales, and doesn't follow from beat 1."
+   ],
+   "request": "exchange/rewrites/20261120/vinyl-beats-cd-sales-again__17bea803.request.json",
+   "answer_path": "exchange/rewrites/20261120/vinyl-beats-cd-sales-again__17bea803.answer.json"
+  },
   {
    "id": "frog-fungus-mass-extinction__ed6b28a5",
    "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-19T18:14:40Z",
+   "filed": "2026-11-20T00:27:42Z",
    "why": [
-    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Doesn't directly support the claim of 90 species erased and isn't a logical continuation of beat 0.",
-    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Not a causal follow‑up to beat 1 and only adds a separate geographic fact, not strengthening the headline claim."
+    "thesis: seg1 ('fungus species declining') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Does not directly support the claim that one fungus erased 90 frog species and is not a logical continuation of beat 0.",
+    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Erased 90 Frog Species') — brain: Focuses on a regional impact (40 Australian species) rather than proving the overall loss of 90 frog species and does no"
    ],
-   "request": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.request.json",
-   "answer_path": "exchange/rewrites/20261119/frog-fungus-mass-extinction__ed6b28a5.answer.json"
+   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__ed6b28a5.request.json",
+   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__ed6b28a5.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__a401ad38_r1",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-20T00:27:42Z",
+   "why": [
+    "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
+   ],
+   "request": "exchange/rewrites/20261120/index-funds-own-corporate-america__a401ad38_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/index-funds-own-corporate-america__a401ad38_r1.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__d4ebe18e",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-20T00:27:41Z",
+   "why": [
+    "thesis: seg1 ('Autism Diagnosis Sex') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Focuses on sex differences, not on location, so it doesn't support the headline claim about geography.",
+    "thesis: seg2 ('Autism Diagnosis Sites') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Introduces a location statistic but does not logically follow from beat 1, which discussed sex rather than location."
+   ],
+   "request": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__d4ebe18e.request.json",
+   "answer_path": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__e0bad3cf",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-20T00:27:41Z",
+   "why": [
+    "premise: brain: The claim about outbreak numbers and newer ships lacks a concrete, verifiable fact and is not clearly true."
+   ],
+   "request": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__e0bad3cf.request.json",
+   "answer_path": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__e0bad3cf.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__ca924794",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-20T00:27:41Z",
+   "why": [
+    "premise: brain: The premise is vague and makes an unverified claim without concrete, verifiable specifics."
+   ],
+   "request": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__ca924794.request.json",
+   "answer_path": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__ca924794.answer.json"
   },
   {
    "id": "measles-ninety-five-rule__e5720400",
@@ -24,27 +206,6 @@
    "answer_path": "exchange/rewrites/20261119/measles-ninety-five-rule__e5720400.answer.json"
   },
   {
-   "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
-   "slug": "richest-americans-live-14-years-longer",
-   "filed": "2026-11-19T15:22:32Z",
-   "why": [
-    "thesis: seg1 ('Americans since 1960') does not continue the story of the headline ('The Richest Americans Live 14 Years Longer Than The Poorest') — brain: Adds unrelated historical context rather than a direct consequence of beat 0; does not follow logically from the previou"
-   ],
-   "request": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
-  },
-  {
-   "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
-   "slug": "sperm-counts-cut-in-half",
-   "filed": "2026-11-19T13:57:05Z",
-   "why": [
-    "thesis: seg1 ('Sperm count decline speed') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Provides a related statistic but doesn't directly prove the headline claim and doesn't follow as a consequence of beat 0",
-    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: States a total count drop that supports the headline, but it isn't a logical continuation of the speed increase mentione"
-   ],
-   "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
-  },
-  {
    "id": "library-digital-shift__502c582f",
    "slug": "library-digital-shift",
    "filed": "2026-11-19T13:57:03Z",
@@ -53,16 +214,6 @@
    ],
    "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
    "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__a401ad38_r1",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-19T12:52:42Z",
-   "why": [
-    "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
-   ],
-   "request": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.answer.json"
   },
   {
    "id": "us-height-ranking-fall__5c0b88f4",
@@ -83,16 +234,6 @@
    ],
    "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
-  },
-  {
-   "id": "chess-online-boom__d1f110de",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The hook is vague and unsupported: 'one TV show' and 'supposed fad' name no real show, no contradiction and no stake, and it reads as a summary rather than a concrete surprise or threat."
-   ],
-   "request": "exchange/rewrites/20261119/chess-online-boom__d1f110de.request.json",
-   "answer_path": "exchange/rewrites/20261119/chess-online-boom__d1f110de.answer.json"
   },
   {
    "id": "chip-transistor-shrink-limit__bad26b67",
@@ -125,46 +266,6 @@
    "answer_path": "exchange/rewrites/20261119/gulf-dead-zone-growth__00fcbaeb.answer.json"
   },
   {
-   "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The hook states a number (10 billion) and a comparison without a surprise the viewer can picture or a belief it overturns, and it is a mechanical restatement of the title in a formula-like pattern."
-   ],
-   "request": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__c76f31b3_r1",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The claim of 18% muscle loss per decade is not a universally established fact and lacks concrete, verifiable evidence."
-   ],
-   "request": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/muscle-loss-after-30__c76f31b3_r1.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-19T00:50:04Z",
-   "why": [
-    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('The Hadza Carry About 730 Gut Bacteria Species') — brain: Introduces a new, unrelated factor (antibiotics) instead of continuing the fiber explanation, so it doesn't follow direc"
-   ],
-   "request": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__96377171",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-19T00:50:04Z",
-   "why": [
-    "premise: brain: The claim about a Mars trip stripping exactly 30% of hip bone density is not a verified concrete fact."
-   ],
-   "request": "exchange/rewrites/20261119/astronaut-bone-loss__96377171.request.json",
-   "answer_path": "exchange/rewrites/20261119/astronaut-bone-loss__96377171.answer.json"
-  },
-  {
    "id": "gps-einstein-fix__c2b1ca22",
    "slug": "gps-einstein-fix",
    "filed": "2026-11-19T00:50:04Z",
@@ -175,88 +276,6 @@
    "answer_path": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.answer.json"
   },
   {
-   "id": "blood-supply-three-percent__20b034fd",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, provable claim."
-   ],
-   "request": "exchange/rewrites/20261119/blood-supply-three-percent__20b034fd.request.json",
-   "answer_path": "exchange/rewrites/20261119/blood-supply-three-percent__20b034fd.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__deb29172",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim about drinkable water."
-   ],
-   "request": "exchange/rewrites/20261119/freshwater-accessible__deb29172.request.json",
-   "answer_path": "exchange/rewrites/20261119/freshwater-accessible__deb29172.answer.json"
-  },
-  {
-   "id": "people-over-65-outnumber-kids-under-5__df8ae648",
-   "slug": "people-over-65-outnumber-kids-under-5",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261119/people-over-65-outnumber-kids-under-5__df8ae648.request.json",
-   "answer_path": "exchange/rewrites/20261119/people-over-65-outnumber-kids-under-5__df8ae648.answer.json"
-  },
-  {
-   "id": "tattoo-mainstream-shift__9b1e4add",
-   "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified statistic and a vague claim about behavior, lacking concrete, demonstrably true specifics."
-   ],
-   "request": "exchange/rewrites/20261119/tattoo-mainstream-shift__9b1e4add.request.json",
-   "answer_path": "exchange/rewrites/20261119/tattoo-mainstream-shift__9b1e4add.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__17bea803",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-19T00:50:03Z",
-   "why": [
-    "thesis: seg1 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Provides a separate sales figure rather than a logical continuation from beat 0; it's another fact, not a cause/effect l",
-    "thesis: seg2 ('Vinyl Records') does not continue the story of the headline ('Vinyl Records Beat CD Sales In America Again') — brain: Discusses streaming's market share, which does not directly support the claim that vinyl beats CD sales and does not fol"
-   ],
-   "request": "exchange/rewrites/20261119/vinyl-beats-cd-sales-again__17bea803.request.json",
-   "answer_path": "exchange/rewrites/20261119/vinyl-beats-cd-sales-again__17bea803.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__d4ebe18e",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-19T00:50:02Z",
-   "why": [
-    "thesis: seg1 ('Autism Diagnosis Sex') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Focuses on sex differences, not on geographic location claimed in headline, so it doesn't support the same claim.",
-    "thesis: seg2 ('Autism Diagnosis Sites') does not continue the story of the headline ('Autism Diagnoses Reached 32.2 Per Thousand—But Location Changes The Rate') — brain: Although it mentions site variation, it does not logically follow from the previous beat about sex differences, breaking"
-   ],
-   "request": "exchange/rewrites/20261119/autism-diagnosis-rate-rise__d4ebe18e.request.json",
-   "answer_path": "exchange/rewrites/20261119/autism-diagnosis-rate-rise__d4ebe18e.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__e0bad3cf",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-19T00:50:02Z",
-   "why": [
-    "premise: brain: The premise is vague and lacks a specific, concrete surprise or contradiction that can be easily visualized."
-   ],
-   "request": "exchange/rewrites/20261119/cruise-ship-outbreaks-climbing__e0bad3cf.request.json",
-   "answer_path": "exchange/rewrites/20261119/cruise-ship-outbreaks-climbing__e0bad3cf.answer.json"
-  },
-  {
-   "id": "womens-college-hoops-out-rates-men__ca924794",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-19T00:50:02Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, verifiable surprise or specific claim."
-   ],
-   "request": "exchange/rewrites/20261119/womens-college-hoops-out-rates-men__ca924794.request.json",
-   "answer_path": "exchange/rewrites/20261119/womens-college-hoops-out-rates-men__ca924794.answer.json"
-  },
-  {
    "id": "clear-air-turbulence-increase__afb34a62",
    "slug": "clear-air-turbulence-increase",
    "filed": "2026-11-18T23:01:25Z",
@@ -265,16 +284,6 @@
    ],
    "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.request.json",
    "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.answer.json"
-  },
-  {
-   "id": "fireflies-losing-their-glow__5dd482f3",
-   "slug": "fireflies-losing-their-glow",
-   "filed": "2026-11-18T18:41:47Z",
-   "why": [
-    "premise: brain: The title is a generic search-style question, and the hook rests on a vague 'summer nights going dark' with a stat-based 'percent threatened' line; it names no concrete surprise, contradiction or scale the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
-   "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
   },
   {
    "id": "map-distortion-true-size__bc5c8508",
@@ -738,16 +747,6 @@
    ],
    "request": "exchange/rewrites/20261016/global-remittances-record-2023__21255dfc_r1.request.json",
    "answer_path": "exchange/rewrites/20261016/global-remittances-record-2023__21255dfc_r1.answer.json"
-  },
-  {
-   "id": "moon-drifting-away__904b95b2",
-   "slug": "moon-drifting-away",
-   "filed": "2026-10-16T13:40:38Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague time frame rather than a single, compelling, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261016/moon-drifting-away__904b95b2.request.json",
-   "answer_path": "exchange/rewrites/20261016/moon-drifting-away__904b95b2.answer.json"
   },
   {
    "id": "rabies-prevention-gap__a36d7b3a",
