@@ -1,269 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261112",
-      "dry_run": false,
-      "ts": "2026-11-12T19:49:12+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 134,
-        "with_retention": 115,
-        "with_curve": 15,
-        "fetched_at": "2026-11-12T16:58:47.284164+00:00"
-      },
-      "brain": {
-        "ok": 16,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261112-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261112-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is only a thin landscape strip, about a third of the 9:16 canvas. The renderer did not crop toward the; vision: The subject (the GTA character, and the streamer's facecam in ",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "famous name, vague reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "GTA3 gameplay, reaction unclear, no payo",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Gets A Reaction Nobody Saw Coming On Stream"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.7,
-              "problems": [
-                "The sharp picture is only a thin landscape strip, about a third of the 9:16 canvas. The renderer did not crop toward the",
-                "The subject (the GTA character, and the streamer's facecam in the corner) is tiny and hard to read on a phone.",
-                "The hook card 'Kai gets a crowd reaction' sits over the blurred padding, and the clip shows only a game character runnin",
-                "The on-screen captions ('YO!', 'OH,', 'SHIT!') are small and sit on the thin strip, so they are hard to read."
-              ]
-            }
-          },
-          "took_s": 139.1
-        },
-        {
-          "slug": "clip-20261112-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261112-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261112-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 141,
-                "refused_shown": 9,
-                "scouted": [
-                  {
-                    "premise": "Kai Cenat's marathon GTA III stream: the game breaks him, then a reaction nobody saw coming.",
-                    "shape": "one_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Sodapoppin's WoW streams on one day: gated community life, then his managers camping him, then an average Mitch stream.",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Pikaboo's WoW week: he ganks a higher-level shaman, larps about his girlfriend, then gets dumped for a Horde player.",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Stableronaldo's best Ron moments: the C-walk on stage, the M4 negotiation, then the Ron magic.",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Cinna's GTA RP crew goes after Lang and Carlitos over Kalita, then Kalita unleashes on Dean and Larry.",
-                    "shape": "one_stream",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 324,
-                "moments": 40,
-                "candidates": 543,
-                "pool": 2930,
-                "pool_with_vod": 2094,
-                "arc_sizes": [
-                  3,
-                  2,
-                  2,
-                  3,
-                  2,
-                  4,
-                  3,
-                  3,
-                  2,
-                  4
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
-                  "outcome": "duration",
-                  "why": "21s outside 25-90s"
-                },
-                {
-                  "cluster": "scout:kaicenat/kaicenat-about-cenat-2026w46",
-                  "outcome": "narrative_failed",
-                  "why": "scores [62, 66, 68] after 2 revision(s) \u2014 @32s pacing: The transcript ends mid-sentence ('If it's not one thing, it's a fucking'). End the last clip on the clean line 'Every fucking time, bro.' and trim the tail, which is also not allowed to stop mid-sent; @22s repetition: 'If it's not one thing, it"
-                },
-                {
-                  "cluster": "steel@momentvibrantrepletesharkpunchtrees-i8qswcqs3bm84qcr",
-                  "outcome": "already_refused",
-                  "why": "2026-11-12: director judged: not a story \u2014 The clip is steel looking at a 55 m\u00b2 office listing and saying 'good luck, bro, 100,000' about the price. The before and after so"
-                },
-                {
-                  "cluster": "scout:sodapoppin/sodapoppin-camp-gift-2026w46",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not support the scout's proposal, and only two of the three proposed clips are in the reports. The managers clip (60s) is entertaining on its own. Sodapoppin realizes the players kill"
-                },
-                {
-                  "cluster": "@momentrudehardyamnerfblueblaster-uux56y8iqb1aolmb",
-                  "outcome": "already_refused",
-                  "why": "2026-11-12: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:pikabooirl/pikabooirl-about-accus-2026w46",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The scout's third clip, the one where Pikaboo gets dumped for a Horde player, is not in the sources. Only two clips exist, so the proposed chain of a win, then girlfriend jokes, then a dump cannot be "
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Guy dancing behind passerby, unclear pay",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Burn Goes Off In L.A And The Whole Crowd Loses It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Last frame (17.1s) is an empty sidewalk with the person gone, a minor tail",
-                "Hook says 'crowd' but only one or two passersby are visible, a small mismatch",
-                "A 'JOB!' source caption sits on his torso at 14.1s, a minor overlap"
-              ]
-            }
-          },
-          "took_s": 175.9
-        },
-        {
-          "slug": "clip-20261112-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261113",
       "dry_run": false,
       "ts": "2026-11-13T13:09:53+00:00",
@@ -6843,6 +6580,435 @@
           "slug": "clip-20261119-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261120",
+      "dry_run": false,
+      "ts": "2026-11-20T12:47:30+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 134,
+        "with_retention": 114,
+        "with_curve": 15,
+        "fetched_at": "2026-11-20T08:46:14.733538+00:00"
+      },
+      "brain": {
+        "ok": 41,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261120-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "shocking claim, searched streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 dog chase, dive; no kill visible",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Calls Over An Innocent Dog And Then This Happens"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The framing is wide, so the subject is fairly small, but it is still clear and readable on a phone.",
+                "Overlays don't cover the face or the main action. The caption sits over his legs and the emoji stays at the edge of the ",
+                "The dog is barely visible, so the setup gets less visual payoff."
+              ]
+            }
+          },
+          "took_s": 111.3
+        },
+        {
+          "slug": "clip-20261120-2",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 137,
+                "refused_shown": 6,
+                "scouted": [],
+                "vod_arcs": 324,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2904,
+                "pool_with_vod": 2002,
+                "arc_sizes": [
+                  5,
+                  3,
+                  6,
+                  6,
+                  3,
+                  4,
+                  3,
+                  2,
+                  3,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "yololaryy@momentamericansmallramendendiface-apc4bgbszgqaunls",
+                  "outcome": "already_refused",
+                  "why": "2026-11-19: director judged: not a story \u2014 The three sources are one broadcast of yololaryy promoting a spin-the-wheel for 5 subs. No spin happens in any of them. The befor"
+                },
+                {
+                  "cluster": "illojuan@momentinexpensivepricklypigfeelsbadman-ref7s7hxbfk0",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The popular clip is 8 seconds of illojuan with the GTA V map open. His on-screen subtitles say he was banned from a chat and 'looked for it', then he laughs. Nothing in the before or after footage say"
+                },
+                {
+                  "cluster": "yuuechka@momentfragileboredravenpraiseit-e9yyk_ljoemt-7qi/yu",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The popular clip is a 7.9-second aside in which yuuechka says balloons are fun and the main thing is not to forget something. No balloons appear, and the clip has no change, conflict or payoff. The st"
+                },
+                {
+                  "cluster": "sashacheer@momentvictoriousmistyfinchprchase-wl-yzyd7zkxfb5c",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is a few seconds of Sasha, in Russian, saying chat is active today and 'if I do this, I can't risk it'. What 'this' is, and what the risk is, appears nowhere in the footage. Neither the strea"
+                },
+                {
+                  "cluster": "deansocool@momentcooperativeplayfulpizzajoncarnage-0n04xbkdf",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source barely moves (avg frame delta 0.25) \u2014 static image/pa"
+                },
+                {
+                  "cluster": "buster@momentfurryfaithfulaniseraccattack-adm_s82u6cqhe4fs/b",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1869.5
+        },
+        {
+          "slug": "clip-20261120-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "GTA 6 searched topic, named streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA VI gameplay, opinion talk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Says GTA 6 Is So Easy a 10 Year Old Won't Fail A Mission"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The hook caption sits over the lower part of the picture throughout. It is small and does not cover the character's face",
+                "At 0.9s the character is small and far away, but the framing is clear and tightens in later frames."
+              ]
+            }
+          },
+          "took_s": 181.3
+        },
+        {
+          "slug": "clip-20261120-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 142,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat gets his first look at GTA 6, learns the game, and ends up with a 6-star wanted level as Lucia.",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "ohnePixel's GTA 6 NoPixel-style roleplay day: Mandy shows up after fixing his sink, the cops won't shoot near civilians,",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "xQc plays GTA 6 for 24 hours straight and then gives his verdict: the story is great, his eyes hurt, and he tests frameg",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jasontheween's NMS Boxing night: he eats it in the ring, the ninja moment lands, then his girl walks in on stream.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 324,
+                "moments": 40,
+                "candidates": 529,
+                "pool": 2904,
+                "pool_with_vod": 2002,
+                "arc_sizes": [
+                  5,
+                  3,
+                  6,
+                  6,
+                  3,
+                  4,
+                  3,
+                  2,
+                  3,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:kaicenat/kaicenat-booby-cenat-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [68, 72, 66] after 2 revision(s) \u2014 @6s pacing: The 'Kai plays the mission as Lucia' overlay and the hard cut from the restaurant cutscene to the car scene are abrupt. Add a short bridge line such as 'Then the mission starts' so the jump reads clea; @7s confusing: The captions at 5-17s are in-"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.72,
+              "why": "Searchable name, relationship drama, arg",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA 6 cutscene, title misleading, risqu\u00e9",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat's New Girlfriend Confronts Him About Her Ex And It Goes Off The Rails"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a fairly thin 16:9 strip, about a third of the canvas height, so subjects are smallish on a phone b",
+                "The streamer facecam and chat overlay from the source stay in the corner; this is minor and covers no faces",
+                "The hook text sits in the blurred padding and covers nothing"
+              ]
+            }
+          },
+          "took_s": 241.5
+        },
+        {
+          "slug": "clip-20261120-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "likely technical talk, Spanish",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Deleting GTA VI, menu only, no reaction",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Illojuan Thinks He Just Closed The Process And Realizes What He Did"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Bottom half of the split-screen shows a PS5 menu with tiny, unreadable UI text, so the action is hard to read on a phone",
+                "Facecam is boxed in the upper-left with dark empty space to its right, so the framing looks somewhat loose",
+                "Large dark empty area in the lower third, with the hook card and captions floating in it"
+              ]
+            }
+          },
+          "took_s": 94.5
+        },
+        {
+          "slug": "clip-20261120-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (GTA 6 driving, menu, radio ad talk)",
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "GTA 6 live-search topic, Portuguese stre",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "GTA 6 driving, menu, radio ad talk",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 52.6
         }
       ]
     }
