@@ -1,0 +1,59 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261120",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "789866e1277169c3ded68fba4686dbdded3b430160a531cadd69229f4ff85b9f",
+    "source_commit": "d8e95ba0c743a9a112fd51112d9b616cd61ea4c9",
+    "production_date": "20261120",
+    "bundle_sha256": "a1a308b7c6b69d58d5fe2c6c571399c7e8c41e297a1af8cddffc60652c28f006"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s predicted food shortages; the data shows a very different harvest.",
+      "says": [
+        "Progression to secondary school rose from 77.8% in 1985 to 91.3% in 2017—1.2 times higher, opening education to more students.",
+        "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 million in 2024—1.5 times higher, feeding a much larger world.",
+        "China leads farmland at 5.2 million square kilometers; the United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2—an enormous food-production base."
+      ],
+      "closing": "The feared famine missed how education, grain output, and farmland could sustain more people.",
+      "question": "Which changed most: school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, one energy source tripled—and it wasn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste supplied 10.2% of energy; by 2024, 30.1%—3.0 times higher, turning discards into fuel.",
+        "Electricity access rose from 73.2% in 1998 to 91.9% in 2024—1.3 times higher, bringing power to far more people.",
+        "Waste methane emissions grew from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e in 2024—1.8 times higher, raising the climate bill."
+      ],
+      "closing": "Waste now powers more lives, but its methane cost means disposal choices still matter.",
+      "question": "Which changed most: fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population kept rising, but its growth rate nearly stopped accelerating.",
+      "says": [
+        "Rural population fell from 63.1% in 1972 to 42.2% in 2025—67 percent of its old share, shifting daily life toward cities.",
+        "The largest city's share moved from 18.2% in 1972 to 16.2% in 2025—barely changed, even as urbanization spread beyond one hub.",
+        "Population growth dropped from 2 annual % in 1972 to 0.91 annual % in 2025—46 percent of its old pace, slowing expansion."
+      ],
+      "closing": "A slower growth rate reshapes schools, housing, and work long before population shrinks.",
+      "question": "Which shift matters most: rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "The bundle contains zero media requests; active formats require no ChatGPT-supplied images.",
+    "The Explainer authoring request authorized exactly three source stories; all three were independently rewritten from today's request without changing protected facts or segment order.",
+    "The frozen Explainer target is four, so one required output remains dependent on the existing downstream queue because no fourth source story was authorized.",
+    "Third and trending are production-supervision channels; their active clip formats accept no response packages or ChatGPT media."
+  ]
+}
