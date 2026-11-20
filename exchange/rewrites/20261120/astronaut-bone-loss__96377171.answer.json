@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__96377171",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:14:42.277Z",
+  "title": "Astronaut Hip Bone Loss Outpaces the Rest",
+  "hook": "Floating hits the bones that carry your weight hardest.",
+  "closing": "Long missions need countermeasures because weight-bearing bones lose the loading that keeps them strong.",
+  "question": "Would this change your Mars plans?",
+  "segments": [
+    {
+      "topic": "Space Bone Loss",
+      "say": "Astronaut bone density can fall 1.5 percent monthly. Removing normal loading makes loss arrive on a much faster clock."
+    },
+    {
+      "topic": "Hip Bone Loss",
+      "say": "Hip bone density can drop 2.2 percent monthly. Weight-bearing bone takes the hardest hit."
+    },
+    {
+      "topic": "Mars Bone Estimate",
+      "say": "An unmitigated Mars estimate reaches 30 percent hip bone loss. That is a projection, not a completed mission result."
+    }
+  ]
+}
