@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "richest-americans-live-14-years-longer__ff249bfc_r1",
+  "slug": "richest-americans-live-14-years-longer",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:14:42.277Z",
+  "title": "The Richest Americans Get an Extra Decade of Life",
+  "hook": "Income separates Americans by more years than generations of national progress added.",
+  "closing": "The income gap is not just comfort; it now maps onto years of American life.",
+  "question": "Should income predict lifespan?",
+  "segments": [
+    {
+      "topic": "Richest Americans",
+      "say": "The richest American men outlive the poorest by 14.6 years. Income separates lifespans by more than a decade."
+    },
+    {
+      "topic": "Americans Overall",
+      "say": "Average American life expectancy rose about nine years across the dataset. That gain is smaller than the income gap shown before."
+    },
+    {
+      "topic": "Americans Pull Ahead",
+      "say": "The richest fifth gained 2.3 years of life. The widening advantage shows the national average hides unequal progress."
+    }
+  ]
+}
