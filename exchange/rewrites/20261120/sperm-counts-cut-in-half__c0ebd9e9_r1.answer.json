@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
+  "slug": "sperm-counts-cut-in-half",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:14:42.277Z",
+  "title": "Sperm Concentration Halved—and Total Counts Fell Further",
+  "hook": "The decline did not stop at thinner samples; the pace accelerated.",
+  "closing": "Faster declines in both measures make male fertility a growing public-health concern.",
+  "question": "Should fertility tracking start earlier?",
+  "segments": [
+    {
+      "topic": "Sperm Concentration",
+      "say": "Average sperm concentration fell to 49 million per milliliter. That left it below half its earlier level."
+    },
+    {
+      "topic": "Sperm Decline",
+      "say": "The annual sperm decline reached 2.64 percent. The loss was accelerating, not merely continuing."
+    },
+    {
+      "topic": "Sperm Total",
+      "say": "Total sperm count fell 62 percent. The broader measure dropped even further than concentration."
+    }
+  ]
+}
