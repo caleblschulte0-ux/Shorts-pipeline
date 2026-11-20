@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "people-over-65-outnumber-kids-under-5__df8ae648",
+  "slug": "people-over-65-outnumber-kids-under-5",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "People Over 65 Now Outnumber Children Under 5",
+  "hook": "The world crossed from more young children to more older people.",
+  "closing": "An older population changes who provides care, fills jobs, and supports families.",
+  "question": "How will families adapt?",
+  "segments": [
+    {
+      "topic": "Over 65 outnumber kids",
+      "say": "People over 65 reached 705 million, exceeding children under 5. The global age balance had crossed."
+    },
+    {
+      "topic": "People over 65 growing",
+      "say": "The population over 65 is projected to reach 1.6 billion. The crossover is expected to keep widening."
+    },
+    {
+      "topic": "Over 65 outnumber kids",
+      "say": "People over 65 are projected to more than double the under-5 population. The world's age structure flips decisively older."
+    }
+  ]
+}
