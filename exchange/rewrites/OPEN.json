@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T14:27:20Z",
+ "updated": "2026-11-20T15:45:05Z",
  "open": [
+  {
+   "id": "gulf-dead-zone-growth__00fcbaeb",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-11-20T15:45:05Z",
+   "why": [
+    "premise: brain: The title and hook contradict each other on the facts: \"more than doubled\" against a 6,705 sq mi rebound. The hook reads as a flat statistic with no named stake, villain or human consequence. It also gives no yardstick for 6,705 square miles or for what it was meant to shrink from. It is a data point, not a belief the story turns over."
+   ],
+   "request": "exchange/rewrites/20261120/gulf-dead-zone-growth__00fcbaeb.request.json",
+   "answer_path": "exchange/rewrites/20261120/gulf-dead-zone-growth__00fcbaeb.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__31e54fc2",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-20T15:45:05Z",
+   "why": [
+    "premise: brain: It is a vague, hedged noun-phrase premise (\"growth is slowing\") with no concrete surprise, threat or scale, and it turns over no belief the viewer can picture."
+   ],
+   "request": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.request.json",
+   "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.answer.json"
+  },
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__b951ee81",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-20T15:45:05Z",
+   "why": [
+    "premise: brain: The claim that bleaching now returns every 2 years is not a verifiable, concrete fact."
+   ],
+   "request": "exchange/rewrites/20261120/great-barrier-reef-bleaching-accelerating__b951ee81.request.json",
+   "answer_path": "exchange/rewrites/20261120/great-barrier-reef-bleaching-accelerating__b951ee81.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__15bbbefa",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-20T15:45:04Z",
+   "why": [
+    "premise: brain: The title is a vague comparative ('outpaces the rest') and the hook is a generic explanatory statement with no concrete surprise, threat, or contradiction the viewer can picture or that overturns a belief."
+   ],
+   "request": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.request.json",
+   "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.answer.json"
+  },
   {
    "id": "runway-near-misses-climbing__8938319a",
    "slug": "runway-near-misses-climbing",
@@ -174,16 +214,6 @@
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
   },
   {
-   "id": "chip-transistor-shrink-limit__bad26b67",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The premise is a flat statement of a slowdown with no concrete surprise, threat or belief overturned. \"Slowing a once-familiar pace\" is vague, and the title reads like a searchable topic rather than a picturable claim."
-   ],
-   "request": "exchange/rewrites/20261119/chip-transistor-shrink-limit__bad26b67.request.json",
-   "answer_path": "exchange/rewrites/20261119/chip-transistor-shrink-limit__bad26b67.answer.json"
-  },
-  {
    "id": "frog-freezes-and-revives__ef8ed986",
    "slug": "frog-freezes-and-revives",
    "filed": "2026-11-19T00:50:05Z",
@@ -192,16 +222,6 @@
    ],
    "request": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.request.json",
    "answer_path": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__00fcbaeb",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about the Gulf dead zone's exact size change."
-   ],
-   "request": "exchange/rewrites/20261119/gulf-dead-zone-growth__00fcbaeb.request.json",
-   "answer_path": "exchange/rewrites/20261119/gulf-dead-zone-growth__00fcbaeb.answer.json"
   },
   {
    "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
@@ -222,16 +242,6 @@
    ],
    "request": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
    "answer_path": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__96377171",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-19T00:50:04Z",
-   "why": [
-    "premise: brain: The claim about a Mars trip stripping exactly 30% of hip bone density is not a verified concrete fact."
-   ],
-   "request": "exchange/rewrites/20261119/astronaut-bone-loss__96377171.request.json",
-   "answer_path": "exchange/rewrites/20261119/astronaut-bone-loss__96377171.answer.json"
   },
   {
    "id": "gps-einstein-fix__c2b1ca22",
@@ -334,16 +344,6 @@
    ],
    "request": "exchange/rewrites/20261118/feet-are-getting-bigger__9e6def1c.request.json",
    "answer_path": "exchange/rewrites/20261118/feet-are-getting-bigger__9e6def1c.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__5bac8a81",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-18T13:14:52Z",
-   "why": [
-    "premise: brain: The claim about bleaching returning every 2 years is vague and not a verifiable concrete fact."
-   ],
-   "request": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__5bac8a81.request.json",
-   "answer_path": "exchange/rewrites/20261118/great-barrier-reef-bleaching-accelerating__5bac8a81.answer.json"
   },
   {
    "id": "ocean-is-changing-color__94e5fa3d",
