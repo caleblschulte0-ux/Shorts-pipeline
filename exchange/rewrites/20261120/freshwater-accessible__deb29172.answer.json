@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "freshwater-accessible__deb29172",
+  "slug": "freshwater-accessible",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:21:48.460Z",
+  "title": "Accessible Freshwater Is 0.007% of Earth's Water",
+  "hook": "Most of Earth's freshwater is locked away before it reaches a tap.",
+  "closing": "The tiny accessible share makes protecting rivers and lakes matter to everyone.",
+  "question": "Would you have guessed this small?",
+  "segments": [
+    {
+      "topic": "Earth's salty water",
+      "say": "Freshwater is 3.5 percent of Earth's water. Almost everything else is salty ocean water people cannot drink."
+    },
+    {
+      "topic": "Water locked away",
+      "say": "Glaciers and ice caps hold 68.7 percent of freshwater. Most of the fresh supply is frozen beyond easy reach."
+    },
+    {
+      "topic": "Water you can reach",
+      "say": "Rivers and lakes hold 0.007 percent of Earth's water. That tiny share carries much of the water people can readily access."
+    }
+  ]
+}
