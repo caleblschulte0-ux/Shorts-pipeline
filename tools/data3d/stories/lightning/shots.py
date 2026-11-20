@@ -519,8 +519,8 @@ S1_U = Vector((0.6, -0.8, 0.0)).normalized()      # from him toward the lens: th
 S1_PERP = Vector((-S1_U.y, S1_U.x, 0.0))
 # the lens: OPEN WIDE (the whole crest, the tower, the oak, the valley and his truck far below), then PUSH IN as the
 # light drops, hold a medium on him and the whole oak for the static and the strike, and follow him down in the dive
-S1_CAMS = [(0.0, S1_W1 + S1_U * 3.4 + Vector((0, 0, 0.9)), S1_W1 - S1_U * 2.0 + Vector((0, 0, 0.05))),
-           (0.08, S1_W1 + S1_U * 3.3 + Vector((0, 0, 0.88)), S1_W1 - S1_U * 2.0 + Vector((0, 0, 0.05))),
+S1_CAMS = [(0.0, S1_W1 + S1_U * 3.2 + Vector((0, 0, 1.9)), S1_W1 - S1_U * 3.0 + Vector((0, 0, -0.7))),
+           (0.075, S1_W1 + S1_U * 3.1 + Vector((0, 0, 1.85)), S1_W1 - S1_U * 3.0 + Vector((0, 0, -0.7))),
            (0.14, S1_W1 + S1_U * 1.5 + Vector((0, 0, 0.34)), Vector((-0.1, 0.62, 0.8))),
            (0.45, S1_W1 + S1_U * 1.42 + Vector((0, 0, 0.3)), Vector((-0.08, 0.62, 0.84))),
            (0.58, S1_W1 + S1_U * 1.42 + Vector((0, 0, 0.3)), Vector((-0.14, 0.6, 0.78))),
@@ -528,7 +528,7 @@ S1_CAMS = [(0.0, S1_W1 + S1_U * 3.4 + Vector((0, 0, 0.9)), S1_W1 - S1_U * 2.0 + 
            (1.0, Vector((-0.7, -0.74, 0.29)), Vector((-0.6, 0.55, 0.35)))]
 S1_VALLEY = -2.4                                  # the valley floor, far below the ridge
 S1_TOWER = Vector((-2.17, 1.96, 0.0))              # his fire-lookout tower, on the crest behind him
-S1_TRUCK = S1_W1 - S1_U * 12.0 + S1_PERP * 1.5              # his green pickup, parked tiny at the trailhead in the valley
+S1_TRUCK = S1_W1 - S1_U * 11.0 - S1_PERP * 5.0              # his green pickup, parked tiny at the trailhead in the valley
 
 
 def s1_hz(x, y):
@@ -907,6 +907,8 @@ def s1_valley():
         a = math.radians(rnd.uniform(-40, 40)); dist = rnd.uniform(7.5, 30.0)
         dv = -S1_U * math.cos(a) + S1_PERP * math.sin(a); x, y = (S1_W1 + dv * dist).xy
         if (Vector((x, y)) - S1_TRUCK.xy).length < 3.0 or abs((Vector((x, y)) - S1_TRUCK.xy).dot(S1_U)) < 1.0: continue
+        c0 = S1_CAMS[0][1].xy; sv = S1_TRUCK.xy - c0; k = max(0.0, min(1.0, (Vector((x, y)) - c0).dot(sv) / sv.length_squared))
+        if (Vector((x, y)) - (c0 + sv * k)).length < 2.0: continue      # never between the opening lens and his truck
         s1_pine("valley pine", (x, y, s1_hz(x, y) - 0.05), rnd.uniform(1.8, 3.2), trunk, needles); n += 1
     # his fire-lookout tower on the crest, and his truck at the trailhead below (world.py builds both, if written)
     tz = s1_hz(S1_TOWER.x, S1_TOWER.y)
@@ -969,9 +971,9 @@ def place_ridge():
     soil = LOC._noise_mat("hill soil grass", "#3E5228", "#66703A", scale=0.9, rough=0.95, bump=0.35)
     s1_grid("hill ground", -32, 32, -6, 62, 96, 120, s1_hz, soil)
     s1_valley()
-    near = s1_grid("hill ground near", -1.8, 2.2, -1.0, 2.8, 50, 46, lambda x, y: s1_hz(x, y) + 0.001, soil)
+    near = s1_grid("hill ground near", -3.2, 3.0, -3.4, 3.4, 80, 86, lambda x, y: s1_hz(x, y) + 0.001, soil)
     near.data.materials.append(s1_grass_blade_mat())
-    s1_hair(near, 26000, 0.05, "hill grass blade")
+    s1_hair(near, 70000, 0.05, "hill grass blade")
     for i, (y, z, col, sx) in enumerate(((60, -9.0, "#46524A", 1.0), (90, -12.0, "#5C6670", 1.3), (130, -15.0, "#77808A", 1.6))):
         m = LOC._noise_mat(f"valley hills {i}", col, col, scale=0.2, rough=0.95, bump=0.02)
         rnd = _s1_random.Random(40 + i)
@@ -1004,14 +1006,14 @@ def place_ridge():
         key = LOC._hero_key()
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; d = dark(t); v = flash(t); s = sheet(t)
-            bg.inputs["Strength"].default_value = 0.55 * (1 - d) + 0.28 * d + 0.45 * v + 0.25 * s
+            bg.inputs["Strength"].default_value = 0.55 * (1 - d) + 0.28 * d + 0.12 * v + 0.25 * s
             bg.inputs["Strength"].keyframe_insert("default_value", frame=f)
-            inside.outputs[0].default_value = 2.5 * s + 3.0 * v; inside.outputs[0].keyframe_insert("default_value", frame=f)
+            inside.outputs[0].default_value = 2.5 * s + 1.4 * v; inside.outputs[0].keyframe_insert("default_value", frame=f)
             ld.energy = 3.6 * (1 - d) + 0.05 * d; ld.keyframe_insert("energy", frame=f)
             cold.data.energy = 60.0 * d + 40.0 * s; cold.data.keyframe_insert("energy", frame=f)
             rim.data.energy = 25.0 * d; rim.data.keyframe_insert("energy", frame=f)
-            fl.data.energy = 650.0 * v; fl.data.keyframe_insert("energy", frame=f)
-            fill.data.energy = 45.0 * v; fill.data.keyframe_insert("energy", frame=f)
+            fl.data.energy = 450.0 * v; fl.data.keyframe_insert("energy", frame=f)
+            fill.data.energy = 12.0 * v; fill.data.keyframe_insert("energy", frame=f)
             key.data.energy = 6.0 * (1 - d) + 11.0 * d; key.data.keyframe_insert("energy", frame=f)
             key.data.color = (1.0 - 0.25 * d, 0.92 - 0.1 * d, 0.84 + 0.12 * d); key.data.keyframe_insert("color", frame=f)
         return key
@@ -1135,9 +1137,9 @@ def shot1():
         cm.default_value = v; cm.keyframe_insert("default_value", frame=f)
 
     # ---- the bolt: out of the top of the frame, through the sky, into the oak's crown; a side flash down the trunk
-    bolt = s1_bolt("oak bolt", top=(-0.5, 6.0, 10.0), bottom=tuple(S1_SPLIT + Vector((-0.05, -0.05, 0.85))), seed=1104,
+    bolt = s1_bolt("oak bolt", top=tuple(S1_SPLIT + Vector((-0.9, 1.6, 4.2))), bottom=tuple(S1_SPLIT + Vector((-0.05, -0.05, 0.85))), seed=1104,
                    branches=4, width=0.026, glow=5.0)
-    SK.strike(bolt, [T["strike"], T["restrike"]], NF, light_at=S1_SPLIT + Vector((0.0, -0.7, 0.6)), energy=900.0)
+    SK.strike(bolt, [T["strike"], T["restrike"]], NF, light_at=S1_SPLIT + Vector((0.0, -0.7, 0.6)), energy=350.0)
     bolt2 = s1_bolt("oak bolt trunk", top=tuple(S1_SPLIT + Vector((-0.04, -0.14, 0.75))), bottom=tuple(S1_OAK + Vector((0.0, -0.17, 0.02))),
                     seed=1102, branches=1, width=0.014, glow=4.0, rough=0.14)
     SK.strike(bolt2, [T["strike"] + 0.02], NF, light_at=S1_OAK + Vector((0.0, -0.5, 0.3)), energy=300.0)
@@ -1271,8 +1273,8 @@ def shot1():
     arcs = []
     for i in range(6):
         r = _s1_random.Random(1120 + i)
-        pts = SK._jag(Vector((0, 0, 0)), Vector((r.uniform(-0.09, 0.09), r.uniform(-0.03, 0.03), r.uniform(0.06, 0.11))), r, depth=3, rough=0.4)
-        arcs.append(SK._tube(f"static arc {i}", pts, 0.004, arc_m))
+        pts = SK._jag(Vector((0, 0, 0)), Vector((r.uniform(-0.11, 0.11), r.uniform(-0.04, 0.04), r.uniform(0.08, 0.14))), r, depth=4, rough=0.4)
+        arcs.append(SK._tube(f"static arc {i}", pts, 0.006, arc_m))
     # the static lifts his HAT off his head (a hover with a buzz) and crawls on its brim: four arcs round the brim's edge
     brim = []
     if hat:
@@ -1283,13 +1285,13 @@ def shot1():
             brim.append(max(vs, key=lambda v: (v.xy - cxy).dot(dirv)))
         for k in range(4):
             r = _s1_random.Random(1140 + k)
-            pts = SK._jag(Vector((0, 0, 0)), Vector((r.uniform(-0.07, 0.07), r.uniform(-0.07, 0.07), r.uniform(0.03, 0.07))), r, depth=3, rough=0.45)
-            arcs.append(SK._tube(f"static arc brim {k}", pts, 0.004, arc_m))
+            pts = SK._jag(Vector((0, 0, 0)), Vector((r.uniform(-0.12, 0.12), r.uniform(-0.12, 0.12), r.uniform(0.05, 0.1))), r, depth=4, rough=0.45)
+            arcs.append(SK._tube(f"static arc brim {k}", pts, 0.006, arc_m))
         lift_t0, lift_t1 = T["static"], T["strike"]
         for f in range(1, NF + 1):
             t = (f - 1) / FPS
             up = ease(min(1.0, max(0.0, (t - lift_t0) / 0.2))) * (1.0 - ease(min(1.0, max(0.0, (t - lift_t1) / 0.12))))
-            w.delta_location = (0.0, 0.0, up * (0.022 + 0.004 * math.sin(f * 2.3))); w.keyframe_insert("delta_location", frame=f)
+            w.delta_location = (0.0, 0.0, up * (0.04 + 0.006 * math.sin(f * 2.3))); w.keyframe_insert("delta_location", frame=f)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; sc.frame_set(f)
         live = T["static"] + 0.12 <= t < T["strike"]
@@ -1300,7 +1302,7 @@ def shot1():
             else:
                 at = hat["worn"].matrix_world @ brim[i - 6]
             o.location = at; o.rotation_euler = (0.3 * math.sin(f + i), 0, (f * 1.7 + i) % math.tau)
-            o.hide_render = not (live and (f + i * 3) % 4 < 2)
+            o.hide_render = not (live and (f + i * 3) % 4 < 3)
             o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f); o.keyframe_insert("hide_render", frame=f)
     static_l = bpy.data.lights.new("static glow", 'POINT'); static_l.color = (0.6, 0.78, 1.0); static_l.shadow_soft_size = 0.05
     sl = bpy.data.objects.new("static glow", static_l); bpy.context.collection.objects.link(sl)
