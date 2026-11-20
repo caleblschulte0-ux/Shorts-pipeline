@@ -159,6 +159,13 @@ def strip(frames, out, h=540, cols=8):
 
 def main():
     proof, out = Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve()   # the judge Reads absolute paths
+    # STORY is REQUIRED, never defaulted (2026-11-20: two lightning remakes each spent a paid judge run graded
+    # against the checkout story's briefs because STORY was unset: "no self-checkout machine", 12/100). A name
+    # looked up with a silent default is a capability that does not exist (CLAUDE.md).
+    _name = os.environ.get("STORY", "")
+    if not _name or not (Path(__file__).resolve().parents[1] / "stories" / _name / "script.json").exists():
+        print(f"JUDGE3D: STORY={_name!r} names no story folder with a script.json: set STORY=<story> (no judge run)")
+        return 1
     if not shutil.which("claude"):
         print("JUDGE3D: no claude CLI: no judge, no pass"); return 1
     sheets = []

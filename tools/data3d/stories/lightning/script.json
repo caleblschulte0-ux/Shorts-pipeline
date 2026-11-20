@@ -81,14 +81,14 @@
     "the storm rolls over the ridge, a bolt splits the old oak beside the ranger and he dives flat; his truck sits tiny far below",
     "he scrambles down the lookout tower's stairs as bolt after bolt slams into the rod on its roof above him",
     "on the trail down he gets struck again and again and keeps marching, the trail markers counting him up to seven",
-    "at the lake a bolt hits the beach at his feet and he hauls a long branching glass root out of the sand",
+    "at the lake a bolt fuses the beach sand into a glass jar round him and a second bolt bursts it into shards",
     "he slams himself into his truck, a bolt hits its roof, sparks race over the metal shell, and he knocks on the window at us from inside, grinning"
   ],
   "storyboard": [
     "1 hook (the bare ridge under the storm, LOW and WIDE: the ranger full-body and big on the crest beside the old oak, his lookout tower further along the ridge, on his way home to his truck): the static lifts his ranger hat clean off his head and crackles between it and his ears; a spark snaps from the hat to his nose and he jolts, hands up, and the hat tumbles into the grass; a blinding bolt slams into the oak; the whole crown tears off the trunk and topples across the frame as he dives flat into the grass out of its way; it crashes down flat beside him, leaving a bare split stump glowing orange; he lifts his chin to us, gulps, ears flopping flat, and pushes up on his arms.",
     "2 the tallest thing (the steel fire-lookout tower in the rain, LOW: the lens rides down the zigzag stairs at his face's height, then drops low onto the grass beside the foot of the tower): the ranger kicks the cab door open and runs out of it, panicked, and down the stairs; a bolt slams into the lightning rod on the roof above him; a second bolt hits the rod and a shower of sparks pours off the roof and rains down past him; a third, bigger bolt hits the rod and more sparks pour down; he leaps the last flight, lands in a crouch on the grass and sprints off down the ridge for the trail, still panicked.",
     "3 struck again and again (a pine forest trail stepping down a mountainside in the rain, the cut bank and the switchback climbing behind him, TRACKING backwards ahead of him as he marches down at us): the ranger marches down the trail in his hat and a bolt hits him three times, each strike a huge step of damage: the first chars his teal face and hands soot-black, the second chars his white coat black and sets it pouring smoke, and the third, the big one, rockets his hat straight up off his head and out of the frame; the hat falls back down rocking like a leaf, lands on his head, he jams it down with a dip of his head and it puffs out smoke, then he turns to us with a long deadpan stare and a slow blink and trudges on.",
-    "4 hotter than the sun (the lake beach below the forest, HIGH: looking down on him and the sand): a bolt slams into the sand right in front of the ranger; the crater glows orange and pours steam round a glowing glass spike the bolt fused; he grabs the spike in both fists and heaves it up like a sword from a stone; a long, branching root of glowing orange glass comes up out of the sand and he staggers back, hoisting it high in one fist as it glints.",
+    "4 hotter than the sun (the lake beach below the forest in the rain, his footprints coming down the wet sand, a canoe hauled up and an old dock running out into the dark lake behind him; HIGH and close, three-quarter from his front, looking down on him): a bolt slams into the sand at the ranger's feet and the sand round him bursts up in a whole ring of molten orange glass that seals him in a glass jar up to his chest, his arms flung out wide over the rim; it cools clear and steaming, the orange draining down it, while he flails over the rim, wiggles and hops twice inside it, stuck; a second bolt hits the rim, cracks race round the jar and it bursts into a spray of glittering glass shards that rain onto the sand round him; he stumbles a step, shakes himself off like a wet dog and flings his arms wide at us with a big grin.",
     "5 your shelter (the gravel trailhead lot at night in the rain under its sodium lamps, the pines dark beyond; CLOSE on his green ranger truck): the ranger is already inside, door shut; a bolt hits the truck's roof right over his hat; blue sparks race over the whole metal body around him and leap off the bumper into a puddle, splashing, while the tyres stay dark; then, close on his rain-streaked window, he raps on the glass twice with his knuckles, the pane shivering, and sits up into a big palms-up shrug with a grin: see? would you stay inside?"
   ],
   "staging": [
@@ -202,35 +202,31 @@
     },
     {
       "camera": "high",
-      "data": "grabs the glass spike standing, heaves it out of the sand with his whole body and hoists it high in one fist",
+      "data": "bursts out of the glass jar the bolt fused round him: flails, hops, shakes the shards off",
       "props": [
-        "glowing crater",
-        "glass root"
+        "glass jar",
+        "glass shards"
       ],
       "arc": [
         {
           "at": 0.06,
-          "what": "a bolt slams into the sand in front of him"
+          "what": "a bolt slams into the sand at his feet"
         },
         {
-          "at": 0.14,
-          "what": "the crater glows orange and steams round a glowing glass spike"
+          "at": 0.13,
+          "what": "the sand bursts up round him in a ring of molten orange glass, sealing him in a glass jar to his chest"
         },
         {
-          "at": 0.36,
-          "what": "he grabs the spike in both fists and heaves"
+          "at": 0.34,
+          "what": "the glass cools clear and steaming while he flails, wiggles and hops inside it, stuck"
         },
         {
-          "at": 0.58,
-          "what": "a long branching glass root comes up out of the sand"
+          "at": 0.6,
+          "what": "a second bolt hits the jar, cracks race round it and it bursts into shards"
         },
         {
-          "at": 0.74,
-          "what": "he staggers back and hoists it high in one fist, glowing"
-        },
-        {
-          "at": 0.87,
-          "what": "the storm flickers and the glass glints"
+          "at": 0.8,
+          "what": "the shards rain onto the sand round him; he shakes himself off and flings his arms wide at us, grinning"
         }
       ]
     },

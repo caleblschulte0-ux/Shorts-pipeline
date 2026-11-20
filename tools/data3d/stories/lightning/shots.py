@@ -2916,23 +2916,24 @@ def shot4():
 # shot3.py
 # ====================================================================================================
 # ================================================================ BEAT 4 (this file is shot3.py): hotter than the sun (lake_beach, HIGH)
-"""A BOLT TURNS THE SAND TO GLASS, AND HE PULLS IT OUT LIKE A SWORD FROM A STONE. The ranger's run home reaches the lake
-beach below the forest, in the rain: wet sand, the dark lake behind him. A bolt slams into the sand just in front of him
-in a white flash and a spray of sand and embers; where it hit, a crater glows orange and pours steam, and a spike of
-glass glows hot orange in the middle of it (the bolt's own channel, fused). He leans in, grabs it in both fists standing
-(it is only waist-low to him), it will not budge, then he heaves it up with his whole body: the spike was the tip of a
-long, branching glass root that comes up out of the sand in a burst of sand and steam. He staggers back a step and
-hoists it high beside him: translucent glass glowing orange inside, steaming, glinting as the storm flickers.
-Round 3 (2026-11-20): the crouch is gone (his hands sank into his coat and his legs knotted), the camera is pulled up
-and back so all of him and the crater are in frame with room over the hat, and the root is glass, not a twig."""
+"""THE BOLT FUSES THE BEACH INTO A GLASS JAR ROUND HIM, AND A SECOND ONE BURSTS IT (the remake, 2026-11-20).
+
+The ranger's run home reaches the lake beach below the forest in the rain: wet sand with his footprints, a beached
+canoe, a dock running out into the dark lake, reeds and a rocky shore. Shot HIGH and close, three-quarter from his
+front, looking down on him. A bolt slams into the sand at his feet and the sand round him bursts up in a wall of molten
+orange glass: in half a second he is sealed in a glass jar up to his chest, his arms flung up over the rim. It cools
+clear and steaming, the orange draining down it; he flails over the rim, wiggles, and hops twice inside it, stuck. A
+second bolt hits the jar's rim: it lights up white, cracks race round it, and it BURSTS into a spray of glittering
+shards that rain onto the sand round him. He stumbles a step, shakes himself off like a wet dog and pumps a fist at us
+with a big grin.
+
+Why this idea (the rewrite brief and the four checks): the fulgurite pull and the glass flood both failed on what the
+hands had to do and on glass that never read as glass. Here every event is ON HIS BODY (the glass is wrapped round him,
+his legs seen through it), his arms only fling and flail, and glass reads the way everyone knows it: clear, round,
+glinting, and shattering. Data's reach is 0.19 m, so nothing is gripped."""
 import random as s3_random
 import locations as S3_LOC
 import storm_kit as S3_SK
-
-S3_P = Vector((0.03, -0.14, 0.0))       # where the bolt hits: just in front of him
-S3_DATA = (0.0, 0.05)                    # where he stands
-S3_LEN = 0.54                            # the fulgurite trunk, bottom to top (he is 0.96 tall; its top third shows above the sand)
-S3_GRIP = 0.48                           # where his fists hold it, measured up the trunk from the bottom
 
 
 def s3_attr_fade(nt, name="fade"):
@@ -2989,103 +2990,6 @@ def s3_sand_mat():
     bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.3; bp.inputs["Distance"].default_value = 0.01
     nt.links.new(ad.outputs[0], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
     return m
-
-
-def s3_crater_mat(ground):
-    """the beach's own sand (the same texture, read in the beach's coordinates, so no seam) with what the strike did on
-    top: a dark glassy scorch round the hole and a core of fused sand glowing through cracks. The value nodes 'glow',
-    'scorch' and 'heat' are keyed by the shot."""
-    m = s3_sand_mat().copy(); m.name = "beach crater"; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
-    for n in nt.nodes:
-        if n.type == 'TEX_COORD': n.object = ground
-    sand_col = bs.inputs["Base Color"].links[0].from_socket
-    sand_rough = bs.inputs["Roughness"].links[0].from_socket
-    tc = nt.nodes.new("ShaderNodeTexCoord")
-    sep = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sep.inputs[0])
-    cmb = nt.nodes.new("ShaderNodeCombineXYZ"); nt.links.new(sep.outputs["X"], cmb.inputs["X"]); nt.links.new(sep.outputs["Y"], cmb.inputs["Y"])
-    ln = nt.nodes.new("ShaderNodeVectorMath"); ln.operation = 'LENGTH'; nt.links.new(cmb.outputs[0], ln.inputs[0])
-    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 22; nz.inputs["Detail"].default_value = 6
-    nt.links.new(tc.outputs["Object"], nz.inputs["Vector"])
-    wob = nt.nodes.new("ShaderNodeMath"); wob.operation = 'MULTIPLY_ADD'; wob.inputs[1].default_value = 0.06; wob.inputs[2].default_value = -0.03
-    nt.links.new(nz.outputs["Fac"], wob.inputs[0])
-    r = nt.nodes.new("ShaderNodeMath"); r.operation = 'ADD'; nt.links.new(ln.outputs["Value"], r.inputs[0]); nt.links.new(wob.outputs[0], r.inputs[1])
-    burn = nt.nodes.new("ShaderNodeValToRGB"); e = burn.color_ramp.elements
-    e[0].position = 0.0; e[0].color = (*K.lin("#1E1A17"), 1); e[1].position = 0.17; e[1].color = (*K.lin("#4A4038"), 1)
-    nt.links.new(r.outputs[0], burn.inputs["Fac"])
-    msk = nt.nodes.new("ShaderNodeMapRange"); msk.inputs["From Min"].default_value = 0.2; msk.inputs["From Max"].default_value = 0.1
-    nt.links.new(r.outputs[0], msk.inputs["Value"])
-    sc_v = nt.nodes.new("ShaderNodeValue"); sc_v.name = "scorch"; sc_v.outputs[0].default_value = 0.0
-    mm = nt.nodes.new("ShaderNodeMath"); mm.operation = 'MULTIPLY'; nt.links.new(msk.outputs["Result"], mm.inputs[0]); nt.links.new(sc_v.outputs[0], mm.inputs[1])
-    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'
-    nt.links.new(mm.outputs[0], mx.inputs[0]); nt.links.new(sand_col, mx.inputs[6]); nt.links.new(burn.outputs["Color"], mx.inputs[7])
-    nt.links.new(mx.outputs[2], bs.inputs["Base Color"])
-    rmx = nt.nodes.new("ShaderNodeMix"); rmx.data_type = 'FLOAT'; rmx.inputs[3].default_value = 0.12
-    nt.links.new(mm.outputs[0], rmx.inputs[0]); nt.links.new(sand_rough, rmx.inputs[2])
-    nt.links.new(rmx.outputs[0], bs.inputs["Roughness"])
-    gm = nt.nodes.new("ShaderNodeMapRange"); gm.inputs["From Min"].default_value = 0.1; gm.inputs["From Max"].default_value = 0.02
-    nt.links.new(r.outputs[0], gm.inputs["Value"])
-    ck = nt.nodes.new("ShaderNodeTexVoronoi"); ck.feature = 'DISTANCE_TO_EDGE'; ck.inputs["Scale"].default_value = 30
-    nt.links.new(tc.outputs["Object"], ck.inputs["Vector"])
-    ckr = nt.nodes.new("ShaderNodeMapRange"); ckr.inputs["From Min"].default_value = 0.0; ckr.inputs["From Max"].default_value = 0.12
-    ckr.inputs["To Min"].default_value = 1.0; ckr.inputs["To Max"].default_value = 0.25
-    nt.links.new(ck.outputs["Distance"], ckr.inputs["Value"])
-    gmx = nt.nodes.new("ShaderNodeMath"); gmx.operation = 'MULTIPLY'
-    nt.links.new(gm.outputs["Result"], gmx.inputs[0]); nt.links.new(ckr.outputs["Result"], gmx.inputs[1])
-    gv = nt.nodes.new("ShaderNodeValue"); gv.name = "glow"; gv.outputs[0].default_value = 0.0
-    gs = nt.nodes.new("ShaderNodeMath"); gs.operation = 'MULTIPLY'
-    nt.links.new(gmx.outputs[0], gs.inputs[0]); nt.links.new(gv.outputs[0], gs.inputs[1])
-    nt.links.new(gs.outputs[0], bs.inputs["Emission Strength"])
-    hc = nt.nodes.new("ShaderNodeValue"); hc.name = "heat"; hc.outputs[0].default_value = 0.0   # 1 white-hot .. 0 orange
-    ora = nt.nodes.new("ShaderNodeRGB"); ora.outputs[0].default_value = (1.0, 0.32, 0.05, 1)
-    wht = nt.nodes.new("ShaderNodeRGB"); wht.outputs[0].default_value = (1.0, 0.85, 0.6, 1)
-    hm = nt.nodes.new("ShaderNodeMix"); hm.data_type = 'RGBA'
-    nt.links.new(hc.outputs[0], hm.inputs[0]); nt.links.new(ora.outputs[0], hm.inputs[6]); nt.links.new(wht.outputs[0], hm.inputs[7])
-    nt.links.new(hm.outputs[2], bs.inputs["Emission Color"])
-    return m
-
-
-def s3_crater(P, ground):
-    """the strike crater: a bowl with a lumpy raised rim, built as its own disc; the beach has a hole cut for it"""
-    import bmesh
-    rnd = s3_random.Random(5)
-    bm = bmesh.new(); rings, segs = 22, 56; R = 0.25
-    def h(r, a):
-        lump = 0.006 * math.sin(5 * a + 1.3) + 0.004 * math.sin(11 * a + 0.4) + rnd.uniform(-0.002, 0.002)
-        if r < 0.085: return -0.03 * (1 - (r / 0.085) ** 2) + 0.004 + lump * 0.4
-        if r < 0.12: u = (r - 0.085) / 0.035; return 0.004 + 0.02 * math.sin(u * math.pi / 2) + lump
-        u = (r - 0.12) / (R - 0.12); return (0.024 + lump) * (1 - u) ** 2 + 0.0015 * (1 - u) + 0.0005
-    centre = bm.verts.new((0, 0, h(0, 0)))
-    grid = []
-    for i in range(1, rings + 1):
-        r = R * (i / rings) ** 1.2; row = []
-        for j in range(segs):
-            a = 2 * math.pi * j / segs
-            row.append(bm.verts.new((r * math.cos(a), r * math.sin(a), h(r, a))))
-        grid.append(row)
-    for j in range(segs): bm.faces.new((centre, grid[0][j], grid[0][(j + 1) % segs]))
-    for i in range(rings - 1):
-        for j in range(segs):
-            bm.faces.new((grid[i][j], grid[i + 1][j], grid[i + 1][(j + 1) % segs], grid[i][(j + 1) % segs]))
-    me = bpy.data.meshes.new("ground crater"); bm.to_mesh(me); bm.free()
-    for p in me.polygons: p.use_smooth = True
-    o = bpy.data.objects.new("ground crater", me); o.location = (P.x, P.y, 0.0); bpy.context.collection.objects.link(o)
-    m = s3_crater_mat(ground); me.materials.append(m)
-    # it is clean, flat sand until the bolt: the bowl is a shape key the shot turns on at the strike
-    o.shape_key_add(name="Basis", from_mix=False); o.shape_key_add(name="blast", from_mix=False)
-    for v, kb in zip(me.vertices, me.shape_keys.key_blocks["Basis"].data):
-        kb.co.z = 0.0004
-    return o, m
-
-
-def s3_beach_ground(P):
-    import bmesh
-    bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=160, y_segments=160, size=5.0)
-    for v in bm.verts: v.co.y += 3.0
-    kill = [f for f in bm.faces if (f.calc_center_median().to_2d() - P.to_2d()).length < 0.22]
-    bmesh.ops.delete(bm, geom=kill, context='FACES')
-    me = bpy.data.meshes.new("ground beach"); bm.to_mesh(me); bm.free()
-    o = bpy.data.objects.new("ground beach", me); bpy.context.collection.objects.link(o); me.materials.append(s3_sand_mat())
-    return o
 
 
 def s3_wash_mat():
@@ -3284,161 +3188,7 @@ def s3_rain(n=1100):
             fc.modifiers.new('CYCLES')
 
 
-def place_lake_beach():
-    """the LAKE BEACH below the forest, in the rain (beat 4 of the ranger's run): warm tan lake sand, wet and dark
-    toward the water, with ripples, pebbles, driftwood and granite boulders; small waves lapping in with foam; the calm
-    dark lake beyond it, glossy enough to mirror the far shore's pines and the mountains (and the bolt); fine rain."""
-    P = S3_P
-    rnd = s3_random.Random(29)
-    gr = s3_beach_ground(P)
-    s3_crater(P, gr)
-    # the lake: calm, dark, glossy, pocked by the rain
-    import bmesh
-    bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=80, y_segments=60, size=1.0)
-    for v in bm.verts: v.co.x *= 90; v.co.y = v.co.y * 29 + 30.3
-    me = bpy.data.meshes.new("lake"); bm.to_mesh(me); bm.free()
-    for p in me.polygons: p.use_smooth = True
-    lake = bpy.data.objects.new("lake", me); bpy.context.collection.objects.link(lake); lake.location.z = 0.006
-    lm = bpy.data.materials.new("lake water"); lm.use_nodes = True; nt = lm.node_tree; b = nt.nodes["Principled BSDF"]
-    b.inputs["Base Color"].default_value = (*K.lin("#0C1416"), 1); b.inputs["Roughness"].default_value = 0.035
-    tc = nt.nodes.new("ShaderNodeTexCoord")
-    rip = nt.nodes.new("ShaderNodeTexVoronoi"); rip.feature = 'DISTANCE_TO_EDGE'; rip.inputs["Scale"].default_value = 40
-    nt.links.new(tc.outputs["Object"], rip.inputs["Vector"])
-    sw = nt.nodes.new("ShaderNodeTexWave"); sw.inputs["Scale"].default_value = 0.35; sw.bands_direction = 'Y'; sw.inputs["Distortion"].default_value = 2.0
-    nt.links.new(tc.outputs["Object"], sw.inputs["Vector"])
-    ad = nt.nodes.new("ShaderNodeMath"); ad.operation = 'MULTIPLY_ADD'; ad.inputs[1].default_value = 0.3
-    nt.links.new(rip.outputs["Distance"], ad.inputs[0]); nt.links.new(sw.outputs["Fac"], ad.inputs[2])
-    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.06; bp.inputs["Distance"].default_value = 0.02
-    nt.links.new(ad.outputs[0], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
-    me.materials.append(lm)
-    # the water's edge: a glossy sheet of spent wave on the sand, and small waves lapping in with foam
-    wet = s3_strip("lake edge wet", 14.0, 0.45, s3_wash_mat(), seed=3)
-    wet.location = (0, 1.25, 0.003); s3_key_fade(wet, 1, 0.8)
-    fm = s3_foam_mat()
-    for k, (yo, yi, per, ph) in enumerate(((1.75, 1.08, 2.6, 0.0), (1.85, 1.15, 2.9, 0.45), (1.7, 1.12, 2.4, 0.75))):
-        s3_wave(f"lake wave {k}", fm, 40 + k, yo, yi, per, ph)
-    s3_mountains(rnd)
-    # the far shore: a forest of the park's pines along the water (and their reflections in it)
-    fs = K.box("far shore", (0, 52.0, 0.05), (140.0, 16.0, 0.2), S3_LOC._noise_mat("far shore floor", "#26302A", "#3A4234", scale=0.4, rough=0.9, bump=0.2), bev=0)
-    spots = [(rnd.uniform(-45, 45), rnd.uniform(44.5, 50.0)) for _ in range(260)]
-    s3_pines(rnd, spots, scale=(0.7, 1.15))
-    granite = S3_LOC._noise_mat("granite", "#5A564F", "#77716A", scale=5.0, rough=0.8, bump=0.5)
-    for i, (x, y, r) in enumerate(((-1.2, -0.9, 0.11), (1.5, -1.1, 0.08))):      # low, back from the water (bright ones on the shoreline read as lamps)
-        o = K.sph(f"lake boulder {i}", (x, y, r * 0.3), r, granite, scale=(1.3, 1.0, 0.55)); o.rotation_euler = (0.2 * i, 0.1, 0.7 * i)
-    # pebbles: rounded lake stones, grey to rust, scattered (none where he works or falls)
-    pmats = [S3_LOC._noise_mat(f"pebble {k}", a, c, scale=8.0, rough=0.35, bump=0.2)
-             for k, (a, c) in enumerate((("#6E6862", "#8E8780"), ("#8A7A66", "#B09C84"), ("#5C5A56", "#7C7A74"), ("#8A5E42", "#AE8462")))]
-    n = 0
-    while n < 36:
-        x, y = rnd.uniform(-1.6, 2.0), rnd.uniform(-1.4, 1.2)
-        if (Vector((x, y)) - Vector((0.1, 0.0))).length < 0.75: continue
-        r = rnd.uniform(0.014, 0.04)
-        o = K.sph(f"ground pebble {n}", (x, y, r * 0.2), r, pmats[n % 4], scale=(1.35, 1.0, 0.42)); o.rotation_euler.z = rnd.uniform(0, 6.3)
-        n += 1
-    # driftwood: two bleached, rain-dark branches the lake threw up
-    drift = S3_LOC._noise_mat("driftwood", "#4E4238", "#7A6A58", scale=3.0, rough=0.55, bump=0.8)
-    for i, (x, y, L, r, a) in enumerate(((-0.75, 0.8, 0.9, 0.035, 0.25), (0.95, 0.95, 0.6, 0.028, -0.45))):
-        o = K.cyl(f"ground driftwood {i}", (x, y, r * 0.8), r, L, drift, v=10, bev=0)
-        o.rotation_euler = (0, math.radians(90), a)
-        st = K.cyl(f"ground driftwood {i} stub", (x + 0.25 * math.cos(a + 1.9), y + 0.25 * math.sin(a + 1.9), r * 0.6), r * 0.5, 0.22, drift, v=8, bev=0)
-        st.rotation_euler = (0, math.radians(90), a + 0.9)
-    s3_rain()
 
-    def light():
-        bg = S3_SK.storm_sky(strength=1.0, tint=(0.24, 0.28, 0.36), horizon=(0.42, 0.46, 0.54))
-        bpy.context.scene["s3_world_base"] = 1.0
-        S3_LOC._area("storm fill", (0.6, -2.2, 2.6), 3.0, 70.0, (0.62, 0.72, 1.0), aim=(0, 0, 0.3))
-        ld = bpy.data.lights.new("storm sky", 'SUN'); ld.energy = 0.5; ld.color = (0.62, 0.72, 1.0); ld.angle = math.radians(12)
-        o = bpy.data.objects.new("storm sky", ld); bpy.context.collection.objects.link(o); o.rotation_euler = (math.radians(35), 0, math.radians(200))
-        # the sky over the far range rims the trees from behind (strike() flashes it)
-        rd = bpy.data.lights.new("s3 rim", 'SUN'); rd.energy = 3.0; rd.color = (0.7, 0.78, 1.0); rd.angle = math.radians(6)
-        ro = bpy.data.objects.new("s3 rim", rd); bpy.context.collection.objects.link(ro); ro.rotation_euler = (math.radians(-72), 0, math.radians(-12))
-        ro.visible_glossy = False; o.visible_glossy = False      # (their glints on the lake read as lamps on the shore)
-        k = S3_LOC._hero_key(); k.data.color = (0.86, 0.9, 1.0); return k
-    return light
-
-def s3_fulgurite(name):
-    """a FULGURITE, drawn to read as GLASS at a glance on a phone: a thick, smooth, translucent trunk (thickest at the
-    top, where it met the surface) whose top third is a plain spike (what shows above the sand) and whose buried part
-    forks into a few thick branching roots. Pale clear glass with an orange core glowing from inside while it is hot
-    (the value node 'hot'), sharp highlights. One mesh whose origin is the grip (S3_GRIP up the trunk); local +Z runs
-    to the top end."""
-    import bmesh
-    rnd = s3_random.Random(23)
-    tubes = []   # (points bottom->top or base->tip, r0 at first point, r1 at last point)
-    trunk = S3_SK._jag((0, 0, 0), (0, 0, S3_LEN), rnd, depth=3, rough=0.035)
-    for p in trunk: p.y *= 0.35; p.x *= 0.8
-    trunk[-1] = Vector((trunk[-1].x * 0.4, trunk[-1].y * 0.4, S3_LEN))
-    tubes.append((trunk, 0.03, 0.042))
-    # the roots: only on the buried part (the spike above the sand is plain), fanning out sideways and down
-    bases = [0.02, 0.07, 0.12, 0.17, 0.05]
-    for k, s in enumerate(bases):
-        i = max(1, min(len(trunk) - 2, int(round(s / S3_LEN * (len(trunk) - 1)))))
-        a = trunk[i]; ang = 2.1 * k + 0.4
-        L = rnd.uniform(0.12, 0.2) * (1.0 - 0.3 * s / 0.2)
-        d = Vector((math.cos(ang), 0.45 * math.sin(ang), -rnd.uniform(0.25, 0.5))).normalized()
-        b = a + d * L
-        br = S3_SK._jag(a, b, rnd, depth=2, rough=0.12)
-        r0 = 0.024 * (1.0 - 0.25 * s / 0.2)
-        tubes.append((br, r0, 0.006))
-        if k in (0, 3):                                            # a fork off the root
-            j = len(br) // 2; d2 = (d + Vector((-math.sin(ang), 0.3 * math.cos(ang), -0.6))).normalized()
-            tw = S3_SK._jag(br[j], br[j] + d2 * L * 0.55, rnd, depth=2, rough=0.12)
-            tubes.append((tw, r0 * 0.6, 0.005))
-    bm = bmesh.new()
-    for pts, r0, r1 in tubes:
-        cu = bpy.data.curves.new("fulg tmp", 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = 1.0; cu.bevel_resolution = 1
-        cu.resolution_u = 2; cu.use_fill_caps = True
-        sp = cu.splines.new('POLY'); sp.points.add(len(pts) - 1)
-        for i, p in enumerate(pts):
-            u = i / max(1, len(pts) - 1)
-            sp.points[i].co = (p.x, p.y, p.z - S3_GRIP, 1); sp.points[i].radius = r0 + (r1 - r0) * u
-        tmp = bpy.data.objects.new("fulg tmp", cu); bpy.context.collection.objects.link(tmp)
-        bpy.context.view_layer.update(); ev = tmp.evaluated_get(bpy.context.evaluated_depsgraph_get())
-        me = bpy.data.meshes.new_from_object(ev); bm.from_mesh(me)
-        bpy.data.objects.remove(tmp); bpy.data.meshes.remove(me); bpy.data.curves.remove(cu)
-    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
-    for p in me.polygons: p.use_smooth = False          # faceted: flat faces that each catch a highlight read as glass/crystal
-    o = bpy.data.objects.new(name, me); bpy.context.collection.objects.link(o)
-    tx = bpy.data.textures.new("fulgurite lumps", 'CLOUDS'); tx.noise_scale = 0.03; tx.noise_depth = 1
-    dm = o.modifiers.new("lumps", 'DISPLACE'); dm.texture = tx; dm.strength = 0.004; dm.texture_coords = 'LOCAL'
-    # material: clear pale glass (transmission, glossy coat) with a molten orange core that shows through the middle of
-    # every tube (strong where the surface faces the lens, gone at the rims, so the rims stay clear glass)
-    m = bpy.data.materials.new("fulgurite glass"); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
-    bs.inputs["Base Color"].default_value = (*K.lin("#8FCFC6"), 1)
-    bs.inputs["Transmission Weight"].default_value = 1.0; bs.inputs["IOR"].default_value = 1.45
-    bs.inputs["Roughness"].default_value = 0.03; bs.inputs["Specular IOR Level"].default_value = 1.0
-    try: bs.inputs["Coat Weight"].default_value = 0.6; bs.inputs["Coat Roughness"].default_value = 0.02
-    except KeyError: pass
-    tc = nt.nodes.new("ShaderNodeTexCoord")
-    gr = nt.nodes.new("ShaderNodeTexNoise"); gr.inputs["Scale"].default_value = 70; gr.inputs["Detail"].default_value = 3
-    nt.links.new(tc.outputs["Object"], gr.inputs["Vector"])
-    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.25; bp.inputs["Distance"].default_value = 0.003
-    nt.links.new(gr.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
-    lw = nt.nodes.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = 0.5
-    core = nt.nodes.new("ShaderNodeMapRange"); core.inputs["From Min"].default_value = 0.05; core.inputs["From Max"].default_value = float(os.environ.get("S3_CORE", "0.42"))
-    core.inputs["To Min"].default_value = 1.0; core.inputs["To Max"].default_value = 0.0
-    nt.links.new(lw.outputs["Facing"], core.inputs["Value"])
-    swirl = nt.nodes.new("ShaderNodeTexNoise"); swirl.inputs["Scale"].default_value = 18; swirl.inputs["Detail"].default_value = 4
-    nt.links.new(tc.outputs["Object"], swirl.inputs["Vector"])
-    sw = nt.nodes.new("ShaderNodeMapRange"); sw.inputs["From Min"].default_value = 0.3; sw.inputs["From Max"].default_value = 0.7
-    sw.inputs["To Min"].default_value = 0.45; sw.inputs["To Max"].default_value = 1.0
-    nt.links.new(swirl.outputs["Fac"], sw.inputs["Value"])
-    cm = nt.nodes.new("ShaderNodeMath"); cm.operation = 'MULTIPLY'; nt.links.new(core.outputs["Result"], cm.inputs[0]); nt.links.new(sw.outputs["Result"], cm.inputs[1])
-    hv = nt.nodes.new("ShaderNodeValue"); hv.name = "hot"; hv.outputs[0].default_value = 0.0
-    es = nt.nodes.new("ShaderNodeMath"); es.operation = 'MULTIPLY'; nt.links.new(cm.outputs[0], es.inputs[0]); nt.links.new(hv.outputs[0], es.inputs[1])
-    es3 = nt.nodes.new("ShaderNodeMath"); es3.operation = 'MULTIPLY'; es3.inputs[1].default_value = float(os.environ.get("S3_HOTK", "0.22")); nt.links.new(es.outputs[0], es3.inputs[0])
-    nt.links.new(es3.outputs[0], bs.inputs["Emission Strength"])
-    # white-hot at the strike, cooling to orange (the value node 'heat': 1 white-yellow .. 0 deep orange)
-    hc = nt.nodes.new("ShaderNodeValue"); hc.name = "heat"; hc.outputs[0].default_value = 0.0
-    ora = nt.nodes.new("ShaderNodeRGB"); ora.outputs[0].default_value = (1.0, 0.13, 0.0, 1)
-    wht = nt.nodes.new("ShaderNodeRGB"); wht.outputs[0].default_value = (1.0, 0.82, 0.5, 1)
-    hm = nt.nodes.new("ShaderNodeMix"); hm.data_type = 'RGBA'
-    nt.links.new(hc.outputs[0], hm.inputs[0]); nt.links.new(ora.outputs[0], hm.inputs[6]); nt.links.new(wht.outputs[0], hm.inputs[7])
-    nt.links.new(hm.outputs[2], bs.inputs["Emission Color"])
-    me.materials.append(m)
-    o.rotation_mode = 'QUATERNION'
-    return o, m
 def s3_puff_mat(name, col, emit=0.0):
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
     for n in list(nt.nodes): nt.nodes.remove(n)
@@ -3532,200 +3282,687 @@ def s3_glint(name, cam, at_fn, t0, dur=0.5, size=0.11):
         root.keyframe_insert("location", frame=f); root.keyframe_insert("scale", frame=f)
     return root
 
+
+# ================================================================ the remake: the glass jar (b4_)
+from mathutils import Quaternion
+B4_R = 0.355         # the jar's wall, outer radius (his hat brim is 0.24 from his centre, a flung mitten 0.25)
+B4_T = 0.024         # its thickness
+B4_STUMP = 0.16      # the fraction of its height that stays fused in the sand when it bursts
+B4_YAW = -21.0       # he faces this way (front = (sin, -cos)); the lens is 40 degrees round to his front-right
+B4_C = Vector((0.0, 0.0, 0.0))   # where he stands, the jar's centre
+
+
+def b4_rim(th):
+    """the jar's rim height round its circle: a ragged crown of splash points, like molten sand frozen mid-splash"""
+    return 0.4 + 0.025 * math.sin(3 * th + 1.0) + 0.065 * max(0.0, math.sin(7 * th + 0.5)) ** 6 + 0.015 * math.sin(13 * th + 2.0)
+
+
+def b4_r(th, u, inner=False):
+    """the wall's radius at angle th, a fraction u up it: lumpy, with a molten skirt flaring out into the sand"""
+    w = 0.012 * math.sin(5 * th + 6 * u) + 0.008 * math.sin(11 * th - 3 * u)
+    if inner: return B4_R - B4_T + w * 0.6
+    return B4_R + w + 0.05 * (1 - u) ** 9 + 0.015 * (1 - u) ** 2
+
+
+def b4_wall_pt(th, u, inner=False):
+    r = b4_r(th, u, inner); return Vector((r * math.cos(th), r * math.sin(th), u * b4_rim(th) - (0.004 if inner and u > 0.99 else 0.0)))
+
+
+def b4_jar_mesh(name, u0=0.0, u1=1.0, nth=96, nz=20, i0=0, i1=None):
+    """a closed glass wall (outer face, inner face, a rounded lip on top, a ring underneath) from u0 to u1 of its height"""
+    import bmesh
+    bm = bmesh.new(); outer, inner, lip = [], [], []
+    i1 = nth if i1 is None else i1; closed = i0 == 0 and i1 == nth
+    for i in range(i0, i1 + (0 if closed else 1)):
+        th = 2 * math.pi * i / nth
+        outer.append([bm.verts.new(b4_wall_pt(th, u0 + (u1 - u0) * k / nz)) for k in range(nz + 1)])
+        inner.append([bm.verts.new(b4_wall_pt(th, u0 + (u1 - u0) * k / nz, True)) for k in range(nz + 1)])
+        po, pi_ = b4_wall_pt(th, u1), b4_wall_pt(th, u1, True)
+        lip.append(bm.verts.new(((po + pi_) / 2) + Vector((0, 0, 0.009 if u1 > 0.99 else 0.004))))
+    m_ = len(outer)
+    for i in range(m_ if closed else m_ - 1):
+        j = (i + 1) % m_
+        for k in range(nz):
+            bm.faces.new((outer[i][k], outer[j][k], outer[j][k + 1], outer[i][k + 1]))
+            bm.faces.new((inner[i][k], inner[i][k + 1], inner[j][k + 1], inner[j][k]))
+        bm.faces.new((outer[i][nz], outer[j][nz], lip[j], lip[i]))
+        bm.faces.new((lip[i], lip[j], inner[j][nz], inner[i][nz]))
+        bm.faces.new((inner[i][0], inner[j][0], outer[j][0], outer[i][0]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    for p in me.polygons: p.use_smooth = True
+    return me
+
+
+def b4_glass_mat():
+    """the jar's glass: clear, glossy, a faint green, that GLOWS molten orange below a cooling front (value 'front',
+    0..1.2 of the height; 'hot' its strength), with a web of white-hot cracks racing out from where bolt two hit
+    ('crack' the reach in metres, 'hitp' the point) and the whole jar lit white-blue by the strike ('flash').
+    Transparent to shadow rays, so he is lit inside it."""
+    m = bpy.data.materials.new("b4 jar glass"); m.use_nodes = True; nt = m.node_tree
+    out = nt.nodes["Material Output"]; bs = nt.nodes["Principled BSDF"]
+    bs.inputs["Base Color"].default_value = (*K.lin("#E4F0E6"), 1); bs.inputs["Roughness"].default_value = 0.02
+    bs.inputs["Transmission Weight"].default_value = 1.0; bs.inputs["IOR"].default_value = 1.3
+    tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sep.inputs[0])
+    def val(nm, v):
+        n = nt.nodes.new("ShaderNodeValue"); n.name = nm; n.label = nm; n.outputs[0].default_value = v; return n.outputs[0]
+    def math_(op, a, b=None, clamp=False):
+        n = nt.nodes.new("ShaderNodeMath"); n.operation = op; n.use_clamp = clamp
+        for k, x in enumerate((a, b)):
+            if x is None: continue
+            if isinstance(x, (int, float)): n.inputs[k].default_value = x
+            else: nt.links.new(x, n.inputs[k])
+        return n.outputs[0]
+    zn = math_('MULTIPLY', sep.outputs["Z"], 1.0 / 0.48)
+    front, hot, crack, flash = val("front", 1.2), val("hot", 0.0), val("crack", 0.0), val("flash", 0.0)
+    swirl = nt.nodes.new("ShaderNodeTexNoise"); swirl.inputs["Scale"].default_value = 7.0; swirl.inputs["Detail"].default_value = 4.0
+    nt.links.new(tc.outputs["Object"], swirl.inputs["Vector"])
+    d = math_('SUBTRACT', front, zn)
+    d = math_('ADD', d, math_('MULTIPLY', math_('SUBTRACT', swirl.outputs["Fac"], 0.5), 0.25))
+    mask = math_('MULTIPLY', math_('SUBTRACT', d, -0.02), 1 / 0.16, clamp=True)
+    ramp = nt.nodes.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].color = (*K.lin("#8A1E06"), 1)
+    ramp.color_ramp.elements[1].color = (*K.lin("#FFC060"), 1); e = ramp.color_ramp.elements.new(0.45); e.color = (*K.lin("#FF6A12"), 1)
+    nt.links.new(math_('MULTIPLY', mask, swirl.outputs["Fac"]), ramp.inputs["Fac"])
+    heat = math_('MULTIPLY', mask, hot)
+    vor = nt.nodes.new("ShaderNodeTexVoronoi"); vor.feature = 'DISTANCE_TO_EDGE'; vor.inputs["Scale"].default_value = 11.0
+    nt.links.new(tc.outputs["Object"], vor.inputs["Vector"])
+    line = math_('LESS_THAN', vor.outputs["Distance"], 0.045)
+    hp = nt.nodes.new("ShaderNodeCombineXYZ"); hp.name = "hitp"
+    dist = nt.nodes.new("ShaderNodeVectorMath"); dist.operation = 'DISTANCE'
+    nt.links.new(tc.outputs["Object"], dist.inputs[0]); nt.links.new(hp.outputs[0], dist.inputs[1])
+    reach = math_('MULTIPLY', math_('SUBTRACT', crack, dist.outputs["Value"]), 1 / 0.06, clamp=True)
+    ck = math_('MULTIPLY', math_('MULTIPLY', line, reach), 12.0)
+    def scale(col_sock, s):
+        n = nt.nodes.new("ShaderNodeVectorMath"); n.operation = 'SCALE'
+        nt.links.new(col_sock, n.inputs[0]); nt.links.new(s, n.inputs["Scale"]); return n.outputs[0]
+    def rgb(col):
+        n = nt.nodes.new("ShaderNodeRGB"); n.outputs[0].default_value = (*col, 1); return n.outputs[0]
+    def add(a, b):
+        n = nt.nodes.new("ShaderNodeVectorMath"); n.operation = 'ADD'; nt.links.new(a, n.inputs[0]); nt.links.new(b, n.inputs[1]); return n.outputs[0]
+    em = add(add(scale(ramp.outputs["Color"], heat), scale(rgb((0.85, 0.92, 1.0)), ck)), scale(rgb((0.6, 0.75, 1.0)), math_('MULTIPLY', flash, 0.12)))
+    nt.links.new(em, bs.inputs["Emission Color"]); bs.inputs["Emission Strength"].default_value = 1.0
+    # molten glass is opaque-ish orange; cooled glass is clear: the base colour darkens toward amber where it is hot
+    lp = nt.nodes.new("ShaderNodeLightPath"); tr = nt.nodes.new("ShaderNodeBsdfTransparent"); mx = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(lp.outputs["Is Shadow Ray"], mx.inputs["Fac"]); nt.links.new(bs.outputs[0], mx.inputs[1]); nt.links.new(tr.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], out.inputs["Surface"])
+    return m
+
+
+def b4_shard_mat():
+    """the shards: the same clear glass, faintly amber at heart, lit by bolt two as they burst ('glow', keyed)"""
+    m = bpy.data.materials.new("b4 shard glass"); m.use_nodes = True; nt = m.node_tree
+    out = nt.nodes["Material Output"]; bs = nt.nodes["Principled BSDF"]
+    bs.inputs["Base Color"].default_value = (*K.lin("#EAF2E8"), 1); bs.inputs["Roughness"].default_value = 0.02
+    bs.inputs["Transmission Weight"].default_value = 1.0; bs.inputs["IOR"].default_value = 1.35
+    g = nt.nodes.new("ShaderNodeValue"); g.name = "glow"; g.outputs[0].default_value = 0.0
+    bs.inputs["Emission Color"].default_value = (*K.lin("#FFB070"), 1); nt.links.new(g.outputs[0], bs.inputs["Emission Strength"])
+    lp = nt.nodes.new("ShaderNodeLightPath"); tr = nt.nodes.new("ShaderNodeBsdfTransparent"); mx = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(lp.outputs["Is Shadow Ray"], mx.inputs["Fac"]); nt.links.new(bs.outputs[0], mx.inputs[1]); nt.links.new(tr.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], out.inputs["Surface"])
+    return m
+
+
+def b4_shards(C, mat, n_th=13, seed=5):
+    """the jar's wall above the stump broken into curved shards (13 round x 3 up, jagged corners): [(obj, centre
+    local to C, outward normal)]. Each has its origin at its centre, laid exactly where it was in the wall."""
+    import bmesh
+    rnd = random.Random(seed); us = [B4_STUMP, 0.43, 0.71, 1.0]; nz = len(us) - 1
+    base = [2 * math.pi * i / n_th + rnd.uniform(-0.1, 0.1) for i in range(n_th)]
+    cor = {}
+    for i in range(n_th):
+        for j in range(nz + 1):
+            th = base[i] + (rnd.uniform(-0.12, 0.12) if 0 < j < nz else 0.0)
+            u = us[j] + (rnd.uniform(-0.07, 0.07) if 0 < j < nz else 0.0)
+            cor[(i, j)] = (th, u)
+    out = []
+    for i in range(n_th):
+        for j in range(nz):
+            a, b, c, d = cor[(i, j)], cor[((i + 1) % n_th, j)], cor[((i + 1) % n_th, j + 1)], cor[(i, j + 1)]
+            def fix(p):        # unwrap the angle across 2 pi
+                return (p[0] + 2 * math.pi if p[0] < a[0] - math.pi else p[0], p[1])
+            b, c, d = fix(b), fix(c), fix(d)
+            NU, NV = 4, 3
+            def P(s, v, inner):
+                th = (a[0] * (1 - s) + b[0] * s) * (1 - v) + (d[0] * (1 - s) + c[0] * s) * v
+                u = (a[1] * (1 - s) + b[1] * s) * (1 - v) + (d[1] * (1 - s) + c[1] * s) * v
+                return b4_wall_pt(th, u, inner)
+            pts_o = [[P(s / NU, v / NV, False) for s in range(NU + 1)] for v in range(NV + 1)]
+            pts_i = [[P(s / NU, v / NV, True) for s in range(NU + 1)] for v in range(NV + 1)]
+            cen = sum((p for row in pts_o + pts_i for p in row), Vector()) / (2 * (NU + 1) * (NV + 1))
+            bm = bmesh.new()
+            vo = [[bm.verts.new(p - cen) for p in row] for row in pts_o]
+            vi = [[bm.verts.new(p - cen) for p in row] for row in pts_i]
+            for v in range(NV):
+                for s in range(NU):
+                    bm.faces.new((vo[v][s], vo[v][s + 1], vo[v + 1][s + 1], vo[v + 1][s]))
+                    bm.faces.new((vi[v][s], vi[v + 1][s], vi[v + 1][s + 1], vi[v][s + 1]))
+            ring_o = [vo[0][s] for s in range(NU + 1)] + [vo[v][NU] for v in range(1, NV + 1)] + [vo[NV][s] for s in range(NU - 1, -1, -1)] + [vo[v][0] for v in range(NV - 1, 0, -1)]
+            ring_i = [vi[0][s] for s in range(NU + 1)] + [vi[v][NU] for v in range(1, NV + 1)] + [vi[NV][s] for s in range(NU - 1, -1, -1)] + [vi[v][0] for v in range(NV - 1, 0, -1)]
+            for k in range(len(ring_o)):
+                k2 = (k + 1) % len(ring_o)
+                bm.faces.new((ring_o[k], ring_i[k], ring_i[k2], ring_o[k2]))
+            bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+            me = bpy.data.meshes.new(f"b4 shard {i}.{j}"); bm.to_mesh(me); bm.free(); me.materials.append(mat)
+            o = bpy.data.objects.new(f"b4 shard {i}.{j}", me); bpy.context.collection.objects.link(o)
+            o.location = C + cen; o.rotation_mode = 'QUATERNION'; o.visible_shadow = False
+            thc = (a[0] + c[0]) / 2
+            out.append((o, cen, Vector((math.cos(thc), math.sin(thc), 0))))
+    return out
+
+
+def b4_spray(prefix, P, t0, n, seed, away=None, speed=(0.5, 1.2), up=(1.0, 2.0), g=6.0, hot=0.5, r=0.007, mat=None):
+    """grains thrown out of P at t0 (sand, embers or molten drops), only in directions AWAY from `away` (his centre):
+    nothing flies into him"""
+    rnd = random.Random(seed)
+    sand = K.mat("b4 thrown sand", "#8A7052", rough=0.8)
+    ember = mat or bpy.data.materials.get("ember") or K.mat("ember", "#FF7A20", rough=0.5, emit=18.0)
+    out = []
+    for i in range(n):
+        m = ember if rnd.random() < hot else sand
+        o = K.sph(f"{prefix} grain {i}", (P.x, P.y, -1), r * rnd.uniform(0.6, 1.4), m, seg=8, ring=4); o.visible_shadow = False; out.append(o)
+        while True:
+            a = rnd.uniform(0, 2 * math.pi); dv = Vector((math.cos(a), math.sin(a), 0))
+            if away is None or dv.dot((Vector((P.x, P.y, 0)) - Vector((away.x, away.y, 0))).normalized()) > 0.35: break
+        v = rnd.uniform(*speed); vz = rnd.uniform(*up); ts = t0 + rnd.uniform(0, 0.05)
+        land = (vz + math.sqrt(vz * vz + 2 * g * max(0.0, P.z))) / g
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; dt = t - ts
+            if dt < 0: o.location = (P.x, P.y, -0.5); o.scale = (0, 0, 0)
+            elif dt <= land:
+                o.location = (P.x + dv.x * v * dt, P.y + dv.y * v * dt, P.z + 0.01 + vz * dt - 0.5 * g * dt * dt); o.scale = (1, 1, 1)
+            else:
+                o.location = (P.x + dv.x * v * land, P.y + dv.y * v * land, 0.004); o.scale = (1, 1, 1) if m is sand else (0, 0, 0)
+            o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
+    return out
+
+
+# ---------------------------------------------------------------- the beach, dressed
+def b4_canoe(name, loc, yaw, L=1.5, mat=None, trim=None):
+    """a canoe hauled up on the sand and turned over: a long pointed hull, keel up, a dark gunwale"""
+    import bmesh
+    bm = bmesh.new(); nu, nv = 28, 14; rows = []
+    for i in range(nu + 1):
+        u = -1 + 2 * i / nu; w = 0.2 * max(0.0, 1 - u * u) ** 0.55; dd = 0.17 * max(0.0, 1 - u * u) ** 0.25 + 0.03 * u ** 4
+        row = []
+        for j in range(nv + 1):
+            v = -1 + 2 * j / nv; a = v * math.pi / 2
+            row.append(bm.verts.new((u * L / 2, w * math.sin(a), dd * math.cos(a))))
+        rows.append(row)
+    for i in range(nu):
+        for j in range(nv):
+            bm.faces.new((rows[i][j], rows[i + 1][j], rows[i + 1][j + 1], rows[i][j + 1]))
+    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free(); me.materials.append(mat)
+    for p in me.polygons: p.use_smooth = True
+    o = bpy.data.objects.new(name, me); bpy.context.collection.objects.link(o)
+    sd = o.modifiers.new("hull", 'SOLIDIFY'); sd.thickness = 0.012
+    from mathutils import Matrix as _M
+    W = _M.Translation(loc) @ _M.Rotation(yaw, 4, 'Z') @ _M.Rotation(0.05, 4, 'Y')
+    o.matrix_world = W
+    parts = [K.box(name + " keel", (0, 0, 0.18), (L * 0.92, 0.02, 0.016), trim, bev=0)]
+    for s in (-1, 1):
+        parts.append(K.box(name + f" gunwale {s}", (0, s * 0.2, 0.012), (L * 0.66, 0.02, 0.024), trim, bev=0))
+    for q in parts: q.matrix_world = W @ q.matrix_world
+    return o
+
+
+def b4_reeds(name, loc, n, seed, mat, h=(0.35, 0.65), spread=0.13):
+    """a clump of lake reeds: thin tapering blades out of one root, each bent its own way by the wind"""
+    rnd = random.Random(seed); verts, faces = [], []
+    for k in range(n):
+        bx, by = rnd.gauss(0, spread), rnd.gauss(0, spread * 0.7); H = rnd.uniform(*h)
+        lean = Vector((rnd.uniform(-0.3, 0.3) + 0.15, rnd.uniform(-0.25, 0.25), 0)); w0 = rnd.uniform(0.005, 0.009)
+        side = Vector((-lean.y, lean.x, 0)).normalized() if lean.length > 1e-3 else Vector((1, 0, 0))
+        prev = None
+        for i in range(6):
+            u = i / 5; c = Vector((bx, by, 0)) + Vector((0, 0, H * u)) + lean * (H * u * u)
+            w = w0 * (1 - u) + 0.0008
+            verts += [tuple(c + side * w), tuple(c - side * w)]; nv = len(verts)
+            if prev is not None: faces.append((prev, prev + 1, nv - 1, nv - 2))
+            prev = nv - 2
+    me = bpy.data.meshes.new(name); me.from_pydata(verts, [], faces); me.update(); me.materials.append(mat)
+    o = bpy.data.objects.new(name, me); bpy.context.collection.objects.link(o); o.location = loc
+    return o
+
+
+def b4_dock(rnd, wood, dark):
+    """an old wooden dock running out into the lake from the beach: posts in pairs, a deck of weathered planks, one
+    missing, a mooring cleat"""
+    a = Vector((1.0, 1.75, 0.0)); d = Vector((-0.12, 1.0, 0.0)).normalized(); side = Vector((d.y, -d.x, 0.0))
+    yaw = math.atan2(d.y, d.x); n_post = 6; L = 4.6
+    for k in range(n_post):
+        p = a + d * (0.25 + k * 0.85)
+        for s in (-1, 1):
+            q = p + side * (0.33 * s)
+            o = K.cyl(f"dock post {k}{s}", (q.x, q.y, 0.18), 0.045, 0.62, dark, v=10, bev=0); o.rotation_euler = (rnd.uniform(-0.04, 0.04), rnd.uniform(-0.04, 0.04), 0)
+    k = 0; s_ = 0.0
+    while s_ < L:
+        if k != 17:
+            p = a + d * s_
+            o = K.box(f"dock plank {k}", (p.x, p.y, 0.30 + rnd.uniform(-0.006, 0.006)), (0.13, 0.78 + rnd.uniform(-0.03, 0.03), 0.028), wood, bev=0.004)
+            o.rotation_euler = (rnd.uniform(-0.02, 0.02), 0, yaw + rnd.uniform(-0.03, 0.03))
+        s_ += 0.155; k += 1
+    for s in (-1, 1):                     # the stringers under the planks
+        p = a + d * (L / 2) + side * (0.3 * s)
+        o = K.box(f"dock stringer {s}", (p.x, p.y, 0.26), (L, 0.06, 0.06), dark, bev=0); o.rotation_euler = (0, 0, yaw)
+
+
+def place_lake_beach():
+    """the LAKE BEACH below the forest, in the rain, DRESSED (the EMPTY check): wet rippled sand with his footprints
+    coming down it, pebbles and shells, a tideline of weed, a canoe hauled up and turned over, an old dock running out
+    into the lake, reeds at the water, a rocky shore, driftwood; the dark lake with small waves; the far forest."""
+    rnd = random.Random(41)
+    import bmesh
+    bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=60, y_segments=60, size=5.0)
+    for v in bm.verts: v.co.y += 3.0
+    me = bpy.data.meshes.new("ground beach"); bm.to_mesh(me); bm.free()
+    gr = bpy.data.objects.new("ground beach", me); bpy.context.collection.objects.link(gr)
+    sand = s3_sand_mat(); me.materials.append(sand)
+    bpn = next(n for n in sand.node_tree.nodes if n.type == 'BUMP'); bpn.inputs["Strength"].default_value = 0.8
+    for n_ in sand.node_tree.nodes:      # late in the storm: soaked dark, glossy wet sand
+        if n_.type == 'VALTORGB':
+            n_.color_ramp.elements[0].color = (*K.lin("#6A5236"), 1); n_.color_ramp.elements[1].color = (*K.lin("#86683F"), 1)
+        if n_.type == 'MAP_RANGE' and abs(n_.inputs["To Min"].default_value - 0.75) < 1e-6:
+            n_.inputs["To Min"].default_value = 0.35; n_.inputs["To Max"].default_value = 0.08
+    snt = sand.node_tree; wvn = next(n for n in snt.nodes if n.type == 'TEX_WAVE'); wvn.inputs["Scale"].default_value = 3.4
+    bsn = snt.nodes["Principled BSDF"]; src = bsn.inputs["Base Color"].links[0].from_socket      # the ripples' troughs hold
+    rr = snt.nodes.new("ShaderNodeMapRange"); rr.inputs["To Min"].default_value = 0.62; rr.inputs["To Max"].default_value = 1.0   # water: darker
+    snt.links.new(wvn.outputs["Fac"], rr.inputs["Value"])
+    mul = snt.nodes.new("ShaderNodeMix"); mul.data_type = 'RGBA'; mul.blend_type = 'MULTIPLY'; mul.inputs[0].default_value = 1.0
+    cmb = snt.nodes.new("ShaderNodeCombineColor"); snt.links.new(rr.outputs["Result"], cmb.inputs[0]); snt.links.new(rr.outputs["Result"], cmb.inputs[1]); snt.links.new(rr.outputs["Result"], cmb.inputs[2])
+    snt.links.new(src, mul.inputs[6]); snt.links.new(cmb.outputs[0], mul.inputs[7]); snt.links.new(mul.outputs[2], bsn.inputs["Base Color"])
+    # the lake: calm, dark, glossy, pocked by the rain
+    bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=80, y_segments=60, size=1.0)
+    for v in bm.verts: v.co.x *= 90; v.co.y = v.co.y * 29 + 30.3
+    me = bpy.data.meshes.new("lake"); bm.to_mesh(me); bm.free()
+    lake = bpy.data.objects.new("lake", me); bpy.context.collection.objects.link(lake); lake.location.z = 0.006
+    lm = bpy.data.materials.new("lake water"); lm.use_nodes = True; nt = lm.node_tree; b = nt.nodes["Principled BSDF"]
+    b.inputs["Base Color"].default_value = (*K.lin("#0E1719"), 1); b.inputs["Roughness"].default_value = 0.05
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    rip = nt.nodes.new("ShaderNodeTexVoronoi"); rip.feature = 'DISTANCE_TO_EDGE'; rip.inputs["Scale"].default_value = 26
+    nt.links.new(tc.outputs["Object"], rip.inputs["Vector"])
+    sw = nt.nodes.new("ShaderNodeTexWave"); sw.inputs["Scale"].default_value = 1.1; sw.bands_direction = 'Y'; sw.inputs["Distortion"].default_value = 4.0
+    sw.inputs["Detail"].default_value = 4.0
+    nt.links.new(tc.outputs["Object"], sw.inputs["Vector"])
+    ad = nt.nodes.new("ShaderNodeMath"); ad.operation = 'MULTIPLY_ADD'; ad.inputs[1].default_value = 0.5
+    nt.links.new(rip.outputs["Distance"], ad.inputs[0]); nt.links.new(sw.outputs["Fac"], ad.inputs[2])
+    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.25; bp.inputs["Distance"].default_value = 0.03
+    nt.links.new(ad.outputs[0], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
+    me.materials.append(lm)
+    wet = s3_strip("lake edge wet", 14.0, 0.45, s3_wash_mat(), seed=3)
+    wet.location = (0, 1.25, 0.003); s3_key_fade(wet, 1, 0.8)
+    fm = s3_foam_mat()
+    for k, (yo, yi, per, ph) in enumerate(((1.75, 1.08, 2.6, 0.0), (1.85, 1.15, 2.9, 0.45), (1.7, 1.12, 2.4, 0.75), (2.3, 1.5, 3.1, 0.2))):
+        s3_wave(f"lake wave {k}", fm, 40 + k, yo, yi, per, ph)
+    s3_mountains(rnd)
+    fs = K.box("far shore", (0, 52.0, 0.05), (140.0, 16.0, 0.2), S3_LOC._noise_mat("far shore floor", "#26302A", "#3A4234", scale=0.4, rough=0.9, bump=0.2), bev=0)
+    s3_pines(rnd, [(rnd.uniform(-45, 45), rnd.uniform(44.5, 50.0)) for _ in range(220)], scale=(0.7, 1.15))
+    # the near forest edge, along the beach's back to the left: the trail he came down
+    s3_pines(rnd, [(rnd.uniform(-9.0, -3.2), rnd.uniform(-3.0, 2.0)) for _ in range(22)], scale=(0.5, 0.75))
+    # the dock, the canoe, the reeds
+    wood = S3_LOC._noise_mat("b4 dock wood", "#5E5246", "#8A7C6A", scale=2.5, rough=0.75, bump=0.7)
+    dark = S3_LOC._noise_mat("b4 dock post", "#2E2620", "#4A3E32", scale=4.0, rough=0.85, bump=0.6)
+    b4_dock(rnd, wood, dark)
+    hull = S3_LOC._noise_mat("b4 canoe hull", "#2F5A3C", "#3E7050", scale=1.6, rough=0.4, bump=0.15)
+    trim = S3_LOC._noise_mat("b4 canoe trim", "#3A2A1E", "#55402E", scale=6.0, rough=0.6, bump=0.3)
+    b4_canoe("b4 canoe", (-0.95, 0.62, 0.0), math.radians(64), mat=hull, trim=trim)
+    reed = S3_LOC._noise_mat("b4 reeds", "#4E5A2E", "#8A8450", scale=9.0, rough=0.7, bump=0.2)
+    for k, (x, y, n) in enumerate(((-1.45, 1.4, 40), (-0.6, 1.55, 30), (1.05, 1.5, 34), (-2.1, 1.6, 44), (0.15, 1.9, 26), (-1.0, 2.2, 30))):
+        b4_reeds(f"b4 reeds {k}", (x, y, 0.0), n, 70 + k, reed)
+    # a rocky shore: granite boulders along the water to the left, smaller rocks spilling down the beach
+    granite = S3_LOC._noise_mat("granite", "#5A564F", "#77716A", scale=5.0, rough=0.8, bump=0.5)
+    dgran = S3_LOC._noise_mat("granite wet", "#3E3B37", "#57534D", scale=6.0, rough=0.3, bump=0.5)
+    for i in range(16):
+        x = rnd.uniform(-2.6, -1.3); y = rnd.uniform(1.0, 2.0); r = rnd.uniform(0.08, 0.26)
+        o = K.sph(f"b4 shore rock {i}", (x, y, r * 0.25), r, dgran if y > 1.3 else granite, scale=(rnd.uniform(1.0, 1.5), 1.0, rnd.uniform(0.45, 0.7)))
+        o.rotation_euler = (rnd.uniform(-0.2, 0.2), rnd.uniform(-0.2, 0.2), rnd.uniform(0, 6.3))
+    for i, (x, y, r) in enumerate(((-0.55, -0.55, 0.09), (-0.72, -0.35, 0.05), (0.62, 0.35, 0.07), (-0.3, 0.9, 0.06), (0.75, -0.7, 0.05))):
+        o = K.sph(f"b4 rock {i}", (x, y, r * 0.3), r, granite, scale=(1.3, 1.0, 0.6)); o.rotation_euler.z = rnd.uniform(0, 6.3)
+    # driftwood: a big bleached log in the foreground and branches at the tideline
+    drift = s4_mat("b4 driftwood", "#4E4236", "#8C7C66", scale=6.0, rough=0.7, bump=1.2, stretch=(1, 1, 8), lo=0.35, hi=0.65)
+    for i, (x, y, L, r, a) in enumerate(((-0.75, 0.05, 0.9, 0.045, 1.0), (-0.35, 1.05, 0.8, 0.03, -0.25), (0.95, 0.95, 0.6, 0.028, -0.45), (-1.4, 0.2, 0.7, 0.035, 1.2))):
+        o = K.cyl(f"ground driftwood {i}", (x, y, r * 0.8), r, L, drift, v=12, bev=0)
+        o.rotation_euler = (0, math.radians(90), a)
+        for k in range(2):
+            u = (k + 0.5) / 2 - 0.5
+            st = K.cyl(f"ground driftwood {i} stub {k}", (x + L * u * math.cos(a) + 0.12 * math.cos(a + 1.9 + k), y + L * u * math.sin(a) + 0.12 * math.sin(a + 1.9 + k), r * 0.6),
+                       r * 0.45, 0.22, drift, v=8, bev=0)
+            st.rotation_euler = (0, math.radians(90), a + 0.9 + 1.4 * k)
+    # the tideline: dark strands of lake weed and twigs the waves left
+    weed = S3_LOC._noise_mat("b4 weed", "#1E2416", "#34381E", scale=8.0, rough=0.4, bump=0.4)
+    for i in range(70):
+        x = rnd.uniform(-2.2, 2.2); y = 1.0 + 0.08 * math.sin(x * 2.1) + rnd.uniform(-0.06, 0.06)
+        o = K.sph(f"b4 weed {i}", (x, y, 0.004), rnd.uniform(0.02, 0.05), weed, scale=(rnd.uniform(1.5, 3.5), 0.4, 0.12)); o.rotation_euler.z = rnd.uniform(-0.6, 0.6)
+    # pebbles and shells, everywhere but where he stands
+    pmats = [S3_LOC._noise_mat(f"pebble {k}", a, c, scale=8.0, rough=0.35, bump=0.2)
+             for k, (a, c) in enumerate((("#6E6862", "#8E8780"), ("#8A7A66", "#B09C84"), ("#5C5A56", "#7C7A74"), ("#8A5E42", "#AE8462"), ("#C8C0B0", "#E4DCCC")))]
+    n = 0
+    while n < 110:
+        x, y = rnd.uniform(-1.6, 1.8), rnd.uniform(-1.2, 1.25)
+        if (Vector((x, y)) - Vector((B4_C.x, B4_C.y))).length < 0.52: continue
+        r = rnd.uniform(0.01, 0.035)
+        o = K.sph(f"ground pebble {n}", (x, y, r * 0.2), r, pmats[n % 5], scale=(1.35, 1.0, 0.42)); o.rotation_euler.z = rnd.uniform(0, 6.3)
+        n += 1
+    # the beach in front of him: stones, pale shells, twigs and clumps of weed the storm threw up
+    fwd = Vector((math.sin(math.radians(B4_YAW + 40)), -math.cos(math.radians(B4_YAW + 40)), 0)); sd_ = Vector((-fwd.y, fwd.x, 0))
+    shell = S3_LOC._noise_mat("b4 shell", "#D8CCB8", "#F2EADC", scale=14.0, rough=0.4, bump=0.5)
+    twig = S3_LOC._noise_mat("b4 twig", "#3A2C20", "#5A4630", scale=12.0, rough=0.7, bump=0.5)
+    n = 0
+    while n < 150:
+        d_ = rnd.uniform(0.5, 1.5); l_ = rnd.uniform(-0.7, 0.7) * (0.6 + 0.4 * d_)
+        p = B4_C + fwd * d_ + sd_ * l_
+        kind = rnd.random()
+        if kind < 0.45:
+            r = rnd.uniform(0.018, 0.05); o = K.sph(f"b4 stone {n}", (p.x, p.y, r * 0.25), r, pmats[n % 4] if n % 3 else dgran, scale=(1.4, 1.0, 0.5))
+        elif kind < 0.7:
+            r = rnd.uniform(0.015, 0.03); o = K.sph(f"b4 shell {n}", (p.x, p.y, r * 0.15), r, shell, scale=(1.2, 1.0, 0.35))
+        elif kind < 0.88:
+            o = K.cyl(f"b4 twig {n}", (p.x, p.y, 0.008), rnd.uniform(0.005, 0.01), rnd.uniform(0.08, 0.22), twig, v=6, bev=0)
+            o.rotation_euler = (0, math.radians(90), rnd.uniform(0, 6.3))
+        else:
+            o = K.sph(f"b4 weed clump {n}", (p.x, p.y, 0.005), rnd.uniform(0.03, 0.06), weed, scale=(2.5, 0.6, 0.15))
+        o.rotation_euler.z = rnd.uniform(0, 6.3); n += 1
+    # his footprints, coming down the beach to where he stands (from behind him, off to the right)
+    fp = S3_LOC._noise_mat("b4 footprint", "#3E2E1E", "#54402C", scale=20.0, rough=0.25, bump=0.4)
+    fw = Vector((math.sin(math.radians(B4_YAW)), -math.cos(math.radians(B4_YAW)), 0)); rt = Vector((-fw.y, fw.x, 0))
+    back = (-fwd * 1.0 + sd_ * 0.45).normalized(); bsd = Vector((-back.y, back.x, 0)); byaw = math.atan2(back.x, -back.y)
+    for k in range(16):                  # up the beach behind him, where the lens sees them
+        s_ = 0.5 + 0.16 * k; p = B4_C + back * s_ + bsd * (0.05 if k % 2 else -0.05)
+        o = K.sph(f"b4 footprint {k}", (p.x, p.y, 0.0015), 0.05, fp, scale=(0.75, 1.3, 0.04), seg=12, ring=6)
+        o.rotation_euler.z = byaw; o.visible_shadow = False
+    s3_rain(2600)
+
+    def light():
+        bg = S3_SK.storm_sky(strength=0.75, tint=(0.24, 0.28, 0.36), horizon=(0.42, 0.46, 0.54))
+        bpy.context.scene["s3_world_base"] = 0.75
+        S3_LOC._area("storm fill", (0.6, -2.2, 2.6), 3.0, 30.0, (0.62, 0.72, 1.0), aim=(0, 0, 0.3))
+        ld = bpy.data.lights.new("storm sky", 'SUN'); ld.energy = 0.6; ld.color = (0.62, 0.72, 1.0); ld.angle = math.radians(12)
+        o = bpy.data.objects.new("storm sky", ld); bpy.context.collection.objects.link(o); o.rotation_euler = (math.radians(35), 0, math.radians(200))
+        rd = bpy.data.lights.new("s3 rim", 'SUN'); rd.energy = 3.0; rd.color = (0.7, 0.78, 1.0); rd.angle = math.radians(6)
+        ro = bpy.data.objects.new("s3 rim", rd); bpy.context.collection.objects.link(ro); ro.rotation_euler = (math.radians(-72), 0, math.radians(-12))
+        ro.visible_glossy = False; o.visible_glossy = False
+        k = S3_LOC._hero_key(); k.data.color = (0.86, 0.9, 1.0); return k
+    return light
+
+
+def b4_smooth(keys, t):
+    """a value through (t, v) keys, eased from each key to the next (a move starts and stops soft); two equal keys in
+    a row are a hold, which every change of direction gets, so no move stops dead and goes on (FLUID: a stutter)"""
+    if t <= keys[0][0]: return keys[0][1]
+    for (ta, va), (tb, vb) in zip(keys, keys[1:]):
+        if t <= tb:
+            u = ease((t - ta) / max(1e-6, tb - ta)); return tuple(a + (b - a) * u for a, b in zip(va, vb))
+    return keys[-1][1]
+
+
+def b4_hop(t, t0, h=0.09):
+    """one hop in place: a crouch, a push, the air (feet tucked a little), a landing crouch. (body dz, feet dz)"""
+    u = t - t0
+    if u < 0 or u > 0.6: return 0.0, 0.0
+    if u < 0.1: return -0.075 * ease(u / 0.1), 0.0
+    if u < 0.16: return -0.075 * (1 - ease((u - 0.1) / 0.06)), 0.0
+    if u < 0.44:
+        a = (u - 0.16) / 0.28; z = h * 4 * a * (1 - a); return z, z + 0.12 * math.sin(math.pi * a)
+    if u < 0.5: return -0.045 * ease((u - 0.44) / 0.06), 0.0
+    return -0.045 * (1 - ease((u - 0.5) / 0.1)), 0.0
+
+
+# ================================================================ SHOT 4: the glass jar
 def shot3():
-    """THE BOLT TURNS THE SAND TO GLASS, AND HE PULLS IT OUT (see the module docstring). Data stands three-quarter to
-    the lens with the strike just in front of him. He jolts back, stares at the glowing, steaming crater and the glass
-    spike in it, leans in and grabs it in both fists STANDING (a small bend from the waist, no crouch), it is stuck (he
-    looks up at us, straining), then he heaves with his whole body, straightening and leaning back, and a long branching
-    glass root comes up out of the sand; it pops free, he staggers back and hoists it high beside him, glowing and
-    glinting as the storm flickers."""
-    from mathutils import Quaternion, Matrix
+    """THE BOLT FUSES THE SAND INTO A GLASS JAR ROUND HIM; A SECOND BOLT BURSTS IT (see the module docstring)."""
+    D = DUR; FR4 = 4.0 / FPS
+    snap = lambda t: round(t / FR4) * FR4                    # a strike lands ON a proof frame
+    T_S = snap(0.06 * D)                                     # bolt one, at his feet
+    T_UP = T_S + 0.5                                        # the wall of molten glass is up round him
+    T_C0, T_C1 = T_S + 0.4, T_S + 1.25                       # it cools: the orange drains down it, clear glass from the rim
+    T_W0, T_W1 = T_S + 0.42, 1.25                            # he flails and wiggles, stuck
+    T_H1, T_H2 = 1.28, 1.86                                   # two hops inside it
+    T2 = snap(0.57 * D)                                      # bolt two hits the rim
+    T_SH = T2 + 0.2                                          # cracks race round it ... and it bursts
+    T_ST = T_SH + 0.32                                       # he stumbles a step back
+    T_K0, T_K1 = 0.77 * D, 0.89 * D                          # he shakes himself off like a wet dog
+    T_P = 0.905 * D                                          # the fist pump and the grin at us
     light = place_lake_beach()
     where = dict(lanes=[], kiosks=[], place="lake_beach", light=light)
-    D = DUR
-    # every moment is a fraction of the beat (the voice sets DUR); each story moment is on screen >= 0.5 s
-    T_S = 0.06 * D                      # the strike: clean sand until now
-    T_B0 = 0.25 * D                     # he leans in (after staring at the glowing crater and its spike for ~0.6 s)
-    T_GRAB = 0.33 * D                   # both fists close on the spike
-    T_T1, T_T1B, T_T2 = 0.38 * D, 0.42 * D, 0.47 * D   # two tugs that build: he yanks back, it gives a finger's width, again
-    T_TUG1 = 0.5 * D                    # and he sets for the big heave
-    T_MID = 0.57 * D                    # the heave, halfway: he straightens, the roots start coming up through the sand
-    T_POP = 0.65 * D                    # it pops free
-    T_ST = 0.74 * D                     # he staggers back a step's worth, hoisting it
-    T_HOLD = 0.85 * D                    # held high beside him, glowing
-    T_GL = 0.87 * D                     # the storm flickers: it glints
-    YAW = float(os.environ.get("S3_YAW", "-28"))   # he faces image-left-front, nearly to the lens
-    Rz = Matrix.Rotation(math.radians(YAW), 3, 'Z'); Rq = Rz.to_quaternion()
-    P_l = Vector((float(os.environ.get("S3_PX", "-0.05")), -float(os.environ.get("S3_PY", "0.16")), 0.0))   # the crater, in his own frame (front is -y): in front, off his left foot so the spike stands clear of his legs
-    Dp = Vector((S3_P.x, S3_P.y, 0.0)) - Rz @ P_l
-    W = lambda v: Dp + Rz @ Vector(v)
-    data = load_data(); data.place(Dp.x, Dp.y, YAW)
-    hat = ranger_hat(data) if "ranger_hat" in globals() else None    # the ranger's hat (world.py), on his head the whole beat
+    s4_bloom()
+    yaw = math.radians(B4_YAW); fw = Vector((math.sin(yaw), -math.cos(yaw), 0)); rt = Vector((-fw.y, fw.x, 0))
+    A = Vector((math.sin(yaw + math.radians(40)), -math.cos(yaw + math.radians(40)), 0))   # from him to the lens, flat
+    SCR = Vector((-A.y, A.x, 0))                                                            # screen right, on the ground
+    C = B4_C.copy()
+    p0 = C - fw * 0.3
+    data = load_data(); data.place(p0.x, p0.y, B4_YAW)
+    hat = ranger_hat(data)                                   # his hat (world.py), on his head the whole beat
     sc.frame_set(1); bpy.context.view_layer.update()
-    M0 = data.arm.matrix_world.copy()
-    feet0 = {s: (M0 @ data.J[s]['an']) for s in "LR"}
-    for s in "LR": feet0[s].z = data.J[s]['an'].z * 0.2
-    def seg(t, a, b): return ease(min(1.0, max(0.0, (t - a) / (b - a))))
-    # ---- his body (his frame): drop, back, spine, chest. A small bend from the waist to grab, straighten and lean
-    # back to heave, a stagger back as it pops, then upright holding it. Feet stay planted (no crouch, no knot).
-    body = ((0.0, 0, 0, 0, 0), (T_B0, 0.0, 0.0, 0, 0), (T_GRAB, 0.03, 0.0, 16, 6), (T_T1, 0.026, 0.01, 9, 3), (T_T1B, 0.025, 0.011, 8.5, 3),
-            (T_T2, 0.022, 0.018, 4, 1), (T_TUG1, 0.021, 0.019, 3.5, 1), (T_MID, 0.015, 0.03, 0, -1), (T_POP, 0.0, 0.05, -12, -5),
-            (T_ST, 0.012, 0.085, -10, -4), (T_HOLD, 0.0, 0.07, -3, -1), (D, 0.0, 0.07, -3, -1))
-    for t, drop, back, sp, ch in body:
-        w = Dp + Rz @ Vector((0, back, 0))
-        data.arm.location = (w.x, w.y, -drop); data.arm.keyframe_insert("location", frame=F(t))
-        data._k('spine', t, rot=(sp, 0, 0)); data._k('chest', t, rot=(ch, 0, 0))
-    # ---- the fulgurite: its keys in his frame, turned into the world. It appears in the strike's flash (the bolt's
-    # own channel, fused) as a glowing spike standing in the crater; its roots are under the sand until the heave.
-    fu, fm = s3_fulgurite("fulgurite")
-    ZG = float(os.environ.get("S3_ZG", "0.32"))
-    G0 = Vector((P_l.x, P_l.y, ZG))
-    G_TUG = G0 + Vector((0, 0, 0.03))
-    G_POP = Vector((0.0, P_l.y + 0.04, 0.52))       # straight up out of the hole, in front of his legs
-    G_ST = Vector((0.08, P_l.y + 0.05, 0.56))
-    G_HOLD = Vector((float(os.environ.get("S3_HX", "0.16")), P_l.y + float(os.environ.get("S3_HY", "0.11")), float(os.environ.get("S3_HZ", "0.5"))))
-    Q0 = Quaternion((1, 0, 0, 0))
-    Q_POP = Quaternion((1, 0, 0), math.radians(-8))
-    Q_ST = Quaternion((0, 1, 0), math.radians(-45))                                                  # swung out to his right
-    Q_HOLD = Quaternion((1, 0, 0), math.radians(float(os.environ.get("S3_QX", "8")))) @ Quaternion((0, 1, 0), math.radians(float(os.environ.get("S3_QY", "-150"))))  # and up: held high like a torch, the branching roots over his head
-    keys = [(T_GRAB, G0), (T_T1, G0 + Vector((0, 0.003, 0.012))), (T_T1B, G0 + Vector((0, 0.003, 0.016))), (T_T2, G0 + Vector((0, 0.006, 0.03))), (T_TUG1, G_TUG + Vector((0, 0.006, 0.004))), (T_MID, G0.lerp(G_POP, 0.5) + Vector((0, 0, -0.02))), (T_POP, G_POP), (T_ST, G_ST), (T_HOLD, G_HOLD)]
-    def g_l(t):
-        if t <= keys[0][0]: return G0.copy()
-        ts = [k[0] for k in keys]; ps = [k[1] for k in keys]; n = len(ps)
-        vel = lambda i: Vector((0, 0, 0)) if i in (0, n - 1) else (ps[i + 1] - ps[i - 1]) / (ts[i + 1] - ts[i - 1])
-        for i in range(n - 1):   # one smooth curve through the keys (no dead stop at each: a stutter)
-            if t <= ts[i + 1]:
-                h = ts[i + 1] - ts[i]; u = (t - ts[i]) / h
-                h00, h10, h01, h11 = 2*u**3 - 3*u**2 + 1, u**3 - 2*u**2 + u, -2*u**3 + 3*u**2, u**3 - u**2
-                return ps[i] * h00 + vel(i) * (h10 * h) + ps[i + 1] * h01 + vel(i + 1) * (h11 * h)
-        return G_HOLD + Vector((0, 0, 0.01 * math.sin(math.pi * min(1.0, (t - T_HOLD) / (D - T_HOLD + 1e-3)))))
-    def q_l(t):
-        if t < T_TUG1: return Q0
-        if t < T_POP: return Q0.slerp(Q_POP, seg(t, T_TUG1, T_POP))
-        if t < T_ST: return Q_POP.slerp(Q_ST, seg(t, T_POP, T_ST))
-        if t < T_HOLD: return Q_ST.slerp(Q_HOLD, seg(t, T_ST, T_HOLD))
-        return Q_HOLD @ Quaternion((0, 0, 1), math.radians(35) * seg(t, T_HOLD, D))   # turned in his fists, showing it off
-    g_at = lambda t: W(g_l(t))
-    q_at = lambda t: Rq @ q_l(t)
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        fu.location = g_at(t); fu.rotation_quaternion = q_at(t)
-        fu.keyframe_insert("location", frame=f); fu.keyframe_insert("rotation_quaternion", frame=f)
-        fu.hide_render = f < F(T_S) + 1; fu.keyframe_insert("hide_render", frame=f)
-    hot = fm.node_tree.nodes["hot"].outputs[0]; heat = fm.node_tree.nodes["heat"].outputs[0]
-    for t, v, h in ((0.0, 0.0, 1.0), (T_S, 0.0, 1.0), (T_S + 0.04, 22.0, 1.0), (T_S + 0.1 * D, 16.0, 0.8), (T_B0, 13.0, 0.45), (T_GRAB, 11.0, 0.2),
-                    (T_POP, 10.0, 0.05), (T_HOLD, 6.0, 0.0), (D, 4.0, 0.0)):
-        hot.default_value = v; hot.keyframe_insert("default_value", frame=F(t))
-        heat.default_value = h; heat.keyframe_insert("default_value", frame=F(t))
-    # (a light in it: the hot glass lights his fists and face orange)
-    gl = bpy.data.lights.new("glass glow", 'POINT'); gl.color = (1.0, 0.5, 0.18); gl.shadow_soft_size = 0.05
-    glo = bpy.data.objects.new("glass glow", gl); bpy.context.collection.objects.link(glo)
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        glo.location = g_at(t) + q_at(t) @ Vector((0, -0.07, -0.2)); glo.keyframe_insert("location", frame=f)
-    for t, e in ((0.0, 0.0), (T_S, 0.0), (T_S + 0.05, 14.0), (T_GRAB, 10.0), (T_POP, 14.0), (D, 9.0)):
-        gl.energy = e; gl.keyframe_insert("energy", frame=F(t))
-    LOC_L, LOC_R = Vector((-0.004, 0, 0.05)), Vector((0.004, 0, -0.026))   # two fists a fist apart: both read on the spike
-    grip = lambda loc: (lambda t: g_at(t) + q_at(t) @ loc)
-    sc.frame_set(1); bpy.context.view_layer.update()
-    sides_ = sorted("LR", key=lambda s: (Rz.inverted() @ (acts._shoulder(data, s) - Dp)).x)
-    SL, SR = sides_[0], sides_[1]
-    if os.environ.get("S3_PERF", "0") == "1": data.perform("alarmed", T_S + 0.03, hold=0.12, arms=False, pace=0.8)
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        if t < T_B0 - 0.1: continue
-        sc.frame_set(f); bpy.context.view_layer.update()
-        for s in "LR":
-            ft = feet0[s]
-            if s == SR:   # the stagger: his right foot steps back as it pops
-                u = seg(t, T_POP - 0.01 * D, T_ST + 0.02 * D)
-                ft = ft + Rz @ Vector((0.01 * u, 0.1 * u, 0.03 * math.sin(math.pi * u)))
-            data._leg_ik(s, ft, t)
-    # ---- hands: both on the glass from the grab to the end (the top fist is his right, the hand nearer the lens)
-    data.reach(SR, grip(LOC_R), T_GRAB, D, lead=0.5, back=None, elbow_out=float(os.environ.get("S3_EO", "0.7")))
-    data.reach(SL, grip(LOC_L), T_GRAB + 0.05, T_POP - float(os.environ.get("S3_LR", "0.04")) * D, lead=0.5, back=float(os.environ.get("S3_LB", "0.95")), elbow_out=float(os.environ.get("S3_LEO", "0.8")))   # the left lets go as it pops: he hoists it in his right fist
-    # ---- the camera: HIGH, looking down on him and the sand, his front-left; all of him and the crater in frame with
-    # room over the hat; it eases in a little as the root comes up
-    M_ = (Dp + Vector((S3_P.x, S3_P.y, 0))) * 0.5
-    az = Vector((0.12, -1.0, 0)).normalized(); EL = math.radians(float(os.environ.get("S3_EL", "48")))
-    DIST0, DIST1 = float(os.environ.get("S3_D0", "2.35")), float(os.environ.get("S3_D1", "2.25"))
-    LZ0, LZ1 = float(os.environ.get("S3_LZ0", "0.4")), float(os.environ.get("S3_LZ1", "0.46"))
+    T_WALK = 0.5
+    data.walk_to((C.x, C.y), 0.0, T_WALK)                   # the last steps of his run, into the strike
+    from character import SCALE as CS
+    anz = data.J['L']['an'].z * CS
+    last = {}
+    for f_, s_, st_, base_ in data.walk_slide: last[s_] = Vector(base_)
+    # ---- his body after the walk: two hops, the pop as it bursts, the stumble back
+    def body(t):
+        z, fz = 0.0, 0.0
+        for th_, h_ in ((T_H1, 0.1), (T_H2, 0.11), (T_SH - 0.16, 0.075)):
+            a_, b_ = b4_hop(t, th_, h_); z += a_; fz += b_
+        st = ease(min(1.0, max(0.0, (t - T_ST) / 0.28)))
+        return Vector((0, 0, z)) - fw * 0.05 * st, fz
+    for f in range(F(T_WALK) + 1, NF + 1):
+        t = (f - 1) / FPS; off, _ = body(t)
+        data.arm.location = C + off; data.arm.keyframe_insert("location", frame=f)
+    sc.frame_set(F(T_WALK)); bpy.context.view_layer.update()
+    for f in range(F(T_WALK) + 1, NF + 1):
+        t = (f - 1) / FPS; _, fz = body(t); sc.frame_set(f)
+        for sd in "LR":
+            b = last[sd].copy()
+            st = ease(min(1.0, max(0.0, (t - T_ST) / 0.28)))
+            near_back = sd == "R"
+            lift = 0.0
+            if near_back:                                    # the stumble: one foot steps back
+                b = b - fw * 0.12 * st; lift = 0.03 * math.sin(math.pi * st) if 0 < st < 1 else 0.0
+            data._leg_ik(sd, data._foot_ankle(Vector((b.x, b.y, anz + fz + lift)), fw, 0.0), t, 0.0)
+    # ---- the strikes and the bursts go through his body: arch, wiggle, shake
+    kick = lambda t: 1.0 * s4_kick(t - T_S, 0.11) + 1.2 * s4_kick(t - T2, 0.11) + 0.8 * s4_kick(t - T_SH, 0.1)
+    def env(t, a, b, r=0.12):
+        return min(1.0, max(0.0, (t - a) / r), max(0.0, (b - t) / r))
+    def wig(t): return env(t, T_W0, T_W1) * math.sin(2 * math.pi * 1.6 * (t - T_W0))
+    def shk(t): return env(t, T_K0, T_K1, 0.08) * math.sin(2 * math.pi * 3.4 * (t - T_K0))
+    s4_layer(data, "root", lambda t: (0, 16 * wig(t) + 26 * shk(t), 4 * wig(t) + 5 * shk(t)), T_WALK, D + 0.3)
+    s4_layer(data, "spine", lambda t: (-9 * math.tanh(kick(t)) - 5 * ease(min(1.0, max(0.0, (t - T_ST) / 0.2))) * (1 - ease(min(1.0, max(0.0, (t - T_ST - 0.35) / 0.3)))),
+                                       -6 * wig(t) - 10 * shk(t), 7 * wig(t)), 0.0, D + 0.3)
+    s4_layer(data, "chest", lambda t: (-7 * math.tanh(kick(t)) - 4 * ease(min(1.0, max(0.0, (t - T_P) / 0.2))), -8 * shk(t), 5 * wig(t) + 6 * shk(t)), 0.0, D + 0.3)
+    s4_layer(data, "neck", lambda t: (-5 * sum(s4_jolt(t - ts) for ts in (T_S, T2)), 0, 10 * math.sin(2 * math.pi * 4.6 * (t - T_K0) + 0.8) * env(t, T_K0, T_K1, 0.08)), 0.0, D + 0.3)
+    def ears(sd):
+        sg = 1 if sd == "R" else -1
+        def fn(t):
+            sp = sum(26 * max(0.0, s4_jolt(t - ts, decay=0.25)) for ts in (T_S, T2, T_SH))
+            fl = 16 * math.sin(2 * math.pi * 4.6 * (t - T_K0) + (0 if sd == "L" else 1.2)) * env(t, T_K0, T_K1, 0.08)
+            return (-6 * sp / 26, 0, -sg * (sp + fl))
+        return fn
+    for sd in "LR": s4_layer(data, f"ear.{sd}", ears(sd), 0.0, D + 0.3)
+    # ---- the camera: HIGH, three-quarter from his front-right, looking down on him and the jar; a slow push in, a
+    # small shake at each strike
+    EL = math.radians(40)
     def cam_at(t):
-        u = seg(t, T_B0, T_HOLD)
-        dist = DIST0 + (DIST1 - DIST0) * u; L = M_ + Vector((0.18 * seg(t, T_MID, T_ST), 0, LZ0 + (LZ1 - LZ0) * u))
-        return L + az * dist * math.cos(EL) + Vector((0, 0, dist * math.sin(EL))), L
-    C0, L0 = cam_at(0.0)
-    cam = K.camera(tuple(C0), tuple(L0), lens=float(os.environ.get("S3_LENS", "55")), fstop=11.0)
-    camera_path(cam, lambda t: (*cam_at(t), W(Vector((0, -0.08, 0.4)))))
-    # ---- where he looks: up at the storm, the strike, us (what was that?), the spike, us straining, the root, us
+        dist = 1.7 - 0.1 * ease(min(1.0, t / D))
+        L = C + Vector((0, 0, 0.42))
+        sh = 0.012 * (s4_jolt(t - T_S) + s4_jolt(t - T2) + 0.6 * s4_jolt(t - T_SH))
+        c = L + A * dist * math.cos(EL) + Vector((0, 0, dist * math.sin(EL))) + SCR * sh
+        return c, L + SCR * sh * 0.5
+    cam = K.camera(tuple(cam_at(0)[0]), tuple(cam_at(0)[1]), lens=35, fstop=8.0)
+    camera_path(cam, lambda t: (*cam_at(t), C + Vector((0, 0, 0.55))))
     CAM = lambda t: cam_at(t)[0]
-    data.look_at(W((0.9, -0.6, 1.7)), 0.0, max_yaw=30, max_pitch=35, blend=0.0)
-    data.look_at(S3_P + Vector((0, 0, 0.15)), T_S + 0.03 * D, max_yaw=35, max_pitch=8, blend=0.12)
-    data.look_at(CAM(0.12 * D), 0.12 * D, max_yaw=40, max_pitch=45)
-    data.look_at(CAM(T_B0), T_B0, max_yaw=40, max_pitch=45)   # "watch this": at us as he reaches (a look down at the spike hides his face under the hat)
-    data.look_at(CAM(T_GRAB), T_GRAB + 0.03 * D, max_yaw=40, max_pitch=45)
-    data.look_at(CAM(T_MID), T_MID, max_yaw=40, max_pitch=45)
-    data.look_at(W(G_HOLD + Vector((0.3, -0.05, 0.25))), T_ST + 0.02 * D, max_yaw=40, max_pitch=35)
-    data.look_at(CAM(D), T_HOLD + 0.06 * D, max_yaw=40, max_pitch=30)
-    data.idle(0.0, T_B0)
-    data.expression("worried", 0.0, T_S)
-    data.expression("surprised", T_S + 0.03 * D, T_GRAB - 0.02 * D)
-    data.expression("determined", T_GRAB, T_POP - 0.01 * D)
-    data.expression("surprised", T_POP, T_HOLD - 0.02 * D)
-    data.expression("happy", T_HOLD, D + 1.0, blend=0.2)
-    data.blink(T_B0 + 0.02 * D)
+    H1 = C + SCR * -0.2 - A * 0.12                       # bolt one hits the sand at his left foot, inside the ring
+    th2 = math.atan2((-SCR * 0.75 - A * 0.66).y, (-SCR * 0.75 - A * 0.66).x)
+    H2 = C + Vector((b4_r(th2, 1.0) * math.cos(th2), b4_r(th2, 1.0) * math.sin(th2), b4_rim(th2)))   # bolt two: the rim, back left
+    # ---- where he looks, what he feels
+    head = lambda t: C + Vector((0, 0, 0.75))
+    data.look_at(C + fw * 1.5 + Vector((0, 0, 1.4)), 0.0, max_yaw=35, max_pitch=30, blend=0.0)       # up at the storm as he runs
+    data.look_at(CAM(T_S + 0.45), T_S + 0.38, max_yaw=40, max_pitch=45, blend=0.14)                 # at us: what?
+    data.look_at(C + SCR * 0.6 + A * 0.8 + Vector((0, 0, 0.8)), T_W0 + 0.22, max_yaw=22, max_pitch=12, blend=0.16)   # at the glass round him
+    data.look_at(C - SCR * 0.6 + A * 0.8 + Vector((0, 0, 0.8)), T_W0 + 0.52, max_yaw=22, max_pitch=12, blend=0.18)
+    data.look_at(CAM(T_H1), T_H1 + 0.05, max_yaw=40, max_pitch=45, blend=0.18)                      # at us, hopping
+    data.look_at(H2 + Vector((0, 0, 0.6)), T2 + 0.03, max_yaw=40, max_pitch=45, blend=0.1)          # up at bolt two
+    data.look_at(C + A * 0.8 + Vector((0, 0, 0.3)), T_SH + 0.1, max_yaw=40, max_pitch=15, blend=0.12)                     # the shards flying
+    data.look_at(C + SCR * 0.7 + A * 0.4 + Vector((0, 0, 0.3)), T_ST + 0.15, max_yaw=40, max_pitch=15, blend=0.18)
+    data.look_at(CAM(T_K0), T_K0 + 0.05, max_yaw=40, max_pitch=45, blend=0.15)                       # at us, shaking it off
+    data.look_at(CAM(T_P), T_P + 0.1, max_yaw=40, max_pitch=45, blend=0.15)
+    data.expression("worried", 0.0, T_S - 0.02)
+    data.expression("surprised", T_S + 0.04, T_W0 - 0.02, blend=0.08)
+    data.expression("alarmed", T_W0 + 0.04, T_H1 - 0.04, blend=0.12)
+    data.expression("determined", T_H1, T2 - 0.04, blend=0.12)
+    data.expression("surprised", T2 + 0.03, T_ST, blend=0.08)
+    data.expression("worried", T_ST + 0.04, T_K0 - 0.04, blend=0.12)
+    data.expression("happy", T_P - 0.12, D + 1.0, blend=0.16)
+    data.blink(T_P + 0.18, dur=0.3)
+    # ---- his arms: flung up over the rim, flailing, up again at bolt two, flung wide as it bursts, down to balance
+    # the stumble, loose for the shake, then the fist pump (all inside his 0.19 m reach, and clear of the glass)
+    sc.frame_set(1); bpy.context.view_layer.update()
+    near = min("LR", key=lambda s: (acts._shoulder(data, s) - CAM(0.0)).length)   # the hand nearer the lens: it stays down for the pump
+    PUMP = "L" if near == "R" else "R"
+    def arm_keys(sd):
+        pump = sd == PUMP
+        HI, CR = (0.05, 0.165, 0.1), (0.08, 0.11, -0.04)          # flung up as he jumps, down on the rim to push off
+        DOWN, OUT, UP, LOW, WIDE = (0.05, 0.08, -0.12), (0.04, 0.155, 0.04), (0.07, 0.13, 0.075), (0.04, 0.15, 0.0), (0.04, 0.14, 0.08)
+        return [(0.0, DOWN), (T_S, (0.05, 0.09, -0.1)), (T_S + 0.28, OUT), (0.72, OUT), (1.2, (0.07, 0.13, 0.05)),
+                (T_H1 + 0.3, HI), (T_H1 + 0.47, HI), (T_H2 + 0.35, LOW), (T2 + 0.02, LOW), (T_SH + 0.12, (0.08, 0.13, 0.03)),
+                (T_SH + 0.27, (0.08, 0.13, 0.03)), (T_ST + 0.18, (0.06, 0.09, -0.1)), (T_K1, (0.06, 0.09, -0.1)), (T_P + 0.2, WIDE), (D, (0.045, 0.135, 0.09))]
+    def hand(sd):
+        ks = arm_keys(sd); ph = 0.0 if sd == "L" else math.pi
+        def fn(t):
+            bpy.context.view_layer.update(); M = data.arm.matrix_world; loc = M.translation.copy()
+            sh = acts._shoulder(data, sd); o2 = sh - loc; o2.z = 0; o2.normalize()
+            fb = Vector((0, 0, 1)).cross(o2); fb = fb if fb.dot(fw) > 0 else -fb
+            a, b, c = b4_smooth(ks, t)
+            w = env(t, T_W0, T_W1, 0.1)
+            k_ = env(t, T_K0, T_K1, 0.08); c += 0.025 * k_ * math.cos(2 * math.pi * 3.4 * (t - T_K0))   # the arms flap a quarter turn behind the twist: a wet dog, never a dead stop
+            if sd == PUMP and t > T_P + 0.15: c += 0.01 * math.sin(2 * math.pi * 2.0 * (t - T_P))
+            return sh + fb * a + o2 * b + Vector((0, 0, c))
+        return fn
+    for sd in "LR": data.reach(sd, hand(sd), 0.0, D + 0.2, lead=0.3, back=None, elbow_out=0.4)
     data.finish()
-    # ---- the strike (a jagged white bolt from high above; it lights the beach, it does not erase it), the crater
-    b1 = S3_SK.bolt("beach bolt", tuple(S3_P + Vector((-1.4, 1.1, 3.0))), tuple(S3_P + Vector((0, 0, 0.01))), seed=int(os.environ.get("S3_BS", "321")), branches=int(os.environ.get("S3_NB", "2")), width=0.006, glow=3.0, rough=float(os.environ.get("S3_BR", "0.22")))
-    for _n in b1["parts"]: bpy.data.objects[_n].visible_glossy = False   # its mirror image in the wet sand read as a second bolt through his head
-    S3_SK.strike(b1, [T_S], NF, light_at=S3_P + Vector((0.25, 0.3, 1.2)), energy=float(os.environ.get('S3_FL', '90')))
-    if "beach bolt flash" in bpy.data.lights: bpy.data.lights["beach bolt flash"].shadow_soft_size = 0.02
-    nt = sc.world.node_tree; bg = next(n for n in nt.nodes if n.type == 'BACKGROUND'); base = sc.get("s3_world_base", 0.55)
-    flick = [T_GL]           # the storm flickers (sky only, no bolt): the glass glints
+
+    # ---- the jar: the molten wall bursts up round him (a splash, overshooting and settling), cools clear, cracks, and
+    # bursts into shards; a stump of it stays fused in the sand
+    gm = b4_glass_mat()
+    jars = []                    # the wall as 8 curved sections (one glass: same origin, same material), so each
+    for k in range(8):           # section's box is tight round it (the consequence check measures box corners)
+        o = bpy.data.objects.new(f"b4 glass jar {k}", b4_jar_mesh(f"b4 glass jar {k}", i0=12 * k, i1=12 * k + 12)); bpy.context.collection.objects.link(o)
+        o.data.materials.append(gm); o.location = C; o.visible_shadow = False; jars.append(o)
+    stump = bpy.data.objects.new("b4 glass stump", b4_jar_mesh("b4 glass stump", 0.0, B4_STUMP + 0.03, nz=4)); bpy.context.collection.objects.link(stump)
+    stump.data.materials.append(b4_shard_mat()); stump.location = C; stump.visible_shadow = False
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        v = S3_SK.flash_level(t, [T_S]); v2 = 0.5 * S3_SK.flash_level(t, flick)
-        bg.inputs["Strength"].default_value = base + 0.8 * v + 0.6 * v2; bg.inputs["Strength"].keyframe_insert("default_value", frame=f)
+        t = (f - 1) / FPS; u = (t - T_S - 0.02) / (T_UP - T_S - 0.02)
+        if u <= 0: sz = 0.02
+        elif u < 1: sz = 0.02 + 0.98 * (ease(min(1.0, u / 0.85)) + 0.06 * math.sin(math.pi * max(0.0, (u - 0.7) / 0.3)))
+        else: sz = 1.0
+        sxy = 0.92 + 0.08 * ease(min(1.0, max(0.0, u)))
+        for jar in jars:
+            jar.scale = (sxy, sxy, max(0.02, sz)); jar.keyframe_insert("scale", frame=f)
+            jar.location = C + Vector((0, 0, 0.85 * max(0.0, body(t)[0].z) if t > T_H1 else 0.0)); jar.keyframe_insert("location", frame=f)   # he hops, it hops with him
+            jar.hide_render = t < T_S + 0.02 or t >= T_SH; jar.keyframe_insert("hide_render", frame=f)
+            jar.hide_viewport = jar.hide_render; jar.keyframe_insert("hide_viewport", frame=f)
+        stump.hide_render = t < T_SH; stump.keyframe_insert("hide_render", frame=f)
+        stump.hide_viewport = stump.hide_render; stump.keyframe_insert("hide_viewport", frame=f)
+    nd = gm.node_tree.nodes
+    hl = H2 - C; hp = nd["hitp"]; hp.inputs[0].default_value, hp.inputs[1].default_value, hp.inputs[2].default_value = hl.x, hl.y, hl.z
+    for nm, keys in (("front", ((0.0, 1.25), (T_C0, 1.25), (T_C1, 0.1), (D, 0.06))),
+                     ("hot", ((0.0, 0.0), (T_S + 0.02, 0.0), (T_S + 0.06, 2.2), (T_C0, 1.6), (T_C1, 1.2), (D, 1.0))),
+                     ("crack", ((0.0, 0.0), (T2, 0.0), (T_SH, 0.75), (D, 0.75)))):
+        v = nd[nm].outputs[0]
+        for t, x in keys: v.default_value = x; v.keyframe_insert("default_value", frame=F(t))
+    fv = nd["flash"].outputs[0]
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; fv.default_value = S3_SK.flash_level(t, [T2]) + 0.6 * max(0.0, 1 - (t - T2) / 0.25) * (t >= T2)
+        fv.keyframe_insert("default_value", frame=f)
+    # the shards: laid where the wall was, they burst outward from where bolt two hit, tumbling and glinting, and land
+    # flat on the sand round him
+    smat = b4_shard_mat(); shards = b4_shards(C, smat)
+    rnd = random.Random(11); g = 6.5
+    for o, cen, n in shards:
+        t0 = T_SH + 0.05 * (Vector((cen.x, cen.y, 0)) - Vector((hl.x, hl.y, 0))).length
+        tang = Vector((-n.y, n.x, 0))
+        v0 = n * rnd.uniform(0.55, 1.05) + tang * rnd.uniform(-0.25, 0.25) + Vector((0, 0, rnd.uniform(0.8, 1.6)))
+        ax = Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1))).normalized(); w = rnd.uniform(6.0, 13.0)
+        p0_ = C + cen; zr = 0.012
+        T_air = (v0.z + math.sqrt(v0.z ** 2 + 2 * g * (p0_.z - zr))) / g
+        q_land = Quaternion(ax, w * T_air); nw = q_land @ n
+        flat = (nw.rotation_difference(Vector((0, 0, 1 if nw.z >= 0 else -1)))) @ q_land
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; dt = t - t0
+            if dt <= 0: o.location = p0_; o.rotation_quaternion = Quaternion()
+            elif dt < T_air:
+                o.location = p0_ + Vector((v0.x * dt, v0.y * dt, v0.z * dt - 0.5 * g * dt * dt)); o.rotation_quaternion = Quaternion(ax, w * dt)
+            else:
+                o.location = p0_ + Vector((v0.x * T_air, v0.y * T_air, zr - p0_.z)); o.rotation_quaternion = q_land.slerp(flat, ease(min(1.0, (dt - T_air) / 0.1)))
+            o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_quaternion", frame=f)
+            o.hide_render = t < T_SH; o.keyframe_insert("hide_render", frame=f)
+            o.hide_viewport = o.hide_render; o.keyframe_insert("hide_viewport", frame=f)
+    gv = smat.node_tree.nodes["glow"].outputs[0]
+    for t, x in ((0.0, 0.0), (T_SH, 2.0), (T_SH + 0.25, 1.2), (T_SH + 0.7, 0.25), (D, 0.15)):
+        gv.default_value = x; gv.keyframe_insert("default_value", frame=F(t))
+    # ---- the strikes: a jagged white bolt each (bolt one to the sand at his foot, bolt two to the rim)
+    for k, (P, ts, top, seed) in enumerate(((H1, T_S, H1 + Vector((-1.1, 1.3, 5.2)), 4417), (H2, T2, H2 + Vector((-0.9, 1.6, 5.0)), 4453))):
+        b = S3_SK.bolt(f"beach bolt {k + 1}", tuple(top), tuple(P), seed=seed, branches=6, width=0.014, glow=5.0)
+        for pn in b["parts"]:
+            o_ = bpy.data.objects[pn]; o_.visible_glossy = False
+            if "glow" in pn: o_.data.materials[0] = s4_glow_mat()
+        lo = S3_SK.strike(b, [ts], NF, light_at=P + Vector((0.3, -0.4, 1.3)), energy=30.0)
+        lo.data.shadow_soft_size = 0.05
+    nt = sc.world.node_tree; bg = next(n for n in nt.nodes if n.type == 'BACKGROUND'); base = sc.get("s3_world_base", 1.0)
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; v = S3_SK.flash_level(t, [T_S, T2])
+        bg.inputs["Strength"].default_value = base + 0.12 * v; bg.inputs["Strength"].keyframe_insert("default_value", frame=f)
         if "s3 rim" in bpy.data.lights:
-            rl = bpy.data.lights["s3 rim"]; rl.energy = 3.0 + 12.0 * v + 10.0 * v2; rl.keyframe_insert("energy", frame=f)
-    ck = bpy.data.objects["ground crater"].data.shape_keys.key_blocks["blast"]
-    ck.value = 0.0; ck.keyframe_insert("value", frame=F(T_S) - 1); ck.value = 1.0; ck.keyframe_insert("value", frame=F(T_S) + 1)
-    cm = bpy.data.materials["beach crater"].node_tree.nodes
-    g, sco, cheat = cm["glow"].outputs[0], cm["scorch"].outputs[0], cm["heat"].outputs[0]
-    for t, gv, sv, hv in ((0.0, 0, 0, 1), (T_S - 0.01, 0, 0, 1), (T_S + 0.03, 18, 1, 1), (T_S + 0.08 * D, 12, 1, 0.3), (T_B0, 10, 1, 0.0),
-                          (T_GRAB, 9, 1, 0.0), (T_POP - 0.01 * D, 8, 1, 0.0), (T_POP + 0.02 * D, 14, 1, 0.2), (T_HOLD, 7, 1, 0.0), (D, 5, 1, 0.0)):
-        g.default_value = gv; g.keyframe_insert("default_value", frame=F(t))
-        sco.default_value = sv; sco.keyframe_insert("default_value", frame=F(t))
-        cheat.default_value = hv; cheat.keyframe_insert("default_value", frame=F(t))
-    ld = bpy.data.lights.new("crater glow", 'POINT'); ld.color = (1.0, 0.45, 0.15); ld.shadow_soft_size = 0.06
-    lo = bpy.data.objects.new("crater glow", ld); lo.location = S3_P + Vector((0, -0.02, 0.07)); bpy.context.collection.objects.link(lo)
-    for t, e in ((0.0, 0), (T_S - 0.01, 0), (T_S + 0.05, 26), (T_B0, 22), (T_GRAB, 16), (T_POP + 0.02 * D, 30), (D, 10)):
-        ld.energy = e; ld.keyframe_insert("energy", frame=F(t))
-    s3_spray("strike", S3_P, T_S, 60, seed=5, speed=(0.3, 0.9), up=(1.2, 2.4), hot=0.35)
-    s3_spray("free", S3_P, T_POP - 0.02 * D, 80, seed=7, speed=(0.4, 1.2), up=(1.0, 2.0), hot=0.4)
+            rl = bpy.data.lights["s3 rim"]; rl.energy = 3.0 + 5.0 * v; rl.keyframe_insert("energy", frame=f)
+    # the molten glass lights him orange from below as it rises, dimming as it cools
+    gl = bpy.data.lights.new("jar glow", 'POINT'); gl.color = (1.0, 0.5, 0.18); gl.shadow_soft_size = 0.2
+    glo = bpy.data.objects.new("jar glow", gl); bpy.context.collection.objects.link(glo); glo.location = C - A * 0.1 + Vector((0, 0, 0.18))
+    for t, e in ((0.0, 0.0), (T_S + 0.02, 0.0), (T_S + 0.1, 10.0), (T_C0, 8.0), (T_C1, 4.0), (T_SH, 4.0), (T_SH + 0.2, 1.0), (D, 0.5)):
+        gl.energy = e; gl.keyframe_insert("energy", frame=F(t))
+    # a key on his face from the lens side, a rim from behind, so he reads against the dark lake
+    fk = bpy.data.lights.new("b4 face key", 'AREA'); fk.energy = 14.0; fk.size = 0.8; fk.color = (0.85, 0.9, 1.0)
+    fko = bpy.data.objects.new("b4 face key", fk); bpy.context.collection.objects.link(fko)
+    fko.location = C + A * 0.9 + SCR * 0.4 + Vector((0, 0, 1.4)); fko.rotation_euler = (C + Vector((0, 0, 0.7)) - fko.location).to_track_quat('-Z', 'Y').to_euler()
+    rk = bpy.data.lights.new("b4 back rim", 'AREA'); rk.energy = 45.0; rk.size = 0.6; rk.color = (0.7, 0.8, 1.0)
+    rko = bpy.data.objects.new("b4 back rim", rk); bpy.context.collection.objects.link(rko)
+    rko.location = C - A * 0.9 - SCR * 0.5 + Vector((0, 0, 1.2)); rko.rotation_euler = (C + Vector((0, 0, 0.6)) - rko.location).to_track_quat('-Z', 'Y').to_euler()
+    # ---- sand, embers and molten drops; steam off the cooling glass; smoke off his hat
+    b4_spray("b4 strike", H1 + Vector((0, 0, 0.02)), T_S, 26, seed=5, away=C, speed=(0.3, 0.8), up=(1.2, 2.2), hot=0.5)
+    for k in range(5):
+        th = 2 * math.pi * k / 5 + 0.3; P = C + Vector((B4_R * 1.05 * math.cos(th), B4_R * 1.05 * math.sin(th), 0.3))
+        b4_spray(f"b4 drops {k}", P, T_S + 0.18 + 0.03 * k, 8, seed=20 + k, away=C, speed=(0.2, 0.6), up=(0.8, 1.6), hot=1.0, r=0.008)
     steam = s3_puff_mat("steam", (0.9, 0.88, 0.85), emit=0.35)
+    dust0 = s3_puff_mat("dust", (0.55, 0.47, 0.38))
+    for k in range(8):                   # the sand erupting all round him as the ring rises, and a thump at each landing
+        th = 2 * math.pi * k / 8 + 0.2; P = C + Vector((B4_R * 1.15 * math.cos(th), B4_R * 1.15 * math.sin(th), 0.0))
+        s3_puffs(f"ring sand {k}", dust0, cam, (lambda P_: (lambda t: P_))(P), [T_S + 0.04, T_S + 0.16, T_H1 + 0.45, T_H2 + 0.45],
+                 rise=(0.08, 0.2), size=(0.08, 0.2), life=(0.45, 0.7), drift=(0.12, 0.06), seed=60 + k, peak=0.75)
+    smoke = s3_puff_mat("b4 smoke", (0.2, 0.19, 0.18))
     dust = s3_puff_mat("dust", (0.55, 0.47, 0.38))
-    s3_puffs("dust", dust, cam, lambda t: S3_P, [T_S + 0.02 + 0.02 * i for i in range(5)], rise=(0.12, 0.3), size=(0.15, 0.45),
-             life=(0.7, 1.0), drift=(0.25, 0.1), seed=2, peak=0.8)
-    # the crater pours steam (thick, its own beat before he reaches in), thinning while he works so we see his hands
-    births = [T_S + 0.08 + 0.09 * i for i in range(int((T_GRAB - T_S - 0.08) / 0.09))]
-    births += [T_GRAB + 0.3 * i for i in range(int((D - T_GRAB - 0.3) / 0.3))]
-    s3_puffs("steam", steam, cam, lambda t: S3_P + Vector((0.06, -0.04, 0)), births, rise=(0.4, 0.8), size=(0.16, 0.42), life=(0.9, 1.2),
-             drift=(0.12, 0.05), seed=3, peak=0.85)
-    # once out, the hot glass itself steams
-    gb = [T_POP + 0.12 * i for i in range(int((D - T_POP) / 0.12))]
-    s3_puffs("glass steam", steam, cam, lambda t: g_at(t) + q_at(t) @ Vector((0.06, 0.0, -0.42)), gb, rise=(0.1, 0.22), size=(0.04, 0.12),
-             life=(0.5, 0.8), drift=(0.06, 0.03), seed=9, peak=0.35)
-    s3_puffs("burst", dust, cam, lambda t: S3_P, [T_POP - 0.04 + 0.03 * i for i in range(5)], rise=(0.15, 0.35), size=(0.16, 0.5),
-             life=(0.7, 1.0), drift=(0.3, 0.12), seed=4, peak=0.8)
-    s3_glint("glint fulgurite", cam, lambda t: g_at(t) + q_at(t) @ Vector((0.0, -0.035, -0.2)), T_GL, dur=0.55, size=0.13)
-    s3_glint("glint fulgurite 2", cam, lambda t: g_at(t) + q_at(t) @ Vector((0.0, -0.03, -0.38)), T_GL + 0.05 * D, dur=0.45, size=0.09)
-    s3_glint("glint fulgurite 3", cam, lambda t: g_at(t) + q_at(t) @ Vector((0.0, -0.03, 0.0)), T_GL + 0.09 * D, dur=0.4, size=0.07)
-    crater = bpy.data.objects["ground crater"]
-    return dict(**where, data=data, rest=1, grips=("fulgurite",),
-                conseq=[("the bolt blasts the sand into a glowing, steaming crater with a glass spike in it", lambda: [crater], T_S + 0.1, T_GRAB),
-                        ("he heaves a long branching glass root out of the sand and hoists it high", lambda: [fu], T_GRAB, D,
-                         {"hero": True, "moves": True})])
+    s3_puffs("dust", dust, cam, lambda t: H1, [T_S + 0.02 + 0.02 * i for i in range(4)], rise=(0.12, 0.3), size=(0.12, 0.3),
+             life=(0.6, 0.9), drift=(0.2, 0.1), seed=2, peak=0.7)
+    rimpt = lambda k: (lambda t: C + Vector((B4_R * 1.15 * math.cos(1.3 * k), B4_R * 1.15 * math.sin(1.3 * k), 0.42)))
+    births = [(T_S + 0.3 + 0.07 * i, i % 5) for i in range(int((T_SH - T_S - 0.4) / 0.07))]
+    for k in range(5):
+        s3_puffs(f"steam {k}", steam, cam, rimpt(k), [b_ for b_, kk in births if kk == k], rise=(0.35, 0.6), size=(0.1, 0.3),
+                 life=(0.8, 1.1), drift=(0.1, 0.05), seed=30 + k, peak=0.7)
+    s3_puffs("hat smoke", smoke, cam, lambda t: C + Vector((0, 0, 1.0)), [T_S + 0.2 + 0.16 * i for i in range(int((D - T_S - 0.3) / 0.16))],
+             rise=(0.25, 0.4), size=(0.05, 0.14), life=(0.6, 0.9), drift=(0.08, 0.04), seed=8, peak=0.5)
+    s3_puffs("burst", steam, cam, lambda t: C + Vector((0, 0, 0.35)), [T_SH + 0.02 * i for i in range(5)], rise=(0.1, 0.25), size=(0.2, 0.5),
+             life=(0.5, 0.8), drift=(0.35, 0.15), seed=4, peak=0.5)
+    # glints: on the cooled rim, at bolt two's hit, on shards in the air and on the sand
+    rim_near = C + A * 0.33 + Vector((0, 0, 0.5))
+    s3_glint("glint rim", cam, lambda t: rim_near, T_C1 - 0.1, dur=0.5, size=0.11)
+    s3_glint("glint rim 2", cam, lambda t: C + (A * 0.7 + SCR * 0.7).normalized() * 0.33 + Vector((0, 0, 0.35)), T_H2 + 0.05, dur=0.45, size=0.08)
+    fr_ = [s for s in shards if s[2].dot(A) > 0.3]
+    for k, (o, cen, n) in enumerate(fr_[:3]):
+        s3_glint(f"glint shard {k}", cam, (lambda o_: (lambda t: s4_mat_world(o_, F(t)).translation + Vector((0, 0, 0.02))))(o), T_SH + 0.15 + 0.17 * k, dur=0.4, size=0.09)
+    for k, (o, cen, n) in enumerate(fr_[3:5]):
+        s3_glint(f"glint sand {k}", cam, (lambda o_: (lambda t: s4_mat_world(o_, F(t)).translation + Vector((0, 0, 0.02))))(o), T_K0 + 0.25 * k, dur=0.45, size=0.08)
+    sc.frame_set(1)
+    return dict(**where, data=data, rest=1, grips=(),
+                conseq=[("bolt one melts the sand round him into a wall of molten glass: a glass jar seals him in to his chest", lambda: jars, T_S + 0.12, T_SH - 0.02, {"hero": True}),
+                        ("bolt two bursts the jar into shards that rain onto the sand round him", lambda: [s[0] for s in shards], T_SH, D, {"whole": False, "moves": True})])
 
 
 # ====================================================================================================
