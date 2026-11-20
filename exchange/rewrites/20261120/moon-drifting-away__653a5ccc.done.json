@@ -1,0 +1,10 @@
+{
+ "id": "moon-drifting-away__653a5ccc",
+ "slug": "moon-drifting-away",
+ "settled": "2026-11-20T12:23:41Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Earth",
+  "closing: new named entity not in the data: Sun"
+ ]
+}

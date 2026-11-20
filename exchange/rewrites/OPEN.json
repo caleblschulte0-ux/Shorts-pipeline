@@ -1,16 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T12:19:19Z",
+ "updated": "2026-11-20T12:23:42Z",
  "open": [
   {
-   "id": "moon-drifting-away__653a5ccc",
+   "id": "moon-drifting-away__653a5ccc_r1",
    "slug": "moon-drifting-away",
-   "filed": "2026-11-20T00:27:43Z",
+   "filed": "2026-11-20T12:23:42Z",
    "why": [
     "premise: brain: The claim is misleading: the Moon is receding about 3.8 cm a year, and total eclipses end only because it appears too small to cover the Sun. \"Escape\" and \"leaving\" overstate this, and the 600-million-year timescale is too distant for a viewer to feel as a threat."
    ],
-   "request": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc.request.json",
-   "answer_path": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc.answer.json"
+   "request": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261120/moon-drifting-away__653a5ccc_r1.answer.json"
   },
   {
    "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
