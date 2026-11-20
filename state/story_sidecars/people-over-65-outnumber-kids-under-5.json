@@ -1,0 +1,55 @@
+{
+ "slug": "people-over-65-outnumber-kids-under-5",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 10,
+   "hook": 12,
+   "arc": 8,
+   "factual": 12,
+   "visual_proof": 5,
+   "payoff": 6,
+   "voice": 4
+  },
+  "total": 57,
+  "fatal": [
+   "unrenderable_visual",
+   "confusing"
+  ],
+  "weakest": "visual_proof",
+  "note": "Simplify the visual concepts so they can be clearly rendered on a phone screen; replace abstract 'data dragging' imagery with straightforward, recognizable shots.",
+  "fp": "23a30d504198dc8c"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "The world is running out of kids, and it might already be too late.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "For the first time ever, seniors outnumber toddlers worldwide, about 705 million of them, and the gap keeps growing.",
+   "eyes": "substance: grandparents filling a line; cause: Data pushes the lead grandparent's wheelchair down the sidewalk and a whole line of seniors files in behind him",
+   "evidence": "United Nations, Department of Economic and Social Affairs (Population Division) | People over 65 vs children under 5, worldwide (2018) | https://population.un.org/wpp/ | 2026-11-13"
+  },
+  {
+   "window": "beat 1",
+   "ears": "That senior crowd keeps growing, heading for 1.6 billion, nearly four times its size at the turn of the century.",
+   "eyes": "substance: grey-haired older people; cause: Data drags the crowd barrier back with his own hands and the seniors fill the space he opens",
+   "evidence": "United Nations, Department of Economic and Social Affairs (Population Division) | World population aged 65+, 2000-2050 (projected) | https://population.un.org/wpp/ | 2026-11-13"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Meanwhile, seniors will outnumber little kids more than two to one, which means a much older world, with fewer young people.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "United Nations, Department of Economic and Social Affairs (Population Division) | People over 65 vs children under 5, worldwide (2050 projected) | https://population.un.org/wpp/ | 2026-11-13"
+  },
+  {
+   "window": "closing",
+   "ears": "A much older world is coming, and it will change jobs, healthcare and families for everyone.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

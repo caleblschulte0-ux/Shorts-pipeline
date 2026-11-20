@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T00:27:44Z",
+ "updated": "2026-11-20T10:09:14Z",
  "open": [
+  {
+   "id": "us-height-ranking-fall__5c0b88f4",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-20T10:09:14Z",
+   "why": [
+    "premise: brain: The premise makes an unverified claim about American height increase and comparative growth that is not concretely substantiated."
+   ],
+   "request": "exchange/rewrites/20261120/us-height-ranking-fall__5c0b88f4.request.json",
+   "answer_path": "exchange/rewrites/20261120/us-height-ranking-fall__5c0b88f4.answer.json"
+  },
   {
    "id": "fireflies-losing-their-glow__5dd482f3",
    "slug": "fireflies-losing-their-glow",
@@ -214,16 +224,6 @@
    ],
    "request": "exchange/rewrites/20261119/library-digital-shift__502c582f.request.json",
    "answer_path": "exchange/rewrites/20261119/library-digital-shift__502c582f.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__5c0b88f4",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-19T00:50:06Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking concrete, true details about specific height changes."
-   ],
-   "request": "exchange/rewrites/20261119/us-height-ranking-fall__5c0b88f4.request.json",
-   "answer_path": "exchange/rewrites/20261119/us-height-ranking-fall__5c0b88f4.answer.json"
   },
   {
    "id": "betelgeuse-great-dimming__f1ec3d70",

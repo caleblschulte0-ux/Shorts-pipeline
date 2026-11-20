@@ -1,0 +1,52 @@
+{
+ "slug": "richest-americans-live-14-years-longer",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 12,
+   "hook": 18,
+   "arc": 15,
+   "factual": 13,
+   "visual_proof": 12,
+   "payoff": 9,
+   "voice": 4
+  },
+  "total": 83,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "Make the arc feel more like a story—connect the data points with a clear narrative of widening inequality rather than a simple list of statistics.",
+  "fp": "d759621a65fb82a4"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Your paycheck decides how long you get to live, and the gap is growing.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Richest American men outlive the poorest men by 14.6 years. That is more than a decade of life, lost to a paycheck.",
+   "eyes": "substance: lit birthday candles; cause: Data places one more lit candle on the rich man's cake for every extra birthday he lives",
+   "evidence": "JAMA (Journal of the American Medical Association) | US life expectancy gap, richest vs poorest 1% by income | https://www.equality-of-opportunity.org/ | 2026-11-13"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Sixty years of progress added only about 9 years to American lives. The richest-poorest gap beats all of it.",
+   "eyes": "a data picture (trend)",
+   "evidence": "CDC National Center for Health Statistics | US average life expectancy at birth, 1960-2023 | https://www.cdc.gov/nchs/fastats/life-expectancy.htm | 2026-11-13"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Since 2001, the richest fifth of Americans gained 2.3 years of life. The poorest fifth got almost nothing.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "JAMA (Journal of the American Medical Association) | Life expectancy gained since 2001, by income group | https://www.equality-of-opportunity.org/ | 2026-11-13"
+  },
+  {
+   "window": "closing",
+   "ears": "Money doesn't just buy comfort. It buys years, and that gap keeps growing.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
