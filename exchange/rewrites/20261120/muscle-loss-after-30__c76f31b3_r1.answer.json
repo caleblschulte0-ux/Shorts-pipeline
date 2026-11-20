@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "muscle-loss-after-30__c76f31b3_r1",
+  "slug": "muscle-loss-after-30",
+  "by": "chatgpt",
+  "written_at": "2026-11-20T12:14:42.277Z",
+  "title": "One Muscle Dataset Shows Loss Accelerating Later",
+  "hook": "Muscle decline in this dataset bends sharply instead of staying steady.",
+  "closing": "The study data makes resistance training matter most when later-life loss begins accelerating.",
+  "question": "How often do you strength train?",
+  "segments": [
+    {
+      "topic": "Muscle Retained",
+      "say": "Muscle mass fell to 65 percent of its starting level. Everyday strength becomes harder to preserve as that reserve shrinks."
+    },
+    {
+      "topic": "Muscle Loss Rate",
+      "say": "The dataset's later muscle-loss rate reached 18 percent per decade. This is a measured pattern, not a universal guarantee."
+    },
+    {
+      "topic": "Muscle Training Study",
+      "say": "Measured sarcopenia fell to zero after resistance training in the study. The result shows decline was not automatically irreversible there."
+    }
+  ]
+}
