@@ -3,19 +3,19 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 11,
-   "hook": 13,
-   "arc": 8,
-   "factual": 8,
-   "visual_proof": 9,
-   "payoff": 5,
-   "voice": 3
+   "premise": 10,
+   "hook": 16,
+   "arc": 12,
+   "factual": 12,
+   "visual_proof": 12,
+   "payoff": 6,
+   "voice": 4
   },
-  "total": 57,
+  "total": 72,
   "fatal": [],
   "weakest": "arc",
-  "note": "Beats 1 and 3 repeat the same fact (counts fell by about half or more) in a row, and the numbers don't line up. '101' has no unit, 'under half' conflicts with the 62% drop, and the 2.6% a year pace is never tied to a baseline. Rebuild it as",
-  "fp": "98e5ae2d20f99084"
+  "note": "Add a stronger narrative arc that ties the statistics to personal impact, making each beat feel like a progression rather than a list of facts.",
+  "fp": "3e7a4205f721eb91"
  },
  "storyboard": [
   {
