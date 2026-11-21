@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T00:22:40Z",
+ "updated": "2026-11-21T09:31:24Z",
  "open": [
+  {
+   "id": "sperm-counts-cut-in-half__ff20feba",
+   "slug": "sperm-counts-cut-in-half",
+   "filed": "2026-11-21T09:31:24Z",
+   "why": [
+    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Introduces a new metric rather than a logical consequence of the previous beat; it's an additional fact, not a bridge."
+   ],
+   "request": "exchange/rewrites/20261121/sperm-counts-cut-in-half__ff20feba.request.json",
+   "answer_path": "exchange/rewrites/20261121/sperm-counts-cut-in-half__ff20feba.answer.json"
+  },
+  {
+   "id": "library-digital-shift__502c582f_r1",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-21T09:31:23Z",
+   "why": [
+    "premise: brain: The premise is vague and does not present a concrete, pictureable surprise or contradiction."
+   ],
+   "request": "exchange/rewrites/20261121/library-digital-shift__502c582f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261121/library-digital-shift__502c582f_r1.answer.json"
+  },
   {
    "id": "great-barrier-reef-bleaching-accelerating__b951ee81",
    "slug": "great-barrier-reef-bleaching-accelerating",
@@ -181,17 +201,6 @@
    ],
    "request": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
    "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
-  },
-  {
-   "id": "sperm-counts-cut-in-half__c0ebd9e9_r1",
-   "slug": "sperm-counts-cut-in-half",
-   "filed": "2026-11-19T13:57:05Z",
-   "why": [
-    "thesis: seg1 ('Sperm count decline speed') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Provides a related statistic but doesn't directly prove the headline claim and doesn't follow as a consequence of beat 0",
-    "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: States a total count drop that supports the headline, but it isn't a logical continuation of the speed increase mentione"
-   ],
-   "request": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/sperm-counts-cut-in-half__c0ebd9e9_r1.answer.json"
   },
   {
    "id": "index-funds-own-corporate-america__a401ad38_r1",
