@@ -1,0 +1,141 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "cavendish-banana-monoculture__c839b8fc_r1",
+ "filed": "2026-11-21T16:10:04Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "cavendish-banana-monoculture",
+ "current": {
+  "title": "99% Of Exported Bananas Are One Cavendish Variety",
+  "hook": "The global banana trade depends on one clone.",
+  "closing": "If the Cavendish falls, your cheap banana could vanish, because nothing else is ready to replace it.",
+  "question": "Have you tried another variety?",
+  "segments": [
+   {
+    "topic": "Cavendish Bananas",
+    "say": "Nearly every banana shipped abroad, 99 percent, is a Cavendish. Buy one anywhere, and you're eating essentially the same fruit."
+   },
+   {
+    "topic": "One Cavendish Variety",
+    "say": "Over 1,000 banana varieties exist, yet only one is exported. The rest stay local, so the world's supply has no backup."
+   },
+   {
+    "topic": "Cavendish Disease Spread",
+    "say": "A deadly fungus now reaches three continents, up from one in 1990. Identical clone plants share one weakness, so it spreads freely."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Cavendish Bananas",
+   "say": "Nearly every banana shipped abroad, 99 percent, is a Cavendish. Buy one anywhere, and you're eating essentially the same fruit.",
+   "role": "1 · ONE CLONE",
+   "data": {
+    "file": "cavendish_export_share.json",
+    "unit": "percent",
+    "title": "Cavendish share of global banana exports",
+    "points": [
+     {
+      "label": "Cavendish",
+      "value": 99
+     },
+     {
+      "label": "All other varieties",
+      "value": 1
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "One Cavendish Variety",
+   "say": "Over 1,000 banana varieties exist, yet only one is exported. The rest stay local, so the world's supply has no backup.",
+   "role": "2 · NO BACKUP",
+   "data": {
+    "file": "banana_varieties_grown_vs_exported.json",
+    "unit": "count",
+    "title": "Banana varieties that exist vs. varieties actually exported",
+    "points": [
+     {
+      "label": "Varieties that exist",
+      "value": 1000
+     },
+     {
+      "label": "Varieties actually exported",
+      "value": 1
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Cavendish Disease Spread",
+   "say": "A deadly fungus now reaches three continents, up from one in 1990. Identical clone plants share one weakness, so it spreads freely.",
+   "role": "3 · IT HAPPENED BEFORE",
+   "data": {
+    "file": "panama_disease_tr4_spread.json",
+    "unit": "count",
+    "title": "Tropical Race 4 (Panama disease) — continents with confirmed detections",
+    "points": [
+     {
+      "label": "1990",
+      "value": 1,
+      "period": "1990"
+     },
+     {
+      "label": "2013",
+      "value": 2,
+      "period": "2013"
+     },
+     {
+      "label": "2019",
+      "value": 3,
+      "period": "2019"
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The hook is a vague, abstract claim (\"depends on one clone\") with no concrete picture, stake or threat the viewer can visualize, and the title is just a statistic — it names no specific surprise like the disease (Panama disease) that could wipe out the banana."
+ ],
+ "reasons": [
+  "premise: brain: The hook is a vague, abstract claim (\"depends on one clone\") with no concrete picture, stake or threat the viewer can visualize, and the title is just a statistic — it names no specific surprise like the disease (Panama disease) that could wipe out the banana."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261121/cavendish-banana-monoculture__c839b8fc_r1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

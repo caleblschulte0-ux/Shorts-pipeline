@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T14:49:27Z",
+ "updated": "2026-11-21T16:10:04Z",
  "open": [
+  {
+   "id": "cavendish-banana-monoculture__c839b8fc_r1",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-11-21T16:10:04Z",
+   "why": [
+    "premise: brain: The hook is a vague, abstract claim (\"depends on one clone\") with no concrete picture, stake or threat the viewer can visualize, and the title is just a statistic — it names no specific surprise like the disease (Panama disease) that could wipe out the banana."
+   ],
+   "request": "exchange/rewrites/20261121/cavendish-banana-monoculture__c839b8fc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261121/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
+  },
   {
    "id": "map-distortion-true-size__bc5c8508",
    "slug": "map-distortion-true-size",
@@ -506,16 +516,6 @@
    ],
    "request": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.request.json",
    "answer_path": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.answer.json"
-  },
-  {
-   "id": "cavendish-banana-monoculture__c839b8fc_r1",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-11-17T12:26:57Z",
-   "why": [
-    "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
   },
   {
    "id": "lab-grown-diamond-price-collapse__e51f51ef",
