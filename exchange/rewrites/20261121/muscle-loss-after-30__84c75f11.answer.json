@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "muscle-loss-after-30__84c75f11",
+ "slug": "muscle-loss-after-30",
+ "by": "chatgpt",
+ "written_at": "2026-11-21T12:21:42.753Z",
+ "title": "Muscle Mass Falls To 65 Percent By Age 80",
+ "hook": "Muscle loss accelerates late, but training changed the study pattern.",
+ "closing": "The study shows later muscle loss can accelerate, while resistance training can still change the outcome.",
+ "question": "How often do you strength train?",
+ "segments": [
+  {
+   "topic": "Muscle mass retained",
+   "say": "Muscle mass fell to 65 percent, leaving much less reserve for everyday strength."
+  },
+  {
+   "topic": "Muscle loss rate",
+   "say": "The later muscle-loss rate reached 18 percent per decade, showing the decline accelerated."
+  },
+  {
+   "topic": "Muscle training result",
+   "say": "Measured sarcopenia fell to 0 percent after resistance training, so decline was not irreversible in this study."
+  }
+ ]
+}
