@@ -89,7 +89,7 @@ jobs:
       # Translation cache (audit Ticket 3): moved out of git into cache/,
       # persisted between runs via actions/cache (evolving-cache pattern).
       - name: Cache translations
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             cache/translation/
@@ -100,7 +100,7 @@ jobs:
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
@@ -116,7 +116,7 @@ jobs:
             "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
       - name: Cache b-roll strip clips
         id: cache-broll
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: data_learning/broll/styles/
           key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
