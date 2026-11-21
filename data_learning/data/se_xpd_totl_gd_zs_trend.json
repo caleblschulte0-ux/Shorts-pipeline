@@ -1,0 +1,48 @@
+{
+  "key": "se_xpd_totl_gd_zs_trend",
+  "title": "Total government expenditure on education",
+  "unit": "% of GDP",
+  "geography": "World",
+  "time_coverage": "1999-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "total government expenditure on education",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-21"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-21. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1999",
+      "value": 4.04,
+      "period": "1999"
+    },
+    {
+      "label": "2004",
+      "value": 3.94,
+      "period": "2004"
+    },
+    {
+      "label": "2009",
+      "value": 4.66,
+      "period": "2009"
+    },
+    {
+      "label": "2013",
+      "value": 4.34,
+      "period": "2013"
+    },
+    {
+      "label": "2018",
+      "value": 4.18,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 3.57,
+      "period": "2023"
+    }
+  ]
+}

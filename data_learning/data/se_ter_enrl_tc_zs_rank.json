@@ -1,0 +1,38 @@
+{
+  "key": "se_ter_enrl_tc_zs_rank",
+  "title": "Tertiary pupil-teacher ratio",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2019",
+  "insight_type": "rank",
+  "source": {
+    "name": "tertiary pupil-teacher ratio",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.TER.ENRL.TC.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-21"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-21. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Guinea-Bissau",
+      "value": 147.6
+    },
+    {
+      "label": "Syrian Arab Republic",
+      "value": 64.4
+    },
+    {
+      "label": "Nepal",
+      "value": 60.0
+    },
+    {
+      "label": "Cameroon",
+      "value": 52.3
+    },
+    {
+      "label": "Sudan",
+      "value": 49.8
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "key": "se_sec_enrl_gc_rank",
+  "title": "General pupils secondary education",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2019",
+  "insight_type": "rank",
+  "source": {
+    "name": "general pupils secondary education",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.SEC.ENRL.GC",
+    "officiality": "official",
+    "access_date": "2026-11-21"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-21. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "India",
+      "value": 127528425
+    },
+    {
+      "label": "China",
+      "value": 68394471
+    },
+    {
+      "label": "United States",
+      "value": 24787964
+    },
+    {
+      "label": "Brazil",
+      "value": 22161547
+    },
+    {
+      "label": "Indonesia",
+      "value": 19989539
+    }
+  ]
+}

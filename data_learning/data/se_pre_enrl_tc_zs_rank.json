@@ -1,0 +1,38 @@
+{
+  "key": "se_pre_enrl_tc_zs_rank",
+  "title": "Preprimary pupil-teacher ratio",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2019",
+  "insight_type": "rank",
+  "source": {
+    "name": "preprimary pupil-teacher ratio",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.PRE.ENRL.TC.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-21"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-21. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Tanzania",
+      "value": 114.0
+    },
+    {
+      "label": "Angola",
+      "value": 63.1
+    },
+    {
+      "label": "United Kingdom",
+      "value": 61.8
+    },
+    {
+      "label": "Gambia, The",
+      "value": 48.0
+    },
+    {
+      "label": "Central African Republic",
+      "value": 44.3
+    }
+  ]
+}

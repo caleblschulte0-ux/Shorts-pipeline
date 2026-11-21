@@ -1,18 +1,18 @@
 {
   "key": "se_adt_1524_lt_fe_zs_trend",
-  "title": "Literacy rate, youth female",
+  "title": "Youth female literacy rate",
   "unit": "% of females ages 15-24",
   "geography": "World",
   "time_coverage": "1975-2024",
   "insight_type": "trend",
   "source": {
-    "name": "Literacy rate, youth female",
+    "name": "youth female literacy rate",
     "publisher": "World Bank",
     "url": "https://data.worldbank.org/indicator/SE.ADT.1524.LT.FE.ZS",
     "officiality": "official",
-    "access_date": "2026-07-29"
+    "access_date": "2026-11-21"
   },
-  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "notes": "Fetched live from World Bank on 2026-11-21. Values are the publisher's, unmodified.",
   "points": [
     {
       "label": "1975",
