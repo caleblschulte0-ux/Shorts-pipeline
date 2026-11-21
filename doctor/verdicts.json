@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261120",
+  "updated": "20261121",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -686,8 +686,8 @@
     },
     "aaeb12de3ebd": {
       "verdict": "in_progress",
-      "date": "20261120",
-      "because": "Triage 2026-11-20. Explainer posted 0 on 11-19 across eight runs (74 queued stories, all held: 34 non-official data, 41 the brain's premise judge calls vague, 7 narration readouts, 3 repeats). Root cause found and fixed this session: the story forge had KEPT NO STORY since 2026-09-07 - with 66 WDI indicators used, the 32 on-doctrine ones left all failed its series filters, and every run redrew the same 32, printed 'forged 0' and exited green, so the queue only shrank. Fix: scripts/story_forge.py now reads four World Bank databases (WB_SOURCES), remembers unusable indicators in state/forge_used.json instead of retrying them, and warns loudly when it writes nothing; daily_alarm raises forge_silent (3 days without a kept story) and sports_source_dead (sports_report pool=0), both with the exact fix; explainer.yml now persists state/story_sidecars. tests/test_the_forge_does_not_retry_a_dry_well.py. Still open: GROQ_API_KEY is dead (operator), and the next explainer runs must show the forge writing again before this closes.",
+      "date": "20261121",
+      "because": "Triage 2026-11-21. Explainer posted 1 on 11-20 (seven runs) and 0 by 00:22 UTC on 11-21; every run held all 73 un-posted stories (38 on the brain's premise judge, 34 on non-official data, 9 not_current, 3 repeats, 2 story holds) and the one render attempted (sperm-counts) ran out of drawing budget. Two supply defects found in the run logs and fixed this session: (1) story_forge.yml's --top-up compared the RAW un-posted count (73) to its target (10) and printed 'queue already full' twice a day while the posting run held all 73 - shared/queue_supply.py now measures POSTABLE (un-posted minus what the last run held: 73 -> 0) for the forge and the authoring brief; (2) the posting run's own forge (--count 8) found THREE candidates left in four World Bank databases ('themes available: population(3)', 0 usable) because candidates() dropped every SM./SG. indicator and every comma-named indicator ('Mortality rate, infant') - now turned into words, acronyms refused, SM./SG. read. tests/test_a_queue_of_held_stories_is_not_full.py, tests/test_the_forge_reads_the_whole_catalogue.py. Still open: GROQ_API_KEY dead (HTTP 403, alarmed daily as credential_dead_groq); Groq and Gemini both 429 mid-run; the ChatGPT doctor has filed no report since 2026-09-08 (alarm chatgpt_task_failed_doctor); 140 rewrite requests open. Closes when the forge keeps stories again (state/forge_used.json updated moves off 2026-09-07) and the channel posts 4/4 for a run of days.",
       "history": [
         {
           "verdict": "doing",
@@ -708,6 +708,11 @@
           "verdict": "in_progress",
           "date": "20261118",
           "because": "Triage 2026-11-18. Delivery is back but not steady: explainer posted 4/5/4/4 on 11-12..11-15, 2 on 11-16, 0 on 11-17 (state/explainer_runs.json: six runs that day each held every queued story - editorial_hold ~45, not_current ~29 - and posted nothing while CLAUDE_CODE_OAUTH_TOKEN sat at its weekly limit and GROQ_API_KEY was still refused with HTTP 403, state/credentials.json 2026-11-17T21:41Z), then 2 by 03:25 UTC on 11-18, ninety minutes after the subscription reset. The instrumentation half is done; the bottleneck is brain budget, and the exact operator action is unchanged and already alarmed daily as credential_dead_groq: mint a key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Closes when the channel posts 4/4 for a run of days with that key live."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20261120",
+          "because": "Triage 2026-11-20. Explainer posted 0 on 11-19 across eight runs (74 queued stories, all held: 34 non-official data, 41 the brain's premise judge calls vague, 7 narration readouts, 3 repeats). Root cause found and fixed this session: the story forge had KEPT NO STORY since 2026-09-07 - with 66 WDI indicators used, the 32 on-doctrine ones left all failed its series filters, and every run redrew the same 32, printed 'forged 0' and exited green, so the queue only shrank. Fix: scripts/story_forge.py now reads four World Bank databases (WB_SOURCES), remembers unusable indicators in state/forge_used.json instead of retrying them, and warns loudly when it writes nothing; daily_alarm raises forge_silent (3 days without a kept story) and sports_source_dead (sports_report pool=0), both with the exact fix; explainer.yml now persists state/story_sidecars. tests/test_the_forge_does_not_retry_a_dry_well.py. Still open: GROQ_API_KEY is dead (operator), and the next explainer runs must show the forge writing again before this closes."
         }
       ]
     },
@@ -1321,16 +1326,22 @@
       ]
     },
     "500b791bc671": {
-      "verdict": "in_progress",
-      "date": "20261012",
-      "because": "PR #623 opened: main_verify.yml runs the full suite on executable pushes to main",
+      "verdict": "done",
+      "date": "20261121",
+      "because": "PR #623 merged 2026-10-12 as 3d7b79ca3: main_verify.yml runs the full suite (pipefail, exchange dry run, registry acceptance) on pushes to main touching **.py, tests/, workflows or the registry, read-only so it cannot recurse; tests/test_main_pushes_run_the_suite.py holds it. Closed by triage 2026-11-21.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260904",
           "because": "Confirmed: .github/workflows/auto-merge.yml only triggers on pull_request and gates every job to startsWith(github.head_ref,'claude/'); exchange_phase_a.yml:38-42 explicitly documents direct human/PAT pushes to main as a supported path with no equivalent full-suite gate. Real coverage gap; fix is a new scoped push-to-main verification workflow reusing the PR gate's test environment \u2014 a new workflow file, queued rather than rushed."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20261012",
+          "because": "PR #623 opened: main_verify.yml runs the full suite on executable pushes to main"
         }
-      ]
+      ],
+      "commit": "3d7b79ca33d35094c5505edd950ec7bd37663f17"
     },
     "e61446f7bc2a": {
       "verdict": "in_progress",
