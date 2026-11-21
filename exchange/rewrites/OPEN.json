@@ -1,7 +1,119 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T12:30:28Z",
+ "updated": "2026-11-21T13:21:28Z",
  "open": [
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__346c8074",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-21T13:21:28Z",
+   "why": [
+    "premise: brain: The claim of bleaching returning after exactly two years is not a verifiable, concrete fact."
+   ],
+   "request": "exchange/rewrites/20261121/great-barrier-reef-bleaching-accelerating__346c8074.request.json",
+   "answer_path": "exchange/rewrites/20261121/great-barrier-reef-bleaching-accelerating__346c8074.answer.json"
+  },
+  {
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-21T13:21:28Z",
+   "why": [
+    "thesis: seg1 ('Education: crowded classrooms') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: Switches to Guinea-Bissau and college education, not India's secondary education.",
+    "thesis: seg2 ('Education spending') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: No specific country, does not relate to India's secondary education or logically follow the previous beat.",
+    "thesis: seg3 ('Education: female literacy') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: No specific country, does not relate to India's secondary education or logically follow the previous beat."
+   ],
+   "request": "exchange/rewrites/20261121/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.request.json",
+   "answer_path": "exchange/rewrites/20261121/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.answer.json"
+  },
+  {
+   "id": "chess-online-boom__820d9076",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-21T13:21:27Z",
+   "why": [
+    "premise: brain: The hook is vague and unverified, lacking a concrete, true surprise about a specific event."
+   ],
+   "request": "exchange/rewrites/20261121/chess-online-boom__820d9076.request.json",
+   "answer_path": "exchange/rewrites/20261121/chess-online-boom__820d9076.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__2c93aff5",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-11-21T13:21:27Z",
+   "why": [
+    "premise: brain: The claim about the Gulf dead zone rebounding lacks a verifiable, concrete fact and may be misleading."
+   ],
+   "request": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.request.json",
+   "answer_path": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.answer.json"
+  },
+  {
+   "id": "us-height-ranking-fall__b3299d80",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-21T13:21:27Z",
+   "why": [
+    "premise: brain: The hook is vague and unsubstantiated, lacking a concrete, verifiable surprise or specific claim."
+   ],
+   "request": "exchange/rewrites/20261121/us-height-ranking-fall__b3299d80.request.json",
+   "answer_path": "exchange/rewrites/20261121/us-height-ranking-fall__b3299d80.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__614b1d40",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-21T13:21:26Z",
+   "why": [
+    "premise: brain: The claim about transistor doubling now taking three years is vague and unverified, lacking concrete, true specifics."
+   ],
+   "request": "exchange/rewrites/20261121/chip-transistor-shrink-limit__614b1d40.request.json",
+   "answer_path": "exchange/rewrites/20261121/chip-transistor-shrink-limit__614b1d40.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__a5ebb426",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-21T13:21:26Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about muscle mass dropping to exactly 65% by age 80."
+   ],
+   "request": "exchange/rewrites/20261121/muscle-loss-after-30__a5ebb426.request.json",
+   "answer_path": "exchange/rewrites/20261121/muscle-loss-after-30__a5ebb426.answer.json"
+  },
+  {
+   "id": "sperm-counts-cut-in-half__88a02a18",
+   "slug": "sperm-counts-cut-in-half",
+   "filed": "2026-11-21T13:21:26Z",
+   "why": [
+    "premise: brain: The claim about a >50% global sperm count decline since 1973 is contested and not definitively proven, making the premise insufficiently concrete and true."
+   ],
+   "request": "exchange/rewrites/20261121/sperm-counts-cut-in-half__88a02a18.request.json",
+   "answer_path": "exchange/rewrites/20261121/sperm-counts-cut-in-half__88a02a18.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__fdd3d94b",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-21T13:21:25Z",
+   "why": [
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.request.json",
+   "answer_path": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.answer.json"
+  },
+  {
+   "id": "measles-ninety-five-rule__c11b709d",
+   "slug": "measles-ninety-five-rule",
+   "filed": "2026-11-21T13:21:24Z",
+   "why": [
+    "premise: brain: The hook is vague and does not present a concrete, verifiable surprise or specific scenario."
+   ],
+   "request": "exchange/rewrites/20261121/measles-ninety-five-rule__c11b709d.request.json",
+   "answer_path": "exchange/rewrites/20261121/measles-ninety-five-rule__c11b709d.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__c9a9b4d6",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-11-21T13:21:24Z",
+   "why": [
+    "premise: brain: The claim about the US divorce rate dropping from 4.7 to 2.4 per thousand is not a verifiable, concrete fact and appears inaccurate."
+   ],
+   "request": "exchange/rewrites/20261121/divorce-rate-quiet-decline__c9a9b4d6.request.json",
+   "answer_path": "exchange/rewrites/20261121/divorce-rate-quiet-decline__c9a9b4d6.answer.json"
+  },
   {
    "id": "runway-near-misses-climbing__8938319a",
    "slug": "runway-near-misses-climbing",
@@ -63,36 +175,6 @@
    "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
   },
   {
-   "id": "gulf-dead-zone-growth__00fcbaeb",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-11-20T15:45:05Z",
-   "why": [
-    "premise: brain: The title and hook contradict each other on the facts: \"more than doubled\" against a 6,705 sq mi rebound. The hook reads as a flat statistic with no named stake, villain or human consequence. It also gives no yardstick for 6,705 square miles or for what it was meant to shrink from. It is a data point, not a belief the story turns over."
-   ],
-   "request": "exchange/rewrites/20261120/gulf-dead-zone-growth__00fcbaeb.request.json",
-   "answer_path": "exchange/rewrites/20261120/gulf-dead-zone-growth__00fcbaeb.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__31e54fc2",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-20T15:45:05Z",
-   "why": [
-    "premise: brain: It is a vague, hedged noun-phrase premise (\"growth is slowing\") with no concrete surprise, threat or scale, and it turns over no belief the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.request.json",
-   "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__b951ee81",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-20T15:45:05Z",
-   "why": [
-    "premise: brain: The claim that bleaching now returns every 2 years is not a verifiable, concrete fact."
-   ],
-   "request": "exchange/rewrites/20261120/great-barrier-reef-bleaching-accelerating__b951ee81.request.json",
-   "answer_path": "exchange/rewrites/20261120/great-barrier-reef-bleaching-accelerating__b951ee81.answer.json"
-  },
-  {
    "id": "astronaut-bone-loss__15bbbefa",
    "slug": "astronaut-bone-loss",
    "filed": "2026-11-20T15:45:04Z",
@@ -103,56 +185,6 @@
    "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.answer.json"
   },
   {
-   "id": "divorce-rate-quiet-decline__197e2d03",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-11-20T14:27:19Z",
-   "why": [
-    "thesis: seg1 ('Later marriage divorce') does not continue the story of the headline ('US Divorce Fell to 2.4 per Thousand Annually') — brain: Introduces separate fact rather than a direct consequence of beat 0"
-   ],
-   "request": "exchange/rewrites/20261120/divorce-rate-quiet-decline__197e2d03.request.json",
-   "answer_path": "exchange/rewrites/20261120/divorce-rate-quiet-decline__197e2d03.answer.json"
-  },
-  {
-   "id": "measles-ninety-five-rule__c11b709d",
-   "slug": "measles-ninety-five-rule",
-   "filed": "2026-11-20T14:27:18Z",
-   "why": [
-    "premise: brain: The premise is vague and lacks a concrete, specific surprise or contradiction that can be visualized."
-   ],
-   "request": "exchange/rewrites/20261120/measles-ninety-five-rule__c11b709d.request.json",
-   "answer_path": "exchange/rewrites/20261120/measles-ninety-five-rule__c11b709d.answer.json"
-  },
-  {
-   "id": "chess-online-boom__585373ee",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-20T13:11:34Z",
-   "why": [
-    "premise: brain: The premise is vague and does not present a concrete, verifiable surprise or specific claim."
-   ],
-   "request": "exchange/rewrites/20261120/chess-online-boom__585373ee.request.json",
-   "answer_path": "exchange/rewrites/20261120/chess-online-boom__585373ee.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__84c75f11",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-20T13:11:34Z",
-   "why": [
-    "premise: brain: The premise is vague and does not present a concrete, verifiable surprise or specific claim."
-   ],
-   "request": "exchange/rewrites/20261120/muscle-loss-after-30__84c75f11.request.json",
-   "answer_path": "exchange/rewrites/20261120/muscle-loss-after-30__84c75f11.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__27486ff4",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-20T13:11:34Z",
-   "why": [
-    "premise: brain: The claim about American men’s height increase and loss of global lead is vague and unverified, lacking concrete, true evidence."
-   ],
-   "request": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.request.json",
-   "answer_path": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.answer.json"
-  },
-  {
    "id": "frog-fungus-mass-extinction__609ffc7e",
    "slug": "frog-fungus-mass-extinction",
    "filed": "2026-11-20T13:11:33Z",
@@ -161,16 +193,6 @@
    ],
    "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
    "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__c926fe13",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-20T13:11:32Z",
-   "why": [
-    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261120/freshwater-accessible__c926fe13.request.json",
-   "answer_path": "exchange/rewrites/20261120/freshwater-accessible__c926fe13.answer.json"
   },
   {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",

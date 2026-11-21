@@ -27708,20 +27708,20 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 15,
+     "hook": 16,
      "arc": 15,
      "factual": 13,
      "visual_proof": 8,
      "payoff": 8,
      "voice": 4
     },
-    "total": 73,
+    "total": 74,
     "fatal": [
      "unrenderable_visual"
     ],
     "weakest": "visual_proof",
-    "note": "Provide clear, simple visual concepts that are easily readable on a phone screen, e.g., concise infographics or animated bars, instead of vague 'data picture (rank)' placeholders.",
-    "fp": "1ea878c4faf3e8ea"
+    "note": "Make the visual concepts concrete and easily readable on a phone screen rather than vague “data picture (rank)” placeholders.",
+    "fp": "7601e2bb4c49913b"
    },
    "segments": [
     {
@@ -38971,8 +38971,8 @@
   {
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
    "title": "India Beats Everyone On General pupils secondary education — By 5.1x",
-   "hook": "You'd guess United States leads on general pupils secondary education. It's India — 127.5 million to 24.8 million.",
-   "closing": "The numbers were public the whole time.",
+   "hook": "India has 5.1 times as many secondary pupils as the United States.",
+   "closing": "More kids can read, but crowded classrooms show where help is needed most. That's their future.",
    "hashtags": [
     "data",
     "facts",
@@ -38991,7 +38991,7 @@
      "insight_type": "rank",
      "role": "1 · GENERAL PUPILS SEC",
      "topic": "General pupils secondary education",
-     "say": "India leads at 127.5 million; Indonesia is 20.0 million."
+     "say": "India has 127.5 million secondary pupils, nearly double second-place China. That's a lot of kids for schools to fit."
     },
     {
      "source": "offline",
@@ -39001,8 +39001,8 @@
      },
      "insight_type": "rank",
      "role": "2 · TERTIARY PUPIL-TEA",
-     "topic": "Tertiary pupil-teacher ratio",
-     "say": "Guinea-Bissau leads at 147.6; Sudan is 49.8."
+     "topic": "Education: crowded classrooms",
+     "say": "In Guinea-Bissau, one college teacher faces 147.6 students, more than double the next worst country. Nobody gets much attention."
     },
     {
      "source": "offline",
@@ -39012,8 +39012,8 @@
      },
      "insight_type": "trend",
      "role": "3 · TOTAL GOVERNMENT E",
-     "topic": "Total government expenditure on educatio",
-     "say": "1999: 4.04 % of GDP. 2023: 3.57 % of GDP — barely moved."
+     "topic": "Education spending",
+     "say": "Government education spending fell to 3.57 percent of national income, the lowest in this data. Crowded classrooms get less to work with."
     },
     {
      "source": "offline",
@@ -39023,8 +39023,8 @@
      },
      "insight_type": "trend",
      "role": "4 · YOUTH FEMALE LITER",
-     "topic": "Youth female literacy rate",
-     "say": "1975: 67.1. 2024: 92 — 1.4 times higher."
+     "topic": "Education: female literacy",
+     "say": "Still, 92 percent of young women can read today, up from about two thirds in 1975. Crowded or not, school works."
     },
     {
      "source": "offline",
@@ -39034,11 +39034,13 @@
      },
      "insight_type": "rank",
      "role": "5 · PREPRIMARY PUPIL-T",
-     "topic": "Preprimary pupil-teacher ratio",
-     "say": "Tanzania leads at 114; Central African Republic is 44.3."
+     "topic": "Education: preschool classes",
+     "say": "In Tanzania, one preschool teacher has 114 children, almost double the next worst country. Tiny kids need the most attention."
     }
    ],
-   "words_by": "deterministic"
+   "words_by": "claude-retell",
+   "retold": "retell/v4",
+   "rewritten_at": "2026-11-21T13:20:01Z"
   }
  ]
 }

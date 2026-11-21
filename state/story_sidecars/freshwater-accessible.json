@@ -4,49 +4,49 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 15,
+   "hook": 16,
    "arc": 15,
    "factual": 13,
    "visual_proof": 8,
    "payoff": 8,
    "voice": 4
   },
-  "total": 73,
+  "total": 74,
   "fatal": [
    "unrenderable_visual"
   ],
   "weakest": "visual_proof",
-  "note": "Provide clear, simple visual concepts that are easily readable on a phone screen, e.g., concise infographics or animated bars, instead of vague 'data picture (rank)' placeholders.",
-  "fp": "1ea878c4faf3e8ea"
+  "note": "Make the visual concepts concrete and easily readable on a phone screen rather than vague “data picture (rank)” placeholders.",
+  "fp": "7601e2bb4c49913b"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Most of Earth's freshwater is locked away before it reaches a tap.",
+   "ears": "Almost all freshwater is locked away before reaching a tap.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Freshwater is 3.5 percent of Earth's water. Almost everything else is salty ocean water people cannot drink.",
+   "ears": "Freshwater is 3.5 percent of Earth's water, leaving almost everything else salty.",
    "eyes": "substance: blue ocean water; cause: Data pours bucket after bucket of seawater into the tank until it is nearly full, then tops it with a thin fresh layer",
    "evidence": "U.S. Geological Survey (USGS) | Earth's water: saline vs. fresh (percent of all water) | https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water | 2026-09-11"
   },
   {
    "window": "beat 1",
-   "ears": "Glaciers and ice caps hold 68.7 percent of freshwater. Most of the fresh supply is frozen beyond easy reach.",
+   "ears": "Glaciers and ice caps hold 68.7 percent of freshwater, freezing most of the supply beyond easy reach.",
    "eyes": "a data picture (rank)",
    "evidence": "U.S. Geological Survey (USGS) | Where Earth's freshwater actually is (percent of all freshwater) | https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water | 2026-09-11"
   },
   {
    "window": "beat 2",
-   "ears": "Rivers and lakes hold 0.007 percent of Earth's water. That tiny share carries much of the water people can readily access.",
+   "ears": "Rivers and lakes hold 0.007 percent of Earth's water, carrying much of what people can readily access.",
    "eyes": "a data picture (rank)",
    "evidence": "U.S. Geological Survey (USGS) | Freshwater in lakes and rivers as a share of all water on Earth (percent) | https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water | 2026-09-11"
   },
   {
    "window": "closing",
-   "ears": "The tiny accessible share makes protecting rivers and lakes matter to everyone.",
+   "ears": "That tiny accessible freshwater share makes protecting rivers and lakes matter to everyone.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
