@@ -1,0 +1,95 @@
+{
+ "slug": "helium-cant-make-more-3d",
+ "title": "The Gas In Your Party Balloon Is Running Out",
+ "voice": "am_fenrir",
+ "note": "Fourth 3D short, written for 3D from the queued helium-supply-squeeze story. One number at most per beat; the closing says why you care and asks. Every claim is in 'sources' with the source's own wording.",
+ "lines": [
+  "The gas in party balloons is running out, and we can't make more.",
+  "Almost all of it comes up from natural gas wells, made underground as radioactive rock slowly breaks down.",
+  "And once it's out, it floats up through the air and escapes into space. It's gone for good.",
+  "Its biggest job isn't balloons. About a quarter of it keeps hospital MRI machines cold enough to work.",
+  "So every balloon we let go is helium a hospital might need. Would you still buy one?"
+ ],
+ "draft_windows": [
+  [
+   0.0,
+   3.587083
+  ],
+  [
+   3.587083,
+   8.77425
+  ],
+  [
+   8.77425,
+   13.582667
+  ],
+  [
+   13.582667,
+   18.770542
+  ],
+  [
+   18.770542,
+   24.589084
+  ]
+ ],
+ "sources": [
+  {
+   "claim": "It is running out and cannot be made again",
+   "says": "Terrestrial helium is a non-renewable resource because once released into the atmosphere, it promptly escapes into space. Its supply is thought to be rapidly diminishing.",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "It comes from natural gas wells, made by radioactive decay underground",
+   "says": "Most terrestrial helium present today is created by the natural radioactive decay of heavy radioactive elements ... This radiogenic helium is trapped with natural gas in concentrations as great as 7% by volume",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Released helium escapes into space",
+   "says": "once released into the atmosphere, it promptly escapes into space",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Its biggest use, about a quarter, cools MRI magnets",
+   "says": "its largest single use, consuming about a quarter of production ... most of which involves cooling the superconducting magnets in medical MRI scanners and NMR spectrometers",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "Balloons are a minor use",
+   "says": "While balloons are perhaps the best-known use of helium, they are a minor part of all helium use.",
+   "url": "https://en.wikipedia.org/wiki/Helium",
+   "publisher": "Wikipedia",
+   "year": 2026
+  }
+ ],
+ "sets": [
+  "store",
+  "gas_field",
+  "dock",
+  "hospital",
+  "store"
+ ],
+ "sets_why": "the party aisle where you buy it, the gas well where it comes from, the open sky by the water where it leaves, the hospital bay where it works, back to the aisle",
+ "ideas": [
+  "one big balloon beside his face goes limp and sags in his hand",
+  "he opens the tap on a glass cutaway of glowing rock and the balloon on its pipe swells with the gas",
+  "the string slips through his fingers, he grabs and misses by a hand, and it rises out of the frame",
+  "he pours a smoking flask into a model MRI scanner; frost spreads and its lamp turns from red to green",
+  "the balloon in one hand, the frosted scanner beside it, he looks at us and lifts the balloon toward us"
+ ],
+ "storyboard": [
+  "1 hook (store): close, chest up in the party aisle, Data holds ONE big shiny red balloon by its string right beside his face; it goes limp, sags in on itself and droops down its string to hang off his fist like a wet sock; his face falls and he looks at us, alarmed.",
+  "2 well (gas_field): chest up at a field table on the plains, pump jacks far behind; on the table right in front of him a glass case of rock layers seen edge on, dark granite at the bottom flecked with glowing green specks; a steel pipe from its lid to a red-handled tap in front of him and on to an empty balloon on its end at the image-right; he swings the red lever open, bubbles rise up out of the glowing rock, and the balloon stands up and swells huge; he looks at us, pleased.",
+  "3 escape (dock): chest up at a crate on the dock, sea and sky behind, a big red balloon on a short string in his fist at his chest; a tug, and the string slides up out of his fist; he snatches up after it and closes his hand a hand's width under its end; it rises out of the top of the frame; he watches it go, then slumps, sad.",
+  "4 MRI (hospital): chest up at a steel cart in the scanner room; on it right in front of him a model MRI (a fat white ring round a dark bore, a blue-padded bed sliding out toward us, a big red lamp on its face, a steel funnel on top); he tips a steel flask over the funnel, white freezing vapour pours down into it, frost spreads over the ring from the port and the lamp switches from red to green; he looks at us, impressed.",
+  "5 payoff (store): chest up at the party counter, a pink balloon on a string in his fist low at his side, floating beside his head; the frosted little MRI from beat 4 on the counter at the image-right, lamp green; he looks up at the balloon, across at the scanner, then into the lens, one brow up, and lifts the balloon a little toward us: would you still buy one?"
+ ],
+ "narration_run": 43667941932
+}
