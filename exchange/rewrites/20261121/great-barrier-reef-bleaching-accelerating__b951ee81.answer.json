@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "great-barrier-reef-bleaching-accelerating__b951ee81",
+ "slug": "great-barrier-reef-bleaching-accelerating",
+ "by": "chatgpt",
+ "written_at": "2026-11-21T12:21:42.753Z",
+ "title": "Great Barrier Reef Bleaching Returns After Just 2 Years",
+ "hook": "The Great Barrier Reef is bleaching before it can recover.",
+ "closing": "Each reef bleaching wave now arrives before recovery can finish.",
+ "question": "Can the reef keep up?",
+ "segments": [
+  {
+   "topic": "Reef bleaching events",
+   "say": "The reef suffered 3 bleaching events this decade, turning a rare crisis into a recurring one."
+  },
+  {
+   "topic": "Reef bleaching gap",
+   "say": "The reef bleaching gap shrank to 2 years, barely leaving time to recover."
+  },
+  {
+   "topic": "Reef recovery time",
+   "say": "Reef recovery typically needs 10 years, far longer than the gap between bleaching events."
+  }
+ ]
+}
