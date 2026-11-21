@@ -3,58 +3,6 @@
     {
       "date": "20261113",
       "dry_run": false,
-      "ts": "2026-11-13T14:28:29+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 138,
-        "with_retention": 117,
-        "with_curve": 13,
-        "fetched_at": "2026-11-13T13:10:04.220791+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261113-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261113",
-      "dry_run": false,
       "ts": "2026-11-13T18:31:27+00:00",
       "feedback": {
         "snapshot": true,
@@ -6696,6 +6644,435 @@
             }
           },
           "took_s": 27.1
+        }
+      ]
+    },
+    {
+      "date": "20261121",
+      "dry_run": false,
+      "ts": "2026-11-21T12:41:55+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 133,
+        "with_retention": 111,
+        "with_curve": 14,
+        "fetched_at": "2026-11-21T08:46:10.588826+00:00"
+      },
+      "brain": {
+        "ok": 47,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nmplol": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:forsen": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sykkuno": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261121-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "jump scare landing, visible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "GTA 6 cutscene reaction, visible shock",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Hands Over The Wheel And Chat Swears She's On Drugs \ud83d\ude2d"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Hook caption sits over the streamer's chin and mouth in the facecam",
+                "Game footage is nearly black at about 16-18s",
+                "Stream chat text is cropped at the top edge"
+              ]
+            }
+          },
+          "took_s": 171.6
+        },
+        {
+          "slug": "clip-20261121-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about 30% of the canvas height instead of roughly 75%. Blurred padding takes up the r; vision: The subject is small and far away: a distant car on a road, wi",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague, popular streamer, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA6 driving, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Gets Hyped As Someone Locks The Brakes Up On That Thing"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin strip, about 30% of the canvas height instead of roughly 75%. Blurred padding takes up the r",
+                "The subject is small and far away: a distant car on a road, with a tiny facecam in the corner. It is hard to read on a p",
+                "The renderer did not crop toward the action. Wide 16:9 gameplay is letterboxed in the middle with no zoom or reframe.",
+                "Around 15-20s the picture is dark and chromatic-aberration glitched with a menu overlay, so the action is unclear."
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: The sharp picture is only about a third of the canvas height, a thin strip with large dark blurred areas above and below",
+                "vision: In the gameplay frames (1-13s, 22-27s) the car and the streamer's facecam are small and hard to read on a phone.",
+                "vision: The 15-20s segment shows a facecam over a leftover game menu (Help / Photo Studio / Settings). It looks unpolished and i",
+                "vision: The caption sits at the bottom of the sharp strip, and some subtitles are tiny (e.g. 'HE LOCKED THE' at 3.5s)."
+              ]
+            }
+          },
+          "took_s": 228.1
+        },
+        {
+          "slug": "clip-20261121-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, only about a third of the 9:16 canvas height. The rest is dark blur, so the subject i; vision: Several frames show a nude game character (around 28-42s). Tha",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown content, big stream",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "CaseOh caught, someone walks in",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Catches Two Strangers Stealing His Statue And Checking What's In The Bag"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin strip, only about a third of the 9:16 canvas height. The rest is dark blur, so the subject i",
+                "Several frames show a nude game character (around 28-42s). That risks age-restriction or a policy strike and doesn't fit",
+                "The hook caption (white text with a skull emoji) sits in the blurred padding and the clip is very dark overall. The fram",
+                "The gameplay is murky and mostly dark. The statue and bag moment in the title is not clearly visible."
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: Framing failed in the middle of the clip (28.7s, 37.5s, 41.9s, 46.3s): the sharp picture is a thin strip with tiny, far-",
+                "vision: Frame at 33.1s is almost entirely blurry and dark, with only a smeared figure and no clear subject",
+                "vision: Visible full nudity in the game footage (28.7s to 46.3s), including a large blurred nude figure at 33.1s and 37.5s. This",
+                "vision: Very dark footage in the opening frames (2.2s to 11s), with the subject barely readable and the face cropped half out of",
+                "vision: Two caption layers overlap at 2.2s and 6.6s: the game's subtitles collide with the burned-in word captions, so the text "
+              ]
+            }
+          },
+          "took_s": 348.5
+        },
+        {
+          "slug": "clip-20261121-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (xQc reading a tweet; talk, no event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "GTA 6 favored, but vague title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "xQc reading a tweet; talk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 17.3
+        },
+        {
+          "slug": "clip-20261121-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 139,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat's first day with GTA 6: confused reaction, 'wtf is gta bro', then hitting 6 stars as Lucia.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "ohnePixel's GTA 6 run: Mandy's visit after fixing his sink, cops refusing to shoot near civilians, then a guy desperate ",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jynxzi's Elden Ring grind: begging 'if there's a third one', conquering Midra, four hours on the Putrescent Knight, then",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "IShowSpeed's GTA 6 marathon: first robbery, Mandy's sink, the wild moments, then the 'nobody gets to see my wife' blowup",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Kai Cenat's physical stream chaos: sumo match, muscle slap, then hitting his cameraman after he quits.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 338,
+                "moments": 40,
+                "candidates": 539,
+                "pool": 2930,
+                "pool_with_vod": 2039,
+                "arc_sizes": [
+                  5,
+                  3,
+                  6,
+                  4,
+                  6,
+                  5,
+                  2,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:kaicenat/kaicenat-cenat-crew-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [74, 72, 78] after 2 revision(s) \u2014 @4s pacing: Trim the quiet, near-silent stretch between 3s and 9s of the standoff. Starting closer to the dealer's 'What you want?' line would raise tension and shorten the dead air.; @20s missing_context: The jump from the door to the chase has no visible c"
+                },
+                {
+                  "cluster": "yololaryy@momentamericansmallramendendiface-apc4bgbszgqaunls",
+                  "outcome": "already_refused",
+                  "why": "2026-11-19: director judged: not a story \u2014 The three sources are one broadcast of yololaryy promoting a spin-the-wheel for 5 subs. No spin happens in any of them. The befor"
+                },
+                {
+                  "cluster": "ohnepixel@vod2932275268/ohnepixel-club-danc-2026w47",
+                  "outcome": "qa_failed",
+                  "why": "vision: Framing failed: the sharp picture is mostly empty dark red curtain and couch, with the streamer pushed into the bottom 2; vision: Th"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown context, decent vel",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA 6 driving, crash, vague talk",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Avoidingthepuddle Rants About The Internet Ruining How People Have Fun"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Captions sit over the car in several frames, but they don't hide any key action",
+                "The hook card stays on screen for the whole video",
+                "The frame is gameplay footage only, with no streamer or facecam, so the 'rants' title is carried by the captions alone"
+              ]
+            }
+          },
+          "took_s": 299.9
+        },
+        {
+          "slug": "clip-20261121-6",
+          "ok": false,
+          "error": "RuntimeError: director: the clip ends mid-sentence on \"like\"",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261121-6",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, known streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA 6 motorbike riding, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 20.6
         }
       ]
     }

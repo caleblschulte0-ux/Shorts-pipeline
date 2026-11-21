@@ -21598,14 +21598,50 @@
       "ts": "2026-11-21T12:35:13.174235+00:00"
     },
     "clip-20261121-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/PricklyImpossibleReindeerKippa-K4GZFY5Z2KqgQNiU",
-      "story_key": null,
-      "streamer": "avoidingthepuddle",
+      "url": "https://youtube.com/shorts/lpNRPpAAdBs",
       "title": "Avoidingthepuddle Rants About The Internet Ruining How People Have Fun",
       "kind": "twitch_clip",
-      "ts": "2026-11-21T12:39:58.020049+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-21T12:40:13.060150+00:00",
+      "uploaded_at": "2026-11-21T12:40:13.060167+00:00",
+      "publish_at": "2026-11-21T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261121-avoidingthepuddle-rants-about-the-internet-ruini-41575d0f",
+        "tiktok": "queued for 2026-11-21T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/PricklyImpossibleReindeerKippa-K4GZFY5Z2KqgQNiU",
+      "streamer": "avoidingthepuddle",
+      "series": "argument",
+      "hook": "Puddle goes off on a 'boring' game take",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 15724,
+      "banger": 0.4,
+      "cut": {
+        "start": 1.6,
+        "end": 50.8
+      },
+      "director_cut": true
+    },
+    "rejected-honorablecalloussparrow4head-icfs5u0mv32yg1v6": {
+      "source_url": "https://www.twitch.tv/shadowkekw/clip/HonorableCallousSparrow4Head-IcfS5u0mv32Yg1v6",
+      "streamer": "shadowkekw",
+      "title": "\u041f\u0438\u0441\u044e\u043b\u044c\u043a\u0430",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Russian, nude game scene, age-restrict r)",
+      "ts": "2026-11-21T12:41:34.786434+00:00"
+    },
+    "rejected-sassywiseringfeelsbadman-kwr9lkken2ayfe1p": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/SassyWiseRingFeelsBadMan-KWr9lkKEN2ayfe1P",
+      "streamer": "ludwig",
+      "title": "one of the better drivers",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "the clip ends mid-sentence on \"like\"",
+      "ts": "2026-11-21T12:41:55.373898+00:00"
     }
   }
 }
