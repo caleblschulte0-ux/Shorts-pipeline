@@ -1,26 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T12:26:19Z",
+ "updated": "2026-11-21T12:28:26Z",
  "open": [
   {
    "id": "sperm-counts-cut-in-half__ff20feba_r1",
    "slug": "sperm-counts-cut-in-half",
-   "filed": "2026-11-21T12:26:19Z",
+   "filed": "2026-11-21T12:28:26Z",
    "why": [
     "thesis: seg2 ('Total sperm count drop') does not continue the story of the headline ('Sperm Counts Have Fallen More Than 50% Since 1973') — brain: Introduces a new metric rather than a logical consequence of the previous beat; it's an additional fact, not a bridge."
    ],
    "request": "exchange/rewrites/20261121/sperm-counts-cut-in-half__ff20feba_r1.request.json",
    "answer_path": "exchange/rewrites/20261121/sperm-counts-cut-in-half__ff20feba_r1.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__609ffc7e",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-21T00:22:37Z",
-   "why": [
-    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261121/frog-fungus-mass-extinction__609ffc7e.request.json",
-   "answer_path": "exchange/rewrites/20261121/frog-fungus-mass-extinction__609ffc7e.answer.json"
   },
   {
    "id": "runway-near-misses-climbing__8938319a",
@@ -171,6 +161,16 @@
    ],
    "request": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.request.json",
    "answer_path": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__609ffc7e",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-20T13:11:33Z",
+   "why": [
+    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
+   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
   },
   {
    "id": "freshwater-accessible__c926fe13",

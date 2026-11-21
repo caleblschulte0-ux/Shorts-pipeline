@@ -21871,6 +21871,9 @@
     "gym",
     "over40"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:26Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -21924,10 +21927,7 @@
       "code": "person = subject_image('person silhouette')\nbarbell = subject_image('barbell')\nv0 = values[0]; v1 = values[1]\ncols, rows = 10, 4\ngx0, gy0 = RX0 + 40, RTOP + 140\ncw = (RX1 - RX0 - 80) // cols\nch = 90\ntotal = cols * rows\naffected0 = int(round(total * v0 / 100.0))\naffected_now = max(0, int(round(lerp(affected0, 0, reveal))))\nfor i in range(total):\n    cx = gx0 + (i % cols) * cw + cw // 2\n    cy = gy0 + (i // cols) * ch\n    red = i < affected_now\n    if person is not None:\n        paste(person, cx - 26, cy, 52, ch - 10)\n        if red:\n            d.rectangle([cx - 30, cy - 4, cx + 30, cy + ch - 6], fill=rgba(WARN, 70))\n    else:\n        d.ellipse([cx - 20, cy, cx + 20, cy + 40], fill=rgba(WARN if red else TEXT, 200))\nif barbell is not None:\n    bob = int(20 * math.sin(reveal * 6.283 * 4))\n    paste(barbell, RX0 + 60, RBOT - 220 + bob, 380, 100)\nweek = int(clamp(reveal) * 12)\ntext(str(week) + ' weeks of training', RX0 + 60, RBOT - 140, size=34, color=TEXT)\npct_now = round(v0 - (v0 - v1) * clamp(reveal), 1)\ntext(str(pct_now) + '% still sarcopenic', RX0 + 40, RTOP + 60, size=36, color=WARN if pct_now > 0.5 else HIGHLIGHT)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:19Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "saffron-red-gold-myth",
@@ -22398,6 +22398,9 @@
     "culture",
     "internet"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:25Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -22449,10 +22452,7 @@
       "code": "globe = subject_image('world globe photo')\nboard = subject_image('chess board top down photo')\ncx = (RX0 + RX1) // 2\ngy = RTOP + 200\ngd = 560\nif globe is not None:\n    paste(globe, cx - gd // 2, gy, gd, gd)\nelse:\n    d.ellipse([cx - gd // 2, gy, cx + gd // 2, gy + gd], outline=rgba(TEXT, 200), width=6)\nshare = values[0] / values[1] if n > 1 and values[1] else 0.33\nang0 = -90\nang1 = ang0 + 360 * clamp(share) * reveal\nbbox = [cx - gd // 2, gy, cx + gd // 2, gy + gd]\nd.pieslice(bbox, ang0, ang1, fill=rgba(HIGHLIGHT, 130))\nif board is not None and reveal > 0.5:\n    bw = 140\n    paste(board, cx - bw // 2, gy + gd // 2 - bw // 2, bw, bw)\ntext(f\"{values[1]:.0f}M regular players worldwide\" if n > 1 else 'players worldwide', cx, gy - 40,\n     size=24, color=TEXT, center=True)\ntext(f'{values[0]:.0f}M on Chess.com', cx, gy + gd + 50, size=32, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:18Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "volcano-country-ranking",
@@ -24063,6 +24063,9 @@
     "didyouknow",
     "ecology"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:26Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -24114,10 +24117,7 @@
       "code": "v0 = values[0]; v1 = values[-1]\nfarm = subject_image('fertilizer being sprayed on farmland')\ncols = 6\ncell = 118\ngx0 = RX0 + 24; gy0 = RTOP + 230\nfull = 18\nshown = max(1, int(full * clamp(reveal)))\ntarget_shown = max(1, int(full * (v0 / v1)))\nfor i in range(full):\n    row = i // cols; col = i % cols\n    x = gx0 + col * cell; y = gy0 + row * cell\n    active = i < shown\n    baseline_tile = i < target_shown\n    if farm is not None:\n        paste(farm, x, y, cell - 16, cell - 16)\n        if not active:\n            d.rectangle([x, y, x + cell - 16, y + cell - 16], fill=rgba((5, 8, 15), 205))\n    else:\n        d.rounded_rectangle([x, y, x + cell - 16, y + cell - 16], radius=12,\n                             fill=rgba(WARN if active else TEXT, 220 if active else 40))\n    if active and baseline_tile:\n        d.rectangle([x, y, x + cell - 16, y + cell - 16], outline=rgba(HIGHLIGHT, 220), width=4)\ntext('1950s baseline outlined', RX0 + 20, RTOP + 60, size=28, color=HIGHLIGHT)\ntext(f'today: {v1 / v0:.0f}x the nitrogen', RX0 + 20, RTOP + 120, size=36, color=WARN)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:19Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "organ-transplant-waitlist-gap",
@@ -26653,6 +26653,9 @@
     "americans",
     "biology"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:26Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -26706,10 +26709,7 @@
       "code": "man = subject_image('standing man full body cutout')\na, b = int(values[0]), int(values[1])\ncols = 9\ncw = (RX1 - RX0) // cols\nfh = 150\ny0 = RTOP + 100\nshown = a + (b - a) * clamp((reveal - 0.2) * 1.3)\nn = int(round(shown))\nfor i in range(n):\n    r, cc = i // cols, i % cols\n    x = RX0 + cc * cw + cw // 2\n    y = y0 + r * (fh + 20)\n    pop = clamp(reveal * 4.0 - i * 0.05)\n    hh = int(fh * (0.6 + 0.4 * min(1.0, pop)))\n    if man is not None:\n        paste(man, x - hh // 6, y + fh - hh, hh // 3, hh)\n    else:\n        d.rounded_rectangle([x - 22, y + fh - hh, x + 22, y + fh], radius=14, fill=rgba(HIGHLIGHT if i >= a else TEXT, 230))\nly = y0 + 4 * (fh + 20) + 30\nd.line([RX0, ly, RX1, ly], fill=rgba(WARN, 230), width=6)\nif man is not None:\n    paste(man, (RX0 + RX1) // 2 - 70, ly + 20, 140, 330)\nelse:\n    d.rounded_rectangle([(RX0 + RX1) // 2 - 50, ly + 20, (RX0 + RX1) // 2 + 50, ly + 350], radius=40, fill=rgba(WARN, 230))\ntext(f'{n} COUNTRIES TALLER', (RX0 + RX1) // 2, RBOT - 60, size=52, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:19Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "global-displacement-record",
@@ -27445,6 +27445,12 @@
     "explained",
     "didyouknow"
    ],
+   "words_by": "chatgpt-rewrite",
+   "retold": "retell/v4",
+   "rewritten_at": "2026-11-21T12:28:25Z",
+   "closing_scene": "# scene standard: 2026-10-11\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant hourglass with two wedding rings\n    SUBSTANCE: golden sand\n    CAUSE: Data pours buckets of sand into the hourglass and its lower glass fills to the age brides now marry at\n    The closing, as one picture: waiting longer is time running through a\n    giant hourglass in the wedding field at sunset. The lower glass fills\n    to the women's median age at first marriage, pour by pour from 1990's\n    level up to 2024's, so the glass ends close to full. A pair of\n    interlocked wedding rings rests on top of the sand and rises with it,\n    still whole. That is the second half of the line: later weddings,\n    fewer breakups. 1990's level stays marked on the glass with its year,\n    so the extra years show at a glance. Everything lands by 0.56 and then\n    holds. Data keeps pouring, the sand keeps running through the neck,\n    and the birds keep crossing.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    m = max(1, n - 1)\n    a0, a1 = 0.12, 0.56\n    span = (a1 - a0) / m\n    k = int(clamp((u - a0) / span, 0, m - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.75))\n    i0, i1 = min(k, n - 1), min(k + 1, n - 1)\n    if u < a0:\n        val = rows[0][1]\n        landed_to = 0\n    else:\n        val = rows[i0][1] + (rows[i1][1] - rows[i0][1]) * slide\n        landed_to = i1 if slide >= 0.999 else i0\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=0)\n    lab, shown_v = rows[named]\n    done = landed_to == n - 1\n\n    CX, R, NK = 640, 200, 16\n    GT, NECK, GB = 720, 1060, 1400\n    lo, hi = rows[0][1] - 2.0, rows[-1][1] + 1.0\n\n    def Y(a):\n        return GB - (a - lo) / max(0.1, hi - lo) * (GB - NECK - 30)\n\n    def glass():\n        cr.move_to(CX - 0.8 * R, GT)\n        cr.curve_to(CX - R, GT + 20, CX - R, 820, CX - R, 880)\n        cr.curve_to(CX - R, 980, CX - NK, 1010, CX - NK, NECK)\n        cr.curve_to(CX - NK, 1110, CX - R, 1140, CX - R, 1240)\n        cr.curve_to(CX - R, 1300, CX - R, 1380, CX - 0.8 * R, GB)\n        cr.line_to(CX + 0.8 * R, GB)\n        cr.curve_to(CX + R, 1380, CX + R, 1300, CX + R, 1240)\n        cr.curve_to(CX + R, 1140, CX + NK, 1110, CX + NK, NECK)\n        cr.curve_to(CX + NK, 1010, CX + R, 980, CX + R, 880)\n        cr.curve_to(CX + R, 820, CX + R, GT + 20, CX + 0.8 * R, GT)\n        cr.close_path()\n\n    SAND = (222, 184, 116)\n    WOOD = (128, 86, 52)\n    GOLD = (226, 178, 62)\n\n    landscape(cr, t, \"field\")\n    birds(cr, t, y0=800, n=4, rgb=(60, 56, 70))\n\n    # the hourglass, standing in the field\n    cast_shadow(cr, CX - 260, CX + 260, 1440, length=340, a=0.3)\n    contact_shadow(cr, CX, 1446, 600, a=0.4)\n    box(cr, CX - 260, 1440, 520, 40, WOOD, depth=60)\n    for px in (CX - 250, CX + 222):\n        cylinder(cr, px, 1400, 28, 680, WOOD)\n\n    level = Y(val)\n    # sand in the upper glass, draining into the neck\n    cr.save()\n    glass()\n    cr.clip()\n    cr.move_to(CX - R - 10, 945)\n    cr.line_to(CX - 50, 945)\n    cr.line_to(CX, 995)\n    cr.line_to(CX + 50, 945)\n    cr.line_to(CX + R + 10, 945)\n    cr.line_to(CX + R + 10, NECK + 4)\n    cr.line_to(CX - R - 10, NECK + 4)\n    cr.close_path()\n    solid(cr, SAND, edge=False)\n    # the running stream and its grains\n    cr.rectangle(CX - 5, NECK, 10, max(0.0, level - NECK))\n    cr.set_source_rgba(*_c(SAND))\n    cr.fill()\n    run = max(1.0, level - NECK)\n    for i in range(7):\n        gy = NECK + ((t * 320 + i * run / 7) % run)\n        cr.arc(CX + 6 * math.sin(i * 2.1 + t * 3), gy, 5, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((196, 156, 90)))\n        cr.fill()\n    # the lower glass, filled to the age\n    cr.move_to(CX - R - 10, level)\n    cr.curve_to(CX - 80, level - 6, CX - 40, level - 26, CX, level - 30)\n    cr.curve_to(CX + 40, level - 26, CX + 80, level - 6, CX + R + 10, level)\n    cr.line_to(CX + R + 10, GB + 4)\n    cr.line_to(CX - R - 10, GB + 4)\n    cr.close_path()\n    solid(cr, SAND, edge=False)\n    cr.restore()\n\n    # the two wedding rings, interlocked and whole, riding the sand up\n    for dx_, tilt in ((-26, -0.25), (26, 0.25)):\n        cr.save()\n        cr.translate(CX + dx_, level - 44)\n        cr.rotate(tilt)\n        cr.scale(1.0, 0.42)\n        cr.arc(0, 0, 44, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((120, 86, 20)))\n        cr.set_line_width(16)\n        cr.stroke_preserve()\n        cr.set_source_rgba(*_c(GOLD))\n        cr.set_line_width(11)\n        cr.stroke_preserve()\n        cr.set_source_rgba(*_c((255, 236, 170), 0.8))\n        cr.set_line_width(3)\n        cr.stroke()\n\n    # the glass itself\n    glass()\n    cr.set_source_rgba(*_c((230, 240, 250), 0.16))\n    cr.fill_preserve()\n    edge(cr, (44, 52, 62), width=5)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.55))\n    cr.set_line_width(8)\n    cr.move_to(CX - R + 34, 790)\n    cr.curve_to(CX - R + 30, 860, CX - R + 40, 920, CX - R + 70, 960)\n    cr.move_to(CX - R + 34, 1200)\n    cr.curve_to(CX - R + 30, 1270, CX - R + 34, 1330, CX - R + 50, 1370)\n    cr.stroke()\n\n    # THE SCALE on the glass: 1990's level stays marked, 2024's once it lands\n    then_mark(cr, CX - R + 10, CX + R - 10, Y(rows[0][1]), rows[0][0])\n    if done:\n        then_mark(cr, CX - R + 10, CX + R - 10, Y(rows[-1][1]), rows[-1][0])\n\n    # the top board and the brass filler funnel Data pours into\n    box(cr, CX - 260, GT, 520, 40, WOOD, depth=60)\n    cr.move_to(CX - 80, 615)\n    cr.line_to(CX + 80, 615)\n    cr.line_to(CX + 18, 685)\n    cr.line_to(CX - 18, 685)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n\n    # the ladder he climbed, leaning on the board\n    for lx in (905, 975):\n        cr.move_to(lx, 1440)\n        cr.line_to(lx - 30, 690)\n        cr.line_to(lx - 18, 690)\n        cr.line_to(lx + 12, 1440)\n        cr.close_path()\n        solid(cr, (150, 104, 64))\n    cr.set_source_rgba(*_c((110, 74, 44)))\n    cr.set_line_width(9)\n    for r_ in range(8):\n        ry = 1400 - r_ * 92\n        sh = (1440 - ry) / 750 * 30\n        cr.move_to(905 - sh, ry)\n        cr.line_to(975 - sh, ry)\n    cr.stroke()\n\n    # Data: climbs up, then pours bucket after bucket into the funnel\n    if u < a0:\n        e = ease(u / a0)\n        hx, hy = 945 - 25 * e, 1150 - 465 * e\n        role, bt = \"climb\", 0\n    else:\n        hx, hy = 920 - 70 * ease(seg(u, a0, a0 + 0.06)), 685\n        if u < a1 + 0.04:\n            bt = k\n            pf = seg(f, 0.1, 0.7)\n        else:\n            q = (u - a1 - 0.04) / 0.11\n            bt = m + int(q)\n            pf = seg(q % 1.0, 0.1, 0.7)\n        role = \"pour\"\n        # the sand falling from his bucket into the funnel\n        flow = math.sin(math.pi * pf)\n        if flow > 0.02:\n            sx, sy = hx - 70, hy - 130\n            cr.move_to(sx, sy)\n            cr.curve_to(sx - 60, sy - 30, CX + 60, 560, CX + 10, 625)\n            cr.set_source_rgba(*_c(SAND, flow))\n            cr.set_line_width(4 + 14 * flow)\n            cr.stroke()\n\n    # right by the camera: a bucket of sand and rose petals in the grass\n    contact_shadow(cr, 220, 1772, 200, a=0.4)\n    cylinder(cr, 140, 1770, 160, 140, (150, 156, 168), finish=\"metal\")\n    cr.save()\n    cr.translate(220, 1632)\n    cr.scale(1, 0.3)\n    cr.arc(0, 0, 74, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, SAND, rim=False)\n    for i in range(7):\n        disc(cr, 420 + i * 95, 1700 + (i * 53) % 140, 11, (196, 40, 60))\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    host(role, hx, hy, 190, beat=bt)\n\n    if done:\n        fit_readout(cr, f\"{rows[-1][1]:.1f}\",\n                    f\"years old, her first wedding · {rows[-1][0]} · \"\n                    f\"+{rows[-1][1] - rows[0][1]:.1f} since {rows[0][0]}\",\n                    60, 640, size=110, max_w=300)\n    else:\n        fit_readout(cr, f\"{shown_v:.1f}\", f\"years old, her first wedding · {lab}\",\n                    60, 640, a=ease(seg(u, 0.0, 0.05)), size=110, max_w=300)\n",
+   "closing_data": 1,
+   "hook_was": "Everyone says half of marriages end. Since 1990, divorce has nearly halved.",
    "segments": [
     {
      "source": "offline",
@@ -27480,13 +27486,7 @@
      },
      "illustrated_scene": "# scene standard: 2026-10-11\ndef _wed_arch(cr, cx, base, t, a=1.0):\n    # two white posts standing back into the picture, a flowered half-round\n    # arch over them, a brass bell hung at its crown, ribbons in the wind\n    R, PH, PW = 170, 400, 38\n    top = base - PH\n    for px in (cx - R - PW / 2, cx + R - PW / 2):\n        box(cr, px, base, PW, PH, (238, 234, 226), depth=16, a=a)\n    cr.new_path()\n    cr.arc(cx, top, R + 22, math.pi, 2 * math.pi)\n    cr.arc_negative(cx, top, R - 22, 2 * math.pi, math.pi)\n    cr.close_path()\n    solid(cr, (240, 236, 228), finish=\"gloss\", a=a)\n    for i in range(15):\n        ang = math.pi + math.pi * i / 14\n        fx = cx + R * math.cos(ang)\n        fy = top + R * math.sin(ang)\n        disc(cr, fx - 10, fy + 8, 20, (92, 132, 76), a=a)\n        col = [(232, 140, 164), (248, 244, 238), (214, 86, 118)][i % 3]\n        disc(cr, fx, fy, 24 if i % 2 else 19, col, finish=\"gloss\", a=a)\n    for side in (-1, 1):\n        sx = cx + side * R\n        for j in range(3):\n            disc(cr, sx + side * 8, top + 40 + j * 60, 16,\n                 [(232, 140, 164), (248, 244, 238), (92, 132, 76)][j % 3], a=a)\n        cr.set_source_rgba(*_c(P[\"accent2\"], a))\n        cr.set_line_width(8)\n        cr.move_to(sx, top + 20)\n        cr.curve_to(sx + side * 30, top + 90, sx + side * (20 + 14 * math.sin(t * 2.2 + side)),\n                    top + 170, sx + side * (34 + 22 * math.sin(t * 1.8 + side)), top + 250)\n        cr.stroke()\n    cr.set_source_rgba(*_c((70, 60, 40), a))\n    cr.set_line_width(4)\n    cr.move_to(cx, top - R + 20)\n    cr.line_to(cx, top - R + 70)\n    cr.stroke()\n    swing = 10 * math.sin(t * 1.6)\n    cr.new_path()\n    cr.move_to(cx + swing - 30, top - R + 120)\n    cr.curve_to(cx + swing - 30, top - R + 70, cx + swing - 18, top - R + 62, cx + swing, top - R + 62)\n    cr.curve_to(cx + swing + 18, top - R + 62, cx + swing + 30, top - R + 70, cx + swing + 30, top - R + 120)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\", a=a)\n\n\ndef _wed_arch_outline(cr, cx, base):\n    R, PH = 170, 400\n    top = base - PH\n    cr.new_path()\n    cr.move_to(cx - R - 22, base)\n    cr.line_to(cx - R - 22, top)\n    cr.arc(cx, top, R + 22, math.pi, 2 * math.pi)\n    cr.line_to(cx + R + 22, base)\n\n\ndef _wed_car(cr, x, y, s):\n    contact_shadow(cr, x + 110 * s, y + 4, 240 * s, a=0.3)\n    box(cr, x, y - 18 * s, 230 * s, 52 * s, (244, 242, 238), depth=30 * s, finish=\"gloss\")\n    box(cr, x + 50 * s, y - 70 * s, 120 * s, 44 * s, (232, 230, 226), depth=24 * s, finish=\"gloss\")\n    cr.rectangle(x + 62 * s, y - 108 * s, 44 * s, 30 * s)\n    cr.rectangle(x + 114 * s, y - 108 * s, 44 * s, 30 * s)\n    solid(cr, (120, 150, 176), finish=\"glass\", rim=False)\n    for wx in (x + 46 * s, x + 184 * s):\n        disc(cr, wx, y - 12 * s, 22 * s, (40, 40, 46))\n    for j in range(3):\n        cr.set_source_rgba(*_c((90, 90, 96)))\n        cr.set_line_width(2)\n        cr.move_to(x, y - 30 * s)\n        cr.line_to(x - 40 * s - j * 18 * s, y - 6 * s + j * 4)\n        cr.stroke()\n        cylinder(cr, x - 54 * s - j * 18 * s, y + j * 4, 14 * s, 18 * s, (190, 194, 200), finish=\"metal\")\n\n\ndef _wed_chair(cr, x, y, s):\n    contact_shadow(cr, x + 40 * s, y + 4, 110 * s, a=0.35)\n    box(cr, x, y, 12 * s, 70 * s, (236, 232, 224), depth=6 * s)\n    box(cr, x + 70 * s, y, 12 * s, 70 * s, (236, 232, 224), depth=6 * s)\n    box(cr, x - 4 * s, y - 64 * s, 90 * s, 14 * s, (244, 240, 232), depth=26 * s)\n    box(cr, x - 4 * s, y - 78 * s, 90 * s, 80 * s, (240, 236, 228), depth=10 * s)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a flowered wedding arch\n    SUBSTANCE: the wedding arch itself\n    CAUSE: Data shoves the wedding arch further down the garden path, one push per year marriage waits\n    The wedding waits longer: the arch at the end of the aisle stands where\n    the 1990 median bride (23.9) reached it, and push by push Data shoves it\n    down the garden path to where today's bride (28.6) meets it. Distance\n    along the path is the age, so the 1990 arch stays as a dashed ghost with\n    its year on it and the gap between them is the extra years of waiting.\n    Done by 0.56 and held: a just-married car keeps rolling past behind, the\n    ribbons blow, and Data gives the arch one more shove now and then.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    steps = max(1, n - 1)\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / steps\n    k = int(clamp((u - a0) / span, 0, steps - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.1, 0.8))\n    lo, hi = rows[0][1], rows[-1][1]\n    if u < a0 or n < 2:\n        age = lo\n        reached = 0\n    else:\n        age = rows[k][1] + (rows[k + 1][1] - rows[k][1]) * slide\n        reached = k + 1 if slide >= 0.999 else k\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= reached), default=0)\n    shown = rows[named]\n\n    def ax(v):\n        return 390 + (v - lo) / ((hi - lo) or 1.0) * 480\n\n    BASE = 1450\n    cx = ax(age)\n\n    landscape(cr, t, \"field\")\n    # the white chapel far off on the hill\n    contact_shadow(cr, 880, 1172, 220, a=0.25)\n    ch = building(cr, 790, 960, 1170, 150, (236, 232, 222), roof_rgb=(96, 92, 100), roof=\"gable\")\n    box(cr, 850, ch[\"peak\"] + 10, 40, 70, (236, 232, 222), depth=12)\n    haze(cr, 900, 1200, (214, 220, 228), a=0.4)\n    # a lane in the middle distance, the just-married car rolling along it\n    cr.rectangle(0, 1238, W, 34)\n    solid(cr, (176, 168, 150), edge=False, rim=False)\n    car_x = -320 + ((t * 150) % 1720)\n    _wed_car(cr, car_x, 1262, 0.9)\n\n    # the garden path the aisle runs along, stepping stones on it\n    cr.move_to(0, 1418)\n    cr.line_to(W, 1408)\n    cr.line_to(W, 1490)\n    cr.line_to(0, 1500)\n    cr.close_path()\n    solid(cr, (206, 190, 160), edge=False)\n    for i in range(9):\n        sx = 60 + i * 120\n        cr.save()\n        cr.translate(sx, 1456)\n        cr.scale(1, 0.32)\n        cr.arc(0, 0, 44, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (168, 160, 150), rim=False)\n\n    # THE SCALE on the path: the 1990 arch as a ghost where it stood\n    if u >= a0 and cx - ax(lo) > 30:\n        _wed_arch_outline(cr, ax(lo), BASE)\n        ghost(cr, a=0.85)\n        text(cr, rows[0][0], ax(lo), BASE - 400 - 170 - 40, 34, look.INK,\n             face=\"bold\", anchor=\"center\")\n\n    cast_shadow(cr, cx - 190, cx + 190, BASE, length=320, a=0.28)\n    contact_shadow(cr, cx, BASE + 4, 420, a=0.4)\n    _wed_arch(cr, cx, BASE, t)\n\n    # right by the camera: the guests' chairs waiting for the wedding\n    for i, (chx, chy, cs) in enumerate([(30, 1760, 1.5), (210, 1800, 1.6),\n                                        (720, 1790, 1.6), (900, 1750, 1.5)]):\n        _wed_chair(cr, chx, chy, cs)\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    # Data stands just behind the arch's left post and travels with it\n    hx = max(120.0, cx - 230)\n    if u < a0:\n        host(\"point\", max(120.0, hx - 30), 1452, 220)\n    elif u < a1 + 0.04:\n        host(\"shove\", hx, 1452, 220, beat=k)\n    else:\n        host(\"shove\", hx, 1452, 220, beat=n + int((u - a1) / 0.14))\n\n    lab, v = shown\n    fit_readout(cr, f\"{v:.1f} years\", f\"women's median age at first marriage · {lab}\",\n                80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n    if reached >= n - 1 and n > 1:\n        text(cr, f\"+{hi - lo:.1f} yrs\", W - 80, 720, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1 - 0.02, a1 + 0.04)))\n"
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "retold": "retell/v4",
-   "rewritten_at": "2026-11-21T12:26:18Z",
-   "closing_scene": "# scene standard: 2026-10-11\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant hourglass with two wedding rings\n    SUBSTANCE: golden sand\n    CAUSE: Data pours buckets of sand into the hourglass and its lower glass fills to the age brides now marry at\n    The closing, as one picture: waiting longer is time running through a\n    giant hourglass in the wedding field at sunset. The lower glass fills\n    to the women's median age at first marriage, pour by pour from 1990's\n    level up to 2024's, so the glass ends close to full. A pair of\n    interlocked wedding rings rests on top of the sand and rises with it,\n    still whole. That is the second half of the line: later weddings,\n    fewer breakups. 1990's level stays marked on the glass with its year,\n    so the extra years show at a glance. Everything lands by 0.56 and then\n    holds. Data keeps pouring, the sand keeps running through the neck,\n    and the birds keep crossing.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    m = max(1, n - 1)\n    a0, a1 = 0.12, 0.56\n    span = (a1 - a0) / m\n    k = int(clamp((u - a0) / span, 0, m - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.75))\n    i0, i1 = min(k, n - 1), min(k + 1, n - 1)\n    if u < a0:\n        val = rows[0][1]\n        landed_to = 0\n    else:\n        val = rows[i0][1] + (rows[i1][1] - rows[i0][1]) * slide\n        landed_to = i1 if slide >= 0.999 else i0\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=0)\n    lab, shown_v = rows[named]\n    done = landed_to == n - 1\n\n    CX, R, NK = 640, 200, 16\n    GT, NECK, GB = 720, 1060, 1400\n    lo, hi = rows[0][1] - 2.0, rows[-1][1] + 1.0\n\n    def Y(a):\n        return GB - (a - lo) / max(0.1, hi - lo) * (GB - NECK - 30)\n\n    def glass():\n        cr.move_to(CX - 0.8 * R, GT)\n        cr.curve_to(CX - R, GT + 20, CX - R, 820, CX - R, 880)\n        cr.curve_to(CX - R, 980, CX - NK, 1010, CX - NK, NECK)\n        cr.curve_to(CX - NK, 1110, CX - R, 1140, CX - R, 1240)\n        cr.curve_to(CX - R, 1300, CX - R, 1380, CX - 0.8 * R, GB)\n        cr.line_to(CX + 0.8 * R, GB)\n        cr.curve_to(CX + R, 1380, CX + R, 1300, CX + R, 1240)\n        cr.curve_to(CX + R, 1140, CX + NK, 1110, CX + NK, NECK)\n        cr.curve_to(CX + NK, 1010, CX + R, 980, CX + R, 880)\n        cr.curve_to(CX + R, 820, CX + R, GT + 20, CX + 0.8 * R, GT)\n        cr.close_path()\n\n    SAND = (222, 184, 116)\n    WOOD = (128, 86, 52)\n    GOLD = (226, 178, 62)\n\n    landscape(cr, t, \"field\")\n    birds(cr, t, y0=800, n=4, rgb=(60, 56, 70))\n\n    # the hourglass, standing in the field\n    cast_shadow(cr, CX - 260, CX + 260, 1440, length=340, a=0.3)\n    contact_shadow(cr, CX, 1446, 600, a=0.4)\n    box(cr, CX - 260, 1440, 520, 40, WOOD, depth=60)\n    for px in (CX - 250, CX + 222):\n        cylinder(cr, px, 1400, 28, 680, WOOD)\n\n    level = Y(val)\n    # sand in the upper glass, draining into the neck\n    cr.save()\n    glass()\n    cr.clip()\n    cr.move_to(CX - R - 10, 945)\n    cr.line_to(CX - 50, 945)\n    cr.line_to(CX, 995)\n    cr.line_to(CX + 50, 945)\n    cr.line_to(CX + R + 10, 945)\n    cr.line_to(CX + R + 10, NECK + 4)\n    cr.line_to(CX - R - 10, NECK + 4)\n    cr.close_path()\n    solid(cr, SAND, edge=False)\n    # the running stream and its grains\n    cr.rectangle(CX - 5, NECK, 10, max(0.0, level - NECK))\n    cr.set_source_rgba(*_c(SAND))\n    cr.fill()\n    run = max(1.0, level - NECK)\n    for i in range(7):\n        gy = NECK + ((t * 320 + i * run / 7) % run)\n        cr.arc(CX + 6 * math.sin(i * 2.1 + t * 3), gy, 5, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((196, 156, 90)))\n        cr.fill()\n    # the lower glass, filled to the age\n    cr.move_to(CX - R - 10, level)\n    cr.curve_to(CX - 80, level - 6, CX - 40, level - 26, CX, level - 30)\n    cr.curve_to(CX + 40, level - 26, CX + 80, level - 6, CX + R + 10, level)\n    cr.line_to(CX + R + 10, GB + 4)\n    cr.line_to(CX - R - 10, GB + 4)\n    cr.close_path()\n    solid(cr, SAND, edge=False)\n    cr.restore()\n\n    # the two wedding rings, interlocked and whole, riding the sand up\n    for dx_, tilt in ((-26, -0.25), (26, 0.25)):\n        cr.save()\n        cr.translate(CX + dx_, level - 44)\n        cr.rotate(tilt)\n        cr.scale(1.0, 0.42)\n        cr.arc(0, 0, 44, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((120, 86, 20)))\n        cr.set_line_width(16)\n        cr.stroke_preserve()\n        cr.set_source_rgba(*_c(GOLD))\n        cr.set_line_width(11)\n        cr.stroke_preserve()\n        cr.set_source_rgba(*_c((255, 236, 170), 0.8))\n        cr.set_line_width(3)\n        cr.stroke()\n\n    # the glass itself\n    glass()\n    cr.set_source_rgba(*_c((230, 240, 250), 0.16))\n    cr.fill_preserve()\n    edge(cr, (44, 52, 62), width=5)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.55))\n    cr.set_line_width(8)\n    cr.move_to(CX - R + 34, 790)\n    cr.curve_to(CX - R + 30, 860, CX - R + 40, 920, CX - R + 70, 960)\n    cr.move_to(CX - R + 34, 1200)\n    cr.curve_to(CX - R + 30, 1270, CX - R + 34, 1330, CX - R + 50, 1370)\n    cr.stroke()\n\n    # THE SCALE on the glass: 1990's level stays marked, 2024's once it lands\n    then_mark(cr, CX - R + 10, CX + R - 10, Y(rows[0][1]), rows[0][0])\n    if done:\n        then_mark(cr, CX - R + 10, CX + R - 10, Y(rows[-1][1]), rows[-1][0])\n\n    # the top board and the brass filler funnel Data pours into\n    box(cr, CX - 260, GT, 520, 40, WOOD, depth=60)\n    cr.move_to(CX - 80, 615)\n    cr.line_to(CX + 80, 615)\n    cr.line_to(CX + 18, 685)\n    cr.line_to(CX - 18, 685)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n\n    # the ladder he climbed, leaning on the board\n    for lx in (905, 975):\n        cr.move_to(lx, 1440)\n        cr.line_to(lx - 30, 690)\n        cr.line_to(lx - 18, 690)\n        cr.line_to(lx + 12, 1440)\n        cr.close_path()\n        solid(cr, (150, 104, 64))\n    cr.set_source_rgba(*_c((110, 74, 44)))\n    cr.set_line_width(9)\n    for r_ in range(8):\n        ry = 1400 - r_ * 92\n        sh = (1440 - ry) / 750 * 30\n        cr.move_to(905 - sh, ry)\n        cr.line_to(975 - sh, ry)\n    cr.stroke()\n\n    # Data: climbs up, then pours bucket after bucket into the funnel\n    if u < a0:\n        e = ease(u / a0)\n        hx, hy = 945 - 25 * e, 1150 - 465 * e\n        role, bt = \"climb\", 0\n    else:\n        hx, hy = 920 - 70 * ease(seg(u, a0, a0 + 0.06)), 685\n        if u < a1 + 0.04:\n            bt = k\n            pf = seg(f, 0.1, 0.7)\n        else:\n            q = (u - a1 - 0.04) / 0.11\n            bt = m + int(q)\n            pf = seg(q % 1.0, 0.1, 0.7)\n        role = \"pour\"\n        # the sand falling from his bucket into the funnel\n        flow = math.sin(math.pi * pf)\n        if flow > 0.02:\n            sx, sy = hx - 70, hy - 130\n            cr.move_to(sx, sy)\n            cr.curve_to(sx - 60, sy - 30, CX + 60, 560, CX + 10, 625)\n            cr.set_source_rgba(*_c(SAND, flow))\n            cr.set_line_width(4 + 14 * flow)\n            cr.stroke()\n\n    # right by the camera: a bucket of sand and rose petals in the grass\n    contact_shadow(cr, 220, 1772, 200, a=0.4)\n    cylinder(cr, 140, 1770, 160, 140, (150, 156, 168), finish=\"metal\")\n    cr.save()\n    cr.translate(220, 1632)\n    cr.scale(1, 0.3)\n    cr.arc(0, 0, 74, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, SAND, rim=False)\n    for i in range(7):\n        disc(cr, 420 + i * 95, 1700 + (i * 53) % 140, 11, (196, 40, 60))\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    host(role, hx, hy, 190, beat=bt)\n\n    if done:\n        fit_readout(cr, f\"{rows[-1][1]:.1f}\",\n                    f\"years old, her first wedding · {rows[-1][0]} · \"\n                    f\"+{rows[-1][1] - rows[0][1]:.1f} since {rows[0][0]}\",\n                    60, 640, size=110, max_w=300)\n    else:\n        fit_readout(cr, f\"{shown_v:.1f}\", f\"years old, her first wedding · {lab}\",\n                    60, 640, a=ease(seg(u, 0.0, 0.05)), size=110, max_w=300)\n",
-   "closing_data": 1,
-   "hook_was": "Everyone says half of marriages end. Since 1990, divorce has nearly halved."
+   ]
   },
   {
    "slug": "blood-supply-three-percent",
@@ -27566,6 +27566,9 @@
     "explained",
     "bookstagram"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:26Z",
+   "retold": "retell/v4",
    "segments": [
     {
      "source": "offline",
@@ -27599,10 +27602,7 @@
       "code": "phone = subject_image('smartphone with ebook reader')\nbook = subject_image('book')\nlib = subject_image('library building icon')\nn = len(values)\nbase = RBOT - 180\ncolw = (RX1 - RX0) // n\nunit = 60.0\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    cx = RX0 + colw * i + colw // 2\n    grow = clamp(reveal * 1.3 - i * 0.18)\n    cnt = int(round(v / unit * grow))\n    for k in range(cnt):\n        y = base - (k + 1) * 82\n        if book is not None:\n            paste(book, cx - 80, y, 160, 80)\n        else:\n            d.rounded_rectangle([cx - 80, y, cx + 80, y + 76], radius=8, fill=rgba(HIGHLIGHT if i == n - 1 else REST, 230))\n    text(lab, cx, base + 20, size=40, color=TEXT, center=True)\n    text(fmt(v * grow), cx, base - cnt * 82 - 70, size=40, color=HIGHLIGHT if i == n - 1 else TEXT, center=True)\nif phone is not None:\n    paste(phone, RX1 - 260, RTOP + 20, 220, 380)\nif lib is not None:\n    paste(lib, RX0 + 20, RTOP + 20, 220, 220)\nfor k in range(6):\n    ph = (reveal * 3.0 + k / 6.0) % 1.0\n    x = RX0 + 240 + int(ph * (RX1 - RX0 - 520))\n    y = RTOP + 120 - int(60 * math.sin(ph * math.pi))\n    if book is not None:\n        paste(book, x, y, 90, 60)\n    else:\n        d.rounded_rectangle([x, y, x + 90, y + 60], radius=6, fill=rgba(HIGHLIGHT, 230))\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:19Z",
-   "retold": "retell/v4"
+   ]
   },
   {
    "slug": "ocean-floor-vs-mars-mapped",
@@ -27701,6 +27701,28 @@
     "shorts",
     "explained"
    ],
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:26Z",
+   "hook_was": "Only 3.5 percent of Earth's water isn't salty.",
+   "retold": "retell/v4",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 15,
+     "arc": 15,
+     "factual": 13,
+     "visual_proof": 8,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 73,
+    "fatal": [
+     "unrenderable_visual"
+    ],
+    "weakest": "visual_proof",
+    "note": "Provide clear, simple visual concepts that are easily readable on a phone screen, e.g., concise infographics or animated bars, instead of vague 'data picture (rank)' placeholders.",
+    "fp": "1ea878c4faf3e8ea"
+   },
    "segments": [
     {
      "source": "offline",
@@ -27756,29 +27778,7 @@
       "code": "ocean = subject_image('planet Earth ocean')\nif ocean is not None:\n    paste(ocean, RX0 + 10, RBOT - 300, 220, 220)\nn = 100\ncw = (RX1 - RX0) / n\nch = (RBOT - RTOP - 360) / n\nfront = clamp(reveal * 1.1) * n\nfor r in range(int(min(n, front + 1))):\n    y = RTOP + 40 + r * ch\n    d.rectangle([RX0, y, RX1, y + max(1, ch - 1)], fill=rgba(REST, 190))\n    for c in range(0, n, 5):\n        d.rectangle([RX0 + c * cw, y, RX0 + c * cw + 1, y + 1], fill=rgba(TEXT, 70))\nbar_y = RTOP + 40 + front * ch\nd.rectangle([RX0, bar_y - 3, RX1, bar_y + 3], fill=rgba(TEXT, 200))\nshare = values[1]\npulse = 0.5 + 0.5 * math.sin(reveal * 40)\ncx, cy = RX1 - 60, RBOT - 230\nif reveal > 0.7:\n    rr = 14 + 10 * pulse\n    d.ellipse([cx - rr * 2, cy - rr * 2, cx + rr * 2, cy + rr * 2], fill=rgba(HIGHLIGHT, 70))\n    d.ellipse([cx - 5, cy - 5, cx + 5, cy + 5], fill=rgba(HIGHLIGHT, 255))\n    d.line([cx - 40, cy + 50, cx - 8, cy + 8], fill=rgba(HIGHLIGHT, 230), width=4)\n    text('YOUR SHARE: ' + fmt(share), (RX0 + RX1) // 2 - 80, RBOT - 130, size=48, color=HIGHLIGHT, center=True)\n    text('less than one dot in 10,000', (RX0 + RX1) // 2, RBOT - 60, size=34, color=TEXT, center=True)\nelse:\n    text('10,000 dots = all the water', (RX0 + RX1) // 2, RBOT - 130, size=44, color=TEXT, center=True)\n"
      }
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:18Z",
-   "hook_was": "Only 3.5 percent of Earth's water isn't salty.",
-   "retold": "retell/v4",
-   "scorecard": {
-    "scores": {
-     "premise": 10,
-     "hook": 15,
-     "arc": 15,
-     "factual": 13,
-     "visual_proof": 8,
-     "payoff": 8,
-     "voice": 4
-    },
-    "total": 73,
-    "fatal": [
-     "unrenderable_visual"
-    ],
-    "weakest": "visual_proof",
-    "note": "Provide clear, simple visual concepts that are easily readable on a phone screen, e.g., concise infographics or animated bars, instead of vague 'data picture (rank)' placeholders.",
-    "fp": "1ea878c4faf3e8ea"
-   }
+   ]
   },
   {
    "slug": "cargo-ship-size-growth",
@@ -38434,6 +38434,26 @@
     "didyouknow",
     "globalwarming"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-21T12:28:26Z",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 10,
+     "arc": 8,
+     "factual": 10,
+     "visual_proof": 8,
+     "payoff": 6,
+     "voice": 3
+    },
+    "total": 55,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "The hook, beats and closing all say the same thing (bleaching every 2 years, with no time to recover). Open on a concrete, human-scale threat, such as 'The Great Barrier Reef is dying faster than it can heal', and use the beats to build tow",
+    "fp": "040b7030bf8325fb"
+   },
+   "hook_was": "Reef bleaching now returns about every 2 years.",
    "segments": [
     {
      "source": "offline",
@@ -38468,27 +38488,7 @@
      "topic": "Reef recovery time",
      "say": "Reef recovery typically needs 10 years, far longer than the gap between bleaching events."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-21T12:26:18Z",
-   "scorecard": {
-    "scores": {
-     "premise": 10,
-     "hook": 10,
-     "arc": 8,
-     "factual": 10,
-     "visual_proof": 8,
-     "payoff": 6,
-     "voice": 3
-    },
-    "total": 55,
-    "fatal": [],
-    "weakest": "arc",
-    "note": "The hook, beats and closing all say the same thing (bleaching every 2 years, with no time to recover). Open on a concrete, human-scale threat, such as 'The Great Barrier Reef is dying faster than it can heal', and use the beats to build tow",
-    "fp": "040b7030bf8325fb"
-   },
-   "hook_was": "Reef bleaching now returns about every 2 years."
+   ]
   },
   {
    "slug": "normal-body-temperature-has-shifted",
