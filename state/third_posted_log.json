@@ -21642,6 +21642,16 @@
       "rejected_by": "director",
       "rejected_why": "the clip ends mid-sentence on \"like\"",
       "ts": "2026-11-21T12:41:55.373898+00:00"
+    },
+    "clip-20261121-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/ExcitedDrabCormorantTBTacoRight-wNoohGSFfQ6jYae-",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed GTA 6 Clip Has Chat Going Wild",
+      "kind": "twitch_clip",
+      "ts": "2026-11-21T12:48:17.360529+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
