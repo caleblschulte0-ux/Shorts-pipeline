@@ -1,56 +1,51 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261120",
-  "judged_date": "20261119",
+  "date": "20261121",
+  "judged_date": "20261120",
   "alarm": {
-    "date": "20261119",
+    "date": "20261120",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261119 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261119.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-19T21:24:12+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-20T21:00:30+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
         "code": "forge_silent",
         "severity": "critical",
-        "detail": "the explainer's story forge has KEPT NO STORY since 2026-09-07 (73 days; 69 indicators used, 31 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
+        "detail": "the explainer's story forge has KEPT NO STORY since 2026-09-07 (74 days; 69 indicators used, 31 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
         "fix": "Read the forge step of the latest explainer run: 'catalogue is EXHAUSTED' means widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' lines mean the World Bank API is unreachable from the runner; 'HELD by editorial gate' or 'WEAK PITCH' on every candidate means the words, not the well. The gate stays where it is."
       },
       {
-        "code": "no_posts_explainer",
+        "code": "sports_source_dead",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261119 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above. The story forge has kept no story since 2026-09-07 \u2014 see forge_silent above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261119. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: the sports run found ZERO Reddit video posts for 20261120 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
+        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
-        "code": "short_slate_third",
+        "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20261119.",
+        "detail": "explainer: 1/4 posted for 20261120.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261119 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261119. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: ZERO videos posted for 20261120 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above. The sports run found 0 Reddit posts to cut \u2014 see sports_source_dead above.",
+        "fix": "Fix the SOURCE first (sports_source_dead): no posts, no cuts, no videos. Then: Check the trending workflow run for 20261120. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (72 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (73 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present"
+      "chatgpt finalizer: artifact present",
+      "third: 8/6 posted"
     ],
     "deferred": false
   },
@@ -4433,13 +4428,12 @@
     }
   },
   "recent_commits": [
-    "9690394 2026-11-20 claim: mailbox verdicts 2026-11-20T13:47Z [skip ci]",
-    "e8d4f64 2026-11-20 watchdog: chatgpt task verdicts 20261120 [skip ci]"
+    "8050f41 2026-11-21 claim: mailbox verdicts 2026-11-21T04:48Z [skip ci]",
+    "1645045 2026-11-21 claim: mailbox verdicts 2026-11-21T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-06": 5,
         "2026-11-07": 4,
         "2026-11-08": 7,
         "2026-11-09": 5,
@@ -4458,7 +4452,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-06": 3,
         "2026-11-07": 3,
         "2026-11-11": 1,
         "2026-11-12": 6,
@@ -4475,7 +4468,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-06": 6,
         "2026-11-07": 4,
         "2026-11-08": 2,
         "2026-11-10": 3,
@@ -4491,8 +4483,8 @@
         "2026-11-20": 8
       },
       "total_posted": 577,
-      "attempted": 1507,
-      "rejected_or_pending": 930
+      "attempted": 1508,
+      "rejected_or_pending": 931
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4510,67 +4502,67 @@
       "top_by_vph": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 8.9,
-          "views": 1163
+          "vph": 8.2,
+          "views": 1164
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 6.38,
+          "vph": 5.97,
           "views": 1028
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 5.8,
+          "vph": 5.36,
           "views": 798
         },
         {
-          "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
-          "vph": 4.7,
-          "views": 13
+          "title": "20 States Now Let You Use A Digital ID At The Airport",
+          "vph": 3.33,
+          "views": 1142
         },
         {
-          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 3.49,
-          "views": 428
+          "title": "California Condors Rebounded From Just 27 Birds",
+          "vph": 3.21,
+          "views": 1037
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 134,
+      "videos": 135,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 7.37,
-          "views": 70
+          "vph": 9.59,
+          "views": 150
         },
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 2.77,
-          "views": 1910
+          "vph": 2.74,
+          "views": 1912
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 1.24,
-          "views": 49
+          "vph": 1.31,
+          "views": 60
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 1.13,
+          "vph": 1.09,
           "views": 205
         },
         {
-          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 1.13,
-          "views": 104
+          "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
+          "vph": 1.07,
+          "views": 539
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261117/brief.json",
       "retro/20261118/brief.json",
-      "retro/20261119/brief.json"
+      "retro/20261119/brief.json",
+      "retro/20261120/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
