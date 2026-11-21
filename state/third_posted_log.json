@@ -21496,6 +21496,34 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Suggestive GTA6 cutscene, age-restrict r)",
       "ts": "2026-11-20T19:08:22.660000+00:00"
+    },
+    "rejected-wildconfidentamazonceilingcat-9obbm1tnhkfzmoep": {
+      "source_url": "https://www.twitch.tv/leva2k/clip/WildConfidentAmazonCeilingCat-9OBbM1TnHKFzmoeP",
+      "streamer": "leva2k",
+      "title": "\u0411\u0430\u0433 \u0432 \u0413\u0422\u0410 6",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA6 seaplane fishing fumble, no payoff)",
+      "ts": "2026-11-21T11:34:21.184754+00:00"
+    },
+    "rejected-aggressivetardydragonhotpokket--9_zahppx48qqts-": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AggressiveTardyDragonHotPokket--9_zAHpPX48qQTS-",
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Can't Believe How Bad This Guy Wants The Ban",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin letterboxed strip, about a quarter to a third of the canvas height, not roughly three quarte; vision: The framing fills the 9:16 canvas poorly. A large share of the frame is blurred or dark padding, so the clip looks repos; vision: The game footage is sexualized: ",
+      "ts": "2026-11-21T11:39:27.480806+00:00"
+    },
+    "clip-20261121-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RamshackleLaconicLapwingSpicyBoy-vXH5sbEmR5KAzDO7",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Hands Over The Wheel And Chat Swears She's On Drugs \ud83d\ude2d",
+      "kind": "twitch_clip",
+      "ts": "2026-11-21T11:42:08.121482+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
