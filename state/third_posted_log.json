@@ -21644,13 +21644,50 @@
       "ts": "2026-11-21T12:41:55.373898+00:00"
     },
     "clip-20261121-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/ExcitedDrabCormorantTBTacoRight-wNoohGSFfQ6jYae-",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/CYORCYnq7JY",
       "title": "Ishowspeed GTA 6 Clip Has Chat Going Wild",
       "kind": "twitch_clip",
-      "ts": "2026-11-21T12:48:17.360529+00:00",
+      "ts": "2026-11-21T12:48:27.888976+00:00",
+      "uploaded_at": "2026-11-21T12:48:27.888987+00:00",
+      "publish_at": "2026-11-22T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261121-ishowspeed-gta-6-clip-has-chat-going-wild-f8cbb54a",
+        "tiktok": "queued for 2026-11-22T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/ExcitedDrabCormorantTBTacoRight-wNoohGSFfQ6jYae-",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed plays GTA 6 \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7192,
+      "banger": 0.7,
+      "cut": {
+        "start": 0.0,
+        "end": 18.6
+      },
+      "director_cut": true
+    },
+    "rejected-rockysourasterisktoospicy-6u8fm1mwlftuxmc9": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/RockySourAsteriskTooSpicy-6U8FM1MWLFtUXMc9",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Picks His Outfit And Says Chat Is Fired Up \ud83d\udd25",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 16% of the canvas height. The rest is a large blurred area. This is far below t; vision: The in-game character and the streamer webcam are tiny and hard to read on a phone. The subject is small and lost.; vision: The blurred padding is a magnified cro",
+      "ts": "2026-11-21T12:52:18.330585+00:00"
+    },
+    "clip-20261121-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/EvilChillyKleeKeepo-uq_TPadcMek2sAdf",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Warns Chat Not To Snitch After Hearing About A Homicide Report",
+      "kind": "twitch_clip",
+      "ts": "2026-11-21T12:56:18.953119+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
