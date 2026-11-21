@@ -455,7 +455,7 @@
       "channel": "explainer",
       "job": "rewrite_words",
       "reason": "these stories were composed with NO brain reachable \u2014 their numbers are real but their title/hook/narration came from a deterministic template",
-      "write": 3,
+      "write": 4,
       "stories": [
         {
           "slug": "cereal-production-is-1-5x-higher-than-in-1972",
@@ -491,6 +491,20 @@
             "In 1972, rural population was 63.1 % of total population. By 2025: 42.2 % of total population \u2014 down to 67 percent of that.",
             "In 1972, population in the largest city was 18.2 % of urban population. By 2025: 16.2 % of urban population \u2014 barely moved.",
             "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+          ]
+        },
+        {
+          "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+          "current_title": "India Beats Everyone On General pupils secondary education \u2014 By 5.1x",
+          "current_hook": "You'd guess United States leads on general pupils secondary education. It's India \u2014 127.5 million to 24.8 million.",
+          "current_closing": "The numbers were public the whole time.",
+          "current_question": "",
+          "says": [
+            "India leads at 127.5 million; Indonesia is 20.0 million.",
+            "Guinea-Bissau leads at 147.6; Sudan is 49.8.",
+            "1999: 4.04 % of GDP. 2023: 3.57 % of GDP \u2014 barely moved.",
+            "1975: 67.1. 2024: 92 \u2014 1.4 times higher.",
+            "Tanzania leads at 114; Central African Republic is 44.3."
           ]
         }
       ],
