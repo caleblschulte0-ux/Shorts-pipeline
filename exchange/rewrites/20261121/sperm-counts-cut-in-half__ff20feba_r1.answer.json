@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "sperm-counts-cut-in-half__ff20feba_r1",
+ "slug": "sperm-counts-cut-in-half",
+ "by": "chatgpt",
+ "written_at": "2026-11-21T12:27:21.666Z",
+ "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
+ "hook": "Men are losing their sperm, and the drop is getting faster.",
+ "closing": "The decline now affects both concentration and total output, raising the stakes for future families.",
+ "question": "Did you know sperm counts dropped?",
+ "segments": [
+  {
+   "topic": "Sperm count decline",
+   "say": "In 1973, the average count was 101. By 2018 it was under half that, establishing the long decline."
+  },
+  {
+   "topic": "Sperm decline speed",
+   "say": "Since 2000, counts fall 2.6% a year, more than double the old pace. The same decline is accelerating."
+  },
+  {
+   "topic": "Sperm total decline",
+   "say": "That acceleration reaches the whole sample: total sperm count fell 62%, not just the concentration."
+  }
+ ]
+}
