@@ -132,8 +132,16 @@ def _posted_slugs() -> set[str]:
 
 
 def _unposted_count(cfg: dict) -> int:
+    """Raw stock — what the posted log does not name. For "do we need
+    more?" use `_postable_count`: a story the last posting run held is
+    not supply (shared/queue_supply.py)."""
     posted = _posted_slugs()
     return sum(1 for s in cfg.get("stories", []) if s["slug"] not in posted)
+
+
+def _postable_count(cfg: dict) -> int:
+    from shared import queue_supply
+    return len(queue_supply.postable(cfg, posted_log=POSTED_LOG)["postable"])
 
 
 def _covered_subjects(cfg: dict) -> list[str]:
@@ -807,9 +815,11 @@ def main() -> int:
                  for seg in s.get("segments", []) if seg.get("key")}
 
     if args.top_up is not None:
-        have = _unposted_count(cfg)
+        have = _postable_count(cfg)
         need = max(0, args.top_up - have)
-        print(f"un-posted={have}, target={args.top_up} -> need {need} new")
+        print(f"postable={have} (un-posted={_unposted_count(cfg)}, the rest "
+              f"held by the last posting run), target={args.top_up} -> "
+              f"need {need} new")
     else:
         need = max(0, args.count)
     if need == 0:
@@ -867,7 +877,8 @@ def main() -> int:
     write_json_if_changed(CONFIG, cfg, ensure_ascii=False)
     print(f"\nAdded {len(kept)} stories to {CONFIG.relative_to(ROOT)} "
           f"(+{sum(len(s['segments']) for s in kept)} datasets). "
-          f"Un-posted now: {_unposted_count(cfg)}.")
+          f"Un-posted now: {_unposted_count(cfg)}, postable "
+          f"{_postable_count(cfg)}.")
     return 0
 
 

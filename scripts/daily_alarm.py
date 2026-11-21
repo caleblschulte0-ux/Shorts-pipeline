@@ -439,12 +439,15 @@ def check(date: str, now=None) -> dict:
               f"{forge_out['unusable']} remembered as unusable). Every "
               f"posting run says 'forged 0' and exits green; the queue "
               f"only shrinks.",
-              "Read the forge step of the latest explainer run: 'catalogue "
-              "is EXHAUSTED' means widen WB_SOURCES/THEMES in "
-              "scripts/story_forge.py; '[net]' lines mean the World Bank "
-              "API is unreachable from the runner; 'HELD by editorial "
-              "gate' or 'WEAK PITCH' on every candidate means the words, "
-              "not the well. The gate stays where it is.")
+              "Read the forge step of the latest explainer AND story_forge "
+              "runs: 'queue already full' means the top-up is counting "
+              "stories the posting run holds (it must count POSTABLE ones, "
+              "shared/queue_supply.py); 'catalogue is EXHAUSTED' means "
+              "widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' "
+              "lines mean the World Bank API is unreachable from the "
+              "runner; 'HELD by editorial gate' or 'WEAK PITCH' on every "
+              "candidate means the words, not the well. The gate stays "
+              "where it is.")
     sports_out = {}
     for _cid in reg.channel_ids(registry):
         if reg.captured(_cid, registry) and _sports_source_dead(date):

@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261120",
+  "updated": "20261121",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1321,16 +1321,22 @@
       ]
     },
     "500b791bc671": {
-      "verdict": "in_progress",
-      "date": "20261012",
-      "because": "PR #623 opened: main_verify.yml runs the full suite on executable pushes to main",
+      "verdict": "done",
+      "date": "20261121",
+      "because": "PR #623 merged 2026-10-12 as 3d7b79ca3: main_verify.yml runs the full suite (pipefail, exchange dry run, registry acceptance) on pushes to main touching **.py, tests/, workflows or the registry, read-only so it cannot recurse; tests/test_main_pushes_run_the_suite.py holds it. Closed by triage 2026-11-21.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260904",
           "because": "Confirmed: .github/workflows/auto-merge.yml only triggers on pull_request and gates every job to startsWith(github.head_ref,'claude/'); exchange_phase_a.yml:38-42 explicitly documents direct human/PAT pushes to main as a supported path with no equivalent full-suite gate. Real coverage gap; fix is a new scoped push-to-main verification workflow reusing the PR gate's test environment \u2014 a new workflow file, queued rather than rushed."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20261012",
+          "because": "PR #623 opened: main_verify.yml runs the full suite on executable pushes to main"
         }
-      ]
+      ],
+      "commit": "3d7b79ca33d35094c5505edd950ec7bd37663f17"
     },
     "e61446f7bc2a": {
       "verdict": "in_progress",

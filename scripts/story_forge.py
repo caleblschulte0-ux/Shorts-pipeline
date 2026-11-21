@@ -25,7 +25,9 @@ Every candidate must then clear, before it is kept:
   2. the editorial gate (real-data provenance + premise bar),
   3. topic dedupe against everything the channel has already covered.
 
-  python scripts/story_forge.py --top-up 8      # keep >=8 un-posted stories
+  python scripts/story_forge.py --top-up 8      # keep >=8 POSTABLE stories
+                                                # (un-posted, not held by
+                                                #  the last posting run)
   python scripts/story_forge.py --count 3
   python scripts/story_forge.py --count 2 --dry-run
 """
@@ -59,6 +61,7 @@ DATA_DIR = ROOT / "data_learning" / "data"
 POSTED_LOG = ROOT / "state" / "explainer_posted_log.json"
 USED = ROOT / "state" / "forge_used.json"
 LAST = ROOT / "state" / "forge_last.json"
+RUNS = ROOT / "state" / "explainer_runs.json"   # what the last run HELD
 CACHE = ROOT / "cache" / "forge"
 UA = {"User-Agent": "Mozilla/5.0 (+data-minute-pipeline; contact via GitHub)"}
 TODAY = date.today().isoformat()
@@ -966,11 +969,25 @@ def _stable_hash(text: str) -> int:
 
 
 def _unposted(cfg: dict) -> int:
-    try:
-        posted = set(json.loads(POSTED_LOG.read_text()).get("posted", {}))
-    except Exception:  # noqa: BLE001
-        posted = set()
-    return sum(1 for s in cfg.get("stories", []) if s["slug"] not in posted)
+    """Raw stock: every story the posted log does not name. NOT the number
+    a top-up compares to its target — see `_postable`."""
+    from shared import queue_supply
+    return len(queue_supply.unposted_slugs(cfg, POSTED_LOG))
+
+
+def _postable(cfg: dict) -> dict:
+    """The queue's SUPPLY: un-posted stories minus the ones the last posting
+    run held (`state/explainer_runs.json`).
+
+    2026-09-07..11-20 the top-up read the raw un-posted count — 73 — against
+    a target of 10 and printed "queue already full — nothing to forge" twice
+    a day, while the posting run held all 73 (34 on non-official data, the
+    rest on premise, currency or repetition) and the channel posted nothing.
+    A held story is the rewrite mailbox's to fix; it is not supply, and it
+    must never make the forge stand down.
+    """
+    from shared import queue_supply
+    return queue_supply.postable(cfg, posted_log=POSTED_LOG, runs_path=RUNS)
 
 
 def forge(count: int, dry_run: bool = False) -> int:
@@ -1122,17 +1139,19 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--count", type=int, default=0)
     ap.add_argument("--top-up", type=int, default=0,
-                    help="forge until at least N un-posted stories exist")
+                    help="forge until at least N POSTABLE stories exist — "
+                         "un-posted and not held by the last posting run")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
     cfg = json.loads(CONFIG.read_text())
     n = a.count
     if a.top_up:
-        have = _unposted(cfg)
-        n = max(n, a.top_up - have)
-        print(f"un-posted queue: {have}; target {a.top_up}; forging {n}")
+        from shared import queue_supply
+        supply = _postable(cfg)
+        n = max(n, a.top_up - len(supply["postable"]))
+        print(f"{queue_supply.describe(supply, a.top_up)}; forging {n}")
     if n <= 0:
-        print("queue already full — nothing to forge")
+        print("queue already full of POSTABLE stories — nothing to forge")
         return 0
     forge(n, dry_run=a.dry_run)
     return 0
