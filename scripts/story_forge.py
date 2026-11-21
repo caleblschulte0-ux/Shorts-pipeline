@@ -752,6 +752,13 @@ def _brain_words(dss: list[dict], reject_note: str | None = None,
         from shared.script_generator import _call_llm, _strip_fence
         raw = _strip_fence(_call_llm(sysmsg, user))
         m = re.search(r"\{.*\}", raw, re.S)
+        if not m:
+            # Run 44873077455 printed "[brain] unavailable ('NoneType' object
+            # has no attribute 'group')" for this — a brain that ANSWERED,
+            # in prose, read as a brain that was down.
+            print(f"    [brain] answered with no JSON object — deterministic "
+                  f"words ({(raw or '')[:60]!r})")
+            return None
         out = one_object(m.group(0))
         if not out.get("title") or not out.get("hook"):
             return None
