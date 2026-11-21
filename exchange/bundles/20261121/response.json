@@ -1,0 +1,72 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261121",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "789866e1277169c3ded68fba4686dbdded3b430160a531cadd69229f4ff85b9f",
+    "source_commit": "7ad79b5eaa99e786945bb895fecc52c12bf209e7",
+    "production_date": "20261121",
+    "bundle_sha256": "70be4edf2abcdb82ad8e1918b67465dc51979e14be55b4298ea284295e1dbe88"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Grew 1.5x Since 1972",
+      "hook": "Food fears missed how quickly cereal production grew.",
+      "says": [
+        "From 1985 to 2017, progression to secondary school rose from 77.8% to 91.3% — 1.2 times higher.",
+        "From 1972 to 2024, cereal production rose from 1083.7 to 1644.1 million metric tons — 1.5 times higher.",
+        "Farmland spans 5.2 million square kilometers in China, 4.2 in the United States, 3.6 Australia, 2.4 Brazil, and 2.2 Russia."
+      ],
+      "closing": "Food production changed faster than the old shortage warnings expected.",
+      "question": "Which shift surprised you most?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Tripled Since 1990",
+      "hook": "Waste became a much bigger part of global energy.",
+      "says": [
+        "From 1990 to 2024, combustible renewables and waste rose from 10.2% to 30.1% of energy — 3.0 times higher.",
+        "From 1998 to 2024, electricity access rose from 73.2% to 91.9% of population — 1.3 times higher.",
+        "From 1972 to 2024, methane (CH4) emissions from waste rose from 903.8 to 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "Turning waste into energy grew, but its methane burden grew too.",
+      "question": "Which energy shift surprised you most?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth slowed while cities kept expanding.",
+      "says": [
+        "From 1972 to 2025, rural population fell from 63.1% to 42.2% of total population — down to 67 percent.",
+        "From 1972 to 2025, the largest city's share shifted from 18.2% to 16.2% of urban population — barely moved.",
+        "From 1972 to 2025, population growth fell from 2 annual % to 0.91 annual % — down to 46 percent."
+      ],
+      "closing": "The population still grows, but the annual pace is now less than half as fast.",
+      "question": "Did you expect growth to slow?"
+    },
+    {
+      "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+      "title": "India Has 5.1x More Secondary Pupils Than The United States",
+      "hook": "India has 127.5 million secondary pupils; the United States has 24.8 million.",
+      "says": [
+        "India leads with 127.5 million general secondary pupils; Indonesia has 20.0 million.",
+        "Guinea-Bissau reaches 147.6; Sudan reaches 49.8, a wide secondary-education gap.",
+        "Education spending shifted from 4.04% of GDP in 1999 to 3.57% in 2023 — barely moved.",
+        "Secondary enrollment rose from 67.1 in 1975 to 92 in 2024 — 1.4 times higher.",
+        "Tanzania reaches 114; Central African Republic reaches 44.3, another sharp enrollment gap."
+      ],
+      "closing": "The biggest education systems look completely different depending on which measure you compare.",
+      "question": "Which education gap surprised you most?"
+    }
+  ],
+  "notes": [
+    "The frozen bundle contains zero media requests; active formats require no ChatGPT-supplied images.",
+    "The Explainer authoring request authorized exactly four source stories; all four were rewritten without changing protected facts or segment order.",
+    "Third and trending are production-supervision channels; their active clip formats accept no response packages or ChatGPT media."
+  ]
+}
