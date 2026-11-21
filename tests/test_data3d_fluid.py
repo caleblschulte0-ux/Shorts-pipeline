@@ -11,7 +11,7 @@ SRC = (D3 / "character.py").read_text()
 
 def _ns():
     tree = ast.parse(SRC)
-    keep = [n for n in tree.body if (isinstance(n, ast.FunctionDef) and n.name in ("_qang", "hot_frames", "fluid"))
+    keep = [n for n in tree.body if (isinstance(n, ast.FunctionDef) and n.name in ("_qang", "_qvel", "is_stutter", "hot_frames", "fluid"))
             or (isinstance(n, ast.Assign) and any(getattr(t, "id", "") in ("ACC_MAX", "HITCH_DIP") for t in n.targets))]
     ns = {"math": math}
     exec(compile(ast.Module(keep, []), "character.py", "exec"), ns)
@@ -133,3 +133,34 @@ def test_the_hand_path_is_one_chain_of_solves_in_his_frame():
     rc = fn("reach")
     assert rc.index("ik_end=True") < rc.index("_arm_ik(side, Vector(fn(t))")   # the path is solved before the job
     assert "on_job" in rc                       # a hand leaving one job for the next leaves from that job's solve
+
+
+def test_a_swing_that_turns_round_is_not_a_stutter():
+    """an arm pumping (lightning ridge 2026-11-21): it slows to nothing at each end of its arc and comes back the
+    other way. The old stutter test read every turn-round as a stutter, so a running arm had to move in loops."""
+    ns = _ns()
+    ang = [40.0 * math.sin(2 * math.pi * k / 15) for k in range(60)]     # +-40 deg at 2 Hz, the ends land on a frame
+    ang[11] = ang[12] = -40.0                                            # a dead stop at one end, then back again
+    c = _series(ang)
+    qs = [tuple(c[i][k] for i in range(4)) for k in range(60)]
+    v = [0.0] + [ns["_qang"](qs[k - 1], qs[k]) for k in range(1, 60)]
+    vel = [(0.0, 0.0, 0.0)] + [ns["_qvel"](qs[k - 1], qs[k]) for k in range(1, 60)]
+    assert not any(ns["is_stutter"](v, vel, k) for k in range(2, 57))
+
+
+def test_a_stutter_still_counts_when_it_goes_on_the_same_way():
+    ns = _ns()
+    ang, a = [], 0.0
+    for k in range(30):
+        a += 0.4 if k == 15 else 5.0
+        ang.append(a)
+    c = _series(ang)
+    qs = [tuple(c[i][k] for i in range(4)) for k in range(30)]
+    v = [0.0] + [ns["_qang"](qs[k - 1], qs[k]) for k in range(1, 30)]
+    vel = [(0.0, 0.0, 0.0)] + [ns["_qvel"](qs[k - 1], qs[k]) for k in range(1, 30)]
+    assert any(ns["is_stutter"](v, vel, k) for k in range(13, 18))
+
+
+def test_the_twitch_check_tells_a_swing_from_a_stutter():
+    src = (D3 / "store" / "twitch.py").read_text()
+    assert "vel[i - 1].dot(vel[j]) > 0" in src

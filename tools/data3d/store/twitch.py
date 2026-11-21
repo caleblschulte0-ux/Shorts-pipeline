@@ -37,6 +37,13 @@ def ang(q1, q2):
     return min(a, 360.0 - a)                     # q and -q are the same rotation
 
 
+def _vel(q1, q2):
+    """the turn from q1 to q2 as a vector, its sign the direction (character._qvel, in mathutils)"""
+    d = q1.rotation_difference(q2)
+    if d.w < 0: d.negate()
+    return d.axis * d.angle
+
+
 def measure(data, NF):
     sc = bpy.context.scene; arm = data.arm
     names = [b.name for b in arm.pose.bones]
@@ -76,8 +83,11 @@ def measure(data, NF):
             if v[i] > fl["fast"][0]: fl["fast"] = (v[i], n, i + 1)
             a = abs(v[i] - v[i - 1])
             if i > 1 and a > fl["acc"][0]: fl["acc"] = (a, n, i + 1)
-        for i in range(2, len(v) - 3):
-            if v[i - 1] > 1.5 and v[i] < 0.3 * v[i - 1] and max(v[i + 1:i + 4]) > 1.5: fl["hitch"].append((i + 1, n))
+        vel = [(0.0, 0.0, 0.0)] + [_vel(q[i - 1], q[i]) for i in range(1, len(q))]
+        for i in range(2, len(v) - 3):     # a stutter goes on the SAME way; an arm that swings back is a swing
+            if v[i - 1] > 1.5 and v[i] < 0.3 * v[i - 1] and any(
+                    v[j] > 1.5 and vel[i - 1].dot(vel[j]) > 0 for j in range(i + 1, min(len(v), i + 4))):
+                fl["hitch"].append((i + 1, n))
     fl["bulge"] = (0.0, None, 0, 0)
     for side, fa, fb in getattr(data, "_approaches", []):
         fa, fb = max(1, fa), min(NF, fb)

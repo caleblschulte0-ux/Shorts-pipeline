@@ -1493,15 +1493,37 @@ def _qang(a, b):
     return math.degrees(2 * math.acos(min(1.0, d)))
 
 
+def _qvel(a, b):
+    """the turn from a to b as a vector (the vector part of conj(a)*b, short way round): its sign says which way"""
+    aw, ax, ay, az = a; bw, bx, by, bz = b
+    w = aw * bw + ax * bx + ay * by + az * bz
+    x = aw * bx - ax * bw - ay * bz + az * by
+    y = aw * by + ax * bz - ay * bw - az * bx
+    z = aw * bz - ax * by + ay * bx - az * bw
+    return (x, y, z) if w >= 0 else (-x, -y, -z)
+
+
+def is_stutter(v, vel, k):
+    """moving at k-1, all but stopped at k, moving again within 3 frames IN THE SAME DIRECTION. A swing that turns
+    round at the end of its arc (an arm pumping, a pendulum) also slows to nothing for a frame, but it comes back the
+    other way: that is a swing, not a stutter (lightning ridge 2026-11-21: a running arm pump read as 'stutters' and
+    the arms had to move in loops). vel[k]: the turn into frame k as a vector."""
+    if not (v[k - 1] > 1.5 and v[k] < HITCH_DIP * v[k - 1]): return False
+    for j in range(k + 1, min(len(v), k + 4)):
+        if v[j] > 1.5 and sum(p * q for p, q in zip(vel[k - 1], vel[j])) > 0: return True
+    return False
+
+
 def hot_frames(qs, acc_max=ACC_MAX):
     """frames where a per-frame rotation series speeds up or slows down faster than acc_max, or stutters (moving,
-    nearly stops for 1-3 frames, moves on). Pure: the fluid pass and its test both read it."""
+    nearly stops for 1-3 frames, moves on the same way). Pure: the fluid pass and its test both read it."""
     v = [0.0] + [_qang(qs[k - 1], qs[k]) for k in range(1, len(qs))]
+    vel = [(0.0, 0.0, 0.0)] + [_qvel(qs[k - 1], qs[k]) for k in range(1, len(qs))]
     hot = set()
     for k in range(2, len(v)):
         if abs(v[k] - v[k - 1]) > acc_max: hot.add(k)
     for k in range(2, len(v) - 3):
-        if v[k - 1] > 1.5 and v[k] < HITCH_DIP * v[k - 1] and max(v[k + 1:k + 4]) > 1.5: hot.add(k)
+        if is_stutter(v, vel, k): hot.add(k)
     return hot, v
 
 
