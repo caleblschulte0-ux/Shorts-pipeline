@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T11:54:27Z",
+ "updated": "2026-11-21T12:23:55Z",
  "open": [
-  {
-   "id": "chip-transistor-shrink-limit__31e54fc2",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-21T11:54:27Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim about chip growth slowing."
-   ],
-   "request": "exchange/rewrites/20261121/chip-transistor-shrink-limit__31e54fc2.request.json",
-   "answer_path": "exchange/rewrites/20261121/chip-transistor-shrink-limit__31e54fc2.answer.json"
-  },
   {
    "id": "divorce-rate-quiet-decline__197e2d03",
    "slug": "divorce-rate-quiet-decline",
@@ -171,6 +161,16 @@
    ],
    "request": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.request.json",
    "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__31e54fc2",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-20T15:45:05Z",
+   "why": [
+    "premise: brain: It is a vague, hedged noun-phrase premise (\"growth is slowing\") with no concrete surprise, threat or scale, and it turns over no belief the viewer can picture."
+   ],
+   "request": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.request.json",
+   "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.answer.json"
   },
   {
    "id": "astronaut-bone-loss__15bbbefa",
