@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "gulf-dead-zone-growth__00fcbaeb",
+ "slug": "gulf-dead-zone-growth",
+ "by": "chatgpt",
+ "written_at": "2026-11-21T12:21:42.753Z",
+ "title": "Gulf Dead Zone Rebounded To 6,705 Square Miles",
+ "hook": "The Gulf dead zone grew again instead of shrinking.",
+ "closing": "Protecting Gulf sea life starts by reducing the fertilizer feeding this oxygen loss.",
+ "question": "Who should pay to reduce runoff?",
+ "segments": [
+  {
+   "topic": "Gulf dead zone",
+   "say": "The Gulf dead zone reached 6,705 square miles, more than double its previous reading."
+  },
+  {
+   "topic": "Gulf zone target",
+   "say": "The Gulf dead zone's current average is 3,745 square miles, leaving cleanup far behind the goal."
+  },
+  {
+   "topic": "Gulf nitrogen load",
+   "say": "Gulf nitrogen load reached 300 percent of its earlier level, feeding oxygen-stealing algae."
+  }
+ ]
+}
