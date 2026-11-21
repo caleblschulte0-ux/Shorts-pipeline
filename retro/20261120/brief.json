@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261120",
-  "generated_at": "2026-11-20T23:31:03Z",
+  "generated_at": "2026-11-21T00:31:03Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 57.76,
+          "days": 57.8,
           "samples": 3,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 56.76,
+          "days": 56.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -410,13 +410,13 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-11-20T21:52:59.298904+00:00",
+      "fetched_at": "2026-11-21T00:22:49.840400+00:00",
       "today": [
         {
           "title": "The Richest Americans Live 14 Years Longer Than The Poorest",
           "url": "https://youtube.com/shorts/GnwunMUQkUI",
           "published_at": "2026-11-20T10:25:40Z",
-          "age_hours": 11.5,
+          "age_hours": 14.0,
           "age_band": "6-24h",
           "views": 22,
           "engaged_views": 22,
@@ -432,24 +432,24 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 1.913,
+          "views_per_hour": 1.5714,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         }
       ],
       "last_7d": {
-        "videos": 15,
-        "total_views": 3305,
-        "median_views": 64.0,
-        "median_vph": 0.9482,
+        "videos": 14,
+        "total_views": 3289,
+        "median_views": 91.5,
+        "median_vph": 1.2506,
         "best": "Why Saffron Costs More Than Any Spice On Earth",
         "worst": "A Neutron Star Is Only 20 Kilometers Wide"
       },
       "last_30d": {
-        "videos": 68,
-        "total_views": 26823,
-        "median_views": 187.5,
-        "median_vph": 0.6175,
+        "videos": 67,
+        "total_views": 26784,
+        "median_views": 196.0,
+        "median_vph": 0.6134,
         "best": "Why Saffron Costs More Than Any Spice On Earth",
         "worst": "Early Peanut Eating Cut Allergies To 1.9%"
       },
@@ -461,38 +461,38 @@
         "top_5_by_vph": [
           {
             "title": "Why Saffron Costs More Than Any Spice On Earth",
-            "views_per_hour": 8.35,
+            "views_per_hour": 8.2,
             "views": 1164,
-            "age_hours": 139.4,
+            "age_hours": 141.9,
             "url": "https://youtube.com/shorts/YkCTmRkK4ko"
           },
           {
             "title": "Every Banana You Eat Is a Clone, and It's Dying",
-            "views_per_hour": 6.05,
+            "views_per_hour": 5.97,
             "views": 1028,
-            "age_hours": 169.8,
+            "age_hours": 172.3,
             "url": "https://youtube.com/shorts/hIG4Isw-0JY"
           },
           {
             "title": "14.3% of Americans Have Money States Must Return",
-            "views_per_hour": 5.46,
+            "views_per_hour": 5.36,
             "views": 798,
-            "age_hours": 146.3,
+            "age_hours": 148.8,
             "url": "https://youtube.com/shorts/Edm7ErtqcBA"
           },
           {
             "title": "20 States Now Let You Use A Digital ID At The Airport",
-            "views_per_hour": 3.35,
+            "views_per_hour": 3.33,
             "views": 1142,
-            "age_hours": 340.9,
+            "age_hours": 343.4,
             "url": "https://youtube.com/shorts/7Zd2kuA7guE"
           },
           {
-            "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-            "views_per_hour": 3.26,
-            "views": 428,
-            "age_hours": 131.5,
-            "url": "https://youtube.com/shorts/q6FSDzVJyqg"
+            "title": "California Condors Rebounded From Just 27 Birds",
+            "views_per_hour": 3.21,
+            "views": 1037,
+            "age_hours": 322.6,
+            "url": "https://youtube.com/shorts/0xACp2wcCNw"
           }
         ],
         "bottom_5_by_vph": [
@@ -500,35 +500,35 @@
             "title": "Early Peanut Eating Cut Allergies To 1.9%",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 459.7,
+            "age_hours": 462.2,
             "url": "https://youtube.com/shorts/YfhcpGsV-AE"
           },
           {
             "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 526.4,
+            "age_hours": 528.9,
             "url": "https://youtube.com/shorts/qERI9Ut_q-U"
           },
           {
             "title": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan.",
             "views_per_hour": 0.0,
             "views": 4,
-            "age_hours": 840.1,
+            "age_hours": 842.6,
             "url": "https://youtube.com/shorts/setNAr0rXII"
           },
           {
             "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 1033.1,
+            "age_hours": 1035.6,
             "url": "https://youtube.com/shorts/aCtti_E5Nqo"
           },
           {
             "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 1224.5,
+            "age_hours": 1227.0,
             "url": "https://youtube.com/shorts/cY4-tgGIir4"
           }
         ],
@@ -643,8 +643,8 @@
       },
       "band_sample_sizes": {
         "1-3d": 3,
-        "1-4w": 49,
-        "3-7d": 11,
+        "1-4w": 50,
+        "3-7d": 10,
         "4w+": 84,
         "6-24h": 1
       },
@@ -676,7 +676,7 @@
         "72h": {
           "all_formats": {
             "n": 2,
-            "median_vph": 1.313,
+            "median_vph": 1.2663,
             "median_views": 89.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/2",
@@ -685,7 +685,7 @@
           "by_format": {
             "other_topic": {
               "n": 2,
-              "median_vph": 1.313,
+              "median_vph": 1.2663,
               "median_views": 89.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/2",
@@ -703,20 +703,20 @@
         },
         "7d": {
           "all_formats": {
-            "n": 4,
-            "median_vph": 2.2187,
-            "median_views": 391.5,
+            "n": 5,
+            "median_vph": 2.0596,
+            "median_views": 325.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/4",
-            "enough_to_judge": false
+            "view_pct_reported_for": "0/5",
+            "enough_to_judge": true
           },
           "by_format": {
             "other_topic": {
-              "n": 3,
-              "median_vph": 1.7361,
-              "median_views": 300.0,
+              "n": 4,
+              "median_vph": 1.8855,
+              "median_views": 312.5,
               "median_view_pct": null,
-              "view_pct_reported_for": "0/3",
+              "view_pct_reported_for": "0/4",
               "enough_to_judge": false
             },
             "superlative_topic": {
@@ -725,7 +725,7 @@
             },
             "unknown": {
               "n": 1,
-              "median_vph": 6.0542,
+              "median_vph": 5.9663,
               "median_views": 1028.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/1",
@@ -737,33 +737,33 @@
       "mature_enough_to_judge": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 8.3501,
+          "vph": 8.203,
           "fmt": "unknown",
-          "age_hours": 139.4
+          "age_hours": 141.9
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 6.0542,
+          "vph": 5.9663,
           "fmt": "unknown",
-          "age_hours": 169.8
+          "age_hours": 172.3
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 5.4545,
+          "vph": 5.3629,
           "fmt": "other_topic",
-          "age_hours": 146.3
+          "age_hours": 148.8
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 3.35,
+          "vph": 3.3256,
           "fmt": "other_topic",
-          "age_hours": 340.9
+          "age_hours": 343.4
         },
         {
-          "title": "Why 10,211 Meters Doesn't Make Everest Highest",
-          "vph": 3.2548,
+          "title": "California Condors Rebounded From Just 27 Birds",
+          "vph": 3.2145,
           "fmt": "other_topic",
-          "age_hours": 131.5
+          "age_hours": 322.6
         }
       ],
       "worst_mature": [
@@ -771,31 +771,31 @@
           "title": "Early Peanut Eating Cut Allergies To 1.9%",
           "vph": 0.0,
           "fmt": "other_topic",
-          "age_hours": 459.7
+          "age_hours": 462.2
         },
         {
           "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
           "vph": 0.001,
           "fmt": "other_topic",
-          "age_hours": 1033.1
+          "age_hours": 1035.6
         },
         {
           "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
           "vph": 0.0016,
           "fmt": "other_topic",
-          "age_hours": 1224.5
+          "age_hours": 1227.0
         },
         {
           "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
           "vph": 0.0019,
           "fmt": "other_topic",
-          "age_hours": 526.4
+          "age_hours": 528.9
         },
         {
           "title": "Colon Cancer Screening Age Just Dropped From 50 To 45",
           "vph": 0.0045,
           "fmt": "other_topic",
-          "age_hours": 1342.7
+          "age_hours": 1345.2
         }
       ]
     },
@@ -1624,7 +1624,7 @@
     "arms": {
       "3d": {
         "n": 3,
-        "median_percentile": 95.5,
+        "median_percentile": 95.0,
         "thin": true
       },
       "current": {
@@ -1634,7 +1634,7 @@
       },
       "illustrated": {
         "n": 118,
-        "median_percentile": 51.3,
+        "median_percentile": 52.0,
         "thin": false
       }
     },
@@ -1649,10 +1649,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "f746e43",
-    "commits_since": "2026-11-19",
+    "head": "f02977c",
+    "commits_since": "2026-11-20",
     "commit_count": 50,
     "commits": [
+      "f02977c explainer: update posted log + analytics [skip ci]",
+      "b1b10d4 claim: mailbox verdicts 2026-11-20T23:48Z [skip ci]",
+      "4155162 retro: brief + triage for 20261120 [skip ci]",
       "f746e43 claim: mailbox verdicts 2026-11-20T22:48Z [skip ci]",
       "a613013 watchdog: chatgpt task verdicts 20261120 [skip ci]",
       "55c1720 explainer: update posted log + analytics [skip ci]",
@@ -1689,10 +1692,7 @@
       "d1e97c7 third: update posted log + analytics [skip ci]",
       "0436a65 third: checkpoint posted log (claim upload slot) [skip ci]",
       "150a3e0 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "81ffc11 claim: 5 ChatGPT rewrite(s) applied 2026-11-20T12:37Z",
-      "c447188 claim: 4 ChatGPT rewrite(s) applied 2026-11-20T12:35Z",
-      "d6f52d5 exchange: record 20261120 production shortfall",
-      "3fac02a exchange: repair final mailbox rewrite 20261120"
+      "81ffc11 claim: 5 ChatGPT rewrite(s) applied 2026-11-20T12:37Z"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
