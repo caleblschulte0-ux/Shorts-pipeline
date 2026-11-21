@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T09:31:24Z",
+ "updated": "2026-11-21T11:54:27Z",
  "open": [
+  {
+   "id": "chip-transistor-shrink-limit__31e54fc2",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-21T11:54:27Z",
+   "why": [
+    "premise: brain: The hook is vague and lacks a concrete, specific surprise or measurable claim about chip growth slowing."
+   ],
+   "request": "exchange/rewrites/20261121/chip-transistor-shrink-limit__31e54fc2.request.json",
+   "answer_path": "exchange/rewrites/20261121/chip-transistor-shrink-limit__31e54fc2.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__197e2d03",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-11-21T11:54:26Z",
+   "why": [
+    "premise: brain: The claim about a specific divorce rate lacks verifiable evidence and may be inaccurate."
+   ],
+   "request": "exchange/rewrites/20261121/divorce-rate-quiet-decline__197e2d03.request.json",
+   "answer_path": "exchange/rewrites/20261121/divorce-rate-quiet-decline__197e2d03.answer.json"
+  },
   {
    "id": "sperm-counts-cut-in-half__ff20feba",
    "slug": "sperm-counts-cut-in-half",
@@ -153,16 +173,6 @@
    "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
   },
   {
-   "id": "chip-transistor-shrink-limit__31e54fc2",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-20T15:45:05Z",
-   "why": [
-    "premise: brain: It is a vague, hedged noun-phrase premise (\"growth is slowing\") with no concrete surprise, threat or scale, and it turns over no belief the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.request.json",
-   "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.answer.json"
-  },
-  {
    "id": "astronaut-bone-loss__15bbbefa",
    "slug": "astronaut-bone-loss",
    "filed": "2026-11-20T15:45:04Z",
@@ -171,16 +181,6 @@
    ],
    "request": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.request.json",
    "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__197e2d03",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-11-20T14:27:19Z",
-   "why": [
-    "thesis: seg1 ('Later marriage divorce') does not continue the story of the headline ('US Divorce Fell to 2.4 per Thousand Annually') — brain: Introduces separate fact rather than a direct consequence of beat 0"
-   ],
-   "request": "exchange/rewrites/20261120/divorce-rate-quiet-decline__197e2d03.request.json",
-   "answer_path": "exchange/rewrites/20261120/divorce-rate-quiet-decline__197e2d03.answer.json"
   },
   {
    "id": "measles-ninety-five-rule__c11b709d",
