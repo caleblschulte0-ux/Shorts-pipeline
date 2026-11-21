@@ -82,14 +82,14 @@
     "on the lookout's stair-head landing, bolt after bolt slams into the rod on the cab roof right over his head: he jumps out of his skin and his hat pops off, he hot-foot dances in a shower of sparks, and the third jams his hat down over his eyes",
     "on the trail down he gets struck again and again and keeps marching, the trail markers counting him up to seven",
     "at the lake a bolt fuses the beach sand into a glass jar round him and a second bolt bursts it into shards",
-    "he slams himself into his truck, a bolt hits its roof, sparks race over the metal shell, and he knocks on the window at us from inside, grinning"
+    "a bolt hits his truck's roof as he sits at the open window; arcs pour down the metal shell and jump to the gravel past the dark tyre; he checks his hands, fine, and shrugs at us"
   ],
   "storyboard": [
     "1 hook (the bare ridge under the storm, LOW and WIDE: the ranger full-body and big on the crest beside the old oak, his lookout tower further along the ridge, on his way home to his truck): the static lifts his ranger hat clean off his head and crackles between it and his ears; a spark snaps from the hat to his nose and he jolts, hands up, and the hat tumbles into the grass; a blinding bolt slams into the oak; the whole crown tears off the trunk and topples across the frame as he dives flat into the grass out of its way; it crashes down flat beside him, leaving a bare split stump glowing orange; he lifts his chin to us, gulps, ears flopping flat, and pushes up on his arms.",
     "2 the tallest thing (the steel fire-lookout tower on the ridge in the rain, LOW: the lens at his head's height in front of the stair-head landing, the copper lightning rod on the cab roof up and to the right of his hat, the storm deck over the ridge): a bolt hunting the sky for the tallest thing slams into the rod right over his head and he jumps out of his skin, a foot straight up, his hat popping clean off his head, flipping and dropping back on, and he cranes up at the rod and backs off from it on tiptoe, hands up; a second bolt hits it and a curtain of sparks pours down off the roof eave onto his hat and round his feet, and he hot-foot dances, three hops, kicking one knee up high and then the other; the third, biggest bolt slams his hat down over his eyes and he staggers three steps back blind, groping ahead with both hands; smoke pouring out of the hat's sides where his ears are, he tips his head back so the hat springs up off his eyes, glares up at the rod and shakes his fist high over his head at it, then steps in and gives us a long, flat look.",
     "3 struck again and again (a pine forest trail stepping down a mountainside in the rain, the cut bank and the switchback climbing behind him, TRACKING backwards ahead of him as he marches down at us): the ranger marches down the trail in his hat and a bolt hits him three times, each strike a huge step of damage: the first chars his teal face and hands soot-black, the second chars his white coat black and sets it pouring smoke, and the third, the big one, rockets his hat straight up off his head and out of the frame; the hat falls back down rocking like a leaf, lands on his head, he jams it down with a dip of his head and it puffs out smoke, then he turns to us with a long deadpan stare and a slow blink and trudges on.",
     "4 hotter than the sun (the lake beach below the forest in the rain, his footprints coming down the wet sand, a canoe hauled up and an old dock running out into the dark lake behind him; HIGH and close, three-quarter from his front, looking down on him): a bolt slams into the sand at the ranger's feet and the sand round him bursts up in a whole ring of molten orange glass that seals him in a glass jar up to his chest, his arms flung out wide over the rim; it cools clear and steaming, the orange draining down it, while he flails over the rim, wiggles and hops twice inside it, stuck; a second bolt hits the rim, cracks race round the jar and it bursts into a spray of glittering glass shards that rain onto the sand round him; he stumbles a step, shakes himself off like a wet dog and flings his arms wide at us with a big grin.",
-    "5 your shelter (the gravel trailhead lot at night in the rain under its sodium lamps, the pines dark beyond; CLOSE on his green ranger truck): the ranger is already inside, door shut; a bolt hits the truck's roof right over his hat; blue sparks race over the whole metal body around him and leap off the bumper into a puddle, splashing, while the tyres stay dark; then, close on his rain-streaked window, he raps on the glass twice with his knuckles, the pane shivering, and sits up into a big palms-up shrug with a grin: see? would you stay inside?"
+    "5 your shelter (close, then wide, then close again, hard cuts, at night in the rain on the open gravel trailhead lot: close at his rolled-down driver's window; then wide and a little high off the front three-quarter of his green ranger truck, the whole truck under the storm sky with the lit log ranger station behind it; then close at the window again): the ranger sits at the wheel in his open window, worried, looking up at the storm; a bolt hits the roof right above him, a white flash on him and the door, the first thin arcs spark off the window frame, and he flinches big and jumps in his seat, both hands up; cut wide: blue arcs crawl and fork down the metal shell from where it hit, over the roof, down the pillars and the door, over the hood and round the wheel arch, and at the rocker they jump across to the wet gravel either side of the black front tyre, which stays dark between them; a second, bigger bolt hits the same spot and the arcs flare; cut close: thin arcs crawl on the door and the window frame round him as he holds his hands up clear of the door and looks down them over: fine; then a big grin and a big shrug at us: would you stay inside?"
   ],
   "staging": [
     {
@@ -232,33 +232,38 @@
     },
     {
       "camera": "close",
-      "data": "sits safe in his struck truck, then raps on the window glass at us and shrugs",
+      "data": "at his open window he flinches big with both hands up when a bolt hits the roof above him; in the wide shot arcs run down the metal shell and jump to the gravel past the tyre; close again he looks his hands over, grins and shrugs big at us",
       "props": [
         "green ranger truck",
-        "puddle",
-        "window glass",
-        "lot lamp"
+        "rolled-down driver's window",
+        "front wheel and tyre",
+        "ranger hat",
+        "ranger station"
       ],
       "arc": [
         {
-          "at": 0.1,
-          "what": "a bolt hits the roof of the truck he sits in"
+          "at": 0.08,
+          "what": "close: a bolt hits the roof right above him, a white flash on him and the door, thin arcs spark off the window frame; he flinches big, both hands up"
         },
         {
-          "at": 0.2,
-          "what": "sparks race over the whole metal body around him"
+          "at": 0.3,
+          "what": "wide: blue arcs crawl and fork down the shell from the hit, over the roof, down the pillars and the door, over the hood and round the wheel arch"
         },
         {
-          "at": 0.36,
-          "what": "the sparks leap off the bumper into the puddle and splash while the tyres stay dark"
+          "at": 0.4,
+          "what": "wide: at the rocker the arcs jump across to the wet gravel either side of the black tyre, which stays dark"
         },
         {
-          "at": 0.62,
-          "what": "untouched inside, he raps twice on his window glass at us"
+          "at": 0.47,
+          "what": "wide: a second, bigger bolt hits the same spot and the arcs flare"
         },
         {
-          "at": 0.8,
-          "what": "he shrugs big, palms up, grinning: see?"
+          "at": 0.7,
+          "what": "close: thin arcs crawl on the door round him; he holds his hands up and looks down them over: fine"
+        },
+        {
+          "at": 0.88,
+          "what": "a big grin and a big shrug at us, held: would you stay inside?"
         }
       ]
     }

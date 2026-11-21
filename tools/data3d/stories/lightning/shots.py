@@ -170,11 +170,39 @@ def ranger_truck(name, loc=(0.0, 0.0, 0.0), yaw=0.0, cabin=True):
         if emit: b.inputs["Emission Color"].default_value = (*K.lin(emit[0]), 1); b.inputs["Emission Strength"].default_value = emit[1]
         return m
 
+    def beads(nt, b, scale=120.0, strength=0.35, coat=False, streak=False):
+        """rain on the surface: a scatter of round water beads (Voronoi cells, each a dome where the cell's point is
+        near), and on glass long runs down it; the bump goes into the normal (and the clearcoat's), so beads catch
+        every light as specular dots"""
+        tc = nt.nodes.new("ShaderNodeTexCoord")
+        vo = nt.nodes.new("ShaderNodeTexVoronoi"); vo.inputs["Scale"].default_value = scale; vo.inputs["Randomness"].default_value = 1.0
+        nt.links.new(tc.outputs["Object"], vo.inputs["Vector"])
+        dome = nt.nodes.new("ShaderNodeMapRange"); dome.inputs["From Min"].default_value = 0.32; dome.inputs["From Max"].default_value = 0.0
+        dome.interpolation_type = 'SMOOTHSTEP'; nt.links.new(vo.outputs["Distance"], dome.inputs["Value"])
+        thin = nt.nodes.new("ShaderNodeTexNoise"); thin.inputs["Scale"].default_value = 6.0; nt.links.new(tc.outputs["Object"], thin.inputs["Vector"])
+        gate = nt.nodes.new("ShaderNodeMapRange"); gate.inputs["From Min"].default_value = 0.42; gate.inputs["From Max"].default_value = 0.55
+        nt.links.new(thin.outputs["Fac"], gate.inputs["Value"])
+        h = nt.nodes.new("ShaderNodeMath"); h.operation = 'MULTIPLY'; nt.links.new(dome.outputs[0], h.inputs[0]); nt.links.new(gate.outputs[0], h.inputs[1])
+        if streak:                                       # runs of water down the pane: a noise stretched along Z
+            mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (60.0, 60.0, 2.0)
+            nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+            rn = nt.nodes.new("ShaderNodeTexNoise"); rn.inputs["Scale"].default_value = 1.0; rn.inputs["Detail"].default_value = 2.0
+            nt.links.new(mp.outputs[0], rn.inputs["Vector"])
+            rr = nt.nodes.new("ShaderNodeMapRange"); rr.inputs["From Min"].default_value = 0.6; rr.inputs["From Max"].default_value = 0.68
+            nt.links.new(rn.outputs["Fac"], rr.inputs["Value"])
+            mx = nt.nodes.new("ShaderNodeMath"); mx.operation = 'MAXIMUM'; nt.links.new(h.outputs[0], mx.inputs[0]); nt.links.new(rr.outputs[0], mx.inputs[1])
+            h = mx
+        bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = strength; bp.inputs["Distance"].default_value = 0.002
+        nt.links.new(h.outputs[0], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
+        if coat: nt.links.new(bp.outputs["Normal"], b.inputs["Coat Normal"])
+        return h
+
     def paint_mat():
         m = bpy.data.materials.get("ranger truck paint")
         if m: return m
-        m = mat("ranger truck paint", "#22402B", rough=0.34, metal=0.3, coat=1.0)
+        m = mat("ranger truck paint", "#132A1C", rough=0.3, metal=0.15, coat=1.0)   # park-service forest green, not mint
         nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+        beads(nt, b, scale=120.0, strength=0.35, coat=True)              # rain beading on the clearcoat
         geo = nt.nodes.new("ShaderNodeNewGeometry")
         dist = nt.nodes.new("ShaderNodeVectorMath"); dist.operation = 'DISTANCE'; dist.name = "truck hit"
         nt.links.new(geo.outputs["Position"], dist.inputs[0])
@@ -234,12 +262,23 @@ def ranger_truck(name, loc=(0.0, 0.0, 0.0), yaw=0.0, cabin=True):
     paint = paint_mat()
     trim = mat("ranger truck trim", "#0E0F11", rough=0.45)
     steel = mat("ranger truck steel", "#B9BEC4", rough=0.22, metal=1.0)
-    glass = mat("ranger truck glass", "#1D2630", rough=0.06, trans=1.0, ior=1.25)
+    glass = bpy.data.materials.get("ranger truck glass")
+    if glass is None:                                    # wet glass: clear, reflective, beaded and running with rain
+        glass = mat("ranger truck glass", "#C8D2DA", rough=0.02, trans=1.0, ior=1.5)
+        beads(glass.node_tree, glass.node_tree.nodes["Principled BSDF"], scale=90.0, strength=0.6, streak=True)
     rubber = mat("ranger truck tyre", "#0F0F10", rough=0.6)
     wheelm = mat("ranger truck wheel", "#8C8981", rough=0.4, metal=0.6)
     cab_m = mat("ranger truck cab", "#232528", rough=0.8)
-    seat = mat("ranger truck seat", "#5A4632", rough=0.7)
+    seat = mat("ranger truck seat", "#4A4B3E", rough=0.6)
     badge = mat("ranger truck badge", "#5A3A22", rough=0.5); cream = mat("ranger truck cream", "#EDE3C8", rough=0.5)
+    mirror_m = mat("ranger truck mirror glass", "#DDE3E8", rough=0.02, metal=1.0)
+    seam = mat("ranger truck seam", "#050607", rough=0.6)
+    vinyl = mat("ranger truck dash vinyl", "#1B1D20", rough=0.62)
+    plastic = mat("ranger truck interior plastic", "#4A4E54", rough=0.5)
+    cloth = mat("ranger truck headliner", "#5C5850", rough=0.95)
+    beads(cloth.node_tree, cloth.node_tree.nodes["Principled BSDF"], scale=260.0, strength=0.25)   # the perforated cloth
+    floor_m = mat("ranger truck floor mat", "#1C1D1F", rough=0.85)
+    beads(floor_m.node_tree, floor_m.node_tree.nodes["Principled BSDF"], scale=40.0, strength=0.6)   # the rubber mat's studs
     shell, front, tyres = [], [], []
     FA, RA, WR, WZ = -0.86, 1.08, 0.28, 0.29
     BELT = 0.68
@@ -270,6 +309,26 @@ def ranger_truck(name, loc=(0.0, 0.0, 0.0), yaw=0.0, cabin=True):
     K.box(f"{name} door badge", (0.42 - 0.45, -0.004 - HW, 0.44), (0.2, 0.008, 0.16), badge, bev=0.02, parent=door)
     K.text(f"{name} door badge text", "RANGER", (0.42 - 0.45, -0.0095 - HW, 0.465), 0.042, (math.pi / 2, 0, 0), cream, extrude=0.0015, parent=door)
     K.text(f"{name} door badge text 2", "PARK SERVICE", (0.42 - 0.45, -0.0095 - HW, 0.415), 0.022, (math.pi / 2, 0, 0), cream, extrude=0.0015, parent=door)
+    quad(f"{name} door window", [(-0.12, 0.017, 0.705), (0.785, 0.017, 0.69), (0.785, 0.017, 1.285), (0.19, 0.017, 1.3)], glass, parent=door)   # wound up
+    for k, pts in enumerate(([(0.002, -0.002, 0.23), (0.002, -0.002, BELT - 0.004)], [(0.828, -0.002, 0.23), (0.828, -0.002, BELT - 0.008)],
+                             [(0.0, -0.002, 0.226), (0.83, -0.002, 0.226)])):   # the door's shut lines
+        tube(f"{name} door seam {k}", pts, 0.0035, seam, parent=door)
+    # the door's inside, behind him in the cab: a moulded trim panel, an armrest, a chrome pull, a crank, a speaker
+    K.box(f"{name} door trim", (-0.035, -HW + 0.045, 0.46), (0.78, 0.02, 0.4), plastic, bev=0.012, parent=door)
+    K.box(f"{name} door trim top", (-0.035, -HW + 0.05, 0.665), (0.8, 0.035, 0.03), vinyl, bev=0.01, parent=door)
+    K.box(f"{name} armrest", (0.02, -HW + 0.075, 0.52), (0.38, 0.05, 0.04), vinyl, bev=0.012, parent=door)
+    K.box(f"{name} door pull", (-0.25, -HW + 0.065, 0.585), (0.12, 0.018, 0.026), steel, bev=0.006, parent=door)
+    K.cyl(f"{name} crank", (0.16, -HW + 0.065, 0.6), 0.018, 0.02, steel, rot=(math.pi / 2, 0, 0), v=16, bev=0.003, parent=door)
+    K.box(f"{name} crank arm", (0.19, -HW + 0.075, 0.59), (0.06, 0.008, 0.012), steel, bev=0.003, parent=door)
+    for k, z in enumerate((0.43, 0.45, 0.47)):   # the moulded ribs along the panel
+        tube(f"{name} door trim rib {k}", [(-0.4, -HW + 0.058, z), (0.33, -HW + 0.058, z)], 0.004, vinyl, parent=door)
+    K.box(f"{name} map pocket", (0.2, -HW + 0.068, 0.335), (0.26, 0.03, 0.13), vinyl, bev=0.01, parent=door)
+    K.box(f"{name} map pocket lip", (0.2, -HW + 0.085, 0.398), (0.26, 0.008, 0.012), steel, bev=0.003, parent=door)
+    K.box(f"{name} map", (0.15, -HW + 0.062, 0.42), (0.12, 0.01, 0.1), mat("ranger truck map", "#D8CBA0", rough=0.8), bev=0.002, parent=door)
+    K.cyl(f"{name} bottle", (0.28, -HW + 0.064, 0.41), 0.022, 0.15, mat("ranger truck bottle", "#3E7FA8", rough=0.25, metal=0.6), v=16, bev=0.004, parent=door)
+    K.box(f"{name} door reflector", (-0.035, -HW + 0.058, 0.275), (0.7, 0.006, 0.018), mat("ranger truck reflector", "#B02018", rough=0.3, emit=("#FF3020", 0.6)), bev=0.002, parent=door)
+    K.box(f"{name} door courtesy lamp", (0.25, -HW + 0.058, 0.3), (0.1, 0.008, 0.025), mat("ranger truck courtesy lamp", "#FFE6B0", emit=("#FFD890", 4.0)), bev=0.002, parent=door)
+    K.cyl(f"{name} speaker", (-0.27, -HW + 0.058, 0.34), 0.055, 0.008, mat("ranger truck speaker", "#111214", rough=0.8), rot=(math.pi / 2, 0, 0), v=28, bev=0.002, parent=door)
     # hood, grille, lamps, the steel bumper
     o = extrude(f"{name} hood", [(-1.29, 0.6), (-1.29, 0.64), (-1.22, 0.672), (-0.62, BELT), (-0.5, BELT), (-0.5, 0.6)], -HW + 0.03, HW - 0.03, paint, bev=0.015)
     shell.append(o); front.append(o)
@@ -284,6 +343,19 @@ def ranger_truck(name, loc=(0.0, 0.0, 0.0), yaw=0.0, cabin=True):
     bumper = extrude(f"{name} front bumper", [(-1.30, 0.2), (-1.38, 0.22), (-1.39, 0.33), (-1.30, 0.34)], -HW - 0.02, HW + 0.02, steel, bev=0.012)
     shell.append(bumper); front.append(bumper)
     K.box(f"{name} plate", (-1.394, 0.0, 0.275), (0.006, 0.2, 0.06), cream, bev=0.002, parent=root)
+    for sg in (-1, 1):                                   # panel seams: hood to fender, the cab-to-bed gap, the far door
+        tube(f"{name} hood seam {sg}", [(-1.22, sg * (HW - 0.032), 0.676), (-0.62, sg * (HW - 0.032), 0.684)], 0.0035, seam)
+        tube(f"{name} bed gap {sg}", [(0.51, sg * (HW + 0.001), 0.25), (0.51, sg * (HW + 0.001), BELT)], 0.004, seam)
+        tube(f"{name} fender seam {sg}", [(-0.455, sg * (HW + 0.001), 0.25), (-0.455, sg * (HW + 0.001), BELT)], 0.0035, seam)
+    for x in (-0.448, 0.382):
+        tube(f"{name} far door seam {x:+.2f}", [(x, HW + 0.001, 0.23), (x, HW + 0.001, BELT - 0.004)], 0.0035, seam)
+    tube(f"{name} cowl seam", [(-0.6, -HW + 0.04, 0.686), (-0.6, HW - 0.04, 0.686)], 0.004, seam)
+    def on_glass(y, z, lift=0.016):                      # a point on the windscreen, lifted off it along its normal
+        return (-0.66 + 0.563 * (z - 0.685) - 0.871 * lift, y, z + 0.49 * lift)
+    for k, (y0, y1) in enumerate(((-0.4, 0.04), (0.1, 0.5))):     # the wipers, parked on the glass
+        tube(f"{name} wiper arm {k}", [on_glass(y0, 0.7), on_glass(y1, 0.79)], 0.006, trim)
+        tube(f"{name} wiper blade {k}", [on_glass(y0 + 0.06, 0.712, 0.008), on_glass(y1 + 0.02, 0.795, 0.008)], 0.004, rubber)
+        K.cyl(f"{name} wiper pivot {k}", on_glass(y0, 0.7, 0.012), 0.014, 0.02, trim, rot=(0, math.radians(-30), 0), v=12, bev=0.003, parent=root)
     tail = mat("ranger truck tail lamp", "#B0141A", rough=0.1, emit=("#FF2A1E", 3.0))
     shell.append(K.box(f"{name} tailgate", (1.625, 0.0, 0.45), (0.035, 2 * HW - 0.04, 0.44), paint, bev=0.01, parent=root))
     for sg in (-1, 1): K.box(f"{name} tail lamp {sg}", (1.645, sg * 0.53, 0.56), (0.02, 0.06, 0.14), tail, bev=0.006, parent=root)
@@ -298,25 +370,60 @@ def ranger_truck(name, loc=(0.0, 0.0, 0.0), yaw=0.0, cabin=True):
         if sg < 0: front.append(o)
         shell.append(K.box(f"{name} c pillar {sg}", (0.45, y, 1.04), (0.06, 0.05, 0.7), paint, bev=0.012, parent=root))
         shell.append(tube(f"{name} roof rail {sg}", [(-0.27, sg * (HW - 0.045), 1.375), (0.47, sg * (HW - 0.045), 1.375)], 0.022, paint))
-        o = K.box(f"{name} mirror {sg}", (-0.69, sg * (HW + 0.09), 0.74), (0.04, 0.09, 0.12), trim, bev=0.015, parent=root)
-        K.box(f"{name} mirror arm {sg}", (-0.67, sg * (HW + 0.03), 0.71), (0.03, 0.07, 0.015), trim, bev=0.004, parent=root)
+        # the side mirror on its sail at the window's front corner: a black housing on two arms, a chrome face to the rear
+        K.box(f"{name} mirror sail {sg}", (-0.555, sg * (HW + 0.004), 0.735), (0.09, 0.02, 0.1), trim, bev=0.008, parent=root)
+        for k, z in enumerate((0.715, 0.765)):
+            tube(f"{name} mirror arm {sg} {k}", [(-0.54, sg * (HW + 0.01), z), (-0.52, sg * (HW + 0.06), z + 0.03), (-0.5, sg * (HW + 0.09), z + 0.05)], 0.008, trim)
+        K.box(f"{name} mirror {sg}", (-0.505, sg * (HW + 0.13), 0.8), (0.055, 0.1, 0.13), trim, bev=0.018, parent=root)
+        K.box(f"{name} mirror glass {sg}", (-0.476, sg * (HW + 0.13), 0.8), (0.004, 0.086, 0.112), mirror_m, bev=0.002, parent=root)
     quad(f"{name} far window", [(-0.62, HW - 0.035, BELT + 0.01), (0.42, HW - 0.035, BELT + 0.01), (0.42, HW - 0.06, 1.34), (-0.29, HW - 0.06, 1.34)], glass)
     quad(f"{name} windscreen", [(-0.66, -HW + 0.06, BELT + 0.005), (-0.66, HW - 0.06, BELT + 0.005), (-0.28, HW - 0.07, 1.36), (-0.28, -HW + 0.07, 1.36)], glass)
     quad(f"{name} back window", [(0.457, -HW + 0.1, 0.78), (0.457, HW - 0.1, 0.78), (0.457, HW - 0.1, 1.24), (0.457, -HW + 0.1, 1.24)], glass)
     # the cab inside: floor, dash, the bench back, the wheel
-    K.box(f"{name} cab floor", (0.0, 0.0, Z0 - 0.02), (0.9, 2 * HW - 0.08, 0.04), cab_m, bev=0, parent=root)
+    K.box(f"{name} cab floor", (0.0, 0.0, Z0 - 0.02), (0.9, 2 * HW - 0.08, 0.04), floor_m, bev=0, parent=root)
+    K.box(f"{name} headliner", (0.12, 0.0, 1.352), (0.74, 2 * HW - 0.1, 0.012), cloth, bev=0.004, parent=root)
+    K.box(f"{name} dome lens", (0.1, 0.0, 1.343), (0.07, 0.13, 0.008), mat("ranger truck dome lens", "#FFF1D8", rough=0.3, emit=("#FFE2B0", 0.6)), bev=0.003, parent=root)
     if cabin:
-        K.box(f"{name} dashboard", (-0.52, 0.0, 0.62), (0.14, 2 * HW - 0.08, 0.16), cab_m, bev=0.02, parent=root)
+        # the dash: a padded top under the windscreen, a hooded gauge cluster in front of the wheel with lit dials, a
+        # centre stack with the radio and vents, a glovebox; the column comes out of it to a real three-spoke wheel
+        extrude(f"{name} dashboard", [(-0.63, 0.70), (-0.42, 0.715), (-0.36, 0.675), (-0.375, 0.5), (-0.45, 0.42), (-0.63, 0.42)],
+                -HW + 0.04, HW - 0.04, vinyl, bev=0.02)
+        extrude(f"{name} gauge hood", [(-0.44, 0.712), (-0.37, 0.75), (-0.335, 0.742), (-0.36, 0.7)], DY - 0.16, DY + 0.16, vinyl, bev=0.01)
+        K.box(f"{name} gauge face", (-0.362, DY, 0.69), (0.008, 0.28, 0.065), mat("ranger truck gauge black", "#08090A", rough=0.4), bev=0.004, parent=root)
+        dial = mat("ranger truck gauges", "#9FE4FF", emit=("#8FDCFF", 3.0)); needle = mat("ranger truck needle", "#FF5A2A", emit=("#FF5A2A", 4.0))
+        for k, dy in enumerate((-0.085, 0.0, 0.085)):
+            r = 0.03 if k == 1 else 0.024
+            K.cyl(f"{name} dial {k}", (-0.357, DY + dy, 0.69), r, 0.004, dial, rot=(0, math.pi / 2, 0), v=24, bev=0.001, parent=root)
+            K.cyl(f"{name} dial rim {k}", (-0.358, DY + dy, 0.69), r + 0.004, 0.003, steel, rot=(0, math.pi / 2, 0), v=24, bev=0.001, parent=root)
+            K.box(f"{name} needle {k}", (-0.354, DY + dy + 0.006, 0.692), (0.002, 0.004, r * 1.4), needle, bev=0, parent=root).rotation_euler = (math.radians(50 - 30 * k), 0, 0)
+        K.box(f"{name} centre stack", (-0.37, 0.08, 0.57), (0.02, 0.22, 0.17), plastic, bev=0.008, parent=root)
+        K.box(f"{name} radio", (-0.36, 0.08, 0.61), (0.008, 0.16, 0.04), mat("ranger truck radio face", "#3A6E5A", emit=("#58E0A0", 1.2)), bev=0.002, parent=root)
+        for k, dy in enumerate((-0.05, 0.05)):
+            K.box(f"{name} vent {k}", (-0.36, 0.08 + dy, 0.53), (0.008, 0.08, 0.05), mat("ranger truck vent", "#060708", rough=0.7), bev=0.004, parent=root)
+            for j in range(3):
+                K.box(f"{name} vent slat {k} {j}", (-0.355, 0.08 + dy, 0.515 + 0.015 * j), (0.004, 0.076, 0.004), plastic, bev=0, parent=root)
+        tube(f"{name} glovebox seam", [(-0.374, 0.25, 0.48), (-0.374, 0.5, 0.48), (-0.374, 0.5, 0.62), (-0.374, 0.25, 0.62), (-0.374, 0.25, 0.48)], 0.003, seam)
+        # the bench: a pleated vinyl back, a cushion, two headrests
         K.box(f"{name} bench back", (0.37, 0.0, Z0 + 0.45), (0.08, 2 * HW - 0.12, 0.5), seat, bev=0.03, parent=root)
-        bm = bmesh.new(); bmesh.ops.create_circle(bm, cap_ends=False, radius=0.08, segments=40)
+        for k in range(9):
+            K.box(f"{name} bench pleat {k}", (0.326, -0.48 + 0.12 * k, Z0 + 0.46), (0.016, 0.085, 0.42), seat, bev=0.012, parent=root)
+        K.box(f"{name} bench cushion", (0.105, 0.0, Z0 + 0.09), (0.45, 2 * HW - 0.12, 0.12), seat, bev=0.035, parent=root)
+        for k in range(9):                    # the cushion's tufted seams, and its piping
+            tube(f"{name} cushion seam {k}", [(-0.11, -0.48 + 0.12 * k, Z0 + 0.151), (0.32, -0.48 + 0.12 * k, Z0 + 0.151)], 0.005, vinyl)
+        tube(f"{name} cushion piping", [(-0.118, -HW + 0.07, Z0 + 0.13), (-0.118, HW - 0.07, Z0 + 0.13)], 0.009, vinyl)
+        for sg in (-1, 1):
+            K.box(f"{name} headrest {sg}", (0.37, sg * 0.3, Z0 + 0.78), (0.06, 0.22, 0.13), seat, bev=0.03, parent=root)
+        bm = bmesh.new(); bmesh.ops.create_circle(bm, cap_ends=False, radius=0.1, segments=48)
         me = bpy.data.meshes.new(f"{name} wheel ring"); bm.to_mesh(me); bm.free()
         ring = link(bpy.data.objects.new("steering grip ring", me), root)
         ring.modifiers.new("skin", "SKIN")
-        for v in ring.data.skin_vertices[0].data: v.radius = (0.011, 0.011)
-        ring.modifiers.new("smooth", "SUBSURF").levels = 1; ring.data.materials.append(trim)
-        ring.location = (-0.19, DY, 0.62); ring.rotation_euler = (0, math.radians(55), 0)
-        K.cyl("steering grip column", (-0.29, DY, 0.57), 0.016, 0.18, trim, rot=(0, math.radians(55), 0), parent=root)
-        K.box(f"{name} gauges", (-0.445, DY, 0.69), (0.01, 0.12, 0.04), mat("ranger truck gauges", "#6FD0FF", emit=("#6FD0FF", 2.5)), bev=0, parent=root)
+        for v in ring.data.skin_vertices[0].data: v.radius = (0.012, 0.012)
+        ring.modifiers.new("smooth", "SUBSURF").levels = 1; ring.data.materials.append(vinyl)
+        ring.location = (-0.27, DY, 0.645); ring.rotation_euler = (0, math.radians(55), 0)
+        for k, a in enumerate((90, 210, 330)):           # three spokes and the hub, in the wheel's own plane
+            tube(f"{name} wheel spoke {k}", [(0.0, 0.0, 0.0), (0.1 * math.cos(math.radians(a)), 0.1 * math.sin(math.radians(a)), 0.0)], 0.007, vinyl, parent=ring)
+        tube(f"{name} wheel hub", [(0.0, 0.0, -0.012), (0.0, 0.0, 0.014)], 0.03, vinyl, parent=ring)
+        K.cyl("steering grip column", (-0.325, DY, 0.6), 0.02, 0.13, plastic, rot=(0, math.radians(55), 0), parent=root)
     well = mat("ranger truck well", "#050506", rough=0.9)
     for cx in (FA, RA):
         for sg in (-1, 1):
@@ -335,7 +442,7 @@ def ranger_truck(name, loc=(0.0, 0.0, 0.0), yaw=0.0, cabin=True):
     root.location = tuple(loc); root.rotation_euler = (0, 0, yaw)
     bpy.context.view_layer.update()
     return dict(root=root, door=door, shell=shell, front=front, tyres=tyres, bumper=bumper, paint=paint,
-                wheel_c=root.matrix_world @ Vector((-0.19, DY, 0.62)), z0=Z0, dy=DY)
+                wheel_c=root.matrix_world @ Vector((-0.27, DY, 0.645)), z0=Z0, dy=DY)
 
 
 # ---------------------------------------------------------------- lookout_tower (owner: the tower beat, shot2.py)
@@ -4257,13 +4364,13 @@ def s5_jag(a, b, rnd, depth=3, rough=0.3):
     return pts
 
 
-def s5_sparks(t_hit, speed=1.05, seed=11, t_fade=None):
+def s5_sparks(t_hit, speed=1.05, seed=11, t_fade=None, paths=None, riders=(0, 3, 8)):
     """sparklets along every route: each lights when the charge front reaches it (path distance from the hit / speed),
     crackles hard for a beat and then keeps flickering to the end. Returns (all sparklets, lights)."""
     rnd = s5_random.Random(seed)
     core = s5_emit("s5 spark core", (0.75, 0.86, 1.0), 30.0)
     halo = SK.glow_mat()
-    paths = s5_spark_paths()
+    paths = paths or s5_spark_paths()
     # the arrival distance of every route's start: routes start where an earlier one passes
     start_d = {}
     def key(p): return tuple(round(c, 3) for c in p)
@@ -4304,7 +4411,7 @@ def s5_sparks(t_hit, speed=1.05, seed=11, t_fade=None):
                 vis_prev = v
     # three blue lights that ride the racing fronts, so the sparks throw light on him and on the road
     lights = []
-    for k, (pts, d0) in enumerate([fronts[0], fronts[3], fronts[8]]):
+    for k, (pts, d0) in enumerate([fronts[i] for i in riders]):
         ld = bpy.data.lights.new(f"s5 spark light {k}", 'POINT'); ld.color = (0.55, 0.7, 1.0); ld.shadow_soft_size = 0.05
         lo = bpy.data.objects.new(f"s5 spark light {k}", ld); bpy.context.collection.objects.link(lo); lights.append(lo)
         segs = []; acc = d0
@@ -4623,7 +4730,8 @@ def place_trailhead():
         if y < 2.5: continue
         o = bpy.data.objects.new(f"s5 pine {k}", meshes_[k % 4]); bpy.context.collection.objects.link(o)
         o.location = (x, y, 0); s_ = rnd.uniform(0.8, 1.25); o.scale = (s_, s_, s_ * rnd.uniform(0.9, 1.2)); o.rotation_euler = (0, 0, rnd.uniform(0, 6.3))
-    for k, (x, y) in enumerate(((-4.7, 1.3), (-5.6, 2.6), (3.6, 0.2), (4.6, -1.8))):     # a few close by, at the lot's edge
+    for k, (x, y) in enumerate(((-4.7, 1.3), (-5.6, 2.6), (3.6, 3.4), (4.6, -4.2))):     # a few close by, at the lot's edge (off his sky)
+
         o = bpy.data.objects.new(f"s5 near pine {k}", meshes_[k % 4]); bpy.context.collection.objects.link(o); o.location = (x, y, 0)
     rock = LOC._noise_mat("s5 mountain", "#0C0F12", "#171B20", scale=0.3, rough=0.95, bump=0.1)
     for x, r, h in ((-22, 14, 11), (0, 18, 15), (24, 15, 10)): K.sph(f"s5 mountain {x}", (x, 60, -2.0), 1.0, rock, scale=(r, 6, h * 0.45))
@@ -4699,7 +4807,7 @@ def s5_door_glass(truck, flash, knocks=()):
     for f in range(1, NF + 1):     # streaks a soft glint, brighter in each flash; a faint sheen on the whole sheet
         fl = flash((f - 1) / FPS)
         t = (f - 1) / FPS; rap = sum(math.exp(-(((t - tk) * FPS) / 2.0) ** 2) for tk in knocks)   # each rap: a glint shivers across the pane
-        lvl.inputs[1].default_value = 0.22 + 0.6 * fl + 0.6 * rap; lvl.inputs[1].keyframe_insert("default_value", frame=f)
+        lvl.inputs[1].default_value = 0.1 + 0.4 * fl + 0.6 * rap; lvl.inputs[1].keyframe_insert("default_value", frame=f)
         lvl.inputs[2].default_value = 0.018 + 0.05 * fl + 0.05 * rap; lvl.inputs[2].keyframe_insert("default_value", frame=f)
     rough = nt.nodes.new("ShaderNodeMapRange"); rough.inputs["To Min"].default_value = 0.02; rough.inputs["To Max"].default_value = 0.2
     nt.links.new(st.outputs[0], rough.inputs["Value"]); nt.links.new(rough.outputs[0], b.inputs["Roughness"])
@@ -4748,130 +4856,587 @@ def s5_truck_dress(truck):
     K.box("ranger truck side step", (0.0, -0.66, 0.17), (0.95, 0.07, 0.025), steel, bev=0.006, parent=root)
 
 
+def s5_lot_dress():
+    """the lot round the truck, so the set behind him is a place and not a dark plane (the EMPTY check, 2026-11-20):
+    painted bay lines and timber wheel-stops, short steel posts along the lot's edge with a chain between them, the
+    log RANGER STATION across the lot with its porch, its lit window and its own lamp, a trash bin, a notice board,
+    a split-rail fence along the treeline, rocks and puddles on the gravel"""
+    rnd = s5_random.Random(57)
+    paint = s5_mat("s5 bay paint", "#C9C2A8", rough=0.6)
+    for k in range(6):                          # bay lines on the wet gravel, either side of the truck and on across the lot
+        x = -3.4 + 1.55 * k
+        K.box(f"s5 bay line {k}", (x, 0.2, 0.004), (0.06, 2.6, 0.006), paint, bev=0)
+    post = s5_mat("s5 lot post", "#7A6A3A", rough=0.55, metal=0.3)
+    cap = s5_mat("s5 post reflector", "#D8D2C0", rough=0.3, emit=("#FFE2B0", 0.25))
+    chain = s5_mat("s5 chain", "#3A3A3C", rough=0.4, metal=0.8)
+    xs = [-4.2 + 0.9 * k for k in range(11)]
+    for k, x in enumerate(xs):                  # the lot's back edge: short timber posts, a chain swagged between them
+        y = 2.05 + 0.04 * math.sin(1.7 * k)
+        K.cyl(f"s5 edge post {k}", (x, y, 0.3), 0.055, 0.6, post, v=10, bev=0.01)
+        K.box(f"s5 edge post cap {k}", (x, y - 0.05, 0.5), (0.06, 0.012, 0.09), cap, bev=0.004)
+        if k:
+            a = Vector((xs[k - 1], 2.05 + 0.04 * math.sin(1.7 * (k - 1)), 0.52)); b = Vector((x, y, 0.52))
+            pts = [tuple(a.lerp(b, u / 8) - Vector((0, 0, 0.12 * math.sin(math.pi * u / 8)))) for u in range(9)]
+            s5_tube(f"s5 edge chain {k}", pts, 0.008, chain)
+    # the ranger station: a log cabin across the lot, its porch toward the truck
+    logm = LOC._noise_mat("s5 cabin log", "#5A4129", "#7A5A3A", scale=4, rough=0.8, bump=0.6)
+    dark = s5_mat("s5 cabin trim", "#2A2018", rough=0.7)
+    roofm = LOC._noise_mat("s5 cabin roof", "#2E3230", "#454A46", scale=9, rough=0.75, bump=0.4)
+    CX, CY = 0.6, 4.6
+    for i in range(9):                          # stacked logs, the cabin's front wall in rows
+        K.cyl(f"s5 cabin log {i}", (CX, CY - 1.0, 0.11 + 0.21 * i), 0.11, 3.6, logm, rot=(0, math.pi / 2, 0), v=12, bev=0)
+    K.box("s5 cabin body", (CX, CY, 0.95), (3.5, 2.0, 1.9), logm, bev=0.02)
+    for sg in (-1, 1):
+        K.box(f"s5 cabin roof {sg}", (CX, CY - 0.55 * (1 if sg < 0 else -1) * 0 + sg * 0.62, 2.25), (4.0, 1.45, 0.08), roofm, bev=0.01).rotation_euler = (sg * 0.5, 0, 0)
+    K.box("s5 porch roof", (CX, CY - 1.55, 1.75), (2.6, 0.9, 0.05), roofm, bev=0.01).rotation_euler = (-0.18, 0, 0)
+    for sx in (-1.15, 0.0, 1.15): K.cyl(f"s5 porch post {sx}", (CX + sx, CY - 1.95, 0.85), 0.05, 1.7, logm, v=10, bev=0.01)
+    K.box("s5 porch deck", (CX, CY - 1.5, 0.08), (2.7, 0.95, 0.12), dark, bev=0.01)
+    K.box("s5 cabin door", (CX - 0.55, CY - 1.115, 0.75), (0.6, 0.03, 1.3), dark, bev=0.01)
+    glow = s5_emit("s5 cabin window", (1.0, 0.72, 0.4), 14.0)
+    for wx in (0.45, 1.3):
+        K.box(f"s5 cabin window {wx}", (CX + wx, CY - 1.115, 0.95), (0.6, 0.02, 0.5), glow, bev=0.005)
+        K.box(f"s5 cabin mullion {wx}", (CX + wx, CY - 1.13, 0.95), (0.03, 0.02, 0.52), dark, bev=0)
+        K.box(f"s5 cabin sill {wx}", (CX + wx, CY - 1.14, 0.69), (0.68, 0.06, 0.04), dark, bev=0.005)
+    brown = bpy.data.materials.get("s5 sign board") or LOC._noise_mat("s5 sign board", "#4A2F1C", "#5A3A24", scale=6, rough=0.65, bump=0.2)
+    cream = bpy.data.materials.get("s5 sign cream") or s5_mat("s5 sign cream", "#EDE3C8", rough=0.5)
+    K.box("s5 station sign", (CX, CY - 2.02, 1.5), (1.5, 0.04, 0.26), brown, bev=0.01)
+    K.text("s5 station sign text", "RANGER STATION", (CX, CY - 2.045, 1.47), 0.13, (math.pi / 2, 0, 0), cream, extrude=0.002)
+    pl = bpy.data.lights.new("s5 porch light", 'POINT'); pl.energy = 220; pl.color = (1.0, 0.7, 0.4); pl.shadow_soft_size = 0.1
+    po = bpy.data.objects.new("s5 porch light", pl); bpy.context.collection.objects.link(po); po.location = (CX - 0.55, CY - 1.6, 1.6)
+    # a lit TRAILHEAD PARKING post right behind the truck's bay, where the far window shows it
+    K.cyl("s5 park post", (0.35, 1.3, 0.55), 0.05, 1.1, logm, v=10, bev=0.01)
+    K.box("s5 park sign", (0.35, 1.27, 0.95), (0.62, 0.035, 0.34), brown, bev=0.01)
+    K.text("s5 park sign text", "TRAILHEAD", (0.35, 1.25, 0.98), 0.085, (math.pi / 2, 0, 0), cream, extrude=0.002)
+    K.text("s5 park sign text 2", "PARKING", (0.35, 1.25, 0.88), 0.07, (math.pi / 2, 0, 0), cream, extrude=0.002)
+    sl = bpy.data.lights.new("s5 park sign light", 'SPOT'); sl.energy = 120; sl.color = (1.0, 0.8, 0.55); sl.spot_size = math.radians(70)
+    so = bpy.data.objects.new("s5 park sign light", sl); bpy.context.collection.objects.link(so); so.location = (0.35, 0.6, 1.6)
+    so.rotation_euler = (Vector((0.35, 1.27, 0.7)) - Vector(so.location)).to_track_quat('-Z', 'Y').to_euler()
+    # a bear-proof bin and a notice board at the trailhead
+    binm = s5_mat("s5 bin", "#4E5A3C", rough=0.5, metal=0.4)
+    K.box("s5 bear bin", (-1.5, 2.6, 0.45), (0.7, 0.55, 0.9), binm, bev=0.03)
+    K.box("s5 bear bin lid", (-1.5, 2.6, 0.92), (0.74, 0.6, 0.05), binm, bev=0.01)
+    board = LOC._noise_mat("s5 notice", "#CDBF9A", "#E6DCC0", scale=12, rough=0.7, bump=0.2)
+    for sx in (-0.4, 0.4): K.cyl(f"s5 notice post {sx}", (-0.2 + sx, 2.9, 0.75), 0.045, 1.5, logm, v=10, bev=0.005)
+    K.box("s5 notice board", (-0.2, 2.88, 1.15), (0.9, 0.04, 0.6), board, bev=0.01)
+    for k in range(5):
+        K.box(f"s5 notice paper {k}", (-0.48 + 0.14 * k, 2.855, 1.05 + 0.18 * (k % 2)), (0.11, 0.006, 0.15),
+              s5_mat(f"s5 paper {k % 3}", ("#F2EEE2", "#E8C86A", "#C8D8E8")[k % 3], rough=0.6), bev=0)
+    # a split-rail fence along the treeline, and rocks
+    for k in range(9):
+        x0 = -6.0 + 1.8 * k
+        for z in (0.3, 0.6): K.cyl(f"s5 rail {k} {z}", (x0 + 0.9, 3.1 + 0.1 * math.sin(k), z), 0.04, 1.85, logm, rot=(0, math.pi / 2, 0.05 * math.sin(3 * k)), v=8, bev=0)
+        K.cyl(f"s5 rail post {k}", (x0, 3.1, 0.38), 0.06, 0.76, logm, v=8, bev=0.01)
+    rock = LOC._noise_mat("s5 rock", "#4A4A46", "#6E6C66", scale=5, rough=0.9, bump=0.8)
+    for k in range(26):
+        x = rnd.uniform(-5, 5); y = rnd.uniform(1.0, 3.0); r = rnd.uniform(0.05, 0.2)
+        if -1.6 < x < 1.9 and y < 1.3: continue
+        K.sph(f"s5 lot rock {k}", (x, y, r * 0.3), r, rock, scale=(1.3, 1.0, 0.7))
+    for k in range(40):                          # loose gravel and pebbles scattered over the lot near the truck
+        x = rnd.uniform(-2.5, 2.8); y = rnd.uniform(-1.4, 2.0)
+        if -1.45 < x < 1.75 and -0.7 < y < 0.7: continue
+        r = rnd.uniform(0.02, 0.045)
+        K.sph(f"s5 pebble {k}", (x, y, r * 0.3), r, rock, scale=(1.2, 1.0, 0.6))
+
+
+def s5_charge_multi(paint, hits, t_fades):
+    """the shell's electric skin over several strikes: from each hit its reach grows over the whole car in ~0.7 s and
+    crackles, then drains at its fade time (None: to the end)"""
+    nt = paint.node_tree; rad = nt.nodes["truck reach"].outputs[0]; lvl = nt.nodes["truck charge"].outputs[0]
+    vor = nt.nodes["truck crackle"].inputs["W"]; msk = nt.nodes["truck crackle mask"].inputs["W"]
+    nt.nodes["truck hit"].inputs[1].default_value = tuple(S5_HIT)
+    rnd = s5_random.Random(4)
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; r = 0.0; v = 0.0
+        for th, tf in zip(hits, t_fades):
+            if t < th: continue
+            g = s5_fade(t, tf, span=0.7)
+            r = max(r, 3.2 * ease(min(1.0, (t - th) / 0.7)) * (1.0 if g > 0.02 else 0.0))
+            v = max(v, (14.0 * SK.flash_level(t, [th]) + rnd.uniform(0.9, 2.4)) * g)
+        rad.default_value = r; rad.keyframe_insert("default_value", frame=f)
+        lvl.default_value = v; lvl.keyframe_insert("default_value", frame=f)
+        vor.default_value = t * 9.0; vor.keyframe_insert("default_value", frame=f)
+        msk.default_value = t * 4.5; msk.keyframe_insert("default_value", frame=f)
+
+
+def s5_cage_bolt(name, t_list, seed, top):
+    """a bolt onto the near roof edge right over his window (S5_HIT): thick, its glow wide enough to read on a phone"""
+    bo = SK.bolt(name, top, tuple(S5_HIT), seed=seed, branches=6, width=0.024, glow=4.5)
+    SK.strike(bo, t_list, NF, light_at=S5_HIT + Vector((-0.3, -0.7, 0.6)), energy=700.0, world=(0.09, 0.6))
+    return bo
+
+
+# ================================================================ SHOT 5 (the closing): the METAL SHELL, from outside
+# Round 4 (2026-11-21, the 180): no glass, no door slam, no dive, no mirror. The lens is OUTSIDE, low and close off the
+# truck's front three-quarter on the driver's side; his window is ROLLED DOWN and he sits at the wheel, head and
+# shoulders in the open window, the roof, the door and the front wheel all in frame. A bolt hits the roof right over
+# him; thick blue arcs pour over the shell (roof, pillars, door, hood, round the wheel arch) and at the rocker they
+# JUMP across to the wet gravel, skipping the black tyre; he checks his hands: fine. The next bolt hits the same spot
+# and this time he grins, leans his elbow out on the sill at us and shrugs, then snatches it back in as an arc crawls
+# past it: would you stay inside? The truck stands at yaw 0 here, so truck coordinates ARE world coordinates (front
+# -X, driver's side -Y): s6_w is the identity.
+def s6_w(p):
+    """truck coordinates -> world: the truck stands at yaw 0 in this take"""
+    return Vector(p) if len(p) == 3 else Vector((p[0], p[1], 0.0))
+
+
+def s6_sparks(t_hit, paths, speed=1.2, seed=11, t_fade=None, riders=(1, 2, 4), core_r=0.0035, glow_r=0.016, shapes=2,
+               spacing=0.07, seg=(0.07, 0.12), surges=(), floor=0.6, lite=1.0, life=0.9, decay=0.25, fork=0.035, rough=0.2, hug=False):
+    """electricity on the metal: along every route, short jagged arcs with forks, each lit when the charge front
+    reaches it (its path distance from the hit / speed), crackling hard (most frames on, some off) for a beat, then
+    flickering thinner to the end; three blue point lights ride the fronts so the arcs light the frame and him.
+    Every point of every arc lies ON the metal it runs along (no texture, no free squiggle)."""
+    rnd = s5_random.Random(seed)
+    core = s5_emit(f"s6 arc core {seed}", (0.6, 0.78, 1.0), 14.0)
+    halo = SK._emit_mat(f"s6 arc glow {seed}", (0.12, 0.35, 1.0), 6.0, alpha=0.55)
+    if surges:                                   # each strike surges the whole charge: the arcs flare, then settle
+        cs = core.node_tree.nodes.get("Emission") or next(n for n in core.node_tree.nodes if "Strength" in n.inputs)
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS
+            cs.inputs["Strength"].default_value = 9.0 + sum(26.0 * math.exp(-(t - ts) / 0.25) for ts in surges if t >= ts)
+            cs.inputs["Strength"].keyframe_insert("default_value", frame=f)
+    start_d = {}
+    def key(p): return tuple(round(c, 3) for c in p)
+    start_d[key(paths[0][0])] = 0.0
+    sparks = []; fronts = []
+    for path in paths:
+        d0 = start_d.get(key(path[0]), 0.0); d = d0
+        pts = [s6_w(p) for p in path]
+        for p, q in zip(pts, pts[1:]):
+            L = (q - p).length; n = max(1, int(L / spacing)); tang = (q - p).normalized()
+            for i in range(n):
+                u = (i + rnd.uniform(0.0, 0.3)) / n; a = p.lerp(q, u); ln = min(rnd.uniform(*seg), L * (1 - u) + 0.03)
+                b = a + tang * ln
+                ta = t_hit + 0.03 + (d + L * u) / speed
+                group = []
+                for sh in range(shapes):              # the same arc drawn twice over, jagged differently: it crawls
+                    j = s5_jag(a, b, rnd, depth=4, rough=rough)
+                    nrm = (Vector((0, 0, 1)) if min(a.z, b.z) > 1.3 else Vector((0, 1, 0))) if hug else None   # HUG: no offset off the metal's face
+                    if hug: j = [a + (v - a) - nrm * (v - a).dot(nrm) for v in j]
+                    arms = [j]
+                    for _ in range(rnd.choice((1, 2, 2))):
+                        m = j[rnd.randrange(2, len(j) - 2)]
+                        side = Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1))) * fork + tang * rnd.uniform(0.01, 0.03)
+                        if hug: side = side - nrm * side.dot(nrm)
+                        arm = s5_jag(m, m + side, rnd, depth=2, rough=0.3)
+                        if hug: arm = [m + (v - m) - nrm * (v - m).dot(nrm) for v in arm]
+                        arms.append(arm)
+                    objs = []
+                    for k, arm in enumerate(arms):
+                        c = s5_tube(f"s6 arc {seed} {len(sparks)} {sh} {k}", arm, core_r if k == 0 else core_r * 0.7, core)
+                        g = s5_tube(f"s6 arc {seed} {len(sparks)} {sh} {k} glow", arm, glow_r if k == 0 else glow_r * 0.6, halo)
+                        for o in (c, g): o.visible_shadow = False
+                        objs += [c, g]
+                    group.append(objs)
+                sparks.append((group, ta))
+            d += L
+        start_d.setdefault(key(path[-1]), d)
+        # every interior corner too, so a route that starts at one starts when the front gets there
+        acc = d0
+        for p, q in zip(path, path[1:]):
+            acc += (Vector(q) - Vector(p)).length; start_d.setdefault(key(q), acc)
+        fronts.append((pts, d0))
+    for group, ta in sparks:
+        prev = [None] * len(group)
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; age = t - ta
+            if age < 0: v = False
+            elif age < life or any(0.0 <= t - ts < 0.6 and t - ts <= age + 0.05 for ts in surges): v = rnd.random() < 0.9
+            else: v = rnd.random() < max(floor, 0.8 - decay * (age - life)) * s5_fade(t, t_fade, span=0.6)
+            pick = rnd.randrange(len(group)) if v else -1
+            for k, objs in enumerate(group):
+                on = k == pick
+                if on != prev[k]:
+                    for o in objs: o.hide_render = not on; o.keyframe_insert("hide_render", frame=f)
+                    prev[k] = on
+    lights = []
+    for k, (pts, d0) in enumerate([fronts[i] for i in riders]):
+        ld = bpy.data.lights.new(f"s6 arc light {seed} {k}", 'POINT'); ld.color = (0.55, 0.7, 1.0); ld.shadow_soft_size = 0.04
+        lo = bpy.data.objects.new(f"s6 arc light {seed} {k}", ld); bpy.context.collection.objects.link(lo); lights.append(lo)
+        segs = []; acc = d0
+        for p, q in zip(pts, pts[1:]): segs.append((acc, p, q)); acc += (q - p).length
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; dd = (t - t_hit - 0.03) * speed
+            pos = pts[0]
+            for a0, p, q in segs:
+                L = (q - p).length
+                pos = p.lerp(q, min(1.0, max(0.0, (dd - a0) / L)))
+                if dd < a0 + L: break
+            lo.location = pos; lo.keyframe_insert("location", frame=f)
+            on = dd > d0
+            ld.energy = lite * (rnd.uniform(3.0, 8.0) if on else 0.0) * (1.0 if t < t_hit + 1.7 else 0.7) * s5_fade(t, t_fade) \
+                * (1.0 + sum(2.0 * math.exp(-(t - ts) / 0.3) for ts in surges if t >= ts)); ld.keyframe_insert("energy", frame=f)
+    return [o for group, _ in sparks for objs in group for o in objs], lights
+
+
+def s6_bolt(name, top, hit, t, avoid, cam, energy, target=None, seeds=range(7300, 7340)):
+    """a bolt from `top` to `hit`, its seed picked so its channel stays clear of him on screen (`avoid`: his centre
+    line's frame x) and in frame"""
+    best = None
+    for seed in seeds:
+        pts = SK._jag(top, hit, s5_random.Random(seed))
+        xs = [s5_frame_x(p, *cam) for p in pts]
+        vis = [x for x, y in xs if 0.0 <= y <= 1.0]
+        if not vis: continue
+        if min(vis) < 0.08 or max(vis) > 0.92: continue
+        inf = [(x, y) for x, y in xs if 0.0 <= y <= 1.0]
+        dx = (inf[0][0] - inf[-1][0]) * 9 / 16; dy = inf[0][1] - inf[-1][1]           # the channel's lean on screen (portrait)
+        if abs(math.degrees(math.atan2(abs(dx), max(1e-6, abs(dy))))) > 25: continue
+        score = min(abs(x - avoid) for x in vis)
+        if best is None or score > best[0]: best = (score, seed)
+    seed = best[1] if best else seeds[0]
+    bo = SK.bolt(name, tuple(top), tuple(hit), seed=seed, branches=5, width=0.02, glow=5.0, target=target)
+    SK.strike(bo, [t], NF, light_at=Vector(hit) + Vector((0, 0.3, 0.6)), energy=energy, world=(0.09, 0.5))
+    return bo
+
+
+def s6_truck_dress(truck):
+    """the working kit of a park-service truck (truck coordinates, placed by s6_w): a roof light bar, a whip antenna,
+    mud flaps, a side step under his door"""
+    root = truck["root"]; tw = lambda p: tuple(s6_w(p))
+    trim = s5_mat("s5 kit black", "#0E0F11", rough=0.45)
+    steel = s5_mat("s5 kit steel", "#B9BEC4", rough=0.22, metal=1.0)
+    amber = s5_mat("s5 bar lens amber", "#C77A1A", rough=0.15, emit=("#FF9A2A", 0.4))
+    green = s5_mat("s5 bar lens green", "#1F6B3A", rough=0.15, emit=("#3AD06A", 0.3))
+    K.box("ranger truck light bar", tw((0.36, 0.0, 1.455)), (0.14, 0.95, 0.06), trim, bev=0.015, parent=root)
+    for k, y in enumerate((-0.36, -0.12, 0.12, 0.36)):
+        K.box(f"ranger truck bar lens {k}", tw((0.36, y, 1.46)), (0.15, 0.2, 0.045), amber if k in (0, 3) else green, bev=0.012, parent=root)
+    K.cyl("ranger truck antenna", tw((1.0, 0.55, 1.05)), 0.004, 0.75, steel, v=6, bev=0, parent=root)
+    for sg in (-1, 1):
+        K.box(f"ranger truck mud flap {sg}", tw((-0.5, sg * 0.57, 0.14)), (0.015, 0.16, 0.2), trim, bev=0.004, parent=root)
+        K.box(f"ranger truck mud flap rear {sg}", tw((1.45, sg * 0.57, 0.14)), (0.015, 0.16, 0.2), trim, bev=0.004, parent=root)
+    K.box("ranger truck side step", tw((0.0, -0.66, 0.17)), (0.95, 0.07, 0.025), steel, bev=0.006, parent=root)
+
+
+def s6_spline(keys):
+    """a smooth path through the keys that never overshoots one (a component's velocity is zero at a key where it
+    turns back, and limited by its neighbours' slopes elsewhere): an overshoot took his hand out of reach"""
+    ts = [k[0] for k in keys]; ps = [Vector(k[1]) for k in keys]; n = len(ps)
+    def vel(i):
+        if i == 0 or i == n - 1: return Vector((0, 0, 0))
+        v = Vector((0, 0, 0))
+        for c in range(3):
+            a = (ps[i][c] - ps[i - 1][c]) / (ts[i] - ts[i - 1]); b = (ps[i + 1][c] - ps[i][c]) / (ts[i + 1] - ts[i])
+            v[c] = 0.0 if a * b <= 0 else (1 if a > 0 else -1) * min(abs(a), abs(b), 0.5 * (abs(a) + abs(b)))
+        return v
+    def fn(t):
+        if t <= ts[0]: return ps[0].copy()
+        for i in range(n - 1):
+            if t <= ts[i + 1]:
+                h = ts[i + 1] - ts[i]; u = (t - ts[i]) / max(1e-6, h)
+                h00, h10, h01, h11 = 2*u**3 - 3*u**2 + 1, u**3 - 2*u**2 + u, -2*u**3 + 3*u**2, u**3 - u**2
+                return ps[i] * h00 + vel(i) * (h10 * h) + ps[i + 1] * h01 + vel(i + 1) * (h11 * h)
+        return ps[-1].copy()
+    return fn
+
+
+S7_HIT = (0.02, -0.22, 1.422)        # both bolts: the cab roof right over his head
+
+
+def s7_paths():
+    """the charge's routes over the shell, all ON the outside of the metal (near side -Y), from the roof hit: across the
+    roof, down both pillars, along the sill under his window, down the door, over the hood and the fender, round the
+    front wheel's arch (over the tyre, on the steel), along the rocker"""
+    y = -0.612; H = S7_HIT
+    return [
+        [H, (-0.05, -0.575, 1.425), (-0.27, -0.585, 1.385)],                                           # roof, to the front corner
+        [H, (0.45, -0.585, 1.41)],                                                                     # roof, to the back corner
+        [(-0.27, -0.585, 1.385), (-0.64, -0.61, 0.69)],                                                # A-pillar down
+        [(0.45, -0.585, 1.41), (0.46, y, 0.7), (0.46, y, 0.3)],                                        # down the cab's back corner
+        [(-0.64, -0.61, 0.69), (-0.9, y, 0.68), (-1.18, y, 0.66), (-1.31, -0.48, 0.62)],               # belt to the hood's corner
+        [(0.46, y, 0.7), (-0.44, y - 0.005, 0.69)],                                                    # the door's top edge, under his window
+        [(0.46, y, 0.7), (1.05, y, 0.71), (1.62, y, 0.7)],                                             # along the bed rail
+        [H, (0.3, -0.05, 1.43), (0.5, 0.3, 1.41)],                                                     # over the roof, back
+        [H, (-0.1, 0.25, 1.43), (-0.25, 0.5, 1.39)],                                                   # over the roof, far side
+        [(-0.44, y - 0.005, 0.69), (-0.45, y - 0.006, 0.3)] + [(x, y - 0.01, z) for x, z in s5_arc(-0.86, 0.29, 0.35, 0, 180, 12)],   # door front, round the arch
+        [(-1.18, -0.4, 0.66), (-0.9, -0.2, 0.68), (-0.7, 0.05, 0.7)],                                  # over the hood
+        [(0.46, y, 0.3), (-0.42, y, 0.28)],                                                            # along the rocker
+        [(0.12, y, 0.69), (0.1, y - 0.004, 0.45), (0.05, y - 0.004, 0.3)],                             # down the middle of the door
+    ]
+
+
+S7_LEAPS = ([(-0.47, -0.625, 0.24), (-0.49, -0.7, 0.13), (-0.52, -0.8, 0.006)],      # off the rocker right behind the front wheel: beside the tyre, never through it
+            [(-1.22, -0.625, 0.27), (-1.27, -0.72, 0.13), (-1.33, -0.82, 0.006)],    # off the arch's front end, in front of the tyre: the tyre between two jumps
+            [(-0.22, -0.625, 0.24), (-0.25, -0.69, 0.12), (-0.28, -0.77, 0.006)],
+            [(0.02, -0.625, 0.24), (0.04, -0.69, 0.12), (0.06, -0.76, 0.006)])       # into the puddle under his door
+
+
+def s7_heads(t_hit, paths, speed, r=0.022, seed=5):
+    """the charge FLOWING: a bright head runs down every route at the arcs' own speed (the same path distances
+    s6_sparks lights them by), so the eye follows the electricity from the roof down to the rocker"""
+    rnd = s5_random.Random(seed)
+    m = s5_emit(f"s7 head {seed}", (0.75, 0.88, 1.0), 40.0)
+    start_d = {}
+    key = lambda p: tuple(round(c, 3) for c in p)
+    start_d[key(paths[0][0])] = 0.0
+    out = []
+    for k, path in enumerate(paths):
+        d0 = start_d.get(key(path[0]), 0.0)
+        pts = [Vector(p) for p in path]
+        cum = [0.0]
+        for p, q in zip(pts, pts[1:]): cum.append(cum[-1] + (q - p).length)
+        acc = d0
+        for p, q in zip(path, path[1:]):
+            acc += (Vector(q) - Vector(p)).length; start_d.setdefault(key(q), acc)
+        o = K.sph(f"s7 head {seed} {k}", tuple(pts[0]), r, m, seg=10, ring=6)
+        o.visible_shadow = False
+        ta = t_hit + 0.03 + d0 / speed; tb = ta + cum[-1] / speed
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS
+            on = ta <= t <= tb + 0.06
+            if on:
+                s = min(cum[-1], (t - ta) * speed)
+                i = max(0, min(len(cum) - 2, next((i for i in range(len(cum) - 1) if cum[i + 1] >= s), len(cum) - 2)))
+                u = (s - cum[i]) / max(1e-6, cum[i + 1] - cum[i])
+                o.location = pts[i].lerp(pts[i + 1], u) + Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1))) * 0.006
+                o.keyframe_insert("location", frame=f)
+            o.hide_render = not on; o.keyframe_insert("hide_render", frame=f)
+        out.append(o)
+    return out
+
+
 def shot5():
-    """THE TRUCK IS HIS SHELTER. Round 3, simplified: he is already in his green pickup, door shut, at the lit gravel
-    trailhead lot in the rain. A bolt slams into the cab roof right over his hat; blue-white sparks race over the whole
-    metal shell around him and leap off the steel bumper into the puddle, splashing, while the black tyres stay dark;
-    then, close on his wet window, he leans to the glass, raps on it twice (knuckles on the pane, fog blooming, drops
-    jumping off it) and sits back into a big palms-up shrug with a grin: see? Every moment the story needs is on
-    screen at least half a second, and each rap lands on several frames."""
-    light = place_trailhead()
-    kd = bpy.data.lights.new("s5 lot key", 'AREA'); kd.size = 2.5; kd.energy = 300.0; kd.color = (0.78, 0.86, 1.0)   # the storm's cold light
-    ko = bpy.data.objects.new("s5 lot key", kd); bpy.context.collection.objects.link(ko); ko.location = (2.4, -3.4, 3.2)
-    ko.rotation_euler = (Vector((0.0, -0.6, 0.6)) - Vector(ko.location)).to_track_quat('-Z', 'Y').to_euler()
-    fd_ = bpy.data.lights.new("s5 face fill", 'AREA'); fd_.size = 0.35; fd_.energy = 130.0; fd_.color = (0.7, 0.82, 1.0)   # the sparks' glow on his face
-    fo_ = bpy.data.objects.new("s5 face fill", fd_); bpy.context.collection.objects.link(fo_); fo_.location = (-0.62, -0.32, 1.0)
-    fo_.rotation_euler = (Vector((0.02, -0.2, 0.95)) - Vector(fo_.location)).to_track_quat('-Z', 'Y').to_euler()
+    """THE METAL SHELL (round 5, 2026-11-21): TWO ANGLES, a hard cut between them.
+    A (the cutaway, to the end of "the metal shell"): wide and a little high off the front three-quarter of his green
+    pickup in the open gravel lot at night, the storm sky and the lit log ranger station behind it, him a small figure
+    at the wheel behind his rolled-down window. A bolt lands ON the roof in a burst of light; the charge runs down the
+    shell, roof, pillars, door, hood and round the wheel arch; at the rocker it JUMPS to the wet gravel on both sides of
+    the black front tyre, which stays dark between the jumps (on "not the rubber tires"). A second, bigger bolt flares it.
+    B (from the cut to the end): close at his open window, face to us, the arcs fading on the door round him: he holds
+    his hands up clear of the door and looks them over: fine. Then a big grin and a big shrug at us: would you stay inside?"""
+    light0 = place_trailhead()
+    s5_lot_dress()
     SK.bloom()
     truck = ranger_truck("ranger truck", (0.0, 0.0, 0.0), 0.0)
-    s5_truck_dress(truck)
-    hm = bpy.data.materials.get("ranger truck headlamp")
-    if hm: hm.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 3.0   # lit, not a glare into the nose-on lens
-    door = truck["door"]
+    s6_truck_dress(truck)
+    for o in list(bpy.data.objects):            # his window is ROLLED DOWN: no glass in the opening
+        if o.name.startswith("ranger truck door window"):
+            o.hide_render = True; o.hide_viewport = True
+    for o in bpy.data.objects:                  # the other glass renders; the staging rays pass it as glass
+        if o.name.startswith(("ranger truck windscreen", "ranger truck far window", "ranger truck back window")):
+            o.hide_viewport = True
+    dome = bpy.data.objects.get("ranger truck dome lens")   # the cab lamp read as a garage ceiling light: off
+    if dome: dome.hide_render = True
     puddles, water = s5_puddle()
-    SC = DUR / 6.8                         # times are fractions of the voiced window (6.8 s when first timed)
-    T_HIT = 0.55                           # the bolt, early: the shot opens on the storm already on top of him
-    T_FULL = T_HIT + 1.1                   # the charge has the whole shell
-    T_LEAP = 0.335 * DUR                   # it leaps off the bumper
-    T_TURN = 0.49 * DUR                    # he turns to his window
-    T_K1 = round((T_TURN + 0.85) * FPS) / FPS; T_K2 = T_K1 + 16 / FPS        # two raps on the glass, on the frame grid
-    T_SHRUG = T_K2 + 0.6                   # then the big shrug, palms up: see?
-    T_FADE = T_SHRUG - 0.1                 # while the last of the charge drains off the shell
-    T_LAST = DUR - 0.75                    # and one last flash over the lot to end on
-    strikes = [T_HIT, T_HIT + 0.33]
-    LA, CA = s5_quarter(60, 4.0, -0.08)                                    # the front quarter: the roof, him, the shell
-    LA = Vector((LA.x, LA.y, 0.98)); CA = Vector((CA.x, CA.y, 0.72))
-    CAb = CA + (LA - CA) * 0.08
-    LL = Vector((-1.2, -0.4, 0.5)); CL = LL + (Vector((-5.2, -1.1, 1.0)) - LL) * 0.85    # nose on: bumper and puddle low, his face in the windscreen above
-    s5_roof_bolt(strikes, (CA, LA, 64))
-    flash = lambda t: SK.flash_level(t, strikes + [T_LAST]) * (0.35 if t > T_LAST - 0.05 else 1.0)   # the last flash is far off: it lights the sky, it never blows him out
-    s5_flash_light(strikes, 2000.0, (-1.5, -3.2, 4.2))
-    for k, (x, t0) in enumerate(((9.0, 0.25 * SC), (6.5, T_LEAP + 0.9 * SC), (-3.0, T_LAST))):   # strikes in the hills all round
-        fb = SK.bolt(f"s5 far bolt {k}", (x + 1.5, 26.0 - 8.0 * (k == 0), 14.0), (x, 24.0 - 8.0 * (k == 0), 0.0), seed=900 + 31 * k, branches=4, width=0.05, glow=4.0)
-        SK.strike(fb, [t0], NF, light_at=Vector((x, 18.0, 6.0)), energy=5000.0)
-    s5_storm_glow(flash)
-    sparks, spark_lights = s5_sparks(T_HIT, t_fade=T_FADE)
-    s5_charge(truck["paint"], T_HIT, T_FULL, t_fade=T_FADE)
-    for o in bpy.data.objects:      # glass is seen through: it renders, it does not hide his face from the lens
-        if o.name.startswith("ranger truck windscreen"): o.hide_viewport = True
-    leap_t = [[T_LEAP + o * SC for o in os_] for os_ in ((0.0, 0.62, 1.5), (0.25, 1.05, 1.9), (0.42, 1.3), (0.8, 1.6))]
-    arcs, splash, all_leaps = s5_leaps(leap_t)
-    # the puddle stays black water: the arcs' own lights flash in it (a glowing disc read as a pasted sticker)
-
-    data = load_data(); data.place(0.03, S5_DY, -90); data.arm.location.z = S5_Z0; bpy.context.view_layer.update()
-    near, far_s = sorted("LR", key=lambda s: acts._shoulder(data, s).y)
-    off_n = acts._shoulder(data, near) - Vector(data.arm.location)
-    seat = Vector((0.03, S5_DY, S5_Z0))
-    if "ranger_hat" in globals(): ranger_hat(data)
-    Y_FWD = math.radians(-90); Y_TURN = math.radians(-28); lean = Vector((0.0, -0.16, 0.1))     # up off the bench to the glass
-    for f in range(1, NF + 1):      # and sits back off the glass to shrug, so his arms have room
-        t = (f - 1) / FPS; u = ease(min(1.0, max(0.0, (t - T_TURN) / 0.45))); b = ease(min(1.0, max(0.0, (t - T_K2 - 0.12) / 0.4)))
-        up = ease(min(1.0, max(0.0, (t - T_SHRUG) / 0.45)))
-        p = seat + Vector((lean.x, lean.y * (1 - 0.6 * b), lean.z)) * u + Vector((0, 0, 0.04 * up))
-        data._kobj(t, loc=tuple(p), rot=Y_FWD + (Y_TURN - Y_FWD) * u)
-    wc = truck["wheel_c"]
-    grip_n = wc + Vector((0.02, -0.068, 0.03)); grip_f = wc + Vector((0.02, 0.068, 0.03))
-    # where his near shoulder is once he has turned, and the pane in front of it
-    dyaw = Y_TURN - Y_FWD; c_, s_ = math.cos(dyaw), math.sin(dyaw)
-    shT = seat + lean + Vector((c_ * off_n.x - s_ * off_n.y, s_ * off_n.x + c_ * off_n.y, off_n.z))
-    fwT = Vector((math.sin(Y_TURN), -math.cos(Y_TURN), 0.0))
-    out_n = Vector((fwT.y, -fwT.x, 0.0)) * (1 if (Vector((fwT.y, -fwT.x, 0.0))).dot(shT - seat - lean) > 0 else -1)   # away from his head
-    KN = shT + fwT * ((shT.y - (-0.592 + 0.075)) / -fwT.y) + out_n * 0.12 + Vector((0, 0, 0.0)); KN.y = -0.592 + 0.058   # the PALM (the harness solves the palm), so the knuckles meet the glass, by his face
-    zx = -0.45 + (-0.12 + 0.5 * (KN.z - 0.7)) + 0.07; KN.x = min(max(KN.x, zx), -0.45 + 0.79 - 0.06)     # inside the pane
-    KN.y = -0.592 + 0.044          # the mitten's knuckles flat ON the pane at the rap (the glass is at -0.588)
-    pane = s5_door_glass(truck, flash, (T_K1, T_K2))
-    # the lens: the front quarter for the strike and the racing sparks; down onto the bumper and the puddle for the
-    # leap; then right up to his wet window for the raps, easing back a touch for the shrug
-    L2 = Vector((0.06, -0.38, 0.9)); C2 = L2 + Vector((-1.3, -1.75, 0.12))
-    C3 = L2 + Vector((-0.85, -2.05, 0.06))
-    keys = [(0.0, CA, LA), (T_LEAP - 0.45, CAb, LA),
-            (T_LEAP + 0.1, CL, LL), (T_LEAP + 0.75, CL + Vector((0.08, 0.02, 0.0)), LL),
-            (T_LEAP + 1.05, Vector((-0.3, -0.3, 0.85)) + Vector((-2.5, -2.4, 0.12)), Vector((-0.3, -0.3, 0.85))),
-            (T_K1 - 0.2, C2, L2), (T_SHRUG, C2 + (C3 - C2) * 0.15, L2), (DUR, C3, L2 + Vector((0, 0, -0.02)))]
-    cpos0 = s5_spline([(t, c) for t, c, l in keys]); clook = s5_spline([(t, l) for t, c, l in keys])
-    def cpos(t):     # each rap jolts the lens a hair, as a knock on glass right by you does
-        j = sum(math.exp(-((t - tk) * FPS) ** 2 / 3.0) * (0.012 if t >= tk else 0.0) for tk in (T_K1, T_K2))
-        return cpos0(t) + Vector((0, 0, j))
-    def far_hand(t): return grip_f
-    data.reach(far_s, far_hand, 0.0, T_TURN, lead=0.05, back=None, elbow_out=0.3)
-    def knock(t):      # two raps: knuckles ON the glass for three frames each, eased in and out over six, pulled back 5 cm between
-        tap = 0.0
-        for tk in (T_K1, T_K2):
-            x = abs(t - tk) * FPS
-            tap = max(tap, 1.0 if x <= 1 else max(0.0, 1.0 - (x - 1) / 6.0))
-        return KN - fwT * (0.05 * (1 - ease(tap)))
-    def near_all(t):
-        u = ease(min(1.0, max(0.0, (t - T_TURN - 0.1) / 0.7))); bow = math.sin(math.pi * u)
-        return grip_n.lerp(knock(t), u) + (out_n * 0.09 + fwT * 0.08 + Vector((0, 0, 0.02))) * bow   # round his body, not through it
-    data.reach(near, near_all, 0.0, T_K2 + 0.2, lead=0.05, back=0.4, elbow_out=0.15)
-    # head and face
-    data.look_at(Vector((-1.6, -0.4, 2.3)), 0.0, max_yaw=40, max_pitch=40, blend=0.0)     # up out of the windscreen at the storm
-    data.look_at(Vector((0.05, S5_DY - 0.12, 1.9)), T_HIT + 0.02, max_yaw=30, max_pitch=40, blend=0.1)   # up at the roof: the hit
-    data.look_at(Vector((-1.2, -1.0, 0.85)), T_HIT + 0.75, max_yaw=45, max_pitch=30)    # out at the sparks on the hood
-    data.look_at(Vector((-1.6, -0.95, 0.12)), T_LEAP + 0.05, max_yaw=45, max_pitch=40)   # down at the bumper and the puddle
-    data.look_at(Vector((-0.6, -3.0, 1.0)), T_TURN, max_yaw=40, max_pitch=20)          # at us, through his window
-    data.idle(0.1, DUR)
-    data.expression("worried", 0.0, T_HIT)
-    data.expression("alarmed", T_HIT + 0.02, T_HIT + 1.0, blend=0.1)
-    data.expression("surprised", T_HIT + 1.2, T_TURN - 0.2)
-    data.expression("happy", T_TURN - 0.1, T_SHRUG, blend=0.25)
-    data.act("shrug", T_SHRUG, dur=0.45, hold=3.0)
-    data.expression("happy", T_SHRUG + 0.45, DUR + 1.0, blend=0.2)
+    T1 = 0.4                                   # bolt one, onto the roof over his head
+    T2 = 2.5                                   # bolt two, bigger, the same spot: "the metal shell"
+    T_W0 = round(1.3 * FPS) / FPS              # cut to the wide, after "But your car protects you"
+    T_CUT = round(3.55 * FPS) / FPS             # cut back close, on the end of "the metal shell"
+    T_FINE = T_CUT + 0.8                       # hands looked over: fine
+    T_SH = T_FINE + 0.3                        # the grin and the big shrug at us
+    T_SH2 = T_SH + 0.6                        # and again, bigger, laughing: would you stay inside?
+    flash = lambda t: SK.flash_level(t, [T1, T2])
+    win = lambda t, a, d: ease(min(1.0, max(0.0, (t - a) / d)))
+    # ---- him: at the wheel, the window at his left shoulder, head and shoulders in the opening
+    data = load_data()
+    Z = truck["z0"] + 0.035
+    P_S = Vector((S7_SEAT[0], S7_SEAT[1], Z)); P_L = Vector((S7_LEAN[0], S7_LEAN[1], Z))
+    data.place(P_S.x, P_S.y, S7_YAW); bpy.context.view_layer.update()
+    hat = ranger_hat(data)
+    flinch = lambda t: win(t, T1, 0.2) * (1 - win(t, T1 + 0.7, 0.5))
+    flinch2 = lambda t: win(t, T2, 0.15) * (1 - win(t, T2 + 0.5, 0.4))
+    turn = lambda t: 1.0                                               # turned to us at his window the whole beat
+    lean = lambda t: 0.6 * win(t, T_SH - 0.1, 0.35)                           # into the window, at us, for the shrug
+    def body(t):
+        p = P_S.lerp(P_L, lean(t))
+        p.z += 0.004 * math.sin(2 * math.pi * 2.6 * t) * (1 - win(t, T1, 0.05))                # shivering in the cold
+        p.z += 0.14 * s4_kick(t - T1, 0.14) - 0.025 * win(t, T1 - 0.2, 0.15) * (1 - win(t, T1, 0.06)) + 0.1 * s4_kick(t - T2, 0.1)                       # each bolt: he jumps in his seat
+        p.y += 0.06 * flinch(t) + 0.04 * flinch2(t)                                           # ... and shrinks in from the window
+        p.z -= 0.03 * flinch(t) + 0.02 * flinch2(t)
+        p.y -= 0.02 * win(t, T_CUT - 0.2, 0.3); p.z += 0.02 * win(t, T_CUT - 0.2, 0.3)   # (no rise: the window's top edge hid his hat) up to the window to look his hands over
+        p.x += 0.035 * math.sin(2 * math.pi * (t - T_CUT) / 0.7) * win(t, T_CUT, 0.15) * (1 - win(t, T_FINE, 0.15))   # rocking as he turns them over
+        p.z += sum(0.045 * s4_kick(t - tb, 0.12) for tb in (T_SH, T_SH2, T_SH2 + 0.25, T_SH2 + 0.45))   # the shrugs lift him, laughing
+        p.x += 0.03 * math.sin(2 * math.pi * (t - T_SH) / 1.1) * win(t, T_SH, 0.2)            # rocking with the laugh
+        yaw = math.radians(S7_YAW) + math.radians(S7_YAW_LEAN - S7_YAW) * max(turn(t), lean(t)) \
+            + math.radians(7) * flinch(t)
+        return p, yaw
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; p, yaw = body(t)
+        data._kobj(t, loc=tuple(p), rot=yaw)
+    for sd in "LR":
+        ph = 0.0 if sd == "L" else 0.35
+        kick = lambda t, ph=ph: 22 * s4_kick(t - T1 - 0.02 * (ph > 0), 0.12) + 16 * s4_kick(t - T2 - 0.02 * (ph > 0), 0.12) \
+            + 10 * flinch(t)
+        s4_layer(data, f"leg.{sd}", lambda t, kick=kick: (-(S7_SIT[0] + kick(t)), 0, 0), 0, DUR + 0.4)
+        s4_layer(data, f"shin.{sd}", lambda t, kick=kick: (S7_SIT[1] + 1.6 * kick(t), 0, 0), 0, DUR + 0.4)
+    s4_layer(data, "spine", lambda t: (14 * flinch(t) + 9 * flinch2(t) - 6 * lean(t) - 5 * win(t, T_CUT - 0.2, 0.3) - 7 * win(t, T_SH2 - 0.15, 0.3),
+                                       9 * math.sin(2 * math.pi * (t - T_SH) / 0.9) * win(t, T_SH, 0.25), 0), 0, DUR + 0.4)   # the laugh sways him side to side
+    # ---- the lens: two angles and a HARD CUT. A wide and a little high off the truck's front three-quarter, the whole
+    # truck, the sky and the station in it; B close at his window, at his eye height (no cab roof over the lens)
+    CA, LA = Vector(S7_CAM_A), Vector(S7_LOOK_A)
+    CB, LB = Vector(S7_CAM_B), Vector(S7_LOOK_B)
+    def cam_at(t):
+        sh = 0.02 * (s4_jolt(t - T1) + 1.4 * s4_jolt(t - T2))
+        if T_W0 <= t < T_CUT:
+            c = CA + (LA - CA).normalized() * 0.25 * win(t, T_W0, T_CUT - T_W0) + Vector((0, 0, sh))
+            return c, LA, LA
+        c = CB + (LB - CB).normalized() * 0.08 * (win(t, T_CUT, DUR - T_CUT) if t >= T_CUT else 0.0) + Vector((0, 0, 0.6 * sh))
+        p, _ = body(t)
+        return c, LB, p + Vector((0, 0, 0.62))
+    LENS = lambda t: cam_at(t)[0]
+    # ---- face and head
+    hitp = Vector(S7_HIT)
+    data.expression("worried", 0.0, T1 - 0.04)
+    data.look_at(hitp + Vector((-0.7, -1.0, 0.9)), 0.0, max_yaw=35, max_pitch=25, blend=0.0)         # up at the storm through the open window
+    data.expression("alarmed", T1 + 0.02, T_CUT - 0.1, blend=0.06)
+    data.look_at(hitp + Vector((-0.2, -0.3, 0.3)), T1 + 0.03, max_yaw=30, max_pitch=40, blend=0.08)   # UP: the bang on the roof
+    data.look_at(LENS(T1 + 0.5), T1 + 0.45, max_yaw=45, blend=0.12)                                   # at us, eyes wide
+    data.look_at(Vector((-0.6, -1.1, 0.5)), T_W0 + 0.05, max_yaw=40, max_pitch=25, blend=0.15)        # out at the arcs running down his door
+    data.look_at(Vector((-0.9, -1.4, 0.2)), T1 + 1.4, max_yaw=40, max_pitch=25, blend=0.15)           # ... and jumping to the gravel
+    data.look_at(hitp + Vector((-0.2, -0.3, 0.3)), T2 + 0.02, max_yaw=30, max_pitch=40, blend=0.08)   # bolt two: up
+    data.look_at(Vector((-0.8, -1.3, 0.6)), T2 + 0.55, max_yaw=40, max_pitch=25, blend=0.15)
+    data.expression("surprised", T_CUT - 0.05, T_FINE, blend=0.1)
+    # ---- hands: one smooth path each, shoulder-relative (forward, out, up), inside his 0.19 m reach
+    sc.frame_set(1); bpy.context.view_layer.update()
+    NEAR = min("LR", key=lambda s: acts._shoulder(data, s).y)          # the window side (-Y)
+    REST = (0.12, 0.04, -0.08)
+    FACE = (0.14, 0.09, 0.04)                                           # both hands up by his face
+    common = [(0.0, REST), (T1 - 0.02, REST), (T1 + 0.66, FACE), (T1 + 1.3, (0.14, 0.07, 0.0)),
+              (T2 - 0.05, (0.14, 0.07, -0.005)), (T2 + 0.45, (0.14, 0.08, 0.01))]
+    FAR_ = "R" if NEAR == "L" else "L"
+    def turn_over(ph):                                                  # he turns his hands over in front of him: round, never back and forth
+        return [(T_CUT + 0.25 + 0.23 * i, (0.11 + 0.03 * math.cos(math.radians(90 * (i + 1) + ph)), 0.075, 0.0 + 0.04 * math.sin(math.radians(90 * (i + 1) + ph))))
+                for i in range(4)]
+    HK = {NEAR: common + turn_over(180)[:3] + [(T_SH + 0.35, (0.1, 0.12, -0.02)), (T_SH2 + 0.05, (0.145, 0.08, 0.03)), (DUR, (0.15, 0.075, 0.035))],
+          FAR_: common + turn_over(0) + [(T_SH + 0.35, (0.1, 0.12, -0.02)), (T_SH2 + 0.05, (0.145, 0.07, 0.03)), (DUR, (0.15, 0.065, 0.035))]}
+    for k in HK.values(): assert all(a[0] < b[0] for a, b in zip(k, k[1:])), [round(x[0], 3) for x in k]
+    def hand_fn(sd):
+        path = s5_spline([(t, Vector(v)) for t, v in HK[sd]])
+        def fn(t):
+            sc.frame_set(F(t)); bpy.context.view_layer.update()
+            sh = acts._shoulder(data, sd); c = Vector(data.arm.location)
+            yaw = data.arm.rotation_euler.z; fw = Vector((math.sin(yaw), -math.cos(yaw), 0))
+            out = sh - c; out.z = 0; out = out - fw * out.dot(fw); out.normalize()
+            v = path(t)
+            return sh + fw * v.x + out * v.y + Vector((0, 0, v.z))
+        return fn
+    globals()["S7_HF"] = hand_fn; globals()["S7_NEAR"] = NEAR
+    for sd, sg in (("L", -1), ("R", 1)):                                               # the shrug: shoulders right up
+        s4_layer(data, f"clav.{sd}", lambda t, sg=sg: (0, 0, sg * S7_SHRUG * (win(t, T_SH - 0.05, 0.3) + 0.35 * s4_kick(t - T_SH2 + 0.1, 0.15))), T_SH - 0.1, DUR + 0.4)
+    for sd in "LR": data.reach(sd, hand_fn(sd), 0.0, DUR, lead=0.05, back=None, elbow_out=0.4 if sd == NEAR else 0.25)
+    # the look at his hands: the HEAD pitches down to them (max_pitch wide), so the eyes never sit at their limit (the
+    # black lens of round 4 was the eyes clamped at full yaw with the head turned away)
+    hands_at = lambda t: (S7_HF("L")(t) + S7_HF("R")(t)) * 0.5
+    data.look_at(hands_at(T_CUT + 0.25), T_CUT - 0.05, max_yaw=30, max_pitch=35, blend=0.12)
+    data.look_at(hands_at(T_CUT + 0.6), T_CUT + 0.4, max_yaw=30, max_pitch=35, blend=0.15)
+    data.expression("happy", T_FINE + 0.05, DUR + 1.0, blend=0.15)
+    data.look_at(LENS(T_FINE), T_FINE, max_yaw=45, blend=0.15)                                        # fine. at us, grinning
     data.finish()
-    cam = K.camera(tuple(CA), tuple(LA), lens=64, fstop=5.6)
-    def focus(t):
-        return Vector((-0.02, S5_DY - 0.1, 0.98)).lerp(Vector((KN.x, -0.45, KN.z)), ease(min(1.0, max(0.0, (t - T_TURN) / 0.6))))
-    camera_path(cam, lambda t: (cpos(t), clook(t), focus(t)))
-    s5_rain([Vector((cpos(t).x, cpos(t).y)) for t in (0.0, T_LEAP, T_LEAP + 0.7, T_K1, DUR)], flash)
-    s5_hide_lights()
-    hero = [o for o in bpy.data.objects if o.name.startswith("ranger truck ") and o.type in ('MESH', 'CURVE')
-            and o.name in ("ranger truck roof", "ranger truck driver door", "ranger truck door frame", "ranger truck c pillar -1")]   # the struck cab round him, whole in the frame
-    return dict(lanes=[], kiosks=[], place="trailhead", light=light, data=data, rest=1, grips=("steering grip",),
-                conseq=[("the bolt hits the roof of the truck he sits in and the struck shell lights up", hero, T_HIT + 0.2, T_HIT + 0.75, {"hero": True}),
-                        ("sparks race over the whole metal body around him", sparks, T_HIT + 0.6, T_LEAP, {"whole": False}),
-                        ("they leap off the bumper into the puddle and splash while the tyres stay dark", lambda: arcs + splash + puddles[:1] + [truck["bumper"]] + truck["tyres"][:1],
-                         T_LEAP + 0.1, T_LEAP + 0.75, {"whole": False}),
-                        ("untouched inside, he raps twice on his window at us and shrugs: see?", [pane], T_K1, DUR, {"whole": False})])
+    cam = K.camera(tuple(cam_at(0)[0]), tuple(cam_at(0)[1]), lens=S7_LENS_A, fstop=8)
+    camera_path(cam, cam_at)
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS
+        cam.data.lens = S7_LENS_A if T_W0 <= t < T_CUT else S7_LENS_B; cam.data.keyframe_insert("lens", frame=f)
+    sc.render.motion_blur_position = 'START'                  # nothing of the frame before the cut blurred into the one after
+    from character import _fcurves
+    for idb in (cam, cam.data):                               # a CUT: no in-between frame
+        for fc in _fcurves(idb.animation_data.action):
+            for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
+    # ---- the strikes: both on the roof right over him, both seen whole from the wide angle
+    camA = lambda t: (tuple(LENS(t)), tuple(cam_at(t)[1]), S7_LENS_A if T_W0 <= t < T_CUT else S7_LENS_B)
+    b1 = s6_bolt("s7 roof bolt", hitp + Vector(S7_TOP), hitp, T1, s5_frame_x(P_S + Vector((0, 0, 0.7)), *camA(T1))[0], camA(T1), S7_BOLT_E, seeds=range(7300, 7360))
+    b2 = s6_bolt("s7 roof bolt 2", hitp + Vector(S7_TOP) + Vector((0.3, 0.0, 0.0)), hitp, T2, s5_frame_x(P_S + Vector((0, 0, 0.7)), *camA(T2))[0], camA(T2), 1.4 * S7_BOLT_E, seeds=range(7400, 7460))
+    s5_flash_light([T1, T2], S7_SKYFLASH, (-1.5, -3.2, 4.2))
+    for k, (x, t0) in enumerate(((-6.5, 4.4),)):                            # the storm far over the hills (none in the wide: it read as a glitch)
+        fb = SK.bolt(f"s7 far bolt {k}", (x + 1.5, 26.0, 14.0), (x, 24.0, 0.0), seed=900 + 31 * k, branches=4, width=0.05, glow=4.0)
+        SK.strike(fb, [t0], NF, light_at=Vector((x, 18.0, 6.0)), energy=4000.0)
+    s5_storm_glow(flash)
+    # where it lands: a burst of light ON the roof, that cools to a hot spot
+    burst_m = s5_emit("s7 burst", (0.8, 0.9, 1.0), 30.0)
+    burst = K.sph("s7 roof burst", tuple(hitp + Vector((0, 0, 0.02))), 0.1, burst_m, scale=(1.4, 1.4, 0.55), seg=16, ring=8)
+    burst.visible_shadow = False
+    bs = next(n for n in burst_m.node_tree.nodes if "Strength" in n.inputs).inputs["Strength"]
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS
+        lv = sum(math.exp(-(t - th) / 0.35) * (1.0 if th == T1 else 1.4) for th in (T1, T2) if t >= th)
+        burst.scale = tuple(v * (0.35 + 0.65 * min(1.0, lv)) for v in (1.4, 1.4, 0.55)); burst.keyframe_insert("scale", frame=f)
+        bs.default_value = 6.0 + 30.0 * min(1.5, lv); bs.keyframe_insert("default_value", frame=f)
+        burst.hide_render = lv < 0.08; burst.keyframe_insert("hide_render", frame=f)
+    paths = s7_paths()
+    arcs, alights = s6_sparks(T1, paths, speed=S7_SPEED, seed=11, t_fade=None, riders=(2, 5, 9, 12), core_r=0.0045, glow_r=0.014, shapes=3,
+                              spacing=0.09, seg=(0.07, 0.12), surges=(T1, T2), floor=0.14, lite=3.0, life=0.4, decay=1.0, fork=0.08)   # crawling forks behind a running front, not an outline
+    heads = s7_heads(T1, paths, S7_SPEED) + s7_heads(T2, paths, S7_SPEED * 1.3, seed=6)
+    t_leap = T1 + 0.03 + 1.75 / S7_SPEED
+    leaps, llights = s6_sparks(t_leap, list(S7_LEAPS), speed=1.0, seed=23, t_fade=None, riders=(0, 1), core_r=0.011, glow_r=0.036,
+                               shapes=3, spacing=0.035, seg=(0.06, 0.09), surges=(T2 + 0.4,), floor=0.7, lite=2.5, life=1.5, decay=0.1, fork=0.06)   # the jump to the gravel
+    # the close angles get their OWN electricity: thin filaments flat on the metal round his window (the wide's arcs are
+    # sized for the wide and read as floating squiggles up close); each set is hidden outside its own angle
+    skin, slights = s6_sparks(T1, S7_SKIN, speed=0.9, seed=31, t_fade=None, riders=(0, 4), core_r=0.0022, glow_r=0.0075, shapes=3,
+                              spacing=0.06, seg=(0.05, 0.09), surges=(T1,), floor=0.35, lite=2.0, life=0.6, decay=0.5, fork=0.02, rough=0.12, hug=True)
+    wide = lambda t: T_W0 <= t < T_CUT
+    for objs, show in ((arcs + leaps + heads, wide), (skin, lambda t: not wide(t))):
+        for o in objs:
+            for f in range(1, NF + 1):
+                if not show((f - 1) / FPS):
+                    o.hide_render = True; o.keyframe_insert("hide_render", frame=f)
+    for nm in ("s5 park sign text", "s5 park sign text 2", "s5 station sign text"):   # no cut-off words
+        o = bpy.data.objects.get(nm)
+        if o: o.hide_render = True
+    # ---- the rain, and the light
+    s5_rain([Vector((CA.x, CA.y)), Vector((CB.x, CB.y))], flash)
+    def light():
+        key = light0()
+        fl = bpy.data.lights.new("s7 arc face", 'AREA'); fl.size = 0.4; fl.color = (0.6, 0.75, 1.0)
+        fo = bpy.data.objects.new("s7 arc face", fl); bpy.context.collection.objects.link(fo)
+        fo.location = (-0.75, -1.05, 1.15); fo.rotation_euler = (P_S + Vector((0, 0, 0.7)) - fo.location).to_track_quat('-Z', 'Y').to_euler()
+        wf = bpy.data.lights.new("s7 face warm", 'AREA'); wf.size = 0.5; wf.energy = S7_WARM; wf.color = (1.0, 0.86, 0.68)
+        wo = bpy.data.objects.new("s7 face warm", wf); bpy.context.collection.objects.link(wo)
+        wo.location = (-1.1, -1.3, 0.75); wo.rotation_euler = (P_S + Vector((0, 0, 0.7)) - wo.location).to_track_quat('-Z', 'Y').to_euler()
+        gl = bpy.data.lights.new("s7 gravel glow", 'POINT'); gl.color = (0.5, 0.7, 1.0); gl.shadow_soft_size = 0.05
+        go = bpy.data.objects.new("s7 gravel glow", gl); bpy.context.collection.objects.link(go); go.location = (-0.88, -0.98, 0.06)   # the jumps light the gravel round the tyre: it stands black against it
+        rnd = s5_random.Random(5)
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS
+            fl.energy = S7_ARCFACE * (0.15 if t < T1 else rnd.uniform(0.6, 1.25)) + 40.0 * flash(t); fl.keyframe_insert("energy", frame=f)
+            gl.energy = (0.0 if t < t_leap else S7_GRAVEL * rnd.uniform(0.55, 1.3) * (1.0 + 1.5 * math.exp(-max(0.0, t - T2 - 0.4) / 0.3) * (t >= T2 + 0.4))) * (1.0 if T_W0 <= t < T_CUT else 0.0)
+            gl.keyframe_insert("energy", frame=f)
+        s5_hide_lights()
+        for o in bpy.data.objects:
+            if o.type == 'LIGHT' and o.name.startswith(("s6", "s7")):
+                o.visible_camera = False; o.visible_glossy = False; o.visible_transmission = False
+        return key
+    roof = [o for o in bpy.data.objects if o.name in ("ranger truck roof", "ranger truck roof rail -1")]
+    tyre = truck["tyres"][:1]
+    cab = meshes([bpy.data.objects["ranger truck driver door"]])      # the cab it lands on, lit by it
+    return dict(lanes=[], kiosks=[], place="trailhead", light=light, data=data, rest=1, cutaway=(T_W0, T_CUT),
+                grips=("ranger truck driver door", "ranger truck door frame", "ranger truck door trim top", "ranger truck door trim"),
+                conseq=[("the bolt hits the roof right above him in a white flash on him and the door",
+                         lambda: [bpy.data.objects[n] for n in b1["parts"][:2]] + roof + [burst] + cab, T1, T1 + 0.25, {"whole": False}),
+                        ("the first thin arcs spark off the window frame round him",
+                         lambda: skin, T1 + 0.15, T_W0, {"whole": False}),
+                        ("blue arcs run down the metal shell: the roof, the pillars, the door, the hood and round the wheel arch",
+                         lambda: arcs, T_W0, T_CUT, {"whole": False}),
+                        ("at the rocker the arcs jump across to the wet gravel either side of the black tyre",
+                         lambda: leaps + tyre, t_leap + 0.1, T_CUT, {"whole": False}),
+                        ("the second, bigger bolt hits the same spot and the arcs flare",
+                         lambda: [bpy.data.objects[n] for n in b2["parts"][:2]] + roof + [burst] + cab, T2, T2 + 0.25, {"whole": False}),
+                        ("the arcs fade on the door round him while he stays untouched",
+                         lambda: skin, T_CUT, DUR, {"whole": False})])
+
+
+S7_SKIN = ([S7_HIT, (-0.05, -0.575, 1.425), (-0.27, -0.585, 1.385)],                  # the close angles' filaments: the roof edge over his window,
+           [S7_HIT, (0.45, -0.585, 1.41)],                                           # the window frame's back corner, the door top, the door
+           [(0.45, -0.585, 1.41), (0.46, -0.612, 0.7), (0.46, -0.612, 0.3)],
+           [(0.46, -0.612, 0.7), (-0.44, -0.617, 0.69)],
+           [(0.12, -0.612, 0.69), (0.1, -0.616, 0.45), (0.05, -0.616, 0.3)],
+           [(-0.44, -0.617, 0.69), (-0.45, -0.618, 0.3)])
+S7_SEAT = (0.05, -0.27)            # where he sits: at the wheel, his left shoulder at the open window
+S7_LEAN = (0.03, -0.3)              # ... and where his hips get to as he leans into the window for the shrug
+S7_YAW, S7_YAW_LEAN = -78.0, -66.0  # facing the windscreen; turned toward us at the window
+S7_SIT = (80.0, 8.0)
+S7_SHRUG = 38.0
+S7_CAM_A = (-3.7, -4.2, 2.1)       # A: wide, a little high, off the front three-quarter on his side
+S7_LOOK_A = (-0.1, 0.0, 0.65)
+S7_LENS_A = 33
+S7_CAM_B = (-1.1, -2.4, 1.05)      # B: close at his open window, at his eye height
+S7_LOOK_B = (-0.12, -0.4, 0.82)
+S7_LENS_B = 50
+S7_TOP = (0.7, 0.9, 7.5)           # where the bolts come down from, above and behind the roof
+S7_BOLT_E = 500.0
+S7_SKYFLASH = 900.0
+S7_ARCFACE = 35.0
+S7_WARM = 12.0
+S7_GRAVEL = 10.0
+S7_SPEED = 1.2
 
 
 SHOTS = {1: shot1, 2: shot2, 3: shot4, 4: shot3, 5: shot5}   # the trail beat was drafted as shot4, the beach as shot3
