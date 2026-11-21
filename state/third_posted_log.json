@@ -21516,13 +21516,95 @@
       "ts": "2026-11-21T11:39:27.480806+00:00"
     },
     "clip-20261121-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/RamshackleLaconicLapwingSpicyBoy-vXH5sbEmR5KAzDO7",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/g2Y5Sdbjbws",
       "title": "Jynxzi Hands Over The Wheel And Chat Swears She's On Drugs \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-11-21T11:42:08.121482+00:00",
+      "ts": "2026-11-21T11:42:19.076915+00:00",
+      "uploaded_at": "2026-11-21T11:42:19.076931+00:00",
+      "publish_at": "2026-11-21T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261121-jynxzi-hands-over-the-wheel-and-chat-swears-she--aa76d6d7",
+        "tiktok": "queued for 2026-11-21T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RamshackleLaconicLapwingSpicyBoy-vXH5sbEmR5KAzDO7",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "Jynxzi lets her drive and regrets it \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 20940,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 19.5
+      },
+      "director_cut": true
+    },
+    "rejected-grotesqueyummyalligatorfloof-pf12wc99_rfassir": {
+      "source_url": "https://www.twitch.tv/sweet_anita/clip/GrotesqueYummyAlligatorFloof-pf12WC99_rfasSiR",
+      "streamer": "sweet_anita",
+      "title": "Anita resists looking at man ass in the eye tracker challenge.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Nude game shower, age-restrict risk, lit)",
+      "ts": "2026-11-21T11:43:55.233072+00:00"
+    },
+    "rejected-resolutecrazypistachioprimeme-fgucchgorooqyujb": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ResoluteCrazyPistachioPrimeMe-FgUccHgoroOQYUJB",
+      "streamer": "caseoh_",
+      "title": "Caseoh Gets Hyped As Someone Locks The Brakes Up On That Thing",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 30% of the canvas height instead of roughly 75%. Blurred padding takes up the r; vision: The subject is small and far away: a distant car on a road, with a tiny facecam in the corner. It is hard to read on a p; vision: The renderer did not crop toward",
+      "ts": "2026-11-21T11:47:43.321996+00:00"
+    },
+    "rejected-clumsyvivaciousdotterelbrokeback-wxqt-rqtglwo29wm": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ClumsyVivaciousDotterelBrokeBack-wxQt-rqtGLWo29wm",
+      "streamer": "caseoh_",
+      "title": "Caseoh Catches Two Strangers Stealing His Statue And Checking What's In The Bag",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, only about a third of the 9:16 canvas height. The rest is dark blur, so the subject i; vision: Several frames show a nude game character (around 28-42s). That risks age-restriction or a policy strike and doesn't fit; vision: The hook caption (white text wit",
+      "ts": "2026-11-21T11:54:54.272843+00:00"
+    },
+    "rejected-obliviouscloudyborknerfredblaster-yiuntu3n09sc5nzs": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/ObliviousCloudyBorkNerfRedBlaster-YIUntU3N09sC5nzs",
+      "streamer": "joe_bartolozzi",
+      "title": "Straight Cheeks",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA 6 near-nude NPC, age-restrict risk)",
+      "ts": "2026-11-21T11:56:02.868152+00:00"
+    },
+    "rejected-zanyantediluviangrassralpherz-3vkmoi3_ojmvsaij": {
+      "source_url": "https://www.twitch.tv/xqc/clip/ZanyAntediluvianGrassRalpherZ-3VkMoi3_OjMVsAij",
+      "streamer": "xqc",
+      "title": "gta 6 clip 67",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (xQc reading a tweet; talk, no event)",
+      "ts": "2026-11-21T11:56:20.194878+00:00"
+    },
+    "rejected-wiseplumpalligatortrihard-y6mmywegvo5mdyak": {
+      "source_url": "https://www.twitch.tv/maya/clip/WisePlumpAlligatorTriHard-y6MMYwegVo5MdYak",
+      "streamer": "maya",
+      "title": "Maya Goes Fully Unhinged On Chiblee And Her Plan Gets Worse",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture fills only about a third of the 9:16 canvas, a thin strip with large blurred padding above and below; vision: From 1s to 9s the strip shows the whole stream layout (chat, game window, facecam), so the game action and the streamer ; vision: At 9.2s the strip is nearly black, an ",
+      "ts": "2026-11-21T12:35:13.174235+00:00"
+    },
+    "clip-20261121-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/avoidingthepuddle/clip/PricklyImpossibleReindeerKippa-K4GZFY5Z2KqgQNiU",
+      "story_key": null,
+      "streamer": "avoidingthepuddle",
+      "title": "Avoidingthepuddle Rants About The Internet Ruining How People Have Fun",
+      "kind": "twitch_clip",
+      "ts": "2026-11-21T12:39:58.020049+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
