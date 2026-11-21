@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-21T13:21:28Z",
+ "updated": "2026-11-21T14:49:27Z",
  "open": [
+  {
+   "id": "map-distortion-true-size__bc5c8508",
+   "slug": "map-distortion-true-size",
+   "filed": "2026-11-21T14:49:27Z",
+   "why": [
+    "premise: brain: The claim is false as stated (Africa is about 14 times Greenland's area, but the hook's phrasing is a stale, familiar Mercator-distortion fact), and the title is a vague cliché that promises no specific surprise beyond a map-projection trope viewers have seen many times."
+   ],
+   "request": "exchange/rewrites/20261121/map-distortion-true-size__bc5c8508.request.json",
+   "answer_path": "exchange/rewrites/20261121/map-distortion-true-size__bc5c8508.answer.json"
+  },
+  {
+   "id": "moon-drifting-away__653a5ccc_r3",
+   "slug": "moon-drifting-away",
+   "filed": "2026-11-21T14:49:27Z",
+   "why": [
+    "premise: brain: The claim is misleading, since the Moon's slow drift ending total eclipses in about 600 million years is a well-known fact with no stakes or twist the viewer can picture, and the hook states it flatly instead of promising a surprise that turns over something they believe."
+   ],
+   "request": "exchange/rewrites/20261121/moon-drifting-away__653a5ccc_r3.request.json",
+   "answer_path": "exchange/rewrites/20261121/moon-drifting-away__653a5ccc_r3.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__ef8ed986",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-21T14:49:26Z",
+   "why": [
+    "premise: brain: It is a flat, searchable fact built on a statistic, and it names no surprise the viewer can picture or belief it turns over (like \"frogs turn into ice and come back to life\"). Even though the claim is true, the hook is just the title restated with a number."
+   ],
+   "request": "exchange/rewrites/20261121/frog-freezes-and-revives__ef8ed986.request.json",
+   "answer_path": "exchange/rewrites/20261121/frog-freezes-and-revives__ef8ed986.answer.json"
+  },
+  {
+   "id": "gps-einstein-fix__c2b1ca22",
+   "slug": "gps-einstein-fix",
+   "filed": "2026-11-21T14:49:26Z",
+   "why": [
+    "premise: brain: The title names a familiar 'GPS and Einstein' fun fact and the hook is a flat statistic (10 km in a day) with no threat, twist or stake for the viewer, and it reads like a textbook trivia line rather than a belief the story overturns."
+   ],
+   "request": "exchange/rewrites/20261121/gps-einstein-fix__c2b1ca22.request.json",
+   "answer_path": "exchange/rewrites/20261121/gps-einstein-fix__c2b1ca22.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__15bbbefa",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-21T14:49:26Z",
+   "why": [
+    "premise: brain: It's a vague, abstract statement with no concrete surprise, threat or picture-able scale, and it gives no belief for the story to overturn."
+   ],
+   "request": "exchange/rewrites/20261121/astronaut-bone-loss__15bbbefa.request.json",
+   "answer_path": "exchange/rewrites/20261121/astronaut-bone-loss__15bbbefa.answer.json"
+  },
+  {
+   "id": "library-digital-shift__af6508e8",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-21T14:49:25Z",
+   "why": [
+    "premise: brain: It's a vague, descriptive statement of a mundane shift (buildings emptied, borrowing moved online) with no surprise, threat, or contradiction that overturns a belief, and the hook doesn't even use the 739 million figure to give scale."
+   ],
+   "request": "exchange/rewrites/20261121/library-digital-shift__af6508e8.request.json",
+   "answer_path": "exchange/rewrites/20261121/library-digital-shift__af6508e8.answer.json"
+  },
   {
    "id": "great-barrier-reef-bleaching-accelerating__346c8074",
    "slug": "great-barrier-reef-bleaching-accelerating",
@@ -175,16 +235,6 @@
    "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
   },
   {
-   "id": "astronaut-bone-loss__15bbbefa",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-20T15:45:04Z",
-   "why": [
-    "premise: brain: The title is a vague comparative ('outpaces the rest') and the hook is a generic explanatory statement with no concrete surprise, threat, or contradiction the viewer can picture or that overturns a belief."
-   ],
-   "request": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.request.json",
-   "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.answer.json"
-  },
-  {
    "id": "frog-fungus-mass-extinction__609ffc7e",
    "slug": "frog-fungus-mass-extinction",
    "filed": "2026-11-20T13:11:33Z",
@@ -225,16 +275,6 @@
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
   },
   {
-   "id": "frog-freezes-and-revives__ef8ed986",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: It's a bare, number-led fun fact (\"survive with 65% frozen\") that names the subject but doesn't turn over a belief, state a stake or threat, or promise a payoff the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.request.json",
-   "answer_path": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.answer.json"
-  },
-  {
    "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
    "slug": "lego-minifigs-outnumber-humans",
    "filed": "2026-11-19T00:50:05Z",
@@ -253,16 +293,6 @@
    ],
    "request": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.request.json",
    "answer_path": "exchange/rewrites/20261119/hadza-gut-bacteria-vs-americans__b5d4f90f_r1.answer.json"
-  },
-  {
-   "id": "gps-einstein-fix__c2b1ca22",
-   "slug": "gps-einstein-fix",
-   "filed": "2026-11-19T00:50:04Z",
-   "why": [
-    "premise: brain: The premise is false; GPS error without relativity is not 10 km per day."
-   ],
-   "request": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.request.json",
-   "answer_path": "exchange/rewrites/20261119/gps-einstein-fix__c2b1ca22.answer.json"
   },
   {
    "id": "people-over-65-outnumber-kids-under-5__df8ae648",
@@ -304,16 +334,6 @@
    ],
    "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
    "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
-  },
-  {
-   "id": "map-distortion-true-size__bc5c8508",
-   "slug": "map-distortion-true-size",
-   "filed": "2026-11-18T16:58:18Z",
-   "why": [
-    "premise: brain: The claim is a familiar Mercator-projection fact with a vague 'your map hides it' framing, and the hook's '14 times' figure is wrong (Africa is about 14 times Greenland's area, but the title/hook promise no concrete threat or reversal beyond a cliché the viewer has likely heard)."
-   ],
-   "request": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.request.json",
-   "answer_path": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.answer.json"
   },
   {
    "id": "north-american-bird-collapse__1e7ff9ae",

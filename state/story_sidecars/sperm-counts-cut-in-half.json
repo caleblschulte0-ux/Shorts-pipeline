@@ -20,31 +20,31 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Men today have about half the sperm their grandfathers did.",
+   "ears": "Men are losing their sperm, and the drop is getting faster.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "In 1973, the average count was 101. By 2018 it was under half that, so grandfathers had the edge.",
-   "eyes": "a data picture (trend)",
+   "ears": "In 1973, the average count was 101. By 2018 it was under half that, establishing the long decline.",
+   "eyes": "substance: swimming sperm cells; cause: Data turns the microscope's stage wheel, sliding the 1973 sample out and the 2018 sample in",
    "evidence": "Human Reproduction Update | Average sperm concentration, 1973 vs 2018 (million per mL) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
   },
   {
    "window": "beat 1",
-   "ears": "Since 2000, counts fall 2.6% a year, more than double the old pace. The drop itself is speeding up.",
+   "ears": "Since 2000, counts fall 2.6% a year, more than double the old pace. The same decline is accelerating.",
    "eyes": "a data picture (comparison)",
    "evidence": "Human Reproduction Update | Annual rate of sperm count decline, before vs after 2000 (percent per year) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
   },
   {
    "window": "beat 2",
-   "ears": "Total sperm count fell 62%, even worse than concentration. Men now make far fewer sperm overall, not just thinner samples.",
+   "ears": "That acceleration reaches the whole sample: total sperm count fell 62%, not just the concentration.",
    "eyes": "a data picture (comparison)",
    "evidence": "Human Reproduction Update | Decline in sperm concentration vs total sperm count, 1973-2018 (percent) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
   },
   {
    "window": "closing",
-   "ears": "It's speeding up, and sperm counts matter for any family hoping to have kids.",
+   "ears": "The decline now affects both concentration and total output, raising the stakes for future families.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
