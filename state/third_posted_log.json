@@ -21743,6 +21743,24 @@
       "used_narration": false,
       "context_overlay_count": 1,
       "replay_count": 0
+    },
+    "rejected-smellyexuberantwatercresstakenrg-977ccvdn3u-lps1k": {
+      "source_url": "https://www.twitch.tv/rubius/clip/SmellyExuberantWatercressTakeNRG-977ccvDN3u-LPS1k",
+      "streamer": "rubius",
+      "title": "fisicas de vapor pog",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Nude shower game shot, no event, age-res)",
+      "ts": "2026-11-21T18:00:19.517289+00:00"
+    },
+    "rejected-crispyclearwasabiderp-5yicptgid1xssvly": {
+      "source_url": "https://www.twitch.tv/shadowkekw/clip/CrispyClearWasabiDerp-5yiCptGID1XSSvLy",
+      "streamer": "shadowkekw",
+      "title": "Shadowkekw: Streamer Reacts As Her Husband Gets Totally Inappropriate On Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin horizontal strip, about a third of the canvas. The rest is blurred padding, so the framing f; vision: People in the game footage are small and distant, and hard to read on a phone.; vision: The streamer facecam is a tiny inset in the corner of the strip, so the re",
+      "ts": "2026-11-21T18:07:04.221195+00:00"
     }
   }
 }
