@@ -1,0 +1,83 @@
+{
+ "schema": "shorts-exchange-blocker/v1",
+ "date": "20261121",
+ "bundle_id": "70be4edf2abcdb82ad8e1918b67465dc51979e14be55b4298ea284295e1dbe88",
+ "source_commit": "7ad79b5eaa99e786945bb895fecc52c12bf209e7",
+ "status": "partial",
+ "observed_at": "2026-11-21T12:31:38.739Z",
+ "day_closed": false,
+ "exact_failed_step": "Verify actual channel output against the frozen contract after DONE",
+ "channel_status": {
+  "explainer": {
+   "required": 4,
+   "verified_posted": 0,
+   "pending": 4,
+   "accepted_urls": [],
+   "note": "Phase B applied 2 Explainer rewrites and rejected 2 through protected-field guards. The November 21 Explainer worker failed, and the posted log contains no accepted 2026-11-21 URL."
+  },
+  "third": {
+   "required": 6,
+   "verified_posted": 0,
+   "pending": 6,
+   "accepted_urls": [],
+   "note": "Two candidates were rejected. clip-20261121-1 is only a pending upload claim with no accepted URL and is not counted; the Third worker remains in progress with no verified post."
+  },
+  "trending": {
+   "required": 5,
+   "verified_posted": 0,
+   "pending": 5,
+   "accepted_urls": [],
+   "note": "Sports report shows pool 0 and slots []; the latest Sports worker completed with failure and the posted log contains no accepted 2026-11-21 URL."
+  }
+ },
+ "attempts": [
+  "Committed STARTED before all other producer writes.",
+  "Completed the mandatory mailbox round across reviews, asks, and rewrites; read back every new answer.",
+  "Committed and validated response.json, then committed DONE separately.",
+  "Inspected Phase B: 2 Explainer rewrites applied and 2 rejected by protected-field guards; no media was requested or accepted.",
+  "Completed a second mailbox round, answered the newly reached frog request, and repaired the sperm rewrite only through its supported r1 request.",
+  "Allowed claim/apply workers and Daily Shorts to consume the answers; claim workers applied the submitted rewrite batches.",
+  "Allowed Daily Shorts, Sports, and Third workers to run; Daily Shorts succeeded, Sports failed, and Third remains without an accepted URL.",
+  "Re-read all three posted logs and counted only accepted YouTube URLs."
+ ],
+ "mailbox_status": {
+  "reviews": {
+   "open": 0,
+   "answered": 0,
+   "skipped": 0,
+   "reason": "No review cuts were open in either mailbox round."
+  },
+  "asks": {
+   "open_batches": 1,
+   "listed_keys": 23,
+   "answered_new": 0,
+   "reused_existing": 23,
+   "reason": "Every listed key already existed in the authorized answers file; no settled answer was overwritten."
+  },
+  "rewrites": {
+   "open_index_entries": 139,
+   "answered_new": 12,
+   "reason": "First round answered 10 requests. Second round answered the newly reached frog request and one supported r1 repair; per-round caps were observed and settled answers were reused."
+  }
+ },
+ "media": {
+  "requested": 0,
+  "generated": 0,
+  "verified": 0,
+  "note": "The frozen bundle contained zero media requests and active authored formats required no ChatGPT images."
+ },
+ "response_ingest": {
+  "explainer_applied": 2,
+  "explainer_rejected": 2,
+  "rejected_detail": [
+   "cereal-production-is-1-5x-higher-than-in-1972: protected numeric claims 77.8 and 91.3 were rejected by the ingest guard.",
+   "india-beats-everyone-on-general-pupils-secondary-education-b: named entity 'education' was rejected as invented by the ingest guard."
+  ]
+ },
+ "workflow_urls": {
+  "phase_b": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/44903729363",
+  "daily": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/44903758375",
+  "sports": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/44903030112",
+  "third": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/44899466469"
+ }
+}
