@@ -21709,14 +21709,40 @@
       "director_cut": true
     },
     "clip-20261121-6": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-7e93d65986a90fc7",
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/-WH8DIz2ITc",
       "title": "Kaicenat: Kai Cenat's first night in GTA 6 goes wrong fast",
       "kind": "story",
-      "ts": "2026-11-21T13:10:07.641526+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-21T13:10:15.807278+00:00",
+      "uploaded_at": "2026-11-21T13:10:15.807294+00:00",
+      "publish_at": "2026-11-22T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261121-kaicenat-kai-cenat-s-first-night-in-gta-6-goes-w-7fb8d2b7",
+        "tiktok": "queued for 2026-11-22T05:00:00Z"
+      },
+      "story_key": "story-7e93d65986a90fc7",
+      "member_keys": [
+        "vodmine://2932305259/30666-30906",
+        "https://www.twitch.tv/kaicenat/clip/ExquisiteInnocentGaragePoooound-mLDj-ot7Fg9JJjLA",
+        "vodmine://2932305259/30917-31157"
+      ],
+      "streamer": "kaicenat",
+      "who": [
+        "kaicenat"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 39.7,
+      "narrative_score": 0,
+      "narrative_summary": "Kai Cenat plays GTA 6 for the first time. A woman in a nightclub gets his attention, then he is in a hallway being smacked in a game that quickly turns into GTA.",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
     }
   }
 }

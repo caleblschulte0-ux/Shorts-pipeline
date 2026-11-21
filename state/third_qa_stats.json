@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261113",
-      "dry_run": false,
-      "ts": "2026-11-13T18:31:27+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 138,
-        "with_retention": 117,
-        "with_curve": 13,
-        "fetched_at": "2026-11-13T16:40:22.107384+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261113-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261113-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261114",
       "dry_run": false,
       "ts": "2026-11-14T13:01:49+00:00",
@@ -7073,6 +7021,303 @@
             }
           },
           "took_s": 20.6
+        }
+      ]
+    },
+    {
+      "date": "20261121",
+      "dry_run": false,
+      "ts": "2026-11-21T13:10:15+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 133,
+        "with_retention": 111,
+        "with_curve": 14,
+        "fetched_at": "2026-11-21T08:46:10.588826+00:00"
+      },
+      "brain": {
+        "ok": 20,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nmplol": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:forsen": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sykkuno": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261121-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261121-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.7,
+              "why": "Searched name, GTA 6, vague title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA6 reaction, but sexual content, age-r",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed GTA 6 Clip Has Chat Going Wild"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Word caption is clipped at the right edge at 14.7s ('Yeah looking')",
+                "The 7.0s frame is an empty pool scene with no person, but it is brief",
+                "The hook card sits over the shirt on the face-cam frames, which is minor and does not cover his face"
+              ]
+            }
+          },
+          "took_s": 183.1
+        },
+        {
+          "slug": "clip-20261121-3",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about 16% of the canvas height. The rest is a large blurred area. This is far below t; vision: The in-game character and the streamer webcam are tiny and har",
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "IShowSpeed searched name, visible antics",
+              "blind": false
+            },
+            "content": {
+              "score": 0.42,
+              "why": "GTA6 outfit browsing, no real event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Picks His Outfit And Says Chat Is Fired Up \ud83d\udd25"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about 16% of the canvas height. The rest is a large blurred area. This is far below t",
+                "The in-game character and the streamer webcam are tiny and hard to read on a phone. The subject is small and lost.",
+                "The blurred padding is a magnified crop of a character's body in a bodysuit. It dominates the frame and is suggestive, w",
+                "The clip is a static dressing-room menu with little action, and the hook card does not match what is visible. The framin"
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 98.6
+        },
+        {
+          "slug": "clip-20261121-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, searched name CaseOh",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "GTA 6 overpass body-dropping, dark-comed",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Warns Chat Not To Snitch After Hearing About A Homicide Report"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Face is cropped slightly at the top in some frames, and one frame (12.7s) is zoomed tighter than the rest",
+                "A large dark area sits at the bottom, with only the hook text and captions in it",
+                "The gameplay region is fairly small",
+                "Hook card and caption text do not cover the face or the main action"
+              ]
+            }
+          },
+          "took_s": 217.4
+        },
+        {
+          "slug": "clip-20261121-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261121-6",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 134,
+                "refused_shown": 6,
+                "scouted": [],
+                "vod_arcs": 336,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2926,
+                "pool_with_vod": 2037,
+                "arc_sizes": [
+                  5,
+                  3,
+                  6,
+                  4,
+                  6,
+                  5,
+                  2,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "yololaryy@momentamericansmallramendendiface-apc4bgbszgqaunls",
+                  "outcome": "already_refused",
+                  "why": "2026-11-19: director judged: not a story \u2014 The three sources are one broadcast of yololaryy promoting a spin-the-wheel for 5 subs. No spin happens in any of them. The befor"
+                },
+                {
+                  "cluster": "illojuan@momentinexpensivepricklypigfeelsbadman-ref7s7hxbfk0",
+                  "outcome": "already_refused",
+                  "why": "2026-11-20: director judged: not a story \u2014 The popular clip is 8 seconds of illojuan with the GTA V map open. His on-screen subtitles say he was banned from a chat and 'loo"
+                },
+                {
+                  "cluster": "kaicenat@momentexquisiteinnocentgaragepoooound-mldj-ot7fg9jj",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 830.8
         }
       ]
     }
