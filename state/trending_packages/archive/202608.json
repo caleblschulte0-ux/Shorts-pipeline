@@ -9474,5 +9474,515 @@
       "music_vibe": "dark",
       "bottom_theme": "auto"
     }
+  },
+  "20260822": {
+    "01_graph-airbus-overtakes-boeing.json": {
+      "format": "graph_race",
+      "slug": "graph-airbus-overtakes-boeing",
+      "title": "Airbus Overtook Boeing After The 737 MAX Crisis",
+      "hook": "Boeing's Crown Just Fell",
+      "y_label": "Commercial aircraft delivered (annual)",
+      "duration": 13,
+      "source": "Boeing and Airbus annual commercial aircraft delivery totals, from company delivery reports and SEC filings (Boeing Form 8-K delivery releases; Airbus orders-and-deliveries data), as compiled by Reuters, CNBC, AirlineGeeks and Simple Flying. Boeing: 748 (2016), 763 (2017), 806 (2018), 380 (2019), 157 (2020), 340 (2021), 480 (2022), 528 (2023). Airbus: 688 (2016), 718 (2017), 800 (2018), 863 (2019), 566 (2020), 611 (2021), 661 (2022), 735 (2023). Boeing's 2019-2020 collapse followed the 737 MAX grounding and the COVID-19 pandemic; Airbus became the world's top-selling planemaker starting in 2019.",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Boeing",
+          "color": "#003DA5",
+          "icon": "Boeing",
+          "values": [
+            748,
+            763,
+            806,
+            380,
+            157,
+            340,
+            480,
+            528
+          ]
+        },
+        {
+          "name": "Airbus",
+          "color": "#E30613",
+          "icon": "Airbus",
+          "values": [
+            688,
+            718,
+            800,
+            863,
+            566,
+            611,
+            661,
+            735
+          ]
+        }
+      ],
+      "hashtags": [
+        "boeing",
+        "airbus",
+        "737max",
+        "aircraft",
+        "aviation",
+        "airplanes",
+        "aerospace",
+        "aviationgeek",
+        "planespotting",
+        "deliveries",
+        "jets",
+        "manufacturing",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-shopify-overtakes-ebay.json": {
+      "format": "graph_race",
+      "slug": "graph-shopify-overtakes-ebay",
+      "title": "Shopify Overtook eBay In Total Sales",
+      "hook": "The New King Of E-Commerce",
+      "y_label": "Gross merchandise volume ($ billions)",
+      "duration": 13,
+      "source": "Shopify quarterly and annual shareholder letters and SEC Form 6-K filings; eBay Inc. quarterly and annual earnings releases and SEC Form 10-K filings, as compiled by Marketplace Pulse and Business Quant. Gross merchandise volume ($ billions) - Shopify: 7.7 (2015), 26.3 (2017), 61.1 (2019), 119.6 (2020), 175.4 (2021), 197.2 (2022). eBay: ~82 (2015), ~88 (2017), ~90.2 (2019), ~100.1 (2020, pandemic-boosted), ~87.4 (2021), ~73.4 (2022). Shopify's annual GMV overtook eBay's for the first time in 2020.",
+      "years": [
+        2015,
+        2017,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "series": [
+        {
+          "name": "Shopify",
+          "color": "#95BF47",
+          "icon": "Shopify",
+          "values": [
+            7.7,
+            26.3,
+            61.1,
+            119.6,
+            175.4,
+            197.2
+          ]
+        },
+        {
+          "name": "eBay",
+          "color": "#E53238",
+          "icon": "eBay",
+          "values": [
+            82,
+            88,
+            90.2,
+            100.1,
+            87.4,
+            73.4
+          ]
+        }
+      ],
+      "hashtags": [
+        "shopify",
+        "ebay",
+        "ecommerce",
+        "gmv",
+        "onlineshopping",
+        "startups",
+        "retailtech",
+        "smallbusiness",
+        "dropshipping",
+        "techstocks",
+        "entrepreneurship",
+        "business",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-modelo-overtakes-budlight.json": {
+      "format": "graph_race",
+      "slug": "graph-modelo-overtakes-budlight",
+      "title": "Modelo Just Dethroned Bud Light As America's #1",
+      "hook": "Bud Light Lost Its Crown",
+      "y_label": "Share of US beer dollar sales (%)",
+      "duration": 13,
+      "source": "Nielsen/NIQ US retail dollar sales share of the beer category, as reported by CNBC and Bump Williams Consulting analysis, Beer Marketer's Insights, and Sherwood News on Modelo Especial's rise and Bud Light's post-boycott decline; Constellation Brands SEC filings on Modelo's annual depletion (volume) growth. Approximate annual share of US beer dollar sales (%) - Bud Light: ~9.6 (2016) declining to ~7.0 (2023, after the April 2023 boycott); Modelo Especial: ~3.3 (2016) rising to ~8.7 (2023). Modelo overtook Bud Light as the top-selling beer brand by US retail dollar sales in mid-2023, ending Bud Light's roughly two-decade run atop the category.",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Bud Light",
+          "color": "#1B3E8C",
+          "icon": "Bud Light",
+          "values": [
+            9.6,
+            9.4,
+            9.2,
+            9.0,
+            8.9,
+            8.7,
+            8.5,
+            7.0
+          ]
+        },
+        {
+          "name": "Modelo Especial",
+          "color": "#FFB81C",
+          "icon": "Modelo",
+          "values": [
+            3.3,
+            3.9,
+            4.4,
+            5.0,
+            5.8,
+            6.5,
+            7.1,
+            8.7
+          ]
+        }
+      ],
+      "hashtags": [
+        "modelo",
+        "budlight",
+        "beer",
+        "beerindustry",
+        "constellationbrands",
+        "anheuserbusch",
+        "craftbeer",
+        "marketshare",
+        "boycott",
+        "drinks",
+        "mexicanbeer",
+        "business",
+        "dataviz"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "04_graph-netflix-overtakes-cable.json": {
+      "format": "graph_race",
+      "slug": "graph-netflix-overtakes-cable",
+      "title": "Netflix Just Passed Cable In Total Subscribers",
+      "hook": "Cable's Reign Just Ended",
+      "y_label": "Subscribers (millions)",
+      "duration": 13,
+      "source": "Netflix quarterly shareholder letters (UCAN region paid streaming memberships) and Leichtman Research Group's count of major US pay-TV (cable/satellite/telco) subscribers, as reported in LRG press releases and by Forbes and Fortune. Subscribers (millions) - Netflix UCAN: ~33.4 (2013), ~44.7 (2015), ~58.4 (2017), ~67.7 (2019), ~75.2 (2021), ~89.9 (2023). Major US pay-TV providers: ~94.2 (2013), ~92.9 (2015), ~89.0 (2017), ~84.0 (2019), ~74.0 (2021), ~64.9 (2023, after LRG reported major providers lost about 5 million subscribers that year). Streaming subscriber counts overtook traditional pay-TV around 2021.",
+      "years": [
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Netflix",
+          "color": "#E50914",
+          "icon": "Netflix",
+          "values": [
+            33.4,
+            44.7,
+            58.4,
+            67.7,
+            75.2,
+            89.9
+          ]
+        },
+        {
+          "name": "Cable & Pay-TV",
+          "color": "#6B7280",
+          "values": [
+            94.2,
+            92.9,
+            89.0,
+            84.0,
+            74.0,
+            64.9
+          ]
+        }
+      ],
+      "hashtags": [
+        "netflix",
+        "cabletv",
+        "streaming",
+        "cordcutting",
+        "paytv",
+        "streamingwars",
+        "television",
+        "media",
+        "subscribers",
+        "tvindustry",
+        "entertainment",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-deborah-swim-school.json": {
+      "subreddit": "entitledparents",
+      "slug": "reddit-deborah-swim-school",
+      "title": "She Name-Dropped The Owner. The Owner Was Twelve Feet Away.",
+      "script": "She knew the owner? A regular cornered me at the front desk. Her son needed to skip the six month waitlist because owner Deborah was her close friend. I said nobody skips, but I'd pass it along. She said she'd call Deborah herself. There was one problem: our owner's name is Patricia, and she was twelve feet away restocking towels. Patricia walked over, introduced herself, and asked who Deborah was. The woman went pale and mumbled about mixing up schools. Patricia calmly explained that inventing a friendship with ownership to cut a swim safety line full of children put her on our permanent do not fast track list. A wonderfully efficient list. Her son stayed at position forty one. Two weeks later, her membership got flagged for a background review nobody on staff requested. Who was Deborah supposed to impress?",
+      "shots": [
+        {
+          "phrase": "front desk",
+          "query": "reception desk lobby",
+          "image_url": "https://drive.google.com/uc?export=download&id=16wS_jpeEJdE_NPOBD3g6V0HR5SuLdTZq",
+          "media_origin": "chatgpt",
+          "media_file_id": "16wS_jpeEJdE_NPOBD3g6V0HR5SuLdTZq",
+          "media_sha256": "9e136b79a96a44901152e423f974b1679c53e605fa009a467c4d2485e41998c6",
+          "media_bytes": 1246351
+        },
+        {
+          "phrase": "six month waitlist",
+          "query": "clipboard waiting list",
+          "image_url": "https://drive.google.com/uc?export=download&id=1CppspbO8zqIK12WiaejUdc2f0sHfJ5SP",
+          "media_origin": "chatgpt",
+          "media_file_id": "1CppspbO8zqIK12WiaejUdc2f0sHfJ5SP",
+          "media_sha256": "4735cd1a50f5f3be4f95f136d4075f5769f0429db7b5f9b7836ccaca8323720d",
+          "media_bytes": 1215102
+        },
+        {
+          "phrase": "restocking towels",
+          "query": "folded pool towels stack",
+          "image_url": "https://drive.google.com/uc?export=download&id=117DafUZ__r2zfijRoktSl-iFBRh96K0t",
+          "media_origin": "chatgpt",
+          "media_file_id": "117DafUZ__r2zfijRoktSl-iFBRh96K0t",
+          "media_sha256": "a35f3744ee49eac794787c873e4bff6336c95e1fe792dc447dd399df622dbd06",
+          "media_bytes": 1757072
+        },
+        {
+          "phrase": "Patricia walked over",
+          "query": "woman walking confidently",
+          "pin_query": "Patricia",
+          "pin_context": "swim school owner real",
+          "news_query": "Patricia",
+          "news_angle": "Patricia is the actual owner of the swim school who overheard a customer name-dropping a fake owner.",
+          "image_url": "https://drive.google.com/uc?export=download&id=18jiOrKLllpm8pwaT9frAkvdahOcbn9jw",
+          "media_origin": "chatgpt",
+          "media_file_id": "18jiOrKLllpm8pwaT9frAkvdahOcbn9jw",
+          "media_sha256": "09b35f9e33dfcaadb190533d8e349b4107087378a08c02ad8063ee019fd8184b",
+          "media_bytes": 1185689
+        },
+        {
+          "phrase": "went pale and mumbled",
+          "query": "embarrassed woman looking down",
+          "image_url": "https://drive.google.com/uc?export=download&id=1fQZ5joOQ1uSShS-K2qNoI2h7PN1Ki_eA",
+          "media_origin": "chatgpt",
+          "media_file_id": "1fQZ5joOQ1uSShS-K2qNoI2h7PN1Ki_eA",
+          "media_sha256": "eb4ad3f29e62117f4a68a52a574146232a7924b2634ad23ae6f4d3493d75b54c",
+          "media_bytes": 1119138
+        },
+        {
+          "phrase": "swim safety line full of children",
+          "query": "kids swim lesson pool",
+          "image_url": "https://drive.google.com/uc?export=download&id=1WVQnrNFlhnTcehLVhX5Nx3KJsufK04tJ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1WVQnrNFlhnTcehLVhX5Nx3KJsufK04tJ",
+          "media_sha256": "d6e3b5ecbe91b0a6301710194aa4ce7eae7dc4ecde67400722611ede0f8a03fd",
+          "media_bytes": 1511585
+        },
+        {
+          "phrase": "position forty one",
+          "query": "numbered list paper",
+          "image_url": "https://drive.google.com/uc?export=download&id=1OG_t1lNGAekvs-cw9irkwkcYoFlKeqE0",
+          "media_origin": "chatgpt",
+          "media_file_id": "1OG_t1lNGAekvs-cw9irkwkcYoFlKeqE0",
+          "media_sha256": "762cd7e8ce889a4dfe0a39339ebb996a2fc97af88edf31d5beb9eda103e059cb",
+          "media_bytes": 1407268
+        },
+        {
+          "phrase": "background review",
+          "query": "office folder documents",
+          "image_url": "https://drive.google.com/uc?export=download&id=1e9yIe-Mse7V8rKdBRZRZf9TYa-15zdIl",
+          "media_origin": "chatgpt",
+          "media_file_id": "1e9yIe-Mse7V8rKdBRZRZf9TYa-15zdIl",
+          "media_sha256": "50907f2ba5ce03834d3b83794dee09fe4abfe5824c97f2811a43eabed3a24650",
+          "media_bytes": 1019555
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "someone named Deborah",
+          "text": "WHO'S DEBORAH?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "went pale",
+          "text": "BUSTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "do not fast track list",
+          "text": "BANNED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "flagged for a background review",
+          "text": "FLAGGED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "entitledparents",
+        "entitledparent",
+        "karma",
+        "swimschool",
+        "frontdesk",
+        "waitlist",
+        "customerservice",
+        "workplace",
+        "storytime",
+        "reddit",
+        "satisfying",
+        "shorts",
+        "viral",
+        "karmaisreal"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "06_reddit-gym-tuesday-cancellation.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-gym-tuesday-cancellation",
+      "title": "The Only Manager Who Could Cancel My Gym Never Showed.",
+      "script": "Why only Tuesday? My gym's contract let monthly memberships be cancelled in person with thirty days notice. The front desk said one manager processed them, in a single two hour window each week, with a specific form in a locked drawer. I returned during that exact window the following week. No manager. He missed the week after that too. A normal system. Instead of coming back a third time, I mailed a certified letter quoting the contract and filed a complaint with the state attorney general's consumer protection division, attaching the mystery-hours sign photos. Three weeks later, a corporate compliance officer apologized personally, refunded four months of fees charged after my cancellation date, and confirmed the location's cancellation policy was being rewritten chain wide. The window disappeared from every location by the following month. How expensive was that locked drawer?",
+      "shots": [
+        {
+          "phrase": "front desk",
+          "query": "gym front desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Eceo2HaUsCHI7onYFmjU65bZBol7xcVx",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Eceo2HaUsCHI7onYFmjU65bZBol7xcVx",
+          "media_sha256": "97c017ec475785853b63b86c612ac1a5139cdd2f057e61dd3d4d9b4a449125dd",
+          "media_bytes": 1204596
+        },
+        {
+          "phrase": "locked drawer",
+          "query": "locked file cabinet drawer",
+          "image_url": "https://drive.google.com/uc?export=download&id=12p37Z4f-vj6BJRPKBPS2dIIykm4hcH-V",
+          "media_origin": "chatgpt",
+          "media_file_id": "12p37Z4f-vj6BJRPKBPS2dIIykm4hcH-V",
+          "media_sha256": "dd213033bc6b109d806481098457a19827dc76487c0cd92954d711b88f7fd9cb",
+          "media_bytes": 1440379
+        },
+        {
+          "phrase": "during that exact window",
+          "query": "empty office morning",
+          "image_url": "https://drive.google.com/uc?export=download&id=1FjdrDdDE6WjvcRG0HlkejGo_qk1gQA5a",
+          "media_origin": "chatgpt",
+          "media_file_id": "1FjdrDdDE6WjvcRG0HlkejGo_qk1gQA5a",
+          "media_sha256": "17dfda7c708d00e19478e5d385c0178599412fab6442f783d3498cdb555973ba",
+          "media_bytes": 1194744
+        },
+        {
+          "phrase": "certified letter",
+          "query": "certified mail envelope",
+          "image_url": "https://drive.google.com/uc?export=download&id=10OdaJLXEXcM5juiaeEzl6g8cGmknBERE",
+          "media_origin": "chatgpt",
+          "media_file_id": "10OdaJLXEXcM5juiaeEzl6g8cGmknBERE",
+          "media_sha256": "b278bb5df662ed9cf4f68aeb1cb6a61a33092a27b23ff832e2fd0b77bef03112",
+          "media_bytes": 939103
+        },
+        {
+          "phrase": "attorney general's consumer protection division",
+          "query": "government building exterior",
+          "pin_query": "state attorney general's consumer protection division",
+          "pin_context": "government consumer protection agency office",
+          "news_query": "state attorney general's consumer protection division",
+          "news_angle": "The narrator filed a complaint with the state attorney general's consumer protection division about a gym's unfair cancellation policy.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Z1RqGxtgrn1VphcKUWn3IsXfT9uzJ7da",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Z1RqGxtgrn1VphcKUWn3IsXfT9uzJ7da",
+          "media_sha256": "3ecd7c91aa4457233388b40e34c0f6292405d04cfce0ac68a1b67e4a8d6b2572",
+          "media_bytes": 1419826
+        },
+        {
+          "phrase": "compliance officer",
+          "query": "businessperson on phone call",
+          "image_url": "https://drive.google.com/uc?export=download&id=1xEbNDJ0Oloi9Y1yp12QCCnadthhfo8iP",
+          "media_origin": "chatgpt",
+          "media_file_id": "1xEbNDJ0Oloi9Y1yp12QCCnadthhfo8iP",
+          "media_sha256": "a66ebf21888d3b3a617d3c390861eccf280010530dbc63d582bb63e7bfebe0fa",
+          "media_bytes": 1064247
+        },
+        {
+          "phrase": "refunded four months",
+          "query": "refund receipt paper",
+          "image_url": "https://drive.google.com/uc?export=download&id=1l1fW2Q6silxwhk4rT9WNgGLIlqnaWnqB",
+          "media_origin": "chatgpt",
+          "media_file_id": "1l1fW2Q6silxwhk4rT9WNgGLIlqnaWnqB",
+          "media_sha256": "c78a8bb16cfaca9c303ee7fc3c3282618c136254d59c9a658d6ff320dd31e373",
+          "media_bytes": 1216908
+        },
+        {
+          "phrase": "cancellation policy was being rewritten",
+          "query": "gym membership sign",
+          "image_url": "https://drive.google.com/uc?export=download&id=1DuRMWigw1T6atCllufepuVEnfGrM_FOI",
+          "media_origin": "chatgpt",
+          "media_file_id": "1DuRMWigw1T6atCllufepuVEnfGrM_FOI",
+          "media_sha256": "f8b4db02d12ee1ff70a317e938fc2054de7690dc56d71ea47374d21aea5fe216",
+          "media_bytes": 1156626
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "locked drawer",
+          "text": "LOCKED DRAWER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "was not there",
+          "text": "NO SHOW",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "refunded four months",
+          "text": "REFUNDED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "rewritten chain wide",
+          "text": "POLICY REWRITTEN",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "talesfromthecustomer",
+        "karma",
+        "gymmembership",
+        "consumerrights",
+        "customerservice",
+        "scam",
+        "refund",
+        "storytime",
+        "reddit",
+        "satisfying",
+        "shorts",
+        "viral",
+        "karmaisreal",
+        "corporateaccountability"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "punched_up": true
+    }
   }
 }
