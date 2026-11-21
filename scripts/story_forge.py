@@ -110,6 +110,10 @@ THEMES = {
     "travel": ["tourism", "air transport", "rail", "roads", "passengers"],
     "learning": ["school", "literacy", "education", "teachers", "pupil"],
     "work": ["labor force", "unemployment", "employment", "wage", "child labor"],
+    # 2026-11-21: the well ran down to THREE candidates (run 44833841540:
+    # "themes available: population(3)"). Gender and society indicators had
+    # no theme and no family, so a whole World Bank topic was never drawn.
+    "society": ["women", "gender", "parliament", "seats held"],
 }
 # Indicator names carrying these tokens are analyst plumbing, not a story.
 _BORING = re.compile(
@@ -121,8 +125,14 @@ _BORING = re.compile(
 # people, health, education, environment, energy, agriculture/land, tech,
 # infrastructure, tourism, labour. Everything monetary/fiscal is excluded on
 # purpose — the doctrine says this is not a finance channel.
+# SM. (migration, refugees) and SG. (gender) were missing while THEMES named
+# "migration" and "refugee" — a theme whose every indicator the family filter
+# dropped, i.e. a name looked up with a silent default. Added 2026-11-21.
 _FAMILIES = ("SP.", "SH.", "SE.", "EN.", "EG.", "AG.", "ER.", "IT.", "IS.",
-             "ST.", "SL.", "SN.", "EP.", "MS.")
+             "ST.", "SL.", "SN.", "EP.", "MS.", "SM.", "SG.")
+# A token in capitals is a catalogue code, not a word a voice can say:
+# "Immunization, DPT", "Prevalence of HIV". CO2 has a digit and is spoken.
+_ACRONYM = re.compile(r"\b[A-Z]{2,}\b")
 
 _YEAR_MIN = 1972
 
@@ -233,6 +243,22 @@ def _split_unit(name: str) -> tuple[str, str]:
     return name.strip(), ""
 
 
+def _speakable(topic: str) -> str:
+    """The World Bank names a measure 'Mortality rate, infant' and
+    'Population, total'. A person says 'infant mortality rate' and 'total
+    population'. One qualifier of at most two words after the comma is
+    turned round; anything else keeps its comma and is refused by the
+    caller. Until 2026-11-21 every comma was refused outright, which threw
+    away most of the catalogue to catch 'Immunization, DPT' — whose real
+    fault is the code, handled by `_ACRONYM`."""
+    if topic.count(",") != 1:
+        return topic
+    head, tail = (p.strip() for p in topic.split(","))
+    if not head or not tail or len(tail.split()) > 2:
+        return topic
+    return f"{tail} {head[:1].lower()}{head[1:]}"
+
+
 def candidates(used: set[str], limit: int = 90) -> dict[str, list[dict]]:
     """Theme -> unused, on-doctrine indicator specs, newest catalogue first."""
     by_theme: dict[str, list[dict]] = {}
@@ -246,11 +272,13 @@ def candidates(used: set[str], limit: int = 90) -> dict[str, list[dict]]:
         if not theme:
             continue
         topic, unit = _split_unit(name)
+        topic = _speakable(topic)
         # WATCHABLE SUBJECT ONLY. An indicator can be perfectly real and still
         # be unspeakable on a Short: "Male primary school age children
         # out-of-school" and "Immunization, DPT" are catalogue entries, not
-        # topics. Keep short, comma-free, ungendered subjects.
-        if (len(topic.split()) > 5 or "," in topic
+        # topics. Keep short, ungendered subjects with no catalogue codes.
+        if (not topic or len(topic.split()) > 5 or "," in topic
+                or _ACRONYM.search(topic)
                 or re.match(r"^(male|female)\b", topic, re.I)):
             continue
         by_theme.setdefault(theme, []).append(
