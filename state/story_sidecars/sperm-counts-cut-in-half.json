@@ -1,0 +1,52 @@
+{
+ "slug": "sperm-counts-cut-in-half",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 11,
+   "hook": 13,
+   "arc": 8,
+   "factual": 8,
+   "visual_proof": 9,
+   "payoff": 5,
+   "voice": 3
+  },
+  "total": 57,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "Beats 1 and 3 repeat the same fact (counts fell by about half or more) in a row, and the numbers don't line up. '101' has no unit, 'under half' conflicts with the 62% drop, and the 2.6% a year pace is never tied to a baseline. Rebuild it as",
+  "fp": "98e5ae2d20f99084"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Men today have about half the sperm their grandfathers did.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "In 1973, the average count was 101. By 2018 it was under half that, so grandfathers had the edge.",
+   "eyes": "a data picture (trend)",
+   "evidence": "Human Reproduction Update | Average sperm concentration, 1973 vs 2018 (million per mL) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Since 2000, counts fall 2.6% a year, more than double the old pace. The drop itself is speeding up.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Human Reproduction Update | Annual rate of sperm count decline, before vs after 2000 (percent per year) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Total sperm count fell 62%, even worse than concentration. Men now make far fewer sperm overall, not just thinner samples.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Human Reproduction Update | Decline in sperm concentration vs total sperm count, 1973-2018 (percent) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
+  },
+  {
+   "window": "closing",
+   "ears": "It's speeding up, and sperm counts matter for any family hoping to have kids.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

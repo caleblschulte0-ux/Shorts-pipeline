@@ -1,16 +1,136 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-20T15:45:05Z",
+ "updated": "2026-11-21T00:22:40Z",
  "open": [
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__b951ee81",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-21T00:22:39Z",
+   "why": [
+    "premise: brain: The claim that bleaching now recurs every two years is not a concrete, verifiable fact."
+   ],
+   "request": "exchange/rewrites/20261121/great-barrier-reef-bleaching-accelerating__b951ee81.request.json",
+   "answer_path": "exchange/rewrites/20261121/great-barrier-reef-bleaching-accelerating__b951ee81.answer.json"
+  },
   {
    "id": "gulf-dead-zone-growth__00fcbaeb",
    "slug": "gulf-dead-zone-growth",
-   "filed": "2026-11-20T15:45:05Z",
+   "filed": "2026-11-21T00:22:38Z",
    "why": [
-    "premise: brain: The title and hook contradict each other on the facts: \"more than doubled\" against a 6,705 sq mi rebound. The hook reads as a flat statistic with no named stake, villain or human consequence. It also gives no yardstick for 6,705 square miles or for what it was meant to shrink from. It is a data point, not a belief the story turns over."
+    "premise: brain: The claim about the Gulf dead zone doubling to 6,705 sq mi is not a verifiable, concrete fact without supporting evidence"
    ],
-   "request": "exchange/rewrites/20261120/gulf-dead-zone-growth__00fcbaeb.request.json",
-   "answer_path": "exchange/rewrites/20261120/gulf-dead-zone-growth__00fcbaeb.answer.json"
+   "request": "exchange/rewrites/20261121/gulf-dead-zone-growth__00fcbaeb.request.json",
+   "answer_path": "exchange/rewrites/20261121/gulf-dead-zone-growth__00fcbaeb.answer.json"
+  },
+  {
+   "id": "chess-online-boom__585373ee",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-21T00:22:38Z",
+   "why": [
+    "premise: brain: The hook is a vague, abstract summary with no concrete surprise, threat, or contradiction, and it names no human-relevant stake or a belief the viewer holds that the story would overturn."
+   ],
+   "request": "exchange/rewrites/20261121/chess-online-boom__585373ee.request.json",
+   "answer_path": "exchange/rewrites/20261121/chess-online-boom__585373ee.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__84c75f11",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-21T00:22:38Z",
+   "why": [
+    "premise: brain: The premise is vague and lacks a concrete, verifiable surprise or specific detail."
+   ],
+   "request": "exchange/rewrites/20261121/muscle-loss-after-30__84c75f11.request.json",
+   "answer_path": "exchange/rewrites/20261121/muscle-loss-after-30__84c75f11.answer.json"
+  },
+  {
+   "id": "us-height-ranking-fall__27486ff4",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-21T00:22:38Z",
+   "why": [
+    "premise: brain: It's an abstract statistical comparison with no picturable subject, villain or stake, and the hook's \"yet\" framing is a lab-result contradiction rather than a concrete surprise the viewer can see."
+   ],
+   "request": "exchange/rewrites/20261121/us-height-ranking-fall__27486ff4.request.json",
+   "answer_path": "exchange/rewrites/20261121/us-height-ranking-fall__27486ff4.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__c926fe13",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-21T00:22:37Z",
+   "why": [
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261121/freshwater-accessible__c926fe13.request.json",
+   "answer_path": "exchange/rewrites/20261121/freshwater-accessible__c926fe13.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__609ffc7e",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-21T00:22:37Z",
+   "why": [
+    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261121/frog-fungus-mass-extinction__609ffc7e.request.json",
+   "answer_path": "exchange/rewrites/20261121/frog-fungus-mass-extinction__609ffc7e.answer.json"
+  },
+  {
+   "id": "runway-near-misses-climbing__8938319a",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-21T00:22:37Z",
+   "why": [
+    "premise: brain: The claim about 23 serious runway near‑misses lacks verifiable evidence and may be inaccurate."
+   ],
+   "request": "exchange/rewrites/20261121/runway-near-misses-climbing__8938319a.request.json",
+   "answer_path": "exchange/rewrites/20261121/runway-near-misses-climbing__8938319a.answer.json"
+  },
+  {
+   "id": "tattoo-mainstream-shift__f7fc7a74",
+   "slug": "tattoo-mainstream-shift",
+   "filed": "2026-11-21T00:22:37Z",
+   "why": [
+    "premise: brain: The claim that a third of Americans are tattooed is likely inaccurate and not a verifiable concrete fact."
+   ],
+   "request": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.request.json",
+   "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__75d8b1a9",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The hook is vague and does not present a concrete, pictureable surprise or specific contradiction."
+   ],
+   "request": "exchange/rewrites/20261121/autism-diagnosis-rate-rise__75d8b1a9.request.json",
+   "answer_path": "exchange/rewrites/20261121/autism-diagnosis-rate-rise__75d8b1a9.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__a3a64c1f",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The claim relies on an unverified statistic and lacks a concrete, provable premise."
+   ],
+   "request": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.request.json",
+   "answer_path": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__cd1439f7",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about specific outbreak numbers."
+   ],
+   "request": "exchange/rewrites/20261121/cruise-ship-outbreaks-climbing__cd1439f7.request.json",
+   "answer_path": "exchange/rewrites/20261121/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__3fe10075",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The claim about viewership numbers is likely inaccurate and unverified, making the premise not concretely true."
+   ],
+   "request": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.request.json",
+   "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
   },
   {
    "id": "chip-transistor-shrink-limit__31e54fc2",
@@ -23,16 +143,6 @@
    "answer_path": "exchange/rewrites/20261120/chip-transistor-shrink-limit__31e54fc2.answer.json"
   },
   {
-   "id": "great-barrier-reef-bleaching-accelerating__b951ee81",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-20T15:45:05Z",
-   "why": [
-    "premise: brain: The claim that bleaching now returns every 2 years is not a verifiable, concrete fact."
-   ],
-   "request": "exchange/rewrites/20261120/great-barrier-reef-bleaching-accelerating__b951ee81.request.json",
-   "answer_path": "exchange/rewrites/20261120/great-barrier-reef-bleaching-accelerating__b951ee81.answer.json"
-  },
-  {
    "id": "astronaut-bone-loss__15bbbefa",
    "slug": "astronaut-bone-loss",
    "filed": "2026-11-20T15:45:04Z",
@@ -41,26 +151,6 @@
    ],
    "request": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.request.json",
    "answer_path": "exchange/rewrites/20261120/astronaut-bone-loss__15bbbefa.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__8938319a",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-20T14:27:20Z",
-   "why": [
-    "thesis: seg2 ('Where near-misses cluster') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Location clustering doesn't directly follow from the cause of incursions; it's just another fact, not a consequence of b"
-   ],
-   "request": "exchange/rewrites/20261120/runway-near-misses-climbing__8938319a.request.json",
-   "answer_path": "exchange/rewrites/20261120/runway-near-misses-climbing__8938319a.answer.json"
-  },
-  {
-   "id": "tattoo-mainstream-shift__f7fc7a74",
-   "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-20T14:27:20Z",
-   "why": [
-    "premise: brain: The claim that a third of Americans are tattooed is not a verifiable, concrete fact and likely false."
-   ],
-   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.request.json",
-   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
    "id": "divorce-rate-quiet-decline__197e2d03",
@@ -81,96 +171,6 @@
    ],
    "request": "exchange/rewrites/20261120/measles-ninety-five-rule__c11b709d.request.json",
    "answer_path": "exchange/rewrites/20261120/measles-ninety-five-rule__c11b709d.answer.json"
-  },
-  {
-   "id": "chess-online-boom__585373ee",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-20T13:11:34Z",
-   "why": [
-    "premise: brain: The premise is vague and does not present a concrete, verifiable surprise or specific claim."
-   ],
-   "request": "exchange/rewrites/20261120/chess-online-boom__585373ee.request.json",
-   "answer_path": "exchange/rewrites/20261120/chess-online-boom__585373ee.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__84c75f11",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-20T13:11:34Z",
-   "why": [
-    "premise: brain: The premise is vague and does not present a concrete, verifiable surprise or specific claim."
-   ],
-   "request": "exchange/rewrites/20261120/muscle-loss-after-30__84c75f11.request.json",
-   "answer_path": "exchange/rewrites/20261120/muscle-loss-after-30__84c75f11.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__27486ff4",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-20T13:11:34Z",
-   "why": [
-    "premise: brain: The claim about American men’s height increase and loss of global lead is vague and unverified, lacking concrete, true evidence."
-   ],
-   "request": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.request.json",
-   "answer_path": "exchange/rewrites/20261120/us-height-ranking-fall__27486ff4.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__609ffc7e",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-20T13:11:33Z",
-   "why": [
-    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
-   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a3a64c1f",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-20T13:11:32Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified statistic and lacks a concrete, universally verifiable fact."
-   ],
-   "request": "exchange/rewrites/20261120/blood-supply-three-percent__a3a64c1f.request.json",
-   "answer_path": "exchange/rewrites/20261120/blood-supply-three-percent__a3a64c1f.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__c926fe13",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-20T13:11:32Z",
-   "why": [
-    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261120/freshwater-accessible__c926fe13.request.json",
-   "answer_path": "exchange/rewrites/20261120/freshwater-accessible__c926fe13.answer.json"
-  },
-  {
-   "id": "womens-college-hoops-out-rates-men__3fe10075",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-20T13:11:32Z",
-   "why": [
-    "premise: brain: The claim about viewership numbers is unverified and not a concrete, proven fact."
-   ],
-   "request": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__3fe10075.request.json",
-   "answer_path": "exchange/rewrites/20261120/womens-college-hoops-out-rates-men__3fe10075.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__75d8b1a9",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-20T13:11:31Z",
-   "why": [
-    "premise: brain: The hook is vague and does not present a concrete, specific surprise or contradiction."
-   ],
-   "request": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__75d8b1a9.request.json",
-   "answer_path": "exchange/rewrites/20261120/autism-diagnosis-rate-rise__75d8b1a9.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__cd1439f7",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-20T13:11:31Z",
-   "why": [
-    "premise: brain: The premise is vague and lacks a concrete, verifiable claim or specific surprising detail."
-   ],
-   "request": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__cd1439f7.request.json",
-   "answer_path": "exchange/rewrites/20261120/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
   },
   {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
