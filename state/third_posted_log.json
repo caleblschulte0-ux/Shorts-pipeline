@@ -21781,13 +21781,77 @@
       "ts": "2026-11-22T11:45:21.674081+00:00"
     },
     "clip-20261122-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/uhn/clip/SmallProductiveHabaneroBibleThump-BFkAo0sNoJ4ntp0d",
-      "story_key": null,
-      "streamer": "uhn",
+      "url": "https://youtube.com/shorts/1CkIoRJBnVk",
       "title": "Uhn Asks 'Can I Clip This...?' And Chat Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-11-22T11:49:40.568360+00:00",
+      "ts": "2026-11-22T11:49:50.950609+00:00",
+      "uploaded_at": "2026-11-22T11:49:50.950628+00:00",
+      "publish_at": "2026-11-22T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261122-uhn-asks-can-i-clip-this-and-chat-loses-it-58d2479f",
+        "tiktok": "queued for 2026-11-22T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/uhn/clip/SmallProductiveHabaneroBibleThump-BFkAo0sNoJ4ntp0d",
+      "streamer": "uhn",
+      "series": "chaos",
+      "hook": "uhn asks if he can clip this \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 22170,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-zanyrealledkevinturtle-sq2mfyjhrtgfen-0": {
+      "source_url": "https://www.twitch.tv/squeex/clip/ZanyRealLEDKevinTurtle-SQ2MfYjhrtgfEN-0",
+      "streamer": "squeex",
+      "title": "Squeex Pulls Off A Crazy Speed Trick In GTA And Nails It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about one third of the 9:16 canvas, with large blurred bands above and below. It shou; vision: The rider is tiny and far from the camera in almost every frame, so he is hard to read on a phone. The renderer did not ; vision: The streamer's webcam, chat and ",
+      "ts": "2026-11-22T11:57:46.501403+00:00"
+    },
+    "rejected-oddsweettoadmvgame-gtoxlbw9qz8xclcg": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/OddSweetToadMVGame-GtoXLBw9qz8XcLCg",
+      "streamer": "caseoh_",
+      "title": "kyle 1",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Routine GTA 6 mission, dark, needs conte)",
+      "ts": "2026-11-22T11:58:16.786775+00:00"
+    },
+    "rejected-empathickathishpeanuttheringer-wv5wlbedztgn01zu": {
+      "source_url": "https://www.twitch.tv/montanablack88/clip/EmpathicKathishPeanutTheRinger-wv5wLBedZtgN01zu",
+      "streamer": "montanablack88",
+      "title": "Leute fallen auf Wutk\u00f6der Video rein",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.12 < 0.35 (German talk, eating, nothing visibly hap)",
+      "ts": "2026-11-22T12:25:47.003885+00:00"
+    },
+    "rejected-headstrongminiaturemeerkatcheffrank-nbtwhxgiztsmrthf": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/HeadstrongMiniatureMeerkatChefFrank-nbtWhXGIzTSMRThf",
+      "streamer": "ludwig",
+      "title": "accumulating insurance fraud",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-11-22T12:26:51.485758+00:00"
+    },
+    "clip-20261122-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/illojuan/clip/DignifiedAggressiveZebraCoolStoryBro-Jx6dSpRu2uUcadeI",
+      "story_key": null,
+      "streamer": "illojuan",
+      "title": "Illojuan Tells Chat 'Toma Gato' And Won't Stop Pointing At The Mouth",
+      "kind": "twitch_clip",
+      "ts": "2026-11-22T12:30:15.819982+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
