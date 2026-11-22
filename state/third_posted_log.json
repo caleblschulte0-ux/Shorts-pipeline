@@ -21926,6 +21926,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin strip, roughly 30% of the canvas height, with the rest blurred padding. It should fill about; vision: The subjects are small and far away in a very dark night scene, which is hard to read on a phone. Several frames are alm; vision: The streamer facecam overlay sit",
       "ts": "2026-11-22T12:41:45.077634+00:00"
+    },
+    "clip-20261122-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/TentativeOutstandingGoshawkImGlitch-eotur1_pZFWPlZYU",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Panics And Screams No After This Goes Horribly Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-11-22T12:50:24.392046+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
