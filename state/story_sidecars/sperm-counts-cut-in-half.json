@@ -4,18 +4,18 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 16,
-   "arc": 12,
+   "hook": 12,
+   "arc": 14,
    "factual": 12,
    "visual_proof": 12,
    "payoff": 6,
    "voice": 4
   },
-  "total": 72,
+  "total": 70,
   "fatal": [],
-  "weakest": "arc",
-  "note": "Add a stronger narrative arc that ties the statistics to personal impact, making each beat feel like a progression rather than a list of facts.",
-  "fp": "3e7a4205f721eb91"
+  "weakest": "hook",
+  "note": "Strengthen the payoff so the ending directly answers the hook’s promise and gives a clear, memorable takeaway.",
+  "fp": "d9091562b9dcd143"
  },
  "storyboard": [
   {
@@ -39,7 +39,7 @@
   {
    "window": "beat 2",
    "ears": "That acceleration reaches the whole sample: total sperm count fell 62%, not just the concentration.",
-   "eyes": "a data picture (comparison)",
+   "eyes": "substance: milky white sample fluid; cause: Data pulls the jar's tap lever down and the milky sample pours out into the sink",
    "evidence": "Human Reproduction Update | Decline in sperm concentration vs total sperm count, 1973-2018 (percent) | https://academic.oup.com/humupd/article/29/2/157/6932384 | 2026-11-05"
   },
   {

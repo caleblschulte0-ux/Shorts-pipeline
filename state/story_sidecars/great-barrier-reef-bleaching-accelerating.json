@@ -3,24 +3,26 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 9,
-   "hook": 11,
-   "arc": 10,
-   "factual": 9,
-   "visual_proof": 8,
-   "payoff": 6,
-   "voice": 3
+   "premise": 12,
+   "hook": 18,
+   "arc": 16,
+   "factual": 13,
+   "visual_proof": 12,
+   "payoff": 4,
+   "voice": 4
   },
-  "total": 56,
-  "fatal": [],
-  "weakest": "arc",
-  "note": "The script restates one idea (bleaching gap is shorter than recovery time) three times and never shows or names the reef or its consequences. Open with a concrete, visible stake, for example the reef turning white or what is lost. Then give",
-  "fp": "158e0a76319843d2"
+  "total": 79,
+  "fatal": [
+   "missing_payoff"
+  ],
+  "weakest": "payoff",
+  "note": "Provide a clear resolution that directly answers the opening hook, e.g., state the imminent risk or a call to action, so the payoff fulfills the promise.",
+  "fp": "91a44bbe83662cfb"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The Great Barrier Reef is bleaching before it can recover.",
+   "ears": "The Great Barrier Reef is bleaching again, and its recovery window is closing fast.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
@@ -32,19 +34,19 @@
   },
   {
    "window": "beat 1",
-   "ears": "The reef bleaching gap shrank to 2 years, barely leaving time to recover.",
-   "eyes": "a data picture (comparison)",
+   "ears": "The gap between bleaching events shrank to 2 years, barely leaving time to recover.",
+   "eyes": "substance: living coral branches; cause: Data plants a coral fragment for each year of recovery and each one grows into a branch",
    "evidence": "Australian Institute of Marine Science (AIMS) | Years between Great Barrier Reef mass bleaching events | https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf | 2026-11-12"
   },
   {
    "window": "beat 2",
-   "ears": "Reef recovery typically needs 10 years, far longer than the gap between bleaching events.",
+   "ears": "Recovery typically needs 10 years, far longer than the gap between bleaching events.",
    "eyes": "a data picture (comparison)",
    "evidence": "Australian Institute of Marine Science (AIMS) / NOAA Coral Reef Watch | Coral recovery time vs time actually between bleaching events | https://aims.gov.au | 2026-11-12"
   },
   {
    "window": "closing",
-   "ears": "Each reef bleaching wave now arrives before recovery can finish.",
+   "ears": "Each new bleaching wave now arrives before the reef can recover, and that threatens its future.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

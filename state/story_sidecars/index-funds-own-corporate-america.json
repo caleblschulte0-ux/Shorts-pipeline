@@ -1,0 +1,52 @@
+{
+ "slug": "index-funds-own-corporate-america",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 10,
+   "hook": 16,
+   "arc": 17,
+   "factual": 13,
+   "visual_proof": 13,
+   "payoff": 9,
+   "voice": 4
+  },
+  "total": 82,
+  "fatal": [],
+  "weakest": "premise",
+  "note": "Add a tighter personal hook in the premise—show how this hidden ownership directly impacts the viewer's wallet or daily life to boost relevance.",
+  "fp": "ac1afa95dad3833a"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Corporate America has new owners, and nobody ever voted for them.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "In 2000, index funds ran two cents of every market dollar. Today, over fifty. They didn't win a vote. They just kept buying.",
+   "eyes": "a data picture (trend)",
+   "evidence": "Morningstar / S&P Dow Jones Indices fund-flow research (approximate, compiled) | Passive index funds' share of US stock market assets | https://www.morningstar.com | 2026-10-08"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Now zoom into one big company. BlackRock, Vanguard and State Street together own twenty-two percent. The biggest active manager? Four.",
+   "eyes": "substance: lit office floors; cause: Data pulls the power lever at the tower's base and the owners' share of its floors lights up",
+   "evidence": "Academic/industry research on BlackRock, Vanguard, State Street combined holdings | Combined 'Big Three' stake vs a typical large active manager, avg S&P 500 company | https://www.sec.gov | 2026-10-08"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Vanguard alone casts nearly one in ten votes at big company shareholder meetings.",
+   "eyes": "a data picture (rank)",
+   "evidence": "Academic/industry research on index-fund proxy voting power | Share of S&P 500 annual-meeting votes cast by each 'Big Three' manager | https://www.sec.gov | 2026-10-08"
+  },
+  {
+   "window": "closing",
+   "ears": "Your index fund has a vote. You don't.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "slug": "ocean-is-changing-color",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 10,
+   "hook": 17,
+   "arc": 15,
+   "factual": 8,
+   "visual_proof": 10,
+   "payoff": 4,
+   "voice": 4
+  },
+  "total": 68,
+  "fatal": [
+   "invented_fact",
+   "missing_payoff",
+   "unrenderable_visual"
+  ],
+  "weakest": "payoff",
+  "note": "Add a clear, concrete payoff that tells viewers why the color change matters, rather than ending with an open question.",
+  "fp": "39505552dd989576"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "The ocean is quietly changing color.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "NASA satellites watched for twenty years. The result: 56% of the ocean's surface, more than half, now looks different.",
+   "eyes": "a data picture (share)",
+   "evidence": "Nature / MIT (B.B. Cael et al.) | Share of ocean surface that changed color (2002-2022) | https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712 | 2026-11-06"
+  },
+  {
+   "window": "beat 1",
+   "ears": "A 2019 climate model predicted half the ocean would shift. Satellites found a bit more, so the warning was right.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Nature / MIT (B.B. Cael et al.); model by Stephanie Dutkiewicz (2019) | Predicted vs observed share of ocean that would change color | https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712 | 2026-11-06"
+  },
+  {
+   "window": "beat 2",
+   "ears": "That's about 200 million square kilometers of ocean, bigger than all the land on Earth put together.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Nature / MIT (B.B. Cael et al.) | Area of ocean that changed color vs all land on Earth | https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712 | 2026-11-06"
+  },
+  {
+   "window": "closing",
+   "ears": "Nobody knows yet what it means for the sea life down there, or for us.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
