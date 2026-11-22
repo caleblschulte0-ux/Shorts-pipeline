@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "freshwater-accessible__fdd3d94b",
+  "slug": "freshwater-accessible",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:18:17.461Z",
+  "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
+  "hook": "Almost all freshwater disappears into oceans, ice, or deep ground.",
+  "closing": "That sliver in rivers and lakes is the water people can most easily reach.",
+  "question": "How should we protect it?",
+  "segments": [
+    {
+      "topic": "Freshwater share",
+      "say": "Freshwater is 3.5 percent of Earth's water, so a full globe becomes only a thin freshwater slice."
+    },
+    {
+      "topic": "Freshwater ice",
+      "say": "Glaciers and ice caps hold 68.7 percent of freshwater, locking most of that slice behind walls of ice."
+    },
+    {
+      "topic": "Freshwater access",
+      "say": "Rivers and lakes hold 0.007 percent of Earth's water, leaving a nearly invisible share within easy reach."
+    }
+  ]
+}
