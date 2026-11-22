@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cavendish-banana-monoculture__c839b8fc_r1",
+  "slug": "cavendish-banana-monoculture",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:25:27.245Z",
+  "title": "Panama Disease Is Chasing The One Banana The World Exports",
+  "hook": "The banana aisle depends on clones sharing one fungal weakness.",
+  "closing": "If the Cavendish falls, your cheap banana could vanish because no export backup is ready.",
+  "question": "Have you tried another variety?",
+  "segments": [
+    {
+      "topic": "Cavendish export share",
+      "say": "Nearly every banana shipped abroad, 99 percent, is a Cavendish. The global trade depends on essentially the same fruit."
+    },
+    {
+      "topic": "Cavendish variety backup",
+      "say": "Over 1,000 banana varieties exist, yet only one is exported. The world's supply has almost no backup."
+    },
+    {
+      "topic": "Cavendish disease spread",
+      "say": "Panama disease now reaches three continents, up from one in 1990. Cavendish clones share the weakness it attacks."
+    }
+  ]
+}
