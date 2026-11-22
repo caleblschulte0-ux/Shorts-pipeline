@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "usps-mail-volume-collapse__925d4c54",
+  "slug": "usps-mail-volume-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:18:17.461Z",
+  "title": "USPS Carries Nearly Half Its Peak Mail, Yet Stamps Cost More",
+  "hook": "Fewer letters made mailing one more expensive, not cheaper.",
+  "closing": "A nationwide postal network gets harder to fund as every mailbox receives less mail.",
+  "question": "What do you still mail?",
+  "segments": [
+    {
+      "topic": "USPS mail volume",
+      "say": "USPS mail fell to 109 billion pieces, leaving the network with nearly half its former traffic."
+    },
+    {
+      "topic": "USPS letter volume",
+      "say": "USPS First-Class Mail fell to 46 billion pieces, showing personal and business letters disappeared fastest."
+    },
+    {
+      "topic": "USPS stamp cost",
+      "say": "A USPS stamp reached 68 cents, so shrinking volume did not make sending a letter cheaper."
+    }
+  ]
+}
