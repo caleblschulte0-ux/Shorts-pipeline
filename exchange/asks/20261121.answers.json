@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-ask-answers/v1",
+  "answers": {
+    "24bc37c43d6bdbd8": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise makes a concrete, consequential claim about a greater-than-50% decline and adds the accelerating pace as a clear threat.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-22T12:18:17.461Z"
+    },
+    "833e626379166451": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":true},\"why\":{}}",
+      "by": "chatgpt",
+      "at": "2026-11-22T12:18:17.461Z"
+    },
+    "f179ce08c1dacd81": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":17,\"arc\":17,\"factual\":12,\"visual_proof\":10,\"payoff\":9,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Replace the two generic comparison pictures with concrete sperm-sample visuals that physically show the accelerating decline and total-output drop.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-22T12:18:17.461Z"
+    },
+    "54bc8986f67aee34": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-22T12:18:17.461Z"
+    }
+  }
+}
