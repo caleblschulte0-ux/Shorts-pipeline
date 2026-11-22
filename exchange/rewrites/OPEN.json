@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-22T12:24:50Z",
+ "updated": "2026-11-22T12:27:23Z",
  "open": [
   {
    "id": "us-height-ranking-fall__b3299d80",
@@ -11,108 +11,6 @@
    ],
    "request": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.request.json",
    "answer_path": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.answer.json"
-  },
-  {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-22T10:05:35Z",
-   "why": [
-    "thesis: seg1 ('Education: crowded classrooms') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: Discusses Guinea-Bissau classrooms, not supporting India's secondary pupil count.",
-    "thesis: seg2 ('Education spending') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: Focuses on overall education spending, unrelated to India's pupil numbers.",
-    "thesis: seg3 ('Education: female literacy') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: Mentions female literacy rates, which do not explain India's secondary pupil lead."
-   ],
-   "request": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.request.json",
-   "answer_path": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.answer.json"
-  },
-  {
-   "id": "chess-online-boom__820d9076",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-22T10:05:34Z",
-   "why": [
-    "premise: brain: The hook is vague and the beats just list stats without a concrete, surprising or visualizable contradiction or scale for the viewer."
-   ],
-   "request": "exchange/rewrites/20261122/chess-online-boom__820d9076.request.json",
-   "answer_path": "exchange/rewrites/20261122/chess-online-boom__820d9076.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__2c93aff5",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-11-22T10:05:34Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or stakes for the viewer."
-   ],
-   "request": "exchange/rewrites/20261122/gulf-dead-zone-growth__2c93aff5.request.json",
-   "answer_path": "exchange/rewrites/20261122/gulf-dead-zone-growth__2c93aff5.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__925d4c54",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-11-22T10:05:34Z",
-   "why": [
-    "premise: brain: The pitch merely states a volume drop without a clear, vivid surprise, threat, or contrast that gives the viewer a compelling stake."
-   ],
-   "request": "exchange/rewrites/20261122/usps-mail-volume-collapse__925d4c54.request.json",
-   "answer_path": "exchange/rewrites/20261122/usps-mail-volume-collapse__925d4c54.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__8938319a",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-22T10:05:33Z",
-   "why": [
-    "thesis: seg2 ('Where near-misses cluster') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Introduces a new fact about location clustering rather than a direct consequence of the previous cause explanation, brea"
-   ],
-   "request": "exchange/rewrites/20261122/runway-near-misses-climbing__8938319a.request.json",
-   "answer_path": "exchange/rewrites/20261122/runway-near-misses-climbing__8938319a.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__a5ebb426",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-22T10:05:33Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a clear, compelling surprise or stake for viewers, offering only generic statistics without a vivid hook."
-   ],
-   "request": "exchange/rewrites/20261122/muscle-loss-after-30__a5ebb426.request.json",
-   "answer_path": "exchange/rewrites/20261122/muscle-loss-after-30__a5ebb426.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__217e54bc",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-22T10:05:33Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, surprising stake for viewers; it merely states a general trend without a specific, picture‑able conflict."
-   ],
-   "request": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__217e54bc.request.json",
-   "answer_path": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__217e54bc.answer.json"
-  },
-  {
-   "id": "tattoo-mainstream-shift__f7fc7a74",
-   "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-22T10:05:32Z",
-   "why": [
-    "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Discusses multiple tattoos, not the proportion of Americans with any tattoo, and doesn't follow logically from the previ"
-   ],
-   "request": "exchange/rewrites/20261122/tattoo-mainstream-shift__f7fc7a74.request.json",
-   "answer_path": "exchange/rewrites/20261122/tattoo-mainstream-shift__f7fc7a74.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__fdd3d94b",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-22T10:05:32Z",
-   "why": [
-    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261122/freshwater-accessible__fdd3d94b.request.json",
-   "answer_path": "exchange/rewrites/20261122/freshwater-accessible__fdd3d94b.answer.json"
-  },
-  {
-   "id": "library-digital-shift__af6508e8",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-22T10:05:32Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer."
-   ],
-   "request": "exchange/rewrites/20261122/library-digital-shift__af6508e8.request.json",
-   "answer_path": "exchange/rewrites/20261122/library-digital-shift__af6508e8.answer.json"
   },
   {
    "id": "great-barrier-reef-bleaching-accelerating__59f5434d",
@@ -206,16 +104,6 @@
    "answer_path": "exchange/rewrites/20261121/moon-drifting-away__653a5ccc_r3.answer.json"
   },
   {
-   "id": "frog-freezes-and-revives__ef8ed986",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-21T14:49:26Z",
-   "why": [
-    "premise: brain: It is a flat, searchable fact built on a statistic, and it names no surprise the viewer can picture or belief it turns over (like \"frogs turn into ice and come back to life\"). Even though the claim is true, the hook is just the title restated with a number."
-   ],
-   "request": "exchange/rewrites/20261121/frog-freezes-and-revives__ef8ed986.request.json",
-   "answer_path": "exchange/rewrites/20261121/frog-freezes-and-revives__ef8ed986.answer.json"
-  },
-  {
    "id": "gps-einstein-fix__c2b1ca22",
    "slug": "gps-einstein-fix",
    "filed": "2026-11-21T14:49:26Z",
@@ -236,6 +124,48 @@
    "answer_path": "exchange/rewrites/20261121/astronaut-bone-loss__15bbbefa.answer.json"
   },
   {
+   "id": "library-digital-shift__af6508e8",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-21T14:49:25Z",
+   "why": [
+    "premise: brain: It's a vague, descriptive statement of a mundane shift (buildings emptied, borrowing moved online) with no surprise, threat, or contradiction that overturns a belief, and the hook doesn't even use the 739 million figure to give scale."
+   ],
+   "request": "exchange/rewrites/20261121/library-digital-shift__af6508e8.request.json",
+   "answer_path": "exchange/rewrites/20261121/library-digital-shift__af6508e8.answer.json"
+  },
+  {
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-21T13:21:28Z",
+   "why": [
+    "thesis: seg1 ('Education: crowded classrooms') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: Switches to Guinea-Bissau and college education, not India's secondary education.",
+    "thesis: seg2 ('Education spending') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: No specific country, does not relate to India's secondary education or logically follow the previous beat.",
+    "thesis: seg3 ('Education: female literacy') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: No specific country, does not relate to India's secondary education or logically follow the previous beat."
+   ],
+   "request": "exchange/rewrites/20261121/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.request.json",
+   "answer_path": "exchange/rewrites/20261121/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.answer.json"
+  },
+  {
+   "id": "chess-online-boom__820d9076",
+   "slug": "chess-online-boom",
+   "filed": "2026-11-21T13:21:27Z",
+   "why": [
+    "premise: brain: The hook is vague and unverified, lacking a concrete, true surprise about a specific event."
+   ],
+   "request": "exchange/rewrites/20261121/chess-online-boom__820d9076.request.json",
+   "answer_path": "exchange/rewrites/20261121/chess-online-boom__820d9076.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__2c93aff5",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-11-21T13:21:27Z",
+   "why": [
+    "premise: brain: The claim about the Gulf dead zone rebounding lacks a verifiable, concrete fact and may be misleading."
+   ],
+   "request": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.request.json",
+   "answer_path": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.answer.json"
+  },
+  {
    "id": "chip-transistor-shrink-limit__614b1d40",
    "slug": "chip-transistor-shrink-limit",
    "filed": "2026-11-21T13:21:26Z",
@@ -246,6 +176,16 @@
    "answer_path": "exchange/rewrites/20261121/chip-transistor-shrink-limit__614b1d40.answer.json"
   },
   {
+   "id": "muscle-loss-after-30__a5ebb426",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-11-21T13:21:26Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about muscle mass dropping to exactly 65% by age 80."
+   ],
+   "request": "exchange/rewrites/20261121/muscle-loss-after-30__a5ebb426.request.json",
+   "answer_path": "exchange/rewrites/20261121/muscle-loss-after-30__a5ebb426.answer.json"
+  },
+  {
    "id": "sperm-counts-cut-in-half__88a02a18",
    "slug": "sperm-counts-cut-in-half",
    "filed": "2026-11-21T13:21:26Z",
@@ -254,6 +194,36 @@
    ],
    "request": "exchange/rewrites/20261121/sperm-counts-cut-in-half__88a02a18.request.json",
    "answer_path": "exchange/rewrites/20261121/sperm-counts-cut-in-half__88a02a18.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__fdd3d94b",
+   "slug": "freshwater-accessible",
+   "filed": "2026-11-21T13:21:25Z",
+   "why": [
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.request.json",
+   "answer_path": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.answer.json"
+  },
+  {
+   "id": "runway-near-misses-climbing__8938319a",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-21T00:22:37Z",
+   "why": [
+    "premise: brain: The claim about 23 serious runway near‑misses lacks verifiable evidence and may be inaccurate."
+   ],
+   "request": "exchange/rewrites/20261121/runway-near-misses-climbing__8938319a.request.json",
+   "answer_path": "exchange/rewrites/20261121/runway-near-misses-climbing__8938319a.answer.json"
+  },
+  {
+   "id": "tattoo-mainstream-shift__f7fc7a74",
+   "slug": "tattoo-mainstream-shift",
+   "filed": "2026-11-21T00:22:37Z",
+   "why": [
+    "premise: brain: The claim that a third of Americans are tattooed is likely inaccurate and not a verifiable concrete fact."
+   ],
+   "request": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.request.json",
+   "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
    "id": "blood-supply-three-percent__a3a64c1f",
@@ -304,6 +274,16 @@
    ],
    "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__ef8ed986",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-19T00:50:05Z",
+   "why": [
+    "premise: brain: It's a bare, number-led fun fact (\"survive with 65% frozen\") that names the subject but doesn't turn over a belief, state a stake or threat, or promise a payoff the viewer can picture."
+   ],
+   "request": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.request.json",
+   "answer_path": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.answer.json"
   },
   {
    "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
