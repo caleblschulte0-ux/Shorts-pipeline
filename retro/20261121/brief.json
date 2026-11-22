@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261121",
-  "generated_at": "2026-11-21T23:30:59Z",
+  "generated_at": "2026-11-22T00:31:04Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 58.76,
+          "days": 58.8,
           "samples": 3,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 57.76,
+          "days": 57.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -410,63 +410,63 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-11-21T21:15:33.036897+00:00",
+      "fetched_at": "2026-11-21T23:33:07.824084+00:00",
       "today": [],
       "last_7d": {
-        "videos": 11,
-        "total_views": 2146,
-        "median_views": 59.0,
-        "median_vph": 0.8199,
+        "videos": 10,
+        "total_views": 2135,
+        "median_views": 91.0,
+        "median_vph": 1.2124,
         "best": "Why Saffron Costs More Than Any Spice On Earth",
         "worst": "A Neutron Star Is Only 20 Kilometers Wide"
       },
       "last_30d": {
         "videos": 64,
-        "total_views": 24970,
+        "total_views": 24975,
         "median_views": 202.0,
-        "median_vph": 0.5862,
+        "median_vph": 0.5832,
         "best": "Why Saffron Costs More Than Any Spice On Earth",
         "worst": "Early Peanut Eating Cut Allergies To 1.9%"
       },
       "all_time_summary": {
         "total_videos": 147,
-        "total_views": 37861,
+        "total_views": 37866,
         "avg_views_per_video": 257.6,
         "median_views_per_hour": 0.14,
         "top_5_by_vph": [
           {
             "title": "Why Saffron Costs More Than Any Spice On Earth",
-            "views_per_hour": 7.15,
+            "views_per_hour": 7.05,
             "views": 1164,
-            "age_hours": 162.8,
+            "age_hours": 165.1,
             "url": "https://youtube.com/shorts/YkCTmRkK4ko"
           },
           {
             "title": "Every Banana You Eat Is a Clone, and It's Dying",
-            "views_per_hour": 5.32,
+            "views_per_hour": 5.26,
             "views": 1028,
-            "age_hours": 193.2,
+            "age_hours": 195.5,
             "url": "https://youtube.com/shorts/hIG4Isw-0JY"
           },
           {
             "title": "14.3% of Americans Have Money States Must Return",
-            "views_per_hour": 4.7,
+            "views_per_hour": 4.64,
             "views": 798,
-            "age_hours": 169.7,
+            "age_hours": 172.0,
             "url": "https://youtube.com/shorts/Edm7ErtqcBA"
           },
           {
             "title": "20 States Now Let You Use A Digital ID At The Airport",
-            "views_per_hour": 3.14,
+            "views_per_hour": 3.12,
             "views": 1143,
-            "age_hours": 364.3,
+            "age_hours": 366.6,
             "url": "https://youtube.com/shorts/7Zd2kuA7guE"
           },
           {
             "title": "California Condors Rebounded From Just 27 Birds",
-            "views_per_hour": 3.02,
+            "views_per_hour": 3.0,
             "views": 1037,
-            "age_hours": 343.4,
+            "age_hours": 345.7,
             "url": "https://youtube.com/shorts/0xACp2wcCNw"
           }
         ],
@@ -475,35 +475,35 @@
             "title": "Early Peanut Eating Cut Allergies To 1.9%",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 483.0,
+            "age_hours": 485.3,
             "url": "https://youtube.com/shorts/YfhcpGsV-AE"
           },
           {
             "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 549.8,
+            "age_hours": 552.1,
             "url": "https://youtube.com/shorts/qERI9Ut_q-U"
           },
           {
             "title": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan.",
             "views_per_hour": 0.0,
             "views": 4,
-            "age_hours": 863.4,
+            "age_hours": 865.7,
             "url": "https://youtube.com/shorts/setNAr0rXII"
           },
           {
             "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 1056.5,
+            "age_hours": 1058.8,
             "url": "https://youtube.com/shorts/aCtti_E5Nqo"
           },
           {
             "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 1247.9,
+            "age_hours": 1250.2,
             "url": "https://youtube.com/shorts/cY4-tgGIir4"
           }
         ],
@@ -618,8 +618,8 @@
       },
       "band_sample_sizes": {
         "1-3d": 1,
-        "1-4w": 49,
-        "3-7d": 10,
+        "1-4w": 50,
+        "3-7d": 9,
         "4w+": 87
       },
       "thin_bands": [
@@ -649,7 +649,7 @@
         "72h": {
           "all_formats": {
             "n": 1,
-            "median_vph": 2.1456,
+            "median_vph": 2.0844,
             "median_views": 168.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/1",
@@ -658,7 +658,7 @@
           "by_format": {
             "other_topic": {
               "n": 1,
-              "median_vph": 2.1456,
+              "median_vph": 2.0844,
               "median_views": 168.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/1",
@@ -677,8 +677,8 @@
         "7d": {
           "all_formats": {
             "n": 6,
-            "median_vph": 1.1004,
-            "median_views": 195.5,
+            "median_vph": 2.2637,
+            "median_views": 377.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/6",
             "enough_to_judge": true
@@ -686,8 +686,8 @@
           "by_format": {
             "other_topic": {
               "n": 5,
-              "median_vph": 0.3822,
-              "median_views": 66.0,
+              "median_vph": 1.7966,
+              "median_views": 325.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/5",
               "enough_to_judge": true
@@ -698,7 +698,7 @@
             },
             "unknown": {
               "n": 1,
-              "median_vph": 7.1499,
+              "median_vph": 7.0503,
               "median_views": 1164.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/1",
@@ -710,33 +710,33 @@
       "mature_enough_to_judge": [
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 7.1499,
+          "vph": 7.0503,
           "fmt": "unknown",
-          "age_hours": 162.8
+          "age_hours": 165.1
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 5.3209,
+          "vph": 5.2583,
           "fmt": "unknown",
-          "age_hours": 193.2
+          "age_hours": 195.5
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 4.7024,
+          "vph": 4.6395,
           "fmt": "other_topic",
-          "age_hours": 169.7
+          "age_hours": 172.0
         },
         {
           "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 3.1375,
+          "vph": 3.1178,
           "fmt": "other_topic",
-          "age_hours": 364.3
+          "age_hours": 366.6
         },
         {
           "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 3.0198,
+          "vph": 2.9997,
           "fmt": "other_topic",
-          "age_hours": 343.4
+          "age_hours": 345.7
         }
       ],
       "worst_mature": [
@@ -744,31 +744,31 @@
           "title": "Early Peanut Eating Cut Allergies To 1.9%",
           "vph": 0.0,
           "fmt": "other_topic",
-          "age_hours": 483.0
+          "age_hours": 485.3
         },
         {
           "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
           "vph": 0.0009,
           "fmt": "other_topic",
-          "age_hours": 1056.5
+          "age_hours": 1058.8
         },
         {
           "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
           "vph": 0.0016,
           "fmt": "other_topic",
-          "age_hours": 1247.9
+          "age_hours": 1250.2
         },
         {
           "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
           "vph": 0.0018,
           "fmt": "other_topic",
-          "age_hours": 549.8
+          "age_hours": 552.1
         },
         {
           "title": "Colon Cancer Screening Age Just Dropped From 50 To 45",
           "vph": 0.0044,
           "fmt": "other_topic",
-          "age_hours": 1366.1
+          "age_hours": 1368.4
         }
       ]
     },
@@ -1513,7 +1513,7 @@
     "arms": {
       "3d": {
         "n": 3,
-        "median_percentile": 95.0,
+        "median_percentile": 94.4,
         "thin": true
       },
       "current": {
@@ -1523,7 +1523,7 @@
       },
       "illustrated": {
         "n": 121,
-        "median_percentile": 52.0,
+        "median_percentile": 51.1,
         "thin": false
       }
     },
@@ -1538,10 +1538,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "0026c30",
-    "commits_since": "2026-11-20",
+    "head": "2dcbb60",
+    "commits_since": "2026-11-21",
     "commit_count": 50,
     "commits": [
+      "2dcbb60 claim: mailbox verdicts 2026-11-21T23:47Z [skip ci]",
+      "7d375d4 explainer: update posted log + analytics [skip ci]",
+      "264fc8a retro: brief + triage for 20261121 [skip ci]",
       "0026c30 claim: mailbox verdicts 2026-11-21T22:48Z [skip ci]",
       "6ff8657 claim: mailbox verdicts 2026-11-21T21:47Z [skip ci]",
       "4bae75f explainer: update posted log + analytics [skip ci]",
@@ -1578,10 +1581,7 @@
       "0258161 third: checkpoint posted log (claim upload slot) [skip ci]",
       "43b545c third: checkpoint posted log (claim upload slot) [skip ci]",
       "fff4c7b third: analytics [skip ci]",
-      "4cb0e4f third: update posted log + analytics [skip ci]",
-      "29d0244 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "36aba83 exchange: record 20261121 verified production shortfall",
-      "7e95faf watchdog: chatgpt task verdicts 20261121 [skip ci]"
+      "4cb0e4f third: update posted log + analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1913,8 +1913,8 @@
       "test_youtube_duplicates.py"
     ],
     "open_ticket_docs": [
-      "ENGINE_REGISTRY.md",
-      "MEDIA_ACQUISITION.md"
+      "MEDIA_ACQUISITION.md",
+      "ENGINE_REGISTRY.md"
     ]
   },
   "channel_contract": {
