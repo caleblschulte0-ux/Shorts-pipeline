@@ -1,0 +1,207 @@
+{
+ "rounds": 14,
+ "shots": {
+  "1": {
+   "BODY": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-22 06:31Z",
+      "round": 14,
+      "said": "HARD: BODY/BROKEN, frames ~1-40 (rows 1-5): the hat and the top of his head press against or are cut by the top edge during the walk and the shock, so the hat flying up and dropping back on is clipped and hard to read"
+     }
+    ]
+   },
+   "BROKEN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-21 03:36Z",
+      "round": 2,
+      "said": "hard (one judge only): BROKEN: on the second strike (row 4, frames 4-5, frames ~28-29 counting from 1) the hat and head suddenly jump toward the lens. The hat swells, turns paler and is cut off at the top of the frame, then snaps back to normal size in frame 6. Even with the in-betweens shown it reads as a pop or camera glitch, not a planned move."
+     },
+     {
+      "at": "2026-11-21 06:20Z",
+      "round": 4,
+      "said": "HARD: BROKEN: pop between frames 29 and 30. In 29 Data is full-body and small in the middle of the frame. In 30, one grid step later (about 0.13 s), the camera has jumped to waist-up, his legs are cut off, and his hat is suddenly larger, lower and tilted forward. No in-between frames show a move, so on a phone it reads as a jump cut inside the shot, not a push-in."
+     },
+     {
+      "at": "2026-11-21 08:40Z",
+      "round": 5,
+      "said": "HARD: BROKEN: the lightning bolts are flat, bright white 2D strokes drawn on top of everything, including Data himself. In row 1 frames 4-6 and 8, row 2 frames 4-5 and row 5 frames 5-8 the bolts cover his body and face, and they never touch the ground at a believable depth. They read as a scribbled overlay, not strikes on the crest."
+     },
+     {
+      "at": "2026-11-21 09:43Z",
+      "round": 6,
+      "said": "HARD: BROKEN: the background lightning is flat bright-white 2D squiggles pasted in front of the fence and mountains, often at the left frame edge, with no depth, sky origin or light on the scene (row 1 frames 1, 5-8; row 5 frames 1-6). Row 3 frames 7-8 show a huge white beam sweeping across the foreground near the lens, which reads as a render glitch"
+     },
+     {
+      "at": "2026-11-21 10:53Z",
+      "round": 7,
+      "said": "hard (one judge only): BROKEN: the 'web of bolts' over the far hills (frames 30-33, 4th row cols 6-8 and 5th row col 1) is the same jagged bolt stamped side by side in an even row across the top of the frame, like wallpaper. It reads as a tiled overlay, not a sky lighting up, and it is the shot's climax beat"
+     },
+     {
+      "at": "2026-11-22 00:28Z",
+      "round": 10,
+      "said": "HARD: BROKEN, row 3 frames 6-8 and row 4 frames 1-8: soft dark round blobs float in the sky around the tower. They read as render smudges, not smoke coming off the board, and the board itself never visibly pours smoke."
+     },
+     {
+      "at": "2026-11-22 01:09Z",
+      "round": 11,
+      "said": "HARD: BROKEN: sky pop on frame 7 (row 1, col 7). For one frame the whole sky changes to a dark orange-lit cloud deck, then snaps back to flat grey on frame 8. It reads as a lighting or sky swap glitch, not a flash."
+     },
+     {
+      "at": "2026-11-22 02:37Z",
+      "round": 12,
+      "said": "hard (one judge only): BROKEN: a small cracked, cookie-like 'granite block' pops into existence beside Data's foot at the moment of the first strike (row 1 frame 8, then row 2 frame 1). Nothing stands at that spot in row 1 frames 5-7, so it reads as an object appearing from nowhere, not as a rock the bolt hits."
+     },
+     {
+      "at": "2026-11-22 04:17Z",
+      "round": 13,
+      "said": "HARD: BROKEN: row 2, around frames 14-15. The whole sky jumps from orange to a dark grey deck between neighbouring frames with no bolt to motivate the change. It reads as a lighting pop, not a flash."
+     },
+     {
+      "at": "2026-11-22 06:31Z",
+      "round": 14,
+      "said": "HARD: BROKEN (probable), frame ~13 (row 2, col 5): the framing jumps closer as the first bolt hits, with no in-between frames. It reads as a jump cut or camera pop, not a push-in"
+     }
+    ]
+   },
+   "CONSEQUENCE": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-21 08:40Z",
+      "round": 5,
+      "said": "HARD: CONSEQUENCE: the scorches don't form a dotted trail chasing his heels. They appear off to his side, one or two at a time (row 2 frames 1-8, row 3), rather than right behind his feet one after another. In the final pose (row 7) only a couple of scattered marks sit at the frame edges, so 'the trail leads back along the crest' never reads."
+     },
+     {
+      "at": "2026-11-21 09:43Z",
+      "round": 6,
+      "said": "HARD: CONSEQUENCE: there is never a dotted trail of glowing scorches chasing him along the crest. Bolts land beside him or in front of him and leave one or two marks, not a chain behind his heels (rows 1-2, and the end in rows 6-7 shows no glowing trail leading back along the crest)"
+     },
+     {
+      "at": "2026-11-22 00:28Z",
+      "round": 10,
+      "said": "HARD: CONSEQUENCE: the lightning he is counting is never seen. Across frames 1-32 the sky is a static, evenly lit cloud deck with no bolts, no strobing and no valley flashes, so the count has no cause on screen."
+     },
+     {
+      "at": "2026-11-22 01:09Z",
+      "round": 11,
+      "said": "HARD: CONSEQUENCE: the board never pours smoke before the flaps blow (frames 25-32 show debris but no smoke). In the last frames the hat never tips down over his eyes (frames 29-32 are clear-eyed and the hat sits normally). The planned payoff beat is missing."
+     }
+    ]
+   },
+   "NO PAYOFF": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-22 00:28Z",
+      "round": 10,
+      "said": "HARD: NO PAYOFF beat landed: the hat never tips down over his eyes (frames 29-32 hat still on top of head), and in frames 31-32 he drifts into the right frame edge with half his face cut instead of a clean deadpan look to camera."
+     }
+    ]
+   },
+   "NOT THE POINT": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-21 08:40Z",
+      "round": 5,
+      "said": "HARD: NOT THE POINT / CONSEQUENCE: the leap never happens. A bolt hits the block in row 4 frame 5, and in row 4 frames 6-8 and row 5 frames 1-3 sparks and a scorch bloom right at his feet, but his feet never leave the ground. No take-off, no tucked airborne arc with arms flung out, no landing; he just walks through the strike. The shot's centrepiece beat is missing even with the in-between frames "
+     },
+     {
+      "at": "2026-11-21 09:43Z",
+      "round": 6,
+      "said": "HARD: NOT THE POINT: the hero action is a SPRINT, but Data walks or jogs. Knees stay low, arms are held mostly still, the coat never flaps, and the camera keeps him at the same size the whole time, so a viewer reads a stroll with lightning, not a run for his life (all of rows 1-3 and rows 5-6)"
+     },
+     {
+      "at": "2026-11-22 00:28Z",
+      "round": 10,
+      "said": "HARD: NOT THE POINT / CONSEQUENCE, all 32 frames: there is no lightning anywhere in the shot. The sky is an evenly lit cloud deck with no strobing and no far bolts, getting faster or otherwise. The board counts up 0023\u21920130s, but a viewer never sees the flashes it is counting, so the cause behind 'cranks faster because the sky flashes faster' is missing and the board reads as a random number count"
+     },
+     {
+      "at": "2026-11-22 06:31Z",
+      "round": 14,
+      "said": "HARD: NOT THE POINT (the strike itself): frames ~13-40. The strike's white glow and sparks blow out the front of his body, so the rigid, up-on-his-toes, arms-flung-out shock pose and the hat flying up and dropping back on can't be read. On a phone it's a white smear on Data, not a man being jolted."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-21 05:32Z",
+      "round": 3,
+      "said": "HARD: NOT THE WORLD, frames 1-36: there is no narrow crest, no steep drop on either side and no hazy valley far below. Data walks on a wide, flat slab of cracked rock that looks like a patio, with a rope fence on the far side. Behind it are smooth, dark, untextured hill shapes that look like a cut-out stage backdrop. The old oak shows only as a sliver at the right edge in frames 1-2, and the steel"
+     },
+     {
+      "at": "2026-11-21 08:40Z",
+      "round": 5,
+      "said": "HARD: NOT THE WORLD: the crest doesn't look like a narrow, steep bare-granite ridge. It reads as a broad, flat stage with a rope fence. The pines are simple dark low-poly cones, and there's no steep drop or hazy valley far below. The lookout tower shows only as a sliver in frame 1, then disappears."
+     },
+     {
+      "at": "2026-11-21 13:06Z",
+      "round": 9,
+      "said": "HARD: NOT THE WORLD, every frame: the 'valley' behind the ridge is a few flat, evenly grey layered hill silhouettes, like stage flats or cut-outs. There is no hazy depth, no pines falling away below and no steep drop at the crest edge, so the ridge reads as a rock platform in front of a painted backdrop, not a mountain crest"
+     },
+     {
+      "at": "2026-11-22 00:28Z",
+      "round": 10,
+      "said": "HARD: NOT THE WORLD, all frames: the background is flat grey mountain silhouette cards and a dark cut-out tree line. There is no steep pine slope dropping off the crest, no layers of haze, no lit valley far below and no fence line. Behind the rock the ridge looks like a stage backdrop, not a real mountain crest."
+     },
+     {
+      "at": "2026-11-22 01:09Z",
+      "round": 11,
+      "said": "HARD: NOT THE WORLD: the foreground is a huge, smooth, cracked dome of rock filling the bottom third in every frame. It looks like a toy prop, not a narrow, rough granite crest. There is no fence line, no pine slope dropping off the edge, no layers of haze and no lit valley far below. The tower and mountains stand like a backdrop behind a stage."
+     },
+     {
+      "at": "2026-11-22 04:17Z",
+      "round": 13,
+      "said": "HARD: NOT THE WORLD: there is no slope of pines dropping away past the crest edge and no hazy valley floor with lit cabins anywhere on the sheet. The backdrop reads as a wall of jagged rock close behind him, so the narrow ridge with the ground falling away is never sold"
+     },
+     {
+      "at": "2026-11-22 06:31Z",
+      "round": 14,
+      "said": "HARD: NOT THE WORLD: frames 1-125. The camera never shows the crest as a narrow ridge with a drop on either side. The ground reads as a flat field of broken rock. The tower is small and shows on only a few frames (~49-56), and there are no jagged peaks fading into haze. It doesn't read as a ridge-top in a mountain park."
+     }
+    ]
+   },
+   "ONE-SECOND GAG": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-22 00:28Z",
+      "round": 10,
+      "said": "HARD: ONE-SECOND GAG: frames 1-22 (about 3 seconds) are the same small cranking pose with only the digits changing. There is no visible heave of the body and no growing arc. The escalation lives only in the numbers."
+     },
+     {
+      "at": "2026-11-22 04:17Z",
+      "round": 13,
+      "said": "HARD: ONE-SECOND GAG / CONSEQUENCE: the second strike (rows 7-8) lands, but the hotfoot it should cause never reads. Through rows 9-12 (about frames 65-96, roughly 4.5 s) Data stands almost square to camera with his arms at his sides while a small spark/smoke patch sits at the lower left. There are no five clear hops from foot to foot, heels never come up, there are no fists, and his shoes are not"
+     },
+     {
+      "at": "2026-11-22 06:31Z",
+      "round": 14,
+      "said": "HARD: ONE-SECOND GAG, frames ~85-125 (rows 11-16): after the sky-web flash he just stands square to the lens. The only new thing is the curl of smoke off the hat, so the last ~6 s keep repeating 'he's stunned' without building anything"
+     }
+    ]
+   },
+   "TALKING HEAD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-22 04:17Z",
+      "round": 13,
+      "said": "HARD: TALKING HEAD: rows 13-16 (about frames 97-125). Data faces us dead-on and is framed tighter, close to waist-up, as the camera drifts in and parks. He does little beyond the cringe. The hat smoke curl is small and the bolt web is up in the sky behind his head, so the ending reads as a picture of him rather than an event."
+     },
+     {
+      "at": "2026-11-22 06:31Z",
+      "round": 14,
+      "said": "HARD: TALKING HEAD: frames ~57-125 (about the back half of the shot). The camera sits parked on Data facing us, framed from about the knees up, while he does little more than small flinches. The bolts behind him change, but he doesn't. It reads as a picture of a character with weather behind him, not a scene happening."
+     }
+    ]
+   }
+  }
+ }
+}

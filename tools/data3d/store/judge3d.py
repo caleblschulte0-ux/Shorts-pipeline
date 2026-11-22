@@ -110,6 +110,13 @@ if os.environ.get("STORY", "checkout") != "checkout" and _story.exists() and jso
     # a story with its own world is graded on that world: only Data's design is approved, never its sets
     BAR = BAR.replace("the sets, lighting and Data's design are approved: never grade those", "Data's design is approved: never grade it")
     BAR = BAR.replace("the store set, its floor and lighting, and Data's design are approved: never\ngrade those", "Data's design is approved: never grade it")
+# THE LOOK BIBLE and THE NOTES LEDGER (2026-11-22): every judge grades against all of caaleb's rulings and the frames
+# he approved, not only the shot's own line; and a note the panel named before is put back in front of it by name
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import look_bible, notes_ledger
+BAR = BAR.replace("NOTES: everything else", look_bible.brief() + "\n\nNOTES: everything else", 1)
+BAR = BAR.replace("Return ONLY JSON:", "Open every hard line with its defect's NAME in capitals, as listed above (\"NOT THE WORLD: ...\",\n"
+                  "\"BROKEN: ...\", \"OFF THE LOOK: ...\"), so a note can be followed from round to round.\nReturn ONLY JSON:", 1)
 PASS_SCORE = 70
 
 
@@ -187,11 +194,20 @@ def main():
         report(kept, out)
         for s in kept: print(f"JUDGE3D shot {s['shot']}: {s['score']} {s.get('scores', '')} PASS (kept: {s['kept']})")
         return 0
+    blocked = notes_ledger.gate(story, only)          # a repeated note nothing was done about: no judge run spent
+    if blocked:
+        print("JUDGE3D: not judging: these notes were named before and nothing has been written against them since")
+        for b in blocked: print("   " + b)
+        return 1
+    _, missing = look_bible.refs()
+    for p_, what in missing:
+        print(f"JUDGE3D: the approved look frame {p_} is missing ({what}): the judges grade the rulings without it")
     for n in only:
         fr = sorted((proof / f"s{n}").glob("f*.png"))
         if not fr: print(f"JUDGE3D: shot {n} has no proof frames"); return 1
         sheets.append((n, strip(fr, proof / f"sheet_s{n}.jpg"), len(fr)))
     listing = "\n".join(f"- shot {n}: {p} ({k} frames in time order, left to right, top to bottom). FOR: {BRIEFS[n]}"
+                        + (("\n" + notes_ledger.for_judge(story, n)) if notes_ledger.for_judge(story, n) else "")
                         for n, p, k in sheets)
     prompt = (BAR + "\n\nThe shots, each a contact sheet image you must READ with the Read tool:\n" + listing)
     # A PANEL, not one roll (2026-11-12: the same unchanged shot scored 73, then 60, then 80 on three runs, so one
@@ -232,6 +248,7 @@ def main():
             s["pass"] = not s.get("hard") and (s.get("score") or 0) >= PASS_SCORE
     out.write_text(json.dumps(v, indent=2))
     report(v["shots"], out)
+    notes_ledger.record(story, v["shots"])
     fails = [s for s in v.get("shots", []) if not s.get("pass")]
     for s in v.get("shots", []):
         print(f"JUDGE3D shot {s.get('shot')}: {s.get('score')} {s.get('scores', '')} {'PASS' if s.get('pass') else 'FAIL'}")
