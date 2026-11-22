@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "library-digital-shift__af6508e8",
+  "slug": "library-digital-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:18:17.461Z",
+  "title": "Library Digital Checkouts Nearly Caught Physical Visits",
+  "hook": "Library buildings lost visits while borrowing quietly moved onto phones.",
+  "closing": "Libraries did not disappear. Their front door moved onto the screen in your hand.",
+  "question": "How do you use libraries?",
+  "segments": [
+    {
+      "topic": "Library visits",
+      "say": "Library visits reached 800 million, still far below their earlier peak. The buildings never fully recovered."
+    },
+    {
+      "topic": "Library digital loans",
+      "say": "Library digital checkouts reached 739 million, showing readers moved their borrowing online instead of disappearing."
+    }
+  ]
+}
