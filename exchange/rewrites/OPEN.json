@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-22T12:27:23Z",
+ "updated": "2026-11-22T12:29:29Z",
  "open": [
+  {
+   "id": "moon-drifting-away__653a5ccc_r4",
+   "slug": "moon-drifting-away",
+   "filed": "2026-11-22T12:29:29Z",
+   "why": [
+    "premise: brain: The claim is misleading, since the Moon's slow drift ending total eclipses in about 600 million years is a well-known fact with no stakes or twist the viewer can picture, and the hook states it flatly instead of promising a surprise that turns over something they believe."
+   ],
+   "request": "exchange/rewrites/20261122/moon-drifting-away__653a5ccc_r4.request.json",
+   "answer_path": "exchange/rewrites/20261122/moon-drifting-away__653a5ccc_r4.answer.json"
+  },
   {
    "id": "us-height-ranking-fall__b3299d80",
    "slug": "us-height-ranking-fall",
@@ -11,97 +21,6 @@
    ],
    "request": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.request.json",
    "answer_path": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__59f5434d",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-22T10:05:32Z",
-   "why": [
-    "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261122/great-barrier-reef-bleaching-accelerating__59f5434d.request.json",
-   "answer_path": "exchange/rewrites/20261122/great-barrier-reef-bleaching-accelerating__59f5434d.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__75d8b1a9",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-22T10:05:31Z",
-   "why": [
-    "premise: brain: The hook is vague and doesn’t promise a concrete, pictureable surprise or contradiction, making the pitch weak."
-   ],
-   "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__75d8b1a9.request.json",
-   "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__75d8b1a9.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__cd1439f7",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-22T10:05:31Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or clear stakes for the viewer beyond generic numbers."
-   ],
-   "request": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__cd1439f7.request.json",
-   "answer_path": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
-  },
-  {
-   "id": "measles-ninety-five-rule__c11b709d",
-   "slug": "measles-ninety-five-rule",
-   "filed": "2026-11-22T10:05:31Z",
-   "why": [
-    "premise: brain: The hook is vague and lacks a concrete, picture‑worthy surprise or stakes, making the pitch insufficiently compelling."
-   ],
-   "request": "exchange/rewrites/20261122/measles-ninety-five-rule__c11b709d.request.json",
-   "answer_path": "exchange/rewrites/20261122/measles-ninety-five-rule__c11b709d.answer.json"
-  },
-  {
-   "id": "womens-college-hoops-out-rates-men__3fe10075",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-22T10:05:31Z",
-   "why": [
-    "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Women's Basketball Final Beat Men's Final By 4.08 Million Viewers\") — brain: Attendance is a different metric and doesn't directly support the claim about larger TV audience, nor does it follow cau",
-    "thesis: seg2 (\"Women's Basketball Rights\") does not continue the story of the headline (\"Women's Basketball Final Beat Men's Final By 4.08 Million Viewers\") — brain: Media rights revenue is unrelated to proving the audience size claim and doesn't logically follow from the attendance fa"
-   ],
-   "request": "exchange/rewrites/20261122/womens-college-hoops-out-rates-men__3fe10075.request.json",
-   "answer_path": "exchange/rewrites/20261122/womens-college-hoops-out-rates-men__3fe10075.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__c9a9b4d6",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-11-22T10:05:31Z",
-   "why": [
-    "thesis: seg1 ('Later marriage divorce') does not continue the story of the headline ('US Divorce Rate Fell From 4.7 To 2.4 Per Thousand') — brain: It introduces a related demographic trend rather than directly proving the divorce‑rate drop and does not follow causall"
-   ],
-   "request": "exchange/rewrites/20261122/divorce-rate-quiet-decline__c9a9b4d6.request.json",
-   "answer_path": "exchange/rewrites/20261122/divorce-rate-quiet-decline__c9a9b4d6.answer.json"
-  },
-  {
-   "id": "cavendish-banana-monoculture__c839b8fc_r1",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-11-21T16:10:04Z",
-   "why": [
-    "premise: brain: The hook is a vague, abstract claim (\"depends on one clone\") with no concrete picture, stake or threat the viewer can visualize, and the title is just a statistic — it names no specific surprise like the disease (Panama disease) that could wipe out the banana."
-   ],
-   "request": "exchange/rewrites/20261121/cavendish-banana-monoculture__c839b8fc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261121/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
-  },
-  {
-   "id": "map-distortion-true-size__bc5c8508",
-   "slug": "map-distortion-true-size",
-   "filed": "2026-11-21T14:49:27Z",
-   "why": [
-    "premise: brain: The claim is false as stated (Africa is about 14 times Greenland's area, but the hook's phrasing is a stale, familiar Mercator-distortion fact), and the title is a vague cliché that promises no specific surprise beyond a map-projection trope viewers have seen many times."
-   ],
-   "request": "exchange/rewrites/20261121/map-distortion-true-size__bc5c8508.request.json",
-   "answer_path": "exchange/rewrites/20261121/map-distortion-true-size__bc5c8508.answer.json"
-  },
-  {
-   "id": "moon-drifting-away__653a5ccc_r3",
-   "slug": "moon-drifting-away",
-   "filed": "2026-11-21T14:49:27Z",
-   "why": [
-    "premise: brain: The claim is misleading, since the Moon's slow drift ending total eclipses in about 600 million years is a well-known fact with no stakes or twist the viewer can picture, and the hook states it flatly instead of promising a surprise that turns over something they believe."
-   ],
-   "request": "exchange/rewrites/20261121/moon-drifting-away__653a5ccc_r3.request.json",
-   "answer_path": "exchange/rewrites/20261121/moon-drifting-away__653a5ccc_r3.answer.json"
   },
   {
    "id": "gps-einstein-fix__c2b1ca22",
@@ -206,6 +125,26 @@
    "answer_path": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.answer.json"
   },
   {
+   "id": "measles-ninety-five-rule__c11b709d",
+   "slug": "measles-ninety-five-rule",
+   "filed": "2026-11-21T13:21:24Z",
+   "why": [
+    "premise: brain: The hook is vague and does not present a concrete, verifiable surprise or specific scenario."
+   ],
+   "request": "exchange/rewrites/20261121/measles-ninety-five-rule__c11b709d.request.json",
+   "answer_path": "exchange/rewrites/20261121/measles-ninety-five-rule__c11b709d.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__c9a9b4d6",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-11-21T13:21:24Z",
+   "why": [
+    "premise: brain: The claim about the US divorce rate dropping from 4.7 to 2.4 per thousand is not a verifiable, concrete fact and appears inaccurate."
+   ],
+   "request": "exchange/rewrites/20261121/divorce-rate-quiet-decline__c9a9b4d6.request.json",
+   "answer_path": "exchange/rewrites/20261121/divorce-rate-quiet-decline__c9a9b4d6.answer.json"
+  },
+  {
    "id": "runway-near-misses-climbing__8938319a",
    "slug": "runway-near-misses-climbing",
    "filed": "2026-11-21T00:22:37Z",
@@ -226,6 +165,16 @@
    "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
+   "id": "autism-diagnosis-rate-rise__75d8b1a9",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The hook is vague and does not present a concrete, pictureable surprise or specific contradiction."
+   ],
+   "request": "exchange/rewrites/20261121/autism-diagnosis-rate-rise__75d8b1a9.request.json",
+   "answer_path": "exchange/rewrites/20261121/autism-diagnosis-rate-rise__75d8b1a9.answer.json"
+  },
+  {
    "id": "blood-supply-three-percent__a3a64c1f",
    "slug": "blood-supply-three-percent",
    "filed": "2026-11-21T00:22:36Z",
@@ -234,6 +183,26 @@
    ],
    "request": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.request.json",
    "answer_path": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__cd1439f7",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about specific outbreak numbers."
+   ],
+   "request": "exchange/rewrites/20261121/cruise-ship-outbreaks-climbing__cd1439f7.request.json",
+   "answer_path": "exchange/rewrites/20261121/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__3fe10075",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-21T00:22:36Z",
+   "why": [
+    "premise: brain: The claim about viewership numbers is likely inaccurate and unverified, making the premise not concretely true."
+   ],
+   "request": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.request.json",
+   "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
   },
   {
    "id": "frog-fungus-mass-extinction__609ffc7e",
@@ -334,6 +303,16 @@
    ],
    "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
    "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
+  },
+  {
+   "id": "map-distortion-true-size__bc5c8508",
+   "slug": "map-distortion-true-size",
+   "filed": "2026-11-18T16:58:18Z",
+   "why": [
+    "premise: brain: The claim is a familiar Mercator-projection fact with a vague 'your map hides it' framing, and the hook's '14 times' figure is wrong (Africa is about 14 times Greenland's area, but the title/hook promise no concrete threat or reversal beyond a cliché the viewer has likely heard)."
+   ],
+   "request": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.request.json",
+   "answer_path": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.answer.json"
   },
   {
    "id": "north-american-bird-collapse__1e7ff9ae",
@@ -506,6 +485,16 @@
    ],
    "request": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.request.json",
    "answer_path": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.answer.json"
+  },
+  {
+   "id": "cavendish-banana-monoculture__c839b8fc_r1",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-11-17T12:26:57Z",
+   "why": [
+    "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
   },
   {
    "id": "lab-grown-diamond-price-collapse__e51f51ef",
