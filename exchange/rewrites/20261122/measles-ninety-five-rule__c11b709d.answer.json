@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "measles-ninety-five-rule__c11b709d",
+  "slug": "measles-ninety-five-rule",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:25:27.245Z",
+  "title": "Measles Spreads When Kindergarten Protection Falls Below 95 Percent",
+  "hook": "One measles case can seed a classroom-sized chain.",
+  "closing": "Closing the measles protection gap keeps one case from becoming your town's outbreak.",
+  "question": "Did you get both measles shots?",
+  "segments": [
+    {
+      "topic": "Measles spread",
+      "say": "Measles can spread to 15 people per case, so one infection quickly becomes a cluster."
+    },
+    {
+      "topic": "Measles protection",
+      "say": "Measles protection sits at 92.5 percent, below the level needed to stop transmission."
+    },
+    {
+      "topic": "Measles cases",
+      "say": "Measles cases reached 2,566, showing how quickly the protection gap can become outbreaks."
+    }
+  ]
+}
