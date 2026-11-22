@@ -9984,5 +9984,491 @@
       "bottom_theme": "auto",
       "punched_up": true
     }
+  },
+  "20260823": {
+    "01_graph-tsmc-overtakes-intel.json": {
+      "format": "graph_race",
+      "slug": "graph-tsmc-overtakes-intel",
+      "title": "Intel Ruled Chips For Decades. Then TSMC Passed It.",
+      "hook": "Intel's 50-Year Lead Just Ended",
+      "y_label": "Annual revenue (billion USD)",
+      "duration": 13,
+      "source": "Intel and TSMC annual revenue from company 10-K/annual filings, as compiled by Reuters, The Register and Motley Fool coverage of the 2022 crossover. Intel: $59.4B (2016), $62.8B (2017), $70.8B (2018), $72.0B (2019), $77.9B (2020), $79.0B (2021), $63.1B (2022), $54.2B (2023). TSMC: $29.4B (2016), $32.9B (2017), $34.2B (2018), $34.6B (2019), $47.5B (2020), $56.8B (2021), $75.9B (2022), $69.3B (2023). TSMC's growth was driven by advanced-node chip demand (Apple, Nvidia, AMD); Intel's collapse followed manufacturing delays and a slump in PC demand.",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Intel",
+          "color": "#0068B5",
+          "icon": "Intel",
+          "values": [
+            59.4,
+            62.8,
+            70.8,
+            72.0,
+            77.9,
+            79.0,
+            63.1,
+            54.2
+          ]
+        },
+        {
+          "name": "TSMC",
+          "color": "#02458A",
+          "icon": "TSMC",
+          "values": [
+            29.4,
+            32.9,
+            34.2,
+            34.6,
+            47.5,
+            56.8,
+            75.9,
+            69.3
+          ]
+        }
+      ],
+      "hashtags": [
+        "tsmc",
+        "intel",
+        "semiconductors",
+        "chips",
+        "chipwar",
+        "microchips",
+        "nvidia",
+        "apple",
+        "manufacturing",
+        "silicon",
+        "tech",
+        "technology",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-doordash-overtakes-grubhub.json": {
+      "format": "graph_race",
+      "slug": "graph-doordash-overtakes-grubhub",
+      "title": "Grubhub Owned Food Delivery. Then DoorDash Buried It.",
+      "hook": "The Delivery King Got Dethroned",
+      "y_label": "US food delivery market share (%)",
+      "duration": 13,
+      "source": "US online food delivery market share by company, as tracked by Bloomberg Second Measure and Edison Trends and reported by Fast Company, Food On Demand and Qz. Grubhub: 33% (2018), 26% (2019), 18% (2020), 15% (2021), 14% (2022), 10% (2023, est.). DoorDash: 18% (2018), 30% (2019), 52% (2020), 53% (2021), 59% (2022), 65% (2023, est.). DoorDash overtook Grubhub for the #1 spot in early 2019 and never looked back; Grubhub was later sold to Just Eat Takeaway and then Wonder Group.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Grubhub",
+          "color": "#F63440",
+          "icon": "Grubhub",
+          "values": [
+            33,
+            26,
+            18,
+            15,
+            14,
+            10
+          ]
+        },
+        {
+          "name": "DoorDash",
+          "color": "#FF3008",
+          "icon": "DoorDash",
+          "values": [
+            18,
+            30,
+            52,
+            53,
+            59,
+            65
+          ]
+        }
+      ],
+      "hashtags": [
+        "doordash",
+        "grubhub",
+        "fooddelivery",
+        "ubereats",
+        "gigeconomy",
+        "startup",
+        "delivery",
+        "food",
+        "marketshare",
+        "business",
+        "tech",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-mobile-gaming-overtakes-console.json": {
+      "format": "graph_race",
+      "slug": "graph-mobile-gaming-overtakes-console",
+      "title": "Console Gaming Ruled. Then Phones Beat It.",
+      "hook": "Your Phone Beat The PS5",
+      "y_label": "Global games revenue (billion USD)",
+      "duration": 13,
+      "source": "Global video game market revenue by segment, from Newzoo Global Games Market Reports as compiled by TechCrunch, Fortune and Statista. Console: $24.0B (2012), $25.5B (2014), $26.4B (2015), $33.5B (2017), $34.0B (2018), $50.4B (2021). Mobile: $9.0B (2012), $25.0B (2014), $30.3B (2015), $46.1B (2017), $70.3B (2018), $93.2B (2021). Mobile overtook console revenue globally in 2015 and has led every year since.",
+      "years": [
+        2012,
+        2014,
+        2015,
+        2017,
+        2018,
+        2021
+      ],
+      "series": [
+        {
+          "name": "Console",
+          "color": "#8f5cff",
+          "icon": "PlayStation",
+          "values": [
+            24.0,
+            25.5,
+            26.4,
+            33.5,
+            34.0,
+            50.4
+          ]
+        },
+        {
+          "name": "Mobile",
+          "color": "#34c759",
+          "icon": "phone",
+          "values": [
+            9.0,
+            25.0,
+            30.3,
+            46.1,
+            70.3,
+            93.2
+          ]
+        }
+      ],
+      "hashtags": [
+        "gaming",
+        "mobilegaming",
+        "videogames",
+        "gamer",
+        "playstation",
+        "esports",
+        "gamingnews",
+        "tech",
+        "gamingindustry",
+        "phonegaming",
+        "dataviz"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "04_graph-amazon-prime-overtakes-costco.json": {
+      "format": "graph_race",
+      "slug": "graph-amazon-prime-overtakes-costco",
+      "title": "Costco Built The Membership Model. Amazon Ate It.",
+      "hook": "One Membership Card Won",
+      "y_label": "Paid members worldwide (million)",
+      "duration": 13,
+      "source": "Costco paid household members from Costco investor filings and annual reports; Amazon Prime members from Amazon investor disclosures as compiled by CNBC, Backlinko and CapitalOneShopping coverage. Costco: 35.4M (2013), 39.3M (2015), 47.3M (2017), 53.9M (2019), 60.6M (2021), 81.0M (2025). Amazon Prime: 20M (2013), 50M (2015), 80M (2017), 120M (2019), 200M (2021), 220M (2025). Amazon Prime overtook Costco's membership base by the mid-2010s and has more than doubled it since.",
+      "years": [
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Costco",
+          "color": "#005DAA",
+          "icon": "Costco",
+          "values": [
+            35.4,
+            39.3,
+            47.3,
+            53.9,
+            60.6,
+            81.0
+          ]
+        },
+        {
+          "name": "Amazon Prime",
+          "color": "#FF9900",
+          "icon": "Amazon",
+          "values": [
+            20,
+            50,
+            80,
+            120,
+            200,
+            220
+          ]
+        }
+      ],
+      "hashtags": [
+        "amazonprime",
+        "costco",
+        "membership",
+        "amazon",
+        "retail",
+        "business",
+        "ecommerce",
+        "shopping",
+        "subscription",
+        "dataviz",
+        "money"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-lounge-flagged-account.json": {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "reddit-lounge-flagged-account",
+      "title": "Her Corporate Lounge Account Was Flagged. Guess Why.",
+      "script": "I work the front desk at an airport lounge. A woman in a business blazer swiped an expired day-pass, it declined, and she said she has a corporate account and I should just let it slide. I scanned the account number right there while she watched. The account existed, flagged, cancelled six months ago after the company itself complained about someone smuggling four extra guests past a desk agent on one pass. I read the note out loud: guest attempted to reuse an expired credential, security notified. She went quiet, because turns out she was that guest. The system remembered her name even if she'd hoped nobody would. Security walked her out past the free mimosas while her flight started boarding without her. She landed in economy, seat 34E, no lounge required, no elite status, just a very long memory in a database she forgot existed.",
+      "shots": [
+        {
+          "phrase": "front desk at an airport lounge",
+          "query": "airport lounge reception desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+          "media_origin": "chatgpt",
+          "media_file_id": "1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+          "media_sha256": "1fe6023c4fefa830df95e9455e08bd6a5b2003b80d039534a3cf431e1ecabefd",
+          "media_bytes": 1192890
+        },
+        {
+          "phrase": "swiped an expired day-pass",
+          "query": "boarding pass scanner airport",
+          "image_url": "https://drive.google.com/uc?export=download&id=1UwdBQhq7DFD4MT1IVV3XFVLkqktHrmIr",
+          "media_origin": "chatgpt",
+          "media_file_id": "1UwdBQhq7DFD4MT1IVV3XFVLkqktHrmIr",
+          "media_sha256": "5f39f61ecdf04d9362588620c264ec594ebdbd1d2372347a75e9b85d01580813",
+          "media_bytes": 1129692
+        },
+        {
+          "phrase": "scanned the account number",
+          "query": "check in desk computer screen",
+          "image_url": "https://drive.google.com/uc?export=download&id=1U0JuD7UBcjw3AInq679qk9JKXi1XvcsT",
+          "media_origin": "chatgpt",
+          "media_file_id": "1U0JuD7UBcjw3AInq679qk9JKXi1XvcsT",
+          "media_sha256": "5703ddd35de232c93c0b2721988a442f3d847c3de273a1ba4a635ee826b3bdde",
+          "media_bytes": 1161587
+        },
+        {
+          "phrase": "flagged, cancelled six months ago",
+          "query": "red warning alert screen",
+          "image_url": "https://drive.google.com/uc?export=download&id=1FY8WUKyj-G6UOW6HuVQ3BwIrUCOLC5UT",
+          "media_origin": "chatgpt",
+          "media_file_id": "1FY8WUKyj-G6UOW6HuVQ3BwIrUCOLC5UT",
+          "media_sha256": "628c76890063c9f2c86543d34fd1004eba7968342c56716be5b59360a3022d1b",
+          "media_bytes": 1076572
+        },
+        {
+          "phrase": "smuggling four extra guests",
+          "query": "crowded airport lounge seating",
+          "image_url": "https://drive.google.com/uc?export=download&id=1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+          "media_origin": "chatgpt",
+          "media_file_id": "1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+          "media_sha256": "c3ab4541eda3a02cfac929ca904000c3c929e4273ae23af1a40508726bdb3c9b",
+          "media_bytes": 1457644
+        },
+        {
+          "phrase": "Security walked her out",
+          "query": "airport security guard walking",
+          "pin_query": "Security",
+          "pin_context": "Her Corporate Lounge Account Was Flagged. Guess Why.",
+          "news_query": "Security",
+          "news_angle": "Her Corporate Lounge Account Was Flagged. Guess Why.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+          "media_origin": "chatgpt",
+          "media_file_id": "1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+          "media_sha256": "0ea766fd7715ddddd56e1fe4d77220baee5642d465ab127e138c74d7a02e746c",
+          "media_bytes": 1076255
+        },
+        {
+          "phrase": "past the free mimosas",
+          "query": "mimosa champagne airport lounge",
+          "image_url": "https://drive.google.com/uc?export=download&id=1rS6sPBmSMV9C0PekaJRYX2bm6RAXhUYK",
+          "media_origin": "chatgpt",
+          "media_file_id": "1rS6sPBmSMV9C0PekaJRYX2bm6RAXhUYK",
+          "media_sha256": "5a7951e3ce181871b137e3e66276531e6794752b93d0eff479d4290029efa247",
+          "media_bytes": 972333
+        },
+        {
+          "phrase": "seat 34E",
+          "query": "airplane economy seat row",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Q_WoWihT1RnbPkv_-n_qZPPpmU7t3sjV",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Q_WoWihT1RnbPkv_-n_qZPPpmU7t3sjV",
+          "media_sha256": "d75d18ad834fa9ed1f95feb4877ce7ad0d9160d280b82dfe88548104764bc58f",
+          "media_bytes": 1242433
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "just let it slide",
+          "text": "SLIDE?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "flagged, cancelled six months ago",
+          "text": "FLAGGED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "turns out she was that guest",
+          "text": "IT WAS HER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Security walked her out",
+          "text": "ESCORTED OUT",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "talesfromthecustomer",
+        "entitled",
+        "airportlounge",
+        "karma",
+        "customerservice",
+        "reddit",
+        "storytime",
+        "travel",
+        "airline",
+        "satisfying",
+        "shorts",
+        "viral"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-fifteen-minute-sign.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-fifteen-minute-sign",
+      "title": "The Sign Promised 15 Minutes Or Free. I Timed It.",
+      "script": "Our diner has a sign by the register: any table that waits over fifteen minutes for food eats free, no questions asked. Management put it up years ago as a marketing gimmick and nobody ever actually timed anything. I got hired, and I time everything. First week, I comped four meals in one shift because the kitchen was averaging twenty-two minutes a ticket, not the fifteen the sign promised. My manager pulled me aside and said I was being too literal about a sign that was just for show. I told him the sign didn't say for show, it said fifteen minutes. Corporate started asking why one location was comping so much food, and the answer on paper was the kitchen, not me. They didn't fix the kitchen. They took the sign down instead. So no, the wait never got shorter. The sign just stopped admitting it existed.",
+      "shots": [
+        {
+          "phrase": "any table that waits over fifteen minutes",
+          "query": "restaurant table waiting food",
+          "image_url": "https://drive.google.com/uc?export=download&id=1-je28MwxtIIzqNWooqQnxvIxr37AN69h",
+          "media_origin": "chatgpt",
+          "media_file_id": "1-je28MwxtIIzqNWooqQnxvIxr37AN69h",
+          "media_sha256": "76f9648c4d6fa6d0e37a3dab7dcfa2a81325f59add0884a171ffcf437214e2fb",
+          "media_bytes": 1086659
+        },
+        {
+          "phrase": "I time everything",
+          "query": "kitchen timer stopwatch",
+          "image_url": "https://drive.google.com/uc?export=download&id=10xf8566OrhcKROq3qKgZ85sRtf691Q-_",
+          "media_origin": "chatgpt",
+          "media_file_id": "10xf8566OrhcKROq3qKgZ85sRtf691Q-_",
+          "media_sha256": "607eb6fa24e431fbcfedeccf8da9dbe94eca09dc2a1b53fd6540953ced707d18",
+          "media_bytes": 1110429
+        },
+        {
+          "phrase": "comped four meals in one shift",
+          "query": "free meal receipt restaurant",
+          "image_url": "https://drive.google.com/uc?export=download&id=1awtKE6h2X7LLomIYTAX90nXWv4RuMx4D",
+          "media_origin": "chatgpt",
+          "media_file_id": "1awtKE6h2X7LLomIYTAX90nXWv4RuMx4D",
+          "media_sha256": "a202831ef1e138a70a3601257f95dfb27221f0604066e71b82c960376d29f30b",
+          "media_bytes": 1462389
+        },
+        {
+          "phrase": "twenty-two minutes a ticket",
+          "query": "restaurant kitchen order tickets",
+          "image_url": "https://drive.google.com/uc?export=download&id=1xafwMYX1qhdn-YHbe_kikfs-yVu0x4_V",
+          "media_origin": "chatgpt",
+          "media_file_id": "1xafwMYX1qhdn-YHbe_kikfs-yVu0x4_V",
+          "media_sha256": "e557976b6dbe84c53330539fd6f724e80a3ec5b2bf260a905c62e834758e9fc1",
+          "media_bytes": 1331763
+        },
+        {
+          "phrase": "too literal about a sign",
+          "query": "restaurant sign on wall",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ERgCu1neJB74e41B4fmCTws6f_Y3Do5C",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ERgCu1neJB74e41B4fmCTws6f_Y3Do5C",
+          "media_sha256": "6dd281065a7580e268083e6c8ef6638219497675eb571cf2b317e8d9b3959d70",
+          "media_bytes": 1669048
+        },
+        {
+          "phrase": "Corporate started asking",
+          "query": "corporate office phone call",
+          "pin_query": "Corporate",
+          "pin_context": "The Sign Promised 15 Minutes Or Free. I Timed It.",
+          "news_query": "Corporate",
+          "news_angle": "The Sign Promised 15 Minutes Or Free. I Timed It.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+          "media_origin": "chatgpt",
+          "media_file_id": "1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+          "media_sha256": "e9621257972eabf2c360960601635ddfb9f2c7b46b955d45f5312af82ec987f4",
+          "media_bytes": 1306778
+        },
+        {
+          "phrase": "took the sign down instead",
+          "query": "removing sign from wall",
+          "image_url": "https://drive.google.com/uc?export=download&id=1dkeHVIaaHjSdQKkRV5uLnFpJIsAZLbfN",
+          "media_origin": "chatgpt",
+          "media_file_id": "1dkeHVIaaHjSdQKkRV5uLnFpJIsAZLbfN",
+          "media_sha256": "74a6ab92164bbfe3b6a04361c39c7b997f50a780bb16f735b93020de1bedc72a",
+          "media_bytes": 1376800
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "eats free, no questions asked",
+          "text": "FREE MEAL",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "twenty-two minutes a ticket",
+          "text": "22 MINUTES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "too literal",
+          "text": "TOO LITERAL?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "took the sign down instead",
+          "text": "SIGN REMOVED",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "restaurant",
+        "server",
+        "workplace",
+        "karma",
+        "reddit",
+        "storytime",
+        "customerservice",
+        "food",
+        "satisfying",
+        "shorts",
+        "viral"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    }
   }
 }
