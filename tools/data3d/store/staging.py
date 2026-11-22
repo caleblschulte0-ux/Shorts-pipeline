@@ -43,7 +43,13 @@ def face_hidden(data, cam, fd):
     o = cam.matrix_world.translation; mine = _his(data); blocked = 0
     for p in (c, c + side * r * 0.5, c - side * r * 0.5, c + Vector((0, 0, r * 0.4)), c - Vector((0, 0, r * 0.4))):
         d = p - o; L = d.length
-        hit, loc, _n, _i, ob, _m = sc.ray_cast(dg, o, d.normalized(), distance=L - 0.02)
+        dn = d.normalized(); o_ = o; left = L - 0.02
+        for _k in range(16):   # a part not rendered on this frame (a spent bolt) hides nothing: look on past it
+            hit, loc, _n, _i, ob, _m = sc.ray_cast(dg, o_, dn, distance=left)
+            if not (hit and ob is not None and ob.original.hide_render):
+                break
+            step = (loc - o_).length + 1e-3; o_ = loc + dn * 1e-3; left -= step
+            if left <= 0: hit = False; break
         if hit and ob is not None and ob.name not in mine and ob.original.name not in mine:
             blocked += 1
     return blocked >= 3

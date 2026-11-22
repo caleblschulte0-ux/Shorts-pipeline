@@ -1,5 +1,5 @@
 {
- "rounds": 14,
+ "rounds": 16,
  "shots": {
   "1": {
    "BODY": {
@@ -13,7 +13,18 @@
     ]
    },
    "BROKEN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-22 18:58Z",
+      "round": 14,
+      "what": "Round 8, each named pop: (1) sky pops with no visible bolt: every far flash now has its bolt placed inside the frame on screen (screen-space placement from the lens's own width, 80% on the open side behind him, never over him), and the cloud deck's glow per far flash is halved (0.6 to 0.3); (2) the struck block 'appearing from nowhere': it is now a big pale lichened boulder on the crest right beside his path, in plain sight from frame one, and the bolt comes down on it steeply from the open sky, clear of his body (our BOLT check measures the channel off his outline); (3) the camera jump at the strike: no push-in, no shake, one smooth track the whole beat; (4) hat clipped at the frame top: the side framing leaves ~40% headroom, and the hat now flies clearly up off his head over 0.7 s and drops back on with one bounce."
+     },
+     {
+      "at": "2026-11-22 19:16Z",
+      "round": 15,
+      "what": "Round 8 take 2: the second bolt, which read as a smooth white tube sweeping across the front of his body, now comes down steeply from BEHIND him (top 0.8 m beyond him from the lens instead of 0.3 m, sideways lean 1.8 to 1.2 m) with five branches instead of four, so it is a forked channel beside him, never across his front."
+     }
+    ],
     "named": [
      {
       "at": "2026-11-21 03:36Z",
@@ -64,11 +75,32 @@
       "at": "2026-11-22 06:31Z",
       "round": 14,
       "said": "HARD: BROKEN (probable), frame ~13 (row 2, col 5): the framing jumps closer as the first bolt hits, with no in-between frames. It reads as a jump cut or camera pop, not a push-in"
+     },
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "BROKEN: frames 12-17 (including the IN-BETWEEN frames 13-15 and 17). The second bolt is drawn as a smooth, evenly thick white curve that sweeps from the top-left edge down through the foreground and across the front of Data's body. It reads as a glowing rod or a render glitch, not lightning hitting the rock at his toes."
+     },
+     {
+      "at": "2026-11-22 20:05Z",
+      "round": 16,
+      "said": "BROKEN: frames 11-17 (including IN-BETWEEN 13-15 and 17). The second bolt is still the smooth, evenly thick white tube that curves in from the top-left edge. It has no jagged kinks or branches, so it looks nothing like every other bolt in the shot. It now lands to his left in the foreground and no longer covers his body, but it still reads as a glowing pipe or a light-saber stroke, not lightning."
      }
     ]
    },
    "CONSEQUENCE": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-22 18:58Z",
+      "round": 14,
+      "what": "Round 8: the hotfoot is shot from the SIDE (a profile lens), so every hop's both-feet-off-the-rock moment reads; hops are higher (foot 0.12 m, body spring 0.09 m, both feet 0.06 m in the air at each top, up from 0.075/0.08/0.05, kept under our POP limit), fists go higher, each landing throws a bigger puff of shoe smoke and the shoes keep smoking; the bolt at his toes leaves a glowing char on the rock beside his feet."
+     },
+     {
+      "at": "2026-11-22 19:16Z",
+      "round": 15,
+      "what": "Round 8 take 2: the shoes' smoke was faint grey on grey rock: the shoe puffs are half again bigger (0.065/0.058 to 0.10/0.09 m) at every hop's landing, so the hotfoot's smoke reads at phone size."
+     }
+    ],
     "named": [
      {
       "at": "2026-11-21 08:40Z",
@@ -89,6 +121,16 @@
       "at": "2026-11-22 01:09Z",
       "round": 11,
       "said": "HARD: CONSEQUENCE: the board never pours smoke before the flaps blow (frames 25-32 show debris but no smoke). In the last frames the hat never tips down over his eyes (frames 29-32 are clear-eyed and the hat sits normally). The planned payoff beat is missing."
+     },
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "CONSEQUENCE: frames 17-24. The hotfoot does not read as five big hops with both feet off the rock. The legs are a blur over a mostly planted stance and the body height hardly changes. The smoke pouring from his shoes is faint to invisible. Frames 33-40: the three ducks (down, deeper, pop up to gulp) do not show, because his head height stays almost the same across the row."
+     },
+     {
+      "at": "2026-11-22 20:05Z",
+      "round": 16,
+      "said": "CONSEQUENCE: frames 18-24. The hotfoot still does not read as five big hops with both feet off the rock. The legs are a motion-blurred smear under a body whose height barely changes, and no clear airborne frame with knees and heels up shows. The shoe smoke now reads as grey puffs, which is better, but the hops themselves are not seen."
      }
     ]
    },
@@ -103,7 +145,18 @@
     ]
    },
    "NOT THE POINT": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-22 18:58Z",
+      "round": 14,
+      "what": "Round 8: the jolt's white wash is capped (arc core 60 to 22, halo 6 to 2 and alpha 0.35 to 0.15) so the rigid, up-on-his-toes, arms-flung silhouette reads; from the side lens the arched back and the flung arms are seen in profile against the valley; the hat clearly flies up off his head and drops back on; the struck boulder is in frame and visible before it is hit, and blackens and splits."
+     },
+     {
+      "at": "2026-11-22 19:16Z",
+      "round": 15,
+      "what": "Round 8 take 2: the bolt at his toes no longer covers him (it now lands beside him from behind), so the strike at his feet and the char under him are seen, then the hops with bigger smoke at each landing."
+     }
+    ],
     "named": [
      {
       "at": "2026-11-21 08:40Z",
@@ -124,11 +177,32 @@
       "at": "2026-11-22 06:31Z",
       "round": 14,
       "said": "HARD: NOT THE POINT (the strike itself): frames ~13-40. The strike's white glow and sparks blow out the front of his body, so the rigid, up-on-his-toes, arms-flung-out shock pose and the hat flying up and dropping back on can't be read. On a phone it's a white smear on Data, not a man being jolted."
+     },
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "NOT THE POINT: frames 12-24. The foreground arc covers him at the moment of the second strike, and what follows reads as shuffling. A stranger could not say 'a bolt hit at his feet and he hotfooted'. Only the first jolt (frames 5-8, hat flying up and dropping back on) reads."
+     },
+     {
+      "at": "2026-11-22 20:05Z",
+      "round": 16,
+      "said": "NOT THE POINT: frames 12-18. The bolt lands about a body-width to his left-front, at the frame edge, not 'at his toes'. While it is still in the air (12-16) Data stands calm in a three-quarter walk pose and does not react. A stranger sees a white line come down near him and then, a beat later, his legs blur. They could not say 'a bolt hit at his feet and made him hotfoot'."
      }
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-22 18:58Z",
+      "round": 14,
+      "what": "Round 8: the lens is now BESIDE him (a 45mm three-quarter profile from the open side of the crest, 2.4 m off, tracking along the crest with him and drifting on after he stops, never frontal). The set was rebuilt for that lens: the crest now turns a tight corner just behind him and runs straight away from the lens as a spur, so the spur with a fence line along its lip and his steel lookout tower out on it (12 m along) stand behind him in frame the whole beat; the steep pine fall off the crest's lip into the hollow is right behind him; the far ranges were laid 2.2x further out so a wide valley floor opens far below with lit cabin lamps and the world's haze layers, the jagged ranges fading behind it."
+     },
+     {
+      "at": "2026-11-22 19:16Z",
+      "round": 15,
+      "what": "Round 8 take 2 (after the 50): the 'valley lamps' that read as a swarm of orbs/Christmas lights hanging in the near pines are cut to pinpoints (radius 0.5-0.8 m to 0.13-0.2 m) and set down on the valley floor (0.8 m to 0.3 m above it), so they read as small far cabin windows deep below, not bulbs at tree height; the lens keeps tracking along the crest the whole beat (drift 0.16 m to 0.45 m) so the parallax of the near crest against the far range and tower reads as depth."
+     }
+    ],
     "named": [
      {
       "at": "2026-11-21 05:32Z",
@@ -164,11 +238,47 @@
       "at": "2026-11-22 06:31Z",
       "round": 14,
       "said": "HARD: NOT THE WORLD: frames 1-125. The camera never shows the crest as a narrow ridge with a drop on either side. The ground reads as a flat field of broken rock. The tower is small and shows on only a few frames (~49-56), and there are no jagged peaks fading into haze. It doesn't read as a ridge-top in a mountain park."
+     },
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "NOT THE WORLD: frames 1-40. The crest never reads as a narrow ridge with a drop beside it. Behind the fence the pine slope seems to rise rather than fall into a hollow. There is no spur doglegging across to the tower, which sits on a flat, jagged, orange-edged mountain silhouette that looks like a cardboard cutout. The 'lit cabins of the valley floor' are dozens of big glowing orbs hanging at tree"
+     },
+     {
+      "at": "2026-11-22 20:05Z",
+      "round": 16,
+      "said": "NOT THE WORLD: frames 1-36. The crest still never reads as a narrow ridge with a drop beside it. Behind the fence the pine mass rises up toward the tower; it does not fall away into a hollow. There is no spur doglegging across to the tower, which stands on the same hill right behind him. No valley floor or cabins are seen far below. The 'valley lamps' still read as dozens of glowing dots scattered"
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "OFF THE LOOK: 'Every object built from its real parts at real scale with real textures' and 'Backgrounds as real as we can make them', frames 1-40. The pines are faceted low-poly cones in flat green, the mountain range is a single flat card, and the bokeh orbs are oversized. None of it is near the finish of the approved store frames."
+     },
+     {
+      "at": "2026-11-22 20:05Z",
+      "round": 16,
+      "said": "OFF THE LOOK: frames 1-36, 'Backgrounds as real as we can make them' and 'no cardboard backdrops'. The mountain range is a flat grey jagged silhouette card. Above it the sky is a flat, evenly orange painted band with cutout cloud shapes. In frames 28-33 the sky web is small white branching decals pasted flat in front of that band. On the flashes the whole rock floor goes chalk white and reads as s"
      }
     ]
    },
    "ONE-SECOND GAG": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-22 18:58Z",
+      "round": 14,
+      "what": "Round 8: the bolt hits at 0.4 s (frame 13), not after a walk; the hotfoot is five big side-on hops turning him toward us; and the back third is no longer a held pose: the web flashes three times and he ducks at each (down, deeper, up to gulp, down again at the last flash to the final frame), while the lens keeps tracking."
+     },
+     {
+      "at": "2026-11-22 19:16Z",
+      "round": 15,
+      "what": "Round 8 take 2: his ducks at the web's flashes were a few pixels: the spine and chest now fold forward 20/17 deg per unit of duck (from 14/13), so each duck is a visible hunch, and the lens no longer slows and settles on him at the end (the 0.12 m push-in at the web is removed), it keeps tracking."
+     }
+    ],
     "named": [
      {
       "at": "2026-11-22 00:28Z",
@@ -184,11 +294,32 @@
       "at": "2026-11-22 06:31Z",
       "round": 14,
       "said": "HARD: ONE-SECOND GAG, frames ~85-125 (rows 11-16): after the sky-web flash he just stands square to the lens. The only new thing is the curl of smoke off the hat, so the last ~6 s keep repeating 'he's stunned' without building anything"
+     },
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "ONE-SECOND GAG: frames 25-40 (the last ~2.3 s on the sheet). Once he has turned to the lens he stands still while the sky flashes again and again behind him. The flashes change but he doesn't, so nothing builds to the end."
+     },
+     {
+      "at": "2026-11-22 20:05Z",
+      "round": 16,
+      "said": "ONE-SECOND GAG: frames 27-36. Once he has turned toward the lens, the last ~1.5 s is him standing in place making small hunches while the sky web flashes again and again. Each duck is only a few degrees, and the gulp at us and the hat wisp (frame 35) are too small to build anything. The flashes change; he doesn't."
      }
     ]
    },
    "TALKING HEAD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-22 18:58Z",
+      "round": 14,
+      "what": "Round 8: no parked frontal face at the end: the lens stays beside him at full body with the world behind him, still drifting along the crest, and the shot ENDS ON AN EVENT: the web's third flash cracks down right beside him and he ducks again, fists up, turned 40 deg off the lens so it is never a straight-on face."
+     },
+     {
+      "at": "2026-11-22 19:16Z",
+      "round": 15,
+      "what": "Round 8 take 2: the end was read as square to the lens and pushed in: the push-in is removed (the lens keeps its side distance and keeps drifting along the crest) and he ends 50 deg off square (was 40), three-quarter profile, so the world behind him and the last flash carry the ending."
+     }
+    ],
     "named": [
      {
       "at": "2026-11-22 04:17Z",
@@ -199,6 +330,11 @@
       "at": "2026-11-22 06:31Z",
       "round": 14,
       "said": "HARD: TALKING HEAD: frames ~57-125 (about the back half of the shot). The camera sits parked on Data facing us, framed from about the knees up, while he does little more than small flinches. The bolts behind him change, but he doesn't. It reads as a picture of a character with weather behind him, not a scene happening."
+     },
+     {
+      "at": "2026-11-22 18:59Z",
+      "round": 15,
+      "said": "TALKING HEAD: frames 25-40. The camera has stopped drifting and sits on Data square to the lens, framed from about the knees up, while he makes small flinches. It is a picture of a scared character, not something happening. The 'ends on an event' bolt cracking down right beside him is not visible."
      }
     ]
    }

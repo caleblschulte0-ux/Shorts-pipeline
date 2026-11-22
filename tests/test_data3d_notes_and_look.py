@@ -100,3 +100,11 @@ def test_every_ruling_has_a_date_and_his_words():
 def test_the_lightning_ledger_carries_its_history():
     led = json.loads((ROOT / "tools" / "data3d" / "stories" / "lightning" / L.NAME).read_text())
     assert len({x["round"] for x in led["shots"]["1"]["NOT THE WORLD"]["named"]}) >= 5
+
+
+def test_a_bolt_hidden_from_the_render_does_not_hide_his_face():
+    """round 8: spent bolts stay in the scene (hidden from the render) so FAR/BOLT can measure them, and the face check
+    counted them as blocking his face a second after they had gone, which blocked the side lens the notes asked for"""
+    src = (STORE / "staging.py").read_text()
+    body = src[src.index("def face_hidden"):src.index("def face_dir")]
+    assert "hide_render" in body and "blocked >= 3" in body
