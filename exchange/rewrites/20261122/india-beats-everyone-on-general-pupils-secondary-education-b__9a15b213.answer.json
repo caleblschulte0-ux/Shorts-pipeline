@@ -1,0 +1,33 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213",
+  "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:18:17.461Z",
+  "title": "Five Education Numbers Show How Uneven School Scale Really Is",
+  "hook": "School access expanded, but classroom pressure still varies wildly.",
+  "closing": "Education grew, but scale still decides how much attention each student receives.",
+  "question": "Which education gap surprised you most?",
+  "segments": [
+    {
+      "topic": "Education pupils",
+      "say": "India has 127.5 million secondary pupils, nearly double China. Education at this scale strains any school system."
+    },
+    {
+      "topic": "Education classrooms",
+      "say": "In Guinea-Bissau, one college teacher faces 147.6 students, more than double the next worst country. Individual attention becomes scarce."
+    },
+    {
+      "topic": "Education spending",
+      "say": "Education spending fell to 3.57 percent of national income, the lowest in this data. Growing systems have less room to improve."
+    },
+    {
+      "topic": "Education literacy",
+      "say": "Today, 92 percent of young women can read, up from about two thirds in 1975. Wider access produced real gains."
+    },
+    {
+      "topic": "Education preschool",
+      "say": "In Tanzania, one preschool teacher has 114 children, almost double the next worst country. The pressure starts before primary school."
+    }
+  ]
+}
