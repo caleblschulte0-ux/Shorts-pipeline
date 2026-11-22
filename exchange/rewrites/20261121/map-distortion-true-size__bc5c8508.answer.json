@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "map-distortion-true-size__bc5c8508",
+  "slug": "map-distortion-true-size",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:25:27.245Z",
+  "title": "A Common Map Makes Greenland Rival An Africa Fourteen Times Larger",
+  "hook": "The map's biggest distortion grows farther from the equator.",
+  "closing": "Mercator maps inflate distant land, so trust measured area over the familiar picture.",
+  "question": "Which country looks wrong on maps?",
+  "segments": [
+    {
+      "topic": "Map Greenland Africa",
+      "say": "Africa is about fourteen times bigger than Greenland. The common map makes them look far closer in size."
+    },
+    {
+      "topic": "Map latitude distortion",
+      "say": "At sixty degrees, a Mercator map makes land look four times too big."
+    },
+    {
+      "topic": "Map Africa nations",
+      "say": "Africa exceeds the US, China, India and Japan combined by about seven million square kilometers."
+    }
+  ]
+}
