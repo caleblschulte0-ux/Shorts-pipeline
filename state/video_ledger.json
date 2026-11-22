@@ -7871,6 +7871,66 @@
    ],
    "ending_type": "inversion",
    "notes": "Pre-render pass 2026-11-22: validate_scenes OK, no repeats within video."
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-22",
+   "topic_category": "culture",
+   "hook_type": "shock_stat",
+   "hook_text": "A third of America now wears ink, and most can't stop at one.",
+   "depictions": [
+    "scene:illustrated-tattoo-arm",
+    "scene:mechanic",
+    "scene:mechanic"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Who Is Doing It",
+   "notes": "existing scenes kept; validated OK, no rewrite needed"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-22",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:illustrated-baby-flip",
+    "mechanic"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Public Health Wins",
+   "notes": "existing scenes kept; validated OK"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-22",
+   "topic_category": "money",
+   "hook_type": "inversion",
+   "hook_text": "The biggest owners in corporate America aren't tycoons. They're the index funds in your account.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "scene:illustrated-shareholder-hall",
+    "viz"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Who Really Owns It",
+   "notes": "existing scenes kept; validated OK"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-22",
+   "topic_category": "records",
+   "hook_type": "inversion",
+   "hook_text": "Vinyl won the physical comeback while streaming kept the real crown.",
+   "depictions": [
+    "scene:illustrated-record-wall-divider",
+    "mechanic",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "escalation",
+   "franchise": "Comebacks",
+   "notes": "existing scenes kept; validated OK"
   }
  ]
 }

@@ -1,7 +1,100 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-22T12:31:26Z",
+ "updated": "2026-11-22T16:28:11Z",
  "open": [
+  {
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__70695960",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-22T16:28:11Z",
+   "why": [
+    "premise: brain: The pitch is a generic roundup of five unrelated education statistics from different countries with no single concrete subject, human stake or contradiction, and its hook (\"classroom pressure still varies wildly\") is a vague, hedged statement rather than a specific surprise or threat."
+   ],
+   "request": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__70695960.request.json",
+   "answer_path": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__70695960.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__614b1d40",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-11-22T16:28:10Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a clear, concrete surprise or stakes for the viewer beyond a generic slowdown claim."
+   ],
+   "request": "exchange/rewrites/20261122/chip-transistor-shrink-limit__614b1d40.request.json",
+   "answer_path": "exchange/rewrites/20261122/chip-transistor-shrink-limit__614b1d40.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__1180dc92",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-22T16:28:10Z",
+   "why": [
+    "premise: brain: The pitch is vague and doesn’t promise a clear, picture‑worthy surprise or scale beyond a generic fact about frogs freezing"
+   ],
+   "request": "exchange/rewrites/20261122/frog-freezes-and-revives__1180dc92.request.json",
+   "answer_path": "exchange/rewrites/20261122/frog-freezes-and-revives__1180dc92.answer.json"
+  },
+  {
+   "id": "map-distortion-true-size__45b82c82",
+   "slug": "map-distortion-true-size",
+   "filed": "2026-11-22T16:28:10Z",
+   "why": [
+    "premise: brain: The pitch is vague and relies on generic map distortion facts without a clear, concrete surprise or high‑stakes hook for viewers."
+   ],
+   "request": "exchange/rewrites/20261122/map-distortion-true-size__45b82c82.request.json",
+   "answer_path": "exchange/rewrites/20261122/map-distortion-true-size__45b82c82.answer.json"
+  },
+  {
+   "id": "library-digital-shift__368b6dd5",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-22T16:28:09Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or clear stakes for the viewer."
+   ],
+   "request": "exchange/rewrites/20261122/library-digital-shift__368b6dd5.request.json",
+   "answer_path": "exchange/rewrites/20261122/library-digital-shift__368b6dd5.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__de8ae10e",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-22T16:28:09Z",
+   "why": [
+    "thesis: seg1 ('Vinyl sales') does not continue the story of the headline ('Vinyl Earned Two And A Half Times More Than CDs') — brain: Focuses on units sold, not directly proving the revenue ratio claim.",
+    "thesis: seg2 ('Vinyl market') does not continue the story of the headline ('Vinyl Earned Two And A Half Times More Than CDs') — brain: Introduces streaming share, a separate context that doesn't follow directly from the previous beat."
+   ],
+   "request": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__de8ae10e.request.json",
+   "answer_path": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__de8ae10e.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__cf7356de",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-22T16:28:08Z",
+   "why": [
+    "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address site-to-site measurement range, only overall trend.",
+    "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex difference, unrelated to site range claim.",
+    "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While mentions a site measurement, it does not logically follow from the previous beat."
+   ],
+   "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
+   "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__9aef91a1",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-22T16:28:08Z",
+   "why": [
+    "premise: brain: The pitch is vague and relies on generic statistics without a clear, concrete surprise or vivid stakes for the viewer."
+   ],
+   "request": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__9aef91a1.request.json",
+   "answer_path": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__9aef91a1.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__67bee527",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-22T16:28:08Z",
+   "why": [
+    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.request.json",
+   "answer_path": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.answer.json"
+  },
   {
    "id": "moon-drifting-away__653a5ccc_r4",
    "slug": "moon-drifting-away",
@@ -43,28 +136,6 @@
    "answer_path": "exchange/rewrites/20261121/astronaut-bone-loss__15bbbefa.answer.json"
   },
   {
-   "id": "library-digital-shift__af6508e8",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-21T14:49:25Z",
-   "why": [
-    "premise: brain: It's a vague, descriptive statement of a mundane shift (buildings emptied, borrowing moved online) with no surprise, threat, or contradiction that overturns a belief, and the hook doesn't even use the 739 million figure to give scale."
-   ],
-   "request": "exchange/rewrites/20261121/library-digital-shift__af6508e8.request.json",
-   "answer_path": "exchange/rewrites/20261121/library-digital-shift__af6508e8.answer.json"
-  },
-  {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-21T13:21:28Z",
-   "why": [
-    "thesis: seg1 ('Education: crowded classrooms') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: Switches to Guinea-Bissau and college education, not India's secondary education.",
-    "thesis: seg2 ('Education spending') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: No specific country, does not relate to India's secondary education or logically follow the previous beat.",
-    "thesis: seg3 ('Education: female literacy') does not continue the story of the headline ('India Beats Everyone On General pupils secondary education — By 5.1x') — brain: No specific country, does not relate to India's secondary education or logically follow the previous beat."
-   ],
-   "request": "exchange/rewrites/20261121/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.request.json",
-   "answer_path": "exchange/rewrites/20261121/india-beats-everyone-on-general-pupils-secondary-education-b__9a15b213.answer.json"
-  },
-  {
    "id": "chess-online-boom__820d9076",
    "slug": "chess-online-boom",
    "filed": "2026-11-21T13:21:27Z",
@@ -83,16 +154,6 @@
    ],
    "request": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.request.json",
    "answer_path": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__614b1d40",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-21T13:21:26Z",
-   "why": [
-    "premise: brain: The claim about transistor doubling now taking three years is vague and unverified, lacking concrete, true specifics."
-   ],
-   "request": "exchange/rewrites/20261121/chip-transistor-shrink-limit__614b1d40.request.json",
-   "answer_path": "exchange/rewrites/20261121/chip-transistor-shrink-limit__614b1d40.answer.json"
   },
   {
    "id": "muscle-loss-after-30__a5ebb426",
@@ -165,16 +226,6 @@
    "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
-   "id": "autism-diagnosis-rate-rise__75d8b1a9",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-21T00:22:36Z",
-   "why": [
-    "premise: brain: The hook is vague and does not present a concrete, pictureable surprise or specific contradiction."
-   ],
-   "request": "exchange/rewrites/20261121/autism-diagnosis-rate-rise__75d8b1a9.request.json",
-   "answer_path": "exchange/rewrites/20261121/autism-diagnosis-rate-rise__75d8b1a9.answer.json"
-  },
-  {
    "id": "blood-supply-three-percent__a3a64c1f",
    "slug": "blood-supply-three-percent",
    "filed": "2026-11-21T00:22:36Z",
@@ -183,16 +234,6 @@
    ],
    "request": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.request.json",
    "answer_path": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__cd1439f7",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-21T00:22:36Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about specific outbreak numbers."
-   ],
-   "request": "exchange/rewrites/20261121/cruise-ship-outbreaks-climbing__cd1439f7.request.json",
-   "answer_path": "exchange/rewrites/20261121/cruise-ship-outbreaks-climbing__cd1439f7.answer.json"
   },
   {
    "id": "womens-college-hoops-out-rates-men__3fe10075",
@@ -225,16 +266,6 @@
    "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
   },
   {
-   "id": "index-funds-own-corporate-america__a401ad38_r1",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-19T12:52:42Z",
-   "why": [
-    "premise: brain: The premise is vague and unsubstantiated, lacking a concrete, verifiable claim about specific new owners of Corporate America."
-   ],
-   "request": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/index-funds-own-corporate-america__a401ad38_r1.answer.json"
-  },
-  {
    "id": "betelgeuse-great-dimming__f1ec3d70",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-11-19T00:50:05Z",
@@ -243,16 +274,6 @@
    ],
    "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
    "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
-  },
-  {
-   "id": "frog-freezes-and-revives__ef8ed986",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: It's a bare, number-led fun fact (\"survive with 65% frozen\") that names the subject but doesn't turn over a belief, state a stake or threat, or promise a payoff the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.request.json",
-   "answer_path": "exchange/rewrites/20261119/frog-freezes-and-revives__ef8ed986.answer.json"
   },
   {
    "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
@@ -303,16 +324,6 @@
    ],
    "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
    "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
-  },
-  {
-   "id": "map-distortion-true-size__bc5c8508",
-   "slug": "map-distortion-true-size",
-   "filed": "2026-11-18T16:58:18Z",
-   "why": [
-    "premise: brain: The claim is a familiar Mercator-projection fact with a vague 'your map hides it' framing, and the hook's '14 times' figure is wrong (Africa is about 14 times Greenland's area, but the title/hook promise no concrete threat or reversal beyond a cliché the viewer has likely heard)."
-   ],
-   "request": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.request.json",
-   "answer_path": "exchange/rewrites/20261118/map-distortion-true-size__bc5c8508.answer.json"
   },
   {
    "id": "north-american-bird-collapse__1e7ff9ae",

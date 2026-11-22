@@ -1,0 +1,16 @@
+{
+ "slug": "freshwater-accessible",
+ "ts": "20261122T162819Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0:end, seg1:start, seg1:mid and seg1:end show nearly the same frame for about 7s: a full tank, the same two labels and Data waving. Beat 1 adds nothing visual to the opening, so two beats read as identical.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "claim_not_shown",
+  "visible_evidence": "From seg1:start to seg1:end the tank is uniformly full and blue, with the same 96.5%/3.5% labels as seg0:end. The 3.5% 'thin freshwater slice' the narration describes is never drawn. The callout line points at the rim and no layer separates out. Data just waves.",
+  "root_cause": "The beat reuses the finished opening tank instead of acting out its own claim. The 3.5% split exists only as a label, never as a change in the water.",
+  "repair_goal": "Make the 3.5% slice happen on screen. Data siphons or ladles a thin top layer of fresh water out of the salty tank into a small separate jar beside it, so the jar visibly holds about 1/28 of the tank. The tank stays salty/grey-blue and the jar is clear. Drop the reused 96.5% label and leave one number on screen."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

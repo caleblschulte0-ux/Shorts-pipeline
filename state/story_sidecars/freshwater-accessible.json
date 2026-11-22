@@ -22,31 +22,31 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Almost all freshwater is locked away before reaching a tap.",
+   "ears": "Almost all freshwater disappears into oceans, ice, or deep ground.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Freshwater is 3.5 percent of Earth's water, leaving almost everything else salty.",
+   "ears": "Freshwater is 3.5 percent of Earth's water, so a full globe becomes only a thin freshwater slice.",
    "eyes": "substance: blue ocean water; cause: Data pours bucket after bucket of seawater into the tank until it is nearly full, then tops it with a thin fresh layer",
    "evidence": "U.S. Geological Survey (USGS) | Earth's water: saline vs. fresh (percent of all water) | https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water | 2026-09-11"
   },
   {
    "window": "beat 1",
-   "ears": "Glaciers and ice caps hold 68.7 percent of freshwater, freezing most of the supply beyond easy reach.",
+   "ears": "Glaciers and ice caps hold 68.7 percent of freshwater, locking most of that slice behind walls of ice.",
    "eyes": "a data picture (rank)",
    "evidence": "U.S. Geological Survey (USGS) | Where Earth's freshwater actually is (percent of all freshwater) | https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water | 2026-09-11"
   },
   {
    "window": "beat 2",
-   "ears": "Rivers and lakes hold 0.007 percent of Earth's water, carrying much of what people can readily access.",
+   "ears": "Rivers and lakes hold 0.007 percent of Earth's water, leaving a nearly invisible share within easy reach.",
    "eyes": "a data picture (rank)",
    "evidence": "U.S. Geological Survey (USGS) | Freshwater in lakes and rivers as a share of all water on Earth (percent) | https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water | 2026-09-11"
   },
   {
    "window": "closing",
-   "ears": "That tiny accessible freshwater share makes protecting rivers and lakes matter to everyone.",
+   "ears": "That sliver in rivers and lakes is the water people can most easily reach.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
