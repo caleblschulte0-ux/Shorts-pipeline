@@ -1,0 +1,37 @@
+{
+ "slug": "feet-are-getting-bigger",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Your feet are bigger than your grandparents'.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "In the 1970s, the average British man wore a size 8 shoe. Now his feet have grown two full sizes.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "The College of Podiatry (UK) | Average UK men's shoe size, 1970s vs today | https://www.buckbootz.com/news/british-feet-get-two-sizes-bigger-in-40-years | 2026-11-06"
+  },
+  {
+   "window": "beat 1",
+   "ears": "It's not just length. About two in three women say their feet got wider as adults, and six in ten men agree.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "The College of Podiatry (UK) | Share of UK adults who say their feet widened in adulthood | https://www.buckbootz.com/news/british-feet-get-two-sizes-bigger-in-40-years | 2026-11-06"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Podiatrists blame body size. Two in three adults in England are overweight, and extra weight spreads the foot.",
+   "eyes": "a data picture (share)",
+   "evidence": "NHS England | Share of adults in England overweight or living with obesity (2024) | https://nhsd-proxy.openprescribing.net/data-and-information/publications/statistical/health-survey-for-england/2021/overweight-and-obesity-in-adults | 2026-11-06"
+  },
+  {
+   "window": "closing",
+   "ears": "Your shoes aren't shrinking. You're outgrowing them, so check your size before you buy.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

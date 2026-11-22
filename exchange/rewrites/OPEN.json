@@ -1,7 +1,18 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-22T20:56:32Z",
+ "updated": "2026-11-22T23:25:01Z",
  "open": [
+  {
+   "id": "cruise-ship-outbreaks-climbing__1f54e0f7",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-22T23:25:01Z",
+   "why": [
+    "thesis: seg1 ('Cruise norovirus') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Norovirus as the leading cause is a separate fact about cause; it doesn't follow from or turn against the rise in outbre",
+    "thesis: seg2 ('Cruise crowds') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Crowd size is a generic risk-factor fact; it isn't tied to the norovirus cause in beat 1 and doesn't show the outbreaks "
+   ],
+   "request": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__1f54e0f7.request.json",
+   "answer_path": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__1f54e0f7.answer.json"
+  },
   {
    "id": "india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e",
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
@@ -144,16 +155,6 @@
    ],
    "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
    "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__9aef91a1",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-22T16:28:08Z",
-   "why": [
-    "premise: brain: The pitch is vague and relies on generic statistics without a clear, concrete surprise or vivid stakes for the viewer."
-   ],
-   "request": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__9aef91a1.request.json",
-   "answer_path": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__9aef91a1.answer.json"
   },
   {
    "id": "index-funds-own-corporate-america__67bee527",

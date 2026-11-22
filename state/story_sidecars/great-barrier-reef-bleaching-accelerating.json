@@ -3,9 +3,9 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 8,
+   "premise": 9,
    "hook": 11,
-   "arc": 10,
+   "arc": 9,
    "factual": 8,
    "visual_proof": 9,
    "payoff": 6,
@@ -14,13 +14,13 @@
   "total": 55,
   "fatal": [],
   "weakest": "arc",
-  "note": "The script reads like three restatements of one idea (bleaching keeps coming faster than recovery) with no turn or surprise. Open with a concrete, visceral stake, such as the reef losing its color in a few years, and make the 2-year gap aga",
-  "fp": "430fc0763bc5c4af"
+  "note": "The three beats all say the same thing: bleaching is coming back faster than recovery. Replace the stat-by-stat restatement with one concrete turn, such as what a reef looks like after the second hit, or what is lost, so each beat adds some",
+  "fp": "9439e92f575e1f3a"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The Great Barrier Reef keeps getting knocked down before it can stand back up.",
+   "ears": "The Great Barrier Reef is getting hit again before it's even stopped bleeding.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
