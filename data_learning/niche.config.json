@@ -22399,7 +22399,7 @@
     "internet"
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:22:22Z",
+   "rewritten_at": "2026-11-22T12:24:28Z",
    "retold": "retell/v4",
    "segments": [
     {
@@ -24064,7 +24064,7 @@
     "ecology"
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:22:23Z",
+   "rewritten_at": "2026-11-22T12:24:29Z",
    "retold": "retell/v4",
    "segments": [
     {
@@ -27567,7 +27567,7 @@
     "bookstagram"
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:22:23Z",
+   "rewritten_at": "2026-11-22T12:24:29Z",
    "retold": "retell/v4",
    "segments": [
     {
@@ -27702,7 +27702,7 @@
     "explained"
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:22:23Z",
+   "rewritten_at": "2026-11-22T12:24:29Z",
    "hook_was": "Only 3.5 percent of Earth's water isn't salty.",
    "retold": "retell/v4",
    "scorecard": {
@@ -34713,6 +34713,10 @@
     "postage",
     "mailvolume"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-22T12:24:29Z",
+   "hook_was": "You get way less mail than your parents did.",
    "segments": [
     {
      "source": "offline",
@@ -34748,11 +34752,7 @@
      "topic": "USPS stamp cost",
      "say": "A USPS stamp reached 68 cents, so shrinking volume did not make sending a letter cheaper."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:22:23Z",
-   "hook_was": "You get way less mail than your parents did."
+   ]
   },
   {
    "slug": "great-lakes-freshwater-scale",
@@ -38307,6 +38307,29 @@
     "explainer",
     "planespotting"
    ],
+   "retold": "retell/v4",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-22T12:24:29Z",
+   "scorecard": {
+    "scores": {
+     "premise": 12,
+     "hook": 18,
+     "arc": 15,
+     "factual": 8,
+     "visual_proof": 8,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 73,
+    "fatal": [
+     "invented_fact",
+     "unrenderable_visual"
+    ],
+    "weakest": "factual",
+    "note": "Provide verifiable sources for the statistics and design clearer, phone‑friendly visuals that directly illustrate each beat.",
+    "fp": "2daee2cfb23e7edd"
+   },
+   "hook_was": "Are planes getting too close on the ground?",
    "segments": [
     {
      "source": "offline",
@@ -38351,30 +38374,7 @@
      "topic": "Runway danger clusters",
      "say": "That runway danger clusters: just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst near-misses."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:22:23Z",
-   "scorecard": {
-    "scores": {
-     "premise": 12,
-     "hook": 18,
-     "arc": 15,
-     "factual": 8,
-     "visual_proof": 8,
-     "payoff": 8,
-     "voice": 4
-    },
-    "total": 73,
-    "fatal": [
-     "invented_fact",
-     "unrenderable_visual"
-    ],
-    "weakest": "factual",
-    "note": "Provide verifiable sources for the statistics and design clearer, phone‑friendly visuals that directly illustrate each beat.",
-    "fp": "2daee2cfb23e7edd"
-   },
-   "hook_was": "Are planes getting too close on the ground?"
+   ]
   },
   {
    "slug": "feet-are-getting-bigger",
@@ -39006,6 +39006,9 @@
     "worldbank"
    ],
    "question": "Which education gap surprised you most?",
+   "words_by": "chatgpt-rewrite",
+   "retold": "retell/v4",
+   "rewritten_at": "2026-11-22T12:24:29Z",
    "segments": [
     {
      "source": "offline",
@@ -39062,10 +39065,7 @@
      "topic": "Education preschool",
      "say": "In Tanzania, one preschool teacher has 114 children, almost double the next worst country. The pressure starts before primary school."
     }
-   ],
-   "words_by": "chatgpt-rewrite",
-   "retold": "retell/v4",
-   "rewritten_at": "2026-11-22T12:22:23Z"
+   ]
   }
  ]
 }
