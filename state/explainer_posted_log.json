@@ -5865,11 +5865,36 @@
       "duration_s": 29.5
     },
     "freshwater-accessible": {
-      "claimed_at": "2026-11-22T15:34:48.818546+00:00",
+      "url": "https://youtube.com/shorts/UQ3DDG2fLsk",
       "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
+      "at": "2026-11-22T15:34:58.998679+00:00",
       "publish_at": "2026-11-22T19:45:02Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.58,
+      "beat_s": [
+        4.51,
+        5.51,
+        5.79,
+        6.58,
+        5.64
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 65,
+      "duration_s": 28.5,
+      "hook": "shock_stat",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:drop-rain-200",
+        "illustrated:glacier-glass",
+        "mechanic:thin-sliver-of-the-sea"
+      ]
     }
   },
   "uploads": [
@@ -7577,9 +7602,10 @@
       "claimed_at": "2026-11-22T15:34:48.818546+00:00",
       "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
       "publish_at": "2026-11-22T19:45:02Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "freshwater-accessible"
+      "url": "https://youtube.com/shorts/UQ3DDG2fLsk",
+      "state": "posted",
+      "slug": "freshwater-accessible",
+      "at": "2026-11-22T15:34:58.998679+00:00"
     }
   ]
 }
