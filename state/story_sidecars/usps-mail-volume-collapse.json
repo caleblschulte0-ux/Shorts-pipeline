@@ -3,21 +3,23 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 9,
-   "hook": 11,
-   "arc": 10,
-   "factual": 8,
-   "visual_proof": 8,
-   "payoff": 6,
+   "premise": 8,
+   "hook": 16,
+   "arc": 14,
+   "factual": 13,
+   "visual_proof": 7,
+   "payoff": 4,
    "voice": 3
   },
-  "total": 55,
+  "total": 65,
   "fatal": [
-   "false_comparison"
+   "missing_payoff",
+   "unrenderable_visual",
+   "confusing"
   ],
-  "weakest": "arc",
-  "note": "The title and hook claim fewer letters made stamps more expensive, but the script never shows a causal link or an inflation-adjusted price. It also never says when 'peak' was, and it compares 109 billion total pieces with 46 billion First-C",
-  "fp": "8653fb2f8b694905"
+  "weakest": "payoff",
+  "note": "Make the visuals clearly depict the data points and ensure the closing directly answers the hook about rising postage costs.",
+  "fp": "ea41cbe40ee7fec2"
  },
  "storyboard": [
   {
@@ -29,7 +31,7 @@
   {
    "window": "beat 0",
    "ears": "USPS mail fell to 109 billion pieces, leaving the network with nearly half its former traffic.",
-   "eyes": "a data picture (trend)",
+   "eyes": "substance: white paper envelopes; cause: Data grips each cart's handle and rolls the letters out of the truck, cart after cart",
    "evidence": "Postal Regulatory Commission (PRC) | Total USPS mail volume | https://www.prc.gov/state-of-the-postal-service | 2026-10-16"
   },
   {

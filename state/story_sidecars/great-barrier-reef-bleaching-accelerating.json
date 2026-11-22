@@ -3,24 +3,24 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 9,
+   "premise": 8,
    "hook": 11,
-   "arc": 13,
+   "arc": 10,
    "factual": 8,
-   "visual_proof": 11,
+   "visual_proof": 9,
    "payoff": 6,
    "voice": 3
   },
-  "total": 61,
+  "total": 55,
   "fatal": [],
-  "weakest": "factual",
-  "note": "The hook is a generic 'reef is dying' claim with no concrete image or twist. Open on the specific shock instead, such as a reef going white again before it has regrown. Then fix the numbers: '3 events this decade' and 'a 2-year gap' sit bes",
-  "fp": "fc088e6e23fa8a1f"
+  "weakest": "arc",
+  "note": "The script reads like three restatements of one idea (bleaching keeps coming faster than recovery) with no turn or surprise. Open with a concrete, visceral stake, such as the reef losing its color in a few years, and make the 2-year gap aga",
+  "fp": "430fc0763bc5c4af"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The Great Barrier Reef is dying faster than it can recover.",
+   "ears": "The Great Barrier Reef keeps getting knocked down before it can stand back up.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },

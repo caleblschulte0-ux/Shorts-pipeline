@@ -34742,21 +34742,23 @@
    "hook_was": "You get way less mail than your parents did.",
    "scorecard": {
     "scores": {
-     "premise": 9,
-     "hook": 11,
-     "arc": 10,
-     "factual": 8,
-     "visual_proof": 8,
-     "payoff": 6,
+     "premise": 8,
+     "hook": 16,
+     "arc": 14,
+     "factual": 13,
+     "visual_proof": 7,
+     "payoff": 4,
      "voice": 3
     },
-    "total": 55,
+    "total": 65,
     "fatal": [
-     "false_comparison"
+     "missing_payoff",
+     "unrenderable_visual",
+     "confusing"
     ],
-    "weakest": "arc",
-    "note": "The title and hook claim fewer letters made stamps more expensive, but the script never shows a causal link or an inflation-adjusted price. It also never says when 'peak' was, and it compares 109 billion total pieces with 46 billion First-C",
-    "fp": "8653fb2f8b694905"
+    "weakest": "payoff",
+    "note": "Make the visuals clearly depict the data points and ensure the closing directly answers the hook about rising postage costs.",
+    "fp": "ea41cbe40ee7fec2"
    },
    "segments": [
     {
@@ -36821,7 +36823,7 @@
   {
    "slug": "cruise-ship-outbreaks-climbing",
    "title": "Cruise Outbreaks Climbed As Ships Packed In Thousands",
-   "hook": "Cruise ships pack illness into floating crowds of thousands.",
+   "hook": "Cruise ships are floating petri dishes, and the outbreaks keep coming.",
    "closing": "On a crowded cruise, handwashing can interrupt thousands of possible close contacts.",
    "question": "Would outbreaks change your cruise pick?",
    "caption": "The CDC tracked 14 cruise ship outbreaks in 2023, 18 in 2024, and 2025 had already passed 20. Most are norovirus -- and modern mega-ships now pack up to 9,950 people onto one deck. Would it change which cruise you book? 👇",
@@ -36880,7 +36882,23 @@
      "say": "Cruise crowds can include 7,600 guests, creating thousands of close contacts for illness to cross.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _cs_person(cr, x, y, s, t, i):\n    shirt = [(70, 120, 170), (196, 90, 70), (90, 140, 96), (214, 170, 80),\n             (140, 96, 150), (60, 64, 80)][i % 6]\n    skin = [(232, 192, 160), (186, 132, 96), (120, 84, 60), (214, 170, 130)][i % 4]\n    hair = [(40, 30, 26), (120, 80, 40), (200, 180, 140), (30, 30, 34)][(i * 3) % 4]\n    case = [(40, 90, 150), (170, 50, 60), (60, 60, 70), (220, 150, 60), (90, 120, 80)][(i * 2) % 5]\n    hg = 240 * s * (0.88 + 0.16 * ((i * 0.37) % 1.0))\n    contact_shadow(cr, x - 20 * s, y, 150 * s, a=0.3)\n    sw = math.sin(t * 3.0 + i * 1.3)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.set_source_rgba(*_c((50, 52, 64)))\n    cr.set_line_width(17 * s)\n    for d in (-1, 1):\n        cr.move_to(x + d * 9 * s, y - 0.46 * hg)\n        cr.line_to(x + d * sw * 26 * s, y - 4 * s)\n    cr.stroke()\n    # the suitcase rolled ahead of them\n    sx = x - 74 * s\n    box(cr, sx - 30 * s, y - 8 * s, 56 * s, 92 * s, case, depth=16 * s)\n    seams(cr, sx - 30 * s, y - 100 * s, sx + 26 * s, y - 8 * s, case, n=3, axis=\"v\")\n    for wx in (sx - 22 * s, sx + 18 * s):\n        disc(cr, wx, y - 4 * s, 6 * s, (30, 30, 34))\n    cr.set_source_rgba(*_c((40, 40, 46)))\n    cr.set_line_width(5 * s)\n    cr.move_to(sx, y - 100 * s)\n    cr.line_to(sx + 6 * s, y - 0.52 * hg)\n    cr.line_to(x - 22 * s, y - 0.55 * hg)\n    cr.stroke()\n    # torso, arm, head, hair\n    cr.move_to(x - 33 * s, y - 0.44 * hg)\n    cr.line_to(x - 31 * s, y - 0.78 * hg)\n    cr.curve_to(x - 28 * s, y - 0.87 * hg, x + 28 * s, y - 0.87 * hg, x + 31 * s, y - 0.78 * hg)\n    cr.line_to(x + 33 * s, y - 0.44 * hg)\n    cr.close_path()\n    solid(cr, shirt)\n    cr.set_source_rgba(*_c(shirt))\n    cr.set_line_width(14 * s)\n    cr.move_to(x - 26 * s, y - 0.78 * hg)\n    cr.line_to(x - 22 * s, y - 0.56 * hg)\n    cr.stroke()\n    disc(cr, x - 2 * s, y - 0.92 * hg, 23 * s, skin)\n    cr.arc(x - 2 * s, y - 0.93 * hg, 24 * s, math.pi, 2 * math.pi)\n    cr.close_path()\n    solid(cr, hair, rim=False)\n\n\ndef _cs_cart(cr, ox, oy, ang, loads):\n    \"\"\"A luggage cart on the gangway, tilted to its slope; returns the two\n    points on its push bar (which leans back toward whoever pushes it).\"\"\"\n    ca, sa = math.cos(ang), math.sin(ang)\n\n    def g(lx, ly):\n        return (ox + lx * ca - ly * sa, oy + lx * sa + ly * ca)\n\n    cr.save()\n    cr.translate(ox, oy)\n    cr.rotate(ang)\n    contact_shadow(cr, 70, 0, 170, a=0.35)\n    cr.rectangle(0, -26, 150, 12)\n    solid(cr, (150, 156, 166), finish=\"metal\")\n    trim(cr, 0, -26, 150, -14, (150, 156, 166), w=3)\n    for wx in (18, 132):\n        disc(cr, wx, -9, 10, (36, 36, 40))\n        disc(cr, wx, -9, 4, (170, 170, 176), finish=\"metal\")\n    cr.rectangle(-6, -168, 9, 146)\n    solid(cr, (120, 126, 136), finish=\"metal\", rim=False)\n    cr.rectangle(-18, -174, 34, 12)\n    solid(cr, (40, 40, 46))\n    cols = [(40, 90, 150), (190, 70, 60), (214, 168, 70), (80, 120, 90), (70, 70, 80)]\n    stack = [(10, 64, 60), (82, 60, 74), (16, 52, 40), (74, 64, 38)]\n    lift = [0, 0, -60, -74]\n    for j in range(loads):\n        bx, bw, bh = stack[j]\n        by = -26 + lift[j]\n        box(cr, bx, by, bw, bh, cols[j], depth=12)\n        seams(cr, bx, by - bh, bx + bw, by, cols[j], n=2, axis=\"v\")\n        cr.set_source_rgba(*_c((30, 30, 34)))\n        cr.set_line_width(4)\n        cr.move_to(bx + bw * 0.35, by - bh)\n        cr.line_to(bx + bw * 0.35, by - bh - 8)\n        cr.line_to(bx + bw * 0.65, by - bh - 8)\n        cr.line_to(bx + bw * 0.65, by - bh)\n        cr.stroke()\n    cr.restore()\n    return [g(-14, -168), g(12, -168)]\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a cruise ship's cabin decks\n    SUBSTANCE: guests lighting up cabins\n    CAUSE: Data grips the luggage cart and pushes it up the gangway, and cabin after cabin lights up as the guests board\n    The ship broadside at the quay in daylight, its whole side one wall of\n    cabins: the WHOLE is everyone aboard, cut at the true split. The guest\n    decks are above, balcony cabins lit warm, each lamp its own, as each\n    load of guests boards over four pushes up the gangway. The crew\n    portholes are below and light last, cooler. The guests readout lands\n    when the guest decks are full and the crew count joins it once the crew\n    is aboard, both by 0.62, then holds while Data keeps the cart rolling\n    and the boarding queue keeps walking past the camera.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    guests = rows[0][1]\n    crew = rows[1][1] if len(rows) > 1 else 0.0\n    total = guests + crew or 1.0\n\n    COLS, NR = 13, 10\n    N = COLS * NR\n    G = int(round(N * guests / total))\n    C = N - G\n    a0, ag, a1 = 0.08, 0.45, 0.62\n    n = 4\n    span = (ag - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    if u < a0:\n        climb, gl = 0.0, 0.0\n    elif u < ag:\n        climb = (k + ease(seg(f, 0.0, 0.5))) / n\n        gl = (k + ease(seg(f, 0.4, 0.9))) / n\n    else:\n        climb, gl = 1.0, 1.0\n    cl = ease(seg(u, 0.47, a1))\n    litG = int(G * gl + 0.5)\n    litC = int(C * cl + 0.5)\n\n    landscape(cr, t, \"coast\", horizon=1100, time=\"day\", seed=\"cruise ship cabins\",\n              skyline=True)\n    haze(cr, 0, 1100, (206, 220, 234), a=0.3)\n    # the harbour water under the hull\n    vgrad(cr, [(0, (52, 96, 132)), (1, (30, 64, 96))], 1290, 1410)\n    cr.set_source_rgba(*_c((170, 206, 230), 0.55))\n    cr.set_line_width(3)\n    for i in range(9):\n        wx = (i * 137 + t * 40) % 1180 - 60\n        wy = 1350 + (i % 3) * 18\n        cr.move_to(wx, wy)\n        cr.line_to(wx + 70, wy)\n    cr.stroke()\n\n    # THE SHIP: the hull side, with a raked bow going back into the picture\n    cast_shadow(cr, -40, 1000, 1330, length=90, a=0.25)\n    cr.move_to(1000, 640)\n    cr.line_to(1080, 600)\n    cr.line_to(1110, 700)\n    cr.line_to(1050, 1310)\n    cr.line_to(1000, 1330)\n    cr.close_path()\n    solid(cr, (196, 202, 212))\n    cr.move_to(-40, 640)\n    cr.line_to(1000, 640)\n    cr.line_to(1000, 1330)\n    cr.line_to(-40, 1330)\n    cr.close_path()\n    solid(cr, (240, 242, 246))\n    cr.rectangle(-40, 1240, 1040, 90)\n    solid(cr, (30, 44, 78), rim=False)\n    # a red boot-top stripe and the anchor at the bow\n    cr.rectangle(-40, 1316, 1040, 14)\n    solid(cr, (168, 52, 44), rim=False)\n    seams(cr, -40, 640, 1000, 1240, (240, 242, 246), n=8, axis=\"v\", a=0.25)\n    disc(cr, 1040, 1270, 14, (60, 62, 70), finish=\"metal\")\n    # the upper decks stepped back, the lifeboats, the funnel (right, clear of the title)\n    box(cr, 30, 640, 900, 58, (236, 238, 242), depth=50)\n    for i in range(7):\n        bx = 50 + i * 112\n        cylinder(cr, bx, 676, 86, 30, (236, 120, 40))\n        trim(cr, bx, 648, bx + 86, 652, (236, 120, 40), w=3)\n        cr.set_source_rgba(*_c((80, 84, 92)))\n        cr.set_line_width(3)\n        cr.move_to(bx + 10, 648)\n        cr.line_to(bx + 10, 600)\n        cr.move_to(bx + 76, 648)\n        cr.line_to(bx + 76, 600)\n        cr.stroke()\n    cylinder(cr, 860, 590, 110, 110, (232, 234, 238))\n    cylinder(cr, 860, 500, 110, 24, (40, 60, 110))\n    cylinder(cr, 860, 480, 110, 20, (30, 30, 36))\n\n    # the cabins: the whole ship's company, cut at the true split\n    head_c = [(40, 30, 26), (90, 60, 44), (60, 46, 40), (120, 84, 60)]\n    warm = [(255, 206, 120), (250, 190, 110), (255, 222, 150), (244, 176, 104),\n            (255, 214, 136)]\n    curtain = [(170, 70, 60), (70, 110, 150), (200, 170, 110), (110, 140, 100)]\n    for idx in range(N):\n        r, c = divmod(idx, COLS)\n        wx = 30 + c * 74\n        wy = 720 + r * 50\n        if idx < G:\n            lit = idx < litG\n            cr.rectangle(wx, wy, 52, 32)\n            solid(cr, warm[(idx * 7) % 5] if lit else (44, 58, 78),\n                  finish=\"matte\" if lit else \"glass\")\n            # balcony door mullion and a drawn curtain, each cabin its own\n            cr.set_source_rgba(*_c((190, 194, 202)))\n            cr.set_line_width(2)\n            cr.move_to(wx + 26, wy)\n            cr.line_to(wx + 26, wy + 32)\n            cr.stroke()\n            side = (idx * 5) % 3\n            if side < 2:\n                cx0 = wx + (2 if side == 0 else 40)\n                cr.rectangle(cx0, wy + 2, 10, 28)\n                cr.set_source_rgba(*_c(curtain[(idx * 3) % 4], 0.85))\n                cr.fill()\n            trim(cr, wx, wy, wx + 52, wy + 32, (210, 214, 222), w=3)\n            if lit and (idx * 11) % 4 != 0:\n                hx = wx + 14 + (idx * 17) % 26\n                disc(cr, hx, wy + 18, 6, head_c[idx % 4])\n                cr.rectangle(hx - 8, wy + 24, 16, 8)\n                cr.set_source_rgba(*_c(head_c[idx % 4]))\n                cr.fill()\n            # the balcony rail across the cabin\n            cr.set_source_rgba(*_c((150, 156, 166)))\n            cr.set_line_width(2)\n            cr.move_to(wx - 4, wy + 38)\n            cr.line_to(wx + 56, wy + 38)\n            cr.move_to(wx - 4, wy + 30)\n            cr.line_to(wx + 56, wy + 30)\n            cr.stroke()\n        else:\n            if 560 < wx + 26 < 720 and wy > 1100:\n                continue\n            lit = (idx - G) < litC\n            cr.arc(wx + 26, wy + 16, 13, 0, 2 * math.pi)\n            solid(cr, (206, 226, 240) if lit else (40, 52, 70),\n                  finish=\"matte\" if lit else \"glass\")\n            cr.arc(wx + 26, wy + 16, 13, 0, 2 * math.pi)\n            edge(cr, (150, 156, 166), width=3)\n    # the line between the guest decks and the crew decks, in the accent\n    if gl > 0.99:\n        rr, cc = divmod(G, COLS)\n        ya = 720 + rr * 50 - 8\n        cr.move_to(-40, ya + 50)\n        cr.line_to(30 + cc * 74 - 10, ya + 50)\n        cr.line_to(30 + cc * 74 - 10, ya)\n        cr.line_to(1000, ya)\n        cr.set_source_rgba(*_c(P[\"accent2\"], ease(seg(u, ag, ag + 0.05))))\n        cr.set_line_width(7)\n        cr.stroke()\n\n    # the shell door the gangway lands on\n    DX0, DX1, DY0, DY1 = 590, 690, 1120, 1240\n    cr.rectangle(DX0, DY0, DX1 - DX0, DY1 - DY0)\n    solid(cr, (60, 44, 30), rim=False)\n    glow(cr, (DX0 + DX1) / 2, DY1 - 10, 90, (255, 210, 140), 0.5)\n    trim(cr, DX0, DY0, DX1, DY1, (200, 204, 212), w=6)\n\n    # the quay\n    vgrad(cr, [(0, (176, 170, 160)), (1, (120, 114, 106))], 1400, H)\n    cr.rectangle(0, 1396, W, 14)\n    solid(cr, (96, 92, 86), rim=False)\n    seams(cr, 0, 1410, W, H, (150, 144, 134), n=7, axis=\"v\", a=0.3)\n    for bx in (60, 860):\n        contact_shadow(cr, bx + 30, 1440, 80, a=0.4)\n        cylinder(cr, bx, 1440, 60, 50, (40, 40, 46), finish=\"metal\")\n    cr.set_source_rgba(*_c((200, 180, 140)))\n    cr.set_line_width(8)\n    cr.move_to(890, 1400)\n    cr.curve_to(900, 1360, 960, 1300, 990, 1250)\n    cr.stroke()\n\n    # the gangway from the quay up to the door\n    GX0, GY0, GX1, GY1 = 120, 1490, DX0 + 30, DY1\n    ang = math.atan2(GY1 - GY0, GX1 - GX0)\n    contact_shadow(cr, GX0 + 30, GY0 + 6, 120, a=0.4)\n    cr.move_to(GX0, GY0)\n    cr.line_to(GX1, GY1)\n    cr.line_to(GX1, GY1 + 22)\n    cr.line_to(GX0, GY0 + 22)\n    cr.close_path()\n    solid(cr, (150, 154, 162), finish=\"metal\")\n    cr.set_source_rgba(*_c((70, 74, 82)))\n    cr.set_line_width(4)\n    for i in range(11):\n        q = i / 10\n        sx, sy = GX0 + (GX1 - GX0) * q, GY0 + (GY1 - GY0) * q\n        cr.move_to(sx, sy)\n        cr.line_to(sx, sy - 110)\n    cr.move_to(GX0, GY0 - 110)\n    cr.line_to(GX1, GY1 - 110)\n    cr.move_to(GX0, GY0 - 55)\n    cr.line_to(GX1, GY1 - 55)\n    cr.stroke()\n\n    # Data behind the luggage cart, arms out on its bar, pushing it up\n    run = 0.40 * climb + 0.03 * ease(seg(u, 0.72, 0.86))\n    fx = GX0 + 40 + (GX1 - GX0 - 40) * run\n    fy = GY0 + (GY1 - GY0) * (fx - GX0) / (GX1 - GX0)\n    ox = fx + 170\n    oy = GY0 + (GY1 - GY0) * (ox - GX0) / (GX1 - GX0)\n    hands = _cs_cart(cr, ox, oy, ang, 4 if u < 0.72 else 3)\n    HH = 300\n    if u < a0:\n        host(\"point\", fx - 10, fy, HH)\n    else:\n        sx = stand_at(hands, fy, HH, fx)\n        if sx is None:\n            host(\"shove\", fx, fy, HH, beat=k)\n        else:\n            host(\"grip\", sx, fy, HH, hands=hands, lower=\"follow\",\n                 expr=\"strain\" if u < a1 else \"happy\")\n\n    # right by the camera: the boarding queue shuffling toward the gangway\n    for i in range(5):\n        px = 1260 - ((t * 38 + i * 290) % 1440)\n        _cs_person(cr, px, 1760 + (i % 2) * 70, 1.15 + 0.1 * (i % 3), t, i)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.26)\n\n    if u >= a1:\n        fit_readout(cr, f\"{int(round(guests)):,} guests\",\n                    f\"plus {int(round(crew)):,} crew on one cruise ship\",\n                    80, 520, size=130, max_w=740)\n    elif gl >= 0.999:\n        fit_readout(cr, f\"{int(round(guests)):,} guests\", \"on one cruise ship\",\n                    80, 520, size=130, max_w=740)\n    else:\n        fit_readout(cr, \"Cruise crowds\", \"how many sail on one ship\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130, max_w=740)\n"
     }
-   ]
+   ],
+   "scorecard": {
+    "scores": {
+     "premise": 8,
+     "hook": 8,
+     "arc": 7,
+     "factual": 8,
+     "visual_proof": 9,
+     "payoff": 4,
+     "voice": 2
+    },
+    "total": 46,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "Open on a concrete, true stake in plain spoken words (e.g. 'One cruise ship, 7,600 strangers, one bug') and then use the beats to build cause and effect (crowds, then norovirus, then handwashing). Right now the hook is a vague claim, the be",
+    "fp": "cbea27ca1c3a5d2c"
+   }
   },
   {
    "slug": "billion-dollar-disasters-record-2023",
@@ -38481,7 +38499,7 @@
   {
    "slug": "great-barrier-reef-bleaching-accelerating",
    "title": "Reef Bleaching Returns Before A Reef Can Recover",
-   "hook": "The Great Barrier Reef keeps getting knocked down before it can stand back up.",
+   "hook": "The Great Barrier Reef is getting hit again before it's even stopped bleeding.",
    "closing": "Repeated bleaching can erase a decade of reef recovery before it finishes.",
    "question": "Can the reef recover in time?",
    "hashtags": [
@@ -38503,19 +38521,19 @@
    "rewritten_at": "2026-11-22T12:29:29Z",
    "scorecard": {
     "scores": {
-     "premise": 9,
+     "premise": 8,
      "hook": 11,
-     "arc": 13,
+     "arc": 10,
      "factual": 8,
-     "visual_proof": 11,
+     "visual_proof": 9,
      "payoff": 6,
      "voice": 3
     },
-    "total": 61,
+    "total": 55,
     "fatal": [],
-    "weakest": "factual",
-    "note": "The hook is a generic 'reef is dying' claim with no concrete image or twist. Open on the specific shock instead, such as a reef going white again before it has regrown. Then fix the numbers: '3 events this decade' and 'a 2-year gap' sit bes",
-    "fp": "fc088e6e23fa8a1f"
+    "weakest": "arc",
+    "note": "The script reads like three restatements of one idea (bleaching keeps coming faster than recovery) with no turn or surprise. Open with a concrete, visceral stake, such as the reef losing its color in a few years, and make the 2-year gap aga",
+    "fp": "430fc0763bc5c4af"
    },
    "hook_was": "Reef bleaching now returns about every 2 years.",
    "segments": [

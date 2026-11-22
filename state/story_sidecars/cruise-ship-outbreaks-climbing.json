@@ -1,0 +1,52 @@
+{
+ "slug": "cruise-ship-outbreaks-climbing",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 8,
+   "hook": 8,
+   "arc": 7,
+   "factual": 8,
+   "visual_proof": 9,
+   "payoff": 4,
+   "voice": 2
+  },
+  "total": 46,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "Open on a concrete, true stake in plain spoken words (e.g. 'One cruise ship, 7,600 strangers, one bug') and then use the beats to build cause and effect (crowds, then norovirus, then handwashing). Right now the hook is a vague claim, the be",
+  "fp": "cbea27ca1c3a5d2c"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Cruise ships pack illness into floating crowds of thousands.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Cruise outbreaks reached 20, continuing a three-year rise even as ships kept sailing.",
+   "eyes": "substance: yellow quarantine flags; cause: Data hauls the line hand over hand and the string of yellow quarantine flags rises up over the ship's mast, one more flag per outbreak",
+   "evidence": "Centers for Disease Control and Prevention (CDC) | Cruise ship gastrointestinal illness outbreaks reported to CDC | https://www.cdc.gov/nceh/vsp/surv/gilist.htm | 2026-10-30"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Cruise norovirus caused 15 outbreaks, making it the leading recorded cause.",
+   "eyes": "a data picture (share)",
+   "evidence": "Centers for Disease Control and Prevention (CDC) | Cause of 2024's cruise ship outbreaks | https://www.cdc.gov/nceh/vsp/surv/gilist.htm | 2026-10-30"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Cruise crowds can include 7,600 guests, creating thousands of close contacts for illness to cross.",
+   "eyes": "substance: guests lighting up cabins; cause: Data grips the luggage cart and pushes it up the gangway, and cabin after cabin lights up as the guests board",
+   "evidence": "Royal Caribbean International | People aboard the world's largest cruise ship at max capacity | https://www.royalcaribbean.com/cruise-ships/icon-of-the-seas | 2026-10-30"
+  },
+  {
+   "window": "closing",
+   "ears": "On a crowded cruise, handwashing can interrupt thousands of possible close contacts.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
