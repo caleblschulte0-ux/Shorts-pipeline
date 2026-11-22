@@ -24,75 +24,63 @@
    ],
    "recurred_after_fix": false
   },
-  "decorative_mascot": {
-   "count": 4,
+  "dead_air": {
+   "count": 2,
    "stories": {
-    "sports_soccer_israeli_team": 1,
-    "sports_collegebasketball_ration_three": 1,
+    "sports_erik_johnson_s_on_players": 1,
+    "freshwater-accessible": 1
+   },
+   "timestamps": [
+    "2026-11-17T19:48:49+00:00",
+    "2026-11-22T15:34:47+00:00"
+   ],
+   "examples": [
+    "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text.",
+    "dead_air: seg0:end, seg1:start, seg1:mid and seg1:end show nearly the same frame for about 7s: a full tank, the same two labels and Data waving. Beat 1 adds nothing visual to the opening, so two beats"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 2,
+   "stories": {
     "third-interstellar-visitor": 1,
     "lake-mead-water-crisis": 1
    },
    "timestamps": [
-    "2026-11-17T11:56:43+00:00",
-    "2026-11-17T16:49:30+00:00",
     "2026-11-18T01:45:11+00:00",
     "2026-11-18T14:17:41+00:00"
    ],
    "examples": [
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
-    "decorative_mascot: From hook@0.3 through seg1:end Data stands in the same place beside the observatory, pointing, while the telescope moves by itself. In seg2:start and seg2:end he stands on a platfor"
+    "decorative_mascot: From hook@0.3 through seg1:end Data stands in the same place beside the observatory, pointing, while the telescope moves by itself. In seg2:start and seg2:end he stands on a platfor",
+    "decorative_mascot: seg2:start to seg3:end: Data stands on top of the dam holding a red valve wheel and pointing while the water drops by itself. He never turns the wheel or causes the drop. In the lak"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 2,
+   "stories": {
+    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
+   },
+   "timestamps": [
+    "2026-11-22T17:25:33+00:00",
+    "2026-11-22T22:26:23+00:00"
+   ],
+   "examples": [
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 3,
+   "count": 1,
    "stories": {
-    "sports_soccer_israeli_team": 1,
-    "sports_collegebasketball_ration_three": 1,
     "sports_hockey_terates_nick": 1
    },
    "timestamps": [
-    "2026-11-17T11:56:43+00:00",
-    "2026-11-17T16:49:30+00:00",
     "2026-11-17T16:49:30+00:00"
    ],
    "examples": [
-    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
-    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
     "junk_imagery: The video claims 'Chychrun destroys Cousins on the ice' but the actual hit is not shown in the footage, only the lead-up and aftermath."
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 2,
-   "stories": {
-    "sports_nba__the_reasons": 1,
-    "sports_erik_johnson_s_on_players": 1
-   },
-   "timestamps": [
-    "2026-11-17T11:43:06+00:00",
-    "2026-11-17T19:48:49+00:00"
-   ],
-   "examples": [
-    "dead_air: Motion facts show `held_s` is 7.5s, and the visual content of the speakers appears static for over 5 seconds between mid0 and mid1, and similar durations in subsequent segments.",
-    "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text."
-   ],
-   "recurred_after_fix": false
-  },
-  "bare_number": {
-   "count": 2,
-   "stories": {
-    "sports_soccer_israeli_team": 1,
-    "sports_collegebasketball_ration_three": 1
-   },
-   "timestamps": [
-    "2026-11-17T11:56:43+00:00",
-    "2026-11-17T16:49:30+00:00"
-   ],
-   "examples": [
-    "malformed_judge_response: checks.bare_number_card.evidence missing or empty",
-    "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
    ],
    "recurred_after_fix": false
   }
@@ -104,7 +92,7 @@
    "max": 4
   },
   "data_demo": {
-   "median": 4,
+   "median": 3,
    "min": 0,
    "max": 5
   },
@@ -114,7 +102,7 @@
    "max": 4
   },
   "craft": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 3
   },
@@ -130,17 +118,11 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
-  95,
-  96,
-  83,
-  100,
-  14,
-  14,
   62,
   100,
   74,
@@ -154,6 +136,12 @@
   70,
   74,
   74,
-  70
+  70,
+  74,
+  65,
+  65,
+  61,
+  14,
+  14
  ]
 }
