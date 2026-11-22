@@ -1,0 +1,112 @@
+{
+  "schema": "chatgpt-producer-blocker/v1",
+  "date": "20261122",
+  "status": "blocked",
+  "failed_step": "8.verify_actual_channel_output",
+  "observed_at": "2026-11-22T12:33:13.667Z",
+  "reason": "Downstream production did not produce the frozen contract's required verified uploads after response/DONE, Phase B, two mailbox rounds, and repeated posted-log checks.",
+  "attempts": [
+    {
+      "step": "startup_checkpoint",
+      "result": "committed",
+      "commit": "73336ca18d60c1f13255acb5452bc3a28c8da633"
+    },
+    {
+      "step": "mailbox_round_1",
+      "result": "4 ask keys answered; 10 rewrites answered, 8 applied and 2 rejected by the existing gate"
+    },
+    {
+      "step": "response",
+      "result": "committed and read back as valid JSON",
+      "commit": "ac5e085061f1887ab606aae00e70fc27f118cec0"
+    },
+    {
+      "step": "done_trigger",
+      "result": "committed separately",
+      "commit": "36105305e13490cf81f634fa9fa229bee2192026"
+    },
+    {
+      "step": "phase_b",
+      "result": "ran; 2 Explainer entries applied and 1 rejected; zero media requested",
+      "commit": "7af050510c7f399357318f1671d0f9434dd0cf65"
+    },
+    {
+      "step": "mailbox_round_2",
+      "result": "10 rewrites answered; 9 applied and 1 rejected by the existing gate"
+    },
+    {
+      "step": "posted_log_polling",
+      "result": "no Explainer or Trending upload URLs; Third has one verified URL and one upload still pending"
+    }
+  ],
+  "media": {
+    "bundle_requests": 0,
+    "verified_checkpoints": 0,
+    "required": false
+  },
+  "mailboxes": {
+    "reviews": {
+      "open": 0,
+      "answered": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "open_keys": 4,
+      "answered_keys": 4,
+      "consumed_keys": 0,
+      "skipped": 0,
+      "answer_path": "exchange/asks/20261121.answers.json",
+      "reason": "Valid answer file exists and was refreshed, but the ask index remains unclaimed."
+    },
+    "rewrites": {
+      "round_1": {
+        "opened": 10,
+        "answered": 10,
+        "applied": 8,
+        "rejected": 2,
+        "skipped": 0,
+        "rejected_ids": [
+          "muscle-loss-after-30__a5ebb426",
+          "tattoo-mainstream-shift__f7fc7a74"
+        ]
+      },
+      "round_2": {
+        "opened": 10,
+        "answered": 10,
+        "applied": 9,
+        "rejected": 1,
+        "skipped": 0,
+        "rejected_ids": [
+          "moon-drifting-away__653a5ccc_r3"
+        ]
+      }
+    }
+  },
+  "channels": {
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "phase_b_applied": 2,
+      "phase_b_rejected": 1,
+      "reason": "No entry dated 20261122 in state/explainer_posted_log.json and no open review request."
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 1,
+      "pending": 5,
+      "pending_uploads": 1,
+      "verified_urls": [
+        "https://youtube.com/shorts/1CkIoRJBnVk"
+      ],
+      "reason": "One verified upload, one upload remains pending, and four additional required clips are absent."
+    },
+    "trending": {
+      "required": 5,
+      "verified_posted": 0,
+      "pending": 5,
+      "reason": "sports_report.json reports pool=0 and state/posted_log.json has no 20261122 upload URL."
+    }
+  },
+  "day_closed": false
+}
