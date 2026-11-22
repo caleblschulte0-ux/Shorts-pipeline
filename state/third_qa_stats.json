@@ -3,296 +3,6 @@
     {
       "date": "20261114",
       "dry_run": false,
-      "ts": "2026-11-14T14:00:06+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 138,
-        "with_retention": 114,
-        "with_curve": 14,
-        "fetched_at": "2026-11-14T08:46:13.981939+00:00"
-      },
-      "brain": {
-        "ok": 22,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261114-1",
-          "ok": false,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height. It shows the whole stream screen capture (browser; vision: The renderer did not crop toward the action. The red carpet in",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 142,
-                "refused_shown": 12,
-                "scouted": [
-                  {
-                    "premise": "Stableronaldo finds the Pirate Shop Access token on Fortnite, screams about it, and Jynxzi reacts to Ron getting the tok",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Forsen's Hellraiser: Revival stream, three moments from one broadcast.",
-                    "shape": "one_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Jynxzi's Elden Ring grind: he spams, finally beats Rellana, then finishes Putrescent Knight after four hours.",
-                    "shape": "one_stream",
-                    "n": 3
-                  }
-                ],
-                "vod_arcs": 299,
-                "moments": 40,
-                "candidates": 500,
-                "pool": 2873,
-                "pool_with_vod": 2030,
-                "arc_sizes": [
-                  3,
-                  2,
-                  4,
-                  2,
-                  2,
-                  6,
-                  3,
-                  3,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:ohnepixel/ohnepixel-menu-ohnepixel-2026w40",
-                  "outcome": "duration",
-                  "why": "21s outside 25-90s"
-                },
-                {
-                  "cluster": "scout:jynxzi+stableronaldo/jynxzi-stableronaldo-fortnite-pir",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58] after 1 revision(s) (revision render failed) \u2014 @17s confusing: The 'YOU FOUND PIRATE SHOP ACCESS' banner shows up in the last clip, after the 'Then he gets launched' beat. The premise and the clip order say he finds it first, so the chronology is backwards. Put t; @15s misleading: The 'S"
-                },
-                {
-                  "cluster": "2xrakai@momentboringpuzzledtoothnononocat-kwd8hri5vbjlpopw/2",
-                  "outcome": "narrative_failed",
-                  "why": "scores [74, 63, 76] after 2 revision(s) \u2014 @4s confusing: The caption 'stuck in a freezing bath' and the overlay 'stream bath: he's freezing' tell two slightly different stories. He is steaming and soapy in the first frames, so the bath looks hot, not freezi; @9s pacing: The 9-19s stretch is mostly a"
-                },
-                {
-                  "cluster": "kaicenat@vod2849957264/kaicenat-call-cenat-2026w34",
-                  "outcome": "narrative_failed",
-                  "why": "scores [52, 66, 66] after 2 revision(s) \u2014 @48s confusing: The payoff is 'my heart dropped', but the cut never shows or says what he saw on his phone. Use a clip that reveals the cause, or trim to the reaction plus a line saying what happened.; @21s missing_context: The picture switches to a TikTok d"
-                },
-                {
-                  "cluster": "scout:forsen/forsen-clad-enemy-2026w43",
-                  "outcome": "table_read_failed",
-                  "why": "table read 38 < 50 \u2014 not rendered; confusing: The 40-minutes-later clip is the answer to 'what is this game about', but the cut never shows that Forsen understands or reacts to it. Use a clip where he actually reacts to the enemy, or where he say; weak_payoff: The cut ends on 'All the pain!', which "
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "reaction to interview, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Watching red carpet video, small visible",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Gets Exposed Live By Jynx After Saying He Won't Troll Emily"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.85,
-              "problems": [
-                "The sharp picture is a thin strip, about a third of the canvas height. It shows the whole stream screen capture (browser",
-                "The renderer did not crop toward the action. The red carpet interview is small inside a letterboxed desktop capture, and",
-                "The opening frame at 0.8s is mostly a black empty box, which is a weak first shot.",
-                "The last frames (15.2s to 18.4s) show a Twitter/X UI page at tiny scale, with unreadable content and no clear subject.",
-                "The hook card is fine, but the large blurry areas dominate the frame and the real content is lost."
-              ]
-            },
-            "self_heal": {
-              "verdict": "skipped",
-              "why": "the first render was already the blur fill; the simple render is the same picture"
-            }
-          },
-          "took_s": 110.5
-        },
-        {
-          "slug": "clip-20261114-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261114-3",
-          "ok": false,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the 9:16 canvas, against a target of roughly three quarters. Most of; vision: The interviewer and Emily are small within the strip and hard ",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261114-3",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "reaction to interview, needs context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Red carpet interview, vague, reactions u",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Asks Emily If She Deserves Streamer Of The Year After Taking Her Spot"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.7,
-              "problems": [
-                "The sharp picture is a thin strip, about a third of the 9:16 canvas, against a target of roughly three quarters. Most of",
-                "The interviewer and Emily are small within the strip and hard to read on a phone. The renderer did not crop toward them.",
-                "The full-width stream capture is shown uncropped, so chat overlays and stream UI clutter the strip.",
-                "The streamer's webcam facecam covers the lower-left corner of the strip and takes space from the action."
-              ]
-            },
-            "self_heal": {
-              "verdict": "skipped",
-              "why": "the first render was already the blur fill; the simple render is the same picture"
-            }
-          },
-          "took_s": 107.3
-        },
-        {
-          "slug": "clip-20261114-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261114-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261114-6",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Red carpet chat, no clear event)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.35,
-              "why": "niche roleplay insider talk",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Red carpet chat, no clear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 29.7
-        }
-      ]
-    },
-    {
-      "date": "20261114",
-      "dry_run": false,
       "ts": "2026-11-14T18:01:37+00:00",
       "feedback": {
         "snapshot": true,
@@ -7127,6 +6837,426 @@
           "slug": "clip-20261121-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261122",
+      "dry_run": false,
+      "ts": "2026-11-22T12:41:45+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 132,
+        "with_retention": 108,
+        "with_curve": 15,
+        "fetched_at": "2026-11-22T08:46:09.385509+00:00"
+      },
+      "brain": {
+        "ok": 48,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nmplol": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sykkuno": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261122-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "GTA6 club scene, unclear payoff, edgy",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Uhn Asks 'Can I Clip This...?' And Chat Loses It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.65,
+              "problems": [
+                "The gameplay strip is fairly small and dark, so the action is hard to read on a phone",
+                "The bottom third is mostly blurred padding that holds only the hook caption"
+              ]
+            }
+          },
+          "took_s": 269.3
+        },
+        {
+          "slug": "clip-20261122-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Routine GTA 6 mission, dark, needs conte)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "vague, insider caseoh content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Routine GTA 6 mission, dark, needs conte",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 30.3
+        },
+        {
+          "slug": "clip-20261122-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 132,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat's first hours of GTA 6: confused by the game, then hitting six stars as Lucia and losing it.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "ohnePixel's GTA 6 stream: Mandy shows up to fix his sink, the cops won't shoot near civilians, then he calls the game to",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "IShowSpeed's GTA 6 marathon: his first robbery, then the shower scene, then 'nobody get to see my wife' as it escalates.",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Kai Cenat's GTA 6 night: the gyat moment leads to wanting a side girl, then his new in-game girlfriend confronts him abo",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "StableRonaldo reacts to GTA 6, from the first 'OOOO' to the flash and a later jdab moment.",
+                    "shape": "one_stream",
+                    "n": 4
+                  }
+                ],
+                "vod_arcs": 337,
+                "moments": 40,
+                "candidates": 534,
+                "pool": 2937,
+                "pool_with_vod": 2049,
+                "arc_sizes": [
+                  5,
+                  3,
+                  4,
+                  4,
+                  6,
+                  5,
+                  6,
+                  4,
+                  4,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-menu-ohnepixel-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:kaicenat/kaicenat-cenat-charact-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [52, 72, 74] after 2 revision(s) \u2014 @9s missing_context: The jump from the convertible first look to the dark in-car chase is abrupt. Add a context_overlay such as 'Later in the stream' at the cut so the time jump is clear.; @14s confusing: The first clip's dark frames and cut-off lines ('Look"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "unclear, foreign-language title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA 6 cat pickup in store, mild",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Illojuan Tells Chat 'Toma Gato' And Won't Stop Pointing At The Mouth"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Frames from 7.2s to 12.7s show the sharp picture as a smaller, wider shot with the character small in the frame, so it i",
+                "The hook caption sits over the lower part of the picture in the early frames, and the picture also contains the streamer",
+                "The picture is cropped tight at 6.1s, with the character half out of frame"
+              ]
+            }
+          },
+          "took_s": 217.9
+        },
+        {
+          "slug": "clip-20261122-4",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261122-4",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague reaction, Spanish title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA 6 awkward cutscene, nudity risk, wea",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 24.9
+        },
+        {
+          "slug": "clip-20261122-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "Visible glitch, no context needed",
+              "blind": false
+            },
+            "content": {
+              "score": 0.74,
+              "why": "GTA 6 truck launched upward, visible gli",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Zoreee Hits The Craziest Gas Station Glitch And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Frames from about 1.9s to 8s are very dark car-interior shots with little readable action",
+                "Burned-in word captions overlap the game's own subtitles at 1.9s, 3.1s and 4.3s",
+                "The game subtitle is cut off at the frame edges at 0.6s and 1.9s"
+              ]
+            }
+          },
+          "took_s": 158.2
+        },
+        {
+          "slug": "clip-20261122-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, roughly 30% of the canvas height, with the rest blurred padding. It should fill about; vision: The subjects are small and far away in a very dark night scene",
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "GTA 6 favored, unclear moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA 6 cutscene walking, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Djmariio Asks Chat If They Have To Catch Him For The Eggs GTA 6"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.72,
+              "problems": [
+                "The sharp picture is a thin strip, roughly 30% of the canvas height, with the rest blurred padding. It should fill about",
+                "The subjects are small and far away in a very dark night scene, which is hard to read on a phone. Several frames are alm",
+                "The streamer facecam overlay sits in the top-left corner of the sharp strip and takes up much of the small picture.",
+                "The hook card says 'chasing a chicken', but no chicken is visible in any frame. Only two people walking at night appear,"
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: Framing is inconsistent: at 3.8s, 6.2s, 8.8s and 23.8\u201328.8s the sharp picture is a thin strip with the characters tiny a",
+                "vision: The picture is very dark and murky throughout, so the action is hard to read on a phone.",
+                "vision: The hook card says 'djmariio chasing a chicken', but no chicken is visible in any sampled frame. It shows two people wal",
+                "vision: At 1.2s the hook caption sits on top of the source's own subtitles, which makes both unreadable.",
+                "vision: The streamer facecam overlay is tiny and shows only in some frames, which makes the framing look unintentional."
+              ]
+            }
+          },
+          "took_s": 289.6
         }
       ]
     }

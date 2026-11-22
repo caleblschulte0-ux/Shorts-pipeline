@@ -21882,14 +21882,50 @@
       "ts": "2026-11-22T12:32:10.786909+00:00"
     },
     "clip-20261122-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/zoreee/clip/PatientJazzyGarageTriHard-Z1_B3-ucQjsFt9L3",
-      "story_key": null,
-      "streamer": "zoreee",
+      "url": "https://youtube.com/shorts/UtV39AFzi_Y",
       "title": "Zoreee Hits The Craziest Gas Station Glitch And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-11-22T12:35:17.711525+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-22T12:35:27.639619+00:00",
+      "uploaded_at": "2026-11-22T12:35:27.639636+00:00",
+      "publish_at": "2026-11-22T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261122-zoreee-hits-the-craziest-gas-station-glitch-and--cce1287a",
+        "tiktok": "queued for 2026-11-22T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/zoreee/clip/PatientJazzyGarageTriHard-Z1_B3-ucQjsFt9L3",
+      "streamer": "zoreee",
+      "series": "chaos",
+      "hook": "Zoree finds a gas station glitch \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4704,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 14.8
+      },
+      "director_cut": true
+    },
+    "rejected-originaltemperedpresidentvohiyo-w2rzwykrxybd7kye": {
+      "source_url": "https://www.twitch.tv/zloyn/clip/OriginalTemperedPresidentVoHiYo-w2RZWYkrXyBd7KyE",
+      "streamer": "zloyn",
+      "title": "\u0419\u043e\u0441\u044b\u043f",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Russian-language game cutscene, unknown )",
+      "ts": "2026-11-22T12:36:55.454641+00:00"
+    },
+    "rejected-swissbrightcobrabcwarrior-zoxkrjcp5eaihiqg": {
+      "source_url": "https://www.twitch.tv/djmariio/clip/SwissBrightCobraBCWarrior-ZoXkRjCP5EAIHIQg",
+      "streamer": "djmariio",
+      "title": "Djmariio Asks Chat If They Have To Catch Him For The Eggs GTA 6",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, roughly 30% of the canvas height, with the rest blurred padding. It should fill about; vision: The subjects are small and far away in a very dark night scene, which is hard to read on a phone. Several frames are alm; vision: The streamer facecam overlay sit",
+      "ts": "2026-11-22T12:41:45.077634+00:00"
     }
   }
 }
