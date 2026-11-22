@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "moon-drifting-away__653a5ccc_r3",
+  "slug": "moon-drifting-away",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:25:27.245Z",
+  "title": "The Moon's Escape Ends Total Eclipses In 600 Million Years",
+  "hook": "The Moon fits the Sun only during a temporary cosmic window.",
+  "closing": "We live while the Moon still covers the Sun perfectly, and that window is closing.",
+  "question": "Would you travel for a total eclipse?",
+  "segments": [
+    {
+      "topic": "Moon drifting away",
+      "say": "Since humans first landed there, the Moon has moved 2.17 meters farther away. The drift keeps accumulating."
+    },
+    {
+      "topic": "Moon distance",
+      "say": "The Moon now sits 384,400 kilometers away, farther than long ago as tides slowly push it outward."
+    },
+    {
+      "topic": "Moon eclipse deadline",
+      "say": "In 600 million years, the Moon will look too small to cause a total solar eclipse."
+    }
+  ]
+}
