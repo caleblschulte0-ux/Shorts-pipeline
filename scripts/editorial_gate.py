@@ -284,6 +284,60 @@ def _subject_words(sc: dict) -> set:
     return _thesis_tokens(*texts)
 
 
+def premise_brief(sc: dict) -> str:
+    """What the premise judge is shown BESIDES the title and hook: the beats
+    it promises and the sources every number was checked against.
+
+    Until 2026-11-22 the judge saw two lines -- TITLE and HOOK -- and was told
+    to pass only a premise that was "CONCRETE and TRUE". With nothing to
+    check truth against it checked it anyway: 62 of the 103 premise holds
+    open in the rewrite mailbox that morning were truth objections ("not a
+    verifiable fact", "appears inaccurate", "lacks verifiable evidence")
+    about World Bank, FAA and CDC numbers that `data_provenance` had already
+    verified and `hook_doctrine.problems` had already matched to the data.
+    ChatGPT rewrote the words, the judge refused the rewrite for the same
+    reason, and the explainer posted one video in three days. Truth is held
+    by code, against the source; the judge is handed the source and asked
+    about the PITCH.
+    """
+    lines = []
+    for i, seg in enumerate(sc.get("segments") or []):
+        topic = str(seg.get("topic") or "").strip()
+        say = " ".join(str(seg.get("say") or "").split())[:160]
+        lines.append(f"  beat {i + 1}: {topic or '(untitled)'}"
+                     + (f" -- {say}" if say else ""))
+    sources = []
+    for seg in sc.get("segments") or []:
+        p = _seg_data_path(seg)
+        if p is None:
+            continue
+        try:
+            data = json.loads(p.read_text())
+        except Exception:  # noqa: BLE001 — data_provenance reports this
+            continue
+        src = data.get("source") or {}
+        pub = str(src.get("publisher") or "").strip()
+        off = str(src.get("officiality") or "").strip()
+        title = str(data.get("title") or src.get("name") or p.stem).strip()
+        if pub or title:
+            line = f"  {title}"
+            if pub:
+                line += f" -- {pub}"
+            if off:
+                line += f" ({off})"
+            if line not in sources:
+                sources.append(line)
+    out = []
+    if lines:
+        out.append("BEATS (what the video will say, in order):\n"
+                   + "\n".join(lines))
+    if sources:
+        out.append("SOURCES (every number above was checked against these "
+                   "by code; you are not the fact-checker):\n"
+                   + "\n".join(sources))
+    return "\n\n".join(out)
+
+
 def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
     """Grade the PREMISE (title + hook) before we spend a render on it.
 
@@ -333,20 +387,33 @@ def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
         if str(REPO) not in sys.path:
             sys.path.insert(0, str(REPO))
         from shared.script_generator import _call_llm  # type: ignore
+        # The judge grades the PITCH. It is NOT the fact-checker: every
+        # number was verified against its source by `data_provenance` and
+        # matched to the data by `hook_doctrine.problems` before this call,
+        # and the judge is shown those sources (`premise_brief`). Asked about
+        # truth with nothing to check it against, it refused 62 of 103
+        # sourced stories as "unverified" (2026-11-22).
         sysmsg = (
             "You are a ruthless YouTube Shorts editor. Your ONLY job is to "
-            "REJECT weak premises. A premise passes ONLY if it is CONCRETE "
-            "and TRUE: it names the subject plainly and promises a specific "
-            "surprise, threat, contradiction or scale the viewer can picture "
-            "-- something they believe that the story will turn over. It "
-            "does not need a number (the video says the number; the hook "
-            "says what it means). A searchable noun phrase "
-            "('Oldest Written Languages', 'Tectonic Plates on the Move') is an "
-            "automatic REJECT. Default to REJECT when unsure.")
+            "REJECT weak PITCHES. You are NOT the fact-checker: every number "
+            "in this story comes from the SOURCES listed and code has already "
+            "checked each figure against them, so a doubt about whether a "
+            "claim is true, verified or accurate is NOT a reason you may "
+            "give. A pitch passes ONLY if it is CONCRETE: it names the "
+            "subject plainly and promises a specific surprise, threat, "
+            "contradiction or scale the viewer can picture -- something they "
+            "believe that the beats will turn over. It does not need a number "
+            "(the video says the number; the hook says what it means). A "
+            "searchable noun phrase ('Oldest Written Languages', 'Tectonic "
+            "Plates on the Move') is an automatic REJECT, and so is a flat "
+            "fun fact with no stake for the viewer. Default to REJECT when "
+            "the PITCH is weak.")
+        brief = premise_brief(sc)
         user = (
             f"TITLE: {title}\nHOOK: {hook}\n\n"
-            "Return STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\","
-            "\"reason\":\"<one sentence>\"}.")
+            + (brief + "\n\n" if brief else "")
+            + "Return STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\","
+            "\"reason\":\"<one sentence about the PITCH>\"}.")
         raw = _call_llm(sysmsg, user)
         m = re.search(r"\{.*\}", raw, re.S)
         data = one_object(m.group(0)) if m else {}
