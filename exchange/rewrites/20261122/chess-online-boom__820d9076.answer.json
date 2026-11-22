@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chess-online-boom__820d9076",
+  "slug": "chess-online-boom",
+  "by": "chatgpt",
+  "written_at": "2026-11-22T12:18:17.461Z",
+  "title": "Chess.com Reached 200 Million Accounts After One Release Spike",
+  "hook": "One television release nearly tripled monthly chess signups.",
+  "closing": "The release created a spike, but the online chess habit kept growing.",
+  "question": "What pulled you into chess?",
+  "segments": [
+    {
+      "topic": "Chess.com growth",
+      "say": "Chess.com reached 200 million registered accounts, proving the audience kept growing long after the release spike."
+    },
+    {
+      "topic": "Chess.com signups",
+      "say": "Monthly Chess.com signups jumped to 2.8 million after the release, nearly tripling the pandemic baseline."
+    },
+    {
+      "topic": "Chess.com reach",
+      "say": "Chess.com reached 200 million accounts, about one-third of estimated regular chess players worldwide."
+    }
+  ]
+}
