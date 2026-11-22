@@ -61,7 +61,12 @@ FAMOUS = {"WHO", "NASA", "FBI", "CIA", "UN", "US", "USA", "UK", "EU", "CDC",
           "ER", "ICU", "MRI", "CPR", "ATM", "PC", "IT", "OK", "SpaceX",
           "F1", "IBM", "BMW", "UFO", "SIDS", "ID", "SAT", "GPA", "MRSA",
           "CO2", "AC", "AM", "FM", "DJ", "DMV", "UAE", "HPV", "GPU", "AB",
-          "S&P", "USS", "GDP"}
+          "S&P", "USS", "GDP",
+          # Things on a shelf, not names a viewer has to be told (2026-11-22:
+          # "vinyl-beats-cd-sales-again" and "usps-mail-volume-collapse" sat
+          # held not_current for six-plus runs on "beat 1 names CD").
+          "CD", "DVD", "USPS", "VHS", "LED", "LCD", "USB", "PDF", "URL",
+          "VIP", "RSVP", "BBQ", "ASAP", "FAQ"}
 
 _FIGURE = re.compile(r"(?<![\w.])\$?\d[\d,]*(?:\.\d+)?\s*%?")
 _ACRONYM = re.compile(r"\b[A-Z][A-Z0-9&]{1,6}s?\b")

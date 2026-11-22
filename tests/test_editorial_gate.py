@@ -114,6 +114,120 @@ class TestGarbageIsNeverAPass(unittest.TestCase):
 
 
 # ---------------------------------------------------------------------------
+# Doctor aaeb12de3ebd (2026-11-22): the premise judge is NOT the fact-checker.
+# Shown only a title and a hook and told to pass what is "CONCRETE and TRUE",
+# it refused 62 of 103 sourced stories as "unverified" / "appears inaccurate"
+# -- numbers data_provenance had already verified against World Bank, FAA and
+# CDC files. It is now shown the beats and the sources and asked about the
+# PITCH alone.
+# ---------------------------------------------------------------------------
+import json as _json  # noqa: E402
+import tempfile as _tempfile  # noqa: E402
+
+SOURCED_SC = {
+    "title": "The FAA Logged 23 Serious Runway Near-Misses In One Year",
+    "hook": "The scariest danger at airports isn't in the sky, it's on the "
+            "ground.",
+    "segments": [
+        {"key": "runway_near_misses", "topic": "Runway near-misses over time",
+         "say": "Serious runway near-misses have more than doubled in about "
+                "a decade, to 23 last year."},
+        {"key": "runway_causes", "topic": "What causes runway incursions",
+         "say": "Six in ten were people or vehicles wandering onto the "
+                "runway by mistake."},
+    ],
+}
+DATASETS = {
+    "runway_near_misses": {
+        "title": "Serious runway incursions (Category A and B)",
+        "source": {"publisher": "Federal Aviation Administration (FAA)",
+                   "officiality": "official", "access_date": "2026-11-01"},
+        "points": [{"label": "2014", "value": 11}, {"label": "2024", "value": 23}],
+    },
+    "runway_causes": {
+        "title": "Runway incursions by cause",
+        "source": {"publisher": "Federal Aviation Administration (FAA)",
+                   "officiality": "official", "access_date": "2026-11-01"},
+        "points": [{"label": "Pedestrian/vehicle", "value": 60}],
+    },
+}
+
+
+class TestTheJudgeIsNotTheFactChecker(unittest.TestCase):
+    """The judge is handed the sources and asked about the pitch."""
+
+    def setUp(self):
+        self._tmp = _tempfile.TemporaryDirectory()
+        d = Path(self._tmp.name)
+        for key, data in DATASETS.items():
+            (d / f"{key}.json").write_text(_json.dumps(data))
+        self._patch = mock.patch.object(editorial_gate, "DATA_DIR", d)
+        self._patch.start()
+
+    def tearDown(self):
+        self._patch.stop()
+        self._tmp.cleanup()
+
+    def _ask(self):
+        calls = []
+
+        def fake(sysmsg, user, *a, **k):
+            calls.append((sysmsg, user))
+            return '{"verdict": "PASS", "reason": "a real stake"}'
+
+        with mock.patch("shared.script_generator._call_llm", side_effect=fake):
+            v = editorial_gate.premise_ok(SOURCED_SC, use_llm=True)
+        self.assertEqual(len(calls), 1, "the judge is asked exactly once")
+        return v, calls[0]
+
+    def test_the_judge_sees_the_sources_every_number_was_checked_against(self):
+        _, (sysmsg, user) = self._ask()
+        self.assertIn("Federal Aviation Administration (FAA)", user)
+        self.assertIn("official", user)
+        self.assertIn("Serious runway incursions", user)
+        # and the beats it is judging the pitch of
+        self.assertIn("more than doubled", user)
+        self.assertIn("beat 2", user)
+
+    def test_the_judge_is_told_it_is_not_the_fact_checker(self):
+        _, (sysmsg, user) = self._ask()
+        self.assertIn("NOT the fact-checker", sysmsg)
+        self.assertIn("you are not the fact-checker", user)
+        # The old brief: pass only what is "CONCRETE and TRUE". Truth is held
+        # by data_provenance against the source, never by a judge shown two
+        # lines of prose.
+        self.assertNotIn("CONCRETE and TRUE", sysmsg)
+        self.assertIn("CONCRETE", sysmsg)
+
+    def test_the_pitch_bar_still_stands(self):
+        """Nothing here softens the judge: a REJECT about the pitch holds,
+        the searchable-noun-phrase rule is still in the brief, and the
+        deterministic floor still refuses a vague premise before any call."""
+        _, (sysmsg, _) = self._ask()
+        self.assertIn("searchable noun phrase", sysmsg)
+        self.assertIn("Default to REJECT", sysmsg)
+        with mock.patch("shared.script_generator._call_llm", return_value=(
+                '{"verdict": "REJECT", "reason": "a flat fun fact, no stake"}')):
+            v = editorial_gate.premise_ok(SOURCED_SC, use_llm=True)
+        self.assertFalse(v["ok"])
+        self.assertEqual(v["judge"], "llm")
+        self.assertIn("flat fun fact", v["reasons"][0])
+
+    def test_a_story_with_no_dataset_on_disk_is_still_judged(self):
+        """The forge judges a pitch before its datasets are written; the
+        brief degrades to the beats alone and the call still happens."""
+        sc = dict(SOURCED_SC, segments=[
+            {"key": "not_written_yet", "topic": "Runway near-misses"}])
+        with mock.patch("shared.script_generator._call_llm", return_value=(
+                '{"verdict": "PASS", "reason": "ok"}')) as llm:
+            v = editorial_gate.premise_ok(sc, use_llm=True)
+        llm.assert_called_once()
+        self.assertTrue(v["ok"])
+        self.assertNotIn("SOURCES", llm.call_args[0][1])
+        self.assertIn("beat 1: Runway near-misses", llm.call_args[0][1])
+
+
+# ---------------------------------------------------------------------------
 # Doctor finding 8d1b5d1e1f69: the gate proved facts but never checked that
 # every segment actually advances the SAME headline claim.
 # ---------------------------------------------------------------------------

@@ -286,3 +286,22 @@ class TheNormalizerKeepsTheOtherPoint(unittest.TestCase):
             d = json.loads(p.read_text())
             self.assertEqual([x["label"] for x in d["points"]], ["1988", "2023"])
             self.assertNotIn("baseline", d)
+
+
+class AThingOnAShelfIsNotAnObscureName(unittest.TestCase):
+    """2026-11-22: the acronym rule held "Vinyl revenue reached two and a
+    half times CD revenue" and every USPS beat as naming something a viewer
+    would not know. A CD is a thing on a shelf and USPS is the post office;
+    the rule is for the agency and the dataset nobody has heard of."""
+
+    def test_a_cd_and_the_post_office_are_known(self):
+        for say in ("Vinyl revenue reached two and a half times CD revenue.",
+                    "People bought more CDs than DVDs that year.",
+                    "USPS delivered a third less mail than in 2006."):
+            self.assertEqual(N.obscure_names(say), [], say)
+
+    def test_an_agency_nobody_knows_is_still_named(self):
+        self.assertEqual(N.obscure_names("The NTSB logged 23 near misses."),
+                         ["NTSB"])
+        sc = {"segments": [{"say": "The NTSB logged 23 near misses."}]}
+        self.assertTrue(any("names NTSB" in r for r in N.problems(sc)))
