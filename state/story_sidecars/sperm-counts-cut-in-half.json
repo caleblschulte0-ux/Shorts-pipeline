@@ -4,23 +4,23 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 12,
-   "arc": 14,
+   "hook": 17,
+   "arc": 15,
    "factual": 12,
-   "visual_proof": 12,
-   "payoff": 6,
+   "visual_proof": 13,
+   "payoff": 8,
    "voice": 4
   },
-  "total": 70,
+  "total": 79,
   "fatal": [],
-  "weakest": "hook",
-  "note": "Strengthen the payoff so the ending directly answers the hook’s promise and gives a clear, memorable takeaway.",
-  "fp": "d9091562b9dcd143"
+  "weakest": "premise",
+  "note": "Make the premise more personally compelling – show why an average viewer should care about sperm counts beyond a abstract statistic.",
+  "fp": "334c1b398c1a2260"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Men are losing their sperm, and the drop is getting faster.",
+   "ears": "Men's sperm counts are collapsing, and the fall is speeding up.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },

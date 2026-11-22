@@ -7819,6 +7819,58 @@
    ],
    "ending_type": "inversion",
    "notes": "Pre-render pass: existing varied depictions kept; no repeats within video."
+  },
+  {
+   "directed_at": "2026-11-22",
+   "video_id": null,
+   "slug": "tattoo-mainstream-shift",
+   "topic_category": "culture",
+   "hook_type": "claim",
+   "hook_text": "A third of America now wears ink, and most can't stop at one.",
+   "depictions": [
+    "existing validated scenes kept"
+   ],
+   "ending_type": "consequence",
+   "notes": "Pre-render pass 2026-11-22: validate_scenes OK, no repeats within video."
+  },
+  {
+   "directed_at": "2026-11-22",
+   "video_id": null,
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "topic_category": "health",
+   "hook_type": "claim",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "existing validated scenes kept"
+   ],
+   "ending_type": "inversion",
+   "notes": "Pre-render pass 2026-11-22: validate_scenes OK, no repeats within video."
+  },
+  {
+   "directed_at": "2026-11-22",
+   "video_id": null,
+   "slug": "index-funds-own-corporate-america",
+   "topic_category": "finance",
+   "hook_type": "claim",
+   "hook_text": "Corporate America has new owners, and nobody ever voted for them.",
+   "depictions": [
+    "existing validated scenes kept"
+   ],
+   "ending_type": "inversion",
+   "notes": "Pre-render pass 2026-11-22: validate_scenes OK, no repeats within video."
+  },
+  {
+   "directed_at": "2026-11-22",
+   "video_id": null,
+   "slug": "vinyl-beats-cd-sales-again",
+   "topic_category": "culture",
+   "hook_type": "claim",
+   "hook_text": "Vinyl just crushed the CD, but streaming is eating all of music.",
+   "depictions": [
+    "existing validated scenes kept"
+   ],
+   "ending_type": "inversion",
+   "notes": "Pre-render pass 2026-11-22: validate_scenes OK, no repeats within video."
   }
  ]
 }
