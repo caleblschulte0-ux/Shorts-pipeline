@@ -21761,6 +21761,34 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin horizontal strip, about a third of the canvas. The rest is blurred padding, so the framing f; vision: People in the game footage are small and distant, and hard to read on a phone.; vision: The streamer facecam is a tiny inset in the corner of the strip, so the re",
       "ts": "2026-11-21T18:07:04.221195+00:00"
+    },
+    "rejected-benevolentrepleterattrihard-dythdw2ua2wi67mt": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BenevolentRepleteRatTriHard-DythDw2ua2Wi67Mt",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Gets Sent A Used Sock And Realizes Why It's Hard",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "audio dead for 5.8s at 7.6s; audio dead for 2.8s at 13.7s; audio dead for 4.2s at 22.7s; audio dead for 5.7s at 33.3s; audio dead for 3.4s at 52.3s; vision: The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas, with large blurred areas above and below. The ; vision: The subject i",
+      "ts": "2026-11-22T11:41:47.574281+00:00"
+    },
+    "rejected-enticingfrailtortoisecharliebitme-gljpqtpiaf3an235": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/EnticingFrailTortoiseCharlieBitMe-gljPQtpIAF3An235",
+      "streamer": "ludwig",
+      "title": "Ludwig And Jason Lose It After He Gets His Highlights Done In The Chair",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 4.3s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin landscape strip, about a third of the 9:16 canvas height. The rest is blur. It should fill a; vision: No crop toward the action. The full gameplay screen, including HUD, chat and fac",
+      "ts": "2026-11-22T11:45:21.674081+00:00"
+    },
+    "clip-20261122-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/uhn/clip/SmallProductiveHabaneroBibleThump-BFkAo0sNoJ4ntp0d",
+      "story_key": null,
+      "streamer": "uhn",
+      "title": "Uhn Asks 'Can I Clip This...?' And Chat Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-11-22T11:49:40.568360+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
