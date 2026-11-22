@@ -5840,11 +5840,29 @@
       "duration_s": 34.8
     },
     "sperm-counts-cut-in-half": {
-      "claimed_at": "2026-11-22T13:31:06.442155+00:00",
+      "url": "https://youtube.com/shorts/pLFmowCcarw",
       "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
+      "at": "2026-11-22T13:31:16.799590+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.47,
+      "beat_s": [
+        3.8,
+        6.35,
+        6.47,
+        4.85,
+        7.59
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 29.5
     }
   },
   "uploads": [
@@ -7543,9 +7561,10 @@
       "claimed_at": "2026-11-22T13:31:06.442155+00:00",
       "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "sperm-counts-cut-in-half"
+      "url": "https://youtube.com/shorts/pLFmowCcarw",
+      "state": "posted",
+      "slug": "sperm-counts-cut-in-half",
+      "at": "2026-11-22T13:31:16.799590+00:00"
     }
   ]
 }
