@@ -1,0 +1,54 @@
+{
+ "slug": "volcano-country-ranking",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 10,
+   "hook": 18,
+   "arc": 17,
+   "factual": 14,
+   "visual_proof": 5,
+   "payoff": 9,
+   "voice": 4
+  },
+  "total": 77,
+  "fatal": [
+   "unrenderable_visual"
+  ],
+  "weakest": "visual_proof",
+  "note": "The planned visuals are far too abstract and rely on a conceptual 'Data' character that would be extremely difficult to render clearly and quickly on a phone screen. The visuals need to be concrete and instantly understandable representatio",
+  "fp": "c2a23f1d7a55b34c"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Indonesia gets the fame. America has the volcanoes.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "The US tops the world with 165 volcanoes. Indonesia, everyone's guess, is only fourth, so fame is not the same as count.",
+   "eyes": "substance: glowing orange lava; cause: Data hammers a survey stake at the foot of each volcano and it erupts, counted one by one down the chain",
+   "evidence": "Smithsonian Institution | Holocene (last ~11,700 years) volcanoes by country | https://volcano.si.edu/volcanolist_countries.cfm | 2026-08-19"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Alaska alone holds 130 of them. That's more than Indonesia's whole total, so one cold state outdoes a famous volcano nation.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "U.S. Geological Survey / Smithsonian Institution | Where the US's 165 volcanoes actually are | https://www.usgs.gov/observatories/avo | 2026-08-19"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Three in four of Earth's volcanoes sit on the Ring of Fire. That's why Alaska, Japan and Indonesia all rank so high.",
+   "eyes": "substance: red-hot lava; cause: Data paddles a canoe around the ring and each volcano he reaches erupts with lava",
+   "evidence": "U.S. Geological Survey | Share of Earth's active volcanoes on the Ring of Fire | https://www.usgs.gov/media/images/ringoffiregif | 2026-08-19"
+  },
+  {
+   "window": "closing",
+   "ears": "Next time you trust your gut, check the count first. Fame and numbers rarely match.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

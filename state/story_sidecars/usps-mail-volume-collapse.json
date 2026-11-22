@@ -1,7 +1,24 @@
 {
  "slug": "usps-mail-volume-collapse",
  "brief": null,
- "scorecard": null,
+ "scorecard": {
+  "scores": {
+   "premise": 9,
+   "hook": 11,
+   "arc": 10,
+   "factual": 8,
+   "visual_proof": 8,
+   "payoff": 6,
+   "voice": 3
+  },
+  "total": 55,
+  "fatal": [
+   "false_comparison"
+  ],
+  "weakest": "arc",
+  "note": "The title and hook claim fewer letters made stamps more expensive, but the script never shows a causal link or an inflation-adjusted price. It also never says when 'peak' was, and it compares 109 billion total pieces with 46 billion First-C",
+  "fp": "8653fb2f8b694905"
+ },
  "storyboard": [
   {
    "window": "hook",
@@ -18,7 +35,7 @@
   {
    "window": "beat 1",
    "ears": "USPS First-Class Mail fell to 46 billion pieces, showing personal and business letters disappeared fastest.",
-   "eyes": "a data picture (comparison)",
+   "eyes": "substance: white paper letters; cause: Data stamps each letter and sends it to the mail sack, and the pigeonholes empty",
    "evidence": "United States Postal Service (USPS) | First-Class Mail volume | https://about.usps.com/who/profile/history/pdf/first-class-mail-since-1926.pdf | 2026-10-16"
   },
   {

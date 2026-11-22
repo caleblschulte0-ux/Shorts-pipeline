@@ -1,0 +1,49 @@
+{
+ "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "School access expanded, but classroom pressure still varies wildly.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "India has 127.5 million secondary pupils, nearly double China. Education at this scale strains any school system.",
+   "eyes": "a data picture (rank)",
+   "evidence": "World Bank | General pupils secondary education | https://data.worldbank.org/indicator/SE.SEC.ENRL.GC | 2026-11-21"
+  },
+  {
+   "window": "beat 1",
+   "ears": "In Guinea-Bissau, one college teacher faces 147.6 students, more than double the next worst country. Individual attention becomes scarce.",
+   "eyes": "a data picture (rank)",
+   "evidence": "World Bank | Tertiary pupil-teacher ratio | https://data.worldbank.org/indicator/SE.TER.ENRL.TC.ZS | 2026-11-21"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Education spending fell to 3.57 percent of national income, the lowest in this data. Growing systems have less room to improve.",
+   "eyes": "a data picture (trend)",
+   "evidence": "World Bank | Total government expenditure on education | https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS | 2026-11-21"
+  },
+  {
+   "window": "beat 3",
+   "ears": "Today, 92 percent of young women can read, up from about two thirds in 1975. Wider access produced real gains.",
+   "eyes": "a data picture (trend)",
+   "evidence": "World Bank | Youth female literacy rate | https://data.worldbank.org/indicator/SE.ADT.1524.LT.FE.ZS | 2026-11-21"
+  },
+  {
+   "window": "beat 4",
+   "ears": "In Tanzania, one preschool teacher has 114 children, almost double the next worst country. The pressure starts before primary school.",
+   "eyes": "a data picture (rank)",
+   "evidence": "World Bank | Preprimary pupil-teacher ratio | https://data.worldbank.org/indicator/SE.PRE.ENRL.TC.ZS | 2026-11-21"
+  },
+  {
+   "window": "closing",
+   "ears": "Education grew, but scale still decides how much attention each student receives.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

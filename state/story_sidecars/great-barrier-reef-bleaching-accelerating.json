@@ -3,24 +3,24 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 10,
-   "hook": 15,
-   "arc": 15,
-   "factual": 12,
-   "visual_proof": 12,
-   "payoff": 8,
-   "voice": 4
+   "premise": 9,
+   "hook": 11,
+   "arc": 13,
+   "factual": 8,
+   "visual_proof": 11,
+   "payoff": 6,
+   "voice": 3
   },
-  "total": 76,
+  "total": 61,
   "fatal": [],
-  "weakest": "premise",
-  "note": "Make the visual descriptions clearer and more specific so they translate instantly to phone‑size images.",
-  "fp": "f93a7bf804162ddc"
+  "weakest": "factual",
+  "note": "The hook is a generic 'reef is dying' claim with no concrete image or twist. Open on the specific shock instead, such as a reef going white again before it has regrown. Then fix the numbers: '3 events this decade' and 'a 2-year gap' sit bes",
+  "fp": "fc088e6e23fa8a1f"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The recovery clock is now longer than the break between crises.",
+   "ears": "The Great Barrier Reef is dying faster than it can recover.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },

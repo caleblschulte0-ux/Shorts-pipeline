@@ -1,7 +1,57 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-22T16:28:11Z",
+ "updated": "2026-11-22T18:58:30Z",
  "open": [
+  {
+   "id": "gulf-dead-zone-growth__20f1ed09",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-11-22T18:58:30Z",
+   "why": [
+    "premise: brain: The pitch is a flat 'dead zone grew' statistic with no human stake, villain or relatable picture, and the hook ('a shrinking ocean dead zone suddenly surged back') is vague and abstract, so the viewer has no concrete threat to picture."
+   ],
+   "request": "exchange/rewrites/20261122/gulf-dead-zone-growth__20f1ed09.request.json",
+   "answer_path": "exchange/rewrites/20261122/gulf-dead-zone-growth__20f1ed09.answer.json"
+  },
+  {
+   "id": "gps-einstein-fix__c2b1ca22",
+   "slug": "gps-einstein-fix",
+   "filed": "2026-11-22T18:58:29Z",
+   "why": [
+    "premise: brain: The pitch is a familiar relativity-and-GPS fun fact that has no threat to the viewer and no belief for the beats to overturn, and its hook 'misses by 10 kilometers in one day' is a stated stat, not a concrete stake."
+   ],
+   "request": "exchange/rewrites/20261122/gps-einstein-fix__c2b1ca22.request.json",
+   "answer_path": "exchange/rewrites/20261122/gps-einstein-fix__c2b1ca22.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__15bbbefa",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-22T18:58:29Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or threat beyond generic bone loss numbers."
+   ],
+   "request": "exchange/rewrites/20261122/astronaut-bone-loss__15bbbefa.request.json",
+   "answer_path": "exchange/rewrites/20261122/astronaut-bone-loss__15bbbefa.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__880020cf",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-11-22T18:58:29Z",
+   "why": [
+    "story: fatal: false_comparison — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261122/usps-mail-volume-collapse__880020cf.request.json",
+   "answer_path": "exchange/rewrites/20261122/usps-mail-volume-collapse__880020cf.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__a3a64c1f",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-22T18:58:28Z",
+   "why": [
+    "premise: brain: The pitch is a flat statistic about donor scarcity with no concrete subject, twist, or personal stake for the viewer, and the hook ('Most eligible donors never join the pool hospitals rely on') is a vague, hedged statement rather than a specific surprise or threat."
+   ],
+   "request": "exchange/rewrites/20261122/blood-supply-three-percent__a3a64c1f.request.json",
+   "answer_path": "exchange/rewrites/20261122/blood-supply-three-percent__a3a64c1f.answer.json"
+  },
   {
    "id": "india-beats-everyone-on-general-pupils-secondary-education-b__70695960",
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
@@ -116,26 +166,6 @@
    "answer_path": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.answer.json"
   },
   {
-   "id": "gps-einstein-fix__c2b1ca22",
-   "slug": "gps-einstein-fix",
-   "filed": "2026-11-21T14:49:26Z",
-   "why": [
-    "premise: brain: The title names a familiar 'GPS and Einstein' fun fact and the hook is a flat statistic (10 km in a day) with no threat, twist or stake for the viewer, and it reads like a textbook trivia line rather than a belief the story overturns."
-   ],
-   "request": "exchange/rewrites/20261121/gps-einstein-fix__c2b1ca22.request.json",
-   "answer_path": "exchange/rewrites/20261121/gps-einstein-fix__c2b1ca22.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__15bbbefa",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-21T14:49:26Z",
-   "why": [
-    "premise: brain: It's a vague, abstract statement with no concrete surprise, threat or picture-able scale, and it gives no belief for the story to overturn."
-   ],
-   "request": "exchange/rewrites/20261121/astronaut-bone-loss__15bbbefa.request.json",
-   "answer_path": "exchange/rewrites/20261121/astronaut-bone-loss__15bbbefa.answer.json"
-  },
-  {
    "id": "chess-online-boom__820d9076",
    "slug": "chess-online-boom",
    "filed": "2026-11-21T13:21:27Z",
@@ -144,16 +174,6 @@
    ],
    "request": "exchange/rewrites/20261121/chess-online-boom__820d9076.request.json",
    "answer_path": "exchange/rewrites/20261121/chess-online-boom__820d9076.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__2c93aff5",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-11-21T13:21:27Z",
-   "why": [
-    "premise: brain: The claim about the Gulf dead zone rebounding lacks a verifiable, concrete fact and may be misleading."
-   ],
-   "request": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.request.json",
-   "answer_path": "exchange/rewrites/20261121/gulf-dead-zone-growth__2c93aff5.answer.json"
   },
   {
    "id": "muscle-loss-after-30__a5ebb426",
@@ -224,16 +244,6 @@
    ],
    "request": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.request.json",
    "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a3a64c1f",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-21T00:22:36Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified statistic and lacks a concrete, provable premise."
-   ],
-   "request": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.request.json",
-   "answer_path": "exchange/rewrites/20261121/blood-supply-three-percent__a3a64c1f.answer.json"
   },
   {
    "id": "womens-college-hoops-out-rates-men__3fe10075",

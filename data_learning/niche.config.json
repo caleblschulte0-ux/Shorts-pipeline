@@ -22534,7 +22534,25 @@
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-11T15:10:23Z",
    "hook_was": "Your guess is wrong: 165 volcanoes, and Indonesia isn't even close.",
-   "retold": "retell/v3"
+   "retold": "retell/v3",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 18,
+     "arc": 17,
+     "factual": 14,
+     "visual_proof": 5,
+     "payoff": 9,
+     "voice": 4
+    },
+    "total": 77,
+    "fatal": [
+     "unrenderable_visual"
+    ],
+    "weakest": "visual_proof",
+    "note": "The planned visuals are far too abstract and rely on a conceptual 'Data' character that would be extremely difficult to render clearly and quickly on a phone screen. The visuals need to be concrete and instantly understandable representatio",
+    "fp": "c2a23f1d7a55b34c"
+   }
   },
   {
    "slug": "bnpl-checkout-takeover",
@@ -34722,6 +34740,24 @@
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-11-22T12:24:29Z",
    "hook_was": "You get way less mail than your parents did.",
+   "scorecard": {
+    "scores": {
+     "premise": 9,
+     "hook": 11,
+     "arc": 10,
+     "factual": 8,
+     "visual_proof": 8,
+     "payoff": 6,
+     "voice": 3
+    },
+    "total": 55,
+    "fatal": [
+     "false_comparison"
+    ],
+    "weakest": "arc",
+    "note": "The title and hook claim fewer letters made stamps more expensive, but the script never shows a causal link or an inflation-adjusted price. It also never says when 'peak' was, and it compares 109 billion total pieces with 46 billion First-C",
+    "fp": "8653fb2f8b694905"
+   },
    "segments": [
     {
      "source": "offline",
@@ -38445,7 +38481,7 @@
   {
    "slug": "great-barrier-reef-bleaching-accelerating",
    "title": "Reef Bleaching Returns Before A Reef Can Recover",
-   "hook": "The Great Barrier Reef is dying faster than it can recover.",
+   "hook": "The Great Barrier Reef keeps getting knocked down before it can stand back up.",
    "closing": "Repeated bleaching can erase a decade of reef recovery before it finishes.",
    "question": "Can the reef recover in time?",
    "hashtags": [
@@ -38467,19 +38503,19 @@
    "rewritten_at": "2026-11-22T12:29:29Z",
    "scorecard": {
     "scores": {
-     "premise": 10,
-     "hook": 15,
-     "arc": 15,
-     "factual": 12,
-     "visual_proof": 12,
-     "payoff": 8,
-     "voice": 4
+     "premise": 9,
+     "hook": 11,
+     "arc": 13,
+     "factual": 8,
+     "visual_proof": 11,
+     "payoff": 6,
+     "voice": 3
     },
-    "total": 76,
+    "total": 61,
     "fatal": [],
-    "weakest": "premise",
-    "note": "Make the visual descriptions clearer and more specific so they translate instantly to phone‑size images.",
-    "fp": "f93a7bf804162ddc"
+    "weakest": "factual",
+    "note": "The hook is a generic 'reef is dying' claim with no concrete image or twist. Open on the specific shock instead, such as a reef going white again before it has regrown. Then fix the numbers: '3 events this decade' and 'a 2-year gap' sit bes",
+    "fp": "fc088e6e23fa8a1f"
    },
    "hook_was": "Reef bleaching now returns about every 2 years.",
    "segments": [
@@ -38523,7 +38559,7 @@
   {
    "slug": "normal-body-temperature-has-shifted",
    "title": "98.6°F Isn't 'Normal' Body Temperature Anymore",
-   "hook": "The number everyone learned in school? It's wrong now.",
+   "hook": "The most famous number in medicine was a mistake, and your body proved it.",
    "closing": "Your 'normal' may be cooler than you think, and it has been shifting for two centuries.",
    "question": "What's your actual resting temperature right now?",
    "hashtags": [
@@ -38577,7 +38613,8 @@
    ],
    "retold": "retell/v4",
    "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T12:14:25Z"
+   "rewritten_at": "2026-11-18T12:14:25Z",
+   "hook_was": "The number everyone learned in school? It's wrong now."
   },
   {
    "slug": "volcanoes-erupting-right-now",
@@ -39001,7 +39038,7 @@
   {
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
    "title": "Five Education Numbers Show How Uneven School Scale Really Is",
-   "hook": "School access expanded, but classroom pressure still varies wildly.",
+   "hook": "A child's whole future can depend on which country's classroom they land in.",
    "closing": "Education grew, but scale still decides how much attention each student receives.",
    "hashtags": [
     "data",
@@ -39024,7 +39061,8 @@
      "insight_type": "rank",
      "role": "1 · GENERAL PUPILS SEC",
      "topic": "Education pupils",
-     "say": "India has 127.5 million secondary pupils, nearly double China. Education at this scale strains any school system."
+     "say": "India has 127.5 million secondary pupils, nearly double China. Education at this scale strains any school system.",
+     "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _pupil(cr, x, y, s, i, bob=0.0):\n    skin = [(120, 80, 56), (150, 104, 72), (98, 66, 48), (170, 120, 86)][i % 4]\n    pack = [(196, 58, 50), (60, 110, 170), (220, 160, 60), (80, 140, 90), (130, 80, 150)][i % 5]\n    shirt = (236, 238, 242) if i % 3 else (200, 220, 240)\n    pants = (40, 52, 88) if i % 2 else (70, 60, 92)\n    h = 90 * s * (0.9 + 0.18 * ((i * 0.37) % 1.0))\n    contact_shadow(cr, x, y, h * 0.42, a=0.3)\n    y = y - bob\n    lw = h * 0.09\n    cr.rectangle(x - lw * 1.3, y - h * 0.38, lw, h * 0.38)\n    solid(cr, pants, rim=False)\n    cr.rectangle(x + lw * 0.3, y - h * 0.38, lw, h * 0.38)\n    solid(cr, pants, rim=False)\n    box(cr, x + h * 0.08, y - h * 0.42, h * 0.2, h * 0.28, pack, depth=h * 0.05)\n    bw = h * 0.3\n    cr.rectangle(x - bw / 2, y - h * 0.72, bw, h * 0.36)\n    solid(cr, shirt)\n    cr.rectangle(x + bw * 0.12, y - h * 0.72, bw * 0.13, h * 0.34)\n    solid(cr, pack, rim=False, edge=False)\n    disc(cr, x, y - h * 0.83, h * 0.12, skin)\n    cr.arc(x, y - h * 0.85, h * 0.125, math.pi * 1.02, math.pi * 1.98)\n    cr.close_path()\n    solid(cr, (30, 24, 22), rim=False)\n\n\ndef _bus(cr, x, y, s):\n    \"\"\"A yellow school bus, side-on, its front to the right: hood, door,\n    black rub rails, a row of framed windows, a folded stop arm, wheels.\"\"\"\n    Y = (240, 186, 40)\n    contact_shadow(cr, x + 300 * s, y, 640 * s, a=0.4)\n    box(cr, x, y - 30 * s, 560 * s, 170 * s, Y, depth=50 * s)\n    box(cr, x + 560 * s, y - 30 * s, 80 * s, 90 * s, Y, depth=40 * s)\n    trim(cr, x + 600 * s, y - 112 * s, x + 640 * s, y - 70 * s, (60, 60, 66), w=4 * s)\n    disc(cr, x + 632 * s, y - 60 * s, 9 * s, (250, 240, 200), finish=\"glass\")\n    for ry in (110, 70, 45):\n        cr.rectangle(x, y - ry * s, 560 * s, 6 * s)\n        solid(cr, (40, 36, 34), rim=False, edge=False)\n    cr.rectangle(x + 500 * s, y - 185 * s, 50 * s, 150 * s)\n    solid(cr, (70, 96, 120), finish=\"glass\")\n    trim(cr, x + 500 * s, y - 185 * s, x + 550 * s, y - 35 * s, (40, 36, 34), w=4 * s)\n    cr.set_source_rgba(*_c((40, 36, 34)))\n    cr.set_line_width(3 * s)\n    cr.move_to(x + 525 * s, y - 185 * s)\n    cr.line_to(x + 525 * s, y - 35 * s)\n    cr.stroke()\n    for j in range(6):\n        wx = x + 20 * s + j * 78 * s\n        cr.rectangle(wx, y - 185 * s, 62 * s, 55 * s)\n        solid(cr, (70, 96, 120), finish=\"glass\")\n        trim(cr, wx, y - 185 * s, wx + 62 * s, y - 130 * s, (210, 160, 30), w=4 * s)\n    cr.save()\n    cr.translate(x + 470 * s, y - 95 * s)\n    for k in range(8):\n        a = math.pi / 8 + k * math.pi / 4\n        (cr.move_to if k == 0 else cr.line_to)(20 * s * math.cos(a), 20 * s * math.sin(a))\n    cr.close_path()\n    cr.restore()\n    solid(cr, (196, 40, 36))\n    for wx in (x + 100 * s, x + 470 * s):\n        disc(cr, wx, y - 20 * s, 36 * s, (36, 36, 40))\n        disc(cr, wx, y - 20 * s, 15 * s, (150, 150, 156), finish=\"metal\")\n\n\ndef _crossing_sign(cr, x, base):\n    \"\"\"A school-zone sign: a yellow pentagon on a post, two pupils walking.\"\"\"\n    contact_shadow(cr, x, base, 40, a=0.35)\n    cr.rectangle(x - 4, base - 190, 8, 190)\n    solid(cr, (170, 172, 178), finish=\"metal\", rim=False)\n    cy = base - 220\n    cr.move_to(x, cy - 58)\n    cr.line_to(x + 50, cy - 18)\n    cr.line_to(x + 50, cy + 48)\n    cr.line_to(x - 50, cy + 48)\n    cr.line_to(x - 50, cy - 18)\n    cr.close_path()\n    solid(cr, (236, 206, 40))\n    for dx, hh in ((-16, 50), (16, 40)):\n        disc(cr, x + dx, cy - 14 + (50 - hh) * 0.4, 7, (24, 24, 26))\n        cr.set_source_rgba(*_c((24, 24, 26)))\n        cr.set_line_width(6)\n        top = cy - 6 + (50 - hh) * 0.4\n        cr.move_to(x + dx, top)\n        cr.line_to(x + dx, top + hh * 0.45)\n        cr.line_to(x + dx - 9, cy + 38)\n        cr.move_to(x + dx, top + hh * 0.45)\n        cr.line_to(x + dx + 9, cy + 38)\n        cr.move_to(x + dx - 10, top + 10)\n        cr.line_to(x + dx + 10, top + 16)\n        cr.stroke()\n\n\ndef _school(cr, t, u):\n    cast_shadow(cr, 110, 900, 1215, length=280, a=0.28)\n    b = building(cr, 110, 900, 1215, 400, (176, 92, 70), roof=\"flat\")\n    fin = \"glass\" if \"glass\" in FINISHES else \"matte\"\n    cx = 505\n    for f_ in range(3):\n        for c in range(7):\n            if f_ == 0 and c == 3:\n                continue\n            wx = b[\"x0\"] + 36 + c * (b[\"x1\"] - b[\"x0\"] - 72) / 7.0\n            wy = b[\"base\"] - 150 - f_ * 115\n            cr.rectangle(wx, wy - 78, 70, 78)\n            solid(cr, (120, 150, 176), finish=fin)\n            cr.set_source_rgba(*_c((232, 226, 212)))\n            cr.set_line_width(3)\n            cr.move_to(wx + 35, wy - 78)\n            cr.line_to(wx + 35, wy)\n            cr.move_to(wx, wy - 40)\n            cr.line_to(wx + 70, wy - 40)\n            cr.stroke()\n            trim(cr, wx, wy - 78, wx + 70, wy, (232, 226, 212), w=6)\n            cr.rectangle(wx - 6, wy, 82, 8)\n            solid(cr, (214, 206, 190), rim=False)\n    seams(cr, b[\"x0\"], b[\"top\"], b[\"x1\"], b[\"base\"], (176, 92, 70), n=3, axis=\"h\", a=0.3)\n    top = b[\"top\"]\n    box(cr, cx - 60, top + 4, 120, 20, (214, 206, 190), depth=26)\n    box(cr, cx - 50, top - 16, 100, 92, (232, 226, 212), depth=24)\n    cr.rectangle(cx - 34, top - 100, 68, 70)\n    solid(cr, (46, 40, 38), rim=False)\n    for px in (cx - 34, cx + 26):\n        cr.rectangle(px, top - 100, 8, 70)\n        solid(cr, (232, 226, 212), rim=False)\n    ring = seg(u, 0.02, 0.24)\n    ang = 0.45 * math.sin(ring * math.pi * 4) * (1 - ring)\n    cr.save()\n    cr.translate(cx, top - 96)\n    cr.rotate(ang)\n    cr.move_to(-10, 6)\n    cr.curve_to(-12, 26, -22, 38, -26, 50)\n    cr.line_to(26, 50)\n    cr.curve_to(22, 38, 12, 26, 10, 6)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n    disc(cr, 0, 54, 6, P[\"brass_shade\"], finish=\"metal\")\n    cr.restore()\n    cr.move_to(cx - 72, top - 104)\n    cr.line_to(cx + 72, top - 104)\n    cr.line_to(cx + 4, top - 200)\n    cr.close_path()\n    solid(cr, (70, 76, 92))\n    cr.rectangle(cx + 1, top - 236, 5, 40)\n    solid(cr, (60, 60, 66), finish=\"metal\", rim=False)\n    by = b[\"base\"]\n    box(cr, cx - 120, by, 240, 14, (206, 198, 184), depth=30)\n    box(cr, cx - 100, by - 14, 200, 14, (220, 212, 198), depth=26)\n    cr.rectangle(cx - 70, by - 150, 140, 136)\n    solid(cr, (92, 56, 40))\n    seams(cr, cx - 70, by - 150, cx + 70, by - 14, (92, 56, 40), n=2, axis=\"v\", a=0.5)\n    trim(cr, cx - 70, by - 150, cx + 70, by - 14, (232, 226, 212), w=9)\n    for hx in (cx - 12, cx + 12):\n        disc(cr, hx, by - 80, 5, P[\"brass\"], finish=\"metal\")\n    for px in (cx - 92, cx + 78):\n        cylinder(cr, px, by - 14, 16, 150, (236, 230, 218))\n    cr.move_to(cx - 104, by - 164)\n    cr.line_to(cx + 104, by - 164)\n    cr.line_to(cx, by - 226)\n    cr.close_path()\n    solid(cr, (236, 230, 218))\n    disc(cr, cx, by - 186, 22, (248, 246, 240))\n    trim(cr, cx - 22, by - 208, cx + 22, by - 164, (60, 60, 66), w=3)\n    cr.set_source_rgba(*_c((30, 30, 34)))\n    cr.set_line_width(3)\n    cr.move_to(cx, by - 186)\n    cr.line_to(cx, by - 202)\n    cr.move_to(cx, by - 186)\n    cr.line_to(cx + 11, by - 182)\n    cr.stroke()\n    cr.rectangle(960, 760, 8, 455)\n    solid(cr, (180, 182, 188), finish=\"metal\", rim=False)\n    wave = 6 * math.sin(t * 3.0)\n    for j, col in enumerate([(240, 150, 50), (244, 244, 240), (40, 140, 70)]):\n        cr.move_to(968, 770 + j * 26)\n        cr.line_to(1060, 770 + j * 26 + wave)\n        cr.line_to(1060, 796 + j * 26 + wave)\n        cr.line_to(968, 796 + j * 26)\n        cr.close_path()\n        solid(cr, col, rim=False)\n    return b\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a red brick school\n    SUBSTANCE: pupils with backpacks\n    CAUSE: Data drags the school's iron gate open by hand and the crowd waiting outside walks into the yard\n    A school bus has dropped a big crowd of pupils on the pavement against\n    the school's shut iron gate. Data grips the gate's edge and walks it\n    open along the fence, the bell rings, and the crowd outside shrinks as\n    it pours through the opening into the yard. Each pupil stands for the\n    same number of real pupils: the yard fills to China's whole enrolment,\n    a line marks where it reached, then India's keeps coming until the yard\n    holds nearly twice as many. Done by 0.66 and held; Data holds the gate\n    open while the empty bus pulls away down the road.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    (li, vi), (lc, vc) = rows[0], rows[1]\n    vc = vc or 1.0\n    nI = 50\n    unit = vi / nI\n    nC = max(1, min(nI, int(round(vc / unit))))\n\n    landscape(cr, t, \"town\", time=\"day\", seed=\"a red brick school\", skyline=False)\n    haze(cr, 600, 1180, (206, 214, 226), a=0.3)\n    _school(cr, t, u)\n\n    # the yard, the pavement, the curb and the road in front of the school\n    cr.rectangle(40, 1215, 1020, 205)\n    solid(cr, (196, 184, 160), edge=False)\n    seams(cr, 40, 1215, 1060, 1420, (196, 184, 160), n=5, axis=\"h\", a=0.25)\n    cr.rectangle(0, 1420, W, 210)\n    solid(cr, (170, 164, 156), edge=False)\n    seams(cr, 0, 1420, W, 1630, (170, 164, 156), n=9, axis=\"v\", a=0.3)\n    seams(cr, 0, 1420, W, 1630, (170, 164, 156), n=2, axis=\"h\", a=0.25)\n    vgrad(cr, [(0, (78, 78, 84)), (1, (56, 56, 62))], 1644, H)\n    box(cr, 0, 1648, W, 18, (196, 192, 184), depth=6)\n    for k in range(6):\n        cr.rectangle(30 + k * 190, 1880, 110, 12)\n        solid(cr, (236, 206, 60), rim=False, edge=False)\n\n    OX0, OX1 = 300, 600\n    GW = OX1 - OX0\n    DOOR = (450, 1426)\n    slots = []\n    for r in range(6):\n        for c in range(9):\n            jx = ((len(slots) * 0.618) % 1.0 - 0.5) * 26\n            slots.append((130 + c * 82 + jx + (r % 2) * 30,\n                          1245 + r * 30 + ((len(slots) * 0.414) % 1.0) * 8))\n    slots = slots[:nI]\n    queue = []\n    for i in range(nI):\n        row, col = i // 13, i % 13\n        qx = 90 + col * 38 + (row % 2) * 18 + ((i * 0.618) % 1.0 - 0.5) * 14\n        qy = 1446 + row * 26 + ((i * 0.414) % 1.0) * 8\n        queue.append((qx, qy))\n    order = sorted(range(nI), key=lambda i: (queue[i][0] - DOOR[0]) ** 2 + 3 * (queue[i][1] - DOOR[1]) ** 2)\n    rank = {i: r for r, i in enumerate(order)}\n    peeps = []\n    arrived = 0\n    for i in range(nI):\n        qx, qy = queue[i]\n        r = rank[i]\n        st = 0.16 + 0.32 * r / (nI - 1)\n        p = seg(u, st, st + 0.16)\n        sx, sy = slots[r]\n        if p <= 0:\n            x, y, bob = qx, qy, 0.0\n        elif p >= 1:\n            arrived += 1\n            x, y, bob = sx, sy, 0.0\n        else:\n            q = ease(p)\n            if q < 0.35:\n                g = q / 0.35\n                x, y = qx + (DOOR[0] - qx) * g, qy + (DOOR[1] - qy) * g\n            else:\n                g = (q - 0.35) / 0.65\n                x, y = DOOR[0] + (sx - DOOR[0]) * g, DOOR[1] + (sy - DOOR[1]) * g\n            bob = 5 * abs(math.sin(t * 9 + i))\n        s = 0.75 + (y - 1250) / 400.0 * 0.6\n        peeps.append((y, x, s, i, bob))\n    peeps.sort()\n    for y, x, s, i, bob in peeps:\n        if y < 1420:\n            _pupil(cr, x, y, s, i, bob)\n\n    if arrived >= nC:\n        my = slots[nC - 1][1] + 6\n        then_mark(cr, 60, 250, my, lc, a=ease(seg(u, 0.3, 0.4)))\n\n    IRON = (34, 40, 38)\n    for k in range(27):\n        fx = 50 + k * 38\n        if OX0 < fx < OX1:\n            continue\n        cr.rectangle(fx, 1318, 8, 102)\n        solid(cr, IRON, finish=\"metal\", rim=False)\n        cr.move_to(fx - 4, 1320)\n        cr.line_to(fx + 4, 1300)\n        cr.line_to(fx + 12, 1320)\n        cr.close_path()\n        solid(cr, IRON, finish=\"metal\", rim=False)\n    for ry in (1334, 1400):\n        for xa, xb in ((46, OX0), (OX1, 1040)):\n            cr.rectangle(xa, ry, xb - xa, 9)\n            solid(cr, (44, 50, 48), finish=\"metal\")\n    for px in (OX0 - 10, OX1):\n        cr.rectangle(px, 1270, 18, 154)\n        solid(cr, (58, 62, 64), finish=\"metal\")\n        disc(cr, px + 9, 1266, 13, (80, 84, 88), finish=\"metal\")\n\n    slide = ease(seg(u, 0.04, 0.18))\n    gx0 = OX0 + GW * slide\n    gx1 = gx0 + GW\n    contact_shadow(cr, (gx0 + gx1) / 2, 1426, GW, a=0.35)\n    for j in range(12):\n        bx = gx0 + 8 + j * (GW - 16) / 11.0\n        cr.rectangle(bx - 4, 1296, 9, 120)\n        solid(cr, IRON, finish=\"metal\", rim=False)\n        cr.move_to(bx - 8, 1298)\n        cr.line_to(bx, 1274)\n        cr.line_to(bx + 8, 1298)\n        cr.close_path()\n        solid(cr, (200, 168, 70), finish=\"metal\", rim=False)\n    for ry in (1300, 1356, 1406):\n        cr.rectangle(gx0, ry, GW, 12)\n        solid(cr, (40, 46, 44), finish=\"metal\")\n    cr.rectangle(gx1 - 12, 1290, 16, 132)\n    solid(cr, (50, 56, 54), finish=\"metal\")\n    for wx in (gx0 + 34, gx1 - 34):\n        disc(cr, wx, 1424, 10, (120, 122, 128), finish=\"metal\")\n\n    for y, x, s, i, bob in peeps:\n        if y >= 1420:\n            _pupil(cr, x, y, s, i, bob)\n\n    _crossing_sign(cr, 1010, 1640)\n\n    bx = 30 + 1150 * ease(seg(u, 0.66, 1.0)) ** 1.6\n    _bus(cr, bx, 1840, 1.1)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    hands = [(gx1 + 2, 1330), (gx1 + 2, 1374)]\n    sx_ = stand_at(hands, 1480, 300, gx1 + 80)\n    if sx_ is None:\n        sx_ = gx1 + 70\n    if u < 0.04:\n        host(\"point\", sx_ + 20, 1480, 300)\n    else:\n        host(\"grip\", sx_, 1480, 300, hands=hands, lower=\"follow\", expr=\"strain\")\n\n    if arrived >= nI:\n        fit_readout(cr, f\"{vi / 1e6:.1f}M pupils\", f\"in secondary school · {li}\", 80, 520, size=130)\n        text(cr, f\"{vi / vc:.1f}x\", W - 80, 690, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, 0.64, 0.69)))\n        text(cr, f\"{lc}'s\", W - 80, 740, 34, look.INK, anchor=\"right\", alpha=ease(seg(u, 0.64, 0.69)))\n    elif arrived >= nC:\n        fit_readout(cr, f\"{vc / 1e6:.1f}M pupils\", f\"in secondary school · {lc}\", 80, 520, size=130)\n    else:\n        fit_readout(cr, \"Secondary school\", f\"how many pupils, {li} vs {lc}\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -39070,7 +39108,8 @@
      "topic": "Education preschool",
      "say": "In Tanzania, one preschool teacher has 114 children, almost double the next worst country. The pressure starts before primary school."
     }
-   ]
+   ],
+   "hook_was": "School access expanded, but classroom pressure still varies wildly."
   }
  ]
 }
