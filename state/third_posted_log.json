@@ -21984,14 +21984,32 @@
       "director_cut": true
     },
     "clip-20261122-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/BusyExuberantSnakeDAESuppy-dmvy5b76zhI-jSJY",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/symYlxNj0-k",
       "title": "Ishowspeed Screams NOOOOO After This Moment",
       "kind": "twitch_clip",
-      "ts": "2026-11-22T13:51:18.061077+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-22T13:51:29.010880+00:00",
+      "uploaded_at": "2026-11-22T13:51:29.010894+00:00",
+      "publish_at": "2026-11-23T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261122-ishowspeed-screams-nooooo-after-this-moment-0bb32f4e",
+        "tiktok": "queued for 2026-11-23T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/BusyExuberantSnakeDAESuppy-dmvy5b76zhI-jSJY",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed was not ready for this \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7086,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
