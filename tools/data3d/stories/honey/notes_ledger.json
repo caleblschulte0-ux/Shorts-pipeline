@@ -1,72 +1,54 @@
 {
- "rounds": 2,
+ "rounds": 3,
  "shots": {
   "1": {
    "BROKEN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "the sign is placed frame-first (compose.place) whole over the row and held in its box; staging.edges fails any cut words"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "the sign is slid clear of his head (box 0.74-0.995, framed smaller at height 0.3); staging.edges now FAILS any words over his head"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "BROKEN: the PURE HONEY 2 EUROS sign is cut by the left frame edge in all 4 frames and reads 'NEY 2 EUROS'. The price that sets up the hook is never whole."
+      "said": "HARD: BROKEN: the PURE HONEY 2 EUROS sign is cut by the left frame edge in all 4 frames and reads 'NEY 2 EUROS'. The price that sets up the hook is never whole."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "BROKEN: the PURE HONEY 2 EUROS sign sits in front of Data and cuts off the top of his head in all four frames."
+      "said": "HARD: BROKEN: the PURE HONEY 2 EUROS sign sits in front of Data and cuts off the top of his head in all four frames."
      }
     ]
    },
    "CONSEQUENCE": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "the row is framed whole and front-on, the fake jar spins to a big red SYRUP label in the open; his slam makes the whole row jump first"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "the slam lands on the board's second still (T_SLAM 0.37 DUR) with the row hopping; at the end he taps the next jar and it wobbles half round to a flash of red SYRUP: the real share was worse"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "CONSEQUENCE: the one fake jar is far down the row and half hidden behind the jar next to it. Only a tiny red 'RUP' shows (frames 3-4), so the SYRUP flip is too small to read on a phone. The slam that causes it never reads as a slam (frames 1-2: the dipper is just held at his chest)."
+      "said": "HARD: CONSEQUENCE: the one fake jar is far down the row and half hidden behind the jar next to it. Only a tiny red 'RUP' shows (frames 3-4), so the SYRUP flip is too small to read on a phone. The slam that causes it never reads as a slam (frames 1-2: the dipper is just held at his chest)."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "CONSEQUENCE: the dipper slam is never seen. In every frame the dipper hangs at his side, nowhere near the counter, and the row of jars never jumps, so nothing causes the SYRUP flip (frames 1-4)."
+      "said": "HARD: CONSEQUENCE: the dipper slam is never seen. In every frame the dipper hangs at his side, nowhere near the counter, and the row of jars never jumps, so nothing causes the SYRUP flip (frames 1-4)."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: CONSEQUENCE: the dipper slam still doesn't read. In frame 2 he is bent over the jars with the brim hiding his face, but the dipper is never seen striking the counter and the row never visibly jumps. In frames 1, 3 and 4 the dipper is held out in mid-air beside the sign post, well above the counter, so nothing visible causes the SYRUP flip."
      }
     ]
    },
    "NOT SHOWN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "seven jars in one counted row, all inside the frame (compose box held), one turns red"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT SHOWN: 'one in seven' cannot be counted. The row recedes and overlaps, so you cannot see seven jars with one of them red. Nothing shows that the real share was worse."
+      "said": "HARD: NOT SHOWN: 'one in seven' cannot be counted. The row recedes and overlaps, so you cannot see seven jars with one of them red. Nothing shows that the real share was worse."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT SHOWN: 'the real share was worse' is never pictured. Frames 3 and 4 match exactly: one red SYRUP label, and no second jar tapped, wobbling or flashing red. The tap at the end isn't in the stills; his arm points at empty air by the post (frame 4)."
      }
     ]
    },
@@ -76,49 +58,37 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT THE POINT: the dipper slam does not read in any frame. The dipper just hangs at his side in frames 1-4, the row never jumps, and the SYRUP label appears in frame 3 with nothing causing it, so Data does not visibly cause the reveal."
+      "said": "HARD: NOT THE POINT: the dipper slam does not read in any frame. The dipper just hangs at his side in frames 1-4, the row never jumps, and the SYRUP label appears in frame 3 with nothing causing it, so Data does not visibly cause the reveal."
      }
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "cobbled square, produce crates, striped awnings, built house fronts; the stray ball removed"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "posts moved out so the bee hat no longer clips; the hat is named in every storyboard line after beat 1"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT THE WORLD: the market square is a flat grey concrete floor with a stray pale ball on it. There are no cobbles, no crates of produce, and the back stalls are a row of identical blue figures in front of a strip of cardboard house fronts. It does not match the approved store's finish."
+      "said": "HARD: NOT THE WORLD: the market square is a flat grey concrete floor with a stray pale ball on it. There are no cobbles, no crates of produce, and the back stalls are a row of identical blue figures in front of a strip of cardboard house fronts. It does not match the approved store's finish."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT THE WORLD: the hero is out of costume. The bee hat is in frame 2 only and missing or hidden behind the sign in frames 1, 3 and 4, so it pops in and out of the shot."
+      "said": "HARD: NOT THE WORLD: the hero is out of costume. The bee hat is in frame 2 only and missing or hidden behind the sign in frames 1, 3 and 4, so it pops in and out of the shot."
      }
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "built stall: wood counter, crates of produce, awnings, cobbles, no unexplained objects"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "OFF THE LOOK (backgrounds as real as we can make them / approved store is the standard of finish): the square is a flat grey speckled floor, boxy flat-front buildings, plain counter planks, and an unexplained white egg-shaped object on the ground beside the counter (all frames). It is nowhere near the built, lived-in finish of approved_hook_store.jpg."
+      "said": "HARD: OFF THE LOOK (backgrounds as real as we can make them / approved store is the standard of finish): the square is a flat grey speckled floor, boxy flat-front buildings, plain counter planks, and an unexplained white egg-shaped object on the ground beside the counter (all frames). It is nowhere near the built, lived-in finish of approved_hook_store.jpg."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: OFF THE LOOK (backgrounds as real as we can make them; the approved store is the standard of finish): the square behind him is a blown-out white sky over soft, toy-like house fronts and flat awning stalls. It is well below the built, lit depth of approved_hook_store (frames 1-4)."
      }
     ]
    }
@@ -130,127 +100,87 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "BACK TO CAMERA: in frame 2 his head is turned away three-quarters from behind, and the hat brim and the back of his head face the lens."
+      "said": "HARD: BACK TO CAMERA: in frame 2 his head is turned away three-quarters from behind, and the hat brim and the back of his head face the lens."
      }
     ]
    },
    "BROKEN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "rebuilt: the HONEY flag hangs on a rope up its pole, hauled by a winch he cranks"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "BROKEN: the 'flags' are cards floating in mid-air beside the poles, not attached to them. There are no halyards and no flags. The HONEY card sits at different heights with nothing holding it (frames 1-4)."
+      "said": "HARD: BROKEN: the 'flags' are cards floating in mid-air beside the poles, not attached to them. There are no halyards and no flags. The HONEY card sits at different heights with nothing holding it (frames 1-4)."
      }
     ]
    },
    "NOT SHOWN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "the board's numbers sit between the poles in clear view; the HONEY flag climbs four bands to the syrup flag's one"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "each flag now sits on its own price (honey 2.17, syrup 0.50) and the crank arm and handle are thicker; he looks at us only while cranking"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT SHOWN: the price board's ticks (0.50 to 2.00) are unreadable on a phone and Data hides them. 'A quarter as much' shows only as the numbers 0.50 and 2.17 on placards, not as a height you can read as four times."
+      "said": "HARD: NOT SHOWN: the price board's ticks (0.50 to 2.00) are unreadable on a phone and Data hides them. 'A quarter as much' shows only as the numbers 0.50 and 2.17 on placards, not as a height you can read as four times."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT SHOWN: the RICE SYRUP flag hangs below the 0.50 band, near the ground, in every frame, so it is not seen at 'a quarter'. The 2.17 mark is never seen; the HONEY flag stops at the 2.00 line (frames 3-4)."
+      "said": "HARD: NOT SHOWN: the RICE SYRUP flag hangs below the 0.50 band, near the ground, in every frame, so it is not seen at 'a quarter'. The 2.17 mark is never seen; the HONEY flag stops at the 2.00 line (frames 3-4)."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT SHOWN: the HONEY card reads '2.17' while it is still at the foot of the pole in frame 1, so the price is stated before it is climbed to. The flag's rise does not show the price; the label does."
      }
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "window is a real framed window with jars on a sill behind glass; the hanging slab removed; void doorway removed"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "beehives stand beside the honey house; the camera is three-quarter (yaw -45) so the world has depth, not a flat backdrop"
-     },
-     {
-      "at": "2026-11-23 23:22Z",
-      "round": 2,
-      "what": "beehives stand beside the honey house; the lens sits three-quarter on the yard so the house wall runs away from us"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT THE WORLD: the yard is a stage set. The 'sunny window full of jars' is a flat white panel with jars printed on it, the doorway is a black void, and a dark green slab with white lines hangs across the top of the frame (frames 1-4)."
+      "said": "HARD: NOT THE WORLD: the yard is a stage set. The 'sunny window full of jars' is a flat white panel with jars printed on it, the doorway is a black void, and a dark green slab with white lines hangs across the top of the frame (frames 1-4)."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT THE WORLD: the honey house is a flat plank wall filling the frame like a stage backdrop. There is no yard, no window of jars on shelves, no sky or depth (frames 1-4)."
+      "said": "HARD: NOT THE WORLD: the honey house is a flat plank wall filling the frame like a stage backdrop. There is no yard, no window of jars on shelves, no sky or depth (frames 1-4)."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT THE WORLD: the plank wall of the honey house still fills the whole top of the frame dead front-on, parallel to the lens. The three-quarter lens claimed as the fix is not there. The beehives are a white sliver cut by the left edge, and there is almost no sky or depth, so the yard still reads as a stage flat (frames 1-4)."
      }
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "he cranks the winch and the flag climbs because of it (staging.cause checks hand on the cause before motion)"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "no talking-head ending: he steps back and pushes the crank on, his face kept to us by the three-quarter lens; staging.keys fails any still showing his back"
-     },
-     {
-      "at": "2026-11-23 23:22Z",
-      "round": 2,
-      "what": "no talking-head ending: he steps back and off with a happy lean and a step to us; he looks UP at the flag rather than round behind him, so no still shows his back (staging.keys fails any)"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "OFF THE LOOK (Data CAUSES what moves): there are no flags and no ropes. In all frames Data stands between the poles with his hands at his chest or spread, while the HONEY placard rises on its own (frames 2-4)."
+      "said": "HARD: OFF THE LOOK (Data CAUSES what moves): there are no flags and no ropes. In all frames Data stands between the poles with his hands at his chest or spread, while the HONEY placard rises on its own (frames 2-4)."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "OFF THE LOOK (every object built from its real parts, no flat colour boxes): the price board is a set of flat painted planks with small text, and the flags are flat cards (frames 1-4)."
+      "said": "HARD: OFF THE LOOK (every object built from its real parts, no flat colour boxes): the price board is a set of flat painted planks with small text, and the flags are flat cards (frames 1-4)."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: OFF THE LOOK (every object built from its real parts, no flat colour boxes, no sign clutter): the 'flags' are still flat paper cards hung on poles, not cloth flags, and the price board is still a stack of flat painted plank bands. The board header 'EUROS A KILO' is cut by the honey pole ('EUROS A KIL', frames 1-2) (frames 1-4)."
      }
     ]
    },
    "TALKING HEAD": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "he works the winch side-on most of the shot; staging.talking now fails a centred idle head"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "TALKING HEAD: Data is centred, facing the lens, chest-up and doing little across all 4 frames."
+      "said": "HARD: TALKING HEAD: Data is centred, facing the lens, chest-up and doing little across all 4 frames."
      }
     ]
    }
@@ -262,133 +192,97 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "BROKEN: the beacon reads as a glowing ball floating in front of Data's chest (frames 2-4), not as a light on a post."
+      "said": "HARD: BROKEN: the beacon reads as a glowing ball floating in front of Data's chest (frames 2-4), not as a light on a post."
      }
     ]
    },
    "CONSEQUENCE": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "FAIL lamp and screen light red on test 1 and 2, PASS green on test 3; dip and touch to the box are on the board's stills"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "the beacon ball is gone; two lamps on the TEST box, red then green, are the result; the green lands on the last still with his gape"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "CONSEQUENCE: the red FAIL lamp is never seen. The TEST box screen is black in frames 1-3, so the try, fail, tune, pass sequence collapses to one green PASS (frame 4). The dip into the vat and the touch to the box are never shown either."
+      "said": "HARD: CONSEQUENCE: the red FAIL lamp is never seen. The TEST box screen is black in frames 1-3, so the try, fail, tune, pass sequence collapses to one green PASS (frame 4). The dip into the vat and the touch to the box are never shown either."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "CONSEQUENCE: the dipper is never seen dipping into the vat or touching the TEST box. It stays raised at the left in frames 1, 2 and 4, so the test has no visible cause."
+      "said": "HARD: CONSEQUENCE: the dipper is never seen dipping into the vat or touching the TEST box. It stays raised at the left in frames 1, 2 and 4, so the test has no visible cause."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: CONSEQUENCE: no vat is seen anywhere, so the dipper is never seen dipping into the blend. Only in frame 3 does his hand come near the TEST box. In frames 1, 2 and 4 the dipper is raised in the air (frames 1-4)."
      }
     ]
    },
    "NOT SHOWN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "the gauge is a tall HONEY/SYRUP column on the vat front, held in frame by a compose box"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "gauge tube and its honey and syrup columns are thicker and framed whole; the dipper's fist is kept within reach so the touch reads"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT SHOWN: the gauge that should read 'mostly syrup' while it passes is a thin strip on the left cylinder and unreadable. 'Tuned to pass while still fake' is lost."
+      "said": "HARD: NOT SHOWN: the gauge that should read 'mostly syrup' while it passes is a thin strip on the left cylinder and unreadable. 'Tuned to pass while still fake' is lost."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT SHOWN: the glass gauge that carries the point (passes while still mostly syrup) is a tiny strip at the left edge with an unreadable SYRUP/HONEY label in every frame. In frame 4 its fill looks mostly empty or honey-orange, not mostly syrup."
+      "said": "HARD: NOT SHOWN: the glass gauge that carries the point (passes while still mostly syrup) is a tiny strip at the left edge with an unreadable SYRUP/HONEY label in every frame. In frame 4 its fill looks mostly empty or honey-orange, not mostly syrup."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT SHOWN: the gauge that carries the point ('passes while still mostly syrup') is still not readable. It is a narrow tube at the left half hidden behind the TEST box, its SYRUP label cut by the tube, and its fill reads as an almost empty glass with a little orange at the bottom, not 'mostly syrup' (frames 1-4, worst in frame 4 at the PASS)."
      }
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "sacks are stencilled SYRUP sacks with necks and ties; the window has dusty lit glass"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "the lens sits level with his eyes under the brim; the drum and its words are framed whole"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT THE WORLD: the 'dusty window' is a flat white grid panel. The 'sacks of SYRUP' are smooth beige balls that read as stones, not sacks (frames 1-4)."
+      "said": "HARD: NOT THE WORLD: the 'dusty window' is a flat white grid panel. The 'sacks of SYRUP' are smooth beige balls that read as stones, not sacks (frames 1-4)."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT THE WORLD: the hat changes shape and size in frame 4 (a flat wide cap) against frames 1-3, a costume pop."
+      "said": "HARD: NOT THE WORLD: the hat changes shape and size in frame 4 (a flat wide cap) against frames 1-3, a costume pop."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT THE WORLD: frame 4's hat reads as a flat wide cap with no band or rolled veil, unlike the crowned, banded hat in frames 1-3. It is still a costume pop."
      }
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "sacks with necks, ties and stencils; window glass lit by the sun"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "OFF THE LOOK (real parts): the SYRUP sacks are plain cream spheres, and the dusty window is a white grid panel with no glass and no light through it."
+      "said": "HARD: OFF THE LOOK (real parts): the SYRUP sacks are plain cream spheres, and the dusty window is a white grid panel with no glass and no light through it."
      }
     ]
    },
    "ONE-SECOND GAG": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "retimed to the stills: dipping / red FAIL / cranking still red / green PASS; staging.keys now fails identical stills"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "ONE-SECOND GAG: frames 1-3 are near-identical: the same pose, hand at the wheel, box dark. Nothing new happens until frame 4."
+      "said": "HARD: ONE-SECOND GAG: frames 1-3 are near-identical: the same pose, hand at the wheel, box dark. Nothing new happens until frame 4."
      }
     ]
    },
    "TINY DATA": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "lower lens framed first on his face (frame_data); the hat check now counts only his body"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "TINY DATA / face hidden: the high lens plus the hat brim cover Data's eyes in frames 1-3."
+      "said": "HARD: TINY DATA / face hidden: the high lens plus the hat brim cover Data's eyes in frames 1-3."
      }
     ]
    }
@@ -400,23 +294,17 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "BACK TO CAMERA: in frame 2 Data is turned away with the back of his hat and head to the lens."
+      "said": "hard (one judge only): BACK TO CAMERA: in frame 2 Data is turned away with the back of his hat and head to the lens."
      }
     ]
    },
    "BROKEN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "framed first with a wider lens so he ends the beat whole; staging.edges fails any of him off frame at the end"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "BROKEN: in frame 4, the end of the shot, Data is cut in half by the right frame edge, so his reaction is lost."
+      "said": "HARD: BROKEN: in frame 4, the end of the shot, Data is cut in half by the right frame edge, so his reaction is lost."
      }
     ]
    },
@@ -426,33 +314,52 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "CONSEQUENCE: the drop falling into the funnel and running down a glass pipe is not visible in any frame. There is no glass pipe at all, and his hand covers the funnel in frames 1-3."
+      "said": "hard (one judge only): CONSEQUENCE: the drop falling into the funnel and running down a glass pipe is not visible in any frame. There is no glass pipe at all, and his hand covers the funnel in frames 1-3."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: CONSEQUENCE: the drop is never seen falling into the funnel or running down the glass pipe. The dipper is held level with the dial, well above the funnel, in frames 2-4, and the beacon looks the same dim red in every frame, so 'the beacon lights red' never happens."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT SHOWN: the beacon is lit red from frame 1, before any test, so it is not seen 'lighting'. He never points at the machine; frame 4 is arms spread (frames 1, 4)."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT THE WORLD: there is no beamed ceiling, no stage and no honey-show table with rosettes. The hall is bunting, windows and chairs behind a blurred band, and the low lens from the floor asked for is not used (frames 1-4)."
      }
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "he pours the jar into the machine's funnel and the needle swings after it (staging.cause)"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "a real red beacon (#FF1C0C) instead of pink; he faces us when the drop falls; rosettes larger with tails; the ending is surprised pointing, not a grin"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "OFF THE LOOK (Data CAUSES what moves): there is no funnel and no drop. The jar sits on a wooden post while Data stands beside it with an arm out (frames 1-2). The machine swings to FAKE with no visible cause."
+      "said": "HARD: OFF THE LOOK (Data CAUSES what moves): there is no funnel and no drop. The jar sits on a wooden post while Data stands beside it with an arm out (frames 1-2). The machine swings to FAKE with no visible cause."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "OFF THE LOOK (one distinct visual idea per beat; no two beats with the same verb): this is shot 3 again, with dipper sample into a test box, needle or screen, then a red/green readout and beacon. The same verb on a white box in a new room."
+      "said": "hard (one judge only): OFF THE LOOK (one distinct visual idea per beat; no two beats with the same verb): this is shot 3 again, with dipper sample into a test box, needle or screen, then a red/green readout and beacon. The same verb on a white box in a new room."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: OFF THE LOOK (one distinct visual idea per beat; no two beats with the same verb): this is still shot 3 again. Data holds a dipper up to a white test machine, then a dial and screen go red. The changes the note lists (beacon colour, facing us, rosettes, pointing) don't change the verb (frames 1-4)."
      }
     ]
    }
@@ -464,7 +371,7 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "BACK TO CAMERA: in frame 1 his head is turned to the rack with the back of his hat to the lens."
+      "said": "HARD: BACK TO CAMERA: in frame 1 his head is turned to the rack with the back of his hat to the lens."
      }
     ]
    },
@@ -474,23 +381,22 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "BODY: Data is not on the T handle. The push pole is a thin pink line that leaves his hands in frames 3-4, so he does not cause the sweep."
+      "said": "HARD: BODY: Data is not on the T handle. The push pole is a thin pink line that leaves his hands in frames 3-4, so he does not cause the sweep."
      }
     ]
    },
    "BROKEN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "camera framed first with him whole; the rack is boxed whole in frame; brim and ears fixed in the shared hat"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "BROKEN: in frame 3 the hat swallows Data's whole face. The plank and jar row is cut by the right frame edge in frames 1-2. Data's ears poke through the hat crown in every frame."
+      "said": "HARD: BROKEN: in frame 3 the hat swallows Data's whole face. The plank and jar row is cut by the right frame edge in frames 1-2. Data's ears poke through the hat crown in every frame."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: BROKEN: in frame 1 Data is cut in half by the left frame edge."
      }
     ]
    },
@@ -500,127 +406,102 @@
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "CONSEQUENCE: the scanner's red bar sweeping the shelves and jars spinning to red cannot be seen. The scanner on the top rail is tiny, and the 'EU TEST' lettering is unreadable."
+      "said": "HARD: CONSEQUENCE: the scanner's red bar sweeping the shelves and jars spinning to red cannot be seen. The scanner on the top rail is tiny, and the 'EU TEST' lettering is unreadable."
      }
     ]
    },
    "NO PAYOFF": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "the scanner bar sweeps the whole rack and three of every seven jars are red; he ends pointing at you: what's in your jar"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "after the scan he counts the three red jars, one jab each with the other hand counting, then holds his hands out: three of five"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NO PAYOFF: the last frame is Data standing and holding a jar out. It's a pose, not a visual payoff of the near-half count."
+      "said": "HARD: NO PAYOFF: the last frame is Data standing and holding a jar out. It's a pose, not a visual payoff of the near-half count."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NO PAYOFF: the shot ends on Data standing in front of an unchanged rack with his arms out. Nothing lands visually."
+      "said": "HARD: NO PAYOFF: the shot ends on Data standing in front of an unchanged rack with his arms out. Nothing lands visually."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NO PAYOFF: the shot still ends on Data standing in front of the rack, arms out and frowning. The one-two-three jab count isn't in the stills (in frame 3 he points away from the rack), so nothing lands visually (frame 4)."
      }
     ]
    },
    "NOT SHOWN": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "a full rack of three tiers of seven jars, three in seven red per tier, readable at once"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "the scanner head is bigger, the push pole yellow and thicker, and the car flips each jar as it passes"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT SHOWN: 'almost half' and 'three times one in seven' are not seen. There is one short row of 6-8 jars, and the SUSPECT labels show 1-3 at a time. The 'whole stock in long rows' is absent, so no count or proportion reads."
+      "said": "HARD: NOT SHOWN: 'almost half' and 'three times one in seven' are not seen. There is one short row of 6-8 jars, and the SUSPECT labels show 1-3 at a time. The 'whole stock in long rows' is absent, so no count or proportion reads."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "NOT SHOWN: the change from one red in seven to three in seven is not visible. The red count on the rack looks the same in frames 1-4, so 'almost half' and 'three times the old count' are never seen."
+      "said": "HARD: NOT SHOWN: the change from one red in seven to three in seven is not visible. The red count on the rack looks the same in frames 1-4, so 'almost half' and 'three times the old count' are never seen."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT SHOWN: the change from one red in seven to three in seven can't be read. Each shelf holds about 11-12 jars, not seven, and the red count looks only slightly different across frames, so 'almost half' and 'three times the old count' are never seen (frames 1-4)."
      }
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "real cobble texture in the alley; the stray ball removed; brick walls, crates"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "NOT THE WORLD: the 'cobbled alley' floor reads as grey polka-dot fabric, not cobbles (all frames). An unexplained grey ball labelled 'SUC\u2026' sits on the ground in frame 4."
+      "said": "HARD: NOT THE WORLD: the 'cobbled alley' floor reads as grey polka-dot fabric, not cobbles (all frames). An unexplained grey ball labelled 'SUC\u2026' sits on the ground in frame 4."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: NOT THE WORLD: the alley is a flat brick wall with a rack and some crates. There is no green back door, no lamp and no depth, so it reads as a backdrop, not a lived-in alley (frames 1-4)."
      }
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "cobbles, a steel rack on the ground, no tilting plank"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "he faces the lens at the start and the end; a static lens with a small pan keeps the jar labels in frame"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "OFF THE LOOK (real textures): the alley floor is a grey polka-dot pattern, not cobbles. The plank rests on loose crates and tilts (frame 4)."
+      "said": "HARD: OFF THE LOOK (real textures): the alley floor is a grey polka-dot pattern, not cobbles. The plank rests on loose crates and tilts (frame 4)."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "OFF THE LOOK (Data CAUSES what moves): the push pole is a thin line that disappears by frame 4. In frame 3 he is walking away from the rack with it, so he is not clearly pushing the scanner along."
+      "said": "HARD: OFF THE LOOK (Data CAUSES what moves): the push pole is a thin line that disappears by frame 4. In frame 3 he is walking away from the rack with it, so he is not clearly pushing the scanner along."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: OFF THE LOOK (Data CAUSES what moves): the yellow pole leans from the rack top to his hands, but no scanner head or red bar is seen moving along the shelves. He walks along beside a still rack rather than visibly pushing anything (frames 1-3)."
      }
     ]
    },
    "TINY DATA": {
-    "fixes": [
-     {
-      "at": "2026-11-23 22:01Z",
-      "round": 1,
-      "what": "face held toward the lens during the beat, frame_data on his face, hat brim smaller"
-     },
-     {
-      "at": "2026-11-23 22:52Z",
-      "round": 2,
-      "what": "jars 0.048 wide and 0.15 tall, the rack tiers raised 0.23, framed at height 0.34 so the rack fills the frame"
-     }
-    ],
+    "fixes": [],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
       "round": 1,
-      "said": "TINY DATA / BACK-ish: Data's face is hidden under the hat brim in frames 2-3 (head bowed), and in frame 3 the hat fills the frame centre."
+      "said": "HARD: TINY DATA / BACK-ish: Data's face is hidden under the hat brim in frames 2-3 (head bowed), and in frame 3 the hat fills the frame centre."
      },
      {
       "at": "2026-11-23 22:44Z",
       "round": 2,
-      "said": "TINY DATA: the jars and their SUSPECT labels are a few pixels each on a phone, and the scanner and its red bar can't be seen at all (frames 1-4)."
+      "said": "HARD: TINY DATA: the jars and their SUSPECT labels are a few pixels each on a phone, and the scanner and its red bar can't be seen at all (frames 1-4)."
+     },
+     {
+      "at": "2026-11-23 23:27Z",
+      "round": 3,
+      "said": "HARD: TINY DATA: the jars and their SUSPECT labels are still a few pixels each on a phone. The whole rack is a small block in the upper third with empty cobbles filling the bottom half, and the scanner head and its red bar can't be seen at all (frames 1-4)."
      }
     ]
    }

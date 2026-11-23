@@ -213,3 +213,106 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Make the sweep a bright red bar crossing each shelf and flipping two more jars in each run of seven, shelf by shelf, so the count builds.
 - better: End with the camera pulling back to show the whole rack, three reds in every seven, then Data turning to us with his question, the rack still in frame.
 
+
+## 2026-11-23 23:27Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 56 | 54, 56, 56 | FAIL |
+| 2 | 56 | 54, 56, 62 | FAIL |
+| 3 | 55 | 48, 55, 55 | FAIL |
+| 4 | 47 | 47, 47, 52 | FAIL |
+| 5 | 34 | 30, 34, 34 | FAIL |
+
+**shot 1** (FAIL, 56, bar 70)
+
+- HARD: CONSEQUENCE: the dipper slam still doesn't read. In frame 2 he is bent over the jars with the brim hiding his face, but the dipper is never seen striking the counter and the row never visibly jumps. In frames 1, 3 and 4 the dipper is held out in mid-air beside the sign post, well above the counter, so nothing visible causes the SYRUP flip.
+- HARD: NOT SHOWN: 'the real share was worse' is never pictured. Frames 3 and 4 match exactly: one red SYRUP label, and no second jar tapped, wobbling or flashing red. The tap at the end isn't in the stills; his arm points at empty air by the post (frame 4).
+- HARD: CONSEQUENCE: the dipper slam is still not seen. In frames 1, 3 and 4 the dipper is held out at shoulder height to the right of the counter. In frame 2 his hand reaches down past the end jars and the dipper is not visible. No jar is seen jumping in any frame, so nothing on screen causes the SYRUP flip in frame 3.
+- HARD: NOT SHOWN: 'the real share was worse' is not on screen. Frame 4 shows the same single SYRUP jar as frame 3. No second jar is tapped, wobbles or flashes red, so the only count a viewer gets is the one in seven, the opposite of the line's point (frames 3-4).
+- HARD: OFF THE LOOK (backgrounds as real as we can make them; the approved store is the standard of finish): the square behind him is a blown-out white sky over soft, toy-like house fronts and flat awning stalls. It is well below the built, lit depth of approved_hook_store (frames 1-4).
+- HARD: CONSEQUENCE: the slam is still not seen. In frame 2 he bends over the right end of the row, but the dipper is hidden behind his hand and the jars, and it never visibly hits the counter. No jar in the row has hopped from where it stood in frame 1. So the SYRUP flip in frame 3 has no cause you can see (frames 1-3).
+- HARD: CONSEQUENCE: the closing tap does not land. In frames 3 and 4 the dipper is held out stiffly at shoulder height off to the right, touching no jar. No second jar wobbles or flashes red, so 'the real share was worse' is never pictured (frames 3-4).
+- HARD: NOT SHOWN: 'worse than one in seven' is said by the voice only. Frame 4 still shows a single SYRUP jar, the same as frame 3 (frame 4).
+- problem: Fixed since last round: the sign is clear of his head in all four frames, and the hat now shows in every frame.
+- problem: Frame 2: the hat brim covers his whole face at the key moment, so we can't see a frown or any intent.
+- problem: There are about 8 jars across the front and you can't tell they are a row of seven, so 'one in seven' isn't a clean count.
+- better: Put the dipper visibly ON the counter in the slam still, with jars lifted off the board and motion lines or a dust puff under them.
+- better: Have the tap land on the second jar in the last still with its label half turned and showing red, so the shot ends on 'worse'.
+- better: Keep his face readable under the brim when he leans in; raise the lens or tilt the hat back.
+
+**shot 2** (FAIL, 56, bar 70)
+
+- HARD: OFF THE LOOK (every object built from its real parts, no flat colour boxes, no sign clutter): the 'flags' are still flat paper cards hung on poles, not cloth flags, and the price board is still a stack of flat painted plank bands. The board header 'EUROS A KILO' is cut by the honey pole ('EUROS A KIL', frames 1-2) (frames 1-4).
+- HARD: OFF THE LOOK (every object built from its real parts, no flat colour boxes): the 'flags' are still flat paper cards (HONEY 2.17, RICE SYRUP 0.50) taped to poles, and the price board is still flat painted planks. Neither is a cloth flag on a halyard, and the board has no real build (frames 1-4).
+- HARD: NOT THE WORLD: the plank wall of the honey house still fills the whole top of the frame dead front-on, parallel to the lens. The three-quarter lens claimed as the fix is not there. The beehives are a white sliver cut by the left edge, and there is almost no sky or depth, so the yard still reads as a stage flat (frames 1-4).
+- HARD: NOT SHOWN: the HONEY card reads '2.17' while it is still at the foot of the pole in frame 1, so the price is stated before it is climbed to. The flag's rise does not show the price; the label does.
+- HARD: NOT THE WORLD: the honey house is still a flat plank wall square to the lens, filling the top two thirds of every frame like a backdrop. The lens is not three-quarter, the wall does not run away from us, there is barely any sky, and no beehives are clearly in shot (frames 1-4).
+- HARD: OFF THE LOOK (every object built from its real parts, no flat colour boxes): the price board is still flat painted bands, and the two 'flags' are flat paper cards on poles rather than cloth flags. The EUROS A KILO title is cut by the pole (frames 1-4).
+- problem: This round the flags do land on their own prices: syrup at the 0.50 band, honey above 2.00 at 2.17 (frames 3-4). That part of the NOT SHOWN note is fixed.
+- problem: 'EUROS A KILO' is cut off by the flagpole ('EUROS A KIL') in frames 1-2, which loses the board's title.
+- problem: The crank is a thin dark stub. The winch reads as a red box, and it is hard to see that his hand turns anything (frames 2-3).
+- problem: The RICE SYRUP card is small and sits low at the left edge; on a phone the 0.50 is hard to read.
+- better: Make the flags real cloth on halyards running through pulleys at the pole tops. Keep the honey flag unlabelled until it stops, or show its price only on the board band it reaches.
+- better: Swing the lens about 35 degrees so the house wall recedes, with the hives whole on one side and the open lit door and a window of jars in depth.
+- better: Give the winch a big drum with the rope wrapping on it and a thick crank arm he turns at chest height, side-on, his arm straight to the handle.
+
+**shot 3** (FAIL, 55, bar 70)
+
+- HARD: NOT SHOWN: the gauge that carries the point ('passes while still mostly syrup') is still not readable. It is a narrow tube at the left half hidden behind the TEST box, its SYRUP label cut by the tube, and its fill reads as an almost empty glass with a little orange at the bottom, not 'mostly syrup' (frames 1-4, worst in frame 4 at the PASS).
+- HARD: CONSEQUENCE: no vat is seen anywhere, so the dipper is never seen dipping into the blend. Only in frame 3 does his hand come near the TEST box. In frames 1, 2 and 4 the dipper is raised in the air (frames 1-4).
+- HARD: NOT THE WORLD: frame 4's hat reads as a flat wide cap with no band or rolled veil, unlike the crowned, banded hat in frames 1-3. It is still a costume pop.
+- HARD: CONSEQUENCE: the dipper is still never seen in a vat or touching the TEST box. There is no steel blending vat in any frame, and the dipper stays raised above or beside the box (frames 1, 2 and 4) or hangs at his hip (frame 3). The FAIL/PASS lamps have no visible cause.
+- HARD: NOT SHOWN: the gauge that carries the point is still a small white panel half hidden behind the TEST box at the left. Its SYRUP/HONEY labels are cut and unreadable, and its fill reads as a thin strip of orange at the bottom with white above. 'Passes while still mostly syrup' cannot be read in frame 4.
+- HARD: NOT THE WORLD: the hat still changes between frames. In frames 1 and 3 it is a wide brim with a dark band; in frames 2 and 4 it is a flatter, band-less cap shape, a costume pop.
+- HARD: CONSEQUENCE: the dipper is never seen going into a vat, and no steel blending vat is in the shot at all. In frames 1-3 the dipper is raised beside or above the TEST box, never clearly touching it, so the test has no visible cause (frames 1-4).
+- HARD: NOT SHOWN: the gauge that carries the point is still a thin white strip half hidden behind the TEST box. Its SYRUP and HONEY labels are cut off, so 'passes while still mostly syrup' cannot be read. Frame 4 shows a small orange base under a white tube that no viewer will read as syrup (frames 1-4).
+- HARD: NOT THE WORLD: the hat still pops between shapes. It is a wide brim with a black band in frames 1 and 3 and a flat cap with no band in frames 2 and 4 (frames 1-4).
+- problem: FAIL, FAIL, PASS on the TEST box now reads clearly, and his hand is on the red SYRUP wheel. That part works.
+- problem: The two sacks behind him are blurry beige blobs, and SYRUP on them is barely legible.
+- problem: The room is a bare plank box with one window, thinner than 'the cheap stall's back room' needs.
+- better: Put a real steel vat with the gauge on its front, big and whole, beside the TEST box. Show it mostly pale syrup with a thin honey band at the bottom in the PASS still.
+- better: Show the dipper in the vat in one still and touching the TEST box in the next.
+- better: Keep the hat model and its angle consistent. Lower the lens slightly so the crown and veil roll show in frame 4.
+
+**shot 4** (FAIL, 47, bar 70)
+
+- HARD: OFF THE LOOK (one distinct visual idea per beat; no two beats with the same verb): this is still shot 3 again. Data holds a dipper up to a white test machine, then a dial and screen go red. The changes the note lists (beacon colour, facing us, rosettes, pointing) don't change the verb (frames 1-4).
+- HARD: CONSEQUENCE: the drop is never seen falling into the funnel or running down the glass pipe. The dipper is held level with the dial, well above the funnel, in frames 2-4, and the beacon looks the same dim red in every frame, so 'the beacon lights red' never happens.
+- HARD: OFF THE LOOK (one distinct visual idea per beat; no two beats with the same verb): this is still shot 3's verb. A dipper sample goes to a white test box, a dial or screen gives the readout, and a red lamp lights, in a new room. The fixes claimed (beacon colour, facing us, rosettes, pointing) are dressing and do not change the idea.
+- HARD: CONSEQUENCE: the drop falling into the funnel and running down the glass pipe is never seen. In frame 3 the dipper tip touches the dial's glass instead of the funnel, and the beacon is already red in frame 1, so nothing lights as a result (frames 1-4).
+- HARD: NOT THE WORLD: there is no beamed ceiling, no stage and no honey-show table with rosettes. The hall is bunting, windows and chairs behind a blurred band, and the low lens from the floor asked for is not used (frames 1-4).
+- HARD: OFF THE LOOK (one distinct visual idea per beat; no two beats with the same verb): this is still shot 3 again. He holds a dipper sample to a white test box, and a needle and screen answer with a red readout. It is the same verb in a new room (frames 1-4).
+- HARD: CONSEQUENCE: the drop is never seen. From frame 2 on, the dipper is held out at the dial's height, well above and to the side of the funnel. No drop falls, and the glass pipe shows nothing running (frames 2-4).
+- HARD: NOT SHOWN: the beacon is lit red from frame 1, before any test, so it is not seen 'lighting'. He never points at the machine; frame 4 is arms spread (frames 1, 4).
+- problem: The dial does swing from PASS to FAKE between frames 1 and 3, and RICE SYRUP FOUND is readable in frames 3-4.
+- problem: His feet are off the floor in frames 2 and 4, which reads as floating as much as jumping back.
+- problem: The funnel and glass pipe are small and sit off to the side of the machine, where they read as a tap.
+- better: Give this beat a different verb from shot 3. For example, the inspectors' machine takes the WHOLE jar and spins or separates it, a visible band of rice syrup splits out in a glass column, and Data is the one who drops the jar in.
+- better: If the drop stays, frame the funnel big at the top of a tall glass pipe running the height of the machine, with the drop shown mid-fall in one still and mid-pipe in the next.
+- better: Keep the beacon dark until the FAKE still, then light it red.
+
+**shot 5** (FAIL, 34, bar 70)
+
+- HARD: TINY DATA: the jars and their SUSPECT labels are still a few pixels each on a phone. The whole rack is a small block in the upper third with empty cobbles filling the bottom half, and the scanner head and its red bar can't be seen at all (frames 1-4).
+- HARD: NOT SHOWN: the change from one red in seven to three in seven can't be read. Each shelf holds about 11-12 jars, not seven, and the red count looks only slightly different across frames, so 'almost half' and 'three times the old count' are never seen (frames 1-4).
+- HARD: NO PAYOFF: the shot still ends on Data standing in front of the rack, arms out and frowning. The one-two-three jab count isn't in the stills (in frame 3 he points away from the rack), so nothing lands visually (frame 4).
+- HARD: BROKEN: in frame 1 Data is cut in half by the left frame edge.
+- HARD: NOT THE WORLD: the alley is a flat brick wall with a rack and some crates. There is no green back door, no lamp and no depth, so it reads as a backdrop, not a lived-in alley (frames 1-4).
+- HARD: NO PAYOFF: the last still is Data standing in front of the rack with his arms half out and a flat face. No counting jab on the reds and no hands-out question can be read in any still, so the video ends on a pose (frame 4).
+- HARD: NOT SHOWN: the change from one red in seven to three in seven still cannot be seen. Frames 1-4 show the same scatter of reddish labels on a rack of tiny jars, so 'almost half' and 'three times the old count' never become a picture.
+- HARD: TINY DATA: the jars and their SUSPECT labels are still a few pixels each. The rack fills about a third of the frame width, not the frame as claimed, and the scanner on its blue rail is just a tiny 'EU TEST' strip at the rack's top (frames 1-4).
+- HARD: OFF THE LOOK (Data CAUSES what moves): the yellow pole leans from the rack top to his hands, but no scanner head or red bar is seen moving along the shelves. He walks along beside a still rack rather than visibly pushing anything (frames 1-3).
+- HARD: BROKEN: Data is cut by the left frame edge for the whole of frame 1, and the red door at each side is a sliver cut by the edges.
+- HARD: NO PAYOFF: it still ends on Data standing in front of the rack with his arms out and a frown. There are no counting jabs and nothing lands visually (frame 4).
+- HARD: NOT SHOWN: the jump from one red in seven to three in seven cannot be seen. Each jar is a few pixels, and the red count looks the same from frame 2 to frame 4. 'Almost half' and 'three times' are never pictured (frames 1-4).
+- HARD: TINY DATA: the rack fills only the upper middle of each frame, and the jars and their SUSPECT labels are unreadable on a phone. The scanner on its rail cannot be made out at all; it is just a blue top bar (frames 1-4).
+- HARD: OFF THE LOOK (Data CAUSES what moves): the push pole leans loose against the rack in frames 3-4. In frame 2 he holds it while looking at us, never visibly pushing a scanner along (frames 2-4).
+- HARD: BROKEN: Data is cut by the left frame edge in frame 1 (frame 1).
+- HARD: NOT THE WORLD: the alley is a flat brick wall square to the lens with a strip of cobbles. The green door, the lamp and the depth are missing, so it reads as a backdrop (frames 1-4).
+- problem: Fixed since last round: the push pole is now thick and visible, and he holds it in frames 2-3, so he reads as the cause of the push.
+- problem: The static wide lens keeps the rack whole but makes every jar unreadable.
+- better: Put the rack big and close in front of the lens: one shelf of exactly seven jars filling the frame width, Data at its end.
+- better: Show the scanner head as a big lit car with a visible red sweep bar, and flip each jar to red as it passes.
+- better: End on a close still of that one shelf, three red SUSPECT labels out of seven with his finger on the third and his face turned to us.
+
