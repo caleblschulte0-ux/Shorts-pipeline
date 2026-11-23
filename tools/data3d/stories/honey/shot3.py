@@ -37,11 +37,11 @@ def place_back_room():
     ink = hw_ink("sack ink", "#7A2A18")
     for k in range(5):
         x = -0.95 + k * 0.24 + rnd.uniform(-0.02, 0.02); z = 0.13
-        K.sph(f"syrup sack {k}", (x, 0.58, z), 1.0, sack, scale=(0.12, 0.09, 0.14), seg=20, ring=12)
-        K.text("sack word", "SYRUP", (x, 0.49, z + 0.02), 0.035, (math.pi / 2, 0, 0), ink, extrude=0.0004)
+        K.box(f"syrup sack {k}", (x, 0.58, 0.14), (0.21, 0.15, 0.28), sack, bev=0.05); K.box(f"sack neck {k}", (x, 0.58, 0.3), (0.07, 0.05, 0.06), sack, bev=0.02); K.cyl(f"sack tie {k}", (x, 0.58, 0.285), 0.038, 0.012, K.mat("sack tie", "#5A4028", rough=0.9), v=16, bev=0)
+        K.text("sack word", "SYRUP", (x, 0.5, 0.15), 0.035, (math.pi / 2, 0, 0), ink, extrude=0.0004)
     for k in range(3):
         x = -0.85 + k * 0.26
-        K.sph(f"syrup sack top {k}", (x, 0.6, 0.36), 1.0, sack, scale=(0.12, 0.09, 0.12), seg=20, ring=12)
+        o = K.box(f"syrup sack top {k}", (x + 0.12, 0.6, 0.37), (0.24, 0.15, 0.17), sack, bev=0.05); o.rotation_euler = (0, 0.06 * (k - 1), 0)
     # the syrup drum on the right, its SYRUP valve wheel, a hose across the floor to the vat
     steel = K.mat("vat steel", "#B8BCC0", rough=0.25, metal=0.9)
     drum = K.mat("syrup drum", "#2E5E8A", rough=0.45, metal=0.3)
@@ -63,10 +63,10 @@ def place_back_room():
     K.cyl("vat blend", (S3_VAT.x, S3_VAT.y, S3_VZ1 - 0.02), S3_VR - 0.004, 0.01, hw_honey("vat blend", "#E8C070", clear=0.2), v=48, bev=0)
     for a in (0.6, 2.4, 4.2):
         K.box("vat leg", (S3_VAT.x + 0.07 * math.cos(a), S3_VAT.y + 0.07 * math.sin(a), S3_VZ0 / 2), (0.02, 0.02, S3_VZ0), steel, bev=0.003)
-    K.box("gauge back", (S3_VAT.x, S3_VAT.y - S3_VR - 0.006, 0.26), (0.075, 0.006, 0.25), K.mat("gauge plate", "#F2EEE4", rough=0.5), bev=0.002)
+    K.box("gauge back", (S3_VAT.x, S3_VAT.y - S3_VR - 0.006, 0.26), (0.11, 0.006, 0.27), K.mat("gauge plate", "#F2EEE4", rough=0.5), bev=0.002)
     gi = hw_ink("gauge ink", "#2A1E12")
-    K.text("gauge word", "SYRUP", (S3_VAT.x, S3_VAT.y - S3_VR - 0.0095, 0.365), 0.018, (math.pi / 2, 0, 0), gi, extrude=0.0003)
-    K.text("gauge word", "HONEY", (S3_VAT.x, S3_VAT.y - S3_VR - 0.0095, 0.155), 0.018, (math.pi / 2, 0, 0), gi, extrude=0.0003)
+    K.text("gauge word", "SYRUP", (S3_VAT.x, S3_VAT.y - S3_VR - 0.0095, 0.372), 0.024, (math.pi / 2, 0, 0), gi, extrude=0.0003)
+    K.text("gauge word", "HONEY", (S3_VAT.x, S3_VAT.y - S3_VR - 0.0095, 0.146), 0.024, (math.pi / 2, 0, 0), gi, extrude=0.0003)
     # the old TEST box on its crate: a grey case, a red and a green lamp, a little screen
     crate = hw_wood("crate wood", "#9C7048", "#B88A5C", scale=6)
     K.box("test crate", (S3_BOX.x, S3_BOX.y, S3_BOX.z / 2 - 0.005), (0.24, 0.16, S3_BOX.z - 0.01), crate, bev=0.006)
@@ -112,18 +112,18 @@ def shot3():
     W = hw_win
     T_D = [0.04 * DUR, 0.38 * DUR, 0.64 * DUR]           # dips
     T_T = [t + 0.22 * DUR * 0.55 for t in T_D]           # tests (arc 0.10 / 0.50 / 0.78)
-    T_T = [0.17 * DUR, 0.5 * DUR, 0.77 * DUR]
+    T_T = [0.17 * DUR, 0.42 * DUR, 0.895 * DUR]           # the key stills: dipping / RED (test 2) / cranking, still red / GREEN
     T_D = [t - 0.55 for t in T_T]
-    T_C = [0.27 * DUR, 0.6 * DUR]                        # cranks of the SYRUP wheel (arc 0.35 / 0.65 end)
+    T_C = [0.207 * DUR, 0.575 * DUR]                     # cranks of the SYRUP wheel
     CR = 0.6                                            # a crank's length
-    T_GAPE = 0.88 * DUR
+    T_GAPE = 0.95 * DUR
     light = place_back_room()
     wheel, wspin = s3_wheel("syrup wheel", S3_WHEEL)
     # the gauge: a glass tube, the honey part at the bottom and the syrup above it, the line between them dropping
     tube_m = hw_glass("gauge glass")
-    K.cyl("gauge tube", (S3_VAT.x, S3_VAT.y - S3_VR - 0.016, 0.26), 0.012, 0.185, tube_m, v=16, bev=0.002)
-    hon = K.cyl("gauge honey", (0, 0, 0), 0.0095, 1.0, hw_honey("gauge honey", "#C87810", glow=0.4), v=16, bev=0)
-    syr = K.cyl("gauge syrup", (0, 0, 0), 0.0095, 1.0, K.mat("gauge syrup", "#F6F0DA", rough=0.3, emit=0.3), v=16, bev=0)
+    K.cyl("gauge tube", (S3_VAT.x, S3_VAT.y - S3_VR - 0.02, 0.26), 0.019, 0.19, tube_m, v=16, bev=0.002)
+    hon = K.cyl("gauge honey", (0, 0, 0), 0.016, 1.0, hw_honey("gauge honey", "#C87810", glow=0.4), v=16, bev=0)
+    syr = K.cyl("gauge syrup", (0, 0, 0), 0.016, 1.0, K.mat("gauge syrup", "#F6F0DA", rough=0.3, emit=0.3), v=16, bev=0)
     G0, G1 = 0.172, 0.348
     def share(t):
         s = S3_SYRUP[0]
@@ -135,15 +135,23 @@ def shot3():
     grn_on = K.sph("lamp green", (S3_BOX.x - 0.03, S3_BOX.y - 0.066, S3_BOX.z + 0.06), 0.02, K.mat("lamp green glow", "#2AFF5A", emit=8.0))
     for nm, x in (("lamp red off", -0.07), ("lamp green off", -0.03)):
         K.sph(nm, (S3_BOX.x + x, S3_BOX.y - 0.062, S3_BOX.z + 0.06), 0.019, K.mat("lamp off", "#3A3A3A", rough=0.3))
-    fail = K.text("screen fail", "FAIL", (S3_BOX.x + 0.035, S3_BOX.y - 0.069, S3_BOX.z + 0.05), 0.03, (math.pi / 2, 0, 0), hw_ink("fail ink", "#FF3A2A", emit=4.0), extrude=0.0004)
-    ok = K.text("screen pass", "PASS", (S3_BOX.x + 0.035, S3_BOX.y - 0.069, S3_BOX.z + 0.05), 0.03, (math.pi / 2, 0, 0), hw_ink("pass ink", "#3AFF6A", emit=4.0), extrude=0.0004)
+    fail = K.text("screen fail", "FAIL", (S3_BOX.x + 0.035, S3_BOX.y - 0.069, S3_BOX.z + 0.047), 0.04, (math.pi / 2, 0, 0), hw_ink("fail ink", "#FF3A2A", emit=4.0), extrude=0.0004)
+    ok = K.text("screen pass", "PASS", (S3_BOX.x + 0.035, S3_BOX.y - 0.069, S3_BOX.z + 0.047), 0.04, (math.pi / 2, 0, 0), hw_ink("pass ink", "#3AFF6A", emit=4.0), extrude=0.0004)
+    # a beacon on a post at the box's back corner: the whole room sees FAIL or PASS
+    BEA = Vector((S3_BOX.x + 0.075, S3_BOX.y + 0.03, S3_BOX.z + 0.25))
+    K.cyl("lamp post", (BEA.x, BEA.y, (S3_BOX.z + 0.14 + BEA.z) / 2), 0.008, BEA.z - S3_BOX.z - 0.14, K.mat("vat steel"), v=12, bev=0)
+    K.cyl("lamp base", (BEA.x, BEA.y, BEA.z - 0.012), 0.032, 0.02, K.mat("lamp base", "#2A2E32", rough=0.4), v=24, bev=0.003)
+    K.sph("lamp dome off", (BEA.x, BEA.y, BEA.z), 0.038, K.mat("lamp dome off", "#5A5048", rough=0.25))
+    beacon_red = K.sph("lamp red beacon", (BEA.x, BEA.y, BEA.z), 0.04, K.mat("lamp red glow", "#FF2A1E", emit=8.0))
+    beacon_grn = K.sph("lamp green beacon", (BEA.x, BEA.y, BEA.z), 0.04, K.mat("lamp green glow", "#2AFF5A", emit=8.0))
     def lit(o, spans):
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; on = any(a <= t < b for a, b in spans)
             s = 1.0 if on else 1e-3
             o.scale = (s, s, s); o.keyframe_insert("scale", frame=f)
-    lit(red_on, [(T_T[0], T_C[0] - 0.1), (T_T[1], T_C[1] - 0.1)]); lit(fail, [(T_T[0], T_C[0] - 0.1), (T_T[1], T_C[1] - 0.1)])
-    lit(grn_on, [(T_T[2], DUR + 1)]); lit(ok, [(T_T[2], DUR + 1)])
+    red_spans = [(T_T[0], T_T[1] - 0.12), (T_T[1], T_T[2])]                 # FAIL stays up until the next test; it blinks off as he tests again
+    for o in (red_on, fail, beacon_red): lit(o, red_spans)
+    for o in (grn_on, ok, beacon_grn): lit(o, [(T_T[2], DUR + 1)])
     # ---- him: square to the lens between the vat and the wheel, turning to each job
     data = load_data()
     data.place(S3_P0.x, S3_P0.y, 0.0)
@@ -151,19 +159,20 @@ def shot3():
     def yaw(t):
         y = 0.0
         for td, tt in zip(T_D, T_T):
-            y += -38 * (W(t, td - 0.62, 0.35) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
+            y += -38 * (W(t, td - (0.5 if td > 3 else 0.62), 0.35) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
         for tc in T_C:
             y += 12 * W(t, tc - 0.25, 0.25) * (1 - W(t, tc + CR, 0.25))            # to the wheel
         y += 0.0
         return math.radians(y)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
-        z = sum(0.04 * hw_kick(t - tt - 0.1, 0.16) for tt in T_T[:2]) - sum(0.035 * math.sin(math.pi * max(0.0, min(1.0, (t - tc) / CR))) for tc in T_C[:1]) + 0.06 * hw_kick(t - T_T[2] - 0.05, 0.15) + 0.04 * hw_kick(t - T_GAPE, 0.14)
-        lean = sum(0.035 * W(t, tc - 0.3, 0.25) * (1 - W(t, tc + CR - 0.3, 0.25)) for tc in T_C[:1])
+        z = sum(0.04 * hw_kick(t - tt - 0.1, 0.16) for tt in T_T[:2]) - sum(0.035 * math.sin(math.pi * max(0.0, min(1.0, (t - tc) / CR))) for tc in T_C) + 0.06 * hw_kick(t - T_T[2] - 0.05, 0.15) + 0.04 * hw_kick(t - T_GAPE, 0.14)
+        lean = sum(0.045 * W(t, tc - 0.3, 0.25) * (1 - W(t, tc + CR - 0.3, 0.25)) for tc in T_C)
         data._kobj(t, loc=(S3_P0.x + lean, S3_P0.y, z), rot=yaw(t))
     hw_layer(data, "spine", lambda t: (sum(6 * W(t, td - 0.1, 0.25) * (1 - W(t, td + 0.3, 0.25)) for td in T_D)
                                       + sum(8 * W(t, tc - 0.15, 0.2) * (1 - W(t, tc + CR, 0.2)) for tc in T_C)
-                                      - 8 * W(t, T_T[2] + 0.05, 0.2) * (1 - W(t, T_GAPE - 0.1, 0.3)), 0, 0), 0, DUR + 0.4)
+                                      - 8 * W(t, T_T[2] + 0.05, 0.2) * (1 - W(t, T_GAPE - 0.1, 0.3)), 0,
+                                      12 * math.sin(2 * math.pi * (t - T_T[1] - 0.15) / 0.45) * W(t, T_T[1] + 0.1, 0.12) * (1 - W(t, T_T[1] + 0.7, 0.2))), 0, DUR + 0.4)   # still red: he shakes his head
     sc.frame_set(1); bpy.context.view_layer.update()
     lf, rt = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
     def short(sd, t, world, by=0.13):           # his fist where the dipper's head reaches `world`
@@ -175,7 +184,7 @@ def shot3():
     for td, tt in zip(T_D, T_T):
         dk += [(td - 0.2, short(lf, td - 0.2, MOUTH + Vector((0, 0, 0.07)), by=0.15)), (td, short(lf, td, MOUTH + Vector((0, 0, 0.02)), by=0.15)), (td + 0.28, short(lf, td + 0.28, (MOUTH + PLATE) / 2 + Vector((-0.02, 0.02, 0.04)), by=0.15)),
                (tt - 0.05, short(lf, tt - 0.05, PLATE + Vector((0, 0, 0.05)), by=0.1)), (tt + 0.1, short(lf, tt + 0.1, PLATE + Vector((0, 0, 0.02)), by=0.09)), (tt + 0.35, (0.14, 0.1, -0.06))]
-    dk += [(T_GAPE, (0.1, 0.15, 0.02)), (DUR + 0.3, (0.1, 0.15, 0.035))]
+    dk += [(T_GAPE, (0.1, 0.12, -0.03)), (DUR + 0.3, (0.1, 0.13, -0.025))]
     # the wheel hand (his right): on the knob through each crank, the knob going round with the wheel
     def knob(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
@@ -190,7 +199,7 @@ def shot3():
         wk += [(tc - 0.12, hw_rel(data, rt, tc - 0.12, knob(tc - 0.12)))]
         wk += [(tc + CR * u, hw_rel(data, rt, tc + CR * u, knob(tc + CR * u))) for u in (0.35, 0.7, 1.0)]
         wk += [(tc + CR + 0.3, (0.03, 0.1, -0.1))]
-    wk += [(T_GAPE, (0.05, 0.16, 0.04)), (DUR + 0.3, (0.05, 0.16, 0.05))]
+    wk += [(T_GAPE, (0.07, 0.13, -0.03)), (DUR + 0.3, (0.07, 0.13, -0.025))]
     for ks in (dk, wk):
         ks.sort(key=lambda k: k[0])
         i = 1
@@ -198,8 +207,8 @@ def shot3():
             if ks[i][0] <= ks[i - 1][0] + 0.04: ks.pop(i)
             else: i += 1
     data.reach(lf, hw_hand(data, lf, dk), 0.0, DUR + 0.3, lead=0.09, back=None, elbow_out=0.5)
-    data.reach(rt, hw_hand(data, rt, wk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.3)
-    CAM = Vector((-0.3, -1.45, 0.9)); LOOK = Vector((0.0, -0.1, 0.42))
+    data.reach(rt, hw_hand(data, rt, wk), 0.0, DUR + 0.3, lead=0.08, back=None, elbow_out=0.3)
+    CAM = Vector((-0.3, -1.45, 0.72)); LOOK = Vector((0.0, -0.1, 0.45))
     data.look_at(MOUTH, 0.0, max_yaw=45, max_pitch=18, blend=0.0)
     for td, tt in zip(T_D, T_T):
         data.look_at(MOUTH, td - 0.25, max_yaw=45, max_pitch=18, blend=0.15)
@@ -221,7 +230,7 @@ def shot3():
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; s = share(t)
         zl = G0 + (G1 - G0) * (1 - s)
-        gy = S3_VAT.y - S3_VR - 0.016
+        gy = S3_VAT.y - S3_VR - 0.02
         hon.location = (S3_VAT.x, gy, (G0 + zl) / 2); hon.scale = (1, 1, max(1e-3, zl - G0))
         syr.location = (S3_VAT.x, gy, (zl + G1) / 2); syr.scale = (1, 1, max(1e-3, G1 - zl))
         for o in (hon, syr):
