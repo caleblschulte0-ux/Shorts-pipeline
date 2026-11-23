@@ -1,20 +1,21 @@
 {
- "retell": "Honey fakers were cutting real honey with cheap rice syrup and paying labs to tune their blends until they beat Europe's tests, until EU scientists brought sharper tests and found almost half the imports were suspected fake, not the one in seven everyone thought.",
- "twist": "The fakers weren't just slipping past the tests by luck. They paid labs to test their own blends and tuned the syrup until it beat the checks, so the old 'one in seven' figure was a number they had gamed.",
- "payoff": "Yes. The title promises 'almost half' and line 1 promises 'the real share was worse'. Line 5 delivers exactly that: almost half, three times the old count. It then turns it on the viewer with 'What's in your jar?' The cost is that the title already gives the ending away, so the payoff confirms what you were told instead of surprising you.",
- "chain": "It holds. Line 2 gives the motive behind the faking in line 1. Line 3 follows from it ('So they pay labs'). Line 4 turns against it ('But' sharper tests). Line 5 is the result of line 4. No line is just 'and here is another fact'.",
+ "retell": "Honey fakers cut their honey with cheap rice syrup and tuned it in private labs until it passed Europe's checks, so the official tests only caught one fake in seven, until EU scientists built sharper tests and found almost half the imports were suspect.",
+ "twist": "The fakers aren't just cheating the tests, they're paying labs to rehearse against them. Then the sharper tests show the fake share was about three times what anyone had counted, close to half of all imports.",
+ "payoff": "Yes. The title promises Europe got smarter, and line 1 promises the real share was worse. Line 5 delivers both: the new tests catch the tuned blends and the number jumps to almost half. The closing question 'What's in your jar?' turns it back on the viewer.",
+ "chain": "Every line connects to the one before. Line 1 sets up the problem. Line 2 explains how the faking works, and because it's that cheap, line 3 has them tuning blends to slip past the tests. Line 4 turns it around: sharper tests catch the tuned blends. So line 5 gives the real scale. No line is just another fact.",
  "cut": [],
- "score": 77,
+ "score": 79,
  "pass": true,
  "problems": [
-  "The title and line 1 both give away the ending ('almost half', 'worse'), so the reveal in line 5 has less punch than it could. A title that teases the cat-and-mouse ('Honey fakers were beating the tests') would hold the number back.",
-  "Line 2's 'every spoonful is profit' is a generic phrase. The cost gap is the motive, but it doesn't show anything an animated character could act out in a vivid way.",
-  "Line 4 is the weakest beat to picture. 'Sharper tests' is abstract, with no hint of what changed, so the turning point lands on wording instead of on something you can see."
+  "The title and line 1 both give the turn away early ('Then Europe got smarter', 'The real share was worse'). The viewer knows the fakers lose before line 4, so the twist is about scale, not direction.",
+  "Line 3's 'pay labs to test their blends' is a bit abstract when heard once. Something like 'they run their fake through the same tests first, tweaking until it passes' would land harder.",
+  "Two number comparisons sit close together in line 5 ('almost half', 'three times the old count'). It's fine as the payoff, but 'three times' could go, since 'one in seven' to 'almost half' already shows the jump.",
+  "'What's in your jar?' is a stock closing question. It works, but something specific, like whether the honey on their shelf is imported, would hit harder."
  ],
  "scores": [
   77,
-  77,
-  77
+  79,
+  80
  ],
- "key": "810dd321fc4bdeca"
+ "key": "7010bd07cb541894"
 }
