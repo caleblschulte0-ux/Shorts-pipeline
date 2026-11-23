@@ -1,0 +1,11 @@
+{
+ "id": "autism-diagnosis-rate-rise__cf7356de",
+ "slug": "autism-diagnosis-rate-rise",
+ "settled": "2026-11-23T12:29:29Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Time",
+  "segment 1: new named entity not in the data: Gap",
+  "segment 2: new named entity not in the data: Gap"
+ ]
+}

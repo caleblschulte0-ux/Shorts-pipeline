@@ -110,13 +110,15 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Focuses on multiple tattoos rather than the proportion of Americans who have any tattoo, so it doesn't directly support "
+  "premise: brain: The claim that a third of Americans are tattooed is likely inaccurate and not a verifiable concrete fact."
  ],
  "reasons": [
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Focuses on multiple tattoos rather than the proportion of Americans who have any tattoo, so it doesn't directly support "
+  "premise: brain: The claim that a third of Americans are tattooed is likely inaccurate and not a verifiable concrete fact."
  ],
  "judge": null,
- "prior_rejection": [],
+ "prior_rejection": [
+  "segment 0: new named entity not in the data: Trend"
+ ],
  "rules": [
   "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
   "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
@@ -147,5 +149,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T12:09:31Z"
+ "refiled": "2026-11-23T12:29:29Z"
 }

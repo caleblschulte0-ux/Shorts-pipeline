@@ -1,203 +1,102 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-23T12:27:12Z",
+ "updated": "2026-11-23T12:29:30Z",
  "open": [
   {
-   "id": "south-korea-robot-density-record__fda84246",
+   "id": "feet-are-getting-bigger__d12e79cb_r1",
+   "slug": "feet-are-getting-bigger",
+   "filed": "2026-11-23T12:29:30Z",
+   "why": [
+    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Width increase doesn't directly prove the shoe-size growth claim and isn't a logical continuation of beat 0.",
+    "thesis: seg2 ('Why British feet grow') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: The cause explanation follows the width fact rather than the original size‑growth claim, breaking the required causal ch"
+   ],
+   "request": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb_r1.request.json",
+   "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb_r1.answer.json"
+  },
+  {
+   "id": "south-korea-robot-density-record__fda84246_r1",
    "slug": "south-korea-robot-density-record",
-   "filed": "2026-11-23T09:46:46Z",
+   "filed": "2026-11-23T12:29:30Z",
    "why": [
     "narration: beat 1 reads off 3 numbers: say one, and what it means",
     "narration: beat 2 reads off 3 numbers: say one, and what it means",
     "narration: beat 3 reads off 2 numbers: say one, and what it means"
    ],
-   "request": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246.request.json",
-   "answer_path": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246.answer.json"
+   "request": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246_r1.request.json",
+   "answer_path": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246_r1.answer.json"
   },
   {
-   "id": "cargo-ship-size-growth__5726dcc3",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-11-23T09:46:45Z",
+   "id": "cruise-ship-outbreaks-climbing__1f54e0f7",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-22T23:25:01Z",
    "why": [
-    "narration: beat 3 reads off 2 numbers: say one, and what it means"
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that gives viewers a clear, picture‑able stakes beyond generic outbreak counts"
    ],
-   "request": "exchange/rewrites/20261123/cargo-ship-size-growth__5726dcc3.request.json",
-   "answer_path": "exchange/rewrites/20261123/cargo-ship-size-growth__5726dcc3.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__1e47a59b",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-11-23T09:46:45Z",
-   "why": [
-    "narration: beat 2 reads off 2 numbers: say one, and what it means",
-    "narration: beat 3 reads off 2 numbers: say one, and what it means"
-   ],
-   "request": "exchange/rewrites/20261123/lab-grown-diamond-price-collapse__1e47a59b.request.json",
-   "answer_path": "exchange/rewrites/20261123/lab-grown-diamond-price-collapse__1e47a59b.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__19f90f74",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-23T09:46:41Z",
-   "why": [
-    "narration: beat 1 names FAA: say what that is in plain words ('the experts', 'scientists', 'a space telescope')"
-   ],
-   "request": "exchange/rewrites/20261123/runway-near-misses-climbing__19f90f74.request.json",
-   "answer_path": "exchange/rewrites/20261123/runway-near-misses-climbing__19f90f74.answer.json"
-  },
-  {
-   "id": "flu-season-2024-25-worst-in-years__8a114e01",
-   "slug": "flu-season-2024-25-worst-in-years",
-   "filed": "2026-11-23T09:46:40Z",
-   "why": [
-    "narration: beat 1 reads off 2 numbers: say one, and what it means"
-   ],
-   "request": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__8a114e01.request.json",
-   "answer_path": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__8a114e01.answer.json"
-  },
-  {
-   "id": "right-whale-breeding-females__0e03d376",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-23T09:46:40Z",
-   "why": [
-    "narration: beat 2 reads off 2 numbers: say one, and what it means"
-   ],
-   "request": "exchange/rewrites/20261123/right-whale-breeding-females__0e03d376.request.json",
-   "answer_path": "exchange/rewrites/20261123/right-whale-breeding-females__0e03d376.answer.json"
-  },
-  {
-   "id": "womens-college-hoops-out-rates-men__da177803",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-23T09:46:38Z",
-   "why": [
-    "narration: beat 1 reads off 2 numbers: say one, and what it means"
-   ],
-   "request": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__da177803.request.json",
-   "answer_path": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__da177803.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__98b4248f",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-11-23T09:46:37Z",
-   "why": [
-    "narration: beat 1 reads off 2 numbers: say one, and what it means"
-   ],
-   "request": "exchange/rewrites/20261123/divorce-rate-quiet-decline__98b4248f.request.json",
-   "answer_path": "exchange/rewrites/20261123/divorce-rate-quiet-decline__98b4248f.answer.json"
+   "request": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__1f54e0f7.request.json",
+   "answer_path": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__1f54e0f7.answer.json"
   },
   {
    "id": "normal-body-temperature-has-shifted__fcb6240a",
    "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-23T01:17:01Z",
+   "filed": "2026-11-22T20:56:32Z",
    "why": [
-    "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: It introduces a separate historical explanation rather than building on the previous beat about sex differences and meta"
+    "thesis: seg1 ('Body cooling by sex') does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Introduces a sex‑specific cooling detail that doesn't directly prove the overall claim and isn't a logical continuation ",
+    "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Provides a separate historical explanation that doesn't follow from the previous beat's sex‑difference argument."
    ],
-   "request": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__fcb6240a.request.json",
-   "answer_path": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__fcb6240a.answer.json"
+   "request": "exchange/rewrites/20261122/normal-body-temperature-has-shifted__fcb6240a.request.json",
+   "answer_path": "exchange/rewrites/20261122/normal-body-temperature-has-shifted__fcb6240a.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__880020cf",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-11-22T18:58:29Z",
+   "why": [
+    "story: fatal: missing_payoff, unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261122/usps-mail-volume-collapse__880020cf.request.json",
+   "answer_path": "exchange/rewrites/20261122/usps-mail-volume-collapse__880020cf.answer.json"
   },
   {
    "id": "vinyl-beats-cd-sales-again__de8ae10e",
    "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-23T01:16:59Z",
+   "filed": "2026-11-22T16:28:09Z",
    "why": [
-    "premise: brain: The hook is a flat 'vinyl won the physical comeback' fact with no surprise, threat or stake for the viewer, and the beats admit it's a small win inside a market streaming dominates."
+    "thesis: seg2 ('Vinyl market') does not continue the story of the headline ('Vinyl Earned Two And A Half Times More Than CDs') — brain: Introduces streaming share rather than directly supporting the vinyl‑vs‑CD revenue ratio and doesn't follow logically fr"
    ],
-   "request": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__de8ae10e.request.json",
-   "answer_path": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__de8ae10e.answer.json"
-  },
-  {
-   "id": "feet-are-getting-bigger__d12e79cb",
-   "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-23T01:16:59Z",
-   "why": [
-    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Width increase doesn't directly prove the shoe-size growth claim and isn't a logical continuation of beat 0.",
-    "thesis: seg2 ('Why British feet grow') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: The cause explanation follows the width fact rather than the original size‑growth claim, breaking the required causal ch"
-   ],
-   "request": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb.request.json",
-   "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb.answer.json"
+   "request": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__de8ae10e.request.json",
+   "answer_path": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__de8ae10e.answer.json"
   },
   {
    "id": "autism-diagnosis-rate-rise__cf7356de",
    "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-23T01:16:58Z",
+   "filed": "2026-11-22T16:28:08Z",
    "why": [
     "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address the range of measurements across sites, only gives an overall prevalence.",
     "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex differences, unrelated to site-to-site variation claimed in the headline.",
     "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While it mentions a site measurement, it does not logically follow from the previous beats."
    ],
-   "request": "exchange/rewrites/20261123/autism-diagnosis-rate-rise__cf7356de.request.json",
-   "answer_path": "exchange/rewrites/20261123/autism-diagnosis-rate-rise__cf7356de.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__1f54e0f7",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-23T01:16:58Z",
-   "why": [
-    "thesis: seg1 ('Cruise norovirus') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Gives a cause of the outbreaks but doesn't follow from beat 0 by 'because' or 'but'; it reads as 'and another fact' abou",
-    "thesis: seg2 ('Cruise crowds') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Crowd size is a generic risk factor. It isn't tied to beat 1's norovirus count, and it doesn't show that crowding drove "
-   ],
-   "request": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__1f54e0f7.request.json",
-   "answer_path": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__1f54e0f7.answer.json"
+   "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
+   "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
   },
   {
    "id": "index-funds-own-corporate-america__67bee527",
    "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-23T01:16:58Z",
+   "filed": "2026-11-22T16:28:08Z",
    "why": [
     "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
    ],
-   "request": "exchange/rewrites/20261123/index-funds-own-corporate-america__67bee527.request.json",
-   "answer_path": "exchange/rewrites/20261123/index-funds-own-corporate-america__67bee527.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__880020cf",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-11-23T01:16:58Z",
-   "why": [
-    "story: fatal: missing_payoff, unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261123/usps-mail-volume-collapse__880020cf.request.json",
-   "answer_path": "exchange/rewrites/20261123/usps-mail-volume-collapse__880020cf.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__af278c97",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-23T01:16:58Z",
-   "why": [
-    "premise: brain: The pitch is a vague 'getting hit again' framing built on stacked stats (3 events, 2-year gap, 10-year recovery) with no concrete, picturable surprise or a belief the beats overturn. The hook also has no plain-named stake beyond the generic idea that bleaching keeps happening."
-   ],
-   "request": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__af278c97.request.json",
-   "answer_path": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__af278c97.answer.json"
-  },
-  {
-   "id": "sperm-counts-cut-in-half__88a02a18",
-   "slug": "sperm-counts-cut-in-half",
-   "filed": "2026-11-21T13:21:26Z",
-   "why": [
-    "premise: brain: The claim about a >50% global sperm count decline since 1973 is contested and not definitively proven, making the premise insufficiently concrete and true."
-   ],
-   "request": "exchange/rewrites/20261121/sperm-counts-cut-in-half__88a02a18.request.json",
-   "answer_path": "exchange/rewrites/20261121/sperm-counts-cut-in-half__88a02a18.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__fdd3d94b",
-   "slug": "freshwater-accessible",
-   "filed": "2026-11-21T13:21:25Z",
-   "why": [
-    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.request.json",
-   "answer_path": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.answer.json"
+   "request": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.request.json",
+   "answer_path": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.answer.json"
   },
   {
    "id": "tattoo-mainstream-shift__f7fc7a74",
    "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-21T00:22:37Z",
+   "filed": "2026-11-20T14:27:20Z",
    "why": [
     "premise: brain: The claim that a third of Americans are tattooed is likely inaccurate and not a verifiable concrete fact."
    ],
-   "request": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.request.json",
-   "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
+   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.request.json",
+   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
    "id": "frog-fungus-mass-extinction__609ffc7e",

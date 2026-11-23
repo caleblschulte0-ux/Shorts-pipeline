@@ -101,13 +101,21 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or threat, offering only generic variation in rates without a compelling hook."
+  "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address the range of measurements across sites, only gives an overall prevalence.",
+  "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex differences, unrelated to site-to-site variation claimed in the headline.",
+  "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While it mentions a site measurement, it does not logically follow from the previous beats."
  ],
  "reasons": [
-  "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or threat, offering only generic variation in rates without a compelling hook."
+  "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address the range of measurements across sites, only gives an overall prevalence.",
+  "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex differences, unrelated to site-to-site variation claimed in the headline.",
+  "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While it mentions a site measurement, it does not logically follow from the previous beats."
  ],
  "judge": null,
- "prior_rejection": [],
+ "prior_rejection": [
+  "segment 0: new named entity not in the data: Time",
+  "segment 1: new named entity not in the data: Gap",
+  "segment 2: new named entity not in the data: Gap"
+ ],
  "rules": [
   "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
   "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
@@ -138,5 +146,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T12:09:30Z"
+ "refiled": "2026-11-23T12:29:29Z"
 }
