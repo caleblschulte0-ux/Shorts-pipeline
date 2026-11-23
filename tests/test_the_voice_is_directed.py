@@ -182,7 +182,16 @@ class ONETakePerVideo(Base):
         self.assertEqual(a0, 0.0)
         self.assertAlmostEqual(b0, (0.7 + 1.2) / 2)   # end of "two", start of "three"
         self.assertEqual(a1, b0)
-        self.assertIsNone(b1)
+        self.assertAlmostEqual(b1, 1.9 + gv.EDGE_S)   # end of "four", and a breath
+
+    def test_what_the_model_says_around_a_take_is_cut_off(self):
+        """2026-11-23: a one-line re-voice was kept from 0 to the file's end, chatter and all (9.8 s for 16 words)."""
+        said = _heard(said=["okay here goes", "one two three four", "thanks for listening"])
+        spans, why = gv.split_take(said, ["one two three four"])
+        self.assertEqual(why, "ok")
+        (a, b), = spans
+        self.assertAlmostEqual(a, 1.2 + 0.4 - gv.EDGE_S)          # just before "one"
+        self.assertAlmostEqual(b, 1.6 + 1.2 + 0.3 + gv.EDGE_S)    # just after "four"
 
     def test_a_line_not_heard_fails_the_take(self):
         spans, why = gv.split_take(_heard("one two"), ["one two", "three four five"])

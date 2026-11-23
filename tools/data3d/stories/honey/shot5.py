@@ -1,17 +1,16 @@
 # ---------------------------------------------------------------- shot 5: the fakes keep coming (the alley)
-"""5 THE FAKES KEEP COMING. The alley behind the cheap stall: real cobbles, brick walls, a back door, crates, bins,
-a drainpipe, and a big blue drum stencilled SUGAR SYRUP on a stand, its tap filling PURE HONEY jars on a crate. The
-lens tracks him in: he catches the tap filling another fake jar, grabs it and turns it upside down and the syrup
-gushes out like water all over the cobbles; then he turns his own jar upside down beside it and his honey does not
-budge; he holds both out to us, one empty, one full."""
+"""5 ALMOST HALF. The alley behind the stall, where the imports come in: real cobbles, brick walls, a back door,
+bins, sacks, and a long plank of import jars on crates. He walks the row rolling the EU's new test roller along the
+lids, and as it passes, almost half the jars spin round to a red SUSPECT label (shot 1 caught one in seven); at the
+row's end he picks up the last red one and holds it out to us: what's in your jar?"""
 
-S5_P = Vector((0.0, 0.0, 0.0))                  # where he stops at the crate
-S5_YAW = math.radians(48)
-S5_FW = Vector((math.sin(S5_YAW), -math.cos(S5_YAW), 0)); S5_OUT = Vector((math.cos(S5_YAW), math.sin(S5_YAW), 0))
-S5_CT = 0.4                                      # the crate stack's top
-S5_JAR = S5_P + S5_FW * 0.215 + S5_OUT * 0.06 + Vector((0, 0, S5_CT))   # the jar under the tap
-S5_DRUM = S5_JAR + Vector((0.17, 0.31, 0.0))       # the drum's centre (its base on the stand at the crate's height)
-S5_DR, S5_DH = 0.13, 0.38
+S5_X0, S5_X1 = -0.5, 0.35                       # his walk along the row
+S5_PY = -0.025                                   # his line along it
+S5_ROW_Y = -0.22                                 # the row of import jars, on his left as he walks (+x)
+S5_N = 7
+S5_FAKES = (1, 3, 6)                             # 3 of 7: almost half, three times shot 1's one in seven
+S5_JR, S5_JH = 0.055, 0.17
+S5_RR = 0.03                                     # the roller's drum radius
 
 
 def s5_brick(name, a="#9C4A32", b="#B8644A", mortar="#CFC4B2", scale=7.0):
@@ -96,163 +95,150 @@ def place_market_alley():
     for k in range(3):
         s5_crate(f"empty crate {k}", (-0.2 + 0.02 * k, 0.42, 0.22 * k), (0.28, 0.2, 0.22), rnd)
     K.cyl("broom handle", (-0.82, 0.5, 0.6), 0.012, 1.2, hw_wood("broom", "#A07A50", "#B89068"), rot=(0.12, 0, 0), v=12)
-    # the drum of SUGAR SYRUP on its stand, its tap over the crate, and the crate stack with the jars it fills
-    blue = K.mat("drum blue", "#1E5AA8", rough=0.35)
-    K.cyl("drum", (S5_DRUM.x, S5_DRUM.y, S5_CT + S5_DH / 2), S5_DR, S5_DH, blue, v=40, bev=0.015)
-    for z in (0.08, S5_DH - 0.08):
-        K.cyl("drum rib", (S5_DRUM.x, S5_DRUM.y, S5_CT + z), S5_DR + 0.006, 0.02, blue, v=40, bev=0.006)
-    K.cyl("drum cap", (S5_DRUM.x + 0.05, S5_DRUM.y, S5_CT + S5_DH + 0.01), 0.03, 0.025, K.mat("cap white", "#EEEEEE", rough=0.4), v=16)
-    tv = (S5_JAR - S5_DRUM); tv.z = 0; ang = math.atan2(-tv.x, tv.y)
-    K.text("drum stencil", "SUGAR\nSYRUP", (S5_DRUM.x + tv.normalized().x * (S5_DR + 0.003), S5_DRUM.y + tv.normalized().y * (S5_DR + 0.003), S5_CT + 0.24),
-           0.05, (math.pi / 2, 0, ang + math.pi), K.mat("stencil white", "#F4F4F0", rough=0.6))
-    s5_crate("drum stand", (S5_DRUM.x, S5_DRUM.y, 0.0), (0.3, 0.3, S5_CT), rnd)
-    s5_crate("jar crate", (S5_JAR.x + 0.06, S5_JAR.y - 0.02, 0.0), (0.27, 0.23, S5_CT), rnd)
-    steel = K.mat("tap steel", "#B0B4B8", rough=0.25, metal=0.9)
-    spout = S5_JAR + Vector((0, 0, 0.13))
-    K.capsule("tap pipe", S5_DRUM + Vector((0, 0, S5_CT + 0.2)) + tv.normalized() * (S5_DR - 0.01) - Vector((0, 0, S5_CT)), spout + Vector((0, 0, 0.02)), 0.012, steel)
-    K.cyl("tap spout", tuple(spout), 0.012, 0.04, steel, v=16)
-    K.box("tap handle", tuple(spout + Vector((0, 0, 0.045))), (0.05, 0.012, 0.012), K.mat("tap red", "#C8261E", rough=0.4), bev=0.003)
     return lambda: village_light(sun_elev=50, sun_az=-25, sun=3.2, sky=0.3)
 
 
+def s5_roller(name="test roller"):
+    """the EU's new test roller: a red drum stamped EU TEST on a steel fork, a black grip. Built with the drum's axle
+    along local X at the origin and the handle running up local +Z to the grip. Returns dict(root, spin)."""
+    root = K.empty(name, (0, 0, 0))
+    spin = K.empty(name + " spin", (0, 0, 0), parent=root)
+    red = K.mat("roller red", "#C8261E", rough=0.4)
+    steel = K.mat("roller steel", "#B0B4B8", rough=0.25, metal=0.9)
+    K.cyl(name + " drum", (0, 0, 0), S5_RR, 0.09, red, rot=(0, math.pi / 2, 0), v=32, bev=0.004, parent=spin)
+    for k in range(6):                                       # ribs, so it reads as rolling
+        a = 2 * math.pi * k / 6
+        rb = K.box(name + " rib", (0, S5_RR * math.sin(a), S5_RR * math.cos(a)), (0.092, 0.007, 0.005),
+                   K.mat("roller rib", "#F4F0E8", rough=0.5), bev=0.001, parent=spin)
+        rb.rotation_euler = (-a, 0, 0)
+    for s in (-1, 1):
+        K.capsule(name + " fork", Vector((s * 0.04, 0, 0)), Vector((s * 0.02, 0, 0.05)), 0.004, steel, parent=root)
+    shaft = K.empty(name + " shaft", (0, 0, 0), parent=root)          # scaled along z so the grip sits in his fist
+    K.capsule(name + " stem", Vector((0, 0, 0.05)), Vector((0, 0, 0.1)), 0.005, steel, parent=shaft)
+    K.cyl(name + " grip", (0, 0, 0.125), 0.011, 0.06, K.mat("roller grip", "#1E1E22", rough=0.7), v=16, bev=0.004, parent=shaft)
+    hw_local(root)
+    return dict(root=root, spin=spin, shaft=shaft)
+
+
 def shot5():
-    """THE FAKES KEEP COMING. The lens tracks him in to the crate: he catches the SUGAR SYRUP tap filling another
-    PURE HONEY jar, grabs it and turns it upside down and the syrup gushes out like water onto the cobbles; he turns
-    his own jar upside down beside it and his honey does not budge; he holds both out to us, one empty, one full."""
-    T_STOP = 0.85                                 # he walks in
-    T_GRAB = 0.3 * DUR                           # grabs the fake jar off the crate ...
-    T_INV = T_GRAB + 0.4                         # ... and turns it upside down
-    T_GUSH = 0.45 * DUR                          # it gushes out like water
-    T_OWN = 0.65 * DUR                           # his own jar upside down: it does not budge
-    T_SHOW = 0.85 * DUR                          # both out to us
-    light = place_market_alley()
-    fake = jar("fake jar", tuple(S5_JAR), r=0.048, h=0.12, fill=0.9, honey_col="#F2C35A", label="PURE HONEY")
-    mine = jar("his jar", (0, 0, 0), r=0.062, h=0.15, fill=0.9, honey_col="#E49A1E", label="1 lb", glow=0.5)
-    for j in (fake, mine):
-        bpy.data.objects[("fake jar" if j is fake else "his jar") + " lid"].hide_render = True   # lids off: open jars
-    rnd = hw_random.Random(3)
-    for k, off in enumerate((Vector((0.1, -0.07, 0)), Vector((0.13, 0.04, 0)))):
-        jar(f"filled fake {k}", tuple(S5_JAR + off), r=0.048, h=0.12, fill=0.9, honey_col="#F2C35A", label="PURE HONEY", yaw=math.radians(rnd.uniform(-15, 15)))
-    for k in range(3):                           # and a tray of them waiting on the stack by the door
-        jar(f"tray fake {k}", (-0.13 + 0.09 * k, 0.4, 0.66), r=0.04, h=0.1, fill=0.9, honey_col="#F2C35A", label="PURE HONEY")
-    data = load_data()
-    P0 = S5_P + Vector((-0.17, 0.08, 0.0))
-    data.place(P0.x, P0.y, math.degrees(math.atan2((S5_P - P0).normalized().x, -(S5_P - P0).normalized().y)))
-    hat = bee_hat(data)
+    """ALMOST HALF. He walks the row of import jars rolling the EU's test roller along their lids; as it passes,
+    almost half spin round to a red SUSPECT label; at the end he turns to us, picks up the last red one and holds it
+    out to the lens: what's in your jar?"""
     W = hw_win
-    data.walk_to(Vector((S5_P.x, S5_P.y, 0)), 0.0, T_STOP)
-    sc.frame_set(F(T_STOP)); bpy.context.view_layer.update()
-    y_walk = data.arm.rotation_euler.z
-    def body(t):
-        p = S5_P.copy()
-        p += -S5_FW * 0.06 * W(t, T_GRAB + 0.05, 0.4) - Vector((0, 0, 0)) # steps back off the crate with it
-        p.z += 0.025 * hw_kick(t - T_GRAB - 0.1, 0.12)
-        p += -S5_FW * 0.05 * hw_kick(t - T_GUSH - 0.1, 0.26)                                   # rocks back from the gush
-        p.z += 0.03 * hw_kick(t - T_GUSH - 0.05, 0.12)
-        p += -S5_FW * 0.0 * W(t, T_OWN - 0.6, 0.4)                                            # steps back for room
-        p.z += 0.02 * math.sin(2 * math.pi * (t - T_OWN - 0.15) / 0.3) * W(t, T_OWN + 0.05, 0.2) * (1 - W(t, T_OWN + 0.65, 0.25))   # bounces with the shake
-        p += S5_FW * 0.07 * W(t, T_SHOW - 0.3, 0.45)                                            # and comes to us
-        p.z += 0.03 * hw_kick(t - T_SHOW - 0.2, 0.13)
-        yaw = y_walk + (S5_YAW - y_walk) * W(t, T_STOP - 0.05, 0.4) - math.radians(38) * W(t, T_OWN - 0.6, 0.6)
-        return p, yaw
-    for f in range(F(T_STOP), NF + 1):
-        t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
-    hw_layer(data, "spine", lambda t: (6 * math.sin(2 * math.pi * (t - T_OWN - 0.15) / 0.3) * W(t, T_OWN + 0.05, 0.2) * (1 - W(t, T_OWN + 0.65, 0.25)) - 8 * hw_kick(t - T_GUSH - 0.1, 0.26)
-                                      + 6 * W(t, T_OWN - 0.3, 0.3) * (1 - W(t, T_SHOW - 0.5, 0.5)) - 5 * W(t, T_SHOW - 0.1, 0.5), 0, 0), 0, DUR + 0.4)
-    sc.frame_set(F(T_STOP)); bpy.context.view_layer.update()
-    sides = sorted("LR", key=lambda s: (acts._shoulder(data, s) - Vector(data.arm.location)).dot(S5_OUT))
-    left, right = sides                          # right: the crate's side (the fake); left: his own jar
-    # ---- the fake jar: under the tap, filling; in his right hand from T_GRAB; upside down; empty; upright to us
-    fr, fs, fh = fake["root"], fake["spin"], fake["honey"]
-    def hold(sd, rel):
-        return hw_hand(data, sd, rel)
-    rk = [(0.0, (0.06, 0.1, -0.16)), (T_STOP, (0.07, 0.1, -0.15)), (T_GRAB - 0.35, (0.08, 0.06, -0.08)),
-          (T_GRAB, hw_rel(data, right, T_GRAB, S5_JAR + Vector((0, 0, 0.06)))),
-          (T_INV + 0.2, (0.11, 0.07, -0.02)), (T_GUSH + 0.5, (0.11, 0.09, -0.03)), (T_OWN - 0.2, (0.1, 0.12, -0.03)),
-          (T_SHOW, (0.13, 0.08, -0.02)), (DUR + 0.3, (0.13, 0.08, -0.01))]
-    lk = [(0.0, (0.06, 0.1, -0.14)), (T_STOP, (0.07, 0.1, -0.14)), (T_GUSH, (0.07, 0.11, -0.12)), (T_OWN - 0.45, (0.1, 0.08, -0.05)),
-          (T_OWN - 0.1, (0.11, 0.06, -0.02)), (T_OWN + 0.15, (0.11, 0.06, 0.0)),
-          (T_OWN + 0.3, (0.11, 0.08, 0.03)), (T_OWN + 0.45, (0.11, 0.08, -0.02)), (T_OWN + 0.6, (0.11, 0.08, 0.02)),   # shakes it: nothing
-          (T_OWN + 0.8, (0.115, 0.075, 0.0)), (T_SHOW + 0.45, (0.13, 0.06, -0.04)), (DUR + 0.3, (0.13, 0.06, -0.04))]
-    rh, lh_ = hold(right, rk), hold(left, lk)
-    data.reach(right, rh, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
-    data.reach(left, lh_, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
+    T_W0, T_W1 = 0.2, 0.62 * DUR           # he walks the row, rolling
+    T_TURN = T_W1 + 0.05                         # turns to us
+    T_GRAB = T_W1 + 0.6                          # picks up the last red jar ...
+    T_SHOW = T_GRAB + 0.55                       # ... and holds it out to us
+    B = 0.15                                     # the plank's top: the jars stand on it
+    LID = B + S5_JH + 0.016                      # their lids' top
+    light = place_market_alley()
+    rnd = hw_random.Random(5)
+    wood = hw_wood("import plank", "#8A6A44", "#A8865A", scale=5)
+    XS = [S5_X0 + 0.12 + (S5_X1 + 0.05 - S5_X0 - 0.12) * k / (S5_N - 1) for k in range(S5_N)]
+    K.box("import plank", ((XS[0] + XS[-1]) / 2, S5_ROW_Y, B - 0.015), (XS[-1] - XS[0] + 0.14, 0.11, 0.03), wood, bev=0.004)
+    for k, x in enumerate((XS[0] + 0.03, XS[-1] - 0.17, (XS[0] + XS[-1]) / 2 - 0.12)):
+        s5_crate(f"import crate {k}", (x, S5_ROW_Y - 0.025, 0.0), (0.16, 0.08, B - 0.03), rnd)
+    K.text("import stencil", "IMPORTS", ((XS[0] + XS[-1]) / 2, S5_ROW_Y - 0.057, B * 0.55), 0.05, (math.pi / 2, 0, 0), K.mat("stencil ink", "#2A2A2A", rough=0.8))
+    jars = []
+    for k, x in enumerate(XS):
+        jars.append(jar(f"import jar {k}", (x, S5_ROW_Y, B), r=S5_JR, h=S5_JH, fill=0.9, honey_col="#E8A82A", glow=0.35, label="PURE HONEY",
+                        back="SUSPECT" if k in S5_FAKES else None, yaw=math.radians(rnd.uniform(-8, 8))))
+    last = jars[-1]
+    data = load_data()
+    data.place(S5_X0, S5_PY, 90.0)
+    hat = bee_hat(data)
+    data.walk_to(Vector((S5_X1, S5_PY, 0)), T_W0, T_W1)
+    def yaw(t):
+        return math.radians(90 - 70 * W(t, T_TURN, 0.45) - 16 * W(t, T_SHOW + 0.35, 0.5) + 16 * W(t, T_SHOW + 0.95, 0.5))
+    def bx(t):
+        return S5_X0 + (S5_X1 - S5_X0) * min(1.0, max(0.0, (t - T_W0) / (T_W1 - T_W0)))
+    for f in range(F(T_W1) + 1, NF + 1):
+        t = (f - 1) / FPS
+        p = Vector((S5_X1, S5_PY, 0)) + Vector((0, -0.035, 0)) * W(t, T_GRAB - 0.5, 0.35) * (1 - W(t, T_SHOW, 0.4)) + Vector((-0.04, 0, 0)) * W(t, T_SHOW + 0.5, 0.3) + Vector((0.05, 0, 0)) * W(t, T_SHOW + 0.95, 0.3)
+        z = 0.035 * hw_kick(t - T_TURN - 0.1, 0.13) + 0.04 * hw_kick(t - T_SHOW - 0.05, 0.14) + 0.05 * hw_kick(t - T_SHOW - 1.0, 0.14)
+        data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
+    hw_layer(data, "spine", lambda t: (8 * W(t, T_W0, 0.3) * (1 - W(t, T_W1, 0.3)) + 28 * W(t, T_GRAB - 0.4, 0.3) * (1 - W(t, T_GRAB + 0.05, 0.35))
+                                      - 6 * W(t, T_SHOW, 0.4), 0, 0), 0, DUR + 0.4)
+    sc.frame_set(1); bpy.context.view_layer.update()
+    lf, rt = ("R", "L") if acts._shoulder(data, "L").y > acts._shoulder(data, "R").y else ("L", "R")   # lf: the row's side (-y)
+    # the roller hand: its fist over the lids for the walk, the drum on them, pressing with each stride
+    def roll_fist(t):
+        x = bx(t) + 0.12
+        return Vector((x, S5_ROW_Y + 0.07, LID + S5_RR + 0.1 + 0.012 * math.sin(2 * math.pi * (t - T_W0) / 0.7)))
+    rest_l = hw_hand(data, lf, [(0.0, (0.0, 0.05, -0.14)), (DUR + 0.3, (0.0, 0.05, -0.14))])
+    down_l = hw_hand(data, lf, [(0.0, (0.12, 0.06, -0.03)), (T_W1 + 0.2, (0.12, 0.06, -0.03)), (T_GRAB, (0.09, 0.08, -0.06)), (T_SHOW + 0.3, (0.08, 0.08, -0.06)), (T_SHOW + 0.6, (0.13, 0.08, 0.0)),
+                               (T_SHOW + 1.0, (0.12, 0.09, -0.02)), (T_SHOW + 1.3, (0.06, 0.1, -0.11)), (DUR + 0.3, (0.06, 0.1, -0.11))])     # waves the roller at it
+    def lfn(t):
+        a = 1.0; b = W(t, T_W1 - 0.3, 0.5)
+        return rest_l(t).lerp(roll_fist(t), a).lerp(down_l(t), b)
+    data.reach(lf, lfn, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.25)
+    # the jar hand: hangs, then picks up the last jar and holds it out at the lens
+    JMID = Vector(last["root"].location) + Vector((0, 0.0, S5_JH * 0.8))      # by its shoulder, under the lid
+    grab = hw_rel(data, rt, T_GRAB, JMID)
+    rk = [(0.0, (0.04, 0.08, -0.14)), (T_W1, (0.05, 0.08, -0.13)), (T_GRAB - 0.4, (0.12, 0.04, -0.04)), (T_GRAB - 0.15, (grab[0], grab[1], grab[2] + 0.07)), (T_GRAB, grab),
+          (T_GRAB + 0.25, (max(grab[0], 0.14) + 0.02, grab[1], grab[2] + 0.06)), (T_SHOW, (0.15, 0.03, -0.05)), (T_SHOW + 0.45, (0.155, 0.04, -0.035)),
+          (T_SHOW + 0.7, (0.155, 0.045, -0.012)), (T_SHOW + 1.05, (0.15, 0.04, -0.06)),        # shakes it at us
+          (T_SHOW + 1.4, (0.155, 0.04, -0.03)), (DUR + 0.3, (0.155, 0.04, -0.03))]
+    data.reach(rt, hw_hand(data, rt, rk), 0.0, DUR + 0.3, lead=0.08, back=None, elbow_out=0.35)
     # ---- the face
-    LENS = lambda t: Vector((-0.55 + 0.45 * ease(t / DUR), -1.25 + 0.2 * W(t, T_OWN, 1.0), 0.62))
-    data.look_at(S5_JAR + Vector((0, 0, 0.1)), 0.0, max_yaw=45, max_pitch=35, blend=0.0)
-    data.look_at(LENS(T_STOP), T_STOP + 0.05, max_yaw=45, blend=0.15)                          # a look at us: see that?
-    data.look_at(S5_JAR + Vector((0, 0, 0.05)), T_GRAB - 0.4, max_yaw=45, max_pitch=35, blend=0.15)
-    data.look_at(S5_JAR + Vector((0, -0.05, 0.1)), T_GUSH - 0.1, max_yaw=45, max_pitch=40, blend=0.12)
-    data.look_at(LENS(T_OWN - 0.4), T_OWN - 0.5, max_yaw=45, blend=0.18)
-    data.look_at(LENS(DUR), T_SHOW - 0.2, max_yaw=45, blend=0.18)
-    data.expression("wry", 0.0, T_GRAB - 0.1)
-    data.expression("determined", T_GRAB, T_GUSH - 0.05, blend=0.12)
-    data.expression("surprised", T_GUSH, T_OWN - 0.3, blend=0.1)
-    data.expression("pleased", T_OWN - 0.2, T_SHOW - 0.1, blend=0.15)
-    data.expression("happy", T_SHOW, DUR + 1.0, blend=0.18)
+    CAM = Vector((0.62, -1.2, 0.72)); LOOK = Vector((-0.1, -0.1, 0.38))
+    data.look_at(Vector((XS[3], S5_ROW_Y, LID)), 0.0, max_yaw=45, max_pitch=35, blend=0.0)
+    data.look_at(CAM, T_W0 + 1.0, max_yaw=45, blend=0.15)                                 # a look at us mid-row: see?
+    data.look_at(Vector((XS[-2], S5_ROW_Y, LID)), T_W0 + 1.6, max_yaw=45, max_pitch=35, blend=0.15)
+    data.look_at(CAM, T_SHOW - 0.2, max_yaw=45, blend=0.18)
+    data.expression("determined", 0.0, T_W0 + 0.9)
+    data.expression("surprised", T_W0 + 1.0, T_W1 - 0.2, blend=0.12)
+    data.expression("worried", T_W1 - 0.1, T_SHOW - 0.2, blend=0.15)
+    data.expression("wry", T_SHOW - 0.1, DUR + 1.0, blend=0.18)
     data.finish()
-    # jars in his hands: the jar's middle in his fist, upright, upside down, upright again
-    def carry(j, sd, t0, flip0, flip1, back0, back1, rest_at=None):
-        root = j["root"]; hh = j["h"]
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS
-            if t < t0 and rest_at is not None:
-                root.location = rest_at; root.rotation_euler = (0, 0, 0)
-            else:
-                sc.frame_set(f); bpy.context.view_layer.update()
-                M = data.arm.matrix_world @ data.pb["hand." + sd].matrix
-                fist = M.translation + (M.to_3x3() @ Vector((0, 0.045, 0)))
-                yw = data.arm.rotation_euler.z
-                a = math.pi * (W(t, flip0, 0.35) - W(t, back0, 0.4)) if back0 else math.pi * W(t, flip0, 0.35)
-                Rm = Euler((0, 0, yw)).to_matrix() @ Euler((0, a, 0)).to_matrix()
-                root.location = fist - Rm @ Vector((0, 0, hh / 2)); root.rotation_euler = Rm.to_euler()
-                if rest_at is not None:
-                    u = W(t, t0, 0.15); root.location = Vector(rest_at).lerp(root.location, u)
-            root.keyframe_insert("location", frame=f); root.keyframe_insert("rotation_euler", frame=f)
-    carry(fake, right, T_GRAB, T_INV - 0.05, None, T_SHOW - 0.5, None, rest_at=tuple(S5_JAR))
-    carry(mine, left, 0.0, T_OWN - 0.35, None, T_SHOW - 0.4, None)
-    # the fake fills under the tap, then (upside down) runs out of its mouth in a gush onto the cobbles
-    hz = fake["hz"]
-    for t, s_, z in ((0.0, 0.35, None), (T_GRAB - 0.15, 1.0, None), (T_GUSH, 1.0, "top"), (T_GUSH + 0.75, 0.02, "top")):
-        fh.scale = (1, 1, s_); fh.location.z = (hz * s_ / 2 + 0.002) if z is None else (hz - hz * s_ / 2 + 0.002)
-        fh.keyframe_insert("scale", frame=F(t)); fh.keyframe_insert("location", frame=F(t))
-    syrup = hw_honey("cheap syrup", "#F4C65E", glow=0.6, clear=0.75)
-    tap = K.cyl("tap stream", (0, 0, 0), 1.0, 1.0, syrup, v=12, bev=0)
-    gush = K.cyl("gush", (0, 0, 0), 1.0, 1.0, syrup, v=16, bev=0)
-    pud = K.cyl("syrup puddle", (0, 0, 0), 1.0, 0.004, hw_honey("puddle syrup", "#E8B44C", glow=0.3, clear=0.5), v=40, bev=0.0015)
-    spout = S5_JAR + Vector((0, 0, 0.13)); land = Vector((0, 0, 0))
+    # ---- the roller: its drum on the lids under his fist, its grip in his fist; each fake spins red as it passes
+    ro = s5_roller()
+    flips = {}
+    prev = None; ang = 0.0
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
-        on = 1.0 - W(t, T_GRAB - 0.2, 0.15)
-        top = fake["root"].matrix_world @ Vector((0, 0, hz)) if t < T_GRAB else spout - Vector((0, 0, 0.06))
-        a, b = spout, top
-        tap.location = (a + b) / 2; r = 0.006 * on + 1e-4; tap.scale = (r, r, max(1e-3, (a - b).length))
-        for k in ("location", "scale"): tap.keyframe_insert(k, frame=f)
-        mouth = fake["root"].matrix_world @ Vector((0, 0, fake["h"]))
-        if f == F(T_GUSH): land = Vector((mouth.x, mouth.y, 0.0))
-        g = W(t, T_GUSH, 0.12) * (1 - W(t, T_GUSH + 0.65, 0.2))
-        gb = Vector((mouth.x, mouth.y, 0.0)); gl = max(1e-3, mouth.z)
-        gush.location = (mouth + gb) / 2; rr = 0.018 * g + 1e-4; gush.scale = (rr, rr, gl)
-        for k in ("location", "scale"): gush.keyframe_insert(k, frame=f)
-        pr = 0.22 * W(t, T_GUSH + 0.05, 0.8) + 1e-3
-        pud.location = (land.x if t >= T_GUSH else mouth.x, land.y if t >= T_GUSH else mouth.y, 0.003); pud.scale = (pr, pr * 0.8, 1)
-        for k in ("location", "scale"): pud.keyframe_insert(k, frame=f)
-    # splashes where it lands
-    drops = []
-    for k in range(12):
-        d = K.sph("syrup splash", (0, 0, 0), 1.0, syrup, seg=10, ring=6); drops.append(d)
-        th = 2 * math.pi * k / 12 + rnd.uniform(-0.2, 0.2); sp = rnd.uniform(0.25, 0.5); t0 = T_GUSH + 0.05 + rnd.uniform(0, 0.4)
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; u = (t - t0) / 0.35
-            if 0 <= u <= 1:
-                d.location = land + Vector((math.cos(th) * sp * 0.25 * u, math.sin(th) * sp * 0.25 * u, 0.12 * math.sin(math.pi * u) + 0.005)); s_ = 0.01
-            else:
-                d.location = land; s_ = 1e-4
-            d.scale = (s_, s_, s_); d.keyframe_insert("location", frame=f); d.keyframe_insert("scale", frame=f)
-    cam = K.camera(tuple(LENS(0)), tuple(S5_P + Vector((0.0, 0.0, 0.42))), lens=30, fstop=7.0)
-    camera_path(cam, lambda t: (LENS(t), Vector((-0.12 + 0.2 * ease(t / DUR), 0.0, 0.42)) + S5_FW * 0.05 * W(t, T_OWN, 1.0), S5_P + Vector((0, 0, 0.5))))
-    return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("fake jar", "his jar"),
-                conseq=[("the fake PURE HONEY jar, upside down, gushes out like water onto the cobbles", lambda: meshes([fake["root"], gush, pud]), T_GUSH, T_GUSH + 0.8, {"hero": True}),
-                        ("the SUGAR SYRUP drum's tap fills another PURE HONEY jar", lambda: meshes([fake["root"], tap]) + [o for o in bpy.data.objects if o.name.startswith(("drum", "tap"))], 0.1, T_GRAB),
-                        ("his own jar upside down: the honey does not budge", lambda: meshes([mine["root"]]), T_OWN - 0.1, T_SHOW),
-                        ("one empty, one full, held out to us", lambda: meshes([mine["root"], fake["root"]]), T_SHOW - 0.3, DUR)])
+        M = data.arm.matrix_world @ data.pb["hand." + lf].matrix
+        fist = M.translation + (M.to_3x3() @ Vector((0, 0.05, 0)))
+        on = 1 - W(t, T_W1 + 0.05, 0.4)
+        free = fist + data.forward() * 0.05 - Vector((0, 0, 0.1))           # off the lids: held out below the fist, clear of his coat
+        D = free.lerp(Vector((fist.x, S5_ROW_Y, LID + S5_RR)), on)
+        ax = (fist - D); L = max(0.03, ax.length); ax.normalize()
+        xa = Vector((0, 1, 0)) - ax * ax.y; xa = xa.normalized() if xa.length > 1e-4 else Vector((1, 0, 0))
+        from mathutils import Matrix
+        R = Matrix((xa, ax.cross(xa), ax)).transposed()
+        ro["root"].location = D; ro["root"].rotation_euler = R.to_euler()
+        ro["shaft"].scale = (1, 1, L / 0.125)
+        if prev is not None: ang += (D.x - prev.x) / S5_RR * on
+        prev = D.copy()
+        ro["spin"].rotation_euler = (-ang, 0, 0)
+        for o, ks in ((ro["root"], ("location", "rotation_euler")), (ro["shaft"], ("scale",)), (ro["spin"], ("rotation_euler",))):
+            for k in ks: o.keyframe_insert(k, frame=f)
+        for k in S5_FAKES:
+            if k not in flips and on > 0.9 and D.x >= XS[k]:
+                flips[k] = t
+    for k in S5_FAKES:
+        jar_flip(jars[k], flips.get(k, T_W1 - 0.3), 0.3)
+    # the last jar in his fist from T_GRAB: upright, its red label to us
+    root = last["root"]; r0 = Vector(root.location); e0 = tuple(root.rotation_euler)
+    for f in range(F(T_GRAB) - 1, NF + 1):
+        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
+        M = data.arm.matrix_world @ data.pb["hand." + rt].matrix
+        fist = M.translation + (M.to_3x3() @ Vector((0, 0.045, 0)))
+        u = W(t, T_GRAB, 0.12)
+        root.location = r0.lerp(fist - Vector((0, 0, S5_JH * 0.8)), u)
+        root.rotation_euler = (0, 0, e0[2] * (1 - u) + data.arm.rotation_euler.z * u)
+        root.keyframe_insert("location", frame=f); root.keyframe_insert("rotation_euler", frame=f)
+    # ---- the lens: in front of the row, tracking him along it; at the end it pushes in on the jar he holds out
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30, fstop=7.0)
+    def lens(t):
+        u = ease(t / DUR)
+        w = (bx(t) - S5_X0) / (S5_X1 - S5_X0)
+        push = W(t, T_GRAB, 1.4)                                   # and in on the jar he holds out
+        c = CAM + Vector((0.2, -0.12, 0.0)) * w; l = LOOK + Vector((0.42, 0, 0.0)) * w - Vector((0.1, 0, 0)) * push
+        return (c + (l - c).normalized() * 0.2 * push + Vector((0, 0, 0.03 * push)), l + Vector((0, 0, 0.04 * push)), Vector((bx(t), -0.1, 0.4)))
+    camera_path(cam, lens)
+    fakes = [jars[k] for k in S5_FAKES]
+    return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("test roller", "import jar 6"),
+                conseq=[("his roller passes along the lids and almost half the import jars spin round to a red SUSPECT", lambda: meshes([j["root"] for j in jars] + [ro["root"]]),
+                         min(flips.values(), default=T_W0), T_W1 + 0.2, {"hero": True, "moves": lambda: meshes([ro["root"]])}),
+                        ("the last red jar, held out to us: what's in your jar?", lambda: meshes([last["root"]]), T_GRAB, DUR)])
