@@ -1,0 +1,52 @@
+{
+ "slug": "plastic-in-your-body",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 11,
+   "hook": 11,
+   "arc": 9,
+   "factual": 9,
+   "visual_proof": 8,
+   "payoff": 6,
+   "voice": 3
+  },
+  "total": 57,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "The hook promises that it \"might already be too late\", but nothing in the video answers that, and the beats are three disconnected stats: brain, placenta/blood, artery plaque. Chain them with because/so links (for example, it is in the brai",
+  "fp": "3ce1c4ac771120f7"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Your brain is quietly filling with plastic, and it might already be too late.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Plastic in human brain tissue jumped by about half in eight years. Whatever we're breathing and eating, it's getting in, and fast.",
+   "eyes": "substance: colourful plastic fragments; cause: Data pours a bucket of plastic bits into the jar and they pile up around the brain",
+   "evidence": "Nature Medicine (Nihart et al., Univ. of New Mexico) | Nanoplastic concentration in human brain tissue (micrograms per gram) | https://www.nature.com/articles/s41591-024-03453-1 | 2026-08-15"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Plastic showed up in every placenta tested, and in most donors' blood. It isn't staying outside us.",
+   "eyes": "a data picture (rank)",
+   "evidence": "University of New Mexico (placenta, 2024); Environment International (Leslie et al., blood, 2022); New England Journal of Medicine (Marfella et al., artery plaque, 2024) | Share of tested samples/people with microplastics found (percent) | https://www.nejm.org/doi/10.1056/NEJMoa2309822 | 2026-08-15"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Plastic in artery plaque went with over four times the risk of heart attack, stroke or death. A link, not proven cause.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "New England Journal of Medicine (Marfella et al.) | Risk of heart attack, stroke or death: with vs without microplastics in artery plaque | https://www.nejm.org/doi/10.1056/NEJMoa2309822 | 2026-08-15"
+  },
+  {
+   "window": "closing",
+   "ears": "Plastic you can't see is inside us now, and it may be hurting our hearts.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

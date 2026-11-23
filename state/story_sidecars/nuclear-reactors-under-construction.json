@@ -1,0 +1,37 @@
+{
+ "slug": "nuclear-reactors-under-construction",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "78 gigawatts of nuclear power is still being built.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Builders started 10 nuclear reactors worldwide. Construction is growing rather than disappearing.",
+   "eyes": "a data picture (trend)",
+   "evidence": "International Energy Agency (IEA) | New nuclear reactor construction starts worldwide per year | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
+  },
+  {
+   "window": "beat 1",
+   "ears": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout.",
+   "eyes": "a data picture (share)",
+   "evidence": "International Energy Agency (IEA) | Share of global nuclear capacity under construction, by country | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
+  },
+  {
+   "window": "beat 2",
+   "ears": "About 78 gigawatts of nuclear capacity is under construction. Tomorrow's power supply is already taking shape.",
+   "eyes": "a data picture (rank)",
+   "evidence": "International Energy Agency (IEA) | Nuclear capacity under construction worldwide vs one typical reactor | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
+  },
+  {
+   "window": "closing",
+   "ears": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

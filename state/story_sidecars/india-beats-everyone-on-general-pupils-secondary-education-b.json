@@ -5,43 +5,43 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Where a kid is born can decide whether anyone has time to teach them.",
+   "ears": "Where a child learns can decide whether a teacher has time.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "India has 127.5 million secondary pupils, nearly double China. Education at this scale strains any school system.",
+   "ears": "India has 127.5 million secondary pupils. Managing that scale can stretch any school system.",
    "eyes": "substance: pupils with backpacks; cause: Data drags the school's iron gate open by hand and the crowd waiting outside walks into the yard",
    "evidence": "World Bank | General pupils secondary education | https://data.worldbank.org/indicator/SE.SEC.ENRL.GC | 2026-11-21"
   },
   {
    "window": "beat 1",
-   "ears": "In Guinea-Bissau, one college teacher faces 147.6 students, more than double the next worst country. Individual attention becomes scarce.",
+   "ears": "Guinea-Bissau has 147.6 tertiary students per teacher. Individual attention becomes scarce.",
    "eyes": "substance: students filling the seats; cause: Data carries a desk row up the aisle and sets it down, and each row he places fills with students",
    "evidence": "World Bank | Tertiary pupil-teacher ratio | https://data.worldbank.org/indicator/SE.TER.ENRL.TC.ZS | 2026-11-21"
   },
   {
    "window": "beat 2",
-   "ears": "Education spending fell to 3.57 percent of national income, the lowest in this data. Growing systems have less room to improve.",
+   "ears": "Education spending fell to 3.57 percent of national income. Expanding schools have less room to improve.",
    "eyes": "a data picture (trend)",
    "evidence": "World Bank | Total government expenditure on education | https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS | 2026-11-21"
   },
   {
    "window": "beat 3",
-   "ears": "Today, 92 percent of young women can read, up from about two thirds in 1975. Wider access produced real gains.",
+   "ears": "Youth female literacy reached 92 percent. Expanded schooling can still produce life-changing gains.",
    "eyes": "a data picture (trend)",
    "evidence": "World Bank | Youth female literacy rate | https://data.worldbank.org/indicator/SE.ADT.1524.LT.FE.ZS | 2026-11-21"
   },
   {
    "window": "beat 4",
-   "ears": "In Tanzania, one preschool teacher has 114 children, almost double the next worst country. The pressure starts before primary school.",
+   "ears": "Tanzania has 114 preschool pupils per teacher. The attention gap starts before primary school.",
    "eyes": "a data picture (rank)",
    "evidence": "World Bank | Preprimary pupil-teacher ratio | https://data.worldbank.org/indicator/SE.PRE.ENRL.TC.ZS | 2026-11-21"
   },
   {
    "window": "closing",
-   "ears": "Education grew, but scale still decides how much attention each student receives.",
+   "ears": "School scale shapes how much time and support each child can receive.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
