@@ -101,12 +101,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Right Whale Population') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Does not directly support the headline claim about calves, only mentions overall population size.",
-  "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Focuses on breeding female numbers, which does not directly prove the calf count claim and adds a separate fact rather t"
+  "premise: brain: The pitch is a vague, hedged 'hopeful rebound' with no named villain, twist or stake; the hook never names the species, and it merely restates a population statistic rather than overturning anything the viewer believes."
  ],
  "reasons": [
-  "thesis: seg0 ('Right Whale Population') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Does not directly support the headline claim about calves, only mentions overall population size.",
-  "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Focuses on breeding female numbers, which does not directly prove the calf count claim and adds a separate fact rather t"
+  "premise: brain: The pitch is a vague, hedged 'hopeful rebound' with no named villain, twist or stake; the hook never names the species, and it merely restates a population statistic rather than overturning anything the viewer believes."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -139,5 +137,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-23T17:07:49Z"
 }

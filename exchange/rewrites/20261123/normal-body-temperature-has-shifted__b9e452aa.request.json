@@ -96,10 +96,12 @@
   }
  ],
  "held_for": [
-  "premise: brain: The hook is an abstract, passive line ('the old standard stayed fixed while human bodies cooled') that never plants a concrete threat or stake for the viewer. The pitch also leans on the well-known 'normal temperature isn't 98.6' fun fact and doesn't turn over a belief with a specific picture."
+  "thesis: seg1 ('Body Temperature Sex') does not continue the story of the headline ('Body Temperature Fell Below The 98.6°F Standard') — brain: Introduces a sex‑difference fact rather than a direct continuation of the previous beat’s point about overall cooling",
+  "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Body Temperature Fell Below The 98.6°F Standard') — brain: Switches to a historical recalculation unrelated to the preceding sex‑difference discussion"
  ],
  "reasons": [
-  "premise: brain: The hook is an abstract, passive line ('the old standard stayed fixed while human bodies cooled') that never plants a concrete threat or stake for the viewer. The pitch also leans on the well-known 'normal temperature isn't 98.6' fun fact and doesn't turn over a belief with a specific picture."
+  "thesis: seg1 ('Body Temperature Sex') does not continue the story of the headline ('Body Temperature Fell Below The 98.6°F Standard') — brain: Introduces a sex‑difference fact rather than a direct continuation of the previous beat’s point about overall cooling",
+  "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Body Temperature Fell Below The 98.6°F Standard') — brain: Switches to a historical recalculation unrelated to the preceding sex‑difference discussion"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -132,5 +134,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-23T17:07:52Z"
 }

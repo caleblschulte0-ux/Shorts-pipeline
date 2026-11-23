@@ -110,10 +110,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is a flat fun fact (tattoos doubled to one in three) with no twist, threat or stake, and the hook only restates the statistic and tacks on a vague 'can't stop at one'."
+  "premise: brain: The pitch is a flat fun fact (a third of Americans have tattoos) with no twist, threat or belief overturned, and the hook's \"most can't stop at one\" overstates the beats, which say only one in five has more than one tattoo."
  ],
  "reasons": [
-  "premise: brain: The pitch is a flat fun fact (tattoos doubled to one in three) with no twist, threat or stake, and the hook only restates the statistic and tacks on a vague 'can't stop at one'."
+  "premise: brain: The pitch is a flat fun fact (a third of Americans have tattoos) with no twist, threat or belief overturned, and the hook's \"most can't stop at one\" overstates the beats, which say only one in five has more than one tattoo."
  ],
  "judge": null,
  "prior_rejection": [
@@ -149,5 +149,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T14:43:34Z"
+ "refiled": "2026-11-23T17:07:49Z"
 }
