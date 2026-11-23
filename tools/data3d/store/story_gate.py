@@ -13,7 +13,9 @@ Two parts, both binding on every story not grandfathered below:
   verdict  stories/<story>/story_verdict.json, written by `python story_gate.py judge STORY`: a brain that has never
            seen the topic reads the title and the lines cold, must RETELL the story in one sentence, NAME the twist,
            say whether the ending pays off the title, and name any beat that could be cut without losing the story
-           (trivia). It is keyed on a hash of the title, lines and links, so changing a word needs a new verdict.
+           (trivia), and name any line that can't be shown as one big physical event in a real place (caaleb
+           2026-11-23, after honey's tests and prices became props on tables: a topic that can't be a spectacle
+           never reaches the builder). It is keyed on a hash of the title, lines and links, so changing a word needs a new verdict.
 problems(story, script) lists what fails; store/shots.py refuses to build a shot while it is not empty.
 """
 import hashlib, json, os, re, subprocess, sys
@@ -41,9 +43,13 @@ Answer honestly:
 - chain: does every line follow from the one before (it happens BECAUSE of it, or it turns AGAINST it)? Name any line
   that is just "and here is another fact".
 - cut: every line (by number) that could be cut without the story losing anything (trivia, a tangent).
+- physical: every line (by number) whose fact can NOT be shown as one big physical event in a real place, seen at a
+  glance on a phone with the sound off (a storm strike, a dam bursting, seven jars with three going red). A line that
+  can only be a number on a sign, a chart, a lab readout or a prop on a table goes here.
 - score: 0-100 as a story that makes a stranger watch to the end. pass: true only if score >= {bar}, there is a twist,
-  the payoff matches the title, and nothing is in cut.
-Return ONLY JSON: {{"retell": "...", "twist": "...", "payoff": "...", "chain": "...", "cut": [n, ...], "score": n,
+  the payoff matches the title, and nothing is in cut or physical.
+Return ONLY JSON: {{"retell": "...", "twist": "...", "payoff": "...", "chain": "...", "cut": [n, ...],
+"physical": [n, ...], "score": n,
 "pass": true|false, "problems": ["..."]}}"""
 
 
@@ -84,7 +90,7 @@ def problems(story, script):
         out.append(f"the story verdict is for an older script: run python tools/data3d/store/story_gate.py judge {story}")
     elif not v.get("pass"):
         out.append(f"the story judge failed it ({v.get('score')}): {'; '.join(v.get('problems') or [])[:400]} "
-                   f"cut: {v.get('cut')} payoff: {str(v.get('payoff'))[:200]}")
+                   f"cut: {v.get('cut')} not physical: {v.get('physical')} payoff: {str(v.get('payoff'))[:200]}")
     return out
 
 
@@ -97,7 +103,7 @@ def parse(text):
     except ValueError:
         return None
     v["pass"] = bool(v.get("pass")) and int(v.get("score") or 0) >= PASS and bool(str(v.get("twist") or "").strip()) \
-        and not v.get("cut")
+        and not v.get("cut") and not v.get("physical")
     return v
 
 
@@ -124,7 +130,7 @@ def main(argv):
     if len(argv) == 3 and argv[1] == "judge":
         v = judge(argv[2])
         print(f"STORY GATE {argv[2]}: {'PASS' if v['pass'] else 'FAIL'} {v['scores']}\n  retell: {v.get('retell')}\n"
-              f"  twist: {v.get('twist')}\n  payoff: {v.get('payoff')}\n  cut: {v.get('cut')}\n  problems: {v.get('problems')}")
+              f"  twist: {v.get('twist')}\n  payoff: {v.get('payoff')}\n  cut: {v.get('cut')}  physical: {v.get('physical')}\n  problems: {v.get('problems')}")
         return 0 if v["pass"] else 1
     if len(argv) == 3 and argv[1] == "check":
         script = json.loads((STORIES / argv[2] / "script.json").read_text())

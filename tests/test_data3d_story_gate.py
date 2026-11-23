@@ -49,3 +49,11 @@ def test_only_old_stories_are_grandfathered_and_the_list_only_shrinks():
     have = {p.name for p in (ROOT / "tools" / "data3d" / "stories").iterdir() if (p / "script.json").exists()}
     assert G.GRANDFATHERED <= have, "a grandfathered story that no longer exists comes off the list"
     assert "honey" not in G.GRANDFATHERED
+
+
+def test_a_line_that_cannot_be_a_physical_event_fails_the_story():
+    """2026-11-23: honey's lab tests and prices could only be props on tables, and the board failed every shot"""
+    good = '{"retell": "x", "twist": "y", "payoff": "z", "cut": [], "physical": [], "score": 80, "pass": true}'
+    assert G.parse(good)["pass"]
+    assert not G.parse(good.replace('"physical": []', '"physical": [3]'))["pass"]
+    assert "big physical event in a real place" in G.PROMPT
