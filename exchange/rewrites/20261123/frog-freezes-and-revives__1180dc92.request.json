@@ -1,0 +1,134 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "frog-freezes-and-revives__1180dc92",
+ "filed": "2026-11-23T01:17:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "frog-freezes-and-revives",
+ "current": {
+  "title": "Wood Frogs Freeze Mostly Solid And Still Survive",
+  "hook": "A frog can turn mostly to ice and survive.",
+  "closing": "The wood frog's survival trick could reshape how we protect living tissue from cold.",
+  "question": "Would you believe this frog survived?",
+  "segments": [
+   {
+    "topic": "Wood Frog water",
+    "say": "A wood frog survives with 65 percent of its body water frozen, far beyond most vertebrates' lethal threshold."
+   },
+   {
+    "topic": "Wood Frog cold",
+    "say": "A wood frog survives 16 degrees below freezing, reaching cold that ordinary frogs cannot tolerate."
+   },
+   {
+    "topic": "Wood Frog range",
+    "say": "Wood frogs reach 68 degrees latitude, letting them inhabit winters that exclude most frog species."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Wood Frog water",
+   "say": "A wood frog survives with 65 percent of its body water frozen, far beyond most vertebrates' lethal threshold.",
+   "role": "1 · IT SHOULDN'T WORK",
+   "data": {
+    "file": "frog_freeze_survival_threshold.json",
+    "unit": "percent",
+    "title": "Body water frozen and survived (percent)",
+    "points": [
+     {
+      "label": "Most vertebrates (lethal)",
+      "value": 10
+     },
+     {
+      "label": "Wood frog (survives)",
+      "value": 65
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Wood Frog cold",
+   "say": "A wood frog survives 16 degrees below freezing, reaching cold that ordinary frogs cannot tolerate.",
+   "role": "2 · THE TRICK",
+   "data": {
+    "file": "frog_cold_tolerance_temp.json",
+    "unit": "",
+    "title": "Coldest body temperature survived (degrees C below freezing)",
+    "points": [
+     {
+      "label": "Typical frog",
+      "value": 2
+     },
+     {
+      "label": "Wood frog",
+      "value": 16
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Wood Frog range",
+   "say": "Wood frogs reach 68 degrees latitude, letting them inhabit winters that exclude most frog species.",
+   "role": "3 · HOW FAR IT TAKES THEM",
+   "data": {
+    "file": "frog_arctic_range.json",
+    "unit": "",
+    "title": "Northernmost range, degrees latitude",
+    "points": [
+     {
+      "label": "Most frog species (limit)",
+      "value": 45
+     },
+     {
+      "label": "Wood frog (Alaska)",
+      "value": 68
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The pitch is a flat fun fact (\"a frog can freeze and survive\") with no stake for the viewer or belief it turns over, and its beats are three stats (water frozen, cold survived, latitude) that don't build cause-and-effect."
+ ],
+ "reasons": [
+  "premise: brain: The pitch is a flat fun fact (\"a frog can freeze and survive\") with no stake for the viewer or belief it turns over, and its beats are three stats (water frozen, cold survived, latitude) that don't build cause-and-effect."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261123/frog-freezes-and-revives__1180dc92.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

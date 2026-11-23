@@ -1,17 +1,149 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-22T23:25:01Z",
+ "updated": "2026-11-23T01:17:01Z",
  "open": [
+  {
+   "id": "normal-body-temperature-has-shifted__fcb6240a",
+   "slug": "normal-body-temperature-has-shifted",
+   "filed": "2026-11-23T01:17:01Z",
+   "why": [
+    "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: It introduces a separate historical explanation rather than building on the previous beat about sex differences and meta"
+   ],
+   "request": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__fcb6240a.request.json",
+   "answer_path": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__fcb6240a.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__15bbbefa",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-11-23T01:17:00Z",
+   "why": [
+    "premise: brain: The hook is a vague, flat fun fact about weight-bearing bones with no named threat or concrete image, and the title and beats read as a stat sheet that offers the viewer no stake and nothing for them to believe and then have turned over."
+   ],
+   "request": "exchange/rewrites/20261123/astronaut-bone-loss__15bbbefa.request.json",
+   "answer_path": "exchange/rewrites/20261123/astronaut-bone-loss__15bbbefa.answer.json"
+  },
+  {
+   "id": "us-height-ranking-fall__b3299d80",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-11-23T01:17:00Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or specific stake for the viewer beyond a generic statement about losing the height lead."
+   ],
+   "request": "exchange/rewrites/20261123/us-height-ranking-fall__b3299d80.request.json",
+   "answer_path": "exchange/rewrites/20261123/us-height-ranking-fall__b3299d80.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__1180dc92",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-11-23T01:17:00Z",
+   "why": [
+    "premise: brain: The pitch is a flat fun fact (\"a frog can freeze and survive\") with no stake for the viewer or belief it turns over, and its beats are three stats (water frozen, cold survived, latitude) that don't build cause-and-effect."
+   ],
+   "request": "exchange/rewrites/20261123/frog-freezes-and-revives__1180dc92.request.json",
+   "answer_path": "exchange/rewrites/20261123/frog-freezes-and-revives__1180dc92.answer.json"
+  },
+  {
+   "id": "map-distortion-true-size__45b82c82",
+   "slug": "map-distortion-true-size",
+   "filed": "2026-11-23T01:17:00Z",
+   "why": [
+    "premise: brain: The hook is an abstract, number-free statement about map distortion with no stake or twist, and the pitch is a familiar Mercator-vs-Africa fun fact whose title is a muddled comparison."
+   ],
+   "request": "exchange/rewrites/20261123/map-distortion-true-size__45b82c82.request.json",
+   "answer_path": "exchange/rewrites/20261123/map-distortion-true-size__45b82c82.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__a3a64c1f",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-11-23T01:16:59Z",
+   "why": [
+    "premise: brain: The pitch is a flat fun fact (a small share of people donate) with no named threat, twist or consequence a viewer can picture, and the hook is vague and hedge-like with no stake."
+   ],
+   "request": "exchange/rewrites/20261123/blood-supply-three-percent__a3a64c1f.request.json",
+   "answer_path": "exchange/rewrites/20261123/blood-supply-three-percent__a3a64c1f.answer.json"
+  },
+  {
+   "id": "library-digital-shift__368b6dd5",
+   "slug": "library-digital-shift",
+   "filed": "2026-11-23T01:16:59Z",
+   "why": [
+    "premise: brain: The pitch is a flat, abstract observation (visits fell while digital loans rose) with no concrete surprise, threat or stake the viewer can picture, and the hook names no vivid subject or twist."
+   ],
+   "request": "exchange/rewrites/20261123/library-digital-shift__368b6dd5.request.json",
+   "answer_path": "exchange/rewrites/20261123/library-digital-shift__368b6dd5.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__de8ae10e",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-23T01:16:59Z",
+   "why": [
+    "premise: brain: The hook is a flat 'vinyl won the physical comeback' fact with no surprise, threat or stake for the viewer, and the beats admit it's a small win inside a market streaming dominates."
+   ],
+   "request": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__de8ae10e.request.json",
+   "answer_path": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__de8ae10e.answer.json"
+  },
+  {
+   "id": "feet-are-getting-bigger__d12e79cb",
+   "slug": "feet-are-getting-bigger",
+   "filed": "2026-11-23T01:16:59Z",
+   "why": [
+    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Width is a different change from the length/shoe-size growth in beat 0; the beat just adds another foot fact and doesn't"
+   ],
+   "request": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb.request.json",
+   "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb.answer.json"
+  },
+  {
+   "id": "autism-diagnosis-rate-rise__cf7356de",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-23T01:16:58Z",
+   "why": [
+    "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address the range of measurements across sites, only gives an overall prevalence.",
+    "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex differences, unrelated to site-to-site variation claimed in the headline.",
+    "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While it mentions a site measurement, it does not logically follow from the previous beats."
+   ],
+   "request": "exchange/rewrites/20261123/autism-diagnosis-rate-rise__cf7356de.request.json",
+   "answer_path": "exchange/rewrites/20261123/autism-diagnosis-rate-rise__cf7356de.answer.json"
+  },
   {
    "id": "cruise-ship-outbreaks-climbing__1f54e0f7",
    "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-22T23:25:01Z",
+   "filed": "2026-11-23T01:16:58Z",
    "why": [
-    "thesis: seg1 ('Cruise norovirus') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Norovirus as the leading cause is a separate fact about cause; it doesn't follow from or turn against the rise in outbre",
-    "thesis: seg2 ('Cruise crowds') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Crowd size is a generic risk-factor fact; it isn't tied to the norovirus cause in beat 1 and doesn't show the outbreaks "
+    "thesis: seg1 ('Cruise norovirus') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Gives a cause of the outbreaks but doesn't follow from beat 0 by 'because' or 'but'; it reads as 'and another fact' abou",
+    "thesis: seg2 ('Cruise crowds') does not continue the story of the headline ('Cruise Outbreaks Climbed As Ships Packed In Thousands') — brain: Crowd size is a generic risk factor. It isn't tied to beat 1's norovirus count, and it doesn't show that crowding drove "
    ],
-   "request": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__1f54e0f7.request.json",
-   "answer_path": "exchange/rewrites/20261122/cruise-ship-outbreaks-climbing__1f54e0f7.answer.json"
+   "request": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__1f54e0f7.request.json",
+   "answer_path": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__1f54e0f7.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__67bee527",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-23T01:16:58Z",
+   "why": [
+    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261123/index-funds-own-corporate-america__67bee527.request.json",
+   "answer_path": "exchange/rewrites/20261123/index-funds-own-corporate-america__67bee527.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__880020cf",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-11-23T01:16:58Z",
+   "why": [
+    "story: fatal: missing_payoff, unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261123/usps-mail-volume-collapse__880020cf.request.json",
+   "answer_path": "exchange/rewrites/20261123/usps-mail-volume-collapse__880020cf.answer.json"
+  },
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__af278c97",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-23T01:16:58Z",
+   "why": [
+    "premise: brain: The pitch is a vague 'getting hit again' framing built on stacked stats (3 events, 2-year gap, 10-year recovery) with no concrete, picturable surprise or a belief the beats overturn. The hook also has no plain-named stake beyond the generic idea that bleaching keeps happening."
+   ],
+   "request": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__af278c97.request.json",
+   "answer_path": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__af278c97.answer.json"
   },
   {
    "id": "india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e",
@@ -22,16 +154,6 @@
    ],
    "request": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e.request.json",
    "answer_path": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e.answer.json"
-  },
-  {
-   "id": "normal-body-temperature-has-shifted__fcb6240a",
-   "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-22T20:56:32Z",
-   "why": [
-    "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: New point about origin of 'normal', not a consequence of temperature drop."
-   ],
-   "request": "exchange/rewrites/20261122/normal-body-temperature-has-shifted__fcb6240a.request.json",
-   "answer_path": "exchange/rewrites/20261122/normal-body-temperature-has-shifted__fcb6240a.answer.json"
   },
   {
    "id": "chess-online-boom__f3d078d3",
@@ -64,36 +186,6 @@
    "answer_path": "exchange/rewrites/20261122/gps-einstein-fix__c2b1ca22.answer.json"
   },
   {
-   "id": "astronaut-bone-loss__15bbbefa",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-22T18:58:29Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or threat beyond generic bone loss numbers."
-   ],
-   "request": "exchange/rewrites/20261122/astronaut-bone-loss__15bbbefa.request.json",
-   "answer_path": "exchange/rewrites/20261122/astronaut-bone-loss__15bbbefa.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__880020cf",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-11-22T18:58:29Z",
-   "why": [
-    "story: fatal: false_comparison — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261122/usps-mail-volume-collapse__880020cf.request.json",
-   "answer_path": "exchange/rewrites/20261122/usps-mail-volume-collapse__880020cf.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a3a64c1f",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-22T18:58:28Z",
-   "why": [
-    "premise: brain: The pitch is a flat statistic about donor scarcity with no concrete subject, twist, or personal stake for the viewer, and the hook ('Most eligible donors never join the pool hospitals rely on') is a vague, hedged statement rather than a specific surprise or threat."
-   ],
-   "request": "exchange/rewrites/20261122/blood-supply-three-percent__a3a64c1f.request.json",
-   "answer_path": "exchange/rewrites/20261122/blood-supply-three-percent__a3a64c1f.answer.json"
-  },
-  {
    "id": "chip-transistor-shrink-limit__614b1d40",
    "slug": "chip-transistor-shrink-limit",
    "filed": "2026-11-22T16:28:10Z",
@@ -104,69 +196,6 @@
    "answer_path": "exchange/rewrites/20261122/chip-transistor-shrink-limit__614b1d40.answer.json"
   },
   {
-   "id": "frog-freezes-and-revives__1180dc92",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-22T16:28:10Z",
-   "why": [
-    "premise: brain: The pitch is vague and doesn’t promise a clear, picture‑worthy surprise or scale beyond a generic fact about frogs freezing"
-   ],
-   "request": "exchange/rewrites/20261122/frog-freezes-and-revives__1180dc92.request.json",
-   "answer_path": "exchange/rewrites/20261122/frog-freezes-and-revives__1180dc92.answer.json"
-  },
-  {
-   "id": "map-distortion-true-size__45b82c82",
-   "slug": "map-distortion-true-size",
-   "filed": "2026-11-22T16:28:10Z",
-   "why": [
-    "premise: brain: The pitch is vague and relies on generic map distortion facts without a clear, concrete surprise or high‑stakes hook for viewers."
-   ],
-   "request": "exchange/rewrites/20261122/map-distortion-true-size__45b82c82.request.json",
-   "answer_path": "exchange/rewrites/20261122/map-distortion-true-size__45b82c82.answer.json"
-  },
-  {
-   "id": "library-digital-shift__368b6dd5",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-22T16:28:09Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or clear stakes for the viewer."
-   ],
-   "request": "exchange/rewrites/20261122/library-digital-shift__368b6dd5.request.json",
-   "answer_path": "exchange/rewrites/20261122/library-digital-shift__368b6dd5.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__de8ae10e",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-22T16:28:09Z",
-   "why": [
-    "thesis: seg1 ('Vinyl sales') does not continue the story of the headline ('Vinyl Earned Two And A Half Times More Than CDs') — brain: Focuses on units sold, not directly proving the revenue ratio claim.",
-    "thesis: seg2 ('Vinyl market') does not continue the story of the headline ('Vinyl Earned Two And A Half Times More Than CDs') — brain: Introduces streaming share, a separate context that doesn't follow directly from the previous beat."
-   ],
-   "request": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__de8ae10e.request.json",
-   "answer_path": "exchange/rewrites/20261122/vinyl-beats-cd-sales-again__de8ae10e.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__cf7356de",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-22T16:28:08Z",
-   "why": [
-    "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address site-to-site measurement range, only overall trend.",
-    "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex difference, unrelated to site range claim.",
-    "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While mentions a site measurement, it does not logically follow from the previous beat."
-   ],
-   "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
-   "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__67bee527",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-22T16:28:08Z",
-   "why": [
-    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.request.json",
-   "answer_path": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.answer.json"
-  },
-  {
    "id": "moon-drifting-away__653a5ccc_r4",
    "slug": "moon-drifting-away",
    "filed": "2026-11-22T12:31:26Z",
@@ -175,16 +204,6 @@
    ],
    "request": "exchange/rewrites/20261122/moon-drifting-away__653a5ccc_r4.request.json",
    "answer_path": "exchange/rewrites/20261122/moon-drifting-away__653a5ccc_r4.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__b3299d80",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-22T12:24:50Z",
-   "why": [
-    "premise: brain: The hook is vague and doesn’t promise a clear, pictureable surprise or stakes for the viewer."
-   ],
-   "request": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.request.json",
-   "answer_path": "exchange/rewrites/20261122/us-height-ranking-fall__b3299d80.answer.json"
   },
   {
    "id": "muscle-loss-after-30__a5ebb426",
@@ -376,16 +395,6 @@
    ],
    "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.request.json",
    "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.answer.json"
-  },
-  {
-   "id": "feet-are-getting-bigger__9e6def1c",
-   "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-18T13:14:52Z",
-   "why": [
-    "premise: brain: The claim that British feet have grown two shoe sizes over 40 years is not a concrete, verified fact."
-   ],
-   "request": "exchange/rewrites/20261118/feet-are-getting-bigger__9e6def1c.request.json",
-   "answer_path": "exchange/rewrites/20261118/feet-are-getting-bigger__9e6def1c.answer.json"
   },
   {
    "id": "ocean-is-changing-color__94e5fa3d",
