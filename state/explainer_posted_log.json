@@ -5895,6 +5895,14 @@
         "illustrated:glacier-glass",
         "mechanic:thin-sliver-of-the-sea"
       ]
+    },
+    "lightning-strikes-3d": {
+      "claimed_at": "2026-11-23T13:33:52.839326+00:00",
+      "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d"
     }
   },
   "uploads": [
@@ -7606,6 +7614,15 @@
       "state": "posted",
       "slug": "freshwater-accessible",
       "at": "2026-11-22T15:34:58.998679+00:00"
+    },
+    {
+      "claimed_at": "2026-11-23T13:33:52.839326+00:00",
+      "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "style_arm": "3d",
+      "slug": "lightning-strikes-3d"
     }
   ]
 }
