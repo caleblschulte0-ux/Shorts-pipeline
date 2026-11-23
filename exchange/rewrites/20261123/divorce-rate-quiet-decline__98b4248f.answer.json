@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "divorce-rate-quiet-decline__98b4248f",
+  "slug": "divorce-rate-quiet-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-23T12:19:58.661Z",
+  "title": "US Divorce Fell As First Marriage Moved Later",
+  "hook": "Americans married later while divorce fell nearly by half.",
+  "closing": "The trends moved together, but they do not prove that waiting caused the divorce decline.",
+  "question": "How old were your parents when married?",
+  "segments": [
+    {
+      "topic": "US divorce rate",
+      "say": "The US divorce rate fell to 2.4 per thousand, nearly half its earlier level."
+    },
+    {
+      "topic": "US marriage age",
+      "say": "US women now first marry at 28.6, showing marriage timing shifted alongside the divorce decline."
+    }
+  ]
+}
