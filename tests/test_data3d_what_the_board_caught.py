@@ -64,3 +64,32 @@ def test_nothing_moves_without_his_hand_on_its_cause():
     body = ast.get_source_segment(SRC, _fn("cause"))
     assert "\"moves\"" in body and "CAUSE_BEFORE" in body and "HAND_ON" in SRC
     assert "held + mv" in body and "_working(" in body   # a grip that moves with the work, or the moving part itself
+
+
+def test_a_shot_is_built_in_the_portrait_frame():
+    """the 16:9 default resolution was in force while a shot was BUILT, so compose.drop_cut measured a frame twice as
+    wide as the real one and dropped nothing that staging.edges then failed (honey shots 3 and 4)"""
+    i = HARNESS.index("S = SHOTS[SHOT]()")
+    before = HARNESS[:i]
+    assert "resolution_x, sc.render.resolution_y = 1080, 1920" in before[-400:]
+
+
+def test_a_thing_keyed_off_is_off():
+    """a lamp keyed to scale 1e-3 reads 0.0010000000475 as float32: a `> 1e-3` test called it lit, so the FAIL lamp
+    coming on between two key stills was not news (honey shot 3)"""
+    import struct
+    off = struct.unpack("f", struct.pack("f", 1e-3))[0]
+    assert off > 1e-3
+    cut = float(SRC.split("HIDDEN_SCALE =")[1].split()[0])
+    assert off < cut <= 0.05
+    state = ast.unparse(_fn("_state"))
+    assert "HIDDEN_SCALE" in state and "1e-3" not in state
+    assert "HIDDEN_SCALE" in ast.unparse(_fn("_screen_box"))
+
+
+def test_a_thing_that_lights_under_his_hand_is_news():
+    """the FAIL lamp sits by his hand at the test: news is checked BEFORE the rides-with-him rule, and only a thing near
+    his hands at BOTH stills rides"""
+    news = ast.unparse(_fn("_news"))
+    assert news.index("l0 != l1") < news.index("r0 and r1")
+    assert "r0 or r1" not in news

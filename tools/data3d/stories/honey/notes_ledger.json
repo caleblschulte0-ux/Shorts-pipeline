@@ -3,7 +3,13 @@
  "shots": {
   "1": {
    "BROKEN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "the sign is placed frame-first (compose.place) whole over the row and held in its box; staging.edges fails any cut words"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -13,7 +19,13 @@
     ]
    },
    "CONSEQUENCE": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "the row is framed whole and front-on, the fake jar spins to a big red SYRUP label in the open; his slam makes the whole row jump first"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -23,7 +35,13 @@
     ]
    },
    "NOT SHOWN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "seven jars in one counted row, all inside the frame (compose box held), one turns red"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -33,7 +51,13 @@
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "cobbled square, produce crates, striped awnings, built house fronts; the stray ball removed"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -43,7 +67,13 @@
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "built stall: wood counter, crates of produce, awnings, cobbles, no unexplained objects"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -55,7 +85,13 @@
   },
   "2": {
    "BROKEN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "rebuilt: the HONEY flag hangs on a rope up its pole, hauled by a winch he cranks"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -65,7 +101,13 @@
     ]
    },
    "NOT SHOWN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "the board's numbers sit between the poles in clear view; the HONEY flag climbs four bands to the syrup flag's one"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -75,7 +117,13 @@
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "window is a real framed window with jars on a sill behind glass; the hanging slab removed; void doorway removed"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -85,7 +133,13 @@
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "he cranks the winch and the flag climbs because of it (staging.cause checks hand on the cause before motion)"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -95,7 +149,13 @@
     ]
    },
    "TALKING HEAD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "he works the winch side-on most of the shot; staging.talking now fails a centred idle head"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -107,7 +167,13 @@
   },
   "3": {
    "CONSEQUENCE": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "FAIL lamp and screen light red on test 1 and 2, PASS green on test 3; dip and touch to the box are on the board's stills"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -117,7 +183,13 @@
     ]
    },
    "NOT SHOWN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "the gauge is a tall HONEY/SYRUP column on the vat front, held in frame by a compose box"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -127,7 +199,13 @@
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "sacks are stencilled SYRUP sacks with necks and ties; the window has dusty lit glass"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -137,7 +215,13 @@
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "sacks with necks, ties and stencils; window glass lit by the sun"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -147,7 +231,13 @@
     ]
    },
    "ONE-SECOND GAG": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "retimed to the stills: dipping / red FAIL / cranking still red / green PASS; staging.keys now fails identical stills"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -157,7 +247,13 @@
     ]
    },
    "TINY DATA": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "lower lens framed first on his face (frame_data); the hat check now counts only his body"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -169,7 +265,13 @@
   },
   "4": {
    "BROKEN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "framed first with a wider lens so he ends the beat whole; staging.edges fails any of him off frame at the end"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -179,7 +281,13 @@
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "he pours the jar into the machine's funnel and the needle swings after it (staging.cause)"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -191,7 +299,13 @@
   },
   "5": {
    "BROKEN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "camera framed first with him whole; the rack is boxed whole in frame; brim and ears fixed in the shared hat"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -201,7 +315,13 @@
     ]
    },
    "NO PAYOFF": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "the scanner bar sweeps the whole rack and three of every seven jars are red; he ends pointing at you: what's in your jar"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -211,7 +331,13 @@
     ]
    },
    "NOT SHOWN": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "a full rack of three tiers of seven jars, three in seven red per tier, readable at once"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -221,7 +347,13 @@
     ]
    },
    "NOT THE WORLD": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "real cobble texture in the alley; the stray ball removed; brick walls, crates"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -231,7 +363,13 @@
     ]
    },
    "OFF THE LOOK": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "cobbles, a steel rack on the ground, no tilting plank"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",
@@ -241,7 +379,13 @@
     ]
    },
    "TINY DATA": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-23 22:01Z",
+      "round": 1,
+      "what": "face held toward the lens during the beat, frame_data on his face, hat brim smaller"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-23 20:18Z",

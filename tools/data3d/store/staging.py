@@ -451,6 +451,7 @@ def far(data, cam, nf, arc=(), name="shot", cutaway=None):
 # caaleb, of the honey board: "why such basic things got made at all". Because no check could see them. Each of these
 # was a HARD note on a board still that every measured check had passed.
 
+HIDDEN_SCALE = 0.01              # a thing keyed down to scale 1e-3 is OFF (a lamp, a screen word); stored as float32 it reads 0.0010000000475, so the cut is well above it
 TEXT_WORDS = ("sign", "label")   # a mesh named with one of these carries words; FONT objects always do
 CUT_GRACE_S = 0.3                # words may slide past the frame edge this long (a pan), no longer
 CUT_MIN_H = 0.006                # of the frame height: words smaller than this are not words on a phone
@@ -468,7 +469,7 @@ def _texts(declared=()):
 
 def _screen_box(sc, cam, o):
     if o.hide_render: return None
-    if max(abs(v) for v in o.matrix_world.to_scale()) < 1e-3: return None
+    if max(abs(v) for v in o.matrix_world.to_scale()) < HIDDEN_SCALE: return None
     q = [world_to_camera_view(sc, cam, o.matrix_world @ Vector(c)) for c in o.bound_box]
     if any(v.z <= 0 for v in q): return None
     return (min(v.x for v in q), min(v.y for v in q), max(v.x for v in q), max(v.y for v in q))
@@ -524,7 +525,7 @@ def _state(sc, cam, data):
     things = {}
     for o in sc.objects:
         if o.type not in ("MESH", "FONT") or o.name in mine: continue
-        live = not o.hide_render and max(abs(v) for v in o.matrix_world.to_scale()) > 1e-3
+        live = not o.hide_render and max(abs(v) for v in o.matrix_world.to_scale()) >= HIDDEN_SCALE
         b = _screen_box(sc, cam, o) if live else None
         c = _centre(o)
         ride = any((c - h).length < KEY_RIDE for h in hands)
@@ -539,11 +540,11 @@ def _news(t0, t1, sc, cam):
     for n, (l0, b0, r0, c0) in t0.items():
         if n not in t1: continue
         l1, b1, r1, c1 = t1[n]
-        if r0 or r1: continue
         b = b1 or b0
         if not b or (b[3] - b[1]) < KEY_SEEN or b[2] <= 0 or b[0] >= 1 or b[3] <= 0 or b[1] >= 1: continue
-        if l0 != l1:
+        if l0 != l1:                      # a lamp lighting under his hand is news; nothing he carries lights up
             out.append((n, "lit / came / went"))
+        elif r0 and r1: continue          # it rode in his hands from one still to the next: his pose, not news
         elif l0 and (c0 - c1).length > 1e-4:
             p0, p1 = world_to_camera_view(sc, cam, c0), world_to_camera_view(sc, cam, c1)
             d = math.hypot(p0.x - p1.x, (p0.y - p1.y))

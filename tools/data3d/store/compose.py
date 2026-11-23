@@ -171,7 +171,7 @@ def corners(objs):
     pts = []
     for o in objs:
         if o.hide_render: continue
-        if o.type == "MESH" and max(abs(v) for v in o.matrix_world.to_scale()) < 1e-3: continue
+        if max(abs(v) for v in o.matrix_world.to_scale()) < 0.01: continue    # keyed off (scale 1e-3, float32)
         pts += [tuple(o.matrix_world @ Vector(c)) for c in o.bound_box]
     return pts
 
@@ -290,5 +290,5 @@ def drop_cut(roots, cam, nf, step=4, label="set dressing"):
             if seen and not (b[0] >= 0 and b[2] <= 1 and b[1] >= 0 and b[3] <= 1):
                 for o in [r] + list(r.children_recursive): o.hide_render = True; o.hide_viewport = True
                 out.append(r.name); break
-    if out: print(f"COMPOSE {label}: dropped {len(out)} cut by the frame edge: {', '.join(out[:6])}", flush=True)
+    print(f"COMPOSE {label}: dropped {len(out)} of {len(roots)} cut by the frame edge" + (f": {', '.join(out[:6])}" if out else ""), flush=True)
     return out

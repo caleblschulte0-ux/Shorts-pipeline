@@ -258,6 +258,7 @@ def load_data():
 
 _story = os.path.join(STORY_DIR, "shots.py")
 exec(compile(open(_story).read(), _story, "exec"), globals())   # the story's acts, in this namespace
+sc.render.resolution_x, sc.render.resolution_y = 1080, 1920   # portrait WHILE the shot is built: compose.drop_cut and every on-screen measure a shot takes see the real frame, not the 16:9 default
 S = SHOTS[SHOT]()
 data = S["data"]; sc.frame_start = 1; sc.frame_end = NF
 if "sets" in SCRIPT and S.get("place", "store") != SCRIPT["sets"][SHOT - 1]:
