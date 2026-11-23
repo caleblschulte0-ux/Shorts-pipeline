@@ -1,0 +1,9 @@
+{
+ "id": "ceo-executive-pay-gap__20daafe8",
+ "slug": "ceo-executive-pay-gap",
+ "settled": "2026-11-23T09:46:45Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg2 (days_to_earn_your_year.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

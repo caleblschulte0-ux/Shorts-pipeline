@@ -1,0 +1,9 @@
+{
+ "id": "gulf-dead-zone-growth__20f1ed09",
+ "slug": "gulf-dead-zone-growth",
+ "settled": "2026-11-23T09:46:43Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg2 (mississippi_nitrogen_load_index.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

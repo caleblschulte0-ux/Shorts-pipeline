@@ -1,0 +1,9 @@
+{
+ "id": "muscle-loss-after-30__a5ebb426",
+ "slug": "muscle-loss-after-30",
+ "settled": "2026-11-23T09:46:42Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg2 (sarcopenia_training_intervention.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

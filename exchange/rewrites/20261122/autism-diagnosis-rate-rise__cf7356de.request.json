@@ -101,14 +101,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address site-to-site measurement range, only overall trend.",
-  "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex difference, unrelated to site range claim.",
-  "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While mentions a site measurement, it does not logically follow from the previous beat."
+  "premise: brain: The hook is vague and doesn’t promise a specific, picture‑worthy surprise or contradiction, making the pitch insufficiently concrete."
  ],
  "reasons": [
-  "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address site-to-site measurement range, only overall trend.",
-  "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex difference, unrelated to site range claim.",
-  "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While mentions a site measurement, it does not logically follow from the previous beat."
+  "premise: brain: The hook is vague and doesn’t promise a specific, picture‑worthy surprise or contradiction, making the pitch insufficiently concrete."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -141,5 +137,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-23T09:46:38Z"
 }

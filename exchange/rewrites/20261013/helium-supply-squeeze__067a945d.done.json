@@ -1,0 +1,10 @@
+{
+ "id": "helium-supply-squeeze__067a945d",
+ "slug": "helium-supply-squeeze",
+ "settled": "2026-11-23T09:46:37Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (helium_demand_2024_vs_2035.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (helium_price_spike_2011_2013.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

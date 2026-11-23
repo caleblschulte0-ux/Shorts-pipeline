@@ -1,0 +1,9 @@
+{
+ "id": "measles-ninety-five-rule__c11b709d",
+ "slug": "measles-ninety-five-rule",
+ "settled": "2026-11-23T09:46:37Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (disease_contagiousness_r0.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "id": "saffron-red-gold-myth__572913ae",
+ "slug": "saffron-red-gold-myth",
+ "settled": "2026-11-23T09:46:42Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (saffron_vs_pepper_price.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (expensive_spices_ranked.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (labor_hours_per_pound.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

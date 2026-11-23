@@ -1,0 +1,9 @@
+{
+ "id": "cursive-handwriting-comeback__f3e6eb41",
+ "slug": "cursive-handwriting-comeback",
+ "settled": "2026-11-23T09:46:45Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (cursive_literacy_young_adults.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

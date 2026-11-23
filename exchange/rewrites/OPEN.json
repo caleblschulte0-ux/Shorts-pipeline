@@ -1,7 +1,100 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-23T01:17:01Z",
+ "updated": "2026-11-23T09:46:46Z",
  "open": [
+  {
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__c76454d7",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-23T09:46:46Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that frames a clear, picture‑worthy contradiction or threat for the viewer."
+   ],
+   "request": "exchange/rewrites/20261123/india-beats-everyone-on-general-pupils-secondary-education-b__c76454d7.request.json",
+   "answer_path": "exchange/rewrites/20261123/india-beats-everyone-on-general-pupils-secondary-education-b__c76454d7.answer.json"
+  },
+  {
+   "id": "south-korea-robot-density-record__fda84246",
+   "slug": "south-korea-robot-density-record",
+   "filed": "2026-11-23T09:46:46Z",
+   "why": [
+    "narration: beat 1 reads off 3 numbers: say one, and what it means",
+    "narration: beat 2 reads off 3 numbers: say one, and what it means",
+    "narration: beat 3 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246.request.json",
+   "answer_path": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246.answer.json"
+  },
+  {
+   "id": "cargo-ship-size-growth__5726dcc3",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-11-23T09:46:45Z",
+   "why": [
+    "narration: beat 3 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/cargo-ship-size-growth__5726dcc3.request.json",
+   "answer_path": "exchange/rewrites/20261123/cargo-ship-size-growth__5726dcc3.answer.json"
+  },
+  {
+   "id": "lab-grown-diamond-price-collapse__1e47a59b",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-11-23T09:46:45Z",
+   "why": [
+    "narration: beat 2 reads off 2 numbers: say one, and what it means",
+    "narration: beat 3 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/lab-grown-diamond-price-collapse__1e47a59b.request.json",
+   "answer_path": "exchange/rewrites/20261123/lab-grown-diamond-price-collapse__1e47a59b.answer.json"
+  },
+  {
+   "id": "runway-near-misses-climbing__19f90f74",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-23T09:46:41Z",
+   "why": [
+    "narration: beat 1 names FAA: say what that is in plain words ('the experts', 'scientists', 'a space telescope')"
+   ],
+   "request": "exchange/rewrites/20261123/runway-near-misses-climbing__19f90f74.request.json",
+   "answer_path": "exchange/rewrites/20261123/runway-near-misses-climbing__19f90f74.answer.json"
+  },
+  {
+   "id": "flu-season-2024-25-worst-in-years__8a114e01",
+   "slug": "flu-season-2024-25-worst-in-years",
+   "filed": "2026-11-23T09:46:40Z",
+   "why": [
+    "narration: beat 1 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__8a114e01.request.json",
+   "answer_path": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__8a114e01.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__0e03d376",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-23T09:46:40Z",
+   "why": [
+    "narration: beat 2 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/right-whale-breeding-females__0e03d376.request.json",
+   "answer_path": "exchange/rewrites/20261123/right-whale-breeding-females__0e03d376.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__da177803",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-23T09:46:38Z",
+   "why": [
+    "narration: beat 1 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__da177803.request.json",
+   "answer_path": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__da177803.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__98b4248f",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-11-23T09:46:37Z",
+   "why": [
+    "narration: beat 1 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261123/divorce-rate-quiet-decline__98b4248f.request.json",
+   "answer_path": "exchange/rewrites/20261123/divorce-rate-quiet-decline__98b4248f.answer.json"
+  },
   {
    "id": "normal-body-temperature-has-shifted__fcb6240a",
    "slug": "normal-body-temperature-has-shifted",
@@ -11,66 +104,6 @@
    ],
    "request": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__fcb6240a.request.json",
    "answer_path": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__fcb6240a.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__15bbbefa",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-11-23T01:17:00Z",
-   "why": [
-    "premise: brain: The hook is a vague, flat fun fact about weight-bearing bones with no named threat or concrete image, and the title and beats read as a stat sheet that offers the viewer no stake and nothing for them to believe and then have turned over."
-   ],
-   "request": "exchange/rewrites/20261123/astronaut-bone-loss__15bbbefa.request.json",
-   "answer_path": "exchange/rewrites/20261123/astronaut-bone-loss__15bbbefa.answer.json"
-  },
-  {
-   "id": "us-height-ranking-fall__b3299d80",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-11-23T01:17:00Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or specific stake for the viewer beyond a generic statement about losing the height lead."
-   ],
-   "request": "exchange/rewrites/20261123/us-height-ranking-fall__b3299d80.request.json",
-   "answer_path": "exchange/rewrites/20261123/us-height-ranking-fall__b3299d80.answer.json"
-  },
-  {
-   "id": "frog-freezes-and-revives__1180dc92",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-11-23T01:17:00Z",
-   "why": [
-    "premise: brain: The pitch is a flat fun fact (\"a frog can freeze and survive\") with no stake for the viewer or belief it turns over, and its beats are three stats (water frozen, cold survived, latitude) that don't build cause-and-effect."
-   ],
-   "request": "exchange/rewrites/20261123/frog-freezes-and-revives__1180dc92.request.json",
-   "answer_path": "exchange/rewrites/20261123/frog-freezes-and-revives__1180dc92.answer.json"
-  },
-  {
-   "id": "map-distortion-true-size__45b82c82",
-   "slug": "map-distortion-true-size",
-   "filed": "2026-11-23T01:17:00Z",
-   "why": [
-    "premise: brain: The hook is an abstract, number-free statement about map distortion with no stake or twist, and the pitch is a familiar Mercator-vs-Africa fun fact whose title is a muddled comparison."
-   ],
-   "request": "exchange/rewrites/20261123/map-distortion-true-size__45b82c82.request.json",
-   "answer_path": "exchange/rewrites/20261123/map-distortion-true-size__45b82c82.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__a3a64c1f",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-11-23T01:16:59Z",
-   "why": [
-    "premise: brain: The pitch is a flat fun fact (a small share of people donate) with no named threat, twist or consequence a viewer can picture, and the hook is vague and hedge-like with no stake."
-   ],
-   "request": "exchange/rewrites/20261123/blood-supply-three-percent__a3a64c1f.request.json",
-   "answer_path": "exchange/rewrites/20261123/blood-supply-three-percent__a3a64c1f.answer.json"
-  },
-  {
-   "id": "library-digital-shift__368b6dd5",
-   "slug": "library-digital-shift",
-   "filed": "2026-11-23T01:16:59Z",
-   "why": [
-    "premise: brain: The pitch is a flat, abstract observation (visits fell while digital loans rose) with no concrete surprise, threat or stake the viewer can picture, and the hook names no vivid subject or twist."
-   ],
-   "request": "exchange/rewrites/20261123/library-digital-shift__368b6dd5.request.json",
-   "answer_path": "exchange/rewrites/20261123/library-digital-shift__368b6dd5.answer.json"
   },
   {
    "id": "vinyl-beats-cd-sales-again__de8ae10e",
@@ -87,7 +120,8 @@
    "slug": "feet-are-getting-bigger",
    "filed": "2026-11-23T01:16:59Z",
    "why": [
-    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Width is a different change from the length/shoe-size growth in beat 0; the beat just adds another foot fact and doesn't"
+    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Width increase is a related detail but doesn't directly prove the claim about shoe-size growth and doesn't follow logica",
+    "thesis: seg2 ('Why British feet grow') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Provides a cause for foot growth, but it doesn't directly follow from the previous beat about width and isn't a direct p"
    ],
    "request": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb.request.json",
    "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__d12e79cb.answer.json"
@@ -146,76 +180,6 @@
    "answer_path": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__af278c97.answer.json"
   },
   {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-22T20:56:32Z",
-   "why": [
-    "premise: brain: The pitch is a generic survey of five unrelated education statistics from different countries with no single concrete surprise or threat, and its hook ('a child's whole future can depend on which country's classroom they land in') is a vague truism the beats never turn over."
-   ],
-   "request": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e.request.json",
-   "answer_path": "exchange/rewrites/20261122/india-beats-everyone-on-general-pupils-secondary-education-b__bd88795e.answer.json"
-  },
-  {
-   "id": "chess-online-boom__f3d078d3",
-   "slug": "chess-online-boom",
-   "filed": "2026-11-22T20:56:31Z",
-   "why": [
-    "premise: brain: The pitch is a flat growth stat (a hook about a TV release tripling signups, then 200 million accounts) with no villain, threat or contradiction. The viewer is given nothing to believe that the beats then overturn, and beats 1 and 3 repeat the same fact."
-   ],
-   "request": "exchange/rewrites/20261122/chess-online-boom__f3d078d3.request.json",
-   "answer_path": "exchange/rewrites/20261122/chess-online-boom__f3d078d3.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__20f1ed09",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-11-22T18:58:30Z",
-   "why": [
-    "premise: brain: The pitch is a flat 'dead zone grew' statistic with no human stake, villain or relatable picture, and the hook ('a shrinking ocean dead zone suddenly surged back') is vague and abstract, so the viewer has no concrete threat to picture."
-   ],
-   "request": "exchange/rewrites/20261122/gulf-dead-zone-growth__20f1ed09.request.json",
-   "answer_path": "exchange/rewrites/20261122/gulf-dead-zone-growth__20f1ed09.answer.json"
-  },
-  {
-   "id": "gps-einstein-fix__c2b1ca22",
-   "slug": "gps-einstein-fix",
-   "filed": "2026-11-22T18:58:29Z",
-   "why": [
-    "premise: brain: The pitch is a familiar relativity-and-GPS fun fact that has no threat to the viewer and no belief for the beats to overturn, and its hook 'misses by 10 kilometers in one day' is a stated stat, not a concrete stake."
-   ],
-   "request": "exchange/rewrites/20261122/gps-einstein-fix__c2b1ca22.request.json",
-   "answer_path": "exchange/rewrites/20261122/gps-einstein-fix__c2b1ca22.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__614b1d40",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-11-22T16:28:10Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a clear, concrete surprise or stakes for the viewer beyond a generic slowdown claim."
-   ],
-   "request": "exchange/rewrites/20261122/chip-transistor-shrink-limit__614b1d40.request.json",
-   "answer_path": "exchange/rewrites/20261122/chip-transistor-shrink-limit__614b1d40.answer.json"
-  },
-  {
-   "id": "moon-drifting-away__653a5ccc_r4",
-   "slug": "moon-drifting-away",
-   "filed": "2026-11-22T12:31:26Z",
-   "why": [
-    "premise: brain: The claim is misleading, since the Moon's slow drift ending total eclipses in about 600 million years is a well-known fact with no stakes or twist the viewer can picture, and the hook states it flatly instead of promising a surprise that turns over something they believe."
-   ],
-   "request": "exchange/rewrites/20261122/moon-drifting-away__653a5ccc_r4.request.json",
-   "answer_path": "exchange/rewrites/20261122/moon-drifting-away__653a5ccc_r4.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__a5ebb426",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-11-21T13:21:26Z",
-   "why": [
-    "premise: brain: The premise is vague and unverified, lacking a concrete, proven claim about muscle mass dropping to exactly 65% by age 80."
-   ],
-   "request": "exchange/rewrites/20261121/muscle-loss-after-30__a5ebb426.request.json",
-   "answer_path": "exchange/rewrites/20261121/muscle-loss-after-30__a5ebb426.answer.json"
-  },
-  {
    "id": "sperm-counts-cut-in-half__88a02a18",
    "slug": "sperm-counts-cut-in-half",
    "filed": "2026-11-21T13:21:26Z",
@@ -236,36 +200,6 @@
    "answer_path": "exchange/rewrites/20261121/freshwater-accessible__fdd3d94b.answer.json"
   },
   {
-   "id": "measles-ninety-five-rule__c11b709d",
-   "slug": "measles-ninety-five-rule",
-   "filed": "2026-11-21T13:21:24Z",
-   "why": [
-    "premise: brain: The hook is vague and does not present a concrete, verifiable surprise or specific scenario."
-   ],
-   "request": "exchange/rewrites/20261121/measles-ninety-five-rule__c11b709d.request.json",
-   "answer_path": "exchange/rewrites/20261121/measles-ninety-five-rule__c11b709d.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__c9a9b4d6",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-11-21T13:21:24Z",
-   "why": [
-    "premise: brain: The claim about the US divorce rate dropping from 4.7 to 2.4 per thousand is not a verifiable, concrete fact and appears inaccurate."
-   ],
-   "request": "exchange/rewrites/20261121/divorce-rate-quiet-decline__c9a9b4d6.request.json",
-   "answer_path": "exchange/rewrites/20261121/divorce-rate-quiet-decline__c9a9b4d6.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__8938319a",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-21T00:22:37Z",
-   "why": [
-    "premise: brain: The claim about 23 serious runway near‑misses lacks verifiable evidence and may be inaccurate."
-   ],
-   "request": "exchange/rewrites/20261121/runway-near-misses-climbing__8938319a.request.json",
-   "answer_path": "exchange/rewrites/20261121/runway-near-misses-climbing__8938319a.answer.json"
-  },
-  {
    "id": "tattoo-mainstream-shift__f7fc7a74",
    "slug": "tattoo-mainstream-shift",
    "filed": "2026-11-21T00:22:37Z",
@@ -276,21 +210,11 @@
    "answer_path": "exchange/rewrites/20261121/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
-   "id": "womens-college-hoops-out-rates-men__3fe10075",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-21T00:22:36Z",
-   "why": [
-    "premise: brain: The claim about viewership numbers is likely inaccurate and unverified, making the premise not concretely true."
-   ],
-   "request": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.request.json",
-   "answer_path": "exchange/rewrites/20261121/womens-college-hoops-out-rates-men__3fe10075.answer.json"
-  },
-  {
    "id": "frog-fungus-mass-extinction__609ffc7e",
    "slug": "frog-fungus-mass-extinction",
    "filed": "2026-11-20T13:11:33Z",
    "why": [
-    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
+    "premise: brain: The pitch is vague and lacks a concrete, picture‑able surprise or stakes beyond generic numbers, making it too weak for a compelling Shorts hook."
    ],
    "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
    "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
@@ -304,26 +228,6 @@
    ],
    "request": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.request.json",
    "answer_path": "exchange/rewrites/20261119/richest-americans-live-14-years-longer__ff249bfc_r1.answer.json"
-  },
-  {
-   "id": "betelgeuse-great-dimming__f1ec3d70",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The claim about Betelgeuse dropping to exactly 36% brightness and being caused by dust is not a verified, concrete fact."
-   ],
-   "request": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.request.json",
-   "answer_path": "exchange/rewrites/20261119/betelgeuse-great-dimming__f1ec3d70.answer.json"
-  },
-  {
-   "id": "lego-minifigs-outnumber-humans__d15cebf7_r1",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-11-19T00:50:05Z",
-   "why": [
-    "premise: brain: The hook states a number (10 billion) and a comparison without a surprise the viewer can picture or a belief it overturns, and it is a mechanical restatement of the title in a formula-like pattern."
-   ],
-   "request": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.request.json",
-   "answer_path": "exchange/rewrites/20261119/lego-minifigs-outnumber-humans__d15cebf7_r1.answer.json"
   },
   {
    "id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
@@ -346,42 +250,11 @@
    "answer_path": "exchange/rewrites/20261119/people-over-65-outnumber-kids-under-5__df8ae648.answer.json"
   },
   {
-   "id": "clear-air-turbulence-increase__afb34a62",
-   "slug": "clear-air-turbulence-increase",
-   "filed": "2026-11-18T23:01:25Z",
-   "why": [
-    "premise: brain: The claim is vague and unverified, lacking a concrete, provable fact about turbulence duration."
-   ],
-   "request": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.request.json",
-   "answer_path": "exchange/rewrites/20261118/clear-air-turbulence-increase__afb34a62.answer.json"
-  },
-  {
-   "id": "fireflies-losing-their-glow__5dd482f3",
-   "slug": "fireflies-losing-their-glow",
-   "filed": "2026-11-18T18:41:47Z",
-   "why": [
-    "premise: brain: The title is a generic search-style question, and the hook rests on a vague 'summer nights going dark' with a stat-based 'percent threatened' line; it names no concrete surprise, contradiction or scale the viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.request.json",
-   "answer_path": "exchange/rewrites/20261118/fireflies-losing-their-glow__5dd482f3.answer.json"
-  },
-  {
-   "id": "north-american-bird-collapse__1e7ff9ae",
-   "slug": "north-american-bird-collapse",
-   "filed": "2026-11-18T16:58:18Z",
-   "why": [
-    "premise: brain: The claim of 2.9 billion breeding birds vanished is a specific, unverified figure, making the premise insufficiently concrete and likely false."
-   ],
-   "request": "exchange/rewrites/20261118/north-american-bird-collapse__1e7ff9ae.request.json",
-   "answer_path": "exchange/rewrites/20261118/north-american-bird-collapse__1e7ff9ae.answer.json"
-  },
-  {
    "id": "cohabitation-overtakes-marriage__debb4b76",
    "slug": "cohabitation-overtakes-marriage",
    "filed": "2026-11-18T15:25:26Z",
    "why": [
-    "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Provides a historical marriage rate trend rather than directly supporting the current young‑adult cohab vs marriage clai",
-    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts focus to older adults, not the young‑adult claim, and is unrelated to the previous beat."
+    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Focuses on older adults, not young adults, so it doesn't support the headline claim."
    ],
    "request": "exchange/rewrites/20261118/cohabitation-overtakes-marriage__debb4b76.request.json",
    "answer_path": "exchange/rewrites/20261118/cohabitation-overtakes-marriage__debb4b76.answer.json"
@@ -391,7 +264,7 @@
    "slug": "fifty-otters-survived-climate-fight",
    "filed": "2026-11-18T13:14:53Z",
    "why": [
-    "premise: brain: The premise is vague and unverified, lacking a clear, concrete surprise or factual claim."
+    "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Beat 1 adds recovery info not needed to prove the headline claim about surviving then protecting kelp."
    ],
    "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.request.json",
    "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.answer.json"
@@ -401,37 +274,17 @@
    "slug": "ocean-is-changing-color",
    "filed": "2026-11-18T13:14:52Z",
    "why": [
-    "premise: brain: The claim that 56% of the ocean has changed color is not a verifiable, concrete fact and lacks supporting evidence."
+    "story: fatal: invented_fact, missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.request.json",
    "answer_path": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__f3e6eb41",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-11-18T13:14:51Z",
-   "why": [
-    "premise: brain: The claim is vague and unverified, lacking concrete, true evidence."
-   ],
-   "request": "exchange/rewrites/20261118/cursive-handwriting-comeback__f3e6eb41.request.json",
-   "answer_path": "exchange/rewrites/20261118/cursive-handwriting-comeback__f3e6eb41.answer.json"
-  },
-  {
-   "id": "dating-app-user-exodus__803f07ec",
-   "slug": "dating-app-user-exodus",
-   "filed": "2026-11-18T13:14:51Z",
-   "why": [
-    "premise: brain: The premise makes an unverified claim about Tinder's user count and a vague cause, lacking concrete, proven facts."
-   ],
-   "request": "exchange/rewrites/20261118/dating-app-user-exodus__803f07ec.request.json",
-   "answer_path": "exchange/rewrites/20261118/dating-app-user-exodus__803f07ec.answer.json"
   },
   {
    "id": "nuclear-reactors-under-construction__5de43777",
    "slug": "nuclear-reactors-under-construction",
    "filed": "2026-11-18T13:14:51Z",
    "why": [
-    "premise: brain: The claim of exactly 78 GW of nuclear capacity under construction is a vague aggregate without verifiable source, making it non‑concrete and likely inaccurate."
+    "premise: brain: The pitch is a flat fact with no concrete surprise, threat, or vivid stakes for the viewer."
    ],
    "request": "exchange/rewrites/20261118/nuclear-reactors-under-construction__5de43777.request.json",
    "answer_path": "exchange/rewrites/20261118/nuclear-reactors-under-construction__5de43777.answer.json"
@@ -441,7 +294,8 @@
    "slug": "us-stops-making-pennies-232-years",
    "filed": "2026-11-18T12:25:45Z",
    "why": [
-    "premise: brain: The premise is not a true, concrete claim—there is no evidence the US will cease penny production after 232 years."
+    "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical longevity but doesn't directly support the claim to stop making pennies.",
+    "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Compares nickel costs, which doesn't reinforce the decision to cease penny production and isn't a logical continuation."
    ],
    "request": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070_r1.request.json",
    "answer_path": "exchange/rewrites/20261118/us-stops-making-pennies-232-years__e8e35070_r1.answer.json"
@@ -451,40 +305,10 @@
    "slug": "volcanoes-erupting-right-now",
    "filed": "2026-11-18T12:25:45Z",
    "why": [
-    "premise: brain: The claim of ~45 simultaneous eruptions is not a verifiable, concrete fact and likely inaccurate."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer beyond generic volcano counts"
    ],
    "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.request.json",
    "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
-  },
-  {
-   "id": "human-domesticated-14-animals__60c60bd9_r1",
-   "slug": "human-domesticated-14-animals",
-   "filed": "2026-11-18T12:25:44Z",
-   "why": [
-    "premise: brain: The claim of exactly 14 large domesticated animals is not a verifiable, concrete fact and is likely inaccurate."
-   ],
-   "request": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261118/human-domesticated-14-animals__60c60bd9_r1.answer.json"
-  },
-  {
-   "id": "seabed-mining-rush__497e0491",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-11-18T10:18:48Z",
-   "why": [
-    "premise: brain: The premise makes unverified quantitative claims and vague threats without concrete, proven facts."
-   ],
-   "request": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.request.json",
-   "answer_path": "exchange/rewrites/20261118/seabed-mining-rush__497e0491.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__467b2734",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-11-17T22:22:48Z",
-   "why": [
-    "premise: brain: The claim hinges on an unverified adoption timeframe and lacks a single, concrete, verifiable number to substantiate the reversal of expectations."
-   ],
-   "request": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.request.json",
-   "answer_path": "exchange/rewrites/20261117/chatgpt-fastest-adoption-ever__467b2734.answer.json"
   },
   {
    "id": "lake-mead-water-crisis__4529ddf6",
@@ -517,36 +341,6 @@
    "answer_path": "exchange/rewrites/20261117/religious-nones-rise__ba903e44_r1.answer.json"
   },
   {
-   "id": "cavendish-banana-monoculture__c839b8fc_r1",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-11-17T12:26:57Z",
-   "why": [
-    "premise: brain: The premise does not clearly invert a common viewer expectation, making it insufficient for the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261117/cavendish-banana-monoculture__c839b8fc_r1.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__e51f51ef",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-11-16T12:04:30Z",
-   "why": [
-    "premise: brain: It relies on two numbers ($4,200 and $380) instead of a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261116/lab-grown-diamond-price-collapse__e51f51ef.request.json",
-   "answer_path": "exchange/rewrites/20261116/lab-grown-diamond-price-collapse__e51f51ef.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__81a9a288",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-11-16T12:04:30Z",
-   "why": [
-    "premise: brain: The premise relies on a vague claim about a conversion emptying a plane and does not clearly reverse a specific viewer expectation with a single, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261116/metric-system-holdouts__81a9a288.request.json",
-   "answer_path": "exchange/rewrites/20261116/metric-system-holdouts__81a9a288.answer.json"
-  },
-  {
    "id": "english-internet-share-decline__312d565d_r1",
    "slug": "english-internet-share-decline",
    "filed": "2026-11-16T12:04:28Z",
@@ -561,8 +355,7 @@
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-16T12:04:28Z",
    "why": [
-    "thesis: seg0 ('robotic procedures') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline",
-    "thesis: seg2 ('robotic revenue') has no bridge to the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: no genuine bridge to the headline"
+    "thesis: seg2 ('robotic revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Revenue figure talks about money, not the specific 15.1% surgery share claimed in the headline."
    ],
    "request": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.request.json",
    "answer_path": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.answer.json"
@@ -598,26 +391,6 @@
    "answer_path": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.answer.json"
   },
   {
-   "id": "black-holes-in-galaxy__4e789d36",
-   "slug": "black-holes-in-galaxy",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified large figure rather than a single, clearly verifiable number that definitively overturns a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.request.json",
-   "answer_path": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.answer.json"
-  },
-  {
-   "id": "self-storage-outnumbers-starbucks__97599610",
-   "slug": "self-storage-outnumbers-starbucks",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an ambiguous, unverifiable number for a specific town rather than a national, consequential figure."
-   ],
-   "request": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.request.json",
-   "answer_path": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.answer.json"
-  },
-  {
    "id": "podcasts-passed-radio-spoken-word__1c353e96",
    "slug": "podcasts-passed-radio-spoken-word",
    "filed": "2026-10-18T11:46:49Z",
@@ -646,16 +419,6 @@
    ],
    "request": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.request.json",
    "answer_path": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
-  },
-  {
-   "id": "game-industry-layoffs-record__47b9280e",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: brain: The premise does not reverse a viewer expectation and merely states two unrelated facts despite the number."
-   ],
-   "request": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.request.json",
-   "answer_path": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.answer.json"
   },
   {
    "id": "insect-planet__3c4a491b",
@@ -728,16 +491,6 @@
    "answer_path": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.answer.json"
   },
   {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-17T15:25:39Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on an unsubstantiated, vague claim rather than a single, verifiable numeric fact."
-   ],
-   "request": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
    "id": "blockbuster-to-one-store__857f036d",
    "slug": "blockbuster-to-one-store",
    "filed": "2026-10-17T12:56:16Z",
@@ -788,46 +541,6 @@
    "answer_path": "exchange/rewrites/20261016/big-mac-index-currency-gap__beb75adc.answer.json"
   },
   {
-   "id": "ceo-executive-pay-gap__20daafe8",
-   "slug": "ceo-executive-pay-gap",
-   "filed": "2026-10-15T17:50:25Z",
-   "why": [
-    "premise: brain: It doesn’t clearly overturn a common viewer expectation, merely states a large ratio without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261015/ceo-executive-pay-gap__20daafe8.request.json",
-   "answer_path": "exchange/rewrites/20261015/ceo-executive-pay-gap__20daafe8.answer.json"
-  },
-  {
-   "id": "daylight-saving-time-in-decline__1445ae6b",
-   "slug": "daylight-saving-time-in-decline",
-   "filed": "2026-10-15T17:50:25Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261015/daylight-saving-time-in-decline__1445ae6b.request.json",
-   "answer_path": "exchange/rewrites/20261015/daylight-saving-time-in-decline__1445ae6b.answer.json"
-  },
-  {
-   "id": "ants-outnumber-humans__1beccbad",
-   "slug": "ants-outnumber-humans",
-   "filed": "2026-10-15T13:23:21Z",
-   "why": [
-    "premise: brain: The claim does not subvert a specific viewer expectation; it merely states a known statistic."
-   ],
-   "request": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.request.json",
-   "answer_path": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.answer.json"
-  },
-  {
-   "id": "eclipse-recurrence-rarity__789a0737",
-   "slug": "eclipse-recurrence-rarity",
-   "filed": "2026-10-15T13:23:21Z",
-   "why": [
-    "premise: brain: It does not hinge on a single verifiable number and merely confirms a known rarity rather than reversing a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261015/eclipse-recurrence-rarity__789a0737.request.json",
-   "answer_path": "exchange/rewrites/20261015/eclipse-recurrence-rarity__789a0737.answer.json"
-  },
-  {
    "id": "panama-canal-drought-transit-cuts__3cc174f2",
    "slug": "panama-canal-drought-transit-cuts",
    "filed": "2026-10-15T13:23:19Z",
@@ -876,16 +589,6 @@
    ],
    "request": "exchange/rewrites/20261014/billionaire-count-record-2025__a388e951.request.json",
    "answer_path": "exchange/rewrites/20261014/billionaire-count-record-2025__a388e951.answer.json"
-  },
-  {
-   "id": "saffron-red-gold-myth__572913ae",
-   "slug": "saffron-red-gold-myth",
-   "filed": "2026-10-13T12:41:34Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a generic price claim."
-   ],
-   "request": "exchange/rewrites/20261013/saffron-red-gold-myth__572913ae.request.json",
-   "answer_path": "exchange/rewrites/20261013/saffron-red-gold-myth__572913ae.answer.json"
   },
   {
    "id": "hpv-vaccine-cancer-drop__d23144d8",

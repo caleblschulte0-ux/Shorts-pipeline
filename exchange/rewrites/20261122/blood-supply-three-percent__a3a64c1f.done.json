@@ -1,0 +1,9 @@
+{
+ "id": "blood-supply-three-percent__a3a64c1f",
+ "slug": "blood-supply-three-percent",
+ "settled": "2026-11-23T09:46:39Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (blood_donor_decline_index.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "id": "north-american-bird-collapse__1e7ff9ae",
+ "slug": "north-american-bird-collapse",
+ "settled": "2026-11-23T09:46:44Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (na_bird_abundance_1970_2017.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (bird_population_change_by_group.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (bird_loss_concentration_12_families.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

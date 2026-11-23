@@ -1,0 +1,10 @@
+{
+ "id": "game-industry-layoffs-record__47b9280e",
+ "slug": "game-industry-layoffs-record",
+ "settled": "2026-11-23T09:46:39Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (game_layoffs_trend.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (game_layoffs_by_company.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

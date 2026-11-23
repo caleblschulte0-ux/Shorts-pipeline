@@ -1,0 +1,10 @@
+{
+ "id": "gps-einstein-fix__c2b1ca22",
+ "slug": "gps-einstein-fix",
+ "settled": "2026-11-23T09:46:42Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (gps_clock_relativity_shift.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (gps_position_error_growth.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

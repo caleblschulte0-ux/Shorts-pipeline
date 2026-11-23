@@ -1,0 +1,10 @@
+{
+ "id": "black-holes-in-galaxy__4e789d36",
+ "slug": "black-holes-in-galaxy",
+ "settled": "2026-11-23T09:46:44Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (black_hole_detection_methods.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (black_hole_hidden_total.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

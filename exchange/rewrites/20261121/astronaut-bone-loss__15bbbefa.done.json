@@ -1,0 +1,9 @@
+{
+ "id": "astronaut-bone-loss__15bbbefa",
+ "slug": "astronaut-bone-loss",
+ "settled": "2026-11-23T09:46:41Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg2 (iss_vs_mars_bone_loss.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

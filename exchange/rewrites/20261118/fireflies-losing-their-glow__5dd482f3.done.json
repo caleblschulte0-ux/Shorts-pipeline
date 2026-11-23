@@ -1,0 +1,9 @@
+{
+ "id": "fireflies-losing-their-glow__5dd482f3",
+ "slug": "fireflies-losing-their-glow",
+ "settled": "2026-11-23T09:46:44Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (firefly_light_pollution_index.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "id": "metric-system-holdouts__81a9a288",
+ "slug": "metric-system-holdouts",
+ "settled": "2026-11-23T09:46:44Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (metric_holdout_population_share.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "id": "dating-app-user-exodus__803f07ec",
+ "slug": "dating-app-user-exodus",
+ "settled": "2026-11-23T09:46:45Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (dating_app_industry_usage_comparison.json): source officiality='illustrative' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

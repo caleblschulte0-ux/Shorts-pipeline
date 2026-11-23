@@ -1,0 +1,11 @@
+{
+ "id": "betelgeuse-great-dimming__f1ec3d70",
+ "slug": "betelgeuse-great-dimming",
+ "settled": "2026-11-23T09:46:42Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (betelgeuse_brightness_drop.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (betelgeuse_dust_coverage.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (betelgeuse_timescale_comparison.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

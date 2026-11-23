@@ -1,0 +1,54 @@
+{
+ "slug": "insect-planet",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 12,
+   "hook": 18,
+   "arc": 14,
+   "factual": 13,
+   "visual_proof": 10,
+   "payoff": 9,
+   "voice": 4
+  },
+  "total": 80,
+  "fatal": [
+   "unrenderable_visual"
+  ],
+  "weakest": "visual_proof",
+  "note": "Specify clear, simple visuals that are easily readable on a phone screen.",
+  "fp": "23416c44cfd4d9ea"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Most of the bugs crawling around you have never even been given a name.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Roughly eight out of every ten animal species are insects, so the animal kingdom is mostly bugs, and we are the small minority.",
+   "eyes": "substance: drawers of pinned insects; cause: Data pulls each drawer of the cabinet open by its handle, eight full of bugs and two of everything else",
+   "evidence": "Smithsonian Institution / Royal Entomological Society | Insects as a share of all known animal species | https://www.si.edu/spotlight/buginfo/bugnos | 2026-08-09"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Beetles alone have about 1.5 million species, while mammals and birds together are a tiny fraction of that. Bugs win by a landslide.",
+   "eyes": "a data picture (rank)",
+   "evidence": "Stork (2018), Annual Review of Entomology; IUCN / BirdLife International species counts | Estimated beetle species vs. total mammal and bird species | https://www.annualreviews.org/doi/10.1146/annurev-ento-020117-043348 | 2026-08-09"
+  },
+  {
+   "window": "beat 2",
+   "ears": "We've named about one in five insect species scientists think exist. That means most bugs out there have never even had a name.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Annual Reviews / peer-reviewed entomology research | Insect species described so far vs. estimated to actually exist | https://www.annualreviews.org/doi/10.1146/annurev-ento-020117-043348 | 2026-08-09"
+  },
+  {
+   "window": "closing",
+   "ears": "Most bugs are still unnamed, so we barely know who we share this planet with.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

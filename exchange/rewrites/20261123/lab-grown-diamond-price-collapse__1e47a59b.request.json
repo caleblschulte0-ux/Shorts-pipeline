@@ -1,0 +1,185 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "lab-grown-diamond-price-collapse__1e47a59b",
+ "filed": "2026-11-23T09:46:45Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "lab-grown-diamond-price-collapse",
+ "current": {
+  "title": "A $4,200 Diamond's Lab Twin Now Costs $380",
+  "hook": "The same-looking diamond now costs $380 instead of $4,200.",
+  "closing": "When identical-looking stones diverge this much, buyers start questioning what rarity is worth.",
+  "question": "Natural or lab-grown?",
+  "segments": [
+   {
+    "topic": "Diamond Price Collapse",
+    "say": "In 2023, a lab-grown diamond cost $1,400. The price halved in one year, then nearly halved again."
+   },
+   {
+    "topic": "Diamond Price Gap",
+    "say": "A natural one-carat diamond costs $4,200; a lab-grown one costs $380. That is about eleven times less."
+   },
+   {
+    "topic": "Diamond Ring Share",
+    "say": "By 2024, 47 percent of US engagement rings used lab-grown centers. In 2018, only 3 percent did."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Diamond Price Collapse",
+   "say": "In 2023, a lab-grown diamond cost $1,400. The price halved in one year, then nearly halved again.",
+   "role": "1 · THE CRASH",
+   "data": {
+    "file": "lab_grown_diamond_price.json",
+    "unit": "dollars",
+    "title": "Lab-grown diamond wholesale price, 1ct G/VS1 (dollars)",
+    "points": [
+     {
+      "label": "2020",
+      "value": 4200,
+      "period": "2020"
+     },
+     {
+      "label": "2021",
+      "value": 3400,
+      "period": "2021"
+     },
+     {
+      "label": "2022",
+      "value": 2400,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 1400,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 700,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 380,
+      "period": "2025"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Diamond Price Gap",
+   "say": "A natural one-carat diamond costs $4,200; a lab-grown one costs $380. That is about eleven times less.",
+   "role": "2 · THE GAP",
+   "data": {
+    "file": "diamond_price_snapshot_2025.json",
+    "unit": "dollars",
+    "title": "1-carat diamond price by type, 2025 (dollars)",
+    "points": [
+     {
+      "label": "Natural",
+      "value": 4200
+     },
+     {
+      "label": "Lab-Grown",
+      "value": 380
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Diamond Ring Share",
+   "say": "By 2024, 47 percent of US engagement rings used lab-grown centers. In 2018, only 3 percent did.",
+   "role": "3 · THE SHIFT",
+   "data": {
+    "file": "lab_grown_ring_share.json",
+    "unit": "percent",
+    "title": "Share of US engagement rings sold with a lab-grown center stone (percent)",
+    "points": [
+     {
+      "label": "2018",
+      "value": 3,
+      "period": "2018"
+     },
+     {
+      "label": "2019",
+      "value": 6,
+      "period": "2019"
+     },
+     {
+      "label": "2020",
+      "value": 9,
+      "period": "2020"
+     },
+     {
+      "label": "2021",
+      "value": 16,
+      "period": "2021"
+     },
+     {
+      "label": "2022",
+      "value": 25,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 35,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 47,
+      "period": "2024"
+     }
+    ],
+    "n_points": 7
+   }
+  }
+ ],
+ "held_for": [
+  "narration: beat 2 reads off 2 numbers: say one, and what it means",
+  "narration: beat 3 reads off 2 numbers: say one, and what it means"
+ ],
+ "reasons": [
+  "narration: beat 2 reads off 2 numbers: say one, and what it means",
+  "narration: beat 3 reads off 2 numbers: say one, and what it means"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261123/lab-grown-diamond-price-collapse__1e47a59b.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

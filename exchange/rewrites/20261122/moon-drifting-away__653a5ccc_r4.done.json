@@ -1,0 +1,10 @@
+{
+ "id": "moon-drifting-away__653a5ccc_r4",
+ "slug": "moon-drifting-away",
+ "settled": "2026-11-23T09:46:43Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (moon_day_length_comparison.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (moon_eclipse_timescale.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

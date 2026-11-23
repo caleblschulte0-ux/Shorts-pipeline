@@ -1,0 +1,11 @@
+{
+ "id": "ants-outnumber-humans__1beccbad",
+ "slug": "ants-outnumber-humans",
+ "settled": "2026-11-23T09:46:42Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (ant_biomass_by_group.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (ant_vs_human_biomass.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (ant_vs_human_count.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

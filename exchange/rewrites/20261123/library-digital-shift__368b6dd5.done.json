@@ -1,0 +1,9 @@
+{
+ "id": "library-digital-shift__368b6dd5",
+ "slug": "library-digital-shift",
+ "settled": "2026-11-23T09:46:40Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (library_digital_checkouts_trend.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

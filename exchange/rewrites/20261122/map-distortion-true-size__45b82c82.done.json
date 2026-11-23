@@ -1,0 +1,9 @@
+{
+ "id": "map-distortion-true-size__45b82c82",
+ "slug": "map-distortion-true-size",
+ "settled": "2026-11-23T09:46:44Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (mercator_distortion_by_latitude.json): source officiality='reference' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

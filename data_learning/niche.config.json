@@ -19407,19 +19407,21 @@
    "retold": "retell/v3",
    "scorecard": {
     "scores": {
-     "premise": 10,
+     "premise": 12,
      "hook": 18,
-     "arc": 16,
+     "arc": 14,
      "factual": 13,
-     "visual_proof": 12,
+     "visual_proof": 10,
      "payoff": 9,
      "voice": 4
     },
-    "total": 82,
-    "fatal": [],
-    "weakest": "premise",
-    "note": "Clarify and simplify the visual concepts so they are unmistakably clear and legible on a small phone screen.",
-    "fp": "4ff3ad708eddaf50"
+    "total": 80,
+    "fatal": [
+     "unrenderable_visual"
+    ],
+    "weakest": "visual_proof",
+    "note": "Specify clear, simple visuals that are easily readable on a phone screen.",
+    "fp": "23416c44cfd4d9ea"
    }
   },
   {

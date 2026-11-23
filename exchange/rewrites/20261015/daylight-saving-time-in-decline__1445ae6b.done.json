@@ -1,0 +1,10 @@
+{
+ "id": "daylight-saving-time-in-decline__1445ae6b",
+ "slug": "daylight-saving-time-in-decline",
+ "settled": "2026-11-23T09:46:45Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (dst_decline_trend.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (dst_population_coverage.json): source officiality='estimate' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

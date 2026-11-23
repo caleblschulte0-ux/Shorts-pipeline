@@ -1,0 +1,9 @@
+{
+ "id": "chess-online-boom__f3d078d3",
+ "slug": "chess-online-boom",
+ "settled": "2026-11-23T09:46:43Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg1 (chess_signups_before_after_queens_gambit.json): source officiality='verified' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}

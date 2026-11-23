@@ -1,0 +1,11 @@
+{
+ "id": "self-storage-outnumbers-starbucks__97599610",
+ "slug": "self-storage-outnumbers-starbucks",
+ "settled": "2026-11-23T09:46:45Z",
+ "decision": "unpostable",
+ "problems": [
+  "data: seg0 (storage_vs_chains_rank.json): source officiality='industry' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg1 (storage_vs_chains_share.json): source officiality='industry' — not a real source (needs ['official', 'primary', 'secondary'])",
+  "data: seg2 (storage_facility_growth_trend.json): source officiality='industry' — not a real source (needs ['official', 'primary', 'secondary'])"
+ ]
+}
