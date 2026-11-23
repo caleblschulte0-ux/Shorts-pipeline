@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "tattoo-mainstream-shift__f7fc7a74",
+  "slug": "tattoo-mainstream-shift",
+  "by": "chatgpt",
+  "written_at": "2026-11-23T12:24:03.426Z",
+  "title": "A Survey Measured Tattoos On 32% Of US Adults",
+  "hook": "Survey data says tattoos crossed from rebellion into the mainstream.",
+  "closing": "In this survey, tattoos were common enough to look mainstream rather than rebellious.",
+  "question": "How many tattoos do you have?",
+  "segments": [
+    {
+      "topic": "Tattoo Survey Trend",
+      "say": "Surveyed tattoo prevalence reached 32 percent, doubling its earlier share."
+    },
+    {
+      "topic": "Tattoo Survey Women",
+      "say": "The survey measured tattoos on 37 percent of women, above the adult average."
+    },
+    {
+      "topic": "Tattoo Survey Repeat",
+      "say": "The survey found 22 percent of adults had multiple tattoos, making repeat ink common."
+    }
+  ]
+}
