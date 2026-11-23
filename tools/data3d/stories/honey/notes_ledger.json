@@ -1,0 +1,255 @@
+{
+ "rounds": 1,
+ "shots": {
+  "1": {
+   "BROKEN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "BROKEN: the PURE HONEY 2 EUROS sign is cut by the left frame edge in all 4 frames and reads 'NEY 2 EUROS'. The price that sets up the hook is never whole."
+     }
+    ]
+   },
+   "CONSEQUENCE": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "CONSEQUENCE: the one fake jar is far down the row and half hidden behind the jar next to it. Only a tiny red 'RUP' shows (frames 3-4), so the SYRUP flip is too small to read on a phone. The slam that causes it never reads as a slam (frames 1-2: the dipper is just held at his chest)."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT SHOWN: 'one in seven' cannot be counted. The row recedes and overlaps, so you cannot see seven jars with one of them red. Nothing shows that the real share was worse."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT THE WORLD: the market square is a flat grey concrete floor with a stray pale ball on it. There are no cobbles, no crates of produce, and the back stalls are a row of identical blue figures in front of a strip of cardboard house fronts. It does not match the approved store's finish."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "OFF THE LOOK (backgrounds as real as we can make them / approved store is the standard of finish): the square is a flat grey speckled floor, boxy flat-front buildings, plain counter planks, and an unexplained white egg-shaped object on the ground beside the counter (all frames). It is nowhere near the built, lived-in finish of approved_hook_store.jpg."
+     }
+    ]
+   }
+  },
+  "2": {
+   "BROKEN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "BROKEN: the 'flags' are cards floating in mid-air beside the poles, not attached to them. There are no halyards and no flags. The HONEY card sits at different heights with nothing holding it (frames 1-4)."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT SHOWN: the price board's ticks (0.50 to 2.00) are unreadable on a phone and Data hides them. 'A quarter as much' shows only as the numbers 0.50 and 2.17 on placards, not as a height you can read as four times."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT THE WORLD: the yard is a stage set. The 'sunny window full of jars' is a flat white panel with jars printed on it, the doorway is a black void, and a dark green slab with white lines hangs across the top of the frame (frames 1-4)."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "OFF THE LOOK (Data CAUSES what moves): there are no flags and no ropes. In all frames Data stands between the poles with his hands at his chest or spread, while the HONEY placard rises on its own (frames 2-4)."
+     }
+    ]
+   },
+   "TALKING HEAD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "TALKING HEAD: Data is centred, facing the lens, chest-up and doing little across all 4 frames."
+     }
+    ]
+   }
+  },
+  "3": {
+   "CONSEQUENCE": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "CONSEQUENCE: the red FAIL lamp is never seen. The TEST box screen is black in frames 1-3, so the try, fail, tune, pass sequence collapses to one green PASS (frame 4). The dip into the vat and the touch to the box are never shown either."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT SHOWN: the gauge that should read 'mostly syrup' while it passes is a thin strip on the left cylinder and unreadable. 'Tuned to pass while still fake' is lost."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT THE WORLD: the 'dusty window' is a flat white grid panel. The 'sacks of SYRUP' are smooth beige balls that read as stones, not sacks (frames 1-4)."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "OFF THE LOOK (real parts): the SYRUP sacks are plain cream spheres, and the dusty window is a white grid panel with no glass and no light through it."
+     }
+    ]
+   },
+   "ONE-SECOND GAG": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "ONE-SECOND GAG: frames 1-3 are near-identical: the same pose, hand at the wheel, box dark. Nothing new happens until frame 4."
+     }
+    ]
+   },
+   "TINY DATA": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "TINY DATA / face hidden: the high lens plus the hat brim cover Data's eyes in frames 1-3."
+     }
+    ]
+   }
+  },
+  "4": {
+   "BROKEN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "BROKEN: in frame 4, the end of the shot, Data is cut in half by the right frame edge, so his reaction is lost."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "OFF THE LOOK (Data CAUSES what moves): there is no funnel and no drop. The jar sits on a wooden post while Data stands beside it with an arm out (frames 1-2). The machine swings to FAKE with no visible cause."
+     }
+    ]
+   }
+  },
+  "5": {
+   "BROKEN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "BROKEN: in frame 3 the hat swallows Data's whole face. The plank and jar row is cut by the right frame edge in frames 1-2. Data's ears poke through the hat crown in every frame."
+     }
+    ]
+   },
+   "NO PAYOFF": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NO PAYOFF: the last frame is Data standing and holding a jar out. It's a pose, not a visual payoff of the near-half count."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT SHOWN: 'almost half' and 'three times one in seven' are not seen. There is one short row of 6-8 jars, and the SUSPECT labels show 1-3 at a time. The 'whole stock in long rows' is absent, so no count or proportion reads."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "NOT THE WORLD: the 'cobbled alley' floor reads as grey polka-dot fabric, not cobbles (all frames). An unexplained grey ball labelled 'SUC\u2026' sits on the ground in frame 4."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "OFF THE LOOK (real textures): the alley floor is a grey polka-dot pattern, not cobbles. The plank rests on loose crates and tilts (frame 4)."
+     }
+    ]
+   },
+   "TINY DATA": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-23 20:18Z",
+      "round": 1,
+      "said": "TINY DATA / BACK-ish: Data's face is hidden under the hat brim in frames 2-3 (head bowed), and in frame 3 the hat fills the frame centre."
+     }
+    ]
+   }
+  }
+ }
+}
