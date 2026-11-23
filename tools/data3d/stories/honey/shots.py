@@ -111,7 +111,9 @@ def hw_hat_mesh(to_world, ears):
     """a beekeeper's hat built ON his head (his rest frame, facing -Y): a round domed crown, a wide flat brim with a
     soft droop at its rim, holes cut where his ears pass through; the veil is rolled up round the crown (bee_hat)"""
     from mathutils import Vector as V
-    A = (0.146, 0.118); B = (0.27, 0.245); H = 0.1; n = 60
+    # the brim is narrow and turned UP at the front (board 2026-11-23: "the hat brim hides his face", shots 3 and 5,
+    # "his head bowed under it"): from any lens at or above his eyes the face reads under it
+    A = (0.146, 0.118); B = (0.225, 0.2); H = 0.1; n = 60
     verts, faces, mi, rows = [], [], [], []
     rhos = [0.0, 0.1, 0.22, 0.35, 0.48, 0.6, 0.72, 0.82, 0.9, 0.95, 0.985, 1.0]
     for rho in rhos:
@@ -125,7 +127,9 @@ def hw_hat_mesh(to_world, ears):
         u = (k + 1) / 10; row = []
         for i in range(n):
             th = 2 * math.pi * i / n
-            verts.append(((A[0] + (B[0] - A[0]) * u) * math.cos(th), (A[1] + (B[1] - A[1]) * u) * math.sin(th), HW_HAT_ZB - 0.022 * u ** 2.2))
+            front = max(0.0, -math.sin(th)) ** 1.5                       # the front (-Y) turns up off his eyes
+            verts.append(((A[0] + (B[0] - A[0]) * u) * math.cos(th), (A[1] + (B[1] - A[1]) * u) * math.sin(th),
+                          HW_HAT_ZB - 0.022 * u ** 2.2 * (1 - front) + 0.06 * u ** 1.4 * front))
             row.append(len(verts) - 1)
         rows.append(row)
     for a, b in zip(rows, rows[1:]):
@@ -228,6 +232,48 @@ def jar_flip(j, t0, dur=0.3):
     p = j["spin"]
     for t, a in ((0.0, 0.0), (t0, 0.0), (t0 + dur * 0.75, math.radians(192)), (t0 + dur, math.radians(180))):
         p.rotation_euler = (0, 0, a); p.keyframe_insert("rotation_euler", frame=F(t))
+
+
+# ---------------------------------------------------------------- cobbles that read as cobbles
+def hw_cobbles(name="hw cobbles", a="#8C8174", b="#ABA08E", joint="#4E463E", scale=14.0):
+    """a cobbled ground as ONE material (board 2026-11-23: rows of spheres "read as grey polka-dot fabric"): Voronoi
+    stones, each its own tint between a and b, dark sunken joints between them, a rounded bump on every stone"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
+    bs.inputs["Roughness"].default_value = 0.85
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (scale, scale * 1.25, scale)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    vc = nt.nodes.new("ShaderNodeTexVoronoi"); vc.feature = 'F1'; vc.inputs["Randomness"].default_value = 0.85
+    ve = nt.nodes.new("ShaderNodeTexVoronoi"); ve.feature = 'DISTANCE_TO_EDGE'; ve.inputs["Randomness"].default_value = 0.85
+    for v in (vc, ve): nt.links.new(mp.outputs["Vector"], v.inputs["Vector"])
+    tint = nt.nodes.new("ShaderNodeValToRGB"); tint.color_ramp.elements[0].color = (*K.lin(a), 1); tint.color_ramp.elements[1].color = (*K.lin(b), 1)
+    sep = nt.nodes.new("ShaderNodeSeparateColor"); nt.links.new(vc.outputs["Color"], sep.inputs["Color"])
+    nt.links.new(sep.outputs[0], tint.inputs["Fac"])
+    edge = nt.nodes.new("ShaderNodeMapRange"); edge.inputs["From Min"].default_value = 0.02; edge.inputs["From Max"].default_value = 0.12
+    nt.links.new(ve.outputs["Distance"], edge.inputs["Value"])
+    mix = nt.nodes.new("ShaderNodeMixRGB"); mix.inputs["Color1"].default_value = (*K.lin(joint), 1)
+    nt.links.new(edge.outputs["Result"], mix.inputs["Fac"]); nt.links.new(tint.outputs["Color"], mix.inputs["Color2"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 90
+    dirt = nt.nodes.new("ShaderNodeMixRGB"); dirt.blend_type = 'MULTIPLY'; dirt.inputs["Fac"].default_value = 0.18
+    nt.links.new(mix.outputs["Color"], dirt.inputs["Color1"]); nt.links.new(nz.outputs["Fac"], dirt.inputs["Color2"])
+    nt.links.new(dirt.outputs["Color"], bs.inputs["Base Color"])
+    dome = nt.nodes.new("ShaderNodeMath"); dome.operation = 'SQRT'; nt.links.new(edge.outputs["Result"], dome.inputs[0])
+    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.7; bp.inputs["Distance"].default_value = 0.02
+    nt.links.new(dome.outputs["Value"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
+    return m
+
+
+def hw_person(name, loc, yaw=0.0, coat="#2F6FA6", legs="#33363C"):
+    """a villager, still MINIMAL (caaleb 2026-11-11, person() in store/shots.py): faceless, head, body, tube arms, two
+    legs; only the coat's colour is the village's own instead of the store's staff blue (board: "big blue blobs")"""
+    root = person(name, loc, yaw)
+    cm = K.mat(f"villager coat {coat}", coat, rough=0.7); lm = K.mat(f"villager legs {legs}", legs, rough=0.65)
+    for o in root.children:
+        if o.name.startswith(("body", "arm")): o.data.materials.clear(); o.data.materials.append(cm)
+        elif o.name.startswith("leg"): o.data.materials.clear(); o.data.materials.append(lm)
+    return root
 
 
 # ---------------------------------------------------------------- a worker bee
@@ -386,7 +432,7 @@ the beekeeper slams his dipper on the counter, the row jumps, and only one of th
 
 S1_FAKES = (3,)                     # the one jar in seven the old test catches (0 = the one nearest the lens)
 S1_N = 7
-S1_CH = 0.3                          # the counter's top: his waist
+S1_CH = 0.18                         # the counter's top: his waist
 
 
 def s1_awning(name, x0, x1, y0, y1, z_back, z_front, a, b, n=10, parent=None):
@@ -435,23 +481,27 @@ def place_market_stall():
     under a red-and-cream striped awning in front, more stalls (fruit, flowers, bread) behind it, the plastered house
     fronts of the square with green and blue shutters, and the village's people (faceless, minimal) at the far stalls."""
     rnd = hw_random.Random(11)
-    cob = hw_noise("square cobbles", "#9C8E7A", "#B9AC94", scale=9, rough=0.9, bump=0.8, detail=3, lo=0.42, hi=0.58)
+    cob = hw_cobbles("square cobbles", "#93877A", "#B5A992", scale=6)
     K.box("square ground", (0, 6, -0.01), (40, 40, 0.02), cob, bev=0)
     wood = hw_wood("stall planks", "#8A6440", "#A47C52")
     old = hw_wood("crate wood", "#9A7A52", "#B89468", scale=4)
     # the cheap stall: a plank counter along X with a front skirt, two posts, the awning over it, a sign on top
-    K.box("stall counter", (-0.04, -0.05, S1_CH - 0.02), (1.52, 0.4, 0.04), wood, bev=0.004)
-    for k in range(9):
-        K.box("counter skirt plank", (-0.8 + 0.083 + k * 0.167, -0.24, S1_CH / 2 - 0.02), (0.16, 0.015, S1_CH - 0.04), wood, bev=0.003)
-    for x in (-0.78, 0.68):
-        K.box("stall post", (x, 0.13, 0.55), (0.04, 0.04, 1.1), old, bev=0.004)
-    s1_awning("stall awning", -0.9, 0.8, -0.2, 0.3, 1.12, 0.98, "#C23A2E", "#F1E6CC")
-    sign = K.box("price sign", (-0.1, 0.12, 0.74), (0.9, 0.02, 0.2), K.mat("sign board", "#F4EEDC", rough=0.7), bev=0.006)
-    K.text("price sign text", "PURE HONEY  2 EUROS", (-0.1, 0.108, 0.74), 0.075, (math.pi / 2, 0, 0), hw_ink("sign paint", "#B0261C"), extrude=0.001)
-    for x in (-0.45, 0.25):
-        K.cyl("sign string", (x, 0.12, 0.91), 0.0015, 0.14, K.mat("string", "#5A4A3A"), bev=0)
+    # a trestle counter across the lens (board: "turn the counter so all seven jars sit side by side across the
+    # frame"), open underneath so he is whole behind it; the sign hangs from the awning over the jars, in frame
+    K.box("stall counter", (0.06, -0.08, S1_CH - 0.02), (1.16, 0.4, 0.04), wood, bev=0.004)
+    for x in (-0.42, 0.54):
+        for y in (-0.25, 0.09):
+            K.box("trestle leg", (x, y, (S1_CH - 0.04) / 2), (0.03, 0.03, S1_CH - 0.04), old, bev=0.003)
+        K.box("trestle brace", (x, -0.08, 0.06), (0.025, 0.34, 0.025), old, bev=0.002)
+    for x in (-0.56, 0.68):
+        K.box("stall post", (x, 0.3, 0.6), (0.04, 0.04, 1.2), old, bev=0.004)
+    s1_awning("stall awning", -0.66, 0.78, 0.05, 0.45, 1.36, 1.24, "#C23A2E", "#F1E6CC", n=8)
+    sign = K.box("price sign", (0.06, 0.06, 1.01), (0.72, 0.02, 0.15), K.mat("sign board", "#F4EEDC", rough=0.7), bev=0.006)
+    K.text("price sign text", "PURE HONEY  2 EUROS", (0.06, 0.048, 1.01), 0.05, (math.pi / 2, 0, 0), hw_ink("sign paint", "#B0261C"), extrude=0.001)
+    for x in (-0.22, 0.34):
+        K.cyl("sign string", (x, 0.06, 1.13), 0.0015, 0.1, K.mat("string", "#5A4A3A"), bev=0)
     # stock under and behind the counter: crates of the same cheap jars
-    for k, x in enumerate((-0.55, -0.15, 0.25)):
+    for k, x in enumerate((-0.4, 0.0)):
         s1_crate(f"jar crate {k}", (x, 0.42, 0.0), (0.34, 0.26, 0.16), "#E0A030", old, rnd, n=8)
     # the square round him: the other stalls and the house fronts on the far side (behind him, down the lens) and
     # along the back (past the stall); the village's people at the far stalls
@@ -471,9 +521,10 @@ def place_market_stall():
                                                    (-1.6, 2.6, 0.0, "#8C3A5E", "#F1E5D8", "#D8C04A"),
                                                    (1.0, 2.8, 0.0, "#3E6E9E", "#F0E8D6", "#B23A6A"))):
         stall_at(k, x, y, rot, a, b, fruit)
-    for k, (x, y, yaw) in enumerate(((3.3, -0.3, math.pi / 2), (3.4, 1.4, math.pi / 2 + 0.4), (3.2, -2.0, math.pi / 2 - 0.3),
-                                      (1.8, 0.4, -math.pi / 2 + 0.5), (-1.4, 3.3, math.pi), (1.2, 3.4, math.pi + 0.3), (2.0, -1.3, 0.6))):
-        person(f"shopper {k}", (x, y, 0), yaw=yaw)
+    coats = ("#B5543C", "#4E7A5A", "#C9A24A", "#6A5A8E", "#3E6E9E", "#A04A6A", "#7A8A3A")
+    for k, (x, y, yaw) in enumerate(((3.3, -0.3, math.pi / 2), (3.4, 1.4, math.pi / 2 + 0.4), (-2.2, 3.4, math.pi - 0.4),
+                                      (-0.9, 3.5, math.pi), (1.6, 3.6, math.pi + 0.3), (0.4, 3.9, math.pi - 0.2), (2.6, 3.2, math.pi + 0.6))):
+        hw_person(f"shopper {k}", (x, y, 0), yaw=yaw, coat=coats[k])          # far off, across the square, in their own clothes
     walls = [hw_noise(f"plaster {c}", c, K.mute(c, 0.85), scale=2, rough=0.85, bump=0.06) for c in ("#E9D9B8", "#E2C59A", "#EFE4CF", "#D9B48A")]
     for name, (x, y, rot) in (("houses east", (5.0, 0.0, -math.pi / 2)), ("houses north", (0.0, 4.8, 0.0))):
         root = K.empty(name, (0, 0, 0)); xx = -6.0
@@ -496,9 +547,9 @@ def place_market_stall():
         K.cyl(f"barrel {k}", (x, y, 0.15), 0.12, 0.3, old, v=24, bev=0.01)
         for z in (0.05, 0.25):
             K.cyl(f"barrel {k} hoop", (x, y, z), 0.123, 0.02, K.mat("hoop iron", "#3A3632", rough=0.5, metal=0.6), v=24, bev=0)
-    sack = hw_noise("sack", "#C9B48A", "#DCC9A0", scale=30, rough=0.95, bump=0.5)
-    for k, (x, y) in enumerate(((1.2, -0.4), (1.3, -0.15), (1.35, 0.1))):
-        K.sph(f"sack {k}", (x, y, 0.1), 0.11, sack, scale=(1.0, 0.8, 1.0))
+    for k, (x, y) in enumerate(((1.25, -0.3), (1.2, 0.05))):            # produce crates stacked by the next stall (not sacks: "egg-like balls")
+        s1_crate(f"produce crate {k}", (x, y, 0.0), (0.34, 0.26, 0.16), ("#C8352A", "#7FAE3A")[k], old, rnd)
+        s1_crate(f"produce crate {k} top", (x, y, 0.17), (0.34, 0.26, 0.16), ("#E58A1F", "#D8C04A")[k], old, rnd)
     # bunting across the square
     flagm = [K.mat(f"bunting {c}", c, rough=0.7) for c in ("#C23A2E", "#E8B33A", "#3E6E9E", "#3F7D4E")]
     for k in range(40):
@@ -511,84 +562,85 @@ def place_market_stall():
 
 
 def shot1():
-    """THE CHEAP STALL. The lens low at the near end of the counter, the row of seven jars running away from it to
-    the beekeeper at the far end: he peers along the jars, straightens and frowns up at the 2 EUROS sign, raises his
-    dipper and SLAMS it on the counter; the row jumps, and one label flips to a red
-    SYRUP; he jumps back, then leans in and points his dipper down the six others at us, not convinced."""
+    """THE CHEAP STALL. The lens square on the trestle counter, seven identical PURE HONEY jars side by side across the
+    frame under the 2 EUROS sign, the beekeeper behind them at the right: he leans in and peers along them, frowns up at
+    the sign, raises his dipper and SLAMS it on the counter; the row jumps, and the middle jar spins round to a big red
+    SYRUP; he jumps back, then leans in and points his dipper at the six others, not convinced."""
     T_PEER = 0.1                                  # leaning in along the row
     T_SIGN = 0.5                                 # straightening up to the sign
     T_UP = 0.8                                   # the dipper goes up ...
-    T_SLAM = 0.3 * DUR                            # ... and down on the counter (arc 0.30)
-    T_FLIP = [0.45 * DUR + k * (0.17 * DUR) / 4 for k in range(5)]   # arc 0.45 .. 0.62
-    T_BACK = T_FLIP[0] - 0.05                     # he jerks back at the first red label
-    T_LEAN = T_FLIP[-1] + 0.1                     # leans in down the row
-    T_POINT = 0.82 * DUR                          # points along the red ones at us (arc 0.82)
+    T_SLAM = 0.3 * DUR                            # ... and down on the counter
+    T_FLIP = [0.45 * DUR + k * (0.17 * DUR) / 4 for k in range(5)]
+    T_BACK = T_FLIP[0] - 0.05                     # he jerks back at the red label
+    T_LEAN = T_FLIP[-1] + 0.1                     # leans in over the row
+    T_POINT = 0.82 * DUR                          # points along the others at us
     light = place_market_stall()
     data = load_data()
-    P0 = Vector((0.8, -0.4, 0.0)); YAW = math.radians(-135)       # at the counter's far corner, three-quarter to the row
-    data.place(P0.x, P0.y, math.degrees(YAW))
-    CAM = Vector((-1.45, -0.6, 0.72)); LOOK = Vector((0.45, -0.08, 0.42))
-    HIT = Vector((0.68, -0.25, S1_CH + 0.08))       # his fist just over the counter's corner: the dipper's head on the planks
-    side = min("LR", key=lambda s: (acts._shoulder(data, s) - CAM).length)
+    YAW = 0.0                                     # facing the lens, behind the counter
+    data.place(0.3, 0.2, 0.0)
+    CAM = Vector((-0.62, -0.98, 0.72)); LOOK = Vector((0.06, -0.04, 0.42))    # above the row, three-quarter: seven jars running to him
+    HIT = Vector((0.55, 0.04, S1_CH + 0.11))      # his fist over the counter's right end: the dipper's head on the planks
+    side = max("LR", key=lambda s: acts._shoulder(data, s).x)        # the hand on the slam's side
     fw = data.forward(); out = acts._shoulder(data, side) - data.pos(); out.z = 0; out = (out - fw * out.dot(fw)).normalized()
-    P0 = Vector((HIT.x, HIT.y, 0)) - fw * 0.15 - out * 0.15                   # the corner in front of his dipper hand, clear of his head
-    data.place(P0.x, P0.y, math.degrees(YAW))
+    P0 = Vector((HIT.x, HIT.y, 0)) - fw * 0.17 - out * 0.12
+    data.place(P0.x, P0.y, 0.0)
     hat = bee_hat(data)
-    # the jars: eleven along the counter, each label turned to the lens; the fakes' labels are flaps with a red back
+    # the jars: seven across the counter, labels to the lens; the one fake (the middle one) has a red back label
     jars = []
     for k in range(S1_N):
-        x = -0.42 + k * 0.165
-        a = math.atan2(CAM.y - (-0.12), CAM.x - x)            # the jar's label (its -Y face) turned to the lens
+        x = -0.31 + k * 0.128
         fake = k in S1_FAKES
-        jars.append(jar(f"stall jar {k}", (x, -0.12, S1_CH), r=0.046, h=0.15, fill=0.9, honey_col="#E6A52A" if fake else "#D98A12",
-                        label="PURE HONEY", back="SYRUP" if fake else None, yaw=a + math.pi / 2))
+        jars.append(jar(f"stall jar {k}", (x, -0.2, S1_CH), r=0.05, h=0.17, fill=0.9, honey_col="#E6A52A" if fake else "#D98A12",
+                        label="PURE HONEY", back="SYRUP" if fake else None, yaw=math.radians(-34), glow=0.3))      # labels turned toward the lens
     fakes = [jars[k] for k in S1_FAKES]
     jar_flip(fakes[0], T_FLIP[0])                 # only one in seven flips
     for k, j in enumerate(jars):                  # the row JUMPS at the slam, a hop running down from his end
         r = j["root"]; z0 = r.location.z; d = (S1_N - 1 - k) * 0.012; yw = r.rotation_euler.z; sg = 1 if k % 2 else -1
-        for t, dz, tilt in ((0.0, 0, 0), (T_SLAM + d, 0, 0), (T_SLAM + d + 0.08, 0.04, 0.12 * sg), (T_SLAM + d + 0.17, 0.0, -0.05 * sg),
-                            (T_SLAM + d + 0.26, 0.008, 0.02 * sg), (T_SLAM + d + 0.36, 0, 0)):
+        for t, dz, tilt in ((0.0, 0, 0), (T_SLAM + d, 0, 0), (T_SLAM + d + 0.08, 0.05, 0.12 * sg), (T_SLAM + d + 0.17, 0.0, -0.05 * sg),
+                            (T_SLAM + d + 0.26, 0.01, 0.02 * sg), (T_SLAM + d + 0.36, 0, 0)):
             r.location.z = z0 + dz; r.keyframe_insert("location", frame=F(t))
             r.rotation_euler = (tilt, 0, yw); r.keyframe_insert("rotation_euler", frame=F(t))
     # ---- his body: peer, straighten, rise for the swing, dip into the slam, jerk back, lean in to point
     W = hw_win
+    left = -out                                   # along the row, away from the slam end
     def body(t):
         p = P0.copy()
-        p += Vector((-0.05, 0.05, 0)) * (W(t, T_PEER, 0.4) - W(t, T_SIGN, 0.3))                 # a step into the row ...
-        p.z += 0.025 * W(t, T_UP - 0.1, 0.3) * (1 - W(t, T_SLAM - 0.08, 0.1))                  # up on his toes with the dipper high
+        p += (left * 0.06) * (W(t, T_PEER, 0.4) - W(t, T_SIGN, 0.3))                         # a step along the row ...
+        p.z += 0.03 * W(t, T_UP - 0.1, 0.3) * (1 - W(t, T_SLAM - 0.08, 0.1))                  # up on his toes with the dipper high
         p.z -= 0.03 * hw_kick(t - T_SLAM + 0.02, 0.1)                                            # the slam drives him down
-        p += Vector((0.05, -0.05, 0)) * (W(t, T_BACK, 0.2) - W(t, T_LEAN, 0.4))                   # jerks back from the red label
-        p += Vector((-0.02, 0.02, 0)) * W(t, T_LEAN, 0.4)                                        # and leans in down the row
-        p.z += 0.03 * hw_kick(t - T_BACK, 0.12)                                                  # (a little hop of surprise)
-        p += Vector((-0.035, 0.03, 0)) * W(t, T_FLIP[2] - 0.15, 0.25) * (1 - W(t, T_LEAN - 0.05, 0.3))   # a double take down the row
-        yaw = YAW + math.radians(-18) * W(t, T_SIGN, 0.3) * (1 - W(t, T_SLAM - 0.3, 0.25)) \
-            + math.radians(12) * W(t, T_BACK, 0.2) - math.radians(22) * W(t, T_POINT - 0.2, 0.4)   # ... and turns to us to point
+        p += (-fw * 0.07 + out * 0.03) * (W(t, T_BACK, 0.2) - W(t, T_LEAN, 0.4))                 # jerks back from the red label
+        p.z += 0.05 * hw_kick(t - T_BACK, 0.13)                                                  # a hop of surprise
+        p += left * 0.05 * W(t, T_LEAN, 0.4)                                                     # and leans in over the row
+        p += fw * 0.04 * W(t, T_FLIP[2] - 0.15, 0.25) * (1 - W(t, T_LEAN - 0.1, 0.3))            # a double take at the red one
+        p.z += 0.045 * hw_kick(t - T_FLIP[2] - 0.05, 0.13)
+        yaw = YAW + math.radians(22) * W(t, T_PEER, 0.35) * (1 - W(t, T_SIGN, 0.3)) - math.radians(15) * W(t, T_SIGN, 0.3) * (1 - W(t, T_SLAM - 0.3, 0.25)) \
+            + math.radians(15) * W(t, T_FLIP[2] - 0.15, 0.25) * (1 - W(t, T_POINT - 0.3, 0.3))
         return p, yaw
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
     hw_layer(data, "spine", lambda t: (16 * W(t, T_PEER, 0.4) * (1 - W(t, T_SIGN, 0.3)) - 8 * W(t, T_UP - 0.1, 0.3) * (1 - W(t, T_SLAM - 0.1, 0.1))
-                                      + 12 * W(t, T_SLAM - 0.15, 0.15) * (1 - W(t, T_BACK, 0.2)) - 10 * W(t, T_BACK, 0.2) * (1 - W(t, T_LEAN, 0.3)) + 14 * W(t, T_FLIP[2] - 0.15, 0.25) * (1 - W(t, T_LEAN - 0.05, 0.3))
+                                      + 14 * W(t, T_SLAM - 0.15, 0.15) * (1 - W(t, T_BACK, 0.2)) - 10 * W(t, T_BACK, 0.2) * (1 - W(t, T_LEAN, 0.3))
                                       + 14 * W(t, T_LEAN, 0.35) * (1 - W(t, T_POINT + 0.25, 0.35)), 0,
                                       6 * math.sin(2 * math.pi * (t - T_LEAN) / 1.2) * W(t, T_LEAN, 0.3)), 0, DUR + 0.4)
     hw_layer(data, "chest", lambda t: (8 * W(t, T_PEER, 0.4) * (1 - W(t, T_SIGN, 0.3)) + 4 * W(t, T_SLAM - 0.15, 0.15) * (1 - W(t, T_BACK, 0.2)), 0, 0), 0, DUR + 0.4)
-    # ---- the dipper hand (the one on the lens side) and the free hand
+    # ---- the dipper hand and the free hand
     sc.frame_set(1); bpy.context.view_layer.update()
     free = "R" if side == "L" else "L"
     hit = hw_rel(data, side, T_SLAM, HIT)
     REST = (0.06, 0.07, -0.13)
     HK = [(0.0, REST), (T_PEER + 0.3, (0.1, 0.08, -0.09)), (T_SIGN + 0.15, (0.07, 0.13, -0.05)),
           (T_UP + 0.15, (0.02, 0.15, 0.07)), (T_SLAM - 0.28, (0.05, 0.15, 0.06)), (T_SLAM, hit),
-          (T_SLAM + 0.2, (hit[0], hit[1], hit[2] + 0.03)), (T_BACK + 0.25, (0.12, 0.1, -0.02)),
+          (T_SLAM + 0.2, (hit[0], hit[1], hit[2] + 0.03)), (T_BACK + 0.25, (0.12, 0.1, -0.02)), (T_FLIP[2] + 0.25, (0.15, 0.05, -0.01)),
           (T_LEAN + 0.35, (0.13, 0.09, -0.03)), (T_POINT, (0.14, 0.08, 0.02)), (T_POINT + 0.35, (0.14, 0.085, 0.045)), (DUR + 0.3, (0.14, 0.08, 0.03))]
-    FK = [(0.0, (0.04, 0.07, -0.14)), (T_SIGN + 0.1, (0.04, 0.07, -0.14)), (T_BACK - 0.1, (0.05, 0.08, -0.13)), (T_BACK + 0.35, (0.1, 0.1, 0.04)),
+    FK = [(0.0, (0.04, 0.07, -0.14)), (T_SIGN + 0.1, (0.04, 0.07, -0.14)), (T_BACK - 0.1, (0.05, 0.08, -0.13)), (T_BACK + 0.35, (0.1, 0.1, 0.04)), (T_FLIP[2] + 0.25, (0.12, 0.15, -0.05)),
           (T_LEAN + 0.2, (0.08, 0.12, 0.0)), (T_POINT, (0.03, 0.1, -0.1)), (DUR + 0.3, (0.03, 0.1, -0.11))]
     data.reach(side, hw_hand(data, side, HK), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
     data.reach(free, hw_hand(data, free, FK), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.3)
     # ---- face and head
     LENS = CAM
-    data.look_at(jars[3]["root"].location + Vector((0, 0, 0.08)), 0.0, max_yaw=40, max_pitch=40, blend=0.0)
-    data.look_at(Vector((-0.1, 0.11, 0.78)), T_SIGN, max_yaw=40, max_pitch=40, blend=0.18)            # the 2 EUROS sign
-    data.look_at(HIT, T_SLAM - 0.3, max_yaw=40, max_pitch=22, blend=0.12)
+    data.look_at(jars[1]["root"].location + Vector((0, 0, 0.08)), 0.0, max_yaw=40, max_pitch=40, blend=0.0)
+    data.look_at(Vector((0.06, 0.06, 0.86)), T_SIGN, max_yaw=40, max_pitch=40, blend=0.18)            # the 2 EUROS sign
+    data.look_at(HIT, T_SLAM - 0.3, max_yaw=40, max_pitch=30, blend=0.12)
     data.look_at(fakes[0]["root"].location + Vector((0, 0, 0.08)), T_FLIP[0], max_yaw=40, max_pitch=40, blend=0.12)
     data.look_at(jars[1]["root"].location + Vector((0, 0, 0.08)), T_FLIP[3], max_yaw=40, max_pitch=40, blend=0.2)
     data.look_at(LENS, T_POINT - 0.1, max_yaw=45, blend=0.18)
@@ -599,11 +651,11 @@ def shot1():
     data.finish()
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, side, fore=True)
-    # ---- the lens: low at the counter's near end, the row big in front of us running to him; a slow push in
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=40, fstop=7.0)
-    camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.12 * ease(t / DUR), LOOK, Vector((0.3, -0.15, 0.5))))
+    # ---- the lens: square on the counter at jar height, a slow push in
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=27.5, fstop=7.0)
+    camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.02 * ease(t / DUR), LOOK, Vector((0.0, -0.1, 0.4))))
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
-                conseq=[("he slams his dipper and only one of the seven labels flips to a red SYRUP", lambda: meshes([j["root"] for j in jars]), T_FLIP[0], DUR, {"hero": True}),
+                conseq=[("he slams his dipper and only one of the seven jars spins round to a red SYRUP", lambda: meshes([j["root"] for j in jars]), T_FLIP[0], DUR, {"hero": True}),
                         ("the slam makes the whole row of jars jump", lambda: meshes([j["root"] for j in jars]), T_SLAM, T_SLAM + 0.5)])
 
 
@@ -1066,7 +1118,7 @@ S4_M = Vector((-0.05, 0.14, 0.0))               # the machine's foot (its front 
 S4_MH = 0.8                                     # its height
 S4_DIAL = Vector((S4_M.x, S4_M.y - 0.145, 0.55))   # the dial's centre on its front
 S4_FUN = Vector((0.28, -0.15, 0.44))             # the funnel's mouth on its side bracket
-S4_P = Vector((0.52, 0.0, 0.0))                  # where he stands
+S4_P = Vector((0.45, 0.0, 0.0))                  # where he stands
 S4_JAR = Vector((0.38, -0.27, 0.0))             # the jar of the tuned blend on its stool
 S4_STOOL = 0.3
 
@@ -1093,8 +1145,32 @@ def place_village_hall():
             K.box("hall window frame", (x + dx, 1.355, 1.25 + dz), (sx, 0.03, sz), fr, bev=0.003)
     # the stage at the back with its board
     K.box("hall stage", (0, 1.15, 0.12), (2.4, 0.4, 0.24), wain, bev=0.01)
-    K.box("hall board", (0, 1.365, 1.95), (1.0, 0.02, 0.2), K.mat("hall board", "#1E4A7A", rough=0.5), bev=0.006)
-    K.text("hall board word", "VILLAGE HALL", (0, 1.35, 1.92), 0.09, (math.pi / 2, 0, 0), hw_ink("board gold", "#F2C64A", emit=0.3), extrude=0.001)
+    # the honey show's long table on the stage (board 2026-11-23: "no stage, no tables ... sign clutter"): a checked
+    # cloth, entries in jars with rosettes, a cake stand; pendant lamps over the hall, a noticeboard and a radiator
+    cloth = hw_noise("show cloth", "#F4F1EA", "#E2DCCF", scale=30, rough=0.85)
+    K.box("show table", (0.1, 1.12, 0.24 + 0.29), (1.9, 0.26, 0.02), cloth, bev=0.004)
+    K.box("show table drape", (0.1, 0.99, 0.24 + 0.2), (1.9, 0.006, 0.2), cloth, bev=0)
+    for k in range(12):
+        K.box("cloth check", (-0.82 + k * 0.17, 0.985, 0.24 + 0.2), (0.07, 0.004, 0.2), K.mat("check blue", "#7FA7D6", rough=0.85), bev=0)
+    for k in range(9):
+        x = -0.7 + k * 0.2
+        jar(f"show jar {k}", (x, 1.12, 0.55), r=0.035, h=0.09, fill=0.9, honey_col=("#E8A82A", "#C97A12", "#F2C35A")[k % 3])
+        if k % 3 == 1:
+            K.cyl("rosette", (x + 0.05, 1.0, 0.5), 0.03, 0.006, K.mat("rosette red", "#C8261E", rough=0.5), rot=(math.pi / 2, 0, 0), v=20, bev=0.002)
+    K.cyl("cake stand", (0.95, 1.12, 0.58), 0.08, 0.012, K.mat("stand white", "#FFFFFF", rough=0.3), v=32, bev=0.003)
+    K.cyl("cake", (0.95, 1.12, 0.62), 0.065, 0.07, hw_noise("cake", "#D9A35A", "#E9BE7A", scale=20), v=32, bev=0.01)
+    lampm = K.mat("pendant shade", "#2E4A3E", rough=0.4, metal=0.3)
+    for x in (-0.5, 0.55):
+        K.cyl("pendant cord", (x, 0.75, 2.0), 0.003, 0.6, K.mat("cord", "#222222"), v=6, bev=0)
+        K.cyl("pendant shade", (x, 0.75, 1.68), 0.09, 0.06, lampm, v=32, bev=0.01)
+        K.sph("pendant bulb", (x, 0.75, 1.64), 0.03, K.mat("bulb glow", "#FFE6B0", emit=8.0))
+    K.box("noticeboard", (-1.46, 0.2, 1.05), (0.02, 0.5, 0.36), hw_noise("cork", "#B88A5A", "#CFA272", scale=40), bev=0.006)
+    for k, (dy, dz, c) in enumerate(((-0.12, 0.06, "#FFFFFF"), (0.08, 0.08, "#FFF3A6"), (-0.05, -0.08, "#BFE3FF"), (0.13, -0.06, "#FFFFFF"))):
+        K.box("notice", (-1.448, 0.2 + dy, 1.05 + dz), (0.004, 0.11, 0.13), K.mat(f"notice {c}", c, rough=0.8), bev=0)
+    rad = K.mat("radiator", "#E8E4DA", rough=0.4, metal=0.2)
+    for x in (-0.9, 0.9):
+        for k in range(10):
+            K.box("radiator fin", (x - 0.2 + k * 0.045, 1.33, 0.36), (0.02, 0.05, 0.3), rad, bev=0.004)
     # bunting across the hall
     cols = ["#E53935", "#FDD835", "#1E88E5", "#43A047", "#FB8C00", "#8E24AA"]
     for row, (y, z) in enumerate(((0.9, 1.62), (0.4, 1.7))):
@@ -1151,7 +1227,7 @@ def s4_machine():
     hw_local(needle)
     # the beacon on top: a red glass dome with a mirror inside that spins
     K.cyl("beacon base", (S4_M.x, S4_M.y, S4_MH + 0.015), 0.05, 0.03, trim, v=24, bev=0.003)
-    K.sph("beacon dome", (S4_M.x, S4_M.y, S4_MH + 0.06), 0.048, K.mat("beacon glass", "#FF3020", rough=0.15, emit=0.6), scale=(1, 1, 1.15))
+    K.sph("beacon dome", (S4_M.x, S4_M.y, S4_MH + 0.06), 0.048, K.mat("beacon glass", "#C8281C", rough=0.15, emit=0.6), scale=(1, 1, 1.15))
     spin = K.empty("beacon spin", (S4_M.x, S4_M.y, S4_MH + 0.06))
     K.box("beacon mirror", (0, 0, 0), (0.07, 0.012, 0.05), K.mat("beacon lamp", "#FF5A3A", emit=12.0), bev=0.002, parent=spin)
     hw_local(spin)
@@ -1162,15 +1238,20 @@ def s4_machine():
 
 
 def s4_funnel(at):
-    """the funnel on its bracket off the machine's right side, its mouth at `at`"""
+    """THE SAMPLE FUNNEL: a big steel funnel on its own bracket off the machine's side, its mouth at `at`, and a clear
+    glass pipe from its spout into the machine, so the drop's way in is SEEN (board: "the machine fires with no
+    visible cause"). Returns the pipe's path [spout, elbow, machine]."""
     steel = K.mat("machine steel", "#B8BCC0", rough=0.25, metal=0.9)
-    K.cyl("funnel spout", (at.x, at.y, at.z - 0.07), 0.01, 0.06, steel, v=16, bev=0)
-    for k in range(6):
-        r = 0.012 + k * 0.009
-        K.cyl("funnel ring", (at.x, at.y, at.z - 0.045 + k * 0.009), r, 0.01, steel, v=32, bev=0.001)
-    a, b = Vector((S4_M.x + 0.21, S4_M.y - 0.08, at.z - 0.1)), Vector((at.x, at.y, at.z - 0.1))
-    d = b - a
-    K.cyl("funnel pipe", tuple((a + b) / 2), 0.01, d.length, steel, rot=tuple(Vector((0, 0, 1)).rotation_difference(d.normalized()).to_euler()), v=12, bev=0)
+    for k in range(7):
+        r = 0.014 + k * 0.011
+        K.cyl("funnel ring", (at.x, at.y, at.z - 0.06 + k * 0.01), r, 0.011, steel, v=40, bev=0.001)
+    K.cyl("funnel rim", (at.x, at.y, at.z + 0.006), 0.083, 0.008, K.mat("funnel rim", "#1E4A7A", rough=0.4), v=40, bev=0.002)
+    K.cyl("funnel spout", (at.x, at.y, at.z - 0.09), 0.012, 0.05, steel, v=16, bev=0)
+    glass = hw_glass("pipe glass")
+    p0 = Vector((at.x, at.y, at.z - 0.115)); p1 = Vector((at.x, at.y, at.z - 0.17)); p2 = Vector((S4_M.x + 0.21, at.y, at.z - 0.17))
+    K.capsule("funnel pipe", p0, p1, 0.016, glass); K.capsule("funnel pipe", p1, p2, 0.016, glass)
+    K.box("funnel bracket", (at.x / 2 + (S4_M.x + 0.21) / 2, at.y, at.z - 0.2), (abs(at.x - S4_M.x - 0.21) + 0.02, 0.03, 0.012), steel, bev=0.002)
+    return [p0, p1, p2]
 
 
 def shot4():
@@ -1179,12 +1260,12 @@ def shot4():
     into FAKE, the beacon spins red; he jumps back and points at it, then at us."""
     W = hw_win
     T_IN = 0.2 * DUR                          # the walk up ends
-    T_DIP = 0.28 * DUR
-    T_DROP = 0.42 * DUR                        # the drop falls
-    T_SWING = T_DROP + 0.32                    # ... lands, and the dial swings (arc 0.55)
-    T_JUMP = T_SWING + 0.42
-    T_POINT = 0.72 * DUR
-    T_END = 0.9 * DUR                          # a last hop at us
+    T_DIP = T_IN + 0.2                         # he lifts the dipper high: the blend from the back room still on it
+    T_DROP = 0.35 * DUR                        # the drop falls (mid-fall on the board's second still)
+    T_SWING = T_DROP + 0.6                     # ... runs down the glass pipe into the machine, and the dial swings
+    T_JUMP = T_SWING + 0.3
+    T_POINT = 0.65 * DUR
+    T_END = 0.88 * DUR                         # a last hop at us
     light = place_village_hall()
     needle, spin, found = s4_machine()
     # ---- him: walks up from the right, dips, holds the dipper over the funnel, jumps back, points
@@ -1202,27 +1283,25 @@ def shot4():
         return math.radians(y)
     for f in range(F(T_IN), NF + 1):
         t = (f - 1) / FPS
-        back = 0.07 * W(t, T_JUMP, 0.22) - 0.06 * W(t, T_POINT - 0.1, 0.3) + 0.05 * W(t, T_END - 0.1, 0.25)
-        lean = 0.0 * (1 - W(t, T_JUMP - 0.1, 0.2))
-        p = S4_P + Vector((back + lean, -0.02 * W(t, T_JUMP, 0.22), 0.0))
+        back = 0.04 * W(t, T_JUMP, 0.22) - 0.07 * W(t, T_POINT - 0.1, 0.3) + 0.02 * W(t, T_END - 0.1, 0.25)
+        p = S4_P + Vector((back, -0.08 * W(t, T_JUMP, 0.22) + 0.03 * W(t, T_END - 0.1, 0.25), 0.0))     # jumps back toward us, not out of frame
         z = 0.07 * hw_kick(t - T_JUMP - 0.04, 0.15) + 0.06 * hw_kick(t - T_POINT, 0.14) + 0.07 * hw_kick(t - T_END, 0.14) + 0.06 * hw_kick(t - T_DIP - 0.4, 0.14) + 0.035 * hw_kick(t - T_DROP - 0.05, 0.12) + 0.05 * hw_kick(t - T_IN - 0.08, 0.13)
         data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
-    hw_layer(data, "spine", lambda t: (14 * W(t, T_DIP - 0.25, 0.25) * (1 - W(t, T_DIP + 0.2, 0.25)) + 8 * W(t, T_DROP - 0.3, 0.25) * (1 - W(t, T_SWING, 0.2))
+    hw_layer(data, "spine", lambda t: (-8 * W(t, T_DIP - 0.25, 0.25) * (1 - W(t, T_DIP + 0.3, 0.25)) + 10 * W(t, T_DROP - 0.4, 0.3) * (1 - W(t, T_SWING, 0.2))
                                       - 12 * W(t, T_JUMP, 0.15) * (1 - W(t, T_POINT - 0.1, 0.3)), 0, 0), 0, DUR + 0.4)
     sc.frame_set(1); bpy.context.view_layer.update()
     lf, rt = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
     def short(sd, t, world, by=0.13):
         v = Vector(hw_rel(data, sd, t, world)); return tuple(v * max(0.3, (v.length - by) / v.length))
-    MOUTH = Vector((S4_JAR.x, S4_JAR.y, S4_STOOL + 0.1))
     POINT_AT = S4_DIAL + Vector((0.05, 0, 0.02))
     OVER = S4_FUN + Vector((0, 0, 0.05))
-    dk = [(0.0, (0.06, 0.09, -0.12)), (T_IN, (0.08, 0.1, -0.1)),
-          (T_DIP - 0.25, (0.13, 0.05, -0.04)), (T_DIP, (0.13, 0.05, -0.1)), (T_DIP + 0.3, (0.13, 0.06, -0.04)),
-          (T_DROP - 0.15, (0.09, 0.12, -0.02)), (T_DROP + 0.25, (0.09, 0.12, -0.01)),
+    dk = [(0.0, (0.08, 0.1, -0.06)), (T_IN - 0.3, (0.08, 0.11, -0.02)),
+          (T_DIP, (0.05, 0.13, 0.07)),                                            # up high: look, the blend that passed
+          (T_DROP - 0.2, (0.09, 0.12, -0.02)), (T_DROP + 0.25, (0.09, 0.12, -0.01)),
           (T_JUMP, (0.1, 0.16, -0.03)), (T_JUMP + 0.3, (0.09, 0.17, 0.0)),
           (T_POINT, tuple(Vector(hw_rel(data, lf, T_POINT, POINT_AT)).normalized() * 0.15)), (T_POINT + 0.35, tuple(Vector(hw_rel(data, lf, T_POINT + 0.35, POINT_AT)).normalized() * 0.155)), (T_END, (0.1, 0.13, 0.03)), (DUR + 0.3, (0.1, 0.13, 0.04))]
     pk = [(0.0, (0.07, 0.1, -0.11)), (T_IN, (0.08, 0.1, -0.1)), (T_DIP + 0.05, (0.09, 0.11, -0.08)),
-          (T_DIP + 0.45, (0.06, 0.17, 0.06)), (T_DROP + 0.05, (0.09, 0.12, -0.07)), (T_SWING, (0.1, 0.1, -0.08)),      # the free hand up: watch this
+          (T_DIP + 0.35, (0.06, 0.17, 0.06)), (T_DROP + 0.05, (0.09, 0.12, -0.07)), (T_SWING, (0.1, 0.1, -0.08)),      # the free hand up: watch this
           (T_JUMP, (0.08, 0.16, 0.03)), (T_JUMP + 0.3, (0.08, 0.16, 0.05)),
           (T_POINT, (0.06, 0.16, 0.0)), (T_POINT + 0.35, (0.09, 0.1, -0.09)), (T_END, (0.1, 0.14, 0.08)), (DUR + 0.3, (0.1, 0.14, 0.085))]
     data.reach(lf, hw_hand(data, lf, dk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.6)
@@ -1243,19 +1322,12 @@ def shot4():
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, lf, fore=True)
     dr = dip["root"]
-    # the jar of the blend sits where his dipper dips, the funnel where it drips (both built to his reach)
-    sc.frame_set(F(T_DIP)); bpy.context.view_layer.update()
-    hd = dr.matrix_world @ Vector((0, 0, dip["head_z"]))
-    JH, JR = 0.11, 0.045
-    jz = max(0.15, hd.z + 0.03 - JH)                   # the head just under the jar's rim
-    K.cyl("blend stool", (hd.x, hd.y, jz / 2), 0.07, jz, hw_wood("stool wood", "#8A5E3A", "#A2744A", scale=5), v=24, bev=0.006)
-    jr = jar("blend jar", (hd.x, hd.y, jz), r=JR, h=JH, fill=0.85, honey_col="#E6B850", label="PASSED")
-    jr["root"].rotation_euler = (0, 0, math.radians(20))
+    # the funnel where his dipper drips (built to his reach)
     sc.frame_set(F(T_DROP)); bpy.context.view_layer.update()
     FUN = dr.matrix_world @ Vector((0, 0, dip["head_z"])) + Vector((0, 0, -0.06))
-    s4_funnel(FUN)
+    PIPE = s4_funnel(FUN)
     # ---- the drop: from the dipper's head into the funnel
-    drop = K.sph("honey drop", (0, 0, 0), 0.012, hw_honey("drop honey", "#E6A52A", glow=1.5, clear=0.3), scale=(1, 1, 1.3))
+    drop = K.sph("honey drop", (0, 0, 0), 0.02, hw_honey("drop honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1.3))
     sc.frame_set(F(T_DROP)); bpy.context.view_layer.update()
     head0 = dr.matrix_world @ Vector((0, 0, dip["head_z"]))
     for f in range(1, NF + 1):
@@ -1268,6 +1340,19 @@ def shot4():
             p = head0.lerp(FUN + Vector((0, 0, -0.02)), u * u); s = 1.0 if u < 1 else 1e-3
         drop.location = p; drop.scale = (s, s, 1.3 * s)
         drop.keyframe_insert("location", frame=f); drop.keyframe_insert("scale", frame=f)
+    # ---- the drop runs down the glass pipe into the machine (glowing), then the dial swings
+    slug = K.sph("pipe honey", (0, 0, 0), 0.013, hw_honey("pipe honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1))
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; u = (t - T_DROP - 0.3) / (T_SWING - T_DROP - 0.3)
+        if 0 <= u <= 1:
+            v = u * 2.0; p = PIPE[0].lerp(PIPE[1], v) if v < 1 else PIPE[1].lerp(PIPE[2], v - 1); s_ = 1.0
+        else:
+            p = PIPE[0]; s_ = 1e-3
+        slug.location = p; slug.scale = (s_ * (1.6 if 0.5 < u <= 1 else 1.0), s_, s_)
+        slug.keyframe_insert("location", frame=f); slug.keyframe_insert("scale", frame=f)
+    bm = bpy.data.materials["beacon glass"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
+    for t, v in ((0.0, 0.0), (T_SWING, 0.0), (T_SWING + 0.1, 4.0)):
+        bm.default_value = v; bm.keyframe_insert("default_value", frame=F(t))
     # ---- the dial swings hard from PASS into FAKE (an overshoot and a shiver), the beacon spins
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
@@ -1281,8 +1366,8 @@ def shot4():
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=26, fstop=8.0)
     camera_path(cam, lambda t: (CAM + Vector((-0.04, 0.12, 0.0)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.01)) * ease(t / DUR), S4_DIAL))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
-    return dict(lanes=[], kiosks=[], place="village_hall", light=light, data=data, rest=1, grips=("honey dipper", "blend jar", "funnel"),
-                conseq=[("the new machine catches the rice syrup: its dial swings from PASS into FAKE, RICE SYRUP FOUND lights up and the beacon spins", lambda: meshes_of("test machine", "dial", "beacon", "screen found"), T_SWING, DUR, {"hero": True}),
+    return dict(lanes=[], kiosks=[], place="village_hall", light=light, data=data, rest=1, grips=("honey dipper", "funnel"),
+                conseq=[("the new machine catches the rice syrup: its dial swings from PASS into FAKE, RICE SYRUP FOUND lights up and the beacon spins", lambda: meshes_of("test machine", "dial", "beacon", "screen found", "funnel", "pipe honey"), T_SWING, DUR, {"hero": True}),
                         ("the needle swings from PASS to FAKE", lambda: meshes([needle]) + meshes_of("test machine dial"), T_SWING, T_SWING + 0.6, {"moves": True})])
 
 
@@ -1290,18 +1375,21 @@ def shot4():
 # shot5.py
 # ====================================================================================================
 # ---------------------------------------------------------------- shot 5: the fakes keep coming (the alley)
-"""5 ALMOST HALF. The alley behind the stall, where the imports come in: real cobbles, brick walls, a back door,
-bins, sacks, and a long plank of import jars on crates. He walks the row rolling the EU's new test roller along the
-lids, and as it passes, almost half the jars spin round to a red SUSPECT label (shot 1 caught one in seven); at the
-row's end he picks up the last red one and holds it out to us: what's in your jar?"""
+"""5 ALMOST HALF. The alley behind the stall, where the imports come in: cobbles, brick walls, a back door, bins,
+crates, and a stepped stand of import jars, three tiers of seven. One jar in each tier already wears a red SUSPECT
+label (the old test's one in seven). He hauls down the big lever of the EU's new scanner; its red bar sweeps along the
+tiers and two more in every tier spin round to red: three in seven, almost half, three times the old count. He picks
+up a red one and holds it out to us: what's in your jar?"""
 
-S5_X0, S5_X1 = -0.5, 0.35                       # his walk along the row
-S5_PY = -0.025                                   # his line along it
-S5_ROW_Y = -0.22                                 # the row of import jars, on his left as he walks (+x)
-S5_N = 7
-S5_FAKES = (1, 3, 6)                             # 3 of 7: almost half, three times shot 1's one in seven
-S5_JR, S5_JH = 0.055, 0.17
-S5_RR = 0.03                                     # the roller's drum radius
+S5_N, S5_TIERS = 7, 3
+S5_OLD = 2                                       # the one in seven the old test caught, in every tier
+S5_NEW = (4, 6)                                  # the two more the new test catches: three in seven
+S5_JR, S5_JH, S5_DX = 0.036, 0.12, 0.085
+S5_TX0 = -0.15                                   # the first column's x
+S5_TIER = [(0.42, 0.82 + 0.2 * k) for k in range(S5_TIERS)]    # (y, top z) of each shelf: high on a rack against the alley wall, over his head
+S5_LEV = Vector((0.28, 0.14, 0.0))               # the lever's foot, at the stand's right end
+S5_PIV = 0.16; S5_LL = 0.27                      # its pivot height, its arm's length
+S5_P = Vector((0.48, 0.13, 0.0))                 # where he stands to haul it
 
 
 def s5_brick(name, a="#9C4A32", b="#B8644A", mortar="#CFC4B2", scale=7.0):
@@ -1348,14 +1436,7 @@ def place_market_alley():
     """THE ALLEY BEHIND THE CHEAP STALL: cobbles (each stone a stone), brick walls with a back door and a drainpipe,
     crates, bins and sacks, the stall's canvas back, a lamp over the door, the drum of SUGAR SYRUP and its tap."""
     rnd = hw_random.Random(55)
-    K.box("alley bed", (0, 0.5, -0.008), (8, 8, 0.012), K.mat("cobble joint", "#6A6258", rough=0.95), bev=0)
-    stones = [hw_noise(f"cobble {k}", a, b, scale=18, rough=0.75, bump=0.6) for k, (a, b) in
-              enumerate((("#7E7A72", "#9A958A"), ("#8C8070", "#A89A86"), ("#6E6A64", "#8A857C"), ("#9A8E7C", "#B2A690")))]
-    for i in range(34):
-        for j in range(21):
-            x = -1.3 + i * 0.075 + (0.037 if j % 2 else 0.0) + rnd.uniform(-0.005, 0.005)
-            y = -0.95 + j * 0.066 + rnd.uniform(-0.004, 0.004)
-            K.sph("cobble", (x, y, -0.012), 1.0, rnd.choice(stones), scale=(0.04 + rnd.uniform(-0.003, 0.003), 0.035 + rnd.uniform(-0.003, 0.003), 0.012), seg=14, ring=7)
+    K.box("alley bed", (0, 0.5, -0.008), (8, 8, 0.012), hw_cobbles("alley cobbles", "#7E776C", "#A09682", "#3E3832", scale=7), bev=0)   # board: spheres "read as polka dots"
     brick = s5_brick("alley brick")
     K.box("alley back wall", (0, 0.62, 1.2), (6, 0.12, 2.4), brick, bev=0)
     K.box("alley side wall", (-1.35, 0.0, 1.2), (0.12, 2.4, 2.4), s5_brick("alley brick dark", "#7E3E2C", "#9A5440"), bev=0)
@@ -1379,160 +1460,165 @@ def place_market_alley():
     binm = K.mat("bin green", "#3E6A4A", rough=0.5, metal=0.3)
     K.cyl("bin", (-0.95, 0.38, 0.22), 0.16, 0.44, binm, v=24, bev=0.01)
     K.cyl("bin lid", (-0.95, 0.38, 0.45), 0.17, 0.03, binm, v=24, bev=0.006)
-    sack = hw_noise("sack", "#B8A07A", "#CDB894", scale=20, rough=0.95, bump=0.6)
-    for k, (x, y) in enumerate(((0.7, 0.4), (0.82, 0.32))):
-        K.sph("sugar sack", (x, y, 0.15), 1.0, sack, scale=(0.13, 0.11, 0.16))
-        K.text("sack print", "SUGAR", (x, y - 0.112, 0.16), 0.04, (math.pi / 2, 0, 0), K.mat("sack ink", "#3A3A6A", rough=0.8))
     for k in range(3):
         s5_crate(f"empty crate {k}", (-0.2 + 0.02 * k, 0.42, 0.22 * k), (0.28, 0.2, 0.22), rnd)
     K.cyl("broom handle", (-0.82, 0.5, 0.6), 0.012, 1.2, hw_wood("broom", "#A07A50", "#B89068"), rot=(0.12, 0, 0), v=12)
     return lambda: village_light(sun_elev=50, sun_az=-25, sun=3.2, sky=0.3)
 
 
-def s5_roller(name="test roller"):
-    """the EU's new test roller: a red drum stamped EU TEST on a steel fork, a black grip. Built with the drum's axle
-    along local X at the origin and the handle running up local +Z to the grip. Returns dict(root, spin)."""
-    root = K.empty(name, (0, 0, 0))
-    spin = K.empty(name + " spin", (0, 0, 0), parent=root)
-    red = K.mat("roller red", "#C8261E", rough=0.4)
-    steel = K.mat("roller steel", "#B0B4B8", rough=0.25, metal=0.9)
-    K.cyl(name + " drum", (0, 0, 0), S5_RR, 0.09, red, rot=(0, math.pi / 2, 0), v=32, bev=0.004, parent=spin)
-    for k in range(6):                                       # ribs, so it reads as rolling
-        a = 2 * math.pi * k / 6
-        rb = K.box(name + " rib", (0, S5_RR * math.sin(a), S5_RR * math.cos(a)), (0.092, 0.007, 0.005),
-                   K.mat("roller rib", "#F4F0E8", rough=0.5), bev=0.001, parent=spin)
-        rb.rotation_euler = (-a, 0, 0)
-    for s in (-1, 1):
-        K.capsule(name + " fork", Vector((s * 0.04, 0, 0)), Vector((s * 0.02, 0, 0.05)), 0.004, steel, parent=root)
-    shaft = K.empty(name + " shaft", (0, 0, 0), parent=root)          # scaled along z so the grip sits in his fist
-    K.capsule(name + " stem", Vector((0, 0, 0.05)), Vector((0, 0, 0.1)), 0.005, steel, parent=shaft)
-    K.cyl(name + " grip", (0, 0, 0.125), 0.011, 0.06, K.mat("roller grip", "#1E1E22", rough=0.7), v=16, bev=0.004, parent=shaft)
-    hw_local(root)
-    return dict(root=root, spin=spin, shaft=shaft)
+def s5_stand(rnd):
+    """the import rack: a tall steel-and-plank shelving rack against the alley wall, three shelves of seven jars
+    over his head (board: the stand was too small to read a share from; on a tall rack the tiers fill the frame)"""
+    wood = hw_wood("stand wood", "#8A6A44", "#A8865A", scale=5)
+    steel = K.mat("rack steel", "#3E5A7A", rough=0.4, metal=0.5)
+    xa, xb = S5_TX0 - 0.07, S5_TX0 + 6 * S5_DX + 0.07
+    for x in (xa, xb):
+        for y in (S5_TIER[0][0] - 0.08, S5_TIER[0][0] + 0.08):
+            K.box("rack upright", (x, y, 0.77), (0.03, 0.03, 1.54), steel, bev=0.003)
+    for k, (y, z) in enumerate(S5_TIER):
+        K.box("rack shelf", ((xa + xb) / 2, y, z - 0.012), (xb - xa + 0.04, 0.18, 0.024), wood, bev=0.004)
+        K.box("rack lip", ((xa + xb) / 2, y - 0.09, z - 0.03), (xb - xa + 0.04, 0.01, 0.04), steel, bev=0.002)
+    for z in (0.25, 0.55):
+        K.box("rack shelf", ((xa + xb) / 2, S5_TIER[0][0], z), (xb - xa + 0.04, 0.18, 0.024), wood, bev=0.004)
+    K.text("stand stencil", "IMPORTS", ((xa + xb) / 2, S5_TIER[0][0] - 0.097, S5_TIER[0][1] - 0.03), 0.028, (math.pi / 2, 0, 0), hw_ink("rack word", "#FFFFFF"), extrude=0.0004)
+    for k in range(3):                                   # the empty crates the jars came in, on the bottom shelf and the floor
+        s5_crate(f"import crate {k}", (xa + 0.16 + 0.24 * (k % 2), S5_TIER[0][0], (0.27, 0.57, 0.0)[k]), (0.2, 0.15, 0.13), rnd)
+    jars = []
+    for k, (y, z) in enumerate(S5_TIER):
+        row = []
+        for i in range(S5_N):
+            red = i == S5_OLD or i in S5_NEW
+            j = jar(f"import jar {k} {i}", (S5_TX0 + i * S5_DX, y, z), r=S5_JR, h=S5_JH, fill=0.9, honey_col="#E8A82A", glow=0.35,
+                    label="PURE HONEY", back="SUSPECT" if red else None, yaw=math.radians(rnd.uniform(-6, 6)))
+            if i == S5_OLD:
+                j["spin"].rotation_euler = (0, 0, math.pi)          # the old test already caught this one
+            row.append(j)
+        jars.append(row)
+    return jars
+
+
+def s5_scanner():
+    """THE EU SCANNER: a blue rail along the rack's top, a carriage on it with a red light bar hanging down in front of
+    the three shelves, just off the jars' faces; and its big lever on the rack's right upright. Returns (carriage, arm)."""
+    steel = K.mat("scanner steel", "#B8BCC0", rough=0.25, metal=0.9)
+    blue = K.mat("scanner blue", "#1E4A7A", rough=0.4)
+    x0, x1 = S5_TX0 - 0.1, S5_TX0 + 6 * S5_DX + 0.1
+    yf = S5_TIER[0][0] - 0.12; ztop = S5_TIER[-1][1] + S5_JH + 0.12
+    K.box("gantry rail", ((x0 + x1) / 2, yf, ztop), (x1 - x0 + 0.06, 0.04, 0.035), blue, bev=0.004)
+    K.text("gantry word", "EU TEST", ((x0 + x1) / 2, yf - 0.022, ztop), 0.026, (math.pi / 2, 0, 0), hw_ink("gantry word", "#FFFFFF"), extrude=0.0004)
+    car = K.empty("scanner carriage", (0, 0, 0))
+    K.box("scanner head", (0, yf, ztop - 0.04), (0.07, 0.07, 0.06), blue, bev=0.006, parent=car)
+    K.capsule("scan bar", Vector((0, yf, S5_TIER[0][1] - 0.02)), Vector((0, yf, ztop - 0.06)), 0.009, K.mat("scan red", "#FF3020", rough=0.3, emit=6.0), parent=car)
+    hw_local(car)
+    K.box("lever box", (S5_LEV.x, S5_LEV.y, S5_PIV / 2), (0.08, 0.1, S5_PIV), blue, bev=0.006)
+    K.capsule("lever cable", Vector((S5_LEV.x, S5_LEV.y + 0.03, S5_PIV)), Vector((x1 + 0.03, yf + 0.02, ztop)), 0.006, K.mat("cable black", "#1A1A1A", rough=0.6))
+    arm = K.empty("lever arm", (S5_LEV.x, S5_LEV.y, S5_PIV))
+    K.cyl("lever rod", (0, 0, S5_LL / 2), 0.012, S5_LL, steel, v=16, bev=0.002, parent=arm)
+    K.cyl("lever grip", (0, 0, S5_LL), 0.022, 0.09, K.mat("lever red", "#C8261E", rough=0.4), rot=(math.pi / 2, 0, 0), v=16, bev=0.004, parent=arm)
+    K.sph("lever hub", (0, 0, 0), 0.03, steel, parent=arm)
+    hw_local(arm)
+    return car, arm
 
 
 def shot5():
-    """ALMOST HALF. He walks the row of import jars rolling the EU's test roller along their lids; as it passes,
-    almost half spin round to a red SUSPECT label; at the end he turns to us, picks up the last red one and holds it
-    out to the lens: what's in your jar?"""
+    """ALMOST HALF. Beside the stand of import jars (one red in every tier of seven) he hauls the scanner's lever
+    down with both hands; its red bar sweeps along the tiers and two more in every tier spin red; he jumps back, leans
+    in after it, points along the reds, then turns to us with his hands out: what's in your jar?"""
     W = hw_win
-    T_W0, T_W1 = 0.2, 0.62 * DUR           # he walks the row, rolling
-    T_TURN = T_W1 + 0.05                         # turns to us
-    T_GRAB = T_W1 + 0.6                          # picks up the last red jar ...
-    T_SHOW = T_GRAB + 0.55                       # ... and holds it out to us
-    B = 0.15                                     # the plank's top: the jars stand on it
-    LID = B + S5_JH + 0.016                      # their lids' top
+    T_IN = 0.9                                    # walks in to the lever
+    T_GRIP = 1.1                                  # both hands on its grip
+    T_PULL0, T_PULL1 = 1.3, 1.75                  # hauls it down
+    T_S0, T_S1 = 1.8, 3.6                         # the bar sweeps the tiers on its own
+    T_LET = 2.0                                   # lets go and jumps back
+    T_LEAN = 2.6                                  # leans in after the bar
+    T_POINT = 3.25                                # points along the reds
+    T_SHOW = 4.3                                  # turns to us, hands out: what's in your jar?
+    T_BACK = 5.0                                  # swings back to point at the reds, then back to us
+    A_UP, A_DN = math.radians(-2), math.radians(44)       # leaning up, hauled down toward him
     light = place_market_alley()
     rnd = hw_random.Random(5)
-    wood = hw_wood("import plank", "#8A6A44", "#A8865A", scale=5)
-    XS = [S5_X0 + 0.12 + (S5_X1 + 0.05 - S5_X0 - 0.12) * k / (S5_N - 1) for k in range(S5_N)]
-    K.box("import plank", ((XS[0] + XS[-1]) / 2, S5_ROW_Y, B - 0.015), (XS[-1] - XS[0] + 0.14, 0.11, 0.03), wood, bev=0.004)
-    for k, x in enumerate((XS[0] + 0.03, XS[-1] - 0.17, (XS[0] + XS[-1]) / 2 - 0.12)):
-        s5_crate(f"import crate {k}", (x, S5_ROW_Y - 0.025, 0.0), (0.16, 0.08, B - 0.03), rnd)
-    K.text("import stencil", "IMPORTS", ((XS[0] + XS[-1]) / 2, S5_ROW_Y - 0.057, B * 0.55), 0.05, (math.pi / 2, 0, 0), K.mat("stencil ink", "#2A2A2A", rough=0.8))
-    jars = []
-    for k, x in enumerate(XS):
-        jars.append(jar(f"import jar {k}", (x, S5_ROW_Y, B), r=S5_JR, h=S5_JH, fill=0.9, honey_col="#E8A82A", glow=0.35, label="PURE HONEY",
-                        back="SUSPECT" if k in S5_FAKES else None, yaw=math.radians(rnd.uniform(-8, 8))))
-    last = jars[-1]
-    data = load_data()
-    data.place(S5_X0, S5_PY, 90.0)
-    hat = bee_hat(data)
-    data.walk_to(Vector((S5_X1, S5_PY, 0)), T_W0, T_W1)
-    def yaw(t):
-        return math.radians(90 - 70 * W(t, T_TURN, 0.45) - 16 * W(t, T_SHOW + 0.35, 0.5) + 16 * W(t, T_SHOW + 0.95, 0.5))
-    def bx(t):
-        return S5_X0 + (S5_X1 - S5_X0) * min(1.0, max(0.0, (t - T_W0) / (T_W1 - T_W0)))
-    for f in range(F(T_W1) + 1, NF + 1):
-        t = (f - 1) / FPS
-        p = Vector((S5_X1, S5_PY, 0)) + Vector((0, -0.035, 0)) * W(t, T_GRAB - 0.5, 0.35) * (1 - W(t, T_SHOW, 0.4)) + Vector((-0.04, 0, 0)) * W(t, T_SHOW + 0.5, 0.3) + Vector((0.05, 0, 0)) * W(t, T_SHOW + 0.95, 0.3)
-        z = 0.035 * hw_kick(t - T_TURN - 0.1, 0.13) + 0.04 * hw_kick(t - T_SHOW - 0.05, 0.14) + 0.05 * hw_kick(t - T_SHOW - 1.0, 0.14)
-        data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
-    hw_layer(data, "spine", lambda t: (8 * W(t, T_W0, 0.3) * (1 - W(t, T_W1, 0.3)) + 28 * W(t, T_GRAB - 0.4, 0.3) * (1 - W(t, T_GRAB + 0.05, 0.35))
-                                      - 6 * W(t, T_SHOW, 0.4), 0, 0), 0, DUR + 0.4)
-    sc.frame_set(1); bpy.context.view_layer.update()
-    lf, rt = ("R", "L") if acts._shoulder(data, "L").y > acts._shoulder(data, "R").y else ("L", "R")   # lf: the row's side (-y)
-    # the roller hand: its fist over the lids for the walk, the drum on them, pressing with each stride
-    def roll_fist(t):
-        x = bx(t) + 0.12
-        return Vector((x, S5_ROW_Y + 0.07, LID + S5_RR + 0.1 + 0.012 * math.sin(2 * math.pi * (t - T_W0) / 0.7)))
-    rest_l = hw_hand(data, lf, [(0.0, (0.0, 0.05, -0.14)), (DUR + 0.3, (0.0, 0.05, -0.14))])
-    down_l = hw_hand(data, lf, [(0.0, (0.12, 0.06, -0.03)), (T_W1 + 0.2, (0.12, 0.06, -0.03)), (T_GRAB, (0.09, 0.08, -0.06)), (T_SHOW + 0.3, (0.08, 0.08, -0.06)), (T_SHOW + 0.6, (0.13, 0.08, 0.0)),
-                               (T_SHOW + 1.0, (0.12, 0.09, -0.02)), (T_SHOW + 1.3, (0.06, 0.1, -0.11)), (DUR + 0.3, (0.06, 0.1, -0.11))])     # waves the roller at it
-    def lfn(t):
-        a = 1.0; b = W(t, T_W1 - 0.3, 0.5)
-        return rest_l(t).lerp(roll_fist(t), a).lerp(down_l(t), b)
-    data.reach(lf, lfn, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.25)
-    # the jar hand: hangs, then picks up the last jar and holds it out at the lens
-    JMID = Vector(last["root"].location) + Vector((0, 0.0, S5_JH * 0.8))      # by its shoulder, under the lid
-    grab = hw_rel(data, rt, T_GRAB, JMID)
-    rk = [(0.0, (0.04, 0.08, -0.14)), (T_W1, (0.05, 0.08, -0.13)), (T_GRAB - 0.4, (0.12, 0.04, -0.04)), (T_GRAB - 0.15, (grab[0], grab[1], grab[2] + 0.07)), (T_GRAB, grab),
-          (T_GRAB + 0.25, (max(grab[0], 0.14) + 0.02, grab[1], grab[2] + 0.06)), (T_SHOW, (0.15, 0.03, -0.05)), (T_SHOW + 0.45, (0.155, 0.04, -0.035)),
-          (T_SHOW + 0.7, (0.155, 0.045, -0.012)), (T_SHOW + 1.05, (0.15, 0.04, -0.06)),        # shakes it at us
-          (T_SHOW + 1.4, (0.155, 0.04, -0.03)), (DUR + 0.3, (0.155, 0.04, -0.03))]
-    data.reach(rt, hw_hand(data, rt, rk), 0.0, DUR + 0.3, lead=0.08, back=None, elbow_out=0.35)
-    # ---- the face
-    CAM = Vector((0.62, -1.2, 0.72)); LOOK = Vector((-0.1, -0.1, 0.38))
-    data.look_at(Vector((XS[3], S5_ROW_Y, LID)), 0.0, max_yaw=45, max_pitch=35, blend=0.0)
-    data.look_at(CAM, T_W0 + 1.0, max_yaw=45, blend=0.15)                                 # a look at us mid-row: see?
-    data.look_at(Vector((XS[-2], S5_ROW_Y, LID)), T_W0 + 1.6, max_yaw=45, max_pitch=35, blend=0.15)
-    data.look_at(CAM, T_SHOW - 0.2, max_yaw=45, blend=0.18)
-    data.expression("determined", 0.0, T_W0 + 0.9)
-    data.expression("surprised", T_W0 + 1.0, T_W1 - 0.2, blend=0.12)
-    data.expression("worried", T_W1 - 0.1, T_SHOW - 0.2, blend=0.15)
-    data.expression("wry", T_SHOW - 0.1, DUR + 1.0, blend=0.18)
-    data.finish()
-    # ---- the roller: its drum on the lids under his fist, its grip in his fist; each fake spins red as it passes
-    ro = s5_roller()
-    flips = {}
-    prev = None; ang = 0.0
+    jars = s5_stand(rnd)
+    car, arm = s5_scanner()
+    x0, x1 = S5_TX0 - 0.08, S5_TX0 + 6 * S5_DX + 0.08
+    def car_x(t):
+        return x0 + (x1 - x0) * ease(min(1.0, max(0.0, (t - T_S0) / (T_S1 - T_S0))))
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
-        M = data.arm.matrix_world @ data.pb["hand." + lf].matrix
-        fist = M.translation + (M.to_3x3() @ Vector((0, 0.05, 0)))
-        on = 1 - W(t, T_W1 + 0.05, 0.4)
-        free = fist + data.forward() * 0.05 - Vector((0, 0, 0.1))           # off the lids: held out below the fist, clear of his coat
-        D = free.lerp(Vector((fist.x, S5_ROW_Y, LID + S5_RR)), on)
-        ax = (fist - D); L = max(0.03, ax.length); ax.normalize()
-        xa = Vector((0, 1, 0)) - ax * ax.y; xa = xa.normalized() if xa.length > 1e-4 else Vector((1, 0, 0))
-        from mathutils import Matrix
-        R = Matrix((xa, ax.cross(xa), ax)).transposed()
-        ro["root"].location = D; ro["root"].rotation_euler = R.to_euler()
-        ro["shaft"].scale = (1, 1, L / 0.125)
-        if prev is not None: ang += (D.x - prev.x) / S5_RR * on
-        prev = D.copy()
-        ro["spin"].rotation_euler = (-ang, 0, 0)
-        for o, ks in ((ro["root"], ("location", "rotation_euler")), (ro["shaft"], ("scale",)), (ro["spin"], ("rotation_euler",))):
-            for k in ks: o.keyframe_insert(k, frame=f)
-        for k in S5_FAKES:
-            if k not in flips and on > 0.9 and D.x >= XS[k]:
-                flips[k] = t
-    for k in S5_FAKES:
-        jar_flip(jars[k], flips.get(k, T_W1 - 0.3), 0.3)
-    # the last jar in his fist from T_GRAB: upright, its red label to us
-    root = last["root"]; r0 = Vector(root.location); e0 = tuple(root.rotation_euler)
-    for f in range(F(T_GRAB) - 1, NF + 1):
-        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
-        M = data.arm.matrix_world @ data.pb["hand." + rt].matrix
-        fist = M.translation + (M.to_3x3() @ Vector((0, 0.045, 0)))
-        u = W(t, T_GRAB, 0.12)
-        root.location = r0.lerp(fist - Vector((0, 0, S5_JH * 0.8)), u)
-        root.rotation_euler = (0, 0, e0[2] * (1 - u) + data.arm.rotation_euler.z * u)
-        root.keyframe_insert("location", frame=f); root.keyframe_insert("rotation_euler", frame=f)
-    # ---- the lens: in front of the row, tracking him along it; at the end it pushes in on the jar he holds out
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30, fstop=7.0)
-    def lens(t):
-        u = ease(t / DUR)
-        w = (bx(t) - S5_X0) / (S5_X1 - S5_X0)
-        push = W(t, T_GRAB, 1.4)                                   # and in on the jar he holds out
-        c = CAM + Vector((0.2, -0.12, 0.0)) * w; l = LOOK + Vector((0.42, 0, 0.0)) * w - Vector((0.1, 0, 0)) * push
-        return (c + (l - c).normalized() * 0.2 * push + Vector((0, 0, 0.03 * push)), l + Vector((0, 0, 0.04 * push)), Vector((bx(t), -0.1, 0.4)))
-    camera_path(cam, lens)
-    fakes = [jars[k] for k in S5_FAKES]
-    return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("test roller", "import jar 6"),
-                conseq=[("his roller passes along the lids and almost half the import jars spin round to a red SUSPECT", lambda: meshes([j["root"] for j in jars] + [ro["root"]]),
-                         min(flips.values(), default=T_W0), T_W1 + 0.2, {"hero": True, "moves": lambda: meshes([ro["root"]])}),
-                        ("the last red jar, held out to us: what's in your jar?", lambda: meshes([last["root"]]), T_GRAB, DUR)])
+        t = (f - 1) / FPS
+        car.location = (car_x(t), 0, 0); car.keyframe_insert("location", frame=f)
+        a = A_UP + (A_DN - A_UP) * ease(min(1.0, max(0.0, (t - T_PULL0) / (T_PULL1 - T_PULL0))))
+        a -= (A_DN - A_UP) * ease(min(1.0, max(0.0, (t - T_LET - 0.6) / 0.35)))       # let go, it springs back up
+        arm.rotation_euler = (0, a, 0); arm.keyframe_insert("rotation_euler", frame=f)
+    for row in jars:
+        for i in S5_NEW:
+            u = (S5_TX0 + i * S5_DX - x0) / (x1 - x0)
+            tt = T_S0 + (T_S1 - T_S0) * min(range(101), key=lambda k: abs(ease(k / 100) - u)) / 100   # the bar reaches it
+            jar_flip(row[i], tt)
+    def grip_pt(t, dy):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        return arm.matrix_world @ Vector((0, dy, S5_LL))
+    # ---- him
+    data = load_data()
+    P0 = S5_P + Vector((0.17, 0.06, 0))   # from up the alley, three-quarter to us
+    data.place(P0.x, P0.y, math.degrees(math.atan2((S5_P - P0).x, -(S5_P - P0).y)))
+    hat = bee_hat(data)
+    data.walk_to(S5_P, 0.0, T_IN)
+    sc.frame_set(F(T_IN)); bpy.context.view_layer.update(); yw = data.arm.rotation_euler.z
+    FACE_LEV = math.atan2(S5_LEV.x - S5_P.x, -(S5_LEV.y - S5_P.y)) + math.radians(16)     # three-quarter to us, not his back
+    FACE_STAND = math.radians(-48); FACE_US = math.radians(-12)
+    def yaw(t):
+        y = yw + (FACE_LEV - yw) * W(t, T_IN - 0.05, 0.3)
+        y += (FACE_STAND - FACE_LEV) * W(t, T_LET + 0.1, 0.35)
+        y += (FACE_US - FACE_STAND) * W(t, T_SHOW - 0.3, 0.4)
+        y += math.radians(22) * W(t, T_POINT, 0.7) * (1 - W(t, T_SHOW - 0.35, 0.3))     # his finger runs along the reds
+        y += (FACE_STAND - FACE_US) * W(t, T_BACK, 0.35) * (1 - W(t, T_BACK + 0.8, 0.4))     # swings back to the rack: those ones
+        return y
+    for f in range(F(T_IN), NF + 1):
+        t = (f - 1) / FPS
+        p = S5_P + Vector((0.16, -0.03, 0)) * W(t, T_PULL0 - 0.05, 0.5)                               # walks back, hauling it down
+        p += Vector((0.04, -0.04, 0)) * W(t, T_LET + 0.25, 0.2) * (1 - W(t, T_LEAN, 0.35))                  # jumps back as it goes
+        p += Vector((-0.04, 0, 0)) * W(t, T_LEAN, 0.35) * (1 - W(t, T_SHOW - 0.3, 0.4))              # leans in after the bar
+        p += Vector((0.0, -0.06, 0)) * W(t, T_SHOW - 0.3, 0.4)                                        # and steps to us
+        p += Vector((-0.04, 0.03, 0)) * W(t, T_POINT - 0.15, 0.3) * (1 - W(t, T_SHOW - 0.3, 0.4))   # a step after his finger
+        p += Vector((-0.05, -0.07, 0)) * W(t, T_BACK + 0.8, 0.45)                                     # and again: what's in YOUR jar?
+        z = 0.06 * hw_kick(t - T_LET - 0.28, 0.14) + 0.035 * hw_kick(t - T_PULL1 + 0.05, 0.12) + 0.05 * hw_kick(t - T_SHOW - 0.1, 0.14) \
+            + 0.04 * hw_kick(t - T_SHOW - 1.1, 0.13) + 0.05 * hw_kick(t - T_SHOW - 2.0, 0.14) + 0.035 * hw_kick(t - T_POINT - 0.05, 0.12) + 0.04 * hw_kick(t - T_POINT - 0.5, 0.12)
+        data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
+    hw_layer(data, "spine", lambda t: (14 * W(t, T_PULL0 - 0.1, 0.3) * (1 - W(t, T_PULL1, 0.3)) - 12 * W(t, T_LET, 0.2) * (1 - W(t, T_LEAN, 0.3))
+                                      + 16 * W(t, T_LEAN, 0.3) * (1 - W(t, T_SHOW - 0.4, 0.35)) - 6 * W(t, T_SHOW, 0.4), 0,
+                                      8 * math.sin(2 * math.pi * (t - T_SHOW) / 1.1) * W(t, T_SHOW + 0.2, 0.4)), 0, DUR + 0.4)
+    sc.frame_set(F(T_GRIP)); bpy.context.view_layer.update()
+    near, far = sorted("LR", key=lambda s: acts._shoulder(data, s).y)     # [near the lens, far]
+    rest = {s: hw_hand(data, s, [(0.0, (0.05, 0.08, -0.13)), (DUR + 0.3, (0.05, 0.08, -0.13))]) for s in "LR"}
+    after = {near: hw_hand(data, near, [(0.0, (0.06, 0.1, -0.1)), (T_LET + 0.3, (0.1, 0.12, -0.03)), (T_LEAN + 0.2, (0.1, 0.1, -0.06)),
+                                         (T_POINT, (0.16, 0.04, -0.03)), (T_POINT + 0.4, (0.15, 0.05, -0.03)), (T_SHOW - 0.2, (0.08, 0.1, -0.08)),
+                                         (T_SHOW + 0.25, (0.12, 0.09, -0.04)),
+            (T_BACK + 0.3, (0.16, 0.04, -0.03)), (T_BACK + 0.65, (0.15, 0.05, -0.05)), (T_SHOW + 2.05, (0.13, 0.08, -0.04)), (T_SHOW + 2.5, (0.06, 0.12, -0.1)), (DUR + 0.3, (0.13, 0.08, -0.04))]),     # hands out, down, out: what's in YOUR jar?
+             far: hw_hand(data, far, [(0.0, (0.06, 0.1, -0.1)), (T_LET + 0.3, (0.08, 0.12, -0.03)), (T_LEAN + 0.2, (0.06, 0.1, -0.1)),
+                                       (T_SHOW - 0.2, (0.06, 0.1, -0.1)), (T_SHOW + 0.25, (0.12, 0.09, -0.04)), (T_SHOW + 0.75, (0.06, 0.11, -0.11)), (T_SHOW + 1.2, (0.1, 0.12, -0.03)),
+            (T_SHOW + 1.65, (0.05, 0.08, -0.12)), (T_SHOW + 2.05, (0.13, 0.08, -0.04)), (T_SHOW + 2.5, (0.06, 0.12, -0.1)), (DUR + 0.3, (0.13, 0.08, -0.04))])}
+    def hand_fn(s, dy):
+        def fn(t):
+            g = W(t, T_GRIP - 0.7, 0.65)
+            p = rest[s](t).lerp(grip_pt(t, dy), g)
+            return p.lerp(after[s](t), W(t, T_LET, 0.6))
+        return fn
+    data.reach(near, hand_fn(near, -0.035), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
+    data.reach(far, hand_fn(far, 0.035), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
+    CAM = Vector((0.34, -1.29, 0.7)); LOOK = Vector((0.34, 0.3, 0.74))
+    data.look_at(Vector((S5_LEV.x, S5_LEV.y, 0.5)), 0.0, max_yaw=45, max_pitch=35, blend=0.0)
+    data.look_at(Vector((0.05, 0.42, 1.05)), T_S0 + 0.1, max_yaw=32, max_pitch=40, blend=0.15)      # looks up: watches the bar sweep
+    data.look_at(CAM, T_SHOW - 0.2, max_yaw=45, blend=0.18)
+    data.expression("determined", 0.0, T_S0)
+    data.expression("surprised", T_S0 + 0.3, T_SHOW - 0.3, blend=0.12)
+    data.expression("worried", T_SHOW - 0.2, DUR + 1.0, blend=0.15)
+    data.finish()
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=24, fstop=7.0)
+    camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.06 * W(t, T_SHOW, 1.5), LOOK, Vector((0.1, 0.2, 0.7))))
+    allj = [j for row in jars for j in row]
+    return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("lever grip",),
+                conseq=[("he hauls the lever, the scanner's red bar sweeps the tiers and two more jars in every seven spin red: three in seven, almost half",
+                         lambda: meshes([j["root"] for j in allj] + [car]), T_S0, DUR, {"hero": True, "moves": lambda: meshes([car])}),
+                        ("the lever comes down in his hands", lambda: meshes([arm]), T_PULL0, T_PULL1 + 0.3)])
 
 
 SHOTS = {1: shot1, 2: shot2, 3: shot3, 4: shot4, 5: shot5}

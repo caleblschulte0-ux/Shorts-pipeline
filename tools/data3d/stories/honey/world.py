@@ -92,7 +92,9 @@ def hw_hat_mesh(to_world, ears):
     """a beekeeper's hat built ON his head (his rest frame, facing -Y): a round domed crown, a wide flat brim with a
     soft droop at its rim, holes cut where his ears pass through; the veil is rolled up round the crown (bee_hat)"""
     from mathutils import Vector as V
-    A = (0.146, 0.118); B = (0.27, 0.245); H = 0.1; n = 60
+    # the brim is narrow and turned UP at the front (board 2026-11-23: "the hat brim hides his face", shots 3 and 5,
+    # "his head bowed under it"): from any lens at or above his eyes the face reads under it
+    A = (0.146, 0.118); B = (0.225, 0.2); H = 0.1; n = 60
     verts, faces, mi, rows = [], [], [], []
     rhos = [0.0, 0.1, 0.22, 0.35, 0.48, 0.6, 0.72, 0.82, 0.9, 0.95, 0.985, 1.0]
     for rho in rhos:
@@ -106,7 +108,9 @@ def hw_hat_mesh(to_world, ears):
         u = (k + 1) / 10; row = []
         for i in range(n):
             th = 2 * math.pi * i / n
-            verts.append(((A[0] + (B[0] - A[0]) * u) * math.cos(th), (A[1] + (B[1] - A[1]) * u) * math.sin(th), HW_HAT_ZB - 0.022 * u ** 2.2))
+            front = max(0.0, -math.sin(th)) ** 1.5                       # the front (-Y) turns up off his eyes
+            verts.append(((A[0] + (B[0] - A[0]) * u) * math.cos(th), (A[1] + (B[1] - A[1]) * u) * math.sin(th),
+                          HW_HAT_ZB - 0.022 * u ** 2.2 * (1 - front) + 0.06 * u ** 1.4 * front))
             row.append(len(verts) - 1)
         rows.append(row)
     for a, b in zip(rows, rows[1:]):
@@ -209,6 +213,48 @@ def jar_flip(j, t0, dur=0.3):
     p = j["spin"]
     for t, a in ((0.0, 0.0), (t0, 0.0), (t0 + dur * 0.75, math.radians(192)), (t0 + dur, math.radians(180))):
         p.rotation_euler = (0, 0, a); p.keyframe_insert("rotation_euler", frame=F(t))
+
+
+# ---------------------------------------------------------------- cobbles that read as cobbles
+def hw_cobbles(name="hw cobbles", a="#8C8174", b="#ABA08E", joint="#4E463E", scale=14.0):
+    """a cobbled ground as ONE material (board 2026-11-23: rows of spheres "read as grey polka-dot fabric"): Voronoi
+    stones, each its own tint between a and b, dark sunken joints between them, a rounded bump on every stone"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
+    bs.inputs["Roughness"].default_value = 0.85
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (scale, scale * 1.25, scale)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    vc = nt.nodes.new("ShaderNodeTexVoronoi"); vc.feature = 'F1'; vc.inputs["Randomness"].default_value = 0.85
+    ve = nt.nodes.new("ShaderNodeTexVoronoi"); ve.feature = 'DISTANCE_TO_EDGE'; ve.inputs["Randomness"].default_value = 0.85
+    for v in (vc, ve): nt.links.new(mp.outputs["Vector"], v.inputs["Vector"])
+    tint = nt.nodes.new("ShaderNodeValToRGB"); tint.color_ramp.elements[0].color = (*K.lin(a), 1); tint.color_ramp.elements[1].color = (*K.lin(b), 1)
+    sep = nt.nodes.new("ShaderNodeSeparateColor"); nt.links.new(vc.outputs["Color"], sep.inputs["Color"])
+    nt.links.new(sep.outputs[0], tint.inputs["Fac"])
+    edge = nt.nodes.new("ShaderNodeMapRange"); edge.inputs["From Min"].default_value = 0.02; edge.inputs["From Max"].default_value = 0.12
+    nt.links.new(ve.outputs["Distance"], edge.inputs["Value"])
+    mix = nt.nodes.new("ShaderNodeMixRGB"); mix.inputs["Color1"].default_value = (*K.lin(joint), 1)
+    nt.links.new(edge.outputs["Result"], mix.inputs["Fac"]); nt.links.new(tint.outputs["Color"], mix.inputs["Color2"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 90
+    dirt = nt.nodes.new("ShaderNodeMixRGB"); dirt.blend_type = 'MULTIPLY'; dirt.inputs["Fac"].default_value = 0.18
+    nt.links.new(mix.outputs["Color"], dirt.inputs["Color1"]); nt.links.new(nz.outputs["Fac"], dirt.inputs["Color2"])
+    nt.links.new(dirt.outputs["Color"], bs.inputs["Base Color"])
+    dome = nt.nodes.new("ShaderNodeMath"); dome.operation = 'SQRT'; nt.links.new(edge.outputs["Result"], dome.inputs[0])
+    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.7; bp.inputs["Distance"].default_value = 0.02
+    nt.links.new(dome.outputs["Value"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
+    return m
+
+
+def hw_person(name, loc, yaw=0.0, coat="#2F6FA6", legs="#33363C"):
+    """a villager, still MINIMAL (caaleb 2026-11-11, person() in store/shots.py): faceless, head, body, tube arms, two
+    legs; only the coat's colour is the village's own instead of the store's staff blue (board: "big blue blobs")"""
+    root = person(name, loc, yaw)
+    cm = K.mat(f"villager coat {coat}", coat, rough=0.7); lm = K.mat(f"villager legs {legs}", legs, rough=0.65)
+    for o in root.children:
+        if o.name.startswith(("body", "arm")): o.data.materials.clear(); o.data.materials.append(cm)
+        elif o.name.startswith("leg"): o.data.materials.clear(); o.data.materials.append(lm)
+    return root
 
 
 # ---------------------------------------------------------------- a worker bee

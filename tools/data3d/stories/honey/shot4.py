@@ -7,7 +7,7 @@ S4_M = Vector((-0.05, 0.14, 0.0))               # the machine's foot (its front 
 S4_MH = 0.8                                     # its height
 S4_DIAL = Vector((S4_M.x, S4_M.y - 0.145, 0.55))   # the dial's centre on its front
 S4_FUN = Vector((0.28, -0.15, 0.44))             # the funnel's mouth on its side bracket
-S4_P = Vector((0.52, 0.0, 0.0))                  # where he stands
+S4_P = Vector((0.45, 0.0, 0.0))                  # where he stands
 S4_JAR = Vector((0.38, -0.27, 0.0))             # the jar of the tuned blend on its stool
 S4_STOOL = 0.3
 
@@ -34,8 +34,32 @@ def place_village_hall():
             K.box("hall window frame", (x + dx, 1.355, 1.25 + dz), (sx, 0.03, sz), fr, bev=0.003)
     # the stage at the back with its board
     K.box("hall stage", (0, 1.15, 0.12), (2.4, 0.4, 0.24), wain, bev=0.01)
-    K.box("hall board", (0, 1.365, 1.95), (1.0, 0.02, 0.2), K.mat("hall board", "#1E4A7A", rough=0.5), bev=0.006)
-    K.text("hall board word", "VILLAGE HALL", (0, 1.35, 1.92), 0.09, (math.pi / 2, 0, 0), hw_ink("board gold", "#F2C64A", emit=0.3), extrude=0.001)
+    # the honey show's long table on the stage (board 2026-11-23: "no stage, no tables ... sign clutter"): a checked
+    # cloth, entries in jars with rosettes, a cake stand; pendant lamps over the hall, a noticeboard and a radiator
+    cloth = hw_noise("show cloth", "#F4F1EA", "#E2DCCF", scale=30, rough=0.85)
+    K.box("show table", (0.1, 1.12, 0.24 + 0.29), (1.9, 0.26, 0.02), cloth, bev=0.004)
+    K.box("show table drape", (0.1, 0.99, 0.24 + 0.2), (1.9, 0.006, 0.2), cloth, bev=0)
+    for k in range(12):
+        K.box("cloth check", (-0.82 + k * 0.17, 0.985, 0.24 + 0.2), (0.07, 0.004, 0.2), K.mat("check blue", "#7FA7D6", rough=0.85), bev=0)
+    for k in range(9):
+        x = -0.7 + k * 0.2
+        jar(f"show jar {k}", (x, 1.12, 0.55), r=0.035, h=0.09, fill=0.9, honey_col=("#E8A82A", "#C97A12", "#F2C35A")[k % 3])
+        if k % 3 == 1:
+            K.cyl("rosette", (x + 0.05, 1.0, 0.5), 0.03, 0.006, K.mat("rosette red", "#C8261E", rough=0.5), rot=(math.pi / 2, 0, 0), v=20, bev=0.002)
+    K.cyl("cake stand", (0.95, 1.12, 0.58), 0.08, 0.012, K.mat("stand white", "#FFFFFF", rough=0.3), v=32, bev=0.003)
+    K.cyl("cake", (0.95, 1.12, 0.62), 0.065, 0.07, hw_noise("cake", "#D9A35A", "#E9BE7A", scale=20), v=32, bev=0.01)
+    lampm = K.mat("pendant shade", "#2E4A3E", rough=0.4, metal=0.3)
+    for x in (-0.5, 0.55):
+        K.cyl("pendant cord", (x, 0.75, 2.0), 0.003, 0.6, K.mat("cord", "#222222"), v=6, bev=0)
+        K.cyl("pendant shade", (x, 0.75, 1.68), 0.09, 0.06, lampm, v=32, bev=0.01)
+        K.sph("pendant bulb", (x, 0.75, 1.64), 0.03, K.mat("bulb glow", "#FFE6B0", emit=8.0))
+    K.box("noticeboard", (-1.46, 0.2, 1.05), (0.02, 0.5, 0.36), hw_noise("cork", "#B88A5A", "#CFA272", scale=40), bev=0.006)
+    for k, (dy, dz, c) in enumerate(((-0.12, 0.06, "#FFFFFF"), (0.08, 0.08, "#FFF3A6"), (-0.05, -0.08, "#BFE3FF"), (0.13, -0.06, "#FFFFFF"))):
+        K.box("notice", (-1.448, 0.2 + dy, 1.05 + dz), (0.004, 0.11, 0.13), K.mat(f"notice {c}", c, rough=0.8), bev=0)
+    rad = K.mat("radiator", "#E8E4DA", rough=0.4, metal=0.2)
+    for x in (-0.9, 0.9):
+        for k in range(10):
+            K.box("radiator fin", (x - 0.2 + k * 0.045, 1.33, 0.36), (0.02, 0.05, 0.3), rad, bev=0.004)
     # bunting across the hall
     cols = ["#E53935", "#FDD835", "#1E88E5", "#43A047", "#FB8C00", "#8E24AA"]
     for row, (y, z) in enumerate(((0.9, 1.62), (0.4, 1.7))):
@@ -92,7 +116,7 @@ def s4_machine():
     hw_local(needle)
     # the beacon on top: a red glass dome with a mirror inside that spins
     K.cyl("beacon base", (S4_M.x, S4_M.y, S4_MH + 0.015), 0.05, 0.03, trim, v=24, bev=0.003)
-    K.sph("beacon dome", (S4_M.x, S4_M.y, S4_MH + 0.06), 0.048, K.mat("beacon glass", "#FF3020", rough=0.15, emit=0.6), scale=(1, 1, 1.15))
+    K.sph("beacon dome", (S4_M.x, S4_M.y, S4_MH + 0.06), 0.048, K.mat("beacon glass", "#C8281C", rough=0.15, emit=0.6), scale=(1, 1, 1.15))
     spin = K.empty("beacon spin", (S4_M.x, S4_M.y, S4_MH + 0.06))
     K.box("beacon mirror", (0, 0, 0), (0.07, 0.012, 0.05), K.mat("beacon lamp", "#FF5A3A", emit=12.0), bev=0.002, parent=spin)
     hw_local(spin)
@@ -103,15 +127,20 @@ def s4_machine():
 
 
 def s4_funnel(at):
-    """the funnel on its bracket off the machine's right side, its mouth at `at`"""
+    """THE SAMPLE FUNNEL: a big steel funnel on its own bracket off the machine's side, its mouth at `at`, and a clear
+    glass pipe from its spout into the machine, so the drop's way in is SEEN (board: "the machine fires with no
+    visible cause"). Returns the pipe's path [spout, elbow, machine]."""
     steel = K.mat("machine steel", "#B8BCC0", rough=0.25, metal=0.9)
-    K.cyl("funnel spout", (at.x, at.y, at.z - 0.07), 0.01, 0.06, steel, v=16, bev=0)
-    for k in range(6):
-        r = 0.012 + k * 0.009
-        K.cyl("funnel ring", (at.x, at.y, at.z - 0.045 + k * 0.009), r, 0.01, steel, v=32, bev=0.001)
-    a, b = Vector((S4_M.x + 0.21, S4_M.y - 0.08, at.z - 0.1)), Vector((at.x, at.y, at.z - 0.1))
-    d = b - a
-    K.cyl("funnel pipe", tuple((a + b) / 2), 0.01, d.length, steel, rot=tuple(Vector((0, 0, 1)).rotation_difference(d.normalized()).to_euler()), v=12, bev=0)
+    for k in range(7):
+        r = 0.014 + k * 0.011
+        K.cyl("funnel ring", (at.x, at.y, at.z - 0.06 + k * 0.01), r, 0.011, steel, v=40, bev=0.001)
+    K.cyl("funnel rim", (at.x, at.y, at.z + 0.006), 0.083, 0.008, K.mat("funnel rim", "#1E4A7A", rough=0.4), v=40, bev=0.002)
+    K.cyl("funnel spout", (at.x, at.y, at.z - 0.09), 0.012, 0.05, steel, v=16, bev=0)
+    glass = hw_glass("pipe glass")
+    p0 = Vector((at.x, at.y, at.z - 0.115)); p1 = Vector((at.x, at.y, at.z - 0.17)); p2 = Vector((S4_M.x + 0.21, at.y, at.z - 0.17))
+    K.capsule("funnel pipe", p0, p1, 0.016, glass); K.capsule("funnel pipe", p1, p2, 0.016, glass)
+    K.box("funnel bracket", (at.x / 2 + (S4_M.x + 0.21) / 2, at.y, at.z - 0.2), (abs(at.x - S4_M.x - 0.21) + 0.02, 0.03, 0.012), steel, bev=0.002)
+    return [p0, p1, p2]
 
 
 def shot4():
@@ -120,12 +149,12 @@ def shot4():
     into FAKE, the beacon spins red; he jumps back and points at it, then at us."""
     W = hw_win
     T_IN = 0.2 * DUR                          # the walk up ends
-    T_DIP = 0.28 * DUR
-    T_DROP = 0.42 * DUR                        # the drop falls
-    T_SWING = T_DROP + 0.32                    # ... lands, and the dial swings (arc 0.55)
-    T_JUMP = T_SWING + 0.42
-    T_POINT = 0.72 * DUR
-    T_END = 0.9 * DUR                          # a last hop at us
+    T_DIP = T_IN + 0.2                         # he lifts the dipper high: the blend from the back room still on it
+    T_DROP = 0.35 * DUR                        # the drop falls (mid-fall on the board's second still)
+    T_SWING = T_DROP + 0.6                     # ... runs down the glass pipe into the machine, and the dial swings
+    T_JUMP = T_SWING + 0.3
+    T_POINT = 0.65 * DUR
+    T_END = 0.88 * DUR                         # a last hop at us
     light = place_village_hall()
     needle, spin, found = s4_machine()
     # ---- him: walks up from the right, dips, holds the dipper over the funnel, jumps back, points
@@ -143,27 +172,25 @@ def shot4():
         return math.radians(y)
     for f in range(F(T_IN), NF + 1):
         t = (f - 1) / FPS
-        back = 0.07 * W(t, T_JUMP, 0.22) - 0.06 * W(t, T_POINT - 0.1, 0.3) + 0.05 * W(t, T_END - 0.1, 0.25)
-        lean = 0.0 * (1 - W(t, T_JUMP - 0.1, 0.2))
-        p = S4_P + Vector((back + lean, -0.02 * W(t, T_JUMP, 0.22), 0.0))
+        back = 0.04 * W(t, T_JUMP, 0.22) - 0.07 * W(t, T_POINT - 0.1, 0.3) + 0.02 * W(t, T_END - 0.1, 0.25)
+        p = S4_P + Vector((back, -0.08 * W(t, T_JUMP, 0.22) + 0.03 * W(t, T_END - 0.1, 0.25), 0.0))     # jumps back toward us, not out of frame
         z = 0.07 * hw_kick(t - T_JUMP - 0.04, 0.15) + 0.06 * hw_kick(t - T_POINT, 0.14) + 0.07 * hw_kick(t - T_END, 0.14) + 0.06 * hw_kick(t - T_DIP - 0.4, 0.14) + 0.035 * hw_kick(t - T_DROP - 0.05, 0.12) + 0.05 * hw_kick(t - T_IN - 0.08, 0.13)
         data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
-    hw_layer(data, "spine", lambda t: (14 * W(t, T_DIP - 0.25, 0.25) * (1 - W(t, T_DIP + 0.2, 0.25)) + 8 * W(t, T_DROP - 0.3, 0.25) * (1 - W(t, T_SWING, 0.2))
+    hw_layer(data, "spine", lambda t: (-8 * W(t, T_DIP - 0.25, 0.25) * (1 - W(t, T_DIP + 0.3, 0.25)) + 10 * W(t, T_DROP - 0.4, 0.3) * (1 - W(t, T_SWING, 0.2))
                                       - 12 * W(t, T_JUMP, 0.15) * (1 - W(t, T_POINT - 0.1, 0.3)), 0, 0), 0, DUR + 0.4)
     sc.frame_set(1); bpy.context.view_layer.update()
     lf, rt = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
     def short(sd, t, world, by=0.13):
         v = Vector(hw_rel(data, sd, t, world)); return tuple(v * max(0.3, (v.length - by) / v.length))
-    MOUTH = Vector((S4_JAR.x, S4_JAR.y, S4_STOOL + 0.1))
     POINT_AT = S4_DIAL + Vector((0.05, 0, 0.02))
     OVER = S4_FUN + Vector((0, 0, 0.05))
-    dk = [(0.0, (0.06, 0.09, -0.12)), (T_IN, (0.08, 0.1, -0.1)),
-          (T_DIP - 0.25, (0.13, 0.05, -0.04)), (T_DIP, (0.13, 0.05, -0.1)), (T_DIP + 0.3, (0.13, 0.06, -0.04)),
-          (T_DROP - 0.15, (0.09, 0.12, -0.02)), (T_DROP + 0.25, (0.09, 0.12, -0.01)),
+    dk = [(0.0, (0.08, 0.1, -0.06)), (T_IN - 0.3, (0.08, 0.11, -0.02)),
+          (T_DIP, (0.05, 0.13, 0.07)),                                            # up high: look, the blend that passed
+          (T_DROP - 0.2, (0.09, 0.12, -0.02)), (T_DROP + 0.25, (0.09, 0.12, -0.01)),
           (T_JUMP, (0.1, 0.16, -0.03)), (T_JUMP + 0.3, (0.09, 0.17, 0.0)),
           (T_POINT, tuple(Vector(hw_rel(data, lf, T_POINT, POINT_AT)).normalized() * 0.15)), (T_POINT + 0.35, tuple(Vector(hw_rel(data, lf, T_POINT + 0.35, POINT_AT)).normalized() * 0.155)), (T_END, (0.1, 0.13, 0.03)), (DUR + 0.3, (0.1, 0.13, 0.04))]
     pk = [(0.0, (0.07, 0.1, -0.11)), (T_IN, (0.08, 0.1, -0.1)), (T_DIP + 0.05, (0.09, 0.11, -0.08)),
-          (T_DIP + 0.45, (0.06, 0.17, 0.06)), (T_DROP + 0.05, (0.09, 0.12, -0.07)), (T_SWING, (0.1, 0.1, -0.08)),      # the free hand up: watch this
+          (T_DIP + 0.35, (0.06, 0.17, 0.06)), (T_DROP + 0.05, (0.09, 0.12, -0.07)), (T_SWING, (0.1, 0.1, -0.08)),      # the free hand up: watch this
           (T_JUMP, (0.08, 0.16, 0.03)), (T_JUMP + 0.3, (0.08, 0.16, 0.05)),
           (T_POINT, (0.06, 0.16, 0.0)), (T_POINT + 0.35, (0.09, 0.1, -0.09)), (T_END, (0.1, 0.14, 0.08)), (DUR + 0.3, (0.1, 0.14, 0.085))]
     data.reach(lf, hw_hand(data, lf, dk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.6)
@@ -184,19 +211,12 @@ def shot4():
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, lf, fore=True)
     dr = dip["root"]
-    # the jar of the blend sits where his dipper dips, the funnel where it drips (both built to his reach)
-    sc.frame_set(F(T_DIP)); bpy.context.view_layer.update()
-    hd = dr.matrix_world @ Vector((0, 0, dip["head_z"]))
-    JH, JR = 0.11, 0.045
-    jz = max(0.15, hd.z + 0.03 - JH)                   # the head just under the jar's rim
-    K.cyl("blend stool", (hd.x, hd.y, jz / 2), 0.07, jz, hw_wood("stool wood", "#8A5E3A", "#A2744A", scale=5), v=24, bev=0.006)
-    jr = jar("blend jar", (hd.x, hd.y, jz), r=JR, h=JH, fill=0.85, honey_col="#E6B850", label="PASSED")
-    jr["root"].rotation_euler = (0, 0, math.radians(20))
+    # the funnel where his dipper drips (built to his reach)
     sc.frame_set(F(T_DROP)); bpy.context.view_layer.update()
     FUN = dr.matrix_world @ Vector((0, 0, dip["head_z"])) + Vector((0, 0, -0.06))
-    s4_funnel(FUN)
+    PIPE = s4_funnel(FUN)
     # ---- the drop: from the dipper's head into the funnel
-    drop = K.sph("honey drop", (0, 0, 0), 0.012, hw_honey("drop honey", "#E6A52A", glow=1.5, clear=0.3), scale=(1, 1, 1.3))
+    drop = K.sph("honey drop", (0, 0, 0), 0.02, hw_honey("drop honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1.3))
     sc.frame_set(F(T_DROP)); bpy.context.view_layer.update()
     head0 = dr.matrix_world @ Vector((0, 0, dip["head_z"]))
     for f in range(1, NF + 1):
@@ -209,6 +229,19 @@ def shot4():
             p = head0.lerp(FUN + Vector((0, 0, -0.02)), u * u); s = 1.0 if u < 1 else 1e-3
         drop.location = p; drop.scale = (s, s, 1.3 * s)
         drop.keyframe_insert("location", frame=f); drop.keyframe_insert("scale", frame=f)
+    # ---- the drop runs down the glass pipe into the machine (glowing), then the dial swings
+    slug = K.sph("pipe honey", (0, 0, 0), 0.013, hw_honey("pipe honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1))
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; u = (t - T_DROP - 0.3) / (T_SWING - T_DROP - 0.3)
+        if 0 <= u <= 1:
+            v = u * 2.0; p = PIPE[0].lerp(PIPE[1], v) if v < 1 else PIPE[1].lerp(PIPE[2], v - 1); s_ = 1.0
+        else:
+            p = PIPE[0]; s_ = 1e-3
+        slug.location = p; slug.scale = (s_ * (1.6 if 0.5 < u <= 1 else 1.0), s_, s_)
+        slug.keyframe_insert("location", frame=f); slug.keyframe_insert("scale", frame=f)
+    bm = bpy.data.materials["beacon glass"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
+    for t, v in ((0.0, 0.0), (T_SWING, 0.0), (T_SWING + 0.1, 4.0)):
+        bm.default_value = v; bm.keyframe_insert("default_value", frame=F(t))
     # ---- the dial swings hard from PASS into FAKE (an overshoot and a shiver), the beacon spins
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
@@ -222,6 +255,6 @@ def shot4():
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=26, fstop=8.0)
     camera_path(cam, lambda t: (CAM + Vector((-0.04, 0.12, 0.0)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.01)) * ease(t / DUR), S4_DIAL))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
-    return dict(lanes=[], kiosks=[], place="village_hall", light=light, data=data, rest=1, grips=("honey dipper", "blend jar", "funnel"),
-                conseq=[("the new machine catches the rice syrup: its dial swings from PASS into FAKE, RICE SYRUP FOUND lights up and the beacon spins", lambda: meshes_of("test machine", "dial", "beacon", "screen found"), T_SWING, DUR, {"hero": True}),
+    return dict(lanes=[], kiosks=[], place="village_hall", light=light, data=data, rest=1, grips=("honey dipper", "funnel"),
+                conseq=[("the new machine catches the rice syrup: its dial swings from PASS into FAKE, RICE SYRUP FOUND lights up and the beacon spins", lambda: meshes_of("test machine", "dial", "beacon", "screen found", "funnel", "pipe honey"), T_SWING, DUR, {"hero": True}),
                         ("the needle swings from PASS to FAKE", lambda: meshes([needle]) + meshes_of("test machine dial"), T_SWING, T_SWING + 0.6, {"moves": True})])
