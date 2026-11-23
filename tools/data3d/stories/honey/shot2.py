@@ -106,10 +106,10 @@ def shot2():
     """A QUARTER OF THE PRICE. Between two flagpoles and the price board: hand over hand he hoists the RICE SYRUP flag
     and it stops at 0.50; he hops round to the HONEY pole and hoists its gold flag past 1.00, 1.50, 2.00 to 2.17;
     he points up at it and spreads his hands at us."""
-    T_S0, T_S1 = 0.06 * DUR, 0.3 * DUR             # the syrup flag up to 0.50, two pulls
-    T_H0, T_H1 = 0.42 * DUR, 0.8 * DUR            # the honey flag up to 2.17, three pulls
-    T_PT, T_SPREAD = 0.85 * DUR, 0.9 * DUR
-    NS, NH = 2, 3
+    T_S0, T_S1 = 0.05 * DUR, 0.34 * DUR             # the syrup flag up to 0.50, two pulls
+    T_H0, T_H1 = 0.48 * DUR, 0.82 * DUR            # the honey flag up to 2.17, two pulls for each hand
+    T_PT, T_SPREAD = 0.86 * DUR, 0.91 * DUR
+    NS, NH = 2, 2
     light = place_honey_house()
     W = hw_win
     board = hw_wood("price board", "#F0E6CC", "#E2D6B8", scale=3)
@@ -136,42 +136,46 @@ def shot2():
         return S3_Z0 + (tops[i] - S3_Z0) * (k + ease(min(1.0, fr * 1.25))) / n
     # ---- him: between the poles, turned to the pole he is hoisting, his near hand hand over hand on its rope
     data = load_data()
-    data.place(S3_DATA.x, S3_DATA.y, -25.0)
+    XS, XH, YW = S3_DATA.x - 0.025, S3_DATA.x + 0.025, 50.0          # beside each rope, turned to it
+    data.place(XS, S3_DATA.y, -YW)
     hat = bee_hat(data)
     tug = lambda t, t0, t1, n: (math.sin(math.pi * n * max(0.0, min(1.0, (t - t0) / (t1 - t0))))) ** 2 * W(t, t0, 0.1) * (1 - W(t, t1 - 0.05, 0.1))
-    T_TURN = (T_S1 + T_H0) / 2; T_HEAVE = T_H0 + 0.625 * (T_H1 - T_H0)
+    T_TURN = (T_S1 + T_H0) / 2
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
-        yaw = -25 + 50 * W(t, T_TURN - 0.2, 0.4) - 25 * W(t, T_PT + 0.1, 0.35)
-        z = (-0.05 * tug(t, T_S0, T_S1, NS) - 0.055 * tug(t, T_H0, T_H1, NH)
-             + 0.05 * hw_kick(t - (T_TURN - 0.15), 0.15) + 0.06 * hw_kick(t - T_SPREAD, 0.15) + 0.04 * hw_kick(t - T_HEAVE, 0.16))
-        sway = 0.045 * math.sin(math.pi * NH * max(0.0, min(1.0, (t - T_H0) / (T_H1 - T_H0)))) * W(t, T_H0, 0.2) * (1 - W(t, T_H1 - 0.1, 0.2))
-        sway += 0.05 * math.sin(math.pi * NS * max(0.0, min(1.0, (t - T_S0) / (T_S1 - T_S0)))) * W(t, T_S0, 0.2) * (1 - W(t, T_S1 - 0.1, 0.2))
-        data._kobj(t, loc=(S3_DATA.x, S3_DATA.y - 0.6 * sway, z), rot=math.radians(yaw + 120 * sway))
-    hw_layer(data, "spine", lambda t: (12 * tug(t, T_S0, T_S1, NS) + 13 * tug(t, T_H0, T_H1, NH) - 5 * hw_kick(t - T_HEAVE, 0.2) - 6 * W(t, T_H1 - 0.1, 0.3) * (1 - W(t, T_SPREAD, 0.3)), 0, 0), 0, DUR + 0.4)
+        u = W(t, T_S1 + 0.03, T_H0 - T_S1 - 0.13)
+        yaw = -YW + 2 * YW * u - YW * W(t, T_PT, 0.4)
+        x = XS + (XH - XS) * u
+        z = (0.035 * tug(t, T_S0, T_S1, 2 * NS) + 0.035 * tug(t, T_H0, T_H1, 2 * NH)          # up on his toes as he hauls
+             + 0.05 * hw_kick(t - (T_TURN - 0.15), 0.15) + 0.06 * hw_kick(t - T_SPREAD, 0.15))
+        x += 0.03 * tug(t, T_S0, T_S1, 2 * NS) - 0.045 * tug(t, T_H0, T_H1, 2 * NH)      # heaving back from the pole
+        data._kobj(t, loc=(x, S3_DATA.y, z), rot=math.radians(yaw))
+    hw_layer(data, "spine", lambda t: (-14 * tug(t, T_S0, T_S1, 2 * NS) - 14 * tug(t, T_H0, T_H1, 2 * NH) - 6 * W(t, T_H1 - 0.1, 0.3) * (1 - W(t, T_SPREAD, 0.3)), 0, 0), 0, DUR + 0.4)
     sc.frame_set(1); bpy.context.view_layer.update()
     lf, rt = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
     rope_at = lambda i, z: Vector((rope_x[i], rope_y, z))
-    def pulls(sd, i, t0, t1, n):
+    def pulls(sd, i, t0, t1, n, ph):
         ks = []
         for k in range(n):
-            a = t0 + (t1 - t0) * k / n; b = t0 + (t1 - t0) * (k + 0.5) / n
-            ks += [(a + 0.02, hw_rel(data, sd, a + 0.02, rope_at(i, 0.5))), (b, hw_rel(data, sd, b, rope_at(i, 0.37)))]
+            a = t0 + (t1 - t0) * (k + ph) / n; b = t0 + (t1 - t0) * (k + ph + 0.5) / n
+            if a >= t0 - 0.01: ks += [(a + 0.02, hw_rel(data, sd, a + 0.02, rope_at(i, 0.49)))]
+            if b <= t1 + 0.01: ks += [(b, hw_rel(data, sd, b, rope_at(i, 0.38)))]
         return ks
-    REST, HIP = (0.07, 0.1, -0.13), (0.09, 0.05, -0.15)
-    # the near hand on the rope; the far hand on his hip, then both up at the end
-    lk = [(0.0, hw_rel(data, lf, 0.0, rope_at(0, 0.46)))] + pulls(lf, 0, T_S0, T_S1, NS)
-    lk += [(T_S1 + 0.25, (0.1, 0.12, -0.06)), (T_H0, HIP), (T_H1 + 0.1, HIP), (T_SPREAD, (0.1, 0.15, 0.02)), (DUR + 0.3, (0.1, 0.15, 0.03))]
-    rk = [(0.0, REST), (T_S0, HIP), (T_S1 - 0.25, HIP), (T_H0 - 0.22, hw_rel(data, rt, T_H0 - 0.22, rope_at(1, 0.49)))] + pulls(rt, 1, T_H0, T_H1, NH)
-    rk += [(T_PT, (0.13, 0.1, 0.03)), (T_SPREAD - 0.05, (0.13, 0.12, 0.04)), (T_SPREAD + 0.15, (0.1, 0.15, 0.02)), (DUR + 0.3, (0.1, 0.15, 0.03))]
+    # both hands hand over hand on the rope he is hauling, one up while the other comes down
+    lk = [(0.0, hw_rel(data, lf, 0.0, rope_at(0, 0.46)))] + pulls(lf, 0, T_S0, T_S1, NS, 0.0)
+    rk = [(0.0, hw_rel(data, rt, 0.0, rope_at(0, 0.42)))] + pulls(rt, 0, T_S0, T_S1, NS, 0.5)
+    lk += [(T_H0 + 0.02, hw_rel(data, lf, T_H0 + 0.02, rope_at(1, 0.42)))] + pulls(lf, 1, T_H0, T_H1, NH, 0.5)
+    rk += [(T_H0 - 0.03, hw_rel(data, rt, T_H0 - 0.03, rope_at(1, 0.48)))] + pulls(rt, 1, T_H0, T_H1, NH, 0.0)
+    lk += [(T_H1 + 0.4, (0.1, 0.12, -0.04)), (T_SPREAD, (0.1, 0.15, 0.02)), (DUR + 0.3, (0.1, 0.15, 0.03))]
+    rk += [(T_H1 + 0.32, (0.13, 0.1, 0.03)), (T_SPREAD + 0.22, (0.1, 0.15, 0.02)), (DUR + 0.3, (0.1, 0.15, 0.03))]
     for ks in (rk, lk):
         ks.sort(key=lambda k: k[0])
         i = 1
         while i < len(ks):
             if ks[i][0] <= ks[i - 1][0] + 0.03: ks.pop(i)
             else: i += 1
-    data.reach(rt, hw_hand(data, rt, rk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.5)
-    data.reach(lf, hw_hand(data, lf, lk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.5)
+    data.reach(rt, hw_hand(data, rt, rk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
+    data.reach(lf, hw_hand(data, lf, lk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
     LENS = Vector((0.2, -1.38, 0.7))
     data.look_at(Vector((S3_POLES[0].x - 0.15, 0.2, tops[0])), 0.0, max_yaw=45, max_pitch=30, blend=0.0)
     data.look_at(LENS, T_S1 - 0.05, max_yaw=45, blend=0.15)

@@ -221,5 +221,5 @@ def shot1():
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=40, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.12 * ease(t / DUR), LOOK, Vector((0.3, -0.15, 0.5))))
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
-                conseq=[("he slams his dipper and only one of the seven labels flips to a red SYRUP", lambda: meshes([j["root"] for j in fakes]), T_FLIP[0], DUR, {"hero": True}),
+                conseq=[("he slams his dipper and only one of the seven labels flips to a red SYRUP", lambda: meshes([j["root"] for j in jars]), T_FLIP[0], DUR, {"hero": True}),
                         ("the slam makes the whole row of jars jump", lambda: meshes([j["root"] for j in jars]), T_SLAM, T_SLAM + 0.5)])
