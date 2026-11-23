@@ -160,7 +160,7 @@ def shot1():
     # the jars: seven across the counter, labels to the lens; the one fake (the middle one) has a red back label
     jars = []
     for k in range(S1_N):
-        x = -0.31 + k * 0.128
+        x = -0.27 + k * 0.112
         fake = k in S1_FAKES
         jars.append(jar(f"stall jar {k}", (x, -0.2, S1_CH), r=0.05, h=0.17, fill=0.9, honey_col="#E6A52A" if fake else "#D98A12",
                         label="PURE HONEY", back="SYRUP" if fake else None, yaw=math.radians(-34), glow=0.3))      # labels turned toward the lens
@@ -224,10 +224,10 @@ def shot1():
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, side, fore=True)
     # ---- the lens: square on the counter at jar height, a slow push in
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 27.5, face_at=(0.64, 0.66), height=0.33, t=0.5 * DUR)   # framed first: he stands behind the row's far end
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 27.5, face_at=(0.6, 0.66), height=0.33, t=0.5 * DUR)   # framed first: he stands behind the row's far end
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=27.5, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.02 * ease(t / DUR), LOOK, Vector((0.0, -0.1, 0.4))))
-    compose.place(hw_named("price sign", "sign string"), cam, (0.03, 0.78, 0.97, 0.99), frame=NF, label="the 2 EUROS sign")   # whole, over the row, at the push's end
+    compose.place(hw_named("price sign", "sign string"), cam, (0.03, 0.72, 0.97, 0.99), frame=NF, label="the 2 EUROS sign")   # whole, over the row, at the push's end
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
                 boxes=[("the 2 EUROS sign", lambda: hw_drawn("price sign"), (0.0, 0.62, 1.0, 1.0)),
                        ("the seven jars", lambda: meshes([j["root"] for j in jars]), (0.0, 0.0, 1.0, 0.7))],

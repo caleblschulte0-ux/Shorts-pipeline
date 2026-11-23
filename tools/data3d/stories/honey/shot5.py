@@ -203,7 +203,7 @@ def shot5():
         p += Vector((-0.04, 0, 0)) * W(t, T_LEAN, 0.35) * (1 - W(t, T_SHOW - 0.3, 0.4))              # leans in after the bar
         p += Vector((0.0, -0.06, 0)) * W(t, T_SHOW - 0.3, 0.4)                                        # and steps to us
         p += Vector((-0.04, 0.03, 0)) * W(t, T_POINT - 0.15, 0.3) * (1 - W(t, T_SHOW - 0.3, 0.4))   # a step after his finger
-        p += Vector((-0.05, -0.07, 0)) * W(t, T_BACK + 0.8, 0.45)                                     # and again: what's in YOUR jar?
+        p += Vector((-0.06, -0.04, 0)) * W(t, T_BACK + 0.8, 0.45)                                     # and again: what's in YOUR jar?
         z = 0.06 * hw_kick(t - T_LET - 0.28, 0.14) + 0.035 * hw_kick(t - T_PULL1 + 0.05, 0.12) + 0.05 * hw_kick(t - T_SHOW - 0.1, 0.14) \
             + 0.04 * hw_kick(t - T_SHOW - 1.1, 0.13) + 0.05 * hw_kick(t - T_SHOW - 2.0, 0.14) + 0.035 * hw_kick(t - T_POINT - 0.05, 0.12) + 0.04 * hw_kick(t - T_POINT - 0.5, 0.12)
         data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
@@ -216,10 +216,10 @@ def shot5():
     after = {near: hw_hand(data, near, [(0.0, (0.06, 0.1, -0.1)), (T_LET + 0.3, (0.1, 0.12, -0.03)), (T_LEAN + 0.2, (0.1, 0.1, -0.06)),
                                          (T_POINT, (0.16, 0.04, -0.03)), (T_POINT + 0.4, (0.15, 0.05, -0.03)), (T_SHOW - 0.2, (0.08, 0.1, -0.08)),
                                          (T_SHOW + 0.25, (0.12, 0.09, -0.04)),
-            (T_BACK + 0.3, (0.16, 0.04, -0.03)), (T_BACK + 0.65, (0.15, 0.05, -0.05)), (T_SHOW + 2.05, (0.13, 0.08, -0.04)), (T_SHOW + 2.5, (0.06, 0.12, -0.1)), (DUR + 0.3, (0.13, 0.08, -0.04))]),     # hands out, down, out: what's in YOUR jar?
+            (T_BACK + 0.3, (0.16, 0.04, -0.03)), (T_BACK + 0.65, (0.15, 0.05, -0.05)), (T_SHOW + 2.0, (0.1, 0.07, -0.06)), (T_SHOW + 2.35, (0.16, 0.01, -0.025)), (DUR + 0.3, (0.16, 0.01, -0.025))]),     # hands out, down, out: what's in YOUR jar?
              far: hw_hand(data, far, [(0.0, (0.06, 0.1, -0.1)), (T_LET + 0.3, (0.08, 0.12, -0.03)), (T_LEAN + 0.2, (0.06, 0.1, -0.1)),
                                        (T_SHOW - 0.2, (0.06, 0.1, -0.1)), (T_SHOW + 0.25, (0.12, 0.09, -0.04)), (T_SHOW + 0.75, (0.06, 0.11, -0.11)), (T_SHOW + 1.2, (0.1, 0.12, -0.03)),
-            (T_SHOW + 1.65, (0.05, 0.08, -0.12)), (T_SHOW + 2.05, (0.13, 0.08, -0.04)), (T_SHOW + 2.5, (0.06, 0.12, -0.1)), (DUR + 0.3, (0.13, 0.08, -0.04))])}
+            (T_SHOW + 1.65, (0.05, 0.08, -0.12)), (T_SHOW + 2.05, (0.05, 0.11, -0.07)), (T_SHOW + 2.35, (0.02, 0.12, -0.06)), (DUR + 0.3, (0.02, 0.12, -0.06))])}
     def hand_fn(s, dy):
         def fn(t):
             g = W(t, T_GRIP - 0.7, 0.65)
@@ -236,12 +236,12 @@ def shot5():
     data.expression("surprised", T_S0 + 0.3, T_SHOW - 0.3, blend=0.12)
     data.expression("worried", T_SHOW - 0.2, DUR + 1.0, blend=0.15)
     data.finish()
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 24, face_at=(0.7, 0.45), height=0.345, t=0.5 * DUR)   # framed first: beside the rack, whole
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 24, face_at=(0.68, 0.45), height=0.34, t=0.5 * DUR)   # framed first: beside the rack, whole
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24, fstop=7.0)
-    camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.06 * W(t, T_SHOW, 1.5), LOOK, Vector((0.1, 0.2, 0.7))))
+    camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.03 * W(t, T_SHOW, 1.5), LOOK, Vector((0.1, 0.2, 0.7))))
     allj = [j for row in jars for j in row]
     return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("lever grip",),
-                boxes=[("the rack of import jars and its scanner", lambda: meshes([j["root"] for j in allj] + [car]) + hw_drawn("rack", "gantry"), (0.0, 0.35, 0.75, 1.0)),
+                boxes=[("the rack of import jars and its scanner", lambda: meshes([j["root"] for j in allj] + [car]) + hw_drawn("rack", "gantry"), (0.0, 0.1, 0.8, 0.95)),
                        ("the rack's words", lambda: hw_drawn("stand stencil", "gantry word"), (0.0, 0.3, 1.0, 1.0))],
                 conseq=[("he hauls the lever, the scanner's red bar sweeps the tiers and two more jars in every seven spin red: three in seven, almost half",
                          lambda: meshes([j["root"] for j in allj] + [car]), T_S0, DUR, {"hero": True, "moves": lambda: meshes([car])}),

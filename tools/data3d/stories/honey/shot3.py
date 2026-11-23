@@ -159,20 +159,20 @@ def shot3():
     def yaw(t):
         y = 0.0
         for td, tt in zip(T_D, T_T):
-            y += -38 * (W(t, td - (0.36 if td > 3 else 0.62), (0.3 if td > 3 else 0.35)) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
+            y += -38 * (W(t, td - (0.36 if td > 3 else 0.62), (0.3 if td > 3 else 0.35)) if td > 0.5 else 1.0) * (1 - (W(t, td + 0.2, 0.35) if td > 0.5 else W(t, td + 0.75, 0.45)))   # the first test: turned to the box till the touch lands            # to the vat and the box
         for tc in T_C:
             y += 12 * W(t, tc - 0.25, 0.25) * (1 - W(t, tc + CR, 0.25))            # to the wheel
         y += 0.0
         return math.radians(y)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
-        z = sum(0.04 * hw_kick(t - tt - 0.1, 0.16) for tt in T_T[:2]) - sum(0.035 * math.sin(math.pi * max(0.0, min(1.0, (t - tc) / CR))) for tc in T_C) + 0.06 * hw_kick(t - T_T[2] - 0.05, 0.15) + 0.04 * hw_kick(t - T_GAPE, 0.14)
-        lean = sum(0.045 * W(t, tc - 0.3, 0.25) * (1 - W(t, tc + CR - 0.3, 0.25)) for tc in T_C)
+        z = sum(k * hw_kick(t - tt - 0.1, 0.2) for k, tt in zip((0.025, 0.04), T_T[:2])) - sum(0.035 * math.sin(math.pi * max(0.0, min(1.0, (t - tc) / CR))) for tc in T_C) + 0.06 * hw_kick(t - T_T[2] - 0.05, 0.15) + 0.04 * hw_kick(t - T_GAPE, 0.14)
+        lean = sum((0.045, 0.08)[k] * W(t, tc - 0.3, 0.25) * (1 - W(t, tc + CR + 0.2, 0.3)) for k, tc in enumerate(T_C))   # steps in to the wheel and stays till he lets go
         data._kobj(t, loc=(S3_P0.x + lean, S3_P0.y, z), rot=yaw(t))
     hw_layer(data, "spine", lambda t: (sum(6 * W(t, td - 0.1, 0.25) * (1 - W(t, td + 0.3, 0.25)) for td in T_D)
                                       + sum(8 * W(t, tc - 0.15, 0.2) * (1 - W(t, tc + CR, 0.2)) for tc in T_C)
                                       - 8 * W(t, T_T[2] + 0.05, 0.2) * (1 - W(t, T_GAPE - 0.1, 0.3)), 0,
-                                      12 * math.sin(2 * math.pi * (t - T_T[1] - 0.15) / 0.45) * W(t, T_T[1] + 0.1, 0.12) * (1 - W(t, T_T[1] + 0.7, 0.2))), 0, DUR + 0.4)   # still red: he shakes his head
+                                      sum(12 * math.sin(2 * math.pi * (t - tt - 0.15) / 0.45) * W(t, tt + 0.1, 0.12) * (1 - W(t, tt + 0.7, 0.2)) for tt in T_T[:2])), 0, DUR + 0.4)   # red: he shakes his head, both times
     sc.frame_set(1); bpy.context.view_layer.update()
     lf, rt = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
     def short(sd, t, world, by=0.13):           # his fist where the dipper's head reaches `world`
@@ -182,15 +182,15 @@ def shot3():
     # the dipper hand (his left): dip, lift, over to the box's plate, back up
     dk = [(0.0, short(lf, 0.0, MOUTH + Vector((0, 0, 0.09)), by=0.15))]
     for td, tt in zip(T_D, T_T):
-        dk += [(td - 0.2, short(lf, td - 0.2, MOUTH + Vector((0, 0, 0.07)), by=0.15)), (td, short(lf, td, MOUTH + Vector((0, 0, 0.02)), by=0.15)), (td + 0.28, short(lf, td + 0.28, (MOUTH + PLATE) / 2 + Vector((-0.02, 0.02, 0.04)), by=0.15)),
-               (tt - 0.05, short(lf, tt - 0.05, PLATE + Vector((0, 0, 0.05)), by=0.1)), (tt + 0.1, short(lf, tt + 0.1, PLATE + Vector((0, 0, 0.02)), by=0.09)), (tt + 0.35, (0.14, 0.1, -0.06))]
-    dk += [(T_GAPE, (0.1, 0.12, -0.03)), (DUR + 0.3, (0.1, 0.13, -0.025))]
+        dk += [(td - 0.2, short(lf, td - 0.2, MOUTH + Vector((0, 0, 0.07)), by=0.15)), (td, short(lf, td, MOUTH + Vector((0, 0, 0.02)), by=0.15)), (td + 0.22, short(lf, td + 0.22, (MOUTH + PLATE) / 2 + Vector((-0.02, 0.02, 0.04)), by=0.15)),
+               (tt - 0.05, short(lf, tt - 0.05, PLATE + Vector((0, 0, 0.05)), by=0.1)), (tt + 0.1, short(lf, tt + 0.1, PLATE + Vector((0, 0, 0.02)), by=0.1)), (tt + 0.35, (0.14, 0.1, -0.06))]
+    dk += [(DUR + 0.3, (0.1, 0.13, -0.025))]
     # the wheel hand (his right): on the knob through each crank, the knob going round with the wheel
     def knob(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         return wspin.matrix_world @ Vector((0.07, 0, 0.075))
     def wheel_turn(t):
-        return math.radians(-140) + sum(math.radians(50) * ease(max(0.0, min(1.0, (t - tc) / CR))) for tc in T_C)
+        return math.radians(-150) + sum(math.radians(48) * ease(max(0.0, min(1.0, (t - tc) / CR))) for tc in T_C)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         wspin.rotation_euler = (0, 0, wheel_turn(t)); wspin.keyframe_insert("rotation_euler", frame=f)
@@ -198,7 +198,7 @@ def shot3():
     for tc in T_C:
         wk += [(tc - 0.12, hw_rel(data, rt, tc - 0.12, knob(tc - 0.12)))]
         wk += [(tc + CR * u, hw_rel(data, rt, tc + CR * u, knob(tc + CR * u))) for u in (0.35, 0.7, 1.0)]
-        wk += [(tc + CR + 0.3, (0.03, 0.1, -0.1))]
+        wk += [(tc + CR + 0.15, hw_rel(data, rt, tc + CR + 0.15, knob(tc + CR))), (tc + CR + 0.6, (0.05, 0.1, -0.08))]   # rests on the knob, then lets go slowly
     wk += [(T_GAPE, (0.07, 0.13, -0.03)), (DUR + 0.3, (0.07, 0.13, -0.025))]
     for ks in (dk, wk):
         ks.sort(key=lambda k: k[0])
@@ -206,7 +206,7 @@ def shot3():
         while i < len(ks):
             if ks[i][0] <= ks[i - 1][0] + 0.04: ks.pop(i)
             else: i += 1
-    data.reach(lf, hw_hand(data, lf, dk), 0.0, DUR + 0.3, lead=0.09, back=None, elbow_out=0.5)
+    data.reach(lf, hw_hand(data, lf, dk), 0.0, DUR + 0.3, lead=0.15, back=None, elbow_out=0.5)
     data.reach(rt, hw_hand(data, rt, wk), 0.0, DUR + 0.3, lead=0.08, back=None, elbow_out=0.3)
     CAM = Vector((-0.3, -1.45, 0.72)); LOOK = Vector((0.0, -0.1, 0.45))
     data.look_at(MOUTH, 0.0, max_yaw=45, max_pitch=18, blend=0.0)
@@ -235,13 +235,15 @@ def shot3():
         syr.location = (S3_VAT.x, gy, (zl + G1) / 2); syr.scale = (1, 1, max(1e-3, G1 - zl))
         for o in (hon, syr):
             o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 30, face_at=(0.5, 0.62), height=0.39, t=0.5 * DUR)   # framed first: behind his bench, face clear of the brim
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 30, face_at=(0.45, 0.62), height=0.38, t=0.5 * DUR)   # framed first: behind his bench, face clear of the brim
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=30, fstop=8.0)
-    camera_path(cam, lambda t: (CAM + Vector((0.04, 0.1, -0.06)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.0)) * ease(t / DUR), Vector((S3_BOX.x, S3_BOX.y, S3_BOX.z + 0.08))))
+    camera_path(cam, lambda t: (CAM + Vector((0.02, 0.05, -0.03)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.0)) * ease(t / DUR), Vector((S3_BOX.x, S3_BOX.y, S3_BOX.z + 0.08))))
+    compose.drop_cut(hw_named("sack word"), cam, NF, label="the sacks' stencils")
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="back_room", light=light, data=data, rest=1, grips=("honey dipper", "syrup wheel", "test probe plate", "vat blend"),
                 boxes=[("the TEST box and its beacon", lambda: hw_drawn("test box", "test crate", "lamp", "screen"), (0.0, 0.0, 1.0, 0.75)),
-                       ("the vat's gauge", lambda: hw_drawn("gauge"), (0.0, 0.0, 1.0, 0.75))],
+                       ("the vat's gauge", lambda: hw_drawn("gauge"), (0.0, 0.0, 1.0, 0.75)),
+                       ("the RICE SYRUP drum and its words", lambda: hw_drawn("syrup drum", "drum word", "drum hoop"), (0.0, 0.0, 1.0, 1.0))],
                 conseq=[("the old TEST box turns green PASS while the gauge still reads mostly syrup", lambda: meshes_of("test box", "test crate", "lamp", "screen", "gauge", "vat"), T_T[2], DUR, {"hero": True}),
                         ("he turns the SYRUP wheel on the drum down a notch and the gauge drops", lambda: meshes([wheel]) + meshes_of("syrup drum", "drum", "gauge honey", "gauge syrup"), T_C[0], T_C[0] + CR, {"moves": True}),
                         ("the TEST box flashes red FAIL", lambda: meshes_of("lamp red", "screen fail", "test box", "test crate"), T_T[0], T_C[0] - 0.1)])
