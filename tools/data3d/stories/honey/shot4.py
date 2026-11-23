@@ -252,9 +252,13 @@ def shot4():
         spin.rotation_euler = (0, 0, on * (t - T_SWING) * 14.0); spin.scale = (max(1e-3, on),) * 3
         spin.keyframe_insert("rotation_euler", frame=f); spin.keyframe_insert("scale", frame=f)
         g = max(1e-3, W(t, T_SWING + 0.25, 0.12)); found.scale = (g, g, g); found.keyframe_insert("scale", frame=f)
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 26, face_at=(0.66, 0.59), height=0.377, t=0.5 * DUR)   # framed first: beside the machine
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=26, fstop=8.0)
     camera_path(cam, lambda t: (CAM + Vector((-0.04, 0.12, 0.0)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.01)) * ease(t / DUR), S4_DIAL))
+    compose.drop_cut(hw_named("show jar"), cam, NF, label="the honey show's jars")
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="village_hall", light=light, data=data, rest=1, grips=("honey dipper", "funnel"),
+                boxes=[("the new test machine, its funnel and beacon", lambda: hw_drawn("test machine", "dial", "beacon", "funnel"), (0.0, 0.0, 1.0, 1.0)),
+                       ("the machine's screen words", lambda: hw_drawn("screen found"), (0.02, 0.0, 0.98, 1.0))],
                 conseq=[("the new machine catches the rice syrup: its dial swings from PASS into FAKE, RICE SYRUP FOUND lights up and the beacon spins", lambda: meshes_of("test machine", "dial", "beacon", "screen found", "funnel", "pipe honey"), T_SWING, DUR, {"hero": True}),
                         ("the needle swings from PASS to FAKE", lambda: meshes([needle]) + meshes_of("test machine dial"), T_SWING, T_SWING + 0.6, {"moves": True})])

@@ -159,7 +159,7 @@ def shot3():
     def yaw(t):
         y = 0.0
         for td, tt in zip(T_D, T_T):
-            y += -38 * (W(t, td - (0.5 if td > 3 else 0.62), 0.35) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
+            y += -38 * (W(t, td - (0.36 if td > 3 else 0.62), (0.3 if td > 3 else 0.35)) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
         for tc in T_C:
             y += 12 * W(t, tc - 0.25, 0.25) * (1 - W(t, tc + CR, 0.25))            # to the wheel
         y += 0.0
@@ -235,10 +235,13 @@ def shot3():
         syr.location = (S3_VAT.x, gy, (zl + G1) / 2); syr.scale = (1, 1, max(1e-3, G1 - zl))
         for o in (hon, syr):
             o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 30, face_at=(0.5, 0.62), height=0.39, t=0.5 * DUR)   # framed first: behind his bench, face clear of the brim
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=30, fstop=8.0)
     camera_path(cam, lambda t: (CAM + Vector((0.04, 0.1, -0.06)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.0)) * ease(t / DUR), Vector((S3_BOX.x, S3_BOX.y, S3_BOX.z + 0.08))))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="back_room", light=light, data=data, rest=1, grips=("honey dipper", "syrup wheel", "test probe plate", "vat blend"),
+                boxes=[("the TEST box and its beacon", lambda: hw_drawn("test box", "test crate", "lamp", "screen"), (0.0, 0.0, 1.0, 0.75)),
+                       ("the vat's gauge", lambda: hw_drawn("gauge"), (0.0, 0.0, 1.0, 0.75))],
                 conseq=[("the old TEST box turns green PASS while the gauge still reads mostly syrup", lambda: meshes_of("test box", "test crate", "lamp", "screen", "gauge", "vat"), T_T[2], DUR, {"hero": True}),
                         ("he turns the SYRUP wheel on the drum down a notch and the gauge drops", lambda: meshes([wheel]) + meshes_of("syrup drum", "drum", "gauge honey", "gauge syrup"), T_C[0], T_C[0] + CR, {"moves": True}),
                         ("the TEST box flashes red FAIL", lambda: meshes_of("lamp red", "screen fail", "test box", "test crate"), T_T[0], T_C[0] - 0.1)])

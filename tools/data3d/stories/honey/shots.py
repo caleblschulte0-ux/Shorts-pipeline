@@ -27,6 +27,7 @@ import locations as LOC
   village_light(...)         one clear summer day: a warm sun, a blue sky, a soft key on him
 """
 import random as hw_random
+import compose        # frame-first placement (store/compose.py): Data framed by the lens, signs and props by their screen box
 from mathutils import Matrix as HW_M, Quaternion as HW_Q, Euler
 import bmesh as HW_bmesh
 
@@ -423,6 +424,15 @@ def hw_ride(obj, data, sd, back=0.04, along=(0, 1, 0), fore=False):
         obj.keyframe_insert("location", frame=f); obj.keyframe_insert("rotation_euler", frame=f)
 
 
+def hw_named(*prefixes):
+    """every drawn object whose name starts with one of the prefixes (a sign's board, its words, its strings)"""
+    return [o for o in bpy.data.objects if o.type in ('MESH', 'FONT', 'CURVE', 'EMPTY') and o.name.startswith(prefixes) and o.parent is None]
+
+
+def hw_drawn(*prefixes):
+    return [o for o in bpy.data.objects if o.type in ('MESH', 'FONT', 'CURVE') and o.name.startswith(prefixes)]
+
+
 # ====================================================================================================
 # shot1.py
 # ====================================================================================================
@@ -652,9 +662,13 @@ def shot1():
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, side, fore=True)
     # ---- the lens: square on the counter at jar height, a slow push in
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 27.5, face_at=(0.64, 0.66), height=0.33, t=0.5 * DUR)   # framed first: he stands behind the row's far end
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=27.5, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.02 * ease(t / DUR), LOOK, Vector((0.0, -0.1, 0.4))))
+    compose.place(hw_named("price sign", "sign string"), cam, (0.03, 0.78, 0.97, 0.99), frame=NF, label="the 2 EUROS sign")   # whole, over the row, at the push's end
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
+                boxes=[("the 2 EUROS sign", lambda: hw_drawn("price sign"), (0.0, 0.62, 1.0, 1.0)),
+                       ("the seven jars", lambda: meshes([j["root"] for j in jars]), (0.0, 0.0, 1.0, 0.7))],
                 conseq=[("he slams his dipper and only one of the seven jars spins round to a red SYRUP", lambda: meshes([j["root"] for j in jars]), T_FLIP[0], DUR, {"hero": True}),
                         ("the slam makes the whole row of jars jump", lambda: meshes([j["root"] for j in jars]), T_SLAM, T_SLAM + 0.5)])
 
@@ -702,10 +716,11 @@ def place_honey_house():
     # the honey house: a tall plank wall across the back with a deep-set window and an open door with a lit inside
     WY = 1.05
     plank = hw_noise("weathered planks", "#9C7A52", "#B8966A", scale=3, rough=0.85, bump=0.5, detail=6, stretch=(6, 1, 1))
+    wx, wz, ww, wh = -1.05, 1.03, 0.74, 0.62          # out past the board: a window cut by the frame edge cuts its jars
     for k in range(34):
         xx = -2.6 + k * 0.155
         if 0.55 < xx < 0.95: continue                   # the open door
-        if -0.92 < xx < -0.18: K.box("house plank", (xx, WY, 0.33), (0.15, 0.04, 0.66), plank, bev=0.006); K.box("house plank", (xx, WY, 1.84), (0.15, 0.04, 0.88), plank, bev=0.006); continue
+        if wx - ww / 2 - 0.08 < xx < wx + ww / 2 + 0.08: K.box("house plank", (xx, WY, 0.33), (0.15, 0.04, 0.66), plank, bev=0.006); K.box("house plank", (xx, WY, 1.84), (0.15, 0.04, 0.88), plank, bev=0.006); continue
         K.box("house plank", (xx, WY + rnd.uniform(-0.006, 0.006), 1.14), (0.15, 0.04, 2.28), plank, bev=0.006)
     trim = hw_wood("door trim", "#5E4026", "#74502E", scale=6)
     K.box("door post", (0.535, WY - 0.03, 0.68), (0.05, 0.06, 1.36), trim, bev=0.006)
@@ -723,7 +738,6 @@ def place_honey_house():
     door = K.box("open door", (0.98, WY - 0.2, 0.67), (0.04, 0.42, 1.3), hw_wood("door wood", "#6E4A2A", "#8A5E36"), bev=0.006)
     K.sph("door knob", (0.955, WY - 0.36, 0.68), 0.018, K.mat("knob brass", "#C8A040", rough=0.3, metal=0.8))
     frame_m = K.mat("window frame", "#EEE8DA", rough=0.4)
-    wx, wz, ww, wh = -0.55, 1.03, 0.74, 0.62
     for dx, sx in ((-ww / 2, 0.05), (ww / 2, 0.05)):
         K.box("window jamb", (wx + dx, WY - 0.02, wz), (sx, 0.1, wh + 0.05), frame_m, bev=0.006)
     K.box("window head", (wx, WY - 0.02, wz + wh / 2), (ww + 0.05, 0.1, 0.05), frame_m, bev=0.006)
@@ -905,10 +919,14 @@ def shot2():
     data.expression("pleased", T_RUB, DUR + 1.0, blend=0.18)
     data.finish()
     LOOK = Vector((0.3, 0.3, 0.7))
+    LENS, LOOK = compose.frame_data(data, LENS, LOOK, 30, face_at=(0.76, 0.47), height=0.346, t=0.5 * DUR)   # framed first: at the winch, board clear
     cam = K.camera(tuple(LENS), tuple(LOOK), lens=30, fstop=8.0)
+    compose.drop_cut(hw_named("window jar", "inside jar"), cam, NF, label="the honey house's jars")
     camera_path(cam, lambda t: (LENS + Vector((0.02, 0.08, 0.0)) * ease(t / DUR), LOOK + Vector((0.0, 0.0, 0.05 * ease(t / DUR))), LOOK))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="honey_house", light=light, data=data, rest=1, grips=("crank handle", "winch box"),
+                boxes=[("the price board and both flags", lambda: hw_drawn("price band", "board line", "board euro", "syrup flag", "honey flag", "syrup cloth", "honey cloth"), (0.0, 0.2, 1.0, 1.0)),
+                       ("the board's words", lambda: hw_drawn("board euro", "price board head", "syrup word", "honey word"), (0.0, 0.2, 1.0, 1.0))],
                 conseq=[("he hauls the HONEY flag up the board to 2.17, four bands to the RICE SYRUP flag's one at 0.50", lambda: meshes([sf, hf, srun, hrun]) + meshes_of("price band", "board line", "syrup pole", "honey pole"), T_H0, DUR, {"hero": True, "moves": lambda: meshes([hf])}),
                         ("he cranks the winch and the honey flag climbs", lambda: meshes([hf, crank]), T_H0, T_H1, {"moves": True})])
 
@@ -1077,7 +1095,7 @@ def shot3():
     def yaw(t):
         y = 0.0
         for td, tt in zip(T_D, T_T):
-            y += -38 * (W(t, td - (0.5 if td > 3 else 0.62), 0.35) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
+            y += -38 * (W(t, td - (0.36 if td > 3 else 0.62), (0.3 if td > 3 else 0.35)) if td > 0.5 else 1.0) * (1 - W(t, td + 0.2, 0.35))            # to the vat and the box
         for tc in T_C:
             y += 12 * W(t, tc - 0.25, 0.25) * (1 - W(t, tc + CR, 0.25))            # to the wheel
         y += 0.0
@@ -1153,10 +1171,13 @@ def shot3():
         syr.location = (S3_VAT.x, gy, (zl + G1) / 2); syr.scale = (1, 1, max(1e-3, G1 - zl))
         for o in (hon, syr):
             o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 30, face_at=(0.5, 0.62), height=0.39, t=0.5 * DUR)   # framed first: behind his bench, face clear of the brim
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=30, fstop=8.0)
     camera_path(cam, lambda t: (CAM + Vector((0.04, 0.1, -0.06)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.0)) * ease(t / DUR), Vector((S3_BOX.x, S3_BOX.y, S3_BOX.z + 0.08))))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="back_room", light=light, data=data, rest=1, grips=("honey dipper", "syrup wheel", "test probe plate", "vat blend"),
+                boxes=[("the TEST box and its beacon", lambda: hw_drawn("test box", "test crate", "lamp", "screen"), (0.0, 0.0, 1.0, 0.75)),
+                       ("the vat's gauge", lambda: hw_drawn("gauge"), (0.0, 0.0, 1.0, 0.75))],
                 conseq=[("the old TEST box turns green PASS while the gauge still reads mostly syrup", lambda: meshes_of("test box", "test crate", "lamp", "screen", "gauge", "vat"), T_T[2], DUR, {"hero": True}),
                         ("he turns the SYRUP wheel on the drum down a notch and the gauge drops", lambda: meshes([wheel]) + meshes_of("syrup drum", "drum", "gauge honey", "gauge syrup"), T_C[0], T_C[0] + CR, {"moves": True}),
                         ("the TEST box flashes red FAIL", lambda: meshes_of("lamp red", "screen fail", "test box", "test crate"), T_T[0], T_C[0] - 0.1)])
@@ -1419,10 +1440,14 @@ def shot4():
         spin.rotation_euler = (0, 0, on * (t - T_SWING) * 14.0); spin.scale = (max(1e-3, on),) * 3
         spin.keyframe_insert("rotation_euler", frame=f); spin.keyframe_insert("scale", frame=f)
         g = max(1e-3, W(t, T_SWING + 0.25, 0.12)); found.scale = (g, g, g); found.keyframe_insert("scale", frame=f)
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 26, face_at=(0.66, 0.59), height=0.377, t=0.5 * DUR)   # framed first: beside the machine
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=26, fstop=8.0)
     camera_path(cam, lambda t: (CAM + Vector((-0.04, 0.12, 0.0)) * ease(t / DUR), LOOK + Vector((-0.03, 0, 0.01)) * ease(t / DUR), S4_DIAL))
+    compose.drop_cut(hw_named("show jar"), cam, NF, label="the honey show's jars")
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="village_hall", light=light, data=data, rest=1, grips=("honey dipper", "funnel"),
+                boxes=[("the new test machine, its funnel and beacon", lambda: hw_drawn("test machine", "dial", "beacon", "funnel"), (0.0, 0.0, 1.0, 1.0)),
+                       ("the machine's screen words", lambda: hw_drawn("screen found"), (0.02, 0.0, 0.98, 1.0))],
                 conseq=[("the new machine catches the rice syrup: its dial swings from PASS into FAKE, RICE SYRUP FOUND lights up and the beacon spins", lambda: meshes_of("test machine", "dial", "beacon", "screen found", "funnel", "pipe honey"), T_SWING, DUR, {"hero": True}),
                         ("the needle swings from PASS to FAKE", lambda: meshes([needle]) + meshes_of("test machine dial"), T_SWING, T_SWING + 0.6, {"moves": True})])
 
@@ -1668,10 +1693,13 @@ def shot5():
     data.expression("surprised", T_S0 + 0.3, T_SHOW - 0.3, blend=0.12)
     data.expression("worried", T_SHOW - 0.2, DUR + 1.0, blend=0.15)
     data.finish()
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 24, face_at=(0.7, 0.45), height=0.345, t=0.5 * DUR)   # framed first: beside the rack, whole
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.06 * W(t, T_SHOW, 1.5), LOOK, Vector((0.1, 0.2, 0.7))))
     allj = [j for row in jars for j in row]
     return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("lever grip",),
+                boxes=[("the rack of import jars and its scanner", lambda: meshes([j["root"] for j in allj] + [car]) + hw_drawn("rack", "gantry"), (0.0, 0.35, 0.75, 1.0)),
+                       ("the rack's words", lambda: hw_drawn("stand stencil", "gantry word"), (0.0, 0.3, 1.0, 1.0))],
                 conseq=[("he hauls the lever, the scanner's red bar sweeps the tiers and two more jars in every seven spin red: three in seven, almost half",
                          lambda: meshes([j["root"] for j in allj] + [car]), T_S0, DUR, {"hero": True, "moves": lambda: meshes([car])}),
                         ("the lever comes down in his hands", lambda: meshes([arm]), T_PULL0, T_PULL1 + 0.3)])

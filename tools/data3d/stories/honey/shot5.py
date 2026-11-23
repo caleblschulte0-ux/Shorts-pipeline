@@ -236,10 +236,13 @@ def shot5():
     data.expression("surprised", T_S0 + 0.3, T_SHOW - 0.3, blend=0.12)
     data.expression("worried", T_SHOW - 0.2, DUR + 1.0, blend=0.15)
     data.finish()
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 24, face_at=(0.7, 0.45), height=0.345, t=0.5 * DUR)   # framed first: beside the rack, whole
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.06 * W(t, T_SHOW, 1.5), LOOK, Vector((0.1, 0.2, 0.7))))
     allj = [j for row in jars for j in row]
     return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("lever grip",),
+                boxes=[("the rack of import jars and its scanner", lambda: meshes([j["root"] for j in allj] + [car]) + hw_drawn("rack", "gantry"), (0.0, 0.35, 0.75, 1.0)),
+                       ("the rack's words", lambda: hw_drawn("stand stencil", "gantry word"), (0.0, 0.3, 1.0, 1.0))],
                 conseq=[("he hauls the lever, the scanner's red bar sweeps the tiers and two more jars in every seven spin red: three in seven, almost half",
                          lambda: meshes([j["root"] for j in allj] + [car]), T_S0, DUR, {"hero": True, "moves": lambda: meshes([car])}),
                         ("the lever comes down in his hands", lambda: meshes([arm]), T_PULL0, T_PULL1 + 0.3)])

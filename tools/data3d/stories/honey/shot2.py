@@ -38,10 +38,11 @@ def place_honey_house():
     # the honey house: a tall plank wall across the back with a deep-set window and an open door with a lit inside
     WY = 1.05
     plank = hw_noise("weathered planks", "#9C7A52", "#B8966A", scale=3, rough=0.85, bump=0.5, detail=6, stretch=(6, 1, 1))
+    wx, wz, ww, wh = -1.05, 1.03, 0.74, 0.62          # out past the board: a window cut by the frame edge cuts its jars
     for k in range(34):
         xx = -2.6 + k * 0.155
         if 0.55 < xx < 0.95: continue                   # the open door
-        if -0.92 < xx < -0.18: K.box("house plank", (xx, WY, 0.33), (0.15, 0.04, 0.66), plank, bev=0.006); K.box("house plank", (xx, WY, 1.84), (0.15, 0.04, 0.88), plank, bev=0.006); continue
+        if wx - ww / 2 - 0.08 < xx < wx + ww / 2 + 0.08: K.box("house plank", (xx, WY, 0.33), (0.15, 0.04, 0.66), plank, bev=0.006); K.box("house plank", (xx, WY, 1.84), (0.15, 0.04, 0.88), plank, bev=0.006); continue
         K.box("house plank", (xx, WY + rnd.uniform(-0.006, 0.006), 1.14), (0.15, 0.04, 2.28), plank, bev=0.006)
     trim = hw_wood("door trim", "#5E4026", "#74502E", scale=6)
     K.box("door post", (0.535, WY - 0.03, 0.68), (0.05, 0.06, 1.36), trim, bev=0.006)
@@ -59,7 +60,6 @@ def place_honey_house():
     door = K.box("open door", (0.98, WY - 0.2, 0.67), (0.04, 0.42, 1.3), hw_wood("door wood", "#6E4A2A", "#8A5E36"), bev=0.006)
     K.sph("door knob", (0.955, WY - 0.36, 0.68), 0.018, K.mat("knob brass", "#C8A040", rough=0.3, metal=0.8))
     frame_m = K.mat("window frame", "#EEE8DA", rough=0.4)
-    wx, wz, ww, wh = -0.55, 1.03, 0.74, 0.62
     for dx, sx in ((-ww / 2, 0.05), (ww / 2, 0.05)):
         K.box("window jamb", (wx + dx, WY - 0.02, wz), (sx, 0.1, wh + 0.05), frame_m, bev=0.006)
     K.box("window head", (wx, WY - 0.02, wz + wh / 2), (ww + 0.05, 0.1, 0.05), frame_m, bev=0.006)
@@ -241,9 +241,13 @@ def shot2():
     data.expression("pleased", T_RUB, DUR + 1.0, blend=0.18)
     data.finish()
     LOOK = Vector((0.3, 0.3, 0.7))
+    LENS, LOOK = compose.frame_data(data, LENS, LOOK, 30, face_at=(0.76, 0.47), height=0.346, t=0.5 * DUR)   # framed first: at the winch, board clear
     cam = K.camera(tuple(LENS), tuple(LOOK), lens=30, fstop=8.0)
+    compose.drop_cut(hw_named("window jar", "inside jar"), cam, NF, label="the honey house's jars")
     camera_path(cam, lambda t: (LENS + Vector((0.02, 0.08, 0.0)) * ease(t / DUR), LOOK + Vector((0.0, 0.0, 0.05 * ease(t / DUR))), LOOK))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="honey_house", light=light, data=data, rest=1, grips=("crank handle", "winch box"),
+                boxes=[("the price board and both flags", lambda: hw_drawn("price band", "board line", "board euro", "syrup flag", "honey flag", "syrup cloth", "honey cloth"), (0.0, 0.2, 1.0, 1.0)),
+                       ("the board's words", lambda: hw_drawn("board euro", "price board head", "syrup word", "honey word"), (0.0, 0.2, 1.0, 1.0))],
                 conseq=[("he hauls the HONEY flag up the board to 2.17, four bands to the RICE SYRUP flag's one at 0.50", lambda: meshes([sf, hf, srun, hrun]) + meshes_of("price band", "board line", "syrup pole", "honey pole"), T_H0, DUR, {"hero": True, "moves": lambda: meshes([hf])}),
                         ("he cranks the winch and the honey flag climbs", lambda: meshes([hf, crank]), T_H0, T_H1, {"moves": True})])

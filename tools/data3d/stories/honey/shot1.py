@@ -224,8 +224,12 @@ def shot1():
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, side, fore=True)
     # ---- the lens: square on the counter at jar height, a slow push in
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 27.5, face_at=(0.64, 0.66), height=0.33, t=0.5 * DUR)   # framed first: he stands behind the row's far end
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=27.5, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.02 * ease(t / DUR), LOOK, Vector((0.0, -0.1, 0.4))))
+    compose.place(hw_named("price sign", "sign string"), cam, (0.03, 0.78, 0.97, 0.99), frame=NF, label="the 2 EUROS sign")   # whole, over the row, at the push's end
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
+                boxes=[("the 2 EUROS sign", lambda: hw_drawn("price sign"), (0.0, 0.62, 1.0, 1.0)),
+                       ("the seven jars", lambda: meshes([j["root"] for j in jars]), (0.0, 0.0, 1.0, 0.7))],
                 conseq=[("he slams his dipper and only one of the seven jars spins round to a red SYRUP", lambda: meshes([j["root"] for j in jars]), T_FLIP[0], DUR, {"hero": True}),
                         ("the slam makes the whole row of jars jump", lambda: meshes([j["root"] for j in jars]), T_SLAM, T_SLAM + 0.5)])

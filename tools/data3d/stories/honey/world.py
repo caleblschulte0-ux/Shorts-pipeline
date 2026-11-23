@@ -8,6 +8,7 @@
   village_light(...)         one clear summer day: a warm sun, a blue sky, a soft key on him
 """
 import random as hw_random
+import compose        # frame-first placement (store/compose.py): Data framed by the lens, signs and props by their screen box
 from mathutils import Matrix as HW_M, Quaternion as HW_Q, Euler
 import bmesh as HW_bmesh
 
@@ -402,3 +403,12 @@ def hw_ride(obj, data, sd, back=0.04, along=(0, 1, 0), fore=False):
             ax = (M.translation - data.arm.matrix_world @ data.pb["fore." + sd].head).normalized()
         obj.location = p - ax * back; obj.rotation_euler = Vector((0, 0, 1)).rotation_difference(ax).to_euler()
         obj.keyframe_insert("location", frame=f); obj.keyframe_insert("rotation_euler", frame=f)
+
+
+def hw_named(*prefixes):
+    """every drawn object whose name starts with one of the prefixes (a sign's board, its words, its strings)"""
+    return [o for o in bpy.data.objects if o.type in ('MESH', 'FONT', 'CURVE', 'EMPTY') and o.name.startswith(prefixes) and o.parent is None]
+
+
+def hw_drawn(*prefixes):
+    return [o for o in bpy.data.objects if o.type in ('MESH', 'FONT', 'CURVE') and o.name.startswith(prefixes)]
