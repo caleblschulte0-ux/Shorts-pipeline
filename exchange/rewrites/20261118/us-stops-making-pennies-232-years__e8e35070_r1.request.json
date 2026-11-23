@@ -102,12 +102,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical longevity but doesn't directly support the claim to stop making pennies.",
-  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Compares nickel costs, which doesn't reinforce the decision to cease penny production and isn't a logical continuation."
+  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical context but doesn't support the claim that pennies will be discontinued.",
+  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Compares nickel costs, which doesn't reinforce the headline about stopping penny production."
  ],
  "reasons": [
-  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical longevity but doesn't directly support the claim to stop making pennies.",
-  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Compares nickel costs, which doesn't reinforce the decision to cease penny production and isn't a logical continuation."
+  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical context but doesn't support the claim that pennies will be discontinued.",
+  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Compares nickel costs, which doesn't reinforce the headline about stopping penny production."
  ],
  "judge": null,
  "prior_rejection": [
@@ -143,5 +143,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T09:46:46Z"
+ "refiled": "2026-11-23T12:09:34Z"
 }

@@ -96,10 +96,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Beat 2 introduces a separate historical fact about miscalibrated thermometers, which doesn't follow from the previous be"
+  "thesis: seg1 ('Body cooling by sex') does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Introduces a sex‑specific cooling detail that doesn't directly prove the overall claim and isn't a logical continuation ",
+  "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Provides a separate historical explanation that doesn't follow from the previous beat's sex‑difference argument."
  ],
  "reasons": [
-  "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Beat 2 introduces a separate historical fact about miscalibrated thermometers, which doesn't follow from the previous be"
+  "thesis: seg1 ('Body cooling by sex') does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Introduces a sex‑specific cooling detail that doesn't directly prove the overall claim and isn't a logical continuation ",
+  "thesis: seg2 (\"Original 'normal' reading\") does not continue the story of the headline (\"98.6°F Isn't 'Normal' Body Temperature Anymore\") — brain: Provides a separate historical explanation that doesn't follow from the previous beat's sex‑difference argument."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -133,5 +135,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T09:46:46Z"
+ "refiled": "2026-11-23T12:09:34Z"
 }

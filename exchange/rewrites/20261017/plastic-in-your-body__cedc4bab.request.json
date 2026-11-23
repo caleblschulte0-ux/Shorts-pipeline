@@ -100,12 +100,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Shows plastic in body overall, not specifically brain, and doesn't follow directly from brain tissue fact.",
-  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Discusses heart risk, unrelated to brain plastic accumulation and not a logical continuation."
+  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Shows plastic in placenta and blood, not directly evidence of brain accumulation and doesn't follow from beat 0.",
+  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Links plastic to heart risk, unrelated to brain plastic accumulation and not a logical continuation of beat 1."
  ],
  "reasons": [
-  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Shows plastic in body overall, not specifically brain, and doesn't follow directly from brain tissue fact.",
-  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Discusses heart risk, unrelated to brain plastic accumulation and not a logical continuation."
+  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Shows plastic in placenta and blood, not directly evidence of brain accumulation and doesn't follow from beat 0.",
+  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Links plastic to heart risk, unrelated to brain plastic accumulation and not a logical continuation of beat 1."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -139,5 +139,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T09:46:39Z"
+ "refiled": "2026-11-23T12:09:30Z"
 }
