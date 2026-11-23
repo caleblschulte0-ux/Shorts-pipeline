@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "south-korea-robot-density-record__fda84246",
+  "slug": "south-korea-robot-density-record",
+  "by": "chatgpt",
+  "written_at": "2026-11-23T12:19:58.661Z",
+  "title": "South Korea Has 1,220 Robots For Every 10,000 Factory Workers",
+  "hook": "One country has far more robot coworkers than anyone else.",
+  "closing": "Robot density, not total installations, shows how automated a factory floor feels.",
+  "question": "Would a robot coworker worry you?",
+  "segments": [
+    {
+      "topic": "Robots World Leader",
+      "say": "South Korea has 1,220 factory robots per ten thousand workers, the world's densest automated workforce."
+    },
+    {
+      "topic": "Robots US Gap",
+      "say": "The United States has 307 factory robots per ten thousand workers, leaving it far behind South Korea."
+    },
+    {
+      "topic": "Robots China Twist",
+      "say": "China has 166 factory robots per ten thousand workers, proving total installations do not equal factory density."
+    }
+  ]
+}
