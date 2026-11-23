@@ -86,15 +86,15 @@
   "sets_why": "one village on market day, walked by its beekeeper: the cheap stall in the square, his hives on the hill, his honey house, the village museum's Egyptian room, and the alley behind the cheap stall",
   "ideas": [
     "at the market a cheap stall sells eleven jars of PURE HONEY for two euros; the beekeeper slams his dipper on its counter and five of the labels flip over to a red SYRUP",
-    "at his hive one worker bee flies out, wrings a single drop into his giant teaspoon marked in twelve rings, and flops down worn out on the hive roof while eleven more queue up",
-    "in his honey house he cranks a big desk globe and a bee flies a glowing gold trail around it twice while the brass counter on its stand rolls up to 55,000 miles and the trail ends in one pound jar",
+    "at his hive one worker bee flies out, wrings a single drop into his giant teaspoon marked in twelve wedges, and flops down worn out on its rim while eleven more queue up",
+    "outside his honey house he rolls a big world globe across the yard while a bee flies a glowing gold trail twice round it, and the trail ends in the one pound jar he holds up, which fills",
     "in the museum's Egyptian room he brushes the dust off a sealed clay pot from a tomb, cracks the wax, and lifts a shining golden ribbon of honey out of it as the mummy beside it sits up for a taste",
     "behind the cheap stall a barrel of SUGAR SYRUP is filling PURE HONEY jars; he turns one fake jar upside down and it gushes out like water, turns his own jar over and the honey does not budge"
   ],
   "storyboard": [
     "1 hook (the village square on market day, morning sun, striped awnings, crates of produce, people at the other stalls far behind; the cheap stall's counter big in front of us with a hand-painted sign PURE HONEY 2 EUROS and a row of eleven identical honey jars across it; the lens low and three-quarter at the counter's end, the beekeeper whole beside it in his bee hat with his honey dipper): he looks along the row of jars, frowns at the 2 euro sign, and slams his honey dipper down on the counter; the whole row jumps and five of the eleven jars flip their labels over one after another, each now a big red SYRUP; he points along the five red ones at us.",
-    "2 one bee's whole life (his hive yard on the hill above the village, sunny, white hives in a row in tall wildflowers, the village roofs far below; the lens beside his first hive at his chest height, the beekeeper whole beside it holding out a teaspoon as big as his arm, its bowl marked with twelve rings): he lifts the hive's lid and ONE bee flies out to the spoon, wrings out a single golden drop that fills only the first of the twelve rings, then flops down worn out on the hive roof; he gapes at the one drop, then eleven more bees line up in a queue in the air to fill the rest.",
-    "3 twice around the Earth (his honey house: a wooden workshop with a steel extractor, frames on racks, shelves of his own jars in a window's sun; on his workbench a big school globe on a brass stand with a mileage counter in its base; the lens three-quarter over the bench, the beekeeper whole behind the globe): he cranks the globe spinning, a bee takes off from his hat and flies a glowing gold trail all the way round the globe once while the brass counter rolls past 25,000, then round a second time to 55,000 miles, and the trail ends in one pound jar he holds up, now full and gold.",
+    "2 one bee's whole life (his hive yard on the hill above the village, sunny, white hives in a row in tall wildflowers, the village roofs far below; the lens beside his first hive at his chest height, the beekeeper whole beside it holding out a teaspoon as big as his arm, its round bowl marked like a pie into twelve wedges): he lifts the hive's lid and ONE bee flies out to the spoon, wrings out a single golden drop that fills only one of the twelve wedges, then flops down worn out on the spoon's rim; he gapes at the one drop, then eleven more bees line up in a queue in the air to fill the rest.",
+    "3 twice around the Earth (the yard outside his honey house: its plank wall with a sunny window full of his jars, the open door, his steel extractor, frames leaning on the wall, a flagstone path through the grass, a tree stump; the lens three-quarter in front of him at his chest height, the beekeeper whole): with his hands on a world globe as big as he is, he rolls it along the path; a bee takes off from his hat and flies a glowing gold trail all the way round the rolling globe once, then round a second time; he stops, snatches his empty one pound jar off the stump, and the trail swoops into it and the jar fills gold in his hands.",
     "4 still preserved (the village museum's Egyptian room: sandstone walls cut with hieroglyphs and painted gods, a gilded sarcophagus, torches of warm light, a glass case open in front; the lens low at the case, the beekeeper whole leaning over it): he blows the thick dust off an ancient sealed clay pot from a tomb, cracks its wax seal with his honey dipper, and lifts out a shining golden ribbon of perfect honey; behind him the mummy in the sarcophagus sits up and reaches for a taste, and he hands it the dipper.",
     "5 the fakes keep coming (the alley behind the cheap stall: cobbles, crates, a back door, a big blue barrel stencilled SUGAR SYRUP with a tap filling PURE HONEY jars one after another on a crate; the lens three-quarter at the crate, the beekeeper whole): he catches the tap filling another fake jar, grabs that jar and turns it upside down and the syrup gushes out like water all over the cobbles, then turns his own jar upside down beside it and his honey does not budge; he holds both out to us, one empty, one full."
   ],
@@ -133,10 +133,10 @@
     },
     {
       "camera": "wide",
-      "data": "lifts his hive's lid and holds out a giant teaspoon while one bee's single drop fills one of its twelve rings",
+      "data": "lifts his hive's lid and holds out a giant teaspoon while one bee's single drop fills one of its twelve wedges",
       "props": [
         "white hive",
-        "giant teaspoon with twelve rings",
+        "giant teaspoon with twelve wedges",
         "one worker bee",
         "the queue of eleven bees",
         "wildflowers"
@@ -152,11 +152,11 @@
         },
         {
           "at": 0.45,
-          "what": "she wrings out a single golden drop that fills only the first of the twelve rings"
+          "what": "she wrings out a single golden drop that fills only one of the twelve wedges"
         },
         {
           "at": 0.6,
-          "what": "she flops down worn out on the hive roof and he gapes at the one drop"
+          "what": "she flops down worn out on the spoon's rim and he gapes at the one drop"
         },
         {
           "at": 0.8,
@@ -165,31 +165,31 @@
       ]
     },
     {
-      "camera": "medium",
-      "data": "cranks a big desk globe while a bee flies a gold trail around it twice and the counter rolls to 55,000 miles",
+      "camera": "profile",
+      "data": "rolls a big world globe along his yard while a bee flies a gold trail twice round it, then catches the trail in his pound jar",
       "props": [
-        "desk globe on a brass stand",
-        "brass mileage counter",
+        "big world globe",
         "gold flight trail",
         "one pound jar",
-        "extractor"
+        "tree stump",
+        "honey house wall"
       ],
       "arc": [
         {
           "at": 0.08,
-          "what": "he cranks the globe spinning and a bee takes off from his hat"
+          "what": "his hands on the big globe, he starts rolling it along the path and a bee takes off from his hat"
         },
         {
           "at": 0.3,
-          "what": "the bee flies a glowing gold trail round the globe once and the counter rolls past 25,000"
+          "what": "the bee flies a glowing gold trail once round the rolling globe"
         },
         {
           "at": 0.55,
-          "what": "round a second time, the counter rolling up to 55,000 miles"
+          "what": "round a second time as he rolls it to a stop"
         },
         {
           "at": 0.75,
-          "what": "the trail swoops off the globe into the empty pound jar he holds up"
+          "what": "he holds up his empty pound jar and the trail swoops off the globe into it"
         },
         {
           "at": 0.9,

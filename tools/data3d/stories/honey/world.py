@@ -8,7 +8,8 @@
   village_light(...)         one clear summer day: a warm sun, a blue sky, a soft key on him
 """
 import random as hw_random
-from mathutils import Matrix as HW_M, Quaternion as HW_Q
+from mathutils import Matrix as HW_M, Quaternion as HW_Q, Euler
+import bmesh as HW_bmesh
 
 
 HW_U = K.U
@@ -179,14 +180,14 @@ def honey_dipper(name="honey dipper", L=0.2, r_head=0.022, honey=True):
 
 # ---------------------------------------------------------------- a honey jar (continuity: his jar against the fakes)
 def jar(name, loc=(0, 0, 0), r=0.04, h=0.1, fill=0.92, honey_col="#D98A12", label="PURE HONEY", label_col="#F3E9CF",
-        ink="#5A3A12", back=None, back_col="#C8261E", back_ink="#FFFFFF", lid_col="#C9A04A", yaw=0.0, parent=None):
+        ink="#5A3A12", back=None, back_col="#C8261E", back_ink="#FFFFFF", lid_col="#C9A04A", yaw=0.0, parent=None, glow=0.0):
     """a glass honey jar standing on its base at `loc`: glass, the honey in it (`fill` of the height), a gold lid, and a
     paper label on its front (-Y). back=<text>: a second label on its BACK, <text> in white on red; jar_flip() spins
     the jar round to show it. Returns dict(root, spin, glass, honey, label, back, r, h, hz)."""
     root = K.empty(name, loc, parent=parent); root.rotation_euler = (0, 0, yaw)
     spin = K.empty(name + " spin", (0, 0, 0), parent=root)
     g = K.cyl(name + " glass", (0, 0, h / 2), r, h, hw_glass(), v=40, bev=0.006, parent=spin)
-    hm = hw_honey(f"hw honey {honey_col}", honey_col)
+    hm = hw_honey(f"hw honey {honey_col} {glow}", honey_col, glow=glow)
     hz = h * fill
     hon = K.cyl(name + " honey", (0, 0, hz / 2 + 0.002), r * 0.93, hz - 0.004, hm, v=40, bev=0.004, parent=spin)
     K.cyl(name + " lid", (0, 0, h + 0.008), r * 1.02, 0.016, K.mat(f"jar lid {lid_col}", lid_col, rough=0.3, metal=0.85), v=40, bev=0.003, parent=spin)
