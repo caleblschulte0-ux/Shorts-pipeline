@@ -1,0 +1,100 @@
+{
+  "schema": "shorts-ask-answers/v1",
+  "answers": {
+    "4380b71e2270016b": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names the familiar 98.6°F standard and promises a concrete contradiction: modern bodies run cooler and the old normal was shaky to begin with.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "c38b41b5b66332b0": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"The thermometer-history reveal supports doubt about 98.6°F, but it does not follow from or explain the preceding evidence that bodies cooled over time.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "3ac6c502c70d9d91": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":11,\"factual\":13,\"visual_proof\":12,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Make the final beat explicitly connect the flawed original standard to the measured two-century cooling trend so the ending completes one argument instead of switching explanations.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "df31ea2c1aaff4d7": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The pitch promises generic uneven school scale across unrelated measures instead of one specific contradiction or consequence that all five beats turn over.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "acae2304b7fb7864": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary classroom ratio in another country does not follow from India's total secondary enrollment.\",\"2\":\"A spending trend is another education metric, not a consequence or reversal of the classroom ratio.\",\"3\":\"A global literacy gain does not follow from the unspecified spending decline.\",\"4\":\"A preschool ratio in Tanzania returns to a different system and age group rather than advancing the literacy result.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "c776be47b550d4cb": {
+      "answer": "{\"scores\":{\"premise\":10,\"hook\":13,\"arc\":6,\"factual\":12,\"visual_proof\":11,\"payoff\":5,\"voice\":3},\"fatal\":[],\"weakest_note\":\"Choose one throughline—such as how classroom crowding limits attention—and use every beat to build that argument instead of touring five disconnected education indicators.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "e0b65cf09283cb2d": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "5b2fd1d6a64bd5a9": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a clear generational reversal—young adults are more likely to live with an unmarried partner than a spouse—and expands it across ages.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "53256458b61d3ea3": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives a concrete, planet-scale surprise: more than half the ocean changed color, matching a prediction and covering more area than all land.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "666e8d33cdfc2db9": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":true},\"why\":{}}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "30e05c8eeb8d13b1": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes a familiar object personal and surprising by showing British feet grew two shoe sizes, widened, and links the change to body size.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "3b89412c90b730f8": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":true},\"why\":{}}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "577e7e749e1d0127": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":16,\"factual\":12,\"visual_proof\":12,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"State the present-day average shoe size directly in beat one so the headline's two-size increase is immediately visible rather than inferred.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "be5b50ed7311c688": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "bde3bb61b7f96c9c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete policy reversal with an intuitive contradiction—the penny costs more than it is worth—and adds the nickel twist.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "e412fbc20a089ba9": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The hook gives the education figures a concrete human stake: birthplace can determine whether a child receives meaningful teacher attention.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "b6d1769ddcdbaaaf": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary classroom ratio in another country does not follow from India's secondary enrollment total.\",\"2\":\"An unspecified spending decline is another metric, not a consequence or reversal of the classroom ratio.\",\"3\":\"A broad literacy gain does not follow from the spending decline.\",\"4\":\"A preschool ratio in Tanzania changes country, age group, and measure rather than advancing the literacy result.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "95909a84e4414f0f": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":17,\"arc\":7,\"factual\":12,\"visual_proof\":11,\"payoff\":6,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Rebuild the middle around one causal thread—crowding, teacher attention, and the resulting outcome—rather than jumping among enrollment, spending, literacy, and age groups.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    },
+    "320c103b45cdea87": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:18:19.413Z"
+    }
+  }
+}
