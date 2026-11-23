@@ -7,16 +7,16 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261122 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261122.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "credential_dead_groq",
         "severity": "critical",
         "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-22T20:16:54+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
-      },
-      {
-        "code": "sports_source_dead",
-        "severity": "critical",
-        "detail": "trending: the sports run found ZERO Reddit video posts for 20261122 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
-        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
         "code": "short_slate_explainer",
@@ -27,8 +27,8 @@
       {
         "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261122 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above. The sports run found 0 Reddit posts to cut \u2014 see sports_source_dead above.",
-        "fix": "Fix the SOURCE first (sports_source_dead): no posts, no cuts, no videos. Then: Check the trending workflow run for 20261122. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: ZERO videos posted for 20261122 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
+        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261122. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
@@ -4412,8 +4412,8 @@
     }
   },
   "recent_commits": [
-    "e65a958 2026-11-23 exchange: phase A bundle for 20261123 [skip ci]",
-    "d92c214 2026-11-23 claim: mailbox verdicts 2026-11-23T04:48Z [skip ci]"
+    "ec91aa6 2026-11-23 claim: mailbox verdicts 2026-11-23T15:49Z [skip ci]",
+    "869261b 2026-11-23 watchdog: chatgpt task verdicts 20261123 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4442,10 +4442,11 @@
         "2026-11-16": 2,
         "2026-11-18": 3,
         "2026-11-20": 1,
-        "2026-11-22": 2
+        "2026-11-22": 2,
+        "2026-11-23": 1
       },
-      "total_posted": 420,
-      "attempted": 420,
+      "total_posted": 421,
+      "attempted": 421,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4463,11 +4464,12 @@
         "2026-11-20": 8,
         "2026-11-21": 2,
         "2026-11-22": 6,
-        "2026-11-23": 3
+        "2026-11-23": 7,
+        "2026-11-24": 2
       },
-      "total_posted": 588,
-      "attempted": 1541,
-      "rejected_or_pending": 953
+      "total_posted": 594,
+      "attempted": 1551,
+      "rejected_or_pending": 957
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4481,31 +4483,31 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 148,
+      "videos": 146,
       "top_by_vph": [
         {
-          "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
-          "vph": 48.9,
-          "views": 575
+          "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
+          "vph": 42.31,
+          "views": 803
         },
         {
-          "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 41.93,
-          "views": 232
+          "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
+          "vph": 23.97,
+          "views": 604
         },
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 6.1,
+          "vph": 5.7,
           "views": 1164
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 4.65,
+          "vph": 4.38,
           "views": 1028
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 4.04,
+          "vph": 3.78,
           "views": 798
         }
       ],
@@ -4516,28 +4518,28 @@
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 7.58,
-          "views": 477
+          "vph": 6.38,
+          "views": 527
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 0.99,
+          "vph": 0.96,
           "views": 549
         },
         {
-          "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.89,
-          "views": 83
+          "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
+          "vph": 0.82,
+          "views": 209
         },
         {
-          "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.87,
-          "views": 206
+          "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
+          "vph": 0.79,
+          "views": 89
         },
         {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 0.83,
-          "views": 121
+          "vph": 0.74,
+          "views": 122
         }
       ],
       "full_data": "state/analytics_third/latest.json"
