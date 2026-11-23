@@ -1,50 +1,45 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261122",
-  "judged_date": "20261121",
+  "date": "20261123",
+  "judged_date": "20261122",
   "alarm": {
-    "date": "20261121",
+    "date": "20261122",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261121 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261121.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-21T20:01:36+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-22T20:16:54+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
-        "code": "no_posts_explainer",
+        "code": "sports_source_dead",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261121 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261121. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: the sports run found ZERO Reddit video posts for 20261122 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
+        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
-        "code": "short_slate_third",
+        "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "third: 2/6 posted for 20261121.",
+        "detail": "explainer: 2/4 posted for 20261122.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261121 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261121. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: ZERO videos posted for 20261122 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above. The sports run found 0 Reddit posts to cut \u2014 see sports_source_dead above.",
+        "fix": "Fix the SOURCE first (sports_source_dead): no posts, no cuts, no videos. Then: Check the trending workflow run for 20261122. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (74 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (75 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present"
+      "chatgpt finalizer: artifact present",
+      "third: 6/6 posted"
     ],
     "deferred": false
   },
@@ -230,393 +225,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-14T13:06:05+00:00",
-      "slug": "sports_dirk_nowitzki_ons_of_jalen",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real Dirk quote with the right people on screen, but the punchline is buried mid-clip and the video ends on generic fading Brunson B-roll instead of landing the joke.",
-      "auto_fails": [],
-      "problems": [
-        "mid1 is a small letterboxed wide shot with blurred fill, and Dirk is clipped at the right edge",
-        "mid2 sits on the listeners in a letterbox instead of full-bleed",
-        "There are no word captions, so the head-too-big line only lands with sound on",
-        "payoff@-0.4 fades out on generic B-roll with no reaction hit"
-      ],
-      "fixes": [
-        "Crop the panel shots full-bleed on the speaker or on the laughing hosts",
-        "Put a punch-in and sound hit on 'the head's too big' and caption that line",
-        "End on the laugh or on a Brunson shot that pays off 'falling forward' instead of a fade"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.017,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "payoff",
-        "index": 10,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "payoff@-0.4 is generic Brunson jogging B-roll fading to dark. Dirk's punchline ('the head's too big... how is he not falling forward') has no on-screen beat, and mid1/mid2 spend the middle on small letterboxed panel shots with blurred fill",
-        "root_cause": "The edit puts the quote in the middle of a long talk segment and closes on unrelated highlight B-roll, so the funny line never gets a reaction hit or a visual landing",
-        "repair_goal": "End on Dirk delivering 'how is he not falling forward the whole time' with a punch-in and the panel laughing, then cut straight to one shot of Brunson leaning forward on a drive as the visual punchline. Replace the letterboxed wide shots with full-bleed crops on the speaker"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.235,
-        "effective_fps": 18.4,
-        "max_dup_run": 35,
-        "measured": true,
-        "frozen_ratio": 0.029,
-        "frozen_fps": 23.3,
-        "max_frozen_run": 7,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 7.5,
-        "max_dup_at_s": 8.38,
-        "duration_s": 39.42
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
-    {
-      "ts": "2026-11-14T13:15:43+00:00",
-      "slug": "sports_steve_kerr_ng_up_like_a",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real, funny Kerr moment, but it is cut wide and small with no zoom on the reaction, and the line never says Jimmy dressed as a coach, so strangers lack the context.",
-      "auto_fails": [],
-      "problems": [
-        "Footage sits in a small middle band and the top third is empty blue (hook@0.3 onward)",
-        "No punch-in or sound hit on Kerr's smirk at mid2 or his smile at payoff@-0.4",
-        "The on-screen line does not tell the viewer that Jimmy dressed up as a coach, and the outfit is never shown",
-        "The opening two seconds are a slow setup ('I thought he looked great') with no hook moment"
-      ],
-      "fixes": [
-        "Crop and zoom so Kerr's face and shoulders fill the frame",
-        "Add a punch-in with a sound hit on the 'mocking us' line and the smile",
-        "Rewrite the line to name the bit: 'Jimmy Butler dressed as a coach to troll Kerr \ud83d\ude02'",
-        "Cut in a still of Jimmy in the coach outfit when Kerr mentions the sweater"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 62
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_small_footage",
-        "visible_evidence": "hook@0.3\u2013hook@2.2: a small letterboxed shot of Kerr at a podium with arms folded, a third of the frame blank blue above, and the opening words are only 'I THOUGHT HE / LOOKED GREAT', which never say what Jimmy did",
-        "root_cause": "The cut uses the whole wide presser frame with no zoom and starts on the setup, not on the joke. The on-screen line never says Jimmy dressed up as a coach, so a stranger has no picture of what 'mocking' means",
-        "repair_goal": "Punch in on Kerr so his face fills the frame, open on or near the 'he was mocking us' laugh, and make the line name the bit, e.g. 'Jimmy Butler dressed up as a coach to mock Kerr \ud83d\ude02'"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.661,
-        "effective_fps": 8.1,
-        "max_dup_run": 25,
-        "measured": true,
-        "frozen_ratio": 0.211,
-        "frozen_fps": 18.9,
-        "max_frozen_run": 8,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 11.96,
-        "max_dup_at_s": 3.83,
-        "duration_s": 20.58
-      },
-      "fingerprint": "?|-|weak_hook_small_footage"
-    },
-    {
-      "ts": "2026-11-14T13:18:57+00:00",
-      "slug": "sports_paul_george__a_beep_ball",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clear, well-cropped Paul George quote that delivers the promised story, but it is one flat talking-head shot with no repost-style emphasis on the payoff.",
-      "auto_fails": [],
-      "problems": [
-        "The whole video is one static podium shot with no zoom or sound hits, which is weak pacing for the format.",
-        "The broadcast chyron is cropped at both edges ('aul George... run awa'), which looks sloppy.",
-        "The blurred bands above and below the footage waste about 20% of the frame.",
-        "The 'middle finger' payoff at about 19s gets no edit emphasis, and the ending trails off."
-      ],
-      "fixes": [
-        "Punch in and add a sound hit on 'A**HOLE' (about 2.5s) and on 'MIDDLE FINGER' (about 19s).",
-        "Crop or scale the footage so the chyron is either fully visible or fully removed.",
-        "End the video about 1s after the middle-finger line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "flat_payoff",
-        "visible_evidence": "mid5 and payoff@-0.4 are the same seated talking-head shot as every frame before them. The 'middle finger' line lands in the captions, but nothing on screen marks it: no zoom, no sound hit, no reaction.",
-        "root_cause": "The cut is a single locked-off podium shot with no repost-style emphasis moves on the turn.",
-        "repair_goal": "Add a punch-in and a sound hit on 'MIDDLE FINGER' near 19s, and trim the closing so the video ends on that line instead of the quiet tail at payoff@-0.4."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.189,
-        "effective_fps": 19.5,
-        "max_dup_run": 7,
-        "measured": true,
-        "frozen_ratio": 0.007,
-        "frozen_fps": 23.8,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.08,
-        "max_dup_at_s": 18.12,
-        "duration_s": 25.58
-      },
-      "fingerprint": "?|-|flat_payoff"
-    },
-    {
-      "ts": "2026-11-14T13:23:17+00:00",
-      "slug": "sports_cam_skattebo_ays_he_ate_a",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, well-framed talking head where the funny line lands, but it never shows the sideline moment and has no edit beat on the reveal, so it reads flat.",
-      "auto_fails": [],
-      "problems": [
-        "The hook is a static profile talking head with no visual event in the first 2s.",
-        "The title promises him throwing up on the sideline, and that footage never appears.",
-        "Nothing marks the 'pretzel wrapped hot dog' reveal (mid2): no zoom, no sound hit.",
-        "The ending ('BEFORE THE GAME.') trails off with no reaction beat."
-      ],
-      "fixes": [
-        "Cut in the broadcast clip of him sick on the sideline as the opening shot.",
-        "Punch in with a boom on 'PRETZEL WRAPPED HOT DOG'.",
-        "End on his reaction or a laugh instead of a trailing line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 45
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "static_talking_head_hook",
-        "visible_evidence": "hook@0.3\u2013hook@2.2 is a side profile of a man at a mic with captions 'YOU GOT A' / 'LITTLE SICK BETWEEN'. Nothing visual happens, and the sideline vomiting the story is about is never shown.",
-        "root_cause": "The cut is only the locker-room presser. The sideline moment the title promises is told but never seen, and nothing like a zoom or sound hit marks the funny reveal.",
-        "repair_goal": "Open on or cut in the broadcast shot of Skattebo sick on the sideline, and punch in with a sound hit on 'PRETZEL WRAPPED HOT DOG' so the reveal lands as a beat."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.014,
-        "effective_fps": 23.7,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 10.04,
-        "duration_s": 15.08
-      },
-      "fingerprint": "?|-|static_talking_head_hook"
-    },
-    {
-      "ts": "2026-11-14T13:25:06+00:00",
-      "slug": "sports_josh_hokit_s_josh_hokit",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The line promises Hokit falling asleep, but the first 2.5s are Gane flexing and the doze itself is never clearly shown or emphasised.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0-2.5s) shows Ciryl Gane, not the subject the line names.",
-        "The payoff is weak: at mid3-payoff Hokit just stands head-down, and a stranger would not clearly see him fall asleep.",
-        "There are no zooms or sound hits on the moment, against the format's repost-cut contract.",
-        "The footage sits in a small middle band at broadcast size, so Hokit's face is too small to read his eyes closing."
-      ],
-      "fixes": [
-        "Open on Hokit on the scale, punched in on his face.",
-        "Trim or drop Gane's flex and the walk-up.",
-        "Add a slow push-in and a sound hit on the nod-off so the payoff lands.",
-        "Crop tighter on Hokit so his face fills the frame width."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 2.0,
-        "dark_fraction": 0.13,
-        "sampled": 46
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "hook_not_the_moment",
-        "visible_evidence": "hook@0.3 to hook@2.2 show Ciryl Gane flexing, not Hokit, while the line promises Hokit asleep. Hokit only reaches the scale around mid3 (~9s), and at payoff@-0.4 he is just standing head-down. No unmistakable doze is ever shown.",
-        "root_cause": "The cut runs the source post in order (Gane's weigh-in first) instead of opening on the sleepy moment. It also has no zoom or sound hit to sell the doze.",
-        "repair_goal": "Open on Hokit on the scale with his eyes closed and head drooping, punched in on his face from frame one. Cut Gane's flex to at most a short setup, or drop it. Add a zoom and a sound hit on the nod-off so the payoff is obvious before the clip ends."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.23,
-        "effective_fps": 18.5,
-        "max_dup_run": 40,
-        "measured": true,
-        "frozen_ratio": 0.129,
-        "frozen_fps": 20.9,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 3.04,
-        "max_dup_at_s": 1.25,
-        "duration_s": 15.25
-      },
-      "fingerprint": "?|-|hook_not_the_moment"
-    },
-    {
-      "ts": "2026-11-14T13:26:43+00:00",
-      "slug": "sports_josh_hokit_s_josh_hokit",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real moment and correct person, but the 'asleep on the scale' bit barely reads: the opening is a wide walk-in and the face is tiny in a letterboxed strip.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0 to 2.5s) is a wide shot of Hokit walking in, before he is on the scale, so there is no reason to stay.",
-        "The horizontal broadcast is letterboxed into the middle third and his face is too small to see the drowsy eyes that are the whole joke.",
-        "There are no zooms or sound hits on the reaction, so the cut is flat compared with repost-channel style.",
-        "The payoff (mid4 to payoff@-0.4) is him smiling and pointing off-screen, which only half lands without seeing what he points at or hearing the commentators."
-      ],
-      "fixes": [
-        "Trim the walk-in and open on him eyes-closed on the scale (around 6s).",
-        "Punch in or crop vertically on Hokit's face and torso so his eyes are readable on a phone.",
-        "Add a punch-in and sound hit on the eye-rub, and another on the point or smile at the end.",
-        "End on his reaction beat, or include the commentator's 'is he asleep?' line if it is in the audio."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.085,
-        "sampled": 71
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_small_subject",
-        "visible_evidence": "hook@0.3 to hook@2.2 show a wide backstage shot of Hokit walking to the scale and rubbing his face. He is a small figure in a letterboxed strip, so the 'asleep' look cannot be seen yet.",
-        "root_cause": "The cut opens on the walk-in before he reaches the scale, and the horizontal broadcast is letterboxed instead of punched in on his face, so the drowsy eyes never read at phone size.",
-        "repair_goal": "Start on the scale shot (mid1, about 6s), when his eyes are closed. Punch in on his face and upper body so the 'asleep' look reads in the first second. Add a zoom and sound hit on the eye-rub and on the point at the end."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.041,
-        "effective_fps": 23.0,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 6.08,
-        "duration_s": 23.58
-      },
-      "fingerprint": "?|-|weak_hook_small_subject"
-    },
     {
       "ts": "2026-11-14T13:28:30+00:00",
       "slug": "sports_josh_hokit_s_josh_hokit",
@@ -4135,13 +3743,397 @@
       },
       "fingerprint": "?|unreadable|weak_demonstration",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-22T13:19:35+00:00",
+      "slug": "sperm-counts-cut-in-half",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The microscope opening (dense to sparse swimmers) is strong, but the 'accelerating' beat is a generic conveyor that never shows anything speeding up, and the closing is a block of text over a static bottle.",
+      "auto_fails": [],
+      "problems": [
+        "seg2: the conveyor of jars does not show acceleration; '2.3x faster' is text only.",
+        "seg0/seg1: the microscope label reads '2018 sample' while the header still says '101M per mL \u00b7 1973' (hook@2.2/seg0:end), so the picture and number disagree for a beat.",
+        "seg3/seg4: Data stands shocked beside the bottle instead of draining it, a weaker bit than his knob and crank work earlier.",
+        "seg4: the closing is a five-line text block that restates the beats with no fresh whoa. The payoff is flat, and the text crosses the ceiling light bar."
+      ],
+      "fixes": [
+        "Redraw seg2 so the loss rate visibly speeds up on one subject object, Data driving it, with the old pace drawn as a ghost or then-mark.",
+        "Swap the microscope label to '2018 sample' at the same moment the header changes to 49M.",
+        "In seg3, have Data open the bottle's valve so the level falls because he drains it.",
+        "Shorten the closing line and land it on one picture of the stakes, not a paragraph over the same bottle."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 89
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "weak_demonstration",
+        "visible_evidence": "seg2:start and seg2:mid show jars sliding down a conveyor into a biohazard bin, with Data cranking a wheel and the label '2.6% a year \u2026 2.3x faster'. Nothing in the picture speeds up or shows a faster loss rate.",
+        "root_cause": "The beat is about ACCELERATION: 2.6% a year after 2000, more than double the old pace. A steady conveyor of identical jars shows throughput, not a rate that speeds up, so only the text carries '2.3x faster'.",
+        "repair_goal": "Make the speed-up visible on the subject. Show two eras side by side or in sequence: pre-2000, the jar's swimmers drain slowly; post-2000, Data cranks harder and the jar drains visibly more than twice as fast, with a 'then' tick for the old pace on the same jar so a viewer sees 2.3x without reading "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.138,
+        "effective_fps": 20.7,
+        "max_dup_run": 15,
+        "measured": true,
+        "frozen_ratio": 0.038,
+        "frozen_fps": 23.1,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 1.58,
+        "max_dup_at_s": 0.0,
+        "duration_s": 29.54
+      },
+      "fingerprint": "?|-|weak_demonstration",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-22T14:29:29+00:00",
+      "slug": "freshwater-accessible",
+      "score": 65,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Data drives every scene well, but the payoff number (0.007%) is drawn as a brim-full trough, and the 3.5% fresh slice is never drawn at all. The pictures contradict the 'almost nothing' story.",
+      "auto_fails": [],
+      "problems": [
+        "seg2/payoff: a full trough of water illustrates 0.007%, so the picture says abundance while the narration says nearly invisible.",
+        "seg0: the '3.5% is fresh' label points at the tank rim, and no freshwater slice is separated out or shown.",
+        "The hook and seg0 are the same tank scene with a pour, so the opening repeats beat one visually instead of landing a shock.",
+        "The closing and finish reuse the seg2 frame with no new reveal, so the payoff never builds to a 'whoa'.",
+        "Unexplained black spheres sit in the sand foreground of the tank scene (hook, seg0) and read as debris."
+      ],
+      "fixes": [
+        "Redraw seg2 so the 0.007% is a visibly tiny thing (a drop or thimble Data pumps into a cup) set against the 99.993% shown as the huge ocean or tank behind it.",
+        "In seg0, drain or partition the tank so a thin 3.5% fresh layer separates visibly from the salt water, with Data skimming it off.",
+        "Make the hook the finished payoff contrast (a giant tank next to a single drop) rather than an empty tank filling.",
+        "Remove or explain the black spheres in the foreground sand."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "picture_contradicts_claim",
+        "visible_evidence": "At seg2:end the headline says 0.007%, 'within reach', but the picture shows a large stone trough filled to the brim with blue water, almost as big as the sea behind it. Nothing in the frame looks tiny. The scene also opens on 99.993% 'locked away' (seg2:start) without showing where that water is loc",
+        "root_cause": "The pump-and-trough machine shows ACCESS but not SCALE. The trough fills to full whatever the number is, so the 'nearly invisible share' story is drawn as abundance.",
+        "repair_goal": "Draw the earlier size on the subject: the full Earth-water tank or the ocean behind it as the whole, then Data pumping out a single drop or thimble that lands in a cup, with the huge locked-away volume visibly dwarfing it. The tininess has to be seen without reading 0.007%."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.161,
+        "effective_fps": 20.1,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.063,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 2.79,
+        "max_dup_at_s": 22.58,
+        "duration_s": 28.54
+      },
+      "fingerprint": "?|-|picture_contradicts_claim",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-22T15:04:59+00:00",
+      "slug": "freshwater-accessible",
+      "score": 65,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The scenes are attractive and Data actually works in each one, but none of them shows the shrinking proportions the story is about: the 3.5% slice is never drawn and the 0.007% payoff is a full trough.",
+      "auto_fails": [],
+      "problems": [
+        "seg1: the tank stays fully blue under '3.5% is fresh'; the freshwater slice the narration promises is never drawn",
+        "seg2: 68.7% is a growing ice wall with no visible whole to be a share of",
+        "seg3: the 0.007% payoff shows a full trough of water, which contradicts 'nearly invisible'",
+        "seg4: the closing is the seg3 scene with text and no picture payoff; the 'COMMENT BELOW' card at the end is filler",
+        "The story needs a funnel (all water, then the fresh slice, then the ice, then the reachable sliver), but each beat is a separate unrelated setting, so the shrinking never builds"
+      ],
+      "fixes": [
+        "seg1: after the tank fills, drain it down (or split off) to a thin 3.5% freshwater layer, so the viewer sees the slice",
+        "seg2: freeze about two-thirds of that freshwater slice into ice inside the same vessel, or show the glacier as most of a marked whole",
+        "seg3: Data pumps hard and only a drop or a thin film lands in a big empty trough, with the earlier tank ghosted behind it for scale",
+        "Carry one vessel through every beat so the 100%, 3.5% and 0.007% shrink visibly on screen",
+        "Closing: hold on the single drop beside the huge ghost tank instead of a text card"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 88
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "picture_contradicts_claim",
+        "visible_evidence": "seg3:start to seg3:end: Data pumps into a stone trough that is already full of blue water, under '0.007% sits in rivers and lakes'. The picture shows plenty of reachable water while the narration says it is a nearly invisible share.",
+        "root_cause": "The scene draws a generic full trough with no scale against the rest of Earth's water, so the smallness that is the whole payoff is never shown.",
+        "repair_goal": "Show the 0.007% as a tiny amount against a huge one. For example, Data pumps hard and only one drop or a thin film reaches a huge empty trough, with a ghost outline of the full tank/ocean behind it for scale. The last frame should land on how little comes out."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.161,
+        "effective_fps": 20.1,
+        "max_dup_run": 16,
+        "measured": true,
+        "frozen_ratio": 0.066,
+        "frozen_fps": 22.4,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 3.33,
+        "max_dup_at_s": 7.92,
+        "duration_s": 29.25
+      },
+      "fingerprint": "?|-|picture_contradicts_claim",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-22T15:34:47+00:00",
+      "slug": "freshwater-accessible",
+      "score": 61,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The pictures are well made but never show the proportions. The 3.5% slice is never split out, and the 0.007% beat shows a brimming basin, the opposite of 'nearly invisible'.",
+      "auto_fails": [
+        "dead_air: seg0:end, seg1:start, seg1:mid and seg1:end show nearly the same frame for about 7s: a full tank, the same two labels and Data waving. Beat 1 adds nothing visual to the opening, so two beats read as identical."
+      ],
+      "problems": [
+        "seg1 is a repeat of the finished opening tank. The 3.5% fresh slice the narration promises is never drawn, and Data only waves.",
+        "seg3 basin fills to the brim, which visually says 'lots of water' while the narration says 0.007% is nearly invisible.",
+        "No scene carries a share across from the last. The tank, the glacier and the basin are three unrelated containers, so the viewer never sees the whole shrink to the sliver.",
+        "The hook opens on a finished full tank with two labels, so the shock rests on the numbers, not the picture.",
+        "The payoff ends on the same basin with a comment prompt and has no 'whoa' reveal of how tiny the reachable share is."
+      ],
+      "fixes": [
+        "seg1: Data siphons the fresh layer off the top of the salty tank into a small jar about 1/28 its size, and the jar is the new subject.",
+        "seg2: freeze about two-thirds of that small jar solid (ice crystallising up from the base, Data chipping at it) so 68.7% is seen as a share of the jar.",
+        "seg3: Data pumps and gets a single drop or a thin film in the basin next to the huge sea behind him, so the scale contrast proves 0.007%.",
+        "Closing: pull back to show the full tank, the jar and the drop in one frame as the reveal.",
+        "Hook: open on the most extreme contrast, the whole tank against one drop, instead of the finished tank with labels."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "claim_not_shown",
+        "visible_evidence": "From seg1:start to seg1:end the tank is uniformly full and blue, with the same 96.5%/3.5% labels as seg0:end. The 3.5% 'thin freshwater slice' the narration describes is never drawn. The callout line points at the rim and no layer separates out. Data just waves.",
+        "root_cause": "The beat reuses the finished opening tank instead of acting out its own claim. The 3.5% split exists only as a label, never as a change in the water.",
+        "repair_goal": "Make the 3.5% slice happen on screen. Data siphons or ladles a thin top layer of fresh water out of the salty tank into a small separate jar beside it, so the jar visibly holds about 1/28 of the tank. The tank stays salty/grey-blue and the jar is clear. Drop the reused 96.5% label and leave one numb"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.168,
+        "effective_fps": 20.0,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.064,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 2.88,
+        "max_dup_at_s": 22.92,
+        "duration_s": 28.88
+      },
+      "fingerprint": "?|dead_air|claim_not_shown",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-22T17:25:33+00:00",
+      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 7.33,
+        "static_at_s": 55.33,
+        "dark_fraction": 0.026,
+        "sampled": 189
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": "longform",
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.931,
+        "effective_fps": 1.7,
+        "max_dup_run": 83,
+        "measured": true,
+        "frozen_ratio": 0.394,
+        "frozen_fps": 14.5,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 54.62,
+        "max_dup_at_s": 22.46,
+        "duration_s": 63.08
+      },
+      "fingerprint": "longform|temporal_gate|-"
+    },
+    {
+      "ts": "2026-11-22T22:26:23+00:00",
+      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 7.33,
+        "static_at_s": 55.33,
+        "dark_fraction": 0.026,
+        "sampled": 189
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": "longform",
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.931,
+        "effective_fps": 1.7,
+        "max_dup_run": 83,
+        "measured": true,
+        "frozen_ratio": 0.394,
+        "frozen_fps": 14.5,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 54.62,
+        "max_dup_at_s": 22.46,
+        "duration_s": 63.08
+      },
+      "fingerprint": "longform|temporal_gate|-"
     }
   ],
   "showrunner_recurrence": {
-    "?|-|weak_payoff": {
-      "count": 3,
+    "longform|temporal_gate|-": {
+      "count": 4,
       "days": [
-        "2026-11-14"
+        "2026-11-15",
+        "2026-11-22"
       ]
     },
     "?|unreadable|unreadable": {
@@ -4158,18 +4150,17 @@
         "2026-11-17"
       ]
     },
-    "?|-|flat_payoff": {
-      "count": 2,
-      "days": [
-        "2026-11-14",
-        "2026-11-18"
-      ]
-    },
     "?|-|weak_hook": {
       "count": 2,
       "days": [
         "2026-11-14",
         "2026-11-15"
+      ]
+    },
+    "?|-|weak_payoff": {
+      "count": 2,
+      "days": [
+        "2026-11-14"
       ]
     },
     "?|unreadable|text_over_broadcast_graphic": {
@@ -4185,12 +4176,6 @@
         "2026-11-18"
       ]
     },
-    "longform|temporal_gate|-": {
-      "count": 2,
-      "days": [
-        "2026-11-15"
-      ]
-    },
     "?|-|data_demo": {
       "count": 2,
       "days": [
@@ -4203,28 +4188,10 @@
         "2026-11-17"
       ]
     },
-    "?|-|weak_hook_small_footage": {
-      "count": 1,
+    "?|-|picture_contradicts_claim": {
+      "count": 2,
       "days": [
-        "2026-11-14"
-      ]
-    },
-    "?|-|static_talking_head_hook": {
-      "count": 1,
-      "days": [
-        "2026-11-14"
-      ]
-    },
-    "?|-|hook_not_the_moment": {
-      "count": 1,
-      "days": [
-        "2026-11-14"
-      ]
-    },
-    "?|-|weak_hook_small_subject": {
-      "count": 1,
-      "days": [
-        "2026-11-14"
+        "2026-11-22"
       ]
     },
     "?|dead_air+decorative_mascot|dead_air_repeated_scene": {
@@ -4413,6 +4380,12 @@
         "2026-11-18"
       ]
     },
+    "?|-|flat_payoff": {
+      "count": 1,
+      "days": [
+        "2026-11-18"
+      ]
+    },
     "?|-|claim_not_drawn": {
       "count": 1,
       "days": [
@@ -4424,16 +4397,27 @@
       "days": [
         "2026-11-20"
       ]
+    },
+    "?|-|weak_demonstration": {
+      "count": 1,
+      "days": [
+        "2026-11-22"
+      ]
+    },
+    "?|dead_air|claim_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-11-22"
+      ]
     }
   },
   "recent_commits": [
-    "25980eb 2026-11-22 third: checkpoint posted log (claim upload slot) [skip ci]",
-    "58221f4 2026-11-22 third: analytics [skip ci]"
+    "e65a958 2026-11-23 exchange: phase A bundle for 20261123 [skip ci]",
+    "d92c214 2026-11-23 claim: mailbox verdicts 2026-11-23T04:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-08": 7,
         "2026-11-09": 5,
         "2026-11-10": 6,
         "2026-11-11": 5,
@@ -4457,15 +4441,15 @@
         "2026-11-15": 4,
         "2026-11-16": 2,
         "2026-11-18": 3,
-        "2026-11-20": 1
+        "2026-11-20": 1,
+        "2026-11-22": 2
       },
-      "total_posted": 418,
-      "attempted": 418,
+      "total_posted": 420,
+      "attempted": 420,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-08": 2,
         "2026-11-10": 3,
         "2026-11-11": 2,
         "2026-11-12": 6,
@@ -4478,11 +4462,12 @@
         "2026-11-19": 3,
         "2026-11-20": 8,
         "2026-11-21": 2,
-        "2026-11-22": 6
+        "2026-11-22": 6,
+        "2026-11-23": 3
       },
-      "total_posted": 585,
-      "attempted": 1539,
-      "rejected_or_pending": 954
+      "total_posted": 588,
+      "attempted": 1541,
+      "rejected_or_pending": 953
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4496,32 +4481,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 147,
+      "videos": 148,
       "top_by_vph": [
         {
+          "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
+          "vph": 48.9,
+          "views": 575
+        },
+        {
+          "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
+          "vph": 41.93,
+          "views": 232
+        },
+        {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 6.54,
+          "vph": 6.1,
           "views": 1164
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 4.93,
+          "vph": 4.65,
           "views": 1028
         },
         {
           "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 4.32,
+          "vph": 4.04,
           "views": 798
-        },
-        {
-          "title": "20 States Now Let You Use A Digital ID At The Airport",
-          "vph": 3.01,
-          "views": 1143
-        },
-        {
-          "title": "California Condors Rebounded From Just 27 Birds",
-          "vph": 2.89,
-          "views": 1037
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4531,36 +4516,36 @@
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 8.17,
-          "views": 467
+          "vph": 7.58,
+          "views": 477
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 1.01,
+          "vph": 0.99,
           "views": 549
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.94,
-          "views": 82
+          "vph": 0.89,
+          "views": 83
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.9,
+          "vph": 0.87,
           "views": 206
         },
         {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 0.86,
-          "views": 120
+          "vph": 0.83,
+          "views": 121
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261119/brief.json",
       "retro/20261120/brief.json",
-      "retro/20261121/brief.json"
+      "retro/20261121/brief.json",
+      "retro/20261122/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
