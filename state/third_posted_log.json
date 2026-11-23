@@ -22151,13 +22151,50 @@
       "director_cut": true
     },
     "clip-20261123-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/EvilKindChamoisFreakinStinkin-_Q6h9MGvEezIzSw0",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/gBk6mslMres",
       "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
       "kind": "twitch_clip",
-      "ts": "2026-11-23T14:06:22.611708+00:00",
+      "ts": "2026-11-23T14:06:35.145722+00:00",
+      "uploaded_at": "2026-11-23T14:06:35.145740+00:00",
+      "publish_at": "2026-11-24T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261123-jynxzi-plays-gta-6-for-the-first-time-and-crashe-9543ba44",
+        "tiktok": "queued for 2026-11-24T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EvilKindChamoisFreakinStinkin-_Q6h9MGvEezIzSw0",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "Jynxzi plays GTA 6 for the first time",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 15213,
+      "banger": 0.82,
+      "cut": {
+        "start": 0.0,
+        "end": 14.7
+      },
+      "director_cut": true
+    },
+    "rejected-darlingpreciouskoupreyprimeme-m1dn36odehi9lezx": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DarlingPreciousKoupreyPrimeMe-m1DN36ODehi9lEZX",
+      "streamer": "kaicenat",
+      "title": "Sneaky pic",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA6 photo of rear; borderline, age-rest)",
+      "ts": "2026-11-23T14:07:09.923430+00:00"
+    },
+    "clip-20261123-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rubius/clip/BlatantTenderIcecreamUWot-NDulaXJlbR9f2ztu",
+      "story_key": null,
+      "streamer": "rubius",
+      "title": "Rubius Gets Told He Needs a Shower And Can't Believe It \ud83d\ude2d",
+      "kind": "twitch_clip",
+      "ts": "2026-11-23T14:09:08.762991+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
