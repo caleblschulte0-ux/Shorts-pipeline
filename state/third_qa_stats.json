@@ -3,58 +3,6 @@
     {
       "date": "20261115",
       "dry_run": false,
-      "ts": "2026-11-15T13:33:33+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 135,
-        "with_retention": 114,
-        "with_curve": 15,
-        "fetched_at": "2026-11-15T13:22:00.329967+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261115-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261115",
-      "dry_run": false,
       "ts": "2026-11-15T17:41:16+00:00",
       "feedback": {
         "snapshot": true,
@@ -6910,6 +6858,286 @@
           "slug": "clip-20261123-6",
           "ok": false,
           "skipped": "run budget reached"
+        }
+      ]
+    },
+    {
+      "date": "20261123",
+      "dry_run": false,
+      "ts": "2026-11-23T14:09:14+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 132,
+        "with_retention": 106,
+        "with_curve": 15,
+        "fetched_at": "2026-11-23T08:46:28.410626+00:00"
+      },
+      "brain": {
+        "ok": 20,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261123-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 132,
+                "refused_shown": 6,
+                "scouted": [],
+                "vod_arcs": 333,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2906,
+                "pool_with_vod": 2031,
+                "arc_sizes": [
+                  5,
+                  4,
+                  3,
+                  4,
+                  5,
+                  6,
+                  2,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "ishowspeed@momentlightevilquelealitfam-ues9l-nllxkdrclp/isho",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "ishowspeed@momentlightevilquelealitfam-ues9l-nllxkdrclp/isho",
+                  "outcome": "qa_failed",
+                  "why": "vision: In most frames (1.5s\u201313.1s and 21.8s\u201333.5s) the sharp picture is a thin strip, about a third of the canvas, with large b; vision: Fr"
+                },
+                {
+                  "cluster": "gilticus@momentlachrymosedullshield4head-_vhrkbymzsq0glvs/gi",
+                  "outcome": "render_failed",
+                  "why": "RuntimeError: story: render_qa rejected the stitch \u2014 freeze: 3.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+                },
+                {
+                  "cluster": "ishowspeed@momentlongheartlesswhalemau5-b9nbfquvbphrrgp4",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "stableronaldo@momentprecioussaltypotthething-sid0bcrizpt3s_d",
+                  "outcome": "structure_failed",
+                  "why": "4.9s of dead air at 4s"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "possible unusual moment, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA6 suggestive scene, shocked streamer ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Asks \"Is This Even Allowed?\" After What Just Happened"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The game footage in the middle is fairly small, with a streamer facecam on top. It is still readable and the layout is c",
+                "The hook caption sits on a mostly empty black lower third. It is clean and covers no faces or action.",
+                "The game content is suggestive (a woman crawling on a bed), so it may draw age-restriction on YouTube. This is a content"
+              ]
+            }
+          },
+          "took_s": 104.7
+        },
+        {
+          "slug": "clip-20261123-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261123-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261123-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261123-5",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.82,
+              "why": "GTA 6 first reaction, searched name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "GTA6 first reaction, visible hype, searc",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.55,
+              "problems": [
+                "The sharp picture is a wide landscape strip filling only about 30% of the canvas, well under the roughly 75% target. It ",
+                "The streamer's facecam is small and sits in the bottom-left corner. It is still readable, so this is a weak framing rath"
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: The hook caption is placed over the streamer's face and chest in nearly every frame, covering the main subject",
+                "vision: Most frames show only the facecam, with a dark empty overlay or background above it; the GTA gameplay that the title is ",
+                "vision: The framing is inconsistent: the facecam crop zooms and shifts between frames, and the last frame abruptly switches to a",
+                "vision: Several frames are very dark or empty in the sharp region (0.6s, 1.8s, 10.4s, 11.6s), so the picture fills little of the",
+                "vision: The last frame (14.1s) looks like a different layout: a small strip with the subject tiny, and a leftover stream UI elem"
+              ]
+            }
+          },
+          "took_s": 172.6
+        },
+        {
+          "slug": "clip-20261123-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261123-6",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, high velocity, Spanish",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 NPC insult, Spanish reaction",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rubius Gets Told He Needs a Shower And Can't Believe It \ud83d\ude2d"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Source-stream Spanish subtitles (e.g. 'Lugare\u00f1a: A ver, un momento', '\u00a1Hueles a') are cut off at the frame edge, and the",
+                "First and last frames show mostly the back of a head, which is a weak opening and ending subject",
+                "Night scene is dark, but faces stay readable"
+              ]
+            }
+          },
+          "took_s": 124.9
         }
       ]
     }

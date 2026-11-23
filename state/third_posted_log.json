@@ -22188,14 +22188,32 @@
       "ts": "2026-11-23T14:07:09.923430+00:00"
     },
     "clip-20261123-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rubius/clip/BlatantTenderIcecreamUWot-NDulaXJlbR9f2ztu",
-      "story_key": null,
-      "streamer": "rubius",
+      "url": "https://youtube.com/shorts/Er70wq5o7r0",
       "title": "Rubius Gets Told He Needs a Shower And Can't Believe It \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-11-23T14:09:08.762991+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-23T14:09:14.829466+00:00",
+      "uploaded_at": "2026-11-23T14:09:14.829484+00:00",
+      "publish_at": "2026-11-24T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261123-rubius-gets-told-he-needs-a-shower-and-can-t-bel-d96aee10",
+        "tiktok": "queued for 2026-11-24T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/rubius/clip/BlatantTenderIcecreamUWot-NDulaXJlbR9f2ztu",
+      "streamer": "rubius",
+      "series": "chaos",
+      "hook": "Rubius gets told he stinks \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 35022,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 10.08
+      },
+      "director_cut": true
     }
   }
 }
