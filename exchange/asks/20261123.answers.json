@@ -5,6 +5,26 @@
       "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete policy reversal with an intuitive contradiction—the penny costs more than it is worth—and adds the nickel twist.\"}",
       "by": "chatgpt",
       "at": "2026-11-23T12:18:25.292Z"
+    },
+    "f79035b8da3c1e6a": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The hook gives the education figures a concrete human stake: birthplace can determine whether a child receives meaningful teacher attention.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:22:37.620Z"
+    },
+    "122d3fbe955973ce": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary classroom ratio in another country does not follow from India's secondary enrollment total.\",\"2\":\"An unspecified spending decline is another metric, not a consequence or reversal of the classroom ratio.\",\"3\":\"A broad literacy gain does not follow from the spending decline.\",\"4\":\"A preschool ratio in Tanzania changes country, age group, and measure rather than advancing the literacy result.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:22:37.620Z"
+    },
+    "e7a50812526a285a": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":17,\"arc\":7,\"factual\":12,\"visual_proof\":12,\"payoff\":6,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Rebuild the middle around one causal thread—crowding, teacher attention, and the resulting outcome—rather than jumping among enrollment, spending, literacy, and age groups.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:22:37.620Z"
+    },
+    "640c40d26a7dfff8": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-23T12:22:37.620Z"
     }
   }
 }
