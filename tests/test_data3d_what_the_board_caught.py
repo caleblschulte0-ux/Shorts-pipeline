@@ -93,3 +93,21 @@ def test_a_thing_that_lights_under_his_hand_is_news():
     news = ast.unparse(_fn("_news"))
     assert news.index("l0 != l1") < news.index("r0 and r1")
     assert "r0 or r1" not in news
+
+
+def test_a_sign_over_his_head_is_caught():
+    """honey board round 2: the 2 EUROS sign "cuts off the top of his head" in three stills, with every check green"""
+    ns = {}
+    exec(compile(ast.Module(body=[_fn("_overlap")], type_ignores=[]), "staging._overlap", "exec"), ns)
+    ov = ns["_overlap"]
+    head = (0.5, 0.6, 0.7, 0.8)
+    assert ov((0.0, 0.7, 1.0, 1.0), head) >= 0.5        # a sign across the top of his head
+    assert ov((0.0, 0.85, 1.0, 1.0), head) == 0.0       # a sign above him
+    edges = ast.unparse(_fn("edges"))
+    assert "_head_box(" in edges and "_nearer(" in edges and "OVER_HEAD" in edges
+
+
+def test_every_key_still_shows_his_face():
+    """a turn shorter than the 0.35 s back-turned rule still lands on a board still: each still is judged alone"""
+    keys = ast.unparse(_fn("keys"))
+    assert "KEY_BACK_DEG" in keys and "face_dir(" in keys and "not back" in keys

@@ -475,6 +475,29 @@ def _screen_box(sc, cam, o):
     return (min(v.x for v in q), min(v.y for v in q), max(v.x for v in q), max(v.y for v in q))
 
 
+OVER_HEAD = 0.2                  # of his head's screen box: words covering this much of it, nearer the lens, hide him
+
+
+def _head_box(sc, cam, data):
+    """his head with the hat on it, on screen: the head bone's length either side of it, and its depth"""
+    m = data.arm.matrix_world; pb = data.pb["head"]
+    h0, h1 = m @ pb.head, m @ pb.tail; r = (h1 - h0).length
+    q = [world_to_camera_view(sc, cam, h0 + Vector((dx, dy, dz)) * r) for dx in (-1, 1) for dy in (-1, 1) for dz in (-0.2, 1.6)]
+    if any(v.z <= 0 for v in q): return None, None
+    return (min(v.x for v in q), min(v.y for v in q), max(v.x for v in q), max(v.y for v in q)), world_to_camera_view(sc, cam, h0).z
+
+
+def _overlap(b, h):
+    """the share of box h that box b covers"""
+    w = max(0.0, min(b[2], h[2]) - max(b[0], h[0])); t = max(0.0, min(b[3], h[3]) - max(b[1], h[1]))
+    return w * t / max(1e-9, (h[2] - h[0]) * (h[3] - h[1]))
+
+
+def _nearer(sc, cam, o, depth):
+    q = [world_to_camera_view(sc, cam, o.matrix_world @ Vector(c)).z for c in o.bound_box]
+    return min(q) < depth
+
+
 def cut_off(b):
     """a screen box that is partly in the frame and partly out of it"""
     seen = b[2] > 0 and b[0] < 1 and b[3] > 0 and b[1] < 1
@@ -497,13 +520,24 @@ def edges(data, cam, nf, name="shot", declared=(), step=2):
             runs[o.name] = runs.get(o.name, 0) + step if cut else 0
             if runs[o.name] > worst.get(o.name, (0, 0))[0]: worst[o.name] = (runs[o.name], f)
     bad = sorted(((r / FPS, f, n) for n, (r, f) in worst.items() if r / FPS > CUT_GRACE_S), reverse=True)
+    over = {}; oworst = {}          # words hung IN FRONT of his head (honey board round 2: the price sign "cuts off the top of his head")
+    for f in range(1, nf + 1, step):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        hb, hd = _head_box(sc, cam, data)
+        for o in texts:
+            b = _screen_box(sc, cam, o)
+            hit = b is not None and hb is not None and _overlap(b, hb) > OVER_HEAD and _nearer(sc, cam, o, hd)
+            over[o.name] = over.get(o.name, 0) + step if hit else 0
+            oworst[o.name] = max(oworst.get(o.name, 0), over[o.name])
+    covered = sorted(((r / FPS, n) for n, r in oworst.items() if r / FPS > CUT_GRACE_S), reverse=True)
+    bad += [(s_, 0, n + " over his head") for s_, n in covered]
     sc.frame_set(nf); bpy.context.view_layer.update()
     m = data.arm.matrix_world
     pts = [world_to_camera_view(sc, cam, m @ v) for b in data.arm.pose.bones for v in (b.head, b.tail)]
     pts = [p for p in pts if p.z > 0]
     out = [p for p in pts if p.x < 0.0 or p.x > 1.0 or p.y > 1.0]
     ok = not bad and not out
-    print(f"EDGES {name}: words cut by the frame edge: "
+    print(f"EDGES {name}: words cut by the frame edge or hung over his head: "
           + (", ".join(f"{n} {s:.2f}s at f{f}" for s, f, n in bad[:5]) if bad else "none")
           + f" (max {CUT_GRACE_S}s); at the beat's end {len(out)} of his points off the frame's sides or top"
           + f" -> {'OK' if ok else 'FAIL: slide it into the frame (store/compose.py place) or frame him whole (frame_data)'}", flush=True)
@@ -514,6 +548,7 @@ KEYS_AT = (0.08, 0.38, 0.68, 0.98)   # the board's four key stills (store/board3
 KEY_DATA = 0.05                      # of the frame height: his mean on-screen point travel between two stills that reads as a new pose
 KEY_PROP = 0.03                      # of the frame height: a set thing that moved this far on screen is new; one that lit,
 KEY_SEEN = 0.01                      # appeared or went counts when it is at least this big in frame
+KEY_BACK_DEG = 100                   # degrees: his face this far off the lens ON A KEY STILL reads as the back of his head
 KEY_RIDE = 0.1                       # metres: a thing this near his hands rides with him (a dipper) and is his pose, not news
 
 
@@ -571,9 +606,18 @@ def keys(data, cam, nf, name="shot"):
         said.append(f"{i + 1}>{i + 2}: him {dm:.3f}, set {len(news)}")
         if dm < KEY_DATA and not news:
             same.append((i + 1, i + 2, dm))
-    ok = not same
+    back = []                     # a key still is judged ALONE: the back of his head on it fails however brief the turn
+    for i, a_ in enumerate(KEYS_AT):  # (honey board round 2: "frame 2, his head turned away", under a 0.35 s run rule)
+        sc.frame_set(max(1, min(nf, int(round(a_ * (nf - 1))) + 1))); bpy.context.view_layer.update()
+        head = data.arm.matrix_world @ data.pb["head"].head
+        to_cam = cam.matrix_world.translation - head; to_cam.z = 0
+        fd = face_dir(data); fd.z = 0
+        ang = math.degrees(fd.angle(to_cam)) if fd.length > 1e-4 and to_cam.length > 1e-4 else 0.0
+        if ang > KEY_BACK_DEG: back.append((i + 1, ang))
+    ok = not same and not back
     print(f"KEYS {name}: " + "; ".join(said) + (" | " + ", ".join(f"stills {a} and {b} are one picture" for a, b, d in same) if same else "")
-          + f" -> {'OK' if ok else 'FAIL: give each quarter of the beat its own moment'}", flush=True)
+          + (" | " + ", ".join(f"still {i} shows the back of his head ({g:.0f} deg)" for i, g in back) if back else "")
+          + f" -> {'OK' if ok else 'FAIL: give each quarter of the beat its own moment, his face to us on each'}", flush=True)
     return ok
 
 
