@@ -115,6 +115,19 @@ on Tuesday. Now:
   scene plan is dropped, and the persist commit goes out **without**
   `[skip ci]` so the explainer's push trigger renders it within the hour.
   A refused rewrite is settled with its reasons and re-filed carrying them.
+- **The ask is today's** (doctor aaeb12de3ebd, 2026-11-23 — 48 of 144 open
+  requests carried reasons the run no longer gave, 14 of them a rule
+  retired on 11-17). The same words held again REFRESH the open request in
+  place: `held_for`/`reasons`, the judge's words and the current `rules`,
+  stamped `refiled`; the id and the words stay, so an answer in flight is
+  still for this story. A story held for its DATA (`data:` — an
+  illustrative source no rewrite can post; 37 open requests that morning)
+  files nothing and every open ask for it is settled `unpostable`. A
+  narration readout the brain's retell could not fix (`not_current`, nine
+  stories for six-plus runs) and a hook under the floor are filed as
+  `narration:` / `hook:` reasons, and the claim refuses an answer that is
+  still a readout (`validate(..., narration=True)`) — the brain's own
+  retell and tighten check that themselves.
 
 `python scripts/claim_rewrites.py sweep` files the whole backlog.
 
