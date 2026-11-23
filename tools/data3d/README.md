@@ -33,6 +33,23 @@ A new short is a FOLDER and a trigger, nothing else:
 4. Local test pass (`STORY=<name> SHOT=n STAGING=on` with `STEP`) until every check reads OK, then the full render:
    the trigger with `story=<name>`, `narration_run=<the narrate run>`, `spp=48`, `pct=100`.
 
+**Placement is frame-first** (`store/compose.py`, caaleb 2026-11-23: "our code is shit if it's cutting this off and
+putting them in the wrong spot"). A shot says where on the 1080x1920 screen a thing goes (0..1 across, 0..1 up) and
+the solver finds where it goes in the world, instead of typing world coordinates and aiming a camera somewhere else:
+- Data: `frame_data(data, CAM, LOOK, lens, face_at=(x, y), height=h, t=...)` solves the CAMERA (truck and dolly, never
+  him: his hands are already on the set) so his face lands at `face_at` and he stands `h` of the frame tall.
+- a sign, a label, a prop: `place(obj, cam, box=(x0, y0, x1, y1), frame=f, depth=d | on_ground=True, scale_ok=...)`
+  slides (and, if allowed, scales) it until its projected box sits in `box`; `place_keys` does it per keyframe for a
+  moving thing. A solve that cannot fit prints a `COMPOSE ... -> FAIL` line.
+- every shot returns `boxes` [(label, objs, box[, t0, t1])] for its signs and its beat's key prop; `compose.check`
+  holds them through the shot, strict. `tests/test_data3d_compose.py` runs the solver without Blender.
+
+The checks the board judge used to catch by eye (2026-11-23, run strict by `store/shots.py`; held by
+`tests/test_data3d_what_the_board_caught.py`): `staging.edges` (no FONT object or sign / label mesh cut by the frame
+edge longer than 0.3 s; he ends the beat whole in frame), `staging.keys` (the board's four stills each show something
+new), `staging.talking` (facing us, centred, hands on no grip and feet still is a talking head), `staging.cause`
+(a declared moving part starts to move only with his hand on a grip or on it).
+
 What every shot is held to before a frame renders (store/shots.py runs them; a story after the first fails on any):
 - **one clock**: `clock.py`, 30 fps, everywhere; shots tile the voice with no gap (`clock.span`).
 - **medium shot or closer**: `staging.MIN_H` 0.28 of the frame, head to feet, on 85% of frames (the first short ran
