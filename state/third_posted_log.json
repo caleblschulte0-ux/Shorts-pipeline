@@ -22010,6 +22010,34 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-antsypolishedkoupreybiblethump-nhtluquqyb4buny3": {
+      "source_url": "https://www.twitch.tv/tminnzy/clip/AntsyPolishedKoupreyBibleThump-NHTlUqUqyb4BUNY3",
+      "streamer": "tminnzy",
+      "title": "Tminnzy Forgot The Mission When Mandy Walked In \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 15-20% of the 9:16 canvas, and the rest is blurred padding. The subject is smal; vision: The sharp region shows a nearly nude CGI character in most frames. That risks age-restriction or a policy strike on Shor; vision: The word captions are tiny and o",
+      "ts": "2026-11-23T12:32:24.851597+00:00"
+    },
+    "rejected-patientsweetmilkargieb8-usdfkujw8e2ozhum": {
+      "source_url": "https://www.twitch.tv/tminnzy/clip/PatientSweetMilkArgieB8-usdfKujw8E2OZHUm",
+      "streamer": "tminnzy",
+      "title": "Tminnzy Presses The Wrong Button And Jason Is Dead After This \ud83d\udc80",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height. The blurred padding above and below is far l; vision: The subject is tiny and far away. The plane is a small speck for the first ~11s, and the falling character in the final ; vision: The streamer facecam is tiny, an",
+      "ts": "2026-11-23T12:37:52.024253+00:00"
+    },
+    "clip-20261123-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/tminnzy/clip/MushyComfortableFriseePJSalt-7m1EwNbNasg6cetp",
+      "story_key": null,
+      "streamer": "tminnzy",
+      "title": "Tminnzy Can't Talk About Qixso's Party After Signing An NDA \ud83e\udd10",
+      "kind": "twitch_clip",
+      "ts": "2026-11-23T12:43:34.142564+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
