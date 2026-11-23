@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "sperm-counts-cut-in-half__88a02a18",
+  "slug": "sperm-counts-cut-in-half",
+  "by": "chatgpt",
+  "written_at": "2026-11-23T12:24:03.426Z",
+  "title": "One Analysis Measured Sperm Counts Falling By Half",
+  "hook": "A global analysis found the measured decline speeding up.",
+  "closing": "The analysis found declines in both concentration and total output, raising questions for future fertility.",
+  "question": "Should researchers keep tracking this?",
+  "segments": [
+    {
+      "topic": "Sperm Study Decline",
+      "say": "Average sperm concentration measured 49 million per milliliter, less than half its earlier level in the analysis."
+    },
+    {
+      "topic": "Sperm Study Speed",
+      "say": "The later period declined 2.64 percent yearly, more than twice the earlier pace."
+    },
+    {
+      "topic": "Sperm Study Total",
+      "say": "Total sperm count fell 62 percent in the analysis, extending the pattern beyond concentration."
+    }
+  ]
+}
