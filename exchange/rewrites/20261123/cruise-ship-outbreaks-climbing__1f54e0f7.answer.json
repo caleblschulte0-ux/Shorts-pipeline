@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cruise-ship-outbreaks-climbing__1f54e0f7",
+  "slug": "cruise-ship-outbreaks-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-23T12:24:03.426Z",
+  "title": "Cruise Outbreaks Climbed As Ships Packed In Thousands",
+  "hook": "One contagious illness keeps finding thousands of passengers in close quarters.",
+  "closing": "On a crowded cruise, handwashing can interrupt thousands of possible close contacts.",
+  "question": "Would outbreaks change your cruise pick?",
+  "segments": [
+    {
+      "topic": "Cruise Outbreaks",
+      "say": "Cruise outbreaks reached 20, continuing a three-year rise."
+    },
+    {
+      "topic": "Cruise Norovirus",
+      "say": "Norovirus caused 15 outbreaks, so one contagious illness drove most recorded cases."
+    },
+    {
+      "topic": "Cruise Crowds",
+      "say": "Some cruise ships carry 7,600 guests, multiplying the close contacts norovirus can exploit."
+    }
+  ]
+}
