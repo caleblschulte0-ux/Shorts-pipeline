@@ -445,3 +445,236 @@ def far(data, cam, nf, arc=(), name="shot", cutaway=None):
           f"{n_bolt} strikes' channels seen (BOLT: in frame to the target, steep, off his body unless he is the target)"
           + "".join(f"; {p}" for p in probs[:8]) + f" -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok
+
+
+# ---------------------------------------------------------------- what the board judge kept catching (2026-11-23)
+# caaleb, of the honey board: "why such basic things got made at all". Because no check could see them. Each of these
+# was a HARD note on a board still that every measured check had passed.
+
+TEXT_WORDS = ("sign", "label")   # a mesh named with one of these carries words; FONT objects always do
+CUT_GRACE_S = 0.3                # words may slide past the frame edge this long (a pan), no longer
+CUT_MIN_H = 0.006                # of the frame height: words smaller than this are not words on a phone
+
+
+def _texts(declared=()):
+    out = []
+    for o in bpy.context.scene.objects:
+        if o.type not in ("FONT", "MESH"): continue
+        n = o.name.lower()
+        if o.type == "FONT" or any(w in n for w in TEXT_WORDS) or any(o.name.startswith(d) for d in declared):
+            out.append(o)
+    return out
+
+
+def _screen_box(sc, cam, o):
+    if o.hide_render: return None
+    if max(abs(v) for v in o.matrix_world.to_scale()) < 1e-3: return None
+    q = [world_to_camera_view(sc, cam, o.matrix_world @ Vector(c)) for c in o.bound_box]
+    if any(v.z <= 0 for v in q): return None
+    return (min(v.x for v in q), min(v.y for v in q), max(v.x for v in q), max(v.y for v in q))
+
+
+def cut_off(b):
+    """a screen box that is partly in the frame and partly out of it"""
+    seen = b[2] > 0 and b[0] < 1 and b[3] > 0 and b[1] < 1
+    whole = b[0] >= 0 and b[2] <= 1 and b[1] >= 0 and b[3] <= 1
+    return seen and not whole
+
+
+def edges(data, cam, nf, name="shot", declared=(), step=2):
+    """NOTHING WITH WORDS ON IT IS CUT BY THE FRAME EDGE, AND HE ENDS THE BEAT WHOLE IN FRAME (honey round 1: "sign
+    cut at the edge", "Data cut at the right edge" on three of five boards). Every FONT object and every sign or label
+    mesh (TEXT_WORDS, or a prefix the shot declares as `texts`) that is visible and partly outside the frame for longer
+    than CUT_GRACE_S fails. On the beat's last frame his body (every bone point) is inside the frame's sides and top."""
+    sc = bpy.context.scene; texts = _texts(declared)
+    runs = {}; worst = {}
+    for f in range(1, nf + 1, step):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        for o in texts:
+            b = _screen_box(sc, cam, o)
+            cut = b is not None and cut_off(b) and (b[3] - b[1]) >= CUT_MIN_H
+            runs[o.name] = runs.get(o.name, 0) + step if cut else 0
+            if runs[o.name] > worst.get(o.name, (0, 0))[0]: worst[o.name] = (runs[o.name], f)
+    bad = sorted(((r / FPS, f, n) for n, (r, f) in worst.items() if r / FPS > CUT_GRACE_S), reverse=True)
+    sc.frame_set(nf); bpy.context.view_layer.update()
+    m = data.arm.matrix_world
+    pts = [world_to_camera_view(sc, cam, m @ v) for b in data.arm.pose.bones for v in (b.head, b.tail)]
+    pts = [p for p in pts if p.z > 0]
+    out = [p for p in pts if p.x < 0.0 or p.x > 1.0 or p.y > 1.0]
+    ok = not bad and not out
+    print(f"EDGES {name}: words cut by the frame edge: "
+          + (", ".join(f"{n} {s:.2f}s at f{f}" for s, f, n in bad[:5]) if bad else "none")
+          + f" (max {CUT_GRACE_S}s); at the beat's end {len(out)} of his points off the frame's sides or top"
+          + f" -> {'OK' if ok else 'FAIL: slide it into the frame (store/compose.py place) or frame him whole (frame_data)'}", flush=True)
+    return ok
+
+
+KEYS_AT = (0.08, 0.38, 0.68, 0.98)   # the board's four key stills (store/board3d.sh, judge3d)
+KEY_DATA = 0.05                      # of the frame height: his mean on-screen point travel between two stills that reads as a new pose
+KEY_PROP = 0.03                      # of the frame height: a set thing that moved this far on screen is new; one that lit,
+KEY_SEEN = 0.01                      # appeared or went counts when it is at least this big in frame
+KEY_RIDE = 0.1                       # metres: a thing this near his hands rides with him (a dipper) and is his pose, not news
+
+
+def _state(sc, cam, data):
+    mine = _his(data)
+    m = data.arm.matrix_world
+    pose = [world_to_camera_view(sc, cam, m @ v) for b in data.arm.pose.bones for v in (b.head, b.tail)]
+    hands = _hands(data)
+    things = {}
+    for o in sc.objects:
+        if o.type not in ("MESH", "FONT") or o.name in mine: continue
+        live = not o.hide_render and max(abs(v) for v in o.matrix_world.to_scale()) > 1e-3
+        b = _screen_box(sc, cam, o) if live else None
+        c = _centre(o)
+        ride = any((c - h).length < KEY_RIDE for h in hands)
+        things[o.name] = (live, b, ride)
+    return pose, things
+
+
+def _news(t0, t1):
+    """what changed in the set between two stills, on screen: [(name, how)]"""
+    out = []
+    for n, (l0, b0, r0) in t0.items():
+        if n not in t1: continue
+        l1, b1, r1 = t1[n]
+        if r0 or r1: continue
+        if l0 != l1:
+            b = b0 or b1
+            if b and (b[3] - b[1]) >= KEY_SEEN and b[2] > 0 and b[0] < 1: out.append((n, "lit / came / went"))
+        elif l0 and b0 and b1:
+            d = max(abs((b0[0] + b0[2]) - (b1[0] + b1[2])) / 2, abs((b0[1] + b0[3]) - (b1[1] + b1[3])) / 2,
+                    abs((b0[3] - b0[1]) - (b1[3] - b1[1])))
+            if d >= KEY_PROP and max(b0[3] - b0[1], b1[3] - b1[1]) >= KEY_SEEN: out.append((n, f"moved {d:.2f}"))
+    return out
+
+
+def keys(data, cam, nf, name="shot"):
+    """THE FOUR BOARD STILLS ARE FOUR PICTURES (honey shot 3 round 1: "frames 1-3 identical": the lamp dark, the dipper
+    in the vat, three times). Between each pair of consecutive key stills, measured ON SCREEN: his pose changes
+    (mean point travel KEY_DATA of the frame) or something in the set that does not ride in his hands moved KEY_PROP,
+    lit, appeared or went."""
+    sc = bpy.context.scene
+    st = []
+    for a in KEYS_AT:
+        sc.frame_set(max(1, min(nf, int(round(a * (nf - 1))) + 1))); bpy.context.view_layer.update()
+        st.append(_state(sc, cam, data))
+    same = []; said = []
+    for i in range(len(st) - 1):
+        (p0, t0), (p1, t1) = st[i], st[i + 1]
+        dm = sum(math.hypot(a.x - b.x, (a.y - b.y)) for a, b in zip(p0, p1)) / max(1, len(p0))
+        news = _news(t0, t1)
+        said.append(f"{i + 1}>{i + 2}: him {dm:.3f}, set {len(news)}")
+        if dm < KEY_DATA and not news:
+            same.append((i + 1, i + 2, dm))
+    ok = not same
+    print(f"KEYS {name}: " + "; ".join(said) + (" | " + ", ".join(f"stills {a} and {b} are one picture" for a, b, d in same) if same else "")
+          + f" -> {'OK' if ok else 'FAIL: give each quarter of the beat its own moment'}", flush=True)
+    return ok
+
+
+TALK_FACE = 50      # degrees: his face within this of the lens ...
+TALK_CENTRE = 0.2   # ... his head within this of the frame's centre line ...
+TALK_HANDS = 0.25   # ... his hands on a job (a held thing that MOVES under them) less than this of the shot ...
+TALK_WALK = 0.15    # ... and his feet stay inside a patch this wide (metres): a TALKING HEAD
+HAND_ON = 0.06      # metres: a hand this close to a held thing is on it
+
+
+def _near(p, objs):
+    best = 9.0
+    for o in objs:
+        if o.hide_render: continue
+        cs = [o.matrix_world @ Vector(c) for c in o.bound_box]
+        lo = Vector((min(c.x for c in cs), min(c.y for c in cs), min(c.z for c in cs)))
+        hi = Vector((max(c.x for c in cs), max(c.y for c in cs), max(c.z for c in cs)))
+        q = Vector((min(max(p.x, lo.x), hi.x), min(max(p.y, lo.y), hi.y), min(max(p.z, lo.z), hi.z)))
+        best = min(best, (p - q).length)
+    return best
+
+
+def _grip_objs(grips):
+    return [o for o in bpy.context.scene.objects if o.type in ("MESH", "FONT", "CURVE")
+            and any(o.name.startswith(g) or (o.parent and o.parent.name.startswith(g)) for g in grips)]
+
+
+def _centre(o):
+    return o.matrix_world @ (sum((Vector(v) for v in o.bound_box), Vector()) / 8)
+
+
+def _working(sc, data, held, f, nf, near=HAND_ON):
+    """a hand on a held thing that is MOVING under it (honey shot 2 round 1: his hands sat on two static ropes while
+    the flags rose by themselves, and every check counted that as work)"""
+    if not held: return False
+    sc.frame_set(f); bpy.context.view_layer.update()
+    on = [o for o in held if not o.hide_render and any(_near(h, [o]) <= near for h in _hands(data))]
+    if not on: return False
+    c0 = {o.name: _centre(o) for o in on}
+    sc.frame_set(max(1, f - 3)); bpy.context.view_layer.update(); a = {o.name: _centre(o) for o in on}
+    sc.frame_set(min(nf, f + 3)); bpy.context.view_layer.update(); b = {o.name: _centre(o) for o in on}
+    sc.frame_set(f); bpy.context.view_layer.update()
+    return any((a[n] - c0[n]).length + (b[n] - c0[n]).length > 0.004 for n in c0)
+
+
+def _hands(data):
+    m = data.arm.matrix_world
+    return [m @ data.pb[h].tail for h in ("hand.L", "hand.R") if h in data.pb]
+
+
+def talking(data, cam, nf, grips=(), name="shot", step=3):
+    """NOT A TALKING HEAD (honey shot 2 round 1, three judges: "Data is centred, facing the lens, chest-up and doing
+    little across all 4 frames"; it passed fresh.talking_heads, which only knew a close-up). Facing the lens, in the
+    middle of the frame, his hands on no declared grip and his feet still: that is a man beside a chart."""
+    sc = bpy.context.scene; held = _grip_objs(grips)
+    faces = []; xs = []; on = n = 0; roots = []
+    for f in range(1, nf + 1, step):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        head = data.arm.matrix_world @ data.pb["head"].head
+        fd = face_dir(data); fd.z = 0; to = cam.matrix_world.translation - head; to.z = 0
+        if fd.length > 1e-4 and to.length > 1e-4: faces.append(math.degrees(fd.angle(to)))
+        xs.append(world_to_camera_view(sc, cam, head).x)
+        roots.append(data.arm.matrix_world.translation.copy())
+        n += 1; on += _working(sc, data, held, f, nf)
+    med = lambda v: sorted(v)[len(v) // 2] if v else 0.0
+    walk = max(max(r.x for r in roots) - min(r.x for r in roots), max(r.y for r in roots) - min(r.y for r in roots)) if roots else 0.0
+    hands = on / max(1, n)
+    head = med(faces) < TALK_FACE and abs(med(xs) - 0.5) < TALK_CENTRE and hands < TALK_HANDS and walk < TALK_WALK
+    print(f"TALKING {name}: face {med(faces):.0f} deg off the lens, head at x {med(xs):.2f}, hands on a job {hands:.0%} of the shot, "
+          f"his feet inside {walk:.2f} m -> {'FAIL: a talking head; put his hands on the thing that changes, or move him' if head else 'OK'}", flush=True)
+    return not head
+
+
+CAUSE_BEFORE = 0.4   # seconds: his hand on the cause this long before the thing starts to move ...
+CAUSE_AFTER = 0.2    # ... or this soon after
+
+
+def cause(data, nf, items, grips=(), name="shot"):
+    """NOTHING MOVES ON ITS OWN (honey round 1: "the HONEY card rises on its own", "the beacon fires with no visible
+    cause"). Every declared consequence with a moving part starts to move while one of his hands is on a declared
+    grip or on the moving part itself."""
+    sc = bpy.context.scene; held = _grip_objs(grips); ok_all = True
+    for it in items:
+        label, objs, t0, t1 = it[:4]
+        opt = it[4] if len(it) > 4 else {}
+        mv = opt.get("moves")
+        if not mv: continue
+        objs = objs() if callable(objs) else objs
+        mv = objs if mv is True else (mv() if callable(mv) else mv)
+        mv = [o for o in mv if o.type in ("MESH", "FONT", "CURVE")]
+        if not mv: continue
+        f0 = int(round(t0 * FPS)) + 1; f1 = min(nf, int(round(t1 * FPS)) + 1)
+        sc.frame_set(f0); bpy.context.view_layer.update()
+        ctr = lambda o: o.matrix_world @ (sum((Vector(v) for v in o.bound_box), Vector()) / 8)
+        ref = {o.name: ctr(o) for o in mv}
+        start = None
+        for f in range(f0, f1 + 1):
+            sc.frame_set(f); bpy.context.view_layer.update()
+            if any((ctr(o) - ref[o.name]).length > 0.01 for o in mv): start = f; break
+        if start is None: continue
+        touch = None
+        for f in range(max(1, start - int(CAUSE_BEFORE * FPS)), min(nf, start + int(CAUSE_AFTER * FPS)) + 1):
+            if _working(sc, data, held + mv, f, nf): touch = f; break       # a hand on a grip that moves with the work
+        good = touch is not None; ok_all &= good
+        print(f"CAUSE {name}: {label}: starts to move at f{start}; his hand on its cause "
+              + (f"at f{touch}" if good else f"nowhere (on a thing that moves with it) from {CAUSE_BEFORE}s before to {CAUSE_AFTER}s after")
+              + f" -> {'OK' if good else 'FAIL: it moves on its own; put his hand on what drives it (a grip)'}", flush=True)
+    return ok_all

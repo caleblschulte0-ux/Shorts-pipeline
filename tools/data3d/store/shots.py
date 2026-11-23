@@ -296,6 +296,14 @@ if not staging.consequence(sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT
 if SHOT == NSHOTS and not SCRIPT.get("legacy_ending") and not staging.ending(data, sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT}") \
         and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the ending check: the video must end ON its payoff, never a pull-back")
+import compose    # frame-first placement: every declared box (signs, labels, the beat's prop) holds (store/compose.py)
+_sysok = [staging.edges(data, sc.camera, NF, name=f"shot {SHOT}", declared=S.get("texts", ())),   # nothing with words cut by the edge; he ends whole
+          staging.keys(data, sc.camera, NF, name=f"shot {SHOT}"),                                 # the board's four stills are four pictures
+          staging.talking(data, sc.camera, NF, grips=S.get("grips", ()), name=f"shot {SHOT}"),    # not a talking head
+          staging.cause(data, NF, S.get("conseq", []), grips=S.get("grips", ()), name=f"shot {SHOT}"),   # nothing moves on its own
+          compose.check(sc.camera, NF, S.get("boxes", []), name=f"shot {SHOT}")]
+if not all(_sysok) and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails EDGES / KEYS / TALKING / CAUSE / COMPOSE: what the board judge would have caught (2026-11-23)")
 import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
 if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")
