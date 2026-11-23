@@ -269,3 +269,26 @@ def check(cam, nf, boxes, name="shot", step=2, seen=0.9):
         print(f"COMPOSE {name}: {label} inside {tuple(box)} on {frac:.0%} of its frames (min {seen:.0%})"
               + ("" if ok else f"; first miss f{worst[0]} at {worst[1]}" if worst else "") + f" -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok_all
+
+
+def drop_cut(roots, cam, nf, step=4, label="set dressing"):
+    """background dressing (a show table's jars, a shelf of tins) that the frame edge cuts is taken out of the shot, never
+    left half in: a cut label is a defect (staging.edges). Returns the names dropped. Never use it on the beat's prop:
+    that is placed (place) and held (boxes)."""
+    bpy, Vector, w2c = _bpy()
+    sc = bpy.context.scene; out = []
+    for r in roots:
+        objs = tree(r)
+        for f in range(1, nf + 1, step):
+            sc.frame_set(f); bpy.context.view_layer.update()
+            pts = corners(objs)
+            if not pts: break
+            q = [w2c(sc, cam, Vector(p)) for p in pts]
+            if any(v.z <= 0 for v in q): continue
+            b = (min(v.x for v in q), min(v.y for v in q), max(v.x for v in q), max(v.y for v in q))
+            seen = b[2] > 0 and b[0] < 1 and b[3] > 0 and b[1] < 1
+            if seen and not (b[0] >= 0 and b[2] <= 1 and b[1] >= 0 and b[3] <= 1):
+                for o in [r] + list(r.children_recursive): o.hide_render = True; o.hide_viewport = True
+                out.append(r.name); break
+    if out: print(f"COMPOSE {label}: dropped {len(out)} cut by the frame edge: {', '.join(out[:6])}", flush=True)
+    return out

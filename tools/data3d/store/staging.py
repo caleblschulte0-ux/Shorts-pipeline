@@ -528,24 +528,26 @@ def _state(sc, cam, data):
         b = _screen_box(sc, cam, o) if live else None
         c = _centre(o)
         ride = any((c - h).length < KEY_RIDE for h in hands)
-        things[o.name] = (live, b, ride)
+        things[o.name] = (live, b, ride, c.copy())
     return pose, things
 
 
-def _news(t0, t1):
-    """what changed in the set between two stills, on screen: [(name, how)]"""
+def _news(t0, t1, sc, cam):
+    """what changed in the set between two stills: [(name, how)]. A move is measured by projecting both of its world
+    positions through the SAME lens (the later still's), so a camera push is not news."""
     out = []
-    for n, (l0, b0, r0) in t0.items():
+    for n, (l0, b0, r0, c0) in t0.items():
         if n not in t1: continue
-        l1, b1, r1 = t1[n]
+        l1, b1, r1, c1 = t1[n]
         if r0 or r1: continue
+        b = b1 or b0
+        if not b or (b[3] - b[1]) < KEY_SEEN or b[2] <= 0 or b[0] >= 1 or b[3] <= 0 or b[1] >= 1: continue
         if l0 != l1:
-            b = b0 or b1
-            if b and (b[3] - b[1]) >= KEY_SEEN and b[2] > 0 and b[0] < 1: out.append((n, "lit / came / went"))
-        elif l0 and b0 and b1:
-            d = max(abs((b0[0] + b0[2]) - (b1[0] + b1[2])) / 2, abs((b0[1] + b0[3]) - (b1[1] + b1[3])) / 2,
-                    abs((b0[3] - b0[1]) - (b1[3] - b1[1])))
-            if d >= KEY_PROP and max(b0[3] - b0[1], b1[3] - b1[1]) >= KEY_SEEN: out.append((n, f"moved {d:.2f}"))
+            out.append((n, "lit / came / went"))
+        elif l0 and (c0 - c1).length > 1e-4:
+            p0, p1 = world_to_camera_view(sc, cam, c0), world_to_camera_view(sc, cam, c1)
+            d = math.hypot(p0.x - p1.x, (p0.y - p1.y))
+            if d >= KEY_PROP: out.append((n, f"moved {d:.2f}"))
     return out
 
 
@@ -563,7 +565,8 @@ def keys(data, cam, nf, name="shot"):
     for i in range(len(st) - 1):
         (p0, t0), (p1, t1) = st[i], st[i + 1]
         dm = sum(math.hypot(a.x - b.x, (a.y - b.y)) for a, b in zip(p0, p1)) / max(1, len(p0))
-        news = _news(t0, t1)
+        sc.frame_set(max(1, min(nf, int(round(KEYS_AT[i + 1] * (nf - 1))) + 1))); bpy.context.view_layer.update()
+        news = _news(t0, t1, sc, cam)
         said.append(f"{i + 1}>{i + 2}: him {dm:.3f}, set {len(news)}")
         if dm < KEY_DATA and not news:
             same.append((i + 1, i + 2, dm))
