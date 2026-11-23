@@ -1,0 +1,55 @@
+{
+ "slug": "womens-college-hoops-out-rates-men",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 8,
+   "hook": 12,
+   "arc": 8,
+   "factual": 5,
+   "visual_proof": 5,
+   "payoff": 6,
+   "voice": 3
+  },
+  "total": 47,
+  "fatal": [
+   "invented_fact",
+   "unrenderable_visual"
+  ],
+  "weakest": "factual",
+  "note": "Create a clearer narrative arc that shows cause‑and‑effect rather than just listing separate statistics.",
+  "fp": "5a150da624175810"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "The bigger championship audience became bigger crowds and bigger money.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Women's basketball drew 18.9 million viewers, making it the larger championship audience.",
+   "eyes": "substance: fans crowding each screen; cause: Data opens the bar door with his own hands and the fans stream in to the screen they came to watch",
+   "evidence": "ESPN / Nielsen | 2024 NCAA championship TV viewers (millions) | https://www.espn.com | 2026-11-04"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Women's basketball attendance reached 2.37 million, showing the audience kept growing beyond television.",
+   "eyes": "substance: the crowd of fans; cause: Data lifts each tunnel gate with his own hands and the fans pour in to fill the stands",
+   "evidence": "WNBA / Associated Press | WNBA total season attendance (millions) | https://www.wnba.com | 2026-11-04"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Women's basketball media rights reached 200 million dollars yearly, turning audience growth into revenue.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "WNBA / sports business press | WNBA annual media rights value ($ millions) | https://www.wnba.com | 2026-11-04"
+  },
+  {
+   "window": "closing",
+   "ears": "Women's basketball turned attention into attendance, then turned attendance into media value.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

@@ -1,18 +1,33 @@
 {
  "slug": "feet-are-getting-bigger",
  "brief": null,
- "scorecard": null,
+ "scorecard": {
+  "scores": {
+   "premise": 12,
+   "hook": 18,
+   "arc": 18,
+   "factual": 15,
+   "visual_proof": 12,
+   "payoff": 10,
+   "voice": 5
+  },
+  "total": 90,
+  "fatal": [],
+  "weakest": "premise",
+  "note": "Ensure the 'data pictures' in beats 2 and 3 are designed for instant readability and impact on a small phone screen, rather than just being generic data representations.",
+  "fp": "f4d5455e303b30db"
+ },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Your feet are bigger than your grandparents'.",
+   "ears": "Your feet are quietly spreading, and doctors say weight is why.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
    "ears": "In the 1970s, the average British man wore a size 8 shoe. Now his feet have grown two full sizes.",
-   "eyes": "a data picture (comparison)",
+   "eyes": "substance: the shoe's leather length; cause: Data grips the gauge's slider and drags it out two sizes, the shoe growing to fill it",
    "evidence": "The College of Podiatry (UK) | Average UK men's shoe size, 1970s vs today | https://www.buckbootz.com/news/british-feet-get-two-sizes-bigger-in-40-years | 2026-11-06"
   },
   {

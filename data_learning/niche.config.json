@@ -34745,22 +34745,20 @@
    "scorecard": {
     "scores": {
      "premise": 8,
-     "hook": 16,
-     "arc": 14,
-     "factual": 13,
-     "visual_proof": 7,
-     "payoff": 4,
-     "voice": 3
+     "hook": 15,
+     "arc": 12,
+     "factual": 10,
+     "visual_proof": 8,
+     "payoff": 8,
+     "voice": 4
     },
     "total": 65,
     "fatal": [
-     "missing_payoff",
-     "unrenderable_visual",
-     "confusing"
+     "invented_fact"
     ],
-    "weakest": "payoff",
-    "note": "Make the visuals clearly depict the data points and ensure the closing directly answers the hook about rising postage costs.",
-    "fp": "ea41cbe40ee7fec2"
+    "weakest": "premise",
+    "note": "Correct the total USPS mail volume figure to match official data; the current 109 billion claim appears inaccurate.",
+    "fp": "0263c18eed23c2e9"
    },
    "segments": [
     {
@@ -36168,7 +36166,7 @@
   {
    "slug": "flu-season-2024-25-worst-in-years",
    "title": "710,000 Hospital Visits: Last Flu Season Was Brutal",
-   "hook": "Most people hospitalized with the flu last season had skipped the shot.",
+   "hook": "Two out of three people in the hospital with the flu skipped the shot.",
    "closing": "The shot isn't perfect, but most who landed in the hospital skipped it. Get yours.",
    "question": "Did you get your flu shot?",
    "caption": "The 2024-2025 flu season sent 710,000 Americans to the hospital -- the worst toll in over a decade. Only 32.4% of those hospitalized had gotten a flu shot. Did you get yours? 👇",
@@ -37705,7 +37703,26 @@
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-11-23T12:29:30Z",
-   "hook_was": "18.9 million watched. More than the men's final."
+   "hook_was": "18.9 million watched. More than the men's final.",
+   "scorecard": {
+    "scores": {
+     "premise": 8,
+     "hook": 12,
+     "arc": 8,
+     "factual": 5,
+     "visual_proof": 5,
+     "payoff": 6,
+     "voice": 3
+    },
+    "total": 47,
+    "fatal": [
+     "invented_fact",
+     "unrenderable_visual"
+    ],
+    "weakest": "factual",
+    "note": "Create a clearer narrative arc that shows cause‑and‑effect rather than just listing separate statistics.",
+    "fp": "5a150da624175810"
+   }
   },
   {
    "slug": "government-internet-shutdowns-record",
@@ -38442,7 +38459,7 @@
   {
    "slug": "feet-are-getting-bigger",
    "title": "British Feet Grew Two Shoe Sizes In 40 Years",
-   "hook": "Your feet are quietly spreading, and doctors say weight is why.",
+   "hook": "Your feet are changing shape, and your waistline is the reason.",
    "closing": "Your shoes aren't shrinking. You're outgrowing them, so check your size before you buy.",
    "question": "What shoe size do you wear?",
    "caption": "The average British foot has grown two full shoe sizes since the 1970s — and it's not just length, feet are getting wider too. Podiatrists point to one simple cause. What shoe size do you wear? 👇",
@@ -38498,12 +38515,28 @@
    "retold": "retell/v4",
    "words_by": "claude-retell",
    "rewritten_at": "2026-11-18T13:13:37Z",
-   "hook_was": "Your feet are bigger than your grandparents'."
+   "hook_was": "Your feet are bigger than your grandparents'.",
+   "scorecard": {
+    "scores": {
+     "premise": 12,
+     "hook": 18,
+     "arc": 18,
+     "factual": 15,
+     "visual_proof": 12,
+     "payoff": 10,
+     "voice": 5
+    },
+    "total": 90,
+    "fatal": [],
+    "weakest": "premise",
+    "note": "Ensure the 'data pictures' in beats 2 and 3 are designed for instant readability and impact on a small phone screen, rather than just being generic data representations.",
+    "fp": "f4d5455e303b30db"
+   }
   },
   {
    "slug": "great-barrier-reef-bleaching-accelerating",
    "title": "Reef Bleaching Returns Before A Reef Can Recover",
-   "hook": "The Great Barrier Reef is bleaching again, and this time it might not come back.",
+   "hook": "The Great Barrier Reef is bleaching again, and recovery takes longer than the gaps.",
    "closing": "Repeated bleaching can erase a decade of reef recovery before it finishes.",
    "question": "Can the reef recover in time?",
    "hashtags": [
@@ -38521,23 +38554,25 @@
     "globalwarming"
    ],
    "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-22T12:29:29Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-23T12:47:58Z",
    "scorecard": {
     "scores": {
-     "premise": 9,
-     "hook": 11,
-     "arc": 9,
-     "factual": 8,
-     "visual_proof": 9,
+     "premise": 12,
+     "hook": 18,
+     "arc": 16,
+     "factual": 13,
+     "visual_proof": 12,
      "payoff": 6,
-     "voice": 3
+     "voice": 4
     },
-    "total": 55,
-    "fatal": [],
-    "weakest": "arc",
-    "note": "The three beats all say the same thing: bleaching is coming back faster than recovery. Replace the stat-by-stat restatement with one concrete turn, such as what a reef looks like after the second hit, or what is lost, so each beat adds some",
-    "fp": "9439e92f575e1f3a"
+    "total": 81,
+    "fatal": [
+     "missing_payoff"
+    ],
+    "weakest": "payoff",
+    "note": "Provide a clearer payoff that directly answers the opening question, e.g., state whether the reef can recover in time or not.",
+    "fp": "7ca9252410cfda45"
    },
    "hook_was": "Reef bleaching now returns about every 2 years.",
    "segments": [
@@ -38562,7 +38597,7 @@
      "insight_type": "comparison",
      "role": "2 · THE GAP CLOSING",
      "topic": "Reef bleaching gap",
-     "say": "The reef's bleaching gap shrank to 2 years, leaving little time for damaged coral to rebuild.",
+     "say": "The gap between bleachings shrank to 2 years, leaving little time for damaged coral to rebuild.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _reef_branch(cr, x, y, ang, L, w, rgb, depth, grow):\n    if grow <= 0.0:\n        return\n    g = clamp(grow * (2.0 if depth > 0 else 1.0))\n    L2 = L * g\n    ex, ey = x + math.sin(ang) * L2, y - math.cos(ang) * L2\n    px, py = math.cos(ang), math.sin(ang)\n    w1 = w * 0.62\n    cr.move_to(x - px * w / 2, y - py * w / 2)\n    cr.line_to(ex - px * w1 / 2, ey - py * w1 / 2)\n    cr.arc(ex, ey, w1 / 2, ang + math.pi, ang + 2 * math.pi)\n    cr.line_to(x + px * w / 2, y + py * w / 2)\n    cr.close_path()\n    solid(cr, rgb)\n    tip = tuple(min(255, int(c * 1.12 + 18)) for c in rgb)\n    disc(cr, ex, ey, w1 * 0.55, tip)\n    for j in range(3):                       # polyps along the branch\n        q = 0.25 + 0.22 * j\n        cr.arc(x + (ex - x) * q + px * w * 0.18, y + (ey - y) * q + py * w * 0.18,\n               max(1.5, w * 0.1), 0, 2 * math.pi)\n        cr.set_source_rgba(*_c(tip, 0.85))\n        cr.fill()\n    if depth > 0 and grow > 0.5:\n        sub = (grow - 0.5) * 2.0\n        bx, by = x + (ex - x) * 0.6, y + (ey - y) * 0.6\n        for s_ in (-1, 1):\n            _reef_branch(cr, bx, by, ang + s_ * 0.5, L * 0.5, w * 0.62, rgb, 0, sub)\n\n\ndef _reef_rock(cr, x, y, rx, ry, rgb):\n    contact_shadow(cr, x, y + 6, rx * 2.3, a=0.4)\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1, ry / rx)\n    cr.arc(0, 0, rx, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, rgb)\n    for j in range(5):\n        cr.arc(x - rx * 0.6 + j * rx * 0.3, y - ry * (0.3 + 0.15 * (j % 2)), 4, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((60, 66, 70), 0.5))\n        cr.fill()\n\n\ndef _reef_fish(cr, x, y, s, rgb, flip):\n    d = -1 if flip else 1\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1, 0.55)\n    cr.arc(0, 0, 40 * s, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, rgb)\n    cr.move_to(x - d * 34 * s, y)\n    cr.line_to(x - d * 66 * s, y - 22 * s)\n    cr.line_to(x - d * 60 * s, y)\n    cr.line_to(x - d * 66 * s, y + 22 * s)\n    cr.close_path()\n    solid(cr, rgb, rim=False)\n    cr.rectangle(x - 6 * s, y - 20 * s, 8 * s, 40 * s)\n    cr.set_source_rgba(*_c((40, 40, 60), 0.6))\n    cr.fill()\n    disc(cr, x + d * 22 * s, y - 5 * s, 4.5 * s, (20, 20, 30))\n\n\ndef _reef_tag_post(cr, x, base):\n    cr.rectangle(x - 4, base - 120, 8, 120)\n    solid(cr, (150, 150, 156), finish=\"metal\", rim=False)\n    cr.rectangle(x - 62, base - 160, 124, 50)\n    solid(cr, (232, 228, 214))\n    trim(cr, x - 62, base - 160, x + 62, base - 110, (190, 186, 172), w=5)\n\n\ndef _reef_tag_label(cr, x, base, label):\n    text(cr, label, x, base - 124, 30, (40, 44, 52), face=\"bold\", anchor=\"center\", shadow=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a tall coral colony beside a stunted one\n    SUBSTANCE: living coral branches\n    CAUSE: Data plants a coral fragment for each year of recovery and each one grows into a branch\n    Coral gardening on the sand. On the left mound Data plants one fragment\n    for every year of the longest gap on record, and each grows into a\n    branch the moment he sets it down, until the colony is a tall, colourful\n    reef head. He walks to the right mound and plants one fragment for each\n    year of the gap since 2020: two short stubs, and before they can grow\n    the heat comes back and they drain to bone white. The scale is the reef\n    itself: the tall living colony beside the little white stub. Data works\n    from the sand between the two colonies, so the tags on the outer edges\n    stay clear of him. Done by 0.67, then held while the fish swim on.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    (lL, vL) = max(rows, key=lambda r: r[1])\n    (lR, vR) = min(rows, key=lambda r: r[1])\n    nL = max(1, min(20, int(round(vL))))\n    nR = max(1, min(20, int(round(vR))))\n\n    a0, a1 = 0.06, 0.40\n    w0, w1 = 0.40, 0.47\n    r0, r1 = 0.47, 0.57\n    b0, b1 = 0.57, 0.67\n    spL = (a1 - a0) / nL\n    spR = (r1 - r0) / nR\n\n    # the sea: sunlit shallows falling to deep blue\n    vgrad(cr, [(0, (96, 196, 214)), (0.45, (34, 130, 168)), (1, (14, 64, 104))], 0, H)\n    glow(cr, 220, -60, 620, (230, 250, 255), 0.55)\n    for i in range(5):                       # light shafts, swaying slowly\n        sx = 80 + i * 230 + 30 * math.sin(t * 0.4 + i)\n        cr.move_to(sx, 0)\n        cr.line_to(sx + 90, 0)\n        cr.line_to(sx + 360, 1300)\n        cr.line_to(sx + 180, 1300)\n        cr.close_path()\n        cr.set_source_rgba(*_c((240, 252, 255), 0.07))\n        cr.fill()\n    # the far reef under haze\n    ridge(cr, 1180, 90, seed=3.0, n=6)\n    solid(cr, (40, 104, 120), edge=False)\n    for i in range(9):\n        disc(cr, 60 + i * 125, 1150 + 20 * (i % 2), 38 + 10 * (i % 3), (60, 118, 128))\n    haze(cr, 900, 1240, (60, 150, 180), a=0.6)\n    # the sand floor\n    ridge(cr, 1380, 40, seed=7.0, n=4)\n    solid(cr, (204, 190, 150), edge=False)\n    cr.set_source_rgba(*_c((170, 154, 112), 0.6))\n    cr.set_line_width(3)\n    for i in range(9):\n        yy = 1400 + i * 40\n        cr.move_to(0, yy)\n        for xx in range(0, W + 1, 60):\n            cr.line_to(xx, yy + 6 * math.sin(xx * 0.02 + i))\n    cr.stroke()\n\n    # a fish school mid-water, always moving\n    for i in range(3):\n        fx = W + 160 - ((t * 150 + i * 420) % (W + 360))\n        _reef_fish(cr, fx, 900 + i * 90 + 14 * math.sin(t + i), 1.1 - 0.15 * i,\n                   [(246, 200, 60), (90, 160, 230), (246, 132, 60)][i], True)\n\n    COLS = [(232, 108, 96), (244, 150, 80), (200, 96, 160), (236, 180, 90), (220, 120, 130)]\n    BONE = (240, 237, 228)\n\n    LX, LB = 330, 1400\n    RX, RB = 800, 1400\n    TLX, TRX = LX - 230, RX + 190\n\n    # LEFT colony: one planted fragment per year of the longest gap, each\n    # growing into a full branch as soon as he sets it down\n    cast_shadow(cr, LX - 160, LX + 160, LB, length=200, a=0.22)\n    _reef_rock(cr, LX, LB, 170, 70, (120, 118, 112))\n    for i in range(nL):\n        g = 0.0 if u < a0 else clamp((u - a0 - i * spL) / spL)\n        if g <= 0:\n            continue\n        ang = -1.05 + 2.1 * (i + 0.5) / nL\n        L = 330 + 120 * math.sin(i * 1.7 + 0.5) ** 2 - 90 * abs(ang)\n        bx = LX + 130 * math.sin(ang) * 0.9\n        disc(cr, bx, LB - 50, 14, (170, 150, 120))          # the planted plug\n        _reef_branch(cr, bx, LB - 50, ang * 0.8, L, 34, COLS[i % len(COLS)], 1,\n                     0.08 + 0.92 * ease(g))\n    _reef_tag_post(cr, TLX, LB + 60)\n\n    # RIGHT colony: one fragment per year since 2020 — only stubs, and the\n    # heat returns before they can grow, draining them white\n    bl = ease(seg(u, b0, b1))\n    cast_shadow(cr, RX - 140, RX + 140, RB, length=200, a=0.22)\n    _reef_rock(cr, RX, RB, 150, 62, (120, 118, 112))\n    for i in range(nR):\n        g = 0.0 if u < r0 else clamp((u - r0 - i * spR) / spR)\n        if g <= 0:\n            continue\n        ang = -0.45 + 0.9 * (i + 0.5) / max(1, nR)\n        base = COLS[(i + 2) % len(COLS)]\n        col = tuple(int(a + (b - a) * bl) for a, b in zip(base, BONE))\n        disc(cr, RX + 60 * math.sin(ang), RB - 44, 14, (170, 150, 120))\n        _reef_branch(cr, RX + 60 * math.sin(ang), RB - 44, ang * 0.8, 150, 30, col, 0,\n                     0.15 + 0.85 * ease(g))\n    if bl > 0:\n        glow(cr, RX, RB - 120, 320, (255, 150, 70), 0.5 * bl * (1.0 - 0.5 * seg(u, b1, 1.0)))\n    _reef_tag_post(cr, TRX, RB + 60)\n\n    # right by the camera: a brain coral and swaying weed\n    contact_shadow(cr, 150, 1840, 300, a=0.4)\n    cr.save()\n    cr.translate(150, 1840)\n    cr.scale(1, 0.6)\n    cr.arc(0, 0, 150, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (176, 150, 96))\n    cr.set_source_rgba(*_c((120, 98, 60), 0.7))\n    cr.set_line_width(4)\n    for j in range(5):\n        cr.arc(150, 1840, 30 + j * 24, math.pi * 1.1, math.pi * 1.9)\n        cr.new_sub_path()\n    cr.stroke()\n    for i in range(4):\n        wx = 760 + i * 80\n        sw = 30 * math.sin(t * 0.9 + i)\n        cr.move_to(wx - 12, H)\n        cr.curve_to(wx - 10 + sw, 1820, wx + sw, 1720, wx + 1.4 * sw, 1640 - i * 20)\n        cr.curve_to(wx + 6 + sw, 1720, wx + 10 + sw, 1820, wx + 12, H)\n        cr.close_path()\n        solid(cr, (60, 130 + 12 * i, 80))\n    foreground(cr, \"coast\", y0=1700)\n    vignette(cr, a=0.3)\n\n    # Data plants the old colony from its right side, walks over, and can\n    # only plant two stubs before the heat comes back\n    fy, hh = 1470, 300\n    if u < w0:\n        hx = 470 + 50 * seg(u, a0, a1)\n    else:\n        hx = 520 + (640 - 520) * ease(seg(u, w0, w1))\n    if u < a0:\n        host(\"point\", hx, fy, hh)\n    elif u < w1:\n        kL = int(clamp((u - a0) / spL, 0, nL - 1))\n        host(\"place\", hx, fy, hh, beat=kL)\n    elif u < r1 + 0.02:\n        kR = int(clamp((u - r0) / spR, 0, nR - 1))\n        host(\"place\", hx, fy, hh, beat=nL + kR)\n    elif u < 0.9:\n        host(\"hold_up\", hx, fy, hh)\n    else:\n        host(\"shock\", hx, fy, hh)\n\n    # labels after Data, and well clear of him\n    _reef_tag_label(cr, TLX, LB + 60, f\"{int(round(vL))} yrs\")\n    _reef_tag_label(cr, TRX, RB + 60, f\"{int(round(vR))} yrs\")\n\n    if u < a1:\n        fit_readout(cr, \"Recovery time\", \"years the reef gets between bleachings\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n    elif u < r1:\n        fit_readout(cr, f\"{int(round(vL))} years\", lL, 80, 520, size=130)\n    else:\n        fit_readout(cr, f\"{int(round(vR))} years\", lR, 80, 520, rgb=P[\"accent2\"], size=130)\n"
     },
     {
@@ -38574,7 +38609,7 @@
      "insight_type": "comparison",
      "role": "3 · NOT ENOUGH TIME",
      "topic": "Reef recovery time",
-     "say": "Reef recovery typically needs 10 years, so the next bleaching wave can arrive before healing finishes."
+     "say": "Recovery typically needs 10 years, so the next bleaching wave can arrive before healing finishes."
     }
    ]
   },

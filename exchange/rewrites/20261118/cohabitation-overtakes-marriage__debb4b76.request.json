@@ -98,12 +98,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Provides historical context rather than a direct consequence; not a clear proof of the headline claim.",
-  "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts focus to older adults, unrelated to young adult claim and does not follow from previous beat."
+  "premise: brain: The title and hook contradict each other and the sources: the hook cites 9% living with a partner and the beats say that is more than live with a spouse, but 9% is a modest share and the beats list three separate statistics (young adults, 1968-vs-today marriage, 50+ cohabitation) with no single twist or stake for the viewer."
  ],
  "reasons": [
-  "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Provides historical context rather than a direct consequence; not a clear proof of the headline claim.",
-  "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts focus to older adults, unrelated to young adult claim and does not follow from previous beat."
+  "premise: brain: The title and hook contradict each other and the sources: the hook cites 9% living with a partner and the beats say that is more than live with a spouse, but 9% is a modest share and the beats list three separate statistics (young adults, 1968-vs-today marriage, 50+ cohabitation) with no single twist or stake for the viewer."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -137,5 +135,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T12:09:34Z"
+ "refiled": "2026-11-23T14:43:37Z"
 }

@@ -1,0 +1,37 @@
+{
+ "slug": "flu-season-2024-25-worst-in-years",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Most people hospitalized with the flu last season had skipped the shot.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Flu sent roughly 710,000 Americans to hospital beds last season, making the season brutally severe.",
+   "eyes": "substance: patients on hospital beds; cause: Data wheels each flu patient in by the bed's handle and parks it in an empty bay",
+   "evidence": "Centers for Disease Control and Prevention | 2024-25 US flu season toll | https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html | 2026-10-24"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Older adults got hit hardest. People 75 and up were hospitalized at nearly five times the overall rate.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "Centers for Disease Control and Prevention | Flu hospitalization rate per 100,000 | https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html | 2026-10-24"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Only about one in three hospitalized flu patients had gotten a flu shot. Two in three had skipped it.",
+   "eyes": "a data picture (share)",
+   "evidence": "Centers for Disease Control and Prevention | Vaccination status of flu hospitalizations | https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html | 2026-10-24"
+  },
+  {
+   "window": "closing",
+   "ears": "The shot isn't perfect, but most who landed in the hospital skipped it. Get yours.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
