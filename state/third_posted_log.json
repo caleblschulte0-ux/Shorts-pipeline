@@ -22123,13 +22123,41 @@
       "director_cut": true
     },
     "clip-20261123-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/CallousRichAntelopeBudStar-s4f1k9lWmeJ8g5Wb",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/-8yFsiCi99k",
       "title": "Stableronaldo Asks \"Is This Even Allowed?\" After What Just Happened",
       "kind": "twitch_clip",
-      "ts": "2026-11-23T14:03:09.086045+00:00",
+      "ts": "2026-11-23T14:03:19.638087+00:00",
+      "uploaded_at": "2026-11-23T14:03:19.638105+00:00",
+      "publish_at": "2026-11-23T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261123-stableronaldo-asks-is-this-even-allowed-after-wh-8ef0a488",
+        "tiktok": "queued for 2026-11-23T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CallousRichAntelopeBudStar-s4f1k9lWmeJ8g5Wb",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "Stableronaldo can't believe this is allowed \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 24911,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 13.76
+      },
+      "director_cut": true
+    },
+    "clip-20261123-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EvilKindChamoisFreakinStinkin-_Q6h9MGvEezIzSw0",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
+      "kind": "twitch_clip",
+      "ts": "2026-11-23T14:06:22.611708+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
