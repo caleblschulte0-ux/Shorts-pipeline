@@ -3,272 +3,6 @@
     {
       "date": "20261115",
       "dry_run": false,
-      "ts": "2026-11-15T13:21:54+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 135,
-        "with_retention": 114,
-        "with_curve": 15,
-        "fetched_at": "2026-11-15T08:46:17.211827+00:00"
-      },
-      "brain": {
-        "ok": 23,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261115-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "funny title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "Visible wrestling stunt, lifting guy ups",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Silky Hilariously Chants Jibba Jibba At Chibu Airlines Until Everyone Loses It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Hook caption sits over the lower body/legs in some frames but doesn't cover faces",
-                "Word captions occasionally overlap the subject's torso/legs, minor"
-              ]
-            }
-          },
-          "took_s": 129.6
-        },
-        {
-          "slug": "clip-20261115-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 141,
-                "refused_shown": 9,
-                "scouted": [],
-                "vod_arcs": 303,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 2866,
-                "pool_with_vod": 2009,
-                "arc_sizes": [
-                  5,
-                  3,
-                  2,
-                  2,
-                  4,
-                  6,
-                  3,
-                  2,
-                  2,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "@momentsmokyephemeralicecreamdoublerainbow-pqzizslxzr27y0xh",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "rickyedit@momentheartlessvivaciousbobatinyface-wga7q10tsvire",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "joebartolozzi@momentcleverfantasticgoshawkjebaited-0zfq9foxe",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "@momentamazingcolorfullaptopnononocat-gecnbzfzumaorxoq/appar",
-                  "outcome": "structure_failed",
-                  "why": "4.8s of dead air at 11s; the picture stands still for 2s at 1s"
-                },
-                {
-                  "cluster": "pokimane@momentrealeagernewtcharlietheunicorn-jzeh-qhglh-jxz",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 These sources are one stretch of casual hangout chat from a Korea trip stream. The Twitch clip is 6 seconds of Pokimane's friend saying 'I think we have a good system going' while Pokimane moves in an"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, inside joke likely",
-              "blind": false
-            },
-            "content": {
-              "score": 0.6,
-              "why": "Gold/silver statue costumes, awkward red",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Reacts To Wubby And Poob And It Gets Loud"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "Sharp picture is a thin 16:9 strip, about a third of the canvas height, so the three people are fairly small on a phone",
-                "The blurred padding above and below is mostly empty apart from the hook text, so the picture could have been cropped tig"
-              ]
-            }
-          },
-          "took_s": 154.9
-        },
-        {
-          "slug": "clip-20261115-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261115-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Searched name, vague crashout title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Visible rage after death, searchable nam",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Crashout After Calling Himself Brain Dead Mid-Game"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.55,
-              "problems": [
-                "The facecam crop cuts off the top of his head, with the forehead or eyes at the edge of the frame in many frames (1.0s, ",
-                "The hook caption sits over his mouth and chin in the reaction frames (8.6s, 10.5s, 14.3s), covering the main subject's e",
-                "The operator portrait overlay covers the gameplay and stacks awkwardly above the face, so the layout looks cluttered",
-                "The opening 7 seconds show a static, expressionless face over an empty wall, with no clear action"
-              ]
-            }
-          },
-          "took_s": 190.7
-        }
-      ]
-    },
-    {
-      "date": "20261115",
-      "dry_run": false,
       "ts": "2026-11-15T13:33:33+00:00",
       "feedback": {
         "snapshot": true,
@@ -6887,6 +6621,295 @@
           "slug": "clip-20261122-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261123",
+      "dry_run": false,
+      "ts": "2026-11-23T13:00:25+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 132,
+        "with_retention": 106,
+        "with_curve": 15,
+        "fetched_at": "2026-11-23T08:46:28.410626+00:00"
+      },
+      "brain": {
+        "ok": 27,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:deshaefrost": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261123-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about 15-20% of the 9:16 canvas, and the rest is blurred padding. The subject is smal; vision: The sharp region shows a nearly nude CGI character in most fra",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 132,
+                "refused_shown": 6,
+                "scouted": [],
+                "vod_arcs": 334,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2909,
+                "pool_with_vod": 2030,
+                "arc_sizes": [
+                  5,
+                  4,
+                  3,
+                  4,
+                  5,
+                  6,
+                  2,
+                  4,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "ishowspeed@momentlightevilquelealitfam-ues9l-nllxkdrclp/isho",
+                  "outcome": "structure_failed",
+                  "why": "5.2s of dead air at 12s"
+                },
+                {
+                  "cluster": "gilticus@momentlachrymosedullshield4head-_vhrkbymzsq0glvs/gi",
+                  "outcome": "render_failed",
+                  "why": "RuntimeError: story: render_qa rejected the stitch \u2014 freeze: 3.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.62,
+              "why": "visible reaction, but needs game context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA 6 Mandy thirst scene, mostly dialogu",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Tminnzy Forgot The Mission When Mandy Walked In \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about 15-20% of the 9:16 canvas, and the rest is blurred padding. The subject is smal",
+                "The sharp region shows a nearly nude CGI character in most frames. That risks age-restriction or a policy strike on Shor",
+                "The word captions are tiny and overlap the in-game subtitles, so the text is garbled and hard to read (for example 'per ",
+                "The streamer facecam is a tiny box in the corner, and the blurred padding above and below is nearly black, so the frame "
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: From about 21s to the end (about half the clip) the picture is a thin strip in the middle of the canvas. The subject is ",
+                "vision: The framing is inconsistent. The first half is a tight, full-bleed crop and the second half abruptly switches to a small",
+                "vision: In the 1.7s to 18s frames, game captions and in-game subtitles are cut off at the frame edge and overlap each other (for",
+                "vision: The word captions in the second half are tiny and unreadable on a phone.",
+                "vision: The content is a near-nude character (bikini, then apparently unclothed in the wide shots) shown prominently. That risks"
+              ]
+            }
+          },
+          "took_s": 347.8
+        },
+        {
+          "slug": "clip-20261123-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "teasing party, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Game footage, NDA tease, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Tminnzy Can't Talk About Qixso's Party After Signing An NDA \ud83e\udd10"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": []
+            }
+          },
+          "took_s": 302.4
+        },
+        {
+          "slug": "clip-20261123-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "GTA 6 searched topic, famous name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA6 opinion talk, character just runnin",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Explains Why GTA 6 Locking Players Into a Relationship Is a Huge Mistake"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip, about a third of the canvas height, rather than the roughly three quarters the h",
+                "The streamer's face cam is tiny and hard to read on a phone.",
+                "The game character walking is small in the frame, so the visual is weak, but it is clear and consistent.",
+                "The burned-in word captions sit on the bottom edge of the sharp strip, close to the hook text below. They don't cover a "
+              ]
+            }
+          },
+          "took_s": 371.1
+        },
+        {
+          "slug": "clip-20261123-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "prediction timing, context unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "Streamer's hip fail, searched name",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Yells 'My Hip Is Broken' After This Goes Wrong"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The hook caption sits over the scooter and the lower body in several frames, but it doesn't cover the face",
+                "The burned-in game subtitles and the hook caption compete at the bottom of the frame",
+                "The footage is quite dark in places",
+                "At 8.2s the subject is partly cropped and hard to read"
+              ]
+            }
+          },
+          "took_s": 241.7
+        },
+        {
+          "slug": "clip-20261123-5",
+          "ok": false,
+          "skipped": "run budget reached"
+        },
+        {
+          "slug": "clip-20261123-6",
+          "ok": false,
+          "skipped": "run budget reached"
         }
       ]
     }
