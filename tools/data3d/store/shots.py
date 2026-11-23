@@ -61,6 +61,12 @@ for _where, _p in _fp:
     print(f"FRESH {STORY} {_where}: {_p}", flush=True)
 if _fp and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"{STORY}: an old set, an old gag, a one-second beat, a talking head (store/fresh.py) or no world (store/story_world.py): build it new")
+import story_gate   # the script is a STORY before a shot is built (caaleb 2026-11-23: "why do our scripts suck")
+_sg = story_gate.problems(STORY, SCRIPT)
+for _p in _sg:
+    print(f"STORY {STORY}: {_p}", flush=True)
+if _sg and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY}: the script is not a story yet (store/story_gate.py): fix the lines, then judge them")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
 PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
