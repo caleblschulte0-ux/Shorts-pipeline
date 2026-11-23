@@ -1,0 +1,23 @@
+{
+ "slug": "lava",
+ "title": "A Volcano Keeps Erupting Next to This Town. So Iceland Built Walls.",
+ "voice": "am_fenrir",
+ "note": "The ninth 3D short (2026-11-23), picked under the spectacle rule (caaleb 2026-11-23: topics must be visibly appealing and current, an event is not a story, no history). Grindavik, Iceland: nine eruptions since December 2023, the town evacuated, earth walls three stories tall thrown up round the clock, the wall turning the lava, then the ground splitting open inside it. Data is one of the digger drivers who builds the wall.",
+ "lines": [
+  "A volcano has erupted nine times beside one town in Iceland, and the whole town had to run.",
+  "So Iceland built walls of rock three stories tall, with a hundred diggers and trucks working day and night.",
+  "So when the lava came, it hit the wall and turned away from the town.",
+  "But then the ground split open inside the wall, and lava poured straight into the streets.",
+  "Three houses burned. The wall saved the rest, but only about a hundred people moved back. Would you?"
+ ],
+ "links": ["so", "so", "but", "but"],
+ "sources": [
+  {"claim": "nine eruptions beside Grindavik since December 2023", "says": "Nine eruptions have occurred since December 2023, with the most recent taking place in August 2025.", "url": "https://en.wikipedia.org/wiki/2023%E2%80%932025_Sundhn%C3%BAkur_eruptions", "publisher": "Wikipedia", "year": 2026},
+  {"claim": "the whole town was evacuated", "says": "Inhabitants were ordered to evacuate on the evening of 10 November 2023.", "url": "https://en.wikipedia.org/wiki/Grindav%C3%ADk", "publisher": "Wikipedia", "year": 2026},
+  {"claim": "walls three stories tall, about a hundred machines working round the clock", "says": "Icelanders are working round-the-clock to build dykes the size of three-story buildings ... nearly 100 bulldozers, excavators, and haul trucks have been working nonstop", "url": "https://features.csmonitor.com/Environment/2024/0131/Race-against-time-Icelanders-build-towering-structures-to-stop-lava", "publisher": "Reuters via The Christian Science Monitor", "year": 2024},
+  {"claim": "the wall turned the lava away from the town", "says": "The first barrier proved effective in diverting lava away from Grindavik", "url": "https://features.csmonitor.com/Environment/2024/0131/Race-against-time-Icelanders-build-towering-structures-to-stop-lava", "publisher": "Reuters via The Christian Science Monitor", "year": 2024},
+  {"claim": "the ground split open inside the wall and lava reached the town", "says": "but when fissures opened on the other side of the barrier, lava reached the town and set some houses alight", "url": "https://features.csmonitor.com/Environment/2024/0131/Race-against-time-Icelanders-build-towering-structures-to-stop-lava", "publisher": "Reuters via The Christian Science Monitor", "year": 2024},
+  {"claim": "three houses burned, the barrier saved the rest", "says": "just three houses succumbed to the molten rock, largely thanks to an earth barrier under construction", "url": "https://www.bloomberg.com/news/articles/2024-01-15/iceland-lauds-ramparts-for-sparing-town-damaged-by-lava-flows", "publisher": "Bloomberg", "year": 2024},
+  {"claim": "only about a hundred people live there now", "says": "~3,000 (until 2023) ~100 (2024-present)", "url": "https://en.wikipedia.org/wiki/Grindav%C3%ADk", "publisher": "Wikipedia", "year": 2026}
+ ]
+}
