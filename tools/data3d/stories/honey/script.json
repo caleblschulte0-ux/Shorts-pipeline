@@ -1,0 +1,288 @@
+{
+ "slug": "honey",
+ "title": "Almost Half the Honey Europe Imports Is Suspected Fake",
+ "voice": "am_fenrir",
+ "note": "The eighth 3D short (2026-11-23), made from scratch under the look bible, the notes ledger and NOT SHOWN: every line's fact is a picture a stranger can read with the sound off (a count, a size, a named thing, both sides of a comparison). One beekeeper's market day in one village.",
+ "lines": [
+  "Almost half the honey Europe imports is suspected fake, cut with sugar syrup.",
+  "Real honey takes forever. One bee makes about a twelfth of a teaspoon of it in her whole life.",
+  "For one pound of honey, the hive's bees fly fifty-five thousand miles, more than twice around the Earth.",
+  "And real honey never spoils. Jars dug out of ancient Egyptian tombs, thousands of years old, were still preserved.",
+  "Syrup is cheap and fast, so the fakes keep coming. Would you know a fake jar?"
+ ],
+ "draft_windows": [
+  [
+   0.0,
+   4.2
+  ],
+  [
+   4.2,
+   10.0
+  ],
+  [
+   10.0,
+   15.6
+  ],
+  [
+   15.6,
+   22.0
+  ],
+  [
+   22.0,
+   27.0
+  ]
+ ],
+ "sources": [
+  {
+   "claim": "almost half the honey Europe imports is suspected of being cut with sugar syrup",
+   "says": "46% of the samples were suspicious of being adulterated with sugar syrups",
+   "url": "https://joint-research-centre.ec.europa.eu/jrc-news/food-fraud-how-genuine-your-honey-2023-03-23_en",
+   "publisher": "European Commission Joint Research Centre",
+   "year": 2023
+  },
+  {
+   "claim": "one bee makes about a twelfth of a teaspoon of honey in her whole life",
+   "says": "The average worker bee makes only about 1/12th teaspoon of honey in her lifetime.",
+   "url": "https://honey.com/newsroom/presskit/honey-trivia",
+   "publisher": "National Honey Board",
+   "year": 2024
+  },
+  {
+   "claim": "for one pound of honey the hive's bees fly fifty-five thousand miles",
+   "says": "Honey bees must fly 55,000 miles to make one pound of honey.",
+   "url": "https://honey.com/newsroom/presskit/honey-trivia",
+   "publisher": "National Honey Board",
+   "year": 2024
+  },
+  {
+   "claim": "more than twice around the Earth",
+   "says": "Earth's circumference at the equator is about 24,901 miles (55,000 / 24,901 = 2.2)",
+   "url": "https://science.nasa.gov/earth/facts/",
+   "publisher": "NASA",
+   "year": 2024
+  },
+  {
+   "claim": "jars of honey from ancient Egyptian tombs, thousands of years old, still preserved",
+   "says": "archeologists, excavating ancient Egyptian tombs, have often found pots of honey, thousands of years old, and yet still preserved",
+   "url": "https://www.smithsonianmag.com/science-nature/the-science-behind-honeys-eternal-shelf-life-1218690/",
+   "publisher": "Smithsonian Magazine",
+   "year": 2013
+  },
+  {
+   "claim": "syrup is cheap, so the fakes keep coming",
+   "says": "honey is adulterated with cheaper sugar syrups ... an economically motivated practice",
+   "url": "https://joint-research-centre.ec.europa.eu/jrc-news/food-fraud-how-genuine-your-honey-2023-03-23_en",
+   "publisher": "European Commission Joint Research Centre",
+   "year": 2023
+  }
+ ],
+ "sets": [
+  "market_stall",
+  "hive_yard",
+  "honey_house",
+  "museum_tomb",
+  "market_alley"
+ ],
+ "sets_why": "one village on market day, walked by its beekeeper: the cheap stall in the square, his hives on the hill, his honey house, the village museum's Egyptian room, and the alley behind the cheap stall",
+ "ideas": [
+  "at the market a cheap stall sells eleven jars of PURE HONEY for two euros; the beekeeper slams his dipper on its counter and five of the labels flip over to a red SYRUP",
+  "at his hive one worker bee flies out, wrings a single drop into his giant teaspoon marked in twelve rings, and flops down worn out on the hive roof while eleven more queue up",
+  "in his honey house he cranks a big desk globe and a bee flies a glowing gold trail around it twice while the brass counter on its stand rolls up to 55,000 miles and the trail ends in one pound jar",
+  "in the museum's Egyptian room he brushes the dust off a sealed clay pot from a tomb, cracks the wax, and lifts a shining golden ribbon of honey out of it as the mummy beside it sits up for a taste",
+  "behind the cheap stall a barrel of SUGAR SYRUP is filling PURE HONEY jars; he turns one fake jar upside down and it gushes out like water, turns his own jar over and the honey does not budge"
+ ],
+ "storyboard": [
+  "1 hook (the village square on market day, morning sun, striped awnings, crates of produce, people at the other stalls far behind; the cheap stall's counter big in front of us with a hand-painted sign PURE HONEY 2 EUROS and a row of eleven identical honey jars across it; the lens low and three-quarter at the counter's end, the beekeeper whole beside it in his bee hat with his honey dipper): he looks along the row of jars, frowns at the 2 euro sign, and slams his honey dipper down on the counter; the whole row jumps and five of the eleven jars flip their labels over one after another, each now a big red SYRUP; he points along the five red ones at us.",
+  "2 one bee's whole life (his hive yard on the hill above the village, sunny, white hives in a row in tall wildflowers, the village roofs far below; the lens beside his first hive at his chest height, the beekeeper whole beside it holding out a teaspoon as big as his arm, its bowl marked with twelve rings): he lifts the hive's lid and ONE bee flies out to the spoon, wrings out a single golden drop that fills only the first of the twelve rings, then flops down worn out on the hive roof; he gapes at the one drop, then eleven more bees line up in a queue in the air to fill the rest.",
+  "3 twice around the Earth (his honey house: a wooden workshop with a steel extractor, frames on racks, shelves of his own jars in a window's sun; on his workbench a big school globe on a brass stand with a mileage counter in its base; the lens three-quarter over the bench, the beekeeper whole behind the globe): he cranks the globe spinning, a bee takes off from his hat and flies a glowing gold trail all the way round the globe once while the brass counter rolls past 25,000, then round a second time to 55,000 miles, and the trail ends in one pound jar he holds up, now full and gold.",
+  "4 still preserved (the village museum's Egyptian room: sandstone walls cut with hieroglyphs and painted gods, a gilded sarcophagus, torches of warm light, a glass case open in front; the lens low at the case, the beekeeper whole leaning over it): he blows the thick dust off an ancient sealed clay pot from a tomb, cracks its wax seal with his honey dipper, and lifts out a shining golden ribbon of perfect honey; behind him the mummy in the sarcophagus sits up and reaches for a taste, and he hands it the dipper.",
+  "5 the fakes keep coming (the alley behind the cheap stall: cobbles, crates, a back door, a big blue barrel stencilled SUGAR SYRUP with a tap filling PURE HONEY jars one after another on a crate; the lens three-quarter at the crate, the beekeeper whole): he catches the tap filling another fake jar, grabs that jar and turns it upside down and the syrup gushes out like water all over the cobbles, then turns his own jar upside down beside it and his honey does not budge; he holds both out to us, one empty, one full."
+ ],
+ "staging": [
+  {
+   "camera": "low",
+   "data": "slams his honey dipper on the cheap stall's counter and five of its eleven jars flip their labels to SYRUP",
+   "props": [
+    "eleven honey jars",
+    "PURE HONEY 2 EUROS sign",
+    "honey dipper",
+    "striped awning"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "he looks along the row of eleven cheap jars under the 2 euro sign, frowning"
+    },
+    {
+     "at": 0.3,
+     "what": "he slams his honey dipper down on the counter and the whole row of jars jumps"
+    },
+    {
+     "at": 0.45,
+     "what": "the first fake label flips over to a big red SYRUP"
+    },
+    {
+     "at": 0.62,
+     "what": "four more labels flip red down the row, five of the eleven"
+    },
+    {
+     "at": 0.82,
+     "what": "he points his dipper along the five red ones and looks at us"
+    }
+   ]
+  },
+  {
+   "camera": "wide",
+   "data": "lifts his hive's lid and holds out a giant teaspoon while one bee's single drop fills one of its twelve rings",
+   "props": [
+    "white hive",
+    "giant teaspoon with twelve rings",
+    "one worker bee",
+    "the queue of eleven bees",
+    "wildflowers"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "he lifts the lid off his hive and holds out the giant spoon"
+    },
+    {
+     "at": 0.25,
+     "what": "one bee flies out to the spoon"
+    },
+    {
+     "at": 0.45,
+     "what": "she wrings out a single golden drop that fills only the first of the twelve rings"
+    },
+    {
+     "at": 0.6,
+     "what": "she flops down worn out on the hive roof and he gapes at the one drop"
+    },
+    {
+     "at": 0.8,
+     "what": "eleven more bees line up in a queue in the air to fill the rest"
+    }
+   ]
+  },
+  {
+   "camera": "medium",
+   "data": "cranks a big desk globe while a bee flies a gold trail around it twice and the counter rolls to 55,000 miles",
+   "props": [
+    "desk globe on a brass stand",
+    "brass mileage counter",
+    "gold flight trail",
+    "one pound jar",
+    "extractor"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "he cranks the globe spinning and a bee takes off from his hat"
+    },
+    {
+     "at": 0.3,
+     "what": "the bee flies a glowing gold trail round the globe once and the counter rolls past 25,000"
+    },
+    {
+     "at": 0.55,
+     "what": "round a second time, the counter rolling up to 55,000 miles"
+    },
+    {
+     "at": 0.75,
+     "what": "the trail swoops off the globe into the empty pound jar he holds up"
+    },
+    {
+     "at": 0.9,
+     "what": "the jar fills gold in his hands"
+    }
+   ]
+  },
+  {
+   "camera": "high",
+   "data": "blows the dust off a sealed tomb pot, cracks its wax and lifts out a golden ribbon of honey while the mummy sits up",
+   "props": [
+    "ancient clay honey pot",
+    "wax seal",
+    "golden honey ribbon",
+    "sarcophagus",
+    "mummy",
+    "hieroglyph wall"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "he blows a cloud of thick dust off the sealed clay pot"
+    },
+    {
+     "at": 0.3,
+     "what": "he cracks the wax seal with his honey dipper"
+    },
+    {
+     "at": 0.5,
+     "what": "he lifts out a shining golden ribbon of honey, thousands of years old and perfect"
+    },
+    {
+     "at": 0.68,
+     "what": "behind him the mummy sits up in its sarcophagus and reaches for it"
+    },
+    {
+     "at": 0.86,
+     "what": "he turns and hands the mummy the dipper"
+    }
+   ]
+  },
+  {
+   "camera": "tracking",
+   "data": "turns a fake jar upside down and it gushes out like water, then turns his own and the honey does not budge",
+   "props": [
+    "SUGAR SYRUP barrel with a tap",
+    "PURE HONEY jars on a crate",
+    "his own jar",
+    "cobbles"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "he catches the SUGAR SYRUP barrel's tap filling another PURE HONEY jar"
+    },
+    {
+     "at": 0.3,
+     "what": "he grabs that jar and turns it upside down"
+    },
+    {
+     "at": 0.45,
+     "what": "the syrup gushes out like water all over the cobbles"
+    },
+    {
+     "at": 0.65,
+     "what": "he turns his own jar upside down beside it and his honey does not budge"
+    },
+    {
+     "at": 0.85,
+     "what": "he holds both out to us, one empty, one full"
+    }
+   ]
+  }
+ ],
+ "callbacks": {},
+ "world": {
+  "logline": "On market day a village beekeeper finds a cheap stall passing off sugar syrup as honey, and sets out to show what real honey is: from his hives, through his honey house and the museum, to the alley where the fake is made.",
+  "hero": "Data as the village's beekeeper: his lab coat under a wide beekeeper's hat with its veil rolled up round the crown, a wooden honey dipper always in his hand",
+  "goal": "prove to the village that the cheap stall's honey is fake and his is real",
+  "place": "one hill village in the sun: the market square with its striped stalls, his hive yard of white hives on the hill above the roofs, his wooden honey house, the little village museum, and the cobbled alley behind the square",
+  "time": "one market day, from the morning market to the afternoon",
+  "weather": "a clear warm summer day, bright sun throughout, long soft shadows by the afternoon",
+  "path": [
+   "market_stall",
+   "hive_yard",
+   "honey_house",
+   "museum_tomb",
+   "market_alley"
+  ],
+  "continuity": {
+   "honey dipper": "his tool and his sword: he slams it in beat 1, cracks the wax with it in beat 4",
+   "bee hat": "who he is: on his head in every beat, a bee launches off it in beat 3",
+   "jar": "his own jar of real honey against the cheap stall's jars: the fakes in beat 1, his pound jar in beat 3, both turned over in beat 5"
+  }
+ }
+}
