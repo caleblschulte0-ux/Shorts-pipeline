@@ -146,7 +146,7 @@ def shot4():
         back = 0.07 * W(t, T_JUMP, 0.22) - 0.06 * W(t, T_POINT - 0.1, 0.3) + 0.05 * W(t, T_END - 0.1, 0.25)
         lean = 0.0 * (1 - W(t, T_JUMP - 0.1, 0.2))
         p = S4_P + Vector((back + lean, -0.02 * W(t, T_JUMP, 0.22), 0.0))
-        z = 0.07 * hw_kick(t - T_JUMP - 0.04, 0.15) + 0.06 * hw_kick(t - T_POINT, 0.14) + 0.07 * hw_kick(t - T_END, 0.14) + 0.045 * hw_kick(t - T_DIP - 0.35, 0.13) + 0.035 * hw_kick(t - T_DROP - 0.05, 0.12) + 0.05 * hw_kick(t - T_IN - 0.08, 0.13)
+        z = 0.07 * hw_kick(t - T_JUMP - 0.04, 0.15) + 0.06 * hw_kick(t - T_POINT, 0.14) + 0.07 * hw_kick(t - T_END, 0.14) + 0.06 * hw_kick(t - T_DIP - 0.4, 0.14) + 0.035 * hw_kick(t - T_DROP - 0.05, 0.12) + 0.05 * hw_kick(t - T_IN - 0.08, 0.13)
         data._kobj(t, loc=(p.x, p.y, z), rot=yaw(t))
     hw_layer(data, "spine", lambda t: (14 * W(t, T_DIP - 0.25, 0.25) * (1 - W(t, T_DIP + 0.2, 0.25)) + 8 * W(t, T_DROP - 0.3, 0.25) * (1 - W(t, T_SWING, 0.2))
                                       - 12 * W(t, T_JUMP, 0.15) * (1 - W(t, T_POINT - 0.1, 0.3)), 0, 0), 0, DUR + 0.4)
@@ -162,12 +162,13 @@ def shot4():
           (T_DROP - 0.15, (0.09, 0.12, -0.02)), (T_DROP + 0.25, (0.09, 0.12, -0.01)),
           (T_JUMP, (0.1, 0.16, -0.03)), (T_JUMP + 0.3, (0.09, 0.17, 0.0)),
           (T_POINT, tuple(Vector(hw_rel(data, lf, T_POINT, POINT_AT)).normalized() * 0.15)), (T_POINT + 0.35, tuple(Vector(hw_rel(data, lf, T_POINT + 0.35, POINT_AT)).normalized() * 0.155)), (T_END, (0.1, 0.13, 0.03)), (DUR + 0.3, (0.1, 0.13, 0.04))]
-    pk = [(0.0, (0.07, 0.1, -0.11)), (T_IN, (0.08, 0.1, -0.1)), (T_SWING, (0.1, 0.1, -0.08)),
+    pk = [(0.0, (0.07, 0.1, -0.11)), (T_IN, (0.08, 0.1, -0.1)), (T_DIP + 0.05, (0.09, 0.11, -0.08)),
+          (T_DIP + 0.45, (0.06, 0.17, 0.06)), (T_DROP + 0.05, (0.09, 0.12, -0.07)), (T_SWING, (0.1, 0.1, -0.08)),      # the free hand up: watch this
           (T_JUMP, (0.08, 0.16, 0.03)), (T_JUMP + 0.3, (0.08, 0.16, 0.05)),
           (T_POINT, (0.06, 0.16, 0.0)), (T_POINT + 0.35, (0.09, 0.1, -0.09)), (T_END, (0.1, 0.14, 0.08)), (DUR + 0.3, (0.1, 0.14, 0.085))]
     data.reach(lf, hw_hand(data, lf, dk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.6)
     data.reach(rt, hw_hand(data, rt, pk), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
-    CAM = Vector((0.29, -1.42, 0.55)); LOOK = Vector((0.24, 0.0, 0.47))
+    CAM = Vector((0.32, -1.42, 0.55)); LOOK = Vector((0.28, 0.0, 0.47))
     data.look_at(CAM, 0.0, max_yaw=45, blend=0.0)
     data.look_at(S4_P + Vector((-0.12, -0.22, 0.32)), T_DIP - 0.45, max_yaw=50, max_pitch=20, blend=0.15)
     data.look_at(S4_P + Vector((-0.2, -0.12, 0.42)), T_DROP - 0.3, max_yaw=50, max_pitch=20, blend=0.15)
