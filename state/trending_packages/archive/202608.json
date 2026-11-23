@@ -10470,5 +10470,529 @@
       "music_vibe": "cinematic",
       "bottom_theme": "auto"
     }
+  },
+  "20260824": {
+    "01_graph-amazon-overtakes-ups.json": {
+      "format": "graph_race",
+      "slug": "graph-amazon-overtakes-ups",
+      "title": "Amazon Built Its Own Delivery Army. Then It Won.",
+      "hook": "The Delivery Giant Nobody Saw",
+      "y_label": "US parcels delivered per year (billions)",
+      "duration": 13,
+      "source": "Pitney Bowes Parcel Shipping Index annual reports (as covered by Supply Chain Dive, Retail Dive and Modern Shipper/FreightWaves) tracking US parcel volume by carrier. Amazon Logistics (in-house last-mile delivery): 1.9B (2019), 4.2B (2020), 4.8B (2021), 4.8B (2022), 5.9B (2023), 6.3B (2024). UPS US parcel volume: 4.7B (2019), 4.9B (2020), 5.3B (2021), 5.2B (2022), 4.6B (2023), 4.7B (2024). FedEx US parcel volume: 3.0B (2019), 3.7B (2020), 4.2B (2021), 4.1B (2022), 3.9B (2023), 3.7B (2024). Amazon Logistics passed FedEx in 2020 and passed UPS in 2023 to become the largest single US parcel carrier by volume (behind only USPS).",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Amazon Logistics",
+          "color": "#FF9900",
+          "icon": "Amazon",
+          "values": [
+            1.9,
+            4.2,
+            4.8,
+            4.8,
+            5.9,
+            6.3
+          ]
+        },
+        {
+          "name": "UPS",
+          "color": "#351C15",
+          "icon": "UPS",
+          "values": [
+            4.7,
+            4.9,
+            5.3,
+            5.2,
+            4.6,
+            4.7
+          ]
+        },
+        {
+          "name": "FedEx",
+          "color": "#4D148C",
+          "icon": "FedEx",
+          "values": [
+            3.0,
+            3.7,
+            4.2,
+            4.1,
+            3.9,
+            3.7
+          ]
+        }
+      ],
+      "hashtags": [
+        "amazon",
+        "amazonlogistics",
+        "ups",
+        "fedex",
+        "delivery",
+        "logistics",
+        "ecommerce",
+        "shipping",
+        "supplychain",
+        "packages",
+        "business",
+        "dataviz"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "02_graph-betting-overtakes-lottery.json": {
+      "format": "graph_race",
+      "slug": "graph-betting-overtakes-lottery",
+      "title": "Sports Betting Just Passed The Lottery",
+      "hook": "Bigger Than The Lottery Now",
+      "y_label": "Amount wagered per year (billion USD)",
+      "duration": 13,
+      "source": "US legal sports betting handle (total amount wagered) from the American Gaming Association, as compiled by Legal Sports Report/Covers: $13.0B (2019), $21.5B (2020), $57.75B (2021), $93.2B (2022), $119.84B (2023), $149.6B (2024). US lottery ticket sales (traditional draw and instant games) from La Fleur's Magazine/NASPL fiscal-year reports: $80.8B (2019), $80.9B (2020), $94.9B (2021), $108.0B (2022), $113.34B (2023), $113.3B (2024). Sports betting handle overtook lottery sales for the first time in 2023, three years after most states began legalizing mobile sportsbooks.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Sports Betting",
+          "color": "#1E8E3E",
+          "values": [
+            13.0,
+            21.5,
+            57.75,
+            93.2,
+            119.84,
+            149.6
+          ]
+        },
+        {
+          "name": "Lottery Sales",
+          "color": "#C9A227",
+          "values": [
+            80.8,
+            80.9,
+            94.9,
+            108.0,
+            113.34,
+            113.3
+          ]
+        }
+      ],
+      "hashtags": [
+        "sportsbetting",
+        "lottery",
+        "gambling",
+        "powerball",
+        "megamillions",
+        "draftkings",
+        "fanduel",
+        "vegas",
+        "money",
+        "finance",
+        "business",
+        "dataviz"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_graph-chipotle-overtakes-subway.json": {
+      "format": "graph_race",
+      "slug": "graph-chipotle-overtakes-subway",
+      "title": "Subway Was America's Sandwich King. Chipotle Passed It.",
+      "hook": "The Sandwich King Just Fell",
+      "y_label": "Annual US sales (billion USD)",
+      "duration": 13,
+      "source": "Chipotle Mexican Grill annual total revenue from company 10-K filings: $4.48B (2017), $4.87B (2018), $5.59B (2019), $5.98B (2020), $7.55B (2021), $8.63B (2022), $9.87B (2023), $11.31B (2024). Subway US systemwide sales, as reported by QSR Magazine/Restaurant Business and Technomic trade data: approx $11.2B (2017), $10.9B (2018), $10.5B (2019), $8.4B (2020, pandemic-hit), $9.0B (2021), $9.18B (2022), $9.88B (2023), $9.5B (2024). Subway has closed stores for ten straight years from a 2015 peak of 27,000+ US locations; Chipotle's revenue overtook Subway's US system sales in 2024.",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Chipotle",
+          "color": "#A81612",
+          "icon": "Chipotle",
+          "values": [
+            4.48,
+            4.87,
+            5.59,
+            5.98,
+            7.55,
+            8.63,
+            9.87,
+            11.31
+          ]
+        },
+        {
+          "name": "Subway",
+          "color": "#008542",
+          "icon": "Subway",
+          "values": [
+            11.2,
+            10.9,
+            10.5,
+            8.4,
+            9.0,
+            9.18,
+            9.88,
+            9.5
+          ]
+        }
+      ],
+      "hashtags": [
+        "chipotle",
+        "subway",
+        "fastfood",
+        "restaurants",
+        "burrito",
+        "sandwich",
+        "qsr",
+        "franchise",
+        "business",
+        "money",
+        "food",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_graph-peloton-overtakes-planet-fitness.json": {
+      "format": "graph_race",
+      "slug": "graph-peloton-overtakes-planet-fitness",
+      "title": "Peloton Passed Planet Fitness And Stayed Ahead",
+      "hook": "The Bike That Out-Earned The Gym",
+      "y_label": "Annual revenue (billion USD)",
+      "duration": 13,
+      "source": "Peloton Interactive annual revenue from company 10-K/SEC filings, fiscal year: $0.219B (2017), $0.435B (2018), $0.915B (2019), $1.83B (2020), $4.02B (2021), $3.58B (2022), $2.80B (2023), $2.70B (2024). Planet Fitness Inc annual revenue from company 10-K/SEC filings: $0.430B (2017), $0.573B (2018), $0.689B (2019), $0.407B (2020, pandemic gym closures), $0.587B (2021), $0.937B (2022), $1.07B (2023), $1.18B (2024). Peloton's at-home fitness boom pushed its revenue past Planet Fitness's in 2019, a year before the pandemic supercharged it further; even after its post-pandemic crash, Peloton's revenue never fell back below Planet Fitness's.",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Peloton",
+          "color": "#181A1D",
+          "icon": "Peloton",
+          "values": [
+            0.219,
+            0.435,
+            0.915,
+            1.83,
+            4.02,
+            3.58,
+            2.8,
+            2.7
+          ]
+        },
+        {
+          "name": "Planet Fitness",
+          "color": "#7B2D8E",
+          "icon": "Planet Fitness",
+          "values": [
+            0.43,
+            0.573,
+            0.689,
+            0.407,
+            0.587,
+            0.937,
+            1.07,
+            1.18
+          ]
+        }
+      ],
+      "hashtags": [
+        "peloton",
+        "planetfitness",
+        "fitness",
+        "gym",
+        "workout",
+        "homefitness",
+        "startup",
+        "business",
+        "money",
+        "pandemic",
+        "stocks",
+        "dataviz"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-heat-wave-dress-code.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-heat-wave-dress-code",
+      "title": "Boss Enforced Dress Code, Employee Followed It Exactly",
+      "script": "Wool at ninety-one degrees? My manager wrote me up for wearing a short-sleeve polo after our store's air conditioner broke during a brutal heat wave. He said if I couldn't dress professionally, I shouldn't clock in. So I followed the employee handbook exactly. Next day: pressed slacks, a collared dress shirt, a tie, plus the wool blazer nobody had worn since the store opened. Page forty had spoken. Customers offered water while sweat soaked through the blazer, and I loudly explained that corporate required every stitch. During my third sweltering hour, our regional manager walked in, saw my soaked collar, and asked why the air conditioner had been broken for eleven days. A technician arrived within two hours. The handbook gained an official heat-wave exception\u2014with my name on the memo. Was page forty worth eleven days?",
+      "shots": [
+        {
+          "phrase": "wrote me up for wearing a short-sleeve polo",
+          "query": "manager writing note desk",
+          "image_url": "https://drive.google.com/uc?export=download&id=1LyC_0JTBZWmO75iQTD_TbNJ0Si96ro8t",
+          "media_origin": "chatgpt",
+          "media_file_id": "1LyC_0JTBZWmO75iQTD_TbNJ0Si96ro8t",
+          "media_sha256": "b1def67ff4b1967e90a450a899a45e87404726998460aa818a8dfbbf4bd29fa7",
+          "media_bytes": 1245794
+        },
+        {
+          "phrase": "air conditioner broke during a brutal heat wave",
+          "query": "broken air conditioner unit",
+          "image_url": "https://drive.google.com/uc?export=download&id=15J1p4I6ZG8QcYd9Odqo0GJfhJLXLXpLB",
+          "media_origin": "chatgpt",
+          "media_file_id": "15J1p4I6ZG8QcYd9Odqo0GJfhJLXLXpLB",
+          "media_sha256": "f076111c0bf3697b31392bc0150ac605f14ffabe013ac26f411a79ddd989182f",
+          "media_bytes": 1675165
+        },
+        {
+          "phrase": "pressed slacks, a collared dress shirt, a tie",
+          "query": "formal suit tie hanging",
+          "image_url": "https://drive.google.com/uc?export=download&id=1_rJPKaznc_QtGajCDI62WfE6nB4U6VHc",
+          "media_origin": "chatgpt",
+          "media_file_id": "1_rJPKaznc_QtGajCDI62WfE6nB4U6VHc",
+          "media_sha256": "49189aa82386a4d64b2ae2fc32cb3d3c54bf59ebdf6406a5501c72fd77e8128f",
+          "media_bytes": 1166327
+        },
+        {
+          "phrase": "wool blazer nobody had worn",
+          "query": "wool blazer closet rack",
+          "image_url": "https://drive.google.com/uc?export=download&id=1oU3taTV3wuKj_DCqy3oEmmvzj4e2Ohme",
+          "media_origin": "chatgpt",
+          "media_file_id": "1oU3taTV3wuKj_DCqy3oEmmvzj4e2Ohme",
+          "media_sha256": "b5f0c44c00f8a83f9666246099f40c1dd5a41ab0ee4aeb42db5675faf139ecfb",
+          "media_bytes": 1768497
+        },
+        {
+          "phrase": "sweat soaked through the blazer",
+          "query": "sweating man dress shirt",
+          "image_url": "https://drive.google.com/uc?export=download&id=1G60uB4ZOCYir9U6EHrHY9tJ8YPBLyBhI",
+          "media_origin": "chatgpt",
+          "media_file_id": "1G60uB4ZOCYir9U6EHrHY9tJ8YPBLyBhI",
+          "media_sha256": "b412d587d1e82cd11983e066ed675e60f602f2950fa5fe1841ea811cc5e9c5f6",
+          "media_bytes": 1426989
+        },
+        {
+          "phrase": "regional manager walked in",
+          "query": "manager walking store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ZUo7VTHJ5yvc6_eBWrshlri52A4uhG3c",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ZUo7VTHJ5yvc6_eBWrshlri52A4uhG3c",
+          "media_sha256": "9473c6eb278d5b1f15e17c6918c2e6d3bfcf35c1990a6eb77b36fb3d6fd3c932",
+          "media_bytes": 1180422
+        },
+        {
+          "phrase": "soaked collar",
+          "query": "sweaty shirt collar closeup",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Kr7Idmshuw1xT2GHzdKEVudMSrh7KjVz",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Kr7Idmshuw1xT2GHzdKEVudMSrh7KjVz",
+          "media_sha256": "ea2f0540d3525d5ea7252dbd70ca5bc2ebdcc936b7c7e22c3259f22618ebe4bf",
+          "media_bytes": 1728968
+        },
+        {
+          "phrase": "technician arrived within two hours",
+          "query": "hvac technician repair",
+          "image_url": "https://drive.google.com/uc?export=download&id=1yyCvPEkMDaffbezto7mOo6npnvxT_CZ8",
+          "media_origin": "chatgpt",
+          "media_file_id": "1yyCvPEkMDaffbezto7mOo6npnvxT_CZ8",
+          "media_sha256": "2a26cc39df334731451e5ab7cdc81393540c26c9c483f2ed6ad7e64bffd74d28",
+          "media_bytes": 1462308
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "wrote me up",
+          "text": "WRITE-UP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "comply exactly",
+          "text": "CHALLENGE ACCEPTED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "ninety-one degrees",
+          "text": "91\u00b0F",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "broken for eleven days",
+          "text": "11 DAYS BROKEN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "official heat-wave exception",
+          "text": "RULE CHANGED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "dresscode",
+        "workplace",
+        "boss",
+        "corporate",
+        "heatwave",
+        "karma",
+        "satisfying",
+        "worklife",
+        "jobstory",
+        "reddit",
+        "storytime",
+        "shorts",
+        "viral"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "06_reddit-lunch-thief-ghost-pepper.json": {
+      "subreddit": "pettyrevenge",
+      "slug": "reddit-lunch-thief-ghost-pepper",
+      "title": "Lunch Thief Finally Picked The Wrong Sandwich",
+      "script": "Someone in my office kept stealing my lunch from the shared fridge, and after three sandwiches vanished in two weeks, I decided to catch them instead of complain again. I bought the hottest ghost pepper sauce I could find, layered it inside a turkey sandwich that looked exactly like mine, wrote my name on the bag like always, and left it on the middle shelf. By eleven that morning I heard someone coughing violently in the break room, chugging every cup of water from the cooler, and gasping about their mouth being on fire. I walked in for my actual lunch, still sealed at the bottom of my desk drawer, and found our normally composed office manager red-faced, eyes streaming, unable to speak. She never admitted it out loud, but she started bringing her own lunch every single day after that, and our supervisor taped a handwritten sign above the fridge warning that stolen food would not be replaced. Nobody has touched my sandwich since.",
+      "shots": [
+        {
+          "phrase": "stealing my lunch from the shared fridge",
+          "query": "office fridge shared kitchen",
+          "image_url": "https://drive.google.com/uc?export=download&id=1v2zGgcSd3D5TxUUtB1qiDlmtY89SOBZl",
+          "media_origin": "chatgpt",
+          "media_file_id": "1v2zGgcSd3D5TxUUtB1qiDlmtY89SOBZl",
+          "media_sha256": "9d5d379c2c9c3c0e46626857e6ab595b2ed81770f9bfb6a906d10fd1ec6f8e8b",
+          "media_bytes": 1231466
+        },
+        {
+          "phrase": "hottest ghost pepper sauce",
+          "query": "hot sauce bottle spicy",
+          "pin_query": "ghost pepper sauce",
+          "pin_context": "spicy hot pepper condiment food",
+          "news_query": "ghost pepper sauce",
+          "news_angle": "Ghost pepper sauce is secretly layered into a turkey sandwich to catch an office lunch thief.",
+          "image_url": "https://drive.google.com/uc?export=download&id=1ywHAFIXY4KcatIAgePaE-DijG2mOd6sO",
+          "media_origin": "chatgpt",
+          "media_file_id": "1ywHAFIXY4KcatIAgePaE-DijG2mOd6sO",
+          "media_sha256": "467cdd2c9e64cb3f9c7ab2899c1d3ec8376cb4bac825c5a5d875be9dc397f2f1",
+          "media_bytes": 1133272
+        },
+        {
+          "phrase": "layered it inside a turkey sandwich",
+          "query": "sandwich making kitchen counter",
+          "image_url": "https://drive.google.com/uc?export=download&id=1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+          "media_origin": "chatgpt",
+          "media_file_id": "1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+          "media_sha256": "0cfe90aa417457de543064c3e2be61697a37138afc8c3ea179391e34d51249a3",
+          "media_bytes": 1455685
+        },
+        {
+          "phrase": "wrote my name on the bag",
+          "query": "marker writing paper bag",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+          "media_sha256": "81636c7103ef63116510fdef6231b57bddfb444db7a5c6e85e6e7f0f34db7ce2",
+          "media_bytes": 1391480
+        },
+        {
+          "phrase": "coughing violently in the break room",
+          "query": "person coughing office break room",
+          "image_url": "https://drive.google.com/uc?export=download&id=11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+          "media_origin": "chatgpt",
+          "media_file_id": "11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+          "media_sha256": "6b2da448ccdad09ab1caa79f4aae8773ecea16136ef8adde327b3e1563d3ef3e",
+          "media_bytes": 1268518
+        },
+        {
+          "phrase": "chugging every cup of water",
+          "query": "water cooler office drinking",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+          "media_sha256": "72638b78227acc5de236464e2cf1eb160cc518f57569a1261022f4bbe527a368",
+          "media_bytes": 1363957
+        },
+        {
+          "phrase": "red-faced, eyes streaming",
+          "query": "flustered woman office face",
+          "image_url": "https://drive.google.com/uc?export=download&id=1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+          "media_origin": "chatgpt",
+          "media_file_id": "1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+          "media_sha256": "c0343463328371e4516916547edbc898e02338016a59bd2084416f99d3a44e48",
+          "media_bytes": 1327073
+        },
+        {
+          "phrase": "handwritten sign above the fridge",
+          "query": "warning sign office fridge",
+          "image_url": "https://drive.google.com/uc?export=download&id=1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+          "media_origin": "chatgpt",
+          "media_file_id": "1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+          "media_sha256": "34d3fd3da7331b3084b5ee9d1db7b00212cca4862c2b0fa6380242e2bd373fdf",
+          "media_bytes": 926430
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "stealing my lunch",
+          "text": "LUNCH THIEF",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "hottest ghost pepper sauce",
+          "text": "GHOST PEPPER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "coughing violently",
+          "text": "GOTCHA",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "red-faced, eyes streaming",
+          "text": "BUSTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "stolen food would not be replaced",
+          "text": "RULE POSTED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "pettyrevenge",
+        "lunchthief",
+        "office",
+        "karma",
+        "revenge",
+        "workplace",
+        "spicy",
+        "satisfying",
+        "reddit",
+        "storytime",
+        "shorts",
+        "viral",
+        "worklife",
+        "jobstory"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
