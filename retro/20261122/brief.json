@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261122",
-  "generated_at": "2026-11-22T23:31:09Z",
+  "generated_at": "2026-11-23T00:31:00Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 59.76,
+          "days": 59.8,
           "samples": 3,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 58.76,
+          "days": 58.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1624,10 +1624,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "300d606",
-    "commits_since": "2026-11-21",
+    "head": "3e3b39e",
+    "commits_since": "2026-11-22",
     "commit_count": 50,
     "commits": [
+      "3e3b39e claim: mailbox verdicts 2026-11-22T23:48Z [skip ci]",
+      "6ce12ee retro: brief + triage for 20261122 [skip ci]",
       "300d606 explainer: update posted log + analytics [skip ci]",
       "ab1b82e claim: mailbox verdicts 2026-11-22T22:40Z [skip ci]",
       "25479e7 explainer: long-form log [skip ci]",
@@ -1665,9 +1667,7 @@
       "e955913 third: checkpoint posted log (claim upload slot) [skip ci]",
       "9abe755 claim: mailbox verdicts 2026-11-22T13:47Z [skip ci]",
       "713b87e third: checkpoint posted log (claim upload slot) [skip ci]",
-      "962c714 explainer: posted sperm-counts-cut-in-half [skip ci]",
-      "4d648e7 explainer: claim upload slot sperm-counts-cut-in-half [skip ci]",
-      "224b48a deadman: repaired 2026-11-22 [skip ci]"
+      "962c714 explainer: posted sperm-counts-cut-in-half [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
