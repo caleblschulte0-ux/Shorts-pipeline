@@ -117,6 +117,20 @@ import look_bible, notes_ledger
 BAR = BAR.replace("NOTES: everything else", look_bible.brief() + "\n\nNOTES: everything else", 1)
 BAR = BAR.replace("Return ONLY JSON:", "Open every hard line with its defect's NAME in capitals, as listed above (\"NOT THE WORLD: ...\",\n"
                   "\"BROKEN: ...\", \"OFF THE LOOK: ...\"), so a note can be followed from round to round.\nReturn ONLY JSON:", 1)
+# THE FACT IS SHOWN (2026-11-23). The lightning short passed shot by shot and the finished cut was held at 61: the
+# Empire State line played over a brown walk-up, Roy Sullivan's seven strikes were one dark frame, the glass line never
+# showed glass. Each shot was graded against its own storyboard, which never had to say the fact, so nothing asked
+# whether the picture shows what the narration says. Now every shot is graded against its SPOKEN LINE too.
+SAYS = {}
+if os.environ.get("STORY", "checkout") != "checkout" and _story.exists():
+    SAYS = {i + 1: l for i, l in enumerate(json.load(open(_story)).get("lines") or [])}
+BAR = BAR.replace("NOTES: everything else", """- NOT SHOWN: the shot does not SHOW what its SAYS line says. Every named thing (a building, a person, a place)
+  must be recognisably THAT thing, every number must be seen as a count or a size (seven strikes are seven strikes),
+  every comparison must be on screen (hotter than the sun shows the sun beside it). With the sound off a stranger
+  must be able to tell the fact from the picture. A generic stand-in, a single frame for a count, or a fact only the
+  voice states is a fail.
+
+NOTES: everything else""", 1)
 PASS_SCORE = 70
 
 
@@ -207,6 +221,7 @@ def main():
         if not fr: print(f"JUDGE3D: shot {n} has no proof frames"); return 1
         sheets.append((n, strip(fr, proof / f"sheet_s{n}.jpg"), len(fr)))
     listing = "\n".join(f"- shot {n}: {p} ({k} frames in time order, left to right, top to bottom). FOR: {BRIEFS[n]}"
+                        + (f"\n  SAYS (the narration over this shot; it must be SHOWN): {SAYS[n]}" if n in SAYS else "")
                         + (("\n" + notes_ledger.for_judge(story, n)) if notes_ledger.for_judge(story, n) else "")
                         for n, p, k in sheets)
     prompt = (BAR + "\n\nThe shots, each a contact sheet image you must READ with the Read tool:\n" + listing)

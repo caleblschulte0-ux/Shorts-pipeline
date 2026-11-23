@@ -108,3 +108,15 @@ def test_a_bolt_hidden_from_the_render_does_not_hide_his_face():
     src = (STORE / "staging.py").read_text()
     body = src[src.index("def face_hidden"):src.index("def face_dir")]
     assert "hide_render" in body and "blocked >= 3" in body
+
+
+def test_every_shot_is_graded_against_the_line_spoken_over_it():
+    """2026-11-23: the lightning cut passed shot by shot and was held at 61 because the Empire State line played over a
+    brown walk-up and Sullivan's seven strikes were one frame; no judge was ever shown the narration"""
+    env = dict(os.environ, STORY="lightning")
+    code = ("import sys; sys.path.insert(0, %r); import judge3d; print(judge3d.BAR); print('SAYS1=' + judge3d.SAYS[2])"
+            % str(STORE))
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, check=True).stdout
+    assert "NOT SHOWN" in out and "Empire State" in out.split("SAYS1=")[1]
+    assert "SAYS (the narration over this shot" in (STORE / "judge3d.py").read_text()
+    assert L.tag("NOT SHOWN: a brown walk-up, not the Empire State") == "NOT SHOWN"

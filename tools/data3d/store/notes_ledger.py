@@ -28,7 +28,7 @@ REPEAT = 2      # a tag named in this many rounds is a repeated note
 
 # the hard-defect names judge3d.py's BAR defines; a hard line is tagged by the one it opens with
 TAGS = ["BACK TO CAMERA", "NOT THE POINT", "NOT THE WORLD", "OFF THE LOOK", "ONE-SECOND GAG", "TALKING HEAD",
-        "TINY DATA", "STOCK GAG", "NO PAYOFF", "CONSEQUENCE", "BROKEN", "BODY"]
+        "TINY DATA", "NOT SHOWN", "STOCK GAG", "NO PAYOFF", "CONSEQUENCE", "BROKEN", "BODY"]
 
 
 def tag(line):
