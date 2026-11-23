@@ -1,0 +1,78 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261123",
+  "status": "blocked",
+  "observed_at": "2026-11-23T12:26:41.024Z",
+  "blocked_step": "downstream render, review, and verified upload",
+  "attempts": [
+    "Committed and read back a valid exchange response with three authorized Explainer stories.",
+    "Committed DONE separately to trigger Phase B.",
+    "Observed phase_b_report.json: Explainer applied 2, rejected 1; no media requests or checkpoints were required.",
+    "Ran the required second mailbox round and committed the remaining four ask answers plus the next ten rewrite answers.",
+    "Re-read all three mailbox indexes and the channel posted logs after downstream processing."
+  ],
+  "frozen_contract": {
+    "explainer": {
+      "required": 4,
+      "format": "data_story"
+    },
+    "third": {
+      "required": 6,
+      "format": "clip"
+    },
+    "trending": {
+      "required": 5,
+      "format": "sports_moment"
+    }
+  },
+  "verified_posts": {
+    "explainer": 0,
+    "third": 0,
+    "trending": 0,
+    "evidence": "No accepted upload entry with an actual upload timestamp on 2026-11-23 was present in the registered posted logs at verification time."
+  },
+  "remaining_shortfall": {
+    "explainer": 4,
+    "third": 6,
+    "trending": 5,
+    "total": 15
+  },
+  "downstream": {
+    "phase_b_report": {
+      "explainer_applied": 2,
+      "explainer_rejected": 1,
+      "trending_promoted": 0,
+      "media_fulfilled": 0
+    },
+    "package_directories": {
+      "state/third_packages/20261123": "absent",
+      "state/trending_packages/20261123": "absent"
+    },
+    "exact_gap": "DONE was consumed, but the accepted response words did not become verified posted videos and the clip channels produced no today-dated package directories."
+  },
+  "mailbox": {
+    "reviews": {
+      "open": 0,
+      "answered": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "indexed_entries": 24,
+      "unique_keys": 23,
+      "answered_entries": 24,
+      "skipped": 0
+    },
+    "rewrites": {
+      "open_at_round_start": 114,
+      "answered": 20,
+      "skipped": 94,
+      "skip_reason": "Two required rounds were completed within the 10-rewrite per-round cap; remaining items were outside those caps."
+    }
+  },
+  "commits": {
+    "started": "7035ddeab85ed3f96c1e318a2dcb2cb4dd6e4e59",
+    "response": "0382ad1e7f1628e8b9dfd93977965addd9960f05",
+    "done": "3076b4003ccf4f655947fae6f7656e0da8deb366"
+  },
+  "retryable": true
+}
