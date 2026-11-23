@@ -1,0 +1,29 @@
+name: Discovery probe
+
+# Which free route still lists the week's top sports posts from a GitHub
+# runner (scripts/discovery_probe.py). Publishes nothing. Manual only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      sub:
+        description: "Subreddit"
+        required: true
+        default: "nfl"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - name: Probe (publishes nothing)
+        env:
+          SUB: ${{ inputs.sub }}
+        run: python scripts/discovery_probe.py "$SUB"
