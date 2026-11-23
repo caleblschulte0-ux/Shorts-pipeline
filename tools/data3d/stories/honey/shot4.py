@@ -44,8 +44,11 @@ def place_village_hall():
     for k in range(9):
         x = -0.7 + k * 0.2
         jar(f"show jar {k}", (x, 1.12, 0.55), r=0.035, h=0.09, fill=0.9, honey_col=("#E8A82A", "#C97A12", "#F2C35A")[k % 3])
-        if k % 3 == 1:
-            K.cyl("rosette", (x + 0.05, 1.0, 0.5), 0.03, 0.006, K.mat("rosette red", "#C8261E", rough=0.5), rot=(math.pi / 2, 0, 0), v=20, bev=0.002)
+        if k % 2 == 1:
+            for r_, c_, dy in ((0.05, "#C8261E", 0.0), (0.03, "#F2C94C", -0.004)):
+                K.cyl("rosette", (x + 0.05, 0.99 + dy, 0.5), r_, 0.006, K.mat(f"rosette {c_}", c_, rough=0.5), rot=(math.pi / 2, 0, 0), v=24, bev=0.002)
+            for dx in (-0.015, 0.015):
+                K.box("rosette tail", (x + 0.05 + dx, 0.988, 0.43), (0.018, 0.004, 0.09), K.mat("rosette #C8261E", "#C8261E"), bev=0)
     K.cyl("cake stand", (0.95, 1.12, 0.58), 0.08, 0.012, K.mat("stand white", "#FFFFFF", rough=0.3), v=32, bev=0.003)
     K.cyl("cake", (0.95, 1.12, 0.62), 0.065, 0.07, hw_noise("cake", "#D9A35A", "#E9BE7A", scale=20), v=32, bev=0.01)
     lampm = K.mat("pendant shade", "#2E4A3E", rough=0.4, metal=0.3)
@@ -116,9 +119,9 @@ def s4_machine():
     hw_local(needle)
     # the beacon on top: a red glass dome with a mirror inside that spins
     K.cyl("beacon base", (S4_M.x, S4_M.y, S4_MH + 0.015), 0.05, 0.03, trim, v=24, bev=0.003)
-    K.sph("beacon dome", (S4_M.x, S4_M.y, S4_MH + 0.06), 0.048, K.mat("beacon glass", "#C8281C", rough=0.15, emit=0.6), scale=(1, 1, 1.15))
+    K.sph("beacon dome", (S4_M.x, S4_M.y, S4_MH + 0.06), 0.048, K.mat("beacon glass", "#D01A10", rough=0.15, emit=0.6), scale=(1, 1, 1.15))
     spin = K.empty("beacon spin", (S4_M.x, S4_M.y, S4_MH + 0.06))
-    K.box("beacon mirror", (0, 0, 0), (0.07, 0.012, 0.05), K.mat("beacon lamp", "#FF5A3A", emit=12.0), bev=0.002, parent=spin)
+    K.box("beacon mirror", (0, 0, 0), (0.07, 0.012, 0.05), K.mat("beacon lamp", "#FF1C0C", emit=6.0), bev=0.002, parent=spin)
     hw_local(spin)
     # the screen under the dial: dark, then RICE SYRUP FOUND in red
     K.box("test machine screen", (S4_M.x, S4_M.y - 0.142, 0.3), (0.3, 0.004, 0.09), K.mat("machine screen", "#14181C", rough=0.3), bev=0.003)
@@ -138,7 +141,7 @@ def s4_funnel(at):
     K.cyl("funnel spout", (at.x, at.y, at.z - 0.09), 0.012, 0.05, steel, v=16, bev=0)
     glass = hw_glass("pipe glass")
     p0 = Vector((at.x, at.y, at.z - 0.115)); p1 = Vector((at.x, at.y, at.z - 0.17)); p2 = Vector((S4_M.x + 0.21, at.y, at.z - 0.17))
-    K.capsule("funnel pipe", p0, p1, 0.016, glass); K.capsule("funnel pipe", p1, p2, 0.016, glass)
+    K.capsule("funnel pipe", p0, p1, 0.026, glass); K.capsule("funnel pipe", p1, p2, 0.026, glass)
     K.box("funnel bracket", (at.x / 2 + (S4_M.x + 0.21) / 2, at.y, at.z - 0.2), (abs(at.x - S4_M.x - 0.21) + 0.02, 0.03, 0.012), steel, bev=0.002)
     return [p0, p1, p2]
 
@@ -168,7 +171,7 @@ def shot4():
     def yaw(t):
         y = math.degrees(yw) + (-22 - math.degrees(yw)) * W(t, T_IN, 0.35)       # turns to the jar and the machine
         y += 0 * W(t, T_DIP + 0.25, 0.3) * (1 - W(t, T_JUMP - 0.1, 0.3))      # to the funnel
-        y += 25 * W(t, T_JUMP - 0.05, 0.25) - 20 * W(t, T_POINT - 0.3, 0.3) + 25 * W(t, T_END - 0.15, 0.25)   # back round to us
+        y += 25 * W(t, T_JUMP - 0.05, 0.25) - 20 * W(t, T_POINT - 0.3, 0.3) + 15 * W(t, T_END - 0.15, 0.25)   # back round to us
         return math.radians(y)
     for f in range(F(T_IN), NF + 1):
         t = (f - 1) / FPS
@@ -184,11 +187,13 @@ def shot4():
         v = Vector(hw_rel(data, sd, t, world)); return tuple(v * max(0.3, (v.length - by) / v.length))
     POINT_AT = S4_DIAL + Vector((0.05, 0, 0.02))
     OVER = S4_FUN + Vector((0, 0, 0.05))
+    def fore(v):                               # pointing at the dial, but never behind his own back as he turns to us
+        v = Vector(v); v.x = max(v.x, 0.07); return tuple(v.normalized() * 0.155)   # (forward, out, up)
     dk = [(0.0, (0.08, 0.1, -0.06)), (T_IN - 0.3, (0.08, 0.11, -0.02)),
           (T_DIP, (0.05, 0.13, 0.07)),                                            # up high: look, the blend that passed
           (T_DROP - 0.2, (0.09, 0.12, -0.02)), (T_DROP + 0.25, (0.09, 0.12, -0.01)),
           (T_JUMP, (0.1, 0.16, -0.03)), (T_JUMP + 0.3, (0.09, 0.17, 0.0)),
-          (T_POINT, tuple(Vector(hw_rel(data, lf, T_POINT, POINT_AT)).normalized() * 0.15)), (T_POINT + 0.35, tuple(Vector(hw_rel(data, lf, T_POINT + 0.35, POINT_AT)).normalized() * 0.155)), (T_END, (0.1, 0.13, 0.03)), (DUR + 0.3, (0.1, 0.13, 0.04))]
+          (T_POINT, tuple(Vector(hw_rel(data, lf, T_POINT, POINT_AT)).normalized() * 0.15)), (T_POINT + 0.35, fore(hw_rel(data, lf, T_POINT + 0.35, POINT_AT))), (T_END - 0.2, fore(hw_rel(data, lf, T_END - 0.2, POINT_AT))), (DUR + 0.3, fore(hw_rel(data, lf, DUR, POINT_AT)))]   # still pointing at it
     pk = [(0.0, (0.07, 0.1, -0.11)), (T_IN, (0.08, 0.1, -0.1)), (T_DIP + 0.05, (0.09, 0.11, -0.08)),
           (T_DIP + 0.35, (0.06, 0.17, 0.06)), (T_DROP + 0.05, (0.09, 0.12, -0.07)), (T_SWING, (0.1, 0.1, -0.08)),      # the free hand up: watch this
           (T_JUMP, (0.08, 0.16, 0.03)), (T_JUMP + 0.3, (0.08, 0.16, 0.05)),
@@ -198,7 +203,7 @@ def shot4():
     CAM = Vector((0.32, -1.42, 0.55)); LOOK = Vector((0.28, 0.0, 0.47))
     data.look_at(CAM, 0.0, max_yaw=45, blend=0.0)
     data.look_at(S4_P + Vector((-0.12, -0.22, 0.32)), T_DIP - 0.45, max_yaw=50, max_pitch=20, blend=0.15)
-    data.look_at(S4_P + Vector((-0.2, -0.12, 0.42)), T_DROP - 0.3, max_yaw=50, max_pitch=20, blend=0.15)
+    data.look_at(CAM, T_DROP - 0.3, max_yaw=45, blend=0.15)                                          # lets it fall looking at us: watch this
     data.look_at(S4_DIAL, T_SWING - 0.05, max_yaw=55, max_pitch=20, blend=0.12)
     data.look_at(CAM, T_JUMP + 0.25, max_yaw=45, blend=0.15)
     data.look_at(S4_DIAL, T_POINT - 0.1, max_yaw=55, max_pitch=20, blend=0.15)
@@ -206,17 +211,17 @@ def shot4():
     data.expression("determined", 0.0, T_DROP)
     data.expression("wry", T_DROP + 0.05, T_SWING - 0.05, blend=0.12)
     data.expression("surprised", T_SWING, T_POINT, blend=0.08)
-    data.expression("pleased", T_POINT + 0.05, DUR + 1.0, blend=0.18)
+    data.expression("surprised", T_POINT + 0.05, DUR + 1.0, blend=0.18)
     data.finish()
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, lf, fore=True)
     dr = dip["root"]
     # the funnel where his dipper drips (built to his reach)
     sc.frame_set(F(T_DROP)); bpy.context.view_layer.update()
-    FUN = dr.matrix_world @ Vector((0, 0, dip["head_z"])) + Vector((0, 0, -0.06))
+    FUN = dr.matrix_world @ Vector((0, 0, dip["head_z"])) + Vector((0, 0, -0.17))      # a hand's height under the dipper: the fall is seen
     PIPE = s4_funnel(FUN)
     # ---- the drop: from the dipper's head into the funnel
-    drop = K.sph("honey drop", (0, 0, 0), 0.02, hw_honey("drop honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1.3))
+    drop = K.sph("honey drop", (0, 0, 0), 0.03, hw_honey("drop honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1.3))
     sc.frame_set(F(T_DROP)); bpy.context.view_layer.update()
     head0 = dr.matrix_world @ Vector((0, 0, dip["head_z"]))
     for f in range(1, NF + 1):
@@ -229,8 +234,16 @@ def shot4():
             p = head0.lerp(FUN + Vector((0, 0, -0.02)), u * u); s = 1.0 if u < 1 else 1e-3
         drop.location = p; drop.scale = (s, s, 1.3 * s)
         drop.keyframe_insert("location", frame=f); drop.keyframe_insert("scale", frame=f)
+    thread = K.cyl("honey thread", (0, 0, -0.5), 0.004, 1.0, hw_honey("drop honey", "#F0A020", glow=3.0, clear=0.2), v=8, bev=0)
+    for f in range(1, NF + 1):                    # the honey thread from the dipper's head to the falling drop, until it snaps
+        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
+        a = dr.matrix_world @ Vector((0, 0, dip["head_z"] - 0.02)); b = drop.location.copy()
+        on = T_DROP - 0.1 <= t < T_DROP + 0.2 and (a - b).length > 0.01
+        thread.location = (a + b) / 2; thread.scale = (1, 1, max(1e-3, (a - b).length) if on else 1e-3)
+        thread.rotation_euler = Vector((0, 0, 1)).rotation_difference((a - b).normalized() if on else Vector((0, 0, 1))).to_euler()
+        for k in ("location", "scale", "rotation_euler"): thread.keyframe_insert(k, frame=f)
     # ---- the drop runs down the glass pipe into the machine (glowing), then the dial swings
-    slug = K.sph("pipe honey", (0, 0, 0), 0.013, hw_honey("pipe honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1))
+    slug = K.sph("pipe honey", (0, 0, 0), 0.021, hw_honey("pipe honey", "#F0A020", glow=3.0, clear=0.2), scale=(1, 1, 1))
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = (t - T_DROP - 0.3) / (T_SWING - T_DROP - 0.3)
         if 0 <= u <= 1:
@@ -240,7 +253,7 @@ def shot4():
         slug.location = p; slug.scale = (s_ * (1.6 if 0.5 < u <= 1 else 1.0), s_, s_)
         slug.keyframe_insert("location", frame=f); slug.keyframe_insert("scale", frame=f)
     bm = bpy.data.materials["beacon glass"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
-    for t, v in ((0.0, 0.0), (T_SWING, 0.0), (T_SWING + 0.1, 4.0)):
+    for t, v in ((0.0, 0.0), (T_SWING, 0.0), (T_SWING + 0.1, 2.2)):
         bm.default_value = v; bm.keyframe_insert("default_value", frame=F(t))
     # ---- the dial swings hard from PASS into FAKE (an overshoot and a shiver), the beacon spins
     for f in range(1, NF + 1):

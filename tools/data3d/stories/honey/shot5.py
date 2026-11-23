@@ -8,9 +8,9 @@ half, three times the old count. He looks back along the reds, then turns to us:
 S5_N, S5_TIERS = 7, 3
 S5_OLD = 2                                       # the one in seven the old test caught, in every tier
 S5_NEW = (4, 6)                                  # the two more the new test catches: three in seven
-S5_JR, S5_JH, S5_DX = 0.036, 0.12, 0.085
+S5_JR, S5_JH, S5_DX = 0.048, 0.15, 0.115        # jars big enough to count on a phone (board: "specks")
 S5_TX0 = -0.15                                   # the first column's x
-S5_TIER = [(0.42, 0.82 + 0.2 * k) for k in range(S5_TIERS)]    # (y, top z) of each shelf: high on a rack against the alley wall, over his head
+S5_TIER = [(0.42, 0.82 + 0.23 * k) for k in range(S5_TIERS)]    # (y, top z) of each shelf: high on a rack against the alley wall, over his head
 S5_YW = -0.12                                    # the line he walks along the rack, well clear of the bar's foot
 S5_LEAD = 0.14                                   # the push handle rides this far ahead of him: he PUSHES it along
 
@@ -129,9 +129,9 @@ def s5_scanner():
     K.box("gantry rail", ((x0 + x1) / 2, yf, ztop), (x1 - x0 + 0.06, 0.04, 0.035), blue, bev=0.004)
     K.text("gantry word", "EU TEST", ((x0 + x1) / 2, yf - 0.022, ztop), 0.026, (math.pi / 2, 0, 0), hw_ink("gantry word", "#FFFFFF"), extrude=0.0004)
     car = K.empty("scanner carriage", (0, 0, 0))
-    K.box("scanner head", (0, yf, ztop - 0.04), (0.07, 0.07, 0.06), blue, bev=0.006, parent=car)
+    K.box("scanner head", (0, yf, ztop - 0.04), (0.11, 0.09, 0.09), blue, bev=0.006, parent=car)
     zb = S5_TIER[0][1] - 0.02
-    K.capsule("scan bar", Vector((0, yf, zb)), Vector((0, yf, ztop - 0.06)), 0.009, K.mat("scan red", "#FF3020", rough=0.3, emit=6.0), parent=car)
+    K.capsule("scan bar", Vector((0, yf, zb)), Vector((0, yf, ztop - 0.06)), 0.018, K.mat("scan red", "#FF3020", rough=0.3, emit=6.0), parent=car)
     K.box("scan bar foot", (0, yf, zb - 0.015), (0.03, 0.03, 0.03), blue, bev=0.004, parent=car)
     hw_local(car)
     return car, x0, x1, yf, ztop
@@ -140,7 +140,7 @@ def s5_scanner():
 def s5_tow(car, yf, ztop, yh, zh):
     """the push pole: a steel pole from the scanner's head down and out in front of him to a red T handle at his
     hands' height, so the carriage goes where his two hands push it"""
-    K.capsule("tow pole", Vector((0, yf, ztop - 0.07)), Vector((S5_LEAD, yh, zh + 0.012)), 0.009, K.mat("scanner steel", "#B8BCC0", rough=0.25, metal=0.9), parent=car)
+    K.capsule("tow pole", Vector((0, yf, ztop - 0.07)), Vector((S5_LEAD, yh, zh + 0.012)), 0.016, K.mat("pole yellow", "#F2C230", rough=0.4), parent=car)
     K.cyl("tow handle", (S5_LEAD, yh, zh), 0.016, 0.12, K.mat("handle red", "#C8261E", rough=0.4), rot=(math.pi / 2, 0, 0), v=16, bev=0.004, parent=car)
     for o in car.children_recursive:
         o.matrix_parent_inverse.identity()
@@ -191,6 +191,7 @@ def shot5():
         t = (f - 1) / FPS
         p = PB + Vector((0.03, -0.04, 0)) * W(t, T_LET + 0.05, 0.3)                                     # steps off the rack as he lets go
         p += Vector((0.0, -0.06, 0)) * W(t, T_SHOW - 0.3, 0.4)                                        # and steps to us
+        p += Vector((0.0, -0.07, 0)) * W(t, T_SHOW + 0.9, 0.45)                                       # and one more, at the lens: YOUR jar
         p += Vector((-0.03, 0.02, 0)) * W(t, T_POINT - 0.15, 0.3) * (1 - W(t, T_SHOW - 0.3, 0.4))   # a step after his finger
         p += Vector((-0.035, 0.0, 0)) * W(t, T_POINT + 0.65, 0.3) * (1 - W(t, T_SHOW - 0.3, 0.4))   # and another, along the reds
         z = 0.05 * hw_kick(t - T_SHOW - 0.1, 0.14) + 0.04 * hw_kick(t - T_SHOW - 1.1, 0.13) \
@@ -205,13 +206,13 @@ def shot5():
     on = [T_GRIP + u * (T_S1 - T_GRIP) for u in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0)]
     tow = [(0.0, (0.05, 0.08, -0.13)), (T_GRIP - 0.3, (0.08, 0.06, -0.09))] + [(t, hw_rel(data, hand, t, grip(t, 0.04))) for t in on]
     tow += [(T_LET + 0.45, (0.13, 0.08, -0.03)), (T_POINT + 0.25, (0.16, 0.04, -0.03)), (T_POINT + 0.6, (0.05, 0.06, -0.09)), (T_POINT + 0.95, (0.12, 0.11, -0.03)), (T_POINT + 1.3, (0.05, 0.06, -0.09)), (T_POINT + 1.5, (0.15, 0.06, -0.03)),   # jabs at the reds: one, two, three
-            (T_SHOW - 0.2, (0.08, 0.1, -0.08)), (T_SHOW + 0.25, (0.12, 0.1, -0.03)), (T_SHOW + 0.75, (0.06, 0.11, -0.11)), (T_SHOW + 1.2, (0.12, 0.1, -0.03)), (DUR + 0.3, (0.12, 0.1, -0.03))]   # hands out: what's in YOUR jar?
+            (T_SHOW - 0.2, (0.08, 0.1, -0.08)), (T_SHOW + 0.3, (0.12, 0.1, -0.03)), (T_SHOW + 0.75, (0.1, 0.13, 0.08)), (T_SHOW + 1.2, (0.06, 0.11, -0.11)), (T_SHOW + 1.6, (0.13, 0.1, 0.0)), (DUR + 0.3, (0.13, 0.1, -0.01))]   # hands out: what's in YOUR jar?
     other = [(0.0, (0.05, 0.08, -0.13)), (T_GRIP - 0.3, (0.08, 0.06, -0.09))] + [(t, hw_rel(data, free, t, grip(t, -0.04))) for t in on] + [(T_LET + 0.45, (0.08, 0.12, -0.03)), (T_POINT + 0.5, (0.05, 0.09, -0.11)), (T_POINT + 0.95, (0.11, 0.05, -0.04)), (T_POINT + 1.4, (0.05, 0.09, -0.11)),   # counts them up on his other hand
-             (T_SHOW - 0.2, (0.06, 0.1, -0.1)), (T_SHOW + 0.25, (0.12, 0.1, -0.03)), (T_SHOW + 0.75, (0.06, 0.11, -0.11)), (T_SHOW + 1.2, (0.12, 0.1, -0.03)), (DUR + 0.3, (0.12, 0.1, -0.03))]
+             (T_SHOW - 0.2, (0.06, 0.1, -0.1)), (T_SHOW + 0.3, (0.12, 0.1, -0.03)), (T_SHOW + 0.75, (0.1, 0.13, 0.08)), (T_SHOW + 1.2, (0.06, 0.11, -0.11)), (T_SHOW + 1.6, (0.13, 0.1, 0.0)), (DUR + 0.3, (0.13, 0.1, -0.01))]
     data.reach(hand, hw_hand(data, hand, tow), 0.0, DUR + 0.3, lead=0.09, back=None, elbow_out=0.4)
     data.reach(free, hw_hand(data, free, other), 0.0, DUR + 0.3, lead=0.09, back=None, elbow_out=0.4)
     CAM = Vector((0.34, -1.29, 0.7)); LOOK = Vector((0.34, 0.3, 0.74))
-    data.look_at(Vector((x0 + 0.1, S5_TIER[0][0], 1.0)), 0.0, max_yaw=45, max_pitch=35, blend=0.0)
+    data.look_at(CAM, 0.0, max_yaw=60, blend=0.0)
     data.look_at(CAM, T_S0 + 0.2, max_yaw=60, blend=0.2)                                              # walks it along, looking at us
     data.look_at(Vector((0.05, 0.42, 1.0)), T_POINT, max_yaw=45, max_pitch=40, blend=0.15)
     data.look_at(CAM, T_SHOW - 0.2, max_yaw=45, blend=0.18)
@@ -219,16 +220,16 @@ def shot5():
     data.expression("surprised", 1.95, T_SHOW - 0.3, blend=0.12)
     data.expression("worried", T_SHOW - 0.2, DUR + 1.0, blend=0.15)
     data.finish()
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 24, face_at=(0.68, 0.45), height=0.38, t=0.85 * DUR)   # framed first: beside the rack, whole
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 24, face_at=(0.66, 0.45), height=0.335, t=0.4 * DUR)   # framed first: the whole rack and him, three in seven lit
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24, fstop=7.0)
     rx = {}
     for f in range(1, NF + 1):
         sc.frame_set(f); rx[f] = data.arm.location.x
-    pan = lambda t: Vector((0.6 * (rx[max(1, min(NF, F(t)))] - rx[NF]), 0, 0))            # the lens walks along with him, a little behind
-    camera_path(cam, lambda t: (CAM + pan(t) + (LOOK - CAM).normalized() * 0.03 * W(t, T_SHOW, 1.5), LOOK + pan(t), Vector((0.1, 0.2, 0.7))))
+    pan = lambda t: Vector((0.15 * (rx[max(1, min(NF, F(t)))] - rx[NF]), 0, 0))            # the lens drifts along with him; every label stays whole
+    camera_path(cam, lambda t: (CAM + pan(t), LOOK + pan(t), Vector((0.1, 0.2, 0.7))))
     allj = [j for row in jars for j in row]
     return dict(lanes=[], kiosks=[], place="market_alley", light=light, data=data, rest=1, grips=("tow handle", "tow pole"),
-                boxes=[("the rack of import jars and its scanner", lambda: meshes([j["root"] for j in allj]) + hw_drawn("rack", "gantry", "scanner head", "scan bar"), (0.0, 0.1, 1.0, 0.95)),
+                boxes=[("the rack of import jars and its scanner", lambda: meshes([j["root"] for j in allj]) + hw_drawn("rack", "gantry", "scanner head", "scan bar"), (0.0, 0.05, 1.0, 0.97)),
                        ("the rack's words", lambda: hw_drawn("stand stencil", "gantry word"), (0.0, 0.3, 1.0, 1.0))],
                 conseq=[("he walks the scanner along the rack by its tow handle, its red bar sweeps the tiers and two more jars in every seven spin red: three in seven, almost half",
                          lambda: meshes([j["root"] for j in allj] + [car]), T_S0, DUR, {"hero": True, "moves": lambda: meshes([car])})])

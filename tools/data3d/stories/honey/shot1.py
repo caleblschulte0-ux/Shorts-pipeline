@@ -65,11 +65,11 @@ def place_market_stall():
         for y in (-0.25, 0.09):
             K.box("trestle leg", (x, y, (S1_CH - 0.04) / 2), (0.03, 0.03, S1_CH - 0.04), old, bev=0.003)
         K.box("trestle brace", (x, -0.08, 0.06), (0.025, 0.34, 0.025), old, bev=0.002)
-    for x in (-0.56, 0.68):
+    for x in (-0.56, 0.77):
         K.box("stall post", (x, 0.3, 0.6), (0.04, 0.04, 1.2), old, bev=0.004)
     s1_awning("stall awning", -0.66, 0.78, 0.05, 0.45, 1.36, 1.24, "#C23A2E", "#F1E6CC", n=8)
-    sign = K.box("price sign", (0.06, 0.06, 1.01), (0.72, 0.02, 0.15), K.mat("sign board", "#F4EEDC", rough=0.7), bev=0.006)
-    K.text("price sign text", "PURE HONEY  2 EUROS", (0.06, 0.048, 1.01), 0.05, (math.pi / 2, 0, 0), hw_ink("sign paint", "#B0261C"), extrude=0.001)
+    sign = K.box("price sign", (0.06, 0.06, 1.01), (0.66, 0.02, 0.138), K.mat("sign board", "#F4EEDC", rough=0.7), bev=0.006)
+    K.text("price sign text", "PURE HONEY  2 EUROS", (0.06, 0.048, 1.01), 0.046, (math.pi / 2, 0, 0), hw_ink("sign paint", "#B0261C"), extrude=0.001)
     for x in (-0.22, 0.34):
         K.cyl("sign string", (x, 0.06, 1.13), 0.0015, 0.1, K.mat("string", "#5A4A3A"), bev=0)
     # stock under and behind the counter: crates of the same cheap jars
@@ -141,7 +141,7 @@ def shot1():
     T_PEER = 0.1                                  # leaning in along the row
     T_SIGN = 0.5                                 # straightening up to the sign
     T_UP = 0.8                                   # the dipper goes up ...
-    T_SLAM = 0.3 * DUR                            # ... and down on the counter
+    T_SLAM = 0.37 * DUR                           # ... and down on the counter: on the board's second still
     T_FLIP = [0.45 * DUR + k * (0.17 * DUR) / 4 for k in range(5)]
     T_BACK = T_FLIP[0] - 0.05                     # he jerks back at the red label
     T_LEAN = T_FLIP[-1] + 0.1                     # leans in over the row
@@ -163,9 +163,12 @@ def shot1():
         x = -0.27 + k * 0.112
         fake = k in S1_FAKES
         jars.append(jar(f"stall jar {k}", (x, -0.2, S1_CH), r=0.05, h=0.17, fill=0.9, honey_col="#E6A52A" if fake else "#D98A12",
-                        label="PURE HONEY", back="SYRUP" if fake else None, yaw=math.radians(-34), glow=0.3))      # labels turned toward the lens
+                        label="PURE HONEY", back="SYRUP" if fake or k == S1_N - 1 else None, yaw=math.radians(-34), glow=0.3))      # labels turned toward the lens
     fakes = [jars[k] for k in S1_FAKES]
     jar_flip(fakes[0], T_FLIP[0])                 # only one in seven flips
+    nxt = jars[S1_N - 1]                          # ... and the one by his hand, tapped at the end, WOBBLES: a flash of red. The real share was worse
+    for t, a in ((0.0, 0.0), (T_POINT + 0.05, 0.0), (T_POINT + 0.25, 35.0), (T_POINT + 0.5, -18.0), (T_POINT + 0.85, 62.0), (T_POINT + 1.2, 48.0)):   # it hangs half round: red
+        nxt["spin"].rotation_euler = (0, 0, math.radians(a)); nxt["spin"].keyframe_insert("rotation_euler", frame=F(t))
     for k, j in enumerate(jars):                  # the row JUMPS at the slam, a hop running down from his end
         r = j["root"]; z0 = r.location.z; d = (S1_N - 1 - k) * 0.012; yw = r.rotation_euler.z; sg = 1 if k % 2 else -1
         for t, dz, tilt in ((0.0, 0, 0), (T_SLAM + d, 0, 0), (T_SLAM + d + 0.08, 0.05, 0.12 * sg), (T_SLAM + d + 0.17, 0.0, -0.05 * sg),
@@ -200,10 +203,14 @@ def shot1():
     free = "R" if side == "L" else "L"
     hit = hw_rel(data, side, T_SLAM, HIT)
     REST = (0.06, 0.07, -0.13)
+    def tapr(t, up):                              # the dipper's head on the next jar's lid (his fist a dipper-length short of it)
+        lid = nxt["root"].location + Vector((0, 0, 0.19 + up))
+        v = Vector(hw_rel(data, side, t, lid)); return tuple(v * min(1.0, 0.16 / v.length))   # never past his reach
     HK = [(0.0, REST), (T_PEER + 0.3, (0.1, 0.08, -0.09)), (T_SIGN + 0.15, (0.07, 0.13, -0.05)),
           (T_UP + 0.15, (0.02, 0.15, 0.07)), (T_SLAM - 0.28, (0.05, 0.15, 0.06)), (T_SLAM, hit),
           (T_SLAM + 0.2, (hit[0], hit[1], hit[2] + 0.03)), (T_BACK + 0.25, (0.12, 0.1, -0.02)), (T_FLIP[2] + 0.25, (0.15, 0.05, -0.01)),
-          (T_LEAN + 0.35, (0.13, 0.09, -0.03)), (T_POINT, (0.14, 0.08, 0.02)), (T_POINT + 0.35, (0.14, 0.085, 0.045)), (DUR + 0.3, (0.14, 0.08, 0.03))]
+          (T_POINT - 0.3, tapr(T_POINT - 0.3, 0.06)), (T_POINT, tapr(T_POINT, 0.0)), (T_POINT + 0.3, tapr(T_POINT + 0.3, 0.07)),
+          (T_POINT + 0.7, (0.12, 0.09, -0.03)), (DUR + 0.3, (0.12, 0.09, -0.03))]
     FK = [(0.0, (0.04, 0.07, -0.14)), (T_SIGN + 0.1, (0.04, 0.07, -0.14)), (T_BACK - 0.1, (0.05, 0.08, -0.13)), (T_BACK + 0.35, (0.1, 0.1, 0.04)), (T_FLIP[2] + 0.25, (0.12, 0.15, -0.05)),
           (T_LEAN + 0.2, (0.08, 0.12, 0.0)), (T_POINT, (0.03, 0.1, -0.1)), (DUR + 0.3, (0.03, 0.1, -0.11))]
     data.reach(side, hw_hand(data, side, HK), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
@@ -224,10 +231,10 @@ def shot1():
     dip = honey_dipper("honey dipper")
     hw_ride(dip["root"], data, side, fore=True)
     # ---- the lens: square on the counter at jar height, a slow push in
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 27.5, face_at=(0.6, 0.66), height=0.33, t=0.5 * DUR)   # framed first: he stands behind the row's far end
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 27.5, face_at=(0.58, 0.58), height=0.325, t=0.5 * DUR)   # framed first: he stands behind the row's far end
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=27.5, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.02 * ease(t / DUR), LOOK, Vector((0.0, -0.1, 0.4))))
-    compose.place(hw_named("price sign", "sign string"), cam, (0.03, 0.72, 0.97, 0.99), frame=NF, label="the 2 EUROS sign")   # whole, over the row, at the push's end
+    compose.place(hw_named("price sign", "sign string"), cam, (0.02, 0.74, 0.98, 0.995), frame=NF, label="the 2 EUROS sign")   # whole, over the row, at the push's end
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
                 boxes=[("the 2 EUROS sign", lambda: hw_drawn("price sign"), (0.0, 0.62, 1.0, 1.0)),
                        ("the seven jars", lambda: meshes([j["root"] for j in jars]), (0.0, 0.0, 1.0, 0.7))],

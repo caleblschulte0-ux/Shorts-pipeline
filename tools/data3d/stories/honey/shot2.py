@@ -91,6 +91,12 @@ def place_honey_house():
     for k in range(5):
         o = K.box("drying frame", (-1.05 + 0.07 * k, WY - 0.12, 0.2), (0.02, 0.3, 0.42), fw_m, bev=0.002); o.rotation_euler = (0.25, 0, 1.57)
         o = K.box("drying comb", (-1.05 + 0.07 * k, WY - 0.13, 0.2), (0.012, 0.26, 0.36), comb, bev=0.001); o.rotation_euler = (0.25, 0, 1.57)
+    for k, hx in enumerate((-0.75, -1.2, 1.25)):          # his hives in the yard, on their stands
+        K.box("hive stand", (hx, WY - 0.45, 0.06), (0.36, 0.3, 0.12), hw_wood("hive stand", "#6E4A2A", "#8A5E36"), bev=0.006)
+        for j in range(2 + k % 2):
+            K.box("hive box", (hx, WY - 0.45, 0.19 + 0.15 * j), (0.32, 0.27, 0.14), white, bev=0.004)
+        K.box("hive roof", (hx, WY - 0.45, 0.19 + 0.15 * (2 + k % 2) - 0.03), (0.38, 0.33, 0.05), K.mat("hive roof", "#8C9298", rough=0.4, metal=0.6), bev=0.006)
+        K.box("hive door", (hx, WY - 0.585, 0.135), (0.14, 0.006, 0.02), K.mat("hive door", "#2A1E12"), bev=0)
     K.cyl("water butt", (2.1, WY - 0.3, 0.3), 0.2, 0.6, hw_wood("butt wood", "#7A5A38", "#946E46", scale=8), v=32, bev=0.01)
     # the hill behind the roof, with the hives on it
     hill = hw_noise("far hill", "#6F9A40", "#A2BD62", scale=9, rough=0.95, bump=0.5, detail=5)
@@ -106,7 +112,7 @@ def place_honey_house():
     return light
 
 
-def s3_pole(name, base, col, word, side):
+def s3_pole(name, base, col, word, side, price=""):
     """a flagpole with a pulley at its top, its halyard down to a cleat on the side he hauls from, and a cloth flag
     clipped to the pole that flies to `side`. The flag's TOP EDGE is its price. Returns (flag, rope-to-flag scaler)."""
     pole = K.mat("pole white", "#EDEAE2", rough=0.4)
@@ -126,7 +132,7 @@ def s3_pole(name, base, col, word, side):
     hw_local(run)
     flag = K.empty(name + " flag", (0, 0, 0))
     cloth = K.mat(f"flag {col}", col, rough=0.75)
-    W_, H_ = 0.26, 0.22
+    W_, H_ = 0.26, 0.2
     for k in range(6):                         # the cloth in six panels with a gentle ripple
         u = (k + 0.5) / 6
         o = K.box(name + " cloth", (side * (0.02 + W_ * u), 0.004 * math.sin(u * 5.0), -H_ / 2), (W_ / 6 + 0.002, 0.006, H_ - 0.01 * u), cloth, bev=0.002, parent=flag)
@@ -135,7 +141,8 @@ def s3_pole(name, base, col, word, side):
         K.box(name + " clip", (side * 0.02, -0.005, z), (0.02, 0.016, 0.014), steel, bev=0.002, parent=flag)
     K.box(name + " hoist edge", (side * 0.02, -0.005, -H_ / 2), (0.012, 0.012, H_), K.mat("hoist tape", "#3A3A3A", rough=0.7), bev=0.002, parent=flag)
     ink = hw_ink(f"flag ink {name}", "#2A1E12" if col != "#F2B02A" else "#3A1E04")
-    K.text(name + " word", word, (side * (0.02 + W_ / 2), -0.016, -H_ / 2), 0.05 if len(word) < 7 else 0.036, (math.pi / 2, 0, 0), ink, extrude=0.0008, parent=flag)
+    K.text(name + " word", word, (side * (0.02 + W_ / 2), -0.016, -H_ * 0.34), 0.05 if len(word) < 7 else 0.038, (math.pi / 2, 0, 0), ink, extrude=0.0008, parent=flag)
+    K.text(name + " price", price, (side * (0.02 + W_ / 2), -0.016, -H_ * 0.72), 0.06, (math.pi / 2, 0, 0), ink, extrude=0.0008, parent=flag)
     hw_local(flag)
     return flag, run
 
@@ -164,13 +171,14 @@ def shot2():
     for k in range(0, 5):
         v = 0.5 * k; z = S3_Z0 + S3_PER * v
         K.box("board line", (bxc, by - 0.008, z), (bx1 - bx0, 0.004, 0.008 if k else 0.012), ink, bev=0)
-        if k: K.text("board euro", f"{v:.2f}", ((S3_POLES[0].x + 0.04 + S3_POLES[1].x - 0.26) / 2, by - 0.01, z + 0.026), 0.05, (math.pi / 2, 0, 0), ink, extrude=0.0008)   # between the poles, clear of both flags
+        if k: K.text("board euro", f"{v:.2f}", ((S3_POLES[0].x + 0.04 + S3_POLES[1].x - 0.3) / 2, by - 0.01, z + 0.034), 0.068, (math.pi / 2, 0, 0), ink, extrude=0.0008)   # between the poles, clear of both flags
     K.text("price board head", "EUROS A KILO", (bxc, by - 0.01, S3_Z0 + S3_PER * 2.25 + 0.03), 0.05, (math.pi / 2, 0, 0), ink, extrude=0.0008)
-    sf, srun = s3_pole("syrup", S3_POLES[0], "#FAFAF4", "RICE SYRUP", 1)
-    hf, hrun = s3_pole("honey", S3_POLES[1], "#F2B02A", "HONEY", -1)
-    tops = (S3_Z0 + S3_PER * 0.5, S3_Z0 + S3_PER * 2.17)
+    sf, srun = s3_pole("syrup", S3_POLES[0], "#FAFAF4", "RICE SYRUP", -1, "0.50")   # flies out to the left, clear of the honey flag
+    hf, hrun = s3_pole("honey", S3_POLES[1], "#F2B02A", "HONEY", -1, "2.17")
+    FH = 0.1                                       # half a flag: its MIDDLE sits on its price
+    tops = (S3_Z0 + S3_PER * 0.5 + FH, S3_Z0 + S3_PER * 2.17 + FH)
     def honey_z(t):
-        return S3_Z0 + (tops[1] - S3_Z0) * ease(max(0.0, min(1.0, (t - T_H0) / (T_H1 - T_H0))))   # wound up with the crank
+        return S3_Z0 + FH + (tops[1] - S3_Z0 - FH) * ease(max(0.0, min(1.0, (t - T_H0) / (T_H1 - T_H0))))   # wound up with the crank
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         for i, (fl, run, z) in enumerate(((sf, srun, tops[0]), (hf, hrun, honey_z(t)))):
@@ -184,11 +192,11 @@ def shot2():
     K.box("winch post", (HUB.x - 0.07, HUB.y, 0.16), (0.07, 0.07, 0.32), hw_wood("winch post", "#6E4A2A", "#8A5E36"), bev=0.006)
     K.box("winch box", (HUB.x - 0.07, HUB.y, 0.38), (0.1, 0.12, 0.12), red, bev=0.01)
     K.cyl("winch drum", (HUB.x - 0.07, HUB.y, 0.465), 0.035, 0.1, steel, rot=(math.pi / 2, 0, 0), v=24, bev=0.003)
-    K.capsule("winch rope", Vector((HUB.x - 0.07, HUB.y + 0.02, 0.5)), Vector((S3_POLES[1].x + 0.02, S3_POLES[1].y - 0.024, 1.32)), 0.006, K.mat("halyard", "#F2ECDA", rough=0.8))
+    K.capsule("winch rope", Vector((HUB.x - 0.07, HUB.y + 0.02, 0.5)), Vector((S3_POLES[1].x + 0.02, S3_POLES[1].y - 0.024, 1.32)), 0.01, K.mat("winch rope", "#5A3A1E", rough=0.8))
     crank = K.empty("winch crank", tuple(HUB))
     K.cyl("crank hub", (-0.005, 0, 0), 0.022, 0.04, steel, rot=(0, math.pi / 2, 0), v=16, bev=0.003, parent=crank)
-    K.box("crank arm", (0.02, 0.025, 0), (0.012, 0.07, 0.02), steel, bev=0.003, parent=crank)
-    K.cyl("crank handle", (0.045, 0.055, 0), 0.014, 0.05, red, rot=(0, math.pi / 2, 0), v=16, bev=0.003, parent=crank)
+    K.box("crank arm", (0.02, 0.028, 0), (0.014, 0.076, 0.022), steel, bev=0.003, parent=crank)
+    K.cyl("crank handle", (0.045, 0.055, 0), 0.016, 0.06, red, rot=(0, math.pi / 2, 0), v=16, bev=0.003, parent=crank)
     hw_local(crank)
     TURNS = 4
     ang = lambda t: 2 * math.pi * TURNS * ease(max(0.0, min(1.0, (t - T_H0) / (T_H1 - T_H0))))
@@ -207,12 +215,12 @@ def shot2():
     crankb = lambda t: math.sin(ang(t)) * W(t, T_H0, 0.2) * (1 - W(t, T_H1 - 0.1, 0.2))
     for f in range(F(T_IN), NF + 1):
         t = (f - 1) / FPS
-        yaw = yw0 + (YW - yw0) * W(t, T_IN - 0.05, 0.3) + 55 * W(t, T_BACK, 0.4) + 7 * crankb(t)
-        p = S3_DATA + Vector((0.04, 0, 0)) * crankb(t) + Vector((0.04, -0.12, 0)) * W(t, T_BACK, 0.45)
+        yaw = yw0 + (YW - yw0) * W(t, T_IN - 0.05, 0.3) + 55 * W(t, T_BACK - 0.2, 0.4) + 7 * crankb(t)
+        p = S3_DATA + Vector((0.03, 0, 0)) * crankb(t) + Vector((0.05, -0.04, 0)) * W(t, T_BACK, 0.45) + Vector((0.0, -0.07, 0)) * W(t, T_RUB + 0.35, 0.45)
         z = 0.035 * abs(crankb(t)) + 0.05 * hw_kick(t - T_BACK - 0.35, 0.14) + 0.04 * hw_kick(t - T_RUB - 0.6, 0.13)
         data._kobj(t, loc=(p.x, p.y, z), rot=math.radians(yaw))
     hw_layer(data, "spine", lambda t: (18 * crankb(t) + 8 * W(t, T_H0, 0.3) * (1 - W(t, T_H1, 0.3)) + 10 * W(t, T_RUB, 0.3), 0,
-                                      10 * math.sin(2 * math.pi * (t - T_RUB) / 0.9) * W(t, T_RUB, 0.3)), 0, DUR + 0.4)
+                                      16 * math.sin(2 * math.pi * (t - T_RUB) / 0.9) * W(t, T_RUB, 0.3)), 0, DUR + 0.4)
     sc.frame_set(F(T_H0)); bpy.context.view_layer.update()
     near, far = sorted("LR", key=lambda s: (acts._shoulder(data, s) - HUB).length)
     rub = [(T_BACK + 0.2, (0.12, 0.09, -0.05)), (T_RUB, (0.13, 0.0, -0.08))]
@@ -230,24 +238,24 @@ def shot2():
         return rest_f(t) + (fw * 0.025 + Vector((0, 0, 0.025))) * crankb(t)      # his free fist pumps with every turn
     data.reach(near, near_fn, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
     data.reach(far, far_fn, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
-    LENS = Vector((0.3, -1.6, 0.68))
+    LENS = Vector((0.75, -1.55, 0.68))             # three-quarter on the yard: the house wall runs away from us
     data.look_at(Vector((S3_POLES[0].x, S3_POLES[0].y, tops[0])), 0.0, max_yaw=50, max_pitch=30, blend=0.15)
-    data.look_at(Vector((S3_POLES[1].x, S3_POLES[1].y, 0.8)), T_H0 + 0.3, max_yaw=28, max_pitch=40, blend=0.2)
-    data.look_at(Vector((S3_POLES[1].x, S3_POLES[1].y, tops[1])), T_H1 - 0.3, max_yaw=28, max_pitch=40, blend=0.2)
+    data.look_at(LENS, T_H0 + 0.3, max_yaw=45, blend=0.2)                                            # winds it, looking at us
+    data.look_at(Vector((S3_POLES[1].x, S3_POLES[1].y, tops[1])), T_H1 - 0.15, max_yaw=12, max_pitch=40, blend=0.2)   # UP at it, not round behind him
     data.look_at(LENS, T_RUB - 0.1, max_yaw=45, blend=0.18)
     data.expression("wry", 0.0, T_H0)
     data.expression("determined", T_H0 + 0.05, T_H1 - 0.1, blend=0.15)
     data.expression("surprised", T_H1, T_RUB - 0.1, blend=0.1)
     data.expression("pleased", T_RUB, DUR + 1.0, blend=0.18)
     data.finish()
-    LOOK = Vector((0.3, 0.3, 0.7))
+    LOOK = Vector((0.2, 0.3, 0.7))
     LENS, LOOK = compose.frame_data(data, LENS, LOOK, 30, face_at=(0.76, 0.47), height=0.346, t=0.5 * DUR)   # framed first: at the winch, board clear
     cam = K.camera(tuple(LENS), tuple(LOOK), lens=30, fstop=8.0)
     compose.drop_cut(hw_named("window jar", "inside jar"), cam, NF, label="the honey house's jars")
-    camera_path(cam, lambda t: (LENS + Vector((0.02, 0.08, 0.0)) * ease(t / DUR), LOOK + Vector((0.0, 0.0, 0.05 * ease(t / DUR))), LOOK))
+    camera_path(cam, lambda t: (LENS + Vector((0.02, 0.02, 0.0)) * ease(t / DUR), LOOK + Vector((0.0, 0.0, 0.03 * ease(t / DUR))), LOOK))
     meshes_of = lambda *names: [o for o in bpy.data.objects if o.type in ('MESH', 'FONT') and o.name.startswith(names)]
     return dict(lanes=[], kiosks=[], place="honey_house", light=light, data=data, rest=1, grips=("crank handle", "winch box"),
                 boxes=[("the price board and both flags", lambda: hw_drawn("price band", "board line", "board euro", "syrup flag", "honey flag", "syrup cloth", "honey cloth"), (0.0, 0.2, 1.0, 1.0)),
-                       ("the board's words", lambda: hw_drawn("board euro", "price board head", "syrup word", "honey word"), (0.0, 0.2, 1.0, 1.0))],
+                       ("the board's words", lambda: hw_drawn("board euro", "price board head", "syrup word", "honey word", "syrup price", "honey price"), (0.0, 0.2, 1.0, 1.0))],
                 conseq=[("he hauls the HONEY flag up the board to 2.17, four bands to the RICE SYRUP flag's one at 0.50", lambda: meshes([sf, hf, srun, hrun]) + meshes_of("price band", "board line", "syrup pole", "honey pole"), T_H0, DUR, {"hero": True, "moves": lambda: meshes([hf])}),
                         ("he cranks the winch and the honey flag climbs", lambda: meshes([hf, crank]), T_H0, T_H1, {"moves": True})])

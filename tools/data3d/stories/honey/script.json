@@ -108,7 +108,7 @@
  "storyboard": [
   "1 hook (the village square on market day, morning sun, striped awnings, crates of produce, people at the other stalls far behind; the cheap stall's counter big in front of us with a hand-painted sign PURE HONEY 2 EUROS and a row of seven identical honey jars across it; the lens low and three-quarter at the counter's end, the beekeeper whole beside it in his bee hat with his honey dipper): he looks along the row of jars, frowns at the 2 euro sign, and slams his honey dipper down on the counter; the whole row jumps and only one of the seven jars flips its label over to a big red SYRUP; he squints along the other six, not convinced, and taps the next one.",
   "2 a quarter of the price (the yard outside his honey house: its plank wall with a deep-set window of jars on shelves, the open door onto his lit honey room, flagstones in the grass; two white flagpoles in front of a tall price board banded every 0.50 under EUROS A KILO; a red winch at the honey pole's foot; the lens three-quarter on him at the winch): in his bee hat, the white RICE SYRUP flag already flies at the first band, 0.50; he walks in to the winch and cranks it and the gold HONEY flag climbs band by band past 1.00, 1.50, 2.00 to 2.17, four bands to the syrup's one; he steps back, looks from flag to flag and rubs his hands at us.",
-  "3 tuned to pass (the cheap stall's back room: plank walls, a dusty window, tied sacks of SYRUP, a steel blending vat with a big glass gauge reading HONEY at the bottom and SYRUP at the top, the syrup drum with its red SYRUP wheel, an old grey TEST box on a crate with a beacon on a post and a FAIL / PASS screen; the lens at his eye line over the bench): in his bee hat, he dips his honey dipper in the vat and touches it to the TEST box: the beacon and the screen go red FAIL; he cranks the SYRUP wheel down a notch, dips and tests again: still red, he shakes his head; one more notch, a last test: green PASS, while the gauge still reads mostly syrup; he gapes at us.",
+  "3 tuned to pass (the cheap stall's back room: plank walls, a dusty window, tied sacks of SYRUP, a steel blending vat with a big glass gauge reading HONEY at the bottom and SYRUP at the top, the syrup drum with its red SYRUP wheel, an old grey TEST box on a crate with a red and a green lamp and a FAIL / PASS screen; the lens at his eye line over the bench): in his bee hat, he dips his honey dipper in the vat and touches it to the TEST box: its red lamp and screen go FAIL; he cranks the SYRUP wheel down a notch, dips and tests again: still red, he shakes his head; one more notch, a last test: green PASS, while the gauge still reads mostly syrup; he gapes at us.",
   "4 the sharper test (the village hall: a tall room with a beamed ceiling, bunting from the fete, a honey-show table with rosettes on the stage, a big new white test machine with a wide funnel, a glass pipe, a round dial from green to red and a beacon on top; the lens low from the hall floor): in his bee hat, he carries the blend that passed on his raised honey dipper and lets one drop fall into the machine's funnel; it runs down the glass pipe, the dial swings hard from PASS into FAKE, the screen lights RICE SYRUP FOUND and the beacon lights red; he jumps back and points at it.",
   "5 almost half (the cobbled alley behind the square: brick walls, a green back door under a lamp, crates, a tall steel rack of the stall's imported jars, three shelves of seven, one red SUSPECT in every seven from the old test; the new EU TEST scanner on a blue rail along the rack's top, a steel push pole down from it to a red T handle at his hands; the lens walks along with him): in his bee hat, both hands on the T handle he pushes the scanner the length of the rack; its red bar sweeps the shelves and two more jars in every seven spin round to red SUSPECT, three in seven, almost half, three times the old count; he lets go, turns and jabs at the reds one, two, three, then turns to us with his hands out: what's in your jar?"
  ],
@@ -189,7 +189,7 @@
     "blending vat",
     "SYRUP wheel",
     "big glass gauge",
-    "old TEST box with a beacon",
+    "old TEST box with a red and a green lamp",
     "honey dipper",
     "tied syrup sacks"
    ],
@@ -200,7 +200,7 @@
     },
     {
      "at": 0.17,
-     "what": "he touches the TEST box: the beacon goes red FAIL"
+     "what": "he touches the TEST box: its red lamp and screen go FAIL"
     },
     {
      "at": 0.25,
@@ -216,7 +216,7 @@
     },
     {
      "at": 0.9,
-     "what": "the beacon turns green PASS while the gauge still reads mostly syrup, and he gapes at us"
+     "what": "the box turns green PASS while the gauge still reads mostly syrup, and he gapes at us"
     }
    ]
   },
