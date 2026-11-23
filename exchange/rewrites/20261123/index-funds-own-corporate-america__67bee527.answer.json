@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "index-funds-own-corporate-america__67bee527",
+  "slug": "index-funds-own-corporate-america",
+  "by": "chatgpt",
+  "written_at": "2026-11-23T12:24:03.426Z",
+  "title": "Your Index Fund Owns And Votes Corporate America",
+  "hook": "The shares in your account quietly hand voting power to fund giants.",
+  "closing": "Your index fund gives you ownership, but its manager often casts the vote.",
+  "question": "Who votes your shares?",
+  "segments": [
+    {
+      "topic": "Index Fund Ownership",
+      "say": "Index funds hold 52 percent of US stock assets, making passive funds the market's majority owner."
+    },
+    {
+      "topic": "Index Fund Giants",
+      "say": "BlackRock, Vanguard and State Street own 22 percent of a typical big company, concentrating that ownership."
+    },
+    {
+      "topic": "Index Fund Votes",
+      "say": "Vanguard casts 9 percent of votes at big-company meetings, turning fund ownership into corporate influence."
+    }
+  ]
+}
