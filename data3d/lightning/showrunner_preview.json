@@ -1,0 +1,115 @@
+{
+  "score": 61,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 3,
+    "data_demo": 1,
+    "mascot": 2,
+    "craft": 2,
+    "pace": 2,
+    "payoff": 1,
+    "temporal_craft": 3
+  },
+  "auto_fails": [],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "All frames are one consistent 3D world (ridge and tower in hook@0.3, stair landing in mid1, sand in mid3, ranger truck in mid4-payoff). There is no stock or AI cutout."
+    },
+    "decorative_mascot": {
+      "present": false,
+      "evidence": "Data is struck and jolts in hook@0.8 to hook@2.2, takes a bolt on the stair landing in mid1, stands charred in mid2, and sits in a truck that sparks around him in payoff@-0.4. Each time the lightning acts on him, but in mid2 he mostly just stands."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "There is no big-number card anywhere. The numbers are not shown at all, only spoken in the captions."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "Measured longest static stretch is 0.0s. Rain, bolts and sparks move in every sampled frame."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "mid2 is dark but filled with forest, rain and Data. No large dead area; dark_fraction is 0.0."
+    },
+    "unreadable": {
+      "present": false,
+      "evidence": "The hook caption in hook@0.8 to mid0 and the beat captions (mid1 \"EMPIRE STATE BUILDING\", mid4 \"INTO GLASS.\") are high-contrast white with a black outline and fully inside the frame."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 72
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.003,
+    "effective_fps": 23.9,
+    "max_dup_run": 3,
+    "measured": true,
+    "frozen_ratio": 0.003,
+    "frozen_fps": 23.9,
+    "max_frozen_run": 3,
+    "judder_ratio": 0.0,
+    "judder_fps": 24.0,
+    "held_s": 0.0,
+    "max_dup_at_s": 23.92,
+    "duration_s": 24.04
+  },
+  "judge": "headless-claude",
+  "weakest_scene": {
+    "id": "seg1",
+    "index": 1,
+    "failure_class": "claim_not_demonstrated",
+    "visible_evidence": "mid2 shows Data blackened and standing still in dark rain under the caption \"ROY SULLIVAN, GOT\". Nothing counts seven strikes or shows him surviving each one.",
+    "root_cause": "The scene shows the result (a charred ranger) instead of the number. 'Seven different times, and lived through every one' never becomes seven visible events.",
+    "repair_goal": "Make the seven a sequence the viewer can count. Data as the ranger takes strike after strike (seven bolts, a hat getting more scorched each time, or seven scorch marks piling up on the path), dusts himself off and stands back up each time, and the seventh strike lands as the payoff."
+  },
+  "depictions": [
+    {
+      "id": "seg0",
+      "kind": "machine",
+      "bespoke": 1,
+      "proves_claim": 0,
+      "note": "A generic small building with a stair landing and one bolt hitting Data. There is no Empire State Building, nothing taller than anything else, and nothing for 25 a year."
+    },
+    {
+      "id": "seg1",
+      "kind": "machine",
+      "bespoke": 1,
+      "proves_claim": 0,
+      "note": "A charred mascot in the rain. The count of seven is never shown."
+    },
+    {
+      "id": "seg2",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 1,
+      "note": "A bolt hits sand and leaves a glowing molten ring around Data, made of the subject. The glass is never shown forming, and nothing compares the heat to the sun."
+    },
+    {
+      "id": "closing",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 2,
+      "note": "Current crawls over the metal truck body while Data sits safe and smiling inside. It shows the shell taking the charge."
+    }
+  ],
+  "one_line": "The scenes look polished and lightning keeps hitting Data, but none of the numbers (100 a second, 25 a year, seven strikes, hotter than the sun) is ever shown. The pictures tell the mood, not the data.",
+  "problems": [
+    "The hook says a hundred flashes a second, but the picture shows one tower bolt and Data getting zapped (hook@0.3 to hook@2.2). No sense of 100 every second.",
+    "seg0 (mid1) has no Empire State Building. It is a small brown building with a fire escape, so 'tallest thing around' and '25 times a year' are not shown.",
+    "seg1 (mid2) shows Roy Sullivan's seven strikes as one dark frame of a charred, standing Data. No count, no surviving each one.",
+    "seg2 (mid3) shows molten sand but never the glass forming, and nothing compares the bolt's heat to the sun.",
+    "The payoff is the car-safety advice line. It does not pay off the Sullivan story the title promises."
+  ],
+  "fixes": [
+    "seg1: stage seven strikes in a row on Data as the ranger, with a running tally made of scorch marks or a hat burnt a bit more each time, and have him get back up every time.",
+    "seg0: put a skyscraper that clearly towers over its surroundings in the shot, and have bolts hit its spire again and again so 25 a year reads as a steady stream.",
+    "Hook: fill the sky with many flashes at once around the tower so 'a hundred a second' reads in the first frame.",
+    "seg2: end the beat on a lump of fused glass Data pulls out of the sand (a fulgurite), with the sun as a heat comparison beside the bolt.",
+    "Closing: tie it back to Sullivan, e.g. the ranger finally safe in the truck after seven strikes."
+  ]
+}

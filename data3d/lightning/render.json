@@ -1,0 +1,60 @@
+{
+ "frames_rendered": 719,
+ "frame_size": [
+  1080,
+  1920
+ ],
+ "native": true,
+ "fps": 30,
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30.0,
+  "codec": "h264",
+  "frames": 721,
+  "pix_fmt": "yuv420p"
+ },
+ "audio": {
+  "codec": "aac",
+  "sample_rate": "44100"
+ },
+ "duration_s": 24.033,
+ "bytes": 54699784,
+ "last_word_s": 23.125,
+ "tts": {
+  "engine": "gemini",
+  "voice": "gemini Charon",
+  "why_not_elevenlabs": null,
+  "why_not_chatterbox": null,
+  "why_not_gemini": null
+ },
+ "lines": [
+  "Right now, lightning is flashing about a hundred times every second, somewhere on Earth.",
+  "And it hunts for the tallest thing around. The Empire State Building gets hit about twenty-five times a year.",
+  "One park ranger, Roy Sullivan, got struck seven different times, and lived through every single one.",
+  "Every bolt is hotter than the surface of the sun, hot enough to turn sand into glass.",
+  "But your car protects you. Not the rubber tires, the metal shell. Would you stay inside?"
+ ],
+ "windows": [
+  [
+   0.0,
+   4.150708
+  ],
+  [
+   4.150708,
+   9.351541000000001
+  ],
+  [
+   9.351541000000001,
+   14.084708000000001
+  ],
+  [
+   14.084708000000001,
+   18.291083
+  ],
+  [
+   18.291083,
+   23.656791
+  ]
+ ]
+}
