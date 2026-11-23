@@ -1,21 +1,21 @@
 {
- "retell": "Honey fakers cut their honey with cheap rice syrup and tuned it in private labs until it passed Europe's checks, so the official tests only caught one fake in seven, until EU scientists built sharper tests and found almost half the imports were suspect.",
- "twist": "The fakers aren't just cheating the tests, they're paying labs to rehearse against them. Then the sharper tests show the fake share was about three times what anyone had counted, close to half of all imports.",
- "payoff": "Yes. The title promises Europe got smarter, and line 1 promises the real share was worse. Line 5 delivers both: the new tests catch the tuned blends and the number jumps to almost half. The closing question 'What's in your jar?' turns it back on the viewer.",
- "chain": "Every line connects to the one before. Line 1 sets up the problem. Line 2 explains how the faking works, and because it's that cheap, line 3 has them tuning blends to slip past the tests. Line 4 turns it around: sharper tests catch the tuned blends. So line 5 gives the real scale. No line is just another fact.",
+ "retell": "Honey fakers were cutting honey with cheap rice syrup and paying labs to tweak their blends until they passed Europe's tests, until EU scientists brought in a sharper test that caught them, and it turned out almost half the imported honey was probably fake.",
+ "twist": "Line 3: the fakers aren't just cheating, they're paying labs to test their own fakes and adjust them until they beat the checks. Then line 4 turns it around when the new test catches those tuned blends.",
+ "payoff": "Yes, mostly. The title promises fakers beating the tests until Europe got smarter, and line 1 says 'the real share was worse'. Line 5 pays both off with a hard number: almost half suspected fake, three times the old count. The closing question 'What's in your jar?' makes it personal, but it never says why a faked jar matters to the viewer (price, health, real beekeepers), so the ending lands on a number, not a reason to care.",
+ "chain": "Strong chain. Line 2 explains WHY they fake (the profit). Line 3 follows from it: SO they protect that profit by gaming the tests. Line 4 turns against it: BUT a sharper test catches them. Line 5 follows from line 4: SO the true count comes out. No line is just 'and here is another fact'.",
  "cut": [],
  "score": 79,
  "pass": true,
  "problems": [
-  "The title and line 1 both give the turn away early ('Then Europe got smarter', 'The real share was worse'). The viewer knows the fakers lose before line 4, so the twist is about scale, not direction.",
-  "Line 3's 'pay labs to test their blends' is a bit abstract when heard once. Something like 'they run their fake through the same tests first, tweaking until it passes' would land harder.",
-  "Two number comparisons sit close together in line 5 ('almost half', 'three times the old count'). It's fine as the payoff, but 'three times' could go, since 'one in seven' to 'almost half' already shows the jump.",
-  "'What's in your jar?' is a stock closing question. It works, but something specific, like whether the honey on their shelf is imported, would hit harder."
+  "Line 1 is clunky to hear: 'caught one honey import in seven faked' makes the listener stop and parse it. Something like 'Europe thought one in seven honey imports was fake' reads in one go.",
+  "There are a lot of numbers for a short: one in seven, a quarter, almost half, three times. Line 5 gives two in a row; 'almost half' on its own hits harder.",
+  "The closing doesn't say why the viewer should care beyond the question: no stake like 'you're paying honey prices for sugar water'.",
+  "Line 3 is the best moment in the video but it's said flatly. 'They pay labs to test their fakes' should land as the villain reveal."
  ],
  "scores": [
-  77,
+  78,
   79,
   80
  ],
- "key": "7010bd07cb541894"
+ "key": "27d8fa9f1166f600"
 }
