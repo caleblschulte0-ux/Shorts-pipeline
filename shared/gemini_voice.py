@@ -192,6 +192,9 @@ def _word_times(wav: Path) -> list[tuple[str, float, float]]:
             for seg in got.get("segments", []) for w in seg.get("words", [])]
 
 
+EDGE_S = 0.25          # s kept outside the first and last heard word of a take
+
+
 def split_take(words, texts: list[str], normalize=None):
     """Where each line of a ONE-TAKE narration starts and ends, from what
     the listener heard. [(start, end)] per line, or (None, why). A line has
@@ -219,14 +222,19 @@ def split_take(words, texts: list[str], normalize=None):
         if len(got) < HEARD_MIN * len(idx) or not got:
             return None, f"line {i} not heard ({len(got)}/{len(idx)} words)"
         spans.append((times[min(got)][0], times[max(got)][1]))
-    cuts = [0.0]
+    # The take's ends are cut at the first and last HEARD word, a breath outside them (2026-11-23: a re-voiced
+    # honey line came back 9.8 s, then 10.2 s, for sixteen words; a take of one line was kept from 0 to the file's
+    # end, so whatever the model said around the line went into the video with it, and the rate floor let it by).
+    cuts = [max(0.0, spans[0][0] - EDGE_S)]
     for i in range(len(spans) - 1):
         a, b = spans[i][1], spans[i + 1][0]
         if b < a:
             return None, f"lines {i} and {i + 1} overlap"
         cuts.append((a + b) / 2)
-    return [(cuts[i], cuts[i + 1] if i + 1 < len(cuts) else None)
-            for i in range(len(texts))], "ok"
+    cuts.append(spans[-1][1] + EDGE_S)
+    print("[tts] take cut " + " ".join(f"{cuts[i]:.2f}-{cuts[i + 1]:.2f} (heard {a:.2f}-{b:.2f})"
+                                       for i, (a, b) in enumerate(spans)), file=sys.stderr, flush=True)
+    return [(cuts[i], cuts[i + 1]) for i in range(len(texts))], "ok"
 
 
 def _cut(take: Path, a: float, b, out: Path) -> None:
