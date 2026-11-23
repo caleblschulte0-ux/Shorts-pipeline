@@ -69,8 +69,9 @@ GOOD_ANSWER = {
     "hook": "From 22 percent in 1990 to 34 percent by 2020.",
     "closing": "Look up once in a while.",
     "question": "Glasses or not?",
-    "segments": [{"topic": "nearsighted share", "say": "Nearsightedness climbed from 22 percent of people in 1990 to 34 percent by 2020."},
-                 {"topic": "screens per day", "say": "Daily screen time went from 3 hours to 7 hours in the same stretch."}],
+    # one number a beat (shared/narration.py): the claim refuses a readout
+    "segments": [{"topic": "nearsighted share", "say": "Nearsightedness climbed to 34 percent of people by 2020, up by half since 1990."},
+                 {"topic": "screens per day", "say": "Daily screen time more than doubled, to 7 hours, in the same stretch."}],
 }
 
 

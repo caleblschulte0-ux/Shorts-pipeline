@@ -40,6 +40,27 @@ Nothing ships unjudged. A rewrite that moves a number, invents an entity, or
 still fails the gate is REFUSED with the reasons written beside it, and a
 fresh request goes out carrying those reasons so the next round can fix
 them. ChatGPT writes; code decides.
+
+THE ASK IS TODAY'S (doctor aaeb12de3ebd, 2026-11-23). Read off the open
+index that morning, 144 requests for a queue of 72:
+
+    48  carried hold reasons the run no longer gave -- 14 of them "premise:
+        no consequential number in the title or hook", a rule retired on
+        11-17, because a request is idempotent on the story's WORDS and the
+        same words held again for a NEW reason kept the old file untouched;
+    37  were for stories held `data:` (an illustrative source) that no
+        rewrite can ever post -- a quarter of every firing's 10-request cap;
+     0  asked for the narration: nine stories had sat `not_current` for six
+        or more runs as readouts the brain's retell could not fix, and the
+        mailbox only ever filed `editorial_hold` and the judge's blocks.
+
+So: the same words held again REFRESHES the open request with the reasons
+the run gave today (`refiled`); a story held for its data RETIRES every
+open request for it (`unpostable`) and files none; a narration readout or
+a hook under the floor is filed as a `narration:` / `hook:` reason; and
+ChatGPT's answer must clear the narration doctrine too, as the rules it is
+handed already say (the brain's own retell and tighten keep checking it
+themselves).
 """
 from __future__ import annotations
 
@@ -193,16 +214,47 @@ def _dataset(seg: dict) -> dict | None:
 _WORD_PREFIX = ("premise:", "thesis:", "beats:", "pace:", "story:")
 
 
+#: A hold no rewrite can lift: the story's DATA is not a real source
+#: (`editorial_gate.data_provenance`). A request for such a story asks
+#: ChatGPT to polish words over numbers that can never post.
+_DATA_PREFIX = "data:"
+
+
+def gate_reasons(sc: dict) -> list[str]:
+    """Every reason the deterministic gate holds this story for; empty when
+    it passes."""
+    from scripts import editorial_gate as eg
+    v = eg.pre_render_verdict(sc, use_llm=False)
+    return [] if v["ok"] else [str(r) for r in v["reasons"]]
+
+
+def words_only(reasons) -> list[str]:
+    """The reasons in `reasons` a REWRITE can fix."""
+    return [str(r) for r in reasons or []
+            if str(r).startswith(_WORD_PREFIX)
+            and not str(r).startswith("beats (noted)")]
+
+
 def word_holds(sc: dict) -> list[str]:
     """The deterministic gate's reasons that a REWRITE can fix. Empty when
     the story passes, or when it is held only for data reasons (a source
     that is not real is not a words problem, and no rewrite is asked)."""
-    from scripts import editorial_gate as eg
-    v = eg.pre_render_verdict(sc, use_llm=False)
-    if v["ok"]:
-        return []
-    return [r for r in v["reasons"] if r.startswith(_WORD_PREFIX)
-            and not r.startswith("beats (noted)")]
+    return words_only(gate_reasons(sc))
+
+
+def unpostable(reasons) -> list[str]:
+    """The reasons in `reasons` that no rewrite can answer: the data."""
+    return [str(r) for r in reasons or [] if str(r).startswith(_DATA_PREFIX)]
+
+
+def narration_holds(sc: dict) -> list[str]:
+    """The narration's word problems (`shared.narration.problems`) as hold
+    reasons. The posting run holds a readout `not_current` before the gate
+    ever sees it, so these never reached `editorial_hold` -- nine stories
+    sat that way for six-plus runs each (explainer_health, 2026-11-23) with
+    nobody asked to fix them."""
+    from shared import narration
+    return ["narration: " + str(p) for p in narration.problems(sc)]
 
 
 # ---------------------------------------------------------------------------
@@ -291,10 +343,16 @@ def file_request(sc: dict, reasons: list[str], *, judge: dict | None = None,
             n += 1
             rid = f"{base}_r{n}"
         for old in open_requests(rewrites_dir):
-            if old.get("slug") == slug and old["id"] != rid:
-                if old["id"] == base or old["id"].startswith(base + "_r"):
-                    return old["id"]          # same words, still open: same ask
-                settle(old, {"decision": "superseded", "by": rid})
+            if old.get("slug") != slug:
+                continue
+            if (old["id"] == rid or old["id"] == base
+                    or old["id"].startswith(base + "_r")):
+                # same words, still open: the same ask -- carrying the
+                # reasons the run gave TODAY, not the ones it gave when
+                # the file was written
+                refresh(old, reasons, judge=judge, prior_rejection=prior_rejection)
+                return old["id"]
+            settle(old, {"decision": "superseded", "by": rid})
         day = rewrites_dir / _today()
         day.mkdir(parents=True, exist_ok=True)
         rp = day / f"{rid}.request.json"
@@ -362,10 +420,68 @@ def last_block(slug: str, ledger: Path | None = None) -> dict | None:
             "fixes": (found.get("fixes") or [])[:8]}
 
 
+def refresh(req: dict, reasons: list[str], *, judge: dict | None = None,
+            prior_rejection: list[str] | None = None) -> bool:
+    """Bring an OPEN request up to date with the run that held its story
+    again: today's reasons, the judge's words, the current rules. The id
+    and the words stay (an answer in flight is still for this story), so
+    nothing about claiming changes. Returns True if the file changed.
+
+    Until 2026-11-23 the same words held again returned the old id and
+    left the file alone, so a story the gate held on 10-18 for a rule
+    retired on 11-17 was still asking ChatGPT to satisfy that rule on
+    11-23 -- 48 of 144 open requests carried reasons the run no longer
+    gave, and a writer working the index fixed the wrong thing."""
+    reasons = [str(r) for r in reasons or []]
+    new: dict = {"held_for": reasons, "reasons": reasons, "rules": RULES,
+                 "answer_schema": ANSWER_SCHEMA}
+    if judge is not None:
+        new["judge"] = judge
+    if prior_rejection:
+        new["prior_rejection"] = list(prior_rejection)
+    if all(req.get(k) == v for k, v in new.items()):
+        return False
+    path = Path(req["_path"])
+    on_disk = json.loads(path.read_text())
+    on_disk.update(new)
+    on_disk["refiled"] = _now()
+    path.write_text(json.dumps(on_disk, indent=1, ensure_ascii=False) + "\n")
+    req.update(new)
+    req["refiled"] = on_disk["refiled"]
+    print(f"[rewrites] request refreshed: {_rel(path)} "
+          f"({len(reasons)} reason(s) as of today)", flush=True)
+    write_index(path.parent.parent)
+    return True
+
+
+def retire(slug: str, reasons: list[str], *,
+           rewrites_dir: Path | None = None) -> list[str]:
+    """Close every open request for a story no rewrite can post -- the
+    data under it is not a real source. Settled `unpostable` with the
+    data reasons, so a later run whose data IS fixed asks again under a
+    new round id. Returns the ids closed."""
+    closed = []
+    for old in open_requests(rewrites_dir):
+        if old.get("slug") == slug:
+            settle(old, {"decision": "unpostable", "problems": list(reasons)})
+            closed.append(old["id"])
+    if closed:
+        print(f"[rewrites] {slug}: {len(closed)} request(s) retired -- "
+              f"no rewrite can post it: {reasons[0]}", flush=True)
+    return closed
+
+
+#: The one `not_current` reason besides the narration that a rewrite CAN
+#: answer (`shared.currency.problems`); the render-standard ones are not words.
+_HOOK_FLOOR = "the hook is under the floor"
+
+
 def file_for_run(results: list[dict], stories: dict, *,
                  rewrites_dir: Path | None = None) -> list[str]:
     """After a posting run: file one request per story the run held for
-    word reasons (editorial) or the judge blocked. Returns the ids filed."""
+    word reasons (editorial, a narration readout, a hook under the floor)
+    or the judge blocked; retire the asks for a story held for its data.
+    Returns the ids filed."""
     filed = []
     for r in results or []:
         slug = r.get("slug")
@@ -373,13 +489,27 @@ def file_for_run(results: list[dict], stories: dict, *,
         if not sc or r.get("ok"):
             continue
         err = r.get("error")
+        all_reasons = [str(x) for x in (r.get("reasons") or [])]
+        dead = unpostable(all_reasons)
+        if dead:
+            # data holds are not a words job -- and an open ask for the
+            # story is a words job nobody should be doing
+            retire(slug, dead, rewrites_dir=rewrites_dir)
+            continue
         if err in ("editorial_hold", "story_hold"):
-            reasons = [x for x in (r.get("reasons") or [])
-                       if str(x).startswith(_WORD_PREFIX)
-                       and not str(x).startswith("beats (noted)")]
+            reasons = words_only(all_reasons)
             if not reasons:
-                continue                      # data holds are not a words job
+                continue
             rid = file_request(sc, reasons, rewrites_dir=rewrites_dir)
+        elif err == "not_current":
+            # The narration is words (operator, 2026-10-09: "this whole
+            # thing is just us reading off numbers"); so is the hook. The
+            # look and the standard are the renderer's, not the writer's.
+            reasons = narration_holds(sc) + [
+                "hook: " + x for x in all_reasons if x.startswith(_HOOK_FLOOR)]
+            if not reasons:
+                continue
+            rid = file_request(sc, reasons + word_holds(sc), rewrites_dir=rewrites_dir)
         elif err == "showrunner_block":
             judge = last_block(slug)
             reasons = ["judge: " + str((judge or {}).get("one_line") or
@@ -400,7 +530,12 @@ def sweep(stories: dict, posted: set, *, rewrites_dir: Path | None = None) -> li
     for slug, sc in stories.items():
         if slug in posted:
             continue
-        reasons = word_holds(sc)
+        gate = gate_reasons(sc)
+        dead = unpostable(gate)
+        if dead:
+            retire(slug, dead, rewrites_dir=rewrites_dir)
+            continue
+        reasons = words_only(gate) + narration_holds(sc)
         if reasons:
             rid = file_request(sc, reasons, rewrites_dir=rewrites_dir)
             if rid:
@@ -513,10 +648,16 @@ def _topic_entities(topic: str, original: str, label_words: set,
     return [w for w in cand if not (_forms(w) & plain)]
 
 
-def validate(sc: dict, ans: dict) -> tuple[dict | None, list[str]]:
+def validate(sc: dict, ans: dict, *,
+             narration: bool = False) -> tuple[dict | None, list[str]]:
     """(candidate story, problems). A candidate is returned only with no
     problems; it is `sc` with the words replaced, and it has PASSED the same
-    deterministic gate the run applies."""
+    deterministic gate the run applies. With `narration`, it has also
+    cleared `shared.narration.problems` -- the rules every request carries
+    say one number a beat, and an answer that is a readout would only be
+    held `not_current` by the next run. The brain's own retell and tighten
+    call this without it: they check the narration themselves, and tighten
+    runs before the retell has had its turn."""
     import copy
     problems: list[str] = []
     segs = sc.get("segments") or []
@@ -591,6 +732,8 @@ def validate(sc: dict, ans: dict) -> tuple[dict | None, list[str]]:
         if new.get("topic"):
             seg["topic"] = str(new["topic"]).strip()
     still = word_holds(cand)
+    if narration:
+        still += narration_holds(cand)
     if still:
         return None, ["still held by the gate: " + r for r in still]
     return cand, []
@@ -645,7 +788,7 @@ def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = No
         if not (req["id"] == base or req["id"].startswith(base + "_r")):
             settle(req, {"decision": "superseded", "problems": ["the story's words changed since this was filed"]})
             continue
-        cand, problems = validate(sc, ans)
+        cand, problems = validate(sc, ans, narration=True)
         if problems:
             settle(req, {"decision": "rejected", "problems": problems})
             report["rejected"].append({"id": req["id"], "problems": problems})
