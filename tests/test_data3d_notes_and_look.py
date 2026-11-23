@@ -120,3 +120,12 @@ def test_every_shot_is_graded_against_the_line_spoken_over_it():
     assert "NOT SHOWN" in out and "Empire State" in out.split("SAYS1=")[1]
     assert "SAYS (the narration over this shot" in (STORE / "judge3d.py").read_text()
     assert L.tag("NOT SHOWN: a brown walk-up, not the Empire State") == "NOT SHOWN"
+
+
+def test_a_hat_over_his_eyes_hides_his_face():
+    """2026-11-23: the honey beekeeper's brim covered his face in every board still and the face check passed, because
+    it counted anything parented to him (the hat) as his face"""
+    src = (STORE / "staging.py").read_text()
+    body = src[src.index("def face_hidden"):src.index("def face_dir")]
+    assert "mine = _body(data)" in body and "_his(data)" not in body
+    assert "data.parts" in src[src.index("def _body"):src.index("def _his")]

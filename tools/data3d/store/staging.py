@@ -26,6 +26,16 @@ HIDDEN_S = 0.3      # his FACE may be behind something (a prop swinging past) th
                     # big in frame, and every number above passed it; this is the ray that sees it.
 
 
+def _body(data):
+    """his BODY only: the rig and the meshes the character itself is built from (data.parts). What a story hangs on him
+    (a hat, a veil, a tool) is not his face: a beekeeper's brim over his eyes hid his face in every honey board still
+    (2026-11-23) while the face check, which counted anything parented to him as him, passed every frame."""
+    parts = getattr(data, "parts", None)
+    if not parts:
+        return _his(data)
+    return {data.arm.name} | {o.name for o in parts}
+
+
 def _his(data):
     out, todo = set(), [data.arm]
     while todo:
@@ -40,7 +50,7 @@ def face_hidden(data, cam, fd):
     h0 = data.arm.matrix_world @ data.pb["head"].head; h1 = data.arm.matrix_world @ data.pb["head"].tail
     r = (h1 - h0).length * 0.45; c = h0.lerp(h1, 0.5) + fd * r * 0.8
     side = fd.cross(Vector((0, 0, 1))); side = side.normalized() if side.length > 1e-4 else Vector((1, 0, 0))
-    o = cam.matrix_world.translation; mine = _his(data); blocked = 0
+    o = cam.matrix_world.translation; mine = _body(data); blocked = 0
     for p in (c, c + side * r * 0.5, c - side * r * 0.5, c + Vector((0, 0, r * 0.4)), c - Vector((0, 0, r * 0.4))):
         d = p - o; L = d.length
         dn = d.normalized(); o_ = o; left = L - 0.02
