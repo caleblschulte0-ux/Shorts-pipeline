@@ -145,18 +145,20 @@ def shot5():
     y_walk = data.arm.rotation_euler.z
     def body(t):
         p = S5_P.copy()
-        p += -S5_FW * 0.05 * hw_kick(t - T_GUSH - 0.1, 0.2)                                   # rocks back from the gush
+        p += -S5_FW * 0.06 * W(t, T_GRAB + 0.05, 0.4) - Vector((0, 0, 0)) # steps back off the crate with it
+        p.z += 0.025 * hw_kick(t - T_GRAB - 0.1, 0.12)
+        p += -S5_FW * 0.05 * hw_kick(t - T_GUSH - 0.1, 0.26)                                   # rocks back from the gush
         p.z += 0.03 * hw_kick(t - T_GUSH - 0.05, 0.12)
-        p += -S5_FW * 0.05 * W(t, T_OWN - 0.6, 0.4)                                            # steps back for room
-        p.z += 0.02 * math.sin(2 * math.pi * (t - T_OWN - 0.15) / 0.3) * W(t, T_OWN + 0.1, 0.1) * (1 - W(t, T_OWN + 0.75, 0.1))   # bounces with the shake
+        p += -S5_FW * 0.0 * W(t, T_OWN - 0.6, 0.4)                                            # steps back for room
+        p.z += 0.02 * math.sin(2 * math.pi * (t - T_OWN - 0.15) / 0.3) * W(t, T_OWN + 0.05, 0.2) * (1 - W(t, T_OWN + 0.65, 0.25))   # bounces with the shake
         p += S5_FW * 0.07 * W(t, T_SHOW - 0.3, 0.45)                                            # and comes to us
         p.z += 0.03 * hw_kick(t - T_SHOW - 0.2, 0.13)
         yaw = y_walk + (S5_YAW - y_walk) * W(t, T_STOP - 0.05, 0.4) - math.radians(38) * W(t, T_OWN - 0.6, 0.6)
         return p, yaw
     for f in range(F(T_STOP), NF + 1):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
-    hw_layer(data, "spine", lambda t: (6 * math.sin(2 * math.pi * (t - T_OWN - 0.15) / 0.3) * W(t, T_OWN + 0.1, 0.1) * (1 - W(t, T_OWN + 0.75, 0.1)) - 10 * hw_kick(t - T_GUSH - 0.1, 0.2)
-                                      + 6 * W(t, T_OWN - 0.3, 0.3) * (1 - W(t, T_SHOW - 0.3, 0.3)) - 6 * W(t, T_SHOW, 0.3), 0, 0), 0, DUR + 0.4)
+    hw_layer(data, "spine", lambda t: (6 * math.sin(2 * math.pi * (t - T_OWN - 0.15) / 0.3) * W(t, T_OWN + 0.05, 0.2) * (1 - W(t, T_OWN + 0.65, 0.25)) - 8 * hw_kick(t - T_GUSH - 0.1, 0.26)
+                                      + 6 * W(t, T_OWN - 0.3, 0.3) * (1 - W(t, T_SHOW - 0.5, 0.5)) - 5 * W(t, T_SHOW - 0.1, 0.5), 0, 0), 0, DUR + 0.4)
     sc.frame_set(F(T_STOP)); bpy.context.view_layer.update()
     sides = sorted("LR", key=lambda s: (acts._shoulder(data, s) - Vector(data.arm.location)).dot(S5_OUT))
     left, right = sides                          # right: the crate's side (the fake); left: his own jar
@@ -166,12 +168,12 @@ def shot5():
         return hw_hand(data, sd, rel)
     rk = [(0.0, (0.06, 0.1, -0.16)), (T_STOP, (0.07, 0.1, -0.15)), (T_GRAB - 0.35, (0.08, 0.06, -0.08)),
           (T_GRAB, hw_rel(data, right, T_GRAB, S5_JAR + Vector((0, 0, 0.06)))),
-          (T_INV + 0.1, (0.11, 0.07, -0.02)), (T_GUSH + 0.5, (0.11, 0.09, -0.03)), (T_OWN - 0.2, (0.1, 0.12, -0.06)),
-          (T_SHOW, (0.13, 0.06, -0.05)), (DUR + 0.3, (0.13, 0.06, -0.04))]
+          (T_INV + 0.2, (0.11, 0.07, -0.02)), (T_GUSH + 0.5, (0.11, 0.09, -0.03)), (T_OWN - 0.2, (0.1, 0.12, -0.03)),
+          (T_SHOW, (0.13, 0.08, -0.02)), (DUR + 0.3, (0.13, 0.08, -0.01))]
     lk = [(0.0, (0.06, 0.1, -0.14)), (T_STOP, (0.07, 0.1, -0.14)), (T_GUSH, (0.07, 0.11, -0.12)), (T_OWN - 0.45, (0.1, 0.08, -0.05)),
           (T_OWN - 0.1, (0.11, 0.06, -0.02)), (T_OWN + 0.15, (0.11, 0.06, 0.0)),
-          (T_OWN + 0.3, (0.11, 0.06, 0.05)), (T_OWN + 0.45, (0.11, 0.06, -0.01)), (T_OWN + 0.6, (0.11, 0.06, 0.05)),   # shakes it: nothing
-          (T_SHOW + 0.1, (0.13, 0.06, -0.05)), (DUR + 0.3, (0.13, 0.06, -0.04))]
+          (T_OWN + 0.3, (0.11, 0.08, 0.03)), (T_OWN + 0.45, (0.11, 0.08, -0.02)), (T_OWN + 0.6, (0.11, 0.08, 0.02)),   # shakes it: nothing
+          (T_OWN + 0.8, (0.115, 0.075, 0.0)), (T_SHOW + 0.45, (0.13, 0.06, -0.04)), (DUR + 0.3, (0.13, 0.06, -0.04))]
     rh, lh_ = hold(right, rk), hold(left, lk)
     data.reach(right, rh, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)
     data.reach(left, lh_, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.4)

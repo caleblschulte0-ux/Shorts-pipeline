@@ -1,9 +1,9 @@
 """BEAT 1, THE HOOK: the cheap stall in the market square. Eleven identical jars of PURE HONEY under a 2 EUROS sign;
-the beekeeper slams his dipper on the counter, the row jumps, and five of the eleven labels flip over to a red SYRUP
+the beekeeper slams his dipper on the counter, the row jumps, and only one of the seven labels flips over to a red SYRUP
 (46% of the EU's imported samples: almost half)."""
 
-S1_FAKES = (0, 2, 5, 7, 9)          # which of the eleven jars are syrup (0 = the one nearest the lens)
-S1_N = 11
+S1_FAKES = (3,)                     # the one jar in seven the old test catches (0 = the one nearest the lens)
+S1_N = 7
 S1_CH = 0.3                          # the counter's top: his waist
 
 
@@ -129,10 +129,10 @@ def place_market_stall():
 
 
 def shot1():
-    """THE CHEAP STALL. The lens low at the near end of the counter, the row of eleven jars running away from it to
+    """THE CHEAP STALL. The lens low at the near end of the counter, the row of seven jars running away from it to
     the beekeeper at the far end: he peers along the jars, straightens and frowns up at the 2 EUROS sign, raises his
-    dipper and SLAMS it on the counter; the row jumps, and five labels flip one after another down the row to a red
-    SYRUP; he jumps back, then leans in and points his dipper down the five red ones at us."""
+    dipper and SLAMS it on the counter; the row jumps, and one label flips to a red
+    SYRUP; he jumps back, then leans in and points his dipper down the six others at us, not convinced."""
     T_PEER = 0.1                                  # leaning in along the row
     T_SIGN = 0.5                                 # straightening up to the sign
     T_UP = 0.8                                   # the dipper goes up ...
@@ -155,13 +155,13 @@ def shot1():
     # the jars: eleven along the counter, each label turned to the lens; the fakes' labels are flaps with a red back
     jars = []
     for k in range(S1_N):
-        x = -0.42 + k * 0.105
+        x = -0.42 + k * 0.165
         a = math.atan2(CAM.y - (-0.12), CAM.x - x)            # the jar's label (its -Y face) turned to the lens
         fake = k in S1_FAKES
         jars.append(jar(f"stall jar {k}", (x, -0.12, S1_CH), r=0.046, h=0.15, fill=0.9, honey_col="#E6A52A" if fake else "#D98A12",
                         label="PURE HONEY", back="SYRUP" if fake else None, yaw=a + math.pi / 2))
     fakes = [jars[k] for k in S1_FAKES]
-    for i, j in enumerate(sorted(fakes, key=lambda j: -j["root"].location.x)): jar_flip(j, T_FLIP[i])   # down the row from him to us
+    jar_flip(fakes[0], T_FLIP[0])                 # only one in seven flips
     for k, j in enumerate(jars):                  # the row JUMPS at the slam, a hop running down from his end
         r = j["root"]; z0 = r.location.z; d = (S1_N - 1 - k) * 0.012; yw = r.rotation_euler.z; sg = 1 if k % 2 else -1
         for t, dz, tilt in ((0.0, 0, 0), (T_SLAM + d, 0, 0), (T_SLAM + d + 0.08, 0.04, 0.12 * sg), (T_SLAM + d + 0.17, 0.0, -0.05 * sg),
@@ -207,8 +207,8 @@ def shot1():
     data.look_at(jars[3]["root"].location + Vector((0, 0, 0.08)), 0.0, max_yaw=40, max_pitch=40, blend=0.0)
     data.look_at(Vector((-0.1, 0.11, 0.78)), T_SIGN, max_yaw=40, max_pitch=40, blend=0.18)            # the 2 EUROS sign
     data.look_at(HIT, T_SLAM - 0.3, max_yaw=40, max_pitch=22, blend=0.12)
-    data.look_at(fakes[3]["root"].location + Vector((0, 0, 0.08)), T_FLIP[0], max_yaw=40, max_pitch=40, blend=0.12)
-    data.look_at(fakes[0]["root"].location + Vector((0, 0, 0.08)), T_FLIP[3], max_yaw=40, max_pitch=40, blend=0.2)
+    data.look_at(fakes[0]["root"].location + Vector((0, 0, 0.08)), T_FLIP[0], max_yaw=40, max_pitch=40, blend=0.12)
+    data.look_at(jars[1]["root"].location + Vector((0, 0, 0.08)), T_FLIP[3], max_yaw=40, max_pitch=40, blend=0.2)
     data.look_at(LENS, T_POINT - 0.1, max_yaw=45, blend=0.18)
     data.expression("worried", 0.0, T_SIGN - 0.02)
     data.expression("angry", T_SIGN + 0.05, T_BACK - 0.03, blend=0.12)
@@ -221,5 +221,5 @@ def shot1():
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=40, fstop=7.0)
     camera_path(cam, lambda t: (CAM + (LOOK - CAM).normalized() * 0.12 * ease(t / DUR), LOOK, Vector((0.3, -0.15, 0.5))))
     return dict(lanes=[], kiosks=[], place="market_stall", light=light, data=data, rest=1, grips=("honey dipper",),
-                conseq=[("he slams his dipper and five of the eleven labels flip to a red SYRUP", lambda: meshes([j["root"] for j in fakes]), T_FLIP[0], DUR, {"hero": True}),
+                conseq=[("he slams his dipper and only one of the seven labels flips to a red SYRUP", lambda: meshes([j["root"] for j in fakes]), T_FLIP[0], DUR, {"hero": True}),
                         ("the slam makes the whole row of jars jump", lambda: meshes([j["root"] for j in jars]), T_SLAM, T_SLAM + 0.5)])

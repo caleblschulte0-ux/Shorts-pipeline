@@ -2,13 +2,13 @@
  "slug": "honey",
  "title": "Almost Half the Honey Europe Imports Is Suspected Fake",
  "voice": "am_fenrir",
- "note": "The eighth 3D short (2026-11-23), made from scratch under the look bible, the notes ledger and NOT SHOWN: every line's fact is a picture a stranger can read with the sound off (a count, a size, a named thing, both sides of a comparison). One beekeeper's market day in one village.",
+ "note": "The eighth 3D short (2026-11-23), made from scratch under the look bible, the notes ledger and NOT SHOWN: every line's fact is a picture a stranger can read with the sound off (a count, a size, a named thing, both sides of a comparison). One beekeeper's market day in one village. Rewritten 2026-11-23 as one chain (so/but) that passed the cold-read story gate: the old tests' one in seven, why faking pays, the fakers' labs, the sharper tests, almost half.",
  "lines": [
-  "Almost half the honey Europe imports is suspected fake, cut with sugar syrup.",
-  "Real honey takes forever. One bee makes about a twelfth of a teaspoon of it in her whole life.",
-  "Syrup made from rice costs about a quarter as much, so every jar stretched with it pays the faker.",
-  "Fakers even pay labs to test their blends, tuning the syrup until it slips past the checks.",
-  "Even honey shipped from Britain: ten out of ten flagged, likely blended from elsewhere. Would you spot one?"
+  "Europe's tests caught one honey import in seven faked. The real share was worse.",
+  "Fakers stretch honey with rice syrup, which costs about a quarter as much, so every spoonful is profit.",
+  "So they pay labs to test their blends, tuning the syrup until it slips past the checks.",
+  "But the EU's scientists brought sharper tests, and the tuned syrup stopped slipping through.",
+  "Almost half the imports came back suspected fake, three times the old count. What's in your jar?"
  ],
  "draft_windows": [
   [
@@ -34,43 +34,50 @@
  ],
  "sources": [
   {
-   "claim": "almost half the honey Europe imports is suspected of being cut with sugar syrup",
-   "says": "46% of the samples were suspicious of being adulterated with sugar syrups",
-   "url": "https://joint-research-centre.ec.europa.eu/jrc-news/food-fraud-how-genuine-your-honey-2023-03-23_en",
-   "publisher": "European Commission Joint Research Centre",
+   "claim": "Europe's earlier tests caught about one honey import in seven",
+   "says": "An earlier EU wide coordinated control plan conducted in 2015-17 measured that 14 % of the analysed samples did not comply with established benchmark criteria to assess honey authenticity.",
+   "url": "https://food.ec.europa.eu/food-safety/eu-agri-food-fraud-network/eu-coordinated-actions/honey-2021-2022_en",
+   "publisher": "European Commission, DG SANTE",
    "year": 2023
   },
   {
-   "claim": "one bee makes about a twelfth of a teaspoon of honey in her whole life",
-   "says": "The average worker bee makes only about 1/12th teaspoon of honey in her lifetime.",
-   "url": "https://honey.com/newsroom/presskit/honey-trivia",
-   "publisher": "National Honey Board",
-   "year": 2024
-  },
-  {
-   "claim": "syrup made from rice costs about a quarter as much as honey",
+   "claim": "fakers stretch honey with syrup made from rice, which costs about a quarter as much",
    "says": "The EU average unit value for imported honey was 2.17€ per kilogram (excluding honey from New Zealand) in 2021 whereas sugar syrups made from rice are available at around 0.40 – 0.60€ per kilogram.",
    "url": "https://food.ec.europa.eu/food-safety/eu-agri-food-fraud-network/eu-coordinated-actions/honey-2021-2022_en",
    "publisher": "European Commission, DG SANTE",
    "year": 2023
   },
   {
-   "claim": "so every jar stretched with it pays the faker",
+   "claim": "so every spoonful of syrup is profit",
    "says": "Diluting honey with sugar syrups provide an unfair advantage for fraudsters.",
    "url": "https://food.ec.europa.eu/food-safety/eu-agri-food-fraud-network/eu-coordinated-actions/honey-2021-2022_en",
    "publisher": "European Commission, DG SANTE",
    "year": 2023
   },
   {
-   "claim": "fakers pay labs to test their blends, tuning the syrup until it slips past the checks",
+   "claim": "they pay labs to test their blends, tuning the syrup until it slips past the checks",
    "says": "the regular recourse of analyses in accredited laboratories to adapt honey/sugar blends to elude possible detection by clients and official authorities prior to import operations",
    "url": "https://food.ec.europa.eu/food-safety/eu-agri-food-fraud-network/eu-coordinated-actions/honey-2021-2022_en",
    "publisher": "European Commission, DG SANTE",
    "year": 2023
   },
   {
-   "claim": "honey shipped from Britain: ten out of ten flagged, likely blended from elsewhere",
-   "says": "Honey imported from the United Kingdom had an even higher suspicion rate (10 out of 10, 100 %). However, the available traceability information suggests that this could be the result of honey produced in other countries and further processed in the United Kingdom before its re-export to the EU.",
+   "claim": "the EU's scientists brought sharper tests",
+   "says": "However, a different set of methods with improved detection capability was used in the present study, which may explain this difference.",
+   "url": "https://food.ec.europa.eu/food-safety/eu-agri-food-fraud-network/eu-coordinated-actions/honey-2021-2022_en",
+   "publisher": "European Commission, DG SANTE",
+   "year": 2023
+  },
+  {
+   "claim": "almost half the imports came back suspected fake",
+   "says": "46% of the samples were suspicious of being adulterated with sugar syrups",
+   "url": "https://joint-research-centre.ec.europa.eu/jrc-news/food-fraud-how-genuine-your-honey-2023-03-23_en",
+   "publisher": "European Commission Joint Research Centre",
+   "year": 2023
+  },
+  {
+   "claim": "three times the old count",
+   "says": "This rate was considerably higher than the one obtained in 2015-17 (14%).",
    "url": "https://food.ec.europa.eu/food-safety/eu-agri-food-fraud-network/eu-coordinated-actions/honey-2021-2022_en",
    "publisher": "European Commission, DG SANTE",
    "year": 2023
@@ -78,32 +85,32 @@
  ],
  "sets": [
   "market_stall",
-  "hive_yard",
   "honey_house",
   "back_room",
+  "village_hall",
   "market_alley"
  ],
- "sets_why": "one village on market day, walked by its beekeeper: the cheap stall in the square, his hives on the hill, his honey house, the cheap stall's back room where the fake is blended, and the alley behind it",
+ "sets_why": "one village on market day, walked by its beekeeper: the cheap stall in the square, his honey house, the cheap stall's back room where the fake is tuned, the village hall where the EU's inspectors set up their sharper test, and the alley behind the square where the stall's whole stock is tested",
  "ideas": [
-  "at the market a cheap stall sells eleven jars of PURE HONEY for two euros; the beekeeper slams his dipper on its counter and five of the labels flip over to a red SYRUP",
-  "at his hive one worker bee flies out, wrings a single drop into his giant teaspoon marked in twelve wedges, and flops down worn out on its rim while eleven more queue up",
-  "outside his honey house he loads four tubs of RICE SYRUP onto one pan of the big market scale, one after another, until they balance his ONE jar of honey on the other pan, by price: 0.50 euros a kilo against 2.17",
-  "in the cheap stall's back room he finds the fakers' blending vat and their test box; he dips the tester, it shows a red FAIL, he cranks the vat's SYRUP wheel down a notch and dips again, red, one more notch and it flashes a green PASS while the vat's gauge still shows it is mostly syrup",
-  "behind the cheap stall ten jars of BRITISH HONEY wait in a crate; he rolls a red stamp down all ten in one stroke and every one comes up SUSPECT; he peels the flag label off one and under it are the labels of other countries"
+  "at the cheap stall a row of seven identical honey jars sits under a PURE HONEY sign; he slams his honey dipper on the counter, the row jumps, and only one of the seven labels flips to a red SYRUP; he squints along the other six, not convinced",
+  "outside his honey house two flagpoles stand by a tall price board marked in euros a kilo; hand over hand he hoists the white RICE SYRUP flag and it stops at 0.50, then hoists the gold HONEY flag and it climbs to 2.17, four times as high",
+  "in the cheap stall's back room he dips his honey dipper in the blending vat and touches it to the old test box: red FAIL; he cranks the SYRUP wheel down a notch, still red; one more notch and it shows green PASS while the vat's gauge still reads mostly syrup",
+  "in the village hall the inspectors' new test machine with a big dial; he feeds it a drop of the tuned blend that passed in the back room and its dial swings hard into red, a siren light spinning",
+  "in the alley behind the square the stall's whole stock stands in long rows on crates; he rolls the new test's red stamp along them and almost half the jars come up red SUSPECT; he picks one up and holds it out to us"
  ],
  "storyboard": [
-  "1 hook (the village square on market day, morning sun, striped awnings, crates of produce, people at the other stalls far behind; the cheap stall's counter big in front of us with a hand-painted sign PURE HONEY 2 EUROS and a row of eleven identical honey jars across it; the lens low and three-quarter at the counter's end, the beekeeper whole beside it in his bee hat with his honey dipper): he looks along the row of jars, frowns at the 2 euro sign, and slams his honey dipper down on the counter; the whole row jumps and five of the eleven jars flip their labels over one after another, each now a big red SYRUP; he points along the five red ones at us.",
-  "2 one bee's whole life (his hive yard on the hill above the village, sunny, white hives in a row in tall wildflowers, the village roofs far below; the lens beside his first hive at his chest height, the beekeeper whole beside it holding out a teaspoon as big as his arm, its round bowl marked like a pie into twelve wedges): he lifts the hive's lid and ONE bee flies out to the spoon, wrings out a single golden drop that fills only one of the twelve wedges, then flops down worn out on the spoon's rim; he gapes at the one drop, then eleven more bees line up in a queue in the air to fill the rest.",
-  "3 a quarter of the price (the yard outside his honey house: its plank wall with a sunny window full of his jars, the open door, his steel extractor, frames leaning on the wall, a flagstone path through the grass; a big brass market scale with two pans on the path, the lens side-on so the beam runs across the frame): he sets his one jar of honey on the left pan, tagged 2.17 EUROS A KILO, and the beam drops; then he stacks tubs of RICE SYRUP tagged 0.50 EUROS A KILO onto the right pan, one, two, three, and the fourth brings the beam level; he spreads his hands at us: one jar, four tubs.",
-  "4 tuned to pass (the cheap stall's back room: a steel blending vat with a big SYRUP wheel and a gauge on its side, shelves of syrup tubs, a bench with the fakers' test box and its light, a bare bulb and a window of afternoon sun; the lens high over the bench, the beekeeper whole at the vat): he dips the tester in the vat and the box flashes a red FAIL; he cranks the SYRUP wheel down a notch and dips again, still red; one more notch and the box flashes a green PASS while the vat's gauge still reads mostly syrup; he gapes at the green light, then at us.",
-  "5 ten out of ten (the alley behind the cheap stall: cobbles, brick walls, a back door, a crate of ten jars each with a BRITISH HONEY flag label, the lens tracking in with him): he rolls a big red rubber stamp along all ten jars in one stroke and every one comes up stamped SUSPECT; he peels the flag label off the last jar and under it are the labels of other countries; he holds it out to us."
+  "1 hook (the village square on market day, morning sun, striped awnings, crates of produce, people at the other stalls far behind; the cheap stall's counter big in front of us with a hand-painted sign PURE HONEY 2 EUROS and a row of seven identical honey jars across it; the lens low and three-quarter at the counter's end, the beekeeper whole beside it in his bee hat with his honey dipper): he looks along the row of jars, frowns at the 2 euro sign, and slams his honey dipper down on the counter; the whole row jumps and only one of the seven jars flips its label over to a big red SYRUP; he squints along the other six, not convinced, and taps the next one.",
+  "2 a quarter of the price (the yard outside his honey house: its plank wall with a sunny window full of his jars, the open door, flagstones in the grass; two white flagpoles beside a tall price board marked EUROS A KILO in steps of 0.50; the lens three-quarter on him between the poles): hand over hand he hoists the white RICE SYRUP flag and it stops at 0.50; he hops round to the other pole and hoists the gold HONEY flag up past 1.00, 1.50, 2.00 to 2.17, four times as high; he points up at it, then spreads his hands at us.",
+  "3 tuned to pass (the cheap stall's back room: plank walls, a dusty window, sacks of SYRUP, a steel blending vat with a big SYRUP wheel on its side and a glass gauge reading HONEY at the bottom and SYRUP at the top, an old grey TEST box on a crate with a red and a green lamp; the lens high over his shoulder): he dips his honey dipper in the vat and touches it to the TEST box: red FAIL; he cranks the SYRUP wheel down a notch, dips again: still red; one more notch: green PASS, while the gauge still reads mostly syrup; he gapes at us.",
+  "4 the sharper test (the village hall: a tall room with a beamed ceiling, bunting from the fete, folding tables, a big new white test machine on the stage with a round dial from green to red and a beacon on top; the lens wide and low from the hall floor): he carries the jar of the blend that passed and squeezes one drop from his honey dipper into the machine's funnel; the dial swings hard into the red and the beacon spins; he jumps back and points at it.",
+  "5 almost half (the cobbled alley behind the square: brick walls, a lamp, the cheap stall's whole stock in long rows of jars on crates; the lens tracking along the rows beside him): in his bee hat he rolls the new test's red roller stamp along the rows; jar after jar comes up red SUSPECT, almost half of them, three times the one in seven at the stall; he picks up a jar and holds it out to us."
  ],
  "staging": [
   {
    "camera": "low",
-   "data": "slams his honey dipper on the cheap stall's counter and five of its eleven jars flip their labels to SYRUP",
+   "data": "slams his honey dipper on the cheap stall's counter and only one of its seven jars flips its label to SYRUP",
    "props": [
-    "eleven honey jars",
+    "seven honey jars",
     "PURE HONEY 2 EUROS sign",
     "honey dipper",
     "striped awning"
@@ -111,7 +118,7 @@
    "arc": [
     {
      "at": 0.08,
-     "what": "he looks along the row of eleven cheap jars under the 2 euro sign, frowning"
+     "what": "he looks along the row of seven cheap jars under the 2 euro sign, frowning"
     },
     {
      "at": 0.3,
@@ -119,15 +126,15 @@
     },
     {
      "at": 0.45,
-     "what": "the first fake label flips over to a big red SYRUP"
+     "what": "one label flips over to a big red SYRUP, only one of the seven"
     },
     {
-     "at": 0.62,
-     "what": "four more labels flip red down the row, five of the eleven"
+     "at": 0.65,
+     "what": "he squints along the other six, not convinced"
     },
     {
-     "at": 0.82,
-     "what": "he points his dipper along the five red ones and looks at us"
+     "at": 0.85,
+     "what": "he taps the next jar with his dipper and looks at us"
     }
    ]
   },
@@ -165,125 +172,136 @@
    ]
   },
   {
-   "camera": "profile",
-   "data": "stacks four tubs of rice syrup on the market scale until they balance his one jar of honey by price",
-   "props": [
-    "brass market scale",
-    "his jar of honey",
-    "four RICE SYRUP tubs",
-    "price tags",
-    "honey house wall"
-   ],
-   "arc": [
-    {
-     "at": 0.08,
-     "what": "he sets his one jar of honey, tagged 2.17 a kilo, on the scale's left pan and the beam drops"
-    },
-    {
-     "at": 0.3,
-     "what": "he stacks the first tub of RICE SYRUP, tagged 0.50 a kilo, on the right pan"
-    },
-    {
-     "at": 0.5,
-     "what": "a second and a third tub, the beam rising"
-    },
-    {
-     "at": 0.7,
-     "what": "the fourth tub and the beam comes level"
-    },
-    {
-     "at": 0.88,
-     "what": "he spreads his hands at us: one jar, four tubs"
-    }
-   ]
-  },
-  {
    "camera": "high",
-   "data": "cranks the fakers' SYRUP wheel down notch by notch until their test box flashes PASS",
+   "data": "tunes the syrup wheel down notch by notch until the old TEST box turns green while the gauge still reads mostly syrup",
    "props": [
-    "blending vat with a SYRUP wheel",
-    "syrup gauge",
-    "test box with its light",
-    "tester probe",
-    "shelves of syrup tubs"
+    "blending vat",
+    "SYRUP wheel",
+    "glass gauge",
+    "old TEST box with red and green lamps",
+    "honey dipper",
+    "syrup sacks"
    ],
    "arc": [
     {
-     "at": 0.08,
-     "what": "he dips the tester into the vat and the box flashes a red FAIL"
+     "at": 0.1,
+     "what": "he dips his honey dipper in the vat and touches the TEST box: red FAIL"
     },
     {
-     "at": 0.3,
+     "at": 0.35,
      "what": "he cranks the SYRUP wheel down a notch"
     },
     {
      "at": 0.5,
-     "what": "he dips again: still red"
+     "what": "he tests again: still red"
     },
     {
-     "at": 0.68,
-     "what": "one more notch, a dip, and the box flashes a green PASS"
+     "at": 0.65,
+     "what": "one more notch of the wheel"
     },
     {
-     "at": 0.86,
-     "what": "the gauge still reads mostly syrup; he gapes at the green light, then at us"
+     "at": 0.78,
+     "what": "the box shows green PASS while the gauge still reads mostly syrup"
+    },
+    {
+     "at": 0.9,
+     "what": "he gapes at us"
+    }
+   ]
+  },
+  {
+   "camera": "low",
+   "data": "drops the blend that passed into the inspectors' new test machine and its dial swings into the red",
+   "props": [
+    "new white test machine",
+    "round dial green to red",
+    "beacon light",
+    "honey dipper",
+    "jar of the tuned blend",
+    "fete bunting"
+   ],
+   "arc": [
+    {
+     "at": 0.1,
+     "what": "he walks up to the new machine with the jar of the blend that passed"
+    },
+    {
+     "at": 0.35,
+     "what": "he squeezes a drop from his honey dipper into its funnel"
+    },
+    {
+     "at": 0.55,
+     "what": "the dial swings hard into the red"
+    },
+    {
+     "at": 0.7,
+     "what": "the beacon on top spins red"
+    },
+    {
+     "at": 0.85,
+     "what": "he jumps back and points at it"
     }
    ]
   },
   {
    "camera": "tracking",
-   "data": "rolls a red stamp along ten BRITISH HONEY jars and peels a flag label to find other countries under it",
+   "data": "rolls the new test's red stamp along the stall's whole stock and almost half the jars come up red SUSPECT",
    "props": [
-    "crate of ten BRITISH HONEY jars",
+    "rows of honey jars on crates",
     "red roller stamp",
-    "SUSPECT marks",
-    "flag label",
-    "labels of other countries",
-    "cobbles"
+    "SUSPECT labels",
+    "brick alley",
+    "street lamp"
    ],
    "arc": [
     {
-     "at": 0.08,
-     "what": "he walks in to the crate of ten jars with flag labels"
+     "at": 0.1,
+     "what": "he sets the red roller stamp on the first row of jars"
     },
     {
      "at": 0.3,
-     "what": "he rolls the red stamp along all ten in one stroke"
+     "what": "he rolls it along and jar after jar comes up red SUSPECT"
     },
     {
-     "at": 0.5,
-     "what": "every one of the ten comes up stamped SUSPECT"
+     "at": 0.6,
+     "what": "almost half the rows are red"
     },
     {
-     "at": 0.68,
-     "what": "he peels the flag label off the last jar"
+     "at": 0.8,
+     "what": "he picks up one jar"
     },
     {
-     "at": 0.86,
-     "what": "under it, the labels of other countries; he holds it out to us"
+     "at": 0.92,
+     "what": "he holds it out to us"
     }
    ]
   }
  ],
  "callbacks": {},
  "world": {
-  "logline": "On market day a village beekeeper finds a cheap stall passing off sugar syrup as honey, and follows the fake back: why it pays, how it is tuned to pass the tests, and where it really comes from.",
+  "logline": "On market day a village beekeeper catches one fake jar in seven at the cheap stall, learns why faking pays and how the fakers tune their syrup to pass the tests, then watches the EU's sharper test catch almost half of the stall's stock.",
   "hero": "Data as the village's beekeeper: his lab coat under a wide beekeeper's hat with its veil rolled up round the crown, a wooden honey dipper always in his hand",
-  "goal": "prove to the village that the cheap stall's honey is fake and his is real",
-  "place": "one hill village in the sun: the market square with its striped stalls, his hive yard of white hives on the hill above the roofs, his wooden honey house, the cheap stall's back room, and the cobbled alley behind the square",
+  "goal": "find out how much of the cheap stall's honey is really fake",
+  "place": "one hill village in the sun: the market square with its striped stalls, his wooden honey house, the cheap stall's back room, the village hall where the inspectors set up, and the cobbled alley behind the square",
   "time": "one market day, from the morning market to the afternoon",
   "weather": "a clear warm summer day, bright sun throughout, long soft shadows by the afternoon",
   "path": [
    "market_stall",
-   "hive_yard",
    "honey_house",
    "back_room",
+   "village_hall",
    "market_alley"
   ],
   "continuity": {
-   "honey dipper": "his tool and his sword: he slams it in beat 1",
-   "bee hat": "who he is: on his head in every beat",
-   "jar": "his own jar of real honey against the cheap stall's jars: the fakes in beat 1, his jar on the scale in beat 3"
+   "honey dipper": "his tool: he slams it in beat 1, it is the probe he dips in beat 3 and beat 4",
+   "bee hat": "on his head in every beat",
+   "jar": "the cheap stall's jars: one in seven flips red in beat 1, the whole stock is tested in beat 5"
   }
- }
+ },
+ "links": [
+  "so",
+  "so",
+  "but",
+  "so"
+ ]
 }
