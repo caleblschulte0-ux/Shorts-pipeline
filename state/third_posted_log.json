@@ -22030,13 +22030,50 @@
       "ts": "2026-11-23T12:37:52.024253+00:00"
     },
     "clip-20261123-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/tminnzy/clip/MushyComfortableFriseePJSalt-7m1EwNbNasg6cetp",
-      "story_key": null,
-      "streamer": "tminnzy",
+      "url": "https://youtube.com/shorts/6EpXmBkme6o",
       "title": "Tminnzy Can't Talk About Qixso's Party After Signing An NDA \ud83e\udd10",
       "kind": "twitch_clip",
-      "ts": "2026-11-23T12:43:34.142564+00:00",
+      "ts": "2026-11-23T12:43:46.284802+00:00",
+      "uploaded_at": "2026-11-23T12:43:46.284817+00:00",
+      "publish_at": "2026-11-23T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261123-tminnzy-can-t-talk-about-qixso-s-party-after-sig-4afe1c6f",
+        "tiktok": "queued for 2026-11-23T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/tminnzy/clip/MushyComfortableFriseePJSalt-7m1EwNbNasg6cetp",
+      "streamer": "tminnzy",
+      "series": "chaos",
+      "hook": "tminnzy signed an NDA about Qixso's party \ud83e\udd10",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 100062,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 32.6
+      },
+      "director_cut": true
+    },
+    "rejected-betterboxyphonekappapride-dj6xj97c0t6zatrx": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/BetterBoxyPhoneKappaPride-dj6XJ97C0t6ZaTrX",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe What Happens In GTA 6 Gone Wild \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is only about a third of the 9:16 canvas, a thin strip between large blurred bands. The target is abou; vision: The subject is small and far away, and the streamer's facecam and HUD take up much of the strip. On a phone the action i; vision: Frames at 1.2s and 27.3s are blo",
+      "ts": "2026-11-23T12:50:12.404561+00:00"
+    },
+    "clip-20261123-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/ResilientDrabGrasshopperWow-fKAbKH4GGUaEC2dl",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Explains Why GTA 6 Locking Players Into a Relationship Is a Huge Mistake",
+      "kind": "twitch_clip",
+      "ts": "2026-11-23T12:56:17.419540+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
