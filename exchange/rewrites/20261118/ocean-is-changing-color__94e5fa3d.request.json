@@ -94,10 +94,12 @@
   }
  ],
  "held_for": [
-  "premise: brain: The hook 'The ocean is quietly changing color' is a flat fun fact and fails to promise a specific surprise, threat, or the immense scale that the video's beats deliver."
+  "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: Shifts to a 2019 model prediction, which is a different claim from the observed change. It reads as 'and another fact' a",
+  "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: The area figure is a size comparison and does not follow from the prediction in beat 1. The land-area claim is also doub"
  ],
  "reasons": [
-  "premise: brain: The hook 'The ocean is quietly changing color' is a flat fun fact and fails to promise a specific surprise, threat, or the immense scale that the video's beats deliver."
+  "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: Shifts to a 2019 model prediction, which is a different claim from the observed change. It reads as 'and another fact' a",
+  "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: The area figure is a size comparison and does not follow from the prediction in beat 1. The land-area claim is also doub"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -131,5 +133,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T09:48:11Z"
+ "refiled": "2026-11-24T12:40:38Z"
 }

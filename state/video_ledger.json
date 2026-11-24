@@ -8187,6 +8187,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "vinyl is a premium niche under streaming"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-24",
+   "topic_category": "culture",
+   "hook_type": "stat",
+   "hook_text": "A third of America now wears ink, and most can't stop at one.",
+   "depictions": [
+    "illustrated:tattoo-arm-machine",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "rebellion became normal"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-24",
+   "topic_category": "health",
+   "hook_type": "inversion",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "one instruction halved SIDS"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-24",
+   "topic_category": "finance",
+   "hook_type": "inversion",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds in your account.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "illustrated:shareholder-hall",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "you own it but don't vote it"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-24",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "A supposedly dead format became music's premium physical product.",
+   "depictions": [
+    "illustrated:record-wall",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "vinyl is a premium niche under streaming"
   }
  ],
  "entries": [

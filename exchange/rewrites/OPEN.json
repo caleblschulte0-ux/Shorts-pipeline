@@ -1,109 +1,216 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-24T12:28:14Z",
+ "updated": "2026-11-24T12:40:39Z",
  "open": [
   {
-   "id": "south-korea-robot-density-record__fda84246_r2",
+   "id": "nuclear-reactors-under-construction__f02bf7a4",
+   "slug": "nuclear-reactors-under-construction",
+   "filed": "2026-11-24T12:40:35Z",
+   "why": [
+    "thesis: seg0 ('Nuclear Reactor Starts') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 0 mentions 10 reactors starting, not the 78 GW figure, so it doesn't directly support the headline claim"
+   ],
+   "request": "exchange/rewrites/20261124/nuclear-reactors-under-construction__f02bf7a4.request.json",
+   "answer_path": "exchange/rewrites/20261124/nuclear-reactors-under-construction__f02bf7a4.answer.json"
+  },
+  {
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-24T01:28:47Z",
+   "why": [
+    "premise: brain: The pitch lists generic education statistics without a concrete, surprising hook or clear stakes that viewers can picture."
+   ],
+   "request": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983.request.json",
+   "answer_path": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983.answer.json"
+  },
+  {
+   "id": "us-stops-making-pennies-232-years__546cd5a1",
+   "slug": "us-stops-making-pennies-232-years",
+   "filed": "2026-11-23T20:05:25Z",
+   "why": [
+    "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Shifts to how long coins last historically; it doesn't follow from the savings claim, and the two-cent piece comparison ",
+    "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Nickel production cost is a side comparison; it doesn't follow from the penny's longevity and only loosely supports the "
+   ],
+   "request": "exchange/rewrites/20261123/us-stops-making-pennies-232-years__546cd5a1.request.json",
+   "answer_path": "exchange/rewrites/20261123/us-stops-making-pennies-232-years__546cd5a1.answer.json"
+  },
+  {
+   "id": "cohabitation-overtakes-marriage__bfb44f30",
+   "slug": "cohabitation-overtakes-marriage",
+   "filed": "2026-11-23T20:05:23Z",
+   "why": [
+    "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Beat 0 states a current comparison; Beat 1 provides historical context for one element, not a direct consequence or turn",
+    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts the focus from 'young adults' (as specified in the headline) to 'older adults', thus not directly proving or expl"
+   ],
+   "request": "exchange/rewrites/20261123/cohabitation-overtakes-marriage__bfb44f30.request.json",
+   "answer_path": "exchange/rewrites/20261123/cohabitation-overtakes-marriage__bfb44f30.answer.json"
+  },
+  {
+   "id": "feet-are-getting-bigger__cdd29c3f",
+   "slug": "feet-are-getting-bigger",
+   "filed": "2026-11-23T17:07:50Z",
+   "why": [
+    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Adds a separate fact about width (self-reported by women and men) rather than following from or turning against the grow"
+   ],
+   "request": "exchange/rewrites/20261123/feet-are-getting-bigger__cdd29c3f.request.json",
+   "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__cdd29c3f.answer.json"
+  },
+  {
+   "id": "flu-season-2024-25-worst-in-years__12da2331",
+   "slug": "flu-season-2024-25-worst-in-years",
+   "filed": "2026-11-23T17:07:49Z",
+   "why": [
+    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: Beat 2 introduces a new fact about vaccination rates rather than directly following from the older‑adult hospitalization"
+   ],
+   "request": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__12da2331.request.json",
+   "answer_path": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__12da2331.answer.json"
+  },
+  {
+   "id": "normal-body-temperature-has-shifted__b9e452aa",
+   "slug": "normal-body-temperature-has-shifted",
+   "filed": "2026-11-23T14:43:37Z",
+   "why": [
+    "premise: brain: The hook is a vague abstraction (\"the old standard stayed fixed while human bodies cooled\") that never states a concrete stake for the viewer or a picturable surprise, and it reads as a flat fun fact."
+   ],
+   "request": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__b9e452aa.request.json",
+   "answer_path": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__b9e452aa.answer.json"
+  },
+  {
+   "id": "runway-near-misses-climbing__b61bd155",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-23T14:43:35Z",
+   "why": [
+    "thesis: seg1 ('Runway incursion cause') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Shifts to the cause of incursions (human/vehicle error) without connecting it to the doubling claim; it doesn't follow f",
+    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Introduces airport clustering as a new fact; it doesn't follow from the incursion-cause beat, and the 'That runway dange"
+   ],
+   "request": "exchange/rewrites/20261123/runway-near-misses-climbing__b61bd155.request.json",
+   "answer_path": "exchange/rewrites/20261123/runway-near-misses-climbing__b61bd155.answer.json"
+  },
+  {
+   "id": "right-whale-breeding-females__8388ea66",
+   "slug": "right-whale-breeding-females",
+   "filed": "2026-11-23T14:43:34Z",
+   "why": [
+    "thesis: seg0 ('Right Whale Population') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Does not directly prove or explain the headline about calves, only mentions total population size.",
+    "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Although it states the 22 calves, it does not logically follow from beat 0 and isn’t a continuation of a single narrativ",
+    "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Focuses on breeding females, not the calf count claim, and does not continue the specific story of going from 0 to 22 ca"
+   ],
+   "request": "exchange/rewrites/20261123/right-whale-breeding-females__8388ea66.request.json",
+   "answer_path": "exchange/rewrites/20261123/right-whale-breeding-females__8388ea66.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__55b96150",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-23T14:43:34Z",
+   "why": [
+    "premise: brain: The hook is vague and offers no concrete, picture‑worthy surprise or stakes beyond a generic claim that vinyl is ‘premium’ again."
+   ],
+   "request": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__55b96150.request.json",
+   "answer_path": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__55b96150.answer.json"
+  },
+  {
+   "id": "great-barrier-reef-bleaching-accelerating__497f2107",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-23T14:43:33Z",
+   "why": [
+    "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__497f2107.request.json",
+   "answer_path": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__497f2107.answer.json"
+  },
+  {
+   "id": "womens-college-hoops-out-rates-men__d9a59e0a",
+   "slug": "womens-college-hoops-out-rates-men",
+   "filed": "2026-11-23T14:43:33Z",
+   "why": [
+    "story: fatal: invented_fact, unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__d9a59e0a.request.json",
+   "answer_path": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__d9a59e0a.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__c4fe8077",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-11-23T14:43:32Z",
+   "why": [
+    "premise: brain: The hook is vague and lacks a concrete, pictureable surprise or stakes, making the pitch weak."
+   ],
+   "request": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__c4fe8077.request.json",
+   "answer_path": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__c4fe8077.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__59561cc2",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-11-23T14:43:32Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or contradiction for viewers"
+   ],
+   "request": "exchange/rewrites/20261123/divorce-rate-quiet-decline__59561cc2.request.json",
+   "answer_path": "exchange/rewrites/20261123/divorce-rate-quiet-decline__59561cc2.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__0e97d62e",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-11-23T14:43:32Z",
+   "why": [
+    "story: fatal: invented_fact — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261123/usps-mail-volume-collapse__0e97d62e.request.json",
+   "answer_path": "exchange/rewrites/20261123/usps-mail-volume-collapse__0e97d62e.answer.json"
+  },
+  {
+   "id": "south-korea-robot-density-record__fda84246_r1",
    "slug": "south-korea-robot-density-record",
-   "filed": "2026-11-24T12:28:14Z",
+   "filed": "2026-11-23T12:29:30Z",
    "why": [
     "narration: beat 1 reads off 3 numbers: say one, and what it means",
     "narration: beat 2 reads off 3 numbers: say one, and what it means",
     "narration: beat 3 reads off 2 numbers: say one, and what it means"
    ],
-   "request": "exchange/rewrites/20261124/south-korea-robot-density-record__fda84246_r2.request.json",
-   "answer_path": "exchange/rewrites/20261124/south-korea-robot-density-record__fda84246_r2.answer.json"
+   "request": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246_r1.request.json",
+   "answer_path": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246_r1.answer.json"
   },
   {
-   "id": "cohabitation-overtakes-marriage__bfb44f30_r1",
-   "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-24T12:28:13Z",
+   "id": "autism-diagnosis-rate-rise__cf7356de",
+   "slug": "autism-diagnosis-rate-rise",
+   "filed": "2026-11-22T16:28:08Z",
    "why": [
-    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Focuses on older adults, not young adults, and doesn't build on the previous point about young adult marriage trends."
+    "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Does not address the range of autism measurements across sites.",
+    "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Focuses on sex differences, not on site-to-site measurement range.",
+    "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: While about a site measurement, it does not logically follow from the previous beat about sex differences."
    ],
-   "request": "exchange/rewrites/20261124/cohabitation-overtakes-marriage__bfb44f30_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/cohabitation-overtakes-marriage__bfb44f30_r1.answer.json"
+   "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
+   "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
   },
   {
-   "id": "feet-are-getting-bigger__cdd29c3f_r1",
-   "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-24T12:28:13Z",
-   "why": [
-    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Adds a new fact about width without a causal link to the previous beat, so it doesn't follow the story progression."
-   ],
-   "request": "exchange/rewrites/20261124/feet-are-getting-bigger__cdd29c3f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/feet-are-getting-bigger__cdd29c3f_r1.answer.json"
-  },
-  {
-   "id": "flu-season-2024-25-worst-in-years__12da2331_r1",
-   "slug": "flu-season-2024-25-worst-in-years",
-   "filed": "2026-11-24T12:28:13Z",
-   "why": [
-    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: Introduces vaccination rates without a direct logical link from the previous beat about older adults, breaking the seque"
-   ],
-   "request": "exchange/rewrites/20261124/flu-season-2024-25-worst-in-years__12da2331_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/flu-season-2024-25-worst-in-years__12da2331_r1.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__497f2107_r1",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-24T12:28:13Z",
-   "why": [
-    "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261124/great-barrier-reef-bleaching-accelerating__497f2107_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/great-barrier-reef-bleaching-accelerating__497f2107_r1.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__67bee527_r1",
+   "id": "index-funds-own-corporate-america__67bee527",
    "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-24T12:28:13Z",
+   "filed": "2026-11-22T16:28:08Z",
    "why": [
     "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
    ],
-   "request": "exchange/rewrites/20261124/index-funds-own-corporate-america__67bee527_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/index-funds-own-corporate-america__67bee527_r1.answer.json"
+   "request": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.request.json",
+   "answer_path": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.answer.json"
   },
   {
-   "id": "runway-near-misses-climbing__b61bd155_r1",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-24T12:28:13Z",
-   "why": [
-    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Introduces geographic clustering without directly following from the previous cause-focused beat"
-   ],
-   "request": "exchange/rewrites/20261124/runway-near-misses-climbing__b61bd155_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/runway-near-misses-climbing__b61bd155_r1.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__609ffc7e_r1",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-24T12:28:12Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or threat beyond generic numbers, making it insufficiently compelling."
-   ],
-   "request": "exchange/rewrites/20261124/frog-fungus-mass-extinction__609ffc7e_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/frog-fungus-mass-extinction__609ffc7e_r1.answer.json"
-  },
-  {
-   "id": "tattoo-mainstream-shift__f7fc7a74_r1",
+   "id": "tattoo-mainstream-shift__f7fc7a74",
    "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-24T12:28:12Z",
+   "filed": "2026-11-20T14:27:20Z",
    "why": [
     "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Does not logically follow from beat 0; it's just another statistic, not a consequence.",
     "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Does not directly support the headline claim about overall tattoo prevalence."
    ],
-   "request": "exchange/rewrites/20261124/tattoo-mainstream-shift__f7fc7a74_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/tattoo-mainstream-shift__f7fc7a74_r1.answer.json"
+   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.request.json",
+   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.answer.json"
   },
   {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-24T12:23:26Z",
+   "id": "frog-fungus-mass-extinction__609ffc7e",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-20T13:11:33Z",
    "why": [
-    "premise: brain: The pitch is a generic survey of unrelated stats from different countries (India, Guinea-Bissau, Tanzania) with a vague 'attention gap' premise, no single concrete subject, and no specific surprise or contradiction a viewer can picture."
+    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('One Fungus Is Still Reshaping Frog Survival Worldwide') — brain: Beat 2 is an 'another fact' about geographic reach, not a direct consequence or progression from Beat 1's focus on ongoi"
    ],
-   "request": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.answer.json"
+   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
+   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
   },
   {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
@@ -140,7 +247,7 @@
    "slug": "fifty-otters-survived-climate-fight",
    "filed": "2026-11-18T13:14:53Z",
    "why": [
-    "premise: brain: The hook is a flat chain of facts (50 otters survived, then helped kelp) with no concrete surprise, threat or contradiction; it names no stake for the viewer and reads as a lab-result summary."
+    "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Beat 1 discusses population recovery, which doesn't directly prove or explain the headline's claim about otters protecti"
    ],
    "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.request.json",
    "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.answer.json"
@@ -150,7 +257,8 @@
    "slug": "ocean-is-changing-color",
    "filed": "2026-11-18T13:14:52Z",
    "why": [
-    "premise: brain: The hook 'The ocean is quietly changing color' is a flat fun fact and fails to promise a specific surprise, threat, or the immense scale that the video's beats deliver."
+    "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: Shifts to a 2019 model prediction, which is a different claim from the observed change. It reads as 'and another fact' a",
+    "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: The area figure is a size comparison and does not follow from the prediction in beat 1. The land-area claim is also doub"
    ],
    "request": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.request.json",
    "answer_path": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.answer.json"
@@ -160,7 +268,7 @@
    "slug": "volcanoes-erupting-right-now",
    "filed": "2026-11-18T12:25:45Z",
    "why": [
-    "premise: brain: The pitch is a flat fun fact with no stake or contradiction: about 1,400 volcanoes, three in four on the Ring of Fire, and 16 on a watch list never say why the viewer should care. The hook is a vague 'it just moves around', and the title's '45 volcanoes erupting' is not supported by any beat."
+    "premise: brain: The pitch is a flat fun fact with no stake or contradiction: the hook says Earth keeps erupting but names no subject plainly or threat, and the beats read as a generic list of volcano stats (active count, Ring of Fire share, Decade Volcanoes) that overturns no belief the viewer holds."
    ],
    "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.request.json",
    "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
@@ -210,7 +318,7 @@
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-16T12:04:28Z",
    "why": [
-    "thesis: seg2 ('robotic revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Revenue figure shows adoption but does not directly prove the 15.1% share claim"
+    "thesis: seg2 ('robotic revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Revenue figure talks about financial adoption, not directly proving the 15.1% surgery share claim"
    ],
    "request": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.request.json",
    "answer_path": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.answer.json"
