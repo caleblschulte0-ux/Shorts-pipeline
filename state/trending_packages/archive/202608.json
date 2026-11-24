@@ -10994,5 +10994,455 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260825": {
+    "01_graph-ev-sales-passed-diesel.json": {
+      "format": "graph_race",
+      "slug": "graph-ev-sales-passed-diesel",
+      "title": "Electric Cars Just Outsold Diesel Worldwide",
+      "hook": "The Diesel Era Just Ended",
+      "y_label": "Global new car sales per year (millions)",
+      "duration": 13,
+      "source": "IEA Global EV Outlook annual reports (battery-electric + plug-in hybrid car sales, 2016-2023) alongside industry estimates of global diesel passenger-car sales compiled from JATO Dynamics, ACEA and ICCT reporting on diesel's collapsing share of new-car sales (from over 50% of Europe's market in 2015 to single digits by 2023). Approximate, order-of-magnitude figures; EVs overtook diesel car sales worldwide around 2021-2022.",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Electric Cars",
+          "color": "#2ecc71",
+          "values": [
+            0.8,
+            1.2,
+            2.1,
+            2.3,
+            3.2,
+            6.6,
+            10.5,
+            14.2
+          ]
+        },
+        {
+          "name": "Diesel Cars",
+          "color": "#4a4a4a",
+          "values": [
+            11.5,
+            10.5,
+            9.0,
+            7.5,
+            6.0,
+            5.0,
+            4.2,
+            3.5
+          ]
+        }
+      ],
+      "hashtags": [
+        "electriccars",
+        "ev",
+        "diesel",
+        "evsales",
+        "automotive",
+        "cars",
+        "climate",
+        "evrevolution",
+        "sustainability",
+        "dataviz",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-dubai-overtakes-heathrow.json": {
+      "format": "graph_race",
+      "slug": "graph-dubai-overtakes-heathrow",
+      "title": "Dubai's Airport Quietly Buried Heathrow",
+      "hook": "World's Busiest Airport Flipped",
+      "y_label": "Annual airport passengers (millions)",
+      "duration": 13,
+      "source": "Heathrow Airport annual traffic statistics and Dubai Airports (DXB) annual traffic reports. Dubai International overtook London Heathrow as the world's busiest airport for international passenger traffic in 2014 and has led every year since; both airports show the sharp 2020 collapse in global air travel before recovering.",
+      "years": [
+        2010,
+        2012,
+        2014,
+        2016,
+        2018,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Heathrow",
+          "color": "#075AAA",
+          "values": [
+            65.7,
+            70.0,
+            73.4,
+            75.7,
+            80.1,
+            22.1,
+            79.2
+          ]
+        },
+        {
+          "name": "Dubai (DXB)",
+          "color": "#C8102E",
+          "values": [
+            47.2,
+            66.4,
+            70.4,
+            83.6,
+            89.1,
+            25.9,
+            87.0
+          ]
+        }
+      ],
+      "hashtags": [
+        "dubai",
+        "heathrow",
+        "airport",
+        "aviation",
+        "travel",
+        "dxb",
+        "london",
+        "airtravel",
+        "flights",
+        "dataviz",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-msc-overtakes-maersk.json": {
+      "format": "graph_race",
+      "slug": "graph-msc-overtakes-maersk",
+      "title": "MSC Just Ended Maersk's 25-Year Reign",
+      "hook": "A New Shipping Giant Emerged",
+      "y_label": "Container fleet capacity (million TEU)",
+      "duration": 13,
+      "source": "Alphaliner container-fleet rankings as reported by maritime trade press (Riviera Maritime Media, Marine Insight, Splash247/Lloyd's List coverage of Alphaliner data). MSC overtook Maersk in January 2022 to become the world's largest container shipping line by deployed capacity, ending Maersk's roughly 25-year run at #1; figures are approximate fleet-capacity snapshots.",
+      "years": [
+        2014,
+        2016,
+        2018,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Maersk",
+          "color": "#42B0D5",
+          "values": [
+            2.86,
+            3.09,
+            4.15,
+            4.14,
+            4.28,
+            4.3
+          ]
+        },
+        {
+          "name": "MSC",
+          "color": "#F7A81B",
+          "values": [
+            2.49,
+            2.71,
+            3.19,
+            3.63,
+            4.29,
+            5.9
+          ]
+        }
+      ],
+      "hashtags": [
+        "msc",
+        "maersk",
+        "shipping",
+        "containership",
+        "logistics",
+        "supplychain",
+        "cargo",
+        "globaltrade",
+        "dataviz",
+        "business",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "04_graph-pakistan-overtakes-brazil.json": {
+      "format": "graph_race",
+      "slug": "graph-pakistan-overtakes-brazil",
+      "title": "Pakistan Quietly Passed Brazil in Population",
+      "hook": "A New 5th-Biggest Country?",
+      "y_label": "Population (millions)",
+      "duration": 13,
+      "source": "United Nations World Population Prospects estimates and national census figures (Pakistan's 2017 census: 207.7 million). Pakistan overtook Brazil around 2020 to become the world's 5th most populous country, a milestone widely reported at the time; figures are UN mid-year estimates, approximate for earlier years.",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2017,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Brazil",
+          "color": "#009C3B",
+          "icon": "BR",
+          "values": [
+            174.7,
+            186.8,
+            196.4,
+            204.5,
+            207.8,
+            213.2,
+            216.4
+          ]
+        },
+        {
+          "name": "Pakistan",
+          "color": "#01411C",
+          "icon": "PK",
+          "values": [
+            142.0,
+            160.0,
+            179.4,
+            199.0,
+            207.7,
+            220.1,
+            240.5
+          ]
+        }
+      ],
+      "hashtags": [
+        "pakistan",
+        "brazil",
+        "population",
+        "demographics",
+        "worldpopulation",
+        "geography",
+        "dataviz",
+        "worldnews",
+        "southasia",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-the-clock-out-rule.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-the-clock-out-rule",
+      "title": "He Wrote The Rule. I Just Followed It.",
+      "script": "Late by one second? Our new manager installed a badge scanner and declared that clocking out even sixty seconds early was theft \u2014 one write-up, zero exceptions. So I got literal. The moment my shift hit five o'clock, I stopped. Mid-swipe on a customer's credit card. Mid-sentence on a phone call. I'd just say my shift's over and walk to the break room. Three write-ups later, corporate called about four abandoned transactions and a customer stuck on hold for eleven minutes. My manager pulled me aside and told me to use common sense. I read his own write-up policy back to him, word for word. He'd signed it himself. Corporate added one line to the handbook: finish the transaction, then clock out. Was sixty seconds ever really the problem?",
+      "shots": [
+        {
+          "phrase": "installed a badge scanner",
+          "query": "employee badge scanner door",
+          "image_url": "https://pixabay.com/get/g2564092284c346d1a398bcc918bf74b0aae180a0c9c674011f5883da79a4bb90277185432a0a4e6a1e81613d5733f54a0363f6b874b528da2a5a8a9914687998_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "clocking out even sixty seconds early was theft",
+          "query": "wall clock five oclock",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
+        },
+        {
+          "phrase": "Mid-swipe on a customer's credit card",
+          "query": "credit card swipe register",
+          "image_url": "https://pixabay.com/get/ga147cb73de3cf7a570c778a0a6944a6dbcc0427d25c4942e4978f2f30f24448372632f20027973bd8c9f1f154198c935d480031f994eaea0edbd7e2c164c0847_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Mid-sentence on a phone call",
+          "query": "office phone handset",
+          "image_url": "https://pixabay.com/get/g6224d7e39b4be4ecb8cdb3e6b92b4412e8a14c88ac809059bb6f88a2a0ada67d37464ca596e694764312b7a743cc724cff3f18861b7ddbe6c8b76fbb2eb58682_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "walk to the break room",
+          "query": "empty employee break room",
+          "image_url": "https://pixabay.com/get/gfc973f2be7f9cfe495ea54f8b2e77dcbc1314a2056a208a119bd0f79d41def0e169907555e82dc26814c46a92f3f333fb42020fe153174eeac2b2c81ad6a758f_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "a customer stuck on hold for eleven minutes",
+          "query": "phone on hold customer",
+          "image_url": "https://live.staticflickr.com/30/65516946_8a6151c6b9.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "I read his own write-up policy back to him",
+          "query": "manager employee conversation",
+          "image_url": "https://pixabay.com/get/gfde0c598e985ae4e78fdb9918290f56fcf2a8118c9503723eb16efd43b40f218cdb6b0cc7d906ab3ed54114793f5712096a74d52e445fe77ae5794c6547d33ca_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Corporate added one line to the handbook",
+          "query": "employee handbook binder",
+          "image_url": "https://pixabay.com/get/ge926599cc7c3f2e3a1863de17507d52dd59f99eba382d63776555a3f8458a26bcd2eb9af7cee94cea36fecf6644d7b66d0710b353cf6947774607659a2bcd484_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "one write-up, zero exceptions",
+          "text": "ZERO EXCEPTIONS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "clocking out even sixty seconds early was theft",
+          "text": "\"THEFT\"?",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "four abandoned transactions",
+          "text": "4 ABANDONED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "stuck on hold for eleven minutes",
+          "text": "11 MIN ON HOLD",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "added one line to the handbook",
+          "text": "RULE CHANGED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "retail",
+        "corporate",
+        "boss",
+        "jobstory",
+        "karma",
+        "reddit",
+        "storytime",
+        "worklife",
+        "shorts",
+        "viral"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_reddit-the-price-match-sign.json": {
+      "subreddit": "MaliciousCompliance",
+      "slug": "reddit-the-price-match-sign",
+      "title": "The Sign Said Beat Any Price. So I Did.",
+      "script": "Beat any price? I took that literally. Our price-match guarantee promised to beat any competitor's price by ten percent, no exceptions \u2014 mostly an ignored marketing line. I enforced it. A customer brought a screenshot from a liquidation site selling laptops for eighty dollars, and I matched it, minus ten percent. Then someone found a typo listing a television at nineteen dollars. I matched that too. Within three weeks my register had processed forty thousand dollars in matched sales at a loss so steep the regional manager flew in. He asked why I kept approving obvious errors. I pointed at the laminated sign by the register \u2014 his own name signed on the bottom. He took the sign down before lunch. Corporate rewrote the policy that week: matches now require manager approval. Who approved the sign in the first place?",
+      "shots": [
+        {
+          "phrase": "price-match guarantee promised to beat any competitor's price",
+          "query": "price match sign store",
+          "image_url": "https://pixabay.com/get/g24074098ae2564fabafa9deec1fdf14ca79331e9e2c51f98c6d999c44db73216f75827948dcb3162a14a7058c079e58577a46b52def53cf3a364e147ecdcedaa_1280.jpg",
+          "pin_query": "Beat",
+          "pin_context": "The Sign Said Beat Any Price. So I Did.",
+          "news_query": "Beat",
+          "news_angle": "The Sign Said Beat Any Price. So I Did.",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "a screenshot from a liquidation site selling laptops",
+          "query": "laptop computer store shelf",
+          "image_url": "https://pixabay.com/get/g19cc3ff29eacd6d841b1057b282a6e85942d613fa6aba199413c175dc43842d0e326d2ae7c367512329ff2ef4a81c575d1ae70513c7870bf320fd3ee4dd1f56c_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "a typo listing a television at nineteen dollars",
+          "query": "flat screen television display",
+          "image_url": "https://pixabay.com/get/g329f791fd6110d9d016664ad0bee9fbe8a07e9681e54965769ae61696231cffb9bf1882cdff4f17ca63f290c2622077e9edd7dc68e99b0e149ec7b333fed9a4f_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "forty thousand dollars in matched sales at a loss",
+          "query": "cash register receipt tape",
+          "image_url": "https://live.staticflickr.com/7160/6685111361_6e6750d92d_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the regional manager flew in",
+          "query": "businessman walking airport terminal",
+          "image_url": "https://pixabay.com/get/gfd7cb275a1a73abee329b6a21a54f8affaee6876ff88629018d78f39d59ba4d58479b52aea9a349360e0d29e38acfcf3a14104a1546487ab05625dd87bb61c00_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the laminated sign by the register",
+          "query": "laminated sign checkout counter",
+          "pin_query": "laminated sign",
+          "pin_context": "store register price match policy",
+          "news_query": "laminated sign",
+          "news_angle": "The laminated sign by the register that promised to beat any competitor's price by ten percent, leading to significant financial losses for the store.",
+          "image_url": "https://pixabay.com/get/gcb970df2a3795c477e33cce68d943b661ec790a1ff954eb48a1b9f03e9bcebe4de29aba421a049eab2b9f1b51ba95cb25849b839a27ac140d8894f083adba241_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "He took the sign down before lunch",
+          "query": "removing sign from wall",
+          "image_url": "https://pixabay.com/get/g8b3d35d5c971d7c1ef44673d7e1e6a0f032b020ae3bdcc5e63a09185ea73aaac858b6f9800c2ed7d03c5f6a7c3ce2e1323a1b5cdbf66ab84d900566fa5a0b9f1_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "beat any competitor's price by ten percent",
+          "text": "10% GUARANTEE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "laptops for eighty dollars",
+          "text": "$80 LAPTOP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "a television at nineteen dollars",
+          "text": "$19 TV",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "forty thousand dollars in matched sales",
+          "text": "$40,000 LOST",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "He took the sign down before lunch",
+          "text": "SIGN REMOVED",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "maliciouscompliance",
+        "retail",
+        "workplace",
+        "corporate",
+        "customerservice",
+        "karma",
+        "pricematch",
+        "reddit",
+        "storytime",
+        "jobstory",
+        "shorts",
+        "viral"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    }
   }
 }
