@@ -37509,7 +37509,23 @@
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-11-18T12:25:45Z",
-   "hook_was": "78 gigawatts of nuclear power is still being built."
+   "hook_was": "78 gigawatts of nuclear power is still being built.",
+   "scorecard": {
+    "scores": {
+     "premise": 9,
+     "hook": 13,
+     "arc": 9,
+     "factual": 9,
+     "visual_proof": 8,
+     "payoff": 6,
+     "voice": 3
+    },
+    "total": 57,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "The beats read off figures (10 starts, 50%, 78 GW) without a stake for the viewer, so the story is weak. The hook promises a contrarian twist ('Someone forgot to tell China'), but beat 1 only says '10 reactors started', with no sense of sca",
+    "fp": "e523d70a5f403dd5"
+   }
   },
   {
    "slug": "craft-brewery-boom-and-bust",

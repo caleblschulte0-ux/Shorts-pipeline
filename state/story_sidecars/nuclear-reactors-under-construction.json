@@ -1,11 +1,26 @@
 {
  "slug": "nuclear-reactors-under-construction",
  "brief": null,
- "scorecard": null,
+ "scorecard": {
+  "scores": {
+   "premise": 9,
+   "hook": 13,
+   "arc": 9,
+   "factual": 9,
+   "visual_proof": 8,
+   "payoff": 6,
+   "voice": 3
+  },
+  "total": 57,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "The beats read off figures (10 starts, 50%, 78 GW) without a stake for the viewer, so the story is weak. The hook promises a contrarian twist ('Someone forgot to tell China'), but beat 1 only says '10 reactors started', with no sense of sca",
+  "fp": "e523d70a5f403dd5"
+ },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "78 gigawatts of nuclear power is still being built.",
+   "ears": "Everyone said nuclear was dead. Someone forgot to tell China.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
@@ -18,7 +33,7 @@
   {
    "window": "beat 1",
    "ears": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout.",
-   "eyes": "a data picture (share)",
+   "eyes": "substance: wet grey concrete; cause: Data pours buckets of concrete from each tower's top deck and the wall rises lift by lift",
    "evidence": "International Energy Agency (IEA) | Share of global nuclear capacity under construction, by country | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
   },
   {

@@ -96,12 +96,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Adds population recovery info not needed to prove the headline claim about kelp protection.",
-  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Does not logically follow from beat 1; protection claim should stem directly from the survival context."
+  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Pivots to a kelp carbon figure without showing the recovered otters caused it; 'otter-protected kelp' is asserted, not l"
  ],
  "reasons": [
-  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Adds population recovery info not needed to prove the headline claim about kelp protection.",
-  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Does not logically follow from beat 1; protection claim should stem directly from the survival context."
+  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Pivots to a kelp carbon figure without showing the recovered otters caused it; 'otter-protected kelp' is asserted, not l"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -135,5 +133,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T01:28:46Z"
+ "refiled": "2026-11-24T04:52:37Z"
 }
