@@ -20,9 +20,12 @@ from pathlib import Path
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
-for p in (ROOT, ROOT / "scripts"):
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+# scripts/ is APPENDED: ahead of tests/ it shadows tests/test_exchange.py
+# with scripts/test_exchange.py and kills suite discovery.
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.append(str(ROOT / "scripts"))
 
 import editorial_gate  # noqa: E402
 import shared.script_generator  # noqa: E402,F401 — the patch target

@@ -22,9 +22,12 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-for p in (ROOT, ROOT / "scripts"):
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+# scripts/ is APPENDED, never put ahead of tests/: there it shadows
+# tests/test_exchange.py with scripts/test_exchange.py and kills discovery.
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.append(str(ROOT / "scripts"))
 
 from data_learning import subject_scenes as SS          # noqa: E402
 

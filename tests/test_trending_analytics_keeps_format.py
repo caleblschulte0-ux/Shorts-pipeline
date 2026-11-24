@@ -13,9 +13,12 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-for p in (str(ROOT), str(ROOT / "scripts")):
-    if p not in sys.path:
-        sys.path.insert(0, p)
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+# scripts/ is APPENDED, never put ahead of tests/: there it shadows
+# tests/test_exchange.py with scripts/test_exchange.py and kills discovery.
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.append(str(ROOT / "scripts"))
 
 
 def _load(name, rel):
