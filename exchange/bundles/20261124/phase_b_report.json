@@ -1,16 +1,16 @@
 {
   "date": "20261124",
   "channel": "trending",
-  "done_marker": false,
-  "had_response": false,
+  "done_marker": true,
+  "had_response": true,
   "envelope_problems": [],
   "authored": {
     "promoted": 0,
     "rejected": 0,
     "other_channels": {
       "explainer": {
-        "applied": 0,
-        "rejected": 0
+        "applied": 2,
+        "rejected": 1
       },
       "curiosity": {
         "applied": 0,
@@ -26,10 +26,11 @@
   },
   "checkpoints": {
     "bundle_identity": "e827bbad0537143752af3c1595b9b25583aeebe290530ba9dd0ea865d2a2e94e",
-    "required": false,
+    "required": true,
     "checked": 0,
     "ok": 0,
     "rejected": 0,
+    "warnings": 0,
     "rejected_detail": [],
     "warnings_detail": [],
     "recovered_rejected_detail": []
