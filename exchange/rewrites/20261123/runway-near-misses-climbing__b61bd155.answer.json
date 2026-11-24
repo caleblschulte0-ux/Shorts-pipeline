@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "runway-near-misses-climbing__b61bd155",
+  "slug": "runway-near-misses-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "23 Serious Runway Near-Misses Came From Mistakes And Hotspots",
+  "hook": "Runway danger clusters around simple ground mistakes and a few airports.",
+  "closing": "Preventing the next collision means fixing both ground coordination and the airports where danger concentrates.",
+  "question": "Which airport risk worries you most?",
+  "segments": [
+    {
+      "topic": "Runway Danger Total",
+      "say": "Safety officials logged 23 serious runway near-misses, more than double the pace about a decade earlier."
+    },
+    {
+      "topic": "Runway Danger Cause",
+      "say": "People or vehicles entering by mistake caused 60 percent of incursions, making ground coordination the main vulnerability."
+    },
+    {
+      "topic": "Runway Danger Hotspots",
+      "say": "Just 8 airports held almost a third of the worst near-misses, concentrating that vulnerability geographically."
+    }
+  ]
+}
