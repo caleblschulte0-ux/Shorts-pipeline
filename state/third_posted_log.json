@@ -22216,13 +22216,50 @@
       "director_cut": true
     },
     "clip-20261124-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/PlainDiligentOstrichPartyTime-PnISl-0Z9sTNCexW",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/S553uSArm70",
       "title": "Lirik Gets Roasted By A Perfectly Timed NPC And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-11-24T11:40:17.440040+00:00",
+      "ts": "2026-11-24T11:40:37.320619+00:00",
+      "uploaded_at": "2026-11-24T11:40:37.320633+00:00",
+      "publish_at": "2026-11-24T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261124-lirik-gets-roasted-by-a-perfectly-timed-npc-and--fc999996",
+        "tiktok": "queued for 2026-11-24T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lirik/clip/PlainDiligentOstrichPartyTime-PnISl-0Z9sTNCexW",
+      "streamer": "lirik",
+      "series": "fail",
+      "hook": "Lirik's game NPC roasts him on cue \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9991,
+      "banger": 0.55,
+      "cut": {
+        "start": 9.5,
+        "end": 36.5
+      },
+      "director_cut": true
+    },
+    "rejected-philanthropictoughcakeuwot-n9xnyknp7vtdwpik": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/PhilanthropicToughCakeUWot-N9xNYKnP7VTdWpik",
+      "streamer": "caseoh_",
+      "title": "Casoh's soft locked from completing the game by his chat and is now struggling to make money",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "the clip ends mid-sentence on \"your\"",
+      "ts": "2026-11-24T11:42:42.483692+00:00"
+    },
+    "clip-20261124-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SparklingDeliciousElephantDuDudu-7ZtEIG3eWcRoA8BV",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Checks On Nickeh30 And Finds Lucia Down There",
+      "kind": "twitch_clip",
+      "ts": "2026-11-24T11:46:37.937630+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
