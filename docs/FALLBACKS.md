@@ -46,6 +46,16 @@ slate. Both looked green in the Actions tab.
 touch it; a missing `ANTHROPIC_API_KEY` does not either, as long as
 `GROQ_API_KEY` or `GEMINI_API_KEY` is set.
 
+A backend that has just said no is **benched**, not re-asked (2026-11-24).
+Groq is first in the chain and `GROQ_MAX_RETRIES=6` makes a 429 cost ~72
+seconds of sleep before the fall-through; explainer run 45318587673 paid
+that 39 times — 51 minutes of a 94-minute run — on a key the credential
+heartbeat had called dead for two weeks. Now a 429 benches its backend for
+`BENCH_BASE_S` (doubling per repeat, capped at an hour) and a 401/403 for
+the rest of the process; `_call_llm` skips a benched backend and asks the
+next one at once, an answer clears the bench, and every other failure is
+still re-asked next call. `tests/test_a_refused_backend_is_not_asked_again.py`.
+
 ### Keys EXPIRE, and an expired key looks exactly like a broken one
 
 On **2026-09-07** every trending backfill attempt died in under two seconds on

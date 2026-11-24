@@ -24,7 +24,11 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+# APPEND, never insert at 0: `scripts/test_exchange.py` shadows
+# `tests/test_exchange.py` the moment scripts/ sits ahead of tests/, and this
+# module sorts before `test_exchange`, so `unittest discover -s tests` died
+# at import on main from 2026-11-23 (#773) until this line changed.
+sys.path.append(str(ROOT / "scripts"))
 
 from funnel import hot_clips  # noqa: E402
 

@@ -190,11 +190,56 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
         self.assertEqual(out.returncode, 0, out.stderr[-800:])
 
     def test_no_test_module_puts_scripts_ahead_of_tests(self):
-        # Match a real statement at the start of a line, not this file's own
-        # description of the pattern it is banning.
-        rx = re.compile(r'^sys\.path\.insert\(\s*0\s*,[^)]*scripts', re.M)
-        offenders = [p.name for p in sorted(Path(ROOT / "tests").glob("*.py"))
-                     if rx.search(p.read_text(encoding="utf-8"))]
+        """Read as CODE (AST), not as a regex over the text: the regex form
+        of this test saw `sys.path.insert(0, str(ROOT / "scripts"))` and
+        missed `for p in (ROOT, ROOT / "scripts"): sys.path.insert(0,
+        str(p))`, which is the same statement wearing a loop. A
+        `sys.path.insert(0, X)` whose X names scripts/, or whose X is the
+        variable of a `for` over an iterable that names scripts/, is the
+        defect. #773 (2026-11-23) shipped the plain form in a module that
+        sorts before `test_exchange`, and `unittest discover -s tests` died
+        at import on main until 2026-11-24 — the sanity job caught it, but
+        the PR was merged by hand eight seconds after it was opened."""
+        import ast
+
+        def import_time(tree):
+            """Every node that runs when the module is IMPORTED — the
+            module body and the blocks nested in it, but nothing inside a
+            def or class, which runs later (after discovery has already
+            imported every module and nothing can be shadowed any more)."""
+            for stmt in tree.body:
+                if isinstance(stmt, (ast.FunctionDef, ast.AsyncFunctionDef,
+                                     ast.ClassDef)):
+                    continue
+                for node in ast.walk(stmt):
+                    if isinstance(node, (ast.FunctionDef,
+                                         ast.AsyncFunctionDef, ast.Lambda)):
+                        continue
+                    yield node
+
+        offenders = []
+        for p in sorted(Path(ROOT / "tests").glob("*.py")):
+            tree = ast.parse(p.read_text(encoding="utf-8"))
+            nodes = list(import_time(tree))
+            loop_vars = {node.target.id for node in nodes
+                         if isinstance(node, ast.For)
+                         and isinstance(node.target, ast.Name)
+                         and "scripts" in ast.unparse(node.iter)}
+            for node in nodes:
+                if not (isinstance(node, ast.Call)
+                        and isinstance(node.func, ast.Attribute)
+                        and node.func.attr == "insert"
+                        and ast.unparse(node.func.value) == "sys.path"
+                        and len(node.args) == 2
+                        and isinstance(node.args[0], ast.Constant)
+                        and node.args[0].value == 0):
+                    continue
+                what = ast.unparse(node.args[1])
+                names = {n.id for n in ast.walk(node.args[1])
+                         if isinstance(n, ast.Name)}
+                if "scripts" in what or names & loop_vars:
+                    offenders.append(p.name)
+                    break
         self.assertEqual(offenders, [],
                          "use sys.path.append for scripts/ — inserting it at "
                          "0 lets scripts/test_*.py shadow tests/test_*.py")

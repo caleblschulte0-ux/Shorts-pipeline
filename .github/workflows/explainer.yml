@@ -566,7 +566,11 @@ jobs:
           # descriptions into 12 languages on every upload).
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           # Ride out Groq's free-tier 429 window instead of giving up after ~16s
-          # (the 2026-07-11 starvation) — only used when Groq is the last resort.
+          # (the 2026-07-11 starvation). Groq is FIRST in the chain, so this
+          # schedule (~72s) is paid in full on a 429 — once per bench window:
+          # `_call_llm` benches a backend that rate-limited or refused the key
+          # and goes straight to the next one (2026-11-24: 39 calls x 72s =
+          # 51 minutes of one run asleep on a key that had been dead a fortnight).
           GROQ_MAX_RETRIES: '6'
           # Image-gen key for cinematic AI scene/hook backgrounds (free-tier,
           # graceful fallback to stock/designed if unset or quota-limited).
