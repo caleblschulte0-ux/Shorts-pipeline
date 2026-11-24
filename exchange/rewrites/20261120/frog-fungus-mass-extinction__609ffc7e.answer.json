@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "frog-fungus-mass-extinction__609ffc7e",
+  "slug": "frog-fungus-mass-extinction",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:25:46.534Z",
+  "title": "One Fungus Hit 501 Amphibian Species Worldwide",
+  "hook": "This fungus did not just kill frogs; it erased entire species.",
+  "closing": "The fungus erased species, and many survivors are still declining.",
+  "question": "Which frog would you protect?",
+  "segments": [
+    {
+      "topic": "Fungus Species Toll",
+      "say": "The fungus affected 501 amphibian species, creating a worldwide survival crisis."
+    },
+    {
+      "topic": "Fungus Species Decline",
+      "say": "Thirty-nine percent of affected species are still declining, so the damage has not stopped."
+    },
+    {
+      "topic": "Fungus Frog Impact",
+      "say": "The fungus hit 40 Australian frog species, carrying the global crisis into one country's ecosystems."
+    }
+  ]
+}
