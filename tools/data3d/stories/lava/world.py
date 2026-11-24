@@ -159,12 +159,12 @@ def lava_field_mat(name="lava field"):
     for n_ in (rock, warp): nt.links.new(tc.outputs["Object"], n_.inputs["Vector"])
     wadd = nt.nodes.new("ShaderNodeVectorMath"); wadd.operation = 'MULTIPLY_ADD'; wadd.inputs[1].default_value = (0.35, 0.35, 0.35)
     nt.links.new(warp.outputs["Color"], wadd.inputs[0]); nt.links.new(tc.outputs["Object"], wadd.inputs[2]); nt.links.new(wadd.outputs["Vector"], moss.inputs["Vector"])
-    rr = nt.nodes.new("ShaderNodeValToRGB"); rr.color_ramp.elements[0].color = (*K.lin("#1E1A17"), 1); rr.color_ramp.elements[1].color = (*K.lin("#4C433B"), 1)
+    rr = nt.nodes.new("ShaderNodeValToRGB"); rr.color_ramp.elements[0].color = (*K.lin("#110F0E"), 1); rr.color_ramp.elements[1].color = (*K.lin("#33302C"), 1)
     nt.links.new(rock.outputs["Fac"], rr.inputs["Fac"])
-    mr = nt.nodes.new("ShaderNodeValToRGB"); mr.color_ramp.elements[0].position = 0.3; mr.color_ramp.elements[1].position = 0.75
+    mr = nt.nodes.new("ShaderNodeValToRGB"); mr.color_ramp.elements[0].position = 0.18; mr.color_ramp.elements[1].position = 0.5
     mr.color_ramp.elements[0].color = (0.75, 0.75, 0.75, 1); mr.color_ramp.elements[1].color = (0, 0, 0, 1)
     nt.links.new(moss.outputs["Distance"], mr.inputs["Fac"])
-    mc = nt.nodes.new("ShaderNodeValToRGB"); mc.color_ramp.elements[0].color = (*K.lin("#5C6440"), 1); mc.color_ramp.elements[1].color = (*K.lin("#8C9468"), 1)
+    mc = nt.nodes.new("ShaderNodeValToRGB"); mc.color_ramp.elements[0].color = (*K.lin("#27301E"), 1); mc.color_ramp.elements[1].color = (*K.lin("#3E4A2C"), 1)
     nt.links.new(warp.outputs["Fac"], mc.inputs["Fac"])
     mix = nt.nodes.new("ShaderNodeMixRGB"); nt.links.new(mr.outputs["Color"], mix.inputs["Fac"])
     nt.links.new(rr.outputs["Color"], mix.inputs["Color1"]); nt.links.new(mc.outputs["Color"], mix.inputs["Color2"])
@@ -176,7 +176,7 @@ def lava_field_mat(name="lava field"):
     return m
 
 
-def lava_rock(name, n, area, zfn, seed=0, r=(0.05, 0.25), avoid=None):
+def lava_rock(name, n, area, zfn, seed=0, r=(0.05, 0.25), avoid=None, moss=0.3):
     """loose lava boulders and moss tufts strewn over a patch of ground (x0, x1, y0, y1)"""
     rnd = lw_random.Random(seed)
     m = lw_noise("loose lava rock", "#1C1916", "#4A4038", scale=12, rough=0.95, bump=0.9, detail=10)
@@ -185,7 +185,7 @@ def lava_rock(name, n, area, zfn, seed=0, r=(0.05, 0.25), avoid=None):
     for k in range(n):
         x = rnd.uniform(area[0], area[1]); y = rnd.uniform(area[2], area[3]); rr = rnd.uniform(*r)
         if avoid and avoid(x, y): continue
-        o = K.sph(name, (x, y, zfn(x, y) + rr * 0.3), rr, m if rnd.random() < 0.7 else mo, scale=(1.0, rnd.uniform(0.7, 1.2), rnd.uniform(0.45, 0.8)), seg=10, ring=6)
+        o = K.sph(name, (x, y, zfn(x, y) + rr * 0.3), rr, m if rnd.random() >= moss else mo, scale=(1.0, rnd.uniform(0.7, 1.2), rnd.uniform(0.45, 0.8)), seg=10, ring=6)
         o.rotation_euler = (0, 0, rnd.uniform(0, 6.3)); out.append(o)
     return out
 
@@ -231,6 +231,59 @@ def lw_smoke_mat(name="volcano smoke", density=0.6, col=(0.55, 0.52, 0.5), glow=
         pv.inputs["Emission Color"].default_value = (*glow, 1); pv.inputs["Emission Strength"].default_value = 0.0
     nt.links.new(pv.outputs[0], out.inputs["Volume"])
     return m
+
+
+def lw_fire_vol(name="fire volume", density=3.0, strength=45.0, smoke=(0.9, 0.4, 0.12), scale=2.6):
+    """FIRE AS A VOLUME (operator 2026-11-24: "fire as a volume, not cards"): a sphere domain filled with a torn,
+    flickering flame: dense and white-yellow hot in its core, orange then deep red toward its ragged edge, with dark
+    smoke where it is thin. Density and heat come from one field (the sphere's falloff broken by a noise stretched
+    upward), so the flame licks up in tongues. Its Generated coords are the sphere's own 0..1 box: any radius."""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    N = nt.nodes.new; L = nt.links.new
+    out = N("ShaderNodeOutputMaterial"); pv = N("ShaderNodeVolumePrincipled")
+    tc = N("ShaderNodeTexCoord"); mp = N("ShaderNodeMapping"); mp.inputs["Location"].default_value = (-1, -1, -1)
+    mp.inputs["Scale"].default_value = (2, 2, 2); L(tc.outputs["Generated"], mp.inputs["Vector"])
+    st = N("ShaderNodeMapping"); st.inputs["Scale"].default_value = (scale, scale, scale * 0.45); L(mp.outputs["Vector"], st.inputs["Vector"])
+    nz = N("ShaderNodeTexNoise"); nz.noise_dimensions = '4D'; nz.inputs["Scale"].default_value = 1.0; nz.inputs["Detail"].default_value = 7
+    nz.inputs["Roughness"].default_value = 0.62; L(st.outputs["Vector"], nz.inputs["Vector"])
+    ln = N("ShaderNodeVectorMath"); ln.operation = 'LENGTH'; L(mp.outputs["Vector"], ln.inputs[0])
+    edge = N("ShaderNodeMath"); edge.operation = 'SUBTRACT'; edge.inputs[0].default_value = 1.0; L(ln.outputs["Value"], edge.inputs[1])
+    f = N("ShaderNodeMath"); f.operation = 'MULTIPLY_ADD'; L(nz.outputs["Fac"], f.inputs[0]); f.inputs[1].default_value = 1.1
+    L(edge.outputs[0], f.inputs[2])
+    heat = N("ShaderNodeMapRange"); L(f.outputs[0], heat.inputs["Value"]); heat.inputs["From Min"].default_value = 0.62; heat.inputs["From Max"].default_value = 1.25
+    dn = N("ShaderNodeMath"); dn.operation = 'MULTIPLY'; L(heat.outputs["Result"], dn.inputs[0]); dn.inputs[1].default_value = density
+    L(dn.outputs[0], pv.inputs["Density"])
+    rp = N("ShaderNodeValToRGB"); L(heat.outputs["Result"], rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*K.lin("#6A0A00"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFE7A0"), 1)
+    el.new(0.35).color = (*K.lin("#E03000"), 1); el.new(0.7).color = (*K.lin("#FF9A18"), 1)
+    L(rp.outputs["Color"], pv.inputs["Emission Color"])
+    es = N("ShaderNodeMath"); es.operation = 'POWER'; L(heat.outputs["Result"], es.inputs[0]); es.inputs[1].default_value = 1.6
+    em = N("ShaderNodeMath"); em.operation = 'MULTIPLY'; L(es.outputs[0], em.inputs[0]); em.inputs[1].default_value = strength
+    L(em.outputs[0], pv.inputs["Emission Strength"])
+    pv.inputs["Color"].default_value = (*smoke, 1)
+    L(pv.outputs[0], out.inputs["Volume"])
+    m["flicker"] = True
+    return m
+
+
+def lw_flicker(m, t_end, rate=1.4):
+    """key the fire volume's 4D noise so its tongues lick upward and flicker for the whole shot"""
+    nz = next(n for n in m.node_tree.nodes if n.type == 'TEX_NOISE')
+    for f in (1, NF + 15):
+        nz.inputs["W"].default_value = rate * (f - 1) / FPS; nz.inputs["W"].keyframe_insert("default_value", frame=f)
+    st = [n for n in m.node_tree.nodes if n.type == 'MAPPING'][1]
+    for f in (1, NF + 15):
+        st.inputs["Location"].default_value = (0, 0, -1.6 * (f - 1) / FPS); st.inputs["Location"].keyframe_insert("default_value", frame=f)
+
+
+def lw_flame(name, loc, r, m, scale=(1, 1, 1.6)):
+    """one flame: a fire volume in a sphere (taller than wide), casting no shadow, with a warm light inside it"""
+    o = K.sph(name, loc, r, m, scale=scale, seg=16, ring=10)
+    o.visible_shadow = False
+    return o
 
 
 def lw_puff(name, loc, r, m, scale=(1, 1, 1)):
@@ -419,8 +472,8 @@ def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
 
 
 # ---------------------------------------------------------------- the town's houses
-ROOFS = ("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A", "#7A3E5E", "#2E6F73", "#A8442A")
-WALLS = ("#F1EEE6", "#E6E0D2", "#DCE3E2", "#EDE4C8", "#D9D6CC")
+ROOFS = ("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A", "#9E3A2E", "#2E6F73", "#A8442A")      # red, blue, green tin (board: no purple)
+WALLS = ("#F1EEE6", "#BFD3DD", "#E9D9A2", "#B44A3C", "#E6E0D2", "#7E9A86", "#D9C9B4")   # painted tin cladding: white, sky blue, butter, oxide red, sage
 
 
 def town_house(name, loc, yaw=0.0, w=2.0, d=1.6, h=1.25, roof="#B8352B", wall="#F1EEE6", lit=(), dark_glass=True, seed=0):
@@ -429,7 +482,7 @@ def town_house(name, loc, yaw=0.0, w=2.0, d=1.6, h=1.25, roof="#B8352B", wall="#
     about its own origin, placed at loc/yaw. lit: indices of windows whose panes glow warm (a window someone is home
     behind). Returns dict(root, windows=[pane objects], door)."""
     root = K.empty(name, (0, 0, 0))
-    cl = lw_noise(f"cladding {wall}", wall, K.mute(wall, 0.85), scale=2.0, rough=0.6, bump=0.25, stretch=(30, 30, 1), lo=0.2, hi=0.8)
+    cl = lw_noise(f"cladding {wall}", wall, K.mute(wall, 0.72), scale=2.0, rough=0.55, bump=0.6, stretch=(60, 60, 1), lo=0.2, hi=0.8)   # the ribs of corrugated tin, read at a glance
     K.box(name + " walls", (0, 0, h / 2), (w, d, h), cl, bev=0.01, parent=root)
     K.box(name + " plinth", (0, 0, 0.05), (w + 0.04, d + 0.04, 0.1), lw_noise("plinth concrete", "#8C8A86", "#A9A6A0", scale=12, rough=0.9), bev=0.005, parent=root)
     rm = lw_noise(f"tin roof {roof}", roof, K.mute(roof, 0.7), scale=1.5, rough=0.45, bump=0.35, stretch=(40, 1, 1), lo=0.3, hi=0.8)
@@ -459,6 +512,16 @@ def town_house(name, loc, yaw=0.0, w=2.0, d=1.6, h=1.25, roof="#B8352B", wall="#
         K.box(name + " window bar", (x, -d / 2 - 0.033, 0.72), (0.42, 0.01, 0.025), trim, bev=0.0, parent=root)
         windows.append(p)
     K.box(name + " chimney", (w * 0.28, 0.2, h + gab * 0.8), (0.16, 0.16, 0.4), lw_noise("chimney render", "#BDB8AE", "#9C968C", scale=10), bev=0.01, parent=root)
+    for cx in (-1, 1):                                   # its parts: corner boards, a fascia under each eave, a gutter
+        for cy in (-1, 1):
+            K.box(name + " corner board", (cx * (w / 2 + 0.008), cy * (d / 2 + 0.008), h / 2), (0.05, 0.05, h), trim, bev=0.004, parent=root)
+    for sg in (-1, 1):
+        K.box(name + " fascia", (0, sg * (d / 2 + ov - 0.02), h - 0.06), (w + 2 * ov, 0.03, 0.08), trim, bev=0.004, parent=root)
+        K.cyl(name + " gutter", (0, sg * (d / 2 + ov + 0.01), h - 0.1), 0.03, w + 2 * ov, lw_metal("gutter zinc", "#8E9499"), rot=(0, math.pi / 2, 0), v=10, parent=root)
+    K.cyl(name + " downpipe", (w / 2 + ov - 0.05, -(d / 2 + ov + 0.01), h / 2 - 0.05), 0.022, h - 0.1, lw_metal("gutter zinc", "#8E9499"), v=8, parent=root)
+    for x in xs:
+        K.box(name + " sill", (x, -d / 2 - 0.03, 0.47), (0.56, 0.06, 0.03), trim, bev=0.004, parent=root)
+    K.box(name + " step", (-w * 0.3, -d / 2 - 0.12, 0.06), (0.5, 0.22, 0.12), lw_noise("plinth concrete", "#8C8A86", "#A9A6A0", scale=12, rough=0.9), bev=0.01, parent=root)
     lw_local(root)
     root.location = loc; root.rotation_euler = (0, 0, yaw)
     return dict(root=root, windows=windows, w=w, d=d, h=h)
@@ -734,3 +797,23 @@ def lw_show(objs, t_on, t_off=None):
         o.hide_render = False; o.keyframe_insert("hide_render", frame=max(1, F(t_on)))
         if t_off is not None:
             o.hide_render = True; o.keyframe_insert("hide_render", frame=F(t_off))
+
+
+def lw_cut(cam, main, wide, t0, t1, lens_main, lens_wide):
+    """TWO SET-UPS CUT TOGETHER (the board, round 2, every shot: the world is never seen, because a lens close enough
+    for him to read is too close for the town): main(t) and wide(t) -> (loc, look, focus point); the WIDE set-up holds
+    from t0 to t1 (the shot's cutaway, which staging judges off him), the main one either side. A CUT: the keys are
+    constant, so no frame is an in-between of the two set-ups and no motion blur smears across it."""
+    from mathutils import Quaternion
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; w = t0 <= t < t1
+        loc, look, foc = (wide if w else main)(t); loc = Vector(loc); look = Vector(look)
+        cam.location = loc; cam.keyframe_insert("location", frame=f)
+        cam.rotation_euler = (look - loc).to_track_quat('-Z', 'Y').to_euler(); cam.keyframe_insert("rotation_euler", frame=f)
+        cam.data.lens = lens_wide if w else lens_main; cam.data.keyframe_insert("lens", frame=f)
+        cam.data.dof.focus_distance = (Vector(foc) - loc).length; cam.data.dof.keyframe_insert("focus_distance", frame=f)
+    sc.render.motion_blur_position = 'START'
+    from character import _fcurves
+    for idb in (cam, cam.data):
+        for fc in _fcurves(idb.animation_data.action):
+            for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'

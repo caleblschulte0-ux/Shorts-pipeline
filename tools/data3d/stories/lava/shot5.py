@@ -10,10 +10,20 @@ S5_HOOK = Vector((0.2, 1.1, 0.5))       # the hook's tip, on the post by his doo
 S5_EDGE_X = -2.2                        # the quay's water edge (x)
 
 
+S5_BASIN = (-4.6, -0.25, 2.5, 7.4)     # the boat basin cut into the quay (x0, x1, y0, y1): water between him and the town
+
+
+def s5_water(x, y):
+    """True where the harbour's water is: the basin in front of the town, and the open harbour off the quay's edge"""
+    x0, x1, y0, y1 = S5_BASIN
+    return (x0 - 30 < x < x1 and y0 < y < y1) or (x < S5_EDGE_X and y < y0)
+
+
 def s5_slope_z(x, y):
-    """the quay flat, the town's slope rising behind it, the lava field on the right"""
+    """the quay flat, the boat basin sunk in it, the town's slope rising behind it, the lava field on the right"""
+    if s5_water(x, y): return -1.2
     z = 0.0
-    if y > 4.0: z += 0.55 * (min(y, 15.0) - 4.0)         # the town climbs the steep hill behind the harbour, row over row
+    if y > 4.0: z += 0.3 * (min(y, 15.0) - 4.0)          # the town climbs the hill behind the harbour, row over row
     z += 0.08 * lw_fbm(x * 0.3, y * 0.3, 51) * (1 if y > 4.0 else 0)
     return z
 
@@ -50,18 +60,17 @@ def s5_lit_pane(house, k, t_on):
 
 def s5_fire(name, loc, size, rnd):
     """flames on a burning house: a cluster of hot tongues and a column of smoke billows over it"""
-    fm = lw_fire_mat("house fire", 1.4)
-    core = lw_fire_mat("house fire core", 2.0)
+    fm = lw_fire_vol("house fire", density=4.0, strength=45.0, scale=2.4)        # fire as a VOLUME, not cards
     tongues = []
-    for k in range(7):
-        x = loc[0] + rnd.uniform(-0.45, 0.45) * size; y = loc[1] + rnd.uniform(-0.3, 0.3) * size
-        o = K.sph(f"{name} flame {k}", (x, y, loc[2] + 0.25 * size), 0.18 * size, core if k % 3 == 0 else fm, scale=(0.8, 0.8, 2.2), seg=12, ring=8)
-        tx = bpy.data.textures.new(f"{name} flame tex {k}", 'CLOUDS'); tx.noise_scale = 0.12 * size
-        dm = o.modifiers.new("lick", 'DISPLACE'); dm.texture = tx; dm.strength = 0.12 * size
+    for k in range(4):                                     # the roof is burning through: one big blaze and its tongues
+        x = loc[0] + (0.0 if k == 0 else rnd.uniform(-0.5, 0.5)) * size; y = loc[1] + (0.0 if k == 0 else rnd.uniform(-0.25, 0.25)) * size
+        r = (0.55 if k == 0 else 0.3) * size
+        o = K.sph(f"{name} flame {k}", (x, y, loc[2] + 0.3 * size + (0.25 if k == 0 else 0.0) * size), r, fm, scale=(0.9, 0.8, 1.8), seg=14, ring=10)
+        o.visible_shadow = False
         tongues.append(o)
-    ash = lw_smoke_mat("fire smoke", density=2.5, col=(0.08, 0.08, 0.09))
-    smoke = [lw_puff(f"{name} smoke {k}", (loc[0] + rnd.uniform(-0.4, 0.4) - 0.5 * k, loc[1] + 0.3 * k, loc[2] + 1.0 * size + 1.3 * k * size), (0.8 + 0.4 * k) * size, ash)
-             for k in range(6)]
+    ash = lw_smoke_mat("fire smoke", density=1.4, col=(0.2, 0.2, 0.21))
+    smoke = [lw_puff(f"{name} smoke {k}", (loc[0] + rnd.uniform(-0.2, 0.2) - 0.3 * k, loc[1] + 0.2 * k, loc[2] + 0.9 * size + 0.6 * k * size), (0.3 + 0.16 * k) * size, ash)
+             for k in range(5)]
     L = lw_point(f"{name} fire light", (loc[0], loc[1] - 0.6, loc[2] + 0.6 * size), 900.0 * size, col=(1.0, 0.45, 0.15), r=0.4)
     return tongues, smoke, L
 
@@ -71,51 +80,82 @@ def place_harbour_dawn():
     lantern post at its door, the town on the slope above, the earth wall round it, the black lava at the edge of town
     and three houses there still burning under their smoke."""
     rnd = lw_random.Random(61)
-    lw_grid("town slope", -24, 24, 1.2, 40, 80, 80, s5_slope_z, lava_field_mat())
+    lw_grid("town slope", -24, 24, 1.2, 40, 192, 120, s5_slope_z, lava_field_mat())          # the town's land, the basin sunk in it
+    stone = lw_noise("harbour stone", "#4E4A46", "#6E6862", scale=9, rough=0.9, bump=0.8)
+    x0, x1, y0, y1 = S5_BASIN
+    for k in range(12):                                    # the basin's stone walls: its town side climbs with the slope
+        y = y0 + (y1 - y0) * (k + 0.5) / 12; top = s5_slope_z(x1 + 0.3, y)
+        K.box("harbour basin wall", (x1 + 0.12, y, (top - 1.2) / 2), (0.25, (y1 - y0) / 12 + 0.02, top + 1.2), stone, bev=0.01)
+    K.box("harbour basin wall", (S5_EDGE_X + (x1 - S5_EDGE_X) / 2, y0 - 0.1, -0.6), (x1 - S5_EDGE_X + 0.2, 0.25, 1.24), stone, bev=0.01)
+    top = s5_slope_z(x1 + 0.3, y1 + 0.3)
+    K.box("harbour head wall", ((x0 - 30 + x1) / 2, y1 + 0.12, (top - 1.2) / 2), (x1 - x0 + 30, 0.25, top + 1.2), stone, bev=0.01)
     K.box("quay concrete", (3.0, -2.0, -0.128), (10.4, 7.0, 0.24), lw_noise("quay concrete", "#8A8782", "#A5A29B", scale=10, rough=0.85, bump=0.4), bev=0.02)
-    K.box("quay edge", (S5_EDGE_X + 0.1, -2.0, 0.03), (0.2, 7.0, 0.06), K.mat("quay edge paint", "#D9B32E", rough=0.6), bev=0.01)
-    for k in range(5):
-        K.cyl("quay bollard", (S5_EDGE_X + 0.35, -4.0 + 1.6 * k, 0.1), 0.07, 0.2, lw_metal("bollard", "#2E3033"), v=16)
+    edge = K.mat("quay edge paint", "#D9B32E", rough=0.6)
+    K.box("quay edge", (S5_EDGE_X + 0.1, -2.0, 0.03), (0.2, 7.0, 0.06), edge, bev=0.01)
+    K.box("quay edge", (S5_EDGE_X + (x1 - S5_EDGE_X) / 2, y0 - 0.12, 0.03), (x1 - S5_EDGE_X, 0.2, 0.06), edge, bev=0.01)
+    for k in range(4):
+        K.cyl("quay bollard", (S5_EDGE_X + 0.3 + 0.55 * k, y0 - 0.35, 0.1), 0.07, 0.2, lw_metal("bollard", "#2E3033"), v=16)
     water = bpy.data.materials.new("harbour water"); water.use_nodes = True; wb = water.node_tree.nodes["Principled BSDF"]
     wb.inputs["Base Color"].default_value = (*K.lin("#1E3440"), 1); wb.inputs["Roughness"].default_value = 0.06
     wt = water.node_tree; nz = wt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 6.0; bp = wt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.15
     wt.links.new(nz.outputs["Fac"], bp.inputs["Height"]); wt.links.new(bp.outputs["Normal"], wb.inputs["Normal"])
     K.box("harbour water", (-14, 0, -0.45), (24, 60, 0.02), water, bev=0)
-    hull_cols = ("#2E5E8A", "#C33A2A", "#E9E4D6")
-    for k, (y, c) in enumerate(zip((-1.2, 1.6, 4.6), hull_cols)):          # fishing boats moored along the quay
-        x = S5_EDGE_X - 0.9
-        K.box(f"fishing boat {k} hull", (x, y, -0.22), (1.1, 2.4, 0.55), lw_paint(f"hull {c}", c, rough=0.4), bev=0.18)
-        K.box(f"fishing boat {k} wheelhouse", (x, y + 0.4, 0.3), (0.7, 0.7, 0.55), lw_paint("wheelhouse white", "#EDEBE4", rough=0.4), bev=0.05)
-        K.box(f"fishing boat {k} window", (x, y + 0.04, 0.38), (0.55, 0.02, 0.18), K.mat("car glass", "#1E262C", rough=0.05, metal=0.3), bev=0.0)
-        K.cyl(f"fishing boat {k} mast", (x, y - 0.5, 0.9), 0.025, 1.6, lw_metal("mast steel", "#8A8E92"), v=10)
-    home = town_house("his town house", (-2.1, 2.6, 0.0), yaw=0.0, w=2.0, d=1.6, roof="#2F5E8C", wall="#F1EEE6", seed=3)
+    # fishing boats moored in the basin, built from their parts: hull with a raked bow, rubbing strake, deck,
+    # wheelhouse with its windows and roof, mast and boom, fenders over the side
+    hull_cols = ("#2E5E8A", "#C33A2A", "#E9E4D6", "#2E7A5A")
+    white = lw_paint("wheelhouse white", "#EDEBE4", rough=0.4); glass = K.mat("car glass", "#1E262C", rough=0.05, metal=0.3)
+    steel = lw_metal("mast steel", "#8A8E92"); deck = lw_noise("boat deck", "#6A5A48", "#8A7860", scale=14, rough=0.8, stretch=(1, 6, 1))
+    fend = K.mat("fender", "#1C1C1E", rough=0.6)
+    for k, (x, y) in enumerate(((-0.95, 4.0), (-1.3, 6.2), (-2.6, 4.6), (-3.6, 6.3))):
+        c = hull_cols[k]; hm = lw_paint(f"hull {c}", c, rough=0.4)
+        K.box(f"fishing boat {k} hull", (x, y, -0.3), (1.0, 2.2, 0.5), hm, bev=0.14)
+        bow = K.box(f"fishing boat {k} bow", (x, y + 1.15, -0.22), (0.7, 0.7, 0.5), hm, bev=0.12); bow.rotation_euler = (0, 0, math.radians(45))
+        K.box(f"fishing boat {k} strake", (x, y, -0.06), (1.04, 2.24, 0.05), K.mat("strake black", "#1A1A1A", rough=0.5), bev=0.02)
+        K.box(f"fishing boat {k} deck", (x, y, -0.04), (0.9, 2.1, 0.03), deck, bev=0.01)
+        K.box(f"fishing boat {k} wheelhouse", (x, y - 0.45, 0.25), (0.62, 0.65, 0.55), white, bev=0.04)
+        K.box(f"fishing boat {k} wheelhouse roof", (x, y - 0.45, 0.55), (0.72, 0.75, 0.05), hm, bev=0.015)
+        for wx in (-0.16, 0.16):
+            K.box(f"fishing boat {k} window", (x + wx, y - 0.12, 0.35), (0.24, 0.02, 0.16), glass, bev=0.0)
+        K.cyl(f"fishing boat {k} mast", (x, y + 0.35, 0.75), 0.022, 1.5, steel, v=10)
+        K.cyl(f"fishing boat {k} boom", (x, y + 0.75, 0.6), 0.015, 0.8, steel, rot=(math.radians(70), 0, 0), v=8)
+        for j in range(3):
+            K.cyl(f"fishing boat {k} fender", (x + 0.53, y - 0.6 + 0.6 * j, -0.2), 0.05, 0.18, fend, v=10)
+    home = town_house("his town house", (3.0, 3.2, 0.0), yaw=0.0, w=2.0, d=1.6, roof="#2F5E8C", wall="#F1EEE6", seed=3)
     wood = lw_noise("post wood", "#5A4632", "#7A6248", scale=12, rough=0.8, stretch=(1, 1, 8))
-    K.box("lantern post", (S5_HOOK.x + 0.1, S5_HOOK.y, 0.36), (0.07, 0.07, 0.72), wood, bev=0.008)
-    K.cyl("lantern hook", (S5_HOOK.x + 0.04, S5_HOOK.y, S5_HOOK.z + 0.01), 0.008, 0.09, lw_metal("hook iron", "#2E3033"), rot=(0, math.pi / 2, 0), v=8)
+    paint = K.mat("post paint", "#EDEAE2", rough=0.5); iron = lw_metal("hook iron", "#2E3033")
+    K.box("lantern post", (S5_HOOK.x + 0.16, S5_HOOK.y, 0.42), (0.09, 0.09, 0.84), paint, bev=0.01)
+    K.box("lantern post cap", (S5_HOOK.x + 0.16, S5_HOOK.y, 0.855), (0.13, 0.13, 0.03), paint, bev=0.008)
+    K.box("lantern post foot", (S5_HOOK.x + 0.16, S5_HOOK.y, 0.03), (0.16, 0.16, 0.06), K.mat("post foot", "#6E6B66", rough=0.8), bev=0.01)
+    K.box("lantern hook arm", (S5_HOOK.x + 0.06, S5_HOOK.y, S5_HOOK.z + 0.05), (0.2, 0.025, 0.025), iron, bev=0.004)
+    K.box("lantern hook brace", (S5_HOOK.x + 0.1, S5_HOOK.y, S5_HOOK.z - 0.02), (0.13, 0.018, 0.018), iron, bev=0.003).rotation_euler = (0, math.radians(-45), 0)
+    hk = K.cyl("lantern hook", (S5_HOOK.x - 0.035, S5_HOOK.y, S5_HOOK.z + 0.025), 0.009, 0.05, iron, v=8)
+    K.cyl("lantern hook curl", (S5_HOOK.x - 0.025, S5_HOOK.y, S5_HOOK.z + 0.002), 0.008, 0.03, iron, rot=(0, math.pi / 2, 0), v=8)
     quay = []
     for k, (x, y) in enumerate(((6.4, 3.0), (8.8, 3.4), (11.2, 4.0))):     # his neighbours along the quay, off to the right
         quay.append(town_house(f"quay house {k}", (x, y, 0.0), yaw=0.0, w=2.0, d=1.6, roof=ROOFS[(k * 3 + 2) % len(ROOFS)], wall=WALLS[(k + 2) % len(WALLS)], seed=50 + k))
     town = []
-    spots = [(-2.6, 6.2), (-0.3, 6.8), (-1.6, 9.0), (-0.5, 9.6), (-3.4, 10.6), (-0.8, 11.8), (0.0, 13.6), (-2.6, 13.6), (-4.6, 7.6), (-1.8, 15.2)]
+    spots = [(-4.8, 8.8), (-2.7, 8.6), (-2.4, 11.0), (-0.9, 12.6), (-7.0, 9.0), (-4.0, 12.0), (-2.0, 14.8), (0.9, 14.4), (-6.2, 11.6), (-5.6, 14.2)]
     for k, (x, y) in enumerate(spots):
         hs = town_house(f"town house up {k}", (x, y, s5_slope_z(x, y) - 0.05), yaw=rnd.uniform(-0.15, 0.15), w=rnd.uniform(1.8, 2.2), d=1.6,
                         roof=ROOFS[(k * 2 + 1) % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=30 + k)
         town.append(hs)
     burning = []
-    for k, (x, y) in enumerate(((2.0, 7.6), (1.5, 10.6), (2.7, 12.8))):     # at the lava's edge, the right of the town
+    for k, (x, y) in enumerate(((-0.6, 8.6), (0.9, 9.6), (2.4, 10.8))):     # at the lava's edge: three in a row across the frame, countable
         z = s5_slope_z(x, y) - 0.05
         hs = town_house(f"burning house {k}", (x, y, z), yaw=rnd.uniform(-0.3, 0.3), w=2.0, d=1.6, roof="#3A3230", wall="#6E655E", seed=40 + k)
         burning.append((hs, (x, y, z + 1.2)))
     lm = lava_mat("lava field fresh", heat=0.35, scale=2.5)
-    out = [(3.3, 6.0), (14.0, 5.6), (16.0, 10.0), (14.0, 14.8), (3.8, 14.8), (3.5, 12.0), (3.8, 9.0)]
+    out = [(0.4, 7.4), (12.9, 5.6), (14.9, 10.0), (12.9, 15.0), (3.6, 15.0), (3.4, 12.0), (1.9, 9.0)]
     flow = lava("new lava field", out, z=0.0, thick=0.4, m=lm, seed=8, lumpy=0.2)
     c = flow.location.copy()                               # laid on the hill: tilted to its slope, its centre on the ground
-    flow.rotation_euler.x = math.atan(0.55); flow.location.z = 0.55 * (c.y - 4.0) - 0.12
+    flow.rotation_euler.x = math.atan(0.3); flow.location.z = 0.3 * (c.y - 4.0) - 0.12
     wall = earth_wall("earth wall", [(x, 17.0 + 0.03 * x * x) for x in range(-26, 8, 2)], h=4.4, crest=1.4, base=8.5, seed=14)
     wall["root"].location.z = s5_slope_z(0.0, 16.0) - 0.3          # on the hilltop above the town
 
     def light():
-        return iceland_light(sun_elev=4, sun_az=-55, sun=1.8, sky=0.3, warm=(1.0, 0.7, 0.5), haze=1.6)
+        k = iceland_light(sun_elev=3, sun_az=-55, sun=1.6, sky=0.18, warm=(1.0, 0.62, 0.45), haze=1.6)      # first light: dim enough that a lit window reads
+        lw_clouds(cover=0.7, scale=6.0)
+        return k
     return dict(light=light, home=home, town=town, burning=burning, quay=quay)
 
 
@@ -147,11 +187,12 @@ def shot5():
             z0 = o.location.z
             for f in range(1, NF + 1, 3):
                 t = (f - 1) / FPS; o.location.z = z0 + 0.35 * t; o.location.x += 0.0; o.keyframe_insert("location", frame=f)
+        lw_flicker(bpy.data.materials["house fire"], DUR)
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; L.data.energy = 900.0 * (1 + 0.25 * math.sin(2 * math.pi * 3.1 * t + rnd.uniform(0, 3))); L.data.keyframe_insert("energy", frame=f)
     # ---- a few windows light up across the dark town, one here, one there
     lit = []
-    order = [(P["town"][1], 1, -0.07), (P["town"][4], 0, 0.06), (P["town"][2], 0, 0.12), (P["town"][6], 1, 0.19), (P["town"][3], 1, 0.26)]
+    order = [(P["town"][1], 1, -0.07), (P["town"][7], 0, -0.02), (P["town"][2], 0, 0.03), (P["town"][0], 0, 0.08), (P["town"][6], 1, 0.13), (P["town"][3], 1, 0.18), (P["town"][5], 0, 0.23)]
     for hs, wi, frac in order:
         lit.append(s5_lit_pane(hs, min(wi, len(hs["windows"]) - 1), T_WIN + frac * DUR))
     lit_houses = [hs for hs, _w, _f in order]
@@ -216,15 +257,19 @@ def shot5():
     data.expression("wry", T_ASK, DUR + 1.0, blend=0.2)
     data.finish()
     # ---- the lens: low on the quay, the town and its burning edge up the slope behind him
-    CAM = Vector((0.8, -1.8, 1.3)); LOOK = Vector((0.6, 6.0, 2.8))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 30.0, face_at=(0.42, 0.4), height=0.36, t=T_HANG)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    CAM = Vector((0.05, -0.45, 0.8)); LOOK = Vector((0.15, 8.0, 1.8))      # low on the quay (solved with compose.Pinhole): him and the post low, the three burning houses in a row across the middle, the lit town round them
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=28.0, fstop=16.0)
     def cam_at(t):                                          # it pans with him up the quay to the post, then holds
         sc.frame_set(F(min(t, T_WALK1))); bpy.context.view_layer.update()
         pan = Vector((data.pos().x - STAND.x, 0.0, 0.0))
         return CAM + pan * 0.6 + Vector((0.0, 0.1, 0.0)) * ease(t / DUR), LOOK + pan, data.pos() + Vector((0, 0, 0.6))
-    camera_path(cam, cam_at)
-    return dict(lanes=[], kiosks=[], place="harbour_dawn", light=light, data=data, rest=1, grips=("lantern", "lantern post", "lantern hook"),
+    # CUT to the WIDE on his walk to his door (board round 2: "no harbour, no boats, no wall", "three burning houses
+    # against many untouched ones"): high over the harbour water, the boats in the basin, him at his door on the quay,
+    # the town on its hill, the three houses burning at the black lava's edge, the wall above, the handful of lights
+    T_W0, T_W1 = 0.28 * DUR, T_HANG - 0.35          # on his walk up the quay, his face to this lens (KEYS: never his back)
+    CW = Vector((2.0, -4.0, 3.5)); LW = Vector((-2.0, 8.5, 1.5))
+    lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.12, 0.2, -0.05)) * (t - T_W0), LW, Vector((0.0, 6.0, 1.5))), T_W0, T_W1, 28.0, 20.0)
+    return dict(lanes=[], kiosks=[], place="harbour_dawn", light=light, data=data, rest=1, grips=("lantern", "lantern post", "lantern hook"), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("three houses still burn at the edge of the black lava", lambda: lw_drawn("burning house"), 0.0, DUR, {"whole": False}),
                         ("he hangs the lantern on the hook and it swings, glowing", lambda: meshes([lan]), T_HANG - 0.1, DUR, {"whole": False, "moves": True}),

@@ -49,7 +49,7 @@ def s4_barrow():
     """a builder's wheelbarrow of sandbags facing -Y: a steel tray, one wheel at its nose, two long handles back toward
     him, two legs. Built with the axle at its origin and the handles' ends at (±0.1, 0.72, 0.27): pitched for pushing."""
     root = K.empty("wheelbarrow", (0, 0, 0))
-    tray = lw_paint("barrow green", "#2F6B3A", rough=0.45); steel = lw_metal("barrow steel", "#6A6E72", rough=0.4)
+    tray = lw_metal("barrow galvanised", "#8E9398", rough=0.42); steel = lw_paint("barrow frame red", "#9E2A1E", rough=0.45)      # a galvanised tray on a red tube frame: a builder's barrow, not a toy
     K.box("wheelbarrow tray", (0, 0.3, 0.2), (0.4, 0.5, 0.05), tray, bev=0.02, parent=root)
     for sx in (-1, 1):
         K.box("wheelbarrow tray side", (sx * 0.2, 0.3, 0.28), (0.03, 0.5, 0.16), tray, bev=0.01, parent=root)
@@ -57,15 +57,25 @@ def s4_barrow():
         K.cyl("wheelbarrow leg", (sx * 0.12, 0.5, 0.07), 0.012, 0.16, steel, v=10, parent=root)
     K.box("wheelbarrow tray front", (0, 0.06, 0.28), (0.4, 0.03, 0.16), tray, bev=0.01, parent=root)
     K.box("wheelbarrow tray back", (0, 0.54, 0.28), (0.4, 0.03, 0.16), tray, bev=0.01, parent=root)
+    rim = lw_metal("barrow rim", "#B4B8BC", rough=0.3)                 # the rolled rim round the tray's lip
+    for sx in (-1, 1):
+        K.cyl("wheelbarrow tray rim", (sx * 0.205, 0.3, 0.365), 0.012, 0.52, rim, rot=(math.pi / 2, 0, 0), v=10, parent=root)
+    for y in (0.055, 0.545):
+        K.cyl("wheelbarrow tray rim", (0, y, 0.365), 0.012, 0.43, rim, rot=(0, math.pi / 2, 0), v=10, parent=root)
+    for sx in (-1, 1):
+        K.cyl("wheelbarrow handle grip", (sx * 0.1, 0.7, 0.255), 0.02, 0.1, K.mat("grip black", "#151515", rough=0.7), rot=(math.radians(-90 + 17), 0, 0), v=12, parent=root)
     K.cyl("wheelbarrow wheel", (0, 0, 0), 0.1, 0.06, K.mat("car tyre", "#141414", rough=0.8), rot=(0, math.pi / 2, 0), v=24, parent=root)
     K.cyl("wheelbarrow hub", (0, 0, 0), 0.03, 0.07, steel, rot=(0, math.pi / 2, 0), v=12, parent=root)
-    sand = lw_noise("sandbag hessian", "#7A6844", "#9A8658", scale=40, rough=0.9, bump=0.6)
-    for k, (x, y) in enumerate(((-0.08, 0.2), (0.09, 0.22), (0.0, 0.4), (-0.06, 0.38))):
-        K.sph(f"wheelbarrow sandbag {k}", (x, y, 0.27 + 0.04 * (k > 1)), 0.075, sand, scale=(1.0, 1.5, 0.5), seg=12, ring=8, parent=root)
-    fire = lw_fire_mat("barrow fire")
+    sand = lw_noise("sandbag hessian", "#8A7448", "#B29A68", scale=90, rough=0.95, bump=1.0, stretch=(1, 1, 1))   # a coarse weave
+    tie = K.mat("sandbag tie", "#4A3A22", rough=0.9)
+    for k, (x, y, rz) in enumerate(((-0.085, 0.22, 0.1), (0.085, 0.24, -0.08), (0.0, 0.4, 1.45), (-0.02, 0.33, 0.05))):
+        sb = K.box(f"wheelbarrow sandbag {k}", (x, y, 0.255 + 0.05 * (k > 2)), (0.15, 0.26, 0.075), sand, bev=0.035, parent=root)
+        sb.rotation_euler = (0, 0, rz)
+        K.box(f"wheelbarrow sandbag tie {k}", (x + 0.12 * math.sin(-rz) * 0, y + 0.13 * math.cos(rz), 0.255 + 0.05 * (k > 2)), (0.05, 0.03, 0.05), tie, bev=0.01, parent=root)
+    fire = lw_fire_vol("barrow fire", density=6.0, strength=40.0, smoke=(0.15, 0.12, 0.1), scale=3.0)
     flames = []
-    for k, (x, y) in enumerate(((-0.08, 0.22), (0.08, 0.3), (0.0, 0.42))):
-        fl = K.sph(f"wheelbarrow flame {k}", (x, y, 0.4), 0.08, fire, scale=(0.7, 0.7, 2.0), seg=10, ring=8, parent=root)
+    for k, (x, y) in enumerate(((-0.08, 0.22), (0.08, 0.3), (0.0, 0.42), (-0.1, 0.38), (0.1, 0.18))):
+        fl = K.sph(f"wheelbarrow flame {k}", (x, y, 0.45 + 0.04 * (k % 2)), 0.1 if k < 3 else 0.07, fire, scale=(0.75, 0.75, 2.6), seg=12, ring=8, parent=root); fl.visible_shadow = False
         flames.append(fl)
     lw_local(root)
     return root, flames
@@ -140,13 +150,14 @@ def shot4():
         u = min(1.0, max(0.0, (t - t0) / T)); return d * ease(u), h * math.sin(math.pi * u)
     for f in range(F(T_STOP) + 1, NF + 1):
         t = (f - 1) / FPS
-        y1, z1 = hop(t, T_LET, 0.2, 0.08, 0.5); y2, z2 = hop(t, T_RUN, 0.13, 0.06); y3, z3 = hop(t, T_RUN + 0.45, 0.14, 0.06)
+        y1, z1 = hop(t, T_LET, 0.32, 0.13, 0.5); y0_, z0_ = hop(t, T_POUR - 0.1, 0.1, 0.09, 0.4); y1 += y0_; z1 += z0_; y2, z2 = hop(t, T_RUN, 0.13, 0.06); y3, z3 = hop(t, T_RUN + 0.45, 0.14, 0.06)
         jolt = -0.03 * lw_kick(t - T_JOLT, 0.1) - 0.05 * lw_kick(t - T_POUR, 0.15)
         sway = 0.04 * math.sin(2 * math.pi * (t - T_LET) / 1.1) * W(t, T_LET + 0.3, 0.3)
-        data._kobj(t, loc=(0.15 + sway + 0.12 * W(t, T_RUN, 0.6), YS + y1 + y2 + y3 + 0.04 * W(t, T_POUR, 0.2), z1 + z2 + z3 + jolt),
-                   rot=math.radians(-8) * W(t, T_LET, 0.3) + math.radians(12) * math.sin(2 * math.pi * (t - T_LET) / 1.6) * W(t, T_LET + 0.3, 0.4) + math.radians(14) * W(t, T_RUN, 0.5))
+        data._kobj(t, loc=(0.15 + sway - 0.45 * W(t, T_RUN, 0.7), YS + y1 + y2 + y3 + 0.04 * W(t, T_POUR, 0.2), z1 + z2 + z3 + jolt),
+                   rot=math.radians(-8) * W(t, T_LET, 0.3) + math.radians(12) * math.sin(2 * math.pi * (t - T_LET) / 1.6) * W(t, T_LET + 0.3, 0.4) + math.radians(-14) * W(t, T_RUN, 0.5))
     lw_layer(data, "spine", lambda t: (14 * W(t, 0.0, 0.2) * (1 - W(t, T_STOP, 0.2)) - 16 * lw_kick(t - T_JOLT, 0.18) + 10 * W(t, T_TEAR, 0.25) * (1 - W(t, T_LET, 0.2))
-                                       - 14 * W(t, T_LET, 0.2) * (1 - W(t, T_LET + 0.6, 0.3)) - 10 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
+                                       - 14 * W(t, T_LET, 0.2) * (1 - W(t, T_LET + 0.6, 0.3)) - 10 * W(t, T_RUN, 0.3)
+, 0, 0), 0, DUR + 0.4)
     # ---- the barrow: pushed ahead of him, set down at the stop, let go; it rolls to the edge, tips in and burns
     bar, flames = s4_barrow()
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -185,8 +196,8 @@ def shot4():
         data.reach(sd, handle(sx), 0.0, T_LET, lead=0.05, back=None, elbow_out=0.35)
     # arms up against the heat: hands up at his face's sides from the leap, higher at the hops back
     for sd in sides:
-        HK = [(T_LET + 0.7, (0.08, 0.14, 0.0)), (T_POUR - 0.03, (0.08, 0.15, 0.03)), (T_POUR + 0.25, (0.08, 0.15, 0.05)), (T_RUN, (0.08, 0.15, 0.05)),
-              (T_RUN + 0.4, (0.08, 0.15, 0.06)), (T_RUN + 0.8, (0.08, 0.14, 0.02)), (DUR + 0.4, (0.08, 0.15, 0.05))]
+        HK = [(T_LET + 0.7, (0.08, 0.14, 0.0)), (T_POUR - 0.03, (0.07, 0.13, 0.07)), (T_POUR + 0.25, (0.08, 0.15, 0.0)), (T_TIP + 0.3, (0.04, 0.1, 0.12)),
+              (T_RUN, (0.07, 0.13, 0.07)), (T_RUN + 0.4, (0.08, 0.15, 0.06)), (T_RUN + 0.8, (0.06, 0.12, -0.04)), (DUR + 0.4, (0.08, 0.15, 0.05))]
         data.reach(sd, lw_hand(data, sd, HK), HK[0][0], DUR + 0.3, lead=0.7, back=None, elbow_out=0.4)
     # ---- the crack: a hairline tears across from kerb to kerb, then the street pulls apart and the lava shows in the gap
     gm = lava_mat("crack glow", heat=1.6, scale=6.0)
@@ -233,9 +244,10 @@ def shot4():
     flow = lava("street lava", out, z=0.0, thick=0.16, m=lm, seed=6, lumpy=0.05)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_POUR, DUR - T_POUR); w_ = W(t, T_POUR - 0.25, 0.4)
-        flow.location = (0.3 * u, S4_YC - 0.15 - 0.9 * u, -0.25 + 0.27 * w_)     # it pours out toward us, down the street
-        flow.scale = (0.9 + 0.15 * u, 0.6 + 1.9 * u, 1.0); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
+        flow.location = (1.55 + 0.2 * u, S4_YC + 0.15 + 1.1 * u, -0.25 + 0.27 * w_)     # it pours out of the crack and runs up the street to the corner house
+        flow.scale = (0.5, 0.6 + 2.3 * u, 1.0); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
+    lw_flicker(bpy.data.materials["barrow fire"], DUR)
     glow = lw_point("crack glow", (0.0, S4_YC, 0.25), 0.0, col=(1.0, 0.45, 0.12), r=0.6)
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS; glow.data.energy = 260.0 * W(t, T_OPEN0, 0.5) + 200.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
@@ -250,18 +262,24 @@ def shot4():
     data.expression("alarmed", T_LET, DUR + 1.0, blend=0.15)
     data.finish()
     # ---- the lens: backing down the street ahead of him while he pushes, then holding as the street splits
-    CAM = Vector((0.9, -3.4, 1.05)); LOOK = Vector((0.12, 0.3, 0.5))     # long lens, low down the street: him, the crack at his wheel, the town behind him
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=88.0, fstop=16.0)
+    CAM = Vector((0.75, -3.8, 1.55)); LOOK = Vector((0.2, 0.6, 0.35))     # long lens down the street, a little above him: the crack's zig-zag across the frame at his wheel, the corner house and the lava's run behind him
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=85.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()
         dy = data.pos().y - YS
         shake = Vector((0.02 * math.sin(2 * math.pi * 13 * t), 0, 0.015 * math.sin(2 * math.pi * 17 * t))) * lw_kick(t - T_JOLT, 0.25) * 2
-        back = Vector((0, -0.3, 0.0)) * W(t, T_LET, 1.5)          # it backs off as the lava comes
+        back = Vector((0, 0.0, 0.0))
         p0 = data.pos().copy(); sc.frame_set(F(t)); bpy.context.view_layer.update()
         fol = (data.pos() - p0) * 0.8; fol.z = 0.0                     # and pans with him as he leaps and hops back
-        return CAM + Vector((0, dy, 0)) + shake + back, LOOK + Vector((0, dy, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))
-    camera_path(cam, cam_at)
-    return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("wheelbarrow",),
+        dolly = Vector((0, (data.pos() - p0).y * 1.0, 0))               # and keeps its distance as he backs away
+        return CAM + Vector((0, dy, 0)) + shake + back + dolly, LOOK + Vector((0, dy, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))
+    # CUT to the WIDE as the lava pours (board round 2: "80% bare asphalt", "no wall at the end of the street", "never
+    # seen pouring toward a house"): high behind the lens and up the street, the crack glowing kerb to kerb, the lava
+    # running at the red-roofed corner house, the street's houses both sides, the wall across its end with smoke over it
+    T_W0, T_W1 = T_TIP - 0.05, T_RUN + 0.35
+    CW = Vector((1.2, -9.5, 4.0)); LW = Vector((0.3, 8.0, 0.2))
+    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.35, -0.05)) * (t - T_W0), LW, Vector((0.6, 1.0, 0.3))), T_W0, T_W1, 85.0, 24.0)
+    return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("wheelbarrow",), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("he pushes the barrow of sandbags down the street", lambda: [o for o in meshes([bar]) if "wheel" not in o.name.split("barrow ")[-1] and "hub" not in o.name], 0.0, T_STOP, {"whole": False, "moves": True}),
                         ("a crack tears across the road in front of his wheel and yawns open, glowing", lambda: [tear], T_TORN, T_OPEN1 + 0.2, {"whole": False}),

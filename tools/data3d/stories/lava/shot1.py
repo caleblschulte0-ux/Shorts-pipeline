@@ -11,6 +11,7 @@ S1_ARM = 2.2                           # the arm, out across the road (toward -X
 S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hub
 S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
+S1_FX, S1_FGAP = 2.0, 0.8              # the nine vents: the row's middle (x) and the gap between two vents
 
 
 def s1_ground_z(x, y):
@@ -128,35 +129,66 @@ def place_grindavik_street():
                             h=rnd.uniform(1.2, 1.45), roof=ROOFS[(k * 3 + (sx > 0)) % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=k)
             houses.append(hs); y += w + rnd.uniform(0.5, 0.9); k += 1
     lava_rock("lava field rock", 160, (-14, 14, -6, 14), s1_ground_z, seed=3, avoid=lambda x, y: abs(x) < 3.2 and y < 9.0)
+    # the slope up to the ridge is old lava field: broken black blocks and moss, never one smooth brown sheet (EMPTY
+    # measured the bare slope as 30% of the set), with the town's power line and a gravel track climbing it
+    lava_rock("ridge slope rock", 520, (-7, 10, 8.5, 15.2), s1_ground_z, seed=11, r=(0.08, 0.32), moss=0.06)
+    lava_rock("ridge slope stone", 700, (-5, 8, 8.5, 15.0), s1_ground_z, seed=12, r=(0.03, 0.09), moss=0.1)
+    pole = lw_noise("power pole wood", "#4A3626", "#6E5238", scale=20, rough=0.9, stretch=(1, 1, 6))
+    wire = K.mat("power line", "#151515", rough=0.5)
+    tops = []
+    for k in range(7):
+        y = 9.0 + 1.1 * k; x = -3.2 + 0.25 * k
+        z = s1_ground_z(x, y); h = 1.5
+        K.cyl("power pole", (x, y, z + h / 2), 0.035, h, pole, v=10)
+        K.box("power pole arm", (x, y, z + h - 0.1), (0.6, 0.04, 0.04), pole, bev=0.005)
+        tops.append(Vector((x, y, z + h - 0.08)))
+    for a, b in zip(tops, tops[1:]):
+        for dx in (-0.25, 0.25):
+            p, q = a + Vector((dx, 0, 0)), b + Vector((dx, 0, 0)); d = q - p
+            o = K.cyl("power line wire", ((p + q) / 2), 0.006, d.length, wire, v=6, bev=0)
+            o.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
+    grav = lw_noise("gravel track", "#6A645C", "#8A8478", scale=30, rough=0.95, bump=0.5)
+    for k in range(10):
+        y = 8.8 + 0.65 * k; x = 1.2 + 1.4 * math.sin(0.5 * k)
+        o = K.box("gravel track", (x, y, s1_ground_z(x, y) + 0.01), (0.7, 0.75, 0.03), grav, bev=0.005)
+        o.rotation_euler = (math.atan2(s1_ground_z(x, y + 0.4) - s1_ground_z(x, y - 0.4), 0.8), 0, 0.7 * math.cos(0.5 * k) * 0.5)
     for k in range(6):                                     # the far blue mountains over the ridge
         x = -40 + 16 * k
         K.sph("far mountain", (x, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.7 + 0.15 * (k % 3)), seg=24, ring=12)
-    # the fissure: a glowing line along the ridge, the curtain of fountains on it, the plume over it
-    fz = s1_ground_z(0, S1_RIDGE_Y)
-    K.box("fissure glow", (0, S1_RIDGE_Y, fz - 0.1), (44, 0.6, 0.3), lw_emit("fissure line", "#FF5000", 1.4), bev=0)
-    fm = s1_fountain_mat(); founts = []
-    for k in range(9):                                     # NINE vents, one for each eruption: they burst open one after another
-        x = -14.4 + k * 3.6 + rnd.uniform(-0.25, 0.25)
-        o = K.sph(f"fissure fountain {k}", (x, S1_RIDGE_Y, s1_ground_z(x, S1_RIDGE_Y) - 0.3), 1.0, fm, scale=(0.9, 0.4, 1.0), seg=20, ring=14)
-        dm = o.modifiers.new("ragged", 'DISPLACE'); tx = bpy.data.textures.new(f"ragged {k}", 'CLOUDS'); tx.noise_scale = 0.35; dm.texture = tx; dm.strength = 0.35
-        founts.append(o)
-    spm = lw_emit("lava spatter", "#FF6000", 1.2)
-    spat = [K.sph(f"fissure spatter {k}", (0, S1_RIDGE_Y, fz), rnd.uniform(0.05, 0.1), spm, seg=8, ring=6) for k in range(30)]
-    ash = lw_billow_mat("eruption plume", col="#5C5A58")              # a lumpy billowing plume, not a soft smudge
+    # the fissure: a glowing line along the ridge and NINE vents on it, one for each eruption, close enough that the
+    # whole row is in the frame and far enough apart to count; each vent a fountain of fire (a volume, white-hot in
+    # its core) throwing glowing spatter that arcs and falls; the plume over it is smoke (volumes), lit from below
+    fz = s1_ground_z(S1_FX, S1_RIDGE_Y)
+    K.box("fissure glow", (S1_FX, S1_RIDGE_Y, fz - 0.1), (S1_FGAP * 9 + 3.0, 0.5, 0.3), lw_emit("fissure line", "#FF5000", 1.4), bev=0)
+    fm = lw_fire_vol("fountain fire", density=5.0, strength=28.0, scale=3.2)      # orange, not blown out white
+    founts, spat, cores = [], [], []
+    core = lw_emit("fountain core", "#FFC050", 18.0)
+    spm = lw_emit("lava spatter", "#FF8A10", 6.0)
+    for k in range(9):
+        x = S1_FX + (k - 4) * S1_FGAP
+        z0 = s1_ground_z(x, S1_RIDGE_Y) - 0.2
+        o = lw_flame(f"fissure fountain {k}", (x, S1_RIDGE_Y, z0), 1.0, fm, scale=(0.3, 0.25, 1.0))
+        o["base_z"] = z0; founts.append(o)
+        c = K.sph(f"fissure fountain core {k}", (x, S1_RIDGE_Y - 0.05, z0), 1.0, core, scale=(0.1, 0.08, 0.5), seg=12, ring=10)
+        c.visible_shadow = False; cores.append(c)
+        for j in range(14):
+            spat.append(K.sph(f"fissure spatter {k}_{j}", (x, S1_RIDGE_Y, z0), rnd.uniform(0.035, 0.07), spm, seg=8, ring=6))
+    ash = lw_smoke_mat("eruption steam plume", density=0.5, col=(0.88, 0.88, 0.92))      # volcanic gas and steam: pale grey, thin at its edges
     puffs = []
-    for k in range(16):
-        x = -20 + k * 2.7 + rnd.uniform(-1, 1)
-        puffs.append(lw_billow(f"eruption plume {k}", (x, S1_RIDGE_Y + 3.0 + rnd.uniform(0, 3), fz + 7 + rnd.uniform(0, 6)), rnd.uniform(3.0, 4.2), ash, seed=k, scale=(1.3, 1.0, 0.9)))
+    for k in range(14):                                    # one column climbing off the fissure and leaning downwind
+        u = k / 13
+        x = S1_FX - 2.5 + 5.0 * rnd.uniform(0, 1) * (1 - 0.4 * u) - 4.0 * u * u
+        puffs.append(lw_puff(f"eruption plume {k}", (x, S1_RIDGE_Y + 2.0 + rnd.uniform(0, 2.5), fz + 3.5 + 9.0 * u + rnd.uniform(-0.5, 0.5)), 1.8 + 1.6 * u + rnd.uniform(0, 0.4), ash, scale=(1.2, 1.0, 1.0)))
     gate = s1_gate()
-    glow = [lw_point(f"fissure light {k}", (x, S1_RIDGE_Y - 1.5, fz + 3.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-12, -4, 4, 12))]
-    plume_lit = [lw_point(f"plume underlight {k}", (x, S1_RIDGE_Y + 2.0, fz + 6.0), 0.0, col=(1.0, 0.35, 0.08), r=3.0) for k, x in enumerate((-9, 0, 9))]
+    glow = [lw_point(f"fissure light {k}", (S1_FX + x, S1_RIDGE_Y - 1.5, fz + 2.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-3.5, 0, 3.5))]
+    plume_lit = [lw_point(f"plume underlight {k}", (S1_FX + x, S1_RIDGE_Y + 2.0, fz + 5.0), 0.0, col=(1.0, 0.35, 0.08), r=3.0) for k, x in enumerate((-4, 4))]
     town_glow = lw_area("eruption glow on the town", (0, 12, 7), (0, 0, 0.5), 0.0, 14, col=(1.0, 0.5, 0.2))
 
     def light():
-        k = iceland_light(sun_elev=18, sun_az=-45, sun=3.0, sky=0.35, haze=1.5)
-        lw_clouds(cover=0.6, scale=3.0)
+        k = iceland_light(sun_elev=6, sun_az=-45, sun=1.6, sky=0.16, warm=(1.0, 0.7, 0.5), haze=2.0)
+        lw_clouds(cover=0.7, scale=5.0)
         return k
-    return dict(light=light, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
+    return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
 
 def shot1():
@@ -180,28 +212,31 @@ def shot1():
     kit = hard_hat(data)
     rnd = lw_random.Random(9)
     # ---- the eruption: the fountains burst up at T_ERUPT and keep throwing, surging at T_SURGE; spatter; the plume climbs
-    T_NINE = 0.2                                           # one vent bursts every T_NINE seconds: all nine by T_ERUPT + 1.6
-    order = [4, 3, 5, 2, 6, 1, 7, 0, 8]                    # the rip runs out from the middle of the ridge both ways
-    order = {v: i for i, v in enumerate(order)}
+    T_NINE = 0.33                                          # one vent bursts every T_NINE s, left to right: nine, counted
     for k, o in enumerate(P["founts"]):
-        base = o.location.z; ph = rnd.uniform(0, 6.28); hz = rnd.uniform(0.8, 1.4); hk = rnd.uniform(0.75, 1.25)
+        base = o["base_z"]; ph = rnd.uniform(0, 6.28); hz = rnd.uniform(0.8, 1.4); hk = rnd.uniform(0.85, 1.15)
+        tk = T_ERUPT + T_NINE * k
         for f in range(1, NF + 1):
             t = (f - 1) / FPS
-            tk = T_ERUPT + T_NINE * order[k]                 # this vent's own burst: nine pops, counted off along the ridge
-            up = W(t, tk, 0.18)
-            h = hk * up * (3.0 + 0.6 * math.sin(2 * math.pi * hz * t + ph) + 2.0 * W(t, T_SURGE, 0.5) + 2.2 * lw_kick(t - tk, 0.22))
-            o.scale = (0.6 + 0.5 * up, 0.35, max(0.001, h))                # a fan of spray, not a spike; o.location.z = base + 0.5 * h
-            o.hide_render = up < 0.02; o.keyframe_insert("hide_render", frame=f)
-            o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
+            up = W(t, tk, 0.2)
+            h = hk * up * (2.0 + 0.35 * math.sin(2 * math.pi * hz * t + ph) + 1.0 * W(t, T_SURGE, 0.5) + 1.3 * lw_kick(t - tk, 0.22))
+            lw_puff_key(o, f, (0.55 * (0.7 + 0.5 * up), 0.45, max(0.07, h / 2)))     # fat roiling columns, not sparklers
+            o.location.z = base + h / 2; o.keyframe_insert("location", frame=f)
+            c = P["cores"][k]; lw_puff_key(c, f, (0.11 * (0.7 + 0.5 * up), 0.08, max(0.07, 0.42 * h)))
+            c.location.z = base + 0.42 * h; c.keyframe_insert("location", frame=f)
+            if up < 0.03:
+                o.hide_render = True; o.keyframe_insert("hide_render", frame=f); c.hide_render = True; c.keyframe_insert("hide_render", frame=f)
+    lw_flicker(bpy.data.materials["fountain fire"], DUR)
     for k, o in enumerate(P["spat"]):
-        v = P["founts"][k % 9]; x0 = v.location.x + rnd.uniform(-0.5, 0.5); tk = T_ERUPT + T_NINE * order[k % 9]
-        vx = rnd.uniform(-1.5, 1.5); vz = rnd.uniform(5.0, 8.5); per = 2 * vz / 9.8; ph = rnd.uniform(0, per)
+        v = P["founts"][k // 14]; x0 = v.location.x + rnd.uniform(-0.12, 0.12); tk = T_ERUPT + T_NINE * (k // 14)
+        vx = rnd.uniform(-1.1, 1.1); vz = rnd.uniform(4.5, 7.5); per = 2 * vz / 9.8; ph = rnd.uniform(0, per)
+        b0 = v["base_z"] + 0.2
         for f in range(1, NF + 1):
             t = (f - 1) / FPS
-            if t < tk: o.location = (x0, S1_RIDGE_Y, P["fz"] - 1.0)
+            if t < tk + ph * 0.3: o.location = (x0, S1_RIDGE_Y, b0 - 1.0)
             else:
-                u = (t - tk) % per
-                o.location = (x0 + vx * u, S1_RIDGE_Y - 0.3 * u, P["fz"] + vz * u - 4.9 * u * u)
+                u = (t - tk + ph) % per
+                o.location = (x0 + vx * u, S1_RIDGE_Y - 0.25 * u, b0 + vz * u - 4.9 * u * u)
             o.keyframe_insert("location", frame=f)
     for k, o in enumerate(P["puffs"]):
         z0 = o.location.z
@@ -210,17 +245,17 @@ def shot1():
             lw_puff_key(o, f, (1.3 * s, 1.0 * s, 0.9 * s)); o.location.z = z0 - 6.0 * (1 - s) + 0.5 * t
             o.keyframe_insert("location", frame=f)
     for L in P["glow"]:
-        e0 = 300.0 if 'plume' in L.name else 7000.0                # the plume a grey ash cloud, warm only underneath
+        e0 = 50.0 if "plume" in L.name else 1200.0                # the plume a grey ash cloud, warm only underneath
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; L.data.energy = e0 * W(t, T_ERUPT, 0.3) * (1 + 0.6 * W(t, T_SURGE, 0.5)); L.data.keyframe_insert("energy", frame=f)
     tg = P["town_glow"].data
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; tg.energy = 300.0 * W(t, T_ERUPT, 0.3) * (1 + 0.5 * W(t, T_SURGE, 0.5)); tg.keyframe_insert("energy", frame=f)
+        t = (f - 1) / FPS; tg.energy = 140.0 * W(t, T_ERUPT, 0.3) * (1 + 0.5 * W(t, T_SURGE, 0.5)); tg.keyframe_insert("energy", frame=f)
     # ---- the cars: one after another down the lane, under the raised arm, toward us and out of the frame
     cars = []
     for k, col in enumerate(("#B9C2C9", "#2D5A8E", "#C33A2A", "#E6E2D6", "#3B3F45")):
         c = s1_car(f"town car {k}", col); cars.append(c)
-        y0 = 4.0 + 2.9 * k; v = 7.5
+        y0 = 3.0 + 3.2 * k; v = 3.6
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; s = max(0.0, t - T_CARS)
             y = y0 - v * s
@@ -233,6 +268,7 @@ def shot1():
         p.z += 0.05 * lw_kick(t - T_SURGE, 0.12)
         cr = W(t, T_UP0, 0.25) * (1 - W(t, T_UP1, 0.25))                   # his whole body rides each turn of the crank
         p.z -= 0.025 * cr * (1 + math.sin(2 * math.pi * REVS * crank_u(t)))
+        p.x += 0.035 * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 0.6)          # he rocks side to side over the crank
         yaw = math.radians(-30) * W(t, T_ERUPT - 0.05, 0.3) * (1 - W(t, T_GRAB - 0.35, 0.3)) \
             + math.radians(3) * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 1.2) \
             - math.radians(30) * W(t, T_WAVE0, 0.4) * (1 - W(t, T_GO - 1.0, 1.0)) + math.radians(40) * W(t, T_GO - 1.0, 1.0)
@@ -282,13 +318,19 @@ def shot1():
     data.expression("determined", T_GRAB, T_SURGE - 0.1, blend=0.2)
     data.expression("worried", T_SURGE, DUR + 1.0, blend=0.2)
     data.finish()
-    # ---- the lens: low, three-quarter from the road side of the gate, the street and the ridge behind him
-    CAM = Vector((2.3, -3.8, 1.35)); LOOK = Vector((-0.4, 8.0, 1.9))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 18.0, face_at=(0.58, 0.4), height=0.36, t=0.45 * DUR)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=18.0, fstop=11.0)
-    camera_path(cam, lambda t: (CAM + Vector((-0.1, 0.2, 0.0)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))))
+    # ---- the lens: WIDE from a little above his head, in front of him and off to the post's far side, so the street
+    # runs away behind him to the ridge and all nine vents stand over the town in one row
+    CAM = Vector((0.95, -1.24, 1.15)); LOOK = Vector((1.6, 17.45, -2.5))   # tipped down: the nine fountains high in the frame, less bare sky (EMPTY read the sky as 30%)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    # CUT to the WIDE while the town drives out (board round 2: "the cars never pour out under the gate", "not
+    # Grindavik's main street"): high behind the cars' exit, the street with its houses down both sides running to the
+    # ridge, the nine fountains in a row over it, the raised gate with him at its post, the cars streaming at the lens
+    T_W0, T_W1 = 0.5 * DUR, 0.8 * DUR
+    CW = Vector((-0.3, -7.0, 2.6)); LW = Vector((1.2, 10.0, 0.6))
+    lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.15, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
+           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.0, 2.0, 0.6))), T_W0, T_W1, 30.0, 26.0)
     founts = P["founts"]
-    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"),
+    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("the ridge rips open and a curtain of lava fountains bursts up over the town", lambda: founts, T_ERUPT, DUR, {"whole": False}),
                         ("he winds the crank and the striped gate arm swings up over the road", lambda: lw_drawn("gate arm", "gate post", "gate stop"), T_UP0 + 0.3, T_UP1 + 0.4, {"whole": False, "moves": True}),
