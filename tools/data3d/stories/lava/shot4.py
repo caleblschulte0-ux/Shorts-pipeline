@@ -74,11 +74,7 @@ def s4_barrow():
         sb = K.box(f"wheelbarrow sandbag {k}", (x, y, 0.255 + 0.05 * (k > 2)), (0.15, 0.26, 0.075), sand, bev=0.035, parent=root)
         sb.rotation_euler = (0, 0, rz)
         K.box(f"wheelbarrow sandbag tie {k}", (x + 0.12 * math.sin(-rz) * 0, y + 0.13 * math.cos(rz), 0.255 + 0.05 * (k > 2)), (0.05, 0.03, 0.05), tie, bev=0.01, parent=root)
-    fire = lw_fire_vol("barrow fire", density=6.0, strength=40.0, smoke=(0.15, 0.12, 0.1), scale=3.0)
-    flames = []
-    for k, (x, y) in enumerate(((-0.08, 0.22), (0.08, 0.3), (0.0, 0.42), (-0.1, 0.38), (0.1, 0.18))):
-        fl = K.sph(f"wheelbarrow flame {k}", (x, y, 0.45 + 0.04 * (k % 2)), 0.1 if k < 3 else 0.07, fire, scale=(0.75, 0.75, 2.6), seg=12, ring=8, parent=root); fl.visible_shadow = False
-        flames.append(fl)
+    flames = []                                          # its fire is a gas lit where it lands (shot4), not flame-shaped balls
     lw_local(root)
     return root, flames
 
@@ -87,8 +83,8 @@ def place_town_crack():
     """AN EMPTY STREET INSIDE THE WALL: asphalt and pavements between two rows of town houses, the red-roofed house on
     the corner, the earth wall across the end of the street with smoke over it, the lava field beyond."""
     rnd = lw_random.Random(41)
-    lw_grid("town ground", -30, 30, -16, 60, 90, 100, s4_ground_z, lava_field_mat())
-    asph = lw_noise("street asphalt", "#4A4A4D", "#66666A", scale=40, rough=0.85, bump=0.4)
+    lw_grid("town ground", -30, 30, -16, 60, 90, 100, s4_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#5A5650", name="town ground rock"))
+    asph = ph_mat("asphalt_02", scale=1.6, tint="#9A9A9C", name="street asphalt")          # REAL asphalt (Poly Haven)
     near = s4_slab("street near", True, asph)
     far = s4_slab("street far", False, asph)
     paint = K.mat("road paint", "#E9E4D4", rough=0.6)
@@ -97,7 +93,7 @@ def place_town_crack():
         o = K.box("centre line", (0, y + 0.5 - (0.6 if y < 0 else 0), 0.004), (0.08, 0.9, 0.006), paint, bev=0)
         o.parent = near if y < 0 else far; o.matrix_parent_inverse = (near if y < 0 else far).matrix_world.inverted()
         lines.append(o)
-    kerb = lw_noise("kerb concrete", "#A6A39C", "#C2BFB6", scale=14, rough=0.8)
+    kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
         for slab, y0, y1 in ((near, -14.0, -0.2), (far, 0.2, 40.0)):
             o = K.box("kerb", (sx * S4_KERB, (y0 + y1) / 2, 0.04), (0.12, y1 - y0, 0.08), kerb, bev=0.01)
@@ -110,21 +106,20 @@ def place_town_crack():
     for sx in (-1, 1):
         y = -9.0 + (0.6 if sx > 0 else 0.0); k = 0
         while y < 34.0:
-            w = rnd.uniform(1.9, 2.4); d = rnd.uniform(1.5, 1.8)
-            corner = sx > 0 and abs(y + w / 2 - 2.4) < 1.3
+            w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)       # Grindavik houses, not sheds (board after the fire test)
+            corner = sx > 0 and abs(y + w / 2 - 2.4) < 2.0
             roof = "#C0302A" if corner else ROOFS[(k * 3 + (sx > 0) + 1) % len(ROOFS)]
             if roof == "#B8352B" and not corner: roof = ROOFS[2]
             hs = town_house(f"town house {sx}_{k}" + (" corner" if corner else ""), (sx * (S4_FRONT + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
-                            h=rnd.uniform(1.2, 1.45), roof=roof, wall=WALLS[k % len(WALLS)], seed=k + 20)
+                            roof=roof, wall=WALLS[k % len(WALLS)], base=0.3, seed=k + 20)
             houses.append(hs); y += w + rnd.uniform(0.4, 0.8); k += 1
     wall = earth_wall("earth wall", [(x, 40.0 + 0.01 * x * x) for x in range(-30, 32, 2)], h=4.4, crest=1.4, base=8.5, seed=12)
-    ash = lw_smoke_mat("wall smoke", density=1.6, col=(0.45, 0.44, 0.46))
-    for k in range(9):
-        lw_puff(f"wall smoke {k}", (-12 + 3 * k + rnd.uniform(-1, 1), 47 + rnd.uniform(0, 4), 7 + rnd.uniform(0, 5)), rnd.uniform(3.0, 4.2), ash, scale=(1.4, 1.0, 1.0))
+    for k, x in enumerate((-9.0, 1.0, 10.0)):            # the eruption's smoke over the wall: rolling columns of gas, leaning off on the wind
+        lw_steam(f"wall smoke {k}", (x, 48.0 + 2 * k, 2.0), w=4.5, h=16.0, seed=3.3 * k, col=(0.42, 0.41, 0.42), dens=2.5, lean=(0.5, 0.2), rise=1.2, t_end=DUR + 1.0)
     for k in range(5):
         K.sph("far mountain", (-40 + 20 * k, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.8), seg=24, ring=12)
-    for k in range(3):
-        K.cyl(f"street lamp post {k}", (-(S4_KERB + 0.2), 6 + 6 * k, 0.6), 0.03, 1.2, lw_metal("pole", "#8A8E92"), v=10)
+    for k in range(3):                                   # REAL street lamps (Poly Haven) along the left kerb
+        ph_model("street_lamp_01", (-(S4_KERB + 0.25), 6 + 6 * k, 0.0), rot=(0, 0, -math.pi / 2), scale=0.5, name=f"street lamp {k}")
 
     def light():
         return iceland_light(sun_elev=30, sun_az=-30, sun=3.2, sky=0.45, haze=1.2)
@@ -182,13 +177,13 @@ def shot4():
             p.z -= 0.3 * tip
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
-    for k, fl in enumerate(flames):
-        s0 = fl.scale.copy()
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; on = W(t, T_TIP + 0.25 + 0.1 * k, 0.3)
-            fl.hide_render = on < 0.02; fl.keyframe_insert("hide_render", frame=f)
-            k_ = max(0.05, on * (1 + 0.25 * math.sin(2 * math.pi * 5 * t + k)))
-            fl.scale = (s0.x * k_, s0.y * k_, s0.z * k_ * (1 + 0.3 * math.sin(2 * math.pi * 3.3 * t + 2 * k))); fl.keyframe_insert("scale", frame=f)
+    sc.frame_set(NF); bpy.context.view_layer.update()     # the barrow burns where it tipped: its sandbags and the tray catch
+    fb = bar.matrix_world @ Vector((0.0, 0.32, 0.2))
+    lw_fire_column("barrow fire", (fb.x, fb.y, fb.z), w=0.55, h_fire=0.9, h_smoke=2.6, lean=(0.15, 0.3), t_end=DUR + 1.0, seed=4.2, fire=6.0,
+                   smoke_d=3.0, keys=[(T_TIP + 0.2, 0.0), (T_TIP + 0.75, 1.0)])
+    bl = lw_point("barrow fire light", (fb.x, fb.y - 0.3, fb.z + 0.5), 0.0, col=(1.0, 0.45, 0.15), r=0.2)
+    for f in range(1, NF + 1, 2):
+        t = (f - 1) / FPS; bl.data.energy = 120.0 * W(t, T_TIP + 0.2, 0.55) * (1 + 0.25 * math.sin(2 * math.pi * 4.1 * t)); bl.data.keyframe_insert("energy", frame=f)
     def handle(sx):
         def fn(t):
             sc.frame_set(F(t)); bpy.context.view_layer.update()
@@ -243,17 +238,11 @@ def shot4():
     trench = bpy.data.materials["crack lava"]
     lava_flow_key(trench, 0.0, DUR + 0.5, 0.25)
     # ---- steam shooting up out of the crack as it opens
-    steam_m = lw_smoke_mat("crack steam", density=2.5, col=(0.93, 0.94, 0.96))
     steam = []
-    for k, x in enumerate((-2.4, -1.7, -1.1, 1.2, 1.8, 2.5)):     # out to the sides of him: the gap in front of him stays clear
-        o = lw_puff(f"crack steam {k}", (x, s4_zig(x) - 0.25, -0.3), 1.0, steam_m)
-        steam.append(o)
-        z0 = -0.2; t0 = T_OPEN0 + 0.06 * k
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; s = W(t, t0, 0.5); age = max(0.0, t - t0)
-            r = s * (0.3 + 0.18 * age)
-            lw_puff_key(o, f, (r, r, r * 1.3)); o.location.z = z0 + 0.6 * s + 0.5 * age
-            o.keyframe_insert("location", frame=f)
+    for k, x in enumerate((-2.1, -1.3, 1.4, 2.2)):        # out to the sides of him: the gap in front of him stays clear; steam as a GAS
+        t0 = T_OPEN0 + 0.08 * k
+        steam.append(lw_steam(f"crack steam {k}", (x, s4_zig(x) - 0.2, -0.25), w=0.7, h=2.8, seed=2.1 * k, rise=2.6,
+                              keys=[(t0, 0.0), (t0 + 0.45, 1.0), (DUR, 0.55)], t_end=DUR + 1.0))
     # ---- the lava: it wells up in the crack and pours out over the road, toward him and the corner house
     lm = lava_mat("street lava", heat=1.2, scale=4.0, fresh=0.8)
     out = []
@@ -269,7 +258,6 @@ def shot4():
         flow.location = (0.05 + 0.1 * math.sin(3 * t), S4_YC - 0.25 - L_, -0.22 + 0.25 * w_)
         flow.scale = (0.6 + 1.0 * u + 0.4 * w_, L_, 1.0 + 0.4 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
-    lw_flicker(bpy.data.materials["barrow fire"], DUR)
     glow = lw_point("crack glow", (0.0, S4_YC, 0.25), 0.0, col=(1.0, 0.45, 0.12), r=0.6)
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS; glow.data.energy = 260.0 * W(t, T_OPEN0, 0.5) + 200.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)

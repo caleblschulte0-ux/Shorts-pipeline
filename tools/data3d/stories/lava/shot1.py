@@ -129,12 +129,12 @@ def place_grindavik_street():
     coloured-roof houses down both sides, the old lava field and moss round the town, the ridge above it where the
     fissure opens under its plume, the road gate at the town's edge, far blue mountains."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lava_field_mat())
-    K.box("street asphalt", (0, 2.5, 0.004), (4.0, 20, 0.01), lw_asphalt(), bev=0)
-    kerb = lw_noise("kerb concrete", "#A6A39C", "#C2BFB6", scale=14, rough=0.8)
+    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven), at a real size
+    K.box("street asphalt", (0, 2.5, 0.004), (4.0, 20, 0.01), ph_mat("asphalt_02", scale=1.6, tint="#9A9A9C", name="street asphalt"), bev=0)
+    kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
         K.box("kerb", (sx * 2.05, 2.5, 0.04), (0.12, 20, 0.08), kerb, bev=0.01)
-        K.box("pavement", (sx * 2.55, 2.5, 0.035), (0.9, 20, 0.07), lw_noise("pavement", "#8E8C88", "#A8A59F", scale=8, rough=0.85), bev=0.005)
+        K.box("pavement", (sx * 2.55, 2.5, 0.035), (0.9, 20, 0.07), ph_mat("concrete_wall_008", scale=1.6, tint="#A8A49C", name="pavement"), bev=0.005)
     for y in range(-8, 10, 2):
         K.box("centre line", (0, y + 0.5, 0.011), (0.08, 0.9, 0.004), K.mat("road paint", "#E9E4D4", rough=0.6), bev=0)
     houses = []
@@ -142,9 +142,9 @@ def place_grindavik_street():
         y = 0.9 if sx < 0 else 1.4
         k = 0
         while y < 8.0:
-            w = rnd.uniform(1.9, 2.4); d = rnd.uniform(1.5, 1.8)
+            w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)       # Grindavik houses, not sheds (board after the fire test)
             hs = town_house(f"town house {sx}_{k}", (sx * (3.3 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
-                            h=rnd.uniform(1.2, 1.45), roof=("#B8352B", "#2F5E8C", "#3F7A4A")[(k + (sx > 0)) % 3], wall=WALLS[k % len(WALLS)], seed=k)
+                            roof=("#B8352B", "#2F5E8C", "#3F7A4A")[(k + (sx > 0)) % 3], wall=WALLS[k % len(WALLS)], base=0.3, seed=k)
             houses.append(hs); y += w + rnd.uniform(0.5, 0.9); k += 1
     lava_rock("lava field rock", 160, (-14, 14, -6, 14), s1_ground_z, seed=3, avoid=lambda x, y: abs(x) < 3.2 and y < 9.0)
     # the slope up to the ridge is old lava field: broken black blocks and moss, never one smooth brown sheet (EMPTY
@@ -185,25 +185,17 @@ def place_grindavik_street():
         x = S1_FX - 6.0 + 12.0 * k / 13; w_ = 0.45 + 0.25 * math.sin(1.7 * k)
         o = K.box("fissure glow", (x, S1_RIDGE_Y + 0.12 * math.sin(2.3 * k), s1_ground_z(x, S1_RIDGE_Y) - 0.05), (0.95, w_, 0.2), fl, bev=0.05)
         o.rotation_euler = (0, 0, 0.15 * math.sin(3.1 * k))
-    fm = lw_fire_vol("fountain fire", density=7.0, strength=12.0, scale=3.2)      # orange bodies, not blown out white
     founts, spat, cores = [], [], []
     core = lw_emit("fountain core", "#FF9A20", 7.0)
     spm = lw_emit("lava spatter", "#FF7A10", 5.0); spd = lw_noise("cooled spatter", "#140E0B", "#3A2A20", scale=20, rough=0.9)
     for k in range(9):
         x = S1_FX + (k - 4) * S1_FGAP
         z0 = s1_ground_z(x, S1_RIDGE_Y) - 0.2
-        o = lw_flame(f"fissure fountain {k}", (x, S1_RIDGE_Y, z0), 1.0, fm, scale=(0.3, 0.25, 1.0))
+        o = K.empty(f"fissure vent {k}", (x, S1_RIDGE_Y, z0))      # the vent: its fountain is a gas built in shot1, on its own clock
         o["base_z"] = z0; founts.append(o)
-        c = K.sph(f"fissure fountain core {k}", (x, S1_RIDGE_Y - 0.05, z0), 1.0, core, scale=(0.1, 0.08, 0.5), seg=12, ring=10)
-        c.visible_shadow = False; cores.append(c)
         for j in range(14):
             spat.append(K.sph(f"fissure spatter {k}_{j}", (x, S1_RIDGE_Y, z0), rnd.uniform(0.04, 0.09), spm if j % 3 else spd, seg=8, ring=6))
-    ash = lw_smoke_mat("eruption steam plume", density=1.3, col=(0.5, 0.5, 0.52))      # heavy grey gas and ash all along the fissure (board: "not a single brown column")
-    puffs = []
-    for k in range(22):                                    # a wall of it climbing off the whole fissure and leaning downwind
-        u = (k % 11) / 10
-        x = S1_FX - 5.5 + 11.0 * ((k * 7) % 22) / 21 - 3.0 * u * u
-        puffs.append(lw_puff(f"eruption plume {k}", (x, S1_RIDGE_Y + 2.0 + rnd.uniform(0, 2.5), fz + 3.5 + 9.0 * u + rnd.uniform(-0.5, 0.5)), 1.8 + 1.6 * u + rnd.uniform(0, 0.4), ash, scale=(1.2, 1.0, 1.0)))
+    puffs = []                                           # the plume is a gas, built in shot1 on the eruption's clock
     gate = s1_siren()
     glow = [lw_point(f"fissure light {k}", (S1_FX + x, S1_RIDGE_Y - 1.5, fz + 2.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-3.5, 0, 3.5))]
     plume_lit = [lw_point(f"plume underlight {k}", (S1_FX + x, S1_RIDGE_Y + 2.0, fz + 5.0), 0.0, col=(1.0, 0.35, 0.08), r=3.0) for k, x in enumerate((-4, 4))]
@@ -238,22 +230,18 @@ def shot1():
     rnd = lw_random.Random(9)
     # ---- the eruption: the fountains burst up at T_ERUPT and keep throwing, surging at T_SURGE; spatter; the plume climbs
     T_NINE = 0.33                                          # one vent bursts every T_NINE s, left to right: nine, counted
-    for k, o in enumerate(P["founts"]):
-        base = o["base_z"]; ph = rnd.uniform(0, 6.28); hz = rnd.uniform(0.8, 1.4); hk = rnd.uniform(0.85, 1.15)
-        tk = T_ERUPT + T_NINE * k
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS
-            up = W(t, tk, 0.2)
-            h = hk * up * (2.0 + 0.35 * math.sin(2 * math.pi * hz * t + ph) + 1.0 * W(t, T_SURGE, 0.5) + 1.3 * lw_kick(t - tk, 0.22))
-            lw_puff_key(o, f, (0.55 * (0.7 + 0.5 * up), 0.45, max(0.07, h / 2)))     # fat roiling columns, not sparklers
-            o.location.z = base + h / 2; o.keyframe_insert("location", frame=f)
-            c = P["cores"][k]; lw_puff_key(c, f, (0.11 * (0.7 + 0.5 * up), 0.08, max(0.07, 0.42 * h)))
-            c.location.z = base + 0.42 * h; c.keyframe_insert("location", frame=f)
-            if up < 0.03:
-                o.hide_render = True; o.keyframe_insert("hide_render", frame=f); c.hide_render = True; c.keyframe_insert("hide_render", frame=f)
-    lw_flicker(bpy.data.materials["fountain fire"], DUR)
+    vents = P["founts"]; cols = []
+    for k, v in enumerate(vents):                        # each vent a FOUNTAIN OF FIRE as a gas: torn tongues licking up a
+        tk = T_ERUPT + T_NINE * k                        # glowing column, bursting in turn, nine, counted
+        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=0.62, h_fire=2.8, h_smoke=2.0,
+                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=9.0, smoke_d=1.5, rise=3.5,
+                                   keys=[(max(0.0, tk - 0.04), 0.0), (tk + 0.18, 1.0)], grow=True))
+    for k, x in enumerate((-4.0, 0.0, 4.0)):             # the plume: a wall of grey gas and ash boiling off the whole fissure, leaning downwind
+        cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 1.0, fz + 1.5), w=4.5, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
+                             dens=3.0, lean=(-0.35, 0.3), rise=1.6, keys=[(T_ERUPT + 0.1 * k, 0.0), (T_ERUPT + 0.1 * k + 1.2, 1.0)], t_end=DUR + 1.0))
+    P["founts"] = cols[:9]
     for k, o in enumerate(P["spat"]):
-        v = P["founts"][k // 14]; x0 = v.location.x + rnd.uniform(-0.12, 0.12); tk = T_ERUPT + T_NINE * (k // 14)
+        v = vents[k // 14]; x0 = v.location.x + rnd.uniform(-0.12, 0.12); tk = T_ERUPT + T_NINE * (k // 14)
         vx = rnd.uniform(-1.1, 1.1); vz = rnd.uniform(4.5, 7.5); per = 2 * vz / 9.8; ph = rnd.uniform(0, per)
         b0 = v["base_z"] + 0.2
         for f in range(1, NF + 1):

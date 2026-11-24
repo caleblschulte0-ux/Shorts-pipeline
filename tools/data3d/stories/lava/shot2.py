@@ -172,7 +172,7 @@ def place_wall_works():
     """THE WALL WORKS in the blue evening: the trodden gravel of the works, the earth wall's black face rising across the
     whole frame, floodlight masts along its foot, other diggers at work along it, the eruption's smoke over the crest."""
     rnd = lw_random.Random(21)
-    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, lw_noise("works gravel", "#3C3631", "#5E554C", scale=14, rough=0.95, bump=0.8, detail=10))
+    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#7A726A", name="works gravel"))   # REAL gravel (Poly Haven)
     wall = earth_wall("earth wall", [(x, S2_WALL_Y + 0.006 * x * x) for x in range(-30, 32, 2)], h=S2_WALL_H, crest=1.4, base=S2_BASE, seed=4)
     lava_rock("works rock", 90, (-12, 12, -6, S2_FOOT - 0.2), s2_ground_z, seed=6, r=(0.08, 0.26),
               avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.2) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (6.6 < x < 9.0 and -3.4 < y < 1.0))
@@ -221,11 +221,17 @@ def place_wall_works():
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     for k, x0 in enumerate((-2.2, -1.5, 1.6, 2.3)):           # the tracks the machines have cut in it
         K.box(f"track rut {k}", (x0 + 0.1 * k, 0.6, 0.006), (0.32, 9.0, 0.01), lw_noise("rut mud", "#2A2622", "#3E3832", scale=30, rough=0.9, bump=1.0, stretch=(1, 6, 1)), bev=0)
+    for k, (x, y, r) in enumerate(((-5.6, -1.2, 0.3), (4.4, -2.6, -0.2), (7.4, 2.2, 0.1))):      # REAL props of a works (Poly Haven): barriers, bags of cement, drums
+        ph_model("concrete_road_barrier", (x, y, s2_ground_z(x, y)), rot=(0, 0, r), scale=0.5, name=f"road barrier {k}")
+    for k, (x, y) in enumerate(((-6.4, 1.6), (-6.0, 1.9), (-6.2, 2.3))):
+        ph_model("cement_bag", (x, y, s2_ground_z(x, y) + 0.06 * k), rot=(0, 0, 0.4 * k), scale=0.5, name=f"cement bag {k}")
+    for k, (x, y) in enumerate(((5.2, 0.6), (5.6, 0.9))):
+        ph_model("barrel_03", (x, y, s2_ground_z(x, y)), rot=(0, 0, k), scale=0.5, name=f"fuel drum {k}")
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
 
     def light():
         k = iceland_light(sun_elev=1, sun_az=-40, sun=0.4, sky=0.11, warm=(0.8, 0.72, 1.0), haze=1.6)     # blue evening going to night: the floodlights carry the works
-        lw_clouds(cover=0.55, scale=2.2)
+        ph_sky("qwantani_dusk_2_puresky", strength=0.22, rot=math.radians(200))       # a REAL dusk sky (Poly Haven)
         return k
     return dict(light=light, wall=wall, masts=masts, far=far)
 
@@ -306,16 +312,12 @@ def shot2():
                     z = (S2_WALL_H if y >= S2_EDGE else s2_face_z(y)) + r * (0.9 + 0.35 * abs(math.sin(10 * q + dx))) + 0.25 * abs(math.sin(4 * q + dx)) * (y < S2_EDGE)
                 o.location = (p0.x + dx * min(1.0, s), y, z); o.rotation_euler = (spin * s, spin * 0.5 * s, 0)
             o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f)
-    dust_m = lw_smoke_mat("tip dust", density=2.0, col=(0.6, 0.55, 0.5))
-    dust = []
-    for k in range(4):
-        x = S2_DIG.x - S2_BOOM.y - 0.4 + 0.9 * k; y = S2_FOOT - 0.3 + 0.5 * (k % 2)
-        o = lw_puff(f"tip dust {k}", (x, y, 0.4), 0.8, dust_m); dust.append(o)
-        t0 = T_DUCK - 0.15 + 0.08 * k
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; s_ = W(t, t0, 0.5) * (1 - 0.5 * W(t, t0 + 1.4, 0.8))
-            r_ = s_ * (1 + 0.3 * max(0.0, t - t0)); lw_puff_key(o, f, (r_, r_, r_ * 0.8)); o.location.z = 0.4 + 0.5 * max(0.0, t - t0)
-            o.keyframe_insert("location", frame=f)
+    dust = []                                            # the DUST off the tumbling rock: a gas boiling up the face, then settling
+    for k in range(2):
+        x = S2_DIG.x - S2_BOOM.y - 0.1 + 1.6 * k; y = S2_FOOT - 0.1 + 0.4 * k
+        t0 = T_DUCK - 0.15 + 0.12 * k
+        dust.append(lw_steam(f"tip dust {k}", (x, y, 0.0), w=1.6, h=2.6, seed=3.7 * k + 1, col=(0.55, 0.5, 0.45), dens=4.0, rise=1.2,
+                             lean=(0.2, -0.3), keys=[(t0, 0.0), (t0 + 0.5, 1.0), (t0 + 2.2, 0.45)], t_end=DUR + 1.0))
     # ---- the trucks: rolling along behind the works
     for k, (x0, v) in enumerate(((12.0, -2.0),)):
         truck = s2_truck(f"dump truck {k}"); truck.rotation_euler = (0, 0, math.radians(90))

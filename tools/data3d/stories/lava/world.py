@@ -52,7 +52,7 @@ def ph_sky(aid, strength=1.0, rot=0.0, res="2k"):
     return bg
 
 
-def ph_mat(aid, scale=1.0, tint=None, name=None, rough=None, bump=1.0, res="1k"):
+def ph_mat(aid, scale=1.0, tint=None, name=None, rough=None, bump=1.0, res="1k", paint=False):
     """a real surface: a Poly Haven texture set (colour, normal, roughness) box-projected in object space, `scale`
     metres per tile. tint multiplies the colour (a painted tin wall in this house's colour)."""
     name = name or f"ph {aid} {scale} {tint}"
@@ -70,7 +70,14 @@ def ph_mat(aid, scale=1.0, tint=None, name=None, rough=None, bump=1.0, res="1k")
         nt.links.new(mp.outputs["Vector"], t.inputs["Vector"]); return t
     dif = img("diff", False)
     col = dif.outputs["Color"]
-    if tint:
+    if tint and paint:                                   # PAINTED: the paint's own colour, the texture's light and dark kept in it
+        bw = nt.nodes.new("ShaderNodeRGBToBW"); nt.links.new(col, bw.inputs[0])
+        mr = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(bw.outputs[0], mr.inputs["Value"]); mr.clamp = False
+        mr.inputs["From Min"].default_value = 0.0; mr.inputs["From Max"].default_value = 0.35; mr.inputs["To Min"].default_value = 0.45; mr.inputs["To Max"].default_value = 1.0
+        mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'; mx.blend_type = 'MULTIPLY'; mx.inputs[0].default_value = 1.0
+        cc = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(mr.outputs["Result"], cc.inputs[i]) for i in range(3)]
+        nt.links.new(cc.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (*K.lin(tint), 1); col = mx.outputs[2]
+    elif tint:
         mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'; mx.blend_type = 'MULTIPLY'; mx.inputs[0].default_value = 1.0
         nt.links.new(col, mx.inputs[6]); mx.inputs[7].default_value = (*K.lin(tint), 1); col = mx.outputs[2]
     nt.links.new(col, bs.inputs["Base Color"])
@@ -80,6 +87,9 @@ def ph_mat(aid, scale=1.0, tint=None, name=None, rough=None, bump=1.0, res="1k")
         nt.links.new(sp.outputs[1], bs.inputs["Roughness"]); nt.links.new(sp.outputs[2], bs.inputs["Metallic"])
     elif rg:
         nt.links.new(rg.outputs["Color"], bs.inputs["Roughness"])
+    if paint:                                            # paint is not bare metal
+        for l in list(bs.inputs["Metallic"].links): nt.links.remove(l)
+        bs.inputs["Metallic"].default_value = 0.0
     if rough is not None:
         for l in list(bs.inputs["Roughness"].links): nt.links.remove(l)
         bs.inputs["Roughness"].default_value = rough
@@ -93,9 +103,10 @@ def ph_mat(aid, scale=1.0, tint=None, name=None, rough=None, bump=1.0, res="1k")
 LW_PH_MODELS = {}
 
 
-def ph_model(aid, loc=(0, 0, 0), rot=(0, 0, 0), scale=1.0, name=None, res="1k"):
+def ph_model(aid, loc=(0, 0, 0), rot=(0, 0, 0), scale=1.0, name=None, res="1k", only=None, parent=None):
     """a real prop: a Poly Haven glTF model, imported once and then linked again (same meshes) for every copy, under one
-    empty placed at loc/rot/scale. Returns the empty."""
+    empty placed at loc/rot/scale. only: keep just the parts whose names start with one of these (a kit holds variants
+    laid over each other: the hydrant's new and aged bodies). Each copy is named after the empty. Returns the empty."""
     from mathutils import Euler
     if aid not in LW_PH_MODELS:
         before = set(bpy.data.objects)
@@ -104,11 +115,11 @@ def ph_model(aid, loc=(0, 0, 0), rot=(0, 0, 0), scale=1.0, name=None, res="1k"):
         for o in objs:
             for c in o.users_collection: c.objects.unlink(o)
         LW_PH_MODELS[aid] = objs
-    src = LW_PH_MODELS[aid]
-    root = K.empty(name or aid, tuple(loc))
+    src = [o for o in LW_PH_MODELS[aid] if not only or any(o.name.split(".")[0] == n_ or o.name.startswith(n_ + ".") for n_ in only)]
+    root = K.empty(name or aid, tuple(loc), parent=parent)
     copies = {}
     for o in src:
-        c = o.copy(); copies[o] = c; lw_link(c)
+        c = o.copy(); copies[o] = c; lw_link(c); c.name = f"{root.name} {o.name.split('.')[0]}"
     for o, c in copies.items():
         c.parent = copies.get(o.parent, root)
         if o.parent not in copies: c.matrix_parent_inverse = LW_M.Identity(4)
@@ -476,7 +487,7 @@ class LwNodes:
 
 
 def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), t_end=None, seed=0.0, fire=5.0, smoke_d=3.5,
-                   smoke=(0.1, 0.095, 0.09), rise=1.4):
+                   smoke=(0.1, 0.095, 0.09), rise=1.4, keys=None, flame_d=3.9, spread=0.22, grow=False):
     """A BURNING FIRE AND ITS SMOKE as ONE procedural volume (coordinator 2026-11-24: "fire blobs, clay smoke" read as
     toys; the bpy wheel's Mantaflow will not run, so the gas is written as fields, not modelled as spheres). A tall box
     over `base`: the flame is a field of torn TONGUES that narrow as they climb (a cone of heat cut by turbulent noise
@@ -522,18 +533,19 @@ def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), 
     flame = X.clamp01(heat, 0.0, 0.55)                                 # 0..1
     # THE SMOKE: a widening column out of the flame's top, billowing, thinning as it climbs
     zr = X.clamp01(X.sub(z, h_fire * 0.45), 0.0, h_smoke)          # 0..1 up the column
-    rad = X.add(w * 0.35, X.mul(zr, w * 0.35 + h_smoke * 0.22))
+    rad = X.add(w * 0.35, X.mul(zr, w * 0.35 + h_smoke * spread))
     col = X.sub(1.0, X.div(r, rad))
     bil = X.add(X.mul(wnoise(0.55, 8.0, 0.72, 0.4), 0.7), X.mul(wnoise(1.6, 6.0, 0.6, 0.7), 0.45))     # big billows with smaller curls on them
     sd = X.clamp01(X.sub(X.add(X.mul(bil, 2.2), X.mul(col, 0.9)), 1.55), 0.0, 0.3)
     fade = X.mul(X.clamp01(X.sub(z, h_fire * 0.35), 0.0, h_fire * 0.5), X.sub(1.0, X.clamp01(zr, 0.55, 1.0)))
-    dens = X.add(X.mul(X.mul(X.mul(sd, 0.3), fade), smoke_d), X.mul(flame, 3.9))
+    amt = N("ShaderNodeValue"); amt.name = "gas amount"; amt.outputs[0].default_value = 1.0      # keyed: a burst comes and goes
+    dens = X.mul(X.add(X.mul(X.mul(X.mul(sd, 0.3), fade), smoke_d), X.mul(flame, flame_d)), amt.outputs[0])
     L(dens, pv.inputs["Density"])
     rp = N("ShaderNodeValToRGB"); L(flame, rp.inputs["Fac"]); el = rp.color_ramp.elements
     el[0].position = 0.0; el[0].color = (*K.lin("#4A0800"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFE09A"), 1)
     el.new(0.25).color = (*K.lin("#C02400"), 1); el.new(0.55).color = (*K.lin("#FF6A0A"), 1); el.new(0.8).color = (*K.lin("#FFAA30"), 1)
     L(rp.outputs["Color"], pv.inputs["Emission Color"])
-    es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "fire strength"; L(X.pw(flame, 1.6), es.inputs[0]); es.inputs[1].default_value = fire
+    es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "fire strength"; L(X.mul(X.pw(flame, 1.6), amt.outputs[0]), es.inputs[0]); es.inputs[1].default_value = fire
     L(es.outputs[0], pv.inputs["Emission Strength"])
     pv.inputs["Color"].default_value = (*smoke, 1); pv.inputs["Anisotropy"].default_value = 0.2
     L(pv.outputs[0], out.inputs["Volume"])
@@ -541,10 +553,28 @@ def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), 
     o.visible_shadow = True
     for f in (1, F(t_end) + 1):                          # time runs linearly through the shot
         tt.outputs[0].default_value = (f - 1) / FPS; tt.outputs[0].keyframe_insert("default_value", frame=f)
+    for t, v in (keys or ()):                            # how much gas there is when: (t, 0..1), eased between
+        amt.outputs[0].default_value = v; amt.outputs[0].keyframe_insert("default_value", frame=F(t))
+        if grow:                                         # and the cloud itself swells up out of its base as it comes
+            g = 0.3 + 0.7 * v
+            o.scale = (g, g, g); o.location = (Vector(base) + Vector((lx * h_smoke * 0.5, ly * h_smoke * 0.5, 0)) * g + Vector((0, 0, H / 2 * g)))
+            o.keyframe_insert("scale", frame=F(t)); o.keyframe_insert("location", frame=F(t))
     from character import _fcurves
     for c in _fcurves(nt.animation_data.action):
-        for kp in c.keyframe_points: kp.interpolation = 'LINEAR'
+        if 'nodes["fire time"]' in c.data_path:
+            for kp in c.keyframe_points: kp.interpolation = 'LINEAR'
+    try:
+        m.cycles.volume_step_rate = 2.0                   # a soft gas needs no fine steps: half the render time
+    except Exception:
+        pass
     return o
+
+
+def lw_steam(name, base, w=1.2, h=4.0, keys=None, t_end=None, seed=0.0, col=(0.9, 0.91, 0.93), dens=6.0, lean=(0.0, 0.0), rise=2.2, grow=True):
+    """a burst of white STEAM (or dust: col) as a gas, not balls: a column that boils up out of `base`, widening and
+    thinning, keyed by `keys` [(t, amount)] so it bursts and dies away"""
+    return lw_fire_column(name, base, w=w, h_fire=0.3, h_smoke=h, lean=lean, t_end=t_end, seed=seed, fire=0.0, smoke_d=dens,
+                          smoke=col, rise=rise, keys=keys, flame_d=0.0, spread=0.3, grow=grow and bool(keys))
 
 
 def lw_flicker(m, t_end, rate=1.4):
@@ -770,55 +800,189 @@ ROOFS = ("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A", "#9E3A2E", "#2E6F73", "#A84
 WALLS = ("#F1EEE6", "#BFD3DD", "#E9D9A2", "#B44A3C", "#E6E0D2", "#7E9A86", "#D9C9B4")   # painted tin cladding: white, sky blue, butter, oxide red, sage
 
 
-def town_house(name, loc, yaw=0.0, w=2.0, d=1.6, h=1.25, roof="#B8352B", wall="#F1EEE6", lit=(), dark_glass=True, seed=0):
-    """a low Grindavik house, at the world's scale (a storey ~1.3): corrugated-clad walls in white or pale paint, a
-    pitched tin roof in a strong colour with deep eaves, a white door, four-pane windows. Built facing -Y (its front)
-    about its own origin, placed at loc/yaw. lit: indices of windows whose panes glow warm (a window someone is home
-    behind). Returns dict(root, windows=[pane objects], door)."""
+def lw_hexmix(a, b, u):
+    """two hex colours mixed u of the way from a to b (a hex)"""
+    ca = [int(a[i:i + 2], 16) for i in (1, 3, 5)]; cb = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join(f"{int(round(x + (y - x) * u)):02X}" for x, y in zip(ca, cb))
+
+
+def lw_char(m, name, seed=0):
+    """a copy of a surface, CHARRED: soot in patches and streaks climbing the wall (worst high up, where the smoke
+    rolled out under the eaves), the paint scorched brown at their edges, the rest still its own colour"""
+    c = bpy.data.materials.get(name)
+    if c: return c
+    c = m.copy(); c.name = name; nt = c.node_tree; bs = nt.nodes["Principled BSDF"]
+    src = bs.inputs["Base Color"].links[0].from_socket
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (1.0, 1.0, 0.35)
+    mp.inputs["Location"].default_value = (seed * 3.1, seed * 1.7, 0); nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 1.6; nz.inputs["Detail"].default_value = 6; nz.inputs["Roughness"].default_value = 0.65
+    nt.links.new(mp.outputs["Vector"], nz.inputs["Vector"])
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sep.inputs[0])
+    up = nt.nodes.new("ShaderNodeMath"); up.operation = 'MULTIPLY_ADD'; nt.links.new(sep.outputs[2], up.inputs[0]); up.inputs[1].default_value = 0.12; up.inputs[2].default_value = 0.0
+    t_ = nt.nodes.new("ShaderNodeMath"); t_.operation = 'ADD'; nt.links.new(nz.outputs["Fac"], t_.inputs[0]); nt.links.new(up.outputs[0], t_.inputs[1])
+    rp = nt.nodes.new("ShaderNodeValToRGB"); nt.links.new(t_.outputs[0], rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.42; el[0].color = (1, 1, 1, 1); el[1].position = 0.62; el[1].color = (*K.lin("#141110"), 1)
+    el.new(0.5).color = (*K.lin("#6A4A30"), 1)
+    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'; mx.blend_type = 'MULTIPLY'; mx.inputs[0].default_value = 1.0
+    nt.links.new(src, mx.inputs[6]); nt.links.new(rp.outputs["Color"], mx.inputs[7]); nt.links.new(mx.outputs[2], bs.inputs["Base Color"])
+    return c
+
+
+DOORS = ("#EDEBE4", "#2F4A5E", "#8E2E26", "#3E5A3C", "#C9A23A", "#5A4632", "#E6E0D2")
+
+
+def town_house(name, loc, yaw=0.0, w=None, d=None, h=1.3, roof="#B8352B", wall="#F1EEE6", lit=(), dark_glass=True, seed=0,
+               storeys=None, base=None, pitch=None, door=None, burn=0.0):
+    """A GRINDAVIK HOUSE, at the world's scale (a storey ~1.3; board after the fire test: "garden sheds or
+    dollhouses ... the same white door on each"): a concrete base (a raised ground floor up a flight of steps, or a low
+    plinth), one or two storeys of REAL corrugated tin (Poly Haven) painted `wall`, a steep corrugated roof in `roof`,
+    a ridge cap, gutters and downpipes, corner boards, a concrete chimney, rows of four-pane windows on the front and
+    the gable ends, and a door in its own colour. Size, storeys, base and pitch vary with `seed` unless given.
+
+    burn (0..1): the house is ON FIRE FROM INSIDE: its cladding charred toward soot, its front roof slope broken open
+    (strips gone, one caved in, the charred rafters showing), its window panes the fire's own light (one material,
+    `<name> window fire`, for the shot to flicker). Built facing -Y about its origin, placed at loc/yaw. Returns
+    dict(root, windows, w, d, h, top, hole (world point inside the roof's hole), fire_windows (world points just in front
+    of each burning pane, with the outward direction), yaw)."""
+    rnd = lw_random.Random(seed * 7919 + 13)
+    storeys = storeys or (2 if rnd.random() < 0.55 else 1)
+    w = w or rnd.uniform(3.4, 4.6); d = d or rnd.uniform(2.8, 3.4)
+    base = base if base is not None else (rnd.choice((0.25, 0.3)) if storeys == 2 else rnd.choice((0.3, 0.75, 0.9)))
+    pitch = math.radians(pitch if pitch is not None else rnd.uniform(34, 42))
+    door = door or DOORS[rnd.randrange(len(DOORS))]
+    if burn:
+        wall = lw_hexmix(wall, "#2A2522", 0.25 * burn); roof = lw_hexmix(roof, "#231F1D", 0.45); door = "#1E1A18"
     root = K.empty(name, (0, 0, 0))
-    cl = ph_mat("corrugated_iron_02", scale=1.4, tint=wall, name=f"cladding {wall}")        # REAL corrugated tin (Poly Haven), painted
-    K.box(name + " walls", (0, 0, h / 2), (w, d, h), cl, bev=0.01, parent=root)
-    K.box(name + " plinth", (0, 0, 0.05), (w + 0.04, d + 0.04, 0.1), lw_noise("plinth concrete", "#8C8A86", "#A9A6A0", scale=12, rough=0.9), bev=0.005, parent=root)
-    rm = ph_mat("corrugated_iron_03", scale=1.2, tint=roof, name=f"tin roof {roof}")
-    pitch = math.radians(28); ov = 0.18
-    half = (d / 2 + ov) / math.cos(pitch)
+    hw = storeys * h; top = base + hw
+    conc = ph_mat("concrete_wall_008", scale=1.6, name="house base concrete")
+    cl = ph_mat("corrugated_iron_02", scale=1.4, tint=wall, name=f"cladding {wall}", paint=True, rough=0.55)
+    rm = ph_mat("corrugated_iron_03", scale=1.2, tint=roof, name=f"tin roof {roof}", paint=True, rough=0.45)
+    if burn:
+        cl = lw_char(cl, name + " charred cladding", seed); rm = lw_char(rm, name + " charred roof", seed + 1)
+    trim = K.mat("house trim char" if burn else "house trim", "#2B2623" if burn else "#F7F5EF", rough=0.5)
+    zinc = lw_metal("gutter zinc", "#8E9499")
+    K.box(name + " base", (0, 0, base / 2), (w + 0.08, d + 0.08, base), conc, bev=0.01, parent=root)
+    K.box(name + " walls", (0, 0, base + hw / 2), (w, d, hw), cl, bev=0.01, parent=root)
+    ov = 0.22; run = d / 2 + ov; half = run / math.cos(pitch); gab = math.tan(pitch) * d / 2
+    hole = None
     for sg in (-1, 1):
-        r = K.box(name + " roof", (0, sg * (d / 2 + ov) / 2, h + math.tan(pitch) * (d / 2 + ov) / 2 - 0.01), (w + 2 * ov, half, 0.04), rm, bev=0.005, parent=root)
-        r.rotation_euler = (-sg * pitch, 0, 0)
-    gab = math.tan(pitch) * d / 2
+        zc = top + math.tan(pitch) * run / 2 - math.tan(pitch) * ov - 0.01
+        broken = burn and sg == -1
+        n = 6 if broken else 1
+        for k in range(n):
+            if broken and k in (2, 3):
+                continue                                 # burnt through: two strips gone
+            sw = (w + 2 * ov) / n; x = -(w + 2 * ov) / 2 + sw * (k + 0.5)
+            r = K.box(name + " roof", (x, sg * run / 2, zc), (sw - (0.01 if broken else 0), half, 0.04), rm, bev=0.005, parent=root)
+            r.rotation_euler = (-sg * pitch, 0, 0)
+            if broken and k == 4:                        # caved: sagging into the hole
+                r.rotation_euler = (-sg * pitch + math.radians(22), math.radians(-8), 0); r.location.z -= 0.25
+        if broken:
+            sw = (w + 2 * ov) / 6; hx = -(w + 2 * ov) / 2 + sw * 3
+            hole = (hx, -d / 4, top + gab * 0.35)
+            beam = K.mat("charred beam", "#15110F", rough=0.9)
+            for j in range(4):                           # the charred rafters left across the hole
+                bx = hx - sw * 0.85 + j * sw * 0.57
+                rf = K.box(name + " rafter", (bx, -run / 2 + 0.05, zc - 0.05), (0.07, half * (0.75 + 0.2 * (j % 2)), 0.09), beam, bev=0.0, parent=root)
+                rf.rotation_euler = (pitch + (0.25 if j == 2 else 0.0), 0, 0)
+    K.box(name + " ridge cap", (0, 0, top + gab + 0.02), (w + 2 * ov, 0.16, 0.05), rm, bev=0.01, parent=root).rotation_euler = (0, 0, 0)
     for sx in (-1, 1):                                   # the gable ends: a triangle of cladding
         bm = LW_bmesh.new()
-        a = bm.verts.new((sx * w / 2, -d / 2, h)); b = bm.verts.new((sx * w / 2, d / 2, h)); c = bm.verts.new((sx * w / 2, 0, h + gab))
-        bm.faces.new((a, b, c)); me = bpy.data.meshes.new(name + " gable"); bm.to_mesh(me); bm.free(); me.materials.append(cl)
+        a_ = bm.verts.new((sx * w / 2, -d / 2, top)); b_ = bm.verts.new((sx * w / 2, d / 2, top)); c_ = bm.verts.new((sx * w / 2, 0, top + gab))
+        bm.faces.new((a_, b_, c_)); me = bpy.data.meshes.new(name + " gable"); bm.to_mesh(me); bm.free(); me.materials.append(cl)
         g = lw_link(bpy.data.objects.new(name + " gable", me)); g.parent = root
         so = g.modifiers.new("t", 'SOLIDIFY'); so.thickness = 0.02
-    trim = K.mat("house trim", "#F7F5EF", rough=0.5)
-    K.box(name + " door", (-w * 0.3, -d / 2 - 0.012, 0.5), (0.36, 0.03, 0.82), K.mat("house door", "#EDEBE4", rough=0.45), bev=0.008, parent=root)
-    K.cyl(name + " door knob", (-w * 0.3 + 0.12, -d / 2 - 0.035, 0.48), 0.018, 0.02, lw_metal("knob brass", "#B8903A"), rot=(math.pi / 2, 0, 0), parent=root)
-    xs = [-w * 0.3 + 0.55, w * 0.25] if w > 1.6 else [w * 0.2]
-    windows = []
-    for k, x in enumerate(xs):
-        on = k in lit
-        glass = lw_emit("window lit", "#FFC070", 2.5) if on else K.mat("window glass", "#2B3238" if dark_glass else "#7E8C96", rough=0.08, metal=0.2)
-        K.box(name + " window frame", (x, -d / 2 - 0.01, 0.72), (0.5, 0.03, 0.46), trim, bev=0.006, parent=root)
-        p = K.box(name + " window pane", (x, -d / 2 - 0.026, 0.72), (0.42, 0.01, 0.38), glass, bev=0.0, parent=root)
-        K.box(name + " window bar", (x, -d / 2 - 0.033, 0.72), (0.025, 0.01, 0.38), trim, bev=0.0, parent=root)
-        K.box(name + " window bar", (x, -d / 2 - 0.033, 0.72), (0.42, 0.01, 0.025), trim, bev=0.0, parent=root)
-        windows.append(p)
-    K.box(name + " chimney", (w * 0.28, 0.2, h + gab * 0.8), (0.16, 0.16, 0.4), lw_noise("chimney render", "#BDB8AE", "#9C968C", scale=10), bev=0.01, parent=root)
-    for cx in (-1, 1):                                   # its parts: corner boards, a fascia under each eave, a gutter
+    fire = lw_emit(name + " window fire", "#FF7A1E", 9.0) if burn else None
+    glass_dark = K.mat("window glass", "#2B3238" if dark_glass else "#7E8C96", rough=0.08, metal=0.2)
+    glass_lit = lw_emit("window lit", "#FFC070", 2.5)
+    nwin = max(2, int(round(w / 1.05)))
+    xs = [-w / 2 + w * (k + 0.5) / nwin for k in range(nwin)]
+    door_x = xs[0] if base < 0.5 else xs[0] + 0.05
+    windows = []; fire_windows = []
+    def window(x, y, z, face, pane_m, side=False):
+        dy = -0.012 if not side else 0.0
+        fs = (0.6, 0.03, 0.66) if not side else (0.03, 0.6, 0.66)
+        ps = (0.5, 0.01, 0.56) if not side else (0.01, 0.5, 0.56)
+        off = Vector((0, -1, 0)) if not side else Vector((face, 0, 0))
+        K.box(name + " window frame", tuple(Vector((x, y, z)) + off * 0.01), fs, trim, bev=0.006, parent=root)
+        p = K.box(name + " window pane", tuple(Vector((x, y, z)) + off * 0.026), ps, pane_m, bev=0.0, parent=root)
+        K.box(name + " window bar", tuple(Vector((x, y, z)) + off * 0.034), (fs[0] * 0.05 + 0.01, fs[1] * 0.05 + 0.01, 0.56) if True else None, trim, bev=0.0, parent=root)
+        K.box(name + " window bar", tuple(Vector((x, y, z + 0.06)) + off * 0.034), (ps[0] + 0.005 if not side else 0.01, ps[1] + 0.005 if side else 0.01, 0.025), trim, bev=0.0, parent=root)
+        K.box(name + " sill", tuple(Vector((x, y, z - 0.35)) + off * 0.035), (0.68 if not side else 0.07, 0.07 if not side else 0.68, 0.03), trim, bev=0.004, parent=root)
+        return p
+    for st in range(storeys):
+        zc = base + st * h + h * 0.55
+        for k, x in enumerate(xs):
+            if st == 0 and k == 0:
+                continue                                 # the door's bay
+            idx = len(windows)
+            on_fire = burn and (st == storeys - 1 or rnd.random() < 0.6)
+            pm = fire if on_fire else (glass_lit if idx in lit else glass_dark)
+            p = window(x, -d / 2, zc, -1, pm)
+            windows.append(p)
+            if on_fire:
+                fire_windows.append(((x, -d / 2 - 0.08, zc - 0.28), (0, -1, 0)))
+        for sx in (-1, 1):                               # one window in each gable end per storey
+            window(sx * (w / 2 + 0.012), 0.0, zc, sx, fire if burn else glass_dark, side=True)
+    zd = base + 0.5
+    K.box(name + " door", (door_x, -d / 2 - 0.015, zd), (0.5, 0.03, 1.0), K.mat(f"house door {door}", door, rough=0.45), bev=0.008, parent=root)
+    K.box(name + " door frame", (door_x, -d / 2 - 0.008, zd + 0.02), (0.6, 0.02, 1.08), trim, bev=0.004, parent=root)
+    K.cyl(name + " door knob", (door_x + 0.17, -d / 2 - 0.04, zd - 0.02), 0.02, 0.025, lw_metal("knob brass", "#B8903A"), rot=(math.pi / 2, 0, 0), parent=root)
+    nst = max(1, int(round(base / 0.17)))
+    for k in range(nst):                                 # the steps up to a raised ground floor
+        K.box(name + " step", (door_x, -d / 2 - 0.08 - 0.27 * (nst - 1 - k) - 0.14, (k + 1) * base / nst / 2), (0.8, 0.28 + 0.27 * (nst - 1 - k) * 0 + 0.02, (k + 1) * base / nst), conc, bev=0.006, parent=root)
+    if base > 0.5:
+        for sx in (-1, 1):
+            K.cyl(name + " rail", (door_x + sx * 0.38, -d / 2 - 0.08 - 0.14 * nst, base + 0.45), 0.015, 0.9, zinc, v=8, parent=root)
+    ch = K.box(name + " chimney", (w * rnd.choice((-0.28, 0.3)), 0.25, top + gab * 0.75), (0.32, 0.32, gab * 0.5 + 0.7), conc, bev=0.01, parent=root)
+    for cx in (-1, 1):
         for cy in (-1, 1):
-            K.box(name + " corner board", (cx * (w / 2 + 0.008), cy * (d / 2 + 0.008), h / 2), (0.05, 0.05, h), trim, bev=0.004, parent=root)
+            K.box(name + " corner board", (cx * (w / 2 + 0.01), cy * (d / 2 + 0.01), base + hw / 2), (0.06, 0.06, hw), trim, bev=0.004, parent=root)
     for sg in (-1, 1):
-        K.box(name + " fascia", (0, sg * (d / 2 + ov - 0.02), h - 0.06), (w + 2 * ov, 0.03, 0.08), trim, bev=0.004, parent=root)
-        K.cyl(name + " gutter", (0, sg * (d / 2 + ov + 0.01), h - 0.1), 0.03, w + 2 * ov, lw_metal("gutter zinc", "#8E9499"), rot=(0, math.pi / 2, 0), v=10, parent=root)
-    K.cyl(name + " downpipe", (w / 2 + ov - 0.05, -(d / 2 + ov + 0.01), h / 2 - 0.05), 0.022, h - 0.1, lw_metal("gutter zinc", "#8E9499"), v=8, parent=root)
-    for x in xs:
-        K.box(name + " sill", (x, -d / 2 - 0.03, 0.47), (0.56, 0.06, 0.03), trim, bev=0.004, parent=root)
-    K.box(name + " step", (-w * 0.3, -d / 2 - 0.12, 0.06), (0.5, 0.22, 0.12), lw_noise("plinth concrete", "#8C8A86", "#A9A6A0", scale=12, rough=0.9), bev=0.01, parent=root)
+        K.box(name + " fascia", (0, sg * (d / 2 + ov - 0.02), top - 0.06), (w + 2 * ov, 0.03, 0.1), trim, bev=0.004, parent=root)
+        K.cyl(name + " gutter", (0, sg * (d / 2 + ov + 0.02), top - 0.12), 0.045, w + 2 * ov, zinc, rot=(0, math.pi / 2, 0), v=10, parent=root)
+        K.cyl(name + " downpipe", (sg * (w / 2 + ov - 0.07), -(d / 2 + ov + 0.02), top / 2), 0.03, top - 0.1, zinc, v=8, parent=root)
     lw_local(root)
     root.location = loc; root.rotation_euler = (0, 0, yaw)
-    return dict(root=root, windows=windows, w=w, d=d, h=h)
+    Mw = LW_M.Translation(Vector(loc)) @ LW_M.Rotation(yaw, 4, 'Z')
+    R = LW_M.Rotation(yaw, 3, 'Z')
+    return dict(root=root, windows=windows, w=w, d=d, h=h, top=top, gab=gab, yaw=yaw, storeys=storeys, base=base,
+                hole=(Mw @ Vector(hole)) if hole else None,
+                fire_windows=[(Mw @ Vector(p), R @ Vector(o)) for p, o in fire_windows])
+
+
+def lw_house_fire(hs, seed=0, t_end=None, fire=5.0):
+    """a house burning FROM INSIDE (board: "fire sits ON the roofs like candle flames"): the blaze comes up through the
+    hole in its roof and rolls into a soot column, flames lick out of its upper windows and up the charred cladding,
+    and the fire's light falls warm on the ground and the neighbouring walls, flickering. Needs a town_house built with
+    burn>0. Returns the list of what it made (volumes and lights)."""
+    rnd = lw_random.Random(seed)
+    t_end = t_end if t_end is not None else DUR + 1.0
+    out = []
+    hp = hs["hole"]
+    out.append(lw_fire_column(hs["root"].name + " blaze", (hp.x, hp.y + 0.3, hp.z - 1.2), w=2.6, h_fire=3.4, h_smoke=9.0,
+                              lean=(-0.6, 0.25), t_end=t_end, seed=seed * 3.7 + 1.0, fire=fire * 1.4, smoke_d=3.5))
+    for k, (p, o) in enumerate(hs["fire_windows"]):
+        if p.z < hs["root"].location.z + hs["top"] - hs["h"] - 0.05:
+            continue                                     # the flames come out of the top storey's windows
+        out.append(lw_fire_column(hs["root"].name + f" window flame {k}", (p.x + o.x * 0.08, p.y + o.y * 0.08, p.z), w=0.85, h_fire=1.5,
+                                  h_smoke=1.8, lean=(o.x * 0.25, o.y * 0.25), t_end=t_end, seed=seed * 5.3 + k, fire=fire * 1.6, smoke_d=2.4, rise=1.8))
+        out.append(lw_point(hs["root"].name + f" window light {k}", tuple(p + o * 0.7 + Vector((0, 0, 0.3))), 160.0, col=(1.0, 0.45, 0.15), r=0.25))
+    out.append(lw_point(hs["root"].name + " blaze light", (hp.x, hp.y - 0.4, hp.z + 1.0), 1400.0, col=(1.0, 0.45, 0.15), r=0.6))
+    wf = bpy.data.materials.get(hs["root"].name + " window fire")
+    lights = [o for o in out if o.type == 'LIGHT']
+    for f in range(1, F(t_end) + 2, 2):                 # the flicker: every light and every burning pane, out of step
+        t = (f - 1) / FPS
+        for j, L in enumerate(lights):
+            e0 = L.get("e0") or L.data.energy; L["e0"] = e0
+            q = 1 + 0.22 * math.sin(2 * math.pi * (2.7 + 0.4 * j) * t + 1.7 * j + seed) + 0.12 * math.sin(2 * math.pi * 7.1 * t + j)
+            L.data.energy = e0 * q; L.data.keyframe_insert("energy", frame=f)
+        if wf:
+            em = next(n for n in wf.node_tree.nodes if n.type == 'EMISSION' or n.type == 'BSDF_PRINCIPLED')
+            inp = em.inputs.get("Emission Strength") or em.inputs.get("Strength")
+            s0 = wf.get("s0") or inp.default_value; wf["s0"] = s0
+            inp.default_value = s0 * (1 + 0.3 * math.sin(2 * math.pi * 3.3 * t + seed) + 0.15 * math.sin(2 * math.pi * 8.3 * t)); inp.keyframe_insert("default_value", frame=f)
+    return out
 
 
 # ---------------------------------------------------------------- the hard hat and the hi-vis vest

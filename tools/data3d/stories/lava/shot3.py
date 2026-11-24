@@ -44,20 +44,19 @@ def place_wall_crest():
     """THE TOP OF THE WALL: its crest track of crushed rock, the black lava field running away from its outer face,
     the town's roofs below it on the other side, a parked digger far along the crest, the plume over the far fissure."""
     rnd = lw_random.Random(31)
-    lw_grid("lava field ground", -30, 30, -30, 30, 90, 90, s3_ground_z, lava_field_mat())
+    lw_grid("lava field ground", -30, 30, -30, 30, 90, 90, s3_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven)
     wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8)
     K.box("crest track", (0, 0, S3_H + 0.03), (50, S3_CREST - 0.1, 0.06), lw_noise("crushed rock", "#3E3732", "#615750", scale=30, rough=0.95, bump=1.0, detail=10), bev=0.02)
     for k in range(24):                                   # the town inside the wall: street after street of tin roofs
-        town_house(f"town house below {k}", (-16 + 2.7 * (k % 12) + rnd.uniform(-0.3, 0.3), 7.5 + 3.0 * (k // 12) + 1.0 * (k % 2), 0), yaw=rnd.uniform(-0.2, 0.2),   # their fronts, doors and windows to the wall
-                   w=2.1, d=1.6, roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)])
+        town_house(f"town house below {k}", (-17 + 4.6 * (k % 8) + rnd.uniform(-0.3, 0.3), 9.0 + 4.4 * (k // 8) + 0.8 * (k % 2), 0), yaw=rnd.uniform(-0.15, 0.15),   # their fronts, doors and windows to the wall
+                   roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35))
     lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2))        # the old lava heaped against the face: broken blocks
     lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.12)   # the field outside the wall: broken black blocks, a little moss
     lava_rock("wall face rock", 260, (-14, 12, -4.2, -1.0), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=27, r=(0.08, 0.26), moss=0.0)   # the black rock it is built of, on its face
     lava_rock("works rubble", 160, (-14, 14, 4.4, 9.0), s3_ground_z, seed=12, r=(0.08, 0.3))       # the works yard inside the wall
-    smoke = lw_smoke_mat("far plume", density=0.7, col=(0.45, 0.42, 0.4))
-    for k in range(6):
-        lw_puff(f"far plume {k}", (-24 + 6 * k, 38 + 3 * (k % 3), 10 + 3.5 * k), 7.0, smoke, scale=(1.4, 1.0, 1.0))   # the plume, blown over the town
+    for k, x in enumerate((-22.0, -12.0)):               # the eruption's plume off in the distance, a gas leaning over the town
+        lw_steam(f"far plume {k}", (x, 40.0 + 4 * k, 0.0), w=7.0, h=24.0, seed=6.6 * k, col=(0.45, 0.43, 0.42), dens=1.6, lean=(0.6, -0.3), rise=1.0, t_end=DUR + 1.0)
 
     def light():
         return iceland_light(sun_elev=24, sun_az=-30, sun=3.0, sky=0.4, haze=1.4)
@@ -133,8 +132,6 @@ def shot3():
     jb.inputs["Base Color"].default_value = (0.85, 0.92, 1.0, 1); jb.inputs["Roughness"].default_value = 0.1
     jb.inputs["Emission Color"].default_value = (0.8, 0.9, 1.0, 1); jb.inputs["Emission Strength"].default_value = 0.3; jb.inputs["Transmission Weight"].default_value = 0.6
     drops = [K.sph(f"hose jet {k}", (0, 0, -5), 0.008, jet_m, seg=8, ring=6) for k in range(60)]
-    steam_m = lw_smoke_mat("lava steam", density=2.2, col=(0.95, 0.96, 0.98))
-    steam = [lw_puff(f"lava steam {k}", (0, 0, -5), 1.0, steam_m) for k in range(14)]
     # ---- his body: watching it come, a flinch at the hit, braced back as he opens up, turning with the slide
     yaw0 = math.radians(-12)
     def body_yaw(t):
@@ -221,13 +218,11 @@ def shot3():
                 a = noz_tip[f]; b = aim(t); m_ = a.lerp(b, u); m_.z += 0.25 * math.sin(math.pi * u)
                 o.location = m_ + jit[k] * (0.015 + 0.12 * u * u)             # the jet fans out into fine spray as it falls
             o.keyframe_insert("location", frame=f)
-    for k, o in enumerate(steam):
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; t0 = T_SPRAY + 0.06 + 0.12 * k; s = W(t, t0, 0.4)
-            b = aim(t0); age = max(0.0, t - t0)                      # it boils up off the front, up past the crest
-            o.location = (b.x + 0.25 + 0.08 * (k % 5) + 0.3 * age, b.y - 0.25 - 0.06 * (k % 3) - 0.2 * age, b.z + 0.05 + 0.3 * s + 1.1 * age)   # a column boiling up where the jet lands, drifting off him (board round 3: "one small puff")
-            r = 0.3 * s * (1 + 0.04 * k) * (1 + 1.3 * age)            # it billows into a column a third of the frame high
-            lw_puff_key(o, f, (r, r, r * 0.9)); o.keyframe_insert("location", frame=f)
+    steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
+    for k, t0 in enumerate((T_SPRAY + 0.06, T_SLIDE + 0.5)):      # that drifts off him, and again where the front's nose slides to
+        b = aim(t0)
+        steam.append(lw_steam(f"lava steam {k}", (b.x + 0.3, b.y - 0.3, b.z - 0.1), w=1.1, h=3.8, seed=5.1 * k + 2, rise=2.4, dens=7.0,
+                              lean=(0.25, -0.2), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
     CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=56.0, fstop=22.0)
