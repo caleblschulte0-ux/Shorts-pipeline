@@ -98,10 +98,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is a flat fun fact (about 1,400 active volcanoes, most along the Ring of Fire) with no stake or contradiction, and the hook 'Earth never actually stops erupting. It just moves around.' names no concrete subject or threat."
+  "premise: brain: The pitch is a flat fun fact with no stake or contradiction: about 1,400 volcanoes, three in four on the Ring of Fire, and 16 on a watch list never say why the viewer should care. The hook is a vague 'it just moves around', and the title's '45 volcanoes erupting' is not supported by any beat."
  ],
  "reasons": [
-  "premise: brain: The pitch is a flat fun fact (about 1,400 active volcanoes, most along the Ring of Fire) with no stake or contradiction, and the hook 'Earth never actually stops erupting. It just moves around.' names no concrete subject or threat."
+  "premise: brain: The pitch is a flat fun fact with no stake or contradiction: about 1,400 volcanoes, three in four on the Ring of Fire, and 16 on a watch list never say why the viewer should care. The hook is a vague 'it just moves around', and the title's '45 volcanoes erupting' is not supported by any beat."
  ],
  "judge": null,
  "prior_rejection": [
@@ -138,5 +138,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T04:52:37Z"
+ "refiled": "2026-11-24T09:48:11Z"
 }

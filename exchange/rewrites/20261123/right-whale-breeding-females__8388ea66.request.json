@@ -101,12 +101,14 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Calves are the hopeful counterpoint, but the narration just states 22 calves as a new fact; it does not follow from or t",
-  "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Breeding female count is a new fact. It is loosely related to calves but is not framed as the cause of the 22-calf figur"
+  "thesis: seg0 ('Right Whale Population') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Focuses on total population size, not the specific calf count claimed in the headline.",
+  "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: While it mentions the 22 calves, it does not directly follow from the previous population fact and the previous beat did",
+  "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Discusses breeding females, which does not directly support the calf count claim and doesn't logically follow from the c"
  ],
  "reasons": [
-  "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Calves are the hopeful counterpoint, but the narration just states 22 calves as a new fact; it does not follow from or t",
-  "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Breeding female count is a new fact. It is loosely related to calves but is not framed as the cause of the 22-calf figur"
+  "thesis: seg0 ('Right Whale Population') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Focuses on total population size, not the specific calf count claimed in the headline.",
+  "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: While it mentions the 22 calves, it does not directly follow from the previous population fact and the previous beat did",
+  "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Discusses breeding females, which does not directly support the calf count claim and doesn't logically follow from the c"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -140,5 +142,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T04:52:34Z"
+ "refiled": "2026-11-24T09:48:10Z"
 }

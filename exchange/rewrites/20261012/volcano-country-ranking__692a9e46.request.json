@@ -106,12 +106,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Adds a new comparison rather than a logical continuation of beat 0.",
-  "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Provides general context instead of directly supporting the headline and doesn't follow from beat 1."
+  "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Adds a separate comparison rather than a logical continuation of beat 0.",
+  "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Provides a general explanation that doesn't directly follow from beat 1."
  ],
  "reasons": [
-  "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Adds a new comparison rather than a logical continuation of beat 0.",
-  "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Provides general context instead of directly supporting the headline and doesn't follow from beat 1."
+  "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Adds a separate comparison rather than a logical continuation of beat 0.",
+  "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"You'd Guess Indonesia. The Data Says Otherwise.\") — brain: Provides a general explanation that doesn't directly follow from beat 1."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -145,5 +145,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T04:52:31Z"
+ "refiled": "2026-11-24T09:48:08Z"
 }
