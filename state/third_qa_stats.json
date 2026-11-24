@@ -3,226 +3,6 @@
     {
       "date": "20261116",
       "dry_run": false,
-      "ts": "2026-11-16T11:40:19+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 135,
-        "with_retention": 114,
-        "with_curve": 15,
-        "fetched_at": "2026-11-16T08:46:40.469072+00:00"
-      },
-      "brain": {
-        "ok": 17,
-        "fail": 3,
-        "limited_at": "2026-11-16T11:33:58+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261116-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "cameras",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "score": 0.85,
-              "why": "Streamer reacts to character falling int",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Screams Ahhh As Crowd Goes Wild"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 114.3
-        },
-        {
-          "slug": "clip-20261116-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (Monologue, no observable event)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Garbage title, no info.",
-              "blind": false
-            },
-            "content": {
-              "score": 0.15,
-              "why": "Monologue, no observable event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 67.2
-        },
-        {
-          "slug": "clip-20261116-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "Vague title, no clear event.",
-              "blind": false
-            },
-            "content": {
-              "score": 0.9,
-              "why": "Streamer finds endless taxis, reacts wit",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Can't Believe What Happened In This Taxi"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 99.8
-        },
-        {
-          "slug": "clip-20261116-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.8
-        },
-        {
-          "slug": "clip-20261116-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261116-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261116-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261116-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261116",
-      "dry_run": false,
       "ts": "2026-11-16T11:56:39+00:00",
       "feedback": {
         "snapshot": true,
@@ -7138,6 +6918,320 @@
           "slug": "clip-20261123-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261124",
+      "dry_run": false,
+      "ts": "2026-11-24T12:06:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 132,
+        "with_retention": 101,
+        "with_curve": 15,
+        "fetched_at": "2026-11-24T08:46:18.540350+00:00"
+      },
+      "brain": {
+        "ok": 42,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:deshaefrost": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261124-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "funny timing, needs context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 gameplay, funny NPC line, little e",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lirik Gets Roasted By A Perfectly Timed NPC And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Frame at 14.6s is mostly foliage, with the subject hidden for a moment",
+                "Hook card sits over the character's lower body in some frames, but it doesn't cover a face or the main action"
+              ]
+            }
+          },
+          "took_s": 285.2
+        },
+        {
+          "slug": "clip-20261124-2",
+          "ok": false,
+          "error": "RuntimeError: director: the clip ends mid-sentence on \"your\"",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "chat trolls streamer, niche context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA6 gameplay, wasted, mostly map menus",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 21.7
+        },
+        {
+          "slug": "clip-20261124-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "split",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "routine check-in, insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "GTA 6 chaos, visible shocked reactions",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Checks On Nickeh30 And Finds Lucia Down There"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": []
+            }
+          },
+          "took_s": 207.1
+        },
+        {
+          "slug": "clip-20261124-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "GTA 6 chase crash, CaseOh reacts",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Tells Jason \"Get Away\" After Almost Catching A Body This Early"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Word captions at 3.9s, 6.5s and 11.6s sit over the car and the action, but they don't cover a face",
+                "The hook card stays on screen for the whole clip and overlaps the lower part of the picture, which is minor"
+              ]
+            }
+          },
+          "took_s": 227.6
+        },
+        {
+          "slug": "clip-20261124-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA 6 driving, one ped hit, no payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Gets Hit With 'Nice Scooter' And Chat Can't Stop Screaming"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The caption sits over the lower part of the car, but it doesn't cover the main action",
+                "The clip is GTA-style gameplay and no streamer is visible. This fits the 'scooter moment' hook, but the title's chat rea"
+              ]
+            }
+          },
+          "took_s": 206.0
+        },
+        {
+          "slug": "clip-20261124-6",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague laugh, unknown cause",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA 6 wandering, ban fears, risqu\u00e9; uncl",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Timthetatman Panics His Entire YouTube Channel Might Get Banned Over This GTA Room"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Several frames are very dark, so the action is hard to read.",
+                "The facecam and chat overlay stays in the top-left corner and covers part of the game footage.",
+                "The sharp picture fills only a middle band of the canvas, but it is readable."
+              ]
+            },
+            "first_render": {
+              "reframe": "action",
+              "layout": "action",
+              "problems": [
+                "black screen 0.9s at 38.8s",
+                "vision: Frames at 2.5s and 27.1s show a sexually suggestive orgy-style scene (people piled on a bed or in a room). This risks an",
+                "vision: The 17.2s frame is an out-of-focus, washed-out blob inside the sharp region, so it reads as a broken frame.",
+                "vision: The 56.6s frame is almost entirely black, with no subject or action visible.",
+                "vision: Several frames (41.9s, 46.8s) are very dark, with the subject cropped or barely visible, so the framing looks unintentio"
+              ]
+            }
+          },
+          "took_s": 607.0
         }
       ]
     }

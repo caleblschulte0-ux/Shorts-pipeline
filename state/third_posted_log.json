@@ -22355,14 +22355,32 @@
       "ts": "2026-11-24T11:56:44.355007+00:00"
     },
     "clip-20261124-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/timthetatman/clip/BrightWanderingLemurAMPTropPunch-1Ygg3jlwmtQYBO13",
-      "story_key": null,
-      "streamer": "timthetatman",
+      "url": "https://youtube.com/shorts/qXpGAmIM-Xc",
       "title": "Timthetatman Panics His Entire YouTube Channel Might Get Banned Over This GTA Room",
       "kind": "twitch_clip",
-      "ts": "2026-11-24T12:06:32.250014+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-24T12:06:51.336249+00:00",
+      "uploaded_at": "2026-11-24T12:06:51.336263+00:00",
+      "publish_at": "2026-11-25T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261124-timthetatman-panics-his-entire-youtube-channel-m-3abce64a",
+        "tiktok": "queued for 2026-11-25T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/timthetatman/clip/BrightWanderingLemurAMPTropPunch-1Ygg3jlwmtQYBO13",
+      "streamer": "timthetatman",
+      "series": "chaos",
+      "hook": "Tim thinks his channel is cooked \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 17410,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 59.1
+      },
+      "director_cut": true
     }
   }
 }
