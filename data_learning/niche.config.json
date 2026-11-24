@@ -34761,21 +34761,22 @@
    "hook_was": "You get way less mail than your parents did.",
    "scorecard": {
     "scores": {
-     "premise": 8,
+     "premise": 10,
      "hook": 15,
      "arc": 12,
-     "factual": 10,
+     "factual": 12,
      "visual_proof": 8,
-     "payoff": 8,
+     "payoff": 5,
      "voice": 4
     },
-    "total": 65,
+    "total": 66,
     "fatal": [
-     "invented_fact"
+     "missing_payoff",
+     "unrenderable_visual"
     ],
-    "weakest": "premise",
-    "note": "Correct the total USPS mail volume figure to match official data; the current 109 billion claim appears inaccurate.",
-    "fp": "0263c18eed23c2e9"
+    "weakest": "payoff",
+    "note": "Add a clear payoff that answers the opening question and ensure the visuals are easily renderable on a phone screen.",
+    "fp": "1288c86167c1eb50"
    },
    "segments": [
     {

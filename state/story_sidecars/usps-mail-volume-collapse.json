@@ -3,50 +3,51 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 8,
+   "premise": 10,
    "hook": 15,
    "arc": 12,
-   "factual": 10,
+   "factual": 12,
    "visual_proof": 8,
-   "payoff": 8,
+   "payoff": 5,
    "voice": 4
   },
-  "total": 65,
+  "total": 66,
   "fatal": [
-   "invented_fact"
+   "missing_payoff",
+   "unrenderable_visual"
   ],
-  "weakest": "premise",
-  "note": "Correct the total USPS mail volume figure to match official data; the current 109 billion claim appears inaccurate.",
-  "fp": "0263c18eed23c2e9"
+  "weakest": "payoff",
+  "note": "Add a clear payoff that answers the opening question and ensure the visuals are easily renderable on a phone screen.",
+  "fp": "1288c86167c1eb50"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Fewer letters made mailing one more expensive, not cheaper.",
+   "ears": "Americans send far less mail, yet stamps cost more.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "USPS mail fell to 109 billion pieces, leaving the network with nearly half its former traffic.",
+   "ears": "USPS mail fell to 109 billion pieces, leaving the network with nearly half its peak traffic.",
    "eyes": "substance: white paper envelopes; cause: Data grips each cart's handle and rolls the letters out of the truck, cart after cart",
    "evidence": "Postal Regulatory Commission (PRC) | Total USPS mail volume | https://www.prc.gov/state-of-the-postal-service | 2026-10-16"
   },
   {
    "window": "beat 1",
-   "ears": "First-Class Mail fell to 46 billion pieces, showing letters disappeared fastest.",
+   "ears": "First-Class Mail fell to 46 billion pieces, showing letters led the collapse.",
    "eyes": "substance: white paper letters; cause: Data stamps each letter and sends it to the mail sack, and the pigeonholes empty",
    "evidence": "United States Postal Service (USPS) | First-Class Mail volume | https://about.usps.com/who/profile/history/pdf/first-class-mail-since-1926.pdf | 2026-10-16"
   },
   {
    "window": "beat 2",
-   "ears": "A stamp reached 68 cents, because shrinking volume did not shrink the nationwide delivery network.",
+   "ears": "A stamp reached 68 cents, even as the mail stream kept shrinking.",
    "eyes": "a data picture (comparison)",
    "evidence": "United States Postal Service (USPS) | Price of a First-Class stamp | https://about.usps.com/newsroom/service-alerts/postal-facts.htm | 2026-10-16"
   },
   {
    "window": "closing",
-   "ears": "Every mailbox costs money to reach, even when fewer letters help fund the trip.",
+   "ears": "Mail volume collapsed while the price of sending a letter climbed.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
