@@ -22253,13 +22253,41 @@
       "ts": "2026-11-24T11:42:42.483692+00:00"
     },
     "clip-20261124-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/SparklingDeliciousElephantDuDudu-7ZtEIG3eWcRoA8BV",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/lsJRUl1OVg8",
       "title": "Jynxzi Checks On Nickeh30 And Finds Lucia Down There",
       "kind": "twitch_clip",
-      "ts": "2026-11-24T11:46:37.937630+00:00",
+      "ts": "2026-11-24T11:46:53.462194+00:00",
+      "uploaded_at": "2026-11-24T11:46:53.462207+00:00",
+      "publish_at": "2026-11-24T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261124-jynxzi-checks-on-nickeh30-and-finds-lucia-down-t-548659bb",
+        "tiktok": "queued for 2026-11-24T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SparklingDeliciousElephantDuDudu-7ZtEIG3eWcRoA8BV",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "Jynxzi checks on nickeh30 \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1883,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 27.1
+      },
+      "director_cut": true
+    },
+    "clip-20261124-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SmoggyCleverMosquitoTBTacoRight-RVBfPSPbe5p5k44q",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Tells Jason \"Get Away\" After Almost Catching A Body This Early",
+      "kind": "twitch_clip",
+      "ts": "2026-11-24T11:51:24.734670+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
