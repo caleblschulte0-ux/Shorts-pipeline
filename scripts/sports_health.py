@@ -14,7 +14,10 @@ with the reason in the step summary) when:
 - a render crashed (`render failed: ...`): a bug, never a judgement;
 - `MIN_POSTS` or more posts went out and none had a cut-in or montage;
 - `HELD_MIN` or more cuts carried a cut-in or montage and over
-  `HELD_SHARE` of them were held: something about the footage is wrong.
+  `HELD_SHARE` of them were held: something about the footage is wrong;
+- nothing has been posted for `SILENT_H` hours (2026-11-18 to 11-23:
+  Reddit refused every discovery route, ~30 runs failed at step one, and
+  this check stayed quiet because it only read runs that made cuts).
 
     python scripts/sports_health.py            # this run + recent runs
 """
@@ -34,6 +37,9 @@ DAYS = 3
 MIN_POSTS = 4
 HELD_MIN = 3
 HELD_SHARE = 2 / 3
+SILENT_H = 30
+LOG = ROOT / "state" / "posted_log.json"
+FORMAT = "sports_moment"
 # Runs before the 2026-11-14 fixes (PRs 754-756) are the problems this
 # check was written from; counting them would keep it red for days after.
 FLOOR = channel_health.FLOOR
@@ -65,6 +71,33 @@ def problems(reports: list[dict]) -> list[str]:
         out.append(f"{len(held)} of {len(rich)} cuts with a cut-in or "
                    f"montage were held: {why}")
     return out
+
+
+def silence(log: dict, now: float | None = None) -> list[str]:
+    """[reason] when the channel's last post is over SILENT_H hours old."""
+    import time
+    from datetime import datetime, timezone
+    now = time.time() if now is None else now
+    rows = log.get("posted") if isinstance(log.get("posted"), list) \
+        else []
+    last = 0.0
+    for r in rows:
+        if not isinstance(r, dict) or r.get("format") != FORMAT:
+            continue
+        try:
+            t = datetime.fromisoformat(str(r.get("posted_at"))
+                                       .replace("Z", "+00:00")).timestamp()
+        except ValueError:
+            continue
+        last = max(last, t)
+    if not last:
+        return []
+    hours = (now - last) / 3600
+    if hours <= SILENT_H:
+        return []
+    return [f"nothing posted for {hours:.0f} hours (last "
+            f"{datetime.fromtimestamp(last, tz=timezone.utc):%Y-%m-%d %H:%MZ}); read this "
+            "run's log for why no cut reached the upload"]
 
 
 def recent(days: int = DAYS) -> list[dict]:
@@ -104,6 +137,10 @@ def main() -> int:
         except ValueError:
             pass
     found = problems(reports)
+    try:
+        found += silence(json.loads(LOG.read_text()))
+    except (OSError, ValueError):
+        pass
     return channel_health.emit(
         "Baller Bro health", found,
         "cut-ins and montages are being made and posted")

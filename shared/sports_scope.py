@@ -249,8 +249,10 @@ def invented(title: str, *sources: str) -> str:
 
 
 def too_short(seconds: float, reg=None) -> str:
-    """Why a cut is too short to post, or ''."""
+    """Why a cut is too short to post, or ''. The floor is the floor: a
+    half-second of slack let a 14.8s Hutchinson cut post under a 15s rule
+    (2026-11-16)."""
     floor = float(policy(reg).get("min_cut_s") or 0)
-    if seconds and seconds < floor - 0.5:
+    if seconds and seconds < floor:
         return f"too short: the cut runs {seconds:.1f}s (< {floor:.0f}s)"
     return ""
