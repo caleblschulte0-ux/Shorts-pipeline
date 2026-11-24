@@ -94,10 +94,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is vague and lacks a concrete, picture‑able surprise or threat beyond generic numbers, making it too weak for a compelling Shorts hook."
+  "premise: brain: The hook is a vague, abstract line with no concrete image or stake for the viewer, and the beats are a flat run of counts (501 species, 39%, 40 Australian frogs) that never name the fungus plainly or promise a specific surprise or contradiction to overturn."
  ],
  "reasons": [
-  "premise: brain: The pitch is vague and lacks a concrete, picture‑able surprise or threat beyond generic numbers, making it too weak for a compelling Shorts hook."
+  "premise: brain: The hook is a vague, abstract line with no concrete image or stake for the viewer, and the beats are a flat run of counts (501 species, 39%, 40 Australian frogs) that never name the fungus plainly or promise a specific surprise or contradiction to overturn."
  ],
  "judge": null,
  "prior_rejection": [
@@ -133,5 +133,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T13:53:31Z"
+ "refiled": "2026-11-24T15:06:56Z"
 }

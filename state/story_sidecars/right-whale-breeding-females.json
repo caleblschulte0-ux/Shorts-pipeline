@@ -4,23 +4,23 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 9,
-   "arc": 11,
-   "factual": 9,
-   "visual_proof": 8,
+   "hook": 11,
+   "arc": 12,
+   "factual": 8,
+   "visual_proof": 9,
    "payoff": 6,
    "voice": 3
   },
-  "total": 56,
+  "total": 59,
   "fatal": [],
-  "weakest": "hook",
-  "note": "The hook is a vague, abstract statement with no concrete stakes, and the title's number (70 mothers) is held back until beat 3. Open with the threat in plain words, such as 'Only 70 mothers are keeping right whales alive', and make beat 2 s",
-  "fp": "6388c747d91475e2"
+  "weakest": "factual",
+  "note": "The title says '70 mothers' but beat 3 calls them 70 breeding females, and the hook's 'handful of mothers' undersells 70. Pick one accurate framing. Also open with a concrete, surprising image or stake, such as 'Only 70 females can save a s",
+  "fp": "bee17b523affca05"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "A hopeful calf rebound still depends on very few mothers.",
+   "ears": "Right whale calves are arriving, but the species hangs on a handful of mothers.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
@@ -32,19 +32,19 @@
   },
   {
    "window": "beat 1",
-   "ears": "That small population produced 22 calves, showing recovery remains possible.",
+   "ears": "That small population produced 22 calves, so recovery is still possible.",
    "eyes": "a data picture (comparison)",
    "evidence": "NOAA Fisheries | North Atlantic right whale calves born, 2018 vs recent season | https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024 | 2026-10-29"
   },
   {
    "window": "beat 2",
-   "ears": "But only 70 right whales are breeding females, so losing a few can stall the comeback.",
+   "ears": "But only 70 are breeding females, so losing a few could stall the comeback.",
    "eyes": "a data picture (share)",
    "evidence": "NOAA Fisheries | Reproductively active females as a share of the right whale population | https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024 | 2026-10-29"
   },
   {
    "window": "closing",
-   "ears": "The species can recover only if its small group of breeding females survives.",
+   "ears": "The species recovers only if its few breeding females survive, so every loss matters.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

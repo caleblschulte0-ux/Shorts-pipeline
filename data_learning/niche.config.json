@@ -36652,8 +36652,8 @@
   {
    "slug": "right-whale-breeding-females",
    "title": "Only 70 Right Whale Mothers Stand Between Recovery And Collapse",
-   "hook": "Right whale calves are being born, and the species still hangs on a handful of mothers.",
-   "closing": "The species can recover only if its small group of breeding females survives.",
+   "hook": "Right whale calves are arriving, but the species hangs on a handful of mothers.",
+   "closing": "The species recovers only if its few breeding females survive, so every loss matters.",
    "question": "Can right whales recover?",
    "caption": "North Atlantic right whales hit a low of 358 in 2020 and have crept back to 384 — with 22 calves born this season versus zero in 2018. But fewer than 70 of them are breeding females. Did you know whales could go extinct? 👇",
    "hashtags": [
@@ -36669,8 +36669,8 @@
     "explainer"
    ],
    "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-24T12:28:13Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-24T14:20:41Z",
    "hook_was": "The species almost went silent in 2018.",
    "segments": [
     {
@@ -36694,7 +36694,7 @@
      "insight_type": "comparison",
      "role": "2 · FROM ZERO",
      "topic": "Right Whale Calves",
-     "say": "That small population produced 22 calves, showing recovery remains possible."
+     "say": "That small population produced 22 calves, so recovery is still possible."
     },
     {
      "source": "offline",
@@ -36705,24 +36705,24 @@
      "insight_type": "share",
      "role": "3 · THE BOTTLENECK",
      "topic": "Right Whale Mothers",
-     "say": "But only 70 right whales are breeding females, so losing a few can stall the comeback."
+     "say": "But only 70 are breeding females, so losing a few could stall the comeback."
     }
    ],
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 9,
-     "arc": 11,
-     "factual": 9,
-     "visual_proof": 8,
+     "hook": 11,
+     "arc": 12,
+     "factual": 8,
+     "visual_proof": 9,
      "payoff": 6,
      "voice": 3
     },
-    "total": 56,
+    "total": 59,
     "fatal": [],
-    "weakest": "hook",
-    "note": "The hook is a vague, abstract statement with no concrete stakes, and the title's number (70 mothers) is held back until beat 3. Open with the threat in plain words, such as 'Only 70 mothers are keeping right whales alive', and make beat 2 s",
-    "fp": "6388c747d91475e2"
+    "weakest": "factual",
+    "note": "The title says '70 mothers' but beat 3 calls them 70 breeding females, and the hook's 'handful of mothers' undersells 70. Pick one accurate framing. Also open with a concrete, surprising image or stake, such as 'Only 70 females can save a s",
+    "fp": "bee17b523affca05"
    }
   },
   {
@@ -38670,7 +38670,7 @@
   {
    "slug": "normal-body-temperature-has-shifted",
    "title": "Body Temperature Fell Below The 98.6°F Standard",
-   "hook": "Doctors trusted one body temperature for generations, and bodies stopped matching it.",
+   "hook": "Your body is running colder than doctors say it should.",
    "closing": "A single normal temperature cannot capture a body that changed across generations.",
    "question": "What's your resting temperature?",
    "hashtags": [
@@ -38712,7 +38712,8 @@
      "insight_type": "comparison",
      "role": "2 · WOMEN VS MEN",
      "topic": "Body Temperature Sex",
-     "say": "Men cooled by 1.06 degrees, nearly twice the drop for women, pointing to a real biological shift."
+     "say": "Men cooled by 1.06 degrees, nearly twice the drop for women, pointing to a real biological shift.",
+     "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _thermo_board(cr, x0, label, level_y, start_y, t):\n    w, top, base = 260, 680, 1380\n    cx = x0 + w / 2\n    # the board's shadow on the clinic wall\n    cr.rectangle(x0 + 14, top + 40, w, base - top)\n    cr.set_source_rgba(*_c((40, 50, 48), 0.22))\n    cr.fill()\n    # an enamel sign thermometer: a cream board with a rounded top\n    cr.move_to(x0, base)\n    cr.line_to(x0, top + w / 2)\n    cr.arc(cx, top + w / 2, w / 2, math.pi, 2 * math.pi)\n    cr.line_to(x0 + w, base)\n    cr.close_path()\n    solid(cr, (232, 226, 210))\n    trim(cr, x0 + 16, top + 120, x0 + w - 16, base - 16, (176, 58, 48), w=6)\n    for sx, sy in ((x0 + 30, base - 30), (x0 + w - 30, base - 30),\n                   (x0 + 30, top + 140), (x0 + w - 30, top + 140)):\n        disc(cr, sx, sy, 7, (150, 150, 156), finish=\"metal\")\n    # graduations, both sides of the tube\n    for i in range(24):\n        y = 770 + i * 22\n        ln = 34 if i % 5 == 0 else 18\n        cr.set_source_rgba(*_c((60, 50, 46)))\n        cr.set_line_width(4 if i % 5 == 0 else 2.5)\n        cr.move_to(cx - 26, y)\n        cr.line_to(cx - 26 - ln, y)\n        cr.move_to(cx + 26, y)\n        cr.line_to(cx + 26 + ln, y)\n        cr.stroke()\n    # glass tube, the red column, the bulb\n    cr.rectangle(cx - 15, 750, 30, 560)\n    solid(cr, (214, 228, 236), finish=\"glass\")\n    cr.rectangle(cx - 8, level_y, 16, 1312 - level_y)\n    solid(cr, (204, 36, 34), rim=False)\n    disc(cr, cx, 1320, 36, (204, 36, 34), finish=\"glass\")\n    for yy in (748, 1300):\n        cr.rectangle(cx - 22, yy, 44, 10)\n        solid(cr, (150, 150, 156), finish=\"metal\")\n    # the brass \"normal\" pointer, left where the column used to stand\n    cr.move_to(cx + 20, start_y)\n    cr.line_to(cx + 52, start_y - 14)\n    cr.line_to(cx + 52, start_y + 14)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n    # the name plate sits in the board's rounded TOP, far above Data's head\n    # (his head never rises above y=1160), so he can never stand over it\n    text(cr, label, cx, top + 60, 34, (120, 36, 30), face=\"bold\", anchor=\"center\",\n         shadow=False)\n    return cx\n\n\ndef _pail(cr, cx, t):\n    cast_shadow(cr, cx - 52, cx + 52, 1452, length=90, a=0.2)\n    contact_shadow(cr, cx, 1452, 120, a=0.4)\n    cylinder(cr, cx - 52, 1452, 104, 82, (168, 174, 182), finish=\"metal\")\n    seams(cr, cx - 50, 1380, cx + 50, 1450, (168, 174, 182), n=3, axis=\"h\", width=2)\n    cr.save()\n    cr.translate(cx, 1372)\n    cr.scale(1, 0.25)\n    cr.arc(0, 0, 44, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (70, 140, 200), finish=\"glass\", rim=False)\n\n\ndef _stream(cr, sx, sy, ex, ey, t, a=1.0):\n    if a <= 0:\n        return\n    cr.move_to(sx, sy)\n    cr.curve_to(sx - 30, sy - 30, ex + 40, ey - 60, ex, ey)\n    cr.set_source_rgba(*_c((90, 160, 220), 0.75 * a))\n    cr.set_line_width(14)\n    cr.stroke()\n    for j in range(6):\n        p = (t * 1.7 + j / 6.0) % 1.0\n        mt = 1 - p\n        bx = mt**3 * sx + 3 * mt * mt * p * (sx - 30) + 3 * mt * p * p * (ex + 40) + p**3 * ex\n        by = mt**3 * sy + 3 * mt * mt * p * (sy - 30) + 3 * mt * p * p * (ey - 60) + p**3 * ey\n        disc(cr, bx, by, 10, (150, 200, 240), finish=\"glass\", a=a)\n    # what runs off the bulb drips into the pail below\n    for j in range(3):\n        p = (t * 1.4 + j / 3.0) % 1.0\n        disc(cr, ex - 6, 1356 + 20 * p * p, 8, (110, 175, 230), a=a * (1 - p))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: two clinic wall thermometers\n    SUBSTANCE: the red mercury column\n    CAUSE: Data pours ice water over each bulb and the column drops, the men's twice as far\n    A clinic corridor with two enamel sign thermometers, WOMEN and MEN, both\n    starting at the old normal, a brass pointer left there. Data pours a\n    bucket of ice water over the women's bulb and the column sinks its\n    average drop; he walks to the men's and pours again and it sinks nearly\n    twice as far. Both land by 0.64 and hold, the brass pointers showing how\n    far each fell, while he keeps pouring and the water keeps running.\n    Each board's name plate is in its rounded top, above Data's head, so\n    he never stands over a word as he walks between them.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    wrow = next((r for r in rows if \"women\" in r[0].lower()), min(rows, key=lambda r: r[1]))\n    mrow = next((r for r in rows if r is not wrow), max(rows, key=lambda r: r[1]))\n    wv, mv = wrow[1], mrow[1]\n    PX = 220.0\n    START = 888.0\n    WX0, MX0 = 120, 600          # board left edges: WOMEN cx 250, MEN cx 730\n    CLX = 485                    # the clock, in the gap between them\n\n    dw = ease(seg(u, 0.12, 0.32))\n    dm = ease(seg(u, 0.46, 0.64))\n\n    # the clinic corridor: pale wall, ceiling light, tiled wainscot, floor\n    vgrad(cr, [(0, (150, 172, 166)), (0.6, (196, 212, 202)), (1, (176, 192, 184))], 0, 1100)\n    for lx in (270, 810):\n        glow(cr, lx, 120, 320, (255, 246, 220), 0.45)\n        box(cr, lx - 120, 70, 240, 22, (246, 244, 236), depth=30)\n    vgrad(cr, [(0, (206, 222, 214)), (1, (180, 198, 190))], 1100, 1400)\n    seams(cr, 0, 1100, W, 1400, (200, 216, 208), n=16, axis=\"v\", width=2)\n    seams(cr, 0, 1100, W, 1400, (200, 216, 208), n=5, axis=\"h\", width=2)\n    cr.rectangle(0, 1092, W, 14)\n    solid(cr, (120, 140, 134), rim=False)\n    vgrad(cr, [(0, (150, 138, 124)), (1, (104, 94, 86))], 1400, H)\n    cr.save()\n    cr.rectangle(0, 1400, W, H - 1400)\n    cr.clip()\n    cr.set_source_rgba(*_c((70, 62, 56), 0.35))\n    cr.set_line_width(3)\n    for i in range(13):\n        cr.move_to(540, 1100)\n        cr.line_to(-1200 + i * 290, H)\n    cr.stroke()\n    cr.restore()\n    cr.rectangle(0, 1396, W, 12)\n    solid(cr, (90, 100, 98), rim=False)\n\n    # the wall clock between them, second hand sweeping\n    disc(cr, CLX, 880, 80, (236, 234, 226))\n    trim(cr, CLX - 70, 810, CLX + 70, 950, (60, 62, 70), w=4)\n    for i in range(12):\n        a_ = i * math.pi / 6\n        cr.set_source_rgba(*_c((40, 40, 46)))\n        cr.set_line_width(4)\n        cr.move_to(CLX + 60 * math.sin(a_), 880 - 60 * math.cos(a_))\n        cr.line_to(CLX + 70 * math.sin(a_), 880 - 70 * math.cos(a_))\n        cr.stroke()\n    for ang, ln, wd, col in ((0.9, 38, 7, (40, 40, 46)), (3.6, 54, 5, (40, 40, 46)),\n                             (t * 2 * math.pi / 6.0, 62, 3, (200, 40, 36))):\n        cr.set_source_rgba(*_c(col))\n        cr.set_line_width(wd)\n        cr.move_to(CLX, 880)\n        cr.line_to(CLX + ln * math.sin(ang), 880 - ln * math.cos(ang))\n        cr.stroke()\n    disc(cr, CLX, 880, 6, (40, 40, 46), finish=\"metal\")\n\n    # THE HERO: the two thermometers, columns sinking from the old normal\n    wcx = _thermo_board(cr, WX0, \"WOMEN\", START + wv * PX * dw, START, t)\n    mcx = _thermo_board(cr, MX0, \"MEN\", START + mv * PX * dm, START, t)\n    _pail(cr, wcx, t)\n    _pail(cr, mcx, t)\n\n    # Data walks from one board to the other with his bucket, always\n    # standing to the right of the board he pours on\n    walk_f = ease(seg(u, 0.34, 0.44))\n    hx = 470 + (990 - 470) * walk_f\n    fy, hh = 1480, 320\n    target = wcx if u < 0.40 else mcx\n    pouring = (0.12 <= u < 0.33) or (0.46 <= u < 0.66) or (0.74 <= u < 0.96)\n    if pouring:\n        edges = [(0.12, 0.33), (0.46, 0.66), (0.74, 0.96)]\n        a_s = max(clamp(min((u - s) / 0.02, (e - u) / 0.02)) for s, e in edges)\n        _stream(cr, hx - 70, fy - 0.66 * hh, target + 8, 1286, t, a_s)\n\n    # right by the camera: a steel basin of ice, a clipboard on the floor\n    contact_shadow(cr, 230, 1800, 360, a=0.45)\n    cr.save()\n    cr.translate(230, 1720)\n    cr.scale(1, 0.32)\n    cr.arc(0, 0, 190, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (170, 176, 186), finish=\"metal\")\n    for i in range(11):\n        ix = 110 + (i * 53) % 230 + (i % 3) * 6\n        iy = 1700 + (i * 29) % 40 - (i % 2) * 14\n        s_ = 34 + (i * 7) % 16\n        box(cr, ix, iy, s_, s_ * 0.8, (214, 234, 244), finish=\"ice\")\n    contact_shadow(cr, 860, 1850, 300, a=0.35)\n    cr.move_to(720, 1840)\n    cr.line_to(1000, 1820)\n    cr.line_to(1020, 1880)\n    cr.line_to(730, 1905)\n    cr.close_path()\n    solid(cr, (150, 112, 72))\n    cr.move_to(745, 1842)\n    cr.line_to(985, 1826)\n    cr.line_to(1000, 1872)\n    cr.line_to(752, 1892)\n    cr.close_path()\n    solid(cr, P[\"paper\"], rim=False)\n    seams(cr, 760, 1840, 980, 1885, P[\"paper\"], n=4, axis=\"h\", width=2)\n    cr.rectangle(840, 1824, 60, 14)\n    solid(cr, (150, 150, 156), finish=\"metal\")\n    vignette(cr, a=0.28)\n\n    if u < 0.08:\n        host(\"think\", hx, fy, hh)\n    elif u < 0.34:\n        host(\"pour\", hx, fy, hh, beat=0)\n    elif u < 0.45:\n        host(\"point\", hx, fy, hh)\n    elif u < 0.72:\n        host(\"pour\", hx, fy, hh, beat=1)\n    else:\n        host(\"pour\", hx, fy, hh, beat=2)\n\n    if dm >= 0.999:\n        fit_readout(cr, f\"{mv:.2f}°F\", \"men's average drop · nearly twice women's\",\n                    80, 520, size=130)\n    elif dw >= 0.999:\n        fit_readout(cr, f\"{wv:.2f}°F\", \"women's average drop in body temperature\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Cooling down\", \"average drop in body temperature, by sex\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -39150,7 +39151,7 @@
   {
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
    "title": "School Scale Decides How Much Attention Children Get",
-   "hook": "Some classrooms are so packed that a child barely gets noticed.",
+   "hook": "In the world's biggest school systems, kids are getting lost in the crowd.",
    "closing": "School scale shapes how much time and support each child can receive.",
    "hashtags": [
     "data",

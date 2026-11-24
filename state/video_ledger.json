@@ -8247,6 +8247,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "vinyl is a premium niche under streaming"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-24",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Tattoos used to be a warning sign. Now they're just Tuesday.",
+   "depictions": [
+    "scene:illustrated-arm-tattoo-machine",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "kept existing varied scenes; validated"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-24",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:illustrated-baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; validated"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-24",
+   "topic_category": "finance",
+   "hook_type": "inversion",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds in your account.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "scene:illustrated-shareholder-hall"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; validated"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-24",
+   "topic_category": "music",
+   "hook_type": "inversion",
+   "hook_text": "Vinyl now earns more than CDs, yet streaming still owns the market.",
+   "depictions": [
+    "scene:illustrated-record-sleeves",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "kept existing scenes; validated"
   }
  ],
  "entries": [

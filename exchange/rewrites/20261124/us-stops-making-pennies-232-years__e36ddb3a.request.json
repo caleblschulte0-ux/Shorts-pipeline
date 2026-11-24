@@ -102,12 +102,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Penny Long Run') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Adds historical context but doesn't follow logically from beat 0; it's not a consequence.",
-  "thesis: seg2 ('Nickel Bigger Loss') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Switches to nickel loss without a logical link from beat 1 and changes the story focus."
+  "thesis: seg1 ('Penny Long Run') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Adds historical context but doesn't help prove or explain the headline claim",
+  "thesis: seg2 ('Nickel Bigger Loss') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Introduces nickel loss without a logical link to the previous beat"
  ],
  "reasons": [
-  "thesis: seg1 ('Penny Long Run') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Adds historical context but doesn't follow logically from beat 0; it's not a consequence.",
-  "thesis: seg2 ('Nickel Bigger Loss') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Switches to nickel loss without a logical link from beat 1 and changes the story focus."
+  "thesis: seg1 ('Penny Long Run') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Adds historical context but doesn't help prove or explain the headline claim",
+  "thesis: seg2 ('Nickel Bigger Loss') does not continue the story of the headline ('The Penny Is Ending, But The Nickel Loses Even More') — brain: Introduces nickel loss without a logical link to the previous beat"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -140,5 +140,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-24T15:06:58Z"
 }
