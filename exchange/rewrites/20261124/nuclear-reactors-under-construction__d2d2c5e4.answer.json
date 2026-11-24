@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-reactors-under-construction__d2d2c5e4",
+  "slug": "nuclear-reactors-under-construction",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "Nuclear Construction Is Growing, And China Drives Half Of It",
+  "hook": "The supposedly dying industry has a massive power pipeline underway.",
+  "closing": "Nuclear construction is growing, concentrated, and already shaping tomorrow's electricity supply.",
+  "question": "Would you live near nuclear power?",
+  "segments": [
+    {
+      "topic": "Nuclear Construction Starts",
+      "say": "Builders started 10 reactors worldwide, showing nuclear construction is growing rather than disappearing."
+    },
+    {
+      "topic": "China Construction Share",
+      "say": "China holds 50 percent of capacity under construction, concentrating the global buildout in one country."
+    },
+    {
+      "topic": "Global Construction Scale",
+      "say": "The pipeline totals 78 gigawatts, turning that concentrated buildout into future electricity."
+    }
+  ]
+}
