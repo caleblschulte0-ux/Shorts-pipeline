@@ -32,6 +32,9 @@ class ChainCase(unittest.TestCase):
     def setUp(self):
         self.calls: list[str] = []
         self._chain = sg._LLM_CHAIN
+        # Each test here is its own day: a 429 in one must not bench "groq"
+        # for the next (tests/test_a_refused_backend_is_not_asked_again.py).
+        sg.reset_benches()
 
     def tearDown(self):
         sg._LLM_CHAIN = self._chain

@@ -37,6 +37,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -476,6 +477,75 @@ def _call_mailbox(system: str, user: str) -> str:
     return llm_mailbox.call(system, user, caller="_call_llm")
 
 
+#: A BACKEND THAT JUST REFUSED US IS BENCHED, NOT RE-ASKED.
+#:
+#: 2026-11-24, explainer run 45318587673: GROQ_API_KEY had been dead for two
+#: weeks (state/credentials.json: "HTTP 403 — the credential was refused",
+#: alarmed daily) and Groq answered every one of the run's 39 calls with 429.
+#: The chain fell through to Gemini each time, as designed — but only after
+#: `_call_groq` had slept through its six retries, 12 seconds apiece. That is
+#: 3,086 seconds asleep on a backend the run had already found dead, 51
+#: minutes of a 94-minute run, with the one render it attempted running out
+#: of drawing time ("the next run finishes drawing it") and eight runs in a
+#: row posting nothing. Falling through on a failure is right; paying the
+#: full retry schedule for the SAME failure 39 times is not.
+#:
+#: So a rate limit (429) benches its backend for a while, doubling on each
+#: repeat (BENCH_BASE_S, 2x per strike, capped at BENCH_MAX_S); a refused key
+#: (401/403) benches it for the rest of the process. A benched backend is
+#: skipped by `_call_llm`, so the call goes straight to the next one; an
+#: answer clears the bench. Any other failure — a 404, a timeout, a bad
+#: response — is re-asked on the next call exactly as before: those are the
+#: transient and the model-pin kinds, and `tests/test_llm_falls_through.py`
+#: holds that behaviour. An explicit `backend=` ignores the bench: the caller
+#: asked for that one and gets that one's answer or its error.
+#:
+#: Nothing here is a gate. No judge is bypassed and no threshold moves — the
+#: same chain answers the same question; it just stops asking a backend that
+#: has already said no.
+BENCH_BASE_S = float(os.environ.get("LLM_BENCH_BASE_S", "300"))
+BENCH_MAX_S = 3600.0
+#: name -> (benched until, monotonic seconds; consecutive strikes; why)
+_BENCH: dict[str, tuple[float, int, str]] = {}
+
+
+def bench_reason(exc: BaseException) -> str | None:
+    """Why this failure benches its backend, or None when the next call
+    should ask it again."""
+    if isinstance(exc, urllib.error.HTTPError):
+        if exc.code == 429:
+            return "rate-limited (HTTP 429)"
+        if exc.code in (401, 403):
+            return f"refused the key (HTTP {exc.code})"
+    return None
+
+
+def _bench(name: str, why: str, now: float) -> None:
+    _until, strikes, _why = _BENCH.get(name, (0.0, 0, ""))
+    strikes += 1
+    if "refused the key" in why:
+        until, span = float("inf"), "the rest of this run"
+    else:
+        secs = min(BENCH_BASE_S * (2 ** (strikes - 1)), BENCH_MAX_S)
+        until, span = now + secs, f"{secs:.0f}s"
+    _BENCH[name] = (until, strikes, why)
+    print(f"[llm] {name} benched for {span}: {why} (strike {strikes}) — "
+          f"the chain skips it until then", file=sys.stderr, flush=True)
+
+
+def benched(name: str, now: float | None = None) -> str | None:
+    """The reason `name` is currently skipped, or None when it is asked."""
+    until, _strikes, why = _BENCH.get(name, (0.0, 0, ""))
+    if until > (time.monotonic() if now is None else now):
+        return why
+    return None
+
+
+def reset_benches() -> None:
+    """Forget every bench (tests; a new process starts clean anyway)."""
+    _BENCH.clear()
+
+
 def _call_llm(system: str, user: str, *, backend: str | None = None,
               model: str | None = None) -> str:
     """Dispatch to the backend the caller asked for, or walk the configured
@@ -501,13 +571,24 @@ def _call_llm(system: str, user: str, *, backend: str | None = None,
     for name, env, call in _LLM_CHAIN:
         if env and not os.environ.get(env):
             continue                       # env=None: always configured
+        now = time.monotonic()
+        why = benched(name, now)
+        if why:
+            errs.append(f"{name}: benched — {why}")
+            continue                       # it already said no; see _BENCH
         try:
-            return call(system, user, model)
+            out = call(system, user, model)
         except Exception as e:  # noqa: BLE001 — try the next backend
             errs.append(f"{name}: {type(e).__name__}: {str(e)[:120]}")
             print(f"[llm] {name} unavailable ({type(e).__name__}: "
                   f"{str(e)[:90]}) — trying the next backend",
                   file=sys.stderr, flush=True)
+            why = bench_reason(e)
+            if why:                        # from NOW: the retries just slept
+                _bench(name, why, time.monotonic())
+            continue
+        _BENCH.pop(name, None)             # an answer clears the bench
+        return out
     if errs:
         raise RuntimeError("every configured LLM backend failed — "
                            + " | ".join(errs))
