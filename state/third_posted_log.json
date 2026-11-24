@@ -22318,13 +22318,50 @@
       "ts": "2026-11-24T11:53:10.843505+00:00"
     },
     "clip-20261124-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/BlueBlitheMarjoramWoofer-ZSasg_aIiI5hO6pA",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/TWdgVIveouk",
       "title": "Caseoh Gets Hit With 'Nice Scooter' And Chat Can't Stop Screaming",
       "kind": "twitch_clip",
-      "ts": "2026-11-24T11:56:15.844023+00:00",
+      "ts": "2026-11-24T11:56:36.838529+00:00",
+      "uploaded_at": "2026-11-24T11:56:36.838542+00:00",
+      "publish_at": "2026-11-24T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261124-caseoh-gets-hit-with-nice-scooter-and-chat-can-t-2cc0d781",
+        "tiktok": "queued for 2026-11-24T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BlueBlitheMarjoramWoofer-ZSasg_aIiI5hO6pA",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "hook": "CaseOh and the scooter moment \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6485,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
+      },
+      "director_cut": true
+    },
+    "rejected-poorblithebubbleteapupper-mxhn-xlrd7gcex8f": {
+      "source_url": "https://www.twitch.tv/clix/clip/PoorBlitheBubbleteaPupper-mXhN-xLRd7GCex8f",
+      "streamer": "clix",
+      "title": "her face looks so realistic",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-11-24T11:56:44.355007+00:00"
+    },
+    "clip-20261124-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/timthetatman/clip/BrightWanderingLemurAMPTropPunch-1Ygg3jlwmtQYBO13",
+      "story_key": null,
+      "streamer": "timthetatman",
+      "title": "Timthetatman Panics His Entire YouTube Channel Might Get Banned Over This GTA Room",
+      "kind": "twitch_clip",
+      "ts": "2026-11-24T12:06:32.250014+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
