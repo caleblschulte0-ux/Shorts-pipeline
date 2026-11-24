@@ -22390,6 +22390,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin letterbox strip, roughly a third of the canvas, with the rest blurred padding. The framing d; vision: The streamer's webcam is a tiny corner inset, so the reaction is unreadable on a phone.; vision: The main subject is a nearly nude game character shown prominentl",
       "ts": "2026-11-24T12:15:05.031692+00:00"
+    },
+    "clip-20261124-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/DullPrettyCaterpillarKappaWealth-_PBk2Ut1sJ0GUkqc",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Finishes GTA 6 After 62 Hours And Gives It A Final Rating",
+      "kind": "twitch_clip",
+      "ts": "2026-11-24T12:39:04.790062+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
