@@ -102,12 +102,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical context but doesn't directly support the claim that the US will stop making pennies.",
-  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Discusses nickel costs, which neither directly supports the claim nor follows logically from beat 1."
+  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: does not support the claim that the US will stop making pennies",
+  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: does not support the claim and does not follow from previous beat"
  ],
  "reasons": [
-  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical context but doesn't directly support the claim that the US will stop making pennies.",
-  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Discusses nickel costs, which neither directly supports the claim nor follows logically from beat 1."
+  "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: does not support the claim that the US will stop making pennies",
+  "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: does not support the claim and does not follow from previous beat"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -140,5 +140,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-24T01:28:47Z"
 }

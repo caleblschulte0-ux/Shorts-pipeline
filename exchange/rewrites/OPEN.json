@@ -1,14 +1,35 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-23T20:05:25Z",
+ "updated": "2026-11-24T01:28:47Z",
  "open": [
+  {
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-24T01:28:47Z",
+   "why": [
+    "premise: brain: The pitch lists generic statistics without a concrete, surprising hook or clear stakes for the viewer."
+   ],
+   "request": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983.request.json",
+   "answer_path": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983.answer.json"
+  },
+  {
+   "id": "nuclear-reactors-under-construction__d2d2c5e4",
+   "slug": "nuclear-reactors-under-construction",
+   "filed": "2026-11-24T01:28:44Z",
+   "why": [
+    "thesis: seg0 ('Nuclear Reactor Starts') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 0 mentions 10 reactors but doesn't specifically support the 78 GW under‑construction claim",
+    "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 1 gives a share statistic without directly proving the 78 GW figure and isn’t a logical continuation of Beat 0"
+   ],
+   "request": "exchange/rewrites/20261124/nuclear-reactors-under-construction__d2d2c5e4.request.json",
+   "answer_path": "exchange/rewrites/20261124/nuclear-reactors-under-construction__d2d2c5e4.answer.json"
+  },
   {
    "id": "us-stops-making-pennies-232-years__546cd5a1",
    "slug": "us-stops-making-pennies-232-years",
    "filed": "2026-11-23T20:05:25Z",
    "why": [
-    "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Provides historical context but doesn't directly support the claim that the US will stop making pennies.",
-    "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Discusses nickel costs, which neither directly supports the claim nor follows logically from beat 1."
+    "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: does not support the claim that the US will stop making pennies",
+    "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: does not support the claim and does not follow from previous beat"
    ],
    "request": "exchange/rewrites/20261123/us-stops-making-pennies-232-years__546cd5a1.request.json",
    "answer_path": "exchange/rewrites/20261123/us-stops-making-pennies-232-years__546cd5a1.answer.json"
@@ -18,8 +39,7 @@
    "slug": "cohabitation-overtakes-marriage",
    "filed": "2026-11-23T20:05:23Z",
    "why": [
-    "thesis: seg1 ('Getting married less') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Switches from the share cohabiting to the share married since 1968 with a different age group, and doesn't follow from b",
-    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Shifts to older adults and a count of cohabiting couples since 2000. It adds another fact on the same theme. It doesn't "
+    "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Focuses on older adults, not young adults, so it doesn't support the headline about young adults."
    ],
    "request": "exchange/rewrites/20261123/cohabitation-overtakes-marriage__bfb44f30.request.json",
    "answer_path": "exchange/rewrites/20261123/cohabitation-overtakes-marriage__bfb44f30.answer.json"
@@ -29,7 +49,8 @@
    "slug": "feet-are-getting-bigger",
    "filed": "2026-11-23T17:07:50Z",
    "why": [
-    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Shifts to width and self-reported survey claims; doesn't follow from or turn against the size-8-to-10 length growth, and"
+    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Width increase doesn't directly prove the two‑size length growth claimed in the headline.",
+    "thesis: seg2 ('Why British feet grow') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: The weight explanation follows from a claim about width, not from the original size‑increase claim, so it doesn't direct"
    ],
    "request": "exchange/rewrites/20261123/feet-are-getting-bigger__cdd29c3f.request.json",
    "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__cdd29c3f.answer.json"
@@ -39,28 +60,18 @@
    "slug": "flu-season-2024-25-worst-in-years",
    "filed": "2026-11-23T17:07:49Z",
    "why": [
-    "thesis: seg1 ('Flu hospital rate') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: doesn't directly follow from previous beat, just another fact",
-    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: doesn't follow from beat 1, unrelated addition"
+    "thesis: seg1 ('Flu hospital rate') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: Adds a separate statistic about age groups rather than directly supporting the overall hospital‑visit claim or stemming ",
+    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: Introduces vaccination rates, which is another independent fact not caused by the prior age‑group data."
    ],
    "request": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__12da2331.request.json",
    "answer_path": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__12da2331.answer.json"
-  },
-  {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__b3b7582c",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-23T14:43:38Z",
-   "why": [
-    "premise: brain: The pitch is too generic and lacks a concrete, surprising hook that promises a specific, picture‑worthy revelation for viewers"
-   ],
-   "request": "exchange/rewrites/20261123/india-beats-everyone-on-general-pupils-secondary-education-b__b3b7582c.request.json",
-   "answer_path": "exchange/rewrites/20261123/india-beats-everyone-on-general-pupils-secondary-education-b__b3b7582c.answer.json"
   },
   {
    "id": "normal-body-temperature-has-shifted__b9e452aa",
    "slug": "normal-body-temperature-has-shifted",
    "filed": "2026-11-23T14:43:37Z",
    "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that gives viewers a clear, picture‑worthy stake."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that gives viewers a clear, pictureable stakes."
    ],
    "request": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__b9e452aa.request.json",
    "answer_path": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__b9e452aa.answer.json"
@@ -70,7 +81,8 @@
    "slug": "runway-near-misses-climbing",
    "filed": "2026-11-23T14:43:35Z",
    "why": [
-    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Introduces a new fact about airport clustering not directly derived from the previous beat"
+    "thesis: seg1 ('Runway incursion cause') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Does not directly prove the logged 23 near‑misses and is not a logical consequence of beat 0; it merely explains causes.",
+    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Adds a distribution detail but isn’t a direct proof of the headline count and doesn’t follow logically from beat 1."
    ],
    "request": "exchange/rewrites/20261123/runway-near-misses-climbing__b61bd155.request.json",
    "answer_path": "exchange/rewrites/20261123/runway-near-misses-climbing__b61bd155.answer.json"
@@ -80,7 +92,7 @@
    "slug": "right-whale-breeding-females",
    "filed": "2026-11-23T14:43:34Z",
    "why": [
-    "premise: brain: The hook is a vague, hedged summary (\"near collapse... hopeful new generation\") that names no subject, makes no concrete threat or surprise, and tells the viewer nothing they believe that the beats will overturn. The title's 0-to-22 calves is not supported by the beats either, which only mention 22 calves with no 0 baseline, and the beats are a flat rebound-but-still-fragile fun fact with no personal stake."
+    "premise: brain: The pitch lacks a concrete, vivid hook that promises a specific, picture‑able surprise or threat; it’s just a generic hopeful statement without a clear viewer stake."
    ],
    "request": "exchange/rewrites/20261123/right-whale-breeding-females__8388ea66.request.json",
    "answer_path": "exchange/rewrites/20261123/right-whale-breeding-females__8388ea66.answer.json"
@@ -90,7 +102,7 @@
    "slug": "vinyl-beats-cd-sales-again",
    "filed": "2026-11-23T14:43:34Z",
    "why": [
-    "premise: brain: The pitch is a flat 'vinyl is back' fun fact with no twist or stake, since the hook's 'supposedly dead format' belief is stated rather than overturned. The beats also undercut it by admitting vinyl is only a niche beside streaming's 84 percent share."
+    "premise: brain: The hook is vague and offers no concrete, surprising stake for viewers beyond a generic ‘dead format revived’ claim."
    ],
    "request": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__55b96150.request.json",
    "answer_path": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__55b96150.answer.json"
@@ -120,7 +132,7 @@
    "slug": "cruise-ship-outbreaks-climbing",
    "filed": "2026-11-23T14:43:32Z",
    "why": [
-    "premise: brain: The hook is vague and lacks a concrete, picture‑worthy surprise or threat, making the pitch too generic."
+    "premise: brain: The pitch is vague and doesn’t promise a concrete surprise or specific stakes beyond generic outbreak numbers."
    ],
    "request": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__c4fe8077.request.json",
    "answer_path": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__c4fe8077.answer.json"
@@ -130,7 +142,7 @@
    "slug": "divorce-rate-quiet-decline",
    "filed": "2026-11-23T14:43:32Z",
    "why": [
-    "premise: brain: The hook is vague and lacks a concrete, surprising claim or specific stakes for the viewer."
+    "premise: brain: The hook is vague and lacks a concrete, surprising claim or vivid stake for viewers."
    ],
    "request": "exchange/rewrites/20261123/divorce-rate-quiet-decline__59561cc2.request.json",
    "answer_path": "exchange/rewrites/20261123/divorce-rate-quiet-decline__59561cc2.answer.json"
@@ -162,7 +174,9 @@
    "slug": "autism-diagnosis-rate-rise",
    "filed": "2026-11-22T16:28:08Z",
    "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that viewers can picture beyond generic statistics."
+    "thesis: seg0 ('Autism trend') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Beat 0 discusses overall trend, not the variation across sites required by the headline.",
+    "thesis: seg1 ('Autism sex difference') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Beat 1 addresses sex differences, which does not support the claim about site-to-site measurement range.",
+    "thesis: seg2 ('Autism site range') does not continue the story of the headline ('Autism Measurement Ranged From 9.7 To 52.6 Per Thousand Across Sites') — brain: Beat 2 mentions a site measurement but does not logically follow from the previous beat about sex differences."
    ],
    "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
    "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
@@ -182,8 +196,7 @@
    "slug": "tattoo-mainstream-shift",
    "filed": "2026-11-20T14:27:20Z",
    "why": [
-    "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Provides a subgroup statistic rather than a logical continuation from the overall rate.",
-    "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Introduces a new fact about multiple tattoos without directly following from the previous beat."
+    "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Discusses multiple tattoos, not the proportion of Americans with any tattoo, and doesn't logically follow from the previ"
    ],
    "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.request.json",
    "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.answer.json"
@@ -193,7 +206,7 @@
    "slug": "frog-fungus-mass-extinction",
    "filed": "2026-11-20T13:11:33Z",
    "why": [
-    "premise: brain: The pitch is a vague 'still reshaping' framing with a cryptic hook ('first chapter'). It names no concrete surprise or stake a viewer can picture, and the beats read as a list of three unconnected counts."
+    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or contradiction to hook viewers."
    ],
    "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
    "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
@@ -233,7 +246,8 @@
    "slug": "fifty-otters-survived-climate-fight",
    "filed": "2026-11-18T13:14:53Z",
    "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy hook or surprising contradiction that will grip viewers"
+    "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Adds population recovery info not needed to prove the headline claim about kelp protection.",
+    "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('50 Sea Otters Survived—Then Protected Carbon-Storing Kelp') — brain: Does not logically follow from beat 1; protection claim should stem directly from the survival context."
    ],
    "request": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.request.json",
    "answer_path": "exchange/rewrites/20261118/fifty-otters-survived-climate-fight__dffc79c4.answer.json"
@@ -243,27 +257,18 @@
    "slug": "ocean-is-changing-color",
    "filed": "2026-11-18T13:14:52Z",
    "why": [
-    "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: Provides a new magnitude fact rather than a direct consequence of beat 1; it's another standalone fact, not a logical fo"
+    "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: Adds a prediction context rather than a direct consequence of beat 0",
+    "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('56% Of The Ocean Has Changed Color') — brain: Provides another fact without logically following from beat 1"
    ],
    "request": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.request.json",
    "answer_path": "exchange/rewrites/20261118/ocean-is-changing-color__94e5fa3d.answer.json"
-  },
-  {
-   "id": "nuclear-reactors-under-construction__5de43777",
-   "slug": "nuclear-reactors-under-construction",
-   "filed": "2026-11-18T13:14:51Z",
-   "why": [
-    "thesis: seg0 ('Nuclear Reactor Starts') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Mentions reactors started but does not provide the 78 GW figure or directly support the headline claim."
-   ],
-   "request": "exchange/rewrites/20261118/nuclear-reactors-under-construction__5de43777.request.json",
-   "answer_path": "exchange/rewrites/20261118/nuclear-reactors-under-construction__5de43777.answer.json"
   },
   {
    "id": "volcanoes-erupting-right-now__78b520e6_r1",
    "slug": "volcanoes-erupting-right-now",
    "filed": "2026-11-18T12:25:45Z",
    "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer."
+    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or stakes beyond generic numbers."
    ],
    "request": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.request.json",
    "answer_path": "exchange/rewrites/20261118/volcanoes-erupting-right-now__78b520e6_r1.answer.json"
@@ -313,7 +318,7 @@
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-16T12:04:28Z",
    "why": [
-    "thesis: seg2 ('robotic revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Revenue figure shows adoption but doesn't directly prove the 15.1% surgery share claim"
+    "thesis: seg2 ('robotic revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Revenue figure shows financial adoption, not direct evidence that robots handle 15.1% of surgeries, so it doesn't prove "
    ],
    "request": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.request.json",
    "answer_path": "exchange/rewrites/20261116/robotic-surgery-doubled__31163b79.answer.json"

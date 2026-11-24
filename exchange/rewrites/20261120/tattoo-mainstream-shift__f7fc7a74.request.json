@@ -110,12 +110,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Provides a subgroup statistic rather than a logical continuation from the overall rate.",
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Introduces a new fact about multiple tattoos without directly following from the previous beat."
+  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Discusses multiple tattoos, not the proportion of Americans with any tattoo, and doesn't logically follow from the previ"
  ],
  "reasons": [
-  "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Provides a subgroup statistic rather than a logical continuation from the overall rate.",
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Introduces a new fact about multiple tattoos without directly following from the previous beat."
+  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Discusses multiple tattoos, not the proportion of Americans with any tattoo, and doesn't logically follow from the previ"
  ],
  "judge": null,
  "prior_rejection": [
@@ -151,5 +149,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-23T20:05:22Z"
+ "refiled": "2026-11-24T01:28:44Z"
 }

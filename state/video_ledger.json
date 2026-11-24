@@ -8031,6 +8031,102 @@
      "detail": "Vinyl won the physical comeback while streaming kept the real crown."
     }
    ]
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-24",
+   "topic_category": "culture",
+   "hook_type": "shock_stat",
+   "hook_text": "A third of America now wears ink, and most can't stop at one.",
+   "words_first_10s": 25,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "illustrated:tattoo-arm-machine",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Culture Shift",
+   "notes": "tattoo 16%->32% doubling, women 37%, repeat inkers",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "A third of America now wears ink, and most can't stop at one."
+    }
+   ]
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-24",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "words_first_10s": 24,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Public Health Wins",
+   "notes": "one instruction halved SIDS; 3,400 still die",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "For years, the way we put babies to bed was killing them."
+    }
+   ]
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-24",
+   "topic_category": "money",
+   "hook_type": "inversion",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds in your account.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "illustrated:shareholder-hall",
+    "illustrated:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Who Really Owns",
+   "notes": "index funds hold 52%; big three vote 21%",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "The biggest owners of corporate America aren't tycoons. They're index funds in your account."
+    }
+   ]
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-24",
+   "topic_category": "tech",
+   "hook_type": "inversion",
+   "hook_text": "A supposedly dead format became music's premium physical product.",
+   "words_first_10s": 21,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "illustrated:vinyl-crate-divider",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Comeback Twist",
+   "notes": "vinyl wins physical, streaming 84% swamps shelf",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "A supposedly dead format became music's premium physical product."
+    }
+   ]
   }
  ]
 }

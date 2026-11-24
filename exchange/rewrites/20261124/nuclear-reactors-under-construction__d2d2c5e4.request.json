@@ -1,0 +1,138 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "nuclear-reactors-under-construction__d2d2c5e4",
+ "filed": "2026-11-24T01:28:44Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "nuclear-reactors-under-construction",
+ "current": {
+  "title": "78 Gigawatts Of Nuclear Power Is Still Under Construction",
+  "hook": "Everyone said nuclear was dead. Someone forgot to tell China.",
+  "closing": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
+  "question": "Would you live near nuclear power?",
+  "segments": [
+   {
+    "topic": "Nuclear Reactor Starts",
+    "say": "Builders started 10 nuclear reactors worldwide. Construction is growing rather than disappearing."
+   },
+   {
+    "topic": "Nuclear Construction Share",
+    "say": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout."
+   },
+   {
+    "topic": "Nuclear Capacity Building",
+    "say": "About 78 gigawatts of nuclear capacity is under construction. Tomorrow's power supply is already taking shape."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Nuclear Reactor Starts",
+   "say": "Builders started 10 nuclear reactors worldwide. Construction is growing rather than disappearing.",
+   "role": "1 · THE RESTART",
+   "data": {
+    "file": "nuclear_construction_starts.json",
+    "unit": "count",
+    "title": "New nuclear reactor construction starts worldwide per year",
+    "points": [
+     {
+      "label": "2024",
+      "value": 9,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 10,
+      "period": "2025"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Nuclear Construction Share",
+   "say": "China holds 50 percent of nuclear capacity under construction. One country drives half the buildout.",
+   "role": "2 · WHO'S BUILDING",
+   "data": {
+    "file": "nuclear_capacity_by_country_share.json",
+    "unit": "percent",
+    "title": "Share of global nuclear capacity under construction, by country",
+    "points": [
+     {
+      "label": "China",
+      "value": 50
+     },
+     {
+      "label": "Rest of the world",
+      "value": 50
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Nuclear Capacity Building",
+   "say": "About 78 gigawatts of nuclear capacity is under construction. Tomorrow's power supply is already taking shape.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "nuclear_capacity_under_construction.json",
+    "unit": "GW",
+    "title": "Nuclear capacity under construction worldwide vs one typical reactor",
+    "points": [
+     {
+      "label": "Under construction worldwide",
+      "value": 78
+     },
+     {
+      "label": "One typical large reactor",
+      "value": 1
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "thesis: seg0 ('Nuclear Reactor Starts') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 0 mentions 10 reactors but doesn't specifically support the 78 GW under‑construction claim",
+  "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 1 gives a share statistic without directly proving the 78 GW figure and isn’t a logical continuation of Beat 0"
+ ],
+ "reasons": [
+  "thesis: seg0 ('Nuclear Reactor Starts') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 0 mentions 10 reactors but doesn't specifically support the 78 GW under‑construction claim",
+  "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 1 gives a share statistic without directly proving the 78 GW figure and isn’t a logical continuation of Beat 0"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261124/nuclear-reactors-under-construction__d2d2c5e4.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
