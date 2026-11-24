@@ -1801,7 +1801,7 @@ def shot4():
     data.finish()
     # ---- the lens: backing down the street ahead of him while he pushes, then holding as the street splits
     CAM = Vector((2.1, -1.0, 1.75)); LOOK = Vector((-0.7, 2.8, 0.0))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 22.0, face_at=(0.45, 0.64), height=0.34, t=T_STOP)
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 22.0, face_at=(0.45, 0.72), height=0.34, t=T_STOP)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=22.0, fstop=11.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()

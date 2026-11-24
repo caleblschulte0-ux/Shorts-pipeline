@@ -1,21 +1,21 @@
 {
- "retell": "A volcano kept erupting next to a town in Iceland, so they built giant rock walls that turned the lava away, until the ground split open inside the walls and lava ran into the streets anyway, and now the town is mostly empty.",
- "twist": "Line 4: the ground splits open inside the wall, so the defense that worked is beaten from behind and lava pours into the streets.",
- "payoff": "Mostly yes. The title promises walls against a volcano, and the ending gives a bittersweet verdict: the walls saved most of the town, but it is a ghost town now. 'Would you?' turns that into a question for the viewer. The payoff is a little crowded, with houses burning, the wall saving the rest and the hundred people who came back all in one line.",
- "chain": "Strong. 1→2 'so' (the town keeps running, so they build walls), 2→3 'so' (the walls work), 3→4 'but' (the ground opens inside the wall), 4→5 shows the result. No line is just 'and here is another fact'.",
+ "retell": "Iceland built giant rock walls to save a town from a volcano that kept erupting, and the walls worked until the ground cracked open inside them and lava poured into the streets.",
+ "twist": "The lava doesn't beat the wall. The ground splits open inside the protected zone and the lava comes up behind the defense, straight into town.",
+ "payoff": "Yes. The title promises walls against a volcano, and the ending gives a mixed verdict: the walls saved most of the town, but they were beaten from inside, three houses burned, and almost nobody came back. The closing question 'Would you?' turns that into something the viewer has to answer.",
+ "chain": "Every line connects. 1 causes 2 (it kept erupting, SO they built walls). 2 causes 3 (SO the lava turned away). 4 turns against 3 (BUT the ground split inside the wall). 5 is the result of 4. No line is just another fact.",
  "cut": [],
  "physical": [],
  "score": 82,
  "pass": true,
  "problems": [
-  "Line 1's 'nine times' is a count a viewer can't see. Show the eruption and the people fleeing, and let the narration carry the number.",
-  "Line 5 carries three ideas: three houses burned, the wall saved the rest, and only about a hundred people came back. 'Only about a hundred moved back' has to be drawn as a nearly empty town, a few lit windows on dark streets, or it reads as a number on a sign.",
-  "Line 4 is the best beat in the story. It needs the most screen time and the clearest staging: the crack opening behind the wall, inside the town."
+  "Line 1's 'nine times' can't be seen in one shot. The eruption and people running are the picture, so the count has to live in the narration only and shouldn't be drawn as a tally.",
+  "Line 5 packs in three things (burned houses, the wall holding, a hundred people back) plus a question in about six seconds. The physical picture should be the three burning houses beside a mostly dark, empty town with a few lit windows, not a number.",
+  "Line 2's 'hundred diggers and trucks' could become a token row of copies. Show a few diggers moving and the wall rising, and let the narration carry the count."
  ],
  "scores": [
   80,
   82,
-  82
+  83
  ],
- "key": "54d78beb6f5a6a39"
+ "key": "d8b4499eb4b956b9"
 }
