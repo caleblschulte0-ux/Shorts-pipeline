@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261123",
-  "generated_at": "2026-11-23T23:31:05Z",
+  "generated_at": "2026-11-24T00:31:05Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 60.76,
+          "days": 60.8,
           "samples": 3,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 59.76,
+          "days": 59.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1657,10 +1657,16 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "9cecf04",
-    "commits_since": "2026-11-22",
+    "head": "8dde689",
+    "commits_since": "2026-11-23",
     "commit_count": 50,
     "commits": [
+      "8dde689 exchange: phase A bundle for 20261124 [skip ci]",
+      "4e744e1 Baller Bro never goes silent: free discovery routes, a no-post alarm, no reposted edits or talking heads (#773)",
+      "51f3dee Discovery probe: which free route still lists top sports posts (#772)",
+      "4fadd14 watchdog: chatgpt task verdicts 20261123 [skip ci]",
+      "b938dd7 claim: mailbox verdicts 2026-11-23T23:48Z [skip ci]",
+      "b222e77 retro: brief + triage for 20261123 [skip ci]",
       "9cecf04 third: analytics [skip ci]",
       "6ea57a2 third: update posted log + analytics [skip ci]",
       "93e7d7c claim: mailbox verdicts 2026-11-23T22:48Z [skip ci]",
@@ -1694,13 +1700,7 @@
       "d5e3571 explainer: claim upload slot lightning-strikes-3d [skip ci]",
       "44e8b80 watchdog: chatgpt task verdicts 20261123 [skip ci]",
       "d1c540f third: analytics [skip ci]",
-      "3c60886 third: update posted log + analytics [skip ci]",
-      "3a66e80 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "d578001 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "0bee097 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "76a5457 watchdog: chatgpt task verdicts 20261123 [skip ci]",
-      "ad5f302 deadman: repaired 2026-11-23 [skip ci]",
-      "9929fd0 deadman: repaired 2026-11-23 [skip ci]"
+      "3c60886 third: update posted log + analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1782,6 +1782,7 @@
       "test_baller_bro_health_check.py",
       "test_baller_bro_is_american_and_english.py",
       "test_baller_bro_is_sports_moments.py",
+      "test_baller_bro_never_goes_silent.py",
       "test_beats_match_the_words.py",
       "test_blocked_slug_churn.py",
       "test_bubbles_use_the_frame.py",
