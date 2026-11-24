@@ -9,6 +9,8 @@ red-roofed corner house and he hops back from it, arms up."""
 
 S4_YC = 0.0                     # the crack's line (y), across the street
 S4_HALF = 3.0                   # the asphalt and pavement, out to the house fronts (x)
+S4_KERB = 1.75                  # the kerbs (x): a narrow town street, so a long lens down it holds both rows of houses
+S4_FRONT = 2.35                 # the house fronts (x)
 
 
 def s4_zig(x):
@@ -27,7 +29,7 @@ def s4_slab(name, near, m):
     its crack edge the zig-zag with a 0.25 m face down into the ground. Built as strips of quads, every face up or out
     (one concave n-gon rendered black). Returns the object, origin on the crack line."""
     xs = [-S4_HALF + 2 * S4_HALF * k / 40 for k in range(41)]
-    far_y = -14.0 if near else 26.0
+    far_y = -14.0 if near else 44.0
     bm = LW_bmesh.new()
     te = [bm.verts.new((x, s4_zig(x) - S4_YC, 0.0)) for x in xs]
     tf = [bm.verts.new((x, far_y - S4_YC, 0.0)) for x in xs]
@@ -85,20 +87,20 @@ def place_town_crack():
     """AN EMPTY STREET INSIDE THE WALL: asphalt and pavements between two rows of town houses, the red-roofed house on
     the corner, the earth wall across the end of the street with smoke over it, the lava field beyond."""
     rnd = lw_random.Random(41)
-    lw_grid("town ground", -30, 30, -16, 40, 90, 80, s4_ground_z, lava_field_mat())
+    lw_grid("town ground", -30, 30, -16, 60, 90, 100, s4_ground_z, lava_field_mat())
     asph = lw_noise("street asphalt", "#4A4A4D", "#66666A", scale=40, rough=0.85, bump=0.4)
     near = s4_slab("street near", True, asph)
     far = s4_slab("street far", False, asph)
     paint = K.mat("road paint", "#E9E4D4", rough=0.6)
     lines = []
-    for y in list(range(-12, 0, 2)) + list(range(1, 24, 2)):
+    for y in list(range(-12, 0, 2)) + list(range(1, 40, 2)):
         o = K.box("centre line", (0, y + 0.5 - (0.6 if y < 0 else 0), 0.004), (0.08, 0.9, 0.006), paint, bev=0)
         o.parent = near if y < 0 else far; o.matrix_parent_inverse = (near if y < 0 else far).matrix_world.inverted()
         lines.append(o)
     kerb = lw_noise("kerb concrete", "#A6A39C", "#C2BFB6", scale=14, rough=0.8)
     for sx in (-1, 1):
-        for slab, y0, y1 in ((near, -14.0, -0.2), (far, 0.2, 26.0)):
-            o = K.box("kerb", (sx * 2.05, (y0 + y1) / 2, 0.04), (0.12, y1 - y0, 0.08), kerb, bev=0.01)
+        for slab, y0, y1 in ((near, -14.0, -0.2), (far, 0.2, 40.0)):
+            o = K.box("kerb", (sx * S4_KERB, (y0 + y1) / 2, 0.04), (0.12, y1 - y0, 0.08), kerb, bev=0.01)
             o.parent = slab; o.matrix_parent_inverse = slab.matrix_world.inverted()
     trench = lava_mat("crack lava", heat=1.4, scale=4.0, fresh=0.6)
     K.box("crack trench", (0, S4_YC, -0.32), (2 * S4_HALF + 0.4, 1.6, 0.1), trench, bev=0)
@@ -107,22 +109,22 @@ def place_town_crack():
     houses = []
     for sx in (-1, 1):
         y = -9.0 + (0.6 if sx > 0 else 0.0); k = 0
-        while y < 16.0:
+        while y < 34.0:
             w = rnd.uniform(1.9, 2.4); d = rnd.uniform(1.5, 1.8)
             corner = sx > 0 and abs(y + w / 2 - 2.4) < 1.3
             roof = "#C0302A" if corner else ROOFS[(k * 3 + (sx > 0) + 1) % len(ROOFS)]
             if roof == "#B8352B" and not corner: roof = ROOFS[2]
-            hs = town_house(f"town house {sx}_{k}" + (" corner" if corner else ""), (sx * (3.35 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
+            hs = town_house(f"town house {sx}_{k}" + (" corner" if corner else ""), (sx * (S4_FRONT + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
                             h=rnd.uniform(1.2, 1.45), roof=roof, wall=WALLS[k % len(WALLS)], seed=k + 20)
             houses.append(hs); y += w + rnd.uniform(0.4, 0.8); k += 1
-    wall = earth_wall("earth wall", [(x, 24.0 + 0.01 * x * x) for x in range(-30, 32, 2)], h=4.4, crest=1.4, base=8.5, seed=12)
+    wall = earth_wall("earth wall", [(x, 40.0 + 0.01 * x * x) for x in range(-30, 32, 2)], h=4.4, crest=1.4, base=8.5, seed=12)
     ash = lw_smoke_mat("wall smoke", density=1.6, col=(0.45, 0.44, 0.46))
     for k in range(9):
-        lw_puff(f"wall smoke {k}", (-16 + 4 * k + rnd.uniform(-1, 1), 31 + rnd.uniform(0, 4), 8 + rnd.uniform(0, 6)), rnd.uniform(3.5, 4.8), ash, scale=(1.4, 1.0, 1.0))
+        lw_puff(f"wall smoke {k}", (-12 + 3 * k + rnd.uniform(-1, 1), 47 + rnd.uniform(0, 4), 7 + rnd.uniform(0, 5)), rnd.uniform(3.0, 4.2), ash, scale=(1.4, 1.0, 1.0))
     for k in range(5):
         K.sph("far mountain", (-40 + 20 * k, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.8), seg=24, ring=12)
     for k in range(3):
-        K.cyl(f"street lamp post {k}", (-2.55, 6 + 4 * k, 0.6), 0.03, 1.2, lw_metal("pole", "#8A8E92"), v=10)
+        K.cyl(f"street lamp post {k}", (-(S4_KERB + 0.2), 6 + 6 * k, 0.6), 0.03, 1.2, lw_metal("pole", "#8A8E92"), v=10)
 
     def light():
         return iceland_light(sun_elev=30, sun_az=-30, sun=3.2, sky=0.45, haze=1.2)
@@ -174,10 +176,10 @@ def shot4():
         p.z -= 0.03 * lw_kick(t - T_JOLT, 0.1)                  # the road jolts it with him
         if t > T_LET:                                       # let go: it rolls to the edge, then the tip
             roll = 0.25 * W(t, T_OPEN0 + 0.2, 0.9)
-            p.y = max(y_edge - 0.05, p.y - roll)
+            p.y = max(y_edge - 0.12, p.y - roll)
             tip = W(t, T_TIP, 0.6)
-            pitch += math.radians(48) * tip
-            p.z -= 0.22 * tip
+            pitch += math.radians(52) * tip                  # nose first into the gap, its wheel sinking into the glow
+            p.z -= 0.3 * tip
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
     for k, fl in enumerate(flames):
@@ -210,16 +212,33 @@ def shot4():
     tear = lw_link(bpy.data.objects.new("crack glow", me)); tear.location = (-S4_HALF, S4_YC, 0.0)
     tear.shape_key_add(name="Basis")
     op = tear.shape_key_add(name="open")
-    for i in range(61): op.data[61 + i].co.y = s4_zig(xs[i]) - S4_YC - 0.6
+    for i in range(61): op.data[61 + i].co.y = s4_zig(xs[i]) - S4_YC - 0.85
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_TEAR, T_TORN - T_TEAR); o = W(t, T_OPEN0, T_OPEN1 - T_OPEN0)
         tear.scale = (max(0.002, u), 1, 1); tear.hide_render = u < 0.01; op.value = o
         tear.keyframe_insert("scale", frame=f); tear.keyframe_insert("hide_render", frame=f); op.keyframe_insert("value", frame=f)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; o = W(t, T_OPEN0, T_OPEN1 - T_OPEN0); sh = 0.015 * math.sin(2 * math.pi * 11 * t) * lw_kick(t - T_JOLT, 0.25)
-        near.location = (sh, S4_YC - 0.55 * o, 0.02 * o + 0.04 * lw_kick(t - T_JOLT, 0.12)); near.rotation_euler = (math.radians(-4) * o, 0, 0)
+        near.location = (sh, S4_YC - 0.8 * o, 0.02 * o + 0.04 * lw_kick(t - T_JOLT, 0.12)); near.rotation_euler = (math.radians(-4) * o, 0, 0)
         far.location = (-sh, S4_YC, 0.0)
         for o_ in (near, far): o_.keyframe_insert("location", frame=f); o_.keyframe_insert("rotation_euler", frame=f)
+    # board round 3: "a thin painted line on the road, with no gap opening". The asphalt BREAKS along both lips: slabs of
+    # it heave up and tilt as the street pulls apart, raw dark edges catching the glow
+    lip = lw_noise("broken asphalt", "#3A3A3C", "#5A5A5E", scale=30, rough=0.9, bump=0.8)
+    rk = lw_random.Random(7)
+    lips = []
+    for slab, sg in ((near, -1), (far, 1)):
+        x = -S4_HALF + 0.1
+        while x < S4_HALF - 0.1:
+            w = rk.uniform(0.18, 0.34); xc = x + w / 2
+            ch = K.box("crack lip chunk", (xc, s4_zig(xc) - S4_YC + sg * rk.uniform(0.04, 0.1), -0.01), (w * 0.92, rk.uniform(0.12, 0.22), 0.07), lip, bev=0.012)
+            ch.parent = slab; ch.matrix_parent_inverse = slab.matrix_world.inverted(); lips.append(ch)
+            lift = rk.uniform(0.25, 0.55); yaw = rk.uniform(-0.25, 0.25); t0 = T_OPEN0 + 0.1 * abs(xc) / S4_HALF
+            for f in range(1, NF + 1):
+                t = (f - 1) / FPS; o = W(t, t0, 0.45)
+                ch.rotation_euler = (-sg * lift * o, 0.15 * yaw * o, yaw * o); ch.location.z = -0.01 + 0.05 * o
+                ch.keyframe_insert("rotation_euler", frame=f); ch.keyframe_insert("location", frame=f)
+            x += w
     lava_flow_key(gm, 0.0, DUR + 0.5, 0.2)
     trench = bpy.data.materials["crack lava"]
     lava_flow_key(trench, 0.0, DUR + 0.5, 0.25)
@@ -240,12 +259,15 @@ def shot4():
     out = []
     for k in range(28):
         a = 2 * math.pi * k / 28
-        out.append((2.9 * math.cos(a) + 0.2 * math.sin(4 * a), 0.6 * math.sin(a) + 0.08 * math.cos(6 * a)))
-    flow = lava("street lava", out, z=0.0, thick=0.16, m=lm, seed=6, lumpy=0.05)
+        out.append((1.0 * math.cos(a) + 0.07 * math.sin(4 * a) + 0.05 * math.sin(7 * a), 1.0 * math.sin(a) + 0.08 * math.cos(5 * a)))
+    flow = lava("street lava", out, z=0.0, thick=0.2, m=lm, seed=6, lumpy=0.07)
+    # board round 3: "the street in front of him never fills with orange", "a thin glowing band, not lava pouring":
+    # a liquid tongue swells up out of the gap and runs DOWN the street at the lens over the near slab, kerb to kerb
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_POUR, DUR - T_POUR); w_ = W(t, T_POUR - 0.25, 0.4)
-        flow.location = (1.55 + 0.2 * u, S4_YC + 0.15 + 1.1 * u, -0.25 + 0.27 * w_)     # it pours out of the crack and runs up the street to the corner house
-        flow.scale = (0.5, 0.6 + 2.3 * u, 1.0); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
+        L_ = 0.3 + 1.0 * u
+        flow.location = (0.05 + 0.1 * math.sin(3 * t), S4_YC - 0.25 - L_, -0.22 + 0.25 * w_)
+        flow.scale = (0.6 + 1.0 * u + 0.4 * w_, L_, 1.0 + 0.4 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
     lw_flicker(bpy.data.materials["barrow fire"], DUR)
     glow = lw_point("crack glow", (0.0, S4_YC, 0.25), 0.0, col=(1.0, 0.45, 0.12), r=0.6)
@@ -262,8 +284,12 @@ def shot4():
     data.expression("alarmed", T_LET, DUR + 1.0, blend=0.15)
     data.finish()
     # ---- the lens: backing down the street ahead of him while he pushes, then holding as the street splits
-    CAM = Vector((0.75, -3.8, 1.55)); LOOK = Vector((0.2, 0.6, 0.35))     # long lens down the street, a little above him: the crack's zig-zag across the frame at his wheel, the corner house and the lava's run behind him
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=85.0, fstop=16.0)
+    # REDESIGN after board round 3 ("80% bare asphalt", "houses are slivers cut by the top edge", "no wall at the end"):
+    # the lens comes DOWN to his height and goes LONG, right up the middle of a narrow street, so both rows of houses
+    # close in behind him and the wall with its smoke stands across the end of the street over his head; the crack
+    # tears across between him and us and the lava runs down the street at the lens
+    CAM = Vector((0.3, YS - 5.55, 1.0)); LOOK = Vector((0.12, 40.0, -2.1))
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=100.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()
         dy = data.pos().y - YS
@@ -271,16 +297,16 @@ def shot4():
         back = Vector((0, 0.0, 0.0))
         p0 = data.pos().copy(); sc.frame_set(F(t)); bpy.context.view_layer.update()
         fol = (data.pos() - p0) * 0.8; fol.z = 0.0                     # and pans with him as he leaps and hops back
-        dolly = Vector((0, (data.pos() - p0).y * 1.0, 0))               # and keeps its distance as he backs away
+        dolly = Vector(((data.pos() - p0).x * 0.8, (data.pos() - p0).y * 1.0, 0))               # and keeps its distance as he backs away
         return CAM + Vector((0, dy, 0)) + shake + back + dolly, LOOK + Vector((0, dy, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))
     # CUT to the WIDE as the lava pours (board round 2: "80% bare asphalt", "no wall at the end of the street", "never
     # seen pouring toward a house"): high behind the lens and up the street, the crack glowing kerb to kerb, the lava
     # running at the red-roofed corner house, the street's houses both sides, the wall across its end with smoke over it
     T_W0, T_W1 = T_TIP - 0.05, T_RUN + 0.35
     CW = Vector((1.2, -9.5, 4.0)); LW = Vector((0.3, 8.0, 0.2))
-    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.35, -0.05)) * (t - T_W0), LW, Vector((0.6, 1.0, 0.3))), T_W0, T_W1, 85.0, 24.0)
+    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.35, -0.05)) * (t - T_W0), LW, Vector((0.6, 1.0, 0.3))), T_W0, T_W1, 100.0, 24.0)
     return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("wheelbarrow",), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("he pushes the barrow of sandbags down the street", lambda: [o for o in meshes([bar]) if "wheel" not in o.name.split("barrow ")[-1] and "hub" not in o.name], 0.0, T_STOP, {"whole": False, "moves": True}),
-                        ("a crack tears across the road in front of his wheel and yawns open, glowing", lambda: [tear], T_TORN, T_OPEN1 + 0.2, {"whole": False}),
+                        ("a crack tears across the road in front of his wheel and yawns open, glowing", lambda: [tear] + lips, T_TORN, T_OPEN1 + 0.2, {"whole": False}),
                         ("lava wells up and pours over the road; the barrow tips in and burns", lambda: [flow], T_POUR, DUR, {"whole": False})])

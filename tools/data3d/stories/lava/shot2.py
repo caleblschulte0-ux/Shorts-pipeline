@@ -10,10 +10,12 @@ down for the next bucketful; the floodlights blaze on as night falls."""
 S2_DECK = 0.52                          # the digger's deck
 S2_BOOM = Vector((0.95, 0.42, 1.05))    # the boom's foot pin, in the digger's own frame (facing its +X)
 S2_L1, S2_L2 = 3.4, 3.0                 # boom and stick
-S2_DIG = Vector((-3.0, 3.0, 0.0))      # the digger, beside and behind him, facing +Y (the wall)
-S2_WALL_Y = 9.0                        # the wall's crest centre line (it runs along X)
-S2_WALL_H = 4.4
-S2_BASE = 8.5
+S2_DIG = Vector((-3.0, 2.4, 0.0))      # the digger, beside and behind him, facing +Y (the wall)
+# REDESIGN after board round 3 ("a gentle brown dirt slope ... about the digger's height", "no crest in frame"): the
+# wall is a STEEP black rock face, three storeys and more over him, close behind the digger, its crest in frame
+S2_WALL_Y = 6.8                        # the wall's crest centre line (it runs along X)
+S2_WALL_H = 6.0
+S2_BASE = 4.6
 S2_FOOT = S2_WALL_Y - S2_BASE / 2       # its near foot (y)
 S2_EDGE = S2_WALL_Y - 0.7               # its crest's near edge (y)
 
@@ -63,7 +65,7 @@ def s2_remote(data):
     for sx in (-0.06, 0.06):
         pv = K.empty("remote stick pivot", (sx, 0.0, 0.025), parent=root)
         K.cyl("remote stick", (0, 0.0, 0.03), 0.008, 0.06, dark, parent=pv)
-        kn = K.sph("remote stick knob", (0, 0.0, 0.065), 0.018, dark, parent=pv)
+        kn = K.sph("remote stick knob", (0, 0.0, 0.065), 0.02, K.mat("remote knob red", "#C8201A", rough=0.35), parent=pv)   # red knobs, so the two sticks read
         sticks.append((pv, kn))
     lw_local(root)
     root.rotation_euler = (0, 0, yaw)
@@ -91,6 +93,12 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     for sy in (-0.83, -0.07):                            # the canopy: two rear posts and the roof over his deck
         K.box("digger canopy post", (-0.2, sy, S2_DECK + 0.62), (0.05, 0.05, 1.24), dark, bev=0.01)
     K.box("digger canopy roof", (0.2, -0.45, S2_DECK + 1.26), (0.95, 0.85, 0.05), dark, bev=0.015)
+    cg = K.mat("cab glass", "#26343C", rough=0.04, metal=0.3)      # the cab's glass: front, sides and back
+    K.box("digger cab glass", (0.66, -0.45, S2_DECK + 0.78), (0.02, 0.8, 0.9), cg, bev=0.0)
+    for sy_ in (-0.86, -0.04):
+        K.box("digger cab glass", (0.22, sy_, S2_DECK + 0.78), (0.86, 0.02, 0.9), cg, bev=0.0)
+    K.box("digger cab post", (0.66, -0.86, S2_DECK + 0.62), (0.05, 0.05, 1.24), dark, bev=0.01)
+    K.box("digger cab post", (0.66, -0.04, S2_DECK + 0.62), (0.05, 0.05, 1.24), dark, bev=0.01)
     # its working parts, so it reads as a machine and not a toy block: engine grille slats, an exhaust stack, grab
     # rails, a warning-striped counterweight, a step, the hydraulic hoses
     for k in range(7):
@@ -118,7 +126,14 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     boom = K.empty("digger boom", tuple(S2_BOOM))
     K.box("digger boom arm", (S2_BOOM.x + S2_L1 / 2, S2_BOOM.y, S2_BOOM.z), (S2_L1, 0.26, 0.34), yel, bev=0.05, parent=boom)
     K.cyl("digger ram", (S2_BOOM.x + 0.9, S2_BOOM.y, S2_BOOM.z - 0.25), 0.06, 1.4, lw_metal("ram chrome", "#C8CCD0", rough=0.15), rot=(0, math.pi / 2, 0), parent=boom)
+    chrome = lw_metal("ram chrome", "#C8CCD0", rough=0.15); barrel = lw_paint("ram barrel", "#2A2A2C", rough=0.4)
+    K.cyl("digger ram barrel", (S2_BOOM.x + 0.55, S2_BOOM.y, S2_BOOM.z - 0.27), 0.085, 0.9, barrel, rot=(0, math.pi / 2, 0), parent=boom)
+    K.cyl("digger stick ram", (S2_BOOM.x + S2_L1 - 0.9, S2_BOOM.y, S2_BOOM.z + 0.28), 0.06, 1.5, chrome, rot=(0, math.pi / 2, 0), parent=boom)
+    K.cyl("digger stick ram barrel", (S2_BOOM.x + S2_L1 - 1.4, S2_BOOM.y, S2_BOOM.z + 0.28), 0.08, 0.8, barrel, rot=(0, math.pi / 2, 0), parent=boom)
+    for k_ in range(3):                                   # the hoses run up the boom
+        K.cyl("digger hose", (S2_BOOM.x + S2_L1 / 2, S2_BOOM.y + 0.15, S2_BOOM.z + 0.12 + 0.04 * k_), 0.018, S2_L1 * 0.9, K.mat("hose black", "#121212", rough=0.6), rot=(0, math.pi / 2, 0), parent=boom)
     stick = K.empty("digger stick", (S2_BOOM.x + S2_L1, S2_BOOM.y, S2_BOOM.z), parent=boom)
+    K.cyl("digger bucket ram", (S2_BOOM.x + S2_L1 + 0.9, S2_BOOM.y, S2_BOOM.z + 0.2), 0.05, 1.3, chrome, rot=(0, math.pi / 2, 0), parent=stick)
     K.box("digger stick arm", (S2_BOOM.x + S2_L1 + S2_L2 / 2, S2_BOOM.y, S2_BOOM.z), (S2_L2, 0.2, 0.24), yel, bev=0.04, parent=stick)
     bucket = K.empty("digger bucket", (S2_BOOM.x + S2_L1 + S2_L2, S2_BOOM.y, S2_BOOM.z), parent=stick)
     bx = S2_BOOM.x + S2_L1 + S2_L2
@@ -160,14 +175,36 @@ def place_wall_works():
     lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, lw_noise("works gravel", "#3C3631", "#5E554C", scale=14, rough=0.95, bump=0.8, detail=10))
     wall = earth_wall("earth wall", [(x, S2_WALL_Y + 0.006 * x * x) for x in range(-30, 32, 2)], h=S2_WALL_H, crest=1.4, base=S2_BASE, seed=4)
     lava_rock("works rock", 90, (-12, 12, -6, S2_FOOT - 0.2), s2_ground_z, seed=6, r=(0.08, 0.26),
-              avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.6) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (5.4 < x < 7.4 and -0.4 < y < 3.6))
+              avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.2) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (6.6 < x < 9.0 and -3.4 < y < 1.0))
     lava_rock("wall face rock", 160, (-12, 12, S2_FOOT + 0.2, S2_EDGE - 0.2), lambda x, y: s2_face_z(y - 0.006 * x * x), seed=17, r=(0.1, 0.32))   # the black rock it is built of, tumbled down its face
     masts = []
     for k, x in enumerate((-7.5, -4.2, 2.6, 6.0)):
         y = S2_FOOT - 0.5 + 0.006 * x * x
         K.cyl("floodlight mast", (x, y, 2.6), 0.06, 5.2, lw_metal("mast steel", "#8A8E92"), v=12)
-        head = K.box("floodlight head", (x, y - 0.12, 5.25), (0.9, 0.2, 0.35), lw_emit(f"floodlight lamp {k}", "#FFF4DC", 0.0), bev=0.02)
-        L = lw_area(f"floodlight {k}", (x, y - 0.3, 5.1), (0.3 * x, -1.0, 0.3), 0.0, 0.8, col=(1.0, 0.95, 0.85))
+        # board round 3: "white boxes on poles that cast no light". A real floodlight: a dark housing with four hot
+        # lamp faces turned down at the works, a cone of light through the dust under it, a pool on the ground
+        K.box("floodlight housing", (x, y - 0.02, 5.25), (1.0, 0.24, 0.45), lw_metal("floodlight housing", "#2A2C2E", rough=0.5), bev=0.03)
+        K.box("floodlight bar", (x, y + 0.02, 5.0), (1.1, 0.06, 0.06), lw_metal("mast steel", "#8A8E92"), bev=0.01)
+        head = None
+        for i_, (dx_, dz_) in enumerate(((-0.24, 0.1), (0.24, 0.1), (-0.24, -0.1), (0.24, -0.1))):
+            o = K.box("floodlight head", (x + dx_, y - 0.15, 5.25 + dz_), (0.42, 0.03, 0.18), lw_emit(f"floodlight lamp {k}", "#FFF4DC", 0.0), bev=0.01)
+            head = head or o
+        aim = Vector((0.3 * x, -1.0, 0.0))
+        L = lw_area(f"floodlight {k}", (x, y - 0.3, 5.1), tuple(aim), 0.0, 0.8, col=(1.0, 0.95, 0.85))
+        beam = bpy.data.meshes.new(f"floodlight beam {k}"); bm = LW_bmesh.new()
+        LW_bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=16, radius1=0.25, radius2=2.2, depth=1.0)
+        bm.to_mesh(beam); bm.free()
+        bmat = bpy.data.materials.get("floodlight dust")
+        if not bmat:
+            bmat = bpy.data.materials.new("floodlight dust"); bmat.use_nodes = True; nt_ = bmat.node_tree
+            nt_.nodes.remove(nt_.nodes["Principled BSDF"]); pv = nt_.nodes.new("ShaderNodeVolumePrincipled")
+            pv.inputs["Density"].default_value = 0.035; pv.inputs["Color"].default_value = (1.0, 0.97, 0.9, 1)
+            nt_.links.new(pv.outputs[0], nt_.nodes["Material Output"].inputs["Volume"])
+        beam.materials.append(bmat)
+        bo = lw_link(bpy.data.objects.new(f"floodlight beam {k}", beam))
+        src = Vector((x, y - 0.3, 5.1)); d_ = (aim - src); ln = d_.length * 0.92
+        bo.scale = (1, 1, ln); bo.location = src + d_.normalized() * ln / 2
+        bo.rotation_euler = (-d_).to_track_quat('Z', 'Y').to_euler()
         masts.append((head, L))
     far = []
     for k, (x, a_, b_) in enumerate(((-9.0, 0.75, -1.9), (5.6, 0.45, -1.5), (10.5, 0.9, -2.1))):   # other diggers at work along the wall: built, not boxes
@@ -176,7 +213,7 @@ def place_wall_works():
         rg = K.empty(f"far digger {k}", (0, 0, 0))
         for o in set(bpy.data.objects) - before:
             if o.parent is None and o is not rg: o.parent = rg
-        rg.location = (x, S2_FOOT - 1.8 + 0.006 * x * x, 0.0); rg.rotation_euler = (0, 0, math.radians(90 + (-12 if x < 0 else 12)))
+        rg.location = (x, S2_FOOT - 2.6 + 0.006 * x * x, 0.0); rg.rotation_euler = (0, 0, math.radians(90 + (-12 if x < 0 else 12)))
         Dk["boom"].rotation_euler = (0, -a_, 0); Dk["stick"].rotation_euler = (0, -b_, 0)
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
@@ -187,8 +224,8 @@ def place_wall_works():
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
 
     def light():
-        k = iceland_light(sun_elev=2, sun_az=-40, sun=0.6, sky=0.16, warm=(0.85, 0.75, 1.0), haze=1.6)
-        lw_clouds(cover=0.7, scale=7.0)
+        k = iceland_light(sun_elev=1, sun_az=-40, sun=0.4, sky=0.11, warm=(0.8, 0.72, 1.0), haze=1.6)     # blue evening going to night: the floodlights carry the works
+        lw_clouds(cover=0.55, scale=2.2)
         return k
     return dict(light=light, wall=wall, masts=masts, far=far)
 
@@ -221,7 +258,7 @@ def shot2():
     def world(px, pz):                                     # a point in the digger's arm plane, in the world
         return Vector((S2_DIG.x - S2_BOOM.y, S2_DIG.y + px, pz))
     # ---- the arm: the bucket's path in its own plane (stick end), the bucket's curl
-    LOW = (2.3, 0.75); HIGH = (S2_EDGE - 0.25 - S2_DIG.y, S2_WALL_H + 0.85)
+    LOW = (1.9, 0.6); HIGH = (S2_EDGE - 0.25 - S2_DIG.y, S2_WALL_H + 0.85)
     def path(t):
         u = ease(min(1.0, max(0.0, (t - T_PUSH) / (T_TOP - T_PUSH)))); v = ease(min(1.0, max(0.0, (t - T_BACK) / (T_LOW - T_BACK))))
         x = LOW[0] + (HIGH[0] - LOW[0]) * u; z = LOW[1] + (HIGH[1] - LOW[1]) * math.sin(u * math.pi / 2)
@@ -283,8 +320,8 @@ def shot2():
     for k, (x0, v) in enumerate(((12.0, -2.0),)):
         truck = s2_truck(f"dump truck {k}"); truck.rotation_euler = (0, 0, math.radians(90))
         for f in range(1, NF + 1):
-            t = (f - 1) / FPS; truck.location = (x0 + v * t, S2_FOOT - 0.75, 0.0); truck.keyframe_insert("location", frame=f)
-    parked = s2_truck("dump truck waiting", col="#D99A10"); parked.location = (6.4, 1.6, 0.0); parked.rotation_euler = (0, 0, math.radians(-14))   # the next one in line for a load
+            t = (f - 1) / FPS; truck.location = (x0 + v * t, S2_FOOT - 0.55, 0.0); truck.keyframe_insert("location", frame=f)
+    parked = s2_truck("dump truck waiting", col="#D99A10"); parked.location = (7.8, -1.2, 0.0); parked.rotation_euler = (0, 0, math.radians(-14))   # the next one in line for a load
     for Dk, a_, b_, k in P["far"]:                         # the other diggers keep working: dig, lift, swing back
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; ph = 2 * math.pi * (t / 3.2 + 0.31 * k)
@@ -296,15 +333,15 @@ def shot2():
         em = head.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; on = 0.75 + 0.25 * W(t, T_LIGHTS + 0.08 * k, 0.2)      # blazing from the start (board: "switched off"), full at nightfall
-            em.default_value = 25.0 * on; em.keyframe_insert("default_value", frame=f)
-            L.data.energy = 2500.0 * on; L.data.keyframe_insert("energy", frame=f)
+            em.default_value = 60.0 * on; em.keyframe_insert("default_value", frame=f)
+            L.data.energy = 4000.0 * on; L.data.keyframe_insert("energy", frame=f)
     sk = bpy.context.scene.world.node_tree.nodes["Background"].inputs["Strength"]
     for f in range(1, NF + 1, 3):
-        t = (f - 1) / FPS; sk.default_value = 0.16 * (1 - 0.4 * t / DUR); sk.keyframe_insert("default_value", frame=f)
+        t = (f - 1) / FPS; sk.default_value = 0.11 * (1 - 0.4 * t / DUR); sk.keyframe_insert("default_value", frame=f)
     # ---- his body: leaning into the push, the duck as the rock comes down past, the grin, the haul back, the lights
     def body(t):
         p = P0.copy()
-        p.z += -0.09 * W(t, T_DUCK + 0.15, 0.4) * (1 - W(t, T_GRIN + 0.12, 0.4)) - 0.04 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+        p.z += -0.15 * W(t, T_DUCK + 0.15, 0.4) * (1 - W(t, T_GRIN + 0.12, 0.4)) - 0.04 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
         p.y += 0.12 * W(t, T_PUSH - 0.2, 0.5) * (1 - W(t, T_TOP, 0.5))                       # he walks the sticks forward with the arm
         p.x += 0.06 * math.sin(2 * math.pi * (t - T_PUSH) / 1.3) * W(t, T_PUSH, 0.4) * (1 - W(t, T_TIP, 0.4))   # steering it, his weight side to side
         p.y -= 0.12 * W(t, T_BACK - 0.2, 0.5) * (1 - W(t, T_LIGHTS + 0.3, 0.5))               # and leans back on them as he hauls it down
@@ -321,7 +358,7 @@ def shot2():
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
         data._plant_feet_here(t, lift=(P0.z, P0.z))      # the duck is in his KNEES: his feet stay on the ground
     lw_layer(data, "spine", lambda t: (24 * W(t, T_PUSH - 0.2, 0.45) * (1 - W(t, T_TOP - 0.2, 0.45)) - 12 * W(t, T_TOP - 0.2, 0.45) * (1 - W(t, T_DUCK - 0.15, 0.45))
-                                       + 22 * W(t, T_DUCK - 0.2, 0.45) * (1 - W(t, T_GRIN - 0.1, 0.45)) - 16 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+                                       + 30 * W(t, T_DUCK - 0.2, 0.45) * (1 - W(t, T_GRIN - 0.1, 0.45)) - 16 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
                                        - 10 * W(t, T_LIGHTS, 0.45), 0, 8 * math.sin(2 * math.pi * (t - T_GRIN) / 0.9) * W(t, T_GRIN, 0.45) * (1 - W(t, T_BACK, 0.45))), 0, DUR + 0.4)
     # his two hands hold the remote out in front of his chest, each on its stick's knob; the remote is keyed to
     # them after finish() (so whatever his body does later, the box stays in his hands and the knobs under them)
@@ -378,7 +415,10 @@ def shot2():
         remote.rotation_euler = (0, 0, yaw)
         remote.keyframe_insert("location", frame=f); remote.keyframe_insert("rotation_euler", frame=f)
     # ---- the lens: low at the foot of the wall, looking up at him, the digger and its arm over him
-    CAM = Vector((0.46, -0.9, 0.8)); LOOK = Vector((-4.0, 6.0, -0.5))      # solved offline (compose.Pinhole) so the digger, its arm at the crest and he are all whole
+    # REDESIGN after board round 3 ("eye level with a small bank behind him"; the brief asks for a LOW lens looking up at
+    # him and a towering wall): the lens at his knees, tipped up, the black face rising behind him to its crest with
+    # the sky above it, the digger's arm swinging up past it
+    CAM = Vector((0.46, -0.9, 0.3)); LOOK = Vector((-4.0, 6.0, 2.5))
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=20.0, fstop=32.0)      # the works sharp all the way to the sky
     # CUT to the WIDE as the bucket goes over (board round 2: "no three-storey wall", "one digger", "the bucket never
     # tips over a crest"): low beyond his digger, along the wall's line, the black face towering up the frame, the diggers and

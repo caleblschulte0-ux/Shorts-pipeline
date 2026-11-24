@@ -2,12 +2,12 @@
 
 Grindavik's main street on a bright grey afternoon, low houses with coloured tin roofs down both sides, the ridge above
 the town at the end of it. The ridge rips open and a curtain of lava fountains bursts up along it under a boiling
-plume. The digger driver, at the striped road gate at the town's edge, winds the gate's crank hand over hand and the
-striped arm swings up high over the road; the town's cars pour out under it, headlights on, past him and
-out of the frame; he waves them on; the fountains surge; the street is empty and he runs after them."""
+plume. REDESIGN after board round 3 (a road gate's arm can never be whole in an upright frame at his size, and read as a
+toy): the digger driver at the town's hand-cranked air-raid SIREN on its pole at the kerb winds its crank hand over
+hand, the siren's rotor spins up and wails; at its call the town's cars pour out down the street, headlights on, past
+him and out of the frame; he waves them on; the fountains surge; the street is empty and he runs after them."""
 
-S1_PIV = Vector((0.85, 0.0, 0.5))      # the gate arm's pivot, on its post at the kerb
-S1_ARM = 2.2                           # the arm, out across the road (toward -X)
+S1_PIV = Vector((0.85, 0.0, 0.5))      # the siren pole's foot, at the kerb
 S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hub
 S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
@@ -48,20 +48,38 @@ def s1_car(name, col):
     return root
 
 
-def s1_gate():
-    """the striped road gate at the town's edge: a steel post with its winch housing on top and the arm on its pivot (red
-    and white bands); the crank that winds it is built beside his hands by s1_crank"""
-    post_m = lw_metal("gate steel", "#8C9196")
-    K.box("gate post", (S1_PIV.x, S1_PIV.y + 0.12, 0.25), (0.14, 0.14, 0.5), lw_paint("gate housing", "#E8E4DA"), bev=0.015)
-    K.box("gate foot", (S1_PIV.x, S1_PIV.y + 0.12, 0.02), (0.26, 0.26, 0.04), post_m, bev=0.005)
-    pv = K.empty("gate pivot", tuple(S1_PIV))
-    red, white = K.mat("gate red", "#C8231B", rough=0.4), K.mat("gate white", "#F4F1EA", rough=0.4)
-    n = 10
-    for k in range(n):
-        seg = S1_ARM / n
-        K.box("gate arm", (S1_PIV.x - seg * (k + 0.5) - 0.03, S1_PIV.y, S1_PIV.z), (seg, 0.06, 0.08), red if k % 2 == 0 else white, bev=0.008, parent=pv)
-    K.box("gate stop", (S1_PIV.x - S1_ARM + 0.05, S1_PIV.y, 0.23), (0.06, 0.06, 0.46), post_m, bev=0.01)
-    return pv
+S1_SIREN_Z = 1.42                      # the siren's rotor (z), on top of its pole
+
+
+def s1_siren():
+    """the town's hand-cranked air-raid siren: a galvanised pole at the kerb with a foot plate and bolts, a red siren on
+    top - a drum of louvred stator slots round a rotor that spins inside it, a domed cap, a flared horn mouth on each
+    side - and the gearbox on the pole at his shoulder that the crank turns (built by s1_crank). Returns the rotor."""
+    post_m = lw_metal("gate steel", "#8C9196"); red = lw_paint("siren red", "#B3201A", rough=0.38); dark = lw_metal("siren slots", "#1A1A1C", rough=0.5)
+    K.cyl("gate post", (S1_PIV.x, S1_PIV.y + 0.12, S1_SIREN_Z / 2), 0.05, S1_SIREN_Z, post_m, v=16)
+    K.box("gate foot", (S1_PIV.x, S1_PIV.y + 0.12, 0.02), (0.3, 0.3, 0.04), post_m, bev=0.005)
+    for dx, dy in ((-1, -1), (-1, 1), (1, -1), (1, 1)):
+        K.cyl("gate foot bolt", (S1_PIV.x + 0.11 * dx, S1_PIV.y + 0.12 + 0.11 * dy, 0.05), 0.014, 0.03, dark, v=8)
+    c = Vector((S1_PIV.x, S1_PIV.y + 0.12, S1_SIREN_Z + 0.12))
+    K.cyl("siren drum", tuple(c), 0.16, 0.2, red, v=32)
+    K.cyl("siren band", tuple(c + Vector((0, 0, -0.11))), 0.17, 0.03, post_m, v=32)
+    K.cyl("siren band", tuple(c + Vector((0, 0, 0.11))), 0.17, 0.03, post_m, v=32)
+    for k in range(10):                                   # the stator's slots, all round the drum
+        a = 2 * math.pi * k / 10
+        o = K.box("siren slot", tuple(c + Vector((0.162 * math.cos(a), 0.162 * math.sin(a), 0))), (0.012, 0.06, 0.13), dark, bev=0.0)
+        o.rotation_euler = (0, 0, a)
+    K.sph("siren cap", tuple(c + Vector((0, 0, 0.12))), 0.165, red, scale=(1, 1, 0.45), seg=32, ring=12)
+    for sx in (-1, 1):                                    # the two flared horn mouths
+        K.cyl("siren horn", tuple(c + Vector((sx * 0.22, 0, 0))), 0.09, 0.14, red, rot=(0, math.pi / 2, 0), v=24)
+        K.cyl("siren horn mouth", tuple(c + Vector((sx * 0.3, 0, 0))), 0.12, 0.03, dark, rot=(0, math.pi / 2, 0), v=24)
+    rotor = K.empty("gate pivot", tuple(c))
+    for k in range(6):                                    # the rotor's vanes, seen spinning through the slots
+        a = 2 * math.pi * k / 6
+        o = K.box("siren rotor vane", (c.x + 0.075 * math.cos(a), c.y + 0.075 * math.sin(a), c.z), (0.15, 0.02, 0.15), lw_metal("rotor steel", "#B8BCC0", rough=0.3), bev=0.003, parent=rotor)
+        o.rotation_euler = (0, 0, a)
+    sign = K.box("siren sign", (S1_PIV.x, S1_PIV.y + 0.06, 0.95), (0.22, 0.012, 0.16), K.mat("sign yellow", "#F2C200", rough=0.5), bev=0.004)
+    K.box("siren sign mark", (S1_PIV.x, S1_PIV.y + 0.052, 0.95), (0.1, 0.004, 0.1), K.mat("sign black", "#141414", rough=0.5), bev=0.0)
+    return rotor
 
 
 def s1_crank(ctr, x_other):
@@ -126,7 +144,7 @@ def place_grindavik_street():
         while y < 8.0:
             w = rnd.uniform(1.9, 2.4); d = rnd.uniform(1.5, 1.8)
             hs = town_house(f"town house {sx}_{k}", (sx * (3.3 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
-                            h=rnd.uniform(1.2, 1.45), roof=ROOFS[(k * 3 + (sx > 0)) % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=k)
+                            h=rnd.uniform(1.2, 1.45), roof=("#B8352B", "#2F5E8C", "#3F7A4A")[(k + (sx > 0)) % 3], wall=WALLS[k % len(WALLS)], seed=k)
             houses.append(hs); y += w + rnd.uniform(0.5, 0.9); k += 1
     lava_rock("lava field rock", 160, (-14, 14, -6, 14), s1_ground_z, seed=3, avoid=lambda x, y: abs(x) < 3.2 and y < 9.0)
     # the slope up to the ridge is old lava field: broken black blocks and moss, never one smooth brown sheet (EMPTY
@@ -159,11 +177,18 @@ def place_grindavik_street():
     # whole row is in the frame and far enough apart to count; each vent a fountain of fire (a volume, white-hot in
     # its core) throwing glowing spatter that arcs and falls; the plume over it is smoke (volumes), lit from below
     fz = s1_ground_z(S1_FX, S1_RIDGE_Y)
-    K.box("fissure glow", (S1_FX, S1_RIDGE_Y, fz - 0.1), (S1_FGAP * 9 + 3.0, 0.5, 0.3), lw_emit("fissure line", "#FF5000", 1.4), bev=0)
-    fm = lw_fire_vol("fountain fire", density=5.0, strength=28.0, scale=3.2)      # orange, not blown out white
+    # board round 3: "thin pale-pink glowing spikes like neon tubes ... no molten body, no spatter, no fall-back",
+    # "rising from a visible glowing crack": the fissure is a torn, glowing slot along the ridge, each fountain a
+    # thick ORANGE body (a dim core, the volume cooler), throwing glowing clots AND dark cooled spatter that falls back
+    fl = lava_mat("fissure lava", heat=2.0, scale=3.0, fresh=1.0)
+    for k in range(14):
+        x = S1_FX - 6.0 + 12.0 * k / 13; w_ = 0.45 + 0.25 * math.sin(1.7 * k)
+        o = K.box("fissure glow", (x, S1_RIDGE_Y + 0.12 * math.sin(2.3 * k), s1_ground_z(x, S1_RIDGE_Y) - 0.05), (0.95, w_, 0.2), fl, bev=0.05)
+        o.rotation_euler = (0, 0, 0.15 * math.sin(3.1 * k))
+    fm = lw_fire_vol("fountain fire", density=7.0, strength=12.0, scale=3.2)      # orange bodies, not blown out white
     founts, spat, cores = [], [], []
-    core = lw_emit("fountain core", "#FFC050", 18.0)
-    spm = lw_emit("lava spatter", "#FF8A10", 6.0)
+    core = lw_emit("fountain core", "#FF9A20", 7.0)
+    spm = lw_emit("lava spatter", "#FF7A10", 5.0); spd = lw_noise("cooled spatter", "#140E0B", "#3A2A20", scale=20, rough=0.9)
     for k in range(9):
         x = S1_FX + (k - 4) * S1_FGAP
         z0 = s1_ground_z(x, S1_RIDGE_Y) - 0.2
@@ -172,21 +197,21 @@ def place_grindavik_street():
         c = K.sph(f"fissure fountain core {k}", (x, S1_RIDGE_Y - 0.05, z0), 1.0, core, scale=(0.1, 0.08, 0.5), seg=12, ring=10)
         c.visible_shadow = False; cores.append(c)
         for j in range(14):
-            spat.append(K.sph(f"fissure spatter {k}_{j}", (x, S1_RIDGE_Y, z0), rnd.uniform(0.035, 0.07), spm, seg=8, ring=6))
-    ash = lw_smoke_mat("eruption steam plume", density=0.5, col=(0.88, 0.88, 0.92))      # volcanic gas and steam: pale grey, thin at its edges
+            spat.append(K.sph(f"fissure spatter {k}_{j}", (x, S1_RIDGE_Y, z0), rnd.uniform(0.04, 0.09), spm if j % 3 else spd, seg=8, ring=6))
+    ash = lw_smoke_mat("eruption steam plume", density=1.3, col=(0.5, 0.5, 0.52))      # heavy grey gas and ash all along the fissure (board: "not a single brown column")
     puffs = []
-    for k in range(14):                                    # one column climbing off the fissure and leaning downwind
-        u = k / 13
-        x = S1_FX - 2.5 + 5.0 * rnd.uniform(0, 1) * (1 - 0.4 * u) - 4.0 * u * u
+    for k in range(22):                                    # a wall of it climbing off the whole fissure and leaning downwind
+        u = (k % 11) / 10
+        x = S1_FX - 5.5 + 11.0 * ((k * 7) % 22) / 21 - 3.0 * u * u
         puffs.append(lw_puff(f"eruption plume {k}", (x, S1_RIDGE_Y + 2.0 + rnd.uniform(0, 2.5), fz + 3.5 + 9.0 * u + rnd.uniform(-0.5, 0.5)), 1.8 + 1.6 * u + rnd.uniform(0, 0.4), ash, scale=(1.2, 1.0, 1.0)))
-    gate = s1_gate()
+    gate = s1_siren()
     glow = [lw_point(f"fissure light {k}", (S1_FX + x, S1_RIDGE_Y - 1.5, fz + 2.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-3.5, 0, 3.5))]
     plume_lit = [lw_point(f"plume underlight {k}", (S1_FX + x, S1_RIDGE_Y + 2.0, fz + 5.0), 0.0, col=(1.0, 0.35, 0.08), r=3.0) for k, x in enumerate((-4, 4))]
     town_glow = lw_area("eruption glow on the town", (0, 12, 7), (0, 0, 0.5), 0.0, 14, col=(1.0, 0.5, 0.2))
 
     def light():
-        k = iceland_light(sun_elev=6, sun_az=-45, sun=1.6, sky=0.16, warm=(1.0, 0.7, 0.5), haze=2.0)
-        lw_clouds(cover=0.7, scale=5.0)
+        k = iceland_light(sun_elev=4, sun_az=-45, sun=1.0, sky=0.12, warm=(1.0, 0.6, 0.4), haze=2.0)     # the town dim under an orange-tinted sky; the eruption lights it
+        lw_clouds(cover=0.7, scale=2.5)
         return k
     return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
@@ -250,7 +275,7 @@ def shot1():
             t = (f - 1) / FPS; L.data.energy = e0 * W(t, T_ERUPT, 0.3) * (1 + 0.6 * W(t, T_SURGE, 0.5)); L.data.keyframe_insert("energy", frame=f)
     tg = P["town_glow"].data
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; tg.energy = 140.0 * W(t, T_ERUPT, 0.3) * (1 + 0.5 * W(t, T_SURGE, 0.5)); tg.keyframe_insert("energy", frame=f)
+        t = (f - 1) / FPS; tg.energy = 300.0 * W(t, T_ERUPT, 0.3) * (1 + 0.5 * W(t, T_SURGE, 0.5)); tg.keyframe_insert("energy", frame=f)
     # ---- the cars: one after another down the lane, under the raised arm, toward us and out of the frame
     cars = []
     for k, col in enumerate(("#B9C2C9", "#2D5A8E", "#C33A2A", "#E6E2D6", "#3B3F45")):
@@ -290,11 +315,13 @@ def shot1():
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; wheel.rotation_euler = (0, th(t), 0); wheel.keyframe_insert("rotation_euler", frame=f)
     knob = lambda t: HUB + Vector((S1_CRANK_R * math.cos(th(t)), 0.065, -S1_CRANK_R * math.sin(th(t))))
-    # ---- the gate: down until he winds it; each turn of the crank lifts it, and it stays up
-    gate = P["gate"]
-    ang = lambda t: math.radians(68) * crank_u(t)
+    # ---- the siren: its rotor spins up as he winds (geared up off the crank) and runs on, winding down slowly
+    gate = P["gate"]; spin = 0.0
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS; gate.rotation_euler = (0, ang(t), 0); gate.keyframe_insert("rotation_euler", frame=f)
+        t = (f - 1) / FPS
+        rate = 9.0 * W(t, T_UP0, 0.4) * (1 - 0.5 * W(t, T_LET, 1.5))      # rev/s
+        spin += 2 * math.pi * rate / FPS
+        gate.rotation_euler = (0, 0, spin); gate.keyframe_insert("rotation_euler", frame=f)
     data.reach(wind, knob, T_GRAB, T_LET, lead=0.45, back=None, elbow_out=0.4)
     RK = [(T_LET + 0.55, (0.12, 0.1, -0.07)), (T_GO - 0.2, (0.09, 0.09, -0.09)), (DUR + 0.4, (0.08, 0.09, -0.09))]
     data.reach(wind, lw_hand(data, wind, RK), RK[0][0], DUR + 0.3, lead=0.55, back=None, elbow_out=0.4)
@@ -310,7 +337,8 @@ def shot1():
     data.look_at(LENS, 0.0, max_yaw=40, blend=0.0)
     data.look_at(Vector((-3.0, S1_RIDGE_Y, 7.0)), T_ERUPT + 0.05, max_yaw=60, max_pitch=30, blend=0.3)
     data.look_at(HUB, T_GRAB - 0.3, max_yaw=50, max_pitch=18, blend=0.3)                  # eyes down to it, the brim kept off his face
-    data.look_at(Vector((-1.5, 5.0, 2.5)), T_UP0 + 0.6, max_yaw=55, max_pitch=40, blend=0.3)
+    data.look_at(Vector((S1_PIV.x - 0.2, 0.6, S1_SIREN_Z + 0.4)), T_UP0 + 0.4, max_yaw=55, max_pitch=40, blend=0.3)      # up at the siren as it starts to wail
+    data.look_at(Vector((-1.5, 5.0, 1.5)), T_UP0 + 1.0, max_yaw=55, max_pitch=40, blend=0.3)
     data.look_at(Vector((S1_LANE, -1.0, 0.7)), T_LET, max_yaw=55, blend=0.3)
     data.look_at(Vector((-2.0, S1_RIDGE_Y, 8.0)), T_SURGE, max_yaw=60, max_pitch=30, blend=0.3)
     data.look_at(Vector((S1_LANE, -4.0, 0.7)), T_GO - 0.1, max_yaw=50, blend=0.3)
@@ -326,12 +354,12 @@ def shot1():
     # Grindavik's main street"): high behind the cars' exit, the street with its houses down both sides running to the
     # ridge, the nine fountains in a row over it, the raised gate with him at its post, the cars streaming at the lens
     T_W0, T_W1 = 0.5 * DUR, 0.8 * DUR
-    CW = Vector((-0.3, -7.0, 2.6)); LW = Vector((1.2, 10.0, 0.6))
+    CW = Vector((0.45, -4.6, 1.0)); LW = Vector((1.0, 10.0, 2.6))      # low on the road's crown: the cars streaming past us, him at the siren, the street and its houses to the fountains
     lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.15, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.0, 2.0, 0.6))), T_W0, T_W1, 30.0, 26.0)
+           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 30.0, 40.0)
     founts = P["founts"]
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("the ridge rips open and a curtain of lava fountains bursts up over the town", lambda: founts, T_ERUPT, DUR, {"whole": False}),
-                        ("he winds the crank and the striped gate arm swings up over the road", lambda: lw_drawn("gate arm", "gate post", "gate stop"), T_UP0 + 0.3, T_UP1 + 0.4, {"whole": False, "moves": True}),
-                        ("the town's cars pour out under the raised gate, past him", lambda: meshes(cars), T_CARS + 0.3, T_WAVE1, {"whole": False})])
+                        ("he winds the crank and the siren on its pole spins up and wails", lambda: lw_drawn("siren", "gate post"), T_UP0 + 0.3, T_UP1 + 0.4, {"whole": False}),
+                        ("at its call the town's cars pour out down the street, past him", lambda: meshes(cars), T_CARS + 0.3, T_WAVE1, {"whole": False})])

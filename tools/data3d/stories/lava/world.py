@@ -176,17 +176,43 @@ def lava_field_mat(name="lava field"):
     return m
 
 
+LW_BLOCKS = {}
+
+
+def lw_block(name, loc, r, m, rnd, squash=0.7):
+    """one ANGULAR lava block (board round 3: "round shrub blobs", "brown blob-and-green-dot texture"): a coarse
+    icosahedron, its corners pulled about, flat-shaded so its faces catch the light as broken rock does. Eight shapes
+    are cut once per material and shared, so a slope of a thousand stays light."""
+    key = (m.name, rnd.randrange(8))
+    me = LW_BLOCKS.get(key)
+    if me is None:
+        rk = lw_random.Random(sum(map(ord, key[0])) * 8 + key[1])
+        bm = LW_bmesh.new(); LW_bmesh.ops.create_icosphere(bm, subdivisions=1, radius=1.0)
+        for v in bm.verts:
+            v.co *= rk.uniform(0.7, 1.15); v.co.z = max(v.co.z, -0.35)
+        me = bpy.data.meshes.new("lava block"); bm.to_mesh(me); bm.free(); me.materials.append(m)
+        for p_ in me.polygons: p_.use_smooth = False
+        LW_BLOCKS[key] = me
+    o = lw_link(bpy.data.objects.new(name, me)); o.location = loc
+    o.scale = (r, r * rnd.uniform(0.7, 1.2), r * squash * rnd.uniform(0.75, 1.2)); o.rotation_euler = (rnd.uniform(-0.3, 0.3), rnd.uniform(-0.3, 0.3), rnd.uniform(0, 6.3))
+    return o
+
+
 def lava_rock(name, n, area, zfn, seed=0, r=(0.05, 0.25), avoid=None, moss=0.3):
     """loose lava boulders and moss tufts strewn over a patch of ground (x0, x1, y0, y1)"""
     rnd = lw_random.Random(seed)
-    m = lw_noise("loose lava rock", "#1C1916", "#4A4038", scale=12, rough=0.95, bump=0.9, detail=10)
-    mo = lw_noise("moss tuft", "#5E6842", "#8E9868", scale=30, rough=1.0, bump=0.6)
+    m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
+    mo = lw_noise("moss tuft", "#4C5638", "#6E7850", scale=30, rough=1.0, bump=0.6)
     out = []
     for k in range(n):
         x = rnd.uniform(area[0], area[1]); y = rnd.uniform(area[2], area[3]); rr = rnd.uniform(*r)
         if avoid and avoid(x, y): continue
-        o = K.sph(name, (x, y, zfn(x, y) + rr * 0.3), rr, m if rnd.random() >= moss else mo, scale=(1.0, rnd.uniform(0.7, 1.2), rnd.uniform(0.45, 0.8)), seg=10, ring=6)
-        o.rotation_euler = (0, 0, rnd.uniform(0, 6.3)); out.append(o)
+        if rnd.random() >= moss:
+            o = lw_block(name, (x, y, zfn(x, y) + rr * 0.2), rr, m, rnd)
+        else:
+            o = K.sph(name, (x, y, zfn(x, y) + rr * 0.1), rr * 0.8, mo, scale=(1.0, rnd.uniform(0.7, 1.2), 0.35), seg=10, ring=6)   # a low cushion of moss, not a ball
+            o.rotation_euler = (0, 0, rnd.uniform(0, 6.3))
+        out.append(o)
     return out
 
 
@@ -354,12 +380,29 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     crack = nt.nodes.new("ShaderNodeMapRange"); crack.inputs["From Min"].default_value = 0.0; crack.inputs["From Max"].default_value = 0.07 + 0.11 * fresh
     crack.inputs["To Min"].default_value = 1.0; crack.inputs["To Max"].default_value = 0.0
     nt.links.new(vo.outputs["Distance"], crack.inputs["Value"])
+    # board round 3: "evenly cracked orange tiles, like a cartoon floor". Real crust breaks into plates of every size
+    # with seams that pinch and gape: the seam width wanders with a slow noise, and a finer net of hairline cracks
+    # glows dimmer inside each plate
+    wid = nt.nodes.new("ShaderNodeTexNoise"); wid.inputs["Scale"].default_value = scale * 0.45; wid.inputs["Detail"].default_value = 2
+    nt.links.new(mp.outputs["Vector"], wid.inputs["Vector"])
+    wr = nt.nodes.new("ShaderNodeMapRange"); wr.inputs["From Min"].default_value = 0.35; wr.inputs["From Max"].default_value = 0.65
+    wr.inputs["To Min"].default_value = 0.015 + 0.04 * fresh; wr.inputs["To Max"].default_value = 0.11 + 0.14 * fresh
+    nt.links.new(wid.outputs["Fac"], wr.inputs["Value"]); nt.links.new(wr.outputs["Result"], crack.inputs["From Max"])
+    vo2 = nt.nodes.new("ShaderNodeTexVoronoi"); vo2.feature = 'DISTANCE_TO_EDGE'; vo2.inputs["Scale"].default_value = scale * 2.9
+    vo2.inputs["Randomness"].default_value = 1.0; nt.links.new(add.outputs["Vector"], vo2.inputs["Vector"])
+    hair = nt.nodes.new("ShaderNodeMapRange"); hair.inputs["From Min"].default_value = 0.0; hair.inputs["From Max"].default_value = 0.025
+    hair.inputs["To Min"].default_value = 0.45; hair.inputs["To Max"].default_value = 0.0
+    nt.links.new(vo2.outputs["Distance"], hair.inputs["Value"])
+    hmask = nt.nodes.new("ShaderNodeMath"); hmask.operation = 'MULTIPLY'; nt.links.new(hair.outputs["Result"], hmask.inputs[0])
+    nt.links.new(wid.outputs["Fac"], hmask.inputs[1])
+    crk = nt.nodes.new("ShaderNodeMath"); crk.operation = 'MAXIMUM'
+    nt.links.new(crack.outputs["Result"], crk.inputs[0]); nt.links.new(hmask.outputs[0], crk.inputs[1])
     big = nt.nodes.new("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale * 0.35; nt.links.new(mp.outputs["Vector"], big.inputs["Vector"])
     hot = nt.nodes.new("ShaderNodeMapRange"); hot.inputs["From Min"].default_value = 0.5 - 0.15 * fresh; hot.inputs["From Max"].default_value = 0.75 - 0.1 * fresh
     hot.inputs["To Max"].default_value = 0.35 + 0.5 * fresh
     nt.links.new(big.outputs["Fac"], hot.inputs["Value"])
     glowf = nt.nodes.new("ShaderNodeMath"); glowf.operation = 'MAXIMUM'
-    nt.links.new(crack.outputs["Result"], glowf.inputs[0]); nt.links.new(hot.outputs["Result"], glowf.inputs[1])
+    nt.links.new(crk.outputs[0], glowf.inputs[0]); nt.links.new(hot.outputs["Result"], glowf.inputs[1])
     crust = nt.nodes.new("ShaderNodeTexNoise"); crust.inputs["Scale"].default_value = scale * 6; crust.inputs["Detail"].default_value = 8
     nt.links.new(add.outputs["Vector"], crust.inputs["Vector"])
     cr = nt.nodes.new("ShaderNodeValToRGB"); cr.color_ramp.elements[0].color = (*K.lin("#141210"), 1); cr.color_ramp.elements[1].color = (*K.lin("#4A4440"), 1)
@@ -434,7 +477,7 @@ def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
     stud its faces. Returns dict(root, body, path, h)."""
     rnd = lw_random.Random(seed)
     root = K.empty(name, (0, 0, 0))
-    m = lw_noise("wall rock", "#2A2522", "#5A4E44", scale=7, rough=0.95, bump=1.0, detail=8)
+    m = lw_noise("wall rock", "#151413", "#3C3834", scale=7, rough=0.95, bump=1.0, detail=8)     # CRUSHED BLACK ROCK (board: "brown dirt")
     pts = [Vector((p[0], p[1], 0)) for p in path]
     prof = [(-base / 2, 0.0), (-crest / 2 - 0.1, h * 0.97), (-crest / 2, h), (crest / 2, h), (crest / 2 + 0.1, h * 0.97), (base / 2, 0.0)]
     bm = LW_bmesh.new(); rows = []
@@ -460,14 +503,13 @@ def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
     me = bpy.data.meshes.new(name + " body"); bm.to_mesh(me); bm.free()
     me.materials.append(m)
     body = lw_link(bpy.data.objects.new(name + " body", me)); body.parent = root
-    for k in range(int(len(pts) * 6)):
+    for k in range(int(len(pts) * 16)):
         i = rnd.randrange(len(pts) - 1); u = rnd.random()
         p = pts[i].lerp(pts[i + 1], u); tg = (pts[i + 1] - pts[i]).normalized(); nrm = Vector((-tg.y, tg.x, 0))
         side = rnd.choice((-1, 1)); fz = rnd.uniform(0.05, 0.85)
         off = (crest / 2 + (base / 2 - crest / 2) * (1 - fz)) * side
-        r = rnd.uniform(0.08, 0.22)
-        b = K.sph(name + " boulder", tuple(p + nrm * off + Vector((0, 0, h * fz))), r, m, scale=(1.0, rnd.uniform(0.7, 1.1), rnd.uniform(0.6, 0.9)), seg=10, ring=6, parent=root)
-        b.rotation_euler = (rnd.random(), rnd.random(), rnd.random())
+        r = rnd.uniform(0.1, 0.32)
+        b = lw_block(name + " boulder", tuple(p + nrm * off + Vector((0, 0, h * fz))), r, m, rnd, squash=0.8); b.parent = root
     return dict(root=root, body=body, path=pts, h=h)
 
 
@@ -540,14 +582,14 @@ def lw_hat_mesh(to_world, ears):
     """a hard hat built ON his head (his rest frame, facing -Y): a domed shell with a raised ridge down its middle, a
     short rim all round and a peak at the front, cut round his ears"""
     from mathutils import Vector as V
-    A = (0.168, 0.136); H = 0.12; n = 64
+    A = (0.168, 0.136); H = 0.2; n = 64              # a real hard hat's crown: tall enough that his ears sit INSIDE it (board: "antennae poke through the hat")
     verts, faces, rows = [], [], []
     rhos = [0.0, 0.1, 0.22, 0.35, 0.48, 0.6, 0.72, 0.82, 0.9, 0.95, 0.985, 1.0]
     for rho in rhos:
         row = []
         for i in range(n if rho > 0 else 1):
             th = 2 * math.pi * i / n; x, y = A[0] * rho * math.cos(th), A[1] * rho * math.sin(th)
-            z = LW_HAT_ZB + H * math.sqrt(max(0.0, 1 - rho ** 2.4)) + 0.012 * math.exp(-(x / 0.03) ** 2) * (1 - rho ** 4)
+            z = LW_HAT_ZB + H * math.sqrt(max(0.0, 1 - rho ** 3.5)) + 0.012 * math.exp(-(x / 0.03) ** 2) * (1 - rho ** 4)
             z = max(z, lw_head_z(x, y) + 0.014)
             verts.append((x, y, z)); row.append(len(verts) - 1)
         rows.append(row)
@@ -678,15 +720,15 @@ def lw_clouds(cover=0.55, scale=0.9, drift=(0.03, 0.02)):
     dv = N("ShaderNodeMath"); dv.operation = 'DIVIDE'; L(sep.outputs["Y"], dv.inputs[0]); L(zp.outputs[0], dv.inputs[1])
     cmb = N("ShaderNodeCombineXYZ"); L(du.outputs[0], cmb.inputs[0]); L(dv.outputs[0], cmb.inputs[1])
     mp = N("ShaderNodeMapping"); L(cmb.outputs[0], mp.inputs["Vector"])
-    big = N("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale; big.inputs["Detail"].default_value = 6
-    big.inputs["Roughness"].default_value = 0.6; L(mp.outputs["Vector"], big.inputs["Vector"])
+    big = N("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale; big.inputs["Detail"].default_value = 3
+    big.inputs["Roughness"].default_value = 0.5; L(mp.outputs["Vector"], big.inputs["Vector"])
     fine = N("ShaderNodeTexNoise"); fine.inputs["Scale"].default_value = 5.0 * scale; fine.inputs["Detail"].default_value = 10
     fine.inputs["Roughness"].default_value = 0.65; L(mp.outputs["Vector"], fine.inputs["Vector"])
     cov = N("ShaderNodeMapRange"); L(big.outputs["Fac"], cov.inputs["Value"])
     cov.inputs["From Min"].default_value = 0.62 - 0.25 * cover; cov.inputs["From Max"].default_value = 0.72 - 0.25 * cover
     bw = N("ShaderNodeRGBToBW"); L(sk.outputs["Color"], bw.inputs[0])
-    sh = N("ShaderNodeMath"); sh.operation = 'MULTIPLY_ADD'; L(fine.outputs["Fac"], sh.inputs[0]); sh.inputs[1].default_value = 1.4
-    sh.inputs[2].default_value = 0.55
+    sh = N("ShaderNodeMath"); sh.operation = 'MULTIPLY_ADD'; L(fine.outputs["Fac"], sh.inputs[0]); sh.inputs[1].default_value = 0.7      # board round 3: "a visibly tiled noise texture" - soft bellies, not speckle
+    sh.inputs[2].default_value = 0.6
     lum = N("ShaderNodeMath"); lum.operation = 'MULTIPLY'; L(bw.outputs[0], lum.inputs[0]); L(sh.outputs[0], lum.inputs[1])
     cc = N("ShaderNodeCombineColor"); [L(lum.outputs[0], cc.inputs[i]) for i in range(3)]
     mx = N("ShaderNodeMix"); mx.data_type = 'RGBA'; L(cov.outputs["Result"], mx.inputs[0])
