@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "right-whale-breeding-females__8388ea66",
+  "slug": "right-whale-breeding-females",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "Only 70 Right Whale Mothers Stand Between Recovery And Collapse",
+  "hook": "A hopeful calf rebound still depends on very few mothers.",
+  "closing": "The species can recover only if its small group of breeding females survives.",
+  "question": "Can right whales recover?",
+  "segments": [
+    {
+      "topic": "Right Whale Population",
+      "say": "Right whales reached 384 animals, a rebound that still leaves the species dangerously small."
+    },
+    {
+      "topic": "Right Whale Calves",
+      "say": "That small population produced 22 calves, showing recovery remains possible."
+    },
+    {
+      "topic": "Right Whale Mothers",
+      "say": "But only 70 right whales are breeding females, so losing a few can stall the comeback."
+    }
+  ]
+}
