@@ -25,6 +25,106 @@
       "answer": "NONE",
       "by": "chatgpt",
       "at": "2026-11-23T12:22:37.620Z"
+    },
+    "f71b6c1104e7e466": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete contradiction and stakes it with two pictureable conversion failures: a lost spacecraft and a fuel-starved plane.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "ce30a69efaa62e7b": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The hook makes the viewer's twice-yearly clock change the oddity and promises the concrete surprise that 64 countries already quit.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "d4f0281d0ec86920": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives a familiar comparison anyone can picture: storage facilities outnumber Starbucks and even the biggest restaurant chains combined.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "a4ae6ee5baa82e53": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a specific scale contradiction: cargo capacity exploded while the crews operating those giant ships shrank.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "ebaea6e0dcc7ea34": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch turns cursive policy into a concrete access threat by connecting lost reading ability to historic documents students can no longer read.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "94b827a98310cbcc": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a clear collapse in Tinder use and promises a specific explanation—widespread dating-app burnout.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "512b2c61a707665c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names nuclear construction plainly and promises a concrete, consequential scale: 78 gigawatts of future power already being built.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "67718c64d4dd0581": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"The older-adult cohabitation trend changes the subject from young adults and does not follow from the decline in young-adult marriage.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "b1478b96c823d29c": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":13,\"factual\":14,\"visual_proof\":12,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Replace the older-adult beat with a consequence for young adults so every beat advances the headline rather than broadening to a different age group.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "811291b12fac3264": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "40a2a79c316767ed": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The pitch reads as a flat survival-and-recovery summary before abruptly adding kelp carbon, without one clear contradiction or viewer stake tying the beats together.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "43ae974ed92e1e67": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The two-cent coin longevity comparison does not follow from the taxpayer-savings reason the penny is ending.\",\"2\":\"The nickel cost is a side comparison and does not follow from the penny's history or explain its discontinuation.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "5c06a68a57567c13": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":9,\"factual\":13,\"visual_proof\":12,\"payoff\":9,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Keep the story on production losses and the nickel twist; the coin-longevity detour interrupts the economic reason the penny is ending.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "0898fb63f4187f16": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "1699f154e1d1e598": {
+      "answer": "{\"bridges\":{\"0\":false,\"1\":false,\"2\":true},\"why\":{\"0\":\"The number of reactor starts shows momentum but does not establish the headline's 78-gigawatt construction total.\",\"1\":\"China's share is another construction statistic and does not follow from the annual start count or prove the global total.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "249f89d226604ba2": {
+      "answer": "{\"scores\":{\"premise\":11,\"hook\":10,\"arc\":8,\"factual\":14,\"visual_proof\":12,\"payoff\":8,\"voice\":3},\"fatal\":[],\"weakest_note\":\"Turn the hook into the real contradiction—that an industry many assume is dying still has a massive power pipeline already under construction.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "15d9127c75b8d6e8": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "76321e1cc0952122": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch clearly names the penny's end after two centuries and promises the concrete reason and twist: it loses money, but the nickel is worse.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "b479d04d0d745061": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The pitch still combines unrelated education measures across countries and age groups, so 'school scale' remains too generic to promise one concrete surprise.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
+    },
+    "0b51677596137ac3": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary ratio in Guinea-Bissau does not follow from India's total secondary enrollment.\",\"2\":\"An unspecified spending trend is another metric, not a consequence of the preceding classroom ratio.\",\"3\":\"A literacy outcome does not follow from the spending figure without a supported link.\",\"4\":\"A preschool ratio in Tanzania changes country and age group rather than advancing the literacy result.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:20:00.499Z"
     }
   }
 }
