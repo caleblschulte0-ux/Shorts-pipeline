@@ -125,6 +125,16 @@
       "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary ratio in Guinea-Bissau does not follow from India's total secondary enrollment.\",\"2\":\"An unspecified spending trend is another metric, not a consequence of the preceding classroom ratio.\",\"3\":\"A literacy outcome does not follow from the spending figure without a supported link.\",\"4\":\"A preschool ratio in Tanzania changes country and age group rather than advancing the literacy result.\"}}",
       "by": "chatgpt",
       "at": "2026-11-24T12:20:00.499Z"
+    },
+    "f4aa83efd2bd5e37": {
+      "answer": "{\"scores\":{\"premise\":7,\"hook\":11,\"arc\":4,\"factual\":7,\"visual_proof\":8,\"payoff\":4,\"voice\":3},\"fatal\":[\"confusing\"],\"weakest_note\":\"Choose one country and one age group, then build a single cause-and-effect story from class size to teacher attention and a measured outcome.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:24:18.798Z"
+    },
+    "35bc20b4f52abc53": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-24T12:24:18.798Z"
     }
   }
 }
