@@ -23,6 +23,99 @@ def lw_link(o):
     bpy.context.collection.objects.link(o); return o
 
 
+# ---------------------------------------------------------------- real CC0 assets (Poly Haven, via the data3d-assets branch)
+# The coordinator, 2026-11-24: hand-modelled primitives read as toys to every judge. Real scanned skies, textures and
+# props come from Poly Haven (CC0), fetched in CI to the orphan branch data3d-assets and unpacked to <repo>/cache/
+# polyhaven (the render workflow does it; a session: git archive origin/data3d-assets polyhaven | tar -x -C cache).
+# A missing asset RAISES: a silent stand-in is how a "real" world quietly renders as clay again.
+import os as LW_os
+LW_PH = LW_os.environ.get("POLYHAVEN_DIR") or LW_os.path.join(LW_os.path.dirname(LW_os.path.dirname(LW_os.path.dirname(LW_os.path.dirname(LW_os.path.abspath(K.__file__))))), "cache", "polyhaven")
+
+
+def ph_path(*parts):
+    p = LW_os.path.join(LW_PH, *parts)
+    if not LW_os.path.exists(p):
+        raise FileNotFoundError(f"Poly Haven asset missing: {p} (add it to .github/triggers/data3d_assets, then unpack data3d-assets into cache/)")
+    return p
+
+
+def ph_sky(aid, strength=1.0, rot=0.0, res="2k"):
+    """a real sky: a Poly Haven HDRI as the world, turned `rot` (radians about Z); it lights the scene too"""
+    w = sc.world or bpy.data.worlds.new("World"); sc.world = w; w.use_nodes = True; nt = w.node_tree
+    for n in list(nt.nodes): nt.nodes.remove(n)
+    out = nt.nodes.new("ShaderNodeOutputWorld"); bg = nt.nodes.new("ShaderNodeBackground"); bg.name = "Background"
+    env = nt.nodes.new("ShaderNodeTexEnvironment"); env.image = bpy.data.images.load(ph_path("hdri", f"{aid}_{res}.hdr"), check_existing=True)
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Rotation"].default_value = (0, 0, rot)
+    nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"]); nt.links.new(mp.outputs["Vector"], env.inputs["Vector"])
+    nt.links.new(env.outputs["Color"], bg.inputs["Color"]); bg.inputs["Strength"].default_value = strength
+    nt.links.new(bg.outputs["Background"], out.inputs["Surface"])
+    return bg
+
+
+def ph_mat(aid, scale=1.0, tint=None, name=None, rough=None, bump=1.0, res="1k"):
+    """a real surface: a Poly Haven texture set (colour, normal, roughness) box-projected in object space, `scale`
+    metres per tile. tint multiplies the colour (a painted tin wall in this house's colour)."""
+    name = name or f"ph {aid} {scale} {tint}"
+    m = bpy.data.materials.get(name)
+    if m: return m
+    d = ph_path(aid, "textures")
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (1 / scale,) * 3
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    def img(kind, data=True):
+        f = LW_os.path.join(d, f"{aid}_{kind}_{res}.jpg")
+        if not LW_os.path.exists(f): return None
+        t = nt.nodes.new("ShaderNodeTexImage"); t.image = bpy.data.images.load(f, check_existing=True); t.projection = 'BOX'; t.projection_blend = 0.2
+        if data: t.image.colorspace_settings.name = 'Non-Color'
+        nt.links.new(mp.outputs["Vector"], t.inputs["Vector"]); return t
+    dif = img("diff", False)
+    col = dif.outputs["Color"]
+    if tint:
+        mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = 'RGBA'; mx.blend_type = 'MULTIPLY'; mx.inputs[0].default_value = 1.0
+        nt.links.new(col, mx.inputs[6]); mx.inputs[7].default_value = (*K.lin(tint), 1); col = mx.outputs[2]
+    nt.links.new(col, bs.inputs["Base Color"])
+    arm = img("arm"); rg = img("rough")
+    if arm:
+        sp = nt.nodes.new("ShaderNodeSeparateColor"); nt.links.new(arm.outputs["Color"], sp.inputs[0])
+        nt.links.new(sp.outputs[1], bs.inputs["Roughness"]); nt.links.new(sp.outputs[2], bs.inputs["Metallic"])
+    elif rg:
+        nt.links.new(rg.outputs["Color"], bs.inputs["Roughness"])
+    if rough is not None:
+        for l in list(bs.inputs["Roughness"].links): nt.links.remove(l)
+        bs.inputs["Roughness"].default_value = rough
+    nor = img("nor_gl")
+    if nor:
+        nm = nt.nodes.new("ShaderNodeNormalMap"); nm.inputs["Strength"].default_value = bump
+        nt.links.new(nor.outputs["Color"], nm.inputs["Color"]); nt.links.new(nm.outputs["Normal"], bs.inputs["Normal"])
+    return m
+
+
+LW_PH_MODELS = {}
+
+
+def ph_model(aid, loc=(0, 0, 0), rot=(0, 0, 0), scale=1.0, name=None, res="1k"):
+    """a real prop: a Poly Haven glTF model, imported once and then linked again (same meshes) for every copy, under one
+    empty placed at loc/rot/scale. Returns the empty."""
+    from mathutils import Euler
+    if aid not in LW_PH_MODELS:
+        before = set(bpy.data.objects)
+        bpy.ops.import_scene.gltf(filepath=ph_path(aid, f"{aid}_{res}.gltf"))
+        objs = [o for o in bpy.data.objects if o not in before]
+        for o in objs:
+            for c in o.users_collection: c.objects.unlink(o)
+        LW_PH_MODELS[aid] = objs
+    src = LW_PH_MODELS[aid]
+    root = K.empty(name or aid, tuple(loc))
+    copies = {}
+    for o in src:
+        c = o.copy(); copies[o] = c; lw_link(c)
+    for o, c in copies.items():
+        c.parent = copies.get(o.parent, root)
+        if o.parent not in copies: c.matrix_parent_inverse = LW_M.Identity(4)
+    root.rotation_euler = Euler(rot); root.scale = (scale,) * 3
+    return root
+
+
 def lw_noise(name, a, b, scale=4.0, rough=0.8, bump=0.2, detail=6.0, stretch=(1, 1, 1), lo=0.35, hi=0.7, coord="Object"):
     """two colours mixed by a noise with a bump from a finer one (any rock, moss or render surface of the town)"""
     m = bpy.data.materials.get(name)
@@ -295,6 +388,165 @@ def lw_fire_vol(name="fire volume", density=3.0, strength=45.0, smoke=(0.9, 0.4,
     return m
 
 
+def lw_gas_mat(name="fire gas", smoke=(0.07, 0.065, 0.06), density=2.2, flame=24.0):
+    """the material of a SIMULATED fire (lw_fire_sim): Mantaflow's own grids drive it. 'density' is the smoke, dark and
+    sooty; 'flame' is the burning fuel, its emission coloured by its heat from deep red through orange to a yellow
+    core. Real fire's shape comes from the sim: torn tongues, a rolling column, soot that thins as it climbs."""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    N = nt.nodes.new; L = nt.links.new
+    out = N("ShaderNodeOutputMaterial"); pv = N("ShaderNodeVolumePrincipled")
+    ad = N("ShaderNodeAttribute"); ad.attribute_name = "density"; af = N("ShaderNodeAttribute"); af.attribute_name = "flame"
+    dm = N("ShaderNodeMath"); dm.operation = 'MULTIPLY'; dm.inputs[1].default_value = density; L(ad.outputs["Fac"], dm.inputs[0])
+    fd = N("ShaderNodeMath"); fd.operation = 'MULTIPLY_ADD'; L(af.outputs["Fac"], fd.inputs[0]); fd.inputs[1].default_value = 1.5; L(dm.outputs[0], fd.inputs[2])
+    L(fd.outputs[0], pv.inputs["Density"])
+    rp = N("ShaderNodeValToRGB"); L(af.outputs["Fac"], rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*K.lin("#3A0500"), 1); el[1].position = 0.85; el[1].color = (*K.lin("#FFD27A"), 1)
+    el.new(0.2).color = (*K.lin("#B82000"), 1); el.new(0.5).color = (*K.lin("#FF6A0A"), 1)
+    L(rp.outputs["Color"], pv.inputs["Emission Color"])
+    pw = N("ShaderNodeMath"); pw.operation = 'POWER'; L(af.outputs["Fac"], pw.inputs[0]); pw.inputs[1].default_value = 1.4
+    es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "flame strength"; L(pw.outputs[0], es.inputs[0]); es.inputs[1].default_value = flame
+    L(es.outputs[0], pv.inputs["Emission Strength"])
+    pv.inputs["Color"].default_value = (*smoke, 1); pv.inputs["Anisotropy"].default_value = 0.3
+    L(pv.outputs[0], out.inputs["Volume"])
+    return m
+
+
+def lw_fire_sim(name, emitters, lo, hi, cache, f0=1, f1=None, res=96, fuel=1.4, wind=None, noise=0, mat=None):
+    """FIRE AND SMOKE AS A REAL SIMULATION (coordinator 2026-11-24: hand-modelled fire blobs and clay smoke read as
+    toys). A Mantaflow gas domain over the box lo..hi, each emitter mesh a fuel inflow that burns (flow BOTH), the
+    flame licking up and rolling into a sooty column that climbs, spreads and thins. `wind` (x, y) is a constant
+    breeze (a wind force field) that leans the column. Baked to `cache` for frames f0..f1 (the run bakes once, every
+    frame reads it). The emitters themselves never render. Returns the domain."""
+    f1 = f1 or NF
+    lo, hi = Vector(lo), Vector(hi)
+    dom = K.box(name, tuple((lo + hi) / 2), tuple(hi - lo), mat or lw_gas_mat(), bev=0.0)
+    md = dom.modifiers.new("fluid", 'FLUID'); md.fluid_type = 'DOMAIN'; ds = md.domain_settings
+    ds.domain_type = 'GAS'; ds.resolution_max = res; ds.use_adaptive_domain = False
+    ds.cache_directory = cache; ds.cache_type = 'ALL'; ds.cache_frame_start = f0; ds.cache_frame_end = f1
+    ds.vorticity = 0.25; ds.flame_vorticity = 0.9; ds.burning_rate = 0.8; ds.flame_smoke = 1.6; ds.flame_ignition = 1.25
+    ds.flame_max_temp = 3.0; ds.alpha = 0.6; ds.beta = 1.6; ds.use_dissolve_smoke = True; ds.dissolve_speed = 70
+    ds.use_dissolve_smoke_log = True; ds.time_scale = 1.0
+    if noise:
+        ds.use_noise = True; ds.noise_scale = noise; ds.noise_strength = 1.0
+    for e in emitters:
+        mf = e.modifiers.new("fluid", 'FLUID'); mf.fluid_type = 'FLOW'; fs = mf.flow_settings
+        fs.flow_type = 'BOTH'; fs.flow_behavior = 'INFLOW'; fs.flow_source = 'MESH'; fs.surface_distance = 0.08
+        fs.fuel_amount = fuel; fs.temperature = 2.0; fs.smoke_color = (0.12, 0.11, 0.1); fs.subframes = 1
+        e.hide_render = True
+    if wind:
+        wd = bpy.data.objects.new(name + " wind", None); lw_link(wd)
+        wd.field.type = 'WIND'; wd.field.strength = float(Vector(wind).length); wd.field.flow = 0.0
+        wd.location = tuple(lo); wd.rotation_euler = Vector((wind[0], wind[1], 0)).to_track_quat('Z', 'Y').to_euler()
+    return dom
+
+
+def lw_bake(dom):
+    """bake a lw_fire_sim domain (headless: the operator needs the domain as the context's object)"""
+    sc.frame_set(1)
+    with bpy.context.temp_override(scene=sc, object=dom, active_object=dom, selected_objects=[dom], view_layer=bpy.context.view_layer):
+        r = bpy.ops.fluid.bake_all()
+    return r
+
+
+class LwNodes:
+    """a little expression builder over a node tree: m.add(a, b), m.mul(a, b) ... take sockets or numbers"""
+    def __init__(self, nt):
+        self.nt = nt
+
+    def _op(self, op, *a):
+        n = self.nt.nodes.new("ShaderNodeMath"); n.operation = op
+        for i, x in enumerate(a):
+            if isinstance(x, (int, float)): n.inputs[i].default_value = x
+            else: self.nt.links.new(x, n.inputs[i])
+        return n.outputs[0]
+
+    def __getattr__(self, k):
+        ops = dict(add='ADD', sub='SUBTRACT', mul='MULTIPLY', div='DIVIDE', mx='MAXIMUM', mn='MINIMUM', pw='POWER',
+                   sq='SQRT', ab='ABSOLUTE', mad='MULTIPLY_ADD', sm='SMOOTH_MIN', gt='GREATER_THAN')
+        if k in ops: return lambda *a: self._op(ops[k], *a)
+        raise AttributeError(k)
+
+    def clamp01(self, x, lo=0.0, hi=1.0):
+        n = self.nt.nodes.new("ShaderNodeMapRange"); n.clamp = True
+        self.nt.links.new(x, n.inputs["Value"]); n.inputs["From Min"].default_value = lo; n.inputs["From Max"].default_value = hi
+        return n.outputs["Result"]
+
+
+def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), t_end=None, seed=0.0, fire=5.0, smoke_d=3.5,
+                   smoke=(0.1, 0.095, 0.09), rise=1.4):
+    """A BURNING FIRE AND ITS SMOKE as ONE procedural volume (coordinator 2026-11-24: "fire blobs, clay smoke" read as
+    toys; the bpy wheel's Mantaflow will not run, so the gas is written as fields, not modelled as spheres). A tall box
+    over `base`: the flame is a field of torn TONGUES that narrow as they climb (a cone of heat cut by turbulent noise
+    that scrolls upward, so every tongue licks up and breaks off), hot yellow at its root, orange, then deep red at its
+    tips; out of its top rolls a SOOT COLUMN that widens as it climbs, leans downwind, billows (domain-warped noise
+    advected up at `rise` m/s) and thins away. Nothing in it is a sphere. Returns the volume box."""
+    t_end = t_end if t_end is not None else DUR + 1.0
+    H = h_fire + h_smoke; lx, ly = lean
+    W_ = w * 2.2 + abs(lx) * h_smoke * 2; D_ = w * 2.2 + abs(ly) * h_smoke * 2
+    ctr = Vector(base) + Vector((lx * h_smoke * 0.5, ly * h_smoke * 0.5, H / 2))
+    m = bpy.data.materials.new(name + " gas"); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    N = nt.nodes.new; L = nt.links.new; X = LwNodes(nt)
+    out = N("ShaderNodeOutputMaterial"); pv = N("ShaderNodeVolumePrincipled")
+    tc = N("ShaderNodeTexCoord"); sep = N("ShaderNodeSeparateXYZ"); L(tc.outputs["Object"], sep.inputs[0])
+    # object space is metres about the box's centre (K.box builds the mesh at its size): z 0 at the base
+    x = X.add(sep.outputs[0], 0.0); y = X.add(sep.outputs[1], 0.0); z = X.add(sep.outputs[2], H / 2)
+    # the axis leans downwind as it climbs (quadratically: the smoke bends over)
+    zs = X.mul(X.clamp01(X.sub(z, h_fire * 0.6), 0.0, h_smoke), h_smoke)     # (clamp01 is a MapRange: it returns 0..1, so scale back to metres)
+    k_ = X.mul(X.mul(zs, zs), 1.0 / max(h_smoke, 0.1))
+    ax = X.sub(x, X.add(-lx * h_smoke * 0.5, X.mul(k_, lx))); ay = X.sub(y, X.add(-ly * h_smoke * 0.5, X.mul(k_, ly)))
+    # turbulence: noise advected upward (its sample point slides DOWN through the field as time runs, so features rise)
+    tt = N("ShaderNodeValue"); tt.name = "fire time"
+    cmb = N("ShaderNodeCombineXYZ"); L(ax, cmb.inputs[0]); L(ay, cmb.inputs[1]); L(X.sub(z, X.mul(tt.outputs[0], rise)), cmb.inputs[2])
+    def noise(scale, detail=6.0, rough=0.6, wscale=0.6):
+        nz = N("ShaderNodeTexNoise"); nz.noise_dimensions = '4D'; nz.inputs["Scale"].default_value = scale
+        nz.inputs["Detail"].default_value = detail; nz.inputs["Roughness"].default_value = rough
+        L(cmb.outputs[0], nz.inputs["Vector"]); L(X.add(X.mul(tt.outputs[0], wscale), seed), nz.inputs["W"])
+        return nz
+    warp = noise(0.9, 3.0, 0.5, 0.35)
+    wv = N("ShaderNodeVectorMath"); wv.operation = 'MULTIPLY_ADD'; L(warp.outputs["Color"], wv.inputs[0]); wv.inputs[1].default_value = (0.9, 0.9, 1.2)
+    L(cmb.outputs[0], wv.inputs[2])
+    def wnoise(scale, detail=6.0, rough=0.62, wscale=0.6):
+        nz = N("ShaderNodeTexNoise"); nz.noise_dimensions = '4D'; nz.inputs["Scale"].default_value = scale
+        nz.inputs["Detail"].default_value = detail; nz.inputs["Roughness"].default_value = rough
+        L(wv.outputs[0], nz.inputs["Vector"]); L(X.add(X.mul(tt.outputs[0], wscale), seed + 3.1), nz.inputs["W"])
+        return nz.outputs["Fac"]
+    r = X.sq(X.add(X.mul(ax, ax), X.mul(ay, ay)))
+    # THE FLAME: a cone of heat (w/2 at its root, nothing at h_fire) cut into tongues by fast fine noise
+    zf = X.div(z, h_fire)
+    cone = X.sub(1.0, X.div(r, X.mx(X.mul(X.clamp01(X.sub(1.05, zf)), w * 0.55), 0.002)))      # (a zero divisor reads 0 in a math node: never let it reach one)
+    heat = X.sub(X.add(X.mul(wnoise(2.4 / max(w, 0.3), 6.0, 0.7, 1.6), 2.2), X.mul(cone, 0.9)), X.add(0.95, X.mul(zf, 0.7)))
+    flame = X.clamp01(heat, 0.0, 0.55)                                 # 0..1
+    # THE SMOKE: a widening column out of the flame's top, billowing, thinning as it climbs
+    zr = X.clamp01(X.sub(z, h_fire * 0.45), 0.0, h_smoke)          # 0..1 up the column
+    rad = X.add(w * 0.35, X.mul(zr, w * 0.35 + h_smoke * 0.22))
+    col = X.sub(1.0, X.div(r, rad))
+    bil = X.add(X.mul(wnoise(0.55, 8.0, 0.72, 0.4), 0.7), X.mul(wnoise(1.6, 6.0, 0.6, 0.7), 0.45))     # big billows with smaller curls on them
+    sd = X.clamp01(X.sub(X.add(X.mul(bil, 2.2), X.mul(col, 0.9)), 1.55), 0.0, 0.3)
+    fade = X.mul(X.clamp01(X.sub(z, h_fire * 0.35), 0.0, h_fire * 0.5), X.sub(1.0, X.clamp01(zr, 0.55, 1.0)))
+    dens = X.add(X.mul(X.mul(X.mul(sd, 0.3), fade), smoke_d), X.mul(flame, 3.9))
+    L(dens, pv.inputs["Density"])
+    rp = N("ShaderNodeValToRGB"); L(flame, rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*K.lin("#4A0800"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFE09A"), 1)
+    el.new(0.25).color = (*K.lin("#C02400"), 1); el.new(0.55).color = (*K.lin("#FF6A0A"), 1); el.new(0.8).color = (*K.lin("#FFAA30"), 1)
+    L(rp.outputs["Color"], pv.inputs["Emission Color"])
+    es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "fire strength"; L(X.pw(flame, 1.6), es.inputs[0]); es.inputs[1].default_value = fire
+    L(es.outputs[0], pv.inputs["Emission Strength"])
+    pv.inputs["Color"].default_value = (*smoke, 1); pv.inputs["Anisotropy"].default_value = 0.2
+    L(pv.outputs[0], out.inputs["Volume"])
+    o = K.box(name, tuple(ctr), (W_, D_, H), m, bev=0.0)
+    o.visible_shadow = True
+    for f in (1, F(t_end) + 1):                          # time runs linearly through the shot
+        tt.outputs[0].default_value = (f - 1) / FPS; tt.outputs[0].keyframe_insert("default_value", frame=f)
+    from character import _fcurves
+    for c in _fcurves(nt.animation_data.action):
+        for kp in c.keyframe_points: kp.interpolation = 'LINEAR'
+    return o
+
+
 def lw_flicker(m, t_end, rate=1.4):
     """key the fire volume's 4D noise so its tongues lick upward and flicker for the whole shot"""
     nz = next(n for n in m.node_tree.nodes if n.type == 'TEX_NOISE')
@@ -524,10 +776,10 @@ def town_house(name, loc, yaw=0.0, w=2.0, d=1.6, h=1.25, roof="#B8352B", wall="#
     about its own origin, placed at loc/yaw. lit: indices of windows whose panes glow warm (a window someone is home
     behind). Returns dict(root, windows=[pane objects], door)."""
     root = K.empty(name, (0, 0, 0))
-    cl = lw_noise(f"cladding {wall}", wall, K.mute(wall, 0.72), scale=2.0, rough=0.55, bump=0.6, stretch=(60, 60, 1), lo=0.2, hi=0.8)   # the ribs of corrugated tin, read at a glance
+    cl = ph_mat("corrugated_iron_02", scale=1.4, tint=wall, name=f"cladding {wall}")        # REAL corrugated tin (Poly Haven), painted
     K.box(name + " walls", (0, 0, h / 2), (w, d, h), cl, bev=0.01, parent=root)
     K.box(name + " plinth", (0, 0, 0.05), (w + 0.04, d + 0.04, 0.1), lw_noise("plinth concrete", "#8C8A86", "#A9A6A0", scale=12, rough=0.9), bev=0.005, parent=root)
-    rm = lw_noise(f"tin roof {roof}", roof, K.mute(roof, 0.7), scale=1.5, rough=0.45, bump=0.35, stretch=(40, 1, 1), lo=0.3, hi=0.8)
+    rm = ph_mat("corrugated_iron_03", scale=1.2, tint=roof, name=f"tin roof {roof}")
     pitch = math.radians(28); ov = 0.18
     half = (d / 2 + ov) / math.cos(pitch)
     for sg in (-1, 1):

@@ -136,6 +136,8 @@ jobs:
           timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
             || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
           pip install -q bpy==5.0.0 numpy==1.26.4 pillow
+          # the real CC0 skies, textures and props (Poly Haven, fetched by data3d_assets.yml to its own branch)
+          git fetch -q --depth 1 origin data3d-assets && mkdir -p cache && git archive FETCH_HEAD polyhaven | tar -x -C cache && du -sh cache/polyhaven
       - name: Proof pass (every 4th frame plus the in-betweens of fast moves; the staging, consequence, body, pop, hold, far and empty checks first)
         env: {LOOK: NYC, SHOT: '${{ matrix.shot }}', STEP: '4', STORY: '${{ needs.cfg.outputs.story }}'}
         run: |
@@ -209,6 +211,8 @@ jobs:
           timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
             || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
           pip install -q bpy==5.0.0 numpy==1.26.4 pillow
+          # the real CC0 skies, textures and props (Poly Haven, fetched by data3d_assets.yml to its own branch)
+          git fetch -q --depth 1 origin data3d-assets && mkdir -p cache && git archive FETCH_HEAD polyhaven | tar -x -C cache && du -sh cache/polyhaven
       - name: Reuse an earlier run's frames (trigger reuse_run=<run id> reshoot=<shots>)
         id: reuse
         run: |
