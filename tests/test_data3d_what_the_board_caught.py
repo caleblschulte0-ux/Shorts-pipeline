@@ -111,3 +111,38 @@ def test_every_key_still_shows_his_face():
     """a turn shorter than the 0.35 s back-turned rule still lands on a board still: each still is judged alone"""
     keys = ast.unparse(_fn("keys"))
     assert "KEY_BACK_DEG" in keys and "face_dir(" in keys and "not back" in keys
+
+
+def test_a_field_that_runs_past_the_frame_is_measured_where_it_is_seen():
+    """lava, 2026-11-24: a lava front filling the bottom third of the shot measured 0% of the frame because all eight
+    corners of its box were off screen, so the consequence check failed the shot that showed it best. A {"whole":
+    False} effect is measured clamped to the frame; a whole prop is still measured by the corners near the frame, and
+    something wholly off one side is still unseen."""
+    ns = {}
+    exec(compile(ast.Module(body=[_fn("seen_extent")], type_ignores=[]), "staging.seen_extent", "exec"), ns)
+    seen = ns["seen_extent"]
+    front = [(-3.4, -1.7), (1.9, -1.7), (-3.4, 0.57), (1.9, 0.57), (-2.9, -5.3), (1.6, -5.3), (-2.9, 0.4), (1.6, 0.4)]
+    assert abs(seen(front, False) - 0.57) < 1e-9      # the bottom 57% of the frame is lava
+    assert seen(front, True) == 0.0                   # the same box as a whole prop: nothing of it near the frame
+    off = [(1.2, 0.1), (1.9, 0.1), (1.2, 0.9), (1.9, 0.9)]
+    assert seen(off, False) == 0.0                    # off the right side: not seen, however tall
+    pan = [(0.4, 0.3), (0.6, 0.3), (0.4, 0.5), (0.6, 0.5)]
+    assert abs(seen(pan, True) - 0.2) < 1e-9 and abs(seen(pan, False) - 0.2) < 1e-9
+    body = ast.get_source_segment(SRC, _fn("consequence"))
+    assert "seen_extent(pts, whole)" in body
+
+
+def test_a_moving_part_that_appears_later_is_measured_from_where_it_appeared():
+    """lava, 2026-11-24: steam that bursts out after the window opens measured "travels 0 px" because the reference
+    was the window's first frame, when the steam was still hidden"""
+    body = ast.get_source_segment(SRC, _fn("consequence"))
+    assert "ref.setdefault(" in body and "ref = now" not in body
+
+
+def test_a_field_wide_effect_is_measured_on_its_surface_not_its_box():
+    """lava shot 4, 2026-11-24: a flow that runs under the lens has box corners behind the camera; they drop out of the
+    projection and the flow filling the bottom of the frame measured 0%. A {"whole": False} mesh is measured on points
+    of its evaluated surface."""
+    body = ast.get_source_segment(SRC, _fn("consequence"))
+    assert "_surface(o," in body and "not whole" in body.split("_surface(o,")[1].split("\\n")[0]
+    assert "to_mesh_clear" in ast.get_source_segment(SRC, _fn("_surface"))

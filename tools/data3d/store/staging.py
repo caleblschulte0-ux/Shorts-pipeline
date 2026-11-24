@@ -147,6 +147,38 @@ MOVE_MIN = 0.06         # of the frame height (115 px of a 1080x1920 Short): the
                         # it. Three times that is the floor: about a centimetre on a phone held in the hand.
 
 
+def seen_extent(pts, whole):
+    """the height (frame fractions) a consequence shows on screen, from its projected box corners [(x, y)] in front of
+    the lens. A whole thing is measured by the corners near the frame (one cut by the edge fails CONSEQ_INSIDE anyway).
+    A field-wide thing ({"whole": False}: a lava front, a flood, a fissure) runs past the frame by design, so every
+    one of its corners can sit outside it while it fills the lower half: it is measured as its box CLAMPED to the
+    frame, and only when that box overlaps the frame both ways (lava 2026-11-24: a front filling the bottom of the shot
+    measured 0% because all eight corners were off screen)."""
+    if whole or not pts:
+        near = [(x, y) for x, y in pts if -0.05 <= x <= 1.05 and -0.05 <= y <= 1.05]
+        return (max(y for _, y in near) - min(y for _, y in near)) if near else 0.0
+    x0, x1 = max(0.0, min(x for x, _ in pts)), min(1.0, max(x for x, _ in pts))
+    y0, y1 = max(0.0, min(y for _, y in pts)), min(1.0, max(y for _, y in pts))
+    return (y1 - y0) if x1 > x0 and y1 > y0 else 0.0
+
+
+def _surface(o, dg, n=300):
+    """up to n points of the object's evaluated surface, in the world: a field-wide effect that reaches past the lens
+    (a lava flow under the camera) has box corners BEHIND it, which drop out of a projection and take the near half of
+    the flow with them (lava shot 4, 2026-11-24: a flow filling the bottom of the frame measured 0%)"""
+    oe = o.evaluated_get(dg); M = oe.matrix_world
+    try:
+        me = oe.to_mesh()
+    except RuntimeError:
+        return [M @ Vector(c) for c in oe.bound_box]
+    if me is None or not len(me.vertices):
+        oe.to_mesh_clear(); return [M @ Vector(c) for c in oe.bound_box]
+    step = max(1, len(me.vertices) // n)
+    pts = [M @ me.vertices[i].co for i in range(0, len(me.vertices), step)]
+    oe.to_mesh_clear()
+    return pts
+
+
 def _corners(o, dg):
     oe = o.evaluated_get(dg); M = oe.matrix_world
     return [M @ Vector(c) for c in oe.bound_box]
@@ -200,21 +232,25 @@ def consequence(cam, nf, items, name="shot"):
         ref = None; moved = 0.0
         seen = n = 0; hs = []
         for f in range(int(round(t0 * FPS)) + 1, int(round(t1 * FPS)) + 2, 2):
-            sc.frame_set(f); bpy.context.view_layer.update(); ys = []; xs = []; tot = inside = 0
+            sc.frame_set(f); bpy.context.view_layer.update(); pts = []; tot = inside = 0
             if mv is not None:
                 dg = bpy.context.evaluated_depsgraph_get()
                 now = {o.name: _corners(o, dg) for o in mv if not o.hide_render}
-                if ref is None: ref = now
+                if ref is None: ref = {}
+                for k_, v_ in now.items(): ref.setdefault(k_, v_)   # a part that appears later (steam, a spark) is measured
+                # from where it was first seen: taking the window's first frame alone measured steam that bursts out
+                # after it as "travels 0 px" (lava 2026-11-24)
                 moved = max(moved, motion_px(ref, now, lambda p: world_to_camera_view(sc, cam, p), res))
             for o in objs:
                 if o.hide_render or (o.type == 'MESH' and max(abs(v) for v in o.matrix_world.to_scale()) < 1e-3): continue
-                for c in o.bound_box:
-                    p = world_to_camera_view(sc, cam, o.matrix_world @ Vector(c))
+                for wp in (_surface(o, bpy.context.evaluated_depsgraph_get()) if not whole and o.type == 'MESH'
+                           else [o.matrix_world @ Vector(c) for c in o.bound_box]):
+                    p = world_to_camera_view(sc, cam, wp)
                     if p.z <= 0: continue
                     tot += 1
                     if -0.01 <= p.x <= 1.01 and -0.01 <= p.y <= 1.01: inside += 1
-                    if -0.05 <= p.x <= 1.05 and -0.05 <= p.y <= 1.05: xs.append(p.x); ys.append(p.y)
-            n += 1; h = (max(ys) - min(ys)) if ys else 0.0; hs.append(h)
+                    pts.append((p.x, p.y))
+            n += 1; h = seen_extent(pts, whole); hs.append(h)
             if h >= CONSEQ_MIN_H and (not whole or inside >= CONSEQ_INSIDE * max(1, tot)): seen += 1
         frac = seen / max(1, n); good = frac >= CONSEQ_SEEN
         med = sorted(hs)[len(hs) // 2] if hs else 0.0
