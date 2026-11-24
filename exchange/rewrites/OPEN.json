@@ -1,11 +1,11 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-24T12:23:26Z",
+ "updated": "2026-11-24T12:25:43Z",
  "open": [
   {
    "id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1",
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-24T12:23:26Z",
+   "filed": "2026-11-24T12:25:43Z",
    "why": [
     "premise: brain: The pitch is a generic survey of unrelated stats from different countries (India, Guinea-Bissau, Tanzania) with a vague 'attention gap' premise, no single concrete subject, and no specific surprise or contradiction a viewer can picture."
    ],
@@ -13,98 +13,44 @@
    "answer_path": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.answer.json"
   },
   {
-   "id": "nuclear-reactors-under-construction__d2d2c5e4",
-   "slug": "nuclear-reactors-under-construction",
-   "filed": "2026-11-24T01:28:44Z",
-   "why": [
-    "thesis: seg0 ('Nuclear Reactor Starts') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 0 mentions 10 reactors but doesn't specifically support the 78 GW under‑construction claim",
-    "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline ('78 Gigawatts Of Nuclear Power Is Still Under Construction') — brain: Beat 1 gives a share statistic without directly proving the 78 GW figure and isn’t a logical continuation of Beat 0"
-   ],
-   "request": "exchange/rewrites/20261124/nuclear-reactors-under-construction__d2d2c5e4.request.json",
-   "answer_path": "exchange/rewrites/20261124/nuclear-reactors-under-construction__d2d2c5e4.answer.json"
-  },
-  {
-   "id": "us-stops-making-pennies-232-years__546cd5a1",
-   "slug": "us-stops-making-pennies-232-years",
-   "filed": "2026-11-23T20:05:25Z",
-   "why": [
-    "thesis: seg1 ('Pennies lasted centuries') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Shifts to how long coins last historically; it doesn't follow from the savings claim, and the two-cent piece comparison ",
-    "thesis: seg2 ('Pennies versus nickels') does not continue the story of the headline ('The US Will Stop Making Pennies After 232 Years') — brain: Nickel production cost is a side comparison; it doesn't follow from the penny's longevity and only loosely supports the "
-   ],
-   "request": "exchange/rewrites/20261123/us-stops-making-pennies-232-years__546cd5a1.request.json",
-   "answer_path": "exchange/rewrites/20261123/us-stops-making-pennies-232-years__546cd5a1.answer.json"
-  },
-  {
-   "id": "cohabitation-overtakes-marriage__bfb44f30",
+   "id": "cohabitation-overtakes-marriage__bfb44f30_r1",
    "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-23T20:05:23Z",
+   "filed": "2026-11-24T12:25:42Z",
    "why": [
     "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Focuses on older adults, not young adults, and doesn't build on the previous point about young adult marriage trends."
    ],
-   "request": "exchange/rewrites/20261123/cohabitation-overtakes-marriage__bfb44f30.request.json",
-   "answer_path": "exchange/rewrites/20261123/cohabitation-overtakes-marriage__bfb44f30.answer.json"
+   "request": "exchange/rewrites/20261124/cohabitation-overtakes-marriage__bfb44f30_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/cohabitation-overtakes-marriage__bfb44f30_r1.answer.json"
   },
   {
-   "id": "feet-are-getting-bigger__cdd29c3f",
+   "id": "feet-are-getting-bigger__cdd29c3f_r1",
    "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-23T17:07:50Z",
+   "filed": "2026-11-24T12:25:42Z",
    "why": [
     "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Adds a new fact about width without a causal link to the previous beat, so it doesn't follow the story progression."
    ],
-   "request": "exchange/rewrites/20261123/feet-are-getting-bigger__cdd29c3f.request.json",
-   "answer_path": "exchange/rewrites/20261123/feet-are-getting-bigger__cdd29c3f.answer.json"
+   "request": "exchange/rewrites/20261124/feet-are-getting-bigger__cdd29c3f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/feet-are-getting-bigger__cdd29c3f_r1.answer.json"
   },
   {
-   "id": "flu-season-2024-25-worst-in-years__12da2331",
+   "id": "flu-season-2024-25-worst-in-years__12da2331_r1",
    "slug": "flu-season-2024-25-worst-in-years",
-   "filed": "2026-11-23T17:07:49Z",
+   "filed": "2026-11-24T12:25:42Z",
    "why": [
     "thesis: seg2 ('Flu shots') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: Introduces vaccination rates without a direct logical link from the previous beat about older adults, breaking the seque"
    ],
-   "request": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__12da2331.request.json",
-   "answer_path": "exchange/rewrites/20261123/flu-season-2024-25-worst-in-years__12da2331.answer.json"
+   "request": "exchange/rewrites/20261124/flu-season-2024-25-worst-in-years__12da2331_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/flu-season-2024-25-worst-in-years__12da2331_r1.answer.json"
   },
   {
-   "id": "normal-body-temperature-has-shifted__b9e452aa",
-   "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-23T14:43:37Z",
-   "why": [
-    "premise: brain: The hook is an abstract, passive statement (\"the old standard stayed fixed while bodies cooled\") with no personal stake, villain or surprise a viewer can picture, and it doesn't name the subject plainly, so it reads as a flat fun fact."
-   ],
-   "request": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__b9e452aa.request.json",
-   "answer_path": "exchange/rewrites/20261123/normal-body-temperature-has-shifted__b9e452aa.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__b61bd155",
+   "id": "runway-near-misses-climbing__b61bd155_r1",
    "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-23T14:43:35Z",
+   "filed": "2026-11-24T12:25:42Z",
    "why": [
     "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Introduces geographic clustering without directly following from the previous cause-focused beat"
    ],
-   "request": "exchange/rewrites/20261123/runway-near-misses-climbing__b61bd155.request.json",
-   "answer_path": "exchange/rewrites/20261123/runway-near-misses-climbing__b61bd155.answer.json"
-  },
-  {
-   "id": "right-whale-breeding-females__8388ea66",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-23T14:43:34Z",
-   "why": [
-    "thesis: seg0 ('Right Whale Population') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Focuses on total population size, not the specific calf count claimed in the headline.",
-    "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: While it mentions the 22 calves, it does not directly follow from the previous population fact and the previous beat did",
-    "thesis: seg2 ('Right Whale Mothers') does not continue the story of the headline ('Right Whales Went From 0 Calves To 22') — brain: Discusses breeding females, which does not directly support the calf count claim and doesn't logically follow from the c"
-   ],
-   "request": "exchange/rewrites/20261123/right-whale-breeding-females__8388ea66.request.json",
-   "answer_path": "exchange/rewrites/20261123/right-whale-breeding-females__8388ea66.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__55b96150",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-23T14:43:34Z",
-   "why": [
-    "premise: brain: The hook is vague and offers no concrete, picture‑able surprise or stakes, making the pitch too generic."
-   ],
-   "request": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__55b96150.request.json",
-   "answer_path": "exchange/rewrites/20261123/vinyl-beats-cd-sales-again__55b96150.answer.json"
+   "request": "exchange/rewrites/20261124/runway-near-misses-climbing__b61bd155_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/runway-near-misses-climbing__b61bd155_r1.answer.json"
   },
   {
    "id": "great-barrier-reef-bleaching-accelerating__497f2107",

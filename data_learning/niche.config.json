@@ -34177,7 +34177,7 @@
   {
    "slug": "vinyl-beats-cd-sales-again",
    "title": "Vinyl Became Music's Premium Physical Format Again",
-   "hook": "A supposedly dead format became music's premium physical product.",
+   "hook": "Vinyl now earns more than CDs, yet streaming still owns the market.",
    "closing": "Vinyl survived streaming by becoming a premium niche, not the mass market.",
    "question": "What record would you buy?",
    "caption": "In 2022, vinyl album sales passed CDs in America for the first time since 1987 -- but the twist is what it says about the entire music industry. Do you still own a CD? 👇",
@@ -34197,7 +34197,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-23T12:29:30Z",
+   "rewritten_at": "2026-11-24T12:25:42Z",
    "hook_was": "In 2022, vinyl beat CD sales for the first time since 1987.",
    "segments": [
     {
@@ -36651,9 +36651,9 @@
   },
   {
    "slug": "right-whale-breeding-females",
-   "title": "Right Whales Went From 0 Calves To 22",
-   "hook": "A species near collapse just produced a hopeful new generation.",
-   "closing": "Recovery depends on protecting the few mothers capable of rebuilding the species.",
+   "title": "Only 70 Right Whale Mothers Stand Between Recovery And Collapse",
+   "hook": "A hopeful calf rebound still depends on very few mothers.",
+   "closing": "The species can recover only if its small group of breeding females survives.",
    "question": "Can right whales recover?",
    "caption": "North Atlantic right whales hit a low of 358 in 2020 and have crept back to 384 — with 22 calves born this season versus zero in 2018. But fewer than 70 of them are breeding females. Did you know whales could go extinct? 👇",
    "hashtags": [
@@ -36670,7 +36670,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-23T12:29:30Z",
+   "rewritten_at": "2026-11-24T12:25:42Z",
    "hook_was": "The species almost went silent in 2018.",
    "segments": [
     {
@@ -36682,7 +36682,7 @@
      "insight_type": "trend",
      "role": "1 · THE TURN",
      "topic": "Right Whale Population",
-     "say": "Right whales reached 384 animals, a rebound that still leaves the entire species dangerously small.",
+     "say": "Right whales reached 384 animals, a rebound that still leaves the species dangerously small.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _rw_top(x, X0, L, WL, Hb):\n    q = clamp((x - X0) / L)\n    hump = Hb * (math.sin(math.pi * q) ** 0.75)\n    head = 26 * math.exp(-((q - 0.12) / 0.07) ** 2)\n    return WL - hump - head\n\n\ndef _rw_blow(cr, x, y, p):\n    if p <= 0 or p >= 1:\n        return\n    hgt = 230 * ease(min(1.0, p * 2.4))\n    a = 0.85 * (1.0 - p)\n    for sgn in (-1, 1):\n        ang = sgn * 0.33\n        tx, ty = x + math.sin(ang) * hgt, y - math.cos(ang) * hgt\n        wid = 16 + 70 * ease(min(1.0, p * 2.0))\n        nx, ny = math.cos(ang), math.sin(ang)\n        cr.move_to(x - 6 * nx, y - 6 * ny)\n        cr.curve_to(x - 10 * nx + (tx - x) * 0.5, y + (ty - y) * 0.5,\n                    tx - wid * 0.6 * nx, ty - wid * 0.3, tx, ty - wid * 0.4)\n        cr.curve_to(tx + wid * 0.6 * nx, ty - wid * 0.3,\n                    x + 10 * nx + (tx - x) * 0.5, y + (ty - y) * 0.5,\n                    x + 6 * nx, y + 6 * ny)\n        cr.close_path()\n        cr.set_source_rgba(*_c((240, 244, 248), a))\n        cr.fill()\n        glow(cr, tx, ty - wid * 0.2, wid, (240, 244, 248), a * 0.6)\n\n\ndef _rw_skiff(cr, x, y):\n    contact_shadow(cr, x + 160, y + 36, 380, a=0.35)\n    box(cr, x - 34, y - 6, 40, 74, (58, 60, 68), finish=\"metal\")\n    disc(cr, x - 14, y - 70, 9, (40, 40, 46), finish=\"metal\")\n    cr.move_to(x, y - 62)\n    cr.line_to(x + 320, y - 74)\n    cr.curve_to(x + 312, y, x + 284, y + 30, x + 252, y + 36)\n    cr.line_to(x + 42, y + 36)\n    cr.curve_to(x + 20, y + 22, x + 6, y - 18, x, y - 62)\n    cr.close_path()\n    solid(cr, (196, 70, 48))\n    seams(cr, x + 18, y - 52, x + 300, y + 30, (196, 70, 48), n=4, axis='h')\n    cr.rectangle(x, y - 76, 322, 12)\n    solid(cr, (226, 218, 202))\n    trim(cr, x + 60, y - 50, x + 150, y - 10, (226, 218, 202), w=5)\n    text(cr, \"NOAA\", x + 74, y - 18, 22, (240, 236, 226), face=\"bold\", shadow=False)\n    for i in range(6):\n        disc(cr, x + 30 + i * 52, y - 70, 5, (150, 150, 158), finish=\"metal\")\n    cr.set_source_rgba(*_c((232, 128, 44)))\n    cr.set_line_width(6)\n    for i in range(4):\n        cr.save()\n        cr.translate(x + 262, y - 84)\n        cr.scale(1, 0.4)\n        cr.arc(0, 0, 18 + i * 6, 0, 2 * math.pi)\n        cr.restore()\n        cr.stroke()\n    disc(cr, x + 200, y - 96, 16, (236, 120, 40))\n    cr.set_source_rgba(*_c((240, 246, 250), 0.6))\n    cr.set_line_width(4)\n    cr.move_to(x - 30, y + 40)\n    cr.curve_to(x + 100, y + 52, x + 220, y + 52, x + 340, y + 34)\n    cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a right whale surfacing\n    SUBSTANCE: the whale rising free\n    CAUSE: Data hauls the fishing rope off the whale, one haul per year, and it rises and blows\n    A North Atlantic right whale at dawn, black, finless, its head crusted\n    with pale callosities, wrapped in orange fishing rope. From a research\n    skiff Data hauls one rope off per year; as each comes free the whale\n    rises higher out of the sea and blows its V-shaped spout, and the far\n    pod of backs grows to that year's count. Done by 0.6, then held: the\n    whale breathes, a calf's flukes lift by the camera, Data holds the rope.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    a0, a1 = 0.08, 0.6\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    if u < a0:\n        pull = rise = drift = 0.0\n    else:\n        pull = ease(seg(f, 0.1, 0.45))\n        rise = ease(seg(f, 0.35, 0.8))\n        drift = ease(seg(f, 0.05, 0.5))\n    freed = 0.0 if u < a0 else k + rise\n    if k == 0 or u < a0:\n        val = rows[0][1]\n    else:\n        val = rows[k - 1][1] + (rows[k][1] - rows[k - 1][1]) * rise\n    landed_to = (k if rise >= 0.999 else k - 1) if u >= a0 else -1\n    shown = rows[landed_to] if landed_to >= 0 else None\n\n    HZ = 820\n    landscape(cr, t, \"coast\", horizon=HZ, time=\"dawn\", seed=\"right whale\", skyline=False)\n    vgrad(cr, [(0, (164, 178, 186)), (0.2, (78, 116, 146)), (1, (16, 42, 68))], HZ, H)\n    glow(cr, 300, HZ + 20, 320, (255, 210, 160), 0.3)\n\n    # the far pod: one back per ~16 whales, scattered, varied\n    cnt = val / 16.0\n    for i in range(30):\n        vis = clamp(cnt - i)\n        if vis <= 0:\n            continue\n        px = 40 + ((i * 0.6180339) % 1.0) * 1000\n        r = (i * 0.4142136) % 1.0\n        py = HZ + 24 + r * 90\n        s = 0.35 + 0.7 * r + 0.15 * ((i * 0.37) % 1.0)\n        cr.save()\n        cr.translate(px, py)\n        cr.scale(s, s)\n        cr.move_to(-40, 0)\n        cr.curve_to(-30, -22, 20, -24, 40, 0)\n        cr.close_path()\n        solid(cr, (34, 38, 46), a=vis, rim=False)\n        cr.restore()\n        if i % 4 == 0:\n            _rw_blow(cr, px - 20 * s, py - 14 * s, ((t * 0.5 + i * 0.29) % 1.0) * 0.9)\n    haze(cr, HZ, 1000, (180, 186, 190), a=0.35)\n\n    # wave crests drifting toward the camera\n    for i in range(70):\n        r = i % 10\n        y = HZ + 30 + (r / 9.0) ** 1.6 * 900\n        s = 0.3 + r / 9.0 * 1.7\n        x = ((i * 137 + t * 30 * s) % 1220) - 70\n        cr.set_source_rgba(*_c((206, 224, 236), 0.45))\n        cr.set_line_width(2 * s)\n        cr.move_to(x, y)\n        cr.curve_to(x + 12 * s, y - 5 * s, x + 24 * s, y - 5 * s, x + 36 * s, y)\n        cr.stroke()\n\n    # THE WHALE\n    X0, L, WL = 230.0, 760.0, 1190.0\n    bob = 6 * math.sin(t * 1.5) if u > a1 else 0.0\n    Hb = 100 + 52 * freed\n    WLb = WL + bob\n    cast_shadow(cr, X0 + 100, X0 + L, WL + 30, length=220, a=0.15)\n    cr.save()\n    cr.translate(X0 + L * 0.5, WL + 40)\n    cr.scale(1, 0.18)\n    cr.arc(0, 0, L * 0.56, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((10, 20, 30), 0.4))\n    cr.fill()\n    cr.move_to(X0 + L * 0.3, WL + 50)\n    cr.curve_to(X0 + L * 0.34, WL + 120, X0 + L * 0.42, WL + 140, X0 + L * 0.46, WL + 90)\n    cr.close_path()\n    cr.set_source_rgba(*_c((10, 20, 30), 0.35))\n    cr.fill()\n    cr.move_to(X0, WLb)\n    for i in range(1, 49):\n        x = X0 + L * i / 48\n        cr.line_to(x, _rw_top(x, X0, L, WLb, Hb))\n    cr.line_to(X0 + L, WLb)\n    cr.close_path()\n    solid(cr, (42, 46, 54))\n    # bowed mouth line, eye, callosities, scars\n    cr.set_source_rgba(*_c((150, 154, 160), 0.8))\n    cr.set_line_width(4)\n    cr.move_to(X0 + 8, WLb - 8)\n    cr.curve_to(X0 + 0.1 * L, _rw_top(X0 + 0.1 * L, X0, L, WLb, Hb) + 40,\n                X0 + 0.2 * L, _rw_top(X0 + 0.2 * L, X0, L, WLb, Hb) + 50,\n                X0 + 0.27 * L, WLb - 18)\n    cr.stroke()\n    disc(cr, X0 + 0.25 * L, WLb - 30, 6, (18, 18, 22))\n    for i in range(16):\n        x = X0 + L * (0.03 + 0.16 * ((i * 0.6180339) % 1.0))\n        y = _rw_top(x, X0, L, WLb, Hb) + 5 + 22 * ((i * 0.4142136) % 1.0)\n        disc(cr, x, y, 4 + 5 * ((i * 0.37) % 1.0), (218, 210, 190))\n    cr.set_source_rgba(*_c((120, 126, 134), 0.5))\n    cr.set_line_width(2)\n    for i in range(8):\n        x = X0 + L * (0.35 + 0.5 * ((i * 0.53) % 1.0))\n        y = _rw_top(x, X0, L, WLb, Hb) + 20 + 30 * ((i * 0.71) % 1.0)\n        cr.move_to(x, y)\n        cr.line_to(x + 26, y + 6)\n        cr.stroke()\n    # foam at the waterline\n    cr.set_source_rgba(*_c((236, 244, 248), 0.75))\n    cr.set_line_width(5)\n    cr.move_to(X0 - 30, WLb)\n    for i in range(1, 25):\n        x = X0 - 30 + (L + 60) * i / 24\n        cr.line_to(x, WLb + 4 * math.sin(i * 1.3 + t * 3))\n    cr.stroke()\n\n    # Data's skiff and the rope bands\n    bx = 110 + 110 * (min(k, n) + drift) * 3.0 / max(1, n) if u >= a0 else 110.0\n    if u > a1:\n        bx = 440.0\n    FY = 1464\n    DH = 300\n    dx = bx + 130\n    hx, hy = dx + 30, FY - 0.62 * DH\n    band_q = [0.38, 0.55, 0.72]\n    for j in range(3):\n        jj = min(j, n - 1)\n        p = 1.0 if (u >= a0 and j < k) else (pull if (u >= a0 and j == k) else 0.0)\n        if u > a1:\n            p = 1.0\n        if p >= 1.0:\n            continue\n        x = X0 + L * band_q[j]\n        ytop = _rw_top(x, X0, L, WLb, Hb)\n        ox, oy = (hx - x) * 0.45 * p, (hy - ytop) * 0.3 * p\n        cr.set_source_rgba(*_c((150, 70, 26), 1 - p))\n        cr.set_line_width(20)\n        cr.move_to(x - 18 + ox, WLb + oy)\n        cr.curve_to(x - 8 + ox, ytop + 40 + oy, x + ox, ytop + 10 + oy, x + 6 + ox, ytop + oy)\n        cr.stroke()\n        cr.set_source_rgba(*_c((236, 128, 44), 1 - p))\n        cr.set_line_width(13)\n        cr.move_to(x - 18 + ox, WLb + oy)\n        cr.curve_to(x - 8 + ox, ytop + 40 + oy, x + ox, ytop + 10 + oy, x + 6 + ox, ytop + oy)\n        cr.stroke()\n        if j == k and u >= a0:\n            cr.set_source_rgba(*_c((236, 128, 44)))\n            cr.set_line_width(6)\n            cr.move_to(hx, hy)\n            cr.curve_to(hx + (x - hx) * 0.4, hy + 60, x + ox - 40, ytop + oy - 10, x + 6 + ox, ytop + oy)\n            cr.stroke()\n\n    # the blow: after each rope comes free, and on every breath after\n    bhx = X0 + 0.24 * L\n    bhy = _rw_top(bhx, X0, L, WLb, Hb) + 4\n    if u >= a0 and u <= a1:\n        _rw_blow(cr, bhx, bhy, seg(f, 0.62, 1.0))\n    elif u > a1:\n        _rw_blow(cr, bhx, bhy, (t % 1.6) / 1.6)\n\n    _rw_skiff(cr, bx, FY + 56)\n\n    # right by the camera: a calf's flukes lift and sink\n    lift = math.sin(math.pi * ((t / 2.6) % 1.0))\n    FX, FW = 860, 1720\n    cr.save()\n    cr.rectangle(0, 0, W, FW + 2)\n    cr.clip()\n    ty = FW - 280 * lift\n    cr.move_to(FX - 30, FW + 10)\n    cr.curve_to(FX - 22, ty + 80, FX - 10, ty + 40, FX, ty + 20)\n    cr.curve_to(FX + 10, ty + 40, FX + 22, ty + 80, FX + 30, FW + 10)\n    cr.close_path()\n    solid(cr, (40, 44, 52))\n    cr.move_to(FX, ty + 30)\n    cr.curve_to(FX - 60, ty - 10, FX - 120, ty - 20, FX - 150, ty - 50)\n    cr.curve_to(FX - 100, ty - 20, FX - 40, ty + 10, FX, ty + 6)\n    cr.curve_to(FX + 40, ty + 10, FX + 100, ty - 20, FX + 150, ty - 50)\n    cr.curve_to(FX + 120, ty - 20, FX + 60, ty - 10, FX, ty + 30)\n    cr.close_path()\n    solid(cr, (40, 44, 52))\n    cr.restore()\n    cr.set_source_rgba(*_c((236, 244, 248), 0.7 * lift))\n    cr.set_line_width(5)\n    cr.save()\n    cr.translate(FX, FW + 4)\n    cr.scale(1, 0.25)\n    cr.arc(0, 0, 60 + 60 * lift, 0, 2 * math.pi)\n    cr.restore()\n    cr.stroke()\n\n    # the shore we watch from\n    cr.move_to(0, 1790)\n    for i in range(1, 13):\n        cr.line_to(W * i / 12, 1790 + 22 * math.sin(i * 1.7) - 10 * (i % 2))\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    solid(cr, (118, 108, 94))\n    foreground(cr, \"coast\", y0=1780)\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", dx, FY, DH)\n    elif u <= a1 + 0.02:\n        host(\"haul\", dx, FY, DH, beat=k)\n    else:\n        host(\"hold_up\", dx, FY, DH)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} right whales\", f\"left in the North Atlantic · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Right whales\", f\"North Atlantic, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -36694,7 +36694,7 @@
      "insight_type": "comparison",
      "role": "2 · FROM ZERO",
      "topic": "Right Whale Calves",
-     "say": "Right whales produced 22 calves, a rebound that proves recovery remains possible."
+     "say": "That small population produced 22 calves, showing recovery remains possible."
     },
     {
      "source": "offline",
@@ -36705,7 +36705,7 @@
      "insight_type": "share",
      "role": "3 · THE BOTTLENECK",
      "topic": "Right Whale Mothers",
-     "say": "Only 70 right whales are breeding females, so losing a few can stall recovery."
+     "say": "But only 70 right whales are breeding females, so losing a few can stall the comeback."
     }
    ]
   },
@@ -38655,7 +38655,7 @@
   {
    "slug": "normal-body-temperature-has-shifted",
    "title": "Body Temperature Fell Below The 98.6°F Standard",
-   "hook": "The old standard stayed fixed while human bodies cooled.",
+   "hook": "Your body may run cooler than the temperature everyone memorized.",
    "closing": "A single normal temperature cannot capture a body that changed across generations.",
    "question": "What's your resting temperature?",
    "hashtags": [
@@ -38709,7 +38709,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-23T12:29:30Z",
+   "rewritten_at": "2026-11-24T12:25:42Z",
    "hook_was": "The number everyone learned in school? It's wrong now."
   },
   {
@@ -39072,10 +39072,10 @@
   },
   {
    "slug": "us-stops-making-pennies-232-years",
-   "title": "The US Will Stop Making Pennies After 232 Years",
-   "hook": "After two centuries, the penny is being put to death.",
-   "closing": "The nickel loses even more money, so your pocket change may be next.",
-   "question": "Would you miss the penny at all?",
+   "title": "The Penny Is Ending, But The Nickel Loses Even More",
+   "hook": "America is killing its oldest coin to stop losing money.",
+   "closing": "The penny's long run ends because minting pocket change stopped making financial sense.",
+   "question": "Would you miss the penny?",
    "caption": "Making a penny costs 3.69 cents for something worth one. After 232 years, the US is finally pulling the plug — and the nickel loses even more. Would you miss it? 👇",
    "hashtags": [
     "penny",
@@ -39100,8 +39100,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · WHAT STOPPING IS WORTH",
-     "topic": "Pennies saving money",
-     "say": "Making pennies loses taxpayers about 86 million dollars a year. Ending it saves roughly two thirds of that."
+     "topic": "Penny Annual Loss",
+     "say": "Making pennies loses taxpayers 86 million dollars yearly, so ending production saves money."
     },
     {
      "source": "offline",
@@ -39112,8 +39112,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · HOW LONG IT RAN",
-     "topic": "Pennies lasted centuries",
-     "say": "Most dead coins went fast; the two-cent piece lasted just 9 years. The penny hung on for over two centuries."
+     "topic": "Penny Long Run",
+     "say": "That decision ends the penny's 232-year run, far longer than other discontinued coins."
     },
     {
      "source": "offline",
@@ -39123,13 +39123,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COIN THAT'S WORSE",
-     "topic": "Pennies versus nickels",
-     "say": "A nickel costs 13.78 cents to make, nearly three times its five-cent value. The penny wasn't even the worst."
+     "topic": "Nickel Bigger Loss",
+     "say": "Yet a nickel costs 13.78 cents to make, proving the penny was not the worst offender."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T10:18:44Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-24T12:25:42Z",
    "hook_was": "It costs more to make than it's worth — so they're done."
   },
   {
