@@ -86,7 +86,7 @@ def permalink_key(c: dict) -> str:
 # out is remembered for good; a failed download only after `DL_TRIES`.
 REFUSED = ROOT / "state" / "sports_refused.json"
 FOR_GOOD = ("too short: the post runs", "no sound", "not English",
-            "author: no setup or no payoff")
+            "author: no setup or no payoff", "someone else's edit")
 DL_TRIES = 2
 
 
@@ -171,6 +171,36 @@ def over_graphic(v: dict) -> bool:
     return ("text_over_source" in text or "over the source" in text
             or "banner" in text or "lower-third" in text
             or "lower third" in text or "scorebug" in text)
+
+
+def someone_elses_edit(ledger: dict | None) -> str:
+    """A post that is another channel's finished edit, not the moment
+    (2026-11-16: Keyshawn Bryant and Hutchinson went out as GTV-style
+    edits, their burned-in word captions under our line, two sets of text
+    on one clip). OCR read the footage's own words on screen while they
+    were said (`clip_edit.own_captions`), on the first cut, before any
+    repair turned our captions off. Refused for good."""
+    if (ledger or {}).get("own_captions"):
+        return ("someone else's edit: the footage already carries burned-in "
+                "captions of what is said")
+    return ""
+
+
+TALKING_HEAD_NOTES = (
+    "THIS CUT IS A TALKING HEAD: someone talks the whole time and nothing "
+    "they talk about is ever shown (2026-11-17: Carlisle calling LeBron an "
+    "AI machine posted as 32 seconds of two faces and no basketball). Cut "
+    "in what they talk about at the second they say it, the player, the "
+    "play, the game, and end on it. If nothing they talk about can be "
+    "shown, complete=false.")
+
+
+def talking_head(ledger: dict | None) -> bool:
+    """Someone talks the whole cut and nothing is cut in or played after
+    it: no cut-in and no montage. A clip that IS the game is not this."""
+    led = ledger or {}
+    return bool(led.get("talking")) and not led.get("cut_in") \
+        and not led.get("outro")
 
 
 def words_collide(v: dict) -> bool:
@@ -323,6 +353,25 @@ def main() -> int:
             continue
         row.update(title=meta["title"], hook=made.get("hook"),
                    ledger=made.get("ledger"))
+        theirs = someone_elses_edit(made.get("ledger"))
+        if theirs:
+            row["skipped"] = theirs
+            continue
+        if talking_head(made.get("ledger")):
+            try:
+                again = ss.make(c, info, mp4, notes=TALKING_HEAD_NOTES)
+            except Exception as e:  # noqa: BLE001
+                again = {"skipped": f"render failed: {type(e).__name__}"}
+            if (not again.get("skipped") and mp4.exists()
+                    and (again.get("meta") or {}).get("title")
+                    and not talking_head(again.get("ledger"))):
+                made, meta = again, again["meta"]
+                row.update(title=meta["title"], hook=made.get("hook"),
+                           ledger=made.get("ledger"))
+            else:
+                row["skipped"] = ("talking head: someone talks the whole "
+                                  "cut and nothing they talk about is shown")
+                continue
         said = " ".join(w["w"] for w in clip_edit_words(info))
         made_up = sports_scope.invented(meta["title"], c.get("post_title"),
                                         said)

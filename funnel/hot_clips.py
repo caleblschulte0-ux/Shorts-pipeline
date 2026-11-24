@@ -153,14 +153,22 @@ def _from_atom(xml: str) -> dict:
 
 def _rss(path: str, sub: str = SUB) -> dict | None:
     from funnel import media_funnel
-    import time as _t
-    import urllib.error
-    url = "https://www.reddit.com" + path.replace(".json?", ".rss?", 1)
+    tail = path.replace(".json?", ".rss?", 1)
     hdr = {"User-Agent": media_funnel._UA_REDDIT}
+    for host in ("https://www.reddit.com", "https://old.reddit.com"):
+        got = _rss_at(host + tail, hdr, sub)
+        if got is not None:
+            return got
+    return None
+
+
+def _rss_at(url: str, hdr: dict, sub: str) -> dict | None:
+    import time as _t
+    import urllib.error as urllib_error
     try:
         try:
             raw = _fetch(url, hdr)
-        except urllib.error.HTTPError as e:
+        except urllib_error.HTTPError as e:
             # Reddit answers a second feed request inside a few seconds
             # with 429 (backtest 20: the week listing answered, the month
             # one 429'd, and every other-side search was then skipped)
@@ -170,8 +178,9 @@ def _rss(path: str, sub: str = SUB) -> dict | None:
             raw = _fetch(url, hdr)
         got = _from_atom(raw.decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
-        print(f"::warning::[hot_clips] r/{sub} RSS failed "
-              f"({_err(e)})", flush=True)
+        print(f"::warning::[hot_clips] r/{sub} RSS failed at "
+              f"{urllib.parse.urlparse(url).netloc} ({_err(e)})",
+              flush=True)
         return None
     return got
 
@@ -186,9 +195,17 @@ def _pullpush(query: str | None, period: str, limit: int,
         q["q"] = query
     url = ("https://api.pullpush.io/reddit/search/submission/?"
            + urllib.parse.urlencode(q))
+    import urllib.error
     try:
-        data = json.loads(_fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
-                          .decode("utf-8", "replace"))
+        try:
+            raw = _fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
+        except urllib.error.HTTPError as e:
+            # a 429 is "wait", not "never": one wait before giving up
+            if e.code != 429:
+                raise
+            _t.sleep(min(float(e.headers.get("Retry-After") or 10), 20))
+            raw = _fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
+        data = json.loads(raw.decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] PullPush failed "
               f"({_err(e)})", flush=True)
@@ -197,6 +214,57 @@ def _pullpush(query: str | None, period: str, limit: int,
     if not isinstance(posts, list):
         return None
     return {"data": {"children": [{"data": p} for p in posts]}}
+
+
+def _arctic(period: str, limit: int, sub: str = SUB,
+            query: str | None = None) -> dict | None:
+    """Arctic Shift (a free, live public archive of Reddit) as Reddit's
+    own listing shape, most upvoted first. It lists by time only, so the
+    whole `period` is paged in (up to ARCTIC_PAGES x 100 posts) and ranked
+    here by score, then comments.
+
+    Added 2026-11-23: from 11-18 on the API 403'd, the feed 404/429'd and
+    PullPush 429'd on every sub, and Baller Bro posted nothing for six
+    days. A route that does not share Reddit's or PullPush's runner block
+    is the difference between a day of posts and none."""
+    import time as _t
+    after = int(_t.time() - _PERIOD_S.get(period, _PERIOD_S["week"]))
+    before, posts = None, []
+    for _ in range(ARCTIC_PAGES):
+        q = {"subreddit": sub, "after": after, "limit": 100, "sort": "desc"}
+        if before:
+            q["before"] = before
+        if query:
+            q["title"] = query
+        url = ("https://arctic-shift.photon-reddit.com/api/posts/search?"
+               + urllib.parse.urlencode(q))
+        try:
+            data = json.loads(_fetch(url, {"User-Agent":
+                                           "shorts-pipeline/1.0"})
+                              .decode("utf-8", "replace"))
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[hot_clips] r/{sub} Arctic Shift failed "
+                  f"({_err(e)})", flush=True)
+            if posts:
+                break
+            return None
+        page = data.get("data") if isinstance(data, dict) else None
+        if not isinstance(page, list) or not page:
+            break
+        posts += [p for p in page if isinstance(p, dict)]
+        oldest = min(float(p.get("created_utc") or 0) for p in page)
+        if len(page) < 100 or not oldest or oldest <= after:
+            break
+        before = int(oldest)
+    if not posts:
+        return None
+    posts.sort(key=lambda p: (-int(p.get("score") or 0),
+                              -int(p.get("num_comments") or 0)))
+    return {"data": {"children": [{"data": p} for p in posts[:max(
+        int(limit), 100)]]}}
+
+
+ARCTIC_PAGES = 10
 
 
 # A route that failed once is not asked again this run: the story pool
@@ -212,6 +280,8 @@ def _first(path: str, query: str | None, period: str,
     for name, fn in (("api", lambda: _get(path)),
                      ("pullpush", lambda: _pullpush(query, period, limit,
                                                     sub)),
+                     ("arctic", lambda: _arctic(period, limit, sub,
+                                                query)),
                      ("rss", lambda: _rss(path, sub))):
         if name in _DEAD:
             continue

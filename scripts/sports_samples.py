@@ -277,8 +277,10 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
                 edit.pop(key)
     if (edit.get("broll") and edit.get("show") and not notes) or not words:
         return edit
-    if raw is not None and not talking(raw, edit, dur,
-                                       work or raw.parent / "talk"):
+    if raw is not None:
+        edit["_talking"] = talking(raw, edit, dur,
+                                   work or raw.parent / "talk")
+    if raw is not None and not edit["_talking"]:
         print("[cut-in] the clip is the game itself — nothing cut in",
               flush=True)
         return edit
@@ -443,6 +445,20 @@ def not_english(info: dict) -> str:
     return sports_scope.not_english(raw, clip_edit.transcribe_words(raw))
 
 
+_NAME = re.compile(r"\b([A-Z][a-z'\u2019.\-]+(?:\s+[A-Z][a-z'\u2019.\-]+)+)")
+
+
+def who_in(c: dict) -> str:
+    """The person a post is about, from its own title, when no brain named
+    one: the first run of two or more capitalised words ("Keyshawn
+    Bryant", "Rick Carlisle"). Never the subreddit (2026-11-16/17: with
+    the picker down, `who` fell back to "nba" and the author anchored it
+    as "Nba: Keyshawn Bryant Jumps OVER..." on a posted title). "" when
+    the title names no one; an empty `who` anchors nothing."""
+    m = _NAME.search(str(c.get("post_title") or ""))
+    return m.group(1).strip() if m else ""
+
+
 def pick(pool: list[dict], n: int) -> list[dict]:
     pool = in_scope(pool)
     lines = [f"[{i}] r/{c['sub']} {c['upvotes']} {c['platform']} "
@@ -459,7 +475,7 @@ def pick(pool: list[dict], n: int) -> list[dict]:
                 any(o["url"] == c["url"] for o in out):
             continue
         per[c["sub"]] = per.get(c["sub"], 0) + 1
-        c["who"] = str(p.get("who") or "").strip() or c["sub"]
+        c["who"] = str(p.get("who") or "").strip() or who_in(c)
         c["why"] = str(p.get("why") or "").strip()
         c["story"] = str(p.get("story") or "").strip()
         out.append(c)
@@ -468,7 +484,7 @@ def pick(pool: list[dict], n: int) -> list[dict]:
         for c in sorted(pool, key=lambda c: -c["upvotes"]):
             if per.get(c["sub"], 0) < 1:
                 per[c["sub"]] = 1
-                out.append({**c, "who": c["sub"], "why": "most upvoted"})
+                out.append({**c, "who": who_in(c), "why": "most upvoted"})
     return out[: n * 2]         # spares for downloads that fail
 
 
@@ -856,11 +872,13 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     if meta and (meta.get("edit") or {}).get("complete") is False:
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
+    talk = None
     if meta and isinstance(meta.get("edit"), dict):
         trim_front(meta["edit"], words, dur)
         whole_thought(c, meta["edit"], words, dur)
         broll(c, words, dur, meta["edit"], raw,
               out_mp4.parent / "work" / out_mp4.stem, notes=notes)
+        talk = meta["edit"].pop("_talking", None)
         end_card(raw, meta["edit"], out_mp4.parent / "work" / out_mp4.stem)
         hold_length(meta["edit"], words, dur)
         # NO MUSIC UNDER THE CLIP (operator, 2026-10-28: "It played loud
@@ -888,8 +906,8 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
                                                "shot_plan", "outro",
                                                "cut_in", "shown",
-                                               "music")
-                       if k in led},
+                                               "music", "own_captions")
+                       if k in led} | {"talking": talk},
             "songs": songs_in(led)}
 
 
