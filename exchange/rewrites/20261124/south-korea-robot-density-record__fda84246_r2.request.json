@@ -1,0 +1,148 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "south-korea-robot-density-record__fda84246_r2",
+ "filed": "2026-11-24T12:28:14Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "south-korea-robot-density-record",
+ "current": {
+  "title": "South Korea Has 1,220 Robots For Every 10,000 Factory Workers",
+  "hook": "One country now has way more robot coworkers than people.",
+  "closing": "More robots than people, at least on that factory floor.",
+  "question": "Would a robot coworker worry you?",
+  "segments": [
+   {
+    "topic": "robots per factory worker, by country",
+    "say": "South Korea has 1,220 robots for every 10,000 factory workers — the most of any country. Singapore is a distant second, at 818."
+   },
+   {
+    "topic": "robot density, korea vs the us",
+    "say": "The US ranks eighth worldwide with 307 robots per 10,000 workers. Korea has nearly 4 times that many."
+   },
+   {
+    "topic": "robot density vs robot installs",
+    "say": "China installs more robots than anyone but ranks only 22nd in density, at 166. Density is what really changes a factory floor."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "robots per factory worker, by country",
+   "say": "South Korea has 1,220 robots for every 10,000 factory workers — the most of any country. Singapore is a distant second, at 818.",
+   "role": "1 · THE WORLD LEADER",
+   "data": {
+    "file": "robot_density_top_countries.json",
+    "unit": "robots per 10,000 workers",
+    "title": "Industrial robots per 10,000 manufacturing workers, top countries",
+    "points": [
+     {
+      "label": "South Korea",
+      "value": 1220
+     },
+     {
+      "label": "Singapore",
+      "value": 818
+     },
+     {
+      "label": "Germany",
+      "value": 449
+     },
+     {
+      "label": "Japan",
+      "value": 446
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "robot density, korea vs the us",
+   "say": "The US ranks eighth worldwide with 307 robots per 10,000 workers. Korea has nearly 4 times that many.",
+   "role": "2 · VS THE US",
+   "data": {
+    "file": "robot_density_korea_vs_us.json",
+    "unit": "robots per 10,000 workers",
+    "title": "Robot density: South Korea vs the United States",
+    "points": [
+     {
+      "label": "United States (ranks 8th)",
+      "value": 307
+     },
+     {
+      "label": "South Korea (ranks 1st)",
+      "value": 1220
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "robot density vs robot installs",
+   "say": "China installs more robots than anyone but ranks only 22nd in density, at 166. Density is what really changes a factory floor.",
+   "role": "3 · DENSITY VS VOLUME",
+   "data": {
+    "file": "robot_density_installs_vs_density.json",
+    "unit": "robots per 10,000 workers",
+    "title": "Most robots installed vs highest robot density",
+    "points": [
+     {
+      "label": "China (most robots installed, ranks 22nd in density)",
+      "value": 166
+     },
+     {
+      "label": "South Korea (highest density)",
+      "value": 1220
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "narration: beat 1 reads off 3 numbers: say one, and what it means",
+  "narration: beat 2 reads off 3 numbers: say one, and what it means",
+  "narration: beat 3 reads off 2 numbers: say one, and what it means"
+ ],
+ "reasons": [
+  "narration: beat 1 reads off 3 numbers: say one, and what it means",
+  "narration: beat 2 reads off 3 numbers: say one, and what it means",
+  "narration: beat 3 reads off 2 numbers: say one, and what it means"
+ ],
+ "judge": null,
+ "prior_rejection": [
+  "hook: new named entity not in the data: Korea's"
+ ],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261124/south-korea-robot-density-record__fda84246_r2.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

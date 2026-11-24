@@ -1,21 +1,23 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-24T12:25:43Z",
+ "updated": "2026-11-24T12:28:14Z",
  "open": [
   {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-24T12:25:43Z",
+   "id": "south-korea-robot-density-record__fda84246_r2",
+   "slug": "south-korea-robot-density-record",
+   "filed": "2026-11-24T12:28:14Z",
    "why": [
-    "premise: brain: The pitch is a generic survey of unrelated stats from different countries (India, Guinea-Bissau, Tanzania) with a vague 'attention gap' premise, no single concrete subject, and no specific surprise or contradiction a viewer can picture."
+    "narration: beat 1 reads off 3 numbers: say one, and what it means",
+    "narration: beat 2 reads off 3 numbers: say one, and what it means",
+    "narration: beat 3 reads off 2 numbers: say one, and what it means"
    ],
-   "request": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.request.json",
-   "answer_path": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.answer.json"
+   "request": "exchange/rewrites/20261124/south-korea-robot-density-record__fda84246_r2.request.json",
+   "answer_path": "exchange/rewrites/20261124/south-korea-robot-density-record__fda84246_r2.answer.json"
   },
   {
    "id": "cohabitation-overtakes-marriage__bfb44f30_r1",
    "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-24T12:25:42Z",
+   "filed": "2026-11-24T12:28:13Z",
    "why": [
     "thesis: seg2 ('Older adults living together') does not continue the story of the headline ('More Young Adults Live Together Than Get Married') — brain: Focuses on older adults, not young adults, and doesn't build on the previous point about young adult marriage trends."
    ],
@@ -25,7 +27,7 @@
   {
    "id": "feet-are-getting-bigger__cdd29c3f_r1",
    "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-24T12:25:42Z",
+   "filed": "2026-11-24T12:28:13Z",
    "why": [
     "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('British Feet Grew Two Shoe Sizes In 40 Years') — brain: Adds a new fact about width without a causal link to the previous beat, so it doesn't follow the story progression."
    ],
@@ -35,7 +37,7 @@
   {
    "id": "flu-season-2024-25-worst-in-years__12da2331_r1",
    "slug": "flu-season-2024-25-worst-in-years",
-   "filed": "2026-11-24T12:25:42Z",
+   "filed": "2026-11-24T12:28:13Z",
    "why": [
     "thesis: seg2 ('Flu shots') does not continue the story of the headline ('710,000 Hospital Visits: Last Flu Season Was Brutal') — brain: Introduces vaccination rates without a direct logical link from the previous beat about older adults, breaking the seque"
    ],
@@ -43,9 +45,29 @@
    "answer_path": "exchange/rewrites/20261124/flu-season-2024-25-worst-in-years__12da2331_r1.answer.json"
   },
   {
+   "id": "great-barrier-reef-bleaching-accelerating__497f2107_r1",
+   "slug": "great-barrier-reef-bleaching-accelerating",
+   "filed": "2026-11-24T12:28:13Z",
+   "why": [
+    "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261124/great-barrier-reef-bleaching-accelerating__497f2107_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/great-barrier-reef-bleaching-accelerating__497f2107_r1.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__67bee527_r1",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-11-24T12:28:13Z",
+   "why": [
+    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261124/index-funds-own-corporate-america__67bee527_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/index-funds-own-corporate-america__67bee527_r1.answer.json"
+  },
+  {
    "id": "runway-near-misses-climbing__b61bd155_r1",
    "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-24T12:25:42Z",
+   "filed": "2026-11-24T12:28:13Z",
    "why": [
     "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('The FAA Logged 23 Serious Runway Near-Misses In One Year') — brain: Introduces geographic clustering without directly following from the previous cause-focused beat"
    ],
@@ -53,107 +75,35 @@
    "answer_path": "exchange/rewrites/20261124/runway-near-misses-climbing__b61bd155_r1.answer.json"
   },
   {
-   "id": "great-barrier-reef-bleaching-accelerating__497f2107",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-23T14:43:33Z",
+   "id": "frog-fungus-mass-extinction__609ffc7e_r1",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-24T12:28:12Z",
    "why": [
-    "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
+    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or threat beyond generic numbers, making it insufficiently compelling."
    ],
-   "request": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__497f2107.request.json",
-   "answer_path": "exchange/rewrites/20261123/great-barrier-reef-bleaching-accelerating__497f2107.answer.json"
+   "request": "exchange/rewrites/20261124/frog-fungus-mass-extinction__609ffc7e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/frog-fungus-mass-extinction__609ffc7e_r1.answer.json"
   },
   {
-   "id": "womens-college-hoops-out-rates-men__d9a59e0a",
-   "slug": "womens-college-hoops-out-rates-men",
-   "filed": "2026-11-23T14:43:33Z",
-   "why": [
-    "story: fatal: invented_fact, unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__d9a59e0a.request.json",
-   "answer_path": "exchange/rewrites/20261123/womens-college-hoops-out-rates-men__d9a59e0a.answer.json"
-  },
-  {
-   "id": "cruise-ship-outbreaks-climbing__c4fe8077",
-   "slug": "cruise-ship-outbreaks-climbing",
-   "filed": "2026-11-23T14:43:32Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that gives viewers a clear stakes or contradiction to anticipate."
-   ],
-   "request": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__c4fe8077.request.json",
-   "answer_path": "exchange/rewrites/20261123/cruise-ship-outbreaks-climbing__c4fe8077.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__59561cc2",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-11-23T14:43:32Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that viewers can picture; it merely states a correlation without a specific, compelling angle."
-   ],
-   "request": "exchange/rewrites/20261123/divorce-rate-quiet-decline__59561cc2.request.json",
-   "answer_path": "exchange/rewrites/20261123/divorce-rate-quiet-decline__59561cc2.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__0e97d62e",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-11-23T14:43:32Z",
-   "why": [
-    "story: fatal: invented_fact — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261123/usps-mail-volume-collapse__0e97d62e.request.json",
-   "answer_path": "exchange/rewrites/20261123/usps-mail-volume-collapse__0e97d62e.answer.json"
-  },
-  {
-   "id": "south-korea-robot-density-record__fda84246_r1",
-   "slug": "south-korea-robot-density-record",
-   "filed": "2026-11-23T12:29:30Z",
-   "why": [
-    "narration: beat 1 reads off 3 numbers: say one, and what it means",
-    "narration: beat 2 reads off 3 numbers: say one, and what it means",
-    "narration: beat 3 reads off 2 numbers: say one, and what it means"
-   ],
-   "request": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246_r1.request.json",
-   "answer_path": "exchange/rewrites/20261123/south-korea-robot-density-record__fda84246_r1.answer.json"
-  },
-  {
-   "id": "autism-diagnosis-rate-rise__cf7356de",
-   "slug": "autism-diagnosis-rate-rise",
-   "filed": "2026-11-22T16:28:08Z",
-   "why": [
-    "premise: brain: The hook is vague and doesn’t promise a concrete, picture‑able surprise or stake for the viewer"
-   ],
-   "request": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.request.json",
-   "answer_path": "exchange/rewrites/20261122/autism-diagnosis-rate-rise__cf7356de.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__67bee527",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-11-22T16:28:08Z",
-   "why": [
-    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.request.json",
-   "answer_path": "exchange/rewrites/20261122/index-funds-own-corporate-america__67bee527.answer.json"
-  },
-  {
-   "id": "tattoo-mainstream-shift__f7fc7a74",
+   "id": "tattoo-mainstream-shift__f7fc7a74_r1",
    "slug": "tattoo-mainstream-shift",
-   "filed": "2026-11-20T14:27:20Z",
+   "filed": "2026-11-24T12:28:12Z",
    "why": [
     "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Does not logically follow from beat 0; it's just another statistic, not a consequence.",
     "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('A Third Of Americans Are Now Tattooed') — brain: Does not directly support the headline claim about overall tattoo prevalence."
    ],
-   "request": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.request.json",
-   "answer_path": "exchange/rewrites/20261120/tattoo-mainstream-shift__f7fc7a74.answer.json"
+   "request": "exchange/rewrites/20261124/tattoo-mainstream-shift__f7fc7a74_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/tattoo-mainstream-shift__f7fc7a74_r1.answer.json"
   },
   {
-   "id": "frog-fungus-mass-extinction__609ffc7e",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-20T13:11:33Z",
+   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1",
+   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+   "filed": "2026-11-24T12:23:26Z",
    "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or threat beyond generic numbers, making it insufficiently compelling."
+    "premise: brain: The pitch is a generic survey of unrelated stats from different countries (India, Guinea-Bissau, Tanzania) with a vague 'attention gap' premise, no single concrete subject, and no specific surprise or contradiction a viewer can picture."
    ],
-   "request": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.request.json",
-   "answer_path": "exchange/rewrites/20261120/frog-fungus-mass-extinction__609ffc7e.answer.json"
+   "request": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.request.json",
+   "answer_path": "exchange/rewrites/20261124/india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1.answer.json"
   },
   {
    "id": "richest-americans-live-14-years-longer__ff249bfc_r1",
