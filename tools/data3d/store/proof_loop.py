@@ -37,7 +37,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STORIES = HERE.parent / "stories"
-CHECKS = re.compile(r"^(VARIETY|FRAMING|STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|HANDS|BOARD|POP|HOLD|READ|FAR|EMPTY|SHOT|Traceback|\w*Error)")
+CHECKS = re.compile(r"^(VARIETY|FRAMING|STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|STEADY|HANDS|BOARD|POP|HOLD|READ|FAR|EMPTY|SHOT|Traceback|\w*Error)")
 PASS = int(re.search(r"^PASS_SCORE = (\d+)", (HERE / "judge3d.py").read_text(), re.M).group(1))   # the judge's own bar, read, never restated
 
 

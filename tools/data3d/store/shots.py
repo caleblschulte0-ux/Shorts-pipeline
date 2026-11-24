@@ -14,6 +14,7 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
   ending      the last shot ends ON its payoff, never a pull-back to a wide frame
   twitch      no bone whips, no face control pops
   face lint   a worried / alarmed / surprised / sad / wry / determined face never turns into a smile (store/facelint.py)
+  steady      faces held, the head at a person's speed and at rest between looks, no leg through the coat (store/steady.py)
   pop / hold  no move jumps between proof frames, glides on planted feet or leaps without air time; no pose held over
               0.8 s (store/motion.py); a fast move's in-between frames go into a proof render (inbetween.json)
   read        his pose changes big enough to see on the judge's phone-sized sheet: no still stretch over 1 s on
@@ -253,6 +254,7 @@ def near_hand(data, p):
 def load_data():
     import character as CH
     CH.Data.PALM = variety.held(STORY)          # a held story puts his PALM on every job (character.Data.PALM)
+    CH.Data.SHOT_LEN = DUR                      # the cut: his last face is held to it (character.face_plan)
     return CH.load(sc)
 
 
@@ -319,6 +321,10 @@ if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING",
 import facelint   # a face that is not a smile never turns into one (2026-11-14, saffron shot 4: "the opposite emotion")
 if not facelint.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the face lint: a worried / alarmed / sad / wry face smiles inside its own window")
+import steady     # ONE real person (caaleb 2026-11-23, lightning: "changing emotions too often ... his head moves really fast
+                  # ... his legs are kind of glitching out of his coat"): faces held, head at a person's speed, coat on the legs
+if not steady.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the steady check: a face flickers, his head whips or never rests, or a leg pokes through his coat")
 import motion     # POP, HOLD and FAR (the lightning rough cut, 2026-11-20: "good not great, clearly there are large scale
                   # issues"): a teleport between proof frames, a pose held two seconds, the event far from him (store/motion.py)
 _bind = fresh.held(STORY); _nb = "" if _bind else " (not binding: grandfathered)"

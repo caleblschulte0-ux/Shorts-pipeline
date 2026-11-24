@@ -42,6 +42,10 @@ def face_case(clear):
     return facelint.check(d, n, name="probe")
 
 
+# These two cases key faces straight from the calls, in call order (the raw path). Since 2026-11-23 a shot's faces are
+# CAST in finish() (character.face_plan: one held face per feeling, keyed in time order), which cannot produce either
+# defect; the cases switch the cast off so the lint and the keying fixes stay held on the path that could.
+_steady = CH.STEADY; CH.STEADY = False
 OUT["face_lint_with_fix"] = face_case(True)
 OUT["face_lint_without_fix"] = face_case(False)
 
@@ -61,6 +65,7 @@ def hook_case(rekey_starts):
 
 OUT["hook_with_fix"] = hook_case(True)
 OUT["hook_without_fix"] = hook_case(False)
+CH.STEADY = _steady
 
 # ---------------------------------------------------------------- 2. one-sided face: the state reads back, wry is lopsided
 sc = fresh(); d = data_in(sc)

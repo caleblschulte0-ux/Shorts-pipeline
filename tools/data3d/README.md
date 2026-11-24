@@ -104,3 +104,25 @@ music bed sits at `MUSIC_BED_3D` in `story/assemble.py`, under the 2D explainer'
    (`JUDGE3D_BOARD=1`). Fix until it passes. Minutes, not the 40 a proof costs.
 3. **Proofs in parallel, in CI:** push the render trigger; `data3d_render.yml` proofs all shots at once and its
    judge must pass before a single full frame renders. Don't proof shot after shot on one machine.
+
+## One real person (caaleb 2026-11-23, of the lightning short)
+
+"He's doing too much. He's changing emotions too often. He's twidgeting too fast. His legs are glitching out of his
+coat. His head moves really fast ... Not that I'm saying we need to make him less reactive." The rig now makes him
+that way, and `store/steady.py` (every shot, after the face lint; FAIL under `STAGING=strict`, `STEADY` lines in
+proof_loop) holds it:
+- **Faces are CAST, not keyed.** A shot's `expression()` calls are what it ASKS for; `finish()` casts the faces he
+  shows (`face_plan`): each held `FACE_HOLD` (1.5 s), at most `FACE_MAX` starting in any `FACE_WINDOW`, each blended in
+  over `FACE_BLEND`, changing only on a moment the shot asked for a change. Surprised/alarmed/surprised/alarmed is ONE
+  shock.
+- **Looks are cast too** (`look_plan`): head turns land at least `LOOK_GAP` apart; a look asked sooner is a glance of
+  the eyes. The head, neck, chest and spine FOLLOW the asked pose at a person's speed and settle (`head_follow`,
+  `HEAD_LIMITS`), and the neck soaks up the body's jolts so the head rides smooth through a hop or a stagger
+  (`gaze_steady`). A held pose drifts low and slow (`LIFE_AMP`, `LIFE_SLOW`).
+- **The coat rides the legs** (`coat_weights`), the legs are solved at their rest roll (they were turned over, which
+  spun the coat round the thigh), and what is sewn on it rides its surface (`COAT_SEWN`, Surface Deform, sliced every
+  `SEW_STEP`).
+Lightning as posted vs the same shots built now: faces 4-8 -> 2-3 a shot; head 141-310 -> 60-103 deg/s; head jitter
+73-97% -> 16-50% of frames; coat 57-180 -> 0-11 frames. `DATA_STEADY=0` builds the old way.
+`tests/test_data3d_steady.py`.
+

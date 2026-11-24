@@ -30,6 +30,265 @@ PROFILE_FIX = os.environ.get('PROFILE_FIX', '1') == '1'
 EYE_CAP_DEG = 50     # the eyeball is a cap this many degrees off its front; its rim sits ~3 cm inside the head
 
 
+# THE COAT FOLLOWS HIS LEGS (caaleb 2026-11-23, of the lightning short: "his legs are kind of glitching out of his
+# coat"). The coat was skinned to his hips and spine only, so a leg that swung forward or back, a hop, a crouch or a sit
+# drove the thigh straight through its front or back wall (measured on the rig: a 35 deg stride put 2 cm of thigh through
+# the coat, a 60 deg step 3 cm, a sit 2.5 cm). Its skirt now rides the legs like a coat's: below the hip line each side
+# goes with its own thigh (the middle shared), eased up into the body. The front follows higher than the back, so a
+# thigh lifted to sit carries the front over the lap while the back stays on the seat. Weights in rig units (z up, -y
+# front, the hips at z 1.25, x +-0.261). The coat's shape at rest is unchanged: these are only how it moves.
+COAT_LEGS = (1.50, 1.70, 1.05, 1.20)   # full leg below / none above: the front (1.50, 1.70), the back (1.05, 1.20)
+COAT_MID = 0.18                         # rig units either side of the middle where the two legs share the coat
+SEW_STEP = 0.02     # rig units (2 cm on the model): how finely a sewn part is sliced up its height so it bends with the coat's folds
+COAT_SEWN = ('Coat button', 'Coat center seam', 'Pocket', 'Pen')   # sewn on the coat: they ride its skin, not the chest
+
+
+def _sstep(u):
+    u = max(0.0, min(1.0, u)); return u * u * (3 - 2 * u)
+
+
+def coat_weights(p):
+    """{bone: weight} for a point of the coat (rig units, rest pose): the body's share by height (root / spine / chest),
+    and below the hip line its own thigh's share. Pure: tests read it without a scene."""
+    z = p[2]; w = {'root': 0.0, 'spine': 0.0, 'chest': 0.0}
+    if z < 1.45: w['root'] = 1.0
+    elif z < 1.75: u = (z - 1.45) / 0.3; w['root'] = 1 - u; w['spine'] = u
+    elif z < 2.0: w['spine'] = 1.0
+    elif z < 2.3: u = (z - 2.0) / 0.3; w['spine'] = 1 - u; w['chest'] = u
+    else: w['chest'] = 1.0
+    zff, ztf, zfb, ztb = COAT_LEGS
+    back = _sstep((p[1] + 0.1) / 0.2)
+    zf, zt = zff + (zfb - zff) * back, ztf + (ztb - ztf) * back
+    leg = 0.0 if z >= zt else _sstep((zt - z) / (zt - zf))
+    if leg > 0:
+        r = max(0.0, min(1.0, 0.5 + p[0] / (2 * COAT_MID)))
+        w = {k: v * (1 - leg) for k, v in w.items()}
+        w['leg.R'] = leg * r; w['leg.L'] = leg * (1 - r)
+    return w
+
+
+STEADY = os.environ.get("DATA_STEADY", "1") == "1"   # cast faces and human head speed (face_plan, head_follow); 0 only to compare
+FACE_HOLD = 1.5        # s: the least a face he shows is held (lightning: 0.07-1.2 s)
+FACE_HOLD_CUT = 0.5    # s: ... the first and last of a shot, which a cut bounds (the face he walks in with before the
+                       # first bolt, the gulp the beat ends on): long enough to read, and the cut, not he, ends it
+FACE_WINDOW, FACE_MAX = 6.0, 3   # at most this many faces START in any FACE_WINDOW seconds (lightning: 6-8 in a 4-5 s beat)
+FACE_OPEN = 0.2        # s: the face a shot opens on, before its first reason (a bolt at 0.23 s): the reaction must
+                       # not start before the thing it reacts to, so the face before it may be short
+FACE_BLEND = 0.25      # s: the least a face takes to arrive (lightning: 0.06-0.12 s, a pop)
+FACE_KIN = {'surprised': 'shock', 'alarmed': 'shock', 'worried': 'low', 'sad': 'low', 'happy': 'up', 'pleased': 'up',
+            'determined': 'set', 'angry': 'set'}
+KIN_SHARE, REST_SHARE, CHANGE_COST = 0.6, 0.2, 3.0
+
+
+def _face_sim(a, b):
+    if a == b: return 1.0
+    if FACE_KIN.get(a) and FACE_KIN.get(a) == FACE_KIN.get(b): return KIN_SHARE
+    if 'neutral' in (a, b): return REST_SHARE
+    return 0.0
+
+
+def face_plan(asked, T, fps=None, hold=FACE_HOLD, hold_cut=FACE_HOLD_CUT, hold_open=FACE_OPEN, window=FACE_WINDOW, most=FACE_MAX,
+              blend_min=FACE_BLEND):
+    """the faces he SHOWS, from the faces a shot ASKED for. asked: [(name, blend start, t0, t1 or None, blend)] in call
+    order (the latest call owns a moment, as expression() always did); T: the shot's length in seconds. Returns
+    [(name, blend start, t0, None, blend)]: a face changes only where the shot asked for a change (its reason), every
+    face is held at least `hold` (the last, which the cut ends, `hold_cut`; the one it opens on, before the first
+    reason, `hold_open`), at most `most` start in any `window` seconds, and each stretch
+    shows the face asked for most of it (a kin face, shock for shock, counting KIN_SHARE). Pure."""
+    fps = fps or FPS
+    nf = max(1, int(round(T * fps)) + 1)
+    if not asked: return []
+    at = []
+    for f in range(nf):
+        t = f / fps; who = None
+        for i, (nm, ta, t0, t1, bl) in enumerate(asked):
+            if ta - 1e-6 <= t <= (math.inf if t1 is None else t1 + bl): who = i
+        at.append(who)
+    if any(w is not None for w in at):        # between two asks he keeps the face he has (he does not go blank), and
+        first = next(w for w in at if w is not None)          # before the first ask he already wears it
+        for f in range(nf):
+            if at[f] is None: at[f] = first if f == 0 or at[f - 1] is None else at[f - 1]
+    names = [('neutral' if w is None else asked[w][0]) for w in at]
+    kin = [FACE_KIN.get(m, m) for m in names]       # a shock that flickers surprised / alarmed is ONE shock: it changes
+    cand = [0] + [f for f in range(1, nf) if kin[f] != kin[f - 1]]     # where the feeling does
+    H = int(round(hold * fps)); HC = int(round(hold_cut * fps)); HO = int(round(hold_open * fps)); Wn = window * fps
+    pool = sorted(set(names))
+    cum = {m: [0.0] for m in pool}
+    for f in range(nf):
+        for m in pool: cum[m].append(cum[m][-1] + _face_sim(m, names[f]))
+    def seg(a, b):
+        return max(((cum[m][b] - cum[m][a], m) for m in pool), key=lambda x: (x[0], x[1] == names[a]))
+    blends = {f: int(math.ceil(max(blend_min, asked[at[f]][4] if at[f] is not None else 0.0) * fps)) for f in cand}
+    import functools
+    @functools.lru_cache(maxsize=None)
+    def best(i, hist):
+        """the best score from kept change cand[i] (hist: the kept starts before it, newest last, at most most-1)"""
+        s = cand[i]; out = None
+        B = 0 if s == 0 else blends[s]                     # a face is HELD from when it has arrived
+        if nf - s >= HC + B or s == 0:
+            sc_, nm = seg(s, nf); out = (sc_, ((s, nm),))
+        h2 = (hist + (s,))[-(most - 1):] if most > 1 else ()
+        for j in range(i + 1, len(cand)):
+            e = cand[j]
+            if e - s < (HO if s == 0 else H + B): continue
+            if most >= 1 and len(hist) >= most - 1 and hist and e - (hist + (s,))[-most] <= Wn: continue
+            r = best(j, h2)
+            if r is None: continue
+            sc_, nm = seg(s, e)
+            v = (sc_ + r[0] - CHANGE_COST, ((s, nm),) + r[1])
+            if out is None or v[0] > out[0]: out = v
+        return out
+    picked = best(0, ())[1]
+    plan = []
+    for k, (s, nm) in enumerate(picked):
+        if k == 0:
+            plan.append((nm, -blend_min, 0.0, None, blend_min)); continue
+        w = at[s]
+        ta = asked[w][1] if w is not None else s / fps          # the moment the shot asked for a change: the reason
+        bl = max(blend_min, asked[w][4] if w is not None else 0.0)
+        ta = max(ta, plan[-1][2])
+        plan.append((nm, ta, ta + bl, None, bl))
+    return plan
+
+
+# THE HEAD MOVES AT A PERSON'S SPEED (same note: "his head moves really fast"). Measured on the lightning shots: the
+# head whipped round at up to ~310 deg/s (a look keyed 0.08 s after the last, 40 deg away), with every face change
+# adding a body take on top. Every bone that carries the head is FOLLOWED, not keyed: it chases the pose the shot asked
+# for at no more than its top speed (deg/s), speeding up and slowing down at no more than its acceleration (deg/s^2),
+# so a turn eases in, travels and settles on its mark, never overshooting. Head + neck + chest + spine together stay
+# under a person's quick look (155 deg/s, all four turning one way at once); a small drift is untouched.
+LIFE_AMP, LIFE_SLOW = 0.5, 1.8   # a held pose's drift: half as big, 1.8x as slow (alive())
+HEAD_LIMITS = {'head': (70.0, 500.0), 'neck': (35.0, 300.0), 'chest': (25.0, 250.0), 'spine': (25.0, 250.0)}   # sum 155: store/steady.py HEAD_MAX
+
+
+def _qmul(a, b):
+    aw, ax, ay, az = a; bw, bx, by, bz = b
+    return (aw * bw - ax * bx - ay * by - az * bz, aw * bx + ax * bw + ay * bz - az * by,
+            aw * by - ax * bz + ay * bw + az * bx, aw * bz + ax * by - ay * bx + az * bw)
+
+
+def _qrv(v):
+    """the unit quaternion of a rotation vector (radians)"""
+    a = math.sqrt(sum(x * x for x in v))
+    if a < 1e-12: return (1.0, 0.0, 0.0, 0.0)
+    s = math.sin(a / 2) / a; return (math.cos(a / 2), v[0] * s, v[1] * s, v[2] * s)
+
+
+def head_follow(comps, vmax, amax, fps=None):
+    """comps: four per-frame lists (w, x, y, z) of a bone's rotation. Returns them FOLLOWED: each frame turns toward
+    the asked rotation at most vmax deg/s, changing speed by at most amax deg/s^2, braking in time to stop on it, so a
+    turn eases in, travels and settles, never overshooting. Pure python: the tests run it without Blender."""
+    fps = fps or FPS; n = len(comps[0])
+    if n < 3: return comps
+    dt = 1.0 / fps; V = math.radians(vmax); A = math.radians(amax)
+    def unit(q):
+        l = math.sqrt(sum(x * x for x in q)) or 1.0; return tuple(x / l for x in q)
+    tg = [unit(tuple(comps[i][k] for i in range(4))) for k in range(n)]
+    q = tg[0]; w = (0.0, 0.0, 0.0); out = [q]
+    for k in range(1, n):
+        t = tg[k]
+        if sum(a * b for a, b in zip(q, t)) < 0: t = tuple(-x for x in t)
+        d = _qmul(t, (q[0], -q[1], -q[2], -q[3]))            # parent-space turn from q to t
+        sv = math.sqrt(d[1] ** 2 + d[2] ** 2 + d[3] ** 2); ang = 2 * math.atan2(sv, d[0])
+        err = tuple(c / sv * ang for c in d[1:]) if sv > 1e-12 else (0.0, 0.0, 0.0)
+        a_ = A * dt * dt                                       # per frame: the most the step may grow or shrink by
+        want = min(V * dt, (-a_ + math.sqrt(a_ * a_ + 8 * a_ * ang)) / 2) / dt   # the fastest it can go and still stop
+        vdes = tuple(e / ang * want for e in err) if ang > 1e-9 else (0.0, 0.0, 0.0)   # on the mark, frame by frame
+        dv = tuple(a - b for a, b in zip(vdes, w)); dl = math.sqrt(sum(x * x for x in dv))
+        if dl > A * dt: dv = tuple(x * A * dt / dl for x in dv)
+        w = tuple(a + b for a, b in zip(w, dv))
+        step = tuple(x * dt for x in w)
+        if ang > 1e-9 and math.sqrt(sum(x * x for x in step)) > ang and sum(a * b for a, b in zip(step, err)) > 0:
+            step = err; w = tuple(x / dt for x in err)       # land on it, no overshoot
+        q = unit(_qmul(_qrv(step), q))
+        if sum(a * b for a, b in zip(q, out[-1])) < 0: q = tuple(-x for x in q)
+        out.append(q)
+    return [[o[i] for o in out] for i in range(4)]
+
+
+
+GAZE_SIG, GAZE_HOLD, GAZE_CAP, GAZE_EASE = 8.0, 0.85, 18.0, 2.0   # frames, share, degrees, frames: the neck soaks up the body's bob (gaze_steady)
+
+
+def _qinv(q): return (q[0], -q[1], -q[2], -q[3])
+
+
+def _qang_(a, b):
+    d = abs(sum(x * y for x, y in zip(a, b))); return math.degrees(2 * math.acos(min(1.0, d)))
+
+
+def gaze_steady(world, sig=GAZE_SIG, hold=GAZE_HOLD, cap=GAZE_CAP, ease=GAZE_EASE):
+    """THE NECK STEADIES THE HEAD (caaleb 2026-11-23: "he's twidgeting too fast ... his head moves really fast"). A
+    person's neck counters the bob of a hop, a stagger, a stride, so the head (and the gaze) rides smooth while the body
+    jolts; Data's head was bolted to his chest and shook with every one (lightning: the head's turn in the world off its
+    own 1 s course by 26-45 deg/s at the median). world: per-frame unit quaternions (w, x, y, z) of the head in the
+    world. Returns the per-frame WORLD correction (a quaternion to put in front) that takes `hold` of the way to the
+    head's own low-passed course (Gaussian, `sig` frames), at most `cap` degrees: a deliberate turn, slower than the
+    jolt, passes through; the jolt is soaked up. The correction is itself low-passed (`ease` frames), so the neck never
+    snaps: it moves like a neck, not like a gimbal. Pure."""
+    n = len(world)
+    if n < 3: return [(1.0, 0.0, 0.0, 0.0)] * n
+    qs = [tuple(world[0])]
+    for q in world[1:]:
+        q = tuple(q); qs.append(q if sum(a * b for a, b in zip(q, qs[-1])) >= 0 else tuple(-x for x in q))
+    comps = [_gauss([q[i] for q in qs], sig) for i in range(4)]
+    out = []
+    for k in range(n):
+        t = tuple(c[k] for c in comps); l = math.sqrt(sum(x * x for x in t)) or 1.0; t = tuple(x / l for x in t)
+        d = _qmul(t, _qinv(qs[k]))                                     # world turn from where it is to its course
+        if d[0] < 0: d = tuple(-x for x in d)
+        sv = math.sqrt(d[1] ** 2 + d[2] ** 2 + d[3] ** 2); ang = 2 * math.atan2(sv, d[0])
+        if sv < 1e-12: out.append((1.0, 0.0, 0.0, 0.0)); continue
+        a = min(ang * hold, math.radians(cap))
+        out.append(_qrv(tuple(c / sv * a for c in d[1:])))
+    if ease:
+        cs = [_gauss([q[i] for q in out], ease) for i in range(4)]
+        out = []
+        for k in range(n):
+            q = tuple(c[k] for c in cs); l = math.sqrt(sum(x * x for x in q)) or 1.0; out.append(tuple(x / l for x in q))
+    return out
+
+LOOK_GAP = 0.8        # s between the moments two head turns arrive (lightning: looks asked 0.35-0.45 s apart, the head
+                      # always on its way somewhere). A look asked sooner is a glance: the eyes go, the head stays
+LOOK_SMALL = 6.0      # degrees: a turn this small is not worth a head move of its own either
+
+
+def look_plan(dirs, T, gap=LOOK_GAP, small=LOOK_SMALL, fps=None):
+    """which asked looks he turns his HEAD for. dirs: [(t, (yaw, tilt))] by time, each the moment a look arrives and
+    where it points. Keeps a set whose arrivals are at least `gap` apart that leaves his head as close as it can to
+    where the shot asked it to point, over the whole shot (degrees off, frame by frame), each kept turn costing a
+    little, so a flick there and back inside `gap` is one held look, not two whips. The first look is always kept
+    (he has to be looking somewhere). Returns the kept indices. Pure."""
+    fps = fps or FPS
+    nl = len(dirs)
+    if nl == 0: return []
+    nf = max(1, int(round(T * fps)) + 1)
+    fr = [max(0, min(nf - 1, int(round(t * fps)))) for t, _ in dirs]
+    def off(a, b): return math.hypot(a[0] - b[0], a[1] - b[1])
+    asked_at = []; j = 0
+    for f in range(nf):
+        while j + 1 < nl and fr[j + 1] <= f: j += 1
+        asked_at.append(dirs[j][1])
+    pre = [[0.0] * (nf + 1) for _ in range(nl)]
+    for i in range(nl):
+        for f in range(nf): pre[i][f + 1] = pre[i][f] + off(dirs[i][1], asked_at[f])
+    G = gap * fps; COST = small * fps * 0.25
+    import functools
+    @functools.lru_cache(maxsize=None)
+    def best(i):
+        """least error from kept look i (held from its arrival) to the end"""
+        a = fr[i] if i else 0
+        out = (pre[i][nf] - pre[i][a], (i,))
+        for j in range(i + 1, nl):
+            if fr[j] - fr[i] < G: continue
+            if off(dirs[i][1], dirs[j][1]) < small: continue
+            r = best(j)
+            v = (pre[i][fr[j]] - pre[i][a] + COST + r[0], (i,) + r[1])
+            if v[0] < out[0]: out = v
+        return out
+    return list(best(0)[1])
+
+
 def F(t):
     return int(round(t * FPS)) + 1
 
@@ -177,6 +436,11 @@ class Data:
     def __init__(self, sc):
         self.sc = sc; self._end = 0.0; self._ik_last = {}
         self.face_log = []      # every expression() as (name, start of its blend, t0, t1 or None, blend): store/facelint.py reads it
+        self.face_asked = []    # what the shot ASKED for, in call order; finish() casts face_log from it (face_plan)
+        self._blink_calls = []  # the shot's own blinks, keyed in finish() once the faces are cast
+        self._directing = False
+        self.look_asked = []    # every look_at() the shot asked for: (target, t, max_yaw, max_pitch, blend, eyes, gaze calls before it)
+        self._look_k = None
         self._neck_looks = []   # look_at's neck share: (t, blend, degrees), layered onto the neck in finish()
         self._eye_looks = []    # look_at's eye targets: (t, blend, target, gaze calls before it), aimed in finish()
         self._gaze_calls = []   # every explicit gaze() frame, in call order: a later gaze() at a look's frame wins
@@ -350,19 +614,49 @@ class Data:
             rigid(o, 'foot.' + ('L' if o.matrix_world.translation.x < 0 else 'R'))
         coat = P['Coat / continuous tapered body'][0]
         coat.parent = arm; coat.matrix_parent_inverse = Matrix.Identity(4)
-        for name in ('root', 'spine', 'chest'): coat.vertex_groups.new(name=name)
+        for name in ('root', 'spine', 'chest', 'leg.L', 'leg.R'): coat.vertex_groups.new(name=name)
         for v in coat.data.vertices:
-            z = v.co.z * coat.scale.z + coat.location.z
-            w = {'root': 0.0, 'spine': 0.0, 'chest': 0.0}
-            if z < 1.45: w['root'] = 1.0
-            elif z < 1.75: u = (z - 1.45) / 0.3; w['root'] = 1 - u; w['spine'] = u
-            elif z < 2.0: w['spine'] = 1.0
-            elif z < 2.3: u = (z - 2.0) / 0.3; w['spine'] = 1 - u; w['chest'] = u
-            else: w['chest'] = 1.0
-            for name, ww in w.items():
+            p = Vector((v.co.x * coat.scale.x + coat.location.x, v.co.y * coat.scale.y + coat.location.y, v.co.z * coat.scale.z + coat.location.z))
+            for name, ww in coat_weights(p).items():
                 if ww > 0: coat.vertex_groups[name].add([v.index], ww, 'REPLACE')
         md = coat.modifiers.new('Rig', 'ARMATURE'); md.object = arm
         while coat.modifiers[0] != md: bpy.ops.object.modifier_move_up({'object': coat}, modifier=md.name) if False else coat.modifiers.move(len(coat.modifiers) - 1, 0)
+        # what is sewn on the lower coat (its buttons, its seam, the pocket and its pen) rides the coat's own SURFACE, so a
+        # hem that swings with a leg takes them with it: rigid to the chest, the seam hung under a lifted hem like a stick;
+        # skinned like the coat's cage, it stood off the smoothed coat across a fold (a thin line in front of a tuck)
+        bpy.context.view_layer.update()
+        Ai = arm.matrix_world.inverted()
+        for key in COAT_SEWN:
+            for o in list(P.get(key, [])):
+                if o.type == 'CURVE':                  # the binding takes a mesh: the same tube, as a mesh
+                    dg = bpy.context.evaluated_depsgraph_get()
+                    me_ = bpy.data.meshes.new_from_object(o.evaluated_get(dg)); mw = o.matrix_world.copy(); nm = o.name
+                    o2 = bpy.data.objects.new(nm + ' mesh', me_); bpy.context.collection.objects.link(o2)
+                    if not me_.materials:
+                        for m_ in o.data.materials: me_.materials.append(m_)
+                    P[key] = [x for x in P[key] if x != o] + [o2]
+                    bpy.data.objects.remove(o); o2.name = nm; o2.matrix_world = mw; o = o2
+                    bpy.context.view_layer.update()
+                pts = [Ai @ (o.matrix_world @ v.co) for v in o.data.vertices]
+                if min(p.z for p in pts) >= COAT_LEGS[1]: continue
+                # a straight part has rings only at its ends (the seam: two, 64 cm apart), and a chord cannot bend over
+                # a fold, so across a tuck it stood straight in front of the coat (the thin line, 2026-11-23): slice it
+                # every SEW_STEP up its height so every ring rides the coat's surface where it is
+                import bmesh
+                bm = bmesh.new(); bm.from_mesh(o.data)
+                L = Ai @ o.matrix_world; Li = L.inverted(); zs = [(L @ v.co).z for v in bm.verts]   # in the rig's own units
+                no = (Li.to_3x3().transposed() @ Vector((0, 0, 1))).normalized()
+                z = min(zs) + SEW_STEP
+                while z < max(zs):
+                    bmesh.ops.bisect_plane(bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], plane_co=Li @ Vector((0, 0, z)), plane_no=no)
+                    z += SEW_STEP
+                bm.to_mesh(o.data); bm.free()
+                mw = o.matrix_world.copy(); o.parent = arm; o.parent_type = 'OBJECT'; o.matrix_parent_inverse = Matrix.Identity(4)
+                o.matrix_world = mw; bpy.context.view_layer.update()
+                m2 = o.modifiers.new('Sewn', 'SURFACE_DEFORM'); m2.target = coat
+                while o.modifiers[0] != m2: o.modifiers.move(len(o.modifiers) - 1, 0)
+                with bpy.context.temp_override(object=o, active_object=o):
+                    bpy.ops.object.surfacedeform_bind(modifier=m2.name)
         self.parts = [o for o in bpy.data.objects if o not in before and o != arm]
         self.brows = P['Brow']
         bpy.context.view_layer.update()
@@ -417,9 +711,10 @@ class Data:
         x.normalize(); z = x.cross(y)
         return Matrix((x, y, z)).transposed()
 
-    def _two_bone(self, A, B, target, pole, t, La, Lb, straight_at=0.99):
+    def _two_bone(self, A, B, target, pole, t, La, Lb, straight_at=0.99, roll_ref=None):
         """2-bone IK on pose bones A (upper) and B (lower) toward a world target; pole = world direction the joint
-        bends toward. At >= straight_at of full reach the chain is EXACTLY straight."""
+        bends toward. At >= straight_at of full reach the chain is EXACTLY straight. roll_ref: a world direction the
+        bones' x keeps to (the legs: the body's right, as at rest), so the hinge never turns a bone over on its length."""
         self.sc.frame_set(F(t))
         A.rotation_euler = (0, 0, 0); B.rotation_euler = (0, 0, 0); bpy.context.view_layer.update()
         M = self.arm.matrix_world
@@ -444,6 +739,7 @@ class Data:
         # of the lever, the mitten spinning, because each bone took its roll from world up on its own)
         xh = upper.cross(Vector((0, 0, 1)))
         sgn = last[2] if near and len(last) > 2 else (1.0 if xh.length < 1e-4 or n.dot(xh) >= 0 else -1.0)
+        if roll_ref is not None: sgn = 1.0 if n.dot(roll_ref) >= 0 else -1.0
         x = n * sgn
         RA = Matrix((x, upper.normalized(), x.cross(upper.normalized()))).transposed()
         RB = Matrix((x, lower, x.cross(lower))).transposed()
@@ -504,7 +800,11 @@ class Data:
         """pitch: degrees, toe UP positive, about the body's right axis (heel strike / toe-off roll)"""
         L, Sh = self.pb[f'leg.{s}'], self.pb[f'shin.{s}']
         knee_dir = self.forward()                               # the knee bends FORWARD: _two_bone bends toward `pole` (the arm passes -pole so the ELBOW goes back; the leg had copied that and walked on bird knees, measured knee_fwd < 0 every frame)
-        over = self._two_bone(L, Sh, target, knee_dir, t, self.LEG[0] * SCALE, self.LEG[1] * SCALE, straight_at=0.995)
+        # roll_ref: the leg keeps its rest roll (x to his right). It was solved turned over, 180 deg about its own length
+        # (rotation y 174..180 on every frame): a round thigh hid it, but the coat that rides the legs (coat_weights) spun
+        # round the thigh with it, its outside wall folded in onto the leg
+        over = self._two_bone(L, Sh, target, knee_dir, t, self.LEG[0] * SCALE, self.LEG[1] * SCALE, straight_at=0.995,
+                              roll_ref=self.arm.matrix_world.to_3x3().normalized() @ self._rest[f'leg.{s}'].to_3x3().col[0])
         # the foot stays LEVEL in the world whatever the shin does (else the shoe pivots about the ankle: a slide)
         fb = self.pb[f'foot.{s}']; M = self.arm.matrix_world
         R0 = M.to_3x3().normalized() @ self._rest[f'foot.{s}'].to_3x3()
@@ -670,9 +970,16 @@ class Data:
         """he turns his head to `target` by t. The neck bends for a big look up or down (_tilt), and with eyes=True (the
         default) the pupils take whatever the head does not, so "he looks at X" is his eyes ON X, not a head pointed
         near it. eyes=False leaves the pupils where they are (a shot keying gaze() itself)."""
+        if STEADY and not self._directing:      # ASKED: finish() casts the looks he makes (look_plan), at a person's pace
+            self.look_asked.append((Vector(target), t, max_yaw, max_pitch, blend, eyes, len(self._gaze_calls)))
+            self._end = max(self._end, t)
+            return
         hb = self.pb['head']
         if not self._has_keys(self.arm, 'pose.bones["head"].rotation_euler'):      # the first look: hold the rest pose until it starts
             self.sc.frame_set(F(max(0.0, t - blend))); hb.rotation_euler = (0, 0, 0); hb.keyframe_insert('rotation_euler', frame=F(max(0.0, t - blend)))
+        elif STEADY and F(t - blend) > 1:      # every look HOLDS the last one until it starts. Keyed only where it arrived,
+            fh = F(t - blend)                 # the head drifted from each look to the next the whole time between them
+            self.sc.frame_set(fh); hb.keyframe_insert('rotation_euler', frame=fh)   # (lightning: never still, 30-60 deg/s)
         self.sc.frame_set(F(t)); M = self.arm.matrix_world; head = M @ hb.head
         d = Vector(target) - head - Vector((0, 0, 0.12))
         # in the ARMATURE's own frame (rest face is -Y): the body's yaw is already in M, so it must not be added again.
@@ -691,7 +998,7 @@ class Data:
         self._set_bone(hb, head, M.to_3x3().normalized() @ Rl, t)
         self._turns.append((t, blend, yaw, tilt))
         if eyes:     # the eyes take the rest of the way, each pupil aimed from where IT is once the body is final
-            self._eye_looks.append((t, blend * 0.6, Vector(target), len(self._gaze_calls)))
+            self._eye_looks.append((t, blend * 0.6, Vector(target), len(self._gaze_calls) if self._look_k is None else self._look_k))
             self._end = max(self._end, t)
 
     def _has_keys(self, obj, data_path):
@@ -771,6 +1078,10 @@ class Data:
 
     def expression(self, name, t0, t1=None, blend=0.22, cross='other'):
         e = self.EXPRESSIONS[name]
+        if STEADY and not self._directing:      # ASKED, not shown yet: finish() casts the faces he shows (face_plan)
+            self.face_asked.append((name, t0 - blend, t0, t1, blend))
+            self._end = max(self._end, t0 if t1 is None else t1)
+            return
         self.face_log.append((name, t0 - blend, t0, t1, blend))
         if t0 - blend <= 1.0 / FPS:          # a shot that OPENS on a face starts in it (it popped in over frame 1-2)
             self._face(0.0, **e)
@@ -858,6 +1169,10 @@ class Data:
 
     def blink(self, t, dur=0.2):
         self._blinks.append(t)
+        if STEADY and not self._directing:      # keyed in finish(), on the faces he really shows: a blink keyed now
+            self._blink_calls.append((t, dur))  # would read (and put back) lids of a face that is not cast yet
+            self._end = max(self._end, t + dur)
+            return
         for s in 'LR':
             up, lo = self.EYE[s + 'up'], self.EYE[s + 'lo']
             self.sc.frame_set(F(t - dur / 2)); u0, l0 = up.rotation_euler.x, lo.rotation_euler.x         # the lids as they were
@@ -1164,12 +1479,16 @@ class Data:
         import random
         if t1 - t0 < 0.4: return
         rnd = random.Random(seed); ph = rnd.random() * 6.28
-        ts = [t0 + k * 0.4 for k in range(1, int((t1 - t0) / 0.4))]
+        # LOW AND SLOW (caaleb 2026-11-23: "he's twidgeting too fast"): the drift was +-4-5 deg of head every 2.1-3.3 s,
+        # so a held feeling never held. Steady: LIFE_AMP of it, LIFE_SLOW times slower; breathing keeps its own pace
+        da, sl = (LIFE_AMP, LIFE_SLOW) if STEADY else (1.0, 1.0)
+        dk = 0.4 * sl
+        ts = [t0 + k * dk for k in range(1, int((t1 - t0) / dk))]
         base = {b: [self._pose_now(b, t) for t in ts] for b in ('spine', 'chest', 'neck', 'head')}
         for i, t in enumerate(ts):
             u = t - t0; br = math.sin(2 * math.pi * u / 2.8 + ph)
-            dh = (amp * 2.2 * math.sin(2 * math.pi * u / 2.1 + ph * 1.7), amp * 3.0 * math.sin(2 * math.pi * u / 3.3 + ph), amp * 1.6 * math.sin(2 * math.pi * u / 2.6 + ph * 0.6))
-            off = {'spine': (0, 0, 1.2 * amp * math.sin(2 * math.pi * u / 3.7 + ph * 1.3)),          # a slow weight shift
+            dh = tuple(da * x for x in (amp * 2.2 * math.sin(2 * math.pi * u / (2.1 * sl) + ph * 1.7), amp * 3.0 * math.sin(2 * math.pi * u / (3.3 * sl) + ph), amp * 1.6 * math.sin(2 * math.pi * u / (2.6 * sl) + ph * 0.6)))
+            off = {'spine': (0, 0, da * 1.2 * amp * math.sin(2 * math.pi * u / (3.7 * sl) + ph * 1.3)),          # a slow weight shift
                    'chest': (-1.6 * br * amp, 0, 0), 'neck': (0.8 * br * amp, dh[1] * 0.4, 0), 'head': dh}
             for b in base:
                 self._k(b, t, rot=tuple(a + o for a, o in zip(base[b][i], off[b])))
@@ -1253,9 +1572,61 @@ class Data:
             print(f"HANDS: {len(todo)} IK frames had drifted off their targets after a later body move (worst "
                   f"{self.hands_resolved[1] * 100:.1f} cm): re-solved on the final body", flush=True)
 
+    # ONE PERSON, NOT A SLIDESHOW OF FACES (caaleb 2026-11-23, of the lightning short: "he's changing emotions too often
+    # ... it makes it hard to get attuned with the character when he's constantly ... changing his faces"). Measured on
+    # its five shots: 6-8 faces a beat of 4-5 s, held 0.07-1.2 s, the shock and the alarm swapping back and forth on
+    # every bolt, each arriving in 0.06-0.12 s. A shot now ASKS for faces (expression() only records them) and finish()
+    # CASTS the faces he shows: each held at least FACE_HOLD, at most FACE_MAX starting in any FACE_WINDOW, each change
+    # on a moment the shot asked for one (the reason), the face of each stretch the one the shot asked for most of it
+    # (a kin face counts for part), arriving over at least FACE_BLEND. face_plan is pure: the tests run it on lists.
+    def _look_dir(self, target, t, max_yaw, max_pitch):
+        """(yaw, tilt) degrees the head would take to look at target at t, as look_at() works it out, keying nothing"""
+        self.sc.frame_set(F(t)); M = self.arm.matrix_world; head = M @ self.pb['head'].head
+        dl = M.to_3x3().normalized().inverted() @ (Vector(target) - head - Vector((0, 0, 0.12)))
+        yaw = (math.degrees(math.atan2(dl.y, dl.x) + math.pi / 2) + 180) % 360 - 180
+        pitch = math.degrees(math.atan2(dl.z, Vector((dl.x, dl.y, 0)).length))
+        return max(-max_yaw, min(max_yaw, yaw)), self._tilt(max(-max_pitch, min(max_pitch, pitch)))
+
+    def _cast_looks(self, n):
+        """THE LOOKS HE MAKES (look_plan) from the looks the shot asked for. A look he does not turn his head for is
+        still a GLANCE: his eyes go there (the eyes lead, the head follows only when it is worth turning for)."""
+        if not self.look_asked: return
+        T = (n - 1) / FPS
+        if self.SHOT_LEN: T = min(T, self.SHOT_LEN)
+        asked = sorted(enumerate(self.look_asked), key=lambda x: (x[1][1], x[0]))
+        dirs = [(a[1], self._look_dir(a[0], a[1], a[2], a[3])) for _, a in asked]
+        keep = set(look_plan(dirs, T))
+        self._directing = True
+        try:
+            for j, (i, (tgt, t, my, mp, bl, eyes, k)) in enumerate(asked):
+                self._look_k = k
+                if j in keep: self.look_at(tgt, t, max_yaw=my, max_pitch=mp, blend=bl, eyes=eyes)
+                elif eyes: self._eye_looks.append((t, bl * 0.6, Vector(tgt), k)); self._end = max(self._end, t)
+        finally:
+            self._directing = False; self._look_k = None
+        self.look_kept = [asked[j][1][1] for j in sorted(keep)]
+
+    SHOT_LEN = None     # seconds: set by the shot harness (store/shots.py load_data) before the rig is built
+
+    def _cast_faces(self, n):
+        T = (n - 1) / FPS                      # a shot often asks for a face past its own end (t1 = DUR + 1):
+        if self.SHOT_LEN: T = min(T, self.SHOT_LEN)   # the last face is held to the CUT, which the harness tells us
+        plan = face_plan(self.face_asked, T)
+        self.face_log = []
+        self._directing = True
+        try:
+            for nm, ta, t0, t1, bl in plan:
+                self.expression(nm, t0, t1, blend=bl)
+            for t, dur in self._blink_calls:
+                if t in self._blinks: self._blinks.remove(t)       # blink() records it again as it keys it
+                self.blink(t, dur)
+        finally:
+            self._directing = False
+
     def finish(self):
         n = F(self._end)
         self.sc.frame_start, self.sc.frame_end = 1, max(2, n)
+        if STEADY: self._cast_looks(n); self._cast_faces(n)
         if TAKES: self._takes()
         self._layer_neck(n)
         self._resolve_hands()
@@ -1268,6 +1639,7 @@ class Data:
                 for fc in _fcurves(ad.action):
                     for kp in fc.keyframe_points: kp.interpolation = 'BEZIER'; kp.easing = 'AUTO'
         if SMOOTH: self.smooth(n)
+        if STEADY and SMOOTH: self._steady_gaze(n)
         self.sc.frame_set(1)
         return n
 
@@ -1395,6 +1767,30 @@ class Data:
                     kp = fc.keyframe_points[k]; kp.co = (k + 1, max(-lim, min(lim, v))); kp.interpolation = 'LINEAR'
                 fc.update()
 
+    def _steady_gaze(self, n):
+        """gaze_steady, applied: the head bone's own rotation takes the correction, frame by frame (the neck's work)"""
+        pb = self.pb['head']
+        Aw, B = [], []
+        for f in range(1, n + 1):
+            self.sc.frame_set(f); bpy.context.view_layer.update(); R = self.arm.matrix_world.to_quaternion()
+            Aw.append(tuple(R @ pb.matrix.to_quaternion())); B.append(tuple(pb.matrix_basis.to_quaternion()))
+        D = gaze_steady(Aw)
+        act = self.arm.animation_data.action if self.arm.animation_data else None
+        if act is None: return
+        dp = 'pose.bones["head"].rotation_euler'
+        fcs = {fc.array_index: fc for fc in _fcurves(act) if fc.data_path == dp}
+        if len(fcs) < 3: return
+        prev = None; outs = [[], [], []]
+        for k in range(n):
+            a = Aw[k]; q = _qmul(B[k], _qmul(_qinv(a), _qmul(D[k], a)))   # basis' = B A^-1 D A: the world turn D, made by the head joint
+            e = Quaternion(q).normalized(); e = e.to_euler('XYZ', prev) if prev is not None else e.to_euler('XYZ'); prev = e
+            for i in range(3): outs[i].append(e[i])
+        for i in range(3):
+            fc = fcs[i]; fc.keyframe_points.clear(); fc.keyframe_points.add(n)
+            for k in range(n):
+                kp = fc.keyframe_points[k]; kp.co = (k + 1, outs[i][k]); kp.interpolation = 'LINEAR'
+            fc.update()
+
     def smooth(self, n):
         """THE TWITCH FILTER (caaleb 2026-11-13, of the banana short: "why does data tweak out"). Measured with
         store/twitch.py: arms whipping 26-30 deg in ONE frame (900 deg/s) where a grip key met a sparse pose key, the
@@ -1447,6 +1843,8 @@ class Data:
                 if qs and q.dot(qs[-1]) < 0: q.negate()
                 qs.append(q)
             comps = [_gauss([q[i] for q in qs], sig) for i in range(4)]
+            if STEADY and bname in HEAD_LIMITS:          # the head turns at a person's speed, eases in and settles
+                comps = head_follow(comps, *HEAD_LIMITS[bname])
             if FLUID and bname.startswith(('arm.', 'fore.', 'hand.')):
                 pins = {f - 1 for (s, f) in self._ik_keys if s == bname[-1]}
                 comps = fluid(comps, pins)
