@@ -1,0 +1,33 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983",
+  "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "School Access Grew, But Teacher Attention Still Collapses",
+  "hook": "Literacy can rise while one teacher still faces a packed lecture hall.",
+  "closing": "School access matters, but access without teacher time leaves students behind.",
+  "question": "Which school gap surprised you?",
+  "segments": [
+    {
+      "topic": "School System Scale",
+      "say": "India has 127.5 million secondary pupils, making its school system enormous to manage."
+    },
+    {
+      "topic": "School Teacher Time",
+      "say": "Guinea-Bissau has 147.6 tertiary students per teacher, making individual attention scarce."
+    },
+    {
+      "topic": "School Funding Room",
+      "say": "Education spending fell to 3.57 percent of national income, leaving expanding schools less room to improve."
+    },
+    {
+      "topic": "School Literacy Gain",
+      "say": "Youth female literacy reached 92 percent, proving wider access still produced major gains."
+    },
+    {
+      "topic": "School Attention Gap",
+      "say": "Tanzania has 114 preschool pupils per teacher, showing the attention gap begins before primary school."
+    }
+  ]
+}
