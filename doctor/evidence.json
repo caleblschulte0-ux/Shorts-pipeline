@@ -1,45 +1,45 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261123",
-  "judged_date": "20261122",
+  "date": "20261124",
+  "judged_date": "20261123",
   "alarm": {
-    "date": "20261122",
+    "date": "20261123",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261122 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261122.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-22T20:16:54+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-24T00:44:27+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
+      },
+      {
+        "code": "sports_source_dead",
+        "severity": "critical",
+        "detail": "trending: the sports run found ZERO Reddit video posts for 20261123 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
+        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20261122.",
+        "detail": "explainer: 1/4 posted for 20261123.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261122 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261122. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: ZERO videos posted for 20261123 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused) \u2014 see the credential_* alarm(s) above. The sports run found 0 Reddit posts to cut \u2014 see sports_source_dead above.",
+        "fix": "Fix the SOURCE first (sports_source_dead): no posts, no cuts, no videos. Then: Check the trending workflow run for 20261123. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (75 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (76 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "third: 6/6 posted"
+      "third: 7/6 posted"
     ],
     "deferred": false
   },
@@ -4412,13 +4412,12 @@
     }
   },
   "recent_commits": [
-    "ec91aa6 2026-11-23 claim: mailbox verdicts 2026-11-23T15:49Z [skip ci]",
-    "869261b 2026-11-23 watchdog: chatgpt task verdicts 20261123 [skip ci]"
+    "9b707cb 2026-11-24 explainer: update posted log + analytics [skip ci]",
+    "30ad788 2026-11-24 claim: mailbox verdicts 2026-11-24T04:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-09": 5,
         "2026-11-10": 6,
         "2026-11-11": 5,
         "2026-11-12": 5,
@@ -4483,71 +4482,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 146,
+      "videos": 144,
       "top_by_vph": [
         {
+          "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
+          "vph": 64.22,
+          "views": 983
+        },
+        {
           "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 42.31,
-          "views": 803
+          "vph": 27.71,
+          "views": 918
         },
         {
           "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
-          "vph": 23.97,
-          "views": 604
+          "vph": 17.43,
+          "views": 686
         },
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 5.7,
+          "vph": 5.33,
           "views": 1164
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 4.38,
+          "vph": 4.13,
           "views": 1028
-        },
-        {
-          "title": "14.3% of Americans Have Money States Must Return",
-          "vph": 3.78,
-          "views": 798
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 132,
+      "videos": 133,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 6.38,
-          "views": 527
+          "vph": 5.91,
+          "views": 540
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 0.96,
+          "vph": 0.95,
           "views": 549
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.82,
-          "views": 209
+          "vph": 0.8,
+          "views": 211
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.79,
-          "views": 89
+          "vph": 0.75,
+          "views": 91
         },
         {
           "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 0.74,
-          "views": 122
+          "vph": 0.71,
+          "views": 123
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261120/brief.json",
       "retro/20261121/brief.json",
-      "retro/20261122/brief.json"
+      "retro/20261122/brief.json",
+      "retro/20261123/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
