@@ -4,8 +4,8 @@ The top of the earth wall: a crest of crushed black rock, the town's roofs safe 
 other side. HIGH, out over the lava, looking down at him on the crest. The lava front, a huge glowing front of cracked
 black crust with orange in every crack, rolls in across the field below him and slams into the wall's face, its crust
 buckling and splitting red; he braces a fire hose and blasts it, and a huge cloud of white steam bursts up; the front
-grinds sideways and slides off along the wall, away from the town; he follows it along the crest, still spraying, and
-gives us a thumb up."""
+grinds sideways and slides off along the wall, away from the town; he follows it round, still spraying, and turns to
+us, pleased."""
 
 S3_H = 4.4                     # the wall (as built in the works beat)
 S3_CREST = 1.6
@@ -19,11 +19,12 @@ def s3_face_z(y):
     return S3_H * 0.97 * max(0.0, min(1.0, (y - y0) / (y1 - y0)))
 
 
-S3_PILE = S3_H - 0.9           # the old lava already heaped against the face: the field rises to here at the wall
+S3_PILE = S3_H - 0.4           # the old lava already heaped against the face: the field rises to here at the wall
 
 
 def s3_ground_z(x, y):
     """the black lava field: months of old flows heaped up against the wall's outer face, falling away out to the fissure"""
+    if y > 0.5: return 0.08 * lw_fbm(x * 0.3, y * 0.3, 19)   # inside the wall: the town's ground, far below the crest
     u = max(0.0, min(1.0, (y + 16.0) / 11.0))
     return S3_PILE * ease(u) + 0.1 * lw_fbm(x * 0.3, y * 0.3, 19)
 
@@ -50,6 +51,7 @@ def place_wall_crest():
         town_house(f"town house below {k}", (-12 + 2.6 * k + rnd.uniform(-0.3, 0.3), 7.5 + 2.6 * (k % 3), 0), yaw=math.pi + rnd.uniform(-0.2, 0.2),
                    w=2.1, d=1.6, roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)])
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35))
+    lava_rock("works rubble", 160, (-14, 14, 4.4, 9.0), s3_ground_z, seed=12, r=(0.08, 0.3))       # the works yard inside the wall
     smoke = lw_smoke_mat("far plume", density=0.7, col=(0.45, 0.42, 0.4))
     for k in range(6):
         lw_puff(f"far plume {k}", (-24 + 6 * k, 38 + 3 * (k % 3), 10 + 3.5 * k), 7.0, smoke, scale=(1.4, 1.0, 1.0))   # the plume, blown over the town
@@ -62,9 +64,9 @@ def place_wall_crest():
 def shot3():
     """THE WALL HOLDS. From just above the crest, off his shoulder: the old lava heaped high against the face below him.
     A new front rolls in and slams the face right under his boots; he flinches, braces and blasts it with the hose;
-    steam bursts up; the front grinds sideways and slides off along the wall; he follows it round with the spray, lets
-    go with one hand and gives us a thumb up."""
-    T_ROLL = 0.03 * DUR; T_HIT = 0.21 * DUR; T_SPRAY = 0.35 * DUR; T_SLIDE = 0.52 * DUR; T_REL = 0.64 * DUR; T_THUMB = 0.75 * DUR
+    steam bursts up; the front grinds sideways and slides off along the wall; he follows it round with the spray and turns to
+    us, pleased."""
+    T_ROLL = 0.03 * DUR; T_HIT = 0.21 * DUR; T_SPRAY = 0.35 * DUR; T_SLIDE = 0.52 * DUR; T_REL = DUR + 1.0; T_THUMB = 0.75 * DUR
     W = lw_win
     P = place_wall_crest()
     light = P["light"]
@@ -78,14 +80,14 @@ def shot3():
     out = []
     for k in range(25):                                    # the front's outline: a long tongue, its nose to +X
         a = 2 * math.pi * k / 25
-        out.append((2.6 * math.cos(a) + 0.2 * math.sin(3 * a), 0.8 * math.sin(a) + 0.08 * math.cos(5 * a)))
-    front = lava("lava front", out, z=0.0, thick=0.75, m=lm, seed=4, lumpy=0.18)
+        out.append((2.0 * math.cos(a) + 0.15 * math.sin(3 * a), 0.65 * math.sin(a) + 0.06 * math.cos(5 * a)))
+    front = lava("lava front", out, z=0.0, thick=0.45, m=lm, seed=4, lumpy=0.18)
     Y_FACE = -S3_BASE / 2 + (S3_PILE / (S3_H * 0.97)) * (S3_BASE / 2 - S3_CREST / 2 - 0.1)   # where the heap meets the face
     Y_HIT = Y_FACE - 0.45
     def where(t):
         y = -6.0 + (Y_HIT + 6.0) * ease(min(1.0, max(0.0, (t - T_ROLL) / (T_HIT - T_ROLL))))
-        x = -1.4 - 1.6 * W(t, T_SLIDE - 0.25, 1.5) - 0.1 * t      # it grinds off along the wall, away from him
-        z = S3_PILE - 0.3 + 0.35 * W(t, T_HIT - 0.08, 0.25) - 0.12 * W(t, T_SLIDE, 0.8)   # it rides up the face as it rams it
+        x = -0.3 - 1.3 * W(t, T_SLIDE - 0.25, 1.5) - 0.05 * t      # right under him, then it grinds off along the wall
+        z = S3_PILE - 0.3 + 0.2 * W(t, T_HIT - 0.08, 0.25) - 0.1 * W(t, T_SLIDE, 0.8)   # it rides up the face as it rams it
         return Vector((x, y, z))
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; front.location = where(t); front.keyframe_insert("location", frame=f)
@@ -94,11 +96,11 @@ def shot3():
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.18)
     heat = lm.node_tree.nodes["lava heat"].inputs[1]
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; heat.default_value = 2.2 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)); heat.keyframe_insert("default_value", frame=f)
+        t = (f - 1) / FPS; heat.default_value = 1.1 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)); heat.keyframe_insert("default_value", frame=f)
     # glowing chunks the impact throws up off the face, falling back onto the front
-    cm = lw_emit("lava chunk", "#FF5A00", 1.3); rnd = lw_random.Random(3); chunks = []
+    cm = lava_mat("lava chunk", heat=1.2, scale=14.0, fresh=0.7); rnd = lw_random.Random(3); chunks = []
     for k in range(14):
-        c = K.sph(f"lava chunk {k}", (0, 0, -5), rnd.uniform(0.04, 0.09), cm, seg=8, ring=6); chunks.append(c)
+        c = K.sph(f"lava chunk {k}", (0, 0, -5), rnd.uniform(0.03, 0.06), cm, seg=8, ring=6, scale=(1.0, 0.8, 0.7)); chunks.append(c)
         x0 = rnd.uniform(-3.0, -0.6); vy = -rnd.uniform(0.3, 0.9); vz = rnd.uniform(1.6, 2.6); t0 = T_HIT + rnd.uniform(-0.03, 0.12)
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; s = t - t0
@@ -109,7 +111,7 @@ def shot3():
             c.keyframe_insert("location", frame=f)
     # ---- the hose: the nozzle in his hands, aimed down the face at the front; the jet; the steam where it lands
     noz = s3_hose_nozzle()
-    aim = lambda t: Vector((-0.45 + 0.15 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) - 0.3 * W(t, T_SLIDE, 0.8), Y_FACE + 0.5, S3_PILE + 0.6))
+    aim = lambda t: Vector((-0.4 + 0.12 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) - 0.3 * W(t, T_SLIDE, 0.8), Y_FACE - 0.15, S3_PILE + 0.3))   # the front's nose
     jet_m = bpy.data.materials.get("hose water") or bpy.data.materials.new("hose water")
     jet_m.use_nodes = True; jb = jet_m.node_tree.nodes["Principled BSDF"]
     jb.inputs["Base Color"].default_value = (0.85, 0.92, 1.0, 1); jb.inputs["Roughness"].default_value = 0.1
@@ -120,27 +122,32 @@ def shot3():
     # ---- his body: watching it come, a flinch at the hit, braced back as he opens up, turning with the slide
     yaw0 = math.radians(-12)
     def body_yaw(t):
-        return yaw0 + math.radians(12) * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) * W(t, T_SPRAY, 0.3) - math.radians(30) * W(t, T_SLIDE, 0.6) \
-            + math.radians(34) * W(t, T_THUMB - 0.1, 0.4)
+        return yaw0 + math.radians(24) * (1 - W(t, 0.0, T_HIT + 0.1)) - math.radians(30) * W(t, T_SLIDE - 0.2, 1.0) \
+            + math.radians(34) * W(t, T_THUMB - 0.3, 0.75)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; p = P0.copy()
-        p.z += 0.07 * lw_kick(t - T_HIT, 0.12)                                      # a hop at the hit
-        p.y += 0.08 * W(t, T_HIT, 0.2) - 0.06 * W(t, T_SPRAY - 0.1, 0.3)            # jumps back from the edge, then leans back in to spray
+        p.z += 0.03 * lw_kick(t - T_HIT, 0.2)                                       # a jolt at the hit
+        p.y += -0.08 * W(t, 0.2, 0.3) + 0.1 * W(t, T_HIT, 0.2) - 0.06 * W(t, T_SPRAY - 0.1, 0.3)   # a step to the edge, a jump back at the hit, in again to spray
+        p.y += 0.05 * W(t, T_SPRAY + 0.1, 0.4) * (1 - W(t, T_SPRAY + 0.6, 0.45))                  # the hose kicks him back; he digs in
+        p.x -= 0.1 * W(t, T_SPRAY + 0.15, 0.6)                                                       # he shuffles along the crest after the front
+        p.y += 0.07 * W(t, T_SLIDE, 0.45) * (1 - W(t, T_SLIDE + 0.55, 0.5))                       # the front grinds: he gives a step
+        p.z -= 0.085 * W(t, T_HIT - 0.1, 0.35) * (1 - W(t, T_SPRAY + 0.35, 0.4))                 # knees bent, braced for the hit and the kick
+        p.z -= 0.08 * W(t, T_SLIDE - 0.1, 0.35) * (1 - W(t, T_THUMB - 0.25, 0.4))                # and again as he leans the jet into the slide
+        p.z += 0.04 * lw_kick(t - T_THUMB, 0.25)                                                     # a bounce: it's gone
         data._kobj(t, loc=tuple(p), rot=body_yaw(t))
-    lw_layer(data, "spine", lambda t: (16 * W(t, 0.0, T_HIT - 0.1) * (1 - W(t, T_HIT, 0.12)) - 16 * lw_kick(t - T_HIT, 0.22) + 12 * W(t, T_SPRAY - 0.2, 0.3) * (1 - W(t, T_THUMB - 0.1, 0.3))
-                                       - 8 * W(t, T_THUMB, 0.3), 0, 6 * W(t, T_SLIDE, 0.5) * (1 - W(t, T_THUMB, 0.3))), 0, DUR + 0.4)
-    # his hands on the nozzle: both low at first, raised to aim as he opens it, the camera-side one lets go for the thumb
+        data._plant_feet_here(t, lift=(P0.z, P0.z))                                          # the crouch is in his KNEES: feet stay on the crest
+    lw_layer(data, "spine", lambda t: (16 * W(t, 0.0, T_HIT - 0.1) * (1 - W(t, T_HIT - 0.1, 0.4)) - 6 * lw_kick(t - T_HIT, 0.3) + 12 * W(t, T_SPRAY - 0.3, 0.5) * (1 - W(t, T_THUMB - 0.3, 0.6))
+                                       - 8 * W(t, T_THUMB, 0.5), 0, 6 * W(t, T_SLIDE, 0.8) * (1 - W(t, T_THUMB - 0.2, 0.6))), 0, DUR + 0.4)
+    # his hands on the nozzle: both low at first, raised to aim as he opens it, both on it to the end
     sc.frame_set(1); bpy.context.view_layer.update()
     cam_side = Vector((0.45, -2.55, 0))
     sides = sorted("LR", key=lambda s: -(acts._shoulder(data, s) - data.arm.location).dot(cam_side))
-    keys = lambda k: [(0.0, (0.13, -0.05, -0.16)), (T_HIT - 0.1, (0.14, -0.05, -0.15)), (T_HIT + 0.15, (0.12, -0.05, -0.12)),
-                      (T_SPRAY, (0.15, -0.04 - 0.01 * k, -0.06)), (T_SLIDE, (0.16, -0.04, -0.05)), (DUR + 0.5, (0.16, -0.04, -0.06))]
-    data.reach(sides[0], lw_hand(data, sides[0], keys(0)), 0.0, T_REL, lead=0.3, back=None, elbow_out=0.4)
+    keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
+                      (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
+                      (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
+    data.reach(sides[0], lw_hand(data, sides[0], keys(0)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
-    PUMP = [(T_REL + 0.35, (0.12, 0.1, -0.03)), (T_THUMB + 0.22, (0.1, 0.12, 0.12)), (T_THUMB + 0.45, (0.12, 0.11, 0.05)),
-            (T_THUMB + 0.68, (0.1, 0.12, 0.13)), (DUR + 0.4, (0.11, 0.12, 0.1))]          # the free fist punches the air, twice
-    data.reach(sides[0], lw_hand(data, sides[0], PUMP), PUMP[0][0], DUR + 0.3, lead=0.4, back=None, elbow_out=0.5)
-    LENS = Vector((0.25, -3.0, S3_H + 0.8))
+    LENS = Vector((-0.6, -3.6, S3_H + 1.3))
     data.look_at(Vector((-3.0, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
     data.look_at(Vector((-0.9, Y_HIT, S3_PILE + 0.4)), T_HIT - 0.15, max_yaw=50, max_pitch=55, blend=0.15)
     data.look_at(aim(T_SPRAY), T_SPRAY, max_yaw=50, max_pitch=55, blend=0.25)
@@ -173,16 +180,18 @@ def shot3():
             bp.keyframe_insert("co", frame=f)
     # the jet: a solid rope of water from the nozzle tip arcing down to the aim point, breaking into spray at its end
     jc = bpy.data.curves.new("hose jet line", 'CURVE'); jc.dimensions = '3D'; jc.bevel_depth = 0.014; jc.bevel_resolution = 2
-    jsp = jc.splines.new('BEZIER'); jsp.bezier_points.add(2)
+    jsp = jc.splines.new('POLY'); jsp.points.add(5)
     jet = lw_link(bpy.data.objects.new("hose jet line", jc)); jet.data.materials.append(jet_m)
     noz_tip = {}
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update(); noz_tip[f] = noz.matrix_world @ Vector((0, -0.16, 0))
+    noz_tip = {f: sum((noz_tip[min(NF, max(1, f + d))] for d in (-2, -1, 0, 1, 2)), Vector()) / 5 for f in noz_tip}   # the jet leaves a steadied tip
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; on = W(t, T_SPRAY, 0.12)
-        a = noz_tip[f]; b = a.lerp(aim(t), max(0.02, on)); mid = a.lerp(b, 0.5); mid.z += 0.18 * on
-        for bp, q in zip(jsp.bezier_points, (a, mid, b)):
-            bp.co = q; bp.handle_left_type = bp.handle_right_type = 'AUTO'; bp.keyframe_insert("co", frame=f)
+        a = noz_tip[f]; b = a.lerp(aim(t), max(0.02, on))
+        pts = [a.lerp(b, u) + Vector((0, 0, 0.12 * on * math.sin(math.pi * u))) for u in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0)]
+        for bp, q in zip(jsp.points, pts):
+            bp.co = (q.x, q.y, q.z, 1.0); bp.keyframe_insert("co", frame=f)
         jet.hide_render = on < 0.02; jet.keyframe_insert("hide_render", frame=f)
     jr = lw_random.Random(17); jit = [Vector((jr.uniform(-1, 1), jr.uniform(-1, 1), jr.uniform(-1, 1))) for _ in drops]
     for k, o in enumerate(drops):
@@ -197,15 +206,18 @@ def shot3():
     for k, o in enumerate(steam):
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; t0 = T_SPRAY + 0.06 + 0.12 * k; s = W(t, t0, 0.4)
-            b = aim(t); age = max(0.0, t - t0)                      # it boils up off the front and rolls back over the crest
-            o.location = (b.x - 0.55 - 0.16 * k - 0.3 * age, b.y + 0.1 + 0.9 * age + 0.15 * (k % 3), b.z + 0.1 + 0.4 * s + 0.6 * age)
-            r = 0.3 * s * (1 + 0.08 * k) * (1 + 0.4 * age)
+            b = aim(t0); age = max(0.0, t - t0)                      # it boils up off the front, up past the crest
+            o.location = (b.x - 0.42 - 0.05 * k - 0.1 * age, b.y - 0.45 - 0.15 * age - 0.06 * (k % 3), b.z + 0.05 + 0.2 * s + 0.35 * age)
+            r = 0.17 * s * (1 + 0.06 * k) * (1 + 0.5 * age)
             lw_puff_key(o, f, (r, r, r * 0.9)); o.keyframe_insert("location", frame=f)
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
-    CAM = LENS.copy(); LOOK = Vector((-0.59, -0.12, S3_H + 0.68))
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=50.0, fstop=22.0)
-    camera_path(cam, lambda t: (CAM + Vector((-0.12, 0.0, 0.03)) * W(t, T_SLIDE - 0.2, 1.4), LOOK + Vector((-0.2, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.4), data.pos() + Vector((0, 0, 0.5))))
+    CAM = LENS.copy(); LOOK = Vector((-0.4, -0.8, S3_H + 0.2))    # high out over the heap: him on the crest, the front filling the frame under him
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=58.0, fstop=22.0)
+    def cam_at(t):                                          # it leans in at the hit, then drifts after the front as it slides off
+        mv = Vector((0.03, 0.12, -0.03)) * W(t, T_HIT - 0.1, 0.9) + Vector((-0.12, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.4)
+        return CAM + mv, LOOK + mv * 0.8, data.pos() + Vector((0, 0, 0.5))
+    camera_path(cam, cam_at)
     return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",),
                 boxes=[],
-                conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [front], T_ROLL, DUR, {"whole": False}),
+                conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [front], T_HIT - 0.2, DUR, {"whole": False}),
                         ("he blasts the front with the hose and a cloud of steam bursts up", lambda: steam, T_SPRAY + 0.1, DUR, {"whole": False, "moves": True})])

@@ -68,6 +68,27 @@ def lw_local(root):
     return root
 
 
+def lw_fire_mat(name="fire", strength=1.6):
+    """flame: pure light, deep red at its roots to orange-yellow in its tongues, the noise stretched up it (a lit
+    surface under its own glow bleached to pink in the sun)"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    out = nt.nodes.new("ShaderNodeOutputMaterial"); em = nt.nodes.new("ShaderNodeEmission")
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (4, 4, 1.2)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 3.0; nz.inputs["Detail"].default_value = 6
+    nt.links.new(mp.outputs["Vector"], nz.inputs["Vector"])
+    rp = nt.nodes.new("ShaderNodeValToRGB"); el = rp.color_ramp.elements
+    el[0].position = 0.35; el[0].color = (*K.lin("#A01000"), 1); el[1].position = 0.68; el[1].color = (*K.lin("#FFA018"), 1)
+    e = el.new(0.5); e.color = (*K.lin("#FF4800"), 1)
+    nt.links.new(nz.outputs["Fac"], rp.inputs["Fac"]); nt.links.new(rp.outputs["Color"], em.inputs["Color"])
+    em.inputs["Strength"].default_value = strength
+    nt.links.new(em.outputs[0], out.inputs["Surface"])
+    return m
+
+
 def lw_emit(name, hexc, strength):
     m = bpy.data.materials.get(name)
     if m: return m
@@ -318,7 +339,7 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     # LIGHT, not paint: a sunlit orange base under its own glow washed every lava in daylight to salmon pink
     nt.links.new(mix.outputs["Color"], bs.inputs["Base Color"])
     nt.links.new(ramp.outputs["Color"], bs.inputs["Emission Color"])
-    es = nt.nodes.new("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "lava heat"; es.inputs[1].default_value = 2.2 * heat
+    es = nt.nodes.new("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "lava heat"; es.inputs[1].default_value = 1.1 * heat   # brighter than this the view transform bleaches it to salmon
     pw = nt.nodes.new("ShaderNodeMath"); pw.operation = 'POWER'; pw.inputs[1].default_value = 1.6
     nt.links.new(glowf.outputs[0], pw.inputs[0]); nt.links.new(pw.outputs[0], es.inputs[0])
     nt.links.new(es.outputs[0], bs.inputs["Emission Strength"])
@@ -599,6 +620,37 @@ def iceland_light(sun_elev=14, sun_az=-35, sun=3.4, sky=0.4, warm=(1.0, 0.86, 0.
     return LOC.sky_light(sun_elev=sun_elev, sun_az=sun_az, sun=sun, sky=sky, warm=warm, haze=haze)
 
 
+def lw_clouds(cover=0.55, scale=0.9, drift=(0.03, 0.02)):
+    """broken Icelandic cloud over the physical sky (iceland_light's): a deck projected overhead, lit by the sky's own
+    brightness so it stays in the same exposure, grey-bellied where it is thick, drifting. A clear sky is one smooth
+    gradient, which reads as a bare set (store/empty.py); a real sky over Grindavik has weather in it."""
+    nt = sc.world.node_tree; N = nt.nodes.new; L = nt.links.new
+    bg = nt.nodes["Background"]; sk = next(n for n in nt.nodes if n.type == 'TEX_SKY')
+    tc = N("ShaderNodeTexCoord"); sep = N("ShaderNodeSeparateXYZ"); L(tc.outputs["Generated"], sep.inputs[0])
+    zc = N("ShaderNodeMath"); zc.operation = 'MAXIMUM'; L(sep.outputs["Z"], zc.inputs[0]); zc.inputs[1].default_value = 0.03
+    zp = N("ShaderNodeMath"); zp.operation = 'ADD'; L(zc.outputs[0], zp.inputs[0]); zp.inputs[1].default_value = 0.15
+    du = N("ShaderNodeMath"); du.operation = 'DIVIDE'; L(sep.outputs["X"], du.inputs[0]); L(zp.outputs[0], du.inputs[1])
+    dv = N("ShaderNodeMath"); dv.operation = 'DIVIDE'; L(sep.outputs["Y"], dv.inputs[0]); L(zp.outputs[0], dv.inputs[1])
+    cmb = N("ShaderNodeCombineXYZ"); L(du.outputs[0], cmb.inputs[0]); L(dv.outputs[0], cmb.inputs[1])
+    mp = N("ShaderNodeMapping"); L(cmb.outputs[0], mp.inputs["Vector"])
+    big = N("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale; big.inputs["Detail"].default_value = 6
+    big.inputs["Roughness"].default_value = 0.6; L(mp.outputs["Vector"], big.inputs["Vector"])
+    fine = N("ShaderNodeTexNoise"); fine.inputs["Scale"].default_value = 5.0 * scale; fine.inputs["Detail"].default_value = 10
+    fine.inputs["Roughness"].default_value = 0.65; L(mp.outputs["Vector"], fine.inputs["Vector"])
+    cov = N("ShaderNodeMapRange"); L(big.outputs["Fac"], cov.inputs["Value"])
+    cov.inputs["From Min"].default_value = 0.62 - 0.25 * cover; cov.inputs["From Max"].default_value = 0.72 - 0.25 * cover
+    bw = N("ShaderNodeRGBToBW"); L(sk.outputs["Color"], bw.inputs[0])
+    sh = N("ShaderNodeMath"); sh.operation = 'MULTIPLY_ADD'; L(fine.outputs["Fac"], sh.inputs[0]); sh.inputs[1].default_value = 1.4
+    sh.inputs[2].default_value = 0.55
+    lum = N("ShaderNodeMath"); lum.operation = 'MULTIPLY'; L(bw.outputs[0], lum.inputs[0]); L(sh.outputs[0], lum.inputs[1])
+    cc = N("ShaderNodeCombineColor"); [L(lum.outputs[0], cc.inputs[i]) for i in range(3)]
+    mx = N("ShaderNodeMix"); mx.data_type = 'RGBA'; L(cov.outputs["Result"], mx.inputs[0])
+    L(sk.outputs["Color"], mx.inputs[6]); L(cc.outputs[0], mx.inputs[7]); L(mx.outputs[2], bg.inputs["Color"])
+    for f in (1, NF + 15):
+        t = (f - 1) / FPS
+        mp.inputs["Location"].default_value = (drift[0] * t, drift[1] * t, 0); mp.inputs["Location"].keyframe_insert("default_value", frame=f)
+
+
 # ---------------------------------------------------------------- his body: layers, kicks and smooth hand paths
 def lw_layer(data, bone, off, t0, t1):
     """ADD off(t) (degrees, x y z) on top of whatever already keys `bone`, every frame of t0..t1"""
@@ -849,18 +901,20 @@ def place_grindavik_street():
         founts.append(o)
     spm = lw_emit("lava spatter", "#FF6000", 1.2)
     spat = [K.sph(f"fissure spatter {k}", (0, S1_RIDGE_Y, fz), rnd.uniform(0.05, 0.1), spm, seg=8, ring=6) for k in range(30)]
-    ash = lw_smoke_mat("eruption plume", density=2.5, col=(0.34, 0.33, 0.34))
+    ash = lw_billow_mat("eruption plume", col="#5C5A58")              # a lumpy billowing plume, not a soft smudge
     puffs = []
     for k in range(16):
         x = -20 + k * 2.7 + rnd.uniform(-1, 1)
-        puffs.append(lw_puff(f"eruption plume {k}", (x, S1_RIDGE_Y + 3.0 + rnd.uniform(0, 3), fz + 7 + rnd.uniform(0, 6)), rnd.uniform(3.5, 5.0), ash, scale=(1.3, 1.0, 0.9)))
+        puffs.append(lw_billow(f"eruption plume {k}", (x, S1_RIDGE_Y + 3.0 + rnd.uniform(0, 3), fz + 7 + rnd.uniform(0, 6)), rnd.uniform(3.0, 4.2), ash, seed=k, scale=(1.3, 1.0, 0.9)))
     gate = s1_gate()
     glow = [lw_point(f"fissure light {k}", (x, S1_RIDGE_Y - 1.5, fz + 3.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-12, -4, 4, 12))]
     plume_lit = [lw_point(f"plume underlight {k}", (x, S1_RIDGE_Y + 2.0, fz + 6.0), 0.0, col=(1.0, 0.35, 0.08), r=3.0) for k, x in enumerate((-9, 0, 9))]
     town_glow = lw_area("eruption glow on the town", (0, 12, 7), (0, 0, 0.5), 0.0, 14, col=(1.0, 0.5, 0.2))
 
     def light():
-        return iceland_light(sun_elev=18, sun_az=-45, sun=3.0, sky=0.35, haze=1.5)
+        k = iceland_light(sun_elev=18, sun_az=-45, sun=3.0, sky=0.35, haze=1.5)
+        lw_clouds(cover=0.6, scale=3.0)
+        return k
     return dict(light=light, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
 
@@ -895,7 +949,7 @@ def shot1():
             tk = T_ERUPT + T_NINE * order[k]                 # this vent's own burst: nine pops, counted off along the ridge
             up = W(t, tk, 0.18)
             h = hk * up * (3.0 + 0.6 * math.sin(2 * math.pi * hz * t + ph) + 2.0 * W(t, T_SURGE, 0.5) + 2.2 * lw_kick(t - tk, 0.22))
-            o.scale = (0.5 + 0.3 * up, 0.35, max(0.001, h)); o.location.z = base + 0.5 * h
+            o.scale = (0.6 + 0.5 * up, 0.35, max(0.001, h))                # a fan of spray, not a spike; o.location.z = base + 0.5 * h
             o.hide_render = up < 0.02; o.keyframe_insert("hide_render", frame=f)
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
     for k, o in enumerate(P["spat"]):
@@ -911,11 +965,11 @@ def shot1():
     for k, o in enumerate(P["puffs"]):
         z0 = o.location.z
         for f in range(1, NF + 1, 3):
-            t = (f - 1) / FPS; s = 0.02 + 0.98 * W(t, T_ERUPT + 0.1 + 0.04 * k, 1.6)
+            t = (f - 1) / FPS; s = W(t, T_ERUPT + 0.03 * k, 0.9)
             lw_puff_key(o, f, (1.3 * s, 1.0 * s, 0.9 * s)); o.location.z = z0 - 6.0 * (1 - s) + 0.5 * t
             o.keyframe_insert("location", frame=f)
     for L in P["glow"]:
-        e0 = 1200.0 if 'plume' in L.name else 7000.0
+        e0 = 300.0 if 'plume' in L.name else 7000.0                # the plume a grey ash cloud, warm only underneath
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; L.data.energy = e0 * W(t, T_ERUPT, 0.3) * (1 + 0.6 * W(t, T_SURGE, 0.5)); L.data.keyframe_insert("energy", frame=f)
     tg = P["town_glow"].data
@@ -937,17 +991,16 @@ def shot1():
         p.z += 0.07 * lw_kick(t - T_ERUPT - 0.05, 0.12)
         p.z += 0.05 * lw_kick(t - T_SURGE, 0.12)
         cr = W(t, T_UP0, 0.25) * (1 - W(t, T_UP1, 0.25))                   # his whole body rides each turn of the crank
-        p.z -= 0.045 * cr * (1 + math.sin(2 * math.pi * REVS * crank_u(t)))
+        p.z -= 0.025 * cr * (1 + math.sin(2 * math.pi * REVS * crank_u(t)))
         yaw = math.radians(-30) * W(t, T_ERUPT - 0.05, 0.3) * (1 - W(t, T_GRAB - 0.35, 0.3)) \
-            + math.radians(13) * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 1.2) \
-            - math.radians(30) * W(t, T_WAVE0, 0.4) * (1 - W(t, T_GO - 0.95, 0.9)) + math.radians(50) * W(t, T_GO - 0.95, 0.9)
-        return p, yaw
+            + math.radians(3) * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 1.2) \
+            - math.radians(30) * W(t, T_WAVE0, 0.4) * (1 - W(t, T_GO - 1.0, 1.0)) + math.radians(40) * W(t, T_GO - 1.0, 1.0)
         return p, yaw
     for f in range(1, NF + 1):                             # at the end he turns after the cars, leaning into the run
         t = (f - 1) / FPS; p, yaw = body(t); p.z += 0.03 * lw_kick(t - T_GO, 0.15); data._kobj(t, loc=tuple(p), rot=yaw)
-    lw_layer(data, "spine", lambda t: (-12 * lw_kick(t - T_ERUPT - 0.05, 0.2) + (8 + 11 * math.sin(2 * math.pi * REVS * crank_u(t))) * W(t, T_GRAB, 0.3) * (1 - W(t, T_LET, 0.3))
-                                       - 10 * lw_kick(t - T_SURGE, 0.25) + 16 * W(t, T_GO - 0.2, 0.45), 0,
-                                       8 * math.sin(2 * math.pi * (t - T_WAVE0) / 1.0) * W(t, T_WAVE0, 0.3) * (1 - W(t, T_WAVE1, 0.3))), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-12 * lw_kick(t - T_ERUPT - 0.05, 0.2) + (8 + 5 * math.sin(2 * math.pi * REVS * crank_u(t))) * W(t, T_GRAB, 0.3) * (1 - W(t, T_LET, 0.3))
+                                       - 10 * lw_kick(t - T_SURGE, 0.25) + 10 * W(t, T_GO - 0.5, 0.8), 0,
+                                       3 * math.sin(2 * math.pi * (t - T_WAVE0) / 1.0) * W(t, T_WAVE0, 0.3) * (1 - W(t, T_WAVE1, 0.3))), 0, DUR + 0.4)
     # ---- the crank, built where his near hand turns it: its hub just in front of that shoulder
     sc.frame_set(F(T_GRAB)); bpy.context.view_layer.update()
     sides = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
@@ -966,20 +1019,20 @@ def shot1():
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; gate.rotation_euler = (0, ang(t), 0); gate.keyframe_insert("rotation_euler", frame=f)
     data.reach(wind, knob, T_GRAB, T_LET, lead=0.45, back=None, elbow_out=0.4)
-    RK = [(T_LET + 0.55, (0.08, 0.08, -0.09)), (T_GO - 0.2, (0.08, 0.06, -0.1)), (DUR + 0.4, (0.09, 0.03, -0.12))]
+    RK = [(T_LET + 0.55, (0.12, 0.1, -0.07)), (T_GO - 0.2, (0.09, 0.09, -0.09)), (DUR + 0.4, (0.08, 0.09, -0.09))]
     data.reach(wind, lw_hand(data, wind, RK), RK[0][0], DUR + 0.3, lead=0.55, back=None, elbow_out=0.4)
-    WK = [(T_LET + 0.4, (0.08, 0.12, 0.0))]
-    t = T_WAVE0 + 0.5; k = 0
+    WK = [(T_UP0 + 0.55, (0.08, 0.12, 0.0))]                 # his free hand waves the cars on while the other still winds
+    t = T_UP0 + 0.95; k = 0
     while t < T_WAVE1 - 0.2:
         WK.append((t, (0.07, 0.15, 0.08) if k % 2 == 0 else (0.11, 0.07, 0.03))); t += 0.45; k += 1
-    WK += [(max(T_SURGE + 0.1, WK[-1][0] + 0.35), (0.06, 0.1, 0.06)), (DUR + 0.4, (0.04, 0.09, -0.1))]
+    WK += [(max(T_SURGE + 0.1, WK[-1][0] + 0.35), (0.06, 0.1, 0.06)), (DUR + 0.4, (0.08, 0.09, -0.08))]
     WK = sorted({round(a, 3): b for a, b in WK}.items())
-    data.reach(other, lw_hand(data, other, WK), WK[0][0], DUR + 0.3, lead=0.4, back=None, elbow_out=0.35)
+    data.reach(other, lw_hand(data, other, WK), WK[0][0], DUR + 0.3, lead=0.5, back=None, elbow_out=0.35)
     # ---- face and head: one feeling per moment, held
     LENS = Vector((3.2, -3.6, 0.8))
     data.look_at(LENS, 0.0, max_yaw=40, blend=0.0)
     data.look_at(Vector((-3.0, S1_RIDGE_Y, 7.0)), T_ERUPT + 0.05, max_yaw=60, max_pitch=30, blend=0.3)
-    data.look_at(HUB, T_GRAB - 0.3, max_yaw=50, max_pitch=50, blend=0.3)
+    data.look_at(HUB, T_GRAB - 0.3, max_yaw=50, max_pitch=18, blend=0.3)                  # eyes down to it, the brim kept off his face
     data.look_at(Vector((-1.5, 5.0, 2.5)), T_UP0 + 0.6, max_yaw=55, max_pitch=40, blend=0.3)
     data.look_at(Vector((S1_LANE, -1.0, 0.7)), T_LET, max_yaw=55, blend=0.3)
     data.look_at(Vector((-2.0, S1_RIDGE_Y, 8.0)), T_SURGE, max_yaw=60, max_pitch=30, blend=0.3)
@@ -990,7 +1043,7 @@ def shot1():
     data.finish()
     # ---- the lens: low, three-quarter from the road side of the gate, the street and the ridge behind him
     CAM = Vector((2.3, -3.8, 1.35)); LOOK = Vector((-0.4, 8.0, 1.9))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 18.0, face_at=(0.64, 0.4), height=0.36, t=0.45 * DUR)
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 18.0, face_at=(0.58, 0.4), height=0.36, t=0.45 * DUR)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=18.0, fstop=11.0)
     camera_path(cam, lambda t: (CAM + Vector((-0.1, 0.2, 0.0)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))))
     founts = P["founts"]
@@ -1042,17 +1095,28 @@ def s2_ik(p):
     return a, b
 
 
+S2_RC_FW, S2_RC_UP = 0.18, -0.13        # the remote's centre from the middle of his shoulders: forward, up
+
+
+def s2_knob_off(sx, lean, yaw):
+    """a stick's knob from the remote's centre, the stick leaning `lean` (its pivot turned -lean about x), the remote
+    turned `yaw`: the box (sx, 0, 0.025) to its pivot, the knob 0.065 up the stick"""
+    v = Vector((sx, 0.065 * math.sin(lean), 0.025 + 0.065 * math.cos(lean)))
+    c, s_ = math.cos(yaw), math.sin(yaw)
+    return Vector((c * v.x - s_ * v.y, s_ * v.x + c * v.y, v.z))
+
+
 def s2_remote(data):
     """the digger's remote control pack: a yellow box on his chest strap with two black sticks on its top, carried on
     his chest bone. Returns (box, [(stick pivot, knob)])."""
     sc.frame_set(1); bpy.context.view_layer.update()
     sh = [acts._shoulder(data, s_) for s_ in "LR"]; mid = (sh[0] + sh[1]) / 2
     fw = data.forward()
-    c = mid + fw * 0.165 + Vector((0, 0, -0.15))
+    c = mid + fw * S2_RC_FW + Vector((0, 0, S2_RC_UP))
     yaw = data.arm.rotation_euler.z
     root = K.empty("remote control", tuple(c))
     yel = lw_paint("remote yellow", "#F2B10E", rough=0.4); dark = K.mat("remote black", "#1A1A1A", rough=0.5)
-    K.box("remote control box", (0, 0, 0), (0.2, 0.09, 0.05), yel, bev=0.012, parent=root)
+    K.box("remote control box", (0, -0.01, 0), (0.2, 0.065, 0.05), yel, bev=0.012, parent=root)
     K.box("remote control screen", (0, -0.035, 0.026), (0.07, 0.012, 0.004), lw_emit("remote screen", "#7FE0FF", 4.0), bev=0.0, parent=root)
     sticks = []
     for sx in (-0.06, 0.06):
@@ -1064,8 +1128,6 @@ def s2_remote(data):
     root.rotation_euler = (0, 0, yaw)
     bpy.context.view_layer.update()
     M = root.matrix_world.copy()
-    root.parent = data.arm; root.parent_type = 'BONE'; root.parent_bone = 'chest'
-    bpy.context.view_layer.update(); root.matrix_world = M
     return root, sticks
 
 
@@ -1157,17 +1219,19 @@ def place_wall_works():
         K.box(f"far digger {k} body", (x, y, 0.7), (1.6, 1.3, 1.0), yel, bev=0.08)
         K.box(f"far digger {k} cab", (x - 0.3, y - 0.2, 1.5), (0.7, 0.7, 0.7), K.mat("car glass", "#1E262C", rough=0.05, metal=0.3), bev=0.05)
         bm_ = K.box(f"far digger {k} boom", (x + 0.2, y + 1.3, 2.2), (0.25, 3.0, 0.3), yel, bev=0.05); bm_.rotation_euler = (math.radians(40 - 10 * (k % 2)), 0, 0)
-    ash = lw_smoke_mat("eruption smoke", density=1.6, col=(0.3, 0.3, 0.33))
+    ash = lw_billow_mat("eruption smoke", col="#4A4644")                 # billowing ash with its lumps, not a soft smudge
     for k in range(8):
-        lw_puff(f"eruption smoke {k}", (-16 + 4.5 * k + rnd.uniform(-1, 1), 20 + rnd.uniform(0, 5), 9 + rnd.uniform(0, 6)), rnd.uniform(4.0, 5.5), ash, scale=(1.4, 1.0, 1.0))
+        lw_billow(f"eruption smoke {k}", (-16 + 4.5 * k + rnd.uniform(-1, 1), 20 + rnd.uniform(0, 5), 9 + rnd.uniform(0, 6)), rnd.uniform(4.0, 5.5), ash, scale=(1.4, 1.0, 1.0))
     for k in range(10):                                    # the plume's column climbing over the fissure: the sky is the eruption's
         u = k / 9
-        lw_puff(f"eruption column {k}", (-7 + 9 * u * u + rnd.uniform(-1.5, 1.5), 30 + 4 * u, 14 + 30 * u), 5.5 + 4 * u, ash, scale=(1.3, 1.0, 1.0))
-        lw_puff(f"eruption drift {k}", (-12 - 14 * u + rnd.uniform(-1.5, 1.5), 34 + 6 * u, 22 + 18 * u), 6.0 + 3 * u, ash, scale=(1.6, 1.0, 0.8))   # blown off west
+        lw_billow(f"eruption column {k}", (-7 + 9 * u * u + rnd.uniform(-1.5, 1.5), 30 + 4 * u, 14 + 30 * u), 5.5 + 4 * u, ash, scale=(1.3, 1.0, 1.0))
+        lw_billow(f"eruption drift {k}", (-12 - 14 * u + rnd.uniform(-1.5, 1.5), 34 + 6 * u, 22 + 18 * u), 6.0 + 3 * u, ash, scale=(1.6, 1.0, 0.8))   # blown off west
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
 
     def light():
-        return iceland_light(sun_elev=10, sun_az=-40, sun=2.6, sky=0.35, warm=(1.0, 0.7, 0.5), haze=1.6)
+        k = iceland_light(sun_elev=10, sun_az=-40, sun=2.6, sky=0.35, warm=(1.0, 0.7, 0.5), haze=1.6)
+        lw_clouds(cover=0.85, scale=3.0)
+        return k
     return dict(light=light, wall=wall, masts=masts)
 
 
@@ -1275,10 +1339,11 @@ def shot2():
     # ---- his body: leaning into the push, the duck as the rock comes down past, the grin, the haul back, the lights
     def body(t):
         p = P0.copy()
-        p.z += -0.05 * W(t, T_DUCK - 0.15, 0.28) * (1 - W(t, T_GRIN - 0.1, 0.3)) - 0.04 * W(t, T_BACK - 0.2, 0.3) * (1 - W(t, T_LOW, 0.3))
-        p.y += 0.05 * W(t, T_PUSH - 0.2, 0.3) * (1 - W(t, T_TOP, 0.3))
-        yaw = YAW0 - math.radians(30) * W(t, T_PUSH, 0.6) * (1 - W(t, T_DUCK - 0.2, 0.3)) + math.radians(8) * W(t, T_DUCK - 0.2, 0.3) * (1 - W(t, T_BACK, 0.4)) \
-            - math.radians(25) * W(t, T_BACK, 0.4) * (1 - W(t, T_LIGHTS, 0.4)) + math.radians(14) * W(t, T_LIGHTS, 0.4)
+        p.z += -0.09 * W(t, T_DUCK + 0.15, 0.4) * (1 - W(t, T_GRIN + 0.12, 0.4)) - 0.04 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+        p.y += 0.05 * W(t, T_PUSH - 0.2, 0.45) * (1 - W(t, T_TOP, 0.45))
+        yaw = YAW0 - math.radians(30) * W(t, T_PUSH, 0.6) * (1 - W(t, T_DUCK - 0.2, 0.45)) + math.radians(8) * W(t, T_DUCK - 0.2, 0.45) * (1 - W(t, T_BACK, 0.55)) \
+            - math.radians(25) * W(t, T_BACK, 0.55) * (1 - W(t, T_LIGHTS, 0.55)) + math.radians(14) * W(t, T_LIGHTS, 0.55) \
+            + math.radians(18) * W(t, T_GRIN - 0.15, 0.45) * (1 - W(t, T_BACK - 0.1, 0.5))      # he turns his grin to us
         yw = math.atan2(P0.x - PS.x, -(P0.y - PS.y))
         yaw = yw + (yaw - yw) * W(t, 0.9, 0.45)
         return p, yaw
@@ -1286,19 +1351,35 @@ def shot2():
     data.walk_to((P0.x, P0.y), 0.05, T_STEP)
     for f in range(F(T_STEP) + 1, NF + 1):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
-    lw_layer(data, "spine", lambda t: (24 * W(t, T_PUSH - 0.2, 0.3) * (1 - W(t, T_TOP - 0.2, 0.3)) - 12 * W(t, T_TOP - 0.2, 0.3) * (1 - W(t, T_DUCK - 0.15, 0.2))
-                                       + 22 * W(t, T_DUCK - 0.2, 0.28) * (1 - W(t, T_GRIN - 0.1, 0.3)) - 16 * W(t, T_BACK - 0.2, 0.3) * (1 - W(t, T_LOW, 0.3))
-                                       - 10 * W(t, T_LIGHTS, 0.3), 0, 8 * math.sin(2 * math.pi * (t - T_GRIN) / 0.9) * W(t, T_GRIN, 0.2) * (1 - W(t, T_BACK, 0.2))), 0, DUR + 0.4)
+        data._plant_feet_here(t, lift=(P0.z, P0.z))      # the duck is in his KNEES: his feet stay on the ground
+    lw_layer(data, "spine", lambda t: (24 * W(t, T_PUSH - 0.2, 0.45) * (1 - W(t, T_TOP - 0.2, 0.45)) - 12 * W(t, T_TOP - 0.2, 0.45) * (1 - W(t, T_DUCK - 0.15, 0.45))
+                                       + 22 * W(t, T_DUCK - 0.2, 0.45) * (1 - W(t, T_GRIN - 0.1, 0.45)) - 16 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+                                       - 10 * W(t, T_LIGHTS, 0.45), 0, 8 * math.sin(2 * math.pi * (t - T_GRIN) / 0.9) * W(t, T_GRIN, 0.45) * (1 - W(t, T_BACK, 0.45))), 0, DUR + 0.4)
+    # his two hands hold the remote out in front of his chest, each on its stick's knob; the remote is keyed to
+    # them after finish() (so whatever his body does later, the box stays in his hands and the knobs under them)
+    SX = {}
     sc.frame_set(1); bpy.context.view_layer.update()
-    kns = [kn for _pv, kn in sticks]
-    def on_knob(kn):
+    for sd in "LR":
+        sh_ = acts._shoulder(data, sd); SX[sd] = -0.06 if (sh_ - data.arm.location).dot(Vector((math.cos(data.arm.rotation_euler.z), math.sin(data.arm.rotation_euler.z), 0))) < 0 else 0.06
+    lean_k = {sd: (lambda t, m=(1 if SX[sd] < 0 else 0.85): lean(t) * m) for sd in "LR"}   # as the sticks are keyed: pivot x = -lean * m
+    def rc_centre(t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        mid = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2
+        yaw = data.arm.rotation_euler.z; fw = Vector((math.sin(yaw), -math.cos(yaw), 0))
+        return mid + fw * S2_RC_FW + Vector((0, 0, S2_RC_UP)), yaw
+    PUMP = None                                           # (no hand leaves its stick: the remote needs both)
+    pump_w = lambda t: W(t, T_DUCK + 0.0, 0.42) * (1 - W(t, T_BACK - 0.52, 0.42))   # up as he comes out of the duck, back on its stick to haul
+    def on_knob(sd):
         def fn(t):
-            sc.frame_set(F(t)); bpy.context.view_layer.update()
-            return kn.matrix_world.translation + Vector((0, 0, 0.035))
+            c, yaw = rc_centre(t)
+            k = c + s2_knob_off(SX[sd], lean_k[sd](t), yaw) + Vector((0, 0, 0.035))
+            if sd != PUMP or pump_w(t) <= 0: return k
+            sh, fw, out, up = lw_frame(data, sd)
+            fist = sh + fw * 0.1 + out * 0.12 + up * (0.03 + 0.03 * math.sin(2 * math.pi * (t - T_GRIN) / 0.5))   # out at his side, clear of his ducked head
+            return k.lerp(fist, pump_w(t))
         return fn
     for sd in "LR":
-        sh = acts._shoulder(data, sd); kn = min(kns, key=lambda k_: (k_.matrix_world.translation - sh).length)
-        data.reach(sd, on_knob(kn), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
+        data.reach(sd, on_knob(sd), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     # ---- face and head
     BK = lambda t: world(*path(t))
     LENS = Vector((0.4, -1.4, 0.5))
@@ -1314,6 +1395,20 @@ def shot2():
     data.expression("determined", T_BACK, T_LIGHTS, blend=0.2)
     data.expression("pleased", T_LIGHTS + 0.1, DUR + 1.0, blend=0.2)
     data.finish()
+    # the remote is carried on HIM, so its knobs are where his final body puts them: finish() smooths and steadies the
+    # torso after the hands were solved, which leaves a hand on a body-carried prop where the chest WAS (5-7 cm off).
+    # Solve both hands again, every frame, on the final body
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS
+        for sd in "LR":
+            data._arm_ik(sd, on_knob(sd)(t), t, 0.35)
+    for f in range(1, NF + 1):                             # the remote rides in his hands, on his final body
+        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
+        yaw = data.arm.rotation_euler.z
+        w = {sd: data.arm.matrix_world @ data.pb[f"fore.{sd}"].tail - Vector((0, 0, 0.035)) - s2_knob_off(SX[sd], lean_k[sd](t), yaw) for sd in "LR"}
+        remote.location = (w["L"] + w["R"]) / 2
+        remote.rotation_euler = (0, 0, yaw)
+        remote.keyframe_insert("location", frame=f); remote.keyframe_insert("rotation_euler", frame=f)
     # ---- the lens: low at the foot of the wall, looking up at him, the digger and its arm over him
     CAM = Vector((0.45, -1.25, 0.35)); LOOK = Vector((-1.0, 6.0, 2.5))
     CAM, LOOK = compose.frame_data(data, CAM, LOOK, 16.0, face_at=(0.6, 0.3), height=0.46, t=0.4 * DUR)
@@ -1336,8 +1431,8 @@ The top of the earth wall: a crest of crushed black rock, the town's roofs safe 
 other side. HIGH, out over the lava, looking down at him on the crest. The lava front, a huge glowing front of cracked
 black crust with orange in every crack, rolls in across the field below him and slams into the wall's face, its crust
 buckling and splitting red; he braces a fire hose and blasts it, and a huge cloud of white steam bursts up; the front
-grinds sideways and slides off along the wall, away from the town; he follows it along the crest, still spraying, and
-gives us a thumb up."""
+grinds sideways and slides off along the wall, away from the town; he follows it round, still spraying, and turns to
+us, pleased."""
 
 S3_H = 4.4                     # the wall (as built in the works beat)
 S3_CREST = 1.6
@@ -1351,11 +1446,12 @@ def s3_face_z(y):
     return S3_H * 0.97 * max(0.0, min(1.0, (y - y0) / (y1 - y0)))
 
 
-S3_PILE = S3_H - 0.9           # the old lava already heaped against the face: the field rises to here at the wall
+S3_PILE = S3_H - 0.4           # the old lava already heaped against the face: the field rises to here at the wall
 
 
 def s3_ground_z(x, y):
     """the black lava field: months of old flows heaped up against the wall's outer face, falling away out to the fissure"""
+    if y > 0.5: return 0.08 * lw_fbm(x * 0.3, y * 0.3, 19)   # inside the wall: the town's ground, far below the crest
     u = max(0.0, min(1.0, (y + 16.0) / 11.0))
     return S3_PILE * ease(u) + 0.1 * lw_fbm(x * 0.3, y * 0.3, 19)
 
@@ -1382,6 +1478,7 @@ def place_wall_crest():
         town_house(f"town house below {k}", (-12 + 2.6 * k + rnd.uniform(-0.3, 0.3), 7.5 + 2.6 * (k % 3), 0), yaw=math.pi + rnd.uniform(-0.2, 0.2),
                    w=2.1, d=1.6, roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)])
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35))
+    lava_rock("works rubble", 160, (-14, 14, 4.4, 9.0), s3_ground_z, seed=12, r=(0.08, 0.3))       # the works yard inside the wall
     smoke = lw_smoke_mat("far plume", density=0.7, col=(0.45, 0.42, 0.4))
     for k in range(6):
         lw_puff(f"far plume {k}", (-24 + 6 * k, 38 + 3 * (k % 3), 10 + 3.5 * k), 7.0, smoke, scale=(1.4, 1.0, 1.0))   # the plume, blown over the town
@@ -1394,9 +1491,9 @@ def place_wall_crest():
 def shot3():
     """THE WALL HOLDS. From just above the crest, off his shoulder: the old lava heaped high against the face below him.
     A new front rolls in and slams the face right under his boots; he flinches, braces and blasts it with the hose;
-    steam bursts up; the front grinds sideways and slides off along the wall; he follows it round with the spray, lets
-    go with one hand and gives us a thumb up."""
-    T_ROLL = 0.03 * DUR; T_HIT = 0.21 * DUR; T_SPRAY = 0.35 * DUR; T_SLIDE = 0.52 * DUR; T_REL = 0.64 * DUR; T_THUMB = 0.75 * DUR
+    steam bursts up; the front grinds sideways and slides off along the wall; he follows it round with the spray and turns to
+    us, pleased."""
+    T_ROLL = 0.03 * DUR; T_HIT = 0.21 * DUR; T_SPRAY = 0.35 * DUR; T_SLIDE = 0.52 * DUR; T_REL = DUR + 1.0; T_THUMB = 0.75 * DUR
     W = lw_win
     P = place_wall_crest()
     light = P["light"]
@@ -1410,14 +1507,14 @@ def shot3():
     out = []
     for k in range(25):                                    # the front's outline: a long tongue, its nose to +X
         a = 2 * math.pi * k / 25
-        out.append((2.6 * math.cos(a) + 0.2 * math.sin(3 * a), 0.8 * math.sin(a) + 0.08 * math.cos(5 * a)))
-    front = lava("lava front", out, z=0.0, thick=0.75, m=lm, seed=4, lumpy=0.18)
+        out.append((2.0 * math.cos(a) + 0.15 * math.sin(3 * a), 0.65 * math.sin(a) + 0.06 * math.cos(5 * a)))
+    front = lava("lava front", out, z=0.0, thick=0.45, m=lm, seed=4, lumpy=0.18)
     Y_FACE = -S3_BASE / 2 + (S3_PILE / (S3_H * 0.97)) * (S3_BASE / 2 - S3_CREST / 2 - 0.1)   # where the heap meets the face
     Y_HIT = Y_FACE - 0.45
     def where(t):
         y = -6.0 + (Y_HIT + 6.0) * ease(min(1.0, max(0.0, (t - T_ROLL) / (T_HIT - T_ROLL))))
-        x = -1.4 - 1.6 * W(t, T_SLIDE - 0.25, 1.5) - 0.1 * t      # it grinds off along the wall, away from him
-        z = S3_PILE - 0.3 + 0.35 * W(t, T_HIT - 0.08, 0.25) - 0.12 * W(t, T_SLIDE, 0.8)   # it rides up the face as it rams it
+        x = -0.3 - 1.3 * W(t, T_SLIDE - 0.25, 1.5) - 0.05 * t      # right under him, then it grinds off along the wall
+        z = S3_PILE - 0.3 + 0.2 * W(t, T_HIT - 0.08, 0.25) - 0.1 * W(t, T_SLIDE, 0.8)   # it rides up the face as it rams it
         return Vector((x, y, z))
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; front.location = where(t); front.keyframe_insert("location", frame=f)
@@ -1426,11 +1523,11 @@ def shot3():
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.18)
     heat = lm.node_tree.nodes["lava heat"].inputs[1]
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; heat.default_value = 2.2 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)); heat.keyframe_insert("default_value", frame=f)
+        t = (f - 1) / FPS; heat.default_value = 1.1 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)); heat.keyframe_insert("default_value", frame=f)
     # glowing chunks the impact throws up off the face, falling back onto the front
-    cm = lw_emit("lava chunk", "#FF5A00", 1.3); rnd = lw_random.Random(3); chunks = []
+    cm = lava_mat("lava chunk", heat=1.2, scale=14.0, fresh=0.7); rnd = lw_random.Random(3); chunks = []
     for k in range(14):
-        c = K.sph(f"lava chunk {k}", (0, 0, -5), rnd.uniform(0.04, 0.09), cm, seg=8, ring=6); chunks.append(c)
+        c = K.sph(f"lava chunk {k}", (0, 0, -5), rnd.uniform(0.03, 0.06), cm, seg=8, ring=6, scale=(1.0, 0.8, 0.7)); chunks.append(c)
         x0 = rnd.uniform(-3.0, -0.6); vy = -rnd.uniform(0.3, 0.9); vz = rnd.uniform(1.6, 2.6); t0 = T_HIT + rnd.uniform(-0.03, 0.12)
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; s = t - t0
@@ -1441,7 +1538,7 @@ def shot3():
             c.keyframe_insert("location", frame=f)
     # ---- the hose: the nozzle in his hands, aimed down the face at the front; the jet; the steam where it lands
     noz = s3_hose_nozzle()
-    aim = lambda t: Vector((-0.45 + 0.15 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) - 0.3 * W(t, T_SLIDE, 0.8), Y_FACE + 0.5, S3_PILE + 0.6))
+    aim = lambda t: Vector((-0.4 + 0.12 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) - 0.3 * W(t, T_SLIDE, 0.8), Y_FACE - 0.15, S3_PILE + 0.3))   # the front's nose
     jet_m = bpy.data.materials.get("hose water") or bpy.data.materials.new("hose water")
     jet_m.use_nodes = True; jb = jet_m.node_tree.nodes["Principled BSDF"]
     jb.inputs["Base Color"].default_value = (0.85, 0.92, 1.0, 1); jb.inputs["Roughness"].default_value = 0.1
@@ -1452,27 +1549,32 @@ def shot3():
     # ---- his body: watching it come, a flinch at the hit, braced back as he opens up, turning with the slide
     yaw0 = math.radians(-12)
     def body_yaw(t):
-        return yaw0 + math.radians(12) * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) * W(t, T_SPRAY, 0.3) - math.radians(30) * W(t, T_SLIDE, 0.6) \
-            + math.radians(34) * W(t, T_THUMB - 0.1, 0.4)
+        return yaw0 + math.radians(24) * (1 - W(t, 0.0, T_HIT + 0.1)) - math.radians(30) * W(t, T_SLIDE - 0.2, 1.0) \
+            + math.radians(34) * W(t, T_THUMB - 0.3, 0.75)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; p = P0.copy()
-        p.z += 0.07 * lw_kick(t - T_HIT, 0.12)                                      # a hop at the hit
-        p.y += 0.08 * W(t, T_HIT, 0.2) - 0.06 * W(t, T_SPRAY - 0.1, 0.3)            # jumps back from the edge, then leans back in to spray
+        p.z += 0.03 * lw_kick(t - T_HIT, 0.2)                                       # a jolt at the hit
+        p.y += -0.08 * W(t, 0.2, 0.3) + 0.1 * W(t, T_HIT, 0.2) - 0.06 * W(t, T_SPRAY - 0.1, 0.3)   # a step to the edge, a jump back at the hit, in again to spray
+        p.y += 0.05 * W(t, T_SPRAY + 0.1, 0.4) * (1 - W(t, T_SPRAY + 0.6, 0.45))                  # the hose kicks him back; he digs in
+        p.x -= 0.1 * W(t, T_SPRAY + 0.15, 0.6)                                                       # he shuffles along the crest after the front
+        p.y += 0.07 * W(t, T_SLIDE, 0.45) * (1 - W(t, T_SLIDE + 0.55, 0.5))                       # the front grinds: he gives a step
+        p.z -= 0.085 * W(t, T_HIT - 0.1, 0.35) * (1 - W(t, T_SPRAY + 0.35, 0.4))                 # knees bent, braced for the hit and the kick
+        p.z -= 0.08 * W(t, T_SLIDE - 0.1, 0.35) * (1 - W(t, T_THUMB - 0.25, 0.4))                # and again as he leans the jet into the slide
+        p.z += 0.04 * lw_kick(t - T_THUMB, 0.25)                                                     # a bounce: it's gone
         data._kobj(t, loc=tuple(p), rot=body_yaw(t))
-    lw_layer(data, "spine", lambda t: (16 * W(t, 0.0, T_HIT - 0.1) * (1 - W(t, T_HIT, 0.12)) - 16 * lw_kick(t - T_HIT, 0.22) + 12 * W(t, T_SPRAY - 0.2, 0.3) * (1 - W(t, T_THUMB - 0.1, 0.3))
-                                       - 8 * W(t, T_THUMB, 0.3), 0, 6 * W(t, T_SLIDE, 0.5) * (1 - W(t, T_THUMB, 0.3))), 0, DUR + 0.4)
-    # his hands on the nozzle: both low at first, raised to aim as he opens it, the camera-side one lets go for the thumb
+        data._plant_feet_here(t, lift=(P0.z, P0.z))                                          # the crouch is in his KNEES: feet stay on the crest
+    lw_layer(data, "spine", lambda t: (16 * W(t, 0.0, T_HIT - 0.1) * (1 - W(t, T_HIT - 0.1, 0.4)) - 6 * lw_kick(t - T_HIT, 0.3) + 12 * W(t, T_SPRAY - 0.3, 0.5) * (1 - W(t, T_THUMB - 0.3, 0.6))
+                                       - 8 * W(t, T_THUMB, 0.5), 0, 6 * W(t, T_SLIDE, 0.8) * (1 - W(t, T_THUMB - 0.2, 0.6))), 0, DUR + 0.4)
+    # his hands on the nozzle: both low at first, raised to aim as he opens it, both on it to the end
     sc.frame_set(1); bpy.context.view_layer.update()
     cam_side = Vector((0.45, -2.55, 0))
     sides = sorted("LR", key=lambda s: -(acts._shoulder(data, s) - data.arm.location).dot(cam_side))
-    keys = lambda k: [(0.0, (0.13, -0.05, -0.16)), (T_HIT - 0.1, (0.14, -0.05, -0.15)), (T_HIT + 0.15, (0.12, -0.05, -0.12)),
-                      (T_SPRAY, (0.15, -0.04 - 0.01 * k, -0.06)), (T_SLIDE, (0.16, -0.04, -0.05)), (DUR + 0.5, (0.16, -0.04, -0.06))]
-    data.reach(sides[0], lw_hand(data, sides[0], keys(0)), 0.0, T_REL, lead=0.3, back=None, elbow_out=0.4)
+    keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
+                      (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
+                      (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
+    data.reach(sides[0], lw_hand(data, sides[0], keys(0)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
-    PUMP = [(T_REL + 0.35, (0.12, 0.1, -0.03)), (T_THUMB + 0.22, (0.1, 0.12, 0.12)), (T_THUMB + 0.45, (0.12, 0.11, 0.05)),
-            (T_THUMB + 0.68, (0.1, 0.12, 0.13)), (DUR + 0.4, (0.11, 0.12, 0.1))]          # the free fist punches the air, twice
-    data.reach(sides[0], lw_hand(data, sides[0], PUMP), PUMP[0][0], DUR + 0.3, lead=0.4, back=None, elbow_out=0.5)
-    LENS = Vector((0.25, -3.0, S3_H + 0.8))
+    LENS = Vector((-0.6, -3.6, S3_H + 1.3))
     data.look_at(Vector((-3.0, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
     data.look_at(Vector((-0.9, Y_HIT, S3_PILE + 0.4)), T_HIT - 0.15, max_yaw=50, max_pitch=55, blend=0.15)
     data.look_at(aim(T_SPRAY), T_SPRAY, max_yaw=50, max_pitch=55, blend=0.25)
@@ -1505,16 +1607,18 @@ def shot3():
             bp.keyframe_insert("co", frame=f)
     # the jet: a solid rope of water from the nozzle tip arcing down to the aim point, breaking into spray at its end
     jc = bpy.data.curves.new("hose jet line", 'CURVE'); jc.dimensions = '3D'; jc.bevel_depth = 0.014; jc.bevel_resolution = 2
-    jsp = jc.splines.new('BEZIER'); jsp.bezier_points.add(2)
+    jsp = jc.splines.new('POLY'); jsp.points.add(5)
     jet = lw_link(bpy.data.objects.new("hose jet line", jc)); jet.data.materials.append(jet_m)
     noz_tip = {}
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update(); noz_tip[f] = noz.matrix_world @ Vector((0, -0.16, 0))
+    noz_tip = {f: sum((noz_tip[min(NF, max(1, f + d))] for d in (-2, -1, 0, 1, 2)), Vector()) / 5 for f in noz_tip}   # the jet leaves a steadied tip
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; on = W(t, T_SPRAY, 0.12)
-        a = noz_tip[f]; b = a.lerp(aim(t), max(0.02, on)); mid = a.lerp(b, 0.5); mid.z += 0.18 * on
-        for bp, q in zip(jsp.bezier_points, (a, mid, b)):
-            bp.co = q; bp.handle_left_type = bp.handle_right_type = 'AUTO'; bp.keyframe_insert("co", frame=f)
+        a = noz_tip[f]; b = a.lerp(aim(t), max(0.02, on))
+        pts = [a.lerp(b, u) + Vector((0, 0, 0.12 * on * math.sin(math.pi * u))) for u in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0)]
+        for bp, q in zip(jsp.points, pts):
+            bp.co = (q.x, q.y, q.z, 1.0); bp.keyframe_insert("co", frame=f)
         jet.hide_render = on < 0.02; jet.keyframe_insert("hide_render", frame=f)
     jr = lw_random.Random(17); jit = [Vector((jr.uniform(-1, 1), jr.uniform(-1, 1), jr.uniform(-1, 1))) for _ in drops]
     for k, o in enumerate(drops):
@@ -1529,17 +1633,20 @@ def shot3():
     for k, o in enumerate(steam):
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; t0 = T_SPRAY + 0.06 + 0.12 * k; s = W(t, t0, 0.4)
-            b = aim(t); age = max(0.0, t - t0)                      # it boils up off the front and rolls back over the crest
-            o.location = (b.x - 0.55 - 0.16 * k - 0.3 * age, b.y + 0.1 + 0.9 * age + 0.15 * (k % 3), b.z + 0.1 + 0.4 * s + 0.6 * age)
-            r = 0.3 * s * (1 + 0.08 * k) * (1 + 0.4 * age)
+            b = aim(t0); age = max(0.0, t - t0)                      # it boils up off the front, up past the crest
+            o.location = (b.x - 0.42 - 0.05 * k - 0.1 * age, b.y - 0.45 - 0.15 * age - 0.06 * (k % 3), b.z + 0.05 + 0.2 * s + 0.35 * age)
+            r = 0.17 * s * (1 + 0.06 * k) * (1 + 0.5 * age)
             lw_puff_key(o, f, (r, r, r * 0.9)); o.keyframe_insert("location", frame=f)
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
-    CAM = LENS.copy(); LOOK = Vector((-0.59, -0.12, S3_H + 0.68))
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=50.0, fstop=22.0)
-    camera_path(cam, lambda t: (CAM + Vector((-0.12, 0.0, 0.03)) * W(t, T_SLIDE - 0.2, 1.4), LOOK + Vector((-0.2, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.4), data.pos() + Vector((0, 0, 0.5))))
+    CAM = LENS.copy(); LOOK = Vector((-0.4, -0.8, S3_H + 0.2))    # high out over the heap: him on the crest, the front filling the frame under him
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=58.0, fstop=22.0)
+    def cam_at(t):                                          # it leans in at the hit, then drifts after the front as it slides off
+        mv = Vector((0.03, 0.12, -0.03)) * W(t, T_HIT - 0.1, 0.9) + Vector((-0.12, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.4)
+        return CAM + mv, LOOK + mv * 0.8, data.pos() + Vector((0, 0, 0.5))
+    camera_path(cam, cam_at)
     return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",),
                 boxes=[],
-                conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [front], T_ROLL, DUR, {"whole": False}),
+                conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [front], T_HIT - 0.2, DUR, {"whole": False}),
                         ("he blasts the front with the hose and a cloud of steam bursts up", lambda: steam, T_SPRAY + 0.1, DUR, {"whole": False, "moves": True})])
 
 
@@ -1565,7 +1672,7 @@ def s4_zig(x):
 
 
 def s4_ground_z(x, y):
-    z = -0.06                                              # under the street's slabs (level with them it showed through black)
+    z = -0.6 if abs(x) < 3.2 and abs(y - S4_YC) < 1.8 else -0.06   # under the slabs; well under the crack's trench (the gap showed black ground)
     if abs(x) > 3.3: z += 0.06 + 0.1 * lw_fbm(x * 0.4, y * 0.4, 23)
     return z
 
@@ -1610,7 +1717,7 @@ def s4_barrow():
     sand = lw_noise("sandbag hessian", "#7A6844", "#9A8658", scale=40, rough=0.9, bump=0.6)
     for k, (x, y) in enumerate(((-0.08, 0.2), (0.09, 0.22), (0.0, 0.4), (-0.06, 0.38))):
         K.sph(f"wheelbarrow sandbag {k}", (x, y, 0.27 + 0.04 * (k > 1)), 0.075, sand, scale=(1.0, 1.5, 0.5), seg=12, ring=8, parent=root)
-    fire = lw_emit("barrow fire", "#FF6A10", 1.4)
+    fire = lw_fire_mat("barrow fire")
     flames = []
     for k, (x, y) in enumerate(((-0.08, 0.22), (0.08, 0.3), (0.0, 0.42))):
         fl = K.sph(f"wheelbarrow flame {k}", (x, y, 0.4), 0.08, fire, scale=(0.7, 0.7, 2.0), seg=10, ring=8, parent=root)
@@ -1641,7 +1748,7 @@ def place_town_crack():
     trench = lava_mat("crack lava", heat=1.4, scale=4.0, fresh=0.6)
     K.box("crack trench", (0, S4_YC, -0.32), (2 * S4_HALF + 0.4, 1.6, 0.1), trench, bev=0)
     for sy in (-1, 1):
-        K.box("crack wall rock", (0, S4_YC + sy * 0.85, -0.2), (2 * S4_HALF + 0.4, 0.1, 0.4), lw_noise("crack rock", "#2A2522", "#4A3E36", scale=10, rough=0.95, bump=1.0), bev=0)
+        K.box("crack wall rock", (0, S4_YC + sy * 0.85, -0.23), (2 * S4_HALF + 0.4, 0.1, 0.4), lw_noise("crack rock", "#2A2522", "#4A3E36", scale=10, rough=0.95, bump=1.0), bev=0)
     houses = []
     for sx in (-1, 1):
         y = -9.0 + (0.6 if sx > 0 else 0.0); k = 0
@@ -1679,7 +1786,7 @@ def shot4():
     P = place_town_crack()
     light = P["light"]; near, far = P["near"], P["far"]
     data = load_data()
-    Y0, YS = 1.55, 0.92                                     # where he starts pushing and where he stops (y)
+    Y0, YS = 1.3, 0.92                                     # where he starts pushing and where he stops (y)
     data.place(0.15, Y0, 0.0)
     kit = hard_hat(data)
     data.walk_to((0.15, YS), 0.0, T_STOP, pushing=True)
@@ -1689,7 +1796,7 @@ def shot4():
     for f in range(F(T_STOP) + 1, NF + 1):
         t = (f - 1) / FPS
         y1, z1 = hop(t, T_LET, 0.2, 0.08, 0.5); y2, z2 = hop(t, T_RUN, 0.13, 0.06); y3, z3 = hop(t, T_RUN + 0.45, 0.14, 0.06)
-        jolt = -0.05 * lw_kick(t - T_JOLT, 0.1) - 0.05 * lw_kick(t - T_POUR, 0.15)
+        jolt = -0.03 * lw_kick(t - T_JOLT, 0.1) - 0.05 * lw_kick(t - T_POUR, 0.15)
         sway = 0.04 * math.sin(2 * math.pi * (t - T_LET) / 1.1) * W(t, T_LET + 0.3, 0.3)
         data._kobj(t, loc=(0.15 + sway + 0.12 * W(t, T_RUN, 0.6), YS + y1 + y2 + y3 + 0.04 * W(t, T_POUR, 0.2), z1 + z2 + z3 + jolt),
                    rot=math.radians(-8) * W(t, T_LET, 0.3) + math.radians(12) * math.sin(2 * math.pi * (t - T_LET) / 1.6) * W(t, T_LET + 0.3, 0.4) + math.radians(14) * W(t, T_RUN, 0.5))
@@ -1707,9 +1814,9 @@ def shot4():
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         p = path[min(f, F(T_LET))].copy()
-        pitch = 0.0
-        if t > T_LET:                                       # let go: the handles drop onto its legs, then the tip
-            pitch += math.radians(-10) * W(t, T_LET, 0.2)
+        pitch = math.radians(-6) * W(t, T_STOP - 0.1, 0.5)    # set down at the stop: the handles drop onto its legs
+        p.z -= 0.03 * lw_kick(t - T_JOLT, 0.1)                  # the road jolts it with him
+        if t > T_LET:                                       # let go: it rolls to the edge, then the tip
             roll = 0.25 * W(t, T_OPEN0 + 0.2, 0.9)
             p.y = max(y_edge - 0.05, p.y - roll)
             tip = W(t, T_TIP, 0.6)
@@ -1733,9 +1840,9 @@ def shot4():
         data.reach(sd, handle(sx), 0.0, T_LET, lead=0.05, back=None, elbow_out=0.35)
     # arms up against the heat: hands up at his face's sides from the leap, higher at the hops back
     for sd in sides:
-        HK = [(T_LET + 0.45, (0.07, 0.13, 0.04)), (T_POUR - 0.1, (0.06, 0.13, 0.05)), (T_POUR + 0.2, (0.04, 0.15, 0.13)), (T_RUN, (0.05, 0.14, 0.12)),
-              (T_RUN + 0.4, (0.07, 0.15, 0.14)), (T_RUN + 0.75, (0.05, 0.12, 0.06)), (DUR + 0.4, (0.07, 0.15, 0.13))]
-        data.reach(sd, lw_hand(data, sd, HK), HK[0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.4)
+        HK = [(T_LET + 0.7, (0.08, 0.14, 0.0)), (T_POUR - 0.03, (0.08, 0.15, 0.03)), (T_POUR + 0.25, (0.08, 0.15, 0.05)), (T_RUN, (0.08, 0.15, 0.05)),
+              (T_RUN + 0.4, (0.08, 0.15, 0.06)), (T_RUN + 0.8, (0.08, 0.14, 0.02)), (DUR + 0.4, (0.08, 0.15, 0.05))]
+        data.reach(sd, lw_hand(data, sd, HK), HK[0][0], DUR + 0.3, lead=0.7, back=None, elbow_out=0.4)
     # ---- the crack: a hairline tears across from kerb to kerb, then the street pulls apart and the lava shows in the gap
     gm = lava_mat("crack glow", heat=1.6, scale=6.0)
     xs = [-S4_HALF + 2 * S4_HALF * k / 60 for k in range(61)]
@@ -1761,19 +1868,17 @@ def shot4():
     trench = bpy.data.materials["crack lava"]
     lava_flow_key(trench, 0.0, DUR + 0.5, 0.25)
     # ---- steam shooting up out of the crack as it opens
-    steam_m = lw_billow_mat("crack steam", "#E9ECEE")
+    steam_m = lw_smoke_mat("crack steam", density=2.5, col=(0.93, 0.94, 0.96))
     steam = []
-    for k in range(6):
-        x = -2.2 + 0.85 * k
-        o = lw_billow(f"crack steam {k}", (x, s4_zig(x) - 0.25, -0.3), 0.6, steam_m, seed=40 + k)
+    for k, x in enumerate((-2.4, -1.7, -1.1, 1.2, 1.8, 2.5)):     # out to the sides of him: the gap in front of him stays clear
+        o = lw_puff(f"crack steam {k}", (x, s4_zig(x) - 0.25, -0.3), 1.0, steam_m)
         steam.append(o)
-        z0 = -0.3; t0 = T_OPEN0 + 0.05 * k
+        z0 = -0.2; t0 = T_OPEN0 + 0.06 * k
         for f in range(1, NF + 1):
-            t = (f - 1) / FPS; s = W(t, t0, 0.5)
-            o.hide_render = s < 0.02; o.keyframe_insert("hide_render", frame=f)
-            r = max(0.05, s * (1.0 + 0.5 * (t - t0)))
-            o.scale = (r, r, r * 1.2); o.location.z = z0 + 1.6 * s + 0.9 * max(0.0, t - t0)
-            o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
+            t = (f - 1) / FPS; s = W(t, t0, 0.5); age = max(0.0, t - t0)
+            r = s * (0.3 + 0.18 * age)
+            lw_puff_key(o, f, (r, r, r * 1.3)); o.location.z = z0 + 0.6 * s + 0.5 * age
+            o.keyframe_insert("location", frame=f)
     # ---- the lava: it wells up in the crack and pours out over the road, toward him and the corner house
     lm = lava_mat("street lava", heat=1.2, scale=4.0, fresh=0.8)
     out = []
@@ -1788,7 +1893,7 @@ def shot4():
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
     glow = lw_point("crack glow", (0.0, S4_YC, 0.25), 0.0, col=(1.0, 0.45, 0.12), r=0.6)
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; glow.data.energy = 900.0 * W(t, T_OPEN0, 0.5) + 600.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
+        t = (f - 1) / FPS; glow.data.energy = 260.0 * W(t, T_OPEN0, 0.5) + 200.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
     # ---- face and head: one feeling per moment, held
     data.look_at(Vector((0.15, -2.5, 0.6)), 0.0, max_yaw=40, blend=0.0)
     data.look_at(Vector((0.1, S4_YC, 0.0)), T_JOLT + 0.05, max_yaw=50, max_pitch=50, blend=0.2)
@@ -1800,15 +1905,16 @@ def shot4():
     data.expression("alarmed", T_LET, DUR + 1.0, blend=0.15)
     data.finish()
     # ---- the lens: backing down the street ahead of him while he pushes, then holding as the street splits
-    CAM = Vector((2.1, -1.0, 1.75)); LOOK = Vector((-0.7, 2.8, 0.0))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 22.0, face_at=(0.45, 0.72), height=0.34, t=T_STOP)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=22.0, fstop=11.0)
+    CAM = Vector((0.9, -3.4, 1.05)); LOOK = Vector((0.12, 0.3, 0.5))     # long lens, low down the street: him, the crack at his wheel, the town behind him
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=88.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()
         dy = data.pos().y - YS
         shake = Vector((0.02 * math.sin(2 * math.pi * 13 * t), 0, 0.015 * math.sin(2 * math.pi * 17 * t))) * lw_kick(t - T_JOLT, 0.25) * 2
-        back = Vector((0, 0.3, 0.0)) * W(t, T_LET, 1.5)
-        return CAM + Vector((0, dy, 0)) + shake + back, LOOK + Vector((0, dy, 0)) + shake + back, data.pos() + Vector((0, 0, 0.6))
+        back = Vector((0, -0.3, 0.0)) * W(t, T_LET, 1.5)          # it backs off as the lava comes
+        p0 = data.pos().copy(); sc.frame_set(F(t)); bpy.context.view_layer.update()
+        fol = (data.pos() - p0) * 0.8; fol.z = 0.0                     # and pans with him as he leaps and hops back
+        return CAM + Vector((0, dy, 0)) + shake + back, LOOK + Vector((0, dy, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))
     camera_path(cam, cam_at)
     return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("wheelbarrow",),
                 boxes=[],
@@ -1835,8 +1941,8 @@ S5_EDGE_X = -2.2                        # the quay's water edge (x)
 def s5_slope_z(x, y):
     """the quay flat, the town's slope rising behind it, the lava field on the right"""
     z = 0.0
-    if y > 3.0: z += 0.16 * (y - 3.0)
-    z += 0.08 * lw_fbm(x * 0.3, y * 0.3, 51) * (1 if y > 3.0 else 0)
+    if y > 4.0: z += 0.55 * (min(y, 15.0) - 4.0)         # the town climbs the steep hill behind the harbour, row over row
+    z += 0.08 * lw_fbm(x * 0.3, y * 0.3, 51) * (1 if y > 4.0 else 0)
     return z
 
 
@@ -1872,8 +1978,8 @@ def s5_lit_pane(house, k, t_on):
 
 def s5_fire(name, loc, size, rnd):
     """flames on a burning house: a cluster of hot tongues and a column of smoke billows over it"""
-    fm = bpy.data.materials.get("house fire") or lw_emit("house fire", "#FF5000", 1.2)
-    core = bpy.data.materials.get("house fire core") or lw_emit("house fire core", "#FF9020", 1.6)
+    fm = lw_fire_mat("house fire", 1.4)
+    core = lw_fire_mat("house fire core", 2.0)
     tongues = []
     for k in range(7):
         x = loc[0] + rnd.uniform(-0.45, 0.45) * size; y = loc[1] + rnd.uniform(-0.3, 0.3) * size
@@ -1881,7 +1987,7 @@ def s5_fire(name, loc, size, rnd):
         tx = bpy.data.textures.new(f"{name} flame tex {k}", 'CLOUDS'); tx.noise_scale = 0.12 * size
         dm = o.modifiers.new("lick", 'DISPLACE'); dm.texture = tx; dm.strength = 0.12 * size
         tongues.append(o)
-    ash = lw_smoke_mat("fire smoke", density=2.5, col=(0.22, 0.21, 0.21))
+    ash = lw_smoke_mat("fire smoke", density=2.5, col=(0.08, 0.08, 0.09))
     smoke = [lw_puff(f"{name} smoke {k}", (loc[0] + rnd.uniform(-0.4, 0.4) - 0.5 * k, loc[1] + 0.3 * k, loc[2] + 1.0 * size + 1.3 * k * size), (0.8 + 0.4 * k) * size, ash)
              for k in range(6)]
     L = lw_point(f"{name} fire light", (loc[0], loc[1] - 0.6, loc[2] + 0.6 * size), 900.0 * size, col=(1.0, 0.45, 0.15), r=0.4)
@@ -1894,7 +2000,7 @@ def place_harbour_dawn():
     and three houses there still burning under their smoke."""
     rnd = lw_random.Random(61)
     lw_grid("town slope", -24, 24, 1.2, 40, 80, 80, s5_slope_z, lava_field_mat())
-    K.box("quay concrete", (3.0, -2.0, -0.12), (10.4, 7.0, 0.24), lw_noise("quay concrete", "#8A8782", "#A5A29B", scale=10, rough=0.85, bump=0.4), bev=0.02)
+    K.box("quay concrete", (3.0, -2.0, -0.128), (10.4, 7.0, 0.24), lw_noise("quay concrete", "#8A8782", "#A5A29B", scale=10, rough=0.85, bump=0.4), bev=0.02)
     K.box("quay edge", (S5_EDGE_X + 0.1, -2.0, 0.03), (0.2, 7.0, 0.06), K.mat("quay edge paint", "#D9B32E", rough=0.6), bev=0.01)
     for k in range(5):
         K.cyl("quay bollard", (S5_EDGE_X + 0.35, -4.0 + 1.6 * k, 0.1), 0.07, 0.2, lw_metal("bollard", "#2E3033"), v=16)
@@ -1910,32 +2016,34 @@ def place_harbour_dawn():
         K.box(f"fishing boat {k} wheelhouse", (x, y + 0.4, 0.3), (0.7, 0.7, 0.55), lw_paint("wheelhouse white", "#EDEBE4", rough=0.4), bev=0.05)
         K.box(f"fishing boat {k} window", (x, y + 0.04, 0.38), (0.55, 0.02, 0.18), K.mat("car glass", "#1E262C", rough=0.05, metal=0.3), bev=0.0)
         K.cyl(f"fishing boat {k} mast", (x, y - 0.5, 0.9), 0.025, 1.6, lw_metal("mast steel", "#8A8E92"), v=10)
-    home = town_house("his town house", (1.45, 2.45, 0.0), yaw=0.0, w=2.0, d=1.6, roof="#2F5E8C", wall="#F1EEE6", seed=3)
+    home = town_house("his town house", (-2.1, 2.6, 0.0), yaw=0.0, w=2.0, d=1.6, roof="#2F5E8C", wall="#F1EEE6", seed=3)
     wood = lw_noise("post wood", "#5A4632", "#7A6248", scale=12, rough=0.8, stretch=(1, 1, 8))
     K.box("lantern post", (S5_HOOK.x + 0.1, S5_HOOK.y, 0.36), (0.07, 0.07, 0.72), wood, bev=0.008)
     K.cyl("lantern hook", (S5_HOOK.x + 0.04, S5_HOOK.y, S5_HOOK.z + 0.01), 0.008, 0.09, lw_metal("hook iron", "#2E3033"), rot=(0, math.pi / 2, 0), v=8)
     quay = []
-    for k, (x, y) in enumerate(((4.0, 3.1), (6.4, 3.7), (8.8, 4.4))):     # his neighbours along the quay
+    for k, (x, y) in enumerate(((6.4, 3.0), (8.8, 3.4), (11.2, 4.0))):     # his neighbours along the quay, off to the right
         quay.append(town_house(f"quay house {k}", (x, y, 0.0), yaw=0.0, w=2.0, d=1.6, roof=ROOFS[(k * 3 + 2) % len(ROOFS)], wall=WALLS[(k + 2) % len(WALLS)], seed=50 + k))
     town = []
-    spots = [(-3.6, 7.0), (-1.2, 8.4), (1.4, 9.2), (-4.4, 10.8), (3.4, 6.6), (-2.2, 12.6), (0.6, 12.0), (2.8, 11.2), (-6.0, 8.6), (5.2, 9.8)]
+    spots = [(-2.6, 6.2), (-0.3, 6.8), (-1.6, 9.0), (-0.5, 9.6), (-3.4, 10.6), (-0.8, 11.8), (0.0, 13.6), (-2.6, 13.6), (-4.6, 7.6), (-1.8, 15.2)]
     for k, (x, y) in enumerate(spots):
         hs = town_house(f"town house up {k}", (x, y, s5_slope_z(x, y) - 0.05), yaw=rnd.uniform(-0.15, 0.15), w=rnd.uniform(1.8, 2.2), d=1.6,
                         roof=ROOFS[(k * 2 + 1) % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=30 + k)
         town.append(hs)
     burning = []
-    for k, (x, y) in enumerate(((7.4, 10.4), (9.6, 11.8), (11.4, 9.8))):     # at the lava's edge, right of the town
+    for k, (x, y) in enumerate(((2.0, 7.6), (1.5, 10.6), (2.7, 12.8))):     # at the lava's edge, the right of the town
         z = s5_slope_z(x, y) - 0.05
         hs = town_house(f"burning house {k}", (x, y, z), yaw=rnd.uniform(-0.3, 0.3), w=2.0, d=1.6, roof="#3A3230", wall="#6E655E", seed=40 + k)
         burning.append((hs, (x, y, z + 1.2)))
     lm = lava_mat("lava field fresh", heat=0.35, scale=2.5)
-    out = [(6.0, 6.0), (16.0, 5.0), (22.0, 12.0), (20.0, 24.0), (8.0, 22.0), (6.2, 14.0), (5.8, 9.0)]
+    out = [(3.3, 6.0), (14.0, 5.6), (16.0, 10.0), (14.0, 14.8), (3.8, 14.8), (3.5, 12.0), (3.8, 9.0)]
     flow = lava("new lava field", out, z=0.0, thick=0.4, m=lm, seed=8, lumpy=0.2)
-    flow.location.z = s5_slope_z(12, 12) - 0.1
+    c = flow.location.copy()                               # laid on the hill: tilted to its slope, its centre on the ground
+    flow.rotation_euler.x = math.atan(0.55); flow.location.z = 0.55 * (c.y - 4.0) - 0.12
     wall = earth_wall("earth wall", [(x, 17.0 + 0.03 * x * x) for x in range(-26, 8, 2)], h=4.4, crest=1.4, base=8.5, seed=14)
+    wall["root"].location.z = s5_slope_z(0.0, 16.0) - 0.3          # on the hilltop above the town
 
     def light():
-        return iceland_light(sun_elev=6, sun_az=-55, sun=2.6, sky=0.4, warm=(1.0, 0.7, 0.5), haze=1.6)
+        return iceland_light(sun_elev=4, sun_az=-55, sun=1.8, sky=0.3, warm=(1.0, 0.7, 0.5), haze=1.6)
     return dict(light=light, home=home, town=town, burning=burning, quay=quay)
 
 
@@ -1951,13 +2059,13 @@ def shot5():
     data = load_data()
     rnd = lw_random.Random(7)
     P0 = Vector((S5_HOOK.x - 1.0, S5_HOOK.y + 0.1, 0.0))
-    STAND = Vector((S5_HOOK.x - 0.17, S5_HOOK.y + 0.1, 0.0))               # facing +X, the hook in front of his near shoulder
+    STAND = Vector((S5_HOOK.x - 0.2, S5_HOOK.y + 0.1, 0.0))               # facing +X, the hook in front of his near shoulder
     data.place(P0.x, P0.y, 90.0)
     kit = hard_hat(data)
-    data.walk_to((STAND.x, STAND.y), 0.15, T_WALK1)
+    data.walk_to((STAND.x, STAND.y), 0.15, T_WALK1 - 0.15)
     # ---- the burning houses: the flames lick and flicker, the smoke climbs
     for hs, loc in P["burning"]:
-        tongues, smoke, L = s5_fire(hs["root"].name, loc, 1.0, rnd)
+        tongues, smoke, L = s5_fire(hs["root"].name, loc, 1.35, rnd)
         for k, o in enumerate(tongues):
             s0 = o.scale.copy(); ph = rnd.uniform(0, 6.28); hz = rnd.uniform(2.5, 4.5)
             for f in range(1, NF + 1, 2):
@@ -1971,21 +2079,21 @@ def shot5():
             t = (f - 1) / FPS; L.data.energy = 900.0 * (1 + 0.25 * math.sin(2 * math.pi * 3.1 * t + rnd.uniform(0, 3))); L.data.keyframe_insert("energy", frame=f)
     # ---- a few windows light up across the dark town, one here, one there
     lit = []
-    order = [(P["quay"][0], 1, 0.0), (P["town"][4], 0, 0.06), (P["quay"][2], 0, 0.12), (P["town"][1], 1, 0.19), (P["quay"][1], 1, 0.26), (P["town"][7], 0, 0.31)]
+    order = [(P["town"][1], 1, -0.07), (P["town"][4], 0, 0.06), (P["town"][2], 0, 0.12), (P["town"][6], 1, 0.19), (P["town"][3], 1, 0.26)]
     for hs, wi, frac in order:
         lit.append(s5_lit_pane(hs, min(wi, len(hs["windows"]) - 1), T_WIN + frac * DUR))
-    lit_houses = [hs for hs, _w, _f in order if hs in P["quay"]]
+    lit_houses = [hs for hs, _w, _f in order]
     # ---- his body: the walk up the quay, the lift to the hook, a step back, the turn to us, the spread hands
     sc.frame_set(F(T_WALK1)); bpy.context.view_layer.update()
     YAW_H = math.radians(90)
-    for f in range(F(T_WALK1) + 1, F(T_TURN) + 1):
+    for f in range(F(T_WALK1 - 0.15) + 1, NF + 1):
         t = (f - 1) / FPS
         p = STAND.copy()
-        p.z += 0.03 * W(t, T_HANG - 0.3, 0.25) * (1 - W(t, T_LET, 0.3))                 # up on his toes to the hook
-        p.x -= 0.12 * W(t, T_LET + 0.15, 0.5)
+        p.z += 0.03 * W(t, T_HANG - 0.3, 0.25) * (1 - W(t, T_LET + 0.2, 0.3))                 # up on his toes to the hook
+        p.x -= 0.05 * W(t, T_LET + 0.5, 0.5); p.y -= 0.1 * W(t, T_LET + 0.8, 0.45)   # a step back from it, and one toward us
+        p.y -= 0.08 * W(t, T_ASK + 0.3, 0.7); p.z += 0.035 * lw_kick(t - T_ASK - 0.35, 0.22)   # and at the ask, a step to us and a shrug
         yaw = YAW_H - math.radians(35) * W(t, T_WIN - 0.2, 0.5) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
         data._kobj(t, loc=tuple(p), rot=yaw)
-    data.walk_to((STAND.x - 0.2, STAND.y - 0.42), T_TURN, T_ASK + 0.3)          # he comes down the quay to us
     lw_layer(data, "spine", lambda t: (-8 * W(t, T_HANG - 0.3, 0.3) * (1 - W(t, T_LET, 0.3)) + 6 * W(t, T_LET + 0.1, 0.3) * (1 - W(t, T_TURN, 0.3))
                                        - 6 * W(t, T_ASK, 0.3), 0, 0), 0, DUR + 0.4)
     sc.frame_set(F(T_HANG)); bpy.context.view_layer.update()
@@ -2000,7 +2108,16 @@ def shot5():
         if t <= T_WALK1 - 0.2: return carry_fn(t)
         u = W(t, T_WALK1 - 0.2, T_HANG - T_WALK1 + 0.2)
         return carry_fn(T_WALK1 - 0.2).lerp(hook_at(t) + Vector((0, 0, 0.005)), u)
-    data.reach(carry, hand_path, 0.0, T_LET, lead=0.05, back=None, elbow_out=0.35)
+    # after the let-go: the lantern hand comes down slowly; his free hand waves up at the first window that lights,
+    # comes down, then both spread wide to us
+    AK = {carry: [(T_LET + 0.9, (0.07, 0.1, -0.07)), (T_ASK + 0.05, (0.07, 0.1, -0.08)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))],
+          other: [(T_LET + 0.75, (0.06, 0.14, 0.03)), (T_LET + 1.0, (0.03, 0.16, 0.08)), (T_LET + 1.22, (0.03, 0.13, 0.09)), (T_LET + 1.44, (0.03, 0.16, 0.08)),
+                  (T_ASK + 0.05, (0.08, 0.1, -0.06)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))]}
+    down_fn = lw_hand(data, carry, AK[carry])
+    def carry_path(t):                                       # ONE job for the lantern hand: carry, hang, then down slowly
+        if t <= T_LET: return hand_path(t)
+        return (hook_at(t) + Vector((0, 0, 0.005))).lerp(down_fn(t), W(t, T_LET, 0.9))
+    data.reach(carry, carry_path, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     def swing(t):                                           # after the let-go: a damped swing about the hook
         s = t - T_LET
         return 0.0 if s <= 0 else math.radians(24) * math.exp(-s / 2.2) * math.sin(2 * math.pi * s / 0.9)
@@ -2013,28 +2130,28 @@ def shot5():
         else:
             lan.location = S5_HOOK; lan.rotation_euler = (0, swing(t), 0)
         lan.keyframe_insert("location", frame=f); lan.keyframe_insert("rotation_euler", frame=f)
-    # after the let-go: the near hand comes down, then both hands spread wide to us
-    AK = {carry: [(T_LET + 0.4, (0.08, 0.1, -0.08)), (T_TURN - 0.4, (0.1, 0.12, 0.0)), (T_TURN, (0.09, 0.11, -0.06)), (T_ASK + 0.05, (0.08, 0.1, -0.07)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))],
-          other: [(T_ASK + 0.05, (0.07, 0.1, -0.09)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))]}
-    data.reach(carry, lw_hand(data, carry, AK[carry]), AK[carry][0][0], DUR + 0.3, lead=0.4, back=None, elbow_out=0.35)
-    data.reach(other, lw_hand(data, other, AK[other]), AK[other][0][0], DUR + 0.3, lead=0.5, back=None, elbow_out=0.35)
+    data.reach(other, lw_hand(data, other, AK[other]), AK[other][0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.4)
     # ---- face and head: one feeling per moment, held
     LENS = Vector((0.2, -2.4, 0.6))
     data.look_at(Vector((3.0, 0.0, 0.4)), 0.0, max_yaw=60, max_pitch=30, blend=0.0)
-    data.look_at(S5_HOOK, T_WALK1 - 0.4, max_yaw=50, max_pitch=40, blend=0.3)
-    data.look_at(Vector((4.0, 2.2, 0.75)), T_WIN + 0.05, max_yaw=60, max_pitch=30, blend=0.3)
-    data.look_at(Vector((6.4, 2.8, 0.75)), T_WIN + 0.12 * DUR, max_yaw=60, max_pitch=30, blend=0.3)
-    data.look_at(LENS, T_TURN + 0.1, max_yaw=50, blend=0.3)
+    data.look_at(S5_HOOK, T_WALK1 - 0.1, max_yaw=50, max_pitch=40, blend=0.3)
+    data.look_at(Vector((0.4, 9.0, 2.6)), T_LET + 0.2, max_yaw=30, max_pitch=30, blend=0.45)     # up the hill at the windows as he waves
+    data.look_at(Vector((-0.8, 7.0, 2.0)), T_WIN + 0.12 * DUR, max_yaw=30, max_pitch=30, blend=0.45)
+    data.look_at(LENS, T_TURN + 0.1, max_yaw=50, blend=0.45)
     data.expression("sad", 0.1, T_HANG - 0.1, blend=0.25)
     data.expression("determined", T_HANG, T_WIN, blend=0.2)
     data.expression("pleased", T_WIN + 0.1, T_ASK - 0.05, blend=0.25)
     data.expression("wry", T_ASK, DUR + 1.0, blend=0.2)
     data.finish()
     # ---- the lens: low on the quay, the town and its burning edge up the slope behind him
-    CAM = Vector((0.3, -2.4, 0.5)); LOOK = Vector((2.0, 9.0, 1.1))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 20.0, face_at=(0.42, 0.5), height=0.34, t=T_HANG)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=20.0, fstop=11.0)
-    camera_path(cam, lambda t: (CAM + Vector((0.05, 0.12, 0.0)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))))
+    CAM = Vector((0.8, -1.8, 1.3)); LOOK = Vector((0.6, 6.0, 2.8))
+    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 30.0, face_at=(0.42, 0.4), height=0.36, t=T_HANG)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    def cam_at(t):                                          # it pans with him up the quay to the post, then holds
+        sc.frame_set(F(min(t, T_WALK1))); bpy.context.view_layer.update()
+        pan = Vector((data.pos().x - STAND.x, 0.0, 0.0))
+        return CAM + pan * 0.6 + Vector((0.0, 0.1, 0.0)) * ease(t / DUR), LOOK + pan, data.pos() + Vector((0, 0, 0.6))
+    camera_path(cam, cam_at)
     return dict(lanes=[], kiosks=[], place="harbour_dawn", light=light, data=data, rest=1, grips=("lantern", "lantern post", "lantern hook"),
                 boxes=[],
                 conseq=[("three houses still burn at the edge of the black lava", lambda: lw_drawn("burning house"), 0.0, DUR, {"whole": False}),

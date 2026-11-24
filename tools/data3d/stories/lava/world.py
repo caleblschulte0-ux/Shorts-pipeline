@@ -50,6 +50,27 @@ def lw_local(root):
     return root
 
 
+def lw_fire_mat(name="fire", strength=1.6):
+    """flame: pure light, deep red at its roots to orange-yellow in its tongues, the noise stretched up it (a lit
+    surface under its own glow bleached to pink in the sun)"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    out = nt.nodes.new("ShaderNodeOutputMaterial"); em = nt.nodes.new("ShaderNodeEmission")
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (4, 4, 1.2)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 3.0; nz.inputs["Detail"].default_value = 6
+    nt.links.new(mp.outputs["Vector"], nz.inputs["Vector"])
+    rp = nt.nodes.new("ShaderNodeValToRGB"); el = rp.color_ramp.elements
+    el[0].position = 0.35; el[0].color = (*K.lin("#A01000"), 1); el[1].position = 0.68; el[1].color = (*K.lin("#FFA018"), 1)
+    e = el.new(0.5); e.color = (*K.lin("#FF4800"), 1)
+    nt.links.new(nz.outputs["Fac"], rp.inputs["Fac"]); nt.links.new(rp.outputs["Color"], em.inputs["Color"])
+    em.inputs["Strength"].default_value = strength
+    nt.links.new(em.outputs[0], out.inputs["Surface"])
+    return m
+
+
 def lw_emit(name, hexc, strength):
     m = bpy.data.materials.get(name)
     if m: return m
@@ -300,7 +321,7 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     # LIGHT, not paint: a sunlit orange base under its own glow washed every lava in daylight to salmon pink
     nt.links.new(mix.outputs["Color"], bs.inputs["Base Color"])
     nt.links.new(ramp.outputs["Color"], bs.inputs["Emission Color"])
-    es = nt.nodes.new("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "lava heat"; es.inputs[1].default_value = 2.2 * heat
+    es = nt.nodes.new("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "lava heat"; es.inputs[1].default_value = 1.1 * heat   # brighter than this the view transform bleaches it to salmon
     pw = nt.nodes.new("ShaderNodeMath"); pw.operation = 'POWER'; pw.inputs[1].default_value = 1.6
     nt.links.new(glowf.outputs[0], pw.inputs[0]); nt.links.new(pw.outputs[0], es.inputs[0])
     nt.links.new(es.outputs[0], bs.inputs["Emission Strength"])
@@ -579,6 +600,37 @@ def hard_hat(data, name="hard hat"):
 def iceland_light(sun_elev=14, sun_az=-35, sun=3.4, sky=0.4, warm=(1.0, 0.86, 0.7), haze=1.4):
     """the low northern sun: long, warm, from camera-left-front; a pale clear sky; the key that follows him"""
     return LOC.sky_light(sun_elev=sun_elev, sun_az=sun_az, sun=sun, sky=sky, warm=warm, haze=haze)
+
+
+def lw_clouds(cover=0.55, scale=0.9, drift=(0.03, 0.02)):
+    """broken Icelandic cloud over the physical sky (iceland_light's): a deck projected overhead, lit by the sky's own
+    brightness so it stays in the same exposure, grey-bellied where it is thick, drifting. A clear sky is one smooth
+    gradient, which reads as a bare set (store/empty.py); a real sky over Grindavik has weather in it."""
+    nt = sc.world.node_tree; N = nt.nodes.new; L = nt.links.new
+    bg = nt.nodes["Background"]; sk = next(n for n in nt.nodes if n.type == 'TEX_SKY')
+    tc = N("ShaderNodeTexCoord"); sep = N("ShaderNodeSeparateXYZ"); L(tc.outputs["Generated"], sep.inputs[0])
+    zc = N("ShaderNodeMath"); zc.operation = 'MAXIMUM'; L(sep.outputs["Z"], zc.inputs[0]); zc.inputs[1].default_value = 0.03
+    zp = N("ShaderNodeMath"); zp.operation = 'ADD'; L(zc.outputs[0], zp.inputs[0]); zp.inputs[1].default_value = 0.15
+    du = N("ShaderNodeMath"); du.operation = 'DIVIDE'; L(sep.outputs["X"], du.inputs[0]); L(zp.outputs[0], du.inputs[1])
+    dv = N("ShaderNodeMath"); dv.operation = 'DIVIDE'; L(sep.outputs["Y"], dv.inputs[0]); L(zp.outputs[0], dv.inputs[1])
+    cmb = N("ShaderNodeCombineXYZ"); L(du.outputs[0], cmb.inputs[0]); L(dv.outputs[0], cmb.inputs[1])
+    mp = N("ShaderNodeMapping"); L(cmb.outputs[0], mp.inputs["Vector"])
+    big = N("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale; big.inputs["Detail"].default_value = 6
+    big.inputs["Roughness"].default_value = 0.6; L(mp.outputs["Vector"], big.inputs["Vector"])
+    fine = N("ShaderNodeTexNoise"); fine.inputs["Scale"].default_value = 5.0 * scale; fine.inputs["Detail"].default_value = 10
+    fine.inputs["Roughness"].default_value = 0.65; L(mp.outputs["Vector"], fine.inputs["Vector"])
+    cov = N("ShaderNodeMapRange"); L(big.outputs["Fac"], cov.inputs["Value"])
+    cov.inputs["From Min"].default_value = 0.62 - 0.25 * cover; cov.inputs["From Max"].default_value = 0.72 - 0.25 * cover
+    bw = N("ShaderNodeRGBToBW"); L(sk.outputs["Color"], bw.inputs[0])
+    sh = N("ShaderNodeMath"); sh.operation = 'MULTIPLY_ADD'; L(fine.outputs["Fac"], sh.inputs[0]); sh.inputs[1].default_value = 1.4
+    sh.inputs[2].default_value = 0.55
+    lum = N("ShaderNodeMath"); lum.operation = 'MULTIPLY'; L(bw.outputs[0], lum.inputs[0]); L(sh.outputs[0], lum.inputs[1])
+    cc = N("ShaderNodeCombineColor"); [L(lum.outputs[0], cc.inputs[i]) for i in range(3)]
+    mx = N("ShaderNodeMix"); mx.data_type = 'RGBA'; L(cov.outputs["Result"], mx.inputs[0])
+    L(sk.outputs["Color"], mx.inputs[6]); L(cc.outputs[0], mx.inputs[7]); L(mx.outputs[2], bg.inputs["Color"])
+    for f in (1, NF + 15):
+        t = (f - 1) / FPS
+        mp.inputs["Location"].default_value = (drift[0] * t, drift[1] * t, 0); mp.inputs["Location"].keyframe_insert("default_value", frame=f)
 
 
 # ---------------------------------------------------------------- his body: layers, kicks and smooth hand paths

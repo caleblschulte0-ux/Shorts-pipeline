@@ -36,17 +36,28 @@ def s2_ik(p):
     return a, b
 
 
+S2_RC_FW, S2_RC_UP = 0.18, -0.13        # the remote's centre from the middle of his shoulders: forward, up
+
+
+def s2_knob_off(sx, lean, yaw):
+    """a stick's knob from the remote's centre, the stick leaning `lean` (its pivot turned -lean about x), the remote
+    turned `yaw`: the box (sx, 0, 0.025) to its pivot, the knob 0.065 up the stick"""
+    v = Vector((sx, 0.065 * math.sin(lean), 0.025 + 0.065 * math.cos(lean)))
+    c, s_ = math.cos(yaw), math.sin(yaw)
+    return Vector((c * v.x - s_ * v.y, s_ * v.x + c * v.y, v.z))
+
+
 def s2_remote(data):
     """the digger's remote control pack: a yellow box on his chest strap with two black sticks on its top, carried on
     his chest bone. Returns (box, [(stick pivot, knob)])."""
     sc.frame_set(1); bpy.context.view_layer.update()
     sh = [acts._shoulder(data, s_) for s_ in "LR"]; mid = (sh[0] + sh[1]) / 2
     fw = data.forward()
-    c = mid + fw * 0.165 + Vector((0, 0, -0.15))
+    c = mid + fw * S2_RC_FW + Vector((0, 0, S2_RC_UP))
     yaw = data.arm.rotation_euler.z
     root = K.empty("remote control", tuple(c))
     yel = lw_paint("remote yellow", "#F2B10E", rough=0.4); dark = K.mat("remote black", "#1A1A1A", rough=0.5)
-    K.box("remote control box", (0, 0, 0), (0.2, 0.09, 0.05), yel, bev=0.012, parent=root)
+    K.box("remote control box", (0, -0.01, 0), (0.2, 0.065, 0.05), yel, bev=0.012, parent=root)
     K.box("remote control screen", (0, -0.035, 0.026), (0.07, 0.012, 0.004), lw_emit("remote screen", "#7FE0FF", 4.0), bev=0.0, parent=root)
     sticks = []
     for sx in (-0.06, 0.06):
@@ -58,8 +69,6 @@ def s2_remote(data):
     root.rotation_euler = (0, 0, yaw)
     bpy.context.view_layer.update()
     M = root.matrix_world.copy()
-    root.parent = data.arm; root.parent_type = 'BONE'; root.parent_bone = 'chest'
-    bpy.context.view_layer.update(); root.matrix_world = M
     return root, sticks
 
 
@@ -151,17 +160,19 @@ def place_wall_works():
         K.box(f"far digger {k} body", (x, y, 0.7), (1.6, 1.3, 1.0), yel, bev=0.08)
         K.box(f"far digger {k} cab", (x - 0.3, y - 0.2, 1.5), (0.7, 0.7, 0.7), K.mat("car glass", "#1E262C", rough=0.05, metal=0.3), bev=0.05)
         bm_ = K.box(f"far digger {k} boom", (x + 0.2, y + 1.3, 2.2), (0.25, 3.0, 0.3), yel, bev=0.05); bm_.rotation_euler = (math.radians(40 - 10 * (k % 2)), 0, 0)
-    ash = lw_smoke_mat("eruption smoke", density=1.6, col=(0.3, 0.3, 0.33))
+    ash = lw_billow_mat("eruption smoke", col="#4A4644")                 # billowing ash with its lumps, not a soft smudge
     for k in range(8):
-        lw_puff(f"eruption smoke {k}", (-16 + 4.5 * k + rnd.uniform(-1, 1), 20 + rnd.uniform(0, 5), 9 + rnd.uniform(0, 6)), rnd.uniform(4.0, 5.5), ash, scale=(1.4, 1.0, 1.0))
+        lw_billow(f"eruption smoke {k}", (-16 + 4.5 * k + rnd.uniform(-1, 1), 20 + rnd.uniform(0, 5), 9 + rnd.uniform(0, 6)), rnd.uniform(4.0, 5.5), ash, scale=(1.4, 1.0, 1.0))
     for k in range(10):                                    # the plume's column climbing over the fissure: the sky is the eruption's
         u = k / 9
-        lw_puff(f"eruption column {k}", (-7 + 9 * u * u + rnd.uniform(-1.5, 1.5), 30 + 4 * u, 14 + 30 * u), 5.5 + 4 * u, ash, scale=(1.3, 1.0, 1.0))
-        lw_puff(f"eruption drift {k}", (-12 - 14 * u + rnd.uniform(-1.5, 1.5), 34 + 6 * u, 22 + 18 * u), 6.0 + 3 * u, ash, scale=(1.6, 1.0, 0.8))   # blown off west
+        lw_billow(f"eruption column {k}", (-7 + 9 * u * u + rnd.uniform(-1.5, 1.5), 30 + 4 * u, 14 + 30 * u), 5.5 + 4 * u, ash, scale=(1.3, 1.0, 1.0))
+        lw_billow(f"eruption drift {k}", (-12 - 14 * u + rnd.uniform(-1.5, 1.5), 34 + 6 * u, 22 + 18 * u), 6.0 + 3 * u, ash, scale=(1.6, 1.0, 0.8))   # blown off west
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
 
     def light():
-        return iceland_light(sun_elev=10, sun_az=-40, sun=2.6, sky=0.35, warm=(1.0, 0.7, 0.5), haze=1.6)
+        k = iceland_light(sun_elev=10, sun_az=-40, sun=2.6, sky=0.35, warm=(1.0, 0.7, 0.5), haze=1.6)
+        lw_clouds(cover=0.85, scale=3.0)
+        return k
     return dict(light=light, wall=wall, masts=masts)
 
 
@@ -269,10 +280,11 @@ def shot2():
     # ---- his body: leaning into the push, the duck as the rock comes down past, the grin, the haul back, the lights
     def body(t):
         p = P0.copy()
-        p.z += -0.05 * W(t, T_DUCK - 0.15, 0.28) * (1 - W(t, T_GRIN - 0.1, 0.3)) - 0.04 * W(t, T_BACK - 0.2, 0.3) * (1 - W(t, T_LOW, 0.3))
-        p.y += 0.05 * W(t, T_PUSH - 0.2, 0.3) * (1 - W(t, T_TOP, 0.3))
-        yaw = YAW0 - math.radians(30) * W(t, T_PUSH, 0.6) * (1 - W(t, T_DUCK - 0.2, 0.3)) + math.radians(8) * W(t, T_DUCK - 0.2, 0.3) * (1 - W(t, T_BACK, 0.4)) \
-            - math.radians(25) * W(t, T_BACK, 0.4) * (1 - W(t, T_LIGHTS, 0.4)) + math.radians(14) * W(t, T_LIGHTS, 0.4)
+        p.z += -0.09 * W(t, T_DUCK + 0.15, 0.4) * (1 - W(t, T_GRIN + 0.12, 0.4)) - 0.04 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+        p.y += 0.05 * W(t, T_PUSH - 0.2, 0.45) * (1 - W(t, T_TOP, 0.45))
+        yaw = YAW0 - math.radians(30) * W(t, T_PUSH, 0.6) * (1 - W(t, T_DUCK - 0.2, 0.45)) + math.radians(8) * W(t, T_DUCK - 0.2, 0.45) * (1 - W(t, T_BACK, 0.55)) \
+            - math.radians(25) * W(t, T_BACK, 0.55) * (1 - W(t, T_LIGHTS, 0.55)) + math.radians(14) * W(t, T_LIGHTS, 0.55) \
+            + math.radians(18) * W(t, T_GRIN - 0.15, 0.45) * (1 - W(t, T_BACK - 0.1, 0.5))      # he turns his grin to us
         yw = math.atan2(P0.x - PS.x, -(P0.y - PS.y))
         yaw = yw + (yaw - yw) * W(t, 0.9, 0.45)
         return p, yaw
@@ -280,19 +292,35 @@ def shot2():
     data.walk_to((P0.x, P0.y), 0.05, T_STEP)
     for f in range(F(T_STEP) + 1, NF + 1):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
-    lw_layer(data, "spine", lambda t: (24 * W(t, T_PUSH - 0.2, 0.3) * (1 - W(t, T_TOP - 0.2, 0.3)) - 12 * W(t, T_TOP - 0.2, 0.3) * (1 - W(t, T_DUCK - 0.15, 0.2))
-                                       + 22 * W(t, T_DUCK - 0.2, 0.28) * (1 - W(t, T_GRIN - 0.1, 0.3)) - 16 * W(t, T_BACK - 0.2, 0.3) * (1 - W(t, T_LOW, 0.3))
-                                       - 10 * W(t, T_LIGHTS, 0.3), 0, 8 * math.sin(2 * math.pi * (t - T_GRIN) / 0.9) * W(t, T_GRIN, 0.2) * (1 - W(t, T_BACK, 0.2))), 0, DUR + 0.4)
+        data._plant_feet_here(t, lift=(P0.z, P0.z))      # the duck is in his KNEES: his feet stay on the ground
+    lw_layer(data, "spine", lambda t: (24 * W(t, T_PUSH - 0.2, 0.45) * (1 - W(t, T_TOP - 0.2, 0.45)) - 12 * W(t, T_TOP - 0.2, 0.45) * (1 - W(t, T_DUCK - 0.15, 0.45))
+                                       + 22 * W(t, T_DUCK - 0.2, 0.45) * (1 - W(t, T_GRIN - 0.1, 0.45)) - 16 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+                                       - 10 * W(t, T_LIGHTS, 0.45), 0, 8 * math.sin(2 * math.pi * (t - T_GRIN) / 0.9) * W(t, T_GRIN, 0.45) * (1 - W(t, T_BACK, 0.45))), 0, DUR + 0.4)
+    # his two hands hold the remote out in front of his chest, each on its stick's knob; the remote is keyed to
+    # them after finish() (so whatever his body does later, the box stays in his hands and the knobs under them)
+    SX = {}
     sc.frame_set(1); bpy.context.view_layer.update()
-    kns = [kn for _pv, kn in sticks]
-    def on_knob(kn):
+    for sd in "LR":
+        sh_ = acts._shoulder(data, sd); SX[sd] = -0.06 if (sh_ - data.arm.location).dot(Vector((math.cos(data.arm.rotation_euler.z), math.sin(data.arm.rotation_euler.z), 0))) < 0 else 0.06
+    lean_k = {sd: (lambda t, m=(1 if SX[sd] < 0 else 0.85): lean(t) * m) for sd in "LR"}   # as the sticks are keyed: pivot x = -lean * m
+    def rc_centre(t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        mid = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2
+        yaw = data.arm.rotation_euler.z; fw = Vector((math.sin(yaw), -math.cos(yaw), 0))
+        return mid + fw * S2_RC_FW + Vector((0, 0, S2_RC_UP)), yaw
+    PUMP = None                                           # (no hand leaves its stick: the remote needs both)
+    pump_w = lambda t: W(t, T_DUCK + 0.0, 0.42) * (1 - W(t, T_BACK - 0.52, 0.42))   # up as he comes out of the duck, back on its stick to haul
+    def on_knob(sd):
         def fn(t):
-            sc.frame_set(F(t)); bpy.context.view_layer.update()
-            return kn.matrix_world.translation + Vector((0, 0, 0.035))
+            c, yaw = rc_centre(t)
+            k = c + s2_knob_off(SX[sd], lean_k[sd](t), yaw) + Vector((0, 0, 0.035))
+            if sd != PUMP or pump_w(t) <= 0: return k
+            sh, fw, out, up = lw_frame(data, sd)
+            fist = sh + fw * 0.1 + out * 0.12 + up * (0.03 + 0.03 * math.sin(2 * math.pi * (t - T_GRIN) / 0.5))   # out at his side, clear of his ducked head
+            return k.lerp(fist, pump_w(t))
         return fn
     for sd in "LR":
-        sh = acts._shoulder(data, sd); kn = min(kns, key=lambda k_: (k_.matrix_world.translation - sh).length)
-        data.reach(sd, on_knob(kn), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
+        data.reach(sd, on_knob(sd), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     # ---- face and head
     BK = lambda t: world(*path(t))
     LENS = Vector((0.4, -1.4, 0.5))
@@ -308,6 +336,20 @@ def shot2():
     data.expression("determined", T_BACK, T_LIGHTS, blend=0.2)
     data.expression("pleased", T_LIGHTS + 0.1, DUR + 1.0, blend=0.2)
     data.finish()
+    # the remote is carried on HIM, so its knobs are where his final body puts them: finish() smooths and steadies the
+    # torso after the hands were solved, which leaves a hand on a body-carried prop where the chest WAS (5-7 cm off).
+    # Solve both hands again, every frame, on the final body
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS
+        for sd in "LR":
+            data._arm_ik(sd, on_knob(sd)(t), t, 0.35)
+    for f in range(1, NF + 1):                             # the remote rides in his hands, on his final body
+        t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
+        yaw = data.arm.rotation_euler.z
+        w = {sd: data.arm.matrix_world @ data.pb[f"fore.{sd}"].tail - Vector((0, 0, 0.035)) - s2_knob_off(SX[sd], lean_k[sd](t), yaw) for sd in "LR"}
+        remote.location = (w["L"] + w["R"]) / 2
+        remote.rotation_euler = (0, 0, yaw)
+        remote.keyframe_insert("location", frame=f); remote.keyframe_insert("rotation_euler", frame=f)
     # ---- the lens: low at the foot of the wall, looking up at him, the digger and its arm over him
     CAM = Vector((0.45, -1.25, 0.35)); LOOK = Vector((-1.0, 6.0, 2.5))
     CAM, LOOK = compose.frame_data(data, CAM, LOOK, 16.0, face_at=(0.6, 0.3), height=0.46, t=0.4 * DUR)

@@ -17,7 +17,7 @@ def s4_zig(x):
 
 
 def s4_ground_z(x, y):
-    z = -0.06                                              # under the street's slabs (level with them it showed through black)
+    z = -0.6 if abs(x) < 3.2 and abs(y - S4_YC) < 1.8 else -0.06   # under the slabs; well under the crack's trench (the gap showed black ground)
     if abs(x) > 3.3: z += 0.06 + 0.1 * lw_fbm(x * 0.4, y * 0.4, 23)
     return z
 
@@ -62,7 +62,7 @@ def s4_barrow():
     sand = lw_noise("sandbag hessian", "#7A6844", "#9A8658", scale=40, rough=0.9, bump=0.6)
     for k, (x, y) in enumerate(((-0.08, 0.2), (0.09, 0.22), (0.0, 0.4), (-0.06, 0.38))):
         K.sph(f"wheelbarrow sandbag {k}", (x, y, 0.27 + 0.04 * (k > 1)), 0.075, sand, scale=(1.0, 1.5, 0.5), seg=12, ring=8, parent=root)
-    fire = lw_emit("barrow fire", "#FF6A10", 1.4)
+    fire = lw_fire_mat("barrow fire")
     flames = []
     for k, (x, y) in enumerate(((-0.08, 0.22), (0.08, 0.3), (0.0, 0.42))):
         fl = K.sph(f"wheelbarrow flame {k}", (x, y, 0.4), 0.08, fire, scale=(0.7, 0.7, 2.0), seg=10, ring=8, parent=root)
@@ -93,7 +93,7 @@ def place_town_crack():
     trench = lava_mat("crack lava", heat=1.4, scale=4.0, fresh=0.6)
     K.box("crack trench", (0, S4_YC, -0.32), (2 * S4_HALF + 0.4, 1.6, 0.1), trench, bev=0)
     for sy in (-1, 1):
-        K.box("crack wall rock", (0, S4_YC + sy * 0.85, -0.2), (2 * S4_HALF + 0.4, 0.1, 0.4), lw_noise("crack rock", "#2A2522", "#4A3E36", scale=10, rough=0.95, bump=1.0), bev=0)
+        K.box("crack wall rock", (0, S4_YC + sy * 0.85, -0.23), (2 * S4_HALF + 0.4, 0.1, 0.4), lw_noise("crack rock", "#2A2522", "#4A3E36", scale=10, rough=0.95, bump=1.0), bev=0)
     houses = []
     for sx in (-1, 1):
         y = -9.0 + (0.6 if sx > 0 else 0.0); k = 0
@@ -131,7 +131,7 @@ def shot4():
     P = place_town_crack()
     light = P["light"]; near, far = P["near"], P["far"]
     data = load_data()
-    Y0, YS = 1.55, 0.92                                     # where he starts pushing and where he stops (y)
+    Y0, YS = 1.3, 0.92                                     # where he starts pushing and where he stops (y)
     data.place(0.15, Y0, 0.0)
     kit = hard_hat(data)
     data.walk_to((0.15, YS), 0.0, T_STOP, pushing=True)
@@ -141,7 +141,7 @@ def shot4():
     for f in range(F(T_STOP) + 1, NF + 1):
         t = (f - 1) / FPS
         y1, z1 = hop(t, T_LET, 0.2, 0.08, 0.5); y2, z2 = hop(t, T_RUN, 0.13, 0.06); y3, z3 = hop(t, T_RUN + 0.45, 0.14, 0.06)
-        jolt = -0.05 * lw_kick(t - T_JOLT, 0.1) - 0.05 * lw_kick(t - T_POUR, 0.15)
+        jolt = -0.03 * lw_kick(t - T_JOLT, 0.1) - 0.05 * lw_kick(t - T_POUR, 0.15)
         sway = 0.04 * math.sin(2 * math.pi * (t - T_LET) / 1.1) * W(t, T_LET + 0.3, 0.3)
         data._kobj(t, loc=(0.15 + sway + 0.12 * W(t, T_RUN, 0.6), YS + y1 + y2 + y3 + 0.04 * W(t, T_POUR, 0.2), z1 + z2 + z3 + jolt),
                    rot=math.radians(-8) * W(t, T_LET, 0.3) + math.radians(12) * math.sin(2 * math.pi * (t - T_LET) / 1.6) * W(t, T_LET + 0.3, 0.4) + math.radians(14) * W(t, T_RUN, 0.5))
@@ -159,9 +159,9 @@ def shot4():
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         p = path[min(f, F(T_LET))].copy()
-        pitch = 0.0
-        if t > T_LET:                                       # let go: the handles drop onto its legs, then the tip
-            pitch += math.radians(-10) * W(t, T_LET, 0.2)
+        pitch = math.radians(-6) * W(t, T_STOP - 0.1, 0.5)    # set down at the stop: the handles drop onto its legs
+        p.z -= 0.03 * lw_kick(t - T_JOLT, 0.1)                  # the road jolts it with him
+        if t > T_LET:                                       # let go: it rolls to the edge, then the tip
             roll = 0.25 * W(t, T_OPEN0 + 0.2, 0.9)
             p.y = max(y_edge - 0.05, p.y - roll)
             tip = W(t, T_TIP, 0.6)
@@ -185,9 +185,9 @@ def shot4():
         data.reach(sd, handle(sx), 0.0, T_LET, lead=0.05, back=None, elbow_out=0.35)
     # arms up against the heat: hands up at his face's sides from the leap, higher at the hops back
     for sd in sides:
-        HK = [(T_LET + 0.45, (0.07, 0.13, 0.04)), (T_POUR - 0.1, (0.06, 0.13, 0.05)), (T_POUR + 0.2, (0.04, 0.15, 0.13)), (T_RUN, (0.05, 0.14, 0.12)),
-              (T_RUN + 0.4, (0.07, 0.15, 0.14)), (T_RUN + 0.75, (0.05, 0.12, 0.06)), (DUR + 0.4, (0.07, 0.15, 0.13))]
-        data.reach(sd, lw_hand(data, sd, HK), HK[0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.4)
+        HK = [(T_LET + 0.7, (0.08, 0.14, 0.0)), (T_POUR - 0.03, (0.08, 0.15, 0.03)), (T_POUR + 0.25, (0.08, 0.15, 0.05)), (T_RUN, (0.08, 0.15, 0.05)),
+              (T_RUN + 0.4, (0.08, 0.15, 0.06)), (T_RUN + 0.8, (0.08, 0.14, 0.02)), (DUR + 0.4, (0.08, 0.15, 0.05))]
+        data.reach(sd, lw_hand(data, sd, HK), HK[0][0], DUR + 0.3, lead=0.7, back=None, elbow_out=0.4)
     # ---- the crack: a hairline tears across from kerb to kerb, then the street pulls apart and the lava shows in the gap
     gm = lava_mat("crack glow", heat=1.6, scale=6.0)
     xs = [-S4_HALF + 2 * S4_HALF * k / 60 for k in range(61)]
@@ -213,19 +213,17 @@ def shot4():
     trench = bpy.data.materials["crack lava"]
     lava_flow_key(trench, 0.0, DUR + 0.5, 0.25)
     # ---- steam shooting up out of the crack as it opens
-    steam_m = lw_billow_mat("crack steam", "#E9ECEE")
+    steam_m = lw_smoke_mat("crack steam", density=2.5, col=(0.93, 0.94, 0.96))
     steam = []
-    for k in range(6):
-        x = -2.2 + 0.85 * k
-        o = lw_billow(f"crack steam {k}", (x, s4_zig(x) - 0.25, -0.3), 0.6, steam_m, seed=40 + k)
+    for k, x in enumerate((-2.4, -1.7, -1.1, 1.2, 1.8, 2.5)):     # out to the sides of him: the gap in front of him stays clear
+        o = lw_puff(f"crack steam {k}", (x, s4_zig(x) - 0.25, -0.3), 1.0, steam_m)
         steam.append(o)
-        z0 = -0.3; t0 = T_OPEN0 + 0.05 * k
+        z0 = -0.2; t0 = T_OPEN0 + 0.06 * k
         for f in range(1, NF + 1):
-            t = (f - 1) / FPS; s = W(t, t0, 0.5)
-            o.hide_render = s < 0.02; o.keyframe_insert("hide_render", frame=f)
-            r = max(0.05, s * (1.0 + 0.5 * (t - t0)))
-            o.scale = (r, r, r * 1.2); o.location.z = z0 + 1.6 * s + 0.9 * max(0.0, t - t0)
-            o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
+            t = (f - 1) / FPS; s = W(t, t0, 0.5); age = max(0.0, t - t0)
+            r = s * (0.3 + 0.18 * age)
+            lw_puff_key(o, f, (r, r, r * 1.3)); o.location.z = z0 + 0.6 * s + 0.5 * age
+            o.keyframe_insert("location", frame=f)
     # ---- the lava: it wells up in the crack and pours out over the road, toward him and the corner house
     lm = lava_mat("street lava", heat=1.2, scale=4.0, fresh=0.8)
     out = []
@@ -240,7 +238,7 @@ def shot4():
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
     glow = lw_point("crack glow", (0.0, S4_YC, 0.25), 0.0, col=(1.0, 0.45, 0.12), r=0.6)
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; glow.data.energy = 900.0 * W(t, T_OPEN0, 0.5) + 600.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
+        t = (f - 1) / FPS; glow.data.energy = 260.0 * W(t, T_OPEN0, 0.5) + 200.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
     # ---- face and head: one feeling per moment, held
     data.look_at(Vector((0.15, -2.5, 0.6)), 0.0, max_yaw=40, blend=0.0)
     data.look_at(Vector((0.1, S4_YC, 0.0)), T_JOLT + 0.05, max_yaw=50, max_pitch=50, blend=0.2)
@@ -252,15 +250,16 @@ def shot4():
     data.expression("alarmed", T_LET, DUR + 1.0, blend=0.15)
     data.finish()
     # ---- the lens: backing down the street ahead of him while he pushes, then holding as the street splits
-    CAM = Vector((2.1, -1.0, 1.75)); LOOK = Vector((-0.7, 2.8, 0.0))
-    CAM, LOOK = compose.frame_data(data, CAM, LOOK, 22.0, face_at=(0.45, 0.72), height=0.34, t=T_STOP)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=22.0, fstop=11.0)
+    CAM = Vector((0.9, -3.4, 1.05)); LOOK = Vector((0.12, 0.3, 0.5))     # long lens, low down the street: him, the crack at his wheel, the town behind him
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=88.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()
         dy = data.pos().y - YS
         shake = Vector((0.02 * math.sin(2 * math.pi * 13 * t), 0, 0.015 * math.sin(2 * math.pi * 17 * t))) * lw_kick(t - T_JOLT, 0.25) * 2
-        back = Vector((0, 0.3, 0.0)) * W(t, T_LET, 1.5)
-        return CAM + Vector((0, dy, 0)) + shake + back, LOOK + Vector((0, dy, 0)) + shake + back, data.pos() + Vector((0, 0, 0.6))
+        back = Vector((0, -0.3, 0.0)) * W(t, T_LET, 1.5)          # it backs off as the lava comes
+        p0 = data.pos().copy(); sc.frame_set(F(t)); bpy.context.view_layer.update()
+        fol = (data.pos() - p0) * 0.8; fol.z = 0.0                     # and pans with him as he leaps and hops back
+        return CAM + Vector((0, dy, 0)) + shake + back, LOOK + Vector((0, dy, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))
     camera_path(cam, cam_at)
     return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("wheelbarrow",),
                 boxes=[],
