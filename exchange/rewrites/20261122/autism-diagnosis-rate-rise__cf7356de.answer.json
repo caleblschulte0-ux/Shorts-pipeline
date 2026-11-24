@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "autism-diagnosis-rate-rise__cf7356de",
+  "slug": "autism-diagnosis-rate-rise",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:25:46.534Z",
+  "title": "Autism Measurement Ranged Fivefold Across Screening Sites",
+  "hook": "Where children are screened can radically change the reported autism rate.",
+  "closing": "Autism rates need screening context before anyone treats one number as universal.",
+  "question": "Has screening changed near you?",
+  "segments": [
+    {
+      "topic": "Autism Prevalence",
+      "say": "Autism prevalence reached 32.2 per thousand children, rising sharply across the recorded years."
+    },
+    {
+      "topic": "Autism By Sex",
+      "say": "Autism prevalence among boys measured 49.2 per thousand, revealing a large difference by sex."
+    },
+    {
+      "topic": "Autism By Site",
+      "say": "The California autism site measured 52.6 per thousand, showing location can sharply change the reported rate."
+    }
+  ]
+}
