@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "normal-body-temperature-has-shifted__b9e452aa",
+  "slug": "normal-body-temperature-has-shifted",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "Body Temperature Fell Below The 98.6°F Standard",
+  "hook": "Your body may run cooler than the temperature everyone memorized.",
+  "closing": "A single normal temperature cannot capture a body that changed across generations.",
+  "question": "What's your resting temperature?",
+  "segments": [
+    {
+      "topic": "Body Temperature Shift",
+      "say": "Modern men average 97.5 degrees, showing the body runs cooler than it once did."
+    },
+    {
+      "topic": "Body Temperature Sex",
+      "say": "Men cooled by 1.06 degrees, nearly twice the drop for women, pointing to a real biological shift."
+    },
+    {
+      "topic": "Body Temperature Standard",
+      "say": "A recalculation put the old thermometer average at 98.2 degrees, so the standard was never as fixed as bodies seemed."
+    }
+  ]
+}
