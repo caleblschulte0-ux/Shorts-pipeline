@@ -4,26 +4,25 @@
  "scorecard": {
   "scores": {
    "premise": 8,
-   "hook": 12,
-   "arc": 8,
-   "factual": 5,
-   "visual_proof": 5,
+   "hook": 9,
+   "arc": 10,
+   "factual": 7,
+   "visual_proof": 8,
    "payoff": 6,
-   "voice": 3
+   "voice": 2
   },
-  "total": 47,
+  "total": 50,
   "fatal": [
-   "invented_fact",
-   "unrenderable_visual"
+   "false_comparison"
   ],
-  "weakest": "factual",
-  "note": "Create a clearer narrative arc that shows cause‑and‑effect rather than just listing separate statistics.",
-  "fp": "5a150da624175810"
+  "weakest": "voice",
+  "note": "The hook claims women's basketball 'beat the men's final' as if audience size were a clean head-to-head, then moves to a timeline (arenas, media rights) that the beats don't tie together. Beat 1's 'larger championship audience' sets 18.9M a",
+  "fp": "e81448a202735459"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The bigger championship audience became bigger crowds and bigger money.",
+   "ears": "Women's basketball beat the men's final, then packed arenas.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
@@ -35,19 +34,19 @@
   },
   {
    "window": "beat 1",
-   "ears": "Women's basketball attendance reached 2.37 million, showing the audience kept growing beyond television.",
+   "ears": "Women's basketball attendance reached 2.37 million, showing the television surge carried into arenas.",
    "eyes": "substance: the crowd of fans; cause: Data lifts each tunnel gate with his own hands and the fans pour in to fill the stands",
    "evidence": "WNBA / Associated Press | WNBA total season attendance (millions) | https://www.wnba.com | 2026-11-04"
   },
   {
    "window": "beat 2",
-   "ears": "Women's basketball media rights reached 200 million dollars yearly, turning audience growth into revenue.",
+   "ears": "Women's basketball media rights reached 200 million dollars yearly, turning that audience growth into revenue.",
    "eyes": "a data picture (comparison)",
    "evidence": "WNBA / sports business press | WNBA annual media rights value ($ millions) | https://www.wnba.com | 2026-11-04"
   },
   {
    "window": "closing",
-   "ears": "Women's basketball turned attention into attendance, then turned attendance into media value.",
+   "ears": "Women's basketball turned a bigger audience into fuller arenas and more valuable media rights.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

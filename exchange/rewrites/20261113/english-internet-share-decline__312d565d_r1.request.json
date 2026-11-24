@@ -108,10 +108,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('English website share') does not continue the story of the headline ('English Lost 30 Points as the Internet Globalized') — brain: The current 55% share contradicts the previous 45% and does not clearly support the 'lost 30 points' claim, nor does it "
+  "premise: brain: The pitch is a flat fun fact about English's shrinking web share with no personal stake, and the hook ('lost 30 points') is abstract; the beats also show a share dropping from an unstated start and a share (55%) that nearly contradicts the headline, so there is no surprise or threat the viewer can picture."
  ],
  "reasons": [
-  "thesis: seg2 ('English website share') does not continue the story of the headline ('English Lost 30 Points as the Internet Globalized') — brain: The current 55% share contradicts the previous 45% and does not clearly support the 'lost 30 points' claim, nor does it "
+  "premise: brain: The pitch is a flat fun fact about English's shrinking web share with no personal stake, and the hook ('lost 30 points') is abstract; the beats also show a share dropping from an unstated start and a share (55%) that nearly contradicts the headline, so there is no surprise or threat the viewer can picture."
  ],
  "judge": null,
  "prior_rejection": [
@@ -147,5 +147,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T12:40:35Z"
+ "refiled": "2026-11-24T13:53:31Z"
 }

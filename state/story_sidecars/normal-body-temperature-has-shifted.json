@@ -5,31 +5,31 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The number everyone learned in school? It's wrong now.",
+   "ears": "Your body may run cooler than the temperature everyone memorized.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Stanford researchers found today's men run about 97.5 degrees, about a degree cooler than men born in the early 1800s.",
+   "ears": "Modern men average 97.5 degrees, showing the body runs cooler than it once did.",
    "eyes": "a data picture (trend)",
    "evidence": "Stanford Medicine | Average US body temperature by birth era | https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html | 2026-11-12"
   },
   {
    "window": "beat 1",
-   "ears": "Men cooled nearly twice as much as women. Scientists suspect slower metabolisms, so our bodies run cooler than our ancestors' did.",
+   "ears": "Men cooled by 1.06 degrees, nearly twice the drop for women, pointing to a real biological shift.",
    "eyes": "a data picture (comparison)",
    "evidence": "Stanford Medicine | Body temperature decline by sex, 1800s to today | https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html | 2026-11-12"
   },
   {
    "window": "beat 2",
-   "ears": "The doctor who invented 'normal' used miscalibrated thermometers; his true average was probably 98.2. Normal was a guess.",
+   "ears": "A recalculation put the old thermometer average at 98.2 degrees, so the standard was never as fixed as bodies seemed.",
    "eyes": "a data picture (comparison)",
    "evidence": "JAMA (Journal of the American Medical Association) | Wunderlich's original 98.6F figure vs its 1992 recalculation | https://pubmed.ncbi.nlm.nih.gov/?term=Mackowiak+critical+appraisal+98.6 | 2026-11-12"
   },
   {
    "window": "closing",
-   "ears": "Your 'normal' may be cooler than you think, and it has been shifting for two centuries.",
+   "ears": "A single normal temperature cannot capture a body that changed across generations.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

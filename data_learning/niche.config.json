@@ -36652,7 +36652,7 @@
   {
    "slug": "right-whale-breeding-females",
    "title": "Only 70 Right Whale Mothers Stand Between Recovery And Collapse",
-   "hook": "A hopeful calf rebound still depends on very few mothers.",
+   "hook": "Right whale calves are being born, and the species still hangs on a handful of mothers.",
    "closing": "The species can recover only if its small group of breeding females survives.",
    "question": "Can right whales recover?",
    "caption": "North Atlantic right whales hit a low of 358 in 2020 and have crept back to 384 — with 22 calves born this season versus zero in 2018. But fewer than 70 of them are breeding females. Did you know whales could go extinct? 👇",
@@ -36707,7 +36707,23 @@
      "topic": "Right Whale Mothers",
      "say": "But only 70 right whales are breeding females, so losing a few can stall the comeback."
     }
-   ]
+   ],
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 9,
+     "arc": 11,
+     "factual": 9,
+     "visual_proof": 8,
+     "payoff": 6,
+     "voice": 3
+    },
+    "total": 56,
+    "fatal": [],
+    "weakest": "hook",
+    "note": "The hook is a vague, abstract statement with no concrete stakes, and the title's number (70 mothers) is held back until beat 3. Open with the threat in plain words, such as 'Only 70 mothers are keeping right whales alive', and make beat 2 s",
+    "fp": "6388c747d91475e2"
+   }
   },
   {
    "slug": "pedestrian-deaths-outlier",
@@ -37744,21 +37760,20 @@
    "scorecard": {
     "scores": {
      "premise": 8,
-     "hook": 12,
-     "arc": 8,
-     "factual": 5,
-     "visual_proof": 5,
+     "hook": 9,
+     "arc": 10,
+     "factual": 7,
+     "visual_proof": 8,
      "payoff": 6,
-     "voice": 3
+     "voice": 2
     },
-    "total": 47,
+    "total": 50,
     "fatal": [
-     "invented_fact",
-     "unrenderable_visual"
+     "false_comparison"
     ],
-    "weakest": "factual",
-    "note": "Create a clearer narrative arc that shows cause‑and‑effect rather than just listing separate statistics.",
-    "fp": "5a150da624175810"
+    "weakest": "voice",
+    "note": "The hook claims women's basketball 'beat the men's final' as if audience size were a clean head-to-head, then moves to a timeline (arenas, media rights) that the beats don't tie together. Beat 1's 'larger championship audience' sets 18.9M a",
+    "fp": "e81448a202735459"
    }
   },
   {
@@ -38655,7 +38670,7 @@
   {
    "slug": "normal-body-temperature-has-shifted",
    "title": "Body Temperature Fell Below The 98.6°F Standard",
-   "hook": "Your body may run cooler than the temperature everyone memorized.",
+   "hook": "Doctors trusted one body temperature for generations, and bodies stopped matching it.",
    "closing": "A single normal temperature cannot capture a body that changed across generations.",
    "question": "What's your resting temperature?",
    "hashtags": [
