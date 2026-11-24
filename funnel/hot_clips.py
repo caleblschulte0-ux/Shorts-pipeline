@@ -195,11 +195,11 @@ def _pullpush(query: str | None, period: str, limit: int,
         q["q"] = query
     url = ("https://api.pullpush.io/reddit/search/submission/?"
            + urllib.parse.urlencode(q))
-    import urllib.error
+    from urllib.error import HTTPError
     try:
         try:
             raw = _fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
-        except urllib.error.HTTPError as e:
+        except HTTPError as e:
             # a 429 is "wait", not "never": one wait before giving up
             if e.code != 429:
                 raise
@@ -285,7 +285,16 @@ def _first(path: str, query: str | None, period: str,
                      ("rss", lambda: _rss(path, sub))):
         if name in _DEAD:
             continue
-        got = fn()
+        try:
+            got = fn()
+        except Exception as e:  # noqa: BLE001
+            # a route's own bug never ends discovery (2026-11-24: a local
+            # `import urllib.error` shadowed `urllib` in _pullpush and the
+            # UnboundLocalError killed every sports run before Arctic Shift
+            # was ever asked)
+            print(f"::warning::[hot_clips] {name} crashed "
+                  f"({type(e).__name__}: {e})", flush=True)
+            got = None
         if got is None:
             _DEAD.add(name)
             continue
