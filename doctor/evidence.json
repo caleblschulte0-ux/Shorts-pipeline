@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261123 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261123.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "credential_dead_groq",
         "severity": "critical",
         "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-24T00:44:27+00:00).",
@@ -4412,8 +4418,8 @@
     }
   },
   "recent_commits": [
-    "9b707cb 2026-11-24 explainer: update posted log + analytics [skip ci]",
-    "30ad788 2026-11-24 claim: mailbox verdicts 2026-11-24T04:48Z [skip ci]"
+    "4d3a581 2026-11-24 watchdog: chatgpt task verdicts 20261124 [skip ci]",
+    "5fdac8b 2026-11-24 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4464,11 +4470,12 @@
         "2026-11-21": 2,
         "2026-11-22": 6,
         "2026-11-23": 7,
-        "2026-11-24": 2
+        "2026-11-24": 6,
+        "2026-11-25": 2
       },
-      "total_posted": 594,
-      "attempted": 1551,
-      "rejected_or_pending": 957
+      "total_posted": 600,
+      "attempted": 1561,
+      "rejected_or_pending": 961
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4482,63 +4489,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 144,
+      "videos": 142,
       "top_by_vph": [
         {
           "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
-          "vph": 64.22,
-          "views": 983
+          "vph": 39.22,
+          "views": 1002
         },
         {
           "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 27.71,
-          "views": 918
+          "vph": 22.81,
+          "views": 989
         },
         {
           "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
-          "vph": 17.43,
-          "views": 686
+          "vph": 14.42,
+          "views": 715
         },
         {
           "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 5.33,
+          "vph": 5.09,
           "views": 1164
         },
         {
           "title": "Every Banana You Eat Is a Clone, and It's Dying",
-          "vph": 4.13,
+          "vph": 3.97,
           "views": 1028
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 133,
+      "videos": 132,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 5.91,
-          "views": 540
+          "vph": 5.26,
+          "views": 553
+        },
+        {
+          "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
+          "vph": 1.4,
+          "views": 17
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 0.95,
+          "vph": 0.92,
           "views": 549
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.8,
-          "views": 211
+          "vph": 0.77,
+          "views": 213
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.75,
-          "views": 91
-        },
-        {
-          "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
-          "vph": 0.71,
-          "views": 123
+          "vph": 0.7,
+          "views": 94
         }
       ],
       "full_data": "state/analytics_third/latest.json"
