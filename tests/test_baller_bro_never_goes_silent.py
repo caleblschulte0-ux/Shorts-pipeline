@@ -64,6 +64,31 @@ class DiscoveryHasARouteReddit_DoesNotBlock(unittest.TestCase):
         self.assertEqual(len(vids), 2)
         self.assertEqual(vids[0]["upvotes"], 300)
 
+    def test_every_route_runs_on_its_own_code(self):
+        """2026-11-24: _pullpush shadowed `urllib` with a local import and
+        crashed every run; the route tests above mocked it out. Each
+        route here runs its real body against a stubbed fetch."""
+        page = {"data": [_post(1, 10)]}
+        raw = json.dumps(page).encode()
+        with mock.patch.object(hot_clips, "_fetch", return_value=raw):
+            self.assertTrue(hot_clips._pullpush(None, "week", 50, "nfl"))
+            self.assertTrue(hot_clips._arctic("week", 50, "nfl"))
+        atom = (b'<feed><entry><title>t</title><link href="https://www.'
+                b'reddit.com/r/nfl/comments/1/t/"/><updated>2026-11-20T00:'
+                b'00:00+00:00</updated></entry></feed>')
+        with mock.patch.object(hot_clips, "_fetch", return_value=atom):
+            got = hot_clips._rss("/r/nfl/top.json?t=week", "nfl")
+        self.assertEqual(len(got["data"]["children"]), 1)
+
+    def test_a_crashing_route_does_not_end_discovery(self):
+        page = {"data": [_post(1, 10)]}
+        with mock.patch.object(hot_clips, "_get", return_value=None), \
+                mock.patch.object(hot_clips, "_pullpush",
+                                  side_effect=UnboundLocalError("urllib")), \
+                mock.patch.object(hot_clips, "_fetch",
+                                  return_value=json.dumps(page).encode()):
+            self.assertEqual(len(hot_clips.top_videos("nfl")), 1)
+
     def test_arctic_is_tried_before_the_feed(self):
         src = Path(hot_clips.__file__).read_text()
         body = src[src.index("def _first("):]
