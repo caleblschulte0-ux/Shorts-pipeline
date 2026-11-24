@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "flu-season-2024-25-worst-in-years__12da2331",
+  "slug": "flu-season-2024-25-worst-in-years",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "Last Flu Season Sent 710,000 People To Hospitals—Most Unvaccinated",
+  "hook": "The brutal flu toll hit older adults, but vaccination status tells more.",
+  "closing": "The shot is not perfect, but most hospitalized flu patients had skipped it.",
+  "question": "Did you get your flu shot?",
+  "segments": [
+    {
+      "topic": "Flu Hospital Toll",
+      "say": "Flu sent roughly 710,000 Americans to hospital beds, making the season brutally severe."
+    },
+    {
+      "topic": "Flu Age Risk",
+      "say": "People over seventy-five were hospitalized at nearly five times the overall rate, concentrating the toll among older adults."
+    },
+    {
+      "topic": "Flu Vaccination Gap",
+      "say": "About 67.6 percent of hospitalized flu patients were unvaccinated, linking the toll to a preventable risk."
+    }
+  ]
+}
