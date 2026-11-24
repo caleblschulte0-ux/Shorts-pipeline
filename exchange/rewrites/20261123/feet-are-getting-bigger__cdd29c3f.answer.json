@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "feet-are-getting-bigger__cdd29c3f",
+  "slug": "feet-are-getting-bigger",
+  "by": "chatgpt",
+  "written_at": "2026-11-24T12:21:05.746Z",
+  "title": "British Feet Grew Longer And Wider As Bodies Got Heavier",
+  "hook": "Your feet can change shape long after you stop growing.",
+  "closing": "Adult feet can lengthen and widen enough to change the shoe size you need.",
+  "question": "Has your shoe size changed?",
+  "segments": [
+    {
+      "topic": "British Feet Length",
+      "say": "Average British men's shoes reached size 10, showing feet grew longer across generations."
+    },
+    {
+      "topic": "British Feet Width",
+      "say": "About 67 percent of women report wider adult feet, extending the change beyond length."
+    },
+    {
+      "topic": "British Feet Cause",
+      "say": "About 66 percent of adults in England carry excess weight, which can spread the foot."
+    }
+  ]
+}
