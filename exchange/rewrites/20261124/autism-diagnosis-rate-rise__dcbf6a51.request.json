@@ -101,10 +101,14 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is a vague, hedged claim ('can radically change the reported rate') with no concrete subject, villain or stake, and the title's 'fivefold' range isn't backed by the beats, which cite one site's 52.6 per thousand."
+  "thesis: seg0 ('Autism Prevalence') does not continue the story of the headline ('Autism Measurement Ranged Fivefold Across Screening Sites') — brain: Does not address variation across screening sites, only overall prevalence.",
+  "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Autism Measurement Ranged Fivefold Across Screening Sites') — brain: Focuses on sex differences, unrelated to site-based measurement range.",
+  "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Autism Measurement Ranged Fivefold Across Screening Sites') — brain: While about site variation, it does not logically follow from the previous beat about sex differences."
  ],
  "reasons": [
-  "premise: brain: The pitch is a vague, hedged claim ('can radically change the reported rate') with no concrete subject, villain or stake, and the title's 'fivefold' range isn't backed by the beats, which cite one site's 52.6 per thousand."
+  "thesis: seg0 ('Autism Prevalence') does not continue the story of the headline ('Autism Measurement Ranged Fivefold Across Screening Sites') — brain: Does not address variation across screening sites, only overall prevalence.",
+  "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Autism Measurement Ranged Fivefold Across Screening Sites') — brain: Focuses on sex differences, unrelated to site-based measurement range.",
+  "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Autism Measurement Ranged Fivefold Across Screening Sites') — brain: While about site variation, it does not logically follow from the previous beat about sex differences."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -138,5 +142,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T15:06:55Z"
+ "refiled": "2026-11-24T17:57:08Z"
 }

@@ -1,0 +1,37 @@
+{
+ "slug": "hadza-gut-bacteria-vs-americans",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Your gut is a ghost town compared to a hunter-gatherer's.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "The Hadza of Tanzania carry about 730 gut bacteria species. The average American has fewer than half that.",
+   "eyes": "substance: bacteria colonies; cause: Data pours the gut culture from a bucket onto the dish and colonies bloom where it lands",
+   "evidence": "Stanford University / Science (Smits et al. 2017) | Gut bacteria species count, Hadza vs average American | https://www.scientificamerican.com/article/modern-hunter-gatherers-have-thriving-gut-microbiome-compared-with-californians | 2026-11-06"
+  },
+  {
+   "window": "beat 1",
+   "ears": "The secret is fiber. The Hadza eat 150 grams a day, ten times the average American.",
+   "eyes": "a data picture (rank)",
+   "evidence": "Stanford/Science (Smits et al. 2017); U.S. Department of Agriculture | Daily fiber intake: Hadza vs US guideline vs average American | https://www.scientificamerican.com/article/modern-hunter-gatherers-have-thriving-gut-microbiome-compared-with-californians | 2026-11-06"
+  },
+  {
+   "window": "beat 2",
+   "ears": "The CDC says a third of US antibiotic prescriptions aren't even necessary, and each one can wipe out gut diversity.",
+   "eyes": "a data picture (share)",
+   "evidence": "U.S. Centers for Disease Control and Prevention (CDC) | Share of US outpatient antibiotic prescriptions that were unnecessary (2024) | https://www.cdc.gov/antibiotic-use/media/pdfs/2024-Annual-Report-508.pdf | 2026-11-06"
+  },
+  {
+   "window": "closing",
+   "ears": "Civilization made our food safer and our guts emptier.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

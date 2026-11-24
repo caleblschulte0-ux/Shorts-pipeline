@@ -1,0 +1,37 @@
+{
+ "slug": "blood-type-rarity",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Only 1 percent of Americans have AB negative blood, the rarest type.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Only 1 percent of Americans have AB negative, the rarest type. Most common is O positive, at over a third.",
+   "eyes": "a data picture (rank)",
+   "evidence": "American Red Cross | US population share by blood type | https://www.redcrossblood.org | 2026-08-11"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Only 15 percent of Americans are Rh negative. That means a negative type is a small club, so fewer people share yours.",
+   "eyes": "a data picture (share)",
+   "evidence": "American Red Cross | Share of US population, Rh-positive vs Rh-negative | https://www.redcrossblood.org | 2026-08-11"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Over half of Latin American donors are O positive, but only about a third of Caucasian donors. Who gives shapes the mix.",
+   "eyes": "a data picture (rank)",
+   "evidence": "American Red Cross | Share who are blood type O-positive, by ethnicity (US donor population) | https://www.redcrossblood.org | 2026-08-11"
+  },
+  {
+   "window": "closing",
+   "ears": "Rare or common, your type matches someone, so your donation can matter.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

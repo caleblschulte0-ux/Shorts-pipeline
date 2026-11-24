@@ -23,31 +23,31 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The scariest danger at airports isn't in the sky, it's on the ground.",
+   "ears": "Serious runway danger more than doubled in about a decade.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Serious runway near-misses have more than doubled in about a decade, to 23 last year. That's roughly one every two weeks.",
+   "ears": "Safety officials logged 23 serious runway near-misses, roughly one every two weeks and more than double the pace about a decade earlier.",
    "eyes": "substance: red warning flags; cause: Data places a red warning flag on the runway edge for every near-miss, walking down the runway",
    "evidence": "Federal Aviation Administration / U.S. Senate Commerce Committee | Serious (Category A/B) US runway incursions per year | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
   },
   {
    "window": "beat 1",
-   "ears": "Six in ten runway incursions last year were people or vehicles wandering onto the runway by mistake, not planes at all.",
+   "ears": "Six in ten runway incursions came from people or vehicles entering by mistake, showing why ground coordination drives the danger.",
    "eyes": "a data picture (share)",
    "evidence": "Federal Aviation Administration | What caused FY2023's 1,756 US runway incursions | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
   },
   {
    "window": "beat 2",
-   "ears": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst ones. That's where the danger lives.",
+   "ears": "That runway danger clusters: just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst near-misses.",
    "eyes": "a data picture (comparison)",
    "evidence": "AVweb analysis of FAA data | Share of the worst US runway incursions at just 8 airports | https://avweb.com/aviation-news/us-runway-incursion-hotspots/ | 2026-11-06"
   },
   {
    "window": "closing",
-   "ears": "More flights, same runways. Every close call puts a planeload of people at risk.",
+   "ears": "Every runway near-miss is a warning before the collision that cannot be undone.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

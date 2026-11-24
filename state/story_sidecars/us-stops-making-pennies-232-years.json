@@ -5,31 +5,31 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "After two centuries, the penny is being put to death.",
+   "ears": "America is killing its oldest coin to stop losing money.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Making pennies loses taxpayers about 86 million dollars a year. Ending it saves roughly two thirds of that.",
+   "ears": "Making pennies loses taxpayers 86 million dollars yearly, so ending production saves money.",
    "eyes": "a data picture (comparison)",
    "evidence": "United States Mint | US penny program: annual loss vs projected savings from ending it | https://www.usmint.gov/about/congressional-reports/annual-report | 2026-11-13"
   },
   {
    "window": "beat 1",
-   "ears": "Most dead coins went fast; the two-cent piece lasted just 9 years. The penny hung on for over two centuries.",
+   "ears": "That decision ends the penny's 232-year run, far longer than other discontinued coins.",
    "eyes": "a data picture (rank)",
    "evidence": "United States Mint | Years in production before discontinued, selected US coins | https://www.usmint.gov/ | 2026-11-13"
   },
   {
    "window": "beat 2",
-   "ears": "A nickel costs 13.78 cents to make, nearly three times its five-cent value. The penny wasn't even the worst.",
+   "ears": "Yet a nickel costs 13.78 cents to make, proving the penny was not the worst offender.",
    "eyes": "a data picture (comparison)",
    "evidence": "United States Mint | Cost to produce one penny vs one nickel, 2024 | https://www.usmint.gov/about/congressional-reports/annual-report | 2026-11-13"
   },
   {
    "window": "closing",
-   "ears": "The nickel loses even more money, so your pocket change may be next.",
+   "ears": "The penny's long run ends because minting pocket change stopped making financial sense.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

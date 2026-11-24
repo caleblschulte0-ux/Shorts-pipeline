@@ -100,12 +100,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Does not directly support the 'brain' claim, and is an 'and another fact' rather than a sequential follow-up.",
-  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Completely shifts topic to artery plaque and heart risk, unrelated to the 'brain' headline, and does not follow sequenti"
+  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Shows plastic in placenta and blood, but doesn't directly support the claim that the brain is filling with plastic.",
+  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Discusses cardiovascular risk, which is unrelated to brain plastic accumulation."
  ],
  "reasons": [
-  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Does not directly support the 'brain' claim, and is an 'and another fact' rather than a sequential follow-up.",
-  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Completely shifts topic to artery plaque and heart risk, unrelated to the 'brain' headline, and does not follow sequenti"
+  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Shows plastic in placenta and blood, but doesn't directly support the claim that the brain is filling with plastic.",
+  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Your Brain Is Quietly Filling With Plastic') — brain: Discusses cardiovascular risk, which is unrelated to brain plastic accumulation."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -139,5 +139,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T15:06:55Z"
+ "refiled": "2026-11-24T17:57:08Z"
 }

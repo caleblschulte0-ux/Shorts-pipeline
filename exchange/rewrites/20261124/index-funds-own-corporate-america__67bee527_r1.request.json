@@ -115,12 +115,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Who Actually Owns America') does not continue the story of the headline ('Who Actually Owns Corporate America Now?') — brain: Gives a static ownership snapshot (22% held by three firms) rather than following from index funds growing past half the",
-  "thesis: seg2 ('Who Votes Your Shares') does not continue the story of the headline ('Who Actually Owns Corporate America Now?') — brain: Shifts from who owns shares to who votes them; Vanguard's voting share is a separate fact, not caused by or turning agai"
+  "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
  ],
  "reasons": [
-  "thesis: seg1 ('Who Actually Owns America') does not continue the story of the headline ('Who Actually Owns Corporate America Now?') — brain: Gives a static ownership snapshot (22% held by three firms) rather than following from index funds growing past half the",
-  "thesis: seg2 ('Who Votes Your Shares') does not continue the story of the headline ('Who Actually Owns Corporate America Now?') — brain: Shifts from who owns shares to who votes them; Vanguard's voting share is a separate fact, not caused by or turning agai"
+  "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
  ],
  "judge": null,
  "prior_rejection": [
@@ -156,5 +154,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-24T15:06:55Z"
+ "refiled": "2026-11-24T17:57:08Z"
 }

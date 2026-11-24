@@ -1,0 +1,37 @@
+{
+ "slug": "volcanoes-erupting-right-now",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Earth never actually stops erupting. It just moves around.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Earth has about 1,400 active volcanoes, but only a tiny slice are erupting at any moment. So the planet always has a few going.",
+   "eyes": "a data picture (rank)",
+   "evidence": "Smithsonian Institution | How many of Earth's volcanoes are active, by definition | https://volcano.si.edu | 2026-11-12"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Three in four sit along one line, the Pacific Ring of Fire. So the danger is packed around one ocean's edge.",
+   "eyes": "a data picture (share)",
+   "evidence": "U.S. Geological Survey (USGS) | Share of Earth's active volcanoes on the Pacific Ring of Fire | https://www.usgs.gov | 2026-11-12"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Just 16 are labeled 'Decade Volcanoes', the most dangerous to nearby people. Out of over a thousand, that's a short watch list.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "U.S. Geological Survey (USGS) | All active volcanoes vs officially designated 'Decade Volcanoes' | https://www.usgs.gov | 2026-11-12"
+  },
+  {
+   "window": "closing",
+   "ears": "Something, somewhere, is always on fire under your feet.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}
