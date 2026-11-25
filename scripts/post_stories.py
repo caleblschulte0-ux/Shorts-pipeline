@@ -900,8 +900,12 @@ def main() -> int:
                 print(f"[{slug}] NOT POSTING — too close to a video already "
                       f"up: {_dup!r}. The story is fine; the PACKAGING "
                       f"repeats. Retitle it and it ships.")
+                # `repeat` says WHICH kind, for the rewrite mailbox: a
+                # title repeat is a words job (retitle it), a story repeat
+                # is not (shared/rewrite_mailbox.file_for_run).
                 results.append({"slug": slug, "ok": False,
-                                "error": "duplicate_hold", "duplicate_of": _dup})
+                                "error": "duplicate_hold", "duplicate_of": _dup,
+                                "repeat": "title"})
                 continue
 
         # Check the run's render budget FIRST — before the editorial gate.
@@ -1040,7 +1044,8 @@ def main() -> int:
                       f"reading). A new title over the same comparison is a "
                       f"repeat.", flush=True)
                 results.append({"slug": slug, "ok": False,
-                                "error": "duplicate_hold", "duplicate_of": _same})
+                                "error": "duplicate_hold", "duplicate_of": _same,
+                                "repeat": "story"})
                 continue
         attempts += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
@@ -1347,7 +1352,8 @@ def main() -> int:
                   f"claimed it: {log['posted'][slug].get('url')}", flush=True)
             results.append({"slug": slug, "ok": False,
                             "error": "duplicate_hold",
-                            "duplicate_of": log["posted"][slug].get("title")})
+                            "duplicate_of": log["posted"][slug].get("title"),
+                            "repeat": "posted"})
             continue
         # THE GO-LIVE TIME IS PICKED HERE, against the log just refreshed
         # from main — not at run start, and never alone (operator,

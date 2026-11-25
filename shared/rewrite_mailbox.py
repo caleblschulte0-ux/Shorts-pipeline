@@ -61,6 +61,23 @@ a hook under the floor is filed as a `narration:` / `hook:` reason; and
 ChatGPT's answer must clear the narration doctrine too, as the rules it is
 handed already say (the brain's own retell and tighten keep checking it
 themselves).
+
+A REPEAT IS RETITLED, NOT PARKED (doctor aaeb12de3ebd, 2026-11-25). The
+run holds a story whose TITLE is too close to a video already up before
+the gate ever sees it, and its own message has said since 10-02 "The
+story is fine; the PACKAGING repeats. Retitle it and it ships" -- but
+nothing ever asked anyone to retitle it: `file_for_run` had no branch for
+`duplicate_hold`, so three stories sat `duplicate_hold` on every one of
+the twelve runs of 11-23..11-25 (one of them "The Ocean Lost 71% Of Its
+Sharks Since 1970", held against "The World Lost 35% Of Its Wetlands
+Since 1970" -- the title TEMPLATE repeats, the story does not). Now a
+title repeat is filed as a `repeat:` reason naming the video it collides
+with, plus whatever the gate would say; the claim refuses a retitle that
+still collides (`validate(..., posted_titles=...)`, the run's own
+matcher, `shared.near_duplicate.duplicate_of`, over the run's own corpus);
+and a story the BRAIN reads as the same story as a posted video (the
+`repeat: "story"` hold -- "a new title over the same comparison is a
+repeat") retires its asks instead: no retitle can post it.
 """
 from __future__ import annotations
 
@@ -211,7 +228,9 @@ def _dataset(seg: dict) -> dict | None:
 
 #: `story:` is the story-first scorecard (shared/story_brief.py): a story it
 #: holds is re-authored here like any other words hold.
-_WORD_PREFIX = ("premise:", "thesis:", "beats:", "pace:", "story:")
+#: `repeat:` is the run's near-duplicate TITLE hold: the packaging repeats a
+#: posted video; a retitle fixes it (post_stories, `duplicate_hold`).
+_WORD_PREFIX = ("premise:", "thesis:", "beats:", "pace:", "story:", "repeat:")
 
 
 #: A hold no rewrite can lift: the story's DATA is not a real source
@@ -255,6 +274,52 @@ def narration_holds(sc: dict) -> list[str]:
     nobody asked to fix them."""
     from shared import narration
     return ["narration: " + str(p) for p in narration.problems(sc)]
+
+
+#: The hold reason a title repeat is filed under, and the one a retitle that
+#: still collides is refused with. Named here so the filing and the claim
+#: can never drift on the word.
+REPEAT_PREFIX = "repeat:"
+
+
+def repeat_reason(duplicate_of: str) -> str:
+    """The ask for a title repeat, in the run's own words (post_stories:
+    "The story is fine; the PACKAGING repeats. Retitle it and it ships")."""
+    return (f"{REPEAT_PREFIX} the TITLE is too close to a video already up: "
+            f"{duplicate_of!r}. The story is fine; the PACKAGING repeats. Give "
+            f"this video its own title (and a hook that says what THIS story "
+            f"shows), not the posted video's shape with a noun swapped.")
+
+
+def posted_titles(log_path: Path | None = None) -> list[str]:
+    """Every title the run's near-duplicate check compares a story against:
+    the explainer's whole posted log plus the data channels' uploads inside
+    the registry's no-repeat window -- the same corpus `post_stories`
+    builds before the gate, so a retitle the claim accepts is one the run
+    will not hold again. Unreadable logs contribute nothing (the run's own
+    loader fails closed on a corrupt ledger before anything reaches here)."""
+    titles: list[str] = []
+    log_path = Path(log_path or REPO / "state" / "explainer_posted_log.json")
+    try:
+        log = json.loads(log_path.read_text())
+        posted = log.get("posted") if isinstance(log, dict) else {}
+        entries = posted.values() if isinstance(posted, dict) else (posted or [])
+        titles += [str(e.get("title") or "") for e in entries if isinstance(e, dict)]
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        from shared import near_duplicate as _nd
+        titles += _nd.corpus_titles(_nd.posted_corpus(root=REPO))
+    except Exception:  # noqa: BLE001
+        pass
+    return [t for t in titles if t.strip()]
+
+
+def repeats(title: str, titles) -> str | None:
+    """The posted title `title` is too close to, by the run's own matcher,
+    or None."""
+    from shared.near_duplicate import duplicate_of
+    return duplicate_of(title or "", titles or [])
 
 
 # ---------------------------------------------------------------------------
@@ -516,6 +581,24 @@ def file_for_run(results: list[dict], stories: dict, *,
                                        "blocked by the showrunner")]
             rid = file_request(sc, reasons + word_holds(sc), judge=judge,
                                rewrites_dir=rewrites_dir)
+        elif err == "duplicate_hold":
+            # THE PACKAGING REPEATS. A title too close to a posted video is
+            # a words job -- the run has said "Retitle it and it ships"
+            # since 10-02 and nobody was ever asked. The brain reading the
+            # STORY as a posted one is not: a new title over the same
+            # comparison is a repeat, so its asks are retired. A slug
+            # another run posted meanwhile is a race, not a hold.
+            dup = str(r.get("duplicate_of") or "a video already up")
+            how = r.get("repeat")
+            if how == "story":
+                retire(slug, [f"{REPEAT_PREFIX} the same story as {dup!r} is "
+                              f"already up on a data channel; no retitle "
+                              f"can post it"], rewrites_dir=rewrites_dir)
+                continue
+            if how != "title":
+                continue
+            rid = file_request(sc, [repeat_reason(dup)] + word_holds(sc),
+                               rewrites_dir=rewrites_dir)
         else:
             continue
         if rid:
@@ -649,7 +732,8 @@ def _topic_entities(topic: str, original: str, label_words: set,
 
 
 def validate(sc: dict, ans: dict, *,
-             narration: bool = False) -> tuple[dict | None, list[str]]:
+             narration: bool = False,
+             posted_titles: list | None = None) -> tuple[dict | None, list[str]]:
     """(candidate story, problems). A candidate is returned only with no
     problems; it is `sc` with the words replaced, and it has PASSED the same
     deterministic gate the run applies. With `narration`, it has also
@@ -657,7 +741,11 @@ def validate(sc: dict, ans: dict, *,
     say one number a beat, and an answer that is a readout would only be
     held `not_current` by the next run. The brain's own retell and tighten
     call this without it: they check the narration themselves, and tighten
-    runs before the retell has had its turn."""
+    runs before the retell has had its turn. With `posted_titles`, the
+    candidate's TITLE must not repeat one of them by the run's own
+    near-duplicate matcher -- a retitle asked for because the packaging
+    repeated, that still repeats, would only be held `duplicate_hold`
+    again (the claim passes the run's own corpus, `posted_titles()`)."""
     import copy
     problems: list[str] = []
     segs = sc.get("segments") or []
@@ -734,6 +822,11 @@ def validate(sc: dict, ans: dict, *,
     still = word_holds(cand)
     if narration:
         still += narration_holds(cand)
+    if posted_titles is not None:
+        hit = repeats(cand.get("title") or "", posted_titles)
+        if hit:
+            still.append(f"{REPEAT_PREFIX} the title is still too close to a "
+                         f"video already up: {hit!r}")
     if still:
         return None, ["still held by the gate: " + r for r in still]
     return cand, []
@@ -759,9 +852,12 @@ def apply(cfg: dict, cand: dict, by: str = WORDS_BY) -> bool:
 
 
 def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = None,
-              dry_run: bool = False) -> dict:
+              dry_run: bool = False, log_path: Path | None = None) -> dict:
     """Every open request with an answer: validate, apply, settle. A refusal
-    is settled with its reasons and a fresh request is filed carrying them."""
+    is settled with its reasons and a fresh request is filed carrying them.
+    An answer's title is checked against the run's own posted corpus
+    (`posted_titles(log_path)`) so a retitle that still repeats is refused
+    here, with the video named, instead of being held by the next run."""
     config_path = Path(config_path or REPO / "data_learning" / "niche.config.json")
     report = {"applied": [], "rejected": [], "open": 0}
     reqs = open_requests(rewrites_dir)
@@ -769,6 +865,7 @@ def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = No
         return report
     cfg = json.loads(config_path.read_text())
     stories = {s.get("slug"): s for s in cfg.get("stories") or []}
+    titles = posted_titles(log_path)
     changed = False
     for req in reqs:
         ans, why = answer_for(req)
@@ -788,7 +885,7 @@ def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = No
         if not (req["id"] == base or req["id"].startswith(base + "_r")):
             settle(req, {"decision": "superseded", "problems": ["the story's words changed since this was filed"]})
             continue
-        cand, problems = validate(sc, ans, narration=True)
+        cand, problems = validate(sc, ans, narration=True, posted_titles=titles)
         if problems:
             settle(req, {"decision": "rejected", "problems": problems})
             report["rejected"].append({"id": req["id"], "problems": problems})
