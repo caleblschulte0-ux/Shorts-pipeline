@@ -101,14 +101,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Autism Prevalence') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Does not address screening location, only overall prevalence.",
-  "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Irrelevant to screening location; discusses sex differences.",
-  "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Content is about site differences but does not logically follow from beat 1."
+  "premise: brain: The pitch is a vague, hedged claim (\"can change their diagnosis entirely\") that names no concrete surprise or stake the viewer can picture, and the beats are a stack of prevalence statistics rather than a belief being turned over."
  ],
  "reasons": [
-  "thesis: seg0 ('Autism Prevalence') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Does not address screening location, only overall prevalence.",
-  "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Irrelevant to screening location; discusses sex differences.",
-  "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Content is about site differences but does not logically follow from beat 1."
+  "premise: brain: The pitch is a vague, hedged claim (\"can change their diagnosis entirely\") that names no concrete surprise or stake the viewer can picture, and the beats are a stack of prevalence statistics rather than a belief being turned over."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -142,5 +138,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-25T12:51:52Z"
+ "refiled": "2026-11-25T14:00:03Z"
 }

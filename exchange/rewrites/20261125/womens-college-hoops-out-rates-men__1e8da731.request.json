@@ -106,10 +106,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance rise is another supporting fact but isn’t shown as a consequence of the prior viewership beat, breaking the r"
+  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance is a separate fact that doesn't follow from or turn against the viewership beat. It reads as 'and another fac",
+  "thesis: seg2 (\"Women's Basketball Rights\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Media rights are another parallel metric. The beat never says the rights deal happened because of the viewership or atte"
  ],
  "reasons": [
-  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance rise is another supporting fact but isn’t shown as a consequence of the prior viewership beat, breaking the r"
+  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance is a separate fact that doesn't follow from or turn against the viewership beat. It reads as 'and another fac",
+  "thesis: seg2 (\"Women's Basketball Rights\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Media rights are another parallel metric. The beat never says the rights deal happened because of the viewership or atte"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -143,5 +145,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-25T12:51:52Z"
+ "refiled": "2026-11-25T14:00:03Z"
 }

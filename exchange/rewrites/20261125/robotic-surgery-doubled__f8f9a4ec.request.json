@@ -115,12 +115,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Robotic Surgeries Rose') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Does not directly prove the 15.1% surgery share claim.",
-  "thesis: seg2 ('Robotic Surgeries Revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Discusses revenue, not the specific surgery share claim."
+  "premise: brain: The pitch is a flat adoption statistic (robots do 15.1% of surgeries) with no concrete surprise, threat or personal stake, and its beats are generic growth facts and revenue that don't overturn anything the viewer believes."
  ],
  "reasons": [
-  "thesis: seg0 ('Robotic Surgeries Rose') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Does not directly prove the 15.1% surgery share claim.",
-  "thesis: seg2 ('Robotic Surgeries Revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Discusses revenue, not the specific surgery share claim."
+  "premise: brain: The pitch is a flat adoption statistic (robots do 15.1% of surgeries) with no concrete surprise, threat or personal stake, and its beats are generic growth facts and revenue that don't overturn anything the viewer believes."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -154,5 +152,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-25T12:51:52Z"
+ "refiled": "2026-11-25T14:00:03Z"
 }

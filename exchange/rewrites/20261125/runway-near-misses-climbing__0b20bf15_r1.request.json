@@ -101,10 +101,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The hook is vague ('more than doubled') and lacks a concrete, vivid surprise or threat that viewers can picture."
+  "premise: brain: The pitch is a flat statistical trend ('near-misses more than doubled') with no named threat or stake for the viewer, and the title 'Why Serious Runway Near-Misses Keep Climbing' promises a cause the beats don't turn over. Beat 2 offers 'people entering a runway by mistake' and beat 3 offers 'just 8 airports hold a third', and neither one overturns a belief the viewer holds."
  ],
  "reasons": [
-  "premise: brain: The hook is vague ('more than doubled') and lacks a concrete, vivid surprise or threat that viewers can picture."
+  "premise: brain: The pitch is a flat statistical trend ('near-misses more than doubled') with no named threat or stake for the viewer, and the title 'Why Serious Runway Near-Misses Keep Climbing' promises a cause the beats don't turn over. Beat 2 offers 'people entering a runway by mistake' and beat 3 offers 'just 8 airports hold a third', and neither one overturns a belief the viewer holds."
  ],
  "judge": null,
  "prior_rejection": [
@@ -141,5 +141,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-25T14:00:04Z"
 }

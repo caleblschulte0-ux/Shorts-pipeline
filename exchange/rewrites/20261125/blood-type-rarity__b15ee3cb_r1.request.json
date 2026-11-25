@@ -126,10 +126,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The hook is a flat fun fact (a rare blood type is hard to find) with no stake or twist for the viewer, and the beats drift into dry percentages and donor demographics that never deliver a concrete threat or surprise."
+  "premise: brain: The title promises a panic over one blood type, but the beats are a flat run of distribution stats (1% AB negative, 15% Rh negative, donor ethnicity mix) with no concrete surprise, contradiction or stake the viewer can picture."
  ],
  "reasons": [
-  "premise: brain: The hook is a flat fun fact (a rare blood type is hard to find) with no stake or twist for the viewer, and the beats drift into dry percentages and donor demographics that never deliver a concrete threat or surprise."
+  "premise: brain: The title promises a panic over one blood type, but the beats are a flat run of distribution stats (1% AB negative, 15% Rh negative, donor ethnicity mix) with no concrete surprise, contradiction or stake the viewer can picture."
  ],
  "judge": null,
  "prior_rejection": [
@@ -165,5 +165,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-25T12:51:54Z"
+ "refiled": "2026-11-25T14:00:05Z"
 }

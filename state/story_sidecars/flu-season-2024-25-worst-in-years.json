@@ -1,30 +1,47 @@
 {
  "slug": "flu-season-2024-25-worst-in-years",
  "brief": null,
- "scorecard": null,
+ "scorecard": {
+  "scores": {
+   "premise": 11,
+   "hook": 13,
+   "arc": 9,
+   "factual": 8,
+   "visual_proof": 10,
+   "payoff": 7,
+   "voice": 3
+  },
+  "total": 61,
+  "fatal": [
+   "false_comparison"
+  ],
+  "weakest": "arc",
+  "note": "The hook (\"two out of three hospitalized had skipped the shot\") and beat 3 (\"only about one in three had gotten a shot\") state one statistic twice, so there is no escalation. Beat 2, on the 75+ rate, is a separate point that never connects ",
+  "fp": "b461def4db8af04c"
+ },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Most people hospitalized with the flu last season had skipped the shot.",
+   "ears": "Two out of three people hospitalized with the flu had skipped the shot.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Flu sent roughly 710,000 Americans to hospital beds last season, making the season brutally severe.",
+   "ears": "Flu sent roughly 710,000 Americans to the hospital last season, making it an unusually severe year.",
    "eyes": "substance: patients on hospital beds; cause: Data wheels each flu patient in by the bed's handle and parks it in an empty bay",
    "evidence": "Centers for Disease Control and Prevention | 2024-25 US flu season toll | https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html | 2026-10-24"
   },
   {
    "window": "beat 1",
-   "ears": "Older adults got hit hardest. People 75 and up were hospitalized at nearly five times the overall rate.",
+   "ears": "People 75 and older were hospitalized at nearly five times the overall rate.",
    "eyes": "a data picture (comparison)",
    "evidence": "Centers for Disease Control and Prevention | Flu hospitalization rate per 100,000 | https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html | 2026-10-24"
   },
   {
    "window": "beat 2",
-   "ears": "Only about one in three hospitalized flu patients had gotten a flu shot. Two in three had skipped it.",
-   "eyes": "a data picture (share)",
+   "ears": "Only about one in three of those hospitalized patients had actually gotten a flu shot.",
+   "eyes": "substance: a privacy curtain; cause: Data drags the ward's curtain along its rail across the unvaccinated beds with his own hands",
    "evidence": "Centers for Disease Control and Prevention | Vaccination status of flu hospitalizations | https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html | 2026-10-24"
   },
   {
