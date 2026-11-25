@@ -110,10 +110,18 @@ WORDS_BY = "chatgpt-rewrite"
 def words_by(ans: dict) -> str:
     """Who wrote these words, for the record: `aletheia:<route>` answers
     (operator, 2026-09-30: "let Alethea answer the mailbox") are
-    Aletheia's; anything else keeps the historical name. Provenance only —
-    every writer's words pass the same `validate`."""
+    Aletheia's; an interactive Claude session answering the mailbox directly
+    (the ChatGPT-quarterback backlog is content, not pipeline code — rule
+    zero, 2026-08-01) writes `by: "claude"` and is recorded as its own
+    provenance rather than borrowing ChatGPT's name; anything else keeps the
+    historical name. Provenance only — every writer's words pass the same
+    `validate`."""
     head = str((ans or {}).get("by") or "").strip().lower().split(":", 1)[0]
-    return "aletheia-rewrite" if head == "aletheia" else WORDS_BY
+    if head == "aletheia":
+        return "aletheia-rewrite"
+    if head == "claude":
+        return "claude-rewrite"
+    return WORDS_BY
 
 #: The gate's four word rules, in the words ChatGPT is given. These restate
 #: `scripts/editorial_gate.py` — the CODE there is what decides, this text
