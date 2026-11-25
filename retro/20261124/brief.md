@@ -1,6 +1,6 @@
 # Retro — 20261124
 
-generated 2026-11-24T23:31:07Z · 4 video(s) posted today
+generated 2026-11-25T00:31:06Z · 4 video(s) posted today
 
 ## trending
 
@@ -15,7 +15,7 @@ _nothing published today_
 _nothing published today_
 
 - 7d: 7 videos, median 179.0 views
-- 30d: 61 videos, median 208.0 views
+- 30d: 60 videos, median 209.5 views
 - thin data (<5): 1-3d, 3-7d
 
 ## curiosity
@@ -46,15 +46,15 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 61.76d, 3 samples, needs 28d / 25 samples · 3/25 samples — not enough videos have run under this change
+    - 61.8d, 3 samples, needs 28d / 25 samples · 3/25 samples — not enough videos have run under this change
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 60.76d, 2 samples, needs 28d / 25 samples · 2/25 samples — not enough videos have run under this change
+    - 60.8d, 2 samples, needs 28d / 25 samples · 2/25 samples — not enough videos have run under this change
 
 ## Bespoke pictures vs performance
 
 _best judge `bespoke` grade per video vs views-per-hour at >= 24h_
 
-- ungraded (shipped before the judge graded depictions): 141
+- ungraded (shipped before the judge graded depictions): 140
 
 ## Style arms (A/B of the explainer's look)
 
@@ -62,7 +62,7 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 - 3d: n=3, median p97 _(noise: too few)_
 - current: n=19, median p34 _(noise: too few)_
-- illustrated: n=112, median p52
+- illustrated: n=111, median p53
 - **fewer than 30 mature videos in at least one arm: this is noise, not a result**
 
 ## Pipeline health
@@ -74,6 +74,6 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 ## Repo
 
-- HEAD b228ad1, 50 commit(s) since 2026-11-23
+- HEAD c9a3629, 50 commit(s) since 2026-11-24
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.
