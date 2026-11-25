@@ -22539,6 +22539,33 @@
         "end": 60.0
       },
       "director_cut": true
+    },
+    "rejected-rudebluestapleresidentsleeper-hn6ahqgrcsgwb2dl": {
+      "source_url": "https://www.twitch.tv/tminnzy/clip/RudeBlueStapleResidentSleeper-hN6aHqGrcSgwB2Dl",
+      "streamer": "tminnzy",
+      "title": "Tminnzy Presses Triangle By Mistake And Can't Believe It \ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "audio dead for 5.9s at 22.0s; render_qa: freeze: 3.6s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas, not the roughly three quarters expected. It wa; vision: The plane, the falling character and the streamer ",
+      "ts": "2026-11-25T12:39:53.240165+00:00"
+    },
+    "rejected-sullenhelplesssamosahoneybadger-xw_jqip7dupmxtvl": {
+      "source_url": "https://www.twitch.tv/raw_phil/clip/SullenHelplessSamosaHoneyBadger-XW_jQIP7duPMxTvL",
+      "streamer": "raw_phil",
+      "title": "Raw_Phil Watches DSP Drive Straight Into The Water",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height, nowhere near the roughly three quarters expe; vision: The ambulance is small and far away in most frames. It is hard to read on a phone.; vision: The strip includes the streamer's webcam, the chat column and the stre",
+      "ts": "2026-11-25T12:42:21.513584+00:00"
+    },
+    "rejected-relievedtolerantmetalpunchtrees-1sruqsjuwg6pkugm": {
+      "source_url": "https://www.twitch.tv/lilypichu/clip/RelievedTolerantMetalPunchTrees-1SrUQSJUwg6PKugm",
+      "streamer": "lilypichu",
+      "title": "Lilypichu Has To Hold Square And Can't Let Go",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, only about a third of the canvas height. The subject is small, and large blurred area; vision: Several sharp frames are heavily corrupted, with a purple/blue smeared glitch over the picture (about 10-15s).; vision: The sharp picture is pixelated or smeared ",
+      "ts": "2026-11-25T12:47:22.681315+00:00"
     }
   }
 }

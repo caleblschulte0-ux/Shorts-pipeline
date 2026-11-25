@@ -3,226 +3,6 @@
     {
       "date": "20261117",
       "dry_run": false,
-      "ts": "2026-11-17T11:42:48+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 132,
-        "with_retention": 113,
-        "with_curve": 15,
-        "fetched_at": "2026-11-17T08:46:28.812752+00:00"
-      },
-      "brain": {
-        "ok": 7,
-        "fail": 0,
-        "limited_at": "2026-11-17T11:33:43+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tpain": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfandtv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:connoreatspants": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tenz": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nickmercs": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:pokimane": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:sykkuno": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fuslie": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261117-1",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.5
-        },
-        {
-          "slug": "clip-20261117-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261117-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261117-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261117",
-      "dry_run": false,
       "ts": "2026-11-17T11:47:05+00:00",
       "feedback": {
         "snapshot": true,
@@ -7187,6 +6967,224 @@
           "slug": "clip-20261125-6",
           "ok": false,
           "skipped": "run budget reached"
+        }
+      ]
+    },
+    {
+      "date": "20261125",
+      "dry_run": false,
+      "ts": "2026-11-25T12:47:22+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 132,
+        "with_retention": 96,
+        "with_curve": 15,
+        "fetched_at": "2026-11-25T08:46:34.590458+00:00"
+      },
+      "brain": {
+        "ok": 16,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nmplol": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261125-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261125-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261125-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261125-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261125-5",
+          "ok": false,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip, about a third of the canvas height, nowhere near the roughly three quarters expe; vision: The ambulance is small and far away in most frames. It is hard",
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "visible fail, drives into water",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Ambulance sinks in swamp, DSP reacts",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Raw_Phil Watches DSP Drive Straight Into The Water"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip, about a third of the canvas height, nowhere near the roughly three quarters expe",
+                "The ambulance is small and far away in most frames. It is hard to read on a phone.",
+                "The strip includes the streamer's webcam, the chat column and the stream's own HUD and ticker text, which are clutter. T",
+                "The large blurred top and bottom areas dominate the frame, so it looks like a repost rather than an edit."
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 148.3
+        },
+        {
+          "slug": "clip-20261125-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, only about a third of the canvas height. The subject is small, and large blurred area; vision: Several sharp frames are heavily corrupted, with a purple/blue",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "GTA VI reaction, mild event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA6 photo mode, nothing clear happens",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lilypichu Has To Hold Square And Can't Let Go"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin strip, only about a third of the canvas height. The subject is small, and large blurred area",
+                "Several sharp frames are heavily corrupted, with a purple/blue smeared glitch over the picture (about 10-15s).",
+                "The sharp picture is pixelated or smeared in several frames, so it is not in focus.",
+                "Parts of the sharp area are very dark, nearly black, in some frames.",
+                "The pause or map menu UI is visible, which breaks the flow of the action."
+              ]
+            },
+            "first_render": {
+              "reframe": "action",
+              "layout": "action",
+              "problems": [
+                "vision: The sharp region itself is heavily blurred/out of focus from about 5.7s to 14.8s, and again at 21.6s. This is the main p",
+                "vision: Purple/magenta color bleed and smearing across the picture at 8.0s-14.8s look like a broken render or compression artifa",
+                "vision: The subject is a smeared blob in those frames and cannot be read on a phone.",
+                "vision: The hook caption sits over the subject's torso for the whole video, and the 'I HAVE TO' caption at 21.6s overlaps it, so",
+                "vision: The final frame at 26.2s is a game map UI with no person in it, which is an abrupt, off-topic ending."
+              ]
+            }
+          },
+          "took_s": 216.2
         }
       ]
     }
