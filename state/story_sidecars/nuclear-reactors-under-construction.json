@@ -3,24 +3,26 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 9,
-   "hook": 13,
-   "arc": 9,
-   "factual": 9,
+   "premise": 12,
+   "hook": 18,
+   "arc": 15,
+   "factual": 12,
    "visual_proof": 8,
-   "payoff": 6,
-   "voice": 3
+   "payoff": 8,
+   "voice": 4
   },
-  "total": 57,
-  "fatal": [],
-  "weakest": "arc",
-  "note": "The beats read off figures (10 starts, 50%, 78 GW) without a stake for the viewer, so the story is weak. The hook promises a contrarian twist ('Someone forgot to tell China'), but beat 1 only says '10 reactors started', with no sense of sca",
-  "fp": "e523d70a5f403dd5"
+  "total": 77,
+  "fatal": [
+   "unrenderable_visual"
+  ],
+  "weakest": "visual_proof",
+  "note": "Simplify the visual descriptions so they’re clear and legible on a phone screen; complex crane‑and‑concrete animations may not render well in a short.",
+  "fp": "07c10ac6fe9daa0b"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Everyone said nuclear was dead. Someone forgot to tell China.",
+   "ears": "Nuclear power was supposed to be dead. One country is building it like crazy.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
@@ -39,7 +41,7 @@
   {
    "window": "beat 2",
    "ears": "About 78 gigawatts of nuclear capacity is under construction. Tomorrow's power supply is already taking shape.",
-   "eyes": "a data picture (rank)",
+   "eyes": "substance: reactor domes and cooling towers; cause: Data pulls the crane lever down and the steel dome is lowered onto the reactor, then more reactor sites rise across the plain",
    "evidence": "International Energy Agency (IEA) | Nuclear capacity under construction worldwide vs one typical reactor | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
   },
   {

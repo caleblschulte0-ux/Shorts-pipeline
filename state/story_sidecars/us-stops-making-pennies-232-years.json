@@ -1,7 +1,24 @@
 {
  "slug": "us-stops-making-pennies-232-years",
  "brief": null,
- "scorecard": null,
+ "scorecard": {
+  "scores": {
+   "premise": 10,
+   "hook": 16,
+   "arc": 15,
+   "factual": 8,
+   "visual_proof": 12,
+   "payoff": 8,
+   "voice": 4
+  },
+  "total": 73,
+  "fatal": [
+   "invented_fact"
+  ],
+  "weakest": "factual",
+  "note": "Correct the claimed $86 million annual loss from penny production or cite a reliable source to eliminate the invented fact.",
+  "fp": "a9ea5a06e82729a9"
+ },
  "storyboard": [
   {
    "window": "hook",

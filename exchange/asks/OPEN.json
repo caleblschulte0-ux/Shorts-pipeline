@@ -1,6 +1,6 @@
 {
  "schema": "shorts-ask-index/v1",
- "updated": "2026-11-24T17:56:26Z",
+ "updated": "2026-11-25T02:31:34Z",
  "open": [
   {
    "batch": "exchange/asks/20261124.json",
@@ -79,6 +79,25 @@
     "63a6522f42a6288e",
     "414dc857553b75b8",
     "c58f0f12087c9e9d"
+   ]
+  },
+  {
+   "batch": "exchange/asks/20261125.json",
+   "answer_path": "exchange/asks/20261125.answers.json",
+   "pending": 12,
+   "keys": [
+    "1fbf3fa7cf2d1924",
+    "9b08e0248feb19d8",
+    "1b89d9cee7da0b5f",
+    "06a2f032ac748461",
+    "0a1232e6e3bc1b32",
+    "9e84295b6c6573e5",
+    "005a33f95583b441",
+    "6cc0261075d9311e",
+    "22e65619066a3d30",
+    "63a6522f42a6288e",
+    "414dc857553b75b8",
+    "df43e3dc2c20dfe4"
    ]
   }
  ],
