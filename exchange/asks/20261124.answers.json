@@ -40,6 +40,106 @@
       "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a strong conflict viewers can picture: seabed rocks hold four times land cobalt reserves while a growing bloc of countries demands a pause.\"}",
       "by": "chatgpt",
       "at": "2026-11-25T12:10:00.000Z"
+    },
+    "f7d043b2b74daa67": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch turns an invisible flight hazard into a concrete personal threat: severe North Atlantic turbulence lasts 55 percent longer and is projected to worsen.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "7f6b12a46550083a": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch offers a playful, instantly pictureable scale reversal: LEGO minifigures now outnumber every human alive.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "7106be22f70ae8de": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a striking historical limit—humans domesticated only 14 large animals, then largely stopped thousands of years ago.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "dc971b6ce09d003f": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a familiar map and promises a vivid contradiction: Greenland appears to rival Africa even though Africa is fourteen times larger.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "9c78ac26dbef1817": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes biodiversity loss personal by revealing that 2.9 billion vanished birds came mostly from families people still think of as common.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "972414cdecae1e5a": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a clear national reversal: Americans became taller while 36 countries passed the United States.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "1fbf3fa7cf2d1924": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete, pictureable scale—100 million black holes hidden in our own galaxy—and promises to reveal why nearly all remain unseen.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "9b08e0248feb19d8": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch turns disappearing summer fireflies into a personal visual loss and promises the concrete threat that artificial light is erasing their signals.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "1b89d9cee7da0b5f": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives viewers an instantly understandable price contradiction: a same-looking one-carat diamond fell from thousands of dollars to $380.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "06a2f032ac748461": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes the pay gap personal and pictureable by promising that a CEO earns a typical worker's entire year of pay in just over one day.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "f316e4362612eb4c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch challenges a number everyone memorized with a personal surprise: modern bodies run cooler than the 98.6°F standard.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "6d73671634c2422a": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"Recalculating the historic standard supports doubt about 98.6°F but does not follow from the preceding sex difference in measured cooling.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "f4980fcf9bdc4802": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":11,\"factual\":13,\"visual_proof\":12,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Make the final beat explicitly connect the flawed original standard to the measured generational cooling, instead of switching from biological change to measurement history.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "38ae9de5c2a4f61e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "b81f6da1fb3f4802": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives aging a concrete stake—muscle falls to 65 percent by age 80—then promises the hopeful contradiction that resistance training reversed the study pattern.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "8d51593588e860c0": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names saffron and promises an intuitive price mystery—$15 per gram—whose hand-harvest labor gives the viewer a reason to keep watching.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "dbf7cfbf44634e39": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives a familiar creature an absurdly pictureable scale: 2.5 million ants for every living person.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "2e1175903f625d71": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names phone chips and promises a specific contradiction: transistor growth is slowing even as process labels keep getting smaller.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "7a47603f08b5dc72": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a vivid biological impossibility viewers can picture: a frog freezes mostly solid and survives.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
+    },
+    "b1155a5956941ba3": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch sets up a concrete false alarm—Betelgeuse fell to 36 percent brightness—then reveals dust, not stellar death, caused the blackout.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:25:00.000Z"
     }
   }
 }
