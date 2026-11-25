@@ -63,6 +63,43 @@ What every shot is held to before a frame renders (store/shots.py runs them; a s
 - **judged**: `judge3d.py` reads the story's own storyboard; the showrunner's preview verdict is written beside the
   video (`showrunner_preview.json`). Posting is `data3d_upload.yml` on main, only on the operator's word.
 
+## A shot passes the board in two or three rounds (2026-11-25, after the lava rounds)
+
+The lava short failed seven storyboard rounds overnight and then took four a shot. The board judge
+(`store/judge3d.py`) grades each shot's four stills against three texts: its storyboard line (FOR), its spoken line
+(SAYS) and the script's `world`; anything named there and not visible is a hard fail. Three checks now run before a
+panel is spent, in this order, each wired where named. None of them changes the judge's bar or can pass a shot.
+
+1. **Showable lines** (`store/story_gate.py`, `showable_problems`, run by `store/shots.py` with the rest of the story
+   gate): every number and named thing in a spoken line can be seen or counted in ONE phone frame. Code refuses a
+   count above `COUNTABLE` (10), "N times", a rate, a percentage and a crowd by magnitude ("thousands"); a size
+   ("three stories tall") is seen as a size. The cold readers of `story_gate.py judge` must also name, per line, the
+   one picture that shows it (`pictures`) and list any line no frame can show (`unshowable`), or the story fails.
+   `tests/test_data3d_a_spoken_line_fits_one_phone_frame.py`.
+2. **The shape of a storyboard line** (`store/boardlint.py`, `shape`, run by `store/shots.py` before a shot is built):
+   a line is `N name (place; camera): action`, and the action is ONE action and ONE consequence written as what four
+   stills show. Refused: more than `MAX_EVENTS` (5) clauses, `MAX_BEATS` (4) sentences or `MAX_WORDS` (80) words of
+   action; a camera move inside the action; a prop that leaves his hands and is not named in the last sentence.
+   Stories written before the rule are named in `SHAPE_BEFORE` with the reason.
+   `tests/test_data3d_a_storyboard_line_is_four_stills.py`. The staging that passes (`boardlint.RECIPE`, also given to
+   the proof loop's reviser):
+- write the line as what the four stills show: BEFORE, the ACTION, its RESULT, his REACTION. One action, one consequence.
+- a CLOSE shot: Data fills a third of the frame or more, and the event is right beside him or in front of him, mid-frame.
+- nothing that is the subject touches a frame edge in any still; if it does not fit, come closer to less of it.
+- Data stands three-quarter to the lens: face and chest to us, never in profile for the whole shot, never his back.
+- the four stills are clearly different from each other: a new state in each, not one pose held.
+- one grade across the stills: the same light and colour in all four unless the line says the light changes.
+- his feet are planted on the ground in every still (a jump is in the line or it is not in the shot).
+- every prop the line names is in the result: in his hand, on the ground where it fell, or changed by what happened.
+- say the camera once, in the opening brackets, and render that camera: no camera move inside the action.
+3. **The pre-flight** (`store/preflight3d.py`, called by `store/judge3d.py` on every storyboard round, so by
+   `proof_loop.py` and `board3d.sh` alike): code lists every claim of FOR + SAYS + the world for the shot
+   (`python store/preflight3d.py claims STORY SHOT`), and ONE headless look at the sheet must tick each against a
+   specific still and answer continuity between the stills (props accounted for, one grade, feet on the ground,
+   subject whole in frame, four different stills). A shot with an unticked claim is not sent to the panel that round;
+   it prints what to fix or which promise to take out of the text. No look, no round. The result is kept in
+   `stories/<story>/preflight.json` keyed by the sheet's sha256. `tests/test_data3d_the_sheet_is_checked_before_the_panel.py`.
+
 ## System-wide, 2026-11-14 (after the saffron rounds)
 
 Every one of these runs on every story, wired where named, held by the test named:

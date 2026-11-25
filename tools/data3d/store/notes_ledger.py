@@ -65,7 +65,7 @@ def record(story, shots, when=None):
     led = load(story); led["rounds"] = led.get("rounds", 0) + 1; rnd = led["rounds"]
     when = when or time.strftime("%Y-%m-%d %H:%MZ", time.gmtime())
     for s in shots:
-        if s.get("kept"):
+        if s.get("kept") or s.get("preflight"):      # a shot the pre-flight held back was never before the panel
             continue
         k = str(s.get("shot")); sh = led["shots"].setdefault(k, {})
         if s.get("pass"):

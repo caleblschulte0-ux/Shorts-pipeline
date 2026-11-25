@@ -25,6 +25,7 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
   empty       after the frames render: the set behind him is not one flat, bare region (store/empty.py)
   hands       IK hands re-solved on the final body (character.Data._resolve_hands, in finish(); reported as HANDS)
   storyboard  before any of it, the script's payoffs are carried by big props or actions (store/boardlint.py)
+              and every line is one action and one consequence, written as what four stills show (boardlint.shape)
 
     usage: STORY=name SHOT=n python -I shots.py OUTDIR [SPP] [PCT]
     env: NARR=narration.json | STILL=<local t> | STEP | KEYS=n (n evenly spaced stills: the storyboard pass) | FRAMES=a-b | STAGING=strict|on | CLIPPING=strict|report
@@ -49,6 +50,12 @@ for _where, _p in boardlint.problems(SCRIPT):
           f" (not binding: {'posted' if STORY in boardlint.POSTED else 'grandfathered, see store/boardlint.py'})"), flush=True)
 if boardlint.held(STORY) and boardlint.problems(SCRIPT) and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"{STORY}: the storyboard lint fails: a beat's payoff leans on a subtle face or a tiny change; give it a big prop or action")
+_shape = boardlint.shape(SCRIPT)   # a line is ONE action and ONE consequence, written as what four stills show (2026-11-25)
+for _where, _p in _shape:
+    print(f"BOARD {STORY} {_where}: {_p}" + ("" if boardlint.shape_held(STORY) else " (not binding: written before the shape rule, see store/boardlint.py)"), flush=True)
+if boardlint.shape_held(STORY) and _shape and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY}: a storyboard line is more than four stills can show (store/boardlint.py): one action, one consequence, "
+                     f"no camera move in the action, no prop that disappears")
 import variety    # build fresh, reuse is rare (caaleb 2026-11-18, "lazy as shit"): every beat its own camera, act, props
 _vp = variety.script_problems(SCRIPT) + variety.code_problems(open(os.path.join(STORY_DIR, "shots.py")).read(), SCRIPT)
 for _where, _p in _vp:
