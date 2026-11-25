@@ -10,7 +10,7 @@ down for the next bucketful; the floodlights blaze on as night falls."""
 S2_DECK = 0.52                          # the digger's deck
 S2_BOOM = Vector((0.95, 0.42, 1.05))    # the boom's foot pin, in the digger's own frame (facing its +X)
 S2_L1, S2_L2 = 3.4, 3.0                 # boom and stick
-S2_DIG = Vector((1.25, 2.65, 0.0))
+S2_DIG = Vector((0.7, 3.6, 0.0))
 S2_DIG_A = math.radians(90 + 25)       # its heading: turned off square to the wall, so the lens sees its side and its arm reaches up over the house      # the digger, beyond him on our right, facing +Y (the wall)
 S2_HOUSE = (-1.55, 2.7, 3.0, 2.6)       # the house at the wall's foot, beyond him on our left: centre x, y, width, depth
 S2_P0 = (-1.2, -1.0)                    # where he stands with the remote
@@ -232,7 +232,7 @@ def shot2():
     P = place_wall_works()
     light = P["light"]
     data = load_data()
-    P0 = Vector((S2_P0[0], S2_P0[1], s2_ground_z(*S2_P0))); YAW0 = math.radians(52)         # three-quarter to us, turned toward his digger
+    P0 = Vector((S2_P0[0], S2_P0[1], s2_ground_z(*S2_P0))); YAW0 = math.radians(25)         # three-quarter to us, turned toward his digger
     PS = P0 + Vector((-0.1, 0.12, 0.0)); PS.z = s2_ground_z(PS.x, PS.y)                     # where he starts: he steps up to the work as he shoves
     data.place(PS.x, PS.y, math.degrees(YAW0)); data._kobj(0.0, loc=tuple(PS))      # on the works ground, not at z 0 over it
     kit = hard_hat(data)
@@ -309,9 +309,9 @@ def shot2():
     def body(t):
         p = P0.copy()
         p.y += 0.1 * W(t, max(T_PUSH - 0.2, 0.47), 0.5) * (1 - W(t, T_TIP, 0.4))                         # he walks the sticks forward with the arm
-        p.x += 0.07 * math.sin(2 * math.pi * (t - T_PUSH) / 1.2) * W(t, T_PUSH, 0.4) * (1 - W(t, T_TIP, 0.4))   # steering it, his weight side to side
-        p.z += 0.08 * math.sin(math.pi * min(1.0, max(0.0, (t - T_HOP) / 0.4)))                # a hop as the rock goes over
-        p.y -= 0.08 * W(t, T_HOP, 0.4)
+        p.x += 0.11 * math.sin(2 * math.pi * (t - T_PUSH) / 1.2) * W(t, T_PUSH - 0.3, 0.3) * (1 - W(t, T_HOP, 0.15)); p.z += 0.04 * abs(math.sin(2 * math.pi * (t - T_PUSH) / 1.2)) * W(t, T_PUSH - 0.3, 0.3) * (1 - W(t, T_HOP, 0.15))   # steering it, his weight side to side
+        p.z += 0.11 * math.sin(math.pi * min(1.0, max(0.0, (t - T_HOP) / 0.4)))                # a hop as the rock goes over
+        p.y -= 0.13 * W(t, T_HOP, 0.4)
         p.z += 0.04 * lw_kick(t - T_GRIN - 0.25, 0.2)                                           # and a bounce to us: done
         p.x += 0.06 * W(t, T_GRIN - 0.2, 0.5)
         yaw = YAW0 + math.radians(5) * W(t, T_PUSH, 0.6) * (1 - W(t, T_GRIN - 0.3, 0.6)) - math.radians(16) * W(t, T_GRIN - 0.3, 0.6)
@@ -321,7 +321,10 @@ def shot2():
     T_STEP = 0.45
     data.walk_to((P0.x, P0.y), 0.02, T_STEP)
     for f in range(F(T_STEP) + 1, NF + 1):
-        t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
+        t = (f - 1) / FPS; p, yaw = body(t)
+        u_ = min(1.0, max(0.0, (t - (T_TOP - 0.5)) / 0.9)); dip = 0.13 * math.sin(math.pi * u_) ** 2; p.z -= dip      # he sinks at the knees as the bucket goes over the top, braced
+        data._kobj(t, loc=tuple(p), rot=yaw)
+        if dip > 0.002: data._plant_feet_here(t)
     lw_layer(data, "spine", lambda t: (20 * W(t, T_PUSH - 0.2, 0.4) - 34 * W(t, T_PUSH + 0.3, T_TOP - T_PUSH - 0.3) - 16 * W(t, T_GRIN - 0.2, 0.45)   # into the push, then back and back as he watches the bucket climb over him
                                        - 6 * W(t, T_GRIN, 0.4) + 30 * W(t, T_TIP - 0.08, 0.28), 0, 6 * math.sin(2 * math.pi * (t - T_PUSH) / 1.2) * W(t, T_PUSH, 0.4) * (1 - W(t, T_TIP, 0.4))), 0, DUR + 0.4)
     # his two hands hold the remote out in front of his chest, each on its stick's knob; the remote is keyed to
@@ -372,7 +375,7 @@ def shot2():
         remote.keyframe_insert("location", frame=f); remote.keyframe_insert("rotation_euler", frame=f)
     # ---- the lens: WIDE and low on the works in front of him, tipped up: him at the left, the house behind him, his
     # digger on the right, the wall's black face over all of it to its crest, where the bucket tips
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.3, 0.4), height=0.335, t=T_TOP)
+    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.3, 0.53), height=0.35, t=T_TOP)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24.0, fstop=22.0)      # the works sharp all the way to the crest
     lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.1, 0.0)) * ease(t / DUR), LOOK + Vector((0.0, 0.1, 0.0)) * ease(t / DUR), data.pos() + Vector((0, 0, 0.6))),
            lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 24.0, 24.0)

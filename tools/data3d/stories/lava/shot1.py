@@ -20,7 +20,7 @@ def s1_ground_z(x, y):
     z = 0.0
     if abs(x) > 2.4: z += 0.15 * lw_fbm(x * 0.3, y * 0.3, 3) + 0.03 * (abs(x) - 2.4)
     r = max(0.0, (y - 9.0) / 6.0)
-    z += 3.4 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 8.5 else 0.0)
+    z += 8.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 8.5 else 0.0)
     if y > S1_RIDGE_Y: z -= 0.6 * min(1.0, (y - S1_RIDGE_Y) / 2.0)
     return z
 
@@ -151,7 +151,7 @@ def place_grindavik_street():
     coloured-roof houses down both sides, the old lava field and moss round the town, the ridge above it where the
     fissure opens under its plume, the road gate at the town's edge, far blue mountains."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven), at a real size
+    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, ph_mat("rock_face_01", scale=2.2, tint="#4A4642", name="lava field rock ground", rough=0.95, bump=1.2))   # REAL rock (Poly Haven), at a real size: BLACK lava rock (board B8: "a brown dirt bank")
     K.box("street asphalt", (0, 2.5, 0.004), (4.0, 20, 0.01), ph_mat("asphalt_02", scale=1.6, tint="#9A9A9C", name="street asphalt"), bev=0)
     kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
@@ -165,9 +165,9 @@ def place_grindavik_street():
         k = 0
         while y < 8.0:
             w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)       # Grindavik houses, not sheds (board after the fire test)
-            hs = town_house(f"town house {sx}_{k}", (sx * (3.3 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
-                            roof=("#B8352B", "#2F5E8C", "#3F7A4A")[(k + (sx > 0)) % 3], wall=WALLS[k % len(WALLS)], base=0.3, seed=k)
-            houses.append(hs); y += w + rnd.uniform(0.5, 0.9); k += 1
+            hs = town_house(f"town house {sx}_{k}", (sx * (3.5 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d, storeys=1,   # LOW painted tin houses (board B8: "grey clapboard terraces")
+                            roof=("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A")[(k + (sx > 0)) % 4], wall=("#B44A3C", "#E9D9A2", "#BFD3DD", "#F1EEE6", "#7E9A86")[(k + 2 * (sx > 0)) % 5], base=0.3, seed=k)
+            houses.append(hs); y += w + rnd.uniform(1.0, 1.6); k += 1
     lava_rock("street ash", 260, (0.2, 1.9, -3.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,   # cinders and ash fallen on the street
               avoid=lambda x, y: abs(x - 1.15) < 0.45 and abs(y - 0.42) < 0.5)
     patch = K.mat("road patch", "#1E1E20", rough=0.9); rp = lw_random.Random(5)
@@ -256,20 +256,20 @@ def shot1():
     # ---- the eruption: the row of fountains stands on the ridge from the first frame and surges at T_SURGE
     vents = P["founts"]; cols = []
     for k, v in enumerate(vents):                        # each vent a FOUNTAIN OF FIRE as a gas: torn tongues licking up a glowing column
-        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.7, h_fire=7.0 + 1.5 * (k % 2), h_smoke=3.0,
-                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=22.0, smoke_d=1.5, rise=3.5))
-    for k, x in enumerate((0.5,)):                       # the plume: grey gas and ash boiling off the fissure, leaning downwind, away behind the ridge
+        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=2.6, h_fire=8.0 + 2.0 * (k % 2), h_smoke=4.0,
+                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=30.0, smoke_d=1.5, rise=3.5))
+    for k, (x, ln_) in enumerate(((0.5, -0.35),)):                       # the plume: grey gas and ash boiling off the fissure, leaning downwind, away behind the ridge
         cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 2.5, P["fz"] + 1.5), w=6.0, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
-                             dens=3.0, lean=(-0.35, 0.3), rise=1.6, t_end=DUR + 1.0))
+                             dens=3.0, lean=(ln_, 0.3), rise=1.6, t_end=DUR + 1.0))
     P["founts"] = cols[:len(vents)]
     for o in P["spat"]: o.hide_render = True          # board round 4: the spatter read as "sparklers, fireworks, snow": the fountains carry it
     for L in P["glow"]:
-        e0 = 50.0 if "plume" in L.name else 1200.0                # the plume a grey ash cloud, warm only underneath
+        e0 = 120.0 if "plume" in L.name else 2200.0                # the plume a grey ash cloud, warm only underneath
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; L.data.energy = e0 * (1 + 0.6 * W(t, T_SURGE, 0.5)); L.data.keyframe_insert("energy", frame=f)
     tg = P["town_glow"].data
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; tg.energy = 300.0 * (1 + 0.5 * W(t, T_SURGE, 0.5)); tg.keyframe_insert("energy", frame=f)
+        t = (f - 1) / FPS; tg.energy = 250.0 * (1 + 0.5 * W(t, T_SURGE, 0.5)); tg.keyframe_insert("energy", frame=f)
     for k, c_ in enumerate(P["founts"]):                 # the surge: every fountain swells taller
         for f in range(1, NF + 1, 3):
             t = (f - 1) / FPS; g = 1.0 + 0.3 * W(t, T_SURGE, 0.6)
@@ -277,14 +277,14 @@ def shot1():
     # ---- the town leaves: a line of cars, headlights on, down the street past him and out past the lens; the street
     # is full of them at the start and empty at the end
     cars = []
-    for k, col in enumerate(("#2D5A8E", "#C33A2A", "#B9C2C9", "#E6E2D6", "#3B3F45")):
+    for k, col in enumerate(("#2D5A8E", "#C33A2A", "#B9C2C9", "#E6E2D6", "#3B3F45", "#C9A23A")):
         c = s1_car(f"town car {k}", col); cars.append(c)
-        y0 = -4.6 + 3.4 * k
+        y0 = -4.6 + 2.9 * k
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; y = y0 - V_CAR * t
             c.location = (S1_LANE + 0.03 * math.sin(0.7 * t + k), y, s1_ground_z(S1_LANE, y) if y > 8.6 else 0.0); c.keyframe_insert("location", frame=f)
-    T_LAST = (-4.6 + 3.4 * 4 - PW.y) / V_CAR              # the last car passes him
-    YAW0 = math.radians(-52)
+    T_LAST = (-4.6 + 2.9 * 5 - PW.y) / V_CAR              # the last car passes him
+    YAW0 = math.radians(-56)
     data._kobj(0.0, loc=tuple(PW), rot=YAW0)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; p = PW.copy()
@@ -295,7 +295,8 @@ def shot1():
         p.z += 0.05 * lw_kick(t - T_SURGE, 0.12)                              # the surge jolts him
         p.y -= 0.03 * W(t, T_SURGE + 0.05, 0.35)                              # and he backs away from it, toward us
         p.x -= 0.06 * W(t, T_LAST, 0.5)                                      # a step out into the empty road
-        yaw = YAW0 + math.radians(14) * math.sin(2 * math.pi * t / 2.2) * sw - math.radians(10) * W(t, T_LAST, 0.6) + math.radians(16) * W(t, T_SURGE - 0.1, 0.4) * (1 - W(t, T_SURGE + 0.5, 0.5))
+        us_ = min(1.0, max(0.0, (t - T_SURGE - 0.05) / 0.45)); p.x += 0.12 * ease(us_); p.z += 0.07 * math.sin(math.pi * us_) - 0.05 * ease(us_)   # the surge: he jumps aside and ducks
+        yaw = YAW0 + math.radians(14) * math.sin(2 * math.pi * t / 2.2) * sw + math.radians(26) * W(t, T_LAST, 0.6) + math.radians(16) * W(t, T_SURGE - 0.1, 0.4) * (1 - W(t, T_SURGE + 0.5, 0.5))
         data._kobj(t, loc=tuple(p), rot=yaw)
     lw_layer(data, "spine", lambda t: (-10 * lw_kick(t - T_SURGE, 0.25), 0, 5 * math.sin(2 * math.pi * t / 1.1) * W(t, 0.0, 0.3) * (1 - W(t, T_LAST, 0.5))), 0, DUR + 0.4)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -315,20 +316,21 @@ def shot1():
         pose(bat_s, t_, UP if k_ % 2 == 0 else WHOA); pose(lane, t_, LOW if k_ % 2 == 0 else WHOA)
         t_ += gap; k_ += 1
     for t_ in (T_SURGE + 0.25, T_SURGE + 0.65, 0.975 * DUR, DUR + 0.5):   # the surge: a start, and the baton up at it, to us
-        pose(bat_s, t_, UP if k_ % 2 == 0 else WHOA); pose(lane, t_, LOW if k_ % 2 == 0 else WHOA)
-        if t_ < 0.97 * DUR: k_ += 1
+        pose(bat_s, t_, UP if t_ < T_SURGE + 0.3 else LOW); pose(lane, t_, WHOA)        # a start, then the baton dropped to his side, the other hand out
     # ---- the lens: WIDE and low in the street ahead of him, looking up it: the houses down both sides, the ridge and
     # its fountains across the top of the frame, the cars coming down the left lane and out past us
-    CAM0 = PW + Vector((-0.45, -2.3, 1.2)); LOOK0 = Vector((-0.5, 15.0, 3.6))
+    CAM0 = PW + Vector((-0.45, -2.3, 1.2)); LOOK0 = Vector((-0.5, 15.0, 5.5))
     # ---- face and head: one feeling per moment, held
-    data.look_at(CAM0, 0.0, max_yaw=55, blend=0.0)                                               # to us, waving them on
+    data.look_at(CAM0, 0.0, max_yaw=55, blend=0.0)           # at the cars coming, waving them on
     data.look_at(Vector((S1_LANE, -3.0, 0.6)), 0.47 * DUR, max_yaw=60, max_pitch=30, blend=0.3)  # a glance at the last of them going by
     data.look_at(CAM0, 0.6 * DUR, max_yaw=55, blend=0.3)                                         # to us: the town is empty
-    data.expression("determined", 0.0, T_SURGE - 0.1, blend=0.2)
+    data.expression("alarmed", 0.0, T_LAST, blend=0.2)
+    data.expression("determined", T_LAST + 0.05, T_SURGE - 0.1, blend=0.2)
     data.expression("worried", T_SURGE, DUR + 1.0, blend=0.2)
     data.finish()
     # ---- the light baton in his waving hand: a marshal's orange wand, lit, riding his hand every frame
-    bat = K.cyl("light baton", (0, 0, 0), 0.016, 0.26, lw_emit("baton glow", "#FF8A1E", 9.0), v=12)
+    bat = K.cyl("light baton", (0, 0, 0), 0.016, 0.26, lw_emit("baton glow", "#FF5A0A", 30.0), v=12)
+    bl_ = lw_point("baton light", (0, 0, 0), 8.0, col=(1.0, 0.4, 0.08), r=0.05); bl_.parent = bat      # it LIGHTS his hand and coat (board B8: "a breadstick")
     pb = data.pb[f"hand.{bat_s}"]
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
@@ -337,7 +339,7 @@ def shot1():
         bat.location = data.arm.matrix_world @ pb.tail + d_ * 0.09
         bat.rotation_euler = d_.to_track_quat('Z', 'Y').to_euler()
         bat.keyframe_insert("location", frame=f); bat.keyframe_insert("rotation_euler", frame=f)
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.66, 0.37), height=0.36, t=0.3)
+    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.74, 0.53), height=0.36, t=0.3)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24.0, fstop=11.0)
     lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.03, 0.0)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
            lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 24.0, 24.0)

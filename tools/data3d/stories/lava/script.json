@@ -105,7 +105,7 @@
     "at dawn three houses burn in a row at the top of the hill while the saved houses stand dark below; he hangs his lit lantern on his own house and its window lights up, the only light in the town"
   ],
   "storyboard": [
-    "1 hook (the town's main street by day, low houses down both sides, the ridge behind them; wide and low, looking up the street): from the first frame a row of lava fountains stands on the ridge behind the houses, orange fire with dark smoke over it. The driver in his yellow hard hat and hi-vis vest waves a lit baton, and a line of cars with their headlights on drives out past him toward us. The street is full of cars at the start and empty at the end, the fountains still roaring behind him.",
+    "1 hook (the town's main street by day, low houses down both sides, the ridge behind them; wide and low, looking up the street): from the first frame a row of lava fountains stands on the ridge behind the houses, orange fire with dark smoke over it. The driver in his yellow hard hat and hi-vis vest waves a lit baton, and a line of cars with their headlights on drives out past him toward us. The line of cars is in the street at the start and the street is empty at the end, the fountains still roaring behind him.",
     "2 the wall (the wall works by day: the black rock wall, a small house at its foot; low and wide, tipped up the wall's face): the earth wall, built from black lava rock, stands taller than the house beside it. The driver in his hard hat works the two sticks of a remote control, and his digger's arm swings a big bucket of rock up the wall's face and tips it out over the crest; the rocks fall onto the top of the wall, and he grins at us.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
@@ -124,7 +124,7 @@
       "arc": [
         {
           "at": 0.05,
-          "what": "a row of lava fountains stands on the ridge behind the street, which is full of cars with their headlights on"
+          "what": "a row of lava fountains stands on the ridge behind the street, a line of cars with their headlights on coming down it"
         },
         {
           "at": 0.3,
@@ -136,7 +136,7 @@
         },
         {
           "at": 0.76,
-          "what": "the fountains surge higher and he lowers the baton and turns to us"
+          "what": "the fountains surge higher and he jumps aside, ducks and drops the baton to his side, his face to us"
         }
       ]
     },

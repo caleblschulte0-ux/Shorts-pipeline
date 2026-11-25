@@ -1,5 +1,5 @@
 {
- "rounds": 14,
+ "rounds": 15,
  "shots": {
   "1": {
    "BROKEN": {
@@ -131,6 +131,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "CONSEQUENCE: frames 1-4: no car is ever seen racing past the lens. The same queue of white, blue and red cars sits along the left side and only shifts. The last car never leaves, and the street is never seen emptying."
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "CONSEQUENCE: frames 1-2: the 'line of cars driving out past him toward us' reads as cars parked along the left kerb. The red car in 1 and the white car in 2 are cut by the left frame edge, and no car is shown in the lane coming at the lens. The street is empty in 3-4, but a stranger sees parked cars vanish rather than a town fleeing past the driver."
      }
     ]
    },
@@ -202,6 +207,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT SHOWN: frames 1-4: 'erupted nine times' is not shown. Frame 1 has two lava fountains in the middle of the ridge. In frames 2-4 the fountains are pushed against the right edge and mostly hidden by a black smoke column. You never see nine fountains as a curtain of fire across the top of the frame. 'Everyone had to run' only half reads: the cars sit as a jammed queue at the left kerb, and nobody "
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "NOT SHOWN: frames 1-4: 'right beside one Icelandic town' and 'a volcano' are not shown. With no ridge and no recognisably Icelandic houses, the fountains look like house-high bonfire spikes just behind a dirt pile at the end of the street, not an eruption on a ridge above a town. The 'lit baton' is a flat pale-peach stick in every frame and never glows."
      }
     ]
    },
@@ -283,6 +293,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT THE WORLD: frames 1-4: the only houses are grey clapboard at the left edge. There are no low houses with red, blue or green tin roofs on either side of the street. The 'ridge' at the end of the street is a brown rubble bank with plank-like slabs stuck in it, not a mossy lava ridge with a fissure torn open in it. Without coloured houses it reads as a road by a quarry, not Grindavik's main stree"
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "NOT THE WORLD: frames 1-4: the houses down both sides are grey and beige two- and three-storey clapboard terraces in one dull colour. There are no low painted tin-clad houses and no coloured tin roofs, so it reads as an English or New England street, not Grindavik. There is no black lava rock anywhere. The end of the street is a brown dirt and rubble bank, not black rock, and there is no ridge beh"
      }
     ]
    },
@@ -354,6 +369,21 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "OFF THE LOOK (stage for the one camera; Data's face and body must read the emotion): frames 2-4: Data stands square to the lens in the middle of the road, not side-on at the kerb. His arm is out level and stiff. The lit orange marshal's baton is not readable: at most a thin orange sliver in frame 2. The flinch, the turn and the worried run never happen, so it is a pose, not an action."
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "OFF THE LOOK (stage for the one camera; Data's face and body must read the emotion): frames 1-4: he faces us square with one arm stiffly out to the side. He does not face the traffic he is directing, so nothing reads as marshalling cars. His face is a flat resting look while a volcano erupts 50 m behind him. In frame 4 the stick drops to his hip and he is just standing."
+     }
+    ]
+   },
+   "ONE-SECOND GAG": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "ONE-SECOND GAG: frames 3-4: once the cars are gone, the street is empty and the frame holds the same picture. The only change is the stick's angle. Nothing new happens in the second half; a stranger swipes."
      }
     ]
    },
@@ -395,6 +425,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "TALKING HEAD: frames 3-4: Data stands centre, facing us, full-body to three-quarter, with the camera parked. Only his arm changes."
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "TALKING HEAD: frames 1-4: Data stands dead centre, square to the lens, full figure, with the camera parked on him. The claimed fix (three-quarter at the right of the frame, working with both arms) is not in the stills. Only one arm and the stick change between frames."
      }
     ]
    }
