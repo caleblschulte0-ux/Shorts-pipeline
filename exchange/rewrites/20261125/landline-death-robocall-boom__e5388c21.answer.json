@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "landline-death-robocall-boom__e5388c21",
+  "slug": "landline-death-robocall-boom",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:15:00.000Z",
+  "title": "Landlines Vanished While Robocalls Nearly Doubled",
+  "hook": "Home phones disappeared, but unwanted calls followed everyone onto mobile.",
+  "closing": "The phone changed; the interruption survived and became harder to trust.",
+  "question": "Do you answer unknown numbers?",
+  "segments": [
+    {
+      "topic": "Landlines Vanish",
+      "say": "By 2024, 76 percent of US adults had no landline. Most households moved their calls elsewhere."
+    },
+    {
+      "topic": "Robocalls Fill Phones",
+      "say": "Telemarketing made up 36 percent of robocalls. The replacement phone experience became dominated by unwanted pitches."
+    },
+    {
+      "topic": "Robocalls Nearly Double",
+      "say": "Americans received 52.8 billion robocalls in 2024. As landlines vanished, unwanted calls nearly doubled."
+    }
+  ]
+}
