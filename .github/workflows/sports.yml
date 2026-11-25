@@ -173,6 +173,14 @@ jobs:
             state/sports_refused.json \
             exchange/reviews exchange/OPEN.json
 
+      # When discovery finds nothing, say which route still answers this
+      # runner, so the next fix is not a guess (2026-11-18 to 11-24).
+      - name: Discovery probe (when nothing was found)
+        if: failure()
+        continue-on-error: true
+        timeout-minutes: 6
+        run: python3 scripts/discovery_probe.py nfl
+
       # Fails the run when the cut-ins and montages stop reaching the
       # channel, or a render crashes (operator, 2026-11-14: "what can we
       # double check to make sure isn't going to be wrong again?")
