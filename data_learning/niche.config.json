@@ -21312,19 +21312,22 @@
    "hook_was": "Your brain now holds 4,900 micrograms of plastic per gram.",
    "scorecard": {
     "scores": {
-     "premise": 11,
-     "hook": 11,
-     "arc": 9,
-     "factual": 9,
+     "premise": 12,
+     "hook": 18,
+     "arc": 16,
+     "factual": 8,
      "visual_proof": 8,
-     "payoff": 6,
-     "voice": 3
+     "payoff": 9,
+     "voice": 4
     },
-    "total": 57,
-    "fatal": [],
-    "weakest": "arc",
-    "note": "The hook promises that it \"might already be too late\", but nothing in the video answers that, and the beats are three disconnected stats: brain, placenta/blood, artery plaque. Chain them with because/so links (for example, it is in the brai",
-    "fp": "3ce1c4ac771120f7"
+    "total": 75,
+    "fatal": [
+     "invented_fact",
+     "unrenderable_visual"
+    ],
+    "weakest": "factual",
+    "note": "Add credible sources for the statistics and simplify the visual concepts so they are clearly understandable on a phone screen.",
+    "fp": "e71c18491ad6f3d9"
    }
   },
   {
@@ -23197,7 +23200,7 @@
    "slug": "landline-death-robocall-boom",
    "title": "Why America Basically Killed The Landline",
    "hook": "Why does every unknown number feel like a scam call now?",
-   "closing": "Your phone still rings. Most of the time, it isn't for you.",
+   "closing": "Your phone still rings, but most robocalls want your money, not you.",
    "question": "Do you still answer unknown numbers?",
    "caption": "By 2024, 76% of US adults had cut the landline completely, up from just 25% in 2010. That swap came with a price: 52.8 billion robocalls hit Americans that year -- nearly 200 for every adult, almost double 2016's total. Do you still answer unknown numbers? 👇",
    "hashtags": [
@@ -23227,7 +23230,7 @@
      "insight_type": "trend",
      "role": "1 · SETUP",
      "topic": "Landline Death",
-     "say": "By 2024, 76 percent of US adults had no landline at all, up from a quarter in 2010.",
+     "say": "By 2024, 76 percent of US adults had no landline, triple the share in 2010. The old home phone is nearly extinct.",
      "viz": "trend",
      "scene": {
       "mechanic": "cord-fray-cellswarm",
@@ -23244,7 +23247,7 @@
      "insight_type": "share",
      "role": "2 · THE TURN",
      "topic": "life after the landline",
-     "say": "22 percent of all robocalls Americans got were straight-up scams, with telemarketing close behind.",
+     "say": "Scams were 22 percent of 2024 robocalls, and telemarketing was even bigger. So most calls are trying to sell or trick you.",
      "scene": {
       "mechanic": "robocall-phone-swarm-sort",
       "concept": "ringing phone icons flood down into four labeled bins, filling each to its share of 2024's 52.8 billion robocalls",
@@ -23261,7 +23264,7 @@
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
      "topic": "the new landline",
-     "say": "Americans got about 52.8 billion robocalls in 2024, nearly double what they got in 2016.",
+     "say": "Americans got 52.8 billion robocalls in 2024, nearly double 2016. As landlines vanished, unwanted calls only multiplied, so unknown numbers now feel risky.",
      "scene": {
       "mechanic": "robocall-tower-flood",
       "concept": "a cell tower broadcasts rings that flood the frame with phone icons -- far fewer for 2016, nearly double for 2024",
@@ -23269,8 +23272,9 @@
      }
     }
    ],
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:34Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-25T10:57:53Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "monarch-butterfly-collapse",
@@ -32848,21 +32852,20 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 15,
+     "hook": 16,
      "arc": 15,
      "factual": 12,
      "visual_proof": 8,
      "payoff": 8,
      "voice": 4
     },
-    "total": 72,
+    "total": 73,
     "fatal": [
-     "unrenderable_visual",
-     "confusing"
+     "unrenderable_visual"
     ],
     "weakest": "visual_proof",
-    "note": "Simplify and make the visual concepts concrete so they are instantly understandable on a phone screen.",
-    "fp": "1b893084defb092b"
+    "note": "Simplify the visual concepts so they’re instantly understandable on a phone screen.",
+    "fp": "637e99e5c040213e"
    }
   },
   {
@@ -34806,21 +34809,21 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 15,
-     "arc": 12,
-     "factual": 12,
-     "visual_proof": 8,
-     "payoff": 5,
-     "voice": 4
+     "hook": 16,
+     "arc": 15,
+     "factual": 13,
+     "visual_proof": 5,
+     "payoff": 8,
+     "voice": 3
     },
-    "total": 66,
+    "total": 70,
     "fatal": [
-     "missing_payoff",
-     "unrenderable_visual"
+     "unrenderable_visual",
+     "confusing"
     ],
-    "weakest": "payoff",
-    "note": "Add a clear payoff that answers the opening question and ensure the visuals are easily renderable on a phone screen.",
-    "fp": "1288c86167c1eb50"
+    "weakest": "visual_proof",
+    "note": "Simplify the visual descriptions so they clearly illustrate the data and can be rendered on a phone screen.",
+    "fp": "1ad6ae3f6df8c60f"
    },
    "segments": [
     {
@@ -36964,19 +36967,21 @@
    ],
    "scorecard": {
     "scores": {
-     "premise": 8,
-     "hook": 8,
-     "arc": 7,
-     "factual": 8,
-     "visual_proof": 9,
-     "payoff": 4,
-     "voice": 2
+     "premise": 10,
+     "hook": 16,
+     "arc": 14,
+     "factual": 13,
+     "visual_proof": 8,
+     "payoff": 8,
+     "voice": 4
     },
-    "total": 46,
-    "fatal": [],
-    "weakest": "arc",
-    "note": "Open on a concrete, true stake in plain spoken words (e.g. 'One cruise ship, 7,600 strangers, one bug') and then use the beats to build cause and effect (crowds, then norovirus, then handwashing). Right now the hook is a vague claim, the be",
-    "fp": "cbea27ca1c3a5d2c"
+    "total": 73,
+    "fatal": [
+     "unrenderable_visual"
+    ],
+    "weakest": "visual_proof",
+    "note": "Simplify the visual concepts so they are instantly recognizable on a phone screen; replace abstract metaphors with clear, concrete images.",
+    "fp": "27b2eeb0fb550eaf"
    }
   },
   {
@@ -38387,22 +38392,21 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 17,
-     "arc": 15,
-     "factual": 8,
-     "visual_proof": 10,
+     "hook": 16,
+     "arc": 10,
+     "factual": 13,
+     "visual_proof": 8,
      "payoff": 4,
      "voice": 4
     },
-    "total": 68,
+    "total": 65,
     "fatal": [
-     "invented_fact",
      "missing_payoff",
      "unrenderable_visual"
     ],
     "weakest": "payoff",
-    "note": "Add a clear, concrete payoff that tells viewers why the color change matters, rather than ending with an open question.",
-    "fp": "39505552dd989576"
+    "note": "Provide a clearer payoff that gives the viewer a concrete takeaway or implication, and use simple, high‑contrast visuals that remain readable on a phone screen.",
+    "fp": "e4b7d38e16bdaf2e"
    }
   },
   {
@@ -38659,21 +38663,21 @@
    "rewritten_at": "2026-11-25T09:55:39Z",
    "scorecard": {
     "scores": {
-     "premise": 12,
-     "hook": 18,
-     "arc": 16,
-     "factual": 13,
-     "visual_proof": 12,
-     "payoff": 6,
+     "premise": 10,
+     "hook": 16,
+     "arc": 14,
+     "factual": 12,
+     "visual_proof": 10,
+     "payoff": 3,
      "voice": 4
     },
-    "total": 81,
+    "total": 69,
     "fatal": [
      "missing_payoff"
     ],
     "weakest": "payoff",
-    "note": "Provide a clearer payoff that directly answers the opening question, e.g., state whether the reef can recover in time or not.",
-    "fp": "7ca9252410cfda45"
+    "note": "Add a clear payoff that directly answers the opening hook, e.g., state that without immediate action the reef will likely lose a decade of recovery each bleaching event.",
+    "fp": "a8037e6b60ba7c58"
    },
    "hook_was": "Reef bleaching now returns about every 2 years.",
    "segments": [
@@ -38778,9 +38782,9 @@
   {
    "slug": "volcanoes-erupting-right-now",
    "title": "About 45 Volcanoes Are Erupting On Earth Right Now",
-   "hook": "Earth is never not erupting. Somewhere, a volcano is going off as you watch this.",
-   "closing": "Something, somewhere, is always on fire under your feet.",
-   "question": "Did you know one was erupting today?",
+   "hook": "Earth is never not erupting. A volcano is going off right now.",
+   "closing": "Something, somewhere, is always erupting under your feet.",
+   "question": "Is one erupting near you?",
    "hashtags": [
     "volcanoes",
     "geology",
@@ -38806,7 +38810,7 @@
      "ascending": false,
      "role": "1 · HOW MANY ARE ACTIVE",
      "topic": "Active volcanoes",
-     "say": "Earth has about 1,400 active volcanoes, but only a tiny slice are erupting at any moment. So the planet always has a few going.",
+     "say": "Earth has about 1,400 active volcanoes, and only a few are erupting at any moment. So the planet always has some going.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _vv_cone_path(cr, cx, base, hw, h, lean=0.0):\n    tx = cx + lean * hw\n    cr.move_to(cx - hw, base)\n    cr.curve_to(cx - hw * 0.55, base - h * 0.22, tx - hw * 0.3, base - h * 0.78,\n                tx - hw * 0.16, base - h)\n    cr.line_to(tx - hw * 0.05, base - h * 1.02)\n    cr.line_to(tx + hw * 0.06, base - h * 0.985)\n    cr.line_to(tx + hw * 0.16, base - h)\n    cr.curve_to(tx + hw * 0.3, base - h * 0.78, cx + hw * 0.55, base - h * 0.22,\n                cx + hw, base)\n    cr.close_path()\n\n\ndef _vv_bez(p0, p1, p2, p3, s):\n    a = (1 - s) ** 3\n    b = 3 * (1 - s) ** 2 * s\n    c = 3 * (1 - s) * s * s\n    d = s ** 3\n    return (a * p0[0] + b * p1[0] + c * p2[0] + d * p3[0],\n            a * p0[1] + b * p1[1] + c * p2[1] + d * p3[1])\n\n\ndef _vv_stroke(cr, p4, s_end, width, rgb, a=1.0):\n    if s_end <= 0.01:\n        return None\n    n = 20\n    cr.set_source_rgba(*_c(rgb, a))\n    cr.set_line_width(width)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.set_line_join(cairo.LINE_JOIN_ROUND)\n    tip = None\n    for i in range(n + 1):\n        x, y = _vv_bez(*p4, s_end * i / n)\n        if i == 0:\n            cr.move_to(x, y)\n        else:\n            cr.line_to(x, y)\n        tip = (x, y)\n    cr.stroke()\n    return tip\n\n\ndef _vv_field():\n    counts = [8, 7, 6, 6, 5]\n    cones = []\n    i = 0\n    for r, cnt in enumerate(counts):\n        z = r / 4.0\n        base = 1060 + 390 * z ** 1.25\n        s = 0.38 + 0.93 * z\n        for c in range(cnt):\n            j = (i * 0.6180339) % 1.0\n            j2 = (i * 0.4142136) % 1.0\n            j3 = (i * 0.7320508) % 1.0\n            x = -40 + c * (1160.0 / max(1, cnt - 1)) + (j - 0.5) * 70 + (r % 2) * 40\n            hw = 96 * s * (0.7 + 0.6 * j2)\n            h = 150 * s * (0.65 + 0.7 * j3)\n            lean = (j - 0.5) * 0.35\n            cones.append((i, r, c, x, base + 10 * ((c * 3) % 4), hw, h, s, lean))\n            i += 1\n    return cones\n\n\ndef _vv_draw_cone(cr, x, base, hw, h, s, rgb, snow, i, lean):\n    _vv_cone_path(cr, x, base, hw, h, lean)\n    solid(cr, rgb)\n    tx = x + lean * hw\n    cr.save()\n    _vv_cone_path(cr, x, base, hw, h, lean)\n    cr.clip()\n    cr.set_source_rgba(*_c(tuple(max(0, v - 22) for v in rgb), 0.45))\n    cr.rectangle(x - hw, base - h * 0.18, 2 * hw, h * 0.18)\n    cr.fill()\n    dark = tuple(max(0, v - 34) for v in rgb)\n    cr.set_source_rgba(*_c(dark, 0.75))\n    cr.set_line_width(max(1.5, 3.4 * s))\n    ng = 5 + i % 4\n    for g in range(ng):\n        gx = x + hw * (-0.88 + 1.76 * g / max(1, ng - 1))\n        cr.move_to(tx + (gx - x) * 0.14, base - h)\n        cr.curve_to(tx + (gx - x) * 0.4, base - h * 0.6, x + (gx - x) * 0.8,\n                    base - h * 0.25, gx, base)\n    cr.stroke()\n    if s > 0.75:\n        for b in range(6):\n            bx = x + hw * (((i + b) * 0.618) % 1.0 * 1.4 - 0.7)\n            by = base - h * (0.08 + 0.3 * (((i + b) * 0.414) % 1.0))\n            disc(cr, bx, by, 4 + 4 * s, tuple(max(0, v - 28) for v in rgb))\n    if snow:\n        cy = base - h * (0.58 + 0.16 * ((i * 0.37) % 1.0))\n        cr.move_to(x - hw * 0.7, cy - 20 * s)\n        for q in range(11):\n            qx = x - hw * 0.7 + hw * 1.4 * q / 10.0\n            cr.line_to(qx, cy + (20 * s if q % 2 else -8 * s) - 9 * s * math.sin(i + q))\n        cr.line_to(x + hw * 0.7, base - h * 1.1)\n        cr.line_to(x - hw * 0.7, base - h * 1.1)\n        cr.close_path()\n        solid(cr, (234, 226, 234), edge=False)\n    cr.restore()\n    _vv_cone_path(cr, x, base, hw, h, lean)\n    edge(cr, (40, 30, 30))\n    cr.save()\n    cr.translate(tx, base - h)\n    cr.scale(1, 0.3)\n    cr.arc(0, 0, hw * 0.16, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((40, 30, 30)))\n    cr.fill()\n\n\ndef _vv_floor_y(x):\n    return 1492 + 8 * math.sin(x * 0.011)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a range of snow-capped volcanoes\n    SUBSTANCE: glowing orange lava\n    CAUSE: Data works a bellows into the vent at the foot of one quiet cone, and only that cone erupts lava\n    The whole range is Earth's ~1,400 active volcanoes: thirty-two classic\n    cones, flat cratered tops, gullied flanks, snow caps, each its own\n    size, lean and colour, about 44 each. They rise row by row; the ones\n    that erupted in recorded history (550) lose their snow to black\n    streaks of old lava; then Data walks to the big quiet cone at the\n    front and pumps a bellows into the vent at its foot. Stroke by stroke\n    it wakes, and it alone of the whole range (45, about 3%, one cone in\n    thirty-two) glows and spills orange lava. Done by 0.62 and held: the\n    lava keeps fountaining while Data keeps pumping.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    (lA, vA), (lM, vM), (lS, vS) = rows[0], rows[1], rows[2]\n    vA = vA or 1.0\n    cones = _vv_field()\n    N = len(cones)\n    n_err = max(1, int(round(vS / vA * N)))\n    n_scar = max(n_err, int(round(vM / vA * N)))\n    front = [cn for cn in cones if cn[1] == 4]\n    picks = [front[len(front) // 2][0]] + [cn[0] for cn in cones if (cn[1], cn[2]) in ((3, 4), (2, 1), (3, 1))]\n    erupting = picks[:n_err]\n    err_of = {i: j for j, i in enumerate(erupting)}\n    others = sorted([i for i in range(N) if i not in err_of],\n                    key=lambda i: (i * 0.7548777) % 1.0)\n    scar_order = erupting + others\n    scarred = {i: j for j, i in enumerate(scar_order[:n_scar])}\n\n    # the hero cone's geometry, for Data and his bellows\n    hero = cones[erupting[0]]\n    HX, HB = hero[3], hero[4]\n    HHW = hero[5] * 1.35\n\n    # his pumping: one stroke per beat, the lava wakes stroke by stroke\n    P0 = 0.27\n    pumping = u >= P0\n    k = int(clamp((u - P0) / 0.08, 0, 40)) if pumping else 0\n    er_main = ease(seg(u, 0.30, 0.62))\n\n    landscape(cr, t, \"desert\", horizon=1060, time=\"dusk\", seed=\"volcano range\",\n              skyline=False)\n\n    vents = []\n    for r in range(5):\n        if r == 3:\n            haze(cr, 880, 1220, (222, 150, 124), a=0.38)\n        rise = pop(seg(u, 0.005 + r * 0.035, 0.06 + r * 0.035))\n        if rise <= 0.01:\n            continue\n        row = [cn for cn in cones if cn[1] == r]\n        row.sort(key=lambda cn: 1 if cn[0] in err_of else 0)\n        for (i, rr, c, x, base, hw, h, s, lean) in row:\n            if i in err_of:\n                h *= 1.55\n                hw *= 1.35\n                lean = 0.0\n            hh = h * rise\n            tx = x + lean * hw\n            cast_shadow(cr, x - hw * 0.6, x + hw * 0.6, base, length=140 * s, a=0.18)\n            contact_shadow(cr, x, base + 2, hw * 2.1, a=0.24)\n            sc = 0.0\n            if i in scarred:\n                j = scarred[i]\n                sc = ease(seg(u, 0.24 + j * 0.006, 0.28 + j * 0.006))\n            sh = (i * 0.31) % 1.0\n            warm = (i * 0.53) % 1.0\n            rgb = (int(104 + 26 * warm - 16 * sh - r * 2),\n                   int(92 + 8 * warm - 14 * sh - r * 2),\n                   int(92 - 6 * warm - 10 * sh - r))\n            if i in err_of:\n                rgb = (98, 82, 78)\n            _vv_draw_cone(cr, x, base, hw, hh, s, rgb,\n                          sc < 0.5 and i not in err_of, i, lean)\n            side = 1 if (i * 0.5) % 1.0 < 0.5 else -1\n            if sc > 0 and i not in err_of:\n                p4 = ((tx + side * hw * 0.06, base - hh),\n                      (x + side * hw * 0.3, base - hh * 0.6),\n                      (x + side * hw * 0.12, base - hh * 0.35),\n                      (x + side * hw * 0.45, base - 3))\n                _vv_stroke(cr, p4, sc, max(3, hw * 0.16), (30, 24, 26), 0.95)\n            if i in err_of:\n                er = er_main if err_of[i] == 0 else ease(seg(u, 0.40, 0.62))\n                # the vent at the foot, where the bellows blows\n                if err_of[i] == 0:\n                    vx_, vy_ = x - hw * 0.62, base - 26\n                    cr.save()\n                    cr.translate(vx_, vy_)\n                    cr.scale(1, 0.55)\n                    cr.arc(0, 0, 22, 0, 2 * math.pi)\n                    cr.restore()\n                    cr.set_source_rgba(*_c((40, 30, 30)))\n                    cr.fill()\n                    if pumping:\n                        glow(cr, vx_, vy_, 70, (255, 130, 40), 0.35 + 0.5 * er)\n                if er > 0:\n                    glow(cr, x, base - hh, 220 * s + 80, (255, 120, 40), 0.8 * er)\n                    for sd, k2 in ((-1, 0.0), (1, 0.15), (1, 0.4)):\n                        p4 = ((x + sd * hw * 0.05, base - hh),\n                              (x + sd * hw * (0.32 + k2), base - hh * 0.62),\n                              (x + sd * hw * (0.12 + k2), base - hh * 0.3),\n                              (x + sd * hw * (0.5 + k2 * 0.6), base - 3))\n                        e2 = clamp(er * 1.15 - k2)\n                        _vv_stroke(cr, p4, e2, max(10, 34 * s), (170, 38, 18))\n                        tip = _vv_stroke(cr, p4, e2, max(5, 16 * s), (255, 168, 56))\n                        _vv_stroke(cr, p4, e2, max(2, 5 * s), (255, 232, 150))\n                        if tip:\n                            glow(cr, tip[0], tip[1], 50 * s + 16, (255, 170, 60), 0.6)\n                    cr.save()\n                    cr.translate(x + hw * 0.3, base - 2)\n                    cr.scale(1, 0.2)\n                    cr.arc(0, 0, hw * 0.9 * er, 0, 2 * math.pi)\n                    cr.restore()\n                    cr.set_source_rgba(*_c((230, 90, 28), 0.85 * er))\n                    cr.fill()\n                    cr.save()\n                    cr.translate(x, base - hh)\n                    cr.scale(1, 0.3)\n                    cr.arc(0, 0, hw * 0.16, 0, 2 * math.pi)\n                    cr.restore()\n                    cr.set_source_rgba(*_c((255, 170, 60), er))\n                    cr.fill()\n                    vents.append((x, base - hh, s, er, i))\n    haze(cr, 1000, 1300, (222, 150, 124), a=0.08)\n\n    # the lava fountain over the one that is going\n    for (vx, vy, s, er, i) in vents:\n        k_ = max(0.8, s)\n        for p in range(14):\n            ph = (t * 0.75 + p / 14.0 + i * 0.07) % 1.0\n            dx = ((p % 7) - 3) * 26 * k_\n            hgt = 260 * k_ * er * (0.55 + 0.45 * ((p * 0.37) % 1.0))\n            bx = vx + dx * ph * 1.5\n            by = vy - hgt * 4 * ph * (1 - ph)\n            glow(cr, bx, by, 22 * k_, (255, 140, 40), 0.5)\n            disc(cr, bx, by, (7 + 3 * (p % 3)) * k_,\n                 (255, 206, 100) if p % 3 == 0 else (244, 100, 30))\n\n    # the near ground: old ropy black lava right by the camera\n    def _floor():\n        cr.move_to(0, H)\n        for q in range(0, 41):\n            x = q * W / 40.0\n            cr.line_to(x, _vv_floor_y(x))\n        cr.line_to(W, H)\n        cr.close_path()\n    _floor()\n    solid(cr, (66, 56, 54))\n    cr.save()\n    _floor()\n    cr.clip()\n    for i in range(14):\n        ox = 40 + ((i * 0.6180339) % 1.0) * 1000\n        oy = 1580 + ((i * 0.4142136) % 1.0) * 300\n        sc_ = 0.6 + (oy - 1500) / 500.0\n        for kk in range(4):\n            rr_ = (30 + kk * 16) * sc_\n            cr.save()\n            cr.translate(ox, oy)\n            cr.scale(1, 0.38)\n            cr.arc(0, 0, rr_, math.pi * 1.05, math.pi * 1.95)\n            cr.restore()\n            cr.set_source_rgba(*_c((40, 32, 32), 0.75))\n            cr.set_line_width(4 * sc_)\n            cr.stroke()\n            cr.save()\n            cr.translate(ox, oy - 3 * sc_)\n            cr.scale(1, 0.38)\n            cr.arc(0, 0, rr_, math.pi * 1.1, math.pi * 1.6)\n            cr.restore()\n            cr.set_source_rgba(*_c((120, 104, 100), 0.6))\n            cr.set_line_width(2 * sc_)\n            cr.stroke()\n    cr.set_source_rgba(*_c((30, 24, 24), 0.9))\n    cr.set_line_width(3)\n    for i in range(9):\n        cx_ = 60 + i * 120 + 30 * math.sin(i * 2.1)\n        cy_ = 1620 + (i % 3) * 90\n        cr.move_to(cx_, cy_)\n        cr.line_to(cx_ + 40, cy_ + 22)\n        cr.line_to(cx_ + 30, cy_ + 60)\n        cr.line_to(cx_ + 70, cy_ + 84)\n    cr.stroke()\n    cr.restore()\n    for i in range(10):\n        rx = 30 + ((i * 0.6180339) % 1.0) * 1020\n        ry = 1600 + ((i * 0.4142136) % 1.0) * 260\n        rr = (16 + 30 * ((i * 0.37) % 1.0)) * (0.6 + (ry - 1400) / 700.0)\n        contact_shadow(cr, rx, ry + rr * 0.4, rr * 2.4, a=0.4)\n        cr.move_to(rx - rr, ry + rr * 0.4)\n        cr.line_to(rx - rr * (0.6 + 0.2 * (i % 2)), ry - rr * 0.5)\n        cr.line_to(rx + rr * 0.1, ry - rr * (0.8 + 0.25 * (i % 3)))\n        cr.line_to(rx + rr * 0.9, ry - rr * 0.3)\n        cr.line_to(rx + rr, ry + rr * 0.4)\n        cr.close_path()\n        solid(cr, (48 + (i % 3) * 9, 42 + (i % 2) * 6, 42))\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.3)\n\n    # Data walks across the field to the hero cone's foot and pumps its vent\n    walk_f = ease(seg(u, 0.06, 0.26))\n    gx = HX - HHW * 0.62 - 95\n    hx = 110 + (gx - 110) * walk_f\n    hy = min(1490.0, HB - 4)\n    contact_shadow(cr, hx, hy, 120, a=0.35)\n    if u < P0:\n        host(\"point\", hx, hy, 320)\n    else:\n        host(\"pump\", hx, hy, 320, beat=k)\n\n    pct = vS / vA * 100.0\n    if u >= 0.62:\n        fit_readout(cr, f\"{int(round(vS))} erupting\",\n                    f\"right now · about {pct:.0f}% of Earth's {int(round(vA)):,} active\",\n                    80, 520, size=130)\n    elif u >= 0.26:\n        fit_readout(cr, f\"{int(round(vM)):,}\", \"have erupted in recorded history\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, f\"{int(round(vA)):,}\", \"active volcanoes on Earth\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -38834,15 +38838,15 @@
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-11-18T12:15:01Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-11-25T10:54:39Z",
    "hook_was": "Earth never actually stops erupting. It just moves around."
   },
   {
    "slug": "south-korea-robot-density-record",
    "title": "Why South Korea Has More Robots Than People On Its Factory Floors",
    "hook": "One country now has way more robot coworkers than you have fingers.",
-   "closing": "More robots than people, at least on that factory floor.",
+   "closing": "Robots per worker, not total robots, shows who is really automating, and South Korea is miles ahead.",
    "question": "Would a robot coworker worry you?",
    "hashtags": [
     "robots",
@@ -38870,7 +38874,7 @@
      "use_baseline": true,
      "role": "1 · THE WORLD LEADER",
      "topic": "Robots Per Worker",
-     "say": "South Korea now runs 1,220 robots for every ten thousand factory workers, the highest density anywhere."
+     "say": "South Korea has 1,220 robots for every ten thousand factory workers, the most anywhere. Germany and Japan, famous for factories, trail far behind."
     },
     {
      "source": "offline",
@@ -38881,7 +38885,7 @@
      "insight_type": "comparison",
      "role": "2 · VS THE US",
      "topic": "Korea Vs US Robots",
-     "say": "Korea has nearly four times as many robots on the factory floor as the United States has."
+     "say": "The United States has 307 robots per ten thousand workers. South Korea has nearly four times that, a huge gap."
     },
     {
      "source": "offline",
@@ -38892,11 +38896,12 @@
      "insight_type": "comparison",
      "role": "3 · DENSITY VS VOLUME",
      "topic": "Robot Installs Vs Density",
-     "say": "China installs more robots than any other country, yet ranks far lower once you measure density instead of raw count."
+     "say": "China installs more robots than anyone, yet ranks only 22nd in density, since its workforce is so huge."
     }
    ],
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:40Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-25T10:59:36Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "people-over-65-outnumber-kids-under-5",

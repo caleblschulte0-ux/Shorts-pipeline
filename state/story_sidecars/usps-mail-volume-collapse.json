@@ -4,50 +4,50 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 15,
-   "arc": 12,
-   "factual": 12,
-   "visual_proof": 8,
-   "payoff": 5,
-   "voice": 4
+   "hook": 16,
+   "arc": 15,
+   "factual": 13,
+   "visual_proof": 5,
+   "payoff": 8,
+   "voice": 3
   },
-  "total": 66,
+  "total": 70,
   "fatal": [
-   "missing_payoff",
-   "unrenderable_visual"
+   "unrenderable_visual",
+   "confusing"
   ],
-  "weakest": "payoff",
-  "note": "Add a clear payoff that answers the opening question and ensure the visuals are easily renderable on a phone screen.",
-  "fp": "1288c86167c1eb50"
+  "weakest": "visual_proof",
+  "note": "Simplify the visual descriptions so they clearly illustrate the data and can be rendered on a phone screen.",
+  "fp": "1ad6ae3f6df8c60f"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Americans send far less mail, yet stamps cost more.",
+   "ears": "Americans mail far less than before, yet a stamp costs more than ever.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "USPS mail fell to 109 billion pieces, leaving the network with nearly half its peak traffic.",
+   "ears": "Total US mail volume fell to 109 billion pieces, nearly half its old peak.",
    "eyes": "substance: white paper envelopes; cause: Data grips each cart's handle and rolls the letters out of the truck, cart after cart",
    "evidence": "Postal Regulatory Commission (PRC) | Total USPS mail volume | https://www.prc.gov/state-of-the-postal-service | 2026-10-16"
   },
   {
    "window": "beat 1",
-   "ears": "First-Class Mail fell to 46 billion pieces, showing letters led the collapse.",
+   "ears": "First-Class letter mail fell even further, to 46 billion pieces from its own peak.",
    "eyes": "substance: white paper letters; cause: Data stamps each letter and sends it to the mail sack, and the pigeonholes empty",
    "evidence": "United States Postal Service (USPS) | First-Class Mail volume | https://about.usps.com/who/profile/history/pdf/first-class-mail-since-1926.pdf | 2026-10-16"
   },
   {
    "window": "beat 2",
-   "ears": "A stamp reached 68 cents, even as the mail stream kept shrinking.",
+   "ears": "A stamp now costs 68 cents, more than double what it cost back in 1995.",
    "eyes": "a data picture (comparison)",
    "evidence": "United States Postal Service (USPS) | Price of a First-Class stamp | https://about.usps.com/newsroom/service-alerts/postal-facts.htm | 2026-10-16"
   },
   {
    "window": "closing",
-   "ears": "Mail volume collapsed while the price of sending a letter climbed.",
+   "ears": "Fewer letters are moving through the system, so the ones left behind pay more to cover it.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

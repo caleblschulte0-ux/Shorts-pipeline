@@ -4,50 +4,49 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 15,
+   "hook": 16,
    "arc": 15,
    "factual": 12,
    "visual_proof": 8,
    "payoff": 8,
    "voice": 4
   },
-  "total": 72,
+  "total": 73,
   "fatal": [
-   "unrenderable_visual",
-   "confusing"
+   "unrenderable_visual"
   ],
   "weakest": "visual_proof",
-  "note": "Simplify and make the visual concepts concrete so they are instantly understandable on a phone screen.",
-  "fp": "1b893084defb092b"
+  "note": "Simplify the visual concepts so they’re instantly understandable on a phone screen.",
+  "fp": "637e99e5c040213e"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The biggest owners of corporate America aren't tycoons. They're index funds in your account.",
+   "ears": "The biggest owners of corporate America aren't tycoons. They're index funds holding your money.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Index funds once held a sliver of the stock market. Now they hold over half of it, and they keep buying.",
+   "ears": "Index funds once held a sliver of the stock market. Now they hold 52 percent of it, and climbing.",
    "eyes": "substance: grey seats turning cyan-blue; cause: Data places a reserved card on seat after seat, claiming the hall row by row",
    "evidence": "Morningstar / S&P Dow Jones Indices fund-flow research (approximate, compiled) | Passive index funds' share of US stock market assets | https://www.morningstar.com | 2026-10-08"
   },
   {
    "window": "beat 1",
-   "ears": "BlackRock, Vanguard and State Street together own twenty-two percent of a typical big company, over five times the top active manager.",
+   "ears": "BlackRock, Vanguard and State Street together now own 22 percent of a typical big company.",
    "eyes": "substance: lit office floors; cause: Data pulls the power lever at the tower's base and the owners' share of its floors lights up",
    "evidence": "Academic/industry research on BlackRock, Vanguard, State Street combined holdings | Combined 'Big Three' stake vs a typical large active manager, avg S&P 500 company | https://www.sec.gov | 2026-10-08"
   },
   {
    "window": "beat 2",
-   "ears": "Vanguard alone casts nearly one in ten votes at big company shareholder meetings. One firm, that much say.",
+   "ears": "Vanguard alone casts nearly one in ten votes at big shareholder meetings -- one firm, that much say.",
    "eyes": "a data picture (rank)",
    "evidence": "Academic/industry research on index-fund proxy voting power | Share of S&P 500 annual-meeting votes cast by each 'Big Three' manager | https://www.sec.gov | 2026-10-08"
   },
   {
    "window": "closing",
-   "ears": "Your index fund has a vote. You don't.",
+   "ears": "Your index fund has a vote at the shareholder meeting. You don't.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
