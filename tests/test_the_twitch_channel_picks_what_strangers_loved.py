@@ -128,6 +128,22 @@ class PostItBeforeTheOtherClippers(unittest.TestCase):
                         block.index("age = min(age or 24.0, 24.0)"))
 
 
+class AClipEveryoneHasSeenIsAlreadyPosted(unittest.TestCase):
+    """11-24: picks moved to 20k-view clips and got ~0 views; under 10k
+    our posts got 12-16."""
+
+    def test_the_score_stops_growing_past_saturation(self):
+        spec = {"saturated_views": 10000}
+        self.assertEqual(rt._unsaturated({"views": 4000}, spec), 1.0)
+        # a 30k clip scores as if it had 10k: no more credit for views
+        fresh = 5000 / 2 * rt._unsaturated({"views": 5000}, spec)
+        viral = 30000 / 10 * rt._unsaturated({"views": 30000}, spec)
+        self.assertGreater(fresh, viral)
+
+    def test_both_scoring_paths_use_it(self):
+        self.assertEqual(SRC.count('c["score"] *= _unsaturated(c, spec)'), 2)
+
+
 class GTASixIsFavored(unittest.TestCase):
     """Operator, 2026-11-18: "Favor GTA 6 clips"."""
 

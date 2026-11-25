@@ -925,7 +925,11 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   ranker scores up drama that names someone people search for. GTA 6 is
   FAVORED (operator, 2026-11-18): `run_third.FAVOR_GAMES` brings its
   category's top clips in from any streamer, a clip of it (category or
-  title) scores `favor_boost`, and the ranker treats it as a live event.
+  title) scores `favor_boost`, and the ranker treats it as a live event. But a clip everyone has
+  seen is a clip everyone has posted (2026-11-24, "This channel sucks.
+  Why?": GTA 6 picks at 20k source views got a median of 1 view):
+  past `saturated_views` (10k) the score stops growing with views
+  (`run_third._unsaturated`), so the freshest wins among saturated clips.
 - **The channel is a SEARCH channel** — ~89% of views are YouTube search.
   `_search_guidance` hands the title author the real queries for that
   streamer ("lang buddha", "jasontheween news"), with an honesty rule and
