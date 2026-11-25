@@ -36781,18 +36781,21 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 11,
-     "arc": 12,
-     "factual": 8,
-     "visual_proof": 9,
-     "payoff": 6,
-     "voice": 3
+     "hook": 16,
+     "arc": 14,
+     "factual": 13,
+     "visual_proof": 10,
+     "payoff": 8,
+     "voice": 4
     },
-    "total": 59,
-    "fatal": [],
-    "weakest": "factual",
-    "note": "The title says '70 mothers' but beat 3 calls them 70 breeding females, and the hook's 'handful of mothers' undersells 70. Pick one accurate framing. Also open with a concrete, surprising image or stake, such as 'Only 70 females can save a s",
-    "fp": "bee17b523affca05"
+    "total": 75,
+    "fatal": [
+     "unrenderable_visual",
+     "confusing"
+    ],
+    "weakest": "premise",
+    "note": "Clarify and simplify the visual elements so they are instantly understandable on a phone screen; replace vague 'data picture' descriptions with concrete, eye‑catching imagery.",
+    "fp": "16b93481ea0f3919"
    }
   },
   {
@@ -37833,21 +37836,22 @@
    "hook_was": "18.9 million watched. More than the men's final.",
    "scorecard": {
     "scores": {
-     "premise": 8,
-     "hook": 9,
-     "arc": 10,
-     "factual": 7,
+     "premise": 12,
+     "hook": 18,
+     "arc": 16,
+     "factual": 10,
      "visual_proof": 8,
-     "payoff": 6,
-     "voice": 2
+     "payoff": 9,
+     "voice": 4
     },
-    "total": 50,
+    "total": 77,
     "fatal": [
-     "false_comparison"
+     "unrenderable_visual",
+     "confusing"
     ],
-    "weakest": "voice",
-    "note": "The hook claims women's basketball 'beat the men's final' as if audience size were a clean head-to-head, then moves to a timeline (arenas, media rights) that the beats don't tie together. Beat 1's 'larger championship audience' sets 18.9M a",
-    "fp": "e81448a202735459"
+    "weakest": "visual_proof",
+    "note": "Simplify and clarify the visual descriptions so they clearly illustrate each beat and are easily readable on a phone screen.",
+    "fp": "ba72ca98077b256c"
    }
   },
   {

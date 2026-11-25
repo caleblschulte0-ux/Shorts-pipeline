@@ -3,50 +3,51 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 8,
-   "hook": 9,
-   "arc": 10,
-   "factual": 7,
+   "premise": 12,
+   "hook": 18,
+   "arc": 16,
+   "factual": 10,
    "visual_proof": 8,
-   "payoff": 6,
-   "voice": 2
+   "payoff": 9,
+   "voice": 4
   },
-  "total": 50,
+  "total": 77,
   "fatal": [
-   "false_comparison"
+   "unrenderable_visual",
+   "confusing"
   ],
-  "weakest": "voice",
-  "note": "The hook claims women's basketball 'beat the men's final' as if audience size were a clean head-to-head, then moves to a timeline (arenas, media rights) that the beats don't tie together. Beat 1's 'larger championship audience' sets 18.9M a",
-  "fp": "e81448a202735459"
+  "weakest": "visual_proof",
+  "note": "Simplify and clarify the visual descriptions so they clearly illustrate each beat and are easily readable on a phone screen.",
+  "fp": "ba72ca98077b256c"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Women's basketball beat the men's final, then packed arenas.",
+   "ears": "That year, the women's NCAA final out-drew the men's, and the money is following.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Women's basketball drew 18.9 million viewers, making it the larger championship audience.",
+   "ears": "The women's basketball championship final drew 18.9 million viewers, edging out that year's men's final.",
    "eyes": "substance: fans crowding each screen; cause: Data opens the bar door with his own hands and the fans stream in to the screen they came to watch",
    "evidence": "ESPN / Nielsen | 2024 NCAA championship TV viewers (millions) | https://www.espn.com | 2026-11-04"
   },
   {
    "window": "beat 1",
-   "ears": "Women's basketball attendance reached 2.37 million, showing the television surge carried into arenas.",
+   "ears": "Attendance at the women's tournament climbed to 2.37 million, well up from recent years.",
    "eyes": "substance: the crowd of fans; cause: Data lifts each tunnel gate with his own hands and the fans pour in to fill the stands",
    "evidence": "WNBA / Associated Press | WNBA total season attendance (millions) | https://www.wnba.com | 2026-11-04"
   },
   {
    "window": "beat 2",
-   "ears": "Women's basketball media rights reached 200 million dollars yearly, turning that audience growth into revenue.",
+   "ears": "Media rights for the women's game jumped to 200 million dollars a year, more than three times the old deal.",
    "eyes": "a data picture (comparison)",
    "evidence": "WNBA / sports business press | WNBA annual media rights value ($ millions) | https://www.wnba.com | 2026-11-04"
   },
   {
    "window": "closing",
-   "ears": "Women's basketball turned a bigger audience into fuller arenas and more valuable media rights.",
+   "ears": "Women's basketball turned a bigger crowd into bigger media money.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

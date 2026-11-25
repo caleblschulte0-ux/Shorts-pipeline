@@ -4,47 +4,50 @@
  "scorecard": {
   "scores": {
    "premise": 10,
-   "hook": 11,
-   "arc": 12,
-   "factual": 8,
-   "visual_proof": 9,
-   "payoff": 6,
-   "voice": 3
+   "hook": 16,
+   "arc": 14,
+   "factual": 13,
+   "visual_proof": 10,
+   "payoff": 8,
+   "voice": 4
   },
-  "total": 59,
-  "fatal": [],
-  "weakest": "factual",
-  "note": "The title says '70 mothers' but beat 3 calls them 70 breeding females, and the hook's 'handful of mothers' undersells 70. Pick one accurate framing. Also open with a concrete, surprising image or stake, such as 'Only 70 females can save a s",
-  "fp": "bee17b523affca05"
+  "total": 75,
+  "fatal": [
+   "unrenderable_visual",
+   "confusing"
+  ],
+  "weakest": "premise",
+  "note": "Clarify and simplify the visual elements so they are instantly understandable on a phone screen; replace vague 'data picture' descriptions with concrete, eye‑catching imagery.",
+  "fp": "16b93481ea0f3919"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Right whale calves are arriving, but the species hangs on a handful of mothers.",
+   "ears": "A celebrated whale recovery rests on an alarmingly small group of mothers.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Right whales reached 384 animals, a rebound that still leaves the species dangerously small.",
+   "ears": "The right whale population reached 384. That rebound is real but still dangerously small.",
    "eyes": "substance: the whale rising free; cause: Data hauls the fishing rope off the whale, one haul per year, and it rises and blows",
    "evidence": "NOAA Fisheries / Northeast Fisheries Science Center | North Atlantic right whale population estimate | https://www.fisheries.noaa.gov/resource/peer-reviewed-research/population-size-estimate-north-atlantic-right-whales | 2026-10-29"
   },
   {
    "window": "beat 1",
-   "ears": "That small population produced 22 calves, so recovery is still possible.",
+   "ears": "The latest season produced 22 calves. Every birth depends on the species' limited mothers.",
    "eyes": "a data picture (comparison)",
    "evidence": "NOAA Fisheries | North Atlantic right whale calves born, 2018 vs recent season | https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024 | 2026-10-29"
   },
   {
    "window": "beat 2",
-   "ears": "But only 70 are breeding females, so losing a few could stall the comeback.",
+   "ears": "Only 70 right whales are breeding females. Losing even a few can stall the entire comeback.",
    "eyes": "a data picture (share)",
    "evidence": "NOAA Fisheries | Reproductively active females as a share of the right whale population | https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024 | 2026-10-29"
   },
   {
    "window": "closing",
-   "ears": "The species recovers only if its few breeding females survive, so every loss matters.",
+   "ears": "Protecting breeding females is the narrowest path from a fragile rebound to recovery.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
