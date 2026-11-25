@@ -35,7 +35,7 @@ def s3_hose_nozzle():
     brass = lw_metal("nozzle brass", "#B8862E", rough=0.25)
     K.cyl("fire hose nozzle", (0, 0.0, 0.0), 0.028, 0.22, brass, rot=(math.pi / 2, 0, 0), v=20, parent=root)
     K.cyl("fire hose nozzle tip", (0, -0.13, 0.0), 0.018, 0.06, brass, rot=(math.pi / 2, 0, 0), v=16, parent=root)
-    K.cyl("fire hose grip", (0, 0.05, -0.05), 0.02, 0.09, K.mat("nozzle grip", "#1E1E1E", rough=0.6), v=12, parent=root)
+    K.cyl("fire hose grip", (0, 0.05, -0.05), 0.02, 0.09, lw_rubber("nozzle grip", "#1E1E1E", rough=0.6), v=12, parent=root)
     lw_local(root)
     return root
 
@@ -160,7 +160,7 @@ def shot3():
     keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
                       (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
                       (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
-    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.1, -0.03, -0.1)), (T_REL + 0.75, (0.07, -0.05, -0.15)), (DUR + 0.5, (0.07, -0.05, -0.15))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
+    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.11, 0.04, -0.09)), (T_REL + 0.75, (0.08, 0.09, -0.13)), (DUR + 0.5, (0.08, 0.1, -0.13))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
     data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     LENS = Vector((-0.6, -3.6, S3_H + 1.3))
@@ -183,9 +183,9 @@ def shot3():
     # the canvas hose: from the hydrant on the crest behind him, along the ground, up to the nozzle's tail
     cu = bpy.data.curves.new("fire hose line", 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = 0.02; cu.bevel_resolution = 3
     sp = cu.splines.new('BEZIER'); sp.bezier_points.add(3)
-    hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(K.mat("hose canvas", "#B8342A", rough=0.7))
+    hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(lw_canvas("hose canvas", "#B8342A"))
     HYD = Vector((P0.x - 1.4, P0.y + 0.6, S3_H))
-    K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, K.mat("hydrant red", "#C8231B", rough=0.4), v=16)
+    K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
         tail = noz.matrix_world @ Vector((0, 0.12, 0)); foot = data.arm.matrix_world.translation

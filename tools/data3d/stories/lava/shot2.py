@@ -58,14 +58,14 @@ def s2_remote(data):
     c = mid + fw * S2_RC_FW + Vector((0, 0, S2_RC_UP))
     yaw = data.arm.rotation_euler.z
     root = K.empty("remote control", tuple(c))
-    yel = lw_paint("remote yellow", "#F2B10E", rough=0.4); dark = K.mat("remote black", "#1A1A1A", rough=0.5)
+    yel = lw_paint("remote yellow", "#F2B10E", rough=0.4); dark = lw_rubber("remote black", "#1A1A1A", rough=0.6)
     K.box("remote control box", (0, -0.01, 0), (0.2, 0.065, 0.05), yel, bev=0.012, parent=root)
     K.box("remote control screen", (0, -0.035, 0.026), (0.07, 0.012, 0.004), lw_emit("remote screen", "#7FE0FF", 4.0), bev=0.0, parent=root)
     sticks = []
     for sx in (-0.06, 0.06):
         pv = K.empty("remote stick pivot", (sx, 0.0, 0.025), parent=root)
         K.cyl("remote stick", (0, 0.0, 0.03), 0.008, 0.06, dark, parent=pv)
-        kn = K.sph("remote stick knob", (0, 0.0, 0.065), 0.02, K.mat("remote knob red", "#C8201A", rough=0.35), parent=pv)   # red knobs, so the two sticks read
+        kn = K.sph("remote stick knob", (0, 0.0, 0.065), 0.02, lw_rubber("remote knob red", "#C8201A", rough=0.5), parent=pv)   # red knobs, so the two sticks read
         sticks.append((pv, kn))
     lw_local(root)
     root.rotation_euler = (0, 0, yaw)
@@ -78,9 +78,9 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     """THE DIGGER: a yellow tracked excavator facing +X, an open operator's deck on its -Y side where he stands at two
     control sticks, the boom on its +Y side: boom, stick and a toothed bucket, each on its own pivot empty.
     Returns dict(boom, stick, bucket, sticks=[(pivot, knob)], load)."""
-    yel = lw_noise("digger yellow worn", "#E8A80C", "#9C7418", scale=9, rough=0.5, bump=0.15, lo=0.55, hi=0.85)      # worn paint, dust in its seams
+    yel = lw_paint("digger yellow worn", "#E8A80C", rough=0.5)      # worn paint, dust in its seams
     dark = lw_metal("digger steel", "#2C2C2E", rough=0.5)
-    track = lw_noise("track rubber", "#1A1A1A", "#2E2E2E", scale=60, rough=0.9, bump=0.8, stretch=(1, 8, 1))
+    track = lw_rubber("track rubber", "#1E1E1E", rough=0.9)
     for sy in (-0.72, 0.72):
         K.box("digger track", (0.1, sy, 0.22), (2.5, 0.42, 0.44), track, bev=0.12)
         for x in (-0.95, -0.3, 0.35, 1.0):
@@ -108,19 +108,19 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     for x in (-1.15, -0.35):
         K.cyl("digger grab rail post", (x, -0.66, 1.42), 0.015, 0.12, rail, v=8)
     K.cyl("digger grab rail", (-0.75, -0.66, 1.48), 0.015, 0.82, rail, rot=(0, math.pi / 2, 0), v=8)
-    blk = K.mat("stripe black", "#1A1A1A", rough=0.6)
+    blk = lw_paint("stripe black", "#1A1A1A", rough=0.6)
     for k in range(5):
         o = K.box("digger warning stripe", (-1.43, -0.45 + 0.3 * k, 0.82), (0.02, 0.09, 0.62), blk, bev=0.0)
         o.rotation_euler = (math.radians(35), 0, 0)
     K.box("digger step", (0.25, -0.88, 0.5), (0.4, 0.14, 0.03), dark, bev=0.005)
     sticks = []
-    if knob_pts: K.box("digger seat back", (-0.1, -0.45, S2_DECK + 0.5), (0.08, 0.4, 0.45), K.mat("seat black", "#1E1E1E", rough=0.7), bev=0.03)
+    if knob_pts: K.box("digger seat back", (-0.1, -0.45, S2_DECK + 0.5), (0.08, 0.4, 0.45), lw_rubber("seat black", "#1E1E1E", rough=0.7), bev=0.03)
     for kx, ky, kz in knob_pts:                           # the two control towers in front of him, a stick on each
         top = kz - 0.135
         K.box("digger control tower", (kx + 0.03, ky, (S2_DECK + top) / 2), (0.1, 0.1, top - S2_DECK), dark, bev=0.01)
         pv = K.empty("control stick pivot", (kx, ky, top))
         K.cyl("control stick", (kx, ky, top + 0.06), 0.012, 0.12, dark, parent=pv)
-        knob = K.sph("control stick knob", (kx, ky, kz), 0.03, K.mat("knob black", "#141414", rough=0.4), parent=pv)
+        knob = K.sph("control stick knob", (kx, ky, kz), 0.03, lw_rubber("knob black", "#141414", rough=0.5), parent=pv)
         sticks.append((pv, knob))
     K.box("digger lamp", (0.2, -0.02, S2_DECK + 1.3), (0.1, 0.12, 0.06), lw_emit("digger lamp", "#FFF2D0", 12.0), bev=0.01)
     boom = K.empty("digger boom", tuple(S2_BOOM))
@@ -131,7 +131,7 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     K.cyl("digger stick ram", (S2_BOOM.x + S2_L1 - 0.9, S2_BOOM.y, S2_BOOM.z + 0.28), 0.06, 1.5, chrome, rot=(0, math.pi / 2, 0), parent=boom)
     K.cyl("digger stick ram barrel", (S2_BOOM.x + S2_L1 - 1.4, S2_BOOM.y, S2_BOOM.z + 0.28), 0.08, 0.8, barrel, rot=(0, math.pi / 2, 0), parent=boom)
     for k_ in range(3):                                   # the hoses run up the boom
-        K.cyl("digger hose", (S2_BOOM.x + S2_L1 / 2, S2_BOOM.y + 0.15, S2_BOOM.z + 0.12 + 0.04 * k_), 0.018, S2_L1 * 0.9, K.mat("hose black", "#121212", rough=0.6), rot=(0, math.pi / 2, 0), parent=boom)
+        K.cyl("digger hose", (S2_BOOM.x + S2_L1 / 2, S2_BOOM.y + 0.15, S2_BOOM.z + 0.12 + 0.04 * k_), 0.018, S2_L1 * 0.9, lw_rubber("hose black", "#121212", rough=0.6), rot=(0, math.pi / 2, 0), parent=boom)
     stick = K.empty("digger stick", (S2_BOOM.x + S2_L1, S2_BOOM.y, S2_BOOM.z), parent=boom)
     K.cyl("digger bucket ram", (S2_BOOM.x + S2_L1 + 0.9, S2_BOOM.y, S2_BOOM.z + 0.2), 0.05, 1.3, chrome, rot=(0, math.pi / 2, 0), parent=stick)
     K.box("digger stick arm", (S2_BOOM.x + S2_L1 + S2_L2 / 2, S2_BOOM.y, S2_BOOM.z), (S2_L2, 0.2, 0.24), yel, bev=0.04, parent=stick)
@@ -150,7 +150,7 @@ def s2_truck(name, col="#E3A112"):
     """a yellow dump truck facing +Y: a cab, a raised-sided steel bed full of black rock, six wheels, headlights on"""
     root = K.empty(name, (0, 0, 0))
     yel = lw_paint(f"truck paint {col}", col, rough=0.45); dark = lw_metal("truck steel", "#2E2E30", rough=0.55)
-    tyre = K.mat("car tyre", "#141414", rough=0.8)
+    tyre = lw_rubber("car tyre", "#141414", rough=0.8)
     K.box(name + " cab", (0, 1.3, 1.0), (1.3, 0.9, 1.0), yel, bev=0.06, parent=root)
     K.box(name + " windscreen", (0, 1.76, 1.2), (1.1, 0.02, 0.4), K.mat("car glass", "#1E262C", rough=0.05, metal=0.3), bev=0.0, parent=root)
     K.box(name + " chassis", (0, 0.0, 0.5), (1.2, 3.4, 0.25), dark, bev=0.02, parent=root)
@@ -217,8 +217,8 @@ def place_wall_works():
         Dk["boom"].rotation_euler = (0, -a_, 0); Dk["stick"].rotation_euler = (0, -b_, 0)
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
-    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
-              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.6 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
+    lava_rock("works rubble", 650, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.24), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
+              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.25 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     for k, x0 in enumerate((-2.2, -1.5, 1.6, 2.3)):           # the tracks the machines have cut in it
@@ -227,6 +227,8 @@ def place_wall_works():
         ph_model("concrete_road_barrier", (x, y, s2_ground_z(x, y)), rot=(0, 0, r), scale=0.5, name=f"road barrier {k}")
     for k, (x, y) in enumerate(((-6.4, 1.6), (-6.0, 1.9), (-6.2, 2.3))):
         ph_model("cement_bag", (x, y, s2_ground_z(x, y) + 0.06 * k), rot=(0, 0, 0.4 * k), scale=0.5, name=f"cement bag {k}")
+    for k, (x, y, r) in enumerate(((-1.3, -0.9, 0.3), (1.4, -1.1, 1.1), (-2.4, 0.4, 2.0))):   # worn tyres off the machines, dumped about the works
+        ph_model("old_tyre", (x, y, s2_ground_z(x, y)), rot=(math.radians(90) if k == 2 else 0, 0, r), scale=0.9, name=f"works tyre {k}")
     for k, (x, y) in enumerate(((5.2, 0.6), (5.6, 0.9))):
         ph_model("barrel_03", (x, y, s2_ground_z(x, y)), rot=(0, 0, k), scale=0.5, name=f"fuel drum {k}")
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
@@ -251,7 +253,7 @@ def shot2():
     P = place_wall_works()
     light = P["light"]
     data = load_data()
-    P0 = Vector((0.05, 0.2, 0.0)); YAW0 = math.radians(18)
+    P0 = Vector((0.05, 0.2, s2_ground_z(0.05, 0.2))); YAW0 = math.radians(18)
     PS = P0 + Vector((-0.12, 0.1, 0.0))                     # where he starts: he steps up to the work as he shoves
     data.place(PS.x, PS.y, math.degrees(YAW0))
     kit = hard_hat(data)

@@ -134,7 +134,7 @@ def place_harbour_dawn():
     K.box("quay concrete", ((x1 + 14.2) / 2, 3.6, -0.128), (14.2 - x1, 2.4, 0.24), qc, bev=0.02)    # and along the basin's side to the foot of the town
     for k in range(9):                                   # its expansion joints
         K.box("quay joint", (-1.0 + 1.6 * k, 0.4, 0.0), (0.02, 4.0, 0.005), K.mat("quay joint", "#3A3836", rough=0.9), bev=0.0)
-    edge = K.mat("quay edge paint", "#D9B32E", rough=0.6)
+    edge = lw_paint("quay edge paint", "#D9B32E", rough=0.6)
     K.box("quay edge", (S5_EDGE_X + 0.1, -2.0, 0.03), (0.2, 7.0, 0.06), edge, bev=0.01)
     K.box("quay edge", (S5_EDGE_X + (x1 - S5_EDGE_X) / 2, y0 - 0.12, 0.03), (x1 - S5_EDGE_X, 0.2, 0.06), edge, bev=0.01)
     K.box("quay edge", (x1 + 0.1, (y0 + 4.8) / 2, 0.03), (0.2, 4.8 - y0, 0.06), edge, bev=0.01)
@@ -155,16 +155,16 @@ def place_harbour_dawn():
     for k, (x, y, yaw) in enumerate(((-1.0, 4.4, 0.0), (-1.9, 6.4, 0.05), (-2.9, 4.2, -0.04), (-3.9, 6.2, 0.08))):
         s5_boat(f"fishing boat {k}", (x, y), yaw, ("#2E5E8A", "#C33A2A", "#2E7A5A", "#1F3A5A")[k], ("#C33A2A", "#2E5E8A", "#E9E4D6", "#D9B32E")[k], seed=k)
     home = town_house("his town house", (5.6, 3.6, 0.0), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.3, roof="#2F5E8C", wall="#F1EEE6", seed=3)
-    iron = lw_metal("hook iron", "#2E3033")
+    iron = lw_rust("hook iron", "#3A3430")
     # the hook is on a TIMBER MOORING PILE at the quay's edge (board: "the white post reads as nothing"): a tarred
     # round pile, iron bands, a mooring rope coiled round its foot
-    pile = lw_noise("pile timber", "#2E2620", "#4A3E32", scale=14, rough=0.85, bump=0.6, stretch=(1, 1, 6))
+    pile = lw_wood("pile timber", "#5A4A3A", scale=0.5)
     px_ = S5_HOOK.x + 0.17
     K.cyl("lantern post", (px_, S5_HOOK.y, 0.45), 0.085, 0.9, pile, v=20)
     K.cyl("lantern post cap", (px_, S5_HOOK.y, 0.91), 0.088, 0.03, iron, v=20)
     for bz in (0.25, 0.7):
         K.cyl("lantern post band", (px_, S5_HOOK.y, bz), 0.09, 0.035, iron, v=20)
-    rope = K.mat("mooring rope", "#B79A62", rough=0.9)
+    rope = lw_canvas("mooring rope", "#B79A62")
     for j in range(3):
         K.cyl("mooring rope", (px_, S5_HOOK.y, 0.04 + 0.035 * j), 0.125 + 0.012 * j, 0.03, rope, v=24)
     K.box("lantern hook arm", (S5_HOOK.x + 0.06, S5_HOOK.y, S5_HOOK.z + 0.05), (0.2, 0.025, 0.025), iron, bev=0.004)
@@ -279,7 +279,7 @@ def shot5():
     # after the let-go: the lantern hand comes down slowly; his free hand waves up at the first window that lights,
     # comes down, then both spread wide to us
     AK = {carry: [(T_LET + 0.9, (0.07, 0.1, -0.07)), (T_ASK + 0.05, (0.07, 0.1, -0.08)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))],
-          other: [(T_LET + 0.75, (0.06, 0.14, 0.03)), (T_LET + 1.0, (0.03, 0.16, 0.08)), (T_LET + 1.22, (0.03, 0.13, 0.09)), (T_LET + 1.44, (0.03, 0.16, 0.08)),
+          other: [(T_LET + 0.95, (0.06, 0.14, 0.03)), (T_LET + 1.2, (0.03, 0.16, 0.08)), (T_LET + 1.42, (0.03, 0.13, 0.09)), (T_LET + 1.64, (0.03, 0.16, 0.08)),
                   (T_ASK + 0.05, (0.08, 0.1, -0.06)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))]}
     down_fn = lw_hand(data, carry, AK[carry])
     def carry_path(t):                                       # ONE job for the lantern hand: carry, hang, then down slowly
@@ -298,7 +298,7 @@ def shot5():
         else:
             lan.location = S5_HOOK; lan.rotation_euler = (0, swing(t), 0)
         lan.keyframe_insert("location", frame=f); lan.keyframe_insert("rotation_euler", frame=f)
-    data.reach(other, lw_hand(data, other, AK[other]), AK[other][0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.4)
+    data.reach(other, lw_hand(data, other, AK[other]), AK[other][0][0], DUR + 0.3, lead=1.0, back=None, elbow_out=0.4)
     # ---- face and head: one feeling per moment, held
     LENS = Vector((0.2, -2.4, 0.6))
     data.look_at(Vector((0.3, -2.4, 0.7)), 0.0, max_yaw=60, max_pitch=30, blend=0.0)      # his face to us as he comes (board: glasses off his face in profile)

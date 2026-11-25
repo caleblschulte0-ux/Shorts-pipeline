@@ -33,7 +33,7 @@ def s1_car(name, col):
         b.inputs["Base Color"].default_value = (*K.lin(col), 1); b.inputs["Roughness"].default_value = 0.25
         b.inputs["Coat Weight"].default_value = 0.6; b.inputs["Coat Roughness"].default_value = 0.05; b.inputs["Metallic"].default_value = 0.3
     glass = K.mat("car glass", "#1E262C", rough=0.05, metal=0.3)
-    tyre = K.mat("car tyre", "#141414", rough=0.8)
+    tyre = lw_rubber("car tyre", "#141414", rough=0.8)
     K.box(name + " body", (0, 0, 0.36), (1.0, 2.4, 0.42), paint, bev=0.09, parent=root)
     K.box(name + " cabin", (0, 0.2, 0.7), (0.9, 1.35, 0.4), paint, bev=0.12, parent=root)
     K.box(name + " windscreen", (0, -0.47, 0.7), (0.84, 0.04, 0.32), glass, bev=0.02, parent=root).rotation_euler = (math.radians(-30), 0, 0)
@@ -77,7 +77,7 @@ def s1_siren():
         a = 2 * math.pi * k / 6
         o = K.box("siren rotor vane", (c.x + 0.075 * math.cos(a), c.y + 0.075 * math.sin(a), c.z), (0.15, 0.02, 0.15), lw_metal("rotor steel", "#B8BCC0", rough=0.3), bev=0.003, parent=rotor)
         o.rotation_euler = (0, 0, a)
-    sign = K.box("siren sign", (S1_PIV.x, S1_PIV.y + 0.06, 0.95), (0.22, 0.012, 0.16), K.mat("sign yellow", "#F2C200", rough=0.5), bev=0.004)
+    sign = K.box("siren sign", (S1_PIV.x, S1_PIV.y + 0.06, 0.95), (0.22, 0.012, 0.16), lw_paint("sign yellow", "#F2C200", rough=0.5), bev=0.004)
     K.box("siren sign mark", (S1_PIV.x, S1_PIV.y + 0.052, 0.95), (0.1, 0.004, 0.1), K.mat("sign black", "#141414", rough=0.5), bev=0.0)
     return rotor
 
@@ -93,7 +93,7 @@ def s1_crank(ctr, x_other):
     wh = K.empty("gate crank", tuple(ctr))
     K.cyl("gate crank wheel", (0, 0.0, 0), S1_CRANK_R + 0.012, 0.02, post_m, rot=(math.pi / 2, 0, 0), v=28, parent=wh)
     K.box("gate crank spoke", (S1_CRANK_R / 2, 0.0, 0), (S1_CRANK_R, 0.024, 0.02), post_m, bev=0.004, parent=wh)
-    K.cyl("gate crank knob", (S1_CRANK_R, 0.04, 0), 0.016, 0.07, K.mat("gate handle", "#22201E", rough=0.5), rot=(math.pi / 2, 0, 0), v=14, parent=wh)
+    K.cyl("gate crank knob", (S1_CRANK_R, 0.04, 0), 0.016, 0.07, lw_rubber("gate handle", "#22201E"), rot=(math.pi / 2, 0, 0), v=14, parent=wh)
     lw_local(wh)
     return wh, z1
 

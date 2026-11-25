@@ -184,8 +184,39 @@ def lw_emit(name, hexc, strength):
     return m
 
 
+def lw_worn(aid, name, hexc, scale=0.6, rough=None, paint=False):
+    """look bible 2026-11-24, one finish across the frame: a prop Data touches wears a REAL scanned surface (Poly Haven)
+    tinted to its colour, with the scan's wear, grime and dents, so it sits in the same world as the real set behind it.
+    None when the scan is not unpacked (a local run before the asset fetch)."""
+    try:
+        return ph_mat(aid, scale=scale, tint=hexc, name=name, rough=rough, paint=paint)
+    except FileNotFoundError:
+        return None
+
+
+def lw_rubber(name, hexc="#161616", rough=0.85):
+    """tyres, grips, hoses, knobs: worn moulded rubber"""
+    return lw_worn("rubberized_track", name, hexc, scale=0.25, rough=rough, paint=True) or K.mat(name, hexc, rough=rough)
+
+
+def lw_wood(name, hexc="#8A7A66", scale=0.8):
+    """weathered timber, grain and all"""
+    return lw_worn("weathered_planks", name, hexc, scale=scale) or lw_noise(name, "#2E2620", "#4A3E32", scale=14, rough=0.85, bump=0.6, stretch=(1, 1, 6))
+
+
+def lw_canvas(name, hexc):
+    """woven canvas and hessian: a fire hose's jacket, a sandbag"""
+    return lw_worn("denim_fabric", name, hexc, scale=0.15, rough=0.9, paint=True) or lw_noise(name, hexc, K.mute(hexc, 0.25), scale=90, rough=0.95, bump=1.0)
+
+
+def lw_rust(name, hexc="#6A4030"):
+    return lw_worn("rust_coarse_01", name, hexc, scale=0.4) or lw_metal(name, hexc, rough=0.7)
+
+
 def lw_metal(name, hexc, rough=0.35):
     m = bpy.data.materials.get(name)
+    if m: return m
+    m = lw_worn("metal_plate_02", name, hexc, scale=0.5)        # real scanned steel: scuffs, grime, its own roughness
     if m: return m
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
     bs.inputs["Base Color"].default_value = (*K.lin(hexc), 1); bs.inputs["Metallic"].default_value = 0.9
@@ -197,7 +228,11 @@ def lw_metal(name, hexc, rough=0.35):
 
 
 def lw_paint(name, hexc, rough=0.45):
-    """painted metal or wood: the colour with a faint mottle so a big face never reads as a flat card"""
+    """painted metal or wood: REAL scanned painted metal (Poly Haven), its chips, rust and grime kept under the colour"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = lw_worn("rusty_painted_metal", name, hexc, scale=0.6, rough=None, paint=True)
+    if m: return m
     return lw_noise(name, hexc, K.mute(hexc, 0.25), scale=9, rough=rough, bump=0.05, lo=0.3, hi=0.75)
 
 

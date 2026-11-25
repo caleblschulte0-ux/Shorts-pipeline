@@ -202,8 +202,39 @@ def lw_emit(name, hexc, strength):
     return m
 
 
+def lw_worn(aid, name, hexc, scale=0.6, rough=None, paint=False):
+    """look bible 2026-11-24, one finish across the frame: a prop Data touches wears a REAL scanned surface (Poly Haven)
+    tinted to its colour, with the scan's wear, grime and dents, so it sits in the same world as the real set behind it.
+    None when the scan is not unpacked (a local run before the asset fetch)."""
+    try:
+        return ph_mat(aid, scale=scale, tint=hexc, name=name, rough=rough, paint=paint)
+    except FileNotFoundError:
+        return None
+
+
+def lw_rubber(name, hexc="#161616", rough=0.85):
+    """tyres, grips, hoses, knobs: worn moulded rubber"""
+    return lw_worn("rubberized_track", name, hexc, scale=0.25, rough=rough, paint=True) or K.mat(name, hexc, rough=rough)
+
+
+def lw_wood(name, hexc="#8A7A66", scale=0.8):
+    """weathered timber, grain and all"""
+    return lw_worn("weathered_planks", name, hexc, scale=scale) or lw_noise(name, "#2E2620", "#4A3E32", scale=14, rough=0.85, bump=0.6, stretch=(1, 1, 6))
+
+
+def lw_canvas(name, hexc):
+    """woven canvas and hessian: a fire hose's jacket, a sandbag"""
+    return lw_worn("denim_fabric", name, hexc, scale=0.15, rough=0.9, paint=True) or lw_noise(name, hexc, K.mute(hexc, 0.25), scale=90, rough=0.95, bump=1.0)
+
+
+def lw_rust(name, hexc="#6A4030"):
+    return lw_worn("rust_coarse_01", name, hexc, scale=0.4) or lw_metal(name, hexc, rough=0.7)
+
+
 def lw_metal(name, hexc, rough=0.35):
     m = bpy.data.materials.get(name)
+    if m: return m
+    m = lw_worn("metal_plate_02", name, hexc, scale=0.5)        # real scanned steel: scuffs, grime, its own roughness
     if m: return m
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
     bs.inputs["Base Color"].default_value = (*K.lin(hexc), 1); bs.inputs["Metallic"].default_value = 0.9
@@ -215,7 +246,11 @@ def lw_metal(name, hexc, rough=0.35):
 
 
 def lw_paint(name, hexc, rough=0.45):
-    """painted metal or wood: the colour with a faint mottle so a big face never reads as a flat card"""
+    """painted metal or wood: REAL scanned painted metal (Poly Haven), its chips, rust and grime kept under the colour"""
+    m = bpy.data.materials.get(name)
+    if m: return m
+    m = lw_worn("rusty_painted_metal", name, hexc, scale=0.6, rough=None, paint=True)
+    if m: return m
     return lw_noise(name, hexc, K.mute(hexc, 0.25), scale=9, rough=rough, bump=0.05, lo=0.3, hi=0.75)
 
 
@@ -1336,7 +1371,7 @@ def s1_car(name, col):
         b.inputs["Base Color"].default_value = (*K.lin(col), 1); b.inputs["Roughness"].default_value = 0.25
         b.inputs["Coat Weight"].default_value = 0.6; b.inputs["Coat Roughness"].default_value = 0.05; b.inputs["Metallic"].default_value = 0.3
     glass = K.mat("car glass", "#1E262C", rough=0.05, metal=0.3)
-    tyre = K.mat("car tyre", "#141414", rough=0.8)
+    tyre = lw_rubber("car tyre", "#141414", rough=0.8)
     K.box(name + " body", (0, 0, 0.36), (1.0, 2.4, 0.42), paint, bev=0.09, parent=root)
     K.box(name + " cabin", (0, 0.2, 0.7), (0.9, 1.35, 0.4), paint, bev=0.12, parent=root)
     K.box(name + " windscreen", (0, -0.47, 0.7), (0.84, 0.04, 0.32), glass, bev=0.02, parent=root).rotation_euler = (math.radians(-30), 0, 0)
@@ -1380,7 +1415,7 @@ def s1_siren():
         a = 2 * math.pi * k / 6
         o = K.box("siren rotor vane", (c.x + 0.075 * math.cos(a), c.y + 0.075 * math.sin(a), c.z), (0.15, 0.02, 0.15), lw_metal("rotor steel", "#B8BCC0", rough=0.3), bev=0.003, parent=rotor)
         o.rotation_euler = (0, 0, a)
-    sign = K.box("siren sign", (S1_PIV.x, S1_PIV.y + 0.06, 0.95), (0.22, 0.012, 0.16), K.mat("sign yellow", "#F2C200", rough=0.5), bev=0.004)
+    sign = K.box("siren sign", (S1_PIV.x, S1_PIV.y + 0.06, 0.95), (0.22, 0.012, 0.16), lw_paint("sign yellow", "#F2C200", rough=0.5), bev=0.004)
     K.box("siren sign mark", (S1_PIV.x, S1_PIV.y + 0.052, 0.95), (0.1, 0.004, 0.1), K.mat("sign black", "#141414", rough=0.5), bev=0.0)
     return rotor
 
@@ -1396,7 +1431,7 @@ def s1_crank(ctr, x_other):
     wh = K.empty("gate crank", tuple(ctr))
     K.cyl("gate crank wheel", (0, 0.0, 0), S1_CRANK_R + 0.012, 0.02, post_m, rot=(math.pi / 2, 0, 0), v=28, parent=wh)
     K.box("gate crank spoke", (S1_CRANK_R / 2, 0.0, 0), (S1_CRANK_R, 0.024, 0.02), post_m, bev=0.004, parent=wh)
-    K.cyl("gate crank knob", (S1_CRANK_R, 0.04, 0), 0.016, 0.07, K.mat("gate handle", "#22201E", rough=0.5), rot=(math.pi / 2, 0, 0), v=14, parent=wh)
+    K.cyl("gate crank knob", (S1_CRANK_R, 0.04, 0), 0.016, 0.07, lw_rubber("gate handle", "#22201E"), rot=(math.pi / 2, 0, 0), v=14, parent=wh)
     lw_local(wh)
     return wh, z1
 
@@ -1719,14 +1754,14 @@ def s2_remote(data):
     c = mid + fw * S2_RC_FW + Vector((0, 0, S2_RC_UP))
     yaw = data.arm.rotation_euler.z
     root = K.empty("remote control", tuple(c))
-    yel = lw_paint("remote yellow", "#F2B10E", rough=0.4); dark = K.mat("remote black", "#1A1A1A", rough=0.5)
+    yel = lw_paint("remote yellow", "#F2B10E", rough=0.4); dark = lw_rubber("remote black", "#1A1A1A", rough=0.6)
     K.box("remote control box", (0, -0.01, 0), (0.2, 0.065, 0.05), yel, bev=0.012, parent=root)
     K.box("remote control screen", (0, -0.035, 0.026), (0.07, 0.012, 0.004), lw_emit("remote screen", "#7FE0FF", 4.0), bev=0.0, parent=root)
     sticks = []
     for sx in (-0.06, 0.06):
         pv = K.empty("remote stick pivot", (sx, 0.0, 0.025), parent=root)
         K.cyl("remote stick", (0, 0.0, 0.03), 0.008, 0.06, dark, parent=pv)
-        kn = K.sph("remote stick knob", (0, 0.0, 0.065), 0.02, K.mat("remote knob red", "#C8201A", rough=0.35), parent=pv)   # red knobs, so the two sticks read
+        kn = K.sph("remote stick knob", (0, 0.0, 0.065), 0.02, lw_rubber("remote knob red", "#C8201A", rough=0.5), parent=pv)   # red knobs, so the two sticks read
         sticks.append((pv, kn))
     lw_local(root)
     root.rotation_euler = (0, 0, yaw)
@@ -1739,9 +1774,9 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     """THE DIGGER: a yellow tracked excavator facing +X, an open operator's deck on its -Y side where he stands at two
     control sticks, the boom on its +Y side: boom, stick and a toothed bucket, each on its own pivot empty.
     Returns dict(boom, stick, bucket, sticks=[(pivot, knob)], load)."""
-    yel = lw_noise("digger yellow worn", "#E8A80C", "#9C7418", scale=9, rough=0.5, bump=0.15, lo=0.55, hi=0.85)      # worn paint, dust in its seams
+    yel = lw_paint("digger yellow worn", "#E8A80C", rough=0.5)      # worn paint, dust in its seams
     dark = lw_metal("digger steel", "#2C2C2E", rough=0.5)
-    track = lw_noise("track rubber", "#1A1A1A", "#2E2E2E", scale=60, rough=0.9, bump=0.8, stretch=(1, 8, 1))
+    track = lw_rubber("track rubber", "#1E1E1E", rough=0.9)
     for sy in (-0.72, 0.72):
         K.box("digger track", (0.1, sy, 0.22), (2.5, 0.42, 0.44), track, bev=0.12)
         for x in (-0.95, -0.3, 0.35, 1.0):
@@ -1769,19 +1804,19 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     for x in (-1.15, -0.35):
         K.cyl("digger grab rail post", (x, -0.66, 1.42), 0.015, 0.12, rail, v=8)
     K.cyl("digger grab rail", (-0.75, -0.66, 1.48), 0.015, 0.82, rail, rot=(0, math.pi / 2, 0), v=8)
-    blk = K.mat("stripe black", "#1A1A1A", rough=0.6)
+    blk = lw_paint("stripe black", "#1A1A1A", rough=0.6)
     for k in range(5):
         o = K.box("digger warning stripe", (-1.43, -0.45 + 0.3 * k, 0.82), (0.02, 0.09, 0.62), blk, bev=0.0)
         o.rotation_euler = (math.radians(35), 0, 0)
     K.box("digger step", (0.25, -0.88, 0.5), (0.4, 0.14, 0.03), dark, bev=0.005)
     sticks = []
-    if knob_pts: K.box("digger seat back", (-0.1, -0.45, S2_DECK + 0.5), (0.08, 0.4, 0.45), K.mat("seat black", "#1E1E1E", rough=0.7), bev=0.03)
+    if knob_pts: K.box("digger seat back", (-0.1, -0.45, S2_DECK + 0.5), (0.08, 0.4, 0.45), lw_rubber("seat black", "#1E1E1E", rough=0.7), bev=0.03)
     for kx, ky, kz in knob_pts:                           # the two control towers in front of him, a stick on each
         top = kz - 0.135
         K.box("digger control tower", (kx + 0.03, ky, (S2_DECK + top) / 2), (0.1, 0.1, top - S2_DECK), dark, bev=0.01)
         pv = K.empty("control stick pivot", (kx, ky, top))
         K.cyl("control stick", (kx, ky, top + 0.06), 0.012, 0.12, dark, parent=pv)
-        knob = K.sph("control stick knob", (kx, ky, kz), 0.03, K.mat("knob black", "#141414", rough=0.4), parent=pv)
+        knob = K.sph("control stick knob", (kx, ky, kz), 0.03, lw_rubber("knob black", "#141414", rough=0.5), parent=pv)
         sticks.append((pv, knob))
     K.box("digger lamp", (0.2, -0.02, S2_DECK + 1.3), (0.1, 0.12, 0.06), lw_emit("digger lamp", "#FFF2D0", 12.0), bev=0.01)
     boom = K.empty("digger boom", tuple(S2_BOOM))
@@ -1792,7 +1827,7 @@ def s2_digger(knob_pts=((0.46, -0.58, S2_DECK + 0.545), (0.46, -0.3, S2_DECK + 0
     K.cyl("digger stick ram", (S2_BOOM.x + S2_L1 - 0.9, S2_BOOM.y, S2_BOOM.z + 0.28), 0.06, 1.5, chrome, rot=(0, math.pi / 2, 0), parent=boom)
     K.cyl("digger stick ram barrel", (S2_BOOM.x + S2_L1 - 1.4, S2_BOOM.y, S2_BOOM.z + 0.28), 0.08, 0.8, barrel, rot=(0, math.pi / 2, 0), parent=boom)
     for k_ in range(3):                                   # the hoses run up the boom
-        K.cyl("digger hose", (S2_BOOM.x + S2_L1 / 2, S2_BOOM.y + 0.15, S2_BOOM.z + 0.12 + 0.04 * k_), 0.018, S2_L1 * 0.9, K.mat("hose black", "#121212", rough=0.6), rot=(0, math.pi / 2, 0), parent=boom)
+        K.cyl("digger hose", (S2_BOOM.x + S2_L1 / 2, S2_BOOM.y + 0.15, S2_BOOM.z + 0.12 + 0.04 * k_), 0.018, S2_L1 * 0.9, lw_rubber("hose black", "#121212", rough=0.6), rot=(0, math.pi / 2, 0), parent=boom)
     stick = K.empty("digger stick", (S2_BOOM.x + S2_L1, S2_BOOM.y, S2_BOOM.z), parent=boom)
     K.cyl("digger bucket ram", (S2_BOOM.x + S2_L1 + 0.9, S2_BOOM.y, S2_BOOM.z + 0.2), 0.05, 1.3, chrome, rot=(0, math.pi / 2, 0), parent=stick)
     K.box("digger stick arm", (S2_BOOM.x + S2_L1 + S2_L2 / 2, S2_BOOM.y, S2_BOOM.z), (S2_L2, 0.2, 0.24), yel, bev=0.04, parent=stick)
@@ -1811,7 +1846,7 @@ def s2_truck(name, col="#E3A112"):
     """a yellow dump truck facing +Y: a cab, a raised-sided steel bed full of black rock, six wheels, headlights on"""
     root = K.empty(name, (0, 0, 0))
     yel = lw_paint(f"truck paint {col}", col, rough=0.45); dark = lw_metal("truck steel", "#2E2E30", rough=0.55)
-    tyre = K.mat("car tyre", "#141414", rough=0.8)
+    tyre = lw_rubber("car tyre", "#141414", rough=0.8)
     K.box(name + " cab", (0, 1.3, 1.0), (1.3, 0.9, 1.0), yel, bev=0.06, parent=root)
     K.box(name + " windscreen", (0, 1.76, 1.2), (1.1, 0.02, 0.4), K.mat("car glass", "#1E262C", rough=0.05, metal=0.3), bev=0.0, parent=root)
     K.box(name + " chassis", (0, 0.0, 0.5), (1.2, 3.4, 0.25), dark, bev=0.02, parent=root)
@@ -1878,8 +1913,8 @@ def place_wall_works():
         Dk["boom"].rotation_euler = (0, -a_, 0); Dk["stick"].rotation_euler = (0, -b_, 0)
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
-    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
-              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.6 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
+    lava_rock("works rubble", 650, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.24), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
+              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.25 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     for k, x0 in enumerate((-2.2, -1.5, 1.6, 2.3)):           # the tracks the machines have cut in it
@@ -1888,6 +1923,8 @@ def place_wall_works():
         ph_model("concrete_road_barrier", (x, y, s2_ground_z(x, y)), rot=(0, 0, r), scale=0.5, name=f"road barrier {k}")
     for k, (x, y) in enumerate(((-6.4, 1.6), (-6.0, 1.9), (-6.2, 2.3))):
         ph_model("cement_bag", (x, y, s2_ground_z(x, y) + 0.06 * k), rot=(0, 0, 0.4 * k), scale=0.5, name=f"cement bag {k}")
+    for k, (x, y, r) in enumerate(((-1.3, -0.9, 0.3), (1.4, -1.1, 1.1), (-2.4, 0.4, 2.0))):   # worn tyres off the machines, dumped about the works
+        ph_model("old_tyre", (x, y, s2_ground_z(x, y)), rot=(math.radians(90) if k == 2 else 0, 0, r), scale=0.9, name=f"works tyre {k}")
     for k, (x, y) in enumerate(((5.2, 0.6), (5.6, 0.9))):
         ph_model("barrel_03", (x, y, s2_ground_z(x, y)), rot=(0, 0, k), scale=0.5, name=f"fuel drum {k}")
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
@@ -1912,7 +1949,7 @@ def shot2():
     P = place_wall_works()
     light = P["light"]
     data = load_data()
-    P0 = Vector((0.05, 0.2, 0.0)); YAW0 = math.radians(18)
+    P0 = Vector((0.05, 0.2, s2_ground_z(0.05, 0.2))); YAW0 = math.radians(18)
     PS = P0 + Vector((-0.12, 0.1, 0.0))                     # where he starts: he steps up to the work as he shoves
     data.place(PS.x, PS.y, math.degrees(YAW0))
     kit = hard_hat(data)
@@ -2140,7 +2177,7 @@ def s3_hose_nozzle():
     brass = lw_metal("nozzle brass", "#B8862E", rough=0.25)
     K.cyl("fire hose nozzle", (0, 0.0, 0.0), 0.028, 0.22, brass, rot=(math.pi / 2, 0, 0), v=20, parent=root)
     K.cyl("fire hose nozzle tip", (0, -0.13, 0.0), 0.018, 0.06, brass, rot=(math.pi / 2, 0, 0), v=16, parent=root)
-    K.cyl("fire hose grip", (0, 0.05, -0.05), 0.02, 0.09, K.mat("nozzle grip", "#1E1E1E", rough=0.6), v=12, parent=root)
+    K.cyl("fire hose grip", (0, 0.05, -0.05), 0.02, 0.09, lw_rubber("nozzle grip", "#1E1E1E", rough=0.6), v=12, parent=root)
     lw_local(root)
     return root
 
@@ -2265,7 +2302,7 @@ def shot3():
     keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
                       (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
                       (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
-    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.1, -0.03, -0.1)), (T_REL + 0.75, (0.07, -0.05, -0.15)), (DUR + 0.5, (0.07, -0.05, -0.15))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
+    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.11, 0.04, -0.09)), (T_REL + 0.75, (0.08, 0.09, -0.13)), (DUR + 0.5, (0.08, 0.1, -0.13))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
     data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     LENS = Vector((-0.6, -3.6, S3_H + 1.3))
@@ -2288,9 +2325,9 @@ def shot3():
     # the canvas hose: from the hydrant on the crest behind him, along the ground, up to the nozzle's tail
     cu = bpy.data.curves.new("fire hose line", 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = 0.02; cu.bevel_resolution = 3
     sp = cu.splines.new('BEZIER'); sp.bezier_points.add(3)
-    hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(K.mat("hose canvas", "#B8342A", rough=0.7))
+    hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(lw_canvas("hose canvas", "#B8342A"))
     HYD = Vector((P0.x - 1.4, P0.y + 0.6, S3_H))
-    K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, K.mat("hydrant red", "#C8231B", rough=0.4), v=16)
+    K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
         tail = noz.matrix_world @ Vector((0, 0.12, 0)); foot = data.arm.matrix_world.translation
@@ -2417,11 +2454,11 @@ def s4_barrow():
     for y in (0.055, 0.545):
         K.cyl("wheelbarrow tray rim", (0, y, 0.365), 0.012, 0.43, rim, rot=(0, math.pi / 2, 0), v=10, parent=root)
     for sx in (-1, 1):
-        K.cyl("wheelbarrow handle grip", (sx * 0.1, 0.7, 0.255), 0.02, 0.1, K.mat("grip black", "#151515", rough=0.7), rot=(math.radians(-90 + 17), 0, 0), v=12, parent=root)
-    K.cyl("wheelbarrow wheel", (0, 0, 0), 0.1, 0.06, K.mat("car tyre", "#141414", rough=0.8), rot=(0, math.pi / 2, 0), v=24, parent=root)
+        K.cyl("wheelbarrow handle grip", (sx * 0.1, 0.7, 0.255), 0.02, 0.1, lw_rubber("grip black", "#151515", rough=0.7), rot=(math.radians(-90 + 17), 0, 0), v=12, parent=root)
+    K.cyl("wheelbarrow wheel", (0, 0, 0), 0.1, 0.06, lw_rubber("barrow tyre", "#141414", rough=0.8), rot=(0, math.pi / 2, 0), v=24, parent=root)
     K.cyl("wheelbarrow hub", (0, 0, 0), 0.03, 0.07, steel, rot=(0, math.pi / 2, 0), v=12, parent=root)
-    sand = lw_noise("sandbag hessian", "#8A7448", "#B29A68", scale=90, rough=0.95, bump=1.0, stretch=(1, 1, 1))   # a coarse weave
-    tie = K.mat("sandbag tie", "#4A3A22", rough=0.9)
+    sand = lw_canvas("sandbag hessian", "#9A8456")   # a coarse weave
+    tie = lw_canvas("sandbag tie", "#4A3A22")
     for k, (x, y, rz) in enumerate(((-0.085, 0.22, 0.1), (0.085, 0.24, -0.08), (0.0, 0.4, 1.45), (-0.02, 0.33, 0.05))):
         sb = K.box(f"wheelbarrow sandbag {k}", (x, y, 0.255 + 0.05 * (k > 2)), (0.15, 0.26, 0.075), sand, bev=0.035, parent=root)
         sb.rotation_euler = (0, 0, rz)
@@ -2819,7 +2856,7 @@ def place_harbour_dawn():
     K.box("quay concrete", ((x1 + 14.2) / 2, 3.6, -0.128), (14.2 - x1, 2.4, 0.24), qc, bev=0.02)    # and along the basin's side to the foot of the town
     for k in range(9):                                   # its expansion joints
         K.box("quay joint", (-1.0 + 1.6 * k, 0.4, 0.0), (0.02, 4.0, 0.005), K.mat("quay joint", "#3A3836", rough=0.9), bev=0.0)
-    edge = K.mat("quay edge paint", "#D9B32E", rough=0.6)
+    edge = lw_paint("quay edge paint", "#D9B32E", rough=0.6)
     K.box("quay edge", (S5_EDGE_X + 0.1, -2.0, 0.03), (0.2, 7.0, 0.06), edge, bev=0.01)
     K.box("quay edge", (S5_EDGE_X + (x1 - S5_EDGE_X) / 2, y0 - 0.12, 0.03), (x1 - S5_EDGE_X, 0.2, 0.06), edge, bev=0.01)
     K.box("quay edge", (x1 + 0.1, (y0 + 4.8) / 2, 0.03), (0.2, 4.8 - y0, 0.06), edge, bev=0.01)
@@ -2840,16 +2877,16 @@ def place_harbour_dawn():
     for k, (x, y, yaw) in enumerate(((-1.0, 4.4, 0.0), (-1.9, 6.4, 0.05), (-2.9, 4.2, -0.04), (-3.9, 6.2, 0.08))):
         s5_boat(f"fishing boat {k}", (x, y), yaw, ("#2E5E8A", "#C33A2A", "#2E7A5A", "#1F3A5A")[k], ("#C33A2A", "#2E5E8A", "#E9E4D6", "#D9B32E")[k], seed=k)
     home = town_house("his town house", (5.6, 3.6, 0.0), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.3, roof="#2F5E8C", wall="#F1EEE6", seed=3)
-    iron = lw_metal("hook iron", "#2E3033")
+    iron = lw_rust("hook iron", "#3A3430")
     # the hook is on a TIMBER MOORING PILE at the quay's edge (board: "the white post reads as nothing"): a tarred
     # round pile, iron bands, a mooring rope coiled round its foot
-    pile = lw_noise("pile timber", "#2E2620", "#4A3E32", scale=14, rough=0.85, bump=0.6, stretch=(1, 1, 6))
+    pile = lw_wood("pile timber", "#5A4A3A", scale=0.5)
     px_ = S5_HOOK.x + 0.17
     K.cyl("lantern post", (px_, S5_HOOK.y, 0.45), 0.085, 0.9, pile, v=20)
     K.cyl("lantern post cap", (px_, S5_HOOK.y, 0.91), 0.088, 0.03, iron, v=20)
     for bz in (0.25, 0.7):
         K.cyl("lantern post band", (px_, S5_HOOK.y, bz), 0.09, 0.035, iron, v=20)
-    rope = K.mat("mooring rope", "#B79A62", rough=0.9)
+    rope = lw_canvas("mooring rope", "#B79A62")
     for j in range(3):
         K.cyl("mooring rope", (px_, S5_HOOK.y, 0.04 + 0.035 * j), 0.125 + 0.012 * j, 0.03, rope, v=24)
     K.box("lantern hook arm", (S5_HOOK.x + 0.06, S5_HOOK.y, S5_HOOK.z + 0.05), (0.2, 0.025, 0.025), iron, bev=0.004)
@@ -2964,7 +3001,7 @@ def shot5():
     # after the let-go: the lantern hand comes down slowly; his free hand waves up at the first window that lights,
     # comes down, then both spread wide to us
     AK = {carry: [(T_LET + 0.9, (0.07, 0.1, -0.07)), (T_ASK + 0.05, (0.07, 0.1, -0.08)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))],
-          other: [(T_LET + 0.75, (0.06, 0.14, 0.03)), (T_LET + 1.0, (0.03, 0.16, 0.08)), (T_LET + 1.22, (0.03, 0.13, 0.09)), (T_LET + 1.44, (0.03, 0.16, 0.08)),
+          other: [(T_LET + 0.95, (0.06, 0.14, 0.03)), (T_LET + 1.2, (0.03, 0.16, 0.08)), (T_LET + 1.42, (0.03, 0.13, 0.09)), (T_LET + 1.64, (0.03, 0.16, 0.08)),
                   (T_ASK + 0.05, (0.08, 0.1, -0.06)), (T_ASK + 0.45, (0.06, 0.16, 0.04)), (DUR + 0.4, (0.06, 0.16, 0.05))]}
     down_fn = lw_hand(data, carry, AK[carry])
     def carry_path(t):                                       # ONE job for the lantern hand: carry, hang, then down slowly
@@ -2983,7 +3020,7 @@ def shot5():
         else:
             lan.location = S5_HOOK; lan.rotation_euler = (0, swing(t), 0)
         lan.keyframe_insert("location", frame=f); lan.keyframe_insert("rotation_euler", frame=f)
-    data.reach(other, lw_hand(data, other, AK[other]), AK[other][0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.4)
+    data.reach(other, lw_hand(data, other, AK[other]), AK[other][0][0], DUR + 0.3, lead=1.0, back=None, elbow_out=0.4)
     # ---- face and head: one feeling per moment, held
     LENS = Vector((0.2, -2.4, 0.6))
     data.look_at(Vector((0.3, -2.4, 0.7)), 0.0, max_yaw=60, max_pitch=30, blend=0.0)      # his face to us as he comes (board: glasses off his face in profile)
