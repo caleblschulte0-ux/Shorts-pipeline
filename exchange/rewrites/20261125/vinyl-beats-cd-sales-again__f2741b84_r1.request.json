@@ -98,10 +98,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Pivots to streaming's 84% share and vinyl as a small niche; this doesn't follow from or extend the vinyl-beats-CDs proof"
+  "premise: brain: The pitch is a flat 'vinyl outsold CDs' fun fact with no stake, threat or belief-flipping twist for the viewer, and the beats are just three restated comparisons ending on a mild 'small niche' note."
  ],
  "reasons": [
-  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Pivots to streaming's 84% share and vinyl as a small niche; this doesn't follow from or extend the vinyl-beats-CDs proof"
+  "premise: brain: The pitch is a flat 'vinyl outsold CDs' fun fact with no stake, threat or belief-flipping twist for the viewer, and the beats are just three restated comparisons ending on a mild 'small niche' note."
  ],
  "judge": null,
  "prior_rejection": [
@@ -138,5 +138,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-25T14:00:04Z"
+ "refiled": "2026-11-25T15:27:28Z"
 }

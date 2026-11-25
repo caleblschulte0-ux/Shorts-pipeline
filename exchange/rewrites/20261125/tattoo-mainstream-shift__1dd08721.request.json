@@ -110,12 +110,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Women's 37% is a demographic subgroup stat that adds another fact rather than following from beat 0's doubling. It also ",
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: The share with more than one tattoo is a separate stat about tattoo count. It does not explain or prove why a third of A"
+  "premise: brain: The pitch is a flat trend stat (tattoo share doubled) with no concrete twist, threat or belief overturned for the viewer, and the hook's \"warning sign to Tuesday\" framing is generic and doesn't promise a specific surprise or stake."
  ],
  "reasons": [
-  "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Women's 37% is a demographic subgroup stat that adds another fact rather than following from beat 0's doubling. It also ",
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: The share with more than one tattoo is a separate stat about tattoo count. It does not explain or prove why a third of A"
+  "premise: brain: The pitch is a flat trend stat (tattoo share doubled) with no concrete twist, threat or belief overturned for the viewer, and the hook's \"warning sign to Tuesday\" framing is generic and doesn't promise a specific surprise or stake."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -149,5 +147,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-25T14:00:04Z"
+ "refiled": "2026-11-25T15:27:27Z"
 }

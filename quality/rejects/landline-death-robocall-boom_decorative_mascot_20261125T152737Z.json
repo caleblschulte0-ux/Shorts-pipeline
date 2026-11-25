@@ -1,0 +1,16 @@
+{
+ "slug": "landline-death-robocall-boom",
+ "ts": "20261125T152737Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:mid Data really saws the drop lines off the pole. From seg2 on he only stands beside the machine: thumbs-up next to the switchboard (seg2:start, seg2:end), then idle by a safe holding a no-call sign while the building's windows light up by themselves (seg3:start to seg3:en",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end: windows light up to show 29.3B, then 52.8B robocalls, past the 2016 line. Data stands still at the far left beside a safe, holding a red no-sign, with nothing to do with the windows filling.",
+  "root_cause": "The scene casts Data as a bystander. The windows light on a timer, and nobody in the shot is causing the rise in calls.",
+  "repair_goal": "Make Data the cause or the target of the calls. For example, he moves along the building and each window lights and rings as he passes, or he is at a switch sending the call wave up the floors. His hands should be on the part that moves, and the 1.8x rise should finish by land_by."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

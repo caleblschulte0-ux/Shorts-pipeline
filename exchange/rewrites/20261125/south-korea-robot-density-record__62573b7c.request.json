@@ -102,10 +102,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The hook promises a surprise it never delivers (the country isn't named, and it's a flat ranking), the title's 'more robots than people' contradicts the beats (1,220 per 10,000 workers is about 12%), and the stakes for a viewer are a trivia comparison of robot density by country."
+  "premise: brain: The hook promises a surprise ('isn't the one you think') but the beats reveal only a ranked list of robot-density statistics, with no stake for the viewer, and the title's 'more robots than people' claim is a hyperbole the data (1,220 per 10,000 workers) does not support."
  ],
  "reasons": [
-  "premise: brain: The hook promises a surprise it never delivers (the country isn't named, and it's a flat ranking), the title's 'more robots than people' contradicts the beats (1,220 per 10,000 workers is about 12%), and the stakes for a viewer are a trivia comparison of robot density by country."
+  "premise: brain: The hook promises a surprise ('isn't the one you think') but the beats reveal only a ranked list of robot-density statistics, with no stake for the viewer, and the title's 'more robots than people' claim is a hyperbole the data (1,220 per 10,000 workers) does not support."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -138,5 +138,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-25T15:27:27Z"
 }
