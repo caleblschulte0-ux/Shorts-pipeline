@@ -172,7 +172,7 @@ def place_wall_works():
     """THE WALL WORKS in the blue evening: the trodden gravel of the works, the earth wall's black face rising across the
     whole frame, floodlight masts along its foot, other diggers at work along it, the eruption's smoke over the crest."""
     rnd = lw_random.Random(21)
-    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#2F2B27", name="works gravel", rough=0.95))   # REAL gravel (Poly Haven)
+    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.2, tint="#3A3632", name="works rock ground", rough=0.95))   # REAL black lava rock, trodden (Poly Haven)
     wall = earth_wall("earth wall", [(x, S2_WALL_Y + 0.006 * x * x) for x in range(-30, 32, 2)], h=S2_WALL_H, crest=1.4, base=S2_BASE, seed=4)
     lava_rock("works rock", 90, (-12, 12, -6, S2_FOOT - 0.2), s2_ground_z, seed=6, r=(0.08, 0.26),
               avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.2) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (6.6 < x < 9.0 and -3.4 < y < 1.0))
@@ -231,11 +231,14 @@ def place_wall_works():
         ph_model("old_tyre", (x, y, s2_ground_z(x, y)), rot=(math.radians(90) if k == 2 else 0, 0, r), scale=0.9, name=f"works tyre {k}")
     for k, (x, y) in enumerate(((5.2, 0.6), (5.6, 0.9))):
         ph_model("barrel_03", (x, y, s2_ground_z(x, y)), rot=(0, 0, k), scale=0.5, name=f"fuel drum {k}")
+    for k, x in enumerate((-7.5, -1.0, 5.5)):   # the eruption's smoke along the whole wall, lit from under by its glow
+        lw_steam(f"eruption smoke {k}", (x, S2_WALL_Y + 7.0 + 2 * k, S2_WALL_H - 1.5), w=4.5, h=14.0, seed=5.1 * k + 2, col=(0.22, 0.2, 0.21),
+                 dens=2.2, lean=(0.6, 0.3), rise=1.0, grow=False, t_end=12.0)
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
 
     def light():
         k = iceland_light(sun_elev=1, sun_az=-40, sun=0.4, sky=0.11, warm=(0.8, 0.72, 1.0), haze=0.35)     # blue evening going to night: the floodlights carry the works
-        ph_sky("qwantani_dusk_2_puresky", strength=0.07, rot=math.radians(200))       # a REAL dusk sky (Poly Haven)
+        ph_sky("industrial_sunset_puresky", strength=0.22, rot=math.radians(200))       # a REAL evening sky with its clouds (Poly Haven): not a bare gradient
         return k
     return dict(light=light, wall=wall, masts=masts, far=far)
 
@@ -254,8 +257,8 @@ def shot2():
     light = P["light"]
     data = load_data()
     P0 = Vector((0.05, 0.2, s2_ground_z(0.05, 0.2))); YAW0 = math.radians(18)
-    PS = P0 + Vector((-0.12, 0.1, 0.0))                     # where he starts: he steps up to the work as he shoves
-    data.place(PS.x, PS.y, math.degrees(YAW0))
+    PS = P0 + Vector((-0.12, 0.1, 0.0)); PS.z = s2_ground_z(PS.x, PS.y)                     # where he starts: he steps up to the work as he shoves
+    data.place(PS.x, PS.y, math.degrees(YAW0)); data._kobj(0.0, loc=tuple(PS))      # on the works ground, not at z 0 over it
     kit = hard_hat(data)
     remote, sticks = s2_remote(data)
     # ---- the digger: built facing +X at the origin, then set down behind him facing the wall (+Y)
@@ -424,13 +427,13 @@ def shot2():
     # REDESIGN after board round 3 ("eye level with a small bank behind him"; the brief asks for a LOW lens looking up at
     # him and a towering wall): the lens at his knees, tipped up, the black face rising behind him to its crest with
     # the sky above it, the digger's arm swinging up past it
-    CAM = Vector((0.46, -0.9, 0.3)); LOOK = Vector((-4.0, 6.0, 2.5))
+    CAM = Vector((0.46, -0.9, 0.3)); LOOK = Vector((-4.0, 6.0, 0.9))
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=20.0, fstop=32.0)      # the works sharp all the way to the sky
     # CUT to the WIDE as the bucket goes over (board round 2: "no three-storey wall", "one digger", "the bucket never
     # tips over a crest"): low beyond his digger, along the wall's line, the black face towering up the frame, the diggers and
     # trucks along it under the floodlights, his bucket tipping over the crest, him small at the sticks
     T_W0, T_W1 = T_TOP - 0.2, T_DUCK - 0.1
-    CW = Vector((-6.5, -4.0, 1.3)); LW = Vector((0.5, 6.5, 2.6))      # from the far side of his digger: his face, turned to the bucket, comes to this lens (KEYS: not his back)
+    CW = Vector((-6.5, -4.0, 1.3)); LW = Vector((0.5, 6.5, 0.2))      # from the far side of his digger: his face, turned to the bucket, comes to this lens (KEYS: not his back)
     lw_cut(cam, lambda t: (CAM + (LOOK - CAM).normalized() * (0.07 + 0.17 * (1 - ease(min(1.0, t / (0.3 * DUR))))), LOOK, data.pos() + Vector((0, 0, 0.6))),
            lambda t: (CW + Vector((0.15, 0.1, 0.0)) * (t - T_W0), LW, Vector((-2.0, 4.0, 2.0))), T_W0, T_W1, 20.0, 16.0)
     arm_objs = lambda: meshes([D["boom"]])
