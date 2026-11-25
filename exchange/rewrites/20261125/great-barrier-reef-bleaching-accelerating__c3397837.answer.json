@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "great-barrier-reef-bleaching-accelerating__c3397837",
+  "slug": "great-barrier-reef-bleaching-accelerating",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:30:00.000Z",
+  "title": "The Great Barrier Reef Gets Two Years To Heal",
+  "hook": "Bleaching now returns long before damaged coral can recover.",
+  "closing": "Each early bleaching wave resets recovery, trapping the reef in repeated damage.",
+  "question": "Can the reef recover fast enough?",
+  "segments": [
+    {
+      "topic": "Reef Bleaching Accelerates",
+      "say": "The reef has bleached three times this decade. A rare crisis has become routine."
+    },
+    {
+      "topic": "Reef Bleaching Returns",
+      "say": "The average gap between recent bleaching events is two years. Damage now returns before recovery settles."
+    },
+    {
+      "topic": "Reef Recovery Gap",
+      "say": "Coral typically needs 10 years to recover but gets only two. The next wave arrives eight years too soon."
+    }
+  ]
+}
