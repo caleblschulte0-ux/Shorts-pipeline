@@ -1,0 +1,45 @@
+{
+  "schema": "shorts-ask-answers/v1",
+  "answers": {
+    "3655917cff807a30": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The two-cent coin's short life does not follow from the taxpayer-savings reason the penny is ending.\",\"2\":\"The nickel's production loss is a side comparison, not a consequence or reversal of the penny's longevity.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "c5deb55c6fb99c1d": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":10,\"factual\":14,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Connect the history beat directly to why the penny survived despite its losses, so the script builds one argument before the nickel twist.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "8bd6fed078bcefa4": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "4c00125812ec7e3e": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete cultural trigger and promises the surprising scale that one television release nearly tripled monthly Chess.com signups.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "a13ddba7ae506621": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a pictureable astronomical jackpot: one town saw twice in seven years what a typical location waits centuries to see.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "fbff4eecd74f3604": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete environmental reversal—a shrinking Gulf dead zone suddenly more than doubled—and promises the pollution mechanism behind it.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "3d3c0e6e07355c64": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives the Moon's slow escape a clear, irreversible consequence: total solar eclipses will eventually disappear.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "78f608aef7d85140": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a strong conflict viewers can picture: seabed rocks hold four times land cobalt reserves while a growing bloc of countries demands a pause.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    }
+  }
+}
