@@ -937,6 +937,22 @@ _FAVOR_WORDS = re.compile(r"\bgta\s*(?:6|vi)\b|grand theft auto\s*(?:6|vi)\b",
                           re.I)
 
 
+# A CLIP EVERYONE HAS SEEN IS A CLIP EVERYONE HAS POSTED (2026-11-24,
+# operator: "This channel sucks. Why?"). Velocity is views per hour, so it
+# kept picking the most watched clips on Twitch, and once GTA 6 launched
+# (11-19) the median pick went from 3.3k source views to 20k. Our clips of
+# those got a median of 1 view and 16 of 36 got none at all: dozens of
+# clipper channels had the same footage up first, and the feed serves one
+# copy. Measured on our own posts: under 10k source views, median 12-16;
+# over 20k, median 3 with 40% at zero. So past `saturated_views` the score
+# stops growing with views: among saturated clips the freshest wins, and a
+# 5k clip climbing fast beats a 30k one everyone already uploaded.
+def _unsaturated(c, spec) -> float:
+    sat = float(spec.get("saturated_views", 10000))
+    views = float(c.get("views") or 0)
+    return 1.0 if views <= sat or sat <= 0 else sat / views
+
+
 def _favored(c: dict, ids: set) -> bool:
     return bool(c.get("favored")
                 or (c.get("game_id") and str(c["game_id"]) in ids)
@@ -3104,12 +3120,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     _true = c["age_true_h"]
                     if _true and _true > float(spec.get("fresh_h", 48)):
                         c["score"] *= float(spec.get("stale_factor", 0.3))
+                    c["score"] *= _unsaturated(c, spec)
                 # candidates past the probe window keep a raw-view proxy (age
                 # unknown -> assume ~24h) so a thin day can still surface them,
                 # but a measured fast-climber always outranks the proxy.
                 for c in cands[age_probe:]:
                     c["vph"] = c["views"] / 24.0
                     c["score"] = c["vph"] * _fit(c["channel"], c)
+                    c["score"] *= _unsaturated(c, spec)
                 cands.sort(key=lambda c: -c["score"])
                 shortlist = cands[:8]
                 # BANGER PRE-SCORER (playbook §banger): velocity says a clip
