@@ -910,7 +910,7 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
                                                "shot_plan", "outro",
-                                               "cut_in", "shown",
+                                               "cut_in", "cut_in_s", "shown",
                                                "music", "own_captions")
                        if k in led} | {"talking": talk},
             "songs": songs_in(led)}
