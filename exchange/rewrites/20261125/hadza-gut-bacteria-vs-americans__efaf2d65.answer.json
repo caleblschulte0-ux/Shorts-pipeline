@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hadza-gut-bacteria-vs-americans__efaf2d65",
+  "slug": "hadza-gut-bacteria-vs-americans",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:30:00.000Z",
+  "title": "Why Modern American Guts Lost Bacterial Variety",
+  "hook": "A hunter-gatherer's gut holds far more bacterial variety than an American's.",
+  "closing": "Modern diets feed fewer microbes, while unnecessary antibiotics can remove even more.",
+  "question": "How much fiber did you eat?",
+  "segments": [
+    {
+      "topic": "Gut Bacteria Gap",
+      "say": "The Hadza carry 730 gut bacteria species, versus 277 in the average American. Modern guts hold far less variety."
+    },
+    {
+      "topic": "Gut Fiber Gap",
+      "say": "The Hadza eat 150 grams of fiber daily. That fuel helps support their richer gut ecosystem."
+    },
+    {
+      "topic": "Gut Antibiotic Pressure",
+      "say": "Thirty-four percent of US outpatient antibiotic prescriptions were likely unnecessary. Modern guts face another avoidable pressure."
+    }
+  ]
+}
