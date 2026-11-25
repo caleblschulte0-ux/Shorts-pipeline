@@ -36,6 +36,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE)); import boardlint   # the staging recipe the reviser is given (store/boardlint.py RECIPE)
 STORIES = HERE.parent / "stories"
 CHECKS = re.compile(r"^(VARIETY|FRAMING|STAGING|CONSEQUENCE|ENDING|ANATOMY|CLIPPING|TWITCH shot \d+:|FACE|STEADY|HANDS|BOARD|POP|HOLD|READ|FAR|EMPTY|SHOT|Traceback|\w*Error)")
 PASS = int(re.search(r"^PASS_SCORE = (\d+)", (HERE / "judge3d.py").read_text(), re.M).group(1))   # the judge's own bar, read, never restated
@@ -161,6 +162,8 @@ behind him one flat, bare region):
 The proof's contact sheet (every few frames, left to right, top to bottom) is {sheet}: READ it first.
 
 {history}
+{recipe}
+
 Fix the CAUSE the judge names, the way a film director would: stage for this one camera, make the action and its
 result big and clear in frame, keep Data's face to the lens, give him acting (a pose, a reaction) rather than a
 held stare: data.perform(name, t) acts a feeling with his WHOLE body (happy, surprised, alarmed, sad, worried,
@@ -284,7 +287,7 @@ def revise(story, out, n, v, history, rethink=""):
     src = out / "board" if v.get("board") else out     # a shot the storyboard stopped is revised from its stills
     checks = (src / f"s{n}.checks.txt").read_text() if (src / f"s{n}.checks.txt").exists() else "(none)"
     prompt = REVISER.format(n=n, story=story, path=path, brief=brief, score=v.get("score"), verdict=verdict, pass_score=PASS,
-                            checks=checks, sheet=src / f"sheet_s{n}.jpg", work=work,
+                            checks=checks, sheet=src / f"sheet_s{n}.jpg", work=work, recipe=boardlint.RECIPE,
                             history=("Earlier attempts at this shot, and what the judge gave them (the best one is "
                                      "what you are editing now; do not repeat what scored lower):\n" + "\n".join(history) + "\n")
                             if history else "") + rethink

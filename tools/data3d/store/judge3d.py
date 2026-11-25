@@ -220,6 +220,22 @@ def main():
         fr = sorted((proof / f"s{n}").glob("f*.png"))
         if not fr: print(f"JUDGE3D: shot {n} has no proof frames"); return 1
         sheets.append((n, strip(fr, proof / f"sheet_s{n}.jpg"), len(fr)))
+    # THE PRE-FLIGHT (store/preflight3d.py, 2026-11-25): on a storyboard round, one cheap look ticks every promise of
+    # FOR + SAYS + the world against a still of this exact sheet (its sha256) before the panel is spent on it. A shot
+    # with an unticked claim does not reach the panel this round; no look at all is no round. It only adds a block.
+    grounded = []
+    if os.environ.get("JUDGE3D_BOARD") == "1":
+        import preflight3d
+        pre = preflight3d.gate(story, sheets)
+        if any(r["status"] == "no_look" for r in pre.values()):
+            print("JUDGE3D: the pre-flight got no answer: no pre-flight, no panel (fail closed)"); return 1
+        grounded = [preflight3d.verdict(pre[n_]) for n_, p_, _ in sheets if not preflight3d.passed(story, n_, p_)]
+        sheets = [(n_, p_, k_) for n_, p_, k_ in sheets if preflight3d.passed(story, n_, p_)]
+        if not sheets:
+            out.write_text(json.dumps({"shots": grounded + kept, "panel": 0}, indent=2))
+            report(grounded + kept, out)
+            for s in grounded: print(f"JUDGE3D shot {s['shot']}: not sent to the panel (pre-flight) FAIL")
+            return 2
     listing = "\n".join(f"- shot {n}: {p} ({k} frames in time order, left to right, top to bottom). FOR: {BRIEFS[n]}"
                         + (f"\n  SAYS (the narration over this shot; it must be SHOWN): {SAYS[n]}" if n in SAYS else "")
                         + (("\n" + notes_ledger.for_judge(story, n)) if notes_ledger.for_judge(story, n) else "")
@@ -245,9 +261,9 @@ def main():
     if len(panel) < (n // 2 + 1):
         print(f"JUDGE3D: only {len(panel)} of {n} judges answered: no pass")
         report([{"shot": n_, "score": None, "pass": False, "hard": [f"no verdict: only {len(panel)} of {n} judges answered"]}
-                for n_, _, _ in sheets] + kept, out)
+                for n_, _, _ in sheets] + grounded + kept, out)
         return 1
-    v = {"shots": list(kept), "panel": len(panel)}
+    v = {"shots": list(kept) + grounded, "panel": len(panel)}
     for n_, _, _ in sheets:
         votes = [j[n_] for j in panel if n_ in j]
         if not votes: v["shots"].append({"shot": n_, "score": 0, "pass": False, "hard": ["no judge graded this shot"]}); continue
