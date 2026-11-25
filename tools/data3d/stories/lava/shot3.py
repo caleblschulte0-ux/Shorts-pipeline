@@ -160,8 +160,8 @@ def shot3():
     keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
                       (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
                       (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
-    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.15, (0.12, 0.02, -0.06)), (T_REL + 0.5, (0.115, 0.08, 0.02)), (DUR + 0.15, (0.105, 0.15, 0.1)), (DUR + 0.5, (0.1, 0.16, 0.11))]
-    data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle, a fist up
+    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.1, -0.03, -0.1)), (T_REL + 0.75, (0.07, -0.05, -0.15)), (DUR + 0.5, (0.07, -0.05, -0.15))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
+    data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     LENS = Vector((-0.6, -3.6, S3_H + 1.3))
     data.look_at(Vector((XC, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)

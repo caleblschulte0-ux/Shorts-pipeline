@@ -1833,7 +1833,7 @@ def place_wall_works():
     """THE WALL WORKS in the blue evening: the trodden gravel of the works, the earth wall's black face rising across the
     whole frame, floodlight masts along its foot, other diggers at work along it, the eruption's smoke over the crest."""
     rnd = lw_random.Random(21)
-    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#2F2B27", name="works gravel"))   # REAL gravel (Poly Haven)
+    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#2F2B27", name="works gravel", rough=0.95))   # REAL gravel (Poly Haven)
     wall = earth_wall("earth wall", [(x, S2_WALL_Y + 0.006 * x * x) for x in range(-30, 32, 2)], h=S2_WALL_H, crest=1.4, base=S2_BASE, seed=4)
     lava_rock("works rock", 90, (-12, 12, -6, S2_FOOT - 0.2), s2_ground_z, seed=6, r=(0.08, 0.26),
               avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.2) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (6.6 < x < 9.0 and -3.4 < y < 1.0))
@@ -1878,7 +1878,7 @@ def place_wall_works():
         Dk["boom"].rotation_euler = (0, -a_, 0); Dk["stick"].rotation_euler = (0, -b_, 0)
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
-    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22),     # the black rock spilled across the works as it is trucked to the wall
+    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.6 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
@@ -2265,8 +2265,8 @@ def shot3():
     keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
                       (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
                       (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
-    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.15, (0.12, 0.02, -0.06)), (T_REL + 0.5, (0.115, 0.08, 0.02)), (DUR + 0.15, (0.105, 0.15, 0.1)), (DUR + 0.5, (0.1, 0.16, 0.11))]
-    data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle, a fist up
+    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.1, -0.03, -0.1)), (T_REL + 0.75, (0.07, -0.05, -0.15)), (DUR + 0.5, (0.07, -0.05, -0.15))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
+    data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     LENS = Vector((-0.6, -3.6, S3_H + 1.3))
     data.look_at(Vector((XC, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
@@ -2479,6 +2479,13 @@ def place_town_crack():
         y = -7.0 + 2.6 * k + rnd.uniform(-0.5, 0.5)
         if abs(y - S4_YC) < 1.4: continue
         o = K.box("road crack seal", (rnd.uniform(-1.2, 1.2), y, 0.012), (rnd.uniform(0.6, 1.4), 0.025, 0.004), patch, bev=0.0); o.rotation_euler = (0, 0, rnd.uniform(-0.6, 0.6)); bits.append(o)
+    bits += lava_rock("street rubble", 150, (-S4_KERB + 0.15, S4_KERB - 0.15, 1.6, 14.0), lambda x, y: 0.0, seed=45, r=(0.04, 0.12), moss=0.0,
+                      avoid=lambda x, y: abs(x) < 0.75 and y < 3.4)          # the bigger bombs the eruption threw over the town
+    patch2 = K.mat("road patch old", "#2B2B2E", rough=0.95)
+    for k in range(9):                                   # the old road's dug-up and re-laid squares
+        y = 1.8 + 1.4 * k + rnd.uniform(-0.3, 0.3); x = rnd.choice((-1, 1)) * rnd.uniform(0.85, 1.2)
+        o = K.box("road repair patch", (x, y, 0.006), (rnd.uniform(0.5, 0.9), rnd.uniform(0.5, 1.0), 0.004), patch2 if k % 2 else patch, bev=0.0)
+        o.rotation_euler = (0, 0, rnd.uniform(-0.08, 0.08)); bits.append(o)
     grate = lw_metal("drain grating", "#2A2B2D", rough=0.6)
     for k in range(6):
         for sx in (-1, 1):
@@ -2547,7 +2554,7 @@ def shot4():
             p.y = max(y_edge - 0.12, p.y - roll)
             tip = W(t, T_TIP, 0.6)
             pitch += math.radians(52) * tip                  # nose first into the gap, its wheel sinking into the glow
-            p.z -= 0.3 * tip; p.x += 0.42 * W(t, T_OPEN0 + 0.2, 1.0)      # rolling off toward the kerb as it goes
+            p.z -= 0.3 * tip; p.x += 1.0 * W(t, T_OPEN0 + 0.2, 1.0)       # rolling off toward the kerb as it goes: it burns off his line to the lens
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
     sc.frame_set(NF); bpy.context.view_layer.update()     # the barrow burns where it tipped: its sandbags and the tray catch
@@ -2938,7 +2945,7 @@ def shot5():
         p.z += 0.03 * W(t, T_HANG - 0.3, 0.25) * (1 - W(t, T_LET + 0.2, 0.3))                 # up on his toes to the hook
         p.x -= 0.05 * W(t, T_LET + 0.5, 0.5); p.y -= 0.1 * W(t, T_LET + 0.8, 0.45)   # a step back from it, and one toward us
         p.y -= 0.08 * W(t, T_ASK + 0.3, 0.7); p.z += 0.035 * lw_kick(t - T_ASK - 0.35, 0.22)   # and at the ask, a step to us and a shrug
-        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(35) * W(t, T_LET + 0.1, 0.5) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
+        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(30) * W(t, T_LET + 0.2, 1.0) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
         data._kobj(t, loc=tuple(p), rot=yaw)
     lw_layer(data, "spine", lambda t: (-8 * W(t, T_HANG - 0.3, 0.3) * (1 - W(t, T_LET, 0.3)) + 6 * W(t, T_LET + 0.1, 0.3) * (1 - W(t, T_TURN, 0.3))
                                        - 6 * W(t, T_ASK, 0.3), 0, 0), 0, DUR + 0.4)
@@ -2962,7 +2969,7 @@ def shot5():
     down_fn = lw_hand(data, carry, AK[carry])
     def carry_path(t):                                       # ONE job for the lantern hand: carry, hang, then down slowly
         if t <= T_LET: return hand_path(t)
-        return (hook_at(t) + Vector((0, 0, 0.005))).lerp(down_fn(t), W(t, T_LET, 0.9))
+        return (hook_at(t) + Vector((0, 0, 0.005))).lerp(down_fn(t), W(t, T_LET, 1.1))
     data.reach(carry, carry_path, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     def swing(t):                                           # after the let-go: a damped swing about the hook
         s = t - T_LET

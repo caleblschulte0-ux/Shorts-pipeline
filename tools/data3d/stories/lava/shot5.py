@@ -260,7 +260,7 @@ def shot5():
         p.z += 0.03 * W(t, T_HANG - 0.3, 0.25) * (1 - W(t, T_LET + 0.2, 0.3))                 # up on his toes to the hook
         p.x -= 0.05 * W(t, T_LET + 0.5, 0.5); p.y -= 0.1 * W(t, T_LET + 0.8, 0.45)   # a step back from it, and one toward us
         p.y -= 0.08 * W(t, T_ASK + 0.3, 0.7); p.z += 0.035 * lw_kick(t - T_ASK - 0.35, 0.22)   # and at the ask, a step to us and a shrug
-        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(35) * W(t, T_LET + 0.1, 0.5) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
+        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(30) * W(t, T_LET + 0.2, 1.0) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
         data._kobj(t, loc=tuple(p), rot=yaw)
     lw_layer(data, "spine", lambda t: (-8 * W(t, T_HANG - 0.3, 0.3) * (1 - W(t, T_LET, 0.3)) + 6 * W(t, T_LET + 0.1, 0.3) * (1 - W(t, T_TURN, 0.3))
                                        - 6 * W(t, T_ASK, 0.3), 0, 0), 0, DUR + 0.4)
@@ -284,7 +284,7 @@ def shot5():
     down_fn = lw_hand(data, carry, AK[carry])
     def carry_path(t):                                       # ONE job for the lantern hand: carry, hang, then down slowly
         if t <= T_LET: return hand_path(t)
-        return (hook_at(t) + Vector((0, 0, 0.005))).lerp(down_fn(t), W(t, T_LET, 0.9))
+        return (hook_at(t) + Vector((0, 0, 0.005))).lerp(down_fn(t), W(t, T_LET, 1.1))
     data.reach(carry, carry_path, 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     def swing(t):                                           # after the let-go: a damped swing about the hook
         s = t - T_LET

@@ -172,7 +172,7 @@ def place_wall_works():
     """THE WALL WORKS in the blue evening: the trodden gravel of the works, the earth wall's black face rising across the
     whole frame, floodlight masts along its foot, other diggers at work along it, the eruption's smoke over the crest."""
     rnd = lw_random.Random(21)
-    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#2F2B27", name="works gravel"))   # REAL gravel (Poly Haven)
+    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#2F2B27", name="works gravel", rough=0.95))   # REAL gravel (Poly Haven)
     wall = earth_wall("earth wall", [(x, S2_WALL_Y + 0.006 * x * x) for x in range(-30, 32, 2)], h=S2_WALL_H, crest=1.4, base=S2_BASE, seed=4)
     lava_rock("works rock", 90, (-12, 12, -6, S2_FOOT - 0.2), s2_ground_z, seed=6, r=(0.08, 0.26),
               avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.2) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (6.6 < x < 9.0 and -3.4 < y < 1.0))
@@ -217,7 +217,7 @@ def place_wall_works():
         Dk["boom"].rotation_euler = (0, -a_, 0); Dk["stick"].rotation_euler = (0, -b_, 0)
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
-    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22),     # the black rock spilled across the works as it is trucked to the wall
+    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.6 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))

@@ -127,6 +127,13 @@ def place_town_crack():
         y = -7.0 + 2.6 * k + rnd.uniform(-0.5, 0.5)
         if abs(y - S4_YC) < 1.4: continue
         o = K.box("road crack seal", (rnd.uniform(-1.2, 1.2), y, 0.012), (rnd.uniform(0.6, 1.4), 0.025, 0.004), patch, bev=0.0); o.rotation_euler = (0, 0, rnd.uniform(-0.6, 0.6)); bits.append(o)
+    bits += lava_rock("street rubble", 150, (-S4_KERB + 0.15, S4_KERB - 0.15, 1.6, 14.0), lambda x, y: 0.0, seed=45, r=(0.04, 0.12), moss=0.0,
+                      avoid=lambda x, y: abs(x) < 0.75 and y < 3.4)          # the bigger bombs the eruption threw over the town
+    patch2 = K.mat("road patch old", "#2B2B2E", rough=0.95)
+    for k in range(9):                                   # the old road's dug-up and re-laid squares
+        y = 1.8 + 1.4 * k + rnd.uniform(-0.3, 0.3); x = rnd.choice((-1, 1)) * rnd.uniform(0.85, 1.2)
+        o = K.box("road repair patch", (x, y, 0.006), (rnd.uniform(0.5, 0.9), rnd.uniform(0.5, 1.0), 0.004), patch2 if k % 2 else patch, bev=0.0)
+        o.rotation_euler = (0, 0, rnd.uniform(-0.08, 0.08)); bits.append(o)
     grate = lw_metal("drain grating", "#2A2B2D", rough=0.6)
     for k in range(6):
         for sx in (-1, 1):
@@ -195,7 +202,7 @@ def shot4():
             p.y = max(y_edge - 0.12, p.y - roll)
             tip = W(t, T_TIP, 0.6)
             pitch += math.radians(52) * tip                  # nose first into the gap, its wheel sinking into the glow
-            p.z -= 0.3 * tip; p.x += 0.42 * W(t, T_OPEN0 + 0.2, 1.0)      # rolling off toward the kerb as it goes
+            p.z -= 0.3 * tip; p.x += 1.0 * W(t, T_OPEN0 + 0.2, 1.0)       # rolling off toward the kerb as it goes: it burns off his line to the lens
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
     sc.frame_set(NF); bpy.context.view_layer.update()     # the barrow burns where it tipped: its sandbags and the tray catch
