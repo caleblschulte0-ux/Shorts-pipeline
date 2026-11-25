@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "drug-resistant-infections-2050__b78ec002",
+  "slug": "drug-resistant-infections-2050",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:15:00.000Z",
+  "title": "Why Superbugs Could Rival Cancer By 2050",
+  "hook": "Drug resistance is turning routine infections into a global killing threat.",
+  "closing": "Using antibiotics carefully now can keep ordinary infections treatable later.",
+  "question": "Does antibiotic resistance worry you?",
+  "segments": [
+    {
+      "topic": "Superbug Deaths",
+      "say": "Drug resistance directly killed 1.27 million people in 2019. The threat is already global."
+    },
+    {
+      "topic": "Superbug Projection",
+      "say": "By 2050, resistant infections are projected to kill 10 million yearly. The toll could rise nearly eightfold."
+    },
+    {
+      "topic": "Superbugs Versus Cancer",
+      "say": "That projected 10 million equals today's annual cancer deaths. Superbugs could become a cancer-sized killer."
+    }
+  ]
+}
