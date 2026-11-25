@@ -2141,12 +2141,15 @@ us, pleased."""
 S3_H = 4.4                     # the wall (as built in the works beat)
 S3_CREST = 1.6
 S3_BASE = 8.6
-S3_YAW = 6.0                  # his body, between the lava (0) and the lens
-S3_CAMD = (1.0, -4.5, 2.75)    # the lens from his feet: ALONG the wall, a little out over the lava side, over his head
-S3_LOOKD = (0.0, -0.3, 0.0)
-S3_LENS = 60.0
-S3_FACE = (0.52, 0.85)
-S3_STEAM = (0.6, 0.8)
+S3_YAW = -12.0                  # his body, between the lava (0) and the lens
+S3_CAMD = (-2.1, -2.5, 2.2)    # the lens from his feet: ALONG the wall, a little out over the lava side, over his head
+S3_LOOKD = (0.0, 0.0, 0.2)
+S3_LENS = 50.0
+S3_FACE = (0.36, 0.7)
+S3_XC = -0.25
+S3_GLOWL = []
+S3_PHI = math.radians(0.0)   # the tongue comes in across the field on this bearing
+S3_STEAM = (0.3, 0.5)
 S3_FACE_Y = -S3_CREST / 2      # the crest's outer edge (y); the outer face runs down to the foot at -S3_BASE / 2
 
 
@@ -2156,7 +2159,7 @@ def s3_face_z(y):
     return S3_H * 0.97 * max(0.0, min(1.0, (y - y0) / (y1 - y0)))
 
 
-S3_PILE = S3_H - 0.5           # the old lava heaped against the face: the field rises to here, a man's height and more of black wall still standing over it
+S3_PILE = S3_H - 0.36           # the old lava heaped against the face: the field rises to here, a man's height and more of black wall still standing over it
 
 
 def s3_ground_z(x, y):
@@ -2188,8 +2191,8 @@ def place_wall_crest():
     lw_grid("lava field ground", -30, 30, -30, 30, 90, 90, s3_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven)
     wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8, clear=lambda x, y: abs(x + 0.2) < 0.4 and abs(y + 0.6) < 0.34)
     # the crest is HEAPED CRUSHED ROCK (board B1, and six rounds before it: "a smooth flat band, like asphalt"): a lumpy bed of real rock with loose stones all over it
-    lw_grid("crest rock bed", -14, 14, -S3_CREST / 2 - 0.4, S3_CREST / 2 + 0.4, 220, 26,                  # a ROUNDED heap: its shoulders roll off into the faces (board B2: "a slab with a clean overhanging lip")
-            lambda x, y: S3_H + 0.012 + 0.036 * lw_vn(x * 7.0, y * 7.0, 51) - 0.5 * max(0.0, abs(y) - 0.68 - 0.06 * lw_vn(x * 2.0, 3.0, 9)) ** 1.5,
+    lw_grid("crest rock bed", -14, 14, -S3_CREST / 2 - 0.14, S3_CREST / 2 + 0.14, 220, 22,                  # a ROUNDED heap: its shoulders roll off into the faces (board B2: "a slab with a clean overhanging lip")
+            lambda x, y: S3_H + 0.012 + 0.036 * lw_vn(x * 7.0, y * 7.0, 51) - 1.6 * max(0.0, abs(y) - 0.74 - 0.05 * lw_vn(x * 2.0, 3.0, 9)) ** 1.3,
             ph_mat("aerial_rocks_02", scale=0.45, tint="#3A3632", name="crest crushed rock"))
     lava_rock("crest gravel", 700, (-8.0, 8.0, -S3_CREST / 2, S3_CREST / 2), lambda x, y: S3_H + 0.02, seed=61, r=(0.02, 0.065), moss=0.0,
               avoid=lambda x, y: abs(x + 0.2) < 0.36 and abs(y + 0.6) < 0.3)
@@ -2200,13 +2203,14 @@ def place_wall_crest():
         y = (-S3_CREST / 2 + rc_.uniform(-0.12, 0.1)) if front else (S3_CREST / 2 + rc_.uniform(-0.1, 0.15))
         r = rc_.uniform(0.09, 0.22)
         lw_block("crest boulder", (x, y, S3_H + r * 0.45), r, rk_, rc_, squash=0.75)
-    for k in range(0):                                    # (the town is behind and below the wall: not in this lens, which looks down the face from the lava side): street after street of tin roofs
-        hx_, hy_ = -12.6 + 3.5 * (k % 8) + rnd.uniform(-0.1, 0.1), 13.0 + 4.8 * (k // 8) + 0.3 * (k % 2)
-        hx_ += rnd.uniform(-0.5, 0.5); hy_ += rnd.uniform(0.0, 2.2)                      # a town, not a row of fronts: every house its own size, set back its own distance, gaps between
-        town_house(f"town house below {k}", (hx_, hy_, S3_H - 1.5 + 0.9 * (k // 8) + rnd.uniform(-0.25, 0.1)), yaw=rnd.uniform(-0.3, 0.3), w=rnd.uniform(2.2, 3.0), d=rnd.uniform(2.2, 2.8),
+    for k in range(20):                                    # (the town is behind and below the wall: not in this lens, which looks down the face from the lava side): street after street of tin roofs
+        d_ = 13.5 + 4.6 * (k // 5) + rnd.uniform(-0.8, 0.8); l_ = 3.6 * (k % 5 - 2) + rnd.uniform(-0.7, 0.7)      # down the lens's line, BEHIND and BELOW the wall, on the town's own ground
+        hx_, hy_ = -0.2 + 0.707 * (d_ + l_), -0.6 + 0.707 * (d_ - l_)
+        if hy_ < 7.0: continue
+        town_house(f"town house below {k}", (hx_, hy_, s3_ground_z(hx_, hy_)), yaw=0.6 + rnd.uniform(-0.4, 0.4), w=rnd.uniform(2.2, 3.0), d=rnd.uniform(2.2, 2.8),
                    roof=ROOFS[(k * 3 + 1) % len(ROOFS)], wall=WALLS[(k * 2) % len(WALLS)], storeys=1, base=0.3, seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35), moss=0.0)
-    lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2), moss=0.0)        # the old lava heaped against the face: broken blocks
+    lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2), moss=0.0, avoid=lambda x, y: abs(x - S3_XC + 0.3 * (y + 1.5)) < 1.3 and y > -3.6)        # the old lava heaped against the face: broken blocks
     lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.0)   # the field outside the wall: broken black blocks, a little moss
     lava_rock("wall face rock", 260, (-14, 12, -4.2, -1.0), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=27, r=(0.08, 0.26), moss=0.0)   # the black rock it is built of, on its face
     lava_rock("wall face rock near", 420, (-7.0, 4.0, -1.45, -0.82), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=29, r=(0.06, 0.16), moss=0.0)
@@ -2239,26 +2243,26 @@ def shot3():
     # lava comes in as a TONGUE straight at the wall across the field, hits the face beside him, and TURNS: a new lobe
     # pushes out of its nose sideways along the wall's foot, away from the town's side, the tongue behind it crusting
     # over as a trail. Seen from above it is an L: the flow's path bent by the wall.
-    lm = lava_mat("lava front", heat=0.85, scale=3.5, fresh=0.4)
-    tm = lava_mat("lava tongue", heat=1.8, scale=3.0, fresh=0.3)     # HOT as it comes: a crusted tongue read as black rock in the first still
+    lm = lava_mat("lava front", heat=1.3, scale=3.5, fresh=0.45)
+    tm = lava_mat("lava tongue", heat=2.2, scale=3.0, fresh=0.45)     # HOT as it comes: a crusted tongue read as black rock in the first still
     Y_FACE = -S3_BASE / 2 + (S3_PILE / (S3_H * 0.97)) * (S3_BASE / 2 - S3_CREST / 2 - 0.1)   # where the heap meets the face
     Y_HIT = Y_FACE - 0.3
-    XC = -0.3                                              # where the tongue strikes the face: right under him
+    XC = S3_XC                                             # where the tongue strikes the face: right under him
     tout = []
     for k in range(25):
         a = 2 * math.pi * k / 25
-        tout.append((0.34 * math.cos(a) + 0.03 * math.sin(3 * a), 1.0 * math.sin(a) + 0.05 * math.cos(4 * a)))
+        tout.append((0.5 * math.cos(a) + 0.04 * math.sin(3 * a), 0.7 * math.sin(a) + 0.05 * math.cos(4 * a)))
     tongue = lava("lava tongue", tout, z=0.0, thick=0.2, m=tm, seed=7, lumpy=0.07)
     out = []
     for k in range(25):                                    # the deflected lobe: long along the wall, its nose to -X
         a = 2 * math.pi * k / 25
-        out.append((0.62 * math.cos(a) + 0.06 * math.sin(3 * a), 0.3 * math.sin(a) + 0.03 * math.cos(5 * a)))
+        out.append((0.9 * math.cos(a) + 0.07 * math.sin(3 * a), 0.4 * math.sin(a) + 0.04 * math.cos(5 * a)))
     front = lava("lava front", out, z=0.0, thick=0.2, m=lm, seed=4, lumpy=0.08)
     Z_LAVA = S3_PILE - 0.3
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = ease(min(1.0, max(0.0, (t - T_ROLL) / (T_HIT - T_ROLL)))); v = W(t, T_HIT - 0.05, T_SLIDE + 0.9 - T_HIT)
-        tip = (Y_HIT - 0.7) + 1.0 * u                      # in the first still its glowing nose is already in frame, a metre off the wall's foot
-        tongue.location = (XC, tip - 1.0, S3_PILE - 0.03)     # ON the old heap's rocks, not under them: it is seen coming in the first still; tongue.keyframe_insert("location", frame=f)
+        tip = (Y_HIT - 0.1) + 0.4 * u                      # in the first still its glowing nose is already in frame, a metre off the wall's foot
+        s_ = Y_HIT - (tip - 0.7); tongue.location = (XC + math.sin(S3_PHI) * s_, Y_HIT - math.cos(S3_PHI) * s_, S3_PILE - 0.03); tongue.rotation_euler = (0, 0, S3_PHI); tongue.keyframe_insert('location', frame=f)     # ON the old heap's rocks, not under them: it is seen coming in the first still; tongue.keyframe_insert("location", frame=f)
         sq = 1.0 - 0.1 * lw_kick(t - T_HIT, 0.2)
         tongue.scale = (1.0 + 0.15 * lw_kick(t - T_HIT, 0.3), sq, 1.0 + 0.2 * lw_kick(t - T_HIT, 0.25)); tongue.keyframe_insert("scale", frame=f)
         sx = 0.12 + 0.88 * v
@@ -2272,7 +2276,7 @@ def shot3():
     rb = lw_random.Random(23)
     for k in range(14):
         a_ = rb.uniform(0, 2 * math.pi); rr = math.sqrt(rb.random())
-        b_ = lw_block("tongue crust", (0.22 * rr * math.cos(a_), 0.8 * rr * math.sin(a_), 0.16 + rb.uniform(0, 0.04)), rb.uniform(0.04, 0.09), cm_, rb, squash=0.5)
+        b_ = lw_block("tongue crust", (0.34 * rr * math.cos(a_), 0.55 * rr * math.sin(a_), 0.16 + rb.uniform(0, 0.04)), rb.uniform(0.04, 0.09), cm_, rb, squash=0.5)
         b_.parent = tongue; b_.rotation_euler = (rb.uniform(-0.3, 0.3), rb.uniform(-0.3, 0.3), rb.uniform(0, 6.3))
     fb = []
     for k in range(40):
@@ -2285,14 +2289,17 @@ def shot3():
         for o_, bx, by, tilt, spin, lag in fb:
             on = t >= T_HIT - 0.06 + lag * 0.4
             buck = W(t, T_HIT + lag, 0.6) * max(0.0, by)          # the side against the face piles up and tips over
-            o_.location = (fx + 0.6 * sx * bx, Y_HIT + 0.12 + 0.3 * by, (fz + 0.17 + 0.14 * buck) if on else -6.0)
+            o_.location = (fx + 0.9 * sx * bx, Y_HIT + 0.12 + 0.4 * by, (fz + 0.17 + 0.14 * buck) if on else -6.0)
             o_.rotation_euler = (tilt + 0.9 * buck, 0.6 * buck * bx, spin + 0.3 * v)
             o_.keyframe_insert("location", frame=f); o_.keyframe_insert("rotation_euler", frame=f)
     lava_flow_key(tm, 0.0, DUR + 0.5, 0.1, axis=1)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.18)
-    heat = lm.node_tree.nodes["lava heat"].inputs[1]
+    heat = lm.node_tree.nodes["lava heat"].inputs[1]; heat_t = tm.node_tree.nodes["lava heat"].inputs[1]
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; heat.default_value = 1.1 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)) * (1 - 0.75 * W(t, T_SLIDE + 0.5, 1.0)); heat.keyframe_insert("default_value", frame=f)   # hosed, it crusts over: stopped
+        t = (f - 1) / FPS; cool = 1 - 0.9 * W(t, T_SLIDE + 0.3, T_THUMB - T_SLIDE)
+        heat.default_value = 1.1 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)) * cool; heat.keyframe_insert("default_value", frame=f)
+        heat_t.default_value = 2.2 * cool; heat_t.keyframe_insert("default_value", frame=f)
+        heat_c = cm_.node_tree.nodes["lava heat"].inputs[1]; heat_c.default_value = 1.5 * cool; heat_c.keyframe_insert("default_value", frame=f)   # hosed, it crusts over: stopped
     # glowing chunks the impact throws up off the face, falling back onto the front
     cm = lava_mat("lava chunk", heat=1.2, scale=14.0, fresh=0.7); rnd = lw_random.Random(3); chunks = []
     for k in range(8):
@@ -2316,8 +2323,8 @@ def shot3():
     # ---- his body: watching it come, a flinch at the hit, braced back as he opens up, turning with the slide
     yaw0 = math.radians(S3_YAW)
     def body_yaw(t):
-        return yaw0 + math.radians(14) * (1 - W(t, 0.0, T_HIT + 0.1)) - math.radians(24) * W(t, T_SLIDE - 0.2, 1.0) \
-            + math.radians(32) * W(t, T_THUMB - 0.3, 0.75)
+        return yaw0 + math.radians(10) * (1 - W(t, 0.0, T_HIT + 0.1)) - math.radians(10) * W(t, T_SLIDE - 0.2, 1.0) \
+            - math.radians(12) * W(t, T_THUMB - 0.3, 0.75)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; p = P0.copy()
         p.z += 0.03 * lw_kick(t - T_HIT, 0.2)                                       # a jolt at the hit
@@ -2344,7 +2351,7 @@ def shot3():
     data.reach(sides[0], lw_hand(data, sides[0], k0), -0.6, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), -0.6, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     LENS = P0 + Vector(S3_CAMD)
-    data.look_at(Vector((XC, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
+    data.look_at(Vector((XC, Y_HIT - 1.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
     data.look_at(Vector((XC - 0.3, Y_HIT, S3_PILE + 0.4)), T_HIT - 0.15, max_yaw=50, max_pitch=22, blend=0.15)
     data.look_at(aim(T_SPRAY), T_SPRAY, max_yaw=50, max_pitch=22, blend=0.25)
     data.look_at(aim(T_SLIDE + 0.7), T_SLIDE + 0.1, max_yaw=50, max_pitch=22, blend=0.3)
@@ -2364,18 +2371,19 @@ def shot3():
     cu = bpy.data.curves.new("fire hose line", 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = 0.02; cu.bevel_resolution = 3
     sp = cu.splines.new('BEZIER'); sp.bezier_points.add(3)
     hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(lw_canvas("hose canvas", "#B8342A"))
-    HYD = Vector((P0.x - 0.42, P0.y + 0.5, S3_H))            # the hose GOES somewhere: a real hydrant (Poly Haven) on the crest right behind him, in frame
+    HYD = Vector((P0.x + 0.8, P0.y + 0.2, S3_H))            # the hose GOES somewhere: a real hydrant (Poly Haven) on the crest right behind him, in frame
     try: ph_model("fire_hydrant", (HYD.x, HYD.y, S3_H + 0.02), rot=(0, 0, 0.4), scale=0.42, name="fire hydrant", only=("fire_hydrant", "fire_hydrant_cap_01", "fire_hydrant_cap_02", "fire_hydrant_cap_03", "fire_hydrant_chain"))
     except FileNotFoundError: K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
     glowl = [lw_point(f"lava front glow {k_}", (XC - 0.45 + 0.45 * k_, Y_HIT + 0.1, S3_PILE + 0.5), 0.0, col=(1.0, 0.42, 0.1), r=0.3) for k_ in range(3)]   # the front LIGHTS the wall's face and him
+    S3_GLOWL[:] = glowl
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS
-        for g_ in glowl: g_.data.energy = 22.0 * W(t, T_HIT - 0.3, 0.5) * (1 - 0.6 * W(t, T_SLIDE + 0.5, 1.0)); g_.data.keyframe_insert("energy", frame=f)
+        for g_ in glowl: g_.data.energy = 22.0 * W(t, T_HIT - 0.3, 0.5) * (1 - 0.9 * W(t, T_SLIDE + 0.3, T_THUMB - T_SLIDE)); g_.data.keyframe_insert("energy", frame=f)
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
         tail = noz.matrix_world @ Vector((0, 0.12, 0)); foot = data.arm.matrix_world.translation
-        pts = [HYD + Vector((0.05, -0.02, 0.16)), Vector((foot.x - 0.3, foot.y + 0.25, S3_H + 0.07)),
-               Vector((foot.x - 0.15, foot.y + 0.2, S3_H + 0.06)), tail]
+        pts = [HYD + Vector((-0.05, -0.02, 0.16)), Vector((foot.x + 0.38, foot.y + 0.1, S3_H + 0.07)),
+               Vector((foot.x + 0.16, foot.y + 0.22, S3_H + 0.06)), tail]
         for bp, q in zip(sp.bezier_points, pts):
             bp.co = q; bp.handle_left_type = bp.handle_right_type = 'AUTO'
             bp.keyframe_insert("co", frame=f)
@@ -2407,8 +2415,15 @@ def shot3():
     # STEAM as a gas: ONE white cloud boils up off the lava where the jet lands and keeps growing while he sprays
     t0 = T_SPRAY + 0.05
     steam = [lw_fire_column("lava steam 0", (XC - 0.08, Y_HIT + 0.15, S3_PILE + 0.1), w=S3_STEAM[0], h_fire=0.15, h_smoke=S3_STEAM[1], lean=(-0.1, -0.1), t_end=DUR + 1.0,
-                            seed=7.1, fire=0.0, smoke_d=24.0, smoke=(0.95, 0.96, 0.97), rise=2.2, flame_d=0.0, spread=0.3,
+                            seed=7.1, fire=0.0, smoke_d=12.0, smoke=(0.95, 0.96, 0.97), rise=2.2, flame_d=0.0, spread=0.3,
                             keys=[(t0, 0.0), (t0 + 0.4, 0.7), (T_SLIDE + 0.3, 1.0), (DUR + 0.5, 1.0)], grow=True)]
+    try:                                                 # the lava's lamps light the rock and him, never the lava's own crust or the steam (lit orange, white steam went tan)
+        gc = bpy.data.collections.new("glow receivers"); bpy.context.scene.collection.children.link(gc)
+        for o_ in [tongue, front] + [o for o, *_ in fb] + [o for o in steam if hasattr(o, "name")]: gc.objects.link(o_)
+        for co_ in gc.collection_objects: co_.light_linking.link_state = 'EXCLUDE'
+        for l_ in S3_GLOWL: l_.light_linking.receiver_collection = gc
+    except Exception as e_:
+        print("S3 light linking unavailable:", e_, flush=True)
     for o_ in steam:                                     # steam is WHITE: where it is thick it carries a little light of its own, so it never greys out against the wall
         nt_ = o_.material_slots[0].material.node_tree
         pv_ = next(n for n in nt_.nodes if n.type == 'PRINCIPLED_VOLUME')
@@ -2425,7 +2440,7 @@ def shot3():
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=S3_LENS, fstop=11.0)
     print("S3 CAM", tuple(round(v, 2) for v in CAM), "fw", tuple(round(v, 2) for v in data.forward()), flush=True)
     def cam_at(t):                                          # it eases after the front as it slides off along the wall
-        mv = Vector((0.0, 0.1, 0.0)) * W(t, T_HIT - 0.1, 1.2)
+        mv = Vector((0.07, 0.07, 0.0)) * W(t, T_HIT - 0.1, 1.2)
         return CAM + mv, LOOK + mv * 0.9, data.pos() + Vector((0, 0, 0.5))
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, S3_LENS, S3_LENS)
     return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",), cutaway=None,
@@ -2618,7 +2633,7 @@ def shot4():
     # at the heat, beside his head from the lens, never over his face; the near arm low and forward, pushing it off
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     UP = lambda sg: ((-58, 0, -sg * 12), (-48, 0, -sg * 22), (-10, sg * -12, -sg * 15))
-    SHIELD = lambda sg: ((-82, 0, sg * 22), (-88, 0, sg * 14), (-10, sg * -12, -sg * 15))    # the forearm up across his face, palm out at the heat
+    SHIELD = lambda sg: ((-50, 0, -sg * 30), (-55, 0, -sg * 45), (-10, sg * -12, -sg * 15))    # the forearm up across his face, palm out at the heat
     LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     for sd in sides:
         sg = -1 if sd == "L" else 1
@@ -2709,19 +2724,27 @@ def shot4():
     glows = []
     for k_, (gx, gy, e_) in enumerate(((X0 + 0.15, 0.18, 14.0), (X0 + 0.9, 0.3, 8.0), (X0 + 1.8, 0.35, 8.0), (X0 + 0.6, -1.15, 8.0), (X0 + 1.7, -1.3, 10.0), (X0 + 2.9, -1.3, 10.0), (X0 + 4.2, -1.2, 10.0))):
         glows.append((lw_point(f"lava edge glow {k_}", (gx, gy, 0.3), 0.0, col=(1.0, 0.4, 0.08), r=0.15), e_))
-    steamw = lw_steam("crack steam", (X0 + 2.8, -0.2, 0.0), w=0.7, h=1.6, seed=8.5, col=(0.93, 0.94, 0.95), dens=9.0, lean=(0.2, 0.1), rise=2.0,
+    steamw = lw_steam("crack steam", (X0 + 2.8, -0.2, 0.0), w=0.55, h=1.1, seed=8.5, col=(0.96, 0.96, 0.96), dens=5.0, lean=(0.2, 0.1), rise=2.0,
                       keys=[(T_OPEN0 + 0.2, 0.0), (T_POUR + 0.3, 1.0), (DUR + 1.0, 1.0)], t_end=DUR + 1.0)       # white steam off the crack itself
     try:                                                   # the lamps light everything BUT the lava and its steam: lit from a hand away, black crust went tan
         gc = bpy.data.collections.new("glow receivers"); bpy.context.scene.collection.children.link(gc)
-        for o_ in [flow, tear] + ([steamw] if hasattr(steamw, "name") else []): gc.objects.link(o_)
+        for o_ in [flow, tear] + lips + ([steamw] if hasattr(steamw, "name") else []): gc.objects.link(o_)
         for co_ in gc.collection_objects: co_.light_linking.link_state = 'EXCLUDE'
         for l_, _e in glows: l_.light_linking.receiver_collection = gc
+        # and HE is lit orange by it: one warm lamp low on the lava side that lights only him, so the street keeps its grade
+        hc = bpy.data.collections.new("heat on him"); bpy.context.scene.collection.children.link(hc)
+        for o_ in bpy.data.objects:
+            p_ = o_
+            while p_ is not None and p_ is not data.arm: p_ = p_.parent
+            if p_ is data.arm and o_.type == 'MESH': hc.objects.link(o_)
+        heat = lw_point("heat on him", (X0 + 0.7, Y0 - 0.75, 0.35), 0.0, col=(1.0, 0.42, 0.1), r=0.25)
+        heat.light_linking.receiver_collection = hc; glows.append((heat, 220.0))
     except Exception as e_:
         print("S4 light linking unavailable:", e_, flush=True)
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS
         for n_, (l_, e_) in enumerate(glows):
-            l_.data.energy = e_ * (0.25 * W(t, T_TEAR, 0.3) * (n_ < 3) + 0.75 * W(t, T_POUR - 0.2 + 0.12 * n_, 0.7)); l_.data.keyframe_insert("energy", frame=f)
+            l_.data.energy = e_ * (0.25 * W(t, T_TEAR, 0.3) * (n_ < 3) + 0.75 * W(t, T_POUR - 0.2 + 0.12 * min(n_, 7 - n_), 0.7)); l_.data.keyframe_insert("energy", frame=f)
     data.finish()
     # ---- the lens: low in the street at his front left, looking up it: the crack across the bottom of the frame in
     # front of his boots, the houses down both sides behind him, the wall across the end of the street with its smoke

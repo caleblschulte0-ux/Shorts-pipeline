@@ -888,3 +888,19 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Frame 4: put his near arm up across his face, palm out, leaning away from the flow, with an orange rim light on his arm and face. That one pose carries the heat beat.
 - better: Land him by frame 3: feet on the road, knees bent from the jump, with a contact shadow.
 
+
+## 2026-11-25 19:57Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 72 | 72, 72, 74 | PASS |
+
+**shot 4** (PASS, 72, bar 70)
+
+- problem: Stills 2-4: the crack opens beside Data along the right side of the road rather than 'down the middle of the road at his feet'. It reads as the road splitting near him, not under him.
+- problem: Still 2: Data reaches one arm toward the crack, but he does not stagger back with both arms flung out. The fright reads mostly from his open mouth, which is a small face carrying a big beat.
+- problem: Stills 3-4: the hand nearest his face sits at his chin and reads as a thinking or worried pose, not a hand thrown up against the heat. His other arm still reaches toward the lava.
+- problem: Stills 3-4: the lava spreads across the right half of the road toward the camera, but it is never clearly seen running past the house doors. The right-hand house fronts stay clear of it.
+- problem: Stills 3-4: a lava field glowing a metre from Data barely warms his right side, coat or vest. He is lit only by the cool daylight, which makes him look slightly separate from the scene.
+- problem: Stills 3-4: the steam column over the crack is a soft, smeared grey blob. It still reads as steam, but it is near the line where it could read as a render artefact.
+

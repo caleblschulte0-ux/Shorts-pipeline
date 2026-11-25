@@ -179,7 +179,7 @@ def shot4():
     # at the heat, beside his head from the lens, never over his face; the near arm low and forward, pushing it off
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     UP = lambda sg: ((-58, 0, -sg * 12), (-48, 0, -sg * 22), (-10, sg * -12, -sg * 15))
-    SHIELD = lambda sg: ((-82, 0, sg * 22), (-88, 0, sg * 14), (-10, sg * -12, -sg * 15))    # the forearm up across his face, palm out at the heat
+    SHIELD = lambda sg: ((-50, 0, -sg * 30), (-55, 0, -sg * 45), (-10, sg * -12, -sg * 15))    # the forearm up across his face, palm out at the heat
     LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     for sd in sides:
         sg = -1 if sd == "L" else 1
@@ -270,19 +270,27 @@ def shot4():
     glows = []
     for k_, (gx, gy, e_) in enumerate(((X0 + 0.15, 0.18, 14.0), (X0 + 0.9, 0.3, 8.0), (X0 + 1.8, 0.35, 8.0), (X0 + 0.6, -1.15, 8.0), (X0 + 1.7, -1.3, 10.0), (X0 + 2.9, -1.3, 10.0), (X0 + 4.2, -1.2, 10.0))):
         glows.append((lw_point(f"lava edge glow {k_}", (gx, gy, 0.3), 0.0, col=(1.0, 0.4, 0.08), r=0.15), e_))
-    steamw = lw_steam("crack steam", (X0 + 2.8, -0.2, 0.0), w=0.7, h=1.6, seed=8.5, col=(0.93, 0.94, 0.95), dens=9.0, lean=(0.2, 0.1), rise=2.0,
+    steamw = lw_steam("crack steam", (X0 + 2.8, -0.2, 0.0), w=0.55, h=1.1, seed=8.5, col=(0.96, 0.96, 0.96), dens=5.0, lean=(0.2, 0.1), rise=2.0,
                       keys=[(T_OPEN0 + 0.2, 0.0), (T_POUR + 0.3, 1.0), (DUR + 1.0, 1.0)], t_end=DUR + 1.0)       # white steam off the crack itself
     try:                                                   # the lamps light everything BUT the lava and its steam: lit from a hand away, black crust went tan
         gc = bpy.data.collections.new("glow receivers"); bpy.context.scene.collection.children.link(gc)
-        for o_ in [flow, tear] + ([steamw] if hasattr(steamw, "name") else []): gc.objects.link(o_)
+        for o_ in [flow, tear] + lips + ([steamw] if hasattr(steamw, "name") else []): gc.objects.link(o_)
         for co_ in gc.collection_objects: co_.light_linking.link_state = 'EXCLUDE'
         for l_, _e in glows: l_.light_linking.receiver_collection = gc
+        # and HE is lit orange by it: one warm lamp low on the lava side that lights only him, so the street keeps its grade
+        hc = bpy.data.collections.new("heat on him"); bpy.context.scene.collection.children.link(hc)
+        for o_ in bpy.data.objects:
+            p_ = o_
+            while p_ is not None and p_ is not data.arm: p_ = p_.parent
+            if p_ is data.arm and o_.type == 'MESH': hc.objects.link(o_)
+        heat = lw_point("heat on him", (X0 + 0.7, Y0 - 0.75, 0.35), 0.0, col=(1.0, 0.42, 0.1), r=0.25)
+        heat.light_linking.receiver_collection = hc; glows.append((heat, 220.0))
     except Exception as e_:
         print("S4 light linking unavailable:", e_, flush=True)
     for f in range(1, NF + 1, 2):
         t = (f - 1) / FPS
         for n_, (l_, e_) in enumerate(glows):
-            l_.data.energy = e_ * (0.25 * W(t, T_TEAR, 0.3) * (n_ < 3) + 0.75 * W(t, T_POUR - 0.2 + 0.12 * n_, 0.7)); l_.data.keyframe_insert("energy", frame=f)
+            l_.data.energy = e_ * (0.25 * W(t, T_TEAR, 0.3) * (n_ < 3) + 0.75 * W(t, T_POUR - 0.2 + 0.12 * min(n_, 7 - n_), 0.7)); l_.data.keyframe_insert("energy", frame=f)
     data.finish()
     # ---- the lens: low in the street at his front left, looking up it: the crack across the bottom of the frame in
     # front of his boots, the houses down both sides behind him, the wall across the end of the street with its smoke

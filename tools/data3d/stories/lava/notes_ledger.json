@@ -1,5 +1,5 @@
 {
- "rounds": 11,
+ "rounds": 12,
  "shots": {
   "1": {
    "BROKEN": {
@@ -1173,11 +1173,17 @@
   },
   "4": {
    "BODY": {
+    "closed": 12,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
       "round": 1,
       "what": "the leap back after letting go is bigger (0.32 m back, 0.13 m up)"
+     },
+     {
+      "at": "2026-11-25 19:46Z",
+      "round": 11,
+      "what": "B3 fix: the leap is over before still 2 and done by still 3; both feet are planted with a contact shadow in all four board stills (hops retimed to land between stills); the arm nearest the flow comes up to shield his face in stills 3-4 and a warm lamp that lights only him puts orange on his lava side"
      }
     ],
     "named": [
@@ -1194,6 +1200,7 @@
     ]
    },
    "BROKEN": {
+    "closed": 12,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1234,6 +1241,11 @@
       "at": "2026-11-25 18:15Z",
       "round": 8,
       "what": "B1 restage: the sandbag is seen in his arms, falling in mid-air as he jumps, and lying on the road beside him to the end; the crack now runs down the middle of the frame, not along its bottom edge"
+     },
+     {
+      "at": "2026-11-25 19:46Z",
+      "round": 11,
+      "what": "B3 fix: the tan fume column is deleted; the only steam is a small white wisp standing on the crack itself from the moment it opens; the one dark eruption plume stands behind the wall in every still"
      }
     ],
     "named": [
@@ -1280,6 +1292,7 @@
     ]
    },
    "CONSEQUENCE": {
+    "closed": 12,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1361,6 +1374,7 @@
     ]
    },
    "NOT SHOWN": {
+    "closed": 12,
     "fixes": [
      {
       "at": "2026-11-24 12:09Z",
@@ -1447,6 +1461,7 @@
     ]
    },
    "NOT THE WORLD": {
+    "closed": 12,
     "fixes": [
      {
       "at": "2026-11-24 12:07Z",
@@ -1477,6 +1492,11 @@
       "at": "2026-11-25 16:55Z",
       "round": 6,
       "what": "reset restage: all four stills are the same daylight street with painted tin houses down both sides and the same cloud sky; the world block now says one bright day"
+     },
+     {
+      "at": "2026-11-25 19:46Z",
+      "round": 11,
+      "what": "B3 fix: the big orange lamps are gone; the heat is seven small lamps a hand above the road along the flow's edges, light-linked off the lava and steam, so the road, kerbs and house fronts keep the same grey daylight grade in all four stills; the wall across the street end is the shared heaped black-rock berm with boulders on its crest and rubble at its foot"
      }
     ],
     "named": [
@@ -1518,6 +1538,7 @@
     ]
    },
    "OFF THE LOOK": {
+    "closed": 12,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1594,6 +1615,7 @@
     ]
    },
    "TINY DATA": {
+    "closed": 12,
     "fixes": [],
     "named": [
      {
