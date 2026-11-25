@@ -39145,10 +39145,10 @@
   },
   {
    "slug": "us-stops-making-pennies-232-years",
-   "title": "Why America Finally Killed The Penny",
-   "hook": "The US was losing money on every penny and nickel it made.",
-   "closing": "The penny's long run ends because minting pocket change stopped making financial sense.",
-   "question": "Would you miss the penny?",
+   "title": "The Penny Is Gone, But The Nickel Costs More",
+   "hook": "America ended one money-losing coin while keeping an even costlier one.",
+   "closing": "Ending the penny saves money, but the nickel leaves the same problem unresolved.",
+   "question": "Should America stop making nickels?",
    "caption": "Making a penny costs 3.69 cents for something worth one. After 232 years, the US is finally pulling the plug — and the nickel loses even more. Would you miss it? 👇",
    "hashtags": [
     "penny",
@@ -39165,8 +39165,8 @@
     "finance"
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:40Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-25T12:23:48Z",
    "hook_was": "It costs more to make than it's worth — so they're done.",
    "segments": [
     {
@@ -39178,7 +39178,7 @@
      "insight_type": "comparison",
      "role": "1 · WHAT STOPPING IS WORTH",
      "topic": "Penny Annual Loss",
-     "say": "Making pennies cost taxpayers 86 million dollars a year, more than the coin was worth."
+     "say": "Making pennies lost 86 million dollars yearly. Ending production finally stops most of that waste."
     },
     {
      "source": "offline",
@@ -39190,7 +39190,7 @@
      "ascending": false,
      "role": "2 · HOW LONG IT RAN",
      "topic": "Penny Long Run",
-     "say": "That decision ends the penny's 232-year run, far longer than any other coin the US ever dropped."
+     "say": "The penny lasted 232 years before costs ended its run. No other discontinued coin survived nearly as long."
     },
     {
      "source": "offline",
@@ -39200,8 +39200,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COIN THAT'S WORSE",
-     "topic": "Nickel Bigger Loss",
-     "say": "The nickel is even worse: it costs 13.78 cents to make a coin worth five."
+     "topic": "Penny Nickel Problem",
+     "say": "A nickel costs 13.78 cents to make. Killing the penny leaves an even larger loss in circulation."
     }
    ],
    "scorecard": {

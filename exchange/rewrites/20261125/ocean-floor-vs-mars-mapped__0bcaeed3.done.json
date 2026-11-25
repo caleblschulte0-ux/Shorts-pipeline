@@ -1,0 +1,11 @@
+{
+ "id": "ocean-floor-vs-mars-mapped__0bcaeed3",
+ "slug": "ocean-floor-vs-mars-mapped",
+ "settled": "2026-11-25T12:23:47Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Grows",
+  "segment 1: new named entity not in the data: Trails",
+  "segment 2: new named entity not in the data: Scale"
+ ]
+}

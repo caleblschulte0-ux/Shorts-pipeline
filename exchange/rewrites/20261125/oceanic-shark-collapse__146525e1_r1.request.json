@@ -1,0 +1,166 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "oceanic-shark-collapse__146525e1_r1",
+ "filed": "2026-11-25T12:23:48Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "oceanic-shark-collapse",
+ "current": {
+  "title": "The Ocean Lost 71% Of Its Sharks Since 1970",
+  "hook": "Your ocean lost 71% of its sharks, and nobody noticed.",
+  "closing": "Three out of four of the sharks still out there are already on the extinction list.",
+  "question": "Did you know sharks vanished this fast?",
+  "segments": [
+   {
+    "topic": "Sharks lost",
+    "say": "By 2018, the open ocean had lost 71% of its sharks and rays. That's most of them, gone in one lifetime."
+   },
+   {
+    "topic": "Sharks by species",
+    "say": "The oceanic whitetip fell 98%, and hammerheads and makos lost most of theirs too. This isn't one unlucky species."
+   },
+   {
+    "topic": "Sharks at risk",
+    "say": "Today, three out of four oceanic shark and ray species face extinction. Most of the ones left are already in danger."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Sharks lost",
+   "say": "By 2018, the open ocean had lost 71% of its sharks and rays. That's most of them, gone in one lifetime.",
+   "role": "1 · THE DROP",
+   "data": {
+    "file": "oceanic_shark_abundance_index.json",
+    "unit": "index",
+    "title": "Global oceanic shark and ray abundance (index, 1970=100)",
+    "points": [
+     {
+      "label": "1970",
+      "value": 100,
+      "period": "1970"
+     },
+     {
+      "label": "1980",
+      "value": 88,
+      "period": "1980"
+     },
+     {
+      "label": "1990",
+      "value": 70,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 50,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 35,
+      "period": "2010"
+     },
+     {
+      "label": "2018",
+      "value": 29,
+      "period": "2018"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Sharks by species",
+   "say": "The oceanic whitetip fell 98%, and hammerheads and makos lost most of theirs too. This isn't one unlucky species.",
+   "role": "2 · NOT EQUAL",
+   "data": {
+    "file": "oceanic_shark_species_decline.json",
+    "unit": "percent",
+    "title": "Population decline by species since 1970 (percent)",
+    "points": [
+     {
+      "label": "Oceanic whitetip shark",
+      "value": 98
+     },
+     {
+      "label": "Scalloped hammerhead",
+      "value": 80
+     },
+     {
+      "label": "Shortfin mako shark",
+      "value": 60
+     },
+     {
+      "label": "Blue shark",
+      "value": 40
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Sharks at risk",
+   "say": "Today, three out of four oceanic shark and ray species face extinction. Most of the ones left are already in danger.",
+   "role": "3 · THE RISK",
+   "data": {
+    "file": "oceanic_shark_extinction_risk_share.json",
+    "unit": "percent",
+    "title": "Share of oceanic shark & ray species threatened with extinction",
+    "points": [
+     {
+      "label": "Threatened with extinction",
+      "value": 75
+     },
+     {
+      "label": "Not currently threatened",
+      "value": 25
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "repeat: the TITLE is too close to a video already up: 'The World Lost 35% Of Its Wetlands Since 1970'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
+ ],
+ "reasons": [
+  "repeat: the TITLE is too close to a video already up: 'The World Lost 35% Of Its Wetlands Since 1970'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
+ ],
+ "judge": null,
+ "prior_rejection": [
+  "segment 0: new named entity not in the data: Falls"
+ ],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1_r1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

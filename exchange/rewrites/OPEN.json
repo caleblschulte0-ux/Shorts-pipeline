@@ -1,11 +1,63 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-25T12:21:41Z",
+ "updated": "2026-11-25T12:23:48Z",
  "open": [
+  {
+   "id": "ocean-is-changing-color__39dee9bf_r1",
+   "slug": "ocean-is-changing-color",
+   "filed": "2026-11-25T12:23:48Z",
+   "why": [
+    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261125/ocean-is-changing-color__39dee9bf_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/ocean-is-changing-color__39dee9bf_r1.answer.json"
+  },
+  {
+   "id": "oceanic-shark-collapse__146525e1_r1",
+   "slug": "oceanic-shark-collapse",
+   "filed": "2026-11-25T12:23:48Z",
+   "why": [
+    "repeat: the TITLE is too close to a video already up: 'The World Lost 35% Of Its Wetlands Since 1970'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
+   ],
+   "request": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1_r1.answer.json"
+  },
+  {
+   "id": "south-korea-robot-density-record__0a9c11d9_r1",
+   "slug": "south-korea-robot-density-record",
+   "filed": "2026-11-25T12:23:48Z",
+   "why": [
+    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: It's just a comparative fact, not a logical continuation of beat 0.",
+    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Introduces China data unrelated to the prior US comparison and doesn't follow logically."
+   ],
+   "request": "exchange/rewrites/20261125/south-korea-robot-density-record__0a9c11d9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/south-korea-robot-density-record__0a9c11d9_r1.answer.json"
+  },
+  {
+   "id": "blood-type-rarity__b15ee3cb_r1",
+   "slug": "blood-type-rarity",
+   "filed": "2026-11-25T12:23:47Z",
+   "why": [
+    "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh-negative prevalence generally, not the specific rare blood type, and doesn't follow from beat 0.",
+    "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Focuses on donor ethnic distribution of common types, unrelated to the rarity of the single blood type."
+   ],
+   "request": "exchange/rewrites/20261125/blood-type-rarity__b15ee3cb_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/blood-type-rarity__b15ee3cb_r1.answer.json"
+  },
+  {
+   "id": "cohabitation-overtakes-marriage__3abe4654_r1",
+   "slug": "cohabitation-overtakes-marriage",
+   "filed": "2026-11-25T12:23:47Z",
+   "why": [
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer."
+   ],
+   "request": "exchange/rewrites/20261125/cohabitation-overtakes-marriage__3abe4654_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/cohabitation-overtakes-marriage__3abe4654_r1.answer.json"
+  },
   {
    "id": "drug-resistant-infections-2050__b78ec002_r1",
    "slug": "drug-resistant-infections-2050",
-   "filed": "2026-11-25T12:21:40Z",
+   "filed": "2026-11-25T12:23:47Z",
    "why": [
     "repeat: the TITLE is too close to a video already up: 'Drug-Resistant Infections Now Kill More Than HIV And Malaria'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
     "pace: closing is 23 words (max 18)"
@@ -14,101 +66,38 @@
    "answer_path": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002_r1.answer.json"
   },
   {
-   "id": "fifty-otters-survived-climate-fight__540bc9a9",
+   "id": "fifty-otters-survived-climate-fight__540bc9a9_r1",
    "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-25T10:59:55Z",
+   "filed": "2026-11-25T12:23:47Z",
    "why": [
     "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces population recovery to 3,000, which shifts focus away from the original 50 survivors and doesn't directly sup",
     "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces kelp carbon storage without a direct causal link from the previous beat, making it a separate fact rather tha"
    ],
-   "request": "exchange/rewrites/20261125/fifty-otters-survived-climate-fight__540bc9a9.request.json",
-   "answer_path": "exchange/rewrites/20261125/fifty-otters-survived-climate-fight__540bc9a9.answer.json"
+   "request": "exchange/rewrites/20261125/fifty-otters-survived-climate-fight__540bc9a9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/fifty-otters-survived-climate-fight__540bc9a9_r1.answer.json"
   },
   {
-   "id": "ocean-is-changing-color__39dee9bf",
-   "slug": "ocean-is-changing-color",
-   "filed": "2026-11-25T10:59:55Z",
-   "why": [
-    "story: fatal: missing_payoff, unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261125/ocean-is-changing-color__39dee9bf.request.json",
-   "answer_path": "exchange/rewrites/20261125/ocean-is-changing-color__39dee9bf.answer.json"
-  },
-  {
-   "id": "oceanic-shark-collapse__146525e1",
-   "slug": "oceanic-shark-collapse",
-   "filed": "2026-11-25T10:59:55Z",
-   "why": [
-    "repeat: the TITLE is too close to a video already up: 'The World Lost 35% Of Its Wetlands Since 1970'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
-   ],
-   "request": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1.request.json",
-   "answer_path": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1.answer.json"
-  },
-  {
-   "id": "south-korea-robot-density-record__0a9c11d9",
-   "slug": "south-korea-robot-density-record",
-   "filed": "2026-11-25T10:59:55Z",
-   "why": [
-    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: It's just a comparative fact, not a logical continuation of beat 0.",
-    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Introduces China data unrelated to the prior US comparison and doesn't follow logically."
-   ],
-   "request": "exchange/rewrites/20261125/south-korea-robot-density-record__0a9c11d9.request.json",
-   "answer_path": "exchange/rewrites/20261125/south-korea-robot-density-record__0a9c11d9.answer.json"
-  },
-  {
-   "id": "us-stops-making-pennies-232-years__68b3f7da",
-   "slug": "us-stops-making-pennies-232-years",
-   "filed": "2026-11-25T10:59:55Z",
-   "why": [
-    "thesis: seg1 ('Penny Long Run') does not continue the story of the headline ('Why America Finally Killed The Penny') — brain: Focuses on the penny's historical run rather than explaining why it was eliminated.",
-    "thesis: seg2 ('Nickel Bigger Loss') does not continue the story of the headline ('Why America Finally Killed The Penny') — brain: Discusses nickel costs, which does not support the claim about killing the penny."
-   ],
-   "request": "exchange/rewrites/20261125/us-stops-making-pennies-232-years__68b3f7da.request.json",
-   "answer_path": "exchange/rewrites/20261125/us-stops-making-pennies-232-years__68b3f7da.answer.json"
-  },
-  {
-   "id": "landline-death-robocall-boom__e5388c21",
+   "id": "landline-death-robocall-boom__e5388c21_r1",
    "slug": "landline-death-robocall-boom",
-   "filed": "2026-11-25T10:59:54Z",
+   "filed": "2026-11-25T12:23:47Z",
    "why": [
     "thesis: seg1 ('life after the landline') does not continue the story of the headline ('Why America Basically Killed The Landline') — brain: Discusses scam call volume but doesn't directly explain why the landline declined; it's a side effect, not a cause.",
     "thesis: seg2 ('the new landline') does not continue the story of the headline ('Why America Basically Killed The Landline') — brain: Attributes more robocalls to the disappearance of landlines, which is a consequence rather than an explanation of the la"
    ],
-   "request": "exchange/rewrites/20261125/landline-death-robocall-boom__e5388c21.request.json",
-   "answer_path": "exchange/rewrites/20261125/landline-death-robocall-boom__e5388c21.answer.json"
+   "request": "exchange/rewrites/20261125/landline-death-robocall-boom__e5388c21_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/landline-death-robocall-boom__e5388c21_r1.answer.json"
   },
   {
-   "id": "ocean-floor-vs-mars-mapped__0bcaeed3",
+   "id": "ocean-floor-vs-mars-mapped__0bcaeed3_r1",
    "slug": "ocean-floor-vs-mars-mapped",
-   "filed": "2026-11-25T10:59:54Z",
+   "filed": "2026-11-25T12:23:47Z",
    "why": [
     "repeat: the TITLE is too close to a video already up: \"We've Mapped Mars Better Than Our Own Ocean\". The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
     "beats: seg1: the line's headline number (1.4e+08) is 403,807x away from anything this beat's picture can show — say a number the picture shows",
     "pace: hook is 19 words (max 14)"
    ],
-   "request": "exchange/rewrites/20261125/ocean-floor-vs-mars-mapped__0bcaeed3.request.json",
-   "answer_path": "exchange/rewrites/20261125/ocean-floor-vs-mars-mapped__0bcaeed3.answer.json"
-  },
-  {
-   "id": "blood-type-rarity__b15ee3cb",
-   "slug": "blood-type-rarity",
-   "filed": "2026-11-25T10:59:53Z",
-   "why": [
-    "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh-negative prevalence generally, not the specific rare blood type, and doesn't follow from beat 0.",
-    "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Focuses on donor ethnic distribution of common types, unrelated to the rarity of the single blood type."
-   ],
-   "request": "exchange/rewrites/20261125/blood-type-rarity__b15ee3cb.request.json",
-   "answer_path": "exchange/rewrites/20261125/blood-type-rarity__b15ee3cb.answer.json"
-  },
-  {
-   "id": "cohabitation-overtakes-marriage__3abe4654",
-   "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-25T10:59:53Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer."
-   ],
-   "request": "exchange/rewrites/20261125/cohabitation-overtakes-marriage__3abe4654.request.json",
-   "answer_path": "exchange/rewrites/20261125/cohabitation-overtakes-marriage__3abe4654.answer.json"
+   "request": "exchange/rewrites/20261125/ocean-floor-vs-mars-mapped__0bcaeed3_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/ocean-floor-vs-mars-mapped__0bcaeed3_r1.answer.json"
   },
   {
    "id": "feet-are-getting-bigger__0e637ef8",

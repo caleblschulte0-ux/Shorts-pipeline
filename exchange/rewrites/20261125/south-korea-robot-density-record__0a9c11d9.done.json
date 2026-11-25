@@ -1,0 +1,10 @@
+{
+ "id": "south-korea-robot-density-record__0a9c11d9",
+ "slug": "south-korea-robot-density-record",
+ "settled": "2026-11-25T12:23:48Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: new named entity not in the data: Korea's",
+  "segment 2: new named entity not in the data: Beats"
+ ]
+}
