@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "runway-near-misses-climbing__0b20bf15",
+  "slug": "runway-near-misses-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:30:00.000Z",
+  "title": "23 Serious Runway Near-Misses Happened In One Year",
+  "hook": "Planes and vehicles keep entering the same runway at the wrong moment.",
+  "closing": "Near-misses reveal where one mistake could become an irreversible collision.",
+  "question": "Does runway safety worry you?",
+  "segments": [
+    {
+      "topic": "Runway Near-Misses Rise",
+      "say": "Serious runway near-misses reached 23 in 2023. The annual count more than doubled in a decade."
+    },
+    {
+      "topic": "Runway Entry Mistakes",
+      "say": "Pedestrians or vehicles caused 60 percent of runway incursions. Most danger began with someone entering by mistake."
+    },
+    {
+      "topic": "Runway Hotspots",
+      "say": "Eight airports account for 33 percent of the worst incursions. The highest risk is concentrated, not random."
+    }
+  ]
+}
