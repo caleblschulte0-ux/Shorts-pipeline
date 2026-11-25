@@ -100,14 +100,14 @@
   "ideas": [
     "a row of lava fountains stands on the ridge behind the main street, and the driver waves a lit baton and sends a whole line of cars out of town past him until the street is empty",
     "at the wall works by day he works a remote control's two sticks and his digger swings a big bucket of black rock up the face of a wall taller than the house beside it and tips it out over the crest",
-    "up on the wall's crest a glowing tongue of lava runs in below him and rams into the wall's rock face; he blasts it with a fire hose, white steam bursts up, and the lava stops dead against the wall and goes black",
+    "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and heaps up; it stops dead against the rock and goes dark, and he pumps his fists and grins",
     "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
     "at dawn three houses burn in a row at the top of the hill while the saved houses stand dark below; he hangs his lit lantern on his own house and its window lights up, the only light in the town"
   ],
   "storyboard": [
     "1 hook (the town's main street by day, low houses down both sides, the ridge behind them; wide and low, looking up the street): from the first frame a row of lava fountains stands on the ridge behind the houses, orange fire with dark smoke over it. The driver in his yellow hard hat and hi-vis vest waves a lit baton, and a line of cars with their headlights on drives out past him toward us. The street is full of cars at the start and empty at the end, the fountains still roaring behind him.",
     "2 the wall (the wall works by day: the black rock wall, a small house at its foot; low and wide, tipped up the wall's face): the earth wall, built from black lava rock, stands taller than the house beside it. The driver in his hard hat works the two sticks of a remote control, and his digger's arm swings a big bucket of rock up the wall's face and tips it out over the crest; the rocks fall onto the top of the wall, and he grins at us.",
-    "3 the wall holds (the earth wall's outer face of black boulders, the black lava field at its foot; from above on the lava side, looking down the wall's face at him on its crest): a glowing tongue of lava runs in across the field and rams into the foot of the earth wall right below the driver. In his hard hat he blasts it with a fire hose and white steam bursts up where the water lands. The lava stops dead against the rock, its glow going black, and he grins at us.",
+    "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
     "5 the payoff (dawn at the foot of the town's hill: his own house beside him, the saved houses up the hill with dark windows, the earth wall across the hilltop; wide and low, tipped up the hill): three houses burn side by side at the top of the hill, black lava rock round them. The driver in his hard hat carries a lit lantern to his own house and hangs it on the hook by the window; the window lights up, the only light in the town, and he turns to us and shrugs."
   ],
@@ -169,34 +169,32 @@
       ]
     },
     {
-      "camera": "high",
-      "data": "blasts the lava front with a fire hose from the wall's crest as it rams into the wall below him",
+      "camera": "low",
+      "data": "braces in front of his wall as the lava slams into its foot and stops, then pumps his fists and grins",
       "props": [
-        "lava front",
-        "fire hose",
-        "white steam",
-        "crest of black rock"
+        "lava river",
+        "earth wall"
       ],
       "arc": [
         {
           "at": 0.05,
-          "what": "the glowing lava front rolls in across the black field below him"
+          "what": "he stands braced in front of the wall, the lava river coming across the black field beside him"
         },
         {
-          "at": 0.22,
-          "what": "it rams into the foot of the wall and its crust buckles and splits into orange"
-        },
-        {
-          "at": 0.32,
-          "what": "he braces the fire hose and blasts it, and white steam bursts up off the lava"
+          "at": 0.3,
+          "what": "it slams into the foot of the boulder face and heaps up, steam rising"
         },
         {
           "at": 0.55,
-          "what": "he holds the jet on the front and the steam cloud swells; the lava has stopped against the rock"
+          "what": "it has stopped dead against the rock and he turns to us"
         },
         {
-          "at": 0.8,
-          "what": "he lets the nozzle drop and grins at us, the lava gone black at the foot of the wall"
+          "at": 0.68,
+          "what": "its crust goes dark"
+        },
+        {
+          "at": 0.86,
+          "what": "he pumps his fists and grins at us"
         }
       ]
     },

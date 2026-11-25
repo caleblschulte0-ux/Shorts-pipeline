@@ -1,5 +1,5 @@
 {
- "rounds": 12,
+ "rounds": 14,
  "shots": {
   "1": {
    "BROKEN": {
@@ -755,6 +755,7 @@
   },
   "3": {
    "BACK TO CAMERA": {
+    "closed": 14,
     "fixes": [
      {
       "at": "2026-11-25 17:09Z",
@@ -776,6 +777,7 @@
     ]
    },
    "BROKEN": {
+    "closed": 14,
     "fixes": [
      {
       "at": "2026-11-24 12:09Z",
@@ -801,6 +803,16 @@
       "at": "2026-11-25 17:09Z",
       "round": 6,
       "what": "reset restage: one fixed lens, daylight; the lava front, its crust blocks, the hose jet and the steam are all inside the frame and none of them pops in or floats"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: the lava is no longer a strip at the bottom edge: it fills the lower third of the frame and climbs to the crest's edge; the tongue's position is now actually keyed (it sat still before); steam is one small white column light-linked off the lava lamps so it does not go tan"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: hose, jet, nozzle and hydrant deleted; the steam comes free off the contact line; the river runs from the foreground to the wall in frame"
      }
     ],
     "named": [
@@ -838,10 +850,16 @@
       "at": "2026-11-25 19:12Z",
       "round": 10,
       "said": "BROKEN: frames 1-4: the shot's subject, the lava front, is cut off by the bottom edge in every still. We never see the front whole or the lava field it came across, only its top crust."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "BROKEN: frames 1-4: the lava still runs off the bottom edge in every still. It now fills the lower third, which is better, but the front is never seen whole, and the lava field it crossed is never seen at all, so the subject is still cut by the frame for the whole shot."
      }
     ]
    },
    "CONSEQUENCE": {
+    "closed": 14,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -877,6 +895,16 @@
       "at": "2026-11-25 18:40Z",
       "round": 8,
       "what": "B1 restage: the front is seen coming in still 1, heaped in broken crust blocks against the foot of the wall's face in stills 2-4, never backing off; the jet and the steam stay on one spot"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: still 1 the glowing tongue is in frame running in over the field; still 2 it has rammed the wall and heaped up the face in buckled crust under his boots; still 3 steam where the jet lands; still 4 its seams have gone dark: heat keyed down on tongue, front and crust blocks. The loose rocks that buried the tongue are cleared from its road in"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: one action, one consequence, no hose: still 1 the river's front comes across the field, still 2 it has slammed into the face and heaped up with steam, still 3 stopped, still 4 its seams gone dark (heat keyed to 7 percent)"
      }
     ],
     "named": [
@@ -919,10 +947,16 @@
       "at": "2026-11-25 19:12Z",
       "round": 10,
       "said": "CONSEQUENCE: frame 1: the front 'rolling in' is only a glow in the bottom-left corner. In frames 2-4 the lava stays a band along the bottom edge that barely changes from still to still, so the front is never seen ramming the wall's foot and then stopping dead. Nothing in the stills shows it stopped rather than just sitting there."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "CONSEQUENCE: frame 1: the glowing tongue 'running in over the black lava field' is still only an orange glow in the bottom-left corner. Its run-in is never seen. Frames 2-4 do show it heaped at his boots and dimming in frame 4, which is the first real progress on this note, but the arrival that the line and the narration open on is not in any still."
      }
     ]
    },
    "NOT SHOWN": {
+    "closed": 14,
     "fixes": [
      {
       "at": "2026-11-24 12:07Z",
@@ -953,6 +987,16 @@
       "at": "2026-11-25 18:40Z",
       "round": 8,
       "what": "B1 restage: the lens is low on the lava side: the wall's face is a tall bank of black boulders across the frame, taller than he is, he stands on its crest, the lava is piled against its foot and the town's roofs show over the crest"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: the wall now reads from both sides: the town's roofs well below the crest behind him, and in front the lava heaped up the rock to his boots and stopped there; the lens is above his head looking back along the crest, as the storyboard line now says"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: the wall is the stopper in the picture: a wide low lens looks at the wall, the lava river runs past him into the foot of the face, heaps up there and stops, the face standing five times his height above it"
      }
     ],
     "named": [
@@ -995,10 +1039,16 @@
       "at": "2026-11-25 19:12Z",
       "round": 10,
       "said": "NOT SHOWN: frames 1-4: 'it hit the wall, and the wall held' does not read. With the lava cut off at the bottom and the houses sitting right on the crest, the boulder face reads as the side of a pit with lava at its floor, not a wall taller than a house between the lava and the town. Nothing on screen gives the wall's height against a house."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "NOT SHOWN: frames 1-4: 'it hit the wall, and the wall held' only half reads. Because the roofs sit level with or above the crest, the heap does not read as a wall taller than a house standing between the lava and the town. The town is not visibly protected below and behind it, so 'the wall held' has nothing to protect in the picture. The lava arriving ('when the lava came') is not seen either (see"
      }
     ]
    },
    "NOT THE POINT": {
+    "closed": 14,
     "fixes": [],
     "named": [
      {
@@ -1009,6 +1059,7 @@
     ]
    },
    "NOT THE WORLD": {
+    "closed": 14,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1044,6 +1095,16 @@
       "at": "2026-11-25 18:40Z",
       "round": 8,
       "what": "B1 restage: the crest is heaped crushed rock and loose stones (one shared wall asset), the sky is the bright day with the eruption's dark smoke over the roofs, the houses differ in size and stand back from the wall"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: restaged on a diagonal from out over the lava: the crest is a rounded heap of real crushed rock with gravel and boulders, a real hydrant and hose on it; behind and far BELOW the crest stand the town's painted tin roofs on their own ground, so the wall is plainly taller than the houses; a strip of sky above them"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage (coordinator): no houses in frame at all; he stands on the black lava field in front of the wall, whose boulder face fills the frame behind him up to its crest and a real clouded sky"
      }
     ],
     "named": [
@@ -1086,10 +1147,16 @@
       "at": "2026-11-25 19:12Z",
       "round": 10,
       "said": "NOT THE WORLD: frames 1-4: this is not Grindavik. The houses are near-identical copies packed shoulder to shoulder, right behind the crest, with no streets, yards, grime or tin cladding. The crest is still a flat dark slab with a thin skin of scattered pebbles, not heaped crushed black rock, so it reads as a ledge or plinth, not an earth wall built by diggers."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "NOT THE WORLD: frames 1-4: this is not Grindavik behind a wall. The houses are near-identical copies packed roof to roof directly behind the crest, at Data's head height or above it, not 'far below' it. There are no streets, yards, gaps, parked cars or any sign of life. There is no eruption smoke or volcanic haze anywhere in the flat grey-blue sky. It reads as a rubble heap in front of a toy villa"
      }
     ]
    },
    "OFF THE LOOK": {
+    "closed": 14,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1125,6 +1192,16 @@
       "at": "2026-11-25 18:40Z",
       "round": 8,
       "what": "B1 restage: lava material rebuilt for every shot (real rock crust, mostly black, patchy irregular glowing seams, displaced surface, its own orange light); a real fireman's nozzle; a real hydrant on the crest that the hose runs to"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: shared lava material rebuilt (black broken crust on a real burned-ground texture, sparse uneven seams, glow only where it is fresh), crust blocks are black plates with a seam or two; fire nozzle is a red branch with chrome coupling and bale; hose runs to a Poly Haven hydrant in frame; the houses are far below, each its own size and yaw, on ground"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: toy houses and the water tube are gone from the shot; what is left is the shared rock wall, the real rock ground and the shared lava material that passed in shot 4"
      }
     ],
     "named": [
@@ -1167,6 +1244,11 @@
       "at": "2026-11-25 19:12Z",
       "round": 10,
       "said": "OFF THE LOOK (one finish across the frame / the realer the better / approved store is the standard): frames 1-4: the houses are toy houses. The roofs are flat, saturated primary red, yellow and green slabs; the walls are clean and plain; the windows are identical. They read as a game-asset or Playmobil row, nowhere near the store's finish. Data and the hydrant are lit like a product shot against t"
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "OFF THE LOOK (one finish across the frame / the realer the better / approved store is the standard): frames 1-4: the town behind him is still made of toy houses. The roofs are flat, saturated primary red, yellow, green and blue slabs with clean plain walls, no tin ribbing that reads, no grime or weathering, and a white chimney stub on every one. Against the real-looking rubble crest and lava crust"
      }
     ]
    }
