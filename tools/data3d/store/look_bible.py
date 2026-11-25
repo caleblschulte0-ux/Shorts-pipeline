@@ -34,6 +34,13 @@ RULINGS = [
     # ---- the look of the picture
     ("look", "Kinda real, clean and professional. Not clay, matte or cel-shaded; not glossy plastic.",
      "2026-11-05", "the style is still giving claymation ... futuristic SpongeBob"),
+    ("look", "One finish across the whole frame: what Data touches or moves must look as real as the background "
+             "behind it (same detail, materials, lighting, grime). No Scooby-Doo frames where the props he uses are "
+             "flatter, cleaner or cartoonier than the real set (e.g. a Poly Haven street behind a hand-built "
+             "toy-looking prop), and no props that stand out as the ones that will move.",
+     "2026-11-24", "we're not having like a Scooby-Doo thing happen where it's like that background looks different and "
+                   "then like the stuff he's actually touching or the stuff that's getting interacted with is like "
+                   "animated and looks different"),
     ("look", "Backgrounds as real as we can make them.",
      "2026-11-06", "the realer the better ... at an 8, take it to a 10"),
     ("look", "Every object built from its real parts at real scale with real textures, one tied palette. No flat "
