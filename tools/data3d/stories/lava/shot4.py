@@ -99,15 +99,16 @@ def place_town_crack():
     houses = []
     for sy in (-1, 1):                                    # the street runs along X: a row of town houses down each side, their doors to the road
         x = -5.0 + (0.6 if sy > 0 else 0.0); k = 0
-        while x < 11.5:
+        while x < 6.0:
             w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)       # Grindavik houses, not sheds (board after the fire test)
             roof = ROOFS[(k * 3 + (sy > 0) + 1) % len(ROOFS)]
             hs = town_house(f"town house {sy}_{k}", (x + w / 2, sy * (S4_FRONT + d / 2), 0), yaw=0.0 if sy > 0 else math.pi, w=w, d=d,
                             roof=roof, wall=WALLS[(k + (sy > 0) * 2) % len(WALLS)], base=0.3, storeys=1, seed=k + 20)
             houses.append(hs); x += w + rnd.uniform(0.4, 0.8); k += 1
-    wall = earth_wall("earth wall", [(15.5 + 0.003 * y * y, y) for y in range(-30, 32, 2)], h=3.2, crest=1.6, base=5.5, seed=12)   # right across the end of the street, over the roofs: this street is INSIDE it
-    for k, y in enumerate((-6.0, 5.0)):            # the eruption's smoke over the wall: rolling columns of gas, leaning off on the wind
-        lw_steam(f"wall smoke {k}", (23.0 + 2 * k, y, 2.0), w=4.5, h=16.0, seed=3.3 * k, col=(0.42, 0.41, 0.42), dens=2.5, lean=(0.2, 0.5), rise=1.2, t_end=DUR + 1.0)
+    wall = earth_wall("earth wall", [(12.5 + 0.1 * y, y) for y in range(-30, 32, 2)], h=3.8, crest=1.4, base=7.0, seed=12)
+    lava_rock("wall foot rubble", 160, (7.5, 10.5, -6.0, 6.0), lambda x, y: 0.0, seed=71, r=(0.08, 0.3), moss=0.0, avoid=lambda x, y: abs(y) < 1.2 and x < 8.6)       # STRAIGHT, flat-topped and steep, right across the end of the street, over the roofs (board B2: "a natural hillside")   # right across the end of the street, over the roofs: this street is INSIDE it
+    for k, y in enumerate((1.5,)):            # the eruption's smoke over the wall: rolling columns of gas, leaning off on the wind
+        lw_steam(f"wall smoke {k}", (21.0 + 2 * k, y, 2.0), w=4.5, h=16.0, seed=3.3 * k, col=(0.42, 0.41, 0.42), dens=2.5, lean=(0.2, 0.5), rise=1.2, t_end=DUR + 1.0)
     # the street under the eruption's fall-out: grit and lava cinders blown over the asphalt, a drain grating at each kerb
     bits = lava_rock("street cinders", 260, (-3.0, 13.0, -S4_KERB + 0.1, S4_KERB - 0.1), lambda x, y: 0.0, seed=44, r=(0.012, 0.04), moss=0.0,
                      avoid=lambda x, y: abs(y - s4_zig(x)) < 0.5 or (abs(x) < 0.8 and y > 0))
@@ -136,7 +137,7 @@ def shot4():
     back; the street pulls apart, the gap glowing orange, steam shooting up; lava wells up out of it and pours down the
     street at us; he hops back again, arms up against the heat."""
     T_JOLT = 0.2 * DUR; T_TEAR = T_JOLT + 0.05; T_TORN = T_TEAR + 0.35
-    T_LET = 0.33 * DUR; T_OPEN0 = T_LET + 0.1; T_OPEN1 = 0.52 * DUR
+    T_LET = 0.255 * DUR; T_OPEN0 = 0.355 * DUR; T_OPEN1 = 0.52 * DUR
     T_POUR = 0.5 * DUR; T_TIP = T_OPEN0 + 0.1; T_RUN = 0.8 * DUR
     W = lw_win
     P = place_town_crack()
@@ -154,24 +155,23 @@ def shot4():
         u = min(1.0, max(0.0, (t - t0) / T)); return d * ease(u), h * math.sin(math.pi * u)
     for f in range(F(T_W) + 1, NF + 1):
         t = (f - 1) / FPS
-        y1, z1 = hop(t, T_LET, 0.1, 0.11, 0.5); y2, z2 = hop(t, T_POUR + 0.1, 0.02, 0.06); y3, z3 = hop(t, T_RUN, 0.02, 0.05); y4, z4 = hop(t, T_POUR + 0.62, 0.02, 0.09, 0.45); y2 += y4; z2 += z4
+        y1, z1 = hop(t, T_LET, 0.1, 0.11, 0.4); y2, z2 = hop(t, T_POUR + 0.1, 0.02, 0.06); y3, z3 = 0.0, 0.0; y4, z4 = hop(t, 0.74 * DUR, 0.03, 0.09, 0.42)      # (both feet are on the road at every board still but the leap: a hop caught mid-air read as floating); y2 += y4; z2 += z4
         jolt = -0.03 * lw_kick(t - T_JOLT, 0.1) - 0.04 * lw_kick(t - T_POUR, 0.15)
         walk = 0.0; step = 0.0
         back = -0.05 * W(t, T_TEAR, 0.3)                                               # a start back off the tear
         data._kobj(t, loc=(X0 + 0.05 * W(t, T_LET, 0.6) + 0.07 * math.sin(2 * math.pi * (t - T_POUR) / 1.3) * W(t, T_POUR, 0.3) + 0.06 * walk, Y0 + y1 + y2 + y3 - back + 0.3 * walk, 0.03 + z1 + z2 + z3 + jolt + step),
                    rot=YAW - math.radians(8) * W(t, T_LET, 0.4) + math.radians(14) * W(t, T_RUN + 0.1, 0.5) + math.radians(14) * math.sin(2 * math.pi * (t - T_POUR) / 1.3) * W(t, T_POUR, 0.4))
     lw_layer(data, "spine", lambda t: (16 * W(t, T_TEAR + 0.1, 0.35) * (1 - W(t, T_LET - 0.45, 0.3)) - 16 * lw_kick(t - T_JOLT, 0.18)
-                                       - 14 * W(t, T_LET + 0.15, 0.3) * (1 - W(t, T_LET + 0.7, 0.3)) - 10 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
+                                       - 26 * W(t, T_LET + 0.05, 0.25) * (1 - W(t, T_LET + 0.7, 0.3)) - 14 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
     # ---- face and head: one feeling per moment, held (BEFORE the hands: a face moves his chest and shoulders)
-    CAM0 = Vector((X0 - 1.4, Y0 - 0.45, 0.8)); LOOK0 = CAM0 + Vector((1.0, -0.18, -0.27))      # a little above him, tipped down at the road: the crack lies across the frame's lower third, the wall's crest and the sky across its top
+    CAM0 = Vector((X0 - 1.4, Y0 - 0.45, 0.8)); LOOK0 = CAM0 + Vector((1.0, 0.02, -0.25))      # the street's far end, and the wall across it, stand clear at the right of his hat      # a little above him, tipped down at the road: the crack lies across the frame's lower third, the wall's crest and the sky across its top
     data.look_at(CAM0, 0.0, max_yaw=40, max_pitch=30, blend=0.0)                                        # coming down the street to us
     data.look_at(Vector((X0 - 0.35, s4_zig(X0 - 0.35), 0.0)), T_JOLT + 0.05, max_yaw=50, max_pitch=25, blend=0.2)   # down at the crack at his boots
     data.look_at(CAM0, T_LET + 0.5, max_yaw=55, max_pitch=40, blend=0.3)                                # up at us: did you see that
     data.look_at(Vector((X0 - 0.3, S4_YC - 0.5, 0.0)), T_POUR + 0.1, max_yaw=50, max_pitch=25, blend=0.3)  # at the lava welling up
     data.look_at(CAM0, T_RUN + 0.3, max_yaw=55, blend=0.3)
     data.expression("determined", 0.0, T_JOLT, blend=0.2)
-    data.expression("surprised", T_JOLT + 0.02, T_LET + 0.3, blend=0.12)
-    data.expression("alarmed", T_LET + 0.35, DUR + 1.0, blend=0.15)
+    data.expression("alarmed", T_JOLT + 0.02, DUR + 1.0, blend=0.12)
     sides = sorted("LR", key=lambda s_: acts._shoulder(data, s_).x)       # (no prop: the spoken line names none, and a bag he drops has to be accounted for in every still after)
     # one arm up across his face against the heat, the other back for balance: never both out at his sides
     near_sd = min(sides, key=lambda s_: (acts._shoulder(data, s_) - CAM0).length)
@@ -179,10 +179,11 @@ def shot4():
     # at the heat, beside his head from the lens, never over his face; the near arm low and forward, pushing it off
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     UP = lambda sg: ((-58, 0, -sg * 12), (-48, 0, -sg * 22), (-10, sg * -12, -sg * 15))
+    SHIELD = lambda sg: ((-82, 0, sg * 22), (-88, 0, sg * 14), (-10, sg * -12, -sg * 15))    # the forearm up across his face, palm out at the heat
     LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     for sd in sides:
         sg = -1 if sd == "L" else 1
-        seq = (LOW, WHOA, LOW, UP, WHOA, UP, WHOA, UP, WHOA, UP, UP) if sd != near_sd else (WHOA, LOW, WHOA, LOW, WHOA, WHOA, LOW, WHOA, LOW, WHOA, WHOA)   # his arms swing as he walks, fly up at the tear
+        seq = (LOW, WHOA, LOW, UP, UP, WHOA, UP, WHOA, LOW, WHOA, WHOA) if sd != near_sd else (WHOA, LOW, WHOA, WHOA, UP, WHOA, LOW, WHOA, SHIELD, SHIELD, SHIELD)   # both fly up at the leap; at the end the arm nearest the flow is up across his face against the heat   # his arms swing as he walks, fly up at the tear
         for tk, pose in zip((0.0, 0.38, 0.74, T_TORN - 0.1, T_LET + 0.15, T_LET + 0.55, T_LET + 0.95, T_LET + 1.3, T_LET + 1.7, T_LET + 2.1, DUR + 0.5), seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     # ---- the crack: a hairline tears across from kerb to kerb, then the street pulls apart and the lava shows in the gap
@@ -224,10 +225,10 @@ def shot4():
     rk = lw_random.Random(7)
     lips = []
     for slab, sg in ((near, -1), (far, 1)):
-        x = -2.6
+        x = -0.1                                           # (none under the lens: a shard a hand from the glass is a boulder)
         while x < S4_HALF - 0.1:
             w = rk.uniform(0.18, 0.34); xc = x + w / 2
-            ch = K.box("crack lip chunk", (xc, s4_zig(xc) - S4_YC + sg * rk.uniform(0.04, 0.1), -0.01), (w * 0.92, rk.uniform(0.12, 0.22), 0.07), lip, bev=0.012)
+            ch = lw_block("crack lip chunk", (xc, s4_zig(xc) - S4_YC + sg * rk.uniform(0.05, 0.11), -0.01), 1.0, lip, rk, squash=1.0); ch.scale = (w * rk.uniform(0.5, 0.7), rk.uniform(0.07, 0.14), rk.uniform(0.03, 0.05))   # torn SHARDS of asphalt, every one its own shape (board B2: "paver tiles")
             ch.parent = slab; ch.matrix_parent_inverse = slab.matrix_world.inverted(); lips.append(ch)
             lift = rk.uniform(0.25, 0.55); yaw = rk.uniform(-0.25, 0.25); t0 = T_OPEN0 + 0.1 * abs(xc) / S4_HALF
             for f in range(1, NF + 1):
@@ -255,21 +256,33 @@ def shot4():
     for k in range(40):
         a = 2 * math.pi * k / 40
         out.append((1.0 * math.cos(a) + 0.03 * math.sin(5 * a), 1.0 * math.sin(a) + 0.1 * math.cos(9 * a) + 0.06 * math.sin(14 * a)))
-    flow = lava("street lava", out, z=0.0, thick=0.2, m=lm, seed=6, lumpy=0.22, n=40)
+    flow = lava("street lava", out, z=0.0, thick=0.22, m=lm, seed=6, lumpy=0.1, n=40)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_POUR, 0.94 * DUR - T_POUR); w_ = W(t, T_POUR - 0.25, 0.4)
-        L_ = 0.1 + 0.52 * u                                                     # out of the gap and across the road to the doors on the far side
-        flow.location = (X0 + 2.2, S4_YC - 0.05 - L_, -0.2 + 0.2 * w_)        # it wells up along the crack and pours across the street
-        flow.scale = (2.6, L_ * 1.25, 0.6 + 0.1 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
+        L_ = 0.1 + 0.6 * u                                                     # a mound welling out of the gap, spreading down the middle of the road and across to the doors
+        flow.location = (X0 + 2.6, S4_YC - 0.02 - 0.72 * L_, -0.2 + 0.22 * w_)        # it wells up along the crack and pours across the street
+        flow.scale = (2.6, L_ * 1.25, 0.75 + 0.2 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
         flow.hide_render = t < T_OPEN0 + 0.05; flow.keyframe_insert("hide_render", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
-    lw_steam("street lava smoke", (X0 + 5.0, -0.5, 0.0), w=1.2, h=5.0, seed=5.5, col=(0.2, 0.19, 0.19), dens=5.0, lean=(0.3, -0.3), rise=1.6,
-             keys=[(T_OPEN0, 0.0), (T_OPEN0 + 0.6, 1.0), (DUR + 1.0, 1.0)], t_end=DUR + 1.0)
-    glow2 = lw_point("far lava glow", (X0 + 3.0, -0.5, 0.6), 0.0, col=(1.0, 0.45, 0.12), r=0.8)
-    glow = lw_point("crack glow", (X0 + 0.1, S4_YC - 0.3, 0.5), 0.0, col=(1.0, 0.42, 0.1), r=0.25)
+    glow2 = lw_point("far lava glow", (X0 + 4.0, -0.3, 1.2), 0.0, col=(1.0, 0.45, 0.12), r=0.8)
+    # the heat is LOCAL light (board B3: "the whole street turns sepia"): small lamps low along the flow's edges, each
+    # a pool half a metre wide on the road, on him and on the doorsteps; the street beyond them stays grey asphalt
+    glows = []
+    for k_, (gx, gy, e_) in enumerate(((X0 + 0.15, 0.18, 14.0), (X0 + 0.9, 0.3, 8.0), (X0 + 1.8, 0.35, 8.0), (X0 + 0.6, -1.15, 8.0), (X0 + 1.7, -1.3, 10.0), (X0 + 2.9, -1.3, 10.0), (X0 + 4.2, -1.2, 10.0))):
+        glows.append((lw_point(f"lava edge glow {k_}", (gx, gy, 0.3), 0.0, col=(1.0, 0.4, 0.08), r=0.15), e_))
+    steamw = lw_steam("crack steam", (X0 + 2.8, -0.2, 0.0), w=0.7, h=1.6, seed=8.5, col=(0.93, 0.94, 0.95), dens=9.0, lean=(0.2, 0.1), rise=2.0,
+                      keys=[(T_OPEN0 + 0.2, 0.0), (T_POUR + 0.3, 1.0), (DUR + 1.0, 1.0)], t_end=DUR + 1.0)       # white steam off the crack itself
+    try:                                                   # the lamps light everything BUT the lava and its steam: lit from a hand away, black crust went tan
+        gc = bpy.data.collections.new("glow receivers"); bpy.context.scene.collection.children.link(gc)
+        for o_ in [flow, tear] + ([steamw] if hasattr(steamw, "name") else []): gc.objects.link(o_)
+        for co_ in gc.collection_objects: co_.light_linking.link_state = 'EXCLUDE'
+        for l_, _e in glows: l_.light_linking.receiver_collection = gc
+    except Exception as e_:
+        print("S4 light linking unavailable:", e_, flush=True)
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; glow.data.energy = 10.0 * W(t, T_TEAR, 0.3) + 30.0 * W(t, T_OPEN0, 0.5) + 50.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
-        glow2.data.energy = 200.0 * W(t, T_OPEN0, 0.8); glow2.data.keyframe_insert("energy", frame=f)
+        t = (f - 1) / FPS
+        for n_, (l_, e_) in enumerate(glows):
+            l_.data.energy = e_ * (0.25 * W(t, T_TEAR, 0.3) * (n_ < 3) + 0.75 * W(t, T_POUR - 0.2 + 0.12 * n_, 0.7)); l_.data.keyframe_insert("energy", frame=f)
     data.finish()
     # ---- the lens: low in the street at his front left, looking up it: the crack across the bottom of the frame in
     # front of his boots, the houses down both sides behind him, the wall across the end of the street with its smoke
