@@ -1,0 +1,68 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261125",
+  "status": "blocked_downstream",
+  "observed_at": "2026-11-25T12:26:00Z",
+  "bundle_identity": "44b0ca452981f6dc3ce8d8e5bb26b10ebf9ceaf75c151fee71b6792537bcdfee",
+  "attempted": [
+    "Committed and validated media-progress/STARTED.json before other producer writes.",
+    "Completed two capped takeover mailbox rounds: reviews, asks, then rewrites.",
+    "Committed and read back response.json, then committed DONE separately.",
+    "Observed Exchange Phase B run 45612844378 complete successfully; it applied 2 Explainer stories and rejected 1.",
+    "Observed Sports moments run 45612151292 complete successfully; five accepted trending URLs exist for 2026-11-25.",
+    "Observed Explainer Stories run 45613362434 pending, Third Channel run 45613366890 pending, and mailbox claim run 45613347364 in progress."
+  ],
+  "channels": {
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "detail": "Two authored stories were applied and await render/upload; one authored story was rejected by Phase B; the frozen bundle supplied no fourth authorized source story."
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 1,
+      "pending": 5,
+      "detail": "One accepted YouTube URL exists for 2026-11-25; a second upload is recorded pending; the remaining four are not verified posted."
+    },
+    "trending": {
+      "required": 5,
+      "verified_posted": 5,
+      "pending": 0,
+      "detail": "Five accepted YouTube URLs with 2026-11-25 claim timestamps are present."
+    }
+  },
+  "mailboxes": {
+    "rounds": 2,
+    "reviews": {
+      "open_observed": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No open review requests."
+    },
+    "asks": {
+      "open_index_keys": 84,
+      "answered_this_run": 40,
+      "remaining_unanswered": 44,
+      "skipped_reason": "Section 7 cap is 20 ask keys per round."
+    },
+    "rewrites": {
+      "open_index_requests": 74,
+      "answered_this_run": 20,
+      "remaining_unanswered": 54,
+      "skipped_reason": "Section 7 cap is 10 rewrites per round."
+    }
+  },
+  "commits": {
+    "started": "401c2d42ce79aab5c32bab0ec16dd265320909fb",
+    "ask_round_one": [
+      "4da49a9584816a740980dfdb198a95e85f5b2eec",
+      "73baf2586063986a4c50bb2f16ba107cfae1ccfb"
+    ],
+    "ask_round_two": "30e80becbc7a478521d8ab89fee2e288102a2521",
+    "response": "47839ff488727ef6cc027089a62602f7e5a5bb8f",
+    "done": "8cc4f910f50156a14deba668bb9e311bfad39edf"
+  },
+  "exact_failed_step": "Actual output verification did not reach the frozen contract: Explainer has 0/4 verified posted and Third has 1/6 verified posted. Active downstream workflows had not produced accepted upload URLs for the remaining videos at observation time.",
+  "day_closed": false
+}
