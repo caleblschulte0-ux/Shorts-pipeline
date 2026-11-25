@@ -5929,6 +5929,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 28.2
+    },
+    "landline-death-robocall-boom": {
+      "claimed_at": "2026-11-25T15:00:08.739451+00:00",
+      "title": "Why America Basically Killed The Landline",
+      "publish_at": "2026-11-25T15:24:40Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7659,6 +7666,14 @@
       "state": "posted",
       "slug": "people-over-65-outnumber-kids-under-5",
       "at": "2026-11-25T12:24:40.421173+00:00"
+    },
+    {
+      "claimed_at": "2026-11-25T15:00:08.739451+00:00",
+      "title": "Why America Basically Killed The Landline",
+      "publish_at": "2026-11-25T15:24:40Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "landline-death-robocall-boom"
     }
   ]
 }
