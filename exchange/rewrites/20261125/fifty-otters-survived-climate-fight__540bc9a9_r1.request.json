@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "fifty-otters-survived-climate-fight__540bc9a9_r1",
- "filed": "2026-11-25T12:25:58Z",
+ "filed": "2026-11-25T12:23:47Z",
  "status": "open",
  "channel": "explainer",
  "slug": "fifty-otters-survived-climate-fight",
@@ -96,12 +96,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces population recovery to 3,000, which shifts focus away from the original 50 survivors and doesn't directly sup",
-  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces kelp carbon storage without a direct causal link from the previous beat, making it a separate fact rather tha"
+  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the '50 surviving' premise, not supporting the same claim.",
+  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Mentions kelp carbon storage but doesn't logically follow from beat 1 and doesn't specifically tie to the original 50 ot"
  ],
  "reasons": [
-  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces population recovery to 3,000, which shifts focus away from the original 50 survivors and doesn't directly sup",
-  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces kelp carbon storage without a direct causal link from the previous beat, making it a separate fact rather tha"
+  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the '50 surviving' premise, not supporting the same claim.",
+  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Mentions kelp carbon storage but doesn't logically follow from beat 1 and doesn't specifically tie to the original 50 ot"
  ],
  "judge": null,
  "prior_rejection": [
@@ -136,5 +136,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-25T12:51:56Z"
 }

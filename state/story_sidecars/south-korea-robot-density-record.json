@@ -1,0 +1,37 @@
+{
+ "slug": "south-korea-robot-density-record",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "One country now has way more robot coworkers than you have fingers.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "South Korea has 1,220 robots for every ten thousand factory workers, the most anywhere. Germany and Japan, famous for factories, trail far behind.",
+   "eyes": "a data picture (rank)",
+   "evidence": "International Federation of Robotics (IFR), via Supply Chain 247 | Industrial robots per 10,000 manufacturing workers, top countries | https://www.supplychain247.com/article/robot-density-rises-global-manufacturing-ifr-report/automation | 2026-11-12"
+  },
+  {
+   "window": "beat 1",
+   "ears": "The United States has 307 robots per ten thousand workers. South Korea has nearly four times that, a huge gap.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "International Federation of Robotics (IFR), via Supply Chain 247 | Robot density: South Korea vs the United States | https://www.supplychain247.com/article/robot-density-rises-global-manufacturing-ifr-report/automation | 2026-11-12"
+  },
+  {
+   "window": "beat 2",
+   "ears": "China installs more robots than anyone, yet ranks only 22nd in density, since its workforce is so huge.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "International Federation of Robotics (IFR), via Supply Chain 247 | Most robots installed vs highest robot density | https://www.supplychain247.com/article/robot-density-rises-global-manufacturing-ifr-report/automation | 2026-11-12"
+  },
+  {
+   "window": "closing",
+   "ears": "Robots per worker, not total robots, shows who is really automating, and South Korea is miles ahead.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

@@ -98,14 +98,14 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Active volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Does not support the claim that ~45 volcanoes are erupting now; it says only a few erupt at any moment.",
-  "thesis: seg1 ('Ring of Fire volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Irrelevant to the number erupting now and does not logically follow from beat 0.",
-  "thesis: seg2 ('Most dangerous volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Irrelevant to the claim and does not follow from beat 1."
+  "thesis: seg0 ('Active volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Mentions many active volcanoes but says only a few erupt now, not supporting the specific claim of ~45 eruptions.",
+  "thesis: seg1 ('Ring of Fire volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Discusses geographic distribution (Ring of Fire) which doesn't directly prove the number of current eruptions.",
+  "thesis: seg2 ('Most dangerous volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Focuses on dangerous 'Decade Volcanoes' list, unrelated to the count of volcanoes erupting at this moment."
  ],
  "reasons": [
-  "thesis: seg0 ('Active volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Does not support the claim that ~45 volcanoes are erupting now; it says only a few erupt at any moment.",
-  "thesis: seg1 ('Ring of Fire volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Irrelevant to the number erupting now and does not logically follow from beat 0.",
-  "thesis: seg2 ('Most dangerous volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Irrelevant to the claim and does not follow from beat 1."
+  "thesis: seg0 ('Active volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Mentions many active volcanoes but says only a few erupt now, not supporting the specific claim of ~45 eruptions.",
+  "thesis: seg1 ('Ring of Fire volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Discusses geographic distribution (Ring of Fire) which doesn't directly prove the number of current eruptions.",
+  "thesis: seg2 ('Most dangerous volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Focuses on dangerous 'Decade Volcanoes' list, unrelated to the count of volcanoes erupting at this moment."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -138,5 +138,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-25T12:51:52Z"
 }

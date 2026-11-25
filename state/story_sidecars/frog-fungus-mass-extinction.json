@@ -23,31 +23,31 @@
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Extinction was only the first chapter of this amphibian disease.",
+   "ears": "The fungus that caused the worst amphibian extinction in history never actually stopped spreading.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "The fungus affected 501 amphibian species. One pathogen created a worldwide survival crisis.",
+   "ears": "The fungus has affected 501 amphibian species, the largest disease-driven extinction event on record.",
    "eyes": "substance: grey fungus on the frogs; cause: Data pours a bucket of sick water along the log and grey fungus spreads over every frog it touches",
    "evidence": "Science | Amphibian species affected by chytrid fungus: extinct vs still around (count) | https://doi.org/10.1126/science.aav0379 | 2026-11-05"
   },
   {
    "window": "beat 1",
-   "ears": "Thirty-nine percent of affected species are still declining. The crisis continued after scientists identified it.",
+   "ears": "Thirty-nine percent of those affected species are still declining today, long after the fungus was identified.",
    "eyes": "a data picture (comparison)",
    "evidence": "Science | Chytrid-affected amphibian species: still declining vs showing recovery (percent) | https://doi.org/10.1126/science.aav0379 | 2026-11-05"
   },
   {
    "window": "beat 2",
-   "ears": "The fungus hit 40 Australian frog species. The global crisis also reached isolated regional ecosystems.",
+   "ears": "It has now hit 40 Australian frog species, proof the crisis keeps spreading to new ground.",
    "eyes": "a data picture (comparison)",
    "evidence": "Science | Australian frog species hit by chytrid fungus vs untouched (count) | https://doi.org/10.1126/science.aav0379 | 2026-11-05"
   },
   {
    "window": "closing",
-   "ears": "The damage spans extinction, continuing decline, and regional losses that recovery has not erased.",
+   "ears": "Extinction wasn't the end of this fungus. Species are still losing ground to it today.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

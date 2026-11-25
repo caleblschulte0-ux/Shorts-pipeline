@@ -1,0 +1,16 @@
+{
+ "slug": "people-over-65-outnumber-kids-under-5",
+ "ts": "20261125T125203Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end has thin white subtitle 'people over 65 \u00b7 25M more than kids under 5' printed straight over the green tree canopy and hard to read on a phone. seg4:mid's 'over-65s by 2050 \u00b7 2.5x the under-fives' sits on the brick roofline with low contrast.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:end the small white subline under '705M' runs across the tree foliage ('people over 65 \u00b7 25M more than kids under 5'), and the tree tops break up the letters.",
+  "root_cause": "The headline and subline block is at a fixed y that overlaps the scene's tree canopy, with no ground or contrast behind the thin white text.",
+  "repair_goal": "Redraw seg1 so the tree canopy sits below the headline band, or move the trees lower or to the frame edges so the 705M headline and its subline sit on clear sky. Keep the queue-overtaking action, and let the senior line visibly pass the kids' line as Data pushes the last wheelchair in."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

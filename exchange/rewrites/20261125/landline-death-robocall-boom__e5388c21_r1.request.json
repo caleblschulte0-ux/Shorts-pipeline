@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "landline-death-robocall-boom__e5388c21_r1",
- "filed": "2026-11-25T12:25:58Z",
+ "filed": "2026-11-25T12:23:47Z",
  "status": "open",
  "channel": "explainer",
  "slug": "landline-death-robocall-boom",
@@ -114,12 +114,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('life after the landline') does not continue the story of the headline ('Why America Basically Killed The Landline') — brain: Discusses scam call volume but doesn't directly explain why the landline declined; it's a side effect, not a cause.",
-  "thesis: seg2 ('the new landline') does not continue the story of the headline ('Why America Basically Killed The Landline') — brain: Attributes more robocalls to the disappearance of landlines, which is a consequence rather than an explanation of the la"
+  "premise: brain: The pitch is a generic question hook about scam calls whose beats are plain statistics (landline share, robocall counts) with no concrete surprise or contradiction. The title's causal claim, that America 'killed' the landline, isn't backed by anything beyond a correlation."
  ],
  "reasons": [
-  "thesis: seg1 ('life after the landline') does not continue the story of the headline ('Why America Basically Killed The Landline') — brain: Discusses scam call volume but doesn't directly explain why the landline declined; it's a side effect, not a cause.",
-  "thesis: seg2 ('the new landline') does not continue the story of the headline ('Why America Basically Killed The Landline') — brain: Attributes more robocalls to the disappearance of landlines, which is a consequence rather than an explanation of the la"
+  "premise: brain: The pitch is a generic question hook about scam calls whose beats are plain statistics (landline share, robocall counts) with no concrete surprise or contradiction. The title's causal claim, that America 'killed' the landline, isn't backed by anything beyond a correlation."
  ],
  "judge": null,
  "prior_rejection": [
@@ -154,5 +152,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-25T12:51:55Z"
 }
