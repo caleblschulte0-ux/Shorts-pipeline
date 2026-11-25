@@ -9,8 +9,8 @@
 | extended | 10 | 0.01 |
 | fail | 7 | 0.12 |
 | rage | 5 | 0.09 |
-| argument | 3 | 0.04 |
-| clutch | 2 | 0.085 |
+| argument | 3 | 0.03 |
+| clutch | 2 | 0.08 |
 | beef | 1 | 0.01 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
