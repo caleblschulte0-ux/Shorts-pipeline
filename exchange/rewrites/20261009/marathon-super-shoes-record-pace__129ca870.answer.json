@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "marathon-super-shoes-record-pace__129ca870",
+ "slug": "marathon-super-shoes-record-pace",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Super Shoes Keep Breaking The Marathon Record",
+ "hook": "Your shoes just broke the marathon record: 2 hours flat, still falling.",
+ "closing": "Somewhere, a shoe lab just shaved off more seconds.",
+ "question": "Should super shoes count toward world records?",
+ "segments": [
+  {
+   "topic": "Marathon world record",
+   "say": "The marathon world record has dropped to about 120 minutes."
+  },
+  {
+   "topic": "Super shoes speed-up",
+   "say": "Before super shoes, the record slipped just 8 seconds a year; then it sped up fast."
+  },
+  {
+   "topic": "Fastest marathon times",
+   "say": "Three out of four of the fastest marathons ever came after super shoes arrived."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "vinyl-beats-cd-sales-again__9bfa46c5",
+ "slug": "vinyl-beats-cd-sales-again",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Vinyl Is Beating CDs Again",
+ "hook": "The format everyone buried years ago is now outselling the one that replaced it.",
+ "closing": "Vinyl survived streaming by becoming a premium niche, not the mass market.",
+ "question": "What record would you buy?",
+ "segments": [
+  {
+   "topic": "Vinyl Revenue",
+   "say": "Vinyl earned 1.2 billion dollars last year, more than CDs managed to sell at all."
+  },
+  {
+   "topic": "Vinyl Sales",
+   "say": "Vinyl also outsold CDs in plain unit count, not just dollars."
+  },
+  {
+   "topic": "Vinyl Market",
+   "say": "Streaming still takes 84 percent of music revenue, leaving vinyl a small but growing niche."
+  }
+ ]
+}

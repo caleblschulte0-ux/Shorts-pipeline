@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "quantum-computers-5-to-1121-qubits__1b611ade",
+ "slug": "quantum-computers-5-to-1121-qubits",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Quantum Chips Just Jumped From 5 Qubits To Over A Thousand",
+ "hook": "This number just broke every chart.",
+ "closing": "Data's still waiting for his quantum laptop.",
+ "question": "Trust a quantum computer with your passwords?",
+ "segments": [
+  {
+   "topic": "IBM's qubits jump",
+   "say": "IBM's newest quantum chip now holds 1,121 qubits."
+  },
+  {
+   "topic": "qubits double the power",
+   "say": "Every extra qubit doubles what's representable -- just 20 of them already pass a million possible states at once."
+  },
+  {
+   "topic": "IBM vs Google qubits",
+   "say": "IBM's quantum chip now holds far more qubits than Google's newest one."
+  }
+ ]
+}

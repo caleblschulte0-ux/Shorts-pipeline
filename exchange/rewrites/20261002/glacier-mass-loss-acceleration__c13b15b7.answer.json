@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "glacier-mass-loss-acceleration__c13b15b7",
+ "slug": "glacier-mass-loss-acceleration",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "The World's Glaciers Are Disappearing Faster Than Ever",
+ "hook": "Glacier melting just hit a record pace.",
+ "closing": "Earth is basically shedding a mountain range of ice every single year now.",
+ "question": "Seen a glacier shrink yourself?",
+ "segments": [
+  {
+   "topic": "glaciers ice loss",
+   "say": "Glaciers used to lose far less ice a year -- now it's 390 billion tons, and still climbing."
+  },
+  {
+   "topic": "glaciers vs Greenland ice",
+   "say": "That's already bigger than Greenland's whole ice sheet loses -- 390 billion tons from glaciers versus Greenland's share."
+  },
+  {
+   "topic": "glaciers melt sea level",
+   "say": "All that melted glacier ice has already pushed global sea levels up 18 millimeters since 2000."
+  }
+ ]
+}

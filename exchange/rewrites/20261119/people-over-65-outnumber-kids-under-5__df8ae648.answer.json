@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "people-over-65-outnumber-kids-under-5__df8ae648",
+ "slug": "people-over-65-outnumber-kids-under-5",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
+ "hook": "The world is running out of kids, and it may be too late.",
+ "closing": "A much older world is coming, and it will change jobs, healthcare and families for everyone.",
+ "question": "How many grandparents do you have?",
+ "segments": [
+  {
+   "topic": "Over 65 outnumber kids",
+   "say": "For the first time ever, seniors outnumber toddlers worldwide, 705 million of them, and still climbing."
+  },
+  {
+   "topic": "Outnumber Kids",
+   "say": "That senior group keeps growing too, heading toward 1.6 billion people by 2050."
+  },
+  {
+   "topic": "Over 65 outnumber kids",
+   "say": "By then, seniors will outnumber little kids more than two to one -- a much older world, with far fewer young people."
+  }
+ ]
+}

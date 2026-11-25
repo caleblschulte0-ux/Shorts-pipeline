@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "ocean-floor-vs-mars-mapped__a4d569a1",
+ "slug": "ocean-floor-vs-mars-mapped",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Mars Is More Mapped Than Our Own Seafloor",
+ "hook": "We know Mars better than our own ocean floor.",
+ "closing": "Earth: the only planet we haven't finished mapping.",
+ "question": "Ocean floor or Mars first?",
+ "segments": [
+  {
+   "topic": "ocean floor mapped",
+   "say": "By 2026, a decade-long global project has mapped just 28.7 percent of the ocean floor in real detail."
+  },
+  {
+   "topic": "ocean floor vs Mars",
+   "say": "Compare that to Mars, sitting at 99.5 percent mapped -- we know a foreign planet better than our own seafloor."
+  },
+  {
+   "topic": "unmapped ocean vs Mars",
+   "say": "That unmapped ocean slice alone covers about 257 million square kilometers, bigger than the entire surface of Mars."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "cohabitation-overtakes-marriage__bfb44f30_r1",
+ "slug": "cohabitation-overtakes-marriage",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Young Adults Are Skipping Marriage",
+ "hook": "Fewer young adults are getting married at all these days.",
+ "closing": "If living together already beats marriage for the young, what happens to marriage next?",
+ "question": "Would you live together before marrying?",
+ "segments": [
+  {
+   "topic": "Young adults living together",
+   "say": "Among the youngest adults, 9 percent now live with an unmarried partner, more than live with a spouse."
+  },
+  {
+   "topic": "Getting married less",
+   "say": "Back in 1968, 82 percent of adults that age lived with a spouse. Today it's fewer than half."
+  },
+  {
+   "topic": "Older adults living together",
+   "say": "Even older couples are following suit -- cohabiting couples past retirement age have climbed to about 4.2 million since 2000."
+  }
+ ]
+}

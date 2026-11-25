@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "english-internet-share-decline__312d565d_r1",
+ "slug": "english-internet-share-decline",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why English Is Losing Its Grip On The Internet",
+ "hook": "The web was built in English, and English is now losing it.",
+ "closing": "Search only in English and you miss nearly half the internet, and the people behind it.",
+ "question": "Which language do you browse in?",
+ "segments": [
+  {
+   "topic": "English page fall",
+   "say": "By 2005, English had fallen to 45 percent of web pages. People in other countries were coming online."
+  },
+  {
+   "topic": "English growth rival",
+   "say": "In ten years, Arabic content grew nearly nine times faster than English. The web stopped being an English club."
+  },
+  {
+   "topic": "English website share",
+   "say": "English still leads with 55 percent of websites. That sounds dominant, but nearly half the web speaks something else."
+  }
+ ]
+}

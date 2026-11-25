@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "feet-are-getting-bigger__cdd29c3f_r1",
+ "slug": "feet-are-getting-bigger",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why British Feet Keep Growing",
+ "hook": "Your feet are changing shape, and your waistline is a big part of why.",
+ "closing": "Your shoes aren't shrinking. You're outgrowing them, so check your size before you buy.",
+ "question": "What shoe size do you wear?",
+ "segments": [
+  {
+   "topic": "British feet grew",
+   "say": "In the 1970s, the average British man wore a size 8 shoe. Now his feet have grown two full sizes."
+  },
+  {
+   "topic": "Feet got wider",
+   "say": "It's not just length. About two in three women say their feet got wider as adults."
+  },
+  {
+   "topic": "Why British feet grow",
+   "say": "Podiatrists blame body size. Two in three adults in England are overweight, and extra weight spreads the foot."
+  }
+ ]
+}

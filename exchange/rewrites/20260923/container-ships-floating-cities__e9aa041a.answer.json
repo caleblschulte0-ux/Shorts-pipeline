@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "container-ships-floating-cities__e9aa041a",
+ "slug": "container-ships-floating-cities",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Container Ships Got So Big They Changed World Trade",
+ "hook": "One ship now carries 24,000 truckloads of cargo.",
+ "closing": "Somewhere out there, one boat is holding your order -- and 11,000 other people's.",
+ "question": "Ever tracked a package by ship?",
+ "segments": [
+  {
+   "topic": "largest ship capacity",
+   "say": "By 2019, the biggest container ship could carry 24,000 boxes -- one ship doing a small fleet's job."
+  },
+  {
+   "topic": "world container fleet capacity",
+   "say": "The whole global container fleet has grown to 25.8 million boxes of capacity, up massively since 1990."
+  },
+  {
+   "topic": "trade carried by sea",
+   "say": "About 80 percent of everything traded in the world, by volume, moves by ship."
+  }
+ ]
+}

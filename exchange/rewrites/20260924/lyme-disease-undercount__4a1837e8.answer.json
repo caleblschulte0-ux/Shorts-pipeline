@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "lyme-disease-undercount__4a1837e8",
+ "slug": "lyme-disease-undercount",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Lyme Disease Is Spreading Into New Places",
+ "hook": "Blame the ticks -- they've spread into 45% of the country.",
+ "closing": "Check for ticks. Your backyard is bigger news than you think.",
+ "question": "Ever found a tick on yourself?",
+ "segments": [
+  {
+   "topic": "ticks that spread Lyme",
+   "say": "Ticks that spread Lyme disease have spread into 45 percent of US counties, up sharply since the 1990s."
+  },
+  {
+   "topic": "reported Lyme cases",
+   "say": "Official Lyme cases get reported at only 30,000 a year -- the CDC's real estimate is far higher."
+  },
+  {
+   "topic": "counties at Lyme risk",
+   "say": "The number of high-risk Lyme counties has grown nine times over in thirty years."
+  }
+ ]
+}

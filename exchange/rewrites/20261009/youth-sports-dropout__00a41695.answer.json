@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "youth-sports-dropout__00a41695",
+ "slug": "youth-sports-dropout",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Fewer Kids Are Playing Team Sports Than Ever",
+ "hook": "Your kid got benched by life: boys playing sports fell to 41 percent.",
+ "closing": "Data benched himself in 2013. Never looked back.",
+ "question": "Did you play sports as a kid?",
+ "segments": [
+  {
+   "topic": "boys playing sports",
+   "say": "In 2013, half of American boys played a team sport; now just 41 percent do."
+  },
+  {
+   "topic": "lowest-income kids sports",
+   "say": "Participation among the lowest-income teens has fallen to just 27 percent."
+  },
+  {
+   "topic": "kids leaving team sports",
+   "say": "About 1.2 million fewer kids are playing organized team sports than just a few years ago."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "octopus-nine-brains__5964f9a4",
+ "slug": "octopus-nine-brains",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The Octopus Basically Has Nine Brains",
+ "hook": "An octopus has 320 million neurons running its arms, without asking permission.",
+ "closing": "Data counted his own brains. Still just the one.",
+ "question": "Want a second brain in each arm?",
+ "segments": [
+  {
+   "topic": "octopus neuron count",
+   "say": "Only 180 million of an octopus's neurons sit in its central brain -- most are out in its arms."
+  },
+  {
+   "topic": "octopus arm sensors",
+   "say": "Every one of its 280 suckers per arm is its own touch-and-taste sensor."
+  },
+  {
+   "topic": "octopus arm reacts",
+   "say": "A severed octopus arm keeps reacting to touch for up to 3,600 seconds after it's cut off."
+  }
+ ]
+}

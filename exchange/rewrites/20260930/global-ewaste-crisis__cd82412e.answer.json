@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "global-ewaste-crisis__cd82412e",
+ "slug": "global-ewaste-crisis",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The World's E-Waste Pile Keeps Growing",
+ "hook": "Your dead phone joined a pile of 62 million tons of trash.",
+ "closing": "One recycling bin at a time isn't going to cut it.",
+ "question": "How many old phones do you own?",
+ "segments": [
+  {
+   "topic": "world's growing e-waste pile",
+   "say": "In 2022 the world produced 62 million tons of electronic waste, up sharply since 2010."
+  },
+  {
+   "topic": "e-waste actually recycled",
+   "say": "Only 22 percent of e-waste was properly collected and recycled. The rest got dumped or burned."
+  },
+  {
+   "topic": "e-waste's wasted materials",
+   "say": "Recycling meets just 1 percent of global rare earth demand -- we're throwing away a mine and digging a new one."
+  }
+ ]
+}

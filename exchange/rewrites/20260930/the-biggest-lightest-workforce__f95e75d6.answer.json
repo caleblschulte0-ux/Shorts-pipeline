@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "the-biggest-lightest-workforce__f95e75d6",
+ "slug": "the-biggest-lightest-workforce",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "The Global Workforce Just Hit An All-Time High",
+ "hook": "3.7 billion people work now. Fewer depend on each one.",
+ "closing": "More hands, fewer mouths, bigger cities. Do the math.",
+ "question": "Rather live rural or urban?",
+ "segments": [
+  {
+   "topic": "world's workforce",
+   "say": "The global labor force grew to 3.7 billion people by 2025, the biggest working-age population ever."
+  },
+  {
+   "topic": "dependency behind the workforce",
+   "say": "Each worker today supports far fewer dependents than decades ago."
+  },
+  {
+   "topic": "where the workforce lives",
+   "say": "Most of that growth landed in cities -- the world is now 58 percent urban."
+  }
+ ]
+}

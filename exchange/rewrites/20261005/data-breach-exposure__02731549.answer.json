@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "data-breach-exposure__02731549",
+ "slug": "data-breach-exposure",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Reusing One Password Is A Digital Life Risk",
+ "hook": "3,322 US breaches last year wiped out your password's safety.",
+ "closing": "Reuse a password, and you're gambling your digital life.",
+ "question": "Do you reuse one password everywhere? Be honest.",
+ "segments": [
+  {
+   "topic": "leaked password breaches",
+   "say": "US data breaches hit a record 3,322 last year."
+  },
+  {
+   "topic": "password manager effect",
+   "say": "People without a password manager are far more likely to get breached again, about 32 percent of them."
+  },
+  {
+   "topic": "digital life: finance",
+   "say": "Financial services got hit 739 times last year, more than any other industry."
+  }
+ ]
+}

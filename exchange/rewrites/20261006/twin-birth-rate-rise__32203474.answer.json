@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "twin-birth-rate-rise__32203474",
+ "slug": "twin-birth-rate-rise",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Having Twins Got So Much More Common",
+ "hook": "Your town saw twin births double to 34 per 1,000!",
+ "closing": "Two really did become the new one.",
+ "question": "Do twins run in your family?",
+ "segments": [
+  {
+   "topic": "Twin birth rate US",
+   "say": "Twin births in the US climbed to almost 34 per thousand by 2014, way up from decades earlier."
+  },
+  {
+   "topic": "Twin age factor",
+   "say": "Mothers over 40 twin nearly five times more often than the youngest moms."
+  },
+  {
+   "topic": "Twin IVF share",
+   "say": "Twin births from IVF have collapsed to just 2 percent of twin births today."
+  }
+ ]
+}

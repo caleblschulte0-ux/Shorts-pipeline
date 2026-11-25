@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "lake-mead-water-crisis__4529ddf6",
+ "slug": "lake-mead-water-crisis",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Lake Mead Dropped To Just 27% Full",
+ "hook": "America's biggest reservoir is disappearing in plain sight, and the power could go next.",
+ "closing": "If the water keeps falling, Hoover Dam stops making power, and everyone relying on it feels that.",
+ "question": "Did you know Lake Mead dropped this low?",
+ "segments": [
+  {
+   "topic": "lake mead water level",
+   "say": "In 2000, Lake Mead was nearly full. By 2022 the water had sunk about 150 feet."
+  },
+  {
+   "topic": "lake mead percent full",
+   "say": "Lake Mead held 37% of its capacity in 2016. Six years later, it was barely over a quarter full."
+  },
+  {
+   "topic": "lake mead power shutoff",
+   "say": "By 2022, Lake Mead sat only 97 feet above the level where Hoover Dam stops making power."
+  }
+ ]
+}

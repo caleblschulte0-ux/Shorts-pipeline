@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "air-conditioning-access-gap__9ee4ec34",
+ "slug": "air-conditioning-access-gap",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Billions Of People In Hot Places Have No AC",
+ "hook": "2.8 billion people live where it's dangerously hot. Most can't cool down.",
+ "closing": "The hottest places on Earth can least afford to cool off.",
+ "question": "Could you survive a heatwave without AC?",
+ "segments": [
+  {
+   "topic": "AC ownership hottest places",
+   "say": "In the hottest parts of the world, only about 9 percent of homes have an air conditioner."
+  },
+  {
+   "topic": "AC demand, hot places",
+   "say": "Global AC demand is projected to more than triple by 2050, reaching 5.6 billion units."
+  },
+  {
+   "topic": "electricity bill, hot places",
+   "say": "The electricity bill for staying cool is projected to triple by 2050."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "panama-canal-drought-transit-cuts__3cc174f2",
+ "slug": "panama-canal-drought-transit-cuts",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The Panama Canal Had To Ration Its Ships",
+ "hook": "The Panama Canal is down to 24 ships a day because of a drought.",
+ "closing": "Water: the one thing a canal can't fake its way around.",
+ "question": "Ever had a shipment stuck? Tell me.",
+ "segments": [
+  {
+   "topic": "Panama Canal Transit Cuts",
+   "say": "A historic drought forced the Panama Canal to cut its normal daily ship crossings down to just 24."
+  },
+  {
+   "topic": "Panama Canal Lake Level",
+   "say": "The lake that feeds the canal's locks dropped to just 80.3 feet -- well below its normal average."
+  },
+  {
+   "topic": "Panama Canal Draft Cut",
+   "say": "That forced ships to carry less cargo too -- the maximum draft dropped to just 44 feet."
+  }
+ ]
+}

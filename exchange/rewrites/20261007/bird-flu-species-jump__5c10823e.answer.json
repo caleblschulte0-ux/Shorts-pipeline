@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "bird-flu-species-jump__5c10823e",
+ "slug": "bird-flu-species-jump",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Bird Flu Keeps Jumping To New Species",
+ "hook": "Bird flu jumped from birds to cows, and now it's jumping to people.",
+ "closing": "Two species, two years, still spreading.",
+ "question": "Does bird flu scare you?",
+ "segments": [
+  {
+   "topic": "Bird deaths US",
+   "say": "206 million US birds have died from bird flu since 2022, and deaths keep rising."
+  },
+  {
+   "topic": "Bird dairy herds",
+   "say": "In 2024, California recorded 738 infected dairy herds, surpassing all other states combined."
+  },
+  {
+   "topic": "Bird human cases",
+   "say": "Seventy people infected total, with 41 contracting the virus from cows, not birds."
+  }
+ ]
+}

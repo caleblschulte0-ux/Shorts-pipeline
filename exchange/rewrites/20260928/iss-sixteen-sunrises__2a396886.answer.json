@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "iss-sixteen-sunrises__2a396886",
+ "slug": "iss-sixteen-sunrises",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The ISS Sees 16 Sunrises A Day",
+ "hook": "You've never moved this fast: 27,600 kilometers an hour, right over your head.",
+ "closing": "Even in space, you can't dodge a 24-hour day.",
+ "question": "How much daylight did you get today?",
+ "segments": [
+  {
+   "topic": "ISS speed vs jet",
+   "say": "The ISS circles Earth at 27,600 kilometers an hour, far faster than a commercial jet."
+  },
+  {
+   "topic": "ISS orbit so fast",
+   "say": "The ISS orbits Earth every 93 minutes -- far faster than GPS or geostationary satellites."
+  },
+  {
+   "topic": "sunrises the ISS sees",
+   "say": "Astronauts on the ISS see a new sunrise every single day, 16 times over."
+  }
+ ]
+}

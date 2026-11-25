@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "americans-stopped-moving__f6264643",
+ "slug": "americans-stopped-moving",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Fewer Americans Move Each Year Than Ever Before",
+ "hook": "Nobody's moving anymore. A cheap mortgage and a license requirement are both to blame.",
+ "closing": "We didn't get more content. We got more stuck.",
+ "question": "How long have you lived in one place?",
+ "segments": [
+  {
+   "topic": "americans who moved",
+   "say": "By 2023, fewer Americans moved each year than ever recorded."
+  },
+  {
+   "topic": "mortgage lock-in",
+   "say": "Most homeowners are sitting on a mortgage under 4 percent, far cheaper than today's rate."
+  },
+  {
+   "topic": "workers needing a license",
+   "say": "Today, roughly 25 percent of all US jobs require a government license to do."
+  }
+ ]
+}

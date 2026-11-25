@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "landline-extinction-event__f48f5d4d",
+ "slug": "landline-extinction-event",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Nobody Has A Landline Anymore",
+ "hook": "Your landline is dying: 1.26 billion lines in 2006, just 815 million now.",
+ "closing": "The phone didn't die. It just stopped ringing at home.",
+ "question": "Do you even own a landline anymore?",
+ "segments": [
+  {
+   "topic": "landline since 2006 peak",
+   "say": "Fixed telephone lines peaked at 1.26 billion in 2006, then started falling fast."
+  },
+  {
+   "topic": "landline replaced by broadband",
+   "say": "What replaced them wasn't a phone -- broadband subscriptions exploded sevenfold since 2005, to 1.65 billion."
+  },
+  {
+   "topic": "broadband lines by country",
+   "say": "China alone now runs 670 million of those broadband lines -- more than the next four countries combined."
+  }
+ ]
+}

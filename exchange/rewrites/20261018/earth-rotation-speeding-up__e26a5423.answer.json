@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "earth-rotation-speeding-up__e26a5423",
+ "slug": "earth-rotation-speeding-up",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Your Day Is Secretly Getting Shorter",
+ "hook": "Your day just got shorter, and nobody actually knows why.",
+ "closing": "Your day is shrinking, and the data proves it.",
+ "question": "Feel days speeding up? Comment below.",
+ "segments": [
+  {
+   "topic": "Day Getting Shorter",
+   "say": "The 2024 day ran 1.66 milliseconds shorter than usual, getting shorter nearly every year."
+  },
+  {
+   "topic": "Day Correction Added",
+   "say": "Since 1972, 27 leap-second corrections have been added to match the shorter day, and none have ever been removed."
+  },
+  {
+   "topic": "Day Could Reverse",
+   "say": "Scientists put the odds of needing to reverse a second by 2035, for the first time ever, at 40 percent."
+  }
+ ]
+}

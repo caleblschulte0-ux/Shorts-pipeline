@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "saharan-dust-feeds-amazon__ba518d26",
+ "slug": "saharan-dust-feeds-amazon",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Saharan Dust Secretly Feeds The Amazon",
+ "hook": "A desert is secretly keeping the Amazon alive.",
+ "closing": "A desert's dust feeds a rainforest, so protecting one far-off place quietly protects another.",
+ "question": "Guessed dust could feed a rainforest?",
+ "segments": [
+  {
+   "topic": "Dust Lifted Yearly",
+   "say": "Winds lift 182 million tons of dust off the Sahara every year. That is a mountain of sand riding the sky."
+  },
+  {
+   "topic": "Dust Reaching Amazon",
+   "say": "About 27.7 million tons of it crosses the ocean and lands on the Amazon. The rest falls into the sea."
+  },
+  {
+   "topic": "Phosphorus From Dust",
+   "say": "The Amazon loses 22,000 tons of phosphorus from its soil yearly. Saharan dust delivers the same, keeping the forest fed."
+  }
+ ]
+}

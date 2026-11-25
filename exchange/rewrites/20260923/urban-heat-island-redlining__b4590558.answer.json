@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "urban-heat-island-redlining__b4590558",
+ "slug": "urban-heat-island-redlining",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Some City Blocks Run So Much Hotter",
+ "hook": "The city itself is cooking your block.",
+ "closing": "The redlining maps are gone. The heat still remembers them.",
+ "question": "Does your neighborhood feel hotter than it should?",
+ "segments": [
+  {
+   "topic": "why cities run hotter",
+   "say": "Across major US cities, pavement and buildings add an average of 8 degrees of extra heat."
+  },
+  {
+   "topic": "hottest city blocks",
+   "say": "68 percent of everyone studied live in the very hottest, most paved-over city blocks."
+  },
+  {
+   "topic": "neighborhoods that got hotter",
+   "say": "Neighborhoods redlined back in the 1930s are, on average, 5 degrees hotter today than nearby areas that weren't."
+  }
+ ]
+}

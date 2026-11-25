@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "aquaculture-overtook-wild-fishing__80181d75",
+ "slug": "aquaculture-overtook-wild-fishing",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Farmed Fish Quietly Took Over Your Plate",
+ "hook": "Your salmon never saw the ocean -- farms now grow 94 million tonnes.",
+ "closing": "The ocean didn't get emptier. It got outcompeted.",
+ "question": "Would you notice if your fish was farmed?",
+ "segments": [
+  {
+   "topic": "Farmed fish production",
+   "say": "In 1990 almost every fish was wild-caught; by 2022 farms produced 94 million tonnes."
+  },
+  {
+   "topic": "Farmed vs wild fish",
+   "say": "In 2022, farmed fish finally edged past wild-caught, taking 51 percent of the catch."
+  },
+  {
+   "topic": "Fish on your plate",
+   "say": "Now 57 percent of the fish on your plate comes from a farm."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "teen-ai-companion-boom__28b9c5d0",
+ "slug": "teen-ai-companion-boom",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why So Many Teens Already Trust An AI Friend",
+ "hook": "Your kid might trust a chatbot more than you.",
+ "closing": "Would you trust a chatbot with your secrets?",
+ "question": "Ever talked to an AI like a friend?",
+ "segments": [
+  {
+   "topic": "teens using an AI",
+   "say": "72 percent of teens have now talked to an AI companion like it's a friend."
+  },
+  {
+   "topic": "teens trust AI more",
+   "say": "A third of teens have picked an AI over an actual person for a serious conversation."
+  },
+  {
+   "topic": "teens and their chatbot",
+   "say": "34 percent of teens using an AI companion say it's done something that made them uncomfortable."
+  }
+ ]
+}

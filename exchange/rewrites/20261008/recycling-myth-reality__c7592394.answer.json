@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "recycling-myth-reality__c7592394",
+ "slug": "recycling-myth-reality",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Most Plastic Never Actually Gets Recycled",
+ "hook": "Only a sliver of the plastic you recycle actually becomes something new.",
+ "closing": "Labels promise recycle; landfills prove otherwise.",
+ "question": "How much actually recycles? Comment below.",
+ "segments": [
+  {
+   "topic": "Recycle waste volume",
+   "say": "Plastic waste will rise from 353 million to over a billion tons by 2060."
+  },
+  {
+   "topic": "Recycle end fate",
+   "say": "Only 9 percent of plastic actually gets recycled -- most of the rest piles up in landfills."
+  },
+  {
+   "topic": "Recycle rate forecast",
+   "say": "Even the best-case forecast from experts has recycling reaching just 17 percent by 2060."
+  }
+ ]
+}

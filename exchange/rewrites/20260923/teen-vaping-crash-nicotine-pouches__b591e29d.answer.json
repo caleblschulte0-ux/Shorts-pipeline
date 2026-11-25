@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "teen-vaping-crash-nicotine-pouches__b591e29d",
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Teen Vaping Crashed, Then Nicotine Came Back",
+ "hook": "The vaping crisis didn't end. It just moved.",
+ "closing": "One nicotine habit down, a stealthier one clocked in.",
+ "question": "Know anyone who vapes or uses pouches?",
+ "segments": [
+  {
+   "topic": "teen vaping rates",
+   "say": "By 2019, 27.5 percent of high schoolers vaped -- more than one in four teenagers using e-cigarettes regularly."
+  },
+  {
+   "topic": "the teen vaping crackdown",
+   "say": "After flavor bans and FDA crackdowns, vaping crashed to just 7.8 percent by 2024, the lowest in a decade."
+  },
+  {
+   "topic": "teens' new nicotine product",
+   "say": "E-cigarettes are still the top seller, now trailed by nicotine pouches at just 1.8 percent."
+  }
+ ]
+}

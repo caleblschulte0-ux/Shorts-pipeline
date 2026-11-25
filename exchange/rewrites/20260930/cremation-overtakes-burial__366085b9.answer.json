@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "cremation-overtakes-burial__366085b9",
+ "slug": "cremation-overtakes-burial",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "More People Now Choose Cremation Over Burial",
+ "hook": "More people now choose fire over the ground.",
+ "closing": "Keep that pace and burial could be the rare choice within a generation.",
+ "question": "Would you choose cremation or burial?",
+ "segments": [
+  {
+   "topic": "US cremation rate",
+   "say": "In the 1970s, almost nobody in America chose cremation. Today it's 63 percent and still climbing."
+  },
+  {
+   "topic": "cremation vs burial today",
+   "say": "Cremation now sits at 63.4 percent, more than double burial's share."
+  },
+  {
+   "topic": "cremation rate by state",
+   "say": "Nevada cremates over 80 percent of people, far more than many other states."
+  }
+ ]
+}

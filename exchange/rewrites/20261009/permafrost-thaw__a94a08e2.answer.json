@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "permafrost-thaw__a94a08e2",
+ "slug": "permafrost-thaw",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The Ground Beneath The Arctic Won't Stay Frozen",
+ "hook": "The permafrost vault is thawing, and it won't refreeze.",
+ "closing": "It took millennia to freeze. It's unfreezing in decades.",
+ "question": "Did you know the ground could leak carbon?",
+ "segments": [
+  {
+   "topic": "Arctic permafrost ground temperature",
+   "say": "Arctic permafrost has warmed to just 2.3 degrees below freezing, ground that stayed frozen for millennia."
+  },
+  {
+   "topic": "permafrost carbon vs atmosphere",
+   "say": "Permafrost alone holds about 1.7 trillion tons of locked-away carbon -- almost twice what's in the whole atmosphere."
+  },
+  {
+   "topic": "permafrost carbon release",
+   "say": "Scientists project that thaw could release 150 billion tons of that locked-away carbon under a high-warming path."
+  }
+ ]
+}

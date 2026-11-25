@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "south-korea-robot-density-record__fda84246_r2",
+ "slug": "south-korea-robot-density-record",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why South Korea Has More Robots Than People On Its Factory Floors",
+ "hook": "One country now has way more robot coworkers than you have fingers.",
+ "closing": "More robots than people, at least on that factory floor.",
+ "question": "Would a robot coworker worry you?",
+ "segments": [
+  {
+   "topic": "Robots Per Worker",
+   "say": "South Korea now runs 1,220 robots for every ten thousand factory workers, the highest density anywhere."
+  },
+  {
+   "topic": "Korea Vs US Robots",
+   "say": "Korea has nearly four times as many robots on the factory floor as the United States has."
+  },
+  {
+   "topic": "Robot Installs Vs Density",
+   "say": "China installs more robots than any other country, yet ranks far lower once you measure density instead of raw count."
+  }
+ ]
+}

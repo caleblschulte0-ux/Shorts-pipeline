@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "college-gender-gap__adfbd805",
+ "slug": "college-gender-gap",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Women Now Earn Most College Degrees, And The Gap Is Growing",
+ "hook": "Your lecture hall flipped, and the gap keeps widening every year.",
+ "closing": "The flip happened, and it's still speeding up.",
+ "question": "Did you finish college? Tell me below.",
+ "segments": [
+  {
+   "topic": "Women's college degrees",
+   "say": "Women now earn 58 percent of all college degrees, up sharply since 1970."
+  },
+  {
+   "topic": "The widening gap",
+   "say": "Since 1995, young women's college completion rate has climbed 22 points, far outpacing young men's."
+  },
+  {
+   "topic": "College degrees today",
+   "say": "Among adults in their late twenties and early thirties, 47 percent of women now hold a college degree, well ahead of men."
+  }
+ ]
+}

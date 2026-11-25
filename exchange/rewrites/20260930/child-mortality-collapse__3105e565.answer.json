@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "child-mortality-collapse__3105e565",
+ "slug": "child-mortality-collapse",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Child Mortality Keeps Falling So Fast",
+ "hook": "Your kid's odds of dying before age five just fell sharply. Here's what changed.",
+ "closing": "Progress doesn't announce itself. It just quietly happens.",
+ "question": "Did you get your shots as a kid?",
+ "segments": [
+  {
+   "topic": "child mortality since 1990",
+   "say": "Child mortality under age five has fallen to just 37.4 per thousand live births worldwide."
+  },
+  {
+   "topic": "immunization cut child deaths",
+   "say": "The basic childhood immunization shot now reaches 85 percent of kids worldwide, nearly everywhere."
+  },
+  {
+   "topic": "spending behind child health",
+   "say": "Global health spending has climbed to 10.1 percent of world GDP, funding that progress."
+  }
+ ]
+}

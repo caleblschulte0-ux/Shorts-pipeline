@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "us-stops-making-pennies-232-years__e36ddb3a",
+ "slug": "us-stops-making-pennies-232-years",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why America Finally Killed The Penny",
+ "hook": "The US was losing money on every penny and nickel it made.",
+ "closing": "The penny's long run ends because minting pocket change stopped making financial sense.",
+ "question": "Would you miss the penny?",
+ "segments": [
+  {
+   "topic": "Penny Annual Loss",
+   "say": "Making pennies cost taxpayers 86 million dollars a year, more than the coin was worth."
+  },
+  {
+   "topic": "Penny Long Run",
+   "say": "That decision ends the penny's 232-year run, far longer than any other coin the US ever dropped."
+  },
+  {
+   "topic": "Nickel Bigger Loss",
+   "say": "The nickel is even worse: it costs 13.78 cents to make a coin worth five."
+  }
+ ]
+}

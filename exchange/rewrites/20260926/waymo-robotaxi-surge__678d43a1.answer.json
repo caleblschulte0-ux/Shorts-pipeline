@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "waymo-robotaxi-surge__678d43a1",
+ "slug": "waymo-robotaxi-surge",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Waymo's Robotaxis Took Over While Rivals Dropped Out",
+ "hook": "Robotaxi rides just exploded 20-fold in barely a year and a half.",
+ "closing": "The robotaxi race isn't close anymore. It's just Waymo.",
+ "question": "Ride in a car with no driver?",
+ "segments": [
+  {
+   "topic": "waymo's weekly robotaxi rides",
+   "say": "By February 2025, Waymo was giving 200,000 robotaxi rides every single week."
+  },
+  {
+   "topic": "cities waymo's robotaxi covers",
+   "say": "Waymo's robotaxi service spread fast: one city in 2020, now five, each one compounding the rides."
+  },
+  {
+   "topic": "waymo vs rival cruise",
+   "say": "Waymo's biggest rival didn't make it -- its robotaxi business shut down for good in December 2024."
+  }
+ ]
+}

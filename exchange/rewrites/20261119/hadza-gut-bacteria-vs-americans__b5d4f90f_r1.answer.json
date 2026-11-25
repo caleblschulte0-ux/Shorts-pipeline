@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "hadza-gut-bacteria-vs-americans__b5d4f90f_r1",
+ "slug": "hadza-gut-bacteria-vs-americans",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Hunter-Gatherers Have Richer Gut Bacteria",
+ "hook": "Your gut is a ghost town compared to a hunter-gatherer's.",
+ "closing": "Civilization made our food safer and our guts emptier.",
+ "question": "How much fiber did you eat today?",
+ "segments": [
+  {
+   "topic": "bacteria species",
+   "say": "The Hadza of Tanzania carry about 730 gut bacteria species. The average American has fewer than half that."
+  },
+  {
+   "topic": "feeding the gut",
+   "say": "The difference is fiber -- the Hadza eat 150 grams a day, ten times what the average American eats."
+  },
+  {
+   "topic": "bacteria killers",
+   "say": "On top of that, a third of US antibiotic prescriptions aren't even necessary, and each one can wipe out gut diversity."
+  }
+ ]
+}

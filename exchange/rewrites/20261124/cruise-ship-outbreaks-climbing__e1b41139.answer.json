@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "cruise-ship-outbreaks-climbing__e1b41139",
+ "slug": "cruise-ship-outbreaks-climbing",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Cruise Ship Outbreaks Keep Climbing",
+ "hook": "One stomach virus keeps finding its way onto ships packed with thousands of people.",
+ "closing": "Crowded cruises give contagious illness thousands of chances to spread.",
+ "question": "Would outbreaks change your cruise pick?",
+ "segments": [
+  {
+   "topic": "Cruise Outbreaks",
+   "say": "Reported cruise outbreaks hit 20 last year, continuing a three-year climb."
+  },
+  {
+   "topic": "Cruise Norovirus",
+   "say": "Norovirus alone caused 15 of those outbreaks, making one bug the main repeat offender."
+  },
+  {
+   "topic": "Cruise Crowds",
+   "say": "Some cruise ships carry 7,600 guests at once, giving norovirus a huge crowd of close contacts to spread through."
+  }
+ ]
+}

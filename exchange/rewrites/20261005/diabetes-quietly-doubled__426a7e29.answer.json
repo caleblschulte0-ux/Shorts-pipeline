@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "diabetes-quietly-doubled__426a7e29",
+ "slug": "diabetes-quietly-doubled",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Diabetes Quietly Doubled, And Treatment Still Lags",
+ "hook": "It quietly doubled, and most who have it still aren't treated.",
+ "closing": "Doubling a disease is easy. Treating it is not.",
+ "question": "Do you know your blood sugar numbers?",
+ "segments": [
+  {
+   "topic": "diabetes among adults worldwide",
+   "say": "In 1990, just 7 percent of adults worldwide had diabetes. By 2022, that doubled."
+  },
+  {
+   "topic": "diabetics who get treated",
+   "say": "Only 45.8 percent of people with diabetes actually get treated for it."
+  },
+  {
+   "topic": "treatment by country income",
+   "say": "High-income countries treat 53 percent of diabetes cases; poorer countries barely reach a third."
+  }
+ ]
+}

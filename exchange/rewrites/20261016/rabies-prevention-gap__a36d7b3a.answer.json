@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "rabies-prevention-gap__a36d7b3a",
+ "slug": "rabies-prevention-gap",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Rabies Still Kills So Many, So Needlessly",
+ "hook": "One bite. 100% fatal once it starts. Almost always preventable.",
+ "closing": "Dogs cause it, and a cheap dog vaccine could stop it, saving thousands of lives.",
+ "question": "Did you know rabies still kills this many?",
+ "segments": [
+  {
+   "topic": "Rabies fatality",
+   "say": "Once rabies symptoms start, it is 100 percent fatal, with no cure. But a shot before symptoms stops it every time."
+  },
+  {
+   "topic": "Rabies deaths",
+   "say": "Asia loses 35,000 people a year to rabies, and Africa most of the rest. Almost every death is in just those two places."
+  },
+  {
+   "topic": "Rabies source",
+   "say": "99 percent of human rabies cases start with a dog bite. So vaccinating dogs cuts off almost every case."
+  }
+ ]
+}

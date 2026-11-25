@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "self-checkout-cashier-jobs__d980a089",
+ "slug": "self-checkout-cashier-jobs",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Self-Checkout Is Quietly Taking Over Grocery Stores",
+ "hook": "Self-checkout is now almost everywhere, and cashier jobs are quietly disappearing.",
+ "closing": "The line moved. So did the job.",
+ "question": "Do you still choose a cashier?",
+ "segments": [
+  {
+   "topic": "Self-Checkout Adoption",
+   "say": "In 2023, over 92% of major grocery chains have self-checkout lanes."
+  },
+  {
+   "topic": "Cashier Employment",
+   "say": "US cashier jobs have fallen to about 3 million, down from a higher peak a decade ago."
+  },
+  {
+   "topic": "Self-Checkout Theft",
+   "say": "Self-checkout counters lose merchandise at about 4 percent, more than double a staffed register's rate."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "pickleball-fastest-growing-sport__598b7568",
+ "slug": "pickleball-fastest-growing-sport",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Pickleball Players Quadrupled In Just Four Years",
+ "hook": "Pickleball looks harmless. Its injuries now cost Americans hundreds of millions.",
+ "closing": "Grab a paddle. Everyone else already did.",
+ "question": "Have you played pickleball yet?",
+ "segments": [
+  {
+   "topic": "Pickleball",
+   "say": "In 2019, about 3.3 million Americans played pickleball. By 2023, that was over four times as many."
+  },
+  {
+   "topic": "Pickleball Catching Up",
+   "say": "Tennis still has more players, about 23.6 million. But pickleball is already past halfway to catching it."
+  },
+  {
+   "topic": "Pickleball Injury Cost",
+   "say": "Pickleball injuries are estimated to cost about 400 million dollars in 2023. That's nearly triple 2018, so fun has a real price."
+  }
+ ]
+}

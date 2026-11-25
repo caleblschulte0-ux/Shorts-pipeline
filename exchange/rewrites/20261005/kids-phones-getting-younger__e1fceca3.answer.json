@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "kids-phones-getting-younger__e1fceca3",
+ "slug": "kids-phones-getting-younger",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Kids Are Getting Smartphones So Much Younger",
+ "hook": "Elementary schoolers are getting smartphones now.",
+ "closing": "The unboxing age keeps dropping. Ask any 8-year-old.",
+ "question": "How old were you with your first phone?",
+ "segments": [
+  {
+   "topic": "8-year-olds with smartphones",
+   "say": "By 2021, 31 percent of eight-year-olds already had their own smartphone, nearly triple the 2015 share."
+  },
+  {
+   "topic": "smartphones by age",
+   "say": "The vast majority of teenagers already have their own phone, 91 percent of them."
+  },
+  {
+   "topic": "smartphones among young kids",
+   "say": "Ownership among young kids nearly doubled in just six years, to 43 percent."
+  }
+ ]
+}

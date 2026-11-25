@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "amazon-warehouse-robot-army__587faefb",
+ "slug": "amazon-warehouse-robot-army",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Amazon's Warehouses Are Now Run By Robots",
+ "hook": "Amazon just hit 1 million robots.",
+ "closing": "Robots now work in the buildings that ship your orders, right beside the people.",
+ "question": "Did you expect a robot army?",
+ "segments": [
+  {
+   "topic": "amazon's robot fleet size",
+   "say": "Amazon had about 1,400 warehouse robots in 2012. By 2025 that had grown to a million."
+  },
+  {
+   "topic": "amazon robot warehouses",
+   "say": "Robots began in a single Amazon building in 2012. By 2025 about 300 buildings used them."
+  },
+  {
+   "topic": "amazon robots vs workers",
+   "say": "A million robots now work beside about 1.5 million Amazon employees."
+  }
+ ]
+}

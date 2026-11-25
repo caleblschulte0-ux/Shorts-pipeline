@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "global-displacement-record__42f9a9e1_r1",
+ "slug": "global-displacement-record",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The World Has Never Had This Many Displaced People",
+ "hook": "Your world now holds 123.2 million people displaced from home.",
+ "closing": "Every year now breaks the record before the last one.",
+ "question": "Which country hosts the most refugees?",
+ "segments": [
+  {
+   "topic": "people displaced worldwide",
+   "say": "More people are displaced right now, 123.2 million, than at any point ever recorded."
+  },
+  {
+   "topic": "where displaced people go",
+   "say": "Iran alone hosts nearly 3.5 million refugees, more than any other country."
+  },
+  {
+   "topic": "displaced hosts by income",
+   "say": "Low and middle income countries host 73 percent of the world's displaced people."
+  }
+ ]
+}

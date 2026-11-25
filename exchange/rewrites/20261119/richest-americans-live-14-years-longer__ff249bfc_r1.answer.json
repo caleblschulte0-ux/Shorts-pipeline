@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "richest-americans-live-14-years-longer__ff249bfc_r1",
+ "slug": "richest-americans-live-14-years-longer",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The Richest Americans Outlive The Poorest By Over A Decade",
+ "hook": "Your paycheck decides how long you get to live, and the gap keeps growing.",
+ "closing": "Money doesn't just buy comfort. It buys years, and that gap keeps growing.",
+ "question": "Would you want to know your number?",
+ "segments": [
+  {
+   "topic": "Richest vs poorest",
+   "say": "The richest American men outlive the poorest men by 14.6 years, more than a decade of life lost to a paycheck."
+  },
+  {
+   "topic": "Americans since 1960",
+   "say": "Sixty years of medical progress added only about 9 years to the average American life -- less than that richest-poorest gap alone."
+  },
+  {
+   "topic": "Richest pulling ahead",
+   "say": "Since 2001, the richest fifth of Americans gained 2.3 years of life while the poorest fifth barely gained any."
+  }
+ ]
+}

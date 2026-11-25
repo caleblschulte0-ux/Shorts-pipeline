@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "ozone-hole-recovery__ce672e81",
+ "slug": "ozone-hole-recovery",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Earth's Ozone Layer Is Making A Comeback",
+ "hook": "The hole in the ozone layer is quietly healing itself.",
+ "closing": "Healing slowly, but we must keep watching.",
+ "question": "Seen the hole shrink? Comment below.",
+ "segments": [
+  {
+   "topic": "Ozone Hole Size",
+   "say": "The ozone hole has shrunk to about 22.9 million square kilometers, down from its worst point."
+  },
+  {
+   "topic": "Ozone Chemicals",
+   "say": "99 percent of ozone-depleting chemicals are now banned worldwide."
+  },
+  {
+   "topic": "Ozone Recovery",
+   "say": "Antarctica's ozone hole alone needs about 40 more years to fully heal."
+  }
+ ]
+}
