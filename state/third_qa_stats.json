@@ -1,145 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261116",
-      "dry_run": false,
-      "ts": "2026-11-16T21:01:22+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 136,
-        "with_retention": 114,
-        "with_curve": 15,
-        "fetched_at": "2026-11-16T18:47:29.383179+00:00"
-      },
-      "brain": {
-        "ok": 4,
-        "fail": 0,
-        "limited_at": "2026-11-16T21:00:46+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets Nov 18, 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261116-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261116-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.5
-        },
-        {
-          "slug": "clip-20261116-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261116-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261116-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261116-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261116-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261116-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
       "date": "20261117",
       "dry_run": false,
       "ts": "2026-11-17T11:42:48+00:00",
@@ -6974,6 +6835,358 @@
           "slug": "clip-20261124-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261125",
+      "dry_run": false,
+      "ts": "2026-11-25T12:30:59+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 132,
+        "with_retention": 96,
+        "with_curve": 15,
+        "fetched_at": "2026-11-25T08:46:34.590458+00:00"
+      },
+      "brain": {
+        "ok": 25,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nmplol": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261125-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 136,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Lacy's Japan IRL trip goes wrong. His cameraman quits mid-stream, the restaurant bill passes 500,000 yen, and viewers us",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "IShowSpeed's GTA 6 stream hits a cutscene where a woman walks in on an intimate scene. He screams, then begs to skip it.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Three of the biggest streamers each walk into the same kind of shocking GTA 6 bedroom cutscene on launch day, and each r",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "xQc plays GTA 6 from a night drive to a 24-hour stream that leaves his eyes hurting, then finishes it after 62 hours and",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 337,
+                "moments": 40,
+                "candidates": 526,
+                "pool": 2988,
+                "pool_with_vod": 2063,
+                "arc_sizes": [
+                  5,
+                  4,
+                  3,
+                  4,
+                  5,
+                  2,
+                  4,
+                  4,
+                  3,
+                  6
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:lacy/lacy-already-bill-2026w44",
+                  "outcome": "narrative_failed",
+                  "why": "scores [72, 66, 74] after 2 revision(s) \u2014 @3s missing_context: The opening bill clip never shows who ordered what or why the number matters. Trim to the 500,000 yen reaction, or make the overlay say 'The bill: 500,000 yen' so it reads as a moment and not a puzzle; @12s confusing: The jump from the r"
+                },
+                {
+                  "cluster": "ohnepixel@vod2932275268/ohnepixel-club-danc-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [58, 76, 76] after 2 revision(s) \u2014 @0s confusing: The caption 'ohnePixel tips a GTA 6 dancer until' ends mid-sentence and never finishes. Complete it, for example 'ohnePixel tips a GTA 6 dancer until he's broke'.; @8s confusing: The audio 'you're on core' is garbled and the cut runs on straig"
+                },
+                {
+                  "cluster": "scout:ishowspeed/ishowspeed-door-dres-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [79, 74, 68] after 2 revision(s) \u2014 @1s confusing: The first 15 seconds are fullscreen game footage with no Speed facecam. Nothing shows that it is his reaction, and 'Hey! Hi! Ahhhhh!' reads as game audio. Cut in his facecam, or start the first clip w; @8s other: The 7.5-9.7s frames show nudit"
+                },
+                {
+                  "cluster": "ishowspeed@momentlightevilquelealitfam-ues9l-nllxkdrclp/isho",
+                  "outcome": "narrative_failed",
+                  "why": "scores [78, 74, 78] after 2 revision(s) \u2014 @47s missing_context: Jason is never introduced. The overlay 'Now he's looking for Jason' says nothing about who Jason is or why Speed is looking for him. Reword it to say who Jason is, or cut to the Jason clip's own setup; @69s confusing: The ending, 'what "
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.62,
+              "why": "GTA 6 easter egg, searched event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 UFO beam, visible reaction, murky",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cohhcarnage: Cohh Finds A UFO Easter Egg In GTA 6 And Realizes Something"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The hook caption sits across the lower face and chin of the facecam panel in every frame",
+                "The game panel is dark and murky, and the UFO and player are small",
+                "The facecam is duplicated: it fills the top panel and also appears as a small inset in the game panel"
+              ]
+            }
+          },
+          "took_s": 217.3
+        },
+        {
+          "slug": "clip-20261125-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague, distraction unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 cutscene, bikini couple argument",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Avoidingthepuddle Mandy Reaction Gets Real: \"We Were Supposed To Get Married\""
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The game's own subtitles are cut off at the right edge in many frames (e.g. 'we were supposed to get mar\u2026'), which is a ",
+                "The subject is partly off-frame in the 8.4\u20139.5s frames as Mandy turns away, which is minor",
+                "The hook caption stays on screen for the whole clip, though it covers no faces"
+              ]
+            }
+          },
+          "took_s": 113.9
+        },
+        {
+          "slug": "clip-20261125-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "GTA6 Lucia reaction, searched name, vagu",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA6 Lucia gawking, thirsty, little payo",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rubius Shows Off Lucia From GTA 6 In 60 FPS And Chat Can't Handle It \ud83e\udd75"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "The picture is split into a webcam on top and gameplay below, with a large blurred area underneath holding the hook card",
+                "The inset image card at 10.2s partly covers the gameplay, but only briefly, and it is a deliberate 'show it' cut-in.",
+                "The word captions sit in the blurred area and do not cover any faces."
+              ]
+            }
+          },
+          "took_s": 248.7
+        },
+        {
+          "slug": "clip-20261125-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261125-4",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague, searched name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "GTA 6 crash chaos, visible wreck, CaseOh",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Yells \"Get In The Car\" And Takes A Shortcut In This Wild Run"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The hook caption sits low in the sharp picture and overlaps some of the lower action, though it covers no faces",
+                "The source's own subtitles are partly overlapped by the hook caption, which makes them hard to read in a few frames",
+                "The picture fills a fairly short band of the canvas, but the action stays clear and readable throughout"
+              ]
+            }
+          },
+          "took_s": 308.1
+        },
+        {
+          "slug": "clip-20261125-5",
+          "ok": false,
+          "skipped": "run budget reached"
+        },
+        {
+          "slug": "clip-20261125-6",
+          "ok": false,
+          "skipped": "run budget reached"
         }
       ]
     }
