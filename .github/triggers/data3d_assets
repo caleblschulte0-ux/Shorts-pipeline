@@ -34,3 +34,11 @@ model cement_bag 1k
 model concrete_road_barrier 1k
 model modular_wooden_pier 1k
 model ocean_buoy 1k
+# one finish across the frame (look bible 2026-11-24): real worn materials on every prop Data touches
+texture rusty_painted_metal 1k
+texture green_metal_rust 1k
+texture metal_plate_02 1k
+texture rubberized_track 1k
+texture rust_coarse_01 1k
+texture weathered_planks 1k
+texture denim_fabric 1k
