@@ -723,8 +723,11 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     nt.links.new(mp.outputs["Vector"], actn.inputs["Vector"])
     act = nt.nodes.new("ShaderNodeMapRange"); act.inputs["From Min"].default_value = 0.47 - 0.3 * fresh; act.inputs["From Max"].default_value = 0.6 - 0.3 * fresh
     nt.links.new(actn.outputs["Fac"], act.inputs["Value"])
+    rimn = nt.nodes.new("ShaderNodeAttribute"); rimn.attribute_name = "hot"            # lava() paints its moving EDGE hot: the seams there are open and bright
+    act2 = nt.nodes.new("ShaderNodeMath"); act2.operation = 'MAXIMUM'
+    nt.links.new(act.outputs["Result"], act2.inputs[0]); nt.links.new(rimn.outputs["Fac"], act2.inputs[1])
     crk = nt.nodes.new("ShaderNodeMath"); crk.operation = 'MULTIPLY'
-    nt.links.new(crk0.outputs[0], crk.inputs[0]); nt.links.new(act.outputs["Result"], crk.inputs[1])
+    nt.links.new(crk0.outputs[0], crk.inputs[0]); nt.links.new(act2.outputs[0], crk.inputs[1])
     big = nt.nodes.new("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale * 0.35; nt.links.new(mp.outputs["Vector"], big.inputs["Vector"])
     hot = nt.nodes.new("ShaderNodeMapRange"); hot.inputs["From Min"].default_value = 0.5 - 0.15 * fresh; hot.inputs["From Max"].default_value = 0.75 - 0.1 * fresh
     hot.inputs["To Max"].default_value = 0.85 * fresh
@@ -741,7 +744,26 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     e = ramp.color_ramp.elements.new(0.5); e.color = (*K.lin(glow), 1)
     nt.links.new(glowf.outputs[0], ramp.inputs["Fac"])
     mix = nt.nodes.new("ShaderNodeMixRGB"); nt.links.new(glowf.outputs[0], mix.inputs["Fac"])
-    nt.links.new(cr.outputs["Color"], mix.inputs["Color1"]); mix.inputs["Color2"].default_value = (*K.lin("#2A0600"), 1)   # the molten part is
+    crust_col = cr.outputs["Color"]; rock_nor = None
+    try:                                                   # the crust is REAL ROCK (Poly Haven), near black, under the procedural break-up
+        d_ = ph_path("burned_ground_01", "textures")
+        def rimg(kind, data=True):
+            f_ = LW_os.path.join(d_, f"burned_ground_01_{kind}_1k.jpg")
+            if not LW_os.path.exists(f_): return None
+            t_ = nt.nodes.new("ShaderNodeTexImage"); t_.image = bpy.data.images.load(f_, check_existing=True); t_.projection = 'BOX'; t_.projection_blend = 0.25
+            if data: t_.image.colorspace_settings.name = 'Non-Color'
+            rm_ = nt.nodes.new("ShaderNodeMapping"); rm_.inputs["Scale"].default_value = (scale * 0.22,) * 3
+            nt.links.new(add.outputs["Vector"], rm_.inputs["Vector"]); nt.links.new(rm_.outputs["Vector"], t_.inputs["Vector"]); return t_
+        rd = rimg("diff", False)
+        if rd:
+            mxr = nt.nodes.new("ShaderNodeMix"); mxr.data_type = 'RGBA'; mxr.blend_type = 'MULTIPLY'; mxr.inputs[0].default_value = 1.0
+            nt.links.new(rd.outputs["Color"], mxr.inputs[6]); nt.links.new(cr.outputs["Color"], mxr.inputs[7])
+            gain = nt.nodes.new("ShaderNodeMix"); gain.data_type = 'RGBA'; gain.blend_type = 'ADD'; gain.inputs[0].default_value = 1.0
+            nt.links.new(mxr.outputs[2], gain.inputs[6]); nt.links.new(mxr.outputs[2], gain.inputs[7]); crust_col = gain.outputs[2]
+        rock_nor = rimg("nor_gl")
+    except FileNotFoundError:
+        pass
+    nt.links.new(crust_col, mix.inputs["Color1"]); mix.inputs["Color2"].default_value = (*K.lin("#2A0600"), 1)   # the molten part is
     # LIGHT, not paint: a sunlit orange base under its own glow washed every lava in daylight to salmon pink
     nt.links.new(mix.outputs["Color"], bs.inputs["Base Color"])
     nt.links.new(ramp.outputs["Color"], bs.inputs["Emission Color"])
@@ -754,7 +776,11 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     nt.links.new(crack.outputs["Result"], inv.inputs[1])
     hb = nt.nodes.new("ShaderNodeMath"); hb.operation = 'MULTIPLY_ADD'; hb.inputs[2].default_value = 0.0
     nt.links.new(inv.outputs[0], hb.inputs[0]); nt.links.new(crust.outputs["Fac"], hb.inputs[1])
-    nt.links.new(hb.outputs[0], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
+    nt.links.new(hb.outputs[0], bp.inputs["Height"])
+    if rock_nor:
+        nmr = nt.nodes.new("ShaderNodeNormalMap"); nmr.inputs["Strength"].default_value = 1.4
+        nt.links.new(rock_nor.outputs["Color"], nmr.inputs["Color"]); nt.links.new(nmr.outputs["Normal"], bp.inputs["Normal"])
+    nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
     return m
 
 
@@ -793,13 +819,20 @@ def lava(name, outline, z=0.0, thick=0.12, m=None, seed=0, lumpy=0.06, n=40):
     me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
     for p in me.polygons: p.use_smooth = True
     me.materials.append(m)
+    hot = me.attributes.new("hot", 'FLOAT', 'POINT')         # its moving edge is the hot part: the rim ring 1, falling off inward
+    for v in me.vertices:
+        ring = min(rings, v.index // nb); s_ = 1.0 - ring / rings
+        hot.data[v.index].value = s_ ** 2.5
     o = lw_link(bpy.data.objects.new(name, me)); o.location = (cx, cy, 0)
-    sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 2
+    sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 3
+    tx = bpy.data.textures.get("lava crust break") or bpy.data.textures.new("lava crust break", 'VORONOI')   # broken crust is ROUGH GEOMETRY, not a smooth blob with a picture on it
+    tx.noise_scale = 0.22; tx.distance_metric = 'DISTANCE'
+    dm = o.modifiers.new("crust", 'DISPLACE'); dm.texture = tx; dm.texture_coords = 'LOCAL'; dm.strength = 0.5 * max(0.06, lumpy); dm.mid_level = 0.35
     return o
 
 
 # ---------------------------------------------------------------- the earth wall
-def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
+def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None, clear=None):
     """THE DEFENCE WALL: crushed black rock heaped into a long ridge `h` high with a flat crest `crest` wide and a
     base `base` wide, along `path` (a list of (x, y) points, its outer side to the path's left). Rough boulders
     stud its faces. Returns dict(root, body, path, h)."""
@@ -829,8 +862,19 @@ def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
             v.co.z += 0.08 * lw_vn(v.co.x * 2.3, v.co.y * 2.3, seed + 5)
             v.co.x += 0.05 * lw_vn(v.co.y * 3.1, v.co.z * 3.1, seed + 6)
     me = bpy.data.meshes.new(name + " body"); bm.to_mesh(me); bm.free()
-    me.materials.append(m)
+    try: me.materials.append(ph_mat("rock_face_01", scale=1.8, tint="#4A4642", name="wall heaped rock", rough=0.95, bump=1.6))   # REAL rock (Poly Haven), not a noise
+    except FileNotFoundError: me.materials.append(m)
     body = lw_link(bpy.data.objects.new(name + " body", me)); body.parent = root
+    # ONE wall for every beat (coordinator, 2026-11-25: "the crest is a smooth flat asphalt-like band and the wall has no
+    # face"): a heaped berm. Its top is loose crushed rock and stones, its shoulders are lined with boulders
+    for k in range(int(len(pts) * 26)):
+        i = rnd.randrange(len(pts) - 1); u = rnd.random()
+        p = pts[i].lerp(pts[i + 1], u); tg = (pts[i + 1] - pts[i]).normalized(); nrm = Vector((-tg.y, tg.x, 0))
+        off = rnd.uniform(-crest / 2, crest / 2); q = p + nrm * off
+        if clear and clear(q.x, q.y): continue
+        edge = abs(off) > crest / 2 - 0.18
+        r = rnd.uniform(0.07, 0.17) if edge else rnd.uniform(0.02, 0.06)
+        b = lw_block(name + " crest stone", (q.x, q.y, h + r * 0.4), r, m, rnd, squash=0.7); b.parent = root
     for k in range(int(len(pts) * 16)):
         i = rnd.randrange(len(pts) - 1); u = rnd.random()
         p = pts[i].lerp(pts[i + 1], u); tg = (pts[i + 1] - pts[i]).normalized(); nrm = Vector((-tg.y, tg.x, 0))

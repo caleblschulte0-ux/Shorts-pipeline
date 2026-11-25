@@ -55,7 +55,7 @@ def place_wall_crest():
     the town's roofs below it on the other side, a parked digger far along the crest, the plume over the far fissure."""
     rnd = lw_random.Random(31)
     lw_grid("lava field ground", -30, 30, -30, 30, 90, 90, s3_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven)
-    wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8)
+    wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8, clear=lambda x, y: abs(x + 0.2) < 0.4 and abs(y + 0.6) < 0.34)
     # the crest is HEAPED CRUSHED ROCK (board B1, and six rounds before it: "a smooth flat band, like asphalt"): a lumpy bed of real rock with loose stones all over it
     lw_grid("crest rock bed", -14, 14, -S3_CREST / 2 - 0.05, S3_CREST / 2 + 0.05, 220, 16, lambda x, y: S3_H + 0.012 + 0.036 * lw_vn(x * 7.0, y * 7.0, 51),
             ph_mat("aerial_rocks_02", scale=0.45, tint="#3A3632", name="crest crushed rock"))
@@ -70,8 +70,9 @@ def place_wall_crest():
         lw_block("crest boulder", (x, y, S3_H + r * 0.45), r, rk_, rc_, squash=0.75)
     for k in range(24):                                   # the town inside the wall: street after street of tin roofs
         hx_, hy_ = -12.6 + 3.5 * (k % 8) + rnd.uniform(-0.1, 0.1), 13.0 + 4.8 * (k // 8) + 0.3 * (k % 2)
-        town_house(f"town house below {k}", (hx_, hy_, S3_H - 1.5 + 0.9 * (k // 8)), yaw=rnd.uniform(-0.08, 0.08),   # their fronts, doors and windows to the wall
-                   roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], storeys=1 if k < 8 else None, base=0.3 if k < 8 else None, seed=100 + k)
+        hx_ += rnd.uniform(-0.5, 0.5); hy_ += rnd.uniform(0.0, 2.2)                      # a town, not a row of fronts: every house its own size, set back its own distance, gaps between
+        town_house(f"town house below {k}", (hx_, hy_, S3_H - 1.5 + 0.9 * (k // 8) + rnd.uniform(-0.25, 0.1)), yaw=rnd.uniform(-0.3, 0.3), w=rnd.uniform(2.2, 3.0), d=rnd.uniform(2.2, 2.8),
+                   roof=ROOFS[(k * 3 + 1) % len(ROOFS)], wall=WALLS[(k * 2) % len(WALLS)], storeys=1, base=0.3, seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35), moss=0.0)
     lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2), moss=0.0)        # the old lava heaped against the face: broken blocks
     lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.0)   # the field outside the wall: broken black blocks, a little moss
@@ -173,7 +174,7 @@ def shot3():
             c.keyframe_insert("location", frame=f)
     # ---- the hose: the nozzle in his hands, aimed down the face at the front; the jet; the steam where it lands
     noz = s3_hose_nozzle()
-    aim = lambda t: Vector((XC - 0.25 + 0.1 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2), Y_HIT + 0.15, S3_PILE + 0.45))   # ONE target, where the front meets the face (board B1: the jet jumped sides between stills)
+    aim = lambda t: Vector((XC - 0.08 + 0.08 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2), Y_HIT + 0.15, S3_PILE + 0.45))   # ONE target, where the front meets the face (board B1: the jet jumped sides between stills)
     jet_m = bpy.data.materials.get("hose water") or bpy.data.materials.new("hose water")
     jet_m.use_nodes = True; jb = jet_m.node_tree.nodes["Principled BSDF"]
     jb.inputs["Base Color"].default_value = (0.85, 0.92, 1.0, 1); jb.inputs["Roughness"].default_value = 0.1
@@ -230,12 +231,17 @@ def shot3():
     cu = bpy.data.curves.new("fire hose line", 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = 0.02; cu.bevel_resolution = 3
     sp = cu.splines.new('BEZIER'); sp.bezier_points.add(3)
     hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(lw_canvas("hose canvas", "#B8342A"))
-    HYD = Vector((P0.x - 1.4, P0.y + 0.6, S3_H))
-    K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
+    HYD = Vector((P0.x - 0.42, P0.y + 0.5, S3_H))            # the hose GOES somewhere: a real hydrant (Poly Haven) on the crest right behind him, in frame
+    try: ph_model("fire_hydrant", (HYD.x, HYD.y, S3_H + 0.02), rot=(0, 0, 0.4), scale=0.42, name="fire hydrant", only=("fire_hydrant", "fire_hydrant_cap_01", "fire_hydrant_cap_02", "fire_hydrant_cap_03", "fire_hydrant_chain"))
+    except FileNotFoundError: K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
+    glowl = [lw_point(f"lava front glow {k_}", (XC - 0.9 + 0.9 * k_, Y_HIT + 0.25, S3_PILE + 0.55), 0.0, col=(1.0, 0.42, 0.1), r=0.3) for k_ in range(3)]   # the front LIGHTS the wall's face and him
+    for f in range(1, NF + 1, 2):
+        t = (f - 1) / FPS
+        for g_ in glowl: g_.data.energy = 45.0 * W(t, T_HIT - 0.3, 0.5); g_.data.keyframe_insert("energy", frame=f)
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
         tail = noz.matrix_world @ Vector((0, 0.12, 0)); foot = data.arm.matrix_world.translation
-        pts = [HYD + Vector((0, 0, 0.12)), Vector((foot.x - 0.6, foot.y + 0.35, S3_H + 0.06)),
+        pts = [HYD + Vector((0.05, -0.02, 0.16)), Vector((foot.x - 0.3, foot.y + 0.25, S3_H + 0.07)),
                Vector((foot.x - 0.15, foot.y + 0.2, S3_H + 0.06)), tail]
         for bp, q in zip(sp.bezier_points, pts):
             bp.co = q; bp.handle_left_type = bp.handle_right_type = 'AUTO'
@@ -267,7 +273,7 @@ def shot3():
             o.keyframe_insert("location", frame=f)
     # STEAM as a gas: ONE white cloud boils up off the lava where the jet lands and keeps growing while he sprays
     t0 = T_SPRAY + 0.05
-    steam = [lw_fire_column("lava steam 0", (XC - 0.3, Y_HIT + 0.0, S3_PILE + 0.25), w=S3_STEAM[0], h_fire=0.15, h_smoke=S3_STEAM[1], lean=(-0.3, -0.1), t_end=DUR + 1.0,
+    steam = [lw_fire_column("lava steam 0", (XC - 0.1, Y_HIT + 0.0, S3_PILE + 0.25), w=S3_STEAM[0], h_fire=0.15, h_smoke=S3_STEAM[1], lean=(-0.3, -0.1), t_end=DUR + 1.0,
                             seed=7.1, fire=0.0, smoke_d=24.0, smoke=(0.95, 0.96, 0.97), rise=2.2, flame_d=0.0, spread=0.3,
                             keys=[(t0, 0.0), (t0 + 0.4, 0.7), (T_SLIDE + 0.3, 1.0), (DUR + 0.5, 1.0)], grow=True)]
     for o_ in steam:                                     # steam is WHITE: where it is thick it carries a little light of its own, so it never greys out against the wall

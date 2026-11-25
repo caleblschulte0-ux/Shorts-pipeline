@@ -741,8 +741,11 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     nt.links.new(mp.outputs["Vector"], actn.inputs["Vector"])
     act = nt.nodes.new("ShaderNodeMapRange"); act.inputs["From Min"].default_value = 0.47 - 0.3 * fresh; act.inputs["From Max"].default_value = 0.6 - 0.3 * fresh
     nt.links.new(actn.outputs["Fac"], act.inputs["Value"])
+    rimn = nt.nodes.new("ShaderNodeAttribute"); rimn.attribute_name = "hot"            # lava() paints its moving EDGE hot: the seams there are open and bright
+    act2 = nt.nodes.new("ShaderNodeMath"); act2.operation = 'MAXIMUM'
+    nt.links.new(act.outputs["Result"], act2.inputs[0]); nt.links.new(rimn.outputs["Fac"], act2.inputs[1])
     crk = nt.nodes.new("ShaderNodeMath"); crk.operation = 'MULTIPLY'
-    nt.links.new(crk0.outputs[0], crk.inputs[0]); nt.links.new(act.outputs["Result"], crk.inputs[1])
+    nt.links.new(crk0.outputs[0], crk.inputs[0]); nt.links.new(act2.outputs[0], crk.inputs[1])
     big = nt.nodes.new("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale * 0.35; nt.links.new(mp.outputs["Vector"], big.inputs["Vector"])
     hot = nt.nodes.new("ShaderNodeMapRange"); hot.inputs["From Min"].default_value = 0.5 - 0.15 * fresh; hot.inputs["From Max"].default_value = 0.75 - 0.1 * fresh
     hot.inputs["To Max"].default_value = 0.85 * fresh
@@ -759,7 +762,26 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     e = ramp.color_ramp.elements.new(0.5); e.color = (*K.lin(glow), 1)
     nt.links.new(glowf.outputs[0], ramp.inputs["Fac"])
     mix = nt.nodes.new("ShaderNodeMixRGB"); nt.links.new(glowf.outputs[0], mix.inputs["Fac"])
-    nt.links.new(cr.outputs["Color"], mix.inputs["Color1"]); mix.inputs["Color2"].default_value = (*K.lin("#2A0600"), 1)   # the molten part is
+    crust_col = cr.outputs["Color"]; rock_nor = None
+    try:                                                   # the crust is REAL ROCK (Poly Haven), near black, under the procedural break-up
+        d_ = ph_path("burned_ground_01", "textures")
+        def rimg(kind, data=True):
+            f_ = LW_os.path.join(d_, f"burned_ground_01_{kind}_1k.jpg")
+            if not LW_os.path.exists(f_): return None
+            t_ = nt.nodes.new("ShaderNodeTexImage"); t_.image = bpy.data.images.load(f_, check_existing=True); t_.projection = 'BOX'; t_.projection_blend = 0.25
+            if data: t_.image.colorspace_settings.name = 'Non-Color'
+            rm_ = nt.nodes.new("ShaderNodeMapping"); rm_.inputs["Scale"].default_value = (scale * 0.22,) * 3
+            nt.links.new(add.outputs["Vector"], rm_.inputs["Vector"]); nt.links.new(rm_.outputs["Vector"], t_.inputs["Vector"]); return t_
+        rd = rimg("diff", False)
+        if rd:
+            mxr = nt.nodes.new("ShaderNodeMix"); mxr.data_type = 'RGBA'; mxr.blend_type = 'MULTIPLY'; mxr.inputs[0].default_value = 1.0
+            nt.links.new(rd.outputs["Color"], mxr.inputs[6]); nt.links.new(cr.outputs["Color"], mxr.inputs[7])
+            gain = nt.nodes.new("ShaderNodeMix"); gain.data_type = 'RGBA'; gain.blend_type = 'ADD'; gain.inputs[0].default_value = 1.0
+            nt.links.new(mxr.outputs[2], gain.inputs[6]); nt.links.new(mxr.outputs[2], gain.inputs[7]); crust_col = gain.outputs[2]
+        rock_nor = rimg("nor_gl")
+    except FileNotFoundError:
+        pass
+    nt.links.new(crust_col, mix.inputs["Color1"]); mix.inputs["Color2"].default_value = (*K.lin("#2A0600"), 1)   # the molten part is
     # LIGHT, not paint: a sunlit orange base under its own glow washed every lava in daylight to salmon pink
     nt.links.new(mix.outputs["Color"], bs.inputs["Base Color"])
     nt.links.new(ramp.outputs["Color"], bs.inputs["Emission Color"])
@@ -772,7 +794,11 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     nt.links.new(crack.outputs["Result"], inv.inputs[1])
     hb = nt.nodes.new("ShaderNodeMath"); hb.operation = 'MULTIPLY_ADD'; hb.inputs[2].default_value = 0.0
     nt.links.new(inv.outputs[0], hb.inputs[0]); nt.links.new(crust.outputs["Fac"], hb.inputs[1])
-    nt.links.new(hb.outputs[0], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
+    nt.links.new(hb.outputs[0], bp.inputs["Height"])
+    if rock_nor:
+        nmr = nt.nodes.new("ShaderNodeNormalMap"); nmr.inputs["Strength"].default_value = 1.4
+        nt.links.new(rock_nor.outputs["Color"], nmr.inputs["Color"]); nt.links.new(nmr.outputs["Normal"], bp.inputs["Normal"])
+    nt.links.new(bp.outputs["Normal"], bs.inputs["Normal"])
     return m
 
 
@@ -811,13 +837,20 @@ def lava(name, outline, z=0.0, thick=0.12, m=None, seed=0, lumpy=0.06, n=40):
     me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
     for p in me.polygons: p.use_smooth = True
     me.materials.append(m)
+    hot = me.attributes.new("hot", 'FLOAT', 'POINT')         # its moving edge is the hot part: the rim ring 1, falling off inward
+    for v in me.vertices:
+        ring = min(rings, v.index // nb); s_ = 1.0 - ring / rings
+        hot.data[v.index].value = s_ ** 2.5
     o = lw_link(bpy.data.objects.new(name, me)); o.location = (cx, cy, 0)
-    sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 2
+    sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 3
+    tx = bpy.data.textures.get("lava crust break") or bpy.data.textures.new("lava crust break", 'VORONOI')   # broken crust is ROUGH GEOMETRY, not a smooth blob with a picture on it
+    tx.noise_scale = 0.22; tx.distance_metric = 'DISTANCE'
+    dm = o.modifiers.new("crust", 'DISPLACE'); dm.texture = tx; dm.texture_coords = 'LOCAL'; dm.strength = 0.5 * max(0.06, lumpy); dm.mid_level = 0.35
     return o
 
 
 # ---------------------------------------------------------------- the earth wall
-def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
+def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None, clear=None):
     """THE DEFENCE WALL: crushed black rock heaped into a long ridge `h` high with a flat crest `crest` wide and a
     base `base` wide, along `path` (a list of (x, y) points, its outer side to the path's left). Rough boulders
     stud its faces. Returns dict(root, body, path, h)."""
@@ -847,8 +880,19 @@ def earth_wall(name, path, h=2.6, crest=0.9, base=5.0, seed=3, n=None):
             v.co.z += 0.08 * lw_vn(v.co.x * 2.3, v.co.y * 2.3, seed + 5)
             v.co.x += 0.05 * lw_vn(v.co.y * 3.1, v.co.z * 3.1, seed + 6)
     me = bpy.data.meshes.new(name + " body"); bm.to_mesh(me); bm.free()
-    me.materials.append(m)
+    try: me.materials.append(ph_mat("rock_face_01", scale=1.8, tint="#4A4642", name="wall heaped rock", rough=0.95, bump=1.6))   # REAL rock (Poly Haven), not a noise
+    except FileNotFoundError: me.materials.append(m)
     body = lw_link(bpy.data.objects.new(name + " body", me)); body.parent = root
+    # ONE wall for every beat (coordinator, 2026-11-25: "the crest is a smooth flat asphalt-like band and the wall has no
+    # face"): a heaped berm. Its top is loose crushed rock and stones, its shoulders are lined with boulders
+    for k in range(int(len(pts) * 26)):
+        i = rnd.randrange(len(pts) - 1); u = rnd.random()
+        p = pts[i].lerp(pts[i + 1], u); tg = (pts[i + 1] - pts[i]).normalized(); nrm = Vector((-tg.y, tg.x, 0))
+        off = rnd.uniform(-crest / 2, crest / 2); q = p + nrm * off
+        if clear and clear(q.x, q.y): continue
+        edge = abs(off) > crest / 2 - 0.18
+        r = rnd.uniform(0.07, 0.17) if edge else rnd.uniform(0.02, 0.06)
+        b = lw_block(name + " crest stone", (q.x, q.y, h + r * 0.4), r, m, rnd, squash=0.7); b.parent = root
     for k in range(int(len(pts) * 16)):
         i = rnd.randrange(len(pts) - 1); u = rnd.random()
         p = pts[i].lerp(pts[i + 1], u); tg = (pts[i + 1] - pts[i]).normalized(); nrm = Vector((-tg.y, tg.x, 0))
@@ -2142,7 +2186,7 @@ def place_wall_crest():
     the town's roofs below it on the other side, a parked digger far along the crest, the plume over the far fissure."""
     rnd = lw_random.Random(31)
     lw_grid("lava field ground", -30, 30, -30, 30, 90, 90, s3_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven)
-    wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8)
+    wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8, clear=lambda x, y: abs(x + 0.2) < 0.4 and abs(y + 0.6) < 0.34)
     # the crest is HEAPED CRUSHED ROCK (board B1, and six rounds before it: "a smooth flat band, like asphalt"): a lumpy bed of real rock with loose stones all over it
     lw_grid("crest rock bed", -14, 14, -S3_CREST / 2 - 0.05, S3_CREST / 2 + 0.05, 220, 16, lambda x, y: S3_H + 0.012 + 0.036 * lw_vn(x * 7.0, y * 7.0, 51),
             ph_mat("aerial_rocks_02", scale=0.45, tint="#3A3632", name="crest crushed rock"))
@@ -2157,8 +2201,9 @@ def place_wall_crest():
         lw_block("crest boulder", (x, y, S3_H + r * 0.45), r, rk_, rc_, squash=0.75)
     for k in range(24):                                   # the town inside the wall: street after street of tin roofs
         hx_, hy_ = -12.6 + 3.5 * (k % 8) + rnd.uniform(-0.1, 0.1), 13.0 + 4.8 * (k // 8) + 0.3 * (k % 2)
-        town_house(f"town house below {k}", (hx_, hy_, S3_H - 1.5 + 0.9 * (k // 8)), yaw=rnd.uniform(-0.08, 0.08),   # their fronts, doors and windows to the wall
-                   roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], storeys=1 if k < 8 else None, base=0.3 if k < 8 else None, seed=100 + k)
+        hx_ += rnd.uniform(-0.5, 0.5); hy_ += rnd.uniform(0.0, 2.2)                      # a town, not a row of fronts: every house its own size, set back its own distance, gaps between
+        town_house(f"town house below {k}", (hx_, hy_, S3_H - 1.5 + 0.9 * (k // 8) + rnd.uniform(-0.25, 0.1)), yaw=rnd.uniform(-0.3, 0.3), w=rnd.uniform(2.2, 3.0), d=rnd.uniform(2.2, 2.8),
+                   roof=ROOFS[(k * 3 + 1) % len(ROOFS)], wall=WALLS[(k * 2) % len(WALLS)], storeys=1, base=0.3, seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35), moss=0.0)
     lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2), moss=0.0)        # the old lava heaped against the face: broken blocks
     lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.0)   # the field outside the wall: broken black blocks, a little moss
@@ -2260,7 +2305,7 @@ def shot3():
             c.keyframe_insert("location", frame=f)
     # ---- the hose: the nozzle in his hands, aimed down the face at the front; the jet; the steam where it lands
     noz = s3_hose_nozzle()
-    aim = lambda t: Vector((XC - 0.25 + 0.1 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2), Y_HIT + 0.15, S3_PILE + 0.45))   # ONE target, where the front meets the face (board B1: the jet jumped sides between stills)
+    aim = lambda t: Vector((XC - 0.08 + 0.08 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2), Y_HIT + 0.15, S3_PILE + 0.45))   # ONE target, where the front meets the face (board B1: the jet jumped sides between stills)
     jet_m = bpy.data.materials.get("hose water") or bpy.data.materials.new("hose water")
     jet_m.use_nodes = True; jb = jet_m.node_tree.nodes["Principled BSDF"]
     jb.inputs["Base Color"].default_value = (0.85, 0.92, 1.0, 1); jb.inputs["Roughness"].default_value = 0.1
@@ -2317,12 +2362,17 @@ def shot3():
     cu = bpy.data.curves.new("fire hose line", 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = 0.02; cu.bevel_resolution = 3
     sp = cu.splines.new('BEZIER'); sp.bezier_points.add(3)
     hose = lw_link(bpy.data.objects.new("fire hose line", cu)); hose.data.materials.append(lw_canvas("hose canvas", "#B8342A"))
-    HYD = Vector((P0.x - 1.4, P0.y + 0.6, S3_H))
-    K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
+    HYD = Vector((P0.x - 0.42, P0.y + 0.5, S3_H))            # the hose GOES somewhere: a real hydrant (Poly Haven) on the crest right behind him, in frame
+    try: ph_model("fire_hydrant", (HYD.x, HYD.y, S3_H + 0.02), rot=(0, 0, 0.4), scale=0.42, name="fire hydrant", only=("fire_hydrant", "fire_hydrant_cap_01", "fire_hydrant_cap_02", "fire_hydrant_cap_03", "fire_hydrant_chain"))
+    except FileNotFoundError: K.cyl("fire hydrant", (HYD.x, HYD.y, S3_H + 0.25), 0.07, 0.5, lw_paint("hydrant red", "#C8231B", rough=0.4), v=16)
+    glowl = [lw_point(f"lava front glow {k_}", (XC - 0.9 + 0.9 * k_, Y_HIT + 0.25, S3_PILE + 0.55), 0.0, col=(1.0, 0.42, 0.1), r=0.3) for k_ in range(3)]   # the front LIGHTS the wall's face and him
+    for f in range(1, NF + 1, 2):
+        t = (f - 1) / FPS
+        for g_ in glowl: g_.data.energy = 45.0 * W(t, T_HIT - 0.3, 0.5); g_.data.keyframe_insert("energy", frame=f)
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
         tail = noz.matrix_world @ Vector((0, 0.12, 0)); foot = data.arm.matrix_world.translation
-        pts = [HYD + Vector((0, 0, 0.12)), Vector((foot.x - 0.6, foot.y + 0.35, S3_H + 0.06)),
+        pts = [HYD + Vector((0.05, -0.02, 0.16)), Vector((foot.x - 0.3, foot.y + 0.25, S3_H + 0.07)),
                Vector((foot.x - 0.15, foot.y + 0.2, S3_H + 0.06)), tail]
         for bp, q in zip(sp.bezier_points, pts):
             bp.co = q; bp.handle_left_type = bp.handle_right_type = 'AUTO'
@@ -2354,7 +2404,7 @@ def shot3():
             o.keyframe_insert("location", frame=f)
     # STEAM as a gas: ONE white cloud boils up off the lava where the jet lands and keeps growing while he sprays
     t0 = T_SPRAY + 0.05
-    steam = [lw_fire_column("lava steam 0", (XC - 0.3, Y_HIT + 0.0, S3_PILE + 0.25), w=S3_STEAM[0], h_fire=0.15, h_smoke=S3_STEAM[1], lean=(-0.3, -0.1), t_end=DUR + 1.0,
+    steam = [lw_fire_column("lava steam 0", (XC - 0.1, Y_HIT + 0.0, S3_PILE + 0.25), w=S3_STEAM[0], h_fire=0.15, h_smoke=S3_STEAM[1], lean=(-0.3, -0.1), t_end=DUR + 1.0,
                             seed=7.1, fire=0.0, smoke_d=24.0, smoke=(0.95, 0.96, 0.97), rise=2.2, flame_d=0.0, spread=0.3,
                             keys=[(t0, 0.0), (t0 + 0.4, 0.7), (T_SLIDE + 0.3, 1.0), (DUR + 0.5, 1.0)], grow=True)]
     for o_ in steam:                                     # steam is WHITE: where it is thick it carries a little light of its own, so it never greys out against the wall
@@ -2559,37 +2609,7 @@ def shot4():
     data.expression("determined", 0.0, T_JOLT, blend=0.2)
     data.expression("surprised", T_JOLT + 0.02, T_LET + 0.3, blend=0.12)
     data.expression("alarmed", T_LET + 0.35, DUR + 1.0, blend=0.15)
-    # ---- the sandbag: in both his arms at his belly, dropped at the leap, into the gap, where it burns
-    hess = lw_canvas("sandbag hessian pale", "#D8C79A")
-    bag = K.empty("sandbag", (0, 0, 0))
-    K.sph("sandbag sack", (0, 0, 0), 0.1, hess, seg=16, ring=10, scale=(1.55, 0.65, 0.55), parent=bag)
-    K.cyl("sandbag tie", (0.0, 0.0, 0.075), 0.025, 0.04, lw_canvas("sandbag cord", "#5A4A30"), v=10, parent=bag)
-    lw_local(bag)
-    def bag_held(t):
-        sc.frame_set(F(t)); bpy.context.view_layer.update()
-        fw = data.forward(); mid = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2     # REACH: in his arms at his chest, not at arm's length
-        up = -0.12 + 0.09 * W(t, 0.2, 0.35) - 0.06 * W(t, T_JOLT - 0.05, 0.4) + 0.04 * W(t, T_TORN + 0.1, 0.3)       # low at his belly, hitched up as he walks; it nearly goes at the jolt
-        return mid + fw * (0.14 + 0.01 * W(t, 0.2, 0.35)) + Vector((0, 0, up)), data.arm.rotation_euler.z
-    held = {f: bag_held((f - 1) / FPS) for f in range(1, F(T_LET) + 1)}
-    p_let, yaw_let = held[F(T_LET)]
-    LAND = Vector((p_let.x, max(p_let.y, s4_zig(p_let.x) + 0.12), 0.06))       # straight down onto the road at the crack's lip on his side, where it lies
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        if f <= F(T_LET):
-            p, yw = held[f]; rot = (0, 0, yw)
-        else:
-            u = min(1.0, (t - T_LET) / 0.4); p = p_let.lerp(LAND, u); p.z = p_let.z + (LAND.z - p_let.z) * u * u     # it falls, and lands
-            rot = (0.25 * math.sin(math.pi * u), 0.5 * u, yaw_let + 0.4 * u)
-        bag.location = p; bag.rotation_euler = rot
-        bag.keyframe_insert("location", frame=f); bag.keyframe_insert("rotation_euler", frame=f)
-    sides = sorted("LR", key=lambda s_: acts._shoulder(data, s_).x)
-    def grip(sx):
-        def fn(t):
-            sc.frame_set(F(t)); bpy.context.view_layer.update()
-            return bag.matrix_world @ Vector((sx * 0.09, 0.0, 0.02))           # its two ends (its long axis runs across him)
-        return fn
-    for sd, sx in zip(sides, (-1, 1)):
-        data.reach(sd, grip(sx), -0.6, T_LET, lead=0.3, back=None, elbow_out=0.35)
+    sides = sorted("LR", key=lambda s_: acts._shoulder(data, s_).x)       # (no prop: the spoken line names none, and a bag he drops has to be accounted for in every still after)
     # one arm up across his face against the heat, the other back for balance: never both out at his sides
     near_sd = min(sides, key=lambda s_: (acts._shoulder(data, s_) - CAM0).length)
     # FK poses from here (IK through these folded the elbow over, 60-180 deg/frame): the far arm thrown UP, palm out
@@ -2599,8 +2619,8 @@ def shot4():
     LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     for sd in sides:
         sg = -1 if sd == "L" else 1
-        seq = (UP, WHOA, UP, WHOA, UP, UP) if sd != near_sd else (WHOA, LOW, WHOA, LOW, WHOA, WHOA)
-        for tk, pose in zip((T_LET + 0.55, T_LET + 0.95, T_LET + 1.3, T_LET + 1.7, T_LET + 2.1, DUR + 0.5), seq):
+        seq = (LOW, WHOA, LOW, UP, WHOA, UP, WHOA, UP, WHOA, UP, UP) if sd != near_sd else (WHOA, LOW, WHOA, LOW, WHOA, WHOA, LOW, WHOA, LOW, WHOA, WHOA)   # his arms swing as he walks, fly up at the tear
+        for tk, pose in zip((0.0, 0.38, 0.74, T_TORN - 0.1, T_LET + 0.15, T_LET + 0.55, T_LET + 0.95, T_LET + 1.3, T_LET + 1.7, T_LET + 2.1, DUR + 0.5), seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     # ---- the crack: a hairline tears across from kerb to kerb, then the street pulls apart and the lava shows in the gap
     gm = lava_mat("crack glow", heat=2.4, scale=6.0)
@@ -2688,7 +2708,6 @@ def shot4():
         t = (f - 1) / FPS; glow.data.energy = 10.0 * W(t, T_TEAR, 0.3) + 30.0 * W(t, T_OPEN0, 0.5) + 50.0 * W(t, T_POUR, 0.6); glow.data.keyframe_insert("energy", frame=f)
         glow2.data.energy = 200.0 * W(t, T_OPEN0, 0.8); glow2.data.keyframe_insert("energy", frame=f)
     data.finish()
-    data._resolve_hands(tol=-1.0)                                   # the smoothing pass in finish() moved his chest under the hands: back on their jobs
     # ---- the lens: low in the street at his front left, looking up it: the crack across the bottom of the frame in
     # front of his boots, the houses down both sides behind him, the wall across the end of the street with its smoke
     CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.24, 0.6), height=0.345, t=DUR - 0.1)
@@ -2698,7 +2717,7 @@ def shot4():
         shake = Vector((0.02 * math.sin(2 * math.pi * 13 * t), 0, 0.015 * math.sin(2 * math.pi * 17 * t))) * (lw_kick(t - T_JOLT, 0.25) + lw_kick(t - T_TEAR - 0.3, 0.25)) * 2
         return CAM + shake, LOOK + shake, data.pos() + Vector((0, 0, 0.5))
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 24.0, 24.0)
-    return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("sandbag",), cutaway=None,
+    return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
                 conseq=[("a crack tears across the road in front of his boots and pulls open, glowing", lambda: [tear, rim] + lips, T_TORN, T_OPEN1 + 0.2, {"whole": False}),
                         ("lava wells up and pours down the street at us", lambda: [flow], T_POUR + 0.3, DUR, {"whole": False})])
