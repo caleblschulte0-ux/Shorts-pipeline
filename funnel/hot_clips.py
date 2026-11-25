@@ -155,8 +155,14 @@ def _rss(path: str, sub: str = SUB) -> dict | None:
     from funnel import media_funnel
     tail = path.replace(".json?", ".rss?", 1)
     hdr = {"User-Agent": media_funnel._UA_REDDIT}
-    for host in ("https://www.reddit.com", "https://old.reddit.com"):
-        got = _rss_at(host + tail, hdr, sub)
+    tails = [tail]
+    m = re.match(r"^(/r/[^/]+)/(top|new|hot)\.rss\?(.*)$", tail)
+    if m:
+        tails.append(f"{m.group(1)}/{m.group(2)}/.rss?{m.group(3)}")
+    for host, t in [(h, t) for t in tails
+                    for h in ("https://www.reddit.com",
+                              "https://old.reddit.com")]:
+        got = _rss_at(host + t, hdr, sub)
         if got is not None:
             return got
     return None
@@ -228,34 +234,22 @@ def _arctic(period: str, limit: int, sub: str = SUB,
     days. A route that does not share Reddit's or PullPush's runner block
     is the difference between a day of posts and none."""
     import time as _t
-    after = int(_t.time() - _PERIOD_S.get(period, _PERIOD_S["week"]))
-    before, posts = None, []
-    for _ in range(ARCTIC_PAGES):
-        q = {"subreddit": sub, "after": after, "limit": 100, "sort": "desc"}
-        if before:
-            q["before"] = before
-        if query:
-            q["title"] = query
-        url = ("https://arctic-shift.photon-reddit.com/api/posts/search?"
-               + urllib.parse.urlencode(q))
-        try:
-            data = json.loads(_fetch(url, {"User-Agent":
-                                           "shorts-pipeline/1.0"})
-                              .decode("utf-8", "replace"))
-        except Exception as e:  # noqa: BLE001
-            print(f"::warning::[hot_clips] r/{sub} Arctic Shift failed "
-                  f"({_err(e)})", flush=True)
-            if posts:
-                break
-            return None
-        page = data.get("data") if isinstance(data, dict) else None
-        if not isinstance(page, list) or not page:
+    since = int(_t.time() - _PERIOD_S.get(period, _PERIOD_S["week"]))
+    posts = None
+    # 2026-11-24 the first shape (sort=desc from `after`) answered 422 on
+    # r/nfl and the route was dropped for the run. The README documents no
+    # 422; a busy sub's query can time out. So each shape is tried in turn
+    # (newest-first, oldest-first, then a day at a time), the server's own
+    # words are logged, and the shape that answers is kept for the run.
+    shapes = list(ARCTIC_SHAPES)
+    if _ARCTIC_OK:
+        shapes.remove(_ARCTIC_OK[0])
+        shapes.insert(0, _ARCTIC_OK[0])
+    for shape in shapes:
+        posts = _arctic_pages(shape, sub, since, query)
+        if posts is not None:
+            _ARCTIC_OK[:] = [shape]
             break
-        posts += [p for p in page if isinstance(p, dict)]
-        oldest = min(float(p.get("created_utc") or 0) for p in page)
-        if len(page) < 100 or not oldest or oldest <= after:
-            break
-        before = int(oldest)
     if not posts:
         return None
     posts.sort(key=lambda p: (-int(p.get("score") or 0),
@@ -265,6 +259,71 @@ def _arctic(period: str, limit: int, sub: str = SUB,
 
 
 ARCTIC_PAGES = 10
+ARCTIC_SHAPES = ("desc", "asc", "daily")
+_ARCTIC_OK: list = []
+
+
+def _arctic_get(q: dict, sub: str) -> list | None:
+    """One Arctic Shift page, or None (the server's reason logged)."""
+    url = ("https://arctic-shift.photon-reddit.com/api/posts/search?"
+           + urllib.parse.urlencode(q))
+    try:
+        data = json.loads(_fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
+                          .decode("utf-8", "replace"))
+    except Exception as e:  # noqa: BLE001
+        body = ""
+        try:
+            body = e.read().decode("utf-8", "replace")[:200]  # type: ignore
+        except Exception:  # noqa: BLE001
+            pass
+        print(f"::warning::[hot_clips] r/{sub} Arctic Shift failed "
+              f"({_err(e)}) {body!r} for {sorted(q)}", flush=True)
+        return None
+    page = data.get("data") if isinstance(data, dict) else None
+    if isinstance(data, dict) and data.get("error"):
+        print(f"::warning::[hot_clips] r/{sub} Arctic Shift said "
+              f"{str(data.get('error'))[:200]!r}", flush=True)
+        return None
+    return [p for p in page if isinstance(p, dict)] \
+        if isinstance(page, list) else []
+
+
+def _arctic_pages(shape: str, sub: str, since: int,
+                  query: str | None) -> list | None:
+    """Every post in r/`sub` since `since`, paged in one `shape`; None
+    when the first page is refused."""
+    import time as _t
+    base = {"subreddit": sub, "limit": 100}
+    if query:
+        base["title"] = query
+    posts: list = []
+    if shape == "daily":
+        now = int(_t.time())
+        for lo in range(since, now, 86400):
+            page = _arctic_get(dict(base, after=lo, before=min(lo + 86400,
+                                                                now)), sub)
+            if page is None:
+                if not posts and lo == since:
+                    return None
+                continue
+            posts += page
+        return posts
+    cursor = None
+    for _ in range(ARCTIC_PAGES):
+        q = dict(base, sort=shape, after=since)
+        if cursor:
+            q["before" if shape == "desc" else "after"] = cursor
+        page = _arctic_get(q, sub)
+        if page is None:
+            return None if not posts else posts
+        posts += page
+        if len(page) < 100:
+            break
+        stamps = [float(p.get("created_utc") or 0) for p in page]
+        cursor = int(min(stamps) if shape == "desc" else max(stamps))
+        if not cursor:
+            break
+    return posts
 
 
 # A route that failed once is not asked again this run: the story pool

@@ -44,6 +44,7 @@ class DiscoveryHasARouteReddit_DoesNotBlock(unittest.TestCase):
 
     def setUp(self):
         hot_clips._DEAD.clear()
+        hot_clips._ARCTIC_OK.clear()
 
     def test_arctic_shift_is_ranked_most_upvoted_first(self):
         page = {"data": [_post(1, 5), _post(2, 900, 40), _post(3, 50)]}
@@ -88,6 +89,23 @@ class DiscoveryHasARouteReddit_DoesNotBlock(unittest.TestCase):
                 mock.patch.object(hot_clips, "_fetch",
                                   return_value=json.dumps(page).encode()):
             self.assertEqual(len(hot_clips.top_videos("nfl")), 1)
+
+    def test_a_refused_arctic_shape_falls_to_the_next(self):
+        """2026-11-24: sort=desc answered 422 on r/nfl and the route was
+        dropped for the run."""
+        import urllib.error
+        page = json.dumps({"data": [_post(1, 7)]}).encode()
+
+        def fetch(url, headers):
+            if "sort=desc" in url:
+                raise urllib.error.HTTPError(url, 422, "x", {}, None)
+            return page
+        hot_clips._ARCTIC_OK.clear()
+        with mock.patch.object(hot_clips, "_fetch", side_effect=fetch):
+            got = hot_clips._arctic("week", 50, "nfl")
+        self.assertEqual(len(got["data"]["children"]), 1)
+        self.assertEqual(hot_clips._ARCTIC_OK, ["asc"])
+        hot_clips._ARCTIC_OK.clear()
 
     def test_arctic_is_tried_before_the_feed(self):
         src = Path(hot_clips.__file__).read_text()

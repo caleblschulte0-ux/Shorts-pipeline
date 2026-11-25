@@ -28,6 +28,11 @@ ROUTES = [
                  "&sort_type=score&sort=desc"),
     ("arctic", "https://arctic-shift.photon-reddit.com/api/posts/search"
                f"?subreddit={SUB}&after={WEEK}&limit=100"),
+    ("arctic asc", "https://arctic-shift.photon-reddit.com/api/posts/search"
+                   f"?subreddit={SUB}&after={WEEK}&limit=100&sort=asc"),
+    ("arctic 1d", "https://arctic-shift.photon-reddit.com/api/posts/search"
+                  f"?subreddit={SUB}&after={WEEK}&before={WEEK + 86400}"
+                  "&limit=100"),
     ("arctic top", "https://arctic-shift.photon-reddit.com/api/posts/search"
                    f"?subreddit={SUB}&after={WEEK}&limit=100&sort=desc"
                    "&sort_type=score"),
@@ -41,8 +46,13 @@ def hit(url: str, ua: str) -> tuple[str, int, str]:
             body = r.read().decode("utf-8", "replace")
             code = str(r.status)
     except Exception as e:  # noqa: BLE001
+        body = ""
+        try:
+            body = e.read().decode("utf-8", "replace")[:120]  # type: ignore
+        except Exception:  # noqa: BLE001
+            pass
         return (f"{type(e).__name__} {getattr(e, 'code', '')}".strip(),
-                0, "")
+                0, body.replace("\n", " "))
     n = body.count("<entry>")
     try:
         d = json.loads(body)
