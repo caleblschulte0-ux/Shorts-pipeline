@@ -2,112 +2,142 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 6,
+   "count": 7,
    "stories": {
-    "third-interstellar-visitor": 1,
-    "religious-nones-rise": 3,
-    "lake-mead-water-crisis": 1,
-    "richest-americans-live-14-years-longer": 1
+    "sports_blake_snell_agency_skuby": 1,
+    "sports_giannis_antetokounmpo_ing_staff_t": 1,
+    "sports_andrew_heaney__his_signing": 1,
+    "people-over-65-outnumber-kids-under-5": 3,
+    "landline-death-robocall-boom": 1
    },
    "timestamps": [
-    "2026-11-18T01:25:43+00:00",
-    "2026-11-18T02:28:36+00:00",
-    "2026-11-18T03:00:51+00:00",
-    "2026-11-18T03:25:10+00:00",
-    "2026-11-18T14:17:41+00:00",
-    "2026-11-20T09:54:56+00:00"
+    "2026-11-25T01:14:00+00:00",
+    "2026-11-25T11:10:51+00:00",
+    "2026-11-25T11:14:30+00:00",
+    "2026-11-25T11:47:30+00:00",
+    "2026-11-25T12:10:34+00:00",
+    "2026-11-25T12:24:27+00:00",
+    "2026-11-25T14:44:18+00:00"
    ],
    "examples": [
-    "unreadable: In seg4:start through payoff@-1.8, the white closing caption sits on top of the big yellow '0.975 km' / '5.6 km' headline, so the headline reads as '0.975 Km' / '5.6 Kili' and neither text",
-    "unreadable: seg3:end: the 'Other faiths' table label is tiny and pressed against 'Catholic', so it cannot be read on a phone. The '2021' and '1990' tags in seg1:end are also very small.",
-    "unreadable: In seg4:start and seg4:mid the small subtitle 'of US adults had no religion \u00b7 1990' runs through the church gable line. In payoff@-0.4 the tiny 'of US adults have no religion \u00b7 2021 \u00b7 ahea"
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 2,
-   "stories": {
-    "sports_erik_johnson_s_on_players": 1,
-    "freshwater-accessible": 1
-   },
-   "timestamps": [
-    "2026-11-17T19:48:49+00:00",
-    "2026-11-22T15:34:47+00:00"
-   ],
-   "examples": [
-    "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text.",
-    "dead_air: seg0:end, seg1:start, seg1:mid and seg1:end show nearly the same frame for about 7s: a full tank, the same two labels and Data waving. Beat 1 adds nothing visual to the opening, so two beats"
-   ],
-   "recurred_after_fix": false
-  },
-  "decorative_mascot": {
-   "count": 2,
-   "stories": {
-    "third-interstellar-visitor": 1,
-    "lake-mead-water-crisis": 1
-   },
-   "timestamps": [
-    "2026-11-18T01:45:11+00:00",
-    "2026-11-18T14:17:41+00:00"
-   ],
-   "examples": [
-    "decorative_mascot: From hook@0.3 through seg1:end Data stands in the same place beside the observatory, pointing, while the telescope moves by itself. In seg2:start and seg2:end he stands on a platfor",
-    "decorative_mascot: seg2:start to seg3:end: Data stands on top of the dam holding a red valve wheel and pointing while the water drops by itself. He never turns the wheel or causes the drop. In the lak"
-   ],
-   "recurred_after_fix": false
-  },
-  "temporal_gate": {
-   "count": 2,
-   "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
-   },
-   "timestamps": [
-    "2026-11-22T17:25:33+00:00",
-    "2026-11-22T22:26:23+00:00"
-   ],
-   "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+    "unreadable: hook@0.3, hook@1.5 and mid0: our hook line and the word caption ('SHOULD WE HOP', 'TO EQUINOX IN') sit on top of the broadcast's quote card 'I THINK WE HAVE A GOOD SHOT AT GETTING SKUBAL H",
+    "unreadable: The TV graphics are cut at the bottom edge: 'VANESSA RICHARDSON' is sliced off at mid0, and the 'LAST 3 GAMES PPG FG RPG' values are cut off at mid2 to payoff@-0.4. The word captions mis-s",
+    "unreadable: Our white word captions sit directly above the source's own yellow burned-in captions and show the same words a beat apart ('SO YOU BETTER' over 'SO YOU BETTER SIGN' at hook@0.3; 'BY 3 O'C"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 1,
+   "count": 6,
    "stories": {
-    "sports_hockey_terates_nick": 1
+    "sports_gary_neville__face_whilst": 1,
+    "sports_bernie_brewer_howed_out_in": 3,
+    "sports_tyler_boucher_eer_nhl_goal": 1,
+    "sports_giannis_antetokounmpo_ing_staff_t": 1
    },
    "timestamps": [
-    "2026-11-17T16:49:30+00:00"
+    "2026-11-25T00:28:00+00:00",
+    "2026-11-25T00:49:26+00:00",
+    "2026-11-25T01:08:51+00:00",
+    "2026-11-25T01:40:42+00:00",
+    "2026-11-25T01:42:09+00:00",
+    "2026-11-25T11:10:51+00:00"
    ],
    "examples": [
-    "junk_imagery: The video claims 'Chychrun destroys Cousins on the ice' but the actual hit is not shown in the footage, only the lead-up and aftermath."
+    "junk_imagery: hook@0.3 through hook@2.2, mid2, mid4 and payoff@-0.4 are all a wide letterboxed five-man studio shot where Neville is a small figure at the far left. No sampled frame shows the slap the",
+    "junk_imagery: The crop keeps losing Bernie. At mid0 he is half out of frame at the right edge and the frame sits on a woman in a yellow jacket. At mid2 he is cut off at the left edge behind a flag. By",
+    "junk_imagery: The line promises 'dad in the stands' but no frame shows the dad or any family. The crop also misses the play: at hook@0.3 and hook@1.5 the frame holds a goalie and an empty stretch of i"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 3,
+   "stories": {
+    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
+    "sports_juan_mata_s_retirement": 1
+   },
+   "timestamps": [
+    "2026-11-22T17:25:33+00:00",
+    "2026-11-22T22:26:23+00:00",
+    "2026-11-25T01:05:47+00:00"
+   ],
+   "examples": [
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 3,
+   "stories": {
+    "people-over-65-outnumber-kids-under-5": 2,
+    "landline-death-robocall-boom": 1
+   },
+   "timestamps": [
+    "2026-11-25T11:47:30+00:00",
+    "2026-11-25T12:10:34+00:00",
+    "2026-11-25T14:44:18+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: Data grips the rope in the hook (hook@0.3 to seg0:end), but he is not the cause of anything after that. In seg1:start to seg1:end he waves beside a wheelchair while the seniors' lin",
+    "decorative_mascot: In the hook and seg0, Data pulls the rope on the seniors' side, and in seg1 he wheels a senior into the line. In seg3:mid and seg3:end, though, he just waves beside the seesaw while",
+    "decorative_mascot: In seg1:mid Data really saws the drop lines off the pole. From seg2 on he only stands beside the machine: thumbs-up next to the switchboard (seg2:start, seg2:end), then idle by a sa"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 2,
+   "stories": {
+    "sports_gary_neville__face_whilst": 1,
+    "sports_tyler_boucher_eer_nhl_goal": 1
+   },
+   "timestamps": [
+    "2026-11-25T00:28:00+00:00",
+    "2026-11-25T01:08:51+00:00"
+   ],
+   "examples": [
+    "empty_void: In every frame (hook@0.3, mid0, mid2, payoff@-0.4) the 16:9 footage fills only the middle third. The top and bottom are blurred copies of the same footage, roughly 60% of the screen, and t",
+    "empty_void: In mid5 and both payoff frames, the 16:9 broadcast sits in a thin band with blurred filler above and below, so about half the frame is wasted. In mid3 the frame is mostly a blurred board a"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "sports_bernie_brewer_howed_out_in": 1
+   },
+   "timestamps": [
+    "2026-11-25T01:40:42+00:00"
+   ],
+   "examples": [
+    "dead_air: From mid4 to payoff@-0.4 (about 17-22s) nothing happens: the camera drifts over spectators with no Bernie and no clear moment."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
-   "min": 0,
-   "max": 4
-  },
-  "data_demo": {
-   "median": 3,
-   "min": 0,
-   "max": 5
-  },
-  "mascot": {
-   "median": 3,
-   "min": 0,
-   "max": 4
-  },
-  "craft": {
    "median": 2,
    "min": 0,
    "max": 3
   },
+  "data_demo": {
+   "median": 3,
+   "min": 0,
+   "max": 4
+  },
+  "mascot": {
+   "median": 4,
+   "min": 0,
+   "max": 4
+  },
+  "craft": {
+   "median": 1,
+   "min": 0,
+   "max": 2
+  },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -118,30 +148,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
-  62,
-  100,
-  74,
-  100,
-  100,
-  66,
-  74,
-  79,
-  79,
-  74,
-  70,
-  74,
-  74,
-  70,
-  74,
-  65,
-  65,
-  61,
   14,
-  14
+  14,
+  75,
+  53,
+  58,
+  14,
+  49,
+  70,
+  79,
+  83,
+  62,
+  58,
+  70,
+  70,
+  82,
+  74,
+  57,
+  70,
+  61,
+  66
  ]
 }
