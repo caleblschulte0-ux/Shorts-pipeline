@@ -6,7 +6,7 @@ walks up the quay to his own house by the water carrying a lit lantern and hangs
 it swings, glowing; across the dark town a few windows light up, one here, one there, only a handful; he turns to us
 and spreads his hands wide: would you?"""
 
-S5_HOOK = Vector((0.2, 1.1, 0.5))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
+S5_HOOK = Vector((0.2, 1.1, 0.7))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
 S5_EDGE_X = -2.2                        # the quay's water edge (x)
 
 
@@ -325,6 +325,10 @@ def shot5():
     # against many untouched ones"): high over the harbour water, the boats in the basin, him at his door on the quay,
     # the town on its hill, the three houses burning at the black lava's edge, the wall above, the handful of lights
     T_W0, T_W1 = 0.28 * DUR, T_HANG - 0.35          # on his walk up the quay, his face to this lens (KEYS: never his back)
+    for o in bpy.data.objects:                      # board round 4: from up here the boats read as toy boxes: they are out of the wide
+        if o.name.startswith("fishing boat") and o.type == 'MESH':
+            for f_, hid in ((1, False), (F(T_W0), True), (F(T_W1), False)):
+                o.hide_render = hid; o.keyframe_insert("hide_render", frame=f_)
     CW = Vector((3.5, -6.5, 8.5)); LW = Vector((0.5, 14.0, 5.0))
     lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.12, 0.2, -0.05)) * (t - T_W0), LW, Vector((0.0, 14.0, 5.0))), T_W0, T_W1, 28.0, 20.0)
     # ---- the payoff: windows light up ACROSS THE TOWN, one here, one there (board: "a few windows, not one"): the

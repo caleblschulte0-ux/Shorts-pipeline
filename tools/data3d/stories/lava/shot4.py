@@ -202,7 +202,7 @@ def shot4():
             p.y = max(y_edge - 0.12, p.y - roll)
             tip = W(t, T_TIP, 0.6)
             pitch += math.radians(52) * tip                  # nose first into the gap, its wheel sinking into the glow
-            p.z -= 0.3 * tip; p.x += 1.0 * W(t, T_OPEN0 + 0.2, 1.0)       # rolling off toward the kerb as it goes: it burns off his line to the lens
+            p.z -= 0.12 * tip; p.x += 0.75 * W(t, T_OPEN0 + 0.2, 1.0)       # rolling off toward the kerb as it goes: it burns off his line to the lens
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
     sc.frame_set(NF); bpy.context.view_layer.update()     # the barrow burns where it tipped: its sandbags and the tray catch
@@ -282,7 +282,7 @@ def shot4():
     # a liquid tongue swells up out of the gap and runs DOWN the street at the lens over the near slab, kerb to kerb
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_POUR, DUR - T_POUR); w_ = W(t, T_POUR - 0.25, 0.4)
-        L_ = 0.3 + 1.0 * u
+        L_ = 0.3 + 1.8 * u
         flow.location = (0.05 + 0.1 * math.sin(3 * t), S4_YC + 0.6 - L_, -0.22 + 0.25 * w_)   # wells up round the tipped barrow and runs at the lens
         flow.scale = (0.6 + 1.0 * u + 0.4 * w_, L_, 1.0 + 0.4 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)

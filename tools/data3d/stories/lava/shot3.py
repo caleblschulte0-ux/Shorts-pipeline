@@ -52,7 +52,7 @@ def place_wall_crest():
                    roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35))
     lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2))        # the old lava heaped against the face: broken blocks
-    lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.12)   # the field outside the wall: broken black blocks, a little moss
+    lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.0)   # the field outside the wall: broken black blocks, a little moss
     lava_rock("wall face rock", 260, (-14, 12, -4.2, -1.0), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=27, r=(0.08, 0.26), moss=0.0)   # the black rock it is built of, on its face
     lava_rock("works rubble", 160, (-14, 14, 4.4, 9.0), s3_ground_z, seed=12, r=(0.08, 0.3))       # the works yard inside the wall
     for k, x in enumerate((-22.0, -12.0)):               # the eruption's plume off in the distance, a gas leaning over the town
@@ -222,7 +222,7 @@ def shot3():
     steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
     for k, t0 in enumerate((T_SPRAY + 0.06,)):          # that drifts off him and out over the field, off the lens's side
         b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.0, b.z - 0.3), w=0.95, h=3.4, seed=5.1 * k + 2, rise=2.4, dens=7.0,
+        steam.append(lw_steam(f"lava steam {k}", (1.7, -2.0, b.z - 0.3), w=1.5, h=5.0, seed=5.1 * k + 2, rise=2.4, dens=7.0,
                               lean=(0.25, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
     CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him

@@ -233,13 +233,14 @@ def shot1():
     vents = P["founts"]; cols = []
     for k, v in enumerate(vents):                        # each vent a FOUNTAIN OF FIRE as a gas: torn tongues licking up a
         tk = T_ERUPT + T_NINE * k                        # glowing column, bursting in turn, nine, counted
-        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=0.62, h_fire=2.8, h_smoke=2.0,
-                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=9.0, smoke_d=1.5, rise=3.5,
+        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.15, h_fire=4.6, h_smoke=2.6,
+                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=14.0, smoke_d=1.5, rise=3.5,
                                    keys=[(max(0.0, tk - 0.04), 0.0), (tk + 0.18, 1.0)], grow=True))
     for k, x in enumerate((-4.0, 0.0, 4.0)):             # the plume: a wall of grey gas and ash boiling off the whole fissure, leaning downwind
         cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 1.0, P["fz"] + 1.5), w=4.5, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
                              dens=3.0, lean=(-0.35, 0.3), rise=1.6, keys=[(T_ERUPT + 0.1 * k, 0.0), (T_ERUPT + 0.1 * k + 1.2, 1.0)], t_end=DUR + 1.0))
     P["founts"] = cols[:9]
+    for o in P["spat"]: o.hide_render = True          # board round 4: the spatter read as "sparklers, fireworks, snow": the fountains carry it
     for k, o in enumerate(P["spat"]):
         v = vents[k // 14]; x0 = v.location.x + rnd.uniform(-0.12, 0.12); tk = T_ERUPT + T_NINE * (k // 14)
         vx = rnd.uniform(-1.1, 1.1); vz = rnd.uniform(4.5, 7.5); per = 2 * vz / 9.8; ph = rnd.uniform(0, per)
@@ -337,14 +338,18 @@ def shot1():
     # ---- the lens: WIDE from a little above his head, in front of him and off to the post's far side, so the street
     # runs away behind him to the ridge and all nine vents stand over the town in one row
     CAM = Vector((0.95, -1.24, 1.15)); LOOK = Vector((1.6, 17.45, -2.5))   # tipped down: the nine fountains high in the frame, less bare sky (EMPTY read the sky as 30%)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    # board round 4 (4th round of "the post splits the frame"): the siren post is CUT from the main lens. The lens
+    # stands off to the cars' side of the road, solved so he stands in the left third with the street, its cars and
+    # the nine fountains filling the rest; the post and its arm are seen whole in the wide
+    CAM, LOOK = compose.frame_data(data, Vector((2.1, -1.7, 1.5)), Vector((-1.2, 17.45, -1.0)), 34.0, face_at=(0.33, 0.47), height=0.36, t=T_UP0 + 0.5)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=34.0, fstop=16.0)
     # CUT to the WIDE while the town drives out (board round 2: "the cars never pour out under the gate", "not
     # Grindavik's main street"): high behind the cars' exit, the street with its houses down both sides running to the
     # ridge, the nine fountains in a row over it, the raised gate with him at its post, the cars streaming at the lens
     T_W0, T_W1 = 0.5 * DUR, 0.8 * DUR
     CW = Vector((0.45, -4.6, 1.0)); LW = Vector((1.0, 10.0, 2.6))      # low on the road's crown: the cars streaming past us, him at the siren, the street and its houses to the fountains
     lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.15, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 30.0, 40.0)
+           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 34.0, 40.0)
     founts = P["founts"]
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"), cutaway=(T_W0, T_W1),
                 boxes=[],

@@ -711,7 +711,7 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
     warp = nt.nodes.new("ShaderNodeTexNoise"); warp.inputs["Scale"].default_value = scale * 0.6; warp.inputs["Detail"].default_value = 3
     nt.links.new(mp.outputs["Vector"], warp.inputs["Vector"])
-    add = nt.nodes.new("ShaderNodeVectorMath"); add.operation = 'MULTIPLY_ADD'; add.inputs[1].default_value = (0.25, 0.25, 0.25)
+    add = nt.nodes.new("ShaderNodeVectorMath"); add.operation = 'MULTIPLY_ADD'; add.inputs[1].default_value = (0.55, 0.55, 0.55)   # board round 4: "a uniform tile": plates warped into every shape
     nt.links.new(warp.outputs["Color"], add.inputs[0]); nt.links.new(mp.outputs["Vector"], add.inputs[2])
     vo = nt.nodes.new("ShaderNodeTexVoronoi"); vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs["Scale"].default_value = scale
     nt.links.new(add.outputs["Vector"], vo.inputs["Vector"])
@@ -1571,13 +1571,14 @@ def shot1():
     vents = P["founts"]; cols = []
     for k, v in enumerate(vents):                        # each vent a FOUNTAIN OF FIRE as a gas: torn tongues licking up a
         tk = T_ERUPT + T_NINE * k                        # glowing column, bursting in turn, nine, counted
-        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=0.62, h_fire=2.8, h_smoke=2.0,
-                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=9.0, smoke_d=1.5, rise=3.5,
+        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.15, h_fire=4.6, h_smoke=2.6,
+                                   lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=14.0, smoke_d=1.5, rise=3.5,
                                    keys=[(max(0.0, tk - 0.04), 0.0), (tk + 0.18, 1.0)], grow=True))
     for k, x in enumerate((-4.0, 0.0, 4.0)):             # the plume: a wall of grey gas and ash boiling off the whole fissure, leaning downwind
         cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 1.0, P["fz"] + 1.5), w=4.5, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
                              dens=3.0, lean=(-0.35, 0.3), rise=1.6, keys=[(T_ERUPT + 0.1 * k, 0.0), (T_ERUPT + 0.1 * k + 1.2, 1.0)], t_end=DUR + 1.0))
     P["founts"] = cols[:9]
+    for o in P["spat"]: o.hide_render = True          # board round 4: the spatter read as "sparklers, fireworks, snow": the fountains carry it
     for k, o in enumerate(P["spat"]):
         v = vents[k // 14]; x0 = v.location.x + rnd.uniform(-0.12, 0.12); tk = T_ERUPT + T_NINE * (k // 14)
         vx = rnd.uniform(-1.1, 1.1); vz = rnd.uniform(4.5, 7.5); per = 2 * vz / 9.8; ph = rnd.uniform(0, per)
@@ -1675,14 +1676,18 @@ def shot1():
     # ---- the lens: WIDE from a little above his head, in front of him and off to the post's far side, so the street
     # runs away behind him to the ridge and all nine vents stand over the town in one row
     CAM = Vector((0.95, -1.24, 1.15)); LOOK = Vector((1.6, 17.45, -2.5))   # tipped down: the nine fountains high in the frame, less bare sky (EMPTY read the sky as 30%)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    # board round 4 (4th round of "the post splits the frame"): the siren post is CUT from the main lens. The lens
+    # stands off to the cars' side of the road, solved so he stands in the left third with the street, its cars and
+    # the nine fountains filling the rest; the post and its arm are seen whole in the wide
+    CAM, LOOK = compose.frame_data(data, Vector((2.1, -1.7, 1.5)), Vector((-1.2, 17.45, -1.0)), 34.0, face_at=(0.33, 0.47), height=0.36, t=T_UP0 + 0.5)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=34.0, fstop=16.0)
     # CUT to the WIDE while the town drives out (board round 2: "the cars never pour out under the gate", "not
     # Grindavik's main street"): high behind the cars' exit, the street with its houses down both sides running to the
     # ridge, the nine fountains in a row over it, the raised gate with him at its post, the cars streaming at the lens
     T_W0, T_W1 = 0.5 * DUR, 0.8 * DUR
     CW = Vector((0.45, -4.6, 1.0)); LW = Vector((1.0, 10.0, 2.6))      # low on the road's crown: the cars streaming past us, him at the siren, the street and its houses to the fountains
     lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.15, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 30.0, 40.0)
+           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 34.0, 40.0)
     founts = P["founts"]
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"), cutaway=(T_W0, T_W1),
                 boxes=[],
@@ -2035,11 +2040,12 @@ def shot2():
             for o in (Dk["boom"], Dk["stick"], Dk["bucket"]): o.keyframe_insert("rotation_euler", frame=f)
     # ---- the floodlights: low at first, blazing on at T_LIGHTS
     for k, (head, L) in enumerate(P["masts"]):
+        L.data.spread = math.radians(50)        # board round 4: "no pools of light": a floodlight throws a hard pool, not a glow
         em = head.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; on = 0.75 + 0.25 * W(t, T_LIGHTS + 0.08 * k, 0.2)      # blazing from the start (board: "switched off"), full at nightfall
             em.default_value = 60.0 * on; em.keyframe_insert("default_value", frame=f)
-            L.data.energy = 4000.0 * on; L.data.keyframe_insert("energy", frame=f)
+            L.data.energy = 9000.0 * on; L.data.keyframe_insert("energy", frame=f)
     sk = bpy.context.scene.world.node_tree.nodes["Background"].inputs["Strength"]
     for f in range(1, NF + 1, 3):
         t = (f - 1) / FPS; sk.default_value = 0.11 * (1 - 0.4 * t / DUR); sk.keyframe_insert("default_value", frame=f)
@@ -2197,7 +2203,7 @@ def place_wall_crest():
                    roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35))
     lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2))        # the old lava heaped against the face: broken blocks
-    lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.12)   # the field outside the wall: broken black blocks, a little moss
+    lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.0)   # the field outside the wall: broken black blocks, a little moss
     lava_rock("wall face rock", 260, (-14, 12, -4.2, -1.0), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=27, r=(0.08, 0.26), moss=0.0)   # the black rock it is built of, on its face
     lava_rock("works rubble", 160, (-14, 14, 4.4, 9.0), s3_ground_z, seed=12, r=(0.08, 0.3))       # the works yard inside the wall
     for k, x in enumerate((-22.0, -12.0)):               # the eruption's plume off in the distance, a gas leaning over the town
@@ -2367,7 +2373,7 @@ def shot3():
     steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
     for k, t0 in enumerate((T_SPRAY + 0.06,)):          # that drifts off him and out over the field, off the lens's side
         b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.0, b.z - 0.3), w=0.95, h=3.4, seed=5.1 * k + 2, rise=2.4, dens=7.0,
+        steam.append(lw_steam(f"lava steam {k}", (1.7, -2.0, b.z - 0.3), w=1.5, h=5.0, seed=5.1 * k + 2, rise=2.4, dens=7.0,
                               lean=(0.25, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
     CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him
@@ -2594,7 +2600,7 @@ def shot4():
             p.y = max(y_edge - 0.12, p.y - roll)
             tip = W(t, T_TIP, 0.6)
             pitch += math.radians(52) * tip                  # nose first into the gap, its wheel sinking into the glow
-            p.z -= 0.3 * tip; p.x += 1.0 * W(t, T_OPEN0 + 0.2, 1.0)       # rolling off toward the kerb as it goes: it burns off his line to the lens
+            p.z -= 0.12 * tip; p.x += 0.75 * W(t, T_OPEN0 + 0.2, 1.0)       # rolling off toward the kerb as it goes: it burns off his line to the lens
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
     sc.frame_set(NF); bpy.context.view_layer.update()     # the barrow burns where it tipped: its sandbags and the tray catch
@@ -2674,7 +2680,7 @@ def shot4():
     # a liquid tongue swells up out of the gap and runs DOWN the street at the lens over the near slab, kerb to kerb
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_POUR, DUR - T_POUR); w_ = W(t, T_POUR - 0.25, 0.4)
-        L_ = 0.3 + 1.0 * u
+        L_ = 0.3 + 1.8 * u
         flow.location = (0.05 + 0.1 * math.sin(3 * t), S4_YC + 0.6 - L_, -0.22 + 0.25 * w_)   # wells up round the tipped barrow and runs at the lens
         flow.scale = (0.6 + 1.0 * u + 0.4 * w_, L_, 1.0 + 0.4 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
@@ -2731,7 +2737,7 @@ walks up the quay to his own house by the water carrying a lit lantern and hangs
 it swings, glowing; across the dark town a few windows light up, one here, one there, only a handful; he turns to us
 and spreads his hands wide: would you?"""
 
-S5_HOOK = Vector((0.2, 1.1, 0.5))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
+S5_HOOK = Vector((0.2, 1.1, 0.7))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
 S5_EDGE_X = -2.2                        # the quay's water edge (x)
 
 
@@ -3050,6 +3056,10 @@ def shot5():
     # against many untouched ones"): high over the harbour water, the boats in the basin, him at his door on the quay,
     # the town on its hill, the three houses burning at the black lava's edge, the wall above, the handful of lights
     T_W0, T_W1 = 0.28 * DUR, T_HANG - 0.35          # on his walk up the quay, his face to this lens (KEYS: never his back)
+    for o in bpy.data.objects:                      # board round 4: from up here the boats read as toy boxes: they are out of the wide
+        if o.name.startswith("fishing boat") and o.type == 'MESH':
+            for f_, hid in ((1, False), (F(T_W0), True), (F(T_W1), False)):
+                o.hide_render = hid; o.keyframe_insert("hide_render", frame=f_)
     CW = Vector((3.5, -6.5, 8.5)); LW = Vector((0.5, 14.0, 5.0))
     lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.12, 0.2, -0.05)) * (t - T_W0), LW, Vector((0.0, 14.0, 5.0))), T_W0, T_W1, 28.0, 20.0)
     # ---- the payoff: windows light up ACROSS THE TOWN, one here, one there (board: "a few windows, not one"): the

@@ -339,11 +339,12 @@ def shot2():
             for o in (Dk["boom"], Dk["stick"], Dk["bucket"]): o.keyframe_insert("rotation_euler", frame=f)
     # ---- the floodlights: low at first, blazing on at T_LIGHTS
     for k, (head, L) in enumerate(P["masts"]):
+        L.data.spread = math.radians(50)        # board round 4: "no pools of light": a floodlight throws a hard pool, not a glow
         em = head.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
         for f in range(1, NF + 1, 2):
             t = (f - 1) / FPS; on = 0.75 + 0.25 * W(t, T_LIGHTS + 0.08 * k, 0.2)      # blazing from the start (board: "switched off"), full at nightfall
             em.default_value = 60.0 * on; em.keyframe_insert("default_value", frame=f)
-            L.data.energy = 4000.0 * on; L.data.keyframe_insert("energy", frame=f)
+            L.data.energy = 9000.0 * on; L.data.keyframe_insert("energy", frame=f)
     sk = bpy.context.scene.world.node_tree.nodes["Background"].inputs["Strength"]
     for f in range(1, NF + 1, 3):
         t = (f - 1) / FPS; sk.default_value = 0.11 * (1 - 0.4 * t / DUR); sk.keyframe_insert("default_value", frame=f)
