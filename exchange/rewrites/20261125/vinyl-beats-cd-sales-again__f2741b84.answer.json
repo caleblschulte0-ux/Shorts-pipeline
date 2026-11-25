@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "vinyl-beats-cd-sales-again__f2741b84",
+  "slug": "vinyl-beats-cd-sales-again",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:30:00.000Z",
+  "title": "Vinyl Now Earns More Than Twice CD Revenue",
+  "hook": "The format CDs replaced came back as the more valuable physical product.",
+  "closing": "Vinyl won the physical comeback by becoming collectible inside a streaming market.",
+  "question": "What record would you buy?",
+  "segments": [
+    {
+      "topic": "Vinyl Revenue Wins",
+      "say": "Vinyl earned 1.2 billion dollars, more than twice CD revenue. The older format became the premium product."
+    },
+    {
+      "topic": "Vinyl Units Win",
+      "say": "Vinyl also sold 41 million albums, beating CDs in unit count. Higher revenue was not only a price effect."
+    },
+    {
+      "topic": "Vinyl Streaming Niche",
+      "say": "Streaming still takes 84 percent of music revenue. Vinyl won a physical revival, not the whole market."
+    }
+  ]
+}
