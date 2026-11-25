@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-type-rarity__b15ee3cb",
+  "slug": "blood-type-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:15:00.000Z",
+  "title": "Why Blood Banks Need Every Type Of Donor",
+  "hook": "A hospital's blood supply only works when its donors reflect everyone.",
+  "closing": "A broad donor pool gives hospitals better odds of finding every needed match.",
+  "question": "Do you know your blood type?",
+  "segments": [
+    {
+      "topic": "Blood Type Range",
+      "say": "AB negative belongs to just 1 percent of Americans. A blood bank needs rare donors as well as common ones."
+    },
+    {
+      "topic": "Blood Type Negative",
+      "say": "Only 15 percent of Americans are Rh negative. That smaller donor pool makes negative matches harder to replace."
+    },
+    {
+      "topic": "Blood Type Diversity",
+      "say": "O positive reaches 53 percent among Latin American donors. Donor diversity changes which blood types hospitals can supply."
+    }
+  ]
+}
