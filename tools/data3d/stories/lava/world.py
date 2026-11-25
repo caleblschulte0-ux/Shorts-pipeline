@@ -570,7 +570,7 @@ def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), 
     zr = X.clamp01(X.sub(z, h_fire * 0.45), 0.0, h_smoke)          # 0..1 up the column
     rad = X.add(w * 0.35, X.mul(zr, w * 0.35 + h_smoke * spread))
     col = X.sub(1.0, X.div(r, rad))
-    bil = X.add(X.mul(wnoise(0.55, 8.0, 0.72, 0.4), 0.7), X.mul(wnoise(1.6, 6.0, 0.6, 0.7), 0.45))     # big billows with smaller curls on them
+    bil = X.add(X.mul(wnoise(0.55, 5.0, 0.72, 0.4), 0.7), X.mul(wnoise(1.6, 4.0, 0.6, 0.7), 0.45))     # big billows with smaller curls on them
     sd = X.clamp01(X.sub(X.add(X.mul(bil, 2.2), X.mul(col, 0.9)), 1.55), 0.0, 0.3)
     fade = X.mul(X.clamp01(X.sub(z, h_fire * 0.35), 0.0, h_fire * 0.5), X.sub(1.0, X.clamp01(zr, 0.55, 1.0)))
     amt = N("ShaderNodeValue"); amt.name = "gas amount"; amt.outputs[0].default_value = 1.0      # keyed: a burst comes and goes
@@ -602,7 +602,7 @@ def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), 
         if 'nodes["fire time"]' in c.data_path:
             for kp in c.keyframe_points: kp.interpolation = 'LINEAR'
     try:
-        m.cycles.volume_step_rate = 2.0                   # a soft gas needs no fine steps: half the render time
+        m.cycles.volume_step_rate = 3.5                   # a soft gas needs no fine steps: a third of the render time
     except Exception:
         pass
     return o
@@ -695,7 +695,7 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     nt.links.new(mp.outputs["Vector"], warp.inputs["Vector"])
     add = nt.nodes.new("ShaderNodeVectorMath"); add.operation = 'MULTIPLY_ADD'; add.inputs[1].default_value = (0.55, 0.55, 0.55)   # board round 4: "a uniform tile": plates warped into every shape
     nt.links.new(warp.outputs["Color"], add.inputs[0]); nt.links.new(mp.outputs["Vector"], add.inputs[2])
-    vo = nt.nodes.new("ShaderNodeTexVoronoi"); vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs["Scale"].default_value = scale
+    vo = nt.nodes.new("ShaderNodeTexVoronoi"); vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs["Scale"].default_value = scale * 0.6
     nt.links.new(add.outputs["Vector"], vo.inputs["Vector"])
     crack = nt.nodes.new("ShaderNodeMapRange"); crack.inputs["From Min"].default_value = 0.0; crack.inputs["From Max"].default_value = 0.07 + 0.11 * fresh
     crack.inputs["To Min"].default_value = 1.0; crack.inputs["To Max"].default_value = 0.0
@@ -706,26 +706,34 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     wid = nt.nodes.new("ShaderNodeTexNoise"); wid.inputs["Scale"].default_value = scale * 0.45; wid.inputs["Detail"].default_value = 2
     nt.links.new(mp.outputs["Vector"], wid.inputs["Vector"])
     wr = nt.nodes.new("ShaderNodeMapRange"); wr.inputs["From Min"].default_value = 0.35; wr.inputs["From Max"].default_value = 0.65
-    wr.inputs["To Min"].default_value = 0.015 + 0.04 * fresh; wr.inputs["To Max"].default_value = 0.11 + 0.14 * fresh
+    wr.inputs["To Min"].default_value = 0.004 + 0.03 * fresh; wr.inputs["To Max"].default_value = 0.13 + 0.14 * fresh
     nt.links.new(wid.outputs["Fac"], wr.inputs["Value"]); nt.links.new(wr.outputs["Result"], crack.inputs["From Max"])
     vo2 = nt.nodes.new("ShaderNodeTexVoronoi"); vo2.feature = 'DISTANCE_TO_EDGE'; vo2.inputs["Scale"].default_value = scale * 2.9
     vo2.inputs["Randomness"].default_value = 1.0; nt.links.new(add.outputs["Vector"], vo2.inputs["Vector"])
     hair = nt.nodes.new("ShaderNodeMapRange"); hair.inputs["From Min"].default_value = 0.0; hair.inputs["From Max"].default_value = 0.025
-    hair.inputs["To Min"].default_value = 0.45; hair.inputs["To Max"].default_value = 0.0
+    hair.inputs["To Min"].default_value = 0.22; hair.inputs["To Max"].default_value = 0.0
     nt.links.new(vo2.outputs["Distance"], hair.inputs["Value"])
     hmask = nt.nodes.new("ShaderNodeMath"); hmask.operation = 'MULTIPLY'; nt.links.new(hair.outputs["Result"], hmask.inputs[0])
     nt.links.new(wid.outputs["Fac"], hmask.inputs[1])
-    crk = nt.nodes.new("ShaderNodeMath"); crk.operation = 'MAXIMUM'
-    nt.links.new(crack.outputs["Result"], crk.inputs[0]); nt.links.new(hmask.outputs[0], crk.inputs[1])
+    crk0 = nt.nodes.new("ShaderNodeMath"); crk0.operation = 'MAXIMUM'
+    nt.links.new(crack.outputs["Result"], crk0.inputs[0]); nt.links.new(hmask.outputs[0], crk0.inputs[1])
+    # board B1 (2026-11-25, three shots): "an even net of glowing cells ... a game texture". Real crust is mostly BLACK:
+    # the seams glow only where the flow under them is still moving, in patches, and are dead black lines elsewhere
+    actn = nt.nodes.new("ShaderNodeTexNoise"); actn.inputs["Scale"].default_value = scale * 0.2; actn.inputs["Detail"].default_value = 2
+    nt.links.new(mp.outputs["Vector"], actn.inputs["Vector"])
+    act = nt.nodes.new("ShaderNodeMapRange"); act.inputs["From Min"].default_value = 0.47 - 0.3 * fresh; act.inputs["From Max"].default_value = 0.6 - 0.3 * fresh
+    nt.links.new(actn.outputs["Fac"], act.inputs["Value"])
+    crk = nt.nodes.new("ShaderNodeMath"); crk.operation = 'MULTIPLY'
+    nt.links.new(crk0.outputs[0], crk.inputs[0]); nt.links.new(act.outputs["Result"], crk.inputs[1])
     big = nt.nodes.new("ShaderNodeTexNoise"); big.inputs["Scale"].default_value = scale * 0.35; nt.links.new(mp.outputs["Vector"], big.inputs["Vector"])
     hot = nt.nodes.new("ShaderNodeMapRange"); hot.inputs["From Min"].default_value = 0.5 - 0.15 * fresh; hot.inputs["From Max"].default_value = 0.75 - 0.1 * fresh
-    hot.inputs["To Max"].default_value = 0.35 + 0.5 * fresh
+    hot.inputs["To Max"].default_value = 0.85 * fresh
     nt.links.new(big.outputs["Fac"], hot.inputs["Value"])
     glowf = nt.nodes.new("ShaderNodeMath"); glowf.operation = 'MAXIMUM'
     nt.links.new(crk.outputs[0], glowf.inputs[0]); nt.links.new(hot.outputs["Result"], glowf.inputs[1])
     crust = nt.nodes.new("ShaderNodeTexNoise"); crust.inputs["Scale"].default_value = scale * 6; crust.inputs["Detail"].default_value = 8
     nt.links.new(add.outputs["Vector"], crust.inputs["Vector"])
-    cr = nt.nodes.new("ShaderNodeValToRGB"); cr.color_ramp.elements[0].color = (*K.lin("#141210"), 1); cr.color_ramp.elements[1].color = (*K.lin("#4A4440"), 1)
+    cr = nt.nodes.new("ShaderNodeValToRGB"); cr.color_ramp.elements[0].color = (*K.lin("#0B0A09"), 1); cr.color_ramp.elements[1].color = (*K.lin("#3A3532"), 1)
     nt.links.new(crust.outputs["Fac"], cr.inputs["Fac"])
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     ramp.color_ramp.elements[0].position = 0.0; ramp.color_ramp.elements[0].color = (*K.lin("#B02500"), 1)
@@ -741,7 +749,7 @@ def lava_mat(name="lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     pw = nt.nodes.new("ShaderNodeMath"); pw.operation = 'POWER'; pw.inputs[1].default_value = 1.6
     nt.links.new(glowf.outputs[0], pw.inputs[0]); nt.links.new(pw.outputs[0], es.inputs[0])
     nt.links.new(es.outputs[0], bs.inputs["Emission Strength"])
-    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.9; bp.inputs["Distance"].default_value = 0.03
+    bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 1.0; bp.inputs["Distance"].default_value = 0.05
     inv = nt.nodes.new("ShaderNodeMath"); inv.operation = 'SUBTRACT'; inv.inputs[0].default_value = 1.0
     nt.links.new(crack.outputs["Result"], inv.inputs[1])
     hb = nt.nodes.new("ShaderNodeMath"); hb.operation = 'MULTIPLY_ADD'; hb.inputs[2].default_value = 0.0

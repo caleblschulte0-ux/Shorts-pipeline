@@ -74,14 +74,14 @@
     "town_crack",
     "harbour_dawn"
   ],
-  "sets_why": "one town on one peninsula, walked through one eruption: the main street under the ridge where the fissure opens, the earth wall going up outside the town, the top of that wall when the lava arrives, a street inside the wall where the ground splits, the harbour quay at dawn after",
+  "sets_why": "one town on one peninsula, walked through one eruption: the main street under the ridge where the fissure opens, the earth wall going up outside the town, the top of that wall when the lava arrives, a street inside the wall where the ground splits, and his own house at the foot of the town's hill at dawn after",
   "world": {
-    "logline": "A digger driver in a small Icelandic fishing town fights a volcano that keeps erupting on the ridge above it: he gets the town out, builds a wall of rock round it, watches the wall turn the lava, and then the ground opens inside the wall.",
+    "logline": "A digger driver in a small Icelandic town fights a volcano that keeps erupting on the ridge behind it: he gets the town out, builds a wall of rock taller than a house, sees the wall stop the lava, and then the ground opens inside the wall.",
     "hero": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie",
     "goal": "keep the lava out of his town and get the people back home",
-    "place": "Grindavik on Iceland's Reykjanes peninsula: a harbour town of low houses with red, blue and green roofs, black lava fields and mossy rock round it, the volcano's fissure on the ridge above, and the earth wall curving round the town",
-    "time": "one long eruption: a grey afternoon when the fissure opens, a floodlit night of building, the lava's arrival, the crack, and the dawn after",
-    "weather": "cold, clear and bright: low sun, steam and smoke from the lava, an orange glow over everything, never dark and muddy",
+    "place": "Grindavik on Iceland's Reykjanes peninsula: a small town of low tin-clad houses with painted walls and tin roofs, black lava rock all round it, the volcano's fissure on the ridge behind it, and the earth wall of black rock between the town and the lava",
+    "time": "one bright day, from the eruption to the crack in the street, and then the dawn after",
+    "weather": "cold and bright under broken cloud, dark smoke from the eruption and white steam where water meets lava; the last beat is a clear pale dawn",
     "path": [
       "grindavik_street",
       "wall_works",
@@ -91,99 +91,90 @@
     ],
     "continuity": {
       "hard hat": "the hero's yellow hard hat: on his head in every beat, the one thing that says he is the driver",
-      "lava": "the one eruption: the fissure's fountains in beat 1, the front against the wall in 3, through the crack in 4, cooled black round the burnt houses in 5",
-      "earth wall": "his work: built in beat 2, holding in beat 3, beaten from behind in 4, still standing round the town in 5",
-      "town house": "the town he is keeping: the low houses with coloured roofs, emptied in beat 1, threatened in 4, mostly standing in 5",
-      "lava rock": "the black rock the whole peninsula is made of: the old fields round the town, the rock the wall is built from, and what new lava cools into"
+      "lava": "the one eruption: the fissure's fountains in beat 1, the front against the wall in 3, up through the crack in 4, black round the burning houses in 5",
+      "earth wall": "his work: built in beat 2, holding in beat 3, across the end of the street in 4, still standing on the hilltop in 5",
+      "town house": "the town he is keeping: the low houses emptied in beat 1, one beside the wall in 2, safe behind it in 3, his own in 5",
+      "lava rock": "the black rock the whole peninsula is made of: the rock the wall is built from, and what the lava cools into"
     }
   },
   "ideas": [
-    "the fissure tears open on the ridge above the main street and throws up a curtain of fire, and the driver throws his weight on the striped road gate's handle and swings its arm up and waves the cars streaming out of town under it",
-    "at the floodlit wall works he works his digger's two control sticks and its big arm swings round and dumps a bucketful of black rock onto the crest of the growing wall, while a line of dump trucks rolls past behind",
-    "up on the wall's crest the glowing lava front rolls in below him, slams into the wall and slides off along it; he blasts it with a fire hose and clouds of steam burst up",
-    "pushing a wheelbarrow down an empty street inside the wall, the road cracks open right in front of him, the crack yawns orange and lava wells up and runs down the street toward the houses",
-    "at dawn on the harbour quay three houses still burn at the edge of black lava while the rest of the town stands behind the wall, dark but for a few lit windows; he hangs his lantern at his own door and asks us"
+    "a row of lava fountains stands on the ridge behind the main street, and the driver waves a lit baton and sends a whole line of cars out of town past him until the street is empty",
+    "at the wall works by day he works a remote control's two sticks and his digger swings a big bucket of black rock up the face of a wall taller than the house beside it and tips it out over the crest",
+    "up on the wall's crest the glowing lava front rolls in below him and rams into the wall; he blasts it with a fire hose, white steam bursts up off it, and the lava stops dead with the town untouched behind him",
+    "carrying a sandbag down an empty street inside the wall, the road cracks open beside him, glowing orange, and lava wells up out of the crack and pours across the street to the house doors",
+    "at dawn three houses burn in a row at the top of the hill while the saved houses stand dark below; he hangs his lit lantern on his own house and its window lights up, the only light in the town"
   ],
   "storyboard": [
-    "1 hook (Grindavik's main street on a grey bright afternoon, low houses with red, blue and green tin roofs down both sides, the ridge above the town; CLOSE and low at his front right, a medium lens looking up the street past him): from the first frame the ridge is ripped open behind him and nine lava fountains stand along it, a curtain of orange fire across the top of the frame, smoke rolling off it; right beside him in the lane a blue hatchback is stopped, headlights on; the driver in his yellow hard hat and hi-vis vest slaps its door twice and waves it off with his whole arm, a lit orange marshal's baton swinging in his other hand; it pulls away past the lens and the town's cars stream after it down the street; the fountains surge, he flinches and looks back at them, then waves the cars on harder, worried.",
-    "2 the walls (the wall works outside the town in the blue evening: the earth wall's black rock face, three stories high, filling the frame behind him, floodlights on poles along its foot; CLOSE at his front right, a medium lens a little below his eye): the driver in his hard hat stands at the foot of the face beside his digger's big bucket, his palm on its side steadying it as it lifts, heaped with black rock; it lurches, and a boulder tips off its edge and drops right past his raised hand, thumping down at his boots in a burst of dust; he jumps clear, then grins at us and waves the bucket on up the face, where the rest of the load spills off the crest and rattles down the face behind him; the floodlights blaze.",
-    "3 the wall holds (the crest of the earth wall: crushed black rock, the town's coloured roofs below it on the town side, the black lava field on the other; CLOSE, out over the lava a little above his head, AHEAD of him, a medium lens, so we see his face): the lava front, a glowing front of broken black crust with orange in every crack, grinds into the wall's face right under him, its crust blocks heaping up and buckling against the face; the driver in his hard hat braces a fire hose and blasts it, and white steam boils up on both sides of him; the front grinds sideways and slides off along the foot of the wall, away from the town; he follows it with the jet, then lets the nozzle drop and grins at us, steam rolling past.",
-    "4 the crack (an empty street of town houses INSIDE the wall, mid-afternoon, the earth wall a dark line at the end of the street with smoke over it; CLOSE at his front right, a medium lens a little below his eye): the driver in his hard hat stands in the empty street with a sandbag in his arms; the road jolts and a zig-zag crack tears across the asphalt right between his boots; he drops the sandbag and leaps back off it; the crack yawns open, glowing orange inside, steam shooting up behind him; the sandbag drops into the gap and catches fire; the lava wells up out of the crack and pours over the road toward us, and he hops back again, arms up against the heat.",
-    "5 the payoff (the town's top street at dawn, right under the black lava's edge: a house burning just behind him, flames and smoke pouring off it, the saved houses beside it dark; CLOSE at his front right, a medium lens a little below his eye): the driver in his hard hat hangs a lit lantern on the hook of a black cast-iron bollard, the burning house right behind him, and it swings, glowing; the focus racks past him to the saved houses beside the fire, where a few windows light up, one here, one there, only a handful; he steps toward them, throws both arms up and hops for joy as the lights come on; the focus racks back to him and he turns to us, spreads his hands and shrugs: would you?"
+    "1 hook (the town's main street by day, low houses down both sides, the ridge behind them; wide and low, looking up the street): from the first frame a row of lava fountains stands on the ridge behind the houses, orange fire with dark smoke over it. The driver in his yellow hard hat and hi-vis vest waves a lit baton, and a line of cars with their headlights on drives out past him toward us. The street is full of cars at the start and empty at the end, the fountains still roaring behind him.",
+    "2 the wall (the wall works by day: the black rock wall, a small house at its foot; low and wide, tipped up the wall's face): the earth wall, built from black lava rock, stands taller than the house beside it. The driver in his hard hat works the two sticks of a remote control, and his digger's arm swings a big bucket of rock up the wall's face and tips it out over the crest; the rocks fall onto the top of the wall, and he grins at us.",
+    "3 the wall holds (the crest of the earth wall, the town's houses behind it, the lava field in front; from above, looking down the wall's face at him): a glowing lava front rolls in and rams into the foot of the earth wall right below the driver. In his hard hat he blasts it with a fire hose and white steam bursts up off the lava. The lava stops dead against the wall, the houses behind him untouched, and he grins at us.",
+    "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat comes down the street with a sandbag in his arms. A zig-zag crack tears open down the middle of the road beside him, glowing orange, and he drops the bag and jumps back; lava wells up out of the crack and pours across the street to the doors of the houses, and he throws a hand up against the heat.",
+    "5 the payoff (dawn at the foot of the town's hill: his own house beside him, the saved houses up the hill with dark windows, the earth wall across the hilltop; wide and low, tipped up the hill): three houses burn side by side at the top of the hill, black lava rock round them. The driver in his hard hat carries a lit lantern to his own house and hangs it on the hook by the window; the window lights up, the only light in the town, and he turns to us and shrugs."
   ],
   "staging": [
     {
       "camera": "wide",
-      "data": "winds the road gate's crank, swings its arm up and waves the cars out of town under it as the fissure erupts behind the town",
+      "data": "waves a lit baton and sends the line of cars out of town past him while the fountains roar on the ridge behind",
       "props": [
-        "fissure curtain",
-        "striped road gate",
-        "convoy of cars",
+        "lava fountains",
+        "light baton",
+        "line of cars",
         "main street"
       ],
       "arc": [
         {
-          "at": 0.08,
-          "what": "the ridge rips open behind the town and a curtain of lava fountains bursts up along it"
+          "at": 0.05,
+          "what": "a row of lava fountains stands on the ridge behind the street, which is full of cars with their headlights on"
         },
         {
-          "at": 0.28,
-          "what": "he winds the gate's crank round and round and the striped arm swings up high over the road"
+          "at": 0.3,
+          "what": "he swings the lit baton and the cars drive out past him toward us, one after another"
         },
         {
-          "at": 0.48,
-          "what": "the cars pour out under it, headlights on, racing past him toward us"
+          "at": 0.6,
+          "what": "the last car passes him and the street behind him is empty"
         },
         {
-          "at": 0.7,
-          "what": "he waves the last of them on with his whole arm as the fountains surge higher"
-        },
-        {
-          "at": 0.88,
-          "what": "the street behind him is empty under the glow and he turns to run after the cars"
+          "at": 0.76,
+          "what": "the fountains surge higher and he lowers the baton and turns to us"
         }
       ]
     },
     {
       "camera": "low",
-      "data": "works the digger's remote control sticks and swings its arm up the wall's face to tip black rock onto the crest",
+      "data": "works the remote control's two sticks and swings the digger's bucket of rock up the wall's face to tip it over the crest",
       "props": [
         "digger",
         "remote control",
         "bucket of black rock",
-        "dump truck",
-        "floodlights"
+        "house by the wall"
       ],
       "arc": [
         {
-          "at": 0.06,
-          "what": "he shoves both sticks forward and the digger's arm swings up the wall's face with a full bucket of black rock"
+          "at": 0.1,
+          "what": "he shoves both sticks forward and the digger's arm lifts a full bucket of black rock off the ground"
         },
         {
-          "at": 0.3,
-          "what": "the bucket tips over the crest and the rock tumbles back down the face in a burst of dust"
+          "at": 0.35,
+          "what": "the bucket climbs the wall's face, far above the roof of the house beside it"
         },
         {
-          "at": 0.45,
-          "what": "a rock bounces past him and he ducks, then grins at us"
+          "at": 0.6,
+          "what": "it tips over the crest and the rocks fall out onto the top of the wall in a burst of dust"
         },
         {
-          "at": 0.68,
-          "what": "he hauls the sticks back and the arm swings down for the next bucketful"
-        },
-        {
-          "at": 0.86,
-          "what": "the floodlights blaze on over the wall as night falls and he looks up at them, still working"
+          "at": 0.8,
+          "what": "he lets the sticks go and grins at us, the rocks lying on the crest"
         }
       ]
     },
     {
       "camera": "high",
-      "data": "blasts the lava front with a fire hose from the wall's crest as it slams in and slides off along the wall",
+      "data": "blasts the lava front with a fire hose from the wall's crest as it rams into the wall below him",
       "props": [
         "lava front",
         "fire hose",
-        "steam clouds",
+        "white steam",
         "crest of black rock"
       ],
       "arc": [
@@ -192,84 +183,80 @@
           "what": "the glowing lava front rolls in across the black field below him"
         },
         {
-          "at": 0.25,
-          "what": "it slams into the foot of the wall and its crust buckles and splits into red"
+          "at": 0.22,
+          "what": "it rams into the foot of the wall and its crust buckles and splits into orange"
         },
         {
-          "at": 0.45,
-          "what": "he braces the fire hose and blasts it, and a huge cloud of steam bursts up"
+          "at": 0.32,
+          "what": "he braces the fire hose and blasts it, and white steam bursts up off the lava"
         },
         {
-          "at": 0.65,
-          "what": "the front grinds sideways and slides off along the wall, away from the town"
+          "at": 0.55,
+          "what": "he sweeps the jet along the front and the steam cloud swells; the lava has stopped"
         },
         {
-          "at": 0.85,
-          "what": "he walks along the crest after it, still spraying, and gives us a thumb up"
+          "at": 0.8,
+          "what": "he lets the nozzle drop and grins at us, the houses behind him untouched"
         }
       ]
     },
     {
-      "camera": "tracking",
-      "data": "pushes a wheelbarrow of sandbags down the street until the road cracks open in front of its wheel",
+      "camera": "medium",
+      "data": "jumps back from the crack that tears open down the road beside him, dropping his sandbag",
       "props": [
-        "wheelbarrow",
-        "sandbags",
+        "sandbag",
         "crack in the road",
-        "red-roofed corner house"
+        "street lava",
+        "house doors"
       ],
       "arc": [
         {
           "at": 0.05,
-          "what": "he pushes the barrow of sandbags down the empty street toward us"
+          "what": "he comes down the empty street toward us with a sandbag in his arms"
         },
         {
           "at": 0.22,
-          "what": "the road jolts and a crack tears across it right in front of his wheel"
+          "what": "the road jolts and a zig-zag crack tears open down the middle of it beside him, glowing orange"
         },
         {
-          "at": 0.4,
-          "what": "the crack yawns open, glowing orange, steam shooting out, and he lets go and leaps back"
+          "at": 0.34,
+          "what": "he drops the sandbag and jumps back from the crack"
         },
         {
-          "at": 0.6,
-          "what": "lava wells up and pours out over the road and the barrow tips in and catches fire"
+          "at": 0.55,
+          "what": "lava wells up out of the gap and pours across the street to the doors of the houses"
         },
         {
           "at": 0.8,
-          "what": "the lava runs down the street toward the corner house and he hops back from it, arms up"
+          "what": "he hops back again and throws a hand up against the heat"
         }
       ]
     },
     {
       "camera": "wide",
-      "data": "carries his lantern up the quay, hangs it at his own door and asks us",
+      "data": "hangs his lit lantern on the hook by his own window, under the hill where three houses burn",
       "props": [
-        "burning houses",
         "lantern",
-        "lit windows",
-        "harbour boats"
+        "lantern hook",
+        "his lit window",
+        "three burning houses"
       ],
       "arc": [
         {
           "at": 0.05,
-          "what": "dawn on the quay: three houses burn at the edge of the black lava behind him"
+          "what": "he walks up to his own house with a lit lantern, three houses burning in a row on the hill behind"
         },
         {
-          "at": 0.25,
-          "what": "he carries the lit lantern up the quay to his own door"
+          "at": 0.4,
+          "what": "he rises on his toes and hangs the lantern on the hook by his window"
         },
         {
-          "at": 0.48,
-          "what": "he hangs it on the hook of the post by his door and it swings, glowing"
+          "at": 0.54,
+          "what": "the window beside it lights up warm, the only light in the town"
         },
         {
-          "at": 0.66,
-          "what": "across the dark town a few windows light up, one here, one there"
-        },
-        {
-          "at": 0.86,
-          "what": "he turns to us and spreads his hands wide: would you?"
+          "at": 0.8,
+          "what": "he turns to us and shrugs"
         }
       ]
     }
@@ -278,24 +265,24 @@
   "draft_windows": [
     [
       0.0,
-      5.061
+      4.378
     ],
     [
-      5.061,
-      9.722
+      4.378,
+      7.649
     ],
     [
-      9.722,
-      12.822
+      7.649,
+      10.788
     ],
     [
-      12.822,
-      17.247
+      10.788,
+      14.775
     ],
     [
-      17.247,
-      22.461
+      14.775,
+      19.535
     ]
   ],
-  "narration_run": 45307942154
+  "narration_run": 45618860815
 }

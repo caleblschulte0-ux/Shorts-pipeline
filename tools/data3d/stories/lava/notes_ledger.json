@@ -1,5 +1,5 @@
 {
- "rounds": 6,
+ "rounds": 8,
  "shots": {
   "1": {
    "BROKEN": {
@@ -33,6 +33,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: one fixed wide lens up the daylight street; the fountains are gas volumes standing on the ridge from frame one, the cars are whole cars in a lane, nothing pops or floats"
      }
     ],
     "named": [
@@ -94,6 +99,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: the storyboard now promises only the baton and the cars leaving: cars with headlights fill the lane beside him in stills 1-2 and the street is empty in stills 3-4"
      }
     ],
     "named": [
@@ -155,6 +165,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: the row of orange fountains with dark smoke stands on the ridge behind the houses in every still, and the line of cars with headlights on is leaving past him: everyone had to run"
      }
     ],
     "named": [
@@ -231,6 +246,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: bright day in all four stills, low painted tin houses down both sides of the street, the ridge behind them; the world block was rewritten to this one bright day"
      }
     ],
     "named": [
@@ -297,6 +317,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: the fountains and the plume are procedural fire and smoke volumes, not cones or blobs; real asphalt, painted clad houses with windows, cars with lit headlamps"
      }
     ],
     "named": [
@@ -348,6 +373,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: he is three-quarter to the lens at the frame's right, working with both arms: the lit baton swung up in one hand, the other sweeping the cars on, never square to the lens with his arms out"
      }
     ],
     "named": [
@@ -725,7 +755,13 @@
   },
   "3": {
    "BACK TO CAMERA": {
-    "fixes": [],
+    "fixes": [
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: the lens is out over the lava looking back at him on the crest; he faces it in all four stills and grins at it in the last"
+     }
+    ],
     "named": [
      {
       "at": "2026-11-24 06:50Z",
@@ -760,6 +796,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: one fixed lens, daylight; the lava front, its crust blocks, the hose jet and the steam are all inside the frame and none of them pops in or floats"
      }
     ],
     "named": [
@@ -821,6 +862,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: still 1 the glowing front rolling in below the crest, still 2 it rammed against the wall's face as the jet hits it, stills 3-4 it stopped there under white steam"
      }
     ],
     "named": [
@@ -853,6 +899,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "CONSEQUENCE: frames 2-4: the water is a thin white line, and no white steam cloud ever bursts up. The front is never seen slamming into the wall's foot, buckling, or sliding off along the wall."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "CONSEQUENCE: frames 2-4: the front is never seen rammed against the wall's foot. In frames 1, 3 and 4 a band of dark loose boulders separates the crest edge from the lava. Frame 2's crust heap reaches toward the wall, but by frames 3-4 the middle of that heap is gone and the boulders show again. The front looks like it backs off, not stopped dead against the wall."
      }
     ]
    },
@@ -877,6 +928,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: the lava reaches the wall's face right under his boots and goes no further, the town's painted houses stand untouched behind him in every still: it hit the wall and the wall held"
      }
     ],
     "named": [
@@ -909,6 +965,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT SHOWN: frames 1-4: 'it hit the wall and turned away from the town' does not read. No town roofs are visible on either side, so 'away from the town' has nothing to refer to, and the lava is a flat strip lying beside the crest rather than a front deflected by it."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "NOT SHOWN: frames 1-4: the wall never reads as a wall. From this near-eye-level lens it is a low ledge with a ditch of loose boulders under it. We never see a face taller than a house, so 'it hit the wall, and the wall held' is not on screen. A stranger would say 'a guy hosing lava in front of some houses', not 'the wall stopped the lava'."
      }
     ]
    },
@@ -948,6 +1009,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: bright day, the town's low houses with red, yellow and teal tin roofs fill the top of every still behind the crest, which is heaped black rock with boulders"
      }
     ],
     "named": [
@@ -980,6 +1046,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT THE WORLD: frames 1-4: the crest is a smooth grey-brown band like a road, not crushed black rock, and there is no town behind it. A bright, clear, cloud-bank sky with no smoke, glow or steam does not match the eruption seen in shots 1 and 4."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "NOT THE WORLD: frames 1-4: the crest Data stands on is still a smooth, flat, evenly grained dark band, like an asphalt sidewalk or a plinth. It is not heaped, crushed black rock. The only boulders are a few along its back edge. The town behind is rows of identical dollhouse-like houses pressed right against the crest and cut off by the top edge, with no ground, street or gap between. The result is"
      }
     ]
    },
@@ -1009,6 +1080,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: the front is heaped crust blocks with glowing seams over a hot tongue, not a flat tiled sheet; the steam is a white gas volume where the jet lands; the crest is dark crushed rock"
      }
     ],
     "named": [
@@ -1041,6 +1117,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "OFF THE LOOK (the realer the better): frames 3-4: the lava is still a tiled cell texture with even glowing seams, a game-floor pattern laid flat on the ground. Green pea-like dots are still on the rock field in frames 1-4."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "OFF THE LOOK (the realer the better / one finish across the frame): frames 1-4: every crust block wears the same evenly spaced orange crackle-vein texture, so the lava reads as a procedural game material, not real pahoehoe/aa crust. The houses are clean, flat-painted, repeated toy fronts, a different finish from the rock and lava. Neither matches the approved store's built realism."
      }
     ]
    }
@@ -1093,6 +1174,16 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: one street, one daylight, one fixed lens up the street in all four stills; nothing pops in, the lava stays inside the frame's lower third"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: the sandbag is seen in his arms, falling in mid-air as he jumps, and lying on the road beside him to the end; the crack now runs down the middle of the frame, not along its bottom edge"
      }
     ],
     "named": [
@@ -1125,6 +1216,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "BROKEN: frame 2: a black square pops in at the bottom edge. Frame 4: a fire flicker is cut by the bottom edge, and the shot's result never shows whole. Frames 1, 2 and 4 cut to a different, darker street from frame 3."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "BROKEN: frames 2\u21923: the sandbag he carries in frames 1-2 is gone in frame 3. It is not seen falling and is nowhere on the road, so it just vanishes. In frame 2 the glowing crack runs along the very bottom edge and the frame cuts it, so the moment the road tears is a sliver at the lip of the frame."
      }
     ]
    },
@@ -1159,6 +1255,16 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: the storyboard now promises only crack, lava, jump back; still 2 is the glowing zig-zag crack across the road in front of him, stills 3-4 the lava welling out of it and running at the lens"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: the crack runs the length of the street beside him: still 2 it tears open glowing at his feet, still 3 the road has pulled apart and lava is welling out of it, still 4 the lava has spread across the road to the house doors"
      }
     ],
     "named": [
@@ -1191,6 +1297,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "CONSEQUENCE: frames 1-4: no crack is seen tearing across the asphalt. The barrow is never seen tipping in and catching fire, and the street is never seen filling with orange. Frame 3 shows a lava pad that is already there, and frame 4 shows only a glow at the bottom edge."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "CONSEQUENCE: frames 2-4: the crack is never seen tearing across the road in front of him. Frame 2 shows only a thin orange line at the bottom edge, and by frame 3 a full lava mound already fills the foreground. The road is never seen splitting, and the lava is never seen welling up out of a crack."
      }
     ]
    },
@@ -1220,6 +1331,16 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: the earth wall closes the far end of the street behind the houses, the crack splits the asphalt in still 2, and the lava is a lumpy flow coming down the street from the crack line, not a ringed pad"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: lava is seen running the length of the street past the house doors; the earth wall is a flat-topped black bank across the end of the street over the roofs with the eruption smoke behind it; houses stand down both sides"
      }
     ],
     "named": [
@@ -1252,6 +1373,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT SHOWN: frames 1-4: 'the ground split open inside the wall, and lava poured straight into the streets' does not read. The lava is a round pad ringed with paving blocks, not a tongue running down the street, and there is no wall at the end of the street and no red-roofed corner house it heads for."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "NOT SHOWN: frames 1-4: 'the ground split open inside the wall, and lava poured into the streets' does not read. The far end of the street is a rubbly black hillside, and nothing on screen reads as a man-made earth wall, so 'inside the wall' is not shown. The lava sits as one heaped mound between the lens and Data. It is never seen running down the street; it does not reach his feet, move past the "
      }
     ]
    },
@@ -1281,6 +1407,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: all four stills are the same daylight street with painted tin houses down both sides and the same cloud sky; the world block now says one bright day"
      }
     ],
     "named": [
@@ -1342,6 +1473,16 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: the lava is a heaped, lumpy crusted flow with glowing seams that grows and spreads, no flat disc, no paving-block ring; the road breaks into its own asphalt slabs"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: the lava material is rebuilt for every shot: black crust plates with irregular seams that glow only in patches; the crack and the flow cast orange light on him, the road and the house fronts, and dark smoke rises off the flow"
      }
     ],
     "named": [
@@ -1364,6 +1505,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "OFF THE LOOK (the realer the better): frame 3: the lava pad is a flat disc with an even orange crackle pattern, ringed by toy paving blocks."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "OFF THE LOOK (one finish across the frame / the realer the better): frames 3-4: the lava is a tan, rubbery sheet with an even, procedural orange vein pattern. It looks pasted into the real asphalt street. It casts no light: Data, the houses and the road get no orange glow, and there is no heat shimmer, smoke or steam. Against the realistic street it reads as the one CG prop that does not belong."
      }
     ]
    },

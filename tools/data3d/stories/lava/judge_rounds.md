@@ -752,3 +752,57 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Have him carry the lantern by its handle, hang it on a real cast-iron bollard with a visible hook, and let it swing.
 - better: End on the dark saved town with windows lighting one at a time, visibly few, the fires off to one side.
 
+
+## 2026-11-25 17:15Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 4 | 44 | 40, 44, 62 | FAIL |
+
+**shot 4** (FAIL, 44, bar 70)
+
+- HARD: BROKEN: frames 2→3: the sandbag he carries in frames 1-2 is gone in frame 3. It is not seen falling and is nowhere on the road, so it just vanishes. In frame 2 the glowing crack runs along the very bottom edge and the frame cuts it, so the moment the road tears is a sliver at the lip of the frame.
+- HARD: CONSEQUENCE: frames 2-4: the crack is never seen tearing across the road in front of him. Frame 2 shows only a thin orange line at the bottom edge, and by frame 3 a full lava mound already fills the foreground. The road is never seen splitting, and the lava is never seen welling up out of a crack.
+- HARD: NOT SHOWN: frames 1-4: 'the ground split open inside the wall, and lava poured into the streets' does not read. The far end of the street is a rubbly black hillside, and nothing on screen reads as a man-made earth wall, so 'inside the wall' is not shown. The lava sits as one heaped mound between the lens and Data. It is never seen running down the street; it does not reach his feet, move past the houses or fill the road, so 'poured into the streets' is a stated fact and not a picture.
+- HARD: OFF THE LOOK (one finish across the frame / the realer the better): frames 3-4: the lava is a tan, rubbery sheet with an even, procedural orange vein pattern. It looks pasted into the real asphalt street. It casts no light: Data, the houses and the road get no orange glow, and there is no heat shimmer, smoke or steam. Against the realistic street it reads as the one CG prop that does not belong.
+- HARD: BROKEN: frames 2-3: Data is carrying the sandbag in frame 2. In frame 3 his arms are empty and the bag is not on the asphalt at his feet or anywhere else in the frame. The bag simply vanishes, so the drop the FOR line promises is never seen.
+- HARD: NOT SHOWN: frames 3-4: 'lava poured into the streets' does not read. The lava is one domed mound sitting right at the lens, filling the bottom third. Beyond it the street is clean, dry asphalt all the way to the far end, so nothing is seen running down or into the street. 'Inside the wall' does not read either: the far end is a broad black rubble hillside, not an earth wall built across the end of the street.
+- HARD: CONSEQUENCE: frames 2-3: he 'drops the bag', but the bag is never seen falling or lying on the road. It is in his arms in frame 2 and gone in frame 3, with no bag anywhere on the asphalt or in the lava.
+- HARD: BROKEN: frames 2-3: the sandbag vanishes between stills. Frames 3-4: the lava, which is the shot's result, is cut by the bottom edge and both side edges, so it never shows whole and reads as a heap pressed against the camera, not a flow with a front, edges and a source. Frame 2: the crack sits on the bottom edge of the frame, not 'in front of him' on the road.
+- HARD: OFF THE LOOK (the realer the better / one finish): frames 3-4: the lava crust is an even tan-brown dome covered in a uniform web of orange veins, like marbled clay or a pie crust, not black basalt crust over molten seams. Nothing in the set reacts to it: no orange light on Data, the road, the house walls or the curb, and no heat haze, smoke or steam. It looks pasted into a daylight street it does not light.
+- problem: Only the right side of the street has houses. The left side is bare rock and empty road, so this does not read as a street inside the town.
+- problem: Data's 'jump back' is a small step and a slight shrink in scale between frames 3 and 4. He never visibly leaps away from the crack.
+- problem: Frame 4's hand up against the heat reads as a small wave. Nothing in the frame shows heat hitting him, such as orange light on his face and vest or a recoil in his body.
+- problem: The lava flows at the lens but is cut by the bottom edge in frames 3-4, so its shape and its source are never seen whole.
+- problem: Data's distance from the crack is unclear. The crack is next to the lens, far in front of him, so he is never in danger in the picture.
+- better: Put the crack at Data's feet in mid-frame, splitting the asphalt into slabs between him and the lens. Show the bag hitting the road and bursting or rolling into the crack, then show the lava rising out of that same crack.
+- better: Make the lava run as a tongue DOWN the street past the houses toward the lens over frames 3-4, so the pour is a picture. Light Data, the walls and the road with its orange and add steam or smoke rising off it.
+- better: Build the earth wall so it reads as a wall: a long, straight, bulldozed berm of black rock with a flat top across the far end of the street, maybe with a digger parked on it, clearly taller than the houses. Then 'inside the wall' is seen.
+
+
+## 2026-11-25 17:34Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 3 | 56 | 50, 56, 58 | FAIL |
+
+**shot 3** (FAIL, 56, bar 70)
+
+- HARD: NOT THE WORLD: frames 1-4: the crest Data stands on is still a smooth, flat, evenly grained dark band, like an asphalt sidewalk or a plinth. It is not heaped, crushed black rock. The only boulders are a few along its back edge. The town behind is rows of identical dollhouse-like houses pressed right against the crest and cut off by the top edge, with no ground, street or gap between. The result is three flat horizontal stripes (houses, ledge, lava), which reads as a stage-set diorama. There is also no eruption smoke, ridge or sky anywhere, though the story's world is a bright day under dark eruption smoke.
+- HARD: NOT SHOWN: frames 1-4: the wall never reads as a wall. From this near-eye-level lens it is a low ledge with a ditch of loose boulders under it. We never see a face taller than a house, so 'it hit the wall, and the wall held' is not on screen. A stranger would say 'a guy hosing lava in front of some houses', not 'the wall stopped the lava'.
+- HARD: CONSEQUENCE: frames 2-4: the front is never seen rammed against the wall's foot. In frames 1, 3 and 4 a band of dark loose boulders separates the crest edge from the lava. Frame 2's crust heap reaches toward the wall, but by frames 3-4 the middle of that heap is gone and the boulders show again. The front looks like it backs off, not stopped dead against the wall.
+- HARD: OFF THE LOOK (the realer the better / one finish across the frame): frames 1-4: every crust block wears the same evenly spaced orange crackle-vein texture, so the lava reads as a procedural game material, not real pahoehoe/aa crust. The houses are clean, flat-painted, repeated toy fronts, a different finish from the rock and lava. Neither matches the approved store's built realism.
+- HARD: NOT THE WORLD: frames 1-4: the crest Data stands on is still a smooth, flat, dark-grey band that reads as an asphalt road or a parking lot. It does not read as the top of a wall of heaped, crushed black lava rock. The only boulders are a few lumps along its back edge in front of the houses. The wall's face below him is a loose slope of rocks, so the shot never shows a man-made earth wall taller than a house standing between the lava and the town.
+- HARD: OFF THE LOOK (the realer the better): frames 1-4: the lava still wears an even net of glowing cells. The same Voronoi crack pattern is wrapped over smooth blobs (frame 1's bottom mound, and the bottom strip in frames 3-4), so it reads as a game texture rather than real crusted pahoehoe or a'a. The heaped crust blocks in frame 2 are better, but the same uniform net covers them too.
+- HARD: OFF THE LOOK (one finish / Scooby-Doo): frames 1-4: the fire-hose nozzle is a plain, smooth brown cylinder like a stick or a baguette, with no brass coupling, bale handle or tip. The red hose behind him runs to nothing visible, and a stray red sliver sits on the crest at the left edge in every frame. They read as toy props against the realistic houses and rock.
+- HARD: NOT THE WORLD: frames 1-4: the top of the wall where Data stands is still a smooth, flat grey band with fine grain, like asphalt. It reads as a road or a paved ledge, not heaped crushed black rock. The few boulders sit along its back edge like trim, and Data's shadow falls on a flat paved surface. This is the same note from the last six rounds. The houses also sit level with the top of the wall, so it does not read as a wall taller than a house.
+- problem: The ram is weak. In frame 1 a band of loose boulders separates the lava from the wall's foot. In frames 2-4 the lava sits at the bottom of the frame below that slope. We never see the front clearly pressed against a defined wall face, buckling or piling up against it, so 'it hit the wall' is inferred rather than seen.
+- problem: The wall does not read as a wall from this lens. The camera looks slightly down onto a flat crest, so the barrier's height and its face are lost, and 'the wall held' has no visible wall to hold.
+- problem: The steam and jet jump sides. In frame 2 the jet and steam are lower left. In frames 3-4 the jet swings to the right, and the left steam is gone without a trace. As stills this reads as a cut, not a sweep.
+- problem: The lava is cropped by the bottom and left edges in all four stills. The contact line where the lava meets the wall is the subject, and it sits right at the bottom edge rather than in the frame.
+- problem: In frame 1 Data aims the nozzle across his own chest, not down at the lava. He only commits to the target in frames 2-4.
+- problem: There is no eruption context (no smoke, no glow on the ridge, no sky), so the shot loses continuity with the 'bright day under eruption smoke' world. The houses could be any calm village.
+- better: Rebuild the crest as heaped, crushed black rock with irregular boulders and gravel underfoot, and drop the smooth road surface. Lower the lens so the wall's face is a steep, tall black-rock bank between Data and the lava, so the wall itself is a big readable shape.
+- better: Bring the lava front up so it visibly piles against the foot of that bank in stills 2-4, with crust plates tilting up and glow squeezing out along the contact line, fully inside the frame and not at the bottom edge.
+- better: Replace the lava material with a real crust: dark, rough, mostly black chunks with sparse, irregular, uneven-width orange cracks, and hot glow only at the front's leading edge and the broken seams, instead of a uniform cell net.
+

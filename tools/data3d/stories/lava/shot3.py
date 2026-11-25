@@ -10,6 +10,12 @@ us, pleased."""
 S3_H = 4.4                     # the wall (as built in the works beat)
 S3_CREST = 1.6
 S3_BASE = 8.6
+S3_YAW = 6.0                  # his body, between the lava (0) and the lens
+S3_CAMD = (1.3, -5.2, 0.9)    # the lens from his feet: ALONG the wall, a little out over the lava side, over his head
+S3_LOOKD = (0.0, 0.0, 0.2)
+S3_LENS = 60.0
+S3_FACE = (0.52, 0.8)
+S3_STEAM = (0.7, 1.0)
 S3_FACE_Y = -S3_CREST / 2      # the crest's outer edge (y); the outer face runs down to the foot at -S3_BASE / 2
 
 
@@ -19,12 +25,12 @@ def s3_face_z(y):
     return S3_H * 0.97 * max(0.0, min(1.0, (y - y0) / (y1 - y0)))
 
 
-S3_PILE = S3_H - 0.4           # the old lava already heaped against the face: the field rises to here at the wall
+S3_PILE = S3_H - 0.75           # the old lava heaped against the face: the field rises to here, a man's height and more of black wall still standing over it
 
 
 def s3_ground_z(x, y):
     """the black lava field: months of old flows heaped up against the wall's outer face, falling away out to the fissure"""
-    if y > 0.5: return 0.08 * lw_fbm(x * 0.3, y * 0.3, 19)   # inside the wall: the town's ground, far below the crest
+    if y > 0.5: return 0.08 * lw_fbm(x * 0.3, y * 0.3, 19) - 1.0 * ease(max(0.0, min(1.0, (y - 4.2) / 1.6))) + 0.14 * max(0.0, y - 21.5)   # inside the wall: the town, on lower ground than the lava field
     u = max(0.0, min(1.0, (y + 16.0) / 11.0))
     return S3_PILE * ease(u) + 0.1 * lw_fbm(x * 0.3, y * 0.3, 19)
 
@@ -32,10 +38,14 @@ def s3_ground_z(x, y):
 def s3_hose_nozzle():
     """a fire hose's brass nozzle with a grip, and the canvas hose running back from it"""
     root = K.empty("fire hose", (0, 0, 0))
-    brass = lw_metal("nozzle brass", "#B8862E", rough=0.25)
-    K.cyl("fire hose nozzle", (0, 0.0, 0.0), 0.028, 0.22, brass, rot=(math.pi / 2, 0, 0), v=20, parent=root)
-    K.cyl("fire hose nozzle tip", (0, -0.13, 0.0), 0.018, 0.06, brass, rot=(math.pi / 2, 0, 0), v=16, parent=root)
-    K.cyl("fire hose grip", (0, 0.05, -0.05), 0.02, 0.09, lw_rubber("nozzle grip", "#1E1E1E", rough=0.6), v=12, parent=root)
+    brass = lw_metal("nozzle chrome", "#C9CCD0", rough=0.22); red = lw_paint("nozzle red", "#C8231B", rough=0.4); blk = lw_rubber("nozzle grip", "#1A1A1A", rough=0.6)
+    K.cyl("fire hose nozzle", (0, 0.02, 0.0), 0.027, 0.14, red, rot=(math.pi / 2, 0, 0), v=20, parent=root)          # a fireman's branch: red body,
+    K.cyl("fire hose nozzle coupling", (0, 0.1, 0.0), 0.034, 0.035, brass, rot=(math.pi / 2, 0, 0), v=20, parent=root)   # a bright coupling to the hose,
+    K.cyl("fire hose nozzle tip", (0, -0.085, 0.0), 0.02, 0.08, brass, rot=(math.pi / 2, 0, 0), v=16, parent=root)      # a bright barrel
+    K.cyl("fire hose nozzle bumper", (0, -0.135, 0.0), 0.03, 0.03, blk, rot=(math.pi / 2, 0, 0), v=16, parent=root)     # and a black rubber bumper at its mouth,
+    for sx in (-1, 1): K.box("fire hose nozzle bale", (sx * 0.032, -0.01, 0.03), (0.008, 0.012, 0.07), brass, bev=0.003, parent=root)   # the bale handle over its top
+    K.box("fire hose nozzle bale", (0, -0.01, 0.066), (0.072, 0.014, 0.01), brass, bev=0.004, parent=root)
+    K.cyl("fire hose grip", (0, 0.05, -0.05), 0.02, 0.09, blk, v=12, parent=root)
     lw_local(root)
     return root
 
@@ -46,21 +56,34 @@ def place_wall_crest():
     rnd = lw_random.Random(31)
     lw_grid("lava field ground", -30, 30, -30, 30, 90, 90, s3_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))   # REAL rock (Poly Haven)
     wall = earth_wall("earth wall", [(x, 0.0) for x in range(-24, 26, 2)], h=S3_H, crest=S3_CREST, base=S3_BASE, seed=8)
-    K.box("crest track", (0, 0, S3_H + 0.03), (50, S3_CREST - 0.1, 0.06), lw_noise("crushed rock", "#3E3732", "#615750", scale=30, rough=0.95, bump=1.0, detail=10), bev=0.02)
+    # the crest is HEAPED CRUSHED ROCK (board B1, and six rounds before it: "a smooth flat band, like asphalt"): a lumpy bed of real rock with loose stones all over it
+    lw_grid("crest rock bed", -14, 14, -S3_CREST / 2 - 0.05, S3_CREST / 2 + 0.05, 220, 16, lambda x, y: S3_H + 0.012 + 0.036 * lw_vn(x * 7.0, y * 7.0, 51),
+            ph_mat("aerial_rocks_02", scale=0.45, tint="#3A3632", name="crest crushed rock"))
+    lava_rock("crest gravel", 700, (-8.0, 8.0, -S3_CREST / 2, S3_CREST / 2), lambda x, y: S3_H + 0.02, seed=61, r=(0.02, 0.065), moss=0.0,
+              avoid=lambda x, y: abs(x + 0.2) < 0.36 and abs(y + 0.6) < 0.3)
+    rk_ = lw_noise("wall rock", "#151413", "#3C3834", scale=7, rough=0.95, bump=1.0, detail=8); rc_ = lw_random.Random(77)
+    for k in range(90):                                  # the crest is a HEAP OF ROCK, not a kerbed road: boulders along both its edges (not where he stands)
+        x = rc_.uniform(-7.0, 7.0); front = k % 3 != 0
+        if front and -0.85 < x < 0.45: continue
+        y = (-S3_CREST / 2 + rc_.uniform(-0.12, 0.1)) if front else (S3_CREST / 2 + rc_.uniform(-0.1, 0.15))
+        r = rc_.uniform(0.09, 0.22)
+        lw_block("crest boulder", (x, y, S3_H + r * 0.45), r, rk_, rc_, squash=0.75)
     for k in range(24):                                   # the town inside the wall: street after street of tin roofs
-        town_house(f"town house below {k}", (-17 + 4.6 * (k % 8) + rnd.uniform(-0.3, 0.3), 9.0 + 4.4 * (k // 8) + 0.8 * (k % 2), 0), yaw=rnd.uniform(-0.15, 0.15),   # their fronts, doors and windows to the wall
-                   roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], seed=100 + k)
+        hx_, hy_ = -12.6 + 3.5 * (k % 8) + rnd.uniform(-0.1, 0.1), 13.0 + 4.8 * (k // 8) + 0.3 * (k % 2)
+        town_house(f"town house below {k}", (hx_, hy_, S3_H - 1.5 + 0.9 * (k // 8)), yaw=rnd.uniform(-0.08, 0.08),   # their fronts, doors and windows to the wall
+                   roof=ROOFS[k % len(ROOFS)], wall=WALLS[k % len(WALLS)], storeys=1 if k < 8 else None, base=0.3 if k < 8 else None, seed=100 + k)
     lava_rock("lava field rock", 120, (-25, 25, -25, -4.6), s3_ground_z, seed=9, r=(0.1, 0.35), moss=0.0)
     lava_rock("heap rock", 70, (-5, 4, -4.6, -1.2), s3_ground_z, seed=13, r=(0.06, 0.2), moss=0.0)        # the old lava heaped against the face: broken blocks
     lava_rock("field block", 420, (-14, 10, -14, -4.0), s3_ground_z, seed=19, r=(0.05, 0.22), moss=0.0)   # the field outside the wall: broken black blocks, a little moss
     lava_rock("wall face rock", 260, (-14, 12, -4.2, -1.0), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=27, r=(0.08, 0.26), moss=0.0)   # the black rock it is built of, on its face
-    lava_rock("works rubble", 160, (-14, 14, 4.4, 9.0), s3_ground_z, seed=12, r=(0.08, 0.3), moss=0.0)       # the works yard inside the wall
-    for k, x in enumerate((-22.0, -12.0)):               # the eruption's plume off in the distance, a gas leaning over the town
-        lw_steam(f"far plume {k}", (x, 40.0 + 4 * k, 0.0), w=7.0, h=24.0, seed=6.6 * k, col=(0.45, 0.43, 0.42), dens=1.6, lean=(0.6, -0.3), rise=1.0, t_end=DUR + 1.0)
+    lava_rock("wall face rock near", 420, (-7.0, 4.0, -1.45, -0.82), lambda x, y: max(s3_ground_z(x, y), s3_face_z(y)), seed=29, r=(0.06, 0.16), moss=0.0)
+    lava_rock("works rubble", 160, (-14, 14, 4.4, 5.8), s3_ground_z, seed=12, r=(0.08, 0.3), moss=0.0)       # the works yard inside the wall
+    for k, x in enumerate((-3.5,)):   # the eruption's plume off in the distance, a gas leaning over the town
+        lw_steam(f"far plume {k}", (x, 30.0, 2.0), w=7.0, h=24.0, seed=6.6 * k, col=(0.3, 0.29, 0.29), dens=2.2, lean=(0.5, 0.0), rise=1.0, t_end=DUR + 1.0)
 
     def light():
         k = iceland_light(sun_elev=24, sun_az=-30, sun=3.0, sky=0.4, haze=1.4)
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(120))     # a REAL Icelandic-grey sky with cloud in it (Poly Haven)
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(110))     # a REAL Icelandic-grey sky with cloud in it (Poly Haven)
         return k
     return dict(light=light, wall=wall)
 
@@ -70,12 +93,12 @@ def shot3():
     A new front rolls in and slams the face right under his boots; he flinches, braces and blasts it with the hose;
     steam bursts up; the front grinds sideways and slides off along the wall; he follows it round with the spray and turns to
     us, pleased."""
-    T_ROLL = -0.9; T_HIT = 0.07 * DUR; T_SPRAY = 0.24 * DUR; T_SLIDE = 0.52 * DUR; T_THUMB = 0.75 * DUR; T_REL = T_THUMB - 0.12
+    T_ROLL = -1.7; T_HIT = 0.22 * DUR; T_SPRAY = 0.3 * DUR; T_SLIDE = 0.5 * DUR; T_THUMB = 0.8 * DUR; T_REL = T_THUMB - 0.12
     W = lw_win
     P = place_wall_crest()
     light = P["light"]
     data = load_data()
-    P0 = Vector((-0.2, -0.45, S3_H + 0.06))
+    P0 = Vector((-0.2, -0.6, S3_H + 0.06))
     data.place(P0.x, P0.y, 0.0)
     data.arm.location.z = P0.z
     kit = hard_hat(data)
@@ -84,36 +107,36 @@ def shot3():
     # pushes out of its nose sideways along the wall's foot, away from the town's side, the tongue behind it crusting
     # over as a trail. Seen from above it is an L: the flow's path bent by the wall.
     lm = lava_mat("lava front", heat=0.85, scale=3.5, fresh=0.4)
-    tm = lava_mat("lava tongue", heat=0.55, scale=3.0, fresh=0.25)
+    tm = lava_mat("lava tongue", heat=1.8, scale=3.0, fresh=0.3)     # HOT as it comes: a crusted tongue read as black rock in the first still
     Y_FACE = -S3_BASE / 2 + (S3_PILE / (S3_H * 0.97)) * (S3_BASE / 2 - S3_CREST / 2 - 0.1)   # where the heap meets the face
     Y_HIT = Y_FACE - 0.45
-    XC = 0.6                                               # where the tongue strikes the face: off his right hand
+    XC = -0.3                                              # where the tongue strikes the face: right under him
     tout = []
     for k in range(25):
         a = 2 * math.pi * k / 25
-        tout.append((0.85 * math.cos(a) + 0.07 * math.sin(3 * a), 3.2 * math.sin(a) + 0.15 * math.cos(4 * a)))
+        tout.append((1.15 * math.cos(a) + 0.07 * math.sin(3 * a), 3.2 * math.sin(a) + 0.15 * math.cos(4 * a)))
     tongue = lava("lava tongue", tout, z=0.0, thick=0.4, m=tm, seed=7, lumpy=0.16)
     out = []
     for k in range(25):                                    # the deflected lobe: long along the wall, its nose to -X
         a = 2 * math.pi * k / 25
-        out.append((3.0 * math.cos(a) + 0.2 * math.sin(3 * a), 0.75 * math.sin(a) + 0.06 * math.cos(5 * a)))
-    front = lava("lava front", out, z=0.0, thick=0.7, m=lm, seed=4, lumpy=0.25)
+        out.append((2.2 * math.cos(a) + 0.2 * math.sin(3 * a), 0.75 * math.sin(a) + 0.06 * math.cos(5 * a)))
+    front = lava("lava front", out, z=0.0, thick=0.36, m=lm, seed=4, lumpy=0.22)
     Z_LAVA = S3_PILE - 0.3
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = ease(min(1.0, max(0.0, (t - T_ROLL) / (T_HIT - T_ROLL)))); v = W(t, T_HIT - 0.05, T_SLIDE + 0.9 - T_HIT)
-        tip = -7.5 + (Y_HIT + 0.3 + 7.5) * u
-        tongue.location = (XC, tip - 3.2, Z_LAVA - 0.05); tongue.keyframe_insert("location", frame=f)
+        tip = -3.0 + (Y_HIT + 0.3 + 3.0) * u
+        tongue.location = (XC, tip - 3.2, Z_LAVA + 0.42)     # ON the old heap's rocks, not under them: it is seen coming in the first still; tongue.keyframe_insert("location", frame=f)
         sq = 1.0 - 0.1 * lw_kick(t - T_HIT, 0.2)
         tongue.scale = (1.0 + 0.15 * lw_kick(t - T_HIT, 0.3), sq, 1.0 + 0.2 * lw_kick(t - T_HIT, 0.25)); tongue.keyframe_insert("scale", frame=f)
         sx = 0.12 + 0.88 * v
-        front.location = (XC + 0.5 - 3.0 * sx, Y_HIT + 0.1, Z_LAVA + 0.03 + 0.15 * W(t, T_HIT - 0.08, 0.25) - 0.08 * W(t, T_SLIDE, 0.8))
+        front.location = (XC - 0.5 * sx, Y_HIT + 0.1, Z_LAVA + 0.03 + 0.15 * W(t, T_HIT - 0.08, 0.25) + 0.06 * W(t, T_SLIDE, 0.8))      # it PILES UP against the face: it never sinks back
         front.scale = (sx, 0.8 + 0.2 * v, 1.0); front.hide_render = t < T_HIT - 0.06
         for k_ in ("location", "scale", "hide_render"): front.keyframe_insert(k_, frame=f)
     # ROUND 7 (close): the front is CRUST, not a sheet (board 6: "a tiled cell texture ... no height, no crust and no
     # front"): broken black crust blocks ride the tongue, and on the front they heap and BUCKLE up against the face
     # as it grinds along it, tipping up, glowing in their cracks
     cm_ = lava_mat("lava crust block", heat=0.5, scale=7.0, fresh=0.15); rb = lw_random.Random(23)
-    for k in range(70):
+    for k in range(30):
         a_ = rb.uniform(0, 2 * math.pi); rr = math.sqrt(rb.random())
         b_ = lw_block("tongue crust", (0.75 * rr * math.cos(a_), 3.0 * rr * math.sin(a_), 0.32 + rb.uniform(0, 0.08)), rb.uniform(0.07, 0.2), cm_, rb, squash=0.6)
         b_.parent = tongue; b_.rotation_euler = (rb.uniform(-0.3, 0.3), rb.uniform(-0.3, 0.3), rb.uniform(0, 6.3))
@@ -124,18 +147,18 @@ def shot3():
         fb.append((o_, bx, by, rb.uniform(-0.4, 0.4), rb.uniform(0, 6.3), rb.uniform(0.0, 0.25)))
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; v = W(t, T_HIT - 0.05, T_SLIDE + 0.9 - T_HIT); sx = 0.12 + 0.88 * v
-        fx = XC + 0.5 - 3.0 * sx; fz = Z_LAVA + 0.03 + 0.15 * W(t, T_HIT - 0.08, 0.25) - 0.08 * W(t, T_SLIDE, 0.8)
+        fx = XC - 0.5 * sx - 3.0 * sx * 0.0; fz = Z_LAVA + 0.03 + 0.15 * W(t, T_HIT - 0.08, 0.25) + 0.06 * W(t, T_SLIDE, 0.8)
         for o_, bx, by, tilt, spin, lag in fb:
             on = t >= T_HIT - 0.06 + lag * 0.4
             buck = W(t, T_HIT + lag, 0.6) * max(0.0, by)          # the side against the face piles up and tips over
-            o_.location = (fx + 3.0 * sx * bx, Y_HIT + 0.1 + 0.75 * by, (fz + 0.55 + 0.35 * buck) if on else -6.0)
+            o_.location = (fx + 2.2 * sx * bx, Y_HIT + 0.1 + 0.75 * by, (fz + 0.27 + 0.2 * buck) if on else -6.0)
             o_.rotation_euler = (tilt + 0.9 * buck, 0.6 * buck * bx, spin + 0.3 * v)
             o_.keyframe_insert("location", frame=f); o_.keyframe_insert("rotation_euler", frame=f)
     lava_flow_key(tm, 0.0, DUR + 0.5, 0.1, axis=1)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.18)
     heat = lm.node_tree.nodes["lava heat"].inputs[1]
     for f in range(1, NF + 1, 2):
-        t = (f - 1) / FPS; heat.default_value = 1.1 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)); heat.keyframe_insert("default_value", frame=f)
+        t = (f - 1) / FPS; heat.default_value = 1.1 * (1 + 1.0 * lw_kick(t - T_HIT, 0.35) + 0.4 * W(t, T_HIT, 0.3)) * (1 - 0.22 * W(t, T_SLIDE + 0.3, 0.9)); heat.keyframe_insert("default_value", frame=f)   # hosed, it crusts over: stopped
     # glowing chunks the impact throws up off the face, falling back onto the front
     cm = lava_mat("lava chunk", heat=1.2, scale=14.0, fresh=0.7); rnd = lw_random.Random(3); chunks = []
     for k in range(8):
@@ -150,17 +173,17 @@ def shot3():
             c.keyframe_insert("location", frame=f)
     # ---- the hose: the nozzle in his hands, aimed down the face at the front; the jet; the steam where it lands
     noz = s3_hose_nozzle()
-    aim = lambda t: Vector((XC - 0.5 + 0.12 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2) - 1.6 * W(t, T_SLIDE, 0.9), Y_FACE - 0.15, S3_PILE + 0.3))   # the corner, then the nose as it slides
+    aim = lambda t: Vector((XC - 0.25 + 0.1 * math.sin(2 * math.pi * (t - T_SPRAY) / 1.2), Y_HIT + 0.15, S3_PILE + 0.45))   # ONE target, where the front meets the face (board B1: the jet jumped sides between stills)
     jet_m = bpy.data.materials.get("hose water") or bpy.data.materials.new("hose water")
     jet_m.use_nodes = True; jb = jet_m.node_tree.nodes["Principled BSDF"]
     jb.inputs["Base Color"].default_value = (0.85, 0.92, 1.0, 1); jb.inputs["Roughness"].default_value = 0.1
     jb.inputs["Emission Color"].default_value = (0.8, 0.9, 1.0, 1); jb.inputs["Emission Strength"].default_value = 0.3; jb.inputs["Transmission Weight"].default_value = 0.6
     drops = [K.sph(f"hose jet {k}", (0, 0, -5), 0.008, jet_m, seg=8, ring=6) for k in range(60)]
     # ---- his body: watching it come, a flinch at the hit, braced back as he opens up, turning with the slide
-    yaw0 = math.radians(-12)
+    yaw0 = math.radians(S3_YAW)
     def body_yaw(t):
-        return yaw0 + math.radians(24) * (1 - W(t, 0.0, T_HIT + 0.1)) - math.radians(30) * W(t, T_SLIDE - 0.2, 1.0) \
-            + math.radians(34) * W(t, T_THUMB - 0.3, 0.75)
+        return yaw0 + math.radians(14) * (1 - W(t, 0.0, T_HIT + 0.1)) - math.radians(24) * W(t, T_SLIDE - 0.2, 1.0) \
+            + math.radians(32) * W(t, T_THUMB - 0.3, 0.75)
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; p = P0.copy()
         p.z += 0.03 * lw_kick(t - T_HIT, 0.2)                                       # a jolt at the hit
@@ -178,7 +201,7 @@ def shot3():
                                        - 8 * W(t, T_THUMB, 0.5), 0, 6 * W(t, T_SLIDE, 0.8) * (1 - W(t, T_THUMB - 0.2, 0.6))), 0, DUR + 0.4)
     # his hands on the nozzle: both low at first, raised to aim as he opens it, both on it to the end
     sc.frame_set(1); bpy.context.view_layer.update()
-    cam_side = Vector((0.45, -2.55, 0))
+    cam_side = Vector(S3_CAMD).xy.to_3d()
     sides = sorted("LR", key=lambda s: -(acts._shoulder(data, s) - data.arm.location).dot(cam_side))
     keys = lambda k: [(0.0, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
                       (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
@@ -186,11 +209,11 @@ def shot3():
     k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.35, (0.11, 0.04, -0.09)), (T_REL + 0.75, (0.08, 0.09, -0.13)), (DUR + 0.5, (0.08, 0.1, -0.13))]   # lets the nozzle go: his hand drops, done (a fist up flipped his elbow)
     data.reach(sides[0], lw_hand(data, sides[0], k0), -0.6, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), -0.6, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
-    LENS = Vector((-0.6, -3.6, S3_H + 1.3))
+    LENS = P0 + Vector(S3_CAMD)
     data.look_at(Vector((XC, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
-    data.look_at(Vector((XC - 0.3, Y_HIT, S3_PILE + 0.4)), T_HIT - 0.15, max_yaw=50, max_pitch=55, blend=0.15)
-    data.look_at(aim(T_SPRAY), T_SPRAY, max_yaw=50, max_pitch=55, blend=0.25)
-    data.look_at(Vector((-2.5, Y_HIT, S3_PILE + 0.4)), T_SLIDE + 0.1, max_yaw=50, max_pitch=55, blend=0.3)
+    data.look_at(Vector((XC - 0.3, Y_HIT, S3_PILE + 0.4)), T_HIT - 0.15, max_yaw=50, max_pitch=22, blend=0.15)
+    data.look_at(aim(T_SPRAY), T_SPRAY, max_yaw=50, max_pitch=22, blend=0.25)
+    data.look_at(aim(T_SLIDE + 0.7), T_SLIDE + 0.1, max_yaw=50, max_pitch=22, blend=0.3)
     data.look_at(LENS, T_THUMB, max_yaw=50, max_pitch=50, blend=0.25)
     data.expression("alarmed", T_ROLL + 0.1, T_HIT + 0.3, blend=0.12)
     data.expression("determined", T_HIT + 0.35, T_SLIDE + 0.25, blend=0.2)
@@ -242,22 +265,31 @@ def shot3():
                 a = noz_tip[f]; b = aim(t); m_ = a.lerp(b, u); m_.z += 0.25 * math.sin(math.pi * u)
                 o.location = m_ + jit[k] * (0.015 + 0.12 * u * u)             # the jet fans out into fine spray as it falls
             o.keyframe_insert("location", frame=f)
-    steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
-    for k, (sx_, sy_, t0) in enumerate(((0.5, -1.3, T_SPRAY + 0.06), (-1.0, -1.3, T_SPRAY + 0.5), (0.65, -0.95, T_SPRAY + 0.25))):   # steam everywhere: off both sides of the lens's line to him
-        b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (sx_, sy_, S3_PILE + 0.2), w=0.4 if k < 2 else 0.35, h=4.6 if k < 2 else 3.2, seed=5.1 * k + 2, rise=2.4, dens=24.0,
-                              lean=(0.0, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
+    # STEAM as a gas: ONE white cloud boils up off the lava where the jet lands and keeps growing while he sprays
+    t0 = T_SPRAY + 0.05
+    steam = [lw_fire_column("lava steam 0", (XC - 0.3, Y_HIT + 0.0, S3_PILE + 0.25), w=S3_STEAM[0], h_fire=0.15, h_smoke=S3_STEAM[1], lean=(-0.3, -0.1), t_end=DUR + 1.0,
+                            seed=7.1, fire=0.0, smoke_d=24.0, smoke=(0.95, 0.96, 0.97), rise=2.2, flame_d=0.0, spread=0.3,
+                            keys=[(t0, 0.0), (t0 + 0.4, 0.7), (T_SLIDE + 0.3, 1.0), (DUR + 0.5, 1.0)], grow=True)]
+    for o_ in steam:                                     # steam is WHITE: where it is thick it carries a little light of its own, so it never greys out against the wall
+        nt_ = o_.material_slots[0].material.node_tree
+        pv_ = next(n for n in nt_.nodes if n.type == 'PRINCIPLED_VOLUME')
+        for nm in ("Emission Strength", "Emission Color"):
+            for l_ in list(pv_.inputs[nm].links): nt_.links.remove(l_)
+        mu_ = nt_.nodes.new("ShaderNodeMath"); mu_.operation = 'MULTIPLY'; mu_.inputs[1].default_value = 0.22
+        nt_.links.new(pv_.inputs["Density"].links[0].from_socket, mu_.inputs[0]); nt_.links.new(mu_.outputs[0], pv_.inputs["Emission Strength"])
+        pv_.inputs["Emission Color"].default_value = (1.0, 1.0, 1.0, 1)
     # ---- ROUND 7, A CLOSE SHOT (coordinator after board 6): the lens AHEAD of him, out over the front a little above
     # his head, a medium lens: the crust front grinding along the face fills the bottom of the frame, he is on the crest
     # right above it hosing it, his face to us, the steam boiling up either side, the town's roofs behind the crest
-    CAM, LOOK = compose.frame_data(data, Vector((-0.7, -4.0, S3_H + 0.8)), Vector((-0.1, 0.0, S3_H + 0.2)), 35.0,
-                                   face_at=(0.5, 0.68), height=0.34, t=T_SPRAY + 0.3)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=35.0, fstop=11.0)
+    CAM, LOOK = compose.frame_data(data, P0 + Vector(S3_CAMD), P0 + Vector(S3_LOOKD), S3_LENS,
+                                   face_at=S3_FACE, height=0.325, t=T_SPRAY + 0.3)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=S3_LENS, fstop=11.0)
+    print("S3 CAM", tuple(round(v, 2) for v in CAM), "fw", tuple(round(v, 2) for v in data.forward()), flush=True)
     def cam_at(t):                                          # it eases after the front as it slides off along the wall
-        mv = Vector((-0.2, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.6) + Vector((0.0, 0.1, -0.03)) * W(t, T_HIT - 0.1, 0.9)
+        mv = Vector((0.0, 0.1, 0.0)) * W(t, T_HIT - 0.1, 1.2)
         return CAM + mv, LOOK + mv * 0.9, data.pos() + Vector((0, 0, 0.5))
-    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 35.0, 35.0)
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, S3_LENS, S3_LENS)
     return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",), cutaway=None,
                 boxes=[],
-                conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [tongue, front], T_HIT - 0.2, DUR, {"whole": False}),
+                conseq=[("the lava front rolls in, heaps against the wall's face and stops", lambda: [tongue, front], T_HIT - 0.2, DUR, {"whole": False}),
                         ("he blasts the front with the hose and a cloud of steam bursts up", lambda: steam, T_SPRAY + 0.1, DUR, {"whole": False, "moves": True})])
