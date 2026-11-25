@@ -1,0 +1,11 @@
+{
+ "id": "runway-near-misses-climbing__0b20bf15",
+ "slug": "runway-near-misses-climbing",
+ "settled": "2026-11-25T12:25:59Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Rise",
+  "segment 1: new named entity not in the data: Entry",
+  "segment 2: new named entity not in the data: Hotspots"
+ ]
+}

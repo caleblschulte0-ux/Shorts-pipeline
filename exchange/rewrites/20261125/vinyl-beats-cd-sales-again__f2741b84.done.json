@@ -1,0 +1,10 @@
+{
+ "id": "vinyl-beats-cd-sales-again__f2741b84",
+ "slug": "vinyl-beats-cd-sales-again",
+ "settled": "2026-11-25T12:25:59Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Wins",
+  "segment 1: new named entity not in the data: Win"
+ ]
+}
