@@ -22566,6 +22566,51 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin strip, only about a third of the canvas height. The subject is small, and large blurred area; vision: Several sharp frames are heavily corrupted, with a purple/blue smeared glitch over the picture (about 10-15s).; vision: The sharp picture is pixelated or smeared ",
       "ts": "2026-11-25T12:47:22.681315+00:00"
+    },
+    "rejected-funnyarborealqueleawow-7pnppw6gprkbisi3": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/FunnyArborealQueleaWow-7PNPpW6GPRkBISi3",
+      "streamer": "northernlion",
+      "title": "0.00",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Niche gambling-game bit, needs context)",
+      "ts": "2026-11-25T20:30:09.192982+00:00"
+    },
+    "rejected-bitteralluringredpandaceilingcat-vbk4871owhrvm3fy": {
+      "source_url": "https://www.twitch.tv/pastabambina/clip/BitterAlluringRedpandaCeilingCat-VbK4871oWhrVm3FY",
+      "streamer": "pastabambina",
+      "title": "Pastabambina Explains The GTA 6 Voice Recording Process And It's Wild",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 5.7s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip (about a third of the canvas height). The rest is blurred padding.; vision: The subject, the streamer, is tiny in the right corner and hard to read on a phone. Most of the shar",
+      "ts": "2026-11-25T20:32:31.406640+00:00"
+    },
+    "rejected-helpfulkitschygooseimglitch-fen77bhjrts55b9b": {
+      "source_url": "https://www.twitch.tv/kennstar/clip/HelpfulKitschyGooseImGlitch-Fen77BHJrtS55B9B",
+      "streamer": "kennstar",
+      "title": "w nyssa",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Wordle chatter, no visible event)",
+      "ts": "2026-11-25T20:33:20.004487+00:00"
+    },
+    "rejected-squarephilanthropicgarbageossloth-cc0ldbqc6lrbz2b8": {
+      "source_url": "https://www.twitch.tv/rubius/clip/SquarePhilanthropicGarbageOSsloth-Cc0LdBQc6lRbz2B8",
+      "streamer": "rubius",
+      "title": "LA COBRA SODOMIZAD4",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA6 camera, tiny cam, borderline-lewd, )",
+      "ts": "2026-11-25T20:34:33.255056+00:00"
+    },
+    "rejected-callousignorantpeafowlpanicvis-tinl-y-avsfueptd": {
+      "source_url": "https://www.twitch.tv/moonmoon/clip/CallousIgnorantPeafowlPanicVis-TINl-Y-aVsfUEPTD",
+      "streamer": "moonmoon",
+      "title": "AINTNOWAY",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 24/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-11-25T20:34:41.766641+00:00"
     }
   }
 }
