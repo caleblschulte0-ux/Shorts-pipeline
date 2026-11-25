@@ -1,0 +1,689 @@
+{
+ "date": "2026-11-25",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Juan Mata",
+   "why": "A beloved player's retirement, with a career of moments to show after it.",
+   "post_title": "Juan Mata Announces His Retirement",
+   "upvotes": 5427,
+   "url": "https://www.reddit.com/r/soccer/comments/1xzai92/juan_mata_announces_his_retirement/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xzai92/juan_mata_announces_his_retirement",
+   "title": "Juan Mata Announces His Retirement And Fans Aren't Ready \ud83e\udd40",
+   "hook": "Juan Mata announces his retirement \ud83e\udd40",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 22.03,
+       "reason": "the framer: A pair of football boots hangs by its laces and sits on the floor. They span columns 3.7 to 6.6, with the hanging laces at columns 4 to 5.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+  },
+  {
+   "sub": "hockey",
+   "who": "Tyler Boucher",
+   "why": "A son scores his first NHL goal while his dad watches from the stands.",
+   "post_title": "[WPG 0-(2) OTT] Tyler Boucher's first career NHL goal extends the lead to two as his dad, Brian, watches from the stands. Sens have two legal goals in 58 seconds",
+   "upvotes": 743,
+   "url": "https://www.reddit.com/r/hockey/comments/1xz21r7/wpg_02_ott_tyler_bouchers_first_career_nhl_goal/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xz21r7/wpg_02_ott_tyler_bouchers_first_career_nhl_goal",
+   "title": "Tyler Boucher Scores His First NHL Goal With His Dad Watching From The Stands",
+   "hook": "Tyler Boucher's first NHL goal, dad in the stands \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "3 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 17.27,
+       "reason": "the framer: Ottawa #54 Boucher celebrating with his arm raised, bottom left, just after the goal",
+       "crop": [
+        404,
+        720,
+        54,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 17.27,
+       "t1": 17.9,
+       "reason": "the framer: TSN logo wipe transition, with no people or play to frame, so show it uncropped (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 17.9,
+       "t1": 20.77,
+       "reason": "the framer: Wide center-ice view with players spread across the ice and no single focal point, so show it uncropped (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The video promises Boucher's first goal with his dad watching, but the crop misses the goal and the dad never appears, so nothing lands.",
+    "score": 49
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The video promises Boucher's first goal with his dad watching, but the crop misses the goal and the dad never appears, so nothing lands."
+  },
+  {
+   "sub": "soccer",
+   "who": "Ronaldo Naz\u00e1rio",
+   "why": "Rare footage of R9 training beside three future elite coaches.",
+   "post_title": "A footage of  Ronaldo Naz\u00e1rio (R9) training with Mourinho, Guardiola and Lu\u00eds Enrique, 1996.",
+   "upvotes": 3430,
+   "url": "https://www.reddit.com/r/soccer/comments/1y0judo/a_footage_of_ronaldo_naz\u00e1rio_r9_training_with/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y0judo/a_footage_of_ronaldo_naz\u00e1rio_r9_training_with",
+   "skipped": "no sound: the post has no audio track"
+  },
+  {
+   "sub": "baseball",
+   "who": "Blake Snell",
+   "why": "A teammate openly pining for his friend to join him, in his own words.",
+   "post_title": "Blake Snell on Tarik Skubal's Free Agency: \u201cSkuby doo papa, I talk to him everyday, He's good. He's good. He knows how I feel, I want nothing more than for him to be a Dodger but it\u2019s a life decision ",
+   "upvotes": 422,
+   "url": "https://www.reddit.com/r/baseball/comments/1y2vzjo/blake_snell_on_tarik_skubals_free_agency_skuby/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1y2vzjo/blake_snell_on_tarik_skubals_free_agency_skuby",
+   "title": "Blake Snell Says He's Done His Pitch To Get Tarik Skubal To The Dodgers",
+   "hook": "Snell wants Skubal in Dodger blue",
+   "ledger": {
+    "moves": [
+     "zoom@12.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [
+     "Tarik Skubal@4.98",
+     "Los Angeles Dodgers@12.72"
+    ],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: A real, well-cropped Snell soundbite, but the opening stacks our captions on top of the broadcast's own quote card and the clip has no punchline moment."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/SynuYre6hmI",
+   "ok": true,
+   "publish_at": "2026-11-25T15:00:00Z",
+   "seconds": 543,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261125-blake-snell-says-he-s-done-his-pitch-to-get-tari-ba19c29c",
+    "tiktok": "queued for 2026-11-25T15:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Andrew Heaney",
+   "why": "A pitcher tells the funny story of haggling over his signing bonus as a draftee.",
+   "post_title": "Andrew Heaney discusses negotiating his signing bonus with the Marlins after getting drafted in 2012",
+   "upvotes": 1641,
+   "url": "https://www.reddit.com/r/baseball/comments/1y07o5i/andrew_heaney_discusses_negotiating_his_signing/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1y07o5i/andrew_heaney_discusses_negotiating_his_signing",
+   "title": "Andrew Heaney Says His Agent Told Him To Secretly Fly To Miami Before The Deadline",
+   "hook": "Heaney's agent said fly to Miami, tell nobody",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [
+     "Andrew Heaney's 2012 Marlins draft@6.96"
+    ],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "soccer",
+   "who": "Everton",
+   "why": "A fan who went viral for a video game press conference gets invited to the real club.",
+   "post_title": "Everton invited a fan who went viral because of a Football Manager press conference video in an Everton save",
+   "upvotes": 6474,
+   "url": "https://www.reddit.com/r/soccer/comments/1xzo279/everton_invited_a_fan_who_went_viral_because_of_a/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xzo279/everton_invited_a_fan_who_went_viral_because_of_a",
+   "title": "Everton Invite The Fan Behind The Viral Football Manager Press Conference",
+   "hook": "Everton invite the viral Football Manager fan",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "nfl",
+   "who": "Jim Harbaugh",
+   "why": "Harbaugh blanks on a question and has to ask a staffer for the answer.",
+   "post_title": "[Highlight] Reporter asks Jim Harbaugh who was wearing the green dot on defense this Sunday: \u201cI don\u2019t know\u201d then asks a staffer \u201cWho had the green dot\u201d",
+   "upvotes": 2999,
+   "url": "https://www.reddit.com/r/nfl/comments/1y43ir7/highlight_reporter_asks_jim_harbaugh_who_was/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y43ir7/highlight_reporter_asks_jim_harbaugh_who_was",
+   "title": "Jim Harbaugh Can't Remember Who Wore The Green Dot On Defense",
+   "hook": "Harbaugh asked who wore the green dot",
+   "ledger": {
+    "moves": [
+     "zoom@7.95"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 21.3,
+       "reason": "the framer: Harbaugh, the speaker, in a cap and glasses at the podium. His head spans columns 4-5 and his torso and pointing hand reach columns 3-6.",
+       "crop": [
+        344,
+        460,
+        254,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.077,
+      0.077,
+      0.035,
+      0.077,
+      0.077
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "nba",
+   "who": "Jalen Slawson",
+   "why": "He trash talks SGA twice, mocks his celebration, then SGA answers with a step-back three.",
+   "post_title": "[Highlight] Jalen Slawson trash talks SGA on back to back possessions and mockingly does SGA's 3pt celebration after hitting a 3. SGA comes back and hits a step back 3 over Slawson to end the half and",
+   "upvotes": 5542,
+   "url": "https://streamable.com/b3eow0",
+   "topic": "https://www.reddit.com/r/nba/comments/1y40w65/highlight_jalen_slawson_trash_talks_sga_on_back",
+   "title": "Jalen Slawson Trash Talks SGA, Then SGA Answers Back Right Before Halftime",
+   "hook": "Slawson mocks SGA's celebration \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@8.7"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "6 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 2.8,
+       "reason": "the framer: SGA (#2) smiling in cols 2-4 and Slawson (#18) facing him in cols 5-7, two faces about five columns apart (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 2.8,
+       "t1": 9.4,
+       "reason": "the framer: Pacers and Thunder players at the bottom of cols 3-4, with the ball in the air at col 5",
+       "crop": [
+        368,
+        654,
+        342,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 9.4,
+       "t1": 16.0,
+       "reason": "the framer: Slawson yelling in cols 3-4 and SGA with his back turned in cols 5-7, confronting each other (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 16.0,
+       "t1": 18.67,
+       "reason": "the framer: SGA (#2) with the ball in cols 3-4 and defenders in cols 4-6 on the half-court play",
+       "crop": [
+        490,
+        654,
+        340,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 18.67,
+       "t1": 21.17,
+       "reason": "the framer: Slawson (#18) in col 4 and SGA (#2) in col 2-3 on the court; wider play, framed on Slawson",
+       "crop": [
+        368,
+        654,
+        342,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 21.17,
+       "t1": 25.2,
+       "reason": "the framer: SGA (#2) celebrating, shouting, in cols 3-5",
+       "crop": [
+        368,
+        654,
+        342,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.032,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/5d6LPl7PcFg",
+   "ok": true,
+   "publish_at": "2026-11-25T18:00:00Z",
+   "seconds": 204,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261125-jalen-slawson-trash-talks-sga-then-sga-answers-b-11765544",
+    "tiktok": "queued for 2026-11-25T18:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Christian Yelich",
+   "why": "A star surprises fans with a championship ring delivered like a UPS package.",
+   "post_title": "[Fanatics] Christian Yelich Surprises Fans After Winning a Ring, Delivered by UPS",
+   "upvotes": 1771,
+   "url": "https://www.reddit.com/r/baseball/comments/1xzdl28/fanatics_christian_yelich_surprises_fans_after/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xzdl28/fanatics_christian_yelich_surprises_fans_after",
+   "title": "Christian Yelich Shows Up At A Fan's Workplace As The UPS Guy \ud83d\ude33",
+   "hook": "Yelich delivers himself to a fan's work \ud83d\udce6",
+   "ledger": {
+    "moves": [
+     "zoom@19.3"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": false
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "nfl",
+   "who": "Detroit Lions mascots",
+   "why": "Mascots send kids flying in the youth halftime game, and the stands lose it.",
+   "post_title": "[Highlight] Mascots send kids to the shadow realm during the youth halftime game at Ford Field",
+   "upvotes": 5100,
+   "url": "https://www.reddit.com/r/nfl/comments/1y3ipbl/highlight_mascots_send_kids_to_the_shadow_realm/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y3ipbl/highlight_mascots_send_kids_to_the_shadow_realm",
+   "title": "Detroit Lions Mascots Send Kids Flying At Ford Field And It Gets Wild",
+   "hook": "Lions mascots vs the kids \ud83d\udc80",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "skipped": "author: the title names 'Lions', which the post never does"
+  },
+  {
+   "sub": "MMA",
+   "who": "Robbie Lawler",
+   "why": "Two old warriors finish a war, then rest side by side against the cage.",
+   "post_title": "Robbie Lawler and Carlos Condit throw down in the final round, then rest side by side against the cage",
+   "upvotes": 1152,
+   "url": "https://streamable.com/kn2sty",
+   "topic": "https://www.reddit.com/r/MMA/comments/1y0dh6x/robbie_lawler_and_carlos_condit_throw_down_in_the",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Craig Anderson",
+   "why": "A goalie blames his worst season on playing Grand Theft Auto.",
+   "post_title": "Craig Anderson says his worst season in Ottawa was partially due to Grand Theft Auto V",
+   "upvotes": 827,
+   "url": "https://www.reddit.com/r/hockey/comments/1xzh3fk/craig_anderson_says_his_worst_season_in_ottawa/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xzh3fk/craig_anderson_says_his_worst_season_in_ottawa",
+   "title": "Craig Anderson Blames Grand Theft Auto V For His Worst Season In Ottawa",
+   "hook": "Craig Anderson on his worst season \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@5.73"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [
+     "Craig Anderson Ottawa Senators@1.97"
+    ],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "baseball",
+   "who": "Bernie Brewer",
+   "why": "A mascot shows out in a holiday parade and the crowd eats it up.",
+   "post_title": "Bernie Brewer showed up and showed out in Chicago's annual holiday-season kickoff parade",
+   "upvotes": 1384,
+   "url": "https://www.reddit.com/r/baseball/comments/1y4cqi6/bernie_brewer_showed_up_and_showed_out_in/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1y4cqi6/bernie_brewer_showed_up_and_showed_out_in",
+   "title": "Bernie Brewer Shows Out Waving The Champions Flag At Chicago's Holiday Parade",
+   "hook": "Bernie Brewer crashes Chicago's parade \ud83c\udf89",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: Bernie dancing with the Champions flag in mid1 and mid3 is good, but the clip runs on for about 6 seconds after he leaves frame and ends on the back of a stranger's head, so the 'crowd goes wild' payoff never lands."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A fun mascot moment, but the crop keeps losing Bernie, the Champions flag never reads, and the clip ends on an empty barrier.",
+    "score": 58
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A fun mascot moment, but the crop keeps losing Bernie, the Champions flag never reads, and the clip ends on an empty barrier."
+  },
+  {
+   "sub": "nfl",
+   "who": "Mike Tomlin",
+   "why": "Tomlin publicly calls out a struggling receiver for his lack of professionalism.",
+   "post_title": "[Highlight] Mike Tomlin on DK Metcalf's Eye-Poke: \"It's one thing to struggle in terms of production, and he certainly is struggling, but it's another thing to complicate it by showing lack of profess",
+   "upvotes": 8175,
+   "url": "https://www.reddit.com/r/nfl/comments/1y37gpy/highlight_mike_tomlin_on_dk_metcalfs_eyepoke_its/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y37gpy/highlight_mike_tomlin_on_dk_metcalfs_eyepoke_its",
+   "title": "Mike Tomlin Rips DK Metcalf's 'Lack Of Professional Maturity' After The Eye-Poke",
+   "hook": "Tomlin calls out Metcalf after eye-poke",
+   "ledger": {
+    "moves": [
+     "whoa@9.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.709,
+      0.339,
+      0.339,
+      0.401,
+      0.648
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "DK Metcalf@13.7"
+    ],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "soccer",
+   "who": "Mauricio Pochettino",
+   "why": "A coach says what everyone in the street tells him about Manchester United.",
+   "post_title": "Mauricio Pochettino: \u201cWe know the situation is not one that deserves to be at a club like Manchester United, where the fanbase and everything is amazing. Every 10 people I cross in the street in the U",
+   "upvotes": 1396,
+   "url": "https://www.reddit.com/r/soccer/comments/1xz9odt/mauricio_pochettino_we_know_the_situation_is_not/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xz9odt/mauricio_pochettino_we_know_the_situation_is_not",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Tom Izzo",
+   "why": "Izzo rips the injury disclosure rule with a jab at gamblers.",
+   "post_title": "Tom Izzo on the rule requiring coaches to disclose injury information 2 hours prior to each game: \"It benefits nobody. Not the parents, players, coaches, fans. Unless you're a gambler, then it benefit",
+   "upvotes": 2776,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to",
+   "title": "Tom Izzo Calls The New Injury Disclosure Rule 'The Dumbest Thing' He's Ever Heard",
+   "hook": "Izzo rips the injury report rule \ud83d\ude24",
+   "ledger": {
+    "moves": [
+     "whoa@13.21"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 28.17,
+       "reason": "the framer: Izzo's whole face, from the left cheek and ear (col 4) to the right ear and hair (col 6-7), is in these columns.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.169,
+      0.0,
+      0.241
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       1.0
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "MMA",
+   "who": "Jiri Prochazka",
+   "why": "A beaten fighter gives his post-fight speech.",
+   "post_title": "Prochazka vs Stirling Loser's Post-Fight Speech",
+   "upvotes": 319,
+   "url": "https://streamable.com/twk3f4",
+   "topic": "https://www.reddit.com/r/MMA/comments/1y27mpc/prochazka_vs_stirling_losers_postfight_speech",
+   "title": "Jiri Prochazka Respects Stirling After Loss: 'You're a Warrior' \ud83e\udd40",
+   "hook": "Prochazka gives his speech after losing",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  }
+ ],
+ "already_today": 1,
+ "pool": 135,
+ "already_posted": 1,
+ "refused_before": 5,
+ "shipped": 2
+}
