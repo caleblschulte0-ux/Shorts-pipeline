@@ -553,6 +553,9 @@ def lw_fire_column(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), 
     o.visible_shadow = True
     for f in (1, F(t_end) + 1):                          # time runs linearly through the shot
         tt.outputs[0].default_value = (f - 1) / FPS; tt.outputs[0].keyframe_insert("default_value", frame=f)
+    if keys and keys[0][1] <= 0.0:                       # no gas yet: nothing there at all (no box for a ray or a body to meet)
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=max(1, F(keys[0][0])))
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=max(1, F(keys[0][0])) + 1)
     for t, v in (keys or ()):                            # how much gas there is when: (t, 0..1), eased between
         amt.outputs[0].default_value = v; amt.outputs[0].keyframe_insert("default_value", frame=F(t))
         if grow:                                         # and the cloud itself swells up out of its base as it comes

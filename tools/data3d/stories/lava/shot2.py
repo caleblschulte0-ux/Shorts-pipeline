@@ -172,7 +172,7 @@ def place_wall_works():
     """THE WALL WORKS in the blue evening: the trodden gravel of the works, the earth wall's black face rising across the
     whole frame, floodlight masts along its foot, other diggers at work along it, the eruption's smoke over the crest."""
     rnd = lw_random.Random(21)
-    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#7A726A", name="works gravel"))   # REAL gravel (Poly Haven)
+    lw_grid("works ground", -26, 26, -14, 22, 90, 80, s2_ground_z, ph_mat("gravel_floor_02", scale=1.0, tint="#2F2B27", name="works gravel"))   # REAL gravel (Poly Haven)
     wall = earth_wall("earth wall", [(x, S2_WALL_Y + 0.006 * x * x) for x in range(-30, 32, 2)], h=S2_WALL_H, crest=1.4, base=S2_BASE, seed=4)
     lava_rock("works rock", 90, (-12, 12, -6, S2_FOOT - 0.2), s2_ground_z, seed=6, r=(0.08, 0.26),
               avoid=lambda x, y: (-4.2 < x < -1.6 and 0.3 < y < 4.2) or (-0.8 < x < 1.0 and -1.8 < y < 1.2) or (x + 6.5) ** 2 + (y + 4.0) ** 2 < 9.0 or (6.6 < x < 9.0 and -3.4 < y < 1.0))
@@ -198,10 +198,10 @@ def place_wall_works():
         if not bmat:
             bmat = bpy.data.materials.new("floodlight dust"); bmat.use_nodes = True; nt_ = bmat.node_tree
             nt_.nodes.remove(nt_.nodes["Principled BSDF"]); pv = nt_.nodes.new("ShaderNodeVolumePrincipled")
-            pv.inputs["Density"].default_value = 0.035; pv.inputs["Color"].default_value = (1.0, 0.97, 0.9, 1)
+            pv.inputs["Density"].default_value = 0.006; pv.inputs["Color"].default_value = (1.0, 0.97, 0.9, 1)
             nt_.links.new(pv.outputs[0], nt_.nodes["Material Output"].inputs["Volume"])
         beam.materials.append(bmat)
-        bo = lw_link(bpy.data.objects.new(f"floodlight beam {k}", beam))
+        bo = lw_link(bpy.data.objects.new(f"floodlight beam {k}", beam)); bo.hide_render = True   # its haze read as a white blob (board): the light carries it
         src = Vector((x, y - 0.3, 5.1)); d_ = (aim - src); ln = d_.length * 0.92
         bo.scale = (1, 1, ln); bo.location = src + d_.normalized() * ln / 2
         bo.rotation_euler = (-d_).to_track_quat('Z', 'Y').to_euler()
@@ -217,6 +217,8 @@ def place_wall_works():
         Dk["boom"].rotation_euler = (0, -a_, 0); Dk["stick"].rotation_euler = (0, -b_, 0)
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
+    lava_rock("works rubble", 420, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.22),     # the black rock spilled across the works as it is trucked to the wall
+              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.6 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     for k, x0 in enumerate((-2.2, -1.5, 1.6, 2.3)):           # the tracks the machines have cut in it
@@ -230,8 +232,8 @@ def place_wall_works():
     K.box("eruption horizon glow", (0, 30, 3.0), (90, 0.5, 6.0), lw_emit("horizon glow", "#FF6A20", 0.8), bev=0)
 
     def light():
-        k = iceland_light(sun_elev=1, sun_az=-40, sun=0.4, sky=0.11, warm=(0.8, 0.72, 1.0), haze=1.6)     # blue evening going to night: the floodlights carry the works
-        ph_sky("qwantani_dusk_2_puresky", strength=0.22, rot=math.radians(200))       # a REAL dusk sky (Poly Haven)
+        k = iceland_light(sun_elev=1, sun_az=-40, sun=0.4, sky=0.11, warm=(0.8, 0.72, 1.0), haze=0.35)     # blue evening going to night: the floodlights carry the works
+        ph_sky("qwantani_dusk_2_puresky", strength=0.07, rot=math.radians(200))       # a REAL dusk sky (Poly Haven)
         return k
     return dict(light=light, wall=wall, masts=masts, far=far)
 
@@ -343,7 +345,7 @@ def shot2():
     # ---- his body: leaning into the push, the duck as the rock comes down past, the grin, the haul back, the lights
     def body(t):
         p = P0.copy()
-        p.z += -0.15 * W(t, T_DUCK + 0.15, 0.4) * (1 - W(t, T_GRIN + 0.12, 0.4)) - 0.04 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
+        p.z += -0.09 * W(t, T_DUCK + 0.15, 0.4) * (1 - W(t, T_GRIN + 0.12, 0.4)) - 0.04 * W(t, T_BACK - 0.2, 0.45) * (1 - W(t, T_LOW, 0.45))
         p.y += 0.12 * W(t, T_PUSH - 0.2, 0.5) * (1 - W(t, T_TOP, 0.5))                       # he walks the sticks forward with the arm
         p.x += 0.06 * math.sin(2 * math.pi * (t - T_PUSH) / 1.3) * W(t, T_PUSH, 0.4) * (1 - W(t, T_TIP, 0.4))   # steering it, his weight side to side
         p.y -= 0.12 * W(t, T_BACK - 0.2, 0.5) * (1 - W(t, T_LIGHTS + 0.3, 0.5))               # and leans back on them as he hauls it down

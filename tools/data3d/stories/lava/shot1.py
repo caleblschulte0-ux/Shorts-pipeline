@@ -203,7 +203,7 @@ def place_grindavik_street():
 
     def light():
         k = iceland_light(sun_elev=4, sun_az=-45, sun=1.0, sky=0.12, warm=(1.0, 0.6, 0.4), haze=2.0)     # the town dim under an orange-tinted sky; the eruption lights it
-        lw_clouds(cover=0.7, scale=2.5)
+        ph_sky("industrial_sunset_puresky", strength=0.25, rot=math.radians(180))      # a REAL low-sun sky, orange under the plume (Poly Haven)
         return k
     return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
@@ -237,7 +237,7 @@ def shot1():
                                    lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=9.0, smoke_d=1.5, rise=3.5,
                                    keys=[(max(0.0, tk - 0.04), 0.0), (tk + 0.18, 1.0)], grow=True))
     for k, x in enumerate((-4.0, 0.0, 4.0)):             # the plume: a wall of grey gas and ash boiling off the whole fissure, leaning downwind
-        cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 1.0, fz + 1.5), w=4.5, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
+        cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 1.0, P["fz"] + 1.5), w=4.5, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
                              dens=3.0, lean=(-0.35, 0.3), rise=1.6, keys=[(T_ERUPT + 0.1 * k, 0.0), (T_ERUPT + 0.1 * k + 1.2, 1.0)], t_end=DUR + 1.0))
     P["founts"] = cols[:9]
     for k, o in enumerate(P["spat"]):

@@ -118,11 +118,32 @@ def place_town_crack():
         lw_steam(f"wall smoke {k}", (x, 48.0 + 2 * k, 2.0), w=4.5, h=16.0, seed=3.3 * k, col=(0.42, 0.41, 0.42), dens=2.5, lean=(0.5, 0.2), rise=1.2, t_end=DUR + 1.0)
     for k in range(5):
         K.sph("far mountain", (-40 + 20 * k, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.8), seg=24, ring=12)
+    # the street under the eruption's fall-out (board EMPTY: "a smooth, bare region"): grit and lava cinders blown over
+    # the asphalt, a drain grating at each kerb, the old road's patched cracks
+    bits = lava_rock("street cinders", 260, (-S4_KERB + 0.1, S4_KERB - 0.1, -8.0, 30.0), lambda x, y: 0.0, seed=44, r=(0.015, 0.05), moss=0.0,
+              avoid=lambda x, y: abs(y - S4_YC) < 1.3)
+    patch = K.mat("road patch", "#1E1E20", rough=0.9)
+    for k in range(14):
+        y = -7.0 + 2.6 * k + rnd.uniform(-0.5, 0.5)
+        if abs(y - S4_YC) < 1.4: continue
+        o = K.box("road crack seal", (rnd.uniform(-1.2, 1.2), y, 0.012), (rnd.uniform(0.6, 1.4), 0.025, 0.004), patch, bev=0.0); o.rotation_euler = (0, 0, rnd.uniform(-0.6, 0.6)); bits.append(o)
+    grate = lw_metal("drain grating", "#2A2B2D", rough=0.6)
+    for k in range(6):
+        for sx in (-1, 1):
+            y = -6.0 + 6.0 * k + (1.5 if sx > 0 else 0.0)
+            if abs(y - S4_YC) < 1.4: continue
+            bits.append(K.box("drain grating", (sx * (S4_KERB - 0.2), y, 0.012), (0.22, 0.4, 0.008), grate, bev=0.0))
+    bpy.context.view_layer.update()
+    for o in bits:                                       # they ride their slab of the street when it jolts
+        slab = near if o.location.y < S4_YC else far
+        o.parent = slab; o.matrix_parent_inverse = slab.matrix_world.inverted()
     for k in range(3):                                   # REAL street lamps (Poly Haven) along the left kerb
         ph_model("street_lamp_01", (-(S4_KERB + 0.25), 6 + 6 * k, 0.0), rot=(0, 0, -math.pi / 2), scale=0.5, name=f"street lamp {k}")
 
     def light():
-        return iceland_light(sun_elev=30, sun_az=-30, sun=3.2, sky=0.45, haze=1.2)
+        k = iceland_light(sun_elev=30, sun_az=-30, sun=3.2, sky=0.45, haze=1.2)
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(60))      # a REAL sky with cloud in it (Poly Haven)
+        return k
     return dict(light=light, near=near, far=far, houses=houses)
 
 
@@ -138,7 +159,7 @@ def shot4():
     P = place_town_crack()
     light = P["light"]; near, far = P["near"], P["far"]
     data = load_data()
-    Y0, YS = 1.3, 0.92                                     # where he starts pushing and where he stops (y)
+    Y0, YS = 2.4, 0.92                                     # where he starts pushing and where he stops (y)
     data.place(0.15, Y0, 0.0)
     kit = hard_hat(data)
     data.walk_to((0.15, YS), 0.0, T_STOP, pushing=True)
@@ -174,12 +195,12 @@ def shot4():
             p.y = max(y_edge - 0.12, p.y - roll)
             tip = W(t, T_TIP, 0.6)
             pitch += math.radians(52) * tip                  # nose first into the gap, its wheel sinking into the glow
-            p.z -= 0.3 * tip
+            p.z -= 0.3 * tip; p.x += 0.42 * W(t, T_OPEN0 + 0.2, 1.0)      # rolling off toward the kerb as it goes
         bar.location = p; bar.rotation_euler = (pitch, 0, 0)
         bar.keyframe_insert("location", frame=f); bar.keyframe_insert("rotation_euler", frame=f)
     sc.frame_set(NF); bpy.context.view_layer.update()     # the barrow burns where it tipped: its sandbags and the tray catch
     fb = bar.matrix_world @ Vector((0.0, 0.32, 0.2))
-    lw_fire_column("barrow fire", (fb.x, fb.y, fb.z), w=0.55, h_fire=0.9, h_smoke=2.6, lean=(0.15, 0.3), t_end=DUR + 1.0, seed=4.2, fire=6.0,
+    lw_fire_column("barrow fire", (fb.x, fb.y, fb.z), w=0.42, h_fire=0.8, h_smoke=2.2, lean=(0.25, 0.0), t_end=DUR + 1.0, seed=4.2, fire=6.0,
                    smoke_d=3.0, keys=[(T_TIP + 0.2, 0.0), (T_TIP + 0.75, 1.0)])
     bl = lw_point("barrow fire light", (fb.x, fb.y - 0.3, fb.z + 0.5), 0.0, col=(1.0, 0.45, 0.15), r=0.2)
     for f in range(1, NF + 1, 2):
@@ -255,7 +276,7 @@ def shot4():
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; u = W(t, T_POUR, DUR - T_POUR); w_ = W(t, T_POUR - 0.25, 0.4)
         L_ = 0.3 + 1.0 * u
-        flow.location = (0.05 + 0.1 * math.sin(3 * t), S4_YC - 0.25 - L_, -0.22 + 0.25 * w_)
+        flow.location = (0.05 + 0.1 * math.sin(3 * t), S4_YC + 0.6 - L_, -0.22 + 0.25 * w_)   # wells up round the tipped barrow and runs at the lens
         flow.scale = (0.6 + 1.0 * u + 0.4 * w_, L_, 1.0 + 0.4 * (1 - u) * w_); flow.keyframe_insert("location", frame=f); flow.keyframe_insert("scale", frame=f)
     lava_flow_key(lm, 0.0, DUR + 0.5, 0.3, axis=1)
     glow = lw_point("crack glow", (0.0, S4_YC, 0.25), 0.0, col=(1.0, 0.45, 0.12), r=0.6)
@@ -276,8 +297,8 @@ def shot4():
     # the lens comes DOWN to his height and goes LONG, right up the middle of a narrow street, so both rows of houses
     # close in behind him and the wall with its smoke stands across the end of the street over his head; the crack
     # tears across between him and us and the lava runs down the street at the lens
-    CAM = Vector((0.3, YS - 5.55, 1.0)); LOOK = Vector((0.12, 40.0, -2.1))
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=100.0, fstop=16.0)
+    CAM = Vector((0.3, YS - 4.0, 1.0)); LOOK = Vector((0.12, 40.0, -4.2))
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=70.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()
         dy = data.pos().y - YS
@@ -286,13 +307,13 @@ def shot4():
         p0 = data.pos().copy(); sc.frame_set(F(t)); bpy.context.view_layer.update()
         fol = (data.pos() - p0) * 0.8; fol.z = 0.0                     # and pans with him as he leaps and hops back
         dolly = Vector(((data.pos() - p0).x * 0.8, (data.pos() - p0).y * 1.0, 0))               # and keeps its distance as he backs away
-        return CAM + Vector((0, dy, 0)) + shake + back + dolly, LOOK + Vector((0, dy, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))
+        return CAM + Vector((0, dy * 0.9, 0)) + shake + back + dolly, LOOK + Vector((0, dy * 0.9, 0)) + shake + back + fol, data.pos() + Vector((0, 0, 0.6))   # it backs off slower than he comes: he and the barrow come AT us
     # CUT to the WIDE as the lava pours (board round 2: "80% bare asphalt", "no wall at the end of the street", "never
     # seen pouring toward a house"): high behind the lens and up the street, the crack glowing kerb to kerb, the lava
     # running at the red-roofed corner house, the street's houses both sides, the wall across its end with smoke over it
     T_W0, T_W1 = T_TIP - 0.05, T_RUN + 0.35
-    CW = Vector((1.2, -9.5, 4.0)); LW = Vector((0.3, 8.0, 0.2))
-    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.35, -0.05)) * (t - T_W0), LW, Vector((0.6, 1.0, 0.3))), T_W0, T_W1, 100.0, 24.0)
+    CW = Vector((1.0, -6.0, 3.2)); LW = Vector((0.3, 8.0, 0.2))
+    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.35, -0.05)) * (t - T_W0), LW, Vector((0.6, 1.0, 0.3))), T_W0, T_W1, 70.0, 24.0)
     return dict(lanes=[], kiosks=[], place="town_crack", light=light, data=data, rest=1, grips=("wheelbarrow",), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("he pushes the barrow of sandbags down the street", lambda: [o for o in meshes([bar]) if "wheel" not in o.name.split("barrow ")[-1] and "hub" not in o.name], 0.0, T_STOP, {"whole": False, "moves": True}),

@@ -59,7 +59,9 @@ def place_wall_crest():
         lw_steam(f"far plume {k}", (x, 40.0 + 4 * k, 0.0), w=7.0, h=24.0, seed=6.6 * k, col=(0.45, 0.43, 0.42), dens=1.6, lean=(0.6, -0.3), rise=1.0, t_end=DUR + 1.0)
 
     def light():
-        return iceland_light(sun_elev=24, sun_az=-30, sun=3.0, sky=0.4, haze=1.4)
+        k = iceland_light(sun_elev=24, sun_az=-30, sun=3.0, sky=0.4, haze=1.4)
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(120))     # a REAL Icelandic-grey sky with cloud in it (Poly Haven)
+        return k
     return dict(light=light, wall=wall)
 
 
@@ -158,7 +160,8 @@ def shot3():
     keys = lambda k: [(0.0, (0.09, -0.01, -0.13)), (0.45, (0.13, 0.0, 0.0)), (T_HIT + 0.12, (0.08, 0.0, -0.12)),
                       (T_SPRAY, (0.12, -0.01 - 0.01 * k, -0.05)), (T_SPRAY + 0.2, (0.07, -0.01 - 0.01 * k, -0.1)), (T_SPRAY + 0.5, (0.14, -0.02 - 0.01 * k, -0.01)),
                       (T_SLIDE + 0.45, (0.09, -0.01 - 0.01 * k, -0.11)), (T_SLIDE + 0.95, (0.13, -0.03 - 0.01 * k, -0.03)), (DUR + 0.5, (0.12, -0.02, -0.05))]
-    data.reach(sides[0], lw_hand(data, sides[0], keys(0)), 0.0, T_REL, lead=0.3, back=None, elbow_out=0.4)
+    k0 = [k_ for k_ in keys(0) if k_[0] < T_REL] + [(T_REL + 0.15, (0.12, 0.02, -0.06)), (T_REL + 0.5, (0.115, 0.08, 0.02)), (DUR + 0.15, (0.105, 0.15, 0.1)), (DUR + 0.5, (0.1, 0.16, 0.11))]
+    data.reach(sides[0], lw_hand(data, sides[0], k0), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)     # it held: one hand off the nozzle, a fist up
     data.reach(sides[1], lw_hand(data, sides[1], keys(1)), 0.0, DUR + 0.4, lead=0.3, back=None, elbow_out=0.4)
     LENS = Vector((-0.6, -3.6, S3_H + 1.3))
     data.look_at(Vector((XC, -6.0, S3_PILE)), 0.0, max_yaw=50, max_pitch=50, blend=0.0)
@@ -169,8 +172,6 @@ def shot3():
     data.expression("alarmed", T_ROLL + 0.1, T_HIT + 0.3, blend=0.12)
     data.expression("determined", T_HIT + 0.35, T_SLIDE + 0.25, blend=0.2)
     data.expression("pleased", T_SLIDE + 0.35, DUR + 1.0, blend=0.25)
-    sc.frame_set(F(T_REL)); bpy.context.view_layer.update()
-    data.act("thumbs_up", T_REL, dur=0.22, hold=DUR, side=sides[0])        # it held: one hand off the nozzle, thumb up to us
     data.finish()
     for f in range(1, NF + 1):                             # the nozzle in his hands, pointing at the spray
         t = (f - 1) / FPS; sc.frame_set(f); bpy.context.view_layer.update()
@@ -219,10 +220,10 @@ def shot3():
                 o.location = m_ + jit[k] * (0.015 + 0.12 * u * u)             # the jet fans out into fine spray as it falls
             o.keyframe_insert("location", frame=f)
     steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
-    for k, t0 in enumerate((T_SPRAY + 0.06, T_SLIDE + 0.5)):      # that drifts off him, and again where the front's nose slides to
+    for k, t0 in enumerate((T_SPRAY + 0.06,)):          # that drifts off him and out over the field, off the lens's side
         b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (b.x + 0.3, b.y - 0.3, b.z - 0.1), w=1.1, h=3.8, seed=5.1 * k + 2, rise=2.4, dens=7.0,
-                              lean=(0.25, -0.2), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
+        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.0, b.z - 0.3), w=0.95, h=3.4, seed=5.1 * k + 2, rise=2.4, dens=7.0,
+                              lean=(0.25, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
     CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=56.0, fstop=22.0)
