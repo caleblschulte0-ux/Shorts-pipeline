@@ -48,7 +48,7 @@ def main() -> int:
         print(f"[rewrites] sweep: {len(filed)} request(s) open for "
               f"{len([s for s in stories if s not in posted])} un-posted stories")
         return 0
-    rep = rm.claim_all(args.config, dry_run=args.dry_run)
+    rep = rm.claim_all(args.config, dry_run=args.dry_run, log_path=args.log)
     for r in rep["rejected"]:
         print(f"[rewrites] rejected {r['id']}: {r['problems'][0]}")
     print(f"[rewrites] open={rep['open']} rejected={len(rep['rejected'])} "

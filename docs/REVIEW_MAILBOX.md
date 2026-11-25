@@ -129,6 +129,21 @@ on Tuesday. Now:
   still a readout (`validate(..., narration=True)`) — the brain's own
   retell and tighten check that themselves.
 
+- **A repeat is retitled, not parked** (doctor aaeb12de3ebd, 2026-11-25).
+  The run holds a story whose title is too close to a posted video before
+  the gate (`duplicate_hold`) and has said since 10-02 "The story is fine;
+  the PACKAGING repeats. Retitle it and it ships" — and nothing ever asked
+  anyone to retitle it; three stories sat that way on every run of
+  11-23..11-25. `post_stories` now marks each repeat hold with its kind
+  (`repeat: title | story | posted`); a TITLE repeat is filed as a
+  `repeat:` reason naming the video it collides with, plus whatever the
+  gate would say; the claim refuses a retitle that still collides by the
+  run's own matcher over the run's own corpus
+  (`validate(..., posted_titles=posted_titles())`); a story the brain reads
+  as the SAME STORY as a posted video retires its asks (`unpostable` — a
+  new title over the same comparison is a repeat); a slug another run
+  posted meanwhile files nothing.
+
 `python scripts/claim_rewrites.py sweep` files the whole backlog.
 
 ## The ChatGPT round — nothing to paste
