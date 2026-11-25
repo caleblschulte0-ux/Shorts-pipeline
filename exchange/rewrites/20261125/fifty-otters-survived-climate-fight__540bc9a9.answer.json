@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "fifty-otters-survived-climate-fight__540bc9a9",
+  "slug": "fifty-otters-survived-climate-fight",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:15:00.000Z",
+  "title": "How 50 Otters Became A Climate Defense",
+  "hook": "A nearly erased predator came back and began protecting kelp carbon.",
+  "closing": "Saving sea otters can restore a food web and preserve coastal carbon.",
+  "question": "Would you protect otter habitat?",
+  "segments": [
+    {
+      "topic": "Otters Nearly Vanish",
+      "say": "California sea otters fell to 50 by the 1930s. The fur trade nearly erased their role from the coast."
+    },
+    {
+      "topic": "Otters Recover",
+      "say": "Those 50 became about 3,000 otters today. Their recovery returned a crucial kelp predator."
+    },
+    {
+      "topic": "Otters Protect Carbon",
+      "say": "Otter-protected kelp could store 8.7 million metric tons of carbon dioxide yearly. Their comeback now helps defend the climate."
+    }
+  ]
+}
