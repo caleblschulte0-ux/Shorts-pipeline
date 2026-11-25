@@ -1,0 +1,65 @@
+{
+  "schema": "shorts-ask-answers/v1",
+  "answers": {
+    "1fbf3fa7cf2d1924": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names a concrete, pictureable scale—100 million black holes hidden in our own galaxy—and promises to reveal why nearly all remain unseen.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "9b08e0248feb19d8": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch turns disappearing summer fireflies into a personal visual loss and promises the concrete threat that artificial light is erasing their signals.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "1b89d9cee7da0b5f": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives viewers an instantly understandable price contradiction: a same-looking one-carat diamond fell from thousands of dollars to $380.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "06a2f032ac748461": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes the pay gap personal and pictureable by promising that a CEO earns a typical worker's entire year of pay in just over one day.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "0a1232e6e3bc1b32": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives a concrete, planet-scale surprise—that roughly 45 volcanoes are erupting now and Earth never reaches zero.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "9e84295b6c6573e5": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The Ring of Fire distribution does not follow from or explain why about 45 volcanoes are erupting at once.\",\"2\":\"The Decade Volcano watch list changes from current eruptions to hazard designation rather than advancing the headline claim.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "005a33f95583b441": {
+      "answer": "{\"scores\":{\"premise\":12,\"hook\":16,\"arc\":8,\"factual\":12,\"visual_proof\":11,\"payoff\":6,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Make beats two and three explain where today's eruptions are and why they persist, instead of switching to the unrelated Ring of Fire share and Decade Volcano list.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "6cc0261075d9311e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "22e65619066a3d30": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The pitch jumps among unrelated countries, age groups, and education measures, so it does not promise one specific consequence that the beats can turn over.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "63a6522f42a6288e": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary ratio in Guinea-Bissau does not follow from India's secondary enrollment total.\",\"2\":\"An unspecified national spending decline is another metric, not a consequence of the classroom ratio.\",\"3\":\"A broad female-literacy gain does not follow from the spending figure.\",\"4\":\"A preschool ratio in Tanzania changes country and age group rather than advancing the literacy result.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "414dc857553b75b8": {
+      "answer": "{\"scores\":{\"premise\":11,\"hook\":14,\"arc\":6,\"factual\":11,\"visual_proof\":10,\"payoff\":5,\"voice\":3},\"fatal\":[],\"weakest_note\":\"Choose one country and one causal thread from crowding to teacher attention to student outcome; the current five-country metric tour never proves the headline.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    },
+    "df43e3dc2c20dfe4": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-25T12:10:00.000Z"
+    }
+  }
+}
