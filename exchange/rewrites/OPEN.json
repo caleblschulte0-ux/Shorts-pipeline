@@ -1,17 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-25T10:59:55Z",
+ "updated": "2026-11-25T12:21:41Z",
  "open": [
   {
-   "id": "drug-resistant-infections-2050__b78ec002",
+   "id": "drug-resistant-infections-2050__b78ec002_r1",
    "slug": "drug-resistant-infections-2050",
-   "filed": "2026-11-25T10:59:55Z",
+   "filed": "2026-11-25T12:21:40Z",
    "why": [
     "repeat: the TITLE is too close to a video already up: 'Drug-Resistant Infections Now Kill More Than HIV And Malaria'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
     "pace: closing is 23 words (max 18)"
    ],
-   "request": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002.request.json",
-   "answer_path": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002.answer.json"
+   "request": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002_r1.request.json",
+   "answer_path": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002_r1.answer.json"
   },
   {
    "id": "fifty-otters-survived-climate-fight__540bc9a9",
