@@ -5906,11 +5906,29 @@
       "duration_s": 24.0
     },
     "people-over-65-outnumber-kids-under-5": {
-      "claimed_at": "2026-11-25T12:24:29.685003+00:00",
+      "url": "https://youtube.com/shorts/e8bZbjiBnrg",
       "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
+      "at": "2026-11-25T12:24:40.421173+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.24,
+      "beat_s": [
+        2.79,
+        7.24,
+        4.85,
+        5.96,
+        6.87
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 28.2
     }
   },
   "uploads": [
@@ -7637,9 +7655,10 @@
       "claimed_at": "2026-11-25T12:24:29.685003+00:00",
       "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "people-over-65-outnumber-kids-under-5"
+      "url": "https://youtube.com/shorts/e8bZbjiBnrg",
+      "state": "posted",
+      "slug": "people-over-65-outnumber-kids-under-5",
+      "at": "2026-11-25T12:24:40.421173+00:00"
     }
   ]
 }
