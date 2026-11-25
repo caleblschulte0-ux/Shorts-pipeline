@@ -1,21 +1,22 @@
 {
- "retell": "Iceland built giant rock walls to save a town from a volcano that kept erupting, and the walls worked until the ground cracked open inside them and lava poured into the streets.",
- "twist": "The lava doesn't beat the wall. The ground splits open inside the protected zone and the lava comes up behind the defense, straight into town.",
- "payoff": "Yes. The title promises walls against a volcano, and the ending gives a mixed verdict: the walls saved most of the town, but they were beaten from inside, three houses burned, and almost nobody came back. The closing question 'Would you?' turns that into something the viewer has to answer.",
- "chain": "Every line connects. 1 causes 2 (it kept erupting, SO they built walls). 2 causes 3 (SO the lava turned away). 4 turns against 3 (BUT the ground split inside the wall). 5 is the result of 4. No line is just another fact.",
+ "retell": "An Icelandic town kept getting hit by a volcano, so they built huge rock walls that actually stopped the lava, until the ground cracked open inside the walls and lava came up in the streets anyway, and now the town is almost empty.",
+ "twist": "Line 4: the wall held, but the ground split open inside it, so the lava came up behind the defense instead of over it.",
+ "payoff": "Yes. The title promises walls against a volcano, and the ending gives a mixed answer you can feel: the walls saved most of the town, but the town died anyway because people won't come back. 'Would you?' turns that into a question for the viewer.",
+ "chain": "Every line follows from the one before. 1 to 2 is SO (eruptions, so they built a wall). 2 to 3 is SO (the wall is tested and holds). 3 to 4 is BUT (the threat comes from inside). 4 to 5 is SO (houses burn, people leave). No line is just another fact.",
  "cut": [],
  "physical": [],
- "score": 82,
+ "score": 80,
  "pass": true,
  "problems": [
-  "Line 1's 'nine times' can't be seen in one shot. The eruption and people running are the picture, so the count has to live in the narration only and shouldn't be drawn as a tally.",
-  "Line 5 packs in three things (burned houses, the wall holding, a hundred people back) plus a question in about six seconds. The physical picture should be the three burning houses beside a mostly dark, empty town with a few lit windows, not a number.",
-  "Line 2's 'hundred diggers and trucks' could become a token row of copies. Show a few diggers moving and the wall rising, and let the narration carry the count."
+  "Line 1 says 'one Icelandic town' instead of naming Grindavik. Naming it makes it feel real and costs nothing.",
+  "Line 1's 'everyone had to run' comes before the wall, so the first shot has to show the eruption and people fleeing right away, not a calm town.",
+  "Line 3 is the weakest beat (the wall simply works). It needs a big moment of lava hitting the wall and stopping, or it plays as a pause before the twist.",
+  "Line 5 packs two ideas into one beat (three houses burned, and the town is empty). The picture needs one shot that shows both, like burning houses on an empty street, or it will read as a list."
  ],
  "scores": [
+  78,
   80,
-  82,
-  83
+  82
  ],
- "key": "d8b4499eb4b956b9"
+ "key": "0a26f1743495e15b"
 }
