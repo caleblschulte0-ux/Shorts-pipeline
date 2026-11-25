@@ -28,11 +28,11 @@ def s5_lantern():
     root = K.empty("lantern", (0, 0, 0))
     S_ = 0.95
     lm = ph_model("Lantern_01", (0, 0, -0.29 * S_), scale=S_, name="lantern body", parent=root)
-    glow = lw_emit("lantern glow", "#FFB050", 3.0)
+    glow = lw_emit("lantern glow", "#FFB050", 14.0)
     for c in lm.children_recursive:
         if "glass" in c.name.lower():
             c.material_slots[0].link = 'OBJECT'; c.material_slots[0].material = glow
-    L = lw_point("lantern light", (0, 0, -0.16), 25.0, col=(1.0, 0.7, 0.35), r=0.04)
+    L = lw_point("lantern light", (0, 0, -0.16), 60.0, col=(1.0, 0.7, 0.35), r=0.04)
     L.parent = root; L.location = (0, 0, -0.16)
     return root
 
@@ -116,8 +116,8 @@ def shot5():
     """He comes up to his own house with the lit lantern (still 1), lifts it onto the hook by his window (still 2); it
     hangs there glowing and the window beside it lights up, the only light in the town (still 3); he turns to us and
     shrugs (still 4). Up the hill behind him, all the while: the three burning houses in a row, the wall behind them."""
-    T_IN = 0.2 * DUR; T_HANG = 0.36 * DUR; T_LET = T_HANG + 0.18
-    T_WIN = 0.54 * DUR; T_TURN = T_WIN + 0.22; T_ASK = 0.85 * DUR; T_STEP = T_ASK - 0.54
+    T_IN = 0.2 * DUR; T_HANG = 0.34 * DUR; T_LET = T_HANG + 0.33
+    T_WIN = 0.52 * DUR; T_TURN = 0.72 * DUR; T_ASK = 0.84 * DUR
     W = lw_win
     P = place_harbour_dawn()
     light = P["light"]
@@ -155,7 +155,6 @@ def shot5():
         p.z += 0.05 * lw_kick(t - T_WIN - 0.1, 0.2)                                               # a start as the window lights
         turn = W(t, T_TURN, 0.42)
         p += Vector((0.02, -0.04, 0.0)) * turn; p.z += 0.03 * math.sin(math.pi * turn)             # a step round to us
-        st = W(t, T_STEP, 0.45); p += Vector((-0.17, -0.02, 0.0)) * st; p.z += 0.04 * math.sin(math.pi * st)   # a step down the yard to us
         p.z += 0.035 * lw_kick(t - T_ASK - 0.25, 0.22)                                            # the shrug
         return p, YW + (YAW0 - YW) * W(t, T_IN, 0.4) - R(6) * back + R(52) * turn
     for f in range(F(T_IN) + 1, NF + 16):
@@ -181,7 +180,7 @@ def shot5():
         s_ = t - T_LET
         return 0.0 if s_ <= 0 else math.radians(20) * math.exp(-s_ / 2.2) * math.sin(2 * math.pi * s_ / 0.9)
     # ---- his hands after it: a start at the lit window (both hands up, open), then the shrug to us
-    data.act("whoa", T_WIN + 0.12, dur=0.28, hold=0.42)
+    data.act("whoa", T_WIN + 0.12, dur=0.28, hold=0.5)
     data.act("shrug", T_ASK, dur=0.3, hold=DUR - T_ASK)
     data.finish()
     for f in range(1, NF + 16):

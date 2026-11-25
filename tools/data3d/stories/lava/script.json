@@ -98,14 +98,14 @@
     }
   },
   "ideas": [
-    "a row of lava fountains stands on the ridge behind the main street, and the driver waves a lit baton and sends a whole line of cars out of town past him until the street is empty",
+    "a curtain of lava fountains stands on the ridge over the roofs of the main street; the driver looks back up at it, mouth open, then bolts down the middle of the street at us, arms pumping, glowing lava bombs landing on the road behind him",
     "at the wall works by day he works a remote control's two sticks and his digger swings a big bucket of black rock up the face of a wall taller than the house beside it and tips it out over the crest",
     "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and heaps up; it stops dead against the rock and goes dark, and he pumps his fists and grins",
     "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
     "at dawn three houses burn in a row at the top of the hill while the saved houses stand dark below; he hangs his lit lantern on his own house and its window lights up, the only light in the town"
   ],
   "storyboard": [
-    "1 hook (the town's main street by day, low houses down both sides, the ridge behind them; wide and low, looking up the street): from the first frame a row of lava fountains stands on the ridge behind the houses, orange fire with dark smoke over it. The driver in his yellow hard hat and hi-vis vest waves a lit baton, and a line of cars with their headlights on drives out past him toward us. The line of cars is in the street at the start and the street is empty at the end, the fountains still roaring behind him.",
+    "1 hook (the town's main street by day: low painted houses with tin roofs down both sides, the black ridge over the roofs; wide and low, pulling back down the street ahead of him): from the first frame a curtain of lava fountains stands on the ridge over the roofs, orange fire with dark smoke above it. The driver in his yellow hard hat and hi-vis vest looks back up at it, mouth open, then bolts down the middle of the street toward us, arms pumping, glowing lava bombs landing on the road behind him. He ends big in the frame, terrified, the fire still roaring behind him.",
     "2 the wall (the wall works by day: the black rock wall, a small house at its foot; low and wide, tipped up the wall's face): the earth wall, built from black lava rock, stands taller than the house beside it. The driver in his hard hat works the two sticks of a remote control, and his digger's arm swings a big bucket of rock up the wall's face and tips it out over the crest; the rocks fall onto the top of the wall, and he grins at us.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
@@ -113,30 +113,29 @@
   ],
   "staging": [
     {
-      "camera": "wide",
-      "data": "waves a lit baton and sends the line of cars out of town past him while the fountains roar on the ridge behind",
+      "camera": "tracking",
+      "data": "looks back up at the fountains, then bolts down the street toward us, arms pumping, lava bombs landing behind him",
       "props": [
         "lava fountains",
-        "light baton",
-        "line of cars",
+        "lava bombs",
         "main street"
       ],
       "arc": [
         {
           "at": 0.05,
-          "what": "a row of lava fountains stands on the ridge behind the street, a line of cars with their headlights on coming down it"
+          "what": "a curtain of lava fountains stands on the ridge over the roofs and he looks back up at it, mouth open"
         },
         {
-          "at": 0.3,
-          "what": "he swings the lit baton and the cars drive out past him toward us, one after another"
+          "at": 0.32,
+          "what": "he bolts down the middle of the street toward us, arms pumping"
         },
         {
           "at": 0.6,
-          "what": "the last car passes him and the street behind him is empty"
+          "what": "glowing bombs land on the road behind him and he runs harder, terrified"
         },
         {
-          "at": 0.76,
-          "what": "the fountains surge higher and he jumps aside, ducks and drops the baton to his side, his face to us"
+          "at": 0.9,
+          "what": "he is big in the frame, the fire roaring behind him"
         }
       ]
     },
