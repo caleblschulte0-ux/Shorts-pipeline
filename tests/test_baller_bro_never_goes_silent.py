@@ -187,6 +187,22 @@ class NotSomeoneElsesEditNotATalkingHead(unittest.TestCase):
                                           "outro": {"secs": 6}}))
         self.assertFalse(rs.talking_head({"talking": False}))
 
+    def test_a_fig_leaf_cut_in_is_still_a_talking_head(self):
+        """Heaney, 2026-11-25: 42s of podcast, one 5s cut-in."""
+        import run_sports as rs
+        self.assertTrue(rs.talking_head({"talking": True, "duration": 42.0,
+                                         "cut_in": ["field@9"],
+                                         "cut_in_s": 5.0}))
+        self.assertFalse(rs.talking_head({"talking": True, "duration": 21.0,
+                                          "cut_in": ["Skubal@5"],
+                                          "cut_in_s": 8.0}))
+
+    def test_the_cut_in_seconds_reach_the_ledger(self):
+        src = (ROOT / "third_capture" / "clip_edit.py").read_text()
+        self.assertIn('ledger_ae["cut_in_s"]', src)
+        self.assertIn('"cut_in_s"',
+                      (ROOT / "scripts" / "sports_samples.py").read_text())
+
     def test_both_are_checked_before_the_judge(self):
         src = (ROOT / "scripts" / "run_sports.py").read_text()
         run = src[src.index("made = ss.make(c, info, mp4)"):]

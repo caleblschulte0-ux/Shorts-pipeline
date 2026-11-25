@@ -191,16 +191,31 @@ TALKING_HEAD_NOTES = (
     "they talk about is ever shown (2026-11-17: Carlisle calling LeBron an "
     "AI machine posted as 32 seconds of two faces and no basketball). Cut "
     "in what they talk about at the second they say it, the player, the "
-    "play, the game, and end on it. If nothing they talk about can be "
-    "shown, complete=false.")
+    "play, the game, for at least a fifth of the cut, and end on it. If "
+    "nothing they talk about can be shown, complete=false.")
+
+
+# A talking cut must SHOW what is talked about for at least this share of
+# it (2026-11-25: Andrew Heaney posted as 42 seconds of a podcast face
+# with one five-second cut-in of an unrelated field, 12%: a talking head
+# with a fig leaf, which the any-cut-in rule passed).
+SHOWN_MIN = 0.2
 
 
 def talking_head(ledger: dict | None) -> bool:
-    """Someone talks the whole cut and nothing is cut in or played after
-    it: no cut-in and no montage. A clip that IS the game is not this."""
+    """Someone talks the whole cut and nothing they talk about is played
+    after it (no montage) or cut in for at least SHOWN_MIN of the cut. A
+    clip that IS the game is not this."""
     led = ledger or {}
-    return bool(led.get("talking")) and not led.get("cut_in") \
-        and not led.get("outro")
+    if not led.get("talking") or led.get("outro"):
+        return False
+    if not led.get("cut_in"):
+        return True
+    shown, dur = led.get("cut_in_s"), led.get("duration")
+    try:
+        return float(shown) / float(dur) < SHOWN_MIN
+    except (TypeError, ValueError, ZeroDivisionError):
+        return False
 
 
 def words_collide(v: dict) -> bool:

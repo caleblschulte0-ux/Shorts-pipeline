@@ -1753,6 +1753,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 cut_in.snap(direct["broll"], words, offset=t0), dur,
                 offset=t0), tmp, title=hook)
         ledger_ae["cut_in"] = [f"{c['who']}@{c['at']}" for c in cuts]
+        ledger_ae["cut_in_s"] = round(sum(float(c.get("secs") or 0)
+                                          for c in cuts), 2)
         _bed = mv["bed"]
         ledger_ae["mood"] = _bed["move"] if _bed else None
         ledger_ae["mood_at"] = _bed["at"] if _bed else None
