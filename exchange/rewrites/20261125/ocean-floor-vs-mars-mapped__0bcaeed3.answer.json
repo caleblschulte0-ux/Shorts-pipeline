@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ocean-floor-vs-mars-mapped__0bcaeed3",
+  "slug": "ocean-floor-vs-mars-mapped",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:15:00.000Z",
+  "title": "71% Of Earth's Seafloor Is Still Unmapped",
+  "hook": "Most ground beneath Earth's oceans is still invisible to modern maps.",
+  "closing": "The largest unmapped landscape is not in space; it is beneath our oceans.",
+  "question": "Would you explore sea or space?",
+  "segments": [
+    {
+      "topic": "Seafloor Mapping Grows",
+      "say": "Modern seafloor mapping rose from 6 percent to 28.7 percent. Progress still leaves most of the bottom unseen."
+    },
+    {
+      "topic": "Seafloor Trails Mars",
+      "say": "Mars is 99.5 percent mapped, versus 28.7 percent of the ocean floor. Another planet is far more complete."
+    },
+    {
+      "topic": "Seafloor Unmapped Scale",
+      "say": "Unmapped ocean floor spans 257 million square kilometers. That is larger than the entire surface of Mars."
+    }
+  ]
+}
