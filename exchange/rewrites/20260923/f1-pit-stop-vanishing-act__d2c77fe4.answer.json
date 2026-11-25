@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "f1-pit-stop-vanishing-act__d2c77fe4",
+ "slug": "f1-pit-stop-vanishing-act",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why F1 Pit Stops Got So Incredibly Fast",
+ "hook": "A pit stop used to take a minute.",
+ "closing": "Blink. You'll miss the whole pit stop.",
+ "question": "Did you know pit stops got this fast?",
+ "segments": [
+  {
+   "topic": "F1 pit stop time",
+   "say": "In the 1950s, an F1 pit stop took about a minute. By 2023, McLaren did it in 1.8 seconds."
+  },
+  {
+   "topic": "pit stops get fast",
+   "say": "An average human reaction time is about 0.27 seconds -- the whole modern pit stop takes under seven of those."
+  },
+  {
+   "topic": "the pit stop crew",
+   "say": "It takes roughly twenty crew members now to do what a handful managed back in the 1950s."
+  }
+ ]
+}

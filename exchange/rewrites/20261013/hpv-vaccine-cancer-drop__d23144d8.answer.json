@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "hpv-vaccine-cancer-drop__d23144d8",
+ "slug": "hpv-vaccine-cancer-drop",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why One Vaccine Shot Is Quietly Erasing A Cancer",
+ "hook": "One shot is quietly wiping out a cancer, and almost nobody noticed.",
+ "closing": "A simple shot in childhood can prevent a cancer decades later. Ask your doctor about it.",
+ "question": "Did you know this vaccine worked?",
+ "segments": [
+  {
+   "topic": "cancer from HPV",
+   "say": "Nine in ten cervical cancers come from one virus, HPV. So stopping that single virus could stop most of the disease."
+  },
+  {
+   "topic": "vaccine cut HPV",
+   "say": "Teen girls carrying that virus dropped by about 85 percent. Fewer infections now means fewer cancers later."
+  },
+  {
+   "topic": "cervical cancer cases",
+   "say": "Girls vaccinated young cut their cervical cancer risk by 88 percent. That is proof the shot stops cancer itself, not just the virus."
+  }
+ ]
+}

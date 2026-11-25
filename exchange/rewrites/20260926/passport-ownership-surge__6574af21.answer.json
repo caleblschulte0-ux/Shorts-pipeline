@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "passport-ownership-surge__6574af21",
+ "slug": "passport-ownership-surge",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Americans Are Getting Passports Like Never Before",
+ "hook": "5% became almost half -- your whole country just broke out.",
+ "closing": "Half the country's ready to leave. The other half isn't.",
+ "question": "Do you have a valid passport?",
+ "segments": [
+  {
+   "topic": "americans with passports",
+   "say": "Today, 48 percent of Americans own a passport, nearly half the country."
+  },
+  {
+   "topic": "americans getting passports now",
+   "say": "The government issued a record 27.3 million passports in 2025."
+  },
+  {
+   "topic": "passports vary across states",
+   "say": "New Jersey alone sits at 68 percent -- well above the national average."
+  }
+ ]
+}

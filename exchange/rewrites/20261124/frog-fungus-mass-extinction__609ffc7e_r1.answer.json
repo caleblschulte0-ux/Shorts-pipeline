@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "frog-fungus-mass-extinction__609ffc7e_r1",
+ "slug": "frog-fungus-mass-extinction",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why One Fungus Is Still Wiping Out Frogs",
+ "hook": "The fungus that caused the worst amphibian extinction in history never actually stopped spreading.",
+ "closing": "Extinction wasn't the end of this fungus. Species are still losing ground to it today.",
+ "question": "Which frog would you protect?",
+ "segments": [
+  {
+   "topic": "fungus species affected",
+   "say": "The fungus has affected 501 amphibian species, the largest disease-driven extinction event on record."
+  },
+  {
+   "topic": "fungus species declining",
+   "say": "Thirty-nine percent of those affected species are still declining today, long after the fungus was identified."
+  },
+  {
+   "topic": "fungus frog impact",
+   "say": "It has now hit 40 Australian frog species, proof the crisis keeps spreading to new ground."
+  }
+ ]
+}

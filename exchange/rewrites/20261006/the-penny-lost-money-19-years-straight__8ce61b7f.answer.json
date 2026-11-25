@@ -1,0 +1,21 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "the-penny-lost-money-19-years-straight__8ce61b7f",
+ "slug": "the-penny-lost-money-19-years-straight",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Making A Penny Costs More Than It's Worth",
+ "hook": "Every penny made since 2006 has cost more than a cent.",
+ "closing": "Data refuses to pick up pennies off the ground.",
+ "question": "Do you still bother picking up pennies?",
+ "segments": [
+  {
+   "topic": "Penny Costs More",
+   "say": "Every US penny has cost more to make since 2006 -- now 3.69 cents each."
+  },
+  {
+   "topic": "Penny Total Loss",
+   "say": "In 2024 alone, making pennies cost taxpayers $118 million, more than they were worth."
+  }
+ ]
+}

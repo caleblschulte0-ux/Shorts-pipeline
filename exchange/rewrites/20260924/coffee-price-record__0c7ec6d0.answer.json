@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "coffee-price-record__0c7ec6d0",
+ "slug": "coffee-price-record",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Your Morning Coffee Suddenly Costs So Much More",
+ "hook": "Your coffee habit is about to get pricier.",
+ "closing": "Drink it slow. It earned that price.",
+ "question": "Have you noticed your coffee getting more expensive?",
+ "segments": [
+  {
+   "topic": "coffee prices climbing",
+   "say": "Arabica coffee futures hit $4.41 a pound in February 2025, the highest price ever recorded."
+  },
+  {
+   "topic": "coffee supply shrinking",
+   "say": "Brazil's drought forced one trade house to slash its coffee forecast by 11 million bags overnight."
+  },
+  {
+   "topic": "coffee prices doubled",
+   "say": "Coffee has more than doubled in price in just twelve months, to $4.41 a pound."
+  }
+ ]
+}

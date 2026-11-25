@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "amazon-still-shrinking__89e4b00c",
+ "slug": "amazon-still-shrinking",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Brazil Is Clearing The Amazon Slower, But It Adds Up",
+ "hook": "The clearing is dropping. The damage isn't.",
+ "closing": "Fewer trees fall each year. The bill still grows.",
+ "question": "Give up beef to save the rainforest?",
+ "segments": [
+  {
+   "topic": "amazon deforestation by year",
+   "say": "By 2024, yearly Amazon clearing in Brazil had fallen to just 6,288 square kilometers, the lowest in nearly a decade."
+  },
+  {
+   "topic": "amazon lost since 1970",
+   "say": "Adding up every year since 1970, the Amazon has lost about 750,000 square kilometers total."
+  },
+  {
+   "topic": "why the Amazon disappears",
+   "say": "Close to 80 percent of all that cleared Amazon land becomes cattle pasture."
+  }
+ ]
+}

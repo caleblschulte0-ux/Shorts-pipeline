@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "landline-death-robocall-boom__8f868915_r1",
+ "slug": "landline-death-robocall-boom",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why America Basically Killed The Landline",
+ "hook": "Why does every unknown number feel like a scam call now?",
+ "closing": "Your phone still rings. Most of the time, it isn't for you.",
+ "question": "Do you still answer unknown numbers?",
+ "segments": [
+  {
+   "topic": "Landline Death",
+   "say": "By 2024, 76 percent of US adults had no landline at all, up from a quarter in 2010."
+  },
+  {
+   "topic": "life after the landline",
+   "say": "22 percent of all robocalls Americans got were straight-up scams, with telemarketing close behind."
+  },
+  {
+   "topic": "the new landline",
+   "say": "Americans got about 52.8 billion robocalls in 2024, nearly double what they got in 2016."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "third-interstellar-visitor__19dac2dc",
+ "slug": "third-interstellar-visitor",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Every New Interstellar Visitor Keeps Getting Bigger",
+ "hook": "Only 3 are confirmed, but the newest spans 5.6 kilometers.",
+ "closing": "Repeated visitors let scientists compare material from other stars instead of guessing from one.",
+ "question": "Will we ever catch one?",
+ "segments": [
+  {
+   "topic": "Interstellar Visitor Count",
+   "say": "Only 3 interstellar visitors are confirmed. What looked like a fluke has become a repeat pattern."
+  },
+  {
+   "topic": "Interstellar Visitor Speed",
+   "say": "The newest interstellar visitor hit 246,000 kilometers per hour. Each confirmed arrival has been faster than the last."
+  },
+  {
+   "topic": "Interstellar Visitor Size",
+   "say": "The newest interstellar visitor spans 5.6 kilometers, nearly six times the previous record holder. That offers more material to study."
+  }
+ ]
+}

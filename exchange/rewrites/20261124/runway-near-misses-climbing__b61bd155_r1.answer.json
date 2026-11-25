@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "runway-near-misses-climbing__b61bd155_r1",
+ "slug": "runway-near-misses-climbing",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Serious Runway Near-Misses Keep Climbing",
+ "hook": "Serious runway danger more than doubled in about a decade.",
+ "closing": "Every runway near-miss is a warning before the collision that cannot be undone.",
+ "question": "Which airport risk worries you most?",
+ "segments": [
+  {
+   "topic": "Runway near-misses",
+   "say": "Safety officials logged 23 serious runway near-misses last year, more than double the pace from about a decade earlier."
+  },
+  {
+   "topic": "Runway incursion cause",
+   "say": "Six in ten of those incidents came from people or vehicles entering a runway by mistake."
+  },
+  {
+   "topic": "Runway danger clusters",
+   "say": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst near-misses."
+  }
+ ]
+}

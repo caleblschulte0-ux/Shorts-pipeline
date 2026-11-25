@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "insect-planet__3c4a491b",
+ "slug": "insect-planet",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why This Is Really The Planet Of The Bugs",
+ "hook": "Most of the bugs crawling around you have never even been given a name.",
+ "closing": "Most bugs are still unnamed, so we barely know who we share this planet with.",
+ "question": "Weirdest bug you've ever seen? Tell me below.",
+ "segments": [
+  {
+   "topic": "Bugs' share of animals",
+   "say": "Roughly eight out of every ten animal species are insects, so the animal kingdom is mostly bugs, and we are the small minority."
+  },
+  {
+   "topic": "Bugs: beetles vs mammals",
+   "say": "Beetles alone have about 1.5 million species, while mammals and birds together are a tiny fraction of that. Bugs win by a landslide."
+  },
+  {
+   "topic": "Named vs estimated bugs",
+   "say": "We've named about one in five insect species scientists think exist. That means most bugs out there have never even had a name."
+  }
+ ]
+}

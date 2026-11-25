@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "normal-body-temperature-has-shifted__cb00499d",
+ "slug": "normal-body-temperature-has-shifted",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Body Temperature Is No Longer 98.6",
+ "hook": "Your normal temperature was never as fixed as you think.",
+ "closing": "Normal body temperature keeps drifting, and the old number was off from the start.",
+ "question": "What's your temperature?",
+ "segments": [
+  {
+   "topic": "Body Temperature Shift",
+   "say": "Modern men average 97.5 degrees, a full degree cooler than they used to run."
+  },
+  {
+   "topic": "Body Temperature Sex",
+   "say": "Men cooled by 1.06 degrees, nearly twice the drop seen in women -- a real biological shift."
+  },
+  {
+   "topic": "Body Temperature Standard",
+   "say": "Even that old 98.6-degree 'normal' was wrong to begin with, scientists later found."
+  }
+ ]
+}

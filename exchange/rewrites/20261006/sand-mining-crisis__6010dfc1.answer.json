@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "sand-mining-crisis__6010dfc1",
+ "slug": "sand-mining-crisis",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Sand Mining Now Outpaces What Rivers Can Replace",
+ "hook": "Sand is vanishing five times faster than in 1970, and you're standing on it.",
+ "closing": "Somehow, the beach is the crisis.",
+ "question": "Could sand really run out? Comment below.",
+ "segments": [
+  {
+   "topic": "sand extraction",
+   "say": "We now mine 50 billion tonnes of sand and gravel a year, five times 1970's pace."
+  },
+  {
+   "topic": "Sand vs rivers",
+   "say": "Rivers replace just 13 billion tonnes a year, so we take sand four times faster."
+  },
+  {
+   "topic": "China's sand demand",
+   "say": "China pours about 51 percent of the world's cement, mostly sand and gravel."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "highest-point-illusion__3d90af0a",
+ "slug": "highest-point-illusion",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Everest Isn't the Highest Point on Earth",
+ "hook": "Everest has been getting credit that belongs to two other mountains.",
+ "closing": "Highest depends on where you start measuring, so check the starting line before you trust a record.",
+ "question": "Which mountain is the real winner?",
+ "segments": [
+  {
+   "topic": "Highest above sea level",
+   "say": "Everest, at 8,849 meters, tops every list because we measure from sea level. Change the starting line, and the winner changes."
+  },
+  {
+   "topic": "Highest from its base",
+   "say": "Measured from the seafloor, Mauna Kea is 10,211 meters tall. Most of it hides underwater, so sea level hides its true size."
+  },
+  {
+   "topic": "Highest from Earth's center",
+   "say": "Measure from Earth's center, and Chimborazo sticks out 13.4 kilometers past a round Earth, farther than Everest. Same mountains, different winner."
+  }
+ ]
+}

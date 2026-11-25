@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "nobel-prize-discovery-age__3e12dc3c",
+ "slug": "nobel-prize-discovery-age",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Winning A Nobel Now Takes So Much Longer",
+ "hook": "The Nobel once crowned young stars. Now it waits for them to age.",
+ "closing": "Genius isn't getting older. The wait is, so young scientists now wait much longer for their moment.",
+ "question": "Have you peaked yet? Tell me below.",
+ "segments": [
+  {
+   "topic": "Nobel discovery age",
+   "say": "Physics breakthroughs now come about thirteen years later in a scientist's life than a century ago. Big ideas take longer to arrive."
+  },
+  {
+   "topic": "Nobel physics under 40",
+   "say": "Nobel physics discoveries by people under forty fell from most to about one in five. Fewer young researchers are landing the big wins."
+  },
+  {
+   "topic": "Young Nobel chemistry winners",
+   "say": "Last century, most chemistry Nobel winners were under forty. This century, not one. The prize now goes to the seasoned."
+  }
+ ]
+}

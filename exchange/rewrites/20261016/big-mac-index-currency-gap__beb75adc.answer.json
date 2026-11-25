@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "big-mac-index-currency-gap__beb75adc",
+ "slug": "big-mac-index-currency-gap",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why A Big Mac Costs So Much More In Switzerland",
+ "hook": "Same burger costs four times more in Switzerland than in Taiwan.",
+ "closing": "A burger can show whose money goes furthest. Check the price tag before you travel.",
+ "question": "What's a Big Mac cost near you?",
+ "segments": [
+  {
+   "topic": "Big Mac prices",
+   "say": "A Big Mac in Switzerland costs $9.08. In Taiwan, it's about a quarter of that."
+  },
+  {
+   "topic": "Switzerland costs more",
+   "say": "Switzerland's Big Mac costs 48% more than the US one. Same burger, so a dollar there buys much less."
+  },
+  {
+   "topic": "Taiwan costs less",
+   "say": "In Taiwan, the Big Mac costs less than half the US price. So Taiwan's money looks cheap against the dollar."
+  }
+ ]
+}

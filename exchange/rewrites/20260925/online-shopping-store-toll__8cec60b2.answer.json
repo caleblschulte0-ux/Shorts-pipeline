@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "online-shopping-store-toll__8cec60b2",
+ "slug": "online-shopping-store-toll",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Online Shopping Keeps Closing Down Stores",
+ "hook": "Your last package closed a store somewhere.",
+ "closing": "Free shipping isn't free. Somebody's storefront is paying for it.",
+ "question": "Do you shop online or in person more?",
+ "segments": [
+  {
+   "topic": "online shopping's retail share",
+   "say": "Online shopping now makes up 16.4 percent of all retail sales nationwide."
+  },
+  {
+   "topic": "online shopping's prime boost",
+   "say": "Amazon Prime has grown to 180 million US members, free two-day shipping driving the shift."
+  },
+  {
+   "topic": "store closures from online",
+   "say": "4,913 stores closed in 2023. In 2024 that jumped sharply higher."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "podcasts-passed-radio-spoken-word__1c353e96",
+ "slug": "podcasts-passed-radio-spoken-word",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Podcasts Just Dethroned Radio",
+ "hook": "Podcasts just inched past radio, after a hundred years of radio on top.",
+ "closing": "Radio had a hundred years of head start, and it still lost. Your ears have moved on.",
+ "question": "Podcasts or radio: which do you play?",
+ "segments": [
+  {
+   "topic": "Podcasts gain share",
+   "say": "Podcast listening quadrupled over the past decade, now 40 percent of spoken-word time."
+  },
+  {
+   "topic": "Podcasts pass radio",
+   "say": "Podcasts just edged ahead of radio by one point, to 40 percent."
+  },
+  {
+   "topic": "Podcasts weekly habit",
+   "say": "About 35 percent of Americans now press play on a podcast every single week."
+  }
+ ]
+}

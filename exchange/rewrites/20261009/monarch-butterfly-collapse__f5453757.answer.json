@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "monarch-butterfly-collapse__f5453757",
+ "slug": "monarch-butterfly-collapse",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Monarch Butterfly Numbers Have Collapsed Since The 1990s",
+ "hook": "Your garden vanished 94% of monarch milkweed",
+ "closing": "No milkweed, no monarchs. It's really that simple.",
+ "question": "When did you last see a monarch?",
+ "segments": [
+  {
+   "topic": "Monarch forest area",
+   "say": "By 2024, the monarchs' winter forest habitat had shrunk to just 0.9 hectares, a sliver of what it once was."
+  },
+  {
+   "topic": "Monarch herbicide impact",
+   "say": "By 2014, 94 percent of soybeans were herbicide-resistant, wiping out the milkweed monarchs need to survive."
+  },
+  {
+   "topic": "Monarch migration loss",
+   "say": "The western monarch migration alone has collapsed 95 percent since the 1980s."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "invasive-species-price-tag__5dd628a5",
+ "slug": "invasive-species-price-tag",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Nature Is Quietly Billing The World For Invasive Species",
+ "hook": "That's more than most countries make.",
+ "closing": "Nature sent the world a bill nobody budgeted for.",
+ "question": "Ever had an invasive species ruin your yard?",
+ "segments": [
+  {
+   "topic": "cost of invasive species",
+   "say": "The global bill for invasive species has roughly quadrupled every decade since 1970, reaching 423 billion dollars a year."
+  },
+  {
+   "topic": "invasive species money goes",
+   "say": "Almost all of it, over 90 percent, pays for damage already done."
+  },
+  {
+   "topic": "how many species exist",
+   "say": "Over 37 thousand alien species have taken hold worldwide."
+  }
+ ]
+}

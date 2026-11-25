@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "index-funds-own-corporate-america__67bee527_r1",
+ "slug": "index-funds-own-corporate-america",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why You Might Not Know Who Owns Your Stocks",
+ "hook": "The biggest owners of corporate America aren't tycoons. They're index funds holding your money.",
+ "closing": "Your index fund has a vote at the shareholder meeting. You don't.",
+ "question": "Do you know who votes your shares?",
+ "segments": [
+  {
+   "topic": "Index Funds",
+   "say": "Index funds once held a sliver of the stock market. Now they hold 52 percent of it, and climbing."
+  },
+  {
+   "topic": "Who Actually Owns America",
+   "say": "BlackRock, Vanguard and State Street together now own 22 percent of a typical big company."
+  },
+  {
+   "topic": "Who Votes Your Shares",
+   "say": "Vanguard alone casts nearly one in ten votes at big shareholder meetings -- one firm, that much say."
+  }
+ ]
+}

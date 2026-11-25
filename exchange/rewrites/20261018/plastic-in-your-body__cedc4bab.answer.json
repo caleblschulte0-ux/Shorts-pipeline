@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "plastic-in-your-body__cedc4bab",
+ "slug": "plastic-in-your-body",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Plastic Keeps Showing Up Inside Your Organs",
+ "hook": "Doctors are now finding plastic inside organs that should never see it.",
+ "closing": "Plastic you can't see is inside us now, and it may be hurting our hearts.",
+ "question": "Does this freak you out too?",
+ "segments": [
+  {
+   "topic": "Plastic in brain tissue",
+   "say": "Plastic in human brain tissue jumped by about half in eight years. Whatever we're breathing and eating, it's getting in, and fast."
+  },
+  {
+   "topic": "Plastic in the body",
+   "say": "Plastic showed up in every placenta tested, and in most donors' blood. It isn't staying outside us."
+  },
+  {
+   "topic": "Plastic raises heart risk",
+   "say": "Plastic in artery plaque went with over four times the risk of heart attack, stroke or death. A link, not proven cause."
+  }
+ ]
+}

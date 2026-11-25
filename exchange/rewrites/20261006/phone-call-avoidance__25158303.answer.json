@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "phone-call-avoidance__25158303",
+ "slug": "phone-call-avoidance",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Nobody Wants To Answer The Phone Anymore",
+ "hook": "Why won't anyone answer your call?",
+ "closing": "Just text next time. Everyone will thank you.",
+ "question": "Caller or texter? Tell me below.",
+ "segments": [
+  {
+   "topic": "text vs call preference",
+   "say": "Most young adults now say they'd rather get a text than a phone call, 70 percent of them."
+  },
+  {
+   "topic": "phone call anxiety",
+   "say": "About 44 percent of young adults say they genuinely dread making phone calls."
+  },
+  {
+   "topic": "voice notes over call",
+   "say": "37 percent of young adults would rather send a voice note than make a call."
+  }
+ ]
+}

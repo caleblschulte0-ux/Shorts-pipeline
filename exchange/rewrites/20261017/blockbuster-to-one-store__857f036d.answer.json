@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "blockbuster-to-one-store__857f036d",
+ "slug": "blockbuster-to-one-store",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Blockbuster Couldn't Outrun Netflix",
+ "hook": "How did 9,000 video stores become just one?",
+ "closing": "Even giants can vanish fast when habits change, and one small store still rents movies.",
+ "question": "Have you ever rented from that store?",
+ "segments": [
+  {
+   "topic": "Netflix vs Stores",
+   "say": "Netflix's mail subscribers nearly tripled, to 12.3 million. Why drive to a store when the movie shows up at home?"
+  },
+  {
+   "topic": "Blockbuster Stores Vanish",
+   "say": "Blockbuster once ran 9,000 stores. By 2014, the company owned none of them. The giant had been hollowed out."
+  },
+  {
+   "topic": "Last Blockbuster Stores",
+   "say": "By 2018, just two stores were left on Earth, in Bend and Perth. Within a year, only Bend still had one."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "womens-college-hoops-out-rates-men__77b1aec9",
+ "slug": "womens-college-hoops-out-rates-men",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Women's College Basketball Is Catching Up Fast",
+ "hook": "That year, the women's NCAA final out-drew the men's, and the money is following.",
+ "closing": "Women's basketball turned a bigger crowd into bigger media money.",
+ "question": "Did you watch the women's final?",
+ "segments": [
+  {
+   "topic": "Women's Basketball Viewers",
+   "say": "The women's basketball championship final drew 18.9 million viewers, edging out that year's men's final."
+  },
+  {
+   "topic": "Women's Basketball Attendance",
+   "say": "Attendance at the women's tournament climbed to 2.37 million, well up from recent years."
+  },
+  {
+   "topic": "Women's Basketball Rights",
+   "say": "Media rights for the women's game jumped to 200 million dollars a year, more than three times the old deal."
+  }
+ ]
+}

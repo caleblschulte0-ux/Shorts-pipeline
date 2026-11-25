@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "autism-diagnosis-rate-rise__dcbf6a51",
+ "slug": "autism-diagnosis-rate-rise",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Autism Rates Depend On Where A Child Is Screened",
+ "hook": "Where a child is screened can change their autism diagnosis entirely.",
+ "closing": "Autism rates need screening context before anyone treats one number as universal.",
+ "question": "Has screening changed near you?",
+ "segments": [
+  {
+   "topic": "Autism Prevalence",
+   "say": "Measured autism prevalence hit 32.2 per thousand children, up sharply over the last two decades."
+  },
+  {
+   "topic": "Autism By Sex",
+   "say": "Boys are diagnosed far more often than girls -- at more than three times the rate."
+  },
+  {
+   "topic": "Autism By Site",
+   "say": "The California site measured 52.6 per thousand, more than five times the Laredo site's rate."
+  }
+ ]
+}

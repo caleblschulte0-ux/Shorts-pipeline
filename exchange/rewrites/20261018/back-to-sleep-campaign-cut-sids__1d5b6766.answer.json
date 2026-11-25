@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "back-to-sleep-campaign-cut-sids__1d5b6766",
+ "slug": "back-to-sleep-campaign-cut-sids",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why One Simple Rule Cut Baby Deaths In Half",
+ "hook": "For years, the way we put babies to bed was killing them.",
+ "closing": "Know a new parent? Tell them: back to sleep. It costs nothing and it works.",
+ "question": "Did you know which way babies should sleep?",
+ "segments": [
+  {
+   "topic": "Campaign cut SIDS",
+   "say": "SIDS deaths fell to 0.64 per thousand babies, less than half the 1991 rate. One simple change in how babies sleep did that."
+  },
+  {
+   "topic": "Babies Put Down",
+   "say": "Before the campaign, over 85% of SIDS cases were babies put down on their stomachs. Flipping them onto their backs did the trick."
+  },
+  {
+   "topic": "Baby deaths remain",
+   "say": "About 3,400 babies still die in sleep-related deaths every year. The danger is smaller, not gone, so the back still matters."
+  }
+ ]
+}

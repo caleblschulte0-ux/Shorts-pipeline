@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "saturn-rings-vanishing__acf09995",
+ "slug": "saturn-rings-vanishing",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Saturn Might Lose Its Rings Within Your Lifetime",
+ "hook": "Saturn's rings are a ticking clock, and the planet is eating them alive.",
+ "closing": "So catch Saturn's rings now -- grain by grain, they're already running out.",
+ "question": "Will Saturn's rings outlive us?",
+ "segments": [
+  {
+   "topic": "Saturn's rings running out",
+   "say": "Saturn's rings are raining down into the planet right now. They'll be gone in under 300 million years."
+  },
+  {
+   "topic": "Saturn's rings are young",
+   "say": "Saturn is about 4,500 million years old. Its rings are nearly out of time, a blink by comparison."
+  },
+  {
+   "topic": "Saturn's ring rain",
+   "say": "Icy ring material falls into Saturn's atmosphere fast enough to fill a swimming pool every half hour. Scientists call it ring rain."
+  }
+ ]
+}

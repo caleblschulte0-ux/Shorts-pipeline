@@ -54,6 +54,8 @@ class RewrittenWordsSayWhoWroteThem(_Sandbox):
         self.assertEqual(RW.words_by({"by": "aletheia:claude"}), "aletheia-rewrite")
         self.assertEqual(RW.words_by({"by": "chatgpt"}), "chatgpt-rewrite")
         self.assertEqual(RW.words_by({}), "chatgpt-rewrite")
+        self.assertEqual(RW.words_by({"by": "claude"}), "claude-rewrite")
+        self.assertEqual(RW.words_by({"by": "claude:interactive"}), "claude-rewrite")
         cfg = {"stories": [{"slug": "s"}]}
         self.assertTrue(RW.apply(cfg, {"slug": "s"}, "aletheia-rewrite"))
         self.assertEqual(cfg["stories"][0]["words_by"], "aletheia-rewrite")

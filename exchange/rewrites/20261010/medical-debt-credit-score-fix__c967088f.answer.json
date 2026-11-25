@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "medical-debt-credit-score-fix__c967088f",
+ "slug": "medical-debt-credit-score-fix",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Millions Of Credit Scores Jumped Overnight In 2022",
+ "hook": "Medical debt stopped wrecking your credit score in 2022.",
+ "closing": "Score went up. Debt didn't move an inch.",
+ "question": "Did your credit score jump in 2022?",
+ "segments": [
+  {
+   "topic": "Medical Debt Share",
+   "say": "Medical debt used to make up 58% of all credit-report collections."
+  },
+  {
+   "topic": "Rule Change Erased Debt",
+   "say": "After 2022's rule change, medical collections on reports dropped about 70%."
+  },
+  {
+   "topic": "Rule Change Credit Scores",
+   "say": "That single rule lifted average credit scores by about 20 points."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "pentagon-ufo-reports-surge__e166beb3",
+ "slug": "pentagon-ufo-reports-surge",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Did UFO Reports To The Pentagon Triple?",
+ "hook": "UFO reports to the Pentagon nearly tripled, filed by the government's own people.",
+ "closing": "Mostly drones. Occasionally weather balloons. Rarely aliens.",
+ "question": "Ever seen one? Tell me below.",
+ "segments": [
+  {
+   "topic": "UFO Reports Tripled",
+   "say": "A Pentagon office logged 757 new UFO reports last year -- nearly triple what it logged the year before."
+  },
+  {
+   "topic": "New UFO Report Source",
+   "say": "Over half of those new reports -- 392 of them -- came from one place: the government's own air traffic controllers."
+  },
+  {
+   "topic": "UFO Reports Unexplained",
+   "say": "Out of every report filed so far, only 21 were flagged as something officials genuinely can't explain."
+  }
+ ]
+}

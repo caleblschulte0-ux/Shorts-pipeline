@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "lab-grown-meat-scale-up-8x__1f01b5a1",
+ "slug": "lab-grown-meat-scale-up-8x",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "One Lab-Grown Meat Plant Is About To Get Way Bigger",
+ "hook": "One plant alone will make 400,000 pounds a year.",
+ "closing": "Data would still rather have a sandwich.",
+ "question": "Would you actually try cultivated meat?",
+ "segments": [
+  {
+   "topic": "lab-grown meat scale-up",
+   "say": "The largest cultivated-meat plant's next facility will make 400,000 pounds of meat a year -- eight times more than today's."
+  },
+  {
+   "topic": "lab-grown meat vs chicken",
+   "say": "Even that upgraded plant is tiny next to the 50 billion pounds of chicken the US makes every year."
+  },
+  {
+   "topic": "lab-grown meat companies",
+   "say": "The number of approved cultivated-meat companies in the US has more than doubled in two years."
+  }
+ ]
+}

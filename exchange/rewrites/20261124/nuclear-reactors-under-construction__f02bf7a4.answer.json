@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "nuclear-reactors-under-construction__f02bf7a4",
+ "slug": "nuclear-reactors-under-construction",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Nuclear Power Isn't Actually Dying",
+ "hook": "Nuclear power was supposed to be finished. One country is building it like crazy.",
+ "closing": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
+ "question": "Would you live near nuclear power?",
+ "segments": [
+  {
+   "topic": "Nuclear Reactor Starts",
+   "say": "Builders started 10 new nuclear reactors last year, continuing a small but real rebound."
+  },
+  {
+   "topic": "Nuclear Construction Share",
+   "say": "China alone accounts for 50 percent of all nuclear capacity now under construction."
+  },
+  {
+   "topic": "Nuclear Capacity Building",
+   "say": "Worldwide, nuclear power under construction equals building 78 large reactors at once."
+  }
+ ]
+}

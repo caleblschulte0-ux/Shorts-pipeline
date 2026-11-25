@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "global-remittances-record-2023__21255dfc_r1",
+ "slug": "global-remittances-record-2023",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Workers Sending Money Home Beat Big Investment",
+ "hook": "Your family's money home is part of a $685 billion flood.",
+ "closing": "The biggest lifeline to poorer countries isn't government aid. It's ordinary workers sending money home.",
+ "question": "Ever sent money home? Tell me below.",
+ "segments": [
+  {
+   "topic": "Money migrants sent home",
+   "say": "Migrants sent home $685 billion in 2024. Even the pandemic barely dented it, so families clearly count on this money."
+  },
+  {
+   "topic": "Who receives money home",
+   "say": "India alone got $120 billion from its migrants in a single year. The runner-up got barely over half that."
+  },
+  {
+   "topic": "Sent home vs investment",
+   "say": "In 2023, remittances beat foreign company investment by over $270 billion. Workers' paychecks outweighed big business money."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "beaver-ecosystem-comeback__e235a087",
+ "slug": "beaver-ecosystem-comeback",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Beavers Nearly Vanished, Then Saved The Ecosystem",
+ "hook": "You erased 100 million beavers -- only 100,000 made it out.",
+ "closing": "Turns out the 'pest' flooding your yard might be a firefighter.",
+ "question": "Seen a real beaver dam up close?",
+ "segments": [
+  {
+   "topic": "beavers crashed, now rebound",
+   "say": "Beavers have rebounded to about 12 million today, after fur trappers nearly wiped them out."
+  },
+  {
+   "topic": "beavers as firefighters",
+   "say": "A peer-reviewed study found streams without beaver dams burned 3 times worse in wildfires than streams with them."
+  },
+  {
+   "topic": "beavers store water fast",
+   "say": "A single beaver dam can hold 1.1 million gallons of water, more than an Olympic swimming pool."
+  }
+ ]
+}

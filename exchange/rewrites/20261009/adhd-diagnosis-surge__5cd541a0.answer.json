@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "adhd-diagnosis-surge__5cd541a0",
+ "slug": "adhd-diagnosis-surge",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why So Many More Kids Are Being Diagnosed With ADHD",
+ "hook": "Your kid's odds of being diagnosed with ADHD just hit 11.4 percent.",
+ "closing": "More labels. Still not enough help.",
+ "question": "Were you diagnosed as a kid? Tell me.",
+ "segments": [
+  {
+   "topic": "ADHD diagnosis rate",
+   "say": "ADHD diagnoses among US kids have climbed to 11.4 percent, nearly half again what they were two decades ago."
+  },
+  {
+   "topic": "Who's newly diagnosed",
+   "say": "Boys are diagnosed with ADHD at nearly double the rate of girls, around 15 percent."
+  },
+  {
+   "topic": "Diagnosed kids treated",
+   "say": "Only 53.6 percent of diagnosed kids are actually taking medication for it."
+  }
+ ]
+}

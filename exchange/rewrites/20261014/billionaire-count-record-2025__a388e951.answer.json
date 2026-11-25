@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "billionaire-count-record-2025__a388e951",
+ "slug": "billionaire-count-record-2025",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The World Keeps Minting More Billionaires",
+ "hook": "While you were paying rent, the world minted 1,200 new billionaires.",
+ "closing": "Billionaires got richer mostly by holding stocks, and anyone can own those too.",
+ "question": "Lucky, or just well-invested? Tell me below.",
+ "segments": [
+  {
+   "topic": "billionaires record count",
+   "say": "The billionaire club nearly doubled in a decade, to a record 3,028. That's the most the world has ever had."
+  },
+  {
+   "topic": "billionaires total wealth",
+   "say": "Their combined fortune more than doubled, hitting 16.1 trillion dollars. So the club didn't just grow, the average pile did too."
+  },
+  {
+   "topic": "billionaires wealth vs stocks",
+   "say": "Billionaire wealth rose 127 percent, but the stock market grew faster. Just owning the whole market would have beaten it."
+  }
+ ]
+}

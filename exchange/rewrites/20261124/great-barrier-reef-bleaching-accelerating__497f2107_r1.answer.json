@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "great-barrier-reef-bleaching-accelerating__497f2107_r1",
+ "slug": "great-barrier-reef-bleaching-accelerating",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why The Great Barrier Reef Can't Catch A Break",
+ "hook": "The reef keeps bleaching again before it even finishes healing from the last time.",
+ "closing": "Repeated bleaching can erase a decade of reef recovery before it finishes.",
+ "question": "Can the reef recover in time?",
+ "segments": [
+  {
+   "topic": "Reef bleaching events",
+   "say": "The reef has now bleached 3 times this decade, turning a once-rare crisis into a regular one."
+  },
+  {
+   "topic": "Reef bleaching gap",
+   "say": "The gap between bleaching events has shrunk to just 2 years on average."
+  },
+  {
+   "topic": "Reef recovery time",
+   "say": "A reef typically needs 10 years to recover, so the next bleaching wave keeps arriving first."
+  }
+ ]
+}

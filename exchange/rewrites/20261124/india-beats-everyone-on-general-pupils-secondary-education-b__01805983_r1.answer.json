@@ -1,0 +1,33 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "india-beats-everyone-on-general-pupils-secondary-education-b__01805983_r1",
+ "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Some Classrooms Have Far More Pupils Than Teachers",
+ "hook": "In some countries, one teacher is responsible for more students than a small school.",
+ "closing": "School scale shapes how much time and support each child can actually receive.",
+ "question": "Which school gap surprised you?",
+ "segments": [
+  {
+   "topic": "School Pupils",
+   "say": "India alone has 127.5 million secondary pupils, more than any other country."
+  },
+  {
+   "topic": "School Classrooms",
+   "say": "In Guinea-Bissau, teachers face 147.6 students each, leaving almost no room for individual attention."
+  },
+  {
+   "topic": "School Spending",
+   "say": "Education spending has fallen to 3.57 percent of national income even as enrollment keeps climbing."
+  },
+  {
+   "topic": "School Literacy",
+   "say": "Youth female literacy still reached 92 percent, proof schooling keeps paying off despite the strain."
+  },
+  {
+   "topic": "School Preschool",
+   "say": "In Tanzania, preschools already run 114 pupils per teacher -- the attention gap starts before a single lesson."
+  }
+ ]
+}

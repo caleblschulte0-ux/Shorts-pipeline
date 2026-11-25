@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "religious-nones-rise__ba903e44_r1",
+ "slug": "religious-nones-rise",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why 'No Religion' Just Overtook The Catholics",
+ "hook": "No religion now describes more Americans than any church does, except one.",
+ "closing": "Younger adults are replacing older ones, so expect big changes for churches and communities.",
+ "question": "Do you consider yourself religious?",
+ "segments": [
+  {
+   "topic": "Religion decline",
+   "say": "Once, only 8 percent of US adults had no religion. Today that share has more than tripled, and it's still climbing."
+  },
+  {
+   "topic": "Religion generations",
+   "say": "Among millennials, 36 percent have no religion, far more than the oldest generation. The shift is led by the young."
+  },
+  {
+   "topic": "Religion today",
+   "say": "Only Protestants, at 40 percent, still outnumber people with no religion. Catholics are now third."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "volcano-country-ranking__692a9e46",
+ "slug": "volcano-country-ranking",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Indonesia Isn't Actually The Volcano Capital",
+ "hook": "Indonesia gets the fame. One other country actually has more volcanoes.",
+ "closing": "Next time you trust your gut, check the count first. Fame and numbers rarely match.",
+ "question": "Seen a volcano in person? Where?",
+ "segments": [
+  {
+   "topic": "Indonesia's volcano rank",
+   "say": "The US tops the world with 165 volcanoes. Indonesia, everyone's guess, is only fourth, so fame is not the same as count."
+  },
+  {
+   "topic": "Indonesia versus Alaska",
+   "say": "Alaska alone holds 130 of them. That's more than Indonesia's whole total, so one cold state outdoes a famous volcano nation."
+  },
+  {
+   "topic": "Indonesia's Ring of Fire",
+   "say": "Three in four of Earth's volcanoes sit on the Ring of Fire. That's why Alaska, Japan and Indonesia all rank so high."
+  }
+ ]
+}

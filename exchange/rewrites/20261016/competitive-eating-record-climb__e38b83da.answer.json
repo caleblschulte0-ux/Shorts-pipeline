@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "competitive-eating-record-climb__e38b83da",
+ "slug": "competitive-eating-record-climb",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Nathan's Hot Dog Record Keeps Climbing",
+ "hook": "The hot dog eating record used to be 25. Now it's 76.",
+ "closing": "Nobody has beaten 76 yet, so someone is surely training to be next.",
+ "question": "Could you eat 10 hot dogs that fast?",
+ "segments": [
+  {
+   "topic": "Hot dog eating record",
+   "say": "Nathan's hot dog contest used to be won with 25. Today's record is triple that, so eaters keep pushing human limits."
+  },
+  {
+   "topic": "Hot dog stomach test",
+   "say": "In a stomach study, a normal eater tapped out early. A competitive eater ate 36 hot dogs before researchers stopped him."
+  },
+  {
+   "topic": "Hot dog record today",
+   "say": "The record of 76 still stands. The latest winner fell short, which shows how hard it is to beat."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "back-pain-leading-disability__1ec1e63d",
+ "slug": "back-pain-leading-disability",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Back Pain Tops Every Other Disability",
+ "hook": "Back pain disables more people than anything else.",
+ "closing": "Much of this pain is preventable, so stand up, move, and give your back a break.",
+ "question": "How's your back right now?",
+ "segments": [
+  {
+   "topic": "Back Pain Worldwide",
+   "say": "Around 619 million people live with chronic back pain. Experts expect it to grow by more than a third, so it keeps getting bigger."
+  },
+  {
+   "topic": "Back Pain Causes",
+   "say": "Nearly four in ten cases of back pain trace to things you can change, like weight, smoking and work setup. Fixable."
+  },
+  {
+   "topic": "Working-Age Back Pain",
+   "say": "Back pain cases among working-age adults are up by more than half in about thirty years. It's hitting people when they're working hardest."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "ocean-is-changing-color__94e5fa3d",
+ "slug": "ocean-is-changing-color",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Half The Ocean Is Changing Color",
+ "hook": "Satellites caught the ocean quietly changing color, and scientists aren't sure what it means.",
+ "closing": "Nobody knows yet what it means for the sea life down there, or for us.",
+ "question": "Have you noticed the ocean looking different?",
+ "segments": [
+  {
+   "topic": "Ocean color change",
+   "say": "Twenty years of NASA satellite data show 56 percent of the ocean's surface now looks different."
+  },
+  {
+   "topic": "Ocean color prediction",
+   "say": "A 2019 climate model predicted about half the ocean would shift color -- satellites found a bit more than that."
+  },
+  {
+   "topic": "Ocean area changed",
+   "say": "The changed area covers roughly 203 million square kilometers, bigger than every continent on Earth combined."
+  }
+ ]
+}

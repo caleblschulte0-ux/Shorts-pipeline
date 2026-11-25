@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "blood-type-rarity__962b83aa",
+ "slug": "blood-type-rarity",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Hospitals Panic Over One Blood Type",
+ "hook": "One blood type is so rare hospitals can't always find a donor.",
+ "closing": "Rare or common, your type matches someone, so your donation can matter.",
+ "question": "Know your blood type? Drop it below.",
+ "segments": [
+  {
+   "topic": "Blood type distribution",
+   "say": "Only 1 percent of Americans have AB negative, the rarest type. Most common is O positive, at over a third."
+  },
+  {
+   "topic": "Rh blood type",
+   "say": "Only 15 percent of Americans are Rh negative. That means a negative type is a small club, so fewer people share yours."
+  },
+  {
+   "topic": "Blood type background",
+   "say": "Over half of Latin American donors are O positive, but only about a third of Caucasian donors. Who gives shapes the mix."
+  }
+ ]
+}

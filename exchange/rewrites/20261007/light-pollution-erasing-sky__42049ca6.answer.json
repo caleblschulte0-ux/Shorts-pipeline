@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "light-pollution-erasing-sky__42049ca6",
+ "slug": "light-pollution-erasing-sky",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why City Lights Are Erasing The Night Sky",
+ "hook": "Your Milky Way vanished -- 80 percent of us can't see it.",
+ "closing": "The stars didn't leave. The lights just won.",
+ "question": "When did you last see real darkness?",
+ "segments": [
+  {
+   "topic": "Night sky brightness",
+   "say": "Night skies have grown 22 percent dimmer over just the last decade."
+  },
+  {
+   "topic": "Night sky Milky Way",
+   "say": "80 percent of people live under skies too bright to see the Milky Way."
+  },
+  {
+   "topic": "Night sky by country",
+   "say": "In Chad, 78 percent still see pristine skies; in Singapore, almost none."
+  }
+ ]
+}

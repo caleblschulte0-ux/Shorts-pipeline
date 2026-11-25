@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "hurricane-names-retired-growing-list__4dcbc649",
+ "slug": "hurricane-names-retired-growing-list",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Hurricane Names Keep Getting Banned For Good",
+ "hook": "Nobody will ever name a storm Katrina again, after 100 retired names.",
+ "closing": "Twenty major disasters a year. The list only grows.",
+ "question": "Whose name should be retired next? Tell me.",
+ "segments": [
+  {
+   "topic": "Retired hurricane names",
+   "say": "By 1954, one name was retired. By 2024, 100 were banned for good."
+  },
+  {
+   "topic": "Costliest retired hurricanes",
+   "say": "It's not wind speed. A name goes when reusing it would feel wrong; Katrina alone cost about $125 billion."
+  },
+  {
+   "topic": "Names retired, disasters rising",
+   "say": "Crowded coasts and warmer oceans mean the US now averages over 20 major disasters a year, several times the 1980s rate."
+  }
+ ]
+}

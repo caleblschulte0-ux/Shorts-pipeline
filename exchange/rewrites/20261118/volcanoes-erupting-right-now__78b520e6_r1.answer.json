@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "volcanoes-erupting-right-now__78b520e6_r1",
+ "slug": "volcanoes-erupting-right-now",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Dozens Of Volcanoes Are Erupting Right Now",
+ "hook": "Somewhere on Earth, a volcano is almost always erupting right now.",
+ "closing": "Something, somewhere, is always on fire under your feet.",
+ "question": "Did you know one was erupting today?",
+ "segments": [
+  {
+   "topic": "Active volcanoes",
+   "say": "Right now, about 45 volcanoes around the world are actively erupting."
+  },
+  {
+   "topic": "Ring of Fire volcanoes",
+   "say": "About 75 percent of all active volcanoes sit along one line, the Pacific Ring of Fire."
+  },
+  {
+   "topic": "Most dangerous volcanoes",
+   "say": "Just 16 of those volcanoes are rated dangerous enough to earn a spot on the official watch list."
+  }
+ ]
+}

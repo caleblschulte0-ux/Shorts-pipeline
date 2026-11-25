@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "oceanic-shark-collapse__7abc9718",
+ "slug": "oceanic-shark-collapse",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Sharks Have Vanished From The Open Ocean Since 1970",
+ "hook": "Nobody saw the ocean's sharks disappearing.",
+ "closing": "Apex predator. Zero say in its own survival.",
+ "question": "Did you know sharks were disappearing this fast?",
+ "segments": [
+  {
+   "topic": "shark and ray abundance",
+   "say": "In 1970, oceanic sharks and rays were near their historic numbers. By 2018, 71 percent of them were gone."
+  },
+  {
+   "topic": "decline by species",
+   "say": "The worst hit was the oceanic whitetip shark, down 98 percent from one of the most common sharks in the ocean."
+  },
+  {
+   "topic": "extinction risk today",
+   "say": "Today, 75 percent of these shark species are threatened with extinction."
+  }
+ ]
+}

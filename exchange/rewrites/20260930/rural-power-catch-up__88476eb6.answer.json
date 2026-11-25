@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "rural-power-catch-up__88476eb6",
+ "slug": "rural-power-catch-up",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Rural Electricity Arrived Long Before Clean Cooking Did",
+ "hook": "Rural areas got electricity. Cooking never caught up.",
+ "closing": "Wired up isn't the same as cooked up.",
+ "question": "Gas, electric, or fire at home?",
+ "segments": [
+  {
+   "topic": "rural electricity access",
+   "say": "Rural electricity access jumped to 85 percent by 2024 -- most of the world's countryside finally got wired up."
+  },
+  {
+   "topic": "cooking never caught up",
+   "say": "So 44 percent of rural homes are still cooking over open fire or charcoal."
+  },
+  {
+   "topic": "rural power use gap",
+   "say": "Overall electricity use per person climbed to 3,558 kilowatt-hours a year."
+  }
+ ]
+}

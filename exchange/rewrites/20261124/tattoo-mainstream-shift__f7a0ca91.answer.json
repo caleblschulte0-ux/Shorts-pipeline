@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "tattoo-mainstream-shift__f7a0ca91",
+ "slug": "tattoo-mainstream-shift",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why A Third Of America Is Now Tattooed",
+ "hook": "Tattoos used to be a warning sign. Now they're just Tuesday.",
+ "closing": "Tattoos stopped being rebellion once a third of America had one. That's just normal now.",
+ "question": "How many tattoos do you have?",
+ "segments": [
+  {
+   "topic": "Tattooed Americans",
+   "say": "In 2006, just 16 percent of Americans had a tattoo. Today that has doubled, to roughly one in three."
+  },
+  {
+   "topic": "Tattooed women",
+   "say": "Women are even further along: 37 percent have a tattoo, pulling the whole average up with them."
+  },
+  {
+   "topic": "Tattooed, then more",
+   "say": "And once people start, they keep going -- one in five Americans now has more than one tattoo."
+  }
+ ]
+}

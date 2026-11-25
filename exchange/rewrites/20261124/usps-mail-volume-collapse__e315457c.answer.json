@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "usps-mail-volume-collapse__e315457c",
+ "slug": "usps-mail-volume-collapse",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Why Your Stamp Keeps Getting More Expensive",
+ "hook": "Americans mail far less than before, yet a stamp costs more than ever.",
+ "closing": "Fewer letters are moving through the system, so the ones left behind pay more to cover it.",
+ "question": "What do you still mail?",
+ "segments": [
+  {
+   "topic": "USPS Total Mail",
+   "say": "Total US mail volume fell to 109 billion pieces, nearly half its old peak."
+  },
+  {
+   "topic": "USPS Letter Mail",
+   "say": "First-Class letter mail fell even further, to 46 billion pieces from its own peak."
+  },
+  {
+   "topic": "USPS Stamp Price",
+   "say": "A stamp now costs 68 cents, more than double what it cost back in 1995."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "python-mammal-collapse__4e32af3f",
+ "slug": "python-mammal-collapse",
+ "by": "claude",
+ "written_at": "2026-11-25T00:00:00Z",
+ "title": "Invasive Pythons Are Wiping Out Everglades Mammals",
+ "hook": "One caught in 2023 was longer than a giraffe is tall.",
+ "closing": "The raccoons never stood a chance.",
+ "question": "Would you go looking for a 19-foot python?",
+ "segments": [
+  {
+   "topic": "pythons and mammals",
+   "say": "In parts of the Everglades, raccoon sightings dropped 99 percent after Burmese pythons moved in."
+  },
+  {
+   "topic": "pythons removed, everglades",
+   "say": "Florida pays hunters to catch invasive pythons. Removals jumped to 1,022 in summer 2025, up sharply."
+  },
+  {
+   "topic": "how big pythons get",
+   "say": "One python caught in 2023 measured 19 feet, about as long as a giraffe is tall."
+  }
+ ]
+}
