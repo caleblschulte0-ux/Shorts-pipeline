@@ -6,7 +6,7 @@ walks up the quay to his own house by the water carrying a lit lantern and hangs
 it swings, glowing; across the dark town a few windows light up, one here, one there, only a handful; he turns to us
 and spreads his hands wide: would you?"""
 
-S5_HOOK = Vector((0.2, 1.1, 0.7))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
+S5_HOOK = Vector((0.2, 1.1, 0.6))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
 S5_EDGE_X = -2.2                        # the quay's water edge (x)
 
 

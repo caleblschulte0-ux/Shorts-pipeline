@@ -77,8 +77,7 @@ def s1_siren():
         a = 2 * math.pi * k / 6
         o = K.box("siren rotor vane", (c.x + 0.075 * math.cos(a), c.y + 0.075 * math.sin(a), c.z), (0.15, 0.02, 0.15), lw_metal("rotor steel", "#B8BCC0", rough=0.3), bev=0.003, parent=rotor)
         o.rotation_euler = (0, 0, a)
-    sign = K.box("siren sign", (S1_PIV.x, S1_PIV.y + 0.06, 0.95), (0.22, 0.012, 0.16), lw_paint("sign yellow", "#F2C200", rough=0.5), bev=0.004)
-    K.box("siren sign mark", (S1_PIV.x, S1_PIV.y + 0.052, 0.95), (0.1, 0.004, 0.1), K.mat("sign black", "#141414", rough=0.5), bev=0.0)
+    # (round 5: the yellow sign plate is cut: the board read it as a flat toy plate, and EDGES caught it at the frame's edge)
     return rotor
 
 
@@ -146,6 +145,12 @@ def place_grindavik_street():
             hs = town_house(f"town house {sx}_{k}", (sx * (3.3 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d,
                             roof=("#B8352B", "#2F5E8C", "#3F7A4A")[(k + (sx > 0)) % 3], wall=WALLS[k % len(WALLS)], base=0.3, seed=k)
             houses.append(hs); y += w + rnd.uniform(0.5, 0.9); k += 1
+    lava_rock("street ash", 260, (0.2, 1.9, -3.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,   # cinders and ash fallen on the street
+              avoid=lambda x, y: abs(x - 1.15) < 0.45 and abs(y - 0.42) < 0.5)
+    patch = K.mat("road patch", "#1E1E20", rough=0.9); rp = lw_random.Random(5)
+    for k in range(10):                                   # the old road's patched cracks
+        o = K.box("road crack seal", (rp.uniform(-1.6, 1.6), -2.5 + 1.2 * k, 0.012), (rp.uniform(0.6, 1.4), 0.025, 0.004), patch, bev=0.0)
+        o.rotation_euler = (0, 0, rp.uniform(-0.6, 0.6))
     lava_rock("lava field rock", 160, (-14, 14, -6, 14), s1_ground_z, seed=3, avoid=lambda x, y: abs(x) < 3.2 and y < 9.0)
     # the slope up to the ridge is old lava field: broken black blocks and moss, never one smooth brown sheet (EMPTY
     # measured the bare slope as 30% of the set), with the town's power line and a gravel track climbing it

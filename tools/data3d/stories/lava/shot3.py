@@ -222,7 +222,7 @@ def shot3():
     steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
     for k, t0 in enumerate((T_SPRAY + 0.06,)):          # that drifts off him and out over the field, off the lens's side
         b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (1.7, -2.0, b.z - 0.3), w=1.5, h=5.0, seed=5.1 * k + 2, rise=2.4, dens=7.0,
+        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.0, b.z - 0.3), w=0.95, h=4.2, seed=5.1 * k + 2, rise=2.4, dens=12.0,
                               lean=(0.25, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
     # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
     CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him
