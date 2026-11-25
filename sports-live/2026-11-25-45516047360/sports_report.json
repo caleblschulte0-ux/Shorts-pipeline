@@ -1,0 +1,391 @@
+{
+ "date": "2026-11-25",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Lionel Messi",
+   "why": "Messi throws the ball off a player's face and the whole bench reacts.",
+   "post_title": "Lionel Messi takes a throw-in off Gonzalo Tapia's face.",
+   "upvotes": 19732,
+   "url": "https://www.reddit.com/r/soccer/comments/1y2gvdf/lionel_messi_takes_a_throwin_off_gonzalo_tapias/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y2gvdf/lionel_messi_takes_a_throwin_off_gonzalo_tapias",
+   "skipped": "too short: the post runs 6.7s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Ward",
+   "why": "He says he won't backflip again, then does one on the spot.",
+   "post_title": "[Highlight] Cam celebrates with a backflip after mentioning he wouldn\u2019t do it again",
+   "upvotes": 9741,
+   "url": "https://www.reddit.com/r/nfl/comments/1y34uwe/highlight_cam_celebrates_with_a_backflip_after/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y34uwe/highlight_cam_celebrates_with_a_backflip_after",
+   "skipped": "too short: the post runs 13.4s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Dwayne Bowe",
+   "why": "A fan in his old jersey gets an autograph from the player himself.",
+   "post_title": "[Highlight] Former Chiefs WR Dwayne Bowe spots a fan wearing his jersey and autographs it",
+   "upvotes": 9692,
+   "url": "https://www.reddit.com/r/nfl/comments/1y3y8ue/highlight_former_chiefs_wr_dwayne_bowe_spots_a/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y3y8ue/highlight_former_chiefs_wr_dwayne_bowe_spots_a",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Georgia Tech",
+   "why": "A UGA fan sneaks into a rival press conference and trolls the room.",
+   "post_title": "A UGA fan snuck into Georgia Tech press conference and trolled",
+   "upvotes": 427,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y2186z/a_uga_fan_snuck_into_georgia_tech_press/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y2186z/a_uga_fan_snuck_into_georgia_tech_press",
+   "title": "A Georgia Fan Sneaks Into Georgia Tech's Press Conference And Trolls Everyone",
+   "hook": "UGA fan sneaks into Georgia Tech presser \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@8.95"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [
+     "Georgia Bulldogs@8.97"
+    ],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 75
+   },
+   "video_url": "https://youtube.com/shorts/KDXLql5UJpY",
+   "ok": true,
+   "publish_at": "2026-11-25T03:00:00Z",
+   "seconds": 339,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261125-a-georgia-fan-sneaks-into-georgia-tech-s-press-c-eb02949b",
+    "tiktok": "queued for 2026-11-25T03:00:00Z"
+   }
+  },
+  {
+   "sub": "soccer",
+   "who": "Gary Neville",
+   "why": "He slaps himself in the face to show what United's defenders don't do.",
+   "post_title": "Gary Neville slapping himself in the face whilst explaining what Manchester United defenders don't do.",
+   "upvotes": 3545,
+   "url": "https://www.reddit.com/r/soccer/comments/1y2z6oi/gary_neville_slapping_himself_in_the_face_whilst/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y2z6oi/gary_neville_slapping_himself_in_the_face_whilst",
+   "title": "Gary Neville Slaps Himself Showing What Man United Defenders Never Do",
+   "hook": "Neville slaps himself over United's defending \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@32.58"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
+     "shots": [],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [
+     "Manchester United defenders@16.52",
+     "Manchester United defenders@23.3"
+    ],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The promised slap never appears in any sampled frame, and most of the clip is a tiny wide studio shot letterboxed in blur, so the moment never lands.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The promised slap never appears in any sampled frame, and most of the clip is a tiny wide studio shot letterboxed in blur, so the moment never lands."
+  },
+  {
+   "sub": "soccer",
+   "who": "Cristiano Ronaldo",
+   "why": "Ronaldo welcomes Sadio Man\u00e9 to Al-Nassr training with a big announcement.",
+   "post_title": "Cristiano Ronaldo welcoming Sadio Man\u00e9 at Al-Nassr training: \"Sadio Man\u00e9, the champion of Senegal\"",
+   "upvotes": 3124,
+   "url": "https://www.reddit.com/r/soccer/comments/1y4ji6p/cristiano_ronaldo_welcoming_sadio_man\u00e9_at_alnassr/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y4ji6p/cristiano_ronaldo_welcoming_sadio_man\u00e9_at_alnassr",
+   "skipped": "too short: the post runs 6.6s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Alex Ferguson",
+   "why": "Two legends share chocolate buttons at Anfield.",
+   "post_title": "Sir Alex Ferguson and Sir Kenny Dalglish with their chocolate buttons at Anfield.",
+   "upvotes": 5071,
+   "url": "https://www.reddit.com/r/soccer/comments/1y2ym2b/sir_alex_ferguson_and_sir_kenny_dalglish_with/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y2ym2b/sir_alex_ferguson_and_sir_kenny_dalglish_with",
+   "skipped": "too short: the post runs 12.6s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Stefon Diggs",
+   "why": "He politely asks for more targets, and the way he says it is funny.",
+   "post_title": "[Highlight] Stefon Diggs politely asks for more targets",
+   "upvotes": 5847,
+   "url": "https://www.reddit.com/r/nfl/comments/1y41djv/highlight_stefon_diggs_politely_asks_for_more/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y41djv/highlight_stefon_diggs_politely_asks_for_more",
+   "skipped": "too short: the post runs 5.5s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Dan Campbell",
+   "why": "A mic'd-up Campbell is impressed with Goff's deep throw to Jameson Williams.",
+   "post_title": "[Mic'd Up] Dan Campbell impressed by Jared Goff staying in the pocket and making the deep throw to Jameson Williams",
+   "upvotes": 6356,
+   "url": "https://www.reddit.com/r/nfl/comments/1y3l125/micd_up_dan_campbell_impressed_by_jared_goff/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y3l125/micd_up_dan_campbell_impressed_by_jared_goff",
+   "title": "Dan Campbell Can't Hide How Impressed He Is By Goff's Deep Throw To Jameson Williams",
+   "hook": "Dan Campbell loves Goff's deep throw \ud83d\udd25",
+   "ledger": {
+    "moves": [
+     "zoom@11.41"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": false
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Olivier Rioux",
+   "why": "A 7'9 center tries to defend a three from inside the paint.",
+   "post_title": "7'9 UC Irvine center Olivier Rioux tries to defend the three from inside the paint. It does not work.",
+   "upvotes": 1003,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xzw3xx/79_uc_irvine_center_olivier_rioux_tries_to_defend/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xzw3xx/79_uc_irvine_center_olivier_rioux_tries_to_defend",
+   "skipped": "too short: the post runs 8.8s (< 15s)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Florian Xhekaj",
+   "why": "A young player picks on veteran Corey Perry.",
+   "post_title": "Florian Xhekaj picking on Corey Perry.",
+   "upvotes": 1074,
+   "url": "https://www.reddit.com/r/hockey/comments/1y43xju/florian_xhekaj_picking_on_corey_perry/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y43xju/florian_xhekaj_picking_on_corey_perry",
+   "skipped": "no sound: the post has no audio track"
+  },
+  {
+   "sub": "hockey",
+   "who": "Sarrah Strimel-Bentley",
+   "why": "The anthem singer apologizes on video after last night.",
+   "post_title": "Last night\u2019s anthem singer Sarrah Strimel-Bentley\u2019s apology video",
+   "upvotes": 2007,
+   "url": "https://www.reddit.com/r/hockey/comments/1y4eoct/last_nights_anthem_singer_sarrah_strimelbentleys/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y4eoct/last_nights_anthem_singer_sarrah_strimelbentleys",
+   "title": "Anthem Singer Sarrah Strimel-Bentley Apologizes To Canadians, Then Reveals Why She Botched It",
+   "hook": "Anthem singer apologizes after botching O Canada \ud83d\ude14",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "MMA",
+   "who": "Josh Hokit",
+   "why": "He says his eye is still blurry from Gane's poke and wants consequences.",
+   "post_title": "Josh Hokit says his eye is still blurry after getting poked by Ciryl Gane: \"There has to be consequences next time.\"",
+   "upvotes": 1321,
+   "url": "https://streamable.com/gppn9r",
+   "topic": "https://www.reddit.com/r/MMA/comments/1y3pgni/josh_hokit_says_his_eye_is_still_blurry_after",
+   "title": "Josh Hokit Says His Eye Is Still Blurry After Ciryl Gane's Poke And Wants Payback",
+   "hook": "Hokit's eye is still blurry after Gane's poke",
+   "ledger": {
+    "moves": [
+     "whoa@31.53",
+     "zoom@35.83"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "nba",
+   "who": "Myles Turner",
+   "why": "The coach hands him the game ball for 10,000 points after a rare win.",
+   "post_title": "Taylor Jenkins and the Bucks celebrate improving their record to 2-16 after their win against the Raptors. Jenkins then gives the game ball to Myles for reaching 10000 points.",
+   "upvotes": 235,
+   "url": "https://streamable.com/cs2fhh",
+   "topic": "https://www.reddit.com/r/nba/comments/1y4mevu/taylor_jenkins_and_the_bucks_celebrate_improving",
+   "title": "Bucks Coach Gives Myles Turner The Game Ball After 10,000 Career Points",
+   "hook": "Myles Turner hits 10,000 career points \ud83c\udfc0",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [
+     "Myles Turner@20.18"
+    ],
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "nba",
+   "who": "Yang Hansen",
+   "why": "Tacko Fall taps hands with Yang Hansen and old Blazers teammates reunite.",
+   "post_title": "Yang Hansen & Tacko Fall tap each other at the end of the game; Trail Blazers players reunite with their former teammates - Anfernee Simons, Caleb Love, Rayan Rupert, and Jabari Walker. Blazers broadc",
+   "upvotes": 52,
+   "url": "https://streamable.com/lyvuni",
+   "topic": "https://www.reddit.com/r/nba/comments/1y4ocg0/yang_hansen_tacko_fall_tap_each_other_at_the_end",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "baseball",
+   "who": "Bernie Brewer",
+   "why": "The Brewers mascot steals a Chicago parade.",
+   "post_title": "Bernie Brewer showed up and showed out in Chicago's annual holiday-season kickoff parade",
+   "upvotes": 1384,
+   "url": "https://www.reddit.com/r/baseball/comments/1y4cqi6/bernie_brewer_showed_up_and_showed_out_in/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1y4cqi6/bernie_brewer_showed_up_and_showed_out_in",
+   "title": "Bernie Brewer Shows Out At Chicago's Holiday Parade And The Crowd Goes Wild",
+   "hook": "Bernie Brewer takes over the parade \ud83d\udd25",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The cut opens on Bernie waving a flag, then the crop loses him and the clip runs out on crowd shots and the back of someone's head, so the 'takes over the parade' moment never lands and a stranger never learns why it matters.",
+    "score": 58
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The cut opens on Bernie waving a flag, then the crop loses him and the clip runs out on crowd shots and the back of someone's head, so the 'takes over the parade' moment never lands and a stranger never learns why it matters."
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Tom Izzo",
+   "why": "Izzo rants about the injury disclosure rule and takes a shot at gamblers.",
+   "post_title": "Tom Izzo on the rule requiring coaches to disclose injury information 2 hours prior to each game: \"It benefits nobody. Not the parents, players, coaches, fans. Unless you're a gambler, then it benefit",
+   "upvotes": 2776,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to",
+   "title": "Tom Izzo Says The New Injury Rule Is The Dumbest He's Ever Heard, Would Gladly Pay The Fine",
+   "hook": "Izzo rips the injury report rule \ud83d\ude24",
+   "ledger": {
+    "moves": [
+     "zoom@3.31",
+     "line2@18.81"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 28.17,
+       "reason": "the framer: Tom Izzo's whole face (columns 4-6) and his jacket/shoulders, with no empty backdrop or half-faces at the edges (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.169,
+      0.0,
+      0.241
+     ],
+     "n_subjects": 1,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  }
+ ],
+ "already_today": 0,
+ "pool": 133,
+ "already_posted": 0,
+ "refused_before": 0,
+ "shipped": 1
+}
