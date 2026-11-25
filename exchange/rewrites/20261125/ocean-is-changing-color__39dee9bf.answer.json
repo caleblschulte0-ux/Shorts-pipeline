@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ocean-is-changing-color__39dee9bf",
+  "slug": "ocean-is-changing-color",
+  "by": "chatgpt",
+  "written_at": "2026-11-25T12:15:00.000Z",
+  "title": "More Ocean Changed Color Than All Earth's Land",
+  "hook": "Satellites found a planet-sized ocean shift happening in plain sight.",
+  "closing": "Ocean color tracks microscopic life, so this vast shift could signal ecosystem change.",
+  "question": "What could be changing the color?",
+  "segments": [
+    {
+      "topic": "Ocean Color Shift",
+      "say": "Color changed across 56 percent of the ocean surface. Most of the sea now looks measurably different."
+    },
+    {
+      "topic": "Ocean Color Forecast",
+      "say": "A model predicted 50 percent would change. Satellites later observed even more, matching the warning at planetary scale."
+    },
+    {
+      "topic": "Ocean Color Scale",
+      "say": "The changed ocean covers 203 million square kilometers. That exceeds all Earth's land combined."
+    }
+  ]
+}
