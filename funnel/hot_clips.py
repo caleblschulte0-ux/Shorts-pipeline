@@ -441,6 +441,20 @@ def about(query: str, period: str = "month", limit: int = 50) -> list[dict]:
     return out
 
 
+def _seconds(post: dict) -> float:
+    """A Reddit-hosted video's length, from the post itself (0 = unknown).
+    Every listing shape carries it under media/secure_media."""
+    for k in ("secure_media", "media"):
+        rv = ((post.get(k) or {}) if isinstance(post.get(k), dict)
+              else {}).get("reddit_video") or {}
+        try:
+            if float(rv.get("duration") or 0) > 0:
+                return float(rv["duration"])
+        except (TypeError, ValueError):
+            pass
+    return 0.0
+
+
 def top_videos(sub: str, period: str = "week",
                limit: int = 100) -> list[dict]:
     """Any subreddit's top posts for `period` that link to footage on a
@@ -475,7 +489,8 @@ def top_videos(sub: str, period: str = "week",
                     "permalink": "https://www.reddit.com"
                                  + str(p.get("permalink") or ""),
                     "created": float(p.get("created_utc") or 0),
-                    "sub": sub})
+                    "sub": sub,
+                    "seconds": _seconds(p)})
     out.sort(key=lambda c: -c["upvotes"])
     return out
 

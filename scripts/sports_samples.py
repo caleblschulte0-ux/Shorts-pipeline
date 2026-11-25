@@ -430,6 +430,11 @@ def in_scope(pool: list[dict]) -> list[dict]:
     out = []
     for c in pool:
         why = sports_scope.out_of_scope(c.get("sub"), c.get("post_title"))
+        # A post whose own length is under the floor is never a cut
+        # (2026-11-25: 7 of 17 slots went to posts of 5-13s, downloaded
+        # and refused one by one while the post said its length all along)
+        secs = float(c.get("seconds") or 0)
+        why = why or (sports_scope.too_short(secs) if secs else "")
         if why:
             print(f"[sports] out of scope: r/{c.get('sub')} "
                   f"{str(c.get('post_title'))[:60]!r}: {why}", flush=True)

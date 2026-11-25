@@ -202,6 +202,23 @@ class NotSomeoneElsesEditNotATalkingHead(unittest.TestCase):
 
 class TheFloorIsTheFloor(unittest.TestCase):
 
+    def test_a_post_that_says_it_is_short_is_never_picked(self):
+        import sports_samples as ss
+        pool = [{"sub": "nfl", "post_title": "Josh Allen trucks a guy",
+                 "seconds": 6.6},
+                {"sub": "nfl", "post_title": "Josh Allen mic'd up",
+                 "seconds": 41.0},
+                {"sub": "nfl", "post_title": "Josh Allen unknown"}]
+        with mock.patch.object(ss.sports_scope, "out_of_scope",
+                               return_value=""):
+            kept = [c["post_title"] for c in ss.in_scope(pool)]
+        self.assertEqual(kept, ["Josh Allen mic'd up", "Josh Allen unknown"])
+
+    def test_the_length_comes_from_the_post(self):
+        post = {"media": {"reddit_video": {"duration": 12}}}
+        self.assertEqual(hot_clips._seconds(post), 12.0)
+        self.assertEqual(hot_clips._seconds({"media": None}), 0.0)
+
     def test_fourteen_point_eight_is_under_fifteen(self):
         from shared import sports_scope as sc
         self.assertTrue(sc.too_short(14.8))
