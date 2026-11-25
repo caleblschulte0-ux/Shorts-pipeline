@@ -222,21 +222,20 @@ def shot3():
     steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
     for k, t0 in enumerate((T_SPRAY + 0.06,)):          # that drifts off him and out over the field, off the lens's side
         b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.0, b.z - 0.3), w=0.95, h=4.2, seed=5.1 * k + 2, rise=2.4, dens=12.0,
+        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.2, b.z - 0.3), w=1.3, h=4.6, seed=5.1 * k + 2, rise=2.4, dens=12.0,
                               lean=(0.25, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
-    # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
-    CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=56.0, fstop=22.0)
-    def cam_at(t):                                          # it leans in at the hit, then drifts after the front as it slides off
-        mv = Vector((0.03, 0.12, -0.03)) * W(t, T_HIT - 0.1, 0.9) + Vector((-0.12, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.4)
-        return CAM + mv, LOOK + mv * 0.8, data.pos() + Vector((0, 0, 0.5))
-    # CUT to the WIDE as the front grinds off (board round 2: "it never turns away from the town", "no town behind"):
-    # high out over the lava field, the whole front against the wall's face sliding off along it, him small on the crest
-    # with his jet and steam, the town's roofs safe on the far side
-    T_W0, T_W1 = T_HIT - 0.15, T_REL - 0.1
-    CW = Vector((3.4, -8.6, 8.2)); LW = Vector((-0.6, 1.0, 2.6))       # high out over the field: the tongue, the turn, the lobe along the wall, him and the town beyond
-    lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.35, 0.15, -0.1)) * (t - T_W0), LW, Vector((0.0, -1.5, 4.0))), T_W0, T_W1, 56.0, 28.0)
-    return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",), cutaway=(T_W0, T_W1),
+    # ---- ROUND 6 RESTAGE (coordinator on board 5: "Data front-on, mid-frame, holding a prop, the event pasted behind
+    # him"): ONE lens along the wall. Out over the lava field off the wall's end, high, looking back along it: the crest
+    # running away with him on it hosing the front, the black face under him, the front grinding along its foot AWAY from
+    # us and from the town, the coloured roofs safe behind the crest. Solved so he reads (compose), no cut.
+    CAM, LOOK = compose.frame_data(data, Vector((4.4, 0.9, S3_H + 1.4)), Vector((-2.0, -2.2, S3_H - 1.6)), 30.0,
+                                   face_at=(0.56, 0.5), height=0.3, t=T_SPRAY + 0.3)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=22.0)
+    def cam_at(t):                                          # it eases after the front as it slides off along the wall
+        mv = Vector((-0.25, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.6) + Vector((0.0, 0.08, -0.04)) * W(t, T_HIT - 0.1, 0.9)
+        return CAM + mv, LOOK + mv * 0.9, data.pos() + Vector((0, 0, 0.5))
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 30.0, 30.0)
+    return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",), cutaway=None,
                 boxes=[],
                 conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [tongue, front], T_HIT - 0.2, DUR, {"whole": False}),
                         ("he blasts the front with the hose and a cloud of steam bursts up", lambda: steam, T_SPRAY + 0.1, DUR, {"whole": False, "moves": True})])

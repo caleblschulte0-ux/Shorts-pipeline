@@ -304,7 +304,7 @@ def shot4():
     # the lens comes DOWN to his height and goes LONG, right up the middle of a narrow street, so both rows of houses
     # close in behind him and the wall with its smoke stands across the end of the street over his head; the crack
     # tears across between him and us and the lava runs down the street at the lens
-    CAM = Vector((0.3, YS - 4.0, 1.0)); LOOK = Vector((0.12, 40.0, -4.2))
+    CAM = Vector((1.3, YS - 3.8, 1.9)); LOOK = Vector((-1.6, 40.0, -7.4))   # round 6 restage: HIGH and off his barrow's side, so the barrow never stands between us and him   # board round 5: "a head over a crate": the lens looks over the barrow at him
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=70.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()

@@ -208,7 +208,7 @@ def place_grindavik_street():
 
     def light():
         k = iceland_light(sun_elev=4, sun_az=-45, sun=1.0, sky=0.12, warm=(1.0, 0.6, 0.4), haze=2.0)     # the town dim under an orange-tinted sky; the eruption lights it
-        ph_sky("industrial_sunset_puresky", strength=0.25, rot=math.radians(180))      # a REAL low-sun sky, orange under the plume (Poly Haven)
+        ph_sky("kloofendal_overcast_puresky", strength=0.8, rot=math.radians(180))      # board round 5: "light the afternoon": the brief's grey BRIGHT afternoon (Poly Haven)
         return k
     return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
@@ -217,11 +217,11 @@ def shot1():
     """THE ROAD GATE. A low lens three-quarter from the road, the street running away behind him to the ridge. The ridge
     bursts open; he startles round at it, takes the gate's crank and winds it hand over fist: the striped arm swings up
     high over the road; the cars pour out past him; he waves them on; the fountains surge; he sets off after the cars."""
-    T_ERUPT = 0.08 * DUR
+    T_ERUPT = 0.0                                          # board round 5: "open on the fissure already ripping"
     T_GRAB = 0.22 * DUR; T_UP0 = T_GRAB + 0.05; T_UP1 = T_UP0 + 1.5
     T_LET = T_UP1 + 0.1
-    T_CARS = T_UP0 + 0.7
-    T_WAVE0 = T_LET + 0.15; T_WAVE1 = 0.8 * DUR
+    T_CARS = 0.2 * DUR
+    T_WAVE0 = 0.38 * DUR + 0.3; T_WAVE1 = 0.8 * DUR
     T_SURGE = 0.72 * DUR
     T_GO = 0.84 * DUR
     REVS = 2.5
@@ -234,11 +234,11 @@ def shot1():
     kit = hard_hat(data)
     rnd = lw_random.Random(9)
     # ---- the eruption: the fountains burst up at T_ERUPT and keep throwing, surging at T_SURGE; spatter; the plume climbs
-    T_NINE = 0.33                                          # one vent bursts every T_NINE s, left to right: nine, counted
+    T_NINE = 0.14                                          # one vent bursts every T_NINE s, left to right: nine, counted
     vents = P["founts"]; cols = []
     for k, v in enumerate(vents):                        # each vent a FOUNTAIN OF FIRE as a gas: torn tongues licking up a
         tk = T_ERUPT + T_NINE * k                        # glowing column, bursting in turn, nine, counted
-        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.15, h_fire=4.6, h_smoke=2.6,
+        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.6, h_fire=6.0, h_smoke=3.0,
                                    lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=14.0, smoke_d=1.5, rise=3.5,
                                    keys=[(max(0.0, tk - 0.04), 0.0), (tk + 0.18, 1.0)], grow=True))
     for k, x in enumerate((-4.0, 0.0, 4.0)):             # the plume: a wall of grey gas and ash boiling off the whole fissure, leaning downwind
@@ -279,85 +279,68 @@ def shot1():
             t = (f - 1) / FPS; s = max(0.0, t - T_CARS)
             y = y0 - v * s
             c.location = (S1_LANE + 0.05 * math.sin(0.7 * t + k), y, s1_ground_z(S1_LANE, y) if y > 8 else 0.0); c.keyframe_insert("location", frame=f)
-    crank_u = lambda t: ease(min(1.0, max(0.0, (t - T_UP0) / (T_UP1 - T_UP0))))
-    # ---- his body: the start at the eruption, the lean into each turn of the crank, the wave, the flinch, the walk
-    def body(t):
-        p = P0.copy()
-        p.z += 0.07 * lw_kick(t - T_ERUPT - 0.05, 0.12)
-        p.z += 0.05 * lw_kick(t - T_SURGE, 0.12)
-        cr = W(t, T_UP0, 0.25) * (1 - W(t, T_UP1, 0.25))                   # his whole body rides each turn of the crank
-        p.z -= 0.025 * cr * (1 + math.sin(2 * math.pi * REVS * crank_u(t)))
-        p.x += 0.035 * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 0.6)          # he rocks side to side over the crank
-        yaw = math.radians(-30) * W(t, T_ERUPT - 0.05, 0.3) * (1 - W(t, T_GRAB - 0.35, 0.3)) \
-            + math.radians(3) * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 1.2) \
-            - math.radians(30) * W(t, T_WAVE0, 0.4) * (1 - W(t, T_GO - 1.0, 1.0)) + math.radians(40) * W(t, T_GO - 1.0, 1.0)
-        return p, yaw
-    for f in range(1, NF + 1):                             # at the end he turns after the cars, leaning into the run
-        t = (f - 1) / FPS; p, yaw = body(t); p.z += 0.03 * lw_kick(t - T_GO, 0.15); data._kobj(t, loc=tuple(p), rot=yaw)
-    lw_layer(data, "spine", lambda t: (-12 * lw_kick(t - T_ERUPT - 0.05, 0.2) + (8 + 5 * math.sin(2 * math.pi * REVS * crank_u(t))) * W(t, T_GRAB, 0.3) * (1 - W(t, T_LET, 0.3))
-                                       - 10 * lw_kick(t - T_SURGE, 0.25) + 10 * W(t, T_GO - 0.5, 0.8), 0,
-                                       3 * math.sin(2 * math.pi * (t - T_WAVE0) / 1.0) * W(t, T_WAVE0, 0.3) * (1 - W(t, T_WAVE1, 0.3))), 0, DUR + 0.4)
-    # ---- the crank, built where his near hand turns it: its hub just in front of that shoulder
-    sc.frame_set(F(T_GRAB)); bpy.context.view_layer.update()
-    sides = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
-    wind, other = sides[0], sides[1]                                              # the hand on the post's side winds
-    sh = acts._shoulder(data, wind)
-    osh = acts._shoulder(data, other)
-    HUB = Vector((sh.x - 0.01, sh.y - 0.18, sh.z - 0.08))
-    wheel, TOP = s1_crank(HUB, osh.x)
-    th = lambda t: 2 * math.pi * REVS * crank_u(t)
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS; wheel.rotation_euler = (0, th(t), 0); wheel.keyframe_insert("rotation_euler", frame=f)
-    knob = lambda t: HUB + Vector((S1_CRANK_R * math.cos(th(t)), 0.065, -S1_CRANK_R * math.sin(th(t))))
-    # ---- the siren: its rotor spins up as he winds (geared up off the crank) and runs on, winding down slowly
-    gate = P["gate"]; spin = 0.0
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        rate = 9.0 * W(t, T_UP0, 0.4) * (1 - 0.5 * W(t, T_LET, 1.5))      # rev/s
-        spin += 2 * math.pi * rate / FPS
-        gate.rotation_euler = (0, 0, spin); gate.keyframe_insert("rotation_euler", frame=f)
-    data.reach(wind, knob, T_GRAB, T_LET, lead=0.45, back=None, elbow_out=0.4)
-    RK = [(T_LET + 0.55, (0.12, 0.1, -0.07)), (T_GO - 0.2, (0.09, 0.09, -0.09)), (DUR + 0.4, (0.08, 0.09, -0.09))]
-    data.reach(wind, lw_hand(data, wind, RK), RK[0][0], DUR + 0.3, lead=0.55, back=None, elbow_out=0.4)
-    WK = [(T_UP0 + 0.55, (0.08, 0.12, 0.0))]                 # his free hand waves the cars on while the other still winds
-    t = T_UP0 + 0.95; k = 0
+    # ---- ROUND 6 RESTAGE (coordinator on board 5, the talking head): no crank, no post in the lens. He RUNS IN from
+    # the side of the street, in profile, to the kerb by the cars' lane and waves them through with a lit baton, his
+    # whole arm going; he flinches as the fountains surge, then turns and runs after the last car
+    T_IN0, T_IN1 = 0.12 * DUR, 0.38 * DUR
+    PS = Vector((2.6, 1.4, 0.0)); PW = Vector((0.15, 0.35, 0.0))
+    data._kobj(0.0, loc=tuple(PS), rot=math.radians(-75))
+    data.walk_to((PW.x, PW.y), T_IN0, T_IN1)
+    sc.frame_set(F(T_IN1)); bpy.context.view_layer.update()
+    Y_IN = data.arm.rotation_euler.z; YW = math.radians(-55)
+    YW = Y_IN + ((YW - Y_IN + math.pi) % (2 * math.pi) - math.pi)
+    for f in range(F(T_IN1) + 1, NF + 1):
+        t = (f - 1) / FPS; p = PW.copy()
+        p.z += 0.05 * lw_kick(t - T_SURGE, 0.12) + 0.03 * lw_kick(t - T_GO, 0.15)
+        p.y += 0.06 * W(t, T_SURGE, 0.3)                                     # a step back from the surge
+        yaw = Y_IN + (YW - Y_IN) * W(t, T_IN1, 0.5) + math.radians(60) * W(t, T_GO - 0.6, 0.9)   # then round after the cars
+        data._kobj(t, loc=tuple(p), rot=yaw)
+    lw_layer(data, "spine", lambda t: (10 * W(t, T_IN0, 0.3) * (1 - W(t, T_IN1, 0.4)) - 10 * lw_kick(t - T_SURGE, 0.25) + 10 * W(t, T_GO - 0.5, 0.8), 0,
+                                       4 * math.sin(2 * math.pi * (t - T_WAVE0) / 0.9) * W(t, T_WAVE0, 0.3) * (1 - W(t, T_WAVE1, 0.3))), 0, DUR + 0.4)
+    sc.frame_set(F(T_IN1 + 0.2)); bpy.context.view_layer.update()
+    sides = sorted("LR", key=lambda s_: acts._shoulder(data, s_).x)
+    other, low = sides[0], sides[1]                         # the arm toward the cars' lane waves; the other stays low
+    WK = [(T_IN1 + 0.15, (0.08, 0.12, 0.02))]
+    t = T_IN1 + 0.5; k = 0
     while t < T_WAVE1 - 0.2:
-        WK.append((t, (0.07, 0.15, 0.08) if k % 2 == 0 else (0.11, 0.07, 0.03))); t += 0.45; k += 1
+        WK.append((t, (0.07, 0.16, 0.1) if k % 2 == 0 else (0.11, 0.08, 0.02))); t += 0.45; k += 1
     WK += [(max(T_SURGE + 0.1, WK[-1][0] + 0.35), (0.06, 0.1, 0.06)), (DUR + 0.4, (0.08, 0.09, -0.08))]
     WK = sorted({round(a, 3): b for a, b in WK}.items())
-    data.reach(other, lw_hand(data, other, WK), WK[0][0], DUR + 0.3, lead=0.5, back=None, elbow_out=0.35)
+    data.reach(other, lw_hand(data, other, WK), WK[0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.35)
+    LK = [(T_IN1 + 0.3, (0.07, 0.1, -0.1)), (DUR + 0.4, (0.07, 0.1, -0.11))]
+    data.reach(low, lw_hand(data, low, LK), LK[0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.35)
+    gate = P["gate"]; spin = 0.0                              # the siren off up the street spins and wails from the start
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; spin += 2 * math.pi * 7.0 / FPS
+        gate.rotation_euler = (0, 0, spin); gate.keyframe_insert("rotation_euler", frame=f)
     # ---- face and head: one feeling per moment, held
-    LENS = Vector((3.2, -3.6, 0.8))
-    data.look_at(LENS, 0.0, max_yaw=40, blend=0.0)
-    data.look_at(Vector((-3.0, S1_RIDGE_Y, 7.0)), T_ERUPT + 0.05, max_yaw=60, max_pitch=30, blend=0.3)
-    data.look_at(HUB, T_GRAB - 0.3, max_yaw=50, max_pitch=18, blend=0.3)                  # eyes down to it, the brim kept off his face
-    data.look_at(Vector((S1_PIV.x - 0.2, 0.6, S1_SIREN_Z + 0.4)), T_UP0 + 0.4, max_yaw=55, max_pitch=40, blend=0.3)      # up at the siren as it starts to wail
-    data.look_at(Vector((-1.5, 5.0, 1.5)), T_UP0 + 1.0, max_yaw=55, max_pitch=40, blend=0.3)
-    data.look_at(Vector((S1_LANE, -1.0, 0.7)), T_LET, max_yaw=55, blend=0.3)
+    LENS = Vector((-0.2, -3.4, 0.5))
+    data.look_at(Vector((-2.0, S1_RIDGE_Y, 7.0)), 0.0, max_yaw=60, max_pitch=30, blend=0.0)
+    data.look_at(Vector((S1_LANE, -1.0, 0.7)), T_IN1 - 0.2, max_yaw=55, blend=0.3)       # at the cars he waves through
     data.look_at(Vector((-2.0, S1_RIDGE_Y, 8.0)), T_SURGE, max_yaw=60, max_pitch=30, blend=0.3)
     data.look_at(Vector((S1_LANE, -4.0, 0.7)), T_GO - 0.1, max_yaw=50, blend=0.3)
-    data.expression("alarmed", T_ERUPT, T_GRAB - 0.05, blend=0.15)
-    data.expression("determined", T_GRAB, T_SURGE - 0.1, blend=0.2)
+    data.expression("alarmed", T_ERUPT, T_IN1, blend=0.15)
+    data.expression("determined", T_IN1 + 0.05, T_SURGE - 0.1, blend=0.2)
     data.expression("worried", T_SURGE, DUR + 1.0, blend=0.2)
     data.finish()
-    # ---- the lens: WIDE from a little above his head, in front of him and off to the post's far side, so the street
-    # runs away behind him to the ridge and all nine vents stand over the town in one row
-    CAM = Vector((0.95, -1.24, 1.15)); LOOK = Vector((1.6, 17.45, -2.5))   # tipped down: the nine fountains high in the frame, less bare sky (EMPTY read the sky as 30%)
-    # board round 4 (4th round of "the post splits the frame"): the siren post is CUT from the main lens. The lens
-    # stands off to the cars' side of the road, solved so he stands in the left third with the street, its cars and
-    # the nine fountains filling the rest; the post and its arm are seen whole in the wide
-    CAM, LOOK = compose.frame_data(data, Vector((2.1, -1.7, 1.5)), Vector((-1.2, 17.45, -1.0)), 34.0, face_at=(0.33, 0.47), height=0.36, t=T_UP0 + 0.5)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=34.0, fstop=16.0)
-    # CUT to the WIDE while the town drives out (board round 2: "the cars never pour out under the gate", "not
-    # Grindavik's main street"): high behind the cars' exit, the street with its houses down both sides running to the
-    # ridge, the nine fountains in a row over it, the raised gate with him at its post, the cars streaming at the lens
-    T_W0, T_W1 = 0.5 * DUR, 0.8 * DUR
-    CW = Vector((0.45, -4.6, 1.0)); LW = Vector((1.0, 10.0, 2.6))      # low on the road's crown: the cars streaming past us, him at the siren, the street and its houses to the fountains
-    lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.15, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 34.0, 40.0)
+    # ---- the light baton in his waving hand: a marshal's orange wand, lit, riding his hand every frame
+    bat = K.cyl("light baton", (0, 0, 0), 0.013, 0.2, lw_emit("baton glow", "#FF8A1E", 6.0), v=12)
+    pb = data.pb[f"hand.{other}"]
+    for f in range(1, NF + 1):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        mw = data.arm.matrix_world @ pb.matrix
+        d_ = (mw.to_3x3() @ Vector((0, 1, 0))).normalized()
+        bat.location = data.arm.matrix_world @ pb.tail + d_ * 0.07
+        bat.rotation_euler = d_.to_track_quat('Z', 'Y').to_euler()
+        bat.keyframe_insert("location", frame=f); bat.keyframe_insert("rotation_euler", frame=f)
+    # ---- the lens: LOW in the road, looking up the street: the fissure's curtain of fire across the top half from the
+    # first frame, the cars' headlights streaming down at us, him at the kerb in profile waving them through. One lens.
+    CAM, LOOK = compose.frame_data(data, Vector((0.45, -3.2, 0.32)), Vector((-0.2, 15.0, 4.2)), 30.0, face_at=(0.62, 0.42), height=0.34, t=T_IN1 + 0.6)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.12, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
+           lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 30.0, 30.0)
     founts = P["founts"]
-    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"), cutaway=(T_W0, T_W1),
+    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("light baton",), cutaway=None,
                 boxes=[],
                 conseq=[("the ridge rips open and a curtain of lava fountains bursts up over the town", lambda: founts, T_ERUPT, DUR, {"whole": False}),
-                        ("he winds the crank and the siren on its pole spins up and wails", lambda: lw_drawn("siren", "gate post"), T_UP0 + 0.3, T_UP1 + 0.4, {"whole": False}),
-                        ("at its call the town's cars pour out down the street, past him", lambda: meshes(cars), T_CARS + 0.3, T_WAVE1, {"whole": False})])
+                        ("he waves the town's cars through and they pour down the street past him at us", lambda: meshes(cars), T_CARS + 0.3, T_WAVE1, {"whole": False, "moves": True})])

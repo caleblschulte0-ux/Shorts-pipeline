@@ -478,3 +478,138 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Pull back for the last beat: the dark town behind the clear curving wall, a few windows clicking on one by one, the three fires off to one side, and Data in front asking.
 - better: Replace the box boats with real hull models moored at the quay.
 
+
+## 2026-11-25 08:49Z · storyboard · round 5
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 34 | 28, 34, 36 | FAIL |
+| 2 | 30 | 24, 30, 30 | FAIL |
+| 3 | 38 | 34, 38, 40 | FAIL |
+| 4 | 34 | 33, 34, 35 | FAIL |
+| 5 | 40 | 38, 40, 42 | FAIL |
+
+**shot 1** (FAIL, 34, bar 70)
+
+- HARD: BROKEN: frames 1, 2 and 4: a black object is cut by the top-left corner and a black post base is cut by the bottom-left edge. In frame 3, the only frame that shows the gate whole, it is a black pole with a red box on top and no striped arm. The striped arm this shot is about is still not in any frame.
+- HARD: CONSEQUENCE: frames 1-4: the arm is never seen swinging up and no car is seen racing past him toward the lens. The cars are still a parked line along the left kerb: a white car in frame 1, a white car and a blue car in frames 2 and 4, and a queue of cars in frame 3. The street never empties, and a car still sits at the left kerb in frame 4.
+- HARD: NOT SHOWN: frames 1-4: 'everyone had to run' is not shown, because nobody and nothing leaves. The fountains are now orange and tall, which is a real gain, but you see about five in frame 2 and about seven or eight in frames 3-4. Nine separate eruptions cannot be counted.
+- HARD: NOT THE WORLD: frames 1-4: the houses at the left edge and in the wide are grey-blue clapboard with dark roofs, not low houses with red, blue and green tin roofs. The sky is a dim, moody dusk and the street is underlit, not a grey, bright afternoon. The ridge is still a brown rubble mound scattered with white blocks (frames 2 and 4), not mossy black lava rock.
+- HARD: OFF THE LOOK (every object built from its real parts; one finish across the frame): frames 1, 2 and 4: the yellow slab Data holds still reads as a flat toy plank, not a gate crank. It is the cleanest, flattest object in the frame and stands out as 'the prop'. Frame 3: the gate is a plain pole with a red box on top.
+- HARD: BROKEN: frames 1, 2 and 4: a black post, or something like one, runs off the left edge, top to bottom. The cut-off object sits right beside Data in the main lens. The striped gate arm the shot is about is in none of the four frames, and in the wide (frame 3) the gate is only a black post with a red winch box and no arm.
+- HARD: CONSEQUENCE: frames 1-4: no arm swings up and no car drives under it toward the lens. The cars stand still. Frames 1-2 show a parked row on the left kerb, with two more cars with headlights on sitting on top of the rubble mound at the end of the street. In the wide (frame 3) a parked line sits on the left. The street never empties, because it never fills with moving traffic.
+- HARD: NOT SHOWN: frames 2-4: the fountains are now tall and orange and do read as lava, which is better. But they are thin spikes spaced evenly like a picket row, and you can count seven or eight, not nine. 'Everyone had to run' is not shown: nobody and nothing is leaving.
+- HARD: NOT THE WORLD: frames 1-4: there are no red, blue or green tin roofs anywhere. The one house in view (frame 3) is grey-blue clapboard. A brown rubble mound fills the whole end of the street, so there is no town in front of a ridge. Cars sitting on top of that mound (frames 1-2) break the geography.
+- HARD: OFF THE LOOK (every object built from its real parts; one finish across the frame): frames 1, 2 and 4: Data holds a flat yellow plank that reads as a toy block, not a crank or any real part of a gate. The white slabs scattered on the mound read as placed cards, not rock.
+- HARD: TALKING HEAD: frames 1, 2 and 4: the same waist-up framing of Data facing us. Only his arm changes, and the camera stays parked.
+- HARD: BROKEN: frames 1, 2 and 4: a black post is still cut by the left frame edge, and its base plate is cut at bottom left. The striped gate arm, which this shot is about, is not in any main-lens frame. In the wide (frame 3), the black post with the red siren box is back and splits the frame down the middle.
+- HARD: CONSEQUENCE: frames 1-4: the arm is never seen swinging up. No car is seen driving under the gate toward the lens. The cars are a parked line of headlights along the left kerb (frames 1-3), plus one car up on the ridge road. Nothing pours out, and the street never empties.
+- HARD: NOT SHOWN: frame 1, the opening, has no fountains at all, just Data in a dark street. In frames 2 and 4, five or six flame spikes show, so you cannot count nine. Only the wide (frame 3) has about nine. 'Everyone had to run' is not shown: no traffic streams out and nobody leaves.
+- HARD: NOT THE WORLD: frames 1-4: the houses are grey clapboard with dark roofs; no red, blue or green tin roofs show anywhere. The sky is a dim, moody dusk, not a grey, bright afternoon. The ridge is a brown rubble mound strewn with white blocks and lined with power poles, not mossy black rock. No low town street runs away behind him.
+- HARD: OFF THE LOOK (every object built from its real parts; friendly and readable, never dark and underlit): frames 1, 2 and 4: Data holds a flat yellow slab that reads as a toy plank, not a gate crank or arm. The foreground road and Data sit in dark, flat, underlit shade, and the scene reads gloomy, not bright.
+- HARD: TALKING HEAD: frames 1, 2 and 4: Data stands centred facing the lens, nearly the same framing each time, with the camera parked on him. Only the arm wave changes.
+- problem: The fountains are now orange and read as fire, not sparklers, an improvement. But they are thin spikes, not huge fountains, and smoke rolls off them only in the wide.
+- problem: Data's worried face reads in frames 1 and 4, but nothing he does causes anything.
+- problem: The opening frame would be swiped: a dark street and a character, no eruption.
+- better: Open on the fissure already ripping, the fountains huge in frame one.
+- better: Put the whole gate, crank and striped arm in the main lens beside him, and have a car drive under the raised arm at the lens.
+- better: Light the afternoon: overcast but bright, with coloured roofs down both sides of the street.
+
+**shot 2** (FAIL, 30, bar 70)
+
+- HARD: BROKEN: frame 1: Data still floats. His feet hang well clear of the ground, with his shadow on the sand below them.
+- HARD: CONSEQUENCE: frames 2-4: the bucket rises against the sky (frames 3-4), but no rock is seen tipping over a crest or tumbling down the face. Frame 4 shows two or three round boulders lying behind the digger's tracks. No dust burst shows, and Data never ducks.
+- HARD: NOT SHOWN: frames 1-4: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is not shown. Nothing beside the wall gives its height: no truck, no person, no house. There is one digger, part of a second arm in frame 2, and no dump truck with headlights.
+- HARD: NOT THE WORLD: frames 1, 3 and 4: the ground is bright white sand with pale grey boulders, not black lava rock. It is lit evenly bright under a black storm sky, so it reads as a quarry or the moon. The floodlights are still white box heads that throw no visible pools of light.
+- HARD: OFF THE LOOK (every object built from its real parts): frames 1, 3 and 4: the digger still reads as a yellow box with a grille, a dark box cab and a bent bar for an arm. No cab glass or rams show at this size. The remote pack reads as a gold tray.
+- HARD: TALKING HEAD: frames 1, 3 and 4 are the same frame: Data waist-up to full body, centre, facing us, hands on the tray, with the camera parked. The digger work happens behind him, half hidden.
+- HARD: BROKEN: frame 1: Data is still off the ground. His legs are bent, his feet hang above the sand, and his shadow lies apart from them.
+- HARD: CONSEQUENCE: frames 3-4: the bucket rises against the sky, but no rock tips over a crest, no dust bursts and nothing tumbles down the face past him. In frame 4 a few boulders sit behind him, and he never ducks.
+- HARD: NOT SHOWN: frames 1-4: 'three stories tall' has nothing to give it scale. The wall is a dark mass lost in the black sky, with no house, truck or person against it for height. 'A hundred diggers and trucks working day and night' is one digger, plus a second small arm in frame 2. There is no dump truck and no headlights.
+- HARD: NOT THE WORLD: frames 1-4: the ground is pale white sand with grey rocks, not black lava rock. The floodlights are white box heads that throw no visible pools of light. The ground is lit flat and even under a near-black sky.
+- HARD: OFF THE LOOK (friendly and readable, never dark underlit night): frames 1-4: the sky and wall are almost black with heavy black smoke. That is horror-dark and muddy, against both the story's 'never dark and muddy' and the operator's rule. Frame 2 is mostly black.
+- HARD: OFF THE LOOK (every object built from its real parts): frames 1, 3 and 4: Data's remote is a yellow bar with two stubs, which reads as a toy. The digger body is a yellow box with a grille, with no readable cab glass or rams at this size.
+- HARD: TINY DATA: frame 2: Data is a speck at the far end of the frame.
+- HARD: TALKING HEAD: frames 3 and 4: Data stands waist-up to full-body facing us with the same pose and framing, and the camera stays parked.
+- HARD: BROKEN: frame 1: Data still floats. His feet hang clear of the ground, his shadow sits separately beneath him, and his legs dangle.
+- HARD: CONSEQUENCE: frames 3-4: the bucket rises against the sky, but no rock is seen tipping over a crest or tumbling down the face in a dust burst. In frame 4, a few round boulders sit by the digger's base. Data never ducks from rock bouncing past him.
+- HARD: NOT SHOWN: frames 1-4: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is not shown. You see one digger, and a second only as a dot in the wide. No dump truck with headlights appears. Nothing gives the wall a height: no person, house or truck stands against it.
+- HARD: NOT THE WORLD: frames 1, 3 and 4: the ground is pale white sand with grey faceted rocks, not black lava rock (the claimed change is not visible). The floodlights are still white box heads on poles and cast no pools of light. The sky is a black storm, not a blue evening.
+- HARD: OFF THE LOOK (every object built from its real parts; one finish across the frame; never dark): frames 1, 3 and 4: the digger is a yellow box with a grille and a bent bar for an arm, with no readable cab glass or rams. The remote pack is a gold toy bar. The rocks are low-poly facets against a scanned wall. The frame reads dark and murky.
+- HARD: TALKING HEAD / ONE-SECOND GAG: frames 1, 3 and 4: Data stands centred facing us, holding the same pose. The only change is the bucket height behind him. He never ducks or grins.
+- problem: In frame 2, the wide, Data is tiny and nearly lost against the digger. The ground is in deep shadow while the other frames are bright: the lighting does not match inside the shot.
+- problem: The low angle promised by the FOR line is not used. The lens sits at chest height, so the wall never towers over him.
+- better: Lower the lens to the ground and look up, so the black wall face fills the top two-thirds with a truck at its foot for scale.
+- better: Show the tipped rock pouring down the face as a dust plume, and have Data duck as it reaches him.
+- better: Make the ground black and gravelly, with hard white pools of light under each floodlight.
+
+**shot 3** (FAIL, 38, bar 70)
+
+- HARD: BROKEN: frame 1: there is no lava in this frame, only a blurred grey band below Data. Frame 4: the lava is cut by the bottom and right edges. The shot's subject is still never whole in the main lens.
+- HARD: CONSEQUENCE: frames 2-4: the steam is a grey-black column in frame 3 that reads as smoke from a fire, not a burst of white steam where the water hits. The front slamming into the wall's foot and its crust buckling into red is never seen. In frame 4 the water is still a dotted white line.
+- HARD: NOT SHOWN: frames 2-3: 'it hit the wall and turned away from the town' does not read. The lava is a pad near the crest plus a separate strip running toward the lens. Neither is seen meeting the wall and sliding along it, and houses run the whole length of the wall, so no 'away from the town' direction shows.
+- HARD: NOT THE WORLD: frames 1 and 4: a red-roofed house sits directly on the crest behind Data. The wall face is a smooth blurred grey band, not crushed black rock. Frames 2-3: bright green pea-like dots are still on the lava field, although the note claims the moss is gone.
+- HARD: OFF THE LOOK (the realer the better): frames 2-4: the lava is warped a little, but it still reads as an even tile of cells with uniform glowing orange seams, like a game texture. Frame 4 shows it big and plainly. The water is a dotted line, not a hose jet.
+- HARD: BROKEN: frame 1: no lava is in the frame, and below Data is a smooth, blurred grey band. Frame 4: the lava is cut off by the bottom and right edges, so it fills the bottom third as a flat texture. The subject is never whole in the main lens.
+- HARD: CONSEQUENCE: frames 2-4: the front never slams into the wall's foot, and no crust is seen buckling. The steam (frame 3) is a single grey column that reads as smoke, not a white burst off the water. In frame 4 the water is a thin dotted white line.
+- HARD: NOT SHOWN: frames 2-3: 'hit the wall and turned away from the town' does not read. One lava pad sits at the wall's foot, and a separate long tongue comes up from the bottom toward it. Nothing shows the flow turning along the wall and away.
+- HARD: NOT THE WORLD: frame 1: the crest is a flat grey slab with a house right behind it, not a wide crest of crushed black rock. Dark smoke columns still rise from behind the town (frames 2-3).
+- HARD: OFF THE LOOK (the realer the better; things behave for real): frames 2-4: the lava is still an even Voronoi cell pattern with bright orange seams, like a game texture. It is worst at the frame-4 close-up. Green pea-like moss dots are still scattered across the field in frames 2-3, though the ledger says they were removed.
+- HARD: BROKEN: frame 1 has no lava in the main lens, only a blurred grey band below Data. In frame 4, the lava front is cut by the bottom and right edges. The shot's subject is never whole in the main lens.
+- HARD: CONSEQUENCE: frames 2-4: the front never visibly slams into the wall's foot, and its crust never buckles into red. The steam in frame 3 is a grey column off to the side of the pad, not a burst where the water hits. In frame 4, the water is a thin white dotted line.
+- HARD: NOT SHOWN: frames 2-3: 'it hit the wall and turned away from the town' does not read. The lava is a round pad plus a separate stream crossing the field. No flow turns and runs along the wall away from the houses.
+- HARD: NOT THE WORLD: frames 1 and 4: a red-roofed house sits right on the crest behind Data, so the crest still reads as a yard, not a wall of crushed black rock. Frames 2-3: dark smoke columns rise from behind the town, implying the town is burning. Green moss dots are still scattered across the field (the claimed removal is not visible).
+- HARD: OFF THE LOOK (the realer the better; things behave for real): frames 2-4: the lava is still evenly seamed cells with glowing orange lines, a game texture rather than cracked crust. The hose is a stiff brown stick, and the water is dotted beads.
+- problem: The town in the wide (frames 2-3), with red, green, yellow and blue roofs, is the best world-building in the video.
+- problem: Data's happy face in frame 4 reads, but the thumbs-up is not visible.
+- better: Frame the crest, the wall face and the lava front together in one lens, with the front hitting the wall's foot.
+- better: Show the front sliding along the wall's foot, away from the houses, with a clear direction.
+- better: Put a big white steam burst right where the water hits.
+
+**shot 4** (FAIL, 34, bar 70)
+
+- HARD: BROKEN: frame 4: the lava, the shot's result, is still a thin strip cut by the bottom edge. Frame 2: a row of loose paving blocks appears in front of the wheel from nowhere. It reads as dropped cobbles, not a crack tearing through asphalt.
+- HARD: CONSEQUENCE: frames 2-4: the barrow is never seen tipping into the crack or catching fire. It is a small dark box beside the pad in frame 3 and gone in frame 4. The street in front of him never fills with orange.
+- HARD: NOT SHOWN: frame 3: 'lava poured straight into the streets' is a round crust pad edged with paving blocks in the middle of the road, not a tongue running down the street. The red-roofed corner house it should head for is not in any frame.
+- HARD: NOT THE WORLD: frame 3 has a bright blue sky with white cumulus, while frames 1, 2 and 4 have a hazy pale sky with smoke. The weather jumps inside one shot. In frames 1, 2 and 4 the houses are tall dark terraces with no red, blue or green roofs.
+- HARD: OFF THE LOOK (the realer the better): frame 4: the lava is a glossy, smooth pinkish-orange sheet like plastic or caramel.
+- HARD: BROKEN: frame 4: the lava, the shot's result, is a thin strip cut by the bottom edge.
+- HARD: CONSEQUENCE: frames 1-2: no crack tears across the asphalt. In front of the wheel is a row of cobble paving blocks with orange gaps, which reads as a kerb, not a zig-zag tear. The barrow is not seen tipping in or catching fire; in frame 3 a small dark object sits at the pad's edge. In frame 4 the street is not seen filling with orange.
+- HARD: NOT SHOWN: frame 3: 'lava poured straight into the streets' is a short pad across the road, not a tongue running down the street. The red-roofed corner house it heads for is in no frame.
+- HARD: NOT THE WORLD: frame 3 has a bright blue sky with white cumulus, and frames 1, 2 and 4 are hazy and pale, so the weather jumps inside one shot. In the main lens (frames 1, 2 and 4) the houses are tall, dark, narrow terraces with no coloured roofs, unlike the wide.
+- HARD: OFF THE LOOK (the realer the better): frame 4: the lava is a smooth, glossy pink-orange sheet like caramel or plastic. Frame 3's pad is the same tile texture as shot 3.
+- HARD: BROKEN: frame 4: the lava, the shot's result, is a pale sheet cut by the bottom edge that only grazes the frame. In frame 1, Data's body is hidden behind the barrow box.
+- HARD: CONSEQUENCE: frames 2-4: no crack tears across the asphalt; frame 2 shows a few paving slabs lifting with a glow between them. The barrow is never seen tipping into the crack or catching fire; it is a dark box in the wide and gone in frame 4. The street in front of him never fills with orange.
+- HARD: NOT SHOWN: frame 3: 'lava poured straight into the streets' is a pad lying across the road with steam on either side, not a tongue running down the street. The red-roofed corner house it should run toward is not in any frame.
+- HARD: NOT THE WORLD: frame 3 has a bright blue sky with white cumulus, while frames 1, 2 and 4 have a hazy pale sky, so the weather jumps inside one shot. In the main lens (frames 1, 2 and 4), the houses are tall dark terraces with no coloured roofs.
+- HARD: OFF THE LOOK (the realer the better): frame 4: the lava is a smooth, glossy, pinkish sheet like caramel or plastic, not lava. Frame 3's pool uses the same tiled cell texture as shot 3.
+- problem: In frames 1-2 the barrow box blocks Data from chest to knees, so we see a head over a crate.
+- problem: Frame 3, the only frame that shows the event, makes Data tiny.
+- problem: The crack never reads as a zig-zag tear from kerb to kerb.
+- better: Keep one lens, low and close, with the crack opening between the barrow and the camera and the lava running toward us past him.
+- better: Show the barrow tilt and drop into the glow with a flare of flame.
+- better: Use the same sky and street in every frame, with coloured roofs in every one.
+
+**shot 5** (FAIL, 40, bar 70)
+
+- HARD: BROKEN: frame 1: the lantern sits at his feet while both his hands are at his chest; he is not holding it. Frames 3-4: the lantern hangs in the air beside the black pipe with no hook or bracket visible holding it.
+- HARD: NO PAYOFF: frame 4: the video still ends on Data posing with his arms out beside the post. The windows lighting one by one across a dark, saved town are not visible. The houses that show lit windows are the burning ones.
+- HARD: NOT SHOWN: frames 1-4: 'the wall saved the rest' is hard to read. In the wide (frame 2) the wall is a low brown band behind the burning houses, and the saved houses are a cluster at the left that is not set against the wall. 'Only about a hundred people moved back' is not shown: no handful of windows lighting in a dark town.
+- HARD: NOT THE WORLD: frames 3-4: the 'post by his door' is still a black pipe on a round brass base, like a chimney stack or bollard. There is no door and no 'own town house by the water' beside him. Frame 2: no boats at the quay, so it does not read as a harbour; a blue-roofed house is cut by the bottom-right edge and Data is tiny in the corner.
+- HARD: OFF THE LOOK (every object built from its real parts): frames 3-4: the post and its stacked brass base read as a toy prop against the realer houses and fire behind.
+- HARD: BROKEN: frame 1: the lantern sits at his feet while both hands are at his chest, so he is not holding it. Frames 3-4: the lantern hangs in the air beside the black post with no visible hook or bracket.
+- HARD: NOT THE WORLD: frames 3-4: the 'post by his door' is still a black pipe on a round brass base, like a chimney stack. There is no door and no house of his by the water beside him. The harbour is unreadable: no fishing boats appear in any frame, and frame 2 shows only a dark rectangle of water.
+- HARD: NOT SHOWN: frame 2: 'the wall saved the rest' is still unclear. The wall is a low dark band at the back, lost behind the glowing lava field, so you cannot see houses untouched behind the wall next to the three burning. 'Only about a hundred moved back' does not read either: in frames 3-4 the lit windows are a whole lit house face, not a handful lighting one by one across a dark town.
+- HARD: NO PAYOFF: frame 4: the video ends on Data with his arms out beside the lantern, and the frame is the same as frame 3. The payoff picture of a few windows coming on across a dark, saved town is not the final image.
+- HARD: TINY DATA: frame 2: Data is a speck at the bottom of the wide.
+- HARD: BROKEN: frame 1: the lantern sits at his feet while his hands are at his chest; he is not holding it. Frames 3-4: the lantern hangs in the air beside the post, with no hook, bracket or chain holding it.
+- HARD: NOT THE WORLD: frames 3-4: the 'post by his door' is a black pipe on a round brass base, like a chimney stack or bollard. No door and no house of his own by the water are anywhere near him.
+- HARD: NOT SHOWN: frames 1-4: 'the wall saved the rest' is hard to read. In the wide (frame 2), the wall is a low dark band and reads only as ground behind the burning houses. 'Only about a hundred moved back' is not shown: in frames 3-4 the grey house behind him already has many lit windows, so the town does not read as nearly dark with a handful lighting up.
+- HARD: NO PAYOFF: frame 4: the video ends on Data posing with his arms out beside a pipe. The payoff picture, a few windows lighting one by one across a dark, saved town, does not read in the stills.
+- problem: The three burning houses with real smoke columns are the strongest images in the video, and they read well.
+- problem: The dawn sky is right for the story.
+- problem: His 'would you?' gesture is readable, but it lands on an empty foreground.
+- better: Put a real house front with a door and a wall-mounted lantern hook next to him, and show the hand-off of the lantern onto the hook.
+- better: End on a wide in which the dark, saved town lights only three or four windows, one after another, with the burning houses and the wall in the same frame.
+- better: Bring back real moored boats at the quay at a scale that reads.
+

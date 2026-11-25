@@ -1546,7 +1546,7 @@ def place_grindavik_street():
 
     def light():
         k = iceland_light(sun_elev=4, sun_az=-45, sun=1.0, sky=0.12, warm=(1.0, 0.6, 0.4), haze=2.0)     # the town dim under an orange-tinted sky; the eruption lights it
-        ph_sky("industrial_sunset_puresky", strength=0.25, rot=math.radians(180))      # a REAL low-sun sky, orange under the plume (Poly Haven)
+        ph_sky("kloofendal_overcast_puresky", strength=0.8, rot=math.radians(180))      # board round 5: "light the afternoon": the brief's grey BRIGHT afternoon (Poly Haven)
         return k
     return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
@@ -1555,11 +1555,11 @@ def shot1():
     """THE ROAD GATE. A low lens three-quarter from the road, the street running away behind him to the ridge. The ridge
     bursts open; he startles round at it, takes the gate's crank and winds it hand over fist: the striped arm swings up
     high over the road; the cars pour out past him; he waves them on; the fountains surge; he sets off after the cars."""
-    T_ERUPT = 0.08 * DUR
+    T_ERUPT = 0.0                                          # board round 5: "open on the fissure already ripping"
     T_GRAB = 0.22 * DUR; T_UP0 = T_GRAB + 0.05; T_UP1 = T_UP0 + 1.5
     T_LET = T_UP1 + 0.1
-    T_CARS = T_UP0 + 0.7
-    T_WAVE0 = T_LET + 0.15; T_WAVE1 = 0.8 * DUR
+    T_CARS = 0.2 * DUR
+    T_WAVE0 = 0.38 * DUR + 0.3; T_WAVE1 = 0.8 * DUR
     T_SURGE = 0.72 * DUR
     T_GO = 0.84 * DUR
     REVS = 2.5
@@ -1572,11 +1572,11 @@ def shot1():
     kit = hard_hat(data)
     rnd = lw_random.Random(9)
     # ---- the eruption: the fountains burst up at T_ERUPT and keep throwing, surging at T_SURGE; spatter; the plume climbs
-    T_NINE = 0.33                                          # one vent bursts every T_NINE s, left to right: nine, counted
+    T_NINE = 0.14                                          # one vent bursts every T_NINE s, left to right: nine, counted
     vents = P["founts"]; cols = []
     for k, v in enumerate(vents):                        # each vent a FOUNTAIN OF FIRE as a gas: torn tongues licking up a
         tk = T_ERUPT + T_NINE * k                        # glowing column, bursting in turn, nine, counted
-        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.15, h_fire=4.6, h_smoke=2.6,
+        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=1.6, h_fire=6.0, h_smoke=3.0,
                                    lean=(0.1, 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=14.0, smoke_d=1.5, rise=3.5,
                                    keys=[(max(0.0, tk - 0.04), 0.0), (tk + 0.18, 1.0)], grow=True))
     for k, x in enumerate((-4.0, 0.0, 4.0)):             # the plume: a wall of grey gas and ash boiling off the whole fissure, leaning downwind
@@ -1617,88 +1617,71 @@ def shot1():
             t = (f - 1) / FPS; s = max(0.0, t - T_CARS)
             y = y0 - v * s
             c.location = (S1_LANE + 0.05 * math.sin(0.7 * t + k), y, s1_ground_z(S1_LANE, y) if y > 8 else 0.0); c.keyframe_insert("location", frame=f)
-    crank_u = lambda t: ease(min(1.0, max(0.0, (t - T_UP0) / (T_UP1 - T_UP0))))
-    # ---- his body: the start at the eruption, the lean into each turn of the crank, the wave, the flinch, the walk
-    def body(t):
-        p = P0.copy()
-        p.z += 0.07 * lw_kick(t - T_ERUPT - 0.05, 0.12)
-        p.z += 0.05 * lw_kick(t - T_SURGE, 0.12)
-        cr = W(t, T_UP0, 0.25) * (1 - W(t, T_UP1, 0.25))                   # his whole body rides each turn of the crank
-        p.z -= 0.025 * cr * (1 + math.sin(2 * math.pi * REVS * crank_u(t)))
-        p.x += 0.035 * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 0.6)          # he rocks side to side over the crank
-        yaw = math.radians(-30) * W(t, T_ERUPT - 0.05, 0.3) * (1 - W(t, T_GRAB - 0.35, 0.3)) \
-            + math.radians(3) * cr * math.sin(2 * math.pi * REVS * crank_u(t) + 1.2) \
-            - math.radians(30) * W(t, T_WAVE0, 0.4) * (1 - W(t, T_GO - 1.0, 1.0)) + math.radians(40) * W(t, T_GO - 1.0, 1.0)
-        return p, yaw
-    for f in range(1, NF + 1):                             # at the end he turns after the cars, leaning into the run
-        t = (f - 1) / FPS; p, yaw = body(t); p.z += 0.03 * lw_kick(t - T_GO, 0.15); data._kobj(t, loc=tuple(p), rot=yaw)
-    lw_layer(data, "spine", lambda t: (-12 * lw_kick(t - T_ERUPT - 0.05, 0.2) + (8 + 5 * math.sin(2 * math.pi * REVS * crank_u(t))) * W(t, T_GRAB, 0.3) * (1 - W(t, T_LET, 0.3))
-                                       - 10 * lw_kick(t - T_SURGE, 0.25) + 10 * W(t, T_GO - 0.5, 0.8), 0,
-                                       3 * math.sin(2 * math.pi * (t - T_WAVE0) / 1.0) * W(t, T_WAVE0, 0.3) * (1 - W(t, T_WAVE1, 0.3))), 0, DUR + 0.4)
-    # ---- the crank, built where his near hand turns it: its hub just in front of that shoulder
-    sc.frame_set(F(T_GRAB)); bpy.context.view_layer.update()
-    sides = sorted("LR", key=lambda s: acts._shoulder(data, s).x)
-    wind, other = sides[0], sides[1]                                              # the hand on the post's side winds
-    sh = acts._shoulder(data, wind)
-    osh = acts._shoulder(data, other)
-    HUB = Vector((sh.x - 0.01, sh.y - 0.18, sh.z - 0.08))
-    wheel, TOP = s1_crank(HUB, osh.x)
-    th = lambda t: 2 * math.pi * REVS * crank_u(t)
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS; wheel.rotation_euler = (0, th(t), 0); wheel.keyframe_insert("rotation_euler", frame=f)
-    knob = lambda t: HUB + Vector((S1_CRANK_R * math.cos(th(t)), 0.065, -S1_CRANK_R * math.sin(th(t))))
-    # ---- the siren: its rotor spins up as he winds (geared up off the crank) and runs on, winding down slowly
-    gate = P["gate"]; spin = 0.0
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        rate = 9.0 * W(t, T_UP0, 0.4) * (1 - 0.5 * W(t, T_LET, 1.5))      # rev/s
-        spin += 2 * math.pi * rate / FPS
-        gate.rotation_euler = (0, 0, spin); gate.keyframe_insert("rotation_euler", frame=f)
-    data.reach(wind, knob, T_GRAB, T_LET, lead=0.45, back=None, elbow_out=0.4)
-    RK = [(T_LET + 0.55, (0.12, 0.1, -0.07)), (T_GO - 0.2, (0.09, 0.09, -0.09)), (DUR + 0.4, (0.08, 0.09, -0.09))]
-    data.reach(wind, lw_hand(data, wind, RK), RK[0][0], DUR + 0.3, lead=0.55, back=None, elbow_out=0.4)
-    WK = [(T_UP0 + 0.55, (0.08, 0.12, 0.0))]                 # his free hand waves the cars on while the other still winds
-    t = T_UP0 + 0.95; k = 0
+    # ---- ROUND 6 RESTAGE (coordinator on board 5, the talking head): no crank, no post in the lens. He RUNS IN from
+    # the side of the street, in profile, to the kerb by the cars' lane and waves them through with a lit baton, his
+    # whole arm going; he flinches as the fountains surge, then turns and runs after the last car
+    T_IN0, T_IN1 = 0.12 * DUR, 0.38 * DUR
+    PS = Vector((2.6, 1.4, 0.0)); PW = Vector((0.15, 0.35, 0.0))
+    data._kobj(0.0, loc=tuple(PS), rot=math.radians(-75))
+    data.walk_to((PW.x, PW.y), T_IN0, T_IN1)
+    sc.frame_set(F(T_IN1)); bpy.context.view_layer.update()
+    Y_IN = data.arm.rotation_euler.z; YW = math.radians(-55)
+    YW = Y_IN + ((YW - Y_IN + math.pi) % (2 * math.pi) - math.pi)
+    for f in range(F(T_IN1) + 1, NF + 1):
+        t = (f - 1) / FPS; p = PW.copy()
+        p.z += 0.05 * lw_kick(t - T_SURGE, 0.12) + 0.03 * lw_kick(t - T_GO, 0.15)
+        p.y += 0.06 * W(t, T_SURGE, 0.3)                                     # a step back from the surge
+        yaw = Y_IN + (YW - Y_IN) * W(t, T_IN1, 0.5) + math.radians(60) * W(t, T_GO - 0.6, 0.9)   # then round after the cars
+        data._kobj(t, loc=tuple(p), rot=yaw)
+    lw_layer(data, "spine", lambda t: (10 * W(t, T_IN0, 0.3) * (1 - W(t, T_IN1, 0.4)) - 10 * lw_kick(t - T_SURGE, 0.25) + 10 * W(t, T_GO - 0.5, 0.8), 0,
+                                       4 * math.sin(2 * math.pi * (t - T_WAVE0) / 0.9) * W(t, T_WAVE0, 0.3) * (1 - W(t, T_WAVE1, 0.3))), 0, DUR + 0.4)
+    sc.frame_set(F(T_IN1 + 0.2)); bpy.context.view_layer.update()
+    sides = sorted("LR", key=lambda s_: acts._shoulder(data, s_).x)
+    other, low = sides[0], sides[1]                         # the arm toward the cars' lane waves; the other stays low
+    WK = [(T_IN1 + 0.15, (0.08, 0.12, 0.02))]
+    t = T_IN1 + 0.5; k = 0
     while t < T_WAVE1 - 0.2:
-        WK.append((t, (0.07, 0.15, 0.08) if k % 2 == 0 else (0.11, 0.07, 0.03))); t += 0.45; k += 1
+        WK.append((t, (0.07, 0.16, 0.1) if k % 2 == 0 else (0.11, 0.08, 0.02))); t += 0.45; k += 1
     WK += [(max(T_SURGE + 0.1, WK[-1][0] + 0.35), (0.06, 0.1, 0.06)), (DUR + 0.4, (0.08, 0.09, -0.08))]
     WK = sorted({round(a, 3): b for a, b in WK}.items())
-    data.reach(other, lw_hand(data, other, WK), WK[0][0], DUR + 0.3, lead=0.5, back=None, elbow_out=0.35)
+    data.reach(other, lw_hand(data, other, WK), WK[0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.35)
+    LK = [(T_IN1 + 0.3, (0.07, 0.1, -0.1)), (DUR + 0.4, (0.07, 0.1, -0.11))]
+    data.reach(low, lw_hand(data, low, LK), LK[0][0], DUR + 0.3, lead=0.6, back=None, elbow_out=0.35)
+    gate = P["gate"]; spin = 0.0                              # the siren off up the street spins and wails from the start
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS; spin += 2 * math.pi * 7.0 / FPS
+        gate.rotation_euler = (0, 0, spin); gate.keyframe_insert("rotation_euler", frame=f)
     # ---- face and head: one feeling per moment, held
-    LENS = Vector((3.2, -3.6, 0.8))
-    data.look_at(LENS, 0.0, max_yaw=40, blend=0.0)
-    data.look_at(Vector((-3.0, S1_RIDGE_Y, 7.0)), T_ERUPT + 0.05, max_yaw=60, max_pitch=30, blend=0.3)
-    data.look_at(HUB, T_GRAB - 0.3, max_yaw=50, max_pitch=18, blend=0.3)                  # eyes down to it, the brim kept off his face
-    data.look_at(Vector((S1_PIV.x - 0.2, 0.6, S1_SIREN_Z + 0.4)), T_UP0 + 0.4, max_yaw=55, max_pitch=40, blend=0.3)      # up at the siren as it starts to wail
-    data.look_at(Vector((-1.5, 5.0, 1.5)), T_UP0 + 1.0, max_yaw=55, max_pitch=40, blend=0.3)
-    data.look_at(Vector((S1_LANE, -1.0, 0.7)), T_LET, max_yaw=55, blend=0.3)
+    LENS = Vector((-0.2, -3.4, 0.5))
+    data.look_at(Vector((-2.0, S1_RIDGE_Y, 7.0)), 0.0, max_yaw=60, max_pitch=30, blend=0.0)
+    data.look_at(Vector((S1_LANE, -1.0, 0.7)), T_IN1 - 0.2, max_yaw=55, blend=0.3)       # at the cars he waves through
     data.look_at(Vector((-2.0, S1_RIDGE_Y, 8.0)), T_SURGE, max_yaw=60, max_pitch=30, blend=0.3)
     data.look_at(Vector((S1_LANE, -4.0, 0.7)), T_GO - 0.1, max_yaw=50, blend=0.3)
-    data.expression("alarmed", T_ERUPT, T_GRAB - 0.05, blend=0.15)
-    data.expression("determined", T_GRAB, T_SURGE - 0.1, blend=0.2)
+    data.expression("alarmed", T_ERUPT, T_IN1, blend=0.15)
+    data.expression("determined", T_IN1 + 0.05, T_SURGE - 0.1, blend=0.2)
     data.expression("worried", T_SURGE, DUR + 1.0, blend=0.2)
     data.finish()
-    # ---- the lens: WIDE from a little above his head, in front of him and off to the post's far side, so the street
-    # runs away behind him to the ridge and all nine vents stand over the town in one row
-    CAM = Vector((0.95, -1.24, 1.15)); LOOK = Vector((1.6, 17.45, -2.5))   # tipped down: the nine fountains high in the frame, less bare sky (EMPTY read the sky as 30%)
-    # board round 4 (4th round of "the post splits the frame"): the siren post is CUT from the main lens. The lens
-    # stands off to the cars' side of the road, solved so he stands in the left third with the street, its cars and
-    # the nine fountains filling the rest; the post and its arm are seen whole in the wide
-    CAM, LOOK = compose.frame_data(data, Vector((2.1, -1.7, 1.5)), Vector((-1.2, 17.45, -1.0)), 34.0, face_at=(0.33, 0.47), height=0.36, t=T_UP0 + 0.5)
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=34.0, fstop=16.0)
-    # CUT to the WIDE while the town drives out (board round 2: "the cars never pour out under the gate", "not
-    # Grindavik's main street"): high behind the cars' exit, the street with its houses down both sides running to the
-    # ridge, the nine fountains in a row over it, the raised gate with him at its post, the cars streaming at the lens
-    T_W0, T_W1 = 0.5 * DUR, 0.8 * DUR
-    CW = Vector((0.45, -4.6, 1.0)); LW = Vector((1.0, 10.0, 2.6))      # low on the road's crown: the cars streaming past us, him at the siren, the street and its houses to the fountains
-    lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.15, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.0, 0.25, 0.0)) * (t - T_W0), LW, Vector((1.1, 0.4, 0.8))), T_W0, T_W1, 34.0, 40.0)
+    # ---- the light baton in his waving hand: a marshal's orange wand, lit, riding his hand every frame
+    bat = K.cyl("light baton", (0, 0, 0), 0.013, 0.2, lw_emit("baton glow", "#FF8A1E", 6.0), v=12)
+    pb = data.pb[f"hand.{other}"]
+    for f in range(1, NF + 1):
+        sc.frame_set(f); bpy.context.view_layer.update()
+        mw = data.arm.matrix_world @ pb.matrix
+        d_ = (mw.to_3x3() @ Vector((0, 1, 0))).normalized()
+        bat.location = data.arm.matrix_world @ pb.tail + d_ * 0.07
+        bat.rotation_euler = d_.to_track_quat('Z', 'Y').to_euler()
+        bat.keyframe_insert("location", frame=f); bat.keyframe_insert("rotation_euler", frame=f)
+    # ---- the lens: LOW in the road, looking up the street: the fissure's curtain of fire across the top half from the
+    # first frame, the cars' headlights streaming down at us, him at the kerb in profile waving them through. One lens.
+    CAM, LOOK = compose.frame_data(data, Vector((0.45, -3.2, 0.32)), Vector((-0.2, 15.0, 4.2)), 30.0, face_at=(0.62, 0.42), height=0.34, t=T_IN1 + 0.6)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=16.0)
+    lw_cut(cam, lambda t: (CAM + Vector((0.0, 0.12, 0.02)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
+           lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 30.0, 30.0)
     founts = P["founts"]
-    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("gate crank", "gate winch housing"), cutaway=(T_W0, T_W1),
+    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("light baton",), cutaway=None,
                 boxes=[],
                 conseq=[("the ridge rips open and a curtain of lava fountains bursts up over the town", lambda: founts, T_ERUPT, DUR, {"whole": False}),
-                        ("he winds the crank and the siren on its pole spins up and wails", lambda: lw_drawn("siren", "gate post"), T_UP0 + 0.3, T_UP1 + 0.4, {"whole": False}),
-                        ("at its call the town's cars pour out down the street, past him", lambda: meshes(cars), T_CARS + 0.3, T_WAVE1, {"whole": False})])
+                        ("he waves the town's cars through and they pour down the street past him at us", lambda: meshes(cars), T_CARS + 0.3, T_WAVE1, {"whole": False, "moves": True})])
 
 
 # ====================================================================================================
@@ -1924,7 +1907,7 @@ def place_wall_works():
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
     lava_rock("works rubble", 650, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.24), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
-              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.25 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
+              avoid=lambda x, y: (x - 0.9) ** 2 + (y - 2.9) ** 2 < 1.2 or (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.25 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     for k, x0 in enumerate((-2.2, -1.5, 1.6, 2.3)):           # the tracks the machines have cut in it
@@ -1962,8 +1945,10 @@ def shot2():
     P = place_wall_works()
     light = P["light"]
     data = load_data()
-    P0 = Vector((0.05, 0.2, s2_ground_z(0.05, 0.2))); YAW0 = math.radians(18)
-    PS = P0 + Vector((-0.12, 0.1, 0.0)); PS.z = s2_ground_z(PS.x, PS.y)                     # where he starts: he steps up to the work as he shoves
+    # ROUND 6 RESTAGE (coordinator on board 5): he is IN HIS DIGGER'S CAB, on its deck at the controls, side-on to a
+    # lens low at the foot of the berm; he works the arm from there
+    P0 = Vector((S2_DIG.x + 0.45, S2_DIG.y + 0.25, S2_DECK)); YAW0 = math.radians(180)
+    PS = P0 + Vector((0.0, -0.1, 0.0))                     # one step up to the controls
     data.place(PS.x, PS.y, math.degrees(YAW0)); data._kobj(0.0, loc=tuple(PS))      # on the works ground, not at z 0 over it
     kit = hard_hat(data)
     remote, sticks = s2_remote(data)
@@ -1974,6 +1959,8 @@ def shot2():
     for o in set(bpy.data.objects) - before:
         if o.parent is None and o is not rig: o.parent = rig
     rig.location = S2_DIG; rig.rotation_euler = (0, 0, math.radians(90))
+    for o in rig.children_recursive:                      # his cab is open to the lens: no glass between us and him
+        if o.name.startswith("digger cab glass"): o.hide_render = True
     def world(px, pz):                                     # a point in the digger's arm plane, in the world
         return Vector((S2_DIG.x - S2_BOOM.y, S2_DIG.y + px, pz))
     # ---- the arm: the bucket's path in its own plane (stick end), the bucket's curl
@@ -2009,7 +1996,7 @@ def shot2():
     rel = lambda local: Vector(local) - Vector((bx, S2_BOOM.y, S2_BOOM.z))
     for o, local, r in load:
         t_go = T_TIP + 0.1 + rnd.uniform(0.0, 0.25); spin = rnd.uniform(-9, 9); a = rnd.uniform(2.6, 3.8)
-        dx = rnd.uniform(-0.3, 2.4); stop = rnd.uniform(0.6, S2_FOOT - 0.3)
+        dx = rnd.uniform(1.3, 3.0); stop = rnd.uniform(0.6, S2_FOOT - 0.3)
         p0 = rides[F(t_go)] @ rel(local)
         y_land = max(p0.y, S2_EDGE - 0.2)
         for f in range(1, NF + 1):
@@ -2103,13 +2090,13 @@ def shot2():
         data.reach(sd, on_knob(sd), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     # ---- face and head
     BK = lambda t: world(*path(t))
-    LENS = Vector((0.4, -1.4, 0.5))
+    LENS = Vector((0.9, 2.9, 0.3))
     data.look_at(BK(0.0), 0.0, max_yaw=60, max_pitch=40, blend=0.0)
     data.look_at(BK(T_TOP - 0.5), T_PUSH + 0.4, max_yaw=60, max_pitch=60, blend=0.4)
     data.look_at(Vector((-1.0, 1.5, 0.3)), T_DUCK - 0.2, max_yaw=55, max_pitch=40, blend=0.2)
     data.look_at(LENS, T_GRIN, max_yaw=50, max_pitch=40, blend=0.3)
     data.look_at(BK(T_LOW), T_BACK + 0.1, max_yaw=40, max_pitch=50, blend=0.3)
-    data.look_at(Vector((0.9, -1.3, 0.95)), T_LIGHTS + 0.05, max_yaw=45, max_pitch=30, blend=0.3)      # to us as the lights blaze (board: his back in the last still)
+    data.look_at(Vector((0.9, 2.9, 0.6)), T_LIGHTS + 0.05, max_yaw=45, max_pitch=30, blend=0.3)      # to us as the lights blaze (board: his back in the last still)
     data.expression("determined", 0.2, T_DUCK - 0.2, blend=0.2)
     data.expression("alarmed", T_DUCK - 0.15, T_GRIN - 0.05, blend=0.12)
     data.expression("happy", T_GRIN, T_BACK - 0.05, blend=0.2)
@@ -2134,17 +2121,12 @@ def shot2():
     # REDESIGN after board round 3 ("eye level with a small bank behind him"; the brief asks for a LOW lens looking up at
     # him and a towering wall): the lens at his knees, tipped up, the black face rising behind him to its crest with
     # the sky above it, the digger's arm swinging up past it
-    CAM = Vector((0.46, -0.9, 0.3)); LOOK = Vector((-4.0, 6.0, 0.9))
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=20.0, fstop=32.0)      # the works sharp all the way to the sky
-    # CUT to the WIDE as the bucket goes over (board round 2: "no three-storey wall", "one digger", "the bucket never
-    # tips over a crest"): low beyond his digger, along the wall's line, the black face towering up the frame, the diggers and
-    # trucks along it under the floodlights, his bucket tipping over the crest, him small at the sticks
-    T_W0, T_W1 = T_TOP - 0.2, T_DUCK - 0.1
-    CW = Vector((-6.5, -4.0, 1.3)); LW = Vector((0.5, 6.5, 0.2))      # from the far side of his digger: his face, turned to the bucket, comes to this lens (KEYS: not his back)
-    lw_cut(cam, lambda t: (CAM + (LOOK - CAM).normalized() * (0.07 + 0.17 * (1 - ease(min(1.0, t / (0.3 * DUR))))), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.15, 0.1, 0.0)) * (t - T_W0), LW, Vector((-2.0, 4.0, 2.0))), T_W0, T_W1, 20.0, 16.0)
+    CAM, LOOK = compose.frame_data(data, Vector((0.9, 2.9, 0.28)), Vector((-4.6, 6.2, 3.8)), 22.0, face_at=(0.4, 0.5), height=0.33, t=T_TOP)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=22.0, fstop=32.0)      # low at the berm's foot, tipped up: the wall towers over the cab
+    lw_cut(cam, lambda t: (CAM + Vector((-0.1, 0.06, 0.0)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
+           lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 22.0, 22.0)
     arm_objs = lambda: meshes([D["boom"]])
-    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("remote stick", "remote control"), cutaway=(T_W0, T_W1),
+    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("remote stick", "remote control"), cutaway=None,
                 boxes=[],
                 conseq=[("he shoves the sticks and the digger's arm swings up over him with its bucket of black rock", arm_objs, T_PUSH, T_TOP + 0.3, {"whole": False, "moves": True, "hero": False}),
                         ("the rock tumbles back down the wall's face past us in a burst of dust", lambda: [o for o, _l, _r in load] + dust, T_DUCK - 0.2, T_DUCK + 1.2, {"whole": False}),
@@ -2378,21 +2360,20 @@ def shot3():
     steam = []                                           # STEAM as a gas: it boils up where the jet lands, swelling into a column
     for k, t0 in enumerate((T_SPRAY + 0.06,)):          # that drifts off him and out over the field, off the lens's side
         b = aim(t0)
-        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.0, b.z - 0.3), w=0.95, h=4.2, seed=5.1 * k + 2, rise=2.4, dens=12.0,
+        steam.append(lw_steam(f"lava steam {k}", (1.4, -2.2, b.z - 0.3), w=1.3, h=4.6, seed=5.1 * k + 2, rise=2.4, dens=12.0,
                               lean=(0.25, 0.0), keys=[(t0, 0.0), (t0 + 0.8, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0))
-    # ---- the lens: just above the crest off his shoulder, out over the heap, looking down past him at the front
-    CAM = LENS.copy() + Vector((0.0, 0.0, 0.45)); LOOK = Vector((-0.4, -0.8, S3_H + 0.16))    # high out over the heap: him on the crest, the town's roofs safe behind him, the front under him
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=56.0, fstop=22.0)
-    def cam_at(t):                                          # it leans in at the hit, then drifts after the front as it slides off
-        mv = Vector((0.03, 0.12, -0.03)) * W(t, T_HIT - 0.1, 0.9) + Vector((-0.12, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.4)
-        return CAM + mv, LOOK + mv * 0.8, data.pos() + Vector((0, 0, 0.5))
-    # CUT to the WIDE as the front grinds off (board round 2: "it never turns away from the town", "no town behind"):
-    # high out over the lava field, the whole front against the wall's face sliding off along it, him small on the crest
-    # with his jet and steam, the town's roofs safe on the far side
-    T_W0, T_W1 = T_HIT - 0.15, T_REL - 0.1
-    CW = Vector((3.4, -8.6, 8.2)); LW = Vector((-0.6, 1.0, 2.6))       # high out over the field: the tongue, the turn, the lobe along the wall, him and the town beyond
-    lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.35, 0.15, -0.1)) * (t - T_W0), LW, Vector((0.0, -1.5, 4.0))), T_W0, T_W1, 56.0, 28.0)
-    return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",), cutaway=(T_W0, T_W1),
+    # ---- ROUND 6 RESTAGE (coordinator on board 5: "Data front-on, mid-frame, holding a prop, the event pasted behind
+    # him"): ONE lens along the wall. Out over the lava field off the wall's end, high, looking back along it: the crest
+    # running away with him on it hosing the front, the black face under him, the front grinding along its foot AWAY from
+    # us and from the town, the coloured roofs safe behind the crest. Solved so he reads (compose), no cut.
+    CAM, LOOK = compose.frame_data(data, Vector((4.4, 0.9, S3_H + 1.4)), Vector((-2.0, -2.2, S3_H - 1.6)), 30.0,
+                                   face_at=(0.56, 0.5), height=0.3, t=T_SPRAY + 0.3)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=30.0, fstop=22.0)
+    def cam_at(t):                                          # it eases after the front as it slides off along the wall
+        mv = Vector((-0.25, 0.0, 0.0)) * W(t, T_SLIDE - 0.2, 1.6) + Vector((0.0, 0.08, -0.04)) * W(t, T_HIT - 0.1, 0.9)
+        return CAM + mv, LOOK + mv * 0.9, data.pos() + Vector((0, 0, 0.5))
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 30.0, 30.0)
+    return dict(lanes=[], kiosks=[], place="wall_crest", light=light, data=data, rest=1, grips=("fire hose",), cutaway=None,
                 boxes=[],
                 conseq=[("the lava front rolls in and slams into the wall's face, then slides off along it", lambda: [tongue, front], T_HIT - 0.2, DUR, {"whole": False}),
                         ("he blasts the front with the hose and a cloud of steam bursts up", lambda: steam, T_SPRAY + 0.1, DUR, {"whole": False, "moves": True})])
@@ -2707,7 +2688,7 @@ def shot4():
     # the lens comes DOWN to his height and goes LONG, right up the middle of a narrow street, so both rows of houses
     # close in behind him and the wall with its smoke stands across the end of the street over his head; the crack
     # tears across between him and us and the lava runs down the street at the lens
-    CAM = Vector((0.3, YS - 4.0, 1.0)); LOOK = Vector((0.12, 40.0, -4.2))
+    CAM = Vector((1.3, YS - 3.8, 1.9)); LOOK = Vector((-1.6, 40.0, -7.4))   # round 6 restage: HIGH and off his barrow's side, so the barrow never stands between us and him   # board round 5: "a head over a crate": the lens looks over the barrow at him
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=70.0, fstop=16.0)
     def cam_at(t):
         sc.frame_set(F(min(t, T_STOP))); bpy.context.view_layer.update()
@@ -2742,7 +2723,7 @@ walks up the quay to his own house by the water carrying a lit lantern and hangs
 it swings, glowing; across the dark town a few windows light up, one here, one there, only a handful; he turns to us
 and spreads his hands wide: would you?"""
 
-S5_HOOK = Vector((0.2, 1.1, 0.6))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
+S5_HOOK = Vector((0.2, 1.1, 0.5))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
 S5_EDGE_X = -2.2                        # the quay's water edge (x)
 
 
@@ -2996,7 +2977,7 @@ def shot5():
         p.z += 0.03 * W(t, T_HANG - 0.3, 0.25) * (1 - W(t, T_LET + 0.2, 0.3))                 # up on his toes to the hook
         p.x -= 0.05 * W(t, T_LET + 0.5, 0.5); p.y -= 0.1 * W(t, T_LET + 0.8, 0.45)   # a step back from it, and one toward us
         p.y -= 0.08 * W(t, T_ASK + 0.3, 0.7); p.z += 0.035 * lw_kick(t - T_ASK - 0.35, 0.22)   # and at the ask, a step to us and a shrug
-        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(30) * W(t, T_LET + 0.2, 1.0) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
+        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(30) * W(t, T_LET + 0.2, 1.0) + math.radians(70) * W(t, T_WIN - 0.02 * DUR, 0.9)      # he turns to look up at his town (the lens is over his shoulder by then)
         data._kobj(t, loc=tuple(p), rot=yaw)
     lw_layer(data, "spine", lambda t: (-8 * W(t, T_HANG - 0.3, 0.3) * (1 - W(t, T_LET, 0.3)) + 6 * W(t, T_LET + 0.1, 0.3) * (1 - W(t, T_TURN, 0.3))
                                        - 6 * W(t, T_ASK, 0.3), 0, 0), 0, DUR + 0.4)
@@ -3041,7 +3022,7 @@ def shot5():
     data.look_at(S5_HOOK, T_WALK1 - 0.1, max_yaw=50, max_pitch=40, blend=0.3)
     data.look_at(Vector((0.4, 9.0, 2.6)), T_LET + 0.2, max_yaw=8, max_pitch=30, blend=0.45)     # up the hill at the windows as he waves
     data.look_at(Vector((-0.8, 7.0, 2.0)), T_WIN + 0.12 * DUR, max_yaw=30, max_pitch=30, blend=0.45)
-    data.look_at(LENS, T_TURN + 0.1, max_yaw=50, blend=0.45)
+    data.look_at(Vector((0.6, 15.0, 3.6)), T_TURN + 0.1, max_yaw=50, max_pitch=30, blend=0.45)   # up at the town as the windows light
     data.expression("sad", 0.1, T_HANG - 0.1, blend=0.25)
     data.expression("determined", T_HANG, T_WIN, blend=0.2)
     data.expression("pleased", T_WIN + 0.1, T_ASK - 0.05, blend=0.25)
@@ -3060,13 +3041,18 @@ def shot5():
     # CUT to the WIDE on his walk to his door (board round 2: "no harbour, no boats, no wall", "three burning houses
     # against many untouched ones"): high over the harbour water, the boats in the basin, him at his door on the quay,
     # the town on its hill, the three houses burning at the black lava's edge, the wall above, the handful of lights
-    T_W0, T_W1 = 0.28 * DUR, T_HANG - 0.35          # on his walk up the quay, his face to this lens (KEYS: never his back)
-    for o in bpy.data.objects:                      # board round 4: from up here the boats read as toy boxes: they are out of the wide
+    # ROUND 6 RESTAGE (coordinator on board 5): no wide on his walk. He hangs the lantern in the main lens; then, as he
+    # turns to look up at his town, the lens CUTS to over his shoulder and up the slope, and we END on the saved town: the
+    # wall above it, the three houses burning off to one side, and a handful of windows lighting one by one
+    T_W0, T_W1 = T_LET + 0.35, DUR + 1.0
+    for o in bpy.data.objects:                      # board round 4: the boats read as toy boxes from up high: out of the wide
         if o.name.startswith("fishing boat") and o.type == 'MESH':
-            for f_, hid in ((1, False), (F(T_W0), True), (F(T_W1), False)):
+            for f_, hid in ((1, False), (F(T_W0), True)):
                 o.hide_render = hid; o.keyframe_insert("hide_render", frame=f_)
-    CW = Vector((3.5, -6.5, 8.5)); LW = Vector((0.5, 14.0, 5.0))
-    lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.12, 0.2, -0.05)) * (t - T_W0), LW, Vector((0.0, 14.0, 5.0))), T_W0, T_W1, 28.0, 20.0)
+    sc.frame_set(F(T_W0)); bpy.context.view_layer.update()
+    HP = data.pos().copy()
+    CW = HP + Vector((0.9, -2.4, 1.7)); LW = Vector((0.6, 15.0, 3.6))
+    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.25, 0.06)) * (t - T_W0), LW, Vector((0.6, 15.0, 3.6))), T_W0, T_W1, 28.0, 30.0)
     # ---- the payoff: windows light up ACROSS THE TOWN, one here, one there (board: "a few windows, not one"): the
     # windows this lens sees at that moment, in houses spread over the frame, a beat apart
     from bpy_extras.object_utils import world_to_camera_view as _w2c
@@ -3091,7 +3077,7 @@ def shot5():
     return dict(lanes=[], kiosks=[], place="harbour_dawn", light=light, data=data, rest=1, grips=("lantern", "lantern post", "lantern hook"), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("three houses still burn at the edge of the black lava", lambda: lw_drawn("burning house"), 0.0, DUR, {"whole": False}),
-                        ("he hangs the lantern on the hook and it swings, glowing", lambda: meshes([lan]), T_HANG - 0.1, DUR, {"whole": False, "moves": True}),
+                        ("he hangs the lantern on the hook and it swings, glowing", lambda: meshes([lan]), T_HANG - 0.1, T_W0, {"whole": False, "moves": True}),
                         ("a few windows light up along the quay and across the dark town, one here, one there", lambda: meshes([h["root"] for h in lit_houses]), T_WIN, DUR, {"whole": False})])
 
 

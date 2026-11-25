@@ -218,7 +218,7 @@ def place_wall_works():
         far.append((Dk, a_, b_, k))
     # the eruption beyond the wall reads as its glow along the horizon over the crest
     lava_rock("works rubble", 650, (-7.0, 7.0, -3.5, 6.0), s2_ground_z, seed=29, r=(0.05, 0.24), moss=0.0,     # the black rock spilled across the works as it is trucked to the wall
-              avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.25 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
+              avoid=lambda x, y: (x - 0.9) ** 2 + (y - 2.9) ** 2 < 1.2 or (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.25 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     lava_rock("works stones", 240, (-3.5, 3.5, -1.8, 3.0), s2_ground_z, seed=23, r=(0.025, 0.08),     # the trodden works: stones and grit underfoot
               avoid=lambda x, y: (x - 0.05) ** 2 + (y - 0.25) ** 2 < 0.3 or (-4.2 < x < -1.6 and 0.3 < y < 4.6))
     for k, x0 in enumerate((-2.2, -1.5, 1.6, 2.3)):           # the tracks the machines have cut in it
@@ -256,8 +256,10 @@ def shot2():
     P = place_wall_works()
     light = P["light"]
     data = load_data()
-    P0 = Vector((0.05, 0.2, s2_ground_z(0.05, 0.2))); YAW0 = math.radians(18)
-    PS = P0 + Vector((-0.12, 0.1, 0.0)); PS.z = s2_ground_z(PS.x, PS.y)                     # where he starts: he steps up to the work as he shoves
+    # ROUND 6 RESTAGE (coordinator on board 5): he is IN HIS DIGGER'S CAB, on its deck at the controls, side-on to a
+    # lens low at the foot of the berm; he works the arm from there
+    P0 = Vector((S2_DIG.x + 0.45, S2_DIG.y + 0.25, S2_DECK)); YAW0 = math.radians(180)
+    PS = P0 + Vector((0.0, -0.1, 0.0))                     # one step up to the controls
     data.place(PS.x, PS.y, math.degrees(YAW0)); data._kobj(0.0, loc=tuple(PS))      # on the works ground, not at z 0 over it
     kit = hard_hat(data)
     remote, sticks = s2_remote(data)
@@ -268,6 +270,8 @@ def shot2():
     for o in set(bpy.data.objects) - before:
         if o.parent is None and o is not rig: o.parent = rig
     rig.location = S2_DIG; rig.rotation_euler = (0, 0, math.radians(90))
+    for o in rig.children_recursive:                      # his cab is open to the lens: no glass between us and him
+        if o.name.startswith("digger cab glass"): o.hide_render = True
     def world(px, pz):                                     # a point in the digger's arm plane, in the world
         return Vector((S2_DIG.x - S2_BOOM.y, S2_DIG.y + px, pz))
     # ---- the arm: the bucket's path in its own plane (stick end), the bucket's curl
@@ -303,7 +307,7 @@ def shot2():
     rel = lambda local: Vector(local) - Vector((bx, S2_BOOM.y, S2_BOOM.z))
     for o, local, r in load:
         t_go = T_TIP + 0.1 + rnd.uniform(0.0, 0.25); spin = rnd.uniform(-9, 9); a = rnd.uniform(2.6, 3.8)
-        dx = rnd.uniform(-0.3, 2.4); stop = rnd.uniform(0.6, S2_FOOT - 0.3)
+        dx = rnd.uniform(1.3, 3.0); stop = rnd.uniform(0.6, S2_FOOT - 0.3)
         p0 = rides[F(t_go)] @ rel(local)
         y_land = max(p0.y, S2_EDGE - 0.2)
         for f in range(1, NF + 1):
@@ -397,13 +401,13 @@ def shot2():
         data.reach(sd, on_knob(sd), 0.0, DUR + 0.3, lead=0.05, back=None, elbow_out=0.35)
     # ---- face and head
     BK = lambda t: world(*path(t))
-    LENS = Vector((0.4, -1.4, 0.5))
+    LENS = Vector((0.9, 2.9, 0.3))
     data.look_at(BK(0.0), 0.0, max_yaw=60, max_pitch=40, blend=0.0)
     data.look_at(BK(T_TOP - 0.5), T_PUSH + 0.4, max_yaw=60, max_pitch=60, blend=0.4)
     data.look_at(Vector((-1.0, 1.5, 0.3)), T_DUCK - 0.2, max_yaw=55, max_pitch=40, blend=0.2)
     data.look_at(LENS, T_GRIN, max_yaw=50, max_pitch=40, blend=0.3)
     data.look_at(BK(T_LOW), T_BACK + 0.1, max_yaw=40, max_pitch=50, blend=0.3)
-    data.look_at(Vector((0.9, -1.3, 0.95)), T_LIGHTS + 0.05, max_yaw=45, max_pitch=30, blend=0.3)      # to us as the lights blaze (board: his back in the last still)
+    data.look_at(Vector((0.9, 2.9, 0.6)), T_LIGHTS + 0.05, max_yaw=45, max_pitch=30, blend=0.3)      # to us as the lights blaze (board: his back in the last still)
     data.expression("determined", 0.2, T_DUCK - 0.2, blend=0.2)
     data.expression("alarmed", T_DUCK - 0.15, T_GRIN - 0.05, blend=0.12)
     data.expression("happy", T_GRIN, T_BACK - 0.05, blend=0.2)
@@ -428,17 +432,12 @@ def shot2():
     # REDESIGN after board round 3 ("eye level with a small bank behind him"; the brief asks for a LOW lens looking up at
     # him and a towering wall): the lens at his knees, tipped up, the black face rising behind him to its crest with
     # the sky above it, the digger's arm swinging up past it
-    CAM = Vector((0.46, -0.9, 0.3)); LOOK = Vector((-4.0, 6.0, 0.9))
-    cam = K.camera(tuple(CAM), tuple(LOOK), lens=20.0, fstop=32.0)      # the works sharp all the way to the sky
-    # CUT to the WIDE as the bucket goes over (board round 2: "no three-storey wall", "one digger", "the bucket never
-    # tips over a crest"): low beyond his digger, along the wall's line, the black face towering up the frame, the diggers and
-    # trucks along it under the floodlights, his bucket tipping over the crest, him small at the sticks
-    T_W0, T_W1 = T_TOP - 0.2, T_DUCK - 0.1
-    CW = Vector((-6.5, -4.0, 1.3)); LW = Vector((0.5, 6.5, 0.2))      # from the far side of his digger: his face, turned to the bucket, comes to this lens (KEYS: not his back)
-    lw_cut(cam, lambda t: (CAM + (LOOK - CAM).normalized() * (0.07 + 0.17 * (1 - ease(min(1.0, t / (0.3 * DUR))))), LOOK, data.pos() + Vector((0, 0, 0.6))),
-           lambda t: (CW + Vector((0.15, 0.1, 0.0)) * (t - T_W0), LW, Vector((-2.0, 4.0, 2.0))), T_W0, T_W1, 20.0, 16.0)
+    CAM, LOOK = compose.frame_data(data, Vector((0.9, 2.9, 0.28)), Vector((-4.6, 6.2, 3.8)), 22.0, face_at=(0.4, 0.5), height=0.33, t=T_TOP)
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=22.0, fstop=32.0)      # low at the berm's foot, tipped up: the wall towers over the cab
+    lw_cut(cam, lambda t: (CAM + Vector((-0.1, 0.06, 0.0)) * ease(t / DUR), LOOK, data.pos() + Vector((0, 0, 0.6))),
+           lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 22.0, 22.0)
     arm_objs = lambda: meshes([D["boom"]])
-    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("remote stick", "remote control"), cutaway=(T_W0, T_W1),
+    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("remote stick", "remote control"), cutaway=None,
                 boxes=[],
                 conseq=[("he shoves the sticks and the digger's arm swings up over him with its bucket of black rock", arm_objs, T_PUSH, T_TOP + 0.3, {"whole": False, "moves": True, "hero": False}),
                         ("the rock tumbles back down the wall's face past us in a burst of dust", lambda: [o for o, _l, _r in load] + dust, T_DUCK - 0.2, T_DUCK + 1.2, {"whole": False}),

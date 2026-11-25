@@ -6,7 +6,7 @@ walks up the quay to his own house by the water carrying a lit lantern and hangs
 it swings, glowing; across the dark town a few windows light up, one here, one there, only a handful; he turns to us
 and spreads his hands wide: would you?"""
 
-S5_HOOK = Vector((0.2, 1.1, 0.6))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
+S5_HOOK = Vector((0.2, 1.1, 0.5))       # the hook's tip, on the post by his door (pointing -X, toward where he comes from)
 S5_EDGE_X = -2.2                        # the quay's water edge (x)
 
 
@@ -260,7 +260,7 @@ def shot5():
         p.z += 0.03 * W(t, T_HANG - 0.3, 0.25) * (1 - W(t, T_LET + 0.2, 0.3))                 # up on his toes to the hook
         p.x -= 0.05 * W(t, T_LET + 0.5, 0.5); p.y -= 0.1 * W(t, T_LET + 0.8, 0.45)   # a step back from it, and one toward us
         p.y -= 0.08 * W(t, T_ASK + 0.3, 0.7); p.z += 0.035 * lw_kick(t - T_ASK - 0.35, 0.22)   # and at the ask, a step to us and a shrug
-        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(30) * W(t, T_LET + 0.2, 1.0) - math.radians(45) * W(t, T_TURN - 0.45, 0.4)
+        yaw = Y_IN + (YAW_H - Y_IN) * W(t, T_WALK1 - 0.15, 0.6) - math.radians(30) * W(t, T_LET + 0.2, 1.0) + math.radians(70) * W(t, T_WIN - 0.02 * DUR, 0.9)      # he turns to look up at his town (the lens is over his shoulder by then)
         data._kobj(t, loc=tuple(p), rot=yaw)
     lw_layer(data, "spine", lambda t: (-8 * W(t, T_HANG - 0.3, 0.3) * (1 - W(t, T_LET, 0.3)) + 6 * W(t, T_LET + 0.1, 0.3) * (1 - W(t, T_TURN, 0.3))
                                        - 6 * W(t, T_ASK, 0.3), 0, 0), 0, DUR + 0.4)
@@ -305,7 +305,7 @@ def shot5():
     data.look_at(S5_HOOK, T_WALK1 - 0.1, max_yaw=50, max_pitch=40, blend=0.3)
     data.look_at(Vector((0.4, 9.0, 2.6)), T_LET + 0.2, max_yaw=8, max_pitch=30, blend=0.45)     # up the hill at the windows as he waves
     data.look_at(Vector((-0.8, 7.0, 2.0)), T_WIN + 0.12 * DUR, max_yaw=30, max_pitch=30, blend=0.45)
-    data.look_at(LENS, T_TURN + 0.1, max_yaw=50, blend=0.45)
+    data.look_at(Vector((0.6, 15.0, 3.6)), T_TURN + 0.1, max_yaw=50, max_pitch=30, blend=0.45)   # up at the town as the windows light
     data.expression("sad", 0.1, T_HANG - 0.1, blend=0.25)
     data.expression("determined", T_HANG, T_WIN, blend=0.2)
     data.expression("pleased", T_WIN + 0.1, T_ASK - 0.05, blend=0.25)
@@ -324,13 +324,18 @@ def shot5():
     # CUT to the WIDE on his walk to his door (board round 2: "no harbour, no boats, no wall", "three burning houses
     # against many untouched ones"): high over the harbour water, the boats in the basin, him at his door on the quay,
     # the town on its hill, the three houses burning at the black lava's edge, the wall above, the handful of lights
-    T_W0, T_W1 = 0.28 * DUR, T_HANG - 0.35          # on his walk up the quay, his face to this lens (KEYS: never his back)
-    for o in bpy.data.objects:                      # board round 4: from up here the boats read as toy boxes: they are out of the wide
+    # ROUND 6 RESTAGE (coordinator on board 5): no wide on his walk. He hangs the lantern in the main lens; then, as he
+    # turns to look up at his town, the lens CUTS to over his shoulder and up the slope, and we END on the saved town: the
+    # wall above it, the three houses burning off to one side, and a handful of windows lighting one by one
+    T_W0, T_W1 = T_LET + 0.35, DUR + 1.0
+    for o in bpy.data.objects:                      # board round 4: the boats read as toy boxes from up high: out of the wide
         if o.name.startswith("fishing boat") and o.type == 'MESH':
-            for f_, hid in ((1, False), (F(T_W0), True), (F(T_W1), False)):
+            for f_, hid in ((1, False), (F(T_W0), True)):
                 o.hide_render = hid; o.keyframe_insert("hide_render", frame=f_)
-    CW = Vector((3.5, -6.5, 8.5)); LW = Vector((0.5, 14.0, 5.0))
-    lw_cut(cam, cam_at, lambda t: (CW + Vector((-0.12, 0.2, -0.05)) * (t - T_W0), LW, Vector((0.0, 14.0, 5.0))), T_W0, T_W1, 28.0, 20.0)
+    sc.frame_set(F(T_W0)); bpy.context.view_layer.update()
+    HP = data.pos().copy()
+    CW = HP + Vector((0.9, -2.4, 1.7)); LW = Vector((0.6, 15.0, 3.6))
+    lw_cut(cam, cam_at, lambda t: (CW + Vector((0.0, 0.25, 0.06)) * (t - T_W0), LW, Vector((0.6, 15.0, 3.6))), T_W0, T_W1, 28.0, 30.0)
     # ---- the payoff: windows light up ACROSS THE TOWN, one here, one there (board: "a few windows, not one"): the
     # windows this lens sees at that moment, in houses spread over the frame, a beat apart
     from bpy_extras.object_utils import world_to_camera_view as _w2c
@@ -355,5 +360,5 @@ def shot5():
     return dict(lanes=[], kiosks=[], place="harbour_dawn", light=light, data=data, rest=1, grips=("lantern", "lantern post", "lantern hook"), cutaway=(T_W0, T_W1),
                 boxes=[],
                 conseq=[("three houses still burn at the edge of the black lava", lambda: lw_drawn("burning house"), 0.0, DUR, {"whole": False}),
-                        ("he hangs the lantern on the hook and it swings, glowing", lambda: meshes([lan]), T_HANG - 0.1, DUR, {"whole": False, "moves": True}),
+                        ("he hangs the lantern on the hook and it swings, glowing", lambda: meshes([lan]), T_HANG - 0.1, T_W0, {"whole": False, "moves": True}),
                         ("a few windows light up along the quay and across the dark town, one here, one there", lambda: meshes([h["root"] for h in lit_houses]), T_WIN, DUR, {"whole": False})])
