@@ -163,3 +163,29 @@ Lightning as posted vs the same shots built now: faces 4-8 -> 2-3 a shot; head 1
 73-97% -> 16-50% of frames; coat 57-180 -> 0-11 frames. `DATA_STEADY=0` builds the old way.
 `tests/test_data3d_steady.py`.
 
+
+## The shots run side by side (2026-11-26)
+
+Measured first (runs 44400238941 and 45115274403): the final render was already forty jobs, never one. Setup is half
+a minute of a job and the scene build about a minute; the rest is Cycles, 1,758 runner-minutes for a 729-frame short
+(87 s a frame in one stretch, 287 s in the next). The account runs twenty jobs at once, so a full render cannot take
+under about 90 minutes of frames however it is cut; it took 105 and 143, after a proof of 11 to 35 minutes. What a
+short costs is runner-minutes, and two things lower the wait:
+
+- **A board round in CI, every shot at once.** Push `.github/triggers/data3d_board` (`story=lava`, optionally
+  `shots=1 3`, `keys=4`, `narration_run=<id>`, `dry=1`). Each shot gets its own runner: the same `shots.py` stills
+  call as `store/board3d.sh` and the same `judge3d.py` panel on that shot alone. The collect job writes the round
+  into the story's `judge_rounds.md`, `notes_ledger.json` and `preflight.json` on the branch's tip (pull before the
+  next edit; `judge_rounds.md` merges by union). Stills, sheets and verdicts are the run's artifacts
+  (`gh run download <id>`). Five shots cost the wall-clock of the slowest one. It needs `CLAUDE_CODE_OAUTH_TOKEN`;
+  it renders no video and opens no gate.
+- **A render copies the shots that did not change.** `store/render_plan.py` runs after the proof and the judge have
+  passed. Each shot has a key, a hash of everything its pixels are made from; a shot whose key a run of the last
+  three days still holds is copied from it, and only the others render, each in its own frame ranges. A fix to one
+  shot of five renders about a fifth of the frames. `fresh=1` in the trigger copies nothing; `reshoot=3 4` renders
+  those shots whatever their key; `reuse_run=<id> reshoot=3 4` is the old by-hand form. `python store/render_plan.py
+  keys <story>` prints the keys. An edit to a helper or a kit changes every shot's key; an edit inside one
+  `def shotN():` changes only that shot's.
+
+Twenty runners is the ceiling for everything in this repository at once. More videos a day than that allows needs
+more runners (larger or self-hosted), which is the operator's call, not a code change.
