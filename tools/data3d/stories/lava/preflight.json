@@ -672,6 +672,78 @@
     }
    ]
   },
+  "5e1cd4dafaefc51acd94262297f0e9c676683e38cdfcfebb160a54393d61816f": {
+   "at": "2026-11-26 22:42:57Z",
+   "claims": 15,
+   "claims_key": "52ca8c50b02e09e3",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The glowing lava mound on the road appears in still 3 with no visible impact, so it comes from nowhere. In still 2 the street is clear apart from small debris. The car also shrinks and moves between stills 1-3 and is gone from view in 4.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-3"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Stills 2, 3 and 4 are the same stride toward the camera, only nearer each time. Only the lava mound is new.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "2-4"
+    },
+    {
+     "id": "broken",
+     "note": "The lava curtain's lower edge is a flat bright white slab cut off at the left. Thin stray rods or streaks hang in the smoke at the top in stills 2 and 3. The lava lump on the road is small and does not read as a bomb impact.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1-4"
+    },
+    {
+     "id": "look",
+     "note": "Data is a glossy toy-like cartoon beside realistic houses and rubble. The lava fountains look like a flat flame sprite with a hard white base rather than real lava.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "body",
+     "note": "His arms hang stiffly with the fists curled, and he has no running arm swing. In still 1 the thin arm points out stiffly. It reads as walking, not bolting.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "2-4"
+    },
+    {
+     "id": "consequence",
+     "note": "The only visible result is a small glowing lump on the road far behind him. Data is big in still 4, but the lava bomb is not readable at a glance and it does not change the scene.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "5e1cd4dafaefc51acd94262297f0e9c676683e38cdfcfebb160a54393d61816f",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data is striding toward the camera and a car sits up the street behind him. The car's tail lights are dim and barely lit, so the claim is only partly shown. The bolting is weakly shown too, because his pose looks like a walk.",
+     "text": "He bolts down the street toward us, a car up the street behind him with its tail lights on"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "There is a glowing orange lump of lava or debris on the road behind him in stills 3 and 4. It does not show a bomb smashing in, with no impact, no smoke trail and no visible crater, so the event is not shown.",
+     "text": "A lava bomb smashes into the road behind him, glowing and smoking"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The stills show an eruption over a town and Data running. The Icelandic flags hint at the place. Nothing shows everyone running, such as cars leaving or an empty street, and the one car stays parked. It reads only loosely as people having to run.",
+     "text": "a stranger with the sound off would say the stills show what this line says: A volcano keeps erupting right beside one Icelandic town, and everyone had to run"
+    }
+   ]
+  },
   "5fa93c164209d7886c78338dc485ff0a6c87df131179fee815afa5e087b215d8": {
    "at": "2026-11-26 10:45:36Z",
    "claims": 15,
@@ -845,6 +917,65 @@
      "kind": "ACTION",
      "note": "Data stands in still 3, but he is slightly bent with arms hanging, beside loose rocks, not a clearly finished row.",
      "text": "He stands up straight beside the finished row"
+    }
+   ]
+  },
+  "6e06eb2ef7611fe8e7aef1499316d64ff8b30c88737f9b83951fdc892f515d47": {
+   "at": "2026-11-26 22:56:03Z",
+   "claims": 15,
+   "claims_key": "cc01deae93ded739",
+   "continuity": [
+    {
+     "id": "different",
+     "note": "Stills 1, 2 and 4 are nearly the same close framing with Data standing in the same spot. Only the hand pose changes.",
+     "rule": "the stills are clearly different from each other: each shows a new state (before, action, result, reaction), not one picture repeated",
+     "stills": "1,2,4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Three near-identical close stills of Data standing. Only still 3 is a new event.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1,2,4"
+    },
+    {
+     "id": "look",
+     "note": "The fountains read as flat orange sprite layers. The glossy toy-like Data and the toy house sit beside a photoreal rock field.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "body",
+     "note": "In still 2 both hands are held out empty, with no boulder in them, and the stiff arms read oddly. In still 1 the hands barely grip the rock.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "2"
+    },
+    {
+     "id": "consequence",
+     "note": "The last still shows no visible result. No boulder is added to a row, and it looks like still 1 with a grin.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "6e06eb2ef7611fe8e7aef1499316d64ff8b30c88737f9b83951fdc892f515d47",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "Data stands upright with empty hands out. He is not bending, and there is no end of a row of boulders. A grey boulder sits at lower left, but no setting-down is shown.",
+     "text": "He bends and sets it down on the end of the row of boulders"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "One arm is out and a boulder sits behind him, but no row of boulders is visible for the arm to run along.",
+     "text": "Back on the crest he stands by his boulder, one arm out along the row"
     }
    ]
   },
@@ -1758,6 +1889,52 @@
      "kind": "SAYS",
      "note": "A stranger sees a hard-hat worker stacking rocks with a few houses and a distant eruption. No tall rock wall protecting a town is shown, and the wall is not taller than a house.",
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "e4d425de5842a0150690d64d09cb82fea5a30217f3df834776abb0e073a5ea3a": {
+   "at": "2026-11-26 21:53:49Z",
+   "claims": 15,
+   "claims_key": "cc01deae93ded739",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "A pyramid rock at bottom centre is cut by the frame edge in stills 1, 2 and 4. Data is whole.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "A large pyramid rock is half cut off at the bottom edge. The flat grey plain beyond the wall reads as water.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1,2,4"
+    },
+    {
+     "id": "look",
+     "note": "The wall is faceted, low-poly dark shapes, and the house is a clean, toy-like box beside realistic fire.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "3"
+    },
+    {
+     "id": "consequence",
+     "note": "The only change is one small boulder moved on the crest. The last close still looks like still 2, and the boulder is too small to read at a glance.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "e4d425de5842a0150690d64d09cb82fea5a30217f3df834776abb0e073a5ea3a",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "Lava fountains and dark smoke are clearly on the horizon. The ground beyond the wall is a flat grey, water-like plain, not a black lava field.",
+     "text": "the black lava field beyond it and lava fountains smoking on the horizon"
     }
    ]
   },

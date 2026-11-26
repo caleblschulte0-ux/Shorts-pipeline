@@ -10,7 +10,7 @@ S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
 S1_CARX = -0.6                         # the leaving car's line up the street
-S1_HIT = (-0.6, 2.2, 0.0)              # where the lava bomb lands on the street, behind him
+S1_HIT = (-0.4, 1.35, 0.0)              # where the lava bomb lands on the street, behind him
 S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
 
@@ -239,7 +239,7 @@ def place_grindavik_street():
         o.rotation_euler = (0, math.radians(90), 0)
     # EVERYONE HAD TO RUN: one car pulling away far up the street, whole in the frame, its tail lights to us (the
     # open front doors are cut: the board read their slabs as white boxes at the frame's edge)
-    car = FX.car(name="car leaving", loc=(S1_CARX, 4.7, 0.0), yaw=math.pi, kind="hatch", col="#B9BEC4", seed=3)["root"]      # the kit's real car, its tail lamps lit
+    car = FX.car(name="car leaving", loc=(S1_CARX, 4.7, 0.0), yaw=math.pi, kind="hatch", col="#B9BEC4", seed=3, brake=True, power=150.0)["root"]      # the kit's real car, its tail lamps lit
     for f in range(1, NF + 1):
         car.location = (S1_CARX, 4.7 + 0.98 * (f - 1) / FPS, 0.0); car.keyframe_insert("location", frame=f)
     # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
@@ -278,39 +278,44 @@ def shot1():
     for v in vents: v.hide_render = True; v.hide_viewport = True
     # the eruption is the KIT's: a fissure curtain of strand spray on the ridge, its gas above it, its clots on real
     # arcs, every lava colour off the kit's chart (an orange emission over ~2 renders peach, a red over ~1 salmon)
-    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y, P["fz"]), h=10.0, w=1.3, length=7.5, clots=700, lean=(-0.25, 0.35), seed=17, splats=0,
+    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y, P["fz"] - 1.3), h=8.5, w=1.3, length=9.0, clots=700, clot_size=2.6, lean=(-0.25, 0.35), seed=17, splats=0,
                           t_end=DUR + 1.0, name="fissure fountain")
     P["founts"] = [fo["jet"]]
+    for o in fo["rampart"]: o.hide_render = True; o.hide_viewport = True      # (from the street below, the kit's spatter rampart stood as a dark band ACROSS the fountain's white-hot foot: the ridge's own rock is its rampart here)
     for o in P["spat"]: o.hide_render = True
+    for o in bpy.data.objects:                             # (my glowing slot along the ridge read as a white bar under the kit's fountain: the kit's own vent stands there)
+        if o.name.startswith("fissure glow"): o.hide_render = True; o.hide_viewport = True
+        if o.type == "LIGHT" and o.name.startswith(("fissure light", "plume underlight")):      # (my own lamps bleached the kit's rampart to a white bar: the kit lights its own fountain)
+            o.data.energy = 0.0; o.hide_render = True
     clot = lw_emit("fountain clot", "#FFA51E", 0.9)          # (the bomb's flung bits: yellow-orange and dim)
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
     T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
-    bomb = lw_block("lava bomb", tuple(B0), 0.33, lava_mat("bomb lava", heat=1.5, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
+    bomb = lw_block("lava bomb", tuple(B0), 0.38, lava_mat("bomb lava", heat=1.5, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
     vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; s_ = max(0.0, min(TF, t - (T_HIT - TF))); u_ = s_ / TF
         bomb.location = (B0.x + (HIT.x - B0.x) * u_, B0.y + (HIT.y - B0.y) * u_, B0.z + vz0 * s_ - 0.5 * 9.8 * s_ * s_); bomb.keyframe_insert("location", frame=f)
         bomb.rotation_euler = (3.0 * s_, 2.0 * s_, 0.0); bomb.keyframe_insert("rotation_euler", frame=f)
         bomb.hide_render = t < T_HIT - TF; bomb.keyframe_insert("hide_render", frame=f)
-    splat = K.sph("lava bomb splat", (HIT.x, HIT.y, 0.012), 0.58, lava_mat("splat lava", heat=1.0, scale=6.0, glow="#FF8A10", fresh=0.45), scale=(1.0, 0.8, 0.07), seg=20, ring=8)
+    splat = K.sph("lava bomb splat", (HIT.x, HIT.y, 0.012), 0.48, lava_mat("splat lava", heat=1.0, scale=6.0, glow="#FF8A10", fresh=0.45), scale=(1.0, 0.8, 0.07), seg=20, ring=8)
     for t_, sc_ in ((T_HIT - 0.04, 0.0), (T_HIT + 0.1, 1.0), (DUR + 1.0, 1.08)):
         fr = F(t_); splat.scale = (max(0.06, sc_), max(0.06, 0.8 * sc_), 0.07); splat.keyframe_insert("scale", frame=fr)
         splat.hide_render = sc_ < 0.06; splat.keyframe_insert("hide_render", frame=fr)
     for k in range(9):                                    # what it throws out as it bursts: glowing bits that skip across the road and lie there
         a_ = 2 * math.pi * k / 9 + rf.uniform(-0.3, 0.3); d_ = rf.uniform(0.5, 1.0); hz = rf.uniform(0.3, 0.6)
-        o = lw_block(f"bit of the bomb {k}", (HIT.x, HIT.y, 0.03), rf.uniform(0.05, 0.09), clot, rf, squash=0.8)
+        o = lw_block(f"bit of the bomb {k}", (HIT.x, HIT.y, 0.03), rf.uniform(0.07, 0.13), clot, rf, squash=0.8)
         for f in range(F(T_HIT) - 1, NF + 1):
             u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
             o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.4, h=2.0, seed=6.1, col=(0.2, 0.19, 0.18), dens=5.0, lean=(-0.15, 0.25), rise=1.4,
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.6, h=2.6, seed=6.1, col=(0.16, 0.15, 0.14), dens=8.0, lean=(-0.15, 0.25), rise=1.4,
                     keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
     bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.1, 0.35), 0.0, col=(1.0, 0.4, 0.1), r=0.3)
     for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 420.0), (T_HIT + 0.6, 170.0), (DUR + 1.0, 140.0)):
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
     for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
-        L.data.energy = 2600.0 if "plume" in L.name else 4200.0
+        L.data.energy = 0.0                                # (the kit lights its own fountain: my lamps bleached its rampart to a white bar)
     P["town_glow"].data.energy = 700.0                    # the fire lights the world: orange on the ridge top, the smoke's underside and the near roofs
     # ---- him: at the kerb looking back up at it, then he BOLTS down the street at us
     RUNV = (PM - PW) / (T_SLOW - T_RUN)
@@ -320,7 +325,7 @@ def shot1():
     data.place(PW.x, PW.y, math.degrees(yaw_see))
     data._kobj(0.0, loc=tuple(PW), rot=yaw_see)
     data._kobj(T_RUN - 0.42, loc=tuple(PW), rot=yaw_see); data._kobj(T_RUN - 0.02, loc=tuple(PW), rot=run_yaw)      # he turns, then he runs
-    data.walk_to((PM.x, PM.y), T_RUN, T_SLOW, step=0.24, lift=0.1, lean=34.0, bob=0.026, ramp=0.15)
+    data.walk_to((PM.x, PM.y), T_RUN, T_SLOW, step=0.24, lift=0.12, lean=34.0, bob=0.026, ramp=0.15)
     data.walk_to((PE.x, PE.y), T_SLOW, DUR + 0.3, step=0.09, lift=0.035, lean=20.0, bob=0.01)      # ...and he pulls up at the lens, still coming
     lw_layer(data, "spine", lambda t: (-12 * (1 - W(t, T_RUN - 0.15, 0.2)) + 8 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((-7.0, S1_RIDGE_Y, 12.0))               # the row's end on the lens's side: he looks back over the shoulder we can see
@@ -343,10 +348,11 @@ def shot1():
     pose(far, 0.0, OUT); pose(oth, 0.0, HANG); pose(far, T_RUN - 0.25, OUT); pose(far, T_RUN - 0.05, WHOA); pose(oth, T_RUN - 0.1, WHOA)
     for f in range(F(T_RUN), NF + 8):                  # arms pumping, one forward as the other goes back (over the walk's own swing)
         t = (f - 1) / FPS; b_ = 0.5 + 0.5 * math.sin(2 * math.pi * (t - T_RUN) / 0.528); g_ = ease(min(1.0, (t - T_RUN) / 0.55)); e_ = ease(min(1.0, max(0.0, (t - T_SLOW + 0.1) / 0.5)))
+        d_ = ease(min(1.0, max(0.0, (t - T_HIT) / 0.2))) * (1.0 - ease(min(1.0, max(0.0, (t - T_HIT - 0.75) / 0.35))))      # the bomb lands behind him: he FLINCHES, both hands thrown up, then runs on
         for sd, bb in (("L", b_), ("R", 1 - b_)):
             sg = -1 if sd == "L" else 1
             for bn, lo, up, wh, fl in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), LOW(sg), UPF(sg), WHOA(sg), FLUNG(sg)):
-                r = tuple(((wh[i] * (1 - g_) + (lo[i] * (1 - bb) + up[i] * bb) * g_) * (1 - e_) + (fl[i] if sd in SHIELD else (lo[i] * (1 - bb) + up[i] * bb)) * e_) for i in range(3)); data._k(bn, t, rot=r)
+                r = tuple(((wh[i] * (1 - g_) + (lo[i] * (1 - bb) + up[i] * bb) * g_) * (1 - e_) + (fl[i] if sd in SHIELD else (lo[i] * (1 - bb) + up[i] * bb)) * e_) for i in range(3)); r = tuple(r[i] * (1 - d_) + fl[i] * d_ for i in range(3)); data._k(bn, t, rot=r)
     data.finish()
     from character import _fcurves                         # his shoulders a quarter turned off the lens as he runs at it (coordinator: "square to the lens in all four stills")
     for fc in _fcurves(data.arm.animation_data.action):

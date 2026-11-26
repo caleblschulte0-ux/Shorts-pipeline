@@ -105,6 +105,11 @@
        "what": "car",
        "how": "goes",
        "cause": "it keeps driving away up the street"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "the bomb lands behind him: he flinches, both hands thrown up"
       }
      ],
      "visible": [
@@ -114,7 +119,7 @@
       },
       {
        "prop": "data",
-       "as": "he runs on"
+       "as": "he runs on, flinching, both hands thrown up"
       },
       {
        "prop": "car",
