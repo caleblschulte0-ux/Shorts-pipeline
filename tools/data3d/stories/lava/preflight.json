@@ -1,0 +1,58 @@
+{
+ "sheets": {
+  "2fd562375e04b20077a09d05d4069d6c8898aac36da32c9894d4c02d06f84aef": {
+   "at": "2026-11-26 00:38:12Z",
+   "claims": 16,
+   "claims_key": "344bff379e943d3c",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "In still 4 Data's right hand is cut by the right frame edge, and the fountains behind him are mostly hidden.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "2fd562375e04b20077a09d05d4069d6c8898aac36da32c9894d4c02d06f84aef",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c2",
+     "kind": "PLACE",
+     "note": "Low painted houses, yellow, grey and red, line both sides. Tin roofs are not visible; the roofs are cut off or hidden.",
+     "text": "low painted houses with tin roofs down both sides"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "CAMERA",
+     "note": "The camera is low, but Data is medium-sized and then fills the frame. It is not a wide shot pulling back down the street.",
+     "text": "wide and low, pulling back down the street ahead of him"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "Data faces the camera with his mouth open. He is not looking back up at the lava, and he has no digger.",
+     "text": "the driver in his yellow hard hat looks back up at it, mouth open"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "A volcano erupts above a street of houses and one man runs. It does not show Iceland or everyone running.",
+     "text": "with the sound off the picture shows this: A volcano keeps erupting right beside one Icelandic town, and everyone had to run"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "NUMBER",
+     "note": "Only one street is shown. There is no way to see 'one town' as a count or size.",
+     "text": "one Icelandic town: seen as that count or that size"
+    }
+   ]
+  }
+ }
+}

@@ -117,7 +117,7 @@ def shot5():
     hangs there glowing and the window beside it lights up, the only light in the town (still 3); he turns to us and
     shrugs (still 4). Up the hill behind him, all the while: the three burning houses in a row, the wall behind them."""
     T_IN = 0.2 * DUR; T_HANG = 0.34 * DUR; T_LET = T_HANG + 0.33
-    T_WIN = 0.52 * DUR; T_TURN = 0.72 * DUR; T_ASK = 0.84 * DUR
+    T_WIN = 0.52 * DUR; T_TURN = 0.58 * DUR; T_ASK = 0.84 * DUR
     W = lw_win
     P = place_harbour_dawn()
     light = P["light"]
@@ -154,7 +154,7 @@ def shot5():
         p += Vector((0.1, -0.05, 0.0)) * back                                                                   # a step back from it, to look
         p.z += 0.05 * lw_kick(t - T_WIN - 0.1, 0.2)                                               # a start as the window lights
         turn = W(t, T_TURN, 0.42)
-        p += Vector((0.02, -0.04, 0.0)) * turn; p.z += 0.03 * math.sin(math.pi * turn)             # a step round to us
+        p += Vector((0.05, 0.0, 0.0)) * turn; p.z += 0.03 * math.sin(math.pi * turn)             # a step round to us
         p.z += 0.035 * lw_kick(t - T_ASK - 0.25, 0.22)                                            # the shrug
         return p, YW + (YAW0 - YW) * W(t, T_IN, 0.4) - R(6) * back + R(52) * turn
     for f in range(F(T_IN) + 1, NF + 16):
@@ -164,8 +164,8 @@ def shot5():
     wy = P["home"]["windows"][1].matrix_world.translation.copy()
     CAM0 = Vector((-0.35, 0.3, 1.0)); LOOK0 = CAM0 + Vector((1.4, 10.0, 3.4))
     data.look_at(S5_HOOK, 0.0, max_yaw=50, max_pitch=40, blend=0.0)
-    data.look_at(wy, T_WIN + 0.05, max_yaw=50, max_pitch=30, blend=0.3)                          # the window, as it lights
-    data.look_at(CAM0 + Vector((0, 0, 0.05)), T_TURN + 0.1, max_yaw=60, max_pitch=30, blend=0.4)  # to us: would you?
+    data.look_at(wy, T_WIN + 0.05, max_yaw=30, max_pitch=20, blend=0.2)                          # the window, as it lights
+    data.look_at(CAM0 + Vector((0, 0, 0.05)), T_TURN + 0.05, max_yaw=60, max_pitch=30, blend=0.3)  # to us: would you?
     data.expression("sad", 0.0, T_WIN, blend=0.25)
     # ---- the lantern: carried in front of him in his wall-side hand, lifted onto the hook, let go; it swings
     lan = s5_lantern()
@@ -197,8 +197,8 @@ def shot5():
     # over his roof, the burning row and the wall at the top
     LENS_MM = 28.0
     cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=LENS_MM, fstop=11.0)
-    C1, L1 = compose.frame_data(data, CAM0, LOOK0, LENS_MM, face_at=(0.47, 0.4), height=0.39, t=T_HANG)
-    push = lambda t: Vector((0.0, 0.1, 0.0)) * ease(min(1.0, t / DUR))
+    C1, L1 = compose.frame_data(data, CAM0, LOOK0, LENS_MM, face_at=(0.47, 0.44), height=0.385, t=T_HANG)
+    push = lambda t: Vector((0.0, 0.0, 0.0))
     lw_cut(cam, lambda t: (C1 + push(t), L1, data.pos() + Vector((0, 0, 0.6))), lambda t: (C1, L1, C1), -1.0, -1.0, LENS_MM, LENS_MM)
     # ---- the payoff: his one window lights
     lit = [s5_lit_pane(P["home"], 1, T_WIN)]
