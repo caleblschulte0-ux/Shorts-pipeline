@@ -37542,7 +37542,7 @@
   {
    "slug": "nuclear-reactors-under-construction",
    "title": "Why Nuclear Power Isn't Actually Dying",
-   "hook": "Nuclear power was supposed to be finished. One country is building it like crazy.",
+   "hook": "Nuclear was supposed to be dead. China didn't get the memo.",
    "closing": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
    "question": "Would you live near nuclear power?",
    "caption": "78 gigawatts of nuclear power are under construction worldwide right now, across 15 countries — and China alone is building half of it. Would you live near a nuclear plant? Tell me below ⚛️",
@@ -37604,21 +37604,19 @@
    "hook_was": "78 gigawatts of nuclear power is still being built.",
    "scorecard": {
     "scores": {
-     "premise": 12,
-     "hook": 18,
-     "arc": 15,
+     "premise": 10,
+     "hook": 16,
+     "arc": 12,
      "factual": 12,
      "visual_proof": 8,
      "payoff": 8,
      "voice": 4
     },
-    "total": 77,
-    "fatal": [
-     "unrenderable_visual"
-    ],
+    "total": 70,
+    "fatal": [],
     "weakest": "visual_proof",
-    "note": "Simplify the visual descriptions so they’re clear and legible on a phone screen; complex crane‑and‑concrete animations may not render well in a short.",
-    "fp": "07c10ac6fe9daa0b"
+    "note": "Simplify the visual descriptions so they are instantly recognizable on a phone screen; use clearer, less abstract imagery.",
+    "fp": "37f131daa56a2359"
    }
   },
   {

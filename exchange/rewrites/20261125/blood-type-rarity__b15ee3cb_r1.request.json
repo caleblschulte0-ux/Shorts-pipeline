@@ -126,10 +126,12 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch promises only a flat fun fact (AB negative is rare), and the beats drift into dry demographic statistics that never show why hospitals panic or give the viewer a personal stake or a surprise to turn over."
+  "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh-negative prevalence, not the specific rare blood type (AB negative) claimed, so it doesn't directly prove t",
+  "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Provides ethnic donor distribution, which is unrelated to the rarity of the specific blood type causing hospital panic."
  ],
  "reasons": [
-  "premise: brain: The pitch promises only a flat fun fact (AB negative is rare), and the beats drift into dry demographic statistics that never show why hospitals panic or give the viewer a personal stake or a surprise to turn over."
+  "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh-negative prevalence, not the specific rare blood type (AB negative) claimed, so it doesn't directly prove t",
+  "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Provides ethnic donor distribution, which is unrelated to the rarity of the specific blood type causing hospital panic."
  ],
  "judge": null,
  "prior_rejection": [
@@ -165,5 +167,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T01:20:48Z"
+ "refiled": "2026-11-26T12:03:21Z"
 }

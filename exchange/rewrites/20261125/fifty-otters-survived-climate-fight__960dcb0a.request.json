@@ -96,12 +96,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: The recovery to about 3,000 is a plain follow-up fact to the 50 survivors. It doesn't use 'because' or 'but' logic, and ",
-  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: The jump to kelp storing 8.7M tons of CO2 is not set up by the previous beat, which was about otter numbers. The link be"
+  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the headline's focus on the 50 survivors and doesn't directly",
+  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: While it mentions carbon storage, it doesn't logically follow from beat 1 and the connection to the 50 otters guarding t"
  ],
  "reasons": [
-  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: The recovery to about 3,000 is a plain follow-up fact to the 50 survivors. It doesn't use 'because' or 'but' logic, and ",
-  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: The jump to kelp storing 8.7M tons of CO2 is not set up by the previous beat, which was about otter numbers. The link be"
+  "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the headline's focus on the 50 survivors and doesn't directly",
+  "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: While it mentions carbon storage, it doesn't logically follow from beat 1 and the connection to the 50 otters guarding t"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -135,5 +135,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T01:20:49Z"
+ "refiled": "2026-11-26T12:03:22Z"
 }
