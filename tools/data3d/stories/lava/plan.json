@@ -58,7 +58,7 @@
     },
     {
      "event": "action",
-     "shows": "he bolts down the street toward us, everyone had to run: a car driving away up the street behind him",
+     "shows": "he bolts down the street toward us, everyone had to run: a car up the street behind him with its tail lights on",
      "hands": "free",
      "new": [
       {
@@ -84,7 +84,7 @@
       },
       {
        "prop": "car",
-       "as": "a car driving away up the street behind him"
+       "as": "a car up the street behind him with its tail lights on"
       },
       {
        "prop": "lava fountains",
@@ -125,13 +125,13 @@
     },
     {
      "event": "reaction",
-     "shows": "he pulls up in front of us, wide-eyed, arms flung wide, the bomb burning on the road behind him",
+     "shows": "he pulls up in front of us, wide-eyed, both hands thrown up, the bomb burning on the road behind him",
      "hands": "free",
      "new": [
       {
        "what": "data",
        "how": "pose",
-       "cause": "he stops with both arms flung wide"
+       "cause": "he stops with both hands thrown up in front of him"
       },
       {
        "what": "lava bomb",
@@ -147,7 +147,7 @@
      "visible": [
       {
        "prop": "data",
-       "as": "he pulls up in front of us, big in the frame, wide-eyed, arms flung wide"
+       "as": "he pulls up in front of us, big in the frame, wide-eyed, both hands thrown up"
       },
       {
        "prop": "lava bomb",

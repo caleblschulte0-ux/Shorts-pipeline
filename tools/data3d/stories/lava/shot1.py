@@ -345,7 +345,7 @@ def shot1():
     data.expression("alarmed", 0.0, DUR + 1.0, blend=0.1)
     UPF = lambda sg: ((-82, 0, -sg * 10), (-100, 0, -sg * 10), (0, 0, 0))      # a runner's arms: bent square, one fist up in front as the other elbow goes back
     LOW = lambda sg: ((56, 0, -sg * 14), (-74, 0, -sg * 6), (0, 0, 0))
-    FLUNG = lambda sg: ((8, 0, -sg * 60), (0, 0, -sg * 30), (0, 0, 0))            # the end: both arms flung wide                     # the end: both arms thrown up
+    FLUNG = lambda sg: ((-58, 0, -sg * 34), (-72, 0, -sg * 14), (0, 0, 0))            # the end: both hands thrown up in front of him, palms out                     # the end: both arms thrown up
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     def pose(sd, t, P_):
         for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)

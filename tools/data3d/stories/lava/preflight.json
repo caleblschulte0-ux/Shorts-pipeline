@@ -1322,6 +1322,33 @@
     }
    ]
   },
+  "aa40052f0e1b04338aca9e355fc7d3e2cf372f2a6f1c93a5af75b554930c4d58": {
+   "at": "2026-11-26 18:13:17Z",
+   "claims": 15,
+   "claims_key": "9a88d486b8a3c9d9",
+   "continuity": [],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Still 1 (standing with an arm flung out) and still 4 (arms flung out, only bigger and nearer) are the same pose from a different distance. Stills 2 and 3 are both running.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1,4"
+    }
+   ],
+   "sha256": "aa40052f0e1b04338aca9e355fc7d3e2cf372f2a6f1c93a5af75b554930c4d58",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data runs toward the camera in still 2. The car behind him shows taillights but sits in about the same place in stills 1 and 2 and looks parked. Nothing shows it driving away.",
+     "text": "He bolts down the street toward us, a car driving away up the street behind him"
+    }
+   ]
+  },
   "b3fc9667de6779085f40b7da556b7fb587381b67589495749376ec446478a239": {
    "at": "2026-11-26 12:44:25Z",
    "claims": 13,
