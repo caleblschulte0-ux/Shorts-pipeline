@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__a3a0f941_r1",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T13:05:00Z",
+  "title": "English Lost 30 Points Of The Early Web",
+  "hook": "Search only in English and nearly half the web disappears.",
+  "closing": "The internet still uses English most, but its fastest growth now comes from elsewhere.",
+  "question": "Which language do you browse in?",
+  "segments": [
+    {
+      "topic": "English Web Share",
+      "say": "English fell to 45% of web pages by 2005. The early internet stopped being overwhelmingly English."
+    },
+    {
+      "topic": "English Growth Rival",
+      "say": "Arabic content grew 2,501%. Other languages expanded far faster as new populations came online."
+    },
+    {
+      "topic": "English Websites Today",
+      "say": "English now appears on 55% of websites. It still leads, but nearly half the web speaks something else."
+    }
+  ]
+}
