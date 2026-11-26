@@ -1,57 +1,46 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261125",
-  "judged_date": "20261124",
+  "date": "20261126",
+  "judged_date": "20261125",
   "alarm": {
-    "date": "20261124",
+    "date": "20261125",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261124 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261124.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-24T22:58:55+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-25T22:25:14+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
-      },
-      {
-        "code": "credential_limited_claude_subscription",
-        "severity": "warning",
-        "detail": "the `claude-subscription` credential is SPENT, not broken (the subscription window is spent: you've hit your weekly limit \u00b7 resets 12am (utc); probed 2026-11-24T22:58:55+00:00).",
-        "fix": "If the detail names a limit or a reset, there is nothing to rotate: the subscription comes back on its own at that reset. Until then the explainer has no brain to draw or verify a scene and the showrunner has no judge, so the channel ships nothing \u2014 the gate is right to hold. Same-day options are the operator's call: a funded text brain (ANTHROPIC_API_KEY, or Gemini on a paid tier). Anything else: run `claude setup-token` and replace CLAUDE_CODE_OAUTH_TOKEN."
       },
       {
         "code": "forge_silent",
         "severity": "critical",
-        "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (3 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
+        "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (4 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
         "fix": "Read the forge step of the latest explainer AND story_forge runs: 'queue already full' means the top-up is counting stories the posting run holds (it must count POSTABLE ones, shared/queue_supply.py); 'catalogue is EXHAUSTED' means widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' lines mean the World Bank API is unreachable from the runner; 'HELD by editorial gate' or 'WEAK PITCH' on every candidate means the words, not the well. The gate stays where it is."
       },
       {
-        "code": "no_posts_explainer",
+        "code": "sports_source_dead",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261124 (registry wants 4). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused), claude-subscription LIMITED (the subscription window is spent: you've hit your weekly limit \u00b7 resets 12am (utc)) \u2014 see the credential_* alarm(s) above. The story forge has kept no story since 2026-11-21 \u2014 see forge_silent above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the explainer workflow run for 20261124. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: the sports run found ZERO Reddit video posts for 20261125 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
+        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
-        "code": "no_posts_trending",
-        "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261124 (registry wants 5). The last credential probe found groq DEAD (HTTP 403 \u2014 the credential was refused), claude-subscription LIMITED (the subscription window is spent: you've hit your weekly limit \u00b7 resets 12am (utc)) \u2014 see the credential_* alarm(s) above.",
-        "fix": "Fix the credential FIRST: a run with no brain draws and verifies nothing, the judge cannot watch, and the gate holds the rest \u2014 that is the gate working, not the fault. Then: Check the trending workflow run for 20261124. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 2/4 posted for 20261125.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (77 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (78 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "third: 6/6 posted"
+      "third: 6/6 posted",
+      "trending: 5/5 posted"
     ],
     "deferred": false
   },
@@ -4433,13 +4422,12 @@
     }
   },
   "recent_commits": [
-    "ba59a03 2026-11-25 explainer: update posted log + analytics [skip ci]",
-    "629d631 2026-11-25 explainer: posted landline-death-robocall-boom [skip ci]"
+    "c133484 2026-11-26 claim: mailbox verdicts 2026-11-26T04:47Z [skip ci]",
+    "68f9bac 2026-11-26 claim: mailbox verdicts 2026-11-26T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-11": 5,
         "2026-11-12": 5,
         "2026-11-13": 5,
         "2026-11-14": 5,
@@ -4454,7 +4442,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-11": 1,
         "2026-11-12": 6,
         "2026-11-13": 4,
         "2026-11-14": 5,
@@ -4472,7 +4459,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-11": 2,
         "2026-11-12": 6,
         "2026-11-13": 6,
         "2026-11-14": 6,
@@ -4489,8 +4475,8 @@
         "2026-11-25": 6
       },
       "total_posted": 604,
-      "attempted": 1569,
-      "rejected_or_pending": 965
+      "attempted": 1574,
+      "rejected_or_pending": 970
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4504,71 +4490,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 140,
+      "videos": 139,
       "top_by_vph": [
         {
+          "title": "Why America Basically Killed The Landline",
+          "vph": 82.28,
+          "views": 817
+        },
+        {
           "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
-          "vph": 131.68,
-          "views": 401
+          "vph": 50.26,
+          "views": 650
         },
         {
           "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
-          "vph": 20.57,
-          "views": 1026
+          "vph": 17.3,
+          "views": 1034
         },
         {
           "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 14.64,
-          "views": 991
+          "vph": 12.78,
+          "views": 992
         },
         {
           "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
-          "vph": 9.79,
-          "views": 724
-        },
-        {
-          "title": "Why Saffron Costs More Than Any Spice On Earth",
-          "vph": 4.6,
-          "views": 1164
+          "vph": 8.65,
+          "views": 725
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 132,
+      "videos": 134,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 4.56,
-          "views": 590
+          "vph": 4.36,
+          "views": 598
         },
         {
           "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
-          "vph": 1.16,
-          "views": 42
+          "vph": 1.02,
+          "views": 45
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 0.9,
-          "views": 555
+          "vph": 0.89,
+          "views": 559
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.71,
+          "vph": 0.69,
           "views": 213
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.64,
+          "vph": 0.61,
           "views": 102
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261122/brief.json",
       "retro/20261123/brief.json",
-      "retro/20261124/brief.json"
+      "retro/20261124/brief.json",
+      "retro/20261125/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
