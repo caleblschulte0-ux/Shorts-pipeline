@@ -1,0 +1,1325 @@
+{
+ "date": "2026-11-26",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "Matt LaFleur",
+   "why": "A Packers coach owns up to the 'embarrassing' huddle break with a straight face.",
+   "post_title": "[WNEP] McCarthy confirms he broke huddle with 1, 2, 3 PACKERS: \u201cIt was an embarrassing moment\u201d",
+   "upvotes": 7603,
+   "url": "https://m.youtube.com/live/z0CbY7X2ZE8?is=vX7-zEms1GgkqXyn",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y5jmht/wnep_mccarthy_confirms_he_broke_huddle_with_1_2_3",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "hockey",
+   "who": "Dylan Larkin",
+   "why": "Montreal fans chant 'We Got Larkin' as he takes his first shift in a Habs sweater.",
+   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
+   "upvotes": 3031,
+   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
+   "title": "Dylan Larkin's First Shift With The Habs Has Montreal Fans Chanting His Name",
+   "hook": "Montreal fans chant for Larkin \ud83d\udd25",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.17,
+       "reason": "the framer: Montreal player in red helmet #86, whole face and helmet in columns 2-5",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.17,
+       "t1": 15.0,
+       "reason": "the framer: Board battle at columns 3-5 with the #14 Montreal player and #40 beside it",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The line promises a crowd chanting for Larkin, but the clip shows only distant game play and then a goalie, with someone else's captions and a cut-off Uber Eats graphic in the frame.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The line promises a crowd chanting for Larkin, but the clip shows only distant game play and then a goalie, with someone else's captions and a cut-off Uber Eats graphic in the frame."
+  },
+  {
+   "sub": "baseball",
+   "who": "Jacob Misiorowski",
+   "why": "A flamethrower rips packs and has no idea who half his own cards are.",
+   "post_title": "Jacob Misiorowski opens baseball cards with Topps and pulls some players he's unfamiliar with",
+   "upvotes": 587,
+   "url": "https://www.reddit.com/r/baseball/comments/1y57385/jacob_misiorowski_opens_baseball_cards_with_topps/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1y57385/jacob_misiorowski_opens_baseball_cards_with_topps",
+   "title": "Jacob Misiorowski Opens A Pack From When He Was 4 And Knows Almost No One",
+   "hook": "Misiorowski opens a pack from when he was four \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@25.6"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "12 camera shots, each framed on its own \u2014 one crop (wide) cut a face off",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.1,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        294,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.1,
+       "t1": 1.93,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        28,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.93,
+       "t1": 3.5,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        12,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 3.5,
+       "t1": 7.1,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        16,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 7.1,
+       "t1": 10.83,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        26,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 10.83,
+       "t1": 15.07,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        12,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 15.07,
+       "t1": 17.77,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        12,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 17.77,
+       "t1": 21.57,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        2,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 21.57,
+       "t1": 24.23,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        12,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 24.23,
+       "t1": 29.77,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        22,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 29.77,
+       "t1": 30.9,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        184,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 30.9,
+       "t1": 33.9,
+       "reason": "framed on this shot's face",
+       "crop": [
+        310,
+        552,
+        210,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.404,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       0.484
+      ],
+      [
+       0.0,
+       0.54
+      ],
+      [
+       0.0,
+       0.467
+      ],
+      [
+       0.0,
+       0.545
+      ],
+      [
+       0.0,
+       0.56
+      ],
+      [
+       0.0,
+       0.527
+      ],
+      [
+       0.0,
+       0.544
+      ],
+      [
+       0.0,
+       0.534
+      ],
+      [
+       0.0,
+       0.557
+      ],
+      [
+       0.0,
+       0.541
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Alex Rodriguez@8.5",
+     "Chipper Jones@25.28"
+    ],
+    "cut_in_s": 17.82,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/G73bXDc3qHA",
+   "ok": true,
+   "publish_at": "2026-11-26T18:00:00Z",
+   "seconds": 396,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261126-jacob-misiorowski-opens-a-pack-from-when-he-was--e5c4bbd4",
+    "tiktok": "queued for 2026-11-26T18:00:00Z"
+   }
+  },
+  {
+   "sub": "MMA",
+   "who": "Josh Hokit",
+   "why": "He drops the tough-guy act and tells what Ciryl Gane said to him in the hospital until 6 AM.",
+   "post_title": "Josh Hokit breaks character and admits Ciryl Gane is a nice guy and they had an encounter later in the hospital: \"We are both at the hospital till like 6 AM. And he's all talking 'You're gonna be a ch",
+   "upvotes": 802,
+   "url": "https://x.com/Home_of_Fight/status/2125297204399399080?a=Zxf3oUBhkOcOJGeIgPQ&s=19",
+   "topic": "https://www.reddit.com/r/MMA/comments/1y4qtqc/josh_hokit_breaks_character_and_admits_ciryl_gane",
+   "title": "Josh Hokit Admits Ciryl Gane Is A Nice Guy, Then Says He's Still Coming For Him",
+   "hook": "Hokit breaks character on Gane \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "split",
+     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "shots": [
+      {
+       "mode": "split",
+       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.021,
+       0.299
+      ],
+      [
+       0.55,
+       0.775
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Josh Hokit Ciryl Gane@6.75"
+    ],
+    "cut_in_s": 2.0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: A genuine, likeable moment of Hokit breaking character with Bisping laughing, let down by a messy mosaic crop and our line printed over the UFC TV graphic in the fight cutaway."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A real, on-topic Hokit interview, but it opens on a static, glitchy split-screen collage and the moment lives only in the audio, so a scroller has no reason to stay",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A real, on-topic Hokit interview, but it opens on a static, glitchy split-screen collage and the moment lives only in the audio, so a scroller has no reason to stay"
+  },
+  {
+   "sub": "nba",
+   "who": "Tari Eason",
+   "why": "He steals the ball, blows the windmill dunk, and the bench and commentators lose it.",
+   "post_title": "[Lowlight] Tari Eason gets the steal but blows the windmill dunk, with Rockets commentary and bench reactions",
+   "upvotes": 2776,
+   "url": "https://streamable.com/eq4zf8",
+   "topic": "https://www.reddit.com/r/nba/comments/1y4320k/lowlight_tari_eason_gets_the_steal_but_blows_the",
+   "title": "Tari Eason Steals It, Throws Down A Windmill Dunk Attempt And Everyone Sees What Happens \ud83d\ude2d",
+   "hook": "Tari Eason got way too far ahead of himself \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@3.19"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "6 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.97,
+       "reason": "the framer: The collision under the basket: the player in white and the Rockets player in the green shoes, with the referee behind them.",
+       "crop": [
+        356,
+        632,
+        484,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.97,
+       "t1": 6.15,
+       "reason": "the framer: Two players on the floor (Eason in red, a player in white) and the standing #4 player to their right.",
+       "crop": [
+        474,
+        632,
+        486,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 6.15,
+       "t1": 9.43,
+       "reason": "the framer: Eason on his back holding the ball on his chest, with his face, headband and Rockets jersey in view. (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 9.43,
+       "t1": 11.48,
+       "reason": "the framer: The smiling bench player in the red shirt, with the teammate behind him.",
+       "crop": [
+        474,
+        632,
+        244,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 11.48,
+       "t1": 15.3,
+       "reason": "the framer: The #15 Rockets player with a mustache, whose face is whole at the right. #1 and the referee are at the left edge of the crop.",
+       "crop": [
+        356,
+        632,
+        846,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 15.3,
+       "t1": 17.18,
+       "reason": "the framer: Eason's face and headband in columns 4-5, with the courtside spectator in a dark jacket at column 6.",
+       "crop": [
+        356,
+        632,
+        484,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The title promises a blown windmill, but the clip opens after the crash in a soft, distant repost frame and pads the middle with badly cropped b-roll of an arm and a crowd."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The title promises a blown windmill, but the clip opens after the crash in a soft, distant repost frame and pads the middle with badly cropped b-roll of an arm and a crowd.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The title promises a blown windmill, but the clip opens after the crash in a soft, distant repost frame and pads the middle with badly cropped b-roll of an arm and a crowd."
+  },
+  {
+   "sub": "nba",
+   "who": "Sean Elliott",
+   "why": "Sean Elliott and Tobey go back and forth over the Lakers and usage rate, and neither backs down.",
+   "post_title": "Jacob Tobey: \"An NBA champion has never had a player with a usage rate higher than 35%\" Sean Elliot: \"Well the Lakers aren't gonna win the NBA championship\". Tobey tries to back him down, Sean continu",
+   "upvotes": 2288,
+   "url": "https://streamable.com/aigfb7",
+   "topic": "https://www.reddit.com/r/nba/comments/1y4q80b/jacob_tobey_an_nba_champion_has_never_had_a",
+   "title": "Sean Elliott Says The Lakers Won't Win The Title, Even As Tobey Pushes Back",
+   "hook": "Sean Elliott says Lakers won't win it all",
+   "ledger": {
+    "moves": [
+     "zoom@11.03"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "8 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 4.33,
+       "reason": "the framer: Schedule graphic with Blazers/Lakers text and logos spanning the right side; shown uncropped (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 4.33,
+       "t1": 15.3,
+       "reason": "the framer: Child in Santa hat with the face at columns 6-8 and the body to column 9 \u2014 overruled: every face in the shot fits a tall crop on them",
+       "crop": [
+        404,
+        720,
+        110,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 15.3,
+       "t1": 20.3,
+       "reason": "the framer: Woman looking up and the man beside her with a phone, the central faces of the crowd",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 20.3,
+       "t1": 25.33,
+       "reason": "the framer: Player's face and jersey at columns 5-6, with the referee behind at 7",
+       "crop": [
+        540,
+        720,
+        498,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 25.33,
+       "t1": 30.4,
+       "reason": "the framer: Player with dreadlocks looking up, face at columns 3-5",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 30.4,
+       "t1": 34.87,
+       "reason": "the framer: Player #40 face and jersey centered at columns 4-6",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 34.87,
+       "t1": 38.4,
+       "reason": "the framer: Running player's head at columns 4-6 and his torso",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 38.4,
+       "t1": 39.4,
+       "reason": "the framer: Dribbling player and the play at columns 3-5 near the ball",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.473,
+      0.0,
+      0.398,
+      0.0,
+      0.05
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.061,
+       0.583
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked before vision review: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=1.21s of 39.42s (~2.0s frozen)",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=1.21s of 39.42s (~2.0s frozen)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jose Mourinho",
+   "why": "Mourinho gives a blunt answer to players who complain about rest.",
+   "post_title": "Mourinho on players complaining about a lack of rest: \"If you want to make a lot of money, as we all do, you have to work hard. You have to take risks and make sacrifices. If a player says he wants to",
+   "upvotes": 7740,
+   "url": "https://www.reddit.com/r/soccer/comments/1y3m8ct/mourinho_on_players_complaining_about_a_lack_of/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y3m8ct/mourinho_on_players_complaining_about_a_lack_of",
+   "skipped": "not English (English p=0.07, 52% English words)"
+  },
+  {
+   "sub": "nba",
+   "who": "Kevin Durant",
+   "why": "Durant and Dillon Brooks get into a scrap and Brooks is thrown out.",
+   "post_title": "[Highlight] Kevin Durant and Dillion Brooks get in a Kerfuffle. Brooks is ejected with his second Technical",
+   "upvotes": 1670,
+   "url": "https://streamable.com/uq8feo",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5rg78/highlight_kevin_durant_and_dillion_brooks_get_in",
+   "title": "Kevin Durant And Dillon Brooks Go Nose-To-Nose, Then Brooks Gets Thrown Out",
+   "hook": "KD and Dillon Brooks get into it \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "10 camera shots, each framed on its own \u2014 one crop (wide) cut a face off",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 2.3,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        810,
+        1080,
+        554,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 2.3,
+       "t1": 3.52,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        810,
+        1080,
+        554,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 3.52,
+       "t1": 15.9,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        810,
+        1080,
+        554,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 15.9,
+       "t1": 16.55,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        810,
+        1080,
+        554,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 16.55,
+       "t1": 17.17,
+       "reason": "framed on this shot's face",
+       "crop": [
+        608,
+        1080,
+        600,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 17.17,
+       "t1": 18.62,
+       "reason": "framed on this shot's face",
+       "crop": [
+        608,
+        1080,
+        752,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 18.62,
+       "t1": 20.73,
+       "reason": "framed on this shot's face",
+       "crop": [
+        608,
+        1080,
+        826,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 20.73,
+       "t1": 26.4,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        810,
+        1080,
+        554,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 26.4,
+       "t1": 30.68,
+       "reason": "framed on this shot's face",
+       "crop": [
+        608,
+        1080,
+        1312,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 30.68,
+       "t1": 35.2,
+       "reason": "no face to frame \u2014 the clip's own window",
+       "crop": [
+        810,
+        1080,
+        554,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.173,
+       0.715
+      ],
+      [
+       0.02,
+       0.57
+      ],
+      [
+       0.099,
+       0.625
+      ],
+      [
+       0.359,
+       0.818
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: This is a commentary repost cropped onto KD's back. Brooks and the ejection the title promises never clearly appear, and one shot is just crowd and a cut-off shoulder."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is a commentary repost cropped onto KD's back. Brooks and the ejection the title promises never clearly appear, and one shot is just crowd and a cut-off shoulder.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is a commentary repost cropped onto KD's back. Brooks and the ejection the title promises never clearly appear, and one shot is just crowd and a cut-off shoulder."
+  },
+  {
+   "sub": "hockey",
+   "who": "Jeannot and Bauer",
+   "why": "Two players drop the gloves in a fight with real hits.",
+   "post_title": "Jeannot and Bauer drop the gloves in a serious bout",
+   "upvotes": 4368,
+   "url": "https://www.reddit.com/r/hockey/comments/1y5ndkj/jeannot_and_bauer_drop_the_gloves_in_a_serious/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y5ndkj/jeannot_and_bauer_drop_the_gloves_in_a_serious",
+   "title": "Jeannot and Bauer Drop The Gloves At Center Ice And Trade Haymakers",
+   "hook": "Jeannot and Bauer finally square up \ud83e\udd4a",
+   "ledger": {
+    "moves": [
+     "whoa@23.07"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 44.13,
+       "reason": "the framer: Jeannot (black Bruins jersey) and Bauer #77 (white Jets jersey) fighting, both faces and torsos in columns 3-7 (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.283,
+      0.283,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": false
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Jan Vide",
+   "why": "A backup guard does a Globetrotters audition in garbage time while the bench cracks up.",
+   "post_title": "UVA backup PG Jan Vide's Harlem Globetrotters Audition in Garbage Time",
+   "upvotes": 246,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1marf/uva_backup_pg_jan_vides_harlem_globetrotters/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1marf/uva_backup_pg_jan_vides_harlem_globetrotters",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "MMA",
+   "who": "Josh Hokit",
+   "why": "Hokit says his eye is still blurry from the poke and wants consequences next time.",
+   "post_title": "Josh Hokit says his eye is still blurry after getting poked by Ciryl Gane: \"There has to be consequences next time.\"",
+   "upvotes": 1440,
+   "url": "https://streamable.com/gppn9r",
+   "topic": "https://www.reddit.com/r/MMA/comments/1y3pgni/josh_hokit_says_his_eye_is_still_blurry_after",
+   "title": "Josh Hokit Says He Told Everyone What He'd Do If Gane Fouled Him",
+   "hook": "Hokit says there will be consequences next time",
+   "ledger": {
+    "moves": [
+     "whoa@16.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: A real reaction (Hokit rubbing his blurry eye) makes a solid hook, but our line runs over the UFC name bar in the fight cutaway, and the eye poke itself is never clearly shown."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/BkJicpCtvcs",
+   "ok": true,
+   "publish_at": "2026-11-26T21:00:00Z",
+   "seconds": 736,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261126-josh-hokit-says-he-told-everyone-what-he-d-do-if-715f453a",
+    "tiktok": "queued for 2026-11-26T21:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "DK Metcalf",
+   "why": "The full sequence shows Metcalf's eye-poke attempt on DeJean and the ejection.",
+   "post_title": "[Highlight] Full sequence of DK Metcalf's ejection for attempting to eye poke Cooper DeJean",
+   "upvotes": 11709,
+   "url": "https://www.reddit.com/r/nfl/comments/1y2z4p1/highlight_full_sequence_of_dk_metcalfs_ejection/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y2z4p1/highlight_full_sequence_of_dk_metcalfs_ejection",
+   "title": "DK Metcalf Is Ejected After The Refs Rule He Went For Cooper DeJean's Eye",
+   "hook": "DK Metcalf ejected after the refs review it \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@33.11"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "6 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 0.67,
+       "reason": "the framer: Steelers player in white jersey, face turned away, left of the NFL logo wipe; the logo transition is in columns 4-6",
+       "crop": [
+        404,
+        720,
+        246,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 0.67,
+       "t1": 11.87,
+       "reason": "the framer: The two players grappling at columns 3-4, one in a white Steelers jersey and one in a green Eagles jersey",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 11.87,
+       "t1": 19.93,
+       "reason": "the framer: Two referees side by side, the left one with a headset in columns 3-4 and the white-capped one in columns 5-7",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 19.93,
+       "t1": 23.07,
+       "reason": "the framer: Close-up of DK Metcalf, #4, face in columns 3-5 and head in columns 4-6",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 23.07,
+       "t1": 32.2,
+       "reason": "the framer: Referee with arms spread signalling, face in columns 4-5 and body centred in columns 3-6",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 32.2,
+       "t1": 38.2,
+       "reason": "the framer: DK Metcalf, #4, face and shoulders in columns 5-7, with the unsportsmanlike conduct graphic beside him",
+       "crop": [
+        540,
+        720,
+        498,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.027,
+      0.114
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.269,
+       0.858
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: This is a real ejection moment with a clear referee call, but our line runs over the TV scorebug for most of the middle and the clip ends on unrelated crowd b-roll instead of Metcalf leaving."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/u5FUsWokb_c",
+   "ok": true,
+   "publish_at": "2026-11-27T00:00:00Z",
+   "seconds": 451,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261126-dk-metcalf-is-ejected-after-the-refs-rule-he-wen-8c98b4c8",
+    "tiktok": "queued for 2026-11-27T00:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Luka slips on a wet spot, and the sequence ends with Josh Green fouling out.",
+   "post_title": "[Lowlight] Josh Green has fouled out after Luka slips on a wet spot",
+   "upvotes": 2626,
+   "url": "https://streamable.com/45yc1w",
+   "topic": "https://www.reddit.com/r/nba/comments/1y44vpu/lowlight_josh_green_has_fouled_out_after_luka",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "Tom Izzo",
+   "why": "Izzo goes off on the injury-disclosure rule and says who it really helps.",
+   "post_title": "Tom Izzo on the rule requiring coaches to disclose injury information 2 hours prior to each game: \"It benefits nobody. Not the parents, players, coaches, fans. Unless you're a gambler, then it benefit",
+   "upvotes": 2776,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to",
+   "title": "Tom Izzo Rips The New Injury Rule: 'Never Heard Of Such A Dumb Rule' \ud83d\ude33",
+   "hook": "Izzo goes off on the injury rule",
+   "ledger": {
+    "moves": [
+     "whoa@20.91"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 28.17,
+       "reason": "the framer: Tom Izzo's face, the speaker, fills columns 4-6 with his head fully contained.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.169,
+      0.0,
+      0.241
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       1.0
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "hockey",
+   "who": "Nikita Kucherov",
+   "why": "Kucherov looks unhappy as his line gets benched in the third.",
+   "post_title": "[BUF - TBL] Kucherov doesn't look too happy as the 1st line has been benched by Cooper in the 3rd",
+   "upvotes": 1766,
+   "url": "https://www.reddit.com/r/hockey/comments/1y34bw8/buf_tbl_kucherov_doesnt_look_too_happy_as_the_1st/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y34bw8/buf_tbl_kucherov_doesnt_look_too_happy_as_the_1st",
+   "title": "Nikita Kucherov Sits With His Arms Crossed As The Top Line Gets Benched",
+   "hook": "Kucherov's line gets benched in the 3rd \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "8 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 2.87,
+       "reason": "the framer: Kucherov #86 seated with arms crossed, face in columns 7-8; the #59 player on the left is a separate subject",
+       "crop": [
+        404,
+        720,
+        758,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 2.87,
+       "t1": 4.2,
+       "reason": "the framer: Coach in blue suit, face whole in columns 3-5",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 4.2,
+       "t1": 8.23,
+       "reason": "the framer: Coach in blue suit, face whole in columns 3-5",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 8.23,
+       "t1": 8.93,
+       "reason": "the framer: Coach in blue suit, face whole in columns 3-5",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 8.93,
+       "t1": 9.93,
+       "reason": "the framer: Kucherov #86 with arms crossed; face in columns 6-8",
+       "crop": [
+        404,
+        720,
+        758,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 9.93,
+       "t1": 14.73,
+       "reason": "the framer: Kucherov #86 centered, face in columns 5-6 and arms crossed",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 14.73,
+       "t1": 17.67,
+       "reason": "the framer: Kucherov #86 centered, face in columns 4-6 and arms crossed",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 17.67,
+       "t1": 19.33,
+       "reason": "the framer: Faceoff play spread across the ice, players in columns 0-9, so the shot is shown uncropped (whole frame)",
+       "crop": null
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": [
+      [
+       0.062,
+       0.403
+      ],
+      [
+       0.068,
+       0.485
+      ],
+      [
+       0.166,
+       0.58
+      ],
+      [
+       0.185,
+       0.596
+      ],
+      [
+       0.038,
+       0.469
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: The moment is real and Kucherov's crossed-arm sulk is shown clearly, but our hook line sits on the TV scoreboard in the opening frame, stacked on a repost's captions, and the clip ends on a generic faceoff."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 75
+   },
+   "video_url": "https://youtube.com/shorts/ibClbJum9Ms",
+   "ok": true,
+   "publish_at": "2026-11-27T03:00:00Z",
+   "seconds": 352,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261126-nikita-kucherov-sits-with-his-arms-crossed-as-th-1bfc980f",
+    "tiktok": "queued for 2026-11-27T03:00:00Z"
+   }
+  }
+ ],
+ "already_today": 1,
+ "pool": 130,
+ "already_posted": 2,
+ "refused_before": 15,
+ "shipped": 4
+}
