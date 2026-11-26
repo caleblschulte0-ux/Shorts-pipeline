@@ -1,0 +1,52 @@
+{
+ "slug": "back-to-sleep-campaign-cut-sids",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 13,
+   "hook": 18,
+   "arc": 17,
+   "factual": 14,
+   "visual_proof": 13,
+   "payoff": 9,
+   "voice": 5
+  },
+  "total": 89,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "Make the data graphics ultra‑simple (big numbers, clear arrows) so they stay legible on a small phone screen.",
+  "fp": "10096aaf45eb5fdb"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "For years, the way we put babies to bed was killing them.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "SIDS deaths fell to 0.64 per thousand babies, less than half the 1991 rate. One simple change in how babies sleep did that.",
+   "eyes": "a data picture (trend)",
+   "evidence": "CDC / NICHD | US SIDS rate per 1,000 live births, before vs. after Back to Sleep | https://safetosleep.nichd.nih.gov/about/history | 2026-10-06"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Before the campaign, over 85% of SIDS cases were babies put down on their stomachs. Flipping them onto their backs did the trick.",
+   "eyes": "substance: the sleeping baby; cause: Data lifts the face-down baby and places it on its back in the crib",
+   "evidence": "CDC / NICHD (Safe to Sleep) | Share of SIDS cases where the baby was placed stomach-down vs. back-up, before vs. after the campaign | https://safetosleep.nichd.nih.gov/about/history | 2026-10-06"
+  },
+  {
+   "window": "beat 2",
+   "ears": "About 3,400 babies still die in sleep-related deaths every year. The danger is smaller, not gone, so the back still matters.",
+   "eyes": "a data picture (trend)",
+   "evidence": "CDC | Sleep-related infant deaths still recorded in the US each year | https://www.cdc.gov/sids/data.html | 2026-10-06"
+  },
+  {
+   "window": "closing",
+   "ears": "Know a new parent? Tell them: back to sleep. It costs nothing and it works.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

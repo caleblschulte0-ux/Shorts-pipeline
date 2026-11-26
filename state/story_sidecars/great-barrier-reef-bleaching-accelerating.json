@@ -7,46 +7,48 @@
    "hook": 16,
    "arc": 14,
    "factual": 12,
-   "visual_proof": 10,
+   "visual_proof": 8,
    "payoff": 3,
    "voice": 4
   },
-  "total": 69,
+  "total": 67,
   "fatal": [
-   "missing_payoff"
+   "missing_payoff",
+   "confusing",
+   "unrenderable_visual"
   ],
   "weakest": "payoff",
-  "note": "Add a clear payoff that directly answers the opening hook, e.g., state that without immediate action the reef will likely lose a decade of recovery each bleaching event.",
-  "fp": "a8037e6b60ba7c58"
+  "note": "Add a clear payoff that directly answers the opening hook, e.g., state the projected timeline or what must happen for the reef to recover, rather than ending with an open question.",
+  "fp": "60f86a68cc967dee"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The reef keeps bleaching again before it even finishes healing from the last time.",
+   "ears": "Bleaching now returns long before the Great Barrier Reef can recover.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "The reef has now bleached 3 times this decade, turning a once-rare crisis into a regular one.",
+   "ears": "The reef has bleached three times this decade. A rare shock has become a recurring event.",
    "eyes": "substance: coral turning bleached white; cause: Data pours steaming hot water over the side; the hot plume sinks onto a coral head and it turns white",
    "evidence": "Australian Institute of Marine Science (AIMS) | Great Barrier Reef mass bleaching events per decade | https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf | 2026-11-12"
   },
   {
    "window": "beat 1",
-   "ears": "The gap between bleaching events has shrunk to just 2 years on average.",
+   "ears": "The average gap is now two years. New damage arrives before the last event fades.",
    "eyes": "substance: living coral branches; cause: Data plants a coral fragment for each year of recovery and each one grows into a branch",
    "evidence": "Australian Institute of Marine Science (AIMS) | Years between Great Barrier Reef mass bleaching events | https://aims.gov.au/sites/default/files/2024-04/FINAL-Aerial%20Bleaching%20GBR2024Report_AIMS_Final_15Apr2024_0.pdf | 2026-11-12"
   },
   {
    "window": "beat 2",
-   "ears": "A reef typically needs 10 years to recover, so the next bleaching wave keeps arriving first.",
+   "ears": "A reef typically needs ten years to recover. Bleaching now returns far too soon for a full comeback.",
    "eyes": "a data picture (comparison)",
    "evidence": "Australian Institute of Marine Science (AIMS) / NOAA Coral Reef Watch | Coral recovery time vs time actually between bleaching events | https://aims.gov.au | 2026-11-12"
   },
   {
    "window": "closing",
-   "ears": "Repeated bleaching can erase a decade of reef recovery before it finishes.",
+   "ears": "Each early return interrupts healing, turning repeated bleaching into cumulative damage.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

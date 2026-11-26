@@ -3,50 +3,50 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 8,
-   "hook": 8,
-   "arc": 11,
-   "factual": 7,
-   "visual_proof": 9,
-   "payoff": 6,
-   "voice": 2
+   "premise": 12,
+   "hook": 16,
+   "arc": 15,
+   "factual": 10,
+   "visual_proof": 10,
+   "payoff": 8,
+   "voice": 4
   },
-  "total": 51,
+  "total": 75,
   "fatal": [
-   "deceptive"
+   "invented_fact"
   ],
-  "weakest": "hook",
-  "note": "The hook is a flat, jargon-y summary that gives away the whole story and implies the 50 otters protected kelp, which isn't what happened. Lead with the concrete tension instead, e.g. 'Fur traders left 50 sea otters alive, and the kelp fores",
-  "fp": "b97796bd81104216"
+  "weakest": "factual",
+  "note": "Provide a verifiable source or more conservative estimate for the 8.7 million metric‑ton CO₂ figure to avoid an invented fact.",
+  "fp": "bb39a11908b95792"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The otters we almost killed off turned out to be climate heroes.",
+   "ears": "A near-extinction revealed how sea otters protect coastal carbon.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Only 50 California sea otters remained after the fur trade nearly wiped the species out.",
+   "ears": "Only 50 sea otters survived the fur trade. That remnant kept the entire population alive.",
    "eyes": "a data picture (comparison)",
    "evidence": "U.S. Fish & Wildlife Service | California sea otter population, before the fur trade vs the 1930s low point | https://www.fws.gov/ | 2026-11-13"
   },
   {
    "window": "beat 1",
-   "ears": "That handful recovered to about 3,000 otters, though the species is still considered threatened.",
+   "ears": "The population reached about 3,000 sea otters. Their return restored a crucial predator to coastal kelp.",
    "eyes": "a data picture (trend)",
    "evidence": "U.S. Geological Survey / California Department of Fish and Wildlife | California sea otter population recovery, 1930s to today | https://www.usgs.gov/ | 2026-11-13"
   },
   {
    "window": "beat 2",
-   "ears": "The kelp forests those otters protect can store up to 8.7 million metric tons of CO2 a year.",
+   "ears": "Sea-otter-protected kelp can store 8.7 million metric tons of CO2 yearly. Recovery now safeguards a carbon sink.",
    "eyes": "a data picture (comparison)",
    "evidence": "Frontiers in Ecology and the Environment | Potential CO2 stored by otter-protected kelp forests, North Pacific range | https://esajournals.onlinelibrary.wiley.com/journal/15409309 | 2026-11-13"
   },
   {
    "window": "closing",
-   "ears": "Saving one predator can protect an entire coastline and its carbon.",
+   "ears": "Saving sea otters also preserves kelp habitat and a natural carbon store.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

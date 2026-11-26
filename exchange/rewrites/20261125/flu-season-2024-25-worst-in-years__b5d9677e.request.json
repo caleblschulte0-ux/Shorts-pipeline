@@ -98,12 +98,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a separate statistic about seniors rather than directly explaining why the season was brutal or linking to the prev",
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Provides shot‑coverage data but does not logically follow from the senior‑hospitalization fact; it's another independent"
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: It adds a demographic detail but doesn’t directly explain why the season was brutal nor follows causally from the overal",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: It introduces a new factor (vaccination rates) without a causal link from the previous beat about older adults, breaking"
  ],
  "reasons": [
-  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a separate statistic about seniors rather than directly explaining why the season was brutal or linking to the prev",
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Provides shot‑coverage data but does not logically follow from the senior‑hospitalization fact; it's another independent"
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: It adds a demographic detail but doesn’t directly explain why the season was brutal nor follows causally from the overal",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: It introduces a new factor (vaccination rates) without a causal link from the previous beat about older adults, breaking"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -137,5 +137,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T12:03:19Z"
+ "refiled": "2026-11-26T14:15:14Z"
 }
