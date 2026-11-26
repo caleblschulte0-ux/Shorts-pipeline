@@ -3,24 +3,27 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 12,
-   "hook": 18,
-   "arc": 18,
-   "factual": 15,
-   "visual_proof": 12,
-   "payoff": 10,
-   "voice": 5
+   "premise": 8,
+   "hook": 16,
+   "arc": 15,
+   "factual": 5,
+   "visual_proof": 7,
+   "payoff": 9,
+   "voice": 4
   },
-  "total": 90,
-  "fatal": [],
-  "weakest": "premise",
-  "note": "Ensure the 'data pictures' in beats 2 and 3 are designed for instant readability and impact on a small phone screen, rather than just being generic data representations.",
-  "fp": "f4d5455e303b30db"
+  "total": 64,
+  "fatal": [
+   "invented_fact",
+   "unrenderable_visual"
+  ],
+  "weakest": "factual",
+  "note": "Add verifiable sources for the shoe size increase and overweight statistics, and design clear, phone‑friendly graphics that directly illustrate the data.",
+  "fp": "56835bb279a0341c"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Your feet are changing shape, and your waistline is the reason.",
+   "ears": "Your feet are changing shape, and your waistline is a big part of why.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
@@ -32,7 +35,7 @@
   },
   {
    "window": "beat 1",
-   "ears": "It's not just length. About two in three women say their feet got wider as adults, and six in ten men agree.",
+   "ears": "It's not just length. About two in three women say their feet got wider as adults.",
    "eyes": "a data picture (comparison)",
    "evidence": "The College of Podiatry (UK) | Share of UK adults who say their feet widened in adulthood | https://www.buckbootz.com/news/british-feet-get-two-sizes-bigger-in-40-years | 2026-11-06"
   },

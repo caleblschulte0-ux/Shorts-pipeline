@@ -32203,7 +32203,7 @@
   {
    "slug": "back-to-sleep-campaign-cut-sids",
    "title": "Why One Simple Rule Cut Baby Deaths In Half",
-   "hook": "For years, the way we put babies to bed was killing them.",
+   "hook": "The sleeping position parents trusted for years was the one putting babies in danger.",
    "closing": "Know a new parent? Tell them: back to sleep. It costs nothing and it works.",
    "question": "Did you know which way babies should sleep?",
    "caption": "SIDS deaths in the US fell by more than half in under two decades -- not from new medicine, but from one changed instruction to parents. Here's how 'back to sleep' became one of the most effective public health campaigns ever. Did you know which way babies should sleep? 👇",
@@ -32274,19 +32274,19 @@
    "hook_was": "SIDS deaths fell 53% after one simple fix.",
    "scorecard": {
     "scores": {
-     "premise": 13,
+     "premise": 12,
      "hook": 18,
-     "arc": 17,
-     "factual": 14,
-     "visual_proof": 13,
+     "arc": 16,
+     "factual": 13,
+     "visual_proof": 12,
      "payoff": 9,
-     "voice": 5
+     "voice": 4
     },
-    "total": 89,
+    "total": 84,
     "fatal": [],
     "weakest": "arc",
-    "note": "Make the data graphics ultra‑simple (big numbers, clear arrows) so they stay legible on a small phone screen.",
-    "fp": "10096aaf45eb5fdb"
+    "note": "Simplify the data visuals so they remain clear and readable on a phone screen; heavy charts can lose impact in a short.",
+    "fp": "e9e35270017725a2"
    }
   },
   {
@@ -38665,19 +38665,22 @@
    "hook_was": "Your feet are bigger than your grandparents'.",
    "scorecard": {
     "scores": {
-     "premise": 12,
-     "hook": 18,
-     "arc": 18,
-     "factual": 15,
-     "visual_proof": 12,
-     "payoff": 10,
-     "voice": 5
+     "premise": 8,
+     "hook": 16,
+     "arc": 15,
+     "factual": 5,
+     "visual_proof": 7,
+     "payoff": 9,
+     "voice": 4
     },
-    "total": 90,
-    "fatal": [],
-    "weakest": "premise",
-    "note": "Ensure the 'data pictures' in beats 2 and 3 are designed for instant readability and impact on a small phone screen, rather than just being generic data representations.",
-    "fp": "f4d5455e303b30db"
+    "total": 64,
+    "fatal": [
+     "invented_fact",
+     "unrenderable_visual"
+    ],
+    "weakest": "factual",
+    "note": "Add verifiable sources for the shoe size increase and overweight statistics, and design clear, phone‑friendly graphics that directly illustrate the data.",
+    "fp": "56835bb279a0341c"
    }
   },
   {

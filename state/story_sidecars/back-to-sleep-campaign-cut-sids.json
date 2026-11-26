@@ -3,19 +3,19 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 13,
+   "premise": 12,
    "hook": 18,
-   "arc": 17,
-   "factual": 14,
-   "visual_proof": 13,
+   "arc": 16,
+   "factual": 13,
+   "visual_proof": 12,
    "payoff": 9,
-   "voice": 5
+   "voice": 4
   },
-  "total": 89,
+  "total": 84,
   "fatal": [],
   "weakest": "arc",
-  "note": "Make the data graphics ultra‑simple (big numbers, clear arrows) so they stay legible on a small phone screen.",
-  "fp": "10096aaf45eb5fdb"
+  "note": "Simplify the data visuals so they remain clear and readable on a phone screen; heavy charts can lose impact in a short.",
+  "fp": "e9e35270017725a2"
  },
  "storyboard": [
   {
@@ -33,7 +33,7 @@
   {
    "window": "beat 1",
    "ears": "Before the campaign, over 85% of SIDS cases were babies put down on their stomachs. Flipping them onto their backs did the trick.",
-   "eyes": "substance: the sleeping baby; cause: Data lifts the face-down baby and places it on its back in the crib",
+   "eyes": "a data picture (comparison)",
    "evidence": "CDC / NICHD (Safe to Sleep) | Share of SIDS cases where the baby was placed stomach-down vs. back-up, before vs. after the campaign | https://safetosleep.nichd.nih.gov/about/history | 2026-10-06"
   },
   {

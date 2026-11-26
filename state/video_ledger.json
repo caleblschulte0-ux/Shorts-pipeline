@@ -8367,6 +8367,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "vinyl is a premium niche"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-26",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Tattoos used to be a warning sign. Now they're just Tuesday.",
+   "depictions": [
+    "scene:tattoo-machine-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Culture shifts",
+   "notes": "kept existing directed scenes; validated"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-26",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "viz:trend",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Simple fixes",
+   "notes": "kept existing directed scenes; validated"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-26",
+   "topic_category": "money",
+   "hook_type": "inversion",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds holding your money.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "franchise": "Who owns it",
+   "notes": "kept existing directed scenes; validated"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-26",
+   "topic_category": "tech",
+   "hook_type": "inversion",
+   "hook_text": "The format everyone buried years ago is now outselling the one that replaced it.",
+   "depictions": [
+    "scene:vinyl-sleeves",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Comebacks",
+   "notes": "kept existing directed scenes; validated"
   }
  ],
  "entries": [
