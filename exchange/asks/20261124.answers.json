@@ -140,6 +140,16 @@
       "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch sets up a concrete false alarm—Betelgeuse fell to 36 percent brightness—then reveals dust, not stellar death, caused the blackout.\"}",
       "by": "chatgpt",
       "at": "2026-11-25T12:25:00.000Z"
+    },
+    "edc91144f3a0d47c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch challenges a number generations memorized with the concrete surprise that modern bodies no longer match it.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:36:00.000Z"
+    },
+    "dcac0b808e106b2e": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The sex difference is a subgroup detail, not a consequence or explanation of the overall temperature decline.\",\"2\":\"Revising the historic standard changes to measurement history and does not follow from the sex-specific decline.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:36:00.000Z"
     }
   }
 }
