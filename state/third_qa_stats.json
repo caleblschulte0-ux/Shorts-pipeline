@@ -3,226 +3,6 @@
     {
       "date": "20261117",
       "dry_run": false,
-      "ts": "2026-11-17T12:44:53+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 132,
-        "with_retention": 113,
-        "with_curve": 15,
-        "fetched_at": "2026-11-17T11:47:15.021433+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-11-17T12:44:52+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tpain": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nmplol": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfandtv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:connoreatspants": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nickmercs": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:pokimane": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:sykkuno": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fuslie": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261117-1",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 17.7
-        },
-        {
-          "slug": "clip-20261117-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261117-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261117-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261117-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261117",
-      "dry_run": false,
       "ts": "2026-11-17T12:48:30+00:00",
       "feedback": {
         "snapshot": true,
@@ -7156,6 +6936,430 @@
             }
           },
           "took_s": 8.7
+        }
+      ]
+    },
+    {
+      "date": "20261126",
+      "dry_run": false,
+      "ts": "2026-11-26T12:43:04+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 135,
+        "with_retention": 103,
+        "with_curve": 15,
+        "fetched_at": "2026-11-26T08:46:33.183955+00:00"
+      },
+      "brain": {
+        "ok": 34,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261126-1",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 123,
+                "refused_shown": 5,
+                "scouted": [],
+                "vod_arcs": 320,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2992,
+                "pool_with_vod": 2064,
+                "arc_sizes": [
+                  2,
+                  4,
+                  2,
+                  3,
+                  6,
+                  2,
+                  2,
+                  5,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "ishowspeed@momentlongheartlesswhalemau5-b9nbfquvbphrrgp4",
+                  "outcome": "already_refused",
+                  "why": "2026-11-23: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "jynxzi@momentonerouscoldwebtbcheesepull-jhj_mzwekg7vi3oh",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.3s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "@momenttalentedkathishshrimpsaltbae-lifhpo44k4jufwp9",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "pokimane@momentfaintbrainydonutvotenay-yqjuck9sq4d4zcc1",
+                  "outcome": "already_refused",
+                  "why": "2026-11-06: its VOD is unavailable: preflight:source only 5.3s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "stableronaldo@momentamorphoussnappyaardvarkwoofer-2svutl7cmp",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is 12 seconds of the streamer pointing the in-game camera at a nude character in a shower and saying 'Look at those pretty little things.' That is a leer, not a change. The stream before it i"
+                },
+                {
+                  "cluster": "ohnepixel@momentbashfullongstaplecoolstorybob-v5ocxqmlfniopt",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1434.3
+        },
+        {
+          "slug": "clip-20261126-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 5.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about 30% of the canvas height, not the roughly 75% a well-framed clip shou",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "meeting moment, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA 6 scene, near-nude NPC, mild",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Joe Joe_Bartolozzi Meets Mandy And Her Fur Slippers Question Hits Different"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 5.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin strip, about 30% of the canvas height, not the roughly 75% a well-framed clip should fill. I",
+                "The subject is small and hard to read on a phone. The streamer webcam and chat overlay are tiny, and the in-game figures",
+                "The game character is nearly nude, in a skimpy bikini-like outfit. This is likely to be age-restricted or flagged on a S",
+                "The hook card 'Joe meets Mandy' sits on blurred padding, away from the action. It is fine, but it adds to the sense that",
+                "Frame 52.2s shows a dark game menu screen with a 'VI' logo and no action, which is a weak moment in the clip."
+              ]
+            },
+            "first_render": {
+              "reframe": "facecam_gameplay",
+              "layout": "facecam_gameplay",
+              "problems": [
+                "render_qa: freeze: 4.2s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+                "vision: The game character in the middle panel looks nearly nude, in a skimpy string outfit, and stays on screen for most of the",
+                "vision: The hook card sits in a dark, mostly empty lower panel for the whole video, so the 'Joe meets Mandy' text and the bottom",
+                "vision: Some frames are weak: the 52.2s frame is a game menu, and the 57.2s frame is a blurry, washed-out shot."
+              ]
+            }
+          },
+          "took_s": 420.6
+        },
+        {
+          "slug": "clip-20261126-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "funny but needs context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 chase, polar bear joke, hit by tru",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Streamers React As Theregulationpod Watches A Polar Bear Scare Go Wrong"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Hook caption and word captions sit over the lower body and the action area, but they never cover the face",
+                "Some word captions are cut off at the frame edge (e.g. 'where', 'Ge') and the game's own subtitles overlap them at times",
+                "No blurred padding appears, so the picture fills the full frame. This is fine and not a defect"
+              ]
+            }
+          },
+          "took_s": 221.7
+        },
+        {
+          "slug": "clip-20261126-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown streamer, unclear e",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "GTA 6 cutscene, Lucia fights, chat react",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Marlon Clip Shows Lucia Is Actually Too Strong After This Drink Moment"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.65,
+              "problems": [
+                "7.9s frame is mostly dark empty space with no subject",
+                "hook text sits over the top of the picture and brushes the hat at 3.4s",
+                "footage is very dark overall"
+              ]
+            }
+          },
+          "took_s": 184.4
+        },
+        {
+          "slug": "clip-20261126-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 129,
+                "refused_shown": 5,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat's Rakai saga: a McDonald's worker asks Kai about Rakai, fans trick JShock over Kai, then Kai shows restraint a",
+                    "shape": "multi_streamer",
+                    "n": 6
+                  },
+                  {
+                    "premise": "On Kai's Halloween stream, Rakai walks in and invites himself to a party, and Kai shuts him down.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Lacy's chaotic streams, with money stuck in the ceiling, a yo-yo that does the unthinkable and a car so loud Marlon can'",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 320,
+                "moments": 40,
+                "candidates": 517,
+                "pool": 2992,
+                "pool_with_vod": 2064,
+                "arc_sizes": [
+                  2,
+                  4,
+                  2,
+                  3,
+                  6,
+                  2,
+                  2,
+                  5,
+                  4,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:aztrooshorts+kaicenat+snickerly+succesfulcelebrity/azt",
+                  "outcome": "narrative_failed",
+                  "why": "scores [58, 52, 52] after 2 revision(s) \u2014 @1s missing_context: A stranger doesn't know who Rakai is or what the claim is. The opening is a mid-conversation fragment ('didn't they that one kid?'). Add a context overlay naming who Rakai is and which claim is being ; @6s misleading: The audio repeats a"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "quirky glider shoutout, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Glider joyride, awe and joke, no event",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cdawg Gets Dragged Over Takahiko City And Says W Earth"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "The hook card sits low in the frame and slightly overlaps the chin and chest area in the face shots, but it never covers",
+                "In a few landscape frames (42.5s, 47.5s) the sharp picture is a short strip, so the subject is small, though it is still"
+              ]
+            }
+          },
+          "took_s": 390.5
+        },
+        {
+          "slug": "clip-20261126-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin landscape strip, about a third of the canvas height. The renderer did not crop toward the ac; vision: The subjects are small on a phone screen. In the last three fr",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "big name, vague title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA strip club, throwing money, little p",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Gets Motion And The Whole Room Loses It"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin landscape strip, about a third of the canvas height. The renderer did not crop toward the ac",
+                "The subjects are small on a phone screen. In the last three frames (23.8s to 28.8s) they are tiny and far away, and the ",
+                "The blurred padding is mostly black or dark red and makes up about two thirds of the frame, so the clip looks like a rep",
+                "The in-game scene is suggestive (a strip club with a dancer). It risks age-restriction or limited ads, and the 'Kai got ",
+                "The clip is dark and low-contrast, and the streamer UI and chat clutter the picture."
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: The sharp picture is a thin strip of about 13% of the canvas height, with a huge blurred area above and below it. This i",
+                "vision: The subjects are tiny and far away, and are hard to read on a phone.",
+                "vision: In the last third (23.8-28.8s) the strip is very dark and the people can barely be made out.",
+                "vision: The strip shows the full stream layout, including the chat panel, viewer-count overlay and facecam, so it looks like a r",
+                "vision: The hook caption sits on blurred padding and the picture itself carries nothing a viewer can read."
+              ]
+            }
+          },
+          "took_s": 257.1
         }
       ]
     }

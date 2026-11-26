@@ -22723,14 +22723,50 @@
       "director_cut": true
     },
     "clip-20261126-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cdawg/clip/CooperativeHumbleGnatVoHiYo-OA-qVS5WimtgHom2",
-      "story_key": null,
-      "streamer": "cdawg",
+      "url": "https://youtube.com/shorts/-hMuBHu4F00",
       "title": "Cdawg Gets Dragged Over Takahiko City And Says W Earth",
       "kind": "twitch_clip",
-      "ts": "2026-11-26T12:36:47.729609+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-26T12:36:58.479063+00:00",
+      "uploaded_at": "2026-11-26T12:36:58.479080+00:00",
+      "publish_at": "2026-11-26T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261126-cdawg-gets-dragged-over-takahiko-city-and-says-w-cf5406a6",
+        "tiktok": "queued for 2026-11-26T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cdawg/clip/CooperativeHumbleGnatVoHiYo-OA-qVS5WimtgHom2",
+      "streamer": "cdawg",
+      "series": "chaos",
+      "hook": "cdawg takes in the view from a cable \ud83d\ude02",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7866,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
+    },
+    "rejected-fragiletardysquidampenergycherry-swgyvnxapubi_y1v": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/FragileTardySquidAMPEnergyCherry-sWGYVnxAPuBi_y1v",
+      "streamer": "ohnepixel",
+      "title": "Ohne Bricked Up!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA6 strip club, throwing money, risky, )",
+      "ts": "2026-11-26T12:38:47.824621+00:00"
+    },
+    "rejected-laconicconsideratecaterpillarkippa-gk9t9i4pzk82s-sa": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/LaconicConsiderateCaterpillarKippa-gK9T9i4PZk82S-SA",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Motion And The Whole Room Loses It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin landscape strip, about a third of the canvas height. The renderer did not crop toward the ac; vision: The subjects are small on a phone screen. In the last three frames (23.8s to 28.8s) they are tiny and far away, and the ; vision: The blurred padding is mostly bl",
+      "ts": "2026-11-26T12:43:04.956327+00:00"
     }
   }
 }
