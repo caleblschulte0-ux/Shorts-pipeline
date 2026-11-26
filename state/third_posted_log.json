@@ -22611,6 +22611,16 @@
       "rejected_by": "preflight",
       "rejected_why": "source too dark (avg luma 24/255) \u2014 unwatchable IRL/night footage",
       "ts": "2026-11-25T20:34:41.766641+00:00"
+    },
+    "clip-20261126-1": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-eace4ea26ae62d4d",
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel GTA 6 bedroom scene gets interrupted",
+      "kind": "story",
+      "ts": "2026-11-26T11:56:57.168290+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }

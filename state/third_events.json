@@ -6379,6 +6379,52 @@
       ],
       "published_versions": [],
       "last_updated": "2026-11-25"
+    },
+    "stableronaldo-about-charact-2026w47": {
+      "event_id": "stableronaldo-about-charact-2026w47",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "about",
+        "charact",
+        "driv",
+        "wtfff"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-26",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2933798318/2866-3106",
+        "https://www.twitch.tv/stableronaldo/clip/AmorphousSnappyAardvarkWoofer-2SvUTl7cMpY5um59",
+        "vodmine://2933798318/3118-3358"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-26"
+    },
+    "ohnepixel-around-freak-2026w47": {
+      "event_id": "ohnepixel-around-freak-2026w47",
+      "people": [
+        "ohnepixel"
+      ],
+      "actions": [
+        "around",
+        "freak",
+        "hand",
+        "yall"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-26",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2933599748/17121-17361",
+        "https://www.twitch.tv/ohnepixel/clip/BashfulLongStapleCoolStoryBob-V5OcXqmlfNIoptdl",
+        "vodmine://2933599748/17369-17609"
+      ],
+      "published_versions": [
+        "story-eace4ea26ae62d4d"
+      ],
+      "last_updated": "2026-11-26"
     }
   }
 }
