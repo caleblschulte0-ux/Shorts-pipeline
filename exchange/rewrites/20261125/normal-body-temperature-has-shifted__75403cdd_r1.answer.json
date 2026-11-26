@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "normal-body-temperature-has-shifted__75403cdd_r1",
+  "slug": "normal-body-temperature-has-shifted",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T13:05:00Z",
+  "title": "The 98.6 Body Temperature Standard Failed Two Tests",
+  "hook": "The famous normal temperature misses both modern bodies and old measurements.",
+  "closing": "Normal is a range, because bodies changed and the original standard was never exact.",
+  "question": "What's your resting temperature?",
+  "segments": [
+    {
+      "topic": "Standard Misses Today",
+      "say": "Modern men average 97.5 degrees. Today's bodies already fall below the famous standard."
+    },
+    {
+      "topic": "Standard Shows Change",
+      "say": "Men's temperature fell 1.06 degrees. The gap reflects a real generational shift, not random readings."
+    },
+    {
+      "topic": "Standard Started Wrong",
+      "say": "Old thermometer records recalculate to 98.2 degrees. The original standard was high before modern cooling began."
+    }
+  ]
+}
