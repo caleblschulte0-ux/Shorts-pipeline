@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hadza-gut-bacteria-vs-americans__efaf2d65_r1",
+  "slug": "hadza-gut-bacteria-vs-americans",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T13:05:00Z",
+  "title": "The Hadza Gut Gap Has Two Powerful Causes",
+  "hook": "Hunter-gatherer guts gain diversity while modern habits strip it away.",
+  "closing": "Fiber feeds gut diversity, while unnecessary antibiotics can erase what diet builds.",
+  "question": "How much fiber did you eat?",
+  "segments": [
+    {
+      "topic": "Hadza Gut Diversity",
+      "say": "The Hadza carry about 730 gut bacteria species. Their guts support far more diversity than the average American's."
+    },
+    {
+      "topic": "Hadza Gut Fuel",
+      "say": "The Hadza eat 150 grams of fiber daily. That abundance feeds the bacteria behind their diversity."
+    },
+    {
+      "topic": "American Gut Loss",
+      "say": "About 34% of US antibiotic prescriptions are unnecessary. Modern medicine can erase diversity that fiber helps build."
+    }
+  ]
+}
