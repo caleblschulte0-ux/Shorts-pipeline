@@ -1,109 +1,79 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-26T12:26:47Z",
+ "updated": "2026-11-26T12:28:56Z",
  "open": [
+  {
+   "id": "us-stops-making-pennies-232-years__68b3f7da_r2",
+   "slug": "us-stops-making-pennies-232-years",
+   "filed": "2026-11-26T12:28:56Z",
+   "why": [
+    "repeat: the TITLE is too close to a video already up: 'Why America Basically Killed The Landline'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
+   ],
+   "request": "exchange/rewrites/20261126/us-stops-making-pennies-232-years__68b3f7da_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/us-stops-making-pennies-232-years__68b3f7da_r2.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__f2741b84_r2",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-11-26T12:28:56Z",
+   "why": [
+    "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds a separate fact about unit count rather than a consequence of revenue claim, so it doesn't follow from beat 0.",
+    "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Discusses streaming market share, which doesn't directly support the claim that vinyl is beating CDs."
+   ],
+   "request": "exchange/rewrites/20261126/vinyl-beats-cd-sales-again__f2741b84_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/vinyl-beats-cd-sales-again__f2741b84_r2.answer.json"
+  },
+  {
+   "id": "frog-fungus-mass-extinction__f17b2f42_r2",
+   "slug": "frog-fungus-mass-extinction",
+   "filed": "2026-11-26T12:28:55Z",
+   "why": [
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
+   ],
+   "request": "exchange/rewrites/20261126/frog-fungus-mass-extinction__f17b2f42_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/frog-fungus-mass-extinction__f17b2f42_r2.answer.json"
+  },
+  {
+   "id": "runway-near-misses-climbing__0b20bf15_r2",
+   "slug": "runway-near-misses-climbing",
+   "filed": "2026-11-26T12:28:55Z",
+   "why": [
+    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('Why Serious Runway Near-Misses Keep Climbing') — brain: Shows concentration at few airports but doesn’t explain the overall increase or follow logically from the previous cause"
+   ],
+   "request": "exchange/rewrites/20261126/runway-near-misses-climbing__0b20bf15_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/runway-near-misses-climbing__0b20bf15_r2.answer.json"
+  },
+  {
+   "id": "south-korea-robot-density-record__62573b7c_r1",
+   "slug": "south-korea-robot-density-record",
+   "filed": "2026-11-26T12:28:55Z",
+   "why": [
+    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Comparison to the US doesn't directly prove Korea's robot‑to‑person ratio and doesn't follow logically from beat 0",
+    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Focuses on China’s installs, which is unrelated to why Korea has more robots than people and doesn't follow from beat 1"
+   ],
+   "request": "exchange/rewrites/20261126/south-korea-robot-density-record__62573b7c_r1.request.json",
+   "answer_path": "exchange/rewrites/20261126/south-korea-robot-density-record__62573b7c_r1.answer.json"
+  },
+  {
+   "id": "feet-are-getting-bigger__0e637ef8_r2",
+   "slug": "feet-are-getting-bigger",
+   "filed": "2026-11-26T12:28:54Z",
+   "why": [
+    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('Why British Feet Keep Growing') — brain: Foot width change is a related fact but doesn't directly prove why feet keep growing and isn't a causal follow‑on from t"
+   ],
+   "request": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.answer.json"
+  },
   {
    "id": "fifty-otters-survived-climate-fight__960dcb0a_r1",
    "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-26T12:26:47Z",
+   "filed": "2026-11-26T12:28:54Z",
    "why": [
     "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the headline's focus on the 50 survivors and doesn't directly",
     "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: While it mentions carbon storage, it doesn't logically follow from beat 1 and the connection to the 50 otters guarding t"
    ],
    "request": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__960dcb0a_r1.request.json",
    "answer_path": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__960dcb0a_r1.answer.json"
-  },
-  {
-   "id": "right-whale-breeding-females__bdedbccb",
-   "slug": "right-whale-breeding-females",
-   "filed": "2026-11-25T14:00:04Z",
-   "why": [
-    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261125/right-whale-breeding-females__bdedbccb.request.json",
-   "answer_path": "exchange/rewrites/20261125/right-whale-breeding-females__bdedbccb.answer.json"
-  },
-  {
-   "id": "south-korea-robot-density-record__62573b7c",
-   "slug": "south-korea-robot-density-record",
-   "filed": "2026-11-25T14:00:03Z",
-   "why": [
-    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Comparison to the US doesn't directly prove Korea's robot‑to‑person ratio and doesn't follow logically from beat 0",
-    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Focuses on China’s installs, which is unrelated to why Korea has more robots than people and doesn't follow from beat 1"
-   ],
-   "request": "exchange/rewrites/20261125/south-korea-robot-density-record__62573b7c.request.json",
-   "answer_path": "exchange/rewrites/20261125/south-korea-robot-density-record__62573b7c.answer.json"
-  },
-  {
-   "id": "us-stops-making-pennies-232-years__68b3f7da_r1",
-   "slug": "us-stops-making-pennies-232-years",
-   "filed": "2026-11-25T12:51:56Z",
-   "why": [
-    "repeat: the TITLE is too close to a video already up: 'Why America Basically Killed The Landline'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
-   ],
-   "request": "exchange/rewrites/20261125/us-stops-making-pennies-232-years__68b3f7da_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/us-stops-making-pennies-232-years__68b3f7da_r1.answer.json"
-  },
-  {
-   "id": "oceanic-shark-collapse__146525e1_r1",
-   "slug": "oceanic-shark-collapse",
-   "filed": "2026-11-25T12:25:59Z",
-   "why": [
-    "repeat: the TITLE is too close to a video already up: 'The World Lost 35% Of Its Wetlands Since 1970'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped."
-   ],
-   "request": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/oceanic-shark-collapse__146525e1_r1.answer.json"
-  },
-  {
-   "id": "runway-near-misses-climbing__0b20bf15_r1",
-   "slug": "runway-near-misses-climbing",
-   "filed": "2026-11-25T12:25:59Z",
-   "why": [
-    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('Why Serious Runway Near-Misses Keep Climbing') — brain: Shows concentration at few airports but doesn’t explain the overall increase or follow logically from the previous cause"
-   ],
-   "request": "exchange/rewrites/20261125/runway-near-misses-climbing__0b20bf15_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/runway-near-misses-climbing__0b20bf15_r1.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__f2741b84_r1",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-11-25T12:25:59Z",
-   "why": [
-    "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds a separate fact about unit count rather than a consequence of revenue claim, so it doesn't follow from beat 0.",
-    "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Discusses streaming market share, which doesn't directly support the claim that vinyl is beating CDs."
-   ],
-   "request": "exchange/rewrites/20261125/vinyl-beats-cd-sales-again__f2741b84_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/vinyl-beats-cd-sales-again__f2741b84_r1.answer.json"
-  },
-  {
-   "id": "feet-are-getting-bigger__0e637ef8_r1",
-   "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('Why British Feet Keep Growing') — brain: Foot width change is a related fact but doesn't directly prove why feet keep growing and isn't a causal follow‑on from t"
-   ],
-   "request": "exchange/rewrites/20261125/feet-are-getting-bigger__0e637ef8_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/feet-are-getting-bigger__0e637ef8_r1.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__f17b2f42_r1",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261125/frog-fungus-mass-extinction__f17b2f42_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/frog-fungus-mass-extinction__f17b2f42_r1.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__c3397837_r1",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261125/great-barrier-reef-bleaching-accelerating__c3397837_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/great-barrier-reef-bleaching-accelerating__c3397837_r1.answer.json"
   },
   {
    "id": "hadza-gut-bacteria-vs-americans__efaf2d65_r1",
