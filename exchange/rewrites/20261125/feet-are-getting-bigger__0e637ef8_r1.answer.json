@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "feet-are-getting-bigger__0e637ef8_r1",
+  "slug": "feet-are-getting-bigger",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T12:45:00Z",
+  "title": "British Feet Grew Two Shoe Sizes",
+  "hook": "Shoe sizes rose because adult feet are changing in two directions.",
+  "closing": "Bigger bodies can reshape adult feet, so old shoe sizes may no longer fit.",
+  "question": "Has your shoe size changed?",
+  "segments": [
+    {
+      "topic": "Feet Grew Longer",
+      "say": "British men's average shoe size grew by two sizes. The change is too large to dismiss as fashion."
+    },
+    {
+      "topic": "Feet Grew Wider",
+      "say": "About 67% of women say their feet widened in adulthood. Growth is happening across the foot, not just along it."
+    },
+    {
+      "topic": "Feet Follow Weight",
+      "say": "About 66% of adults in England are overweight or obese. Extra weight helps explain why adult feet spread."
+    }
+  ]
+}
