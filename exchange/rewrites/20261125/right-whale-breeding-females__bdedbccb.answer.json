@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "right-whale-breeding-females__bdedbccb",
+  "slug": "right-whale-breeding-females",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T12:45:00Z",
+  "title": "Only 70 Right Whale Mothers Hold Up The Recovery",
+  "hook": "The whale comeback depends on a group smaller than a packed bus.",
+  "closing": "Protecting each mother is the clearest way to keep this fragile recovery moving.",
+  "question": "Can right whales recover?",
+  "segments": [
+    {
+      "topic": "Whale Population",
+      "say": "The right whale population reached 384. The rebound exists, but every animal still matters."
+    },
+    {
+      "topic": "Whale Calves",
+      "say": "The latest season produced 22 calves. New births are finally adding momentum to the rebound."
+    },
+    {
+      "topic": "Whale Mothers",
+      "say": "Only 70 are breeding females. Losing a few mothers could erase the progress those calves represent."
+    }
+  ]
+}
