@@ -150,7 +150,7 @@ hand on a still thing as no cause), so a handle, a lever or the prop itself trav
 the harness's nineteen per-shot checks said of each case, with a fingerprint of the helper's code and the cases. The
 test fails when a check there reads FAIL and when `recipe_stage.py` or a case has changed since: change the helper,
 run the proof again. The proof is of his body and the frame on plain props at one frame size and a 4 s beat, and its
-margins are thin in places (KEYS 0.052 against 0.05 where the frame has no room beside him), so a real shot is still
+margins are thin in places (KEYS 0.053 against 0.05 where the frame has no room beside him and he can only step straight back; READ 0.90 s against 1.0), so a real shot is still
 judged by every check on every build; the look of a real prop is still the pre-flight's and the panel's. `perform`
 prints one `STAGE perform:` line saying where he comes in from, works, ducks back to and ends, and when.
 

@@ -51,7 +51,7 @@ on screen: KEYS 0.050); "back from the lens" taken along the line from him to it
 head at the frame edge); a turn of his chest while his hand was on its way (FLUID's stutter); a face 71 degrees off
 the lens on still 1; a step cut by the frame.
 WHAT IT IS NOT. The props are boxes on a flat field at one frame size and a 4 s beat (4.6 s for the last): the
-margins are thin in places (KEYS 0.052 against 0.05 where the frame has no room beside him; READ 0.90 s against 1.0),
+margins are thin in places (KEYS 0.053 against 0.05 where the frame has no room beside him and he can only step straight back; READ 0.90 s against 1.0),
 so a real prop can still fail a check and the checks still judge every build. A push longer than the frame holds
 (about 0.3 m with a 0.3 m prop at his size) and a push away from the lens are REFUSED by stage() with the sum, not
 staged: they are a cut. character.walk_to keys his height from the ground at z 0, so a push on raised ground is not
@@ -458,17 +458,20 @@ def perform(data, st, dur, grip=None, faces=("alarmed", "pleased"), ground_z=Non
     # WHERE HE DUCKS BACK TO. On screen a step out to his side and a step back from the lens CANCEL (further off he is
     # smaller, and smaller is nearer the middle): the two together measured 0.050 of the frame where either alone is
     # more. So it is one or the other: sideways where the frame has the room, else straight back along the lens.
+    # the room is measured where he IS when he lets go: the job may have brought him in from where the staging stood him
+    widen = (DATA_H / st["frame_h"] * 9 / 16 / 2) / max(0.5, (D - Vector((cam.x, cam.y, 0.0))).dot(ax))
+    room2 = room - (S2 - D).dot(cross) - widen * (S2 - D).dot(to_us)
+    lean_back = -6.0 if tight else ks[2]["spine"]     # leaning back is leaning to his own edge of the frame: less of it where there is no room
     if planted:                                       # on a step his feet stay on it: his weight goes to his own side and back
         back = S2 + cross * max(0.0, min(0.05, room - 0.03)); end = S2; how = "planted"
     elif not tight:
         lat = min(k_recoil, room - 0.02)
         back = S2 + cross * lat + to_us * (k_recoil - lat)
         end = back - cross * lat + to_us * TO_LENS[1]; how = "roomy"          # back in from the edge and to us: a new place on the sheet
-    elif room - 0.02 >= SIDE_MIN:
-        back = S2 + cross * (room - 0.02); end = S2; how = "a step to his side"
-    else:
+    elif room2 - 0.02 >= SIDE_MIN:
+        back = S2 + cross * min(k_recoil, room2 - 0.02); end = S2; how = "a step to his side"
+    else:                                             # DEEP and no more each way (GLIDE: 0.25 m on sliding feet); a full lean back there measured LESS on the sheet (KEYS 0.049)
         back = S2 - to_us * DEEP; end = S2; how = "no room beside him: straight back"
-    lean_back = -6.0 if tight else ks[2]["spine"]     # leaning back is leaning to his own edge of the frame: less of it where there is no room
     yaw_res = yaw_act if (fn or tool) else ks[2]["yaw"]       # at the result his chest is still to the job; the turn to us is the reaction
     sway = SWAY * (0.5 if planted else 1.0); squat = BRACE * 1.5                                  # his knees do what his feet cannot (2.2 over-bent them)
     tang = Vector((-away.y, away.x, 0.0)); tang = tang if tang.dot(lens) > 0 else -tang           # his weight shifts ROUND the job, not off it: the hand stays in reach

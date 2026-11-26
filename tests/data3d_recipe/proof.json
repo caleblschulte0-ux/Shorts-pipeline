@@ -1,5 +1,5 @@
 {
- "fingerprint": "dc6575162ed40e2333359cf1d1007f41c70cde7a0ec8789586030245765f87bb",
+ "fingerprint": "494b3124a5cbbcdec5988fa268e4413a587edbe044436b123c05b9f8be4243fc",
  "story": "recipe_cases",
  "checks": [
   "STAGING",
@@ -25,7 +25,7 @@
  "cases": {
   "1": {
    "built": true,
-   "load": 5.6,
+   "load": 7.6,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
@@ -52,7 +52,7 @@
   },
   "2": {
    "built": true,
-   "load": 6.9,
+   "load": 8.5,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
@@ -79,7 +79,7 @@
   },
   "3": {
    "built": true,
-   "load": 5.5,
+   "load": 8.5,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
@@ -106,7 +106,7 @@
   },
   "4": {
    "built": true,
-   "load": 5.0,
+   "load": 8.5,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
@@ -133,7 +133,7 @@
   },
   "5": {
    "built": true,
-   "load": 4.7,
+   "load": 8.3,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
@@ -160,7 +160,7 @@
   },
   "6": {
    "built": true,
-   "load": 5.0,
+   "load": 6.3,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
@@ -187,7 +187,7 @@
   },
   "7": {
    "built": true,
-   "load": 3.3,
+   "load": 5.5,
    "checks": {
     "STAGING": "OK",
     "CONSEQUENCE": "OK",
