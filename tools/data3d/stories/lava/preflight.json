@@ -821,6 +821,17 @@
     }
    ]
   },
+  "7620260c8d2ac398165c4802827f43260fb9603dc3cb254e199a69a64226f143": {
+   "at": "2026-11-26 13:23:03Z",
+   "claims": 16,
+   "claims_key": "db1a172e4e5e7581",
+   "continuity": [],
+   "sha256": "7620260c8d2ac398165c4802827f43260fb9603dc3cb254e199a69a64226f143",
+   "shot": 1,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
+  },
   "771ad76b3e9844e727875833a0d3b523a12502d9fb32ecde31defb6a21873c14": {
    "at": "2026-11-26 03:49:07Z",
    "claims": 15,
@@ -898,6 +909,45 @@
      "kind": "SAYS",
      "note": "The stills show a black rock wall, houses, a flag and a lava fountain, and Data piling boulders. Nothing shows a wall taller than a house, and there is no lava being held back or reaching the wall, so the line's fact is not clear without sound. The wall's height relative to the houses is not conveye",
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "79217c573d832838e579441d997d303bdc019dd5f3907c34124984e65ea2c4fb": {
+   "at": "2026-11-26 13:26:18Z",
+   "claims": 13,
+   "claims_key": "e5a14bca2ba12cbd",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The black boulder in Data's hands in still 1 is gone in stills 2-3. It is not seen dropped on the row, so it vanishes.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "grade",
+     "note": "Stills 1-3 have a pale grey-white sky and flat light. Still 4 has a saturated blue sky and a different colour grade.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "79217c573d832838e579441d997d303bdc019dd5f3907c34124984e65ea2c4fb",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "No still shows a drop onto the row and no dust puff. The hands are empty in stills 2-3.",
+     "text": "He drops it onto the row of boulders along the crest in a puff of pale dust"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data faces the camera with empty hands and does not turn toward the town. Nothing shows a deliberate straightening up beside the row.",
+     "text": "He straightens up beside the row and turns to the town below"
     }
    ]
   },
@@ -1212,6 +1262,32 @@
     }
    ]
   },
+  "b3fc9667de6779085f40b7da556b7fb587381b67589495749376ec446478a239": {
+   "at": "2026-11-26 12:44:25Z",
+   "claims": 13,
+   "claims_key": "279ba18b21c629fe",
+   "continuity": [
+    {
+     "id": "grade",
+     "note": "Stills 1-3 are dim and grey-overcast. Still 4 has a vivid saturated blue sky and brighter light, so the grade changes.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "b3fc9667de6779085f40b7da556b7fb587381b67589495749376ec446478a239",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "ACTION",
+     "note": "Data holds a dark rock low at his left side. It is not clearly heaved up to his chest with both hands on it, and no still shows the lift.",
+     "text": "the driver in his hard hat heaves a black boulder up at his chest, both hands on it"
+    }
+   ]
+  },
   "b53217b19c0f738147d550c22feb38b97bfb2c56009558304afdfc16f65de4d5": {
    "at": "2026-11-26 11:06:25Z",
    "claims": 14,
@@ -1303,6 +1379,17 @@
      "text": "He runs out past us, big in the frame, looking back at the fire over his shoulder"
     }
    ]
+  },
+  "cf41307d1e6bff63102402cc0b490b8d310289e194806b6442cbe6d4fc772ca7": {
+   "at": "2026-11-26 12:04:12Z",
+   "claims": 17,
+   "claims_key": "b9b93c66f67a2e94",
+   "continuity": [],
+   "sha256": "cf41307d1e6bff63102402cc0b490b8d310289e194806b6442cbe6d4fc772ca7",
+   "shot": 1,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
   },
   "d17fc40bdc0a156a0db3dae947d33deeb52351cf744be773fbdf517f570f6194": {
    "at": "2026-11-26 01:14:17Z",
@@ -1428,6 +1515,17 @@
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
+  },
+  "df5c00e0e976ff09e6d2a3ffdbfce479204ac4225e1992641ee845487f1667e6": {
+   "at": "2026-11-26 11:58:54Z",
+   "claims": 15,
+   "claims_key": "056e62d612237a08",
+   "continuity": [],
+   "sha256": "df5c00e0e976ff09e6d2a3ffdbfce479204ac4225e1992641ee845487f1667e6",
+   "shot": 2,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
   },
   "dfb3367455091e9aa6bc8e6a21f79352435dd43ddcbc3e2b18dc74f379ff943e": {
    "at": "2026-11-26 01:13:59Z",
@@ -1556,6 +1654,24 @@
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
+  },
+  "ebfe3e73e13fc3c608e919d7c65b49a3775469294de63e139d85d10ca140c097": {
+   "at": "2026-11-26 12:45:59Z",
+   "claims": 16,
+   "claims_key": "db1a172e4e5e7581",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The white car up the street is clear in still 1, only a faint blur at the left edge in still 2, and gone in stills 3-4. The stills do not show where it went. The pink lava streak in still 1 also disappears.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-3"
+    }
+   ],
+   "sha256": "ebfe3e73e13fc3c608e919d7c65b49a3775469294de63e139d85d10ca140c097",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
   }
  }
 }

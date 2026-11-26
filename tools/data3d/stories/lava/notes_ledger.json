@@ -1,5 +1,5 @@
 {
- "rounds": 16,
+ "rounds": 18,
  "shots": {
   "1": {
    "BROKEN": {
@@ -70,6 +70,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "BROKEN: frames 2-4: a black and red round object on a post is still cut by the top-right edge of the frame. It shows up from nowhere after frame 1 and reads as a broken piece of a prop."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "BROKEN: frame 1: two pink-red straight rods stick out of the fountain curtain, one going left and one going right at ridge height (left of x\u224820-60, right toward x\u2248270). They read as a glitched prop or stray geometry and are gone by frame 2, so they pop out between stills."
      }
     ]
    },
@@ -104,6 +109,11 @@
       "at": "2026-11-25 17:04Z",
       "round": 6,
       "what": "reset restage: the storyboard now promises only the baton and the cars leaving: cars with headlights fill the lane beside him in stills 1-2 and the street is empty in stills 3-4"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "the fountains stand on the ridge and he bolts from them down the street: four different stills (stands, bolts, runs nearer, runs past), growing in frame"
      }
     ],
     "named": [
@@ -175,6 +185,11 @@
       "at": "2026-11-25 17:04Z",
       "round": 6,
       "what": "reset restage: the row of orange fountains with dark smoke stands on the ridge behind the houses in every still, and the line of cars with headlights on is leaving past him: everyone had to run"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "storyboard line rewritten to the four stills on the sheet; open front doors and a car driving away with its tail lights on carry everyone had to run"
      }
     ],
     "named": [
@@ -212,6 +227,11 @@
       "at": "2026-11-25 22:34Z",
       "round": 15,
       "said": "NOT SHOWN: frames 1-4: 'right beside one Icelandic town' and 'a volcano' are not shown. With no ridge and no recognisably Icelandic houses, the fountains look like house-high bonfire spikes just behind a dirt pile at the end of the street, not an eruption on a ridge above a town. The 'lit baton' is a flat pale-peach stick in every frame and never glows."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "NOT SHOWN: frames 2-4 \u2013 the 'bolts', 'arms pumping' and 'runs out past us' beats are not in the stills. His arms hang straight down at his sides and his stride is a short walk, so he reads as strolling down the street, not fleeing. In frame 4 he is about the same size as in frame 3 and still mid-street, not big in the frame or running out past the lens. 'Everyone had to run' is not shown either: n"
      }
     ]
    },
@@ -261,6 +281,11 @@
       "at": "2026-11-25 17:04Z",
       "round": 6,
       "what": "reset restage: bright day in all four stills, low painted tin houses down both sides of the street, the ridge behind them; the world block was rewritten to this one bright day"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "Grindavik's main street by day: painted tin-clad houses with tin roofs, Icelandic flags, open doors, the rock ridge and a ragged fountain curtain over the roofs"
      }
     ],
     "named": [
@@ -337,6 +362,11 @@
       "at": "2026-11-25 17:04Z",
       "round": 6,
       "what": "reset restage: the fountains and the plume are procedural fire and smoke volumes, not cones or blobs; real asphalt, painted clad houses with windows, cars with lit headlamps"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "fountains are ragged gas volumes of uneven height with spatter and a lit plume, not smooth cones; orange light on ridge and roofs; one daylight grade"
      }
     ],
     "named": [
@@ -374,6 +404,11 @@
       "at": "2026-11-25 22:34Z",
       "round": 15,
       "said": "OFF THE LOOK (stage for the one camera; Data's face and body must read the emotion): frames 1-4: he faces us square with one arm stiffly out to the side. He does not face the traffic he is directing, so nothing reads as marshalling cars. His face is a flat resting look while a volcano erupts 50 m behind him. In frame 4 the stick drops to his hip and he is just standing."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "OFF THE LOOK (things behave for real; kinda real, one finish): frames 1-4 \u2013 the lava bombs are pale pastel pink-white spheres hanging in a frozen halo around the fountain, like popcorn or bubbles, not glowing ejecta on arcs. The fountain is a soft cartoon flame with no orange light on the roofs, ridge or street, so it looks pasted over the sky rather than lit into the set. This does not match the "
      }
     ]
    },
@@ -384,6 +419,11 @@
       "at": "2026-11-25 22:34Z",
       "round": 15,
       "said": "ONE-SECOND GAG: frames 3-4: once the cars are gone, the street is empty and the frame holds the same picture. The only change is the stick's angle. Nothing new happens in the second half; a stranger swipes."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "ONE-SECOND GAG: frames 2-4: after the stand in frame 1, the last three stills are the same run toward the lens, only a little bigger each time, with the same pose, the same street and the same fountain. Nothing new happens after the first second. The promised climax, him running out past us big and wide-eyed, is not in the stills: in frame 4 he is still mid-frame, about half the height of the fram"
      }
     ]
    },
@@ -408,6 +448,11 @@
       "at": "2026-11-25 17:04Z",
       "round": 6,
       "what": "reset restage: he is three-quarter to the lens at the frame's right, working with both arms: the lit baton swung up in one hand, the other sweeping the cars on, never square to the lens with his arms out"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "he no longer stands centre frame with arms out: he runs the diagonal three-quarter to the lens, stride and pumping arms readable in stills 2-4"
      }
     ],
     "named": [
@@ -458,6 +503,21 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "BACK TO CAMERA: frames 1-4: Data is seen from behind or three-quarters from behind. In frames 2-3 we see the back of his head, and in frame 4 his face is turned away from the lens. He never grins at us."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "BACK TO CAMERA: frame 4: he is turned away from the lens, three-quarter from behind. We see the back of his vest and the side of his head, and his face is hidden behind the glasses' side arm. This is the ending pose, held for the last quarter of the shot, not a quick glance."
+     }
+    ]
+   },
+   "BODY": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "BODY: frame 2: the boulder hangs in the air above the hard hat, not resting on it, and neither hand touches it. One hand is cupped at his cheek and the other is at his chest. A rock 'hoisted onto his hard hat' with no hands under it reads as a floating object."
      }
     ]
    },
@@ -514,6 +574,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "BROKEN: frames 1-4: most of the frame is pure black. The bottom third is a black void and the digger is a silhouette. Frame 1 has Data's head cut off by the left and bottom edges."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "BROKEN: frames 1-4: the lava fountain is cut by the top and left frame edges in every still. Frame 3: the dust puff is cut by the left edge, and the boulder that lands front-left there is not where he stands in frame 4, so it jumps between stills."
      }
     ]
    },
@@ -580,6 +645,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "CONSEQUENCE: frames 2-4: the bucket is a black silhouette against the sky at the top edge. No rock is ever seen going over a crest, tumbling down the face or bursting into dust."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "CONSEQUENCE: frame 3: where the boulder lands is pushed to the far left edge. The dust puff is cut off by the frame edge, and the boulder ends up on the ground ahead of him and to the left, not visibly set into the row of crest boulders. Placing it never visibly adds anything to the wall."
      }
     ]
    },
@@ -646,6 +716,21 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT SHOWN: frames 1-4: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is not shown. The wall is a dark slope with no scale beside it, and there are no other diggers and no dump truck. The floodlights are a few white specks, not lit poles along the wall's foot."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "NOT SHOWN: frames 1-4: 'a wall of rock taller than a house' is not on screen. The camera looks along the crest, so the wall reads as a rubbly black path or ridge with no face and no height. The houses sit off in the distance at about the same eye line, so nothing compares the wall to a house. 'To keep the lava out' is not shown either: no lava reaches the wall or presses on its outer side. The onl"
+     }
+    ]
+   },
+   "NOT THE POINT": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "NOT THE POINT: frames 1-4: seen alone, the shot reads as a cartoon worker playing with a rock on a gravel heap. Frame 2, the boulder balanced on his hard hat, reads as a circus gag, not as building a wall. Nothing reads as the town building a barrier against lava."
      }
     ]
    },
@@ -712,6 +797,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "NOT THE WORLD: frames 1-4: no lit wall works, no black lava rock you can read, no town or work site. It is a dark cab frame against a dusk sky."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "NOT THE WORLD: frames 1-4: none of the world's eruption cues are present. There is no fissure ridge, no dark smoke, no steam where lava meets cold ground, and no bare black lava field on the outer side. The fountain seems to rise straight out of the far end of the wall, so the geography of town, wall and lava cannot be read."
      }
     ]
    },
@@ -778,6 +868,11 @@
       "at": "2026-11-25 10:15Z",
       "round": 6,
       "said": "OFF THE LOOK (friendly and readable, never dark underlit night; every object built from its real parts): frames 1-4: this is underlit night, close to horror lighting. The digger is a dark roof slab on posts with a flat orange plank for an arm: no cab glass, no rams, no tracks."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "OFF THE LOOK (backgrounds as real as we can make them; one finish across the frame): frames 1-4: the houses are simple boxes with flat, saturated roofs and no gutters, trim or tin ribbing, so they look toy-like next to the detailed black rock. The lava fountain is a flat flame card with no smoke column or glow on the ground. The sky is a flat dull grey, not the story's cold, bright day under broke"
      }
     ]
    },

@@ -1074,3 +1074,97 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - HARD: PRE-FLIGHT: NOT SEEN [SAYS, promised by the shot's spoken line]: "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out" (The stills show a black rock wall, houses, a flag and a lava fountain, and Data piling boulders. Nothing shows a wall taller than a house, and there is no lava being held back or reaching the wall, so the line's fact is not clear without sound. The wall's height relative to the houses is not conveye). Fix the shot so one still shows it, or take that promise out of the shot's spoken line.
 - HARD: PRE-FLIGHT: CONTINUITY props (stills 2-3): The boulder lifted onto the hat in still 2 is gone in still 3 with no sign of where it went. The boulder at the bottom of still 3 may be a different one. The rule: every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere).
 
+
+## 2026-11-26 11:58Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [ACTION, promised by the shot's storyboard line]: "He tips it off into the gap in the row" (No still shows the tipping off into a gap in the row. Still 3 shows only the boulder already on the ground, and no gap in the row is visible). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+
+
+## 2026-11-26 11:59Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 38 | 34, 38, 44 | FAIL |
+
+**shot 2** (FAIL, 38, bar 70)
+
+- HARD: NOT SHOWN: frames 1-4: 'a wall of rock taller than a house' is not on screen. The camera looks along the crest, so the wall reads as a rubbly black path or ridge with no face and no height. The houses sit off in the distance at about the same eye line, so nothing compares the wall to a house. 'To keep the lava out' is not shown either: no lava reaches the wall or presses on its outer side. The only lava is a flame at the top-left corner. With the sound off, a stranger sees a man carrying a rock along a rocky path near a village.
+- HARD: BODY: frame 2: the boulder hangs in the air above the hard hat, not resting on it, and neither hand touches it. One hand is cupped at his cheek and the other is at his chest. A rock 'hoisted onto his hard hat' with no hands under it reads as a floating object.
+- HARD: BACK TO CAMERA: frame 4: he is turned away from the lens, three-quarter from behind. We see the back of his vest and the side of his head, and his face is hidden behind the glasses' side arm. This is the ending pose, held for the last quarter of the shot, not a quick glance.
+- HARD: OFF THE LOOK (backgrounds as real as we can make them; one finish across the frame): frames 1-4: the houses are simple boxes with flat, saturated roofs and no gutters, trim or tin ribbing, so they look toy-like next to the detailed black rock. The lava fountain is a flat flame card with no smoke column or glow on the ground. The sky is a flat dull grey, not the story's cold, bright day under broken cloud.
+- HARD: NOT THE WORLD: frames 1-4: none of the world's eruption cues are present. There is no fissure ridge, no dark smoke, no steam where lava meets cold ground, and no bare black lava field on the outer side. The fountain seems to rise straight out of the far end of the wall, so the geography of town, wall and lava cannot be read.
+- HARD: BROKEN: frames 1-4: the lava fountain is cut by the top and left frame edges in every still. Frame 3: the dust puff is cut by the left edge, and the boulder that lands front-left there is not where he stands in frame 4, so it jumps between stills.
+- HARD: NOT SHOWN: frames 1-4: the line says 'a wall of rock taller than a house to keep the lava out', but nothing on screen shows the wall's height. The camera is on the crest looking along it, so its face is never seen. The houses sit off on the green at about the same level as the ridge, with no house set against the wall's face for scale. Nothing shows the wall standing between the lava and the town: the fountain is a distant flame at the far end, and no lava reaches or presses against the wall. With the sound off, a stranger sees a rubble ridge next to a village, not a wall taller than a house holding lava back.
+- HARD: NOT THE POINT: frames 1-4: seen alone, the shot reads as a cartoon worker playing with a rock on a gravel heap. Frame 2, the boulder balanced on his hard hat, reads as a circus gag, not as building a wall. Nothing reads as the town building a barrier against lava.
+- HARD: CONSEQUENCE: frame 3: where the boulder lands is pushed to the far left edge. The dust puff is cut off by the frame edge, and the boulder ends up on the ground ahead of him and to the left, not visibly set into the row of crest boulders. Placing it never visibly adds anything to the wall.
+- HARD: BODY: frame 2: the boulder sits on top of his hard hat with neither hand under or on it. One hand is pressed to his cheek and the other is bent up beside his head, so it looks like the rock is floating on the hat rather than being hoisted. Frame 1: his hands are hidden behind the boulder, so it does not read as gripped at his chest. It looks stuck to his side.
+- HARD: OFF THE LOOK (backgrounds as real as we can make them; one finish across the frame; every object built from its real parts): frames 1-4: the lava fountain is a flat orange flame sprite, cut by the top edge in every still, and it reads as a cartoon campfire, not an eruption. The houses are plain boxes with clean single-colour walls and roofs, and the grass is one flat green plane. The sky is flat grey with no broken cloud, smoke or steam. Next to the well-textured rock boulders, the town and the eruption look like a toy set, and the frames do not match the finish of the approved store.
+- HARD: NOT SHOWN: frames 1-4: 'a wall of rock taller than a house' is not shown. The camera stands on the crest, so the wall reads as a rocky road running off to a vanishing point and its height is never seen. The houses on the right sit at about crest level with their roofs above it, so the picture says the wall is NOT taller than a house. 'To keep the lava out' is not shown either: the only lava is a small flame cut off by the top-left corner, with no lava anywhere near the wall's outer face.
+- HARD: BODY: frame 2: the boulder sits balanced on top of the hard hat with neither hand on it, one hand at his cheek and the other at his chest. A rock that size cannot sit on a head without support, and no hands do the 'hoist'.
+- HARD: BROKEN: frames 3-4: the boulder lands to Data's lower LEFT in frame 3, then appears directly UNDER his feet at centre frame in frame 4, with no move in between. The frame-3 dust puff is a flat grey blob half cut off by the left edge.
+- HARD: NOT THE WORLD / OFF THE LOOK (one finish across the frame, no Scooby-Doo; the realer the better): frames 1-4: the houses are toy Monopoly houses with saturated flat roofs, clean white walls and no tin cladding or grime, standing on a flat, untextured green plane. The rock wall in front of them is dark, gritty and photo-real. The fountain is a flat orange flame sprite on a flat grey sky, with no smoke or steam column. It reads as a stage set, not Grindavik.
+- HARD: OFF THE LOOK (Data CAUSES what moves; each beat SHOWS its fact as a picture): frames 1-4: a small driver setting down one boulder cannot build 'a wall taller than a house'. The action is a token gesture, not the work that makes the wall.
+- problem: In frames 1-3 Data is front-on and square to the lens, mid-frame, posing with a prop, the same staging that failed earlier rounds. The three-quarter turn claimed in the change note is not in the stills.
+- problem: Data stands dead centre and hides the run of the wall, which is the subject of the shot.
+- problem: The fountain, the story's threat, is cut off by the top-left corner in every frame and is tiny on a phone.
+- problem: Balancing a boulder on his hard hat is a gag with no story logic. A digger driver does not build a wall this way.
+- problem: The foreground crest is a muddy brown-black in all four frames, with no readable rock texture in the bottom third.
+- better: Move the camera OFF the crest, low on the town side or side-on, so the wall's full height stands right next to a real two-storey tin house with Data on top. 'Taller than a house' then reads in one look. Put the lava glow or a fountain plume on the far side, held back by the wall.
+- better: Give him his digger. He drives it, the bucket drops a big boulder onto the crest, and the crest visibly rises against the house beside it. That makes him the cause, at the scale of the fact.
+- better: Rebuild the houses to match the rock's finish: corrugated tin cladding, weathered paint, gutters, windows at real scale, a lawn with tufts and gravel. Real CC0 house assets would also work.
+
+
+## 2026-11-26 12:38Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 0 | - | FAIL |
+
+**shot 1** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [PLACE, promised by the shot's storyboard line]: "front doors left open" (Doors are visible, but none can be pointed at as clearly standing open. There are only dark door shapes, and they could be closed). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [PLACE, promised by the shot's storyboard line]: "a car driving away up the street" (A white vehicle with glowing headlights sits at the end of the street in still 1. It faces the camera, so it is not driving away, and it is gone or barely visible in the later stills). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+
+
+## 2026-11-26 12:45Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 0 | - | FAIL |
+
+**shot 1** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: CONTINUITY props (stills 1-3): The white car up the street is clear in still 1, only a faint blur at the left edge in still 2, and gone in stills 3-4. The stills do not show where it went. The pink lava streak in still 1 also disappears. The rule: every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere).
+
+
+## 2026-11-26 13:24Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 1 | 55 | 42, 55, 58 | FAIL |
+
+**shot 1** (FAIL, 55, bar 70)
+
+- HARD: BROKEN: frame 1: two pink-red straight rods stick out of the fountain curtain, one going left and one going right at ridge height (left of x≈20-60, right toward x≈270). They read as a glitched prop or stray geometry and are gone by frame 2, so they pop out between stills.
+- HARD: ONE-SECOND GAG: frames 2-4: after the stand in frame 1, the last three stills are the same run toward the lens, only a little bigger each time, with the same pose, the same street and the same fountain. Nothing new happens after the first second. The promised climax, him running out past us big and wide-eyed, is not in the stills: in frame 4 he is still mid-frame, about half the height of the frame, and has not passed the lens. A stranger has the whole shot by second two.
+- HARD: NOT SHOWN: frames 2-4 – the 'bolts', 'arms pumping' and 'runs out past us' beats are not in the stills. His arms hang straight down at his sides and his stride is a short walk, so he reads as strolling down the street, not fleeing. In frame 4 he is about the same size as in frame 3 and still mid-street, not big in the frame or running out past the lens. 'Everyone had to run' is not shown either: no other person flees, no door is clearly open, and the one white car up the street (frames 1-3, half hidden behind him) reads as parked, not driving away.
+- HARD: NOT SHOWN: frames 1-4 – the 'volcano' still reads as one big bonfire-shaped flame cone standing on a brown dirt bank just behind the roofs. Nothing on the ridge glows, no lava flows and no fissure line runs along the ridge, and the flame's base is cut cleanly at the ridge line. A stranger sees fire on a hill, not an erupting volcano beside the town.
+- HARD: OFF THE LOOK (things behave for real; kinda real, one finish): frames 1-4 – the lava bombs are pale pastel pink-white spheres hanging in a frozen halo around the fountain, like popcorn or bubbles, not glowing ejecta on arcs. The fountain is a soft cartoon flame with no orange light on the roofs, ridge or street, so it looks pasted over the sky rather than lit into the set. This does not match the approved store's finish.
+- HARD: BROKEN: frame 1 – two straight salmon-pink rods stick out of the fountain at left and right (beside the smoke and above the right-hand houses), gone by frame 2. They read as stray geometry or a glitch, not lava. Frame 1 also has a red-pink glow cut by the left frame edge at street level (a car's tail lights?) that cannot be read as anything.
+- HARD: BROKEN: frame 1: two thin salmon-pink rods stick out at angles from the left and right sides of the fountain curtain, one at the left edge and one right of the fountain. They read as stray geometry and are gone by frame 2, so they pop in and out instead of reading as spatter.
+- problem: Fixed since the last notes: the black and red round object at the top right edge is gone. The town now reads as Icelandic, with painted green, red and cream tin-clad houses, red tin roofs and Icelandic flags. He no longer stands as a talking head: he runs three-quarter to the lens, his back is never to camera, and his feet are on the ground.
+- problem: 'Everyone had to run' is only half shown. One man runs. No other people flee, the doors do not read as flung open at phone size, and the one car is a small white shape far up the street at left, half behind his arm in frame 1 and tiny in frame 2. Its leaving does not read.
+- problem: The fountains read as a soft CG bonfire, a glowing flame cone, rather than molten rock. They have no dark crust, no lava running down the ridge, and nothing glowing landing. The pale pinkish blobs around them look like confetti or popcorn hanging in the air, not lava bombs.
+- problem: The 'ridge' is a low brown dirt mound with scattered stones and power poles just behind the roofs. It reads as a spoil heap at the end of the street, not a volcanic ridge, and there is no black lava field anywhere in frame.
+- problem: The left edge in frame 1 holds plain white box shapes that look untextured, next to a car cut by the frame edge. That is the only part of the set that looks unbuilt.
+- problem: The road surface is flat brown dirt crossed by straight black sticks or lines (cracks? cables?), with white lane dashes on it. It is neither a real asphalt street nor a tephra-covered one, so it reads unfinished beside the houses.
+- better: Make the run itself build. Frame 2: he bolts, glancing back over his shoulder at the fountains, still three-quarter to us. Frame 3: something new, such as a lava bomb smacking the street just behind him or a neighbour's car pulling out of a driveway, so he dodges it. Frame 4: he fills the frame passing the lens, eyes huge and mouth open, the curtain behind him bigger than in frame 1. Each still must add an event, not just add size.
+- better: Show 'everyone' with two or three faceless neighbours running or piling into cars, and a car pulling away up the street with its tail lights on, whole and in the lane, big enough to read at phone size.
+- better: Rebuild the fountain as lava: hot yellow-white cores fading to orange and dark red, dark cooled spatter, a glowing stream running down the ridge face, and orange light on the near roofs and street. Drop the pale floating blobs or make them dark, glowing bombs on arcs.
+
