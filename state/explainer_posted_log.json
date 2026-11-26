@@ -5966,11 +5966,39 @@
       "scene_changes_before_5s": 3
     },
     "insect-planet": {
-      "claimed_at": "2026-11-26T16:31:45.195289+00:00",
+      "url": "https://youtube.com/shorts/iTdiB-c8HaA",
       "title": "Why This Is Really The Planet Of The Bugs",
+      "at": "2026-11-26T16:31:59.298875+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.02,
+      "beat_s": [
+        3.49,
+        7.51,
+        8.02,
+        6.86,
+        5.96
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 74,
+      "duration_s": 32.3,
+      "hook": "shock_stat",
+      "topic_category": "animals",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:insect-tide-overlay",
+        "mechanic:log-species-columns",
+        "mechanic:specimen-drawer-fill"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -7715,9 +7743,10 @@
       "claimed_at": "2026-11-26T16:31:45.195289+00:00",
       "title": "Why This Is Really The Planet Of The Bugs",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "insect-planet"
+      "url": "https://youtube.com/shorts/iTdiB-c8HaA",
+      "state": "posted",
+      "slug": "insect-planet",
+      "at": "2026-11-26T16:31:59.298875+00:00"
     }
   ]
 }
