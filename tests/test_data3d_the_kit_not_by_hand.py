@@ -149,8 +149,8 @@ def test_a_glowing_thing_with_no_lamp_is_measured_and_a_lamp_beside_it_clears_it
     K.box("grey crate", (3, 0, 0.3), (0.6, 0.6, 0.6), K.mat("test crate", "#888888"))
     ps = fx_lint.scene_problems(list(bpy.context.scene.objects))
     assert len(ps) == 1 and "neon sign" in ps[0] and ps[0].startswith("UNLIT")
-    fx_kit.point("far lamp", (0, 9, 1), 50.0)
-    assert fx_lint.scene_problems(list(bpy.context.scene.objects)), "a lamp nine metres away is not its lamp"
+    fx_kit.point("far lamp", (0, 12, 1), 50.0)
+    assert fx_lint.scene_problems(list(bpy.context.scene.objects)), "a lamp twelve metres away is not its lamp"
     fx_kit.glow_light((0, -0.3, 1))
     assert fx_lint.scene_problems(list(bpy.context.scene.objects)) == []
 

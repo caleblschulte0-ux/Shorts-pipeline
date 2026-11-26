@@ -198,11 +198,13 @@ def held(story):
 
 
 # ---------------------------------------------------------------- the built scene, measured
-NEAR_MIN = 1.5        # metres: a lamp this near a small glowing thing is its lamp
+NEAR_MIN = 4.0        # metres: a lamp this near a small glowing thing lights what it would light
+SCENE_GLOW = 1.0      # on the built scene only a real light source counts (a hi-vis stripe at 0.6 is a tint)
 
 
 def _glows(mat):
-    """how strongly a material emits: a number, or True when its emission is driven by nodes"""
+    """how strongly a material emits: a number (its strength, or the constant a node-driven strength is multiplied by:
+    a cooled lava crust at 0.6 is no light source), or True when its emission is driven by nodes with no such bound"""
     if mat is None or not getattr(mat, "use_nodes", False) or mat.node_tree is None: return 0.0
     best = 0.0
     for nd in mat.node_tree.nodes:
@@ -210,27 +212,48 @@ def _glows(mat):
         if nd.type in ("BSDF_PRINCIPLED", "PRINCIPLED_VOLUME"): inp = nd.inputs.get("Emission Strength")
         elif nd.type == "EMISSION": inp = nd.inputs.get("Strength")
         if inp is None or not any(o.is_linked for o in nd.outputs): continue
-        if inp.is_linked: return True
+        if inp.is_linked:                               # driven by nodes: a constant it is multiplied by bounds it
+            src = inp.links[0].from_node
+            consts = [float(i.default_value) for i in src.inputs[:2] if not i.is_linked] if src.type == "MATH" and src.operation == "MULTIPLY" else []
+            if len(consts) != 1: return True
+            best = max(best, consts[0]); continue
         best = max(best, float(inp.default_value))
     return best
 
 
+def _moves(o):
+    """True when the object's own place, or a parent's, is keyed"""
+    while o is not None:
+        ad = o.animation_data
+        if ad and ad.action and any(c.data_path in ("location", "hide_render") for c in _fcurves(ad.action)): return True
+        o = o.parent
+    return False
+
+
+def _fcurves(action):
+    if hasattr(action, "fcurves"): return list(action.fcurves)
+    return [fc for layer in action.layers for strip in layer.strips for cb in strip.channelbags for fc in cb.fcurves]
+
+
 def scene_problems(objects, near=NEAR_MIN):
     """UNLIT, measured on the built scene: every visible object that glows and is not the kit's (no "fx" tag) has a
-    lamp (not the sun) within twice its own size or `near` metres. [problem], one per glowing material."""
+    lamp (not the sun) within three times its own size or `near` metres. A thing whose place is keyed (a clot in
+    flight, a block that rises later) is not measured: where it is at one frame says nothing. Generous on purpose: the
+    three lava shots that passed measure clean (2026-11-26), so what it reports is a glow with no light anywhere near.
+    [problem], one per glowing material."""
     import bpy
     from mathutils import Vector
     bpy.context.view_layer.update()                  # a thing just built has no world matrix yet
     lamps = [o.matrix_world.translation.copy() for o in objects if o.type == 'LIGHT' and o.data.type != 'SUN']
     out = []; seen = set()
     for o in objects:
-        if o.type not in ('MESH', 'FONT', 'CURVE') or o.get("fx") or (o.hide_render and not (o.animation_data and o.animation_data.action)): continue
+        if o.type not in ('MESH', 'FONT', 'CURVE') or o.get("fx") or o.hide_render or _moves(o): continue
         for slot in o.material_slots:
             g = _glows(slot.material)
-            if not (g is True or g >= GLOW_MIN) or slot.material.name in seen: continue
+            if not (g is True or g >= SCENE_GLOW) or slot.material.name in seen: continue
             pts = [o.matrix_world @ Vector(c) for c in o.bound_box]
             ctr = sum(pts, Vector()) / 8; size = max((p - ctr).length for p in pts) * 2
-            reach = max(near, 2.0 * size)
+            reach = max(near, 3.0 * size)
             if not any((l - ctr).length <= reach + size / 2 for l in lamps):
                 seen.add(slot.material.name)
                 out.append(f"UNLIT: \"{o.name}\" glows (material \"{slot.material.name}\") and no lamp stands within {reach:.1f} m of it: "

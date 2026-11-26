@@ -25,10 +25,10 @@ def build(group):
     if group == "fire":
         FX.sky("day", sun_az=-50); g = FX.ground("gravel", area=(-7, 7, -4, 14))
         FX.rocks(6, area=(-5, 5, 3, 9), zfn=g["zfn"], seed=3)
-        FX.fire((-1.9, 2.2, 0), w=1.3, h=1.5, smoke=5.0); scale_prop((-0.9, 1.6, 0))
-        FX.smoke_column((0.3, 4.5, 0), w=1.2, h=6.0, seed=2.0)
-        FX.steam((1.7, 2.4, 0), w=0.9, h=2.6, keys=[(0.0, 0.0), (0.6, 1.0), (2.5, 0.8)], seed=4.0)
-        FX.dust_puff((2.9, 0.9, 0), w=0.8, h=1.0, t0=0.3, dur=2.0, seed=5.0)
+        FX.fire((-1.3, 2.4, 0), w=1.3, h=1.5, smoke=5.0); scale_prop((-0.3, 1.5, 0))
+        FX.smoke_column((0.4, 6.5, 0), w=1.2, h=6.0, seed=2.0)
+        FX.steam((1.5, 3.2, 0), w=0.9, h=2.6, keys=[(0.0, 0.0), (0.6, 1.0), (2.5, 0.8)], seed=4.0)
+        FX.dust_puff((0.9, 0.6, 0), w=0.8, h=1.0, t0=0.3, dur=2.0, seed=5.0)
         K.camera((0.4, -5.2, 1.5), (0.3, 3.0, 1.9), lens=30)
     elif group in ("fire1", "fire1dawn"):
         FX.sky("day" if group == "fire1" else "dawn", sun_az=-50); g = FX.ground("gravel", area=(-5, 5, -3, 9))
@@ -61,10 +61,10 @@ def build(group):
         FX.sky("dawn", sun_az=140); g = FX.ground("sand", area=(-10, 10, -5, 3.5), relief=0.04)
         FX.water(area=(-40, 40, 3.0, 90), z=-0.05)
         FX.rocks(9, area=(-5, 5, 1.5, 5.5), seed=2, size=(0.3, 1.1))
-        FX.house("shore house", (-4.6, 0.5, 0), yaw=-0.6, seed=4); scale_prop((1.2, 0.6, 0))
+        FX.house("shore house", (-2.6, 1.6, 0), yaw=0.5, seed=4); scale_prop((1.2, 0.6, 0))
         K.camera((0.6, -5.0, 1.4), (0.0, 5.0, 1.0), lens=30)
     elif group.startswith("sky:"):
-        FX.sky(group[4:], sun_az=-55); g = FX.ground("gravel", area=(-10, 10, -5, 24))
+        FX.sky(group[4:], sun_az=float(os.environ.get("SUN_AZ", "-55"))); g = FX.ground("gravel", area=(-10, 10, -5, 24))
         FX.house("house", (-2.4, 5.0, 0), yaw=-0.5, seed=3); FX.rocks(5, area=(-1, 5, 1, 6), seed=1); scale_prop((1.0, 1.2, 0))
         K.camera((0.6, -4.6, 1.3), (-0.4, 5.0, 2.3), lens=26)
     else:
