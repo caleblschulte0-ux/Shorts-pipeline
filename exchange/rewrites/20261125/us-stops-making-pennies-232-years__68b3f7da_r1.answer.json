@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "us-stops-making-pennies-232-years__68b3f7da_r1",
+  "slug": "us-stops-making-pennies-232-years",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T12:45:00Z",
+  "title": "The Penny Lost $86 Million A Year",
+  "hook": "America kept minting a coin that destroyed value every time.",
+  "closing": "The penny survived centuries, but its production bill finally outweighed its place in your pocket.",
+  "question": "Would you miss the penny?",
+  "segments": [
+    {
+      "topic": "Penny Annual Loss",
+      "say": "Making pennies lost $86 million a year. Ending production finally stops that recurring bill."
+    },
+    {
+      "topic": "Penny Long Run",
+      "say": "The penny lasted 232 years. Its history delayed a decision that the cost had already made obvious."
+    },
+    {
+      "topic": "Penny Nickel Warning",
+      "say": "A nickel costs 13.78 cents to make. Ending the penny does not solve America's money-losing coin problem."
+    }
+  ]
+}
