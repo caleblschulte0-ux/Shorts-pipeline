@@ -260,10 +260,10 @@ def shot1():
     # ---- the eruption: the row of fountains stands on the ridge from the first frame and surges at T_SURGE
     vents = P["founts"]; cols = []; rf = lw_random.Random(17)
     for k, v in enumerate(vents):                        # each vent a RAGGED fountain: a fat torn body and a thin taller jet beside it, no two the same height (coordinator: "smooth pointed cones side by side")
-        h0 = (9.0, 15.0, 7.0, 13.0, 10.0)[k % 5]
+        h0 = (7.0, 11.0, 5.5, 9.5, 7.5)[k % 5]
         cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=rf.uniform(2.6, 3.4), h_fire=h0, h_smoke=4.0,
                                    lean=(rf.uniform(-0.25, 0.25), 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=13.0, smoke_d=1.5, rise=3.5, spread=0.34))
-        cols.append(lw_fire_column(f"fissure jet {k}", (v.location.x + rf.uniform(-0.9, 0.9), S1_RIDGE_Y - 0.3, v["base_z"]), w=rf.uniform(1.0, 1.5), h_fire=h0 * rf.uniform(0.55, 1.25), h_smoke=2.0,
+        cols.append(lw_fire_column(f"fissure jet {k}", (v.location.x + rf.uniform(-0.9, 0.9), S1_RIDGE_Y - 0.3, v["base_z"]), w=rf.uniform(1.0, 1.5), h_fire=h0 * rf.uniform(0.55, 1.12), h_smoke=2.0,
                                    lean=(rf.uniform(-0.5, 0.5), 0.3), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=24.0, smoke_d=0.8, rise=5.0, spread=0.3))
     nf_ = len(cols)
     for k, (x, ln_) in enumerate(((0.5, -0.35),)):                       # the plume: grey gas and ash boiling off the fissure, leaning downwind, away behind the ridge
@@ -275,7 +275,7 @@ def shot1():
     clot = lw_emit("fountain clot", "#FF5A0A", 9.0); clots = []
     for k in range(18):
         v = vents[k % len(vents)]; r_ = rf.uniform(0.22, 0.42); per = rf.uniform(1.5, 2.3); ph = rf.uniform(0, per)
-        vx = rf.uniform(-2.6, 2.6); vz = rf.uniform(11.0, 16.0)
+        vx = rf.uniform(-2.6, 2.6); vz = rf.uniform(9.0, 12.5)
         o = lw_block(f"fountain clot {k}", (0, 0, -9), r_, clot, rf, squash=0.9); clots.append(o)
         for f in range(1, NF + 1):
             t = (f - 1) / FPS; s_ = (t + ph) % per
@@ -296,8 +296,8 @@ def shot1():
     CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 2.0))
     data.look_at(RIDGE, 0.0, max_yaw=46, max_pitch=28, blend=0.0)                    # back up at the fountains over his shoulder
     data.look_at(CAM0 + RUNV * 0.6, T_RUN - 0.05, max_yaw=50, max_pitch=30, blend=0.15)
-    data.look_at(RIDGE, 0.3 * DUR, max_yaw=46, max_pitch=24, blend=0.2)              # a look back over his shoulder as he runs
-    data.look_at(CAM0 + RUNV * (0.56 * DUR - T_RUN), 0.5 * DUR, max_yaw=50, max_pitch=30, blend=0.15)
+    data.look_at(RIDGE, 0.28 * DUR, max_yaw=58, max_pitch=24, blend=0.2)              # a look back over his shoulder as he runs
+    data.look_at(CAM0 + RUNV * (0.56 * DUR - T_RUN), 0.54 * DUR, max_yaw=50, max_pitch=30, blend=0.15)
     data.expression("alarmed", 0.0, DUR + 1.0, blend=0.1)
     UPF = lambda sg: ((-78, 0, -sg * 10), (-98, 0, -sg * 10), (0, 0, 0))      # a runner's arms: bent square, one fist up in front as the other elbow goes back
     LOW = lambda sg: ((52, 0, -sg * 14), (-40, 0, -sg * 6), (0, 0, 0))
@@ -314,12 +314,19 @@ def shot1():
             for bn, lo, up, wh, fl in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), LOW(sg), UPF(sg), WHOA(sg), FLUNG(sg)):
                 r = tuple(((wh[i] * (1 - g_) + (lo[i] * (1 - bb) + up[i] * bb) * g_) * (1 - e_) + fl[i] * e_) for i in range(3)); data._k(bn, t, rot=r)
     data.finish()
+    from character import _fcurves                         # his shoulders a quarter turned off the lens as he runs at it (coordinator: "square to the lens in all four stills")
+    for fc in _fcurves(data.arm.animation_data.action):
+        if fc.data_path == "rotation_euler" and fc.array_index == 2:
+            for kp in fc.keyframe_points:
+                t_ = (kp.co[0] - 1) / FPS; dz = math.radians(-24) * W(t_, T_RUN + 0.1, 0.4)
+                kp.co[1] += dz; kp.handle_left[1] += dz; kp.handle_right[1] += dz
+            fc.update()
     T_REF = T_RUN + 0.6
     CAMr, LOOKr = compose.frame_data(data, CAM0 + RUNV * 0.6, LOOK0 + RUNV * 0.6, 24.0, face_at=(0.38, 0.44), height=0.385, t=T_REF)
     sc.frame_set(F(T_REF)); bpy.context.view_layer.update(); ref = data.pos().copy(); ref.z = 0
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     def cam_at(t):                                         # the lens pulls back ahead of him, a little slower than he runs: he grows in the frame
-        sc.frame_set(F(t)); p = data.pos().copy(); p.z = 0; d = p - ref; d.x *= 0.74      # the lens backs straight down the street: he crosses the frame on his diagonal
+        sc.frame_set(F(t)); p = data.pos().copy(); p.z = 0; d = p - ref; d.x *= 0.82      # the lens backs straight down the street: he crosses the frame on his diagonal
         lag = RUNV.normalized() * (-0.2 * W(t, T_REF, DUR - T_REF))
         return CAMr + d + lag, LOOKr + d + lag, data.pos() + Vector((0, 0, 0.5))
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 24.0, 24.0)

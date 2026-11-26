@@ -19,6 +19,30 @@
     }
    ]
   },
+  "205edd20b643be48e99b982564ae40f7c819a790456137c0e4fbb9ce8b04fbbb": {
+   "at": "2026-11-26 04:02:18Z",
+   "claims": 16,
+   "claims_key": "3e09a79669a55b9b",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "In still 1 Data holds one boulder and a second lies at his feet. In still 2 neither is in his hands or on the ground, and only one is airborne, so one boulder has vanished. Still 4 shows rocks on the wall crest and none at his feet.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "feet",
+     "note": "In still 3 Data's foot hangs above the ground with no contact, and in still 2 his shoes also look slightly off the ground. Still 4 looks grounded.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "3"
+    }
+   ],
+   "sha256": "205edd20b643be48e99b982564ae40f7c819a790456137c0e4fbb9ce8b04fbbb",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
   "2fd562375e04b20077a09d05d4069d6c8898aac36da32c9894d4c02d06f84aef": {
    "at": "2026-11-26 00:38:12Z",
    "claims": 16,
@@ -73,6 +97,179 @@
     }
    ]
   },
+  "442e4a71de3d2cd241ecf77f7ee7fb77353fc54e0cfeb25f775483d7e4146d48": {
+   "at": "2026-11-26 04:53:08Z",
+   "claims": 17,
+   "claims_key": "6e43e3092e891385",
+   "continuity": [],
+   "sha256": "442e4a71de3d2cd241ecf77f7ee7fb77353fc54e0cfeb25f775483d7e4146d48",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "Three burning rooftops are visible, but no clear black lava slope. Under the fire there is only brownish-orange rubble, which does not read as a slope of black lava.",
+     "text": "three houses burning on the black lava slope above them"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "In still 2 his eyes glance toward the window, but it is still dark. No still shows him looking round at the lit window.",
+     "text": "he looks round at it"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "Burned houses and a saved row are visible, but no wall appears in any still. 'Almost nobody moved back' and 'would you?' are not shown.",
+     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    },
+    {
+     "from": "WORLD",
+     "id": "c17",
+     "kind": "CONTINUITY",
+     "note": "No clear glowing lava round the burning houses. Only a dark orange-brown rubble heap shows under them, which is not recognisably the eruption's lava.",
+     "text": "the lava is in this shot and is the same one as in the rest of the story (the one eruption: the fissure's fountains in beat 1, the river against the wall in 3, up through the crack in 4, glowing round the burning houses in 5)"
+    }
+   ]
+  },
+  "4a5f4d0678f64f6b7a1303f7607cebaf7edde72962cafc09ada28ca2df8d8ae3": {
+   "at": "2026-11-26 04:08:52Z",
+   "claims": 17,
+   "claims_key": "41cef8052ec876a1",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The window and house are cut by the left frame edge in every still. The smoke plume and burning houses are cut at the top edge. In still 1 the left of his own house is cropped.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "4a5f4d0678f64f6b7a1303f7607cebaf7edde72962cafc09ada28ca2df8d8ae3",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c1",
+     "kind": "PLACE",
+     "note": "Sky is pale blue daylight; nothing reads as early or dawn light (no low warm sun, long shadows).",
+     "text": "early light in his street"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "Several buildings burn on top of a black lava slope, but the burning houses are small and hard to count. You cannot clearly count three houses.",
+     "text": "three houses burning on the black lava slope above them"
+    },
+    {
+     "from": "FOR",
+     "id": "c5",
+     "kind": "CAMERA",
+     "note": "Camera is roughly level with him and tilts up slightly, but the hill reads as only mildly rising. This is weak at best, and the framing is mostly a medium shot of Data.",
+     "text": "level with him, tipped up the hill"
+    },
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "ACTION",
+     "note": "Flames and black smoke are visible over a burning row on the slope. Three separate houses are not distinguishable; it reads as one burning cluster with three flame tips.",
+     "text": "three houses burn in a row on the slope above the street, black smoke over them"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "He wears the hard hat and carries a lit lantern. The lantern hangs from a bracket by the window in 3 and 4, but it hangs on the hook in no still while he is hanging it. Hands do not clearly show the hanging. The house is not clearly his own.",
+     "text": "The driver in his hard hat carries a lit lantern to his own house and hangs it on the hook by the window"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "His head is turned toward the window in 3, but the face is mostly turned away and not clearly looking at it. Weak.",
+     "text": "he looks round at it"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The stills show burning houses and a row of intact houses, but not that three burned, a wall, or people not moving back.",
+     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "NUMBER",
+     "note": "The burning houses cannot be counted as three; they are tiny and merge together.",
+     "text": "Three houses burned: seen as that count or that size"
+    }
+   ]
+  },
+  "4b31defb6b3adbbfe57234f11aff713902b2cc6a9a98ff3d137ab33b43b633b8": {
+   "at": "2026-11-26 04:33:17Z",
+   "claims": 16,
+   "claims_key": "3e09a79669a55b9b",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "In still 1 he holds one boulder and another lies at his feet. In still 2 neither is in his hands or at his feet, and only one blob is in the air, so a boulder vanishes. In stills 3-4 no thrown boulders are visible, only a few blocks on the crest.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "feet",
+     "note": "In still 4 his feet hover with no contact shadow, and in still 3 he is on tiptoe at a lean. Still 2 also looks slightly floating.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "4b31defb6b3adbbfe57234f11aff713902b2cc6a9a98ff3d137ab33b43b633b8",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "A black blob flies up above his head, but the wall behind him is still low, only just above the roof. It has not grown up over the roof. The boulder at his feet has gone, and the blob is nowhere near the wall. His throwing pose is weak, with one arm up.",
+     "text": "He hurls the second boulder up over his hard hat at the wall, which has grown up over the roof behind him"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "A tall black wall towers over the house and hides the fountains. Data's head is turned to the side with an open-mouth smile, so he is not clearly looking up at the wall's face.",
+     "text": "He looks up at the wall's black face towering over the house, the fountains hidden behind it"
+    }
+   ]
+  },
+  "5c6e1df0f6e498d7dbb1565119d45f8923ea6fa26ea48799f17244dd91f5fe47": {
+   "at": "2026-11-26 04:41:50Z",
+   "claims": 17,
+   "claims_key": "6e43e3092e891385",
+   "continuity": [],
+   "sha256": "5c6e1df0f6e498d7dbb1565119d45f8923ea6fa26ea48799f17244dd91f5fe47",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "The burning houses show 'three burned' and the intact row shows 'the rest'. No wall appears anywhere. Nothing shows that almost nobody moved back: no people, no empty-street trace. Only the voice could say that, so a stranger could not get the line's fact from the stills.",
+     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    }
+   ]
+  },
   "648138bf44fe98ee7a77e45098fe2e68e6dc9db8e856b542198d8b0b6df6d653": {
    "at": "2026-11-26 03:11:17Z",
    "claims": 17,
@@ -96,6 +293,39 @@
    "status": "blocked",
    "stills": 4,
    "unticked": []
+  },
+  "771ad76b3e9844e727875833a0d3b523a12502d9fb32ecde31defb6a21873c14": {
+   "at": "2026-11-26 03:49:07Z",
+   "claims": 15,
+   "claims_key": "edd128785e00db7b",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The lava fountains, the subject, are cut by the top edge in every still. In still 4 Data's right hand touches the right edge and a flag is cut off.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "2-3"
+    }
+   ],
+   "sha256": "771ad76b3e9844e727875833a0d3b523a12502d9fb32ecde31defb6a21873c14",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "He moves toward the camera in a run, but his head faces the lens. Only his eyes glance up toward the fire, so there is no clear look back over the shoulder.",
+     "text": "He bolts down the street toward us, looking back at it over his shoulder"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "He is bigger in frame, but his arms are bent or out to the sides with fists at shoulder height. Neither arm is clearly thrown up. The fire is behind him.",
+     "text": "He ends big in the frame with both arms thrown up, terrified, the fire roaring behind him"
+    }
+   ]
   },
   "7d142bf473f8e3e3c545917ad0082fd09169234348e317a9d3d8bed19a2bf7b6": {
    "at": "2026-11-26 02:38:55Z",
@@ -253,6 +483,25 @@
      "kind": "SAYS",
      "note": "The stills show a wall rising behind a house, but a stranger would not read 'taller than a house to keep the lava out'. There is no lava and nothing that reads as Iceland. The wall is built with no visible mechanism, and no lava threatens it.",
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "d27875fca29fa176d450e59ae252c7759114c72b6458fb448b3d710ac64a37be": {
+   "at": "2026-11-26 04:39:14Z",
+   "claims": 15,
+   "claims_key": "f334979ae68e4a9e",
+   "continuity": [],
+   "sha256": "d27875fca29fa176d450e59ae252c7759114c72b6458fb448b3d710ac64a37be",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data does get larger from still 1 to 4, as if coming toward the camera. But he faces the camera in every still and never looks back over his shoulder at the fire.",
+     "text": "He bolts down the street toward us, looking back at it over his shoulder"
     }
    ]
   },

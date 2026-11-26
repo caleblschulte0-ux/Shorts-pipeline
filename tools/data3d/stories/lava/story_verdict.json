@@ -1,22 +1,31 @@
 {
- "retell": "An Icelandic town kept getting hit by a volcano, so they built huge rock walls that actually stopped the lava, until the ground cracked open inside the walls and lava came up in the streets anyway, and now the town is almost empty.",
- "twist": "Line 4: the wall held, but the ground split open inside it, so the lava came up behind the defense instead of over it.",
- "payoff": "Yes. The title promises walls against a volcano, and the ending gives a mixed answer you can feel: the walls saved most of the town, but the town died anyway because people won't come back. 'Would you?' turns that into a question for the viewer.",
- "chain": "Every line follows from the one before. 1 to 2 is SO (eruptions, so they built a wall). 2 to 3 is SO (the wall is tested and holds). 3 to 4 is BUT (the threat comes from inside). 4 to 5 is SO (houses burn, people leave). No line is just another fact.",
+ "retell": "An Icelandic town kept getting threatened by a volcano, so they built a giant rock wall, and the wall actually stopped the lava, but then the ground cracked open inside the wall, lava came up in the streets, and now the town still stands but is nearly empty.",
+ "twist": "The wall holds, and then the ground splits open on the town's side of it, so the lava comes up inside the defenses.",
+ "payoff": "Mostly yes. The title promises walls against a volcano. Line 3 says the walls work and line 4 makes the lava beat them from inside, which is an ironic payoff the title sets up. The closing 'Would you?' lands, but its 'almost nobody moved back' fact is weaker than the turn before it.",
+ "chain": "Strong. 1→2 is 'so' (threat, so build a wall), 2→3 is 'so' (wall tested, holds), 3→4 is 'but' (holds, but the crack opens inside), 4→5 is consequence (lava in the streets, houses burn, town empties). No line is just another fact.",
  "cut": [],
  "physical": [],
+ "pictures": [
+  "A small town of colourful corrugated-roof houses at night, with a glowing orange fissure and a lava fountain on the ridge right behind it. Headlights streak down the only road out of town.",
+  "A long wall of dark crushed rock with a bulldozer on top and a two-storey house beside it for scale. The wall is clearly taller than the house, and the volcano glows behind it.",
+  "A river of lava runs up against the outside of the rock wall and piles up there, while the town on the inside is dark and untouched.",
+  "Inside the wall, a crack splits the asphalt of a residential street, lava pours out of it between the houses, and the intact wall stands in the background.",
+  "Three houses on fire, countable, in a row of standing houses that all have dark windows and empty driveways. One lone figure stands at a door."
+ ],
+ "unshowable": [
+  5
+ ],
  "score": 80,
  "pass": true,
  "problems": [
-  "Line 1 says 'one Icelandic town' instead of naming Grindavik. Naming it makes it feel real and costs nothing.",
-  "Line 1's 'everyone had to run' comes before the wall, so the first shot has to show the eruption and people fleeing right away, not a calm town.",
-  "Line 3 is the weakest beat (the wall simply works). It needs a big moment of lava hitting the wall and stopping, or it plays as a pause before the twist.",
-  "Line 5 packs two ideas into one beat (three houses burned, and the town is empty). The picture needs one shot that shows both, like burning houses on an empty street, or it will read as a list."
+  "Line 5 'almost nobody moved back' is a share of a whole town that no frame shows. Dark windows read as night or an evacuation, not as people choosing not to return. Swap it for a fact the frame can show (for example: 'Three houses burned. The wall still stands around a town that's almost empty. Would you go back?') or let the closing image carry it with one lit house in a dark street.",
+  "Line 1 'keeps erupting' is a repetition that only the voice can say, because one frame shows one eruption. It is acceptable as setup but adds no picture of its own. 'Everyone had to run' is a vague crowd, and the headlights are carrying it.",
+  "Line 5 packs three facts (three burned, the rest stand, nobody returned) into six seconds. The question lands harder if it has only one of them to sit on."
  ],
  "scores": [
-  78,
+  80,
   80,
   82
  ],
- "key": "0a26f1743495e15b"
+ "key": "95fd42d7fd0fe1b1"
 }

@@ -9,7 +9,7 @@ S5_HOOK = Vector((-0.3, 2.77, 0.47))        # the hook's tip: an iron arm off hi
 S5_KNOTS = ((6.9, 0.0), (8.2, 1.4), (10.0, 2.0), (11.2, 5.6), (14.4, 6.3), (17.5, 6.6), (19.5, 7.6), (40.0, 9.5))    # the hill behind his house (y, z)
 S5_BURN_Y = 12.9                            # the burning row
 S5_WALL_Y = 18.5
-S5_BURN_X = 10.6                              # the burning row's middle: up the hill over his roof, in the middle of the lens's frame
+S5_BURN_X = 9.3                              # the burning row's middle: up the hill over his roof, in the middle of the lens's frame
 
 
 def s5_z(x, y):
@@ -48,6 +48,16 @@ def s5_lit_pane(house, k, t_on):
     b_.inputs["Roughness"].default_value = 1.0                                   # no sky in it: glass that mirrors the dawn reads as a pale card
     for nm in ("Specular IOR Level", "Specular"):
         if nm in b_.inputs: b_.inputs[nm].default_value = 0.0
+    # a LAMP inside, not an orange card (coordinator): hot and yellow low in the middle of the pane, falling to deep amber at its edges
+    nt_ = bpy.data.materials["window lit warm"].node_tree; N_ = nt_.nodes.new; L_ = nt_.links.new
+    tc_ = N_("ShaderNodeTexCoord"); ds_ = N_("ShaderNodeVectorMath"); ds_.operation = 'DISTANCE'; ds_.inputs[1].default_value = (0.5, 0.5, 0.3)
+    L_(tc_.outputs["Generated"], ds_.inputs[0])
+    mr_ = N_("ShaderNodeMapRange"); mr_.inputs[1].default_value = 0.05; mr_.inputs[2].default_value = 0.7; mr_.inputs[3].default_value = 1.0; mr_.inputs[4].default_value = 0.0
+    L_(ds_.outputs["Value"], mr_.inputs[0])
+    cr_ = N_("ShaderNodeValToRGB"); cr_.color_ramp.elements[0].color = (*K.lin("#A83A00"), 1); cr_.color_ramp.elements[1].color = (*K.lin("#FFC25A"), 1)
+    L_(mr_.outputs[0], cr_.inputs[0]); L_(cr_.outputs[0], b_.inputs["Emission Color"])
+    st_ = N_("ShaderNodeMath"); st_.operation = 'MULTIPLY_ADD'; st_.inputs[1].default_value = 3.0; st_.inputs[2].default_value = 0.7
+    L_(mr_.outputs[0], st_.inputs[0]); L_(st_.outputs[0], b_.inputs["Emission Strength"])
     lit.location.y -= 0.004
     lw_show([lit], t_on)
     return lit
@@ -99,7 +109,7 @@ def place_harbour_dawn():
     lava_rock("yard grit", 90, (-3.0, 4.0, 0.6, 4.6), lambda x, y: 0.0, seed=9, r=(0.012, 0.045), moss=0.0,
               avoid=lambda x, y: (-0.8 < x < 1.0 and 2.0 < y < 3.3) or (x < -0.1 and y > 3.1))
     burning = []
-    for k, x in enumerate((S5_BURN_X - 2.8, S5_BURN_X, S5_BURN_X + 2.8)):           # THREE, in a row across the frame, side by side: countable
+    for k, x in enumerate((S5_BURN_X - 3.6, S5_BURN_X, S5_BURN_X + 3.6)):           # THREE, in a row across the frame, side by side: countable
         y = S5_BURN_Y + 0.15 * (k % 2)
         hs = town_house(f"burning house {k}", (x, y, s5_z(x, y - 1.3) + 0.35), yaw=rnd.uniform(-0.06, 0.06), w=2.6, d=2.6, roof=ROOFS[(k * 2) % len(ROOFS)],
                         wall=WALLS[(k + 1) % len(WALLS)], storeys=2, base=0.3, seed=40 + k, burn=1.0)
@@ -158,10 +168,10 @@ def shot5():
         p += Vector((0.16, -0.1, 0.0)) * back                                                                   # a step back from it, to look
         p.z += 0.05 * lw_kick(t - T_WIN - 0.1, 0.2)                                               # a start as the window lights
         turn = W(t, T_TURN, 0.42)
-        p += Vector((0.05, 0.0, 0.0)) * turn; p.z += 0.03 * math.sin(math.pi * turn)             # a step round to us
-        st = W(t, T_ASK - 0.45, 0.4); p += Vector((0.08, -0.03, 0.0)) * st     # a step along the yard toward us
+        p += Vector((0.02, 0.0, 0.0)) * turn; p.z += 0.03 * math.sin(math.pi * turn)             # a step round to us
+        st = W(t, T_ASK - 0.45, 0.4); p += Vector((0.0, -0.03, 0.0)) * st     # a step along the yard toward us
         p.z += 0.035 * lw_kick(t - T_ASK - 0.25, 0.22)                                            # the shrug
-        return p, YW + (YAW0 - YW) * W(t, T_IN, 0.4) - R(6) * back - R(18) * W(t, T_WIN, 0.3) * (1 - turn) + R(24) * turn
+        return p, YW + (YAW0 - YW) * W(t, T_IN, 0.4) - R(6) * back - R(8) * W(t, T_WIN, 0.3) * (1 - turn) + R(24) * turn
     for f in range(F(T_IN) + 1, NF + 16):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
     lw_layer(data, "spine", lambda t: (6 * W(t, T_WIN, 0.3) * (1 - W(t, T_TURN, 0.3)) - 6 * W(t, T_ASK, 0.3), 0, 0), T_LET + 0.3, DUR + 0.4)
@@ -169,9 +179,10 @@ def shot5():
     wy = P["home"]["windows"][1].matrix_world.translation.copy()
     CAM0 = Vector((-1.6, 0.5, 0.5)); LOOK0 = CAM0 + Vector((5.9, 8.1, 1.9))
     data.look_at(S5_HOOK, 0.0, max_yaw=50, max_pitch=40, blend=0.0)
-    data.look_at(wy, T_WIN + 0.05, max_yaw=45, max_pitch=20, blend=0.2)                          # the window, as it lights
+    data.look_at(wy, T_WIN + 0.05, max_yaw=36, max_pitch=20, blend=0.2)                          # the window, as it lights
     data.look_at(CAM0 + Vector((0, 0, 0.05)), T_TURN + 0.05, max_yaw=60, max_pitch=30, blend=0.3)  # to us: would you?
     data.look_at(CAM0 + Vector((0, 0, 0.05)), T_ASK - 0.1, max_yaw=60, max_pitch=30, blend=0.2)
+    data.look_at(CAM0 + Vector((0, 0, 0.05)), T_ASK + 0.2, max_yaw=60, max_pitch=30, blend=0.2)
     data.expression("sad", 0.0, T_WIN, blend=0.25)
     # ---- the lantern: carried in front of him in his wall-side hand, lifted onto the hook, let go; it swings
     lan = s5_lantern()
@@ -206,12 +217,12 @@ def shot5():
     # over his roof, the burning row and the wall at the top
     LENS_MM = 20.0
     cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=LENS_MM, fstop=11.0)
-    C1, L1 = compose.frame_data(data, CAM0, LOOK0, LENS_MM, face_at=(0.38, 0.5), height=0.435, t=T_HANG)
+    C1, L1 = compose.frame_data(data, CAM0, LOOK0, LENS_MM, face_at=(0.43, 0.5), height=0.435, t=T_HANG)
     push = lambda t: Vector((0.0, 0.0, 0.0))
-    lw_cut(cam, lambda t: (C1 + push(t), L1, data.pos() + Vector((0, 0, 0.6))), lambda t: (C1, L1, C1), -1.0, -1.0, LENS_MM, LENS_MM)
+    lw_cut(cam, lambda t: (C1 + push(t), L1, data.pos() + Vector((0, 0, 0.6))), lambda t: (C1, L1, data.pos()), -1.0, -1.0, LENS_MM, LENS_MM)
     # ---- the payoff: his one window lights
     lit = [s5_lit_pane(P["home"], 1, T_WIN)]
-    glow = lw_point("window spill", (wy.x, wy.y - 0.45, wy.z - 0.1), 70.0, col=(1.0, 0.45, 0.12), r=0.25)
+    glow = lw_point("window spill", (wy.x, wy.y - 0.5, wy.z - 0.25), 22.0, col=(1.0, 0.5, 0.15), r=0.3)
     lw_show([glow], T_WIN)
     return dict(lanes=[], kiosks=[], place="harbour_dawn", light=light, data=data, rest=1, grips=("lantern", "lantern hook"), cutaway=None,
                 boxes=[],
