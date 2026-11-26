@@ -9,7 +9,7 @@ S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hu
 S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
-S1_CARX = -0.2                         # the leaving car's line up the street
+S1_CARX = -0.6                         # the leaving car's line up the street
 S1_HIT = (-0.6, 2.2, 0.0)              # where the lava bomb lands on the street, behind him
 S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
@@ -210,7 +210,7 @@ def place_grindavik_street():
         def tz(x, y, xc=xc, hw=hw, y_end=y_end):
             d = abs(x - xc(y)) / hw(y); e = max(0.0, (y_end + 0.5 - y) / 0.5)
             return s1_ground_z(x, y) + 0.14 - 0.34 * d * d - 0.34 * e * e
-        lw_grid(f"lava tongue {k}", x0_ - 2.2, x0_ + 2.6, y_end - 0.2, S1_RIDGE_Y + 0.3, 44, 40, tz, fl)
+        pass                                               # (pre-flight: "the ridge's glowing streaks look like painted stripes": the tongues are cut)
     founts, spat, cores = [], [], []
     core = lw_emit("fountain core", "#FF9A20", 7.0)
     spm = lw_emit("lava spatter", "#FF7A10", 5.0); spd = lw_noise("cooled spatter", "#140E0B", "#3A2A20", scale=20, rough=0.9)
@@ -286,7 +286,7 @@ def shot1():
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
     T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
-    bomb = lw_block("lava bomb", tuple(B0), 0.27, lava_mat("bomb lava", heat=1.1, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
+    bomb = lw_block("lava bomb", tuple(B0), 0.33, lava_mat("bomb lava", heat=1.5, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
     vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; s_ = max(0.0, min(TF, t - (T_HIT - TF))); u_ = s_ / TF
@@ -304,10 +304,10 @@ def shot1():
             u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
             o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.7, h=2.6, seed=6.1, col=(0.12, 0.11, 0.1), dens=12.0, lean=(-0.15, 0.25), rise=1.4,
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.4, h=2.0, seed=6.1, col=(0.2, 0.19, 0.18), dens=5.0, lean=(-0.15, 0.25), rise=1.4,
                     keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
     bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.1, 0.35), 0.0, col=(1.0, 0.4, 0.1), r=0.3)
-    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 900.0), (T_HIT + 0.6, 380.0), (DUR + 1.0, 320.0)):
+    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 420.0), (T_HIT + 0.6, 170.0), (DUR + 1.0, 140.0)):
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
     for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
         L.data.energy = 2600.0 if "plume" in L.name else 4200.0

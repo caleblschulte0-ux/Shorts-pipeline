@@ -157,6 +157,25 @@
     }
    ]
   },
+  "1b48148e2a50f7e9c585719dd2fd0fbe82b4886339e58cdf8e486e2beffa324b": {
+   "at": "2026-11-26 19:40:14Z",
+   "claims": 15,
+   "claims_key": "a8f1a7fd1d6ad1e9",
+   "continuity": [],
+   "defects": [
+    {
+     "id": "look",
+     "note": "The lava fountains read as a flat, flame-like orange curtain, more like a fire sprite than molten lava. The ridge's glowing streaks also look like painted stripes. Both clash with the realistic street.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "1b48148e2a50f7e9c585719dd2fd0fbe82b4886339e58cdf8e486e2beffa324b",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
   "1e0310bba4b06610df2c729f37b10a4d8f970bf1d0f78286da8367fc8f79e2b5": {
    "at": "2026-11-26 01:26:05Z",
    "claims": 15,

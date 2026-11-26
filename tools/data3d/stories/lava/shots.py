@@ -1399,7 +1399,7 @@ S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hu
 S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
-S1_CARX = -0.2                         # the leaving car's line up the street
+S1_CARX = -0.6                         # the leaving car's line up the street
 S1_HIT = (-0.6, 2.2, 0.0)              # where the lava bomb lands on the street, behind him
 S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
@@ -1600,7 +1600,7 @@ def place_grindavik_street():
         def tz(x, y, xc=xc, hw=hw, y_end=y_end):
             d = abs(x - xc(y)) / hw(y); e = max(0.0, (y_end + 0.5 - y) / 0.5)
             return s1_ground_z(x, y) + 0.14 - 0.34 * d * d - 0.34 * e * e
-        lw_grid(f"lava tongue {k}", x0_ - 2.2, x0_ + 2.6, y_end - 0.2, S1_RIDGE_Y + 0.3, 44, 40, tz, fl)
+        pass                                               # (pre-flight: "the ridge's glowing streaks look like painted stripes": the tongues are cut)
     founts, spat, cores = [], [], []
     core = lw_emit("fountain core", "#FF9A20", 7.0)
     spm = lw_emit("lava spatter", "#FF7A10", 5.0); spd = lw_noise("cooled spatter", "#140E0B", "#3A2A20", scale=20, rough=0.9)
@@ -1664,31 +1664,19 @@ def shot1():
     kit = hard_hat(data)
     rnd = lw_random.Random(9)
     # ---- the eruption: the row of fountains stands on the ridge from the first frame and surges at T_SURGE
-    vents = P["founts"]; cols = []; rf = lw_random.Random(17)
-    for k, v in enumerate(vents):                        # each vent a RAGGED fountain: a fat torn body and a thin taller jet beside it, no two the same height (coordinator: "smooth pointed cones side by side")
-        h0 = (7.0, 11.0, 5.5, 9.5, 7.5)[k % 5]
-        cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=rf.uniform(2.6, 3.4), h_fire=h0, h_smoke=4.0,
-                                   lean=(rf.uniform(-0.25, 0.25), 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=3.6, smoke_d=1.5, rise=3.5, spread=0.34))
-        cols.append(lw_fire_column(f"fissure jet {k}", (v.location.x + rf.uniform(-0.9, 0.9), S1_RIDGE_Y - 0.3, v["base_z"]), w=rf.uniform(1.0, 1.5), h_fire=h0 * rf.uniform(0.55, 1.12), h_smoke=2.0,
-                                   lean=(rf.uniform(-0.5, 0.5), 0.3), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=5.5, smoke_d=0.8, rise=5.0, spread=0.3))
-    nf_ = len(cols)
-    for k, (x, ln_) in enumerate(((0.5, -0.35),)):                       # the plume: grey gas and ash boiling off the fissure, leaning downwind, away behind the ridge
-        cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 2.5, P["fz"] + 1.5), w=6.0, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
-                             dens=3.0, lean=(ln_, 0.3), rise=1.6, t_end=DUR + 1.0))
-    P["founts"] = cols[:nf_]
+    vents = P["founts"]; rf = lw_random.Random(17)
+    for v in vents: v.hide_render = True; v.hide_viewport = True
+    # the eruption is the KIT's: a fissure curtain of strand spray on the ridge, its gas above it, its clots on real
+    # arcs, every lava colour off the kit's chart (an orange emission over ~2 renders peach, a red over ~1 salmon)
+    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y, P["fz"]), h=10.0, w=1.3, length=7.5, clots=700, lean=(-0.25, 0.35), seed=17, splats=0,
+                          t_end=DUR + 1.0, name="fissure fountain")
+    P["founts"] = [fo["jet"]]
     for o in P["spat"]: o.hide_render = True
-    # flung clots: glowing lumps thrown out of the fountains on high arcs, falling back on the ridge
-    # (board B18: "pale pink-white lava bombs like popcorn", "two salmon rods": the clots were bright enough to clip to
-    # pink, and each one's jump back to its vent was smeared into a rod by the motion blur. They are small, deep
-    # orange or cooled black, and a spent one goes back to its vent UNDER the rock.)
-    clot = lw_emit("fountain clot", "#FFA51E", 0.9)          # (yellow-orange and dim: a strong red-orange is bleached to pink)
-    for k, v in enumerate(vents):                           # the SPRAY is the kit's: clots on real arcs, yellow-hot at the vent, cooling as they fly
-        FX.embers(origin=(v.location.x, S1_RIDGE_Y - 0.4, v["base_z"] + 0.3), n=26, speed=14.0, cone=0.42, size=(0.05, 0.13), period=2.2, seed=31 + k,
-                  ground_z=v["base_z"] - 1.0, splats=0, power=0.0, name=f"fountain spray {k}")
+    clot = lw_emit("fountain clot", "#FFA51E", 0.9)          # (the bomb's flung bits: yellow-orange and dim)
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
     T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
-    bomb = lw_block("lava bomb", tuple(B0), 0.27, lava_mat("bomb lava", heat=1.1, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
+    bomb = lw_block("lava bomb", tuple(B0), 0.33, lava_mat("bomb lava", heat=1.5, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
     vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; s_ = max(0.0, min(TF, t - (T_HIT - TF))); u_ = s_ / TF
@@ -1706,10 +1694,10 @@ def shot1():
             u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
             o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.7, h=2.6, seed=6.1, col=(0.12, 0.11, 0.1), dens=12.0, lean=(-0.15, 0.25), rise=1.4,
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.4, h=2.0, seed=6.1, col=(0.2, 0.19, 0.18), dens=5.0, lean=(-0.15, 0.25), rise=1.4,
                     keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
     bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.1, 0.35), 0.0, col=(1.0, 0.4, 0.1), r=0.3)
-    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 900.0), (T_HIT + 0.6, 380.0), (DUR + 1.0, 320.0)):
+    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 420.0), (T_HIT + 0.6, 170.0), (DUR + 1.0, 140.0)):
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
     for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
         L.data.energy = 2600.0 if "plume" in L.name else 4200.0
@@ -1840,7 +1828,7 @@ def place_wall_works():
     slab"): one long black ridge running straight to the distance, its boulder faces dropping away on both sides; at
     its foot on the town side three whole painted houses, their roofs far below the crest, a flag on a pole in a yard;
     on the outer side bare black ground, and the fountains small and orange on the far horizon."""
-    lw_grid("lava field ground", -80, 30, -40, 34, 130, 90, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))
+    lw_grid("lava field ground", -80, 30, -40, 34, 130, 90, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#262422", name="lava field rock ground"))
     lw_grid("town ground", -80, 30, S2_BASE / 2 - 0.2, 34, 60, 20, lambda x, y: s2_ground_z(x, y) + 0.04, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))   # the town inside the wall is green: the wall is the black thing
     path = [(x, 0.0) for x in range(-60, 5, 2)] + [(4.0 + 5.0 * math.sin(math.radians(a)), 5.0 - 5.0 * math.cos(math.radians(a))) for a in range(15, 91, 15)] + [(9.0, y) for y in range(7, 30, 2)]
     wall = earth_wall("earth wall", path, h=S2_H, crest=S2_CREST, base=S2_BASE, seed=8)
@@ -1872,12 +1860,8 @@ def place_wall_works():
     # the fountains, far out past the wall's end on the outer side
     # what the wall keeps out: from the town, lava fountains stand beyond the crest under their smoke (beat 1's ragged
     # fountains: a fat torn body and a thin taller jet), their feet hidden behind the wall
-    rf = lw_random.Random(23)
-    for k, (x, y, hf) in enumerate(((-9.0, -58.0, 15.0), (-3.0, -61.0, 18.0), (3.5, -58.0, 14.0), (9.0, -60.0, 16.0))):
-        lw_fire_column(f"far fountain {k}", (x, y, 0.0), w=rf.uniform(3.6, 4.4), h_fire=hf, h_smoke=4.0, lean=(rf.uniform(-0.25, 0.25), -0.3), t_end=DUR + 1.0, seed=3.1 + k * 2.3, fire=3.6, smoke_d=1.2, rise=3.0, spread=0.34)
-        lw_fire_column(f"far fountain jet {k}", (x + rf.uniform(-1.0, 1.0), y + 0.3, 0.0), w=rf.uniform(1.2, 1.7), h_fire=hf * rf.uniform(0.8, 1.2), h_smoke=2.0, lean=(rf.uniform(-0.4, 0.4), -0.2), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=5.5, smoke_d=0.8, rise=4.5, spread=0.3)
-        FX.smoke_column(base=(x, y - 1.5, hf * 0.8), w=3.4, h=12.0, lean=(0.3, -0.2), dens=2.0, seed=1.7 + k, t_end=DUR + 1.0, name=f"far fountain smoke {k}")
-        lw_point(f"far fountain light {k}", (x, y + 3.0, 3.0), 60000.0, col=(1.0, 0.4, 0.1), r=3.0)        # its glow on the black field
+    for k, (x, y, hf) in enumerate(((-10.0, -37.0, 6.5), (-4.0, -38.0, 7.5), (4.0, -36.0, 6.0), (10.0, -38.0, 7.0))):      # (the kit's fountain, as in beat 1)
+        FX.lava_fountain(base=(x, y, 0.0), h=hf, w=1.2, length=3.0, plume=0.9 * hf, clots=250, lean=(0.3, -0.2), seed=23 + k, splats=0, t_end=DUR + 1.0, name=f"far fountain {k}")
     def light():
         return FX.sky("day", sun_az=150)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
     return dict(light=light, wall=wall, house=houses[0], houses=houses)
@@ -1903,10 +1887,10 @@ def shot2():
     fw = data.forward(); fw.z = 0; fw.normalize(); lf = Vector((-fw.y, fw.x, 0.0))
     sh_l = {sd: 1.0 if (acts._shoulder(data, sd) - (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2).dot(lf) > 0 else -1.0 for sd in "LR"}
     # he CARRIES it in along the crest (a body that only shifts its hands is a still frame on a phone), then turns to the row
-    PS = P0 + Vector((-0.381, -0.06, 0.0))
+    PS = P0 + Vector((-0.75, -0.06, 0.0))                     # (he strides in from well down the crest: still 1 is him mid-stride with the stone, the row's end empty ahead of him)
     data.place(PS.x, PS.y, YAW_D - 22.0)
     kit = hard_hat(data)
-    data.walk_to((P0.x, P0.y), 0.0, T_ARR, step=0.12, lift=0.04, bob=0.015)
+    data.walk_to((P0.x, P0.y), 0.0, T_ARR, step=0.2, lift=0.07, bob=0.02)
     from character import _fcurves
     for fc in _fcurves(data.arm.animation_data.action):       # walk_to walks on z = 0: lift every key of it onto the crest
         if fc.data_path == "location" and fc.array_index == 2:
@@ -1954,26 +1938,26 @@ def shot2():
         for sd in sides:
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
     pose(T_UPR + 0.3 - LG, HANG, "LR"); pose(T_BACK - 0.3 - LG, HANG, "LR"); sc.frame_set(F(T_BACK)); bpy.context.view_layer.update()
-    row_arm = min("LR", key=lambda s_: acts._shoulder(data, s_).x); oth_arm = "R" if row_arm == "L" else "L"       # the arm on the row's side: out along his finished crest
+    row_arm = max("LR", key=lambda s_: acts._shoulder(data, s_).x); oth_arm = "R" if row_arm == "L" else "L"       # the arm on the row's side: out along his finished crest
     OUTR = lambda sg: ((8, 0, -sg * 74), (0, 0, -sg * 8), (0, 0, 0))
     pose(T_BACK + 0.12 - LG, OUTR, row_arm); pose(T_BACK + 0.12 - LG, HIP, oth_arm); pose(DUR + 0.5, OUTR, row_arm); pose(DUR + 0.5, HIP, oth_arm)
     data.finish()
     stone = s2_boulder("boulder top stone", R_, seed=4)
     stone.data.materials.clear()                              # HIS boulder is the wall's own basalt, a shade lighter with quarry dust: the one we follow onto the row
-    stone.data.materials.append(lw_noise("fresh quarried boulder", "#2C2A28", "#56524D", scale=14, rough=0.92, bump=0.8, detail=10))
+    stone.data.materials.append(lw_noise("fresh quarried boulder", "#3A3835", "#6A655F", scale=14, rough=0.92, bump=0.8, detail=10))
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         stone.location = stone_at(t); stone.keyframe_insert("location", frame=f)
         stone.rotation_euler = (0.2 * (1 - W(t, T_GO, T_SET - T_GO)), 0, 0.6); stone.keyframe_insert("rotation_euler", frame=f)
-    for k in range(-70, 1):                                  # the crest's row of boulders, running away from him out of sight: a base course...
+    for k in range(0, 70):                                  # the crest's row of boulders, running away from him out of sight: a base course...
         rr = RB * (0.92 + 0.16 * lw_fbm(k * 1.7, 0.3, 5))
-        b_ = s2_boulder(f"wall crest boulder {k}", rr, seed=20 + k); b_.location = (SPOT.x + 0.4 * (k + 0.5), SPOT.y + 0.03 * math.sin(k * 2.1), S2_H + rr * 0.8 * 0.5); b_.rotation_euler = (0, 0, k * 1.3)
-    for k in range(-70, 0):                                  # ...and a top course that ENDS where he stands: his boulder is its next one
+        b_ = s2_boulder(f"wall crest boulder {k}", rr, seed=20 + k); b_.location = (SPOT.x + 0.1 + 0.4 * k, SPOT.y + 0.03 * math.sin(k * 2.1), S2_H + rr * 0.8 * 0.5)       # (the row runs on AHEAD of him, so nothing of it stands between his feet and the lens); b_.rotation_euler = (0, 0, k * 1.3)
+    for k in range(1, 70):                                  # ...and a top course that ENDS where he stands: his boulder is its next one
         rr = R_ * (0.95 + 0.2 * lw_fbm(k * 2.3, 0.7, 9))
         b_ = s2_boulder(f"wall crest top boulder {k}", rr, seed=120 + k); b_.location = (SPOT.x + 0.4 * k, SPOT.y + 0.03 * math.sin(k * 1.3), SPOT.z + 0.01 * math.sin(k * 3.1)); b_.rotation_euler = (0, 0, k * 2.1)
     # (the puff of dust is cut: as a gas it was invisible at phone size, as billows it read as snowballs)
     # ---- the lens: close along the crest; then WIDE from the town: the wall over the house
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 50.0, face_at=(0.56, 0.6), height=0.36, t=T_SET)
+    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 50.0, face_at=(0.5, 0.6), height=0.36, t=T_SET)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=50.0, fstop=16.0)
     WCAM = Vector((-1.0, 31.0, 3.6)); WLOOK = Vector((-1.0, 0.0, 1.45))
     print("S2 CAM", tuple(round(v, 2) for v in CAM), "look", tuple(round(v, 2) for v in LOOK), flush=True)
