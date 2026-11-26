@@ -72,3 +72,8 @@ model covered_car 1k
 model rusted_wheel_rim_01 1k
 hdri qwantani_night_puresky 2k
 hdri mud_road_puresky 2k
+# realism kit, third pass (2026-11-26): the kit's "sand" and "mountain" grounds were grass on the test sheet; these are sand and bare rock
+texture sand_01 1k
+texture coast_sand_01 1k
+texture cliff_side 1k
+texture rock_face 1k

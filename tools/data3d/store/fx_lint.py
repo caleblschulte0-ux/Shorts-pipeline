@@ -57,6 +57,9 @@ ELEMENTS = [
     (r"road|asphalt|tarmac|street", "FX.road"),
     (r"ground|lawn|grass|terrain|mountains?|hills?|field", "FX.ground"),
     (r"boulders?", "FX.rocks"),
+    (r"cars?|hatchback|suv|pickup", "FX.car"),
+    (r"tipper|lorry|dump truck", "FX.truck"),
+    (r"diggers?|excavators?", "FX.digger"),
 ]
 # "fire hydrant" is not a fire: an element word followed by one of these names a different thing
 NOT_THE_ELEMENT = {"hydrant", "hose", "extinguisher", "alarm", "engine", "truck", "escape", "door", "number", "sign", "tank", "bottle",
@@ -64,7 +67,7 @@ NOT_THE_ELEMENT = {"hydrant", "hose", "extinguisher", "alarm", "engine", "truck"
                    "key", "keys", "mark", "line", "lines", "kerb", "barrier", "cone", "works", "worker", "map", "glass", "gauge", "mask",
                    "detector", "blanket", "axe", "helmet", "pit", "place", "wood", "log", "logs", "roller", "scraper", "bag", "pan",
                    "lamp", "lantern", "cover", "bar", "bowl", "basin", "column", "fountain", "bomb", "bombs", "jacket", "wheel", "pump", "tap", "trough", "butt", "level", "pole", "post"}
-OWN_WORDS = {"fire", "flame", "flames", "smoke", "steam", "lava", "fountain", "embers", "house", "houses", "sky", "clouds", "asphalt"}
+OWN_WORDS = {"fire", "flame", "flames", "smoke", "steam", "lava", "fountain", "embers", "house", "houses", "sky", "clouds", "asphalt", "car", "cars", "digger", "excavator", "tipper"}
 EMITS = re.compile(r"emit|fire|flame|lava_mat|glow_mat|neon")
 LIGHTS = re.compile(r"point|area|light|lamp|spot|sun")
 

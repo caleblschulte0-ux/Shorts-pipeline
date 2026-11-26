@@ -40,7 +40,7 @@ except ImportError:           # the registry and the brief are read without Blen
 
 PH = os.environ.get("POLYHAVEN_DIR") or os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(HERE))), "cache", "polyhaven")
 REGISTRY = {}
-GROUPS = ("sky", "ground", "built", "fire", "lava", "water")
+GROUPS = ("sky", "ground", "built", "vehicle", "fire", "lava", "water")
 HOT = (1.0, 0.45, 0.14)      # the colour of light off fire and lava
 
 
@@ -305,11 +305,14 @@ SKIES = {
     "day":       ("kloofendal_48d_partly_cloudy_puresky", 0.60, 3.0, (1.0, 0.93, 0.82), 2.5, None),
     "dawn":      ("qwantani_sunrise_puresky",             0.85, 3.0, (1.0, 0.66, 0.50), 3.0, None),
     "dusk":      ("qwantani_dusk_2_puresky",              0.90, 1.6, (1.0, 0.60, 0.45), 4.0, None),
+    "blue_hour": ("qwantani_dusk_2_puresky",              0.22, 0.25, (0.80, 0.78, 1.0), 8.0, None),     # after sunset: what glows is the light
     "sunset":    ("industrial_sunset_puresky",            0.80, 2.4, (1.0, 0.62, 0.40), 3.0, None),
     "overcast":  ("kloofendal_overcast_puresky",          1.00, 0.5, (1.0, 0.97, 0.94), 25.0, None),
     "noon":      ("qwantani_noon_puresky",                0.55, 3.4, (1.0, 0.96, 0.90), 2.0, "day"),
     "afternoon": ("qwantani_afternoon_puresky",           0.60, 3.2, (1.0, 0.90, 0.76), 2.5, "day"),
-    "storm":     ("wasteland_clouds_puresky",             0.90, 0.8, (1.0, 0.95, 0.90), 15.0, "overcast"),
+    "evening":   ("wasteland_clouds_puresky",             0.90, 0.8, (1.0, 0.95, 0.90), 15.0, "overcast"),   # a mild, clear evening with far cloud (it was called "storm", and is not one)
+    "heavy":     ("mud_road_puresky",                     0.70, 0.3, (0.95, 0.97, 1.0), 30.0, "overcast"),   # a low, heavy overcast: no sun, soft shadow (the library has no storm sky)
+    "night":     ("qwantani_night_puresky",               0.22, 0.04, (0.75, 0.82, 1.0), 6.0, "blue_hour"),  # stars and a dark sky: what glows is the only light
 }
 _SUN = {}
 
@@ -333,7 +336,7 @@ def hdri_sun(img):
 
 
 @element("sky", "a REAL sky (Poly Haven HDRI) that lights the scene, with the sun lamp aimed at the sky's own sun: "
-                "presets day, dawn, dusk, sunset, overcast, noon, afternoon, storm; sun_az turns the whole sky", emits=True)
+                "presets day, noon, afternoon, dawn, sunset, dusk, evening, blue_hour, night, overcast, heavy; sun_az turns the whole sky", emits=True)
 def sky(preset="day", sun_az=None, strength=None, sun=None, res="2k"):
     """the world becomes the preset's HDRI. sun_az (degrees, 0 = the sun straight behind the camera at -Y, negative =
     camera left) turns the sky so its sun stands there; None leaves the sky as shot. The sun LAMP is aimed at the
@@ -373,13 +376,15 @@ GROUNDS = {
     "burned":  (("burned_ground_01",), 2.0, None),
     "grass":   (("sparse_grass", "leafy_grass", "rocky_trail"), 2.0, None),
     "mud":     (("brown_mud", "rocky_trail"), 2.0, None),
-    "sand":    (("coast_sand_rocks_02", "gravel_floor_02"), 2.0, None),
+    "sand":    (("sand_01", "coast_sand_01", "gravel_floor_02"), 2.0, None),
+    "shore":   (("coast_sand_rocks_02", "rocky_trail"), 2.0, None),          # thin grass and stones above a beach (seen on the sheet: it is not sand)
+    "meadow":  (("rocky_terrain_02", "sparse_grass"), 4.0, None),            # green turf with stones (seen on the sheet: it is not a mountainside)
     "snow":    (("snow_02", "gray_rocks"), 2.0, None),
-    "mountain": (("rocky_terrain_02", "aerial_rocks_02"), 4.0, None),
+    "mountain": (("cliff_side", "rock_face", "aerial_rocks_02"), 4.0, None),
 }
 
 
-@element("ground", "real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, mud, "
+@element("ground", "real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, meadow, shore, mud, "
                    "sand, snow, mountain): never a flat plane of one colour")
 def ground(kind="gravel", area=(-8, 8, -6, 12), zfn=None, relief=0.06, seed=0, step=0.25, tint=None, name=None):
     """a patch of ground over area (x0, x1, y0, y1). zfn(x, y) gives its height; without one it rolls gently by
@@ -656,7 +661,7 @@ class _X:
 
 
 def gas(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), t_end=None, seed=0.0, fire=5.0, smoke_d=3.5,
-        smoke=(0.1, 0.095, 0.09), rise=1.4, keys=None, flame_d=3.9, spread=0.22, grow=False, ramp=None, lit=0.0, taper=1.0, fall=0.42, foot=0.05):
+        smoke=(0.1, 0.095, 0.09), rise=1.4, keys=None, flame_d=3.9, spread=0.22, grow=False, ramp=None, lit=0.0, taper=1.0, fall=0.42, foot=0.05, under=None):
     """A BURNING FIRE AND ITS SMOKE as ONE procedural volume (lava shots 3-5: the version the panel accepted). A tall
     box over `base`: the flame is a field of torn TONGUES that narrow as they climb (a cone of heat cut by turbulent
     noise that scrolls upward), hot yellow at its root, orange, then deep red at its tips; out of its top rolls a
@@ -717,9 +722,9 @@ def gas(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), t_end=None,
     L(rp.outputs["Color"], pv.inputs["Emission Color"])
     es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "fire strength"; L(X.mul(X.pw(flame, 1.6), amt.outputs[0]), es.inputs[0]); es.inputs[1].default_value = fire
     em = es.outputs[0]
-    if lit:                                              # the column's foot is lit from below by what burns under it
-        under = X.mul(X.mul(X.sub(1.0, X.clamp01(zr, 0.0, 0.45)), smk), lit * fire * 0.05)
-        em = X.add(em, under)
+    if lit or under:                                     # the column's foot is lit from below by what burns under it
+        ul = X.mul(X.mul(X.sub(1.0, X.clamp01(zr, 0.0, 0.45)), smk), under if under is not None else lit * fire * 0.05)
+        em = X.add(em, ul)
     L(em, pv.inputs["Emission Strength"])
     pv.inputs["Color"].default_value = (*smoke, 1); pv.inputs["Anisotropy"].default_value = 0.2
     L(pv.outputs[0], out.inputs["Volume"])
@@ -908,7 +913,7 @@ def lava_mat(name="fx lava", heat=1.0, scale=5.0, glow="#FF4A00", fresh=0.0):
     return m
 
 
-def _lava_mesh(name, outline, z, thick, m, seed, lumpy):
+def _lava_mesh(name, outline, z, thick, m, seed, lumpy, crust=True, edge=2.5):
     cx = sum(p[0] for p in outline) / len(outline); cy = sum(p[1] for p in outline) / len(outline)
     bm = bmesh.new(); rings = 6; rows = []; nb = len(outline)
     for k in range(rings + 1):
@@ -931,9 +936,10 @@ def _lava_mesh(name, outline, z, thick, m, seed, lumpy):
     me.materials.append(m)
     hot = me.attributes.new("hot", 'FLOAT', 'POINT')     # its moving edge is the hot part
     for v in me.vertices:
-        ring = min(rings, v.index // nb); hot.data[v.index].value = (1.0 - ring / rings) ** 2.5
+        ring = min(rings, v.index // nb); hot.data[v.index].value = (1.0 - ring / rings) ** edge if edge >= 2 else (1.0 if ring == 0 else 0.45 if ring == 1 else 0.0)
     o = _link(bpy.data.objects.new(name, me)); o.location = (cx, cy, 0)
     sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 3
+    if not crust: return o
     tx = bpy.data.textures.get("fx lava crust break") or bpy.data.textures.new("fx lava crust break", 'VORONOI')
     tx.noise_scale = 0.22; tx.distance_metric = 'DISTANCE'
     dm = o.modifiers.new("crust", 'DISPLACE'); dm.texture = tx; dm.texture_coords = 'LOCAL'; dm.strength = 0.5 * max(0.06, lumpy); dm.mid_level = 0.35
@@ -990,129 +996,401 @@ def lava_flow(outline, z=0.0, thick=0.34, fresh=0.3, heat=2.2, glow=26.0, drift=
     return dict(objects=[o] + rub, lights=lights, lava=o, mat=m, rim=lights, front=rub)
 
 
-@element("lava", "a pool of molten lava: a ragged round of thin crust plates over wide glowing seams, with its glow "
-                 "cast up and outward by its own lamps", emits=True)
-def lava_pool(centre=(0, 0), r=1.2, z=0.0, seed=0, glow=40.0, name="lava pool", rim=True):
-    rnd = random.Random(seed); n = 28
-    outline = [(centre[0] + r * (1 + 0.18 * vn(k * 0.9, seed * 1.3, seed)) * math.cos(2 * math.pi * k / n) * rnd.uniform(0.94, 1.06),
-                centre[1] + r * (1 + 0.18 * vn(k * 0.9, seed * 1.3 + 9, seed)) * math.sin(2 * math.pi * k / n) * rnd.uniform(0.94, 1.06)) for k in range(n)]
-    m = lava_mat(f"{name} mat", heat=1.0, scale=4.0 / max(r, 0.3) * 1.5, fresh=0.8)
-    o = _lava_mesh(name, outline, z, 0.07, m, seed, 0.03)
-    rub = _rubble(name + " rim block", outline, z, lava_mat(f"{name} rim mat", heat=0.8, scale=1.6, fresh=0.0), rnd, per_m=9.0,
-                  size=(0.04 * (1 + r), 0.11 * (1 + r)), pile=2) if rim else []
-    lights = _rim_lights(name, outline, z + 0.07, glow, every=0.9, cap=8)
-    lights.append(point(f"{name} core glow", (centre[0], centre[1], z + 0.6), glow * 3.0, col=(1.0, 0.45, 0.12), r=0.5 * r))
+def _melt_mat(name, r=1.0, heat=1.0, seed=0.0, churn=0.05):
+    """the SURFACE OF MOLTEN LAVA (a lava lake, a pool): dark, faintly glossy plates of chilled skin, split by a
+    network of bright yellow-orange cracks that MOVE (the plates drift, tear and re-form: node 'lava flow' slides
+    them, 'lava time' reshapes them), brighter patches where it wells up, and a bright line where it meets its bank
+    (the mesh's 'hot' attribute). The light is in the cracks; the plates are near black."""
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
+    N = nt.nodes.new; L = nt.links.new; X = _X(nt)
+    tc = N("ShaderNodeTexCoord"); mp = N("ShaderNodeMapping"); mp.name = "lava flow"; L(tc.outputs["Object"], mp.inputs["Vector"])
+    tt = N("ShaderNodeValue"); tt.name = "lava time"
+    w_ = X.add(X.mul(tt.outputs[0], churn), seed * 1.7)
+    s = 2.6 / max(r, 0.2)
+    warp = N("ShaderNodeTexNoise"); warp.noise_dimensions = '4D'; warp.inputs["Scale"].default_value = s * 0.5; warp.inputs["Detail"].default_value = 3
+    L(mp.outputs["Vector"], warp.inputs["Vector"]); L(w_, warp.inputs["W"])
+    add = N("ShaderNodeVectorMath"); add.operation = 'MULTIPLY_ADD'; add.inputs[1].default_value = (0.5 / s,) * 3
+    L(warp.outputs["Color"], add.inputs[0]); L(mp.outputs["Vector"], add.inputs[2])
+
+    def cracks(scale, wmin, wmax, wseed):
+        vo = N("ShaderNodeTexVoronoi"); vo.voronoi_dimensions = '4D'; vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs["Scale"].default_value = scale
+        vo.inputs["Randomness"].default_value = 1.0; L(add.outputs["Vector"], vo.inputs["Vector"]); L(X.add(w_, wseed), vo.inputs["W"])
+        wn = N("ShaderNodeTexNoise"); wn.inputs["Scale"].default_value = scale * 0.6; L(mp.outputs["Vector"], wn.inputs["Vector"])
+        wid = N("ShaderNodeMapRange"); wid.inputs["From Min"].default_value = 0.3; wid.inputs["From Max"].default_value = 0.7
+        wid.inputs["To Min"].default_value = wmin; wid.inputs["To Max"].default_value = wmax; L(wn.outputs["Fac"], wid.inputs["Value"])
+        c = N("ShaderNodeMapRange"); c.inputs["To Min"].default_value = 1.0; c.inputs["To Max"].default_value = 0.0
+        L(vo.outputs["Distance"], c.inputs["Value"]); L(wid.outputs["Result"], c.inputs["From Max"])
+        return c.outputs["Result"], vo.outputs["Distance"]
+    big, dist = cracks(s, 0.012, 0.075, 0.0)                    # the plates
+    fine, _ = cracks(s * 3.1, 0.02, 0.11, 4.0)                  # the skin tearing inside a plate, only here and there
+    zone = N("ShaderNodeTexNoise"); zone.noise_dimensions = '4D'; zone.inputs["Scale"].default_value = s * 0.45; zone.inputs["Detail"].default_value = 2
+    L(mp.outputs["Vector"], zone.inputs["Vector"]); L(X.add(w_, 9.0), zone.inputs["W"])
+    fz = X.mul(fine, X.mul(X.clamp01(zone.outputs["Fac"], 0.5, 0.62), 0.75))
+    well = X.mul(X.clamp01(zone.outputs["Fac"], 0.64, 0.74), 0.9)   # where it wells up: the skin is gone
+    at = N("ShaderNodeAttribute"); at.attribute_name = "hot"
+    g = X.mx(X.mx(big, fz), X.mx(well, at.outputs["Fac"]))
+    rp = N("ShaderNodeValToRGB"); L(g, rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*K.lin("#5A0A00"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFC040"), 1)
+    for pos, hx in ((0.3, "#D03800"), (0.6, "#FF7A08"), (0.85, "#FFA020")):
+        el.new(pos).color = (*K.lin(hx), 1)
+    L(rp.outputs["Color"], bs.inputs["Emission Color"])
+    es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "lava heat"; es.inputs[1].default_value = 2.6 * heat      # measured: more than this and the cracks render white-pink
+    L(X.pw(g, 2.0), es.inputs[0]); L(es.outputs[0], bs.inputs["Emission Strength"])
+    skin = N("ShaderNodeTexNoise"); skin.inputs["Scale"].default_value = s * 9; skin.inputs["Detail"].default_value = 6
+    L(add.outputs["Vector"], skin.inputs["Vector"])
+    cr = N("ShaderNodeValToRGB"); cr.color_ramp.elements[0].color = (*K.lin("#0C0B0B"), 1); cr.color_ramp.elements[1].color = (*K.lin("#35302E"), 1)
+    L(skin.outputs["Fac"], cr.inputs["Fac"])
+    mix = N("ShaderNodeMixRGB"); L(X.clamp01(g, 0.0, 0.5), mix.inputs["Fac"]); L(cr.outputs["Color"], mix.inputs["Color1"]); mix.inputs["Color2"].default_value = (*K.lin("#200400"), 1)
+    L(mix.outputs["Color"], bs.inputs["Base Color"])
+    L(X.add(0.5, X.mul(skin.outputs["Fac"], 0.3)), bs.inputs["Roughness"])       # chilled lava skin is glassy: it carries the sky
+    bp = N("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.6; bp.inputs["Distance"].default_value = 0.03 * max(r, 0.3)
+    L(X.add(X.mul(X.clamp01(dist, 0.0, 0.12), 1.0), X.mul(skin.outputs["Fac"], 0.25)), bp.inputs["Height"]); L(bp.outputs["Normal"], bs.inputs["Normal"])
+    for f in (1, _nf() + 1):
+        tt.outputs[0].default_value = (f - 1) / FPS; tt.outputs[0].keyframe_insert("default_value", frame=f)
+    _linear(nt, 'nodes["lava time"]')
+    return m
+
+
+def _bank(name, outline, z, h, m, seed):
+    """the bank a pool of lava sits in: a low ragged levee of chilled black rock all round it (one welded mesh)"""
+    n = len(outline); cx = sum(p[0] for p in outline) / n; cy = sum(p[1] for p in outline) / n
+    rings = ((0.93, -0.3), (1.02, 0.75), (1.12, 1.0), (1.26, 0.5), (1.4, -0.3), (1.46, -1.2))      # it ends under the ground, not as a skirt lying on it
+    bm = bmesh.new(); rows = []
+    for (s, hz) in rings:
+        row = []
+        for k, (x, y) in enumerate(outline):
+            j = 1 + 0.1 * vn(k * 0.8 + s * 4, seed + s * 2, seed) * (s - 0.9)
+            row.append(bm.verts.new(((x - cx) * s * j, (y - cy) * s * j, z + h * hz * (0.55 + 0.9 * vn(k * 0.6, s * 7 + 1, seed + 3)))))
+        rows.append(row)
+    for i in range(len(rings) - 1):
+        for k in range(n):
+            j = (k + 1) % n
+            bm.faces.new((rows[i][k], rows[i][j], rows[i + 1][j], rows[i + 1][k]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    for p in me.polygons: p.use_smooth = True
+    me.materials.append(m)
+    o = _link(bpy.data.objects.new(name, me)); o.location = (cx, cy, 0)
+    sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 2
+    tx = bpy.data.textures.get("fx bank break") or bpy.data.textures.new("fx bank break", 'VORONOI')
+    tx.noise_scale = 0.16; tx.distance_metric = 'DISTANCE'
+    dm = o.modifiers.new("broken", 'DISPLACE'); dm.texture = tx; dm.texture_coords = 'LOCAL'; dm.strength = 0.5 * h; dm.mid_level = 0.4
+    return o
+
+
+@element("lava", "a pool of MOLTEN lava: a level surface of dark glassy plates split by bright yellow-orange cracks "
+                 "that drift and re-form, brighter where it wells up and along its bank, held in a low levee of black "
+                 "rock, with its heat glow cast up and outward by its own lamps", emits=True)
+def lava_pool(centre=(0, 0), r=1.2, z=0.0, seed=0, glow=None, name="lava pool", rim=True, heat=1.0, drift=(0.03, 0.01)):
+    """r: its radius. glow: watts of each rim lamp (default 12 a metre of radius; the lamp over its middle is four
+    times that). rim=False leaves the levee off (a pool inside something else). drift: metres a second the plates
+    slide. Returns dict(lava, mat, bank, outline)."""
+    rnd = random.Random(seed); n = 32; glow = glow if glow is not None else 12.0 * max(r, 0.4)
+    outline = [(centre[0] + r * (1 + 0.2 * vn(k * 0.55, seed * 1.3, seed)) * math.cos(2 * math.pi * k / n),
+                centre[1] + r * (1 + 0.2 * vn(k * 0.55, seed * 1.3 + 9, seed)) * math.sin(2 * math.pi * k / n)) for k in range(n)]
+    m = _melt_mat(f"{name} mat", r=r, heat=heat, seed=seed)
+    o = _lava_mesh(name, outline, z, 0.05 * r, m, seed, 0.0, crust=False, edge=1.2)
+    mp = m.node_tree.nodes["lava flow"]
+    for f in (1, _nf() + 1):
+        t = (f - 1) / FPS
+        mp.inputs["Location"].default_value = (-drift[0] * t, -drift[1] * t, 0); mp.inputs["Location"].keyframe_insert("default_value", frame=f)
+    _linear(m.node_tree, "lava flow")
+    objs = [o]; bank = None
+    if rim:
+        rock = ph_mat("burned_ground_01", scale=0.9, tint="#1A1817", name="fx pool bank rock", bump=1.8) if have("burned_ground_01", "textures") else lava_mat("fx pool bank rock", heat=0.0)
+        bank = _bank(name + " bank", outline, z, 0.14 * r + 0.03, rock, seed); objs.append(bank)
+        for k in range(5):                               # a few fallen blocks on the levee (not a ring of them: that read as rubble round a patch)
+            a = rnd.uniform(0, 2 * math.pi); rr = r * rnd.uniform(1.12, 1.3)
+            objs.append(block(name + " bank block", (centre[0] + rr * math.cos(a), centre[1] + rr * math.sin(a), z + 0.12 * r), rnd.uniform(0.05, 0.1) * (1 + r), rock, rnd))
+    lights = _rim_lights(name, outline, z + 0.1 * r, glow, every=0.9, cap=8)
+    lights.append(point(f"{name} core glow", (centre[0], centre[1], z + 1.0 * r + 0.3), glow * 4.0, col=(1.0, 0.45, 0.12), r=0.6 * r))
     flicker(lights[-1:], seed, depth=0.1)
-    return dict(objects=[o] + rub, lights=lights, lava=o, mat=m, outline=outline, rim=rub)
+    return dict(objects=objs, lights=lights, lava=o, mat=m, outline=outline, bank=bank, rim=[bank] if bank else [])
 
 
-def _clot_mat(name, vent, reach):
-    """a thrown clot of lava: white-yellow at the vent, orange in flight, cooling to dark red and black crust as it
-    gets far from the vent (the colour is read from how far the clot is, so it cools as it flies)"""
+def _heat_mat(name, top=6.0, crust="#120907"):
+    """molten rock that COOLS: the object's own colour carries its heat (red channel, 1 = just thrown, 0 = cold), keyed
+    per frame by whoever throws it. Yellow-white when it leaves the vent, orange in flight, dull red, then black crust.
+    The oranges lean yellow and stay dim: a strong red-orange is bleached to salmon pink by the view transform."""
     m = bpy.data.materials.get(name)
     if m: return m
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; bs = nt.nodes["Principled BSDF"]
     N = nt.nodes.new; L = nt.links.new
-    oi = N("ShaderNodeObjectInfo")
-    dist = N("ShaderNodeVectorMath"); dist.operation = 'DISTANCE'; L(oi.outputs["Location"], dist.inputs[0]); dist.inputs[1].default_value = tuple(vent)
-    u = N("ShaderNodeMapRange"); L(dist.outputs["Value"], u.inputs["Value"]); u.inputs["From Min"].default_value = 0.0; u.inputs["From Max"].default_value = reach
-    jit = N("ShaderNodeMath"); jit.operation = 'MULTIPLY_ADD'; L(oi.outputs["Random"], jit.inputs[0]); jit.inputs[1].default_value = 0.35; L(u.outputs["Result"], jit.inputs[2])
-    rp = N("ShaderNodeValToRGB"); L(jit.outputs[0], rp.inputs["Fac"]); el = rp.color_ramp.elements
-    el[0].position = 0.0; el[0].color = (*K.lin("#FF7A08"), 1); el[1].position = 1.15; el[1].color = (*K.lin("#2A0400"), 1)
-    el.new(0.4).color = (*K.lin("#F03C00"), 1); el.new(0.8).color = (*K.lin("#A81400"), 1)
-    st = N("ShaderNodeMapRange"); L(jit.outputs[0], st.inputs["Value"]); st.inputs["From Min"].default_value = 0.0; st.inputs["From Max"].default_value = 1.2
-    st.inputs["To Min"].default_value = 3.2; st.inputs["To Max"].default_value = 0.5      # deep orange, never bright enough to bleach to pink-white (board B18: "popcorn")
-    L(rp.outputs["Color"], bs.inputs["Emission Color"]); L(st.outputs["Result"], bs.inputs["Emission Strength"])
-    bs.inputs["Base Color"].default_value = (*K.lin("#140A06"), 1); bs.inputs["Roughness"].default_value = 0.9
+    oi = N("ShaderNodeObjectInfo"); sep = N("ShaderNodeSeparateColor"); L(oi.outputs["Color"], sep.inputs[0])
+    rp = N("ShaderNodeValToRGB"); L(sep.outputs[0], rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*K.lin("#3A0600"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFE890"), 1)
+    for pos, hx in ((0.2, "#D03000"), (0.4, "#FF7A08"), (0.6, "#FF9A18"), (0.8, "#FFC83C")):
+        el.new(pos).color = (*K.lin(hx), 1)
+    st = N("ShaderNodeValToRGB"); L(sep.outputs[0], st.inputs["Fac"]); e2 = st.color_ramp.elements
+    lo = lambda v: (v / top, v / top, v / top, 1)
+    e2[0].position = 0.0; e2[0].color = lo(0.15); e2[1].position = 1.0; e2[1].color = lo(top)
+    for pos, v in ((0.2, 0.8), (0.4, 1.1), (0.6, 1.6), (0.8, 3.0)):     # measured: an orange above 2 renders peach, a red above 1 salmon
+        e2.new(pos).color = lo(v)
+    mul = N("ShaderNodeMath"); mul.operation = 'MULTIPLY'; mul.name = "clot heat"; L(st.outputs["Color"], mul.inputs[0]); mul.inputs[1].default_value = top
+    L(rp.outputs["Color"], bs.inputs["Emission Color"]); L(mul.outputs[0], bs.inputs["Emission Strength"])
+    bs.inputs["Base Color"].default_value = (*K.lin(crust), 1); bs.inputs["Roughness"].default_value = 0.85
     return m
 
 
-def _arcs(name, vent, n, speed, cone, t0, t1, period, size, seed, m, ground_z=None, wind=(0.0, 0.0), stretch=2.2):
+_DROPS = {}
+
+
+def _drop(name, m, rnd):
+    """one clot of molten rock: a smooth, slightly lumpy bead (never a faceted block: thrown lava is liquid)"""
+    key = (m.name, rnd.randrange(5))
+    me = _DROPS.get(key)
+    if me is None or me.name not in bpy.data.meshes:
+        rk = random.Random(sum(map(ord, key[0])) * 5 + key[1])
+        bm = bmesh.new(); bmesh.ops.create_icosphere(bm, subdivisions=2, radius=1.0)
+        for v in bm.verts:
+            v.co *= 1 + 0.22 * vn(v.co.x * 2.1 + key[1], v.co.y * 2.1 + v.co.z * 1.7, key[1]) + rk.uniform(-0.04, 0.04)
+        me = bpy.data.meshes.new("fx lava clot"); bm.to_mesh(me); bm.free(); me.materials.append(m)
+        for p_ in me.polygons: p_.use_smooth = True
+        _DROPS[key] = me
+    return _link(bpy.data.objects.new(name, me))
+
+
+SHUTTER = 0.045     # seconds a clot's streak covers: its length is its speed times this (a short streak along the arc)
+
+
+def _arcs(name, vent, n, speed, cone, t0, t1, period, size, seed, m, ground_z=None, wind=(0.0, 0.0), spread=(0.0, 0.0), yaw=0.0,
+          splats=0, splat_power=30.0):
     """n clots thrown from `vent` on real ballistic arcs, again and again (each on its own clock), every frame keyed:
-    up fast, slowing, over, and down, tumbling, stretched along their flight. A clot below the ground is hidden."""
-    rnd = random.Random(seed); V = Vector(vent); gz = V.z if ground_z is None else ground_z
+    up fast, slowing, over, and down. Each is a small bead drawn out into a SHORT STREAK along its flight (speed x
+    SHUTTER), sizes varied (most small, a few big), cooling from yellow-white to orange to dull red as it flies (its
+    colour is keyed from its age; small ones cool faster). spread (x, y): the vent is a line or patch this big.
+    The `splats` biggest leave a GLOWING SPLAT where they land, with a lamp, that cools until they land again.
+    Returns (clots, splat objects, splat lights)."""
+    rnd = random.Random(seed); V0 = Vector(vent); gz = V0.z if ground_z is None else ground_z
     f0, f1 = max(1, F(t0)), min(_nf(), F(t1)) if t1 is not None else _nf()
-    out = []
+    cy_, sy_ = math.cos(yaw), math.sin(yaw)
+    spec = []
     for k in range(n):
-        o = block(f"{name} {k}", tuple(V), 1.0, m, rnd, squash=1.0)
-        r = rnd.uniform(*size) * (2.2 if rnd.random() < 0.08 else 1.0)
-        P = period * rnd.uniform(0.7, 1.4); ph = rnd.uniform(0, P)
-        az = rnd.uniform(0, 2 * math.pi); tilt = abs(rnd.gauss(0, cone * 0.5)); v0 = speed * rnd.uniform(0.55, 1.0) * (1 - 0.35 * tilt / max(cone, 1e-3) * 0.5)
+        big = rnd.random() < 0.07
+        r = rnd.uniform(size[0], size[1]) ** 1.0 * (rnd.uniform(1.4, 1.9) if big else rnd.uniform(0.45, 1.0))
+        spec.append((r, k))
+    order = sorted(spec, reverse=True); splat_ids = {k for _, k in order[:splats]}
+    out = []; sp_objs = []; sp_lights = []
+    for r, k in spec:
+        o = _drop(f"{name} {k}", m, rnd)
+        ox, oy = rnd.uniform(-0.5, 0.5) * spread[0], rnd.uniform(-0.5, 0.5) * spread[1]
+        V = V0 + Vector((ox * cy_ - oy * sy_, ox * sy_ + oy * cy_, 0))
+        P = period * rnd.uniform(0.75, 1.5); ph = rnd.uniform(0, P)
+        az = rnd.uniform(0, 2 * math.pi); tilt = abs(rnd.gauss(0, cone * 0.55)); v0 = speed * rnd.uniform(0.45, 1.0) * (1 - 0.3 * min(1.0, tilt / max(cone, 1e-3)) * 0.5)
         vx = v0 * math.sin(tilt) * math.cos(az) + wind[0]; vy = v0 * math.sin(tilt) * math.sin(az) + wind[1]; vz = v0 * math.cos(tilt)
-        spin = (rnd.uniform(-6, 6), rnd.uniform(-6, 6), rnd.uniform(-6, 6))
-        prev_hidden = None
+        dz = V.z - gz; s_land = (vz + math.sqrt(max(0.0, vz * vz + 19.6 * dz))) / 9.8
+        cool = max(0.5, s_land) * rnd.uniform(0.95, 1.5) * (0.8 + 0.4 * min(1.0, r / max(size[1], 1e-4)))
+        splat = None
+        if k in splat_ids:
+            pl = V + Vector((vx * s_land, vy * s_land, 0)); pl.z = gz
+            splat = _drop(f"{name} splat {k}", m, rnd); rr = r * rnd.uniform(1.3, 1.8)
+            splat.location = (pl.x, pl.y, gz + rr * 0.05); splat.scale = (rr, rr * rnd.uniform(0.6, 0.9), rr * 0.45); splat.rotation_euler = (0, 0, rnd.uniform(0, 6.3))
+            sl = point(f"{name} splat light {k}", (pl.x, pl.y, gz + rr + 0.25), splat_power, col=(1.0, 0.5, 0.14), r=rr * 0.6)
+            sl["fx_power"] = splat_power; sp_objs.append(splat); sp_lights.append(sl)
+        prev_hidden = None; landed = False
         for f in range(f0, f1 + 1):
-            t = (f - 1) / FPS - t0 + ph; s = t % P
-            p = V + Vector((vx * s, vy * s, vz * s - 4.9 * s * s))
-            hidden = p.z < gz - 0.02
+            t = (f - 1) / FPS - t0 + ph; s = t % P; flying = s <= s_land
+            if splat is not None:
+                if not landed and (t >= s_land):
+                    splat.hide_render = True; splat.keyframe_insert("hide_render", frame=max(1, f - 1)); landed = True
+                    splat.hide_render = False; splat.keyframe_insert("hide_render", frame=f)
+                age = (s - s_land) if not flying else (s + P - s_land)
+                hs = max(0.0, 1.0 - age / (P * 0.9)) ** 1.5 if (landed or t >= s_land) else 0.0
+                splat.color = (0.1 + 0.5 * hs, 0, 0, 1); splat.keyframe_insert("color", frame=f)     # crusting over the moment it lands: orange, then dull red
+                sl.data.energy = splat_power * max(0.02, hs * hs); sl.data.keyframe_insert("energy", frame=f)
+            hidden = not flying
             if hidden != prev_hidden or f in (f0, f1):
                 o.hide_render = hidden; o.keyframe_insert("hide_render", frame=f); prev_hidden = hidden
             if hidden: continue
+            p = V + Vector((vx * s, vy * s, vz * s - 4.9 * s * s))
             vel = Vector((vx, vy, vz - 9.8 * s)); sp = vel.length
             o.location = p; o.keyframe_insert("location", frame=f)
-            q = vel.to_track_quat('Z', 'Y').to_euler() if sp > 0.5 else Euler(spin)
-            o.rotation_euler = q; o.keyframe_insert("rotation_euler", frame=f)
-            k_ = 1 + (stretch - 1) * min(1.0, sp / max(speed, 0.1))                 # molten: pulled long along its flight
-            o.scale = (r / k_ ** 0.5, r / k_ ** 0.5, r * k_); o.keyframe_insert("scale", frame=f)
-        if o.animation_data and o.animation_data.action:
-            for c in _fcurves(o.animation_data.action):
-                for kp in c.keyframe_points: kp.interpolation = 'CONSTANT' if "hide" in c.data_path else 'LINEAR'
+            o.rotation_euler = vel.to_track_quat('Z', 'Y').to_euler(); o.keyframe_insert("rotation_euler", frame=f)
+            half = max(r, 0.5 * sp * SHUTTER); thin = r * (r / half) ** 0.4
+            o.scale = (thin, thin, half); o.keyframe_insert("scale", frame=f)
+            o.color = (max(0.0, 1.0 - s / cool), 0, 0, 1); o.keyframe_insert("color", frame=f)
+        if splat is not None and not landed:
+            splat.hide_render = True
+        for idb in ([o, splat] if splat is not None else [o]):
+            if idb.animation_data and idb.animation_data.action:
+                for c in _fcurves(idb.animation_data.action):
+                    for kp in c.keyframe_points: kp.interpolation = 'CONSTANT' if "hide" in c.data_path else 'LINEAR'
         out.append(o)
-    return out
+    return out, sp_objs, sp_lights
 
 
-@element("lava", "glowing embers or lava bombs thrown on real ballistic arcs from a point: stretched, tumbling clots, "
-                 "yellow-hot at the source and cooling to dark red as they fly (never pale balls), with the lamp "
-                 "that lights the ground where they come from", emits=True)
-def embers(origin=(0, 0, 0), n=40, speed=4.0, cone=0.6, size=(0.015, 0.05), t0=0.0, t1=None, period=1.6, seed=0, ground_z=None,
-           wind=(0.0, 0.0), power=None, name="embers"):
+@element("lava", "glowing embers or lava bombs thrown on real ballistic arcs from a point: small beads of molten rock "
+                 "drawn into short streaks along their flight, yellow-white where they start and cooling to orange "
+                 "and dull red (sizes varied, never pale balls, never pink); the biggest leave a glowing splat with "
+                 "its own lamp where they land; with the lamp that lights the ground where they come from", emits=True)
+def embers(origin=(0, 0, 0), n=40, speed=4.0, cone=0.6, size=(0.008, 0.022), t0=0.0, t1=None, period=1.6, seed=0, ground_z=None,
+           wind=(0.0, 0.0), power=None, splats=3, name="embers"):
     """speed: launch speed in m/s (they rise speed^2 / 19.6 metres). cone: how wide they fan (radians from straight up).
-    period: seconds between one clot's throws. Returns dict(clots, light)."""
+    period: seconds between one clot's throws. size: radius range in metres (a lava BOMB is 0.08-0.25).
+    splats: how many of the biggest leave a glowing splat and lamp where they land. Returns dict(clots, splats, light)."""
     reach = speed * speed / 19.6 * 1.3 + 0.3
-    m = _clot_mat(f"{name} clot", origin, reach)
-    clots = _arcs(name + " clot", origin, n, speed, cone, t0, t1, period, size, seed, m, ground_z=ground_z, wind=wind)
-    L_ = point(name + " light", (origin[0], origin[1], origin[2] + 0.25 * reach), power if power is not None else 12.0 * n * (sum(size) / 0.065), r=0.3)
+    m = _heat_mat("fx lava clot")
+    e = power if power is not None else 2.0 * n * (sum(size) / 0.03)       # a lamp strong enough to bleach its own embers pink is too strong
+    clots, sp, sl = _arcs(name + " clot", origin, n, speed, cone, t0, t1, period, size, seed, m, ground_z=ground_z, wind=wind,
+                          splats=splats, splat_power=max(2.0, 160.0 * size[1]))
+    L_ = point(name + " light", (origin[0], origin[1], origin[2] + 0.4 * reach + 0.2), e, r=0.3)
     flicker([L_], seed)
-    return dict(objects=clots, lights=[L_], clots=clots, light=L_, reach=reach)
+    return dict(objects=clots + sp, lights=[L_] + sl, clots=clots, splats=sp, light=L_, reach=reach)
 
 
-@element("lava", "a lava fountain: a ragged incandescent jet (gas) from a glowing vent in a spatter rampart of black "
-                 "rock, hundreds of clots thrown on arcs and falling back, a dark gas plume lit from below, and strong "
-                 "orange lamps that light the ground, the smoke and the houses around it (an eruption, not a bonfire)", emits=True)
-def lava_fountain(base=(0, 0, 0), h=6.0, w=1.4, clots=360, plume=10.0, lean=(-0.3, 0.1), seed=0, power=None, t0=0.0, keys=None, name="fountain"):
-    """h: how high the jet stands; w: the vent's width. plume: metres of gas above the jet. power: watts of the main
-    lamp (default 900 a metre of height). Returns dict(jet, clots, rampart, pool, light)."""
-    B_ = Vector(base); rnd = random.Random(seed + 91); objs = []
-    # the jet: white-yellow, narrow and torn, standing on the vent (a fire's ramp starts red; molten rock starts yellow)
-    hot = (("#8A1200", 0.0), ("#E03400", 0.2), ("#FF6200", 0.45), ("#FF8E10", 0.75), ("#FFB838", 1.0))
-    jet = gas(name + " jet", tuple(B_), w=w, h_fire=h, h_smoke=plume, lean=lean, seed=seed * 2.3 + 0.7, fire=10.0, smoke_d=4.5,
-              smoke=(0.075, 0.068, 0.062), rise=4.5, flame_d=14.0, spread=0.2, ramp=hot, lit=1.0, keys=keys, taper=0.4, fall=0.3)
-    core = gas(name + " core", tuple(B_ + Vector((0, 0, -0.1))), w=w * 0.5, h_fire=h * 0.62, h_smoke=0.4, seed=seed * 1.3 + 4.2, fire=16.0, smoke_d=0.0,
-               rise=6.0, flame_d=18.0, ramp=(("#FF5A00", 0.0), ("#FF9A18", 0.5), ("#FFD060", 1.0)), keys=keys, taper=0.5, fall=0.3)
-    objs += [jet, core]
-    # the spatter rampart: a low ring of welded black blocks round the vent, glowing in its throat
-    rock = ph_mat("burned_ground_01", scale=0.8, tint="#2E2A27", name="fx spatter rock", bump=1.8) if have("burned_ground_01", "textures") else lava_mat("fx spatter rock", heat=0.0)
-    ramp_blocks = []
-    for k in range(110):
-        a = rnd.uniform(0, 2 * math.pi); rr = w * rnd.uniform(0.55, 1.6); s = w * rnd.uniform(0.07, 0.2) * (1.5 - 0.5 * rr / (1.5 * w))
-        ramp_blocks.append(block(name + " rampart", (B_.x + rr * math.cos(a), B_.y + rr * math.sin(a) * 0.8, B_.z + s * 0.25 + 0.2 * w * max(0, 1 - abs(rr / w - 0.8))), s, rock, rnd, squash=0.75))
-    pool = lava_pool.__wrapped__((B_.x, B_.y), r=w * 0.62, z=B_.z + 0.1 * w, seed=seed, glow=30.0, name=name + " vent")
-    objs += ramp_blocks + pool["objects"]
-    v0 = math.sqrt(19.6 * h) * 0.9
-    m = _clot_mat(f"{name} clot", tuple(B_), h * 1.25)
-    cl = _arcs(name + " clot", tuple(B_ + Vector((0, 0, 0.3 * w))), clots, v0, 0.26, t0, None, 2 * v0 / 9.8 * 0.8, (0.014 * w, 0.05 * w), seed, m,
-               ground_z=B_.z, wind=(lean[0] * 1.2, lean[1] * 1.2), stretch=2.6)
-    objs += cl
-    e = power if power is not None else 900.0 * h
-    lights = [point(name + " light", (B_.x, B_.y - 0.3 * w, B_.z + 0.45 * h), e, r=0.35 * w + 0.2),
-              point(name + " crown light", (B_.x + lean[0] * h * 0.3, B_.y + lean[1] * h * 0.3, B_.z + 0.95 * h), e * 0.5, r=0.5 * w + 0.3),
-              point(name + " ground glow", (B_.x, B_.y - 0.9 * w, B_.z + 0.5 * w), e * 0.25, col=(1.0, 0.36, 0.08), r=0.5 * w)]
+def _spray(name, base, h, w, length, yaw, seed, keys, t_end, spread=0.2, bright=1.0):
+    """THE MOLTEN SPRAY of a lava fountain as one procedural volume. Not a flame: thousands of thin STRANDS of
+    incandescent rock that leave the vent as a solid white-yellow mass, fan outward as they climb and break into
+    separate strands, each finger of the fountain reaching its own height (and changing with time), cooling to orange
+    and dark red at the top and the outside. length > 0 makes the vent a fissure and the jet a curtain along x."""
+    t_end = t_end if t_end is not None else _dur() + 1.0
+    Rt = w * 0.4 + h * spread * 1.5; H = h * 1.22
+    m = bpy.data.materials.new(name + " spray"); m.use_nodes = True; nt = m.node_tree
+    for nd in list(nt.nodes): nt.nodes.remove(nd)
+    N = nt.nodes.new; L = nt.links.new; X = _X(nt)
+    out = N("ShaderNodeOutputMaterial"); pv = N("ShaderNodeVolumePrincipled")
+    tc = N("ShaderNodeTexCoord"); sep = N("ShaderNodeSeparateXYZ"); L(tc.outputs["Object"], sep.inputs[0])
+    x = X.add(sep.outputs[0], 0.0); y = X.add(sep.outputs[1], 0.0); z = X.add(sep.outputs[2], H / 2)
+    tt = N("ShaderNodeValue"); tt.name = "fire time"; t = tt.outputs[0]
+    xc = X.mn(X.mx(x, -length / 2), length / 2); dx = X.sub(x, xc)                 # the nearest point of the fissure
+    r = X.sq(X.add(X.mul(dx, dx), X.mul(y, y)))
+
+    def noise(vec, scale, detail, rough, w_):
+        nz = N("ShaderNodeTexNoise"); nz.noise_dimensions = '4D'; nz.inputs["Scale"].default_value = scale
+        nz.inputs["Detail"].default_value = detail; nz.inputs["Roughness"].default_value = rough
+        L(vec, nz.inputs["Vector"]); L(w_, nz.inputs["W"]); return nz.outputs["Fac"]
+
+    def vec(a, b, c):
+        cb = N("ShaderNodeCombineXYZ")
+        for i, s in enumerate((a, b, c)):
+            if isinstance(s, (int, float)): cb.inputs[i].default_value = s
+            else: L(s, cb.inputs[i])
+        return cb.outputs[0]
+    # every finger of the fountain reaches its own height, and that height pulses
+    fing = noise(vec(x, y, 0.0), 1.5 / max(w, 0.2), 2.0, 0.5, X.add(X.mul(t, 0.8), seed * 3.1))
+    hh = X.mul(X.clamp01(fing, 0.25, 0.72), 1.0); hh = X.add(0.3, X.mul(hh, 0.78))
+    uu = X.div(z, X.mul(hh, h)); uc = X.clamp01(uu, 0.0, 1.3); uc = X.mul(uc, 1.3)
+    R = X.add(w * 0.45, X.mul(X.pw(uc, 1.1), h * spread))
+    e = X.sub(1.0, X.div(r, R)); ec = X.clamp01(e)
+    div = X.add(1.0, X.mul(uc, 2.4))                                               # the strands diverge from the vent
+    hx = X.add(xc, X.div(dx, div)); hy = X.div(y, div)
+    rise = math.sqrt(19.6 * h) * 0.55
+    fx = 6.5 / max(w, 0.2); fz = 5.0 / max(h, 0.5) / fx
+    sv = N("ShaderNodeVectorMath"); sv.operation = 'MULTIPLY'; L(vec(hx, hy, X.sub(z, X.mul(t, rise))), sv.inputs[0]); sv.inputs[1].default_value = (1.0, 1.0, fz)
+    strands = noise(sv.outputs[0], fx, 3.0, 0.6, X.add(X.mul(t, 0.35), seed + 7.3))
+    thr = X.add(X.add(0.34, X.mul(X.mul(uc, uc), 0.2)), X.mul(X.sub(1.0, ec), 0.2))     # higher and further out it breaks into separate strands, then dots
+    st = X.clamp01(X.sub(strands, thr), 0.0, 0.04)
+    st = X.mx(st, X.mul(X.clamp01(X.sub(1.0, X.mul(uu, 3.2))), X.clamp01(e, 0.15, 0.5)))      # at the vent it is one solid mass
+    foot = X.clamp01(z, 0.0, 0.08 * w + 0.02)
+    body = X.mul(X.mul(X.mul(st, X.clamp01(e, 0.0, 0.3)), X.clamp01(X.sub(1.06, uu), 0.0, 0.45)), foot)
+    T = X.mul(X.pw(ec, 0.5), X.sub(1.0, X.mul(X.clamp01(uu), 0.82)))      # white only low and deep in it: it is orange by its top
+    amt = N("ShaderNodeValue"); amt.name = "gas amount"; amt.outputs[0].default_value = 1.0
+    rp = N("ShaderNodeValToRGB"); L(T, rp.inputs["Fac"]); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*K.lin("#B03800"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFE890"), 1)
+    for pos, hx_ in ((0.15, "#F06800"), (0.32, "#FF8A10"), (0.52, "#FFA828"), (0.75, "#FFC83C")):   # all of it leans yellow: a red spray, summed through its depth, renders salmon
+        el.new(pos).color = (*K.lin(hx_), 1)
+    L(rp.outputs["Color"], pv.inputs["Emission Color"])
+    es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "fire strength"; es.inputs[1].default_value = bright
+    L(X.mul(X.mul(body, X.add(0.28, X.mul(X.pw(T, 3.0), 16.0))), amt.outputs[0]), es.inputs[0])
+    L(es.outputs[0], pv.inputs["Emission Strength"])
+    L(X.mul(X.mul(body, 1.2), amt.outputs[0]), pv.inputs["Density"])      # thin: a dense shell of cool spray would hide the white core
+    pv.inputs["Color"].default_value = (0.12, 0.03, 0.01, 1); pv.inputs["Anisotropy"].default_value = 0.0
+    L(pv.outputs[0], out.inputs["Volume"])
+    B_ = Vector(base)
+    o = K.box(name, (B_.x, B_.y, B_.z + H / 2), (length + 2 * Rt, 2 * Rt, H), m, bev=0.0)
+    o.rotation_euler = (0, 0, yaw); o.visible_shadow = False
+    for f in (1, F(t_end) + 1):
+        tt.outputs[0].default_value = (f - 1) / FPS; tt.outputs[0].keyframe_insert("default_value", frame=f)
+    if keys and keys[0][1] <= 0.0:
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=max(1, F(keys[0][0])))
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=max(1, F(keys[0][0])) + 1)
+    for t_, v in (keys or ()):
+        amt.outputs[0].default_value = v; amt.outputs[0].keyframe_insert("default_value", frame=F(t_))
+    _linear(nt, 'nodes["fire time"]')
+    try: m.cycles.volume_step_rate = 0.25
+    except Exception: pass
+    return o
+
+
+def _rampart(name, base, w, length, yaw, seed, m_rock, m_hot):
+    """the spatter rampart: the black wall of welded clots a fountain builds round its own vent, a ragged crater rim
+    (a long one beside a fissure) of real burnt rock, with glowing cracks on its inner face and loose blocks on it"""
+    B_ = Vector(base); rnd = random.Random(seed + 91); n = 40; rings = ((0.55, 0.0, 1.0), (0.8, 0.5, 1.0), (1.05, 0.62, 0.3), (1.5, 0.3, 0.0), (2.3, 0.0, 0.0))
+    bm = bmesh.new(); rows = []
+    for (rr, hz, hot) in rings:
+        row = []
+        for k in range(n):
+            a = 2 * math.pi * k / n; cx = math.cos(a); sy = math.sin(a)
+            jit = 1 + 0.22 * vn(k * 0.7 + rr * 3, seed * 1.7 + rr, seed)
+            px = (length / 2 if cx > 0 else -length / 2) * min(1.0, abs(cx) * 3) + cx * w * rr * jit; py = sy * w * rr * jit
+            row.append(bm.verts.new((px, py, w * hz * (0.6 + 0.9 * vn(k * 0.9, rr * 5 + 3, seed + 5)))))
+        rows.append(row)
+    for i in range(len(rings) - 1):
+        for k in range(n):
+            j = (k + 1) % n
+            bm.faces.new((rows[i][k], rows[i][j], rows[i + 1][j], rows[i + 1][k]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    for p in me.polygons: p.use_smooth = True
+    me.materials.append(m_hot)
+    hot = me.attributes.new("hot", 'FLOAT', 'POINT')
+    for v in me.vertices: hot.data[v.index].value = rings[v.index // n][2]
+    o = _link(bpy.data.objects.new(name, me)); o.location = tuple(B_); o.rotation_euler = (0, 0, yaw)
+    sd = o.modifiers.new("sub", 'SUBSURF'); sd.levels = 1; sd.render_levels = 2
+    tx = bpy.data.textures.get("fx spatter break") or bpy.data.textures.new("fx spatter break", 'VORONOI')
+    tx.noise_scale = 0.18 * max(w, 0.4); tx.distance_metric = 'DISTANCE'
+    dm = o.modifiers.new("welded", 'DISPLACE'); dm.texture = tx; dm.texture_coords = 'LOCAL'; dm.strength = 0.22 * w; dm.mid_level = 0.4
+    blocks = []; cy_, sy_ = math.cos(yaw), math.sin(yaw)
+    for k in range(int(46 + 26 * length / max(w, 0.2))):
+        a = rnd.uniform(0, 2 * math.pi); rr = w * rnd.uniform(0.85, 2.0); s = w * rnd.uniform(0.06, 0.17)
+        lx_ = rnd.uniform(-0.5, 0.5) * length + rr * math.cos(a); ly_ = rr * math.sin(a)
+        zz = w * 0.45 * max(0.0, 1 - abs(rr / w - 1.0) / 0.8)
+        blocks.append(block(name + " block", (B_.x + lx_ * cy_ - ly_ * sy_, B_.y + lx_ * sy_ + ly_ * cy_, B_.z + zz + s * 0.2), s, m_rock, rnd, squash=0.75))
+    return o, blocks
+
+
+@element("lava", "a lava fountain, an ERUPTION and not a fire: a jet (or, with length, a fissure curtain) of white-"
+                 "yellow molten spray several houses high, solid at the vent and breaking into strands that fan out, "
+                 "hundreds of clots arcing off it and cooling to orange and dark red as they fall, splats glowing "
+                 "where the big ones land, a black spatter rampart with glowing cracks round the vent, a broad gas "
+                 "plume above lit orange from below, and strong orange lamps on the ground, the walls and the smoke", emits=True)
+def lava_fountain(base=(0, 0, 0), h=12.0, w=1.6, length=0.0, yaw=0.0, clots=900, plume=None, lean=(-0.25, 0.1), seed=0, power=None,
+                  t0=0.0, keys=None, splats=8, t_end=None, name="fountain"):
+    """h: how high the spray stands (default 12 m: about four houses; a fountain a house high reads as a bonfire).
+    w: the vent's width. length: 0 is one jet; more is a fissure that long (along x, turned by yaw) and the spray a
+    curtain. plume: metres of gas above it (default 1.4 h). keys [(t, 0..1)]: it surges and dies; without them the
+    fingers of the spray still pulse, so stills a second apart differ. power: watts of all its lamps together
+    (default 1,500 a metre of height). Returns dict(jet, clots, splats, rampart, pool, plume, light)."""
+    B_ = Vector(base); objs = []; plume = plume if plume is not None else 1.4 * h
+    cy_, sy_ = math.cos(yaw), math.sin(yaw)
+    along = lambda u, v=0.0, z=0.0: Vector((B_.x + u * cy_ - v * sy_, B_.y + u * sy_ + v * cy_, B_.z + z))
+    jet = _spray(name + " jet", tuple(B_), h, w, length, yaw, seed, keys, t_end)
+    # the gas above: broad, dark, torn, and lit orange on its underside by the fountain
+    pl = gas(name + " plume", tuple(along(0, 0, 0.55 * h)), w=max(2.0 * w, 0.2 * h) + 0.35 * length, h_fire=0.25 * h, h_smoke=plume, lean=lean, seed=seed * 2.3 + 0.7,
+             fire=0.0, smoke_d=1.9, smoke=(0.15, 0.135, 0.125), rise=3.0, flame_d=0.0, spread=0.3, keys=keys, t_end=t_end, foot=0.3 * h,
+             ramp=(("#FF8A18", 0.0), ("#FF8A18", 1.0)), under=0.45)
+    objs += [jet, pl]
+    rock = ph_mat("burned_ground_01", scale=0.8, tint="#161413", name="fx spatter rock", bump=1.8) if have("burned_ground_01", "textures") else lava_mat("fx spatter rock", heat=0.0)
+    wall, blocks = _rampart(name + " rampart", tuple(B_), w, length, yaw, seed, rock, lava_mat("fx spatter hot", heat=0.9, scale=3.2 / max(w, 0.3), fresh=0.25))
+    objs += [wall] + blocks
+    v0 = math.sqrt(19.6 * h) * 0.95
+    m = _heat_mat("fx lava clot")
+    cl, sp, sl = _arcs(name + " clot", tuple(along(0, 0, 0.5 * w)), clots, v0, 0.24, t0, None, 2 * v0 / 9.8 * 0.85, (0.0015 * h + 0.006, 0.003 * h + 0.012), seed, m,
+                       ground_z=B_.z, wind=(lean[0] * 1.5, lean[1] * 1.5), spread=(length + 0.5 * w, 0.4 * w), yaw=yaw, splats=splats, splat_power=6.0 * h)
+    objs += cl + sp
+    e = power if power is not None else 1500.0 * h
+    k = max(1, int(round(length / max(2.0 * w, 1.0))) + 1); lights = []
+    for i in range(k):
+        u = (i / (k - 1) - 0.5) * length if k > 1 else 0.0
+        lights.append(point(f"{name} light {i}", tuple(along(u, -0.3 * w, 0.5 * h)), e * 0.4 / k, col=(1.0, 0.5, 0.16), r=0.3 * w + 0.3))
+        lights.append(point(f"{name} crown light {i}", tuple(along(u, 0, 0.85 * h)), e * 0.4 / k, col=(1.0, 0.48, 0.15), r=0.5 * w + 0.4))
+        lights.append(point(f"{name} vent glow {i}", tuple(along(u, -2.2 * w, 1.6 * w)), e * 0.2 / k, col=(1.0, 0.4, 0.1), r=0.5 * w))
     if keys:
         for L_ in lights: _keyed_light(L_, keys, L_.data.energy)
     else:
-        flicker(lights, seed, depth=0.16)
-    lights += pool["lights"]
-    return dict(objects=objs, lights=lights, jet=jet, core=core, clots=cl, rampart=ramp_blocks, pool=pool["lava"], light=lights[0], h=h)
+        flicker(lights, seed, depth=0.14)
+    lights += sl
+    return dict(objects=objs, lights=lights, jet=jet, plume=pl, clots=cl, splats=sp, rampart=[wall] + blocks, light=lights[0], h=h)
 
 
 # ================================================================ WATER
@@ -1149,6 +1427,11 @@ def markdown():
     for g in GROUPS:
         out += [f"| `FX.{n}` | {g} | {'yes, with its light' if e['emits'] else ''} | {e['what']} |" for n, e in REGISTRY.items() if e["group"] == g]
     return "\n".join(out)
+
+
+# ================================================================ VEHICLES (store/fx_vehicles.py registers them here)
+sys.modules.setdefault("fx_kit", sys.modules[__name__])       # run as a script, this file is still the one fx_kit
+from fx_vehicles import car, parked_car, truck, digger        # noqa: E402,F401
 
 
 if __name__ == "__main__":
