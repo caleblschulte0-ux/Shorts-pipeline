@@ -265,6 +265,11 @@ def check(story, n, sheet, k, look=None):
     look = look or globals()["look"]
     script = json.loads((STORIES / story / "script.json").read_text())
     cl = claims(script, n)
+    import shot_plan                                   # a new story's sheet with no valid plan never reaches a look or the panel
+    plan_bad = [t for w, t in shot_plan.problems(story, script) if w in ("plan", f"shot {n}")]
+    if plan_bad:
+        return {"shot": n, "status": "blocked", "sha256": sheet_sha(sheet), "claims": len(cl), "stills": k, "unticked": [], "continuity": [],
+                "defects": [{"id": "PLAN", "note": t, "rule": "every shot of a new story is planned before it is staged (store/shot_plan.py)"} for t in plan_bad]}
     old = recorded(story, n, sheet, cl)
     if old and (old.get("status") == "pass" or os.environ.get("PREFLIGHT3D_AGAIN") != "1"):
         return dict(old, kept=True)

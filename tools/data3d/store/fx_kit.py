@@ -656,11 +656,12 @@ class _X:
 
 
 def gas(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), t_end=None, seed=0.0, fire=5.0, smoke_d=3.5,
-        smoke=(0.1, 0.095, 0.09), rise=1.4, keys=None, flame_d=3.9, spread=0.22, grow=False, ramp=None, lit=0.0, taper=1.0, fall=0.42):
+        smoke=(0.1, 0.095, 0.09), rise=1.4, keys=None, flame_d=3.9, spread=0.22, grow=False, ramp=None, lit=0.0, taper=1.0, fall=0.42, foot=0.05):
     """A BURNING FIRE AND ITS SMOKE as ONE procedural volume (lava shots 3-5: the version the panel accepted). A tall
     box over `base`: the flame is a field of torn TONGUES that narrow as they climb (a cone of heat cut by turbulent
     noise that scrolls upward), hot yellow at its root, orange, then deep red at its tips; out of its top rolls a
     SOOT COLUMN that widens as it climbs, leans downwind, billows and thins away. Nothing in it is a sphere or a card.
+    foot: metres over which a column with no flame under it thickens from nothing (a hard foot read as a cut-off slab).
     keys [(t, 0..1)]: how much gas there is when. lit (0..1): the smoke's underside glows with the fire's colour.
     The raw volume: stories call fire(), smoke_column(), steam(), dust_puff() or lava_fountain(), which add the light."""
     t_end = t_end if t_end is not None else _dur() + 1.0
@@ -703,7 +704,7 @@ def gas(name, base, w=1.6, h_fire=1.6, h_smoke=6.0, lean=(0.0, 0.0), t_end=None,
     bil = X.add(X.mul(wn(0.55, 5.0, 0.72, 0.4), 0.7), X.mul(wn(1.6, 4.0, 0.6, 0.7), 0.45))
     sd = X.mul(X.clamp01(X.sub(X.add(X.mul(bil, 2.2), X.mul(col, 0.9)), 1.55), 0.0, 0.3),
                X.clamp01(col, -0.25, 0.1))               # nothing outside the column: a thin haze there rendered as vertical streaks
-    fade = X.mul(X.clamp01(X.sub(z, h_fire * 0.35), 0.0, max(h_fire * 0.5, 0.05)), X.sub(1.0, X.clamp01(zr, 0.55, 1.0)))
+    fade = X.mul(X.clamp01(X.sub(z, h_fire * 0.35), 0.0, max(h_fire * 0.5, foot)), X.sub(1.0, X.clamp01(zr, 0.55, 1.0)))
     amt = N("ShaderNodeValue"); amt.name = "gas amount"; amt.outputs[0].default_value = 1.0
     smk = X.mul(X.mul(X.mul(sd, 0.3), fade), smoke_d)
     dens = X.mul(X.add(smk, X.mul(flame, flame_d)), amt.outputs[0])
@@ -769,14 +770,14 @@ def fire(base=(0, 0, 0), w=1.6, h=1.6, smoke=6.0, lean=(-0.3, 0.15), seed=0.0, p
                  "soot by default; col for ash or white)")
 def smoke_column(base=(0, 0, 0), w=1.4, h=7.0, lean=(-0.35, 0.15), col=(0.1, 0.095, 0.09), dens=3.5, seed=0.0, keys=None, t_end=None, rise=1.4, name="smoke"):
     v = gas(name, base, w=w, h_fire=0.3, h_smoke=h, lean=lean, t_end=t_end, seed=seed, fire=0.0, smoke_d=dens, smoke=col, rise=rise,
-            keys=keys, flame_d=0.0, spread=0.26)
+            keys=keys, flame_d=0.0, spread=0.26, foot=0.14 * h)
     return dict(objects=[v], volume=v)
 
 
 @element("fire", "a burst of white steam as a gas that boils up, spreads and dies away on the keys it is given")
 def steam(base=(0, 0, 0), w=1.2, h=4.0, keys=None, lean=(0.0, 0.0), dens=6.0, seed=0.0, t_end=None, name="steam", col=(0.9, 0.91, 0.93)):
     v = gas(name, base, w=w, h_fire=0.3, h_smoke=h, lean=lean, t_end=t_end, seed=seed, fire=0.0, smoke_d=dens, smoke=col, rise=2.2,
-            keys=keys, flame_d=0.0, spread=0.3, grow=bool(keys))
+            keys=keys, flame_d=0.0, spread=0.3, grow=bool(keys), foot=0.1 * h)
     return dict(objects=[v], volume=v)
 
 

@@ -67,3 +67,8 @@ hdri qwantani_noon_puresky 2k
 hdri qwantani_afternoon_puresky 2k
 hdri wasteland_clouds_puresky 2k
 hdri belfast_sunset_puresky 2k
+# realism kit, second pass (2026-11-26): the only real car in the catalogue (parked under a tarp), a wheel rim, a night sky and a heavy overcast
+model covered_car 1k
+model rusted_wheel_rim_01 1k
+hdri qwantani_night_puresky 2k
+hdri mud_road_puresky 2k

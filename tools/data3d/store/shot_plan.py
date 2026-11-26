@@ -65,6 +65,20 @@ STOP = set("a an the and or of to in on at by for from with into onto over under
            "he she they them their this that then while until so but not no one two side still stills us we him data driver "
            "there here very just now again more most some each every both all".split())
 
+# EVERY WORD A TEXT PROMISES HANGS ON A THING ONE STILL LISTS AS VISIBLE (2026-11-26). "Promised but not shown" is the
+# most common hard defect in the round reports (249 of 1,225 lines). Half a claim's words somewhere in a still's `shows`
+# sentence let a noun ride through on its neighbours. So each still also lists what a stranger can point at in it:
+#   "visible": [{"prop": <one of the shot's props, or "data">, "as": "the words it is seen as", "count": n, "reads": "4,000"}]
+# (a bare prop name is short for {"prop": name}). Every content word of the storyboard line's action and of the spoken
+# line is a word of ONE still's visible things, or is declared in the shot's `unseen` as a word no picture carries (a
+# verb the action or consequence already says, a how, a when). store/recipe_check.py then MEASURES that each listed
+# prop is in the frame on that still. A number is seen only as a count a stranger can make in one still (COUNT_MAX or
+# fewer of a thing, `count`) or on something in the world that reads it (`reads`: a sign, a gauge, a scale).
+COUNT_MAX = 12           # things a stranger can count in one still
+UNSEEN_WHY = ("verb", "how", "when")
+UNSEEN_SHARE = {"FOR": 0.5, "SAYS": 0.7}   # of a text's content words that may be declared unseen, at most: a storyboard line is
+                         # things to see; a spoken line also carries the telling ("almost nobody moved back. Would you?")
+
 # stories whose shots were staged before the plan existed. A plan may be partial for these (a shot's entry null) and is
 # not binding; each says why. The test fails when an entry is no longer needed, so the list only shrinks.
 PLAN_BEFORE = {
@@ -249,8 +263,92 @@ def shot_problems(p, line="", says="", last=False):
         elif len(words(says) & words(st[k - 1].get("shows"))) < min(SAYS_WORDS, len(words(says))):
             out.append(f"SAYS: still {k} ('{st[k - 1].get('shows')}') shares fewer than {SAYS_WORDS} words with the spoken line '{says}': "
                        f"the still that carries the line shows the things it names")
+    out += visible_problems(p, st, names, action_line if line else "", says)
     if last and st[3].get("new") and all(c.get("what") == "data" for c in st[3]["new"] if isinstance(c, dict)) and not world:
         out.append("PAYOFF: the last shot ends on his pose alone: the video ends ON a visual payoff in the world")
+    return out
+
+
+def _entries(still):
+    """a still's visible list, each entry a dict (a bare prop name is {"prop": name})"""
+    v = still.get("visible")
+    return [({"prop": e} if isinstance(e, str) else e) for e in (v if isinstance(v, list) else []) if isinstance(e, (str, dict))]
+
+
+def _number_free(text):
+    """the text with its numbers taken out, and the numbers a still has to show ([(value, as said)])"""
+    nums = story_gate.numbers(text or "")
+    counted = any(v >= 2 for v, _s, _a, _b in nums)
+    keep = [(v, said) for v, said, _a, _b in nums if v >= 2 or counted]
+    out = list(text or "")
+    for _v, _s, a, b in nums:
+        out[a:b] = " " * (b - a)
+    return "".join(out), keep
+
+
+def visible_problems(p, st, names, action_line, says):
+    """the promises of the storyboard line's action and of the spoken line that no still lists as visible"""
+    out = []
+    vis = []
+    for i, s in enumerate(st, 1):
+        ok = []
+        for e in _entries(s):
+            if e.get("prop") != "data" and e.get("prop") not in names:
+                out.append(f"VISIBLE: still {i} lists {e.get('prop')!r} as visible, which is not \"data\" or one of the shot's props {sorted(names)}")
+                continue
+            c = e.get("count")
+            if c is not None and (not isinstance(c, int) or isinstance(c, bool) or not 1 <= c <= COUNT_MAX):
+                out.append(f"VISIBLE: still {i} counts {c!r} of '{e['prop']}': a stranger counts {COUNT_MAX} or fewer in one still; "
+                           f"a bigger number is on a thing in the world that `reads` it, or is not promised")
+                continue
+            ok.append(e)
+        if not ok:
+            out.append(f"VISIBLE: still {i} ({s.get('event')}) lists nothing `visible`: name each thing a stranger can point at in it "
+                       f"(a prop of the shot, or \"data\"), with the words it is seen `as`")
+        vis.append(ok)
+    seen_words = [set().union(*[words(e.get("prop")) | words(e.get("as")) for e in ents]) if ents else set() for ents in vis]
+    prop_words = set().union(*[words(n) for n in names]) if names else set()
+    unseen = {}
+    for u in p.get("unseen") or []:
+        if not isinstance(u, dict) or u.get("why") not in UNSEEN_WHY or not words(u.get("word")):
+            out.append(f"UNSEEN: {u!r} is not {{\"word\": one word, \"why\": {' | '.join(UNSEEN_WHY)}}}")
+            continue
+        for w in words(u["word"]):
+            unseen[w] = u["why"]
+    done = words(p.get("action")) | words(p.get("consequence"))
+    for w, why in sorted(unseen.items()):
+        if w in prop_words:
+            out.append(f"UNSEEN: '{w}' is a word of one of the shot's props: a thing is seen in a still, it is never unseen")
+        elif re.fullmatch(r"[0-9,.]+", w) or story_gate.numbers(w):
+            out.append(f"UNSEEN: '{w}' is a number: a number is a `count` or a `reads` in one still, or it is not promised")
+        elif why == "verb" and w not in done:
+            out.append(f"UNSEEN: '{w}' is declared a verb and neither the shot's action nor its consequence says it: "
+                       f"a thing that happens is the action, the consequence, or another shot")
+    for source, text in (("FOR", action_line), ("SAYS", says)):
+        if not text:
+            continue
+        plain, nums = _number_free(text)
+        cw = words(plain)
+        miss = sorted(w for w in cw if w not in unseen and not any(w in sw for sw in seen_words))
+        if miss:
+            out.append(f"NOT SHOWN ({source}): {'the storyboard line' if source == 'FOR' else 'the spoken line'} promises {miss} and no still "
+                       f"lists a visible thing with that word: add it to ONE still's `visible` (on a prop that is in that still), "
+                       f"or take the word out of the line")
+        hidden = sorted(w for w in cw if w in unseen)
+        if cw and len(hidden) > UNSEEN_SHARE[source] * len(cw):
+            out.append(f"UNSEEN ({source}): {len(hidden)} of the line's {len(cw)} content words are declared unseen {hidden} "
+                       f"(at most {UNSEEN_SHARE[source]:.0%}): a line is mostly things a still shows")
+        for val, said in nums:
+            hit = False
+            for ents in vis:
+                for e in ents:
+                    if e.get("count") == val or (e.get("reads") and re.search(rf"(?<![0-9]){re.escape(str(said).lower())}(?![0-9])", str(e["reads"]).lower())) \
+                            or (e.get("reads") and re.sub(r"[^0-9]", "", str(e["reads"])) == str(val)):
+                        hit = True
+            if not hit:
+                out.append(f"NOT SHOWN ({source}): the line says '{said}' and no still shows that number: "
+                           + (f"{val} is more than a stranger counts in one still ({COUNT_MAX}); put it on a thing in the world that `reads` it, or take it out"
+                              if val > COUNT_MAX else f"one still lists a visible thing with `count`: {val} (or a thing that `reads` it)"))
     return out
 
 
@@ -291,7 +389,8 @@ def blank(script):
     """an empty plan for a script: one entry per line, the four events laid out, everything else to fill in"""
     one = lambda: {"prop": "", "props": [{"name": "", "objects": [""], "whole": True, "built_as": ""}], "framing": "close",
                    "data": {"stands": "beside", "side": "left", "frame_h": 0.36}, "action": "", "consequence": "", "says_still": 3,
-                   "stills": [{"event": e, "shows": "", "hands": "free", "new": []} for e in EVENTS]}
+                   "unseen": [],
+                   "stills": [{"event": e, "shows": "", "hands": "free", "visible": [{"prop": "", "as": ""}], "new": []} for e in EVENTS]}
     return {"shots": [one() for _ in script.get("lines") or []]}
 
 

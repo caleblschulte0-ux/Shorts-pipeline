@@ -348,6 +348,13 @@ def problems(facts, plan=None):
                 out.append(f"PLAN: still {i + 1} promises a change to '{what}' and the shot declares no prop of that name (plan props need `objects`)")
             elif how in MEASURED and not changes[i - 1].get(key) and not any(state_change(st[j]["groups"].get(key), st[i]["groups"].get(key)) for j in range(i)):
                 out.append(f"PLAN: still {i + 1} promises '{what}' {how} and it has not changed in the world since any earlier still")
+    for i, ps in enumerate(plan_stills[:len(st)]):                # what the plan lists as visible in a still is IN that still
+        for e in ps.get("visible") or []:
+            name = e if isinstance(e, str) else (e.get("prop") if isinstance(e, dict) else None)
+            key = f"prop:{name}"
+            if name and name != "data" and key in G and not seen(st[i]["groups"].get(key)):
+                out.append(f"PLAN: still {i + 1} lists '{name}' as visible and it is not in the frame there (not drawn, off the frame, "
+                           f"or under {SEEN_MIN} of its height): a promise hangs on a thing a stranger can point at in THAT still")
     return out
 
 

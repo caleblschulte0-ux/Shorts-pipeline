@@ -93,7 +93,7 @@ import shot_plan    # every shot is PLANNED before it is staged: its prop, where
 _pl = shot_plan.problems(STORY, SCRIPT)
 for _where, _p in _pl + shot_plan.advisory(STORY, SCRIPT):
     print(f"PLAN {STORY} {_where}: {_p}" + ("" if shot_plan.held(STORY) else " (not binding: staged before the plan, see store/shot_plan.py)"), flush=True)
-if _pl and os.environ.get("STAGING", "strict") == "strict":
+if _pl:     # in EVERY mode (STAGING=on too): a new story has no build, diagnostic or not, around its plan; PLAN_BEFORE stories return []
     raise SystemExit(f"{STORY}: no shot plan, or a plan that breaks the recipe (store/shot_plan.py): plan the shot before staging it")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
