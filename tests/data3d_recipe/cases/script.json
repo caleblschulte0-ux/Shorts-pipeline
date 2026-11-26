@@ -1,0 +1,62 @@
+{
+ "slug": "recipe_cases",
+ "title": "recipe cases",
+ "lines": [
+  "He lifts the bulb off the stump.",
+  "He slaps the crate and the lid jumps.",
+  "He shoves the crate and it slides away.",
+  "He pulls the lever and the signal arm goes up.",
+  "From a step he pulls the high lever and the signal arm goes up.",
+  "He walks the crate a stride across the field.",
+  "He prods the puddle and it spreads."
+ ],
+ "links": [],
+ "storyboard": [
+  "1 the bulb (a field; close, level with him): He stands at the stump with the red bulb on it. He lifts the bulb off the stump. The bulb comes up off the stump in his hand. He turns to us holding the bulb up.",
+  "2 the crate (a field; close, level with him): He stands beside the wooden crate. He slaps the wooden crate hard. The iron lid jumps up off the crate. He turns round grinning with both arms thrown high.",
+  "3 the shove (a field; close, level with him): He stands beside the tall wooden crate. He shoves the tall crate. The crate slides away over the soil. He turns round grinning with both arms thrown high.",
+  "4 the lever (a field; close, level with him): He stands at the iron signal post. He pulls the red lever down. The red signal arm goes up the post. He turns round grinning with both arms thrown high.",
+  "5 the high lever (a field; close, level with him): He stands on a wooden step at the iron signal post. He pulls the high red lever down. The red signal arm goes up the post. He turns round grinning with both arms thrown high.",
+  "6 the walk (a field; close, level with him): He stands beside the small wooden crate. He walks the small crate across the field. The crate stands a stride further along. He turns round grinning with both arms thrown high.",
+  "7 the puddle (a field; close, level with him): He stands at the round puddle with a stick. He prods the puddle with the stick. The puddle spreads wide over the soil. He turns to us holding the stick."
+ ],
+ "sets": [
+  "field",
+  "field",
+  "field",
+  "field",
+  "field",
+  "field",
+  "field"
+ ],
+ "draft_windows": [
+  [
+   0.0,
+   4.0
+  ],
+  [
+   4.0,
+   8.0
+  ],
+  [
+   8.0,
+   12.0
+  ],
+  [
+   12.0,
+   16.0
+  ],
+  [
+   16.0,
+   20.0
+  ],
+  [
+   20.0,
+   24.0
+  ],
+  [
+   24.0,
+   28.0
+  ]
+ ]
+}

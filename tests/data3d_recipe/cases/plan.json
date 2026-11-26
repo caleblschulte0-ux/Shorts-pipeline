@@ -1,0 +1,891 @@
+{
+ "shots": [
+  {
+   "prop": "bulb",
+   "props": [
+    {
+     "name": "bulb",
+     "objects": [
+      "bulb"
+     ],
+     "whole": true,
+     "built_as": "a red glass lamp bulb with a brass cap",
+     "held": true
+    },
+    {
+     "name": "stump",
+     "objects": [
+      "stump"
+     ],
+     "whole": true,
+     "built_as": "a sawn tree stump with bark and rings"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he lifts the bulb off the stump",
+   "consequence": "the bulb comes up off the stump in his hand",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands at the stump with the red bulb on it",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands at the stump with the red bulb on it"
+      },
+      {
+       "prop": "bulb",
+       "as": "he stands at the stump with the red bulb on it"
+      },
+      {
+       "prop": "stump",
+       "as": "he stands at the stump with the red bulb on it"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he lifts the bulb off the stump",
+     "hands": "bulb",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he lifts the bulb off the stump"
+      },
+      {
+       "prop": "bulb",
+       "as": "he lifts the bulb off the stump"
+      },
+      {
+       "prop": "stump",
+       "as": "he lifts the bulb off the stump"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he reaches for it"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the bulb comes up off the stump in his hand",
+     "hands": "bulb",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the bulb comes up off the stump in his hand"
+      },
+      {
+       "prop": "bulb",
+       "as": "the bulb comes up off the stump in his hand"
+      },
+      {
+       "prop": "stump",
+       "as": "the bulb comes up off the stump in his hand"
+      }
+     ],
+     "new": [
+      {
+       "what": "bulb",
+       "how": "moves",
+       "cause": "his hand lifts it"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he straightens"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns to us holding the bulb up",
+     "hands": "bulb",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns to us holding the bulb up"
+      },
+      {
+       "prop": "bulb",
+       "as": "he turns to us holding the bulb up"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "crate",
+   "props": [
+    {
+     "name": "crate",
+     "objects": [
+      "crate"
+     ],
+     "whole": true,
+     "built_as": "a slatted wooden shipping crate with an iron lid"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he slaps the wooden crate hard",
+   "consequence": "the iron lid jumps up off the crate",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands beside the wooden crate",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands beside the wooden crate"
+      },
+      {
+       "prop": "crate",
+       "as": "he stands beside the wooden crate"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he slaps the wooden crate hard",
+     "hands": "crate",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he slaps the wooden crate hard"
+      },
+      {
+       "prop": "crate",
+       "as": "he slaps the wooden crate hard"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he leans in and slaps it"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the iron lid jumps up off the crate",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the iron lid jumps up off the crate"
+      },
+      {
+       "prop": "crate",
+       "as": "the iron lid jumps up off the crate"
+      }
+     ],
+     "new": [
+      {
+       "what": "crate",
+       "how": "opens",
+       "cause": "his slap"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he steps back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns round grinning with both arms thrown high",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "crate",
+       "as": "he turns round grinning with both arms thrown high"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "crate",
+   "props": [
+    {
+     "name": "crate",
+     "objects": [
+      "crate"
+     ],
+     "whole": true,
+     "built_as": "a tall slatted wooden shipping crate"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he shoves the tall crate",
+   "consequence": "the crate slides away over the soil",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands beside the tall wooden crate",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands beside the tall wooden crate"
+      },
+      {
+       "prop": "crate",
+       "as": "he stands beside the tall wooden crate"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he shoves the tall crate",
+     "hands": "crate",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he shoves the tall crate"
+      },
+      {
+       "prop": "crate",
+       "as": "he shoves the tall crate"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he leans in and shoves"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the crate slides away over the soil",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the crate slides away over the soil"
+      },
+      {
+       "prop": "crate",
+       "as": "the crate slides away over the soil"
+      }
+     ],
+     "new": [
+      {
+       "what": "crate",
+       "how": "moves",
+       "cause": "his shove"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he steps back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns round grinning with both arms thrown high",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "crate",
+       "as": "he turns round grinning with both arms thrown high"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "signal post",
+   "props": [
+    {
+     "name": "signal post",
+     "objects": [
+      "post"
+     ],
+     "whole": true,
+     "built_as": "an iron signal post with a red lever on it"
+    },
+    {
+     "name": "signal arm",
+     "objects": [
+      "signal arm"
+     ],
+     "whole": true,
+     "built_as": "a red iron signal arm on the post"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he pulls the red lever down",
+   "consequence": "the red signal arm goes up the post",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands at the iron signal post",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands at the iron signal post"
+      },
+      {
+       "prop": "signal post",
+       "as": "he stands at the iron signal post"
+      },
+      {
+       "prop": "signal arm",
+       "as": "he stands at the iron signal post"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he pulls the red lever down",
+     "hands": "signal post",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he pulls the red lever down"
+      },
+      {
+       "prop": "signal post",
+       "as": "he pulls the red lever down"
+      },
+      {
+       "prop": "signal arm",
+       "as": "he pulls the red lever down"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he takes the lever"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the red signal arm goes up the post",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the red signal arm goes up the post"
+      },
+      {
+       "prop": "signal post",
+       "as": "the red signal arm goes up the post"
+      },
+      {
+       "prop": "signal arm",
+       "as": "the red signal arm goes up the post"
+      }
+     ],
+     "new": [
+      {
+       "what": "signal arm",
+       "how": "rises",
+       "cause": "the lever he pulled"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he steps back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns round grinning with both arms thrown high",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "signal post",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "signal arm",
+       "as": "he turns round grinning with both arms thrown high"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "signal post",
+   "props": [
+    {
+     "name": "signal post",
+     "objects": [
+      "post"
+     ],
+     "whole": true,
+     "built_as": "an iron signal post with a red lever high on it"
+    },
+    {
+     "name": "signal arm",
+     "objects": [
+      "signal arm"
+     ],
+     "whole": true,
+     "built_as": "a red iron signal arm on the post"
+    },
+    {
+     "name": "step",
+     "objects": [
+      "step"
+     ],
+     "whole": true,
+     "built_as": "a wooden step of planks and nails"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he pulls the high red lever down",
+   "consequence": "the red signal arm goes up the post",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands on a wooden step at the iron signal post",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands on a wooden step at the iron signal post"
+      },
+      {
+       "prop": "signal post",
+       "as": "he stands on a wooden step at the iron signal post"
+      },
+      {
+       "prop": "signal arm",
+       "as": "he stands on a wooden step at the iron signal post"
+      },
+      {
+       "prop": "step",
+       "as": "he stands on a wooden step at the iron signal post"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he pulls the high red lever down",
+     "hands": "signal post",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he pulls the high red lever down"
+      },
+      {
+       "prop": "signal post",
+       "as": "he pulls the high red lever down"
+      },
+      {
+       "prop": "signal arm",
+       "as": "he pulls the high red lever down"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he takes the lever"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the red signal arm goes up the post",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the red signal arm goes up the post"
+      },
+      {
+       "prop": "signal post",
+       "as": "the red signal arm goes up the post"
+      },
+      {
+       "prop": "signal arm",
+       "as": "the red signal arm goes up the post"
+      }
+     ],
+     "new": [
+      {
+       "what": "signal arm",
+       "how": "rises",
+       "cause": "the lever he pulled"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he lets go"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns round grinning with both arms thrown high",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "signal post",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "signal arm",
+       "as": "he turns round grinning with both arms thrown high"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "crate",
+   "props": [
+    {
+     "name": "crate",
+     "objects": [
+      "crate"
+     ],
+     "whole": true,
+     "built_as": "a small slatted wooden shipping crate"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he walks the small crate across the field",
+   "consequence": "the crate stands a stride further along",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands beside the small wooden crate",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands beside the small wooden crate"
+      },
+      {
+       "prop": "crate",
+       "as": "he stands beside the small wooden crate"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he walks the small crate across the field",
+     "hands": "crate",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he walks the small crate across the field"
+      },
+      {
+       "prop": "crate",
+       "as": "he walks the small crate across the field"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he leans into it and walks"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the crate stands a stride further along",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the crate stands a stride further along"
+      },
+      {
+       "prop": "crate",
+       "as": "the crate stands a stride further along"
+      }
+     ],
+     "new": [
+      {
+       "what": "crate",
+       "how": "moves",
+       "cause": "his push"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he steps back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns round grinning with both arms thrown high",
+     "hands": "free",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns round grinning with both arms thrown high"
+      },
+      {
+       "prop": "crate",
+       "as": "he turns round grinning with both arms thrown high"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "puddle",
+   "props": [
+    {
+     "name": "puddle",
+     "objects": [
+      "puddle",
+      "ripple"
+     ],
+     "whole": true,
+     "built_as": "a round puddle of blue water on the soil with a ripple running over it"
+    },
+    {
+     "name": "stick",
+     "objects": [
+      "stick"
+     ],
+     "whole": true,
+     "built_as": "a long wooden walking stick",
+     "held": true
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "at the foot of",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "he prods the puddle with the stick",
+   "consequence": "the puddle spreads wide over the soil",
+   "says_still": 3,
+   "unseen": [],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands at the round puddle with a stick",
+     "hands": "stick",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he stands at the round puddle with a stick"
+      },
+      {
+       "prop": "puddle",
+       "as": "he stands at the round puddle with a stick"
+      },
+      {
+       "prop": "stick",
+       "as": "he stands at the round puddle with a stick"
+      }
+     ],
+     "new": []
+    },
+    {
+     "event": "action",
+     "shows": "he prods the puddle with the stick",
+     "hands": "stick",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he prods the puddle with the stick"
+      },
+      {
+       "prop": "puddle",
+       "as": "he prods the puddle with the stick"
+      },
+      {
+       "prop": "stick",
+       "as": "he prods the puddle with the stick"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he prods down"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the puddle spreads wide over the soil",
+     "hands": "stick",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the puddle spreads wide over the soil"
+      },
+      {
+       "prop": "puddle",
+       "as": "the puddle spreads wide over the soil"
+      },
+      {
+       "prop": "stick",
+       "as": "the puddle spreads wide over the soil"
+      }
+     ],
+     "new": [
+      {
+       "what": "puddle",
+       "how": "grows",
+       "cause": "his stick stirs it"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he steps back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he turns to us holding the stick",
+     "hands": "stick",
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he turns to us holding the stick"
+      },
+      {
+       "prop": "stick",
+       "as": "he turns to us holding the stick"
+      }
+     ],
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

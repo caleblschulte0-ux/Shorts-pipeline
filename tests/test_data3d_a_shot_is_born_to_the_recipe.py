@@ -506,3 +506,68 @@ def test_the_harness_refuses_a_new_storys_plan_in_every_staging_mode():
     src = (STORE / "shots.py").read_text()
     assert "_pl = shot_plan.problems(STORY, SCRIPT)" in src
     assert src.index("_pl = shot_plan.problems(STORY, SCRIPT)") < src.index("S = SHOTS[SHOT]()"), "before any shot is built"
+
+
+# ------------------------------------------------------------------ tall props, steps and pushes have a staging of their own
+
+def test_a_tall_prop_is_worked_by_a_handle_at_his_hand_and_is_whole_in_the_frame():
+    st = RS.stage((0.3, -0.4, 0.0), (0.14, 0.14, 1.5), side="left", handle=(0.1, -0.45, 0.38))
+    assert st["ok"] and st["reach"] and st["step"] is None and st["grab"] == (0.1, -0.45, 0.38)
+    d = math.hypot(st["grab"][0] - st["data_at"][0], st["grab"][1] - st["data_at"][1])
+    assert RS.NEAR[0] <= d <= RS.NEAR[1] and st["bearing"] <= RS.WORK_DEG
+    b = st["prop_box"]
+    assert 0 <= b[0] and b[2] <= 1 and 0 <= b[1] and b[3] <= 1 and b[3] - b[1] > 0.6, "a metre and a half of post, whole, beside him"
+    assert st["frame_h"] >= SP.MIN_FRAME_H
+
+
+def test_a_handle_over_his_reach_puts_him_on_a_step_of_the_height_that_brings_it_to_his_hand():
+    st = RS.stage((0.3, -0.4, 0.0), (0.14, 0.14, 1.5), side="left", handle=(0.1, -0.45, 0.82))
+    assert st["ok"] and st["reach"] and st["step"]
+    h = st["step"]["size"][2]
+    assert abs((0.82 - h) - RS.HAND_Z) < 0.011, "the step is as tall as the handle is over his hand"
+    assert abs(st["data_at"][2] - h) < 1e-9 and st["step"]["at"][:2] == st["data_at"][:2], "he stands ON it"
+    assert RS.stage((0.3, -0.4, 0.0), (0.14, 0.14, 1.5), handle=(0.1, -0.45, 0.4))["step"] is None
+
+
+def test_a_push_is_staged_with_both_ends_in_the_frame_or_refused_with_the_sum():
+    st = RS.stage((0.3, -0.4, 0.0), (0.25, 0.25, 0.45), side="left", travel=(0.22, 0.0))
+    assert st["ok"] and st["travel"] == (0.22, 0.0) and st["reach"]
+    far = RS.stage((0.3, -0.4, 0.0), (0.25, 0.25, 0.45), side="left", travel=(0.9, 0.0))
+    assert not far["ok"] and "does not fit" in far["why"] and "cut to where it went" in far["why"]
+    away = RS.stage((0.3, -0.4, 0.0), (0.25, 0.25, 0.45), side="left", travel=(0.0, 0.25))
+    assert not away["ok"], "a push straight away from the lens is his back, or a prop too small to be the beat's"
+
+
+# ------------------------------------------------------------------ the helper is PROVEN on the store's own checks, and the proof is current
+
+import recipe_prove as RP  # noqa: E402
+
+SHAPES = 7
+
+
+def test_the_cases_are_a_planned_story_like_any_new_one():
+    script = json.loads((RP.CASES / "script.json").read_text()); plan = json.loads((RP.CASES / "plan.json").read_text())
+    assert len(script["lines"]) == SHAPES and SP.validate(script, plan) == []
+    assert RP.STORY not in SP.PLAN_BEFORE
+    src = (RP.CASES / "shots.py").read_text()
+    for call in ("pick=True", "tool=True", "recipe_stage.carry(", "handle=", "travel=", 'st.get("step")'):
+        assert call in src, f"no case uses {call}"
+
+
+def test_the_proof_says_every_check_ok_on_every_shape_for_the_helper_as_it_is_now():
+    assert RP.PROOF.exists(), "run python tools/data3d/store/recipe_prove.py"
+    proof = json.loads(RP.PROOF.read_text())
+    assert proof["fingerprint"] == RP.fingerprint(), \
+        "store/recipe_stage.py or a case changed since the proof was run: python tools/data3d/store/recipe_prove.py"
+    assert sorted(proof["cases"], key=int) == [str(n) for n in range(1, SHAPES + 1)]
+    for n, rec in proof["cases"].items():
+        assert rec["built"], f"case {n} did not build: {rec['fails'][:1]}"
+        bad = {c: rec["checks"].get(c) for c in RP.CHECKS if rec["checks"].get(c) != "OK"}
+        assert not bad, f"case {n} ({rec['case']}): {bad}: {rec['fails'][:3]}"
+
+
+def test_a_failing_line_in_a_build_log_is_a_fail_in_the_proof():
+    log = "STAGING shot 3: ok -> OK\nCLIPPING shot 3: a -> within grace\nCLIPPING shot 3: Head into crate -> FAIL\nTWITCH shot 3 f9 t=1 SNAP x\nHOLD shot 3: x -> OK\n"
+    said, fails = RP.read(log)
+    assert said == {"STAGING": "OK", "CLIPPING": "FAIL", "HOLD": "OK"} and len(fails) == 1
+    assert set(RP.CHECKS) >= {"ANATOMY", "CLIPPING", "TWITCH", "FLUID", "REACH", "POP", "HOLD", "READ", "STEADY", "KEYS", "RECIPE", "CONSEQUENCE"}
