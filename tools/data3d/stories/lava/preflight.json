@@ -1732,6 +1732,52 @@
    "status": "blocked",
    "stills": 4,
    "unticked": []
+  },
+  "ef72d716f0107d0e230fe6f810fe6e8087352e64ff1479580680635cce1e3639": {
+   "at": "2026-11-26 15:38:01Z",
+   "claims": 15,
+   "claims_key": "d1b493a4b21e3650",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "In still 4 Data is cropped by the frame: his hat touches the top and his body is cut at the chest. The ridge and lava are also cut by the top edge, so he is not whole.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "In still 4 Data is cut off by the frame edge, and the black glasses look fused into a ring across his face and hat.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "4"
+    },
+    {
+     "id": "look",
+     "note": "The lava fountains read as a flat orange flame cutout, closer to a sprite than to real lava. The glossy toy-like Data also sits beside a photoreal street.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-3"
+    },
+    {
+     "id": "consequence",
+     "note": "The lava bomb is tiny and hard to read at phone size. The last still is a close-up reaction with arms crossed and does not show a clear result of the event.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "ef72d716f0107d0e230fe6f810fe6e8087352e64ff1479580680635cce1e3639",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "Data is close and his mouth is open, but his arms are crossed over his chest rather than fists up. Wide-eyed is only marginal because his eyes look off to the side, and his body is cropped.",
+     "text": "He reaches us, close in the frame, wide-eyed, his fists up"
+    }
+   ]
   }
  }
 }
