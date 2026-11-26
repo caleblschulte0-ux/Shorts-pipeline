@@ -367,7 +367,7 @@ def test_the_plan_and_the_recipe_check_run_in_the_shot_harness_before_any_frame_
     plan_at, check_at, render_at = code.index("shot_plan.problems(STORY, SCRIPT)"), code.index("recipe_check.check("), code.index("bpy.ops.render.render")
     built_at = code.index("S = SHOTS[SHOT]()")
     assert plan_at < built_at < check_at < render_at, "the plan before the shot is built, the measured check before a frame renders"
-    assert re.search(r"if _pl and os\.environ\.get\(\"STAGING\", \"strict\"\) == \"strict\":\s+raise SystemExit", code)
+    assert re.search(r"if _pl:[^\n]*\n\s+raise SystemExit", code)
     assert re.search(r"recipe_check\.check\([^\n]*\\\s+and shot_plan\.held\(STORY\) and os\.environ\.get\(\"STAGING\", \"strict\"\) == \"strict\":\s+raise SystemExit", code)
     assert "plan=shot_plan.shot(STORY, SHOT)" in code
     # the board path (board3d.sh, proof_loop) builds every shot through the harness, strict, before the pre-flight and the panel
@@ -409,3 +409,100 @@ def test_a_prop_he_can_stand_at_is_staged_inside_his_reach_and_a_tall_one_says_i
             assert RS.NEAR[0] - RS.PALM - 1e-6 <= d <= RS.NEAR[1] + 1e-6 and st["bearing"] <= RS.WORK_DEG
     tall = RS.stage((3.0, -2.0, 0.1), (0.6, 0.6, 1.6))
     assert tall["ok"] and not tall["reach"]                               # framed to the recipe, and honest that his hand is not on it
+
+
+# ------------------------------------------------------------------ every promise hangs on a thing one still lists as visible
+
+def test_a_noun_the_line_promises_and_no_still_lists_is_named_word_by_word():
+    # lava shot 4 through round 7: the line named a sandbag, and half the sentence's other words carried it past the overlap rule
+    line = LINES[4][0].replace("and he staggers back from it", "a sandbag drops into the gap and he staggers back from it")
+    probs = SP.shot_problems(plan(4), line, LINES[4][1])
+    hit = [p for p in probs if p.startswith("NOT SHOWN (FOR)")]
+    assert hit and "'sandbag'" in hit[0] and "'gap'" in hit[0]
+    says = SP.shot_problems(plan(3), LINES[3][0], "So when the lava came, it hit the wall, and the church held.")
+    assert any(p.startswith("NOT SHOWN (SAYS)") and "'church'" in p for p in says)
+
+
+def test_a_still_lists_what_a_stranger_can_point_at_and_only_the_shots_own_things():
+    p = plan(3); p["stills"][1].pop("visible")
+    assert any(x.startswith("VISIBLE: still 2") for x in problems(p, 3))
+    p = plan(3); p["stills"][1]["visible"].append({"prop": "a helicopter", "as": "a helicopter overhead"})
+    assert any(x.startswith("VISIBLE") and "helicopter" in x for x in problems(p, 3))
+
+
+def test_a_number_is_a_count_in_one_still_or_on_a_thing_that_reads_it():
+    p = plan(5); del p["stills"][0]["visible"][0]["count"]
+    assert any("'three'" in x.lower() and x.startswith("NOT SHOWN") for x in problems(p, 5))
+    big = "Four thousand people left. Three houses burned. The rest still stand, but almost nobody moved back. Would you?"
+    p = plan(5); p["stills"][0]["visible"].append({"prop": "data", "as": "people left"})
+    probs = SP.shot_problems(p, LINES[5][0], big, last=True)
+    assert any("more than a stranger counts in one still" in x for x in probs)
+    p["stills"][0]["visible"][0]["count"] = 4000                                  # 4,000 houses is not a count anyone makes in a still
+    assert any(x.startswith("VISIBLE") and "counts 4000" in x for x in SP.shot_problems(p, LINES[5][0], big, last=True))
+
+
+def test_unseen_is_for_words_no_picture_carries_never_for_things_or_numbers():
+    p = plan(5); p["unseen"].append({"word": "lantern", "why": "how"})
+    assert any(x.startswith("UNSEEN") and "'lantern'" in x for x in problems(p, 5))
+    p = plan(5); p["unseen"].append({"word": "exploded", "why": "verb"})
+    assert any("neither the shot's action nor its consequence" in x for x in problems(p, 5))
+    p = plan(3)
+    for st in p["stills"]:
+        st["visible"] = [{"prop": "data", "as": "he is there"}]
+    p["unseen"] = [{"word": w, "why": "how"} for w in sorted(SP.words(SP.boardlint.parts(LINES[3][0])[3]) | SP.words(LINES[3][1]))]
+    assert any(x.startswith("UNSEEN (FOR)") for x in problems(p, 3)), "a line cannot be declared unseen wholesale"
+
+
+def test_what_the_plan_lists_as_visible_is_measured_in_that_still():
+    f = facts("lava_head_shot5"); p = plan(5)
+    assert RC.problems(f, p) == []
+    p["stills"][0]["visible"].append({"prop": "window", "as": "his lit window"})      # the lit pane is not there until the result
+    assert any("lists 'window' as visible and it is not in the frame" in x for x in RC.problems(f, p))
+
+
+# ------------------------------------------------------------------ no way to start a story around the plan
+
+EXEMPT = {"banana", "cardrewards", "checkout", "helium", "honey", "lava", "lightning", "saffron"}
+
+
+def test_the_stories_staged_before_the_plan_are_these_eight_and_no_new_one_joins_them():
+    assert set(SP.PLAN_BEFORE) == EXEMPT, "a new story is planned; PLAN_BEFORE only ever shrinks"
+    assert SP.held("tulips") and SP.held("") and not SP.held("lava")
+
+
+@pytest.fixture
+def tulips(tmp_path, monkeypatch):
+    import preflight3d
+    d = tmp_path / "tulips"; d.mkdir()
+    script = {"lines": ["One bulb cost a house."], "storyboard": ["1 the bulb (a market stall; close, level with him): he lifts one bulb off the scale."]}
+    (d / "script.json").write_text(json.dumps(script))
+    monkeypatch.setattr(SP, "STORIES", tmp_path); monkeypatch.setattr(preflight3d, "STORIES", tmp_path)
+    return d, script, preflight3d
+
+
+def test_a_new_story_gets_no_stub_no_build_and_no_panel_without_a_plan_that_passes(tulips):
+    d, script, preflight3d = tulips
+    sheet = d / "sheet.jpg"; sheet.write_bytes(b"x")
+
+    def no_look(_prompt):
+        raise AssertionError("a sheet with no plan is never looked at")
+    for write in (lambda: None, lambda: (d / "plan.json").write_text(json.dumps(SP.blank(script)))):      # no plan, then an empty one
+        write()
+        assert SP.problems("tulips", script)
+        with pytest.raises(SystemExit) as e:
+            RS.stub("tulips")
+        assert "no stub without a plan" in str(e.value)
+        rec = preflight3d.check("tulips", 1, str(sheet), 4, look=no_look)
+        assert rec["status"] == "blocked" and rec["defects"] and rec["defects"][0]["id"] == "PLAN"
+        assert preflight3d.verdict(rec)["pass"] is False and any("PLAN" in h for h in preflight3d.verdict(rec)["hard"])
+    assert not (d / "preflight.json").exists(), "nothing is recorded for a sheet that had no plan"
+
+
+def test_the_harness_refuses_a_new_storys_plan_in_every_staging_mode():
+    import ast
+    tree = ast.parse((STORE / "shots.py").read_text())
+    gates = [n for n in ast.walk(tree) if isinstance(n, ast.If) and isinstance(n.test, ast.Name) and n.test.id == "_pl"]
+    assert len(gates) == 1 and isinstance(gates[0].body[0], ast.Raise), "the plan's refusal hangs on the plan alone, not on STAGING"
+    src = (STORE / "shots.py").read_text()
+    assert "_pl = shot_plan.problems(STORY, SCRIPT)" in src
+    assert src.index("_pl = shot_plan.problems(STORY, SCRIPT)") < src.index("S = SHOTS[SHOT]()"), "before any shot is built"

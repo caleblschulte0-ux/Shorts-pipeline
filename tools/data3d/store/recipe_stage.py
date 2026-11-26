@@ -399,7 +399,10 @@ def stub(story):
     import json
     import shot_plan
     script = json.loads((shot_plan.STORIES / story / "script.json").read_text())
-    plan = shot_plan.load(story) or shot_plan.blank(script)
+    plan = shot_plan.load(story)
+    bad = [f"{w}: {t}" for w, t in shot_plan.problems(story, script)] if plan is not None else [f"no stories/{story}/{shot_plan.NAME}"]
+    if bad:                                          # no shots file is started around the plan
+        raise SystemExit(f"{story}: no stub without a plan that passes (python tools/data3d/store/shot_plan.py check {story}):\n  " + "\n  ".join(bad))
     out = [STUB_HEAD.format(story=story)]
     sets = script.get("sets") or []
     for n, p in enumerate(plan["shots"], 1):

@@ -43,6 +43,8 @@ def _all_seen(prompt, miss=(), cont_bad=(), still=2, defect_bad=(), no_defects=F
 def story(tmp_path, monkeypatch):
     monkeypatch.setattr(PF, "STORIES", tmp_path)
     monkeypatch.delenv("PREFLIGHT3D_AGAIN", raising=False)
+    import shot_plan    # "s" stands in for a story staged before the plan: this file tests the LOOK; a new story's plan block is held
+    monkeypatch.setitem(shot_plan.PLAN_BEFORE, "s", "a stand-in story")     # by tests/test_data3d_a_shot_is_born_to_the_recipe.py
     (tmp_path / "s").mkdir(); (tmp_path / "s" / "script.json").write_text(json.dumps(SCRIPT))
     sheet = tmp_path / "sheet_s2.jpg"; Image.new("RGB", (64, 32), (200, 90, 20)).save(sheet)
     return tmp_path, sheet
@@ -238,6 +240,8 @@ def _judge(tmp_path, board=True, **env):
         for name in ("judge3d", "look_bible", "notes_ledger", "rounds", "judged", "preflight3d", "story_gate", "boardlint"):
             shutil.copy(D3 / "store" / f"{name}.py", store)
         shutil.copy(D3 / "clock.py", store.parent)
+        # the pre-flight asks the plan first (store/shot_plan.py); "s" stands in for a story staged before the plan
+        (store / "shot_plan.py").write_text((D3 / "store" / "shot_plan.py").read_text() + '\nPLAN_BEFORE["s"] = "a stand-in story in a test"\n')
         (store.parent / "stories" / "s").mkdir(parents=True)
         (store.parent / "stories" / "s" / "script.json").write_text(json.dumps(SCRIPT))
         (tmp_path / "scripts").symlink_to(ROOT / "scripts")
