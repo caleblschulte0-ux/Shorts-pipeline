@@ -60,6 +60,96 @@
       "answer": "NONE",
       "by": "chatgpt",
       "at": "2026-11-25T12:10:00.000Z"
+    },
+    "6fa304f52002cfb7": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a vast, visible mystery: satellites found more than half the ocean changing color without a settled explanation.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "d665484e86505e50": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"A past model prediction is background validation, not a consequence or reversal of the observed color change.\",\"2\":\"Converting the same 56 percent into square kilometers adds scale but does not follow from the prediction beat.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "9787179cd4df6270": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch names South Korea and promises a pictureable global automation lead measured by robot coworkers.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "66e62a5e59065d46": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The US comparison repeats South Korea's density lead rather than advancing why that lead exists.\",\"2\":\"China's installation total changes subjects and does not follow from the South Korea-versus-US comparison.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "08dcd66e7ee6168d": {
+      "answer": "{\"scores\":{\"premise\":11,\"hook\":9,\"arc\":7,\"factual\":8,\"visual_proof\":13,\"payoff\":6,\"voice\":3},\"fatal\":[\"false_comparison\"],\"weakest_note\":\"Replace the claim that robots outnumber people with the supported ratio—1,220 robots per 10,000 workers—and build each beat around why Korea leads.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "1998799d1298bf87": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "fea901c1ffbf04f8": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch connects the disappearance of a familiar household object to the concrete nuisance viewers now experience from unknown calls.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "b69513c967e89913": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":true},\"why\":{\"1\":\"The composition of robocalls does not result from, reverse, or explain the decline of landlines.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "2e16c228ec6fe935": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":11,\"factual\":12,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Explicitly connect the landline decline to the growth of robocalls; otherwise the middle beat feels like a separate phone statistic.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "1deb5510d9290a0c": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "f8119b6e24451012": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives conservation a vivid reversal: 50 surviving otters recovered and now protect a carbon-storing ecosystem.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "86127cd687d92c97": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"The kelp carbon estimate introduces a new ecological benefit without explaining how the population recovery produces that storage.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "d298998038e27675": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":14,\"factual\":13,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Make the final beat state the causal chain—more otters eat urchins, kelp survives, and that kelp stores carbon.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "6a63480ffc59d37e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "a792f3b6b918240a": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a strong moral reversal: animals nearly erased by people became protectors of a major coastal carbon sink.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "56ac27a432b0b0d8": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"Calling recovered otters climate heroes requires the missing causal bridge from otter recovery through urchin control to kelp carbon storage.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "6206ed2235f9a970": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":14,\"factual\":13,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Add the missing mechanism between recovered otters and carbon: otters suppress urchins, allowing kelp forests to persist and store CO2.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
+    },
+    "09cd12dbde589263": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:35:00.000Z"
     }
   }
 }
