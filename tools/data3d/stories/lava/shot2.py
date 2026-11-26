@@ -58,7 +58,12 @@ def place_wall_works():
     px, py = S2_P0
     clear = lambda x, y: abs(x - px) < 0.75 and abs(y - py) < 0.75
     lava_rock("wall face rock", 1900, (-44, 2.5, -S2_BASE / 2 + 0.1, S2_BASE / 2 - 0.1), lambda x, y: max(s2_ground_z(x, y), s2_face_z(y)), seed=27, r=(0.08, 0.28), moss=0.0, avoid=clear)
+    # from the town the wall is a BERM of piled basalt, not a slab (coordinator: "a wall of coal"): big and small blocks
+    # heaped down its sloped town face, no two a size
+    lava_rock("wall face rock big", 420, (-12, 4.5, 0.9, S2_BASE / 2 + 0.3), lambda x, y: max(s2_ground_z(x, y), s2_face_z(y)), seed=41, r=(0.3, 0.75), moss=0.0, avoid=clear)
+    lava_rock("wall face rock mid", 900, (-12, 4.5, 0.9, S2_BASE / 2 + 0.6), lambda x, y: max(s2_ground_z(x, y), s2_face_z(y)), seed=42, r=(0.12, 0.3), moss=0.04, avoid=clear)
     lava_rock("lava field rock", 160, (-40, 4, -24, -S2_BASE / 2 - 0.3), s2_ground_z, seed=9, r=(0.1, 0.35), moss=0.0)
+    FX.ground("grass", area=(-14, 8.5, S2_BASE / 2 + 0.2, 33), zfn=lambda x, y: s2_ground_z(x, y) + 0.07 + 0.03 * lw_fbm(x * 0.8, y * 0.8, 4), seed=4, name="town grass")   # the kit's real ground under the house
     houses = []
     for k, (x, roof, wl) in enumerate(((-21.5, "#B8352B", "#F1EEE6"), (-26.0, "#2F5E8C", "#E9D9A2"), (-30.5, "#3F7A4A", "#BFD3DD"))):
         houses.append(town_house(f"town house by the wall {k}", (x, 7.3, s2_ground_z(x, 7.3)), yaw=math.pi, w=3.2, d=2.6, storeys=1, base=0.3, pitch=38, roof=roof, wall=wl, seed=5 + k))
@@ -69,16 +74,23 @@ def place_wall_works():
     town_house("town house under the wall", (-1.6, 7.4, s2_ground_z(-1.6, 7.4)), yaw=math.pi, w=3.4, d=2.7, h=1.05, storeys=2, base=0.3, pitch=38, roof="#B8352B", wall="#E9D9A2", seed=5)
     # ICELAND: the flag on a pole in the yard between the first two houses, its face to the lens
     blue = lw_paint("flag blue", "#02529C", rough=0.7); white = lw_paint("flag white", "#F4F4F0", rough=0.7); red = lw_paint("flag red", "#DC1E35", rough=0.7)
-    fx, fy = -23.75, 6.4; fzz = s2_ground_z(fx, fy)
+    fx, fy = 1.4, 6.3; fzz = s2_ground_z(fx, fy)
     K.cyl("flag pole", (fx, fy, fzz + 1.6), 0.025, 3.2, lw_paint("flag pole white", "#EDEDE8", rough=0.5), v=10)
     FS = 1.6; c = Vector((fx, fy + 0.36 * FS, fzz + 2.75))
     for nm, off, size, m in (("field", 0.0, (0.012, 0.66, 0.46), blue), ("white bar", -0.1, (0.016, 0.13, 0.46), white), ("white band", 0.0, (0.016, 0.66, 0.13), white),
                              ("red bar", -0.1, (0.02, 0.065, 0.46), red), ("red band", 0.0, (0.02, 0.66, 0.065), red)):
         K.box(f"icelandic flag {nm}", tuple(c + Vector((0, off * FS, 0))), (size[0], size[1] * FS, size[2] * FS), m, bev=0.0)
     # the fountains, far out past the wall's end on the outer side
-    # (the far fountains and their smoke are cut from this beat: over the crest they read as flame sprites, and a tall smoke box blacked the sky)
+    # what the wall keeps out: from the town, lava fountains stand beyond the crest under their smoke (beat 1's ragged
+    # fountains: a fat torn body and a thin taller jet), their feet hidden behind the wall
+    rf = lw_random.Random(23)
+    for k, (x, y, hf) in enumerate(((-9.0, -58.0, 15.0), (-3.0, -61.0, 18.0), (3.5, -58.0, 14.0), (9.0, -60.0, 16.0))):
+        lw_fire_column(f"far fountain {k}", (x, y, 0.0), w=rf.uniform(3.6, 4.4), h_fire=hf, h_smoke=4.0, lean=(rf.uniform(-0.25, 0.25), -0.3), t_end=DUR + 1.0, seed=3.1 + k * 2.3, fire=3.6, smoke_d=1.2, rise=3.0, spread=0.34)
+        lw_fire_column(f"far fountain jet {k}", (x + rf.uniform(-1.0, 1.0), y + 0.3, 0.0), w=rf.uniform(1.2, 1.7), h_fire=hf * rf.uniform(0.8, 1.2), h_smoke=2.0, lean=(rf.uniform(-0.4, 0.4), -0.2), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=5.5, smoke_d=0.8, rise=4.5, spread=0.3)
+        FX.smoke_column(base=(x, y - 1.5, hf * 0.8), w=3.4, h=12.0, lean=(0.3, -0.2), dens=2.0, seed=1.7 + k, t_end=DUR + 1.0, name=f"far fountain smoke {k}")
+        lw_point(f"far fountain light {k}", (x, y + 3.0, 3.0), 60000.0, col=(1.0, 0.4, 0.1), r=3.0)        # its glow on the black field
     def light():
-        return FX.sky("day", sun_az=-75)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
+        return FX.sky("day", sun_az=150)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
     return dict(light=light, wall=wall, house=houses[0], houses=houses)
 
 
@@ -88,22 +100,22 @@ def shot2():
     straightens up beside the finished row looking out (still 3). CUT WIDE from the town side (still 4): the black wall
     standing clear over a two-storey tin house, running out of frame both ways, him small on top, the eruption's smoke
     behind it."""
-    T_ARR = 0.62; T_GO = 1.0; T_SET = 1.4; T_OFF = 1.55; T_UPR = 2.0; T_CUT = 0.56 * DUR; T_BACK = 0.8 * DUR
+    T_ARR = 0.62; T_GO = 0.9; T_SET = 1.32; T_OFF = 1.6; T_UPR = 2.0; T_CUT = 0.56 * DUR; T_BACK = 0.8 * DUR
     W = lw_win
     P = place_wall_works()
     light = P["light"]
     data = load_data()
     P0 = Vector((S2_P0[0], S2_P0[1], S2_H + 0.03))
     data.place(0.0, 0.0, 0.0); sc.frame_set(1); bpy.context.view_layer.update()
-    f0 = data.forward(); YAW_D = -30.0 - math.degrees(math.atan2(f0.y, f0.x))      # three-quarter to the close lens, facing the row he builds
+    f0 = data.forward(); YAW_D = 30.0 - math.degrees(math.atan2(f0.y, f0.x))      # three-quarter to the close lens, facing the row he builds
     YAW_D = (YAW_D + 180.0) % 360.0 - 180.0                    # (walk_to keeps its heading inside a half turn: so does he, or he spins once on frame 3)
     data.place(P0.x, P0.y, YAW_D); data.arm.location.z = P0.z; bpy.context.view_layer.update()
     YAW0 = data.arm.rotation_euler.z
     fw = data.forward(); fw.z = 0; fw.normalize(); lf = Vector((-fw.y, fw.x, 0.0))
     sh_l = {sd: 1.0 if (acts._shoulder(data, sd) - (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2).dot(lf) > 0 else -1.0 for sd in "LR"}
     # he CARRIES it in along the crest (a body that only shifts its hands is a still frame on a phone), then turns to the row
-    PS = P0 + Vector((-0.381, 0.06, 0.0))
-    data.place(PS.x, PS.y, YAW_D + 22.0)
+    PS = P0 + Vector((-0.381, -0.06, 0.0))
+    data.place(PS.x, PS.y, YAW_D - 22.0)
     kit = hard_hat(data)
     data.walk_to((P0.x, P0.y), 0.0, T_ARR, step=0.12, lift=0.04, bob=0.015)
     from character import _fcurves
@@ -113,10 +125,10 @@ def shot2():
     sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YW = data.arm.rotation_euler.z
     while YW - YAW0 > math.pi: YW -= 2 * math.pi
     while YW - YAW0 < -math.pi: YW += 2 * math.pi
-    R_ = 0.1; RB = 0.2
+    R_ = 0.088; RB = 0.2
     SPOT = P0 + fw * 0.25; SPOT.z = S2_H + RB * 0.8 * 0.9 + R_ * 0.8 * 0.45          # on top of the row, in the gap between two of its boulders
     def body(t):
-        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(55) * W(t, T_OFF, 0.62) - math.radians(70) * W(t, T_BACK - 0.5, 0.48)       # round to the row, then to the town he is keeping
+        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(14) * W(t, T_OFF, 0.5)       # round to the row, then to the town he is keeping
     for f in range(F(T_ARR) + 1, NF + 8):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
     def held(t):                                              # the boulder on his two hands, in front of his chest, wherever he is
@@ -133,8 +145,8 @@ def shot2():
         return held(t)[1] if t < T_GO else _lfB
     T_REL = T_GO + 0.42 * (T_SET - T_GO)                       # his hands go with it as far as they reach, then it drops the last of the way
     lw_layer(data, "spine", lambda t: (15 * W(t, T_GO, T_SET - T_GO) * (1 - W(t, T_OFF, 0.35)), 0, 0), T_GO, DUR + 0.4)
-    CAM0 = P0 + Vector((0.6, -2.5, 0.75)); LOOK0 = P0 + Vector((0.0, 0.0, 0.3))
-    FAR = P0 + Vector((3.0, -14.0, 0.0))
+    CAM0 = P0 + Vector((0.6, 2.5, 1.3)); LOOK0 = P0 + Vector((0.0, 0.0, 0.3))
+    FAR = P0 + Vector((3.0, 14.0, 0.0))
     data.look_at(CAM0, 0.0, max_yaw=40, max_pitch=25, blend=0.0)
     data.look_at(SPOT, T_GO + 0.1, max_yaw=40, max_pitch=35, blend=0.3)
     data.look_at(FAR, T_OFF + 0.1, max_yaw=14, max_pitch=25, blend=0.5)
@@ -144,7 +156,7 @@ def shot2():
     for sd in "LR":
         sg = sh_l[sd]
         data.reach(sd, (lambda t, sg=sg: stone_at(min(t, T_REL)) + side_at(min(t, T_REL)) * (sg * R_ * 0.9) + Vector((0, 0, -0.01))), 0.0, T_OFF, lead=0.05, back=None, elbow_out=0.3)
-    near = sorted("LR", key=lambda s_: (data.arm.matrix_world @ data.pb[f"arm.{s_}"].head).dot(Vector((0.23, -0.97, 0.0))), reverse=True)   # near[0]: the arm toward the close lens
+    near = sorted("LR", key=lambda s_: (data.arm.matrix_world @ data.pb[f"arm.{s_}"].head).dot(Vector((0.23, 0.97, 0.0))), reverse=True)   # near[0]: the arm toward the close lens
     LG = 0.38
     HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
@@ -152,11 +164,14 @@ def shot2():
     def pose(t, P_, sides="LR"):
         for sd in sides:
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
-    pose(T_UPR + 0.3 - LG, HANG, "LR"); pose(T_BACK - 0.3 - LG, HANG, "LR"); pose(T_BACK + 0.12 - LG, HIP, "LR"); pose(DUR + 0.5, HIP, near[0]); pose(DUR + 0.5, HIP, near[1]);
+    pose(T_UPR + 0.3 - LG, HANG, "LR"); pose(T_BACK - 0.3 - LG, HANG, "LR"); sc.frame_set(F(T_BACK)); bpy.context.view_layer.update()
+    row_arm = min("LR", key=lambda s_: acts._shoulder(data, s_).x); oth_arm = "R" if row_arm == "L" else "L"       # the arm on the row's side: out along his finished crest
+    OUTR = lambda sg: ((8, 0, -sg * 74), (0, 0, -sg * 8), (0, 0, 0))
+    pose(T_BACK + 0.12 - LG, OUTR, row_arm); pose(T_BACK + 0.12 - LG, HIP, oth_arm); pose(DUR + 0.5, OUTR, row_arm); pose(DUR + 0.5, HIP, oth_arm)
     data.finish()
     stone = s2_boulder("boulder top stone", R_, seed=4)
-    stone.data.materials.clear()                              # HIS boulder is fresh from the quarry, grey with dust: the one we follow onto the black row
-    stone.data.materials.append(lw_noise("fresh quarried boulder", "#6C6A66", "#A19E98", scale=14, rough=0.92, bump=0.8, detail=10))
+    stone.data.materials.clear()                              # HIS boulder is the wall's own basalt, a shade lighter with quarry dust: the one we follow onto the row
+    stone.data.materials.append(lw_noise("fresh quarried boulder", "#2C2A28", "#56524D", scale=14, rough=0.92, bump=0.8, detail=10))
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
         stone.location = stone_at(t); stone.keyframe_insert("location", frame=f)

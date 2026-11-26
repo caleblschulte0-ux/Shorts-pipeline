@@ -1778,6 +1778,53 @@
      "text": "He reaches us, close in the frame, wide-eyed, his fists up"
     }
    ]
+  },
+  "f40ad580662327ef7481a5f939067d6109349ac2add91f56c134342e3b9c9af2": {
+   "at": "2026-11-26 17:24:14Z",
+   "claims": 14,
+   "claims_key": "b6c5962f9cfd3ba6",
+   "continuity": [
+    {
+     "id": "feet",
+     "note": "Data's feet are hidden behind the foreground boulders in stills 1, 2 and 4, so grounding cannot be seen. In still 3 he is too small to tell.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "1,2,4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Stills 1 and 2 show the same carrying pose with the same boulder, only slightly shifted. They add no new event.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-2"
+    },
+    {
+     "id": "broken",
+     "note": "A thin red streak runs behind the boulders in stills 1 and 2. In still 1 the boulder sits behind his hand rather than clearly gripped.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1-2"
+    }
+   ],
+   "sha256": "f40ad580662327ef7481a5f939067d6109349ac2add91f56c134342e3b9c9af2",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "Green grass is behind Data in stills 1, 2 and 4, but it reads as a flat field at about his own level, not land far below. In still 3 the green ground is in front of the wall, not behind him.",
+     "text": "the green land far below behind him"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "A wall taller than a house is visible in still 3. No lava appears in any still, so 'to keep the lava out' is not shown. Nothing identifies Iceland either.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
   }
  }
 }

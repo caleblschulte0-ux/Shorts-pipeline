@@ -173,7 +173,7 @@
      ],
      "whole": true,
      "held": true,
-     "built_as": "a grey quarried boulder, rough and broken-faced, dusty from the quarry"
+     "built_as": "a boulder of the wall's own black basalt, rough and broken-faced, dusty from the quarry"
     },
     {
      "name": "earth wall",
@@ -192,6 +192,14 @@
      ],
      "whole": false,
      "built_as": "a two-storey tin-clad house, red tin roof, four-pane windows, a front door and steps"
+    },
+    {
+     "name": "lava fountains",
+     "objects": [
+      "far fountain"
+     ],
+     "whole": false,
+     "built_as": "ragged orange lava fountains beyond the wall, thrown up under grey smoke"
     }
    ],
    "framing": "close",
@@ -200,19 +208,19 @@
     "side": "right",
     "frame_h": 0.36
    },
-   "action": "he sets a grey boulder down on the end of the row of black boulders",
+   "action": "he bends and sets a dusty boulder down on the end of the row of boulders",
    "consequence": "the black wall of rock stands clear over the tall tin house",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "the driver in his hard hat carries a grey boulder along the crest of the wall in both hands, a house roof down below",
+     "shows": "the driver in his hard hat carries a dusty boulder along the crest of the wall in both hands, lava fountains smoking on the horizon",
      "hands": "boulder",
      "new": [],
      "visible": [
       {
        "prop": "boulder",
-       "as": "he carries a grey boulder along the crest in both hands"
+       "as": "he carries a dusty boulder along the crest in both hands"
       },
       {
        "prop": "data",
@@ -223,14 +231,14 @@
        "as": "the crest of the wall, its row of black boulders"
       },
       {
-       "prop": "house",
-       "as": "the tin house down below"
+       "prop": "lava fountains",
+       "as": "lava fountains on the horizon"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "he sets the grey boulder down on the end of the row of black boulders",
+     "shows": "he bends and sets the dusty boulder down on the end of the row of boulders",
      "hands": "boulder",
      "new": [
       {
@@ -241,13 +249,13 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he bends to the row"
+       "cause": "he bends down to the row"
       }
      ],
      "visible": [
       {
        "prop": "boulder",
-       "as": "he sets it down on the end of the row of black boulders"
+       "as": "he bends and sets it down on the end of the row of boulders"
       },
       {
        "prop": "data",
@@ -255,7 +263,7 @@
       },
       {
        "prop": "earth wall",
-       "as": "the row of black boulders"
+       "as": "the row of boulders"
       }
      ]
     },
@@ -282,28 +290,32 @@
       {
        "prop": "data",
        "as": "him small on top of it"
+      },
+      {
+       "prop": "lava fountains",
+       "as": "lava fountains beyond it"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "back on the crest he stands beside the row, hands on his hips, and grins at us",
+     "shows": "back on the crest he stands by his boulder, one arm out along the row, and grins at us",
      "hands": "free",
      "new": [
       {
        "what": "data",
        "how": "pose",
-       "cause": "hands on his hips, grinning"
+       "cause": "one arm out along the finished row, grinning"
       }
      ],
      "visible": [
       {
        "prop": "data",
-       "as": "back on the crest he stands beside the row, hands on his hips, and grins at us"
+       "as": "back on the crest he stands, one arm out along the row, and grins at us"
       },
       {
        "prop": "boulder",
-       "as": "the grey boulder on the row"
+       "as": "his boulder on the row"
       }
      ]
     }
