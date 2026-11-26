@@ -385,6 +385,71 @@ class TestPreRenderVerdictSkipsThesisWhenAlreadyHeld(unittest.TestCase):
 
 
 
+class TestPreRenderVerdictSpendsNoBrainOnAStoryHeldForItsData(unittest.TestCase):
+    """A story held `data:` (an illustrative source) is retired by the
+    rewrite mailbox as UNPOSTABLE -- no rewrite can ever post it, and the
+    premise judge's reason for it is never read by anyone. Yet
+    `pre_render_verdict` spent the premise brain call on it whenever the
+    deterministic floor happened to pass. Explainer run 45732523272
+    (2026-11-26 01:20 UTC): 36 of the 61 editorial holds were on their data;
+    18 of those still carried `premise: brain:` -- one Groq/Gemini call each,
+    on a run where both were 429-benched and every postable story was waiting
+    on the same budget. The thesis judge already honoured this (the class
+    above); the premise judge now does too. The hold is still a hold: the
+    deterministic floor runs, `data_ok` is False, nothing ships."""
+
+    def setUp(self):
+        self._tmp = _tempfile.TemporaryDirectory()
+        self._dir = Path(self._tmp.name)
+        self._patch = mock.patch.object(editorial_gate, "DATA_DIR", self._dir)
+        self._patch.start()
+
+    def tearDown(self):
+        self._patch.stop()
+        self._tmp.cleanup()
+
+    def _write(self, officiality: str):
+        for key, data in DATASETS.items():
+            d = _json.loads(_json.dumps(data))
+            d["source"]["officiality"] = officiality
+            (self._dir / f"{key}.json").write_text(_json.dumps(d))
+
+    def test_the_floor_passes_this_pitch(self):
+        # The fixture matters: the brain is only ever reached when the
+        # deterministic premise floor is clear, so this story must clear it.
+        self._write("illustrative")
+        v = editorial_gate.premise_ok(SOURCED_SC, use_llm=False)
+        self.assertTrue(v["ok"], v["reasons"])
+
+    def test_illustrative_data_costs_no_premise_call(self):
+        self._write("illustrative")
+        with mock.patch("shared.script_generator._call_llm") as llm:
+            v = editorial_gate.pre_render_verdict(SOURCED_SC, use_llm=True)
+            llm.assert_not_called()
+        self.assertFalse(v["ok"])
+        self.assertFalse(v["data_ok"])
+        self.assertTrue(any(r.startswith("data: ") for r in v["reasons"]))
+        # and no brain reason is invented for a story nobody will rewrite
+        self.assertFalse(any("brain:" in r for r in v["reasons"]))
+
+    def test_real_data_still_asks_the_judge(self):
+        """The saving is only on data-dead stories: a sourced story with a
+        clear floor is still judged by the brain, premise first."""
+        self._write("official")
+        calls = []
+
+        def fake(sysmsg, user, *a, **k):
+            calls.append(sysmsg)
+            return '{"verdict": "PASS", "reason": "a real stake"}'
+
+        with mock.patch("shared.script_generator._call_llm", side_effect=fake):
+            v = editorial_gate.pre_render_verdict(SOURCED_SC, use_llm=True)
+        self.assertTrue(v["data_ok"])
+        self.assertTrue(v["premise_ok"])
+        self.assertGreaterEqual(len(calls), 1)
+        self.assertIn("REJECT weak PITCHES", calls[0])
+
+
 class TestItRunsTheWayTheWorkflowRunsIt(unittest.TestCase):
     """explainer.yml runs `python3 scripts/editorial_gate.py`, where only
     scripts/ is on the path. Its `from shared import beat_match` died with

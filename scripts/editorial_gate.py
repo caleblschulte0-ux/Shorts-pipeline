@@ -679,7 +679,16 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     finding = data_is_a_finding(sc)
     # And the numbers the VOICE says, against the picture it says them over.
     spoken = beat_numbers_are_on_screen(sc)
-    prem = premise_ok(sc, use_llm=use_llm)
+    # A story held for its DATA is unpostable: the rewrite mailbox retires
+    # every ask for it (`rewrite_mailbox.unpostable`) and no one ever reads a
+    # premise reason written for it. So the premise JUDGE -- one Groq/Gemini
+    # call -- is not spent on it; the deterministic floor still runs. Run
+    # 45732523272 (2026-11-26): 36 of 61 holds were on their data and 18 of
+    # them still carried `premise: brain:` while both brains sat 429-benched
+    # and every postable story waited on the same budget. The thesis judge
+    # below has honoured this since the budget comment was written.
+    data_ok = prov["ok"] and finding["ok"]
+    prem = premise_ok(sc, use_llm=use_llm and data_ok)
     # A story that says one thing three times can never be a good video, and
     # finding that out costs one file read rather than a render.
     dist = beats_are_distinct(sc)
@@ -714,7 +723,7 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
                + [f"beats (noted): {r}" for r in spoken["notes"]])
     return {"ok": other_ok and thesis["ok"] and not pace and not few,
             "reasons": reasons,
-            "data_ok": prov["ok"] and finding["ok"],
+            "data_ok": data_ok,
             "premise_ok": prem["ok"],
             "beats_ok": dist["ok"] and spoken["ok"],
             "thesis_ok": thesis["ok"],
