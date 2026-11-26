@@ -22778,13 +22778,59 @@
       "ts": "2026-11-26T12:47:02.395522+00:00"
     },
     "clip-20261126-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/tminnzy/clip/HardVictoriousPeafowlTwitchRPG-j8Q8j8GsgrudaSJH",
-      "story_key": null,
-      "streamer": "tminnzy",
+      "url": "https://youtube.com/shorts/7aTObKFRrPA",
       "title": "Tminnzy Steals Their Lambo Back And Tells Them To Buy Another One \ud83d\ude02",
       "kind": "twitch_clip",
-      "ts": "2026-11-26T12:50:45.535135+00:00",
+      "ts": "2026-11-26T12:50:55.176599+00:00",
+      "uploaded_at": "2026-11-26T12:50:55.176613+00:00",
+      "publish_at": "2026-11-27T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261126-tminnzy-steals-their-lambo-back-and-tells-them-t-2e8e790d",
+        "tiktok": "queued for 2026-11-27T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/tminnzy/clip/HardVictoriousPeafowlTwitchRPG-j8Q8j8GsgrudaSJH",
+      "streamer": "tminnzy",
+      "series": "chaos",
+      "hook": "tminnzy took the Lambo back \ud83c\udfce\ufe0f",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 99798,
+      "banger": 0.78,
+      "cut": {
+        "start": 5.0,
+        "end": 29.85
+      },
+      "director_cut": true
+    },
+    "rejected-rudehomelyyogurtdatboi-skoigoyytfwtkty7": {
+      "source_url": "https://www.twitch.tv/xqc/clip/RudeHomelyYogurtDatBoi-SkoigoyYtfWTKtY7",
+      "streamer": "xqc",
+      "title": "NAHHH",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Hasan talking, no visible event)",
+      "ts": "2026-11-26T12:51:31.896210+00:00"
+    },
+    "rejected-hyperenchantingbubbleteawtruck-1gwddqviijy9qpxg": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/HyperEnchantingBubbleteaWTRuck-1gWddqvIijy9Qpxg",
+      "streamer": "summit1g",
+      "title": "Summit Crashout On Snipers",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW gameplay, ranting audio, nothing vis)",
+      "ts": "2026-11-26T12:52:17.914843+00:00"
+    },
+    "clip-20261126-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/frametamer666/clip/PolishedFineFerretMoreCowbell-qcBvExOBZr2hky_g",
+      "story_key": null,
+      "streamer": "frametamer666",
+      "title": "Frametamer666 Loses It Screaming KALISIA After Finding A Game Bug",
+      "kind": "twitch_clip",
+      "ts": "2026-11-26T12:55:06.148310+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
