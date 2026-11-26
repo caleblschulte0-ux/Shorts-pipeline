@@ -19,6 +19,10 @@
   "n": 2,
   "why": "too short: the post runs 8.8s (< 15s)"
  },
+ "https://www.reddit.com/r/CollegeBasketball/comments/1y1marf/uva_backup_pg_jan_vides_harlem_globetrotters": {
+  "n": 2,
+  "why": "author: no setup or no payoff in the clip"
+ },
  "https://www.reddit.com/r/MMA/comments/1xtm5wg/uncrowned_uncrownedcombat_merab_dvalishvili": {
   "n": 1,
   "why": "download failed"
@@ -111,6 +115,10 @@
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
  },
+ "https://www.reddit.com/r/hockey/comments/1y5ndkj/jeannot_and_bauer_drop_the_gloves_in_a_serious": {
+  "n": 2,
+  "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
  "https://www.reddit.com/r/nba/comments/1xsgf35/highlight_wemby_questioning_why_he_even_tried_that": {
   "n": 2,
   "why": "too short: the post runs 5.8s (< 15s)"
@@ -138,6 +146,10 @@
  "https://www.reddit.com/r/nba/comments/1xzzg8p/the_lakers_pa_announcer_welcomes_jaxson_hayes": {
   "n": 2,
   "why": "too short: the post runs 13.7s (< 15s)"
+ },
+ "https://www.reddit.com/r/nba/comments/1y44vpu/lowlight_josh_green_has_fouled_out_after_luka": {
+  "n": 1,
+  "why": "download failed"
  },
  "https://www.reddit.com/r/nba/comments/1y4mevu/taylor_jenkins_and_the_bucks_celebrate_improving": {
   "n": 2,
@@ -212,7 +224,7 @@
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
  },
  "https://www.reddit.com/r/nfl/comments/1y5jmht/wnep_mccarthy_confirms_he_broke_huddle_with_1_2_3": {
-  "n": 1,
+  "n": 2,
   "why": "download failed"
  },
  "https://www.reddit.com/r/soccer/comments/1xujafu/alternate_angles_of_arda_g\u00fclers_stunning_freekick": {
@@ -258,6 +270,10 @@
  "https://www.reddit.com/r/soccer/comments/1y2zrj8/mauricio_pochettino_when_asked_if_man_united_are": {
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
+ "https://www.reddit.com/r/soccer/comments/1y3m8ct/mourinho_on_players_complaining_about_a_lack_of": {
+  "n": 2,
+  "why": "not English (English p=0.07, 52% English words)"
  },
  "https://www.reddit.com/r/soccer/comments/1y4ji6p/cristiano_ronaldo_welcoming_sadio_man\u00e9_at_alnassr": {
   "n": 2,
