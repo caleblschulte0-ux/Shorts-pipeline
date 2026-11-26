@@ -44,7 +44,17 @@
      "event": "before",
      "shows": "a ragged curtain of lava fountains stands on the ridge over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands in the street below, one arm flung out",
      "hands": "free",
-     "new": []
+     "new": [],
+     "visible": [
+      {
+       "prop": "lava fountains",
+       "as": "a ragged curtain of lava fountains stands on the ridge over the roofs: a volcano keeps erupting right beside the Icelandic town"
+      },
+      {
+       "prop": "data",
+       "as": "the driver in his yellow hard hat stands in the street below it, one arm flung out"
+      }
+     ]
     },
     {
      "event": "action",
@@ -60,6 +70,25 @@
        "what": "car",
        "how": "goes",
        "cause": "it drives away up the street"
+      },
+      {
+       "what": "lava bomb",
+       "how": "comes",
+       "cause": "the fountains throw it out over the street"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he bolts down the street toward us: everyone had to run"
+      },
+      {
+       "prop": "car",
+       "as": "a car driving away up the street behind him"
+      },
+      {
+       "prop": "lava fountains",
+       "as": "the fountains on the ridge"
       }
      ]
     },
@@ -72,6 +101,25 @@
        "what": "lava bomb",
        "how": "falls",
        "cause": "thrown out of the fountains, it comes down on the street"
+      },
+      {
+       "what": "car",
+       "how": "goes",
+       "cause": "it keeps driving away up the street"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "lava bomb",
+       "as": "a lava bomb smashes into the road behind him, glowing and smoking"
+      },
+      {
+       "prop": "data",
+       "as": "he runs on"
+      },
+      {
+       "prop": "car",
+       "as": "the car, smaller up the street"
       }
      ]
     },
@@ -89,8 +137,29 @@
        "what": "lava bomb",
        "how": "burns",
        "cause": "it lies where it hit, smoking"
+      },
+      {
+       "what": "car",
+       "how": "goes",
+       "cause": "it keeps driving away up the street"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he pulls up in front of us, big in the frame, wide-eyed, arms flung wide"
+      },
+      {
+       "prop": "lava bomb",
+       "as": "the bomb burning on the road behind him"
       }
      ]
+    }
+   ],
+   "unseen": [
+    {
+     "word": "keeps",
+     "why": "how"
     }
    ]
   },
@@ -132,14 +201,32 @@
     "frame_h": 0.36
    },
    "action": "he sets a grey boulder down on the end of the row of black boulders",
-   "consequence": "the black wall of rock stands clear over the two-storey tin house",
+   "consequence": "the black wall of rock stands clear over the tall tin house",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
      "shows": "the driver in his hard hat carries a grey boulder along the crest of the wall in both hands, a house roof down below",
      "hands": "boulder",
-     "new": []
+     "new": [],
+     "visible": [
+      {
+       "prop": "boulder",
+       "as": "he carries a grey boulder along the crest in both hands"
+      },
+      {
+       "prop": "data",
+       "as": "the driver in his hard hat"
+      },
+      {
+       "prop": "earth wall",
+       "as": "the crest of the wall, its row of black boulders"
+      },
+      {
+       "prop": "house",
+       "as": "the tin house down below"
+      }
+     ]
     },
     {
      "event": "action",
@@ -156,17 +243,45 @@
        "how": "pose",
        "cause": "he bends to the row"
       }
+     ],
+     "visible": [
+      {
+       "prop": "boulder",
+       "as": "he sets it down on the end of the row of black boulders"
+      },
+      {
+       "prop": "data",
+       "as": "his hands set it down"
+      },
+      {
+       "prop": "earth wall",
+       "as": "the row of black boulders"
+      }
      ]
     },
     {
      "event": "result",
-     "shows": "from the town: Iceland built a wall of rock taller than a house: the black wall of rock stands clear over the two-storey tin house, him small on top",
+     "shows": "from the town: Iceland built a wall of rock taller than a house: the black wall of rock stands clear over the tall tin house, him small on top",
      "hands": "free",
      "new": [
       {
        "what": "boulder",
        "how": "falls",
        "cause": "it drops the last of the way onto the row and stays there"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "earth wall",
+       "as": "from the town, the black wall stands clear: Iceland built a wall of rock taller than a house to keep the lava out"
+      },
+      {
+       "prop": "house",
+       "as": "the tall tin house under it"
+      },
+      {
+       "prop": "data",
+       "as": "him small on top of it"
       }
      ]
     },
@@ -179,6 +294,16 @@
        "what": "data",
        "how": "pose",
        "cause": "hands on his hips, grinning"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "back on the crest he stands beside the row, hands on his hips, and grins at us"
+      },
+      {
+       "prop": "boulder",
+       "as": "the grey boulder on the row"
       }
      ]
     }

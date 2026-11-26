@@ -78,9 +78,7 @@ def place_wall_works():
     # the fountains, far out past the wall's end on the outer side
     # (the far fountains and their smoke are cut from this beat: over the crest they read as flame sprites, and a tall smoke box blacked the sky)
     def light():
-        k = iceland_light(sun_elev=34, sun_az=190, sun=3.0, sky=0.4, haze=0.9)           # beat 3's light, on beat 3's wall
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.8, rot=math.radians(110))
-        return k
+        return FX.sky("day", sun_az=-75)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
     return dict(light=light, wall=wall, house=houses[0], houses=houses)
 
 

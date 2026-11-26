@@ -1542,13 +1542,11 @@ def place_grindavik_street():
     fissure opens under its plume, the road gate at the town's edge, far blue mountains."""
     rnd = lw_random.Random(5)
     lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, ph_mat("rock_face_01", scale=2.2, tint="#0B0B0C", name="lava field rock ground", rough=0.95, bump=1.2))   # REAL rock (Poly Haven), at a real size: BLACK lava rock (board B8: "a brown dirt bank")
-    K.box("street asphalt", (0, 2.5, 0.004), (2.3, 20, 0.01), ph_mat("asphalt_02", scale=1.6, tint="#4E5158", name="street asphalt"), bev=0)
+    FX.road(a=(0, -7.5), b=(0, 12.5), width=2.3, line=True, shoulders=0, seed=5, z=-0.036, name="street road")      # the kit's real road: scanned asphalt, a worn centre line
     kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
         K.box("kerb", (sx * 1.15, 2.5, 0.04), (0.12, 20, 0.08), kerb, bev=0.01)
         K.box("pavement", (sx * 1.45, 2.5, 0.035), (0.5, 20, 0.07), ph_mat("concrete_wall_008", scale=1.6, tint="#A8A49C", name="pavement"), bev=0.005)
-    for y in range(-8, 10, 2):
-        K.box("centre line", (0, y + 0.5, 0.011), (0.08, 0.9, 0.004), K.mat("road paint", "#E9E4D4", rough=0.6), bev=0)
     houses = []
     for sx in (-1, 1):
         y = -7.2 if sx < 0 else -6.6             # the street starts well in front of the ridge: two rows of houses down it
@@ -1705,14 +1703,14 @@ def shot1():
         splat.hide_render = sc_ < 0.06; splat.keyframe_insert("hide_render", frame=fr)
     for k in range(9):                                    # what it throws out as it bursts: glowing bits that skip across the road and lie there
         a_ = 2 * math.pi * k / 9 + rf.uniform(-0.3, 0.3); d_ = rf.uniform(0.5, 1.0); hz = rf.uniform(0.3, 0.6)
-        o = lw_block(f"lava bomb bit {k}", (HIT.x, HIT.y, 0.03), rf.uniform(0.05, 0.09), clot, rf, squash=0.8)
+        o = lw_block(f"bit of the bomb {k}", (HIT.x, HIT.y, 0.03), rf.uniform(0.05, 0.09), clot, rf, squash=0.8)
         for f in range(F(T_HIT) - 1, NF + 1):
             u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
             o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    lw_steam("lava bomb smoke", (HIT.x, HIT.y + 0.1, 0.05), w=0.7, h=2.6, seed=6.1, col=(0.12, 0.11, 0.1), dens=12.0, lean=(-0.15, 0.25), rise=1.4,
-             keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0)
-    bl = lw_point("lava bomb light", (HIT.x, HIT.y - 0.1, 0.35), 0.0, col=(1.0, 0.4, 0.1), r=0.3)
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.7, h=2.6, seed=6.1, col=(0.12, 0.11, 0.1), dens=12.0, lean=(-0.15, 0.25), rise=1.4,
+                    keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
+    bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.1, 0.35), 0.0, col=(1.0, 0.4, 0.1), r=0.3)
     for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 900.0), (T_HIT + 0.6, 380.0), (DUR + 1.0, 320.0)):
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
     for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
@@ -1733,7 +1731,7 @@ def shot1():
     CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 2.0))
     data.look_at(Vector((PW.x - 6.0, PW.y + 0.6, 8.0)), 0.0, max_yaw=42, max_pitch=32, blend=0.0)                    # back up at the fountains over his shoulder
     data.look_at(CAM0 + RUNV * 0.6, T_RUN + 0.15, max_yaw=50, max_pitch=30, blend=0.6)
-    data.look_at(CAM0 + RUNV * (T_SLOW - T_RUN) + Vector((0.3, -0.6, 0.0)), 0.6 * DUR, max_yaw=55, max_pitch=22, blend=0.5)   # his face to us to the end              # the end: running out past us, his head back over his shoulder at the fire
+    data.look_at(CAM0 + RUNV * (T_SLOW - T_RUN) + Vector((0.3, -0.6, 0.0)), 0.6 * DUR, max_yaw=55, max_pitch=8, blend=0.5)   # his face to us to the end              # the end: running out past us, his head back over his shoulder at the fire
     data.expression("alarmed", 0.0, DUR + 1.0, blend=0.1)
     UPF = lambda sg: ((-82, 0, -sg * 10), (-100, 0, -sg * 10), (0, 0, 0))      # a runner's arms: bent square, one fist up in front as the other elbow goes back
     LOW = lambda sg: ((56, 0, -sg * 14), (-74, 0, -sg * 6), (0, 0, 0))
@@ -1763,7 +1761,7 @@ def shot1():
             fc.update()
     # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
     # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.58, 0.42, 0.36; X1, Y1, S1_ = 0.5, 0.42, 0.86; ZOOM = 0.48
+    X0, Y0, H0 = 0.58, 0.42, 0.36; X1, Y1, S1_ = 0.5, 0.47, 0.86; ZOOM = 0.24
     CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -1871,9 +1869,7 @@ def place_wall_works():
     # the fountains, far out past the wall's end on the outer side
     # (the far fountains and their smoke are cut from this beat: over the crest they read as flame sprites, and a tall smoke box blacked the sky)
     def light():
-        k = iceland_light(sun_elev=34, sun_az=190, sun=3.0, sky=0.4, haze=0.9)           # beat 3's light, on beat 3's wall
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.8, rot=math.radians(110))
-        return k
+        return FX.sky("day", sun_az=-75)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
     return dict(light=light, wall=wall, house=houses[0], houses=houses)
 
 
