@@ -1,17 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-26T12:03:22Z",
+ "updated": "2026-11-26T12:26:47Z",
  "open": [
   {
-   "id": "fifty-otters-survived-climate-fight__960dcb0a",
+   "id": "fifty-otters-survived-climate-fight__960dcb0a_r1",
    "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-25T23:02:36Z",
+   "filed": "2026-11-26T12:26:47Z",
    "why": [
     "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the headline's focus on the 50 survivors and doesn't directly",
     "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: While it mentions carbon storage, it doesn't logically follow from beat 1 and the connection to the 50 otters guarding t"
    ],
-   "request": "exchange/rewrites/20261125/fifty-otters-survived-climate-fight__960dcb0a.request.json",
-   "answer_path": "exchange/rewrites/20261125/fifty-otters-survived-climate-fight__960dcb0a.answer.json"
+   "request": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__960dcb0a_r1.request.json",
+   "answer_path": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__960dcb0a_r1.answer.json"
   },
   {
    "id": "right-whale-breeding-females__bdedbccb",
