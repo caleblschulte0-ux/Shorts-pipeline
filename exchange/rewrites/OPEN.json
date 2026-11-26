@@ -1,7 +1,82 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-26T12:31:07Z",
+ "updated": "2026-11-26T12:33:22Z",
  "open": [
+  {
+   "id": "hadza-gut-bacteria-vs-americans__efaf2d65_r2",
+   "slug": "hadza-gut-bacteria-vs-americans",
+   "filed": "2026-11-26T12:33:21Z",
+   "why": [
+    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('Why Hunter-Gatherers Have Richer Gut Bacteria') — brain: Introduces antibiotics as a separate cause rather than a consequence of the previous fiber explanation, breaking the req"
+   ],
+   "request": "exchange/rewrites/20261126/hadza-gut-bacteria-vs-americans__efaf2d65_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/hadza-gut-bacteria-vs-americans__efaf2d65_r2.answer.json"
+  },
+  {
+   "id": "normal-body-temperature-has-shifted__75403cdd_r2",
+   "slug": "normal-body-temperature-has-shifted",
+   "filed": "2026-11-26T12:33:21Z",
+   "why": [
+    "thesis: seg1 ('Body Temperature Sex') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Introduces a gender‑specific detail that doesn't directly prove the headline claim and isn't a logical consequence of be",
+    "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: States the old standard was wrong but doesn't follow logically from beat 1's gender discussion, breaking the sequential "
+   ],
+   "request": "exchange/rewrites/20261126/normal-body-temperature-has-shifted__75403cdd_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/normal-body-temperature-has-shifted__75403cdd_r2.answer.json"
+  },
+  {
+   "id": "ocean-floor-vs-mars-mapped__0bcaeed3_r2",
+   "slug": "ocean-floor-vs-mars-mapped",
+   "filed": "2026-11-26T12:33:21Z",
+   "why": [
+    "repeat: the TITLE is too close to a video already up: \"We've Mapped Mars Better Than Our Own Ocean\". The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
+    "beats: seg1: the line's headline number (1.4e+08) is 403,807x away from anything this beat's picture can show — say a number the picture shows",
+    "pace: hook is 19 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261126/ocean-floor-vs-mars-mapped__0bcaeed3_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/ocean-floor-vs-mars-mapped__0bcaeed3_r2.answer.json"
+  },
+  {
+   "id": "ocean-is-changing-color__39dee9bf_r2",
+   "slug": "ocean-is-changing-color",
+   "filed": "2026-11-26T12:33:21Z",
+   "why": [
+    "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Adds a predictive background rather than a logical consequence of beat 0.",
+    "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Provides size detail but doesn't directly follow from the prediction discussed in beat 1."
+   ],
+   "request": "exchange/rewrites/20261126/ocean-is-changing-color__39dee9bf_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/ocean-is-changing-color__39dee9bf_r2.answer.json"
+  },
+  {
+   "id": "back-to-sleep-campaign-cut-sids__815581e6_r2",
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "filed": "2026-11-26T12:33:20Z",
+   "why": [
+    "thesis: seg2 ('Baby deaths remain') does not continue the story of the headline ('Why One Simple Rule Cut Baby Deaths In Half') — brain: Adds leftover deaths info but doesn't directly prove the rule cut deaths in half nor clearly follow from the previous be"
+   ],
+   "request": "exchange/rewrites/20261126/back-to-sleep-campaign-cut-sids__815581e6_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/back-to-sleep-campaign-cut-sids__815581e6_r2.answer.json"
+  },
+  {
+   "id": "blood-type-rarity__b15ee3cb_r2",
+   "slug": "blood-type-rarity",
+   "filed": "2026-11-26T12:33:20Z",
+   "why": [
+    "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh-negative prevalence, not the specific rare blood type (AB negative) claimed, so it doesn't directly prove t",
+    "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Provides ethnic donor distribution, which is unrelated to the rarity of the specific blood type causing hospital panic."
+   ],
+   "request": "exchange/rewrites/20261126/blood-type-rarity__b15ee3cb_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/blood-type-rarity__b15ee3cb_r2.answer.json"
+  },
+  {
+   "id": "cohabitation-overtakes-marriage__3abe4654_r2",
+   "slug": "cohabitation-overtakes-marriage",
+   "filed": "2026-11-26T12:33:20Z",
+   "why": [
+    "premise: brain: The hook is vague and offers no concrete surprise, threat, or striking scale for viewers to picture."
+   ],
+   "request": "exchange/rewrites/20261126/cohabitation-overtakes-marriage__3abe4654_r2.request.json",
+   "answer_path": "exchange/rewrites/20261126/cohabitation-overtakes-marriage__3abe4654_r2.answer.json"
+  },
   {
    "id": "us-stops-making-pennies-232-years__68b3f7da_r2",
    "slug": "us-stops-making-pennies-232-years",
@@ -63,102 +138,6 @@
    ],
    "request": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__efaf2d65_r1",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('Why Hunter-Gatherers Have Richer Gut Bacteria') — brain: Introduces antibiotics as a separate cause rather than a consequence of the previous fiber explanation, breaking the req"
-   ],
-   "request": "exchange/rewrites/20261125/hadza-gut-bacteria-vs-americans__efaf2d65_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/hadza-gut-bacteria-vs-americans__efaf2d65_r1.answer.json"
-  },
-  {
-   "id": "normal-body-temperature-has-shifted__75403cdd_r1",
-   "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "thesis: seg1 ('Body Temperature Sex') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Introduces a gender‑specific detail that doesn't directly prove the headline claim and isn't a logical consequence of be",
-    "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: States the old standard was wrong but doesn't follow logically from beat 1's gender discussion, breaking the sequential "
-   ],
-   "request": "exchange/rewrites/20261125/normal-body-temperature-has-shifted__75403cdd_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/normal-body-temperature-has-shifted__75403cdd_r1.answer.json"
-  },
-  {
-   "id": "ocean-floor-vs-mars-mapped__0bcaeed3_r1",
-   "slug": "ocean-floor-vs-mars-mapped",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "repeat: the TITLE is too close to a video already up: \"We've Mapped Mars Better Than Our Own Ocean\". The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
-    "beats: seg1: the line's headline number (1.4e+08) is 403,807x away from anything this beat's picture can show — say a number the picture shows",
-    "pace: hook is 19 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261125/ocean-floor-vs-mars-mapped__0bcaeed3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/ocean-floor-vs-mars-mapped__0bcaeed3_r1.answer.json"
-  },
-  {
-   "id": "ocean-is-changing-color__39dee9bf_r1",
-   "slug": "ocean-is-changing-color",
-   "filed": "2026-11-25T12:25:58Z",
-   "why": [
-    "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Adds a predictive background rather than a logical consequence of beat 0.",
-    "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Provides size detail but doesn't directly follow from the prediction discussed in beat 1."
-   ],
-   "request": "exchange/rewrites/20261125/ocean-is-changing-color__39dee9bf_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/ocean-is-changing-color__39dee9bf_r1.answer.json"
-  },
-  {
-   "id": "back-to-sleep-campaign-cut-sids__815581e6_r1",
-   "slug": "back-to-sleep-campaign-cut-sids",
-   "filed": "2026-11-25T12:25:57Z",
-   "why": [
-    "thesis: seg2 ('Baby deaths remain') does not continue the story of the headline ('Why One Simple Rule Cut Baby Deaths In Half') — brain: Adds leftover deaths info but doesn't directly prove the rule cut deaths in half nor clearly follow from the previous be"
-   ],
-   "request": "exchange/rewrites/20261125/back-to-sleep-campaign-cut-sids__815581e6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/back-to-sleep-campaign-cut-sids__815581e6_r1.answer.json"
-  },
-  {
-   "id": "english-internet-share-decline__a3a0f941_r1",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-11-25T12:25:57Z",
-   "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, pictureable surprise or threat; it merely states declining percentages without a compelling hook."
-   ],
-   "request": "exchange/rewrites/20261125/english-internet-share-decline__a3a0f941_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/english-internet-share-decline__a3a0f941_r1.answer.json"
-  },
-  {
-   "id": "blood-type-rarity__b15ee3cb_r1",
-   "slug": "blood-type-rarity",
-   "filed": "2026-11-25T12:23:47Z",
-   "why": [
-    "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh-negative prevalence, not the specific rare blood type (AB negative) claimed, so it doesn't directly prove t",
-    "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Provides ethnic donor distribution, which is unrelated to the rarity of the specific blood type causing hospital panic."
-   ],
-   "request": "exchange/rewrites/20261125/blood-type-rarity__b15ee3cb_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/blood-type-rarity__b15ee3cb_r1.answer.json"
-  },
-  {
-   "id": "cohabitation-overtakes-marriage__3abe4654_r1",
-   "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-25T12:23:47Z",
-   "why": [
-    "premise: brain: The hook is vague and offers no concrete surprise, threat, or striking scale for viewers to picture."
-   ],
-   "request": "exchange/rewrites/20261125/cohabitation-overtakes-marriage__3abe4654_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/cohabitation-overtakes-marriage__3abe4654_r1.answer.json"
-  },
-  {
-   "id": "drug-resistant-infections-2050__b78ec002_r1",
-   "slug": "drug-resistant-infections-2050",
-   "filed": "2026-11-25T12:23:47Z",
-   "why": [
-    "repeat: the TITLE is too close to a video already up: 'Drug-Resistant Infections Now Kill More Than HIV And Malaria'. The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
-    "pace: closing is 23 words (max 18)"
-   ],
-   "request": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002_r1.request.json",
-   "answer_path": "exchange/rewrites/20261125/drug-resistant-infections-2050__b78ec002_r1.answer.json"
   },
   {
    "id": "landline-death-robocall-boom__e5388c21_r1",

@@ -1,0 +1,11 @@
+{
+ "id": "hadza-gut-bacteria-vs-americans__efaf2d65_r1",
+ "slug": "hadza-gut-bacteria-vs-americans",
+ "settled": "2026-11-26T12:33:21Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: American's",
+  "segment 1: new named entity not in the data: Fuel",
+  "segment 2: new named entity not in the data: Loss"
+ ]
+}

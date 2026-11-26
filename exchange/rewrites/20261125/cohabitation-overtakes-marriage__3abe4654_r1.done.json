@@ -1,0 +1,12 @@
+{
+ "id": "cohabitation-overtakes-marriage__3abe4654_r1",
+ "slug": "cohabitation-overtakes-marriage",
+ "settled": "2026-11-26T12:33:20Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Cohabitation, Overtakes",
+  "segment 1: number(s) not derivable from this beat's data: 25, 34",
+  "segment 1: new named entity not in the data: Cohabitation, Decline",
+  "segment 2: new named entity not in the data: Cohabitation"
+ ]
+}
