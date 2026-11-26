@@ -89,8 +89,6 @@ PLAN_BEFORE = {
     "cardrewards": "rendered 2026-11-18; a remake starts from a plan",
     "lightning": "posted 2026-11-23; never built again",
     "honey": "parked after board round 3 (2026-11-23); whoever takes it up again writes the plan first",
-    "lava": "in board rounds when the plan landed (2026-11-26): shots 3, 4 and 5 had passed and carry a plan written from "
-            "what passed; shots 1 and 2 are being restaged by the session that owns them, which writes their entries",
 }
 
 

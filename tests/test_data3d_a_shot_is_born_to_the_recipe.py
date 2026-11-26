@@ -462,12 +462,12 @@ def test_what_the_plan_lists_as_visible_is_measured_in_that_still():
 
 # ------------------------------------------------------------------ no way to start a story around the plan
 
-EXEMPT = {"banana", "cardrewards", "checkout", "helium", "honey", "lava", "lightning", "saffron"}
+EXEMPT = {"banana", "cardrewards", "checkout", "helium", "honey", "lightning", "saffron"}      # (lava left it 2026-11-26: all five of its shots carry a plan)
 
 
-def test_the_stories_staged_before_the_plan_are_these_eight_and_no_new_one_joins_them():
+def test_the_stories_staged_before_the_plan_are_these_seven_and_no_new_one_joins_them():
     assert set(SP.PLAN_BEFORE) == EXEMPT, "a new story is planned; PLAN_BEFORE only ever shrinks"
-    assert SP.held("tulips") and SP.held("") and not SP.held("lava")
+    assert SP.held("tulips") and SP.held("") and SP.held("lava") and not SP.held("honey")
 
 
 @pytest.fixture
