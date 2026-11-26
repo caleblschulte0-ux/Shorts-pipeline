@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "back-to-sleep-campaign-cut-sids__815581e6_r1",
+  "slug": "back-to-sleep-campaign-cut-sids",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T13:05:00Z",
+  "title": "Putting Babies On Their Backs Cut SIDS In Half",
+  "hook": "One free bedtime change transformed infant safety.",
+  "closing": "Back sleeping cut the risk sharply, but safe-sleep habits still protect thousands of babies.",
+  "question": "Do new parents know this rule?",
+  "segments": [
+    {
+      "topic": "Back Sleeping Works",
+      "say": "The SIDS rate fell to 0.64 per thousand births. Back sleeping helped cut the old rate by more than half."
+    },
+    {
+      "topic": "Back Sleeping Replaces",
+      "say": "Before the campaign, 85.4% of SIDS cases involved stomach-down placement. Changing that habit targeted the dominant risk."
+    },
+    {
+      "topic": "Back Sleeping Still Matters",
+      "say": "About 3,400 sleep-related infant deaths still occur yearly. The decline made the rule successful, not obsolete."
+    }
+  ]
+}
