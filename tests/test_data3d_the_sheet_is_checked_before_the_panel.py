@@ -32,10 +32,11 @@ SCRIPT = {
 }
 
 
-def _all_seen(prompt, miss=(), cont_bad=(), still=2):
+def _all_seen(prompt, miss=(), cont_bad=(), still=2, defect_bad=(), no_defects=False):
     ids = re.findall(r"^- (c\d+) \[", prompt, re.M)
     return json.dumps({"claims": [{"id": i, "seen": i not in miss, "still": still, "note": "the hose is in no still" if i in miss else "there"} for i in ids],
-                       "continuity": [{"id": c, "ok": c not in cont_bad, "stills": "2-3", "note": "still 3 is greyer"} for c in PF.CONTINUITY]})
+                       "continuity": [{"id": c, "ok": c not in cont_bad, "stills": "2-3", "note": "still 3 is greyer"} for c in PF.CONTINUITY],
+                       **({} if no_defects else {"defects": [{"id": d, "ok": d not in defect_bad, "stills": "2-4", "note": "the same run, only bigger"} for d in PF.DEFECTS]})})
 
 
 @pytest.fixture
@@ -137,6 +138,35 @@ def test_a_continuity_fault_between_stills_blocks(story):
     assert set(PF.CONTINUITY) == {"props", "grade", "feet", "edges", "different"}
 
 
+def test_a_hard_defect_the_judges_would_fail_blocks_like_an_unticked_claim(story, capsys):
+    """2026-11-26: a sheet with every claim ticked went to the panel and failed on four stills of one run and two stray
+    rods. The look now answers the judges' hard-defect classes too, and code blocks on any one of them."""
+    tmp, sheet = story
+    assert set(PF.DEFECTS) == {"gag", "broken", "look", "body", "consequence"}
+    for did in PF.DEFECTS:
+        rec = PF.check("s", 2, sheet, 4, look=lambda p: _all_seen(p, defect_bad={did}))
+        assert rec["status"] == "blocked" and [d["id"] for d in rec["defects"]] == [did] and not rec["unticked"] and not rec["continuity"]
+        assert not PF.passed("s", 2, sheet)
+        assert any(l.startswith(f"HARD DEFECT {did} (stills 2-4): the same run, only bigger") for l in PF.lines(rec))
+        (tmp / "s" / PF.NAME).unlink()
+    rec = PF.check("s", 2, sheet, 4, look=lambda p: _all_seen(p, no_defects=True))
+    assert rec["status"] == "blocked" and len(rec["defects"]) == len(PF.DEFECTS), "a question the look left out is not answered ok"
+    (tmp / "s" / PF.NAME).unlink()
+    cl = PF.claims(SCRIPT, 2); text = PF.prompt(cl, str(sheet), 4)
+    for what in PF.DEFECTS.values():
+        assert what in text, "every question is put to the look"
+    PF.gate("s", [(2, str(sheet), 4)], look=lambda p: _all_seen(p, defect_bad={"gag"}))
+    assert "1 hard defect(s)" in capsys.readouterr().out
+    assert PF.verdict(PF.check("s", 2, sheet, 4, look=_all_seen))["pass"] is False
+
+
+def test_a_pass_from_before_the_questions_were_asked_is_no_pass(story, monkeypatch):
+    tmp, sheet = story
+    assert PF.check("s", 2, sheet, 4, look=_all_seen)["status"] == "pass" and PF.passed("s", 2, sheet)
+    monkeypatch.setitem(PF.DEFECTS, "new", "a question nobody asked of that sheet")
+    assert not PF.passed("s", 2, sheet)
+
+
 def test_no_answer_is_no_pass_and_nothing_is_recorded(story):
     tmp, sheet = story
     for answer in (None, "", "I could not open the file", '{"claims": "all fine"}'):
@@ -192,7 +222,8 @@ if "checking a storyboard sheet before it is sent" in prompt:
     ids = re.findall(r"^- (c\\d+) \\[", prompt, re.M)
     miss = os.environ.get("FAKE_MISS", "").split()
     print(json.dumps({{"claims": [{{"id": i, "seen": i not in miss, "still": 1, "note": "not in any still"}} for i in ids],
-                      "continuity": [{{"id": c, "ok": True}} for c in ("props", "grade", "feet", "edges", "different")]}}))
+                      "continuity": [{{"id": c, "ok": True}} for c in ("props", "grade", "feet", "edges", "different")],
+                      "defects": [{{"id": d, "ok": True}} for d in ("gag", "broken", "look", "body", "consequence")]}}))
 else:
     log.write("panel\\n")
     shots = [int(n) for n in re.findall(r"^- shot (\\d+):", prompt, re.M)]

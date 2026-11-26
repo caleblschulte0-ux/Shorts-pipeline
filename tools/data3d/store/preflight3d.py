@@ -17,6 +17,9 @@ anything named there and not visible is a hard fail. Nothing compared the stills
                          continuity fault never reaches the panel that round; it prints what to fix, or which promise
                          to take out of the text. No look (no CLI, no answer) is no pass: the round does not run.
   passed(story, n, sheet)  True only for a recorded pass of THIS sheet (its sha256) under THESE claims.
+  DEFECTS / defects()    the same look also answers the judges' hard-defect classes as plain questions (one event
+                         repeated, anything broken, off the look, his body, no consequence). One not answered ok
+                         blocks the sheet exactly like an unticked claim.
 
 The result is kept in stories/<story>/preflight.json keyed by the sheet's sha256. It only ever ADDS a block: it has
 no say in a score, it cannot pass a shot, and the panel's bar is not touched. A wrong block is answered by fixing the
@@ -53,6 +56,24 @@ CONTINUITY = {
                  "reaction), not one picture repeated",
 }
 
+# the judges' own HARD-DEFECT classes, asked of the sheet as plain questions (2026-11-26: two shots lost a panel round
+# each to a sheet whose every claim was ticked: four stills of one run only bigger, two stray rods in the sky, a pale
+# sprite of a fountain). A claim says what must be there; these say what must NOT be. One that fails blocks the sheet.
+DEFECTS = {
+    "gag": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or "
+           "more stills show the same pose or the same action only bigger, nearer, or from another distance",
+    "broken": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing "
+              "floating with no support, nothing that changes place between stills with no cause shown, and no object "
+              "half cut off by a frame edge",
+    "look": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no "
+            "sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+    "body": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests "
+            "on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+    "consequence": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its "
+                   "subject is big enough to read at a glance, and the last still shows the result, not the same "
+                   "picture as the first",
+}
+
 PROMPT = """You are checking a storyboard sheet before it is sent to a panel of judges. The sheet is ONE image of {k} stills
 from one shot of a 3D animated Short starring Data, a small teal cartoon scientist, in time order left to right (top
 to bottom if it wraps). Number them 1 to {k}. READ it with the Read tool: {sheet}
@@ -80,10 +101,15 @@ shot's stills contradicts it.
 CONTINUITY (between the stills):
 {continuity}
 
+HARD DEFECTS (the judges fail a sheet outright for any of these; here, and only here, look as a judge would: answer
+ok false when a stranger would notice the fault at phone size, and say exactly what and in which stills):
+{defects}
+
 Return ONLY JSON:
 {{"claims": [{{"id": "c1", "seen": true|false, "still": N, "note": "what you see, or what is missing"}}, ...],
- "continuity": [{{"id": "props", "ok": true|false, "stills": "2-3", "note": "what breaks, in which stills"}}, ...]}}
-One entry for every claim id and every continuity id above."""
+ "continuity": [{{"id": "props", "ok": true|false, "stills": "2-3", "note": "what breaks, in which stills"}}, ...],
+ "defects": [{{"id": "gag", "ok": true|false, "stills": "2-4", "note": "what the fault is, in which stills"}}, ...]}}
+One entry for every claim id, every continuity id and every hard-defect id above."""
 
 
 def claims(script, n):
@@ -129,7 +155,8 @@ def claims(script, n):
 
 
 def claims_key(cl):
-    return hashlib.sha256(json.dumps([(c["kind"], c["text"]) for c in cl], ensure_ascii=False).encode()).hexdigest()[:16]
+    """the texts AND the questions a sheet was looked at under: a pass from before a question was asked is no pass"""
+    return hashlib.sha256(json.dumps([[(c["kind"], c["text"]) for c in cl], sorted(DEFECTS.items())], ensure_ascii=False).encode()).hexdigest()[:16]
 
 
 def sheet_sha(sheet):
@@ -139,7 +166,8 @@ def sheet_sha(sheet):
 def prompt(cl, sheet, k):
     return PROMPT.format(k=k, sheet=sheet,
                          claims="\n".join(f"- {c['id']} [{c['kind']}, from {c['from']}] {c['text']}" for c in cl),
-                         continuity="\n".join(f"- {i}: {t}" for i, t in CONTINUITY.items()))
+                         continuity="\n".join(f"- {i}: {t}" for i, t in CONTINUITY.items()),
+                         defects="\n".join(f"- {i}: {t}" for i, t in DEFECTS.items()))
 
 
 def look(text):
@@ -186,6 +214,17 @@ def decide(cl, answer, k):
     return unticked, faults
 
 
+def defects(answer):
+    """the hard-defect questions the look did not answer ok: [{"id", "rule", "stills", "note"}]. One left out fails."""
+    got = {str(a.get("id")): a for a in answer.get("defects") or [] if isinstance(a, dict)}
+    out = []
+    for did, what in DEFECTS.items():
+        a = got.get(did) or {}
+        if a.get("ok") is not True:
+            out.append({"id": did, "rule": what, "stills": str(a.get("stills") or ""), "note": str(a.get("note") or "not answered")[:300]})
+    return out
+
+
 def load(story):
     try:
         v = json.loads((STORIES / story / NAME).read_text())
@@ -217,7 +256,7 @@ def recorded(story, n, sheet, cl=None):
 def passed(story, n, sheet):
     """True only when THIS sheet was looked at under THESE claims and every one was ticked"""
     r = recorded(story, n, sheet)
-    return bool(r and r.get("status") == "pass" and not r.get("unticked") and not r.get("continuity"))
+    return bool(r and r.get("status") == "pass" and not r.get("unticked") and not r.get("continuity") and not r.get("defects"))
 
 
 def check(story, n, sheet, k, look=None):
@@ -233,8 +272,9 @@ def check(story, n, sheet, k, look=None):
     if answer is None:
         return {"shot": n, "status": "no_look", "sha256": sheet_sha(sheet), "unticked": [], "continuity": []}
     unticked, faults = decide(cl, answer, k)
-    rec = {"shot": n, "status": "blocked" if unticked or faults else "pass", "sha256": sheet_sha(sheet),
-           "claims_key": claims_key(cl), "claims": len(cl), "stills": k, "unticked": unticked, "continuity": faults,
+    bad = defects(answer)
+    rec = {"shot": n, "status": "blocked" if unticked or faults or bad else "pass", "sha256": sheet_sha(sheet),
+           "claims_key": claims_key(cl), "claims": len(cl), "stills": k, "unticked": unticked, "continuity": faults, "defects": bad,
            "at": time.strftime("%Y-%m-%d %H:%M:%SZ", time.gmtime())}
     led = load(story); led["sheets"][rec["sha256"]] = rec; save(story, led)
     return rec
@@ -252,6 +292,9 @@ def lines(rec):
     for f in rec.get("continuity") or []:
         out.append(f"CONTINUITY {f['id']}" + (f" (stills {f['stills']})" if f.get("stills") else "") + f": {str(f['note']).rstrip('. ')}. "
                    f"The rule: {f['rule']}.")
+    for f in rec.get("defects") or []:
+        out.append(f"HARD DEFECT {f['id']}" + (f" (stills {f['stills']})" if f.get("stills") else "") + f": {str(f['note']).rstrip('. ')}. "
+                   f"The question: {f['rule']}.")
     return out
 
 
@@ -272,7 +315,7 @@ def gate(story, sheets, look=None):
             print(f"PRE-FLIGHT shot {n}: no look answered (sheet {sha}): no pre-flight, no panel", flush=True)
         else:
             print(f"PRE-FLIGHT shot {n}: BLOCKED before the panel (sheet {sha}): {len(r['unticked'])} of {r.get('claims')} "
-                  f"claims not seen, {len(r['continuity'])} continuity fault(s)"
+                  f"claims not seen, {len(r['continuity'])} continuity fault(s), {len(r.get('defects') or [])} hard defect(s)"
                   + (" (kept: this exact sheet was already blocked; change the shot or the text)" if r.get("kept") else ""), flush=True)
             for l in lines(r):
                 print("   " + l, flush=True)

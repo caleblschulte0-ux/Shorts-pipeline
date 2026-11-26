@@ -769,6 +769,66 @@
    "stills": 4,
    "unticked": []
   },
+  "6d0dcd62076ecb4b2af1ce01b119c047c3578053e7d91a84258484fa2db6f1ec": {
+   "at": "2026-11-26 14:46:20Z",
+   "claims": 14,
+   "claims_key": "f19352525c731ee1",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder in Data's hands in still 1 is gone in still 2 and nothing shows where it was set. Still 4 is a different place, with no visible link.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Stills 2 and 3 show nearly the same pose, Data standing with empty hands in front of rocks. Only one real event (holding the boulder) is shown, and the stills do not show it being set down.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "2-3"
+    },
+    {
+     "id": "broken",
+     "note": "Foreground boulders are cut off by the bottom frame edge. In still 2 his hand reaches out toward nothing, and the placement is not shown.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "2-3"
+    },
+    {
+     "id": "look",
+     "note": "The fire fountains read as flat cone-shaped flame sprites. Data is a cartoon against a realistic rock set. The house in still 4 looks like a toy model on flat smeared grass.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "6d0dcd62076ecb4b2af1ce01b119c047c3578053e7d91a84258484fa2db6f1ec",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "ACTION",
+     "note": "Data holds a black boulder in still 1, but he is on flat rubble ground, not walking along a crest. The crest is not visible in the close stills.",
+     "text": "the driver in his hard hat carries a black boulder along the crest in both hands"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "No gap in a row of boulders is shown. The boulder is gone in still 2 and no placing is shown. Boulders at the bottom of the frame are not clearly a row he set it into.",
+     "text": "He sets it into the gap in the row of boulders"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data stands in still 3, but he is slightly bent with arms hanging, beside loose rocks, not a clearly finished row.",
+     "text": "He stands up straight beside the finished row"
+    }
+   ]
+  },
   "70bcc8b8e2725ced47a4ec2f14359ecdeb83791268257896112cd30b9efcd89f": {
    "at": "2026-11-26 10:50:48Z",
    "claims": 17,
