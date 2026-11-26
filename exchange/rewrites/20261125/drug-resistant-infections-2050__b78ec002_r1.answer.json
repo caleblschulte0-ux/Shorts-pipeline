@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "drug-resistant-infections-2050__b78ec002_r1",
+  "slug": "drug-resistant-infections-2050",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T13:05:00Z",
+  "title": "Ten Million Resistance Deaths Are Projected By 2050",
+  "hook": "Today's resistance toll is the start of a cancer-sized crisis.",
+  "closing": "Without effective antibiotics, routine infections could carry the death toll of today's cancer.",
+  "question": "Did you know resistance was this deadly?",
+  "segments": [
+    {
+      "topic": "Resistance Deaths Today",
+      "say": "Resistance directly caused 1.27 million deaths in 2019. The crisis already kills at global scale."
+    },
+    {
+      "topic": "Resistance Deaths Projected",
+      "say": "Annual deaths are projected to reach 10 million by 2050. The toll could multiply dramatically."
+    },
+    {
+      "topic": "Resistance Matches Cancer",
+      "say": "Cancer now kills about 10 million yearly. Drug resistance is projected to reach the same scale."
+    }
+  ]
+}
