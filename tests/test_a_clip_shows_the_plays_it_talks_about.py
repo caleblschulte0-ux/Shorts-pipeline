@@ -55,7 +55,10 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
     def test_make_asks_and_the_ledger_says_what_was_cut_in(self):
         src = (REPO / "scripts" / "sports_samples.py").read_text()
         self.assertIn('broll(c, words, dur, meta["edit"], raw,', src)
-        self.assertIn('"cut_in", "shown",', src)
+        # PR #781 (2026-11-25) added the cut-in SECONDS to the ledger so
+        # run_sports.talking_head can compare them to the cut's length;
+        # the ledger says what was cut in AND for how long.
+        self.assertIn('"cut_in", "cut_in_s", "shown",', src)
 
     def test_the_author_is_told_their_own_plays_count(self):
         self.assertIn("Their OWN plays count", author.SYSTEM)
