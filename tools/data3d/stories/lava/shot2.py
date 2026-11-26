@@ -228,7 +228,7 @@ def shot2():
     """THE WALL GOES UP. Wide and low on the works, tipped up: him at the left with a boulder over his head, the town
     house behind him, the wall low beyond it. Two boulders go back over his shoulder and the wall rises behind the
     house until it stands far over the roof."""
-    T_R1 = 0.5; T_L1 = 0.88; T_GRAB = 0.84; T_R2 = 1.1; T_L2 = 1.72; T_LOOK = 1.4; T_GRIN = 2.5
+    T_R1 = 0.5; T_L1 = 0.88; T_GRAB = 0.84; T_R2 = 1.42; T_L2 = 1.9; T_LOOK = 1.62; T_GRIN = 2.65
     W = lw_win
     P = place_wall_works()
     light = P["light"]
@@ -241,22 +241,22 @@ def shot2():
     bpy.context.view_layer.update()
     for o in P["face"]:
         o.parent = root; o.matrix_parent_inverse = root.matrix_world.inverted()
-    O1, O2 = -(S2_WALL_H - 1.3), -(S2_WALL_H - 3.0)
+    O1, O2 = -(S2_WALL_H - 1.3), -(S2_WALL_H - 4.5)
     def off(t):
-        return O1 + (O2 - O1) * ease(min(1.0, max(0.0, (t - T_L1) / 0.34))) + (0.0 - O2) * ease(min(1.0, max(0.0, (t - T_L2) / 0.45)))
+        return O1 + (O2 - O1) * ease(min(1.0, max(0.0, (t - T_L1) / 0.34))) + (0.0 - O2) * ease(min(1.0, max(0.0, (t - T_L2) / 0.32)))
     for f in range(1, NF + 1):
         root.location = (0, 0, off((f - 1) / FPS)); root.keyframe_insert("location", frame=f)
     dust = [lw_steam(f"wall dust {k}", (P0.x + 1.6 + 2.2 * k, S2_FOOT - 0.5, 0.1), w=3.2, h=2.6, seed=3.7 + k, col=(0.72, 0.68, 0.62), dens=10.0, lean=(0.1, -0.1), rise=0.9,
                      keys=[(T_L2 + 0.02, 0.0), (T_L2 + 0.35, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0) for k in range(2)]      # dust rolling at its foot as it goes up
-    fill = lw_area("works fill", (P0.x + 0.5, P0.y - 1.5, 3.5), (P0.x + 0.5, P0.y + 0.5, 0.0), 0.0, 5, col=(1.0, 0.95, 0.9))     # the sky's light the risen wall takes off the ground, given back: one grade
+    fill = lw_area("works fill", (P0.x + 0.5, P0.y - 1.5, 3.5), (P0.x + 0.5, P0.y + 0.5, 0.0), 0.0, 5, col=(0.9, 0.95, 1.0))     # the sky's light the risen wall takes off the ground, given back: one grade
     for f in range(1, NF + 1):
-        fill.data.energy = 260.0 * (1 - off((f - 1) / FPS) / O1); fill.data.keyframe_insert("energy", frame=f)
+        fill.data.energy = 110.0 * (1 - off((f - 1) / FPS) / O1); fill.data.keyframe_insert("energy", frame=f)
     # ---- his body: a boulder over his head, the heave back, down for the next one, the heave, round to look, to us
     def body(t):
         p = P0.copy()
         dip = 0.06 * W(t, T_R1 + 0.1, 0.18) * (1 - W(t, T_GRAB + 0.03, 0.14)); p.z -= dip   # down for the next boulder
         p.x += 0.07 * W(t, T_LOOK, 0.35) - 0.05 * W(t, T_GRIN - 0.1, 0.35)
-        st = W(t, T_L2 + 0.05, 0.3); p.y -= 0.17 * st; p.z += 0.03 * math.sin(math.pi * st)       # a step back from it as it goes up
+        st = W(t, T_L2 + 0.05, 0.3); p.y -= 0.17 * st; p.z = s2_ground_z(p.x, p.y) - dip + 0.03 * math.sin(math.pi * st)       # a step back from it as it goes up
         yaw = YAW0 + math.radians(8) * W(t, T_LOOK, 0.35) * (1 - W(t, T_GRIN - 0.15, 0.4)) - math.radians(14) * W(t, T_GRIN - 0.15, 0.4)
         return p, yaw, dip
     for f in range(1, NF + 8):
@@ -274,11 +274,12 @@ def shot2():
     def pose(t, P_):
         for sd in "LR":
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
-    for t_, P_ in ((0.0, OVER), (0.14, OVER), (T_R1 - 0.16, BACK), (T_R1 + 0.1, FLUNG), (T_R1 + 0.3, DOWN), (T_GRAB, DOWN), (T_GRAB + 0.1, BACK), (T_R2 + 0.1, FLUNG), (T_R2 + 0.3, FLUNG), (T_LOOK + 0.34, HANG)):
+    for t_, P_ in ((0.0, OVER), (0.14, OVER), (T_R1 - 0.16, BACK), (T_R1 + 0.1, FLUNG), (T_R1 + 0.3, DOWN), (T_GRAB, DOWN), (T_GRAB + 0.1, BACK), (T_GRAB + 0.36, FLUNG), (T_R2 + 0.3, FLUNG), (T_LOOK + 0.34, HANG)):
         pose(t_, P_)
     TOP = Vector((P0.x + 2.4, S2_EDGE + 0.3, S2_WALL_H + 0.3))
     CAM0 = P0 + Vector((0.06, -1.3, 0.42)); LOOK0 = CAM0 + Vector((0.225, 0.974, 0.21))
     data.look_at(CAM0, 0.0, max_yaw=50, max_pitch=30, blend=0.0)
+    data.look_at(TOP, T_L2 + 0.05, max_yaw=48, max_pitch=35, blend=0.2)                       # up at it over his shoulder as it towers
     data.look_at(CAM0, T_GRIN - 0.1, max_yaw=55, max_pitch=40, blend=0.3)
     data.expression("determined", 0.0, T_LOOK, blend=0.15)
     pose(T_L2 + 0.02, HANG)
@@ -291,11 +292,11 @@ def shot2():
     data.finish()
     # ---- the boulders ride his hands, fly back over the house and land on the wall's crest
     rk = lw_noise("wall rock", "#151413", "#3C3834", scale=7, rough=0.95, bump=1.0, detail=8)
-    rnd = lw_random.Random(4); R_ = 0.19
-    hands = {}
+    rnd = lw_random.Random(4); R_ = 0.19; BIG = 1.35
+    hands = {}; fwd = {}
     for f in range(1, NF + 1):
         sc.frame_set(f); bpy.context.view_layer.update()
-        hands[f] = (data.arm.matrix_world @ data.pb["fore.L"].tail + data.arm.matrix_world @ data.pb["fore.R"].tail) / 2 + data.forward() * 0.11
+        hands[f] = (data.arm.matrix_world @ data.pb["fore.L"].tail + data.arm.matrix_world @ data.pb["fore.R"].tail) / 2 + data.forward() * 0.11; fwd[f] = data.forward().copy()
     rocks = []
     for k, (t_g, t_r, t_l, lx) in enumerate(((-1.0, T_R1, T_L1, 1.7), (T_GRAB, T_R2, T_L2, 2.9))):
         o = lw_block(f"boulder {k}", (0, 0, 0), R_, rk, rnd, squash=0.85); rocks.append(o)
@@ -304,13 +305,15 @@ def shot2():
         for f in range(1, NF + 1):
             t = (f - 1) / FPS
             held = hands[f] + Vector((0, 0, R_ * 0.6 + 0.02))
+            if t_g > 0 and t < t_r:
+                g_ = BIG; o.scale = tuple(v * g_ for v in s0); o.keyframe_insert("scale", frame=f)   # it is a big one: over his hat it fills his two hands
             if t < t_g - 0.12: p = rest
             elif t < t_g: p = rest.lerp(hands[f], (t - (t_g - 0.12)) / 0.12)
-            elif t < t_r: p = held if t_g < 0 else hands[f].lerp(held, min(1.0, (t - t_g) / 0.15))
+            elif t < t_r: p = held if t_g < 0 else hands[f].lerp(held + Vector((0, 0, 0.44 * W(t, t_g + 0.06, 0.16))), min(1.0, (t - t_g) / 0.15)) + fwd[f] * (0.16 * W(t, t_g + 0.04, 0.1) * (1 - W(t, t_g + 0.3, 0.14)))   # up over his hard hat, held there, then away
             else:
-                u = min(1.0, (t - t_r) / (t_l - t_r)); p0 = hands[F(t_r)] + Vector((0, 0, R_ * 0.6 + 0.02))
+                u = min(1.0, (t - t_r) / (t_l - t_r)); p0 = hands[F(t_r)] + Vector((0, 0, R_ * 0.6 + 0.02 + (0.44 if t_g > 0 else 0.0)))
                 land = Vector((P0.x + lx, S2_EDGE + 0.1, S2_WALL_H + off(t) + R_ * 1.2))
-                g_ = 1.0 + 1.6 * u; o.scale = tuple(v * g_ for v in s0); o.keyframe_insert("scale", frame=f)   # it lands on the crest's edge, a boulder you can still see from here
+                g_ = (BIG if t_g > 0 else 1.0) * (1.0 + 1.6 * u) / (1.0 + (BIG - 1.0) * u if t_g > 0 else 1.0); o.scale = tuple(v * g_ for v in s0); o.keyframe_insert("scale", frame=f)   # it lands on the crest's edge, a boulder you can still see from here
                 p = p0.lerp(land, u * u); p.x = p0.x + (land.x - p0.x) * u ** 0.7; p.z = p0.z + (land.z - p0.z) * u + 4 * 1.5 * u * (1 - u)
                 o.rotation_euler = (spin * min(t - t_r, t_l - t_r), 0.5 * spin * min(t - t_r, t_l - t_r), 0)
             o.location = p; o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f)
@@ -323,7 +326,7 @@ def shot2():
     hx_, hy_, hw_, hd_ = S2_HOUSE
     gap = Vector((hx_ + hw_ / 2 + 0.9, S2_FOOT, 0.0)); ray = (gap - Vector((CAM.x, CAM.y, 0.0))).normalized()
     fp = gap + ray * 15.0
-    far_f = [lw_fire_column(f"far fountain {k}", (fp.x + 1.3 * (k - 1), fp.y + 0.6 * k, 0.0), w=2.2, h_fire=8.0 + 2.0 * (k % 2), h_smoke=3.0, lean=(0.1, 0.0), t_end=DUR + 1.0,
+    far_f = [lw_fire_column(f"far fountain {k}", (fp.x + 1.3 * (k - 1), fp.y + 0.6 * k, 0.0), w=2.2, h_fire=12.0 + 2.0 * (k % 2), h_smoke=3.0, lean=(0.1, 0.0), t_end=DUR + 1.0,
                             seed=2.1 * k + 0.4, fire=34.0, smoke_d=1.0) for k in range(3)]
     lw_point("far fountain light", (fp.x, fp.y - 2.0, 3.0), 3000.0, col=(1.0, 0.45, 0.12), r=1.5)
     print("S2 FAR FOUNTAINS at", tuple(round(v, 2) for v in fp), flush=True)

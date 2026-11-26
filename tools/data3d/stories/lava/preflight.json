@@ -73,6 +73,136 @@
     }
    ]
   },
+  "648138bf44fe98ee7a77e45098fe2e68e6dc9db8e856b542198d8b0b6df6d653": {
+   "at": "2026-11-26 03:11:17Z",
+   "claims": 17,
+   "claims_key": "35e39fb7438ed413",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder held in still 1 and the one at his feet are both unaccounted for. Still 2 shows only one floating boulder, and in stills 3 and 4 no boulders are carried at all. The wall also jumps in height between stills 1 and 2.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "feet",
+     "note": "His feet look to hover just above the rock floor with no contact shadow. Stills 1 and 2 show him planted.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "648138bf44fe98ee7a77e45098fe2e68e6dc9db8e856b542198d8b0b6df6d653",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
+  "7d142bf473f8e3e3c545917ad0082fd09169234348e317a9d3d8bed19a2bf7b6": {
+   "at": "2026-11-26 02:38:55Z",
+   "claims": 17,
+   "claims_key": "e125f29a542920a4",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder in Data's hands in still 1 and the one at his feet are gone in still 2. Still 2 has a boulder at the top edge but no throw is seen. The loose rocks on the ground change positions across the stills.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "grade",
+     "note": "Stills 1-2 have a bluer sky with a blue-grey look. Stills 3-4 are warmer and brighter. The background wall also changes from small to large.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "1-3"
+    },
+    {
+     "id": "edges",
+     "note": "The boulder in still 2 is cut by the top frame edge. In still 1 the boulder in his hands is whole.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "2"
+    }
+   ],
+   "sha256": "7d142bf473f8e3e3c545917ad0082fd09169234348e317a9d3d8bed19a2bf7b6",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c1",
+     "kind": "PLACE",
+     "note": "A dark rock wall is visible in stills 3-4, but nothing shows it working. It is only a backdrop, with no boulders hitting it and no lava being held back.",
+     "text": "the wall works by day"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "Data holds one boulder in his hands and a second boulder is at his feet. But he is shown from the front and the hat is on, so this is roughly there. The claim says 'two hands' and Data holds it against his chest with both arms, so it is arguably shown. Strictly, only one still shows it.",
+     "text": "the driver in his hard hat holds a black boulder in his two hands, another at his feet"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "No still shows him hurling a boulder up. Still 2 has a boulder at the top edge of the frame, but Data's arm is raised with no boulder in hand, so the throw is only implied. No boulders are seen going up at a wall.",
+     "text": "He hurls boulder after boulder up over his head at the wall"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "The wall does not visibly rise in any still. It is shorter in stills 1-2 and larger in 3-4, but it is a camera or set change rather than a rising wall.",
+     "text": "it rises behind the house"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "The black wall stands behind the roof in stills 3-4 with some grey dust or smoke at the right. It is not far over the roof, and no dust rolls at its foot. The fountains are not visible in stills 3-4, so they could be hidden.",
+     "text": "The wall's black face stands far over the roof, dust rolling at its foot, the fountains hidden behind it"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "The stills show a wall and a house, but a stranger could not tell that a wall of rock was built taller than a house to keep lava out. The wall is not clearly taller than the house until stills 3-4. No build or keeping-out action is shown.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "c56c9f0735eeda184088b35afdd3382488d4780c104fdcafd357d8884151e3b1": {
+   "at": "2026-11-26 03:17:44Z",
+   "claims": 17,
+   "claims_key": "41cef8052ec876a1",
+   "continuity": [
+    {
+     "id": "grade",
+     "note": "Stills 3-4 are noticeably brighter and washed out, with a whiter house and a lighter sky and street. Stills 1-2 are darker and moodier.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "1-2 vs 3-4"
+    }
+   ],
+   "sha256": "c56c9f0735eeda184088b35afdd3382488d4780c104fdcafd357d8884151e3b1",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "In still 3 Data faces the camera with his mouth open. In still 2 his eyes point left, but the window is not yet lit. No still shows him turned round toward the lit window.",
+     "text": "he looks round at it"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The burning houses and the intact row are visible. No wall is shown, and nothing shows that almost nobody moved back, such as empty houses or leaving cars. The window lighting does not carry that.",
+     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    }
+   ]
+  },
   "d17fc40bdc0a156a0db3dae947d33deeb52351cf744be773fbdf517f570f6194": {
    "at": "2026-11-26 01:14:17Z",
    "claims": 15,

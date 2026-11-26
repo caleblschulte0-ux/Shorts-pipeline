@@ -262,9 +262,9 @@ def shot1():
     for k, v in enumerate(vents):                        # each vent a RAGGED fountain: a fat torn body and a thin taller jet beside it, no two the same height (coordinator: "smooth pointed cones side by side")
         h0 = (9.0, 15.0, 7.0, 13.0, 10.0)[k % 5]
         cols.append(lw_fire_column(f"fissure fountain {k}", (v.location.x, S1_RIDGE_Y, v["base_z"]), w=rf.uniform(2.6, 3.4), h_fire=h0, h_smoke=4.0,
-                                   lean=(rf.uniform(-0.25, 0.25), 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=30.0, smoke_d=1.5, rise=3.5, spread=0.34))
+                                   lean=(rf.uniform(-0.25, 0.25), 0.4), t_end=DUR + 1.0, seed=1.9 * k, fire=13.0, smoke_d=1.5, rise=3.5, spread=0.34))
         cols.append(lw_fire_column(f"fissure jet {k}", (v.location.x + rf.uniform(-0.9, 0.9), S1_RIDGE_Y - 0.3, v["base_z"]), w=rf.uniform(1.0, 1.5), h_fire=h0 * rf.uniform(0.55, 1.25), h_smoke=2.0,
-                                   lean=(rf.uniform(-0.5, 0.5), 0.3), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=42.0, smoke_d=0.8, rise=5.0, spread=0.3))
+                                   lean=(rf.uniform(-0.5, 0.5), 0.3), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=24.0, smoke_d=0.8, rise=5.0, spread=0.3))
     nf_ = len(cols)
     for k, (x, ln_) in enumerate(((0.5, -0.35),)):                       # the plume: grey gas and ash boiling off the fissure, leaning downwind, away behind the ridge
         cols.append(lw_steam(f"eruption plume {k}", (S1_FX + x, S1_RIDGE_Y + 2.5, P["fz"] + 1.5), w=6.0, h=16.0, seed=4.4 * k + 1, col=(0.46, 0.45, 0.46),
@@ -272,7 +272,7 @@ def shot1():
     P["founts"] = cols[:nf_]
     for o in P["spat"]: o.hide_render = True
     # flung clots: glowing lumps thrown out of the fountains on high arcs, falling back on the ridge
-    clot = lw_emit("fountain clot", "#FF7A14", 26.0); clots = []
+    clot = lw_emit("fountain clot", "#FF5A0A", 9.0); clots = []
     for k in range(18):
         v = vents[k % len(vents)]; r_ = rf.uniform(0.22, 0.42); per = rf.uniform(1.5, 2.3); ph = rf.uniform(0, per)
         vx = rf.uniform(-2.6, 2.6); vz = rf.uniform(11.0, 16.0)
