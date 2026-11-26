@@ -255,10 +255,10 @@ def shot2():
     # ---- his body: a boulder over his head, the heave back, down for the next one, the heave, round to look, to us
     def body(t):
         p = P0.copy()
-        dip = 0.06 * W(t, T_R1 + 0.1, 0.18) * (1 - W(t, T_GRAB + 0.03, 0.14)); p.z -= dip   # down for the next boulder
+        dip = 0.0 * W(t, T_R1 + 0.1, 0.18) * (1 - W(t, T_GRAB + 0.03, 0.14)); p.z -= dip   # down for the next boulder
         p.x += 0.07 * W(t, T_LOOK, 0.35) - 0.05 * W(t, T_GRIN - 0.1, 0.35)
-        st = W(t, T_L2 - 0.2, 0.3); p.y -= 0.17 * st; p.z = s2_ground_z(p.x, p.y) - dip + 0.03 * math.sin(math.pi * st)       # a step back from it as it goes up
-        yaw = YAW0 + math.radians(44) * W(t, T_L2 - 0.2, 0.3) * (1 - W(t, T_GRIN - 0.2, 0.4)) - math.radians(14) * W(t, T_GRIN - 0.2, 0.4)   # round to look up at it, then to us
+        st = W(t, T_L2 - 0.5, 0.3); p.y -= 0.17 * st; p.z = s2_ground_z(p.x, p.y) - dip + 0.03 * math.sin(math.pi * st)       # a step back from it as it goes up
+        yaw = YAW0 + math.radians(30) * W(t, T_L2 - 0.5, 0.3) * (1 - W(t, T_GRIN - 0.2, 0.4)) - math.radians(14) * W(t, T_GRIN - 0.2, 0.4)   # round to look up at it, then to us
         return p, yaw, dip
     for f in range(1, NF + 8):
         t = (f - 1) / FPS; p, yaw, dip = body(t); data._kobj(t, loc=tuple(p), rot=yaw)

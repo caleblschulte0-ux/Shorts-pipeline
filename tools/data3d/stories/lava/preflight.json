@@ -1,5 +1,31 @@
 {
  "sheets": {
+  "0f0eb5a3902dbd80420765eb0b2ae95f5e4982b241ae4ff01b0a9ea115198ec7": {
+   "at": "2026-11-26 06:29:45Z",
+   "claims": 15,
+   "claims_key": "24148784e2e3a14d",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The lava, which is the subject of the shot, is cut by the left frame edge and its tips nearly touch the top in still 1. A flag is also clipped at the right edge in still 4. Data himself is whole in every still.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1"
+    }
+   ],
+   "sha256": "0f0eb5a3902dbd80420765eb0b2ae95f5e4982b241ae4ff01b0a9ea115198ec7",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data faces the camera and approaches it, but he is never shown looking back at the lava over his shoulder. His eyes glance sideways and his head stays frontal. He also appears to be posed rather than clearly bolting.",
+     "text": "He bolts down the street toward us, looking back at it over his shoulder"
+    }
+   ]
+  },
   "1e0310bba4b06610df2c729f37b10a4d8f970bf1d0f78286da8367fc8f79e2b5": {
    "at": "2026-11-26 01:26:05Z",
    "claims": 15,
@@ -40,6 +66,17 @@
    "sha256": "205edd20b643be48e99b982564ae40f7c819a790456137c0e4fbb9ce8b04fbbb",
    "shot": 2,
    "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
+  "2b35de2f32260f8da1883635f97c8a282253cc692d9cd59a3cd1d17c3aa74c45": {
+   "at": "2026-11-26 06:17:13Z",
+   "claims": 17,
+   "claims_key": "4bbd8134f9297f2d",
+   "continuity": [],
+   "sha256": "2b35de2f32260f8da1883635f97c8a282253cc692d9cd59a3cd1d17c3aa74c45",
+   "shot": 5,
+   "status": "pass",
    "stills": 4,
    "unticked": []
   },
@@ -251,6 +288,17 @@
     }
    ]
   },
+  "51e36215c2a7898d8c096991f9e5a52e8dc3dd39a0f2f01f3fbe1faa2f138e4b": {
+   "at": "2026-11-26 06:22:34Z",
+   "claims": 17,
+   "claims_key": "4bbd8134f9297f2d",
+   "continuity": [],
+   "sha256": "51e36215c2a7898d8c096991f9e5a52e8dc3dd39a0f2f01f3fbe1faa2f138e4b",
+   "shot": 5,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
+  },
   "5c6e1df0f6e498d7dbb1565119d45f8923ea6fa26ea48799f17244dd91f5fe47": {
    "at": "2026-11-26 04:41:50Z",
    "claims": 17,
@@ -269,6 +317,30 @@
      "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
     }
    ]
+  },
+  "61a6a252a04ad31c2e6b8b29e16c377c8332defc02a827dc075f63730cfdc3d2": {
+   "at": "2026-11-26 05:03:02Z",
+   "claims": 16,
+   "claims_key": "3e09a79669a55b9b",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder in his hands and the one at his feet in still 1 are both gone in still 2, where only one boulder is in the air. The other is not shown anywhere. Still 4 shows only vague lumps on the wall crest.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "feet",
+     "note": "In still 3 one foot is lifted mid-step. In still 4 both feet look to hover above the ground.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "61a6a252a04ad31c2e6b8b29e16c377c8332defc02a827dc075f63730cfdc3d2",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
   },
   "648138bf44fe98ee7a77e45098fe2e68e6dc9db8e856b542198d8b0b6df6d653": {
    "at": "2026-11-26 03:11:17Z",
@@ -293,6 +365,32 @@
    "status": "blocked",
    "stills": 4,
    "unticked": []
+  },
+  "70e6b6f36ae4a32262d81068ffbe218907e80b2c75111f4a0901a0cbc4a1c50e": {
+   "at": "2026-11-26 05:42:19Z",
+   "claims": 15,
+   "claims_key": "f334979ae68e4a9e",
+   "continuity": [],
+   "sha256": "70e6b6f36ae4a32262d81068ffbe218907e80b2c75111f4a0901a0cbc4a1c50e",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "He moves toward the camera, but his body faces us and his eyes look up at the lava. No still shows him looking back over his shoulder.",
+     "text": "He bolts down the street toward us, looking back at it over his shoulder"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "He is largest in this still with the fire behind him, but his arms are out at shoulder height with open mitts. They are not flung up as fists beside his head, and he looks only mildly alarmed.",
+     "text": "He ends big in the frame with both fists flung up beside his head, terrified, the fire roaring behind him"
+    }
+   ]
   },
   "771ad76b3e9844e727875833a0d3b523a12502d9fb32ecde31defb6a21873c14": {
    "at": "2026-11-26 03:49:07Z",
@@ -396,6 +494,117 @@
      "id": "c12",
      "kind": "SAYS",
      "note": "The stills show a wall and a house, but a stranger could not tell that a wall of rock was built taller than a house to keep lava out. The wall is not clearly taller than the house until stills 3-4. No build or keeping-out action is shown.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "89e8a1f7d6c8b20c712ee2eeca872af538342032cd871f1679fdcfaef35fb967": {
+   "at": "2026-11-26 06:09:10Z",
+   "claims": 16,
+   "claims_key": "3e09a79669a55b9b",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "In still 1 Data holds one boulder and another lies at his feet. In still 2 his hands are empty, the boulder at his feet is gone, and only one boulder is airborne. The second boulder is not shown going anywhere. The lava fountain visible in still 1 is hidden by the wall from still 2, which is explain",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "feet",
+     "note": "His feet look to hover above the ground with only a faint shadow gap, as if mid-hop, and no claim names a jump. In still 1 they are planted.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "2-4"
+    }
+   ],
+   "sha256": "89e8a1f7d6c8b20c712ee2eeca872af538342032cd871f1679fdcfaef35fb967",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "The wall towers over the house in still 3, but Data's eyes and head are not clearly turned up at its face. The fountains are hidden. His upward look is only in still 2, at the thrown boulder.",
+     "text": "He looks up at the wall's black face towering over the house, the fountains hidden behind it"
+    }
+   ]
+  },
+  "91ed1f796e5910b85996008a5f0a3706d26f76e4dbf4bd2a09461f437245908d": {
+   "at": "2026-11-26 05:30:54Z",
+   "claims": 16,
+   "claims_key": "3e09a79669a55b9b",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "In still 1 he has two boulders, one in his hands and one at his feet. In still 2 only one is in the air, and the other has gone without being shown. The lava fountains also disappear behind the wall.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "feet",
+     "note": "Feet look slightly lifted off the ground in 2 and 4, with a visible gap above the shadow. In 3 one foot is raised.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "2-4"
+    }
+   ],
+   "sha256": "91ed1f796e5910b85996008a5f0a3706d26f76e4dbf4bd2a09461f437245908d",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "The wall's black face towers behind the house and the fountains are hidden. Data is turned in profile, smiling, and is not clearly looking up at the wall.",
+     "text": "He looks up at the wall's black face towering over the house, the fountains hidden behind it"
+    }
+   ]
+  },
+  "9fbde85ea3a589ab28774632df1d4611c68b51514c88afe26ed1c2ec1891fa25": {
+   "at": "2026-11-26 07:05:19Z",
+   "claims": 16,
+   "claims_key": "3e09a79669a55b9b",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The two boulders in still 1 are gone in still 2. One is airborne and the other is not shown. The lava fountains in still 1 vanish from still 2 onward without a visible reason. The wall changes height between stills 1 and 3, which is the intended growth.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    }
+   ],
+   "sha256": "9fbde85ea3a589ab28774632df1d4611c68b51514c88afe26ed1c2ec1891fa25",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "A boulder is airborne above his hat and the wall has grown behind the house. But the wall rises only a little above the roof and is not 'up over the roof'. The throw is shown mid-air, but there is no boulder at the wall and no clear release.",
+     "text": "He hurls the second boulder up over his hard hat at the wall, which has grown up over the roof behind him"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "The wall is tall and dark behind the house, but Data is looking toward the camera and not up at the wall. The fountains are hidden. The look-up action is not shown.",
+     "text": "He looks up at the wall's black face towering over the house, the fountains hidden behind it"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "Data turns to the camera, grins and has a raised arm, with a boulder or two on the wall crest. But the raised hand is open and not a clear fist, and the crest boulders are tiny, so it is only partly shown.",
+     "text": "He turns to us with a fist in the air, grinning, the boulders up on the wall's crest"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The stills show a wall growing behind a house and Data throwing rocks, but the wall is not clearly taller than the house, and nothing says it keeps lava out. In stills 3-4 the wall is only a bit taller than the roof. The line's fact is not clear without sound.",
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
