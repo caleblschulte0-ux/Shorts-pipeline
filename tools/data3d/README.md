@@ -116,6 +116,14 @@ staging (the recipe below), so it is now where a shot STARTS. The order for ever
    lava shots 3, 4 and 5 as they passed must pass; shot 2 as restaged along the crest (commit a91a0a528, judged 38)
    and the wide round-6 restage (483b15222, judged 14) must fail for what the panel said of them.
 
+**What the staging helper was measured on.** `recipe_stage.stage` is plain math and is held by the test over a spread
+of props (close, three-quarter, prop whole and big, nothing behind him). `recipe_stage.perform` (the canned four-event
+performance) was built through `store/shots.py` with no render on ONE scratch shot (a 0.5 m crate, his hand on it) and
+read OK on STAGING, KEYS, TALKING, CAUSE, ANATOMY, CLIPPING, TWITCH, FLUID, REACH, POP, HOLD, READ, FAR and RECIPE. A
+taller crate pushed straight away from the lens failed ANATOMY and CLIPPING, so it is a first performance the checks
+still judge on every build, not a pass. Props over about 0.6 m are staged out of his reach (`st["reach"]` is False) and
+the shot keys its own tool, throw or walk.
+
 ## A shot passes the board in two or three rounds (2026-11-25, after the lava rounds)
 
 The lava short failed seven storyboard rounds overnight and then took four a shot. The board judge

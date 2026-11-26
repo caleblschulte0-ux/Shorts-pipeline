@@ -9,6 +9,7 @@ parts, each held here on recorded evidence:
 tests/data3d_recipe/*.json are the FACTS of real stagings, read off their scenes in Blender (recipe_check.collect, no
 render): lava shots 3, 4 and 5 as they passed the board, and three stagings the board failed, each with what the
 panel said of it. The passed ones must pass; the failed ones must fail for the reason the panel gave."""
+import math
 import ast
 import copy
 import json
@@ -387,3 +388,24 @@ def test_the_readme_tells_a_new_story_the_order():
     order = [doc.index(w) for w in ("store/shot_plan.py", "store/recipe_stage.py", "store/recipe_check.py")]
     assert order == sorted(order), "plan, then the staging helper, then the measured check"
     assert "plan -> validator -> staging helper -> local checks -> pre-flight -> judge" in doc
+
+
+def test_each_move_of_the_performance_lands_before_its_still_and_none_is_a_dead_hold():
+    """the canned performance: the action has landed by still 2, the result by still 3, the reaction by still 4, and no
+    two moves are further apart than store/motion.py's dead hold on a beat of the usual length"""
+    T = RS.TIMES; at = dict(zip(RS.EVENTS, RS.KEYS_AT))
+    assert T["before"] == 0.0 and T["action"] < at["action"] and T["release"] < T["result"] < at["result"] and T["reaction"] < at["reaction"]
+    knots = sorted(set(list(T.values()) + [(T["action"] + T["release"]) / 2, 1.0]))
+    assert max(b - a for a, b in zip(knots, knots[1:])) * 4.6 <= 1.4      # the walk-in is the longest move, and it is a move
+    assert RS.WALK_IN + RS.NEAR[1] < 0.5 and RS.RECOIL + RS.TO_LENS[0] + RS.TO_LENS[1] < 0.5   # no walk on planted feet (motion.GLIDE_D is per stretch)
+
+
+def test_a_prop_he_can_stand_at_is_staged_inside_his_reach_and_a_tall_one_says_it_is_not():
+    for size in ((0.3, 0.3, 0.4), (0.5, 0.4, 0.5), (0.5, 0.4, 0.62)):
+        for side in SP.SIDES:
+            st = RS.stage((3.0, -2.0, 0.1), size, side=side)
+            assert st["ok"] and st["reach"], (size, side, st.get("why"))
+            d = math.hypot(st["grab"][0] - st["data_at"][0], st["grab"][1] - st["data_at"][1])
+            assert RS.NEAR[0] - RS.PALM - 1e-6 <= d <= RS.NEAR[1] + 1e-6 and st["bearing"] <= RS.WORK_DEG
+    tall = RS.stage((3.0, -2.0, 0.1), (0.6, 0.6, 1.6))
+    assert tall["ok"] and not tall["reach"]                               # framed to the recipe, and honest that his hand is not on it

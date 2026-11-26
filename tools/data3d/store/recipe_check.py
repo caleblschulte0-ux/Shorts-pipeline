@@ -308,12 +308,16 @@ def problems(facts, plan=None):
                 out.append(f"HANDS: '{info['label']}' is a grip in mid-move on still {i + 2} (it travels before and after it) and the nearest hand is "
                            f"{g1.get('hand_gap')} m from it (within {REACH} m): a thing he carries has his hands on it")
     # ---- EDGE
+    told = set()                                          # one thing named three ways (its grip, its consequence, its plan prop) is said once
     for k, info in G.items():
         if not info.get("whole"):
             continue
         cut = [i + 1 for i, s in enumerate(st) if cut_by_edge(s["groups"].get(k) or {})]
         if cut:
             b = st[cut[0] - 1]["groups"][k]["box"]
+            if (tuple(cut), tuple(round(v, 3) for v in b)) in told:
+                continue
+            told.add((tuple(cut), tuple(round(v, 3) for v in b)))
             out.append(f"EDGE: '{info['label']}' is cut by the frame edge on still(s) {cut} (its box {[round(v, 2) for v in b]}; the frame is 0..1): "
                        f"come closer to less of it or slide it into the frame; a thing that runs past the frame by design is declared whole: False")
     # ---- CAUSE
