@@ -1,0 +1,2 @@
+# judge_rounds.md is append-only and written by sessions and by data3d_board.yml: two appended rounds are both kept
+tools/data3d/stories/*/judge_rounds.md merge=union
