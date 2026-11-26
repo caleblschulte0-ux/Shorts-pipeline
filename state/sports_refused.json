@@ -147,6 +147,10 @@
   "n": 2,
   "why": "author: no setup or no payoff in the clip"
  },
+ "https://www.reddit.com/r/nba/comments/1y5g6bd/chris_paul_when_asked_if_anything_like_the_aaron": {
+  "n": 2,
+  "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
  "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his": {
   "n": 2,
   "why": "too short: the post runs 7.6s (< 15s)"
@@ -179,6 +183,10 @@
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
  },
+ "https://www.reddit.com/r/nfl/comments/1y3ipbl/highlight_mascots_send_kids_to_the_shadow_realm": {
+  "n": 2,
+  "why": "not English (English p=0.29, 40% English words)"
+ },
  "https://www.reddit.com/r/nfl/comments/1y3l125/micd_up_dan_campbell_impressed_by_jared_goff": {
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
@@ -194,6 +202,18 @@
  "https://www.reddit.com/r/nfl/comments/1y4n2e1/micd_up_caleb_williams_thankful_for_his_offensive": {
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
+ "https://www.reddit.com/r/nfl/comments/1y5fj2h/highlight_aaron_rodgers_on_the_pat_mcafee_show_i": {
+  "n": 2,
+  "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
+ "https://www.reddit.com/r/nfl/comments/1y5fnd1/highlight_aaron_rodgers_says_hc_mike_mccarthy": {
+  "n": 2,
+  "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
+ "https://www.reddit.com/r/nfl/comments/1y5jmht/wnep_mccarthy_confirms_he_broke_huddle_with_1_2_3": {
+  "n": 1,
+  "why": "download failed"
  },
  "https://www.reddit.com/r/soccer/comments/1xujafu/alternate_angles_of_arda_g\u00fclers_stunning_freekick": {
   "n": 2,
@@ -219,6 +239,14 @@
   "n": 2,
   "why": "no sound: the post has no audio track"
  },
+ "https://www.reddit.com/r/soccer/comments/1y114lq/jos\u00e9_mourinho_walks_out_of_his_press_conference": {
+  "n": 2,
+  "why": "not English (English p=0.02, 48% English words)"
+ },
+ "https://www.reddit.com/r/soccer/comments/1y1t0lf/francisco_moura_devastated_after_a_shocking_own": {
+  "n": 2,
+  "why": "not English (English p=0.03, 45% English words)"
+ },
  "https://www.reddit.com/r/soccer/comments/1y2gvdf/lionel_messi_takes_a_throwin_off_gonzalo_tapias": {
   "n": 2,
   "why": "too short: the post runs 6.7s (< 15s)"
@@ -227,9 +255,17 @@
   "n": 2,
   "why": "too short: the post runs 12.6s (< 15s)"
  },
+ "https://www.reddit.com/r/soccer/comments/1y2zrj8/mauricio_pochettino_when_asked_if_man_united_are": {
+  "n": 2,
+  "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
  "https://www.reddit.com/r/soccer/comments/1y4ji6p/cristiano_ronaldo_welcoming_sadio_man\u00e9_at_alnassr": {
   "n": 2,
   "why": "too short: the post runs 6.6s (< 15s)"
+ },
+ "https://www.reddit.com/r/soccer/comments/1y4r5j4/jos\u00e9_mourinho_what_did_i_tell_the_players_in_the": {
+  "n": 2,
+  "why": "not English (English p=0.02, 51% English words)"
  },
  "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight": {
   "n": 2,
