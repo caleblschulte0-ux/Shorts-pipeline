@@ -38258,22 +38258,21 @@
    "hook_was": "Extinction was rare—then one fungus erased 90 frog species.",
    "scorecard": {
     "scores": {
-     "premise": 5,
-     "hook": 12,
-     "arc": 8,
+     "premise": 10,
+     "hook": 15,
+     "arc": 10,
      "factual": 12,
-     "visual_proof": 5,
-     "payoff": 2,
-     "voice": 3
+     "visual_proof": 8,
+     "payoff": 8,
+     "voice": 4
     },
-    "total": 47,
+    "total": 67,
     "fatal": [
-     "missing_payoff",
      "unrenderable_visual"
     ],
-    "weakest": "payoff",
-    "note": "Add a clear payoff that resolves the hook, such as showing a concrete action or solution to the frog crisis, and provide simple, readable visuals that work on a phone screen.",
-    "fp": "9b61a36b4699c68f"
+    "weakest": "arc",
+    "note": "Provide clear, simple visuals that can be easily understood on a phone screen, such as labeled maps or before‑after graphics, instead of vague 'data picture' descriptions.",
+    "fp": "2775075506219cc9"
    }
   },
   {

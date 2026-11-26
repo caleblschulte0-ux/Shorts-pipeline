@@ -16497,6 +16497,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "vinyl is a premium niche under streaming"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-26",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Tattoos used to be a warning sign. Now they're just Tuesday.",
+   "depictions": [
+    "illustrated:forearm-ink",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing varied scenes"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-26",
+   "topic_category": "health",
+   "hook_type": "consequence",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing varied scenes"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-26",
+   "topic_category": "finance",
+   "hook_type": "reveal",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds holding your money.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "illustrated:vote-hall"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing varied scenes"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-26",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "The format everyone buried years ago is now outselling the one that replaced it.",
+   "depictions": [
+    "illustrated:record-sleeves",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing varied scenes"
   }
  ]
 }
