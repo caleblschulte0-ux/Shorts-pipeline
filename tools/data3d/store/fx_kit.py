@@ -312,7 +312,7 @@ SKIES = {
     "afternoon": ("qwantani_afternoon_puresky",           0.60, 3.2, (1.0, 0.90, 0.76), 2.5, "day"),
     "evening":   ("wasteland_clouds_puresky",             0.90, 0.8, (1.0, 0.95, 0.90), 15.0, "overcast"),   # a mild, clear evening with far cloud (it was called "storm", and is not one)
     "heavy":     ("mud_road_puresky",                     0.70, 0.3, (0.95, 0.97, 1.0), 30.0, "overcast"),   # a low, heavy overcast: no sun, soft shadow (the library has no storm sky)
-    "night":     ("qwantani_night_puresky",               0.22, 0.04, (0.75, 0.82, 1.0), 6.0, "blue_hour"),  # stars and a dark sky: what glows is the only light
+    "night":     ("qwantani_night_puresky",               0.07, 0.03, (0.75, 0.82, 1.0), 6.0, "blue_hour"),  # stars and a dark sky: what glows is the only light
 }
 _SUN = {}
 
@@ -1366,10 +1366,15 @@ def lava_fountain(base=(0, 0, 0), h=12.0, w=1.6, length=0.0, yaw=0.0, clots=900,
     along = lambda u, v=0.0, z=0.0: Vector((B_.x + u * cy_ - v * sy_, B_.y + u * sy_ + v * cy_, B_.z + z))
     jet = _spray(name + " jet", tuple(B_), h, w, length, yaw, seed, keys, t_end)
     # the gas above: broad, dark, torn, and lit orange on its underside by the fountain
-    pl = gas(name + " plume", tuple(along(0, 0, 0.55 * h)), w=max(2.0 * w, 0.2 * h) + 0.35 * length, h_fire=0.25 * h, h_smoke=plume, lean=lean, seed=seed * 2.3 + 0.7,
-             fire=0.0, smoke_d=1.9, smoke=(0.15, 0.135, 0.125), rise=3.0, flame_d=0.0, spread=0.3, keys=keys, t_end=t_end, foot=0.3 * h,
-             ramp=(("#FF8A18", 0.0), ("#FF8A18", 1.0)), under=0.45)
-    objs += [jet, pl]
+    npl = 1 if length <= 0 else max(2, min(4, int(round(length / max(0.45 * h, 2.0))) + 1)); plumes = []      # a fissure's gas rises all along it
+    for i in range(npl):
+        u = (i / (npl - 1) - 0.5) * length * 0.8 if npl > 1 else 0.0
+        plumes.append(gas(f"{name} plume {i}" if npl > 1 else name + " plume", tuple(along(u, 0, 0.55 * h)), w=max(2.0 * w, 0.2 * h) + (0.3 * length / npl if npl > 1 else 0.0),
+                          h_fire=0.25 * h, h_smoke=plume * (1.0 if npl == 1 else 0.75 + 0.5 * vn(i * 1.7, seed + 2.0, seed)), lean=lean, seed=seed * 2.3 + 0.7 + i * 5.1,
+                          fire=0.0, smoke_d=1.9, smoke=(0.15, 0.135, 0.125), rise=3.0, flame_d=0.0, spread=0.3, keys=keys, t_end=t_end, foot=0.3 * h,
+                          ramp=(("#FF8A18", 0.0), ("#FF8A18", 1.0)), under=0.45))
+    pl = plumes[0]
+    objs += [jet] + plumes
     rock = ph_mat("burned_ground_01", scale=0.8, tint="#161413", name="fx spatter rock", bump=1.8) if have("burned_ground_01", "textures") else lava_mat("fx spatter rock", heat=0.0)
     wall, blocks = _rampart(name + " rampart", tuple(B_), w, length, yaw, seed, rock, lava_mat("fx spatter hot", heat=0.9, scale=3.2 / max(w, 0.3), fresh=0.25))
     objs += [wall] + blocks
