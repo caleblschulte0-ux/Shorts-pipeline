@@ -1,5 +1,24 @@
 {
  "sheets": {
+  "1e0310bba4b06610df2c729f37b10a4d8f970bf1d0f78286da8367fc8f79e2b5": {
+   "at": "2026-11-26 01:26:05Z",
+   "claims": 15,
+   "claims_key": "0446baeab141ea09",
+   "continuity": [],
+   "sha256": "1e0310bba4b06610df2c729f37b10a4d8f970bf1d0f78286da8367fc8f79e2b5",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "CAMERA",
+     "note": "The camera is at about his chest or eye level, not above his head. He is framed close, but not from above, and we look slightly up at him.",
+     "text": "close on him from just above his head, the street running back behind him"
+    }
+   ]
+  },
   "2fd562375e04b20077a09d05d4069d6c8898aac36da32c9894d4c02d06f84aef": {
    "at": "2026-11-26 00:38:12Z",
    "claims": 16,
@@ -51,6 +70,113 @@
      "kind": "NUMBER",
      "note": "Only one street is shown. There is no way to see 'one town' as a count or size.",
      "text": "one Icelandic town: seen as that count or that size"
+    }
+   ]
+  },
+  "d17fc40bdc0a156a0db3dae947d33deeb52351cf744be773fbdf517f570f6194": {
+   "at": "2026-11-26 01:14:17Z",
+   "claims": 15,
+   "claims_key": "f6c6dda07e5853c0",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder is in his hands in still 1 and in the air in still 2, then gone in stills 3-4 with no landing shown. The wall also appears between stills 2 and 3, the smoke plume changes, and the smoke in the sky differs from still 1.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-3"
+    },
+    {
+     "id": "grade",
+     "note": "Stills 1-2 are bright and saturated. Stills 3-4 are noticeably darker, with a darker ground.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "1-3"
+    }
+   ],
+   "sha256": "d17fc40bdc0a156a0db3dae947d33deeb52351cf744be773fbdf517f570f6194",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "CAMERA",
+     "note": "The camera is at roughly eye level with Data and tipped up a little at most. It is not a wide shot, and the roof is barely in frame, so the framing is not low and wide over the roof.",
+     "text": "low and wide, tipped up over the roof"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "The boulder is in the air above his head in still 2, but he has no overhead heave pose. His arms are out at his sides and the boulder is not shown landing on the wall.",
+     "text": "He heaves the boulder up and back over his head onto the wall"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "The wall stands behind the roof, but there is no burst of dust at its base. The only dust-like thing is a grey smoke plume in the sky, which is not a burst from the wall.",
+     "text": "its black face stands far over the roof in a burst of dust"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The stills show a wall rising behind a house, but a stranger would not read 'taller than a house to keep the lava out'. There is no lava and nothing that reads as Iceland. The wall is built with no visible mechanism, and no lava threatens it.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "dfb3367455091e9aa6bc8e6a21f79352435dd43ddcbc3e2b18dc74f379ff943e": {
+   "at": "2026-11-26 01:13:59Z",
+   "claims": 17,
+   "claims_key": "66f1552da15de632",
+   "continuity": [
+    {
+     "id": "feet",
+     "note": "In still 4 Data's feet hover above the pavement, with no contact shadow and a visible gap. In still 3 they are barely on the ground.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "4"
+    }
+   ],
+   "sha256": "dfb3367455091e9aa6bc8e6a21f79352435dd43ddcbc3e2b18dc74f379ff943e",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "Small windows are visible behind and to the right on the neighbouring house, but they are tiny and read as pale blue-grey, not clearly dark.",
+     "text": "a neighbour's dark windows behind"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "No hill is visible. The burning houses sit on top of this house's roofline, and the black rock beside it is a wall or bank, not a hill.",
+     "text": "the hill over the roof"
+    },
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "TIME",
+     "note": "The sky is a flat pale blue-grey. It reads as an overcast day, with no dawn glow or warm horizon.",
+     "text": "it is dawn"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "Three burning houses with flames and smoke are visible and glowing lava cracks run beneath them. But they sit on a roof ledge, not at the top of a hill, and the black rock is not obviously around them.",
+     "text": "three houses burn side by side at the top of the hill, black lava rock glowing round them"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The three burning houses are shown. No wall and no lava stopped by a wall is visible, and nothing shows people not moving back. A stranger would not get the wall-saved-the-rest fact.",
+     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
     }
    ]
   }

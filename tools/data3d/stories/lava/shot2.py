@@ -187,6 +187,12 @@ def place_wall_works():
     face = lava_rock("wall face rock", 160, (-12, 12, S2_FOOT + 0.2, S2_EDGE - 0.2), lambda x, y: s2_face_z(y - 0.006 * x * x), seed=17, r=(0.1, 0.32))   # the black rock it is built of, tumbled down its face
     hx, hy, hw, hd = S2_HOUSE
     house = town_house("town house by the wall", (hx, hy, 0.0), yaw=0.0, w=hw, d=hd, storeys=1, base=0.3, roof="#B8352B", wall="#F1EEE6", seed=5)   # the scale: a whole house, and the wall stands far over its roof
+    blue = lw_paint("flag blue", "#02529C", rough=0.7); white = lw_paint("flag white", "#F4F4F0", rough=0.7); red = lw_paint("flag red", "#DC1E35", rough=0.7)
+    c = Vector((hx + hw / 2 - 0.2, hy - hd / 2 - 0.5, 1.3))                       # ICELAND: the flag on a pole off the house front
+    for nm, off_, size, m in (("field", (0, 0, 0), (0.6, 0.012, 0.42), blue), ("white bar", (-0.09, -0.002, 0), (0.12, 0.016, 0.42), white), ("white band", (0, -0.002, 0), (0.6, 0.016, 0.12), white),
+                              ("red bar", (-0.09, -0.004, 0), (0.06, 0.02, 0.42), red), ("red band", (0, -0.004, 0), (0.6, 0.02, 0.06), red)):
+        K.box(f"icelandic flag {nm}", tuple(c + Vector(off_)), size, m, bev=0.0)
+    K.cyl("flag pole", (c.x - 0.31, c.y + 0.25, 1.3), 0.014, 0.55, lw_metal("flag pole", "#D8D8D4", rough=0.4), rot=(math.pi / 2, 0, 0), v=10)
     far = []
     for k, (x, a_, b_) in enumerate(((-9.0, 0.75, -1.9), (10.5, 0.9, -2.1))):   # other diggers at work along the wall: built, not boxes
         before = set(bpy.data.objects)
@@ -207,8 +213,8 @@ def place_wall_works():
         ph_model("cement_bag", (x, y, s2_ground_z(x, y) + 0.06 * k), rot=(0, 0, 0.4 * k), scale=0.5, name=f"cement bag {k}")
     for k, (x, y) in enumerate(((5.2, 0.6), (5.6, 0.9))):
         ph_model("barrel_03", (x, y, s2_ground_z(x, y)), rot=(0, 0, k), scale=0.5, name=f"fuel drum {k}")
-    for k, x in enumerate((1.5,)):   # the eruption's smoke beyond the wall
-        lw_steam(f"eruption smoke {k}", (x, S2_WALL_Y + 9.0 + 2 * k, S2_WALL_H - 1.5), w=4.5, h=14.0, seed=5.1 * k + 2, col=(0.4, 0.38, 0.38),
+    for k, x in enumerate((5.2,)):   # the eruption's smoke beyond the wall
+        lw_steam(f"eruption smoke {k}", (x, S2_WALL_Y + 13.0 + 2 * k, S2_WALL_H - 1.5), w=4.5, h=14.0, seed=5.1 * k + 2, col=(0.4, 0.38, 0.38),
                  dens=2.2, lean=(0.6, 0.3), rise=1.0, grow=False, t_end=12.0)
 
     def light():
@@ -222,12 +228,12 @@ def shot2():
     """THE WALL GOES UP. Wide and low on the works, tipped up: him at the left with a boulder over his head, the town
     house behind him, the wall low beyond it. Two boulders go back over his shoulder and the wall rises behind the
     house until it stands far over the roof."""
-    T_R2 = 1.19; T_L2 = 1.72; T_LOOK = 1.4; T_GRIN = 2.5
+    T_R1 = 0.5; T_L1 = 0.88; T_GRAB = 0.84; T_R2 = 1.1; T_L2 = 1.72; T_LOOK = 1.4; T_GRIN = 2.5
     W = lw_win
     P = place_wall_works()
     light = P["light"]
     data = load_data()
-    P0 = Vector((S2_P0[0], S2_P0[1], s2_ground_z(*S2_P0))); YAW0 = math.radians(22)
+    P0 = Vector((S2_P0[0], S2_P0[1], s2_ground_z(*S2_P0))); YAW0 = math.radians(34)
     data.place(P0.x, P0.y, math.degrees(YAW0)); data._kobj(0.0, loc=tuple(P0))
     kit = hard_hat(data)
     # ---- the wall: it stands low behind the house and RISES as his boulders land on it
@@ -235,25 +241,29 @@ def shot2():
     bpy.context.view_layer.update()
     for o in P["face"]:
         o.parent = root; o.matrix_parent_inverse = root.matrix_world.inverted()
-    O1, O2 = -(S2_WALL_H - 1.3), -(S2_WALL_H - 3.4)
+    O1, O2 = -(S2_WALL_H - 1.3), -(S2_WALL_H - 3.0)
     def off(t):
-        return O1 * (1 - ease(min(1.0, max(0.0, (t - T_L2) / 0.45))))
+        return O1 + (O2 - O1) * ease(min(1.0, max(0.0, (t - T_L1) / 0.34))) + (0.0 - O2) * ease(min(1.0, max(0.0, (t - T_L2) / 0.45)))
     for f in range(1, NF + 1):
         root.location = (0, 0, off((f - 1) / FPS)); root.keyframe_insert("location", frame=f)
-    dust = [lw_steam("wall dust", (P0.x + 2.2, S2_EDGE + 0.3, S2_WALL_H - 0.2), w=3.0, h=3.0, seed=3.7, col=(0.66, 0.62, 0.56), dens=9.0, lean=(0.2, 0.1), rise=1.2,
-                     keys=[(T_L2 + 0.05, 0.0), (T_L2 + 0.4, 1.0), (DUR + 0.5, 0.7)], t_end=DUR + 1.0)]
+    dust = [lw_steam(f"wall dust {k}", (P0.x + 1.6 + 2.2 * k, S2_FOOT - 0.5, 0.1), w=3.2, h=2.6, seed=3.7 + k, col=(0.72, 0.68, 0.62), dens=10.0, lean=(0.1, -0.1), rise=0.9,
+                     keys=[(T_L2 + 0.02, 0.0), (T_L2 + 0.35, 1.0), (DUR + 0.5, 0.8)], t_end=DUR + 1.0) for k in range(2)]      # dust rolling at its foot as it goes up
+    fill = lw_area("works fill", (P0.x + 0.5, P0.y - 1.5, 3.5), (P0.x + 0.5, P0.y + 0.5, 0.0), 0.0, 5, col=(1.0, 0.95, 0.9))     # the sky's light the risen wall takes off the ground, given back: one grade
+    for f in range(1, NF + 1):
+        fill.data.energy = 260.0 * (1 - off((f - 1) / FPS) / O1); fill.data.keyframe_insert("energy", frame=f)
     # ---- his body: a boulder over his head, the heave back, down for the next one, the heave, round to look, to us
     def body(t):
         p = P0.copy()
-        dip = 0.05 * (W(t, 0.3, 0.2) * (1 - W(t, 0.55, 0.2)) + W(t, T_R2 - 0.3, 0.15) * (1 - W(t, T_R2 - 0.08, 0.12))); p.z -= dip   # he hefts it, then sinks into the heave
+        dip = 0.06 * W(t, T_R1 + 0.1, 0.18) * (1 - W(t, T_GRAB + 0.03, 0.14)); p.z -= dip   # down for the next boulder
         p.x += 0.07 * W(t, T_LOOK, 0.35) - 0.05 * W(t, T_GRIN - 0.1, 0.35)
+        st = W(t, T_L2 + 0.05, 0.3); p.y -= 0.17 * st; p.z += 0.03 * math.sin(math.pi * st)       # a step back from it as it goes up
         yaw = YAW0 + math.radians(8) * W(t, T_LOOK, 0.35) * (1 - W(t, T_GRIN - 0.15, 0.4)) - math.radians(14) * W(t, T_GRIN - 0.15, 0.4)
         return p, yaw, dip
     for f in range(1, NF + 8):
         t = (f - 1) / FPS; p, yaw, dip = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
         if dip > 0.002: data._plant_feet_here(t)
     heave = lambda t, t_r: -22 * W(t, t_r - 0.22, 0.14) * (1 - W(t, t_r - 0.04, 0.1))            # back as he winds up, forward through the throw
-    lw_layer(data, "spine", lambda t: (heave(t, T_R2) - 6 * W(t, 0.3, 0.2) * (1 - W(t, 0.55, 0.2)) + 14 * W(t, T_R2 - 0.03, 0.1) * (1 - W(t, T_R2 + 0.15, 0.15))
+    lw_layer(data, "spine", lambda t: (heave(t, T_R1) + heave(t, T_R2) + 36 * W(t, T_R1 + 0.1, 0.18) * (1 - W(t, T_GRAB + 0.02, 0.14)) + 14 * W(t, T_R2 - 0.03, 0.1) * (1 - W(t, T_R2 + 0.15, 0.15))
                                        + 8 * W(t, T_L2, 0.2) * (1 - W(t, T_GRIN - 0.2, 0.3)), 0, 0), 0, DUR + 0.4)
     OVER = lambda sg: ((-58, 0, -sg * 6), (-38, 0, sg * 18), (0, 0, 0))                       # the boulder on his two hands in front of his chest
     BACK = lambda sg: ((-30, 0, -sg * 6), (-30, 0, sg * 16), (0, 0, 0))                       # the wind-up: down to his belt
@@ -264,7 +274,7 @@ def shot2():
     def pose(t, P_):
         for sd in "LR":
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
-    for t_, P_ in ((0.0, OVER), (0.42, BACK), (0.72, OVER), (T_R2 - 0.26, BACK), (T_R2 + 0.07, FLUNG), (T_R2 + 0.3, FLUNG), (T_LOOK + 0.34, HANG)):
+    for t_, P_ in ((0.0, OVER), (0.14, OVER), (T_R1 - 0.16, BACK), (T_R1 + 0.1, FLUNG), (T_R1 + 0.3, DOWN), (T_GRAB, DOWN), (T_GRAB + 0.1, BACK), (T_R2 + 0.1, FLUNG), (T_R2 + 0.3, FLUNG), (T_LOOK + 0.34, HANG)):
         pose(t_, P_)
     TOP = Vector((P0.x + 2.4, S2_EDGE + 0.3, S2_WALL_H + 0.3))
     CAM0 = P0 + Vector((0.06, -1.3, 0.42)); LOOK0 = CAM0 + Vector((0.225, 0.974, 0.21))
@@ -287,10 +297,10 @@ def shot2():
         sc.frame_set(f); bpy.context.view_layer.update()
         hands[f] = (data.arm.matrix_world @ data.pb["fore.L"].tail + data.arm.matrix_world @ data.pb["fore.R"].tail) / 2 + data.forward() * 0.11
     rocks = []
-    for k, (t_g, t_r, t_l, lx) in enumerate(((-1.0, T_R2, T_L2, 2.4),)):
+    for k, (t_g, t_r, t_l, lx) in enumerate(((-1.0, T_R1, T_L1, 1.7), (T_GRAB, T_R2, T_L2, 2.9))):
         o = lw_block(f"boulder {k}", (0, 0, 0), R_, rk, rnd, squash=0.85); rocks.append(o)
         rest = Vector((P0.x + 0.28, P0.y - 0.16, P0.z + R_ * 0.5))                             # the second one waits at his feet
-        spin = rnd.uniform(4, 7)
+        spin = rnd.uniform(4, 7); s0 = tuple(o.scale)
         for f in range(1, NF + 1):
             t = (f - 1) / FPS
             held = hands[f] + Vector((0, 0, R_ * 0.6 + 0.02))
@@ -299,16 +309,26 @@ def shot2():
             elif t < t_r: p = held if t_g < 0 else hands[f].lerp(held, min(1.0, (t - t_g) / 0.15))
             else:
                 u = min(1.0, (t - t_r) / (t_l - t_r)); p0 = hands[F(t_r)] + Vector((0, 0, R_ * 0.6 + 0.02))
-                land = Vector((P0.x + lx, S2_EDGE + 0.35, S2_WALL_H + off(t) + R_ * 0.5))
-                p = p0.lerp(land, u * u); p.z = p0.z + (land.z - p0.z) * u + 4 * 1.5 * u * (1 - u)
+                land = Vector((P0.x + lx, S2_EDGE + 0.1, S2_WALL_H + off(t) + R_ * 1.2))
+                g_ = 1.0 + 1.6 * u; o.scale = tuple(v * g_ for v in s0); o.keyframe_insert("scale", frame=f)   # it lands on the crest's edge, a boulder you can still see from here
+                p = p0.lerp(land, u * u); p.x = p0.x + (land.x - p0.x) * u ** 0.7; p.z = p0.z + (land.z - p0.z) * u + 4 * 1.5 * u * (1 - u)
                 o.rotation_euler = (spin * min(t - t_r, t_l - t_r), 0.5 * spin * min(t - t_r, t_l - t_r), 0)
             o.location = p; o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f)
     # ---- the lens: WIDE and low on the works in front of him, tipped up: him at the left, the house behind him, the
     # wall beyond it, to its crest when it has risen
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.27, 0.56), height=0.375, t=0.0)
+    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(0.29, 0.56), height=0.375, t=0.0)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=24.0, fstop=22.0)
+    # the eruption it is built against: lava fountains far off beyond it, on the lens's line through the gap beside the house:
+    # in sight over the low wall, hidden when it has risen
+    hx_, hy_, hw_, hd_ = S2_HOUSE
+    gap = Vector((hx_ + hw_ / 2 + 0.9, S2_FOOT, 0.0)); ray = (gap - Vector((CAM.x, CAM.y, 0.0))).normalized()
+    fp = gap + ray * 15.0
+    far_f = [lw_fire_column(f"far fountain {k}", (fp.x + 1.3 * (k - 1), fp.y + 0.6 * k, 0.0), w=2.2, h_fire=8.0 + 2.0 * (k % 2), h_smoke=3.0, lean=(0.1, 0.0), t_end=DUR + 1.0,
+                            seed=2.1 * k + 0.4, fire=34.0, smoke_d=1.0) for k in range(3)]
+    lw_point("far fountain light", (fp.x, fp.y - 2.0, 3.0), 3000.0, col=(1.0, 0.45, 0.12), r=1.5)
+    print("S2 FAR FOUNTAINS at", tuple(round(v, 2) for v in fp), flush=True)
     lw_cut(cam, lambda t: (CAM, LOOK, data.pos() + Vector((0, 0, 0.6))), lambda t: (CAM, LOOK, data.pos()), -1.0, -1.0, 24.0, 24.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("boulder",), cutaway=None,
                 boxes=[],
-                conseq=[("he heaves the black boulder up and back over his head onto the wall", lambda: rocks, 0.0, T_R2 + 0.08, {"whole": False}),
-                        ("the rock wall rises behind the house until it stands far over the roof", lambda: [P["wall"]["body"]], T_L2, DUR, {"whole": False})])
+                conseq=[("he hurls the black boulders up over his head at the wall", lambda: rocks[:1], 0.0, T_R1 + 0.08, {"whole": False}),
+                        ("the rock wall rises behind the house until it stands far over the roof", lambda: [P["wall"]["body"]], T_L1, DUR, {"whole": False})])
