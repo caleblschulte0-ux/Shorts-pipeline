@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "frog-fungus-mass-extinction__f17b2f42_r1",
+  "slug": "frog-fungus-mass-extinction",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T12:45:00Z",
+  "title": "One Fungus Has Hit 501 Amphibian Species",
+  "hook": "The deadliest wildlife disease is still pushing amphibians backward.",
+  "closing": "The fungus caused a mass die-off, and many surviving species are still losing ground.",
+  "question": "Which frog would you protect?",
+  "segments": [
+    {
+      "topic": "Fungus Species Toll",
+      "say": "The fungus affected 501 amphibian species. Its toll spans extinctions and hundreds of surviving populations."
+    },
+    {
+      "topic": "Fungus Declines Continue",
+      "say": "About 39% of affected species are still declining. Survival has not meant recovery."
+    },
+    {
+      "topic": "Fungus Hits Frogs",
+      "say": "The fungus hit 40 Australian frog species. One country's toll shows how broadly the disease reaches."
+    }
+  ]
+}
