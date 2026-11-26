@@ -106,10 +106,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance rise is presented as another fact, not shown as a consequence of the previous viewership increase."
+  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance growth is another metric but doesn't directly follow from the previous viewership fact; it's not a causal con"
  ],
  "reasons": [
-  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance rise is presented as another fact, not shown as a consequence of the previous viewership increase."
+  "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance growth is another metric but doesn't directly follow from the previous viewership fact; it's not a causal con"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -143,5 +143,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T14:15:14Z"
+ "refiled": "2026-11-26T16:35:10Z"
 }

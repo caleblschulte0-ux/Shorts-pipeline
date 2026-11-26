@@ -3,24 +3,24 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 10,
+   "premise": 12,
    "hook": 16,
-   "arc": 12,
+   "arc": 15,
    "factual": 12,
-   "visual_proof": 8,
+   "visual_proof": 12,
    "payoff": 8,
    "voice": 4
   },
-  "total": 70,
+  "total": 79,
   "fatal": [],
-  "weakest": "visual_proof",
-  "note": "Simplify the visual descriptions so they are instantly recognizable on a phone screen; use clearer, less abstract imagery.",
-  "fp": "37f131daa56a2359"
+  "weakest": "arc",
+  "note": "Clarify the specific numbers (e.g., \"10 new reactors\" and \"78 large reactors\") with up‑to‑date, verifiable data to avoid the invented_fact risk and boost factual credibility.",
+  "fp": "71934dad25757c1f"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Nuclear power was supposed to be finished. One country is building it like crazy.",
+   "ears": "Nuclear was supposed to be dead. China didn't get the memo.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },

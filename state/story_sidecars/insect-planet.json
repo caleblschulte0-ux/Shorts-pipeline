@@ -3,21 +3,19 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 12,
+   "premise": 10,
    "hook": 18,
-   "arc": 14,
+   "arc": 12,
    "factual": 13,
-   "visual_proof": 10,
-   "payoff": 9,
+   "visual_proof": 9,
+   "payoff": 8,
    "voice": 4
   },
-  "total": 80,
-  "fatal": [
-   "unrenderable_visual"
-  ],
-  "weakest": "visual_proof",
-  "note": "Specify clear, simple visuals that are easily readable on a phone screen.",
-  "fp": "23416c44cfd4d9ea"
+  "total": 74,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "Make the beats build a clearer story rather than just listing facts, e.g., show how the unknown bugs affect us or surprise the viewer.",
+  "fp": "743185fa0ecedfe7"
  },
  "storyboard": [
   {

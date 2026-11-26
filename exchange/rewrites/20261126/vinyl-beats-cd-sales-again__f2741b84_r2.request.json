@@ -98,12 +98,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds another fact but doesn’t logically follow from beat 0; it’s not a consequence of the previous point.",
-  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Doesn’t support the claim that vinyl is beating CDs and isn’t a continuation of the prior beat."
+  "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds a separate metric rather than a consequence of beat 0, so it doesn’t follow logically.",
+  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Discusses streaming market share, not evidence that vinyl outsells CDs, and doesn’t follow from beat 1."
  ],
  "reasons": [
-  "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds another fact but doesn’t logically follow from beat 0; it’s not a consequence of the previous point.",
-  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Doesn’t support the claim that vinyl is beating CDs and isn’t a continuation of the prior beat."
+  "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds a separate metric rather than a consequence of beat 0, so it doesn’t follow logically.",
+  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Discusses streaming market share, not evidence that vinyl outsells CDs, and doesn’t follow from beat 1."
  ],
  "judge": null,
  "prior_rejection": [
@@ -141,5 +141,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T14:15:15Z"
+ "refiled": "2026-11-26T16:35:11Z"
 }
