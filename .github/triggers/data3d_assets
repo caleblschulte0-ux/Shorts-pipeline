@@ -42,3 +42,28 @@ texture rubberized_track 1k
 texture rust_coarse_01 1k
 texture weathered_planks 1k
 texture denim_fabric 1k
+# the shared realism kit (store/fx_kit.py, 2026-11-26): weathered roofs and walls so houses are not "Monopoly", real
+# grass, mud, sand and snow so no ground is one flat colour, a broken road, and skies for noon, afternoon and storm
+texture rusty_corrugated_iron 1k
+texture worn_corrugated_iron 1k
+texture box_profile_metal_sheet 1k
+texture weathered_plank_siding 1k
+texture wood_peeling_paint_weathered 1k
+texture white_rough_plaster 1k
+texture painted_plaster_wall 1k
+texture clay_roof_tiles_02 1k
+texture roof_slates_02 1k
+texture sparse_grass 1k
+texture leafy_grass 1k
+texture grass_path_2 1k
+texture brown_mud 1k
+texture coast_sand_rocks_02 1k
+texture snow_02 1k
+texture rocky_terrain_02 1k
+texture road_damaged 1k
+texture worn_asphalt 1k
+texture gravel_road 1k
+hdri qwantani_noon_puresky 2k
+hdri qwantani_afternoon_puresky 2k
+hdri wasteland_clouds_puresky 2k
+hdri belfast_sunset_puresky 2k
