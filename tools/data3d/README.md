@@ -116,13 +116,43 @@ staging (the recipe below), so it is now where a shot STARTS. The order for ever
    lava shots 3, 4 and 5 as they passed must pass; shot 2 as restaged along the crest (commit a91a0a528, judged 38)
    and the wide round-6 restage (483b15222, judged 14) must fail for what the panel said of them.
 
-**What the staging helper was measured on.** `recipe_stage.stage` is plain math and is held by the test over a spread
-of props (close, three-quarter, prop whole and big, nothing behind him). `recipe_stage.perform` (the canned four-event
-performance) was built through `store/shots.py` with no render on ONE scratch shot (a 0.5 m crate, his hand on it) and
-read OK on STAGING, KEYS, TALKING, CAUSE, ANATOMY, CLIPPING, TWITCH, FLUID, REACH, POP, HOLD, READ, FAR and RECIPE. A
-taller crate pushed straight away from the lens failed ANATOMY and CLIPPING, so it is a first performance the checks
-still judge on every build, not a pass. Props over about 0.6 m are staged out of his reach (`st["reach"]` is False) and
-the shot keys its own tool, throw or walk.
+**Every promise hangs on a thing one still lists as visible.** "Promised but not shown" was the tally's top class
+(249 lines). Each still of a plan lists what a stranger can point at in it: `"visible": [{"prop": <a prop of the shot or
+"data">, "as": "the words it is seen as", "count": n, "reads": "4,000"}]`. Every content word of the storyboard line's
+action and of the spoken line is a word of ONE still's visible things, or is declared in the shot's `unseen` (never a
+prop's word, never a number, a verb only when the action or consequence says it, half a storyboard line at most).
+A number is a `count` of twelve or fewer in one still or is on a thing in the world that `reads` it.
+`recipe_check` then measures that each listed prop is in the frame on that still.
+
+**No story starts around its plan.** A story outside `shot_plan.PLAN_BEFORE` (the eight staged before the plan, pinned
+by the test) with no plan that passes: `store/shots.py` refuses it in every `STAGING` mode, `recipe_stage.py stub`
+writes no shots file, and `preflight3d.check` blocks its sheet before any look or panel.
+
+**The staging helper, and what it is PROVEN on.** `recipe_stage.stage` is plain math, held by the test over a spread
+of props. What it stages:
+
+| the prop | the call | what he does |
+|---|---|---|
+| up to about 0.6 m, worked by its face | `stage(at, size)` then `perform(grip=point or fn)` | comes in and turns to it, bends to it with a hand on it, a braced sway, lets go and ducks back (to his side where the frame has room, else straight back from the lens), turns to us with both arms up and goes on cheering to the cut |
+| a small thing he picks up | `stage(..., handle=its point)`, `perform(grip, pick=True)`, `carry(data, [it], T)` after `finish()` | his hand goes to it and carries it up in front of his shoulder to the end |
+| a tall thing (a post, a door) | `stage(..., handle=the lever or handle at his hand height)` | the same work, on the handle; the whole prop is in the frame beside him |
+| a handle over his reach | the same; the staging returns `"step"` (where, how tall) and the shot builds it | he stands on the step, planted: knees and weight, no walk |
+| a push further than a hand carries (0.12 m) | `stage(..., travel=(dx, dy))`; key the prop by `T["moved"](t)` | he walks with it on stepped feet (`character.walk_to`), head turned to us |
+| a thing on the ground | `stage(..., handle=a point at its edge)`, `perform(grip, tool=True)`, `carry(data, [the tool], T)` | he works it with a tool in his near hand |
+
+Limits it states instead of hiding: the frame at the recipe's size is about 1.1 m across, so a push of more than
+about a quarter of a metre, or of a prop over 0.3 m, is refused with the sum (it is a cut to where the thing went); a
+push away from the lens is refused (his back); the thing under his hand has to MOVE under it (`staging.cause` counts a
+hand on a still thing as no cause), so a handle, a lever or the prop itself travels a few centimetres as he works.
+
+`python tools/data3d/store/recipe_prove.py` builds the seven cases in `tests/data3d_recipe/cases` through
+`store/shots.py` with no render (lowest priority, one core) and writes `tests/data3d_recipe/proof.json`: what each of
+the harness's nineteen per-shot checks said of each case, with a fingerprint of the helper's code and the cases. The
+test fails when a check there reads FAIL and when `recipe_stage.py` or a case has changed since: change the helper,
+run the proof again. The proof is of his body and the frame on plain props at one frame size and a 4 s beat, and its
+margins are thin in places (KEYS 0.053 against 0.05 where the frame has no room beside him and he can only step straight back; READ 0.90 s against 1.0), so a real shot is still
+judged by every check on every build; the look of a real prop is still the pre-flight's and the panel's. `perform`
+prints one `STAGE perform:` line saying where he comes in from, works, ducks back to and ends, and when.
 
 ## A shot passes the board in two or three rounds (2026-11-25, after the lava rounds)
 
