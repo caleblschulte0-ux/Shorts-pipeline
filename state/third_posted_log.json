@@ -22767,6 +22767,25 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin landscape strip, about a third of the canvas height. The renderer did not crop toward the ac; vision: The subjects are small on a phone screen. In the last three frames (23.8s to 28.8s) they are tiny and far away, and the ; vision: The blurred padding is mostly bl",
       "ts": "2026-11-26T12:43:04.956327+00:00"
+    },
+    "rejected-blatantwimpysoymilkprimeme-8lbvgeuj9jrydxod": {
+      "source_url": "https://www.twitch.tv/tminnzy/clip/BlatantWimpySoymilkPrimeMe-8lBVgEuJ9jryDXOd",
+      "streamer": "tminnzy",
+      "title": "I TRIED TO HELP AN OLD LADY AND SHE KIDNAPPED ME?! \ud83d\udc75\ud83c\udffc\ud83e\udee8",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 27/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-11-26T12:47:02.395522+00:00"
+    },
+    "clip-20261126-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/tminnzy/clip/HardVictoriousPeafowlTwitchRPG-j8Q8j8GsgrudaSJH",
+      "story_key": null,
+      "streamer": "tminnzy",
+      "title": "Tminnzy Steals Their Lambo Back And Tells Them To Buy Another One \ud83d\ude02",
+      "kind": "twitch_clip",
+      "ts": "2026-11-26T12:50:45.535135+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
