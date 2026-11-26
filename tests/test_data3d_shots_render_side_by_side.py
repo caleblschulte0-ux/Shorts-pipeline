@@ -310,10 +310,12 @@ def test_the_collected_round_copies_verdicts_and_only_ever_adds_a_block(tmp_path
     _art(tmp_path, 2, {"stills": True, "judge_exit": 2}, {"shots": [bad], "panel": 3})
     _art(tmp_path, 3, {"stills": False, "judge_exit": None}, checks="STAGING shot 3: back turned -> FAIL\nFAR shot 3: ok -> OK\n")
     _art(tmp_path, 4, {"stills": True, "judge_exit": 1}, judge_log="JUDGE3D: only 1 of 3 judges answered: no pass\n")
+    _art(tmp_path, 6, {"stills": False, "judge_exit": None}, checks="BOARD s beat 1: x\nVARIETY s props: 'flag' is in beats [1, 2]\n")
     (tmp_path / "art" / "board-5").mkdir()                       # a cancelled job: no status, not in the round
     assert board_ci.apply("s", art, "ci board run 1") == 0
     v = {s["shot"]: s for s in json.loads((art / "board_verdict.json").read_text())["shots"]}
-    assert sorted(v) == [1, 2, 3, 4]
+    assert sorted(v) == [1, 2, 3, 4, 6]
+    assert any("VARIETY s props" in h for h in v[6]["hard"]), "a refusal that never says FAIL is still named (lava, run 45851683337)"
     assert v[1]["pass"] is True and v[1]["score"] == 74 and v[2]["hard"] == bad["hard"], "a verdict is copied, never regraded"
     assert v[3]["pass"] is False and v[3]["hard"] == ["a measured pre-check failed: STAGING shot 3: back turned -> FAIL"]
     assert v[4]["pass"] is False and v[4]["score"] is None and "no verdict" in v[4]["hard"][0]
@@ -322,7 +324,7 @@ def test_the_collected_round_copies_verdicts_and_only_ever_adds_a_block(tmp_path
     assert "| 1 | 74 | 70, 74, 80 | PASS |" in md and "| 4 | None | - | FAIL |" in md
     led = json.loads((stories / "s" / "notes_ledger.json").read_text())
     assert led["rounds"] == 1 and "NOT THE WORLD" in led["shots"]["2"], "one round in the ledger, the panel's shots only"
-    assert "3" not in led["shots"] and "4" not in led["shots"], "a shot no panel graded is not a round of its notes"
+    assert not {"3", "4", "6"} & set(led["shots"]), "a shot no panel graded is not a round of its notes"
     assert "aa" in json.loads((stories / "s" / "preflight.json").read_text())["sheets"]
     # dry: the same report, nothing written
     before = {p.name: p.read_text() for p in (stories / "s").iterdir()}

@@ -52,7 +52,8 @@ def gather(art):
         if fr: framing[n] = fr
         if not st.get("stills"):
             log = (d / "checks.log").read_text(errors="replace").splitlines() if (d / "checks.log").exists() else []
-            bad = [l.strip() for l in log if re.search(r"FAIL|fails", l)] or ["the stills did not render"]
+            said = [l.strip() for l in log if l.strip() and not l.startswith(("TWITCH shot", "  "))]
+            bad = [l for l in said if re.search(r"FAIL|fails", l)] or said[-3:] or ["the stills did not render"]   # a refusal with no FAIL word (VARIETY) is the log's last lines
             shots.append({"shot": n, "score": 0, "pass": False, "board": True,
                           "hard": ["a measured pre-check failed: " + b for b in bad[:4]]})
             continue
