@@ -153,6 +153,54 @@ panel is spent, in this order, each wired where named. None of them changes the 
    it prints what to fix or which promise to take out of the text. No look, no round. The result is kept in
    `stories/<story>/preflight.json` keyed by the sheet's sha256. `tests/test_data3d_the_sheet_is_checked_before_the_panel.py`.
 
+## The realism kit: fire, lava, houses, roads, ground, water and skies are never built by hand (2026-11-26)
+
+Every 3D short used to build its own fire, smoke, lava, houses, sky and ground in its own shots, from spheres, boxes
+and a flat colour, and the panel failed each one as OFF THE LOOK: "clay smoke", "flat flame sprite", "popcorn bombs",
+"Monopoly houses", "the fountain lights nothing", "one flat green plane". The lava short met those notes in most of
+its twenty-six board rounds. The three shots that passed were made of the same few parts (a real Poly Haven sky, a
+real scanned texture on every surface, fire and smoke as a gas, lava as black crust with light in its seams, a lamp
+beside everything that glows). `store/fx_kit.py` is those parts, lifted and made general. The harness imports it as
+`FX`, so a story's shot calls `FX.fire(...)`, `FX.house(...)`, `FX.sky("dawn", sun_az=-55)`.
+
+| element | group | glows | what it is |
+|---|---|---|---|
+| `FX.sky` | sky | yes, with its light | a REAL sky (Poly Haven HDRI) that lights the scene, with the sun lamp aimed at the sky's own sun: presets day, dawn, dusk, sunset, overcast, noon, afternoon, storm; sun_az turns the whole sky |
+| `FX.ground` | ground |  | real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, mud, sand, snow, mountain): never a flat plane of one colour |
+| `FX.road` | ground |  | a real asphalt road (scanned asphalt, a worn centre line, gravel shoulders with loose stones) |
+| `FX.rocks` | ground |  | real scanned boulders (Poly Haven models) and broken stones scattered over a patch, each turned and sized differently: never a sphere, never evenly spaced |
+| `FX.house` | built |  | a real small house: weathered painted corrugated tin (scanned) on a concrete base, a coloured tin roof with rust and grime, gutters, downpipes, corner boards, a chimney, paned windows, a door and steps; size, storeys, pitch and colours vary with seed; burn>0 chars it and breaks its roof open; lit windows cast their light |
+| `FX.fire` | fire | yes, with its light | a burning fire: torn flame tongues as a gas, a soot column rolling out of its top, and the warm flickering lamp it casts on everything near it |
+| `FX.smoke_column` | fire |  | a column of smoke as a gas: it billows, widens as it climbs, leans downwind and thins away (dark soot by default; col for ash or white) |
+| `FX.steam` | fire |  | a burst of white steam as a gas that boils up, spreads and dies away on the keys it is given |
+| `FX.dust_puff` | fire |  | a puff of dust kicked up from the ground: a low, wide, tan cloud of gas that swells and settles |
+| `FX.house_fire` | fire | yes, with its light | a house on fire from INSIDE: the blaze comes up through the hole in its roof into a soot column, flames lick out of its upper windows, and its light falls on the ground and the walls beside it (needs FX.house(burn=...)) |
+| `FX.glow_light` | fire | yes, with its light | the lamp for anything that glows and is not from the kit (a lit sign, a lantern, a hot coal): put it beside the glowing thing so its light falls on what is near |
+| `FX.lava_flow` | lava | yes, with its light | a lava flow: a lumpy slab of black cracked crust (real scanned rock) with orange light in its seams, hottest at its moving edge, drifting; lamps along its rim throw its glow on the ground and on Data |
+| `FX.lava_pool` | lava | yes, with its light | a pool of molten lava: a ragged round of thin crust plates over wide glowing seams, with its glow cast up and outward by its own lamps |
+| `FX.embers` | lava | yes, with its light | glowing embers or lava bombs thrown on real ballistic arcs from a point: stretched, tumbling clots, yellow-hot at the source and cooling to dark red as they fly (never pale balls), with the lamp that lights the ground where they come from |
+| `FX.lava_fountain` | lava | yes, with its light | a lava fountain: a ragged incandescent jet (gas) from a glowing vent in a spatter rampart of black rock, hundreds of clots thrown on arcs and falling back, a dark gas plume lit from below, and strong orange lamps that light the ground, the smoke and the houses around it (an eruption, not a bonfire) |
+| `FX.water` | water |  | open water: a dark, glossy surface with two scales of moving waves that mirrors the real sky (sea, harbour, lake); never a flat blue plane |
+
+- **Every element returns a dict**: `objects`, `lights`, and what a stager needs (a root, a rim, a volume). An element
+  that glows is registered `emits` and its wrapper refuses to return without a lamp, so a fountain that lights
+  nothing cannot be built from the kit. `FX.sky` aims the sun lamp at the HDRI's own sun (one set of shadows) and
+  `sun_az` turns the whole sky.
+- **Assets** are the CC0 Poly Haven files of the orphan branch `data3d-assets`
+  (`git archive origin/data3d-assets polyhaven | tar -x -C cache`). A missing one raises; a named second choice is
+  another real asset and prints `FX FALLBACK`. Add an id to `.github/triggers/data3d_assets` to fetch more.
+- **The lint** (`store/fx_lint.py`, run by `store/shots.py` on the shot being built, before the build and again on
+  the built scene; `python store/fx_lint.py STORY`): `HAND` is a sphere, box or cylinder whose name says it is one of
+  the kit's elements ("lava bomb splat", "street asphalt"); `UNLIT` is a shot that makes something glow and creates
+  no lamp, or a glowing object with no lamp near it; `OWN` is a story defining its own fire or house. It only adds a
+  block. Stories written before the kit are named in `fx_lint.BEFORE` with the reason, and the test fails when an
+  entry is no longer needed. `tests/test_data3d_the_kit_not_by_hand.py`.
+- **Look before using a change to the kit**: `python -I store/fx_sheet.py fire|lava|built|water|sky:<preset> OUT.jpg`
+  renders one small sheet of a group beside a real set; open it at phone size. The proof loop's reviser is given
+  `fx_kit.brief()` beside the staging recipe.
+- **What it is not**: the kit makes the elements real; it does not stage them. A fountain cut by the frame edge or a
+  house row seen from 60 m still fails the board for those reasons.
+
 ## System-wide, 2026-11-14 (after the saffron rounds)
 
 Every one of these runs on every story, wired where named, held by the test named:

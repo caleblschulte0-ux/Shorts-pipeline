@@ -24,6 +24,8 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
               (staging.far, its rules in store/motion.py FAR and BOLT)
   empty       after the frames render: the set behind him is not one flat, bare region (store/empty.py)
   hands       IK hands re-solved on the final body (character.Data._resolve_hands, in finish(); reported as HANDS)
+  kit         fire, smoke, lava, houses, roads, ground, water and skies come from the realism kit (store/fx_kit.py), never
+              from spheres and boxes, and whatever glows has a lamp beside it (store/fx_lint.py, before and after the build)
   storyboard  before any of it, the script's payoffs are carried by big props or actions (store/boardlint.py)
               and every line is one action and one consequence, written as what four stills show (boardlint.shape)
   plan        the shot's plan (stories/<story>/plan.json, store/shot_plan.py): its prop, where he stands, ONE action, ONE
@@ -41,6 +43,7 @@ sys.path.insert(0, HERE); sys.path.insert(0, os.path.dirname(HERE))
 import bpy
 from mathutils import Vector, Matrix
 import scene_kit as K, acts, style, built, props, clock
+import fx_kit as FX   # the realism kit: a story calls FX.fire, FX.house, FX.sky ... and never builds them by hand
 from acts import ease, ease_out, ease_in, ease_out_back, lerp
 from clock import FPS
 
@@ -66,6 +69,13 @@ for _where, _p in _vp:
     print(f"VARIETY {STORY} {_where}: {_p}" + ("" if variety.held(STORY) else " (not binding: grandfathered)"), flush=True)
 if variety.held(STORY) and _vp and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"{STORY}: the beats repeat each other (store/variety.py): build each beat its own camera, act and props")
+import fx_lint    # fire, smoke, lava, houses, roads, ground, water and skies come from the kit (store/fx_kit.py), and what glows casts
+                  # light: a shot that builds one by hand from spheres and boxes is the panel's OFF THE LOOK, said before a frame renders
+_fx = fx_lint.problems(STORY, SHOT)
+for _p in _fx:
+    print(f"FX {STORY} shot {SHOT}: {_p}" + ("" if fx_lint.held(STORY) else " (not binding: written before the kit, see store/fx_lint.py)"), flush=True)
+if fx_lint.held(STORY) and _fx and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY} shot {SHOT}: built by hand or unlit (store/fx_lint.py): use the kit's element (python store/fx_kit.py lists them)")
 import fresh      # every video new, every beat worth watching (caaleb 2026-11-19: "Dr. Katz effect ... reusing backgrounds ... works for maybe 1 second")
 import story_world   # story and world first (caaleb 2026-11-19: "Building a world that the viewer has to believe in")
 _fp = fresh.problems(STORY, SCRIPT) + story_world.problems(STORY, SCRIPT)
@@ -291,6 +301,11 @@ if S.get("place", "store") == "store":     # the approved supermarket and its la
 else:                                      # a place of its own (store/locations.py): it brings its own light
     key = S["light"]()
 built.feet_shadow(data)
+_fxs = fx_lint.scene_problems(list(sc.objects))   # measured on the built scene: everything that glows has a lamp near it
+for _p in _fxs:
+    print(f"FX {STORY} shot {SHOT}: {_p}" + ("" if fx_lint.held(STORY) else " (not binding: written before the kit, see store/fx_lint.py)"), flush=True)
+if fx_lint.held(STORY) and _fxs and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY} shot {SHOT}: something glows and lights nothing (store/fx_lint.py): give it its lamp (FX.glow_light) or build it with the kit")
 if S.get("open_roof"):   # the camera is up in the roof: take the deck, joists, ducts and pendants out of its way
     bpy.context.view_layer.update()
     for o in bpy.data.objects:
