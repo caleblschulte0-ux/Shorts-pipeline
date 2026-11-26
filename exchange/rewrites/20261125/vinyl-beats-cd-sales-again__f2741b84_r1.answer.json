@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "vinyl-beats-cd-sales-again__f2741b84_r1",
+  "slug": "vinyl-beats-cd-sales-again",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T12:45:00Z",
+  "title": "Vinyl Now Beats CDs In Dollars And Albums",
+  "hook": "The format CDs replaced came back and beat them twice.",
+  "closing": "Vinyl did not defeat streaming; it became the physical format listeners value most.",
+  "question": "What record would you buy?",
+  "segments": [
+    {
+      "topic": "Vinyl Revenue Win",
+      "say": "Vinyl earned $1.2 billion in 2022. Buyers spent more than twice as much on records as CDs."
+    },
+    {
+      "topic": "Vinyl Album Win",
+      "say": "Vinyl sold 41 million albums. Its revenue lead reflects more buyers, not only higher prices."
+    },
+    {
+      "topic": "Vinyl Streaming Context",
+      "say": "Streaming still takes 84% of music revenue. Vinyl won the physical comeback while staying a premium niche."
+    }
+  ]
+}
