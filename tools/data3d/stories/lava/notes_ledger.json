@@ -1,5 +1,5 @@
 {
- "rounds": 15,
+ "rounds": 16,
  "shots": {
   "1": {
    "BROKEN": {
@@ -441,6 +441,11 @@
       "at": "2026-11-24 12:07Z",
       "round": 2,
       "what": "the last look is to the lens as the lights blaze; the wide is from the far side of the digger, where his face turns"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "he is three-quarter to the lens in stills 1-3 and in profile in still 4; the measured check fails any head over 100 degrees off the lens"
      }
     ],
     "named": [
@@ -477,6 +482,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "the digger and the thrown rock are gone; one boulder, on his hands at his chest, resting on his hard hat, set on the crest, under his feet; feet flat on the crest"
      }
     ],
     "named": [
@@ -533,6 +543,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "one action and one consequence: he sets a boulder into the row along the crest and stands on it, the town's roofs below; the wall no longer jumps in height"
      }
     ],
     "named": [
@@ -594,6 +609,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "storyboard line rewritten to the four stills on the sheet: heaves to chest, onto his hard hat, set down in a pale puff, stands on it shading his eyes"
      }
     ],
     "named": [
@@ -655,6 +675,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "shot along the crest of beat 3's wall: one long black ridge running to the distance, three whole painted tin-roof houses and a flag on the green below it, bare black ground and the far fountains on the outer side"
      }
     ],
     "named": [
@@ -716,6 +741,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "the faceted toy boulders are replaced by a finely cut noise-displaced boulder in the wall's own rock; the flat black backdrop is replaced by the real wall with its boulder row"
      }
     ],
     "named": [
@@ -757,6 +787,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "he never addresses the lens: he works the boulder in every still and ends in profile looking out over the black ground"
      }
     ],
     "named": [
@@ -1745,6 +1780,7 @@
   },
   "5": {
    "BACK TO CAMERA": {
+    "closed": 16,
     "fixes": [],
     "named": [
      {
@@ -1755,6 +1791,7 @@
     ]
    },
    "BROKEN": {
+    "closed": 16,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1780,6 +1817,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "feet flat on the road in every still, lantern hangs from the hook on its bail, his hand lets go of it; no floating props; hands and feet inside the frame"
      }
     ],
     "named": [
@@ -1811,6 +1853,7 @@
     ]
    },
    "NO PAYOFF": {
+    "closed": 16,
     "fixes": [
      {
       "at": "2026-11-25 06:30Z",
@@ -1826,6 +1869,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "the shot now ends on a picture: his one window lights up warm beside the lantern while every other window in the saved row stays dark and three houses burn above; he looks round to us with open hands"
      }
     ],
     "named": [
@@ -1852,6 +1900,7 @@
     ]
    },
    "NOT SHOWN": {
+    "closed": 16,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1882,6 +1931,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "storyboard line rewritten to four stills that are each on the sheet: walks in with the lantern low, hangs it on the hook, the window lights and he looks at it, he looks round to us with open hands; line 5 re-voiced to match (three burned, the rest stand, nobody moved back)"
      }
     ],
     "named": [
@@ -1918,6 +1972,7 @@
     ]
    },
    "NOT THE WORLD": {
+    "closed": 16,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -1948,6 +2003,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "one dawn street: his own tin-clad house, the saved row of painted tin-roof houses with dark windows, three two-storey gabled houses burning on the black lava slope above, same houses as the town shots"
      }
     ],
     "named": [
@@ -1984,6 +2044,7 @@
     ]
    },
    "OFF THE LOOK": {
+    "closed": 16,
     "fixes": [
      {
       "at": "2026-11-24 08:47Z",
@@ -2014,6 +2075,11 @@
       "at": "2026-11-25 10:14Z",
       "round": 5,
       "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "burning houses are the town's own gabled houses with charred cladding, fire-lit window holes and ragged flames (not cones or boxes); the lit window is a warm gradient with curtain folds and spill light, not a flat orange card; real lantern model"
      }
     ],
     "named": [
@@ -2050,6 +2116,7 @@
     ]
    },
    "TALKING HEAD": {
+    "closed": 16,
     "fixes": [],
     "named": [
      {
@@ -2060,6 +2127,7 @@
     ]
    },
    "TINY DATA": {
+    "closed": 16,
     "fixes": [],
     "named": [
      {

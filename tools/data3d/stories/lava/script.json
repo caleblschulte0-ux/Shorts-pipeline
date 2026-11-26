@@ -77,7 +77,7 @@
   "sets_why": "one town on one peninsula, walked through one eruption: the main street under the ridge where the fissure opens, the earth wall going up outside the town, the top of that wall when the lava arrives, a street inside the wall where the ground splits, and his own house at the foot of the town's hill at dawn after",
   "world": {
     "logline": "A digger driver in a small Icelandic town fights a volcano that keeps erupting on the ridge behind it: he runs from its fountains, builds a wall of rock taller than a house, sees the wall stop the lava, and then the ground opens inside the wall.",
-    "hero": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie",
+    "hero": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat",
     "goal": "keep the lava out of his town and get the people back home",
     "place": "Grindavik on Iceland's Reykjanes peninsula: a small town of low tin-clad houses with painted walls and tin roofs, black lava rock all round it, the volcano's fissure on the ridge behind it, and the earth wall of black rock between the town and the lava",
     "time": "one bright day, from the eruption to the crack in the street, and then the dawn after",
@@ -98,18 +98,18 @@
     }
   },
   "ideas": [
-    "a ragged curtain of lava fountains stands on the ridge over the roofs of the main street; the driver stands below it mouth open, then bolts down the street at us, looking back over his shoulder, arms pumping, and ends with both arms thrown up",
-    "behind a town house the rock wall is lower than its roof and lava fountains show over it; the driver hurls black boulders up over his head at it and the wall rises until its black face stands far over the roof and hides the fountains",
+    "a ragged curtain of lava fountains stands on the ridge over the main street; the driver stands small down the street staring up at it, then bolts toward us past open front doors and runs out past us looking back over his shoulder",
+    "he sets a boulder in the row on the crest of the long wall and stands on it: the town's roofs and flag are far below his feet",
     "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and heaps up; it stops dead against the rock and goes dark, and he pumps his fists and grins",
     "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
     "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
   ],
   "storyboard": [
-    "1 hook (the town's main street by day: low painted houses with tin roofs and Icelandic flags down both sides, front doors left open, a car driving away up the street, the dark rock ridge over the roofs; level with him, the street running back behind him): a ragged curtain of lava fountains stands on the ridge over the roofs, and the driver in his yellow hard hat stands small down the street, staring up at it. He bolts down the street toward us. He runs nearer, arms pumping. He runs out past us, big in the frame, looking back at the fire over his shoulder.",
-    "2 the wall (by day at the edge of town: a town house with an Icelandic flag, a low black rock wall beyond it, lava fountains far off over the wall; level with him, the house and the wall behind him): the driver in his hard hat holds a black boulder in his two hands, another at his feet. He hurls the second boulder up over his hard hat at the wall, which has grown up over the roof behind him. He looks up at the wall's black face towering over the house, the fountains hidden behind it. He turns to us with a fist in the air, grinning, the boulders up on the wall's crest.",
+    "1 hook (the town's main street by day: low painted houses with tin roofs and Icelandic flags down both sides, front doors left open, a car driving away up the street, the dark rock ridge over the roofs; level with him, the street running back behind him): a ragged curtain of lava fountains stands on the ridge over the roofs, and the driver in his yellow hard hat stands in the street below it, one arm flung out. He bolts down the street toward us. He runs nearer, arms pumping. He runs out past us, big in the frame, wide-eyed.",
+    "2 the wall (by day on top of the long black rock wall: its row of crest boulders runs away to the distance, the town's painted houses and a flag down on the green below it on one side, a far lava fountain on the other; full length on him): the driver in his hard hat stands on the crest and heaves a black boulder up to his chest. He hoists the boulder up onto his hard hat. He tips it off into the gap in the row, where it lands in a puff of pale dust. He stands up on that boulder in profile, one arm up toward the far fountain.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
-    "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street with every window dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He turns to us and shrugs."
+    "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
   ],
   "staging": [
     {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "camera": "medium",
-      "data": "hurls black boulders up over his head at the wall, which rises behind the house until it hides the lava fountains",
+      "camera": "wide",
+      "data": "on the crest of the long wall he heaves a boulder up, hoists it onto his hard hat, sets it into the row of boulders along the crest and stands up on it, the town's roofs far below",
       "props": [
         "boulder",
         "earth wall",
@@ -153,19 +153,19 @@
       "arc": [
         {
           "at": 0.08,
-          "what": "he holds a black boulder in his two hands, the low wall and far lava fountains behind the house"
+          "what": "on the crest he heaves a black boulder up to his chest, the wall running to the distance, the roofs far below"
         },
         {
           "at": 0.38,
-          "what": "he hurls the second boulder up over his hard hat, both arms flung up, and the wall has grown up over the roof"
+          "what": "he hoists the boulder up onto his hard hat"
         },
         {
           "at": 0.68,
-          "what": "the wall's black face stands far over the roof, dust rolling at its foot, the fountains hidden"
+          "what": "he sets the boulder into the row along the crest in a puff of pale dust"
         },
         {
           "at": 0.95,
-          "what": "he turns to us with a hand in the air, grinning"
+          "what": "he stands on it shading his eyes, looking out over the black ground"
         }
       ]
     },

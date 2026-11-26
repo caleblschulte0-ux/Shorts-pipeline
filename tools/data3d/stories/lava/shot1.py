@@ -8,7 +8,7 @@ S1_PIV = Vector((0.85, 0.0, 0.5))      # the siren pole's foot, at the kerb
 S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hub
 S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
-S1_FX, S1_FGAP = -0.4, 1.6             # the row of vents: its middle (x) and the gap between two vents
+S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
 
 
@@ -40,7 +40,7 @@ def s1_car(name, col):
         for y in (-0.78, 0.8):
             K.cyl(name + " tyre", (sx * 0.43, y, 0.2), 0.2, 0.16, tyre, rot=(0, math.pi / 2, 0), v=24, parent=root)
         K.box(name + " headlight", (sx * 0.33, -1.2, 0.42), (0.2, 0.02, 0.09), lw_emit("headlight", "#FFF6E0", 22.0), bev=0.01, parent=root)
-        K.box(name + " taillight", (sx * 0.36, 1.2, 0.44), (0.16, 0.02, 0.08), lw_emit("taillight", "#FF2A18", 6.0), bev=0.01, parent=root)
+        K.box(name + " taillight", (sx * 0.34, 1.2, 0.44), (0.24, 0.02, 0.13), lw_emit("taillight", "#FF1408", 60.0), bev=0.01, parent=root)
     K.box(name + " bumper", (0, -1.21, 0.22), (1.0, 0.06, 0.12), K.mat("car bumper", "#2A2A2C", rough=0.5), bev=0.02, parent=root)
     # ROUND 7 (seen close): built from its parts, not a painted block: door shut-lines, handles, mirrors, rims, a grille,
     # the plates, wipers, a rear bumper, mud on the sills
@@ -250,7 +250,7 @@ def place_grindavik_street():
     print("S1 OPEN DOORS", n_open, flush=True)
     car = s1_car("car leaving", "#C8CCD0"); car.rotation_euler = (0, 0, math.pi)       # its tail lights to us, driving away up the street
     for f in range(1, NF + 1):
-        car.location = (0.5, 5.0 + 0.6 * (f - 1) / FPS, 0.0); car.keyframe_insert("location", frame=f)
+        car.location = (0.9, 6.0 + 2.6 * (f - 1) / FPS, 0.0); car.keyframe_insert("location", frame=f)
     # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
     town_house("town house at the street's end", (1.3, 10.4, s1_ground_z(1.3, 9.0)), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.5, roof="#B8352B", wall="#E9D9A2", seed=3)
     def light():
@@ -308,7 +308,7 @@ def shot1():
     RUNV = (PE - PW) / (DUR - T_RUN)
     to_cam = math.radians(26)                              # the lens is ahead of him and to his left: he comes at it three-quarter
     run_yaw = math.atan2(PE.x - PW.x, -(PE.y - PW.y))
-    yaw_see = math.atan2(-0.87, 0.5)                     # still 1: side-on across the street, a little toward us, his face in profile up at the fountains
+    yaw_see = math.atan2(-0.5, 0.85)                     # still 1: side-on across the street, a little toward us, his face in profile up at the fountains
     data.place(PW.x, PW.y, math.degrees(yaw_see))
     data._kobj(0.0, loc=tuple(PW), rot=yaw_see)
     data._kobj(T_RUN - 0.42, loc=tuple(PW), rot=yaw_see); data._kobj(T_RUN - 0.02, loc=tuple(PW), rot=run_yaw)      # he turns, then he runs
@@ -316,21 +316,21 @@ def shot1():
     lw_layer(data, "spine", lambda t: (-12 * (1 - W(t, T_RUN - 0.15, 0.2)) + 8 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((-7.0, S1_RIDGE_Y, 12.0))               # the row's end on the lens's side: he looks back over the shoulder we can see
     CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 2.0))
-    data.look_at(Vector((PW.x - 5.0, PW.y + 1.2, 6.0)), 0.0, max_yaw=40, max_pitch=30, blend=0.0)                    # back up at the fountains over his shoulder
+    data.look_at(Vector((PW.x - 6.0, PW.y + 0.6, 8.0)), 0.0, max_yaw=42, max_pitch=32, blend=0.0)                    # back up at the fountains over his shoulder
     data.look_at(CAM0 + RUNV * 0.6, T_RUN + 0.15, max_yaw=50, max_pitch=30, blend=0.6)
-    data.look_at(RIDGE, 0.76 * DUR, max_yaw=62, max_pitch=22, blend=0.45)              # the end: running out past us, his head back over his shoulder at the fire
+    data.look_at(CAM0 + RUNV * (DUR - T_RUN) + Vector((0.3, -0.6, 0.0)), 0.6 * DUR, max_yaw=55, max_pitch=22, blend=0.5)   # his face to us to the end              # the end: running out past us, his head back over his shoulder at the fire
     data.expression("alarmed", 0.0, DUR + 1.0, blend=0.1)
     UPF = lambda sg: ((-64, 0, -sg * 10), (-92, 0, -sg * 10), (0, 0, 0))      # a runner's arms: bent square, one fist up in front as the other elbow goes back
     LOW = lambda sg: ((40, 0, -sg * 14), (-46, 0, -sg * 6), (0, 0, 0))
-    FLUNG = lambda sg: ((0, 0, -sg * 100), (0, 0, -sg * 40), (0, 0, 0))                     # the end: both arms thrown up
+    FLUNG = lambda sg: ((10, 0, -sg * 108), (0, 0, -sg * 35), (0, 0, 0))                     # the end: both arms thrown up
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     def pose(sd, t, P_):
         for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
     HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
-    SHIELD = "L"
+    SHIELD = "none"                         # the arm up at his hat covered his face on the last still: both arms keep pumping
     pose("L", 0.0, WHOA); pose("R", 0.0, HANG); pose("L", T_RUN - 0.1, WHOA); pose("R", T_RUN - 0.1, WHOA)
     for f in range(F(T_RUN), NF + 8):                  # arms pumping, one forward as the other goes back (over the walk's own swing)
-        t = (f - 1) / FPS; b_ = 0.5 + 0.5 * math.sin(2 * math.pi * (t - T_RUN) / 0.528); g_ = ease(min(1.0, (t - T_RUN) / 0.55)); e_ = ease(min(1.0, max(0.0, (t - 0.84 * DUR) / 0.3)))
+        t = (f - 1) / FPS; b_ = 0.5 + 0.5 * math.sin(2 * math.pi * (t - T_RUN) / 0.528); g_ = ease(min(1.0, (t - T_RUN) / 0.55)); e_ = ease(min(1.0, max(0.0, (t - 0.78 * DUR) / 0.5)))
         for sd, bb in (("L", b_), ("R", 1 - b_)):
             sg = -1 if sd == "L" else 1
             for bn, lo, up, wh, fl in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), LOW(sg), UPF(sg), WHOA(sg), FLUNG(sg)):
@@ -340,18 +340,18 @@ def shot1():
     for fc in _fcurves(data.arm.animation_data.action):
         if fc.data_path == "rotation_euler" and fc.array_index == 2:
             for kp in fc.keyframe_points:
-                t_ = (kp.co[0] - 1) / FPS; dz = math.radians(30) * W(t_, T_RUN + 0.1, 0.4)
+                t_ = (kp.co[0] - 1) / FPS; dz = math.radians(30) * W(t_, T_RUN + 0.1, 0.4) - math.radians(6) * W(t_, 0.76 * DUR, 0.5)
                 kp.co[1] += dz; kp.handle_left[1] += dz; kp.handle_right[1] += dz
             fc.update()
     # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
     # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.3, 0.42, 0.36; X1, Y1, S1_ = 0.6, 0.66, 0.87
+    X0, Y0, H0 = 0.37, 0.42, 0.36; X1, Y1, S1_ = 0.54, 0.43, 0.87
     CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     sc.frame_set(1); bpy.context.view_layer.update()
     pos0 = data.pos().copy(); F0 = data.arm.matrix_world @ data.pb["head"].head; hoff = F0 - pos0
     ax = (LOOKr - CAMr).normalized(); rt = ax.cross(Vector((0, 0, 1))).normalized(); up = rt.cross(ax).normalized()
-    v0 = F0 - CAMr; D0 = v0.dot(ax); HF = D0 * 36.0 / 24.0; WF = HF * 9.0 / 16.0     # the frame's size in metres at his distance (a 36 mm gate on the tall side)
+    v0 = F0 - CAMr; D0 = v0.dot(ax); HF = D0 * 1.5; WF = HF * 9.0 / 16.0     # the frame's size in metres at his distance (a 36 mm gate on the tall side)
     XA, YA = 0.5 + v0.dot(rt) / WF, 0.5 + v0.dot(up) / HF                                 # where his head really sits on the first frame
     print("S1 LENS D0", round(D0, 2), "WF", round(WF, 2), "HF", round(HF, 2), "head at", round(XA, 2), round(YA, 2), flush=True)
     def cam_at(t):

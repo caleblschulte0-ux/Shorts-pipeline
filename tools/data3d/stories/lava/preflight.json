@@ -1,5 +1,136 @@
 {
  "sheets": {
+  "007c3d20a8acc200e6d70ee10e07cde7075ec2a7bcdc24a1ca424a24c549e786": {
+   "at": "2026-11-26 09:46:56Z",
+   "claims": 17,
+   "claims_key": "1b256f9d0eb68a0f",
+   "continuity": [],
+   "sha256": "007c3d20a8acc200e6d70ee10e07cde7075ec2a7bcdc24a1ca424a24c549e786",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "A white car is parked or standing in the street. Its direction can't be read and no tail lights are visible. It is not clearly pulling away.",
+     "text": "a car pulling away up the street with its tail lights on"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Data stands in the street in his yellow hard hat, but his head faces the camera. It is not turned up at the lava.",
+     "text": "the driver in his yellow hard hat stands in the street, his head turned up at it"
+    },
+    {
+     "from": "FOR",
+     "id": "c12",
+     "kind": "ACTION",
+     "note": "He is big in the frame, but his hand is out to the side and not at the hard hat. His head is not clearly turned back to look.",
+     "text": "He runs out past us, big in the frame, one hand up at his hard hat, his head turned to look back"
+    },
+    {
+     "from": "WORLD",
+     "id": "c14",
+     "kind": "HERO",
+     "note": "The yellow hard hat is there. The vest is orange with silver stripes over a white or grey coat. No red tie can be seen.",
+     "text": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie"
+    }
+   ]
+  },
+  "022d9c5fab8121a42e5a4089b3aaf1910fa8b1faf49c05aa7d51be82615d82a0": {
+   "at": "2026-11-26 07:14:45Z",
+   "claims": 17,
+   "claims_key": "5a97e52030623525",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "His shoes are cut by the bottom frame edge in still 4, and nearly so in still 2.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "022d9c5fab8121a42e5a4089b3aaf1910fa8b1faf49c05aa7d51be82615d82a0",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "WORLD",
+     "id": "c14",
+     "kind": "HERO",
+     "note": "The white coat, red tie and orange hi-vis vest with silver stripes are clear. The hard hat reads light orange or tan rather than yellow.",
+     "text": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie"
+    }
+   ]
+  },
+  "041a6295cbc26aecb688e5dee1e849610c056600b139f303098c606c3e57300d": {
+   "at": "2026-11-26 11:26:08Z",
+   "claims": 17,
+   "claims_key": "a72f245b327e5e01",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "In still 4 Data's head and hat touch or are cut by the top and right edge, and a house is cropped at the right. In still 1 the lava is cropped at the left edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "041a6295cbc26aecb688e5dee1e849610c056600b139f303098c606c3e57300d",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "Doors are visible on the right-hand houses, but none can be seen standing open. Closed or ambiguous doors only.",
+     "text": "front doors left open"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "A grey car is stopped up the street. Its rear lights look faintly pinkish at best, so lit tail lights are not clearly shown.",
+     "text": "a car stopped up the street with its tail lights on"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Data is in the street in a yellow hard hat, but he is mid-stride or turning, not frozen. No still shows him frozen below the lava.",
+     "text": "the driver in his yellow hard hat stands frozen in the street below it"
+    },
+    {
+     "from": "FOR",
+     "id": "c12",
+     "kind": "ACTION",
+     "note": "He is large in frame and his head is turned, but it is tilted to the side and cropped by the frame edge. He does not clearly look back, and he is not clearly running past the camera.",
+     "text": "He runs out past us, big in the frame, his head turned to look back"
+    },
+    {
+     "from": "SAYS",
+     "id": "c13",
+     "kind": "SAYS",
+     "note": "The lava eruption, the Icelandic town (flags) and a running figure are all shown. But 'everyone had to run' is only carried by Data, and there are no cars leaving or crowd. A stranger could plausibly get it, though the volcano beside the town and the flight are readable. This is borderline, so stric",
+     "text": "a stranger with the sound off would say the stills show what this line says: A volcano keeps erupting right beside one Icelandic town, and everyone had to run"
+    }
+   ]
+  },
+  "07189fe08d92960a24bca1e43d33144b4069dd0a18acc3a0a496258b1b5dfc53": {
+   "at": "2026-11-26 09:48:52Z",
+   "claims": 17,
+   "claims_key": "cc0fd0f7f785ffa3",
+   "continuity": [],
+   "sha256": "07189fe08d92960a24bca1e43d33144b4069dd0a18acc3a0a496258b1b5dfc53",
+   "shot": 5,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
+  },
   "0f0eb5a3902dbd80420765eb0b2ae95f5e4982b241ae4ff01b0a9ea115198ec7": {
    "at": "2026-11-26 06:29:45Z",
    "claims": 15,
@@ -69,6 +200,32 @@
    "stills": 4,
    "unticked": []
   },
+  "2a521376d46b3b057523a0520664c67c2e81650edc62d1e3fad80c63b3cebeb0": {
+   "at": "2026-11-26 09:24:16Z",
+   "claims": 16,
+   "claims_key": "a4635157134fff00",
+   "continuity": [],
+   "sha256": "2a521376d46b3b057523a0520664c67c2e81650edc62d1e3fad80c63b3cebeb0",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "The red tin roof is at the bottom of the frame and an Icelandic flag is below the crest. The flag is a flat rectangle against the rock, not hung on the thin pole beside it, so it is not 'on its pole'.",
+     "text": "the red tin roof of a town house and an Icelandic flag on its pole down below the crest"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "No lava appears in any still. The wall's height against a house is not shown, since only a sliver of roof is visible. A stranger would see a worker moving rocks, not a wall built to keep lava out.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
   "2b35de2f32260f8da1883635f97c8a282253cc692d9cd59a3cd1d17c3aa74c45": {
    "at": "2026-11-26 06:17:13Z",
    "claims": 17,
@@ -131,6 +288,60 @@
      "kind": "NUMBER",
      "note": "Only one street is shown. There is no way to see 'one town' as a count or size.",
      "text": "one Icelandic town: seen as that count or that size"
+    }
+   ]
+  },
+  "31ae282beaf0f69527bcefa5d1777bed40a3f98207b5b11d6b6b875cc7104a37": {
+   "at": "2026-11-26 07:34:36Z",
+   "claims": 15,
+   "claims_key": "446fa410852930cd",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "In still 4 his hard hat is cut by the top edge and his head and raised hand are cut by the right edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "31ae282beaf0f69527bcefa5d1777bed40a3f98207b5b11d6b6b875cc7104a37",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "Colourful houses (red, green, yellow) sit in the background, but there is no Icelandic flag, and no house is seen with its whole roof below the crest.",
+     "text": "a painted town house with an Icelandic flag down on the town side with its whole roof below the crest"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "The boulder is above his hard hat, but his hands are at the sides of his head and not on it. It looks like it is floating, not locked overhead.",
+     "text": "He locks the boulder up over his hard hat"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "He stands on a boulder, but the raised hand is cut off at the right edge and does not clearly shade his eyes. The wall and roof below are not shown.",
+     "text": "He stands up on that boulder with a hand shading his eyes, looking out over the wall, the roof"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "No flag appears in any still.",
+     "text": "the flag below his feet"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The stills show a man lifting boulders with small colourful houses behind. No tall rock wall can be seen, no size comparison with a house, and no lava or threat.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
   },
@@ -288,6 +499,58 @@
     }
    ]
   },
+  "506f08a1a1c3fe0c839883c6eccd923446c05d044d1747241acb09ece208e1be": {
+   "at": "2026-11-26 07:42:47Z",
+   "claims": 17,
+   "claims_key": "7174a372c5e96727",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The car fades to a tiny shape by still 4. Still 4 has a new black band and a blue cloud-like slab across the bottom that appears from nowhere.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "3-4"
+    },
+    {
+     "id": "feet",
+     "note": "In still 4 his feet are cut off at the black bar and do not stand on the street. In stills 1-3 his feet are on the ground.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "4"
+    },
+    {
+     "id": "edges",
+     "note": "His legs are cut off by the black band in still 4, and his hat nearly touches the top edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "506f08a1a1c3fe0c839883c6eccd923446c05d044d1747241acb09ece208e1be",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "No door can be clearly identified as standing open. Dark rectangles on the green house read as closed or ambiguous doors.",
+     "text": "front doors left open"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Data stands in the near foreground, mid-size, in side profile with one arm out. He is not small down the street and is not staring up at the lava.",
+     "text": "the driver in his yellow hard hat stands small down the street, staring up at it"
+    },
+    {
+     "from": "WORLD",
+     "id": "c14",
+     "kind": "HERO",
+     "note": "Yellow hard hat and orange hi-vis vest with silver stripes are visible over a white or grey coat. No red tie can be seen in any still.",
+     "text": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie"
+    }
+   ]
+  },
   "51e36215c2a7898d8c096991f9e5a52e8dc3dd39a0f2f01f3fbe1faa2f138e4b": {
    "at": "2026-11-26 06:22:34Z",
    "claims": 17,
@@ -298,6 +561,39 @@
    "status": "pass",
    "stills": 4,
    "unticked": []
+  },
+  "59484ad5847dcefcef0a4f06e2f20b81a6ee8b1f7dfc9a77a7ec95d0ff0e22c1": {
+   "at": "2026-11-26 09:08:48Z",
+   "claims": 17,
+   "claims_key": "5a97e52030623525",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "Data's feet are cropped by the bottom frame edge in stills 2, 3 and 4. The burning houses are also tight to the top edge, with the smoke cut off.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "2-4"
+    }
+   ],
+   "sha256": "59484ad5847dcefcef0a4f06e2f20b81a6ee8b1f7dfc9a77a7ec95d0ff0e22c1",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "In still 3 Data's face points to the camera and his eyes don't clearly go to the window, so no look back at it can be pointed at.",
+     "text": "he looks round at it"
+    },
+    {
+     "from": "FOR",
+     "id": "c11",
+     "kind": "ACTION",
+     "note": "In still 4 Data faces us with one hand out, but his shoulders aren't raised and the arm is not a clear shrug.",
+     "text": "He turns to us and shrugs"
+    }
+   ]
   },
   "5c6e1df0f6e498d7dbb1565119d45f8923ea6fa26ea48799f17244dd91f5fe47": {
    "at": "2026-11-26 04:41:50Z",
@@ -315,6 +611,113 @@
      "kind": "SAYS",
      "note": "The burning houses show 'three burned' and the intact row shows 'the rest'. No wall appears anywhere. Nothing shows that almost nobody moved back: no people, no empty-street trace. Only the voice could say that, so a stranger could not get the line's fact from the stills.",
      "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    }
+   ]
+  },
+  "5ddcd0351d35c401c972206b85c914cbb78cc2d210d14ae5a0903d580ee766d0": {
+   "at": "2026-11-26 07:57:42Z",
+   "claims": 15,
+   "claims_key": "446fa410852930cd",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder floats over his head in still 2. In still 3 a boulder lies on the ground to the right, and in still 4 he stands on one. The held boulder from still 1 does not visibly land, and no set-down is shown.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-3"
+    },
+    {
+     "id": "edges",
+     "note": "In still 4 Data's hat and head are cut by the top and right frame edges. In still 3 his hat is near the top edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "5ddcd0351d35c401c972206b85c914cbb78cc2d210d14ae5a0903d580ee766d0",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "A boulder sits on the ground to the right, but Data is not touching it and no dust puff is visible. His hands hang down. The set-down in the gap with hands still on it is not shown.",
+     "text": "He sets the boulder down into the gap in the crest in a puff of grey dust, his hands still on it"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "Rocks, a hard-hatted Data and a town are visible. Nothing shows a wall taller than a house, and nothing shows lava or a threat being kept out. Only a generic rubble field is there, so the line's fact is not readable.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "5fa93c164209d7886c78338dc485ff0a6c87df131179fee815afa5e087b215d8": {
+   "at": "2026-11-26 10:45:36Z",
+   "claims": 15,
+   "claims_key": "7b310491f9703100",
+   "continuity": [],
+   "sha256": "5fa93c164209d7886c78338dc485ff0a6c87df131179fee815afa5e087b215d8",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c1",
+     "kind": "PLACE",
+     "note": "Data stands on flat black ground beside a low row of boulders. He is not on top of a long wall, and no crest can be seen under his feet.",
+     "text": "by day on top of the long black rock wall"
+    },
+    {
+     "from": "FOR",
+     "id": "c2",
+     "kind": "PLACE",
+     "note": "The camera faces Data front-on. It does not look along any crest.",
+     "text": "looking along its crest"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "The painted houses and the Icelandic flag are visible, but they sit at about the same level just behind Data. They are not far below a crest.",
+     "text": "the town's painted houses and a flag far below its crest on one side"
+    },
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "CAMERA",
+     "note": "The camera is at about Data's eye level or slightly below. It is not above him.",
+     "text": "a little above him"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "A big boulder sits on the ground beside him. He is not heaving it up to his chest in any still.",
+     "text": "the driver in his hard hat stands on the crest and heaves a black boulder up to his chest"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "A pale dust puff appears at left, but no boulder is clearly being set into a row along a crest. The boulder in the foreground is not placed in a row.",
+     "text": "He sets it down in the row of boulders along the crest in a puff of pale dust"
+    },
+    {
+     "from": "FOR",
+     "id": "c11",
+     "kind": "ACTION",
+     "note": "Data stands on a boulder in side view with a raised hand near his brow, looking right. The houses are not far below, and he is not on a crest.",
+     "text": "He stands up on that boulder with a hand shading his eyes, looking out over the black ground, the roofs far below"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "A stranger sees a worker moving boulders near houses and a fire. No wall taller than a house is shown, and no lava is being kept out.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
   },
@@ -365,6 +768,32 @@
    "status": "blocked",
    "stills": 4,
    "unticked": []
+  },
+  "70bcc8b8e2725ced47a4ec2f14359ecdeb83791268257896112cd30b9efcd89f": {
+   "at": "2026-11-26 10:50:48Z",
+   "claims": 17,
+   "claims_key": "966514951675ccb6",
+   "continuity": [],
+   "sha256": "70bcc8b8e2725ced47a4ec2f14359ecdeb83791268257896112cd30b9efcd89f",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Data stands in the street in the hard hat with one arm out, but his head is turned sideways. He is not clearly looking up at the lava over his shoulder.",
+     "text": "the driver in his yellow hard hat stands in the street, looking up over his shoulder at it"
+    },
+    {
+     "from": "WORLD",
+     "id": "c14",
+     "kind": "HERO",
+     "note": "The yellow hard hat, orange hi-vis vest with silver stripes and white coat are all visible. No red tie can be seen in any still.",
+     "text": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie"
+    }
+   ]
   },
   "70e6b6f36ae4a32262d81068ffbe218907e80b2c75111f4a0901a0cbc4a1c50e": {
    "at": "2026-11-26 05:42:19Z",
@@ -422,6 +851,53 @@
      "kind": "ACTION",
      "note": "He is bigger in frame, but his arms are bent or out to the sides with fists at shoulder height. Neither arm is clearly thrown up. The fire is behind him.",
      "text": "He ends big in the frame with both arms thrown up, terrified, the fire roaring behind him"
+    }
+   ]
+  },
+  "79191120016056e1a54741ec8b91aa661fce6bdfcaa84f713cce37ae14749e39": {
+   "at": "2026-11-26 11:37:07Z",
+   "claims": 14,
+   "claims_key": "d8eeb52d25c8f3f9",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder lifted onto the hat in still 2 is gone in still 3 with no sign of where it went. The boulder at the bottom of still 3 may be a different one.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-3"
+    }
+   ],
+   "sha256": "79191120016056e1a54741ec8b91aa661fce6bdfcaa84f713cce37ae14749e39",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "Only one lava fountain is visible, upper left behind the wall's far end, and in the same direction as the wall's distance. A single fountain, not several 'far fountains'. In still 4 his arm points toward it, but it is one fire plume, not plural.",
+     "text": "far fountains on the other"
+    },
+    {
+     "from": "FOR",
+     "id": "c5",
+     "kind": "CAMERA",
+     "note": "The framing is medium to medium-wide: Data is full-length with the houses and wall behind him. It is not a close shot on him.",
+     "text": "close on him"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "A boulder sits in the foreground bottom and a dust puff is on the left, but no still shows him placing it in the row. The boulder he carried is not clearly in the row, and the dust is beside him.",
+     "text": "He sets it down in the row of boulders along the crest in a puff of pale dust"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The stills show a black rock wall, houses, a flag and a lava fountain, and Data piling boulders. Nothing shows a wall taller than a house, and there is no lava being held back or reaching the wall, so the line's fact is not clear without sound. The wall's height relative to the houses is not conveye",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
   },
@@ -498,6 +974,28 @@
     }
    ]
   },
+  "8188d54278e468bf3d3bed67db10c67eb72e7b32b3ab5c03950d772900582f2a": {
+   "at": "2026-11-26 10:55:44Z",
+   "claims": 18,
+   "claims_key": "cb0e92c8746e3a34",
+   "continuity": [],
+   "sha256": "8188d54278e468bf3d3bed67db10c67eb72e7b32b3ab5c03950d772900582f2a",
+   "shot": 5,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
+  },
+  "887f751281c977b1ddd824c4aab3edae154bd088a9ee345e39ae56f36ad738ab": {
+   "at": "2026-11-26 07:47:30Z",
+   "claims": 17,
+   "claims_key": "5a97e52030623525",
+   "continuity": [],
+   "sha256": "887f751281c977b1ddd824c4aab3edae154bd088a9ee345e39ae56f36ad738ab",
+   "shot": 5,
+   "status": "pass",
+   "stills": 4,
+   "unticked": []
+  },
   "89e8a1f7d6c8b20c712ee2eeca872af538342032cd871f1679fdcfaef35fb967": {
    "at": "2026-11-26 06:09:10Z",
    "claims": 16,
@@ -530,6 +1028,32 @@
     }
    ]
   },
+  "8ae80ce2a59a6c49936c173b6848f893b1cdda5a40459f3c6b31855689d2b4cc": {
+   "at": "2026-11-26 09:08:50Z",
+   "claims": 17,
+   "claims_key": "e450fbf958250b39",
+   "continuity": [],
+   "sha256": "8ae80ce2a59a6c49936c173b6848f893b1cdda5a40459f3c6b31855689d2b4cc",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Data is in the foreground facing the camera, not down the street. He is not staring up at the lava.",
+     "text": "the driver in his yellow hard hat stands down the street, staring up at it"
+    },
+    {
+     "from": "WORLD",
+     "id": "c14",
+     "kind": "HERO",
+     "note": "Yellow hard hat and orange vest with silver stripes over a white coat are visible. The red tie is not visible in any still.",
+     "text": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie"
+    }
+   ]
+  },
   "91ed1f796e5910b85996008a5f0a3706d26f76e4dbf4bd2a09461f437245908d": {
    "at": "2026-11-26 05:30:54Z",
    "claims": 16,
@@ -559,6 +1083,46 @@
      "kind": "ACTION",
      "note": "The wall's black face towers behind the house and the fountains are hidden. Data is turned in profile, smiling, and is not clearly looking up at the wall.",
      "text": "He looks up at the wall's black face towering over the house, the fountains hidden behind it"
+    }
+   ]
+  },
+  "9e6a6de99b1eaec46216d56b1052b5fab26375721fbf347325c57e5c05ed081a": {
+   "at": "2026-11-26 08:42:05Z",
+   "claims": 16,
+   "claims_key": "a1a4b5802d1e015a",
+   "continuity": [],
+   "sha256": "9e6a6de99b1eaec46216d56b1052b5fab26375721fbf347325c57e5c05ed081a",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Both hands are up beside his head, but the boulder floats above the hat with a visible gap and nothing holds it. It is not shown onto the hat.",
+     "text": "He hoists the boulder up onto his hard hat, both hands up beside it"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "A boulder sits on the crest behind and beside him and there is a faint grey haze. He leans only slightly with his hands low, and is not bent over the boulder. The dust puff is barely visible.",
+     "text": "He sets the boulder down on the crest beside him in a puff of grey dust, bent over it"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "The stills show a rock wall, a flag and Data stacking boulders on it. No lava appears in any still, so keeping the lava out is not shown. The roof strip gives little sense of the wall being taller than a house.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    },
+    {
+     "from": "WORLD",
+     "id": "c16",
+     "kind": "CONTINUITY",
+     "note": "Only a red roof strip is visible at the bottom edge, with no house body, so it cannot be matched to a town house.",
+     "text": "the town house is in this shot and is the same one as in the rest of the story (the town he is keeping: the low painted houses he runs between in beat 1, one in front of the wall in 2, the street's houses in 4, his own in 5)"
     }
    ]
   },
@@ -609,6 +1173,64 @@
     }
    ]
   },
+  "a8f9002106a7018372832fa3d4f2b95a9844b3c9b9e959cc9ad64502a92e4a93": {
+   "at": "2026-11-26 10:18:12Z",
+   "claims": 17,
+   "claims_key": "cc0fd0f7f785ffa3",
+   "continuity": [
+    {
+     "id": "feet",
+     "note": "In still 2 the feet look lifted slightly off the ground mid-step. In still 1 the front foot may be sunk or lifted. Stills 3-4 are grounded.",
+     "rule": "Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception)",
+     "stills": "1-2"
+    },
+    {
+     "id": "edges",
+     "note": "The house is cut by the left frame edge in every still. The burning houses' top and flames are cut by the top edge, and the smoke is cut too.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "a8f9002106a7018372832fa3d4f2b95a9844b3c9b9e959cc9ad64502a92e4a93",
+   "shot": 5,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "A row of small coloured houses runs up the street, but their windows are small and distant. You can't tell from a still that every one is dark, so this isn't clearly a row of saved houses.",
+     "text": "a row of saved houses up the street with every window dark"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "Burning houses are shown and the street is empty. The saved houses are only a small distant row. A stranger could not read 'almost nobody moved back' from the stills, and the lit window actually says someone is home.",
+     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The rest still stand, but almost nobody moved back. Would you?"
+    }
+   ]
+  },
+  "b53217b19c0f738147d550c22feb38b97bfb2c56009558304afdfc16f65de4d5": {
+   "at": "2026-11-26 11:06:25Z",
+   "claims": 14,
+   "claims_key": "c382278da5164485",
+   "continuity": [],
+   "sha256": "b53217b19c0f738147d550c22feb38b97bfb2c56009558304afdfc16f65de4d5",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "Data stands on a boulder in profile with one arm out to the side. The hand is not clearly shading his eyes, and he is not clearly looking over the ground and roofs.",
+     "text": "He stands up on that boulder with a hand shading his eyes, looking out over the black ground, the roofs below"
+    }
+   ]
+  },
   "c56c9f0735eeda184088b35afdd3382488d4780c104fdcafd357d8884151e3b1": {
    "at": "2026-11-26 03:17:44Z",
    "claims": 17,
@@ -639,6 +1261,46 @@
      "kind": "SAYS",
      "note": "The burning houses and the intact row are visible. No wall is shown, and nothing shows that almost nobody moved back, such as empty houses or leaving cars. The window lighting does not carry that.",
      "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    }
+   ]
+  },
+  "c7712c8f3288117813d905822e63bebb670cd67e5df64e581ad9d10653240c05": {
+   "at": "2026-11-26 08:12:22Z",
+   "claims": 17,
+   "claims_key": "7174a372c5e96727",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "In still 1 Data's left hand touches the left frame edge, and the lava fountain and house are cut by it. Still 4 has his right hand near the right edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1"
+    }
+   ],
+   "sha256": "c7712c8f3288117813d905822e63bebb670cd67e5df64e581ad9d10653240c05",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "A grey car with tail lights sits in the street. It is in the same spot in every still, so it does not read as driving away.",
+     "text": "a car driving away up the street"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "No driver stands small down the street. Data is large in the foreground in every still and nobody is far off staring up.",
+     "text": "the driver in his yellow hard hat stands small down the street, staring up at it"
+    },
+    {
+     "from": "FOR",
+     "id": "c12",
+     "kind": "ACTION",
+     "note": "He is big in the frame, but his face is toward the camera with eyes rolled up. He is not running out past the camera or looking back over his shoulder.",
+     "text": "He runs out past us, big in the frame, looking back at the fire over his shoulder"
     }
    ]
   },
@@ -714,6 +1376,59 @@
     }
    ]
   },
+  "df08a6a272e279ddabf189679528755a49673d48d562f4cc3648dac349983136": {
+   "at": "2026-11-26 11:19:45Z",
+   "claims": 14,
+   "claims_key": "b351262a2f2537f8",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder held over his head in still 2 is gone in still 3. The dust is there, but the boulder's placement is not clearly shown.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-3"
+    },
+    {
+     "id": "edges",
+     "note": "In still 4 the hard hat nearly touches the top of the frame, and the bottom boulder is cut off. In still 1 the boulder at the left is cut by the frame edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "df08a6a272e279ddabf189679528755a49673d48d562f4cc3648dac349983136",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "PLACE",
+     "note": "The left side shows only dark wall, and fire and smoke in the far distance. There is no clear bare black ground, and the fountains are not distinguishable. The fire at the top left may be a lava fountain, but it is not a convincing match.",
+     "text": "bare black ground and far fountains on the other"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "Still 1 shows a boulder by his side and still 2 shows a boulder above his head. No still shows him heaving a black boulder up to his chest.",
+     "text": "the driver in his hard hat stands on the crest and heaves a black boulder up to his chest"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Dust is puffing at the left, but no boulder is visibly set down in the crest row. A boulder sits at the bottom of the frame, and it is unclear whether it is the set-down one.",
+     "text": "He sets it down in the row of boulders along the crest in a puff of pale dust"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The wall, houses and a boulder being placed are shown, but no still shows lava being kept out. There is only distant fire, and the wall is not clearly taller than a house. The line's fact reads only partly.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
   "dfb3367455091e9aa6bc8e6a21f79352435dd43ddcbc3e2b18dc74f379ff943e": {
    "at": "2026-11-26 01:13:59Z",
    "claims": 17,
@@ -765,6 +1480,80 @@
      "kind": "SAYS",
      "note": "The three burning houses are shown. No wall and no lava stopped by a wall is visible, and nothing shows people not moving back. A stranger would not get the wall-saved-the-rest fact.",
      "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
+    }
+   ]
+  },
+  "e4a044f3d73bf22c6b947eaf2003788f61c14064e41b43117a909cab4d21607f": {
+   "at": "2026-11-26 10:21:54Z",
+   "claims": 15,
+   "claims_key": "7b310491f9703100",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder beside Data in still 1 is gone in still 2, and a new one appears on his head. The boulder in still 3 sits at lower left and in still 4 is under his feet. The green and blue houses only appear in still 4.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "edges",
+     "note": "In still 4 the hard hat and head are cut by the top edge of the frame.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "e4a044f3d73bf22c6b947eaf2003788f61c14064e41b43117a909cab4d21607f",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c2",
+     "kind": "PLACE",
+     "note": "The camera is close and low on Data at roughly eye level. It does not look along a crest. A ridge line is only faintly visible behind him.",
+     "text": "looking along its crest"
+    },
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "A ridge recedes behind Data in stills 1-3, but it is short and mostly hidden by his body. No long wall running to the distance is visible.",
+     "text": "the wall runs away to the distance"
+    },
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "CAMERA",
+     "note": "The camera is at Data's face level or slightly below, looking up at him in still 4. It is not a little above him.",
+     "text": "a little above him"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "Data stands with a boulder beside him, but he is not heaving it to his chest. His arms are folded or at his sides and the boulder rests on the ground.",
+     "text": "the driver in his hard hat stands on the crest and heaves a black boulder up to his chest"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "A pale dust puff and a boulder appear at lower left, but no row of boulders along the crest is placed. It is unclear he set the boulder down.",
+     "text": "He sets it down in the row of boulders along the crest in a puff of pale dust"
+    },
+    {
+     "from": "FOR",
+     "id": "c11",
+     "kind": "ACTION",
+     "note": "Data stands on a boulder and raises a hand near his face, in profile. He faces left, not out over the black ground. The roofs are close behind him, not far below.",
+     "text": "He stands up on that boulder with a hand shading his eyes, looking out over the black ground, the roofs far below"
+    },
+    {
+     "from": "SAYS",
+     "id": "c12",
+     "kind": "SAYS",
+     "note": "A stranger sees a hard-hat worker stacking rocks with a few houses and a distant eruption. No tall rock wall protecting a town is shown, and the wall is not taller than a house.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
   }

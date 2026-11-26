@@ -991,3 +991,86 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Bring the cars down the centre lane straight at the lens, the nearest one big and whole with lit headlamps and glare on the asphalt, then a gap, then an empty street. In stills 1-2 a car should be right beside him, not tucked against the left edge.
 - better: Replace the clapboard terraces with low one- and two-storey tin-clad Icelandic houses in red, blue, green and white, with corrugated roofs. Put black lava rock and moss at the street's end, and set a real ridge well behind and above the town.
 
+
+## 2026-11-26 10:18Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 5 | 0 | - | FAIL |
+
+**shot 5** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [PLACE, promised by the shot's storyboard line]: "a row of saved houses up the street with every window dark" (A row of small coloured houses runs up the street, but their windows are small and distant. You can't tell from a still that every one is dark, so this isn't clearly a row of saved houses). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [SAYS, promised by the shot's spoken line]: "a stranger with the sound off would say the stills show what this line says: Three houses burned. The rest still stand, but almost nobody moved back. Would you?" (Burning houses are shown and the street is empty. The saved houses are only a small distant row. A stranger could not read 'almost nobody moved back' from the stills, and the lit window actually says someone is home). Fix the shot so one still shows it, or take that promise out of the shot's spoken line.
+- HARD: PRE-FLIGHT: CONTINUITY feet (stills 1-2): In still 2 the feet look lifted slightly off the ground mid-step. In still 1 the front foot may be sunk or lifted. Stills 3-4 are grounded. The rule: Data's feet are on the ground in every still: not floating above it, not sunk into it (a jump the claims name is the only exception).
+- HARD: PRE-FLIGHT: CONTINUITY edges (stills 1-4): The house is cut by the left frame edge in every still. The burning houses' top and flames are cut by the top edge, and the smoke is cut too. The rule: the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge.
+
+
+## 2026-11-26 10:56Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 5 | 72 | 72, 72, 72 | PASS |
+
+**shot 5** (PASS, 72, bar 70)
+
+- problem: Frames 3-4: the 'almost nobody moved back' contrast is weak. The saved row's windows on the right are small, with white frames and pale blue-grey glass, so in daylight they read as normal windows, not dark empty homes. His one warm window is big on the left, the row is small on the right, and the eye doesn't link the two.
+- problem: Frame 4: 'opens his hands' reads as one hand. Only his left arm reaches out palm-up; the other stays at his side. 'Would you?' needs both hands open toward us.
+- problem: Frames 1-4: the three burning houses sit stacked up behind the roofline almost like a tower. The slope they stand on hardly reads, so they look pasted above the street rather than up the hill from it.
+- problem: Burning houses: their windows are even peach squares and the flames are small spikes on the ridges. At phone size they look partly like warmly lit houses, not gutted ones, and are flatter and less detailed than the realistic tin-clad wall in front.
+- problem: Frames 3-4: the lit window, which is the payoff object, is cut by the left frame edge (about two thirds shows).
+
+
+## 2026-11-26 11:19Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [PLACE, promised by the shot's storyboard line]: "bare black ground and far fountains on the other" (The left side shows only dark wall, and fire and smoke in the far distance. There is no clear bare black ground, and the fountains are not distinguishable. The fire at the top left may be a lava fountain, but it is not a convincing match). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [ACTION, promised by the shot's storyboard line]: "the driver in his hard hat stands on the crest and heaves a black boulder up to his chest" (Still 1 shows a boulder by his side and still 2 shows a boulder above his head. No still shows him heaving a black boulder up to his chest). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [ACTION, promised by the shot's storyboard line]: "He sets it down in the row of boulders along the crest in a puff of pale dust" (Dust is puffing at the left, but no boulder is visibly set down in the crest row. A boulder sits at the bottom of the frame, and it is unclear whether it is the set-down one). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [SAYS, promised by the shot's spoken line]: "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out" (The wall, houses and a boulder being placed are shown, but no still shows lava being kept out. There is only distant fire, and the wall is not clearly taller than a house. The line's fact reads only partly). Fix the shot so one still shows it, or take that promise out of the shot's spoken line.
+- HARD: PRE-FLIGHT: CONTINUITY props (stills 2-3): The boulder held over his head in still 2 is gone in still 3. The dust is there, but the boulder's placement is not clearly shown. The rule: every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere).
+- HARD: PRE-FLIGHT: CONTINUITY edges (stills 4): In still 4 the hard hat nearly touches the top of the frame, and the bottom boulder is cut off. In still 1 the boulder at the left is cut by the frame edge. The rule: the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge.
+
+
+## 2026-11-26 11:34Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [ACTION, promised by the shot's storyboard line]: "He stands up on that boulder in profile, one hand raised to his brow, the roofs below" (Data is in profile standing on a boulder, but his arm points forward and is not clearly at his brow. The roofs are beside and behind him, not below). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [HERO, promised by the script's world block]: "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie" (Yellow hard hat, orange hi-vis vest with silver stripes and white coat are all visible. The red tie is not visible in any still). Fix the shot so one still shows it, or take that promise out of the script's world block.
+
+
+## 2026-11-26 11:36Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [HERO, promised by the script's world block]: "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat and red tie" (The yellow hard hat, the orange hi-vis vest with silver stripes and the white coat are all visible. The red tie is not visible in any still, because the vest covers it). Fix the shot so one still shows it, or take that promise out of the script's world block.
+
+
+## 2026-11-26 11:37Z · storyboard
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: PRE-FLIGHT: NOT SEEN [PLACE, promised by the shot's storyboard line]: "far fountains on the other" (Only one lava fountain is visible, upper left behind the wall's far end, and in the same direction as the wall's distance. A single fountain, not several 'far fountains'. In still 4 his arm points toward it, but it is one fire plume, not plural). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [CAMERA, promised by the shot's storyboard line]: "close on him" (The framing is medium to medium-wide: Data is full-length with the houses and wall behind him. It is not a close shot on him). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [ACTION, promised by the shot's storyboard line]: "He sets it down in the row of boulders along the crest in a puff of pale dust" (A boulder sits in the foreground bottom and a dust puff is on the left, but no still shows him placing it in the row. The boulder he carried is not clearly in the row, and the dust is beside him). Fix the shot so one still shows it, or take that promise out of the shot's storyboard line.
+- HARD: PRE-FLIGHT: NOT SEEN [SAYS, promised by the shot's spoken line]: "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out" (The stills show a black rock wall, houses, a flag and a lava fountain, and Data piling boulders. Nothing shows a wall taller than a house, and there is no lava being held back or reaching the wall, so the line's fact is not clear without sound. The wall's height relative to the houses is not conveye). Fix the shot so one still shows it, or take that promise out of the shot's spoken line.
+- HARD: PRE-FLIGHT: CONTINUITY props (stills 2-3): The boulder lifted onto the hat in still 2 is gone in still 3 with no sign of where it went. The boulder at the bottom of still 3 may be a different one. The rule: every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere).
+
