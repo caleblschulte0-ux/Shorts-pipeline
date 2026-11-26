@@ -1,0 +1,415 @@
+{
+ "date": "2026-11-26",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers tells how his old coach walked into a meeting and started snoring.",
+   "post_title": "[Highlight] Aaron Rodgers says HC Mike McCarthy comes into meeting and snores and misses meetings: \"He came in late and within 10 minutes began snoring...he missed the Saturday morning meeting\"",
+   "upvotes": 17402,
+   "url": "https://www.reddit.com/r/nfl/comments/1y5fnd1/highlight_aaron_rodgers_says_hc_mike_mccarthy/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y5fnd1/highlight_aaron_rodgers_says_hc_mike_mccarthy",
+   "title": "Aaron Rodgers Says His Coach Fell Asleep In Meetings And Then Skipped Them All",
+   "hook": "Rodgers says McCarthy snored through meetings \ud83d\ude34",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.812,
+      0.687,
+      0.952,
+      0.955,
+      0.808
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "nba",
+   "who": "Markelle Fultz",
+   "why": "Fultz says he wishes the 76ers had been patient with him.",
+   "post_title": "Markelle Fultz says the 76ers should have been more patient with him: \"I wish I had a chance to help them because I really feel like I could have helped them win if they were patient and let me get he",
+   "upvotes": 1194,
+   "url": "https://streamable.com/rlmj0a",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5csws/markelle_fultz_says_the_76ers_should_have_been",
+   "title": "Markelle Fultz Says The 76ers Should Have Been Patient With Him",
+   "hook": "Fultz says the 76ers should've been patient \ud83e\udd40",
+   "ledger": {
+    "moves": [
+     "zoom@1.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 13.1,
+       "reason": "the framer: Fultz's face and dreads at columns 3-5, with his jacket shoulders below",
+       "crop": [
+        404,
+        720,
+        374,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 13.1,
+       "t1": 16.03,
+       "reason": "the framer: The bearded man in the STL cap, with his face at columns 6-7 and the mic at column 5",
+       "crop": [
+        404,
+        720,
+        630,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.154,
+       0.827
+      ],
+      [
+       0.0,
+       0.697
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: This is the real Fultz interview and it is on-topic, but it opens on a flat wide shot with filler words and the 'should have been patient' line is never shown landing clearly."
+    },
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The footage shows the right player and is cropped correctly, but it is one static side-on shot of a long answer that cuts off mid-sentence ('STUFF LIKE') before the 'should have been patient' line the hook promises."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The quote is real and on topic, but the crop keeps cutting Fultz half out of frame, and the clip ends on the host's filler and not on Fultz's line.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The quote is real and on topic, but the crop keeps cutting Fultz half out of frame, and the clip ends on the host's filler and not on Fultz's line."
+  },
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers says he found out about his situation through a player and nobody on the team has called.",
+   "post_title": "[Highlight] Aaron Rodgers on the Pat McAfee Show: \u201cI found out through Pat Freiermuth\u2026still haven\u2019t heard from people over there.\u201d",
+   "upvotes": 5451,
+   "url": "https://www.reddit.com/r/nfl/comments/1y5fj2h/highlight_aaron_rodgers_on_the_pat_mcafee_show_i/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y5fj2h/highlight_aaron_rodgers_on_the_pat_mcafee_show_i",
+   "title": "Aaron Rodgers Says He Found Out He Was Benched From Pat Freiermuth, Not The Team",
+   "hook": "Rodgers found out he was inactive from a player",
+   "ledger": {
+    "moves": [
+     "zoom@5.81"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.812,
+      0.819,
+      0.742,
+      0.822,
+      0.7
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Aaron Rodgers Pittsburgh Steelers@18.99"
+    ],
+    "cut_in_s": 4.5,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jos\u00e9 Mourinho",
+   "why": "Mourinho jokes that the dressing room is Las Vegas and what happens there stays there.",
+   "post_title": "Jos\u00e9 Mourinho: \u201cWhat did I tell the players in the dressing room? The dressing room is Las Vegas, and what happens in Las Vegas? Stays in Las Vegas.\u201d",
+   "upvotes": 10430,
+   "url": "https://www.reddit.com/r/soccer/comments/1y4r5j4/jos\u00e9_mourinho_what_did_i_tell_the_players_in_the/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y4r5j4/jos\u00e9_mourinho_what_did_i_tell_the_players_in_the",
+   "skipped": "not English (English p=0.02, 51% English words)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Francisco Moura",
+   "why": "A devastated player is consoled by teammates, rivals and fans after an own goal.",
+   "post_title": "Francisco Moura, devastated after a shocking own goal, is consoled by teammates, rivals and fans",
+   "upvotes": 9438,
+   "url": "https://www.reddit.com/r/soccer/comments/1y1t0lf/francisco_moura_devastated_after_a_shocking_own/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y1t0lf/francisco_moura_devastated_after_a_shocking_own",
+   "skipped": "not English (English p=0.03, 45% English words)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Mauricio Pochettino",
+   "why": "Pochettino chuckles as he admits Man United are in a relegation fight.",
+   "post_title": "Mauricio Pochettino when asked if Man United are in a relegation battle: \"That is our reality, no? Yes, yes. We are there, no? (chuckles) That is our reality. We need to start winning games\"",
+   "upvotes": 3573,
+   "url": "https://www.reddit.com/r/soccer/comments/1y2zrj8/mauricio_pochettino_when_asked_if_man_united_are/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y2zrj8/mauricio_pochettino_when_asked_if_man_united_are",
+   "title": "Mauricio Pochettino Admits Man United Are In A Relegation Battle: \"That Is Our Reality\"",
+   "hook": "Pochettino admits United are in a relegation battle",
+   "ledger": {
+    "moves": [
+     "whoa@3.4"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jos\u00e9 Mourinho",
+   "why": "Mourinho walks out of his press conference when asked about Ronaldo.",
+   "post_title": "Jos\u00e9 Mourinho walks out of his press conference after being asked about Cristiano Ronaldo and Portugal: \"No, no, no, no, no. As a Portuguese person, the only thing I will say is that I want Portugal t",
+   "upvotes": 5197,
+   "url": "https://www.reddit.com/r/soccer/comments/1y114lq/jos\u00e9_mourinho_walks_out_of_his_press_conference/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y114lq/jos\u00e9_mourinho_walks_out_of_his_press_conference",
+   "skipped": "not English (English p=0.02, 48% English words)"
+  },
+  {
+   "sub": "nba",
+   "who": "Chris Paul",
+   "why": "Chris Paul answers the Rodgers benching question with a dry jab about his own last year.",
+   "post_title": "Chris Paul when asked if anything like the Aaron Rodgers benching situation would happen in the NBA: \"You see what happened to me last year?\"",
+   "upvotes": 2254,
+   "url": "https://streamable.com/em3ki5",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5g6bd/chris_paul_when_asked_if_anything_like_the_aaron",
+   "title": "Chris Paul Opens Up On The Aaron Rodgers Benching: \"Mine Wasn't The Greatest\"",
+   "hook": "Chris Paul on Rodgers getting benched",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.709,
+      0.831,
+      0.82,
+      0.989,
+      0.946
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  },
+  {
+   "sub": "hockey",
+   "who": "Dylan Larkin",
+   "why": "Montreal fans chant \"We Got Larkin\" as he takes his first shift.",
+   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
+   "upvotes": 3031,
+   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
+   "title": "Montreal Fans Chant \"We Got Larkin\" On Dylan Larkin's First Habs Shift",
+   "hook": "Montreal fans welcome Larkin to the Habs",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.17,
+       "reason": "the framer: Close-up of the Montreal player in the red helmet (#88): his whole face and helmet sit in columns 2-5.",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.17,
+       "t1": 15.0,
+       "reason": "the framer: The play along the boards, with the LA player and the fallen Montreal player in columns 3-5. The #14 skater is in column 2-3 and the #40 skater in column 5.",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: Real footage of Larkin's first shift, but the chant it promises is never shown: just routine play with another account's captions stacked on ours."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: Real footage of Larkin's first shift, but the chant it promises is never shown: just routine play with another account's captions stacked on ours.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: Real footage of Larkin's first shift, but the chant it promises is never shown: just routine play with another account's captions stacked on ours."
+  },
+  {
+   "sub": "nfl",
+   "who": "Ford Field mascots",
+   "why": "Mascots flatten kids in the youth halftime game.",
+   "post_title": "[Highlight] Mascots send kids to the shadow realm during the youth halftime game at Ford Field",
+   "upvotes": 5286,
+   "url": "https://www.reddit.com/r/nfl/comments/1y3ipbl/highlight_mascots_send_kids_to_the_shadow_realm/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y3ipbl/highlight_mascots_send_kids_to_the_shadow_realm",
+   "skipped": "not English (English p=0.29, 40% English words)"
+  },
+  {
+   "sub": "nba",
+   "who": "AJ Dybantsa",
+   "why": "A local kid on facing the Celtics: he's been a fan since the womb.",
+   "post_title": "Brockton's AJ Dybantsa on facing the Celtics for the first time: \"I've been a Celtics fan since I came out the womb.\"",
+   "upvotes": 1476,
+   "url": "https://streamable.com/sl4l4s",
+   "topic": "https://www.reddit.com/r/nba/comments/1y4zt9w/brocktons_aj_dybantsa_on_facing_the_celtics_for",
+   "title": "AJ Dybantsa: \"I've Been A Celtics Fan Since I Came Out The Womb\"",
+   "hook": "AJ Dybantsa on facing his childhood team \ud83e\udd79",
+   "ledger": {
+    "moves": [
+     "zoom@4.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [
+     "Kevin Garnett Paul Pierce@11.12"
+    ],
+    "cut_in_s": 5.0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: A clean, correctly framed and on-topic sentimental presser moment, but it is low-energy and static, and the 'since the womb' quote comes too late to hook a scroller."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/AnIOfVB91fE",
+   "ok": true,
+   "publish_at": "2026-11-26T15:00:00Z",
+   "seconds": 374,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261126-aj-dybantsa-i-ve-been-a-celtics-fan-since-i-came-90a3bb93",
+    "tiktok": "queued for 2026-11-26T15:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Mike McCarthy",
+   "why": "McCarthy admits his huddle break with \"1, 2, 3 Packers\" was embarrassing.",
+   "post_title": "[WNEP] McCarthy confirms he broke huddle with 1, 2, 3 PACKERS: \u201cIt was an embarrassing moment\u201d",
+   "upvotes": 6265,
+   "url": "https://m.youtube.com/live/z0CbY7X2ZE8?is=vX7-zEms1GgkqXyn",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y5jmht/wnep_mccarthy_confirms_he_broke_huddle_with_1_2_3",
+   "skipped": "download failed"
+  }
+ ],
+ "already_today": 0,
+ "pool": 135,
+ "already_posted": 3,
+ "refused_before": 11,
+ "shipped": 1
+}
