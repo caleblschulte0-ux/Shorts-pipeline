@@ -146,16 +146,45 @@ def flicker(lights, seed=0.0, t_end=None, depth=0.22):
 
 
 # ---------------------------------------------------------------- real assets
+_TRIED = {}
+
+
+def _unpack(*parts):
+    """a file the kit asks for that is fetched (branch data3d-assets) but not unpacked in THIS checkout's cache is
+    unpacked now, once: a story never falls back to a second-choice texture because a worktree's cache is older than
+    the asset list ("sparse_grass is not unpacked: using rocky_trail"). Quiet when there is no git or no such asset."""
+    import subprocess
+    top = parts[0] if parts[0] != "hdri" else "/".join(parts[:2])
+    if top in _TRIED: return _TRIED[top]
+    _TRIED[top] = False
+    if os.environ.get("POLYHAVEN_DIR") or os.environ.get("FX_NO_UNPACK"): return False
+    root = os.path.dirname(os.path.dirname(PH)); run = lambda *a, **k: subprocess.run(a, cwd=root, capture_output=True, timeout=120, **k)
+    try:
+        for attempt in (0, 1):
+            ar = run("git", "archive", "refs/remotes/origin/data3d-assets", "polyhaven/" + top)
+            if ar.returncode == 0 and ar.stdout:
+                os.makedirs(os.path.dirname(PH), exist_ok=True)
+                ok = subprocess.run(("tar", "-x", "-C", os.path.dirname(PH)), input=ar.stdout, capture_output=True, timeout=120).returncode == 0
+                if ok: print(f"FX UNPACKED polyhaven/{top} into {os.path.dirname(PH)}", flush=True)
+                _TRIED[top] = ok; return ok
+            if attempt == 0 and "FX_FETCHED" not in _TRIED:
+                _TRIED["FX_FETCHED"] = True
+                run("git", "fetch", "-q", "origin", "+data3d-assets:refs/remotes/origin/data3d-assets")
+    except Exception:
+        pass
+    return False
+
+
 def ph_path(*parts):
     p = os.path.join(PH, *parts)
-    if not os.path.exists(p):
+    if not os.path.exists(p) and not (_unpack(*parts) and os.path.exists(p)):
         raise FileNotFoundError(f"Poly Haven asset missing: {p} (add it to .github/triggers/data3d_assets, then unpack "
                                 f"data3d-assets into cache/: git archive origin/data3d-assets polyhaven | tar -x -C cache)")
     return p
 
 
 def have(*parts):
-    return os.path.exists(os.path.join(PH, *parts))
+    return os.path.exists(os.path.join(PH, *parts)) or (_unpack(*parts) and os.path.exists(os.path.join(PH, *parts)))
 
 
 def first(*aids):
@@ -1244,7 +1273,7 @@ def _spray(name, base, h, w, length, yaw, seed, keys, t_end, spread=0.2, bright=
     separate strands, each finger of the fountain reaching its own height (and changing with time), cooling to orange
     and dark red at the top and the outside. length > 0 makes the vent a fissure and the jet a curtain along x."""
     t_end = t_end if t_end is not None else _dur() + 1.0
-    Rt = w * 0.4 + h * spread * 1.5; H = h * 1.22
+    Rt = w + h * spread * 2.7; H = h * 1.22
     m = bpy.data.materials.new(name + " spray"); m.use_nodes = True; nt = m.node_tree
     for nd in list(nt.nodes): nt.nodes.remove(nd)
     N = nt.nodes.new; L = nt.links.new; X = _X(nt)
@@ -1266,35 +1295,50 @@ def _spray(name, base, h, w, length, yaw, seed, keys, t_end, spread=0.2, bright=
             if isinstance(s, (int, float)): cb.inputs[i].default_value = s
             else: L(s, cb.inputs[i])
         return cb.outputs[0]
-    # every finger of the fountain reaches its own height, and that height pulses
-    fing = noise(vec(x, y, 0.0), 1.5 / max(w, 0.2), 2.0, 0.5, X.add(X.mul(t, 0.8), seed * 3.1))
-    hh = X.mul(X.clamp01(fing, 0.25, 0.72), 1.0); hh = X.add(0.3, X.mul(hh, 0.78))
+    # separate JETS along the vent, each its own height, each pulsing (an even comb of tongues read as a flame sprite)
+    lo = noise(vec(x, y, 0.0), 0.42 / max(w, 0.2), 1.0, 0.5, X.add(X.mul(t, 0.5), seed * 3.1))
+    hi = noise(vec(x, y, 0.0), 1.7 / max(w, 0.2), 2.0, 0.5, X.add(X.mul(t, 0.9), seed * 1.3 + 5.0))
+    hh = X.add(0.3, X.mul(X.mul(X.clamp01(lo, 0.36, 0.62), 0.86), X.add(0.5, X.mul(X.clamp01(hi, 0.3, 0.7), 0.55))))
     uu = X.div(z, X.mul(hh, h)); uc = X.clamp01(uu, 0.0, 1.3); uc = X.mul(uc, 1.3)
     R = X.add(w * 0.45, X.mul(X.pw(uc, 1.1), h * spread))
-    e = X.sub(1.0, X.div(r, R)); ec = X.clamp01(e)
+    q = X.div(r, R); e = X.sub(1.0, q); ec = X.clamp01(e)
     div = X.add(1.0, X.mul(uc, 2.4))                                               # the strands diverge from the vent
     hx = X.add(xc, X.div(dx, div)); hy = X.div(y, div)
     rise = math.sqrt(19.6 * h) * 0.55
     fx = 6.5 / max(w, 0.2); fz = 5.0 / max(h, 0.5) / fx
-    sv = N("ShaderNodeVectorMath"); sv.operation = 'MULTIPLY'; L(vec(hx, hy, X.sub(z, X.mul(t, rise))), sv.inputs[0]); sv.inputs[1].default_value = (1.0, 1.0, fz)
-    strands = noise(sv.outputs[0], fx, 3.0, 0.6, X.add(X.mul(t, 0.35), seed + 7.3))
-    thr = X.add(X.add(0.34, X.mul(X.mul(uc, uc), 0.2)), X.mul(X.sub(1.0, ec), 0.2))     # higher and further out it breaks into separate strands, then dots
-    st = X.clamp01(X.sub(strands, thr), 0.0, 0.04)
-    st = X.mx(st, X.mul(X.clamp01(X.sub(1.0, X.mul(uu, 3.2))), X.clamp01(e, 0.15, 0.5)))      # at the vent it is one solid mass
+    # long strands low down, shortening to clumps and dots toward the top: spray that peaks, not tongues that taper
+    zz = X.mul(X.mul(X.sub(z, X.mul(t, rise)), fz), X.add(1.0, X.mul(X.mul(uc, uc), 1.6)))
+    strands = noise(vec(hx, hy, zz), fx, 3.0, 0.6, X.add(X.mul(t, 0.35), seed + 7.3))
+    thr = X.add(X.add(0.36, X.mul(X.mul(uc, uc), 0.24)), X.mul(X.sub(1.0, ec), 0.16))
+    st = X.clamp01(X.sub(strands, thr), 0.0, 0.02)                                 # hard: a strand is there or it is not
+    band = X.sub(1.0, X.clamp01(z, 0.26 * h, 0.42 * h))                            # the base band: one dense white-yellow mass
+    st = X.mx(st, band)
     foot = X.clamp01(z, 0.0, 0.08 * w + 0.02)
-    body = X.mul(X.mul(X.mul(st, X.clamp01(e, 0.0, 0.3)), X.clamp01(X.sub(1.06, uu), 0.0, 0.45)), foot)
-    T = X.mul(X.pw(ec, 0.5), X.sub(1.0, X.mul(X.clamp01(uu), 0.82)))      # white only low and deep in it: it is orange by its top
+    body = X.mul(X.mul(X.mul(st, X.clamp01(e, 0.0, 0.2)), X.clamp01(X.sub(1.1, uu), 0.0, 0.12)), foot)
+    T = X.mx(X.mul(X.sub(1.0, X.mul(X.clamp01(uu), 0.7)), X.add(0.75, X.mul(ec, 0.25))), band)   # hot by HEIGHT: white-yellow low, orange by the top
+    # what FALLS: clumps and sheets of cooling lava dropping down the outside of the jets, orange high up, dark by the ground
+    fb = 3.0 / max(w, 0.2)
+    blobs = noise(vec(X.mul(x, 1.0), y, X.mul(X.add(z, X.mul(t, rise * 0.7)), 0.55)), fb, 2.0, 0.5, X.add(X.mul(t, 0.2), seed + 11.0))
+    shell = X.mul(X.mul(X.clamp01(q, 0.85, 1.1), X.sub(1.0, X.clamp01(q, 1.5, 1.95))), X.mul(X.clamp01(X.sub(1.2, uu), 0.0, 0.2), foot))
+    b2 = X.mul(X.clamp01(X.sub(blobs, 0.65), 0.0, 0.02), shell)        # sparse: the fall is beside and between the jets, never a wall in front of them
+    b2core = X.mul(X.clamp01(X.sub(blobs, 0.65), 0.0, 0.08), shell)                  # lit in its middle, dark at its skin
+    T2 = X.add(0.1, X.mul(X.clamp01(uu), 0.3))
+    Tm = X.div(X.add(X.mul(T, body), X.mul(T2, b2)), X.add(X.add(body, b2), 1e-4))
     amt = N("ShaderNodeValue"); amt.name = "gas amount"; amt.outputs[0].default_value = 1.0
-    rp = N("ShaderNodeValToRGB"); L(T, rp.inputs["Fac"]); el = rp.color_ramp.elements
+    rp = N("ShaderNodeValToRGB"); L(Tm, rp.inputs["Fac"]); el = rp.color_ramp.elements
     el[0].position = 0.0; el[0].color = (*K.lin("#B03800"), 1); el[1].position = 1.0; el[1].color = (*K.lin("#FFE890"), 1)
-    for pos, hx_ in ((0.15, "#F06800"), (0.32, "#FF8A10"), (0.52, "#FFA828"), (0.75, "#FFC83C")):   # all of it leans yellow: a red spray, summed through its depth, renders salmon
+    for pos, hx_ in ((0.15, "#F06800"), (0.32, "#FF8A10"), (0.52, "#FFA828"), (0.75, "#FFC83C")):   # all of it leans yellow: a red spray renders salmon
         el.new(pos).color = (*K.lin(hx_), 1)
     L(rp.outputs["Color"], pv.inputs["Emission Color"])
+    # OPAQUE and glowing, not additive: its density hides the sky behind it, and its emission is scaled by that density so
+    # what is seen is the surface's own heat (an emission with no density is a transparent sprite against a blue sky)
+    D1, D2 = 9.0, 7.0
     es = N("ShaderNodeMath"); es.operation = 'MULTIPLY'; es.name = "fire strength"; es.inputs[1].default_value = bright
-    L(X.mul(X.mul(body, X.add(0.28, X.mul(X.pw(T, 3.0), 16.0))), amt.outputs[0]), es.inputs[0])
+    glow = X.add(X.mul(X.mul(body, D1), X.add(0.7, X.mul(X.pw(T, 3.0), 9.0))), X.mul(X.mul(b2core, D2), X.add(0.2, X.mul(T2, 2.2))))
+    L(X.mul(glow, amt.outputs[0]), es.inputs[0])
     L(es.outputs[0], pv.inputs["Emission Strength"])
-    L(X.mul(X.mul(body, 1.2), amt.outputs[0]), pv.inputs["Density"])      # thin: a dense shell of cool spray would hide the white core
-    pv.inputs["Color"].default_value = (0.12, 0.03, 0.01, 1); pv.inputs["Anisotropy"].default_value = 0.0
+    L(X.mul(X.add(X.mul(body, D1), X.mul(b2, D2)), amt.outputs[0]), pv.inputs["Density"])
+    pv.inputs["Color"].default_value = (0.03, 0.02, 0.02, 1); pv.inputs["Anisotropy"].default_value = 0.0
     L(pv.outputs[0], out.inputs["Volume"])
     B_ = Vector(base)
     o = K.box(name, (B_.x, B_.y, B_.z + H / 2), (length + 2 * Rt, 2 * Rt, H), m, bev=0.0)
@@ -1355,12 +1399,13 @@ def _rampart(name, base, w, length, yaw, seed, m_rock, m_hot):
                  "where the big ones land, a black spatter rampart with glowing cracks round the vent, a broad gas "
                  "plume above lit orange from below, and strong orange lamps on the ground, the walls and the smoke", emits=True)
 def lava_fountain(base=(0, 0, 0), h=12.0, w=1.6, length=0.0, yaw=0.0, clots=900, plume=None, lean=(-0.25, 0.1), seed=0, power=None,
-                  t0=0.0, keys=None, splats=8, t_end=None, name="fountain"):
+                  t0=0.0, keys=None, splats=8, t_end=None, name="fountain", clot_size=1.0):
     """h: how high the spray stands (default 12 m: about four houses; a fountain a house high reads as a bonfire).
     w: the vent's width. length: 0 is one jet; more is a fissure that long (along x, turned by yaw) and the spray a
     curtain. plume: metres of gas above it (default 1.4 h). keys [(t, 0..1)]: it surges and dies; without them the
     fingers of the spray still pulse, so stills a second apart differ. power: watts of all its lamps together
-    (default 1,500 a metre of height). Returns dict(jet, clots, splats, rampart, pool, plume, light)."""
+    (default 1,500 a metre of height). clot_size: the thrown clots' size, times this (1 for a fountain 10-25 m
+    off; 2.5-3 for one seen from 30-60 m, where a real-size clot is under a pixel). Returns dict(jet, clots, splats, rampart, pool, plume, light)."""
     B_ = Vector(base); objs = []; plume = plume if plume is not None else 1.4 * h
     cy_, sy_ = math.cos(yaw), math.sin(yaw)
     along = lambda u, v=0.0, z=0.0: Vector((B_.x + u * cy_ - v * sy_, B_.y + u * sy_ + v * cy_, B_.z + z))
@@ -1371,8 +1416,8 @@ def lava_fountain(base=(0, 0, 0), h=12.0, w=1.6, length=0.0, yaw=0.0, clots=900,
         u = (i / (npl - 1) - 0.5) * length * 0.8 if npl > 1 else 0.0
         plumes.append(gas(f"{name} plume {i}" if npl > 1 else name + " plume", tuple(along(u, 0, 0.55 * h)), w=max(2.0 * w, 0.2 * h) + (0.3 * length / npl if npl > 1 else 0.0),
                           h_fire=0.25 * h, h_smoke=plume * (1.0 if npl == 1 else 0.75 + 0.5 * vn(i * 1.7, seed + 2.0, seed)), lean=lean, seed=seed * 2.3 + 0.7 + i * 5.1,
-                          fire=0.0, smoke_d=1.9, smoke=(0.15, 0.135, 0.125), rise=3.0, flame_d=0.0, spread=0.3, keys=keys, t_end=t_end, foot=0.3 * h,
-                          ramp=(("#FF8A18", 0.0), ("#FF8A18", 1.0)), under=0.45))
+                          fire=0.0, smoke_d=3.2, smoke=(0.055, 0.05, 0.046), rise=3.0, flame_d=0.0, spread=0.3, keys=keys, t_end=t_end, foot=0.3 * h,
+                          ramp=(("#FF8A18", 0.0), ("#FF8A18", 1.0)), under=0.3))      # dark ash and gas (a pale haze in daylight read as mist), lit from below
     pl = plumes[0]
     objs += [jet] + plumes
     rock = ph_mat("burned_ground_01", scale=0.8, tint="#161413", name="fx spatter rock", bump=1.8) if have("burned_ground_01", "textures") else lava_mat("fx spatter rock", heat=0.0)
@@ -1380,7 +1425,7 @@ def lava_fountain(base=(0, 0, 0), h=12.0, w=1.6, length=0.0, yaw=0.0, clots=900,
     objs += [wall] + blocks
     v0 = math.sqrt(19.6 * h) * 0.95
     m = _heat_mat("fx lava clot")
-    cl, sp, sl = _arcs(name + " clot", tuple(along(0, 0, 0.5 * w)), clots, v0, 0.24, t0, None, 2 * v0 / 9.8 * 0.85, (0.0015 * h + 0.006, 0.003 * h + 0.012), seed, m,
+    cl, sp, sl = _arcs(name + " clot", tuple(along(0, 0, 0.5 * w)), clots, v0, 0.24, t0, None, 2 * v0 / 9.8 * 0.85, ((0.0015 * h + 0.006) * clot_size, (0.003 * h + 0.012) * clot_size), seed, m,
                        ground_z=B_.z, wind=(lean[0] * 1.5, lean[1] * 1.5), spread=(length + 0.5 * w, 0.4 * w), yaw=yaw, splats=splats, splat_power=6.0 * h)
     objs += cl + sp
     e = power if power is not None else 1500.0 * h
