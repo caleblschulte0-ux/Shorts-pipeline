@@ -150,6 +150,106 @@
       "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The sex difference is a subgroup detail, not a consequence or explanation of the overall temperature decline.\",\"2\":\"Revising the historic standard changes to measurement history and does not follow from the sex-specific decline.\"}}",
       "by": "chatgpt",
       "at": "2026-11-26T12:36:00.000Z"
+    },
+    "e5233aa86d9ba32a": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":16,\"arc\":10,\"factual\":13,\"visual_proof\":12,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Connect the sex-specific decline and the recalculated old standard into one explanation of why 98.6°F no longer works as a universal normal.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "7652a15a66305dac": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "0e8c0d6d8518a264": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The pitch jumps across different countries, education levels, spending, literacy, and class sizes without one concrete child or causal thread.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "330ae7f151079a4c": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false,\"3\":false,\"4\":false},\"why\":{\"1\":\"A tertiary ratio in Guinea-Bissau does not follow from India's total secondary enrollment.\",\"2\":\"An unnamed national spending trend does not follow from the Guinea-Bissau classroom ratio.\",\"3\":\"Female youth literacy is an outcome from another context, not a consequence of the spending beat.\",\"4\":\"Tanzania preschool crowding changes country and education level again instead of following the literacy result.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "d40c1f3c00cf66d6": {
+      "answer": "{\"scores\":{\"premise\":10,\"hook\":14,\"arc\":5,\"factual\":11,\"visual_proof\":10,\"payoff\":5,\"voice\":3},\"fatal\":[\"confusing\"],\"weakest_note\":\"Choose one country and one education level, then trace class size through teacher attention to a measurable student outcome.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "4627633008881868": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "ae419b28e0178dcf": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"Unnecessary US antibiotic prescriptions introduce a separate possible cause and do not follow from the fiber explanation.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "5bef5e2aeef31ff8": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":13,\"factual\":12,\"visual_proof\":12,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Tie the antibiotics beat directly to the same diversity gap, or end on the fiber mechanism so the causal story stays continuous.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "1bbce125f3e346c8": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "f54843d080bdb84f": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises an immediate aviation threat viewers can picture: serious runway near-misses more than doubled within about a decade.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "f1a4441979584c9d": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":false},\"why\":{\"2\":\"Concentration at eight airports does not explain the increase or follow from the pedestrian-and-vehicle cause.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "142763bb87776259": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":13,\"factual\":13,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Make the hotspot beat show how concentrated intervention could reduce the dominant incursion cause, rather than ending on a separate location fact.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "75c4cbe0d4857255": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "e000f1a2f23823bc": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes a personal bodily change concrete—British feet grew two shoe sizes—and promises a cause viewers immediately understand.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "5302b3191c9097ae": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":true},\"why\":{\"1\":\"Adult foot widening is related evidence but does not result from the preceding historical increase in men's shoe length.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "7c612fa48636a55a": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":12,\"factual\":12,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Frame widening as the mechanism behind larger sizes before introducing body weight, so each beat advances one causal explanation.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "724dd64fe15e3464": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "7844c280d371e4d0": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes a familiar medical standard personally relevant by promising that modern bodies now run measurably cooler.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "3a0c6f8c0dbb9657": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The sex difference is a subgroup detail, not a consequence or explanation of the overall decline.\",\"2\":\"Recalculating the historic standard switches to measurement history and does not follow from the sex-specific comparison.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
+    },
+    "1d068fb851a942d1": {
+      "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":10,\"factual\":13,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Build one argument from generational cooling to why the old standard misleads; the sex comparison currently interrupts that arc.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-26T12:55:00.000Z"
     }
   }
 }
