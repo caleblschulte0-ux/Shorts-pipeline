@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-26T13:34:10.626976+00:00",
+  "fetched_at": "2026-11-26T13:40:10.099612+00:00",
   "videos": [
     {
       "video_id": "CQpMuXedtow",
@@ -28,14 +28,14 @@
       "scene_changes_before_5s": null,
       "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
       "published_at": "2026-11-20T03:30:13Z",
-      "age_hours": 154.1,
+      "age_hours": 154.2,
       "views": 622,
       "engaged_views": 217,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 4.04,
+      "views_per_hour": 4.03,
       "average_view_percentage": 52.7,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 63.0,
@@ -572,7 +572,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
       "published_at": "2026-10-30T18:30:39Z",
-      "age_hours": 643.1,
+      "age_hours": 643.2,
       "views": 564,
       "engaged_views": 217,
       "likes": 0,
@@ -1116,7 +1116,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
       "published_at": "2026-11-24T00:30:06Z",
-      "age_hours": 61.1,
+      "age_hours": 61.2,
       "views": 46,
       "engaged_views": 6,
       "likes": 0,
@@ -1158,7 +1158,7 @@
       "scene_changes_before_5s": null,
       "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
       "published_at": "2026-11-12T23:00:28Z",
-      "age_hours": 326.6,
+      "age_hours": 326.7,
       "views": 213,
       "engaged_views": 90,
       "likes": 0,
@@ -1702,7 +1702,7 @@
       "scene_changes_before_5s": null,
       "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
       "published_at": "2026-11-18T21:30:35Z",
-      "age_hours": 184.1,
+      "age_hours": 184.2,
       "views": 103,
       "engaged_views": 42,
       "likes": 0,
@@ -1718,503 +1718,403 @@
       "retention_curve": [
         [
           0.01,
-          1.25,
-          0.536
+          1.25
         ],
         [
           0.02,
-          1.25,
-          0.517
+          1.25
         ],
         [
           0.03,
-          1.25,
-          0.497
+          1.25
         ],
         [
           0.04,
-          1.225,
-          0.477
+          1.225
         ],
         [
           0.05,
-          1.15,
-          0.457
+          1.15
         ],
         [
           0.06,
-          1.1,
-          0.439
+          1.1
         ],
         [
           0.07,
-          1.1,
-          0.422
+          1.1
         ],
         [
           0.08,
-          1.1,
-          0.407
+          1.1
         ],
         [
           0.09,
-          1.1,
-          0.393
+          1.1
         ],
         [
           0.1,
-          1.05,
-          0.38
+          1.05
         ],
         [
           0.11,
-          1.025,
-          0.368
+          1.025
         ],
         [
           0.12,
-          1.05,
-          0.356
+          1.05
         ],
         [
           0.13,
-          1.0,
-          0.346
+          1.0
         ],
         [
           0.14,
-          1.0,
-          0.335
+          1.0
         ],
         [
           0.15,
-          1.0,
-          0.325
+          1.0
         ],
         [
           0.16,
-          0.975,
-          0.316
+          0.975
         ],
         [
           0.17,
-          0.975,
-          0.306
+          0.975
         ],
         [
           0.18,
-          0.975,
-          0.297
+          0.975
         ],
         [
           0.19,
-          0.975,
-          0.288
+          0.975
         ],
         [
           0.2,
-          0.975,
-          0.28
+          0.975
         ],
         [
           0.21,
-          0.95,
-          0.272
+          0.95
         ],
         [
           0.22,
-          0.95,
-          0.264
+          0.95
         ],
         [
           0.23,
-          0.875,
-          0.256
+          0.875
         ],
         [
           0.24,
-          0.875,
-          0.249
+          0.875
         ],
         [
           0.25,
-          0.85,
-          0.241
+          0.85
         ],
         [
           0.26,
-          0.85,
-          0.235
+          0.85
         ],
         [
           0.27,
-          0.825,
-          0.229
+          0.825
         ],
         [
           0.28,
-          0.825,
-          0.223
+          0.825
         ],
         [
           0.29,
-          0.825,
-          0.217
+          0.825
         ],
         [
           0.3,
-          0.825,
-          0.212
+          0.825
         ],
         [
           0.31,
-          0.825,
-          0.207
+          0.825
         ],
         [
           0.32,
-          0.8,
-          0.203
+          0.8
         ],
         [
           0.33,
-          0.8,
-          0.199
+          0.8
         ],
         [
           0.34,
-          0.775,
-          0.196
+          0.775
         ],
         [
           0.35,
-          0.775,
-          0.193
+          0.775
         ],
         [
           0.36,
-          0.75,
-          0.191
+          0.75
         ],
         [
           0.37,
-          0.75,
-          0.189
+          0.75
         ],
         [
           0.38,
-          0.75,
-          0.188
+          0.75
         ],
         [
           0.39,
-          0.75,
-          0.186
+          0.75
         ],
         [
           0.4,
-          0.75,
-          0.186
+          0.75
         ],
         [
           0.41,
-          0.75,
-          0.186
+          0.75
         ],
         [
           0.42,
-          0.725,
-          0.186
+          0.725
         ],
         [
           0.43,
-          0.725,
-          0.187
+          0.725
         ],
         [
           0.44,
-          0.725,
-          0.188
+          0.725
         ],
         [
           0.45,
-          0.725,
-          0.189
+          0.725
         ],
         [
           0.46,
-          0.725,
-          0.191
+          0.725
         ],
         [
           0.47,
-          0.725,
-          0.193
+          0.725
         ],
         [
           0.48,
-          0.725,
-          0.195
+          0.725
         ],
         [
           0.49,
-          0.725,
-          0.198
+          0.725
         ],
         [
           0.5,
-          0.7,
-          0.201
+          0.7
         ],
         [
           0.51,
-          0.625,
-          0.205
+          0.625
         ],
         [
           0.52,
-          0.625,
-          0.208
+          0.625
         ],
         [
           0.53,
-          0.575,
-          0.212
+          0.575
         ],
         [
           0.54,
-          0.525,
-          0.217
+          0.525
         ],
         [
           0.55,
-          0.5,
-          0.222
+          0.5
         ],
         [
           0.56,
-          0.5,
-          0.227
+          0.5
         ],
         [
           0.57,
-          0.5,
-          0.232
+          0.5
         ],
         [
           0.58,
-          0.5,
-          0.237
+          0.5
         ],
         [
           0.59,
-          0.5,
-          0.243
+          0.5
         ],
         [
           0.6,
-          0.475,
-          0.249
+          0.475
         ],
         [
           0.61,
-          0.475,
-          0.255
+          0.475
         ],
         [
           0.62,
-          0.475,
-          0.261
+          0.475
         ],
         [
           0.63,
-          0.475,
-          0.267
+          0.475
         ],
         [
           0.64,
-          0.45,
-          0.273
+          0.45
         ],
         [
           0.65,
-          0.425,
-          0.279
+          0.425
         ],
         [
           0.66,
-          0.425,
-          0.285
+          0.425
         ],
         [
           0.67,
-          0.425,
-          0.29
+          0.425
         ],
         [
           0.68,
-          0.425,
-          0.296
+          0.425
         ],
         [
           0.69,
-          0.425,
-          0.301
+          0.425
         ],
         [
           0.7,
-          0.425,
-          0.306
+          0.425
         ],
         [
           0.71,
-          0.425,
-          0.311
+          0.425
         ],
         [
           0.72,
-          0.425,
-          0.316
+          0.425
         ],
         [
           0.73,
-          0.425,
-          0.32
+          0.425
         ],
         [
           0.74,
-          0.4,
-          0.325
+          0.4
         ],
         [
           0.75,
-          0.4,
-          0.329
+          0.4
         ],
         [
           0.76,
-          0.4,
-          0.333
+          0.4
         ],
         [
           0.77,
-          0.4,
-          0.337
+          0.4
         ],
         [
           0.78,
-          0.375,
-          0.341
-        ],
-        [
-          0.79,
-          0.375,
-          0.344
-        ],
-        [
-          0.8,
-          0.375,
-          0.347
-        ],
-        [
-          0.81,
-          0.375,
-          0.35
-        ],
-        [
-          0.82,
-          0.4,
-          0.353
-        ],
-        [
-          0.83,
-          0.4,
-          0.355
-        ],
-        [
-          0.84,
-          0.4,
-          0.357
-        ],
-        [
-          0.85,
-          0.4,
-          0.358
-        ],
-        [
-          0.86,
-          0.4,
-          0.359
-        ],
-        [
-          0.87,
-          0.35,
-          0.361
-        ],
-        [
-          0.88,
-          0.35,
-          0.362
-        ],
-        [
-          0.89,
-          0.325,
-          0.363
-        ],
-        [
-          0.9,
-          0.325,
-          0.364
-        ],
-        [
-          0.91,
-          0.325,
-          0.365
-        ],
-        [
-          0.92,
-          0.3,
-          0.366
-        ],
-        [
-          0.93,
-          0.3,
-          0.367
-        ],
-        [
-          0.94,
-          0.3,
-          0.369
-        ],
-        [
-          0.95,
-          0.3,
-          0.37
-        ],
-        [
-          0.96,
-          0.3,
-          0.371
-        ],
-        [
-          0.97,
-          0.3,
-          0.373
-        ],
-        [
-          0.98,
-          0.3,
-          0.374
-        ],
-        [
-          0.99,
-          0.3,
           0.375
         ],
         [
+          0.79,
+          0.375
+        ],
+        [
+          0.8,
+          0.375
+        ],
+        [
+          0.81,
+          0.375
+        ],
+        [
+          0.82,
+          0.4
+        ],
+        [
+          0.83,
+          0.4
+        ],
+        [
+          0.84,
+          0.4
+        ],
+        [
+          0.85,
+          0.4
+        ],
+        [
+          0.86,
+          0.4
+        ],
+        [
+          0.87,
+          0.35
+        ],
+        [
+          0.88,
+          0.35
+        ],
+        [
+          0.89,
+          0.325
+        ],
+        [
+          0.9,
+          0.325
+        ],
+        [
+          0.91,
+          0.325
+        ],
+        [
+          0.92,
+          0.3
+        ],
+        [
+          0.93,
+          0.3
+        ],
+        [
+          0.94,
+          0.3
+        ],
+        [
+          0.95,
+          0.3
+        ],
+        [
+          0.96,
+          0.3
+        ],
+        [
+          0.97,
+          0.3
+        ],
+        [
+          0.98,
+          0.3
+        ],
+        [
+          0.99,
+          0.3
+        ],
+        [
           1.0,
-          0.3,
-          0.376
+          0.3
         ]
       ],
       "early_retention": 0.84
@@ -2246,7 +2146,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Screams Ahhh As Crowd Goes Wild",
       "published_at": "2026-11-16T17:00:26Z",
-      "age_hours": 236.6,
+      "age_hours": 236.7,
       "views": 129,
       "engaged_views": 55,
       "likes": 0,
@@ -2790,7 +2690,7 @@
       "scene_changes_before_5s": null,
       "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
       "published_at": "2026-10-29T17:00:29Z",
-      "age_hours": 668.6,
+      "age_hours": 668.7,
       "views": 340,
       "engaged_views": 223,
       "likes": 1,
@@ -3334,7 +3234,7 @@
       "scene_changes_before_5s": null,
       "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Better",
       "published_at": "2026-10-31T02:00:04Z",
-      "age_hours": 635.6,
+      "age_hours": 635.7,
       "views": 287,
       "engaged_views": 111,
       "likes": 1,
@@ -3878,7 +3778,7 @@
       "scene_changes_before_5s": null,
       "title": "Pokimane Tears Up Talking About Her Cat That's Gone",
       "published_at": "2026-11-15T23:00:38Z",
-      "age_hours": 254.6,
+      "age_hours": 254.7,
       "views": 101,
       "engaged_views": 40,
       "likes": 1,
@@ -4422,7 +4322,7 @@
       "scene_changes_before_5s": null,
       "title": "Deepins02 And Jynxzi Moment Has Chat Losing It \ud83d\ude02",
       "published_at": "2026-11-06T20:00:31Z",
-      "age_hours": 473.6,
+      "age_hours": 473.7,
       "views": 153,
       "engaged_views": 102,
       "likes": 1,
@@ -4966,7 +4866,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Shows Obama He Speaks Indonesian \ud83d\ude33",
       "published_at": "2026-11-17T17:00:41Z",
-      "age_hours": 212.6,
+      "age_hours": 212.7,
       "views": 68,
       "engaged_views": 23,
       "likes": 2,
@@ -5510,7 +5410,7 @@
       "scene_changes_before_5s": null,
       "title": "Caedrel Is SPEECHLESS After T1's Unbelievable 5v4 Throw \ud83d\ude33",
       "published_at": "2026-11-10T20:00:19Z",
-      "age_hours": 377.6,
+      "age_hours": 377.7,
       "views": 110,
       "engaged_views": 36,
       "likes": 1,
@@ -6054,7 +5954,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Screams \"I'm In A Car\" During The MISSILE Moment",
       "published_at": "2026-11-05T17:00:01Z",
-      "age_hours": 500.6,
+      "age_hours": 500.7,
       "views": 123,
       "engaged_views": 47,
       "likes": 0,
@@ -6598,7 +6498,7 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
       "published_at": "2026-10-29T03:30:34Z",
-      "age_hours": 682.1,
+      "age_hours": 682.2,
       "views": 156,
       "engaged_views": 58,
       "likes": 0,
@@ -7142,7 +7042,7 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Breaks His Opponent's Ankles And Can't Believe It",
       "published_at": "2026-10-28T21:30:08Z",
-      "age_hours": 688.1,
+      "age_hours": 688.2,
       "views": 130,
       "engaged_views": 58,
       "likes": 1,
@@ -7686,7 +7586,7 @@
       "scene_changes_before_5s": null,
       "title": "Qtcinderella Cries As Speed Wins 2026 Streamer Of The Year",
       "published_at": "2026-11-13T17:00:36Z",
-      "age_hours": 308.6,
+      "age_hours": 308.7,
       "views": 51,
       "engaged_views": 24,
       "likes": 1,
@@ -7727,7 +7627,7 @@
       "scene_changes_before_5s": null,
       "title": "Caedrel Can't Believe Ruler's Insane Q Combo Takes Down Viper",
       "published_at": "2026-11-15T17:00:08Z",
-      "age_hours": 260.6,
+      "age_hours": 260.7,
       "views": 45,
       "engaged_views": 12,
       "likes": 0,
@@ -7769,7 +7669,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Crashout After Calling Himself Brain Dead Mid-Game",
       "published_at": "2026-11-16T03:30:08Z",
-      "age_hours": 250.1,
+      "age_hours": 250.2,
       "views": 42,
       "engaged_views": 20,
       "likes": 0,
@@ -7811,7 +7711,7 @@
       "scene_changes_before_5s": null,
       "title": "Niftski Hits 454.2 After Saying He's Not Even Nervous",
       "published_at": "2026-11-07T03:30:15Z",
-      "age_hours": 466.1,
+      "age_hours": 466.2,
       "views": 73,
       "engaged_views": 39,
       "likes": 0,
@@ -8355,7 +8255,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Reacts To Wubby And Poob And It Gets Loud",
       "published_at": "2026-11-16T02:00:27Z",
-      "age_hours": 251.6,
+      "age_hours": 251.7,
       "views": 41,
       "engaged_views": 12,
       "likes": 0,
@@ -8397,7 +8297,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Yells 'My Hip Is Broken' After This Goes Wrong",
       "published_at": "2026-11-23T21:30:28Z",
-      "age_hours": 64.1,
+      "age_hours": 64.2,
       "views": 10,
       "engaged_views": 3,
       "likes": 0,
@@ -8439,7 +8339,7 @@
       "scene_changes_before_5s": null,
       "title": "Cooksux Gets Told He's Mr. King After Chat Won't Stop Memeing Him",
       "published_at": "2026-11-14T23:00:33Z",
-      "age_hours": 278.6,
+      "age_hours": 278.7,
       "views": 42,
       "engaged_views": 22,
       "likes": 0,
@@ -8481,7 +8381,7 @@
       "scene_changes_before_5s": null,
       "title": "Silky Hilariously Chants Jibba Jibba At Chibu Airlines Until Everyone Loses It",
       "published_at": "2026-11-16T00:30:29Z",
-      "age_hours": 253.1,
+      "age_hours": 253.2,
       "views": 38,
       "engaged_views": 15,
       "likes": 1,
@@ -8523,7 +8423,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Gets Punched And Doesn't Even Survive Six Seconds",
       "published_at": "2026-11-05T18:30:18Z",
-      "age_hours": 499.1,
+      "age_hours": 499.2,
       "views": 67,
       "engaged_views": 27,
       "likes": 2,
@@ -8564,8 +8464,8 @@
       "scene_changes_before_5s": null,
       "title": "Deadblossomjesse Jumps Up And Down Screaming \"I'm Dumping\" And Gets Weird",
       "published_at": "2026-11-12T06:30:02Z",
-      "age_hours": 343.1,
-      "views": 43,
+      "age_hours": 343.2,
+      "views": 44,
       "engaged_views": 25,
       "likes": 1,
       "comments": 1,
@@ -8606,7 +8506,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Clutch Goes Through Walls And Chat Can't Believe It",
       "published_at": "2026-11-14T21:30:35Z",
-      "age_hours": 280.1,
+      "age_hours": 280.2,
       "views": 37,
       "engaged_views": 14,
       "likes": 0,
@@ -8648,7 +8548,7 @@
       "scene_changes_before_5s": null,
       "title": "Pikabooirl Hits His Nuts After His Headset Cord Spooks Him",
       "published_at": "2026-11-12T05:00:10Z",
-      "age_hours": 344.6,
+      "age_hours": 344.7,
       "views": 43,
       "engaged_views": 22,
       "likes": 0,
@@ -8690,7 +8590,7 @@
       "scene_changes_before_5s": null,
       "title": "Woolieversus Can't Believe What Happened To Him After This QA Bug",
       "published_at": "2026-11-23T02:00:09Z",
-      "age_hours": 83.6,
+      "age_hours": 83.7,
       "views": 10,
       "engaged_views": 1,
       "likes": 0,
@@ -8732,7 +8632,7 @@
       "scene_changes_before_5s": null,
       "title": "Geezgiselle Gets Hit Hard In Wild Streamer Fight Moment",
       "published_at": "2026-11-12T21:30:18Z",
-      "age_hours": 328.1,
+      "age_hours": 328.2,
       "views": 36,
       "engaged_views": 9,
       "likes": 0,
@@ -8774,7 +8674,7 @@
       "scene_changes_before_5s": null,
       "title": "Forsen talks beef and drops a weird holiday idea \ud83d\ude33",
       "published_at": "2026-11-03T17:00:36Z",
-      "age_hours": 548.6,
+      "age_hours": 548.7,
       "views": 55,
       "engaged_views": 20,
       "likes": 0,
@@ -8815,7 +8715,7 @@
       "scene_changes_before_5s": null,
       "title": "Jinnytty Stalker Showed Up At Her Birthday Stream \ud83d\ude33",
       "published_at": "2026-11-07T17:00:11Z",
-      "age_hours": 452.6,
+      "age_hours": 452.7,
       "views": 44,
       "engaged_views": 20,
       "likes": 1,
@@ -8857,7 +8757,7 @@
       "scene_changes_before_5s": null,
       "title": "Burn Goes Off In L.A And The Whole Crowd Loses It",
       "published_at": "2026-11-13T09:30:30Z",
-      "age_hours": 316.1,
+      "age_hours": 316.2,
       "views": 32,
       "engaged_views": 12,
       "likes": 0,
@@ -8899,7 +8799,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Gets Emotional After This Kid Asks To Be Friends",
       "published_at": "2026-11-15T21:30:19Z",
-      "age_hours": 256.1,
+      "age_hours": 256.2,
       "views": 26,
       "engaged_views": 10,
       "likes": 0,
@@ -8941,7 +8841,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Checks On Nickeh30 And Finds Lucia Down There",
       "published_at": "2026-11-24T20:00:39Z",
-      "age_hours": 41.6,
+      "age_hours": 41.7,
       "views": 4,
       "engaged_views": 4,
       "likes": 0,
@@ -8977,7 +8877,7 @@
       "scene_changes_before_5s": null,
       "title": "Cohhcarnage: Cohh Finds A UFO Easter Egg In GTA 6 And Realizes Something",
       "published_at": "2026-11-25T17:00:06Z",
-      "age_hours": 20.6,
+      "age_hours": 20.7,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9013,7 +8913,7 @@
       "scene_changes_before_5s": null,
       "title": "Avoidingthepuddle Plays Epona's Song And The Whole Moment Takes Over",
       "published_at": "2026-11-11T21:30:32Z",
-      "age_hours": 352.1,
+      "age_hours": 352.2,
       "views": 30,
       "engaged_views": 12,
       "likes": 0,
@@ -9055,7 +8955,7 @@
       "scene_changes_before_5s": null,
       "title": "Ironmouse Finds Her Original Design And It's Not What You Expect",
       "published_at": "2026-11-13T06:30:00Z",
-      "age_hours": 319.1,
+      "age_hours": 319.2,
       "views": 27,
       "engaged_views": 7,
       "likes": 0,
@@ -9097,7 +8997,7 @@
       "scene_changes_before_5s": null,
       "title": "Qtcinderella: Critical Role Wins Best Roleplay Streamer At The Streamer Awards",
       "published_at": "2026-11-14T02:00:08Z",
-      "age_hours": 299.6,
+      "age_hours": 299.7,
       "views": 23,
       "engaged_views": 14,
       "likes": 0,
@@ -9139,7 +9039,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Crashes Out After He Can't Build The Bridge",
       "published_at": "2026-11-18T17:00:01Z",
-      "age_hours": 188.6,
+      "age_hours": 188.7,
       "views": 15,
       "engaged_views": 7,
       "likes": 0,
@@ -9181,7 +9081,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Warns Chat Not To Snitch After Hearing About A Homicide Report",
       "published_at": "2026-11-22T03:30:15Z",
-      "age_hours": 106.1,
+      "age_hours": 106.2,
       "views": 9,
       "engaged_views": 1,
       "likes": 0,
@@ -9223,7 +9123,7 @@
       "scene_changes_before_5s": null,
       "title": "Emiru Cowgirl Outfit Has Her Mod Fully Hiding From Stream",
       "published_at": "2026-10-30T00:30:31Z",
-      "age_hours": 661.1,
+      "age_hours": 661.2,
       "views": 46,
       "engaged_views": 19,
       "likes": 0,
@@ -9265,7 +9165,7 @@
       "scene_changes_before_5s": null,
       "title": "Silky Finally Pulls Up To NMS Boxing And This Happens",
       "published_at": "2026-10-31T05:00:32Z",
-      "age_hours": 632.6,
+      "age_hours": 632.7,
       "views": 46,
       "engaged_views": 21,
       "likes": 0,
@@ -9307,7 +9207,7 @@
       "scene_changes_before_5s": null,
       "title": "Joe Joe_Bartolozzi Can't Believe What Just Happened On Stream",
       "published_at": "2026-11-04T23:00:11Z",
-      "age_hours": 518.6,
+      "age_hours": 518.7,
       "views": 35,
       "engaged_views": 16,
       "likes": 0,
@@ -9349,7 +9249,7 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Dances With Girl Group \u5e7b\u85cd\u5c0f\u718a And Can't Stop Running",
       "published_at": "2026-11-06T00:30:00Z",
-      "age_hours": 493.1,
+      "age_hours": 493.2,
       "views": 35,
       "engaged_views": 17,
       "likes": 1,
@@ -9391,7 +9291,7 @@
       "scene_changes_before_5s": null,
       "title": "Jokerdtv Achieves World\u2011First 60 WoW Run",
       "published_at": "2026-11-10T18:30:28Z",
-      "age_hours": 379.1,
+      "age_hours": 379.2,
       "views": 26,
       "engaged_views": 9,
       "likes": 0,
@@ -9433,7 +9333,7 @@
       "scene_changes_before_5s": null,
       "title": "Rubius Gets Told He Needs a Shower And Can't Believe It \ud83d\ude2d",
       "published_at": "2026-11-24T02:00:04Z",
-      "age_hours": 59.6,
+      "age_hours": 59.7,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -9475,7 +9375,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Tells Jason \"Get Away\" After Almost Catching A Body This Early",
       "published_at": "2026-11-24T21:30:32Z",
-      "age_hours": 40.1,
+      "age_hours": 40.2,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -9511,7 +9411,7 @@
       "scene_changes_before_5s": null,
       "title": "Jinnytty Has To Feed The Capybara And Chat Can't Handle It",
       "published_at": "2026-11-12T00:30:19Z",
-      "age_hours": 349.1,
+      "age_hours": 349.2,
       "views": 22,
       "engaged_views": 5,
       "likes": 0,
@@ -9553,7 +9453,7 @@
       "scene_changes_before_5s": null,
       "title": "Silky Loses It And Chat Can't Stop Laughing After This",
       "published_at": "2026-11-14T03:30:33Z",
-      "age_hours": 298.1,
+      "age_hours": 298.2,
       "views": 19,
       "engaged_views": 11,
       "likes": 0,
@@ -9595,7 +9495,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Can't Believe This Guy Actually Beat Him",
       "published_at": "2026-11-01T18:30:23Z",
-      "age_hours": 595.1,
+      "age_hours": 595.2,
       "views": 29,
       "engaged_views": 13,
       "likes": 0,
@@ -9637,7 +9537,7 @@
       "scene_changes_before_5s": null,
       "title": "Atrioc Says Some People Should Let Him Play A Game Again",
       "published_at": "2026-10-28T18:30:10Z",
-      "age_hours": 691.1,
+      "age_hours": 691.2,
       "views": 31,
       "engaged_views": 16,
       "likes": 0,
@@ -9679,7 +9579,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Tries To Get Her To Say Something And She Stays Silent",
       "published_at": "2026-10-29T06:30:01Z",
-      "age_hours": 679.1,
+      "age_hours": 679.2,
       "views": 27,
       "engaged_views": 12,
       "likes": 0,
@@ -9721,7 +9621,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Can't Believe Harry Maguire Just Did This",
       "published_at": "2026-10-30T03:30:07Z",
-      "age_hours": 658.1,
+      "age_hours": 658.2,
       "views": 26,
       "engaged_views": 14,
       "likes": 1,
@@ -9763,7 +9663,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Car Is So Loud Marlon Can't Believe It \ud83d\ude02",
       "published_at": "2026-11-01T00:30:24Z",
-      "age_hours": 613.1,
+      "age_hours": 613.2,
       "views": 23,
       "engaged_views": 8,
       "likes": 0,
@@ -9805,7 +9705,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Shuts Down Rakai After He Invites Him To A Halloween Party",
       "published_at": "2026-11-05T02:00:22Z",
-      "age_hours": 515.6,
+      "age_hours": 515.7,
       "views": 22,
       "engaged_views": 11,
       "likes": 0,
@@ -9847,7 +9747,7 @@
       "scene_changes_before_5s": null,
       "title": "Silent Hill 2's Laura trolled Tminnzy at the door",
       "published_at": "2026-11-13T02:00:16Z",
-      "age_hours": 323.6,
+      "age_hours": 323.7,
       "views": 12,
       "engaged_views": 7,
       "likes": 0,
@@ -9889,7 +9789,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Says GTA 6 Is So Easy a 10 Year Old Won't Fail A Mission",
       "published_at": "2026-11-20T20:00:22Z",
-      "age_hours": 137.6,
+      "age_hours": 137.7,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -9931,7 +9831,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Panics And Screams No After This Goes Horribly Wrong",
       "published_at": "2026-11-23T00:30:01Z",
-      "age_hours": 85.1,
+      "age_hours": 85.2,
       "views": 3,
       "engaged_views": 0,
       "likes": 0,
@@ -9973,7 +9873,7 @@
       "scene_changes_before_5s": null,
       "title": "Valkyrae Can't Believe She Finally Got A Strike After This",
       "published_at": "2026-10-28T23:00:27Z",
-      "age_hours": 686.6,
+      "age_hours": 686.7,
       "views": 18,
       "engaged_views": 5,
       "likes": 0,
@@ -10015,7 +9915,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Can't Believe Somebody Actually Found Him",
       "published_at": "2026-10-31T00:30:14Z",
-      "age_hours": 637.1,
+      "age_hours": 637.2,
       "views": 20,
       "engaged_views": 8,
       "likes": 1,
@@ -10057,7 +9957,7 @@
       "scene_changes_before_5s": null,
       "title": "Sodapoppin checks on Mitch Jones and can't believe it",
       "published_at": "2026-11-11T20:00:35Z",
-      "age_hours": 353.6,
+      "age_hours": 353.7,
       "views": 11,
       "engaged_views": 8,
       "likes": 0,
@@ -10099,7 +9999,7 @@
       "scene_changes_before_5s": null,
       "title": "Avoidingthepuddle Rants About The Internet Ruining How People Have Fun",
       "published_at": "2026-11-21T23:00:14Z",
-      "age_hours": 110.6,
+      "age_hours": 110.7,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -10141,7 +10041,7 @@
       "scene_changes_before_5s": null,
       "title": "Illojuan Tells Chat 'Toma Gato' And Won't Stop Pointing At The Mouth",
       "published_at": "2026-11-22T20:00:19Z",
-      "age_hours": 89.6,
+      "age_hours": 89.7,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -10183,7 +10083,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Finishes GTA 6 After 62 Hours And Gives It A Final Rating",
       "published_at": "2026-11-25T02:00:02Z",
-      "age_hours": 35.6,
+      "age_hours": 35.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10219,7 +10119,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Eats Shit And Can't Believe How He Fell",
       "published_at": "2026-10-29T08:00:34Z",
-      "age_hours": 677.6,
+      "age_hours": 677.7,
       "views": 12,
       "engaged_views": 6,
       "likes": 0,
@@ -10261,7 +10161,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Screams As He Watches Someone Try To Flash And Actually Pull It Off",
       "published_at": "2026-10-29T20:00:12Z",
-      "age_hours": 665.6,
+      "age_hours": 665.7,
       "views": 11,
       "engaged_views": 4,
       "likes": 0,
@@ -10303,7 +10203,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Backrooms Dance Party Goes Absolutely Wild \ud83d\udd7a",
       "published_at": "2026-10-31T21:30:08Z",
-      "age_hours": 616.1,
+      "age_hours": 616.2,
       "views": 12,
       "engaged_views": 5,
       "likes": 1,
@@ -10345,7 +10245,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Cameraman Quits His Job In The Middle Of Japan Mid-Stream",
       "published_at": "2026-10-31T23:00:01Z",
-      "age_hours": 614.6,
+      "age_hours": 614.7,
       "views": 14,
       "engaged_views": 6,
       "likes": 0,
@@ -10387,7 +10287,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Gets Roasted By Chat: \"Your Barber Is Blind\" \ud83d\udc80",
       "published_at": "2026-11-02T03:30:25Z",
-      "age_hours": 586.1,
+      "age_hours": 586.2,
       "views": 11,
       "engaged_views": 5,
       "likes": 0,
@@ -10429,7 +10329,7 @@
       "scene_changes_before_5s": null,
       "title": "Divvity Dyes His Tongue Blue With Food Coloring But It Won't Stay",
       "published_at": "2026-11-06T23:00:10Z",
-      "age_hours": 470.6,
+      "age_hours": 470.7,
       "views": 9,
       "engaged_views": 4,
       "likes": 0,
@@ -10471,7 +10371,7 @@
       "scene_changes_before_5s": null,
       "title": "Emilycc Can't Believe Her Beautiful Computer Actually Worked After This",
       "published_at": "2026-11-12T08:00:37Z",
-      "age_hours": 341.6,
+      "age_hours": 341.7,
       "views": 8,
       "engaged_views": 2,
       "likes": 0,
@@ -10513,7 +10413,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Wins Gamer Of The Year And Loses It On Stage \ud83d\udd25",
       "published_at": "2026-11-14T00:30:02Z",
-      "age_hours": 301.1,
+      "age_hours": 301.2,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -10555,7 +10455,7 @@
       "scene_changes_before_5s": null,
       "title": "Murdercrumpet: Twitch CEO Dan Clancy's Message At Jimmy And Floopy's Wedding Is Unreal",
       "published_at": "2026-11-14T18:30:34Z",
-      "age_hours": 283.1,
+      "age_hours": 283.2,
       "views": 5,
       "engaged_views": 1,
       "likes": 0,
@@ -10597,7 +10497,7 @@
       "scene_changes_before_5s": null,
       "title": "Dinah Can't Stop Saying What The F*** After Seeing This",
       "published_at": "2026-11-19T18:30:22Z",
-      "age_hours": 163.1,
+      "age_hours": 163.2,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -10639,7 +10539,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Finds An Easter Egg And Can't Believe What He Sees",
       "published_at": "2026-11-20T00:30:20Z",
-      "age_hours": 157.1,
+      "age_hours": 157.2,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -10681,7 +10581,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Hands Over The Wheel And Chat Swears She's On Drugs \ud83d\ude2d",
       "published_at": "2026-11-21T17:00:08Z",
-      "age_hours": 116.6,
+      "age_hours": 116.7,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -10717,7 +10617,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Screams NOOOOO After This Moment",
       "published_at": "2026-11-23T03:30:05Z",
-      "age_hours": 82.1,
+      "age_hours": 82.2,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -10759,7 +10659,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Explains Why GTA 6 Locking Players Into a Relationship Is a Huge Mistake",
       "published_at": "2026-11-23T20:00:26Z",
-      "age_hours": 65.6,
+      "age_hours": 65.7,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10801,7 +10701,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy",
       "published_at": "2026-10-28T17:00:36Z",
-      "age_hours": 692.6,
+      "age_hours": 692.7,
       "views": 5,
       "engaged_views": 4,
       "likes": 0,
@@ -10843,7 +10743,7 @@
       "scene_changes_before_5s": null,
       "title": "Agent00 Finally Reveals His Brand New R34 GTR After Wanting It His Whole Life",
       "published_at": "2026-10-29T09:30:06Z",
-      "age_hours": 676.1,
+      "age_hours": 676.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -10885,7 +10785,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Is Told Her Restaurant Bill Already Passed 500,000 Yen",
       "published_at": "2026-10-29T18:30:03Z",
-      "age_hours": 667.1,
+      "age_hours": 667.2,
       "views": 6,
       "engaged_views": 2,
       "likes": 0,
@@ -10927,7 +10827,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Can't Believe What Marlin Just Showed Her In Nook Town",
       "published_at": "2026-10-31T03:30:17Z",
-      "age_hours": 634.1,
+      "age_hours": 634.2,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -10969,7 +10869,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Hit With The Muscle Slap And Can't Believe It",
       "published_at": "2026-10-31T18:30:33Z",
-      "age_hours": 619.1,
+      "age_hours": 619.2,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -11011,7 +10911,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Is So Scared After Chun Li Goons On Him",
       "published_at": "2026-11-01T21:30:09Z",
-      "age_hours": 592.1,
+      "age_hours": 592.2,
       "views": 5,
       "engaged_views": 1,
       "likes": 0,
@@ -11053,7 +10953,7 @@
       "scene_changes_before_5s": null,
       "title": "Dangerlyoha denies breaking Lera's leg",
       "published_at": "2026-11-02T02:00:29Z",
-      "age_hours": 587.6,
+      "age_hours": 587.7,
       "views": 7,
       "engaged_views": 5,
       "likes": 0,
@@ -11095,7 +10995,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Realizes He's The Farm Master",
       "published_at": "2026-11-04T18:30:03Z",
-      "age_hours": 523.1,
+      "age_hours": 523.2,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -11137,7 +11037,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Breaks Down Saying 'Nobody Ever Asks Me What I Want'",
       "published_at": "2026-11-05T00:30:15Z",
-      "age_hours": 517.1,
+      "age_hours": 517.2,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -11179,7 +11079,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed Shuts Down Man Who Touched Miles: \"I've Run New York\"",
       "published_at": "2026-11-05T23:00:23Z",
-      "age_hours": 494.6,
+      "age_hours": 494.7,
       "views": 6,
       "engaged_views": 4,
       "likes": 1,
@@ -11221,7 +11121,7 @@
       "scene_changes_before_5s": null,
       "title": "Yugi Gets Hit With THE PURSE And Can't Stop Saying He's Awesome",
       "published_at": "2026-11-06T03:30:23Z",
-      "age_hours": 490.1,
+      "age_hours": 490.2,
       "views": 5,
       "engaged_views": 3,
       "likes": 0,
@@ -11263,7 +11163,7 @@
       "scene_changes_before_5s": null,
       "title": "Jakenbakelive: Jake Gets Beer Thrown On Him And Chat Swears It Smells Like Something Else",
       "published_at": "2026-11-06T17:00:30Z",
-      "age_hours": 476.6,
+      "age_hours": 476.7,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -11305,7 +11205,7 @@
       "scene_changes_before_5s": null,
       "title": "Emjayplayss goes full spooky costume for papi queso homage",
       "published_at": "2026-11-07T00:30:21Z",
-      "age_hours": 469.1,
+      "age_hours": 469.2,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -11347,7 +11247,7 @@
       "scene_changes_before_5s": null,
       "title": "Maya Explains Why Wolf Dogs Like Roxy Can Never Be Real Pets",
       "published_at": "2026-11-07T02:00:09Z",
-      "age_hours": 467.6,
+      "age_hours": 467.7,
       "views": 4,
       "engaged_views": 4,
       "likes": 0,
@@ -11389,7 +11289,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Shouts WE DID IT After Epic Win",
       "published_at": "2026-11-08T18:30:30Z",
-      "age_hours": 427.1,
+      "age_hours": 427.2,
       "views": 4,
       "engaged_views": 2,
       "likes": 0,
@@ -11431,7 +11331,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc vs the NoPixel cops",
       "published_at": "2026-11-10T17:00:34Z",
-      "age_hours": 380.6,
+      "age_hours": 380.7,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -11473,7 +11373,7 @@
       "scene_changes_before_5s": null,
       "title": "Edwardkso Got Tricked Into Saying THIS On Stream",
       "published_at": "2026-11-13T21:30:38Z",
-      "age_hours": 304.1,
+      "age_hours": 304.2,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -11515,7 +11415,7 @@
       "scene_changes_before_5s": null,
       "title": "Mokrivskyi: Birthday stream gets weird: 'this is a joke, we recorded this'",
       "published_at": "2026-11-13T23:00:17Z",
-      "age_hours": 302.6,
+      "age_hours": 302.7,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -11557,7 +11457,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Loses It After Hitting 6 Stars In GTA 6 As Lucia",
       "published_at": "2026-11-18T18:30:23Z",
-      "age_hours": 187.1,
+      "age_hours": 187.2,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -11599,7 +11499,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Elden Ring boss grind ends with a four-hour win",
       "published_at": "2026-11-19T00:30:37Z",
-      "age_hours": 181.1,
+      "age_hours": 181.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -11641,7 +11541,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Gets A Surprise Visit From Mandy After She Fixed His Sink",
       "published_at": "2026-11-19T21:30:16Z",
-      "age_hours": 160.1,
+      "age_hours": 160.2,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11677,7 +11577,7 @@
       "scene_changes_before_5s": null,
       "title": "Buster Anar and Lera could be added in a couple of years",
       "published_at": "2026-11-20T18:30:07Z",
-      "age_hours": 139.1,
+      "age_hours": 139.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -11719,7 +11619,7 @@
       "scene_changes_before_5s": null,
       "title": "Illojuan Thinks He Just Closed The Process And Realizes What He Did",
       "published_at": "2026-11-20T23:00:34Z",
-      "age_hours": 134.6,
+      "age_hours": 134.7,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -11755,7 +11655,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Destroys Two iPhones To See If They Still Work",
       "published_at": "2026-10-27T17:00:26Z",
-      "age_hours": 716.6,
+      "age_hours": 716.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11791,7 +11691,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc on Ethan Klein: \"cheater lol, move on\"",
       "published_at": "2026-10-28T20:00:00Z",
-      "age_hours": 689.6,
+      "age_hours": 689.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11833,7 +11733,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Loses It When He Finds Out Who Did It",
       "published_at": "2026-10-29T02:00:06Z",
-      "age_hours": 683.6,
+      "age_hours": 683.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11875,7 +11775,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Landed In Iceland And Fans Were Already Waiting",
       "published_at": "2026-10-30T02:00:25Z",
-      "age_hours": 659.6,
+      "age_hours": 659.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11911,7 +11811,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Opens Her iPhone Duo On Stream And Can't Believe What's Inside",
       "published_at": "2026-10-30T17:00:37Z",
-      "age_hours": 644.6,
+      "age_hours": 644.7,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -11953,7 +11853,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Loses It Asking What The Ref Is Doing",
       "published_at": "2026-10-31T17:00:14Z",
-      "age_hours": 620.6,
+      "age_hours": 620.7,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -11995,7 +11895,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc goes all in on a casino slot, then blackjack hits",
       "published_at": "2026-10-31T20:00:02Z",
-      "age_hours": 617.6,
+      "age_hours": 617.7,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -12037,7 +11937,7 @@
       "scene_changes_before_5s": null,
       "title": "Clix Gets His Subs After Winning The Game And Tops The Leaderboard",
       "published_at": "2026-11-01T20:00:00Z",
-      "age_hours": 593.6,
+      "age_hours": 593.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -12079,7 +11979,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Into A Sumo Match And Chat Goes Crazy",
       "published_at": "2026-11-02T00:30:08Z",
-      "age_hours": 589.1,
+      "age_hours": 589.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -12121,7 +12021,7 @@
       "scene_changes_before_5s": null,
       "title": "THAT WAS CLOSE\u203c\ufe0f\ud83d\ude33\ud83d\ude31",
       "published_at": "2026-11-03T18:30:19Z",
-      "age_hours": 547.1,
+      "age_hours": 547.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12157,7 +12057,7 @@
       "scene_changes_before_5s": null,
       "title": "The Stableronaldo Clip Everyone's Talking About",
       "published_at": "2026-11-03T20:00:17Z",
-      "age_hours": 545.6,
+      "age_hours": 545.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12193,7 +12093,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Can't Believe Who Walks In As A Sexy Nun",
       "published_at": "2026-11-04T20:00:37Z",
-      "age_hours": 521.6,
+      "age_hours": 521.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12229,7 +12129,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Snaps At Another Driver After This, No License",
       "published_at": "2026-11-04T21:30:05Z",
-      "age_hours": 520.1,
+      "age_hours": 520.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12265,7 +12165,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Reacts As A Fan Says She's His Favorite Streamer And Promises To Meet Her",
       "published_at": "2026-11-06T02:00:03Z",
-      "age_hours": 491.6,
+      "age_hours": 491.7,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -12307,7 +12207,7 @@
       "scene_changes_before_5s": null,
       "title": "Jakenbakelive Spots a Transformer and Gets Shocked",
       "published_at": "2026-11-08T17:00:02Z",
-      "age_hours": 428.6,
+      "age_hours": 428.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12343,7 +12243,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Can't Believe What Happened In This Taxi",
       "published_at": "2026-11-16T20:00:32Z",
-      "age_hours": 233.6,
+      "age_hours": 233.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -12385,7 +12285,7 @@
       "scene_changes_before_5s": null,
       "title": "Gotta love him",
       "published_at": "2026-11-16T23:00:34Z",
-      "age_hours": 230.6,
+      "age_hours": 230.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12421,7 +12321,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat's Crazy Reaction to GTA VI Has Everyone Talking",
       "published_at": "2026-11-18T20:00:11Z",
-      "age_hours": 185.6,
+      "age_hours": 185.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12457,7 +12357,7 @@
       "scene_changes_before_5s": null,
       "title": "Brattygbaby: She wore the wrong shoes to get a burger",
       "published_at": "2026-11-18T23:00:02Z",
-      "age_hours": 182.6,
+      "age_hours": 182.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12493,7 +12393,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Can't Stop Gushing Over Lucia After She Walks In",
       "published_at": "2026-11-20T06:30:21Z",
-      "age_hours": 151.1,
+      "age_hours": 151.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12529,7 +12429,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Calls Over An Innocent Dog And Then This Happens",
       "published_at": "2026-11-20T17:00:35Z",
-      "age_hours": 140.6,
+      "age_hours": 140.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12565,7 +12465,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat's New Girlfriend Confronts Him About Her Ex And It Goes Off The Rails",
       "published_at": "2026-11-20T21:30:31Z",
-      "age_hours": 136.1,
+      "age_hours": 136.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12601,7 +12501,7 @@
       "scene_changes_before_5s": null,
       "title": "Ishowspeed GTA 6 Clip Has Chat Going Wild",
       "published_at": "2026-11-22T00:30:07Z",
-      "age_hours": 109.1,
+      "age_hours": 109.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12637,7 +12537,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat's first night in GTA 6 goes wrong fast",
       "published_at": "2026-11-22T05:00:28Z",
-      "age_hours": 104.6,
+      "age_hours": 104.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12673,7 +12573,7 @@
       "scene_changes_before_5s": null,
       "title": "Uhn Asks 'Can I Clip This...?' And Chat Loses It",
       "published_at": "2026-11-22T17:00:11Z",
-      "age_hours": 92.6,
+      "age_hours": 92.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12709,7 +12609,7 @@
       "scene_changes_before_5s": null,
       "title": "Zoreee Hits The Craziest Gas Station Glitch And Can't Believe It",
       "published_at": "2026-11-22T23:00:02Z",
-      "age_hours": 86.6,
+      "age_hours": 86.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12745,7 +12645,7 @@
       "scene_changes_before_5s": null,
       "title": "Tminnzy Can't Talk About Qixso's Party After Signing An NDA \ud83e\udd10",
       "published_at": "2026-11-23T18:30:08Z",
-      "age_hours": 67.1,
+      "age_hours": 67.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12781,7 +12681,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Asks \"Is This Even Allowed?\" After What Just Happened",
       "published_at": "2026-11-23T23:00:04Z",
-      "age_hours": 62.6,
+      "age_hours": 62.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12817,7 +12717,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Gets Roasted By A Perfectly Timed NPC And Can't Believe It",
       "published_at": "2026-11-24T17:00:35Z",
-      "age_hours": 44.6,
+      "age_hours": 44.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12853,7 +12753,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Gets Hit With 'Nice Scooter' And Chat Can't Stop Screaming",
       "published_at": "2026-11-24T23:00:09Z",
-      "age_hours": 38.6,
+      "age_hours": 38.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12889,7 +12789,7 @@
       "scene_changes_before_5s": null,
       "title": "Timthetatman Panics His Entire YouTube Channel Might Get Banned Over This GTA Room",
       "published_at": "2026-11-25T00:30:17Z",
-      "age_hours": 37.1,
+      "age_hours": 37.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12925,7 +12825,7 @@
       "scene_changes_before_5s": null,
       "title": "Avoidingthepuddle Mandy Reaction Gets Real: \"We Were Supposed To Get Married\"",
       "published_at": "2026-11-25T18:30:11Z",
-      "age_hours": 19.1,
+      "age_hours": 19.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12961,7 +12861,7 @@
       "scene_changes_before_5s": null,
       "title": "Rubius Shows Off Lucia From GTA 6 In 60 FPS And Chat Can't Handle It \ud83e\udd75",
       "published_at": "2026-11-25T20:00:21Z",
-      "age_hours": 17.6,
+      "age_hours": 17.7,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -12997,7 +12897,7 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Yells \"Get In The Car\" And Takes A Shortcut In This Wild Run",
       "published_at": "2026-11-25T21:30:22Z",
-      "age_hours": 16.1,
+      "age_hours": 16.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -13059,43 +12959,43 @@
   ],
   "summary": {
     "total_videos": 135,
-    "total_views": 4655,
+    "total_views": 4656,
     "avg_views_per_video": 34.5,
     "median_views_per_hour": 0.02,
     "top_5_by_vph": [
       {
         "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-        "views_per_hour": 4.04,
+        "views_per_hour": 4.03,
         "views": 622,
-        "age_hours": 154.1,
+        "age_hours": 154.2,
         "url": "https://youtube.com/shorts/CQpMuXedtow"
       },
       {
         "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
         "views_per_hour": 0.88,
         "views": 564,
-        "age_hours": 643.1,
+        "age_hours": 643.2,
         "url": "https://youtube.com/shorts/4ORQm-EO5tg"
       },
       {
         "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
         "views_per_hour": 0.75,
         "views": 46,
-        "age_hours": 61.1,
+        "age_hours": 61.2,
         "url": "https://youtube.com/shorts/gBk6mslMres"
       },
       {
         "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
         "views_per_hour": 0.65,
         "views": 213,
-        "age_hours": 326.6,
+        "age_hours": 326.7,
         "url": "https://youtube.com/shorts/jfCQ4MRbpXE"
       },
       {
         "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
         "views_per_hour": 0.56,
         "views": 103,
-        "age_hours": 184.1,
+        "age_hours": 184.2,
         "url": "https://youtube.com/shorts/xOx62U7Jz4U"
       }
     ],
@@ -13104,35 +13004,35 @@
         "title": "Caseoh Yells \"Get In The Car\" And Takes A Shortcut In This Wild Run",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 16.1,
+        "age_hours": 16.2,
         "url": "https://youtube.com/shorts/P8ed3Iaw9zw"
       },
       {
         "title": "Rubius Shows Off Lucia From GTA 6 In 60 FPS And Chat Can't Handle It \ud83e\udd75",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 17.6,
+        "age_hours": 17.7,
         "url": "https://youtube.com/shorts/3IYIMrd_O4Q"
       },
       {
         "title": "Avoidingthepuddle Mandy Reaction Gets Real: \"We Were Supposed To Get Married\"",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 19.1,
+        "age_hours": 19.2,
         "url": "https://youtube.com/shorts/Bp3OoeONZ_E"
       },
       {
         "title": "Timthetatman Panics His Entire YouTube Channel Might Get Banned Over This GTA Room",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 37.1,
+        "age_hours": 37.2,
         "url": "https://youtube.com/shorts/qXpGAmIM-Xc"
       },
       {
         "title": "Caseoh Gets Hit With 'Nice Scooter' And Chat Can't Stop Screaming",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 38.6,
+        "age_hours": 38.7,
         "url": "https://youtube.com/shorts/TWdgVIveouk"
       }
     ],
