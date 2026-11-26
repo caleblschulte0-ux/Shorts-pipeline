@@ -90,7 +90,7 @@ def shot2():
     straightens up beside the finished row looking out (still 3). CUT WIDE from the town side (still 4): the black wall
     standing clear over a two-storey tin house, running out of frame both ways, him small on top, the eruption's smoke
     behind it."""
-    T_ARR = 0.62; T_GO = 0.72; T_SET = 1.03; T_OFF = 1.45; T_UPR = 2.0; T_CUT = 0.82 * DUR
+    T_ARR = 0.62; T_GO = 1.0; T_SET = 1.4; T_OFF = 1.55; T_UPR = 2.0; T_CUT = 0.56 * DUR; T_BACK = 0.8 * DUR
     W = lw_win
     P = place_wall_works()
     light = P["light"]
@@ -118,7 +118,7 @@ def shot2():
     R_ = 0.1; RB = 0.2
     SPOT = P0 + fw * 0.25; SPOT.z = S2_H + RB * 0.8 * 0.9 + R_ * 0.8 * 0.45          # on top of the row, in the gap between two of its boulders
     def body(t):
-        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(-20) * W(t, T_OFF, T_UPR - T_OFF + 0.15) + math.radians(75) * W(t, T_CUT - 0.56, 0.54)       # round to the row, then to the town he is keeping
+        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(55) * W(t, T_OFF, 0.62) - math.radians(70) * W(t, T_BACK - 0.5, 0.48)       # round to the row, then to the town he is keeping
     for f in range(F(T_ARR) + 1, NF + 8):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
     def held(t):                                              # the boulder on his two hands, in front of his chest, wherever he is
@@ -150,11 +150,11 @@ def shot2():
     LG = 0.38
     HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
-    HIP = lambda sg: ((-4, 0, -sg * 48), (-70, 0, sg * 30), (0, 0, 0))                           # a fist on his hip
+    HIP = lambda sg: ((-6, 0, -sg * 64), (-98, 0, sg * 30), (0, 0, 0))                           # a fist on his hip
     def pose(t, P_, sides="LR"):
         for sd in sides:
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
-    pose(T_UPR + 0.35 - LG, HANG, near[1]); pose(T_CUT - LG, HIP, near[1]); pose(T_UPR + 0.35 - LG, HANG, near[0]); pose(T_CUT - LG, HANG, near[0]); pose(DUR + 0.5, HANG, near[0]); pose(DUR + 0.5, HANG, near[1])
+    pose(T_UPR + 0.3 - LG, HANG, "LR"); pose(T_BACK - 0.3 - LG, HANG, "LR"); pose(T_BACK + 0.12 - LG, HIP, "LR"); pose(DUR + 0.5, HIP, near[0]); pose(DUR + 0.5, HIP, near[1]);
     data.finish()
     stone = s2_boulder("boulder top stone", R_, seed=4)
     stone.data.materials.clear()                              # HIS boulder is fresh from the quarry, grey with dust: the one we follow onto the black row
@@ -175,8 +175,8 @@ def shot2():
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=50.0, fstop=16.0)
     WCAM = Vector((-1.0, 31.0, 3.6)); WLOOK = Vector((-1.0, 0.0, 1.45))
     print("S2 CAM", tuple(round(v, 2) for v in CAM), "look", tuple(round(v, 2) for v in LOOK), flush=True)
-    lw_cut(cam, lambda t: (CAM, LOOK, data.pos() + Vector((0, 0, 0.5))), lambda t: (WCAM, WLOOK, Vector((-1.0, 3.0, 3.0))), T_CUT, DUR + 1.0, 50.0, 85.0)
-    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("boulder",), cutaway=(T_CUT, DUR),
+    lw_cut(cam, lambda t: (CAM, LOOK, data.pos() + Vector((0, 0, 0.5))), lambda t: (WCAM, WLOOK, Vector((-1.0, 3.0, 3.0))), T_CUT, T_BACK, 50.0, 85.0)
+    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("boulder",), cutaway=(T_CUT, T_BACK),
                 boxes=[],
                 conseq=[("he heaves the last boulder up and sets it on the wall's crest", lambda: [stone] + [o for o in bpy.data.objects if o.name.startswith("wall crest top boulder")][:6], 0.0, T_SET + 0.2, {"whole": False}),
-                        ("the wall stands clear over the two-storey house", lambda: meshes([o for o in bpy.data.objects if o.name.startswith("town house under the wall")]), T_CUT, DUR, {"whole": False})])
+                        ("the wall stands clear over the two-storey house", lambda: meshes([o for o in bpy.data.objects if o.name.startswith("town house under the wall")]), T_CUT, T_BACK, {"whole": False})])
