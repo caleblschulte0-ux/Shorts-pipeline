@@ -26,6 +26,10 @@ approved store dressing and lights, and every check, BEFORE a frame renders:
   hands       IK hands re-solved on the final body (character.Data._resolve_hands, in finish(); reported as HANDS)
   storyboard  before any of it, the script's payoffs are carried by big props or actions (store/boardlint.py)
               and every line is one action and one consequence, written as what four stills show (boardlint.shape)
+  plan        the shot's plan (stories/<story>/plan.json, store/shot_plan.py): its prop, where he stands, ONE action, ONE
+              consequence and four DIFFERENT stills, refused before a shot is built when it breaks the recipe
+  recipe      the board's four stills measured on the staged scene (store/recipe_check.py): close, three-quarter, a new
+              event in each still, his hands on what the plan says, no declared thing cut or moving with no cause
 
     usage: STORY=name SHOT=n python -I shots.py OUTDIR [SPP] [PCT]
     env: NARR=narration.json | STILL=<local t> | STEP | KEYS=n (n evenly spaced stills: the storyboard pass) | FRAMES=a-b | STAGING=strict|on | CLIPPING=strict|report
@@ -75,6 +79,12 @@ for _p in _sg:
     print(f"STORY {STORY}: {_p}", flush=True)
 if _sg and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"{STORY}: the script is not a story yet (store/story_gate.py): fix the lines, then judge them")
+import shot_plan    # every shot is PLANNED before it is staged: its prop, where he stands, one action, one consequence, four different stills (2026-11-26)
+_pl = shot_plan.problems(STORY, SCRIPT)
+for _where, _p in _pl + shot_plan.advisory(STORY, SCRIPT):
+    print(f"PLAN {STORY} {_where}: {_p}" + ("" if shot_plan.held(STORY) else " (not binding: staged before the plan, see store/shot_plan.py)"), flush=True)
+if _pl and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"{STORY}: no shot plan, or a plan that breaks the recipe (store/shot_plan.py): plan the shot before staging it")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
 PCT = int(sys.argv[3]) if len(sys.argv) > 3 else 60
@@ -314,6 +324,11 @@ _sysok = [staging.edges(data, sc.camera, NF, name=f"shot {SHOT}", declared=S.get
           compose.check(sc.camera, NF, S.get("boxes", []), name=f"shot {SHOT}")]
 if not all(_sysok) and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails EDGES / KEYS / TALKING / CAUSE / COMPOSE: what the board judge would have caught (2026-11-23)")
+import recipe_check   # THE RECIPE, MEASURED on the board's four stills as they are staged: close, three-quarter, four events, hands on, nothing cut, nothing moving with no cause
+_rb = "" if shot_plan.held(STORY) else " (not binding: staged before the plan)"
+if not recipe_check.check(data, sc.camera, NF, S, plan=shot_plan.shot(STORY, SHOT), name=f"shot {SHOT}" + _rb, out=os.path.join(OUT, "recipe.json"), fps=FPS) \
+        and shot_plan.held(STORY) and os.environ.get("STAGING", "strict") == "strict":
+    raise SystemExit(f"shot {SHOT} fails the RECIPE check (store/recipe_check.py): its four stills are not the staging that passes the board")
 import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
 if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
     raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")

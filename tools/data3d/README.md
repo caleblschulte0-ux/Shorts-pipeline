@@ -24,6 +24,9 @@ A new short is a FOLDER and a trigger, nothing else:
    pacing caps: `tests/test_data3d_story.py` holds it), `sources` (every claim with the source's own words and URL),
    `storyboard` (one brief per shot; the judge grades each shot against it), `draft_windows` (the voice's windows once
    it is voiced).
+   Then `stories/<name>/plan.json`, BEFORE any shot code (see "A shot is born to the recipe" below):
+   `python store/shot_plan.py blank <name>` prints one to fill in, `python store/shot_plan.py check <name>` says what
+   it breaks, and `python store/recipe_stage.py stub <name>` prints the first `shots.py` from it.
 2. `stories/<name>/shots.py`: `shot1() .. shotN()` and `SHOTS`. Each builds its act and returns `data`, `conseq` (what
    each thing Data does CAUSES), `grips`. The harness (`store/shots.py`) adds the store, the lights and every check.
    Hands only move for a job: `reach()` (relaxed FK before and after, IK on the moving point during) keeps idle
@@ -62,6 +65,56 @@ What every shot is held to before a frame renders (store/shots.py runs them; a s
   output); captions sit inside the Shorts / TikTok safe area and are timed to where the voice is actually speaking.
 - **judged**: `judge3d.py` reads the story's own storyboard; the showrunner's preview verdict is written beside the
   video (`showrunner_preview.json`). Posting is `data3d_upload.yml` on main, only on the operator's word.
+
+## A shot is born to the recipe (2026-11-26)
+
+The operator: "this needs to be an autonomous system that can pump out 1,000 of these", and, of shots that took 4 to
+18 judge rounds each, "what are we not fixing here? Because clearly something is continuously not getting fixed."
+What was not fixed: a shot started as a blank Blender file, and the panel found its staging forty minutes at a time.
+Over the round reports of lava, cardrewards, helium and honey (1,225 hard lines, counted by keyword) the same faults
+come back in every video: a toy or flat prop (194), a thing cut by the frame edge (188), a promise of the texts no still shows (249), a
+subject too small or a shot too wide (128), a thing floating (85), a hand not on what it holds (60), a thing that
+appears or changes place (50), the event behind him (50), one picture repeated (38). The shots that passed share one
+staging (the recipe below), so it is now where a shot STARTS. The order for every new story:
+
+**plan -> validator -> staging helper -> local checks -> pre-flight -> judge**
+
+1. **The plan** (`store/shot_plan.py`; `stories/<story>/plan.json`, beside `script.json`). Per shot, before any shot
+   code: `prop` (the ONE thing the shot is close on) and `props` (each with the object-name prefixes it is built
+   under, `whole` or field-wide, and what real thing it is `built_as`); `framing` (close or medium, never wide);
+   `data` (he stands beside / at the foot of / in front of the prop, on which side of the frame, a third of the frame
+   or more); ONE `action`; ONE `consequence`; and the four `stills` (before, action, result, reaction), each with what
+   it `shows`, what his `hands` are on, and what is `new` in it since the last (a prop that moves, comes, goes, grows,
+   falls, breaks, opens, lights..., with its `cause`; or his pose). **The validator** (`shot_plan.problems`, run by
+   `store/shots.py` beside the story gate, strict: no shot of a new story is built without a plan that passes)
+   refuses: fewer than four distinct stills; a still with nothing new; the same change three times, or "bigger /
+   nearer" as a change (one pose scaled); more than one action or consequence; a consequence the result still does
+   not show, or a result that changes no prop; a clause of the storyboard line (FOR) or a number of the spoken line
+   (SAYS) that no still shows; a wide or establishing camera as the only framing; a prop that changes with no cause,
+   has no parts, or is a box / cone / sprite / card; hands on something the shot does not declare. Stories staged
+   before the plan are named in `PLAN_BEFORE` with the reason; the list only shrinks.
+2. **The staging helper** (`store/recipe_stage.py`). `from_plan(plan, prop_at, prop_size)` returns where he stands,
+   his yaw, the camera and four keys (before: ready, looking at the prop; action: leaning in, hands on it; result: a
+   step back; reaction: turned to us), searched so that he is a third of the frame or more, three-quarter (chest 20
+   to 50 degrees off the lens, turned toward the prop), on his side of the frame with the prop whole, a quarter of
+   the frame or more, on the other side and never behind his back. Its numbers are lava shots 3, 4 and 5 as they
+   passed (24 mm, 0.345 / 0.35 / 0.42 of the frame, face at x 0.24 to 0.38). `place`, `perform` and `frame` put it on
+   his rig; a shot is then a few lines (the module's head has the pattern, `stub` prints it for a planned story). A
+   prop too big to be whole beside him is refused with the way out: come closer to less of it, or declare it
+   `whole: false` and name the `focus` where the event happens.
+3. **The measured check** (`store/recipe_check.py`, run by `store/shots.py` after `staging.keys`, strict for a
+   planned story, printed for the rest; the facts go to `recipe.json` beside the stills). On the board's four stills
+   as staged: CLOSE (0.3 of the frame or more on three of four), FACE (his face within 70 degrees of the lens on
+   every still; not square-on with the event behind his back), FRAME (his whole body in the frame), EVENTS (each
+   still differs from the last in kind: his pose bone by bone in his own frame, so nearer or bigger is not a new
+   pose, or a declared thing changed in the world; and the result is in the world), HANDS (a hand within reach of
+   what the plan says he holds; a grip in mid-move has a hand on it), EDGE (no whole declared thing cut by the
+   frame), CAUSE (no whole declared thing changes place with no hand on it, no consequence declaring it and no
+   cause in the plan), PLAN (what a still promises as new is measured there).
+4. Then the checks that were already there, the pre-flight and the panel, unchanged. None of this can pass a shot or
+   touches the judge's bar. `tests/test_data3d_a_shot_is_born_to_the_recipe.py` holds it on recorded scene facts:
+   lava shots 3, 4 and 5 as they passed must pass; shot 2 as restaged along the crest (commit a91a0a528, judged 38)
+   and the wide round-6 restage (483b15222, judged 14) must fail for what the panel said of them.
 
 ## A shot passes the board in two or three rounds (2026-11-25, after the lava rounds)
 
