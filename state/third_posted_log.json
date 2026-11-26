@@ -22613,13 +22613,58 @@
       "ts": "2026-11-25T20:34:41.766641+00:00"
     },
     "clip-20261126-1": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-eace4ea26ae62d4d",
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/UrnwcwoIi34",
       "title": "Ohnepixel GTA 6 bedroom scene gets interrupted",
       "kind": "story",
-      "ts": "2026-11-26T11:56:57.168290+00:00",
+      "ts": "2026-11-26T11:57:07.447962+00:00",
+      "uploaded_at": "2026-11-26T11:57:07.447977+00:00",
+      "publish_at": "2026-11-26T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261126-ohnepixel-gta-6-bedroom-scene-gets-interrupted-a4d8af80",
+        "tiktok": "queued for 2026-11-26T17:00:00Z"
+      },
+      "story_key": "story-eace4ea26ae62d4d",
+      "member_keys": [
+        "vodmine://2933599748/17121-17361",
+        "https://www.twitch.tv/ohnepixel/clip/BashfulLongStapleCoolStoryBob-V5OcXqmlfNIoptdl",
+        "vodmine://2933599748/17369-17609"
+      ],
+      "streamer": "ohnepixel",
+      "who": [
+        "ohnepixel"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 28.2,
+      "narrative_score": 0,
+      "narrative_summary": "Ohnepixel's GTA 6 playthrough goes from a goodnight with Lucia to a bedroom cutscene that ends with a text saying 'We're on our way', and the next scene is a disguised job.",
+      "revision_count": 1,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-rudesilkyherdnotlikethis-g4dngw3oqhoxbofu": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/RudeSilkyHerdNotLikeThis-G4DngW3oQhoxBOfu",
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Meets Mandy And Her Fur Slippers Question Hits Different",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 5.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about 30% of the canvas height, not the roughly 75% a well-framed clip should fill. I; vision: The subject is small and hard to read on a phone. The streamer webcam and chat o",
+      "ts": "2026-11-26T12:06:55.975058+00:00"
+    },
+    "clip-20261126-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/theregulationpod/clip/GiftedUninterestedFishCharlietheUnicorn-XJGPUVMfRTYD7VBn",
+      "story_key": null,
+      "streamer": "theregulationpod",
+      "title": "Streamers React As Theregulationpod Watches A Polar Bear Scare Go Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-11-26T12:11:09.216538+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
