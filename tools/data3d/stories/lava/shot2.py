@@ -83,12 +83,8 @@ def place_wall_works():
     # the fountains, far out past the wall's end on the outer side
     # what the wall keeps out: from the town, lava fountains stand beyond the crest under their smoke (beat 1's ragged
     # fountains: a fat torn body and a thin taller jet), their feet hidden behind the wall
-    rf = lw_random.Random(23)
-    for k, (x, y, hf) in enumerate(((-9.0, -58.0, 15.0), (-3.0, -61.0, 18.0), (3.5, -58.0, 14.0), (9.0, -60.0, 16.0))):
-        lw_fire_column(f"far fountain {k}", (x, y, 0.0), w=rf.uniform(3.6, 4.4), h_fire=hf, h_smoke=4.0, lean=(rf.uniform(-0.25, 0.25), -0.3), t_end=DUR + 1.0, seed=3.1 + k * 2.3, fire=3.6, smoke_d=1.2, rise=3.0, spread=0.34)
-        lw_fire_column(f"far fountain jet {k}", (x + rf.uniform(-1.0, 1.0), y + 0.3, 0.0), w=rf.uniform(1.2, 1.7), h_fire=hf * rf.uniform(0.8, 1.2), h_smoke=2.0, lean=(rf.uniform(-0.4, 0.4), -0.2), t_end=DUR + 1.0, seed=7.3 * k + 2.2, fire=5.5, smoke_d=0.8, rise=4.5, spread=0.3)
-        FX.smoke_column(base=(x, y - 1.5, hf * 0.8), w=3.4, h=12.0, lean=(0.3, -0.2), dens=2.0, seed=1.7 + k, t_end=DUR + 1.0, name=f"far fountain smoke {k}")
-        lw_point(f"far fountain light {k}", (x, y + 3.0, 3.0), 60000.0, col=(1.0, 0.4, 0.1), r=3.0)        # its glow on the black field
+    for k, (x, y, hf) in enumerate(((-9.0, -58.0, 15.0), (-3.0, -61.0, 18.0), (3.5, -58.0, 14.0), (9.0, -60.0, 16.0))):      # (the kit's fountain, as in beat 1)
+        FX.lava_fountain(base=(x, y, 0.0), h=hf, w=1.8, length=3.0, clots=250, lean=(0.3, -0.2), seed=23 + k, splats=0, t_end=DUR + 1.0, name=f"far fountain {k}")
     def light():
         return FX.sky("day", sun_az=150)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
     return dict(light=light, wall=wall, house=houses[0], houses=houses)

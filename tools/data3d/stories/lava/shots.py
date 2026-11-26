@@ -1629,11 +1629,16 @@ def place_grindavik_street():
         o.rotation_euler = (0, math.radians(90), 0)
     # EVERYONE HAD TO RUN: one car pulling away far up the street, whole in the frame, its tail lights to us (the
     # open front doors are cut: the board read their slabs as white boxes at the frame's edge)
-    car = s1_car("car leaving", "#C8CCD0"); car.rotation_euler = (0, 0, math.pi)
+    car = FX.car(name="car leaving", loc=(S1_CARX, 4.7, 0.0), yaw=math.pi, kind="hatch", col="#B9BEC4", seed=3)["root"]      # the kit's real car, its tail lamps lit
     for f in range(1, NF + 1):
         car.location = (S1_CARX, 4.7 + 0.98 * (f - 1) / FPS, 0.0); car.keyframe_insert("location", frame=f)
     # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
     town_house("town house at the street's end", (1.3, 10.4, s1_ground_z(1.3, 9.0)), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.5, roof="#B8352B", wall="#E9D9A2", seed=3)
+    bpy.context.view_layer.update()
+    for o in bpy.data.objects:                             # (the near left houses' door steps stood in the frame's corner as bare pale blocks: cut)
+        if o.name.endswith(" step") or " step." in o.name:
+            c = o.matrix_world.translation
+            if c.x < 0 and -4.0 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
     def light():
         k = iceland_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.4, haze=1.4)           # the world's one bright day (the reset, 2026-11-25: no dusk)
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # the same REAL sky as the wall's beats (Poly Haven)
@@ -1676,28 +1681,21 @@ def shot1():
     # (board B18: "pale pink-white lava bombs like popcorn", "two salmon rods": the clots were bright enough to clip to
     # pink, and each one's jump back to its vent was smeared into a rod by the motion blur. They are small, deep
     # orange or cooled black, and a spent one goes back to its vent UNDER the rock.)
-    clot = lw_emit("fountain clot", "#FF2A00", 1.1); cold = lw_noise("cooled spatter", "#140E0B", "#3A2A20", scale=20, rough=0.9); clots = []
-    for k in range(110):                                 # a SPRAY: a lava fountain is thrown blobs, rising and falling, not a flame
-        v = vents[k % len(vents)]; r_ = rf.uniform(0.07, 0.19); per = rf.uniform(1.5, 2.6); ph = rf.uniform(0, per)
-        vx = rf.uniform(-3.4, 3.4); vz = rf.uniform(7.0, 13.0)
-        o = lw_block(f"fountain clot {k}", (0, 0, -9), r_, cold if k % 4 == 3 else clot, rf, squash=0.9); clots.append(o)
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; s_ = (t + ph) % per
-            x_ = v.location.x + vx * s_; y_ = S1_RIDGE_Y - 0.5 - 0.4 * s_; z = v["base_z"] + vz * s_ - 0.5 * 9.8 * s_ * s_
-            under = z < s1_ground_z(x_, y_) - 0.4
-            o.location = (v.location.x, S1_RIDGE_Y, v["base_z"] - 3.0) if under else (x_, y_, z); o.keyframe_insert("location", frame=f)
-            o.hide_render = under; o.keyframe_insert("hide_render", frame=f)
+    clot = lw_emit("fountain clot", "#FFA51E", 0.9)          # (yellow-orange and dim: a strong red-orange is bleached to pink)
+    for k, v in enumerate(vents):                           # the SPRAY is the kit's: clots on real arcs, yellow-hot at the vent, cooling as they fly
+        FX.embers(origin=(v.location.x, S1_RIDGE_Y - 0.4, v["base_z"] + 0.3), n=26, speed=14.0, cone=0.42, size=(0.05, 0.13), period=2.2, seed=31 + k,
+                  ground_z=v["base_z"] - 1.0, splats=0, power=0.0, name=f"fountain spray {k}")
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
     T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
-    bomb = lw_block("lava bomb", tuple(B0), 0.27, lava_mat("bomb lava", heat=3.0, scale=9.0, fresh=0.6), rf, squash=0.9)
+    bomb = lw_block("lava bomb", tuple(B0), 0.27, lava_mat("bomb lava", heat=1.1, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
     vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
     for f in range(1, NF + 1):
         t = (f - 1) / FPS; s_ = max(0.0, min(TF, t - (T_HIT - TF))); u_ = s_ / TF
         bomb.location = (B0.x + (HIT.x - B0.x) * u_, B0.y + (HIT.y - B0.y) * u_, B0.z + vz0 * s_ - 0.5 * 9.8 * s_ * s_); bomb.keyframe_insert("location", frame=f)
         bomb.rotation_euler = (3.0 * s_, 2.0 * s_, 0.0); bomb.keyframe_insert("rotation_euler", frame=f)
         bomb.hide_render = t < T_HIT - TF; bomb.keyframe_insert("hide_render", frame=f)
-    splat = K.sph("lava bomb splat", (HIT.x, HIT.y, 0.012), 0.58, lava_mat("fissure lava", heat=2.0, scale=3.0, fresh=1.0), scale=(1.0, 0.8, 0.07), seg=20, ring=8)
+    splat = K.sph("lava bomb splat", (HIT.x, HIT.y, 0.012), 0.58, lava_mat("splat lava", heat=1.0, scale=6.0, glow="#FF8A10", fresh=0.45), scale=(1.0, 0.8, 0.07), seg=20, ring=8)
     for t_, sc_ in ((T_HIT - 0.04, 0.0), (T_HIT + 0.1, 1.0), (DUR + 1.0, 1.08)):
         fr = F(t_); splat.scale = (max(0.06, sc_), max(0.06, 0.8 * sc_), 0.07); splat.keyframe_insert("scale", frame=fr)
         splat.hide_render = sc_ < 0.06; splat.keyframe_insert("hide_render", frame=fr)
@@ -1725,7 +1723,7 @@ def shot1():
     data._kobj(0.0, loc=tuple(PW), rot=yaw_see)
     data._kobj(T_RUN - 0.42, loc=tuple(PW), rot=yaw_see); data._kobj(T_RUN - 0.02, loc=tuple(PW), rot=run_yaw)      # he turns, then he runs
     data.walk_to((PM.x, PM.y), T_RUN, T_SLOW, step=0.24, lift=0.1, lean=34.0, bob=0.026, ramp=0.15)
-    data.walk_to((PE.x, PE.y), T_SLOW, DUR + 0.3, step=0.09, lift=0.035, lean=8.0, bob=0.01)      # ...and he pulls up at the lens, still coming
+    data.walk_to((PE.x, PE.y), T_SLOW, DUR + 0.3, step=0.09, lift=0.035, lean=20.0, bob=0.01)      # ...and he pulls up at the lens, still coming
     lw_layer(data, "spine", lambda t: (-12 * (1 - W(t, T_RUN - 0.15, 0.2)) + 8 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((-7.0, S1_RIDGE_Y, 12.0))               # the row's end on the lens's side: he looks back over the shoulder we can see
     CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 2.0))
@@ -1740,7 +1738,7 @@ def shot1():
     def pose(sd, t, P_):
         for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
     HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
-    SHIELD = "LR"                           # the arm up at his hat covered his face on the last still: both arms keep pumping
+    SHIELD = "none"                         # the arm up at his hat covered his face on the last still: both arms keep pumping
     OUT = lambda sg: ((8, 0, -sg * 76), (0, 0, -sg * 8), (0, 0, 0))            # one arm flung out at the fountains
     sc.frame_set(1); bpy.context.view_layer.update()
     far = max("LR", key=lambda s_: acts._shoulder(data, s_).y); oth = "R" if far == "L" else "L"       # the arm on the ridge's side

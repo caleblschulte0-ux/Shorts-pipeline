@@ -27,7 +27,7 @@
       "car leaving"
      ],
      "whole": true,
-     "built_as": "a small silver hatchback, wheels, windows, red tail lights lit"
+     "built_as": "a small silver hatchback: a lofted body, glass, wheels on rims, red tail lamps lit"
     }
    ],
    "framing": "close",
@@ -125,13 +125,13 @@
     },
     {
      "event": "reaction",
-     "shows": "he pulls up in front of us, wide-eyed, both hands thrown up, the bomb burning on the road behind him",
+     "shows": "he reaches us, big in the frame, still running, wide-eyed, the bomb burning on the road behind him",
      "hands": "free",
      "new": [
       {
        "what": "data",
        "how": "pose",
-       "cause": "he stops with both hands thrown up in front of him"
+       "cause": "he leans in close, one fist forward, one back"
       },
       {
        "what": "lava bomb",
@@ -147,7 +147,7 @@
      "visible": [
       {
        "prop": "data",
-       "as": "he pulls up in front of us, big in the frame, wide-eyed, both hands thrown up"
+       "as": "he reaches us, big in the frame, still running, wide-eyed"
       },
       {
        "prop": "lava bomb",
