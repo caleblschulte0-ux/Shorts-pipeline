@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "runway-near-misses-climbing__0b20bf15_r1",
+  "slug": "runway-near-misses-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T12:45:00Z",
+  "title": "Runway Near-Misses More Than Doubled",
+  "hook": "The most dangerous airport mistakes are climbing, not disappearing.",
+  "closing": "The rise has a dominant cause and identifiable hotspots, giving airports clear places to intervene.",
+  "question": "Which runway risk worries you most?",
+  "segments": [
+    {
+      "topic": "Runway Near-Misses",
+      "say": "Safety officials logged 23 serious runway near-misses in 2023. The annual pace has more than doubled."
+    },
+    {
+      "topic": "Runway Main Cause",
+      "say": "Pedestrians or vehicles caused 60% of runway incursions. Most danger starts with someone entering the wrong space."
+    },
+    {
+      "topic": "Runway Hotspots",
+      "say": "Eight airports account for 33% of the worst incursions. Concentrated risk gives safety teams a focused target."
+    }
+  ]
+}
