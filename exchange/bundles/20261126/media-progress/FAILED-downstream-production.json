@@ -1,0 +1,93 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261126",
+  "status": "blocked_downstream",
+  "observed_at": "2026-11-26T12:35:00Z",
+  "bundle_identity": "3808d41120062ebcf9ad3bf6a35aa9e3011b0c78891b73a9846a19f080c775d2",
+  "attempted": [
+    "Committed and validated media-progress/STARTED.json before other producer writes.",
+    "Completed two capped takeover mailbox rounds in the required order: reviews, asks, then rewrites.",
+    "Committed 40 ask answers and 20 rewrite answers, then read them back and validated their schemas and request identifiers.",
+    "Committed and read back response.json, then committed DONE separately.",
+    "Observed Exchange Phase B run 45819573188 complete successfully and hand off commit 961368d9f5d1abfe629796b4b95b69b062d68731.",
+    "Observed first mailbox claim/apply runs 45819396553 and 45819426010 complete successfully; second claim run 45820131012 remained in progress and Daily Shorts run 45819628875 remained pending.",
+    "Verified actual accepted upload URLs only from channel posted logs; did not count workflow starts or pending uploads as posted."
+  ],
+  "channels": {
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "detail": "Three authorized stories were submitted, but no 2026-11-26 accepted Explainer upload URL exists. The frozen bundle supplies only three source stories for a target of four."
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 2,
+      "pending": 4,
+      "detail": "Two accepted YouTube URLs exist for 2026-11-26. One additional upload entry is explicitly pending, and three more required clips have no accepted URL."
+    },
+    "trending": {
+      "required": 5,
+      "verified_posted": 1,
+      "pending": 4,
+      "detail": "One accepted YouTube URL with a 2026-11-26 posted timestamp exists; four required sports moments remain unverified."
+    }
+  },
+  "mailboxes": {
+    "rounds": 2,
+    "reviews": {
+      "open_observed": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No open review requests in either round."
+    },
+    "asks": {
+      "open_index_keys": 56,
+      "answered_this_run": 40,
+      "remaining_unanswered": 16,
+      "skipped_reason": "Section 7 cap is 20 ask keys per round."
+    },
+    "rewrites": {
+      "open_index_requests": 70,
+      "answered_this_run": 20,
+      "remaining_unanswered": 61,
+      "skipped_reason": "Section 7 cap is 10 rewrites per round; the claim workflow filed a retry after the first round."
+    }
+  },
+  "commits": {
+    "started": "c973cf37f38629d38765eb9e6388674744ab38a6",
+    "ask_round_one": [
+      "5e8580c31b4d84b6387f1e4156061194a6a9749b",
+      "090655cd26770a61561ccfdc8aade60907019e8c"
+    ],
+    "rewrite_round_one": [
+      "0c765e28c589e6b5ee74e6d3818cad016404d068",
+      "2f01eba60410e9fe31e16871d524616459ae1e19",
+      "4393675cf7c251f254b6772d875c43a3d9381244",
+      "25be9c0c023b0511cf540db56bbdab22689f751a",
+      "74a2e353ac206d8ef9656b8f65f2df067478ced9",
+      "ab60a6f8a9c370d211245202cc496a820a465e05",
+      "272c726c94f11d75f6566021c7f92e7e7f6a204e",
+      "1fced6f676450db3920cc8e0edd5b338aae947f1",
+      "4402bb6b59f77994e65b68b61853704fa9c68745",
+      "d14deb0146331b0a7a5dc279306abe0c47abe0d7"
+    ],
+    "ask_round_two": "82a7fcb66d40cf4617c1eff30bf54c72c7484942",
+    "rewrite_round_two": [
+      "776c329fb7cf0d6add01f16f3f55975919262a2b",
+      "e320409ed01d519bdd1477ef7250d885332b6699",
+      "955895a1c6801d41681cf3306514445251412830",
+      "e38bf9fa98a448599a4ca12e38bd654cd67eaefa",
+      "3627cb04a1bc0c60fafc07aac45272145f8c961b",
+      "a686f15e5df5bef4f851414dd324fd6c8c0e11d3",
+      "c401828aa9c53c815dd23d776927e5ed52d49b2f",
+      "0ae1645eeb9ccb6ed9261a2f0d69f5e874640b69",
+      "b280cc9d4a6bd1e2f6dfb2f781f0b0a5da14fbb8",
+      "7f701844848dd3dea1e75368411541fc1b83b57a"
+    ],
+    "response": "b82c1a945c054364637f04e2728664546a326a0c",
+    "done": "bed69f46a60aae775ade8d2884871c186ad32380"
+  },
+  "exact_failed_step": "Actual output verification did not reach the frozen contract: Explainer is 0/4, Third is 2/6, and Trending is 1/5 by accepted upload URL. The remaining downstream render/upload work had not produced accepted URLs at observation time; claim run 45820131012 was still in progress and Daily Shorts run 45819628875 was still pending.",
+  "day_closed": false
+}
