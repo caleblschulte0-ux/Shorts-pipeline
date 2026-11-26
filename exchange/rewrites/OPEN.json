@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-26T12:28:56Z",
+ "updated": "2026-11-26T12:31:07Z",
  "open": [
   {
    "id": "us-stops-making-pennies-232-years__68b3f7da_r2",
@@ -63,17 +63,6 @@
    ],
    "request": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.answer.json"
-  },
-  {
-   "id": "fifty-otters-survived-climate-fight__960dcb0a_r1",
-   "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-26T12:28:54Z",
-   "why": [
-    "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: Introduces a new population count (3,000) that contradicts the headline's focus on the 50 survivors and doesn't directly",
-    "thesis: seg2 ('Sea Otters Protect') does not continue the story of the headline ('Why 50 Surviving Otters Now Guard A Carbon Sink') — brain: While it mentions carbon storage, it doesn't logically follow from beat 1 and the connection to the 50 otters guarding t"
-   ],
-   "request": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__960dcb0a_r1.request.json",
-   "answer_path": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__960dcb0a_r1.answer.json"
   },
   {
    "id": "hadza-gut-bacteria-vs-americans__efaf2d65_r1",

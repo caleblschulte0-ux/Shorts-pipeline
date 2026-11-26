@@ -39098,10 +39098,10 @@
   },
   {
    "slug": "fifty-otters-survived-climate-fight",
-   "title": "Why 50 Surviving Otters Now Guard A Carbon Sink",
-   "hook": "The otters we almost killed off turned out to be climate heroes.",
-   "closing": "Saving one predator can protect an entire coastline and its carbon.",
-   "question": "Would you welcome otters nearby?",
+   "title": "How 50 Sea Otters Became A Carbon Lifeline",
+   "hook": "A near-extinction revealed how sea otters protect coastal carbon.",
+   "closing": "Saving sea otters also preserves kelp habitat and a natural carbon store.",
+   "question": "Would you protect sea otters?",
    "caption": "Fur traders hunted California's sea otters down to about 50 survivors. They've crept back to 3,000 — and the kelp forests they protect could store millions of tons of CO2. Would you want them near your coastline? 👇",
    "hashtags": [
     "seaotters",
@@ -39127,7 +39127,7 @@
      "insight_type": "comparison",
      "role": "1 · NEARLY WIPED OUT",
      "topic": "Sea Otters Survived",
-     "say": "Only 50 California sea otters remained after the fur trade nearly wiped the species out."
+     "say": "Only 50 sea otters survived the fur trade. That remnant kept the entire population alive."
     },
     {
      "source": "offline",
@@ -39138,7 +39138,7 @@
      "insight_type": "trend",
      "role": "2 · THE SLOW COMEBACK",
      "topic": "Sea Otters Recovered",
-     "say": "That handful recovered to about 3,000 otters, though the species is still considered threatened."
+     "say": "The population reached about 3,000 sea otters. Their return restored a crucial predator to coastal kelp."
     },
     {
      "source": "offline",
@@ -39149,12 +39149,12 @@
      "insight_type": "comparison",
      "role": "3 · WHY IT MATTERS",
      "topic": "Sea Otters Protect",
-     "say": "The kelp forests those otters protect can store up to 8.7 million metric tons of CO2 a year."
+     "say": "Sea-otter-protected kelp can store 8.7 million metric tons of CO2 yearly. Recovery now safeguards a carbon sink."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:37Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-26T12:31:07Z",
    "scorecard": {
     "scores": {
      "premise": 8,
