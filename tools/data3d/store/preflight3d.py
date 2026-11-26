@@ -68,7 +68,13 @@ CLAIMS (each must be ticked against ONE specific still that shows it):
 A CAMERA claim is ticked only when the stills are framed the way it says (wide or close, low or high, what it looks
 at). A NUMBER claim is ticked only when that many can be counted, or the size is seen beside something familiar. An
 ACTION claim is ticked only when every thing it names is in the still and the still shows it happening or having
-happened. A TIME or WEATHER claim from WORLD describes the whole story: tick it against a still when nothing in this
+happened. The SAYS claim is the judges' own test, no stricter and no looser: with the sound off, could a stranger
+tell the line's fact from these stills? Read the line for the EVENTS and THINGS it names and look for each in the
+stills taken together; name the still that carries it best. A place named in the line is shown by the place itself (its
+landscape, its houses, what the world block says it looks like), never by a label or a map. A word for people in
+general ("everyone", "people", "they") is shown when the hero is seen doing it, or by its traces (cars leaving, an
+empty street). Do NOT tick it when an event or a thing the line names is depicted in no still, when only a generic
+stand-in for a named thing is there, or when the fact is something only the voice could state. A TIME or WEATHER claim from WORLD describes the whole story: tick it against a still when nothing in this
 shot's stills contradicts it.
 
 CONTINUITY (between the stills):
@@ -102,8 +108,12 @@ def claims(script, n):
         add("ACTION", "FOR", ev)
     lines = script.get("lines") or []
     says = lines[n - 1] if 0 < n <= len(lines) else ""
-    add("SAYS", "SAYS", f"with the sound off the picture shows this: {says}" if says else "")
-    for val, said, a, b in story_gate.numbers(says):
+    add("SAYS", "SAYS", f"a stranger with the sound off would say the stills show what this line says: {says}" if says else "")
+    nums = story_gate.numbers(says)
+    counted = any(v >= 2 for v, _, _, _ in nums)
+    for val, said, a, b in nums:
+        if val < 2 and not counted:      # "one Icelandic town" is an article, not a count; "one in seven" is a count
+            continue
         thing = re.match(r"(?:\s+[A-Za-z'-]+){0,3}", says[b:]).group(0)
         add("NUMBER", "SAYS", f"{said}{thing}: seen as that count or that size")
     world = script.get("world") or {}

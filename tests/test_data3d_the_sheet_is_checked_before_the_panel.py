@@ -65,6 +65,36 @@ def test_the_claims_are_every_promise_of_the_three_texts():
     assert any(c["kind"] == "TIME" and c["from"] == "WORLD" for c in no_time), "with no time in the line, the world's holds"
 
 
+def test_one_before_a_noun_is_an_article_not_a_count_to_verify():
+    """2026-11-25, lava shot 1: "one Icelandic town" became a NUMBER claim and the look blocked the sheet on it"""
+    def numbers(line):
+        sc = dict(SCRIPT, lines=[line], storyboard=["1 x (a street; wide): cars leave."])
+        return [c["text"] for c in PF.claims(sc, 1) if c["kind"] == "NUMBER"]
+    assert numbers("A volcano keeps erupting right beside one Icelandic town, and everyone had to run.") == []
+    assert numbers("A single wall stood, and a crack ran through one street.") == []
+    assert len(numbers("Three houses burned.")) == 1
+    assert len(numbers("Europe's tests caught one honey import in seven faked.")) == 2, "one against a count is a count"
+    import story_gate
+    assert story_gate.line_showable_problems("A volcano keeps erupting right beside one Icelandic town.") == []
+
+
+def test_the_spoken_line_is_checked_by_the_judges_own_standard_and_no_looser():
+    """same sheet: a fire curtain over a street and the hero sprinting away was blocked for "does not show Iceland or
+    everyone running". The panel asks whether a stranger could tell the fact from the picture; so does the look."""
+    says = [c["text"] for c in PF.claims(SCRIPT, 2) if c["kind"] == "SAYS"]
+    assert len(says) == 1 and says[0].startswith("a stranger with the sound off would say the stills show what this line says")
+    brief = " ".join(PF.PROMPT.split())
+    for must in ("could a stranger tell the line's fact from these stills", "shown by the place itself", "never by a label",
+                 "is shown when the hero is seen doing it", "Do NOT tick it when an event or a thing the line names is depicted in no still",
+                 "only a generic stand-in", "only the voice could state", "no stricter and no looser"):
+        assert must in brief, must
+    judge = " ".join((D3 / "store" / "judge3d.py").read_text().split())
+    assert "With the sound off a stranger must be able to tell the fact from the picture" in judge, "the standard is the judge's, read not restated"
+    cl = PF.claims(SCRIPT, 2); sid = next(c["id"] for c in cl if c["kind"] == "SAYS")
+    un, _ = PF.decide(cl, json.loads(_all_seen(PF.prompt(cl, "x.jpg", 4), miss={sid})), 4)
+    assert [c["kind"] for c in un] == ["SAYS"], "a line whose event no still depicts still blocks"
+
+
 def test_every_claim_ticked_against_a_still_is_a_recorded_pass_for_that_sheet(story):
     tmp, sheet = story
     asked = []
