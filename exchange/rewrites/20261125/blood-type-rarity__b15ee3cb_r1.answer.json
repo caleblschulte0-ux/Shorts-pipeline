@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-type-rarity__b15ee3cb_r1",
+  "slug": "blood-type-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-11-26T13:05:00Z",
+  "title": "America's Blood Types Are Far From Even",
+  "hook": "Some blood types fill donor shelves while others barely appear.",
+  "closing": "Blood supply depends on a diverse donor pool because type distribution is deeply uneven.",
+  "question": "Do you know your blood type?",
+  "segments": [
+    {
+      "topic": "Blood Type Rarity",
+      "say": "Only 1% of Americans have AB-negative blood. The rarest type starts with a tiny donor pool."
+    },
+    {
+      "topic": "Blood Type Factor",
+      "say": "Only 15% of Americans are Rh-negative. That factor makes every negative type harder to match."
+    },
+    {
+      "topic": "Blood Type Donors",
+      "say": "O-positive reaches 53% among Latin American donors. Donor background changes which types enter the supply."
+    }
+  ]
+}
