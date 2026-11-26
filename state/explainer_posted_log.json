@@ -5964,6 +5964,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "insect-planet": {
+      "claimed_at": "2026-11-26T16:31:45.195289+00:00",
+      "title": "Why This Is Really The Planet Of The Bugs",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -7703,6 +7710,14 @@
       "state": "posted",
       "slug": "landline-death-robocall-boom",
       "at": "2026-11-25T15:00:21.479164+00:00"
+    },
+    {
+      "claimed_at": "2026-11-26T16:31:45.195289+00:00",
+      "title": "Why This Is Really The Planet Of The Bugs",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "insect-planet"
     }
   ]
 }
