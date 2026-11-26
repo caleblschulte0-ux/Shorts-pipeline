@@ -312,7 +312,7 @@ SKIES = {
     "afternoon": ("qwantani_afternoon_puresky",           0.60, 3.2, (1.0, 0.90, 0.76), 2.5, "day"),
     "evening":   ("wasteland_clouds_puresky",             0.90, 0.8, (1.0, 0.95, 0.90), 15.0, "overcast"),   # a mild, clear evening with far cloud (it was called "storm", and is not one)
     "heavy":     ("mud_road_puresky",                     0.70, 0.3, (0.95, 0.97, 1.0), 30.0, "overcast"),   # a low, heavy overcast: no sun, soft shadow (the library has no storm sky)
-    "night":     ("qwantani_night_puresky",               1.00, 0.08, (0.75, 0.82, 1.0), 6.0, "blue_hour"),  # stars and a dark sky: what glows is the only light
+    "night":     ("qwantani_night_puresky",               0.22, 0.04, (0.75, 0.82, 1.0), 6.0, "blue_hour"),  # stars and a dark sky: what glows is the only light
 }
 _SUN = {}
 
@@ -376,13 +376,15 @@ GROUNDS = {
     "burned":  (("burned_ground_01",), 2.0, None),
     "grass":   (("sparse_grass", "leafy_grass", "rocky_trail"), 2.0, None),
     "mud":     (("brown_mud", "rocky_trail"), 2.0, None),
-    "sand":    (("coast_sand_rocks_02", "gravel_floor_02"), 2.0, None),
+    "sand":    (("sand_01", "coast_sand_01", "gravel_floor_02"), 2.0, None),
+    "shore":   (("coast_sand_rocks_02", "rocky_trail"), 2.0, None),          # thin grass and stones above a beach (seen on the sheet: it is not sand)
+    "meadow":  (("rocky_terrain_02", "sparse_grass"), 4.0, None),            # green turf with stones (seen on the sheet: it is not a mountainside)
     "snow":    (("snow_02", "gray_rocks"), 2.0, None),
-    "mountain": (("rocky_terrain_02", "aerial_rocks_02"), 4.0, None),
+    "mountain": (("cliff_side", "rock_face", "aerial_rocks_02"), 4.0, None),
 }
 
 
-@element("ground", "real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, mud, "
+@element("ground", "real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, meadow, shore, mud, "
                    "sand, snow, mountain): never a flat plane of one colour")
 def ground(kind="gravel", area=(-8, 8, -6, 12), zfn=None, relief=0.06, seed=0, step=0.25, tint=None, name=None):
     """a patch of ground over area (x0, x1, y0, y1). zfn(x, y) gives its height; without one it rolls gently by

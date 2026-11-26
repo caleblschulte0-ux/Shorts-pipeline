@@ -412,8 +412,8 @@ def _bucket(name, pivot, ang, width, size, m, m_teeth, parent):
     P = Vector(pivot)
     for k in range(4):
         x = (k - 1.5) * width / 4
-        th = K.box(name + " tooth", (P.x + x, P.y + ly - 0.035, P.z + lz + 0.005), (width * 0.11, 0.1, 0.028), m_teeth, bev=0.008, parent=hold)
-        th.rotation_euler = (0.25, 0, 0)
+        th = K.box(name + " tooth", (P.x + x, P.y + ly + 0.04, P.z + lz + 0.012), (width * 0.11, 0.11, 0.028), m_teeth, bev=0.008, parent=hold)
+        th.rotation_euler = (0.3, 0, 0)                                    # the teeth are on the lip, pointing back at the machine: it digs toward itself
     for sx in (-1, 1):
         K.box(name + " ear", (P.x + sx * width * 0.2, P.y - 0.02, P.z - 0.02), (0.03, 0.14, 0.12), m, bev=0.01, parent=hold)
     hold.rotation_euler = (ang, 0, 0)

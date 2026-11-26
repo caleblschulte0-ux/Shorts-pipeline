@@ -174,7 +174,7 @@ beside everything that glows). `store/fx_kit.py` is those parts, lifted and made
 | element | group | glows | what it is |
 |---|---|---|---|
 | `FX.sky` | sky | yes, with its light | a REAL sky (Poly Haven HDRI) that lights the scene, with the sun lamp aimed at the sky's own sun: presets day, noon, afternoon, dawn, sunset, dusk, evening, blue_hour, night, overcast, heavy; sun_az turns the whole sky |
-| `FX.ground` | ground |  | real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, mud, sand, snow, mountain): never a flat plane of one colour |
+| `FX.ground` | ground |  | real scanned ground with relief (kinds: rock, lava_field, gravel, trail, scree, burned, grass, meadow, shore, mud, sand, snow, mountain): never a flat plane of one colour |
 | `FX.road` | ground |  | a real asphalt road (scanned asphalt, a worn centre line, gravel shoulders with loose stones) |
 | `FX.rocks` | ground |  | real scanned boulders (Poly Haven models) and broken stones scattered over a patch, each turned and sized differently: never a sphere, never evenly spaced |
 | `FX.house` | built |  | a real small house: weathered painted corrugated tin (scanned) on a concrete base, a coloured tin roof with rust and grime, gutters, downpipes, corner boards, a chimney, paned windows, a door and steps; size, storeys, pitch and colours vary with seed; burn>0 chars it and breaks its roof open; lit windows cast their light |

@@ -71,6 +71,17 @@ def build(group):
         FX.sky("day", sun_az=-40); g = FX.ground("gravel", area=(-8, 8, -5, 12), relief=0.03)
         FX.digger("digger", (0.0, 3.0, 0), yaw=-math.pi / 2 - 0.25, lights=False); scale_prop((-1.6, 1.2, 0))
         K.camera((0.0, -3.2, 1.3), (0.6, 3.0, 0.9), lens=30)
+    elif group == "housefire":
+        FX.sky(os.environ.get("SKY", "dusk"), sun_az=-60); g = FX.ground("grass", area=(-10, 10, -5, 20), relief=0.04)
+        FX.road((0.0, -5), (0.0, 20), width=2.4)
+        hs = FX.house("burning", (-3.6, 5.5, 0), yaw=math.pi / 2 - 0.5, seed=5, burn=0.9, storeys=2)
+        FX.house_fire(hs); FX.house("next door", (3.8, 7.0, 0), yaw=-math.pi / 2 + 0.3, seed=2); scale_prop((1.0, 1.5, 0))
+        K.camera((0.6, -4.2, 1.4), (-0.8, 5.5, 2.6), lens=26)
+    elif group.startswith("ground:"):                    # one kind of ground, with a house and a car on it for scale
+        FX.sky(os.environ.get("SKY", "day"), sun_az=-55); g = FX.ground(group[7:], area=(-14, 14, -5, 40), relief=0.08)
+        FX.house("house", (-2.8, 6.0, 0), yaw=-0.5, seed=3); FX.rocks(6, area=(-1, 6, 1, 8), zfn=g["zfn"], seed=1)
+        FX.car("car", (1.6, 3.2, g["zfn"](1.6, 3.2)), yaw=0.7, seed=2, lights=False); scale_prop((0.2, 1.0, 0))
+        K.camera((0.6, -4.6, 1.3), (0.2, 5.0, 1.2), lens=26)
     elif group == "built":
         FX.sky("day", sun_az=-55); g = FX.ground("grass", area=(-12, 12, -5, 24), relief=0.05)
         FX.road((0.0, -5), (0.0, 24), width=2.6)
