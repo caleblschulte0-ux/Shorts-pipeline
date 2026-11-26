@@ -43,6 +43,15 @@ def build(group):
         else: FX.lava_fountain((0.0, 20.0, 0), h=10.0, w=1.4, length=12.0, yaw=0.15, seed=2, clots=900)
         scale_prop((0.9, 3.0, 0))
         K.camera((0.2, -3.5, 1.5), (0.2, 18.0, 6.2), lens=24)
+    elif group == "ridge":                               # lava shot 1's use: daylight, a curtain 40 m off behind a black ridge
+        FX.sky("day", sun_az=-50)
+        ridge = lambda x, y: 4.2 * math.exp(-((y - 30.0) / 5.0) ** 2) * (0.85 + 0.15 * math.sin(x * 0.35))
+        g = FX.ground("lava_field", area=(-30, 30, -6, 60), step=0.5, zfn=ridge)
+        for k, (x, y, yaw) in enumerate(((-3.4, 6.0, math.pi / 2 - 0.2), (3.4, 7.0, -math.pi / 2 + 0.2), (-3.6, 12.0, math.pi / 2), (3.6, 13.0, -math.pi / 2))):
+            FX.house(f"house {k}", (x, y, 0), yaw=yaw, seed=k + 2, storeys=1)
+        FX.lava_fountain((0.0, 40.0, 1.0), h=10.0, w=1.4, length=7.5, seed=2, clots=700, clot_size=2.6)
+        scale_prop((0.9, 3.0, 0))
+        K.camera((0.2, -3.5, 1.5), (0.2, 30.0, 6.5), lens=30)
     elif group == "lava":                                # flow, pool and bombs, close
         FX.sky(os.environ.get("SKY", "dusk"), sun_az=-60); g = FX.ground("lava_field", area=(-8, 8, -4, 22))
         FX.rocks(8, area=(-6, 6, 4, 9), zfn=g["zfn"], seed=4, tint="#4A4642")
