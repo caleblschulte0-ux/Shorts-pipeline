@@ -329,9 +329,12 @@ def shot1():
     YB = yaw_of(0.35, -1.0)                                # three-quarter to the lens as he throws (q1n: square to the truck he was the back of his head)
     while YB - YA > math.pi: YB -= 2 * math.pi
     while YB - YA < -math.pi: YB += 2 * math.pi
-    for f in range(F(T_AT) + 1, NF + 8):
+    T_GO = T_REL + 0.2
+    for f in range(F(T_AT) + 1, F(T_GO) + 1):
         t = (f - 1) / FPS
-        data._kobj(t, loc=tuple(P2), rot=YA + (YB - YA) * W(t, T_AT, 0.3))      # round to the truck (from the cut he is in the cab, unseen)
+        data._kobj(t, loc=tuple(P2), rot=YA + (YB - YA) * W(t, T_AT, 0.3))      # round to the truck
+    P3 = P2 + Vector((0.02, -0.4, 0.0))
+    data.walk_to((P3.x, P3.y), T_GO, T_CUT + 0.15, step=0.15, lift=0.05, bob=0.016)      # (q1r: still for 1.03s after the throw) and off up the pavement to his cab
     # ---- face and head
     PLUME = Vector((PX, S1_RIDGE_Y + 1.0, P["fz"] + 9.0))
     data.look_at(PLUME, 0.0, max_yaw=30, max_pitch=40, blend=0.0)                  # up at it
@@ -342,12 +345,12 @@ def shot1():
     data.expression("determined", T_GRAB, DUR + 1.0, blend=0.25)
     # ---- the bag hand: down to the bag on the bench, lifts it, carries it, swings it back and lobs it over the side
     carry_rel = lw_hand(data, bag_sd, [(T_GRAB + 0.15, (0.06, 0.08, -0.17)), (T_WALK + 0.35, (0.11, 0.08, -0.13)), (T_AT, (0.04, 0.07, -0.19)), (T_WIND, (0.05, 0.1, -0.15)), (T_REL - 0.22, (0.09, 0.06, 0.0)),
-                                       (T_REL, (0.14, 0.04, 0.12)), (T_REL + 0.3, (0.12, 0.05, 0.06))])
+                                       (T_REL, (0.13, 0.04, 0.09)), (T_REL + 0.3, (0.12, 0.05, 0.05)), (T_REL + 0.75, (0.09, 0.07, -0.06))])
     GRIP = Vector((0, 0, 0.05))
     def carry(t):
         if t <= T_GRAB + 0.12: return BAG0 + GRIP
         return (BAG0 + GRIP).lerp(carry_rel(t), W(t, T_GRAB + 0.12, 0.45))
-    data.reach(bag_sd, carry, T_GRAB, T_REL + 0.3, lead=0.4, back=None, elbow_out=0.3)      # (his arm stays up from the throw: a relax into the cut whipped it)
+    data.reach(bag_sd, carry, T_GRAB, T_REL + 0.75, lead=0.4, back=None, elbow_out=0.3)      # (his arm stays up from the throw: a relax into the cut whipped it)
     lw_layer(data, "spine", lambda t: (22 * W(t, T_GRAB - 0.35, 0.3) * (1 - W(t, T_GRAB + 0.2, 0.35)) + 12 * W(t, T_WIND - 0.15, 0.2) * (1 - W(t, T_REL - 0.2, 0.2)), 0, 0), 0.4, DUR + 0.4)      # he bends to the bench for it; and into the wind-up
     data.finish()
     him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]

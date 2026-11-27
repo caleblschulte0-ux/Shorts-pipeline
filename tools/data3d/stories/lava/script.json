@@ -99,14 +99,14 @@
   },
   "ideas": [
     "a towering black ash plume rises off the ridge right over the main street; the driver at his front door looks up at it, grabs his bag off the bench, throws it into his truck, and the truck drives out of town down the empty street",
-    "he drops one pale boulder onto the crest's row while lava creeps across the field outside, we cut to the town and see the wall stand clear over a two-storey house with him small on top, and back on the crest, down the finished row, he grins beside his boulder",
+    "at his tipper truck's lever he tips its rock onto a low row of rock by a house, more rock slides off and the wall grows roof-high, far off across the town the finished wall stands taller than the house with the lava out beyond it, and he looks up at it from its foot",
     "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and heaps up; it stops dead against the rock and goes dark, and he pumps his fists and grins",
     "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
     "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
   ],
   "storyboard": [
     "1 hook (the main street by day: painted tin-roofed houses and Icelandic flags, the black ridge over the roofs; low on the pavement by his house, then far down the street): a towering black ash plume rises off the ridge over the roofs. The driver in his hard hat stands at his front door, his bag on a bench beside him, looking up at it. He grabs the bag. He throws it into his truck. The truck drives out of town.",
-    "2 the wall (by day on top of the long black rock wall: a row of black crest boulders along it, the lava field beyond it with a lava flow creeping toward it, the eruption's black ash plumes on the horizon; close on him, cutting once to far off in the town): the driver in his hard hat carries a pale boulder along the crest in both hands. He drops it onto the end of the row in a puff of dust. From the town, the black wall stands clear over the tall tin house, him small on top. Back on the crest, down the finished row, he grins by his pale boulder, one arm out along it.",
+    "2 the wall (by day at the wall's foot in the town, by one painted tin house; close on him at his truck's tip lever, then from up high, then far off across the town, then low by the house): the driver in his hard hat pulls his tipper truck's tip lever, tipping its rock onto a low row of rock in a puff of dust. More rock slides off the truck and the wall grows roof-high. The finished wall stands taller than the house, the lava out beyond it. He looks up at it by the house door.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
     "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
@@ -143,30 +143,32 @@
       ]
     },
     {
-      "camera": "wide",
-      "data": "on the crest of the long wall he carries a grey boulder to the end of the row of crest boulders, sets it down and straightens up, a two-storey house down below behind him; then from the town the wall stands over that house, him small on top",
+      "camera": "close up the alley by the truck, then from up high, then a cut to the wide across the town, then low by the house",
+      "data": "both hands on his tipper truck's tip lever, he pulls it and tips its rock onto the wall, then walks to the wall's foot by the house door and looks up at it",
       "props": [
-        "boulder",
+        "tip lever",
+        "tipper truck",
+        "tipped rock",
         "earth wall",
         "house by the wall",
-        "ash plumes beyond the wall"
+        "lava beyond the wall"
       ],
       "arc": [
         {
           "at": 0.08,
-          "what": "he carries a dusty boulder along the crest in both hands"
+          "what": "a low row of black rock in front of a tin house; his truck backed up to it tips its rock onto it in a puff of dust, him at the tip lever"
         },
         {
           "at": 0.38,
-          "what": "he bends and sets it down on the end of the row of boulders"
+          "what": "from up high: the wall now roof-high beside the house, more rock sliding off the tipped bed onto it"
         },
         {
           "at": 0.68,
-          "what": "from the town: the black wall stands clear over the tall tin house, him small on top, the black ash plumes beyond it"
+          "what": "far off across the town: the finished wall stands taller than the house, the black plume and a glowing lava flow out on the plain beyond it"
         },
         {
-          "at": 0.95,
-          "what": "back on the crest he stands by his boulder, one arm out along the row, and grins at us"
+          "at": 0.98,
+          "what": "low by the house: he stands small at the wall's foot beside the door, looking up at it"
         }
       ]
     },
