@@ -96,12 +96,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Provides another statistic rather than a direct consequence of beat 0; does not follow causally.",
-  "thesis: seg2 ('Nuclear Capacity Building') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: States total worldwide construction but does not directly follow from the specific China share mentioned in beat 1."
+  "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Shows China's share but doesn't directly follow from the previous fact, it's just another statistic.",
+  "thesis: seg2 ('Nuclear Capacity Building') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Gives a total count but isn't a logical consequence of the China‑specific share mentioned before."
  ],
  "reasons": [
-  "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Provides another statistic rather than a direct consequence of beat 0; does not follow causally.",
-  "thesis: seg2 ('Nuclear Capacity Building') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: States total worldwide construction but does not directly follow from the specific China share mentioned in beat 1."
+  "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Shows China's share but doesn't directly follow from the previous fact, it's just another statistic.",
+  "thesis: seg2 ('Nuclear Capacity Building') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Gives a total count but isn't a logical consequence of the China‑specific share mentioned before."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -135,5 +135,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T01:44:31Z"
+ "refiled": "2026-11-27T09:34:11Z"
 }

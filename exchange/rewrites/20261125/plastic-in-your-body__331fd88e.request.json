@@ -100,10 +100,12 @@
   }
  ],
  "held_for": [
-  "story: fatal: invented_fact, unrenderable_visual — fix the words so it is true and pays off what it promises"
+  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: doesn't follow from beat 0, just another separate fact",
+  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: doesn't follow from beat 1, adds a new fact rather than a logical continuation"
  ],
  "reasons": [
-  "story: fatal: invented_fact, unrenderable_visual — fix the words so it is true and pays off what it promises"
+  "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: doesn't follow from beat 0, just another separate fact",
+  "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: doesn't follow from beat 1, adds a new fact rather than a logical continuation"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -137,5 +139,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T01:44:31Z"
+ "refiled": "2026-11-27T09:34:10Z"
 }

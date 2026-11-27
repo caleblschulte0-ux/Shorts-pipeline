@@ -102,10 +102,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or conflict for viewers to latch onto."
+  "thesis: seg1 ('US Marriage Age') does not continue the story of the headline ('US Divorce Nearly Halved As First Marriage Moved Later') — brain: It adds a parallel fact about marriage age rather than a direct consequence of the divorce decline, violating the requir"
  ],
  "reasons": [
-  "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or conflict for viewers to latch onto."
+  "thesis: seg1 ('US Marriage Age') does not continue the story of the headline ('US Divorce Nearly Halved As First Marriage Moved Later') — brain: It adds a parallel fact about marriage age rather than a direct consequence of the divorce decline, violating the requir"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -139,5 +139,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T01:44:31Z"
+ "refiled": "2026-11-27T09:34:10Z"
 }
