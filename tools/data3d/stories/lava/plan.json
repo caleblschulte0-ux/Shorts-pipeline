@@ -199,32 +199,7 @@
       "earth wall"
      ],
      "whole": false,
-     "built_as": "a wall of piled black lava rock with a flat crest, boulders on its faces, that grows from a low row to taller than a house"
-    },
-    {
-     "name": "truck",
-     "objects": [
-      "his tipper truck"
-     ],
-     "whole": false,
-     "built_as": "his tipper truck from shot 1: a glazed cab, six wheels, an orange steel tipper body, its tailgate open"
-    },
-    {
-     "name": "lever",
-     "objects": [
-      "tip lever"
-     ],
-     "whole": true,
-     "held": true,
-     "built_as": "the truck's tip lever: a steel rod off the chassis with a red T-bar grip"
-    },
-    {
-     "name": "rock",
-     "objects": [
-      "tipped rock"
-     ],
-     "whole": false,
-     "built_as": "the truck's load of broken black rock, sliding off the tipped bed in a stream"
+     "built_as": "a wall of piled black lava rock with a flat crest, rising out of the ground behind the house"
     },
     {
      "name": "house",
@@ -232,26 +207,15 @@
       "town house by the wall"
      ],
      "whole": false,
-     "built_as": "a painted tin house, red tin roof, four-pane windows, its front door facing the wall"
+     "built_as": "a painted tin house, red tin roof, four-pane windows"
     },
     {
-     "name": "lava",
+     "name": "rock",
      "objects": [
-      "far plume",
-      "far fountain",
-      "lava flow beyond the wall"
+      "falling rock"
      ],
      "whole": false,
-     "built_as": "black ash plumes over lava fountains on the far ridge, and a glowing lava flow out on the plain beyond the wall"
-    },
-    {
-     "name": "flag",
-     "objects": [
-      "icelandic flag",
-      "flag pole"
-     ],
-     "whole": true,
-     "built_as": "Iceland's flag, blue with a red cross edged in white, on a white pole in a yard"
+     "built_as": "black blocks of lava rock pouring down onto the wall from above"
     }
    ],
    "framing": "close",
@@ -260,144 +224,119 @@
     "side": "right",
     "frame_h": 0.36
    },
-   "action": "he pulls the tip lever and tips the truck's rock onto the wall",
-   "consequence": "the finished wall of rock stands taller than the house",
+   "action": "a wall of black rock rises behind the house as rock pours down onto it",
+   "consequence": "the wall of rock stands far over the house's roof",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "a low row of rock in front of a tin house; the driver in his hard hat pulls his tipper truck's tip lever, both hands on it, and its rock pours onto the low row in a puff of dust",
-     "hands": "lever",
+     "shows": "a painted tin house at the left; behind it black rock starts piling up at ground level; he stands in front, three-quarter to us",
+     "hands": "free",
      "new": [],
      "visible": [
       {
-       "prop": "wall",
-       "as": "a low row of black rock"
-      },
-      {
-       "prop": "truck",
-       "as": "his tipper truck backed up to the low row"
-      },
-      {
-       "prop": "lever",
-       "as": "he pulls his truck's tip lever"
+       "prop": "house",
+       "as": "a painted tin house in Iceland"
       },
       {
        "prop": "rock",
-       "as": "tipping its rock onto the row in a puff of dust"
-      },
-      {
-       "prop": "house",
-       "as": "a painted tin house"
+       "as": "black rock pouring down behind it"
       },
       {
        "prop": "data",
-       "as": "the driver in his hard hat, both hands on the lever"
+       "as": "the driver in his hard hat"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "from up high: he pulls the tip lever right back and tips more of the truck's rock, sliding off the bed onto the wall, now roof-high beside the house",
-     "hands": "lever",
+     "shows": "the wall of black rock has risen to the house's knee, more rock pouring onto it; he looks round at it",
+     "hands": "free",
      "new": [
-      {
-       "what": "wall",
-       "how": "grows",
-       "cause": "the rock he tips onto it"
-      },
       {
        "what": "rock",
        "how": "falls",
-       "cause": "he pulls the tip lever and the bed tips up"
+       "cause": "it pours down onto the wall"
+      },
+      {
+       "what": "wall",
+       "how": "grows",
+       "cause": "rock pours down onto it"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he leans back on the lever, turned to watch the rock go"
+       "cause": "he looks round at it"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the wall grows roof-high"
-      },
-      {
-       "prop": "rock",
-       "as": "more rock slides off the truck onto it"
-      },
-      {
-       "prop": "house",
-       "as": "the house roof beside it"
-      },
-      {
-       "prop": "lever",
-       "as": "the lever pulled right back"
-      },
-      {
-       "prop": "data",
-       "as": "he leans back on the lever"
-      }
-     ]
-    },
-    {
-     "event": "result",
-     "shows": "far off across the town, Iceland's flag in a yard: the finished wall of rock stands taller than the house beside it, the black ash plume and a glowing lava flow out on the plain beyond, held away from the town",
-     "hands": "free",
-     "new": [
-      {
-       "what": "wall",
-       "how": "grows",
-       "cause": "all the rock tipped onto it"
-      }
-     ],
-     "visible": [
-      {
-       "prop": "wall",
-       "as": "the finished wall he built stands taller than the house, to keep the lava out"
+       "as": "the wall of rock rises knee-high to the house"
       },
       {
        "prop": "house",
        "as": "the house beside it"
       },
       {
-       "prop": "lava",
-       "as": "the lava out beyond it: a glowing flow on the plain, the black plume over it"
+       "prop": "rock",
+       "as": "more rock pouring onto it"
       },
       {
-       "prop": "flag",
-       "as": "the Iceland flag in the town"
+       "prop": "data",
+       "as": "he watches it rise"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the wall of rock built taller than the house stands far over its roof, keeping the lava out; he steps back, looking up at it",
+     "hands": "free",
+     "new": [
+      {
+       "what": "wall",
+       "how": "grows",
+       "cause": "rock piles on until it stands over the roof"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "wall",
+       "as": "the wall of rock built taller than the house stands far over its roof, to keep the lava out"
+      },
+      {
+       "prop": "house",
+       "as": "the house's roof under it"
+      },
+      {
+       "prop": "data",
+       "as": "he steps back, looking up at it"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "from up the wall's face: the driver stands small at the towering wall's foot, both hands still on the lever, pushing it back as the empty bed comes down, and looks up at it",
-     "hands": "lever",
+     "shows": "he looks right up at the towering wall, an orange lava glow behind its crest",
+     "hands": "free",
      "new": [
-      {
-       "what": "truck",
-       "how": "moves",
-       "cause": "its empty bed comes back down as he pushes the lever"
-      },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he leans on the lever, looking right up at the wall's top"
+       "cause": "he leans back, looking right up at it"
       }
      ],
      "visible": [
       {
        "prop": "data",
-       "as": "he looks up at it from the lever, small at its foot"
+       "as": "he looks right up at it"
       },
       {
        "prop": "wall",
-       "as": "the towering wall"
+       "as": "the towering wall, an orange lava glow behind its crest"
       },
       {
-       "prop": "lever",
-       "as": "he pushes the lever back"
+       "prop": "house",
+       "as": "the house beside it"
       }
      ]
     }
