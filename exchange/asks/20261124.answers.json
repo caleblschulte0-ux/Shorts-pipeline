@@ -330,6 +330,72 @@
       "answer": "NONE",
       "by": "chatgpt",
       "at": "2026-11-27T12:28:00.000Z"
+    },
+    "0a1232e6e3bc1b32": {
+      "verdict": "REJECT",
+      "reason": "The pitch promises a specific count of eruptions but the beats never deliver that number, then drift into unrelated volcano categories."
+    },
+    "9e84295b6c6573e5": {
+      "bridges": {
+        "0": true,
+        "1": false,
+        "2": false
+      },
+      "why": {
+        "1": "The Ring of Fire share does not follow from or explain how many volcanoes are erupting now.",
+        "2": "The Decade Volcano watch list is a separate hazard fact, not a consequence of the Ring of Fire beat or proof of the headline."
+      }
+    },
+    "005a33f95583b441": {
+      "scores": {
+        "premise": 8,
+        "hook": 12,
+        "arc": 5,
+        "factual": 11,
+        "visual_proof": 8,
+        "payoff": 3,
+        "voice": 3
+      },
+      "fatal": [
+        "missing_payoff",
+        "confusing"
+      ],
+      "weakest_note": "State and visualize the promised current eruption count, then make every beat explain where those eruptions are and why they matter."
+    },
+    "22e65619066a3d30": {
+      "verdict": "REJECT",
+      "reason": "The pitch mixes different countries and education levels, so the statistics do not form one concrete case that school scale determines attention."
+    },
+    "63a6522f42a6288e": {
+      "bridges": {
+        "0": true,
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false
+      },
+      "why": {
+        "1": "A tertiary ratio in another country does not follow from India's secondary pupil count.",
+        "2": "A national spending share is a separate metric and does not follow from the prior classroom ratio.",
+        "3": "Female literacy turns to an outcome in an unspecified place rather than continuing the spending claim.",
+        "4": "A preschool ratio in Tanzania returns to a different country and education level, so it does not follow from literacy."
+      }
+    },
+    "414dc857553b75b8": {
+      "scores": {
+        "premise": 7,
+        "hook": 9,
+        "arc": 4,
+        "factual": 9,
+        "visual_proof": 8,
+        "payoff": 5,
+        "voice": 3
+      },
+      "fatal": [
+        "false_comparison",
+        "confusing"
+      ],
+      "weakest_note": "Build one country-and-age-level story where enrollment, class size, spending, and outcomes share a denominator and causal sequence."
     }
   }
 }
