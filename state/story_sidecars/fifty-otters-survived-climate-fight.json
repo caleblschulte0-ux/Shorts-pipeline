@@ -3,50 +3,48 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 12,
-   "hook": 16,
-   "arc": 15,
-   "factual": 10,
-   "visual_proof": 10,
-   "payoff": 8,
+   "premise": 10,
+   "hook": 12,
+   "arc": 8,
+   "factual": 12,
+   "visual_proof": 8,
+   "payoff": 7,
    "voice": 4
   },
-  "total": 75,
-  "fatal": [
-   "invented_fact"
-  ],
-  "weakest": "factual",
-  "note": "Provide a verifiable source or more conservative estimate for the 8.7 million metric‑ton CO₂ figure to avoid an invented fact.",
-  "fp": "bb39a11908b95792"
+  "total": 61,
+  "fatal": [],
+  "weakest": "arc",
+  "note": "Add a clearer narrative arc that links the otters' comeback to the carbon benefit, making the story feel like a progression rather than three separate facts.",
+  "fp": "1bb5a164b2443e04"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "A near-extinction revealed how sea otters protect coastal carbon.",
+   "ears": "A tiny surviving group became the start of a coastal recovery.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Only 50 sea otters survived the fur trade. That remnant kept the entire population alive.",
+   "ears": "California sea otters fell to 50 by the 1930s. The population survived from a tiny remnant.",
    "eyes": "a data picture (comparison)",
    "evidence": "U.S. Fish & Wildlife Service | California sea otter population, before the fur trade vs the 1930s low point | https://www.fws.gov/ | 2026-11-13"
   },
   {
    "window": "beat 1",
-   "ears": "The population reached about 3,000 sea otters. Their return restored a crucial predator to coastal kelp.",
+   "ears": "California sea otters later reached 3,000. The remnant grew into today's recovered population.",
    "eyes": "a data picture (trend)",
    "evidence": "U.S. Geological Survey / California Department of Fish and Wildlife | California sea otter population recovery, 1930s to today | https://www.usgs.gov/ | 2026-11-13"
   },
   {
    "window": "beat 2",
-   "ears": "Sea-otter-protected kelp can store 8.7 million metric tons of CO2 yearly. Recovery now safeguards a carbon sink.",
+   "ears": "Otter-protected kelp could store 8.7 million metric tons of carbon dioxide yearly. Their range carries measurable carbon potential.",
    "eyes": "a data picture (comparison)",
    "evidence": "Frontiers in Ecology and the Environment | Potential CO2 stored by otter-protected kelp forests, North Pacific range | https://esajournals.onlinelibrary.wiley.com/journal/15409309 | 2026-11-13"
   },
   {
    "window": "closing",
-   "ears": "Saving sea otters also preserves kelp habitat and a natural carbon store.",
+   "ears": "Protecting sea otters preserves their recovery and the kelp carbon linked to them.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

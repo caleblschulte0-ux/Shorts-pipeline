@@ -102,10 +102,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The penny's 232-year run is a history fact that restates the ending. It doesn't follow from the 86 million dollar loss, "
+  "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
  ],
  "reasons": [
-  "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The penny's 232-year run is a history fact that restates the ending. It doesn't follow from the 86 million dollar loss, "
+  "story: fatal: missing_payoff — fix the words so it is true and pays off what it promises"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -139,5 +139,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T17:54:25Z"
+ "refiled": "2026-11-27T22:58:32Z"
 }

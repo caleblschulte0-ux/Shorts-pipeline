@@ -8487,6 +8487,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "direction pass: kept existing validated scenes"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-27",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Tattoos used to be a warning sign. Now they're just Tuesday.",
+   "depictions": [
+    "scene:forearm-tattoo",
+    "viz:comparison",
+    "scene:ink-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "data-explainer",
+   "notes": "arm fills with ink as 16%->32%"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-27",
+   "topic_category": "body",
+   "hook_type": "shock_stat",
+   "hook_text": "A safer sleep position transformed infant survival without ending the danger.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "viz:trend",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "data-explainer",
+   "notes": "cribs/nightlights, 34 cribs still lost"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-27",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds holding your money.",
+   "depictions": [
+    "mechanic:index-tiles-flip",
+    "mechanic:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "consequence",
+   "franchise": "data-explainer",
+   "notes": "tower floors owned by funds"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-27",
+   "topic_category": "culture",
+   "hook_type": "shock_stat",
+   "hook_text": "vinyl vs CD",
+   "depictions": [
+    "viz:comparison",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "data-explainer",
+   "notes": "record-shop divider shoved; streaming tide"
   }
  ],
  "entries": [

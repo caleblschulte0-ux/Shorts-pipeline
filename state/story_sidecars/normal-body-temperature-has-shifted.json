@@ -1,35 +1,55 @@
 {
  "slug": "normal-body-temperature-has-shifted",
  "brief": null,
- "scorecard": null,
+ "scorecard": {
+  "scores": {
+   "premise": 8,
+   "hook": 16,
+   "arc": 14,
+   "factual": 5,
+   "visual_proof": 7,
+   "payoff": 8,
+   "voice": 4
+  },
+  "total": 62,
+  "fatal": [
+   "invented_fact",
+   "false_comparison",
+   "unrenderable_visual",
+   "confusing"
+  ],
+  "weakest": "factual",
+  "note": "Provide verifiable data sources and simplify the visual of the mercury column so it clearly illustrates the temperature drop on a phone screen.",
+  "fp": "15dd6c7135ddb002"
+ },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Your body is running colder than doctors say it should.",
+   "ears": "The familiar normal temperature hides both biological change and measurement error.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Modern men average 97.5 degrees, showing the body runs cooler than it once did.",
+   "ears": "Men born in the 1990s average 97.5 degrees. Body temperature is lower than the historic figure.",
    "eyes": "a data picture (trend)",
    "evidence": "Stanford Medicine | Average US body temperature by birth era | https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html | 2026-11-12"
   },
   {
    "window": "beat 1",
-   "ears": "Men cooled by 1.06 degrees, nearly twice the drop for women, pointing to a real biological shift.",
+   "ears": "Men's average temperature fell 1.06 degrees. The decline was larger than the one measured in women.",
    "eyes": "substance: the red mercury column; cause: Data pours ice water over each bulb and the column drops, the men's twice as far",
    "evidence": "Stanford Medicine | Body temperature decline by sex, 1800s to today | https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html | 2026-11-12"
   },
   {
    "window": "beat 2",
-   "ears": "A recalculation put the old thermometer average at 98.2 degrees, so the standard was never as fixed as bodies seemed.",
+   "ears": "The original figure recalculates to 98.2 degrees. Measurement also explains why the old standard no longer fits.",
    "eyes": "a data picture (comparison)",
    "evidence": "JAMA (Journal of the American Medical Association) | Wunderlich's original 98.6F figure vs its 1992 recalculation | https://pubmed.ncbi.nlm.nih.gov/?term=Mackowiak+critical+appraisal+98.6 | 2026-11-12"
   },
   {
    "window": "closing",
-   "ears": "A single normal temperature cannot capture a body that changed across generations.",
+   "ears": "One historic number cannot capture how normal body temperature varies and changes.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

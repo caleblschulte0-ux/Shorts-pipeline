@@ -102,12 +102,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Comparison to the US doesn’t directly prove why Korea has the most robots per worker and isn’t a logical continuation of",
-  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Switching to China introduces a new subject without a causal link to the previous beat, so it doesn’t support the same h"
+  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Adds a comparative fact but doesn't directly explain why SK has more robots per worker nor follows logically from beat 0",
+  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Discusses China’s robot installs and density, unrelated to South Korea's situation and not a logical continuation."
  ],
  "reasons": [
-  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Comparison to the US doesn’t directly prove why Korea has the most robots per worker and isn’t a logical continuation of",
-  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Switching to China introduces a new subject without a causal link to the previous beat, so it doesn’t support the same h"
+  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Adds a comparative fact but doesn't directly explain why SK has more robots per worker nor follows logically from beat 0",
+  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Discusses China’s robot installs and density, unrelated to South Korea's situation and not a logical continuation."
  ],
  "judge": null,
  "prior_rejection": [
@@ -143,5 +143,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T17:54:21Z"
+ "refiled": "2026-11-27T22:58:28Z"
 }

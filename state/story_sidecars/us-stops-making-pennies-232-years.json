@@ -3,50 +3,50 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 10,
+   "premise": 8,
    "hook": 16,
-   "arc": 15,
-   "factual": 8,
-   "visual_proof": 12,
-   "payoff": 8,
+   "arc": 12,
+   "factual": 13,
+   "visual_proof": 10,
+   "payoff": 4,
    "voice": 4
   },
-  "total": 73,
+  "total": 67,
   "fatal": [
-   "invented_fact"
+   "missing_payoff"
   ],
-  "weakest": "factual",
-  "note": "Correct the claimed $86 million annual loss from penny production or cite a reliable source to eliminate the invented fact.",
-  "fp": "a9ea5a06e82729a9"
+  "weakest": "payoff",
+  "note": "Connect the closing to the opening more directly—clearly answer the hook’s question about the cost of pocket change rather than just asking if viewers miss the penny.",
+  "fp": "6709817af5937e37"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "America is killing its oldest coin to stop losing money.",
+   "ears": "Pocket change now costs more to make than its face value.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Making pennies loses taxpayers 86 million dollars yearly, so ending production saves money.",
+   "ears": "The penny program lost 86 million dollars yearly. Ending production turns that recurring loss into savings.",
    "eyes": "a data picture (comparison)",
    "evidence": "United States Mint | US penny program: annual loss vs projected savings from ending it | https://www.usmint.gov/about/congressional-reports/annual-report | 2026-11-13"
   },
   {
    "window": "beat 1",
-   "ears": "That decision ends the penny's 232-year run, far longer than other discontinued coins.",
+   "ears": "The penny lasted 232 years. Its unusually long production run finally ends under mounting cost pressure.",
    "eyes": "a data picture (rank)",
    "evidence": "United States Mint | Years in production before discontinued, selected US coins | https://www.usmint.gov/ | 2026-11-13"
   },
   {
    "window": "beat 2",
-   "ears": "Yet a nickel costs 13.78 cents to make, proving the penny was not the worst offender.",
+   "ears": "A nickel costs 13.78 cents to produce. The next coin problem is already larger than its face value.",
    "eyes": "a data picture (comparison)",
    "evidence": "United States Mint | Cost to produce one penny vs one nickel, 2024 | https://www.usmint.gov/about/congressional-reports/annual-report | 2026-11-13"
   },
   {
    "window": "closing",
-   "ears": "The penny's long run ends because minting pocket change stopped making financial sense.",
+   "ears": "Ending the penny solves one coin loss while the nickel problem remains.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

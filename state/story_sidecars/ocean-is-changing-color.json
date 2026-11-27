@@ -3,51 +3,52 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 10,
-   "hook": 16,
-   "arc": 10,
-   "factual": 13,
-   "visual_proof": 8,
-   "payoff": 4,
-   "voice": 4
+   "premise": 5,
+   "hook": 15,
+   "arc": 8,
+   "factual": 8,
+   "visual_proof": 5,
+   "payoff": 2,
+   "voice": 3
   },
-  "total": 65,
+  "total": 46,
   "fatal": [
+   "invented_fact",
    "missing_payoff",
    "unrenderable_visual"
   ],
   "weakest": "payoff",
-  "note": "Provide a clearer payoff that gives the viewer a concrete takeaway or implication, and use simple, high‑contrast visuals that remain readable on a phone screen.",
-  "fp": "e4b7d38e16bdaf2e"
+  "note": "Provide a clear, relatable implication or answer to the opening question instead of just restating the statistic.",
+  "fp": "4854b7b372c29b71"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Satellites caught the ocean quietly changing color, and scientists aren't sure what it means.",
+   "ears": "Satellites found an ocean-wide shift larger than researchers expected.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Twenty years of NASA satellite data show 56 percent of the ocean's surface now looks different.",
+   "ears": "Ocean color changed across 56% of the surface. The shift is already visible at planetary scale.",
    "eyes": "a data picture (share)",
    "evidence": "Nature / MIT (B.B. Cael et al.) | Share of ocean surface that changed color (2002-2022) | https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712 | 2026-11-06"
   },
   {
    "window": "beat 1",
-   "ears": "A 2019 climate model predicted about half the ocean would shift color -- satellites found a bit more than that.",
+   "ears": "The model predicted 50% would change color. Satellite observations later exceeded that forecast.",
    "eyes": "a data picture (comparison)",
    "evidence": "Nature / MIT (B.B. Cael et al.); model by Stephanie Dutkiewicz (2019) | Predicted vs observed share of ocean that would change color | https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712 | 2026-11-06"
   },
   {
    "window": "beat 2",
-   "ears": "The changed area covers roughly 203 million square kilometers, bigger than every continent on Earth combined.",
+   "ears": "Changed ocean color spans 203 million square kilometers. That area is larger than Earth's total land.",
    "eyes": "a data picture (comparison)",
    "evidence": "Nature / MIT (B.B. Cael et al.) | Area of ocean that changed color vs all land on Earth | https://news.mit.edu/2023/study-oceans-color-changing-climate-change-0712 | 2026-11-06"
   },
   {
    "window": "closing",
-   "ears": "Nobody knows yet what it means for the sea life down there, or for us.",
+   "ears": "Ocean color change now covers an area larger than all land on Earth.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

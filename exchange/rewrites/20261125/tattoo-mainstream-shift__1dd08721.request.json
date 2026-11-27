@@ -110,10 +110,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Talks about multiple tattoos rather than the proportion with at least one tattoo, so it doesn’t directly support the hea"
+  "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Adds a separate statistic about women rather than a causal step from the overall rate, so it’s just another fact, not a ",
+  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Mentions multiple tattoos, which doesn’t directly explain why a third of people have any tattoo and isn’t a logical cont"
  ],
  "reasons": [
-  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Talks about multiple tattoos rather than the proportion with at least one tattoo, so it doesn’t directly support the hea"
+  "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Adds a separate statistic about women rather than a causal step from the overall rate, so it’s just another fact, not a ",
+  "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Mentions multiple tattoos, which doesn’t directly explain why a third of people have any tattoo and isn’t a logical cont"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -147,5 +149,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T17:54:22Z"
+ "refiled": "2026-11-27T22:58:29Z"
 }

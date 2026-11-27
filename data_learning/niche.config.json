@@ -32224,7 +32224,7 @@
   {
    "slug": "back-to-sleep-campaign-cut-sids",
    "title": "Back Sleeping Halved SIDS, But Thousands Still Die",
-   "hook": "A safer sleep position transformed infant survival without ending the danger.",
+   "hook": "Parents were putting babies to bed the wrong way, and it was killing them.",
    "closing": "Putting babies on their backs remains a simple step parents can use tonight.",
    "question": "Do new parents know this rule?",
    "caption": "SIDS deaths in the US fell by more than half in under two decades -- not from new medicine, but from one changed instruction to parents. Here's how 'back to sleep' became one of the most effective public health campaigns ever. Did you know which way babies should sleep? 👇",
@@ -32249,18 +32249,18 @@
    "scorecard": {
     "scores": {
      "premise": 12,
-     "hook": 18,
-     "arc": 17,
+     "hook": 14,
+     "arc": 10,
      "factual": 13,
-     "visual_proof": 12,
-     "payoff": 9,
+     "visual_proof": 8,
+     "payoff": 6,
      "voice": 4
     },
-    "total": 85,
+    "total": 67,
     "fatal": [],
-    "weakest": "premise",
-    "note": "Make the data visuals bold and simple so they stay readable on a small phone screen.",
-    "fp": "f34057f8797fba2a"
+    "weakest": "arc",
+    "note": "Add a more compelling narrative arc that connects the statistics to a personal story or vivid example, rather than just listing data points.",
+    "fp": "b32ace80bf7cd20d"
    },
    "segments": [
     {
@@ -38475,22 +38475,23 @@
    "rewritten_at": "2026-11-27T12:31:18Z",
    "scorecard": {
     "scores": {
-     "premise": 10,
-     "hook": 16,
-     "arc": 10,
-     "factual": 13,
-     "visual_proof": 8,
-     "payoff": 4,
-     "voice": 4
+     "premise": 5,
+     "hook": 15,
+     "arc": 8,
+     "factual": 8,
+     "visual_proof": 5,
+     "payoff": 2,
+     "voice": 3
     },
-    "total": 65,
+    "total": 46,
     "fatal": [
+     "invented_fact",
      "missing_payoff",
      "unrenderable_visual"
     ],
     "weakest": "payoff",
-    "note": "Provide a clearer payoff that gives the viewer a concrete takeaway or implication, and use simple, high‑contrast visuals that remain readable on a phone screen.",
-    "fp": "e4b7d38e16bdaf2e"
+    "note": "Provide a clear, relatable implication or answer to the opening question instead of just restating the statistic.",
+    "fp": "4854b7b372c29b71"
    }
   },
   {
@@ -38865,7 +38866,28 @@
      "topic": "Body Temperature Standard",
      "say": "The original figure recalculates to 98.2 degrees. Measurement also explains why the old standard no longer fits."
     }
-   ]
+   ],
+   "scorecard": {
+    "scores": {
+     "premise": 8,
+     "hook": 16,
+     "arc": 14,
+     "factual": 5,
+     "visual_proof": 7,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 62,
+    "fatal": [
+     "invented_fact",
+     "false_comparison",
+     "unrenderable_visual",
+     "confusing"
+    ],
+    "weakest": "factual",
+    "note": "Provide verifiable data sources and simplify the visual of the mercury column so it clearly illustrates the temperature drop on a phone screen.",
+    "fp": "15dd6c7135ddb002"
+   }
   },
   {
    "slug": "volcanoes-erupting-right-now",
@@ -39187,21 +39209,19 @@
    "rewritten_at": "2026-11-27T12:31:17Z",
    "scorecard": {
     "scores": {
-     "premise": 12,
-     "hook": 16,
-     "arc": 15,
-     "factual": 10,
-     "visual_proof": 10,
-     "payoff": 8,
+     "premise": 10,
+     "hook": 12,
+     "arc": 8,
+     "factual": 12,
+     "visual_proof": 8,
+     "payoff": 7,
      "voice": 4
     },
-    "total": 75,
-    "fatal": [
-     "invented_fact"
-    ],
-    "weakest": "factual",
-    "note": "Provide a verifiable source or more conservative estimate for the 8.7 million metric‑ton CO₂ figure to avoid an invented fact.",
-    "fp": "bb39a11908b95792"
+    "total": 61,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "Add a clearer narrative arc that links the otters' comeback to the carbon benefit, making the story feel like a progression rather than three separate facts.",
+    "fp": "1bb5a164b2443e04"
    },
    "hook_was": "Fifty otters survived the fur trade, then ended up protecting a carbon sink.",
    "segments": [
@@ -39267,21 +39287,21 @@
    "hook_was": "It costs more to make than it's worth — so they're done.",
    "scorecard": {
     "scores": {
-     "premise": 10,
+     "premise": 8,
      "hook": 16,
-     "arc": 15,
-     "factual": 8,
-     "visual_proof": 12,
-     "payoff": 8,
+     "arc": 12,
+     "factual": 13,
+     "visual_proof": 10,
+     "payoff": 4,
      "voice": 4
     },
-    "total": 73,
+    "total": 67,
     "fatal": [
-     "invented_fact"
+     "missing_payoff"
     ],
-    "weakest": "factual",
-    "note": "Correct the claimed $86 million annual loss from penny production or cite a reliable source to eliminate the invented fact.",
-    "fp": "a9ea5a06e82729a9"
+    "weakest": "payoff",
+    "note": "Connect the closing to the opening more directly—clearly answer the hook’s question about the cost of pocket change rather than just asking if viewers miss the penny.",
+    "fp": "6709817af5937e37"
    },
    "segments": [
     {
