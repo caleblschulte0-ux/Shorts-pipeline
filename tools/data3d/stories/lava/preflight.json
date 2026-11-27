@@ -157,6 +157,117 @@
     }
    ]
   },
+  "0f1c2d396694e11b4275471b5bd24e7d4e94c06a06a936d692fabf3feb2e9946": {
+   "at": "2026-11-27 09:14:48Z",
+   "claims": 14,
+   "claims_key": "9324eff5598926e1",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "A red cylinder appears behind Data in still 2, is in front of his chest in still 3 and is gone in still 4. An orange truck bed appears in still 3 and a white truck in still 4 with no link between them. Data is missing from still 4.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-4"
+    },
+    {
+     "id": "grade",
+     "note": "Still 4 is greyer and hazier with a darker ground, unlike the warmer stills 1-3.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "3-4"
+    },
+    {
+     "id": "edges",
+     "note": "The orange truck bed is cut off by the right frame edge, and a dark pole cuts across Data's side in stills 1-3.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "3"
+    },
+    {
+     "id": "different",
+     "note": "Stills 1 and 2 are nearly the same pose (Data standing front-on), only closer. Still 4 is a different setup with no Data.",
+     "rule": "the stills are clearly different from each other: each shows a new state (before, action, result, reaction), not one picture repeated",
+     "stills": "1-2"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "The same standing pose repeats, only nearer. Nothing happens across the stills.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-2"
+    },
+    {
+     "id": "broken",
+     "note": "The truck bed is cut by the frame edge. The red cylinder floats at Data's chest with no hand on it. The orange truck and white truck change place with no cause shown.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "3"
+    },
+    {
+     "id": "look",
+     "note": "The toy-like Data reads as a cartoon against the realistic set. The flames on the ridge look like a pasted fire layer, not an eruption.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "body",
+     "note": "Data's hand is not on the red object by his chest. His arms hang at his sides and he does no grabbing or throwing.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "3"
+    },
+    {
+     "id": "consequence",
+     "note": "Nothing visibly changes. The last still is a parked truck on a street with no result of any action.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "0f1c2d396694e11b4275471b5bd24e7d4e94c06a06a936d692fabf3feb2e9946",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "ACTION",
+     "note": "Only orange flames and a faint smoke wisp sit on the ridge crest. There is no towering black ash plume.",
+     "text": "a towering black ash plume rises off the ridge over the roofs"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "There is no front door and no bench with a bag on it. Data stands in the street looking at the camera, not up at anything.",
+     "text": "The driver in his hard hat stands at his front door, his bag on a bench beside him, looking up at it"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "A red cylinder sits at Data's chest, but no hand is on it and it does not read as a bag.",
+     "text": "He grabs the bag"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Nothing is thrown into a truck. Still 4 has no Data, and the orange truck bed in still 3 is not shown being loaded.",
+     "text": "He throws it into his truck"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "The truck faces the camera on the street. It is not shown driving out of town.",
+     "text": "The truck drives out of town"
+    },
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "Fire on the ridge and an Icelandic town are shown, but nothing shows people running or evacuating. Data just stands there and the truck is parked. A stranger would not get 'everyone had to run'.",
+     "text": "a stranger with the sound off would say the stills show what this line says: A volcano keeps erupting right beside one Icelandic town, and everyone had to run"
+    }
+   ]
+  },
   "1b48148e2a50f7e9c585719dd2fd0fbe82b4886339e58cdf8e486e2beffa324b": {
    "at": "2026-11-26 19:40:14Z",
    "claims": 15,

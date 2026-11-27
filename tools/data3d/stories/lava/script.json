@@ -98,14 +98,14 @@
     }
   },
   "ideas": [
-    "a towering black ash plume rises off the ridge right over the main street; the driver at his front door looks up at it, grabs his bag off the bench, throws it into his truck, and the truck drives out of town down the empty street",
+    "a huge black ash plume rises off the hill over the Icelandic town's roofs; the driver runs down the street with his duffel bag, heaves it up into his tipper truck and climbs into the cab while the other cars roll out of town",
     "at his tipper truck's lever he tips its rock onto a low row of rock by a house, more rock slides off and the wall grows roof-high, far off across the town the finished wall stands taller than the house with the lava out beyond it, and he looks up at it from its foot",
     "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and heaps up; it stops dead against the rock and goes dark, and he pumps his fists and grins",
     "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
     "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
   ],
   "storyboard": [
-    "1 hook (the main street by day: painted tin-roofed houses and Icelandic flags, the black ridge over the roofs; low on the pavement by his house, then far down the street): a towering black ash plume rises off the ridge over the roofs. The driver in his hard hat stands at his front door, his bag on a bench beside him, looking up at it. He grabs the bag. He throws it into his truck. The truck drives out of town.",
+    "1 hook (the main street by day: painted tin-roofed houses and Icelandic flags, a hill over the roofs; far down the street, then low on the pavement, then at his truck, then at the roadside): a huge black ash plume rises off the hill over the town's roofs. The driver in his hard hat runs down the street with his duffel bag in both hands. He heaves it up over the side of his tipper truck. He climbs into the cab as the other cars roll out of town.",
     "2 the wall (by day at the wall's foot in the town, by one painted tin house; close on him at his truck's tip lever, then from up high, then far off across the town, then from up the wall): the driver in his hard hat pulls his tipper truck's tip lever, tipping its rock onto a low row of rock in a puff of dust. More rock slides off the truck and the wall grows roof-high. The finished wall stands taller than the house, the lava out beyond it. He looks up at it by the house door.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
@@ -113,32 +113,32 @@
   ],
   "staging": [
     {
-      "camera": "low on the pavement, backing away as he comes; then a cut to the wide",
-      "data": "stands at his front door looking up at the plume, grabs his bag off the bench, throws it into his truck, then drives the truck out of town",
+      "camera": "far down the street for the plume over the roofs; then low on the pavement ahead of him; then by his truck's cab looking back along its side; then low at the roadside ahead of the truck",
+      "data": "runs down the pavement with his duffel bag in both hands, heaves it up over the tipper's side, then climbs into the cab, a foot on the rung, a hand on the door and one on the grab handle",
       "props": [
         "ash plume",
         "main street",
         "icelandic flag",
-        "bench",
-        "kit bag",
-        "tipper truck"
+        "duffel bag",
+        "tipper truck",
+        "cars leaving"
       ],
       "arc": [
         {
           "at": 0.08,
-          "what": "a towering black ash plume rises off the ridge over the roofs; he stands at his front door, his bag on the bench beside him, looking up at it"
+          "what": "far down the main street: a huge black ash plume rises off the hill over the town's roofs, the biggest thing in the frame"
         },
         {
           "at": 0.38,
-          "what": "he grabs his bag off the bench"
+          "what": "low on the pavement: he runs toward us with his duffel bag in both hands, the plume over the roofs behind him"
         },
         {
           "at": 0.68,
-          "what": "he throws the bag up into the back of his truck at the kerb"
+          "what": "at his truck: he heaves the bag up over the tipper's side, arms up, the bag in the air at the rail"
         },
         {
           "at": 0.98,
-          "what": "from down the street his truck drives out of town, the street empty, the plume over the town behind it"
+          "what": "at the roadside: he climbs into the cab, a hand on the door and one on the grab handle, as the other cars roll out of town past his truck"
         }
       ]
     },

@@ -7,20 +7,19 @@
     {
      "name": "ash plume",
      "objects": [
-      "eruption plume",
-      "fissure fountain"
+      "eruption plume"
      ],
      "whole": false,
-     "built_as": "towering columns of black ash smoke rising off the ridge, lit orange from below, a low ragged band of yellow-white lava spatter at their foot"
+     "built_as": "a huge column of black ash smoke rising off the hill over the town, lit orange at its foot"
     },
     {
      "name": "bag",
      "objects": [
-      "kit bag"
+      "his duffel bag"
      ],
      "whole": true,
      "held": true,
-     "built_as": "a green canvas kit bag, a soft roll with dark ends and a strap"
+     "built_as": "a red canvas duffel bag with dark end panels, two carry straps and a zip"
     },
     {
      "name": "truck",
@@ -28,137 +27,154 @@
       "his tipper truck"
      ],
      "whole": false,
-     "built_as": "his tipper truck: a glazed cab, six wheels, an orange steel tipper body, head and tail lamps lit"
+     "built_as": "his tipper truck: a glazed cab, six wheels, an orange steel tipper body"
     },
     {
-     "name": "bench",
+     "name": "handle",
      "objects": [
-      "doorstep bench"
+      "cab grab handle"
+     ],
+     "whole": true,
+     "held": true,
+     "built_as": "a steel grab handle by the cab door, and a foot rung under it"
+    },
+    {
+     "name": "cars",
+     "objects": [
+      "car leaving"
      ],
      "whole": false,
-     "built_as": "a small wooden bench of weathered planks by his front door"
+     "built_as": "two small hatchbacks driving out of town, dust at their wheels"
+    },
+    {
+     "name": "flag",
+     "objects": [
+      "icelandic flag"
+     ],
+     "whole": true,
+     "built_as": "Iceland's flags, blue with a red cross edged in white, on poles off the house fronts"
     }
    ],
    "framing": "close",
    "data": {
     "stands": "in front of",
     "side": "left",
-    "frame_h": 0.34
+    "frame_h": 0.36
    },
-   "action": "he grabs his bag off the bench",
-   "consequence": "he throws the bag up into his truck",
+   "action": "he runs down the street with his duffel bag in both hands",
+   "consequence": "he heaves his bag up over the side of his tipper truck",
    "says_still": 1,
    "stills": [
     {
      "event": "before",
-     "shows": "a towering black ash plume rises off the ridge right over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands at his front door, his bag on the bench beside him, looking up at it",
-     "hands": "free",
+     "shows": "far down the main street of the Icelandic town: a volcano erupting right beside it, a huge black ash plume rising off the hill over the roofs, Iceland's flags on the houses",
+     "hands": "bag",
      "new": [],
      "visible": [
       {
        "prop": "ash plume",
-       "as": "a towering black ash plume rises off the ridge right over the roofs: a volcano keeps erupting right beside the Icelandic town"
+       "as": "a volcano erupting right beside the town: a huge black ash plume rises off the hill over the town's roofs"
       },
       {
-       "prop": "bag",
-       "as": "his bag on the bench beside him"
-      },
-      {
-       "prop": "bench",
-       "as": "the bench by his door"
-      },
-      {
-       "prop": "data",
-       "as": "the driver in his hard hat stands at his front door, looking up at it"
+       "prop": "flag",
+       "as": "Icelandic flags on the houses of the town"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "he grabs his bag off the bench and lifts it",
+     "shows": "low on the pavement: the driver in his hard hat runs down the street toward us with his duffel bag in both hands, the plume over the roofs behind him",
      "hands": "bag",
      "new": [
       {
        "what": "bag",
        "how": "moves",
-       "cause": "he grabs it and lifts it off the bench"
+       "cause": "he runs with it in both hands"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "turned to the bench, his hand on the bag"
+       "cause": "running, the bag in both hands"
       }
      ],
      "visible": [
       {
-       "prop": "bag",
-       "as": "he grabs the bag off the bench"
-      },
-      {
-       "prop": "bench",
-       "as": "the bench, empty now"
-      },
-      {
        "prop": "data",
-       "as": "his hand on the bag"
+       "as": "the driver in his hard hat runs down the street"
+      },
+      {
+       "prop": "bag",
+       "as": "his duffel bag in both hands"
+      },
+      {
+       "prop": "ash plume",
+       "as": "the plume over the roofs behind him"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "he throws the bag up into his truck at the kerb, swinging it up over the side",
-     "hands": "bag",
+     "shows": "at his tipper truck: he heaves his bag up over the side of the truck, arms up, the bag in the air at the rail",
+     "hands": "free",
      "new": [
       {
        "what": "bag",
        "how": "moves",
-       "cause": "he swings it up to throw it over the truck's side"
+       "cause": "he heaves it up over the side"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "turned to the truck, his arm swinging up"
+       "cause": "arms up from the heave"
       }
      ],
      "visible": [
       {
        "prop": "bag",
-       "as": "he throws the bag into his truck"
+       "as": "he heaves the bag up over the side"
       },
       {
        "prop": "truck",
-       "as": "his truck at the kerb"
+       "as": "the side of his tipper truck"
       },
       {
        "prop": "data",
-       "as": "his arm swinging up"
+       "as": "arms up"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "from far down the street his truck drives out of town toward us, the street empty, the plume over the town behind it",
-     "hands": "free",
+     "shows": "at the roadside: he climbs into the cab, a foot on the rung, a hand on the door and one on the grab handle, as the other cars roll out of town past his truck in their dust",
+     "hands": "handle",
      "new": [
       {
-       "what": "truck",
-       "how": "moves",
-       "cause": "he drives it out of town"
+       "what": "cars",
+       "how": "goes",
+       "cause": "everyone else is driving out of town"
       },
       {
-       "what": "bag",
-       "how": "moves",
-       "cause": "thrown, it lands in the truck and goes with it"
+       "what": "data",
+       "how": "pose",
+       "cause": "climbing into the cab, a foot up on the rung"
       }
      ],
      "visible": [
       {
-       "prop": "truck",
-       "as": "everyone had to run: his truck drives out of town"
+       "prop": "cars",
+       "as": "the other cars roll out of town: everyone had to run"
       },
       {
-       "prop": "ash plume",
-       "as": "the plume over the town behind it"
+       "prop": "handle",
+       "as": "his hand on the grab handle"
+      },
+      {
+       "prop": "truck",
+       "as": "he climbs into the cab of his truck"
+      },
+      {
+       "prop": "data",
+       "as": "a foot on the rung"
       }
      ]
     }
