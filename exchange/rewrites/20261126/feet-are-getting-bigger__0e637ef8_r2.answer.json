@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "feet-are-getting-bigger__0e637ef8_r2",
+  "slug": "feet-are-getting-bigger",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:02:00Z",
+  "title": "British Feet Grew Longer, Wider, And Under More Weight",
+  "hook": "Changing shoe sizes reflect more than simple growth in length.",
+  "closing": "Foot length, width, and body weight all matter when choosing shoes that fit.",
+  "question": "Has your shoe size changed?",
+  "segments": [
+    {
+      "topic": "British Feet Length",
+      "say": "Average British men's shoes reached size 10 today. Feet measure two sizes longer than in the 1970s."
+    },
+    {
+      "topic": "British Feet Width",
+      "say": "Sixty-seven percent of women report wider feet in adulthood. The change is not limited to length."
+    },
+    {
+      "topic": "British Feet Weight",
+      "say": "Sixty-six percent of adults in England are overweight or obese. Body weight adds context to changing feet."
+    }
+  ]
+}
