@@ -372,7 +372,7 @@
     },
     {
      "event": "reaction",
-     "shows": "from up the wall's face: the driver stands small at the towering wall's foot, both hands still on the lever, and looks up at it, the house's corner behind him",
+     "shows": "from up the wall's face: the driver stands small at the towering wall's foot, both hands still on the lever, and looks up at it",
      "hands": "lever",
      "new": [
       {
@@ -389,10 +389,6 @@
       {
        "prop": "wall",
        "as": "the towering wall"
-      },
-      {
-       "prop": "house",
-       "as": "the house's corner behind him"
       },
       {
        "prop": "lever",

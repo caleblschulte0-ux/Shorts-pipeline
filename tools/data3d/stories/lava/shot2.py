@@ -199,7 +199,7 @@ def shot2():
     while YWK - YW0 > math.pi: YWK -= 2 * math.pi
     while YWK - YW0 < -math.pi: YWK += 2 * math.pi
     for f in range(1, NF + 8):          # (coordinator 11-27: he never lets go on screen: no walk, no release) (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) + 0.03 * W(t, T_LET - 0.05, 0.4)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
+        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5)      # (q2o REACH: no weight back off the bar now he stays at it) (q2c: READ, he stood 1.7s: his weight goes back on each pull)
         data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))      # (q2e: STEADY, he turns to go before he goes)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     def body_at(t):
@@ -218,12 +218,13 @@ def shot2():
     # lever on every frame of the shot; the last set-up is a new lens on him at the lever, from up the wall's face
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
         data.reach(sd, lambda t, u=u: on_bar(t, u) + Vector((0, 0, 0.012)), 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
-    CD = PL + Vector((0.1, -1.5, 1.9)); LD = PL + Vector((-0.25, 0.1, 0.25))     # up the wall's face, down at him at its foot, the house's corner behind him
+    CD = PL + Vector((0.2, -1.5, 1.9)); LD = PL + Vector((0.1, 0.0, 0.25))     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PL.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
-    data.look_at(CD + Vector((0, -0.3, 0.6)), T_CUT + 0.3, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
+    data.look_at(Vector((-17.0, 6.5, 10.5)), T_CUT - 0.25, max_yaw=35, max_pitch=20, blend=0.5)     # (q2o KEYS: the back of his head to the wide) round over his shoulder at the town
+    data.look_at(CD + Vector((0, -0.3, 0.6)), T_WB - 0.45, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
     data.expression("determined", 0.0, T_WB, blend=0.15)
     data.expression("surprised", T_WB, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
