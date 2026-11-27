@@ -268,6 +268,70 @@
     }
    ]
   },
+  "178816c4465c5a1b850418422af81647089f9dbbb6ca6a8b7df1c963c523d1cd": {
+   "at": "2026-11-27 16:28:30Z",
+   "claims": 7,
+   "claims_key": "b837cdfec69feae9",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The black rock wall is absent in still 1 and barely there in still 2, then fills the background in stills 3-4. Smoke and debris appear from nowhere in stills 3-4. Data's glasses change from clear in still 1 to dark lenses in 3-4.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-3"
+    },
+    {
+     "id": "grade",
+     "note": "The ground turns from dark green-brown in stills 1-2 to orange-lit in 3 and pale sandy in 4. The light on the house also shifts warmer.",
+     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
+     "stills": "1-4"
+    },
+    {
+     "id": "edges",
+     "note": "The house is cut by the right frame edge in every still, and Data's hat is close to the top edge in still 1. The wall and smoke are cut by the top and left edges in stills 3-4.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Data stands in nearly the same pose in all four, talking with his hands out, and only the camera moves. Only the background changes, so these are not four distinct events.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-4"
+    },
+    {
+     "id": "broken",
+     "note": "Floating debris specks and smoke in the sky have no visible source. The house is cut by the right frame edge in every still. The smoke puff at the left edge looks like a flat blob.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "3-4"
+    },
+    {
+     "id": "look",
+     "note": "Data is a glossy cartoon character against a semi-realistic set. The smoke puff is soft and sprite-like, and the sparks are flat specks. No lava is rendered.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "3-4"
+    },
+    {
+     "id": "consequence",
+     "note": "No visible consequence is shown. There is no lava and no lava stopped by the wall. The last still is a similar picture with a wall and debris added in the background.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "178816c4465c5a1b850418422af81647089f9dbbb6ca6a8b7df1c963c523d1cd",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "SAYS",
+     "id": "c4",
+     "kind": "SAYS",
+     "note": "The wall and house are shown, but no lava is visible in any still, so the lava being kept out is not depicted. The wall is not clearly taller than the house until still 4, and it reads as a dark ridge. A stranger would not get the line's fact.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
   "1b48148e2a50f7e9c585719dd2fd0fbe82b4886339e58cdf8e486e2beffa324b": {
    "at": "2026-11-26 19:40:14Z",
    "claims": 15,
@@ -1975,6 +2039,52 @@
    "status": "pass",
    "stills": 4,
    "unticked": []
+  },
+  "d161407fd6b66b36396ebaf3e3d636e0f88ebdc9bca27300d1684464f0d5f6d5": {
+   "at": "2026-11-27 17:13:38Z",
+   "claims": 6,
+   "claims_key": "93a4a95e363fe17e",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The black rock behind the house grows from a low mound in stills 1-2 to a tall slope with fire in stills 3-4. That change is the intended event and its cause is not shown. The camera also appears to shift slightly between stills.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The lava wall is a flat dark slab or slope that fills the horizon. The flames are floating sprite-like cutouts perched on its top edge with no lava flow. In stills 3-4 Data's hand is at his head and the hat looks tipped. In still 4 the wall and flames are cut by the top frame edge.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1-4"
+    },
+    {
+     "id": "look",
+     "note": "Data and the house are toy-like and smooth, and the house is a clean flat box beside realistic grass. The fire is flat and sprite-like, and there is no real lava or molten rock. The result is a mix of cartoon and realistic looks.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "consequence",
+     "note": "The wall behind the house is small in frame and Data's body covers much of the picture. The last still differs from the first only by a background slope and fire. A phone viewer would not read it as a wall taller than the house that holds lava back.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "d161407fd6b66b36396ebaf3e3d636e0f88ebdc9bca27300d1684464f0d5f6d5",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "SAYS",
+     "id": "c3",
+     "kind": "SAYS",
+     "note": "A tin house with a black rock slope and fire behind it is shown. Nothing shows lava being kept out. There is no sense of a wall built by people, and no size comparison to the house beyond a slope that goes past the roof. The stranger would see a house, a fire and Data, not a wall built to stop lava.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
   },
   "d17fc40bdc0a156a0db3dae947d33deeb52351cf744be773fbdf517f570f6194": {
    "at": "2026-11-26 01:14:17Z",

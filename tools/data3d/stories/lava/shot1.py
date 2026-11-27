@@ -30,8 +30,15 @@ def place_grindavik_street():
     above it where the fissure opens (its glowing slot built here, hidden until the eruption comes), far blue
     mountains. Nothing else in the street: no cars, flags, poles or trucks (coordinator: two or three props)."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#343A2A", "#56603F", scale=0.35, rough=1.0, bump=0.35, detail=10))
-    FX.road(a=(0, -7.5), b=(0, 12.5), width=2.3, line=True, shoulders=0, seed=5, z=-0.045, name="street road")
+    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#243319", "#3E5528", scale=0.35, rough=1.0, bump=0.35, detail=10))     # (coordinator, p1c: the hill read beige: green moss, darker)
+    # (coordinator, p1c: the kit's scanned asphalt read as a CRACKED street before anything happened, stealing shot 4's
+    # crack: an intact grey deck, its centre line painted fresh)
+    asph = lw_noise("street asphalt", "#3C3D3F", "#525458", scale=9.0, rough=0.85, bump=0.08, detail=6)
+    K.box("street road", (0, 2.5, -0.035), (2.3, 20, 0.07), asph, bev=0.0)
+    paint = K.mat("street line paint", "#E6E2D6", rough=0.6)
+    y_ = -7.2
+    while y_ < 12.0:
+        K.box("street road line", (0, y_ + 0.5, 0.0015), (0.07, 1.0, 0.004), paint, bev=0.0); y_ += 2.2
     kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
         K.box("kerb", (sx * 1.15, 2.5, 0.04), (0.12, 20, 0.08), kerb, bev=0.01)
@@ -46,8 +53,7 @@ def place_grindavik_street():
                             roof=("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A")[(k + (sx > 0)) % 4], wall=("#B44A3C", "#E9D9A2", "#BFD3DD", "#F1EEE6", "#7E9A86")[(k + 2 * (sx > 0)) % 5], base=0.3, seed=k)
             houses.append(hs); y += w + rnd.uniform(0.4, 0.8); k += 1
     px, py = S1_P0
-    lava_rock("street ash", 260, (-1.05, 1.05, -5.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,     # cinders and ash fallen on the street
-              avoid=lambda x, y: abs(x - px - 0.1) < 0.45 and -4.3 < y < -2.2)                                        # (none where he stands and runs)
+    # (coordinator, p1c: no cinders on the street: nothing has happened yet)
     lava_rock("lava field rock", 60, (-14, 14, -6, 8), s1_ground_z, seed=3, r=(0.04, 0.12), moss=0.6, avoid=lambda x, y: abs(x) < 5.2)
     lava_rock("ridge slope stone", 160, (-7, 10, 8.5, 15.0), s1_ground_z, seed=12, r=(0.02, 0.05), moss=0.7)
     for k in range(6):                                     # the far blue mountains over the ridge
@@ -61,8 +67,6 @@ def place_grindavik_street():
         o = K.box("fissure glow", (x, S1_RIDGE_Y + 0.12 * math.sin(2.3 * k), s1_ground_z(x, S1_RIDGE_Y) + 0.12), (0.95, w_ * 1.6, 0.3), fl, bev=0.05)     # (p1a: sunk in the ridge, the glow never showed)
         o.rotation_euler = (0, 0, 0.15 * math.sin(3.1 * k)); slot.append(o)
     fz = s1_ground_z(S1_FX, S1_RIDGE_Y)
-    glow = [lw_point(f"fissure light {k}", (S1_FX + x, S1_RIDGE_Y - 1.5, fz + 2.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-3.5, 0, 3.5))]
-    town_glow = lw_area("eruption glow on the town", (0, 12, 7), (0, 0, 0.5), 0.0, 14, col=(1.0, 0.5, 0.2))
     # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
     town_house("town house at the street's end", (1.3, 10.4, s1_ground_z(1.3, 9.0)), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.5, roof="#B8352B", wall="#E9D9A2", seed=3)
     bpy.context.view_layer.update()
@@ -71,10 +75,10 @@ def place_grindavik_street():
             c = o.matrix_world.translation
             if -4.5 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
     def light():
-        k = iceland_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.4, haze=1.4)           # the world's one bright day (the reset, 2026-11-25: no dusk)
+        k = iceland_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.4, haze=0.8)           # the world's one bright day (the reset, 2026-11-25: no dusk)
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # the same REAL sky as the wall's beats (Poly Haven)
         return k
-    return dict(light=light, slot=slot, glow=glow, town_glow=town_glow, houses=houses, fz=fz)
+    return dict(light=light, slot=slot, houses=houses, fz=fz)
 
 
 def shot1():
@@ -92,19 +96,16 @@ def shot1():
     for o in P["slot"]:
         o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_GLOW))
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_GLOW) + 1)
-    for f in range(1, NF + 8, 2):
-        t = (f - 1) / FPS
-        for l_ in P["glow"]:
-            l_.data.energy = 2.5e3 * W(t, T_GLOW, 0.8) + 3.5e3 * W(t, T_BURST, 0.6)       # (p1b: brighter washed the whole street beige); l_.data.keyframe_insert("energy", frame=f)
-        P["town_glow"].data.energy = 8.0 * W(t, T_GLOW, 0.8) + 20.0 * W(t, T_BURST, 0.8); P["town_glow"].data.keyframe_insert("energy", frame=f)
+    # (coordinator, after shot 2's r2e pre-flight: one grade in all four stills: no lamp lights the town; the glow is the
+    # lava's own, the slot and the fountain)
     FZ = P["fz"]
-    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=2.4, h_fire=9.0, h_smoke=5.0, lean=(0.05, 0.1), t_end=DUR + 1.0,
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=4.0, h_fire=16.0, h_smoke=6.0,     # (coordinator, p1c: bigger) lean=(0.05, 0.1), t_end=DUR + 1.0,
                               seed=2.3, fire=7.0, smoke_d=3.0, rise=4.0, spread=0.3,
                               keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.5, 0.7), (TS[2], 1.0)], grow=True)
     PX, PY = S1_FX - 1.0, S1_RIDGE_Y + 2.5; PZ = s1_ground_z(PX, PY)
     plumes, base0 = [], []
-    for k, (dx, w_, h_, dy) in enumerate(((0.0, 9.0, 44.0, 0.0), (-4.0, 6.0, 30.0, 1.5), (4.0, 6.5, 34.0, 1.0))):
-        o = ash_plume((PX + dx, PY + dy, PZ - 0.5), w=w_, h=h_, S=7.0, dens=16.0, lean=(-0.02 + 0.02 * k, 0.03), col=(0.05, 0.047, 0.045),
+    for k, (dx, w_, h_, dy) in enumerate(((0.0, 13.0, 64.0, 0.0), (-5.5, 9.0, 44.0, 1.5), (5.0, 9.5, 50.0, 1.0))):     # (coordinator, p1c: towering out of the top of the frame by still 4)
+        o = ash_plume((PX + dx, PY + dy, PZ - 0.5), w=w_, h=h_, S=8.0, dens=20.0, lean=(-0.02 + 0.02 * k, 0.03), col=(0.05, 0.047, 0.045),
                       seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}")
         plumes.append(o); base0.append((Vector((PX + dx, PY + dy, PZ - 0.5)), o.location.copy(), o.scale.x))
     for o, (b, l0, s0) in zip(plumes, base0):
@@ -115,11 +116,6 @@ def shot1():
             g = max(0.08, 0.08 + 0.92 * W(t, T_PLUME, TS[3] - T_PLUME))          # (a volume scaled near zero crashes Cycles: never under 0.08)
             o.scale = (s0 * g,) * 3; o.location = b + (l0 - b) * g
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    plume_lit = [lw_point(f"plume fire light {k}", (PX + dx, PY - 1.0, PZ + 1.5), 0.0, col=(1.0, 0.42, 0.1), r=2.5) for k, dx in enumerate((-4.0, 0.0, 4.0))]
-    for f in range(1, NF + 8, 2):
-        t = (f - 1) / FPS
-        for l_ in plume_lit:
-            l_.data.energy = 3.0e4 * W(t, T_BURST, 0.6); l_.data.keyframe_insert("energy", frame=f)
     # ---- him: in the street in the foreground, three-quarter to us, turned toward the ridge at our right
     data = load_data()
     CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.16)).normalized(); LOOK0 = CAM0 + D * 5.0
@@ -154,8 +150,8 @@ def shot1():
     data.expression("surprised", 0.0, T_BURST, blend=0.15)
     data.expression("alarmed", T_BURST, DUR + 1.0, blend=0.2)
     sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
-    LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
-    HALF = lambda sg: ((-8, 0, -sg * 22), (-30, 0, -sg * 28), (-10, sg * -20, -sg * 12))
+    LOW = lambda sg: ((-4, 0, sg * 5), (-22, 0, 0), (0, 0, 0))                    # (r2e pre-flight 'talking with his hands out': his arms hang)
+    HALF = lambda sg: ((-20, 0, -sg * 16), (-75, 0, -sg * 15), (-10, sg * -20, -sg * 12))      # forearms up, chest-high
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     UP = lambda sg: ((-30, 0, -sg * 14), (-34, 0, -sg * 46), (-12, sg * -10, -sg * 15))
     RUNA = lambda sg: ((22, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
@@ -174,8 +170,7 @@ def shot1():
           "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "run", round(T_RUN, 2), flush=True)
     def cam_at(t):
         drift = Vector((0.0, 0.03, 0.02)) * (t / DUR)                 # a slow drift up the street
-        tilt = Vector((0, 0, 0.25)) * W(t, T_BURST, TS[3] - T_BURST)   # (p1b: more cut his feet off as he ran at us)    # tipping up with the plume
-        return CAM0 + drift, LOOK0 + drift + tilt, data.pos() + Vector((0, 0, 0.5))
+        return CAM0 + drift, LOOK0 + drift, data.pos() + Vector((0, 0, 0.5))       # (no tilt: the plume grows in a still frame)
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
     erupt = P["slot"] + [fountain] + plumes
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,

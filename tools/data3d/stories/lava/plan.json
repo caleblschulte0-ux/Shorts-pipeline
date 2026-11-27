@@ -170,27 +170,27 @@
      "built_as": "a painted tin house, red tin roof, four-pane windows"
     },
     {
-     "name": "rock",
+     "name": "lava",
      "objects": [
-      "falling rock"
+      "lava behind the wall"
      ],
      "whole": false,
-     "built_as": "black blocks of lava rock pouring down onto the wall from above"
+     "built_as": "the lava's orange glow and black smoke rising from behind the wall's crest, held out"
     }
    ],
    "framing": "close",
    "data": {
     "stands": "beside",
-    "side": "right",
+    "side": "left",
     "frame_h": 0.36
    },
-   "action": "a wall of black rock rises behind the house as rock pours down onto it",
-   "consequence": "the wall of rock stands far over the house's roof",
+   "action": "the wall of black rock grows behind the house",
+   "consequence": "the wall of rock stands over the house's roof, the lava's glow held behind it",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "a painted tin house at the left; behind it black rock starts piling up at ground level; he stands in front, three-quarter to us",
+     "shows": "a painted tin house, a knee-high row of black boulders at its feet; he stands facing us, hands on hips",
      "hands": "free",
      "new": [],
      "visible": [
@@ -199,70 +199,66 @@
        "as": "a painted tin house in Iceland"
       },
       {
-       "prop": "rock",
-       "as": "black rock pouring down behind it"
+       "prop": "wall",
+       "as": "a knee-high row of black boulders behind it"
       },
       {
        "prop": "data",
-       "as": "the driver in his hard hat"
+       "as": "the driver in his hard hat, hands on hips"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "the wall of black rock has risen to the house's knee, more rock pouring onto it; he looks round at it",
+     "shows": "the wall of black rock grows behind the house to its windows; he jerks a thumb back at it, grinning",
      "hands": "free",
      "new": [
       {
-       "what": "rock",
-       "how": "falls",
-       "cause": "it pours down onto the wall"
-      },
-      {
        "what": "wall",
        "how": "grows",
-       "cause": "rock pours down onto it"
+       "cause": "Iceland builds it up, rock on rock"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he looks round at it"
+       "cause": "a thumb jerked back at the wall, a grin"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the wall of rock rises knee-high to the house"
+       "as": "the wall of rock grows, built up window-high"
       },
       {
        "prop": "house",
        "as": "the house beside it"
       },
       {
-       "prop": "rock",
-       "as": "more rock pouring onto it"
-      },
-      {
        "prop": "data",
-       "as": "he watches it rise"
+       "as": "his thumb over his shoulder at it"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "the wall of rock built taller than the house stands far over its roof, keeping the lava out; he steps back, looking up at it",
+     "shows": "the wall of rock built taller than the house stands over its roof, a first orange glow behind it; he half-turns, head up, a hand on his hat",
      "hands": "free",
      "new": [
       {
        "what": "wall",
        "how": "grows",
-       "cause": "rock piles on until it stands over the roof"
+       "cause": "rock piled on until it stands over the roof"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "half-turned, head up, a hand holding his hat"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the wall of rock built taller than the house stands far over its roof, to keep the lava out"
+       "as": "the wall of rock built taller than the house stands over its roof"
       },
       {
        "prop": "house",
@@ -270,33 +266,38 @@
       },
       {
        "prop": "data",
-       "as": "he steps back, looking up at it"
+       "as": "a hand on his hat, looking up"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "he looks right up at the towering wall, an orange lava glow behind its crest",
+     "shows": "far over the house the wall holds the lava out: its orange glow and smoke rise behind the crest; he leans right back looking up, arms dropped, mouth open",
      "hands": "free",
      "new": [
       {
+       "what": "lava",
+       "how": "lights",
+       "cause": "the lava piles against the wall's far side"
+      },
+      {
        "what": "data",
        "how": "pose",
-       "cause": "he leans back, looking right up at it"
+       "cause": "he leans right back, arms dropped, mouth open"
       }
      ],
      "visible": [
       {
-       "prop": "data",
-       "as": "he looks right up at it"
+       "prop": "lava",
+       "as": "the lava's orange glow and smoke held behind the wall: it keeps the lava out"
       },
       {
        "prop": "wall",
-       "as": "the towering wall, an orange lava glow behind its crest"
+       "as": "the wall grown past the roof, towering over it"
       },
       {
-       "prop": "house",
-       "as": "the house beside it"
+       "prop": "data",
+       "as": "he leans back looking up"
       }
      ]
     }
