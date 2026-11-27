@@ -22979,6 +22979,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Static heart pose, no event, thirst-bait)",
       "ts": "2026-11-27T12:47:11.856927+00:00"
+    },
+    "clip-20261127-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/shroud/clip/ZealousAgreeablePoultryHeyGuys-IOxAVg64-JTLdcyR",
+      "story_key": null,
+      "streamer": "shroud",
+      "title": "Shroud Asks If He Just Stole This For No Reason",
+      "kind": "twitch_clip",
+      "ts": "2026-11-27T12:57:33.991600+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
