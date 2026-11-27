@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "drug-resistant-infections-2050__608d4eff",
+  "slug": "drug-resistant-infections-2050",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "Drug Resistance Is Heading Toward A Cancer-Sized Death Toll",
+  "hook": "Routine infections are learning to outlast the medicines built to stop them.",
+  "closing": "Preserving effective antibiotics protects ordinary medical care from becoming far more dangerous.",
+  "question": "Can medicine stay ahead of resistance?",
+  "segments": [
+    {
+      "topic": "Drug Resistance Today",
+      "say": "Drug resistance directly killed 1.27 million people in 2019. Routine infections already carry a major global toll."
+    },
+    {
+      "topic": "Drug Resistance Future",
+      "say": "Drug resistance deaths could reach 10 million yearly by 2050. Today's toll is only the beginning of the projected rise."
+    },
+    {
+      "topic": "Drug Resistance Comparison",
+      "say": "Projected resistance deaths equal 10 million current cancer deaths yearly. The future toll would be cancer-sized."
+    }
+  ]
+}
