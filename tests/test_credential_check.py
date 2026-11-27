@@ -237,3 +237,104 @@ class AWeeklyLimitIsASpentWindowNotADeadToken(unittest.TestCase):
 
     def test_an_answer_is_still_OK(self):
         self.assertEqual(self._cli("ok", rc=0)[0], cc.OK)
+
+
+class TheProbeIsTheProductionRequest(unittest.TestCase):
+    """The heartbeat must send what production sends, or it diagnoses a
+    different request. Groq sits behind Cloudflare, which answers urllib's
+    default "Python-urllib/3.x" user agent with HTTP 403 (its error 1010)
+    before the key is read. `shared/script_generator._call_groq` has carried
+    a real User-Agent since that was learned; this probe did not, and from
+    2026-11-10 to 2026-11-26 it reported the Groq key DEAD every day — "mint a
+    new one" — while the posting runs on the same key were answered with 429s
+    (run 45919952865: twenty-six, and not one 401 or 403). A 429 is a key that
+    was ACCEPTED and throttled. The key was fine; the alarm sent the operator
+    after the wrong fix for seventeen days."""
+
+    def _sent(self, call):
+        seen = {}
+
+        class _Resp:
+            status = 200
+
+            def read(self, _n=None):
+                return b"{}"
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+        def fake_urlopen(req, timeout=None):
+            seen["req"] = req
+            return _Resp()
+
+        with mock.patch.object(cc.urllib.request, "urlopen", fake_urlopen):
+            call()
+        return seen["req"]
+
+    def test_a_GET_carries_the_production_user_agent(self):
+        req = self._sent(lambda: cc._get("https://api.groq.com/openai/v1/models",
+                                         {"Authorization": "Bearer k"}))
+        ua = req.get_header("User-agent")
+        self.assertTrue(ua, "no User-Agent: urllib's default is the one "
+                            "Cloudflare refuses with a 403")
+        self.assertNotIn("python-urllib", ua.lower())
+        self.assertEqual(ua, cc.UA)
+        self.assertEqual(req.get_header("Authorization"), "Bearer k",
+                         "the caller's own headers must survive")
+
+    def test_a_POST_carries_it_too(self):
+        req = self._sent(lambda: cc._post(
+            "https://oauth2.googleapis.com/token", b"x=y",
+            {"Content-Type": "application/x-www-form-urlencoded"}))
+        self.assertEqual(req.get_header("User-agent"), cc.UA)
+
+    def test_it_is_the_user_agent_production_sends(self):
+        """One string, so the probe and the call it stands for cannot drift:
+        a probe that gets through on a header production lacks (or the
+        reverse) is again diagnosing a different request."""
+        src = (Path(cc.__file__).resolve().parent.parent / "shared"
+               / "script_generator.py").read_text()
+        self.assertIn(f'"User-Agent": "{cc.UA}"', src)
+
+    def test_a_403_from_the_edge_is_UNREACHABLE_not_a_dead_key(self):
+        """Cloudflare's refusal is plain text "error code: 1010" (or an HTML
+        page). The service never saw the key, so the status is not its
+        verdict — and "REPLACE THIS ONE" for a key that was never read is
+        the exact wasted afternoon this module exists to prevent."""
+        for body in ("error code: 1010",
+                     "<!DOCTYPE html><html><title>Attention Required! | "
+                     "Cloudflare</title></html>",
+                     "<html><body>403 Forbidden</body></html>"):
+            status, detail = cc.classify(403, body)
+            self.assertEqual(status, cc.UNREACHABLE, body)
+            self.assertIn("edge", detail)
+            self.assertIn("not the key", detail)
+
+    def test_the_service_refusing_the_key_is_still_DEAD(self):
+        """The real refusal comes back in the API's own JSON. That one is
+        the key, and it says so — with the service's words in the detail, so
+        the next misdiagnosis is visible in state/credentials.json."""
+        status, detail = cc.classify(
+            401, '{"error":{"message":"Invalid API Key",'
+                 '"type":"invalid_request_error","code":"invalid_api_key"}}')
+        self.assertEqual(status, cc.DEAD)
+        self.assertIn("Invalid API Key", detail)
+        # and a bare status with no body is still a refusal, as before
+        self.assertEqual(cc.classify(403)[0], cc.DEAD)
+        self.assertEqual(cc.classify(401, "")[0], cc.DEAD)
+
+    def test_the_probe_reads_the_run_the_way_the_alarm_does(self):
+        """End to end on the shape Groq actually produced: an edge 403 on the
+        probe must not reach daily_alarm as a dead credential."""
+        with mock.patch.object(cc, "_get",
+                               return_value=(403, "error code: 1010")):
+            status, _ = cc.probe_groq("k")
+        self.assertEqual(status, cc.UNREACHABLE)
+        self.assertEqual(
+            cc.changed_to_dead({"credentials": [{"name": "groq", "env": "G",
+                                                 "status": status,
+                                                 "detail": ""}]}, None),
+            [])
