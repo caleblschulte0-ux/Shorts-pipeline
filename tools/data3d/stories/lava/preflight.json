@@ -2119,6 +2119,58 @@
    "stills": 4,
    "unticked": []
   },
+  "cf9ca05ae3b3a01de927269bae92a58c4f86c627ffcda11b5bda6d9afb2d3ca7": {
+   "at": "2026-11-27 21:22:15Z",
+   "claims": 8,
+   "claims_key": "3cc7006e1c1fa18d",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The digger and the rock wall are barely visible in still 1 and appear in a different place in each still. The digger is low behind the house in stills 1-2 and perched on top of a tall wall in still 4. The wall is not shown growing in between. The rock wall appears to pop into existence in still 4.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-4"
+    },
+    {
+     "id": "edges",
+     "note": "In still 4 the digger is cropped by the top frame edge, and the top of the digger cab and the boom are cut off.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The digger is cut off by the top frame edge in still 4. Data's glasses look detached and float off his face in stills 3-4. The rock wall appears with no pile-up shown between stills.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "4"
+    },
+    {
+     "id": "look",
+     "note": "The house is a flat, toy-like box with a plain slab wall. The rock wall is a flat dark slab and does not read as lava or rock. Data is cartoonish against a semi-realistic set.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "body",
+     "note": "Data's glasses float off his face in stills 3 and 4. His arms hang or gesture with nothing in his hands.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "cf9ca05ae3b3a01de927269bae92a58c4f86c627ffcda11b5bda6d9afb2d3ca7",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "ACTION",
+     "note": "Data faces the camera or points sideways in every still. In still 4 he is turned slightly and his head is tilted a little up, but he does not clearly look up at the wall.",
+     "text": "Data looks up"
+    }
+   ]
+  },
   "d161407fd6b66b36396ebaf3e3d636e0f88ebdc9bca27300d1684464f0d5f6d5": {
    "at": "2026-11-27 17:13:38Z",
    "claims": 6,

@@ -1644,7 +1644,7 @@ S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 2.5                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
 S2_HOUSE = (-0.7, 1.0, 1.3, 1.8)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
-S2_P0 = (0.45, 4.3)                    # Data: the left foreground, his feet near the bottom edge
+S2_P0 = (0.3, 4.6)                     # Data: the left foreground, his feet near the bottom edge
 S2_DIG = (0.6, -0.3)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
 
 
@@ -1674,8 +1674,8 @@ def place_wall_works():
     hx, hy, hw, hd = S2_HOUSE
     house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=0.0, w=hw, d=hd, storeys=1, base=0.3, pitch=38, roof="#B8352B", wall="#E9D9A2", seed=5)
     def light():
-        k = iceland_light(sun_elev=24, sun_az=118, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(250))      # a REAL sky with cloud in it (Poly Haven)
+        k = iceland_light(sun_elev=30, sun_az=145, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(185))      # (r2za EMPTY 48%: turned so its clouds stand over the house) a REAL sky with cloud in it (Poly Haven)
         return k
     return dict(light=light, wall=wall, house=house)
 
@@ -1749,8 +1749,8 @@ def shot2():
     for f in range(1, NF + 8):                                 # (r2q HOLD/READ/FAR: planted, but a step back from the wall as it climbs, then another)
         t = (f - 1) / FPS
         SD = Vector((-TO.y, TO.x, 0))
-        p = (Vector((X0, Y0, Z0)) + TO * (0.12 * W(t, T2 + 0.3, 0.4) + 0.12 * W(t, T3 - 0.1, 0.4))     # (coordinator, r2y: two real steps back)
-             + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T3 + 0.1, 0.4)))     # (r2r READ: a weight shift in each pose)
+        p = (Vector((X0, Y0, Z0)) + TO * (0.09 * W(t, T2 + 0.3, 0.4) + 0.09 * W(t, T3 - 0.1, 0.4))     # (coordinator, r2y: two real steps back)
+             + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T2 + 0.75, 0.4)))     # (r2r READ: a weight shift in each pose)
         yaw = LENS + 25 * W(t, T1, 0.35) + 12 * W(t, T2, 0.45) - 15 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
         data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
         data._plant_feet_here(t, lift=(Z0, Z0))
@@ -1778,7 +1778,7 @@ def shot2():
     for tt in (T2 + 0.8, T3 - 0.05):                          # (r2v HOLD: his hands drift open from his sides as he takes it in)
         for bn in data.RELAXED:
             r = data.RELAXED[bn]
-            data._k(bn, tt, rot=(r[0] - (16 if bn.startswith("arm") else 0), r[1], r[2] + ((-24 if bn.endswith(".R") else 24) if bn.startswith("arm") else 0)))
+            data._k(bn, tt, rot=(r[0] - (16 if bn.startswith("arm") else 0), r[1], r[2] + ((-34 if bn.endswith(".R") else 34) if bn.startswith("arm") else 0)))
     # 4 leaning right back looking up, both arms dropped, mouth open
     for tt, dr in ((T3 + 0.3, 6), (T3 + 0.6, 14), (DUR + 0.5, 14)):     # (r2r HOLD: his arms drop on back as he leans)
         for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (dr if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
