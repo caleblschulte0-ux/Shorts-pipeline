@@ -105,7 +105,7 @@
   "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
  ],
  "storyboard": [
-  "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. Data recoils. Cars speed out of town past him.",
+  "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. He recoils. Cars speed out of town past him.",
   "2 His digger builds a rock wall behind a house until it towers far over the roof.",
   "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and builds up against it, steam rising off it. It stops dead against the rock, its crust going dark, and he punches the air and grins at us.",
   "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
@@ -113,7 +113,7 @@
  ],
  "staging": [
   {
-   "camera": "one low lens in the main street looking up it past him to the roofs and the ridge, a slow drift, tipping up with the plume",
+   "camera": "high",
    "data": "three-quarter to us in the foreground at the left: looks at us, turns his head up at the glow, flinches at the fountain, then runs at the lens, out of the street",
    "props": [
     "eruption",
@@ -139,7 +139,7 @@
    ]
   },
   {
-   "camera": "one locked low lens on the town side: the whole house at the right, him in the foreground at the left",
+   "camera": "low",
    "data": "planted in one spot: hands on hips facing us, a thumb over his shoulder at the wall, half-turned looking up, leaning right back",
    "props": [
     "earth wall",
@@ -166,7 +166,7 @@
    ]
   },
   {
-   "camera": "low",
+   "camera": "wide",
    "data": "braces in front of his wall as the lava slams into its foot and stops, then punches the air and grins",
    "props": [
     "lava river",
