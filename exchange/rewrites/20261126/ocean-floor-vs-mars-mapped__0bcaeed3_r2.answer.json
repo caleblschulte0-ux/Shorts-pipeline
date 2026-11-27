@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ocean-floor-vs-mars-mapped__0bcaeed3_r2",
+  "slug": "ocean-floor-vs-mars-mapped",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "Most Of Earth's Ocean Floor Still Has No Modern Map",
+  "hook": "The largest unmapped landscape is beneath ships, not beyond Earth.",
+  "closing": "Modern seafloor maps still leave a planet-sized blind spot on Earth.",
+  "question": "Would you map ocean or Mars?",
+  "segments": [
+    {
+      "topic": "Ocean Floor Progress",
+      "say": "Modern maps cover 28.7% of the ocean floor in 2026. Most seafloor still lacks detailed mapping."
+    },
+    {
+      "topic": "Ocean Floor Comparison",
+      "say": "Mars is 99.5% mapped. Its surface coverage makes the ocean floor gap look extraordinary."
+    },
+    {
+      "topic": "Ocean Floor Area",
+      "say": "Unmapped ocean floor spans 257 million square kilometers. The missing map covers more area than all of Mars."
+    }
+  ]
+}
