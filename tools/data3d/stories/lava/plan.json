@@ -372,19 +372,19 @@
     },
     {
      "event": "reaction",
-     "shows": "low by the house: the driver stands small at the foot of the towering wall by the house and looks up at it, a hand up by his face",
-     "hands": "free",
+     "shows": "from up the wall's face: the driver stands small at the towering wall's foot, both hands still on the lever, and looks up at it, the house's corner behind him",
+     "hands": "lever",
      "new": [
       {
        "what": "data",
        "how": "pose",
-       "cause": "he looks up at the wall, a hand up by his face"
+       "cause": "he looks up at the wall from the lever"
       }
      ],
      "visible": [
       {
        "prop": "data",
-       "as": "he looks up at it, small at its foot"
+       "as": "he looks up at it from the lever, small at its foot"
       },
       {
        "prop": "wall",
@@ -392,7 +392,11 @@
       },
       {
        "prop": "house",
-       "as": "the house beside him"
+       "as": "the house's corner behind him"
+      },
+      {
+       "prop": "lever",
+       "as": "his hands still on the lever"
       }
      ]
     }

@@ -198,9 +198,9 @@ def shot2():
     YWK = yaw_of(PE.x - PL.x, PE.y - PL.y)
     while YWK - YW0 > math.pi: YWK -= 2 * math.pi
     while YWK - YW0 < -math.pi: YWK += 2 * math.pi
-    for f in range(1, F(T_WALK) + 1):          # (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
+    for f in range(1, NF + 8):          # (coordinator 11-27: he never lets go on screen: no walk, no release) (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
         t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) + 0.03 * W(t, T_LET - 0.05, 0.4)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
-        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45) + (YWK - YW0) * W(t, T_LET - 0.05, T_WALK - T_LET + 0.05))      # (q2e: STEADY, he turns to go before he goes)
+        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))      # (q2e: STEADY, he turns to go before he goes)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     def body_at(t):
         sc.frame_set(F(t)); bpy.context.view_layer.update()
@@ -214,37 +214,18 @@ def shot2():
     lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.5))), 0.0, DUR + 0.4)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
-    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.17, lift=0.045, bob=0.014)
-    sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(-0.95, -0.3)          # (q2f: the lens is up the alley behind him, the wall towering over his back)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
-    while YU - YA > math.pi: YU -= 2 * math.pi
-    while YU - YA < -math.pi: YU += 2 * math.pi
-    for f in range(F(T_ARR) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.35))
-    # (q2i: reached before he walked, the hands were solved at the lever: 86 cm off) the hands, once his body is keyed
-    # (q2j/q2k: a hand eased from the bar to his belly fell 6 cm short twice, in the turn, inside the cutaway; q2m:
-    # falling relaxed went through his coat) simplified: the hands let go of the bar, the arms hold where they were
-    # through the wide, and come to rest out in front of him after it (q2l: a belly rest was reached through his coat)
+    # (q2i-q2n: five rounds on the hands after a release; coordinator 11-27: remove the release) both hands stay on the
+    # lever on every frame of the shot; the last set-up is a new lens on him at the lever, from up the wall's face
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
-        data.reach(sd, lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012)), 0.0, T_LET, lead=0.05, back=None, elbow_out=0.3)
-    for sd, up in ((sides[0], 0.0), (sides[1], 1.0)):
-        side_ = 1.0 if (acts._shoulder(data, sd) - body_at(T_WB)[0]).dot(body_at(T_WB)[2]) > 0 else -1.0
-        def job(t, side_=side_, up=up):
-            m, f_, l_ = body_at(t)
-            here = lambda c: m + f_ * c[0] + l_ * c[1] + Vector((0, 0, c[2]))
-            p = (0.14, side_ * 0.09, -0.06)                                            # out in front of him, clear of the coat
-            face = (0.12, 0.0, 0.08)                                                  # (q2h: an FK hand over his eyes swung behind his back) a hand up by his face
-            if up: k2 = ease(min(1.0, max(0.0, (t - T_ARR - 0.1) / 0.45))); p = tuple(p[i] + (face[i] - p[i]) * k2 for i in range(3))
-            return here(p)
-        data.reach(sd, job, T_WB - 0.15, DUR + 0.5, lead=0.45, back=None, elbow_out=0.45)
+        data.reach(sd, lambda t, u=u: on_bar(t, u) + Vector((0, 0, 0.012)), 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
+    CD = PL + Vector((0.1, -1.5, 1.9)); LD = PL + Vector((-0.25, 0.1, 0.25))     # up the wall's face, down at him at its foot, the house's corner behind him
     TAILP = hinge_at(0.8) @ tail_l
-    CREST = Vector((PE.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
+    CREST = Vector((PL.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
-    data.look_at(PE + Vector((0, -1.5, 0.3)), T_LET + 0.1, max_yaw=30, max_pitch=30, blend=0.7)
-    data.look_at(PE + Vector((-0.8, -0.25, 3.0)), T_ARR - 0.1, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
-    data.expression("determined", 0.0, T_ARR, blend=0.15)
-    data.expression("surprised", T_ARR, DUR + 1.0, blend=0.3)
+    data.look_at(CD + Vector((0, -0.3, 0.6)), T_CUT + 0.3, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
+    data.expression("determined", 0.0, T_WB, blend=0.15)
+    data.expression("surprised", T_WB, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
     HIP = lambda sg: ((-6, 0, -sg * 64), (-98, 0, sg * 30), (0, 0, 0))                           # a fist on his hip
     def pose(t, P_, sides_="LR"):
@@ -267,7 +248,7 @@ def shot2():
     CB, LB = compose.frame_data(data, CB0, LB0, LENS_B, face_at=(0.38, 0.6), height=0.34, t=1.2)
     # (q2c: from up the wall the wall was behind the lens; q2e: the solver backed the lens behind the house's corner) set
     # by hand: low and close along the house's front, wide, tipped up so the wall rises over him at the right
-    CD = PE + Vector((-1.2, 0.35, 0.25)); LD = PE + Vector((0.0, 0.0, 0.65))       # (q2g: up the alley the downpipe stood in front of him) low off the steps' end, along the house's front: him walking at us, the wall over his right       # (q2f: from the house's door side the wall was out of frame) up the alley between the house and the truck, low, tipped up: him small, the wall over him
+    # (q2o) CD/LD: set at the lever above, up the wall's face
     print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
           "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
@@ -277,7 +258,7 @@ def shot2():
     for f in range(F(T_AB), F(T_CUT)):                      # the high set-up is a long lens
         cam.data.lens = LENS_B; cam.data.keyframe_insert("lens", frame=f)
     for f in range(F(T_WB), NF + 8):                        # the low set-up by the house is a wider lens: the wall over him
-        cam.data.lens = 28.0; cam.data.keyframe_insert("lens", frame=f)
+        cam.data.lens = 50.0; cam.data.keyframe_insert("lens", frame=f)
     from character import _fcurves
     for fc in _fcurves(cam.data.animation_data.action):
         for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
