@@ -3,274 +3,6 @@
     {
       "date": "20261119",
       "dry_run": false,
-      "ts": "2026-11-19T13:16:10+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 130,
-        "with_retention": 114,
-        "with_curve": 14,
-        "fetched_at": "2026-11-19T08:46:24.655826+00:00"
-      },
-      "brain": {
-        "ok": 24,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:silky": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shroud": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261119-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas height. The rest is blurred padding, well short; vision: The subject is small and far away. The seaplane is tiny in mos",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "survival hook, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.72,
-              "why": "GTA 6 seaplane flip, survives, CaseOh",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Caseoh Snaps At Chat Over Where He Gets The Water"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.6,
-              "problems": [
-                "The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas height. The rest is blurred padding, well short",
-                "The subject is small and far away. The seaplane is tiny in most frames and CaseOh's facecam is a small corner thumbnail,",
-                "The renderer did not crop toward the action. The strip is uncropped full-frame gameplay, so it looks reposted rather tha"
-              ]
-            },
-            "first_render": {
-              "reframe": "cameras",
-              "layout": "cameras",
-              "problems": [
-                "vision: The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas, with large blurred bands above and below. The ",
-                "vision: The subject is small. The seaplane is far away or tiny in most frames, and CaseOh's facecam is a small box in the corner",
-                "vision: The clip looks like a reposted letterboxed gameplay video, not an edited one. There is no punch-in on the plane or the f"
-              ]
-            }
-          },
-          "took_s": 402.8
-        },
-        {
-          "slug": "clip-20261119-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261119-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "reaction to unseen thing",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "GTA 6 scene, mild reveal, Portuguese",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.55,
-              "problems": [
-                "Hook caption sits over the streamer's facecam and partly covers his face in every frame",
-                "The sharp picture fills only about half the canvas, and the gameplay strip is small and dark",
-                "Facecam crop is dark and zoomed in tight, so the reaction is hard to read"
-              ]
-            }
-          },
-          "took_s": 276.7
-        },
-        {
-          "slug": "clip-20261119-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261119-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip of about one third of the 9:16 canvas, well short of the roughly three quarters e; vision: The subject is small and far away. The truck and the NPC are t",
-          "judges": {
-            "banger": {
-              "score": 0.72,
-              "why": "Searched name, GTA 6, funny irony",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "GTA 6 xQc, but frames show only driving",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Gets Called Out By A GTA 6 NPC Right After Doing It First"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "The sharp picture is a thin 16:9 strip of about one third of the 9:16 canvas, well short of the roughly three quarters e",
-                "The subject is small and far away. The truck and the NPC are tiny in a very dark scene, and the streamer's facecam is a ",
-                "The picture is very dark and low-contrast, so the action is hard to see in most frames.",
-                "The captions sit on the thin strip and are small and partly garbled or censored (asterisks, 'o OH h'), so the NPC roast ",
-                "The large blurred areas above and below dominate the frame, leaving empty dark space."
-              ]
-            },
-            "first_render": {
-              "reframe": "cameras",
-              "layout": "cameras",
-              "problems": [
-                "vision: The picture is very dark and low-contrast. It is mostly a car driving along a dusk road, and the 'NPC roasts xqc' action",
-                "vision: No NPC appears until the final frame, so the hook card promises something the visuals don't show.",
-                "vision: The word captions are cut off at the frame edges ('What the f', 'Enjoy', 'about this guy?').",
-                "vision: In the frames at 9.5s and 16.9s the caption overlaps the hook card, and masked profanity ('********') is visible.",
-                "vision: The framing is inconsistent: the sharp area changes size and position, with the picture filling more of the canvas at so"
-              ]
-            }
-          },
-          "took_s": 190.8
-        },
-        {
-          "slug": "clip-20261119-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261119",
-      "dry_run": false,
       "ts": "2026-11-19T19:37:39+00:00",
       "feedback": {
         "snapshot": true,
@@ -6520,6 +6252,135 @@
             }
           },
           "took_s": 106.8
+        }
+      ]
+    },
+    {
+      "date": "20261127",
+      "dry_run": false,
+      "ts": "2026-11-27T19:59:28+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 13,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 139,
+        "with_retention": 106,
+        "with_curve": 15,
+        "fetched_at": "2026-11-27T18:22:01.440345+00:00"
+      },
+      "brain": {
+        "ok": 9,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261127-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "GTA6 glitch, searchable, vague event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "GTA6 car flip glitch, visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Banksatkin: Banks Atkin Reacts To Crazy GTA 6 Car Glitch Someone Clipped"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture is a thin 16:9 strip, about 30% of the canvas height, with large blurred areas above and below. The game c",
+                "The streamer facecam is tiny in the corner.",
+                "The hook caption sits in the blurred lower padding and doesn't cover the action."
+              ]
+            }
+          },
+          "took_s": 115.9
         }
       ]
     }
