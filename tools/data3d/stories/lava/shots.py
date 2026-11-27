@@ -1432,10 +1432,10 @@ def place_grindavik_street():
     above it where the fissure opens (its glowing slot built here, hidden until the eruption comes), far blue
     mountains. Nothing else in the street: no cars, flags, poles or trucks (coordinator: two or three props)."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#243319", "#3E5528", scale=0.35, rough=1.0, bump=0.35, detail=10))     # (coordinator, p1c: the hill read beige: green moss, darker)
+    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#1E2C15", "#4A6430", scale=1.6, rough=1.0, bump=0.5, detail=12, lo=0.3, hi=0.75))     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
     # (coordinator, p1c: the kit's scanned asphalt read as a CRACKED street before anything happened, stealing shot 4's
     # crack: an intact grey deck, its centre line painted fresh)
-    asph = lw_noise("street asphalt", "#3C3D3F", "#525458", scale=9.0, rough=0.85, bump=0.08, detail=6)
+    asph = lw_noise("street asphalt", "#343538", "#5A5C60", scale=3.0, rough=0.85, bump=0.15, detail=8, lo=0.3, hi=0.75)     # (r1w EMPTY: worn patches, still intact)
     K.box("street road", (0, 2.5, -0.035), (2.3, 20, 0.07), asph, bev=0.0)
     paint = K.mat("street line paint", "#E6E2D6", rough=0.6)
     y_ = -7.2
@@ -1457,7 +1457,7 @@ def place_grindavik_street():
     px, py = S1_P0
     # (coordinator, p1c: no cinders on the street: nothing has happened yet)
     lava_rock("lava field rock", 60, (-14, 14, -6, 8), s1_ground_z, seed=3, r=(0.04, 0.12), moss=0.6, avoid=lambda x, y: abs(x) < 5.2)
-    lava_rock("ridge slope stone", 160, (-7, 10, 8.5, 15.0), s1_ground_z, seed=12, r=(0.02, 0.05), moss=0.7)
+    lava_rock("ridge slope stone", 260, (-12, 14, 8.5, 15.0), s1_ground_z, seed=12, r=(0.05, 0.16), moss=0.5)     # (r1w EMPTY: the slope needs its rocks big enough to read at phone size)
     for k in range(6):                                     # the far blue mountains over the ridge
         x = -40 + 16 * k
         K.sph("far mountain", (x, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.7 + 0.15 * (k % 3)), seg=24, ring=12)
@@ -1520,7 +1520,7 @@ def shot1():
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
     # ---- him: in the street in the foreground, three-quarter to us, turned toward the ridge at our right
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.1)).normalized(); LOOK0 = CAM0 + D * 5.0
+    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.05)).normalized(); LOOK0 = CAM0 + D * 5.0
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(35)                              # three-quarter: his chest 35 degrees round toward the ridge
@@ -1528,17 +1528,17 @@ def shot1():
     kit = hard_hat(data)
     TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
     SIDE = Vector((-TO.y, TO.x, 0))                             # (his left as he faces the lens is the frame's... either way: a small shuffle)
-    Y_BACK = 0.2                                               # the flinch: a step toward us, away from it
+    Y_BACK = 0.12                                              # the flinch: a step toward us, away from it
     for f in range(1, F(T_RUN) + 1):
         t = (f - 1) / FPS
-        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.1 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35) + 0.1 * W(t, T_BURST + 0.75, 0.35))     # (r1v HOLD/READ: a second step back before he runs)
+        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.1 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35) + 0.06 * W(t, T_BURST + 0.75, 0.35))     # (r1v HOLD/READ: a second step back before he runs)
         p.z = Z0 + 0.03 * lw_kick(t - T_BURST - 0.15, 0.25)
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(8) * W(t, T_GLOW, 0.5) - math.radians(10) * W(t, T_BURST + 0.15, 0.4))
         data._plant_feet_here(t, lift=(Z0, Z0))
     # the run: at the lens, a little to its left, past it and out of the street (still 4 is mid-stride, in the frame)
     sc.frame_set(F(T_RUN)); bpy.context.view_layer.update(); PR = data.pos()
     AWAY = (TO + SIDE * 0.12).normalized()
-    END = PR + TO * 0.28                                      # (p1a: 0.9 m ran him out of the frame by still 4)
+    END = PR + TO * 0.1 + SIDE * 0.55                         # (r1w: straight at the lens he grew to 0.58 and was cut by still 4: he runs past us, across the street)
     data.walk_to((END.x, END.y), T_RUN, DUR + 0.1, step=0.2, lift=0.08, bob=0.024, lean=10.0)
     lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.85, 0.4) - 12 * W(t, T_BURST + 0.1, 0.3) + 10 * lw_kick(t - T_BURST - 0.15, 0.3)
                                        + 14 * W(t, T_RUN - 0.1, 0.3), 0, 0), 0, DUR + 0.4)
